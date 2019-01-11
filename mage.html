@@ -40,7 +40,7 @@ AFRAME.registerComponent("menu_plane", {
                    VR_LOG('catbella')
                    let items = document.querySelectorAll(".menu_plane")
                     bitems.forEach(function(el) {
-                        el.object3D.position.set(1, 2, 0);
+                        el.object3D.position.set(1 2 0);
                     })
                   });
                   this.el.addEventListener("click",(e) => {
@@ -315,7 +315,7 @@ At AWE US 2018 I recorded an interview with Klony Lieberman of Sixdof Space, an 
                      
       <a-entity id="cameraRig">
         
-      <a-plane id="cat" class="menu_plane" side="double" material="metalness: 0.5; roughness: 0; color: purple" position="0 0 -3" scale="1 0.5 0" rotation="-45 0 0" bella>
+      <a-plane id="cat" class="menu_plane" side="double" visible="false" material="metalness: 0.5; roughness: 0; color: purple" position="0 0 -3" scale="1 0.5 0" rotation="-45 0 0" bella>
 <!--       <a-animation attribute="scale"
                dur="300"
                fill="forwards"
@@ -330,7 +330,7 @@ At AWE US 2018 I recorded an interview with Klony Lieberman of Sixdof Space, an 
                begin="close_the_menu"></a-animation> -->
       </a-plane>
         
-      <a-plane id="dog" class="menu_plane" side="double" material="metalness: 0; roughness: 0.5; color: blue" position="3 0 0" scale="1 0.5 0" rotation="-45 -90 0"  citizen>
+      <a-plane id="dog" class="menu_plane" side="double" visible="false" material="metalness: 0; roughness: 0.5; color: blue" position="3 0 0" scale="1 0.5 0" rotation="-45 -90 0"  citizen>
 <!--       <a-animation attribute="scale"
                dur="300"
                fill="forwards"
@@ -345,7 +345,7 @@ At AWE US 2018 I recorded an interview with Klony Lieberman of Sixdof Space, an 
                begin="close_the_menu"></a-animation> -->
       </a-plane>
         
-      <a-plane id="snail" class="menu_plane" side="double" material="metalness: 0.1; roughness: 0; color: green" position="-3 0 0" scale="1 0.5 0" rotation="-45 90 0" dragon>
+      <a-plane id="snail" class="menu_plane" side="double" visible="false" material="metalness: 0.1; roughness: 0; color: green" position="-3 0 0" scale="1 0.5 0" rotation="-45 90 0" dragon>
 <!--       <a-animation attribute="scale"
                dur="300"
                fill="forwards"
@@ -360,7 +360,7 @@ At AWE US 2018 I recorded an interview with Klony Lieberman of Sixdof Space, an 
                begin="close_the_menu"></a-animation> -->
       </a-plane>
       
-      <a-plane id="cloud" class="menu_plane" side="double" material="metalness: 0; roughness: 0.1; color:red" position="0 0 3" scale="1 0.5 0" rotation="-45 -180 0" apple>
+      <a-plane id="cloud" class="menu_plane" side="double" visible="false" material="metalness: 0; roughness: 0.1; color:red" position="0 0 3" scale="1 0.5 0" rotation="-45 -180 0" apple>
 <!--             <a-animation attribute="scale"
                      dur="300"
                      fill="forwards"
