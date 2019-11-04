@@ -573,7 +573,7 @@ var cam;
 function updatePosition(data) {
     f = data.force;
     ang = data.angle.radian;
-    cam = document.getElementById("camera");
+    cam = document.getElementById("head");
     x_vec = Math.cos(ang + 3.14 / 180 * cam.getAttribute('rotation')['y']);
     y_vec = Math.sin(ang + 3.14 / 180 * cam.getAttribute('rotation')['y']);
     x = cam.getAttribute("position")["x"] + f / 15 * (x_vec);
