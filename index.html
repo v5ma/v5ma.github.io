@@ -1,1 +1,54 @@
-
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>min + controllers</title>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script type="text/javascript"
+      src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js">
+  </script>
+  <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/gh/n5ro/Micah1.github.io@7022b232989831d0748167999c5ac2998fa0eeb2/scripts/pilaser.js">
+  </script>
+  <script type="text/javascript"
+      src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js">
+  </script>
+  <script>
+    AFRAME.registerComponent('change-color', {
+      schema: {
+        color: {default: 'red'}
+      },
+      init: function () {
+        var data = this.data;
+        var el = this.el;  // <a-box>
+        var defaultColor = el.getAttribute('material').color;
+        el.addEventListener('mousedown', function () {
+          el.setAttribute('color', data.color);
+        });
+        el.addEventListener('mouseup', function () {
+          el.setAttribute('color', defaultColor);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <a-scene raycaster="objects: .clickable; showLine: false;" cursor="rayOrigin: mouse;">
+    <a-box class="clickable" color="#EF2D5E" position="0 1 -4" change-color="color: blue"></a-box>
+    <a-entity id="cameraRig">
+      <a-entity id="cameraRig_1" character-controller="pivot: #head">
+        <a-entity id="head" camera wasd-controls touch-look-controls position="0 0 0"></a-entity>
+           <a-entity
+               teleport-controls="startEvents: thumbdownstart; endEvents: thumbdownend; cameraRig: #cameraRig; teleportOrigin: #head; curveShootingSpeed: 12; collisionEntities: [ground]"
+               thumb-controls thumb-movement-controls 
+               my-laser-controls  line="color: white; opacity: 0.75" 
+               raycaster="objects:.clickable; far: 50">
+           </a-entity>
+           <a-entity daydream-controls vive-focus-controls oculus-go-controls></a-entity>
+           <a-entity id="left-hand" hand-controls="hand: left"></a-entity>
+           <a-entity id="right-hand" hand-controls="hand: right" thumb-controls></a-entity>
+      </a-entity>
+    </a-entity>
+  </a-scene>
+</body>
+</html>
