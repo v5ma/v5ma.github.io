@@ -1,5 +1,5 @@
 # aframe-gravity-gloves-component
-This Gravity Gloves Component example is combined
+This Gravity Gloves Component example view at https://n5ro.github.io/gravitygloves/ is combined
 
 with the aframe super hands component
 https://github.com/wmurphyrd/aframe-super-hands-component
