@@ -52,7 +52,7 @@
                 follower.addEventListener('click', function(e) {
                   const caller = e.detail.cursorEl
                   if (caller && caller !== follower.sceneEl) {
-                    VR_LOG('followerstart ok');
+                    VR_LOG('Gravity Gloves test okay');
                     const startingPoint = follower.getAttribute('position')
                     caller.object3D.getWorldPosition(endPoint);
                     endPoint.y += 0.2
@@ -61,9 +61,9 @@
                     midPointa.lerpVectors(startingPoint, endPoint, 0.25)
                     midPointb.lerpVectors(startingPoint, endPoint, 0.5)
                     midPointc.lerpVectors(startingPoint, endPoint, 0.75)
-                    midPointa.y += dist / 5                         
-                    midPointb.y += dist / 4
-                    midPointc.y += dist / 5
+                    midPointa.y += dist / 4.5                         
+                    midPointb.y += dist / 3
+                    midPointc.y += dist / 4.5
                     
                     point1.setAttribute('position', startingPoint)
                     point2.setAttribute('position', midPointa)
@@ -74,7 +74,7 @@
                     follower.removeAttribute('alongpath')
                     follower.setAttribute('alongpath', {
                       curve: '#pathToGlove',
-                      dur:500
+                      dur:700
                     });
                     
                     follower.removeAttribute('dynamic-body', {
@@ -91,7 +91,7 @@
                     linearDamping: 0.1,
                     angularDamping: 0.1
                     });
-                    }, 500);
+                    }, 700);
                     
                   }
                 });
@@ -218,7 +218,7 @@
           <a-entity id="right-hand" hand-controls="hand: right" mixin="hands"></a-entity>
       </a-entity>
     </a-entity>
-        <a-text id="vr_console" font="dejavu"
+       <a-text id="vr_console" font="dejavu"
        geometry="primitive: plane; width: 2.5; height: 20;"
        material="side: double; color: #000000"
        rotation="0 0 0" position="1.2 0.4 -4" 
