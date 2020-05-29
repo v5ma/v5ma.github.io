@@ -15,4 +15,7 @@ https://github.com/protyze/aframe-alongpath-component
 the aframe curve component
 https://github.com/protyze/aframe-curve-component
 
-the background, the 6 balls on the ground, and the sticks was inspired and remixed from this super hands physics demo https://wmurphyrd.github.io/aframe-super-hands-component/examples/sticky/
+the background is the aframe environment component
+https://github.com/supermedium/aframe-environment-component
+
+the 6 balls on the ground, and the sticks was inspired and remixed from this super hands physics demo https://wmurphyrd.github.io/aframe-super-hands-component/examples/sticky/
