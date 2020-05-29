@@ -1,6 +1,8 @@
 # aframe-gravity-gloves-component
 This Gravity Gloves Component example view at https://n5ro.github.io/gravitygloves/ is combined
 
+This component was the six week (3 hours each Wednesday night) combined effort of the Aframe WebXR Online Hacknight. https://www.meetup.com/virtualreality/events/
+
 with the aframe super hands component
 https://github.com/wmurphyrd/aframe-super-hands-component
 
