@@ -54,9 +54,17 @@
                   if (caller && caller !== follower.sceneEl) {
                     VR_LOG('Gravity Gloves test okay');
                     const startingPoint = follower.getAttribute('position')
+
                     caller.object3D.getWorldPosition(endPoint);
-                    endPoint.y += 0.2
-                    endPoint.z += -0.1
+                    let radius = 0;
+                    follower.object3D.traverse(o => {
+                      if (o.geometry && o.geometry.boundingSphere) {
+                        radius = o.geometry.boundingSphere.radius;
+                      }
+                    });
+                    VR_LOG('radius: ' + radius);
+                    endPoint.y += radius;
+
                     const dist = startingPoint.distanceTo(endPoint)
                     midPointa.lerpVectors(startingPoint, endPoint, 0.25)
                     midPointb.lerpVectors(startingPoint, endPoint, 0.5)
