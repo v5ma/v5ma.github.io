@@ -35,8 +35,18 @@
             const MAX_WARNINGS = 10;
             const PI_2 = Math.PI / 2;
             
+            AFRAME.registerComponent("controller-adapter", {
+              init: function() {
+                this.el.addEventListener('squeezedown', e => {
+                  this.el.emit('gripdown', e.detail)
+                })
+                this.el.addEventListener('squeezeup', e => {
+                  this.el.emit('gripup', e.detail)
+                })
+              }
+            })
             
-     AFRAME.registerComponent("follower", {
+            AFRAME.registerComponent("follower", {
               init: function() {
                 var follower = this.el;
                 const endPoint = new THREE.Vector3();
@@ -152,6 +162,7 @@
                  thumb-controls thumb-movement-controls snapturn super-hands
                  teleport-controls="startEvents: thumbdownstart; endEvents: thumbdownend; cameraRig: #cameraRig;
                  teleportOrigin: #head; curveShootingSpeed: 12; collisionEntities: [ground];"
+                 controller-adapter
                  ></a-mixin>
        
         <a-mixin id="floor" static-body 
