@@ -116,7 +116,8 @@
                 
               }
              });
-      
+          
+              
           
     AFRAME.registerComponent('thumb-movement-controls', {
                 init: function () {
@@ -147,18 +148,20 @@
       <a-assets>
         <a-mixin id="cube" shadow
                  hoverable
-                 stretchable="startButtons: abuttondown; endButtons: abuttonup"
+                 stretchable="startButtons: xbuttondown; endButtons: abuttonup"
                  grabbable="startButtons: gripdown; endButtons: gripup"
                  event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
                  event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
              animation="property: position; easing: easeOutQuad; startEvents: follow"
-             follower>  
+             follower>
         </a-mixin>
+        
+          
         <a-mixin id="hands"
                  static-body="shape: sphere; sphereRadius: 0.0001;"
                  sphere-collider
                  my-laser-controls  line="color: white; opacity: 0.75" 
-                 raycaster="objects:.cube; far: 50"
+                 raycaster="objects:.clickable; far: 50"
                  thumb-controls thumb-movement-controls snapturn super-hands
                  teleport-controls="startEvents: thumbdownstart; endEvents: thumbdownend; cameraRig: #cameraRig;
                  teleportOrigin: #head; curveShootingSpeed: 12; collisionEntities: [ground];"
@@ -175,7 +178,7 @@
       </a-assets>
 
       <a-plane link="href: https://www.meetup.com/virtualreality/; title: Aframe WebXR Online Hacknight every Wednesday 7pm to 10pm PST;
-              image: #aframewide; on: click" static-body class="cube" side="double" visible="true" material="src: #aframewide" position="0 1.8 6"
+              image: #aframewide; on: click" static-body class="clickable" side="double" visible="true" material="src: #aframewide" position="0 1.8 6"
               onmouseenter="this.setAttribute('link', {highlighted: true})"
               onmouseexit="this.setAttribute('link', {highlighted: false})" 
               scale="3 1.5 1.5" rotation="0 180 0"></a-plane>
@@ -187,51 +190,45 @@
 
        
       <a-box link="href: https://www.meetup.com/virtualreality/; title: Aframe WebXR Online Hacknight every Wednesday 7pm to 10pm PST;
-              image: #aframewide; on: click" static-body class="cube" side="double" visible="true" material="src: #aframesquare" position="-1 1.5 -4.5"
+              image: #aframewide; on: click" static-body class="clickable" side="double" visible="true" material="src: #aframesquare" position="-1 1.5 -4.5"
             scale="2 2 2" rotation="0 0 0" spheres
             start></a-box>
       
       
-      <a-cone class="cube" mixin="cube" material="color: green" geometry="radius-top: 0.04; radius-bottom: 0.03; height: 3" position="-1.5 3 -3.5" rotation="85 0 85">
-      </a-cone>
-      <a-cone class="cube" mixin="cube" material="color: blue" geometry="radius-top: 0.05; radius-bottom: 0.02; height: 3" position="-1 3 -3" rotation="85 0 85">
-      </a-cone>
-      <a-cone class="cube" mixin="cube" material="color: red" geometry="radius-top: 0.04; radius-bottom: 0.03; height: 3" position="2 3 -3.5" rotation="85 0 85">
-      </a-cone>
-      <a-entity class="cube" mixin="cube" position="-2 3.265 -3" material="color: yellow" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
-      <a-entity class="cube" mixin="cube" position="2 3.265 -3.5" material="color: red" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
-      <a-entity class="cube" mixin="cube" position="-1 3.265 -3" material="color: blue" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
-      <a-entity class="cube" mixin="cube" position="-1 3.265 -3.5" material="color: blue" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
-      <a-entity class="cube" mixin="cube" position="1 3.265 -3" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
-      <a-entity class="cube" mixin="cube" position="1 3.265 -3.5" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
+      <a-entity class="clickable" mixin="cube" position="-2 3.265 -3" material="color: yellow" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
+      <a-entity class="clickable" mixin="cube" position="2 3.265 -3.5" material="color: red" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
+      <a-entity class="clickable" mixin="cube" position="-1 3.265 -3" material="color: blue" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
+      <a-entity class="clickable" mixin="cube" position="-1 3.265 -3.5" material="color: blue" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
+      <a-entity class="clickable" mixin="cube" position="1 3.265 -3" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
+      <a-entity class="clickable" mixin="cube" position="1 3.265 -3.5" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
     <a-entity
         geometry="primitive: sphere; radius: 0.1"
         material="color: #0000ff" color="#0000ff"      
-        class="cube" mixin="cube"
+        class="clickable" mixin="cube"
         position="4 4 -3"></a-entity>
     <a-entity
         geometry="primitive: sphere; radius: 0.3"
         material="color: #66ccff"
-        class="cube" mixin="cube"
+        class="clickable" mixin="cube"
         position="-4 4 -3"></a-entity>
-    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #00b300" class="cube" mixin="cube" position="4 5 -4" change-color="color: yellow"></a-entity>
-    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #002080" class="cube" mixin="cube" position="-4 7 -4" change-color="color: #EF2D5E"></a-entity>
-    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #8000ff" class="cube" mixin="cube" position="4 7 -4" change-color="color: #EF2D5E"></a-entity>
-      <a-entity dynamic-body class="cube" geometry="primitive: sphere; radius: 0.25" mixin="cube" position="-1 0.45 -0" material="color: red"></a-entity>
-      <a-entity dynamic-body class="cube" geometry="primitive: sphere; radius: 0.25" mixin="cube" position="1 0.45 0" material="color: red"></a-entity>
-      <a-entity dynamic-body class="cube" geometry="primitive: sphere; radius: 0.3" mixin="cube" position="-1 0.45 -1" material="color: blue"></a-entity>
-      <a-entity dynamic-body class="cube" geometry="primitive: sphere; radius: 0.3" mixin="cube" position="-1 0.45 1" material="color: blue"></a-entity>
-      <a-entity dynamic-body class="cube" geometry="primitive: sphere; radius: 0.2" mixin="cube" position="1 0.45 -1" material="color: green"></a-entity>
-      <a-entity dynamic-body class="cube" geometry="primitive: sphere; radius: 0.35" mixin="cube" position="1 0.45 1" material="color: green"></a-entity>
+    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #00b300" class="clickable" mixin="cube" position="4 5 -4" change-color="color: yellow"></a-entity>
+    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #002080" class="clickable" mixin="cube" position="-4 7 -4" change-color="color: #EF2D5E"></a-entity>
+    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #8000ff" class="clickable" mixin="cube" position="4 7 -4" change-color="color: #EF2D5E"></a-entity>
+      <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.25" mixin="cube" position="-1 0.45 -0" material="color: red"></a-entity>
+      <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.5" mixin="cube" position="1 0.45 0" material="color: red"></a-entity>
+      <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.4" mixin="cube" position="-1 0.45 -1" material="color: blue"></a-entity>
+      <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.3" mixin="cube" position="-1 0.45 1" material="color: blue"></a-entity>
+      <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.2" mixin="cube" position="1 0.45 -1" material="color: green"></a-entity>
+      <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.35" mixin="cube" position="1 0.45 1" material="color: green"></a-entity>
       <a-plane mixin="floor" rotation="-90 0 0" position="0 0.01 0"></a-plane>
-      <a-plane mixin="floor" position="0 0 -1.5" rotation="-85 0 0"></a-plane>
-      <a-plane mixin="floor" position="0 0 1.5"  rotation="85 0 0" side="back"></a-plane>
-      <a-plane mixin="floor" position="-1.5 0 0" rotation="-85 90 0"></a-plane>
-      <a-plane mixin="floor" position="1.5 0 0"  rotation="-85 -90 0"></a-plane>
+      <a-plane mixin="floor" position="0 0 -10.5" rotation="-85 0 0"></a-plane>
+      <a-plane mixin="floor" position="0 0 10.5"  rotation="85 0 0" side="back"></a-plane>
+      <a-plane mixin="floor" position="-10.5 0 0" rotation="-85 90 0"></a-plane>
+      <a-plane mixin="floor" position="10.5 0 0"  rotation="-85 -90 0"></a-plane>
       
     <a-entity id="cameraRig">
       <a-entity id="cameraRig_1" character-controller="pivot: #head" position="0 0.2 0">
-          <a-entity camera wasd-controls look-controls raycaster="objects: .cube; far: 50" cursor="rayOrigin: mouse;"></a-entity>
+          <a-entity camera sphere-collider static-body wasd-controls look-controls raycaster="objects: .clickable; far: 50" cursor="rayOrigin: mouse;"></a-entity>
           <a-entity id="left-hand" hand-controls="hand: left" mixin="hands"></a-entity>
           <a-entity id="right-hand" hand-controls="hand: right" mixin="hands"></a-entity>
       </a-entity>
