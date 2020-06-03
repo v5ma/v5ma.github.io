@@ -19,3 +19,5 @@ https://github.com/supermedium/aframe-environment-component
 the 6 balls on the ground, and the sticks were inspired and remixed from this super hands physics demo https://wmurphyrd.github.io/aframe-super-hands-component/examples/sticky/
 
 This component was the six week (3 hours each Wednesday night) combined effort of the Aframe WebXR Online Hacknight. https://www.meetup.com/virtualreality/events/
+
+Here is the previous version with sticks https://n5ro.github.io/gravitygloves/sticks.html
