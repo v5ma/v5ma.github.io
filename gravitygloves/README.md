@@ -23,3 +23,6 @@ the 6 balls on the ground, and the sticks were inspired and remixed from this su
 This component was the six week (3 hours each Wednesday night) combined effort of the Aframe WebXR Online Hacknight. https://www.meetup.com/virtualreality/events/
 
 Here is the previous version with sticks https://n5ro.github.io/gravitygloves/sticks.html
+
+No physics version that is just pulling an entity to your hand.
+https://n5ro.github.io/gravitygloves/nophysics.html
