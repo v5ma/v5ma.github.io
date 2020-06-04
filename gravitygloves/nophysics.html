@@ -1,0 +1,216 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aframe Online Hacknight 6</title>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/gh/MignonBelongie/superframe@e716e89/components/thumb-controls/dist/aframe-thumb-controls-component.min.js">
+  </script>
+<!--   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/n5ro/Micah1.github.io@7022b232989831d0748167999c5ac2998fa0eeb2/scripts/pilaser.js"></script> -->
+  <script type="text/javascript" src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+  <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
+  <script src="https://morandd.github.io/aframe-multitouch-look-controls/multitouch-look-controls.js"></script>
+  <script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script>
+  <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+  <script type="text/javascript" src="/snapturn.js"></script>
+  <script type="text/javascript" src="/mylaser2.js"></script>
+  <script>
+        (function () {
+            var MAX_LOGS = null;
+            function VR_LOG(data) {
+              console.log(data)
+              const vr_console = document.getElementById('vr_console');
+              if (vr_console) {
+                const lines = vr_console.getAttribute('value').split('\n');
+                lines.push(JSON.stringify(data));
+                if (MAX_LOGS && lines.length > MAX_LOGS) {
+                  lines.shift()
+                }
+                vr_console.setAttribute('value', lines.join('\n'));
+              }
+            }
+            window.onerror = e => VR_LOG("error" + e);
+            const CLAMP_VELOCITY = 0.01;
+            const MAX_DELTA = 0.2;
+            const EPS = 10e-6;
+            const MAX_WARNINGS = 10;
+            const PI_2 = Math.PI / 2;
+          
+            AFRAME.registerComponent("follower", {
+              init: function() {
+                var follower = this.el;
+                const position = new THREE.Vector3();
+                follower.addEventListener('click', function(e) {
+                  if (e.detail.cursorEl) {
+                    VR_LOG('followerstart ok');
+                    e.detail.cursorEl.object3D.getWorldPosition(position);
+                    VR_LOG(position);
+                    follower.setAttribute('animation', {
+                      to: {x: position.x+0, y: position.y+0, z: position.z+0}
+                    });
+                    // follower.eventListener('')
+                       // getDistance
+//                     set positions
+//                     const point1 = document.querySelector('#point1')
+//                     point1.setAttribute('position', '1 1 1')
+//                     const point2 = document.querySelector('#point2')
+//                     point2.setAttribute('position', '1 2 1')
+//                     const point3 = document.querySelector('#point3')
+//                     point3.setAttribute('position', '2 2 1')
+//                     follower.setAttribute('alongpath', '#track2')
+                    
+                    
+//                     el.getAttribute('geometry');
+                    
+//                     this.canvas = document.getElementById(this.data);
+//                     follower.setAtrribute('alongpath', {
+//                       curve: '#track2'
+                      
+//                     });
+                    
+                    follower.emit('follow')
+                  }
+                });
+               
+              }
+             });
+          
+    AFRAME.registerComponent('thumb-movement-controls', {
+                init: function () {
+                    this.el.addEventListener('thumbupstart', () => {
+                    });
+                    this.el.addEventListener('thumbdownstart', () => {
+                    }); 
+                }
+            });
+    
+    })();
+  </script>
+  <script>
+    AFRAME.registerComponent('change-color', {
+      schema: {
+        color: {default: 'red'}
+      },
+      init: function () {
+        var data = this.data;
+        var el = this.el;  
+        var defaultColor = el.getAttribute('material').color;
+        el.addEventListener('mousedown', function () {
+          VR_LOG('mousedown ok');
+          el.setAttribute('color', data.color);
+        });
+        el.addEventListener('mouseup', function () {
+          VR_LOG('mouseup ok');
+          el.setAttribute('color', defaultColor);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <a-scene physics environment="preset: arches;" >
+    
+<!--     <a-curve id="track1">
+      <a-curve-point position="-2 2 -3"></a-curve-point>
+      <a-curve-point position="0 1 -3"></a-curve-point>
+      <a-curve-point position="2 2 -3"></a-curve-point>
+    </a-curve>
+    
+    <a-curve id="track2">
+      <a-curve-point id="point1" position="-2 2 -3"></a-curve-point>
+      <a-curve-point id="point2" position="0 1 -3"></a-curve-point>
+      <a-curve-point id="point3" position="2 2 -3"></a-curve-point>
+    </a-curve> -->
+    
+<!--     <a-box alongpath="curve: #track1" color="green"></a-box> -->
+<!--     <a-entity ></a-entity> -->
+<!--     <a-plane static-body rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane> -->
+    <a-mixin id="cube"
+             hoverable grabbable stretchable draggable droppable
+             shadow
+             event-set__dragdrop="_event: drag-drop; geometry.radius: 0.001; geometry.primitive: sphere"
+             event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true;"
+             event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false;"
+             event-set__dragon="_event: dragover-start; material.wireframe: true"
+             event-set__dragoff="_event: dragover-end; material.wireframe: false"
+             animation="property: position; easing: easeOutQuad; startEvents: follow"
+             follower
+             >
+    </a-mixin>
+    <a-entity class="cube" mixin="cube" position="0 1.265 -1" material="color: red" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33" follower></a-entity>
+      <a-entity class="cube" mixin="cube" position="0 0.265 -0.5" material="color: red" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33" follower></a-entity>
+      <a-entity class="cube" mixin="cube" position="-1 0.265 -1" material="color: blue" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33" follower></a-entity>
+      <a-entity class="cube" mixin="cube" position="-1 0.265 -0.5" material="color: blue" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33" follower></a-entity>
+      <a-entity class="cube" mixin="cube" position="1 0.265 -1" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33" follower></a-entity>
+      <a-entity class="cube" mixin="cube" position="1 0.265 -0.5" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33" follower></a-entity>
+    <a-entity
+        geometry="primitive: sphere; radius: 0.1"
+        material="color: #0000ff" color="#0000ff"      
+        class="cube" mixin="cube"
+        position="3 3 -3"
+        event-set__enter="_event: mouseenter; color: #ff00ff"
+        event-set__leave="_event: mouseleave; color: #0000ff"      
+        ></a-entity>
+    <a-entity
+        geometry="primitive: sphere; radius: 0.3"
+        material="color: #66ccff"
+        class="cube" mixin="cube"
+        position="-3 3 -3"
+        event-set__enter="_event: mouseenter; color: #ff00ff"
+        event-set__leave="_event: mouseleave; color: #00b300"      
+        ></a-entity>
+    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #00b300" class="cube" mixin="cube" position="0 1 -4"
+        event-set__enter="_event: mouseenter; color: #ff00ff"
+        event-set__leave="_event: mouseleave; color: #00b300"
+        change-color="color: yellow"></a-entity>
+    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #002080" class="cube" mixin="cube" position="-1 2 -4"
+              change-color="color: #EF2D5E"
+              event-set__enter="_event: mouseenter; color: #ff8000"
+              event-set__leave="_event: mouseleave; color: #002080"
+              ></a-entity>
+    <a-entity geometry="primitive: sphere; radius: 0.3" material="color: #8000ff" class="cube" mixin="cube" position="1 2 -4"
+              change-color="color: #EF2D5E"
+              event-set__enter="_event: mouseenter; color: #00ff00"
+              event-set__leave="_event: mouseleave; color: #8000ff"
+              ></a-entity>
+    
+    <a-mixin id="hands"
+     super-hands sphere-collider="objects: [grabbable]"
+     raycaster="objects: .cube" my-laser-controls  line="color: white; opacity: 0.75"
+     thumb-controls thumb-movement-controls snapturn
+     teleport-controls="startEvents: thumbdownstart; endEvents: thumbdownend; cameraRig: #cameraRig;
+     teleportOrigin: #head; curveShootingSpeed: 12; collisionEntities: [ground]; button: trigger;">
+    </a-mixin>
+    
+<!--     super-hands="colliderEvent: raycaster-intersection;
+                      colliderEventProperty: els;
+                      colliderEndEvent:raycaster-intersection-cleared;
+                      colliderEndEventProperty: clearedEls;" -->
+    
+    <a-entity id="cameraRig">
+     <a-entity id="cameraRig_1" character-controller="pivot: #head" position="0 1 1">
+      <a-entity camera wasd-controls look-controls raycaster="objects: .cube; far: 50" cursor="rayOrigin: mouse;"
+                capture-mouse
+                >
+      <a-entity id="console" text="value: Show log..." position="0 0.2 -1"></a-entity></a-entity>
+       <a-entity id="left-hand" hand-controls="hand: left" mixin="hands" ></a-entity>
+       <a-entity id="right-hand" hand-controls="hand: right" mixin="hands"></a-entity>
+       
+    </a-entity>
+   </a-entity>
+    
+    <a-text id="vr_console" font="dejavu"
+       geometry="primitive: plane; width: 2.5; height: 2;"
+       material="side: double; color: #000000"
+       rotation="0 0 0" position="0 2 -4" 
+       baseline="bottom" anchor="center" align="center" width="2" value="hello">
+    </a-text>
+  </a-scene>
+</body>
+</html>
