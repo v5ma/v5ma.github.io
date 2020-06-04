@@ -1,4 +1,6 @@
 # aframe-gravity-gloves-component
+The Gravity Gloves enables you to point at an object that you want, click on it, then it flies in an upward arc towards your hand where you can grip it with the grip button, where it gains physics. So you can throw it or drop it. When you call an object/entity it temporarily loses its dynamic body and then gains it again.
+
 This Gravity Gloves Component example view at https://n5ro.github.io/gravitygloves/ is combined
 
 with the aframe super hands component
