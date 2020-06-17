@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame Gravity Gloves Component</title>
+    <meta name="description" content="A-Frame Gravity Gloves Component">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script> 
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script>
+    <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/n5ro/Micah1.github.io@7022b232989831d0748167999c5ac2998fa0eeb2/scripts/pilaser.js"></script>
+    <script>
+      (function () {
+            const PI_2 = Math.PI / 2;
+            
+            AFRAME.registerComponent("controller-adapter", {
+              init: function() {
+                this.el.addEventListener('squeezedown', e => {
+                  this.el.emit('gripdown', e.detail)
+                })
+                this.el.addEventListener('squeezeup', e => {
+                  this.el.emit('gripup', e.detail)
+                })
+              }
+            })
+            
+            AFRAME.registerComponent("follower", {
+              init: function() {
+                var follower = this.el;
+                const endPoint = new THREE.Vector3();
+                const midPointa = new THREE.Vector3();
+                const midPointb = new THREE.Vector3();
+                const midPointc = new THREE.Vector3();
+                const point1 = document.querySelector('#point1')
+                const point2 = document.querySelector('#point2')
+                const point3 = document.querySelector('#point3')
+                const point4 = document.querySelector('#point4')
+                const point5 = document.querySelector('#point5')
+                
+                follower.addEventListener('click', function(e) {
+                  const caller = e.detail.cursorEl
+                  if (caller && caller !== follower.sceneEl) {
+                    
+                    const startingPoint = follower.getAttribute('position')
+
+                    caller.object3D.getWorldPosition(endPoint);
+                    let radius = 0;
+                    follower.object3D.traverse(o => {
+                      if (o.geometry && o.geometry.boundingSphere) {
+                        radius = o.geometry.boundingSphere.radius;
+                      }
+                    });
+                    
+                    endPoint.y += radius;
+
+                    const dist = startingPoint.distanceTo(endPoint)
+                    midPointa.lerpVectors(startingPoint, endPoint, 0.25)
+                    midPointb.lerpVectors(startingPoint, endPoint, 0.5)
+                    midPointc.lerpVectors(startingPoint, endPoint, 0.75)
+                    midPointa.y += dist / 4.5                         
+                    midPointb.y += dist / 3
+                    midPointc.y += dist / 4.5
+                    
+                    point1.setAttribute('position', startingPoint)
+                    point2.setAttribute('position', midPointa)
+                    point3.setAttribute('position', midPointb)
+                    point4.setAttribute('position', midPointc)
+                    point5.setAttribute('position', endPoint)
+
+                    follower.removeAttribute('alongpath')
+                    follower.setAttribute('alongpath', {
+                      curve: '#pathToGlove',
+                      dur:700
+                    });
+                    
+                    follower.removeAttribute('dynamic-body', {
+                    mass: 5,
+                    linearDamping: 0.1,
+                    angularDamping: 0.1
+                    });
+                    follower.removeAttribute('dynamic-body');
+                    follower.emit('follow')
+                    
+                    setTimeout(function(){
+                    follower.setAttribute('dynamic-body', {
+                    mass: 5,
+                    linearDamping: 0.1,
+                    angularDamping: 0.1
+                    });
+                    }, 700);
+                    
+                  }
+                });
+                
+              }
+             });
+        
+         })();
+      </script>
+    </head>
+  <body>
+    <a-scene background="color: #FAFAFA">
+      <a-curve id="pathToGlove">
+      <a-curve-point id="point1" position=""></a-curve-point>
+      <a-curve-point id="point2" position=""></a-curve-point>
+      <a-curve-point id="point3" position=""></a-curve-point>
+      <a-curve-point id="point4" position=""></a-curve-point>
+      <a-curve-point id="point5" position=""></a-curve-point>
+      </a-curve>
+      
+      
+      <a-assets>
+        <a-mixin id="gravity" 
+                 grabbable="startButtons: gripdown; endButtons: gripup"
+                 animation="property: position; easing: easeOutQuad; startEvents: follow"
+                 follower>  
+        </a-mixin>
+        <a-mixin id="hands"
+                 static-body="shape: sphere; sphereRadius: 0.0001;"
+                 sphere-collider
+                 my-laser-controls  line="color: white; opacity: 0.75" 
+                 raycaster="objects:.clickable; far: 50"
+                 super-hands
+                 ></a-mixin>
+        <a-mixin id="floor" static-body 
+                 geometry="width: 10; height: 10; depth: 0.01"></a-mixin>
+      </a-assets> 
+      
+      
+      
+      <a-box class="clickable" mixin="gravity" height="0.3" width="0.3" depth="0.3" position="-0.5 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+      <a-sphere class="clickable" mixin="gravity" position="0 1 -5" radius="0.25" color="#EF2D5E" shadow></a-sphere>
+      <a-cylinder class="clickable" mixin="gravity" position="0.5 0.75 -3" radius="0.15" height="0.4" color="#FFC65D" shadow></a-cylinder>
+      <a-plane mixin="floor" position="0 0 -4" rotation="-90 0 0" color="#7BC8A4" shadow></a-plane>
+      
+      <a-entity id="cameraRig" position="0 1 0">
+          <a-entity camera wasd-controls look-controls raycaster="objects: .clickable; far: 50" cursor="rayOrigin: mouse;"></a-entity>
+          <a-entity id="left-hand" hand-controls="hand: left" mixin="hands"></a-entity>
+          <a-entity id="right-hand" hand-controls="hand: right" mixin="hands"></a-entity>
+      </a-entity>
+   
+    </a-scene>
+  </body>
+</html>
