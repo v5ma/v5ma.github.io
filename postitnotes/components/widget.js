@@ -14,9 +14,9 @@ AFRAME.registerComponent("widget", {
     this.el.object3D.scale.set(0.2, 0.24, .33);
 
     // For testing local changes to widgets.
-    this.testModeController = document.querySelector('a-scene').systems['test-mode-controller']
+    this.mode = document.querySelector('a-scene').systems['global-mode']
     this.el.addEventListener('click', e => {
-      if (this.testModeController.testModeOn) {
+      if (this.mode.testModeOn && !this.mode.destructModeOn) {
         if (Math.random() > 0.5) {
           if (this.data.color == 'red' || this.data.color == 'blue') {
             this.el.setAttribute('widget', {color: Math.random() > 0.5 ? 'yellow' : 'purple'})

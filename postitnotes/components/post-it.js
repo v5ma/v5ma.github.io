@@ -11,9 +11,15 @@ AFRAME.registerComponent("post-it", {
     this.el.setAttribute('class', 'clickable')
 
     // For testing local changes to post-its.
-    this.testModeController = document.querySelector('a-scene').systems['test-mode-controller']
+    this.mode = document.querySelector('a-scene').systems['global-mode']
     this.el.addEventListener('click', e => {
-      if (this.testModeController.testModeOn) {
+      if (this.mode.destructModeOn) {
+        if (!this.taggedForDestruction) {
+          this.taggedForDestruction = true
+          this.el.setAttribute('follower', null)
+          setTimeout(() => this.el.emit('click', e.detail), 100)
+        }
+      } else if (this.mode.testModeOn) {
         // Setting attribute 'post-it' rather than 'text' so that the data for 'post-it' is updated.
         this.el.setAttribute('post-it', {text: this.data.text + ' ...clicked'})
       } else {

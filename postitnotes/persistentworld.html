@@ -53,15 +53,10 @@
               }
             })
 
-            AFRAME.registerSystem('test-mode-controller', {
+            AFRAME.registerSystem('global-mode', {
               init: function () {
                 this.testModeOn = false
-                window.addEventListener('keypress', e => {
-                  if (e.code == 'KeyT') {
-                    this.testModeOn = ! this.testModeOn
-                    VR_LOG(`### Test mode is ${this.testModeOn ? "ON" : "OFF"} ###`)
-                  }
-                })
+                this.destructModeOn = false
               }
             })
 
@@ -148,6 +143,88 @@ void main() {
               }
             })
 
+            AFRAME.registerComponent('object-destroyer', {
+              init: function() {
+                const scene = this.el.sceneEl
+                this.mode = scene.systems['global-mode']
+                this.mode.destructModeOn = false
+                this.instructions = document.querySelector('[object-destroyer] .instructions')
+                this.updateLabel()
+                this.el.addEventListener('click', e => {
+                  if (this.mode.testModeOn && this.mode.destructModeOn) {
+                    let delay = 0
+
+                    // Destroy all entities with components handled by the persistence system
+                    // (by clicking on them while destruct mode is on).
+                    if (scene.systems['persistence']) {
+                      scene.systems['persistence'].data.components.forEach(c => {
+                        scene.querySelectorAll(`[${c}]`).forEach(o => {
+                          setTimeout(() => o.emit('click', e.detail), delay)
+                          delay += 1000
+                        })
+                      })
+                    }
+
+                    setTimeout(() => this.toggleDestructMode(), delay + 1000)
+                  } else {
+                    this.toggleDestructMode()
+                  }
+                })
+                this.el.addEventListener('collide', e => {
+                  if (this.mode.destructModeOn) {
+                    const x = e.detail.body.el
+                    if (!x.removed) {
+                      VR_LOG(`destroying ${x}`)
+                      x.parentNode.removeChild(x)
+                      x.removed = true
+                    } else {
+                      VR_LOG('received additional collide event')
+                    }
+                  }
+                })
+              },
+              updateLabel: function() {
+                if (this.mode.destructModeOn) {
+                  if (this.mode.testModeOn) {
+                    this.instructions.setAttribute('value', 'click to destroy EVERYTHING')
+                  } else {
+                    this.instructions.setAttribute('value', 'click to turn off')
+                  }
+                } else {
+                  this.instructions.setAttribute('value', 'click to turn on')
+                }
+              },
+              toggleDestructMode: function() {
+                this.mode.destructModeOn = !this.mode.destructModeOn
+                if (this.mode.destructModeOn) {
+                  this.el.setAttribute('material', 'shader', 'moving-lines')
+                } else {
+                  this.el.removeAttribute('material', 'shader')
+                }
+                this.updateLabel()
+                VR_LOG(`### Destruct mode is ${this.mode.destructModeOn ? "ON" : "OFF"} ###`)
+              }
+            })
+
+            AFRAME.registerComponent('test-mode-controller', {
+              init: function() {
+                const mode = this.el.sceneEl.systems['global-mode']
+                mode.testModeOn = false
+                const originalColor = this.el.getAttribute('material').color
+                this.el.addEventListener('click', e => {
+                  mode.testModeOn = !mode.testModeOn
+                  if (mode.testModeOn ) {
+                    this.el.setAttribute('material', 'shader', 'moving-lines')
+                  } else {
+                    this.el.removeAttribute('material')
+                    this.el.setAttribute('material', {color: originalColor})
+                  }
+                  document.querySelector('[object-destroyer]').components['object-destroyer'].updateLabel()
+                  VR_LOG(`### Test mode is ${mode.testModeOn ? "ON" : "OFF"} ###`)
+                })
+              }
+            })
+
             AFRAME.registerComponent("follower", {
               init: function() {
                 var follower = this.el;
@@ -161,10 +238,14 @@ void main() {
                 const point4 = document.querySelector('#point4')
                 const point5 = document.querySelector('#point5')
 
-                this.testModeController = document.querySelector('a-scene').systems['test-mode-controller']
+                this.mode = document.querySelector('a-scene').systems['global-mode']
                 follower.addEventListener('click', e => {
-                  if (this.testModeController.testModeOn) return
-                  const caller = e.detail.cursorEl
+                  if (this.mode.testModeOn && !this.mode.destructModeOn) return
+                  let caller = e.detail.cursorEl
+                  if (this.mode.destructModeOn) {
+                    caller = document.querySelector('[object-destroyer]')
+                    VR_LOG('caller set to object-destroyer')
+                  }
                   if (caller && caller !== follower.sceneEl) {
                     VR_LOG('Gravity Gloves test okay');
                     const startingPoint = follower.getAttribute('position')
@@ -235,7 +316,7 @@ void main() {
   </head>
   <body>
     
-    <a-scene persistence="components: post-it, widget" test-mode-controller>
+    <a-scene persistence="components: post-it, widget" global-mode>
       
       <a-curve id="pathToGlove">
       <a-curve-point id="point1" position=""></a-curve-point>
@@ -327,7 +408,12 @@ void main() {
 
       <a-box class="clickable" material="shader: moving-lines; color: yellow;" post-it-generator scale="0.5 1 0.5" position="-0.8 0.5 -3"></a-box>
       <a-box class="clickable" material="shader: moving-lines; color: blue;" follower-generator scale="0.5 1 0.5" position="-0.2 0.5 -3"></a-box>
-      <a-box class="clickable" material="shader: moving-lines; color: black;" persistent-object-destroyer scale="0.5 0.2 0.5" position="-0.2 0.1 -2.4"></a-box>
+      <a-box class="clickable" static-body material="color: black;" object-destroyer width="0.5" height="0.2" depth="0.5" position="-0.2 0.1 -2.4">
+        <a-text value="DESTROYER" position="-0.22 0.06 0.251" color="#FFF" width="1.0"></a-text>
+        <a-text class="instructions" value="" position="-0.22 0.01 0.251" color="#FFF" width="0.75"></a-text>
+      </a-box>
+
+      <a-plane class="clickable" material="color: red;" text="value: click to toggle test mode; wrapCount: 10" test-mode-controller scale="0.2 0.2" position="0.2 0.15 -2.3"></a-plane>
 
       <a-plane mixin="floor" rotation="-90 0 0" position="0 0.01 0"></a-plane>
       <a-plane mixin="floor" position="0 0 -10.5" rotation="-85 0 0"></a-plane>

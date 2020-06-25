@@ -62,6 +62,25 @@ AFRAME.registerSystem('persistence', {
           }
         })
       })
+      scene.addEventListener('child-detached', e => {
+        const el = e.detail.el
+        components.forEach(c => {
+          if (c in el.components) {
+            const key = (() => {
+              for (const [key, value] of this.localObjects.get(c).entries()) {
+                if (value === el) return key;
+              }
+            })()
+            if (key) {
+              VR_LOG(`deleting locally destroyed ${c} from db`)
+              this.localObjects.get(c).delete(key)
+              this.dbRef.get(c).child(key).remove()
+            } else {
+              VR_LOG(`couldn't find key for locally destroyed ${c}`)
+            }
+          }
+        })
+      })
     })
 
     components.forEach(c => {
@@ -170,9 +189,8 @@ AFRAME.registerSystem('persistence', {
   }
 })
 
-// This is a feature of the persistence system, but there should also be a way to
-// remove objects directly (which should then be detected by the persistence system
-// and propagated to the db).
+// Not currently using this, because the object-destroyer can be used in test mode to
+// destroy everything (in a more picturesque way).
 AFRAME.registerComponent("persistent-object-destroyer", {
   init: function() {
     this.persistenceSystem = document.querySelector('a-scene').systems['persistence']
