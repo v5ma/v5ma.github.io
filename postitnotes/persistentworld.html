@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>A-Frame WebXR Online Hacknight Gravity Gloves Component</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> 
+    <script src="https://aframe.io/releases/1.0.4/aframe.js"></script>
     <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script> 
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
@@ -13,21 +13,28 @@
     <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
     <script type="text/javascript" src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/n5ro/Micah1.github.io@7022b232989831d0748167999c5ac2998fa0eeb2/scripts/pilaser.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+    <script>
+      var MAX_LOGS = null;
+      function VR_LOG(data) {
+        console.log(data)
+        const vr_console = document.getElementById('vr_console');
+        if (vr_console) {
+          const lines = vr_console.getAttribute('value').split('\n');
+          lines.push(JSON.stringify(data));
+          if (MAX_LOGS && lines.length > MAX_LOGS) {
+            lines.shift()
+          }
+          vr_console.setAttribute('value', lines.join('\n'));
+        }
+      }
+    </script>
+    <script src="systems/persistence.js"></script>
+    <script src="components/post-it.js"></script>
+    <script src="components/widget.js"></script>
     <script>
         (function () {
-            var MAX_LOGS = null;
-            function VR_LOG(data) {
-              console.log(data)
-              const vr_console = document.getElementById('vr_console');
-              if (vr_console) {
-                const lines = vr_console.getAttribute('value').split('\n');
-                lines.push(JSON.stringify(data));
-                if (MAX_LOGS && lines.length > MAX_LOGS) {
-                  lines.shift()
-                }
-                vr_console.setAttribute('value', lines.join('\n'));
-              }
-            }
             window.onerror = e => VR_LOG("error" + e);
             const CLAMP_VELOCITY = 0.01;
             const MAX_DELTA = 0.2;
@@ -35,13 +42,6 @@
             const MAX_WARNINGS = 10;
             const PI_2 = Math.PI / 2;
 
-            function roundPosition(p) {
-              const x = Math.round(p.x * 100) / 100
-              const y = Math.round(p.y * 100) / 100
-              const z = Math.round(p.z * 100) / 100
-              return {x, y, z}
-            }
-            
             AFRAME.registerComponent("controller-adapter", {
               init: function() {
                 this.el.addEventListener('squeezedown', e => {
@@ -52,126 +52,16 @@
                 })
               }
             })
-            
-          /*
-          <a-entity ... persistent-object="key: 1234">
-          Doesn't work yet with dynamic-body.
-          */
-            AFRAME.registerComponent("persistent-object", {
-              schema: {
-                key: {type: 'string', default: ''}
-              },
-              init: function() {
-                const key = this.data.key
-                VR_LOG('persistent-object init: key = ' + key)
-                if (! key) {
-                  console.error("Can't persist object without a key.")
-                  return
-                }
-                this.dbRef = firebase.database().ref('persistentobjects/' + key);
 
-                this.ignoreNextDatabaseChange = false
-                let flag = 0
-
-                this.dbRef.on('value', snapshot => {
-                  if (this.ignoreNextDatabaseChange) {
-                    const p = snapshot.val().position
-                    VR_LOG('persistent object  ' + key + ' (flag = ' + flag + ') IGNORING position update: {x: ' + p.x + ', y: ' + p.y + ', z: ' + p.z + '}')
-                    this.ignoreNextDatabaseChange = false
-                    return
-                  }
-                  if (snapshot.exists()) {
-                    const p = snapshot.val().position
-                    VR_LOG('persistent object  ' + key + ' received position update: {x: ' + p.x + ', y: ' + p.y + ', z: ' + p.z + '}')
-                    this.el.object3D.position.set(p.x, p.y, p.z)
-                    Object.assign(this.prevPosition, p)
-                  } else {
-                    this.ignoreNextDatabaseChange = true
-                    VR_LOG('adding key ' + key)
-                    const p = this.el.getAttribute('position')
-                    Object.assign(this.prevPosition, p)
-                    flag = 1
-                    this.dbRef.set({position: p})
-                    flag = 2
-                    VR_LOG('key ' + key + ' added. p = {x: ' + p.x + ', y: ' + p.y + ', z: ' + p.z + '}')
+            AFRAME.registerSystem('test-mode-controller', {
+              init: function () {
+                this.testModeOn = false
+                window.addEventListener('keypress', e => {
+                  if (e.code == 'KeyT') {
+                    this.testModeOn = ! this.testModeOn
+                    VR_LOG(`### Test mode is ${this.testModeOn ? "ON" : "OFF"} ###`)
                   }
                 })
-                this.prevPosition = {}
-                Object.assign(this.prevPosition, this.el.object3D.position)
-
-                this.tick = AFRAME.utils.throttleTick(this.tick, 200, this);
-              },
-              tick: function (t, dt) {
-                const p = this.el.object3D.position
-                const q = this.prevPosition
-                const dSq = p.distanceToSquared(q)
-                if (dSq > 0.01) {
-                  const p2d = roundPosition(p)
-                  VR_LOG('tick: {x: ' + p2d.x + ', y: ' + p2d.y + ', z: ' + p2d.z + '}')
-                  const q2d = roundPosition(q)
-                  VR_LOG('was: {x: ' + q2d.x + ', y: ' + q2d.y + ', z: ' + q2d.z + '}')
-
-                  // This will cause the 'value' event to fire, which we should ignore since it will
-                  // be reporting the same position p.
-                  this.dbRef.update({position: roundPosition(p)})
-                  this.ignoreNextDatabaseChange = true
-
-                  Object.assign(this.prevPosition, p)
-                }
-              }
-            })
-
-            AFRAME.registerComponent("live-object", {
-              schema: {
-                key: {type: 'string', default: ''},
-                position: {type: 'vec3'}
-              },
-              init: function() {
-                const key = this.data.key
-                if (! key) {
-                  console.error("Can't persist object without a key.")
-                  return
-                }
-                this.dbRef = firebase.database().ref('liveobjects/' + key);
-
-                // The 'value' event will fire once immediately, but we can ignore it because
-                // we know the position in the database is the same as the current position of the object.
-                this.ignoreNextDatabaseChange = true
-
-                // Currently, it is assumed that the item already exists in the database.
-                this.dbRef.on('value', snapshot => {
-                  if (this.ignoreNextDatabaseChange) {
-                    this.ignoreNextDatabaseChange = false
-                    return
-                  }
-                  if (snapshot.exists()) {
-                    const p = snapshot.val().position
-                    VR_LOG('live object  ' + key + ' received position update: {x: ' + p.x + ', y: ' + p.y + ', z: ' + p.z + '}')
-                    this.el.object3D.position.set(p.x, p.y, p.z)
-                    Object.assign(this.prevPosition, p)
-                  }
-                })
-                this.prevPosition = this.data.position
-
-                this.tick = AFRAME.utils.throttleTick(this.tick, 200, this);
-              },
-              tick: function (t, dt) {
-                const p = this.el.object3D.position
-                const q = this.prevPosition
-                const dSq = p.distanceToSquared(q)
-                if (dSq > 0.01) {
-                  const p2d = roundPosition(p)
-                  VR_LOG('tick: {x: ' + p2d.x + ', y: ' + p2d.y + ', z: ' + p2d.z + '}')
-                  const q2d = roundPosition(q)
-                  VR_LOG('was: {x: ' + q2d.x + ', y: ' + q2d.y + ', z: ' + q2d.z + '}')
-
-                  // This will cause the 'value' event to fire, which we should ignore since it will
-                  // be reporting the same position p.
-                  this.dbRef.update({position: roundPosition(p)})
-                  this.ignoreNextDatabaseChange = true
-
-                  Object.assign(this.prevPosition, p)
-                }
               }
             })
 
@@ -204,9 +94,24 @@ void main() {
 `
             })
 
+            AFRAME.registerComponent("post-it-generator", {
+              init: function() {
+                const generatorEl = this.el
+                const p = generatorEl.object3D.position
+                this.startingPositionForNewObjects = {x: p.x, y: 2 * p.y + 0.35, z: p.z}
+                generatorEl.addEventListener('click', e => {
+                  const newObj = document.createElement('a-entity')
+                  this.el.sceneEl.appendChild(newObj)
+                  newObj.setAttribute('position', this.startingPositionForNewObjects)
+                  const data = {text: 'Hello, world!'}
+                  newObj.setAttribute('post-it', data)
+                })
+              }
+            })
+
             AFRAME.registerComponent("follower-generator", {
               init: function() {
-                const useFixedCaller = false
+                const useFixedCaller = true
                 let caller
                 if (useFixedCaller) {
                   caller = document.createElement('a-box')
@@ -220,84 +125,25 @@ void main() {
                 }
 
                 const generatorEl = this.el
-                this.pendingClicks = new Map()
-                const liveObjectsRef = firebase.database().ref('liveobjects');
-
-                liveObjectsRef.on('child_added', data => {
-                  VR_LOG('child_added, data.key = ' + data.key)
-                  const p = data.val().position
-                  VR_LOG('{x: ' + p.x + ', y: ' + p.y + ', z: ' + p.z + '}')
-
-                  const newObj = document.createElement('a-entity')
-                  this.el.sceneEl.appendChild(newObj)
-
-                  newObj.setAttribute('geometry', {primitive: data.val().primitive})
-                  newObj.object3D.position.set(p.x, p.y, p.z)
-                  newObj.setAttribute('follower', null)
-                  newObj.setAttribute('live-object', {key: data.key, position: p})
-                  //newObj.setAttribute('mixin', 'cube') // doesn't work
-                  newObj.setAttribute('grabbable', 'startButtons: gripdown; endButtons: gripup')
-                  newObj.setAttribute('class', 'clickable')
-                  newObj.setAttribute('material', 'color: white')
-                  newObj.object3D.scale.set(0.2, 0.24, .33);
-
-                  // Doesn't seem to work: stops after 4 updates
-                  /*
-                  const childRef = liveObjectsRef.child(data.key)
-                  newObj.addEventListener('componentchanged', e => {
-                    if (e.detail.name === 'position') {
-                      const p = e.target.getAttribute('position')
-                      VR_LOG(data.key.slice(-3) + ': {x: ' + p.x + ', y: ' + p.y + ', z: ' + p.z + '}')
-                      childRef.update({position: e.target.getAttribute('position')})
-                    }
-                  })
-                  */
-
-                  if (this.pendingClicks.has(data.key)) {
-                    VR_LOG('child_added, found pending key = ' + data.key)
-                    const eventDetail = this.pendingClicks.get(data.key)
-                    setTimeout(() => newObj.emit('click', eventDetail), 500)
-                    this.pendingClicks.delete(data.key)
-                  }
-                })
-
                 const p = generatorEl.object3D.position
                 this.startingPositionForNewObjects = {x: p.x, y: 2 * p.y, z: p.z}
                 generatorEl.addEventListener('click', e => {
                   VR_LOG('generator clicked')
                   if (useFixedCaller) {
+                    // Note: this only applies to the 'click' emitted below.
+                    // Further clicks on the follower sometimes have cursorEl still
+                    // set to the fixed caller, and sometimes it reverts to the camera.
                     e.detail.cursorEl = caller
                   }
 
-                  const isBox = Math.random() > 0.5
-                  const objRef = liveObjectsRef.push()
-                  this.pendingClicks.set(objRef.key, e.detail)
-                  VR_LOG('added pending key = ' + objRef.key)
-                  objRef.set({
-                    primitive: isBox ? 'box' : 'tetrahedron',
-                    position: this.startingPositionForNewObjects
-                  })
-                })
-              }
-            })
-
-            AFRAME.registerComponent("follower-destroyer", {
-              init: function() {
-                const liveObjectsRef = firebase.database().ref('liveobjects');
-
-                this.el.addEventListener('click', e => {
-                  VR_LOG('destroyer clicked')
-                  liveObjectsRef.remove()
-                })
-
-                liveObjectsRef.on('child_removed', data => {
-                  VR_LOG('child_removed from db, data.key = ' + data.key)
-                  this.el.sceneEl.querySelectorAll('[live-object]').forEach(o => {
-                    if (o.getAttribute('live-object').key === data.key) {
-                      this.el.sceneEl.removeChild(o);
-                      VR_LOG('entity removed')
-                    }
-                  })
+                  const color = Math.random() > 0.5 ? 'red' : 'blue'
+                  const primitive = Math.random() > 0.5 ? 'box' : 'tetrahedron'
+                  const newObj = document.createElement('a-entity')
+                  this.el.sceneEl.appendChild(newObj)
+                  newObj.setAttribute('position', this.startingPositionForNewObjects)
+                  const data = { color, primitive }
+                  newObj.setAttribute('widget', data)
+                  setTimeout(() => newObj.emit('click', e.detail), 500)
                 })
               }
             })
@@ -314,8 +160,10 @@ void main() {
                 const point3 = document.querySelector('#point3')
                 const point4 = document.querySelector('#point4')
                 const point5 = document.querySelector('#point5')
-                
-                follower.addEventListener('click', function(e) {
+
+                this.testModeController = document.querySelector('a-scene').systems['test-mode-controller']
+                follower.addEventListener('click', e => {
+                  if (this.testModeController.testModeOn) return
                   const caller = e.detail.cursorEl
                   if (caller && caller !== follower.sceneEl) {
                     VR_LOG('Gravity Gloves test okay');
@@ -387,7 +235,7 @@ void main() {
   </head>
   <body>
     
-    <a-scene>
+    <a-scene persistence="components: post-it, widget" test-mode-controller>
       
       <a-curve id="pathToGlove">
       <a-curve-point id="point1" position=""></a-curve-point>
@@ -455,6 +303,7 @@ void main() {
       <a-entity class="clickable" mixin="cube" position="-1 3.265 -3.5" material="color: blue" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
       <a-entity class="clickable" mixin="cube" position="1 3.265 -3" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
       <a-entity class="clickable" mixin="cube" position="1 3.265 -3.5" material="color: green" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"></a-entity>
+<!--
     <a-entity
         geometry="primitive: sphere; radius: 0.1"
         material="color: #0000ff" color="#0000ff"      
@@ -474,13 +323,11 @@ void main() {
       <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.3" mixin="cube" position="-1 0.45 1" material="color: blue"></a-entity>
       <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.2" mixin="cube" position="1 0.45 -1" material="color: green"></a-entity>
       <a-entity dynamic-body class="clickable" geometry="primitive: sphere; radius: 0.35" mixin="cube" position="1 0.45 1" material="color: green"></a-entity>
+-->
 
-      <a-entity class="clickable" mixin="cube" position="0.3 0.1 -2" material="color: black" geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.3" persistent-object="key: 1000"></a-entity>
-      <a-entity class="clickable" mixin="cube" position="0.6 0.1 -2" material="color: yellow" geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.3" persistent-object="key: 1001"></a-entity>
-      <a-entity class="clickable" mixin="cube" position="0.8 0.3 -2" material="color: red" geometry="primitive: sphere; radius: 0.2" persistent-object="key: 1002"></a-entity>
-
+      <a-box class="clickable" material="shader: moving-lines; color: yellow;" post-it-generator scale="0.5 1 0.5" position="-0.8 0.5 -3"></a-box>
       <a-box class="clickable" material="shader: moving-lines; color: blue;" follower-generator scale="0.5 1 0.5" position="-0.2 0.5 -3"></a-box>
-      <a-box class="clickable" material="shader: moving-lines; color: black;" follower-destroyer scale="0.5 0.2 0.5" position="-0.2 0.1 -2.4"></a-box>
+      <a-box class="clickable" material="shader: moving-lines; color: black;" persistent-object-destroyer scale="0.5 0.2 0.5" position="-0.2 0.1 -2.4"></a-box>
 
       <a-plane mixin="floor" rotation="-90 0 0" position="0 0.01 0"></a-plane>
       <a-plane mixin="floor" position="0 0 -10.5" rotation="-85 0 0"></a-plane>
@@ -488,35 +335,19 @@ void main() {
       <a-plane mixin="floor" position="-10.5 0 0" rotation="-85 90 0"></a-plane>
       <a-plane mixin="floor" position="10.5 0 0"  rotation="-85 -90 0"></a-plane>
       
-    <a-entity id="cameraRig">
-      <a-entity id="cameraRig_1" character-controller="pivot: #head" position="0 0.2 0">
+      <a-entity id="cameraRig">
+        <a-entity id="cameraRig_1" character-controller="pivot: #head" position="0 0.2 0">
           <a-entity camera sphere-collider static-body wasd-controls look-controls raycaster="objects: .clickable; far: 50" cursor="rayOrigin: mouse;"></a-entity>
           <a-entity id="left-hand" hand-controls="hand: left" mixin="hands"></a-entity>
           <a-entity id="right-hand" hand-controls="hand: right" mixin="hands"></a-entity>
+        </a-entity>
       </a-entity>
-    </a-entity>
        <a-text id="vr_console" font="dejavu"
-       geometry="primitive: plane; width: 2.5; height: 20;"
-       material="side: double; color: #000000"
-       rotation="0 0 0" position="1.2 0.4 -4" 
-       baseline="bottom" anchor="center" align="center" width="2" value="hello">
-    </a-text>
+         geometry="primitive: plane; width: 2.5; height: 20;"
+         material="side: double; color: #000000"
+         rotation="0 0 0" position="1.2 0.4 -4"
+         baseline="bottom" anchor="center" align="center" width="2.4" wrap-count="70" value="hello">
+      </a-text>
     </a-scene>
-
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
-    <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyCnSn9q9RYgsKOowOsDKG4Ih4gCWFtArco",
-        authDomain: "db-expt-2.firebaseapp.com",
-        databaseURL: "https://db-expt-2.firebaseio.com",
-        projectId: "db-expt-2",
-        storageBucket: "db-expt-2.appspot.com",
-        messagingSenderId: "701675049583",
-        appId: "1:701675049583:web:cea08843bfca6d718a339a"
-      }
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>
   </body>
 </html>
