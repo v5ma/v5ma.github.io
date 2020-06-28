@@ -37,9 +37,40 @@ AFRAME.registerSystem('persistence', {
 
     const scene = this.el
     VR_LOG(`***** scene.hasLoaded = ${scene.hasLoaded}`)
+
     // TODO: remove event listeners after handling "one time" events like 'loaded' and
     // 'componentinitialized'.  A 'once' method would be nice....
     scene.addEventListener('loaded', () => {
+      // First process any entities from the HTML that are persistable.
+      components.forEach(c => {
+        const ref = this.dbRef.get(c)
+        scene.querySelectorAll(`[${c}]`).forEach(o => {
+          const htmlId = o.getAttribute('id')
+          if (htmlId) {
+            ref.orderByChild('htmlId').equalTo(htmlId).once('value', snapshot => {
+              if (snapshot.numChildren() === 0) {
+                VR_LOG(`adding hardcoded entity '${htmlId}' to db`)
+                const data = {...o.getAttribute(c), htmlId}
+                this.persistNewLocalObject(c, o, data)
+              } else {
+                let data
+                snapshot.forEach(child => data = child)
+                // TODO: more than one child indicates a problem, but for now we'll just ignore it.
+
+                VR_LOG(`updating hardcoded entity '${htmlId}' from db, key = ${data.key.slice(-3)}`)
+                this.registerLocalObject(c, o, data.key)
+                const p = data.val().position
+                o.object3D.position.set(p.x, p.y, p.z)
+                o.prevPosition = {...p}
+                o.setAttribute(c, data.val())
+              }
+            })
+          } else {
+            VR_LOG(`Local entity with ${c} component found, but isn't persistable without an id`)
+          }
+        })
+      })
+
       scene.addEventListener('child-attached', e => {
         const el = e.detail.el
         if (el.createdByPersistenceSystem) {
@@ -87,7 +118,11 @@ AFRAME.registerSystem('persistence', {
       this.dbRef.get(c).on('child_added', data => {
         const key = data.key
         VR_LOG(`db reports child_added, key = ${key.slice(-3)}`)
-        if (data.val().sessionId != this.sessionId && !this.localObjects.get(c).has(key)) {
+        const weAddedThis = data.val().sessionId === this.sessionId
+        const isHardCoded = !!data.val().htmlId
+        const isRegistered = this.localObjects.get(c).has(key)
+        if (!weAddedThis && !isHardCoded && !isRegistered) {
+          VR_LOG(`creating local entity, key = ${key.slice(-3)}`)
           const newObj = document.createElement('a-entity')
           newObj.createdByPersistenceSystem = true
           scene.appendChild(newObj)
