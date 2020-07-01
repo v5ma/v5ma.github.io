@@ -57,6 +57,7 @@
               init: function () {
                 this.testModeOn = false
                 this.destructModeOn = false
+                this.selectedEntity = null
               }
             })
 
@@ -213,14 +214,35 @@ void main() {
                 const originalColor = this.el.getAttribute('material').color
                 this.el.addEventListener('click', e => {
                   mode.testModeOn = !mode.testModeOn
-                  if (mode.testModeOn ) {
+                  if (mode.testModeOn) {
                     this.el.setAttribute('material', 'shader', 'moving-lines')
                   } else {
                     this.el.removeAttribute('material')
                     this.el.setAttribute('material', {color: originalColor})
+                    mode.selectedEntity = null
                   }
                   document.querySelector('[object-destroyer]').components['object-destroyer'].updateLabel()
                   VR_LOG(`### Test mode is ${mode.testModeOn ? "ON" : "OFF"} ###`)
+                })
+                window.addEventListener('keydown', e => {
+                  // Secret menu for manipulating a selected object.  mode.selectedEntity is null
+                  // unless you're in test mode, and clicked on a persistable object since entering
+                  // test mode, in which case mode.selectedEntity is the last such clicked object.
+                  if (mode.selectedEntity) {
+                    const sign = e.shiftKey ? -1 : +1
+                    if (e.code == 'KeyX') {
+                      mode.selectedEntity.object3D.position.x += sign * 0.1
+                    }
+                    if (e.code == 'KeyY') {
+                      mode.selectedEntity.object3D.position.y += sign * 0.1
+                    }
+                    if (e.code == 'KeyZ') {
+                      mode.selectedEntity.object3D.position.z += sign * 0.1
+                    }
+                    if (e.code == 'KeyR') {
+                      mode.selectedEntity.object3D.rotation.z += sign * 0.1
+                    }
+                  }
                 })
               }
             })
@@ -245,6 +267,14 @@ void main() {
                   if (this.mode.destructModeOn) {
                     caller = document.querySelector('[object-destroyer]')
                     VR_LOG('caller set to object-destroyer')
+
+                    // Just in case the destroyer gets jammed and the object doesn't have a collide event.
+                    setTimeout(() => {
+                      if (!follower.removed) {
+                        follower.parentNode.removeChild(follower)
+                        VR_LOG('Backup destruction plan invoked.')
+                      }
+                    }, 1200)
                   }
                   if (caller && caller !== follower.sceneEl) {
                     VR_LOG('Gravity Gloves test okay');
@@ -315,7 +345,6 @@ void main() {
   </script>
   </head>
   <body>
-    
     <a-scene persistence="components: post-it, widget" global-mode>
       
       <a-curve id="pathToGlove">

@@ -22,6 +22,7 @@ AFRAME.registerComponent("post-it", {
       } else if (this.mode.testModeOn) {
         // Setting attribute 'post-it' rather than 'text' so that the data for 'post-it' is updated.
         this.el.setAttribute('post-it', {text: this.data.text + ' ...clicked'})
+        this.mode.selectedEntity = this.el
       } else {
         this.el.object3D.position.y += 0.55
       }

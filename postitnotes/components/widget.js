@@ -30,6 +30,7 @@ AFRAME.registerComponent("widget", {
             this.el.setAttribute('widget', {primitive: Math.random() > 0.5 ? 'box' : 'tetrahedron'})
           }
         }
+        this.mode.selectedEntity = this.el
       }
     })
   },

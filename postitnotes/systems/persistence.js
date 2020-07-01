@@ -1,4 +1,4 @@
-function roundPosition(p) {
+function roundXYZ(p) {
   const x = Math.round(p.x * 100) / 100
   const y = Math.round(p.y * 100) / 100
   const z = Math.round(p.z * 100) / 100
@@ -58,10 +58,11 @@ AFRAME.registerSystem('persistence', {
                 // TODO: more than one child indicates a problem, but for now we'll just ignore it.
 
                 VR_LOG(`updating hardcoded entity '${htmlId}' from db, key = ${data.key.slice(-3)}`)
-                this.registerLocalObject(c, o, data.key)
                 const p = data.val().position
                 o.object3D.position.set(p.x, p.y, p.z)
-                o.prevPosition = {...p}
+                const r = data.val().rotation
+                o.object3D.rotation.set(r.x, r.y, r.z)
+                this.registerLocalObject(c, o, data.key)
                 o.setAttribute(c, data.val())
               }
             })
@@ -127,8 +128,10 @@ AFRAME.registerSystem('persistence', {
           newObj.createdByPersistenceSystem = true
           scene.appendChild(newObj)
           newObj.setAttribute(c, data.val())
-          newObj.setAttribute('position', data.val().position)
-          newObj.prevPosition = data.val().position
+          const p = data.val().position
+          newObj.object3D.position.set(p.x, p.y, p.z)
+          const r = data.val().rotation
+          newObj.object3D.rotation.set(r.x, r.y, r.z)
           this.registerLocalObject(c, newObj, key)
         }
       })
@@ -143,7 +146,10 @@ AFRAME.registerSystem('persistence', {
           const p = data.val().position
           VR_LOG('p = ' + '{x: ' + p.x + ', y: ' + p.y + ', z: ' + p.z + '}')
           obj.object3D.position.set(p.x, p.y, p.z)
-          Object.assign(obj.prevPosition, p)
+          obj.prevPosition = {...p}
+          const r = data.val().rotation
+          obj.object3D.rotation.set(r.x, r.y, r.z)
+          obj.prevRotation = {x: r.x, y: r.y, z: r.z}
 
           // TODO: This results in 'componentchanged' being emitted, which results
           // in a call to persistLocalChange(). This is inefficient, and should be avoided,
@@ -174,15 +180,24 @@ AFRAME.registerSystem('persistence', {
     this.data.components.forEach(c => {
       this.localObjects.get(c).forEach((obj, key) => {
         const p = obj.object3D.position
-        obj.prevPosition = obj.prevPosition || {x: 0, y: 0, z: 0}
-        const q = obj.prevPosition
-        const dSq = p.distanceToSquared(q)
-        if (dSq > 0.01) {
-          VR_LOG(`entity position changed, key = ${key.slice(-3)}`)
-          this.persistLocalChange(c, key, {position: roundPosition(p)})
-          Object.assign(obj.prevPosition, p)
+        const dSq = p.distanceToSquared(obj.prevPosition)
+
+        // We could compute the angle difference using THREE.Quaternion.angleTo(),
+        // but that seems like overkill.
+        const r = obj.object3D.rotation
+        const dRx = Math.abs(r.x - obj.prevRotation.x)
+        const dRy = Math.abs(r.y - obj.prevRotation.y)
+        const dRz = Math.abs(r.z - obj.prevRotation.z)
+
+        if (dSq > 0.01 || dRx > 0.05 || dRy > 0.05 || dRz > 0.05) {
+          VR_LOG(`entity transformation changed, key = ${key.slice(-3)}`)
+          this.persistLocalChange(c, key, {
+            position: roundXYZ(p),
+            rotation: roundXYZ(r)
+          })
+          obj.prevPosition = {...p}
+          obj.prevRotation = {x: r.x, y: r.y, z: r.z}
         }
-        // TODO: add rotation and scale
       })
     })
   },
@@ -192,8 +207,12 @@ AFRAME.registerSystem('persistence', {
       return
     }
     this.numObjectsPushed++
+    const p = newObj.object3D.position
+    const r = newObj.object3D.rotation
     const ref = this.dbRef.get(componentName).push({
       sessionId: this.sessionId,
+      position: {...p},
+      rotation: {x: r.x, y: r.y, z: r.z},
       ...data
     })
     this.registerLocalObject(componentName, newObj, ref.key)
@@ -201,6 +220,11 @@ AFRAME.registerSystem('persistence', {
   },
   registerLocalObject: function (componentName, obj, key) {
     this.localObjects.get(componentName).set(key, obj)
+    obj.dbKey = key
+    obj.prevPosition = {...obj.object3D.position}
+    const r = obj.object3D.rotation
+    obj.prevRotation = {x: r.x, y: r.y, z: r.z}
+    VR_LOG(`${componentName} registered`)
     obj.addEventListener('componentchanged', e => {
       if (e.detail.name == componentName) {
         VR_LOG(`entity emitted componentchanged, key = ${key.slice(-3)}`)
