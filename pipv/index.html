@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>three.js webgl - per-instance, per-vertex test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <!--
+  <link type="text/css" rel="stylesheet" href="../../three.js/examples/main.css">
+  -->
+  <link type="text/css" rel="stylesheet" href="https://threejs.org/examples/main.css">
+</head>
+<body>
+
+  <div id="container"></div>
+  <div id="info">
+    <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - per-instance, per-vertex demo
+    <div id="notSupported" style="display:none">Sorry! Your graphics card + browser does not support hardware instancing</div>
+  </div>
+
+  <script id="vertexShader" type="x-shader/x-vertex">#version 300 es
+    precision highp float;
+    uniform mat4 modelViewMatrix;  // set by three.js
+    uniform mat4 projectionMatrix;  // set by three.js
+    uniform mat4 modelViewMatrixForSelectedInstance;
+    uniform mat4 modelViewMatrixForPrevSelectedInstance;
+    uniform sampler2D dataTexture;
+    in vec3 position; // original coordinates of the vertex
+    in vec3 offset;
+    in vec4 orientation;
+    out vec4 data;
+    void main() {
+      ivec2 dataTextureSize = textureSize(dataTexture, 0);
+      int numVertices = dataTextureSize.x;
+      int numInstances = dataTextureSize.y;
+      vec2 uv = (vec2(gl_VertexID, gl_InstanceID) + .5) / vec2(dataTextureSize);
+      data = texture(dataTexture, uv);
+      // Note: data.a is a float in [0.0, 1.0]
+
+      // https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation (Used methods: #2)
+      vec3 r = orientation.xyz;
+      float w = orientation.w;
+      vec3 vRotated = position + cross(2.0 * r, cross(r, position) + w * position);
+
+      vec3 vOffset = offset + vRotated;
+      if (data.a == 0.0) {
+        gl_Position = projectionMatrix * modelViewMatrixForSelectedInstance * vec4(vOffset, 1.0);
+      } else if (data.a < 1.0) {
+        gl_Position = projectionMatrix * modelViewMatrixForPrevSelectedInstance * vec4(vOffset, 1.0);
+      } else {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(vOffset, 1.0);
+      }
+    }
+  </script>
+  <script id="fragmentShader" type="x-shader/x-fragment">#version 300 es
+    precision highp float;
+    in vec4 data;
+    out vec4 c;
+    void main() {
+      //c = vec4(data.r, data.g, data.b, data.a);
+      c = vec4(data.r, data.g, data.b, 1.0);
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'https://threejs.org/build/three.module.js'
+    import Stats from 'https://threejs.org/examples/jsm/libs/stats.module.js'
+    import { GUI } from 'https://threejs.org/examples/jsm/libs/dat.gui.module.js'
+    //import * as THREE from '../../three.js/build/three.module.js'
+    //import Stats from '../../three.js/examples/jsm/libs/stats.module.js'
+    //import { GUI } from '../../three.js/examples/jsm/libs/dat.gui.module.js'
+
+    let container, stats
+    let camera, scene, renderer
+    const raycaster = new THREE.Raycaster()
+    const mouse = new THREE.Vector2(1, 1)
+    let tex
+    let modelViewMatrixForSelectedInstance
+    let modelViewMatrixForPrevSelectedInstance
+    let clicked = false
+    let currInstanceID = -1
+    let prevInstanceID = -1
+    let selectedInstanceID = -1
+    let selectedVertexID = -1
+
+    init()
+    animate()
+
+    function init() {
+      container = document.getElementById('container')
+
+      camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10)
+      camera.position.z = 2
+
+      scene = new THREE.Scene()
+
+      const positions = []
+      const L = 0.1
+      positions.push( L,  0,  L)
+      positions.push(-L,  0,  L)
+      positions.push( L,  0, -L)
+      positions.push( L,  0,  L)
+      positions.push( 0,  L,  0)
+      positions.push(-L,  0,  L)
+      positions.push( L,  0,  L)
+      positions.push( L,  0, -L)
+      positions.push( 0,  L,  0)
+      positions.push( L,  0, -L)
+      positions.push(-L,  0,  L)
+      positions.push( 0,  L,  0)
+      const numVertices = positions.length / 3
+
+      const settings = {instanceCount: 50}
+      const maxNumInstances = 10000
+
+      // material
+
+      modelViewMatrixForSelectedInstance = new THREE.Matrix4()
+      modelViewMatrixForPrevSelectedInstance = new THREE.Matrix4()
+      const material = new THREE.RawShaderMaterial({
+        uniforms: {
+          'dataTexture': { value: tex },
+          'modelViewMatrixForSelectedInstance': { value: modelViewMatrixForSelectedInstance },
+          'modelViewMatrixForPrevSelectedInstance': { value: modelViewMatrixForPrevSelectedInstance }
+        },
+        vertexShader: document.getElementById('vertexShader').textContent,
+        fragmentShader: document.getElementById('fragmentShader').textContent,
+        //side: THREE.DoubleSide,
+      })
+
+      //
+
+      let mesh = createMainMesh(positions, settings.instanceCount, material)
+      scene.add(mesh)
+
+      // initalize tex (used for passing per-instance, per-vertex data to shader)
+      initDataTexture(numVertices, settings.instanceCount)
+
+      renderer = new THREE.WebGLRenderer()
+      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      container.appendChild(renderer.domElement)
+
+      if (renderer.capabilities.isWebGL2 === false) {
+        document.getElementById('notSupported').style.display = ''
+        return
+      }
+
+      const gui = new GUI({width: 220})
+      gui.add(settings, 'instanceCount', 1, maxNumInstances, 1).onChange(v => {
+        console.log(`settings.instanceCount = ${v}`)
+        scene.remove(mesh)
+        mesh.geometry.dispose()
+        mesh = createMainMesh(positions, v, material)
+        scene.add(mesh)
+        initDataTexture(numVertices, v)
+      })
+
+      stats = new Stats()
+      container.appendChild(stats.dom)
+
+      window.addEventListener('resize', onWindowResize, false)
+      window.addEventListener('mousedown', e => clicked = true, false)
+      window.addEventListener('mousemove', onMouseMove, false)
+    }
+
+    function initDataTexture(numVertices, numInstances) {
+      const size = numVertices * numInstances
+      const data = new Uint8Array(4 * size)
+      const alpha = 255 // Has no visible effect unless material.transparent == true.
+                        // Currently using for non-alpha purposes.
+      const colors = [[255, 255, 0], [0, 0, 255], [0, 255, 0]]
+      for (let y = 0; y < numInstances; ++y) {
+        const stride = 4 * y * numVertices
+        for (let v = 0; v < numVertices; v++) {
+          data[stride + v * 4] = colors[v % 3][0]
+          data[stride + v * 4 + 1] = colors[v % 3][1]
+          data[stride + v * 4 + 2] = colors[v % 3][2]
+          data[stride + v * 4 + 3] = alpha
+        }
+      }
+      if (tex) tex.dispose()
+      tex = new THREE.DataTexture(data, numVertices, numInstances, THREE.RGBAFormat)
+    }
+
+    function createMainMesh(positions, instanceCount, material) {
+      const offsets = []
+      const orientations = []
+      const instanceLocalMatrices = []
+      const geometry = new THREE.InstancedBufferGeometry()
+      initTransformationArrays(instanceCount, offsets, orientations, instanceLocalMatrices)
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
+      geometry.setAttribute('offset', new THREE.InstancedBufferAttribute(new Float32Array(offsets), 3))
+      geometry.setAttribute('orientation', new THREE.InstancedBufferAttribute(new Float32Array(orientations), 4))
+
+      const mesh = new THREE.Mesh(geometry, material)
+
+      const instanceMesh = new THREE.Mesh()
+      const instanceWorldMatrix = new THREE.Matrix4()
+      const instanceIntersects = []
+      mesh.raycast = (raycaster, intersects) => {
+        instanceMesh.geometry = geometry
+        instanceMesh.material = material
+        for (let instanceId = 0; instanceId < instanceCount; instanceId++) {
+          if (instanceId == selectedInstanceID) {
+            // Compute the value of mesh.matrixWorld as it was when the instance was selected.
+            const M = new THREE.Matrix4()
+            M.multiplyMatrices(camera.matrixWorld, modelViewMatrixForSelectedInstance)
+
+            instanceWorldMatrix.multiplyMatrices(M, instanceLocalMatrices[instanceId])
+          } else {
+            instanceWorldMatrix.multiplyMatrices(mesh.matrixWorld, instanceLocalMatrices[instanceId])
+          }
+          instanceMesh.matrixWorld = instanceWorldMatrix
+          instanceMesh.raycast(raycaster, instanceIntersects)
+          if (instanceIntersects.length > 0) {
+            const intersect = instanceIntersects[0]
+            intersect.instanceId = instanceId
+
+            const p = instanceMesh.geometry.attributes.position
+            const v = new THREE.Vector3()
+            const verticesInIntersectedFace = [intersect.face.a, intersect.face.b, intersect.face.c]
+            const verticesSortedByDistance = verticesInIntersectedFace
+              .map(n => {
+                v.set(p.getX(n), p.getY(n), p.getZ(n))
+                v.applyMatrix4(instanceMesh.matrixWorld)
+                return {
+                  vertexId: n,
+                  dist: v.distanceTo(intersect.point)
+                }
+              })
+              .sort((x, y) => x.dist < y.dist ? -1 : x.dist > y.dist ? 1 : 0)
+            intersect.vertexId = verticesSortedByDistance[0].vertexId
+
+            intersects.push(intersect)
+          }
+          instanceIntersects.length = 0
+        }
+      }
+
+      return mesh
+    }
+
+    function initTransformationArrays(numInstances, offsets, orientations, instanceLocalMatrices) {
+      const offset = new THREE.Vector3()
+      const quat = new THREE.Quaternion()
+      const I = new THREE.Vector3(1, 1, 1)
+      offsets.length = 0
+      orientations.length = 0
+      instanceLocalMatrices.length = 0
+      for (let i = 0; i < numInstances; i++) {
+        //offset.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
+        offset.set(0.5 * Math.sin(i/2), 1.2 * i / numInstances - .6, 0.5 * Math.cos(i/2))
+        offsets.push(offset.x, offset.y, offset.z)
+
+        quat.set(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
+        quat.normalize()
+        orientations.push(quat.x, quat.y, quat.z, quat.w)
+
+        const instanceLocalMatrix = new THREE.Matrix4()
+        instanceLocalMatrix.compose(offset, quat, I)
+        instanceLocalMatrices.push(instanceLocalMatrix)
+      }
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+    }
+
+    function onMouseMove(event) {
+      event.preventDefault()
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+    }
+
+    function animate() {
+      requestAnimationFrame(animate)
+      render()
+      stats.update()
+    }
+
+    const p0 = new THREE.Vector3()
+    const p1 = new THREE.Vector3()
+    const q0 = new THREE.Quaternion()
+    const q1 = new THREE.Quaternion()
+    const s0 = new THREE.Vector3()
+    const s1 = new THREE.Vector3()
+
+    function render() {
+      const object = scene.children[0]
+
+      let instanceClicked = false
+      if (clicked) {
+        clicked = false
+        raycaster.setFromCamera(mouse, camera)
+        const intersection = raycaster.intersectObject(object)
+        if (intersection.length > 0) {
+          instanceClicked = true
+          selectedInstanceID = intersection[0].instanceId
+          selectedVertexID = intersection[0].vertexId
+        }
+      }
+
+      if (instanceClicked) {
+        const instanceID = selectedInstanceID
+        const vertexID = selectedVertexID
+        console.log(`>>> Selected ${instanceID}, vertex ${vertexID}, (curr = ${currInstanceID}, prev = ${prevInstanceID})`)
+
+        // Make the chosen vertex red.
+        const vertexLoc = (instanceID * tex.image.width + vertexID) * 4
+        tex.image.data[vertexLoc] = 255
+        tex.image.data[vertexLoc + 1] = 0
+        tex.image.data[vertexLoc + 2] = 0
+
+        // Zero the 'a' component of every vertex of the chosen instance.
+        const instanceLoc = (instanceID * tex.image.width) * 4
+        for (let i = 0; i < tex.image.width; i++)
+          tex.image.data[instanceLoc + i * 4 + 3] = 0
+        console.log(`setting a to 0 for row ${instanceID}`)
+
+        let shift = false
+        if (currInstanceID >= 0) {
+          if (currInstanceID == instanceID) {
+            console.log(`CLICKED SAME OBJECT: ${currInstanceID} == ${instanceID}`)
+          } else {
+            shift = true
+          }
+        } else {
+          shift = true
+        }
+        if (shift) {
+          modelViewMatrixForPrevSelectedInstance.copy(modelViewMatrixForSelectedInstance)
+          modelViewMatrixForSelectedInstance.copy(object.modelViewMatrix)
+          if (prevInstanceID >= 0) {
+            // If the previous object is still moving along an interpolated path, it has to stop now.
+            const prevInstanceLoc = (prevInstanceID * tex.image.width) * 4
+            const a = tex.image.data[prevInstanceLoc + 3] // all vertices have same a, so check first vertex
+            if (a < 255) {
+              for (let i = 0; i < tex.image.width; i++)
+                tex.image.data[prevInstanceLoc + i * 4 + 3] = 255
+            }
+          }
+          prevInstanceID = currInstanceID
+          currInstanceID = instanceID
+        }
+        console.log(`<<< curr = ${currInstanceID}, prev = ${prevInstanceID}`)
+        tex.needsUpdate = true
+      }
+
+      if (prevInstanceID >= 0) {
+        // Increment the 'a' components for the previously chosen instance.
+        const prevInstanceLoc = (prevInstanceID * tex.image.width) * 4
+        const a = tex.image.data[prevInstanceLoc + 3] // all vertices have same a, so use first vertex
+        if (a < 255) {
+          for (let i = 0; i < tex.image.width; i++)
+            tex.image.data[prevInstanceLoc + i * 4 + 3]++
+          if (a % 50 == 4) console.log(`setting a to ${a+1} for row ${prevInstanceID}`)
+
+          // Move modelViewMatrixForSelectedInstance along an interpolated path to object.modelViewMatrix
+          object.modelViewMatrix.decompose(p1, q1, s1)
+          modelViewMatrixForPrevSelectedInstance.decompose(p0, q0, s0)
+          p0.lerp(p1, 1 / (255 - a))
+          q0.slerp(q1, 1 / (255 - a))
+          s0.lerp(s1, 1 / (255 - a))
+          modelViewMatrixForPrevSelectedInstance.compose(p0, q0, s0)
+
+          tex.needsUpdate = true
+        }
+      }
+
+      const time = performance.now()
+      object.rotation.y = time * 0.0002
+      object.material.uniforms['dataTexture'].value = tex
+      object.material.uniforms['modelViewMatrixForSelectedInstance'].value = modelViewMatrixForSelectedInstance
+      object.material.uniforms['modelViewMatrixForPrevSelectedInstance'].value = modelViewMatrixForPrevSelectedInstance
+      renderer.render(scene, camera)
+    }
+  </script>
+</body>
+</html>
