@@ -19,9 +19,13 @@
 
   <script id="vertexShader" type="x-shader/x-vertex">#version 300 es
     precision highp float;
+    uniform mat4 modelMatrix;  // set by three.js
+    uniform mat4 viewMatrix;  // set by three.js
     uniform mat4 modelViewMatrix;  // set by three.js
     uniform mat4 projectionMatrix;  // set by three.js
+    uniform mat4 modelMatrixForSelectedInstance;
     uniform mat4 modelViewMatrixForSelectedInstance;
+    uniform mat4 modelMatrixForPrevSelectedInstance;
     uniform mat4 modelViewMatrixForPrevSelectedInstance;
     uniform sampler2D dataTexture;
     in vec3 position; // original coordinates of the vertex
@@ -43,9 +47,9 @@
 
       vec3 vOffset = offset + vRotated;
       if (data.a == 0.0) {
-        gl_Position = projectionMatrix * modelViewMatrixForSelectedInstance * vec4(vOffset, 1.0);
+        gl_Position = projectionMatrix * viewMatrix * modelMatrixForSelectedInstance * vec4(vOffset, 1.0);
       } else if (data.a < 1.0) {
-        gl_Position = projectionMatrix * modelViewMatrixForPrevSelectedInstance * vec4(vOffset, 1.0);
+        gl_Position = projectionMatrix * viewMatrix * modelMatrixForPrevSelectedInstance * vec4(vOffset, 1.0);
       } else {
         gl_Position = projectionMatrix * modelViewMatrix * vec4(vOffset, 1.0);
       }
@@ -65,6 +69,8 @@
     import * as THREE from 'https://threejs.org/build/three.module.js'
     import Stats from 'https://threejs.org/examples/jsm/libs/stats.module.js'
     import { GUI } from 'https://threejs.org/examples/jsm/libs/dat.gui.module.js'
+    import { VRButton } from 'https://threejs.org/examples/jsm/webxr/VRButton.js'
+    import { XRControllerModelFactory } from 'https://threejs.org/examples/jsm/webxr/XRControllerModelFactory.js'
     //import * as THREE from '../../three.js/build/three.module.js'
     //import Stats from '../../three.js/examples/jsm/libs/stats.module.js'
     //import { GUI } from '../../three.js/examples/jsm/libs/dat.gui.module.js'
@@ -73,14 +79,24 @@
     let camera, scene, renderer
     const raycaster = new THREE.Raycaster()
     const mouse = new THREE.Vector2(1, 1)
+    let mesh
+    let controller, controllerGrip
     let tex
-    let modelViewMatrixForSelectedInstance
-    let modelViewMatrixForPrevSelectedInstance
+    let modelMatrixForSelectedInstance
+    let modelMatrixForPrevSelectedInstance
     let clicked = false
     let currInstanceID = -1
     let prevInstanceID = -1
     let selectedInstanceID = -1
     let selectedVertexID = -1
+
+    // values that work well for VR
+    const SWARM_R = 2.0
+    const SWARM_H = 3.0
+    const SWARM_POS = new THREE.Vector3(0, 1, -5)
+
+    // This doesn't affect VR view, so I'm using it to adjust the non-VR view.
+    const CAMERA_POS = new THREE.Vector3(0, 1, 1)
 
     init()
     animate()
@@ -88,13 +104,13 @@
     function init() {
       container = document.getElementById('container')
 
-      camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10)
-      camera.position.z = 2
+      camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 10)
+      camera.position.copy(CAMERA_POS)
 
       scene = new THREE.Scene()
 
       const positions = []
-      const L = 0.1
+      const L = 0.2
       positions.push( L,  0,  L)
       positions.push(-L,  0,  L)
       positions.push( L,  0, -L)
@@ -114,13 +130,13 @@
 
       // material
 
-      modelViewMatrixForSelectedInstance = new THREE.Matrix4()
-      modelViewMatrixForPrevSelectedInstance = new THREE.Matrix4()
+      modelMatrixForSelectedInstance = new THREE.Matrix4()
+      modelMatrixForPrevSelectedInstance = new THREE.Matrix4()
       const material = new THREE.RawShaderMaterial({
         uniforms: {
           'dataTexture': { value: tex },
-          'modelViewMatrixForSelectedInstance': { value: modelViewMatrixForSelectedInstance },
-          'modelViewMatrixForPrevSelectedInstance': { value: modelViewMatrixForPrevSelectedInstance }
+          'modelMatrixForSelectedInstance': { value: modelMatrixForSelectedInstance },
+          'modelMatrixForPrevSelectedInstance': { value: modelMatrixForPrevSelectedInstance }
         },
         vertexShader: document.getElementById('vertexShader').textContent,
         fragmentShader: document.getElementById('fragmentShader').textContent,
@@ -129,7 +145,7 @@
 
       //
 
-      let mesh = createMainMesh(positions, settings.instanceCount, material)
+      mesh = createMainMesh(positions, settings.instanceCount, material)
       scene.add(mesh)
 
       // initalize tex (used for passing per-instance, per-vertex data to shader)
@@ -138,6 +154,7 @@
       renderer = new THREE.WebGLRenderer()
       renderer.setPixelRatio(window.devicePixelRatio)
       renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.xr.enabled = true
       container.appendChild(renderer.domElement)
 
       if (renderer.capabilities.isWebGL2 === false) {
@@ -158,9 +175,46 @@
       stats = new Stats()
       container.appendChild(stats.dom)
 
+      function onSelectStart() {
+        this.userData.isSelecting = true
+      }
+
+      function onSelectEnd() {
+        this.userData.isSelecting = false
+      }
+
+      controller = renderer.xr.getController(0)
+      controller.addEventListener('selectstart', onSelectStart)
+      controller.addEventListener('selectend', onSelectEnd)
+      controller.addEventListener('connected', e => controller.add(buildController(e.data)))
+      controller.addEventListener('disconnected', () => controller.remove(controller.children[0]))
+      scene.add(controller)
+
+      const controllerModelFactory = new XRControllerModelFactory()
+      controllerGrip = renderer.xr.getControllerGrip(0)
+      controllerGrip.add(controllerModelFactory.createControllerModel(controllerGrip))
+      scene.add(controllerGrip)
+
       window.addEventListener('resize', onWindowResize, false)
       window.addEventListener('mousedown', e => clicked = true, false)
       window.addEventListener('mousemove', onMouseMove, false)
+      document.body.appendChild(VRButton.createButton(renderer))
+    }
+
+    function buildController(data) {
+      let geometry, material
+      switch (data.targetRayMode) {
+        case 'tracked-pointer':
+          geometry = new THREE.BufferGeometry()
+          geometry.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, -1], 3))
+          geometry.setAttribute('color', new THREE.Float32BufferAttribute([0.5, 0.5, 0.5, 0, 0, 0], 3))
+          material = new THREE.LineBasicMaterial({vertexColors: true, blending: THREE.AdditiveBlending})
+          return new THREE.Line(geometry, material)
+        case 'gaze':
+          geometry = new THREE.RingBufferGeometry(0.02, 0.04, 32).translate(0, 0, -1)
+          material = new THREE.MeshBasicMaterial({opacity: 0.5, transparent: true})
+          return new THREE.Mesh(geometry, material)
+      }
     }
 
     function initDataTexture(numVertices, numInstances) {
@@ -202,11 +256,8 @@
         instanceMesh.material = material
         for (let instanceId = 0; instanceId < instanceCount; instanceId++) {
           if (instanceId == selectedInstanceID) {
-            // Compute the value of mesh.matrixWorld as it was when the instance was selected.
-            const M = new THREE.Matrix4()
-            M.multiplyMatrices(camera.matrixWorld, modelViewMatrixForSelectedInstance)
-
-            instanceWorldMatrix.multiplyMatrices(M, instanceLocalMatrices[instanceId])
+            // modelMatrixForSelectedInstance is what mesh.matrixWorld was when the instance was selected.
+            instanceWorldMatrix.multiplyMatrices(modelMatrixForSelectedInstance, instanceLocalMatrices[instanceId])
           } else {
             instanceWorldMatrix.multiplyMatrices(mesh.matrixWorld, instanceLocalMatrices[instanceId])
           }
@@ -237,6 +288,7 @@
         }
       }
 
+      mesh.position.copy(SWARM_POS)
       return mesh
     }
 
@@ -249,7 +301,7 @@
       instanceLocalMatrices.length = 0
       for (let i = 0; i < numInstances; i++) {
         //offset.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
-        offset.set(0.5 * Math.sin(i/2), 1.2 * i / numInstances - .6, 0.5 * Math.cos(i/2))
+        offset.set(SWARM_R * Math.sin(i/2), SWARM_H * i / numInstances - SWARM_H / 2, SWARM_R * Math.cos(i/2))
         offsets.push(offset.x, offset.y, offset.z)
 
         quat.set(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
@@ -275,9 +327,7 @@
     }
 
     function animate() {
-      requestAnimationFrame(animate)
-      render()
-      stats.update()
+      renderer.setAnimationLoop(render)
     }
 
     const p0 = new THREE.Vector3()
@@ -288,21 +338,38 @@
     const s1 = new THREE.Vector3()
 
     function render() {
-      const object = scene.children[0]
+      stats.update()
 
-      let instanceClicked = false
+      let instanceSelected = false
+
+      // handle mouse click
       if (clicked) {
         clicked = false
         raycaster.setFromCamera(mouse, camera)
-        const intersection = raycaster.intersectObject(object)
+        const intersection = raycaster.intersectObject(mesh)
         if (intersection.length > 0) {
-          instanceClicked = true
+          instanceSelected = true
           selectedInstanceID = intersection[0].instanceId
           selectedVertexID = intersection[0].vertexId
         }
       }
 
-      if (instanceClicked) {
+      // handle trigger squeeze
+      if (controller.userData.isSelecting) {
+        const tempMatrix = new THREE.Matrix4()
+        tempMatrix.extractRotation(controller.matrixWorld)
+        raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld)
+        raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix)
+        const intersection = raycaster.intersectObject(mesh)
+        if (intersection.length > 0) {
+          instanceSelected = true
+          selectedInstanceID = intersection[0].instanceId
+          selectedVertexID = intersection[0].vertexId
+        }
+        controller.userData.isSelecting = false
+      }
+
+      if (instanceSelected) {
         const instanceID = selectedInstanceID
         const vertexID = selectedVertexID
         console.log(`>>> Selected ${instanceID}, vertex ${vertexID}, (curr = ${currInstanceID}, prev = ${prevInstanceID})`)
@@ -330,10 +397,10 @@
           shift = true
         }
         if (shift) {
-          modelViewMatrixForPrevSelectedInstance.copy(modelViewMatrixForSelectedInstance)
-          modelViewMatrixForSelectedInstance.copy(object.modelViewMatrix)
+          modelMatrixForPrevSelectedInstance.copy(modelMatrixForSelectedInstance)
+          modelMatrixForSelectedInstance.copy(mesh.matrixWorld)
           if (prevInstanceID >= 0) {
-            // If the previous object is still moving along an interpolated path, it has to stop now.
+            // If the previous selection is still moving along an interpolated path, it has to stop now.
             const prevInstanceLoc = (prevInstanceID * tex.image.width) * 4
             const a = tex.image.data[prevInstanceLoc + 3] // all vertices have same a, so check first vertex
             if (a < 255) {
@@ -357,23 +424,23 @@
             tex.image.data[prevInstanceLoc + i * 4 + 3]++
           if (a % 50 == 4) console.log(`setting a to ${a+1} for row ${prevInstanceID}`)
 
-          // Move modelViewMatrixForSelectedInstance along an interpolated path to object.modelViewMatrix
-          object.modelViewMatrix.decompose(p1, q1, s1)
-          modelViewMatrixForPrevSelectedInstance.decompose(p0, q0, s0)
+          // Move modelMatrixForPrevSelectedInstance along an interpolated path to mesh.matrixWorld
+          mesh.matrixWorld.decompose(p1, q1, s1)
+          modelMatrixForPrevSelectedInstance.decompose(p0, q0, s0)
           p0.lerp(p1, 1 / (255 - a))
           q0.slerp(q1, 1 / (255 - a))
           s0.lerp(s1, 1 / (255 - a))
-          modelViewMatrixForPrevSelectedInstance.compose(p0, q0, s0)
+          modelMatrixForPrevSelectedInstance.compose(p0, q0, s0)
 
           tex.needsUpdate = true
         }
       }
 
       const time = performance.now()
-      object.rotation.y = time * 0.0002
-      object.material.uniforms['dataTexture'].value = tex
-      object.material.uniforms['modelViewMatrixForSelectedInstance'].value = modelViewMatrixForSelectedInstance
-      object.material.uniforms['modelViewMatrixForPrevSelectedInstance'].value = modelViewMatrixForPrevSelectedInstance
+      mesh.rotation.y = time * 0.0001
+      mesh.material.uniforms['dataTexture'].value = tex
+      mesh.material.uniforms['modelMatrixForSelectedInstance'].value = modelMatrixForSelectedInstance
+      mesh.material.uniforms['modelMatrixForPrevSelectedInstance'].value = modelMatrixForPrevSelectedInstance
       renderer.render(scene, camera)
     }
   </script>
