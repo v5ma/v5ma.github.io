@@ -1,0 +1,34 @@
+{
+  "name": "aframe-vimeo-component",
+  "version": "0.2.0",
+  "engines": {
+    "node": ">=0.12"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "vimeo": "^1.2.1"
+  },
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "dotenv": "^5.0.1",
+    "ejs": "^2.6.1",
+    "host-validation": "^2.0.1",
+    "jsx-loader": "^0.13.2",
+    "standard": "^12.0.1",
+    "sync-glitch-cli": "^2.0.1",
+    "webpack": "^4.12.2",
+    "webpack-cli": "^3.2.3",
+    "yargs": "^12.0.5"
+  },
+  "scripts": {
+    "start": "node assets/js/readme-glitch-fix.js && yarn server",
+    "server": "node server.js",
+    "format": "standard ./src/index.js --fix",
+    "build": "yarn run update:threejs && yarn run build:threejs && yarn run format && yarn build:all",
+    "build:all": "webpack --env development && webpack --env build",
+    "build:watch": "webpack --progress --colors --watch --env dev",
+    "build:threejs": "cd ext/vimeo-threejs-player && yarn && yarn build && cd ../../ && yarn",
+    "update:threejs": "git submodule update --init --recursive --remote",
+    "deploy:glitch": "sync-glitch"
+  }
+}
