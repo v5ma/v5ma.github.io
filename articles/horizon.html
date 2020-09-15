@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>VRMA.io Virtual Reality Magazine: News in WebXR</title>
+    <meta name="description" content="demo">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+          font-family: helvetica, arial, sans-serif;
+          margin: 2em;
+      }
+
+      h1 {
+          font-size: 1.35em;
+      }
+      div#text {
+          position: absolute;
+          left: 6px; 
+          top: 6px;
+          padding: 6px;
+          max-width: 300px;
+          background-color: rgba(255, 255, 255, 0.7);
+          z-index: 2;
+      }
+      #exitbutton {
+          position: absolute;
+          left: 20px;
+          bottom: 20px;
+          padding: 6px;
+          border: 1px solid rgba(255,255,255,0.5);
+          color: rgba(255,255,255,0.8);
+          background-color: rgba(0,0,0,0.2);
+          display: none;
+          z-index: 2;
+      }
+      body.ar-mode {
+          user-select: none;
+      }
+      body.ar-mode #text,
+      body.ar-mode canvas.a-canvas {
+          display: none;
+      }
+      body.ar-mode #exitbutton {
+          display: initial;
+      }
+    </style>
+    
+    <script>
+      // WebXR requires HTTPS, so the site doesn't work if someone manually enters
+      // the URL and ends up using HTTP. To work around this, force redirect from
+      // http to https for non-localhost addresses.
+      if (window.location.protocol == "http:" &&
+          window.location.hostname != "localhost" && 
+          window.location.hostname != "127.0.0.1" &&
+          window.location.hostname != "[::1]") {
+        window.location = window.location.href.replace('http:', 'https:');        
+      }
+      
+      AFRAME.registerComponent('exit-ar-button', {
+      init: function () {
+        console.log('exit-ar-button init');
+        document.getElementById('exitbutton').addEventListener('click', ev => {
+            console.log('exit-ar-button event ' + ev.type);
+            this.el.sceneEl.renderer.xr.getSession().end();
+        });
+      }
+    })
+    </script>    
+    <script type="text/javascript" src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script type="text/javascript" src="https://morandd.github.io/aframe-multitouch-look-controls/multitouch-look-controls.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/v5ma/git@eae2abf/aframevimeo.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/n5ro/n5ro.github.io@c7b1e02/newthumbcontrols.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/n5ro/Micah1.github.io@7022b232989831d0748167999c5ac2998fa0eeb2/scripts/pilaser.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/n5ro/n5ro.github.io@5367d960cf25688af591ab4e3037f13dac5c2a95/touchup.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/n5ro/n5ro.github.io@8a472f6328216140188404701b23889eec718f8a/joystick.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Micah1/Micah1.github.io@44166e25baea85fa46ae4213182333eff31ef2f2/scripts/turning.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  
+    <script>
+       AFRAME.registerComponent('hide-in-ar-mode', {
+
+        init: function () {
+          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+            this.wasVisible = this.el.getAttribute('visible');
+            if (this.el.sceneEl.is('ar-mode')) {
+                this.el.setAttribute('visible', false);
+                document.body.classList.add('ar-mode');
+            }
+          });
+          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+            if (this.wasVisible) this.el.setAttribute('visible', true);
+              document.body.classList.remove('ar-mode');
+          });
+        }
+      });
+    </script>
+    
+
+  
+  <script>
+  AFRAME.registerComponent("fps-counter", {
+        schema: {
+            enabled: {
+                default: !0
+            },
+            for90fps: {
+                default: !0
+            }
+        },
+        init: function() {
+            return this.data.enabled ? (this.el.setAttribute("text", {
+                align: "center",
+                side: "front"
+            }), void this.el.sceneEl.setAttribute("stats", "")) : void this.el.sceneEl.removeBehavior(this)
+        },
+        tick: function(t, e) {
+            var r, i, o = this;
+            return this.fpsDiv ? (i = parseFloat(this.fpsDiv.innerHTML, 10), this.data.for90fps ? (i < 85 && (r = "yellow"), i < 80 && (r = "orange"), i < 75 && (r = "red")) : 
+                                  (i < 55 && (r = "yellow"), i < 50 && (r = "orange"), i < 45 && (r = "red")), r && (this.el.setAttribute("text", "color", r), setTimeout(function() {
+                o.el.setAttribute("text", "color", "white")
+            }, 500)), void this.el.setAttribute("text", "value", i.toFixed(0))) : void(this.fpsDiv = document.querySelector(".rs-counter-base:nth-child(2) .rs-counter-value"))
+        }
+    })    
+    
+  
+  </script>
+
+    
+  
+    <script>
+        (function () {
+            var carouselindex = 0
+            var log_history = [];
+            var menu_open = false;
+            var MAX_LOGS = null;
+
+            function VR_LOG(data) {
+                log_history.push(JSON.stringify(data));
+                if (MAX_LOGS && log_history.length > MAX_LOGS) {
+                    log_history.shift()
+                }
+                const console = document.getElementById('vr_console');
+                if (console) {
+                    console.setAttribute('value', log_history.join('\n'));
+                }
+            }
+            window.onerror = e => VR_LOG("error" + e);
+            const CLAMP_VELOCITY = 0.01;
+            const MAX_DELTA = 0.2;
+            const EPS = 10e-6;
+            const MAX_WARNINGS = 10;
+            const PI_2 = Math.PI / 2;
+
+            AFRAME.registerComponent("triggerdown", {
+                init: function () {
+                    this.el.addEventListener("triggerdown", (e) => {
+                        VR_LOG('triggerclick')
+                        this.el.emit('thumbupstart')
+
+                    });
+                }
+            });
+          
+            AFRAME.registerComponent('thumb-movement-controls', {
+                init: function () {
+                    this.el.addEventListener('thumbupstart', () => {
+                        VR_LOG('thumbupstart ok');
+                    });
+                    this.el.addEventListener('thumbupend', () => {
+                        VR_LOG('thumbupend ok');
+                    });
+                    this.el.addEventListener('thumbrightstart', () => {
+                        VR_LOG('thumbrightstart ok');
+                        document.querySelector('a-scene').emit("rotateright");
+                    });
+                    this.el.addEventListener('thumbrightend', () => {
+                        VR_LOG('thumbrightend ok');
+                        document.querySelectorAll('.menu_plane').forEach(function (e) {
+                            e.object3D.visible = true;
+                       });
+                    });
+                    this.el.addEventListener('thumbleftstart', () => {
+                        VR_LOG('thumbleftstart ok');
+                        document.querySelector('a-scene').emit("rotateleft");
+
+                    });
+                    this.el.addEventListener('thumbleftend', () => {
+                        VR_LOG('thumbleftend ok');
+                        document.querySelectorAll('.menu_plane').forEach(function (e) {
+                        });
+                    });
+                    this.el.addEventListener('thumbdownstart', () => {
+                        VR_LOG('thumbupstart ok');
+                        document.querySelectorAll('.menu_plane').forEach(function (e) {
+                            e.object3D.visible = false;
+                        });
+                    });
+                    this.el.addEventListener('thumbdownend', () => {
+                        VR_LOG('thumbupend ok');
+                    });
+                }
+            });
+
+        })();
+    </script>
+</head>
+
+<body>
+<div id="exitbutton">
+Exit AR
+</div>
+<a-scene joystick
+         raycaster="objects: .clickable; showLine: false;"
+         cursor="rayOrigin: mouse;"
+         >
+  
+   <a-entity environment position="0 -5 0" hide-in-ar-mode></a-entity>
+       <a-assets>
+         <a-asset-item id="sketch" response-type="arraybuffer" src="https://cdn.glitch.com/b9ca8773-9cce-4d19-a82e-079372776351%2Fsketch.gltf?v=1599710423757"></a-asset-item>
+         
+        <a-asset-item id="vrtechsolo" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FVRTech%20solo.glb?v=1578391617378"></a-asset-item>
+        <a-asset-item id="cuttyblades" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2Fcuttyblades.glb?v=1578391622481"></a-asset-item>
+        <a-asset-item id="selfaware" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2Fselfawarenetworks.glb?v=1578391618903"></a-asset-item>
+        <a-asset-item id="webxr" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2Fwebxr.glb?v=1578391619519"></a-asset-item>
+        <a-asset-item id="pumpkin" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2Fpumpkin.glb?v=1578391620962"></a-asset-item>
+        <a-asset-item id="3Dnews" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2F3D%20news.glb?v=1578391621054"></a-asset-item>
+        <a-asset-item id="webxrvrtech" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2Fwebxr%20n%20vrtech.glb?v=1578391621412"></a-asset-item>
+        <a-asset-item id="thing" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2Fthing.glb?v=1578391622724"></a-asset-item>
+        <a-asset-item id="thedragon" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FTheDragon.glb?v=1578391625308"></a-asset-item>
+        <a-asset-item id="roundbubble" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FVRtechround%20original.glb?v=1578391625108"></a-asset-item>
+        <a-asset-item id="techwordbubble" response-type="arraybuffer" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FVR%20Tech%20wordbubble1.glb?v=1578391627404"></a-asset-item>
+            <a-asset-item id="terrain" src="/models/terrain.gltf"></a-asset-item>
+            <img id="skymap" src="/images/skymap.jpg" />
+            <img id="checkers" src="https://i.imgur.com/gE99iH1.png">
+            <img id="navy" src="https://i.imgur.com/nI3uM5Z.jpg">
+<!--             <img id="cow" src="https://i.imgur.com/1j84M1w.jpg"> -->
+<!--             <img id="gri" src="https://i.imgur.com/JE0jLfM.jpg"> -->
+            <img id="svgnlogo" src="https://i.imgur.com/qLrZjo4.png">
+            <img id="vrmalogo" src="https://i.imgur.com/vZetNC9.png">
+            <img id="garden" src="https://i.imgur.com/V3tGHdb.png">
+         
+         
+         
+<!--        <img id="varjo1" src="https://i.imgur.com/9np2MH9.jpg">
+            <img id="varjo2" src="https://i.imgur.com/zTVKIDW.jpg">
+            <img id="varjo3" src="https://i.imgur.com/zb0SDBO.jpg">
+            <img id="varjo4" src="https://i.imgur.com/9np2MH9.jpg">
+            <img id="varjo5" src="https://i.imgur.com/Zbb8Jpk.jpg">
+            <img id="varjo6" src="https://i.imgur.com/Km9aQOO.jpg">
+            <img id="varjo7" src="https://i.imgur.com/Ci3NpSk.jpg">
+            <img id="varjo8" src="https://i.imgur.com/E6zyOxx.jpg"> -->
+            <img id="next" src="https://i.imgur.com/Z23LwCW.jpg">
+            <img id="previous" src="https://i.imgur.com/WTWTzNo.jpg">
+            <img id="exit" src="https://i.imgur.com/hrjUFgp.jpg">
+            <img id="playb" src="https://i.imgur.com/3Hk6Nbi.jpg">
+            <img id="pauseb" src="https://i.imgur.com/trKI27q.jpg">
+            <img id="stopb" src="https://i.imgur.com/D6V86Ui.jpg">
+            <img id="0030" src="https://i.imgur.com/CtV9xsA.jpg">
+            <img id="0100" src="https://i.imgur.com/9gf9dag.jpg">
+<!--             <img id="vrtech1" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_19_02.png?v=1578392951903">
+           <img id="vrtech2" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_20_03.png?v=1578392952239">
+           <img id="vrtech3" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_6_01.png?v=1578392953140">
+           <img id="vrtech4" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_19_04.png?v=1578392953501">
+           <img id="vrtech5" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_19_03.png?v=1578392954308">
+           <img id="vrtech6" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_19_01.png?v=1578392954504">
+           <img id="vrtech7" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_22_01.png?v=1578392954677">
+           <img id="vrtech8" src="https://cdn.glitch.com/3a2c860e-d7ad-492c-ba6d-c122f2210b97%2FUntitled_21_01.png?v=1578392954858">    -->
+        </a-assets>
+  
+ <a-entity rotation="0 200 0" position="-7 -0 7" scale="0.5 0.5 0.5" gltf-model="#sketch"></a-entity>
+  
+<a-entity light="type: spot; angle: 93; intensity: 4; distance: 50; decay: 2"
+          rotation="180 0 0"
+          position="0 2 -2.5"></a-entity>
+  <a-entity light="type: ambient; color: white; intensity: 0.7"></a-entity>
+  <a-entity ground
+      geometry="primitive:box; width:10000; depth:10000; height:0.01;"
+      visible="false"
+      position="0 -0.3 0"
+      >
+    </a-entity>
+  
+  <a-plane position="0 -0.4 0" width="40" height="40" geometry="primitive: plane; width: 10000; height: 10000;"
+            rotation="-90 0 0"
+            material="src: #checkers; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;" hide-in-ar-mode>
+        </a-plane>
+  <a-entity id="sky" color="#f5feff"
+            geometry="primitive:sphere; radius:100; phiLength:360; phiStart:0; thetaLength:90"
+            material="shader:flat; side:back; height:2048; src:#skymap; width:2048" hide-in-ar-mode></a-entity>
+   <a-entity position="0 5 0" gltf-model="#terrain; repeat: 500 500; transparent: true; metalness:0.6; roughness: 0.4;" hide-in-ar-mode></a-entity>
+
+           
+        <a-entity class="clickable hidemenu">
+            <a-entity vimeo="id: 456025707; autoplay: false" id="vimeo-player" autoplay="false" position="0 1.4 -2.8">
+              <a-box id="spectrum" class="clickable" color="#000000" scale="3.2 1.7 1" position="0 0 0">
+              </a-box>
+            </a-entity>
+            <a-entity position="0 0 -2.5">     
+                <a-box id="play" position="-1.6 0 -0.3" scale="0.7 0.7 0.7" class="clickable" material="src: #playb; color: orange"
+                       event-set__enter="_event: mouseenter; color: pink"
+                       event-set__leave="_event: mouseleave; color: orange"
+                       ></a-box>
+                <a-box id="pause" position="0 0 -0.3" scale="0.7 0.7 0.7" class="clickable" material="src: #pauseb; color: teal"
+                       event-set__enter="_event: mouseenter; color: #026fc9"
+                       event-set__leave="_event: mouseleave; color: #4CC3D9"
+                       ></a-box>
+                <a-box id="stop" position="1.6 0 -0.3" scale="0.7 0.7 0.7" class="clickable" material="src: #stopb"
+                       event-set__enter="_event: mouseenter; color: red"
+                       event-set__leave="_event: mouseleave; color: white"
+                       ></a-box>
+              
+                
+            </a-entity>
+        </a-entity>
+     
+        <a-entity id="cameraRig">
+            <a-entity id="cameraRig_1" character-controller="pivot: #head" position="0 1 0">
+              <a-entity id="head" camera wasd-controls multitouch-look-controls></a-entity>
+              <a-entity id="left-hand" primary-caller="hand: left" hand-controls="hand: left" sphere-collider="objects: a-box" super-hands comehere
+                 my-laser-controls  line="color: white; opacity: 0.75"
+                 raycaster="objects:.cube, .clickable; far: 50" 
+                 thumb-controls thumb-movement-controls
+                 teleport-controls="startEvents: thumbdownstart; endEvents: thumbdownend; cameraRig: #cameraRig;
+                 teleportOrigin: #head; curveShootingSpeed: 12; collisionEntities: [ground]; button: trigger;"
+                 >
+                      
+                </a-entity>
+               <a-entity id="right-hand" class="caller" hand-controls="hand: right" sphere-collider="objects: a-box" super-hands comehere
+                 my-laser-controls  line="color: white; opacity: 0.75" 
+                 raycaster="objects: .cube, .clickable; far: 50"
+                 thumb-controls thumb-movement-controls
+                 teleport-controls="startEvents: thumbdownstart; endEvents: thumbdownend; cameraRig: #cameraRig;
+                 teleportOrigin: #head; curveShootingSpeed: 12; collisionEntities: [ground]"
+                 ></a-entity>
+              </a-entity>
+         </a-entity>
+
+        <a-box scale="4 4 0.1" rotation="0 -30 0" position="5.5 1.5 -4" material="src: #svgnlogo" class="clickable"></a-box>
+        <a-box scale="4 2 0.1" rotation="0 30 0" position="-5.5 1.5 -4" material="src: #vrmalogo" class="clickable"></a-box>
+        <a-box scale="0.5 0.5 0.01" rotation="-30 0 0" position="0 0 -1" material="src: #garden" class="clickable"></a-box>
+
+</a-scene>
+  
+  <script>
+        //Wait until the A-Scene component was loaded before doing anything
+        document.querySelector('#vimeo-player').addEventListener('loaded', function () {
+            var vimeoPlayer = document.querySelector('#vimeo-player').components.vimeo;
+
+            var pauseButton = document.getElementById('pause');
+            var playButton = document.getElementById('play');
+            var stopButton = document.getElementById('stop');
+            // var forward = 
+            
+            var changeTimeToStart = document.getElementById('add');
+            var changeTimeToOneSecond = document.getElementById('minus');
+
+            playButton.addEventListener('click', function () {
+               console.log('playbutton clicked')
+               vimeoPlayer.pause();
+               vimeoPlayer.play();
+            });
+
+            pauseButton.addEventListener('click', function () {
+                console.log('pause clicked')
+                vimeoPlayer.pause();
+            });
+
+            stopButton.addEventListener('click', function () {
+                
+                vimeoPlayer.player.setTime(0);
+                vimeoPlayer.pause();
+            });
+
+            
+        });
+    </script>
+</body>
+</html>
