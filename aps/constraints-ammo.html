@@ -14,6 +14,17 @@
   </head>
   <body>
     <a-scene environment physics="driver: ammo; debug: true">
+      
+      <a-mixin id="grab" geometry="primitive: box; width: 1; height: 1; depth: 1"
+                 hoverable grabbable stretchable draggable droppable
+                 shadow
+                 event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"
+                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                 event-set__dragon="_event: dragover-start; material.wireframe: true"
+                 event-set__dragoff="_event: dragover-end; material.wireframe: false">
+        </a-mixin>
+      
       <a-entity id="cameraRig">
         <a-camera camera wasd-controls position="0 1 1"
                 capture-mouse
@@ -119,7 +130,7 @@
                radius="0.125"
                position="0 1 0"
                ammo-body ammo-shape
-               ammo-constraint="type: slider; target: #slider-target" class="click">
+               ammo-constraint="type: slider; target: #slider-target" mixin="grab" class="click">
         </a-sphere>
         <a-cylinder radius="0.05" height="2" position="0 1 0" rotation="0 0 90"></a-cylinder>
       </a-entity>
