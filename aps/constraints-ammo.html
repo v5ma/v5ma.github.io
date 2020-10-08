@@ -13,7 +13,7 @@
   <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
   </head>
   <body>
-    <a-scene environment physics="driver: ammo; debug: true">
+    <a-scene environment physics="driver: ammo; debug: true" raycaster="objects: .cube; showLine: false;" cursor="rayOrigin: mouse;">
       
       <a-mixin id="grab"
                  hoverable grabbable stretchable draggable droppable
