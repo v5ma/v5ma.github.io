@@ -9,11 +9,20 @@
     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@constraints-ammo-2/dist/aframe-physics-system.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
   </head>
   <body>
     <a-scene environment physics="driver: ammo; debug: true">
       <a-entity id="cameraRig">
-        <a-camera wasd-controls look-controls raycaster="objects: .click; far: 50" cursor="rayOrigin: mouse;"></a-camera>
+        <a-camera camera wasd-controls position="0 1 1"
+                capture-mouse
+                raycaster="objects: .click" cursor="rayOrigin:mouse"
+                static-body="shape: sphere; sphereRadius: 0.001"
+                super-hands="colliderEvent: raycaster-intersection;
+                             colliderEventProperty: els;
+                             colliderEndEvent:raycaster-intersection-cleared;
+                             colliderEndEventProperty: clearedEls;""></a-camera>
         <a-entity teleport-controls="cameraRig: #cameraRig; button: trigger; type: line"
           ammo-body="type: kinematic"
           ammo-shape="type: box; halfExtents: 0.05 0.1 0.1; fit: manual;"
