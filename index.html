@@ -2,52 +2,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>min + controllers</title>
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-  <script type="text/javascript"
-      src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js">
-  </script>
-  <script type="text/javascript"
-      src="https://cdn.jsdelivr.net/gh/n5ro/Micah1.github.io@7022b232989831d0748167999c5ac2998fa0eeb2/scripts/pilaser.js">
-  </script>
-  <script type="text/javascript"
-      src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js">
-  </script>
-  <script>
-    AFRAME.registerComponent('change-color', {
-      schema: {
-        color: {default: 'red'}
-      },
-      init: function () {
-        var data = this.data;
-        var el = this.el;  // <a-box>
-        var defaultColor = el.getAttribute('material').color;
-        el.addEventListener('mousedown', function () {
-          el.setAttribute('color', data.color);
-        });
-        el.addEventListener('mouseup', function () {
-          el.setAttribute('color', defaultColor);
-        });
-      }
-    });
-  </script>
+  <title>Misc demos from past hacknights</title>
 </head>
 <body>
-  <a-scene raycaster="objects: .clickable; showLine: false;" cursor="rayOrigin: mouse;">
-    <a-box class="clickable" color="#EF2D5E" position="0 1 -4" change-color="color: blue"></a-box>
-    <a-entity id="cameraRig">
-      <a-entity id="cameraRig_1" character-controller="pivot: #head">
-        <a-entity id="head" camera wasd-controls touch-look-controls position="0 0 0"></a-entity>
-           <a-entity
-               teleport-controls="startEvents: thumbdownstart; endEvents: thumbdownend; cameraRig: #cameraRig; teleportOrigin: #head; curveShootingSpeed: 12; collisionEntities: [ground]"
-               thumb-controls thumb-movement-controls 
-               my-laser-controls  line="color: white; opacity: 0.75" 
-               raycaster="objects:.clickable; far: 50">
-           </a-entity>
-           <a-entity id="left-hand" hand-controls="hand: left"></a-entity>
-           <a-entity id="right-hand" hand-controls="hand: right" thumb-controls></a-entity>
-      </a-entity>
-    </a-entity>
-  </a-scene>
+  <h1>Misc demos from past hacknights</h1>
+  <a href="change-color-on-click.html">change-color-on-click.html</a>
+  Simple A-Frame demo - cube changes color when you click on it.
+  <br>
+  <a href="postitnotes/persistentworld.html">postitnotes/persistentworld.html</a>
+  Persistent world demo - contains post-it notes and other random objects that are persisted in a Google Firebase database.
+  <br>
+  <a href="postitnotes/persistentworld-with-gui.html">postitnotes/persistentworld-with-gui.html</a>
+  Same as above but with some <a href="https://github.com/rdub80/aframe-gui">aframe-gui</a> components added.
+  <br>
+  <a href="pipv/index.html">pipv/index.html</a>
+  Instancing demo - uses THREE.InstancedBufferGeometry and THREE.DataTexture to implement instancing while maintaining per-instance per-vertex state.
+  <br>
+  TODO: add more links here
+  <h2>Copied from aframe-physics-system for hacknight experiments:</h2>
+  <a href="aps/constraints-ammo.html">aps/constraints-ammo.html</a>
+  Demo of five different kinds of constraint, using ammo.js.
+  <br>
+  TODO: add more links here
 </body>
 </html>
