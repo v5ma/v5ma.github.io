@@ -12,7 +12,7 @@ You can click "forward" and it works just fine, "backward" doesn't work unfortun
 Thanks in advance and let me know if anything is missing to reproduce the issue." https://github.com/c-frame/aframe-extras/issues/446
 
 Try out the solution I created on glitch: https://glbanireverse.glitch.me/
-Copy the code here: 
+Copy the code here: https://github.com/v5ma/n5ro.github.io/blob/master/GLBanireverse/GLBanireverse.html
 
 Explanation of Why This Approach Works:
 Targeted Control of Animation Playback:
@@ -33,4 +33,4 @@ The solution provided solves these problems by:
 Implementing conditional checks to ensure animations start only from their designated starting points.
 Using timeScale for straightforward direction control and manually setting time for accurate initiation of backward play.
 Conclusion:
-The "GLTF Animation Mixer Reversible Control" effectively manages and controls the direction of GLTF animations within an A-Frame environment, providing a user-friendly, intuitive interface for interaction. This setup not only enhances user engagement by allowing dynamic control over animation playback but also ensures the animation state is always appropriate for the intended action, thus maintaining the integrity and continuity of the visual experience.
+The "GLTF Animation Mixer Reversible Control Example" or "GLBanireverse" effectively manages and controls the direction of GLTF animations within an A-Frame environment, providing a user-friendly, intuitive interface for interaction. This setup not only enhances user engagement by allowing dynamic control over animation playback but also ensures the animation state is always appropriate for the intended action, thus maintaining the integrity and continuity of the visual experience.
