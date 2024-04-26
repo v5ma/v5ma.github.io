@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GLTF GLB Animation Control</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    <button id="forward">Forward</button>
+    <button id="backward">Backward</button>
+    <div id="myEmbeddedScene" style="width: 600px; height: 600px">
+      <a-scene embedded>
+        <a-assets>
+          <a-asset-item id="box"
+            src="https://cdn.glitch.global/9fd8c761-9851-4e63-b098-a2c6c76f905a/BoxAnimated_BoxMoves_Has10Frames.glb?v=1711472748160"></a-asset-item>
+        </a-assets>
+
+        <a-entity camera look-controls position="1 1 1"></a-entity>
+
+        <a-entity id="movingBox"
+                  gltf-model="#box"
+                  position="2 1 -2"
+                  animation-mixer="clip: CubeAction; loop: once; clampWhenFinished: true; timeScale: 0">
+        </a-entity>
+      </a-scene>
+    </div>
+
+    <script>
+      document.getElementById('forward').addEventListener('click', function () {
+        const box = document.querySelector("#movingBox");
+        const mixerComponent = box.components['animation-mixer'];
+        const action = mixerComponent.mixer.clipAction(mixerComponent.data.clip);
+        if (action.time === 0) {
+          action.reset();
+          action.timeScale = 1;
+          action.play();
+        }
+      });
+
+      document.getElementById('backward').addEventListener('click', function () {
+        const box = document.querySelector("#movingBox");
+        const mixerComponent = box.components['animation-mixer'];
+        const action = mixerComponent.mixer.clipAction(mixerComponent.data.clip);
+        if (action.time === action.getClip().duration) {
+          action.paused = false;
+          action.timeScale = -1;
+          action.time = action.getClip().duration; // Set the animation time to its full duration before playing in reverse
+          action.play();
+        }
+      });
+    </script>
+</body>
+</html>
