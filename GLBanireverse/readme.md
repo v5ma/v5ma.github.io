@@ -1,6 +1,6 @@
 GLBanireverse: The GLTF GLB Animation Mixer Reversible Control Example" controls GLTF animations in A-Frame with the ability to reverse the animations based on their current playback state.
 
-This solves an issue posted to A-Frame Extras
+This solves an issue posted several times to A-Frame Extras
 
 "Hi there and thank you for your great work!
 
