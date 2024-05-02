@@ -1,5 +1,6 @@
 This is the Aframe Curve Component 2024 Update.
-The previous version othe A-Frame Curve Component was out of date, not working because it utilized threejs Geometry which is depreciated, and it was archived by it's creator who I was unable to contact. I had to update it to utilize BufferGeometry.
+This new version works with A-Frame 1.5.0 and uses BufferGeometry instead of the depreciated Geometry (from threejs). Some of the syntax had to be updated as well.
+The previous version othe A-Frame Curve Component was out of date, not working with the latest threejs updates + the latest A-Frame version, and it was archived by it's creator whom I was unable to contact.
 
 ## aframe-curve-component 2024 Update
 
@@ -46,13 +47,15 @@ Credits: Initial concept and development has been done by [AdaRoseEdwards](https
 
 #### Browser
 
-Install and use by directly including the [browser files](dist):
+Install and use by directly including the cdn link in your page code.
+There is no option to install it with NPM at this time.
 
-```html
+```
+<html>
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
-  <script src=""></script>
+  <script src="CDN link coming shortly, I have to create it first"></script>
 </head>
 
 <body>
@@ -69,30 +72,6 @@ Install and use by directly including the [browser files](dist):
     <a-entity clone-along-curve="curve: #track1; spacing: 0.2; scale: 1 1 1; rotation: 0 0 0;" geometry="primitive:box; height:0.1; width:0.2; depth:0.1"></a-entity>
   </a-scene>
 </body>
+</html>
 ```
 
-<!-- If component is accepted to the Registry, uncomment this. -->
-<!--
-Or with [angle](https://npmjs.com/package/angle/), you can install the proper
-version of the component straight into your HTML file, respective to your
-version of A-Frame:
-
-```sh
-angle install aframe-curve-component
-```
--->
-
-#### npm
-
-Install via npm:
-
-```bash
-npm install aframe-curve-component
-```
-
-Then require and use.
-
-```js
-require('aframe');
-require('aframe-curve-component');
-```
