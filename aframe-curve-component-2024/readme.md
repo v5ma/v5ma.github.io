@@ -47,7 +47,9 @@ Credits: Initial concept and development has been done by [AdaRoseEdwards](https
 
 #### Browser
 
-Install and use by directly including the cdn link in your page code.
+Install and use by directly including the cdn link in your page code inside a script tag:
+https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve.html
+
 There is no option to install it with NPM at this time.
 
 ```
@@ -55,7 +57,7 @@ There is no option to install it with NPM at this time.
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
-  <script src="CDN link coming shortly, I have to create it first"></script>
+  <script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve.html"></script>
 </head>
 
 <body>
