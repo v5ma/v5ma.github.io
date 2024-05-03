@@ -19,37 +19,37 @@ This documentation covers the updated version of the Curve Component, which is c
 
 To use the Curve Component in your A-Frame scene, follow these steps:
 
-1. Include the `curve3May2024.js` script in your HTML file:
+1. Include the `curve.js` script in your HTML file:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve3May2024.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve.js"></script>
 ```
 
-Make sure to use the correct and updated CDN link to ensure you are fetching the latest version of the `curve3May2024.js` file.
+Make sure to use the correct and updated CDN link to ensure you are fetching the latest version of the `curve.js` file.
 
-2. Define the curve using the `a-curve` primitive and specify the desired curve properties:
+2. Define the curve using the `a-curve` primitive:
 
 ```html
-<a-curve id="my-curve" curve-id="my-curve">
+<a-curve id="my-curve">
   <!-- Curve points will be added here -->
 </a-curve>
 ```
 
 - The `id` attribute assigns a unique identifier to the curve, which can be used for referencing the curve in other components.
-- The `curve-id` attribute is used to associate the curve with its corresponding curve points.
 
 3. Add curve points to define the shape of the curve using the `a-curve-point` primitive:
 
 ```html
-<a-curve id="my-curve" curve-id="my-curve">
-  <a-curve-point position="-1 1 -3"></a-curve-point>
-  <a-curve-point position="0 2 -3"></a-curve-point>
-  <a-curve-point position="1 1 -3"></a-curve-point>
+<a-curve id="my-curve">
+  <a-curve-point position="-1 1 -3" curve-id="curve1"></a-curve-point>
+  <a-curve-point position="0 2 -3" curve-id="curve1"></a-curve-point>
+  <a-curve-point position="1 1 -3" curve-id="curve1"></a-curve-point>
 </a-curve>
 ```
 
 - Each `a-curve-point` primitive represents a control point of the curve.
 - The `position` attribute specifies the position of the curve point in 3D space.
+- The `curve-id` attribute is used to associate the curve point with a specific set of curve points.
 - The `a-curve-point` primitives should be added as children of the `a-curve` primitive.
 
 4. Render the curve as a line in the scene using the `draw-curve` component:
@@ -73,26 +73,29 @@ Make sure to use the correct and updated CDN link to ensure you are fetching the
 
 ### `curve` Component
 
-| Property | Description                                                                                      | Default Value |
-|----------|--------------------------------------------------------------------------------------------------|---------------|
-| type     | Type of the curve to draw. One of: 'CatmullRom', 'CubicBezier', 'QuadraticBezier', 'Line' | 'CatmullRom'  |
-| closed   | Whether or not the curve should be drawn closed (connect the end and start point automatically)  | false         |
+| Property | Description                                                                                    | Default Value |
+|----------|------------------------------------------------------------------------------------------------|---------------|
+| type     | Type of the curve to draw. One of: 'CatmullRom', 'CubicBezier', 'QuadraticBezier', 'Line'     | 'CatmullRom'  |
+| closed   | Whether or not the curve should be drawn closed (connect the end and start point automatically)| false         |
 
 ### `curve-point` Component
 
-The `curve-point` component does not have any specific properties. It is used to define the position of a control point on the curve.
+| Property | Description                                                    | Default Value |
+|----------|----------------------------------------------------------------|---------------|
+| position | The position of the curve point in 3D space                    | '0 0 0'       |
+| curve-id | The identifier associating the curve point with a specific set | ''            |
 
 ### `draw-curve` Component
 
 | Property | Description                                          | Default Value |
 |----------|------------------------------------------------------|---------------|
-| curve    | A selector to identify the corresponding curve entity | ''            |
+| curve    | A selector to identify the corresponding curve entity| ''            |
 
 ### `clone-along-curve` Component
 
 | Property | Description                                            | Default Value |
 |----------|--------------------------------------------------------|---------------|
-| curve    | A selector to identify the corresponding curve entity   | ''            |
+| curve    | A selector to identify the corresponding curve entity  | ''            |
 | spacing  | Spacing between the cloned entities in meters          | 1             |
 | rotation | Rotation of the cloned entities                        | '0 0 0'       |
 | scale    | Scale of the cloned entities                           | '1 1 1'       |
@@ -104,10 +107,10 @@ Here's a simplified example that demonstrates the usage of the Curve Component:
 ```html
 <a-scene>
   <!-- Define the curve -->
-  <a-curve id="my-curve" curve-id="my-curve">
-    <a-curve-point position="-1 1 -3"></a-curve-point>
-    <a-curve-point position="0 2 -3"></a-curve-point>
-    <a-curve-point position="1 1 -3"></a-curve-point>
+  <a-curve id="my-curve">
+    <a-curve-point position="-1 1 -3" curve-id="curve1"></a-curve-point>
+    <a-curve-point position="0 2 -3" curve-id="curve1"></a-curve-point>
+    <a-curve-point position="1 1 -3" curve-id="curve1"></a-curve-point>
   </a-curve>
 
   <!-- Render the curve as a line -->
@@ -120,15 +123,62 @@ Here's a simplified example that demonstrates the usage of the Curve Component:
 
 In this example:
 
-1. The curve is defined using the `a-curve` primitive with the `id` of "my-curve" and the `curve-id` of "my-curve".
+1. The curve is defined using the `a-curve` primitive with the `id` of "my-curve".
 
-2. Curve points are added using the `a-curve-point` primitives, each with a `position` attribute defining its position in 3D space.
+2. Curve points are added using the `a-curve-point` primitives, each with a `position` attribute defining its position in 3D space and a `curve-id` attribute associating it with a specific set of curve points.
 
 3. The `draw-curve` component is used to render the curve as a line in the scene, referencing the curve using the `curve` attribute.
 
 4. The `clone-along-curve` component is used to clone `a-box` entities along the curve path, with a spacing of 0.2 units between each cloned entity.
 
 ## Advanced Usage
+
+### Multiple Sets of Curve Points
+
+The Curve Component allows you to define multiple sets of curve points within a single `a-curve` primitive. Each set of curve points can be associated with a different `curve-id` attribute. This enables you to draw curves based on specific sets of points or combine multiple sets of points.
+
+```html
+<a-curve id="my-curve">
+  <!-- Curve points for curve1 -->
+  <a-curve-point position="-1 1 -3" curve-id="curve1"></a-curve-point>
+  <a-curve-point position="0 2 -3" curve-id="curve1"></a-curve-point>
+  <a-curve-point position="1 1 -3" curve-id="curve1"></a-curve-point>
+
+  <!-- Curve points for curve2 -->
+  <a-curve-point position="-2 0 -4" curve-id="curve2"></a-curve-point>
+  <a-curve-point position="-1 1 -4" curve-id="curve2"></a-curve-point>
+  <a-curve-point position="0 0 -4" curve-id="curve2"></a-curve-point>
+</a-curve>
+```
+
+With this structure, you can draw curves based on specific sets of curve points or combine multiple sets of points in a single `draw-curve` entity:
+
+```html
+<!-- Draw a curve using only the points with curve-id "curve1" -->
+<a-entity draw-curve="curve: #my-curve[curve-id='curve1']" material="color: blue;"></a-entity>
+
+<!-- Draw a curve using only the points with curve-id "curve2" -->
+<a-entity draw-curve="curve: #my-curve[curve-id='curve2']" material="color: green;"></a-entity>
+
+<!-- Draw a curve using both sets of points (curve1 and curve2) -->
+<a-entity draw-curve="curve: #my-curve" material="color: red;"></a-entity>
+```
+
+### Follower Component
+
+The Curve Component is used in conjunction with the follower component in the A-Frame Gravity Gloves example. The follower component allows an entity to follow a specific set of curve points dynamically.
+
+```html
+<a-entity follower="curve: #my-curve[curve-id='curve1']"></a-entity>
+```
+
+You can switch the follower component to follow a different set of curve points by updating the `curve` attribute dynamically using JavaScript:
+
+```javascript
+document.querySelector('[follower]').setAttribute('follower', 'curve', '#my-curve[curve-id="curve2"]');
+```
+
+This way, you can easily switch the follower component to follow different sets of curve points stored under a single `a-curve` primitive, providing flexibility and dynamic control over the behavior of the follower in your A-Frame application.
 
 ### Curve Types
 
@@ -142,7 +192,7 @@ The Curve Component supports different types of curves, which can be specified u
 Here's an example of defining a curve with a specific type:
 
 ```html
-<a-curve id="my-curve" curve-id="my-curve" type="CubicBezier">
+<a-curve id="my-curve" type="CubicBezier">
   <a-curve-point position="-1 1 -3"></a-curve-point>
   <a-curve-point position="-0.5 2 -3"></a-curve-point>
   <a-curve-point position="0.5 2 -3"></a-curve-point>
@@ -155,7 +205,7 @@ Here's an example of defining a curve with a specific type:
 To create a closed curve, set the `closed` property of the `curve` component to `true`. This will automatically connect the end point of the curve with the start point.
 
 ```html
-<a-curve id="my-curve" curve-id="my-curve" closed="true">
+<a-curve id="my-curve" closed="true">
   <a-curve-point position="-1 1 -3"></a-curve-point>
   <a-curve-point position="0 2 -3"></a-curve-point>
   <a-curve-point position="1 1 -3"></a-curve-point>
@@ -168,23 +218,6 @@ The appearance of the rendered curve line can be customized using A-Frame's mate
 
 ```html
 <a-entity draw-curve="curve: #my-curve" material="shader: line; color: blue; opacity: 0.7;"></a-entity>
-```
-
-### Multiple Curves
-
-You can define multiple curves in your scene by creating separate `a-curve` primitives with unique `id` and `curve-id` values. Each curve can be referenced and rendered independently using the `draw-curve` component.
-
-```html
-<a-curve id="curve1" curve-id="curve1">
-  <!-- Curve points for curve1 -->
-</a-curve>
-
-<a-curve id="curve2" curve-id="curve2">
-  <!-- Curve points for curve2 -->
-</a-curve>
-
-<a-entity draw-curve="curve: #curve1" material="color: blue;"></a-entity>
-<a-entity draw-curve="curve: #curve2" material="color: green;"></a-entity>
 ```
 
 ### Cloning Entities along Multiple Curves
@@ -227,6 +260,8 @@ The A-Frame Curve Component is released under the [MIT License](https://opensour
 ## Conclusion
 
 The A-Frame Curve Component provides a powerful and flexible way to create and manipulate curves in your A-Frame scenes. With its intuitive primitives and components, you can easily define curves, render them as lines, and clone entities along the curve path.
+
+The ability to define multiple sets of curve points within a single `a-curve` primitive and associate them with different `curve-id` attributes opens up possibilities for dynamic and interactive experiences. The follower component, as demonstrated in the A-Frame Gravity Gloves example, showcases how entities can follow specific sets of curve points dynamically.
 
 Whether you're creating paths for animations, generating procedural content, or adding visual interest to your scenes, the Curve Component offers a range of possibilities. Experiment with different curve types, customize the appearance of the curve and cloned entities, and leverage the `curve-updated` event to create interactive and dynamic experiences.
 
