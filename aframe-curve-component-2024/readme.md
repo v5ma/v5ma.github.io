@@ -19,13 +19,13 @@ This documentation covers the updated version of the Curve Component, which is c
 
 To use the Curve Component in your A-Frame scene, follow these steps:
 
-1. Include the `curve.js` script in your HTML file:
+1. Include the `curve3May2024.js` script in your HTML file:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve3May2024.js"></script>
 ```
 
-Make sure to use the correct and updated CDN link to ensure you are fetching the latest version of the `curve.js` file.
+Make sure to use the correct and updated CDN link to ensure you are fetching the latest version of the `curve3May2024.js` file.
 
 2. Define the curve using the `a-curve` primitive:
 
