@@ -2,7 +2,7 @@ Run the curve test on glitch https://a-curve-test.glitch.me/
 
 Copy the code here:
 
-'''
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,4 +55,3 @@ Copy the code here:
 </html>
 
 
-'''
