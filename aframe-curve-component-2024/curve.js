@@ -1,16 +1,3 @@
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (factory());
-  }
- (this, (function () { 'use strict';
-
-
-  
-
-
-
-
 /* global AFRAME, THREE */
 
 if (typeof AFRAME === 'undefined') {
@@ -159,23 +146,28 @@ function normalFromTangent(tangent) {
 
 AFRAME.registerComponent("draw-curve", {
     schema: {
-        curve: { type: "selector" }
+        curve: { type: "string" }
     },
     init: function () {
-        this.data.curve.addEventListener("curve-updated", this.update.bind(this));
+        this.curve = null;
+        this.el.sceneEl.addEventListener("curve-updated", this.update.bind(this));
     },
     update: function () {
-        if (this.data.curve && (this.curve = this.data.curve.components.curve), this.curve && this.curve.curve) {
-            var lineGeometry = new THREE.BufferGeometry().setFromPoints(this.curve.curve.getPoints(50));
-            var lineMaterial = new THREE.LineBasicMaterial({
-                color: "#ff0000"
-            });
-            var line = new THREE.Line(lineGeometry, lineMaterial);
-            this.el.setObject3D("mesh", line);
+        var curveEl = document.querySelector(this.data.curve);
+        if (curveEl && curveEl.components.curve) {
+            this.curve = curveEl.components.curve;
+            if (this.curve.curve) {
+                var lineGeometry = new THREE.BufferGeometry().setFromPoints(this.curve.curve.getPoints(50));
+                var lineMaterial = new THREE.LineBasicMaterial({
+                    color: "#ff0000"
+                });
+                var line = new THREE.Line(lineGeometry, lineMaterial);
+                this.el.setObject3D("mesh", line);
+            }
         }
     },
     remove: function () {
-        this.data.curve.removeEventListener("curve-updated", this.update.bind(this));
+        this.el.sceneEl.removeEventListener("curve-updated", this.update.bind(this));
         var mesh = this.el.getObject3D("mesh");
         if (mesh) {
             mesh.geometry.dispose();
@@ -255,5 +247,3 @@ AFRAME.registerPrimitive('a-curve', {
         type: 'curve.type',
     }
 });
-                      
-})));
