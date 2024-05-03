@@ -85,8 +85,6 @@ The [radial offset example](https://v5ma.github.io/gravitygloves/examples/radial
 
 The A-Frame Gravity Gloves Component is a result of the collaborative efforts of the A-Frame WebXR Online Hacknight community. We would like to express our gratitude to all the participants who contributed to this project over the course of six weeks.
 
-If you have any questions, suggestions, or want to get involved in the development of the Gravity Gloves Component, please join us at the [A-Frame WebXR Online Hacknight](https://www.meetup.com/virtualreality/events/).
-
 We appreciate your interest and support in making the Gravity Gloves Component even better!
 
 Happy gravity glove interactions in your A-Frame VR experiences!
