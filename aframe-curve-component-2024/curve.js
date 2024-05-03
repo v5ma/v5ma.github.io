@@ -5,7 +5,7 @@ if (typeof AFRAME === 'undefined') {
 }
 
 /**
- * Curve component for A-Frame to deal with spline curves
+ * Curve component for A-Frame to deal with spline curves.
  */
 var zAxis = new THREE.Vector3(0, 0, 1);
 var degToRad = THREE.MathUtils.degToRad;
