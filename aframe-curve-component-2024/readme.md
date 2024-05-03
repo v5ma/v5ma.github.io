@@ -57,7 +57,7 @@ There is no option to install it with NPM at this time.
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve.html"></script>
+  <script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve.js"></script>
 </head>
 
 <body>
