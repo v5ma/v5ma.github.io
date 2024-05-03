@@ -1,4 +1,4 @@
-# A-Frame Curve Component
+# A-Frame Curve Component 2024
 
 The A-Frame Curve Component is a versatile tool for creating and manipulating curves in your A-Frame scenes. It allows you to define curves using a set of control points and provides functionality to render the curves as lines and clone entities along the curve path.
 
