@@ -11,16 +11,17 @@ var zAxis = new THREE.Vector3(0, 0, 1);
 var degToRad = THREE.MathUtils.degToRad;
 
 AFRAME.registerComponent('curve-point', {
-    schema: {},
-
+    schema: {
+        position: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
+        curveId: { type: 'string', default: '' }
+    },
     init: function () {
         this.el.addEventListener("componentchanged", this.changeHandler.bind(this));
         this.el.emit("curve-point-change");
     },
-
     changeHandler: function (event) {
         if (event.detail.name == "position") {
-            this.el.emit("curve-point-change");
+            this.el.emit("curve-point-change", { curveId: this.data.curveId });
         }
     }
 });
@@ -35,32 +36,29 @@ AFRAME.registerComponent('curve', {
         closed: {
             type: 'boolean',
             default: false
-        }
+        },
+        lineColor: { default: '#ff0000' }
     },
-
     init: function () {
         this.pathPoints = null;
         this.curve = null;
+        this.geometry = new THREE.BufferGeometry();
+        this.lineMaterial = new THREE.LineBasicMaterial({ color: this.data.lineColor });
 
         this.el.addEventListener("curve-point-change", this.update.bind(this));
     },
-
     update: function (oldData) {
-        this.points = Array.from(this.el.querySelectorAll("a-curve-point, [curve-point]"));
+        const curveId = this.el.getAttribute('curve-id');
+        this.points = Array.from(document.querySelectorAll(`a-curve-point[curve-id="${curveId}"]`));
 
         if (this.points.length <= 1) {
             console.warn("At least 2 curve-points needed to draw a curve");
             this.curve = null;
+            this.el.removeObject3D('mesh');
         } else {
             // Get Array of Positions from Curve-Points
             var pointsArray = this.points.map(function (point) {
-                if (point.x !== undefined && point.y !== undefined && point.z !== undefined) {
-                    return new THREE.Vector3(point.x, point.y, point.z);
-                }
-
-                var worldPosition = new THREE.Vector3();
-                point.object3D.getWorldPosition(worldPosition);
-                return worldPosition;
+                return point.getAttribute('position');
             });
 
             // Update the Curve if either the Curve-Points or other Properties changed
@@ -100,16 +98,17 @@ AFRAME.registerComponent('curve', {
                 }
 
                 this.curve.closed = this.data.closed;
-
+                this.geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.curve.getPoints(this.curve.points.length * 10), 3));
+                this.el.setObject3D('mesh', new THREE.Line(this.geometry, this.lineMaterial));
                 this.el.emit('curve-updated');
             }
         }
     },
-
     remove: function () {
         this.el.removeEventListener("curve-point-change", this.update.bind(this));
+        if (this.geometry) this.geometry.dispose();
+        if (this.lineMaterial) this.lineMaterial.dispose();
     },
-
     closestPointInLocalSpace: function closestPoint(point, resolution, testPoint, currentRes) {
         if (!this.curve) throw Error('Curve not instantiated yet.');
         resolution = resolution || 0.1 / this.curve.getLength();
@@ -150,92 +149,82 @@ function normalFromTangent(tangent) {
     return lineEnd;
 }
 
-AFRAME.registerShader("line", {
+AFRAME.registerComponent('clone-along-line', {
     schema: {
-        color: { default: "#ff0000" }
+        start: { type: 'vec3', default: { x: -1, y: 1, z: -3 } },
+        end: { type: 'vec3', default: { x: 1, y: 1, z: -3 } },
+        spacing: { default: 0.2 }
     },
-    init: function (e) {
-        this.material = new THREE.LineBasicMaterial(e);
+    init: function () {
+        this.cloneBoxes();
     },
-    update: function (e) {
-        this.material = new THREE.LineBasicMaterial(e);
+    cloneBoxes: function () {
+        const start = new THREE.Vector3(this.data.start.x, this.data.start.y, this.data.start.z);
+        const end = new THREE.Vector3(this.data.end.x, this.data.end.y, this.data.end.z);
+        const distance = start.distanceTo(end);
+        const direction = end.clone().sub(start).normalize();
+
+        let position = start.clone();
+        let cloneCount = 0;
+
+        while (position.distanceTo(start) <= distance) {
+            const clone = document.createElement('a-box');
+            clone.setAttribute('width', '0.1');
+            clone.setAttribute('height', '0.1');
+            clone.setAttribute('depth', '0.1');
+            clone.setAttribute('color', 'yellow');
+            clone.setAttribute('position', position);
+            this.el.appendChild(clone);
+
+            position.add(direction.clone().multiplyScalar(this.data.spacing));
+            cloneCount++;
+        }
+
+        console.log(`Cloned ${cloneCount} boxes along the line.`);
     }
 });
 
-AFRAME.registerComponent("draw-curve", {
+AFRAME.registerComponent('clone-along-curve', {
     schema: {
-        curve: { type: "selector" }
+        curveId: { type: 'string', default: '' },
+        spacing: { default: 0.2 }
     },
     init: function () {
-        this.data.curve.addEventListener("curve-updated", this.update.bind(this));
-    },
-    update: function () {
-        if (this.data.curve && (this.curve = this.data.curve.components.curve), this.curve && this.curve.curve) {
-            var e = this.el.getOrCreateObject3D("mesh", THREE.Line);
-            lineMaterial = e.material ? e.material : new THREE.LineBasicMaterial({ color: "#ff0000" });
-            var t = new THREE.BufferGeometry();
-            t.setAttribute('position', new THREE.Float32BufferAttribute(this.curve.curve.getPoints(10 * this.curve.curve.points.length), 3));
-            this.el.setObject3D("mesh", new THREE.Line(t, lineMaterial));
-        }
-    },
-    remove: function () {
-        this.data.curve.removeEventListener("curve-updated", this.update.bind(this));
-        var mesh = this.el.getObject3D("mesh");
-        if (mesh) {
-            mesh.geometry.dispose();
-            mesh.material.dispose();
-        }
-    }
-});
-
-AFRAME.registerComponent("clone-along-curve", {
-    schema: {
-        curve: { type: "selector" },
-        spacing: { default: 1 },
-        rotation: { type: "vec3", default: { x: 0, y: 0, z: 0 } },
-        scale: { type: "vec3", default: { x: 1, y: 1, z: 1 } }
-    },
-    init: function () {
-        this.el.addEventListener("model-loaded", this.update.bind(this));
-        this.data.curve.addEventListener("curve-updated", this.update.bind(this));
-    },
-    update: function () {
-        if (this.remove(), this.data.curve && (this.curve = this.data.curve.components.curve), !this.el.getObject3D("clones") && this.curve && this.curve.curve) {
-            var e = this.el.getObject3D("mesh"),
-                t = this.curve.curve.getLength(),
-                i = 0,
-                a = i,
-                s = this.el.getOrCreateObject3D("clones", THREE.Group),
-                o = new THREE.Object3D();
-            for (e.scale.set(this.data.scale.x, this.data.scale.y, this.data.scale.z), e.rotation.set(THREE.MathUtils.degToRad(this.data.rotation.x), THREE.MathUtils.degToRad(this.data.rotation.y), THREE.MathUtils.degToRad(this.data.rotation.z)), e.rotation.order = "YXZ", o.add(e); a <= t;) {
-                var c = o.clone();
-                c.position.copy(this.curve.curve.getPointAt(a / t));
-                tangent = this.curve.curve.getTangentAt(a / t).normalize();
-                c.quaternion.setFromUnitVectors(zAxis, tangent);
-                s.add(c);
-                a += this.data.spacing;
+        this.el.sceneEl.addEventListener('curve-point-change', (event) => {
+            if (event.detail.curveId === this.data.curveId) {
+                this.cloneBoxesAlongCurve();
             }
-        }
-    },
-    remove: function () {
-        this.curve = null;
-        var clones = this.el.getObject3D("clones");
-        if (clones) {
-            clones.traverse(function (clone) {
-                if (clone.geometry) clone.geometry.dispose();
-                if (clone.material) clone.material.dispose();
-            });
-            this.el.removeObject3D("clones");
-        }
-    }
-});
+        });
 
-AFRAME.registerPrimitive('a-draw-curve', {
-    defaultComponents: {
-        'draw-curve': {},
+        this.cloneBoxesAlongCurve();
     },
-    mappings: {
-        curveref: 'draw-curve.curve',
+    cloneBoxesAlongCurve: function () {
+        const curveId = this.data.curveId;
+        const curvePoints = Array.from(document.querySelectorAll(`a-curve-point[curve-id="${curveId}"]`));
+        const curve = new THREE.CatmullRomCurve3(curvePoints.map(point => {
+            const pos = point.getAttribute('position');
+            return new THREE.Vector3(pos.x, pos.y, pos.z);
+        }));
+
+        const length = curve.getLength();
+        let position = 0;
+        let cloneCount = 0;
+
+        while (position <= length) {
+            const point = curve.getPointAt(position / length);
+            const clone = document.createElement('a-box');
+            clone.setAttribute('width', '0.1');
+            clone.setAttribute('height', '0.1');
+            clone.setAttribute('depth', '0.1');
+            clone.setAttribute('color', 'yellow');
+            clone.setAttribute('position', point);
+            this.el.appendChild(clone);
+
+            position += this.data.spacing;
+            cloneCount++;
+        }
+
+        console.log(`Cloned ${cloneCount} boxes along the curve.`);
     }
 });
 
@@ -243,7 +232,10 @@ AFRAME.registerPrimitive('a-curve-point', {
     defaultComponents: {
         'curve-point': {},
     },
-    mappings: {}
+    mappings: {
+        'position': 'curve-point.position',
+        'curve-id': 'curve-point.curveId'
+    }
 });
 
 AFRAME.registerPrimitive('a-curve', {
@@ -252,5 +244,6 @@ AFRAME.registerPrimitive('a-curve', {
     },
     mappings: {
         type: 'curve.type',
+        'curve-id': 'curve.curveId'
     }
 });
