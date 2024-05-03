@@ -19,26 +19,29 @@ This documentation covers the updated version of the Curve Component, which is c
 
 To use the Curve Component in your A-Frame scene, follow these steps:
 
-1. Include the `curve.js` script in your HTML file:
+1. Include the `curve3May2024.js` script in your HTML file:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-curve-component-2024/curve3May2024.js"></script>
 ```
+
+Make sure to use the correct and updated CDN link to ensure you are fetching the latest version of the `curve3May2024.js` file.
 
 2. Define the curve using the `a-curve` primitive and specify the desired curve properties:
 
 ```html
-<a-curve id="my-curve">
+<a-curve id="my-curve" curve-id="my-curve">
   <!-- Curve points will be added here -->
 </a-curve>
 ```
 
 - The `id` attribute assigns a unique identifier to the curve, which can be used for referencing the curve in other components.
+- The `curve-id` attribute is used to associate the curve with its corresponding curve points.
 
 3. Add curve points to define the shape of the curve using the `a-curve-point` primitive:
 
 ```html
-<a-curve id="my-curve">
+<a-curve id="my-curve" curve-id="my-curve">
   <a-curve-point position="-1 1 -3"></a-curve-point>
   <a-curve-point position="0 2 -3"></a-curve-point>
   <a-curve-point position="1 1 -3"></a-curve-point>
@@ -52,11 +55,10 @@ To use the Curve Component in your A-Frame scene, follow these steps:
 4. Render the curve as a line in the scene using the `draw-curve` component:
 
 ```html
-<a-draw-curve curveref="#my-curve"></a-draw-curve>
+<a-entity draw-curve="curve: #my-curve"></a-entity>
 ```
 
-- The `curveref` attribute specifies the selector of the curve entity to be rendered.
-- The `draw-curve` component requires the curve points to be defined as children of the referenced curve entity.
+- The `curve` attribute specifies the selector of the curve entity to be rendered.
 
 5. Clone entities along the curve path using the `clone-along-curve` component:
 
@@ -73,7 +75,7 @@ To use the Curve Component in your A-Frame scene, follow these steps:
 
 | Property | Description                                                                                      | Default Value |
 |----------|--------------------------------------------------------------------------------------------------|---------------|
-| type     | Type of the curve to draw. One of: 'CatmullRom', 'Spline', 'CubicBezier', 'QuadraticBezier', 'Line' | 'CatmullRom'  |
+| type     | Type of the curve to draw. One of: 'CatmullRom', 'CubicBezier', 'QuadraticBezier', 'Line' | 'CatmullRom'  |
 | closed   | Whether or not the curve should be drawn closed (connect the end and start point automatically)  | false         |
 
 ### `curve-point` Component
@@ -84,7 +86,7 @@ The `curve-point` component does not have any specific properties. It is used to
 
 | Property | Description                                          | Default Value |
 |----------|------------------------------------------------------|---------------|
-| curveref | A selector to identify the corresponding curve entity | ''            |
+| curve    | A selector to identify the corresponding curve entity | ''            |
 
 ### `clone-along-curve` Component
 
@@ -102,14 +104,14 @@ Here's a simplified example that demonstrates the usage of the Curve Component:
 ```html
 <a-scene>
   <!-- Define the curve -->
-  <a-curve id="my-curve">
+  <a-curve id="my-curve" curve-id="my-curve">
     <a-curve-point position="-1 1 -3"></a-curve-point>
     <a-curve-point position="0 2 -3"></a-curve-point>
     <a-curve-point position="1 1 -3"></a-curve-point>
   </a-curve>
 
   <!-- Render the curve as a line -->
-  <a-draw-curve curveref="#my-curve"></a-draw-curve>
+  <a-entity draw-curve="curve: #my-curve"></a-entity>
 
   <!-- Clone entities along the curve -->
   <a-box width="0.1" height="0.1" depth="0.1" color="yellow" clone-along-curve="curve: #my-curve; spacing: 0.2;"></a-box>
@@ -118,11 +120,11 @@ Here's a simplified example that demonstrates the usage of the Curve Component:
 
 In this example:
 
-1. The curve is defined using the `a-curve` primitive with the `id` of "my-curve".
+1. The curve is defined using the `a-curve` primitive with the `id` of "my-curve" and the `curve-id` of "my-curve".
 
 2. Curve points are added using the `a-curve-point` primitives, each with a `position` attribute defining its position in 3D space.
 
-3. The `draw-curve` component is used to render the curve as a line in the scene, referencing the curve using the `curveref` attribute.
+3. The `draw-curve` component is used to render the curve as a line in the scene, referencing the curve using the `curve` attribute.
 
 4. The `clone-along-curve` component is used to clone `a-box` entities along the curve path, with a spacing of 0.2 units between each cloned entity.
 
@@ -133,7 +135,6 @@ In this example:
 The Curve Component supports different types of curves, which can be specified using the `type` property of the `curve` component. The available curve types are:
 
 - `CatmullRom` (default): Creates a smooth curve that passes through all the control points.
-- `Spline`: Creates a smooth curve that passes through all the control points using a spline interpolation.
 - `CubicBezier`: Creates a cubic Bezier curve based on four control points.
 - `QuadraticBezier`: Creates a quadratic Bezier curve based on three control points.
 - `Line`: Creates a straight line between two control points.
@@ -141,7 +142,7 @@ The Curve Component supports different types of curves, which can be specified u
 Here's an example of defining a curve with a specific type:
 
 ```html
-<a-curve id="my-curve" type="CubicBezier">
+<a-curve id="my-curve" curve-id="my-curve" type="CubicBezier">
   <a-curve-point position="-1 1 -3"></a-curve-point>
   <a-curve-point position="-0.5 2 -3"></a-curve-point>
   <a-curve-point position="0.5 2 -3"></a-curve-point>
@@ -154,7 +155,7 @@ Here's an example of defining a curve with a specific type:
 To create a closed curve, set the `closed` property of the `curve` component to `true`. This will automatically connect the end point of the curve with the start point.
 
 ```html
-<a-curve id="my-curve" closed="true">
+<a-curve id="my-curve" curve-id="my-curve" closed="true">
   <a-curve-point position="-1 1 -3"></a-curve-point>
   <a-curve-point position="0 2 -3"></a-curve-point>
   <a-curve-point position="1 1 -3"></a-curve-point>
@@ -163,27 +164,27 @@ To create a closed curve, set the `closed` property of the `curve` component to 
 
 ### Customizing Line Appearance
 
-The appearance of the rendered curve line can be customized using A-Frame's material system. You can set the `material` attribute on the `a-draw-curve` element to specify the desired material properties.
+The appearance of the rendered curve line can be customized using A-Frame's material system. You can set the `material` attribute on the `draw-curve` component to specify the desired material properties.
 
 ```html
-<a-draw-curve curveref="#my-curve" material="shader: line; color: blue; opacity: 0.7;"></a-draw-curve>
+<a-entity draw-curve="curve: #my-curve" material="shader: line; color: blue; opacity: 0.7;"></a-entity>
 ```
 
 ### Multiple Curves
 
-You can define multiple curves in your scene by creating separate `a-curve` primitives with unique IDs. Each curve can be referenced and rendered independently using the `draw-curve` component.
+You can define multiple curves in your scene by creating separate `a-curve` primitives with unique `id` and `curve-id` values. Each curve can be referenced and rendered independently using the `draw-curve` component.
 
 ```html
-<a-curve id="curve1">
+<a-curve id="curve1" curve-id="curve1">
   <!-- Curve points for curve1 -->
 </a-curve>
 
-<a-curve id="curve2">
+<a-curve id="curve2" curve-id="curve2">
   <!-- Curve points for curve2 -->
 </a-curve>
 
-<a-draw-curve curveref="#curve1" material="color: blue;"></a-draw-curve>
-<a-draw-curve curveref="#curve2" material="color: green;"></a-draw-curve>
+<a-entity draw-curve="curve: #curve1" material="color: blue;"></a-entity>
+<a-entity draw-curve="curve: #curve2" material="color: green;"></a-entity>
 ```
 
 ### Cloning Entities along Multiple Curves
