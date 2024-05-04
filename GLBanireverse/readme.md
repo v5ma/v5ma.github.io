@@ -16,6 +16,8 @@ Thanks in advance and let me know if anything is missing to reproduce the issue.
 
 Try out the solution I created on glitch: https://glbanireverse.glitch.me/
 
+https://v5ma.github.io/GLBanireverse/GLBanireverse.html
+
 Copy the code here: https://github.com/v5ma/n5ro.github.io/blob/master/GLBanireverse/GLBanireverse.html
 
 Explanation of Why This Approach Works:
