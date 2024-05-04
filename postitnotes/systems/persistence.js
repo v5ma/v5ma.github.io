@@ -4,24 +4,24 @@ function roundXYZ(p) {
   const z = Math.round(p.z * 100) / 100
   return {x, y, z}
 }
-            
+ 
 AFRAME.registerSystem('persistence', {
   schema: {
     components: {default: []}
   },
   init: function () {
     const firebaseConfig = {
-      apiKey: "AIzaSyCnSn9q9RYgsKOowOsDKG4Ih4gCWFtArco",
-      authDomain: "db-expt-2.firebaseapp.com",
-      databaseURL: "https://db-expt-2.firebaseio.com",
-      projectId: "db-expt-2",
-      storageBucket: "db-expt-2.appspot.com",
-      messagingSenderId: "701675049583",
-      appId: "1:701675049583:web:cea08843bfca6d718a339a"
+    apiKey: "AIzaSyCV7DV3NlGzY5JKNjGf2jfqawoq1LsA-ME",
+    authDomain: "thexrweb.firebaseapp.com",
+    databaseURL: "https://thexrweb.firebaseio.com",
+    projectId: "thexrweb",
+    storageBucket: "thexrweb.appspot.com",
+    messagingSenderId: "1040046716711",
+    appId: "1:1040046716711:web:3b42bcfce3f21ab37d5b02",
     }
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
+    const app = initializeApp(firebaseConfig);
+    
     this.sessionId = Math.floor(Math.random() * (2 ** 32))
     VR_LOG(`this.sessionId = ${this.sessionId}`)
 
