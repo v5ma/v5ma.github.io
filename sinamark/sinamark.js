@@ -99,6 +99,14 @@ document.addEventListener("DOMContentLoaded", function() {
                       <li>Supporting farmers in China</li>
                       <li>Preserving a traditional way of life for silk and bamboo farmers</li>
                     </ul>
+                    <div class="image-container">
+                          <img
+                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715642890459"
+                            alt=""
+                            class="product-image constrained-image"
+                          />
+                        </div>
+                    
                 `
             },
             "products": {
@@ -555,6 +563,13 @@ document.addEventListener("DOMContentLoaded", function() {
                       <li>支持中國農民</li>
                       <li>保護絲綢和竹農的傳統生活方式</li>
                     </ul>
+                    <div class="image-container">
+                          <img
+                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715642890459"
+                            alt=""
+                            class="product-image constrained-image"
+                          />
+                    </div>
                 `
             },
             "products": {
@@ -1132,4 +1147,4 @@ function submitForm() {
       console.error('Error:', error);
       alert('An error occurred, please try again.');
     });
-  }
+}
