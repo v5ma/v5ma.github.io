@@ -76,61 +76,64 @@ document.addEventListener("DOMContentLoaded", function() {
             "about": {
                 "title": "About SINAMARK",
                 "content": `
+                    <h2>ABOUT US</h2>
+                    <p>In 1915, Tong Bong started SING FAT Oriental Bazaar after the Great 1906 Earthquake in San Francisco. SING FAT’s flagship store became the symbol of SF Chinatown’s rebirth, and the Chinese people’s resolve to remain in the USA after the US government passed the Chinese Exclusion Act of 1882. One century later, his great grandson conceived SINAMARK.</p>
+                    <p>SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark” which continues the legacy of SING FAT’s “Dragon Mark. The characters for “Excellence” were added, and placed 1st because it is our CORE VALUE! Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye.</p>
+                    <p>SINAMARK’s VISION is to promote a circular economy, support 5000+ years of Chinese silk and bamboo culture, champion good dental health, and reduce plastic waste that enters landfills and oceans.</p>
+                    <p>SINAMARK’s MISSION is to spark a reusable renaissance by offering quality compostable products in reusable containers for a healthier life and a healthier planet.</p>
                     <h2>Our Vision</h2>
                     <p>SINAMARK’s vision is to promote a circular economy, share and preserve 5000+ years of Chinese silk & bamboo culture, champion good dental health, and reduce plastic waste that enters landfills and oceans.</p>
                     <h2>Introduction</h2>
                     <p>At SINAMARK, we believe in promoting a circular economy, sharing and preserving the rich heritage of Chinese silk & bamboo culture, championing good dental health, and reducing plastic waste that enters landfills and oceans. Our mission is to spark a reusable renaissance by offering quality compostable products in reusable containers for a healthier life and a healthier planet.</p>
-                    <h2>Our Mission</h2>
-                    <p>SINAMARK’s mission is to spark a reusable renaissance by offering quality compostable products in reusable containers for a healthier life and a healthier planet.</p>
                     <h2>Our Commitments</h2>
                     <ul>
-                        <li>Committed to oral health</li>
-                        <li>Committed to providing excellence in oral care products</li>
-                        <li>Supporting farmers in China</li>
-                        <li>Preserving a traditional way of life for silk and bamboo farmers</li>
+                      <li>Committed to oral health</li>
+                      <li>Committed to providing excellence in oral care products</li>
+                      <li>Supporting farmers in China</li>
+                      <li>Preserving a traditional way of life for silk and bamboo farmers</li>
                     </ul>
                     <h2>Our Story</h2>
                     <p>Sinasilk and Sinachar represent 5000+ years of silk and biochar manufacture.</p>
                     <ul>
-                        <li>Brief overview of the benefits of silk dental floss - strongest natural thread known to man, yet is 100% compostable.</li>
-                        <li>Brief overview of the benefits of bamboo biochar dental floss - acts like a sponge.</li>
+                      <li>Brief overview of the benefits of silk dental floss - strongest natural thread known to man, yet is 100% compostable.</li>
+                      <li>Brief overview of the benefits of bamboo biochar dental floss - acts like a sponge.</li>
                     </ul>
                     <h2>Milestones and Achievements</h2>
                     <p>Include notable milestones and achievements here.</p>
                     <h2>Testimonials</h2>
                     <blockquote>
-                        <p>James S. 5.0 out of 5 stars, Dental Student Recommended!</p>
-                        <p>I am a current dental student and someone recommended I try out this floss! Overall, I’ve been highly impressed with this product! Its texture is perfectly suited for flossing, effortlessly navigating through tight spaces between my teeth without shredding - a common issue I’ve encountered with many traditional threaded flosses.</p>
-                        <p>For the past few years, I’ve relied on Oral-B Glide which has worked well and been comfortable to use. However, Oral-B does contain PFAS which have many associated health risks! While the extent of these risks and whether or not the amount of chemical is negligible is still up to debate, why not play it safe and go with SINAMARK’s products? Also, it has the added benefit that it’s biodegradable which is a plus for planet lovers.</p>
-                        <p>The floss is just as effective as my previous flosses, and is very pleasant and comfortable to use. Also, you really do get a whole lot of bang for your buck with this product! The substantial amount of floss wound up into the “cocoon” within the bottle is not only cool to look at, but I’ve found it to last a lot longer compared to my previous flosses. There’s a lot of volume wound up in there! Highly recommended product!</p>
+                      <p>James S. 5.0 out of 5 stars, Dental Student Recommended!</p>
+                      <p>I am a current dental student and someone recommended I try out this floss! Overall, I’ve been highly impressed with this product! Its texture is perfectly suited for flossing, effortlessly navigating through tight spaces between my teeth without shredding - a common issue I’ve encountered with many traditional threaded flosses.</p>
+                      <p>For the past few years, I’ve relied on Oral-B Glide which has worked well and been comfortable to use. However, Oral-B does contain PFAS which have many associated health risks! While the extent of these risks and whether or not the amount of chemical is negligible is still up to debate, why not play it safe and go with SINAMARK’s products? Also, it has the added benefit that it’s biodegradable which is a plus for planet lovers.</p>
+                      <p>The floss is just as effective as my previous flosses, and is very pleasant and comfortable to use. Also, you really do get a whole lot of bang for your buck with this product! The substantial amount of floss wound up into the “cocoon” within the bottle is not only cool to look at, but I’ve found it to last a lot longer compared to my previous flosses. There’s a lot of volume wound up in there! Highly recommended product!</p>
                     </blockquote>
                     <blockquote>
-                        <p>Linda. 5.0 out of 5 stars, feels clean after flossing</p>
-                        <p>I want to try another floss as my dentist gave me the floss I use, and it works, but this one has a gentle feel on my gums. It didn’t break my skin like the thicker floss even as my teeth are tightly spaced together. The packaging was simple and compostable. Glad I got the opportunity to try silk floss, a natural fiber.</p>
+                      <p>Linda. 5.0 out of 5 stars, feels clean after flossing</p>
+                      <p>I want to try another floss as my dentist gave me the floss I use, and it works, but this one has a gentle feel on my gums. It didn’t break my skin like the thicker floss even as my teeth are tightly spaced together. The packaging was simple and compostable. Glad I got the opportunity to try silk floss, a natural fiber.</p>
                     </blockquote>
                     <blockquote>
-                        <p>J. Takahashi. 5.0 out of 5 stars, GREAT floss in glass, not plastic!</p>
-                        <p>I really like this floss. Also like the idea that it’s in glass!</p>
+                      <p>J. Takahashi. 5.0 out of 5 stars, GREAT floss in glass, not plastic!</p>
+                      <p>I really like this floss. Also like the idea that it’s in glass!</p>
                     </blockquote>
                     <blockquote>
-                        <p>Nicholas G. 5.0 out of 5 stars, works great and environmentally friendly! :)</p>
-                        <p>I really like the floss, it works great, doesn’t have plastic waste so it’s environmentally friendly! Overall great product, thanks!</p>
+                      <p>Nicholas G. 5.0 out of 5 stars, works great and environmentally friendly! :)</p>
+                      <p>I really like the floss, it works great, doesn’t have plastic waste so it’s environmentally friendly! Overall great product, thanks!</p>
                     </blockquote>
                     <blockquote>
-                        <p>G.F. Carerra. 5.0 out of 5 stars, Environmental friendly and good for flossing.</p>
-                        <p>Easy to use. The best I have tried so far.</p>
+                      <p>G.F. Carerra. 5.0 out of 5 stars, Environmental friendly and good for flossing.</p>
+                      <p>Easy to use. The best I have tried so far.</p>
                     </blockquote>
                     <blockquote>
-                        <p>Anonymous. 5.0 out of 5 stars, Environmental friendly and good for flossing.</p>
-                        <p>I love that it’s safe for my gum and good for the environment. It’s a comfortable texture and not harsh on the gum. It does the job very well.</p>
+                      <p>Anonymous. 5.0 out of 5 stars, Environmental friendly and good for flossing.</p>
+                      <p>I love that it’s safe for my gum and good for the environment. It’s a comfortable texture and not harsh on the gum. It does the job very well.</p>
                     </blockquote>
                     <blockquote>
-                        <p>Amazon customer</p>
-                        <p>This floss works well. I love the fact that I can compost it!</p>
+                      <p>Anonymous user</p>
+                      <p>This floss works well. I love the fact that I can compost it!</p>
                     </blockquote>
                     <blockquote>
-                        <p>Byron G. 5.0 out of 5 stars, Great Floss.</p>
-                        <p>Works excellent for my teeth. I have. Bridges and tightly spaced teeth and floss works better that the other types of floss. Fast delivery.</p>
+                      <p>Byron G. 5.0 out of 5 stars, Great Floss.</p>
+                      <p>Works excellent for my teeth. I have. Bridges and tightly spaced teeth and floss works better that the other types of floss. Fast delivery.</p>
                     </blockquote>
                 `
             },
