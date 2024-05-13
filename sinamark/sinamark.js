@@ -74,15 +74,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "about": {
-                "title": "About SINAMARK",
+                "title": "About",
                 "content": `
-                    <h2>ABOUT US</h2>
+                    <h2></h2>
                     <p>In 1915, Tong Bong started SING FAT Oriental Bazaar after the Great 1906 Earthquake in San Francisco. SING FAT’s flagship store became the symbol of SF Chinatown’s rebirth, and the Chinese people’s resolve to remain in the USA after the US government passed the Chinese Exclusion Act of 1882. One century later, his great grandson conceived SINAMARK.</p>
                     <p>SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark” which continues the legacy of SING FAT’s “Dragon Mark. The characters for “Excellence” were added, and placed 1st because it is our CORE VALUE! Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye.</p>
                     <p>SINAMARK’s VISION is to promote a circular economy, support 5000+ years of Chinese silk and bamboo culture, champion good dental health, and reduce plastic waste that enters landfills and oceans.</p>
                     <p>SINAMARK’s MISSION is to spark a reusable renaissance by offering quality compostable products in reusable containers for a healthier life and a healthier planet.</p>
-                    <h2>Our Vision</h2>
-                    <p>SINAMARK’s vision is to promote a circular economy, share and preserve 5000+ years of Chinese silk & bamboo culture, champion good dental health, and reduce plastic waste that enters landfills and oceans.</p>
+                    
                     <h2>Introduction</h2>
                     <p>At SINAMARK, we believe in promoting a circular economy, sharing and preserving the rich heritage of Chinese silk & bamboo culture, championing good dental health, and reducing plastic waste that enters landfills and oceans. Our mission is to spark a reusable renaissance by offering quality compostable products in reusable containers for a healthier life and a healthier planet.</p>
                     <h2>Our Commitments</h2>
