@@ -1,4 +1,3 @@
-//<br><a href="#" class="inner-link" data-target="about">Learn more about us</a>
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Variable Initialization
     const containers = document.querySelectorAll('.container');
@@ -7,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     const pageTitle = document.getElementById('pageTitle');
     const headerTitle = document.getElementById('headerTitle');
-  
     const body = document.body;
-    
+    const headerImageEN = document.getElementById('headerImageEN');
+    const headerImageCN = document.getElementById('headerImageCN');
 
     // 2. Language-specific Page Titles
     const pageTitles = {
@@ -17,86 +16,69 @@ document.addEventListener("DOMContentLoaded", function() {
         "Traditional Chinese": "SINAMARK® - 卓越龍標"
     };
 
-     // 3. Navigation Menu Translations
+    // 3. Navigation Menu Translations
     const menuTranslations = {
         "English": {
-            "welcome": "Welcome",
+            "welcome": "Sinamark",
             "about": "About Us",
             "products": "Products",
             "checkout": "Checkout",
             "faq": "FAQ",
             "blog": "Blog",
+            "testimonials": "Testimonials",
             "darkMode": "Dark Mode",
             "lightMode": "Light Mode",
-            "language": "中文",
-            "silk100": "Silk100",
-            "sinasilk": "Sinasilk",
-            "sinachar": "Sinachar",
-            "testimonials": "Testimonials" // New Testimonials tab
+            "language": "中文"
         },
         "Traditional Chinese": {
-            "welcome": "欢迎",
+            "welcome": "卓越龍牌",
             "about": "關於我們",
             "products": "產品",
             "checkout": "結帳",
             "faq": "常見問題",
             "blog": "博客",
+            "testimonials": "推薦書",
             "darkMode": "暗模式",
             "lightMode": "亮模式",
-            "language": "English",
-            "silk100": "Silk100",
-            "sinasilk": "Sinasilk",
-            "sinachar": "Sinachar",
-            "testimonials": "推荐书" // New Testimonials tab
+            "language": "English"
         }
     };
 
     // 4. Content Translations
     const contentTranslations = {
         "English": {
-          "welcome": {
-              "title": "",
-              "content": `
-                  <iframe width="100%" height="auto" src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
-                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen></iframe>
-                  <div>
-                  <h1>Welcome to SINAMARK</h1>
-                  <p>
-                    SINAMARK is the purveyor of 100% compostable silk dental floss, and biodegradable bamboo charcoal dental floss, without any harmful chemical additives, in reusable and recyclable containers.
-                  </p>
-                  <p>
-                    SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark.” Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye. Excellence is our CORE VALUE!
-                  </p>
-                  <h2>Why Silk Floss?</h2>
-                  <p>
-                    Silk was the original dental floss, until WWII when plastic was substituted as a cheaper alternative. Although silk feels luxurious, silk dental floss is not a luxury. SINAMARK uses only 100% natural silk because silk is the strongest natural thread known to man, yet it is 100% compostable.
-                  </p>
-                  <h2>Why Bamboo Charcoal?</h2>
-                  <p>
-                    Bamboo is a fast-growing grass, and is therefore sustainable. The microscopic structure of bamboo charcoal enables it to absorb bacteria.
-                  </p>
-                  <h2>Why Support The Circular Economy</h2>
-                  <p>
-                    When we DISPOSE, there is never enough for anyone! But when we REUSE, there is enough for everyone! Start a Healthy Habit!
-                  </p>
-                </div>
-                  <h2>Our Commitments</h2>
-                    <ul>
-                      <li>Promoting the circular economy!</li>
-                      <li>Our mission is to create a Reuse & Reusability Revolution.</li>
-                      <li>Good oral health</li>
-                      <li>Preserving a traditional way of life for silk and bamboo farmers</li>
-                      <li>Excellence in reusable oral care products</li>
-                      
-                      
-                    </ul>
-                    
-                <a href="#" class="inner-link" data-target="about">Learn more about us and why you should choose the Sinamark brand</a>
-              `
-          },
+            "welcome": {
+                "title": "Welcome to SINAMARK",
+                "content": `
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <h1>Welcome to SINAMARK</h1>
+                        <p>SINAMARK is the purveyor of 100% compostable silk dental floss, and biodegradable bamboo charcoal dental floss, without any harmful chemical additives, in reusable and recyclable containers.</p>
+                        <p>SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark.” Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye. Excellence is our CORE VALUE!</p>
+                        <h2>Why Silk Floss?</h2>
+                        <p>Silk was the original dental floss, until WWII when plastic was substituted as a cheaper alternative. Although silk feels luxurious, silk dental floss is not a luxury. SINAMARK uses only 100% natural silk because silk is the strongest natural thread known to man, yet it is 100% compostable.</p>
+                        <h2>Why Bamboo Charcoal?</h2>
+                        <p>Bamboo is a fast-growing grass, and is therefore sustainable. The microscopic structure of bamboo charcoal enables it to absorb bacteria.</p>
+                        <h2>Why Support The Circular Economy</h2>
+                        <p>When we DISPOSE, there is never enough for anyone! But when we REUSE, there is enough for everyone! Start a Healthy Habit!</p>
+                        <h2>Our Commitments</h2>
+                        <ul>
+                            <li>Promoting the circular economy!</li>
+                            <li>Our mission is to create a Reuse & Reusability Revolution.</li>
+                            <li>Good oral health</li>
+                            <li>Preserving a traditional way of life for silk and bamboo farmers</li>
+                            <li>Excellence in reusable oral care products</li>
+                        </ul>
+                        <a href="#" class="inner-link" data-target="about">Learn more about us and why you should choose the Sinamark brand</a>
+                    </div>
+                `
+            },
             "about": {
-                "title": "",
+                "title": "About SINAMARK",
                 "content": `
                     <h1>About SINAMARK</h1>
                     <p>SINAMARK’s VISION is to promote a circular economy, support 5000+ years of Chinese silk and bamboo culture, champion good dental health, and reduce plastic waste that enters landfills and oceans.</p>
@@ -104,12 +86,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>In 1915, Tong Bong started SING FAT Oriental Bazaar after the Great 1906 Earthquake in San Francisco. SING FAT’s flagship store became the symbol of SF Chinatown’s rebirth, and the Chinese people’s resolve to remain in the USA after the US government passed the Chinese Exclusion Act of 1882. One century later, his great grandson conceived SINAMARK.</p>
                     <p>SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark” which continues the legacy of SING FAT’s “Dragon Mark. The characters for “Excellence” were added, and placed 1st because it is our CORE VALUE! Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye.</p>
                     <div class="image-container">
-                          <img
-                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715649417837"
-                            crossorigin="anonymous" alt=""
-                            class="product-image constrained-image"
-                          />
-                        </div>
+                        <img src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715649417837" crossorigin="anonymous" alt="" class="product-image constrained-image" />
+                    </div>
                 `
             },
             "products": {
@@ -135,8 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
                             class="product-image constrained-image"
                           />
                         </div>
-                        
-                        
                         <div class="product">
                         
                         <a href="#" class="inner-link" data-target="sinachar"><h2>Sinachar</h2></a>
@@ -520,55 +496,44 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         "Traditional Chinese": {
             "welcome": {
-            "title": "欢迎来到SINAMARK",
-            "content": `
-                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
-                <div>
-                    <h1>歡迎來到卓越龍牌</h1>
-                    <p>
-                      卓越龍牌是100%可堆肥絲綢牙線和可生物降解竹炭牙線的供應商，沒有任何有害的化學添加劑，並使用可重複使用和可回收的容器。
-                    </p>
-                    <p>
-                      卓越龍牌的中文名字 卓越龍牌 意思是“卓越龍牌”。卓越不僅僅是外在的品質。它還包括肉眼看不見的內在品質。卓越是我們的核心價值！
-                    </p>
-                    <h2>為什麼選擇絲綢牙線？</h2>
-                    <p>
-                      絲綢是原始的牙線，直到二戰期間，塑料被用作更便宜的替代品。雖然絲綢感覺奢華，但絲綢牙線並不是奢侈品。卓越龍牌僅使用100%天然絲綢，因為絲綢是已知最強的天然線，並且100%可堆肥。
-                    </p>
-                    <h2>為什麼選擇竹炭？</h2>
-                    <p>
-                      竹子是一種生長迅速的草，因此是可持續的。竹炭的微觀結構使其能夠吸收細菌。
-                    </p>
-                    <h2>為什麼支持循環經濟？</h2>
-                    <p>
-                      當我們處理時，永遠不夠任何人使用！但是當我們重複使用時，人人有餘！開始一個健康的習慣！
-                    </p>
-                </div>
-                <a href="#" class="inner-link" data-target="about">了解更多關於我們以及為什麼您應該選擇SINAMARK品牌</a>
-            `
-        },
+                "title": "欢迎来到SINAMARK",
+                "content": `
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <h1>歡迎來到卓越龍牌</h1>
+                        <p>卓越龍牌是100%可堆肥絲綢牙線和可生物降解竹炭牙線的供應商，沒有任何有害的化學添加劑，並使用可重複使用和可回收的容器。</p>
+                        <p>卓越龍牌的中文名字 卓越龍牌 意思是“卓越龍牌”。卓越不僅僅是外在的品質。它還包括肉眼看不見的內在品質。卓越是我們的核心價值！</p>
+                        <h2>為什麼選擇絲綢牙線？</h2>
+                        <p>絲綢是原始的牙線，直到二戰期間，塑料被用作更便宜的替代品。雖然絲綢感覺奢華，但絲綢牙線並不是奢侈品。卓越龍牌僅使用100%天然絲綢，因為絲綢是已知最強的天然線，並且100%可堆肥。</p>
+                        <h2>為什麼選擇竹炭？</h2>
+                        <p>竹子是一種生長迅速的草，因此是可持續的。竹炭的微觀結構使其能夠吸收細菌。</p>
+                        <h2>為什麼支持循環經濟？</h2>
+                        <p>當我們處理時，永遠不夠任何人使用！但是當我們重複使用時，人人有餘！開始一個健康的習慣！</p>
+                        <h2>我們的承諾</h2>
+                        <ul>
+                            <li>致力於口腔健康</li>
+                            <li>致力於提供卓越的口腔護理產品</li>
+                            <li>支持中國農民</li>
+                            <li>保護絲綢和竹農的傳統生活方式</li>
+                        </ul>
+                        <a href="#" class="inner-link" data-target="about">了解更多關於我們以及為什麼您應該選擇SINAMARK品牌</a>
+                    </div>
+                `
+            },
             "about": {
                 "title": "关于SINAMARK",
                 "content": `
+                    <h1>關於SINAMARK</h1>
                     <p>1915年，Tong Bong 在舊金山大地震後創立了SING FAT 東方百貨公司。SING FAT 的旗艦店成為舊金山中國城重生的象徵，也是中國人在美國政府通過1882年《排華法案》後堅持留在美國的決心的象徵。一個世紀後，他的曾孫子創立了SINAMARK。</p>
                     <p>SINAMARK 的中文名字 卓越龍牌 繼承了 SING FAT 的“龍標”傳統。加入了“卓越”二字，並放在首位，因為這是我們的核心價值！卓越不僅僅是外在的品質，還包括肉眼不可見的內在品質。</p>
                     <p>SINAMARK 的願景是促進循環經濟，支持5000多年的中國絲綢和竹文化，倡導良好的牙齒健康，減少進入垃圾填埋場和海洋的塑料垃圾。</p>
                     <p>SINAMARK 的使命是通過提供可重複使用容器中的優質可堆肥產品，激發可重複使用的文藝復興，為更健康的生活和更健康的地球做出貢獻。</p>
-                    <h2>我們的承諾</h2>
-                    <ul>
-                      <li>致力於口腔健康</li>
-                      <li>致力於提供卓越的口腔護理產品</li>
-                      <li>支持中國農民</li>
-                      <li>保護絲綢和竹農的傳統生活方式</li>
-                    </ul>
                     <div class="image-container">
-                          <img
-                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715649417837"
-                            crossorigin="anonymous" alt=""
-                            class="product-image constrained-image"
-                          />
+                        <img src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715649417837" crossorigin="anonymous" alt="" class="product-image constrained-image" />
                     </div>
                 `
             },
@@ -981,29 +946,25 @@ document.addEventListener("DOMContentLoaded", function() {
                       </blockquote>
                   `
               }
-
         }
     };
-// 5. State Variables
+
+    // 5. State Variables
     let currentLanguage = 'English';
     let isDarkMode = false;
-// 6. Content Update Functions
+
+    // 6. Content Update Functions
     function updateContent() {
         containers.forEach(container => {
             const id = container.id;
             if (contentTranslations[currentLanguage][id]) {
                 container.innerHTML = `<h2>${contentTranslations[currentLanguage][id].title}</h2>${contentTranslations[currentLanguage][id].content}`;
-
-                // Check if it's the blog container and then initialize the appropriate Substack feed
-                if (id === 'blog') {
-                    initializeSubstackFeed(currentLanguage);
-                }
-
                 addInnerLinksEvent(container);
             }
         });
     }
-// 7. Inner Links Event Handler
+
+    // 7. Inner Links Event Handler
     function addInnerLinksEvent(container) {
         const innerLinks = container.querySelectorAll('.inner-link');
         innerLinks.forEach(link => {
@@ -1020,7 +981,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
-// 8. Navigation Update Function
+
+    // 8. Navigation Update Function
     function updateNavigation() {
         navLinks.forEach(link => {
             if (link.hasAttribute('data-target')) {
@@ -1044,7 +1006,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-// 9. Dark Mode Toggle Function
+
+    // 9. Dark Mode Toggle Function
     function toggleDarkMode(e) {
         e.preventDefault();  // Prevents the default action
         e.stopPropagation(); // Stops the event from propagating to parent elements
@@ -1052,31 +1015,32 @@ document.addEventListener("DOMContentLoaded", function() {
         body.classList.toggle('dark-mode');
         darkModeToggle.textContent = isDarkMode ? menuTranslations[currentLanguage]['lightMode'] : menuTranslations[currentLanguage]['darkMode'];
     }
-// Section 10: Language Toggle Function
+
+    // 10. Language Toggle Function
     function toggleLanguage(e) {
         e.preventDefault();
         currentLanguage = (currentLanguage === 'English' ? 'Traditional Chinese' : 'English');
-      // Toggle image visibility based on the current language
+        // Toggle image visibility based on the current language
         if (currentLanguage === 'English') {
-            document.getElementById('headerImageEN').style.display = 'block';
-            document.getElementById('headerImageCN').style.display = 'none';
+            headerImageEN.style.display = 'block';
+            headerImageCN.style.display = 'none';
         } else {
-            document.getElementById('headerImageEN').style.display = 'none';
-            document.getElementById('headerImageCN').style.display = 'block';
+            headerImageEN.style.display = 'none';
+            headerImageCN.style.display = 'block';
         }
         updateContent();
         updateNavigation();
         pageTitle.textContent = pageTitles[currentLanguage];
         headerTitle.textContent = pageTitles[currentLanguage];
         langToggle.textContent = menuTranslations[currentLanguage]['language'];
-        darkModeToggle.textContent = isDarkMode ? menuTranslations[currentLanguage]['lightMode'] : menuTranslations[currentLanguage]['darkMode'];   
+        darkModeToggle.textContent = isDarkMode ? menuTranslations[currentLanguage]['lightMode'] : menuTranslations[currentLanguage]['darkMode'];
     }
-    document.querySelector('.language-toggle').addEventListener('click', toggleLanguage);
-// 11. Event Listeners for Toggles
+
+    // 11. Event Listeners for Toggles
     langToggle.addEventListener('click', toggleLanguage);
     darkModeToggle.addEventListener('click', toggleDarkMode);
 
-// 12. Initial Page Setup
+    // 12. Initial Page Setup
     updateContent();
     updateNavigation();
     pageTitle.textContent = pageTitles[currentLanguage];
@@ -1084,66 +1048,70 @@ document.addEventListener("DOMContentLoaded", function() {
     langToggle.textContent = menuTranslations[currentLanguage]['language'];
     darkModeToggle.textContent = menuTranslations[currentLanguage]['darkMode'];
 });
+
 // Section 13: Function to dynamically add Substack feed
-    function initializeSubstackFeed(language) {
-        let substackUrl = "sinamark.substack.com"; // Default to the English blog
-        if (language === "Traditional Chinese") {
-            substackUrl = "sinasilk.substack.com"; // Use the Chinese blog
-        }
-
-        const feedContainer = document.getElementById('substack-feed-embed');
-        if (feedContainer) {
-            feedContainer.innerHTML = ''; // Clear previous content
-            const script = document.createElement('script');
-            script.innerHTML = `
-                window.SubstackFeedWidget = {
-                    substackUrl: "${substackUrl}",
-                    posts: 4,
-                    layout: "right",
-                    colors: {
-                        primary: "#00621C",
-                        secondary: "#A0A0A0",
-                        background: "#FFFFFF00",
-                    }
-                };
-            `;
-            const scriptSrc = document.createElement('script');
-            scriptSrc.src = "https://substackapi.com/embeds/feed.js";
-            scriptSrc.async = true;
-
-            feedContainer.appendChild(script);
-            feedContainer.appendChild(scriptSrc);
-        } else {
-            console.error('Substack feed container not found.');
-        }
+function addSubstackFeed(language) {
+    let substackUrl = "sinamark.substack.com"; // Default to the English blog
+    if (language === "Traditional Chinese") {
+        substackUrl = "sinasilk.substack.com"; // Use the Chinese blog
     }
+
+    const feedContainer = document.getElementById('substack-feed-embed');
+    if (feedContainer) {
+        feedContainer.innerHTML = ''; // Clear previous content
+        const script = document.createElement('script');
+        script.innerHTML = `
+            window.SubstackFeedWidget = {
+                substackUrl: "${substackUrl}",
+                posts: 4,
+                layout: "right",
+                colors: {
+                    primary: "#00621C",
+                    secondary: "#A0A0A0",
+                    background: "#FFFFFF00",
+                }
+            };
+        `;
+        const scriptSrc = document.createElement('script');
+        scriptSrc.src = "https://substackapi.com/embeds/feed.js";
+        scriptSrc.async = true;
+
+        feedContainer.appendChild(script);
+        feedContainer.appendChild(scriptSrc);
+    } else {
+        console.error('Substack feed container not found.');
+    }
+}
+
 // 14. Call the function to add Substack feed when blog section is clicked
-    const blogNavLink = document.querySelector('.nav a[data-target="blog"]');
-    blogNavLink.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default navigation behavior
-        currentContainerId = this.dataset.target;
-        addSubstackFeed(currentContainerId);
-    });
+const blogNavLink = document.querySelector('.nav a[data-target="blog"]');
+blogNavLink.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default navigation behavior
+    const currentContainerId = this.dataset.target;
+    addSubstackFeed(currentContainerId);
+});
+
 // 15. Function to handle image load error
-    function imageLoadError() {
-        const headerTitle = document.getElementById('headerTitle');
-        headerTitle.style.display = 'block';  // Show the header text if the image fails to load
-    }
+function imageLoadError() {
+    const headerTitle = document.getElementById('headerTitle');
+    headerTitle.style.display = 'block';  // Show the header text if the image fails to load
+}
+
 // 16. Checkout form
 function submitForm() {
-    var form = document.getElementById('checkoutForm');
-    var data = new FormData(form);
+    const form = document.getElementById('checkoutForm');
+    const data = new FormData(form);
     fetch('https://script.google.com/macros/s/AKfycbxOLfHCU_7DhDfFLMWLwp92RV7H2QQF6uLm5qKS9wEuf0Fr-0mXUiRfBnA3zNoLMjbK/exec', {
-      method: 'POST',
-      body: data
+        method: 'POST',
+        body: data
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
-      alert('Thank you for your submission!');
+        console.log('Success:', data);
+        alert('Thank you for your submission!');
     })
     .catch((error) => {
-      console.error('Error:', error);
-      alert('An error occurred, please try again.');
+        console.error('Error:', error);
+        alert('An error occurred, please try again.');
     });
 }
