@@ -1,1 +1,1 @@
-https://v5ma.github.io/sinamark/sinamark.html
+https://v5ma.github.io/sinamark/sinamarkx.html
