@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 3. Navigation Menu Translations
     const menuTranslations = {
         "English": {
-            "welcome": "Sinamark",
+            "welcome": "Welcome",
             "about": "About Us",
             "products": "Products",
             "checkout": "Checkout",
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const contentTranslations = {
         "English": {
             "welcome": {
-                "title": "Welcome to SINAMARK",
+                "title": "",
                 "content": `
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "about": {
-                "title": "About SINAMARK",
+                "title": "",
                 "content": `
                     <h1>About SINAMARK</h1>
                     <p>SINAMARK’s VISION is to promote a circular economy, support 5000+ years of Chinese silk and bamboo culture, champion good dental health, and reduce plastic waste that enters landfills and oceans.</p>
@@ -91,8 +91,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "products": {
-                "title": "Our Products",
+                "title": "",
                 "content": `
+                        <h1>Our Products</h1>
                         <a href="#" class="inner-link" data-target="silk100"><h2>Silk100</h2></a>
                         <p>100% silk floss for gentle and effective cleaning. Biodegradable and compostable.</p>
                         <div class="image-container">
@@ -126,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "checkout": {
-                "title": "Checkout",
+                "title": "",
                 "content": `
                     <div>
                       <h1>How to Purchase</h1>
@@ -179,9 +180,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "faq": {
-                "title": "Frequently Asked Questions (FAQ)",
+                "title": "",
                 "content": `
-                    <h2>FAQ</h2>
+                    <h1>Frequently Asked Questions (FAQ)</h1>
                     <div>
                       <h3>How do I use dental floss?</h3>
                       <p>
@@ -327,9 +328,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     `
             },
             "blog": {
-                "title": "SINAMARK Blog",
+                "title": "",
                 "content": `
-                    <h2>Featured Articles</h2>
+                    <h1>SINAMARK Blog: Featured Articles</h1>
                     <div id="substack-feed-embed"></div>
                     <script>
                       window.SubstackFeedWidget = {
@@ -342,13 +343,13 @@ document.addEventListener("DOMContentLoaded", function() {
                       };
                     </script>
                     <script src="https://substackapi.com/embeds/feed.js" async></script>
-                    
                 `
             },
             "silk100": {
-                "title": "Silk100",
+                "title": "",
                 "content": `
                     <a href="#" class="inner-link" data-target="products">Back to Products Page</a>
+                    <h1>Silk100</h1>
                     <p>100% Natural Silk Dental Floss</p>
                     <div class="image-container">
                           <img
@@ -387,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 "title": "",
                 "content": `
                     <a href="#" class="inner-link" data-target="products">Back to Products Page</a>
-                    <h2>Sinasilk</h2>
+                    <h1>Sinasilk</h1>
                     <p>100% Natural Silk Dental Floss</p>
                     <div class="image-container">
                           <img
@@ -426,7 +427,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 "title": "",
                 "content": `
                     <a href="#" class="inner-link" data-target="products">Back to Products Page</a>
-                    <h2>Sinachar</h2>
+                    <h1>Sinachar</h1>
                     <p>Bamboo Charcoal Infused Dental Floss</p>
                     <div class="image-container">
                           <img
@@ -451,12 +452,12 @@ document.addEventListener("DOMContentLoaded", function() {
                         <li>Preserves 7000+ years of Chinese bamboo culture</li>
                     </ul>
                     <button>Available Soon</button>
-                    
                 `
             },
             "testimonials": {
-                "title": "Testimonials",
+                "title": "",
                 "content": `
+                    <h1>Testimonials</h1>
                     <blockquote>
                         <p><strong>James S. 5.0 out of 5 stars, Dental Student Recommended!</strong></p>
                         <p>I am a current dental student and someone recommended I try out this floss! Overall, I’ve been highly impressed with this product! Its texture is perfectly suited for flossing, effortlessly navigating through tight spaces between my teeth without shredding - a common issue I’ve encountered with many traditional threaded flosses.</p>
@@ -494,9 +495,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             }
         },
-        "Traditional Chinese": {
+         "Traditional Chinese": {
             "welcome": {
-                "title": "欢迎来到SINAMARK",
+                "title": "",
                 "content": `
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
@@ -515,17 +516,18 @@ document.addEventListener("DOMContentLoaded", function() {
                         <p>當我們處理時，永遠不夠任何人使用！但是當我們重複使用時，人人有餘！開始一個健康的習慣！</p>
                         <h2>我們的承諾</h2>
                         <ul>
-                            <li>致力於口腔健康</li>
-                            <li>致力於提供卓越的口腔護理產品</li>
-                            <li>支持中國農民</li>
+                            <li>促進循環經濟！</li>
+                            <li>我們的使命是創建一個重複使用和可重複使用的革命。</li>
+                            <li>良好的口腔健康</li>
                             <li>保護絲綢和竹農的傳統生活方式</li>
+                            <li>卓越的可重複使用口腔護理產品</li>
                         </ul>
                         <a href="#" class="inner-link" data-target="about">了解更多關於我們以及為什麼您應該選擇SINAMARK品牌</a>
                     </div>
                 `
             },
             "about": {
-                "title": "关于SINAMARK",
+                "title": "",
                 "content": `
                     <h1>關於SINAMARK</h1>
                     <p>1915年，Tong Bong 在舊金山大地震後創立了SING FAT 東方百貨公司。SING FAT 的旗艦店成為舊金山中國城重生的象徵，也是中國人在美國政府通過1882年《排華法案》後堅持留在美國的決心的象徵。一個世紀後，他的曾孫子創立了SINAMARK。</p>
@@ -538,44 +540,44 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "products": {
-                "title": "我们的产品",
+                "title": "",
                 "content": `
+                    <h1>我们的产品</h1>
                     <a href="#" class="inner-link" data-target="silk100"><h2>Silk100</h2></a>
-                      <p>100% 絲綢牙線，用於溫和且有效的清潔。可生物降解和可堆肥。</p>
-                      <div class="image-container">
-                        <img
-                          src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/silk100.JPG?v=1715570328643"
-                          crossorigin="anonymous" alt="Silk100 牙線"
-                          class="product-image constrained-image"
-                        />
-                      </div>
+                    <p>100% 絲綢牙線，用於溫和且有效的清潔。可生物降解和可堆肥。</p>
+                    <div class="image-container">
+                      <img
+                        src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/silk100.JPG?v=1715570328643"
+                        crossorigin="anonymous" alt="Silk100 牙線"
+                        class="product-image constrained-image"
+                      />
+                    </div>
 
-                      <div class="product">
-                      <a href="#" class="inner-link" data-target="sinasilk"><h2>Sinasilk</h2></a>
-                      <p>高級絲綢牙線，專為最佳牙齒健康和環境可持續性設計。</p>
-                      <div class="image-container">
-                        <img
-                          src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                          crossorigin="anonymous" alt="Sinasilk 牙線"
-                          class="product-image constrained-image"
-                        />
-                      </div>
-                      <div class="product">
+                    <div class="product">
+                    <a href="#" class="inner-link" data-target="sinasilk"><h2>Sinasilk</h2></a>
+                    <p>高級絲綢牙線，專為最佳牙齒健康和環境可持續性設計。</p>
+                    <div class="image-container">
+                      <img
+                        src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                        crossorigin="anonymous" alt="Sinasilk 牙線"
+                        class="product-image constrained-image"
+                      />
+                    </div>
+                    <div class="product">
 
-                      <a href="#" class="inner-link" data-target="sinachar"><h2>Sinachar</h2></a>
-                      <p>竹炭牙線，結合深層清潔與對可持續性的承諾。</p>
-                      <ul>
+                    <a href="#" class="inner-link" data-target="sinachar"><h2>Sinachar</h2></a>
+                    <p>竹炭牙線，結合深層清潔與對可持續性的承諾。</p>
+                    <ul>
 
-                      </ul>
-                      <a href="#" class="inner-link" data-target="sinachar">了解更多關於 Sinachar</a>
-                      </div>
-                      <p><strong>開始健康的習慣，使用 Sinasilk 和 Sinachar 牙線！</strong></p> 
+                    </ul>
+                    <a href="#" class="inner-link" data-target="sinachar">了解更多關於 Sinachar</a>
+                    </div>
+                    <p><strong>開始健康的習慣，使用 Sinasilk 和 Sinachar 牙線！</strong></p> 
                 `
             },
             "checkout": {
-                "title": "结帐",
+                "title": "",
                 "content": `
-                    <div>
                       <h1>如何購買</h1>
                       <h2>訂購</h2>
                       <ol>
@@ -625,9 +627,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "faq": {
-                "title": "常见问题解答（FAQ）",
+                "title": "",
                 "content": `
-                    <h2>常見問題解答</h2>
+                    <h1>常见问题解答（FAQ）</h1>
                     <div>
                       <h3>如何使用牙線？</h3>
                       <p>
@@ -769,9 +771,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 `
             },
             "blog": {
-                  "title": "SINAMARK博客",
+                  "title": "",
                   "content": `
-                      <h2>特色文章</h2>
+                      <h1>SINAMARK博客-特色文章</h1>
                       <div id="substack-feed-embed"></div>
                       <script>
                         window.SubstackFeedWidget = {
@@ -790,14 +792,15 @@ document.addEventListener("DOMContentLoaded", function() {
                   `
               },
               "silk100": {
-                  "title": "Silk100",
+                  "title": "",
                   "content": `
                       <a href="#" class="inner-link" data-target="products">返回產品頁面</a>
+                      <h1>Silk100</h1>
                       <p>100% 天然丝绸牙线</p>
                       <div class="image-container">
                           <img
-                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            crossorigin="anonymous" alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -827,8 +830,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       </ul>
                       <div class="image-container">
                             <img
-                              src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
-                              crossorigin="anonymous" alt="Sinasilk Dental Floss Refills"
+                              src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
+                              alt="Sinasilk Dental Floss Refills"
                               class="product-image constrained-image"
                             />
                       </div>
@@ -836,14 +839,15 @@ document.addEventListener("DOMContentLoaded", function() {
                   `
               },
               "sinasilk": {
-                  "title": "Sinasilk",
+                  "title": "",
                   "content": `
                       <a href="#" class="inner-link" data-target="products">返回產品頁面</a>
+                      <h1>Sinasilk</h1>
                       <p>100% 天然丝绸牙线</p>
                       <div class="image-container">
                           <img
-                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            crossorigin="anonymous" alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -874,8 +878,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       </ul>
                       <div class="image-container">
                             <img
-                              src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
-                              crossorigin="anonymous" alt="Sinasilk Dental Floss Refills"
+                              src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
+                              alt="Sinasilk Dental Floss Refills"
                               class="product-image constrained-image"
                             />
                       </div>
@@ -883,11 +887,11 @@ document.addEventListener("DOMContentLoaded", function() {
                   `
               },
               "sinachar": {
-                  "title": "Sinachar",
+                  "title": "",
                   "content": `
                       <a href="#" class="inner-link" data-target="products">返回產品頁面</a>
+                      <h1>Sinachar</h1>
                       <p>竹炭牙线</p>
-                      
                       <h2>产品详情</h2>
                       <ul>
                           <li><strong>长度：</strong>一卷30米（33码）（99英尺）。</li>
@@ -908,8 +912,9 @@ document.addEventListener("DOMContentLoaded", function() {
                   `
               },
               "testimonials": {
-                  "title": "推荐书",
+                  "title": "",
                   "content": `
+                      <h1>推荐书</h1>
                       <blockquote>
                           <p><strong>James S. 5顆星中的5顆星，牙科學生推薦！</strong></p>
                           <p>我是一名現任牙科學生，有人推薦我試試這款牙線！總的來說，我對這個產品印象非常深刻！它的質地非常適合牙線，可以輕鬆地穿過我的牙齒之間的狹窄空間而不會斷裂——這是我在使用許多傳統牙線時遇到的常見問題。</p>
@@ -953,34 +958,39 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentLanguage = 'English';
     let isDarkMode = false;
 
-    // 6. Content Update Functions
-    function updateContent() {
-        containers.forEach(container => {
-            const id = container.id;
-            if (contentTranslations[currentLanguage][id]) {
-                container.innerHTML = `<h2>${contentTranslations[currentLanguage][id].title}</h2>${contentTranslations[currentLanguage][id].content}`;
-                addInnerLinksEvent(container);
+   function updateContent() {
+    containers.forEach(container => {
+        const id = container.id;
+        if (contentTranslations[currentLanguage][id]) {
+            container.innerHTML = `<h2>${contentTranslations[currentLanguage][id].title}</h2>${contentTranslations[currentLanguage][id].content}`;
+
+            // Check if it's the blog container and then initialize the appropriate Substack feed
+            if (id === 'blog') {
+                initializeSubstackFeed(currentLanguage);
             }
-        });
-    }
+
+            addInnerLinksEvent(container);
+        }
+    });
+}
 
     // 7. Inner Links Event Handler
     function addInnerLinksEvent(container) {
-        const innerLinks = container.querySelectorAll('.inner-link');
-        innerLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.dataset.target;
-                const targetContainer = document.getElementById(targetId);
-                if (targetContainer) {
-                    containers.forEach(cont => cont.style.display = 'none');
-                    targetContainer.style.display = 'block';
-                    updateContent();
-                    targetContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+    const innerLinks = container.querySelectorAll('.inner-link');
+    innerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.dataset.target;
+            const targetContainer = document.getElementById(targetId);
+            if (targetContainer) {
+                containers.forEach(cont => cont.style.display = 'none');
+                targetContainer.style.display = 'block';
+                updateContent();
+                targetContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
-    }
+    });
+}
 
     // 8. Navigation Update Function
     function updateNavigation() {
@@ -1006,7 +1016,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-
     // 9. Dark Mode Toggle Function
     function toggleDarkMode(e) {
         e.preventDefault();  // Prevents the default action
@@ -1035,7 +1044,6 @@ document.addEventListener("DOMContentLoaded", function() {
         langToggle.textContent = menuTranslations[currentLanguage]['language'];
         darkModeToggle.textContent = isDarkMode ? menuTranslations[currentLanguage]['lightMode'] : menuTranslations[currentLanguage]['darkMode'];
     }
-
     // 11. Event Listeners for Toggles
     langToggle.addEventListener('click', toggleLanguage);
     darkModeToggle.addEventListener('click', toggleDarkMode);
@@ -1050,7 +1058,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Section 13: Function to dynamically add Substack feed
-function addSubstackFeed(language) {
+function initializeSubstackFeed(language) {
     let substackUrl = "sinamark.substack.com"; // Default to the English blog
     if (language === "Traditional Chinese") {
         substackUrl = "sinasilk.substack.com"; // Use the Chinese blog
@@ -1083,12 +1091,20 @@ function addSubstackFeed(language) {
     }
 }
 
+
 // 14. Call the function to add Substack feed when blog section is clicked
 const blogNavLink = document.querySelector('.nav a[data-target="blog"]');
 blogNavLink.addEventListener('click', function(e) {
     e.preventDefault(); // Prevent default navigation behavior
-    const currentContainerId = this.dataset.target;
-    addSubstackFeed(currentContainerId);
+
+    containers.forEach(container => container.style.display = 'none');
+
+    const targetContainer = document.getElementById(this.dataset.target);
+    if (targetContainer) {
+        targetContainer.style.display = 'block';
+        updateContent(); // This will also initialize the Substack feed
+        targetContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 });
 
 // 15. Function to handle image load error
