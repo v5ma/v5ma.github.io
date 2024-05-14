@@ -55,58 +55,61 @@ document.addEventListener("DOMContentLoaded", function() {
     const contentTranslations = {
         "English": {
           "welcome": {
+              "title": "",
+              "content": `
+                  <iframe width="100%" height="auto" src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
+                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen></iframe>
+                  <div>
+                  <h1>Welcome to SINAMARK</h1>
+                  <p>
+                    SINAMARK is the purveyor of 100% compostable silk dental floss, and biodegradable bamboo charcoal dental floss, without any harmful chemical additives, in reusable and recyclable containers.
+                  </p>
+                  <p>
+                    SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark.” Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye. Excellence is our CORE VALUE!
+                  </p>
+                  <h2>Why Silk Floss?</h2>
+                  <p>
+                    Silk was the original dental floss, until WWII when plastic was substituted as a cheaper alternative. Although silk feels luxurious, silk dental floss is not a luxury. SINAMARK uses only 100% natural silk because silk is the strongest natural thread known to man, yet it is 100% compostable.
+                  </p>
+                  <h2>Why Bamboo Charcoal?</h2>
+                  <p>
+                    Bamboo is a fast-growing grass, and is therefore sustainable. The microscopic structure of bamboo charcoal enables it to absorb bacteria.
+                  </p>
+                  <h2>Why Support The Circular Economy</h2>
+                  <p>
+                    When we DISPOSE, there is never enough for anyone! But when we REUSE, there is enough for everyone! Start a Healthy Habit!
+                  </p>
+                </div>
+                  <h2>Our Commitments</h2>
+                    <ul>
+                      <li>Promoting the circular economy!</li>
+                      <li>Our mission is to create a Reuse & Reusability Revolution.</li>
+                      <li>Good oral health</li>
+                      <li>Preserving a traditional way of life for silk and bamboo farmers</li>
+                      <li>Excellence in reusable oral care products</li>
+                      
+                      
+                    </ul>
+                    
+                <a href="#" class="inner-link" data-target="about">Learn more about us and why you should choose the Sinamark brand</a>
+              `
+          },
+            "about": {
                 "title": "",
                 "content": `
-                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
-            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
-                    <div>
-                    <h1>WELCOME to SINAMARK</h1>
-                    <p>
-                      SINAMARK is the purveyor of 100% compostable silk dental floss, and biodegradable bamboo charcoal dental floss, without any harmful chemical additives, in reusable and recyclable containers.
-                    </p>
-                    <p>
-                      SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark.” Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye. Excellence is our CORE VALUE!
-                    </p>
-                    <h2>WHY SILK FLOSS?</h2>
-                    <p>
-                      Silk was the original dental floss, until WWII when plastic was substituted as a cheaper alternative. Although silk feels luxurious, silk dental floss is not a luxury. SINAMARK uses only 100% natural silk because silk is the strongest natural thread known to man, yet it is 100% compostable.
-                    </p>
-                    <h2>WHY BAMBOO CHARCOAL?</h2>
-                    <p>
-                      Bamboo is a fast-growing grass, and is therefore sustainable. The microscopic structure of bamboo charcoal enables it to absorb bacteria.
-                    </p>
-                    <h2>WHY SUPPORT THE CIRCULAR ECONOMY?</h2>
-                    <p>
-                      When we DISPOSE, there is never enough for anyone! But when we REUSE, there is enough for everyone! Start a Healthy Habit!
-                    </p>
-                  </div>
-                    <a href="#" class="inner-link" data-target="about">Learn more about us and why you should choose the Sinamark brand</a>
-                    
-                `
-            },
-            "about": {
-                "title": "About SINAMARK",
-                "content": `
-                    <p>In 1915, Tong Bong started SING FAT Oriental Bazaar after the Great 1906 Earthquake in San Francisco. SING FAT’s flagship store became the symbol of SF Chinatown’s rebirth, and the Chinese people’s resolve to remain in the USA after the US government passed the Chinese Exclusion Act of 1882. One century later, his great grandson conceived SINAMARK.</p>
-                    <p>SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark” which continues the legacy of SING FAT’s “Dragon Mark. The characters for “Excellence” were added, and placed 1st because it is our CORE VALUE! Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye.</p>
+                    <h1>About SINAMARK</h1>
                     <p>SINAMARK’s VISION is to promote a circular economy, support 5000+ years of Chinese silk and bamboo culture, champion good dental health, and reduce plastic waste that enters landfills and oceans.</p>
                     <p>SINAMARK’s MISSION is to spark a reusable renaissance by offering quality compostable products in reusable containers for a healthier life and a healthier planet.</p>
-                    <h2>Our Commitments</h2>
-                    <ul>
-                      <li>Committed to oral health</li>
-                      <li>Committed to providing excellence in oral care products</li>
-                      <li>Supporting farmers in China</li>
-                      <li>Preserving a traditional way of life for silk and bamboo farmers</li>
-                    </ul>
+                    <p>In 1915, Tong Bong started SING FAT Oriental Bazaar after the Great 1906 Earthquake in San Francisco. SING FAT’s flagship store became the symbol of SF Chinatown’s rebirth, and the Chinese people’s resolve to remain in the USA after the US government passed the Chinese Exclusion Act of 1882. One century later, his great grandson conceived SINAMARK.</p>
+                    <p>SINAMARK’s Chinese name 卓越龍牌 means “Excellent Dragon Mark” which continues the legacy of SING FAT’s “Dragon Mark. The characters for “Excellence” were added, and placed 1st because it is our CORE VALUE! Excellence is more than just external quality. It includes internal qualities that may not be visible to the naked eye.</p>
                     <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715642890459"
-                            alt=""
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715649417837"
+                            crossorigin="anonymous" alt=""
                             class="product-image constrained-image"
                           />
                         </div>
-                    
                 `
             },
             "products": {
@@ -116,8 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         <p>100% silk floss for gentle and effective cleaning. Biodegradable and compostable.</p>
                         <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/silk100.JPG?v=1715570328643"
-                            alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/silk100.JPG?v=1715570328643"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -127,8 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         <p>Premium silk floss designed for optimal dental health and environmental sustainability.</p>
                         <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -373,8 +376,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>100% Natural Silk Dental Floss</p>
                     <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -396,8 +399,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     </ul>
                     <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
-                            alt="Silk100 Dental Floss Refills"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss Refills"
                             class="product-image constrained-image"
                           />
                     </div>
@@ -412,8 +415,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>100% Natural Silk Dental Floss</p>
                     <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -435,8 +438,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     </ul>
                     <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
-                            alt="Sinasilk Dental Floss Refills"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
+                            crossorigin="anonymous" alt="Sinasilk Dental Floss Refills"
                             class="product-image constrained-image"
                           />
                     </div>
@@ -451,8 +454,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>Bamboo Charcoal Infused Dental Floss</p>
                     <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div><h2>Product Details</h2>
@@ -479,76 +482,73 @@ document.addEventListener("DOMContentLoaded", function() {
                 "title": "Testimonials",
                 "content": `
                     <blockquote>
-                    <p><strong>James S. 5.0 out of 5 stars, Dental Student Recommended!</strong></p>
-                    <p>I am a current dental student and someone recommended I try out this floss! Overall, I’ve been highly impressed with this product! Its texture is perfectly suited for flossing, effortlessly navigating through tight spaces between my teeth without shredding - a common issue I’ve encountered with many traditional threaded flosses.</p>
-                    <p>For the past few years, I’ve relied on Oral-B Glide which has worked well and been comfortable to use. However, Oral-B does contain PFAS which have many associated health risks! While the extent of these risks and whether or not the amount of chemical is negligible is still up to debate, why not play it safe and go with SINAMARK’s products? Also, it has the added benefit that it’s biodegradable which is a plus for planet lovers.</p>
-                    <p>The floss is just as effective as my previous flosses, and is very pleasant and comfortable to use. Also, you really do get a whole lot of bang for your buck with this product! The substantial amount of floss wound up into the “cocoon” within the bottle is not only cool to look at, but I’ve found it to last a lot longer compared to my previous flosses. There’s a lot of volume wound up in there! Highly recommended product!</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Linda. 5.0 out of 5 stars, feels clean after flossing</strong></p>
-                    <p>I want to try another floss as my dentist gave me the floss I use, and it works, but this one has a gentle feel on my gums. It didn’t break my skin like the thicker floss even as my teeth are tightly spaced together. The packaging was simple and compostable. Glad I got the opportunity to try silk floss, a natural fiber.</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>J. Takahashi. 5.0 out of 5 stars, GREAT floss in glass, not plastic!</strong></p>
-                    <p>I really like this floss. Also like the idea that it’s in glass!</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Nicholas G. 5.0 out of 5 stars, works great and environmentally friendly! :)</strong></p>
-                    <p>I really like the floss, it works great, doesn’t have plastic waste so it’s environmentally friendly! Overall great product, thanks!</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>G.F. Carerra. 5.0 out of 5 stars, Environmental friendly and good for flossing.</strong></p>
-                    <p>Easy to use. The best I have tried so far.</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Anonymous. 5.0 out of 5 stars, Environmental friendly and good for flossing.</strong></p>
-                    <p>I love that it’s safe for my gum and good for the environment. It’s a comfortable texture and not harsh on the gum. It does the job very well.</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Anonymous. 5.0 out of 5 stars</strong></p>
-                    <p>This floss works well. I love the fact that I can compost it!</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Byron G. 5.0 out of 5 stars, Great Floss.</strong></p>
-                    <p>Works excellent for my teeth. I have bridges and tightly spaced teeth and floss works better that the other types of floss. Fast delivery.</p>
-                  </blockquote>
-
-
+                        <p><strong>James S. 5.0 out of 5 stars, Dental Student Recommended!</strong></p>
+                        <p>I am a current dental student and someone recommended I try out this floss! Overall, I’ve been highly impressed with this product! Its texture is perfectly suited for flossing, effortlessly navigating through tight spaces between my teeth without shredding - a common issue I’ve encountered with many traditional threaded flosses.</p>
+                        <p>For the past few years, I’ve relied on Oral-B Glide which has worked well and been comfortable to use. However, Oral-B does contain PFAS which have many associated health risks! While the extent of these risks and whether or not the amount of chemical is negligible is still up to debate, why not play it safe and go with SINAMARK’s products? Also, it has the added benefit that it’s biodegradable which is a plus for planet lovers.</p>
+                        <p>The floss is just as effective as my previous flosses, and is very pleasant and comfortable to use. Also, you really do get a whole lot of bang for your buck with this product! The substantial amount of floss wound up into the “cocoon” within the bottle is not only cool to look at, but I’ve found it to last a lot longer compared to my previous flosses. There’s a lot of volume wound up in there! Highly recommended product!</p>
+                    </blockquote>
+                    <blockquote>
+                        <p><strong>Linda. 5.0 out of 5 stars, feels clean after flossing</strong></p>
+                        <p>I want to try another floss as my dentist gave me the floss I use, and it works, but this one has a gentle feel on my gums. It didn’t break my skin like the thicker floss even as my teeth are tightly spaced together. The packaging was simple and compostable. Glad I got the opportunity to try silk floss, a natural fiber.</p>
+                    </blockquote>
+                    <blockquote>
+                        <p><strong>J. Takahashi. 5.0 out of 5 stars, GREAT floss in glass, not plastic!</strong></p>
+                        <p>I really like this floss. Also like the idea that it’s in glass!</p>
+                    </blockquote>
+                    <blockquote>
+                        <p><strong>Nicholas G. 5.0 out of 5 stars, works great and environmentally friendly! :)</strong></p>
+                        <p>I really like the floss, it works great, doesn’t have plastic waste so it’s environmentally friendly! Overall great product, thanks!</p>
+                    </blockquote>
+                    <blockquote>
+                        <p><strong>G.F. Carerra. 5.0 out of 5 stars, Environmental friendly and good for flossing.</strong></p>
+                        <p>Easy to use. The best I have tried so far.</p>
+                    </blockquote>
+                    <blockquote>
+                        <p><strong>Anonymous. 5.0 out of 5 stars, Environmental friendly and good for flossing.</strong></p>
+                        <p>I love that it’s safe for my gum and good for the environment. It’s a comfortable texture and not harsh on the gum. It does the job very well.</p>
+                    </blockquote>
+                    <blockquote>
+                        <p><strong>Anonymous. 5.0 out of 5 stars</strong></p>
+                        <p>This floss works well. I love the fact that I can compost it!</p>
+                    </blockquote>
+                    <blockquote>
+                        <p><strong>Byron G. 5.0 out of 5 stars, Great Floss.</strong></p>
+                        <p>Works excellent for my teeth. I have bridges and tightly spaced teeth and floss works better that the other types of floss. Fast delivery.</p>
+                    </blockquote>
                 `
             }
         },
         "Traditional Chinese": {
             "welcome": {
-                "title": "欢迎来到SINAMARK",
-                "content": `
-                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>
-                    <div>
-                        <h1>歡迎來到卓越龍牌</h1>
-                        <p>
-                          卓越龍牌是100%可堆肥絲綢牙線和可生物降解竹炭牙線的供應商，沒有任何有害的化學添加劑，並使用可重複使用和可回收的容器。
-                        </p>
-                        <p>
-                          卓越龍牌的中文名字 卓越龍牌 意思是“卓越龍牌”。卓越不僅僅是外在的品質。它還包括肉眼看不見的內在品質。卓越是我們的核心價值！
-                        </p>
-                        <h2>為什麼選擇絲綢牙線？</h2>
-                        <p>
-                          絲綢是原始的牙線，直到二戰期間，塑料被用作更便宜的替代品。雖然絲綢感覺奢華，但絲綢牙線並不是奢侈品。卓越龍牌僅使用100%天然絲綢，因為絲綢是已知最強的天然線，並且100%可堆肥。
-                        </p>
-                        <h2>為什麼選擇竹炭？</h2>
-                        <p>
-                          竹子是一種生長迅速的草，因此是可持續的。竹炭的微觀結構使其能夠吸收細菌。
-                        </p>
-                        <h2>為什麼支持循環經濟？</h2>
-                        <p>
-                          當我們處理時，永遠不夠任何人使用！但是當我們重複使用時，人人有餘！開始一個健康的習慣！
-                        </p>
-                      </div>
-                    );
-                    <a href="#" class="inner-link" data-target="about">了解更多關於我們以及為什麼您應該選擇SINAMARK品牌</a>
-                `
-            },
+            "title": "欢迎来到SINAMARK",
+            "content": `
+                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+                <div>
+                    <h1>歡迎來到卓越龍牌</h1>
+                    <p>
+                      卓越龍牌是100%可堆肥絲綢牙線和可生物降解竹炭牙線的供應商，沒有任何有害的化學添加劑，並使用可重複使用和可回收的容器。
+                    </p>
+                    <p>
+                      卓越龍牌的中文名字 卓越龍牌 意思是“卓越龍牌”。卓越不僅僅是外在的品質。它還包括肉眼看不見的內在品質。卓越是我們的核心價值！
+                    </p>
+                    <h2>為什麼選擇絲綢牙線？</h2>
+                    <p>
+                      絲綢是原始的牙線，直到二戰期間，塑料被用作更便宜的替代品。雖然絲綢感覺奢華，但絲綢牙線並不是奢侈品。卓越龍牌僅使用100%天然絲綢，因為絲綢是已知最強的天然線，並且100%可堆肥。
+                    </p>
+                    <h2>為什麼選擇竹炭？</h2>
+                    <p>
+                      竹子是一種生長迅速的草，因此是可持續的。竹炭的微觀結構使其能夠吸收細菌。
+                    </p>
+                    <h2>為什麼支持循環經濟？</h2>
+                    <p>
+                      當我們處理時，永遠不夠任何人使用！但是當我們重複使用時，人人有餘！開始一個健康的習慣！
+                    </p>
+                </div>
+                <a href="#" class="inner-link" data-target="about">了解更多關於我們以及為什麼您應該選擇SINAMARK品牌</a>
+            `
+        },
             "about": {
                 "title": "关于SINAMARK",
                 "content": `
@@ -565,8 +565,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     </ul>
                     <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715642890459"
-                            alt=""
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/SING%20FAT%20CO.png?v=1715649417837"
+                            crossorigin="anonymous" alt=""
                             class="product-image constrained-image"
                           />
                     </div>
@@ -579,8 +579,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       <p>100% 絲綢牙線，用於溫和且有效的清潔。可生物降解和可堆肥。</p>
                       <div class="image-container">
                         <img
-                          src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/silk100.JPG?v=1715570328643"
-                          alt="Silk100 牙線"
+                          src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/silk100.JPG?v=1715570328643"
+                          crossorigin="anonymous" alt="Silk100 牙線"
                           class="product-image constrained-image"
                         />
                       </div>
@@ -590,8 +590,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       <p>高級絲綢牙線，專為最佳牙齒健康和環境可持續性設計。</p>
                       <div class="image-container">
                         <img
-                          src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                          alt="Sinasilk 牙線"
+                          src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                          crossorigin="anonymous" alt="Sinasilk 牙線"
                           class="product-image constrained-image"
                         />
                       </div>
@@ -831,8 +831,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       <p>100% 天然丝绸牙线</p>
                       <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -862,8 +862,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       </ul>
                       <div class="image-container">
                             <img
-                              src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
-                              alt="Sinasilk Dental Floss Refills"
+                              src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
+                              crossorigin="anonymous" alt="Sinasilk Dental Floss Refills"
                               class="product-image constrained-image"
                             />
                       </div>
@@ -877,8 +877,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       <p>100% 天然丝绸牙线</p>
                       <div class="image-container">
                           <img
-                            src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
-                            alt="Silk100 Dental Floss"
+                            src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Sinasilk%202%20main%20image.JPG?v=1715387220468"
+                            crossorigin="anonymous" alt="Silk100 Dental Floss"
                             class="product-image constrained-image"
                           />
                         </div>
@@ -909,8 +909,8 @@ document.addEventListener("DOMContentLoaded", function() {
                       </ul>
                       <div class="image-container">
                             <img
-                              src="https://cdn.glitch.global/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
-                              alt="Sinasilk Dental Floss Refills"
+                              src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/refill.JPG?v=1715570338692"
+                              crossorigin="anonymous" alt="Sinasilk Dental Floss Refills"
                               class="product-image constrained-image"
                             />
                       </div>
@@ -943,46 +943,45 @@ document.addEventListener("DOMContentLoaded", function() {
                   `
               },
               "testimonials": {
-                "title": "推荐书",
-                "content": `
-                    <blockquote>
-                    <p><strong>James S. 5顆星中的5顆星，牙科學生推薦！</strong></p>
-                    <p>我是一名現任牙科學生，有人推薦我試試這款牙線！總的來說，我對這個產品印象非常深刻！它的質地非常適合牙線，可以輕鬆地穿過我的牙齒之間的狹窄空間而不會斷裂——這是我在使用許多傳統牙線時遇到的常見問題。</p>
-                    <p>在過去的幾年裡，我一直依賴Oral-B Glide，它工作得很好，也很舒服使用。然而，Oral-B含有許多與健康風險相關的PFAS！雖然這些風險的程度和化學物質的量是否可忽略不計仍有待討論，但為什麼不謹慎行事，選擇卓越龍牌的產品呢？此外，它還具有可生物降解的附加優勢，這對愛護地球的人來說是個好消息。</p>
-                    <p>這款牙線和我之前用過的牙線一樣有效，非常愉快且舒適。並且，你確實能從這個產品中獲得很多價值！瓶子內的“繭”中纏繞了大量牙線，不僅看起來很酷，而且我發現它比我以前的牙線持續更長時間。纏繞在裡面的量很多！強烈推薦這款產品！</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Linda. 5顆星中的5顆星，使用牙線後感覺很乾淨</strong></p>
-                    <p>我想嘗試另一種牙線，因為我的牙醫給了我使用的牙線，雖然它有效，但這款牙線對我的牙齦感覺很溫和。即使我的牙齒緊密排列，它也沒有像較厚的牙線那樣傷害我的牙齦。包裝簡單且可堆肥。很高興有機會嘗試絲綢牙線，一種天然纖維。</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>J. Takahashi. 5顆星中的5顆星，很棒的玻璃牙線，不是塑料！</strong></p>
-                    <p>我真的很喜歡這款牙線，也喜歡它是玻璃裝的這個想法！</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Nicholas G. 5顆星中的5顆星，效果很好且環保！ :)</strong></p>
-                    <p>我真的很喜歡這款牙線，它效果很好，沒有塑料垃圾，因此很環保！總體上是一款很棒的產品，謝謝！</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>G.F. Carerra. 5顆星中的5顆星，環保且適合使用。</strong></p>
-                    <p>使用起來很方便。我試過的最好的一款。</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>匿名. 5顆星中的5顆星，環保且適合使用。</strong></p>
-                    <p>我喜歡它對我的牙齦安全且對環境有益。質地舒適，不會刺激牙齦。效果非常好。</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>匿名. 5顆星中的5顆星</strong></p>
-                    <p>這款牙線效果很好。我喜歡它可以被堆肥！</p>
-                  </blockquote>
-                  <blockquote>
-                    <p><strong>Byron G. 5顆星中的5顆星，超棒的牙線。</strong></p>
-                    <p>對我的牙齒效果很好。我有牙橋和緊密排列的牙齒，這款牙線比其他類型的牙線效果更好。快速交貨。</p>
-                  </blockquote>
-
-
-                `
+                  "title": "推荐书",
+                  "content": `
+                      <blockquote>
+                          <p><strong>James S. 5顆星中的5顆星，牙科學生推薦！</strong></p>
+                          <p>我是一名現任牙科學生，有人推薦我試試這款牙線！總的來說，我對這個產品印象非常深刻！它的質地非常適合牙線，可以輕鬆地穿過我的牙齒之間的狹窄空間而不會斷裂——這是我在使用許多傳統牙線時遇到的常見問題。</p>
+                          <p>在過去的幾年裡，我一直依賴Oral-B Glide，它工作得很好，也很舒服使用。然而，Oral-B含有許多與健康風險相關的PFAS！雖然這些風險的程度和化學物質的量是否可忽略不計仍有待討論，但為什麼不謹慎行事，選擇卓越龍牌的產品呢？此外，它還具有可生物降解的附加優勢，這對愛護地球的人來說是個好消息。</p>
+                          <p>這款牙線和我之前用過的牙線一樣有效，非常愉快且舒適。並且，你確實能從這個產品中獲得很多價值！瓶子內的“繭”中纏繞了大量牙線，不僅看起來很酷，而且我發現它比我以前的牙線持續更長時間。纏繞在裡面的量很多！強烈推薦這款產品！</p>
+                      </blockquote>
+                      <blockquote>
+                          <p><strong>Linda. 5顆星中的5顆星，使用牙線後感覺很乾淨</strong></p>
+                          <p>我想嘗試另一種牙線，因為我的牙醫給了我使用的牙線，雖然它有效，但這款牙線對我的牙齦感覺很溫和。即使我的牙齒緊密排列，它也沒有像較厚的牙線那樣傷害我的牙齦。包裝簡單且可堆肥。很高興有機會嘗試絲綢牙線，一種天然纖維。</p>
+                      </blockquote>
+                      <blockquote>
+                          <p><strong>J. Takahashi. 5顆星中的5顆星，很棒的玻璃牙線，不是塑料！</strong></p>
+                          <p>我真的很喜歡這款牙線，也喜歡它是玻璃裝的這個想法！</p>
+                      </blockquote>
+                      <blockquote>
+                          <p><strong>Nicholas G. 5顆星中的5顆星，效果很好且環保！ :)</strong></p>
+                          <p>我真的很喜歡這款牙線，它效果很好，沒有塑料垃圾，因此很環保！總體上是一款很棒的產品，謝謝！</p>
+                      </blockquote>
+                      <blockquote>
+                          <p><strong>G.F. Carerra. 5顆星中的5顆星，環保且適合使用。</strong></p>
+                          <p>使用起來很方便。我試過的最好的一款。</p>
+                      </blockquote>
+                      <blockquote>
+                          <p><strong>匿名. 5顆星中的5顆星，環保且適合使用。</strong></p>
+                          <p>我喜歡它對我的牙齦安全且對環境有益。質地舒適，不會刺激牙齦。效果非常好。</p>
+                      </blockquote>
+                      <blockquote>
+                          <p><strong>匿名. 5顆星中的5顆星</strong></p>
+                          <p>這款牙線效果很好。我喜歡它可以被堆肥！</p>
+                      </blockquote>
+                      <blockquote>
+                          <p><strong>Byron G. 5顆星中的5顆星，超棒的牙線。</strong></p>
+                          <p>對我的牙齒效果很好。我有牙橋和緊密排列的牙齒，這款牙線比其他類型的牙線效果更好。快速交貨。</p>
+                      </blockquote>
+                  `
               }
+
         }
     };
 // 5. State Variables
