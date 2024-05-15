@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 1.0 Head Section -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">SINAMARK® - Excellent Dragon Mark</title>
+
+    <!-- 2.0 Style Definitions -->
+    <style>
+        /* 2.1 Body Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-image: url('https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/Screenshot%202024-05-06%20115200.jpg?v=1715021581494'); /* Tile this image */
+            background-repeat: repeat; /* Ensure the image tiles */
+            overflow-x: hidden; /* Prevents horizontal scroll */
+        }
+
+        /* 2.2 Header Styling */
+        .header {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center align the content horizontally */
+            text-align: center;
+            padding: 0; /* Ensures no padding inside the header */
+            background-color: #ffffff; /* Pure White */
+            width: 100%; /* Ensures header takes full width */
+        }
+
+        .header img {
+            width: 100%; /* Ensures image takes full width of the header */
+            height: auto; /* Maintain aspect ratio */
+            padding: 0; /* Ensure no padding around the image */
+        }
+
+        /* 2.3 Navigation Styling */
+        .nav {
+            display: flex;
+            justify-content: center;
+            padding: 5px 0;
+            flex-wrap: wrap;
+            align-items: center; /* Ensure all items are aligned at their center */
+        }
+
+        .nav a {
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+            color: #333; /* Dark color for light mode */
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #000; /* Darker color on hover */
+        }
+
+        .nav a:visited {
+            color: #333; /* Dark color for visited links in light mode */
+        }
+
+        /* 2.4 Container Styling */
+        .container {
+            font-family: 'Montserrat', sans-serif;
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff; /* Pure White */
+            box-shadow: 0 0 10px #d1d1d1; /* Metallic Gray */
+            display: none; /* Hidden initially */
+        }
+
+        /* Specific rule to show the welcome container when the page loads */
+        #welcome {
+            display: block;
+        }
+
+        .container a, .container a:visited {
+            color: #333; /* Ensure no purple links in light mode */
+        }
+
+        .active {
+            display: block; /* Show active section */
+        }
+
+        /* 2.5 Dark Mode Styling */
+        .dark-mode {
+            color: #d1d1d1; /* Metallic Gray */
+        }
+
+        .dark-mode .header {
+            background-color: #000000;
+            color: #d1d1d1;
+        }
+
+        .dark-mode .nav a {
+            color: #e6e6e6; /* Light color for dark mode */
+        }
+
+        .dark-mode .nav a:hover {
+            color: #fff; /* Light color on hover in dark mode */
+        }
+
+        .dark-mode .nav a:visited {
+            color: #e6e6e6; /* Light color for visited links in dark mode */
+        }
+
+        .dark-mode .container a, .dark-mode .container a:visited {
+            color: #e6e6e6; /* Ensure no purple links in dark mode */
+        }
+
+        .dark-mode .container {
+            background: #000000;
+            color: #d1d1d1;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto; /* Center the container itself */
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Body Content -->
+    <!-- 3.1 Header Section -->
+    <div class="header">
+        <header class="header">
+            <!-- English Header Image -->
+            <img id="headerImageEN" src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/logoEN.png?v=1715504163194"
+                alt="SINAMARK Logo EN" style="max-width:100%; height:auto; display:block;">
+            <!-- Chinese Header Image -->
+            <img id="headerImageCN" src="https://cdn.glitch.com/b524bd7c-2cd3-4f31-8a22-f1e9fa4b5a87/logoCN.png?v=1715504177038"
+                alt="SINAMARK Logo CN" style="max-width:100%; height:auto; display:none;">
+            <h1 id="headerTitle" style="display: none;">SINAMARK® - Excellent Dragon Mark</h1>
+        
+            <!-- 3.2 Navigation Links -->
+            <nav class="nav">
+                <a href="#" class="nav" data-target="welcome">Sinamark</a>
+                <a href="#" class="nav" data-target="about">About Us</a>
+                <a href="#" class="nav" data-target="products">Products</a>
+                <a href="#" class="nav" data-target="checkout">Checkout</a>
+                <a href="#" class="nav" data-target="faq">FAQ</a>
+                <a href="#" class="nav" data-target="blog">Blog</a>
+                <a href="#" class="nav" data-target="testimonials">Testimonials</a> <!-- New Testimonials Tab -->
+                <a href="javascript:void(0);" class="language-toggle link">中文</a>
+                <a href="javascript:void(0);" class="dark-mode-toggle link">Dark Mode</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 3.3 Content Containers -->
+    <div id="welcome" class="container">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/S_nZr3vr4ds?si=740dNtF3UbI3-CaF" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+    <div id="about" class="container"></div>
+    <div id="products" class="container"></div>
+    <div id="checkout" class="container"></div>
+    <div id="faq" class="container"></div>
+    <div id="blog" class="container"><div id="substack-feed-embed"></div></div>
+    <div id="silk100" class="container"></div>
+    <div id="sinasilk" class="container"></div>
+    <div id="sinachar" class="container"></div>
+    <div id="testimonials" class="container"></div> <!-- New Testimonials Container -->
+
+    <!-- 4.0 Script Link -->
+    <script src="txpaperdragon.js"></script>
+</body>
+</html>
