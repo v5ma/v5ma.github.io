@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A-Frame XR: Hide Environment In AR</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+    <script>
+        // 1. Register the 'hide-environment-in-ar' component
+        AFRAME.registerComponent('hide-environment-in-ar', {
+            init: function () {
+                // 1.1 Initialize properties for the component
+                this.currentMode = null;
+                this.environmentEl = document.querySelector('a-entity[environment]');
+                this.ambientLight = null;
+                this.directionalLight = null;
+
+                // 1.2 Set environment to active initially if it exists
+                if (this.environmentEl) {
+                    this.environmentEl.setAttribute('environment', 'active', true);
+                }
+
+                // 2. Event listener for entering VR/AR mode
+                this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+                    // 2.1 Store the visibility state of the element
+                    this.wasVisible = this.el.getAttribute('visible');
+                    // 2.2 Check if the mode is AR
+                    if (this.el.sceneEl.is('ar-mode')) {
+                        this.el.setAttribute('visible', false);
+                        document.body.classList.add('ar-mode');
+                        this.currentMode = 'ar';
+                        // 2.3 Hide environment and add lights in AR mode
+                        if (this.environmentEl) {
+                            this.environmentEl.setAttribute('environment', 'active', false);
+                            this.addLights();
+                        }
+                    } else {
+                        document.body.classList.add('vr-mode');
+                        this.currentMode = 'vr';
+                    }
+                });
+
+                // 3. Event listener for exiting VR/AR mode
+                this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+                    // 3.1 Restore visibility and environment state in AR mode
+                    if (this.currentMode === 'ar') {
+                        if (this.wasVisible) this.el.setAttribute('visible', true);
+                        document.body.classList.remove('ar-mode');
+                        if (this.environmentEl) {
+                            this.environmentEl.setAttribute('environment', 'active', true);
+                        }
+                        this.removeLights();
+                    } else if (this.currentMode === 'vr') {
+                        document.body.classList.remove('vr-mode');
+                    }
+                    this.currentMode = null;
+                });
+            },
+
+            // 4. Add lights function
+            addLights: function() {
+                // 4.1 Add ambient light to the scene
+                this.ambientLight = document.createElement('a-entity');
+                this.ambientLight.setAttribute('light', {type: 'ambient', color: '#FFF', intensity: 0.3});
+                this.el.sceneEl.appendChild(this.ambientLight);
+
+                // 4.2 Add directional light to the scene
+                this.directionalLight = document.createElement('a-entity');
+                this.directionalLight.setAttribute('light', {type: 'directional', color: '#FFF', intensity: 0.6, castShadow: true});
+                this.directionalLight.setAttribute('position', {x: 0, y: 6, z: 0});
+                this.el.sceneEl.appendChild(this.directionalLight);
+            },
+
+            // 5. Remove lights function
+            removeLights: function() {
+                // 5.1 Remove ambient light from the scene
+                if (this.ambientLight) {
+                    this.ambientLight.remove();
+                    this.ambientLight = null;
+                }
+
+                // 5.2 Remove directional light from the scene
+                if (this.directionalLight) {
+                    this.directionalLight.remove();
+                    this.directionalLight = null;
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <a-scene xr-mode-ui="XRMode: xr" background="color: white">
+        <!-- 6. Environment entity with preset configuration -->
+        <a-entity environment="preset: forest"></a-entity>
+        <!-- 7. Background entity with 'hide-environment-in-ar' component -->
+        <a-entity background hide-environment-in-ar></a-entity>
+        <!-- 8. Basic shapes in the scene for visual interest -->
+        <a-box scale="0.3 0.3 0.3" position="-0.25 0.85 -0.6" rotation="0 55 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.05 -1" radius="0.3" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="0.275 0.85 -0.6" radius="0.15" height="0.4" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 0.70 -0.75" rotation="-90 0 0" width="1" height="1" color="#7BC8A4"></a-plane>
+    </a-scene>
+</body>
+</html>
