@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+<script>
+    // 1. Register the 'hide-sky-ground-ar-mode' component
+    AFRAME.registerComponent('hide-sky-ground-ar-mode', {
+        init: function () {
+            // 1.1 Initialize properties for the component
+            this.skyEl = document.querySelector('a-sky');
+            this.groundEl = document.querySelector('#ground');
+            
+            // 2. Event listener for entering VR/AR mode
+            this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+                // 2.1 Store the current visibility state of the element
+                this.wasVisible = this.el.getAttribute('visible');
+                // 2.2 Check if the scene is in AR mode
+                if (this.el.sceneEl.is('ar-mode')) {
+                    // 2.2.1 Hide the element and add 'ar-mode' class to body
+                    this.el.setAttribute('visible', false);
+                    document.body.classList.add('ar-mode');
+                    this.currentMode = 'ar';
+                    // 2.2.2 Hide the sky and ground entities
+                    if (this.skyEl) {
+                        this.skyEl.setAttribute('visible', false);
+                    }
+                    if (this.groundEl) {
+                        this.groundEl.setAttribute('visible', false);
+                    }
+                } else {
+                    // 2.3 Handle VR mode
+                    this.currentMode = 'vr';
+                    document.body.classList.add('vr-mode');
+                }
+            });
+
+            // 3. Event listener for exiting VR/AR mode
+            this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+                // 3.1 Restore visibility state of the element
+                if (this.currentMode === 'ar') {
+                    if (this.wasVisible) this.el.setAttribute('visible', true);
+                    document.body.classList.remove('ar-mode');
+                    // 3.2 Show the sky and ground entities
+                    if (this.skyEl) {
+                        this.skyEl.setAttribute('visible', true);
+                    }
+                    if (this.groundEl) {
+                        this.groundEl.setAttribute('visible', true);
+                    }
+                } else if (this.currentMode === 'vr') {
+                    document.body.classList.remove('vr-mode');
+                }
+                this.currentMode = null;
+            });
+        }
+    });
+</script>
+<body>
+    <!-- 4. Define the A-Frame scene with XR mode UI -->
+    <a-scene button xr-mode-ui="XRMode: xr">
+        <!-- 5. Add basic shapes to the scene for visual interest with updated positions -->
+        <a-box scale="0.3 0.3 0.3" position="-0.25 0.95 -0.6" rotation="0 55 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.15 -1" radius="0.3" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="0.275 0.95 -0.6" radius="0.15" height="0.4" color="#FFC65D"></a-cylinder>
+        <!-- 6. Add a shiny, transparent emerald box to the scene with correct dimensions -->
+        <a-box id="emerald" scale="1 0.01 1" position="0 0.7 -0.75" rotation="0 0 0"
+               material="color: #50C878; opacity: 0.5; metalness: 0.6;"></a-box>
+        
+        <!-- 7. Add a sky entity to the scene -->
+        <a-sky color="#87CEEB"></a-sky>
+        
+        <!-- 8. Add a ground entity with 'hide-in-ar-mode' component -->
+        <a-plane id="ground" rotation="-90 0 0" width="100" height="100" color="#7BC8A4" hide-sky-ground-ar-mode></a-plane>
+    </a-scene>
+</body>
+</html>
