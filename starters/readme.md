@@ -1,16 +1,16 @@
-# A-Frame XR Components Documentation
+A-Frame XR Components Documentation
+Summary
+This documentation provides a detailed explanation of two A-Frame components: hide-sky-ground-ar-mode and hide-environment-in-ar. Both components are designed to manage the visibility of specific entities when entering and exiting AR mode.
 
-## `hide-sky-ground-ar-mode` Component
+hide-sky-ground-ar-mode Component
+The hide-sky-ground-ar-mode component for A-Frame is designed to manage the visibility of sky and ground entities when entering and exiting AR mode. It hides the sky and ground when AR mode is activated and restores their visibility when exiting AR mode.
 
-The `hide-sky-ground-ar-mode` component for A-Frame is designed to manage the visibility of sky and ground entities when entering and exiting AR mode. It hides the sky and ground when AR mode is activated and restores their visibility when exiting AR mode.
-
-### Usage
-
-#### Include the A-Frame Library
-
+Usage
+Include the A-Frame Library
 Ensure you have the A-Frame library included in your HTML file:
 
-```html
+html
+Copy code
 <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 Register the Component
 Add the following script to register the hide-sky-ground-ar-mode component:
@@ -387,12 +387,4 @@ Copy code
     </a-scene>
 </body>
 </html>
-javascript
-Copy code
-
-This documentation provides a detailed explanation of both the `hide-sky-ground-ar-mode` and `hide-environment-in-ar` components, their usage, and how they work, along with example implementations.
-
-
-
-
-
+This documentation provides a detailed explanation of both the hide-sky-ground-ar-mode and hide-environment-in-ar components, their usage, and how they work, along with example implementations.
