@@ -91,11 +91,10 @@ Copy code
         }
     });
 </script>
+
 Define the Scene
 Define your A-Frame scene and apply the hide-sky-ground-ar-mode component to the relevant entities:
 
-html
-Copy code
 <body>
     <!-- Define the A-Frame scene with XR mode UI -->
     <a-scene button xr-mode-ui="XRMode: xr">
@@ -149,20 +148,16 @@ Usage
 Include the A-Frame Library
 Ensure you have the A-Frame library included in your HTML file:
 
-html
-Copy code
 <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 Include the Environment Component
 Ensure you have the A-Frame environment component included:
 
-html
-Copy code
+
 <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+
 Register the Component
 Add the following script to register the hide-environment-in-ar component:
 
-html
-Copy code
 <script>
     // 1. Register the 'hide-environment-in-ar' component
     AFRAME.registerComponent('hide-environment-in-ar', {
@@ -245,11 +240,10 @@ Copy code
         }
     });
 </script>
+
 Define the Scene
 Define your A-Frame scene and apply the hide-environment-in-ar component to the relevant entities:
 
-html
-Copy code
 <body>
     <a-scene xr-mode-ui="XRMode: xr" background="color: white">
         <!-- Environment entity with preset configuration -->
@@ -263,6 +257,7 @@ Copy code
         <a-plane position="0 0.70 -0.75" rotation="-90 0 0" width="1" height="1" color="#7BC8A4"></a-plane>
     </a-scene>
 </body>
+
 How It Works
 Component Initialization
 Initialize Properties:
@@ -300,11 +295,10 @@ Adds ambient and directional lights to the scene when the environment is hidden.
 Remove Lights Function:
 
 Removes ambient and directional lights from the scene when the environment is shown.
-Example
+
+# Hide Environment in AR component:
 Here is a complete example of an A-Frame scene using the hide-environment-in-ar component:
 
-html
-Copy code
 <!DOCTYPE html>
 <html>
 <head>
@@ -408,4 +402,5 @@ Copy code
     </a-scene>
 </body>
 </html>
+
 This documentation provides a detailed explanation of both the hide-sky-ground-ar-mode and hide-environment-in-ar components, their usage, and how they work, along with example implementations.
