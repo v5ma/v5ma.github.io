@@ -13,7 +13,7 @@ I've tested this with Meta Quest 3 and A-Frame version 1.5.0 in May 2024.
 This documentation provides a detailed explanation of two A-Frame components: `hide-sky-ground-ar-mode` and `hide-environment-in-ar`. Both components are designed to manage the visibility of specific entities when entering and exiting AR mode.
 
 See example of Hide Environment in AR with your Meta Quest 3: 
-[Hide Environment in AR](https://v5ma.github.io/starters/hide-environment-in-ar)
+[Hide Environment in AR](https://v5ma.github.io/starters/hide-environment-in-ar.html)
  
 See example of XR Hide Sky (and) Ground (in) AR Mode:
 [Hide Sky Ground AR Mode](https://v5ma.github.io/starters/xr_hide_sky_starter.html)
