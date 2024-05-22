@@ -33,11 +33,10 @@ Ensure you have the A-Frame library included in your HTML file:
 
 ```html
 <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+```
 Register the Component
 Add the following script to register the hide-sky-ground-ar-mode component:
-
-html
-Copy code
+```
 <script>
     // 1. Register the 'hide-sky-ground-ar-mode' component
     AFRAME.registerComponent('hide-sky-ground-ar-mode', {
@@ -91,10 +90,10 @@ Copy code
         }
     });
 </script>
-
+```
 Define the Scene
 Define your A-Frame scene and apply the hide-sky-ground-ar-mode component to the relevant entities:
-
+```
 <body>
     <!-- Define the A-Frame scene with XR mode UI -->
     <a-scene button xr-mode-ui="XRMode: xr">
