@@ -139,7 +139,7 @@ Upon exiting VR/AR Mode: The component listens for the exit-vr event. If the mod
 
 Then it shows the sky and ground entities.
 
-If the mode was VR it removes the vr-mode class from the body, an resets the currentMode to null.
+If the mode was VR it removes the vr-mode class from the body, and resets the currentMode to null.
 
 # The hide-environment-in-ar Component
 ## The hide-environment-in-ar component for A-Frame is designed to manage the visibility of the environment entity when entering and exiting AR mode. It hides the environment when AR mode is activated and restores its visibility when exiting AR mode.
