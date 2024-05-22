@@ -4,7 +4,7 @@ Use this when you want to start building a website that could be either AR or VR
 
 Two examples each with a hide components to easily hide either the A-Frame Environment component or the Sky & Ground whenever the user opts for AR mode.
 
-### People who want to use VR mode they can see either an A-Frame Environment or a Sky & Ground that you can define.
+People who want to use VR mode they can see either an A-Frame Environment or a Sky & Ground that you can define.
 
 I've tested this with Meta Quest 3 and A-Frame version 1.5.0 in May 2024.
 
