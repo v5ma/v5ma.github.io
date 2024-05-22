@@ -2,7 +2,7 @@
 
 Use this when you want to start building a website that could be either AR or VR depending on both the user's hardware and their choice.
 
-## Two examples each with a hide components to easily hide either the A-Frame Environment component or the Sky & Ground whenever the user opts for AR mode.
+Two examples each with a hide components to easily hide either the A-Frame Environment component or the Sky & Ground whenever the user opts for AR mode.
 
 ### People who want to use VR mode they can see either an A-Frame Environment or a Sky & Ground that you can define.
 
