@@ -1,9 +1,22 @@
-# A-Frame XR Components Documentation
+# A-Frame XR Starter Code:
+
+Use this when you want to start building a website that could be either AR or VR depending on both the user's hardware and their choice.
+
+## Two examples each with a hide components to easily hide either the A-Frame Environment component or the Sky & Ground whenever the user opts for AR mode.
+
+### People who want to use VR mode they can see either an A-Frame Environment or a Sky & Ground that you can define.
+
+I've tested this with Meta Quest 3 and A-Frame version 1.5.0 in May 2024.
 
 ## Summary
 
 This documentation provides a detailed explanation of two A-Frame components: `hide-sky-ground-ar-mode` and `hide-environment-in-ar`. Both components are designed to manage the visibility of specific entities when entering and exiting AR mode.
 
+See example of Hide Environment in AR with your Meta Quest 3: 
+[Hide Environment in AR](http://v5ma.github.io/starters/hide-environment-in-ar)
+ 
+See example of XR Hide Sky (and) Ground (in) AR Mode:
+[Hide Sky Ground AR Mode](https://v5ma.github.io/starters/xr_hide_sky_starter.html)
 ---
 
 ## `hide-sky-ground-ar-mode` Component
