@@ -17,6 +17,7 @@ See example of Hide Environment in AR with your Meta Quest 3:
  
 See example of XR Hide Sky (and) Ground (in) AR Mode:
 [Hide Sky Ground AR Mode](https://v5ma.github.io/starters/xr_hide_sky_starter.html)
+
 ---
 
 ## `hide-sky-ground-ar-mode` Component
