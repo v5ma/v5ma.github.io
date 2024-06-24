@@ -10,7 +10,7 @@ The second starter example has a component called `lights-in-ar` is literally on
 
 ## Note: You don't need the lights in AR component unless you are hiding the A-Frame Environment Component. This component adds lights to the scene in AR mode so the page isn't black.
 
-Lights in AR is necessary if you are hiding the A-Frame Environment Component, because when you hide it, there are no lights in the scene.
+"Lights in AR" is necessary if you are hiding the A-Frame Environment Component, because when you hide it, there are no lights in the scene.
 
 See example of "lights-in-ar" with your Meta Quest 3: 
 [`lights-in-ar`](https://v5ma.github.io/starters/lights-in-ar.html)
