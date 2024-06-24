@@ -1,19 +1,19 @@
 # Example XR Starter plus A-Frame Lights in AR (for the A-Frame Environment Component):
 
-This documentation provides a detailed explanation of two A-Frame examples: `XR-mode-example` and `light-in-ar`, their usage, and how they work, along with example implementations.
+This documentation provides a detailed explanation of two A-Frame examples: `XR-mode-example` and `lights-in-ar`, their usage, and how they work, along with example implementations.
 
 Regarding the first example: apparently there is a hide-on-enter-ar component in the latest version of A-Frame that reduces the original purpose of the first starter now called `XR-mode-example` to just an example. There is now also a hide-on-enter-vr component built into A-Frame. Include hide-on-enter-ar on any entity, sky, ground, etc, that you wish to hide when a user enters AR. The example illustrates how it's done.
 
 Use either of these starters when you want to start building a website that could be either AR or VR depending on both the user's hardware and their choice.
 
-The second starter example has a component called `light-in-ar` is literally only for adding light to the scene when the environment is removed and removing light from the scene when the environment is returned (when someone exits AR).
+The second starter example has a component called `lights-in-ar` is literally only for adding light to the scene when the environment is removed and removing light from the scene when the environment is returned (when someone exits AR).
 
 ## Note: You don't need the lights in AR component unless you are hiding the A-Frame Environment Component. This component adds lights to the scene in AR mode so the page isn't black.
 
 Lights in AR is necessary if you are hiding the A-Frame Environment Component, because when you hide it, there are no lights in the scene.
 
-See example of "light-in-ar" with your Meta Quest 3: 
-[`light-in-ar`](https://v5ma.github.io/starters/hide-environment-in-ar.html)
+See example of "lights-in-ar" with your Meta Quest 3: 
+[`lights-in-ar`](https://v5ma.github.io/starters/hide-environment-in-ar.html)
 
 See example of "XR-mode-example" in AR Mode with your Meta Quest 3:
 [Hide Sky Ground AR Mode](https://v5ma.github.io/starters/xr_hide_sky_starter.html)
@@ -23,8 +23,8 @@ In each example after loading the example page try clicking on AR mode and you s
 ---
 
 
-# The `light-in-ar` Component
-## The `light-in-ar` component for A-Frame is designed to manage the visibility of light in the environment entity when entering and exiting AR mode. It adds light to the environment when AR mode is activated and restores removes the extra light when exiting AR mode.
+# The `lights-in-ar` Component
+## The `lights-in-ar` component for A-Frame is designed to manage the visibility of light in the environment entity when entering and exiting AR mode. It adds light to the environment when AR mode is activated and restores removes the extra light when exiting AR mode.
 
 Usage
 Include the A-Frame Library
@@ -39,7 +39,7 @@ Ensure you have the A-Frame environment component included:
 <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
 ```
 Register the Component
-Add the following script to register the `light-in-ar` component:
+Add the following script to register the `lights-in-ar` component:
 ```
 <script>
         // 1. Register the 'lights-in-ar' component
@@ -125,7 +125,7 @@ Add the following script to register the `light-in-ar` component:
     </script>
 ```
 Define the Scene
-Define your A-Frame scene and apply the `light-in-ar` component to the relevant entities:
+Define your A-Frame scene and apply the `lights-in-ar` component to the relevant entities:
 ```
 <body>
     <a-scene xr-mode-ui="XRMode: xr">
