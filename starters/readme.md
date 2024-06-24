@@ -24,7 +24,7 @@ In each example after loading the example page try clicking on AR mode and you s
 
 
 # The `lights-in-ar` Component
-## The `lights-in-ar` component for A-Frame is designed to manage the visibility of light in the environment entity when entering and exiting AR mode. It adds light to the environment when AR mode is activated and restores removes the extra light when exiting AR mode.
+## The `lights-in-ar` component for A-Frame is designed to manage the visibility of light in the environment entity when entering and exiting AR mode. It adds light to the environment when AR mode is activated and removes the extra light when exiting AR mode.
 
 Usage
 Include the A-Frame Library
