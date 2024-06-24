@@ -13,10 +13,10 @@ The second starter example has a component called `lights-in-ar` is literally on
 Lights in AR is necessary if you are hiding the A-Frame Environment Component, because when you hide it, there are no lights in the scene.
 
 See example of "lights-in-ar" with your Meta Quest 3: 
-[`lights-in-ar`](https://v5ma.github.io/starters/hide-environment-in-ar.html)
+[`lights-in-ar`](https://v5ma.github.io/starters/lights-in-ar.html)
 
 See example of "XR-mode-example" in AR Mode with your Meta Quest 3:
-[Hide Sky Ground AR Mode](https://v5ma.github.io/starters/xr_hide_sky_starter.html)
+[Hide Sky Ground AR Mode](https://v5ma.github.io/starters/xrstarter.html)
 
 In each example after loading the example page try clicking on AR mode and you should see the page in AR mode without a sky, ground or environment, then press the menu button, find the webpage again, exit Immersive mode, and try entering VR mode, then you should see the sky, ground, and or the environment should remain in VR mode. That is the point. One website can be inclusive of both modes.
 
