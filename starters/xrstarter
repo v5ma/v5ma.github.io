@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A-Frame XR Example</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene xr-mode-ui="XRMode: xr">
+        <a-box scale="0.3 0.3 0.3" position="-0.25 0.95 -0.6" rotation="0 55 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.15 -1" radius="0.3" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="0.275 0.95 -0.6" radius="0.15" height="0.4" color="#FFC65D"></a-cylinder>
+        <a-box id="emerald" scale="1 0.01 1" position="0 0.7 -0.75" rotation="0 0 0"
+               material="color: #50C878; opacity: 0.5; metalness: 0.6;"></a-box>
+        <a-sky color="#87CEEB" hide-on-enter-ar></a-sky>
+        <a-plane id="ground" rotation="-90 0 0" width="100" height="100" color="#7BC8A4" hide-on-enter-ar></a-plane>
+    </a-scene>
+</body>
+</html>
