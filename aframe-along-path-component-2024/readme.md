@@ -1,137 +1,76 @@
+A-Frame Along Path Component 2024
+The A-Frame Along Path Component 2024 allows entities to follow predefined paths within A-Frame scenes. This component is updated to be compatible with A-Frame 1.5.0 and includes enhanced functionality for creating dynamic and interactive experiences.
 
-# A-Frame Along Path Component 2024
+Overview
+The Along Path Component is a versatile tool that enables you to define paths for entities to follow in your A-Frame scene. It supports both open and closed paths and offers a range of customization options, including animation duration, delay, looping, and visual path inspection.
 
-The A-Frame Along Path Component 2024 is a powerful tool for animating entities along predefined curves in your A-Frame scenes. It allows you to smoothly move entities along a path, making it ideal for animations, guided tours, or any scenario where an object needs to follow a specific trajectory.
+Properties
+Property	Description	Default Value
+path	One or more points on the path the entity should follow (Format: "x,y,z x,y,z x,y,z")	''
+closed	Whether or not the path should be closed automatically	false
+dur	Duration in milliseconds for the entity to follow the entire path	1000
+delay	Number of milliseconds to wait before the animation begins	2000
+loop	Whether or not the animation should loop	false
+inspect	Whether or not the animation path should be visible and editable in A-Frame Inspector	false
+Usage with A-Frame Inspector
+You can use the A-Frame Inspector to manually modify the predefined paths. To do so, open the Inspector as usual, then set the inspect property to true. This will cause the path to be displayed visually as a line, with the predefined path-points (received from the path property) shown as small boxes. You can change the path in the inspector by selecting one of the boxes and adjusting its position using the transformation tools of the editor. The path will update instantly.
 
-## Overview
+Browser Installation
+Install and use the Along Path Component by directly including the browser files in your HTML:
 
-The Along Path Component works in tandem with the Curve Component, providing a seamless way to move entities along curves. This component listens to curve updates and dynamically adjusts the entity's position, ensuring smooth and precise animations.
+```html
 
-### Key Components
-
-- **alongpath component**: Moves an entity along a curve, with options for looping, duration, and other custom behaviors.
-- **curve component**: Defines the curve that entities will follow.
-- **curve-point component**: Represents a control point of the curve.
-- **a-curve primitive**: A convenience primitive for creating curves.
-- **a-curve-point primitive**: A convenience primitive for creating curve points.
-
-## Usage
-
-### Browser Installation
-
-You can directly include the browser files by adding the following to your HTML file:
-
-\`\`\`html
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/your-username/your-repo@master/aframe-along-path-component-2024/alongpath2024.js"></script>
+  <script src="https://your-cdn-link/aframe-alongpath-component-2024.js"></script>
 </head>
-
 <body>
   <a-scene>
     <a-sphere color="red" radius="0.25" position="0 0 0"
-              alongpath="path: 2,2,-5 -2,1,-2.5 0,1,-1; closed:false; dur:5000; delay:4000; inspector:false;">
+              alongpath="path:2,2,-5 -2,1,-2.5 0,1,-1; closed:false; dur:5000; delay:4000; inspect:false;">
     </a-sphere>
   </a-scene>
 </body>
-\`\`\`
+\```
+Make sure to replace your-cdn-link with the actual link to your hosted aframe-alongpath-component-2024.js file.
 
-### Define the Curve Using the \`a-curve\` Primitive:
+API
+alongpath Component
+Property	Description	Default Value
+path	The path points for the entity to follow (format: "x,y,z x,y,z x,y,z")	''
+closed	Whether to automatically close the path by connecting the end and start points	false
+dur	Duration in milliseconds for the entity to traverse the entire path	1000
+delay	Delay in milliseconds before the path animation begins	2000
+loop	Whether the animation should loop continuously	false
+inspect	Whether to display the path in A-Frame Inspector for visual editing	false
+Simplified Example
+Here's a simplified example demonstrating how to use the Along Path Component:
 
-\`\`\`html
-<a-curve id="my-curve">
-  <!-- Curve points will be added here -->
-</a-curve>
-\`\`\`
-
-The \`id\` attribute assigns a unique identifier to the curve, which can be used for referencing the curve in other components.
-
-### Add Curve Points to Define the Shape of the Curve Using the \`a-curve-point\` Primitive:
-
-\`\`\`html
-<a-curve id="my-curve">
-  <a-curve-point position="-1 1 -3"></a-curve-point>
-  <a-curve-point position="0 2 -3"></a-curve-point>
-  <a-curve-point position="1 1 -3"></a-curve-point>
-</a-curve>
-\`\`\`
-
-Each \`a-curve-point\` primitive represents a control point of the curve. The \`position\` attribute specifies the position of the curve point in 3D space.
-
-### Move Entities Along the Curve Using the \`alongpath\` Component:
-
-\`\`\`html
-<a-box color="red" alongpath="curve: #my-curve; dur: 5000; loop: true;"></a-box>
-\`\`\`
-
-The \`curve\` attribute specifies the selector of the curve entity along which the entity will move. The \`dur\` attribute sets the duration of the movement, and the \`loop\` attribute makes the movement repeat indefinitely.
-
-### Usage with A-Frame Inspector
-
-You can use the A-Frame Inspector to manually modify the predefined paths. Set the \`inspect\` property to \`true\` to visualize and edit the path within the inspector. The path will be displayed as a line, and the predefined path points will be shown as small boxes.
-
-\`\`\`html
-<a-sphere color="red" radius="0.25" position="0 0 0"
-          alongpath="path: 2,2,-5 -2,1,-2.5 0,1,-1; closed:false; dur:5000; delay:4000; inspector:true;">
-</a-sphere>
-\`\`\`
-
-Within the A-Frame Inspector, you can select and move these boxes to change the path interactively.
-
-## API
-
-### \`alongpath\` Component
-
-| Property  | Description                                                                                     | Default Value |
-|-----------|-------------------------------------------------------------------------------------------------|---------------|
-| \`path\`    | One or more points on the path the entity should follow (Format: \`"x,y,z x,y,z x,y,z"\`)          | \`''\`          |
-| \`curve\`   | A selector to identify the corresponding curve entity                                            | \`''\`          |
-| \`closed\`  | Whether or not the curve should be treated as closed (looping from the end back to the start)     | \`false\`       |
-| \`dur\`     | Duration of the movement along the path in milliseconds                                          | \`1000\`        |
-| \`delay\`   | Delay before the movement starts in milliseconds                                                 | \`0\`           |
-| \`loop\`    | Whether the movement should loop                                                                 | \`false\`       |
-| \`inspect\` | Enables debug mode to visualize the path                                                         | \`false\`       |
-
-### \`curve\` Component
-
-| Property  | Description                                                                 | Default Value |
-|-----------|-----------------------------------------------------------------------------|---------------|
-| \`type\`    | Type of the curve to draw. One of: 'CatmullRom', 'CubicBezier', 'QuadraticBezier', 'Line' | \`'CatmullRom'\`|
-| \`closed\`  | Whether or not the curve should be drawn closed (connect the end and start point automatically) | \`false\`      |
-
-## Example
-
-Here's a simplified example demonstrating the usage of the Along Path Component:
-
-\`\`\`html
+```html
 <a-scene>
-  <!-- Define the curve -->
-  <a-curve id="my-curve">
-    <a-curve-point position="-1 1 -3"></a-curve-point>
-    <a-curve-point position="0 2 -3"></a-curve-point>
-    <a-curve-point position="1 1 -3"></a-curve-point>
-  </a-curve>
 
-  <!-- Move an entity along the curve -->
-  <a-box color="red" alongpath="curve: #my-curve; dur: 5000; loop: true;"></a-box>
+  <!-- Define a path for the sphere to follow -->
+<a-sphere color="red" radius="0.25" position="0 0 0"
+         alongpath="path:2,2,-5 -2,1,-2.5 0,1,-1; closed:false; dur:5000; delay:4000; inspect:false;">
+</a-sphere>
 </a-scene>
-\`\`\`
+```
 
 In this example:
 
-- The curve is defined using the \`a-curve\` primitive with the id of \`my-curve\`.
-- Curve points are added using the \`a-curve-point\` primitives, each with a position attribute defining its position in 3D space.
-- The \`alongpath\` component is used to animate a box along the curve, with a duration of 5000 milliseconds and looping enabled.
+The sphere follows a predefined path specified in the alongpath component.
+The path is not closed, the duration is set to 5000 milliseconds, and the animation starts after a delay of 4000 milliseconds.
+Compatibility
+The A-Frame Along Path Component 2024 is compatible with A-Frame version 1.5.0 and above. It has been tested with the latest versions of modern web browsers, including Chrome, Firefox, Safari, and Edge.
 
-## License
+Credits
+The initial concept and development of the A-Frame Along Path Component were based on contributions from the A-Frame community. The current version has been updated and maintained for compatibility with the latest A-Frame release.
 
-The A-Frame Along Path Component is released under the GPL-3.0 License. You can use, modify, and distribute it under the terms of this license.
+License
+The A-Frame Along Path Component 2024 is released under the MIT License. Feel free to use, modify, and distribute it as per the terms of the license.
 
-## Conclusion
+Conclusion
+The A-Frame Along Path Component 2024 provides an easy-to-use solution for animating entities along predefined paths within A-Frame scenes. Its properties offer flexibility in configuring the behavior of path-following entities, and the compatibility with the A-Frame Inspector allows for intuitive path editing within the A-Frame development environment.
 
-The A-Frame Along Path Component provides a powerful and flexible way to create and manipulate entity movements along predefined paths in your A-Frame scenes. With its easy-to-use primitives and components, you can create dynamic animations, guided tours, or any other experience where objects need to follow a specific trajectory.
-
-Whether you're creating paths for animations, generating procedural content, or adding visual interest to your scenes, the Along Path Component offers a range of possibilities. Experiment with different curve types, customize the appearance of the animations, and leverage the \`inspect\` mode to fine-tune your paths.
-
-We hope this documentation has provided you with a comprehensive understanding of the Along Path Component and how to use it effectively in your A-Frame projects. Happy path-following!
+This updated version enhances the original component by ensuring compatibility with the latest A-Frame features, making it a valuable tool for creating dynamic and interactive 3D web experiences.
