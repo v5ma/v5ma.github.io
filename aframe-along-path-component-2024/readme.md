@@ -30,7 +30,7 @@ Install and use the Along Path Component by directly including the browser files
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://your-cdn-link/aframe-alongpath-component-2024.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/v5ma/v5ma.github.io@master/aframe-along-path-component-2024/aframe-along-path-component-2024.js"></script>
 </head>
 
 <body>
