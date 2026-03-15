@@ -6960,18 +6960,20 @@ gltf-model="#sword-gltf" shadow="cast: true"></a-entity> -->
          */
         AFRAME.registerComponent('note-close-button', {
             init: function () {
-                /* Create the X button in the top-right corner of the note */
+                /* Create the X button in the top-right corner of the note.
+                 * Note face is 0.68 × 0.84, so top-right corner is (0.34, 0.42).
+                 * Button needs to be large enough for phone touch (~0.10 units). */
                 var btn = document.createElement('a-plane');
                 btn.setAttribute('class', 'clickable ui-control');
-                btn.setAttribute('width', '0.06');
-                btn.setAttribute('height', '0.06');
+                btn.setAttribute('width', '0.10');
+                btn.setAttribute('height', '0.10');
                 btn.setAttribute('material', 'shader:flat; color:#cc3333; transparent:true; opacity:0.9; side:double');
-                btn.setAttribute('position', '0.18 0.18 0.01');
+                btn.setAttribute('position', '0.30 0.38 0.01');
                 var txt = document.createElement('a-text');
                 txt.setAttribute('value', 'X');
                 txt.setAttribute('color', '#ffffff');
                 txt.setAttribute('align', 'center');
-                txt.setAttribute('width', '0.3');
+                txt.setAttribute('width', '0.5');
                 txt.setAttribute('position', '0 0 0.001');
                 txt.setAttribute('font', 'roboto');
                 btn.appendChild(txt);
@@ -31813,6 +31815,10 @@ gltf-model="#sword-gltf" shadow="cast: true"></a-entity> -->
                 syncNoteInlineMediaPreview(noteObjectId, state.notesByObjectId.get(noteObjectId), noteCard);
                 syncBoardMiniCardsForNote(noteObjectId, state.notesByObjectId.get(noteObjectId), noteCard);
                 ensureNoteSelectChip(noteObjectId, el);
+                /* Attach close button if phone mode is active (or always — harmless in desktop) */
+                if (!el.components || !el.components['note-close-button']) {
+                    el.setAttribute('note-close-button', '');
+                }
                 updateNoteAttentionCues();
                 updateNoteSelectChipsVisibility();
                 const swapper = getSwapper();
