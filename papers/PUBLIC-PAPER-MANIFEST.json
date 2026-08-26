@@ -1,0 +1,1073 @@
+{
+  "schema": "svgn.public-github-paper-mirror.v1",
+  "count": 106,
+  "total_pdf_bytes": 112350604,
+  "selection": "Current public PDF for each of Papers 1–106 as of 2026-08-25.",
+  "catalog": "https://pub.svgn.io/",
+  "osf_archive": "https://osf.io/3vsar/",
+  "source_manifest_sha256": "49AE0AF24F50261537CF78703E20822479710CA1BA74B1F5F272AC9DBDA5E28A",
+  "papers": [
+    {
+      "number": 1,
+      "title": "Provenance, Timestamp Evidence, and Source-Chain Auditability",
+      "filename": "001 - Provenance, Timestamp Evidence, and Source-Chain Auditability.pdf",
+      "bytes": 108440,
+      "sha256": "1902D36759316570D9407F9A47688692AD181588A8FC2373E8D14BDB3EB18FEF",
+      "zenodo": "https://zenodo.org/records/21693860",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85b45a7250eb9e92c92d",
+      "verified": true
+    },
+    {
+      "number": 2,
+      "title": "Super Information Theory: Coherence, Time Density, Informational Dissipation, and Gravity",
+      "filename": "002 - Super Information Theory Coherence, Time Density, Informational Dissipation, and Gravity.pdf",
+      "bytes": 252499,
+      "sha256": "5FFA4CABD5D4D4758DCE28A235F34EC3C1B2A68AC26CBA27614A77BC20523C98",
+      "zenodo": "https://zenodo.org/records/21693867",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85bacb451d0e250e4c7b",
+      "verified": true
+    },
+    {
+      "number": 3,
+      "title": "Level 0 SIT: A Physical-Frame Model and Condensate-Source Falsification Contract",
+      "filename": "003 - Level 0 SIT A Physical-Frame Model and Condensate-Source Falsification Contract.pdf",
+      "bytes": 122938,
+      "sha256": "8F116D6E9BE4DEC46C36DE55C9A367D800F19D32321AEE83434BA94A890E9B8C",
+      "zenodo": "https://zenodo.org/records/21693868",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85bfd5bf8932c192c952",
+      "verified": true
+    },
+    {
+      "number": 4,
+      "title": "Correction to The Coherence-Gated Yang-Mills Mass Gap",
+      "filename": "004 - Correction to The Coherence-Gated Yang-Mills Mass Gap.pdf",
+      "bytes": 126352,
+      "sha256": "39B176DB47F897364808C0580EEA72EF04D0B4B1F70235927A97AC312002AC1D",
+      "zenodo": "https://zenodo.org/records/21693871",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85c4d5bf8932c192c954",
+      "verified": true
+    },
+    {
+      "number": 5,
+      "title": "Comparing Routes to Complex Adaptation",
+      "filename": "005 - Comparing Routes to Complex Adaptation.pdf",
+      "bytes": 142686,
+      "sha256": "AE61C81435952BA96A9D7CE64EC90BF49E77B3E8AF758B766499F13F0CEDAF3A",
+      "zenodo": "https://zenodo.org/records/21693872",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85c92d2453b1d622f26a",
+      "verified": true
+    },
+    {
+      "number": 6,
+      "title": "Hydrogenic Bound States from Phase Holonomy, Part II",
+      "filename": "006 - Hydrogenic Bound States from Phase Holonomy, Part II.pdf",
+      "bytes": 173677,
+      "sha256": "4202B98A356B4B60AA93E43AEA934FFCD34EC1F69DFCBA3DCA4D7D0E4C66E05D",
+      "zenodo": "https://zenodo.org/records/21693873",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85cdcb451d0e250e4c8f",
+      "verified": true
+    },
+    {
+      "number": 7,
+      "title": "Super Dark Time: From Local Time-Rate Gradients to a Testable Scalar-Tensor Bridge",
+      "filename": "007 - Super Dark Time From Local Time-Rate Gradients to a Testable Scalar-Tensor Bridge.pdf",
+      "bytes": 232663,
+      "sha256": "E37A45EF073D6438E2246922C66E3E74F3527AE16ACCA6EB33688853E687228A",
+      "zenodo": "https://zenodo.org/records/21693874",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85d45a7250eb9e92c935",
+      "verified": true
+    },
+    {
+      "number": 8,
+      "title": "Spectral Gap and Finite-Level Cusp-Depth Diagnostics of the Weighted Farey Laplacian",
+      "filename": "008 - Spectral Gap and Finite-Level Cusp-Depth Diagnostics of the Weighted Farey Laplacian.pdf",
+      "bytes": 177112,
+      "sha256": "1D077BC7D924862FB717BDC40FCF8072857AE29B0134095AEE2BC319F5124F3B",
+      "zenodo": "https://zenodo.org/records/21693877",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85dd20caf27b210e4efe",
+      "verified": true
+    },
+    {
+      "number": 9,
+      "title": "The Ford-Damped Operator Family: The Boundary Re s = 1/2, a Totient Moment, and an Eisenstein-Coefficient Comparison",
+      "filename": "009 - The Ford-Damped Operator Family The Boundary Re s = 12, a Totient Moment, and an Eisenstein-Coefficient Comparison.pdf",
+      "bytes": 222800,
+      "sha256": "46FDEE66FB123E871C952E51C82626025F1E17EBE1AFF78B89C934CADB982261",
+      "zenodo": "https://zenodo.org/records/21693878",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85e3d5bf8932c192c96b",
+      "verified": true
+    },
+    {
+      "number": 10,
+      "title": "A Bounded Reproducibility Package for the HSIT Program: Corrected Claims, Finite Regressions, and Open Controls",
+      "filename": "010 - A Bounded Reproducibility Package for the HSIT Program Corrected Claims, Finite Regressions, and Open Controls.pdf",
+      "bytes": 156098,
+      "sha256": "EFA21A894D9AB993FDB7ADE169C9ABFA7C2AF375912A02E6A18B856566CC2A69",
+      "zenodo": "https://zenodo.org/records/21693879",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85e85fb050b9ae0e4efd",
+      "verified": true
+    },
+    {
+      "number": 11,
+      "title": "An Auxiliary Finite Lattice Model Inspired by SIT",
+      "filename": "011 - An Auxiliary Finite Lattice Model Inspired by SIT.pdf",
+      "bytes": 143909,
+      "sha256": "D4D157A57285A49D4F7FAD31C18D1B5E49AF15AC121B1B2B2ECE3241515A44BC",
+      "zenodo": "https://zenodo.org/records/21693880",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85ed52e3585fcb92c961",
+      "verified": true
+    },
+    {
+      "number": 12,
+      "title": "Weighted Farey Laplacians",
+      "filename": "012 - Weighted Farey Laplacians.pdf",
+      "bytes": 176437,
+      "sha256": "4D4E1DA6F23D0A7DFA506252FFD5BBEA35103A733F3641B353634F5E63D60462",
+      "zenodo": "https://zenodo.org/records/21693881",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85f120caf27b210e5056",
+      "verified": true
+    },
+    {
+      "number": 13,
+      "title": "Self-Aware Networks: A Falsifiable Theory-and-Methods Framework for Phase-Gradient Routing and Recurrent Oscillatory Reconstruction",
+      "filename": "013 - Self-Aware Networks A Falsifiable Theory-and-Methods Framework for Phase-Gradient Routing and Recurrent Oscillatory Reconstruction.pdf",
+      "bytes": 16101868,
+      "sha256": "B451807DA8AC480698A2D291AD801443131D87CCC5924233A48B05EB40C22C41",
+      "zenodo": "https://zenodo.org/records/21693884",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85f9cb451d0e250e4cd5",
+      "verified": true
+    },
+    {
+      "number": 14,
+      "title": "Designing a Coherence-Gravity Test with Bose-Einstein Condensates",
+      "filename": "014 - Designing a Coherence-Gravity Test with Bose-Einstein Condensates.pdf",
+      "bytes": 155655,
+      "sha256": "0D6C4B526FCFE802ED49AB344515AE3A3C1B3E658397A223D2F3A3B2176AE08E",
+      "zenodo": "https://zenodo.org/records/21693886",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a85ffcb451d0e250e4cd7",
+      "verified": true
+    },
+    {
+      "number": 15,
+      "title": "Kletetschka's Three-Dimensional Time and Blumberg's QGTCD-SIT Genealogy",
+      "filename": "015 - Kletetschka's Three-Dimensional Time and Blumberg's QGTCD-SIT Genealogy.pdf",
+      "bytes": 213512,
+      "sha256": "39C8929A574E7DC40B68A9F9E6F9741ACC02B60587C8A14BDECEF5AC444F2F58",
+      "zenodo": "https://zenodo.org/records/21693887",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8605a0f4d5aa8222f1ca",
+      "verified": true
+    },
+    {
+      "number": 16,
+      "title": "Oscillatory Cognition Across SAN and Miller-Related Neuroscience",
+      "filename": "016 - Oscillatory Cognition Across SAN and Miller-Related Neuroscience.pdf",
+      "bytes": 199192,
+      "sha256": "2A91864A3923C2AA9F3FEE33F815AF58EE7A9D983969F1F23AB3A248BD3583DB",
+      "zenodo": "https://zenodo.org/records/21693888",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a860b5fb050b9ae0e4f14",
+      "verified": true
+    },
+    {
+      "number": 17,
+      "title": "Spatial Neural Rendering Before Oscillatory Spatial Computing",
+      "filename": "017 - Spatial Neural Rendering Before Oscillatory Spatial Computing.pdf",
+      "bytes": 159980,
+      "sha256": "6752094BB5DCFD74893D079E3B686A1BD086D305074CB29DDCAC38ABBAB560A0",
+      "zenodo": "https://zenodo.org/records/21693889",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a861420caf27b210e5075",
+      "verified": true
+    },
+    {
+      "number": 18,
+      "title": "A Typed Claim-Governance Ontology for Neuroscience and SAN Research",
+      "filename": "018 - A Typed Claim-Governance Ontology for Neuroscience and SAN Research.pdf",
+      "bytes": 115320,
+      "sha256": "6C4AADA35B94333E283BFA4B7816F0497F5CE5C8E88E092E06267A0DF6C81CE9",
+      "zenodo": "https://zenodo.org/records/21693890",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a861aa0f4d5aa8222f1e2",
+      "verified": true
+    },
+    {
+      "number": 19,
+      "title": "A Lean-Checked Finite Farey Mediator Theorem",
+      "filename": "019 - A Lean-Checked Finite Farey Mediator Theorem.pdf",
+      "bytes": 136476,
+      "sha256": "5457AE78877560C64256092FF09E9A62C0FDA4F8701B48C3978ABA185C5BF98A",
+      "zenodo": "https://zenodo.org/records/21693891",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a861e5a7250eb9e92c968",
+      "verified": true
+    },
+    {
+      "number": 20,
+      "title": "A Mathematical Framework for Contractive Computational Dynamics with a Thermodynamic Bridge",
+      "filename": "020 - A Mathematical Framework for Contractive Computational Dynamics with a Thermodynamic Bridge.pdf",
+      "bytes": 183888,
+      "sha256": "A5DEEFFD84299A26DFB91D87510428027BC18D5421E5E8E4C7D2C0A112568687",
+      "zenodo": "https://zenodo.org/records/21693892",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a862320caf27b210e508a",
+      "verified": true
+    },
+    {
+      "number": 21,
+      "title": "Coincidence as a Bit of Information",
+      "filename": "021 - Coincidence as a Bit of Information.pdf",
+      "bytes": 1083606,
+      "sha256": "82E124B17955B0EF2D372937B02FE784ACB6F016D9E27CC1AC97A7C5B2A8FE28",
+      "zenodo": "https://zenodo.org/records/21693893",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a862967c948e6fc0e4b78",
+      "verified": true
+    },
+    {
+      "number": 22,
+      "title": "Cortical Traveling Waves and Self-Aware Networks",
+      "filename": "022 - Cortical Traveling Waves and Self-Aware Networks.pdf",
+      "bytes": 1128816,
+      "sha256": "67C53F13E7284C6A7B2C70745F9CC39FCF6D307BE043CF4AB5952C8D4AE1970F",
+      "zenodo": "https://zenodo.org/records/21693894",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a862fd5bf8932c192c98d",
+      "verified": true
+    },
+    {
+      "number": 23,
+      "title": "Brain Rhythms in Cognition and Self-Aware Networks",
+      "filename": "023 - Brain Rhythms in Cognition and Self-Aware Networks.pdf",
+      "bytes": 180009,
+      "sha256": "0C494D6FE9495B1CF73E94877F8ABA3F9ED3C83A03E3A483A7D2B88C93D06A7F",
+      "zenodo": "https://zenodo.org/records/21693895",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8633cb451d0e250e4cfc",
+      "verified": true
+    },
+    {
+      "number": 24,
+      "title": "Hydrogenic Bound States from Phase Holonomy, Part I",
+      "filename": "024 - Hydrogenic Bound States from Phase Holonomy, Part I.pdf",
+      "bytes": 144649,
+      "sha256": "FA05E7044428E5DDA42E156B33B5D42654054200677033D5AABEFC891947859D",
+      "zenodo": "https://zenodo.org/records/21693896",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86389405866a1d0e4b7b",
+      "verified": true
+    },
+    {
+      "number": 25,
+      "title": "Informational Holonomy and the Electron g-Factor",
+      "filename": "025 - Informational Holonomy and the Electron g-Factor.pdf",
+      "bytes": 161095,
+      "sha256": "359B7BDBA5B80D6C4B76E914B78E638AF5184FA857A722E27D3D00BFD3484825",
+      "zenodo": "https://zenodo.org/records/21693897",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a863fd6586d3a4c22f277",
+      "verified": true
+    },
+    {
+      "number": 26,
+      "title": "Oscillatory State Persistence and Stable Video Infinity",
+      "filename": "026 - Oscillatory State Persistence and Stable Video Infinity.pdf",
+      "bytes": 145632,
+      "sha256": "EAF4A41FBE2536453EACCB4D04020AF9BEE0CB2FF31A5F0A93BE93B9A869497C",
+      "zenodo": "https://zenodo.org/records/21693898",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a864452e3585fcb92c98a",
+      "verified": true
+    },
+    {
+      "number": 27,
+      "title": "SIT and P versus NP as a Coherence-Guided Computation Program",
+      "filename": "027 - SIT and P versus NP as a Coherence-Guided Computation Program.pdf",
+      "bytes": 176586,
+      "sha256": "C889DD90B5C9821E6C82D1B6E8057DC3937EAF3BEAC3C894B73351478C6C69C9",
+      "zenodo": "https://zenodo.org/records/21693899",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8649a0f4d5aa8222f1f1",
+      "verified": true
+    },
+    {
+      "number": 28,
+      "title": "Cross-Disciplinary SIT Translation Guide",
+      "filename": "028 - Cross-Disciplinary SIT Translation Guide.pdf",
+      "bytes": 130555,
+      "sha256": "2FAF1902F1F425D2A68DA3545A70798DCC9A29507B9659460F11C800D19CAF93",
+      "zenodo": "https://zenodo.org/records/21693900",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a864fcb451d0e250e4d14",
+      "verified": true
+    },
+    {
+      "number": 29,
+      "title": "A Lean-Certified Endpoint-Shape Counterexample in the Branch-C Farey Mediator Program",
+      "filename": "029 - A Lean-Certified Endpoint-Shape Counterexample in the Branch-C Farey Mediator Program.pdf",
+      "bytes": 136070,
+      "sha256": "322D7F536285011158261D5F2270D40BCB6B19D9B2E9D01E46126A9F5846C60F",
+      "zenodo": "https://zenodo.org/records/21693903",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8656f33046e8ea92caa1",
+      "verified": true
+    },
+    {
+      "number": 30,
+      "title": "The Riemann Hypothesis as a Saturation Law",
+      "filename": "030 - The Riemann Hypothesis as a Saturation Law.pdf",
+      "bytes": 191326,
+      "sha256": "1D117AEC5732D549357CD1756D095C05407A9286C27C63FF854722B968B983BB",
+      "zenodo": "https://zenodo.org/records/21693904",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a865acb451d0e250e4d1c",
+      "verified": true
+    },
+    {
+      "number": 31,
+      "title": "Obstruction Theorems for Farey-Spectral Approaches to the Riemann Hypothesis",
+      "filename": "031 - Obstruction Theorems for Farey-Spectral Approaches to the Riemann Hypothesis.pdf",
+      "bytes": 187509,
+      "sha256": "156AC9C7A3B2B4325C031F0BCFD30AB80789BCB821634FFE55137429B081D71A",
+      "zenodo": "https://zenodo.org/records/21693905",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a866267c948e6fc0e4b9d",
+      "verified": true
+    },
+    {
+      "number": 32,
+      "title": "The HSIT Program: Coherence, Arithmetic, and the Riemann Hypothesis",
+      "filename": "032 - The HSIT Program Coherence, Arithmetic, and the Riemann Hypothesis.pdf",
+      "bytes": 1184453,
+      "sha256": "D20E0696E37A74C6B24B4F871E8D951197C2EDB2646C72DCCB6B1312AE11C7F3",
+      "zenodo": "https://zenodo.org/records/21693907",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86682d2453b1d622f2c6",
+      "verified": true
+    },
+    {
+      "number": 33,
+      "title": "A Constructive Coherence-Tower Theorem for a U(1) Lattice Toy Model of Super Information Theory",
+      "filename": "033 - A Constructive Coherence-Tower Theorem for a U(1) Lattice Toy Model of Super Information Theory.pdf",
+      "bytes": 506508,
+      "sha256": "AC31EBB7E73BF1A25EC6DD6C0210DAEA793573BF4B67199DDEEA79928FBACD5A",
+      "zenodo": "https://zenodo.org/records/21693908",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a866e67c948e6fc0e4bab",
+      "verified": true
+    },
+    {
+      "number": 34,
+      "title": "SuperTimePosition and Gravitational Phase-Lock",
+      "filename": "034 - SuperTimePosition and Gravitational Phase-Lock.pdf",
+      "bytes": 146319,
+      "sha256": "37CBCC9634613D9CB1A915C13FE839058CF454D295E7E0E09141A3B259198A1E",
+      "zenodo": "https://zenodo.org/records/21693909",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a867224d2ade58192cb35",
+      "verified": true
+    },
+    {
+      "number": 35,
+      "title": "Biological Computationalism and Self Aware Networks",
+      "filename": "035 - Biological Computationalism and Self Aware Networks.pdf",
+      "bytes": 158054,
+      "sha256": "00BCB0B74DB41A6AACAE3E3A4A0BAE8DAB59AE89C001367BFE6F877E567BBA1D",
+      "zenodo": "https://zenodo.org/records/21693910",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a867f9405866a1d0e4bba",
+      "verified": true
+    },
+    {
+      "number": 36,
+      "title": "The Physics of Prospective Learning: Temporal Phase Dynamics and Context Persistence in Biological and Artificial Intelligence",
+      "filename": "036 - The Physics of Prospective Learning Temporal Phase Dynamics and Context Persistence in Biological and Artificial Intelligence.pdf",
+      "bytes": 148656,
+      "sha256": "545EA390478802E253B213CDEF7DA08FFA0CDD5515230D6D9C6C70EDAA4EA00F",
+      "zenodo": "https://zenodo.org/records/21693911",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86856a1212fd7522f00a",
+      "verified": true
+    },
+    {
+      "number": 37,
+      "title": "Computational Phase Synchronization",
+      "filename": "037 - Computational Phase Synchronization.pdf",
+      "bytes": 179075,
+      "sha256": "035593239B67625267FC216072928B5693F02911B19D9099DBE95E846BC8A191",
+      "zenodo": "https://zenodo.org/records/21693912",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86899405866a1d0e4bbe",
+      "verified": true
+    },
+    {
+      "number": 38,
+      "title": "The Physics of Prospective Learning",
+      "filename": "038 - The Physics of Prospective Learning.pdf",
+      "bytes": 153036,
+      "sha256": "E14881D77F7BECE846AA4C8AC1EC44A5A46A9D9421A350871328FB67FC48C9A3",
+      "zenodo": "https://zenodo.org/records/21693913",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a868fa0f4d5aa8222f229",
+      "verified": true
+    },
+    {
+      "number": 39,
+      "title": "Inference as Training",
+      "filename": "039 - Inference as Training.pdf",
+      "bytes": 183352,
+      "sha256": "86B080C14610CB7E517BFD04B5ABFCAC9C4EA5F56E40FA479A773547CFFB4523",
+      "zenodo": "https://zenodo.org/records/21693914",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86946a1212fd7522f014",
+      "verified": true
+    },
+    {
+      "number": 40,
+      "title": "Super Evolution Theory: From Receptor-State Computation to Reticulate Evolution",
+      "filename": "040 - Super Evolution Theory From Receptor-State Computation to Reticulate Evolution.pdf",
+      "bytes": 595975,
+      "sha256": "2732015E08D4251FEBD62DED6E91E26A6EBA85CB6264A1D938217B6075E4B8F5",
+      "zenodo": "https://zenodo.org/records/21863900",
+      "osf": "https://osf.io/3nywu/files/osfstorage/6a78ceb445382469d776cd97",
+      "verified": true
+    },
+    {
+      "number": 41,
+      "title": "SIT, Holography, and the AdS/CFT Translation Split",
+      "filename": "041 - SIT, Holography, and the AdSCFT Translation Split.pdf",
+      "bytes": 129650,
+      "sha256": "D5833C16B84ED66753C4629DA273668F994CEE527CF289A01CEAD3EB9163CBCC",
+      "zenodo": "https://zenodo.org/records/21693916",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a869d24d2ade58192cb4b",
+      "verified": true
+    },
+    {
+      "number": 42,
+      "title": "Quantum Gradient Time Crystal Dilation: Classical Temporal-Opportunity Kernels and a Conditional Newtonian Calibration",
+      "filename": "042 - Quantum Gradient Time Crystal Dilation Classical Temporal-Opportunity Kernels and a Conditional Newtonian Calibration.pdf",
+      "bytes": 197285,
+      "sha256": "3E2DF213CE7F1E72A7A465CBC4DEAA9F548B6A9A2EC601893F29346CDA39D1A3",
+      "zenodo": "https://zenodo.org/records/21693919",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86a29405866a1d0e4be2",
+      "verified": true
+    },
+    {
+      "number": 43,
+      "title": "Neural Array Projection Oscillation Tomography",
+      "filename": "043 - Neural Array Projection Oscillation Tomography.pdf",
+      "bytes": 190261,
+      "sha256": "2794072B5607330CC2E08BD379F78DC98000B22369C75C72C07A903E63A2553B",
+      "zenodo": "https://zenodo.org/records/21693920",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86a6cfcb25f95492ca49",
+      "verified": true
+    },
+    {
+      "number": 44,
+      "title": "Thought-Density Hypertime and the Extended Brain",
+      "filename": "044 - Thought-Density Hypertime and the Extended Brain.pdf",
+      "bytes": 206530,
+      "sha256": "26CFBEA0B499DF6F47D419277E6A1E1051E9E6202D6B6E8714DC72C5F3012708",
+      "zenodo": "https://zenodo.org/records/21693921",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86adbd6b9dfd9022efee",
+      "verified": true
+    },
+    {
+      "number": 45,
+      "title": "The Field-Cell Self: A Falsifiable Mechanistic Identity Hypothesis for Conscious Neural Rendering",
+      "filename": "045 - The Field-Cell Self A Falsifiable Mechanistic Identity Hypothesis for Conscious Neural Rendering.pdf",
+      "bytes": 1454095,
+      "sha256": "F9DA1665C4C4E76B45D118583428F8233FDA7782B253ABB5E84550AC71FBD245",
+      "zenodo": "https://zenodo.org/records/21693922",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86b6c7fae5fe6622effd",
+      "verified": true
+    },
+    {
+      "number": 46,
+      "title": "Tomographic Coherence-Based Neural Rendering",
+      "filename": "046 - Tomographic Coherence-Based Neural Rendering.pdf",
+      "bytes": 200433,
+      "sha256": "665C2D9345BFCF63886EA7323DD7BAB340195578DB0057896A1F140E80D34830",
+      "zenodo": "https://zenodo.org/records/21693924",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86bbc7fae5fe6622f006",
+      "verified": true
+    },
+    {
+      "number": 47,
+      "title": "A Computational-Tomographic Proof of God",
+      "filename": "047 - A Computational-Tomographic Proof of God.pdf",
+      "bytes": 183888,
+      "sha256": "B51C965F58DDFFD0C2A6A91611227474CCE00D83B769CDC03886F54C978E0391",
+      "zenodo": "https://zenodo.org/records/21693925",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86c120caf27b210e50d4",
+      "verified": true
+    },
+    {
+      "number": 48,
+      "title": "Causal Fermion Systems and Super Information Theory",
+      "filename": "048 - Causal Fermion Systems and Super Information Theory.pdf",
+      "bytes": 162149,
+      "sha256": "3AA215B89CD1B9162C98E1F283484B8F44A669FD4C62256A138AF5D412C9E9F6",
+      "zenodo": "https://zenodo.org/records/21693926",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86c56a1212fd7522f01d",
+      "verified": true
+    },
+    {
+      "number": 49,
+      "title": "Prospective Learning Needs Physical Implementations",
+      "filename": "049 - Prospective Learning Needs Physical Implementations.pdf",
+      "bytes": 154786,
+      "sha256": "16FBE2033291BFF81CA9FA84BE5DC7DB89CCD6C41B70C9654C9511FE00CC245E",
+      "zenodo": "https://zenodo.org/records/21693929",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86d0a0f4d5aa8222f24f",
+      "verified": true
+    },
+    {
+      "number": 50,
+      "title": "Choice Without a Central Chooser",
+      "filename": "050 - Choice Without a Central Chooser.pdf",
+      "bytes": 185015,
+      "sha256": "99882F0F46F96EA5C019E0BE156EEE15EF9D91956282DCEE345938DE4F2108E7",
+      "zenodo": "https://zenodo.org/records/21693930",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86d824d2ade58192cb59",
+      "verified": true
+    },
+    {
+      "number": 51,
+      "title": "A Differential Neural Scene Codec: Formal Conditions and Exploratory Limits of Scene-Conditioned Residual Neural Control",
+      "filename": "051 - A Differential Neural Scene Codec Formal Conditions and Exploratory Limits of Scene-Conditioned Residual Neural Control.pdf",
+      "bytes": 145367,
+      "sha256": "A4865D9450EA650C3E4B952444225F781FDAF83CA9059B2983898ED6B3BAA371",
+      "zenodo": "https://zenodo.org/records/21693931",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86dfad5a5121eb22f00d",
+      "verified": true
+    },
+    {
+      "number": 52,
+      "title": "Foveated Shardless Worlds: A Frozen Negative Benchmark of Sparse Avatar-State Replication and Learned Local Reconstruction",
+      "filename": "052 - Foveated Shardless Worlds A Frozen Negative Benchmark of Sparse Avatar-State Replication and Learned Local Reconstruction.pdf",
+      "bytes": 161515,
+      "sha256": "02BFA478420B74E624283D2751C35B147CE4ED765789DA4D753D665356113161",
+      "zenodo": "https://zenodo.org/records/21693932",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86e4cb451d0e250e4d7f",
+      "verified": true
+    },
+    {
+      "number": 53,
+      "title": "NAPOT Open-Data Component Gate",
+      "filename": "053 - NAPOT Open-Data Component Gate.pdf",
+      "bytes": 163308,
+      "sha256": "5E4FCE83F2EC420724373E95F28D04B49CC67DB00DBCFAD3D0ABEC01D8B4F436",
+      "zenodo": "https://zenodo.org/records/21693933",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86e95a7250eb9e92caad",
+      "verified": true
+    },
+    {
+      "number": 54,
+      "title": "SAN Visual Atlas",
+      "filename": "054 - SAN Visual Atlas.pdf",
+      "bytes": 24903743,
+      "sha256": "ADB16AB44EF1EA52914E57997701E2E0256CD002AA2168A67739D0C26AF8891D",
+      "zenodo": "https://zenodo.org/records/21693934",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86f3c7fae5fe6622f020",
+      "verified": true
+    },
+    {
+      "number": 55,
+      "title": "QGTCD Constraints Note",
+      "filename": "055 - QGTCD Constraints Note.pdf",
+      "bytes": 189641,
+      "sha256": "959096D126D55CA3827ACD28AF0634DBE4AEDD5178AFA66ACD3EB92736DF32B0",
+      "zenodo": "https://zenodo.org/records/21693935",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86fa52e3585fcb92ca0b",
+      "verified": true
+    },
+    {
+      "number": 56,
+      "title": "Phase-Wave Differentials: A Receiver-Relative Signal Operator for Testing Neural State Updates",
+      "filename": "056 - Phase-Wave Differentials A Receiver-Relative Signal Operator for Testing Neural State Updates.pdf",
+      "bytes": 191224,
+      "sha256": "BDACA36F337A1C2F3E91F1D7A4A02B68B8C490D2C131B59743B2A3AAE4F1983B",
+      "zenodo": "https://zenodo.org/records/21693937",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8705b8b3a2f3590e4b7a",
+      "verified": true
+    },
+    {
+      "number": 57,
+      "title": "Morphology- and Vesicle-Aware Neural Unit Benchmark",
+      "filename": "057 - Morphology- and Vesicle-Aware Neural Unit Benchmark.pdf",
+      "bytes": 513935,
+      "sha256": "DA9B888D2B07F816BF927C7D64BCDCF6DCB04BF414C659E186BABF6BE0FE4FB2",
+      "zenodo": "https://zenodo.org/records/21693938",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a870bdcca79eed80e4ba9",
+      "verified": true
+    },
+    {
+      "number": 58,
+      "title": "Can an Action Potential Magnetically Drive Mitochondrial ATP Synthesis?",
+      "filename": "058 - Can an Action Potential Magnetically Drive Mitochondrial ATP Synthesis.pdf",
+      "bytes": 311878,
+      "sha256": "ECA3E22D352525B7119519E9607B2071B131DFD9766F788D68A4BCF8A741EB8E",
+      "zenodo": "https://zenodo.org/records/21693939",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8711f33046e8ea92cac2",
+      "verified": true
+    },
+    {
+      "number": 59,
+      "title": "Neuroscience in Review: Recovery Dynamics and Traveling Waves",
+      "filename": "059 - Neuroscience in Review Recovery Dynamics and Traveling Waves.pdf",
+      "bytes": 182708,
+      "sha256": "71D97490268C60412D86C9261B23BA94E0016F61B83BA530907FAF541D411E27",
+      "zenodo": "https://zenodo.org/records/21693940",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a871620caf27b210e5105",
+      "verified": true
+    },
+    {
+      "number": 60,
+      "title": "Neuroscience in Review: Model-Guided Neural Write-In",
+      "filename": "060 - Neuroscience in Review Model-Guided Neural Write-In.pdf",
+      "bytes": 186010,
+      "sha256": "26A96AD814CC451BD55846BE06820C6F89B655C4B4EAF61077FC55DFB6143860",
+      "zenodo": "https://zenodo.org/records/21693941",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a871cad5a5121eb22f02d",
+      "verified": true
+    },
+    {
+      "number": 61,
+      "title": "From Roles and Realizers to Electrochemical Brain Waves",
+      "filename": "061 - From Roles and Realizers to Electrochemical Brain Waves.pdf",
+      "bytes": 147896,
+      "sha256": "18DC75834099F5A203AB10A20CDF5D959CD532C447AFA160467ACD1A3385BAF7",
+      "zenodo": "https://zenodo.org/records/21693942",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8721a0f4d5aa8222f26a",
+      "verified": true
+    },
+    {
+      "number": 62,
+      "title": "Physics in Review: Quantum Entropic-Force Models, QGTCD, and Super Information Theory",
+      "filename": "062 - Physics in Review Quantum Entropic-Force Models, QGTCD, and Super Information Theory.pdf",
+      "bytes": 175889,
+      "sha256": "AE9DA4674BB46C29AC33028C32FAF0091BB85DCBE8C0C7E1E8C9520891D3430B",
+      "zenodo": "https://zenodo.org/records/21693943",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a872752e3585fcb92ca32",
+      "verified": true
+    },
+    {
+      "number": 63,
+      "title": "Physics in Review: Harper's Beyond Square-Root Conjecture and Super Information Theory",
+      "filename": "063 - Physics in Review Harper's Beyond Square-Root Conjecture and Super Information Theory.pdf",
+      "bytes": 156351,
+      "sha256": "FE969C5782333A60446CC1011462A2958896287605205E41FF0166DA031EAE65",
+      "zenodo": "https://zenodo.org/records/21693947",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a872baeb35bdc3a22f1dd",
+      "verified": true
+    },
+    {
+      "number": 64,
+      "title": "From Microtubules to Minds",
+      "filename": "064 - From Microtubules to Minds.pdf",
+      "bytes": 1886843,
+      "sha256": "ED1A9A287AC82189AFABC5658397EC0546B76347E12350C2D01E8A7375BBE42E",
+      "zenodo": "https://zenodo.org/records/21693948",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8731f33046e8ea92cacf",
+      "verified": true
+    },
+    {
+      "number": 65,
+      "title": "Embodied Neural Rendering in Self-Aware Networks",
+      "filename": "065 - Embodied Neural Rendering in Self-Aware Networks.pdf",
+      "bytes": 13290377,
+      "sha256": "D0B4BCB2911A84F8A8C9BE07E5CDFA9CF8E47F10B0F44A7D9902647070CFC4D7",
+      "zenodo": "https://zenodo.org/records/21693949",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a873ab511d1f9970e4b84",
+      "verified": true
+    },
+    {
+      "number": 66,
+      "title": "Telescoping Network Reinstatement in Self-Aware Networks",
+      "filename": "066 - Telescoping Network Reinstatement in Self-Aware Networks.pdf",
+      "bytes": 192708,
+      "sha256": "C4C4AB12F9DFC9D3D8BE669FBDC64505A959F099CDD14B2708536569D379711C",
+      "zenodo": "https://zenodo.org/records/21693952",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8742f33046e8ea92cad6",
+      "verified": true
+    },
+    {
+      "number": 67,
+      "title": "Phase-Wave Differential Calculus: Neural Tuning, Variability Tokens, and Taylor-Sequence Approximation in Oscillatory Neural Networks",
+      "filename": "067 - Phase-Wave Differential Calculus Neural Tuning, Variability Tokens, and Taylor-Sequence Approximation in Oscillatory Neural Networks.pdf",
+      "bytes": 202965,
+      "sha256": "C78CAFDC0D800F4D7F82E5F0E3C3C9A91F0D409747F4B32E176CDEB7ED865CBF",
+      "zenodo": "https://zenodo.org/records/21693955",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8747cfcb25f95492ca70",
+      "verified": true
+    },
+    {
+      "number": 68,
+      "title": "The Coherence-Dispersion Sculpting Hypothesis",
+      "filename": "068 - The Coherence-Dispersion Sculpting Hypothesis.pdf",
+      "bytes": 255520,
+      "sha256": "7AD76E357FB4D74F474352F759EA64E36C6328C374738F0C3B680467EF602976",
+      "zenodo": "https://zenodo.org/records/21693957",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a874d5fb8f721630e4ba6",
+      "verified": true
+    },
+    {
+      "number": 69,
+      "title": "The Action-Potential Magnitude Effect: Typed Waveform, Release, Spectral, Electromechanical, and Cross-Scale Consequences in Self-Aware Networks",
+      "filename": "069 - The Action-Potential Magnitude Effect.pdf",
+      "bytes": 827508,
+      "sha256": "9C67DEE424BF72029E70206C5811645A345A4B9AAA3C4816E03DBA7EB538BDDB",
+      "zenodo": "https://zenodo.org/records/22100947",
+      "osf": "https://osf.io/t8sak/",
+      "verified": true,
+      "version": "2.0"
+    },
+    {
+      "number": 70,
+      "title": "Registering an Embodied World to Brain Dynamics",
+      "filename": "070 - Registering an Embodied World to Brain Dynamics.pdf",
+      "bytes": 2259273,
+      "sha256": "D484C5351C85F4C729DB0CFB4D159A9C1DB2BD185492F85D01684E4DF3A4D6B1",
+      "zenodo": "https://zenodo.org/records/21693961",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8757ad5a5121eb22f050",
+      "verified": true
+    },
+    {
+      "number": 71,
+      "title": "Self-Aware Networks",
+      "filename": "071 - Self-Aware Networks.pdf",
+      "bytes": 234812,
+      "sha256": "0C7703F5BDEB490B32E592900F9EDC5238BBC975C9AE2E17317DE05CFCE9F88D",
+      "zenodo": "https://zenodo.org/records/21693964",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a875dcfcb25f95492ca7d",
+      "verified": true
+    },
+    {
+      "number": 72,
+      "title": "Measuring Candidate Machine-Consciousness Mechanisms in Self-Aware Networks",
+      "filename": "072 - Measuring Candidate Machine-Consciousness Mechanisms in Self-Aware Networks.pdf",
+      "bytes": 195690,
+      "sha256": "F81BAA599C33E18054FABAC6571C69A44A62CEA162AEE3B2DC9B102911A730A7",
+      "zenodo": "https://zenodo.org/records/21693965",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8761c7fae5fe6622f080",
+      "verified": true
+    },
+    {
+      "number": 73,
+      "title": "Coherence-Weighted Electrical Drive in Choice and Motor Realization",
+      "filename": "073 - Coherence-Weighted Electrical Drive in Choice and Motor Realization.pdf",
+      "bytes": 175768,
+      "sha256": "1C40885AE2069982EC76DF546D3EE266BE48691BD0C9E50353CE11CB493851AE",
+      "zenodo": "https://zenodo.org/records/21693966",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8767a0f4d5aa8222f278",
+      "verified": true
+    },
+    {
+      "number": 74,
+      "title": "History-Conditioned Control in Open Systems",
+      "filename": "074 - History-Conditioned Control in Open Systems.pdf",
+      "bytes": 218568,
+      "sha256": "9C40058563B334AE32DEAA329C2D2048D16507049540DDC28DC98399270B72BA",
+      "zenodo": "https://zenodo.org/records/21693967",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a876bd6886915ed0e4b82",
+      "verified": true
+    },
+    {
+      "number": 75,
+      "title": "The Tonic Canvas of Consciousness",
+      "filename": "075 - The Tonic Canvas of Consciousness.pdf",
+      "bytes": 240507,
+      "sha256": "90438AF3D1CF4C547DC75B24F768612388B9ED61737B269E1D237C417CE128BF",
+      "zenodo": "https://zenodo.org/records/21693968",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a8771cfcb25f95492ca8b",
+      "verified": true
+    },
+    {
+      "number": 76,
+      "title": "How a Brain-Body Network Detects Its Own Emotional State Changes",
+      "filename": "076 - How a Brain-Body Network Detects Its Own Emotional State Changes.pdf",
+      "bytes": 274450,
+      "sha256": "CFC7E3F7B27A4555916FB9D1AD5B82A9051BA99F5E538BE4C352D14EE0E299D5",
+      "zenodo": "https://zenodo.org/records/21693970",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a877852e3585fcb92ca67",
+      "verified": true
+    },
+    {
+      "number": 77,
+      "title": "Bypassing a False Shape Bridge: A Lean-Certified Direct Mediator Constructor in the Branch-C Farey Program",
+      "filename": "077 - Bypassing a False Shape Bridge A Lean-Certified Direct Mediator Constructor in the Branch-C Farey Program.pdf",
+      "bytes": 139715,
+      "sha256": "C4B4239AFC881F66783BAE93F923C7AC678F51CD0552AAAD7BFFB287528428D0",
+      "zenodo": "https://zenodo.org/records/21693971",
+      "osf": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a877faeb35bdc3a22f1f7",
+      "verified": true
+    },
+    {
+      "number": 78,
+      "title": "From Spin-Selective Protein Chemistry to Conscious Neural Rendering",
+      "filename": "078 - From Spin-Selective Protein Chemistry to Conscious Neural Rendering.pdf",
+      "bytes": 184738,
+      "sha256": "0B275B2FBFD807F1F715BD14E0EEE6AA4BEFEADC9B8E85A83DAE22996B0B67EB",
+      "zenodo": "https://zenodo.org/records/21743928",
+      "osf": "https://osf.io/download/6a6e234917fe8c729e4b900e/",
+      "verified": true
+    },
+    {
+      "number": 79,
+      "title": "Mitochondrial State as a Gate on Conscious Neural Rendering",
+      "filename": "079 - Mitochondrial State as a Gate on Conscious Neural Rendering.pdf",
+      "bytes": 185050,
+      "sha256": "EE2C6B87D02FFA708E1E0E48423BF66AA421F1354A17AB4159D1E8DFCAF29965",
+      "zenodo": "https://zenodo.org/records/21743939",
+      "osf": "https://osf.io/download/6a6e234c4bf8b406fa5bcdf4/",
+      "verified": true
+    },
+    {
+      "number": 80,
+      "title": "The Network That Learns It Is a Network: From Predictive Selfhood to Explicit Network Self-Knowledge",
+      "filename": "080 - The Network That Learns It Is a Network From Predictive Selfhood to Explicit Network Self-Knowledge.pdf",
+      "bytes": 172736,
+      "sha256": "65EAB71994B223A801A6936DDE2267E9FB34AA6814C4B672EE8C265031B488D9",
+      "zenodo": "https://zenodo.org/records/21743941",
+      "osf": "https://osf.io/download/6a6e234f4bf8b406fa5bcdf8/",
+      "verified": true
+    },
+    {
+      "number": 81,
+      "title": "The External Cortex Loop: Contingency Interruption, Reinstatement, and Cognitive Incorporation in EEG Neurofeedback",
+      "filename": "081 - The External Cortex Loop Contingency Interruption, Reinstatement, and Cognitive Incorporation in EEG Neurofeedback.pdf",
+      "bytes": 174332,
+      "sha256": "0F4D9EEC32E759DE88D4EE8F6D601E0A1B90252C9AE6CF9E664975E9A83F1A85",
+      "zenodo": "https://zenodo.org/records/21743944",
+      "osf": "https://osf.io/download/6a6e23538617ac43ca4b916c/",
+      "verified": true
+    },
+    {
+      "number": 82,
+      "title": "From Neural Trajectories to Cross-Scale Approximation: The Mathematics Program of Self-Aware Networks",
+      "filename": "082 - From Neural Trajectories to Cross-Scale Approximation The Mathematics Program of Self-Aware Networks.pdf",
+      "bytes": 351348,
+      "sha256": "6704ED76B43D82DD1C12730D3D2ABC693F6580DFC378AAABA60F83568455B4A4",
+      "zenodo": "https://zenodo.org/records/21743947",
+      "osf": "https://osf.io/download/6a6e23568617ac43ca4b9175/",
+      "verified": true
+    },
+    {
+      "number": 83,
+      "title": "Building Sentient Beings",
+      "filename": "083 - Building Sentient Beings.pdf",
+      "bytes": 2896389,
+      "sha256": "3FD99FE4A951B768DE25C46C661E6555FE66AFF894DB2D4B79DD8CBB59DB2D56",
+      "zenodo": "https://zenodo.org/records/21061762",
+      "osf": "https://osf.io/download/6a6e341df4c8a7a143ed2ae7/",
+      "verified": true
+    },
+    {
+      "number": 84,
+      "title": "One Intelligence, Multiple Hands: A Shared-Context Architecture for Cooperative Voice and Execution Agents",
+      "filename": "084 - One Intelligence, Multiple Hands A Shared-Context Architecture for Cooperative Voice and Execution Agents.pdf",
+      "bytes": 1513994,
+      "sha256": "141F3550E9D3539E9801E5EC04D343420F4995AD5E9E8A45753A41C6488B3391",
+      "zenodo": "https://zenodo.org/records/21855525",
+      "osf": "https://osf.io/dkhgf/",
+      "verified": true
+    },
+    {
+      "number": 85,
+      "title": "From Morphology to Phase: Dendritic Memory Encoding and PWD Readout in Self Aware Networks",
+      "filename": "085 - From Morphology to Phase Dendritic Memory Encoding and PWD Readout in Self Aware Networks.pdf",
+      "bytes": 155592,
+      "sha256": "4F274A28EA0CFA396908D4B477973F80EE691C3C6F5FC78B8AEEA5C124722511",
+      "zenodo": "https://zenodo.org/records/21855336",
+      "osf": "https://osf.io/93zaw/",
+      "verified": true
+    },
+    {
+      "number": 86,
+      "title": "Can a Neuron Store Infinite Information? Continuous Morphology, Finite Biological Resolution, and Accessible Neural Memory",
+      "filename": "086 - Can a Neuron Store Infinite Information Continuous Morphology, Finite Biological Resolution, and Accessible Neural Memory.pdf",
+      "bytes": 215845,
+      "sha256": "5011845D7B44B3DCD3AF9D10781D614B4738372C00C49B786BEDFA9D41635DDC",
+      "zenodo": "https://zenodo.org/records/21855342",
+      "osf": "https://osf.io/fy37d/",
+      "verified": true
+    },
+    {
+      "number": 87,
+      "title": "From Cellular Difference to Population Reinstatement: Oscillatory Scaling, Inhibitory Waves, and Neural Projection in Self Aware Networks",
+      "filename": "087 - From Cellular Difference to Population Reinstatement Oscillatory Scaling, Inhibitory Waves, and Neural Projection in Self Aware Networks.pdf",
+      "bytes": 167458,
+      "sha256": "4D2113C4588DF9CE30717FCA227B171A43CCF3DCD44AC4FF2D8F4DDCF1716B28",
+      "zenodo": "https://zenodo.org/records/21855348",
+      "osf": "https://osf.io/bk5r9/",
+      "verified": true
+    },
+    {
+      "number": 88,
+      "title": "Transduced Valence: From Neural Effective Drive to ATP-Powered Action",
+      "filename": "088 - Transduced Valence From Neural Effective Drive to ATP-Powered Action.pdf",
+      "bytes": 905907,
+      "sha256": "03947F3CABBD28DD71682DB53B7399B39A095FEAE1CA7CC02F01F0CE05283BDD",
+      "zenodo": "https://zenodo.org/records/21857678",
+      "osf": "https://osf.io/bnzha/",
+      "verified": true
+    },
+    {
+      "number": 89,
+      "title": "From Gamma Synchrony to Informative Difference: A Shannon-Theoretic Model of Tonic Context and Phase-Wave Differentials",
+      "filename": "089 - From Gamma Synchrony to Informative Difference A Shannon-Theoretic Model of Tonic Context and Phase-Wave Differentials.pdf",
+      "bytes": 1431818,
+      "sha256": "E3D79E70F70229B713ED8BBC842D0E31935531892A25EF731587797CB7C4F7EB",
+      "zenodo": "https://zenodo.org/records/21861046",
+      "osf": "https://osf.io/j3gvq/",
+      "verified": true
+    },
+    {
+      "number": 90,
+      "title": "Undecidability Does Not Kill Simulation: Provability, Execution, and the Missing Premise in Anti-Simulation Arguments",
+      "filename": "090 - Undecidability Does Not Kill Simulation Provability, Execution, and the Missing Premise in Anti-Simulation Arguments.pdf",
+      "bytes": 1271862,
+      "sha256": "B014C121CDA8016EA0B451CABD0A5DCAC5FC8CE0FB903EF58B502E5EEAADA0E7",
+      "zenodo": "https://zenodo.org/records/21925834",
+      "osf": "https://osf.io/6nvhc/",
+      "verified": true
+    },
+    {
+      "number": 91,
+      "title": "The Qualia Tomogram: A Generalized Projection-Slice Framework for Receiver-Conditioned Neural Reconstruction",
+      "filename": "091 - The Qualia Tomogram A Generalized Projection-Slice Framework for Receiver-Conditioned Neural Reconstruction.pdf",
+      "bytes": 1301608,
+      "sha256": "874C8DB0BF4AC8689CD90AE67D39D2724E4BC30B56353CC12048CFA77EEE624F",
+      "zenodo": "https://zenodo.org/records/21925839",
+      "osf": "https://osf.io/x7yh9/",
+      "verified": true
+    },
+    {
+      "number": 92,
+      "title": "From Tripartite Synapses to Multicellular Engrams: Astrocytic State, Recall Precision, and Virtual Engram Stability",
+      "filename": "092 - From Tripartite Synapses to Multicellular Engrams Astrocytic State, Recall Precision, and Virtual Engram Stability.pdf",
+      "bytes": 961455,
+      "sha256": "EC944CF98BA9A8740A2456CCB4FB6C83BAE6E6F1B89B726744A3BA759C2DFFAF",
+      "zenodo": "https://zenodo.org/records/21925354",
+      "osf": "https://osf.io/2jv3e/",
+      "verified": true
+    },
+    {
+      "number": 93,
+      "title": "Mobile Immune Signals as a Body-Brain Communication Network: Typed Causal Routes, Receiver-Relative Navigation, and a Cellular Oscillating Tomography Research Program",
+      "filename": "093 - Mobile Immune Signals as a Body-Brain Communication Network Typed Causal Routes, Receiver-Relative Navigation, and a Cellular Oscillating Tomography Research Pr.pdf",
+      "bytes": 2637284,
+      "sha256": "B7EBD468CC64E70643BF8B2AF1EADFD929C7AE2262A3DADB7AB878F90C8C5307",
+      "zenodo": "https://zenodo.org/records/21925357",
+      "osf": "https://osf.io/24ra8/",
+      "verified": true
+    },
+    {
+      "number": 94,
+      "title": "Fractal Conscious Perception: Multiscale Morphology, Statistical Self-Similarity, and Route-Specific Neural Reinstatement",
+      "filename": "094 - Fractal Conscious Perception Multiscale Morphology, Statistical Self-Similarity, and Route-Specific Neural Reinstatement.pdf",
+      "bytes": 953925,
+      "sha256": "7A8E23412CF2289F939C9F574AFB7FEB9333C7F4436A5D8A5F45D1FE5427DF16",
+      "zenodo": "https://zenodo.org/records/21925359",
+      "osf": "https://osf.io/q3j6n/",
+      "verified": true
+    },
+    {
+      "number": 95,
+      "title": "Gravitational Reference Frames in Cortical Networks: Multisensory Orientation, Embodied Neural Rendering, and Tests of Local, Broadcast, and Recurrent-Distributed Architectures",
+      "filename": "095 - Gravitational Reference Frames in Cortical Networks Multisensory Orientation, Embodied Neural Rendering, and Tests of Local, Broadcast, and Recurrent-Distribute.pdf",
+      "bytes": 726502,
+      "sha256": "94FB60E9FF1950F49620CF036893E7C3D55A0DCEFDCA7ED103A9933C2CCEBD81",
+      "zenodo": "https://zenodo.org/records/21925361",
+      "osf": "https://osf.io/yn3kc/",
+      "verified": true
+    },
+    {
+      "number": 96,
+      "title": "Alternating Transmission Protocol: Receiver-Dependent Allocation of Rapid and Recurrent Processing",
+      "filename": "096 - Alternating Transmission Protocol Receiver-Dependent Allocation of Rapid and Recurrent Processing.pdf",
+      "bytes": 1524015,
+      "sha256": "968FF3F2161BB3926DA5E09CDC7A78D8FB92686858BDB0FC0040B4D62FD66C3E",
+      "zenodo": "https://zenodo.org/records/21925363",
+      "osf": "https://osf.io/atkjb/",
+      "verified": true
+    },
+    {
+      "number": 97,
+      "title": "Dreams as Predictive Neural Rendering: Memory Recombination, Internal Simulation, and State-Dependent Testing",
+      "filename": "097 - Dreams as Predictive Neural Rendering Memory Recombination, Internal Simulation, and State-Dependent Testing.pdf",
+      "bytes": 1858155,
+      "sha256": "B0F32D29BD6D3B68AFC97EB55071A92E792696B614F2EADEB214808539FF2A23",
+      "zenodo": "https://zenodo.org/records/21925365",
+      "osf": "https://osf.io/5u78s/",
+      "verified": true
+    },
+    {
+      "number": 98,
+      "title": "Multiscale Causation in Self-Aware Networks: Bottom-Up Construction, Top-Down Constraint, and Lateral Coordination",
+      "filename": "098 - Multiscale Causation in Self-Aware Networks Bottom-Up Construction, Top-Down Constraint, and Lateral Coordination.pdf",
+      "bytes": 3369719,
+      "sha256": "A156D8DC202B56E925622E3E3C196B919C438E6E6F21A6EA62EC0EE6FA6B0192",
+      "zenodo": "https://zenodo.org/records/21925367",
+      "osf": "https://osf.io/g3e6w/",
+      "verified": true
+    },
+    {
+      "number": 99,
+      "title": "Mind Uploading and Consciousness Replication: A Typed Ladder for State Capture, Functional Equivalence, Causal Continuity, and Personal Identity",
+      "filename": "099 - Mind Uploading and Consciousness Replication A Typed Ladder for State Capture, Functional Equivalence, Causal Continuity, and Personal Identity.pdf",
+      "bytes": 800571,
+      "sha256": "4A8F9A1905DC69A8DE4D3AE9B032F98DCA0E369552089827B61EF69BEE46BCD4",
+      "zenodo": "https://zenodo.org/records/21925369",
+      "osf": "https://osf.io/7qwyc/",
+      "verified": true
+    },
+    {
+      "number": 100,
+      "title": "From 3D Semantic Segmentation to Qualitative Neural Rendering: Object Boundaries, Multisensory Registration, and Tests of Differentiated Content",
+      "filename": "100 - From 3D Semantic Segmentation to Qualitative Neural Rendering Object Boundaries, Multisensory Registration, and Tests of Differentiated Content.pdf",
+      "bytes": 938828,
+      "sha256": "A2971EE1413F2DBACE1945ACFE4E33469488FF5C50C9179C408791195C11BF91",
+      "zenodo": "https://zenodo.org/records/21925371",
+      "osf": "https://osf.io/sdep2/",
+      "verified": true
+    },
+    {
+      "number": 101,
+      "title": "Cortical Columns, Capsules, and Transformers: A Typed Benchmark for Part-Whole Representation, Reference Frames, Routing, and Receiver-Relative Dynamics",
+      "filename": "101 - Cortical Columns, Capsules, and Transformers A Typed Benchmark for Part-Whole Representation, Reference Frames, Routing, and Receiver-Relative Dynamics.pdf",
+      "bytes": 1263260,
+      "sha256": "D1699EAFE3B9E6D2A49EF91CC898F69E289CAFC0834B9C53F5414285861F5557",
+      "zenodo": "https://zenodo.org/records/21925373",
+      "osf": "https://osf.io/d38z6/",
+      "verified": true
+    },
+    {
+      "number": 102,
+      "title": "A Multi-Timescale Resilient Food Portfolio: Robust Optimization of Emergency Nutrition, Biomass Production, and Fail-Closed Safety",
+      "filename": "102 - A Multi-Timescale Resilient Food Portfolio Robust Optimization of Emergency Nutrition, Biomass Production, and Fail-Closed Safety.pdf",
+      "bytes": 1162377,
+      "sha256": "51CA1E2DFEEC0E568038EA97BF6EA894F575EE04D878151199937401B31AADC5",
+      "zenodo": "https://zenodo.org/records/21925375",
+      "osf": "https://osf.io/qr6db/",
+      "verified": true
+    },
+    {
+      "number": 103,
+      "title": "Dialogue as a Coupled Neural System: Interpersonal Synchronization, Shared Reference Frames, and Informative Divergence",
+      "filename": "103 - Dialogue as a Coupled Neural System Interpersonal Synchronization, Shared Reference Frames, and Informative Divergence.pdf",
+      "bytes": 2743202,
+      "sha256": "DE3C048D891A0BF961E46A5A3D19D44F453660DAE061BB28AA03A9D208F86A1B",
+      "zenodo": "https://zenodo.org/records/21926103",
+      "osf": "https://osf.io/qr7gn/",
+      "verified": true
+    },
+    {
+      "number": 104,
+      "title": "The Learning Loop That Learns Itself: From Recursive Self-Reference to Phase-Compatible Self-World Reinstatement in Self-Aware Networks",
+      "filename": "104 - The Learning Loop That Learns Itself From Recursive Self-Reference to Phase-Compatible Self-World Reinstatement in Self-Aware Networks.pdf",
+      "bytes": 3667571,
+      "sha256": "9989EE1EA0D0BC12124C12AC3C302948558670CDDC02EEE68A921FB66A59302E",
+      "zenodo": "https://zenodo.org/records/21928537",
+      "osf": "https://osf.io/jqu4b/",
+      "verified": true
+    },
+    {
+      "number": 105,
+      "title": "Oscillatory Credit Assignment: When Phase-Relative Neural Updates Approximate Gradient Learning",
+      "filename": "105 - Oscillatory Credit Assignment When Phase-Relative Neural Updates Approximate Gradient Learning.pdf",
+      "bytes": 810625,
+      "sha256": "9AF62AA9D2F02472F5A65DDDE11D6490EDDE03FF7D0C1CBAB127A244F9B29B68",
+      "zenodo": "https://zenodo.org/records/22099005",
+      "osf": "https://osf.io/r3s2n/",
+      "verified": true
+    },
+    {
+      "number": 106,
+      "title": "Reciprocal AI–Neuroscience Translation: From Biological Mechanism to Engineered Failure, Rescue, and Biological Retest",
+      "filename": "106 - Reciprocal AI-Neuroscience Translation From Biological Mechanism to Engineered Failure, Rescue, and Biological Retest.pdf",
+      "bytes": 893394,
+      "sha256": "DB985B2CF8C745BF3972826765696721C88D38F9478CF3294B82C594ED4817F9",
+      "zenodo": "https://zenodo.org/records/22100941",
+      "osf": "https://osf.io/j2xsc/",
+      "verified": true,
+      "version": "1.0"
+    }
+  ]
+}
