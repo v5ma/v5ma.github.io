@@ -200,6 +200,7 @@
 </style>
 <!-- SVGN_INTERACTIVE_UPGRADE_20260904 -->
 <link rel="stylesheet" href="./delivery-upgrade.css">
+<link rel="stylesheet" href="./sky-style.css">
 </head>
 <script>
 ;
@@ -5539,6 +5540,7 @@ function tick(){
   camera();
   render();
 }
+window.__engineStep = tick;
 const _hTimeEl = document.getElementById('hTime');
 let _lastTimeStr = '';
 let lastRaf = 0;
@@ -5858,7 +5860,7 @@ setInterval(()=>{ if(performance.now()-lastRaf > 250) tick(); }, 16);
     const cur = customTracks[i];
     if(!cur || !cur.anchors) return;
     const fresh = bake(cur.anchors);
-    customTracks[i] = fresh;
+    fresh.sky = customTracks[i].sky; customTracks[i] = fresh;
     editTracksDirty = true;
   }
 
@@ -7079,6 +7081,8 @@ window.render = function(){
     camera.position.set(gc.x + VIEW.w/2, -(gc.y) - VIEW.h/2, 10);
     camera.updateMatrixWorld();
   }
+  window.__skyView?.(camera, VIEW);
+  window.SkyVisual?.update();
   renderer.render(scene, camera);
 };
 
@@ -8529,7 +8533,7 @@ renderer.init().then(async ()=>{
 </script>
 <script>
 ;
-window.__BUILD=1788556801;
+window.__BUILD=1788562801;
 (function(){
   var told=false;
   async function check(){
@@ -8553,6 +8557,9 @@ window.__BUILD=1788556801;
 ;
 </script>
 <script src="./campaign.js"></script>
+<script src="./sky-routes.js"></script>
+<script src="./sky-visual.js"></script>
 <script src="./delivery-upgrade.js"></script>
+<script src="./sky-game.js"></script>
 </body>
 </html>

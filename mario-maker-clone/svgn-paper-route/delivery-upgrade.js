@@ -13,7 +13,7 @@
     document.body.classList.add('delivery-upgraded');
     document.title='SVGN.io Paper Delivery | Play, deliver, create';
     const header=document.createElement('header');header.id='delivery-header';
-    header.innerHTML=`<a href="../../index.html">ALL PROJECTS</a><div class="delivery-brand">SVGN.io<span>PAPER DELIVERY</span></div><span class="edition">THE CITY IS WAITING FOR YOU.</span><div class="actions">${btn('Routes','routes')}${btn('Create','editor')}${btn('2D view','view')}${btn('Pause','pause')}${btn('Sound','sound')}</div>`;
+    header.innerHTML=`<a href="../../index.html">ALL PROJECTS</a><div class="delivery-brand">SVGN.io<span>PAPER DELIVERY</span></div><span class="edition">LOOP. LAUNCH. CATCH. DELIVER.</span><div class="actions">${btn('Routes','routes')}${btn('Create','editor')}${btn('2D view','view')}${btn('Pause','pause')}${btn('Sound','sound')}</div>`;
     document.body.insertBefore(header,document.body.firstChild);
     root.insertAdjacentHTML('beforeend',`<canvas id="delivery-canvas" aria-hidden="true"></canvas><canvas id="delivery-fx" aria-hidden="true"></canvas>
       <div id="delivery-hud"><div class="route-widget"><small id="delivery-district">YOUR PAPER ROUTE</small><h2 id="delivery-name">The Morning Edition</h2><div class="counts"><span><b id="delivery-count">0/4</b> deliveries</span><span><b id="delivery-score">0</b> score</span><span id="delivery-attempt">TRY 1</span></div><canvas id="delivery-map" width="560" height="42" aria-label="Route progress"></canvas></div><div id="delivery-timer"><small>ON THE CLOCK</small><span>0:00</span></div></div>
@@ -40,7 +40,7 @@
     function showMenu(){
       previousMenuFocus=document.activeElement;paused(true);hidePanels();state.menu=true;document.body.classList.add('delivery-menu-open');
       const menu=document.getElementById('delivery-menu');menu.classList.add('open');
-      menu.innerHTML=`<div class="delivery-hero"><div class="delivery-kicker">AN ORIGINAL SVGN.io ARCADE ADVENTURE</div><h1>Good morning,<br><em>news travels<br>with you.</em></h1><p>Leap across the city. Time your newspaper throws. Deliver the news, find your rhythm, and build your own route.</p><div class="delivery-controls"><span class="key">A / D</span> MOVE &nbsp; <span class="key">SPACE</span> JUMP &nbsp; <span class="key">C</span> THROW<br><span class="key">X</span> NITRO &nbsp; <span class="key">P</span> PAUSE &nbsp; TOUCH & CONTROLLER READY</div>${btn(mode==='play'&&!won?'Resume current route':'Open the level editor',mode==='play'&&!won?'resume':'editor','gold')}<p class="minor">Original 3D couriers. Three curated routes. Your existing editor and saved machines are still here.</p></div><div class="delivery-courses">${C.routes.map((r,i)=>{const rec=state.records[r.id];const med=rec&&['gold','silver','bronze'].includes(rec.medal)?rec.medal.toUpperCase():'NOT YET DELIVERED';return `<button type="button" class="delivery-course" data-course="${i}"><small>${r.district} / ${r.difficulty}</small><h2>${r.name}</h2><p>${r.description}</p><span class="route-footer"><span>DELIVER ${r.quota} / ${r.mail.length} BOXES</span><span>${med}</span></span></button>`;}).join('')}</div>`;
+      menu.innerHTML=`<div class="delivery-hero"><div class="delivery-kicker">AN ORIGINAL SVGN.io ARCADE ADVENTURE</div><h1>Ride the loop.<br><em>Rocket into<br>the next.</em></h1><p>A 3D side-scroller through a sky maze of launch loops. Build momentum, time the gold exit, and catch the next rail across open air.</p><div class="delivery-controls"><span class="key">A / D</span> THROTTLE / BRAKE &nbsp; <span class="key">SPACE</span> ARM EXIT &nbsp; <span class="key">C</span> THROW<br><span class="key">R</span> RETRY CATCH &nbsp; <span class="key">P</span> PAUSE &nbsp; TOUCH & CONTROLLER READY</div>${btn(mode==='play'&&!won?'Resume current route':'Open the level editor',mode==='play'&&!won?'resume':'editor','gold')}<p class="minor">Four, five, or six full launch loops. Lower detours on advanced routes. No ground-level bypass. Your original editor and saved machines remain.</p></div><div class="delivery-courses">${C.routes.map((r,i)=>{const rec=state.records[r.id];const med=rec&&['gold','silver','bronze'].includes(rec.medal)?rec.medal.toUpperCase():'NOT YET DELIVERED';return `<button type="button" class="delivery-course" data-course="${i}"><small>${r.district} / ${r.stages} LOOPS</small><h2>${r.name}</h2><p>${r.description}</p><span class="route-footer"><span>DELIVER ${r.quota} / ${r.mail.length} BOXES</span><span>${med}</span></span></button>`;}).join('')}</div>`;
       menu.querySelector('button')?.focus({preventScroll:true});
     }
     function startRoute(i){
@@ -62,7 +62,7 @@
     window.spawnWorld=function(sx,sy){
       const keep=routeKeep,saved=new Set(state.delivered);baseSpawn(sx,sy);
       if(!keep){state.delivered.clear();state.streak=0;state.lastDelivery=0;}else for(const k of saved){const [x,y]=k.split(',').map(Number);if(pg(x,y)===T.MAILBOX)spg(x,y,T.MAILDONE);}
-      if(current()&&levelCode().split('.')[1]===state.code.split('.')[1]){routeQuota=current().quota;routeTotal=current().mail.length;}
+      if(current()&&levelCode()===state.code){routeQuota=current().quota;routeTotal=current().mail.length;}
       updateHUD();
     };
     const baseFire=fireGun;
@@ -87,12 +87,12 @@
       baseWin();
       const r=current(),seconds=(performance.now()-tStart)/1000,total=r?r.mail.length:routeTotal;
       const medal=C.medal({delivered:deliveries,total,seconds,par:r?r.par:120,attempts:tries});
-      if(r&&levelCode().split('.')[1]===state.code.split('.')[1]){
+      if(r&&levelCode()===state.code){
         const old=state.records[r.id],rank={bronze:1,silver:2,gold:3};
         state.records[r.id]={medal:old&&rank[old.medal]>rank[medal]?old.medal:medal,time:Math.min(Number(old?.time)||Infinity,seconds),score:Math.max(Number(old?.score)||0,score)};saveRecords();
       }
       const results=document.getElementById('delivery-results');results.classList.add('open');
-      results.innerHTML=`<div class="delivery-hero"><div class="medal" aria-hidden="true">&#9733;</div><div class="delivery-kicker">${medal.toUpperCase()} ROUTE COMPLETE</div><h1>The news<br><em>is delivered.</em></h1><p>${safe(r?r.name:nameEl.value)} is in the bag. Deliver every mailbox for silver. Deliver all on your first attempt before the target time for gold.</p></div><div class="delivery-result-stats"><div><strong>${deliveries}/${total}</strong><small>MAILBOXES SERVED</small></div><div><strong>${seconds.toFixed(1)}s</strong><small>ROUTE TIME</small></div><div><strong>${score}</strong><small>SCORE</small></div><div><strong>${tries}</strong><small>ATTEMPTS</small></div><div class="delivery-result-actions">${r?btn('Next route','next','gold'):btn('Choose a route','routes','gold')}${btn('Run it again','retry')}${btn('All routes','routes')}</div></div>`;
+      results.innerHTML=`<div class="delivery-hero"><div class="medal" aria-hidden="true">&#9733;</div><div class="delivery-kicker">${medal.toUpperCase()} ROUTE COMPLETE</div><h1>Sky route<br><em>delivered.</em></h1><p>${safe(r?r.name:nameEl.value)} is in the bag. Deliver every mailbox for silver. Deliver all on your first attempt before the target time for gold.</p></div><div class="delivery-result-stats"><div><strong>${deliveries}/${total}</strong><small>MAILBOXES SERVED</small></div><div><strong>${seconds.toFixed(1)}s</strong><small>ROUTE TIME</small></div><div><strong>${score}</strong><small>SCORE</small></div><div><strong>${tries}</strong><small>ATTEMPTS</small></div><div class="delivery-result-actions">${r?btn('Next route','next','gold'):btn('Choose a route','routes','gold')}${btn('Run it again','retry')}${btn('All routes','routes')}</div></div>`;
       results.querySelector('button')?.focus({preventScroll:true});
     };
     const originalTick=tick;let previous=performance.now(),accumulator=0;
@@ -189,6 +189,7 @@
     }
     function destroyEnvironment(){if(!env)return;env.parent?.remove(env);env.traverse(o=>{o.geometry?.dispose();const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats){m?.map?.dispose();m?.dispose();}});env=null;}
     function buildEnvironment(m){
+      if(window.SkyVisual){destroyEnvironment();env=SkyVisual.build(m);return;}
       destroyEnvironment();const A=m.THREE,night=themeName==='city',ground=-(current()?.ground??(LH-2))*TILE;
       env=new A.Group();env.name='SVGN Delivery District';m.scene.add(env);
       const bg=document.createElement('canvas');bg.width=1536;bg.height=768;skyline(bg.getContext('2d'),1536,768,night,0);
@@ -227,7 +228,7 @@
           fg.fillStyle='#fff0c077';for(let i=0;i<26;i++){vy+=GRAV*THROW_GRAV;px+=vx;py+=vy;if(i%3===0){const[qx,qy]=projection(px,py);fg.beginPath();fg.arc(qx,qy,2,0,7);fg.fill();}}
         }
       }
-      hud(now);
+      hud(now);window.__sky?.hud();
     };
     function act(a){
       if(a==='routes')showMenu();
