@@ -34,6 +34,7 @@ jobs:
                 target.write_bytes(archive.extractfile(item).read())
             for package in packages: package.unlink()
           PY
+          if [ -f theology-wiki/tools/review-fixes.py ]; then python theology-wiki/tools/review-fixes.py; fi
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -49,19 +50,19 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Preserve public-domain museum images locally
         run: python theology-wiki/tools/media.py
+      - name: Preserve readable source for browser review on feature branch only
+        if: github.ref == 'refs/heads/feat/theology-source-edition-20260904'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki scripts/prepare-interactive-site.py
+          if ! git diff --cached --quiet; then git commit -m 'Materialize Theology source edition for native-browser review'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - name: Test native HTTP reader and source conversations
         run: |
           python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
           python theology-wiki/tests/browser.py
-      - name: Commit tested generated files on the feature branch only
-        if: github.ref == 'refs/heads/feat/theology-source-edition-20260904'
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- theology-wiki scripts/prepare-interactive-site.py
-          if ! git diff --cached --quiet; then git commit -m 'Develop Theology source articles, preserved conversations and tested reader'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - name: Record tested source and package review files
         if: always()
         run: |
