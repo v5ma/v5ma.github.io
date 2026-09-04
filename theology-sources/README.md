@@ -4,4 +4,4 @@ This package preserves the 354 `.txt` AI-chat files used as source material for 
 
 These are source materials, not independent scholarly validation or publication receipts. The files are preserved as text and are linked from the local index.
 
-Public route: https://v5ma.github.io/theology-sources/
+Public route: https://v5ma.github.io/theology-sources/index.html

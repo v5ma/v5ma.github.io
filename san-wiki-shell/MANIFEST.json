@@ -3,7 +3,7 @@
   "package": "san-wiki-shell",
   "generated": "2026-09-04",
   "fileCount": 10,
-  "totalBytes": 197303.0,
+  "totalBytes": 197343.0,
   "files": [
     {
       "path": "assets/css/san-dynamic-timeline.css",
@@ -47,13 +47,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 46204,
-      "sha256": "0b14d7e463eb9c9d1e42896a469cf723ffa90d81312c19dc7072060a1fec2a21"
+      "bytes": 46234,
+      "sha256": "c9caae55543d75c41647121eebeb0f926ec0197cf8349eb4a14778a6f0d61a86"
     },
     {
       "path": "README.md",
-      "bytes": 325,
-      "sha256": "d92ad0fb9100aec41ad8e755c6cf4e206624443764a60eb5ba77e69a395dc6af"
+      "bytes": 335,
+      "sha256": "db48ff0b50d735863fdaca03e7261712d1f7f94e4e2a72ea20f83390c4c2f8f9"
     }
   ]
 }

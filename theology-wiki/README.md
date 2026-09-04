@@ -6,4 +6,4 @@ Self-contained public Theology reader package.
 - Queue items, backups, `.bak` files, and `.ocv` staging residue are excluded.
 - AI-chat source material is published separately at `../theology-sources/`.
 
-Public route: https://v5ma.github.io/theology-wiki/
+Public route: https://v5ma.github.io/theology-wiki/index.html

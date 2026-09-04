@@ -4,4 +4,4 @@ Public shell package for the SAN Wiki reader. It includes the reader HTML, share
 
 It deliberately does not include SAN articles, source documents, graph data, images, or research content.
 
-Public route: https://v5ma.github.io/san-wiki-shell/
+Public route: https://v5ma.github.io/san-wiki-shell/index.html

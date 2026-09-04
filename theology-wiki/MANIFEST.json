@@ -3,7 +3,7 @@
   "package": "theology-wiki",
   "generated": "2026-09-04",
   "fileCount": 376,
-  "totalBytes": 1746567.0,
+  "totalBytes": 1746637.0,
   "files": [
     {
       "path": "assets/css/wiki.css",
@@ -1877,13 +1877,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 5318,
-      "sha256": "bcc18bfa180e46de36333f9c6d53ea330fc51b55b99907b7f3adf6c6c1e8691c"
+      "bytes": 5378,
+      "sha256": "9bd42028832e89bd6494b158147f85523353a14df8f134275c9a0a51fffe7b45"
     },
     {
       "path": "README.md",
-      "bytes": 328,
-      "sha256": "91931811553b03fd88ecc7c519cbfee3c652be6d3e443a51b629a748c7280da3"
+      "bytes": 338,
+      "sha256": "34f3d8a4701356457a58bec636e8548d094c105449e408262bce64a67dd89d89"
     }
   ]
 }

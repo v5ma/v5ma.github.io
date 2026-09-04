@@ -3,7 +3,7 @@
   "package": "mario-maker-clone",
   "generated": "2026-09-04",
   "fileCount": 23,
-  "totalBytes": 5421881.0,
+  "totalBytes": 5421891.0,
   "files": [
     {
       "path": "home.html",
@@ -37,8 +37,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 519,
-      "sha256": "ec3b4c6ee515f2f03b4e0a32908ac99f56464ef02b3f7580db28e7361d2f18dc"
+      "bytes": 529,
+      "sha256": "3fd1d5b1b5debcdd6f784170d9f8511bdb6b83fe25294a5841d0b4593c21afc3"
     },
     {
       "path": "svgn-paper-route/_voxelizer.js",

@@ -14,10 +14,10 @@ The Paper Route design log is available at `mario-maker-clone/svgn-paper-route/d
 
 Public URLs:
 
-- https://v5ma.github.io/mario-maker-clone/
-- https://v5ma.github.io/san-wiki-shell/
-- https://v5ma.github.io/theology-wiki/
-- https://v5ma.github.io/theology-sources/
+- https://v5ma.github.io/mario-maker-clone/index.html
+- https://v5ma.github.io/san-wiki-shell/index.html
+- https://v5ma.github.io/theology-wiki/index.html
+- https://v5ma.github.io/theology-sources/index.html
 - https://v5ma.github.io/agent-wiki-theology-route.html
 
 The package is intentionally curated. It does not publish the full private workspace, Agent Wiki, SAN corpus, private credentials, desktop builds, or backend setup files.

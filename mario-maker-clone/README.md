@@ -8,4 +8,4 @@ Web-only static package for the Mario Maker-style Sprocket Works project.
 
 The package excludes the desktop build, installers, database setup, and private development files.
 
-Public route: https://v5ma.github.io/mario-maker-clone/
+Public route: https://v5ma.github.io/mario-maker-clone/index.html
