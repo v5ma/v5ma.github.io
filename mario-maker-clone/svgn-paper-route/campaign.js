@@ -14,7 +14,7 @@ globalThis.DeliveryCampaign = (() => {
     put(3,f-1,T.START);put(w-4,f-1,T.GOAL);
     r.mail.forEach(x=>put(x,f-1,T.MAILBOX));
     for(let x=6;x<w-6;x+=3)if(!a[(f-1)*w+x])put(x,f-1,T.GEAR);
-    for(const x of [Math.floor(w*.35),Math.floor(w*.68)])put(x,f-1,T.CHECK);
+    for(const x of [Math.floor(w*.35),Math.floor(w*.68)])put(r.mail.includes(x)?x+2:x,f-1,T.CHECK);
     put(7,f-1,T.SHIELD);
     const platforms=index===0?[[32,4],[62,5],[81,4]]:index===1?[[18,6],[38,5],[58,5],[78,7],[99,6]]:[[18,5],[37,5],[55,6],[73,5],[96,5],[116,6],[136,4]];
     for(const [x,n]of platforms){for(let j=0;j<n;j++){put(x+j,f-3,T.PLAT);put(x+j,f-4,T.GEAR);}put(x-1,f-1,T.SPRING);}
