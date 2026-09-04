@@ -138,6 +138,8 @@
   let cx=null,cy=null,zoom=1;
   window.__skyView=function(camera,view){
     const m=window.__merged;
+    const far=active()||window.__delivery?.state.menu?10000:1000;
+    if(camera.far!==far){camera.far=far;camera.updateProjectionMatrix();}
     if(m?.trackGroup)m.trackGroup.visible=mode==='play'&&!active();
     if(m?.curveGroup)m.curveGroup.visible=mode==='edit'&&!window.__delivery?.state.menu;
     if(!active()){camera.rotation.set(0,0,0);
