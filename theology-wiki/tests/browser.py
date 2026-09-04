@@ -49,6 +49,7 @@ with sync_playwright() as tool:
         check('Home promotes eight developed arguments', page.locator('.research-card').count() == 8)
         check('Homepage describes 354 original source conversations', '354' in page.locator('.research-counts').inner_text())
         check('Eight subject collections are accessible in the sidebar', page.locator('.research-topic-link').count() == 8)
+        check('Unrelated cross-project controls are not shown',not page.locator('#northstar-cluster-list').is_visible())
         screenshot(page,'home-desktop.png')
         page.locator('#theology-kind').select_option('chat')
         check('Source-only navigation is paginated', page.locator('#page-list .page-link').count() == 40)
@@ -61,7 +62,7 @@ with sync_playwright() as tool:
         page.locator('[data-research="reset"]').click()
         page.locator('#page-search').fill('gradient descent')
         page.wait_for_function('document.querySelector("#search-scope")?.textContent.includes("complete source")')
-        page.wait_for_function('!!document.querySelector("#page-list a[data-page=\"cognitive-gnosticism-jesus-vs-gnostic-jesus\"]")')
+        page.locator('#page-list a[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').wait_for()
         check('Search includes full source text beyond titles and previews', True)
         page.locator('#page-search').fill('coherence qqqzzzzz')
         page.wait_for_timeout(400)
@@ -193,6 +194,8 @@ with sync_playwright() as tool:
         blocked.close()
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
+        import traceback
+        (OUT/'failure-traceback.txt').write_text(traceback.format_exc())
         screenshot(page,'failure.png')
         (OUT/'failure.html').write_text(page.content())
         raise

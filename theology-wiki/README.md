@@ -22,7 +22,7 @@ Serve the repository root with `python -m http.server 4174 --bind 127.0.0.1`. Op
 
 `node --test theology-wiki/tests/research.test.cjs` verifies source integrity, routes, graph destinations, full-text indexing, parsing, filters, export validation and the integration guard. `python theology-wiki/tests/browser.py` uses native Chromium over HTTP; it needs Python Playwright and its Chromium install. The suite tests real source requests, locally served images and real-origin bookmark persistence, and saves screenshots and a JSON report under `theology-test-output/`.
 
-The GitHub Actions workflow runs these tests on the feature branch before generated files are committed there. Its artifacts are the test evidence. A successful build is not a claim that every interpretation in every archived conversation has been independently fact-checked. New articles preserve authorial reasoning and corrections while identifying historical hypotheses and AI-generated additions.
+The GitHub Actions workflow preserves the generated source on the isolated feature branch and runs native browser tests there before publication. Its artifacts are the test evidence. A successful build is not a claim that every interpretation in every archived conversation has been independently fact-checked. New articles preserve authorial reasoning and corrections while identifying historical hypotheses and AI-generated additions.
 
 ## Preservation and rollback
 
