@@ -29,10 +29,10 @@
   function pose(p,tr,s){const q=trackPoint(tr,s,p._bside);p.x=q.x+q.bx*24-13;p.y=q.y+q.by*24-15;p._bside={bx:q.bx,by:q.by};p.drawA=Math.atan2(q.bx,-q.by);p.footX=q.x;p.footY=q.y;p.vx=q.tx*p.speed;p.vy=q.ty*p.speed;p.onGround=true;}
   const onTrack=stepOnTrack;
   window.stepOnTrack=function(p){
-    const tr=p.track;if(!active()||!tr.sky)return onTrack(p);
+    const tr=p.track;if(!tr)return;if(!active()||!tr.sky)return onTrack(p);
     const tag=tr.sky,b=tag.begin*tr.len,e=tag.end*tr.len,q=trackPoint(tr,p.trackS,p._bside),R=keys.ArrowRight||keys.KeyD,L=keys.ArrowLeft||keys.KeyA,J=keys.Space||keys.ArrowUp||keys.KeyW;
     const phase=(p.trackS-b)/(e-b);
-    if(J&&!p._skyJumpHeld){if(phase>=.55&&phase<=1.02){state.armed=true;message('EXIT ARMED');log('arm',{stage:tag.stage,phase});}else message('Wait for the gold sector');}
+    if(J&&!p._skyJumpHeld&&!state.armed){if(phase>=.55&&phase<=1.02){state.armed=true;message('EXIT ARMED');log('arm',{stage:tag.stage,phase});}else message('Wait for the gold sector');}
     p._skyJumpHeld=J;
     // D is a throttle around the entire loop, not a screen-space force that
     // reverses on its upper half. A brakes; gravity remains tangent-projected.
@@ -82,10 +82,12 @@
   window.stepPlayer=function(){
     if(!active())return step();const p=player;state.steps++;state.attemptSteps++;
     if(p.dead>0)return step();
-    if(p.track){if(p.trackCD>0)p.trackCD--;fireGun(p);stepOnTrack(p);interactTiles(p);if(p.inv>0)p.inv--;return;}
+    if(p.trackCD>0)p.trackCD--;fireNitro(p);fireGun(p);
+    if(p.peg){stepSwing(p);interactTiles(p);if(p.inv>0)p.inv--;return;}
+    if(p.track){stepOnTrack(p);interactTiles(p);if(p.inv>0)p.inv--;return;}
     // Air steering is deliberately small. Rail-exit momentum is not destroyed
     // by ground friction, nor is upward launch speed treated as a short jump.
-    const ox=p.x,oy=p.y;if(p.trackCD>0)p.trackCD--;fireGun(p);state.airFrames++;
+    const ox=p.x,oy=p.y;state.airFrames++;
     const R=keys.ArrowRight||keys.KeyD,L=keys.ArrowLeft||keys.KeyA;
     p.vx+=(R&&!L?.035:L&&!R?-.11:0);p.vx*=.9996;p.vy=Math.min(24,p.vy+GRAV);
     p.dir=p.vx<0?-1:1;p.drawA+=(Math.atan2(p.vy,p.vx)-p.drawA)*.06;p.roll+=p.vx/11;
@@ -95,6 +97,13 @@
   };
   const originalWin=win;
   window.win=function(){if(active()&&(state.completed.size<state.data.stages||state.transfers<state.data.minTransfers)){message('Complete the sky route first');return;}log('finish',{loops:state.completed.size,transfers:state.transfers,deliveries});return originalWin();};
+  function armFromEvent(){
+    if(!active()||window.__delivery.paused||window.__delivery.state.menu||won||player.dead>0)return;
+    const tr=player.track;if(!tr?.sky||state.armed)return;
+    const phase=(player.trackS/tr.len-tr.sky.begin)/(tr.sky.end-tr.sky.begin);
+    if(phase>=.55&&phase<=1.02){state.armed=true;message('EXIT ARMED');log('arm',{stage:tr.sky.stage,phase,input:'event'});}
+  }
+  window.addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat)armFromEvent();});
   function retry(){if(!active()||window.__delivery.paused||won)return;log('retry');respawn(false);cv.focus({preventScroll:true});}
   window.addEventListener('keydown',e=>{if(e.code==='KeyR'&&!e.repeat&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){e.preventDefault();retry();}});
   const header=document.querySelector('#delivery-header .actions');header?.insertAdjacentHTML('beforeend','<button class="delivery-btn" id="sky-retry">Retry catch</button>');document.getElementById('sky-retry')?.addEventListener('click',retry);
@@ -105,7 +114,7 @@
   document.getElementById('sky-checkpoint')?.addEventListener('change',e=>{const value=Number(e.target.value);if(active()&&state.seen.has(value)){state.checkpoint=value;retry();}});
   document.getElementById('stagewrap').insertAdjacentHTML('beforeend','<div id="sky-flight"><span id="sky-state">SKY POST</span><strong id="sky-loop-count">LOOPS 0 / 4</strong><span id="sky-transfers">TRANSFERS 0</span><span id="sky-speed">0 SPEED</span></div><button id="sky-launch-touch" aria-label="Arm loop exit">LAUNCH</button>');
   const launch=document.getElementById('sky-launch-touch');let touchTimer;
-  launch.addEventListener('pointerdown',e=>{e.preventDefault();keys.Space=true;launch.setPointerCapture(e.pointerId);clearTimeout(touchTimer);});
+  launch.addEventListener('pointerdown',e=>{e.preventDefault();armFromEvent();keys.Space=true;launch.setPointerCapture(e.pointerId);clearTimeout(touchTimer);});
   for(const ev of ['pointerup','pointercancel','lostpointercapture'])launch.addEventListener(ev,()=>{touchTimer=setTimeout(()=>keys.Space=false,80);});
   function hud(){
     if(active()){

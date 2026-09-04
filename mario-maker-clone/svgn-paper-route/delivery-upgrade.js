@@ -47,7 +47,7 @@
       if(!C.routes[i])return;
       if(mode==='edit'&&state.route<0){try{localStorage.setItem('svgn_delivery_blueprint_v1',levelCode());}catch{toast('Blueprint backup could not be saved.');}}
       state.route=i;const data=C.build(i,T);state.code=C.encode(data);
-      toEdit();loadCode(state.code);packPlaying=null;hideWin();hidePanels();state.delivered.clear();state.streak=0;state.fx=[];routeKeep=false;
+      toEdit();loadCode(state.code);state.code=levelCode();packPlaying=null;hideWin();hidePanels();state.delivered.clear();state.streak=0;state.fx=[];routeKeep=false;
       paused(false);startPlay(true);state.elapsed=0;envKey='';
       document.getElementById('delivery-hint').textContent=data.tip;
       document.getElementById('btnNext').style.display='none';
@@ -189,7 +189,7 @@
     }
     function destroyEnvironment(){if(!env)return;env.parent?.remove(env);env.traverse(o=>{o.geometry?.dispose();const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats){m?.map?.dispose();m?.dispose();}});env=null;}
     function buildEnvironment(m){
-      if(window.SkyVisual){destroyEnvironment();env=SkyVisual.build(m);return;}
+      if(window.SkyVisual && (window.__sky?.active() || window.__delivery?.state.menu || customTracks.some(p=>p.sky))){destroyEnvironment();env=SkyVisual.build(m);return;}
       destroyEnvironment();const A=m.THREE,night=themeName==='city',ground=-(current()?.ground??(LH-2))*TILE;
       env=new A.Group();env.name='SVGN Delivery District';m.scene.add(env);
       const bg=document.createElement('canvas');bg.width=1536;bg.height=768;skyline(bg.getContext('2d'),1536,768,night,0);

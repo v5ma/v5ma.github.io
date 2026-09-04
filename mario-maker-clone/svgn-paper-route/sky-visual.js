@@ -30,7 +30,7 @@ window.SkyVisual=(()=>{
   const tex=new T.CanvasTexture(canvas);tex.colorSpace=T.SRGBColorSpace;
   mesh(new T.PlaneGeometry(Math.max(10000,course.width*36+2000),4400),new T.MeshBasicNodeMaterial({map:tex,depthWrite:false}),course.width*18,-1900,-300).renderOrder=-100;
   const ties=new T.InstancedMesh(new T.BoxGeometry(1,1,1),steel,600);ties.count=0;ties.frustumCulled=false;const matrix=new T.Matrix4();let count=0;
-  const paths=mode==='play'?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,sky:t.sky})):course.ct.map(p=>({pts:p,sky:p.sky}));
+  const paths=mode==='play'?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,sky:t.sky})):(window.__delivery?.state.menu?course.ct.map(p=>({pts:p,sky:p.sky})):[]);
   for(const {pts,sky}of paths){
    const front=mesh(tube(T,pts,15,3.1),cyan),back=mesh(tube(T,pts,-15,4.2),white);front.renderOrder=back.renderOrder=200;
    const total=SkyRoutes.length(pts),start=sky.begin*total,end=sky.end*total;let s=0,goldPts=[];

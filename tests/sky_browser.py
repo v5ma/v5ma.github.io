@@ -49,6 +49,7 @@ with sync_playwright() as p:
    check(len(last['loops'])==count and last['transfers']>=count-1,'Route '+str(route+1)+' traverses every loop and its open-air transfers')
    check(last['tries']==1,'Route '+str(route+1)+' completes without a death, checkpoint jump or teleport')
    check(last['deliveries']>=last['routeQuota'],'Route '+str(route+1)+' delivers real projectiles during flight')
+   check(page.evaluate('!!JSON.parse(localStorage.getItem("svgn_delivery_records_v1")||"{}")[SkyRoutes.specs[__delivery.state.route].id]'),'Completed sky route saves its medal')
    events=page.evaluate('__sky.state.events');runs.append({'route':route,'result':last,'events':events});page.screenshot(path=str(OUT/f'route-{route+1}-complete.png'))
    check(all(e['airFrames']>3 for e in events if e['type']=='transfer'),'Transfers include actual detached ballistic frames')
   check(not errors,'No uncaught errors during all three full 3D playthroughs')

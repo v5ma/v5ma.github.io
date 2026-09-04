@@ -66,5 +66,5 @@
     return btoa(unescape(encodeURIComponent(JSON.stringify(meta))))+'.'+btoa(String.fromCharCode(...data));
   }
   globalThis.SkyRoutes={specs,loop,length,build};
-  globalThis.DeliveryCampaign=Object.freeze({routes:specs.map((s,i)=>({...s,mail:Array(s.radii.length).fill(0),description:`${s.radii.length} connected launch loops above the clouds. No street-level shortcut.`,tip:'Accelerate. Time the gold launch sector. Catch the next rail.',stages:s.radii.length})),build,encode,medal:previous.medal,loadRecords:previous.loadRecords});
+  globalThis.DeliveryCampaign=Object.freeze({routes:specs.map((s,i)=>{const {cells,ct,...meta}=build(i,{});return meta;}),build,encode,medal:previous.medal,loadRecords:previous.loadRecords});
 })();
