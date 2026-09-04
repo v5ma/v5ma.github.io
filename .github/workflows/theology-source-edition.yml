@@ -3,9 +3,11 @@ on:
   push:
     branches: [feat/theology-source-edition-20260904, master]
     paths: ["theology-wiki/**", "scripts/prepare-interactive-site.py", ".github/workflows/theology-source-edition.yml"]
+  pull_request:
+    paths: ["theology-wiki/**", "scripts/prepare-interactive-site.py", ".github/workflows/theology-source-edition.yml"]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: theology-${{ github.ref }}
   cancel-in-progress: false
@@ -15,55 +17,58 @@ jobs:
     timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
-      - name: Materialize reviewed source package when present
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import base64,hashlib,io,lzma,tarfile
-          packages=sorted(Path('theology-wiki').glob('source-edition-bootstrap-*.txt'))
-          if packages:
-            digest,payload=''.join(p.read_text().strip() for p in packages).split(':',1)
-            data=base64.b64decode(payload,validate=False)
-            assert hashlib.sha256(data).hexdigest()==digest,'Source package hash differs'
-            allowed={'theology-wiki/editorial/edition.cjs','theology-wiki/assets/js/research-core.js','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/css/research.css','theology-wiki/tools/build.cjs','theology-wiki/tools/media.py','theology-wiki/tests/research.test.cjs','theology-wiki/tests/browser.py','theology-wiki/README.md'}
-            with tarfile.open(fileobj=io.BytesIO(lzma.decompress(data)),mode='r:') as archive:
-              assert set(archive.getnames())==allowed
-              for item in archive.getmembers():
-                assert item.isfile() and item.size<100000,'Unexpected archive member'
-                target=Path(item.name);target.parent.mkdir(parents=True,exist_ok=True)
-                target.write_bytes(archive.extractfile(item).read())
-            for package in packages: package.unlink()
-          PY
-          if [ -f theology-wiki/tools/review-fixes.py ]; then python theology-wiki/tools/review-fixes.py; fi
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Build and verify original source integrity
+      - name: Verify deterministic build and original source integrity
         run: |
           node theology-wiki/tools/build.cjs
           node --check theology-wiki/assets/js/research-tools.js
           node --check theology-wiki/assets/js/theology-reader.js
           node --test theology-wiki/tests/research.test.cjs
+          git diff --exit-code -- theology-wiki scripts/prepare-interactive-site.py
       - name: Install browser and image tooling
         run: |
-          python -m pip install playwright==1.57.0 Pillow==11.3.0
-          python -m playwright install --with-deps chromium
-      - name: Preserve public-domain museum images locally
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium > /tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+      - name: Verify bundled public-domain museum images
         run: python theology-wiki/tools/media.py
-      - name: Preserve readable source for browser review on feature branch only
-        if: github.ref == 'refs/heads/feat/theology-source-edition-20260904'
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- theology-wiki scripts/prepare-interactive-site.py
-          if ! git diff --cached --quiet; then git commit -m 'Materialize Theology source edition for native-browser review'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - name: Test native HTTP reader and source conversations
         run: |
           python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
           python theology-wiki/tests/browser.py
-      - name: Record tested source and package review files
+      - name: Verify actual hosted content after master publication
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cp -r theology-test-output /tmp/theology-native-proof
+          trap 'cp -r /tmp/theology-native-proof theology-test-output/native' EXIT
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,time,urllib.request
+          files=['theology-wiki/san-reader.html','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/js/theology-reader.js','theology-wiki/data/build-report.json']
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
+          observed={}
+          for attempt in range(36):
+            for p in files:
+              url='https://v5ma.github.io/'+p+'?review='+os.environ['GITHUB_SHA']
+              try:
+                with urllib.request.urlopen(url,timeout=15) as response:
+                  digest=hashlib.sha256(response.read()).hexdigest()
+                  observed[p]={'url':url,'status':response.status,'sha256':digest,'matches_commit':digest==expected[p]}
+              except Exception as error:
+                observed[p]={'url':url,'error':str(error),'matches_commit':False}
+            if all(item['matches_commit'] for item in observed.values()):break
+            time.sleep(5)
+          Path('theology-test-output/hosted-content.json').write_text(json.dumps(observed,indent=2))
+          assert all(item['matches_commit'] for item in observed.values()),observed
+          print('Hosted reader HTML, scripts and build report match the published commit.')
+          PY
+          SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/browser.py
+      - name: Record source identity and review files
         if: always()
         run: |
           mkdir -p theology-test-output
@@ -74,10 +79,9 @@ jobs:
           from pathlib import Path
           import zipfile
           out=Path('theology-test-output')
-          root=Path('theology-wiki')
           with zipfile.ZipFile(out/'reader-review.zip','w',zipfile.ZIP_DEFLATED) as z:
-            for f in root.rglob('*'):
-              if f.is_file() and '__pycache__' not in f.parts and not f.name.startswith('source-edition-bootstrap-'):z.write(f,f.as_posix())
+            for f in Path('theology-wiki').rglob('*'):
+              if f.is_file() and '__pycache__' not in f.parts and f.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'}:z.write(f,f.as_posix())
             z.write('scripts/prepare-interactive-site.py')
           PY
       - uses: actions/upload-artifact@v4
