@@ -4,7 +4,7 @@ uses real ES modules and software-rendered WebGL, not an inline/mock harness.
 External services are blocked: these tests never write to live game accounts.
 """
 from pathlib import Path
-import json, os, time
+import json, os
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
 from PIL import Image
@@ -52,7 +52,9 @@ with sync_playwright() as p:
         page.wait_for_function('window.__delivery.state.view==="2d"')
         check(page.locator('#delivery-canvas').is_visible(),'Paper Delivery switches to playable 2D')
         page.locator('#cv').focus();start=page.evaluate('player.x')
-        page.keyboard.down('ArrowRight');page.wait_for_timeout(650);page.keyboard.up('ArrowRight')
+        page.keyboard.down('ArrowRight')
+        try:page.wait_for_function('(x)=>player.x>x+25',arg=start,timeout=10000)
+        finally:page.keyboard.up('ArrowRight')
         check(page.evaluate('player.x')>start+25,'Keyboard input moves the courier through the real engine')
         page.keyboard.press('KeyP');page.wait_for_function('window.__delivery.paused')
         frozen=page.evaluate('({x:player.x,y:player.y,t:tStart})');page.wait_for_timeout(450)
@@ -89,18 +91,24 @@ with sync_playwright() as p:
         check(page.evaluate('__dinoExpedition.state.mode==="3d"'),'Dino expedition initializes actual WebGL 3D')
         page.wait_for_timeout(400);visual(page,'#field-3d','dinosaur-3d-scene.png')
         page.screenshot(path=str(OUT/'dinosaur-3d.png'))
-        page.locator('#mode-2d').click();page.locator('#field-2d').focus()
+        page.locator('#mode-2d').click()
+        page.wait_for_function('__dinoExpedition.state.mode==="2d"')
+        page.locator('#field-2d').focus()
         pos=page.evaluate('({...__dinoExpedition.state.position})')
-        page.keyboard.down('KeyW');page.wait_for_timeout(650);page.keyboard.up('KeyW')
-        check(page.evaluate('__dinoExpedition.state.position.z')<pos['z']-.5,'Explorer walks in the shared 2D world')
+        # Software GPU frame pacing is not wall-clock deterministic. Hold a real
+        # key until the visible game state advances, with a bounded timeout.
+        page.keyboard.down('KeyW')
+        try:page.wait_for_function('(z)=>__dinoExpedition.state.position.z<z-1',arg=pos['z'],timeout=12000)
+        finally:page.keyboard.up('KeyW')
+        check(page.evaluate('__dinoExpedition.state.position.z')<pos['z']-1,'Explorer walks in the shared 2D world')
         page.evaluate('__dinoExpedition.state.position={x:10,z:10}')
-        page.wait_for_function('!document.getElementById("inspect").disabled')
+        page.wait_for_function('__dinoExpedition.state.near?.id==="tracks"')
         page.locator('#inspect').click();page.wait_for_selector('#discovery[open]')
         check(page.locator('#discovery-content').inner_text().lower().find('track')>=0,'Evidence site opens its scientific clue')
         page.locator('#discovery form button').click()
         check(page.evaluate('__dinoExpedition.state.clues.has("jurassic:tracks")'),'Evidence discovery persists in the expedition')
         page.evaluate('''async()=>{const c=await import('./expedition-core.js');const s=__dinoExpedition.state;const p=c.animalPose(0,s.time);s.position={x:p.x,z:p.z};}''')
-        page.wait_for_function('!document.getElementById("inspect").disabled')
+        page.wait_for_function('__dinoExpedition.state.near?.id==="diplodocus"')
         page.locator('#inspect').click();page.wait_for_selector('#discovery[open]')
         check(page.evaluate('__dinoExpedition.state.progress.observed.includes("diplodocus")'),'Observing a dinosaur records it in the shared journal')
         page.locator('#discovery form button').click();page.locator('#mode-3d').click()
@@ -137,7 +145,10 @@ with sync_playwright() as p:
         result={'passed':len(checks),'checks':checks,'uncaught_errors':errors,'webgl_verified':True,'mode':'Native Chromium HTTP / SwiftShader WebGL','limitations':'Physics fixtures isolate delivery and depot behavior; not a full human playthrough. No live accounts, payments, cloud saves, gamepad hardware, Safari, or real phones tested.'}
         (OUT/'report.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
     except Exception as e:
-        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'passed':checks,'uncaught_errors':errors},indent=2))
+        diagnostic=None
+        try:diagnostic=page.evaluate('window.__dinoExpedition?({position:__dinoExpedition.state.position,mode:__dinoExpedition.state.mode,walking:__dinoExpedition.state.walking,time:__dinoExpedition.state.time,hidden:document.hidden,focus:document.activeElement?.id}):null')
+        except Exception:pass
+        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'passed':checks,'uncaught_errors':errors,'diagnostic':diagnostic},indent=2))
         try:page.screenshot(path=str(OUT/'failure.png'),full_page=True)
         except Exception:pass
         raise
