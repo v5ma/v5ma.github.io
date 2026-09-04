@@ -1,56 +1,56 @@
 ---
 title: "Theology Wiki"
 slug: "home"
-summary: "Recovered Theology wiki home page rebuilt from the surviving local theology export corpus."
-topic: "theology"
-tags: [theology, recovery, source-index]
-recovery_status: "reconstructed-from-surviving-source"
+summary: "Explore original questions, developed arguments and 354 source conversations."
+topic: "Wider conversations"
+status: "Library home"
+updated: "2026-09-04"
 ---
 
 # Theology Wiki
 
-The Theology Wiki is a recovered research surface for theology, prophecy, comparative religion, AI-and-religion questions, and spiritually framed public-writing drafts. It is being rebuilt as a reader-first wiki, not as a raw export list.
+The Theology Wiki follows Micah Blumberg's questions about awakening, religious authority, historical catastrophe and the possibility of repair. Begin with a developed argument, then follow its links into the conversations that shaped it.
 
-Recovery note: this page was reconstructed after the 2026-05-21 deletion incident. It is not a byte-for-byte copy of the prior Theology home page.
+## Ideas developed from the conversations
 
-## Start with the main trays
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: A theology of two accumulating forces: domination can culminate in a real crisis, while acts of repair can accumulate toward its defeat.
 
-| Tray | First pages | Use |
-|---|---|---|
-| Source index | [[index|Theology Source Index]] | Browse the recovered corpus and find source stubs. |
-| Gnosticism and Abraham Hicks | [[abraham-hicks-and-gnosticism]], [[abraham-hicks-vs-gnostic-jesus]], [[abraham-hicks-vibration-clarification]], [[act-vs-abraham-hicks]] | Compare New Thought, Gnostic, and therapeutic language without collapsing them. |
-| AI and religion | [[agi-religious-framework]], [[ai-and-religion-belief]], [[ai-safety-and-lovecraft]], [[ai-tech-and-generations]] | Track AI-era theological and cultural interpretation. |
-| Prophecy and antichrist pages | [[antichrist-prophecy-in-tanakh]], [[antichrist-covenant-and-peace]], [[antichrist-peace-and-war]], [[antichrist-spiritual-inversion]] | Keep prophecy analysis structured and claim-safe. |
-| Ancient and historical frames | [[17th-century-christian-zionism]], [[ancient-cosmology-and-dreams]], [[ancient-egypt-vs-fascism]], [[ai-re-dates-dead-sea-scrolls]] | Route historical-religious evidence into readable context. |
-| Abrahamic rival continuations | [[abrahamic-rival-continuations-book-seed]], [[samaritan-and-jewish-texts]], [[teacher-of-righteousness-vs-gnostic-jesus]], [[muslim-view-of-jesus]] | Private-first book seed for temple legitimacy, shared inheritance, and rival continuation analysis. |
+[[cognitive-gnosticism|Cognitive Gnosticism]]: Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.
 
-## Editorial boundaries
+[[christ-as-an-inner-model|Christ as an inner model]]: The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.
 
-- Theology is self-contained by default.
-- Source summary, interpretation, and speculative synthesis should stay visibly separated.
-- Public-facing pages need charitable framing, dated source anchors, and clear distinction between belief, interpretation, and evidence.
-- Cross-wiki bridges should be added only after review; local wikilinks are the default.
+[[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: A theological judgment about domination, deception and violence that can appear through many people and institutions.
 
-## Recovery workflow
+[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence.
 
-1. Use [[index|Theology Source Index]] to inspect what survived.
-2. Promote reviewed material into polished public-candidate pages.
-3. Add wikilinks between local topic pages before creating cross-wiki bridges.
-4. Keep privacy and provenance review as a gate before public promotion.
-## Related Graph Routes
+[[faith-as-deliberate-joy|Faith as deliberate joy]]: Faith is described as an activity of returning to an inner orientation, not only as assent to a proposition.
 
-- Reader-safe hub: [Branch Riemann curve mapping](/v5ma.github.io/wiki/theology-wiki.html?page=branch-riemann-curve-mapping)
-- Review state: candidate routing only; owner review is still required before merge, proof promotion, publication, or product claim.
+[[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]: A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?
 
-<!-- NINE-WIKI-GRAPH-LINK-COMPILER:START 20260602 -->
+[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: Micah's comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
 
-## Graph Read Next
+## Explore a subject
 
-These links come from the Nine-Wiki Graph Link Compiler. They are candidate routing evidence only until the owning wiki or product surface accepts the relation.
+[[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
 
-- [Branch Riemann Curve Mapping](http://127.0.0.1:8732/v5ma.github.io/wiki/theology-wiki.html?page=branch-riemann-curve-mapping) - document-read-next-hub; score 111.0.
+[[topic-apocalypse|Apocalypse, power & repair]]: Theology of domination, prophetic warning and collective restoration.
 
-- [Nine-Wiki Graph Link Compiler](http://127.0.0.1:8732/v5ma.github.io/wiki/nine-wiki-graph-link-compiler.html)
-- [Nine-Wiki Document Read-Next Router](http://127.0.0.1:8732/v5ma.github.io/wiki/nine-wiki-document-read-next-router.html)
+[[topic-origins|Ancient texts & origins]]: Manuscripts, Temple history, divine names and the dating of ideas.
 
-<!-- NINE-WIKI-GRAPH-LINK-COMPILER:END -->
+[[topic-jesus|Jesus, ethics & authority]]: The teachings of Jesus, moral judgment and the authority of institutions.
+
+[[topic-practice|Faith & spiritual practice]]: Prayer, attention, deliberate joy and interpretations of spiritual experience.
+
+[[topic-machines|God, minds & machines]]: Cognitive models, information, conscious machines and religious education.
+
+[[topic-traditions|Traditions in conversation]]: Shared inheritance, competing interpretations and differences that matter.
+
+[[topic-context|Wider conversations]]: Contextual discussions, cultural references and research leads in the source archive.
+
+## Follow a longer question
+
+[[reading-paths|Reading paths]] connect several arguments. [[sources-index|The conversation catalogue]] opens all 354 published chats. [[connections|The connection map]] shows actual article links. [[image-collection|The image collection]] identifies every artwork and its source.
+
+## About this edition
+
+Eight developed articles accompany the source archive. They are AI-assisted editorial syntheses, not replacement transcripts or newly attributed quotations. The rest of the collection includes source records and legacy research notes. [[research-method|Read the editorial method]] for speaker attribution, dates, claim status and source integrity.
