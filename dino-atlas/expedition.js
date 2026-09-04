@@ -17,7 +17,7 @@ function buttons(){
   $('period-buttons').innerHTML=PERIODS.map(p=>`<button data-period="${p.id}" aria-pressed="${state.period===p.id}"><strong>${p.name}</strong><small>${p.start}-${p.end} million years ago</small></button>`).join('');
   $('era-location').textContent='LATE '+period().name.toUpperCase();$('era-age').textContent='ABOUT '+period().stop+' MILLION YEARS AGO';
 }
-function setPeriod(id){if(!PERIODS.some(p=>p.id===id))return;state.period=id;state.position={...SPAWN};held.clear();state.near=null;lastNearId='';buttons();updateProgress();if(ready)buildScene();toast('Your '+period().name+' expedition is ready. Look for the gold evidence markers.');}
+function setPeriod(id){if(!PERIODS.some(p=>p.id===id))return;state.period=id;state.position={...SPAWN};held.clear();state.near=null;lastNearId='';$('inspect').disabled=true;$('inspect').textContent='Explore the landscape';$('interaction-hint').textContent='Approach an animal or an amber evidence marker.';buttons();updateProgress();if(ready)buildScene();toast('Your '+period().name+' expedition is ready. Look for the gold evidence markers.');}
 function getSprite(d){if(!sprites.has(d.id)){const img=new Image();img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(dinosaurArt(d));sprites.set(d.id,img);}return sprites.get(d.id);}
 function disposeScene(){if(!scene)return;const geos=new Set(),materials=new Set();scene.traverse(o=>{if(o.geometry)geos.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(m)materials.add(m);});geos.forEach(g=>g.dispose());materials.forEach(m=>{m.map?.dispose();m.dispose();});}
 function buildScene(){
