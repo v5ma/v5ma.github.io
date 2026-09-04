@@ -15,10 +15,10 @@ if marker not in s:
     s=s.replace('</head>',marker+'\n<link rel="stylesheet" href="./delivery-upgrade.css">\n</head>',1)
     s=s.replace('</body>','<script src="./campaign.js"></script>\n<script src="./delivery-upgrade.js"></script>\n</body>')
     s=s.replace('window.__BUILD=1786230731;','window.__BUILD=1788556801;')
-    GAME.write_text(s)
+# Keep the original public file's CRLF convention for a reviewable final diff.
+GAME.write_text(s,newline='\r\n')
 SW=GAME.with_name('sw.js')
 s=SW.read_text().replace("const CACHE = 'svgn-paper-route-v1';","const CACHE = 'svgn-paper-route-delivery-20260904';")
-# Cache names share an origin. Do not delete another project's caches.
 s=s.replace("ks.filter(k => k !== CACHE)","ks.filter(k => k.startsWith('svgn-paper-route-') && k !== CACHE)")
 SW.write_text(s)
 
@@ -35,22 +35,25 @@ s=s.replace('"canonicalBase": "https://v5ma.github.io/san-wiki-shell/"','"canoni
 s=s.replace('"internalRouting": false','"internalRouting": true')
 s=s.replace('{ "label": "Shell", "slugs": ["home"] }','{ "label": "Start here", "slugs": ["home"] }')
 s=s.replace('"currentWiki": "san"','"currentWiki": "theology"').replace('"san": "./index.html?page={slug}"','"theology": "./san-reader.html?page={slug}"')
-s=s.replace('<a href="./index.html?page=home">Shell home</a>','<a href="../index.html">All projects</a>')
-s=s.replace('<a href="../theology-wiki/index.html?page=home">Theology Wiki</a>','<a href="./index.html?page=home">Original reader</a>')
-s=s.replace('<a href="../mario-maker-clone/home.html">Mario Maker Clone</a>','<a href="../mario-maker-clone/svgn-paper-route/index.html">Paper Delivery</a><a href="../dino-atlas/index.html">Dino Atlas</a>')
-s=s.replace('aria-label="SAN wiki reader"','aria-label="Theology wiki reader"')
-assert '"internalRouting": true' in s
-assert '../san-wiki-shell/assets' in s
+nav='''<nav class="wiki-family-strip" aria-label="Public knowledge collection">
+      <a class="wiki-family-link" href="../index.html">All projects</a>
+      <a class="wiki-family-link current" href="?page=home" data-page="home" aria-current="page">Theology Wiki</a>
+      <a class="wiki-family-link" href="./index.html">Original reader</a>
+      <a class="wiki-family-link" href="../theology-sources/index.html">Theology sources</a>
+      <a class="wiki-family-link" href="../mario-maker-clone/svgn-paper-route/index.html">Paper Delivery</a>
+      <a class="wiki-family-link" href="../dino-atlas/index.html">Dino Atlas</a>
+    </nav>'''
+s=re.sub(r'<nav class="wiki-family-strip"[^>]*>.*?</nav>',lambda m:nav,s,count=1,flags=re.S)
+s=s.replace('aria-label="SAN reading sequence"','aria-label="Theology reading sequence"').replace('aria-label="Continue exploring SAN"','aria-label="Continue exploring theology"')
+assert '"internalRouting": true' in s and '../san-wiki-shell/assets' in s
 (ROOT/'theology-wiki/san-reader.html').write_text(s)
 
-# Keep the old field guide and the new expedition consistent on reset.
 p=ROOT/'dino-atlas/app.js';s=p.read_text()
-s=s.replace('storage?.removeItem(STORAGE_KEY);','storage?.removeItem(STORAGE_KEY);storage?.removeItem("dino-atlas.clues.v1");') if 'storage?.removeItem("dino-atlas.clues.v1")' not in s else s
+if 'storage?.removeItem("dino-atlas.clues.v1")' not in s:
+    s=s.replace('storage?.removeItem(STORAGE_KEY);','storage?.removeItem(STORAGE_KEY);storage?.removeItem("dino-atlas.clues.v1");')
 s=s.replace('third-party scripts, or network APIs','remote scripts, or network APIs')
 p.write_text(s)
 p=ROOT/'dino-atlas/expedition.js';s=p.read_text()
-old="state.near=null;lastNearId='';buttons();"
-new="state.near=null;lastNearId='';$('inspect').disabled=true;$('inspect').textContent='Explore the landscape';$('interaction-hint').textContent='Approach an animal or an amber evidence marker.';buttons();"
-s=s.replace(old,new)
+s=s.replace("state.near=null;lastNearId='';buttons();","state.near=null;lastNearId='';$('inspect').disabled=true;$('inspect').textContent='Explore the landscape';$('interaction-hint').textContent='Approach an animal or an amber evidence marker.';buttons();")
 p.write_text(s)
 print('Integrated Paper Delivery and Theology SAN reader; existing content preserved.')
