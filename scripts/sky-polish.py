@@ -14,11 +14,24 @@ start="routes:specs.map((s,i)=>({...s,mail:Array(s.radii.length).fill(0),descrip
 replace="routes:specs.map((s,i)=>{const {cells,ct,...meta}=build(i,{});return meta;})"
 s=s.replace(start,replace);p.write_text(s)
 p=g/'sky-game.js';s=p.read_text()
-s=s.replace('if(!active()||!tr.sky)return onTrack(p);', 'if(!tr)return;if(!active()||!tr.sky)return onTrack(p);')
+if 'if(!tr)return;' not in s:s=s.replace('if(!active()||!tr.sky)return onTrack(p);', 'if(!tr)return;if(!active()||!tr.sky)return onTrack(p);')
 s=s.replace("if(p.track){if(p.trackCD>0)p.trackCD--;fireGun(p);stepOnTrack(p);interactTiles(p);if(p.inv>0)p.inv--;return;}", "if(p.trackCD>0)p.trackCD--;fireNitro(p);fireGun(p);\n    if(p.peg){stepSwing(p);interactTiles(p);if(p.inv>0)p.inv--;return;}\n    if(p.track){stepOnTrack(p);interactTiles(p);if(p.inv>0)p.inv--;return;}")
 s=s.replace('const ox=p.x,oy=p.y;if(p.trackCD>0)p.trackCD--;fireGun(p);state.airFrames++;', 'const ox=p.x,oy=p.y;state.airFrames++;')
+# Capture the physical tap before a slow renderer can hide it between steps.
+if 'function armFromEvent' not in s:
+ insertion="""  function armFromEvent(){
+    if(!active()||window.__delivery.paused||window.__delivery.state.menu||won||player.dead>0)return;
+    const tr=player.track;if(!tr?.sky||state.armed)return;
+    const phase=(player.trackS/tr.len-tr.sky.begin)/(tr.sky.end-tr.sky.begin);
+    if(phase>=.55&&phase<=1.02){state.armed=true;message('EXIT ARMED');log('arm',{stage:tr.sky.stage,phase,input:'event'});}
+  }
+  window.addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat)armFromEvent();});
+"""
+ s=s.replace('  function retry(){',insertion+'  function retry(){')
+ s=s.replace('if(J&&!p._skyJumpHeld){','if(J&&!p._skyJumpHeld&&!state.armed){')
+ s=s.replace('e.preventDefault();keys.Space=true;launch.setPointerCapture', 'e.preventDefault();armFromEvent();keys.Space=true;launch.setPointerCapture')
 p.write_text(s)
 p=root/'tests/sky_browser.py';s=p.read_text()
-s=s.replace("events=page.evaluate('__sky.state.events');runs.append", "check(page.evaluate('!!JSON.parse(localStorage.getItem(\"svgn_delivery_records_v1\")||\"{}\")[SkyRoutes.specs[__delivery.state.route].id]'),'Completed sky route saves its medal')\n   events=page.evaluate('__sky.state.events');runs.append")
+if 'Completed sky route saves its medal' not in s:s=s.replace("events=page.evaluate('__sky.state.events');runs.append", "check(page.evaluate('!!JSON.parse(localStorage.getItem(\"svgn_delivery_records_v1\")||\"{}\")[SkyRoutes.specs[__delivery.state.route].id]'),'Completed sky route saves its medal')\n   events=page.evaluate('__sky.state.events');runs.append")
 p.write_text(s)
-print('Canonical sky saves, editor overlays and retained grapple/nitro handling corrected.')
+print('Canonical sky saves, input buffering, editor overlays and retained grapple/nitro handling corrected.')
