@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#244d3e">
+  <meta name="description" content="Travel through dinosaur time, explore in 2D and 3D, uncover fossils, and build your own field journal.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <title>Dino Atlas | A world before ours</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the expedition</a>
+  <header class="site-header">
+    <a class="brand" href="#explore" aria-label="Dino Atlas home"><span class="brand-mark" aria-hidden="true">D</span><span>Dino<span class="brand-light">Atlas</span><small>A WORLD BEFORE OURS</small></span></a>
+    <nav aria-label="Main navigation"><a href="#explore">Explore</a><a href="#dig">Fossil Lab</a><a href="#journal">Field Journal <span id="journal-count">0</span></a></nav>
+    <a class="grownups-link" href="./index.html">Back to expedition</a>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer><span>Dino Atlas / First expedition</span><span>Stay curious. Follow the evidence.</span><a href="#grownups">Science, sources &amp; privacy</a></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="reset-dialog" aria-labelledby="reset-heading"><h2 id="reset-heading">Start a fresh journal?</h2><p>This erases only Dino Atlas progress and notes in this browser. Export your journal first to keep a copy.</p><form method="dialog"><button value="cancel" autofocus>Keep my discoveries</button><button value="reset" class="danger">Erase Dino Atlas progress</button></form></dialog>
+  <noscript><p class="noscript">Dino Atlas needs JavaScript for its interactive expedition. Enable JavaScript and reload to begin.</p></noscript>
+</body>
+</html>
