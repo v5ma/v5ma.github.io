@@ -1,0 +1,72 @@
+name: Verify full 3D sky-loop routes
+on:
+  push:
+    branches: [feat/sky-loop-flight-20260904]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sky-loop-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  flight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Integrate sky courses in the existing game
+        run: |
+          python scripts/prepare-sky-route.py
+          python scripts/sky-polish.py
+          python scripts/correct-sky-rendering.py
+      - name: Record integrated source on the feature branch
+        if: github.ref == 'refs/heads/feat/sky-loop-flight-20260904'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- index.html mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/delivery-upgrade.js mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sky-visual.js mario-maker-clone/svgn-paper-route/sky-routes.js tests/interactive_browser.py tests/sky_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Integrate sky-loop main route and full replay verification'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source and course checks
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/sky-game.js
+          node --check mario-maker-clone/svgn-paper-route/sky-visual.js
+          node --check mario-maker-clone/svgn-paper-route/sky-routes.js
+          node --test dino-atlas/tests/unit.test.mjs tests/interactive.test.mjs tests/sky_routes.test.mjs
+      - name: Install replay browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Check final camera and first loop-to-loop flight
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/sky-view-server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python tests/sky_visual.py
+          git rev-parse HEAD > test-output/sky-view/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-view-check
+          path: test-output/sky-view/
+          retention-days: 7
+      - name: Record complete 3D routes using normal controls
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/sky-server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python tests/sky_browser.py
+      - name: Record tested source
+        if: always()
+        run: |
+          mkdir -p test-output/sky
+          git rev-parse HEAD > test-output/sky/tested-commit.txt
+          git diff --stat > test-output/sky/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-loop-replay
+          path: test-output/sky/
+          retention-days: 7
