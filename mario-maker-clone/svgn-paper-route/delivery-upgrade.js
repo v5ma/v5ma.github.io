@@ -68,7 +68,7 @@
     const baseFire=fireGun;
     window.fireGun=function(p){
       const held=keys.KeyC;
-      if(throwBufferedUntil>performance.now()&&p.gunCD<=1){keys.KeyC=true;throwBufferedUntil=0;}
+      if(throwBufferedUntil>0&&p.gunCD<=1){keys.KeyC=true;throwBufferedUntil=0;}
       baseFire(p);keys.KeyC=held;
     };
     const basePackets=stepPackets;
@@ -232,11 +232,11 @@
     function act(a){
       if(a==='routes')showMenu();
       else if(a==='editor')openEditor();
-      else if(a==='resume'){hidePanels();paused(false);previousMenuFocus?.focus?.();}
+      else if(a==='resume'){hidePanels();paused(false);cv.focus?.({preventScroll:true});}
       else if(a==='pause'){if(state.menu)return;if(state.paused){hidePanels();paused(false);}else if(mode==='play'&&!won){paused(true);document.getElementById('delivery-pause').classList.add('open');document.querySelector('#delivery-pause button').focus();}}
       else if(a==='next')startRoute((state.route+1)%C.routes.length);
       else if(a==='retry'){if(current())startRoute(state.route);else{hidePanels();paused(false);hideWin();startPlay(true);}}
-      else if(a==='view'){state.view=state.view==='3d'?'2d':'3d';header.querySelector('[data-delivery="view"]').textContent=state.view==='3d'?'2D view':'3D view';if(state.view==='3d'&&!window.__gpuReady)toast('3D renderer is not available here. The 2D game remains playable.');}
+      else if(a==='view'){state.view=state.view==='3d'?'2d':'3d';header.querySelector('[data-delivery="view"]').textContent=state.view==='3d'?'2D view':'3D view';if(state.view==='3d'&&!window.__gpuReady)toast('3D renderer is not available here. The 2D game remains playable.');cv.focus?.({preventScroll:true});}
       else if(a==='sound'){document.getElementById('btnMute').click();header.querySelector('[data-delivery="sound"]').textContent=document.getElementById('btnMute').textContent.includes('MUTED')?'Muted':'Sound';}
     }
     document.addEventListener('click',e=>{const course=e.target.closest('[data-course]');if(course){startRoute(Number(course.dataset.course));return;}const b=e.target.closest('[data-delivery]');if(b)act(b.dataset.delivery);});
@@ -245,7 +245,7 @@
       const panel=document.querySelector('#delivery-menu.open,#delivery-results.open,#delivery-pause.open');
       if(panel&&e.key==='Tab'){const list=[...panel.querySelectorAll('button,a')],first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}e.stopPropagation();return;}
       if(panel||/^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(e.target.tagName)){e.stopImmediatePropagation();return;}
-      if(e.code==='KeyC'&&!e.repeat&&mode==='play'&&!state.paused)throwBufferedUntil=performance.now()+180;
+      if(e.code==='KeyC'&&!e.repeat&&mode==='play'&&!state.paused)throwBufferedUntil=1;
     },true);
     window.addEventListener('blur',clearKeys);document.addEventListener('visibilitychange',()=>{clearKeys();if(document.hidden&&mode==='play'&&!won&&!state.menu)act('pause');});
     // Expose deterministic state and controls for development, not a remote API.

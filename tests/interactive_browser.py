@@ -70,8 +70,10 @@ with sync_playwright() as p:
         check(page.evaluate('deliveries===1&&pg(12,19)===T.MAILDONE'),'Respawn preserves delivered mailboxes and quota progress')
         for i,x in enumerate([26,40,55,72,91],start=2):
             page.evaluate('(x)=>{player.x=x*TILE-110;player.y=20*TILE-player.h;player.vx=0;player.vy=0;player.dead=0;player.inv=999;player.dir=1;player._paperCD=0;}',x)
-            page.locator('#cv').focus();page.wait_for_function('player.gunCD===0');page.keyboard.press('KeyC',delay=80)
-            page.wait_for_function('(n)=>deliveries>=n',arg=i,timeout=12000)
+            page.locator('#cv').focus();page.wait_for_function('player.gunCD===0')
+            page.keyboard.down('KeyC')
+            try:page.wait_for_function('(n)=>deliveries>=n',arg=i,timeout=12000)
+            finally:page.keyboard.up('KeyC')
         check(page.evaluate('deliveries===6'),'All six Morning Edition mailboxes accept real projectile deliveries')
         page.evaluate('player.x=(LW-4)*TILE;player.y=20*TILE-player.h;player.vx=0;player.vy=0')
         page.wait_for_function('won',timeout=10000)
