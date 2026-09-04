@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "home",
+    "title": "SAN Wiki Reader Shell",
+    "summary": "Public reader shell only; SAN articles, source data, and research content are intentionally omitted.",
+    "topic": "shell",
+    "tags": ["shell", "no-content"],
+    "path": "home.md",
+    "sourceFiles": ["home.md"],
+    "xrRoomId": "san-shell",
+    "xrDeckId": "reader-shell",
+    "related": []
+  }
+]

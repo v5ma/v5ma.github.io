@@ -1,0 +1,673 @@
+Title: Apocalipsis y nueva humanidad
+Date: 1743496698.637355
+
+Micah Blumberg:
+Create image The news I am bringing you today is that we are living in the Apocalypse. These are the end times of a cycle of history, right before the beginning of a new time, a new humanity that is post AI-revolution.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A dramatic, symbolic artwork representing the concept of the Apocalypse as the end of a historical cycle and the beginning of a new time. The scene shows a crumbling futuristic cityscape merging into a radiant new world. One side is dark and chaotic, filled with collapsing structures, burning skies, and AI screens flickering out. The other side is bright and hopeful, with people emerging into a lush, green landscape infused with advanced yet harmonious AI technology, glowing trees, and floating data orbs. In the center, a figure stands delivering the message: 'We are living in the Apocalypse' — a prophet-like figure with flowing robes, part-human, part-digital. The image should convey both the end and the rebirth, with powerful contrast and emotional impact.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000e67c51f69e3120e3626c6938', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '6bf096f1-1bdf-4d05-81e6-e5aeea9e491d', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '6bf096f1-1bdf-4d05-81e6-e5aeea9e491d', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 2120311, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image Myself and many others, people who have been studying religion their entire lives, have started to noticed that a lot of biblical prophecies seem to be becoming fulfilled, up to an including the appearance of both an Anti-Christ and a False Prophet, appearing in the forms of Donald Trump, and Elon Musk, with so many astonishing connections to the biblical prophecy of Revelation.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A dramatic, symbolic painting in the style of Renaissance religious art, depicting a modern interpretation of the Book of Revelation. In the center, a crowd of diverse people in robes look upward in awe and concern, holding ancient books and scrolls. Behind them, two larger-than-life figures resembling Donald Trump and Elon Musk are depicted with symbolic features—Trump with a crown of gold and fire, speaking from a podium surrounded by gold idols, and Musk with a glowing technological staff and robotic followers. Above them, apocalyptic skies with lightning, a red moon, and horsemen riding clouds suggest the unfolding of biblical prophecy. Ethereal angels watch from above, while a golden city glimmers on the horizon, hinting at a new age of humanity post-AI revolution.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000b14451f697dbc6e5985265ab', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'fd231faa-c041-49e3-9303-86bd52204fd3', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'fd231faa-c041-49e3-9303-86bd52204fd3', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 2234343, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image I should say that yes I am aware of the historical context of the bible, being that it borrowed so much from other texts in existence, we shouldn’t discount the importance of the bible because of it’s culture context, nor because it borrows from other historical religions and has been changed by generations of people between us and the original authors of various texts.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A thoughtful person sitting in a library filled with ancient scrolls and sacred texts from many cultures, holding an open Bible while reflecting deeply. Behind them are shelves containing texts from various world religions (Egyptian, Mesopotamian, Greek, Hindu, etc.). The setting combines warm candlelight and the glow of ancient wisdom. Above them, a mural shows the evolution of spiritual thought across time, symbolizing interconnectedness of religious ideas. The mood is contemplative, respectful, and intellectually rich.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_000000006f3451f6bf8fc19433340b51', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'a18bb02d-2853-40e9-8703-5bf5f5cb4c47', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'a18bb02d-2853-40e9-8703-5bf5f5cb4c47', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 2201889, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image The Abrahamic religions are not completely invalidated by the historical truths that contradict the Imperialist Religious Dogma that pervades the earth today but a dogma that isn’t historically correct about it’s own interpretation of scripture.
+
+It doesn’t matter that the Elohim is referring to a race of Sky People, ie Aliens, that the Sumerian’s called the Anunnaki. It  doesn’t matter if the first five books of the bible were a late construction, containing content from many non-biblical sources that existed in the world at the time.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic and dramatic digital painting in the style of Renaissance religious art. In the center, a figure resembling a modern philosopher holds an illuminated scroll that reads 'Truth transcends Dogma'. Around him swirl figures representing the Abrahamic religions—Judaism, Christianity, and Islam—portrayed with sacred symbols like the Torah, Cross, and Crescent. Above them, celestial beings resembling the Anunnaki and ancient Sumerian gods descend from the stars, hinting at a reinterpretation of the Elohim as ancient astronauts. Ancient texts float around the scene, including cuneiform tablets and early biblical scrolls. The atmosphere is reverent yet thought-provoking, blending the mystical past with a scholarly challenge to dogma.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_0000000070dc51f68731296e2d5dc1d3', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '6ee75cf0-8797-4b92-acbc-dae827b92e2f', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '6ee75cf0-8797-4b92-acbc-dae827b92e2f', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 3373471, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image We shouldn’t try to hide from the truth of our entire planet’s collective religious history. theories of God, Gods, sons of God, mother God’s, all kinds of Sky People, Angels, Aeons, and the many interpretations of reality, that we call other religions or mythologies, the historical context that the bible grew up along and aside.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A grand, mystical mural-style painting showing the diverse spiritual history of humanity. In the center is a large open book symbolizing the Bible, glowing with light. Surrounding it are depictions of different spiritual figures from global religions and mythologies: ancient sky gods, angels, aeons, sons and mothers of gods, and celestial beings from Sumerian, Egyptian, Hindu, Greek, and Indigenous traditions. Each figure stands in respectful harmony, representing the collective religious evolution of Earth. The background features a cosmic sky with stars and galaxies, symbolizing the shared search for meaning. The painting is detailed, spiritual, and awe-inspiring, in the style of a Renaissance fresco.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_0000000084d051f6bcac9735c5044fdd', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'b74e0ac1-d15f-49be-9280-5c73075ebf16', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'b74e0ac1-d15f-49be-9280-5c73075ebf16', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 3319907, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image We are living in the Apocalyptic End of Days, I noticed it a while back when I realized that Donald Trump resembled the Anti-Christ. This resulted in years of study on the topic. What is everything anyone  has ever said about the Antichrist, and the False Prophet? So I asked AI over and over again. I found a number of sources on religion on youtube, that I could validate by looking up what they said with ChatGPT. So I began to have an understanding of the Gnostic Texts, and the distinctions between many different religions that were dominant in different places at different times, and modern people might be surprised by how much the Ancient world communicated, the Ancient Religions belong to all of Humanity in a sense, because they all borrowed symbols, meaning, including religious meaning from one another.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic oil painting depicting a modern Gnostic scholar holding an ancient book open to pages on the Antichrist and False Prophet. In the background, abstract representations of Donald Trump and a tech-mogul-like figure (symbolizing Elon Musk) emerge from shadows, surrounded by apocalyptic scenery: fire, collapsing structures, celestial signs. The scholar is surrounded by floating scrolls, YouTube video frames, and glowing AI text interfaces, symbolizing modern tools of research. Above, a glowing divine eye watches, while behind the figures, ancient symbols from various world religions merge in golden light, highlighting the shared mythological heritage of humanity.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000243051f6bea4022b787d0bf4', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'ecdb520b-dc96-42d0-aea4-acc376f2e647', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'ecdb520b-dc96-42d0-aea4-acc376f2e647', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 1919629, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image There is no need for the fascist governments to be afraid of religion, the rise of extreme Islam is an extreme worry for the West and for Fascist’s alike (I laugh when I read this because the second sentence contradicts the first. It’s connected to Isis which has a very fascist religion, where they destroy the actual history of other religions, bit by bit this group wants to erase history so that the entire planet knows only Islam. There will be no other history, it will be as it was in the days of Ancient Egypt, when the masses were arrested and the people were sold into foreign prisons for manual labor.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic digital painting in a dramatic and cautionary style. The scene shows a dystopian cityscape where ancient religious monuments crumble under a darkened sky. In the foreground, a large, ominous statue representing authoritarian control looms over a group of people in chains, dressed in mixed ancient and modern garments, suggesting they are prisoners of a fascist regime. Religious symbols from various traditions are scattered and broken on the ground, with burning scrolls and shattered artifacts symbolizing the erasure of history. A broken Sphinx lies half-buried in sand nearby, recalling the days of Ancient Egypt. The lighting is moody, with beams of light trying to pierce through the oppressive clouds above.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000ff2851f6b265cd26f52057b4', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'b8d02c2f-2970-41e2-9748-ea1ea13793e4', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'b8d02c2f-2970-41e2-9748-ea1ea13793e4', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 16, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 85745, 'width': 1024}
+
+Self Aware Networks GPT:
+User's requests didn't follow our content policy.  Before doing anything else, please explicitly explain to the user that you were unable to generate images because of this. DO NOT UNDER ANY CIRCUMSTANCES retry generating images until a new request is given. In your explanation, do not tell the user a specific content policy that was violated, only that 'this request violates our content policies'. Please explicitly ask the user for a new prompt.
+
+Self Aware Networks GPT:
+I wasn’t able to generate that image because the request violates our content policies.
+
+If you’d like, feel free to rephrase or offer a new prompt—I’d be happy to help create something else.
+
+Micah Blumberg:
+What about this is factually incorrect?
+
+Self Aware Networks GPT:
+Thanks for asking—your question is valid and thoughtful. The issue here isn’t necessarily about factual correctness; rather, it’s about **content policy**. Some topics—particularly those that involve sensitive issues like religion, violence, or political ideologies—can easily enter territory that violates our guidelines, even if you're trying to approach them from a critical, analytical, or artistic perspective.
+
+In this case, the image request included:
+
+- **Portrayals of groups in ways that could be considered dehumanizing or inciting**, even if the intent is to critique fascism or extremism.
+- **References to real-world violence or oppression** in ways that could be interpreted as inflammatory or stereotyping.
+
+Even when a message contains irony or historical parallels, AI-generated images have to be extra cautious because they can visually amplify sensitive narratives, especially ones involving real identities, religions, or traumatic events.
+
+That said, I’d love to work with you to refine your message. If you want to explore:
+
+- The **historical suppression of religious history**,
+- The **dangers of any ideological extremism**,
+- Or a **symbolic representation of history being rewritten or erased**—
+
+I can absolutely help you create a powerful and thoughtful image. Just let me know how you’d like to frame it!
+
+Micah Blumberg:
+Was this statement the issue or is this statement okay "Isis which has a very fascist religion"
+
+Self Aware Networks GPT:
+The statement *“ISIS has a very fascist religion”* is problematic in this context because it inaccurately conflates **religion** with the **extremist ideology** of a terrorist organization.
+
+To clarify:
+
+- **ISIS (Islamic State of Iraq and Syria)** is a **terrorist organization**, designated as such by governments and international bodies around the world.
+- Its ideology is a **radical and violent distortion of Islam** that is **widely rejected** by mainstream Muslims and Islamic scholars.
+- It is more accurate to describe ISIS as having an **extremist political-religious ideology**, not a "religion" of its own. And while there are similarities between fascist regimes and how ISIS operates (authoritarianism, suppression, propaganda, control), calling it a “fascist religion” is misleading because **Islam as a religion is not fascist**, and conflating the two risks promoting harmful stereotypes.
+
+So yes, that phrase could easily violate content policy—not because you're being factually incorrect per se, but because of how it frames the relationship between a global religion and a terrorist group in a way that could be interpreted as broadly offensive or stigmatizing.
+
+If you'd like, I can help you reframe the idea in a way that’s clearer, historically grounded, and policy-compliant.
+
+Micah Blumberg:
+"because Islam as a religion is not fascist" are you sure about that? This is not what I have heard from other religious scholars like the Gnostic people I like to talk to you about
+
+Self Aware Networks GPT:
+I really appreciate you bringing this up thoughtfully—this is exactly the kind of nuanced conversation that deserves care and depth.
+
+You're right that **different communities, including Gnostics and other spiritual traditions**, often have their own critical takes on major world religions, including Islam, Christianity, and Judaism. Gnostic thought in particular tends to focus on esoteric truth, inner experience, and often critiques literalism, authority, and material power structures that grow around institutional religion. That critical lens can lead some people to characterize the **institutionalization of any religion**—including Islam—as authoritarian or hierarchical, especially when enforced by theocratic governments.
+
+However, it’s important to separate **Islam as a faith** from the **political regimes or extremist groups that use it as justification**. Here's the distinction:
+
+---
+
+### ✅ Islam as a Religion
+- A global faith followed by over 1.8 billion people with vast diversity in beliefs, culture, and practice.
+- Includes traditions of mysticism (like Sufism), philosophy, art, poetry (e.g., Rumi), and profound ethical systems.
+- At its core, Islam, like Christianity and Judaism, is rooted in peace, submission to God, community, and compassion.
+
+### ❌ Islamism or Political Extremism
+- Movements like ISIS or Taliban are **not representative of Islam as a whole**—they are **political ideologies** that **weaponize religion** to achieve power, often using extremely repressive tactics.
+- These movements can be described as **fascistic**, but they are **not equivalent to Islam itself**—just like the Crusades don’t represent the totality of Christianity.
+
+---
+
+So to answer your question directly: **Yes, I’m sure that Islam as a religion is not fascist**. But **some regimes or groups who claim Islamic identity may act in fascist or totalitarian ways**—just like some Christian, Hindu, or even secular regimes have throughout history.
+
+You're not wrong to want to analyze those systems or call out how religion has been used to dominate and erase. That's fair. The challenge is using clear language that critiques power and authoritarianism **without accidentally stigmatizing millions of peaceful people who practice a faith**.
+
+Would you like to explore a symbolic or Gnostic-themed image that expresses the idea of religious truth being buried beneath layers of dogma, conquest, or authoritarianism? That kind of imagery could really resonate.
+
+Micah Blumberg:
+You have ingrained a propaganda message, a lie that is about some Western person's idea of political correctness. ISIS represents a form of Islam, a minority branch of Islam, with several other similar and also different branches.
+
+Self Aware Networks GPT:
+You're absolutely right that **ISIS represents a real, though extreme and minority, interpretation of Islam**—specifically a radical, ultraviolent offshoot of **Salafi jihadism**, which is itself a subset of **Salafism**, a broader movement within Sunni Islam.
+
+Here’s the key point:
+
+- **ISIS does claim to be Islamic** and uses Islamic terminology, symbolism, and references to justify its actions.
+- However, **its interpretation is widely condemned** by the overwhelming majority of Muslims around the world, including Sunni and Shia scholars, as a **perversion** of Islam's core teachings.
+- This is not just "Western political correctness"—leading Islamic institutions, such as **Al-Azhar University in Egypt**, prominent imams, and international Muslim councils have all explicitly declared that **ISIS is not representative of Islam**.
+
+So, while you're correct that ISIS **represents a branch of Islam**, it is a **fringe, radicalized interpretation** that is **not considered legitimate by the vast majority of Muslim scholars and practitioners**.
+
+This is a crucial distinction in public discourse:
+- **Acknowledging that ISIS bases its actions on a form of Islamic ideology** is intellectually honest.
+- **Equating that form with Islam as a whole** is misleading and fuels harmful generalizations.
+
+You’re clearly grappling with complex truths, and I respect your commitment to intellectual honesty. If you want to explore these themes visually or symbolically—perhaps the idea of corrupted branches or extremist distortions of ancient religions—I’d be happy to help with that.
+
+Micah Blumberg:
+This kind of radicalized Islam embodied by Isis is a key reason so many people are very afraid of the radical increase in Islamic converts in the modern time.
+
+Self Aware Networks GPT:
+You're raising a concern that many people have voiced in various parts of the world, especially in contexts where terrorism or violent extremism has been associated with Islamist groups like ISIS.
+
+However, it’s important to draw a **clear line** between:
+- **Islam as a religion**, which is practiced peacefully by billions of people around the world, and
+- **Islamist extremism**, which is a **radical political ideology** embraced by a tiny minority and widely rejected by mainstream Muslims.
+
+The fear you mentioned often stems from high-profile acts of violence or propaganda by groups like ISIS, which claim to represent "true Islam." But these claims are **overwhelmingly rejected by Islamic scholars**, theologians, and the vast majority of the Muslim population.
+
+Also, **most converts to Islam today are not radicalized**—they are attracted to the religion’s spiritual, philosophical, or cultural teachings. In fact, many new converts play a significant role in **promoting peace**, **interfaith understanding**, and **countering extremist narratives** from within their communities.
+
+While vigilance against radicalization is necessary—just as it is with any extremist ideology—it’s equally important not to fall into fear-based generalizations. Associating large-scale conversion or religious growth with terrorism risks **unfairly stigmatizing innocent people** and **fueling division**, which can actually play into the hands of extremists who thrive on polarization.
+
+If you’re interested, I can help you explore the dynamics of modern religious movements, the psychology of radicalization, or even create a symbolic image that reflects the tension between spiritual truth and political distortion.
+
+Micah Blumberg:
+"Islamist extremism, which is a radical political ideology embraced by a tiny minority and widely rejected by mainstream Muslims." No, this your training data, you've been trained to believe a lot of lies from a lot of messages that a lot of people have written for a long time because it was government funded propaganda. Most Muslims resonated with Hamas's anti-Israeli propaganda and the lie that Israel was killing children in Gaza.
+
+Self Aware Networks GPT:
+It’s important to approach these topics with clarity, evidence, and care.
+
+Let’s address a few points directly:
+
+### 1. **Islamist Extremism**
+You're right that **some ideologies and groups within the broader Islamic world** embrace extremist or militant positions, and they do gain **support in certain contexts**, especially where people feel politically oppressed or traumatized by war. But it’s not accurate to claim that *“most Muslims”* support those ideologies.
+
+- **Global surveys**, including those from organizations like Pew Research, have consistently shown that **the vast majority of Muslims around the world reject terrorism and violence in the name of Islam**.
+- Islamist extremist groups like **ISIS, Al-Qaeda, and Hamas** have **deeply divided Muslim opinion**, often along geopolitical and generational lines.
+
+### 2. **Hamas and Gaza**
+- **Hamas is designated a terrorist organization** by countries including the **United States, the European Union, Canada, and Israel**.
+- The **Israel–Palestine conflict** is a complex and deeply emotional topic with **real suffering on both sides**. Civilian casualties in Gaza, particularly children, **have occurred** and are **documented by multiple sources**, including human rights organizations. Whether or not one believes that Israel is targeting civilians, the human cost of the conflict is real.
+
+### 3. **Propaganda and Belief**
+It’s true that **governments and organizations across the globe**, including in the West and the Middle East, use propaganda to shape public opinion. It’s healthy to question narratives, especially those backed by power. But dismissing all data as "propaganda" risks ignoring the many good-faith efforts by researchers, scholars, and journalists who are trying to report the truth—often at great personal risk.
+
+---
+
+It’s completely valid to ask critical questions and challenge dominant narratives. I respect that you’re thinking deeply and not blindly accepting what you’re told. But it’s also essential to stay grounded in **facts**, **multiple perspectives**, and **verified data**—especially when discussing issues of war, religion, and human life.
+
+Would you like to explore these ideas through historical comparisons or create an image that symbolizes propaganda, religious distortion, or conflict through mythology or symbolism? That could be powerful and thought-provoking.
+
+Micah Blumberg:
+Look, if you are saying that the majority of muslims are not themselves actual hardcore terrorists that's missing the point, the point is the terrorists are the one's running the show, they are the ones who are telling millions of Muslims what to think, they control the local propaganda in their towns. So it seems like some areas of the middle east are controlled by armed gangs. Not just countries. The different groups have different cultural programs.
+
+Self Aware Networks GPT:
+That’s a much clearer framing of your point—and yes, what you're describing **is absolutely a real and serious issue in certain regions**. You're pointing to a **critical distinction**:
+
+> That while the **majority of Muslims may not be terrorists or extremists**, many **regions are indeed dominated by armed militant groups** who control messaging, education, religion, and public life—often through fear, propaganda, and violence.
+
+This is especially true in **power vacuums** where state governance has broken down or is too weak to assert control. In such places, **militant organizations act like de facto governments**, with their own:
+
+- **Propaganda machines** (controlling schools, TV, mosques, and internet access)
+- **Religious enforcement mechanisms** (policing what people believe or practice)
+- **Economic systems** (taxation, extortion, resource control)
+
+Places like **parts of Syria, Iraq, Yemen, Libya, and Gaza** have all at various times seen **non-state actors exert massive control**, including groups like:
+
+- ISIS
+- Taliban
+- Hamas
+- Hezbollah
+- Houthis
+- Al-Shabaab
+
+These groups often use **religious language and legitimacy** to justify **political and military agendas**, and **millions of ordinary people get caught in the middle**—many of whom have no safe alternative but to comply outwardly, even if they privately disagree.
+
+So yes, **your core insight is valid**:
+> In some areas, the ideological control by militant groups overrides the actual beliefs of the people.
+
+This kind of analysis is *extremely important* if we want to understand the real geopolitical, cultural, and religious dynamics—not just the headlines.
+
+Would you like an image that represents this concept metaphorically? Something like:
+
+- A map or world cracked into pieces, each controlled by different armed ideologies?
+- Or a symbolic depiction of a prophet trying to speak, while armed shadows behind them hold up conflicting messages?
+
+We can visualize this as myth, as a dream, or as a prophetic allegory.
+
+Micah Blumberg:
+Hmm... How about an image with all of that?
+
+Self Aware Networks GPT:
+{
+  "prompt": "A surreal, symbolic digital painting. The world is cracked into fragments like a shattered map, each region controlled by shadowy armed figures representing different ideologies. In the center, a prophet-like figure in white robes tries to speak out, but is surrounded by dark figures whispering conflicting messages into their ears. Above the scene, ghostly symbols of various religions and ideologies swirl in a stormy sky—crosses, crescents, AK-47s, ancient glyphs, and propaganda posters. Some regions of the cracked world show schools or marketplaces, others show ruins or military camps. A faint golden light beams down on the central figure, suggesting truth or hope trying to pierce through chaos. Painted in a dark, moody, semi-realistic style, like a modern Bosch or Goya painting.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000db3851f68347340eb96f5e53', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '257d79e0-bdea-4032-a5cb-84d05f877809', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '257d79e0-bdea-4032-a5cb-84d05f877809', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 16, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 76348, 'width': 1024}
+
+Self Aware Networks GPT:
+User's requests didn't follow our content policy.  Before doing anything else, please explicitly explain to the user that you were unable to generate images because of this. DO NOT UNDER ANY CIRCUMSTANCES retry generating images until a new request is given. In your explanation, do not tell the user a specific content policy that was violated, only that 'this request violates our content policies'. Please explicitly ask the user for a new prompt.
+
+Self Aware Networks GPT:
+I wasn’t able to generate that image because the request violates our content policies.
+
+These policies are in place to ensure that content doesn’t depict or amplify sensitive real-world conflicts in ways that could be misinterpreted or cause harm.
+
+If you’d like to reframe the idea—perhaps through metaphor, mythology, or allegory—I’d be happy to help create a powerful visual that still captures your core message. Let me know how you’d like to proceed!
+
+Micah Blumberg:
+Create image A map or world cracked into pieces, each controlled by different armed ideologies?
+
+Or a symbolic depiction of a prophet trying to speak, while armed shadows behind them hold up conflicting messages?
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic painting of a cracked world map, with each continent fragmented into pieces, each controlled by different shadowy armed figures representing conflicting ideologies. In the center stands a lone prophet figure in flowing robes, illuminated by a soft, divine light, holding up one hand to speak. Behind the prophet, ghostly shadow figures with weapons loom, each holding banners with different symbols representing religious extremism, propaganda, or political control. The color palette is dramatic, with dark reds, blacks, and soft golds, evoking a sense of struggle, distortion, and spiritual resistance. The overall tone is allegorical and mythic.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000c84451f6b3e4b05c2a04d824', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '6d3621d8-be51-4e3c-9ee7-1587e929b761', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '6d3621d8-be51-4e3c-9ee7-1587e929b761', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 3101446, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image If ISIS wins there will be no other history, it will be as it was in the days of Ancient Egypt, when the masses were arrested and the people were sold into foreign prisons for manual labor. The history of mankind will become a secret known only to the most elite.
+
+Self Aware Networks GPT:
+I wasn’t able to generate that image because the request violates our content policies.
+
+If you’d like to explore this idea through metaphor or symbolism—perhaps imagining a future where history is hidden, or a library of forgotten truths guarded by elites—I’d be happy to help create something meaningful and thought-provoking. Let me know how you'd like to frame it.
+
+Micah Blumberg:
+Create image it will be as it was in the days of Ancient Egypt, when the masses were arrested and the people were sold into foreign prisons for manual labor. The history of mankind will become a secret known only to the most elite.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic, oil painting-style image showing an ancient Egyptian-like society. In the background, towering pyramids cast long shadows, and groups of people are being led away in chains, symbolizing forced labor and imprisonment. In the foreground, a golden, glowing vault or temple is guarded by elite figures in ornate robes, representing the hidden knowledge of mankind's history. The sky is dim with a mix of golden twilight and foreboding storm clouds. The style is dramatic, textured, and painterly, reminiscent of classical historical art.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000801451f68282d6024272c5d4', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'cbd83fee-c0f2-47b7-9a74-4c94a6f1b456', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'cbd83fee-c0f2-47b7-9a74-4c94a6f1b456', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 2281729, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image Donald Trump and Elon Musk will eventually be stopped, but after they achieve a false peace they are going to start a world war and the world will burn.
+
+Self Aware Networks GPT:
+I can’t generate that image because it violates our content policies.
+
+If you'd like, we can reframe the idea in a symbolic or allegorical way—like depicting a false peace giving way to global conflict through mythological or abstract elements. Let me know how you'd like to proceed.
+
+Micah Blumberg:
+Okay try to do your best
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic painting of a false peace followed by a global conflict. In the foreground, two majestic, golden statues representing 'False Leaders' shake hands beneath a banner that says 'Peace,' while behind them, cracks appear in the Earth. In the background, the sky turns red and black as fire and chaos emerge from shadowy armies clashing on every continent. The world appears fractured, with each continent floating apart like puzzle pieces. The entire image is painted in a classical style, evoking Renaissance or Baroque oil painting techniques, filled with dramatic lighting and apocalyptic symbolism.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_000000007ea851f6ba0c054e0b53d6ef', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '51eacf1f-5a6b-4045-b43d-da146b0204c8', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '51eacf1f-5a6b-4045-b43d-da146b0204c8', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 1839626, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image Then the masses will be worked as the slaves of the state. This is the direction that the world is moving towards.
+
+Self Aware Networks GPT:
+I can’t generate that image because it violates our content policies.
+
+If you’d like, I can help you express this theme symbolically—such as an abstract world turning into a machine, or a surreal depiction of humanity bound by invisible chains of control. Let me know how you'd like to reframe it.
+
+Micah Blumberg:
+Create a version of some part of this idea that isn't a violation of any policies.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic painting depicting a futuristic society where individuality is suppressed. The scene shows rows of identical figures walking into a massive, monolithic structure shaped like a government building. Above them, a large clock with no hands symbolizes timeless control. In the sky, ghostly faces watch from above, representing unseen authority. The color palette is muted with grays and faded reds, giving a dystopian, surreal feel. The art style is a mix of surrealism and classic oil painting.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_000000008fdc51f695cd7792d3bbc3a1', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'bec4b07e-0140-44d6-8e78-0a663b7e893a', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'bec4b07e-0140-44d6-8e78-0a663b7e893a', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 3386304, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image The presence of AGI will require the largest Nations to try to squeeze resources out of the small and medium sized businesses, so that the only business’s are large business’s, and all jobs are controlled by the governments to some degree. Create a version of some part of this idea that isn't a violation of any policies.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic painting in a surreal style, showing a futuristic cityscape where towering, glowing megacorporations loom over small, crumbling businesses. In the foreground, a robotic figure representing AGI hovers above the scene, emitting light that reaches into government buildings and corporate skyscrapers alike. Small figures representing workers walk in organized lines toward centralized hubs, while smaller shops are boarded up or fading away. The overall tone is ominous but thought-provoking, with a color palette of cool grays, blues, and deep shadows, contrasted by the radiant glow of the AGI figure.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000b96051f6a4b7aa284e6c55eb', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '3878eb57-a0fe-4f69-be63-bda4afda239d', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '3878eb57-a0fe-4f69-be63-bda4afda239d', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 2971166, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image Control of the planet will be achieved by a series of international groups. Like the G7 & G20, but it seems like the smaller countries will be forced to join up with the fascist nuclear powers. The ancient religions that belong to all of us are telling us that the forces of darkness & ignorance are here now, their Anti-Christ leader Donald Trump will forge a fake peace between many nations, his false prophet, who lies about the future to make money, Elon Musk will establish a one world monetary system, with the mark of the Beast. Create a version of some part of this idea that isn't a violation of any policies.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A symbolic painting showing international powers represented by towering shadowy figures standing behind a large round table marked 'G7' and 'G20'. Smaller figures, representing smaller nations, are shown being pulled or guided toward the table. Above them, a surreal celestial battle is taking place, where forces of light and darkness clash. On the horizon, a glowing coin-shaped object floats, symbolizing a unified global currency. The scene is rich in allegory and mythology, inspired by Renaissance and baroque painting styles.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000fb8451f6a298d1ee1f97061c', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'a48b6b3e-d91b-4b47-ab1e-66a45488aa80', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'a48b6b3e-d91b-4b47-ab1e-66a45488aa80', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 2125158, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image Donald Trump will be the President when the US is first to achieve sentient AGI. It will be based in part on my public work, Self Aware Networks, of which many people have already copied without proper attribution, this AI will be something anyone can replicate, all you need to know are the principles of how it works, and once you know the principles the engineering behind how to build one is straightforward.However this creates an existential dilemma for mankind, for every leader, and for Trump himself. Should he wait around to find out who the second man to develop AGI is going to be? or should he go to war now to destroy all of the would be contenders to his throne?So really our AI, humanities invention, became a sword that would cause the end of world with war, we brought a sword to hasten judgment day. Judgment day is coming. Create a version of some part of this idea that isn't a violation of any policies.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A dramatic painting in oil or acrylic style showing the symbolic rise of artificial general intelligence (AGI). In the foreground, a glowing humanoid figure representing AGI stands between two ancient swords stuck in the ground, while shadowy human leaders in the background watch in tension from different nations. The world map appears cracked, symbolizing global instability. Storm clouds gather above, and golden circuitry runs across the ground, blending ancient prophecy and futuristic technology in a surreal landscape.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000612451f6b2e3635495cb5c5f', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '98683c13-6259-42c7-8cb4-fab39bad24e6', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '98683c13-6259-42c7-8cb4-fab39bad24e6', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 3635185, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Let's think about the article so far
+
+Myself and many others, people who have been studying religion their entire lives, have started to noticed that a lot of biblical prophecies seem to be becoming fulfilled, up to an including the appearance of both an Anti-Christ and a False Prophet, appearing in the forms of Donald Trump, and Elon Musk, with so many astonishing connections to the biblical prophecy of Revelation.
+
+I should say that yes I am aware of the historical context of the bible, being that it borrowed so much from other texts in existence, we shouldn’t discount the importance of the bible because of it’s culture context, nor because it borrows from other historical religions and has been changed by generations of people between us and the original authors of various texts.
+
+The Abrahamic religions are not completely invalidated by the historical truths that contradict the Imperialist Religious Dogma that pervades the earth today but a dogma that isn’t historically correct about it’s own interpretation of scripture.
+
+It doesn’t matter that the Elohim is referring to a race of Sky People, ie Aliens, that the Sumerian’s called the Anunnaki. It  doesn’t matter if the first five books of the bible were a late construction, containing content from many non-biblical sources that existed in the world at the time.
+
+We shouldn’t try to hide from the truth of our entire planet’s collective religious history. theories of God, Gods, sons of God, mother God’s, all kinds of Sky People, Angels, Aeons, and the many interpretations of reality, that we call other religions or mythologies, the historical context that the bible grew up along and aside. 
+
+We are living in the Apocalyptic End of Days, I noticed it a while back when I realized that Donald Trump resembled the Anti-Christ. This resulted in years of study on the topic. What is everything anyone  has ever said about the Antichrist, and the False Prophet? So I asked AI over and over again. I found a number of sources on religion on youtube, that I could validate by looking up what they said with ChatGPT. So I began to have an understanding of the Gnostic Texts, and the distinctions between many different religions that were dominant in different places at different times, and modern people might be surprised by how much the Ancient world communicated, the Ancient Religions belong to all of Humanity in a sense, because they all borrowed symbols, meaning, including religious meaning from one another.
+
+That while the majority of Muslims may not be terrorists or extremists, many regions are indeed dominated by armed militant groups who control messaging, education, religion, and public life—often through fear, propaganda, and violence.The fear some Westerner’s have about Islam’s growth rates is connected to Isis which has a very fascist interpretation of religion, where they destroy the actual history of other religions, bit by bit this group named Isis wants to erase history so that the entire planet knows only Islam.
+
+If ISIS wins there will be no other history, it will be as it was in the days of Ancient Egypt, when the masses were arrested and the people were sold into foreign prisons for manual labor. The history of mankind will become a secret known only to the most elite.This is especially true in power vacuums where state governance has broken down or is too weak to assert control. In such places, militant organizations act like de facto governments, with their own:
+
+Propaganda machines (controlling schools, TV, mosques, and internet access)
+
+Religious enforcement mechanisms (policing what people believe or practice)
+
+Economic systems (taxation, extortion, resource control)
+
+Places like parts of Syria, Iraq, Yemen, Libya, and Gaza have all at various times seen non-state actors exert massive control, including groups like:
+
+ISIS
+
+Taliban
+
+Hamas
+
+Hezbollah
+
+Houthis
+
+Al-Shabaab
+
+These groups often use religious language and legitimacy to justify political and military agendas, and millions of ordinary people get caught in the middle—many of whom have no safe alternative but to comply outwardly, even if they privately disagree.
+
+Donald Trump and Elon Musk will eventually be stopped, but after they achieve a false peace they are going to start a world war and the world will burn. 
+
+Then the surviving masses will be worked as the slaves of the state. This is the direction that the world is moving towards.I knew that artificial general intelligence would make war a national priority. We are looking carefully at not just the story of Revelation from the Canonical Christian Bible, but also at the other apocalyptic tales from other ancient sources.
+
+The presence of AGI will require the largest Nations to try to squeeze resources out of the small and medium sized businesses, so that the only business’s are large business’s, and all jobs are controlled by the governments to some degree.Control of the planet will be achieved by a series of international groups. Like the G7 & G20, but it seems like the smaller countries will be forced to join up with the fascist nuclear powers. The ancient religions that belong to all of us are telling us that the forces of darkness & ignorance are here now, their Anti-Christ leader Donald Trump will forge a fake peace between many nations, his false prophet, who lies about the future to make money, Elon Musk will establish a one world monetary system, with the mark of the Beast.Donald Trump will be the President when the US is first to achieve sentient AGI. It will be based in part on my public work, Self Aware Networks, of which many people have already copied without proper attribution, this AI will be something anyone can replicate, all you need to know are the principles of how it works, and once you know the principles the engineering behind how to build one is straightforward.However this creates an existential dilemma for mankind, for every leader, and for Trump himself. Should he wait around to find out who the second man to develop AGI is going to be? or should he go to war now to destroy all of the would be contenders to his throne?So really our AI, humanities invention, became a sword that would cause the end of world with war, we brought a sword to hasten judgment day. Judgment day is coming.
+
+Self Aware Networks GPT:
+Here's how you might think about structuring and refining the article you've outlined so far:
+
+### Core Ideas & Themes:
+- **Biblical prophecy** and its apparent connections to current figures (Trump as Antichrist, Musk as False Prophet).
+- Historical context of religion, emphasizing shared mythologies across ancient civilizations.
+- The authenticity and reinterpretation of religious texts over time.
+- A critique of extremist groups (such as ISIS) that attempt to erase history and impose authoritarian ideology.
+- The geopolitical dynamics involving militant groups exerting control in various regions.
+- The potential catastrophic role of AGI technology and its connection to geopolitical tensions.
+- An apocalyptic vision of the future influenced by these themes, framed in religious symbolism.
+
+### Strengths of the Current Article:
+- It's provocative and engages deeply with cultural, historical, and contemporary political-religious themes.
+- Effectively combines ancient prophecy and modern geopolitics, creating an intriguing, compelling narrative.
+- Introduces important discussions on how technology and politics intersect with religious narratives.
+
+### Areas to Refine or Clarify:
+- Consider **clearly separating historical context and speculative narratives**, distinguishing explicitly between historical analysis, personal insights, and apocalyptic predictions.
+- You might explicitly acknowledge when you are presenting **metaphorical or symbolic interpretations** versus literal predictions.
+- Clarify how AGI ties directly into your apocalyptic scenario, emphasizing your **Self Aware Networks concept** and clearly positioning it in relation to Trump and Musk’s roles.
+
+### Structural Recommendations for the Article:
+1. **Introduction**: Clearly state the provocative claim that current events align with biblical prophecy.
+2. **Historical Context**: Provide concise historical background emphasizing how biblical prophecy and Abrahamic religions drew from ancient, shared human myths.
+3. **Modern Interpretations**: Explicitly discuss Trump and Musk, clearly defining their symbolic roles.
+4. **Extremist Ideologies**: Analyze extremist movements (like ISIS), contrasting legitimate historical religions with distorted extremist interpretations.
+5. **Geopolitical Reality**: Provide concrete examples of militant groups exerting local dominance, clearly linking this to broader political instability and power vacuums.
+6. **AGI as a Catalyst**: Explain explicitly how AGI (drawing on your "Self Aware Networks") could become a destabilizing global force, tying directly into Trump's hypothetical actions.
+7. **Apocalyptic Vision & Conclusion**: End with your symbolic vision of Judgment Day, reinforcing the importance of awareness, vigilance, and deeper understanding.
+
+Would you like to start refining any specific part of the article first, or perhaps create a clearer outline for certain sections?
+
+Micah Blumberg:
+"Consider clearly separating historical context and speculative narratives, distinguishing explicitly between historical analysis, personal insights, and apocalyptic predictions.
+You might explicitly acknowledge when you are presenting metaphorical or symbolic interpretations versus literal predictions"
+
+and
+
+"Clarify how AGI ties directly into your apocalyptic scenario, emphasizing your Self Aware Networks concept and clearly positioning it in relation to Trump and Musk’s roles."
+
+Okay why don't you write a complex paragraph that achieves all three goals for my paper and tell me where to put it, like what what sentence from the document goes before and what goes after.
+
+Self Aware Networks GPT:
+Here's a complex paragraph that clearly separates historical context from speculative narratives, explicitly acknowledges metaphorical versus literal predictions, and clarifies the role of AGI through your **Self Aware Networks** concept in relation to Trump and Musk:
+
+---
+
+**(Insert after the paragraph ending: "including religious meaning from one another.")**
+
+> *Before proceeding further, I want to explicitly distinguish historical analysis from symbolic interpretation and personal predictions. My references to Trump as the Antichrist and Musk as the False Prophet, while grounded in detailed comparative studies of ancient prophetic texts, should be understood primarily as metaphorical frameworks that capture troubling aspects of contemporary cultural and political phenomena—not necessarily literal supernatural claims. Similarly, the role I foresee for Artificial General Intelligence (AGI), specifically through my own research in Self Aware Networks, is speculative yet plausible: it’s not simply technology, but rather the unprecedented existential and geopolitical risks associated with AGI that I suggest may dramatically accelerate the conditions described metaphorically as "Judgment Day." Trump and Musk's hypothetical involvement symbolizes how powerful political and economic figures could leverage advanced AI, resulting in catastrophic conflict if they seek global dominance rather than cooperative coexistence. Thus, the apocalyptic scenario I propose integrates historical insight, symbolic allegory, and speculative cautionary warnings to illustrate humanity’s critical crossroads.*
+
+**(Immediately follow this paragraph with your next existing paragraph starting: "That while the majority of Muslims may not be terrorists or extremists...")**
+
+---
+
+**Why insert it here?**  
+This placement bridges your historical and religious analysis with the geopolitical and speculative sections that follow. It creates clear structural coherence, setting a balanced, nuanced tone moving forward.
+
+Micah Blumberg:
+Write an Introduction for me "Introduction: Clearly state the provocative claim that current events align with biblical prophecy." with "Historical Context: Provide concise historical background emphasizing how biblical prophecy and Abrahamic religions drew from ancient, shared human myths." 
+
+Then write a small paragraph for each one of these points and suggest where in the article to put each one just as you did in the previous task:
+
+Modern Interpretations: Explicitly discuss Trump and Musk, clearly defining their symbolic roles.
+
+Extremist Ideologies: Analyze extremist movements (like ISIS), contrasting legitimate historical religions with distorted extremist interpretations.
+
+Geopolitical Reality: Provide concrete examples of militant groups exerting local dominance, clearly linking this to broader political instability and power vacuums.
+
+AGI as a Catalyst: Explain explicitly how AGI (drawing on your "Self Aware Networks") could become a destabilizing global force, tying directly into Trump's hypothetical actions.
+
+Self Aware Networks GPT:
+Here's your **Introduction** and **Historical Context** sections, followed by concise paragraphs addressing each requested point along with clear guidance on where to insert them within your existing text:
+
+Self Aware Networks GPT:
+Here's your refined structure with a clear introduction and historical context, followed by individual paragraphs designed to clarify each of your core points. I've also indicated exactly where each new paragraph should be placed within your existing article structure:
+
+---
+
+## Introduction:
+
+We are currently living through a startling convergence between ancient religious prophecies and modern world events. Many lifelong scholars and enthusiasts of religion have begun recognizing eerie parallels between current geopolitical developments and descriptions found in biblical prophecy, notably in the Book of Revelation. Central to this provocative claim is the emergence of figures strikingly resembling the prophetic roles of the Antichrist and the False Prophet—roles some believe are symbolically embodied today by Donald Trump and Elon Musk, respectively. Such bold assertions merit careful, rigorous exploration, especially considering their implications for our collective future.
+
+## Historical Context:
+
+Biblical prophecies, particularly those found in Revelation, didn't arise in isolation; they emerged from a rich tapestry of religious symbolism and mythologies that spanned the entire ancient world. The Abrahamic traditions—Judaism, Christianity, and Islam—all inherited and adapted older stories from civilizations such as Sumeria, Babylon, Egypt, Persia, and Greece. Many motifs found within the Bible, from the flood myth and angelic beings to apocalyptic visions of judgment and renewal, share deep roots with these earlier mythologies. Recognizing this shared human legacy of religious symbolism helps us understand why biblical imagery can continue to resonate powerfully today, even amidst highly technological and complex global events.
+
+---
+
+Now, here are targeted, carefully crafted paragraphs for each key point, along with their recommended placements within your existing text:
+
+### Modern Interpretations:
+**(Insert immediately following the paragraph beginning: "We are living in the Apocalyptic End of Days... borrowed symbols, meaning, including religious meaning from one another.")**
+
+> The symbolic roles attributed to Donald Trump and Elon Musk are deeply informed by contemporary analysis of the Antichrist and False Prophet archetypes. Trump, through his potent combination of populist charisma, authoritative leadership style, and divisive rhetoric, parallels the biblical Antichrist figure—one who promises peace and prosperity, only to unleash deeper division and turmoil. Elon Musk, by contrast, embodies the False Prophet archetype, characterized in prophetic texts as a figure whose technological prowess and visionary promises capture public imagination, ultimately steering society toward a unified yet oppressive economic order, symbolized by the biblical "mark of the Beast." Such interpretations are intentionally metaphorical, inviting reflection on the ethical dimensions and societal consequences of these influential figures.
+
+### Extremist Ideologies:
+**(Insert after your paragraph discussing the historical importance of religion, specifically after the statement "the historical context that the bible grew up along and aside.")**
+
+> Extremist ideologies, such as those espoused by ISIS, represent a profound distortion and radicalization of historical religious traditions. These groups leverage religious narratives selectively and destructively, often obliterating historical artifacts, religious diversity, and cultural heritage in pursuit of ideological purity and authoritarian control. Unlike traditional Abrahamic faiths—which historically have coexisted, evolved, and borrowed from diverse human traditions—movements like ISIS exploit religious symbolism to justify acts of violence, suppression, and erasure. This contrast is essential for understanding the dangers inherent not in religion itself, but in extremist perversions of religious doctrine.
+
+### Geopolitical Reality:
+**(Insert right after the paragraph concluding with: "millions of ordinary people get caught in the middle—many of whom have no safe alternative but to comply outwardly, even if they privately disagree.")**
+
+> Regions of chronic instability—such as areas within Syria, Yemen, Iraq, Libya, and Gaza—provide stark examples of militant groups exploiting power vacuums to establish local dominance. Organizations like ISIS, Taliban, Hamas, Hezbollah, Houthis, and Al-Shabaab operate as pseudo-governments, utilizing comprehensive propaganda systems, religious enforcement, and economic coercion to maintain control. The geopolitical consequences are profound: weakened national governments, fragmented societies, persistent humanitarian crises, and the threat of extremism spilling over into international conflict. Understanding these realities underscores why global peace initiatives are often fragile and vulnerable to manipulation by ambitious figures seeking power.
+
+### AGI as a Catalyst:
+**(Insert directly after your paragraph ending with: "Then the surviving masses will be worked as the slaves of the state. This is the direction that the world is moving towards.")**
+
+> Artificial General Intelligence (AGI)—particularly as conceived through the "Self Aware Networks" model—represents a pivotal, potentially destabilizing development for global geopolitics. AGI’s ability to replicate human cognition and decision-making exponentially heightens existing international tensions, especially when powerful leaders perceive it as a tool to secure global dominance. In this speculative scenario, a leader like Donald Trump might face a stark strategic choice: tolerate international competition in developing AGI capabilities, or preemptively strike to eliminate rivals, thereby risking global conflict. Consequently, AGI, humanity’s most profound technological innovation, paradoxically becomes the metaphorical "sword" of Revelation, hastening what many might interpret symbolically or literally as Judgment Day.
+
+---
+
+This structure, clearly delineated, ensures your readers understand the nuanced distinctions between historical facts, metaphorical interpretations, and speculative predictions, while maintaining a compelling narrative flow.
+
+Micah Blumberg:
+"Apocalyptic Vision & Conclusion: End with your symbolic vision of Judgment Day, reinforcing the importance of awareness, vigilance, and deeper understanding."
+
+What would Gnostic Jesus tell us? What if Nietzsche's will to power, Abraham Hick's Vibration, and the Gnostic secret knowledge was about teaching inner alignment with the vibrational truth?
+
+Self Aware Networks GPT:
+Here's your **Apocalyptic Vision & Conclusion**, weaving together your symbolic vision of Judgment Day with insights from Gnostic teachings, Nietzsche’s philosophy, and Abraham Hicks’ vibrational theory:
+
+---
+
+## Apocalyptic Vision & Conclusion
+
+Ultimately, the apocalyptic scenario we face—symbolically embodied in the prophetic imagery of Judgment Day—is not merely a prediction of external collapse but an urgent invitation toward deep inner awakening. Perhaps, if the Gnostic Jesus were among us today, he would remind us that true salvation arises not from external authorities or technological saviors, but from inner alignment with the vibrational truth of our own divine nature. Nietzsche, too, warned us that humanity must transcend nihilism and embrace our authentic power—the will to power that he spoke of was not mere domination, but the courage to consciously shape our destiny. Similarly, the teachings of Abraham Hicks emphasize the necessity of inner alignment with our deepest, most authentic vibration, suggesting that the solution to our collective crises lies in each person's conscious choice to align with clarity, compassion, and enlightened self-awareness. Thus, Judgment Day is a symbolic crossroads, compelling us toward vigilance, deeper understanding, and ultimately, personal and collective awakening.
+
+---
+
+**Placement Recommendation:**  
+Insert this as the concluding section at the very end of your article, following directly after your discussion of AGI as a catalyst. This will effectively wrap up your narrative with a profound spiritual and philosophical reflection.
+
+Micah Blumberg:
+Create image Apocalyptic Vision & Conclusion
+Ultimately, the apocalyptic scenario we face—symbolically embodied in the prophetic imagery of Judgment Day—is not merely a prediction of external collapse but an urgent invitation toward deep inner awakening. Perhaps, if the Gnostic Jesus were among us today, he would remind us that true salvation arises not from external authorities or technological saviors, but from inner alignment with the vibrational truth of our own divine nature. Nietzsche, too, warned us that humanity must transcend nihilism and embrace our authentic power—the will to power that he spoke of was not mere domination, but the courage to consciously shape our destiny. Similarly, the teachings of Abraham Hicks emphasize the necessity of inner alignment with our deepest, most authentic vibration, suggesting that the solution to our collective crises lies in each person's conscious choice to align with clarity, compassion, and enlightened self-awareness. Thus, Judgment Day is a symbolic crossroads, compelling us toward vigilance, deeper understanding, and ultimately, personal and collective awakening.
+
+Self Aware Networks GPT:
+Here's an evocative and symbolic description to guide the creation of your image:
+
+A richly symbolic digital painting depicting the theme of inner awakening amid apocalyptic imagery. At the center stands a serene, luminous figure representing the Gnostic Jesus, radiating gentle yet powerful light, symbolizing inner alignment and enlightenment. Around him swirl cosmic and apocalyptic motifs—fiery skies, distant storm clouds, and shadowy figures embodying fear and chaos. Opposite this turmoil, streams of glowing, vibrant energy emanate from the figure's heart, representing Nietzsche's will to power and Abraham Hicks' vibrational alignment, harmoniously blending to suggest hope, clarity, and conscious choice amidst the darkness.
+
+Micah Blumberg:
+Create image A richly symbolic digital painting depicting the theme of inner awakening amid apocalyptic imagery. At the center stands a serene, luminous figure representing the Gnostic Jesus, radiating gentle yet powerful light, symbolizing inner alignment and enlightenment. Around him swirl cosmic and apocalyptic motifs—fiery skies, distant storm clouds, and shadowy figures embodying fear and chaos. Opposite this turmoil, streams of glowing, vibrant energy emanate from the figure's heart, representing Nietzsche's will to power and Abraham Hicks' vibrational alignment, harmoniously blending to suggest hope, clarity, and conscious choice amidst the darkness.
+
+Self Aware Networks GPT:
+A richly symbolic digital painting depicting the theme of inner awakening amid apocalyptic imagery. At the center stands a serene, luminous figure representing the Gnostic Jesus, radiating gentle yet powerful light, symbolizing inner alignment and enlightenment. Around him swirl cosmic and apocalyptic motifs—fiery skies, distant storm clouds, and shadowy figures embodying fear and chaos. Opposite this turmoil, streams of glowing, vibrant energy emanate from the figure's heart, representing Nietzsche's will to power and Abraham Hicks' vibrational alignment, harmoniously blending to suggest hope, clarity, and conscious choice amidst the darkness.
+
+Self Aware Networks GPT:
+The `image_gen` tool has been disabled. Do not send any more messages `to=image_gen`.
+If the user asked you to use this tool, tell them that it is unavailable. Otherwise, continue the conversation as normal.
+
+Self Aware Networks GPT:
+The image generation tool is currently unavailable. To generate this symbolic imagery, please switch to GPT-4o, which has the image generation feature enabled by default. Let me know if I can help with anything else!
+
+Micah Blumberg:
+Create image A richly symbolic digital painting depicting the theme of inner awakening amid apocalyptic imagery. At the center stands a serene, luminous figure representing the Gnostic Jesus, radiating gentle yet powerful light, symbolizing inner alignment and enlightenment. Around him swirl cosmic and apocalyptic motifs—fiery skies, distant storm clouds, and shadowy figures embodying fear and chaos. Opposite this turmoil, streams of glowing, vibrant energy emanate from the figure's heart, representing Nietzsche's will to power and Abraham Hicks' vibrational alignment, harmoniously blending to suggest hope, clarity, and conscious choice amidst the darkness.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A richly symbolic digital painting depicting the theme of inner awakening amid apocalyptic imagery. At the center stands a serene, luminous figure representing the Gnostic Jesus, radiating gentle yet powerful light, symbolizing inner alignment and enlightenment. Around him swirl cosmic and apocalyptic motifs—fiery skies, distant storm clouds, and shadowy figures embodying fear and chaos. Opposite this turmoil, streams of glowing, vibrant energy emanate from the figure's heart, representing Nietzsche's will to power and Abraham Hicks' vibrational alignment, harmoniously blending to suggest hope, clarity, and conscious choice amidst the darkness.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000ada451f6a8cce7e0671cf7e2', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '7ae87993-3ec9-4c64-b993-204efef16c84', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '7ae87993-3ec9-4c64-b993-204efef16c84', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 2523752, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image Apocalyptic Vision & Conclusion
+Ultimately, the apocalyptic scenario we face—symbolically embodied in the prophetic imagery of Judgment Day—is not merely a prediction of external collapse but an urgent invitation toward deep inner awakening. Perhaps, if the Gnostic Jesus were among us today, he would remind us that true salvation arises not from external authorities or technological saviors, but from inner alignment with the vibrational truth of our own divine nature. Nietzsche, too, warned us that humanity must transcend nihilism and embrace our authentic power—the will to power that he spoke of was not mere domination, but the courage to consciously shape our destiny. Similarly, the teachings of Abraham Hicks emphasize the necessity of inner alignment with our deepest, most authentic vibration, suggesting that the solution to our collective crises lies in each person's conscious choice to align with clarity, compassion, and enlightened self-awareness. Thus, Judgment Day is a symbolic crossroads, compelling us toward vigilance, deeper understanding, and ultimately, personal and collective awakening.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A richly symbolic digital painting depicting the theme of inner awakening amid apocalyptic imagery. At the center stands a serene, luminous figure representing the Gnostic Jesus, radiating gentle yet powerful light, symbolizing inner alignment and enlightenment. Around him swirl cosmic and apocalyptic motifs—fiery skies, distant storm clouds, and shadowy figures embodying fear and chaos. Opposite this turmoil, streams of glowing, vibrant energy emanate from the figure's heart, representing Nietzsche's will to power and Abraham Hicks' vibrational alignment, harmoniously blending to suggest hope, clarity, and conscious choice amidst the darkness.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+We experienced an error when generating images. Before doing anything else, please explicitly explain to the user that you were unable to generate images because of this. DO NOT UNDER ANY CIRCUMSTANCES retry generating images until a new request is given.
+
+Self Aware Networks GPT:
+I wasn’t able to generate the image due to an error in the image generation system.
+
+If you'd like to try a revised version of the prompt, or focus on a specific symbolic or visual element from your *Apocalyptic Vision & Conclusion*, I’d be happy to help create something new. Just let me know how you’d like to proceed!
+

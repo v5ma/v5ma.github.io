@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theology Wiki</title>
+  <link rel="stylesheet" href="./assets/css/wiki.css">
+  <style>
+body.wiki-theme-theology {
+  --paper: #f6f0df;
+  --paper-strong: #fff9ea;
+  --ink: #241a16;
+  --ink-soft: #66584c;
+  --line: rgba(95, 54, 111, 0.18);
+  --deep: #261634;
+  --deep-2: #4a2f64;
+  --accent: #8055a2;
+  --accent-soft: rgba(128, 85, 162, 0.12);
+  --teal: #b88737;
+  --wiki-link: #6b3e9b;
+  --wiki-crosslink: #b88737;
+  --wiki-missing: #b15c55;
+  --wiki-background: radial-gradient(circle at top left, rgba(128,85,162,0.12), transparent 24%), linear-gradient(180deg, #f3ebd8 0%, #efe2c8 100%);
+  --wiki-panel: rgba(255, 249, 234, 0.84);
+  --wiki-hero-panel: linear-gradient(150deg, rgba(63, 37, 82, 0.96), rgba(36, 22, 52, 0.96));
+  --wiki-hero-panel-text: #fff6df;
+  --shadow: 0 22px 60px rgba(54, 35, 18, 0.16);
+  --wiki-font: Georgia, "Times New Roman", serif;
+}
+body.wiki-theme-theology .hero-copy::before {
+  content: "illuminated manuscript";
+}
+    .wiki-family-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 0 0 18px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--wiki-panel);
+    }
+    .wiki-family-link {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--wiki-link);
+      background: rgba(0, 0, 0, 0.14);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .wiki-family-link.current {
+      color: var(--wiki-hero-panel-text);
+      background: var(--accent-soft);
+    }
+  </style>
+</head>
+<body class="wiki-theme wiki-theme-theology">
+  <main class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Self-contained public-candidate wiki</p>
+        <h1>Theology Wiki</h1>
+        <p class="hero-text">A theology-domain reader for authored pages and source notes, with local wikilinks only.</p>
+      </div>
+      <aside class="hero-panel">
+        <div class="metric">
+          <span class="metric-label">Reader status</span>
+          <span class="metric-value">Self-contained; no cross-wiki backlinks.</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Indexed pages</span>
+          <span class="metric-value">370</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Wikilink policy</span>
+          <span class="metric-value">local Theology wikilinks only</span>
+        </div>
+      </aside>
+    </section>
+
+    <nav class="wiki-family-strip" aria-label="Public package navigation">
+        <a class="wiki-family-link" href="../agent-wiki-theology-route.html">Agent route</a>
+        <a class="wiki-family-link" href="../san-wiki-shell/">SAN shell</a>
+        <a class="wiki-family-link" href="../mario-maker-clone/">Mario Maker</a>
+        <a class="wiki-family-link" href="../theology-sources/">AI chat sources</a>
+        <a class="wiki-family-link current" href="./">Theology reader</a>
+    </nav>
+
+    <section class="layout">
+      <aside class="panel">
+        <label class="panel-label" for="page-search">Pages</label>
+        <input id="page-search" type="search" placeholder="Search pages">
+        <ul id="page-list" class="page-list"></ul>
+      </aside>
+
+      <article class="panel article-panel">
+        <p id="article-topic" class="article-topic">Loading</p>
+        <h2 id="article-title">Loading wiki</h2>
+        <p id="article-summary" class="article-summary"></p>
+        <div id="article-body" class="article-body"></div>
+      </article>
+
+      <aside class="panel">
+        <span class="panel-label">Reader metadata</span>
+        <p class="panel-note"><strong>Room:</strong> <span id="xr-room">Loading</span></p>
+        <p class="panel-note"><strong>Deck:</strong> <span id="xr-deck">Loading</span></p>
+
+        <span class="panel-label">Tags</span>
+        <div id="tag-list" class="tag-list"></div>
+
+        <span class="panel-label">Related</span>
+        <ul id="related-list" class="meta-list"></ul>
+
+        <span class="panel-label">Sources</span>
+        <ul id="source-list" class="meta-list"></ul>
+      </aside>
+    </section>
+  </main>
+  <script>
+    window.WIKI_READER_CONFIG = {
+      "routeParam": "page",
+      "fallbackSlug": "home",
+      "siteTitle": "Theology Wiki",
+      "canonicalBase": "https://v5ma.github.io/theology-wiki/",
+      "manifests": {
+            "pageIndex": "./data/page-index.json",
+            "graph": "./data/graph.json",
+            "northstarProductFamilies": ""
+      },
+      "defaultContentRoot": "./content/",
+      "httpServeHint": "https://v5ma.github.io/theology-wiki/",
+      "crossWiki": {
+            "currentWiki": "theology",
+            "allowedOutboundWikis": [],
+            "readerMap": { "theology": "./index.html?page={slug}" }
+      }
+};
+  </script>
+  <script src="./assets/js/wiki-app.js?v=20260904-theology-package-1" defer></script>
+</body>
+</html>

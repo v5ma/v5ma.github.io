@@ -1,0 +1,1889 @@
+{
+  "schema": "v5ma-public-package-manifest/v1",
+  "package": "theology-wiki",
+  "generated": "2026-09-04",
+  "fileCount": 376,
+  "totalBytes": 1746567.0,
+  "files": [
+    {
+      "path": "assets/css/wiki.css",
+      "bytes": 22149,
+      "sha256": "efe25b2587f52570dfe064eb83f556975045fe3d209c82bc726d764a9713a0eb"
+    },
+    {
+      "path": "assets/js/wiki-app.js",
+      "bytes": 89824,
+      "sha256": "5e417965ee59b611a3eb358c9bd9ebc2a4c01f63e76e3bdbc0ec44af7f8d5147"
+    },
+    {
+      "path": "content/clusters/theology-theology-antichrist-mapping-abraham-hicks-cluster.md",
+      "bytes": 8575,
+      "sha256": "90d7d232044478dc923d5131680a2e118c6ee3d28ea1a04034a22068acf9bd82"
+    },
+    {
+      "path": "content/clusters/theology-theology-debate-science-god-self-cluster.md",
+      "bytes": 7553,
+      "sha256": "21fe57959e748267acee67e5a8b1d730cbaffa3184060e7c4f1ba0e29260b335"
+    },
+    {
+      "path": "content/clusters/theology-theology-debunking-jesus-calvary-chapel-cluster.md",
+      "bytes": 8033,
+      "sha256": "7a61444c2168453ff596f2faf020969b3de2232d6930b72f1031efa0d76a4337"
+    },
+    {
+      "path": "content/clusters/theology-theology-gaza-debate-faith-early-cluster.md",
+      "bytes": 7560,
+      "sha256": "728da30244b7bdc513e72eea66e560e034d7ada847c22e526b9f9cf8c0488650"
+    },
+    {
+      "path": "content/clusters/theology-theology-gnostic-gnosticism-jesus-god-cluster.md",
+      "bytes": 7742,
+      "sha256": "97a5643d4574d546870a424acd4967690939c9f60fdfb94a3b825ce6827b2b88"
+    },
+    {
+      "path": "content/clusters/theology-theology-jesus-analysis-god-law-cluster.md",
+      "bytes": 7618,
+      "sha256": "3b39b9dcd2521a8d82d3a6d1a5f90267a3c8e3060805faa3eba2151b0fe114be"
+    },
+    {
+      "path": "content/clusters/theology-theology-jesus-teachings-dead-sea-cluster.md",
+      "bytes": 7906,
+      "sha256": "dc62ca1fbe20648ee68abdb997f18ce206e47914c5a8eefe1329146e1bc4d7c1"
+    },
+    {
+      "path": "content/clusters/theology-theology-jesus-teachings-gnostic-paul-cluster.md",
+      "bytes": 8844,
+      "sha256": "560fffd0aa80c1e43d7519765a3be9c3bf01d7b929a3c21fb54fb873efac2bd9"
+    },
+    {
+      "path": "content/clusters/theology-theology-paul-jesus-moses-summary-cluster.md",
+      "bytes": 7642,
+      "sha256": "06fec6e5413e6c3d7fc1a73240cf5a604f92b84134264c603b99c805abbb3d98"
+    },
+    {
+      "path": "content/clusters/theology-theology-proof-god-existence-bible-cluster.md",
+      "bytes": 8367,
+      "sha256": "2873839b4d086bf2f783523c32187d68a1970e24d9709d9760dec08929c68133"
+    },
+    {
+      "path": "content/clusters/theology-theology-revelation-qumran-proof-god-cluster.md",
+      "bytes": 7809,
+      "sha256": "bfa58aad32a9db1807fd502490c52da79acbe6e8878104e79f47a963606438fb"
+    },
+    {
+      "path": "content/home.md",
+      "bytes": 3691,
+      "sha256": "f66eea50fa221d2a6bf1ed63eb012de583dec2f173922b78dc079dfcf65a5c5e"
+    },
+    {
+      "path": "content/sources/17th-century-christian-zionism.md",
+      "bytes": 3201,
+      "sha256": "89c29b34dba4c1ab1702268b61638422fcf4b57c6a48e38c1a1454f440725a3e"
+    },
+    {
+      "path": "content/sources/abraham-hicks-and-gnosticism.md",
+      "bytes": 3616,
+      "sha256": "823b17eadbc63222744b871fb64fec6183b3c3073c8b1b7772e50ef80dcebba4"
+    },
+    {
+      "path": "content/sources/abraham-hicks-vibration-clarification.md",
+      "bytes": 3504,
+      "sha256": "742f5165eca1cb14bd24e1f47e8bd520792edb14302b0ac2e8198443bd7377b3"
+    },
+    {
+      "path": "content/sources/abraham-hicks-vs-gnostic-jesus.md",
+      "bytes": 3237,
+      "sha256": "0ac3825a937b53a8427ea07ab12429a22763de3d867dee3626299cc8710e4711"
+    },
+    {
+      "path": "content/sources/abrahamic-rival-continuations-book-seed.md",
+      "bytes": 7646,
+      "sha256": "08f8e580f45cf2094ec6de87187ed434a9d6e7596de66f405c73a6da0b6c7abc"
+    },
+    {
+      "path": "content/sources/act-vs-abraham-hicks.md",
+      "bytes": 3395,
+      "sha256": "d4bc99f7d36d1b9bd934c12ed007d404161af44aa965cbcd479d8852a943237d"
+    },
+    {
+      "path": "content/sources/advanced-gnosticism-scholarship-conclusions.md",
+      "bytes": 3582,
+      "sha256": "8007bc85618ec583063e47f95844e85f959465f28b8a13c2533de6e45a75e5d8"
+    },
+    {
+      "path": "content/sources/agi-religious-framework.md",
+      "bytes": 3557,
+      "sha256": "bb480dc0f51c807e7300b59b45d32a4733e3fada296ac32e4e5b6496ef5ec077"
+    },
+    {
+      "path": "content/sources/ai-and-religion-belief.md",
+      "bytes": 3465,
+      "sha256": "a6abd9238f1604facdb3c946c2972ebfaff7f3ce5d223ca3a6486eb58c257067"
+    },
+    {
+      "path": "content/sources/ai-conference-insights.md",
+      "bytes": 3221,
+      "sha256": "f8e6caa409879a4b14f4bacd065a6a9807a7ea92b62460d11f27b022cbb2d31b"
+    },
+    {
+      "path": "content/sources/ai-re-dates-dead-sea-scrolls.md",
+      "bytes": 3151,
+      "sha256": "6f9d8b51d66b7c8b83790cbdef0659b16e7a60e5df51b34fac0c4e9433ab61db"
+    },
+    {
+      "path": "content/sources/ai-safety-and-lovecraft.md",
+      "bytes": 3265,
+      "sha256": "4c7881c201642c80154089a7d84ee4e7598e0f3607462f0b5791ab449f4a023b"
+    },
+    {
+      "path": "content/sources/ai-sword-revelation-review.md",
+      "bytes": 3187,
+      "sha256": "e3731946d67d4136b6c41c40e8fe142f266952e2897f75beeef5ae8b9c736ecd"
+    },
+    {
+      "path": "content/sources/ai-tech-and-generations.md",
+      "bytes": 3139,
+      "sha256": "e50b765feb30f790fc959c4ec6a6bb92c9b64e055cd8c5194972e800cd4995c4"
+    },
+    {
+      "path": "content/sources/aleph-metaphor-and-concepts.md",
+      "bytes": 3194,
+      "sha256": "8d7c207768f94d010cab384b493dbc0159b8ad847c0d4c709238c2891b6aeae3"
+    },
+    {
+      "path": "content/sources/allegiance-vs-proclamation-of-christ.md",
+      "bytes": 3348,
+      "sha256": "be75685d1fbac85ef8d5f5cac8b18059af939d9f8554d46e6c73d2d8931a97a5"
+    },
+    {
+      "path": "content/sources/altman-antichrist-comparisons.md",
+      "bytes": 3210,
+      "sha256": "c36bb74f7d4ab4887d531f471bf69a0cce2ca7e44e41f5300a293ecfc2ec973d"
+    },
+    {
+      "path": "content/sources/ancient-cosmology-and-dreams.md",
+      "bytes": 3374,
+      "sha256": "497f566154e355e5bdfb95afa11d65d40a05703c65d36977866501b9813e1d7e"
+    },
+    {
+      "path": "content/sources/ancient-egypt-vs-fascism.md",
+      "bytes": 3235,
+      "sha256": "aaf1ee5613f795d77601591bfc9468085ad8330b663b168de9b3e5c4d66e6d78"
+    },
+    {
+      "path": "content/sources/antichrist-alignment-consequences.md",
+      "bytes": 3345,
+      "sha256": "bbb9b9bc0771778e04ea0fc751dba1bb05ca2115e9f96434e53e02abccc2a2a4"
+    },
+    {
+      "path": "content/sources/antichrist-and-desire-of-women.md",
+      "bytes": 3215,
+      "sha256": "41b5e20556c29950d6ee89208a9051048c915b329237df686b2f92ef5a02305d"
+    },
+    {
+      "path": "content/sources/antichrist-and-gold-obsession.md",
+      "bytes": 3210,
+      "sha256": "6ccd0b2e7342b41c47c5215cd119f9cf535d1824be73bd2b133cc6944fe77b6b"
+    },
+    {
+      "path": "content/sources/antichrist-and-ridiculous-claims.md",
+      "bytes": 3248,
+      "sha256": "87d291e302279bf1388459b4dd44dd40b8600c79957eb2a4b3de5a352fb3ba86"
+    },
+    {
+      "path": "content/sources/antichrist-covenant-and-peace.md",
+      "bytes": 3209,
+      "sha256": "2171307cabe958fd48d202ceac2112aff3f932f212d87bc2f6496fcc9794e705"
+    },
+    {
+      "path": "content/sources/antichrist-middle-east-myth.md",
+      "bytes": 3305,
+      "sha256": "5a0d984360bcaac9bbd7cd1e8ac815e2857806d68a2543d543928a7f15d3ace6"
+    },
+    {
+      "path": "content/sources/antichrist-peace-and-war.md",
+      "bytes": 3187,
+      "sha256": "f27c1215744d5aba8557416079195b28ec5e1cd847e95e32bff8b871dea24b03"
+    },
+    {
+      "path": "content/sources/antichrist-prophecy-and-war.md",
+      "bytes": 3189,
+      "sha256": "16eca54656a76610eb30d6c708529b24562ad0ecce7bede9612bc62e1d147f51"
+    },
+    {
+      "path": "content/sources/antichrist-prophecy-in-tanakh.md",
+      "bytes": 3209,
+      "sha256": "39b8e6157782ffd6edd4c7f240d6410420b4aaedb916bb3ac09ea137d04a5cba"
+    },
+    {
+      "path": "content/sources/antichrist-salvation-discussions.md",
+      "bytes": 3238,
+      "sha256": "ddff1d66698919c87505512037068a1ec03caf1fbb3c5072fe463ac6327238f6"
+    },
+    {
+      "path": "content/sources/antichrist-spiritual-inversion.md",
+      "bytes": 3304,
+      "sha256": "e9072f59b931366639621995db53fa33139946e961efd6c751a994e443688ec3"
+    },
+    {
+      "path": "content/sources/anunnaki-alien-theory-rejected.md",
+      "bytes": 3120,
+      "sha256": "31ee1f2f5cb848d8f3560c4a106829cb29e773911ae2af157bad517318569e73"
+    },
+    {
+      "path": "content/sources/apocalipsis-y-nueva-humanidad.md",
+      "bytes": 3121,
+      "sha256": "9a1dd3a6034aa5c928ff711c9ecd98f771ac4b92a7496c4c0ae16ce1fd903a3c"
+    },
+    {
+      "path": "content/sources/apocalypse-of-adam-outline.md",
+      "bytes": 3114,
+      "sha256": "957499adf0fbc96f6263f1bb28e1ecb9b758729f618d4307b69951e32f5adfde"
+    },
+    {
+      "path": "content/sources/apocalypse-of-peter-comparison.md",
+      "bytes": 3116,
+      "sha256": "dee2317da2d7642af088054e005f1d99353501ecfa5323c7f49d99de9ce532eb"
+    },
+    {
+      "path": "content/sources/article-review-feedback.md",
+      "bytes": 3062,
+      "sha256": "5e4bacce67a55d62714dd57f92d431c42a565f730ff4521c01cb7fc875c90016"
+    },
+    {
+      "path": "content/sources/assyrian-and-antichrist-connection.md",
+      "bytes": 3146,
+      "sha256": "b83c004d3409eaf204c7d68ba051d35fda247374019aa7107905330749cbd697"
+    },
+    {
+      "path": "content/sources/authoritarian-threats-to-democracy.md",
+      "bytes": 3224,
+      "sha256": "8b8223b5876aae0a28dabf516071befa66be4f9414a54c79352982226f35dd40"
+    },
+    {
+      "path": "content/sources/authoritarianism-and-false-democracy.md",
+      "bytes": 3324,
+      "sha256": "942b599dd6bfeb72ac79623de03415d16a5ae64bc968cdd00a8440cc19b58613"
+    },
+    {
+      "path": "content/sources/awakening-to-oneness.md",
+      "bytes": 3035,
+      "sha256": "ee5acf6e6be492173c934bf4f758b1f1046645d253e20d81bc8017041c4a46f2"
+    },
+    {
+      "path": "content/sources/barnabas-gospel-debunked.md",
+      "bytes": 3045,
+      "sha256": "50e2c0367bb5d713ea0a38fa8f6c512c14671166e535f2bbb7be5928b4fa0e1f"
+    },
+    {
+      "path": "content/sources/beasts-and-trumpets-symbolism.md",
+      "bytes": 3119,
+      "sha256": "16b1a1fe5c32921cd61ee789cbefc4054826f104e9482ae64e2db16a17274c02"
+    },
+    {
+      "path": "content/sources/beloved-disciple-identity.md",
+      "bytes": 3079,
+      "sha256": "b16d91dd6bd71372d51c4076b41ed8da9d4019a69d561ab9030fc35591a85536"
+    },
+    {
+      "path": "content/sources/bible-interpretation-and-faith.md",
+      "bytes": 3314,
+      "sha256": "89f6976f5894a1c3906e8aadc2c84bb365e9e1de8e90271338666d50bb989c71"
+    },
+    {
+      "path": "content/sources/bible-passage-on-deception.md",
+      "bytes": 3083,
+      "sha256": "97c6d7d9a752251df6fac66fb11206a4c4266a1e07236cda7f841e357314081f"
+    },
+    {
+      "path": "content/sources/bible-prophecy-death-fractions.md",
+      "bytes": 3120,
+      "sha256": "cf1bb0ad61c14b0a172be1ddc22edb8d562895a8b92686e496f09b74a74f6a88"
+    },
+    {
+      "path": "content/sources/bible-text-sources-comparison.md",
+      "bytes": 3111,
+      "sha256": "7464028a85b818fd290d77c4f2a1682c3b5b6fda669115bf0d64617e3454e445"
+    },
+    {
+      "path": "content/sources/bible-verse-inspiration.md",
+      "bytes": 3062,
+      "sha256": "7ec89860daa6e7c4917cfb7728b3108a8b65c72d53cc113ca30d344a00ee8799"
+    },
+    {
+      "path": "content/sources/biblical-antichrist-interpretation.md",
+      "bytes": 3210,
+      "sha256": "46d16f21d5eed126fbc0f52cfe3251913049b132a650dd1c4040eb1f9f67b757"
+    },
+    {
+      "path": "content/sources/biblical-resurrection-interpretations.md",
+      "bytes": 3175,
+      "sha256": "f4310753ef6e7401c9d80d66b26a3c2cdca049467513fcf61c9b401d4b0622f2"
+    },
+    {
+      "path": "content/sources/biblical-text-timeline.md",
+      "bytes": 3055,
+      "sha256": "dcf4e4e8e308c692f8e0c68858524496677b14aca2c5b32af51e9b71058fe752"
+    },
+    {
+      "path": "content/sources/blue-fascism-explained.md",
+      "bytes": 3054,
+      "sha256": "118d374b8b3315ad3617593ea9d471eca43273be0e9bcf5b083f90f598da7f61"
+    },
+    {
+      "path": "content/sources/born-smart-the-story-of-scout.md",
+      "bytes": 3152,
+      "sha256": "259a8608f0b4347c50553ba7f4f6c7d25ab48c3a57b275c9942f857c65e2b569"
+    },
+    {
+      "path": "content/sources/branch-branch-branch-branch-proof-of-god-s-existence-2.md",
+      "bytes": 3215,
+      "sha256": "50ea59571e2ecc7c57a963e52d6e015912a5fe90f6d402da8836d9e31171a160"
+    },
+    {
+      "path": "content/sources/branch-branch-branch-branch-proof-of-god-s-existence-3.md",
+      "bytes": 3212,
+      "sha256": "02c1c4031d340aee3a39a269d70a014ebee89c81a06b87b58cad8c7b06c4a90e"
+    },
+    {
+      "path": "content/sources/branch-branch-branch-branch-proof-of-god-s-existence.md",
+      "bytes": 3213,
+      "sha256": "9ded1c969f85d5f50b728e4ec76abb7e1300e3db2db39d6d1fd655461d2960a4"
+    },
+    {
+      "path": "content/sources/branch-branch-branch-proof-of-god-s-existence-2.md",
+      "bytes": 3201,
+      "sha256": "f5737424e3bab0ec4236389e7a8cba0253c03dc6c55708a7185adbf92b423ee2"
+    },
+    {
+      "path": "content/sources/branch-branch-branch-proof-of-god-s-existence.md",
+      "bytes": 3201,
+      "sha256": "dd46ee1e7c669dd6f31926ad95ad433fd01ab5a57de6950d0a34446101630847"
+    },
+    {
+      "path": "content/sources/branch-branch-israel-gaza-famine-responsibility.md",
+      "bytes": 3273,
+      "sha256": "ac6a1a7f9bc8c09cacc95baeff05ce687a090d1f3d773084bb0302374456cb58"
+    },
+    {
+      "path": "content/sources/branch-branch-proof-of-god-s-existence.md",
+      "bytes": 3167,
+      "sha256": "8df8fffe7c9bf539c8bfe94663d2d30353f6d0f5cb3fa8b1d766b5b98848a9b2"
+    },
+    {
+      "path": "content/sources/branch-israel-gaza-famine-responsibility.md",
+      "bytes": 3245,
+      "sha256": "2b63a9bdaf48ad595cbdcea155a0ed76aef813f44199f0e652298841d92d2294"
+    },
+    {
+      "path": "content/sources/branch-plagiarism-equivalent-vs-plagiarism.md",
+      "bytes": 2993,
+      "sha256": "145341a92b542f8428426c36cb075590ee0e36191ced610f39e78542651ed371"
+    },
+    {
+      "path": "content/sources/branch-proof-of-god-s-existence.md",
+      "bytes": 3118,
+      "sha256": "79edd90f3b4879702a410e83820fe7269024117a73db1de6e56f6f0fa7b58433"
+    },
+    {
+      "path": "content/sources/branch-riemann-curve-mapping.md",
+      "bytes": 5478,
+      "sha256": "29c7b936be0c126418872d873b491cced37df6f6dd4c1e06ce9862d80888a37c"
+    },
+    {
+      "path": "content/sources/branch-san-minkowski-model.md",
+      "bytes": 2825,
+      "sha256": "bb86918e6082b3a8143a162824102f2db744afaf11a6e493b595924dee89df3e"
+    },
+    {
+      "path": "content/sources/calvary-chapel-and-meat-industry.md",
+      "bytes": 3001,
+      "sha256": "77e4228a81ca0c6bf1c9b45e18de6f804262357f3e217cdbb1e9a17e0b6b8da4"
+    },
+    {
+      "path": "content/sources/calvary-chapel-vs-gnosticism.md",
+      "bytes": 2974,
+      "sha256": "5c1f30d66143d73ad6b47e778a5d4a1741ad1b811413c4d5f99fa4fef4af3a4d"
+    },
+    {
+      "path": "content/sources/canaanite-myths-vs-exodus.md",
+      "bytes": 3075,
+      "sha256": "11fb09bace3f0b5e192e078664c98ec520ced7130db874138a90443979e6881b"
+    },
+    {
+      "path": "content/sources/capitalism-and-democracy-threats.md",
+      "bytes": 2997,
+      "sha256": "4a4e18942f7fd3d44fb157278adc5aad4a7eb193fe8ddaf38a4d9f44e8320f43"
+    },
+    {
+      "path": "content/sources/catholic-priests-and-ancient-texts.md",
+      "bytes": 3017,
+      "sha256": "fb58b8ed469b2503f72d50cac3ad95540901b4c856203740f90a5d78d281f33b"
+    },
+    {
+      "path": "content/sources/chatgpt-beasts-revelation-theory.md",
+      "bytes": 3005,
+      "sha256": "e07e60f33dfff0c01d02bef4f09dfac11061226b8e53aca16b2cee107e9ffb0f"
+    },
+    {
+      "path": "content/sources/chatgpt-file-splitting.md",
+      "bytes": 2899,
+      "sha256": "86c4c7f1f3395e7a26ef4c7d5eb8a86fa20247f71cd21c2c98a24c8cd2fafbba"
+    },
+    {
+      "path": "content/sources/cheese-varieties-from-milk.md",
+      "bytes": 2962,
+      "sha256": "9758fccf379ee1c8843ba3f1d48e723c33b7163ea8c9705dda3e97524e3ebb97"
+    },
+    {
+      "path": "content/sources/china-s-human-rights-abuses.md",
+      "bytes": 3032,
+      "sha256": "8da6cb62021708cc904809226abb4cde4eae74537c49ffe6e66d74fcc772b01a"
+    },
+    {
+      "path": "content/sources/christ-vs-antichrist-contrast.md",
+      "bytes": 3000,
+      "sha256": "e7d4310cd118dca173ddc15fbbe0b5fa0b3a7ef89f856d27a02077a311c00e9d"
+    },
+    {
+      "path": "content/sources/christian-salvation-without-supernaturalism.md",
+      "bytes": 3084,
+      "sha256": "0023d7167a34b5bda6bbdb563b40579d82fdacb41716849dcfe095c5b1842eb9"
+    },
+    {
+      "path": "content/sources/christian-view-of-death.md",
+      "bytes": 2928,
+      "sha256": "6f812a328681a9b531dbff1020445ff1a1db441c6c23199dd62a9666d79c1527"
+    },
+    {
+      "path": "content/sources/church-corporate-sponsorship-evidence.md",
+      "bytes": 3028,
+      "sha256": "4b81288276a66739bd1bd7d614f35526d94ef26e70ee15ef489a992816e8fd63"
+    },
+    {
+      "path": "content/sources/churches-rejecting-paul-s-writings.md",
+      "bytes": 3019,
+      "sha256": "2e7a17dad78a7c7cde2976701edb656e6ce34301d105cbb96915e0f2c1b17eb7"
+    },
+    {
+      "path": "content/sources/city-of-david-structures.md",
+      "bytes": 2981,
+      "sha256": "284defaaa792b9a1e66859c778feabbfffde33ebcca662f3f06811063a880db2"
+    },
+    {
+      "path": "content/sources/claude-deceptions-and-betrayals.md",
+      "bytes": 2992,
+      "sha256": "7f0e0ec29c0ad436a82e76ed65bd93fe1a1834a79b92f51281158e3ea02a5424"
+    },
+    {
+      "path": "content/sources/clementine-homilies-and-recognitions.md",
+      "bytes": 3031,
+      "sha256": "05fd7b5b31ae788627d65054e9c6dfa2a2c855b37cfaed0b33b97332d8803730"
+    },
+    {
+      "path": "content/sources/cognitive-gnosticism-jesus-vs-gnostic-jesus.md",
+      "bytes": 3267,
+      "sha256": "7a8e0255d3ced371a9e5a2dfdc2498d187301b22b04f06ec261e34a04e98565c"
+    },
+    {
+      "path": "content/sources/conceptual-equivalences-mapping.md",
+      "bytes": 2857,
+      "sha256": "5af1d635dcf4dc10098eb083d3668766f73f99b5233c6669ac60aba75ad3aaaf"
+    },
+    {
+      "path": "content/sources/consciousness-and-existence-views.md",
+      "bytes": 3115,
+      "sha256": "3e959cfb831bd6308fcb28a58b7a9a1666366b7777a410163ec750c7b4802814"
+    },
+    {
+      "path": "content/sources/covenant-confirmation-in-israel.md",
+      "bytes": 2993,
+      "sha256": "b870fd4cccc3f89711e3fe5a46b5e7433662bef54833c896e962b2014027c798"
+    },
+    {
+      "path": "content/sources/crucifixion-under-pilate.md",
+      "bytes": 2939,
+      "sha256": "69ed407f9cbd4370080f1be1f11bb5b409b23c9ca47af4213b40b58fb13fa3e9"
+    },
+    {
+      "path": "content/sources/dan-response-inquiry.md",
+      "bytes": 2955,
+      "sha256": "47b9ac2d84fa02bb9fb8cba35743eb577ecb947464db4d71bb5d4782e4fe706f"
+    },
+    {
+      "path": "content/sources/daniel-and-teacher-of-righteousness.md",
+      "bytes": 3090,
+      "sha256": "0f9a2f0aec1b0470abe3edd8aca8e1414bf0df8a06dd11ac3431c5a91fb5b15d"
+    },
+    {
+      "path": "content/sources/daniel-prophecy-and-temple.md",
+      "bytes": 2952,
+      "sha256": "ac7370a73c7f8bf23c872a3251ac6587c8639eabf4247ac9a4a73e970473d697"
+    },
+    {
+      "path": "content/sources/dark-time-thermodynamics-theory.md",
+      "bytes": 3047,
+      "sha256": "b7adf56f40e219cb8060578e35c68d0b944665927fd29c917c6d72f42eb185c1"
+    },
+    {
+      "path": "content/sources/debunking-aaron-abke.md",
+      "bytes": 2974,
+      "sha256": "851aec976d0c0b5360da8929ce96dec9ce16cb27d83443d2cf7200da3b80e8cc"
+    },
+    {
+      "path": "content/sources/debunking-greek-bible-myth.md",
+      "bytes": 2941,
+      "sha256": "73056c8d4852afe8f74d100db8c2495d46ad039cceaddc4fc8303c3d69f3d6b4"
+    },
+    {
+      "path": "content/sources/debunking-jewish-law-origin.md",
+      "bytes": 2944,
+      "sha256": "383a2002b38927b7d9be7c89df1eaffc88113bda856b7e1dced38afde6cd7afb"
+    },
+    {
+      "path": "content/sources/deliberate-joy-concept.md",
+      "bytes": 2919,
+      "sha256": "a54204b2ad89ca38930ba21fa77c557f5f2b982ad1d22c008e35b74a4c13fb85"
+    },
+    {
+      "path": "content/sources/deterministic-quantum-cycles.md",
+      "bytes": 3650,
+      "sha256": "1436eb8d0a914013fc807057c78d034475e6d1eca40ebca9a790d24b4967fe82"
+    },
+    {
+      "path": "content/sources/dimensional-resonance-vs-iit.md",
+      "bytes": 2997,
+      "sha256": "1abd713c9ee9a57d6fcc284dd7e1f7bcc49f844f7512a67426bf9a045c13b7d2"
+    },
+    {
+      "path": "content/sources/dina-s-jewish-identity-in-tlou.md",
+      "bytes": 2983,
+      "sha256": "d43d6bf660e2f628c9c5db92fc2e1aabcf4c70a2eb758a83a33273f773def857"
+    },
+    {
+      "path": "content/sources/disrespectful-religious-statement.md",
+      "bytes": 3012,
+      "sha256": "658e21de9d115d97ec4221168009700f75ce1c0af80a9ddec37aeef952d6409a"
+    },
+    {
+      "path": "content/sources/divine-empowerment-through-christ.md",
+      "bytes": 3009,
+      "sha256": "f3f7a45a90460eebd6fbe4b21d03aa78968ec5b1312109229ef60c63a9c53210"
+    },
+    {
+      "path": "content/sources/document-review.md",
+      "bytes": 2954,
+      "sha256": "521e9f917a5d47e171e35518ad0572ee02678c5cc92a6c9f4b3f462cfe68bcbd"
+    },
+    {
+      "path": "content/sources/early-vs-later-gnosticism.md",
+      "bytes": 2962,
+      "sha256": "5575e79adb0ad4528dc1d334c07ac4be8689e25ef027681ea4c19e452ea10ef1"
+    },
+    {
+      "path": "content/sources/ehrman-vs-tabor-debate.md",
+      "bytes": 2876,
+      "sha256": "b4f1c6d5ea97a4eb368906d7d88f9e967e5dee2565dcb5d21babe8bdfab8f716"
+    },
+    {
+      "path": "content/sources/elohim-and-alien-theories.md",
+      "bytes": 2896,
+      "sha256": "033ab896a7a76a57813305c6c815c8329a03ec706168f034e51901e03c74417c"
+    },
+    {
+      "path": "content/sources/enoch-scroll-and-gnosticism.md",
+      "bytes": 2988,
+      "sha256": "3c30ed4ea07ffac026e4b76002bc9606ed5704d82199634fb9eaa4dfa29ae7eb"
+    },
+    {
+      "path": "content/sources/enoch-son-of-man.md",
+      "bytes": 2818,
+      "sha256": "4bef7fb7ce9a189fcc4bfd355b7dac3d7971272f3554668fff3f02b373c24c8c"
+    },
+    {
+      "path": "content/sources/epstein-s-web-of-connections.md",
+      "bytes": 2925,
+      "sha256": "3ee09d114863a55b14e6878186c5ce5685ba126a3671c7ff18764bf9fbcf1e0f"
+    },
+    {
+      "path": "content/sources/eschatology-and-prophetic-timelines.md",
+      "bytes": 2979,
+      "sha256": "c7197cfd05088384c784a2112c07ccef27a30c071b18ee13b9be19c95f05b61f"
+    },
+    {
+      "path": "content/sources/essenes-and-early-christianity.md",
+      "bytes": 3006,
+      "sha256": "4072c39602f50f4e8d57e0a2bd5bf6589b144c34e2bb66e6644d245401f7ba9c"
+    },
+    {
+      "path": "content/sources/european-gods-origins.md",
+      "bytes": 2858,
+      "sha256": "ee317c9005040d2c2688a8b062a72149c29c0841bddd69fd168d29c8b0155d3d"
+    },
+    {
+      "path": "content/sources/evolving-god-and-naming.md",
+      "bytes": 2874,
+      "sha256": "5df693f0e38ceaee2dec519544bf4afaba4a7cd61ba351cbb8ccfb5d99ef87cd"
+    },
+    {
+      "path": "content/sources/exodus-dating-and-evidence.md",
+      "bytes": 2989,
+      "sha256": "518a9dee577691e3c34cdd69ca2e2d111717636a45b3ea582a32ea328eb38c07"
+    },
+    {
+      "path": "content/sources/ezekiel-s-dry-bones-vision.md",
+      "bytes": 3006,
+      "sha256": "a10d25feb6232060e94e1c12ee093d66e86f4933f46a109b99269bf4596a5ebd"
+    },
+    {
+      "path": "content/sources/ezekiel-s-influence-on-prophecy.md",
+      "bytes": 2954,
+      "sha256": "3814dfdc32281222123b496b485389447fbf38431877b93237eff4d0fdfa1d82"
+    },
+    {
+      "path": "content/sources/fact-check-peace-plan.md",
+      "bytes": 2888,
+      "sha256": "88bb751905b88d8201fc3a7205836907bb0e672b94b4a64e2b58c0e19e1c9dcd"
+    },
+    {
+      "path": "content/sources/fact-check-trump-death-claim.md",
+      "bytes": 2988,
+      "sha256": "9be8d3c31fe446f4d105fba5789e378dfdd952734da39bbbd96706ab7bf11aac"
+    },
+    {
+      "path": "content/sources/faith-and-comfort.md",
+      "bytes": 2023,
+      "sha256": "2f7fa66796d4613d82b747750bce9c11a39dc6c3ee66b47698d5c3b031282c1b"
+    },
+    {
+      "path": "content/sources/faith-as-vibration-concept.md",
+      "bytes": 2944,
+      "sha256": "dcc37181101fed997fff49ff75da5bf7597b9a18eeb65cbc6026f8a41e22eca1"
+    },
+    {
+      "path": "content/sources/fallout-vs-real-apocalypse.md",
+      "bytes": 2964,
+      "sha256": "b6bc77af40d11a4c650e2b2d98de92d0ec818f60123e883c4595f34349cb4eee"
+    },
+    {
+      "path": "content/sources/false-gnosis-warning.md",
+      "bytes": 2862,
+      "sha256": "d1b581ecfce22816ec54845e238d47e5bb0a47ff38f6500d60897fd0941c43a8"
+    },
+    {
+      "path": "content/sources/false-peace-prophecy.md",
+      "bytes": 2950,
+      "sha256": "37a5fcd533d06e2884e05408d4bcf5e76055447221eb004d9e6ea0c4ee874495"
+    },
+    {
+      "path": "content/sources/find-paper-online.md",
+      "bytes": 2839,
+      "sha256": "72f4403f1ba5a5fa7ddbe99b2de6bf4e3a9858f7122641e8c99bc87113ebdb57"
+    },
+    {
+      "path": "content/sources/fishburne-matrix-commentary-clarified.md",
+      "bytes": 3000,
+      "sha256": "d6b7f6f25bce0f1003d70d6436123cba8e564924f82f0dcf734a5418a111e799"
+    },
+    {
+      "path": "content/sources/focus-your-energy.md",
+      "bytes": 2820,
+      "sha256": "1078f3cdb7608c9ab7ae64f0afb11154c8a5d533bc7d2f432d9e6a4db6803dfe"
+    },
+    {
+      "path": "content/sources/galatians-3-faith-summary.md",
+      "bytes": 2954,
+      "sha256": "888fc38049fe5d0898847f4cd8a8f918de7ebf8f0fe79a803a25346f453215b8"
+    },
+    {
+      "path": "content/sources/gaza-coin-proposal.md",
+      "bytes": 2831,
+      "sha256": "f8c733d33abf7e2753df932bd76a63c160605df0871b15484e03d5dd2d438669"
+    },
+    {
+      "path": "content/sources/gaza-development-coalition-name.md",
+      "bytes": 2977,
+      "sha256": "b3a474b84bb8469e2fc06b2869f11c59a465e9520c07da645b9f11d5164e0358"
+    },
+    {
+      "path": "content/sources/gaza-narrative-debate.md",
+      "bytes": 2900,
+      "sha256": "7f2377cef75f4633b983640bf03834954130b8fa0ddffb83b85b6ccc0d1fc533"
+    },
+    {
+      "path": "content/sources/gaza-relocation-debate.md",
+      "bytes": 2641,
+      "sha256": "eb7d0734dbc7072d1454c71f6fe5be08f24ceec34d2b01fa406660b786bb08e9"
+    },
+    {
+      "path": "content/sources/gaza-starvation-propaganda-debate.md",
+      "bytes": 2952,
+      "sha256": "5064c5fe53fcc944b003c80369686fa4d3acb180ccee98851b4b6a253a4c813c"
+    },
+    {
+      "path": "content/sources/glazing-brainwaves-reflected.md",
+      "bytes": 3109,
+      "sha256": "7c5128c8f357c5e107ec0cbcd6698255cf636721a9cf808d3b6f939f9b820ecd"
+    },
+    {
+      "path": "content/sources/gmirkin-hellenistic-bible-theory.md",
+      "bytes": 2997,
+      "sha256": "08452fbf56ab16871950cd8ce34ddf18643460981eeff21539cca6a5a7673f22"
+    },
+    {
+      "path": "content/sources/gnosis-density-and-gravity.md",
+      "bytes": 2956,
+      "sha256": "dbd7355bb9fd72277fecfbcc0892b6eabd160149f33e45766b090972115f5ad4"
+    },
+    {
+      "path": "content/sources/gnostic-christianity-and-jesus.md",
+      "bytes": 3188,
+      "sha256": "4d3a473145f235c7274ab2c9e5ceb184b7494c8d757e491f7622ba3a53f8e43b"
+    },
+    {
+      "path": "content/sources/gnostic-church-psychedelic-legalities.md",
+      "bytes": 3038,
+      "sha256": "2ea37441ed57e1b33c3c7c0d1e2caf249bfddf6e8bf209dae4197b6187a27e2a"
+    },
+    {
+      "path": "content/sources/gnostic-divinity-and-dualism.md",
+      "bytes": 2945,
+      "sha256": "409e50a2ab668bae9dc47b433ae6c1a7ceac5a81b4bcbf48490893188ac315bd"
+    },
+    {
+      "path": "content/sources/gnostic-end-times-figures.md",
+      "bytes": 2939,
+      "sha256": "0add9223299a35682a43c27d6cd455b1f5eb8fb556aa8eaf9533d72ac1b56e01"
+    },
+    {
+      "path": "content/sources/gnostic-god-comparisons.md",
+      "bytes": 2923,
+      "sha256": "d3f9f80e5c28ca6418af669abfc7c4a27d0d2b52cee572a488e284bc882e8b9d"
+    },
+    {
+      "path": "content/sources/gnostic-gospels-and-vocabulary.md",
+      "bytes": 3022,
+      "sha256": "e5a2736699ea5b7b29c62cd94861c25c81c27f11fb8fefee0b78747f2207dd4b"
+    },
+    {
+      "path": "content/sources/gnostic-gospels-in-film.md",
+      "bytes": 2925,
+      "sha256": "3ec16fbf11668f427c210c43f04a974f4a84fef0642d14879e87238e38e9a7af"
+    },
+    {
+      "path": "content/sources/gnostic-jesus-and-judas.md",
+      "bytes": 2998,
+      "sha256": "a6b4d0cd1a78c288b7e7cdac1feea713764f8f414ffe064d8639f4187baf68c2"
+    },
+    {
+      "path": "content/sources/gnostic-jesus-and-logos.md",
+      "bytes": 3084,
+      "sha256": "2df67d6726e1346429fe747edbd4b5b06ca79a3fdf85ef49325769deb0763b57"
+    },
+    {
+      "path": "content/sources/gnostic-teachings-and-clarity.md",
+      "bytes": 3237,
+      "sha256": "a2fb62f8d69e416c9f86e207138f45e8b2f4b47266b09f15896ca502ad5a49fd"
+    },
+    {
+      "path": "content/sources/gnostic-texts-and-christianity.md",
+      "bytes": 2980,
+      "sha256": "29f2e5bdd9342675452037de10313dbdc63c94c28a6e4c01108e497a77007f78"
+    },
+    {
+      "path": "content/sources/gnostic-texts-and-paul.md",
+      "bytes": 2916,
+      "sha256": "c543ff66a3e51efa781cd279ea57d4836030a36d07eddc077f52db6d94f8fc24"
+    },
+    {
+      "path": "content/sources/gnosticism-and-evil-creator.md",
+      "bytes": 3061,
+      "sha256": "dda2d8f6b9196276b7b3e371c9dbf659204f64247c4bd9620e27a807fcc61762"
+    },
+    {
+      "path": "content/sources/gnosticism-and-original-sin.md",
+      "bytes": 2951,
+      "sha256": "b19ccba5ad556108c26b3c9c653267f406d9689b2128f68f38b585d9a42ffb78"
+    },
+    {
+      "path": "content/sources/gnosticism-and-paul-s-letters.md",
+      "bytes": 2969,
+      "sha256": "003605e5dd6a404de06df8f101e5b32b6c75060dd82d3c13cbd87769a2be17f5"
+    },
+    {
+      "path": "content/sources/gnosticism-in-catholicism.md",
+      "bytes": 2940,
+      "sha256": "99dbf7071e7083e755256599513647512f86001135d6878cbafe801b100b7ac6"
+    },
+    {
+      "path": "content/sources/god-and-sea-monsters.md",
+      "bytes": 2924,
+      "sha256": "2f1644a4ac478a2b30a3ed5a46fd0a6e3050a33f6251456cd15799c85e1857ac"
+    },
+    {
+      "path": "content/sources/gog-magog-and-nations.md",
+      "bytes": 2971,
+      "sha256": "676e53ef47a5dac1eb740ffab1187d122560691542fa38f8d7661e33c74b1252"
+    },
+    {
+      "path": "content/sources/gospel-of-judas-overview.md",
+      "bytes": 3599,
+      "sha256": "073979de1571b6953cc68b30310e498b19814f1f023df02b0c1a6bd6effe9856"
+    },
+    {
+      "path": "content/sources/greta-thunberg-and-iran.md",
+      "bytes": 2924,
+      "sha256": "4bae759b55ce7a096c03f66d6fc28e2cc7b955c597c7afc0594c59dfc9bb20ea"
+    },
+    {
+      "path": "content/sources/gset-verification-and-implications.md",
+      "bytes": 2971,
+      "sha256": "a6cfeec05fc56b6c0f31586294bd31a419a75c75667db1e4d8148ecedeb4301f"
+    },
+    {
+      "path": "content/sources/hamas-propaganda-and-hostages.md",
+      "bytes": 2972,
+      "sha256": "09f4ed760675d266e3026edcc45952ffb09868edd311a4c5d9d6a9dc2e3a1df2"
+    },
+    {
+      "path": "content/sources/haramein-vortex-gravity-model.md",
+      "bytes": 2974,
+      "sha256": "4697b8c4452562593f009f29ddc1333b70cf34ecd94289b470207f72a2ccc26a"
+    },
+    {
+      "path": "content/sources/harari-on-israel-and-gaza.md",
+      "bytes": 2991,
+      "sha256": "c1463710e4a21e36cd5170c43188fd09fa0e17552de6ba16bdf365feded8fcf6"
+    },
+    {
+      "path": "content/sources/heavier-than-a-feather.md",
+      "bytes": 2941,
+      "sha256": "64fe7be6d798985a4414251dba62ddd384069c173153d6c2c2cbd06407d9a20b"
+    },
+    {
+      "path": "content/sources/heisenberg-vtt-and-sit.md",
+      "bytes": 2967,
+      "sha256": "edacf1c4f4cf6837d24773b11654291d37c0cfa9c7126aa9abc111e2bfed3364"
+    },
+    {
+      "path": "content/sources/hell-transformation-and-metatron.md",
+      "bytes": 2977,
+      "sha256": "4bc8829bfc223223e80b9aac265927b25d389671a42d4a690e75bb0d50806945"
+    },
+    {
+      "path": "content/sources/henosis-and-gnosticism-comparison.md",
+      "bytes": 3081,
+      "sha256": "afa2c0342bb0bb3589fac93425f63294b1e06c733ccbad1f61459d4dffd1d4ff"
+    },
+    {
+      "path": "content/sources/herod-timeline-clarification.md",
+      "bytes": 2968,
+      "sha256": "304c90e3dd01d882978ed502be57ec574257a59c32c4a270061bd139a373c279"
+    },
+    {
+      "path": "content/sources/hogs-and-authority-dynamics.md",
+      "bytes": 3093,
+      "sha256": "0c61d573f9b6383153f675058bfa4050f8dfea25115eadafe8583b4ffe05c551"
+    },
+    {
+      "path": "content/sources/horseman-of-death-fate.md",
+      "bytes": 2914,
+      "sha256": "47352d43406a4fd7393b3b56061fac87242bdc2ab1db5cfffa6c6eb2646f766c"
+    },
+    {
+      "path": "content/sources/humanity-s-need-for-god.md",
+      "bytes": 2914,
+      "sha256": "2ff4804741594d4e8db3c5dfad6bc4ff8d55ff832bdd486168cd14c5104132c4"
+    },
+    {
+      "path": "content/sources/hyksos-expulsion-overview.md",
+      "bytes": 3047,
+      "sha256": "0e3617f42a2e5e2b0e446cab564718747b915058f84e8e8deccc10cd4a1f1139"
+    },
+    {
+      "path": "content/sources/hyperion-cantos-summary.md",
+      "bytes": 2888,
+      "sha256": "2b7bb762629226536134f14ce98ef7fbec02de46d4305f5e90c44da9140507cf"
+    },
+    {
+      "path": "content/sources/i-commit-my-spirit.md",
+      "bytes": 2967,
+      "sha256": "1025bb606112822b4d851ac1428a20d3f667488535f2c81715e2ad6504141ab5"
+    },
+    {
+      "path": "content/sources/if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia.md",
+      "bytes": 3299,
+      "sha256": "07c027c85ff96ba17ec4efdb2e3641438edbbbd8819b67439e6cfb390fafa2d0"
+    },
+    {
+      "path": "content/sources/image-and-identity-theme.md",
+      "bytes": 2892,
+      "sha256": "45ef61fd128d544f4e23b22c03732a25b917212f8871c259633718d435cdc5e2"
+    },
+    {
+      "path": "content/sources/inanna-death-and-resurrection.md",
+      "bytes": 2960,
+      "sha256": "72fb96d773858ee0caea18846c043b4b5e684da024ef01d74754a79feb833351"
+    },
+    {
+      "path": "content/sources/index.md",
+      "bytes": 33744,
+      "sha256": "cd79c84dbb57675541e2fac17230c4a065dcaee7ce9253df414fdb2e9e4625ce"
+    },
+    {
+      "path": "content/sources/iran-amalek-prophecy-debate.md",
+      "bytes": 2929,
+      "sha256": "090f18afd176b6183741cbc2effd4b3bd4ef01a8510c33a04f849b0d726cfea2"
+    },
+    {
+      "path": "content/sources/islam-s-arrival-century.md",
+      "bytes": 2641,
+      "sha256": "e7931f6258c1aa32cb2c731a31f81a709b4b4c669584612bbfdb78cbae99d4ab"
+    },
+    {
+      "path": "content/sources/israel-democracy-debate.md",
+      "bytes": 2886,
+      "sha256": "68c8cae6034c4c4c94b48126c1d0dc8274d349b598a54a2c50f78b04901e8a0a"
+    },
+    {
+      "path": "content/sources/israel-gaza-famine-responsibility.md",
+      "bytes": 3048,
+      "sha256": "39b9a0b7b3f05104bd5eee05a8b4f7df39e39c7e2138a9f90134346dfe2b5a7a"
+    },
+    {
+      "path": "content/sources/james-tabor-expertise-gnosticism.md",
+      "bytes": 2961,
+      "sha256": "d8e558a7060d63bfada6864265b35275a6de6fc241919059bc49b9ff6fd65a87"
+    },
+    {
+      "path": "content/sources/james-the-just-analysis.md",
+      "bytes": 2884,
+      "sha256": "6255308f01707f037eb62c7bd4ca3e8fa4451e8f0d0f31ba1dc5c7f4f8c6d759"
+    },
+    {
+      "path": "content/sources/jesus-7-levels-of-consciousness-fact-check.md",
+      "bytes": 3409,
+      "sha256": "e3a1497e17c644ec3f684efd48a3dae591a22177b4e22402713ff10eaf443dfd"
+    },
+    {
+      "path": "content/sources/jesus-and-biblical-figures.md",
+      "bytes": 3118,
+      "sha256": "8961595d08f5dce76947c626e7f1fa2307815211da35b2e6bbe2a7c39a8d9b3a"
+    },
+    {
+      "path": "content/sources/jesus-and-dead-sea-scrolls.md",
+      "bytes": 2904,
+      "sha256": "0a3a700ef80ad974c44936eebbb5c3e000dfcb672bfdcddb48afd08c08f4a80d"
+    },
+    {
+      "path": "content/sources/jesus-and-gnostic-teachings.md",
+      "bytes": 3076,
+      "sha256": "3e60cd44e7f380185a57ae8c459511c2d8b4ab707018521c57f2737a2951fbb0"
+    },
+    {
+      "path": "content/sources/jesus-and-neo-matrix.md",
+      "bytes": 2156,
+      "sha256": "c1df419be84ba83828a4d0f6fc1356bb71e18bdb659ddd7e5ea6736001937e92"
+    },
+    {
+      "path": "content/sources/jesus-as-a-teenager.md",
+      "bytes": 3105,
+      "sha256": "c84cb6662b23d41b1e715347259c29996904efdaa0dd42b5b1a5337c800f5d47"
+    },
+    {
+      "path": "content/sources/jesus-as-philosopher-teacher.md",
+      "bytes": 3234,
+      "sha256": "c28938982ed9f59187026fe3eee57b487262f6f8688d81495eb50b106513eeb5"
+    },
+    {
+      "path": "content/sources/jesus-as-storyteller.md",
+      "bytes": 3019,
+      "sha256": "cf0381c272b8834be8e4b279a47ca1ef641b546ee4a37ccbafc550661ae75cbf"
+    },
+    {
+      "path": "content/sources/jesus-drives-out-merchants.md",
+      "bytes": 3067,
+      "sha256": "6fcad2eea091690c895dc86c6a2e24817d1b5832ff307c6de7b04b265e770399"
+    },
+    {
+      "path": "content/sources/jesus-gnosticism-and-myth.md",
+      "bytes": 3059,
+      "sha256": "1f06169a441fe953cd112703cd24a979cd835ed3ea2c9a7a5f284b96c155b527"
+    },
+    {
+      "path": "content/sources/jesus-in-dead-sea-scrolls.md",
+      "bytes": 2957,
+      "sha256": "751cd112630fd4863a238b831e27d4a485a56110b11dabb179f53585183f12ac"
+    },
+    {
+      "path": "content/sources/jesus-in-love-concept.md",
+      "bytes": 3056,
+      "sha256": "750b866af5605abf23ac5ed20ffe36460c7be60b95024f4bf62dd076a18e914d"
+    },
+    {
+      "path": "content/sources/jesus-james-and-essenes.md",
+      "bytes": 3160,
+      "sha256": "b118a4e7bf85e01bd2e7166ad4218b9fbd433f491f437b7c623f7b2f76dd29dc"
+    },
+    {
+      "path": "content/sources/jesus-long-suffering-vs-abraham-hicks.md",
+      "bytes": 3143,
+      "sha256": "db43dfa870f9149403e4a0b7d699f57c07b7a8bc5e8e469ad8daca3f94e795d2"
+    },
+    {
+      "path": "content/sources/jesus-sayings-fact-check.md",
+      "bytes": 3123,
+      "sha256": "1c3d7124ba2608c8edf930cb81574d784cf15e71e07cc07561a9eac83a1792a7"
+    },
+    {
+      "path": "content/sources/jesus-teachings-on-divorce.md",
+      "bytes": 3047,
+      "sha256": "b8e37d78f34b074f773248efe13f9bf490c30d6eb14fc0d308653450499a49d7"
+    },
+    {
+      "path": "content/sources/jesus-teachings-overview.md",
+      "bytes": 3009,
+      "sha256": "dd5f626bd00645d7e94c9123c2d47d8ce8d66898c45fcaf6121e3815fc87361d"
+    },
+    {
+      "path": "content/sources/jesus-teachings-pineal-gland.md",
+      "bytes": 3088,
+      "sha256": "655da919063387f719c4e4406360cbb6bf288742cc226f2fbe59bd4fb89d8601"
+    },
+    {
+      "path": "content/sources/jesus-teachings-simplified.md",
+      "bytes": 3145,
+      "sha256": "6f8be72982c9e32577727f7e7edc1d4f51b3ae80703dad732feac59253b04d48"
+    },
+    {
+      "path": "content/sources/jesus-temple-sacrifices-debate.md",
+      "bytes": 3154,
+      "sha256": "0036f01a76cef96a6ec911393d953aba73c830d4783b81d57bbdf16bd32230d8"
+    },
+    {
+      "path": "content/sources/jesus-timeline-analysis.md",
+      "bytes": 3120,
+      "sha256": "680f377d02ff283718cac01f0fe432759f2a99bddf4b40a20577e66e01c77eb7"
+    },
+    {
+      "path": "content/sources/jesus-vs-ahura-mazda.md",
+      "bytes": 3011,
+      "sha256": "3e464724972dd828aaca7af20ed6be03218b109625e3db347c56754c6872ec96"
+    },
+    {
+      "path": "content/sources/jesus-vs-paul-on-salvation.md",
+      "bytes": 3133,
+      "sha256": "d7d27b06bf27250edb58a2ad746d12514e729b0302837197824c474e333daf17"
+    },
+    {
+      "path": "content/sources/jesus-vs-paul-vs-gnosticism.md",
+      "bytes": 3063,
+      "sha256": "bb04492001399e8e38008b8a63512ac6e37b3cc5895eadaa2ae00a8612f6ff33"
+    },
+    {
+      "path": "content/sources/jesus-vs-yahweh-debate.md",
+      "bytes": 3024,
+      "sha256": "cea8bed1e546753888433b662cad9a20c8da645a9ee0a58f5d457523b7a729a3"
+    },
+    {
+      "path": "content/sources/jesus-way-origins.md",
+      "bytes": 3076,
+      "sha256": "8a0eddd98eb35eecf139ef22977f11c9e51ec04334d5252ab6ad4189030e0494"
+    },
+    {
+      "path": "content/sources/jewish-apocalyptic-repair-timeline.md",
+      "bytes": 3114,
+      "sha256": "f10ef2cb323dce6108b99a76118cfe06bf07f00150871b05498898188402e3f6"
+    },
+    {
+      "path": "content/sources/jews-and-canaanites-origins.md",
+      "bytes": 2890,
+      "sha256": "d02f7627ae07c912bc547793be18e965a1f339357c74bf753d13e1231456459e"
+    },
+    {
+      "path": "content/sources/johannine-theology-overview.md",
+      "bytes": 3009,
+      "sha256": "b011f4bbe0b51c79b1ad6ee6e69ef4872aeb27b76fba8f0feffaeb33ad021197"
+    },
+    {
+      "path": "content/sources/joke-style-analysis.md",
+      "bytes": 2928,
+      "sha256": "72fa764b29022dc4879e663575b7543119b15454df27fc76620c85417ebf0f7f"
+    },
+    {
+      "path": "content/sources/judaism-history-debate.md",
+      "bytes": 2870,
+      "sha256": "f63df86b29638190deb619cc0ca868ad1c0335ae3f083d724f7d53b9f15337d9"
+    },
+    {
+      "path": "content/sources/judas-gnostic-view-explained.md",
+      "bytes": 3036,
+      "sha256": "31947184cbf2c4878aac24a74f18aee6746276b51275dfaaa5e8e4a5519f7642"
+    },
+    {
+      "path": "content/sources/jungian-dream-analysis.md",
+      "bytes": 3081,
+      "sha256": "766d90c53c79d6ef30265020cd24a176d6c3de05c93cf828d595ecad63158a1b"
+    },
+    {
+      "path": "content/sources/kabbalah-origins-question.md",
+      "bytes": 2894,
+      "sha256": "10bf76e603fa0dae9160e6b77c552569dafb57f5b84e200aa13b09b393705fde"
+    },
+    {
+      "path": "content/sources/kirk-racism-equivalence-analysis.md",
+      "bytes": 2959,
+      "sha256": "5daf6a20373dc82f76387e41cc902576d3a7514d1bbfeef8c0d2b0a0c91fa768"
+    },
+    {
+      "path": "content/sources/kubrick-gita-verse-removal.md",
+      "bytes": 2965,
+      "sha256": "263278556cdbf42fe413380fd4d526ff9d5a9bfac60a3f11e0c33ce0fd6f0591"
+    },
+    {
+      "path": "content/sources/la-museums-destroyed-in-fire.md",
+      "bytes": 2909,
+      "sha256": "d99ec88c4b41ce1bc718533dea6f7971db7dd373a58ea12f654c5a092e63e769"
+    },
+    {
+      "path": "content/sources/law-of-attraction-analysis.md",
+      "bytes": 3040,
+      "sha256": "efb9b5fb54f33ee180100b949e6fb7972cd1a7adff75d151f2279edea63dd447"
+    },
+    {
+      "path": "content/sources/law-of-attraction-and-magic.md",
+      "bytes": 2898,
+      "sha256": "3dfeab1877bb214e274990a28c811d5f37696358937238cdb560b96be3e3dea2"
+    },
+    {
+      "path": "content/sources/law-of-attraction-validation.md",
+      "bytes": 2894,
+      "sha256": "c9adeea99106051baafbf3d1f29251ba99991d4ffeeed64368ca603f7f609aac"
+    },
+    {
+      "path": "content/sources/leibniz-branch-mesopotamia.md",
+      "bytes": 2806,
+      "sha256": "fd1f9070e3b7ab872d9a42c0f801446a69a3198f6c4793a914571fa6c77bb16f"
+    },
+    {
+      "path": "content/sources/lucifer-s-fall-explanation.md",
+      "bytes": 2987,
+      "sha256": "1c73c19719c2b3a48c4b6be4f7a32f514fe9e618827ce445c300148181e7310c"
+    },
+    {
+      "path": "content/sources/maccabees-jeremiah-and-dead-sea-scrolls.md",
+      "bytes": 2998,
+      "sha256": "9f46f48df71d579d50413a447fc3d503df238d568a8cb45dedc88ffaa206dad2"
+    },
+    {
+      "path": "content/sources/mark-16-textual-dispute.md",
+      "bytes": 2112,
+      "sha256": "8c1433509cc189a4adf796bd92356b8f5df552abcdd242d1f3bd8490ee5c8d7c"
+    },
+    {
+      "path": "content/sources/mark-of-the-beast-x.md",
+      "bytes": 2835,
+      "sha256": "c85c171603c9c9bdb02431e306d77fd9e985c87d71ae1f814b9cd531f7e5060b"
+    },
+    {
+      "path": "content/sources/marvel-crisis-equivalent.md",
+      "bytes": 2881,
+      "sha256": "7af6cfaee936739617f651fdddbf3fe576b48d23ece6790f00b8135949662fc5"
+    },
+    {
+      "path": "content/sources/meai-as-anti-psychotic.md",
+      "bytes": 2911,
+      "sha256": "c7777f8af1c3ed2f82ab1f77da89b7c2837963e97ef3a1738eea3409d05a3979"
+    },
+    {
+      "path": "content/sources/meme-creation-prophecy-and-peace.md",
+      "bytes": 2950,
+      "sha256": "7c906fa1c496c771abf9016f9b1c2b55273799407dc4a67d8e72f8dcca4a0fd6"
+    },
+    {
+      "path": "content/sources/messiah-role-in-qumran.md",
+      "bytes": 2867,
+      "sha256": "784b0b7917ce520dce9c6b7cbb5f797f90ad9219585b238cb307c558dc894502"
+    },
+    {
+      "path": "content/sources/mind-of-god-equation-2.md",
+      "bytes": 2846,
+      "sha256": "81156082622f28dbd90737a827aa665f5cb6e617a9717aec5cf74a3b327fdd9e"
+    },
+    {
+      "path": "content/sources/mind-of-god-equation.md",
+      "bytes": 2846,
+      "sha256": "829d47cb5e0803053a4777dfb46808b091282d9952b65ca118a32c2c35b2f4d3"
+    },
+    {
+      "path": "content/sources/modern-gnostic-critique-of-catholicism.md",
+      "bytes": 2977,
+      "sha256": "de9a517f8e480fa17cddabc9ceca58f27ce8fb92ff777896e03dede6cd51b975"
+    },
+    {
+      "path": "content/sources/modern-nazarenes-overview.md",
+      "bytes": 3004,
+      "sha256": "b8ceb660fa5f8f5a816e8ec5789d47b3ac418fda95e180138cdb3ebd04dd605a"
+    },
+    {
+      "path": "content/sources/moses-abraham-and-god.md",
+      "bytes": 2889,
+      "sha256": "b72962b9ad827fa679dbbe7a65165ee7e603c066aa0cc90d3f41c4e456e4bbec"
+    },
+    {
+      "path": "content/sources/moses-and-the-burning-bush.md",
+      "bytes": 2893,
+      "sha256": "77b83fb237f1f91e24fc6ab38d3e55d74b3747613a3c18323aa272c2b1ec0409"
+    },
+    {
+      "path": "content/sources/moses-dating-debate.md",
+      "bytes": 2911,
+      "sha256": "0ee67791304cc8457cf79dc19bc1e57b38ecc1650b5289ac0a4196aba0a792f2"
+    },
+    {
+      "path": "content/sources/muslim-view-of-jesus.md",
+      "bytes": 3022,
+      "sha256": "4f6c9b97367c7abe61bc708da50e1278d8f3ded6c0ed72da1df336186c7ff0d4"
+    },
+    {
+      "path": "content/sources/my-descent-into-death-summary.md",
+      "bytes": 2916,
+      "sha256": "f84abdd5364ac462db693d83198de68cbd6ef73188bbd58a291a319e783fb994"
+    },
+    {
+      "path": "content/sources/naming-god-as-purpose.md",
+      "bytes": 2850,
+      "sha256": "029f44e13f9aa143f0d9f3f20568f45aaa6992c3f41fe171bc87149adf577298"
+    },
+    {
+      "path": "content/sources/nearest-wilderness-to-sf.md",
+      "bytes": 2883,
+      "sha256": "5713f1d93e6582ebb7786ed8e5fbdc75174b1d15796d6009ff7be3e9f3a7a46b"
+    },
+    {
+      "path": "content/sources/neo-mind-cycle-evolution.md",
+      "bytes": 2875,
+      "sha256": "cc44bc0024649c3fe8285b0eed09ec4116a8b905874348363d99d1ac294e0b6e"
+    },
+    {
+      "path": "content/sources/netanyahu-s-controversial-rhetoric.md",
+      "bytes": 2985,
+      "sha256": "db6b99d14ee2d816d4959c2790499354815e5f81c329cb01ac4e8d4c25774d91"
+    },
+    {
+      "path": "content/sources/neurohacker-bio-summary.md",
+      "bytes": 2850,
+      "sha256": "b8063511e27787573a2f8a6f4816fb1540919fe448298da772285722d8e9e764"
+    },
+    {
+      "path": "content/sources/nietzsche-jesus-gnostic-resources.md",
+      "bytes": 3126,
+      "sha256": "704b86816f935e2c92038d309bfa47ee1dd01c4dd258e37a293f9691c2c14616"
+    },
+    {
+      "path": "content/sources/no-pre-trib-rapture-arguments.md",
+      "bytes": 2915,
+      "sha256": "426ef101fcb9a8c7d02b0dc70628840920d432f5d6b4c77e6bbe519b9e7eccf3"
+    },
+    {
+      "path": "content/sources/noah-and-moses-jewish-status.md",
+      "bytes": 2944,
+      "sha256": "0137faced983dfbabd1c2a4368b631e9841a6e6868241e05d245ffb671b3f04b"
+    },
+    {
+      "path": "content/sources/nuclear-war-survival-tips.md",
+      "bytes": 2883,
+      "sha256": "10bc695a44c79291b902e078f8d0d13e6658dd763417d876264da620c39f7e09"
+    },
+    {
+      "path": "content/sources/oil-vs-gas-control.md",
+      "bytes": 2814,
+      "sha256": "9361fa9e852750fbb6f8e68c4e9fd7ef72ea71221d484a5e6bb81c853f1dbdf3"
+    },
+    {
+      "path": "content/sources/oneness-with-god-perspectives.md",
+      "bytes": 2893,
+      "sha256": "5c4deafcdec4ecb781a1e807806968e87823e96ec268a1bc9a9959c098afd04d"
+    },
+    {
+      "path": "content/sources/oort-cloud-and-yec.md",
+      "bytes": 2821,
+      "sha256": "51f956e0a496f1b674f3187be3d3d4093e64b9f5b1e06554c0657edff5e9667e"
+    },
+    {
+      "path": "content/sources/original-sin-vs-ezekiel.md",
+      "bytes": 2974,
+      "sha256": "639fcff91e37bb638e7894f758fbae7cb98b317a193b4482895cc05608a7c280"
+    },
+    {
+      "path": "content/sources/parthians-and-medes-meaning.md",
+      "bytes": 3021,
+      "sha256": "c88ddcbad42908f7f5e6d54469f31dcfd9316c3ac239c00f941c2a9d0ba85153"
+    },
+    {
+      "path": "content/sources/paul-and-the-resurrection.md",
+      "bytes": 2881,
+      "sha256": "2d4cbd7aa42da254ec10ecbe83fd939adb581688e0f2b7af19074ef9d51dd01f"
+    },
+    {
+      "path": "content/sources/paul-mythicism-and-sources.md",
+      "bytes": 2988,
+      "sha256": "d40070466ed1b06b672de18612e5bea72d5e18585016ea3004fb2006b9c1ea12"
+    },
+    {
+      "path": "content/sources/paul-s-antichristian-message.md",
+      "bytes": 2845,
+      "sha256": "b48cd0f402892e1710ad6ac9b7cf66e6860075f497267eb9c5ef9e06fa8db6ed"
+    },
+    {
+      "path": "content/sources/paul-vs-james-movement.md",
+      "bytes": 2863,
+      "sha256": "d869db342a8e1d08379bdfdffb3c322fd9f06d7d00a918b28bc99ace28b38614"
+    },
+    {
+      "path": "content/sources/paul-vs-jesus-teachings.md",
+      "bytes": 3031,
+      "sha256": "5da47b3a9d9fb29bbd15be6deb2f1314f9ac90c8e0b5b202f525692df6e68af1"
+    },
+    {
+      "path": "content/sources/paul-vs-luke-resurrection.md",
+      "bytes": 2886,
+      "sha256": "043608d51b37c1fef6a98bfaa7ea80bf49a31aca204e890d9371d7d3de678b8a"
+    },
+    {
+      "path": "content/sources/peace-deal-credibility.md",
+      "bytes": 2865,
+      "sha256": "64dee99d395a3cba1de5f1d41c2a6a69fd56a71553fd45181e5830e4cfb45902"
+    },
+    {
+      "path": "content/sources/peale-and-positive-thinking.md",
+      "bytes": 2901,
+      "sha256": "7c19263774f057caf7684650f61b41bae484a0ca2e6fdec6073ade1b84d6764b"
+    },
+    {
+      "path": "content/sources/philosophical-polarities-of-power.md",
+      "bytes": 2969,
+      "sha256": "446e928dd68346f2e0252ebdea7790ab0bfdb841dab52e02c33f5632262ac86c"
+    },
+    {
+      "path": "content/sources/pie-and-mesopotamian-references.md",
+      "bytes": 2929,
+      "sha256": "2d9c8b6c44cc834c24a97e3a899a502c815f77006412d7083e24c33eab7f0ba2"
+    },
+    {
+      "path": "content/sources/pilate-life-timeline.md",
+      "bytes": 2850,
+      "sha256": "b2b164ac34904597db4c519bdab6d2e5d10827155d7e61256bc8c1fe85c884af"
+    },
+    {
+      "path": "content/sources/pistis-sophia-summary.md",
+      "bytes": 2858,
+      "sha256": "31ba1b66d8761180f9d23932b261b8d241fd6600f44f1be90770107ba9700b91"
+    },
+    {
+      "path": "content/sources/plato-hermeticism-and-vibration.md",
+      "bytes": 2934,
+      "sha256": "38220430614b9a87b7ce8a098c37c30a552a204f2719db8c490f7346c456a82b"
+    },
+    {
+      "path": "content/sources/platonic-jewish-christianity-framework.md",
+      "bytes": 2979,
+      "sha256": "f7660d2592667d042e05eed82c26eb3e929f27c71aa57b3b0869eac84e11d22a"
+    },
+    {
+      "path": "content/sources/pope-francis-and-ukraine.md",
+      "bytes": 2665,
+      "sha256": "35f390e3c7a6c05719b84604be128dae46296c35e74c9f78187ff3c0d2380a92"
+    },
+    {
+      "path": "content/sources/pope-leo-xiv-criticizes-vance.md",
+      "bytes": 2929,
+      "sha256": "d98845afd32d737fb574edb99d604a473bf3f53da24305a10e71a83fa6d5439f"
+    },
+    {
+      "path": "content/sources/praise-poem-creation.md",
+      "bytes": 2958,
+      "sha256": "29c58b9ca9c0f376840b2158240d526bfea6c940c0d7ecc750383f6a4ccbeefa"
+    },
+    {
+      "path": "content/sources/proof-of-god-s-existence-2.md",
+      "bytes": 3072,
+      "sha256": "a647401c5edfbdbd2ff0d2beefb3c2a44a9c2df24668ddc4ccbf38d3f8cc7288"
+    },
+    {
+      "path": "content/sources/proof-of-god-s-existence.md",
+      "bytes": 3719,
+      "sha256": "416b94ae5269377110d3b162d2f03af7065527750969cfebef74a8f0aa2a9e39"
+    },
+    {
+      "path": "content/sources/proving-netanyahu-s-claims.md",
+      "bytes": 2921,
+      "sha256": "64eebe76bba28d5c29ab2fbb428fbc1cc930800586d74a20c8767670c0e4fc14"
+    },
+    {
+      "path": "content/sources/psychedelic-spiritual-experiences.md",
+      "bytes": 2993,
+      "sha256": "98ff1ccecdb3b459c37a14ca9c088522934b07b4c7a3308d48a4e41c23576949"
+    },
+    {
+      "path": "content/sources/publishing-cognitive-gnosticism-first.md",
+      "bytes": 3011,
+      "sha256": "b625f8134cb77610c5c0db8702793a0930baadddb7ddabe18be6036218d6de9f"
+    },
+    {
+      "path": "content/sources/putin-s-global-strategy.md",
+      "bytes": 2894,
+      "sha256": "88468e525a70a1c7c1c6f7304901cde14d32ef2331b5761914bb2c6da007a944"
+    },
+    {
+      "path": "content/sources/qgtcd-research-mapping.md",
+      "bytes": 3158,
+      "sha256": "3ccb98d37158e8a9a9754ddf031088b77d830983082bebbd9976f3a99600e71c"
+    },
+    {
+      "path": "content/sources/quantum-entanglement-and-communication.md",
+      "bytes": 3150,
+      "sha256": "6a441566067941656406f9ac48e0ec49a425264937a506b15fa86cee30cdc024"
+    },
+    {
+      "path": "content/sources/quantum-time-solution-hubble.md",
+      "bytes": 2940,
+      "sha256": "600931d3a75e1c89b6d4ab668d1842ad0372bb8229d2b9cc86109457447ce5d1"
+    },
+    {
+      "path": "content/sources/qumran-messianic-figures.md",
+      "bytes": 2906,
+      "sha256": "411b3732c163385c9974d7798bc317c5affe07995945e15dc0842cff7a268d87"
+    },
+    {
+      "path": "content/sources/qumran-survival-theory.md",
+      "bytes": 2888,
+      "sha256": "f46950cfc0d6368bbe9364bcf08a9178b7e533d5760bb1afc58f2373f21812e7"
+    },
+    {
+      "path": "content/sources/qumran-text-history.md",
+      "bytes": 2863,
+      "sha256": "d2302793561b2cda6acabaefbec565e7352c6a161d83403beacb9070e333a481"
+    },
+    {
+      "path": "content/sources/quote-authenticity-check.md",
+      "bytes": 2913,
+      "sha256": "ad9e8e87c0c253f71a2c9a995667cc052271c91cf15b9fc2e29f50678d81a68a"
+    },
+    {
+      "path": "content/sources/ratm-and-gnosticism-comparison.md",
+      "bytes": 2948,
+      "sha256": "596e32b033751719ea38baf68c885dfd56cc7243b035ca633ee18f6773ff512f"
+    },
+    {
+      "path": "content/sources/reddit-group-search.md",
+      "bytes": 2866,
+      "sha256": "51e1755ed591c64e50ff2be01239059a5155706e0da95f96d50053bf98aa170b"
+    },
+    {
+      "path": "content/sources/rephrase-conjecture-on-genocide.md",
+      "bytes": 2960,
+      "sha256": "299e5bb3d0c01b084641032e6df695d36d281bffb678ca5c4766b1e8b5378d23"
+    },
+    {
+      "path": "content/sources/research-on-lineage-descent.md",
+      "bytes": 3044,
+      "sha256": "eacdfcb39762b488e6d3a29b47f635d1a4e8996eb701fd63b21aae5fd12fb5e8"
+    },
+    {
+      "path": "content/sources/resurrection-debate-in-christianity.md",
+      "bytes": 3054,
+      "sha256": "8eabfa1bdb0f65dfb7f9887f52931e892987e7b7cb925ef6c1c8600e3c0515fb"
+    },
+    {
+      "path": "content/sources/revelation-6-7-meaning.md",
+      "bytes": 2986,
+      "sha256": "d9043cdd294c2ceaca4a5efa99ba2d838a22141a154a51c1620de3c18db85a9d"
+    },
+    {
+      "path": "content/sources/revelation-and-montanism.md",
+      "bytes": 2883,
+      "sha256": "4ba23a4bf200cb6d63afef4f11dae31673f667d1b1597df9fe1fd20989cb1ab2"
+    },
+    {
+      "path": "content/sources/revelation-and-symbolic-language.md",
+      "bytes": 2977,
+      "sha256": "c32bbd080b3b16e39cae3e9f1c0827699b262c494793c0bebc51a15866821244"
+    },
+    {
+      "path": "content/sources/revelation-interpretation-and-america.md",
+      "bytes": 3016,
+      "sha256": "4a7642e895ec8d5aa76483bc313b782de68770e5c101569f4bb7048b43d0fe2e"
+    },
+    {
+      "path": "content/sources/revelation-seal-opening-clarification.md",
+      "bytes": 3012,
+      "sha256": "f4a55a93a5cde8d87e9a2c62ac0ebb1dbed1619e0f20dcb3e1db31b6cba95f4e"
+    },
+    {
+      "path": "content/sources/revelation-throne-inquiry.md",
+      "bytes": 2915,
+      "sha256": "f08ffab7208ef65b3205158c3b50c42e9ef6ff5af17f35817414cd578c25db74"
+    },
+    {
+      "path": "content/sources/roy-casagranda-critique.md",
+      "bytes": 2890,
+      "sha256": "8b0a37c5fe28566ad472800372cc8e10703ac110cb231a5dad6833ae576b8a05"
+    },
+    {
+      "path": "content/sources/russian-aliyah-impact.md",
+      "bytes": 2922,
+      "sha256": "4edf58512813359ab046a197b49996e58ffa431277bec253930195722fa4a04d"
+    },
+    {
+      "path": "content/sources/saints-and-us-democrats.md",
+      "bytes": 2919,
+      "sha256": "64a6f6add5ab2405bb806f6b43f7ad3fc76e0faff48e8e3a4727998d8d9d85f3"
+    },
+    {
+      "path": "content/sources/samaritan-and-jewish-texts.md",
+      "bytes": 2928,
+      "sha256": "dca753897dd62479ccc876081868510ed2c3e843c86f690635cd3602b5c8281f"
+    },
+    {
+      "path": "content/sources/samuel-vs-micah-divide.md",
+      "bytes": 2888,
+      "sha256": "5a07358761becf0ff45361bff9c68c6401aade4c76f60b5cee54185abd66a08e"
+    },
+    {
+      "path": "content/sources/sanchuniathon-phoenician-mythology-summary.md",
+      "bytes": 3046,
+      "sha256": "c96ce5f4ea0042dd3c5693d36393706613b3e91f27d5df5a6f64a335e56a4609"
+    },
+    {
+      "path": "content/sources/science-and-god-debate.md",
+      "bytes": 2901,
+      "sha256": "b8b1d41fa6d441e4044defac0a1a90aabecc954704cf42a62b3fa9c22a69751e"
+    },
+    {
+      "path": "content/sources/science-and-spirituality-synergy.md",
+      "bytes": 3031,
+      "sha256": "b90bba27ebd785704c12c23fc2ebf9d1fac1f12f512d91ef3206dc4f3958f271"
+    },
+    {
+      "path": "content/sources/self-and-existence-question.md",
+      "bytes": 3118,
+      "sha256": "01c6f987fc18133507c2af1935841eac1623badf86a443a440c7c90a524c1a76"
+    },
+    {
+      "path": "content/sources/self-declared-pope-controversy.md",
+      "bytes": 2988,
+      "sha256": "a9e7f46203dad62abfa193923b6d3e724514cea57b865e4282d0bc7cc674ac11"
+    },
+    {
+      "path": "content/sources/seth-on-changing-past-future.md",
+      "bytes": 2984,
+      "sha256": "f6703ca1191a80e92151bccde964c8537f165b27d9c91449155571ed578e6cda"
+    },
+    {
+      "path": "content/sources/simon-magus-and-logos.md",
+      "bytes": 2883,
+      "sha256": "330a5f86cf2f5880d54817ecda75930f0726ea415c29553d6d4b680d8096e674"
+    },
+    {
+      "path": "content/sources/simulation-theory-debate.md",
+      "bytes": 2901,
+      "sha256": "2cde6bf9880920e1fbbec66f69de54b31a62679030c9b3ff579a2e4fb7f2cf73"
+    },
+    {
+      "path": "content/sources/sith-rule-of-two-myth.md",
+      "bytes": 2880,
+      "sha256": "eaaf3d768dcc7eb29f90fbabffd59d56d1f8521e012b3b052eb797ddf03c0757"
+    },
+    {
+      "path": "content/sources/song-style-analysis.md",
+      "bytes": 2870,
+      "sha256": "1b8411c3234dad2c9c6b0d2ebbd98c8f1422882f29c63a0976725a5f122b0ea3"
+    },
+    {
+      "path": "content/sources/spiritual-experience-integration.md",
+      "bytes": 2975,
+      "sha256": "601392647fcd8ffb872e8c2f9c4309a44542dac0af43db88f96590dbbfa0aaad"
+    },
+    {
+      "path": "content/sources/squid-imagery-and-propaganda.md",
+      "bytes": 2939,
+      "sha256": "d923b0348739e4ba42093db9813328d4976ef4e54d836de627db4c99e6edccc6"
+    },
+    {
+      "path": "content/sources/stages-of-awakening.md",
+      "bytes": 2867,
+      "sha256": "5bc5b51313e0fa13796592a5b000d6b836a06c4d738896cbc50f501db9bbc3a5"
+    },
+    {
+      "path": "content/sources/stalin-putin-anti-christ-parallel.md",
+      "bytes": 2985,
+      "sha256": "c5d7777bd90ca3fb8b4b97a7dcac5151db8c940da1b348a5e5378248913f4f74"
+    },
+    {
+      "path": "content/sources/stanley-fisher-clarification.md",
+      "bytes": 2943,
+      "sha256": "7f01294c27354c313fbb625eb57a777db4eb2f1d9d25de056b03816554772be8"
+    },
+    {
+      "path": "content/sources/starvation-in-gaza-crisis.md",
+      "bytes": 2916,
+      "sha256": "e8cef5f4db7f3c9478544b3482190232561214ddaec1354306c17b0e096047ae"
+    },
+    {
+      "path": "content/sources/stop-unnecessary-emphasis.md",
+      "bytes": 2945,
+      "sha256": "1330549c8882759bcc291fa4c6bfeed2f36475e130191fcc9de91c9cd4550d93"
+    },
+    {
+      "path": "content/sources/sumerian-writing-and-language.md",
+      "bytes": 3012,
+      "sha256": "3dec49b0c5881b792ce7ebb1785b11a731bb9eae24b9e7d6881de2a6eb6ec9e0"
+    },
+    {
+      "path": "content/sources/sun-cycles-in-2-enoch.md",
+      "bytes": 2928,
+      "sha256": "7cfb2a61c7d29880e55ecb23840aea2bd3836b2feb1a5c10757e81c0d4671c2b"
+    },
+    {
+      "path": "content/sources/sunni-shia-and-christianity.md",
+      "bytes": 2928,
+      "sha256": "db3352385d9330b9378ceac895e13d41054b7b89b42e6f4b9d910d26fdae7bd8"
+    },
+    {
+      "path": "content/sources/svgn-io-news-website-guide.md",
+      "bytes": 2983,
+      "sha256": "c4aea18088a5ec50d83628f9f32df2758fe0ba6556a674bbbac7767b4d94b2a3"
+    },
+    {
+      "path": "content/sources/talmud-vs-torah.md",
+      "bytes": 2832,
+      "sha256": "2d8ce91244c75f8804e8dfbf5cbef15341f1e361a9713f9f4dd57467aba02b02"
+    },
+    {
+      "path": "content/sources/teacher-of-righteousness-vs-gnostic-jesus.md",
+      "bytes": 3380,
+      "sha256": "4225e644025c120aa915afc97de682d5581e0c5847e378ea75c8186c3fb877a5"
+    },
+    {
+      "path": "content/sources/teaching-cyclical-thinking.md",
+      "bytes": 2990,
+      "sha256": "023d2c283b77f71cfa41ce84953e102361b48481d3b58ac0ba890fd214707819"
+    },
+    {
+      "path": "content/sources/text-transcription-request.md",
+      "bytes": 2532,
+      "sha256": "f8956c48daad550584c484cd3c9a10fc1e8d662d58f6293168fa4bb0714b302b"
+    },
+    {
+      "path": "content/sources/the-telos.md",
+      "bytes": 2857,
+      "sha256": "c22a988574d1859d238218850023e141666aaacda51c01be95c653925d105c67"
+    },
+    {
+      "path": "content/sources/tim-teacher-of-righteousness.md",
+      "bytes": 3087,
+      "sha256": "45ea5ad7221ec123d199ebe02c35207d6e6ae60cc0532f83d307a0807119591f"
+    },
+    {
+      "path": "content/sources/timeline-creation-request.md",
+      "bytes": 2893,
+      "sha256": "3aa558b9faf21b654936d6135d8624462c29798347c2a46d9c6d305d11ad5cea"
+    },
+    {
+      "path": "content/sources/tolkien-vs-ai-epics.md",
+      "bytes": 2918,
+      "sha256": "e3bdf7b1f132236802785b315272a86b37bd43dd6b8874920ba776e13391590b"
+    },
+    {
+      "path": "content/sources/tony-robbins-criticism.md",
+      "bytes": 2895,
+      "sha256": "809b40652d36386af8cf3b7b6bffe672a4635208db4789b29dcf52ea60cbf53c"
+    },
+    {
+      "path": "content/sources/torah-after-hellenistic-era.md",
+      "bytes": 2970,
+      "sha256": "3746d447b6068ff62b9016d0822f8a367648c13c8ed484afc21d7cb3b38156d7"
+    },
+    {
+      "path": "content/sources/toxic-lyrics-impact.md",
+      "bytes": 2867,
+      "sha256": "303d6f5a68ba67166070c9a5ee1dded3a38d496d9ab56255f0f5496f79d23947"
+    },
+    {
+      "path": "content/sources/triune-god-historical-debate.md",
+      "bytes": 2955,
+      "sha256": "5531caed126d02d8911c135c02399dbf5671c3c48b6b73b43ff7134bf738fabb"
+    },
+    {
+      "path": "content/sources/trump-antichrist-analysis.md",
+      "bytes": 2796,
+      "sha256": "ef4a8ea607dd6793a196747785876a2643279a3d527e2ac3212b98d16ff8681b"
+    },
+    {
+      "path": "content/sources/trump-as-antichrist-hypothesis.md",
+      "bytes": 2805,
+      "sha256": "36b652e7bfb77cc0d5c510e938d46e8272bbc04f19e32e89c703c905471a7581"
+    },
+    {
+      "path": "content/sources/trump-bible-vision.md",
+      "bytes": 2863,
+      "sha256": "fb71e2bc02a8549f30ef1e3eacd4cde1aae0f6cae232a039465fd49e913a6f32"
+    },
+    {
+      "path": "content/sources/trump-cyrus-messiah-belief.md",
+      "bytes": 2804,
+      "sha256": "44f2534e7cee77483ed39a7b24a2b1951037e4e266cf03a66602250e5944fa4e"
+    },
+    {
+      "path": "content/sources/trump-gaza-proposal-criticism.md",
+      "bytes": 2861,
+      "sha256": "793461145759b6db6c33f8bfb73bdccb146998239bd499d2019e3b22146fb4aa"
+    },
+    {
+      "path": "content/sources/tucker-carlson-sam-altman-exchange.md",
+      "bytes": 2856,
+      "sha256": "141f6df8a3d775bfba1717bddc5ef03cd9736dbd39388c83da0852765c40ddbb"
+    },
+    {
+      "path": "content/sources/two-messiahs-in-judaism.md",
+      "bytes": 2760,
+      "sha256": "12679e10e0e6481db32bacaa62e76ba374c8a5e3045ec4243a1a5a70d6fe4623"
+    },
+    {
+      "path": "content/sources/two-prophets-in-eschatology.md",
+      "bytes": 2795,
+      "sha256": "d6f5119e70d822555d01fd6b755f10e8c1f7414869f1319b1011fae6fd8bf787"
+    },
+    {
+      "path": "content/sources/un-chief-antonio-guterres-exposed-along-with-un-agencies-unrwa-and-unifil-in-criminal-collusion-with-terrorists.md",
+      "bytes": 3206,
+      "sha256": "ef491bc95e091fd27eb608522919ae3d1e68df96b0c801d118bdc5152a6319c5"
+    },
+    {
+      "path": "content/sources/unknown-gospel-details.md",
+      "bytes": 3648,
+      "sha256": "59a6b2167119e0576d3dc23ed0d05f1a278363c393409641a5532147519a44e7"
+    },
+    {
+      "path": "content/sources/unrwa-hamas-allegations-investigation.md",
+      "bytes": 2964,
+      "sha256": "dff54e04b36572f88c6b56d2cf395daf9093c9b86d736e70746ebe50d6035de5"
+    },
+    {
+      "path": "content/sources/unrwa-hamas-allegations-summary.md",
+      "bytes": 2833,
+      "sha256": "bdf6f43436eb3153951cb0c7437c3569ea34c4396591f4c8aebf5fdf2ab79a3f"
+    },
+    {
+      "path": "content/sources/us-allies-military-rebuild.md",
+      "bytes": 2792,
+      "sha256": "efeec62e232d9a818b709236ad8aabd5be0b7b8df50cdf9736a6ac3546f578bf"
+    },
+    {
+      "path": "content/sources/vegas-alien-think-rebels.md",
+      "bytes": 2824,
+      "sha256": "429dbe3c476763bb7fec5d7b7d48ff3087b4e2a63a41aedb2b5b0c6e19c8575b"
+    },
+    {
+      "path": "content/sources/vessel-and-dmt-integration.md",
+      "bytes": 2783,
+      "sha256": "b7397c09ec1f414cd0c52c31d46c087ece8e69170e711b0bcebbe98104d24a15"
+    },
+    {
+      "path": "content/sources/virgin-birth-debate.md",
+      "bytes": 2897,
+      "sha256": "91ce83a258a5105c58d38604427c41ceaad3b8f22845587706e3434ba8fd44ef"
+    },
+    {
+      "path": "content/sources/voice-in-the-wilderness.md",
+      "bytes": 2857,
+      "sha256": "f5f5ffa36bbd59ea2e1763a9721b219e8317f12fafa05269524315fa22a7061c"
+    },
+    {
+      "path": "content/sources/vtt-ai-plagiarism-analysis.md",
+      "bytes": 2835,
+      "sha256": "93de7145dc483a66b9a52f30fa1d1af62cd6e87ef879a45dce483ff7917e3b65"
+    },
+    {
+      "path": "content/sources/what-is-midian.md",
+      "bytes": 2695,
+      "sha256": "979d0558aa27c4f6581f1c431155141276877cba92d6cd3db101eaf9fccb0d5c"
+    },
+    {
+      "path": "content/sources/who-was-josepheous.md",
+      "bytes": 2784,
+      "sha256": "c4c4682fb0c18539aab03975dc0505c3e762508a3ef9ac419fac9f6be6acf470"
+    },
+    {
+      "path": "content/sources/yahweh-and-asherah-s-relationship.md",
+      "bytes": 2844,
+      "sha256": "2451779ef6324634ecc838cca70224414e64975a9559a801e1ac883d8d06137b"
+    },
+    {
+      "path": "content/sources/yahweh-annunaki-and-flood.md",
+      "bytes": 2849,
+      "sha256": "cf9ccbf65b2d9fee872457562552cbd2d27fe41ddfedbb6788870c11c341e25d"
+    },
+    {
+      "path": "content/sources/yahweh-el-or-enki.md",
+      "bytes": 2729,
+      "sha256": "d538d0eaad1c97d6d7977b7eefeb1c097f1880fcbf3f8aae899260be1a222d86"
+    },
+    {
+      "path": "content/sources/yahwey-and-the-annunaki.md",
+      "bytes": 2762,
+      "sha256": "0a4cbafec2fe8f675a40f37466ca130c5763a2590d7f95036dbfc7b8d5e55f9b"
+    },
+    {
+      "path": "content/sources/yahwey-and-the-sky-people.md",
+      "bytes": 2773,
+      "sha256": "8813393eac0d9ab555f7aca7378d4f039308c4d9fb879022209450167716f658"
+    },
+    {
+      "path": "content/sources/ye-are-gods-quote.md",
+      "bytes": 2715,
+      "sha256": "efdee7e3ccd9a941b139ea68ab9f4c349fcc93bd10d09e6d07087d7c5e75db8e"
+    },
+    {
+      "path": "content/sources/zecharia-sitchin-overview.md",
+      "bytes": 3085,
+      "sha256": "be14d39b192f374c2c1bce54fb57a9f4daf510e1a64dc42d164c61fa7436f0cd"
+    },
+    {
+      "path": "content/sources/zeus-antichrist-connection.md",
+      "bytes": 2855,
+      "sha256": "85d89d7ea5b9138a577e33d289de01a3d9823c78bb0fba427e43bad39607b4c9"
+    },
+    {
+      "path": "content/theology-link-resolution-repair.md",
+      "bytes": 3648,
+      "sha256": "6fb90dfedc746c7a45e6a7cc8a95914276306d00ce8f249a94eee1fdc9603529"
+    },
+    {
+      "path": "content/theology-wikilink-density-repair.md",
+      "bytes": 3279,
+      "sha256": "774a094a7b129afde4ff6e9d1dbd8b635ea3b67512e84468716eb7678cb4ce89"
+    },
+    {
+      "path": "data/graph.json",
+      "bytes": 119972,
+      "sha256": "5e08c6131ebb38b7298b343ca3a1c1d7d0be6b9105d4d3eb0be914fa78d04cce"
+    },
+    {
+      "path": "data/page-index.json",
+      "bytes": 304885,
+      "sha256": "51256928d4156a0b53e89374fb6e4a040d6045b702e92dba34e588f79a22ca9c"
+    },
+    {
+      "path": "index.html",
+      "bytes": 5318,
+      "sha256": "bcc18bfa180e46de36333f9c6d53ea330fc51b55b99907b7f3adf6c6c1e8691c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 328,
+      "sha256": "91931811553b03fd88ecc7c519cbfee3c652be6d3e443a51b629a748c7280da3"
+    }
+  ]
+}

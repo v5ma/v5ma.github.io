@@ -1,0 +1,122 @@
+Title: Sun cycles in 2 Enoch
+Date: 1761888352.849046
+
+Micah Blumberg:
+Does the sun have a twenty eight year cycle through twelve gates? or a five hundred and thirty-two year cycle through the galaxy? (from 2nd Enoch)
+
+Self Aware Networks GPT:
+Short answer:
+
+- **28-year cycle & “gates”** — *Yes, but with nuance.* In **2 Enoch** (a.k.a. “Slavonic Enoch”) the sun’s “circuit” is said to last **28 years**, and its path is described with **“great gates”** used for the calculation of the year. The explicit scheme of **twelve sun-gates** (six east + six west, used seasonally) is spelled out most clearly in **1 Enoch 72–75** (“Astronomical Book”), though 2 Enoch echoes the motif. citeturn2search11turn2search3turn0search3
+
+- **532-year cycle** — *Yes, but it’s not “through the galaxy.”* A line in **2 Enoch 16:5** mentions a **“great cycle” of 532 years**. This is almost certainly a late, Christian **Paschal-computus** note (28-year Julian solar cycle × 19-year Metonic lunar cycle) about how Easter dates repeat—**not** an ancient claim about the sun circling the galaxy. Scholars have long flagged this as a secondary interpolation in the Slavonic tradition. citeturn2search3turn2search7turn2search9turn2search14turn2search0
+
+A bit more detail:
+
+- **28 years**: In 2 Enoch’s cosmology the sun’s cycle “goes on for 28 years” and “begins again from the start,” tied to the “great gates” by which it goes in and out—language that reflects ancient calendrical/astronomical schemata, not modern astrophysics. citeturn2search11
+
+- **Twelve gates**: The classic twelve-gate layout belongs to 1 Enoch’s Astronomical Book (e.g., “twelve window-openings”/gates of sunrise and sunset). 2 Enoch alludes to gates but doesn’t lay out the twelve as explicitly as 1 Enoch does. citeturn0search3
+
+- **532 years**: The “great cycle” equals **19 × 28 = 532** years, matching late antique/medieval Easter tables (Victorius, Dionysius, Bede). That math belongs to liturgical calendar science, not to any Enochic claim about the Milky Way. citeturn2search0turn2search12
+
+So, if you’re reading 2 Enoch: accept the **28-year solar cycle** and **gates** as part of its inherited cosmology; read the **532-year line** as a later **computistical gloss**, not a statement about the sun’s motion through the galaxy. citeturn2search3turn2search9
+
+Micah Blumberg:
+but this has nothing to do with what the actual sun is doing in outer space? it's just a tautological truth, the calendar is this way because that's how 2nd Enoch defines the calendar?
+
+Self Aware Networks GPT:
+Right — these aren’t claims about astrophysics.
+
+- The “twelve gates” and “28-year cycle” in 2 Enoch (and 1 Enoch’s Astronomical Book) are **pre-scientific calendar models** built from naked-eye sky patterns: the sunrise/sunset points slide along the horizon through the year, so authors mapped those changing azimuths into “gates” and a repeating scheme. It’s phenomenological and symbolic, not physical.
+
+- The **28-year** piece isn’t a property of the Sun; it’s the **Julian calendar’s weekday/date pattern** repeating every 28 years (because of a 7-day week × a 4-year leap cycle). That’s calendrical arithmetic, not solar dynamics.
+
+- The **532-year** “great cycle” is also calendar math: **28 (Julian weekday cycle) × 19 (Metonic lunar cycle)**. It was used to make Easter tables repeat. Again, no relation to the Sun “going through the galaxy.”
+
+So yes: these cycles describe how **their calendarized cosmos** is organized, not what the Sun is “actually doing” in space. They’re not exactly tautologies (they’re based on real, repeatable sky appearances) but they **sacralize** those appearances into a schematic system. 
+
+For contrast, modern solar/space cycles:
+- Solar activity cycle ≈ **11 years** (sunspots).
+- Axial precession of Earth ≈ **26,000 years** (shifts equinox points).
+- Sun’s orbit around the Milky Way ≈ **225–250 million years** (one “galactic year”).
+
+Micah Blumberg:
+This is a good reason for the modern church to avoid mention of the books of Enoch, they provide an easy mechanism for modern science to point out the flaws of these "divine books"
+
+Let's see what other biblical books are disrupted by modern scientific facts.
+
+Self Aware Networks GPT:
+Totally fair question. If you read the Bible’s ancient cosmology as if it were modern astrophysics or biology, you’ll hit lots of collisions. Below are frequent flashpoints where “what the text seems to say” (at face value) conflicts with modern science—plus a note on how many readers reconcile them.
+
+Genesis 1–2 — solid dome (“firmament”) and waters above  
+Claim: The sky is a hard dome holding back cosmic waters; the sun, moon, and stars are set in it.  
+Science: No solid dome; space is a vacuum; stars are distant suns.  
+Typical response: Ancient Near Eastern cosmology and temple imagery; theological message, not physics.
+
+Genesis 1 — age and order of creation  
+Claim: Six days; vegetation before sun; fixed luminaries.  
+Science: ~13.8 Gyr universe; sun pre-dates Earth/vegetation; stellar evolution.  
+Responses: Literary framework/symbolic week; day-age; theistic evolution; or young-earth (in tension with data).
+
+Genesis 6–9 — global flood  
+Claim: Whole earth covered; all land animals on an ark.  
+Science: Geology, biogeography, genetics don’t support a recent global flood.  
+Responses: Regional cataclysm framed as “world”; theological narrative about chaos/order and covenant.
+
+Genesis 30:37–43 — Jacob’s striped-sticks breeding trick  
+Claim: Visual cues by water troughs affect offspring coat color.  
+Science: Coat color inheritance is genetic; visual patterns don’t imprint genetics.  
+Response: Satire/ancient herding lore; divine providence driving outcomes, not biology.
+
+Joshua 10:12–13 — sun “stands still”  
+Claim: Sun and moon halt over Gibeon/Aijalon.  
+Science: Would imply stopping Earth’s rotation; catastrophic dynamics.  
+Responses: Poetic battle-taunt quoted from “Book of Jashar”; phenomenological language; or miracle outside ordinary physics.
+
+1 Kings 7:23 (and 2 Chr 4:2) — the basin’s π ≈ 3  
+Claim: 10 cubits across, 30 around.  
+Science: π ≈ 3.14159… not 3.  
+Responses: Rounded description; outer diameter vs inner circumference; architectural approximation, not math lesson.
+
+Leviticus 11:6 — hare “chews the cud”  
+Claim: Hares chew cud.  
+Science: They don’t ruminate; they practice cecotrophy (re-ingesting soft fecal pellets).  
+Response: Classification by observable behavior in an ancient taxonomy; not modern zoology.
+
+Leviticus 11:13–19 — bat listed among “birds”  
+Claim: Bat grouped with flying creatures called “birds.”  
+Science: Bats are mammals.  
+Response: Functional folk categories (things that fly) vs Linnaean taxonomy.
+
+Psalm 93:1; 104:5; Ecclesiastes 1:5 — fixed earth, moving sun  
+Claim: Earth immovable; sun “hurries back” to its place.  
+Science: Earth rotates/revolves; sun’s apparent motion is our frame.  
+Response: Phenomenological/poetic language, not cosmology.
+
+Job 38 — “storehouses of snow,” “foundations of the earth”  
+Claim: Weather from heavenly storehouses; earth on foundations.  
+Science: Meteorology explains snow formation; earth has no pillars.  
+Response: Grand poetry about God’s governance using ancient imagery.
+
+Matthew 13:32 — mustard seed “smallest of all seeds”  
+Claim: Smallest seed.  
+Science: Orchid seeds are smaller.  
+Response: Proverbial speech about common garden seeds in that agrarian context.
+
+Matthew 4:8 — devil shows Jesus “all the kingdoms of the world” from a mountain  
+Claim: Panoramic view of the whole world.  
+Science: Impossible from geography/curvature.  
+Response: Visionary/figurative scene, not literal optics.
+
+“Star of Bethlehem” (Matthew 2)  
+Claim: A “star” guides, stops over a house.  
+Science: Stars don’t behave like that relative to a single home.  
+Response: Literary-theological sign (midrashic); or astronomical hypotheses (conjunctions/comets) with limited fit.
+
+A quick takeaway:
+• The Bible reflects ancient observational cosmology and folk biology; it wasn’t written to deliver modern science.  
+• Many readers treat these as genre/phenomenology (poetry, proverb, temple cosmology), not lab reports.  
+• If read as strict scientific claims, yes—modern science “disrupts” them.
+
+If you want, tell me a specific book (e.g., Genesis, Job, Revelation), and I’ll map out every science-sensitive passage with brief “what it says / what we know / how people read it” notes.
+

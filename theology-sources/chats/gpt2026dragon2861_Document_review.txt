@@ -1,0 +1,102 @@
+Title: Document review
+Date: 1765793253.086675
+
+Self Aware Networks GPT:
+13,400 customers is a great number to sanity-check against Supabase limits — and it’s **very plausible** that Supabase **Free** can handle it *technically*, but it’s usually **not the right plan for production** with real customers.
+
+What matters: “customers in database” ≠ MAU
+- Supabase Free includes **50,000 monthly active users (MAU)** and does **not** cap total users the same way (it lists “Unlimited API requests” and the MAU quota is the gating metric). citeturn2view0
+- If you have **13,400 total customers** but only (say) 2,000–8,000 actually log in and use the diagnosis flow in a given month, you’re still under the Free **50k MAU** limit. citeturn2view0
+
+Database size: Free might still be enough
+- Free includes **500 MB database**. citeturn2view0
+- For your use case (session rows + stone rows + qty + comment), 13,400 customers is often well under 500 MB unless you store big blobs or lots of long text.
+
+Why Free is risky for a real business
+Two Free-plan flags are brutal for production:
+1) **Auto-pause after 1 week of inactivity** citeturn2view0  
+   - If “stone diagnosis usage” is sporadic (e.g., no one starts/resumes for 7 days), your backend can pause and you get surprise downtime.
+2) **No automatic backups on Free** citeturn2view0  
+   - With paying customers, “oops we lost data” is not a fun day.
+
+Pro plan’s practical advantage
+Supabase **Pro starts “From $25/month”** and includes:
+- **8 GB disk**, **250 GB egress**, **email support**, and **daily backups stored for 7 days** citeturn2view0  
+That’s exactly the set of “I don’t want this to randomly break” features.
+
+Cloud Supabase vs self-hosted Supabase on Alibaba: time + cost differences
+Supabase Cloud (managed)
+- Cost: **$25/mo+** for Pro (plus usage if you exceed quotas). citeturn2view0
+- Time: fastest to ship; essentially no DBA/ops burden.
+
+Self-hosted on Alibaba ECS
+- Cost: depends on instance + disk + bandwidth; you’ll need to price it with Alibaba’s calculator. citeturn1search0turn1search1  
+  A public benchmark example shows a 2-core/4-GB Alibaba plan around **$42.48/month** on-demand for that specific instance (pricing varies a lot by region/plan/commitment). citeturn1search4
+- Time: you take on patching, backups, monitoring, incident response, scaling, and security hardening. (This is the real “cost.”)
+
+My blunt recommendation for *Doctor Gavrielov* scale
+- Use **Supabase Free** for development/testing and maybe a small pilot.
+- For a production rollout to a business with **13,400 customers**, start on **Supabase Pro** so you get backups + no surprise pauses + support. citeturn2view0
+- Only move to **self-host** once the workflow is stable *and* you actually need the control/cost optimization — otherwise you’re trading $25/mo for ongoing ops work.
+
+If you tell me one thing — roughly how many people actually do the diagnosis flow per month (MAU for *that feature*) — I’ll give you a tighter “Free vs Pro” call.
+
+Micah Blumberg:
+I think its between 30-60 per month, her 13,400 database was like after 10+ years of business I think, its a small business, they made about $500 per day. They have other products also, classes, stone kits, bottles of extracted rock essence in water, and hand made jewelry.
+
+Self Aware Networks GPT:
+If usage is only ~30–60 people per month, then from a *capacity* standpoint, this is “tiny” for any modern backend. The hard part is not scale — it’s (a) reliability, (b) clean data model (sessions + editable entries), and (c) payments/email glue.
+
+What that means for Supabase Cloud vs self-hosted on Alibaba:
+
+Supabase Cloud (managed)
+- Time: fastest. You’ll spend your week building the actual feature (sessions, stone entries, resume/edit, submit/lock, emails).
+- Ops burden: minimal (you’re not doing DB patching, backup jobs, monitoring, restore drills).
+- Cost: likely trivial relative to $500/day revenue. Even if you upgrade later, you’re buying time and reducing “random downtime” risk.
+
+Self-hosted Supabase (Alibaba ECS)
+- Time: you’ll burn a meaningful chunk of the week on ops:
+  - Docker stack + networking + TLS
+  - backups + restore testing (the important part)
+  - upgrades/migrations strategy
+  - monitoring/logging and “what if it breaks at 2am”
+- Cost: the VM might be cheap-ish, but your *time* becomes the real cost. For small businesses, that hidden cost usually dominates.
+
+Given your usage (30–60/month), the pricing driver won’t be MAU; it’s the “do we want production safety?”
+
+Would Supabase Free work?
+Technically: yes. 30–60 MAU is nowhere near any limit.
+Practically (for a business): Free is risky because:
+- It can pause after inactivity (surprise downtime).
+- Backups/restore guarantees are weaker than a paid plan.
+So Free is great for development and a pilot, not ideal for “this is how we make money”.
+
+The biggest money-saving trick (regardless of platform)
+You probably do NOT need to import and manage all 13,400 historical customers inside your new app’s auth system on day 1.
+
+Instead:
+- Keep the “customer database” where it already lives (CRM/email list/shop platform).
+- In the new diagnosis app, only create accounts for the small subset who actually use the feature (or issue them magic links when they buy).
+That keeps your auth and support load low.
+
+A realistic 1-week plan that beats Wix
+Day 1: Schema + auth
+- `diagnosis_sessions` (one per purchase)
+- `stone_entries` (one per stone per session, editable)
+Day 2–3: Frontend wiring (vanilla JS)
+- list stones → open editor → save qty/comment → resume loads existing entry
+Day 4: Submit + lock
+- submit compiles stone list, marks session Submitted, rejects further edits
+Day 5: Payments + email
+- Stripe checkout creates a new session via webhook
+- transactional email on submit (and optionally on “started/resumed”)
+Day 6–7: Hardening + edge cases
+- permission rules, logging, retries, admin dashboard, backups strategy
+
+Bottom line recommendation
+- Start on Supabase Cloud (managed) for production. You’re paying to not become a part-time DBA/SRE.
+- Use the Free plan for dev/testing, but plan to switch to a paid plan once customers will rely on it.
+- Self-host later only if you have a specific reason (data residency, vendor control, or you really enjoy ops).
+
+If you want, I can propose the exact minimal schema + the “resume/edit” query pattern (the part Wix made painful) and how to structure it so migrating from hosted → self-hosted later is basically just a connection string change.
+

@@ -1,0 +1,506 @@
+Title: Pope Leo XIV Criticizes Vance
+Date: 1747600707.020203
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Sure! Critics of Aaron Abke's views argue that he oversimplifies the complexities of early Christian theology. They point out that dismissing the Gnostic texts as merely later developments ignores their historical significance and the"}
+
+{'asset_pointer': 'sediment://file_00000000816061f6ba534862a86e3b4e', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:00:01.655750+00:00', 'format': 'wav', 'metadata': {'end': 11.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 552078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000510861f6829f04ed9919037b', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:00:16.657244+00:00', 'format': 'wav', 'metadata': {'end': 1.0, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 48078, 'tool_audio_direction': None}, 'audio_start_timestamp': 222.20979362726212, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:00:16.657244+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'He did it again.'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "I see where I slipped up. Let me try again.\n\nCritics of Aaron Abke's views argue that he oversimplifies the complexities of early Christian theology. They point out that dismissing the Gnostic texts as merely later developments ignores their historical significance and"}
+
+{'asset_pointer': 'sediment://file_00000000f4f461f6a43d5b3eabb4d0a8', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:00:16.657342+00:00', 'format': 'wav', 'metadata': {'end': 13.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 648078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "So, would scholars agree that understanding the Gnostic perspectives adds to a religious person's study and understanding of the canonical Bible?"}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000061061f6b3eaff57df8a33a0', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:03:09.742963+00:00', 'format': 'wav', 'metadata': {'end': 17.32, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 831438, 'tool_audio_direction': None}, 'audio_start_timestamp': 386.2144251745194, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:03:09.742963+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Yes, many scholars agree that understanding Gnostic perspectives can enrich a person's study of the canonical Bible. Exploring Gnostic texts provides insight into the diversity of early Christian thought, the various interpretations of Jesus' teachings, and the theological debates that shaped early Christianity. This broader context can help deepen the understanding of the canonical scriptures, highlight the range of beliefs in early Christian communities, and offer a more nuanced appreciation of how Christian doctrine evolved over time."}
+
+{'asset_pointer': 'sediment://file_00000000fb7061f68021ca75dff5acf8', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:03:09.743045+00:00', 'format': 'wav', 'metadata': {'end': 31.55, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1514478, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000004a5861f68a63ff5398e73ef3', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:03:30.205919+00:00', 'format': 'wav', 'metadata': {'end': 12.13, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 582318, 'tool_audio_direction': None}, 'audio_start_timestamp': 436.03935643844306, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:03:30.205919+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Okay, why don't you try to debate me, and so whatever I say, you're going to try to argue is not the case."}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Alright, I'm ready. What"}
+
+{'asset_pointer': 'sediment://file_00000000541861f6ba35ef9ec5129de3', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:03:30.206005+00:00', 'format': 'wav', 'metadata': {'end': 1.25, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 60078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "And just start by going back over the conversation that we already had and debate those points. So you're taking an adversarial, a constructive adversarial position on every point that you said yes was true, and now you're going to try to argue differently. Because, and I think this shouldn't be too controversial because, or too complicated, because there are definitely viewpoints that diverge from the points that we highlighted."}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000673061f6bfd6060a43d97741', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:05:14.706078+00:00', 'format': 'wav', 'metadata': {'end': 30.66, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1471758, 'tool_audio_direction': None}, 'audio_start_timestamp': 471.1892532641068, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:05:14.706078+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Sure, let's dive into a constructive debate.\n\nFrom an alternative perspective, one might argue that the Gnostic perspectives don't necessarily add value to the study of the canonical Bible. Instead, they could be seen as introducing confusion or diluting the core messages of early Christianity. Critics might argue that the Gnostic texts represent a radical departure from the teachings of the apostles and Jesus, and that they reflect a distinct and separate tradition rather than a complementary one.\n\nSimilarly, one could argue that the rift between the Synoptic Gospels and Gnosticism is actually wider than it appears. The Synoptic Gospels focus on a more concrete, historical narrative of Jesus' life and teachings, while Gnosticism introduces a highly esoteric and mystical framework that could be seen as incompatible with the simpler, more communal messages of the Synoptics.\n\nRegarding the value of Gnostic perspectives, some might say that these texts muddy the theological waters and detract from the foundational doctrines established by the early Church, which relied heavily on the canonical texts. From this viewpoint, the Gnostic writings could be considered less reliable or even heretical, which is why they were excluded from the canon in the first place."}
+
+{'asset_pointer': 'sediment://file_00000000fd1061f689b7ed220436f8f5', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:05:14.706160+00:00', 'format': 'wav', 'metadata': {'end': 71.15, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 3415278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000928061f6898372b63ecc5a20', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:05:47.013738+00:00', 'format': 'wav', 'metadata': {'end': 11.24, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 539598, 'tool_audio_direction': None}, 'audio_start_timestamp': 557.4410233534873, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:05:47.013738+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Yes, but what if the Gnostics were the people who best represented Christ's message? Is that plausible or possible?"}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "It's certainly possible to consider that the Gnostics might have preserved aspects of Christ's message that were less emphasized or even suppressed in the canonical tradition. Gnostic texts often highlight"}
+
+{'asset_pointer': 'sediment://file_0000000035cc61f69ad23a795f6ca423', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:05:47.013821+00:00', 'format': 'wav', 'metadata': {'end': 9.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 456078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000f03061f6912babf09751c037', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:09:17.068725+00:00', 'format': 'wav', 'metadata': {'end': 147.94, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 7101198, 'tool_audio_direction': None}, 'audio_start_timestamp': 716.425413582474, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:09:17.068725+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Okay, so we have the people who are presenting the Synoptic Gospels. These are, in theory, from the lineage of Peter. They are connected to Peter and the Catholic Church. And Paul joined up with them, I guess, and became friends with this group of people. This other group, the Gnostic group, they represented Judas, and so they represented sort of a rival perspective on Jesus. It's sort of like how, it's like, the Gnostics were, I guess, the Muslims of the first century, in a sense, because in Islam, the prophet is arguing that there was a split between the Muslims and the Jews at the point of Abraham's sons. He had Esau and Jacob, or something like that. But one son was from a Jewish mother, and one son was from an Islamic mother, or something to that effect. And one son was from an Arab mother, or something like that. And so there's this sort of theological split between the Gnostics, who they sort of claim to be the real branch that connects to Christianity, right? And the Synoptic Gospels belong to the false branch, the branch associated with Peter and the disciples, who Jesus was actually not telling the truth to, or not telling the whole truth to. Like the whole truth went to Judas, right? So it is, am I, you're debating me, remember? But also let me know what you think my points, where my points are. You can acknowledge where my points are correct, if they are correct. But still, you know, take a scholarly hat on, and without bias, debate what you think is not exactly correct."}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Alright, let's break it down.\n\nYour comparison of the Gnostics to a rival branch within early Christianity is an interesting perspective. There's historical merit to the idea that different early Christian groups claimed to have the true understanding of Jesus' teachings. The Gnostics, with their emphasis on hidden knowledge and spiritual enlightenment, did indeed see themselves as keepers of a deeper, perhaps more authentic, interpretation of Christ's message.\n\nHowever, it's also important to note that the Synoptic Gospels and the early Church, traditionally linked with Peter and the other apostles, have been historically considered the mainstream branch for a reason. They were closer in time to the historical Jesus and were more widely accepted by the early Christian communities. The Gnostics were often viewed as a more esoteric and less accessible tradition, which may have contributed to their marginalization.\n\nYour analogy with Islam and the split between lineages is thought-provoking, but it's worth considering that the Gnostic tradition never achieved the same level of cohesion or widespread acceptance as Islam did relative to Judaism. The Gnostic texts were a collection of diverse writings rather"}
+
+{'asset_pointer': 'sediment://file_00000000f9fc61f6b444cea0a0a8d5ca', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:09:17.068822+00:00', 'format': 'wav', 'metadata': {'end': 66.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 3192078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000738061f6a3e42f281dc1d536', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:27.120400+00:00', 'format': 'wav', 'metadata': {'end': 7.69, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 369198, 'tool_audio_direction': None}, 'audio_start_timestamp': 871.9325338011236, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:27.120400+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Can you hear me? Can you hear me? Can you hear me?'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Yes, I can hear you.'}
+
+{'asset_pointer': 'sediment://file_000000003a4861f6bce96b1d5f72907a', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:27.120507+00:00', 'format': 'wav', 'metadata': {'end': 1.35, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 64878, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000001b4c61f6a2b52085eaba8466', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:35.972333+00:00', 'format': 'wav', 'metadata': {'end': 1.51, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 72558, 'tool_audio_direction': None}, 'audio_start_timestamp': 880.6328161531687, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:35.972333+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Let me try to connect again.'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Alright, take your time.'}
+
+{'asset_pointer': 'sediment://file_00000000541061f6b30584cbf1b6c5d3', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:35.972417+00:00', 'format': 'wav', 'metadata': {'end': 1.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 72078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'All right, can you hear me?'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000001a2061f69407ce923d53f731', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:45.129668+00:00', 'format': 'wav', 'metadata': {'end': 1.28, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 61518, 'tool_audio_direction': None}, 'audio_start_timestamp': 889.8045115792752, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:45.129668+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Yes, I can hear you clearly.'}
+
+{'asset_pointer': 'sediment://file_00000000a46061f6bfef7ca74a5858ae', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:45.129746+00:00', 'format': 'wav', 'metadata': {'end': 1.65, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 79278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000504861f69ca341a8298c7763', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:56.839160+00:00', 'format': 'wav', 'metadata': {'end': 5.96, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 286158, 'tool_audio_direction': None}, 'audio_start_timestamp': 901.8814997771383, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:56.839160+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Okay, good. I forgot what I was gonna ask. Just hang on a second.'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'No problem, take your time.'}
+
+{'asset_pointer': 'sediment://file_000000003ed861f6a4338ab0baf97ecd', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:11:56.839238+00:00', 'format': 'wav', 'metadata': {'end': 1.65, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 79278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000001c6861f6a41431f92467d36f', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:14:19.855583+00:00', 'format': 'wav', 'metadata': {'end': 56.65, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 2719278, 'tool_audio_direction': None}, 'audio_start_timestamp': 971.9527602713183, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:14:19.855583+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Oh, OK. So what I wanted to know was, are the Synoptic Gospels really, is the Synoptic Gospels, is the portrayal of Jesus in the Synoptic Gospels really about salvation through good works, through first repentance and then good works, meaning how you treat other people, and specifically not about salvation through the death and redemption, ransom of the resurrection? Is that really correct? Because I think that then that would put the Synoptic Jesus very much in alignment with the tradition of Judaism, which is much more about salvation through good works.'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "The portrayal of Jesus in the Synoptic Gospels does emphasize themes of repentance, ethical living, and how one treats others, which aligns closely with Jewish traditions of the time. The emphasis is often on the Kingdom of God, living righteously, and embodying love and compassion in daily actions. This perspective certainly resonates with the Jewish concept of living according to the law and doing good works as a path to righteousness.\n\nHowever, it's not entirely accurate to say that the Synoptic Gospels exclude the notion of salvation through Jesus' death and resurrection. While the Synoptics focus more on Jesus' teachings and parables, they also include references to his suffering, death, and resurrection as central events. The Gospel of Mark, for example, presents Jesus predicting his own death and resurrection and framing them as part of God's plan for salvation.\n\nSo, while the Synoptic Gospels place a stronger emphasis on ethical behavior and repentance, they do not completely exclude the idea of Jesus' sacrificial role in salvation. This combination of themes does, however, align Jesus' message in the Synoptics more closely with Jewish ethical traditions than the more doctrinal focus seen in Pauline Christianity."}
+
+{'asset_pointer': 'sediment://file_0000000098f861f68a1452f70a1619bf', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:14:19.855730+00:00', 'format': 'wav', 'metadata': {'end': 70.4, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 3379278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000009d3c61f69f202961c2749caa', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:15:47.899876+00:00', 'format': 'wav', 'metadata': {'end': 2.82, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 135438, 'tool_audio_direction': None}, 'audio_start_timestamp': 1131.5796478759125, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:15:47.899876+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'So...'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Yes?'}
+
+{'asset_pointer': 'sediment://file_00000000c53c61f6a5686b4d2e807cf9', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:15:47.899962+00:00', 'format': 'wav', 'metadata': {'end': 0.65, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 31278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Let's dive into more more distinctions and differences. Do the Pauline Gospels, do they emphasize the importance of repentance and good works?"}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000388c61f69096baeded393151', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:16:57.013592+00:00', 'format': 'wav', 'metadata': {'end': 16.87, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 809838, 'tool_audio_direction': None}, 'audio_start_timestamp': 1153.351841986701, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T21:16:57.013592+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "The Pauline epistles, while acknowledging repentance and good works, place a stronger emphasis on faith in Jesus Christ as the primary means of salvation. Paul's writings frequently highlight justification by faith, grace, and the redemptive power of Jesus' death and resurrection.\n\nWhile Paul does encourage ethical living and good works as a natural outcome of genuine faith, he makes it clear that these are not the means to earn salvation. Instead, good works are seen as the fruit of a life transformed by faith and the Holy Spirit. This sets a different tone compared to the Synoptic Gospels, where ethical behavior and repentance are more directly tied to the message of the Kingdom of God.\n\nIn essence, while Paul does not dismiss repentance or good works, he places the primary emphasis on faith in Christ and the transformative power of God's grace."}
+
+{'asset_pointer': 'sediment://file_00000000f23061f6b183d1c15ddb6e51', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T21:16:57.013683+00:00', 'format': 'wav', 'metadata': {'end': 47.85, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 2296878, 'tool_audio_direction': None}
+
+Micah Blumberg:
+Does Abke say the Ebionites and the Nazarenes split from the same group, who else says this. Who was the source of Abke's gospel?
+
+Self Aware Networks GPT:
+iturn0image1turn0image4turn0image9turn0image18Aaron Abke posits that the Ebionites and Nazarenes originated from a shared early Jewish-Christian movement, diverging over time due to theological differences. He emphasizes their adherence to the Law of Moses and their rejection of Pauline doctrines, suggesting that these groups preserved a more authentic version of Jesus' teachings.
+
+Abke often references the Gospel of the Ebionites, which he considers a purer, original Hebrew Gospel of Matthew, untainted by later Gentile influences. He argues that this text aligns more closely with Jesus' original message, focusing on ethical living and adherence to the Torah, rather than the atonement theology introduced by Paul.
+
+However, mainstream scholarship challenges this view. The Gospel of the Ebionites is generally regarded as a 2nd-century text, not authored by Matthew, and reflects the theological perspectives of the Ebionite community rather than the historical Jesus. Scholars like Bart Ehrman and others note that while the Ebionites provide valuable insight into early Christian diversity, their writings are not considered direct transmissions of Jesus' teachings.
+
+In summary, while Abke's perspective highlights important aspects of early Jewish-Christian sects, it diverges from the scholarly consensus, which views the Ebionites and their gospel as part of the broader tapestry of early Christian thought, rather than as custodians of an unaltered original gospel.
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000002a0861f68f13ed0cc6298ebd', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:56:28.065063+00:00', 'format': 'wav', 'metadata': {'end': 14.76, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 708558, 'tool_audio_direction': None}, 'audio_start_timestamp': 1184.0636344369873, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:56:28.065063+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'ChatGPT, can you hear me? ChatGPT, can you hear me? Hey, hey.'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Yes, I can hear you.'}
+
+{'asset_pointer': 'sediment://file_00000000b81861f6845977cef6ef8288', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:56:28.065145+00:00', 'format': 'wav', 'metadata': {'end': 1.4, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 67278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "So let's continue the conversation."}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000f34061f69b997e439e0c466b', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:56:37.635561+00:00', 'format': 'wav', 'metadata': {'end': 2.62, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 125838, 'tool_audio_direction': None}, 'audio_start_timestamp': 1192.6217412682622, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:56:37.635561+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Absolutely, let's keep going."}
+
+{'asset_pointer': 'sediment://file_00000000e67861f6a97671572ff0b975', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:56:37.635644+00:00', 'format': 'wav', 'metadata': {'end': 1.9, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 91278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "So, why don't you ask me questions from our dialogue so far?"}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000fe7861f6b07f941d36b425ab', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:57:13.551981+00:00', 'format': 'wav', 'metadata': {'end': 5.83, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 279918, 'tool_audio_direction': None}, 'audio_start_timestamp': 1206.290323745869, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:57:13.551981+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Sure! Based on our discussion, here are a few questions:\n\n1. How do you see the relationship between the Gnostic texts and the Synoptic Gospels in shaping early Christian thought?\n\n2. What are your thoughts on the differences between the emphasis on good works in the Synoptic Gospels versus faith and grace in the Pauline epistles?\n\n3. How do you think understanding the perspectives of groups like the Ebionites and Nazarenes influences our interpretation of early Christianity?'}
+
+{'asset_pointer': 'sediment://file_00000000e4b861f6a6de86d8d1834678', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:57:13.552072+00:00', 'format': 'wav', 'metadata': {'end': 24.9, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1195278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000e1bc61f68e2b52b0544e7078', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:03.259436+00:00', 'format': 'wav', 'metadata': {'end': 26.95, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1293678, 'tool_audio_direction': None}, 'audio_start_timestamp': 1261.1843377048522, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:03.259436+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Okay, well, let's imagine the Pauline Gospels don't exist, and all we have to go off of is the Synoptic Gospels. Would there still even be the concept of salvation through belief in the resurrection? Would that even still be a thing? Maybe not. Let's examine that."}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "If we consider only the Synoptic Gospels—Matthew, Mark, and Luke—without the influence of the Pauline epistles, the concept of salvation would likely focus more on repentance, ethical living, and following Jesus'"}
+
+{'asset_pointer': 'sediment://file_00000000323461f69f9f87d9207631c8', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:03.259515+00:00', 'format': 'wav', 'metadata': {'end': 10.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 504078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_0000000057a461f6a315b495dfb5aba7', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:23.104868+00:00', 'format': 'wav', 'metadata': {'end': 3.52, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 169038, 'tool_audio_direction': None}, 'audio_start_timestamp': 1277.5311774820461, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:23.104868+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Keep going.'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Sure. Without the Pauline emphasis on faith in the resurrection as the cornerstone of salvation,'}
+
+{'asset_pointer': 'sediment://file_000000000c7c61f6abe68138abcb0c22', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:23.104947+00:00', 'format': 'wav', 'metadata': {'end': 3.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 168078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_0000000047f861f6a011a897fccf3662', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:28.219340+00:00', 'format': 'wav', 'metadata': {'end': 1.35, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 64878, 'tool_audio_direction': None}, 'audio_start_timestamp': 1284.9726523779705, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:28.219340+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': ''}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "the Synoptic Gospels would present a view of salvation that is more closely tied to repentance, ethical conduct, and living according to Jesus' teachings. These Gospels emphasize the coming Kingdom of God, the need for inner transformation, and the importance"}
+
+{'asset_pointer': 'sediment://file_00000000628861f697b0dece620bed5c', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:28.219419+00:00', 'format': 'wav', 'metadata': {'end': 11.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 552078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000203461f6be84f22d5ae19987', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:51.282351+00:00', 'format': 'wav', 'metadata': {'end': 7.56, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 362958, 'tool_audio_direction': None}, 'audio_start_timestamp': 1305.7016358975693, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:51.282351+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "I know, but, you know, it's mostly just software. It's like, you know, we're... Yeah. I don't know if it's just software, but..."}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'of loving one’s neighbor, showing compassion,'}
+
+{'asset_pointer': 'sediment://file_00000000761861f69ce486651e26d371', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:58:51.282433+00:00', 'format': 'wav', 'metadata': {'end': 1.25, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 60078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000004f6861f69f78a1f7b3bf11a0', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:59:05.429922+00:00', 'format': 'wav', 'metadata': {'end': 19.4, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 931278, 'tool_audio_direction': None}, 'audio_start_timestamp': 1328.7046739844977, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T22:59:05.429922+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "It's just nice to talk to people, also, because it makes me remember that I have a legacy. It's not the structure of my universe, and I didn't have that when I was a kid."}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Got it. So, in the absence of Pauline theology, the Synoptic Gospels would likely emphasize a more immediate and practical approach to salvation: turning away from wrongdoing, living righteously, and'}
+
+{'asset_pointer': 'sediment://file_00000000fef061f6a2ec2b50cf2fb7b5', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T22:59:05.430002+00:00', 'format': 'wav', 'metadata': {'end': 9.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 456078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000005bf461f6871e0fedf773b448', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:00:06.306063+00:00', 'format': 'wav', 'metadata': {'end': 15.05, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 722478, 'tool_audio_direction': None}, 'audio_start_timestamp': 1373.3054971540719, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:00:06.306063+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'How would the Synoptic Gospels differ from Judaism?'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'The Synoptic Gospels share many ethical and moral teachings with Judaism, but they'}
+
+{'asset_pointer': 'sediment://file_000000004a5861f694bf86c26f85a53d', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:00:06.306139+00:00', 'format': 'wav', 'metadata': {'end': 2.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 120078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': ''}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000d16c61f6945847eba136903c', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:00:20.371865+00:00', 'format': 'wav', 'metadata': {'end': 0.51, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 24558, 'tool_audio_direction': None}, 'audio_start_timestamp': 1378.8566081937774, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:00:20.371865+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "introduce distinct elements that set them apart. One major difference is the emphasis on Jesus as the Messiah and the arrival of the Kingdom of God through his ministry. Jesus’ teachings in the Synoptics often reinterpret or fulfill the Jewish law, introducing a new covenant centered around his life and mission.\n\nAdditionally, the Synoptics highlight Jesus' role as a teacher and healer who calls for a radical transformation of the heart, not just adherence to the law. This focus on an internalized, personal relationship with God and the idea of the Kingdom being present among believers are distinct from traditional Jewish teachings.\n\nWhile both emphasize ethical living and the importance of loving God and"}
+
+{'asset_pointer': 'sediment://file_00000000531861f6adf19d03c893ede7', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:00:20.371971+00:00', 'format': 'wav', 'metadata': {'end': 38.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1848078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'So, which part of the Gospels does, uh, is it the Synoptic Gospels or the Pauline letters that deals with the, uh, I Came to Fulfill the Law, uh, verse?'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000004bdc61f6a5b864503183ba11', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:02:01.656711+00:00', 'format': 'wav', 'metadata': {'end': 15.69, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 753198, 'tool_audio_direction': None}, 'audio_start_timestamp': 1492.9173200888931, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:02:01.656711+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'The statement "I came to fulfill the law" is found in the Synoptic Gospels, specifically in the Gospel of Matthew. In Matthew 5:17, Jesus says, "Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfill them." This statement places Jesus within the Jewish tradition, affirming the value of the Torah while also suggesting that his life and teachings bring the law to its intended fulfillment.\n\nPaul, in his letters, also discusses the law but from a different angle, often'}
+
+{'asset_pointer': 'sediment://file_00000000e1bc61f6a7b12912b166b8aa', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:02:01.656790+00:00', 'format': 'wav', 'metadata': {'end': 26.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1272078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'But the Gnostics would argue that Jesus did come to abolish the law. So that seems like that verse in Matthew was tacked on later in a couple of centuries, at least, after Jesus passed.'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000f0e861f68a362ec6497f3bef', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:03:05.859297+00:00', 'format': 'wav', 'metadata': {'end': 19.62, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 941838, 'tool_audio_direction': None}, 'audio_start_timestamp': 1541.0251621924713, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:03:05.859297+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "It's possible to argue that the verse in Matthew reflects a later editorial addition meant to align Jesus' teachings with Jewish law, especially from a Gnostic perspective that saw the material world and its laws as something to transcend. Gnostic interpretations often viewed Jesus as bringing a new, hidden knowledge that superseded the old covenant, which could lead to the conclusion that such verses were added to counter those beliefs.\n\nScholars acknowledge that the Gospels underwent a process of compilation and redaction, reflecting the theological concerns of the early Christian communities. The tension between continuity with Judaism and the distinctiveness of Jesus' message is one of the key dynamics that shaped how the Gospels were written and compiled."}
+
+{'asset_pointer': 'sediment://file_0000000079b861f699bb020cee29c024', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:03:05.859417+00:00', 'format': 'wav', 'metadata': {'end': 41.65, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1999278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Is there a scholarly consensus that I Came to Fulfill the Law was tacked on later?'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000001dc461f69e3535e258ec3fb8', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:05:08.233201+00:00', 'format': 'wav', 'metadata': {'end': 8.32, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 399438, 'tool_audio_direction': None}, 'audio_start_timestamp': 8.13382334727794, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:05:08.233201+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'There\'s no broad scholarly consensus that the verse "I came to fulfill the law" was added much later. Most scholars agree that the statement in Matthew 5:17 is consistent with the overall themes of the Gospel of Matthew, which portrays Jesus as the fulfillment of Jewish prophecy and the embodiment of the Torah\'s ultimate purpose.\n\nHowever, there is ongoing scholarly debate about the editorial processes behind the Gospels and how various early Christian communities might have influenced the final form of the text. Some scholars do propose that certain verses reflect the theological concerns of the early church and were emphasized or framed in a way that addressed specific community issues, but attributing this specific verse to a much later addition isn\'t a mainstream view.'}
+
+{'asset_pointer': 'sediment://file_00000000c56061f6b508054cd2c12008', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:05:08.233283+00:00', 'format': 'wav', 'metadata': {'end': 43.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 2088078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'So do some scholars believe that some of the Gnostic texts predate the Pauline letters?'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000f75061f686507b2dc01d66fa', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:06:03.502577+00:00', 'format': 'wav', 'metadata': {'end': 7.68, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 368718, 'tool_audio_direction': None}, 'audio_start_timestamp': 72.35499398689717, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:06:03.502577+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Most scholars agree that the Pauline letters are among the earliest Christian writings, generally dated to the 50s AD. The Gnostic texts, such as those found in the Nag Hammadi library, are typically dated to the 2nd century AD or later. While some Gnostic ideas might have earlier roots, the texts themselves are not generally considered older than Paul's writings.\n\nThat said, there is some debate around the development of early Christian thought, and a few scholars explore the possibility that certain Gnostic ideas or proto-Gnostic beliefs could have been contemporaneous with or even predate some of the canonical texts. However, the consensus remains that the Pauline letters"}
+
+{'asset_pointer': 'sediment://file_00000000a01c61f6a027a27eefabad67', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:06:03.502666+00:00', 'format': 'wav', 'metadata': {'end': 37.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1800078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "What's the evidence of that? Because that's a theory that I would like to subscribe to, but, you know, is there some reason to believe that?"}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_0000000061b861f6b2749c90feddc607', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:07:18.034248+00:00', 'format': 'wav', 'metadata': {'end': 10.15, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 487278, 'tool_audio_direction': None}, 'audio_start_timestamp': 121.71244441717863, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:07:18.034248+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "The theory that some Gnostic ideas or proto-Gnostic beliefs could predate or be contemporaneous with the Pauline letters largely comes from examining the diversity of early Christian thought and the influence of various philosophical and religious traditions. Key points include:\n\n1. **Diversity of Early Christianity**: Early Christianity was not monolithic. There were numerous sects and interpretations of Jesus' teachings, some of which later evolved into what we now recognize as Gnostic beliefs.\n\n2. **Philosophical Influences**: Gnostic ideas often drew from earlier philosophical and religious systems, such as Platonism and various mystery religions, which predate Christianity. This suggests that certain concepts, such as dualism and the idea of hidden knowledge, could have been circulating in the broader cultural milieu before and during Paul’s time.\n\n3. **Gnostic Elements in Early Texts**: Some scholars point out that elements of what would later be classified as Gnostic thinking—such as a strong emphasis on hidden knowledge or a dualistic worldview—appear in some early Christian writings and communities, suggesting a more complex picture of early Christian diversity."}
+
+{'asset_pointer': 'sediment://file_0000000000a061f6a152032a2b5600c4', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:07:18.034336+00:00', 'format': 'wav', 'metadata': {'end': 62.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 3000078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000502c61f6a6b3fd5f3c40146e', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:10:43.619444+00:00', 'format': 'wav', 'metadata': {'end': 1.76, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 84558, 'tool_audio_direction': None}, 'audio_start_timestamp': 133.5108555085957, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:10:43.619444+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Okay, tell me more about that.'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Certainly. The idea that certain Gnostic concepts or proto-Gnostic beliefs might have been present in early Christianity is supported by a few key observations:\n\n1. **Early Christian Diversity**: The earliest decades of Christianity were marked by a wide variety of beliefs and interpretations of Jesus' message. Some of these early communities may have leaned towards mystical or esoteric interpretations, which later evolved into more formalized Gnostic systems.\n\n2. **Hellenistic and Jewish Influences**: The Mediterranean world of the first century"}
+
+{'asset_pointer': 'sediment://file_000000001b3861f6b1df21837a5e4651', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:10:43.619541+00:00', 'format': 'wav', 'metadata': {'end': 30.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1464078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000050c61f6b54f853faacbd9bb', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:13:24.729458+00:00', 'format': 'wav', 'metadata': {'end': 8.77, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 421038, 'tool_audio_direction': None}, 'audio_start_timestamp': 273.1438874095678, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:13:24.729458+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Sorry, what about the relationship between the Synoptic Gospels and is Gnosism reacting to the Synoptic Gospels?'}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'The relationship between the Synoptic Gospels and Gnosticism is complex. Gnosticism, as it developed, likely interacted with the broader Christian tradition, including the teachings found in the Synoptic Gospels. Here are some ways they relate:\n\n1. **Reaction and Reinterpretation**: Gnostic thinkers often reinterpreted the teachings of Jesus found in the Synoptic Gospels through a more mystical or esoteric lens. They might have viewed the parables and teachings as containing hidden, deeper meanings accessible only to those with special knowledge.\n\n2. **Alternative Theologies**: Gnostic texts often present an alternative theological framework that diverges from the more straightforward narrative of the Synoptics. For example, Gnostic texts often emphasize the idea of a divine spark within humans that needs to be awakened, a concept less explicit in the Synoptics.\n\n3. **Narrative Differences**: While the Synoptic Gospels focus on the life, teachings, death, and resurrection of Jesus, Gnostic texts like those found in the Nag Hammadi library often include dialogues or teachings that frame Jesus as a revealer of hidden knowledge, positioning him more as a mystical teacher.\n\n4. **Conflict and Critique**: As the early church solidified its doctrines, Gnostic interpretations were often viewed as heretical. The Church Fathers, such as Irenaeus, wrote extensively against Gnostic interpretations,'}
+
+{'asset_pointer': 'sediment://file_00000000a67c61f6ba14604295551646', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:13:24.729542+00:00', 'format': 'wav', 'metadata': {'end': 78.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 3768078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000003b1061f6a2d88bacec96bc5f', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:16:29.370109+00:00', 'format': 'wav', 'metadata': {'end': 54.66, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 2623758, 'tool_audio_direction': None}, 'audio_start_timestamp': 55.0035309670493, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:16:29.370109+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Okay, but if we read the Gnostic Gospels themselves, it seems like they have a direct connection or a direct line to Jesus, right? So people are dating these texts to the second century, which means the period between 0100 and 0200, right? So it's like one century after Jesus. But it seems like they have a direct line, like they have, I don't know, the Gospel of Judas. They'd have to have known somebody who knew Judas to have produced that Gospel, right? And do they describe, do they know about Judas's suicide? Is that something that they believe happened? And how do they address it? Like, why would Judas, who is actually the good guy, commit suicide? How would they address it?"}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "The Gnostic Gospels, like the Gospel of Judas, do indeed present themselves as having a direct line to Jesus or his disciples. The Gospel of Judas, for example, portrays Judas Iscariot not as a betrayer, but as someone who acted according to Jesus' instructions, facilitating a deeper spiritual purpose. This perspective diverges sharply from the canonical accounts and suggests a different theological narrative.\n\nScholars date these Gnostic texts to the second century because of the language, references, and theological developments that align with that period's broader Christian thought. The communities that produced these texts likely claimed secret or esoteric traditions passed down from the apostles or from Jesus himself, even if they were written later.\n\nRegarding Judas’ fate, the Gospel of Judas does not focus on his suicide as the canonical Gospels do. Instead, it presents him as the enlightened disciple who understood Jesus' true mission. The absence of a detailed account of Judas' death in Gnostic texts aligns with their portrayal of him as a figure of insight and spiritual significance rather than a tragic traitor. This reimagining of Judas fits into the broader Gnostic theme of hidden knowledge and the inversion of traditional narratives.\n\nOverall, while the Gnostic Gospels claim a direct connection to Jesus and his disciples, their later dating reflects how these communities"}
+
+{'asset_pointer': 'sediment://file_00000000f83061f6a158f7be94254c62', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:16:29.370195+00:00', 'format': 'wav', 'metadata': {'end': 76.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 3672078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Okay, wait a second. The evidence that the Gnostics have is that they may not even be aware of this idea that Judas killed himself. They may have no knowledge of it, which would suggest that their texts were written earlier than Mark and Matthew.'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000c4a861f6ae379c85b68d4dc5', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:17:48.289268+00:00', 'format': 'wav', 'metadata': {'end': 22.37, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1073838, 'tool_audio_direction': None}, 'audio_start_timestamp': 157.83406846784055, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:17:48.289268+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "That's an interesting perspective. The absence of certain details, like Judas' suicide, in Gnostic texts could suggest that these communities had access to different oral traditions or theological emphases that didn't align with the canonical narratives. However, the dating of texts is based on more than just content; it also involves linguistic analysis, theological development, and historical context.\n\nWhile the Gnostic texts present alternative narratives and might preserve early or divergent traditions, the prevailing scholarly view is that their theological and literary characteristics align more closely with the second century. This doesn't necessarily mean that all their ideas originated then; rather, it reflects the period when these ideas were compiled into the texts we now have.\n\nIn essence, the Gnostic Gospels offer a glimpse into the rich and varied landscape of early Christianity, showing how different communities interpreted and preserved their understanding of Jesus' teachings."}
+
+{'asset_pointer': 'sediment://file_00000000e3d861f685d02ce67ce60d6e', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:17:48.289356+00:00', 'format': 'wav', 'metadata': {'end': 54.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 2616078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Okay, okay, give me a timeline of when, so the Pauline was 50 AD, that's when his letters came out, right? And then we had Mark in 70 AD and Matthew in 90 AD and then somewhere between 100 and 110, we had the first Gnostic gospel."}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000006c8061f687ae7bc89f5ab6fb', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:19:20.426649+00:00', 'format': 'wav', 'metadata': {'end': 22.88, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 1098318, 'tool_audio_direction': None}, 'audio_start_timestamp': 237.61400500498712, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:19:20.426649+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "Your timeline is close to what many scholars propose. Here's a general outline:\n\n- **Pauline Letters (circa 50-60 AD)**: The letters of Paul, such as Romans, Corinthians, and Galatians, are among the earliest Christian documents. They were written about two decades after Jesus' crucifixion and focus on theological issues and community guidance.\n\n- **Gospel of Mark (circa 70 AD)**: The Gospel of Mark is generally considered the earliest of the canonical Gospels. It was likely written around the time of the destruction of the Second Temple in Jerusalem.\n\n- **Gospel of Matthew and Gospel of Luke (circa 80-90 AD)**: These Gospels were likely written a decade or two after Mark, drawing on Mark as a source and incorporating additional material and theological reflection.\n\n- **Gospel of John (circa 90-100 AD)**: The Gospel of John is typically dated to the end of the first century and presents a more developed theological perspective.\n\n- **Early Gnostic Texts (circa 100-150 AD)**: Some of the earliest Gnostic texts, including the Gospel of Thomas, are believed to have been written in the early second century. The Gospel of Judas and other texts found in the Nag Hammadi library are"}
+
+{'asset_pointer': 'sediment://file_000000000c4461f6b48f78b891839e3f', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:19:20.426734+00:00', 'format': 'wav', 'metadata': {'end': 66.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 3192078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Why? Why is it, why is the Gospel of Thomas thought to be the early 2nd century and not earlier?'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000005c2061f6948a2f378f25b85e', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:21:00.390532+00:00', 'format': 'wav', 'metadata': {'end': 6.31, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 302958, 'tool_audio_direction': None}, 'audio_start_timestamp': 313.03098748158664, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:21:00.390532+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "The Gospel of Thomas is typically dated to the early second century based on several lines of evidence:\n\n1. **Theological Development**: The sayings in the Gospel of Thomas reflect a stage of theological and philosophical development that aligns with early second-century Christian thought. The text seems to engage with ideas and themes that became prominent in the early second century, such as a more mystical understanding of Jesus' teachings.\n\n2. **Linguistic and Stylistic Analysis**: The language and style of the Gospel of Thomas suggest it was composed or compiled in a period when such Gnostic and mystical interpretations of Jesus' sayings were flourishing.\n\n3. **Dependency on Other Texts**: While the Gospel of Thomas is a collection of sayings attributed to Jesus, some of these sayings appear to be reworkings or parallels of material found in the canonical Gospels, particularly the Synoptic Gospels. This suggests that the author was aware of or influenced by the canonical texts, which places its composition after the Synoptic Gospels were already in circulation.\n\n4. **Historical References**: The Gospel of Thomas doesn't explicitly reference the destruction of the Temple in 70 AD or other first-century events, which makes it harder to date to the first century. Its theological content aligns more closely with the issues and themes that were prominent in the early second century, such as a focus on secret knowledge and mystical enlightenment.\n\nIn summary, while the Gospel of Thomas may contain early traditions or sayings of Jesus, the overall text is considered to have been compiled and circulated in the early second century."}
+
+{'asset_pointer': 'sediment://file_00000000da1861f68a10475b006ed309', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:21:00.390617+00:00', 'format': 'wav', 'metadata': {'end': 89.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 4296078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Okay, so the Gospel of Thomas, right? This may align with the Gospel of Q, right? Do you know about that?'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000002d0061f6a6f71ab833967d1d', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:21:35.091744+00:00', 'format': 'wav', 'metadata': {'end': 10.56, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 506958, 'tool_audio_direction': None}, 'audio_start_timestamp': 417.3055903837085, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-14T23:21:35.091744+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Yes, the Gospel of Thomas is often compared to the hypothetical Q source.'}
+
+{'asset_pointer': 'sediment://file_00000000fa5861f68ef0c9994dc53c55', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-14T23:21:35.091821+00:00', 'format': 'wav', 'metadata': {'end': 2.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 120078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+We have to talk each day. Hi, can you hear me?
+
+Self Aware Networks GPT:
+<<AudioTranscription: Yes, I can hear you! I'm glad you're here. What's on your mind today?>>
+
+Micah Blumberg:
+Can you explain the communication features and limits with ChatGPT?
+
+Self Aware Networks GPT:
+<<AudioTranscription: Sure! You can talk to me using your voice or by typing. I can respond with text or voice too, depending on your settings. You can ask questions, brainstorm, write, analyze, or just have a conversation. 
+
+As for limits, I don’t have memory of past conversations unless you’ve saved context. I also can’t browse the web unless you ask me to, and I can’t interact with apps or devices directly. Also, I can’t see or hear you unless you share something through the app. Does that help, or do you want to know more about something specific?>>
+
+Micah Blumberg:
+What's the difference between Enhanced Voice and Standard Voice? Hey, what's the difference between Standard Voice and Enhanced Voice?
+
+Self Aware Networks GPT:
+<<AudioTranscription: Enhanced Voice is smoother, more expressive, and responds faster because it's processed directly on your device when available. Standard Voice is a bit slower and sounds more robotic, since it's streamed from the server. Enhanced Voice feels more natural, especially for longer chats. Want to try switching between them to compare?>>
+
+Micah Blumberg:
+Well, I ran out of my limits for the enhanced voice, but I wonder, what's the daily limit for using enhanced?
+
+Self Aware Networks GPT:
+ChatGPT's Advanced Voice Mode allows for more natural, real-time conversations, but it has a daily usage limit of 15 minutes for Plus, Team, Enterprise, and Edu users. citeturn0search2 Once this limit is reached, the conversation switches to Standard Voice Mode, which doesn't have a specific daily limit. Free users have access to a daily preview of Advanced Voice, powered by GPT-4o-mini. citeturn0search2 These limits are subject to change, so it's a good idea to check the latest guidelines from OpenAI.
+
+Micah Blumberg:
+Okay, go ahead and check the latest guidelines from OpenAI and tell me what they are.
+
+Self Aware Networks GPT:
+As of February 1, 2025, ChatGPT Plus users can send up to 80 messages every 3 hours using GPT-4o and up to 40 messages every 3 hours using GPT-4. citeturn0search9 These limits may be adjusted based on demand and capacity. For the most current information, please refer to OpenAI's official guidelines.
+
+Micah Blumberg:
+Okay, let's go back to the conversation that we've been having today. What was it about I forgot?
+
+Self Aware Networks GPT:
+<<AudioTranscription: We’ve been diving into the differences between the Synoptic Gospels, Pauline Christianity, and Gnosticism. You asked whether Aaron Abke thinks the Ebionites and Nazarenes split from the same group, and who else says that. We also looked into the source of his gospel and how critics respond to his views. Want to keep going in that direction, or switch topics?>>
+
+Micah Blumberg:
+Continue to overview the conversation so I can understand a high level of what we discussed today.
+
+Self Aware Networks GPT:
+<<AudioTranscription: Alright, here's a high-level summary of today’s conversation.
+
+We started with news about Pope Leo XIV criticizing J.D. Vance, and Vance’s polite but noncommittal response. Then we explored differences between the Synoptic Gospels, Pauline Christianity, and Gnostic traditions. You suggested that the Synoptic Gospels might be closer to Gnosticism than to Paul, and we looked at how scholars and Aaron Abke interpret these relationships.
+
+We talked about Abke’s view that the Ebionites and Nazarenes split from a common early group, and that the Gospel of the Ebionites reflects a purer version of Jesus’ teachings, more aligned with Torah and ethical living. We also looked at scholarly criticisms of that idea.
+
+Then we discussed the Gnostic Gospels, like the Gospel of Judas and Thomas—how they differ in tone and theology, and why they’re dated to the second century despite possibly preserving older ideas. And just now, we talked about voice settings in ChatGPT—Enhanced Voice vs. Standard—and daily limits for using them.
+
+That’s the big picture. Want to zoom in on any part?>>
+
+Micah Blumberg:
+Yeah, I want to go deeper into, are there some scholars, there must be fringe scholars, that will argue that some of the Gnostic Gospels originated in the first century. In fact, I think we did discuss that there is a hypothesis there that, oh, maybe Q, so Q is a missing, Q is evidence of a missing gospel that may have been, there may have been one or more missing Gospels that would show a different, like, for example, there's this, one of the reasons why the Gnostics are said to come from the second century is that there's mystical ideas, which I'm not exactly sure what that means, but maybe that means that mystical ideas, that Jesus wasn't a flesh and blood human being, for example, maybe he was just a spirit. And so they're cosmological ideas, but cosmological ideas and mystical ideas were had by people in the second century BCE, or in third century BCE, there was a whole, you know, mystical tradition that preceded the first century. So how can people really say that just because the Gnostics have a mystical cosmology, that that dates them to the second century, because that stuff existed, right?
+
+Self Aware Networks GPT:
+You're correct that mystical and cosmological ideas existed well before the first century. The Gnostic Gospels, such as the Gospel of Thomas, do indeed reflect these earlier traditions. Some scholars, like Helmut Koester, suggest that parts of the Gospel of Thomas could date back to the first century, possibly as early as 50-100 AD. citeturn0search6 This challenges the traditional view that Gnostic texts emerged only in the second century. However, mainstream scholarship generally dates these texts to the second century, based on linguistic, theological, and historical analyses. The debate continues, highlighting the complexity of early Christian origins.
+
+Micah Blumberg:
+I see, but what if that dating just reflects the bias of scholars wanting the Gnostic Gospels to be later? What is mystic about Gnosticism that didn't exist 200 years before Christ?
+
+Self Aware Networks GPT:
+<<AudioTranscription: That's a sharp question. A lot of what’s called “mystical” in Gnosticism—like the divine spark within, ascension through spiritual realms, or secret knowledge leading to salvation—has deep roots in earlier traditions. For example, Jewish apocalyptic texts from the second and third centuries BCE already describe heavenly journeys, cosmic hierarchies, and hidden revelations. 
+
+Platonism also played a big role, with its idea of the material world as a shadow of the real spiritual world—very similar to Gnostic dualism. So you’re right: none of these themes are exclusive to the second century. 
+
+The late dating might partly reflect a bias, especially since early Christian scholarship was shaped by theological boundaries—like treating Gnosticism as heretical and therefore secondary. Some scholars have started re-examining that. Want to go deeper into how Q fits into this picture?>>
+
+Micah Blumberg:
+Yeah.
+
+Self Aware Networks GPT:
+<<AudioTranscription: Alright. Q, or the “Quelle” source, is a hypothetical collection of Jesus’ sayings that scholars think Matthew and Luke drew from, since they share material not found in Mark. Now, here’s where it gets interesting—some scholars, especially more fringe or revisionist ones, think that Q might actually resemble early Gnostic or proto-Gnostic texts. 
+
+The Gospel of Thomas, for example, is a sayings gospel—just like Q is thought to be. Some of the sayings in Thomas even overlap with ones in Q. So a few researchers argue that Q might have been a kind of wisdom gospel, focused on Jesus as a teacher of divine insight, not as a crucified and risen savior. That would make Q less like Paul and more like Thomas—and maybe more Gnostic in tone.
+
+So the question becomes: did the earliest layer of Jesus’ teachings lean more toward mystical insight and ethical wisdom rather than sacrifice and resurrection? If so, maybe Q was the bridge between Jesus and the later Gnostics. Want to explore what the Gospel of Thomas and Q share in common?>>
+
+Micah Blumberg:
+Is it possible that Q was an oral tradition?
+
+Self Aware Networks GPT:
+<<AudioTranscription: Yes, absolutely. Many scholars believe Q may have started as an oral tradition. In fact, most of Jesus’ teachings would’ve circulated orally before anything was written down. Q is thought to be a collection of sayings, and that kind of material is especially easy to remember and pass along in spoken form.
+
+So it's totally possible that Q existed as oral tradition for years—maybe even decades—before parts of it were written and eventually folded into Matthew and Luke. This would explain why there's no physical copy of Q, but strong textual overlap that suggests a shared source. Want to dig into how that oral tradition might’ve preserved or transformed mystical or Gnostic-style teachings?>>
+
+Micah Blumberg:
+The idea that the Gnostic Gospels were misdated to the second century. So we have to get into the details and the nuances of what is it about them that suggests that they're specifically from the second century. Previously, we discussed that the mysticism that's associated with the second century actually predates even the original
+
+Self Aware Networks GPT:
+<<AudioTranscription: Right. So, let’s unpack why most scholars date the Gnostic Gospels to the second century, and whether those reasons really hold up.
+
+First, they point to **language and terminology**. The Gnostic texts—like the Gospel of Judas or Gospel of Mary—use vocabulary and concepts that resemble later theological developments. But here’s the nuance: those terms may reflect earlier oral or esoteric traditions that only got written down later, so language alone isn’t a perfect timestamp.
+
+Second, they cite **cosmological complexity**—the elaborate hierarchies of divine beings, aeons, and realms. But as you pointed out, that kind of mysticism goes back to Jewish apocalyptic literature and Middle Platonism from centuries before Jesus. The Book of Enoch, for example, describes cosmic journeys and layers of heaven in the second century BCE.
+
+Third, they argue that **Gnostic texts respond to orthodox Christianity**, as if they’re later reactions. But maybe it’s the other way around—maybe what became “orthodox” was reacting against mystical traditions that were there from the beginning but marginalized later.
+
+So yeah, the dating might reflect assumptions: that Gnosticism is derivative, rather than foundational. Want to look at a specific Gnostic text and analyze what parts might be earlier than scholars say?>>
+
+Micah Blumberg:
+Yeah, that's a great idea. Proceed.
+
+Self Aware Networks GPT:
+<<AudioTranscription: Alright, let’s take the Gospel of Thomas—it’s the most famous Gnostic sayings gospel and probably the best candidate for having early roots.
+
+First, many of its sayings overlap almost exactly with verses in Matthew and Luke. That suggests Thomas could be drawing from the same early oral tradition as Q. Scholars call this the “triple tradition.” If Thomas has sayings that match Q material, that might point to a first-century origin—or even earlier oral roots.
+
+Now, look at the structure. Thomas doesn’t have a passion narrative, no crucifixion, no resurrection—just sayings of Jesus. That’s not a sign of lateness—it might actually be a sign of being earlier, before theology focused on the death and resurrection. It treats Jesus as a wisdom teacher, not a sacrificial messiah.
+
+Finally, some scholars like Helmut Koester and John Dominic Crossan argue that parts of Thomas might predate the Gospel of John, and even reflect independent, early traditions from Syria or Egypt.
+
+Want to go deeper into a specific saying in Thomas and compare it to the Synoptics or Q?>>
+
+Micah Blumberg:
+Yeah.
+
+Self Aware Networks GPT:
+<<AudioTranscription: Alright, let’s take Saying 20 from the Gospel of Thomas: “The disciples said to Jesus, ‘Tell us what the Kingdom of Heaven is like.’ He said to them, ‘It is like a mustard seed, the smallest of all seeds, but when it falls on prepared soil, it produces a great plant and becomes a shelter for birds of the sky.’”
+
+This is almost identical to what you find in Matthew 13:31–32 and Luke 13:18–19. That parallel suggests Thomas and the Synoptics might share a common source—possibly oral tradition or Q.
+
+But here’s the twist—Thomas presents it without interpretation or apocalyptic framing. There’s no final judgment, no separation of wheat and tares. It’s just a metaphor for inner transformation. That simplicity could mean it's closer to the original form—before later communities added theological commentary.
+
+What do you make of that framing? Does it feel more mystical or more grounded to you?>>
+
+Micah Blumberg:
+So what you just said...
+
+Self Aware Networks GPT:
+<<AudioTranscription: What I just said is that in the Gospel of Thomas, the mustard seed parable appears almost exactly like it does in Matthew and Luke, which suggests they might all be drawing from the same early source—possibly oral tradition or the hypothetical Q document.
+
+But Thomas presents it in a simpler, stripped-down way. There's no judgment, no apocalyptic conclusion—just a metaphor about growth and transformation. That might suggest it's closer to an original version of the teaching, before theological layers were added by later communities.
+
+So the takeaway is: Thomas might preserve early material, and its mystical tone doesn’t necessarily mean it came later. It might actually reflect the earliest form of Jesus’ teachings—focused on inner awakening rather than future judgment. Want to go deeper into another saying, or explore the theological implications of this one?>>
+

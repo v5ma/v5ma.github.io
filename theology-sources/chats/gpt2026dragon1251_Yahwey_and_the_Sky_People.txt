@@ -1,0 +1,45 @@
+Title: Yahwey and the Sky People
+Date: 1743576192.387177
+
+Micah Blumberg:
+Create image Yahwey was one of the Annunaki, one of the Aliens, one of the Sky people. In ancient times the Sky people was the myth of the ages. No matter where you went on Ancient earth, everyone knew about the Sky people, who flew here, they ruled the earth for a time. Yahwey was one of them, and then one day he replace them.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A dramatic ancient scene showing Yahweh as one of the Anunnaki, depicted as a powerful alien being descending from the sky. He stands tall among the other Sky People—majestic alien figures with futuristic armor and glowing eyes, surrounded by ancient Earth civilizations bowing or looking up in awe. The landscape is a fusion of Mesopotamian ruins, pyramids, and flying crafts in the sky. A celestial atmosphere with beams of light highlights Yahweh stepping forward as the new ruler, replacing the Sky People. The art style is epic and mythological, with high detail and a mystical, golden hue.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_000000004ec451f8baa78ece4b9dca8f', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'e92aa398-d87a-4570-815a-6dca8831eb26', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'e92aa398-d87a-4570-815a-6dca8831eb26', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 528, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 153779, 'width': 1024}
+
+Micah Blumberg:
+Create image Yahwey was one of the Annunaki, one of the Aliens, one of the Sky people. In ancient times the Sky people was the myth of the ages. No matter where you went on Ancient earth, everyone knew about the Sky people, who flew here, they ruled the earth for a time. Yahwey was one of them, and then one day he replace them.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A dramatic and ancient scene depicting Yahweh as one of the Anunnaki, towering and radiant among the sky people, alien beings with advanced technology and divine presence. The scene shows ancient Earth landscapes with pyramids and temples, while massive spacecraft hover above. Yahweh, portrayed with a glowing aura and commanding presence, stands among other alien beings, eventually rising above them as the others fade into the background. The sky is filled with cosmic light and symbols of ancient power.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_00000000d11051f8bd0be46d206e86a5', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '6a49481d-49f7-42cb-9694-b3f90dc8d771', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '6a49481d-49f7-42cb-9694-b3f90dc8d771', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 3015977, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+
+Micah Blumberg:
+Create image Yahwey was one of the Annunaki, one of the Aliens, one of the Sky people. In ancient times the Sky people was the myth of the ages. No matter where you went on Ancient earth, everyone knew about the Sky people, who flew here, they ruled the earth for a time. Yahwey was one of them, and then one day he replace them.
+
+Self Aware Networks GPT:
+{
+  "prompt": "A dramatic and ancient-themed scene showing Yahweh as one of the Anunnaki, depicted as a powerful alien being among a group of sky people. The sky people are tall, majestic, humanoid aliens with glowing eyes, wearing ornate robes and standing on a floating platform above an ancient city. Yahweh is in the center, bathed in divine light, stepping forward as the others look on in awe or deference. The background shows ancient Earth with pyramids, ziggurats, and other mythological structures, under a twilight sky filled with stars and hovering ships. A sense of mythic transition is in the air, as if Yahweh is about to ascend to supreme rulership.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_0000000065a051f686fb3a564da06bb0', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '0f5d6039-15bc-4595-a17a-5c7eba470c10', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '0f5d6039-15bc-4595-a17a-5c7eba470c10', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 4089793, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+

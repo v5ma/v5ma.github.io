@@ -1,0 +1,1033 @@
+Title: Apocalypse of Peter comparison
+Date: 1761629062.749062
+
+Micah Blumberg:
+Is the Apocalypse of Peter in the Ethiopian Bible different from the Apocalypse of Peter in the Gnostic library
+
+Self Aware Networks GPT:
+Short answer: yes—these are two different works that only share the title.
+
+- #1 The “Ethiopic Apocalypse of Peter” (sometimes just called *Apocalypse of Peter*) is the 2nd-century proto-orthodox tour-of-heaven-and-hell text. Our fullest form survives in Geʿez (Ethiopic) manuscripts; related Greek fragments were found at Akhmim and elsewhere. It’s a revelation discourse by Jesus that shows Peter punishments of sinners and rewards of the righteous. Scholars generally treat the Ethiopic text as closer to the original than the Akhmim Greek because of length and patristic echoes. citeturn0search0turn0search7
+
+- #2 The “Gnostic (Coptic) Apocalypse of Peter” is a different book entirely, found in the Nag Hammadi library (Codex VII). It presents a distinctly Gnostic theology (e.g., a docetic view of the Passion; Jesus revealing hidden knowledge and even “laughing” at the ignorance of persecutors) and polemicizes against proto-orthodox believers. Survives in Coptic, translated from Greek, likely composed c. 2nd–3rd century. citeturn0search1turn0search9turn0search8
+
+Canon note (Ethiopian Bible): Although Ethiopia preserves the full Geʿez text, the *Apocalypse of Peter* is not part of the standard 81-book Orthodox Tewahedo biblical canon (which does include unique works like 1 Enoch and Jubilees). It’s an apocryphon in that tradition. citeturn1search2
+
+So: the Ethiopic one = the early Christian heaven/hell tour (proto-orthodox); the Nag Hammadi one = a separate Gnostic revelation with very different theology.
+
+Micah Blumberg:
+I see what else is unique about the Ethiopian bible and collection of texts that is different from all other bibles scrolls and collections of religious texts, detail the uniqueness of the Ethiopian texts
+
+Self Aware Networks GPT:
+Short answer: the Ethiopian Orthodox Tewahedo tradition preserves the widest, most distinctive Christian biblical (and para-biblical) corpus in regular use anywhere—different in **content, language, and canonical logic** from other churches.
+
+Here are the big ways it’s unique (with representative sources):
+
+1) **A larger, two-tier canon (81 “narrow” books + a “broader” tier)**  
+   - The standard (“narrow”) canon already exceeds others: alongside the usual OT+NT it **uniquely** includes `1 Enoch`, `Jubilees`, `4 Baruch/Paralipomena of Jeremiah`, and **three** Ethiopian “Maccabees” books (`1–3 Meqabyan`) that are *not* the same works as Greek `1–4 Maccabees`. citeturn0search6  
+   - The “broader canon” adds church-order and ecclesial books used liturgically and juridically: **`Sinodos` (4 books), `Books of the Covenant` (2), `Ethiopic Clement`, and `Didascalia`**, plus `Josippon`. These sit “alongside” Scripture in Ethiopian usage in a way unusual elsewhere. citeturn0search6
+
+2) **Complete preservation of works otherwise fragmentary or lost in other traditions**  
+   - Ethiopia is the **only** Christian tradition to have preserved **the full texts** of `1 Enoch` and `Jubilees` in continuous manuscript transmission; other churches knew them mainly through quotations or fragments until the 20th century. citeturn1search11turn1search3  
+   - `4 Baruch` (often titled “Rest of the Words of Baruch” / “Paralipomena of Jeremiah”) is canonical in Ethiopia but apocryphal elsewhere. citeturn0search7turn0search15turn0search4
+
+3) **The Ethiopian “Maccabees” (Meqabyan) are different books**  
+   - `1–3 Meqabyan` are indigenous Ethiopic narratives with their own heroes and theology; they **share the name** “Maccabees” but **not** the content of Greek `1–4 Maccabees`. Scholarly reference works note the lack of literary dependence despite some thematic echoes. citeturn1search5turn0search6
+
+4) **Canon law + church-order texts function closely with Scripture**  
+   - The **`Sinodos`** and **`Didascalia`** (Geʿez church-order collections) are historically tied to Ethiopia’s canonical lists and to the legal code **`Fetha Nägäst`**—a distinctive linkage between Scripture, liturgy, and law. citeturn1search11turn1search8
+
+5) **Geʿez as a scriptural language and Alexandrian roots**  
+   - The Ethiopic Bible was translated from the **Septuagint tradition** into **Geʿez**; Ethiopia’s canon lists and transmitted texts reflect this Alexandrian pedigree and a locally developed reception history. citeturn1search8
+
+6) **A wider ecosystem of revered national/theological texts**  
+   - Works like the **`Kebra Nagast`** (royal-theological epic about Solomon, Sheba, and the Ark) are not “biblical” but hold **scripture-adjacent authority** in Ethiopian religious identity—again, unlike most other traditions. citeturn1search6turn1search2
+
+7) **Canonical logic that is neither simply “open” nor strictly “closed”**  
+   - Modern Ethiopian scholars describe the canon as historically **stable in practice** yet **broader in scope** (with the “broader canon” books) than Western lists; classic studies by **R. W. Cowley** explain how Ethiopian lists (e.g., in `Sinodos`/`Fetha Nägäst`) shaped the 81-book framework and its adjunct texts. citeturn1search3turn1search14
+
+If you’d like, I can lay out a side-by-side table (Ethiopian narrow/broader canon vs. Catholic/Orthodox/Protestant lists) and add one-line summaries for each book—especially the unique ones (`Enoch`, `Jubilees`, `4 Baruch`, `1–3 Meqabyan`, `Sinodos`, `Books of the Covenant`, `Ethiopic Clement`, `Didascalia`).
+
+Micah Blumberg:
+Okay what does the Ethiopian library have in common with the Dead Sea Scrolls, and what does it have in common with the Nag Hammadi Library?
+
+Self Aware Networks GPT:
+Great question. Here’s a crisp map of overlaps (and non-overlaps) between the Ethiopian Orthodox Tewahedo “library” (its canon + broader church books), the Dead Sea Scrolls (DSS), and the Nag Hammadi Library (NHL).
+
+# What the Ethiopian corpus has in common with the Dead Sea Scrolls
+
+- **Shared books/traditions: `1 Enoch` and `Jubilees`.**  
+  Ethiopia uniquely preserves complete Geʿez versions of both works in regular use; Qumran yielded many Aramaic/Hebrew fragments of the same traditions (multiple copies of `Enoch` and `Jubilees`). In short: **DSS = early Jewish fragments; Ethiopia = full later Christian transmission.** citeturn1search2turn1search1turn0search0
+
+- **Other deuterocanonicals found at Qumran and accepted in Ethiopia.**  
+  Qumran has Hebrew copies of books like **Sirach** and **Tobit**; these are canonical in Ethiopia (and in other ancient churches). This shows a common **Second-Temple/Jewish sapiential** stream behind Ethiopia’s broader Old Testament. citeturn1search1turn1search3turn0search4
+
+- **Continuity of Enochic/“parabiblical” literature.**  
+  Qumran’s cache confirms the antiquity and breadth of the **Enochic/Jubilean** world that Ethiopia later kept alive (e.g., Cave 4’s 11 Aramaic Enoch manuscripts and related Enochic texts). citeturn1search2
+
+# What the Ethiopian corpus has in common with the Nag Hammadi Library
+
+- **They both preserve otherwise marginal early Christian literature outside the Greek/Latin mainstream.**  
+  Ethiopia: a large canon (81 books) plus a “broader canon” (Sinodos, Didascalia, Ethiopic Clement, etc.).  
+  Nag Hammadi: Coptic codices of **Gnostic** gospels/apocalypses (e.g., *Apocryphon of John*, *Gospel of Thomas*, *Apocalypse of Peter* [Coptic]). Both are **non-Western transmission lines** (Geʿez vs. Coptic) that safeguarded texts lost elsewhere. citeturn0search0turn0search8turn0search15
+
+- **Shared genre labels but different works.**  
+  Each corpus has a work titled **“Apocalypse of Peter”**—but they are not the same text or theology: Ethiopia’s is a proto-orthodox tour-of-heaven-and-hell; Nag Hammadi’s is a **Gnostic** revelation with docetic themes. The “title overlap” is a helpful reminder not to assume identity of content. citeturn0search15turn0search6
+
+- **Language & format parallels.**  
+  Both are preserved in **Afroasiatic languages** (Geʿez for Ethiopia; Coptic for NHL) and transmitted in **codices** rather than modern printed canons, with local editorial histories. citeturn0search0
+
+# Key differences to keep in view
+
+- **Religious setting and date.**  
+  **DSS** are mainly **pre-Christian Jewish** texts (3rd c. BCE–1st c. CE). **NHL** are **late antique Coptic Christian** (mostly 4th-century codices of 2nd–3rd-century compositions). The **Ethiopian corpus** is a **living Christian canon** that later **absorbed and preserved** some Second-Temple works (e.g., `Enoch`, `Jubilees`) alongside uniquely Ethiopian materials (`1–3 Meqabyan`, Sinodos, etc.). citeturn1search1turn0search0
+
+- **Theological profile.**  
+  **NHL** often reflects **Gnostic** cosmologies and christologies; Ethiopia’s canon is **non-Gnostic/orthodox** in theology (even when it preserves ancient apocalypses). The two “Apocalypse of Peter” texts exemplify this contrast. citeturn0search15turn0search6
+
+If you want, I can build a compact table with three columns (Ethiopia / DSS / Nag Hammadi), listing:  
+• exact textual overlaps (e.g., `Enoch`, `Jubilees`)  
+• shared genres (apocalypse, wisdom, para-biblical)  
+• contrasts (language, dates, theology)  
+with one-line notes and citations.
+
+Micah Blumberg:
+yes proceed with that
+
+Self Aware Networks GPT:
+Here’s a compact side-by-side map. (Ethiopia = the Orthodox Tewahedo canon + “broader canon”; DSS = Dead Sea Scrolls/Qumran; NHL = Nag Hammadi Library.)
+
+| Theme | Ethiopia (Orthodox Tewahedo) | Dead Sea Scrolls (Qumran) | Nag Hammadi Library |
+|---|---|---|---|
+| Core overlap: Enochic & Jubilean tradition | `1 Enoch` and `Jubilees` are **canonical/preserved in full** in Geʿez. citeturn0search0turn0search4 | Multiple **Aramaic/Hebrew fragments** of `Enoch` and `Jubilees` (esp. Cave 4). citeturn0search3 | No direct copies of `Enoch`/`Jubilees`; library is mainly Christian Gnostic texts in Coptic. citeturn0search5 |
+| Other shared deuterocanonicals | Includes books like **Sirach** and **Tobit**. citeturn0search0 | **Hebrew fragments** of **Sirach** and **Tobit** found at Qumran. citeturn0search15 | Not a focus; contents are Gnostic gospels/apocalypses rather than Jewish deuterocanonicals. citeturn0search5 |
+| “Apocalypse of Peter” title | Has the **proto-orthodox** *Apocalypse of Peter* (heaven/hell tour) in Ethiopic transmission. citeturn0search0 | — | Has a **different, Gnostic** *Apocalypse of Peter* (Codex VII): docetic themes, the “laughing” Savior. citeturn0search2turn0search10 |
+| Language of transmission | **Geʿez** (Ethiopic); translated largely from **Septuagint** tradition; plus broader canon (Sinodos, Didascalia, Ethiopic Clement, etc.). citeturn0search4turn0search0 | **Hebrew/Aramaic** (pre-Christian Jewish texts). citeturn0search7 | **Coptic** (4th-century codices of 2nd–3rd-century Christian texts). citeturn0search5 |
+| Date profile | Living Christian canon stabilized in late antiquity/medieval Ethiopia; preserves earlier Second-Temple works. citeturn0search0 | 3rd c. BCE–1st c. CE manuscripts. citeturn0search7 | Codices c. 4th c.; compositions mainly 2nd–3rd c. CE. citeturn0search5 |
+| Theological profile | **Non-Gnostic/orthodox** biblical canon + church-order books used liturgically/juridically. citeturn0search0 | **Second-Temple Judaism** (scriptural + parabiblical). citeturn0search7 | **Gnostic** cosmologies & christologies (e.g., *Apocryphon of John*, *Gospel of Thomas*). citeturn0search1turn0search5 |
+| Role in preservation | **Only complete** continuous transmission of `Enoch` and `Jubilees`; uniquely Ethiopian **Meqabyan (1–3)**; broader canon (Sinodos, Books of Covenant, Ethiopic Clement, Didascalia). citeturn0search0turn0search4 | Archaeological **proof of antiquity and diversity** of Enochic/Jubilean and related traditions. citeturn0search3 | Safeguards **otherwise lost** early Christian Gnostic texts in Coptic codices. citeturn0search5 |
+
+If you want, I can expand this into a longer checklist with short one-line summaries of each overlapping or unique work (e.g., `Enoch`, `Jubilees`, `Sirach`, `Tobit`, Ethiopic `1–3 Meqabyan`, *Apocryphon of John*, *Gospel of Thomas*, etc.).
+
+Micah Blumberg:
+Yes write one line summaries of each overlapping work, each unique work, and include any works found in other ancient libraries not so far mentioned in this chat
+
+Self Aware Networks GPT:
+Awesome—here’s a tight, one-line field guide.
+
+# Overlaps (Ethiopia ↔ Dead Sea Scrolls)
+
+- **1 Enoch** — Composite Jewish apocalypse (Watchers, heavenly journeys, final judgment) fully preserved in Geʿez; many Aramaic fragments at Qumran. citeturn0search0turn0search7  
+- **Jubilees** — Rewrites Genesis–Exodus with a 364-day calendar and angelic revelations; complete in Geʿez, multiple Qumran copies. citeturn0search0turn0search1  
+- **Sirach (Ben Sira)** — Wisdom instruction for practical righteousness; Hebrew fragments at Qumran, canonical in Ethiopia. citeturn0search12turn0search0  
+- **Tobit** — Diaspora piety tale with angelic aid (Raphael), marriage, and healing; Hebrew/Aramaic versions at Qumran, received in Ethiopia. citeturn0search12
+
+# “Title cousin” only (Ethiopia ↔ Nag Hammadi)
+
+- **Apocalypse of Peter** — Ethiopia preserves the proto-orthodox heaven/hell tour; Nag Hammadi has a different, Gnostic apocalypse under the same title. citeturn0search0turn0search13
+
+# Unique to the Ethiopian Orthodox Tewahedo “library” (among these three)
+
+- **1–3 Meqabyan (Ethiopian Maccabees)** — Indigenous Ethiopic martyr/faith narratives unrelated to Greek 1–4 Maccabees. citeturn0search15turn0search9  
+- **4 Baruch (Paralipomena of Jeremiah)** — Post-exilic legend cycle (Baruch, Jeremiah, Abimelech) received as scripture in Ethiopia. citeturn0search3turn0search14  
+- **Sinodos (4 books)** — Geʿez church-order/disciplinary collections used liturgically and juridically. citeturn0search6  
+- **Books of the Covenant (2)** — Ethiopian legal-liturgical compendium paired with Sinodos in the broader canon. citeturn0search6  
+- **Ethiopic Clement** — Local Geʿez church text attributed to Clement, transmitted with broader-canon materials. citeturn0search6  
+- **Didascalia (Geʿez)** — Ancient church order in Ethiopic transmission (catechesis, clergy norms, liturgy). citeturn0search6  
+- **Kebra Nagast** — National-theological epic (Solomon, Sheba, Ark) with scripture-adjacent authority in Ethiopia. citeturn0search11
+
+# Signature Dead Sea Scrolls works (not in the Ethiopian/Nag Hammadi corpora)
+
+- **Community Rule (Serekh ha-Yahad)** — Charter for the Qumran sect’s communal life and purity regime. citeturn0search18  
+- **War Scroll** — Apocalyptic battle plan of “Sons of Light” vs “Sons of Darkness.” citeturn0search18  
+- **Thanksgiving Hymns (Hodayot)** — First-person hymnic theology of election, sin, and deliverance. citeturn0search18  
+- **Temple Scroll** — Visionary legal rewrite centering a perfect Temple and cult. citeturn0search18  
+- **Copper Scroll** — Inventory of hidden treasures in cryptic locations. citeturn0search7  
+- **Pesharim (e.g., Habakkuk Pesher)** — Verse-by-verse prophetic commentaries decoding history. citeturn0search18
+
+# Signature Nag Hammadi texts (Coptic Gnostic library; not Ethiopian/DSS)
+
+- **Apocryphon of John** — Foundational Sethian cosmogony and revelation discourse. citeturn0search2  
+- **Gospel of Thomas** — Sayings collection of Jesus with esoteric, often aphoristic logia. citeturn0search19  
+- **Gospel of Philip** — Valentinian sacramental/mystagogical reflections. citeturn0search25  
+- **Hypostasis of the Archons** — Mythic exegesis of Genesis with archon/demiurge polemic. citeturn0search25  
+- **Gospel of Truth** — Meditative homily on ignorance, knowledge, and the saving name. citeturn0search25  
+- **Tripartite Tractate** — Valentinian systematic theology of emanations and redemption. citeturn0search25  
+- **Treatise on the Resurrection** — Epistolary defense of (spiritualized) resurrection. citeturn0search25  
+- **Thunder, Perfect Mind** — Dramatic “I-am” poem in a paradox-laden divine voice. citeturn0search19  
+- **Second Treatise of the Great Seth** — Polemic against “orthodox” believers and a docetic passion. citeturn0search19
+
+# Also: other ancient libraries you might want in the map
+
+- **Chester Beatty Papyri (𝔓45/46/47)** — 3rd-century papyri of Gospels/Acts, Paul’s letters, and Revelation (key witnesses for the NT text). citeturn0search16  
+- **Bodmer Papyri (e.g., P66, P72)** — 2nd–7th-century Greek/Coptic codices incl. early John (P66) and a miscellany with 1–2 Peter & Jude (P72). citeturn0search5turn0search10  
+- **Oxyrhynchus Papyri** — Egyptian papyrus trove with early Christian fragments (e.g., Greek *Gospel of Thomas* logia). citeturn0search19
+
+If you want, I can turn this into a 3-column table you can paste into your notes, or expand any line into a 2–3 sentence micro-summary with key dates and manuscript sigla.
+
+Micah Blumberg:
+The Oxyrhynchus papyri date to when? They had greek versions of scrolls that only appeared in the Gnostic Library?
+
+Self Aware Networks GPT:
+Short version:  
+- **Dating:** The Oxyrhynchus papyri span roughly from the **3rd century BCE up to the 7th century CE** (Ptolemaic through early Islamic Egypt), excavated beginning in **1896–97** by Grenfell & Hunt. citeturn0search3turn0search16turn0search11
+
+- **Greek versions of texts later known from Nag Hammadi? Yes.** Oxyrhynchus produced **Greek fragments** of several works whose **only complete copies** turned up centuries later in the Coptic **Nag Hammadi Library**:
+  - **Gospel of Thomas** — P.Oxy. **1** (early 3rd c., c. 200 CE), **654** (c. mid-3rd c.), **655** (early 3rd c.). These were recognized as Thomas only after the 1945 Nag Hammadi discovery. citeturn0search10turn0search7turn0search14turn0search5  
+  - **Gospel of Mary** — a **Greek** Oxyrhynchus fragment (**P.Oxy. L 3525**, 2nd–3rd c.) complements the later Coptic text tradition. citeturn0search2turn0search12  
+  - **Sophia of Jesus Christ** — a **Greek** fragment also survives among the Oxyrhynchus papyri alongside the Nag Hammadi Coptic versions. citeturn0search15
+
+Takeaway: Oxyrhynchus gives us **earlier Greek witnesses** to some sayings gospels and revelatory texts that the Nag Hammadi codices preserve **fully in Coptic**—so Oxyrhynchus often confirms that these “Gnostic library” works circulated in Greek centuries before the Coptic codices were copied. citeturn0search5
+
+Micah Blumberg:
+What do these libraries contain that are unique, I heard there was a different version of Daniel out there for example.
+
+Chester Beatty Papyri (𝔓45/46/47) — 3rd-century papyri of Gospels/Acts, Paul’s letters, and Revelation (key witnesses for the NT text). 
+Wikipedia
+
+Bodmer Papyri (e.g., P66, P72) — 2nd–7th-century Greek/Coptic codices incl. early John (P66) and a miscellany with 1–2 Peter & Jude (P72). 
+Wikipedia
++1
+
+Oxyrhynchus Papyri — Egyptian papyrus trove with early Christian fragments (e.g., Greek Gospel of Thomas logia). 
+Wikipedia
+
+Self Aware Networks GPT:
+Here’s a quick “what’s unique” cheat-sheet for each collection, plus where that “different Daniel” shows up.
+
+Chester Beatty Papyri (𝔓45/46/47)
+- 𝔓45: earliest large **single** papyrus to combine “Four Gospels + Acts” (patchy but crucial for early Gospel text). citeturn0search10
+- 𝔓46: very early **Pauline collection** whose **order** is unusual and that **includes Hebrews** (and likely **omits the Pastorals**); its sequence places Hebrews close to Romans—one of the rare ancient orders to do so. citeturn0search1turn0search13turn0search4
+- 𝔓47: one of the earliest substantial witnesses to **Revelation** (Rev 9–17). citeturn0search6
+- Related to this family: **Papyrus 967** (sistered in the Chester Beatty holdings as “Chester Beatty IX–X”) preserves the **Old Greek (pre-Theodotion) Daniel** with a **different chapter order** (e.g., Dan 7–8 before 5–6) and places **Susanna after Bel and the Dragon**—a form largely replaced later by Theodotion’s revision. This is the “different Daniel” you heard about. citeturn0search0turn0search9
+
+Bodmer Papyri (esp. P66, P72; also P75 for context)
+- P66: an early, near-complete **Gospel of John**; famous for **omitting the Pericope Adulterae** (John 7:53–8:11) and for its close textual profile to P75/Vaticanus. citeturn1search0turn1search3
+- P72: **earliest complete** texts of **1–2 Peter and Jude**, bound together in a **miscellany** with other works (a distinctive little library in one codex). citeturn0search7turn0search2turn0search11
+- P75 (Bodmer XIV–XV): early **Luke + John** whose text aligns strikingly with **Codex Vaticanus** (∼92–94% agreement), anchoring the Alexandrian tradition. citeturn1search1turn1search7turn1search10
+
+Oxyrhynchus Papyri (Greek finds from ca. 3rd c. BCE–7th c. CE)
+- **Scope:** hundreds of thousands of fragments; ~10% literary, with the **largest share of earliest NT papyri** and many early Christian/apocryphal pieces. citeturn1search2
+- **Greek precursors to Nag Hammadi texts:** three Greek fragments of the **Gospel of Thomas** (P.Oxy. 1, 654, 655) centuries before the Coptic codex—proving Thomas circulated in **Greek** and in **more than one form**. Also Greek **Gospel of Mary** and **Sophia of Jesus Christ** fragments. citeturn0search12turn0search8turn0search3
+- **Early church/para-biblical witnesses:** **Didache** Greek scraps (rare outside one 11th-c. MS), **Shepherd of Hermas**, **Apocalypse of Baruch**, and even **unknown gospel** fragments (e.g., Oxy 1224). citeturn1search5turn1search2turn1search8
+- **Non-LXX editions in the deuterocanon:** Oxyrhynchus preserves **Tobit copies that are “not LXX,”** showing multiple Greek textual forms; the project notes **different versions** also for other deuterocanonical books (context for why “different Daniel” traditions existed in Greek). citeturn1search2
+
+Bottom line on “different Daniel”
+- The clearest ancient **alternative Greek Daniel** is the **Old Greek** preserved in **Papyrus 967** (partly housed with the Chester Beatty material). Most later Christian manuscripts switched to **Theodotion’s revision**, so P967 is a rare, early window into the **pre-Theodotion** Daniel with **distinct order and readings**. citeturn0search0
+
+If you want, I can add a one-line “so what” for each item (why textual critics care), or expand P967’s Daniel vs. Theodotion into a tiny table (order, additions, notable variants).
+
+Micah Blumberg:
+You say centuries before
+"Greek precursors to Nag Hammadi texts: three Greek fragments of the Gospel of Thomas (P.Oxy. 1, 654, 655) centuries before the Coptic codex—proving Thomas circulated in Greek and in more than one form. Also Greek Gospel of Mary and Sophia of Jesus Christ fragments." Give me dates for all of these unique texts please. Include a one line "so what" for each item. And notable variations (including Daniel vs Theodotion.
+
+"even unknown gospel fragments (e.g., Oxy 1224)." say more about these.
+
+No table.
+
+Self Aware Networks GPT:
+Here are the concrete dates, “so-what” takeaways, and notable textual quirks for each item you asked about.
+
+Gospel of Thomas — the three Greek Oxyrhynchus fragments
+- P.Oxy. **1**: early 3rd century (often “≈ 200 CE”). So what: earliest Greek witness to Thomas; proves a Greek sayings tradition long before the Coptic Nag Hammadi codex. Notable variant: the tail of Greek logion 30 reappears at the end of Coptic logion 77 → Thomas circulated in more than one redactional form. citeturn2search20turn0search2  
+- P.Oxy. **654**: mid/late 3rd century (≈ 200–250 CE). So what: preserves Thomas 1–7 in Greek, again predating the 4th-century Coptic copy. Notable: wording diverges from Coptic and from P.Oxy.1, underscoring multiple Greek forms. citeturn2search21turn0search16  
+- P.Oxy. **655**: early 3rd century. So what: independent Greek witness (logia 36–39) showing the same “multi-form” phenomenon. Notable: different scribal conventions (e.g., no nomina sacra here) versus the other fragments. citeturn0search9
+
+Gospel of Mary — the two Greek Oxyrhynchus/Rylands fragments
+- P.Oxy. **L 3525**: 3rd century. So what: Greek Mary in roll/codex form centuries before the famous 5th-century Coptic Berlin Codex; confirms Greek circulation and some wording differences from Coptic. Notable: shorter than the Rylands fragment; published only in 1983 from an earlier Oxyrhynchus find. citeturn0search3turn0search10  
+- Papyrus **Rylands 463**: 3rd century. So what: earliest extant Mary witness (Greek), anchoring composition before the 200s. Notable: passages parallel the Coptic but are not identical, showing an independent Greek textual form. citeturn1search1turn1search2turn1search6
+
+Sophia (Wisdom) of Jesus Christ — the Greek Oxyrhynchus fragment
+- P.Oxy. **1081**: generally dated **4th century** (some argue late 3rd). So what: a Greek fragment paralleling the Coptic versions (NHC III; Berlin BG 8502) → demonstrates that this revelation dialogue circulated in Greek, not only in later Coptic. Notable: line-by-line parallels to both the Nag Hammadi and Berlin recensions help reconstruct the Greek Vorlage. citeturn2search3turn2search7turn2search14
+
+“Unknown gospel” from Oxyrhynchus
+- P.Oxy. **1224**: **late 3rd / early 4th century** fragments with six short sayings/passages. So what: two pieces parallel Mark 2:17 and Luke 9:50 yet are **textually independent** of the canonical forms → evidence for additional Jesus-tradition collections beyond our four Gospels. Notable: composition date is uncertain (some push the underlying text back to ~50–150 CE), but the manuscript is late 3rd/early 4th. citeturn0search6
+
+“Different Daniel” (Old Greek Daniel vs. later Theodotion form)
+- **Papyrus 967** (often cataloged with the Chester Beatty group): **3rd century CE**. So what: preserves the **Old Greek** (pre-Theodotion) **Daniel** that was largely displaced in late antiquity; gives us an early, alternative Greek edition of Daniel. Notable variants: **chapter order differs** (e.g., Dan 7–8 placed before 5–6); **Susanna** is **not** prefixed to the book and appears **after Bel and the Dragon**; numerous lexical/translation differences from the Theodotion recension that dominates later LXX/Christian manuscripts. citeturn0search5turn0search12
+
+Big picture “so what”
+- Oxyrhynchus pushes multiple “Nag Hammadi–type” texts back into the **Greek** sphere, often **a century or more earlier** than the Coptic codices, showing that these works were not only late Coptic creations but part of a broader, earlier Greco-Egyptian textual ecosystem. citeturn0search2
+
+If you want, I can add quick notes on a few more Oxyrhynchus Christian pieces (e.g., Didache P.Oxy. 1782; Hermas; other apocrypha) with dates and why textual critics care. citeturn0search14
+
+Micah Blumberg:
+yes proceed
+
+Self Aware Networks GPT:
+Great—here are the Oxyrhynchus pieces most people ask about, with concrete dates, a one-line “so what,” and any notable textual quirks. I’ll also repeat the “different Daniel” note at the end for contrast.
+
+Gospel of Thomas (Greek, Oxyrhynchus)
+- P.Oxy. 1 — early 3rd c. (≈ 200 CE). So what: earliest Greek witness to Thomas—proves a Greek sayings tradition long before the Coptic Nag Hammadi codex. Notable: redactional mismatches with the Coptic (e.g., tail of Gr. logion 30 ≈ end of Copt. logion 77) show multiple Greek forms. citeturn1search0
+- P.Oxy. 654 — mid/late 3rd c. (≈ 200–250 CE). So what: preserves prologue + logia 1–7 in Greek, again predating the Coptic copy. Notable: wordings diverge from both P.Oxy. 1 and the Coptic, reinforcing that Thomas circulated in variant Greek recensions. citeturn1search0
+- P.Oxy. 655 — early 3rd c. So what: independent Greek witness to logia 36–39. Notable: different scribal practices (e.g., treatment of nomina sacra) hint at diverse transmission lines. citeturn1search0
+
+Gospel of Mary (Greek, not just later Coptic)
+- P.Oxy. L 3525 — 3rd c. So what: Greek Mary centuries earlier than the 5th-c. Coptic Berlin Codex—anchors Greek circulation and earlier composition. Notable: wording is not identical to Coptic; it’s an independent Greek form. citeturn0search3
+- P.Ryl. 463 — 3rd c. So what: complementary Greek witness that further secures Mary’s Greek prehistory. Notable: overlaps with, but is not a copy of, the Coptic text. citeturn1search1
+
+Sophia (Wisdom) of Jesus Christ (Greek)
+- P.Oxy. 1081 — 4th c. (some date late 3rd). So what: shows this revelation dialogue circulated in Greek; the Nag Hammadi and Berlin Coptic copies descend from a Greek Vorlage. Notable: close line-parallels help reconstruct that Vorlage. citeturn0search19
+
+Didache (Teaching of the Twelve Apostles)
+- P.Oxy. 1782 — late 4th c., on vellum (two small folia). So what: the only early Greek witness apart from the 11th-c. complete manuscript; anchors the Two Ways section in late antiquity. Notable: contains extra/expanded lines in the “sectio evangelica” (e.g., “sun rises on evil and good”), showing a form slightly fuller than the medieval copy. citeturn0search1turn1search1turn1search3
+
+Shepherd of Hermas (very popular early Christian text)
+- P.Oxy. 4706 — ca. 200 CE (Visions 3–4; Commandments 2, 4–9).  
+- P.Oxy. 4705 — ca. 250 CE (Visions 1:1, 8–9).  
+- P.Oxy. 3526 — ca. 350 CE (Commandments 5–6).  
+So what: multiple 3rd–4th-c. Greek witnesses confirm wide early use (Hermas even appears in Codex Sinaiticus). Notable: the Oxyrhynchus set samples different sections, useful for reconstructing the book’s early textual stratigraphy. citeturn0search0turn1search4
+
+Apocalypse of Baruch (2 Baruch)
+- P.Oxy. 403 — 4th–5th c. (2 Baruch 12–14). So what: a rare Greek witness to a work otherwise mostly in Syriac; shows its Greek transmission in Egypt. Notable: the Oxyrhynchus fragment was published already in vol. III (1903). citeturn1search0turn1search5
+
+Other early-Christian/apocryphal bits people overlook
+- Oxyrhynchus “unknown gospels” (e.g., P.Oxy. 210, 840, **1224**) — P.Oxy. 1224 is late 3rd/early 4th c. So what: preserves Jesus-sayings that parallel Mark 2:17; Luke 9:50 yet aren’t copied from any canonical Gospel—evidence of additional sayings collections in circulation. Notable: the text is extremely fragmentary; editors see independence from the canonical redactions. citeturn0search3turn0search5turn0search19
+
+Deuterocanonical variety (context for “alternate forms”)
+- Oxyrhynchus Tobit fragments (e.g., P.Oxy. 1076; 1594) — 3rd–6th c. So what: at least some are explicitly **“not LXX,”** documenting multiple Greek textual forms of Tobit. Notable: strengthens the case that several deuterocanonicals circulated in more than one Greek edition. citeturn1search0
+
+Why this matters for the “different Daniel” you asked about
+- **Papyrus 967 (Chester Beatty IX–X)** — 3rd c. CE. So what: preserves the **Old Greek** Daniel largely replaced later by **Theodotion’s** revision—an alternate Greek edition of the book. Notable variants: **different chapter order** (e.g., 7–8 before 5–6); **Susanna** is **after** Bel and the Dragon (not prefixed); extensive lexical differences from Theodotion. citeturn0search6
+
+If you want, I can add two-sentence glosses on the specific Didache lines that are longer in P.Oxy. 1782, or point you to images/folios for any one item.
+
+Micah Blumberg:
+Are there any other ancient churches or libraries with unique versions of biblical texts?
+
+Self Aware Networks GPT:
+Yes—there are several ancient churches and manuscript “centers” whose textual traditions preserve readings or even whole works that look different from what most modern Bibles print. Here are the most important ones, with the distinctive feature and why it matters:
+
+- **Samaritan community (Samaritan Pentateuch).**  
+  Distinct Pentateuchal text with ~6,000 variants from the Masoretic Text, including a version of the Ten Commandments that explicitly commands building an altar on **Mount Gerizim**; thousands of its readings align with the Septuagint. So what: it preserves an **independent Torah line** that sometimes sides with the Greek LXX against the medieval Jewish standard. citeturn0search2turn0search12
+
+- **Greek Orthodox stream (Septuagint-based OT).**  
+  The Greek Bible used in the East keeps **LXX-only pieces** such as **Psalm 151** (and often the **Odes**, including the Prayer of Manasseh), and an **alternate edition of Jeremiah** that is shorter and differently ordered than the Masoretic; Qumran later turned up Hebrew witnesses for both long and short Jeremiah and even a Hebrew Psalm 151 (as 151A–B). So what: the “Orthodox OT” reflects an **older Greek textual ecosystem**, not just a translation of the Masoretic. citeturn0search10turn0search20
+
+- **Armenian Apostolic tradition.**  
+  For many centuries some Armenian Bibles included **“Third Corinthians”** (sometimes treated as canonical), a Pauline-correspondence piece otherwise classed as apocryphal in Greek/Latin churches. So what: Armenia preserves a **local canon memory** where an extra Pauline letter circulated with Scripture. citeturn0search5turn0search15
+
+- **Syriac churches (Old Syriac & the Diatessaron).**  
+  Before the standard **Peshitta**, Syriac Christians used (a) the **Old Syriac Gospels** (Syriac Sinaiticus & Curetonian)—earlier, often strikingly different translations; and (b) **Tatian’s Diatessaron** (c. 160–175 CE), a single Syriac **Gospel harmony** used liturgically for generations (Ephrem wrote a commentary on it). So what: Syriac Christianity shows **pre-canonical diversity**—textual forms and even a harmonized Gospel in church use long before later standardization. citeturn0search3turn0search4turn0search14
+
+- **Slavonic (Byzantine-Slavic) transmission.**  
+  Two major Jewish apocalypses survive **only in Church Slavonic**: **2 Enoch** (a.k.a. “Slavonic Enoch”) and the **Apocalypse of Abraham** (though 2 Enoch now has small Coptic scraps). So what: the Slavic churches/functions preserved **otherwise lost Second-Temple literature** that helps reconstruct Jewish apocalyptic thought. citeturn0search1turn0search0turn0search9turn0search18
+
+- **St Catherine’s Monastery, Sinai (library + scriptoria).**  
+  (a) **Codex Sinaiticus** (4th c.) copies the Greek OT+NT **and** appends the **Epistle of Barnabas** and **Shepherd of Hermas** after the NT—showing some early Christians shelved these with Scripture;  
+  (b) the **Syriac Sinaiticus** (Old Syriac Gospels) is a palimpsest preserving a **pre-Peshitta** Syriac form. So what: Sinai’s holdings document **early canon fluidity** and **distinct vernacular Gospel traditions**. citeturn1search0turn0search3
+
+- **Latin West: “Old Latin” & the Western text (e.g., Codex Bezae).**  
+  The **Old Latin** Bible and the Greek-Latin **Codex Bezae** (D/05) preserve a **Western text** with bold differences (e.g., Acts about **8% longer**; unique pericopes and rephrasings) from the Alexandrian tradition that underlies most modern editions. So what: the Western line shows the NT text **circulating in significantly different forms** well into late antiquity. citeturn1search1turn1search3
+
+- **“Old Greek” Daniel vs. Theodotion (Chester Beatty/Papyrus 967).**  
+  The **Old Greek** (pre-Theodotion) version of Daniel survives in **Papyrus 967** with a **different chapter order** (e.g., 7–8 before 5–6) and **Susanna placed after Bel and the Dragon**; later Christian Bibles mostly swapped in **Theodotion’s** revision. So what: Daniel exists in **two Greek editions**, and the earlier one reshapes how the book reads and flows. citeturn1search0
+
+If you want, I can zoom in on any one stream (e.g., Old Syriac vs. Peshitta in a few famous Gospel passages, or the exact Jeremiah/LXX order differences) and list the headline variants with citations to the main scholarly editions.
+
+Micah Blumberg:
+Samaritan community (Samaritan Pentateuch).
+Distinct Pentateuchal text with ~6,000 variants from the Masoretic Text, including a version of the Ten Commandments that explicitly commands building an altar on Mount Gerizim; thousands of its readings align with the Septuagint. So what: it preserves an independent Torah line that sometimes sides with the Greek LXX against the medieval Jewish standard.
+
+Self Aware Networks GPT:
+Absolutely—here’s a focused deep-dive on what’s unique about the **Samaritan Pentateuch (SP)**, with concrete examples, dates, and why it matters.
+
+# What’s distinctive about the Samaritan Pentateuch
+
+- **Scale of difference.** Roughly **6,000 readings** differ from the medieval Jewish **Masoretic Text (MT)**; about **2,000 of those agree with the Greek Septuagint (LXX)**—evidence that SP preserves an **independent textual line** dating back to Second-Temple times, not just later sectarian edits. citeturn0search0turn0search15
+
+- **Mount Gerizim emphasis (the headline variant).**  
+  • **Deut 27:4** in SP reads **“Mount Gerizim”** (altar site) where MT reads **“Mount Ebal.”** The “Gerizim” reading is also echoed in some Second-Temple witnesses and discussed extensively in scholarship. So what: this underwrites the Samaritan cult center and shows that **central-sanctuary wording** circulated beyond Samaritan circles. citeturn0search7  
+  • **Samaritan Decalogue form:** the **Tenth Commandment** (in Samaritan enumeration) explicitly commands building an altar on **Mount Gerizim**—a theological signature of the SP. So what: the **Decalogue itself** encodes the Gerizim claim. citeturn0search17turn0search8turn0search12
+
+- **Harmonizing editorial profile (pre-Samaritan style already at Qumran).**  
+  SP often **harmonizes parallel laws or narratives** (e.g., aligning wording across Exodus/Deuteronomy), smooths grammar, and expands with clarifying phrases. Critically, **“pre-Samaritan”** Pentateuch manuscripts from **Qumran** already show the same **harmonizing** profile—so the style **predates** the later Samaritan community. So what: SP stands within a broader **Second-Temple textual family** attested at Qumran, not a late invention. citeturn0search1turn0search11turn0search18
+
+- **Alignment with the LXX at many points.**  
+  Scholars have long noticed clusters where SP and LXX share readings over against MT (e.g., small harmonizations, word order, clarifications). So what: the **SP–LXX overlap** suggests a **shared Hebrew ancestor** for many readings, not mere back-translation or borrowing. citeturn0search10
+
+- **Script and transmission.**  
+  SP is copied in **Samaritan script** (a direct continuation of paleo-Hebrew letter forms). Our **complete SP manuscripts are medieval** (from ca. 9th–10th c. CE onward), but their text demonstrably reflects much **older** traditions visible in the DSS. So what: even with late copies, the **text-type is ancient**. citeturn0search4
+
+- **The Abisha Scroll (famous Samaritan Torah).**  
+  The Samaritans ascribe it to **Abisha**, Aaron’s great-grandson; modern scholarship dates it **much later** (medieval), though it is venerable within the community and central to liturgy and identity. So what: illustrates the **living continuity** of SP in Samaritan worship, even if the claimed Mosaic-era date isn’t accepted academically. citeturn0search2turn0search5
+
+# Why textual critics care (quick hits)
+
+- **Independent Torah line.** SP = a **third major stream** alongside MT and LXX. Where SP and LXX agree against MT—especially when **DSS** back them—critics have **strong evidence** for an **earlier Hebrew Vorlage**. citeturn0search0turn0search11
+
+- **Cult-centralization history.** Gerizim/Ebal and the **Decalogue altar command** are hard data for **rival sacred-geography claims** in late biblical/Second-Temple Judaism. citeturn0search17
+
+- **Pre-Samaritan at Qumran.** The **harmonizing** “pre-Samaritan” Pentateuch manuscripts show SP’s **editing habits** were **already in the air** at Qumran, tying SP into the broader textual ecology of the period. citeturn0search1
+
+If you want, I can list a handful of **specific SP ↔ LXX ↔ MT** places (chapter-and-verse) where the **DSS** support the SP/LXX side, and note what those readings change for interpretation.
+
+Micah Blumberg:
+Greek Orthodox stream (Septuagint-based OT).
+The Greek Bible used in the East keeps LXX-only pieces such as Psalm 151 (and often the Odes, including the Prayer of Manasseh), and an alternate edition of Jeremiah that is shorter and differently ordered than the Masoretic; Qumran later turned up Hebrew witnesses for both long and short Jeremiah and even a Hebrew Psalm 151 (as 151A–B). So what: the “Orthodox OT” reflects an older Greek textual ecosystem, not just a translation of the Masoretic.
+
+Self Aware Networks GPT:
+Totally—here’s what’s distinctive about the Greek Orthodox (Septuagint-based) stream, with concrete examples and why they matter.
+
+- **Psalm 151 really is “extra” in the LXX—and it turned up in Hebrew at Qumran.**  
+  Orthodox Bibles print Psalm 151 at the end of the Psalter; for a long time it was known only in Greek, but the Dead Sea Scrolls’ “Great Psalms Scroll” (11Q5) revealed that it derives from **two Hebrew pieces (often labeled 151A–B)**. That shows Psalm 151 wasn’t a late Greek invention but a Second-Temple Hebrew psalm later conflated in Greek. So what: the Orthodox Psalter preserves a genuine ancient psalm tradition, not just a translator’s flourish. citeturn1search11
+
+- **The “Odes” section—especially the Prayer of Manasseh—sits after the Psalms in many LXX codices and Orthodox Psalters.**  
+  The **Prayer of Manasseh** (a short penitential prayer) appears in Greek LXX tradition among the **Odes** after the Psalms (e.g., Codex Alexandrinus) and is received liturgically in Orthodoxy; some witnesses suggest a Greek composition date in the late Second-Temple period, with a **different Hebrew prayer of Manasseh** also found at Qumran. So what: Orthodoxy retains a small liturgical anthology bound into the Bible that preserves Second-Temple prayer traditions otherwise on the margins. citeturn0search0turn0search3
+
+- **Jeremiah is a different edition in the LXX—shorter and differently ordered—and Qumran shows both “long” and “short” Hebrew forms existed.**  
+  The **LXX Jeremiah** is about **one-fifth shorter** and rearranged (notably, the oracles to the nations are placed earlier) compared with the Masoretic Text; this isn’t just “translation trimming” but reflects a **different Hebrew Vorlage**. Qumran manuscripts (e.g., 4QJer) attest **both** kinds of Hebrew Jeremiah, confirming that the Greek edition mirrors a real Hebrew textual stage, not an editor’s whim. So what: the “Orthodox OT” is not merely a translation of the later rabbinic text; it preserves an **earlier edition history** of a major prophetic book. citeturn1search6turn1search0
+
+- **Broader LXX-only content remains visible in Orthodox usage.**  
+  Besides Psalm 151 and the Prayer of Manasseh, the Greek Bible tradition preserves items like **1 Esdras** and the **Book of Odes** in some manuscripts/liturgical contexts—again signaling that the Greek stream transmits ancient material beyond the Masoretic corpus. So what: the Orthodox canon and lectionary keep windows into Second-Temple textual ecosystems that modern “MT-based” Bibles often omit. citeturn1search16
+
+If you want, I can list a few headline chapter-and-verse spots where LXX Jeremiah’s order differs (with the matching MT references), plus a quick note on how 11Q5’s Hebrew Psalm 151A–B maps line-by-line onto the Greek.
+
+Micah Blumberg:
+Armenian Apostolic tradition.
+For many centuries some Armenian Bibles included “Third Corinthians” (sometimes treated as canonical), a Pauline-correspondence piece otherwise classed as apocryphal in Greek/Latin churches. So what: Armenia preserves a local canon memory where an extra Pauline letter circulated with Scripture.
+
+Self Aware Networks GPT:
+Great focus. Here’s the “what/when/why it matters” on the Armenian Apostolic stream and **Third Corinthians**—plus exactly how it sat in Armenian Bibles.
+
+• What it is  
+“Third Corinthians” is part of a two-letter **Corinthian correspondence**: (a) a letter *from* the Corinthians to Paul and (b) Paul’s reply (“Third Corinthians”). In antiquity it also circulates inside the **Acts of Paul**. Earliest composition is usually placed c. `160–180 CE` (anti-Gnostic, pro-orthodox polemic). citeturn0search2
+
+• Earliest manuscripts & languages  
+The oldest known witness is **Papyrus Bodmer X** (3rd century), showing the text in Greek; later transmission also in **Coptic, Latin, and Armenian**. citeturn0search2
+
+• Where it was considered Scripture  
+Early Syriac churches treated the correspondence as canonical for a time (Ephrem knew it), then dropped it under Greek influence in late antiquity. The **only place it stayed inside the New Testament into the medieval period was Armenia**. Armenian NT manuscripts physically **insert the correspondence in the Pauline corpus**—classically **between 2 Corinthians and Galatians**. citeturn0search14turn0search7
+
+• Armenian canon lists that include it  
+Although **Anania Shirakatsi (7th c.)** did **not** list it, later authoritative Armenian lists **do**: **Hovhannes Imastaser (11th c.)**, **Mekhitar of Ayrivank (13th c.)**, and **Grigor Tatevatsi (14th c.)**. In the early printed era it appears in the **Oskan Bible (1666)**; by **Zohrab’s 1805** edition it’s relegated to an appendix, and **modern Armenian editions omit it** from the NT. So: long local canonical memory, later normalized. citeturn0search2turn0search8
+
+• How scholars rediscovered it in the West  
+An **Armenian manuscript** publicized in the 17th century alerted European scholars, and more Greek/Latin witnesses surfaced in the late 19th–20th centuries; modern studies treat it as part of the **Acts of Paul** dossier. citeturn0search0turn0search11
+
+• Why it mattered theologically (“so what”)  
+The letter aims squarely at **second-century heresies** (docetism, denial of creation’s goodness), giving later churches a Pauline-voiced **anti-Gnostic** catechesis. Its Armenian reception shows how **local canons** could preserve pastoral tools that the broader Greek/Latin canon did not. citeturn0search2
+
+If you’d like, I can quote a couple of the sharp anti-docetic lines and show where they line up with themes in the Pastoral Epistles and Ignatius—useful for your equivalence mapping. citeturn0search12
+
+Micah Blumberg:
+Syriac churches (Old Syriac & the Diatessaron).
+Before the standard Peshitta, Syriac Christians used (a) the Old Syriac Gospels (Syriac Sinaiticus & Curetonian)—earlier, often strikingly different translations; and (b) Tatian’s Diatessaron (c. 160–175 CE), a single Syriac Gospel harmony used liturgically for generations (Ephrem wrote a commentary on it). So what: Syriac Christianity shows pre-canonical diversity—textual forms and even a harmonized Gospel in church use long before later standardization. 
+Wikipedia
++2
+Wikipedia
++2
+
+Self Aware Networks GPT:
+Here’s a tight, source-backed snapshot of the **Syriac Old Gospel tradition** and the **Diatessaron**—what they are, when they were used, and why they matter.
+
+**What came before the Peshitta? Two tracks ran in parallel (2nd–5th c.):**
+
+1) **Old Syriac Gospels** (two independent, very early Syriac translations of the Four Gospels)  
+- **Syriac Sinaiticus** (a.k.a. Sinaitic Palimpsest; St Catherine’s Monastery, Sinai): a late-4th/early-5th-century codex of (nearly) all four Gospels in Syriac, discovered by Agnes Smith Lewis in 1892; the Gospel text was later overwritten in **778 CE** with lives of female saints (hence “palimpsest”). So what: it’s the **oldest Syriac four-Gospel witness**, showing a pre-Peshitta translation and distinctive readings. Notables: it **omits Mark 16:9–20** (the “Long Ending”), aligning with some of the earliest Greek/Coptic witnesses. citeturn1search1turn1search3turn1search5turn2search2
+
+- **Curetonian Gospels** (British Library Add. 14451): a **5th-century** manuscript preserving a different Old Syriac translation of the four Gospels (independent of the Sinaiticus). So what: proves **more than one early Syriac Gospel translation** circulated before the Peshitta. Notables: at places it has striking readings versus Peshitta/Greek (e.g., variant wording in **Matt 1:16**); together with Sinaiticus it lets scholars map **pre-standard Syriac** Gospel text. citeturn0search5turn2search7
+
+2) **Tatian’s Diatessaron** (a single harmonized Gospel)  
+- **Date & use:** composed **c. 160–175 CE** in Syriac by Tatian; it became the **standard Gospel text** in parts of the Syriac-speaking church for **centuries** (down to ~400), before being supplanted by the four separate Gospels. So what: shows a **pre-canonical liturgical practice** where a **harmonized Gospel** stood in church use. citeturn1search4  
+- **Ephrem’s commentary:** We know its wording/sequence from **Ephrem the Syrian’s** Commentary (survives in Armenian and largely in Syriac), which lets scholars reconstruct Tatian’s base text and order. So what: gives **direct access** to an otherwise lost 2nd-century Gospel harmony. citeturn0search6turn0search15  
+- **Replacement by the four Gospels:** Late antique sources and Syriac reference works describe how, by the early 5th c. (often associated with **Rabbula of Edessa**), churches in Syria **transitioned** from the Diatessaron to the four separate Gospels (Old Syriac → Peshitta). So what: documents the **standardization** from harmony to fourfold Gospel in Syriac Christianity. citeturn1search4turn1search3turn2search11
+
+**Why scholars care (quick hits):**  
+- The **Old Syriac** witnesses (Sinaiticus & Curetonian) **predate** the Peshitta and sometimes line up with **very early Greek** readings (e.g., the **absence of Mark 16:9–20**), so they’re crucial for **textual criticism** and for seeing how Gospel text looked **before** later standardization. citeturn2search2  
+- The **Diatessaron** proves that, in the 2nd–4th centuries, at least some Syriac churches **read one harmonized Gospel** at the altar—only later adopting the **four-book** format that feels “normal” today. Ephrem’s commentary anchors this historically. citeturn1search4turn0search14
+
+If you want, I can list a few headline **Old Syriac vs. Peshitta** places (chapter/verse) that materially affect interpretation (e.g., **Matthew 1:16**, **Luke 2:14** tradition-lines, the **Mark 16** ending), with short notes on how each reading fits the wider manuscript evidence.
+
+Micah Blumberg:
+Slavonic (Byzantine-Slavic) transmission.
+Two major Jewish apocalypses survive only in Church Slavonic: 2 Enoch (a.k.a. “Slavonic Enoch”) and the Apocalypse of Abraham (though 2 Enoch now has small Coptic scraps). So what: the Slavic churches/functions preserved otherwise lost Second-Temple literature that helps reconstruct Jewish apocalyptic thought.
+
+Self Aware Networks GPT:
+Here’s the crisp picture of what’s special about the **Slavonic (Byzantine-Slavic) transmission** and its two headline apocalypses—plus one more Slavonic-only gem—and why they matter.
+
+2 Enoch (a.k.a. “Slavonic Enoch,” “Secrets of Enoch”)
+- What it is: A Second-Temple style ascent apocalypse in which Enoch tours **ten heavens**, receives creation secrets, and delivers final exhortations; preserved only in **Church Slavonic** in >20 MSS, with **long** and **short** recensions. So what: it’s a rare window into Jewish apocalyptic and priestly speculation otherwise lost in Greek/Hebrew lines. citeturn0search5
+- Date & language: Composed in antiquity (often placed 1st c. CE, though debated), translated into **Greek** and then **Slavonic**; our MSS are 14th–18th c. Slavic copies of a much older work. So what: despite late copies, the text-type is ancient and independent. citeturn0search0
+- Coptic surprise: In **2009** scholars identified **Coptic fragments** of 2 Enoch (Qasr Ibrim/Nubia), proving it once circulated beyond Slavonic—“no longer Slavonic only.” So what: confirms the text’s broader ancient footprint and helps control the Greek/Slavonic translation history. citeturn0search1turn0search6turn0search10
+- Notable features/variations: (i) **Two recensions** (long/short) with different expansions; (ii) a dramatic **Melchizedek appendix** (birth/exaltation narrative) at the end of the long recension; (iii) distinctive cosmology and creation lore that scholars use to map Second-Temple ideas moving toward early Jewish mysticism. So what: these layers let us see competing redactional agendas and evolving angelology/priesthood concepts. citeturn0search4turn0search14
+
+Apocalypse of Abraham
+- What it is: A Jewish apocalypse (post-70 CE) in which **Abraham**, guided by the angel **Yahoel**, is led from idol-breaking to a heavenly vision that includes the fall, **Azazel** imagery, and the **Temple’s destruction**. So what: among the clearest Second-Temple apocalypses to survive **only** in Slavonic, showcasing early Jewish theophany and anti-idolatry polemic. citeturn0search11
+- Transmission & date: Known from **Old Church Slavonic** manuscripts embedded in the **Tolkovaya Paleya** (an explanatory medieval compendium); generally dated **70–150 CE** and thought to reflect a **Semitic (often Hebrew) original** via a lost Greek intermediary. So what: the Slavonic preserves a Jewish work whose Hebrew/Greek ancestors disappeared elsewhere. citeturn1search3turn0search12
+- Why scholars love it: (i) Its angelology (**Yahoel**) illuminates transitions toward the Metatron/Michael complex; (ii) its post-70 perspective anchors temple-destruction memory; (iii) it influenced/was known in Byzantine and Slavic milieus and even used later by **Bogomils**. So what: it ties Jewish apocalyptic to medieval Christian reception history in the Balkans. citeturn1search5turn1search1
+
+Bonus Slavonic-only pseudepigraphon: Ladder of Jacob
+- What it is: An expansion of Jacob’s dream (Gen 28) where a **ladder of twelve steps** maps epochs/empires, with visionary prayer and angelic revelation; preserved **only in Slavonic** in the **Tolkovaya Paleya**. So what: another major Second-Temple-style piece surviving uniquely in the Slavic tradition, useful for tracking “merkabah” motifs and apocalyptic periodization. citeturn1search0turn1search8
+- Probable origin & layers: A Jewish core after 70 CE later received **Byzantine/Christian interpolations** before translation into Slavonic (9th c. or later). So what: it shows how Jewish apocalypses were adapted and conserved in Orthodox Slavic books. citeturn1search0
+
+Context and “so what” for the whole Slavonic stream
+- The **Slavonic churches and scriptoria** transmitted apocalypses (2 Enoch, Apocalypse of Abraham, Ladder of Jacob) that **vanished** in Greek/Hebrew lines; some later **Bogomil** communities even treated them as scripture. So what: without the Slavic line, big pieces of **Second-Temple apocalyptic** would be gone. citeturn0search17turn1search1
+
+If you want, I can pull a few striking lines (English) from each—e.g., Yahoel’s self-description in Apoc. Abr., a ten-heaven snapshot in 2 Enoch, and the “twelve steps = ages” line in Ladder of Jacob—with notes on where the Slavonic and reconstructed Greek diverge.
+
+Micah Blumberg:
+St Catherine’s Monastery, Sinai (library + scriptoria).
+(a) Codex Sinaiticus (4th c.) copies the Greek OT+NT and appends the Epistle of Barnabas and Shepherd of Hermas after the NT—showing some early Christians shelved these with Scripture;
+(b) the Syriac Sinaiticus (Old Syriac Gospels) is a palimpsest preserving a pre-Peshitta Syriac form. So what: Sinai’s holdings document early canon fluidity and distinct vernacular Gospel traditions.
+
+Self Aware Networks GPT:
+Here’s the sharp version on **St Catherine’s Monastery, Sinai**—what’s uniquely in its library (and why that matters):
+
+- **Codex Sinaiticus (4th c., Greek OT+NT)**  
+  • **What it contains uniquely:** after the New Testament it continues with the **Epistle of Barnabas** and the **Shepherd of Hermas**, showing that some 4th-century Christians literally shelved these with Scripture. It also famously **omits** both the **longer ending of Mark (16:9–20)** and the **Pericope Adulterae (John 7:53–8:11)**—key signals of early textual forms. citeturn0search13turn0search3turn0search8turn0search20  
+  • **Why it matters (“so what”):** Sinaiticus is our **oldest complete NT**; its book order, appended writings, and omissions document **canon fluidity** and an **Alexandrian-type text** that often stands behind modern critical editions. citeturn0search3  
+  • **Sinai “new finds”:** In **1975** monks at St Catherine’s uncovered a sealed room with **1,148 manuscripts**, including **12 complete leaves and fragments of Sinaiticus**, enriching our reconstruction of the codex. citeturn0search2turn0search7turn0search12
+
+- **Syriac Sinaiticus / Sinaitic Palimpsest (late 4th–early 5th c.)**  
+  • **What it is:** the **earliest surviving four-Gospel translation** (into **Syriac**), discovered by **Agnes Smith Lewis** at Sinai in **1892**; the Gospel text lies **under** an 8th-century overwriting (a palimpsest). citeturn0search1turn0search16turn0search6  
+  • **Textual profile:** preserves a **pre-Peshitta** Syriac form and, like Sinaiticus, **ends Mark at 16:8** (no longer ending), aligning with some of the earliest Greek/Coptic witnesses. citeturn0search4turn0search24  
+  • **Why it matters (“so what”):** together with the Greek Sinaiticus, the palimpsest proves Sinai housed **diverse early text-types**—Greek and Syriac—capturing both **vernacular Gospel tradition** (Old Syriac) and **early canon boundaries** (Barnabas/Hermas appended). citeturn0search1turn0search13
+
+Net takeaway: **Sinai isn’t just where a great codex was found**—it’s one of the few places where you can see, side-by-side, how different late-antique Christian communities **copied, arranged, and even defined** Scripture in real books and real languages. The 1975 “New Finds” show that story is still being refined from the same walls that guarded these texts for centuries. citeturn0search2
+
+Micah Blumberg:
+Latin West: “Old Latin” & the Western text (e.g., Codex Bezae).
+The Old Latin Bible and the Greek-Latin Codex Bezae (D/05) preserve a Western text with bold differences (e.g., Acts about 8% longer; unique pericopes and rephrasings) from the Alexandrian tradition that underlies most modern editions. So what: the Western line shows the NT text circulating in significantly different forms well into late antiquity.
+
+Self Aware Networks GPT:
+Here’s the “what’s unique” about the Latin West’s **Old Latin (Vetus Latina)** stream and the **Western text** as seen in **Codex Bezae (D/05)**—with concrete examples and why they matter.
+
+- **Acts is materially longer in the Western line.**  
+  In Codex Bezae the text of Acts runs ~8–10% longer than the Alexandrian text (e.g., vs. Sinaiticus); a careful character count finds ~7.9% longer, while standard intros say “about 10%.” So what: the Western tradition preserves a *different editional form* of Acts with expansions, paraphrases, and narrative asides that circulated widely in late antiquity. citeturn1search9turn1search12
+
+- **A one-off agraphon in Luke after 6:4 (the “Sabbath worker” saying).**  
+  Bezae alone inserts: “On the same day he saw someone working on the Sabbath and said… ‘Man, if you know what you are doing, you are blessed; but if you do not know, you are cursed and a transgressor of the Law.’” So what: Western witnesses could preserve *extra Jesus tradition* not found elsewhere. (You can see Cambridge’s note and a scholarly discussion.) citeturn1search7turn1search1
+
+- **Big textual swings—both additions and omissions.**  
+  Bezae’s Western text both *adds* (e.g., the longer Acts) and *omits* famous lines—most notably it lacks `Luke 23:34a` (“Father, forgive them…”), which is absent also in some other early witnesses. So what: the Western stream isn’t just “wordier”; it also shows how early copying/theology shaped which sayings were kept. citeturn0search5turn0search3
+
+- **Pericope Adulterae and other famous variants in Western witnesses.**  
+  The earliest *Greek* manuscript that **definitely** contains the Woman Taken in Adultery (`John 7:53–8:11`) is the Greek-Latin **Codex Bezae** (later many manuscripts have it, sometimes in other locations). So what: Western manuscripts are pivotal for the reception history of iconic passages. citeturn0search5turn0search4
+
+- **Bezae’s profile: Greek–Latin diglot, “Western order,” and pervasive rephrasing.**  
+  Bezae is a bilingual codex (Greek facing Latin) with the Gospels in the Western order (Matt–John–Luke–Mark), lots of paraphrase and unique readings, and it’s the flagship Greek witness to the Western text-type. Cambridge’s catalog even flags the unique Luke 6:4 story. So what: it anchors what scholars mean by the “Western” form. citeturn1search7turn1search3
+
+- **Old Latin ≠ Vulgate: a pre-Jerome constellation of Latin Bibles.**  
+  “Vetus Latina” refers to the *many* old Latin translations used before Jerome’s Vulgate; they often agree with Western Greek forms (like Bezae) and sometimes preserve very early readings. So what: the Latin West kept multiple, locally flavored Bible texts in use for centuries, not one uniform “Old Latin.” (Oxford’s handbook is the standard orientation.) citeturn1search2turn1search5
+
+**Why this matters (quick take):** the Old Latin/Western line shows the New Testament wasn’t a single fixed text in the 2nd–5th centuries. In whole books (Acts), famous lines (Luke 23:34a), and even extra sayings (Luke 6:4 add-on), we can still read *other early shapes* of the story—thanks above all to Codex Bezae and its Latin cousins. citeturn1search9turn1search12turn1search7
+
+Micah Blumberg:
+“Old Greek” Daniel vs. Theodotion (Chester Beatty/Papyrus 967).
+The Old Greek (pre-Theodotion) version of Daniel survives in Papyrus 967 with a different chapter order (e.g., 7–8 before 5–6) and Susanna placed after Bel and the Dragon; later Christian Bibles mostly swapped in Theodotion’s revision. So what: Daniel exists in two Greek editions, and the earlier one reshapes how the book reads and flows.
+
+Self Aware Networks GPT:
+Here’s the clear picture on **Old Greek (OG) Daniel vs. Theodotion (TH)**, what’s different, who preserves what, and why it matters.
+
+- **What the two “editions” are.**  
+  The **Old Greek** is the earlier Septuagint translation of Daniel; in late antiquity most churches switched to **Theodotion’s** Greek revision (2nd c. CE). Jerome even notes in 407 CE that churches “publicly read” Daniel according to Theodotion, not the LXX. So: two rival Greek Daniels, with TH becoming standard in Christian use. citeturn0search2
+
+- **Key witnesses.**  
+  The **only pre-Hexaplaric** witness to OG Daniel is **Papyrus 967** (3rd c. CE), a big codex of Ezekiel–Daniel–Esther; later OG is seen in **Codex Chisianus 88** and in the **Syro-Hexapla** (a Syriac translation of the Hexaplaric Greek). P967 is crucial because it predates Origen’s Hexapla revisions. citeturn0search4turn0search5turn0search8
+
+- **Chapter/order differences that change the “flow.”**  
+  In **P967**, **Dan 7–8 comes before 5–6**, reshaping the narrative arc; and **Susanna** appears **after** **Bel and the Dragon**, closing the book—whereas later printed Bibles put Susanna as chap. 13 in front. (Jerome’s editorial choices helped cement the familiar order.) citeturn0search4turn0search5turn0search16
+
+- **Placement of the additions (Susanna; Bel & the Dragon) really differs.**  
+  OG and TH both transmit the Greek “additions,” but P967 shows **Susanna after Bel/Dragon**—likely reflecting an older ending position for Susanna. Some scholars infer that Susanna circulated as a distinct “little book,” which could explain why it sits at the end in P967. citeturn0search0turn0search7
+
+- **Not the same translation—down to vocabulary.**  
+  The OG and TH are **independent** Greek versions, not simple revisions of each other. In Daniel 4–6, **less than 19%** of the vocabulary overlaps between TH and OG; where they do agree, the agreements are often verbatim—but those are few. The overall profiles show **different translation philosophies and Vorlagen**. citeturn0search1
+
+- **Narrative/theological texture diverges.**  
+  Recent analysis shows the two versions often reflect **institutional and narrative** differences (e.g., how royal decrees and public settings are framed). Theodotion generally tracks the Hebrew/Aramaic MT more closely; OG sometimes paraphrases or preserves a different Hebrew stage. citeturn0search11turn0search13
+
+- **Reception history: Theodotion “wins.”**  
+  By the 4th–5th centuries, **TH Daniel** had **superseded** OG in most Christian Bibles—hence why OG survives only in **P967** (early, fragmentary), **Chisianus 88** (later, post-Hexaplaric), and in the **Syro-Hexapla**. Jerome explicitly witnesses the church’s preference for TH. citeturn0search2turn0search4
+
+- **So what (why this matters).**  
+  1) **Edition history**: Daniel existed in **two Greek editions** with different book shape and rhetoric;  
+  2) **Textual criticism**: P967 lets us see the **older LXX edition** before Hexaplaric smoothing;  
+  3) **Canon sense**: where Susanna “lives” (front vs. end) isn’t trivial—it signals how late-antique readers **bounded** Daniel;  
+  4) **Hebrew–Greek relationships**: TH’s closeness to MT vs. OG’s freer style can point to **distinct Hebrew stages** behind the Greek. citeturn0search1turn0search4
+
+If you’d like, I can pull a few concrete verse-level contrasts (e.g., in Daniel 3’s additions or the court scenes in Daniel 4–6) so you can see how OG and TH read *on the page*—and how P967’s order alters the dramatic sequence.
+
+Micah Blumberg:
+"The letter aims squarely at second-century heresies (docetism, denial of creation’s goodness), giving later churches a Pauline-voiced anti-Gnostic catechesis. Its Armenian reception shows how local canons could preserve pastoral tools that the broader Greek/Latin canon did not. 
+Wikipedia
+
+If you’d like, I can quote a couple of the sharp anti-docetic lines and show where they line up with themes in the Pastoral Epistles and Ignatius—useful for your equivalence mapping."
+
+This could be super important, because if a letter from Paul addresses the Gnostic texts, that would bring the original Gnostic texts into the first century. Tell me more. With quotes.
+
+Self Aware Networks GPT:
+You’re right to flag this as potentially timeline-shifting. Here’s what the texts actually say—and what that does (and doesn’t) let us conclude.
+
+# What 3 Corinthians says (with short quotes)
+
+- The **Corinthians’ letter to Paul** reports teachers who claim: **“There is no resurrection of the flesh… the body of man is not the creation of God… Jesus Christ was not crucified, but only in appearance… [and] was not born of Mary”**—and that **“the world is not of God, but of the angels.”** citeturn1view0
+
+- **Paul’s reply (3 Corinthians)** counters point-by-point: Jesus **“was born of Mary… of the seed of David according to the flesh”**, came **“to redeem all flesh by his flesh,”** and **“by his own body… saved all flesh.”** He calls those who deny creation by God **“children of wrath”** and affirms **“the resurrection of the flesh.”** (short quotes from the same passage). citeturn1view0
+
+# What this implies for dating “Gnostic” ideas
+
+- **The letter itself is not from Paul.** Modern scholars date the correspondence to about **160–180 CE**, often as part of (or closely related to) the **Acts of Paul**; the **earliest copy** we have is **Papyrus Bodmer X (3rd c.)**, which transmits the two letters together and shows the exchange also circulated **independently** of Acts. citeturn0search4
+
+- **So the anti-docetic, anti-creation-denial polemic is certainly 2nd-century.** 3 Corinthians proves that by the later 100s there were Christian circles teaching: no bodily resurrection; Christ only *seemed* to suffer (docetism); the material world wasn’t made by the High God (Demiurge theory). The author counters all three—incarnation, creation, and resurrection—head-on. citeturn1view0
+
+- **Could those ideas go back into the 1st century?** Possibly—**1 John** already fights a “Jesus not in the flesh” line (~90 CE). But **3 Corinthians itself** doesn’t *prove* 1st-century Gnostic texts; it shows a **2nd-century** author using “Paul’s voice” to catechize against views we now call Gnostic. (For overview and dating discussion see the scholarly summary.) citeturn0search4
+
+# Why Armenia matters here
+
+- The **Armenian Church** copied the correspondence **inside** the Pauline corpus for centuries (often between 2 Cor and Gal), preserving it as a **pastoral, anti-Gnostic tool** even after Greek/Latin churches dropped it. That long Armenian reception is how the letters survived with such prominence. citeturn0search4
+
+# If you want exact lines to compare to other sources
+
+- **Docetism denied:** “**Christ… was not born of Mary**” (reported error) vs “**our Lord Jesus Christ was born of Mary… of the seed of David according to the flesh**” (reply). citeturn1view0  
+- **Creation denied:** “**the body of man is not the creation of God… the world is not of God, but of the angels**” (reported error) vs “**God Almighty… would not cast away his own creation**” (reply). citeturn1view0  
+- **Resurrection denied:** “**There is no resurrection of the flesh**” (reported error) vs “**by his own body Jesus Christ saved all flesh… [and] he shall raise up you… having your flesh whole**” (reply). citeturn1view0
+
+# Bottom line
+
+3 Corinthians is **strong, explicit anti-Gnostic catechesis** in a 2nd-century voice that later Armenian Bibles preserved inside Paul. It **confirms** that docetism, creation-denial, and anti-resurrection preaching were live issues by the late 100s; it **suggests** earlier roots (in line with 1 John), but **does not by itself** push the Nag Hammadi compositions back into the 1st century. For that, we compare other evidence (patristic references, Oxyrhynchus Greek fragments for Thomas/Mary, etc.). citeturn0search4
+
+If you’d like, I can line these quotes up against **Ignatius** (e.g., *Smyrneans* on “truly born… truly suffered”), the **Pastoral Epistles** (1 Tim/2 Tim/Titus on anti-myth polemic), and your SIT mapping to show conceptual equivalences across the sources.
+
+Micah Blumberg:
+Are there any other early extra biblical texts that point to an earlier Gnostic timeline?
+
+Self Aware Networks GPT:
+Short answer: yes—several **late-1st to early-2nd century** Christian texts polemicize against ideas we’d now call “gnosticizing” (docetism; denial of bodily resurrection; demiurgic/world-denying cosmology; angel-veneration/asceticism). They don’t prove that the *Nag Hammadi* books themselves are 1st-century, but they **do** show that the *ideas* were already in play.
+
+Here are the clearest early pointers (with brief quotes):
+
+- **1 John (late 1st c.)** — fighting **docetism**  
+  “Every spirit that **confesses Jesus Christ come in the flesh** is from God… and every spirit that does not confess Jesus is not from God.” (`1 Jn 4:2–3`) This assumes opponents denying real incarnation. citeturn0search8
+
+- **2 John (late 1st c.)** — same concern, more blunt  
+  “Many deceivers… **do not confess Jesus Christ as coming in the flesh**; such a one is the deceiver and the antichrist.” (`2 Jn 7`) citeturn0search1turn0search9
+
+- **Ignatius of Antioch (c. 110 CE)** — explicit anti-docetic polemic  
+  “He **suffered truly**, … **not, as certain unbelievers maintain, that He only seemed to suffer**.” (*Smyrnaeans* 2–3). Ignatius also links docetism to rejecting the Eucharist as Christ’s real flesh. citeturn0search2turn0search10
+
+- **Ascension of Isaiah (composed 70–175 CE)** — **docetic passion** scene  
+  In the “Vision” section (ch. 11), the Beloved descends through the heavens **without being recognized** and is crucified in a way many scholars read as **docetic**—a 2nd-century Judeo-Christian apocalypse reflecting such ideas. citeturn0search3turn0search11turn0search17
+
+- **Pauline letters already push back on key planks**  
+  • **Resurrection denied**: Paul confronts those saying “there is **no resurrection of the dead**” (`1 Cor 15`), a stance later common in gnostic circles (spiritualizing salvation).  
+  • **Angel-veneration/asceticism**: Colossians warns against **“worship of angels”** and rule-keeping about food/festivals (`Col 2:16–23`), which many scholars tag as **proto-gnostic/ascetic** tendencies. citeturn0search12turn0search18  
+  • **“Knowledge falsely so-called”**: `1 Tim 6:20` cautions against “**gnōsis** falsely so-called,” widely read as a jab at early esoteric “knowledge” claims (whatever one’s view on Pastoral dating).
+
+- **Revelation’s “Nicolaitans” (late 1st c.)** — libertine/antinomian sect  
+  John denounces a sect (Rev 2) often read as early **antinomian** Christians—one of several competing moral/theological trajectories in the period. (The label and details are contested, but it marks **plural, controversial** “Christianities” very early.) citeturn0search6turn0search13
+
+- **Earliest Greek witnesses to later “Gnostic library” texts**  
+  Even if composition is debated, **Greek** papyri at **Oxyrhynchus** show that works like the **Gospel of Thomas** were circulating by **c. 200 CE** (P.Oxy. 1, 654, 655)—i.e., **before** the 4th-century Coptic Nag Hammadi codices. That’s not 1st-century, but it pushes the textual tradition a century earlier than the NHL books themselves. citeturn0search14
+
+## Bottom line
+- The **ideas** (docetism; spiritualized resurrection; demiurgic world-denial; ascetic/angel-venerating praxis) are **visible by the late 1st century** and **robust by the early 2nd** in sources like 1–2 John, Ignatius, and the *Ascension of Isaiah*.  
+- That **supports** an **earlier gnosticizing timeline** for *concepts*, even if the **Nag Hammadi compositions** mostly look **2nd-century (and later)** in present scholarly consensus.  
+- For your “equivalence mapping,” you can triangulate: 1–2 John + Ignatius (anti-docetic) ↔ *Ascension of Isaiah* (docetic episode) ↔ early Greek Thomas/Mary (by 200 CE), to show **continuity of themes** across the 1st–2nd-century divide.
+
+Micah Blumberg:
+The Revelation of Moses where Moses talks to Metatron?
+
+Self Aware Networks GPT:
+Short answer: you’re probably thinking of a **Hekhalot/Merkavah** piece sometimes labeled **“The Revelation (or Ascension) of Moses,”** a late Jewish mystical text where **Metatron** (the exalted Enoch) prepares Moses for a heavenly ascent. It’s **not** the Greek *Apocalypse of Moses* (which is really the Life of Adam and Eve). In this stream, Moses and Metatron do speak.
+
+What it is  
+- A **medieval Hebrew** ascent narrative in the Hekhalot orbit (often grouped with or adjacent to **3 Enoch/Sefer Hekhalot**) in which Metatron equips Moses (turning his flesh/tongue “to fire,” granting angelic vision) and escorts him through the heavens. Manuscripts are medieval; motifs are late-antique. citeturn0search5turn0search9
+
+A few lines (short, representative)  
+- “Metatron **changed Moses’ tongue into a tongue of fire** … and brought him up to heaven.” (JRAS-translated excerpt). citeturn0search0  
+- “**I am Enoch … The Almighty hath sent me to bring thee up** to his throne of glory.” (a ‘Revelation of Moses’ recension). citeturn0search3  
+- “**Son of Amram, fear not!** … light shines from the skin of your face from one end of the world to the other.” (3 Enoch 15B, Moses-scene). citeturn0search20
+
+How it fits the wider literature  
+- **3 Enoch / Sefer Hekhalot** centers on **Rabbi Ishmael**’s tour guided by Metatron (Enoch transformed), but several passages compare or address **Moses** directly, and related recensions expand Moses–Metatron scenes. citeturn0search9  
+- Later midrashic anthologies echo the same picture (Metatron steadying Moses among fiery angels), showing the motif’s spread beyond a single tract. citeturn0search18
+
+Dating & takeaways  
+- **Date:** The specific “Revelation/Ascension of Moses” recensions with Metatron are **medieval in manuscript form** (Hekhalot milieu), though many motifs trace to **late antiquity**; they’re later than Second-Temple apocalypses but earlier ideas (Enoch→Metatron; “Prince of the Presence”) are already in circulation by late antiquity. citeturn0search9turn0search10  
+- **So what:** These texts show a **developed mystical Moses tradition** in which **Metatron = Enoch** functions as Moses’ heavenly mediator. They’re valuable for mapping how post-biblical Judaism re-imagined Sinai/Exodus themes within **Merkavah** mysticism, but they don’t imply a 1st-century Christian or “Gnostic” origin. citeturn0search9
+
+If you want, I can trace where the Moses–Metatron ascent imagery intersects with **Jubilees’ “Angel of the Presence”** and with **Exod 23:20–21** traditions (later identified with Metatron), plus note which lines the Ethiopian corpus preserves that rhyme with this stream. citeturn0search16
+
+Micah Blumberg:
+Okay but isn't third Enoch a downgrade for Enoch from 1 Enoch, because at the end of 1 Enoch he was the son of man who sits on the Throne of God, but then in 3rd Enoch he was downgraded to an Angel who was less than the Almighty God?
+
+Self Aware Networks GPT:
+Short answer: it’s not a simple “downgrade”—you’re looking at two different Jewish traditions about Enoch that resolve the throne problem in different ways.
+
+- In the **Parables/Similitudes of 1 Enoch (chs. 37–71)** the “Son of Man/Chosen One” is the pre-eminent eschatological judge who sits on the **Throne of Glory**. Chapter 71 famously links this figure with Enoch himself—many read it as an **investiture** scene where Enoch is identified with (or transformed into) the Son of Man. But that identification is **textually debated**: some scholars think it’s original, others think it’s a later gloss; either way, the Parables use **enthronement** language at the very top tier.
+
+- **3 Enoch (Sefer Hekhalot)**, centuries later, solves the same problem inside rabbinic/merkavah theology by making Enoch the archangel **Metatron**, called the **“Lesser YHWH”** and **Prince of the Presence**—vastly exalted, bearing the divine Name, even given a **throne** and crown—but still **unambiguously subordinate** to the Almighty. The famous story of **Aḥer (Elisha ben Abuyah)** seeing Metatron seated and thinking there are “two powers in heaven” ends with Metatron **punished** to prove he is **not** God. In other words, 3 Enoch **keeps the exaltation** but fences it with hard monotheism.
+
+What changed across the traditions isn’t Enoch’s importance so much as the **theological guardrails**:
+- The Parables push toward a **heavenly vice-regent** who can share God’s throne in judgment (hence the Son-of-Man identification debate).
+- 3 Enoch reframes that as **delegated glory**: Metatron bears God’s Name and authority, can sit only by permission, and must not be mistaken for a second deity.
+
+So, rather than a demotion, 3 Enoch is a **rabbinic re-interpretation** of Enoch’s exaltation that preserves his cosmic status while blocking any “two powers” reading. If you’d like, I can line up the key enthronement lines from 1 Enoch 48/62/69/71 and the Metatron scenes in 3 Enoch (incl. the Aḥer episode) so you can see the parallel motifs and the different doctrinal brakes, side-by-side.
+
+Micah Blumberg:
+The Book of Mary Magdalene, is there a difference from the Greek version vs the Coptic version?
+
+Self Aware Networks GPT:
+Short answer: yes—what we have of the Gospel of Mary in **Greek** (two 3rd-century scraps) and in **Coptic** (a 5th-century Sahidic copy) doesn’t line up perfectly. The core story is the same, but the wording and emphasis differ in a few telling places.
+
+What survives
+- **Greek**: two Oxyrhynchus-area fragments—**P. Rylands 463** (3rd c.) and **P.Oxy. L 3525** (3rd c.). They overlap the latter part of the work (roughly the section that corresponds to Coptic 7.4–19.5). citeturn0search15turn0search12  
+- **Coptic**: a single, fuller but damaged **Sahidic** copy in the **Berlin Gnostic Codex (BG 8502, 5th c.)**; ten pages are missing (Coptic pp. 1–6, 11–14), so nearly half the text is lost. citeturn0search5
+
+How the texts differ (high-signal points scholars note)
+- **Authority vs. content of Mary’s teaching**: summaries aimed at general readers often put it this way—*in the Greek*, the scene centers on a dispute about **what Mary taught**; *in the Coptic*, the scene more sharply pivots to whether Mary **has the right to teach at all** (Mary’s authority over against Peter). That shift of emphasis is visible in the surviving lines. citeturn0search10  
+- **Grammar that changes the sense**: close comparisons point to spots (near the close of the dialogue) where **a Greek singular/plural verb** produces a slightly different meaning than our Coptic line—one reason careful editions discuss Greek vs. Coptic readings rather than harmonizing them. citeturn0search1  
+- **Redactional flavor**: several editors prefer the Greek where it survives, on the view that it’s earlier and sometimes a touch **less “theologically tuned”** than the Coptic (which can read more polemically in the Mary-vs-Peter exchange). That’s an editorial judgment, but you’ll see it in introductions. citeturn0search16
+
+Dates (and why they matter)
+- **Greek witnesses**: 3rd century—evidence that *Mary* circulated in **Greek** generations before the Coptic codex was copied. citeturn0search15  
+- **Coptic witness**: 5th century—the **fullest** surviving text, but still missing big chunks; it likely translates a Greek Vorlage. citeturn0search2
+
+What’s actually missing in the Coptic
+- The **opening six pages** (Jesus’ post-resurrection instruction) and **four pages in the middle** (part of Mary’s visionary discourse) are gone, which is why the Greek scraps are disproportionately important: they sometimes **control** how we reconstruct those scenes. citeturn0search5
+
+Takeaway
+- There isn’t a “totally different” Greek Gospel of Mary versus a Coptic one; rather, we have **two early language streams** with **overlap but not identity**. The **Greek** shows that the text was circulating by ~200s and helps check the **Coptic**; the **Coptic** gives us our longest running text but with **lacunae** and a few places where the **tone** toward Mary’s authority reads stronger. Together they let us triangulate a more cautious reconstruction of the original. citeturn0search12turn0search5turn0search10
+
+If you want, I can pull one or two specific contested lines (Greek vs. Coptic wording) from a critical edition and show exactly how the nuance changes the Mary–Peter exchange.
+
+Micah Blumberg:
+Are there three versions? What about the Ethiopian version?
+
+Self Aware Networks GPT:
+Short answer: for the **Gospel of Mary (Magdalene)** there are only **three witnesses**—**two Greek fragments** and **one Coptic codex**. There is **no Ethiopic/Geʿez version** of the Gospel of Mary Magdalene known to scholarship.
+
+What exists
+- **Greek (early 3rd c.)**:  
+  • **P.Ryl. 463** (covers material parallel to Coptic 7.4–19.5). citeturn0search4  
+  • **P.Oxy. L 3525** (tiny piece, ≈ Coptic 9.1–10.10). citeturn0search0
+- **Coptic (Sahidic, 5th c.)**:  
+  • **Berlin Gnostic Codex, BG 8502,1**—our fullest copy, but missing 10 pages (Copt. 1–6; 11–14). citeturn0search1turn0search3
+
+So: **two Greek + one Coptic = three incomplete manuscripts** of *the same work*, with wording/tonal differences between the Greek pieces and the Coptic translation. citeturn0search7turn0search19
+
+About “an Ethiopian version”
+- Ethiopia preserves many Marian and apocryphal works (e.g., **Miracles of Mary**, **Liber Requiei Mariae/Transitus**, etc.), but **not the Gospel of Mary (Magdalene)**. Some **Mary-related texts** do survive in Ethiopic—e.g., the **Prayer of Mary at Bartos**—but that is a **different composition**, not the Magdalene gospel. citeturn0search14
+
+If you want, I can point out a couple of places where the **Greek vs. Coptic** wordings of the Gospel of Mary diverge (and why editors think at least **two ancient recensions** of the text existed). citeturn0search11
+
+Micah Blumberg:
+"in the Greek, the scene centers on a dispute about what Mary taught" focus on this
+
+Self Aware Networks GPT:
+Great focus. In the **Greek witnesses** to the Gospel of Mary (P.Ryl. 463; P.Oxy. 3525) the flash-point is very clearly **what Mary actually taught**—the **content** of her revelation—more than her right to teach.
+
+Here’s what the Greek side shows:
+
+- **Peter invites content.** The scene opens with a request for Mary to *report Jesus’ words*: “Tell us the **words of the Savior** that you remember—what you know and we don’t.” (survives in the overlapping section; cf. standard translations of the passage). citeturn0search6
+
+- **They then “debate the words.”** After Mary speaks, the group **argues about the sayings themselves** (“they began to **debate the words** of the Savior”), which is exactly how the Manchester Rylands summary characterizes the Greek fragment: a **dispute over the teachings** that ends with a resolution to preach “the Gospel according to Mary.” citeturn0search6turn2view0
+
+- **Andrew rejects the content outright.** In the same block, **Andrew** says, “Say what you will about what she’s said—**I do not believe the Savior said this**,” marking disbelief in **what** Mary reported, not (yet) her status. (This line is preserved in our overlapping Greek/Coptic section; editors routinely cite it when discussing P.Ryl. 463.) citeturn4search10turn4search2
+
+- **Greek texture notes.** P.Oxy. **3525** (3rd c.) sits in the part where the quarrel heats up (≈ Coptic 9.1–10.10) and shows **textual differences** vs. the Coptic—evidence the Greek tradition wasn’t verbatim the same as the later Sahidic copy and that the dispute centered on the **teaching itself**. citeturn4search1
+
+- **Authority questions appear too—but as a next step.** **Peter’s** challenge (“Did he then speak **secretly with a woman**…? Are we to listen to her?”) is present in this same dispute block, but the **first** pushback in the sequence is Andrew’s *content* objection. (Good, short translations document both lines.) citeturn4search4
+
+Why this matters: the **two Greek papyri (early 3rd c.)** show that, generations **before** the 5th-century Coptic codex, Christians were already **arguing over Mary’s reported sayings**—and that there were **at least minor wording differences** in circulation (P.Oxy. 3525 vs. the Coptic). That’s why catalogues and intros describe P.Ryl. 463 as “a fragment describing a dispute… **over the teachings**,” not only a fight about Mary’s status. citeturn2view0
+
+If you want, I can line up three micro-variations where editors think the **Greek** nudges the emphasis toward “what she said” (lexical choices like “doubt”/“not believe”) and show how that differs slightly from the tone of the later **Coptic** copy.
+
+Micah Blumberg:
+so the fragment that differs just says the nature of the dispute between Peter and Mary is centered around what Mary is teaching instead of what her authority is. but the P.Oxy fragments are not giving up more of the teachings of Jesus through the words of Mary?
+
+Self Aware Networks GPT:
+You’ve got it right.
+
+- The **Greek fragments** (P.Ryl. 463 and P.Oxy. 3525) mainly show that the flare-up is over **what Mary reported Jesus said**—the **content**—more than her right to teach. You can see this in the lines where **Andrew** reacts: “**I do not believe that the Savior said this; for certainly these teachings are strange**,” and where **Peter** later needles the group about whether Jesus would have said such things “**secretly with a woman… are we to all listen to her?**” These are preserved in the portion shared with the Coptic text. citeturn0search3turn0search8turn0search9
+
+- But no—the **P.Oxy Greek pieces don’t give us new blocks of Jesus’ teaching** beyond what the Coptic already preserves. They’re tiny windows into the **same dispute scene**, not fresh content from the missing opening or middle. **P.Oxy. 3525** covers material parallel to **Coptic 9.1–10.10** and has a few **wording differences** versus the Coptic; **P.Ryl. 463** overlaps the same late section and is famous for describing a **dispute over the teachings** that ends with the disciples resolving to preach “the Gospel according to Mary.” citeturn0search1turn0search11turn0search0
+
+- The **real gaps** remain the ten lost Coptic pages (**1–6 and 11–14**). Those are where a lot of people hope for more of Jesus’ sayings and for more of Mary’s visionary discourse; the Greek scraps don’t cover those lacunae. They mainly help us confirm **Greek circulation by the 200s** and fine-tune the **tone** of the argument (content-focused first, then authority). citeturn0search2turn0search7
+
+If you want, I can point out three places where the **Greek vs. Coptic wording** shifts the nuance of Andrew’s and Peter’s objections (e.g., disbelief vs. authority), with line-by-line refs to the standard editions.
+
+Micah Blumberg:
+I saw on youtube that a new Greek fragment was released which might be from the missing 4 pages, and that there are new texts that appear to be from unknown gospels. Tell me about the new texts
+
+Self Aware Networks GPT:
+You’re likely hearing about three **brand-new Oxyrhynchus** fragments published in 2023 (vol. LXXXVII). Here’s what they are, what they say, and where the scholarly debate stands—especially about the missing pages of the *Gospel of Mary*.
+
+**1) P.Oxy. 5575 — “Sayings of Jesus” (2nd century, Greek)**
+- **What it is:** A tiny leaf with Jesus-sayings that **mix** parallels from Matthew/Luke with a line found in **Gospel of Thomas** (e.g., lilies, do-not-worry, and a “fast from the world” line akin to Thomas 27). Earliest known papyrus overlapping Thomas. citeturn1search3turn1search6turn1search0  
+- **Why it matters:** Pushes the **Thomas/Matthew/Luke** sayings complex clearly into the **100s CE**, showing real cross-pollination of Jesus traditions before the NT canon stabilized. (Good critical overviews and the official dossier are out.) citeturn1search5turn1search13turn1search18
+
+**2) P.Oxy. 5576 — another early “sayings/apocalyptic” fragment (Greek)**
+- **What it is:** A separate papyrus with **apocalyptic-flavored** sayings attributed to Jesus (also in vol. 87). It’s small but distinct from 5575. citeturn1search4turn1search1  
+- **Why it matters:** Confirms Oxyrhynchus was teeming with **non-canonical Jesus-sayings booklets**—some overlapping canonical material, some not—i.e., more “unknown gospels” in the broad sense. citeturn1search1
+
+**3) P.Oxy. 5577 — Jesus in dialogue with *Mary* (3rd–4th century?, Greek)**
+- **What it is:** A leaf preserving a **dialogue between Jesus and Mary** (named), with light/vision language. The editor (Juan Chapa) notes it **doesn’t obviously match any known text**; several scholars have proposed it **could** be from the **missing pages of the *Gospel of Mary***, but others urge caution. citeturn1search31  
+- **Why it matters:** Even if it’s **not** *Gospel of Mary*, it **shows** that communities in Egypt transmitted **Jesus-to-Mary revelation dialogues**—exactly the genre the missing Mary pages would contain—and it feeds the broader discussion of women as recipients of esoteric teaching. (See Parkhouse 2024; Schrader Polczer 2024–25; Goodacre’s cautions.) citeturn0search23turn1search31
+
+**Does 5577 fill the *Gospel of Mary* gaps?**  
+**Not proven.** A couple of lines echo Mary-type themes, so some argue it could slot into **Coptic pp. 1–6 or 11–14** (the missing leaves), but the wording also **differs** at key points from our Coptic/Greek Mary witnesses. Verdict right now: **plausible but unconfirmed identification**; many scholars treat 5577 as an **independent “Mary dialogue”** pending harder matches. citeturn0search23turn1search31
+
+**Bottom line on the “new texts”:**
+- **5575** = earliest **Thomas-adjacent** sayings papyrus (2nd c.), mixing Synoptic and Thomas material. citeturn1search3  
+- **5576** = separate **apocalyptic** Jesus-sayings scrap, adding to the “unknown gospels” corpus. citeturn1search4  
+- **5577** = **Jesus–Mary** dialogue; **maybe** from *Gospel of Mary*, but currently best treated as **distinct** until a firmer textual overlap is demonstrated. citeturn1search31
+
+If you want, I can excerpt a couple of lines from 5575 (e.g., the “fast from the world” logion) and show how they align with **Thomas 27** vs. **Luke 12/Matt 6**, and then map 5577’s light-imagery against the extant *Mary* passages—useful for your equivalence grid.
+
+Micah Blumberg:
+Plato uses the word demiurge to describe the creator as a craftsman, but his demiurge is a good one, but when and where is the earliest text that mention of an evil demiurge or evil creator/craftsman?
+
+Self Aware Networks GPT:
+Great question. Short version: the **first clear texts that *explicitly* cast the creator as ignorant/hostile (“evil” in effect)** show up in the **mid–2nd century**. Before that, a few teachers speak of a *lesser* or *ignorant* maker, but not overtly “evil.”
+
+Here’s the tight timeline with primary anchors:
+
+- **Late 1st–early 2nd c.: Cerinthus (reported by Irenaeus).**  
+  Cerinthus taught the visible world was made by a **lesser power** (a “demiurge”) **ignorant** of the High God—*not* necessarily evil. This is our earliest notice of a sub-highest creator in a Christian context. citeturn1search16
+
+- **c. 140s CE: Marcion’s *Antitheses* (lost; known via Tertullian/Irenaeus).**  
+  Marcion posits two deities: a **Creator** (OT God) versus the **good, unknown God** of Jesus. Sources portray the Creator as **inferior, legalistic, and sometimes malign**, which is the earliest robust **dualism** pitting the maker against the Good. Even if some scholars nuance “evil” to “strict/just,” the *antithesis* between creator and good God is explicit. citeturn1search6turn1search4
+
+- **Before 180 CE: *Apocryphon of John* (Sethian).**  
+  Our earliest **internal** myth where the creator is **ignorant/arrogant and harmful**: the archon **Yaldabaoth** blasphemes, “**I am God, and there is no other**,” usurps authority, and fashions a defective cosmos; he’s “mad”/“evil” through ignorance. Irenaeus already attacks this book by ~180, fixing a *terminus ante quem*. citeturn0search6turn0search16turn0search1
+
+- **c. 180 CE: Irenaeus’ report on Gnostics.**  
+  He summarizes their view of the maker as **“the fruit of a defect… of an animal nature… not knowing the Power above him,”** quoting the boast “**I am God, and besides me there is no other**.” That is a contemporary outsider attestation of the **defective/ignorant (and functionally malevolent)** demiurge idea. citeturn1search7
+
+- **Later 2nd c.: Ophites, Hypostasis of the Archons, etc.**  
+  Celsus (c. 175) and, later, Origen describe **archon** systems where rulers (under a false maker) **enslave** souls; Nag Hammadi texts like **Hypostasis of the Archons** and **On the Origin of the World** expand the hostile-demiurge myth. citeturn0search13turn0search3
+
+### What this means
+- The **concept** of a **lesser/ignorant maker** is present **very early** (Cerinthus).  
+- The **first *explicit*** portrayals of a **creator who is ignorant, arrogant, and oppressive**—i.e., effectively **“evil”**—emerge **by the mid–2nd century**, in **Marcionite dualism** and **Sethian texts** like the *Apocryphon of John*. These are the earliest texts we can point to that clearly frame the craftsman-creator as in the wrong and **opposed to** the supreme Good. citeturn1search6turn0search6
+
+#### Two useful quotes you can cite
+- *Apocryphon of John* (Sethian demiurge): “**He said, ‘I am God, and there is no God but me’**”—presented as the **ignorant boast** of the world-maker Yaldabaoth. citeturn0search16  
+- Irenaeus summarizing Gnostics: the creator “**is the fruit of a defect… not knowing that Power which is above him,** while he also exclaims, ‘I am God, and besides Me there is no other God.’” citeturn1search7
+
+If you want, I can line these up against Plato’s **good** craftsman in *Timaeus* and show the **conceptual flip** point-by-point (good craftsman ordering chaos vs. ignorant archon trapping souls)—handy for your chronology map.
+
+Micah Blumberg:
+Wait, isn't there a Greek text, from one of the Ancient Churches, that say's Jesus's father is Ialdoboath
+
+Self Aware Networks GPT:
+Short answer: no—there isn’t an orthodox/“ancient church” Greek text that **teaches** “Jesus’ father is Ialdabaoth.” That line is **not** Christian doctrine anywhere. What *does* exist are **patristic reports** (heresiologies) describing some **Gnostic/Ophite** myths in which the demiurge **Ialdabaoth** is involved in Jesus’ earthly story—e.g., preparing Mary as a vessel—or where Christ is said to act **at Ialdabaoth’s expense**. Those reports **do not** make Ialdabaoth Jesus’ father.
+
+Here’s the closest material (from orthodox writers summarizing heresies):
+
+- **Irenaeus, *Against Heresies* 1.30 (c. 180 CE)** recounts an Ophite/Sethian-style myth: the ignorant archon **Ialdabaoth** boasts “I am God,” creates, and is opposed by the higher Christ. In the retold narrative, **Sophia uses Ialdabaoth to ready a woman (Mary) so a pure vessel would receive Christ/Jesus**; Christ then descends and the archons seek to crucify Jesus—while Christ himself remains above. That is an **instrumental role**, not paternity. citeturn0search5
+
+- **Epiphanius, *Panarion* (4th c.)** reports sects (e.g., **Borborites/Ophites**) saying **Jesus was “revealed through Mary,” not born of her** (a docetic twist), and places Ialdabaoth among the lower heavens. Again, this is **docetism + archon cosmology**, not a claim that Ialdabaoth sired Jesus. citeturn0search8turn0search4
+
+- In some summaries of the Ophite myth (deriving from Irenaeus’ account), you’ll see the phrase that **“Christ sits at the right hand of the father Ialdabaoth, without his knowledge,”** meaning Christ plunders the demiurge’s realm of souls. That’s a **taunting subordination motif**, not literal sonship; the same passages also say Christ “declared himself the Son of the First Man” (the high deity), not of Ialdabaoth. citeturn0search1
+
+If you ran across a claim that an **“ancient church Greek text”** says “Jesus’ father is Ialdabaoth,” it’s almost certainly a **misread summary** of these **heresiological** reports. Primary sources that actually call the demiurge **evil/ignorant**—like the **Apocryphon of John**—are Coptic Gnostic works (Nag Hammadi), not orthodox church texts, and **they portray Christ as opposed to Ialdabaoth**, not his offspring. citeturn0search6
+
+Want me to pull the exact Irenaeus lines where Mary is “prepared” by Ialdabaoth and where Christ drains souls from him (the bit some paraphrase as “right hand of Ialdabaoth”)?
+
+Micah Blumberg:
+"Want me to pull the exact Irenaeus lines where Mary is “prepared” by Ialdabaoth and where Christ drains souls from him" yeah
+
+Self Aware Networks GPT:
+Here are the two spots in Irenaeus (Against Heresies I.30) you asked for—quoted briefly and pinned to the exact lines.
+
+1) **Mary “prepared … by means of Ialdabaoth” (the Ophite myth, as reported by Irenaeus)**  
+> “Prunicus brought it about **by means of Ialdabaoth** (who knew not what he did), that emissions of two men took place, the one from … **the Virgin Mary**.” citeturn1view0
+
+And the follow-up sentence that ties this to making Mary a “pure vessel”:  
+> “…[Christ] **adopted Jesus beforehand**, in order that, on Christ descending, **he might find a pure vessel**, and that **by the son of that Ialdabaoth** the woman might be announced by Christ.” citeturn1view0
+
+2) **Christ “sitting at the right hand of his father Ialdabaoth … receiving souls … without his knowledge”**  
+> “Christ **sitting down at the right hand of his father Ialdabaoth**, **that he may receive to himself the souls** of those who have known them … **thus enriching himself without the knowledge** or perception of his father…” citeturn2view0
+
+What this means in context: Irenaeus is summarizing an **Ophite/Sethian** myth (not endorsing it). In that myth, Ialdabaoth (the demiurge) is an ignorant ruler; **Prunicus/Sophia manipulates him** to set up the births of John and **Mary**, so that when **Christ descends** he finds **Mary as a “pure vessel.”** Later, the myth says **Christ sits “at the right hand” of Ialdabaoth and siphons off souls** who know the higher truth—**“without [Ialdabaoth’s] knowledge”**—thereby **draining his power**. None of this makes Ialdabaoth Jesus’ “father” in orthodox teaching; it’s Irenaeus’ **heresiological report** of a rival cosmology. citeturn1view0
+
+Micah Blumberg:
+Someone said that Enoch, Jubilees, The Ethiopian Apocalypse of Peter, and Revelation are like four parts of one book, they are meant to be read together, but if that's true wouldn't that suggest that the 3rd and 4th books from this set could be pre-Christian?
+
+Self Aware Networks GPT:
+Short answer: no. That “four-parts/one-book” idea is a modern devotional claim, not a scholarly one. `1 Enoch` and `Jubilees` are **pre-Christian Jewish** apocalypses; the **Ethiopic Apocalypse of Peter** and **Revelation** are unmistakably **Christian**—they can’t be pre-Christian.
+
+Why not:
+
+- **Speakers & theology:**  
+  • *Ethiopic Apocalypse of Peter* is a revelation **from Jesus** to Peter about judgment, church morals, and post-mortem fates. That Christological frame, ecclesial exhortation, and “tour of heaven/hell” cast as Jesus’ discourse are Christian through and through.  
+  • *Revelation* is saturated with explicitly Christian symbols and titles—“Jesus Christ,” “the Lamb,” messages to the **seven churches**, martyr-witness to **Jesus**, etc. A pre-Christian version wouldn’t have that vocabulary or agenda.
+
+- **Historical setting & addressees:**  
+  • *Revelation* addresses concrete late-1st-century **churches in Asia Minor** under imperial pressure; its polemic (“Nikolaitans,” “Babylon,” imperial cult) presumes a Christian community.  
+  • *Apocalypse of Peter* reflects 2nd-century Christian moral debates (e.g., post-baptismal sin, intercession for the damned in some recensions), not Second-Temple Jewish concerns.
+
+- **Genre continuity ≠ common authorship:**  
+  Early Christians inherited Jewish apocalyptic **tools**—angels, heavenly tours, cosmic judgment, calendars—and reused them. That gives strong **family resemblance** across `Enoch`, `Jubilees`, *Revelation*, and *Apoc. Peter*, but the latter two are **Christian reapplications**, not pre-Christian strata.
+
+Nuance people sometimes point to:
+
+- You can detect **Jewish apocalyptic scaffolding** beneath Christian works (e.g., stock judgment scenes, cosmic geography). That shows **literary dependence on a shared tradition**, not that the Christian texts once existed as pre-Christian books.  
+- A few Christian apocalypses may incorporate **older Jewish motifs or micro-sources**, but their **final form** (the only form we actually have) is Christian.
+
+Bottom line: read them together if you’re tracing apocalyptic **continuity**—that’s fruitful—but it does **not** imply that *Apocalypse of Peter* or *Revelation* were originally pre-Christian. They are products of early Christianity built on Second-Temple Jewish apocalyptic foundations.
+
+Micah Blumberg:
+Some say the four Gospels are 2nd century and copy Josephus, what is the evidence for that?
+
+Self Aware Networks GPT:
+Short answer: there isn’t good evidence that “the four Gospels are 2nd-century copies of Josephus.” A few scholars have floated dependence of **Luke–Acts** on **Josephus** (written 93/94 CE), but most specialists find the case weak. Here’s the tight version of what we actually have.
+
+# What the evidence really shows
+
+• **We possess Gospel manuscripts from the late 2nd/early 3rd century (and one tiny fragment likely early 2nd).**  
+- **P52 (John 18)** is often dated c. 125–175 CE—showing John in circulation early, not centuries later. citeturn0search4  
+- **P66 (John)** and **P45 (Gospels+Acts)** are early 3rd-century papyri (often placed ≈200–250). citeturn0search5turn0search7  
+- **P75 (Luke+John)** is usually dated to the 3rd century (some argue early 4th) and is very close in text to Codex Vaticanus—again, no sign of copying Josephus. citeturn0search6
+
+• **Standard critical dating puts the Gospels largely in the late 1st century, not the 2nd.**  
+- **Mark** is generally placed around the time of the Temple’s fall (≈70 CE). citeturn2search0  
+- **Matthew & Luke** are commonly dated ≈80–90 CE; **Acts** ≈70–90 CE. citeturn2search4turn2search6  
+(That’s decades **before or around** Josephus’ *Antiquities* in 93/94 CE, not after it.) citeturn0search8
+
+• **Claims that Luke used Josephus are debated and unproven.**  
+A minority holds Luke knew *Antiquities* (e.g., arguments about shared names/events), but many historians conclude similarities reflect **shared historical knowledge**, not literary dependence; where we would expect tell-tale **verbal agreement and sequence**, it’s not there. citeturn1search0turn0search20
+
+• **Some famous “parallels” actually cut against dependence.**  
+- **Acts 5** mentions **Theudas** *before* **Judas the Galilean**, whereas Josephus places Theudas in the 40s CE (long **after** Judas c. 6 CE). If Luke were copying Josephus, this is an odd “mistake”; it looks more like **independent** (or different) information. citeturn0search2turn0search14  
+- On other data points (census issues, priestly names, Herodian chronology), Luke and Josephus often **diverge** in details—again not what we see when one text copies another.
+
+• **We also have early, non-canonical Jesus traditions independent of Josephus.**  
+The **Egerton Gospel** papyrus is late-2nd/turn-of-3rd century and shows Jesus traditions circulating **outside** the NT—parallel to, not derived from, Josephus. citeturn1search1
+
+# What proponents usually claim—and why it falls short
+
+- **Claim:** “Luke–Acts cites Josephus for dates and events.”  
+  **Problem:** No sustained **verbal** or **structural** dependence is demonstrable; overlaps can be explained as two authors writing Greco-Roman history about the same figures (Herod, Pilate, priests, revolts). Major reference works and genre studies stress the broader historiographic context, not Luke’s reliance on Josephus. citeturn1search0
+
+- **Claim:** “The Gospels are 2nd century, so they *must* use Josephus.”  
+  **Problem:** The **manuscripts** and **mainstream dating** don’t support a wholesale 2nd-century composition. Mark ≈70; Matthew/Luke ≈80–90; John ≈90–110—with papyri copies following not long after. citeturn2search0turn2search4
+
+# Bottom line
+
+- We have **early Gospel papyri** and a **late-1st-century** scholarly consensus for composition.  
+- Alleged **copying from Josephus** (especially for Luke–Acts) is **contested** and lacks the kind of literary fingerprints that would clinch it; some data actually **contradict** dependence.  
+- The simplest reading of the evidence: **no, the Gospels are not 2nd-century rewrites of Josephus.** At most, Luke–Acts and Josephus are parallel historians of the same era, using different sources. citeturn1search0turn0search8
+
+If you want, I can walk through one concrete case side-by-side (e.g., Judas the Galilean/Theudas; or Pilate episodes) to show what we’d expect **if** Luke were copying—and what we actually see.
+
+Micah Blumberg:
+"Evangelical scholar Craig Evans supports a date for the Egerton Gospel later than the canonical gospels in a variety of ways. He finds many parallels between the Egerton Gospel and the canonical gospels that include editorial language particular to Matthew and Luke. While Koester argues that these show a tradition before the other gospels, Evans sees these as drawing from the other gospels just as Justin Martyr did. He also finds words such as the plural "priests" that show lack of knowledge of Jewish customs.[14]" In fact there were Jewish priests, the Onias III and Onias IV, Qumran, Teacher of Righteousness
+
+Self Aware Networks GPT:
+You’re right to push back on that “plural = ignorance” claim. Here’s what the evidence actually looks like.
+
+1) What Evans is arguing (and why people contest it)  
+- Craig A. Evans has argued the Egerton Gospel (P.Egerton 2) is **later than** the canonical Gospels and **uses** them; one of his small “cultural” points is that it uses **“priests” (plural)** in a way he thinks betrays a slip about Jewish practice, alongside his bigger redactional parallels to Matthew/Luke (he reads these as dependence, not pre-Synoptic tradition). citeturn0search1  
+- Helmut Koester (and others) have argued the opposite: Egerton preserves **independent** Jesus tradition not copied from the Synoptics. The papyrus itself is **late 2nd c.** in date; the **composition** could be earlier—this is exactly what the debate is about. citeturn0search2
+
+2) Is “priests” (plural) a blunder? No—plural priests are standard in Second Temple sources  
+- The **NT itself** constantly speaks of **“chief priests”** in the **plural** (Greek `archiereis`)—a collective of the high priest, former high priests, and leading priestly aristocrats. This is basic Second Temple usage, not a mistake. citeturn1search7  
+- **Josephus** likewise speaks of **“chief priests” (plural)** as a leadership bloc. So a plural like “priests / chief priests” is normal Greek for the Jerusalem priestly elite. citeturn1search1  
+- Beyond the leadership layer, there were **thousands of priests** organized in **24 courses (mishmarot)** serving in rotations—again, unmistakably **plural**. citeturn1search0turn1search6  
+- Your examples (Onias III/IV; Qumran’s **Teacher of Righteousness** and Zadokite priesthood) underline the point: Second Temple Judaism is *full* of priests and priestly factions; nothing about **“priests” (plural)** is anachronistic. citeturn1search5turn1search26
+
+3) So what does this do to the Egerton dating argument?  
+- Evans’s *larger* case (editorial fingerprints that look Matthean/Lukan) is where the real debate lies; the **“priests (plural)”** item is **not** good leverage. It doesn’t show ignorance—because **plural priests is exactly how our best sources talk**. citeturn0search1turn1search7turn1search1  
+- Net: the “plural” point shouldn’t sway the dating. You’d need **verbal/sequential dependence** on Matthew/Luke to clinch Egerton’s lateness; on that, scholars are split. citeturn0search2
+
+If you can point me to the exact Egerton line Evans had in mind, I can check the Greek against contemporary usage and see whether the **context** (e.g., a specific Day of Atonement scene that would demand “the high priest” singular) changes anything. But in the abstract, **“priests” ≠ an error** in Second Temple context.
+
+Micah Blumberg:
+"Jesus walked and stood on the bank of the Jordan river; he reached out his right hand, and filled it [...] And he sowed it on the [...] And then [...] water [...] and [...] before their eyes; and it brought forth fruit [...] many [...] for joy [...][1]" (It's not found in the bible, but it can't be dismissed) https://en.wikipedia.org/wiki/Egerton_Gospel?utm_source=chatgpt.com
+
+Self Aware Networks GPT:
+You’re quoting the famous “Jordan sign” from the Egerton Gospel—yes, that fragment is real, early, and not in the canonical Gospels.
+
+What we can say with confidence
+- **Text & scene:** One episode shows Jesus at the **Jordan**, stretching out his **right hand**, something is **sown**, **water** is involved, and **before the onlookers’ eyes** it **bears fruit**—an otherwise **unknown miracle** in the surviving Gospel tradition. The lines are badly broken but the action is clear enough to be recognized as a sign-miracle. citeturn0search2turn0search8  
+- **Date of the manuscript:** The surviving codex leaves (British Library Egerton Papyrus 2 + Cologne Papyrus 255) are usually dated **late 2nd / early 3rd century CE** on palaeographic grounds—among the **earliest** gospel codices we have. citeturn0search2  
+- **Contents overall:** The fragments preserve four episodes: a legal dispute, a leper healing, the **tribute-to-Caesar** controversy, and the **Jordan miracle** (the last lacks any clear canonical parallel). citeturn0search2
+
+How scholars read it
+- Many describe the style as **“Johannine”** (sign + dialogue) but not simply copied from John; others see **Lukan** touches. Brill’s recent critical study even labels the river scene “**the Miracle on the Jordan River**.” citeturn0search4  
+- On **relationship to the canonical Gospels**, opinion splits: some (e.g., Koester) think Egerton draws on **independent Jesus traditions**; others (e.g., Evans) argue it’s **post-Synoptic**, reworking canonical language. Either way, the **Jordan sign** isn’t in our four Gospels. citeturn0search2
+
+What it might mean (and what it doesn’t)
+- Because the text is fragmentary, reconstructions (“he sowed… it brought forth fruit”) are **tentative**—but multiple editions converge on the same basic **sign of instantaneous growth** by the river. Think of it as a dramatic, enacted version of Jesus’ **seed/fruit** imagery (cf. Mark 4), rather than a duplicate of any known pericope. citeturn0search8  
+- It does **not** imply the canonical Gospels are incomplete or invalid; it shows that **early Jesus tradition was wider** than what made it into the New Testament—a point also illustrated by other early papyri (e.g., Oxyrhynchus sayings). citeturn0search8
+
+Bottom line: you’re right—this scene “isn’t in the Bible, but it can’t be dismissed.” The Egerton Gospel is **very early**, and its **Jordan fruit-sign** is a strong example of **extra-canonical** Jesus tradition circulating in the 2nd century alongside stories we know from Matthew, Mark, Luke, and John. citeturn0search2turn0search8
+
+If you want, I can pull the best available English reconstruction lines for that episode (with lacuna marks) from a critical edition and set them next to the closest canonical seed-growth sayings so you can see the resonance.
+
+Micah Blumberg:
+List all the miracles that Jesus performed that are not found in the canonical bible.
+
+Self Aware Networks GPT:
+Here’s a compact, source-tagged sweep of **miracles attributed to Jesus outside the canonical Gospels**. I’ve grouped them by text and kept each item to a one-liner.
+
+Egerton Gospel (P.Egerton 2 / Cologne 255, late 2nd–early 3rd c.)
+- At the Jordan, Jesus stretches out his right hand; what is “sown” ripens **before their eyes**, yielding abundant fruit (a unique “Jordan sign”). citeturn0search6turn0search12
+
+Infancy Gospel of Thomas (mid–late 2nd c.)
+- **Animates clay birds** on the Sabbath. citeturn0search7turn0search13  
+- **Carries water in a cloth** after a jar breaks. citeturn0search1  
+- **Multiplies a single grain** into a meal/feast. citeturn0search1  
+- **Stretches a wooden beam** so Joseph can finish a bed. citeturn0search1  
+- **Heals James** of snakebite. citeturn0search1  
+- **Raises a boy** who fell from a roof; **raises a man** crushed in a construction accident. citeturn0search1  
+- (In some recensions) **revives two boys** previously cursed and heals their parents’ blindness. citeturn0search1
+
+Gospel of Pseudo-Matthew (medieval Latin recension of earlier infancy lore; preserves older traditions)
+- In Egypt, **bows a palm tree** to give dates; a **spring of water** gushes forth. citeturn0search2  
+- **Tames/worshiped by dragons, lions, and leopards**; wild beasts become escorts of the Holy Family. citeturn0search8
+
+Arabic Infancy Gospel (likely 6th c. compilation from older materials)
+- **Topples Egyptian idols** on the Holy Family’s arrival; **heals lepers and the sick** (e.g., a girl cured by water from Jesus’ bath). citeturn0search3turn0search9turn0search15
+
+Gospel of Peter (2nd c.; passion/resurrection narrative)
+- The resurrection scene depicts a **colossal Jesus emerging from the tomb** and a **speaking cross**—a cosmic sign sequence around Jesus’ rising (not in the canonical accounts). citeturn0search5
+
+Gospel of Nicodemus / Acts of Pilate (4th c. in present form; preserves older traditions)
+- The **Harrowing of Hell**: after death Jesus **breaks the gates of Hades** and **liberates Adam and the righteous**—a dramatic salvific act expanded beyond the brief canonical hints. citeturn0search3
+
+Notes to read this list well
+- These items are **extra-canonical** and range from the 2nd century to later compilations that fold in older lore; they show how early Christians told **additional miracle traditions** about Jesus alongside the four Gospels.  
+- The **Egerton “Jordan sign”** is the standout early example of a non-canonical miracle narrative circulating by the late 2nd century. citeturn0search6
+
+If you want, I can pull short translated snippets for any one episode (e.g., the palm-tree miracle text, or the exact Egerton lines with lacuna marks) and add a 1-sentence comparison to the closest canonical motif.
+
+Micah Blumberg:
+pull short translated snippets from each episode
+
+Self Aware Networks GPT:
+Here are short, translated snippets (each ≤25 words) from the extra-canonical miracle episodes we discussed, with tight sources.
+
+Egerton Gospel (P.Egerton 2 / Cologne 255)
+- **“Jordan sign”** — “[…] **before their eyes; and it brought forth fruit […] many […] for joy** […]” (fragmentary). citeturn0search5
+
+Infancy Gospel of Thomas (mid–late 2nd c.)
+- **Clay birds** — “**Having made soft clay, he fashioned twelve sparrows.**” citeturn9search2turn9search3  
+- **Water in a cloak** — “**He spread out the garment… and filled it with water** and brought it to his mother.” citeturn9search3turn9search6  
+- **Single grain → abundance** — “**Jesus… sowed one grain**….” (followed by a miraculously great yield). citeturn10search6  
+- **Stretching the beam** — “**He took hold upon the shorter beam and stretched it** and made it equal with the other.” citeturn11search9turn11search2  
+- **Boy raised from roof** — “**‘Zeno… arise!’ And the child sprang up**.” citeturn10search4  
+- **James healed of snakebite** — “He **blew on the bite, and immediately** [James revived].” citeturn10search16  
+- **Workman raised (building accident)** — “A man **fell… and died**. **Jesus… took his hand**… and **raised him**.” citeturn19search1turn19search7
+
+Gospel of Pseudo-Matthew (infancy cycle; Latin)
+- **Palm tree & spring** — “**Raise yourself, O palm tree… be the companion of my trees… and open** from your roots a spring.” citeturn5search18  
+- **Beasts/dragons subdued** — “**Jesus… stood before the dragons; and they adored Jesus**.” citeturn5search15
+
+Arabic Infancy Gospel
+- **Idol falls in Egypt** — “**At the same instant this idol fell down**, and… all the inhabitants of Egypt… ran together.” citeturn14search4turn14search7  
+- **Bath-water healings** — “A girl **was cured of leprosy with Jesus’ bathwater**….” citeturn14search1turn14search2
+
+Gospel of Peter (2nd c.)
+- **Giant Jesus / talking cross** — “They **heard a voice from the heavens**… and **a response was heard from the cross, ‘Yes.’**” citeturn3search3
+
+Gospel of Nicodemus / Acts of Pilate (Harrowing of Hell)
+- **Christ breaks Hades** — “**Open thy gates, that the King of glory may come in.**” citeturn0search13
+
+Want any of these in 2–3-sentence context (who’s present, what happens next), or side-by-side with the closest canonical motif?
+

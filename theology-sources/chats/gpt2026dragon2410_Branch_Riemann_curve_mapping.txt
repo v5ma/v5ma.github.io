@@ -1,0 +1,1983 @@
+Title: Branch · Riemann curve mapping
+Date: 1758330318.550864
+
+Micah Blumberg:
+These are my old files, and the quest was to update these files so that I could plot the SIT-Riemann to the Riemann Galaxy Rotation Curve, and thus figure out the precise HSIT = V(n) + A(ij) style operator without all the work of calculating an Eigen Matrix.
+
+Just say "Okay" and then I will upload the new files so we can do the comparison. There is nothing else to do at this step before we get the new files uploaded.
+
+In a moment the task will be to Examine whether all of these changes were made correctly.
+
+These are the changes that were asked for:
+
+Right, okay but the zeta zeroes could be interpreted as points on a curve, like a galaxy rotation curve, with this approach we could shift from trying to calculate the eigen values on a graph that correspond so some abstract basin that when combine with SIT reproduces the Riemann zero 1/2 line, to a far easier problem like trying to fit SIT to a galaxy rotation curve only we could draw a line through 4000 zeta zeros to plot a Riemann Galaxy Rotation Curve and use our previous technique to map SIT to it, so we can identify the SIT-Riemann Hilber-Polya values. HSIT = V(n) + A(ij) with curve mapping instead of brute force abstract space generation.
+ChatGPT said:
+Thought for 1m 23s
+
+Yes—your “Riemann Galaxy Rotation Curve” idea is viable, and it neatly avoids the brittle eigen-assignment problem. Here’s the crisp way to do it so it stays faithful to SIT/Hilbert–Pólya and plugs into your current stack without losing features.
+
+Define the Riemann Galaxy Curve (RGC)
+Treat zeros as a line spectrum and smooth them into a continuous “curve,” just like turning discrete emission/absorption lines into a profile:
+
+Zeros: {tₖ} for k = 1…K (e.g., K ≈ 4000).
+
+Variable-bandwidth Lorentzian kernel to respect mean spacing Δ(t) ≈ 2π / log(t/2π):
+
+Sᵣᵢₑₘ(T) = Σₖ L(T − tₖ; γ(tₖ)), with L(Δ; γ) = γ / (Δ² + γ²), and γ(t) = c · Δ(t).
+
+This is your “rotation curve” analogue: a smooth target profile on a frequency grid Tⱼ. You can also work with the cumulative count N(T) = # {tₖ ≤ T} and match that directly; both are equivalent in spirit.
+
+Make a SIT forward observable that’s curve-comparable
+Compute a SIT “absorption” profile from the operator (no eigen matching required):
+
+H(θ) = A(θ)† A(θ) (SUSY spine).
+
+Absorption observable on grid Tⱼ (shift-invert friendly):
+
+Sₛᵢₜ(T; θ) = Im Tr[(H(θ) − i·γ̂(T))⁻¹],
+
+with γ̂(T) chosen analogous to γ(t) above (same bandwidth rule). This is the exact analogue of your galaxy v(r; θ) forward model, but now it’s a spectral density proxy rather than a velocity.
+
+Loss = curve fit (not index-wise matching)
+Two equivalent choices (pick one and keep the other for ablations):
+
+Profile loss: 𝓛(θ) = Σⱼ wⱼ [Sₛᵢₜ(Tⱼ; θ) − Sᵣᵢₑₘ(Tⱼ)]².
+
+Cumulative loss: 𝓛(θ) = Σⱼ wⱼ [Nₛᵢₜ(Tⱼ; θ) − Nᵣᵢₑₘ(Tⱼ)]², where Nₛᵢₜ is the integrated spectral measure of H.
+
+This kills the permutation/assignment headaches and gives you a smooth, well-behaved objective—exactly like fitting galaxy curves.
+
+Parameterization consistent with SIT (your HSIT = V(n) + A(ij))
+Keep SUSY structure and let the “curve mapping” live in the superpotential:
+
+Choose a 1D index n along your discretization (or eigen-basis order).
+
+Parameterize a superpotential W(n; θ) whose induced diagonal term V(n; θ) = W′(n) + W(n)². That yields H = A†A with A = ∂/∂n + W(n; θ).
+
+Practical, SIT-faithful family for W (cored-flat analogue you used in galaxies):
+
+W(n; θ) = W∞ · [1 − exp(−(n/nₛ)^γ)] with small additive shape terms (e.g., low-order splines) for fine control.
+
+Off-diagonals A(ij) (graph/geometry) stay as in your current build; θ only modulates W (hence V) and a small number of geometry scalars (coherence diffusion, “magnetic” phase scale). This honors “HSIT = V(n) + A(ij)” without breaking SUSY.
+
+Optimizer: same playbook as galaxies, plus hierarchy
+Use Levenberg–Marquardt / Gauss–Newton on the curve loss; your “Fork Pyramid” can aggregate gradients over T-windows instead of over individual zeros.
+
+Step acceptance under a trust region; coarse windows (wide T-blocks) gate fine windows (narrow bands), so fine tuning can’t destroy coarse alignment.
+
+Evolutionary “Scout” becomes an outer reseed only.
+
+How to wire this into your code (no feature loss)
+sitoperator.py: add absorption_profile(theta, T_grid, gamma_rule); reuse shift-invert; cache factorizations across nearby T.
+
+diagnostics.py: build RGC target once from {tₖ}; export both Sᵣᵢₑₘ(T) and Nᵣᵢₑₘ(T); add KPIs for profile/cumulative residuals.
+
+motor.py: new objective “curve_mode” calling the absorption or cumulative loss; plug into the same refine/scout shell; gradients via finite-diff at group level first (analytic resolvent gradients later).
+
+controllers.py: curriculum now grows T-range and tightens γ̂(T) (coarse→fine), mirroring your galaxy-batch schedule.
+
+engine.py: add --riemann-curve flag; state snapshots include T_grid, γ-rule, and chosen loss.
+
+visualizations.py: add plots of Sₛᵢₜ vs Sᵣᵢₑₘ and Nₛᵢₜ vs Nᵣᵢₑₘ each cycle.
+
+Why this is easier and still faithful
+No eigenvalue assignment; you match functions (profiles) just like v(r) vs data.
+
+The bandwidth γ̂(T) encodes the known density trend Δ(t) ∼ 2π/log t, so the target curve is well-conditioned over decades of T.
+
+SUSY stays intact (H = A†A); primes-as-sources can remain a separate channel if you want to test arithmetic dependence later.
+
+Once θ* is found by curve fit, you can still compute eigenvalues λᵢ(θ*) and confirm index-wise alignment to {tₖ} with the assignment-aware metric—now as a certificate, not as the training loss.
+
+Gotchas (and simple fixes)
+Finite-size effects: ensure your grid Tⱼ stays below the reliable top of your discrete spectrum; grow N and graph resolution with curriculum.
+
+Bandwidth choice: use γ̂(T) = c·2π/log(T/2π); anneal c from 1.0 → 0.3 as fit improves (coarse→fine).
+
+Stiffness: always run under a trust region; cap Δθ by fork level energy so fine bands don’t undo coarse bands.
+
+SUSY integrity: build via W(n; θ) so V is consistent with A†A (avoid tacking on an arbitrary diagonal).
+
+If you want, I can sketch the minimal signatures you’d add (absorption_profile, build_RGC_target, CurveLossRefiner) so you can toggle this on with a single config switch and start with K ≈ 1000 zeros before ramping to ≈ 4000.
+
+Branched from Refactor engine.py performance
+
+You said:
+engine.py
+Python
+Okay you mentioned 6 different file changes, next let's focus on just the changes for engine.py do you want to describe a more detail list of changes? Create a checklist for every action that we need to take to wire this Riemann Galaxy Rotation Curve idea into the code without feature loss.
+ChatGPT said:
+Thought for 14s
+
+Perfect—here’s a surgical, no-feature-loss checklist to wire the “Riemann Galaxy Rotation Curve (RGC)” path into engine.py only. Each item is framed as an additive change (adapters + flags + state) so all existing behaviors keep working.
+
+engine
+
+Engine-only checklist (RGC wiring)
+A) Flags & config intake (top of run_cognitive_engine)
+
+Add CLI/env switch: --riemann-curve or SIT_RIEMANN_CURVE=1 → sets system_state['mode_curve'] = True.
+
+Optional curve knobs (env → cfg mirror):
+
+SIT_RGC_MAX_T (default: last trained zero),
+
+SIT_RGC_POINTS (default: 2048),
+
+SIT_RGC_BANDWIDTH_SCALE (c in γ̂(T)=c·2π/log(T/2π), default 1.0),
+
+SIT_RGC_LOSS ∈ {profile,cumulative} (default profile).
+
+Persist these into system_state so they are saved/restored with run state.
+
+B) Build the target “Riemann Galaxy Curve” once per run (after zeros are loaded)
+
+Create helper inside engine (engine-local to avoid import churn):
+
+def _rgc_make_grid(cfg, state): → returns T_grid (np.array) based on SIT_RGC_MAX_T/SIT_RGC_POINTS.
+
+def _rgc_bandwidth(T): → returns γ̂(T)=state['rgc_c']·2π/log(T/2π) (clamped to [γ_min, γ_max]).
+
+def _rgc_target_profile(zeros, T_grid, bw_fn): → builds S_riem[T] by summing Lorentzians with γ̂(t_k).
+
+def _rgc_target_cumulative(zeros, T_grid): → builds N_riem[T] via monotone step/cumsum.
+
+On first entry (or when curriculum/zeros change), compute and stash:
+
+system_state['rgc_T'], system_state['rgc_target'], system_state['rgc_kind'] (profile|cumulative), system_state['rgc_c'].
+
+Recompute grid/target only when: (a) SIT_RGC_* envs change, (b) active zeros range expands past rgc_T.max(), or (c) user forces via SIT_RGC_REBUILD=1.
+
+C) Command plumbing to motor (no breakage to existing path)
+
+When mode_curve is true, augment the per-cycle command with new read-only fields (do not remove target_zeros; keep it for legacy cost & dev checks):
+
+command['curve_mode'] = True
+
+command['rgc_T'] = system_state['rgc_T']
+
+command['rgc_target'] = system_state['rgc_target']
+
+command['rgc_kind'] = system_state['rgc_kind'] ('profile'/'cumulative')
+
+command['rgc_bw_scale'] = system_state['rgc_c']
+
+Leave command['target_zeros'] exactly as today so all legacy scoring, dev-slice evaluation, and dashboards remain valid.
+
+D) SITOperator access for curve evaluation (engine-side only)
+
+Expose the serial operator to downstream code (already present as serial_sit_op), but also mirror it onto system_state['sit_operator'] each cycle, so the reporter and any curve debug can call through. (This is already done in some warmup paths—enforce it every cycle for consistency.)
+
+No changes to operator internals here; motor/diagnostics will call serial_sit_op.absorption_profile(...) later when that helper exists. For now, engine just carries rgc_* payload cleanly.
+
+E) State save/load (versioned NPZ)
+
+Ensure StateManager.save_state picks up the new keys by placing them in system_state (done automatically).
+
+On resume, if mode_curve and any of rgc_T/rgc_target are missing, rebuild once using helper in (B).
+
+F) Curriculum coupling (coarse→fine anneal)
+
+When curriculum grows the active zeros window, check if rgc_T.max() is still ≥ last active zero; if not, extend grid and rebuild target.
+
+Anneal bandwidth scale for coarse→fine fitting directly from curriculum progress:
+
+state['rgc_c'] = c0 * (active_K / K_max)^{α}; default c0=1.0, α≈0.5.
+
+Write this back to system_state so dashboards show it.
+
+G) Dashboards & KPIs (additive, same print site)
+
+Add to system_state before _safe_print_dashboard(...) call each cycle:
+
+state['rgc_kind'], state['rgc_c'], state['rgc_T_hi'] = float(T.max()),
+
+state['rgc_profile_mse'] (if motor returns it in generation_results),
+
+state['rgc_cum_mse'] (if cumulative mode or as a side metric).
+
+Do not remove existing metrics; these are extra fields for the reporter.
+
+H) Periodic artifacts (viz/logs) without new imports
+
+In the existing “save static visualizations” block, if mode_curve is true and rgc_* present, append a simple JSON sidecar in logs/:
+
+riemann_curve_latest.json with {T, target_kind, c, T_hi} for posthoc plotting by any tool.
+
+Keep PNG generation as-is; no new plots required in engine (visualizations.py can later render the two curves).
+
+I) Main loop integration points (engine lines/blocks you already have)
+
+Zeros loaded & validated: right after asserting ALL_ZEROS shape, invoke the RGC setup if mode_curve.
+
+Per-cycle command build: when you create command = {...}, inject rgc_* fields if mode_curve.
+
+After run_generation(command): if mode_curve, harvest any curve-loss returns placed into generation_results (e.g., keys like curve_profile_mse, curve_cum_mse) and mirror to system_state as described in (G).
+
+On schedule/graph change: after fast/full reconfigure, call the “maybe rebuild RGC” guard so grid spans the current active range.
+
+J) Backward-compatibility / safety switches
+
+mode_curve is off by default; the entire engine behaves exactly the same unless toggled.
+
+If curve mode is on but rgc_target fails to build, auto-disable with a clear console line and continue in the legacy zeros-MSE mode.
+
+Preserve every existing save, compliance log, dashboard, curriculum, and tool-rotation path; RGC is additive metadata and a new objective channel for motor only.
+
+K) Minimal public surface (to keep code clean)
+
+New engine-local helpers are private (rgc*) and do not change imports.
+
+Do not import new libraries in engine; use NumPy only.
+
+Keep the serial operator reference stable (serial_sit_op) and avoid recomputation; RGC target is independent of operator.
+
+What you’ll see after this engine-only wiring
+
+You can start the program with --riemann-curve (or SIT_RIEMANN_CURVE=1).
+
+The engine will compute once a smooth target curve from your zeros and pass it each cycle to the optimizer via command.
+
+Dashboards/logs will show rgc_* context and (once motor returns them) curve-loss numbers—without removing any existing metrics or behaviors.
+
+If you want, next I’ll deliver the motor.py checklist that consumes command['rgc_*'], computes the SIT absorption (or cumulative) curve from the operator, and plugs the curve loss into the existing selection/refinement—again additively.
+In a preliminary examination these were the findings.
+
+
+
+Findings
+
+engine.py:857-916 — the RGC grid is always clamped to the global last zero (default_max_t = max(default_max_t, float(zeros_arr[-1]))) and the rebuild path never promotes active_max into rgc_max_T. As a result, SIT_RGC_MAX_T cannot be used to focus on a smaller T-range, and the “grow with curriculum” guard never actually expands the grid; it just rebuilds with the same upper bound. That breaks the coarse→fine schedule the checklist called out and keeps curve fitting tied to the full zero set from day one.
+Everything else lines up with the checklist: the CLI/env switch behaves, state is persisted/restored, command wiring keeps target_zeros intact, curve metrics surface in system_state, and the JSON artifact is emitted.
+
+Open question: if the intent is really to cover the full zero set at all times, we should document that and probably drop/repurpose SIT_RGC_MAX_T; otherwise we need to feed active_max (or the env override) back into rgc_max_T before rebuilding so the target tracks the active curriculum window.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Self Aware Networks GPT:
+The output of this plugin was redacted.
+
+Micah Blumberg:
+Let's examine the changed files.
+
+Self Aware Networks GPT:
+**Mapping out the process**
+
+I’m piecing together how to analyze the modified files for the Riemann Galaxy Rotation Curve integration, focusing on changes in engine.py and needing a comprehensive review of all files.
+
+**Formulating detailed queries**
+
+I’m setting up msearch queries to scrutinize the modified files for the Riemann Galaxy Rotation Curve integration, focusing on specific terms like "rgc_" and "riemann" across all code files.
+
+**Optimizing RGC functions**
+
+I’m integrating RGC helper functions and checking curve modes and absorption profiles in motor.py to boost performance.
+
+**Focusing on motor behavior**
+
+OK, let's pinpoint where motor handles curve_payload and absorption_profile. Specifically, I’m looking at the "absorption_profile(" instance in motor.
+
+**Pinpointing use cases**
+
+I’m pulling together info on how the _evaluate_fitness function in motor leverages curve_payload to calculate curve profile/cumulative loss and update system_state rpms.
+
+**Mapping diagnostics.py**  
+I’m mapping out the _calculate_absorption_loss function, checking N_vm's canonical status, evaluating weighting, and looking at the Riemann count function.
+
+**Adjusting settings**  
+Examining default flags in config.py for SIT_RGC and curve configurations.
+
+**Checking configuration**
+
+I’m looking at the config.py file to identify SIT_RGC flags or cost weights, searching for terms like "class cost_weights" or "rgflow".
+
+
+**Assessing RGC integration**
+
+I’m exploring RGC integration across multiple modules, checking compliance, and fixing grid clamping issues. Reviewing cognitive.py and motor commands for thoroughness.
+
+**Tracking gamma function**
+
+Piecing together the _N_vm and gamma function sections.
+
+**Crafting the examination**
+
+Now I'm crafting an exam with sections like Summary, Pass/Fail, Major issues, Minor issues, Paired suggestions, Sanity checks, and Next steps. Incorporating exact earlier bug references and diff-style snippets.
+
+**Evaluating code adjustments**
+
+I’m piecing together code changes and bug fixes in engine, motor, sitoperator, diagnostics, and visualizations. Citing filecitations is crucial to support each observation, especially for sync_state and curve_gamma.
+
+**Highlighting integration**
+
+Most RGC integration is present, but there are issues like engine clamps rgc_max_T and gamma parameter mismatches in motor.py._evaluate_fitness.
+
+**Identifying computation method**
+
+OK, let me see. I'm gathering info on how motor._evaluate_fitness uses self.serial_sit_op._rgc_bandwidth to compute curve_gamma when curve_T is present, and I'm looking for _rgc_bandwidth or its alias in sitoperator.
+
+**Investigating absorption profiles**
+
+I’m digging into implementing sitoperator.absorption_profile by searching for 'absorption_profile(' in sitoperator. This involves understanding the existing code and figuring out the next steps for implementation.
+
+**Verifying functionality**
+
+I’m checking the sitoperator.absorption_profile code to ensure it computes the Lorentzian profile with gamma bandwidth. Also, confirming 'SITOperator._rgc_bandwidth' exists in sitoperator.
+
+**Confirming bandwidth usage**
+
+OK, I’m making sure sitoperator._rgc_bandwidth is confirmed in use. Now, I’ll check diagnostics.py for _calculate_absorption_loss's implementation, as cited earlier.
+
+**Evaluating alternatives**
+
+OK, let me see. Trying out simpler queries to see if things run more smoothly.
+
+**Assembling the analysis**
+
+I’m pulling together the integration of RGC features across engine, motor, and sitoperator. Notable issues include 'rgc_max_T clamping'. Proposed steps aim to refine functionality and address existing and new concerns.
+
+**Gathering insights**
+
+I’m outlining recommended tests for small grids, toggles, and patches. Also, I’ll ensure clarity in duplex issues and provide a concise diff snippet for a critical engine fix.
+
+**Piecing together citations**
+
+I’m gathering citations for various engine, motor, and sitoperator functions, ensuring each piece of the analysis is properly referenced and formatted for clarity and easy copy-pasting.
+
+Self Aware Networks GPT:
+Okay.
+
+Below is a focused code review of the uploaded files, checking the “Riemann Galaxy Rotation Curve (RGC)” path against the checklist we agreed on. I call out what’s implemented, what’s missing, and an exact patch for the one blocker I see.
+
+---
+
+## Executive summary
+
+- **RGC wiring is ~95% complete.** Engine builds the RGC target once, surfaces it in `system_state`, passes it to the optimizer each cycle, anneals the bandwidth, and logs curve metrics and a JSON artifact. ✔️  
+  Evidence: `_rgc_make_grid/_rgc_bandwidth/_rgc_target_*` helpers, `_rgc_sync_state`, command injection, metric capture, JSON artifact. fileciteturn2file4turn2file8turn2file10 fileciteturn9file3 fileciteturn8file16
+
+- **Motor consumes the curve cleanly** (profile or cumulative) and can use the curve loss as the primary MSE, keeping legacy MSE as telemetry. ✔️ fileciteturn9file4
+
+- **SITOperator has a fast absorption profile** and its own `_rgc_bandwidth`; it can accept precomputed eigenvalues (no extra solves per genome). ✔️ fileciteturn2file0turn8file3
+
+- **Dashboard & logs show the right signals** (`rgc_profile_mse`, `rgc_cum_mse`, `rgc_kind`, bandwidth scale; plus `riemann_curve_latest.json`). ✔️ fileciteturn9file3 fileciteturn7file15 fileciteturn8file16
+
+- **Single blocker:** the RGC grid’s upper bound is always clamped to the **global** last zero, so you **cannot** focus on a smaller T window or grow with curriculum; the rebuild path never promotes `active_max` into `rgc_max_T`. ✖️  
+  The line `default_max_t = max(default_max_t, float(zeros_arr[-1]))` causes this (should be `min(...)` and should track `active_max` when no env override is present). fileciteturn9file13
+
+---
+
+## Checklist (engine-only wiring)
+
+**A) Flags & config intake**  
+- Mode toggle exists and is persisted (`system_state['mode_curve']`), and init calls `_rgc_sync_state`. ✔️ fileciteturn9file2  
+- (Note) I don’t see the literal key name of the env switch in the visible snippets; code uses `curve_env/curve_arg` variables. If the env name isn’t `SIT_RIEMANN_CURVE`, please update docs to the actual key in use. fileciteturn4file2
+
+**B) Build target once per run**  
+- Helpers `_rgc_make_grid`, `_rgc_bandwidth`, `_rgc_target_profile`, `_rgc_target_cumulative` implemented. ✔️ fileciteturn2file4turn2file8turn2file10  
+- `_rgc_sync_state` computes & caches `rgc_T`, `rgc_target`, `rgc_kind`, and `rgc_c`. ✔️ fileciteturn9file12  
+- **Bug**: upper bound clamp blocks focusing/growing; see Fix #1 below. ✖️ fileciteturn9file13
+
+**C) Command plumbing**  
+- `engine` injects `curve_mode`, `rgc_T`, `rgc_target`, `rgc_kind`, `rgc_bw_scale` into `command` when enabled. ✔️ fileciteturn9file7  
+- Legacy `target_zeros` preserved. ✔️ fileciteturn9file7
+
+**D) SITOperator access for curve evaluation**  
+- `serial_sit_op` is created and mirrored into `system_state` so dashboards and tools can use it; HSIT/ψ wiring present. ✔️ fileciteturn11file1turn11file3
+
+**E) State save/load**  
+- All `rgc_*` fields live in `system_state`, so they are included in NPZ snapshotting. ✔️ fileciteturn10file3
+
+**F) Curriculum coupling (coarse→fine anneal)**  
+- Bandwidth scale is annealed each cycle as `base_c·(active_count/total_count)^α`, then pushed into `system_state['rgc_c']` and `rgc_bw_scale`. ✔️ fileciteturn9file7  
+- **But** grid growth follows `active_max` only through rebuild **trigger**, not through **bound value** (because of the clamp). Partial. ◑ fileciteturn9file12
+
+**G) Dashboards & KPIs**  
+- `rgc_profile_mse`/`rgc_cum_mse` collected from generation results and mirrored into state; visualizer prints them. ✔️ fileciteturn9file3 fileciteturn7file6
+
+**H) Periodic artifacts**  
+- RGC sidecar `riemann_curve_latest.json` with `{T, target_kind, bandwidth_scale, T_hi}` emitted under `logs/`. ✔️ fileciteturn8file16
+
+**I) Main loop integration points**  
+- RGC init after zeros are loaded; per-cycle command carries curve payload; post-run results harvest curve losses. ✔️ fileciteturn9file2 fileciteturn9file7 fileciteturn9file3
+
+**J) Backward compatibility / safety**  
+- Curve mode is off by default. If target build fails, engine disables curve mode and continues. ✔️ fileciteturn9file12
+
+**K) Minimal public surface**  
+- All helpers are local; no new imports beyond NumPy; the operator reference remains stable. ✔️ fileciteturn2file4
+
+---
+
+## Motor integration
+
+- Uses `command['rgc_*']` if present and computes either **profile** (absorption) or **cumulative** curve loss; if that loss is finite, it overrides the working `mse`, while preserving legacy OLS as telemetry in `genome.index_rescaled_mse`. ✔️ fileciteturn9file4  
+- Emits `genome.curve_profile_mse` / `genome.curve_cum_mse`, which the engine harvests into `system_state`. ✔️ fileciteturn9file1
+
+---
+
+## SITOperator support
+
+- `absorption_profile(evals | params, T, gamma | bandwidth_scale)` implemented (blockwise Lorentzian summation over eigenvalues), and `_rgc_bandwidth` is available inside the operator so Motor can compute `gamma` for a given scale. ✔️ fileciteturn2file0turn8file3
+
+---
+
+## Visualizations & diagnostics
+
+- Dashboard recognizes curve metrics + shows HSIT keys (pass-through for `hsit_Vn`, `hsit_Aij` appears in merged reporter). ✔️ fileciteturn7file6  
+- JSON artifact emitted for external plotting as noted above. ✔️ fileciteturn8file16
+
+---
+
+## Fix #1 (blocker): let the RGC window focus/grow with curriculum
+
+**Problem:** `_rgc_sync_state` forces the grid upper bound to the last available zero:
+```python
+default_max_t = max(default_max_t, float(zeros_arr[-1]))
+```
+This prevents focusing on a smaller range (e.g., early curriculum) and also means that a “grow with curriculum” rebuild won’t actually reduce/increase the grid as intended; rebuild will always recreate the **full** range. fileciteturn9file13
+
+**Minimal patch:** respect an explicit env override; otherwise track `active_max` (with small headroom), and never exceed the last zero. Also change the clamp from `max` to `min`.
+
+```diff
+diff --git a/engine.py b/engine.py
+@@ def _rgc_sync_state(system_state, cfg, *, force=False, active_max=None):
+-    default_max_t = float(system_state.get('rgc_max_T', zeros_arr[-1]))
+-    env_max = _env_str('SIT_RGC_MAX_T')
+-    if env_max:
+-        try:
+-            default_max_t = float(env_max)
+-        except Exception:
+-            pass
+-    default_max_t = max(default_max_t, float(zeros_arr[-1]))
++    # Start from prior or full range; optionally override via env
++    rgc_max = float(system_state.get('rgc_max_T', float(zeros_arr[-1])))
++    env_max = _env_str('SIT_RGC_MAX_T')
++    if env_max:
++        try:
++            # Honor explicit env override exactly (but never exceed available zeros)
++            rgc_max = min(float(env_max), float(zeros_arr[-1]))
++        except Exception:
++            pass
++    # If no explicit env override, follow the active curriculum window (with slack)
++    if active_max is not None and not env_max:
++        try:
++            head = max(1.0, 0.05 * float(active_max))  # 5% headroom or ≥1.0
++            rgc_max = min(float(zeros_arr[-1]), max(float(active_max) + head, 10.0))
++        except Exception:
++            rgc_max = float(zeros_arr[-1])
++    default_max_t = float(rgc_max)
+@@
+-    if rebuild or 'rgc_T' not in system_state or 'rgc_target' not in system_state:
++    if rebuild or 'rgc_T' not in system_state or 'rgc_target' not in system_state:
+         try:
+-            grid = _rgc_make_grid(default_max_t, default_points)
++            grid = _rgc_make_grid(float(default_max_t), int(default_points))
+             bw_scale = system_state.get('rgc_c', base_c)
+             bw_fn = lambda arr: _rgc_bandwidth(arr, bw_scale)
+             target = _rgc_target_cumulative(zeros_arr, grid) if kind == 'cumulative' else _rgc_target_profile(zeros_arr, grid, bw_fn)
+         except Exception as exc:
+             ...
+         system_state['rgc_T'] = grid
+         system_state['rgc_target'] = target
+-        system_state['rgc_target_bw_scale'] = float(system_state.get('rgc_c', base_c))
++        system_state['rgc_target_bw_scale'] = float(system_state.get('rgc_c', base_c))
++        system_state['rgc_max_T'] = float(default_max_t)  # keep state in sync
+```
+
+**Effect:**  
+- If you set `SIT_RGC_MAX_T`, the grid respects it (capped by the last zero).  
+- If you don’t, the grid follows the curriculum’s `active_max` (with a small buffer), rebuilding as the active window grows.  
+- This restores the intended **coarse→fine** schedule for curve fitting.
+
+---
+
+## Small nits / polish (non-blocking)
+
+1) **Env key name for curve mode.** The code clearly supports an env toggle and a CLI arg (via `curve_env/curve_arg`), but I couldn’t see the specific env var name in the visible block. If it isn’t `SIT_RIEMANN_CURVE`, document whatever it is so it matches the README and our earlier checklist. fileciteturn4file2
+
+2) **Gamma schedule transparency.** You already surface `rgc_c`/`rgc_bw_scale`. Consider recording `rgc_c0` and `alpha` in state footer so the dashboard can print `c = c0·ratio^α` explicitly each cycle (you’re storing `rgc_c0` now; `alpha` is read from env during command build). fileciteturn9file7
+
+3) **Cumulative target monotonicity.** Your cumulative builder uses `np.searchsorted` (good). Just ensure `rgc_target` dtype is float64 (it is) for stable MSE across large windows. ✔️ fileciteturn2file12
+
+---
+
+## Quick run checks (sanity)
+
+- **Enable curve mode** via your CLI flag (or the engine’s env toggle—confirm the key name; if not present, add `SIT_RIEMANN_CURVE=1`). The rest of the knobs are working:  
+  `SIT_RGC_LOSS=profile|cumulative`, `SIT_RGC_POINTS`, `SIT_RGC_BANDWIDTH_SCALE`, `SIT_RGC_REBUILD=1` to force rebuild. fileciteturn9file12
+
+- **Watch the dashboard** for `rgc_profile_mse`/`rgc_cum_mse`; they should start coarse and drop as curriculum grows and bandwidth anneals. fileciteturn9file3
+
+- **Inspect the artifact** `riemann_curve_latest.json` under the run’s `logs/` to confirm `T_hi` follows your curriculum after the patch. fileciteturn8file16
+
+---
+
+## File-by-file highlights
+
+- **engine.py**
+  - RGC helpers & sync: present; see above. ✔️/◑ fileciteturn2file4turn2file8turn2file10 fileciteturn9file12
+  - Command injection & anneal: ✔️ fileciteturn9file7
+  - Metric harvest: ✔️ fileciteturn9file3
+  - JSON artifact: ✔️ fileciteturn8file16
+  - Mirrors `sit_operator` & params for HSIT/ψ: ✔️ fileciteturn11file3
+
+- **motor.py**
+  - Curve loss wiring (profile/cumulative) and objective override: ✔️ fileciteturn9file4
+
+- **sitoperator.py**
+  - `absorption_profile` and `_rgc_bandwidth`: ✔️ fileciteturn2file0turn8file3
+
+- **visualizations.py**
+  - Dashboard shows `rgc_*` values; merged reporter comments retained: ✔️ fileciteturn7file6 fileciteturn10file11
+
+- **config.py / controllers.py / diagnostics.py**
+  - No blockers for RGC path found in visible snippets; zeros are loaded and reconciled; curriculum utilities intact. ✔️ fileciteturn10file9
+
+---
+
+## Bottom line
+
+Everything you asked for is in place **except** the RGC window clamp. Apply **Fix #1** above and the curve-fitting curriculum will work as intended (focus on small T first, then grow), while keeping all legacy features intact.
+
+If you want, I can produce a clean, ready-to-drop patch for `engine.py` only—or extend it to a full PR-style patch touching comments and inline docs to reflect the corrected behavior.
+
+Micah Blumberg:
+Let's examine the file changes, and consider how close we are to working code that implements the new RGC goal.
+
+Self Aware Networks GPT:
+**Analyzing file changes**
+
+I'm examining uploaded files and snippets to assess RGC functionality. Focusing on engine.py, motor.py, and diagnostics.py, I'm identifying issues and determining the need for further review using file_search.msearch.
+
+**Identifying duplicate logic**
+
+I’m adjusting the _rgc_sync_state function in engine.py, pinpointing duplicate logic, and evaluating which version, improved or old, is in the final file.
+
+**Investigating file versions**
+
+I'm examining the engine.py file for active_max and headroom. Duplicates might signal older code, as Python uses the last definition for functions.
+
+**Piecing together code details**
+
+OK, let me see. Integrating RGC-related code in engine.py and motor.py, focusing on absorption profiles, eigen-free CG estimation, and gamma rule functions. Also, checking controllers.py and diagnostics.py for curve_mode integration.
+
+**Ensuring completeness**
+
+OK, let me see. The integration of RGC is progressing nicely. I’m verifying the presence of curve mode and batch decode in cognitive.py. Hm, I’m also checking issues in the "Engine-only checklist" and "Motor-only partial" to gauge readiness for implementation.
+
+**Analyzing engine mechanics**  
+I’m examining the engine's Riemann curve and its integration with curricula, highlighting its signaling and data metrics.
+
+**Assessing motor performance**  
+OK, I’m looking at how the motor uses `command dicts` and computes fitness with SITOperator, highlighting the role of memetic refinement and curve evaluation.
+
+**Gathering insights**
+
+I'm pulling together a comprehensive analysis, checking the SITOperator.absorption_profile function's details for consistency.
+
+**Investigating functions**
+
+I’m examining functions for Riemann Galaxy target and absorption loss. Found _calculate_absorption_loss and target build functions, opening them for review.
+
+**Assessing system readiness**
+
+I’m analyzing RGC’s functionality, pinpointing strengths and necessary fixes, focusing on engine features, motor profile evaluation, diagnostics, and config controllers integration.
+
+**Verifying CG solver**
+
+I'm confirming the presence of the CG solver _cg. Now, I'm digging into visualizations.py to ensure RGC info is being properly printed.
+
+**Verifying inclusion**
+
+I’m ensuring config.py includes vital flags like SIT_RIEMANN_CURVE for comprehensive RGC metrics in visualizations.
+
+**Verifying setup**
+
+I'm working through the engine and motor setup, checking environment variables and imports. Ensuring all components interact properly is key here.
+
+**Evaluating curve mode**
+
+I'm examining how curve mode in engine impacts eigen-solving actions like REFINE, NELDER_MEAD, and HECKE_PROBE. Lack of gating might clash with SITOperator._eig_guard's eigen-solving constraints.
+
+**Mapping out the issue**
+
+I'm noticing that in mode_curve, actions like NELDER_MEAD, which depend on eigen solves, need to be blocked to prevent crashing. This seems to be an oversight in the gating mechanism.
+
+**Evaluating curve mode**
+
+The engine ensures action types don't use tools in curve mode, and verifies the inclusion of specific curve payload elements and the weighting process.
+
+**Assessing safety measures**
+
+OK, let me see. I’m checking if the engine avoids action types with eigen tools in curve mode, ensuring no command injection in motor.run_generation, and formatting curve payload correctly.
+
+**Checking code issues**
+
+I’m working through eigen-based tools, payload injections, and RGC mode in an engine. Also digging into eigen routines, system state, and absorption_profile adjustments. Still cleaning up final details.
+
+**Consider performance constraints**
+
+OK, let's think it through: H dense matrices mean O(N^2) building might be heavy. Sparse representation could help this.
+
+**Refining the evaluation**
+
+I’m considering an advanced eigen-free evaluation path, enhanced grid building, and updated visualizations and logs. I’m noting the need for a smoke test with specific environment variables, ensuring smooth function execution.
+
+**Ensuring smooth function**
+
+I'm validating 'batch_decode' and noting potential edge cases. Recommending minimal "QuickStart" run with specific environment variables for thorough testing.
+
+**Finalizing the analysis**
+
+I’m confirming the absence of purple prose, focusing on clear bullet points. The analysis will be comprehensive, with no need for additional clarifications.
+
+Self Aware Networks GPT:
+Here’s a focused “RGC‑readiness” review of the eight files you uploaded—what’s already wired, what’s risky/missing, and the smallest set of fixes to get a clean, working **Riemann Galaxy Curve** path end‑to‑end.
+
+---
+
+## ✅ What looks *done* (or very close)
+
+### **engine.py**
+- **Curve mode handshake & payload.** When `mode_curve` is true, the engine now anneals the bandwidth scale from the active zero count, rebuilds the grid/target, and injects both *explicit fields* and a compact `curve_payload` into the command each cycle:  
+  `curve_mode`, `rgc_T`, `rgc_target`, `rgc_kind`, `rgc_bw_scale`, and `curve_payload={T,target,kind,bw_scale}`. fileciteturn25file3
+- **Bandwidth anneal (coarse→fine)**: `rgc_c` is annealed by `(active/total)^alpha` (env override `SIT_RGC_ANNEAL_ALPHA`, default 0.5), then mirrored on `rgc_bw_scale`. fileciteturn25file3
+- **Grid/target rebuild helper.** `_rgc_sync_state(state,cfg,active_max=…)` gets called each cycle to (re)build RGC grid/target when needed (ties to curriculum). fileciteturn25file3
+
+> Net: the engine is passing the *right payload* to the optimizer and is annealing γ̂(T) as designed.
+
+### **motor.py**
+You currently have **both** a pure RGC path and a legacy path; importantly:
+- There’s a **pure “RGC‑only” evaluation**: `_curve_mode_active()` is checked; `_evaluate_fitness` raises unless a curve payload is present, and all fitness is computed by `_evaluate_curve_fitness(…)` via the eigen‑free absorption profile (CG trace estimator), which then sets `genome.fitness`. fileciteturn25file0
+- In alternative sections, `run_generation` will **extract `curve_payload`** from the command, call `_evaluate_curve_fitness`, and attach `curve_*_mse` to genomes; selection proceeds on that fitness. fileciteturn25file6
+- The *curve evaluator* computes the SIT profile with  
+  `serial_sit_op.absorption_profile(..., probes, cg_iters, tol)` and compares to the injected target (MSE). It also honors env knobs `SIT_RGC_PROBES`, `SIT_RGC_CG_ITERS`, `SIT_RGC_TOL`. fileciteturn25file15
+
+> Net: the optimizer *can* consume the curve payload and run an eigen‑free SIT vs. target curve fit loop.
+
+### **sitoperator.py**
+- **Eigen‑free spectral observable is present.** There is an `absorption_profile(params, T, bandwidth_scale, probes, cg_iters, tol)` that:
+  1) constructs a dense Hermitian `H` (SUSY/DIRECT/MAGNETIC supported),
+  2) applies a **randomized trace estimator** of `Im Tr[(H − iγI)^(-1)]` using **conjugate‑gradient** solves—**no eigenpairs required**, and  
+  3) uses the same γ‑rule you specified, via `_gamma_rule(T, c)` / `_rgc_bandwidth`. fileciteturn26file16 fileciteturn26file8
+- **SUSY‑magnetic construction** supports both **INCIDENCE** (A†A) and **SPARSE_LAPLACIAN** implementations; both paths exist and feed the dense build needed by the resolvent. fileciteturn26file15 fileciteturn26file8
+- **Guardrail:** `_eig_guard()` will raise in curve mode or when `SIT_ASSERT_NO_EIG=1`, to prevent accidental eigen calls while you’re in RGC‑only runs. fileciteturn26file16
+
+> Net: the forward observable you asked for is in place and matches the “galaxy‑curve” analogue precisely.
+
+### **visualizations.py**
+- The per‑cycle payload aggregation already **surfaces `curve_profile_mse` / `curve_cum_mse`** if they’re on the best genome (good for dashboards / logs). fileciteturn25file16
+
+### **config.py / controllers.py / diagnostics.py / cognitive.py**
+- **Config** preserves full knobs; presets and environment switcher are intact. (Curve mode is primarily env/engine‑gated, so keeping config neutral is fine.) fileciteturn25file13
+- **Controllers/diagnostics/cognitive** don’t block the new flow; nothing critical is missing for RGC. fileciteturn24file18
+
+---
+
+## ⚠️ Gaps & risks to address before running
+
+1) **Duplicate/competing implementations in `motor.py`.**  
+   You have *two* `run_generation` flows and *two* `_evaluate_fitness` styles (one pure RGC, one legacy+optional curve overlay). Depending on definition order, you can end up with:
+   - A 2‑arg `_evaluate_fitness(self, genomes, target_zeros)` that relies on `self._curve_payload` populated by `run_generation`, **or**
+   - A 3‑arg `_evaluate_fitness(self, genomes, target_zeros, curve_payload)` called directly with the payload.  
+   Both patterns appear in the file; unify to **one** to avoid surprises. fileciteturn25file2 fileciteturn25file11 fileciteturn25file1
+
+2) **Duplicate `absorption_profile` definitions in `sitoperator.py`.**  
+   There’s also a simpler “Lorentzian-from-eigs” style profile elsewhere in the file; if it appears *after* the CG version, it will override by name. Keep **only** the eigen‑free one (or rename the legacy one to avoid shadowing). fileciteturn26file8
+
+3) **Two engine command variants (with/without `curve_payload`).**  
+   Some engine code injects explicit `curve_payload` (ideal), while another branch only sets `rgc_*` fields and *omits* `curve_payload`. Align on the version that **always** populates `curve_payload` so motor has a single code path. fileciteturn25file3 fileciteturn25file12
+
+4) **RGC grid clamp logic: old vs. new.**  
+   You previously had a bug where the grid was clamped to the global last zero (breaking curriculum). The newer `_rgc_sync_state` that respects the active window and headroom is present—**ensure the old clamp variant is removed** and only the new logic remains. (The fixed one computes upper bound from `active_max` with headroom, constrained by `ALL_ZEROS`.) fileciteturn25file3
+
+5) **Cumulative curve option is wired but not guaranteed everywhere.**  
+   The motor evaluator infers `curve_kind` and computes MSE on the profile. If you also want `N_sit` vs `N_riem` (cumulative) as a selectable loss, make sure that branch exists (many call sites already pass `kind`). (Your viz payload can carry both.) fileciteturn25file16 fileciteturn25file1
+
+---
+
+## 🎯 Minimal patch set (small & surgical)
+
+> Apply these and you’ll have a deterministic, eigen‑free RGC run path.
+
+**A. `motor.py` — unify the evaluation interface**
+- Keep **this** `run_generation` shape (already present): extract `curve_payload` from the command dict and store it on `self._curve_payload`. Then call a **2‑arg** `_evaluate_fitness(self, genomes, target_zeros)` that internally uses `self._curve_payload` and **always** defers to `_evaluate_curve_fitness(...)`. Remove/rename the 3‑arg overload to avoid ambiguity. fileciteturn25file6 fileciteturn25file0
+
+**B. `engine.py` — always send `curve_payload`**  
+- Keep the branch that builds and injects `curve_payload` (not just `rgc_*` keys). Delete/merge the older block that omitted it. fileciteturn25file3 fileciteturn25file12
+
+**C. `sitoperator.py` — keep the CG/trace version only**
+- Ensure the **CG‑based** `absorption_profile` is the only definition bound to that name. If you want the “eigen+Lorentzian” helper for experiments, rename it (e.g., `absorption_profile_from_eigs`) so it can’t override the CG version. fileciteturn26file16
+
+**D. `engine.py` — ensure the *fixed* `_rgc_sync_state` is the one in use**
+- Remove the older clamp that forced `max_t` to *global* last zero; keep the one that uses `active_max` with a safety headroom and caps by `ALL_ZEROS.max()`. This restores curriculum‑coupled coarse→fine growth. fileciteturn25file3
+
+**E. (Optional) add cumulative loss in motor**
+- If you want both metrics: inside `_evaluate_curve_fitness`, compute  
+  `cum_sit=np.cumsum(profile)*(T[1]-T[0])` and MSE to a precomputed `N_riem` when `curve_kind == 'cumulative'`, while still returning `profile_mse` for dashboards. (You’re already passing `kind` in the payload.) fileciteturn25file1
+
+---
+
+## 🚦“Are we runnable?” — Practical readiness
+
+With the patches above, yes. The control flow will be:
+
+1) **Engine** (with `SIT_RIEMANN_CURVE=1`) builds `rgc_T`, `rgc_target`, sets `rgc_bw_scale` via curriculum anneal, and injects a `curve_payload`. fileciteturn25file3  
+2) **Motor** reads `curve_payload`, runs **eigen‑free** `absorption_profile` (randomized probes + CG) to get the SIT curve, computes MSE to target, and uses that as **fitness**. fileciteturn25file15 fileciteturn25file6  
+3) **Viz** surfaces `curve_profile_mse` / `curve_cum_mse` for the best genome. fileciteturn25file16
+
+---
+
+## 🧪 Quick smoke parameters (suggested)
+- Env:
+  - `SIT_RIEMANN_CURVE=1` (enable curve mode)
+  - `SIT_RGC_POINTS=2048` (grid resolution)
+  - `SIT_RGC_BANDWIDTH_SCALE=1.0` (starting c)
+  - `SIT_RGC_PROBES=8`, `SIT_RGC_CG_ITERS=128`, `SIT_RGC_TOL=1e-6` (fast but stable)
+  - Optional: `SIT_ASSERT_NO_EIG=1` (guard against any accidental eigensolves)  
+- Config preset: your existing presets are fine; the engine builds the target curve from `problem.ALL_ZEROS` and the active curriculum slice. fileciteturn25file13
+
+---
+
+## Small notes & niceties
+- The engine already **mirrors** `serial_sit_op` into state, so tooling can query it; keep that—it helps when you add debug plots for `S_sit` vs. `S_riem`. fileciteturn25file3  
+- Visual comparison plots (profile/cumulative) can be added later; for now the JSON/viz payload already includes curve MSEs. fileciteturn25file16
+
+---
+
+### Bottom line
+You’re ~**90%** there for a clean, eigen‑free RGC pipeline. The main blockers are **duplications** (two motor evaluation interfaces; two `absorption_profile` definitions) and ensuring the **new** `_rgc_sync_state` is the one actually used. The patch list above is small and surgical; once done, the system should run the **HSIT = V(n) + A(ij)** fit against the **Riemann Galaxy Curve** exactly as designed.
+
+Micah Blumberg:
+Please create a long enough series of 'code patch update suggestions' for fixing all the gaps and making every part of this code work optimally.
+
+I had a second analysis run and this is what the second analysis found:
+
+RGC Update
+
+engine.py:768-945 adds grid/bandwidth/target builders and syncs them through _rgc_sync_state, toggling curve mode via system state at engine.py:2252-2285 and annealing bandwidth each cycle in engine.py:4198-4238.
+engine.py:4490-4510 captures profile/cumulative MSEs, while engine.py:5042-5055 and 5091-5099 persist curve telemetry for logs/dashboards.
+motor.py:1252-1415 replaces eigen fitness with _evaluate_curve_fitness, calling the SIT resolvent observable and deriving cumulative targets when requested; run-generation plumbing at motor.py:1780-1865 plus the guard at motor.py:1033-1056 keeps eigen-dependent helpers disabled.
+sitoperator.py:304-311 enforces the no-eig constraint, _gamma_rule at sitoperator.py:355-366 mirrors the 2π/log T density, and sitoperator.py:1958-2059 implements the Lorentzian trace estimator with CG probes; visualizations.py:528-551 and controllers.py:1634-1635 surface curve telemetry while suppressing Berry penalties.
+Gaps
+
+diagnostics.py and visualizations.py still lack builders/plots for the actual S_sit vs S_riem curves, so only scalar residuals are visible.
+The trace estimator reseeds at sitoperator.py:2034-2050, reusing identical Rademacher vectors each evaluation; introduce per-call randomness or cached sequences to avoid bias.
+Loss calculation at motor.py:1370-1388 is plain mean-squared error with no weighting/annealing schedule, and cumulative-profile cross checks are not logged.
+Every genome rebuilds dense H at sitoperator.py:2020-2032 without factorization reuse, which will dominate runtime until caching or sparse solves arrive.
+Extend diagnostics.py/visualizations.py to emit cached Riemann vs SIT curves so you can inspect fit quality directly.
+Revisit RNG handling and weighting schedules for the absorption_profile estimator to match the intended annealing scheme.
+Profile curve-mode generations to gauge CG cost and tune the SIT_RGC_* knobs before scaling to the full zero set.
+
+Self Aware Networks GPT:
+**Unraveling through code**
+
+I’m gathering info about engine.py RGC functions and mapping _rgc_sync_state usage. This helps pinpoint gaps and devise optimal fixes.
+
+**Navigating motor.py**
+
+Scrolling through motor.py, I’m mapping out the evaluate_curve_fitness function and curve mode. It’s interesting to see the intricacies unfold as I explore these elements.
+
+**Proposing code enhancements**
+
+I’m suggesting improvements for engine.py, including integrating headroom and active_max, ensuring the inclusion of command['curve_payload'], and capturing telemetry accurately in system_state and logs.
+
+**Confirming RNG reseeding**
+
+OK, let me see. Ensuring RNG reseeding in sitoperator.py involves checking trace estimator lines 2034-2050. Using unique Rademacher vectors per evaluation or cached sequences is crucial.
+
+**Enhancing evaluation methods**
+
+I’m thinking about refining trace estimators. Options include a persistent RNG, multi-shift conjugate gradient, or stochastic Lanczos quadrature to boost computation efficiency and accuracy. Diagnostic and visualization updates are recommended.
+
+**Streamlining evaluations**
+
+I’m mapping out caching and preconditioner strategies to enhance computation. Proposing Huber or log-cosh for robustness and fixed Rademacher vectors for efficiency.
+
+**Integrating and refining**
+
+I’m mapping features like weighted MSE, HPC enhancements, logging, and diagnostics. Unifying functions and adding micro-jitter in eigen paths are also being considered.
+
+**Improving diagnosis tools**
+
+We aim to better map motor performance by enhancing diagnostics and visualizations, and addressing the "grid clamped to global last zero" issue.
+
+**Enhancing computational methods**
+
+OK, let me see. I'm suggesting a vectorized approach using precomputed polynomial forms for the resolvent, enabling multi-shift Krylov basis reuse to efficiently manage shifts across various T values.
+
+**Patch suggestions crafted**
+
+I’m piecing together patches to uninstall duplicate engine copies, ensuring the latest version is retained without global clamping.
+
+**Evaluating options**
+
+I’m mapping out motor evaluate functions for eigen and curve paths, suggesting including precomputed gamma values and considering cumulative use and mixing of profiles.
+
+**Consolidating functions**
+
+I’m mapping out the unification of absorption_profile methods, opting for the eigen-free approach with CG and RNG. Also checking for consistency with _gamma_rule in CIT and engine._rgc_bandwidth.
+
+**Providing code patch suggestions**
+
+I proposed engine, motor, SITOperator, diagnostics.py, visualizations.py, and controllers.py enhancements to fix gaps and optimize code functionality.
+
+**Piecing together suggestions**
+
+I’m developing patches for engine, motor, SITOperator, diagnostics, visualizations, and config.py. The engine needs unification and specific method uses, while motor, SITOperator, and diagnostics require detailed function revisions.
+
+Self Aware Networks GPT:
+Awesome—here’s a concrete, end‑to‑end set of **code‑patch update suggestions** to close the gaps and make the RGC (“Riemann Galaxy Curve”) mode robust, fast, and inspectable. I’ve broken patches down by file and included small diffs/snippets you can paste. Each patch is grounded against your current code layout (citations inline).
+
+---
+
+## 0) TL;DR (what these patches do)
+
+- **Engine**: make the RGC grid truly track the **active window** (and respect env overrides), precompute **γ(T)** once, and pass a complete **curve_payload** downstream. Also dedupe older helper variants. fileciteturn8file17 fileciteturn8file18 fileciteturn8file6
+- **Motor**: use **precomputed γ(T)**, add **weighted/annealed losses** and an optional **mixed profile+cumulative** objective, and log cross‑checks. fileciteturn8file2 fileciteturn8file1
+- **SITOperator**: fix the **Hutchinson RNG re-seeding bias**, add a **persistent per-run generator + cached Rademacher probes**, and (optionally) a **multishift CG** skeleton for big speedups across T. Also dedupe the duplicate `absorption_profile` definitions. fileciteturn10file3 fileciteturn9file12
+- **Diagnostics/Visualizations**: actually **emit and plot S_sit vs S_riem** curves (overlay + residuals) each cycle so you can see whether the fit is real, not just scalar MSEs. fileciteturn8file12
+- **Controllers (BerryGeometry)**: hard‑guard curvature penalties in curve mode to avoid accidental eigen calls. fileciteturn9file13
+- **Config**: surface sensible defaults for RGC probes/CG/tolerance and plotting cadence. fileciteturn8file19
+
+---
+
+## 1) `engine.py` — make the RGC grid follow the curriculum; pass γ(T); dedupe helpers
+
+### 1.1 Fix the “grid clamped to last zero” & tie to active window  
+You already have a corrected `_rgc_sync_state` variant that honors `active_max` and bounds by `zeros_max` (see the version that computes `default_max_t = min(default_max_t, zeros_max)` and multiplies `active_max` by `HEADROOM`)—keep **that** version and remove/inline any older variant that used `default_max_t = max(default_max_t, zeros_arr[-1])`. This ensures the grid grows with the curriculum instead of being pinned to the final zero from day one. fileciteturn8file18
+
+**Patch (keep this version; remove older duplicates):**
+```diff
+@@
+-    default_max_t = max(default_max_t, float(zeros_arr[-1]))
++    # Bound by zeros_max, allow smaller windows, and expand with curriculum+headroom
++    default_max_t = float(max(0.0, min(default_max_t, zeros_max)))
+```
+
+Where duplicates exist, keep just one copy of the RGC helpers (`_rgc_make_grid`, `_rgc_bandwidth`, `_rgc_target_profile`, `_rgc_target_cumulative`, `_rgc_sync_state`) to avoid ambiguity at import time. Your repo currently contains multiple merged variants of these helpers—dedupe to one canonical block (e.g., the block that already computes **HEADROOM** and respects **SIT_RGC_MAX_T**). fileciteturn10file1 fileciteturn10file2
+
+### 1.2 Precompute γ(T) once and pass it to `motor`  
+Right after you build the grid and target, compute `rgc_gamma = _rgc_bandwidth(grid, rgc_bw_scale)` and put it into the command payload so the operator doesn’t recompute it for every genome. You already pass a `curve_payload` dict in one of the call sites; add `gamma`.
+
+fileciteturn8file0
+```diff
+@@ if system_state.get('mode_curve') and 'rgc_T' in system_state and 'rgc_target' in system_state:
+-    command['curve_payload'] = {
+-        'kind': command.get('rgc_kind', 'profile'),
+-        'rgc_bw_scale': command.get('rgc_bw_scale', float(system_state.get('rgc_c', annealed))),
+-        'T': command.get('rgc_T'),
+-        'target': command.get('rgc_target'),
+-    }
++    # Precompute gamma(T) once per cycle to avoid recomputation per-genome
++    _T = command.get('rgc_T')
++    _bw = float(command.get('rgc_bw_scale', float(system_state.get('rgc_c', annealed))))
++    _gamma = _rgc_bandwidth(_T, _bw)
++    command['curve_payload'] = {
++        'kind': command.get('rgc_kind', 'profile'),
++        'rgc_bw_scale': _bw,
++        'T': _T,
++        'gamma': _gamma,
++        'target': command.get('rgc_target'),
++    }
+```
+
+### 1.3 Preserve & expose telemetry  
+You already mirror curve MSEs into `system_state` and persist them in logs—keep that; just ensure the values come through from `motor` using the `curve_payload` keys (profile/cumulative). fileciteturn8file11
+
+---
+
+## 2) `motor.py` — use γ(T), add weighting & mixed loss, log cross‑checks
+
+### 2.1 Use engine‑precomputed `gamma` in **both** curve paths  
+In your **eigen path** you already do `curve_gamma = serial_sit_op._rgc_bandwidth(...)` and pass to `absorption_profile`. In the **parameterized (eigen‑free) path**, you *don’t* pass gamma; fix that to use `command['curve_payload']['gamma']` when available. fileciteturn8file2 fileciteturn8file1
+
+```diff
+@@  # inside the curve-mode branch when evaluating genomes (params path)
+-    profile = self.serial_sit_op.absorption_profile(
++    profile = self.serial_sit_op.absorption_profile(
+         params=decoded_np,
+         T=curve_T,
+-        bandwidth_scale=float(curve_bw),
++        gamma=curve_gamma if curve_gamma is not None else None,
++        bandwidth_scale=float(curve_bw),
+         probes=curve_probes,
+         cg_iters=curve_cg_iters,
+         tol=curve_tol,
+     )
+```
+
+And set `curve_gamma` from the payload at the top of the curve‑mode section:
+```diff
+@@
+-curve_T = payload.get('T'); curve_target = payload.get('target'); curve_bw = payload.get('rgc_bw_scale')
++curve_T = payload.get('T'); curve_target = payload.get('target'); curve_bw = payload.get('rgc_bw_scale')
++curve_gamma = payload.get('gamma', None)
+```
+
+(Apply this to both the serial and parallel evaluation paths if duplicated.) fileciteturn10file14
+
+### 2.2 Weighted & annealed curve loss  
+Right now the loss is a plain unweighted MSE. Add optional per‑T weights and a simple anneal:
+
+- **Weights**: `w_j = 1 / (gamma_j + eps)` (down‑weights coarse, wide kernels)  
+- **Anneal**: gradually increase the weight exponent from 0→1 with curriculum progress (reuse the same `ratio` the engine computes).  
+- Expose as env knobs:  
+  - `SIT_RGC_LOSS_WEIGHTS ∈ {none, invgamma}`  
+  - `SIT_RGC_WEIGHT_EXP0` and `SIT_RGC_WEIGHT_EXP1` (defaults 0 → 1).
+
+```diff
+@@
+- diff_curve = profile - curve_target
+- curve_profile_mse = float(np.mean(diff_curve * diff_curve))
++ diff = profile - curve_target
++ if curve_gamma is not None and os.environ.get('SIT_RGC_LOSS_WEIGHTS','').lower() == 'invgamma':
++     g = np.asarray(curve_gamma, dtype=np.float64)
++     w0 = float(os.environ.get('SIT_RGC_WEIGHT_EXP0','0') or 0.0)
++     w1 = float(os.environ.get('SIT_RGC_WEIGHT_EXP1','1') or 1.0)
++     # Use same active/total ratio that engine used to anneal bandwidth (if available)
++     ratio = float(getattr(self, 'last_active_ratio', 1.0) or 1.0)
++     p = w0 + (w1 - w0) * min(1.0, max(0.0, ratio))
++     w = 1.0 / np.maximum(g, 1e-9)
++     w = np.power(w, p)
++     w = w / (np.mean(w) + 1e-12)  # normalize weights
++     curve_profile_mse = float(np.mean(w * diff * diff))
++ else:
++     curve_profile_mse = float(np.mean(diff * diff))
+```
+
+*(Propagate the same scheme into the cumulative branch by weighting residuals before averaging.)* fileciteturn8file2
+
+### 2.3 Mixed loss (profile + cumulative) for stability  
+Sometimes profile fits get stuck; mix in a small cumulative component:
+
+```diff
+@@
+ kind_lower = curve_kind if curve_kind in ('profile', 'cumulative') else 'profile'
++mix = float(os.environ.get('SIT_RGC_MIX','0.0') or 0.0)  # e.g. 0.2
+ if kind_lower == 'cumulative':
+     ...
+ else:
+     ...
++    if mix > 0.0 and curve_T.size > 1:
++        # Build cumulative from current profile and blend
++        inc = 0.5 * (profile[1:] + profile[:-1]) * np.diff(curve_T)
++        cumulative = np.zeros_like(profile); cumulative[1:] = np.cumsum(inc)
++        diff_c = cumulative - curve_target  # assumes target is cumulative if kind=cumulative in payload; if not, skip
++        cmse = float(np.mean(diff_c * diff_c))
++        curve_profile_mse = (1.0 - mix) * curve_profile_mse + mix * cmse
+```
+
+### 2.4 Log both losses for cross‑checks  
+Even if `kind='profile'`, compute cumulative telemetry (and vice versa) and attach `genome.curve_profile_mse` / `genome.curve_cum_mse` so dashboards can show both. You already attach these but only when that path runs; ensure both are always attempted and present when finite. fileciteturn8file9
+
+---
+
+## 3) `sitoperator.py` — fix RNG bias; cache probes; (optional) multishift CG
+
+### 3.1 Persistent per‑run RNG + cached Rademacher probes  
+Right now the resolvent trace estimator **re-seeds** a new RNG with the **same seed** inside each call, so every evaluation uses identical Rademacher vectors (bias/under‑dispersion). See where `rng = np.random.default_rng(seed)` is constructed **inside** `absorption_profile`. Move the RNG to an operator field (`self._curve_rng`) and **cache Rademacher probes** so repeated evaluations in the same cycle reuse or advance cleanly. fileciteturn10file3
+
+```diff
+@@ class SITOperator:
+-        try:
+-            seed = int(getattr(self.cfg, 'master_seed', 0))
+-        except Exception:
+-            seed = 0
+-        rng = np.random.default_rng(seed)
+-        choices = np.array([-1.0, 1.0], dtype=np.float64)
++        # Persistent per-run RNG; do not re-seed every call
++        rng = getattr(self, '_curve_rng', None)
++        if rng is None:
++            try:
++                seed = int(getattr(self.cfg, 'master_seed', 0))
++            except Exception:
++                seed = 0
++            from numpy.random import SeedSequence
++            rng = np.random.default_rng(SeedSequence(seed))
++            self._curve_rng = rng
++        choices = np.array([-1.0, 1.0], dtype=np.float64)
++        # Optional cached Rademacher matrix to avoid drawing each time
++        probes_val = int(probes_val)
++        cache = getattr(self, '_hutch_cache', None)
++        if cache is None or cache.get('shape') != (N, probes_val):
++            Z = rng.choice(choices, size=(N, probes_val)).astype(np.complex128)
++            self._hutch_cache = {'Z': Z, 'shape': (N, probes_val), 'gen': 0}
++        else:
++            Z = self._hutch_cache['Z']
+@@
+-            acc = 0.0
+-            for _ in range(probes_val):
+-                z = rng.choice(choices, size=N).astype(np.complex128)
++            acc = 0.0
++            for pidx in range(probes_val):
++                z = Z[:, pidx]
+                 try:
+                     y = self._cg(Aj, z, iters=cg_iters_val, tol=tol_val)
+                     contrib = float(np.real(np.vdot(z, y)))
+```
+
+*(Keep a small “refresh” cadence if you want: after K calls, redraw Z to avoid synchrony.)*
+
+### 3.2 Allow passing **γ(T)** and skip recomputation  
+Your function already accepts `gamma`—keep using the provided array when present (Motor patch 2.1 will pass it). No code change needed here, just confirming design. fileciteturn10file0
+
+### 3.3 (Optional) multishift CG skeleton for speed  
+Aj differs by a **shift** in T and scalar `g²`; you can reuse a single Krylov basis per probe to get all T in near the cost of the **hardest** one (classic multi‑shift CG). Add a behind‑the‑flag path:
+
+```diff
+@@
+-        for j, Tj in enumerate(T_arr):
++        use_mscg = os.environ.get('SIT_RGC_MULTISHIFT','').lower() in ('1','true','yes','y')
++        if use_mscg:
++            # Sketch: build Krylov on H^2 and reuse for shifts (Tj, g_j)
++            # For brevity, still fall back to per-T loop if implementation not provided.
++            pass
++        for j, Tj in enumerate(T_arr):
+             g_j = float(gamma_arr[j])
+             g2 = g_j * g_j
+             def Aj(v, Tj=Tj, g2=g2):
+                 vec = np.asarray(v, dtype=np.complex128)
+                 y = Hv(vec) - Tj * vec
+                 y = Hv(y) - Tj * y
+                 return y + g2 * vec
+```
+
+*(If you later implement it, guard with the env var and keep the current per‑T CG as default.)*
+
+### 3.4 Simple diagonal preconditioner (optional)
+A cheap Jacobi preconditioner can stabilize CG:
+
+```diff
+@@
+-        def Aj(v, Tj=Tj, g2=g2):
++        # Diagonal preconditioner M ≈ diag((H-T)^2 + g^2 I)
++        diagH = np.real(np.diag(H))
++        def Aj(v, Tj=Tj, g2=g2):
+             vec = np.asarray(v, dtype=np.complex128)
+             y = Hv(vec) - Tj * vec
+             y = Hv(y) - Tj * y
+             return y + g2 * vec
++        M = (diagH - Tj)**2 + g2
++        Minv = 1.0 / np.maximum(M, 1e-12)
++        def _pc(v):  # left preconditioning
++            return Minv * v
++        def _cg_pc(Av, b, iters, tol):
++            # Minimal left-preconditioned CG (or just apply _pc inside _cg)
++            return self._cg(lambda x: Av(_pc(x)), _pc(b), iters=iters, tol=tol)
+@@
+-                y = self._cg(Aj, z, iters=cg_iters_val, tol=tol_val)
++                y = _cg_pc(Aj, z, iters=cg_iters_val, tol=tol_val)
+```
+
+### 3.5 Deduplicate duplicate `absorption_profile` implementations
+Your repo contains **two** different `absorption_profile` functions: the newer **eigen‑free/CG** version and an older **eigen‑sum** version that even calls `evaluate` inside (slow + violates “no‑eig” in curve mode). Keep the **newer** one that supports both `evals=` **and** `params=` and delete/comment the older duplicate to avoid import-order surprises. fileciteturn9file5 fileciteturn10file8
+
+---
+
+## 4) `diagnostics.py` — emit the actual curves (cache for viz)
+
+Add a small helper that, **when curve mode is on**, computes and caches:
+
+- `curve_target` (already in engine state)  
+- `curve_profile` from the **current best** genome using the same `curve_payload` (T, gamma, probes, cg)  
+- A derived **cumulative** curve (trapz of profile)  
+- Writes `logs/rgc_curves_cycle_<k>.npz` for plotting.
+
+**New function (place near other diagnostics helpers):**
+```python
+def emit_rgc_curves_snapshot(state, cfg, sit_op, best_params, payload, logs_dir):
+    try:
+        if not state.get('mode_curve', False):
+            return False
+        T = np.asarray(payload.get('T'), dtype=np.float64)
+        gamma = payload.get('gamma', None)
+        bw = float(payload.get('rgc_bw_scale', 1.0))
+        target = np.asarray(payload.get('target'), dtype=np.float64)
+        if T.size == 0 or target.size == 0:
+            return False
+        prof = sit_op.absorption_profile(params=np.asarray(best_params, dtype=np.float64),
+                                         T=T, gamma=gamma, bandwidth_scale=bw)
+        prof = np.asarray(prof, dtype=np.float64)
+        cum = np.zeros_like(prof); 
+        if T.size > 1:
+            inc = 0.5*(prof[1:]+prof[:-1])*np.diff(T); cum[1:] = np.cumsum(inc)
+        out = os.path.join(logs_dir, f"rgc_curves_cycle_{int(state.get('cycle',0)):06d}.npz")
+        np.savez(out, T=T, target=target, profile=prof, cumulative=cum)
+        return True
+    except Exception:
+        return False
+```
+
+Hook it from the engine right after `generation_results` are harvested and you have `best_params` in scope (or from the navigator’s best genome). *(You already persist JSON telemetry; this adds arrays for plotting.)* fileciteturn8file11
+
+---
+
+## 5) `visualizations.py` — overlay plots + residuals
+
+Create simple overlays (headless‑safe) and save to the cycle viz folder:
+
+```python
+def plot_rgc_overlay(T, target, profile, out_path_png):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    plt.figure()
+    plt.plot(T, target, label="Riemann target S_riem(T)")
+    plt.plot(T, profile, label="SIT profile S_sit(T)", linestyle="--")
+    plt.xlabel("T"); plt.ylabel("spectral density proxy")
+    plt.legend(); plt.tight_layout(); plt.savefig(out_path_png); plt.close()
+
+def plot_rgc_residual(T, residual, out_path_png):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    plt.figure()
+    plt.plot(T, residual)
+    plt.xlabel("T"); plt.ylabel("S_sit - S_riem")
+    plt.tight_layout(); plt.savefig(out_path_png); plt.close()
+```
+
+Then, in your existing `save_static_visualizations(...)` (or wherever you write PNGs), add:
+
+```python
+try:
+    # prefer newest snapshot
+    logs_dir = _resolve_logs_dir(state, cfg, out_dir_hint=out_dir)
+    import glob, numpy as np
+    npzs = sorted(glob.glob(os.path.join(logs_dir, "rgc_curves_cycle_*.npz")))
+    if npzs:
+        data = np.load(npzs[-1], allow_pickle=True)
+        T = data["T"]; target = data["target"]; prof = data["profile"]
+        plot_rgc_overlay(T, target, prof, os.path.join(out_dir, "rgc_overlay.png"))
+        if target.size == prof.size:
+            plot_rgc_residual(T, prof - target, os.path.join(out_dir, "rgc_residuals.png"))
+except Exception:
+    pass
+```
+
+Your current `visualizations.py` has generalized reporter scaffolding but **no concrete RGC plots yet**—these helpers add that without disturbing anything else. fileciteturn8file12
+
+---
+
+## 6) `controllers.py` — guard Berry operations in curve mode
+
+`BerryGeometry.calculate_curvature_penalty` calls eigen routines through `build_and_solve`. In curve mode, eigen is disallowed (`SIT_ASSERT_NO_EIG`) and you already set weights low/zero; add a **hard guard** to early return if curve mode is active:
+
+```diff
+@@ class BerryGeometry:
+-    def calculate_curvature_penalty(self, params: np.ndarray, base_evecs: np.ndarray, num_probes: int = 4) -> float:
++    def calculate_curvature_penalty(self, params: np.ndarray, base_evecs: np.ndarray, num_probes: int = 4) -> float:
++        # Respect curve-only mode: no eigen calls allowed
++        try:
++            if getattr(self.op, "_system_state", {}).get("mode_curve", False):
++                return 0.0
++        except Exception:
++            pass
+         if base_evecs is None or getattr(base_evecs, "ndim", 0) != 2 or base_evecs.shape[1] == 0:
+             return 0.0
+```
+
+(Your implementation currently has no such guard; this prevents accidental eigen calls when environment switches weights.) fileciteturn9file13
+
+---
+
+## 7) `config.py` — add RGC knobs with sane defaults
+
+Add a few knobs to `Numerical`/`Control`/`IO` so envs aren’t the only way:
+
+```diff
+@@ @dataclass(frozen=True)
+ class Control:
+     ...
++    # RGC loss mixing / windows
++    RGC_MIX: float = 0.0       # 0..1: blend cumulative into profile
++    RGC_HEADROOM: float = 1.05 # curriculum headroom multiplier
+
+@@ @dataclass(frozen=True)
+ class Numerical:
+     ...
++    # RGC trace-estimator defaults (overridable by env)
++    RGC_PROBES: int = 8
++    RGC_CG_ITERS: int = 128
++    RGC_TOL: float = 1e-6
+
+@@ @dataclass(frozen=True)
+ class IO:
+     ...
++    # RGC viz cadence (cycles)
++    RGC_SNAPSHOT_EVERY: int = 1
+```
+
+These are read by the patches above as fallbacks where envs aren’t provided. fileciteturn8file19
+
+---
+
+## 8) Small performance & correctness niceties
+
+- **Engine → Motor ratio sharing**: Have engine store the `active/total` ratio used for bandwidth anneal (`state['rgc_ratio']`) and make motor read it (store in `self.last_active_ratio`) so the **loss weighting** anneals identically to the bandwidth. fileciteturn8file0  
+  ```diff
+  system_state['rgc_ratio'] = float(ratio)
+  ```
+  And in motor, at the start of a generation:
+  ```python
+  try:
+      self.last_active_ratio = float(getattr(self.cfg, '_system_state', {}).get('rgc_ratio',
+                                         self.serial_sit_op._system_state.get('rgc_ratio', 1.0)))
+  except Exception:
+      self.last_active_ratio = 1.0
+  ```
+
+- **Pass operator state**: Ensure the engine writes `serial_sit_op._system_state = system_state` each cycle so the operator can see `mode_curve` and the RNG scope. (You already keep `_system_state` on the operator; just keep it synced.) fileciteturn9file9
+
+- **Clamp γ(T)**: You already clamp `gamma` (`[1e-9, 1e6]`); keep it. fileciteturn10file0
+
+---
+
+## 9) Sanity checklist after patches land
+
+1. **Start** with `--riemann-curve` and **small** windows (e.g., `SIT_RGC_MAX_T=5e3`, `SIT_RGC_POINTS=1024`) and confirm engine prints `rgc_T_hi≈5e3` (not the final zero). fileciteturn8file11  
+2. **Verify** motor logs show both `curve_profile_mse` and `curve_cum_mse` keys each cycle. fileciteturn8file8  
+3. **Inspect** `runs/<run_id>/logs/rgc_curves_cycle_*.npz` and PNGs `rgc_overlay.png` / `rgc_residuals.png`. fileciteturn8file12  
+4. **Toggle** `SIT_RGC_LOSS_WEIGHTS=invgamma` and watch early‑T vs late‑T residuals stabilize.  
+5. **Scale up** points/probes only after checking CG cost per cycle; tune with `RGC_PROBES`, `RGC_CG_ITERS`, `RGC_TOL`.
+
+---
+
+## 10) Why these patches close your stated gaps
+
+- **Missing curve plots** → Diagnostics + Visualizations now emit and plot **S_sit vs S_riem** each cycle, not just MSE scalars. fileciteturn8file12  
+- **RNG reseeding bias** → Persistent RNG + cached probes removes hidden correlations and underestimation of variance. fileciteturn10file3  
+- **Unweighted MSE** → Weighted & annealed losses better reflect density changes with T and match bandwidth schedules. fileciteturn8file2  
+- **Rebuilding H cost** → While each genome must rebuild H, we avoid recomputing γ(T), reuse probes, and (optionally) prepare for multishift CG across all T to drastically cut time-to-curve. fileciteturn10file3  
+- **Engine/RGC windowing** → The grid **now tracks curriculum** and obeys env overrides; no more hard clamp to the last zero. fileciteturn8file18
+
+If you want, I can also generate a single consolidated patch file that applies these edits in one shot; for now the snippets above are organized so you can drop them in place module by module.
+
+Micah Blumberg:
+This is what has been done so far.
+
+Implemented the curve-mode cleanup and telemetry wiring for the Riemann Galaxy Curve path.
+
+motor.py:1248-1509 rewired _evaluate_fitness to act as the single curve entry point, added bandwidth-aware weighting, captured per-genome curves/residuals, and tightened timing telemetry (including cache stats) for SIT_TIMING.
+motor.py:2058-2068 extends the generation timing print to surface curve probe settings, average profile time, and weight source when SIT_TIMING is enabled.
+engine.py:4233-4239 now injects weights into the curve payload, while engine.py:4496-4538 persists the latest SIT profile/cumulative/weights into system state and engine.py:5078-5098 exports the enriched JSON snapshot (sit_profile, residuals, weights) for offline diagnostics.
+sitoperator.py:290-299/368-383/2020-2182 introduces the curve preconditioner cache, hashed-probe RNG (with optional Hadamard probes), and the Jacobi-preconditioned CG path, with stats exposed via _curve_cache_stats.
+visualizations.py:519-624 adds a reusable _sparkline, appends Δ telemetry to the dashboard, and writes per-cycle curve_compare_cycle_<cycle>.json snapshots when curve data is present.
+controllers.py:1634-1643 only suppresses Berry-curvature penalties when SIT_ASSERT_NO_EIG is active, otherwise logs a high-detail warning.
+diagnostics.py:1223-1270 provides dump_curve_diagnostics to report MSE/MAE/max/weighted error, Pearson, KL, and integral drift for SIT vs. target curves.
+tests/test_rgc_pipeline.py adds a regression harness that stubs the operator for curve mode and confirms eigen-free evaluation produces finite fitness and telemetry.
+Tests:
+
+python -m unittest discover -s tests -p test_rgc_pipeline.py (pass). Full suite still inherits pre-existing Unicode/path issues; rerun once those upstream fixtures are cleaned.
+
+(I'm now considering the suggestions you just gave me.)
+
+Self Aware Networks GPT:
+**Crafting patch suggestions**
+
+I’m piecing together code patches to fix gaps and optimize functionality. The focus is on addressing engine.py issues, enhancing diagnostics.py and visualizations.py, and implementing caching and concurrency.
+
+**Enhancing resilience**
+
+I’m digging into annealing schedules and robust weighting. For memory usage, considering a jittery similarity measure. I’m aiming to improve fault tolerance with multi-shift preconditioners, optimizing for specific computational needs.
+
+**Enhancing caching**
+
+I’m proposing parameter quantization and assigning unique keys to improve factorization reuse, focusing on genome-specific caching to boost computational efficiency.
+
+**Spotting relevant code**
+
+OK, let me see—I'm pulling together key terms like "absorption_profile" and "hash-probe," and querying "SIT_ASSERT_NO_EIG" and "controller" lines to find the best code snippets.
+
+**Investigating duplicate definitions**
+
+I'm gathering info on `_rgc_sync_state` in engine.py, noting duplicate definitions and unclear behavior due to merge. Proposing deduplication and verification of import order.
+
+**Analyzing and suggesting**
+
+I’m thinking through weighting metrics, telemetry improvements, probe randomness, preconditioner caching, factorization reuse, visualizations, and diagnostic enhancements. Each suggestion blends technical insights with practical implementation.
+
+**Mapping out patch strategies**
+
+I’m assembling patch sets: correctness, performance, telemetry/UX, config/toggles, and tests. Each set will detail specific enhancements with unified diff style code snippets and necessary documentation updates.
+
+Self Aware Networks GPT:
+Awesome—based on what’s already in place, you’re very close to a clean, fully‑working eigen‑free “Riemann Galaxy Curve (RGC)” path. Below is a **practical set of code‑patch suggestions** (with minimal diffs) to close the remaining gaps, improve numerical stability, and make the new curve mode fast + inspectable. Each patch includes **what/why**, a **surgical diff**, and **acceptance checks**. I reference the current code where relevant so you can see exactly what I’m modifying.
+
+---
+
+## 0) Global invariants
+
+**Goal:** When curve‑mode is on (or `SIT_ASSERT_NO_EIG=1`) we must never trigger any eigen‑solves; curve payloads should always carry everything motor/sitoperator need; telemetry should be rich enough to debug runs without recomputing.
+
+---
+
+## 1) `engine.py` — fix RGC grid upper‑bound & add headroom
+
+**Problem (current):** `_rgc_sync_state` clamps `rgc_max_T` to the **global last zero** via  
+`default_max_t = max(default_max_t, float(zeros_arr[-1]))`, preventing the curriculum from focusing on a smaller active window and then growing it. fileciteturn10file14
+
+**Patch (what):**
+- Respect **env override** if present (`SIT_RGC_MAX_T` is a hard ceiling).
+- Otherwise follow `active_max` (top of the **active** curriculum window) with a small **headroom** (e.g., +3%).
+- Cap by global last zero (never exceed actual data).
+- Rebuild only when max T or points/kind/bandwidth actually change.
+
+**Diff:**
+```diff
+--- a/engine.py
++++ b/engine.py
+@@ def _rgc_sync_state(system_state: Dict[str, Any], cfg, *, force: bool = False, active_max: Optional[float] = None) -> None:
+-    default_max_t = float(system_state.get('rgc_max_T', zeros_arr[-1]))
+-    env_max = _env_str('SIT_RGC_MAX_T')
+-    if env_max:
+-        try:
+-            default_max_t = float(env_max)
+-        except Exception:
+-            pass
+-    default_max_t = max(default_max_t, float(zeros_arr[-1]))
++    zeros_max = float(zeros_arr[-1])
++    # Hard ceiling (optional): SIT_RGC_MAX_T
++    env_max = _env_str('SIT_RGC_MAX_T')
++    hard_ceiling = None
++    if env_max:
++        try:
++            hard_ceiling = float(env_max)
++        except Exception:
++            hard_ceiling = None
++    # Curriculum-driven top with small headroom (default 3%)
++    try:
++        headroom = float(_env_str('SIT_RGC_HEADROOM') or 0.03)
++    except Exception:
++        headroom = 0.03
++    desired_t = zeros_max
++    if active_max is not None and np.isfinite(active_max):
++        desired_t = float(active_max) * (1.0 + max(0.0, headroom))
++    # Choose final upper bound
++    if hard_ceiling is not None and np.isfinite(hard_ceiling):
++        default_max_t = min(float(hard_ceiling), zeros_max)
++    else:
++        default_max_t = min(float(desired_t), zeros_max)
+@@
+-    sig = (int(default_points), float(default_max_t), kind, float(base_c), float(system_state.get('rgc_c', base_c)))
++    sig = (int(default_points), float(default_max_t), kind,
++           float(base_c), float(system_state.get('rgc_c', base_c)))
+@@
+-    if active_max is not None:
+-        try:
+-            grid = system_state.get('rgc_T')
+-            grid_max = float(np.max(grid)) if isinstance(grid, np.ndarray) else float(grid[-1])
+-        except Exception:
+-            grid_max = 0.0
+-        if not np.isfinite(grid_max) or float(active_max) > grid_max:
+-            rebuild = True
++    if active_max is not None:
++        try:
++            grid = system_state.get('rgc_T')
++            grid_max = float(np.max(grid)) if isinstance(grid, np.ndarray) else float(grid[-1])
++        except Exception:
++            grid_max = 0.0
++        # Rebuild if our desired or ceiling-adjusted max_t exceeds the grid
++        if (not np.isfinite(grid_max)) or (default_max_t > grid_max + 1e-9):
++            rebuild = True
+```
+
+**Acceptance:**
+- With a small curriculum window, `rgc_T[-1]` ≈ `active_max*(1+headroom)` and grows over time.
+- If `SIT_RGC_MAX_T` is set below the global last zero, the grid top follows that ceiling.
+
+---
+
+## 2) `engine.py` — include **weights** (and gamma) in `curve_payload`
+
+**Problem (current):** payload is missing weights; motor recomputes gamma, so the weighting policy isn’t controlled at the orchestrator. See how payload is currently built (no `weights`). fileciteturn10file1 fileciteturn10file12
+
+**Patch (what):**
+- Build `gamma_T = _rgc_bandwidth(T, rgc_bw_scale)`.
+- Define default weights `w = 1 / (gamma_T**2)`, normalize to `mean(w)=1`.
+- Pass both `gamma` and `weights` in `command['curve_payload']`.
+
+**Diff:**
+```diff
+--- a/engine.py
++++ b/engine.py
+@@ if system_state.get('mode_curve') and 'rgc_T' in system_state and 'rgc_target' in system_state:
+-                    command['curve_payload'] = {
+-                        'kind': command.get('rgc_kind', 'profile'),
+-                        'rgc_bw_scale': command.get('rgc_bw_scale', float(system_state.get('rgc_c', annealed))),
+-                        'T': command.get('rgc_T'),
+-                        'target': command.get('rgc_target'),
+-                    }
++                    T_vals = np.asarray(command.get('rgc_T'), dtype=np.float64)
++                    bw = float(command.get('rgc_bw_scale', float(system_state.get('rgc_c', annealed))))
++                    gamma_T = _rgc_bandwidth(T_vals, bw)
++                    # bandwidth-aware weights: emphasize finer scales (smaller gamma)
++                    w = 1.0 / np.maximum(gamma_T * gamma_T, 1e-24)
++                    w = w * (T_vals.size / np.maximum(np.sum(w), 1e-24))  # mean ≈ 1
++                    command['curve_payload'] = {
++                        'kind': command.get('rgc_kind', 'profile'),
++                        'rgc_bw_scale': bw,
++                        'T': T_vals,
++                        'target': command.get('rgc_target'),
++                        'gamma': gamma_T,
++                        'weights': w.astype(np.float64),
++                    }
+```
+
+**Acceptance:** motor receives `payload['gamma']` and `payload['weights']` and uses them directly.
+
+---
+
+## 3) `engine.py` — skip heavy eigen diagnostics in curve mode
+
+**Problem (current):** even with curve‑mode you still compute k=128 eigenpairs for “best‑spectrum diagnostics”. This violates the eigen‑free promise and wastes time. See the unconditional block that calls `cached_build_and_solve(...)`. fileciteturn10file16 fileciteturn11file6
+
+**Patch (what):**
+- Guard the block behind `not system_state.get('mode_curve')` **or** `SIT_ASSERT_NO_EIG != 1`.
+
+**Diff:**
+```diff
+--- a/engine.py
++++ b/engine.py
+@@
+-                # [GCS-ITEM 56] Compute and store best-spectrum diagnostics (SIT metrics + GUE KL) for UI/logs
+-                try:
++                # [GCS-ITEM 56] Best-spectrum diagnostics (skip in eigen-free curve mode)
++                try:
++                    if system_state.get('mode_curve') or os.environ.get('SIT_ASSERT_NO_EIG','').strip() in ('1','true','yes'):
++                        raise RuntimeError("curve_mode or SIT_ASSERT_NO_EIG=1 -> skip eigen diagnostics")
+                     try:
+                         from diagnostics import compute_sit_metrics as _sit_metrics_fn  # type: ignore
+                     except Exception:
+                         _sit_metrics_fn = None
+@@
+                 except Exception:
+                     pass
+```
+
+**Acceptance:** With curve‑mode on, that block is skipped (no eigen log spam; faster cycles).
+
+---
+
+## 4) `engine.py` — export rich per‑cycle curve snapshots
+
+**Problem (current):** `riemann_curve_latest.json` only contains T, kind, c, and T_hi. It’s hard to debug without SIT profile/residuals/weights for the current best genome. fileciteturn10file16
+
+**Patch (what):**
+- After a generation, if `generation_results` contains `curve_profile`, `curve_residuals`, and `curve_weights`, write `curve_compare_cycle_<cycle>.json` and enrich `riemann_curve_latest.json`.
+
+**Diff:**
+```diff
+--- a/engine.py
++++ b/engine.py
+@@
+-                    if system_state.get('mode_curve') and 'rgc_T' in system_state and 'rgc_target' in system_state:
++                    if system_state.get('mode_curve') and 'rgc_T' in system_state and 'rgc_target' in system_state:
+                         try:
+                             logs_dir = system_state.get('_logs_dir') or _run_dir_paths(cfg.io.SAVE_PATH, system_state.get('_run_id', _make_run_id()))['logs_dir']
+                             out_json = os.path.join(logs_dir, 'riemann_curve_latest.json')
+                             T_vals = np.asarray(system_state['rgc_T'], dtype=np.float64)
+                             payload = {
+                                 'T': T_vals.tolist() if getattr(T_vals, 'size', 0) > 0 else [],
+                                 'target_kind': system_state.get('rgc_kind', 'profile'),
+                                 'bandwidth_scale': float(system_state.get('rgc_c', system_state.get('rgc_c0', 1.0))),
+                                 'T_hi': float(T_vals[-1]) if getattr(T_vals, 'size', 0) > 0 else None,
++                                # optional enrichments filled if motor provided them this cycle
++                                'sit_profile': system_state.get('rgc_sit_profile', []),
++                                'residuals': system_state.get('rgc_residuals', []),
++                                'weights': system_state.get('rgc_weights', []),
+                             }
+                             import json as _json
+                             with open(out_json, 'w', encoding='utf-8') as _fh:
+                                 _json.dump(payload, _fh, ensure_ascii=False, indent=2)
++                            # Versioned per-cycle compare snapshot
++                            try:
++                                cyc = int(system_state.get('cycle', 0))
++                            except Exception:
++                                cyc = 0
++                            sidecar = os.path.join(logs_dir, f'curve_compare_cycle_{cyc:06d}.json')
++                            with open(sidecar, 'w', encoding='utf-8') as _fh2:
++                                _json.dump(payload, _fh2, ensure_ascii=False, indent=2)
+                         except Exception:
+                             pass
+```
+
+**Acceptance:** Files now include the actual SIT vs target arrays; you can offline plot immediately.
+
+> **Note:** The code above relies on step 6 (motor → engine telemetry handoff) to fill `rgc_sit_profile`, `rgc_residuals`, `rgc_weights`.
+
+---
+
+## 5) `engine.py` — anneal `c` already done, but also anneal **grid density**
+
+**Patch (what):** modestly grow `SIT_RGC_POINTS` as the active window grows, to stabilize early passes and improve later fidelity.
+
+```diff
+--- a/engine.py
++++ b/engine.py
+@@ def _rgc_sync_state(...):
+-    default_points = int(system_state.get('rgc_points', 2048))
++    default_points = int(system_state.get('rgc_points', 2048))
+     env_pts = _env_str('SIT_RGC_POINTS')
+@@
+     system_state['rgc_points'] = int(default_points)
+@@
+     if active_max is not None:
++        # Grid density anneal: scale points ~ sqrt(T_hi / base)
++        try:
++            base_hi = float(system_state.get('_rgc_base_hi', zeros_arr[min(len(zeros_arr)-1, max(1, len(zeros_arr)//16))]))
++        except Exception:
++            base_hi = max(zeros_arr[0], 1.0)
++        scale_pts = np.sqrt(max(1.0, default_max_t / max(1.0, base_hi)))
++        pts_new = int(max(512, min(16384, round(default_points * scale_pts))))
++        if pts_new != int(system_state['rgc_points']):
++            system_state['rgc_points'] = pts_new
++            rebuild = True
+```
+
+**Acceptance:** Early cycles use ~1–2k points; large windows auto‑increase to ~4–8k points.
+
+---
+
+## 6) `motor.py` — unify curve fitness, use engine‑provided `gamma` & `weights`, and **return telemetry**
+
+**Problem (current):** motor recomputes gamma; no weights in payload; telemetry not plumbed back to engine by default. See curve eval code path. fileciteturn10file11
+
+**Patch (what):**
+- Prefer `payload['gamma']` and `payload['weights']` when present.
+- Weighted MSE of profile; also compute **cumulative** via a simple trapezoid integral (scaled by `1/π` and aligned by offset).
+- Return arrays for engine to export.
+
+**Diff (inside your curve evaluation path):**
+```diff
+--- a/motor.py
++++ b/motor.py
+@@ def _evaluate_generation_curve(self, genomes, command):
+-        try:
+-            curve_gamma = self.serial_sit_op._rgc_bandwidth(curve_T, curve_bw)
+-        except Exception:
+-            curve_gamma = None
++        # Prefer engine-provided gamma & weights
++        curve_gamma = payload.get('gamma', None)
++        curve_weights = payload.get('weights', None)
++        if curve_gamma is None:
++            try:
++                curve_gamma = self.serial_sit_op._rgc_bandwidth(curve_T, curve_bw)
++            except Exception:
++                curve_gamma = None
++        if curve_weights is None:
++            if curve_gamma is not None:
++                w = 1.0 / np.maximum(curve_gamma * curve_gamma, 1e-24)
++                curve_weights = w * (w.size / np.maximum(np.sum(w), 1e-24))
++            else:
++                curve_weights = np.ones_like(curve_T, dtype=np.float64)
+@@
+-            try:
+-                profile = self.serial_sit_op.absorption_profile(
++            try:
++                profile = self.serial_sit_op.absorption_profile(
+                     params=decoded_np,
+                     T=curve_T,
+                     bandwidth_scale=float(curve_bw),
+-                    probes=curve_probes,
+-                    cg_iters=curve_cg_iters,
+-                    tol=curve_tol,
++                    probes=curve_probes,
++                    cg_iters=curve_cg_iters,
++                    tol=curve_tol,
++                    gamma=curve_gamma,
+                 )
+             except Exception:
+                 profile = np.zeros_like(curve_target, dtype=np.float64)
+@@
+-            # Weighted profile loss
+-            diff = (profile - curve_target).astype(np.float64)
+-            raw_mse = float(np.mean(diff * diff))
+-            mse = float(np.mean(curve_weights * diff * diff))
++            # Weighted profile loss + cumulative cross-check
++            diff = (profile - curve_target).astype(np.float64)
++            raw_mse = float(np.mean(diff * diff))
++            mse = float(np.mean(curve_weights * diff * diff))
++            # Cumulative (approx. counting): integrate and scale by 1/pi, align offset
++            try:
++                dT = np.maximum(np.diff(curve_T), 1e-9)
++                # cumtrapz profile (pad at 0)
++                integ = np.concatenate([[0.0], np.cumsum(0.5*(profile[1:]+profile[:-1])*dT)])
++                N_sit = (1.0/np.pi) * integ
++                N_tgt = np.asarray(payload.get('target_cumulative'), dtype=np.float64) \
++                        if isinstance(payload.get('target_cumulative'), np.ndarray) else None
++                if N_tgt is None:
++                    # Build target cumulative if engine didn't provide it
++                    N_tgt = np.searchsorted(np.asarray(command.get('target_zeros'), dtype=np.float64).reshape(-1),
++                                            curve_T, side='right').astype(np.float64)
++                # Align offsets at the left end
++                off = float(N_tgt[0] - N_sit[0])
++                N_sit_aligned = N_sit + off
++                cum_diff = (N_sit_aligned - N_tgt).astype(np.float64)
++                cum_mse = float(np.mean(cum_diff*cum_diff))
++            except Exception:
++                cum_mse = float('nan')
+@@
+             # Return per-genome result tuple
+-            out.append((profile, diff, {"fitness": float(mse), "raw_mse": float(raw_mse)}))
++            out.append((
++                profile,
++                diff,
++                {
++                    "fitness": float(mse),
++                    "raw_mse": float(raw_mse),
++                    "curve_weights": curve_weights.astype(np.float64),
++                    "curve_cum_mse": float(cum_mse)
++                }
++            ))
+```
+
+**Acceptance:**
+- Engine shows **two** scalars: `rgc_profile_mse` and `rgc_cum_mse` every cycle.
+- `curve_compare_cycle_*.json` contains `sit_profile`, `residuals`, `weights`.
+
+---
+
+## 7) `engine.py` — persist curve telemetry from motor
+
+**Problem (current):** engine sets `rgc_*` basics, but not the per‑genome arrays returned from motor.
+
+**Patch (what):** After `run_generation(command)`, mirror best genome’s curve telemetry into `system_state` so step 4 can write them.
+
+**Diff (in the block where you already collect per-cycle results):**
+```diff
+--- a/engine.py
++++ b/engine.py
+@@
+-            # harvest any curve-loss returns...
++            # harvest curve-mode telemetry (arrays + scalars) from generation_results
++            try:
++                if isinstance(generation_results, dict) and generation_results.get('curve_mode'):
++                    best = generation_results.get('best_curve', {})
++                    prof = np.asarray(best.get('profile', []), dtype=np.float64)
++                    res  = np.asarray(best.get('residuals', []), dtype=np.float64)
++                    w    = np.asarray(best.get('weights', []), dtype=np.float64)
++                    if prof.size > 0:
++                        system_state['rgc_sit_profile'] = prof.tolist()
++                    if res.size > 0:
++                        system_state['rgc_residuals'] = res.tolist()
++                    if w.size > 0:
++                        system_state['rgc_weights'] = w.tolist()
++                    # scalar KPIs
++                    pm = best.get('profile_mse')
++                    cm = best.get('cum_mse')
++                    if pm is not None: system_state['rgc_profile_mse'] = float(pm)
++                    if cm is not None and np.isfinite(cm): system_state['rgc_cum_mse'] = float(cm)
++            except Exception:
++                pass
+```
+
+**Acceptance:** Dashboard JSON now contains `rgc_profile_mse` and (when finite) `rgc_cum_mse`.
+
+---
+
+## 8) `sitoperator.py` — make the estimator **SPD** (CG‑friendly) via the squared resolvent identity
+
+**Problem (current):** If the shift is implemented as `(H - (T+iγ)I)⁻¹`, the linear system is non‑Hermitian; plain CG is not appropriate. A stable SPD identity is:
+\[
+\operatorname{Im}\,\mathrm{Tr}( (T I - H - i\gamma I)^{-1}) \;=\; \gamma \,\mathrm{Tr}\big(( (H - T I)^2 + \gamma^2 I )^{-1}\big).
+\]
+=> For trace estimation, solve **SPD** systems \(( (H - T I)^2 + \gamma^2 I ) z = v\) with CG.  
+
+**Patch (what):**
+- Inside `absorption_profile(...)`, when `params` is provided, build `H` once.
+- For each `T_j, γ_j`, define `Av(x) = (H-T_j I)((H-T_j I)x) + (γ_j^2) x`.
+- Run CG with a **Jacobi preconditioner** \(M^{-1} \approx 1/\mathrm{diag}((H-T)^2+\gamma^2)\).
+- Average `γ_j * mean_i v_i^H z_i` over Rademacher probes.
+
+**Diff (core compute loop; keep your existing helpers, just replace the per‑T matvec):**
+```diff
+--- a/sitoperator.py
++++ b/sitoperator.py
+@@ def absorption_profile(...):
+-        H = np.asarray(H, dtype=np.complex128)
+-        def Hv(x, _H=H):
+-            return _H @ np.asarray(x, dtype=np.complex128)
++        H = np.asarray(H, dtype=np.complex128)
++        H_diag = np.real(np.diag(H)).astype(np.float64, copy=False)
+@@
+-        # ... choose probes_val, cg_iters_val, tol_val (existing code) ...
++        # ... probes_val, cg_iters_val, tol_val already chosen above ...
+@@
+-        # (existing path) compute stochastic trace estimate directly on (H - (T+iγ)I)^{-1}
+-        # REPLACE with SPD squared-resolvent estimator:
++        # SPD squared-resolvent estimator
++        prof = np.zeros_like(T_arr, dtype=np.float64)
++        # Probe RNG (deterministic per call if master_seed set)
++        rng = getattr(self, '_curve_rng', None)
++        if rng is None:
++            try:
++                seed = int(getattr(self.cfg, 'master_seed', 42))
++            except Exception:
++                seed = 42
++            rng = np.random.default_rng(seed)
++            self._curve_rng = rng
++        for j, (Tj, gj) in enumerate(zip(T_arr, gamma_arr)):
++            shift = float(Tj)
++            g2 = float(gj) * float(gj)
++            # Matvec: A x = (H - T I)^2 x + g^2 x
++            def Av(x):
++                x = np.asarray(x, dtype=np.complex128)
++                y = H @ x - shift * x
++                y = H @ y - shift * y
++                return y + (g2 * x)
++            # Jacobi preconditioner: M^{-1} ~ 1 / ( (diag(H)-T)^2 + g^2 )
++            denom = (H_diag - shift) * (H_diag - shift) + g2
++            Minv = (1.0 / np.maximum(denom, 1e-18)).astype(np.float64)
++            def M_inv(x):
++                return np.asarray(Minv, dtype=np.float64) * np.asarray(x, dtype=np.complex128)
++            # Stochastic trace
++            acc = 0.0
++            for _ in range(int(probes_val)):
++                # Rademacher probe ±1 (real) -> complex is fine
++                v = rng.integers(0, 2, size=H.shape[0]).astype(np.float64) * 2.0 - 1.0
++                # Preconditioned CG solve: A z = v
++                z = self._cg(lambda x: Av(x), v.astype(np.complex128), iters=cg_iters_val, tol=tol_val, M_inv=M_inv)
++                acc += (v.conj().dot(z)).real
++            # γ * mean_i v^T A^{-1} v_i
++            prof[j] = float(gj) * float(acc) / float(probes_val)
++        return prof
+```
+
+And update `_cg` to accept an optional preconditioner:
+
+```diff
+--- a/sitoperator.py
++++ b/sitoperator.py
+@@
+-    def _cg(self, Av, b, iters: int = 128, tol: float = 1e-6):
++    def _cg(self, Av, b, iters: int = 128, tol: float = 1e-6, M_inv=None):
+         vec_b = np.asarray(b, dtype=np.complex128)
+         x = np.zeros_like(vec_b, dtype=np.complex128)
+-        r = vec_b - Av(x)
++        r = vec_b - Av(x)
++        if M_inv is None:
++            z = r.copy()
++        else:
++            z = M_inv(r)
+         p = r.copy()
+         tol = max(float(tol), 1e-12)
+         rr_old = np.vdot(r, r)
+         for _ in range(int(max(1, iters))):
+-            Ap = Av(p)
++            Ap = Av(p)
+             denom = np.vdot(p, Ap)
+             if abs(denom) <= 1e-30:
+                 break
+-            alpha = rr_old / denom
++            alpha = rr_old / denom
+             x = x + alpha * p
+             r = r - alpha * Ap
+-            rr_new = np.vdot(r, r)
++            if M_inv is None:
++                z = r
++            else:
++                z = M_inv(r)
++            rr_new = np.vdot(r, z)
+             if np.sqrt(max(rr_new.real, 0.0)) < tol:
+                 break
+-            beta = rr_new / (rr_old if abs(rr_old) > 1e-30 else 1.0)
+-            p = r + beta * p
++            beta = rr_new / (rr_old if abs(rr_old) > 1e-30 else 1.0)
++            p = z + beta * p
+             rr_old = rr_new
+         return x
+```
+
+**Acceptance:**
+- No warnings about CG on non‑SPD systems.
+- With `SIT_TIMING=1`, per‑profile time is stable and scales sensibly with probes/iters.
+- Numerical smoothness of `S_sit(T)` matches expectations (no spurious oscillations from unstable solves).
+
+> **Why this matters:** The SPD trick eliminates the need for GMRES/BiCG, keeps numerics stable, and lets your Jacobi preconditioner help across all T.
+
+---
+
+## 9) `sitoperator.py` — deterministic, **hashed probes** (variance control)
+
+**Problem (current):** probes can repeat across evaluations depending on a global RNG. Let’s tie probes to `(genome hash, j, probe_idx)` to avoid bias and improve reproducibility.
+
+**Patch (what):** Add a tiny helper to derive a per‑(j, k) seed; use `SeedSequence` with a master seed.
+
+**Diff (probe generation site inside `absorption_profile`):**
+```diff
++        # Hash-based per-(T_j, probe_k) RNG for reproducible probes
++        try:
++            master = int(getattr(self.cfg, 'master_seed', 42))
++        except Exception:
++            master = 42
++        import numpy as _np
++        from numpy.random import SeedSequence
+@@
+-            for _ in range(int(probes_val)):
+-                # Rademacher probe ±1
+-                v = rng.integers(0, 2, size=H.shape[0]).astype(np.float64) * 2.0 - 1.0
++            for k in range(int(probes_val)):
++                ss = SeedSequence([master, j, k])
++                prng = _np.random.default_rng(ss.generate_state(1, dtype='uint64')[0])
++                v = prng.integers(0, 2, size=H.shape[0]).astype(np.float64) * 2.0 - 1.0
+```
+
+**Acceptance:** Re-running the same genome on the same grid reproduces identical `S_sit(T)` values (to solver tolerance).
+
+---
+
+## 10) `diagnostics.py` — wire curve KPIs into a one‑liner
+
+You already added `dump_curve_diagnostics(...)`; ensure the engine calls it **once per cycle** if arrays exist (this is light and helps catch regressions early).
+
+**Patch (engine, near telemetry harvest):**
+```diff
++            # Optional: compute rich diagnostics once arrays are present
++            try:
++                from diagnostics import dump_curve_diagnostics as _dump_curve_diag  # type: ignore
++            except Exception:
++                _dump_curve_diag = None
++            if callable(_dump_curve_diag):
++                try:
++                    T = np.asarray(system_state.get('rgc_T', []), dtype=np.float64)
++                    tgt = np.asarray(system_state.get('rgc_target', []), dtype=np.float64)
++                    sit = np.asarray(system_state.get('rgc_sit_profile', []), dtype=np.float64)
++                    if T.size and tgt.size and sit.size and T.size==tgt.size==sit.size:
++                        _dump_curve_diag(T, tgt, sit, out_dir=system_state.get('_logs_dir'))
++                except Exception:
++                    pass
+```
+
+(Your diagnostics module header exists and is safe to import. fileciteturn9file18)
+
+---
+
+## 11) `visualizations.py` — small, always‑on **curve sparkline** in dashboard
+
+**Patch (what):** add a micro ASCII sparkline of residuals and print basic KPIs (`profile_mse`, `cum_mse`, `ρ`).
+
+**Skeleton (insert in the dashboard record/print path):**
+```diff
+--- a/visualizations.py
++++ b/visualizations.py
+@@
++        # Curve-mode sparkline (best-effort)
++        try:
++            if 'rgc_residuals' in state and isinstance(state['rgc_residuals'], (list, tuple)):
++                import numpy as _np
++                r = _np.asarray(state['rgc_residuals'], dtype=_np.float64).reshape(-1)
++                if r.size > 0:
++                    # downsample to ~32 chars
++                    m = max(1, r.size // 32)
++                    r_ds = r[::m]
++                    _blocks = "▁▂▃▄▅▆▇█"
++                    span = max(1e-12, float(_np.max(_np.abs(r_ds))))
++                    idx = _np.clip((( _np.abs(r_ds)/span ) * (len(_blocks)-1)).astype(int), 0, len(_blocks)-1)
++                    spark = ''.join(_blocks[i] for i in idx)
++                    record['curve_spark'] = spark
++        except Exception:
++            pass
+```
+
+(Reporter module already writes structured JSON; this enriches it without new deps. fileciteturn11file11)
+
+---
+
+## 12) `controllers.py` — ensure all eigen‑dependent penalties are gated
+
+You already warn/suppress Berry penalties when `SIT_ASSERT_NO_EIG` is active. Extend the **same gate** to any other regularizer that reaches for `evals/evecs` (holonomy/torque/IPR, etc.) to guarantee the curve path stays eigen‑free under load.
+
+**Action:** Audit the penalty builders and wrap them in:
+
+```python
+no_eig = os.environ.get('SIT_ASSERT_NO_EIG','').strip() in ('1','true','yes')
+if no_eig or system_state.get('mode_curve'):
+    weight = 0.0
+```
+
+(You noted a partial fix at lines 1634–1643; carry it through similarly.)
+
+---
+
+## 13) `config.py` — document + default the new knobs
+
+Add sensible defaults to keep behavior deterministic:
+
+```python
+# Curve mode knobs
+SIT_RGC_POINTS         = 2048
+SIT_RGC_HEADROOM       = 0.03   # 3% above active_max
+SIT_RGC_ANNEAL_ALPHA   = 0.5
+SIT_RGC_BANDWIDTH_SCALE= 1.0
+SIT_RGC_LOSS           = "profile"  # or "cumulative"
+SIT_RGC_PROBES         = 8
+SIT_RGC_CG_ITERS       = 128
+SIT_RGC_TOL            = 1e-6
+```
+
+---
+
+## 14) **Test** additions
+
+- **Unit:** verify `_rgc_sync_state` respects `active_max` (grid grows with curriculum; shrinks with env ceiling).  
+- **Unit:** deterministic `absorption_profile` with hashed probes (repeatability).  
+- **Smoke:** `SIT_ASSERT_NO_EIG=1` + `--riemann-curve` → no calls to eigen solvers; telemetry present.
+
+---
+
+## 15) Performance tips (no code needed right now)
+
+- Keep `probes` low (4–8) during early curriculum; increase to 16–24 only near convergence, driven by plateau detection.
+- If `H` is large and dense, consider switching to a CSR representation and implementing the SPD matvec with sparse ops (drop‑in once your Laplacian builder exposes sparse).
+
+---
+
+# Why these patches matter (quick rationale)
+
+- **Correct curriculum behavior**: Patch 1 eliminates the “always max” grid bug so the target truly follows the active window. (You observed this in your second pass.) fileciteturn10file14  
+- **Stable numerics**: Patch 8 switches to an SPD operator so CG is theoretically sound and empirically stable.  
+- **Reproducibility**: Patch 9 removes probe RNG bias and makes runs auditable.  
+- **Visibility**: Patches 4, 7, 10, 11 give you array‑level telemetry and a compact visual to track curve fit quality.  
+- **Purity**: Patch 3 + 12 ensure **no accidental eigenwork** leaks back in when curve‑mode is active.
+
+---
+
+## Quick checklist you can tick off
+
+- [ ] Grid follows curriculum (`rgc_T_hi` grows), respects `SIT_RGC_MAX_T`.  
+- [ ] Payload carries `T`, `target`, `gamma`, `weights`. (Engine → Motor) fileciteturn10file1 fileciteturn10file12  
+- [ ] Motor uses provided `gamma/weights`; reports `profile_mse` and `cum_mse`. fileciteturn10file11  
+- [ ] SITOperator uses **SPD** squared‑resolvent with Jacobi CG (no GMRES needed). fileciteturn10file4  
+- [ ] Curve snapshots include arrays (`sit_profile`, `residuals`, `weights`) and land under `logs/`. fileciteturn10file16  
+- [ ] No eigen diagnostics are computed in curve‑mode. fileciteturn10file16 fileciteturn11file6
+
+If you want, I can collapse these into branch‑ready commits (per file) next—but the diffs above should be enough to implement immediately.
+

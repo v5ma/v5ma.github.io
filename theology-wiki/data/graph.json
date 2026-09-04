@@ -1,0 +1,3214 @@
+{
+  "schema": "theology-public-package/v1",
+  "related": {
+    "home": [
+      "abraham-hicks-and-gnosticism",
+      "abraham-hicks-vs-gnostic-jesus",
+      "abraham-hicks-vibration-clarification",
+      "act-vs-abraham-hicks",
+      "agi-religious-framework",
+      "ai-and-religion-belief",
+      "ai-safety-and-lovecraft",
+      "ai-tech-and-generations",
+      "antichrist-prophecy-in-tanakh",
+      "antichrist-covenant-and-peace",
+      "antichrist-peace-and-war",
+      "antichrist-spiritual-inversion",
+      "17th-century-christian-zionism",
+      "ancient-cosmology-and-dreams",
+      "ancient-egypt-vs-fascism",
+      "ai-re-dates-dead-sea-scrolls",
+      "abrahamic-rival-continuations-book-seed",
+      "samaritan-and-jewish-texts",
+      "teacher-of-righteousness-vs-gnostic-jesus",
+      "muslim-view-of-jesus"
+    ],
+    "17th-century-christian-zionism": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "abraham-hicks-and-gnosticism": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "abraham-hicks-vibration-clarification": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview",
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster"
+    ],
+    "abraham-hicks-vs-gnostic-jesus": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "abrahamic-rival-continuations-book-seed": [
+      "samaritan-and-jewish-texts",
+      "teacher-of-righteousness-vs-gnostic-jesus",
+      "daniel-and-teacher-of-righteousness",
+      "qumran-text-history",
+      "maccabees-jeremiah-and-dead-sea-scrolls",
+      "enoch-scroll-and-gnosticism",
+      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "gnostic-gospels-and-vocabulary",
+      "muslim-view-of-jesus",
+      "sunni-shia-and-christianity",
+      "torah-after-hellenistic-era",
+      "exodus-dating-and-evidence",
+      "canaanite-myths-vs-exodus",
+      "sumerian-writing-and-language",
+      "hyksos-expulsion-overview",
+      "two-messiahs-in-judaism",
+      "messiah-role-in-qumran",
+      "qumran-messianic-figures",
+      "gmirkin-hellenistic-bible-theory"
+    ],
+    "act-vs-abraham-hicks": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "advanced-gnosticism-scholarship-conclusions": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "agi-religious-framework": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview",
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster"
+    ],
+    "ai-and-religion-belief": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview",
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster"
+    ],
+    "ai-conference-insights": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "ai-re-dates-dead-sea-scrolls": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "ai-safety-and-lovecraft": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "ai-sword-revelation-review": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "ai-tech-and-generations": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "aleph-metaphor-and-concepts": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "allegiance-vs-proclamation-of-christ": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "altman-antichrist-comparisons": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "ancient-cosmology-and-dreams": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "ancient-egypt-vs-fascism": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-alignment-consequences": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-and-desire-of-women": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-and-gold-obsession": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-and-ridiculous-claims": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-covenant-and-peace": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-middle-east-myth": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-peace-and-war": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-prophecy-and-war": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-prophecy-in-tanakh": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-salvation-discussions": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "antichrist-spiritual-inversion": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "anunnaki-alien-theory-rejected": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "apocalipsis-y-nueva-humanidad": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "apocalypse-of-adam-outline": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "apocalypse-of-peter-comparison": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "article-review-feedback": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "assyrian-and-antichrist-connection": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "authoritarian-threats-to-democracy": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "authoritarianism-and-false-democracy": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "awakening-to-oneness": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "barnabas-gospel-debunked": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview",
+      "hyperion-cantos-summary"
+    ],
+    "beasts-and-trumpets-symbolism": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "beloved-disciple-identity": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "bible-interpretation-and-faith": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "bible-passage-on-deception": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "bible-prophecy-death-fractions": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "bible-text-sources-comparison": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "bible-verse-inspiration": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "biblical-antichrist-interpretation": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "biblical-resurrection-interpretations": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "biblical-text-timeline": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "blue-fascism-explained": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "born-smart-the-story-of-scout": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "branch-branch-branch-branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3",
+      "branch-branch-branch-proof-of-god-s-existence"
+    ],
+    "branch-branch-branch-branch-proof-of-god-s-existence-2": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3",
+      "branch-branch-branch-proof-of-god-s-existence"
+    ],
+    "branch-branch-branch-branch-proof-of-god-s-existence-3": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-proof-of-god-s-existence"
+    ],
+    "branch-branch-branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "branch-branch-branch-proof-of-god-s-existence-2": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "branch-branch-israel-gaza-famine-responsibility": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "branch-branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "branch-israel-gaza-famine-responsibility": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "branch-plagiarism-equivalent-vs-plagiarism": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "gospel-of-judas-overview",
+      "hyksos-expulsion-overview"
+    ],
+    "branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "branch-riemann-curve-mapping": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "biblical-antichrist-interpretation",
+      "chatgpt-file-splitting",
+      "self-and-existence-question",
+      "home",
+      "deterministic-quantum-cycles",
+      "proof-of-god-s-existence-2"
+    ],
+    "branch-san-minkowski-model": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "gospel-of-judas-overview",
+      "hyksos-expulsion-overview"
+    ],
+    "calvary-chapel-and-meat-industry": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus",
+      "capitalism-and-democracy-threats"
+    ],
+    "calvary-chapel-vs-gnosticism": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "canaanite-myths-vs-exodus",
+      "capitalism-and-democracy-threats"
+    ],
+    "canaanite-myths-vs-exodus": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "capitalism-and-democracy-threats"
+    ],
+    "capitalism-and-democracy-threats": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "catholic-priests-and-ancient-texts": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "chatgpt-beasts-revelation-theory": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "chatgpt-file-splitting": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "cheese-varieties-from-milk": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "china-s-human-rights-abuses": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "christ-vs-antichrist-contrast": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "christian-salvation-without-supernaturalism": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "christian-view-of-death": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "church-corporate-sponsorship-evidence": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "churches-rejecting-paul-s-writings": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "city-of-david-structures": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "claude-deceptions-and-betrayals": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "clementine-homilies-and-recognitions": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "cognitive-gnosticism-jesus-vs-gnostic-jesus": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "conceptual-equivalences-mapping": [
+      "branch-riemann-curve-mapping",
+      "qgtcd-research-mapping",
+      "gospel-of-judas-overview",
+      "hyksos-expulsion-overview"
+    ],
+    "consciousness-and-existence-views": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "covenant-confirmation-in-israel": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "crucifixion-under-pilate": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "dan-response-inquiry": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "daniel-and-teacher-of-righteousness": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "daniel-prophecy-and-temple": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "dark-time-thermodynamics-theory": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "debunking-aaron-abke": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "debunking-greek-bible-myth": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "debunking-jewish-law-origin": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "deliberate-joy-concept": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "deterministic-quantum-cycles": [
+      "branch-riemann-curve-mapping",
+      "quantum-time-solution-hubble",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview",
+      "qgtcd-research-mapping"
+    ],
+    "dimensional-resonance-vs-iit": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "dina-s-jewish-identity-in-tlou": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "disrespectful-religious-statement": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus"
+    ],
+    "divine-empowerment-through-christ": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "document-review",
+      "early-vs-later-gnosticism",
+      "ehrman-vs-tabor-debate"
+    ],
+    "document-review": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "early-vs-later-gnosticism",
+      "ehrman-vs-tabor-debate"
+    ],
+    "early-vs-later-gnosticism": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "ehrman-vs-tabor-debate"
+    ],
+    "ehrman-vs-tabor-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "elohim-and-alien-theories": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "enoch-scroll-and-gnosticism": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "enoch-son-of-man": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "epstein-s-web-of-connections": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "eschatology-and-prophetic-timelines": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "essenes-and-early-christianity": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "european-gods-origins": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "evolving-god-and-naming": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "exodus-dating-and-evidence": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "ezekiel-s-dry-bones-vision": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "ezekiel-s-influence-on-prophecy": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "fact-check-peace-plan": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "fact-check-trump-death-claim": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "faith-and-comfort": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "faith-as-vibration-concept": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "fallout-vs-real-apocalypse": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "false-gnosis-warning": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "false-peace-prophecy": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "find-paper-online": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "fishburne-matrix-commentary-clarified": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "focus-your-energy": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "galatians-3-faith-summary": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "gaza-coin-proposal": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "gaza-development-coalition-name": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "gaza-narrative-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "gaza-relocation-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "gaza-starvation-propaganda-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "glazing-brainwaves-reflected": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity",
+      "gnostic-christianity-and-jesus"
+    ],
+    "gmirkin-hellenistic-bible-theory": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gnosis-density-and-gravity",
+      "gnostic-christianity-and-jesus"
+    ],
+    "gnosis-density-and-gravity": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnostic-christianity-and-jesus"
+    ],
+    "gnostic-christianity-and-jesus": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-church-psychedelic-legalities": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-divinity-and-dualism": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-end-times-figures": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-god-comparisons": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-gospels-and-vocabulary": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-gospels-in-film": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-jesus-and-judas": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "hyksos-expulsion-overview",
+      "hyperion-cantos-summary"
+    ],
+    "gnostic-jesus-and-logos": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-teachings-and-clarity": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-texts-and-christianity": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnostic-texts-and-paul": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnosticism-and-evil-creator": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnosticism-and-original-sin": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnosticism-and-paul-s-letters": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gnosticism-in-catholicism": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "god-and-sea-monsters": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gog-magog-and-nations": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gospel-of-judas-overview": [
+      "branch-riemann-curve-mapping",
+      "hyksos-expulsion-overview",
+      "jesus-teachings-overview",
+      "johannine-theology-overview",
+      "modern-nazarenes-overview"
+    ],
+    "greta-thunberg-and-iran": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "gset-verification-and-implications": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism"
+    ],
+    "hamas-propaganda-and-hostages": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "haramein-vortex-gravity-model": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "harari-on-israel-and-gaza": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "heavier-than-a-feather": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "heisenberg-vtt-and-sit": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "hell-transformation-and-metatron": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "henosis-and-gnosticism-comparison": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "herod-timeline-clarification": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "hogs-and-authority-dynamics": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "horseman-of-death-fate": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "humanity-s-need-for-god": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity"
+    ],
+    "hyksos-expulsion-overview": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyperion-cantos-summary"
+    ],
+    "hyperion-cantos-summary": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "i-commit-my-spirit": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "image-and-identity-theme": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "inanna-death-and-resurrection": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "iran-amalek-prophecy-debate": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "islam-s-arrival-century": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "israel-democracy-debate": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "israel-gaza-famine-responsibility": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "james-tabor-expertise-gnosticism": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "james-the-just-analysis": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-7-levels-of-consciousness-fact-check": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-and-biblical-figures": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-and-dead-sea-scrolls": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-and-gnostic-teachings": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-and-neo-matrix": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-as-a-teenager": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-as-philosopher-teacher": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-as-storyteller": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-drives-out-merchants": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-gnosticism-and-myth": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-in-dead-sea-scrolls": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-in-love-concept": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis",
+      "jesus-vs-ahura-mazda"
+    ],
+    "jesus-james-and-essenes": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-long-suffering-vs-abraham-hicks": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-sayings-fact-check": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-teachings-on-divorce": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-timeline-analysis",
+      "jesus-vs-ahura-mazda"
+    ],
+    "jesus-teachings-overview": [
+      "gospel-of-judas-overview",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-teachings-pineal-gland": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-teachings-simplified": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-temple-sacrifices-debate": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jesus-timeline-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-vs-ahura-mazda"
+    ],
+    "jesus-vs-ahura-mazda": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "jesus-vs-paul-on-salvation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "jesus-vs-paul-vs-gnosticism": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "jesus-vs-yahweh-debate": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "jesus-way-origins": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "jewish-apocalyptic-repair-timeline": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "jews-and-canaanites-origins": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "johannine-theology-overview": [
+      "gospel-of-judas-overview",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "joke-style-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "judaism-history-debate": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "judas-gnostic-view-explained": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "jungian-dream-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "kabbalah-origins-question": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "kirk-racism-equivalence-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "kubrick-gita-verse-removal": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "la-museums-destroyed-in-fire": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "law-of-attraction-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "law-of-attraction-and-magic": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "law-of-attraction-validation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "leibniz-branch-mesopotamia": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "gospel-of-judas-overview",
+      "hyksos-expulsion-overview"
+    ],
+    "lucifer-s-fall-explanation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "maccabees-jeremiah-and-dead-sea-scrolls": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "mark-16-textual-dispute": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "mark-of-the-beast-x": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "marvel-crisis-equivalent": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "meai-as-anti-psychotic": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "meme-creation-prophecy-and-peace": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "messiah-role-in-qumran": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "mind-of-god-equation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "mind-of-god-equation-2": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "modern-gnostic-critique-of-catholicism": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "modern-nazarenes-overview": [
+      "gospel-of-judas-overview",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "moses-abraham-and-god": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis"
+    ],
+    "moses-and-the-burning-bush": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-dating-debate",
+      "muslim-view-of-jesus",
+      "my-descent-into-death-summary"
+    ],
+    "moses-dating-debate": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "muslim-view-of-jesus",
+      "my-descent-into-death-summary"
+    ],
+    "muslim-view-of-jesus": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "my-descent-into-death-summary"
+    ],
+    "my-descent-into-death-summary": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "naming-god-as-purpose": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "nearest-wilderness-to-sf": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "neo-mind-cycle-evolution": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "netanyahu-s-controversial-rhetoric": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "neurohacker-bio-summary": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "nietzsche-jesus-gnostic-resources": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "no-pre-trib-rapture-arguments": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "noah-and-moses-jewish-status": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "nuclear-war-survival-tips": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "oil-vs-gas-control": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "oneness-with-god-perspectives": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "oort-cloud-and-yec": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "original-sin-vs-ezekiel": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "parthians-and-medes-meaning": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "paul-and-the-resurrection": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "paul-mythicism-and-sources": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "paul-vs-james-movement": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "paul-vs-jesus-teachings": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "paul-vs-luke-resurrection": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "paul-s-antichristian-message": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "peace-deal-credibility": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "peale-and-positive-thinking": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "philosophical-polarities-of-power": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "pie-and-mesopotamian-references": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "pilate-life-timeline": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "pistis-sophia-summary": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "plato-hermeticism-and-vibration": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "platonic-jewish-christianity-framework": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus"
+    ],
+    "pope-francis-and-ukraine": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation",
+      "proof-of-god-s-existence"
+    ],
+    "pope-leo-xiv-criticizes-vance": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "praise-poem-creation",
+      "proof-of-god-s-existence"
+    ],
+    "praise-poem-creation": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "proof-of-god-s-existence"
+    ],
+    "proof-of-god-s-existence": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "proof-of-god-s-existence-2": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3"
+    ],
+    "proving-netanyahu-s-claims": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "psychedelic-spiritual-experiences": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "publishing-cognitive-gnosticism-first": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "putin-s-global-strategy": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "qgtcd-research-mapping": [
+      "branch-riemann-curve-mapping",
+      "conceptual-equivalences-mapping",
+      "hyksos-expulsion-overview"
+    ],
+    "quantum-entanglement-and-communication": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "quantum-time-solution-hubble": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "qumran-messianic-figures": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "qumran-survival-theory": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "qumran-text-history": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "quote-authenticity-check": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "ratm-and-gnosticism-comparison": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "reddit-group-search": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "rephrase-conjecture-on-genocide": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "research-on-lineage-descent": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "resurrection-debate-in-christianity": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "revelation-6-7-meaning": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "revelation-and-montanism": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "revelation-and-symbolic-language": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "revelation-interpretation-and-america": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "revelation-seal-opening-clarification": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "revelation-throne-inquiry": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "roy-casagranda-critique": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "russian-aliyah-impact": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "saints-and-us-democrats": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "samaritan-and-jewish-texts": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "samuel-vs-micah-divide": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "sanchuniathon-phoenician-mythology-summary": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "science-and-god-debate": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question",
+      "self-declared-pope-controversy"
+    ],
+    "science-and-spirituality-synergy": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "self-and-existence-question",
+      "self-declared-pope-controversy"
+    ],
+    "self-and-existence-question": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-declared-pope-controversy"
+    ],
+    "self-declared-pope-controversy": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "seth-on-changing-past-future": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "simon-magus-and-logos": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "simulation-theory-debate": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "sith-rule-of-two-myth": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "song-style-analysis": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "spiritual-experience-integration": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "squid-imagery-and-propaganda": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "stages-of-awakening": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "stalin-putin-anti-christ-parallel": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "stanley-fisher-clarification": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "starvation-in-gaza-crisis": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "stop-unnecessary-emphasis": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "sumerian-writing-and-language": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "sun-cycles-in-2-enoch": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "sunni-shia-and-christianity": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "svgn-io-news-website-guide": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation"
+    ],
+    "talmud-vs-torah": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "teacher-of-righteousness-vs-gnostic-jesus": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "teaching-cyclical-thinking": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "text-transcription-request": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "the-telos": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "theology-theology-antichrist-mapping-abraham-hicks-cluster": [
+      "branch-riemann-curve-mapping",
+      "branch-plagiarism-equivalent-vs-plagiarism",
+      "branch-san-minkowski-model",
+      "conceptual-equivalences-mapping",
+      "leibniz-branch-mesopotamia",
+      "qgtcd-research-mapping",
+      "17th-century-christian-zionism",
+      "act-vs-abraham-hicks",
+      "agi-religious-framework",
+      "ai-conference-insights",
+      "ai-safety-and-lovecraft",
+      "ai-sword-revelation-review",
+      "ai-tech-and-generations",
+      "ai-and-religion-belief",
+      "abraham-hicks-vibration-clarification",
+      "abraham-hicks-and-gnosticism",
+      "advanced-gnosticism-scholarship-conclusions",
+      "aleph-metaphor-and-concepts",
+      "allegiance-vs-proclamation-of-christ",
+      "altman-antichrist-comparisons",
+      "ancient-cosmology-and-dreams",
+      "ancient-egypt-vs-fascism",
+      "antichrist-alignment-consequences",
+      "antichrist-covenant-and-peace",
+      "antichrist-middle-east-myth",
+      "antichrist-peace-and-war",
+      "antichrist-prophecy-and-war",
+      "antichrist-spiritual-inversion",
+      "antichrist-and-desire-of-women",
+      "antichrist-and-gold-obsession",
+      "antichrist-and-ridiculous-claims",
+      "antichrist-prophecy-in-tanakh",
+      "antichrist-salvation-discussions",
+      "theology-link-resolution-repair",
+      "theology-wikilink-density-repair"
+    ],
+    "theology-theology-debate-science-god-self-cluster": [
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question",
+      "self-declared-pope-controversy",
+      "seth-on-changing-past-future",
+      "simon-magus-and-logos",
+      "simulation-theory-debate",
+      "sith-rule-of-two-myth",
+      "song-style-analysis",
+      "spiritual-experience-integration",
+      "squid-imagery-and-propaganda",
+      "stages-of-awakening",
+      "stalin-putin-anti-christ-parallel",
+      "stanley-fisher-clarification",
+      "starvation-in-gaza-crisis",
+      "stop-unnecessary-emphasis",
+      "sumerian-writing-and-language",
+      "sun-cycles-in-2-enoch",
+      "sunni-shia-and-christianity",
+      "tim-teacher-of-righteousness",
+      "talmud-vs-torah",
+      "teacher-of-righteousness-vs-gnostic-jesus",
+      "teaching-cyclical-thinking",
+      "text-transcription-request",
+      "the-telos",
+      "timeline-creation-request",
+      "tolkien-vs-ai-epics",
+      "tony-robbins-criticism",
+      "torah-after-hellenistic-era",
+      "toxic-lyrics-impact",
+      "triune-god-historical-debate",
+      "trump-bible-vision"
+    ],
+    "theology-theology-debunking-jesus-calvary-chapel-cluster": [
+      "branch-riemann-curve-mapping",
+      "calvary-chapel-and-meat-industry",
+      "calvary-chapel-vs-gnosticism",
+      "canaanite-myths-vs-exodus",
+      "capitalism-and-democracy-threats",
+      "catholic-priests-and-ancient-texts",
+      "chatgpt-beasts-revelation-theory",
+      "chatgpt-file-splitting",
+      "cheese-varieties-from-milk",
+      "china-s-human-rights-abuses",
+      "christ-vs-antichrist-contrast",
+      "christian-salvation-without-supernaturalism",
+      "christian-view-of-death",
+      "church-corporate-sponsorship-evidence",
+      "churches-rejecting-paul-s-writings",
+      "city-of-david-structures",
+      "claude-deceptions-and-betrayals",
+      "clementine-homilies-and-recognitions",
+      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "consciousness-and-existence-views",
+      "covenant-confirmation-in-israel",
+      "crucifixion-under-pilate",
+      "dan-response-inquiry",
+      "daniel-prophecy-and-temple",
+      "daniel-and-teacher-of-righteousness",
+      "dark-time-thermodynamics-theory",
+      "debunking-aaron-abke",
+      "debunking-greek-bible-myth",
+      "debunking-jewish-law-origin",
+      "deliberate-joy-concept",
+      "dimensional-resonance-vs-iit",
+      "dina-s-jewish-identity-in-tlou",
+      "disrespectful-religious-statement"
+    ],
+    "theology-theology-gaza-debate-faith-early-cluster": [
+      "branch-riemann-curve-mapping",
+      "divine-empowerment-through-christ",
+      "document-review",
+      "early-vs-later-gnosticism",
+      "ehrman-vs-tabor-debate",
+      "elohim-and-alien-theories",
+      "enoch-scroll-and-gnosticism",
+      "enoch-son-of-man",
+      "epstein-s-web-of-connections",
+      "eschatology-and-prophetic-timelines",
+      "essenes-and-early-christianity",
+      "european-gods-origins",
+      "evolving-god-and-naming",
+      "exodus-dating-and-evidence",
+      "ezekiel-s-dry-bones-vision",
+      "ezekiel-s-influence-on-prophecy",
+      "fact-check-trump-death-claim",
+      "fact-check-peace-plan",
+      "faith-and-comfort",
+      "faith-as-vibration-concept",
+      "fallout-vs-real-apocalypse",
+      "false-gnosis-warning",
+      "false-peace-prophecy",
+      "find-paper-online",
+      "fishburne-matrix-commentary-clarified",
+      "focus-your-energy",
+      "gset-verification-and-implications",
+      "galatians-3-faith-summary",
+      "gaza-coin-proposal",
+      "gaza-narrative-debate",
+      "gaza-relocation-debate",
+      "gaza-development-coalition-name",
+      "gaza-starvation-propaganda-debate"
+    ],
+    "theology-theology-gnostic-gnosticism-jesus-god-cluster": [
+      "branch-riemann-curve-mapping",
+      "glazing-brainwaves-reflected",
+      "gmirkin-hellenistic-bible-theory",
+      "gnosis-density-and-gravity",
+      "gnostic-christianity-and-jesus",
+      "gnostic-church-psychedelic-legalities",
+      "gnostic-divinity-and-dualism",
+      "gnostic-god-comparisons",
+      "gnostic-gospels-and-vocabulary",
+      "gnostic-gospels-in-film",
+      "gnostic-jesus-and-logos",
+      "gnostic-teachings-and-clarity",
+      "gnostic-texts-and-christianity",
+      "gnostic-texts-and-paul",
+      "gnostic-end-times-figures",
+      "gnosticism-and-evil-creator",
+      "gnosticism-and-original-sin",
+      "gnosticism-and-paul-s-letters",
+      "gnosticism-in-catholicism",
+      "god-and-sea-monsters",
+      "gog-magog-and-nations",
+      "greta-thunberg-and-iran",
+      "hamas-propaganda-and-hostages",
+      "haramein-vortex-gravity-model",
+      "harari-on-israel-and-gaza",
+      "heavier-than-a-feather",
+      "heisenberg-vtt-and-sit",
+      "hell-transformation-and-metatron",
+      "henosis-and-gnosticism-comparison",
+      "herod-timeline-clarification",
+      "hogs-and-authority-dynamics",
+      "horseman-of-death-fate",
+      "humanity-s-need-for-god"
+    ],
+    "theology-theology-jesus-analysis-god-law-cluster": [
+      "branch-riemann-curve-mapping",
+      "jesus-in-love-concept",
+      "jesus-teachings-on-divorce",
+      "jesus-timeline-analysis",
+      "jesus-vs-ahura-mazda",
+      "jesus-vs-paul-on-salvation",
+      "jesus-vs-paul-vs-gnosticism",
+      "jesus-vs-yahweh-debate",
+      "jewish-apocalyptic-repair-timeline",
+      "jews-and-canaanites-origins",
+      "joke-style-analysis",
+      "judaism-history-debate",
+      "judas-gnostic-view-explained",
+      "jungian-dream-analysis",
+      "kabbalah-origins-question",
+      "kirk-racism-equivalence-analysis",
+      "kubrick-gita-verse-removal",
+      "la-museums-destroyed-in-fire",
+      "law-of-attraction-validation",
+      "law-of-attraction-analysis",
+      "law-of-attraction-and-magic",
+      "lucifer-s-fall-explanation",
+      "meai-as-anti-psychotic",
+      "maccabees-jeremiah-and-dead-sea-scrolls",
+      "mark-16-textual-dispute",
+      "mark-of-the-beast-x",
+      "marvel-crisis-equivalent",
+      "meme-creation-prophecy-and-peace",
+      "messiah-role-in-qumran",
+      "mind-of-god-equation",
+      "mind-of-god-equation-2",
+      "modern-gnostic-critique-of-catholicism",
+      "moses-abraham-and-god"
+    ],
+    "theology-theology-jesus-teachings-dead-sea-cluster": [
+      "branch-riemann-curve-mapping",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview",
+      "hyperion-cantos-summary",
+      "i-commit-my-spirit",
+      "if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia",
+      "image-and-identity-theme",
+      "inanna-death-and-resurrection",
+      "iran-amalek-prophecy-debate",
+      "islam-s-arrival-century",
+      "israel-democracy-debate",
+      "israel-gaza-famine-responsibility",
+      "james-tabor-expertise-gnosticism",
+      "james-the-just-analysis",
+      "jesus-7-levels-of-consciousness-fact-check",
+      "jesus-drives-out-merchants",
+      "jesus-gnosticism-and-myth",
+      "jesus-james-and-essenes",
+      "jesus-long-suffering-vs-abraham-hicks",
+      "jesus-sayings-fact-check",
+      "jesus-teachings-pineal-gland",
+      "jesus-teachings-simplified",
+      "jesus-temple-sacrifices-debate",
+      "jesus-way-origins",
+      "jesus-and-dead-sea-scrolls",
+      "jesus-and-gnostic-teachings",
+      "jesus-and-neo-matrix",
+      "jesus-and-biblical-figures",
+      "jesus-as-philosopher-teacher",
+      "jesus-as-storyteller",
+      "jesus-as-a-teenager",
+      "jesus-in-dead-sea-scrolls"
+    ],
+    "theology-theology-jesus-teachings-gnostic-paul-cluster": [
+      "jesus-teachings-pineal-gland",
+      "jesus-teachings-simplified",
+      "jesus-and-gnostic-teachings",
+      "jesus-teachings-on-divorce",
+      "paul-vs-jesus-teachings",
+      "abraham-hicks-vs-gnostic-jesus",
+      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "gnostic-christianity-and-jesus",
+      "gnostic-jesus-and-logos",
+      "gnostic-teachings-and-clarity",
+      "jesus-7-levels-of-consciousness-fact-check",
+      "jesus-drives-out-merchants",
+      "jesus-gnosticism-and-myth",
+      "jesus-james-and-essenes",
+      "jesus-long-suffering-vs-abraham-hicks",
+      "jesus-sayings-fact-check",
+      "jesus-temple-sacrifices-debate",
+      "jesus-way-origins",
+      "jesus-and-neo-matrix",
+      "jesus-and-biblical-figures",
+      "jesus-as-philosopher-teacher",
+      "jesus-as-storyteller",
+      "jesus-as-a-teenager",
+      "jesus-in-love-concept",
+      "jesus-timeline-analysis",
+      "jesus-vs-ahura-mazda",
+      "jesus-vs-paul-on-salvation",
+      "jesus-vs-paul-vs-gnosticism",
+      "jesus-vs-yahweh-debate",
+      "muslim-view-of-jesus",
+      "nietzsche-jesus-gnostic-resources",
+      "teacher-of-righteousness-vs-gnostic-jesus"
+    ],
+    "theology-link-resolution-repair": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "theology-wikilink-density-repair",
+      "branch-riemann-curve-mapping",
+      "home"
+    ],
+    "theology-theology-paul-jesus-moses-summary-cluster": [
+      "branch-riemann-curve-mapping",
+      "moses-and-the-burning-bush",
+      "moses-dating-debate",
+      "muslim-view-of-jesus",
+      "my-descent-into-death-summary",
+      "naming-god-as-purpose",
+      "nearest-wilderness-to-sf",
+      "neo-mind-cycle-evolution",
+      "netanyahu-s-controversial-rhetoric",
+      "neurohacker-bio-summary",
+      "nietzsche-jesus-gnostic-resources",
+      "no-pre-trib-rapture-arguments",
+      "noah-and-moses-jewish-status",
+      "nuclear-war-survival-tips",
+      "oil-vs-gas-control",
+      "oneness-with-god-perspectives",
+      "oort-cloud-and-yec",
+      "original-sin-vs-ezekiel",
+      "pie-and-mesopotamian-references",
+      "parthians-and-medes-meaning",
+      "paul-mythicism-and-sources",
+      "paul-and-the-resurrection",
+      "paul-vs-james-movement",
+      "paul-vs-jesus-teachings",
+      "paul-vs-luke-resurrection",
+      "paul-s-antichristian-message",
+      "peace-deal-credibility",
+      "peale-and-positive-thinking",
+      "philosophical-polarities-of-power",
+      "pilate-life-timeline",
+      "pistis-sophia-summary",
+      "plato-hermeticism-and-vibration",
+      "platonic-jewish-christianity-framework"
+    ],
+    "theology-theology-proof-god-existence-bible-cluster": [
+      "branch-riemann-curve-mapping",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3",
+      "branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-israel-gaza-famine-responsibility",
+      "branch-branch-proof-of-god-s-existence",
+      "branch-israel-gaza-famine-responsibility",
+      "branch-proof-of-god-s-existence",
+      "ai-re-dates-dead-sea-scrolls",
+      "abraham-hicks-vs-gnostic-jesus",
+      "anunnaki-alien-theory-rejected",
+      "apocalipsis-y-nueva-humanidad",
+      "apocalypse-of-adam-outline",
+      "apocalypse-of-peter-comparison",
+      "article-review-feedback",
+      "assyrian-and-antichrist-connection",
+      "authoritarian-threats-to-democracy",
+      "authoritarianism-and-false-democracy",
+      "awakening-to-oneness",
+      "beasts-and-trumpets-symbolism",
+      "beloved-disciple-identity",
+      "bible-interpretation-and-faith",
+      "bible-verse-inspiration",
+      "bible-passage-on-deception",
+      "bible-prophecy-death-fractions",
+      "bible-text-sources-comparison",
+      "biblical-resurrection-interpretations",
+      "biblical-text-timeline",
+      "biblical-antichrist-interpretation",
+      "blue-fascism-explained",
+      "born-smart-the-story-of-scout"
+    ],
+    "theology-theology-revelation-qumran-proof-god-cluster": [
+      "branch-riemann-curve-mapping",
+      "pope-francis-and-ukraine",
+      "pope-leo-xiv-criticizes-vance",
+      "praise-poem-creation",
+      "proof-of-god-s-existence",
+      "proving-netanyahu-s-claims",
+      "psychedelic-spiritual-experiences",
+      "publishing-cognitive-gnosticism-first",
+      "putin-s-global-strategy",
+      "quantum-entanglement-and-communication",
+      "quantum-time-solution-hubble",
+      "qumran-survival-theory",
+      "qumran-text-history",
+      "qumran-messianic-figures",
+      "quote-authenticity-check",
+      "ratm-and-gnosticism-comparison",
+      "reddit-group-search",
+      "rephrase-conjecture-on-genocide",
+      "research-on-lineage-descent",
+      "resurrection-debate-in-christianity",
+      "revelation-6-7-meaning",
+      "revelation-interpretation-and-america",
+      "revelation-seal-opening-clarification",
+      "revelation-throne-inquiry",
+      "revelation-and-montanism",
+      "revelation-and-symbolic-language",
+      "roy-casagranda-critique",
+      "russian-aliyah-impact",
+      "svgn-io-news-website-guide",
+      "saints-and-us-democrats",
+      "samaritan-and-jewish-texts",
+      "samuel-vs-micah-divide",
+      "sanchuniathon-phoenician-mythology-summary"
+    ],
+    "sources-index": [
+      "law-of-attraction-validation",
+      "publishing-cognitive-gnosticism-first",
+      "jews-and-canaanites-origins",
+      "authoritarian-threats-to-democracy",
+      "quantum-time-solution-hubble",
+      "yahweh-and-asherah-s-relationship",
+      "canaanite-myths-vs-exodus",
+      "jesus-and-neo-matrix",
+      "stalin-putin-anti-christ-parallel",
+      "science-and-spirituality-synergy",
+      "gnostic-teachings-and-clarity",
+      "what-is-midian",
+      "jesus-teachings-simplified",
+      "divine-empowerment-through-christ",
+      "pistis-sophia-summary",
+      "antichrist-spiritual-inversion",
+      "gaza-relocation-debate",
+      "gmirkin-hellenistic-bible-theory",
+      "nuclear-war-survival-tips",
+      "god-and-sea-monsters",
+      "false-peace-prophecy",
+      "chatgpt-beasts-revelation-theory",
+      "pie-and-mesopotamian-references",
+      "ai-safety-and-lovecraft",
+      "gnosticism-and-evil-creator",
+      "exodus-dating-and-evidence",
+      "simon-magus-and-logos",
+      "hyksos-expulsion-overview",
+      "sanchuniathon-phoenician-mythology-summary",
+      "revelation-and-symbolic-language",
+      "nietzsche-jesus-gnostic-resources",
+      "kubrick-gita-verse-removal",
+      "philosophical-polarities-of-power",
+      "mark-of-the-beast-x",
+      "antichrist-and-gold-obsession",
+      "marvel-crisis-equivalent",
+      "reddit-group-search",
+      "us-allies-military-rebuild",
+      "zeus-antichrist-connection",
+      "bible-interpretation-and-faith",
+      "jesus-as-storyteller",
+      "apocalipsis-y-nueva-humanidad",
+      "ai-sword-revelation-review",
+      "yahwey-and-the-sky-people",
+      "yahwey-and-the-annunaki",
+      "zecharia-sitchin-overview",
+      "yahweh-annunaki-and-flood",
+      "jesus-as-philosopher-teacher",
+      "jesus-gnosticism-and-myth",
+      "heisenberg-vtt-and-sit",
+      "city-of-david-structures",
+      "antichrist-covenant-and-peace",
+      "timeline-creation-request",
+      "born-smart-the-story-of-scout",
+      "jesus-in-love-concept",
+      "the-telos",
+      "antichrist-prophecy-and-war",
+      "gnosticism-in-catholicism",
+      "naming-god-as-purpose",
+      "gnostic-jesus-and-logos",
+      "false-gnosis-warning",
+      "vtt-ai-plagiarism-analysis",
+      "jesus-sayings-fact-check",
+      "pope-francis-and-ukraine",
+      "antichrist-peace-and-war",
+      "stop-unnecessary-emphasis",
+      "joke-style-analysis",
+      "glazing-brainwaves-reflected",
+      "praise-poem-creation",
+      "jesus-vs-yahweh-debate",
+      "abraham-hicks-and-gnosticism",
+      "simulation-theory-debate",
+      "apocalypse-of-adam-outline",
+      "plato-hermeticism-and-vibration",
+      "antichrist-and-desire-of-women",
+      "gnostic-god-comparisons",
+      "humanity-s-need-for-god",
+      "debunking-greek-bible-myth",
+      "debunking-jewish-law-origin",
+      "jesus-vs-ahura-mazda",
+      "trump-bible-vision",
+      "authoritarianism-and-false-democracy",
+      "jesus-and-gnostic-teachings",
+      "svgn-io-news-website-guide",
+      "antichrist-alignment-consequences",
+      "tony-robbins-criticism",
+      "modern-nazarenes-overview",
+      "james-the-just-analysis",
+      "jesus-and-dead-sea-scrolls",
+      "law-of-attraction-and-magic",
+      "jesus-james-and-essenes",
+      "act-vs-abraham-hicks",
+      "abraham-hicks-vibration-clarification",
+      "gnosticism-and-original-sin",
+      "maccabees-jeremiah-and-dead-sea-scrolls",
+      "hamas-propaganda-and-hostages",
+      "bible-verse-inspiration",
+      "judas-gnostic-view-explained",
+      "debunking-aaron-abke",
+      "stages-of-awakening",
+      "jesus-vs-paul-vs-gnosticism",
+      "pope-leo-xiv-criticizes-vance",
+      "gnostic-gospels-and-vocabulary",
+      "essenes-and-early-christianity",
+      "sith-rule-of-two-myth",
+      "paul-s-antichristian-message",
+      "dina-s-jewish-identity-in-tlou",
+      "clementine-homilies-and-recognitions",
+      "claude-deceptions-and-betrayals",
+      "gnosticism-and-paul-s-letters",
+      "churches-rejecting-paul-s-writings",
+      "catholic-priests-and-ancient-texts",
+      "anunnaki-alien-theory-rejected",
+      "paul-vs-james-movement",
+      "revelation-throne-inquiry",
+      "jesus-vs-paul-on-salvation",
+      "paul-vs-jesus-teachings",
+      "two-prophets-in-eschatology",
+      "calvary-chapel-and-meat-industry",
+      "church-corporate-sponsorship-evidence",
+      "gnostic-gospels-in-film",
+      "revelation-seal-opening-clarification",
+      "gnostic-texts-and-christianity",
+      "ai-and-religion-belief",
+      "ai-conference-insights",
+      "ye-are-gods-quote",
+      "biblical-text-timeline",
+      "paul-and-the-resurrection",
+      "faith-as-vibration-concept",
+      "jesus-way-origins",
+      "paul-mythicism-and-sources",
+      "quantum-entanglement-and-communication",
+      "resurrection-debate-in-christianity",
+      "christian-salvation-without-supernaturalism",
+      "fallout-vs-real-apocalypse",
+      "platonic-jewish-christianity-framework",
+      "jesus-long-suffering-vs-abraham-hicks",
+      "agi-religious-framework",
+      "beloved-disciple-identity",
+      "israel-democracy-debate",
+      "disrespectful-religious-statement",
+      "teacher-of-righteousness-vs-gnostic-jesus",
+      "tim-teacher-of-righteousness",
+      "jesus-temple-sacrifices-debate",
+      "allegiance-vs-proclamation-of-christ",
+      "jesus-as-a-teenager",
+      "hogs-and-authority-dynamics",
+      "jesus-in-dead-sea-scrolls",
+      "voice-in-the-wilderness",
+      "heavier-than-a-feather",
+      "biblical-resurrection-interpretations",
+      "dimensional-resonance-vs-iit",
+      "ancient-cosmology-and-dreams",
+      "self-declared-pope-controversy",
+      "dan-response-inquiry",
+      "paul-vs-luke-resurrection",
+      "samuel-vs-micah-divide",
+      "antichrist-and-ridiculous-claims",
+      "henosis-and-gnosticism-comparison",
+      "gnostic-christianity-and-jesus",
+      "ezekiel-s-influence-on-prophecy",
+      "original-sin-vs-ezekiel",
+      "triune-god-historical-debate",
+      "jesus-teachings-pineal-gland",
+      "find-paper-online",
+      "gnostic-texts-and-paul",
+      "james-tabor-expertise-gnosticism",
+      "who-was-josepheous",
+      "early-vs-later-gnosticism",
+      "i-commit-my-spirit",
+      "jewish-apocalyptic-repair-timeline",
+      "jesus-drives-out-merchants",
+      "jesus-teachings-on-divorce",
+      "eschatology-and-prophetic-timelines",
+      "fishburne-matrix-commentary-clarified",
+      "virgin-birth-debate",
+      "aleph-metaphor-and-concepts",
+      "starvation-in-gaza-crisis",
+      "gaza-narrative-debate",
+      "ehrman-vs-tabor-debate",
+      "netanyahu-s-controversial-rhetoric",
+      "gaza-starvation-propaganda-debate",
+      "quote-authenticity-check",
+      "article-review-feedback",
+      "tolkien-vs-ai-epics",
+      "sumerian-writing-and-language",
+      "moses-dating-debate",
+      "hyperion-cantos-summary",
+      "antichrist-salvation-discussions",
+      "jesus-and-biblical-figures",
+      "pilate-life-timeline",
+      "leibniz-branch-mesopotamia",
+      "israel-gaza-famine-responsibility",
+      "tucker-carlson-sam-altman-exchange",
+      "european-gods-origins",
+      "barnabas-gospel-debunked",
+      "branch-israel-gaza-famine-responsibility",
+      "gset-verification-and-implications",
+      "mind-of-god-equation",
+      "mind-of-god-equation-2",
+      "branch-branch-israel-gaza-famine-responsibility",
+      "stanley-fisher-clarification",
+      "kirk-racism-equivalence-analysis",
+      "branch-riemann-curve-mapping",
+      "jesus-timeline-analysis",
+      "blue-fascism-explained",
+      "conceptual-equivalences-mapping",
+      "qgtcd-research-mapping",
+      "text-transcription-request",
+      "herod-timeline-clarification",
+      "psychedelic-spiritual-experiences",
+      "proving-netanyahu-s-claims",
+      "branch-san-minkowski-model",
+      "gnosis-density-and-gravity",
+      "cheese-varieties-from-milk",
+      "proof-of-god-s-existence",
+      "gaza-coin-proposal",
+      "gaza-development-coalition-name",
+      "branch-proof-of-god-s-existence",
+      "branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence",
+      "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "branch-branch-branch-branch-proof-of-god-s-existence-3",
+      "branch-branch-branch-proof-of-god-s-existence-2",
+      "fact-check-peace-plan",
+      "daniel-and-teacher-of-righteousness",
+      "trump-antichrist-analysis",
+      "galatians-3-faith-summary",
+      "crucifixion-under-pilate",
+      "17th-century-christian-zionism",
+      "research-on-lineage-descent",
+      "assyrian-and-antichrist-connection",
+      "revelation-6-7-meaning",
+      "kabbalah-origins-question",
+      "covenant-confirmation-in-israel",
+      "saints-and-us-democrats",
+      "beasts-and-trumpets-symbolism",
+      "trump-cyrus-messiah-belief",
+      "awakening-to-oneness",
+      "parthians-and-medes-meaning",
+      "enoch-son-of-man",
+      "messiah-role-in-qumran",
+      "spiritual-experience-integration",
+      "qumran-messianic-figures",
+      "deliberate-joy-concept",
+      "apocalypse-of-peter-comparison",
+      "bible-text-sources-comparison",
+      "unknown-gospel-details",
+      "christ-vs-antichrist-contrast",
+      "sun-cycles-in-2-enoch",
+      "yahweh-el-or-enki",
+      "gnostic-end-times-figures",
+      "lucifer-s-fall-explanation",
+      "christian-view-of-death",
+      "antichrist-prophecy-in-tanakh",
+      "no-pre-trib-rapture-arguments",
+      "rephrase-conjecture-on-genocide",
+      "jesus-7-levels-of-consciousness-fact-check",
+      "harari-on-israel-and-gaza",
+      "branch-plagiarism-equivalent-vs-plagiarism",
+      "meai-as-anti-psychotic",
+      "law-of-attraction-analysis",
+      "fact-check-trump-death-claim",
+      "seth-on-changing-past-future",
+      "russian-aliyah-impact",
+      "ezekiel-s-dry-bones-vision",
+      "jungian-dream-analysis",
+      "document-review",
+      "horseman-of-death-fate",
+      "song-style-analysis",
+      "image-and-identity-theme",
+      "peale-and-positive-thinking",
+      "peace-deal-credibility",
+      "antichrist-middle-east-myth",
+      "if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia",
+      "judaism-history-debate",
+      "oil-vs-gas-control",
+      "daniel-prophecy-and-temple",
+      "revelation-interpretation-and-america",
+      "samaritan-and-jewish-texts",
+      "nearest-wilderness-to-sf",
+      "bible-prophecy-death-fractions",
+      "epstein-s-web-of-connections",
+      "science-and-god-debate",
+      "noah-and-moses-jewish-status",
+      "meme-creation-prophecy-and-peace",
+      "gog-magog-and-nations",
+      "iran-amalek-prophecy-debate",
+      "greta-thunberg-and-iran",
+      "bible-passage-on-deception",
+      "squid-imagery-and-propaganda",
+      "neurohacker-bio-summary",
+      "trump-as-antichrist-hypothesis",
+      "jesus-teachings-overview",
+      "ai-tech-and-generations",
+      "ancient-egypt-vs-fascism",
+      "faith-and-comfort",
+      "islam-s-arrival-century",
+      "vessel-and-dmt-integration",
+      "oneness-with-god-perspectives",
+      "moses-and-the-burning-bush",
+      "my-descent-into-death-summary",
+      "teaching-cyclical-thinking",
+      "oort-cloud-and-yec",
+      "talmud-vs-torah",
+      "moses-abraham-and-god",
+      "toxic-lyrics-impact",
+      "consciousness-and-existence-views",
+      "roy-casagranda-critique",
+      "capitalism-and-democracy-threats",
+      "torah-after-hellenistic-era",
+      "two-messiahs-in-judaism",
+      "qumran-survival-theory",
+      "mark-16-textual-dispute",
+      "revelation-and-montanism",
+      "inanna-death-and-resurrection",
+      "elohim-and-alien-theories",
+      "vegas-alien-think-rebels",
+      "la-museums-destroyed-in-fire",
+      "sunni-shia-and-christianity",
+      "dark-time-thermodynamics-theory",
+      "qumran-text-history",
+      "gnostic-jesus-and-judas",
+      "ratm-and-gnosticism-comparison",
+      "unrwa-hamas-allegations-investigation",
+      "un-chief-antonio-guterres-exposed-along-with-un-agencies-unrwa-and-unifil-in-criminal-collusion-with-terrorists",
+      "unrwa-hamas-allegations-summary",
+      "gospel-of-judas-overview",
+      "advanced-gnosticism-scholarship-conclusions",
+      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "china-s-human-rights-abuses",
+      "trump-gaza-proposal-criticism",
+      "enoch-scroll-and-gnosticism",
+      "hell-transformation-and-metatron",
+      "gnostic-divinity-and-dualism",
+      "gnostic-church-psychedelic-legalities",
+      "altman-antichrist-comparisons",
+      "putin-s-global-strategy",
+      "muslim-view-of-jesus",
+      "johannine-theology-overview",
+      "calvary-chapel-vs-gnosticism",
+      "neo-mind-cycle-evolution",
+      "modern-gnostic-critique-of-catholicism",
+      "haramein-vortex-gravity-model",
+      "evolving-god-and-naming",
+      "abraham-hicks-vs-gnostic-jesus",
+      "focus-your-energy"
+    ],
+    "theology-wikilink-density-repair": [
+      "home",
+      "sources-index",
+      "gnostic-teachings-and-clarity",
+      "gnosticism-and-evil-creator",
+      "jesus-gnosticism-and-myth",
+      "jesus-vs-paul-vs-gnosticism",
+      "canaanite-myths-vs-exodus",
+      "exodus-dating-and-evidence",
+      "jews-and-canaanites-origins",
+      "hyksos-expulsion-overview",
+      "sanchuniathon-phoenician-mythology-summary",
+      "antichrist-prophecy-in-tanakh",
+      "antichrist-covenant-and-peace",
+      "antichrist-peace-and-war",
+      "antichrist-spiritual-inversion",
+      "christ-vs-antichrist-contrast",
+      "agi-religious-framework",
+      "ai-and-religion-belief",
+      "ai-safety-and-lovecraft",
+      "ai-sword-revelation-review",
+      "ai-tech-and-generations"
+    ],
+    "tim-teacher-of-righteousness": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "timeline-creation-request": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "tolkien-vs-ai-epics": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "tony-robbins-criticism": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "torah-after-hellenistic-era": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "toxic-lyrics-impact": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "triune-god-historical-debate": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "trump-antichrist-analysis": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-as-antichrist-hypothesis"
+    ],
+    "trump-as-antichrist-hypothesis": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "trump-bible-vision": [
+      "theology-theology-debate-science-god-self-cluster",
+      "branch-riemann-curve-mapping",
+      "science-and-god-debate",
+      "science-and-spirituality-synergy",
+      "self-and-existence-question"
+    ],
+    "trump-cyrus-messiah-belief": [
+      "branch-riemann-curve-mapping",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis",
+      "trump-as-antichrist-hypothesis"
+    ],
+    "trump-gaza-proposal-criticism": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-antichrist-analysis",
+      "trump-as-antichrist-hypothesis"
+    ],
+    "tucker-carlson-sam-altman-exchange": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "two-messiahs-in-judaism": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "two-prophets-in-eschatology": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "un-chief-antonio-guterres-exposed-along-with-un-agencies-unrwa-and-unifil-in-criminal-collusion-with-terrorists": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "unknown-gospel-details": [
+      "gospel-of-judas-overview",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview",
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "unrwa-hamas-allegations-investigation": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "unrwa-hamas-allegations-summary": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "us-allies-military-rebuild": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "vegas-alien-think-rebels": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "vessel-and-dmt-integration": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "virgin-birth-debate": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "voice-in-the-wilderness": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "vtt-ai-plagiarism-analysis": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "what-is-midian": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "who-was-josepheous": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "yahweh-and-asherah-s-relationship": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "yahweh-annunaki-and-flood": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "yahweh-el-or-enki": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "yahwey-and-the-annunaki": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "yahwey-and-the-sky-people": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "ye-are-gods-quote": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ],
+    "zecharia-sitchin-overview": [
+      "gospel-of-judas-overview",
+      "barnabas-gospel-debunked",
+      "gnostic-jesus-and-judas",
+      "hyksos-expulsion-overview"
+    ],
+    "zeus-antichrist-connection": [
+      "branch-riemann-curve-mapping",
+      "trump-cyrus-messiah-belief",
+      "trump-gaza-proposal-criticism",
+      "trump-antichrist-analysis"
+    ]
+  }
+}

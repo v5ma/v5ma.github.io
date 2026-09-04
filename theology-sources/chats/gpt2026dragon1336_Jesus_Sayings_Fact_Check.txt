@@ -1,0 +1,107 @@
+Title: Jesus Sayings Fact Check
+Date: 1745178074.741229
+
+Micah Blumberg:
+Fact Check: Did Jesus say practice the single eye and your body will fill with light? Did he say seek first the kingdom which is within you? You take away the key because you don't enter within yourself? Cast your net to the right side? Did he say don't pray to me? Did he say don't ask me for anything?
+
+Self Aware Networks GPT:
+Here’s what the sources actually say:
+
+- **“Practice the single eye and your body will fill with light.”**  
+  This exact wording does *not* appear in Matthew, Mark, Luke, or John. It comes from the non‑canonical *Gospel of Thomas* (Logion 24):  
+  > “The light of the body is in the eye. When your eye is single, your whole body will be full of light…” citeturn0search0turn0search6  
+
+- **“Seek first the kingdom which is within you.”**  
+  No single New Testament verse combines those exact words. Instead:  
+  1. **“But seek first the kingdom of God and his righteousness…”** is taught in the Sermon on the Mount (Matthew 6:33) citeturn1search0  
+  2. **“…for, behold, the kingdom of God is within you,”** appears in Luke 17:21 (sometimes translated “among you”) citeturn0search1turn0search7  
+
+- **“You take away the key because you don’t enter within yourself.”**  
+  That’s a paraphrase of Jesus’ rebuke to the scribes and Pharisees:  
+  > “Woe to you, experts in the law! For you shut the kingdom of heaven in people’s faces. You do not enter yourselves, nor would you let those enter who were trying to.”  
+  (Luke 11:52; cf. Matthew 23:13) citeturn0search2turn0search8  
+
+- **“Cast your net to the right side.”**  
+  Yes—after his resurrection Jesus tells his disciples:  
+  > “Cast the net on the right side of the boat, and you will find some.”  
+  (John 21:6) citeturn0search3turn0search9  
+
+- **“Don’t pray to me.”**  
+  Jesus never says “do not pray to me.” He does warn against showy prayer and directs believers to pray to **your Father** in secret (Matthew 6:5–6) citeturn0search4turn0search10  
+
+- **“Don’t ask me for anything.”**  
+  Quite the opposite—he teaches:  
+  > “Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.”  
+  (Matthew 7:7) citeturn0search5turn0search11  
+
+—In summary, only the “single eye” line comes from an extra‑canonical text (Thomas), the “kingdom within you” and “seek first” are separate teachings in Luke and Matthew, the “key” remark is a paraphrase of Luke 11:52, “cast your net” is John 21:6, and Jesus never told people not to pray or not to ask him.
+
+Micah Blumberg:
+Uh this verse is confusing, what did Jesus mean by it? Does this have to do with not serving two masters God and money "The light of the body is in the eye. When your eye is single, your whole body will be full of light…”"
+
+Self Aware Networks GPT:
+Great question—and yes, you're on the right track. That quote comes from the **Sermon on the Mount**, specifically **Matthew 6:22–23** (not just the Gospel of Thomas—it’s in the canonical Gospels too):
+
+> **“The eye is the lamp of the body. If your eye is single (or 'healthy'), your whole body will be full of light. But if your eye is bad, your whole body will be full of darkness.”**  
+> —Matthew 6:22–23
+
+### 🧠 What does it mean?
+This is a metaphor, and scholars, mystics, and theologians have interpreted it in multiple ways. Let’s explore three major interpretations—then bring it back to your point about “serving two masters.”
+
+---
+
+### 🔍 1. **Focus and Clarity (the “single eye”)**
+- “Single” (Greek: *haplous*) can mean **undivided, whole, or pure.**
+- In this view, Jesus is saying:
+  > If your spiritual focus is undivided—like a clear, single beam of intention—then your whole being will be **illuminated with insight, truth, and spiritual light.**
+
+It’s about **inner clarity**, like pointing a spotlight at one thing instead of scattering your attention everywhere.
+
+---
+
+### 💸 2. **Generosity vs. Greed**
+In Greek, *haplous* (single) was also used to mean **generous** or **open-handed** (as opposed to stingy or greedy).
+
+- In Hebrew idiom, a “good eye” meant generosity, and a “bad eye” meant selfishness.
+- So Jesus may also be saying:
+  > “If your eye is generous, you’ll be filled with light (goodness); if your eye is selfish or greedy, you’ll be filled with darkness.”
+
+This fits perfectly with the **next verse**:
+
+> “No one can serve two masters. You cannot serve both God and money.”  
+> —Matthew 6:24
+
+So yes—your connection is spot-on.
+
+---
+
+### 🧘‍♀️ 3. **Mystical/Esoteric Reading**
+In mystical traditions (especially Gnostic and contemplative Christian readings), the “single eye” is often taken **literally** as referring to the **“third eye”** or **inner perception**—your inner faculty of spiritual sight.
+
+- When that “eye” is opened, you see with divine light.
+- This interpretation aligns with **Luke 11:34–36** and **the Gospel of Thomas Logion 24**.
+
+---
+
+### ✅ In summary:
+- **Yes**, the “single eye” is tied directly to the idea of not serving two masters.
+- Jesus is saying: **if your attention, values, and desires are focused on God—not split with greed or ego—then your whole being will radiate clarity and light.**
+- If you try to split your loyalties (between God and money, or spirit and materialism), your perception becomes darkened.
+
+Would you like a visual diagram of this contrast between the “single” and “double” eye?
+
+Micah Blumberg:
+sure
+
+Self Aware Networks GPT:
+{
+  "prompt": "A split diagram labeled 'The Eye is the Lamp of the Body'. Left side: 'Single Eye' - shows a person with a glowing third eye, standing upright with golden light filling their body, rays of light emitting from their eyes and heart, background shows clear skies and a sunrise. Right side: 'Double Eye' - shows a person with two confused, swirling eyes, body filled with shadows, beams of light scattered and blocked, background shows stormy clouds and chaos. At the bottom: 'You cannot serve two masters: God and Money'. Artistic, spiritual, mystical style.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_0000000042cc61f6b4ef9464f9287288', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1024, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1024, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': '8e5c786c-a710-46b8-b6fc-add20e18619c', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': '8e5c786c-a710-46b8-b6fc-add20e18619c', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1024, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 1871074, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+

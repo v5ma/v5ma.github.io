@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Theology Wiki AI Sources</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; background: #f4f1ea; color: #211c18; }
+    body { margin: 0; padding: 32px 20px 56px; }
+    main { max-width: 980px; margin: 0 auto; }
+    h1 { margin-bottom: 8px; }
+    p { color: #5d5148; }
+    ul { padding: 0; list-style: none; columns: 2 320px; column-gap: 28px; }
+    li { break-inside: avoid; margin: 0 0 8px; }
+    a { color: #5e3f83; }
+    .meta { font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p><a href="../theology-wiki/">Back to Theology reader</a></p>
+    <h1>Theology Wiki AI Sources</h1>
+    <p>Chat files used as source material for the Theology Wiki.</p>
+    <p id="status" class="meta">Loading manifest...</p>
+    <ul id="chat-list"></ul>
+  </main>
+  <script>
+    fetch('./manifest.json')
+      .then(response => response.json())
+      .then(entries => {
+        const list = document.getElementById('chat-list');
+        document.getElementById('status').textContent = `${entries.length} source chats`;
+        entries.forEach(entry => {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `./chats/${encodeURIComponent(entry.name)}`;
+          link.textContent = entry.name;
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+      })
+      .catch(error => {
+        document.getElementById('status').textContent = `Manifest unavailable: ${error.message}`;
+      });
+  </script>
+</body>
+</html>

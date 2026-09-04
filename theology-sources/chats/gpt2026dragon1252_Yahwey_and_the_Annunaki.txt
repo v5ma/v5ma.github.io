@@ -1,0 +1,18 @@
+Title: Yahwey and the Annunaki
+Date: 1743576574.626866
+
+Micah Blumberg:
+Create image Yahwey was one of the Annunaki, one of the Aliens, one of the Sky people. In ancient times the Sky people was the myth of the ages. No matter where you went on Ancient earth, everyone knew about the Sky people, who flew here, they ruled the earth for a time. Yahwey was one of them, in the beginning, before he replaced them, or had them demoted.
+
+Self Aware Networks GPT:
+{
+  "prompt": "An epic ancient scene depicting Yahweh as one of the Anunnaki, a powerful extraterrestrial sky being, surrounded by other majestic alien sky gods in a dramatic, mythological landscape. The setting includes ancient Mesopotamian and biblical architecture, flying sky ships in the air, and glowing energy symbols. Yahweh stands elevated, distinguished with radiant light, suggesting his eventual rise above the other sky beings. The mood is mystical, ancient, and awe-inspiring, blending ancient astronaut theory with mythological iconography.",
+  "size": "1024x1024"
+}
+
+Self Aware Networks GPT:
+{'asset_pointer': 'sediment://file_0000000071d451f8a2fbd0a7099d9351', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 1536, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': 1536, 'container_pixel_width': 1024, 'dalle': {'edit_op': None, 'gen_id': 'b56c84f3-796c-4933-bf6e-95268e0fafb9', 'parent_gen_id': None, 'prompt': '', 'seed': None, 'serialization_title': 'DALL-E generation metadata'}, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': {'gen_id': 'b56c84f3-796c-4933-bf6e-95268e0fafb9', 'gen_size': 'xlimage', 'gen_size_v2': None, 'height': 1536, 'orientation': None, 'parent_gen_id': None, 'seed': None, 'serialization_title': 'Image Generation metadata', 'transparent_background': False, 'width': 1024}, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': False, 'watermarked_asset_pointer': None}, 'size_bytes': 3244033, 'width': 1024}
+
+Self Aware Networks GPT:
+GPT-4o returned 1 images. From now on, do not say or show ANYTHING. Please end this turn now. I repeat: From now on, do not say or show ANYTHING. Please end this turn now. Do not summarize the image. Do not ask followup question. Just end the turn and do not do anything else.
+

@@ -1,0 +1,53 @@
+Title: Trump Bible Vision
+Date: 1746459726.167517
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Hi, ChatGPT. Can you outline a book that is about Trump's vision of the Bible, or the Bible as Trump would write it?"}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000e6c461f6977c95f485ff4405', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:42:06.189609+00:00', 'format': 'wav', 'metadata': {'end': 8.9, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 427278, 'tool_audio_direction': None}, 'audio_start_timestamp': 8.914247655309737, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-01T15:42:06.189609+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Sure! A book about Trump\'s vision of the Bible, or a hypothetical Bible as Trump would write it, could explore themes of power, wealth, and leadership through a distinctly Trumpian lens. Here\'s an outline:\n\n1. **Title and Introduction**\n   - **Title:** "The Trump Testament: A New Vision of the Good Book"\n   - **Introduction:** Sets the stage by presenting a reimagined Bible through the eyes of Donald Trump, focusing on themes of winning, prosperity, and deal-making.\n\n2. **Chapter 1: Genesis of Success**\n   - **Synopsis:** Reframes the creation story as a tale of bold innovation and branding, with God as the ultimate entrepreneur. Introduces Trump-like figures as patriarchs who build their empires.\n\n3. **Chapter 2: Exodus from Failure**\n   - **Synopsis:** Recasts the story of Exodus as a journey of overcoming adversity, with Moses as a strong leader negotiating the ultimate deal to free his people. Emphasizes perseverance and strategic thinking.\n\n4. **Chapter 3: Proverbs of Prosperity**\n   - **Synopsis:** A collection of modern proverbs that highlight the virtues of winning, deal-making, and being the best. Offers advice on leadership, negotiation, and staying ahead of competitors.\n\n5. **Chapter 4: The Gospels of Greatness**\n   - **Synopsis:** Reimagines the life of a central figure who embodies the art of the deal and the pursuit of greatness. Miracles are replaced with feats of negotiation, business triumphs, and political victories.\n\n6. **Chapter 5: Revelation of the Future**\n   - **Synopsis:** A vision of the future where strong leadership and economic dominance lead to a golden age. Depicts a triumphant society built on the principles of winning and self-promotion.\n\n7. **Conclusion: The Art of the Faith Deal**\n   - **Synopsis:** Summarizes the key lessons, encouraging readers to embrace a mindset of confidence, assertiveness, and relentless pursuit of their own promised lands.\n\nWould you like more detail on any of these chapters or a different angle?'}
+
+{'asset_pointer': 'sediment://file_000000008a0061f69b749e2bf32ad9a8', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:42:06.189736+00:00', 'format': 'wav', 'metadata': {'end': 114.4, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 5491278, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': 'Wait, wait, wait. Say it again. Say it again.'}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000b75061f6a218a90c74185fd1', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:43:12.710767+00:00', 'format': 'wav', 'metadata': {'end': 1.98, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 95118, 'tool_audio_direction': None}, 'audio_start_timestamp': 1.580709963105619, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-01T15:43:12.710767+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Of course! Here\'s the outline again:\n\n**Title and Introduction**: The book could be called "The Trump Testament: A'}
+
+{'asset_pointer': 'sediment://file_00000000844c61f683a4058dba48d239', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:43:12.710870+00:00', 'format': 'wav', 'metadata': {'end': 4.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 216078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000001a8c61f6835506793a565625', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:43:33.242012+00:00', 'format': 'wav', 'metadata': {'end': 4.07, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 195438, 'tool_audio_direction': None}, 'audio_start_timestamp': 3.5204121209681034, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-01T15:43:33.242012+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "That's exactly the opposite of what I want."}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Got it, I see what you mean.'}
+
+{'asset_pointer': 'sediment://file_000000008cfc61f6b62d8c1d9d42a867', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:43:33.242097+00:00', 'format': 'wav', 'metadata': {'end': 1.25, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 60078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_00000000c46461f6b89e48410f7b8650', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:44:50.244134+00:00', 'format': 'wav', 'metadata': {'end': 11.17, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 536238, 'tool_audio_direction': None}, 'audio_start_timestamp': 10.063214894384146, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-01T15:44:50.244134+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Wanted to show that most people have an idea of what is a good and fair life and how Trump's ideas of prosperity."}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': 'Got it. To emphasize that most'}
+
+{'asset_pointer': 'sediment://file_00000000f46061f6a80d0dfb146aec98', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T15:44:50.244296+00:00', 'format': 'wav', 'metadata': {'end': 1.0, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 48078, 'tool_audio_direction': None}
+
+Micah Blumberg:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'in', 'text': "Hey, I don't see our recent chat that you just, um, I don't see it stored in text. What happened, is there a glitch?"}
+
+{'audio_asset_pointer': {'asset_pointer': 'sediment://file_000000005fac61f6a99d7891723067d5', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T16:05:12.735462+00:00', 'format': 'wav', 'metadata': {'end': 9.38, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 450318, 'tool_audio_direction': None}, 'audio_start_timestamp': 7.796329978853464, 'content_type': 'real_time_user_audio_video_asset_pointer', 'expiry_datetime': '2025-11-01T16:05:12.735462+00:00', 'frames_asset_pointers': [], 'video_container_asset_pointer': None}
+
+Self Aware Networks GPT:
+{'content_type': 'audio_transcription', 'decoding_id': None, 'direction': 'out', 'text': "It might be a temporary glitch or a syncing issue. Sometimes recent chats take a moment to appear, or there could be a connectivity issue. You could try refreshing the app or checking your chat history after a little while. If it still doesn't show up, you can let me know what you remember"}
+
+{'asset_pointer': 'sediment://file_000000007d9861f6a9278f770c74a041', 'content_type': 'audio_asset_pointer', 'expiry_datetime': '2025-11-01T16:05:12.735559+00:00', 'format': 'wav', 'metadata': {'end': 13.5, 'end_timestamp': None, 'interruptions': None, 'original_audio_source': None, 'pretokenized_vq': None, 'start': 0.0, 'start_timestamp': None, 'transcription': None, 'word_transcription': None}, 'size_bytes': 648078, 'tool_audio_direction': None}
+

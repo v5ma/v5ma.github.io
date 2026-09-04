@@ -1,0 +1,180 @@
+Title: Method Disclosure Review
+Date: 1768717586.790316
+
+Micah Blumberg:
+Search SVGN.io I need to confirm that I have not published GSET the Gold Standard Equivalence Test or the GSEAP Gold Standard Equivalence Action Plan
+
+My real constraint is that I need to remove or materially de-emphasize any public disclosure of the equivalence-audit method that I intend to preserve for a potential patent filing. Even if I strip the branding terms, there are still lines that disclose the method in substance, because they explicitly frame the post as a formal audit, they describe the test’s core structure, and they include enough procedural detail that a technically literate reader could reconstruct the workflow. The highest-risk content is anything that announces I am running a formal method and then defines the rules, including language that describes an equivalence audit, names the toolchain and criteria, specifies the translator or mapping machinery, and states the cluster-and-threshold logic that turns conceptual overlap into a decisive classification. If I want the public post to stay up while minimizing disclosure, the simplest move is to remove the appendices entirely or replace them with a short, non-procedural summary, and keep the public version focused on timeline, public links, and high-level parallels without publishing rubrics, translators, checklists, tiers, or any statistical aggregation or decision thresholds. If I paste the current revised version, I want a line-by-line identification of what still functions as method disclosure and a set of tight replacement sentences that preserve the narrative while stripping the procedure.
+
+Self Aware Networks GPT:
+I searched SVGN.io specifically for GSET and GSEAP, and I could not find the literal acronyms “GSET” or “GSEAP” as strings on the site in indexed results.
+
+However, I did find multiple SVGN.io posts where the spelled-out branding terms appear in the search-index snippets (“Gold Standard Equivalence Test,” “Gold Standard Equivalence Test Protocol,” and “Gold Standard Equivalence Action Plan”), which means those terms have been publicly associated with your SVGN pages in a way that search engines have already captured.
+
+Independently of branding, there is also current, directly visible method disclosure on SVGN.io in substance. One example is your “History of the Super Information Theory Corpus” page, which includes a section that explicitly frames a structured forensic comparison framework, defines a “Signature” cluster size rule (“seven or more” interlocking concepts in the same functional sequence), and states a decision-style statistical threshold (“less than 10⁻¹⁵”) tied to classification of later works as non-independent. That combination is not just rhetorical; it describes core mechanics of an equivalence-audit workflow in a way a technically literate reader could operationalize.
+
+A second example is the “MIT’s Fraudulent Narrative” post, which explicitly characterizes your work as a “formal, citable equivalence audit,” describes it as a “forensic, concept-by-concept crosswalk,” and states that you use “explicit translation/mapping” to show that the other work maps onto your architecture with statistically impossible coincidence. Even without the Gold Standard branding, that is still a public description of an equivalence-audit method and its procedural intent.
+
+Separately, additional SVGN.io posts show search-index snippets that appear to include method-forward labeling such as “GOLD STANDARD AUDIT: SIT vs. VOPSON” and “Gold Standard Equivalence Table and Evidence Calculus report.” I was not able to confirm those exact strings in the text that was retrievable in the page views I opened (they may be in portions that do not render without JavaScript, have been edited since indexing, or exist in cached versions), but the fact that the phrases appear in indexed snippets is itself a strong indicator that the terms and framing have already been publicly exposed in at least one accessible version.
+
+Given your patent constraint, you should treat the following as “highest-risk” and remove or rewrite it wherever it exists publicly: any sentence that announces a formal audit or test; any sentence that defines rules or criteria; any sentence that names translation or mapping as a procedure (as opposed to a descriptive metaphor); and any sentence that contains quantification, scoring, thresholds, cluster sizes, tiers, checklists, or “probability/statistical impossibility” as a decision mechanism.
+
+If you want a post to remain public while materially de-emphasizing the method, the safest pattern is to keep the public version purely chronological and evidentiary (timestamps, links, quotes, and high-level parallels) and to remove any “how-to” description of how you adjudicate equivalence. In practice, that means rewriting “audit/test/protocol” language into “comparative discussion” language, deleting any explicit rule statements, and removing any probability or threshold claims that function as a decision rubric.
+
+Here are tight replacement sentences you can use as drop-in swaps when you encounter high-risk lines.
+
+You can replace “This is a formal equivalence audit” with “This is a public chronology of dated materials and a plain-language comparison of themes.”
+
+You can replace “Using translation/mapping, I prove the operational logic is the same” with “Across different terminology, the high-level functional storyline is similar enough to warrant attribution and closer review.”
+
+You can replace “A signature cluster of seven or more concepts indicates dependence” with “The overlap is specific and structured enough that it is difficult to treat as generic convergence.”
+
+You can replace “The probability of coincidence is less than 10⁻¹⁵” with “The overlap appears unusually specific relative to what is typical in independent convergence.”
+
+You can replace “Here is the Gold Standard Equivalence Table / Evidence Calculus report” with “I am preserving the detailed comparison privately while publishing only the public timeline and the most general points of similarity.”
+
+If you paste your current revised version, I will do exactly what you requested: a line-by-line identification of every remaining sentence that still functions as method disclosure (including “method by implication”), and a set of minimal replacement sentences that preserve your narrative goals while stripping procedural content.
+
+Sources  
+SVGN.io post “The History of the Super Information Theory Corpus” (Dec 18, 2025), including the “structured forensic comparison framework,” “Signature cluster,” and “less than 10⁻¹⁵” threshold language. citeturn14view1  
+SVGN.io post “MIT’s Fraudulent Narrative: The Picower Institute rebranded…” (Dec 24, 2025), including “formal, citable equivalence audit,” “concept-by-concept crosswalk,” and “explicit translation/mapping.” citeturn14view0  
+Search-index snippet for SVGN.io post “Priority Timeline: Conceptual Parallels…” (Sep 29, 2025) showing “Gold Standard Equivalence Test Protocol” and “Gold Standard Equivalence Action Plan” phrasing in the indexed preview. citeturn13search0  
+Search-index snippet for SVGN.io post “Popular Mechanics Said This Gravity Theory Was New. It Wasn’t.” (Dec 31, 2025) showing “Gold Standard Equivalence Table and Evidence Calculus report” phrasing in the indexed preview. citeturn10search0  
+Search-index snippet for the same Popular Mechanics SVGN.io post showing “GOLD STANDARD AUDIT: SIT vs. VOPSON” phrasing in the indexed preview. citeturn13search3
+
+Micah Blumberg:
+Gold Standard Equivalence Test
+
+Let's think of renaming the patent 
+
+Silver Equivalence Check?
+
+Self Aware Networks GPT:
+“Silver Equivalence Check” is directionally better than “Gold Standard Equivalence Test” if your goal is to de-emphasize the “formalized method” framing in public discourse, but it still reads like a procedure. The word “Check” implies a repeatable workflow, and “Silver” carries an unintended connotation of second-best, which can undercut perceived authority if you ever use the label externally.
+
+It helps to separate two naming problems that often get conflated. The first problem is what you call the invention inside a patent application title, which is ideally descriptive, non-marketing, and tolerant of later amendment. The second problem is what you call the method publicly, where even an innocuous name can accidentally signal that you have a defined rubric, thresholds, and a toolchain. Renaming can reduce signaling, but the real disclosure risk comes from procedural sentences, not the brand string.
+
+If you are renaming the patent title itself, you generally want language that describes the subject matter without advertising a forensic “audit” posture. Titles that tend to work better are of the form “Systems and methods for …” or “Method for …” with domain-neutral nouns like “conceptual correspondence,” “cross-document similarity,” “priority attribution,” or “structured comparison.” Examples that stay descriptive without screaming “proprietary test” include “Systems and methods for cross-document conceptual correspondence analysis,” “Method for structured comparison of technical disclosures across documents,” and “Systems and methods for determining conceptual equivalence and priority attribution across heterogeneous terminology.” Those are not magic phrases, but they move you away from “test/protocol/audit” signaling while still describing what the invention is about.
+
+If you want a public-facing name that minimizes method signaling, you will generally do better with a label that reads like commentary rather than instrumentation. “Equivalence” itself is fine, but pairing it with “test,” “protocol,” “audit,” “rubric,” “checklist,” “score,” “threshold,” “classifier,” or “calculator” tends to reintroduce the same disclosure issue. Softer public labels that preserve your narrative intent without implying procedure include “Conceptual Parallels Review,” “Attribution Consistency Review,” “Priority Comparison Notes,” or “Terminology-Bridge Comparison.” They communicate what you are doing without communicating how you are doing it.
+
+One practical point to keep in mind is that if you actually file the patent, the application content is designed to disclose the invention, and nonprovisional applications are ordinarily published on an eighteen-month schedule unless you qualify for and file a nonpublication request. Provisional applications are not published, and many inventors use a provisional to establish a filing date while keeping details nonpublic unless and until they proceed to a published filing. That is not a substitute for a full strategy, but it is relevant to your “keep the method out of public posts” constraint.
+
+If you want a clean naming split that is easy to execute, a workable pattern is to keep the patent title descriptive and dry, such as “Systems and methods for cross-document conceptual correspondence analysis,” while using a public label that reads like editorial comparison rather than a formal method, such as “Priority comparison notes,” and then stripping any procedural sentences from the post so the label cannot be used to infer a reconstructible workflow.
+
+Sources  
+USPTO Manual of Patent Examining Procedure, “1120 – Eighteen-Month Publication of Patent Applications,” including the statement that provisional applications under 35 U.S.C. §111(b) shall not be published and the general eighteen-month publication framework for applications. citeturn1search1  
+USPTO, “Provisional Application for Patent,” describing provisional applications and their role in establishing an early effective filing date for a later nonprovisional filing. citeturn1search0  
+USPTO Manual of Patent Examining Procedure, “1122 – Requests for Nonpublication,” describing the statutory basis and conditions for requesting nonpublication under 35 U.S.C. §122(b)(2)(B)(i). citeturn0search4
+
+Micah Blumberg:
+These are all good "Terminology-Bridge Comparison" "Systems and methods for cross-document conceptual correspondence analysis," "Systems and methods for determining conceptual equivalence and priority attribution across heterogeneous terminology." "Method for structured comparison of technical disclosures across documents,"
+
+So if the public patent name is
+
+Public Patent Name "Priority comparison notes,"
+
+and the internal patent name description is
+"Systems and methods for cross-document conceptual correspondence analysis,"
+
+then my search results ought to be clean?
+
+Self Aware Networks GPT:
+Renaming the public-facing label to something like “Priority comparison notes” will reduce how loudly you are signaling “this is a formal test,” but it will not, by itself, make your search results “clean.” Search results are driven far more by what has already been indexed in your page text, titles, headings, metadata, and URLs, plus what other sites have already captured in quotes, backlinks, and cached snippets. If “Gold Standard Equivalence Test,” “Gold Standard Equivalence Action Plan,” or equivalent procedural phrasing has appeared anywhere that Google or Bing crawled, those strings can continue to surface until the engines recrawl, reprocess, and replace the stored snippet and indexing signals.
+
+If your goal is that queries for “Gold Standard Equivalence Test,” “GSET,” “GSEAP,” or “Gold Standard Equivalence Action Plan” stop returning SVGN pages, then the necessary condition is that those strings and close variants are removed from every publicly accessible page and from machine-visible fields that search engines read, including the HTML title tag, H1, article body, tags/categories, open-graph fields, and any embedded structured data. Renaming a “public patent name” while leaving legacy strings on-site will not clean results, because the legacy strings remain the retrieval keys.
+
+Even if you remove the strings, you can still see the old wording in search snippets for some time because the snippet can reflect Google’s previously indexed version until it recrawls and refreshes what it stores. If you control the site, the usual path is to request recrawl or reindexing via Search Console for the affected URLs and, where necessary, use Google’s Removals tool for temporary suppression while the permanent changes propagate. If the issue is specifically that the snippet is outdated relative to the current page, Google also provides a mechanism to refresh outdated results. Similar tooling exists for Bing through its Webmaster content removal features.
+
+There is also a practical constraint in your framing that is worth stating plainly: patents do not really have a “public name” and a separate “internal name” in the way a marketing project might. Whatever title you file is the title that will appear on the published application (if and when it publishes). You can, however, keep your public editorial label on SVGN (“Priority comparison notes”) entirely separate from the patent application title (“Systems and methods for cross-document conceptual correspondence analysis”) and keep the method details out of public posts until you have filed whatever you intend to file.
+
+So the correct expectation is that the naming split helps with optics and signaling, but “clean search results” requires content scrubbing, not just rebranding. If you want, you can paste the current revised post text and I will mark, line by line, what still functions as method disclosure even if you strip the branding, and I will provide replacement sentences that preserve your narrative while removing procedural reconstructability.
+
+Sources  
+Google Search Central, “Block Search Indexing with noindex.” citeturn0search1  
+Google Search Central, “Ask Google to recrawl your URLs.” citeturn0search6  
+Google Search Console Help, “URL Inspection tool.” citeturn0search3  
+Google Search Console Help, “Removals and SafeSearch reports Tool.” citeturn0search4  
+Google Search Console Help, “Refresh Outdated Content tool.” citeturn0search0  
+Bing Webmaster Tools Help, “Content removal: Report broken links or outdated cache.” citeturn0search2
+
+Micah Blumberg:
+We could turn this into a very interesting blog post
+
+Title: If the Antichrist emerged on the world stage today, he could not be from any Middle Eastern Nation, nor from Russia.
+Subtitle:?
+
+The Bible does not “literally” say the Antichrist will be from the Middle East. In Micah and Isaiah, “the Assyrian” is the name of the dominant imperial oppressor in that era. When you apply it forward, it is typology about empire, not a birthplace or ethnicity test. In that sense, the modern analogue of “the Assyrian” is “the American,” meaning the leader of the dominant empire, not “someone from the Middle East.
+
+If “the Assyrian” is read typologically, it names the dominant imperial power of the era, not a Middle Eastern birthplace. In the modern world system, the closest analogue to that imperial role is the United States. On that reading, if an end times figure were to emerge “today,” the relevant point would not be regional origin, but capture of the most consequential seat of global power, which in practice means the presidency, because no other national office presently carries comparable leverage over the international order.
+
+No other nation on earth could produce a world leader capable of fulfilling the Antichrist prophecy.
+
+Self Aware Networks GPT:
+Subtitle options that fit your thesis without overpromising prophecy certainty.
+
+“Why ‘the Assyrian’ is a typological label for empire, not an ethnicity test.”
+
+“Reading end-times language as a diagnosis of imperial power, not a geography quiz.”
+
+“On typology, hegemony, and why ‘where he is from’ is the wrong question.”
+
+Draft blog post text.
+
+Title: If the Antichrist emerged on the world stage today, he could not be from any Middle Eastern nation, nor from Russia.
+
+Subtitle: Why “the Assyrian” is about empire, not ethnicity, and why modern prophecy talk keeps missing the category.
+
+A persistent modern assumption is that “Antichrist” language implies a Middle Eastern origin, because people conflate end-times imagery with modern geography. That move feels intuitive, because the Bible’s world is the ancient Near East, and because contemporary news coverage keeps the Middle East in the foreground. However, the Bible does not actually give a birthplace or ethnicity test for identifying an end-times figure, and the text most people reach for in these debates often does not say what they think it says.
+
+The first correction is definitional. The specific word “antichrist” appears in the New Testament’s Johannine letters, and it is used in a way that is more diagnostic than biometric. John frames “antichrist” as opposition and substitution, meaning the posture of someone who denies and replaces, not the passport of someone who was born in a particular region. In that framework, the central problem is theological and political at the same time: the creation of a counterfeit authority that demands trust, loyalty, and worship that belong to God.
+
+The second correction is hermeneutical. When readers point to Micah and Isaiah, they frequently focus on “the Assyrian” and treat it as a literal ethnic marker, as if the prophetic label is a fixed name tag that must be satisfied by a modern Assyrian individual. In its historical setting, “Assyria” names the dominant imperial oppressor of the prophet’s era. It names the superpower whose military, economic, and psychological pressure defines the situation on the ground. Micah’s context is a world where small nations are menaced by a domineering empire, and Isaiah’s context repeatedly presents Assyria as an instrument of judgment and the emblem of a crushing imperial yoke. In other words, “the Assyrian” already functions as an imperial role-label inside a real political order.
+
+This is where typology matters. Typology is not a denial of history, and it is not an excuse to make the text mean anything you want. Typology is a way of reading patterns in redemptive history where a concrete historical reality becomes a template that intensifies and reappears in later contexts. Under typology, “the Assyrian” is not primarily a DNA claim about ethnicity. “The Assyrian” is a name for “the empire that dominates the era,” the regime that exerts disproportionate force and can bend the international order around its own interests.
+
+Once you read “the Assyrian” typologically, the modern question changes. The question stops being “Which modern ethnicity could supply this figure?” and becomes “Which seat of power could plausibly carry the level of leverage these texts assume?” That shift is the entire point. It is not that the Middle East is irrelevant to biblical history, or that Russia is unimportant in modern geopolitics. It is that neither region, by itself, currently holds the kind of systemic, networked, global-control capacity that typology would highlight if the prophetic label is naming the dominant imperial role of the era.
+
+In the contemporary world system, the closest analogue to that imperial role is the United States. The United States sits at the center of global finance, military logistics, technological infrastructure, currency and sanctions power, and alliance architectures. If a world-stage figure were to emerge “today” in a way that plausibly matches the kind of empire-saturated influence implied by typological readings, the relevant issue would not be where he is from. The relevant issue would be whether he captures the highest-leverage institutional chokepoints of the present order, and whether he converts that leverage into a demand for ultimate allegiance.
+
+This reading also helps explain why “Antichrist” talk goes wrong so often. It becomes a racialized or regionalized blame game, and it turns prophecy into an ethnicity hunt. That is both morally corrosive and textually weak. The biblical pattern is not “look over there at those foreigners.” The biblical pattern is “watch what power does to a society, and watch what it demands from its people.” If you are looking for a way to apply these texts forward without collapsing into conspiracy content or xenophobia, typology gives you a disciplined way to say: empire is the point, not birthplace.
+
+Finally, I want to be explicit about the limits of this argument. Christians disagree about end-times frameworks, and the Bible’s apocalyptic language is famously susceptible to overconfident speculation. My claim here is not that the Bible hands us a modern identity card. My claim is that a typological reading of “the Assyrian” makes “Middle Eastern origin” and “Russian origin” the wrong category of test, and that the only way the argument even begins to make sense in a modern setting is if you treat “the Assyrian” as “the leader associated with the era’s dominant imperial system,” not as a literal ethnicity requirement.
+
+Sources  
+Encyclopaedia Britannica, “Antichrist,” including discussion of where the term appears in the New Testament and how it relates to other eschatological figures. citeturn4view1  
+St. Paul Center, “What Does A Catholic Reading Of The Bible Tell Us About The Antichrist?” including the note that the word “antichrist” appears in four verses in the Johannine epistles. citeturn5view1  
+Working Preacher (Luther Seminary), “Commentary on Micah 5:2–5a,” describing the eighth-century BCE context and Assyria’s domineering power as background to Micah’s oracles. citeturn5view2  
+Christian Research Institute, “Typological Fulfillment: The Key to Messianic Prophecy,” defining typology as historical correspondence plus escalation rather than one-to-one repetition. citeturn5view3
+
+Micah Blumberg:
+Alright but we need to clarify why a leader that matches the description, powers, and prophecy of the AC can't come from Europe, the UK, Russia, India, China, or any other country. This is an explainer of modern geopolitical realities.
+
+Self Aware Networks GPT:
+If you are using “Antichrist” language as typology for a figure who can plausibly reorder the international system, then the decisive question is not birthplace, ethnicity, or even raw ambition. The decisive question is whether any single leader can realistically seize and coordinate the specific pillars that make the modern order cohere: monetary primacy, payment rails, sanctions reach, security guarantees, force projection, alliance leadership, and global-standard tech and media infrastructure. In 2026, only one state has all of those pillars at scale, under one executive, in one office.
+
+That is the underlying geopolitical reason your argument does not reduce to “the Middle East versus Europe” or “Russia versus China.” Most major powers possess one or two of the pillars. None of them, outside the United States, concentrate enough of the pillars simultaneously for one leader to plausibly approximate the “world-stage” scope implied by the strongest end-times readings. The “job description” is not merely “powerful national leader.” The job description is “leader of the system’s central node,” because the modern world is not a set of equal sovereigns. It is a network with chokepoints.
+
+Europe, including the EU, is structurally constrained by fragmentation of sovereignty. Europe has enormous economic weight and deep institutions, but it does not have a single executive who can rapidly unify fiscal policy, coercive foreign policy, intelligence, and military posture across the bloc in the way a single presidency can. Even where Europe can act collectively, it often does so through consensus machinery that diffuses agency across multiple capitals and legal regimes. A European “strongman” would still face the hard reality that most of the system’s high-leverage switches do not sit in Brussels, Paris, or Berlin. They sit in dollar liquidity, U.S.-anchored security architecture, and U.S.-centric technology and finance. That makes “Europe produces the singular world ruler” a category error, because Europe’s power is real but institutionally distributed.
+
+The UK is closer to the U.S. model in having a single national government, but the scale and centrality are not comparable. The UK has meaningful intelligence and financial influence, and it remains a serious military actor, but it does not command the reserve-currency center of gravity, the dominant extraterritorial sanctions apparatus, or the same global basing and logistics footprint that turns decisions into immediate worldwide consequences. A UK leader can be consequential, but the office does not come with the same network-control capabilities.
+
+Russia has the blunt instrument that always complicates these conversations: nuclear force. It also has energy leverage and regional coercive capacity. However, nuclear force is not the same thing as system leadership. The prophetic “world-stage” idea, in its strongest form, implies not only the ability to threaten, but the ability to administer, regulate, and condition the global order so that “buy, sell, and comply” become systemic. Russia lacks the economic and financial centrality to run the operating system of global commerce at that level, especially under the constraints that come from being outside the dominant payment and reserve-currency architecture. A Russian leader can destabilize the system. That is not the same as presiding over it.
+
+China is the closest peer competitor in raw national capability, and it is the strongest alternative candidate people raise after the U.S. China has industrial scale, technological ambition, and a large and growing international footprint. The limiting factor is that China has not yet replaced the dollar-based plumbing of world finance with a Chinese-centered substitute that other states trust, adopt, and use as their default. Capital controls, governance risk perceptions, and the absence of a fully open, deep, globally preferred financial ecosystem constrain how far China’s monetary and payment influence can extend. China is working on parallel rails, including cross-border digital currency experiments, and those efforts can gradually erode U.S. financial dominance at the margins. However, as of 2026, the renminbi’s measured role in global payments and reserves remains far smaller than the dollar’s. That gap matters, because it is the difference between “a powerful state” and “the system’s default settlement layer.”
+
+India has demographic scale, a growing economy, and rising geopolitical influence, but it does not sit at the key chokepoints of the current order. India’s strategic posture is also more multipolar and autonomy-seeking than bloc-leading, which means its influence tends to expand through diversification and partnership rather than by becoming the singular hub everyone must route through. India can become one of the principal poles of the century without becoming the central node of the global operating system in the way the U.S. has been.
+
+Other countries have even clearer limitations. Regional powers can be decisive in their theaters and can create global shocks, but they do not simultaneously command reserve-currency gravity, worldwide force projection, and alliance-centered legitimacy at the same scale. In a networked world, the “Antichrist-scale” claim, if one wants to keep it in the realm of geopolitical plausibility rather than pure speculation, requires a leader whose office already comes with the capacity to compel coordination across continents. That is why your argument keeps returning to the United States. The U.S. presidency is not merely a national office. It is, in practical terms, the managerial apex of the largest military spender, the primary security guarantor for major alliance networks, and the political head of the currency and financial system that still anchors a large fraction of global reserves and cross-border transactions. That combination is the geopolitical uniqueness you are pointing at.
+
+A final nuance strengthens your credibility rather than weakening it. You do not have to argue that no other country could ever produce such a figure in principle. You only have to argue that, under present conditions, the United States is uniquely positioned as the dominant node where one leader’s capture of institutions could have system-wide downstream effects. If the structure of the global order changes, the candidate set changes. If you are writing an explainer “for today,” you can make a strong, defensible claim that the concentration of monetary primacy, security primacy, and institutional reach is still most singularly concentrated in the United States, and that is why “Europe,” “Russia,” “China,” and “India” do not map cleanly onto the strongest version of the role.
+
+Sources  
+Federal Reserve, “The International Role of the U.S. Dollar – 2025 Edition,” summarizing the dollar’s share of disclosed official reserves in 2024 and comparative shares for the euro, yen, pound, and renminbi. citeturn0search8  
+IMF COFER data release (October 2, 2025), reporting the share of U.S. dollars in allocated global official reserves (including the 56.32% figure cited for 2025Q2). citeturn0search0  
+SWIFT, RMB Tracker (July 2025), reporting renminbi share of global payments by value (2.88% in June 2025) and RMB ranking. citeturn0search3  
+SWIFT, RMB Tracker (August 2025), providing the comparative currency-share chart for international payments excluding intra-Eurozone flows (including the reported USD and EUR shares on that chart). citeturn0search11  
+SIPRI, “Trends in World Military Expenditure, 2024,” reporting U.S. military expenditure ($997B) and the U.S. share of global military spending (37%) and NATO spending (66%) for 2024. citeturn0search1turn0search13  
+U.S. Congressional Research Service, “U.S. Overseas Basing: Background and Issues for Congress” (R48123), detailing overseas basing footprint and permanently assigned forces by region/country. citeturn0search2  
+Reuters, “China-led cross-border digital currency platform sees surge” (Jan 16, 2026), on mBridge growth and its role in developing parallel payment infrastructure. citeturn0news43
+

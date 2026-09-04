@@ -1,0 +1,39 @@
+Title: Revelation Throne Inquiry
+Date: 1748465902.245331
+
+Micah Blumberg:
+{'asset_pointer': 'file-service://file-Xac74Fo5M9Zb1GZrVCE8mF', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 342, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': None, 'container_pixel_width': None, 'dalle': None, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': None, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': True, 'watermarked_asset_pointer': None}, 'size_bytes': 160063, 'width': 833}
+
+In Chapter 5 of revelation, in James's Tabor's pre-Jesus revelation, who is sitting on the throne, is this the good guy or the bad guy?
+
+Self Aware Networks GPT:
+In James Tabor’s reconstructed **pre-Christian** (or “pre-Jesus”) version of Revelation, the being on the throne is explicitly identified as **YHVH/Jehovah—the God of Israel**. Tabor removes the later Christian interpolations that introduce the “Lamb” (vv 5-10), but he leaves the throne vision from chs 4-5 untouched. The heavenly chorus still addresses the enthroned figure with language reserved for Israel’s God:
+
+> “Holy, holy, holy is **Jehovah God Almighty**, who was and is and is to come.” citeturn3view0  
+> “To **him who sits upon the throne** be blessing and honour and glory and might for ever and ever.” citeturn3view0
+
+Within Tabor’s hypothesis this enthroned deity is the cosmic sovereign whom the living creatures, elders and angels worship without reservation; nothing in the text hints at a sinister or adversarial role. So, from the narrative’s own perspective, **the one on the throne is the “good guy,” not a villain or beast-figure.**
+
+(If one approaches the scene through a later Gnostic lens, where the creator-god can be recast as a flawed “demiurge,” the evaluation might shift. But Tabor himself is working with a Second-Temple Jewish apocalyptic framework, not a Gnostic reinterpretation.)
+
+Micah Blumberg:
+{'asset_pointer': 'file-service://file-AHDQCwAuHo2cAHZCanszSM', 'content_type': 'image_asset_pointer', 'fovea': None, 'height': 824, 'metadata': {'asset_pointer_link': None, 'container_pixel_height': None, 'container_pixel_width': None, 'dalle': None, 'emu_omit_glimpse_image': None, 'emu_patches_override': None, 'generation': None, 'gizmo': None, 'is_no_auth_placeholder': None, 'lpe_delta_encoding_channel': None, 'lpe_keep_patch_ijhw': None, 'sanitized': True, 'watermarked_asset_pointer': None}, 'size_bytes': 415072, 'width': 887}
+
+Is this the same figure in Chapter 7 verse 15? is the person sitting on the throne God?
+
+Self Aware Networks GPT:
+Yes.  
+In Revelation 7 : 15 the words “he who sits upon the throne” refer to the same enthroned figure introduced in chapters 4–5—the God of Israel. In James Tabor’s reconstruction, that remains YHVH; the Christian addition of the Lamb sharing the throne appears later and is treated as a secondary layer. So the occupant of the throne in 7 : 15 is the Creator-deity, not a distinct or adversarial being.
+
+Micah Blumberg:
+Does James Tabor make a good argument for Revelation being a pre-Christian Jewish document?
+
+Self Aware Networks GPT:
+James Tabor’s case rests on the claim that the Apocalypse we read today is a lightly “Christianized” overlay on an older Jewish text.  He points out that most of the explicitly Christian elements—references to “Jesus,” “Christ,” or the “Lamb”—cluster in the opening vision, in the seven letters, and again in the closing epilogue.  When those phrases are stripped out, the narrative of cosmic throne-room worship, sealed scrolls, trumpet judgments, plagues, and the fall of “Babylon” still moves forward smoothly and sounds very much like Second-Temple Jewish apocalypses such as Daniel or 1 Enoch.  Tabor regards that coherence as evidence that a pre-70 CE Jewish work (possibly linked to circles around John the Baptizer) underlies the text, and he has published a sample reconstruction produced simply by deleting the overtly Christian clauses.  He is explicit that his method follows earlier source-critical proposals by J. Massyngberde Ford and others.  citeturn1view0turn2view0  
+
+The strength of this proposal is literary: it highlights how saturated Revelation is in Hebrew-Bible imagery and shows that, at least at a surface level, many scenes do not need the Jesus references in order to make sense.  It also reminds readers that other Jewish apocalypses (for example 4 Ezra/2 Esdras or parts of the Sibylline Oracles) were later updated by Christian editors, so the phenomenon Tabor envisions is not unheard of.  citeturn1view0  
+
+The weaknesses are mainly historical and structural.  No manuscript, patristic quotation, or ancient catalogue preserves a Jewish version of Revelation; every extant witness already contains the Christological material.  The earliest papyrus fragments (P 98 and P 18, second–third century) and the fourth-century Codex Sinaiticus all include the Christian passages, and second-century writers such as Justin Martyr and Irenaeus already cite the book as a Christian composition.  citeturn6view0  Moreover, the literary architecture of Revelation—especially the concentric throne and Lamb scenes of chapters 4–5 and 21–22—depends on the image of the slain yet victorious Lamb as the key that unlocks the sealed scroll.  Removing that figure leaves visible gaps in the book’s chiastic pattern and in its theology of divine justice, which most commentators see as inseparable from its Christology.  citeturn4search1  
+
+Because the argument lacks external textual support and because the Lamb motif is woven into the book’s compositional spine, the majority of scholars view Tabor’s reconstruction as an interesting thought experiment rather than a persuasive historical hypothesis.  Even critics sympathetic to source-critical models conclude that the Christian material is unlikely to be a mere overlay; instead it appears integral to the author’s rhetorical design.  For that reason Tabor’s proposal remains a minority position within academic study of Revelation.
+
