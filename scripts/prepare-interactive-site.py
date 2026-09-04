@@ -56,7 +56,9 @@ nav='''<nav class="wiki-family-strip" aria-label="Public knowledge collection">
 s=re.sub(r'<nav class="wiki-family-strip"[^>]*>.*?</nav>',lambda m:nav,s,count=1,flags=re.S)
 s=s.replace('aria-label="SAN reading sequence"','aria-label="Theology reading sequence"').replace('aria-label="Continue exploring SAN"','aria-label="Continue exploring theology"')
 assert '"internalRouting": true' in s and '../san-wiki-shell/assets' in s
-(ROOT/'theology-wiki/san-reader.html').write_text(s)
+# Preserve the Theology source edition rather than regenerating its old shell.
+if '<!-- theology-source-edition-assets -->' not in (ROOT/'theology-wiki/san-reader.html').read_text():
+    (ROOT/'theology-wiki/san-reader.html').write_text(s)
 
 p=ROOT/'dino-atlas/app.js';s=p.read_text()
 if 'storage?.removeItem("dino-atlas.clues.v1")' not in s:

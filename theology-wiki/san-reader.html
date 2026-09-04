@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Theology Wiki</title>
-  <meta name="description" content="The public SAN Wiki reader shell. SAN article content is intentionally omitted from this package.">
+  <meta name="description" content="Theology Wiki: source-grounded articles and 354 archived conversations by Micah Blumberg.">
   <link id="wiki-stylesheet" rel="stylesheet">
   <link id="san-dynamic-timeline-stylesheet" rel="stylesheet">
   <script>
@@ -1240,6 +1240,8 @@
       }
     }
   </style>
+  <!-- theology-source-edition-assets -->
+  <link rel="stylesheet" href="./assets/css/research.css?v=2026.09.04-source-edition-1">
 </head>
 <body class="wiki-theme wiki-theme-san wiki-reader-page">
   <a class="skip-link" href="#article-title">Skip to article</a>
@@ -1249,11 +1251,11 @@
         <div class="brand-lockup">
           <span class="brand-mark" aria-hidden="true">THEO</span>
           <div>
-            <p class="eyebrow">THEOLOGY COLLECTION / SAN READER</p>
+            <p class="eyebrow">MICAH BLUMBERG / THEOLOGY RESEARCH</p>
             <h1>Theology Wiki</h1>
           </div>
         </div>
-        <p class="hero-text">Explore the theology collection in the SAN wiki reader: search the library, follow linked ideas, and navigate each article by its outline.</p>
+        <p class="hero-text">Follow the argument. Read the conversation. Explore awakening, authority and repair through a connected research library.</p>
       </div>
     </section>
 
@@ -1379,7 +1381,7 @@
           return;
         }
         if (event.key === 'Tab' && panel.classList.contains('mobile-nav-open')) {
-          const focusable = Array.from(panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'))
+          const focusable = Array.from(panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'))
             .filter((element) => element.getClientRects().length > 0);
           if (!focusable.length) return;
           const first = focusable[0];
@@ -1570,10 +1572,12 @@
       requestProgressUpdate();
     }());
   </script>
+  <script src="./assets/js/research-core.js?v=2026.09.04-source-edition-1"></script>
+  <script src="./assets/js/research-tools.js?v=2026.09.04-source-edition-1"></script>
   <script>
     (function () {
       const readerScript = document.createElement('script');
-      readerScript.src = (window.SAN_PUBLIC_WIKI_ASSET_ROOT || '/wiki/assets') + '/js/wiki-app.js?v=20260902-san-asset-route-3';
+      readerScript.src = './assets/js/theology-reader.js?v=2026.09.04-source-edition-1';
       readerScript.defer = true;
       document.body.appendChild(readerScript);
     }());

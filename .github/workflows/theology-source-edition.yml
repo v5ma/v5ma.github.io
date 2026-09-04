@@ -1,0 +1,92 @@
+name: Validate Theology source edition
+on:
+  push:
+    branches: [feat/theology-source-edition-20260904, master]
+    paths: ["theology-wiki/**", "scripts/prepare-interactive-site.py", ".github/workflows/theology-source-edition.yml"]
+  pull_request:
+    paths: ["theology-wiki/**", "scripts/prepare-interactive-site.py", ".github/workflows/theology-source-edition.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: theology-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify deterministic build and original source integrity
+        run: |
+          node theology-wiki/tools/build.cjs
+          node --check theology-wiki/assets/js/research-tools.js
+          node --check theology-wiki/assets/js/theology-reader.js
+          node --test theology-wiki/tests/research.test.cjs
+          git diff --exit-code -- theology-wiki scripts/prepare-interactive-site.py
+      - name: Install browser and image tooling
+        run: |
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium > /tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+      - name: Verify bundled public-domain museum images
+        run: python theology-wiki/tools/media.py
+      - name: Test native HTTP reader and source conversations
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py
+      - name: Verify actual hosted content after master publication
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cp -r theology-test-output /tmp/theology-native-proof
+          trap 'cp -r /tmp/theology-native-proof theology-test-output/native' EXIT
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,time,urllib.request
+          files=['theology-wiki/san-reader.html','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/js/theology-reader.js','theology-wiki/data/build-report.json']
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
+          observed={}
+          for attempt in range(36):
+            for p in files:
+              url='https://v5ma.github.io/'+p+'?review='+os.environ['GITHUB_SHA']
+              try:
+                with urllib.request.urlopen(url,timeout=15) as response:
+                  digest=hashlib.sha256(response.read()).hexdigest()
+                  observed[p]={'url':url,'status':response.status,'sha256':digest,'matches_commit':digest==expected[p]}
+              except Exception as error:
+                observed[p]={'url':url,'error':str(error),'matches_commit':False}
+            if all(item['matches_commit'] for item in observed.values()):break
+            time.sleep(5)
+          Path('theology-test-output/hosted-content.json').write_text(json.dumps(observed,indent=2))
+          assert all(item['matches_commit'] for item in observed.values()),observed
+          print('Hosted reader HTML, scripts and build report match the published commit.')
+          PY
+          SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/browser.py
+      - name: Record source identity and review files
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD > theology-test-output/tested-commit.txt
+          git diff --stat > theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          out=Path('theology-test-output')
+          with zipfile.ZipFile(out/'reader-review.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for f in Path('theology-wiki').rglob('*'):
+              if f.is_file() and '__pycache__' not in f.parts and f.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'}:z.write(f,f.as_posix())
+            z.write('scripts/prepare-interactive-site.py')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-verification
+          path: theology-test-output/
+          retention-days: 14

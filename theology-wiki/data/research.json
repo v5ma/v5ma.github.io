@@ -1,15 +1,90 @@
 {
-  "schema": "theology-source-edition/v2",
-  "related": {
+  "version": "2026.09.04-source-edition-1",
+  "categories": [
+    {
+      "id": "gnosis",
+      "title": "Gnosticism & awakening",
+      "description": "Divine sparks, inner models, archons and the work of changing a mind.",
+      "entry": "cognitive-gnosticism"
+    },
+    {
+      "id": "apocalypse",
+      "title": "Apocalypse, power & repair",
+      "description": "Theology of domination, prophetic warning and collective restoration.",
+      "entry": "apocalyptic-repair-theology"
+    },
+    {
+      "id": "origins",
+      "title": "Ancient texts & origins",
+      "description": "Manuscripts, Temple history, divine names and the dating of ideas.",
+      "entry": "gnosticism-and-temple-trauma"
+    },
+    {
+      "id": "jesus",
+      "title": "Jesus, ethics & authority",
+      "description": "The teachings of Jesus, moral judgment and the authority of institutions.",
+      "entry": "christ-as-an-inner-model"
+    },
+    {
+      "id": "practice",
+      "title": "Faith & spiritual practice",
+      "description": "Prayer, attention, deliberate joy and interpretations of spiritual experience.",
+      "entry": "faith-as-deliberate-joy"
+    },
+    {
+      "id": "machines",
+      "title": "God, minds & machines",
+      "description": "Cognitive models, information, conscious machines and religious education.",
+      "entry": "religion-for-conscious-robots"
+    },
+    {
+      "id": "traditions",
+      "title": "Traditions in conversation",
+      "description": "Shared inheritance, competing interpretations and differences that matter.",
+      "entry": "samaritan-texts-and-sacred-authority"
+    },
+    {
+      "id": "context",
+      "title": "Wider conversations",
+      "description": "Contextual discussions, cultural references and research leads in the source archive.",
+      "entry": "research-method"
+    }
+  ],
+  "paths": [
+    {
+      "title": "How does a mind change?",
+      "description": "From an inward model of Christ to spiritual practice and machine education.",
+      "pages": [
+        "cognitive-gnosticism",
+        "christ-as-an-inner-model",
+        "faith-as-deliberate-joy",
+        "religion-for-conscious-robots"
+      ]
+    },
+    {
+      "title": "Can prophecy and repair coexist?",
+      "description": "Follow the argument without reducing catastrophe to a metaphor or care to passivity.",
+      "pages": [
+        "antichrist-as-a-pattern-of-conduct",
+        "apocalyptic-repair-theology",
+        "gnosticism-and-temple-trauma"
+      ]
+    },
+    {
+      "title": "What would establish a historical connection?",
+      "description": "Separate textual differences, proposed ancestry and evidence that could decide between explanations.",
+      "pages": [
+        "samaritan-texts-and-sacred-authority",
+        "gnosticism-and-temple-trauma",
+        "research-method"
+      ]
+    }
+  ],
+  "sourceCount": 354,
+  "developedCount": 8,
+  "sourceIntegrity": "354/354 matched existing SHA-256 manifest",
+  "backlinks": {
     "home": [
-      "apocalyptic-repair-theology",
-      "cognitive-gnosticism",
-      "christ-as-an-inner-model",
-      "antichrist-as-a-pattern-of-conduct",
-      "religion-for-conscious-robots",
-      "faith-as-deliberate-joy",
-      "gnosticism-and-temple-trauma",
-      "samaritan-texts-and-sacred-authority",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -17,1377 +92,1367 @@
       "topic-practice",
       "topic-machines",
       "topic-traditions",
-      "topic-context",
-      "reading-paths",
-      "sources-index",
-      "connections",
-      "image-collection",
-      "research-method"
+      "topic-context"
     ],
     "17th-century-christian-zionism": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-jesus"
     ],
     "abraham-hicks-and-gnosticism": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-gnosis"
     ],
     "abraham-hicks-vibration-clarification": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-practice"
     ],
     "abraham-hicks-vs-gnostic-jesus": [
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-gnosis"
     ],
-    "abrahamic-rival-continuations-book-seed": [
-      "samaritan-and-jewish-texts",
-      "teacher-of-righteousness-vs-gnostic-jesus",
-      "daniel-and-teacher-of-righteousness",
-      "qumran-text-history",
-      "maccabees-jeremiah-and-dead-sea-scrolls",
-      "enoch-scroll-and-gnosticism",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "gnostic-gospels-and-vocabulary",
-      "muslim-view-of-jesus",
-      "sunni-shia-and-christianity",
-      "torah-after-hellenistic-era",
-      "exodus-dating-and-evidence",
-      "canaanite-myths-vs-exodus",
-      "sumerian-writing-and-language",
-      "hyksos-expulsion-overview",
-      "two-messiahs-in-judaism",
-      "messiah-role-in-qumran",
-      "qumran-messianic-figures",
-      "gmirkin-hellenistic-bible-theory"
-    ],
+    "abrahamic-rival-continuations-book-seed": [],
     "act-vs-abraham-hicks": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-practice"
     ],
     "advanced-gnosticism-scholarship-conclusions": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-gnosis"
     ],
     "agi-religious-framework": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "religion-for-conscious-robots",
       "topic-machines"
     ],
     "ai-and-religion-belief": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
     ],
     "ai-conference-insights": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
     ],
     "ai-re-dates-dead-sea-scrolls": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
     ],
     "ai-sword-revelation-review": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "ai-tech-and-generations": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
     ],
     "aleph-metaphor-and-concepts": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
     ],
     "allegiance-vs-proclamation-of-christ": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-jesus"
     ],
     "altman-antichrist-comparisons": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "ancient-cosmology-and-dreams": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-practice"
     ],
     "ancient-egypt-vs-fascism": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-origins"
     ],
     "antichrist-alignment-consequences": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-and-desire-of-women": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-and-gold-obsession": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-and-ridiculous-claims": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-covenant-and-peace": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-middle-east-myth": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-peace-and-war": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-prophecy-and-war": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-prophecy-in-tanakh": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-salvation-discussions": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
     ],
     "antichrist-spiritual-inversion": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "antichrist-as-a-pattern-of-conduct",
+      "faith-as-deliberate-joy",
       "topic-apocalypse"
     ],
     "anunnaki-alien-theory-rejected": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "apocalipsis-y-nueva-humanidad": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "apocalypse-of-adam-outline": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
     ],
     "apocalypse-of-peter-comparison": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
     ],
     "article-review-feedback": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "assyrian-and-antichrist-connection": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
     ],
     "authoritarian-threats-to-democracy": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "authoritarianism-and-false-democracy": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "awakening-to-oneness": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-practice"
     ],
     "barnabas-gospel-debunked": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-jesus"
     ],
     "beasts-and-trumpets-symbolism": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
     ],
     "beloved-disciple-identity": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "bible-interpretation-and-faith": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-practice"
     ],
     "bible-passage-on-deception": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-jesus"
     ],
     "bible-prophecy-death-fractions": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
     ],
     "bible-text-sources-comparison": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-origins"
     ],
     "bible-verse-inspiration": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-jesus"
     ],
     "biblical-antichrist-interpretation": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
     ],
     "biblical-resurrection-interpretations": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-origins"
     ],
     "biblical-text-timeline": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-jesus"
     ],
     "blue-fascism-explained": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "born-smart-the-story-of-scout": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "branch-branch-branch-branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
     ],
     "branch-branch-branch-branch-proof-of-god-s-existence-2": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
     ],
     "branch-branch-branch-branch-proof-of-god-s-existence-3": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
     ],
     "branch-branch-branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
     ],
     "branch-branch-branch-proof-of-god-s-existence-2": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
     ],
     "branch-branch-israel-gaza-famine-responsibility": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "branch-branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
     ],
     "branch-israel-gaza-famine-responsibility": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
     ],
     "branch-plagiarism-equivalent-vs-plagiarism": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
     ],
     "branch-proof-of-god-s-existence": [
+      "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
     ],
     "branch-riemann-curve-mapping": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "theology-theology-debate-science-god-self-cluster",
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-paul-jesus-moses-summary-cluster",
+      "theology-theology-proof-god-existence-bible-cluster",
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
     ],
     "branch-san-minkowski-model": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
     ],
     "calvary-chapel-and-meat-industry": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-traditions"
     ],
     "calvary-chapel-vs-gnosticism": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-gnosis"
     ],
     "canaanite-myths-vs-exodus": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-origins"
     ],
     "capitalism-and-democracy-threats": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "catholic-priests-and-ancient-texts": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-origins"
     ],
     "chatgpt-beasts-revelation-theory": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-apocalypse"
     ],
     "chatgpt-file-splitting": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "cheese-varieties-from-milk": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "china-s-human-rights-abuses": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "christ-vs-antichrist-contrast": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-apocalypse"
     ],
     "christian-salvation-without-supernaturalism": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-jesus"
     ],
     "christian-view-of-death": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-jesus"
     ],
     "church-corporate-sponsorship-evidence": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-traditions"
     ],
     "churches-rejecting-paul-s-writings": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-traditions"
     ],
     "city-of-david-structures": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "claude-deceptions-and-betrayals": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "clementine-homilies-and-recognitions": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "cognitive-gnosticism-jesus-vs-gnostic-jesus": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
       "topic-gnosis"
     ],
     "conceptual-equivalences-mapping": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
     ],
     "consciousness-and-existence-views": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-machines"
     ],
     "covenant-confirmation-in-israel": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "crucifixion-under-pilate": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-origins"
     ],
     "dan-response-inquiry": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "daniel-and-teacher-of-righteousness": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-apocalypse"
     ],
     "daniel-prophecy-and-temple": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-apocalypse"
     ],
     "dark-time-thermodynamics-theory": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-machines"
     ],
     "debunking-aaron-abke": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "debunking-greek-bible-myth": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-jesus"
     ],
     "debunking-jewish-law-origin": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "deliberate-joy-concept": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "faith-as-deliberate-joy",
       "topic-practice"
     ],
     "deterministic-quantum-cycles": [
       "topic-machines"
     ],
     "dimensional-resonance-vs-iit": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "dina-s-jewish-identity-in-tlou": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "disrespectful-religious-statement": [
+      "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
     ],
     "divine-empowerment-through-christ": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-jesus"
     ],
     "document-review": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "early-vs-later-gnosticism": [
+      "theology-theology-gaza-debate-faith-early-cluster",
+      "apocalyptic-repair-theology",
+      "antichrist-as-a-pattern-of-conduct",
+      "gnosticism-and-temple-trauma",
       "topic-gnosis"
     ],
     "ehrman-vs-tabor-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "elohim-and-alien-theories": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-origins"
     ],
     "enoch-scroll-and-gnosticism": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-gnosis"
     ],
     "enoch-son-of-man": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-origins"
     ],
     "epstein-s-web-of-connections": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "eschatology-and-prophetic-timelines": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-apocalypse"
     ],
     "essenes-and-early-christianity": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-traditions"
     ],
     "european-gods-origins": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "evolving-god-and-naming": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "exodus-dating-and-evidence": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-origins"
     ],
     "ezekiel-s-dry-bones-vision": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "ezekiel-s-influence-on-prophecy": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-apocalypse"
     ],
     "fact-check-peace-plan": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "fact-check-trump-death-claim": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "faith-and-comfort": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
     ],
     "faith-as-vibration-concept": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
     ],
     "fallout-vs-real-apocalypse": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-apocalypse"
     ],
     "false-gnosis-warning": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-gnosis"
     ],
     "false-peace-prophecy": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-apocalypse"
     ],
     "find-paper-online": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "fishburne-matrix-commentary-clarified": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "focus-your-energy": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
     ],
     "galatians-3-faith-summary": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
     ],
     "gaza-coin-proposal": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "gaza-development-coalition-name": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "gaza-narrative-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "gaza-relocation-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "gaza-starvation-propaganda-debate": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "glazing-brainwaves-reflected": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "gmirkin-hellenistic-bible-theory": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-origins"
     ],
     "gnosis-density-and-gravity": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-christianity-and-jesus": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
     ],
     "gnostic-church-psychedelic-legalities": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-divinity-and-dualism": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-end-times-figures": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-god-comparisons": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-gospels-and-vocabulary": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-gospels-in-film": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-jesus-and-judas": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-gnosis"
     ],
     "gnostic-jesus-and-logos": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
     ],
     "gnostic-teachings-and-clarity": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
     ],
     "gnostic-texts-and-christianity": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnostic-texts-and-paul": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnosticism-and-evil-creator": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnosticism-and-original-sin": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnosticism-and-paul-s-letters": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "gnosticism-in-catholicism": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "god-and-sea-monsters": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "gog-magog-and-nations": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-apocalypse"
     ],
     "gospel-of-judas-overview": [
       "topic-gnosis"
     ],
     "greta-thunberg-and-iran": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "gset-verification-and-implications": [
+      "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
     ],
     "hamas-propaganda-and-hostages": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "haramein-vortex-gravity-model": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "harari-on-israel-and-gaza": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "heavier-than-a-feather": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "heisenberg-vtt-and-sit": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "hell-transformation-and-metatron": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "henosis-and-gnosticism-comparison": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
     ],
     "herod-timeline-clarification": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-origins"
     ],
     "hogs-and-authority-dynamics": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "horseman-of-death-fate": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-apocalypse"
     ],
     "humanity-s-need-for-god": [
+      "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
     ],
     "hyksos-expulsion-overview": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
     ],
     "hyperion-cantos-summary": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
     ],
     "i-commit-my-spirit": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
     ],
     "if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-apocalypse"
     ],
     "image-and-identity-theme": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
     ],
     "inanna-death-and-resurrection": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-origins"
     ],
     "iran-amalek-prophecy-debate": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-apocalypse"
     ],
     "islam-s-arrival-century": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-traditions"
     ],
     "israel-democracy-debate": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
     ],
     "israel-gaza-famine-responsibility": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
     ],
     "james-tabor-expertise-gnosticism": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-gnosis"
     ],
     "james-the-just-analysis": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
     ],
     "jesus-7-levels-of-consciousness-fact-check": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-machines"
     ],
     "jesus-and-biblical-figures": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-and-dead-sea-scrolls": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-origins"
     ],
     "jesus-and-gnostic-teachings": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
     ],
     "jesus-and-neo-matrix": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-as-a-teenager": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-as-philosopher-teacher": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-as-storyteller": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-drives-out-merchants": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-gnosticism-and-myth": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
     ],
     "jesus-in-dead-sea-scrolls": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-origins"
     ],
     "jesus-in-love-concept": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-james-and-essenes": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-long-suffering-vs-abraham-hicks": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-practice"
     ],
     "jesus-sayings-fact-check": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-teachings-on-divorce": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-teachings-overview": [
       "topic-jesus"
     ],
     "jesus-teachings-pineal-gland": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-teachings-simplified": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-temple-sacrifices-debate": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-origins"
     ],
     "jesus-timeline-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-vs-ahura-mazda": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-vs-paul-on-salvation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jesus-vs-paul-vs-gnosticism": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
     ],
     "jesus-vs-yahweh-debate": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-origins"
     ],
     "jesus-way-origins": [
+      "theology-theology-jesus-teachings-dead-sea-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
     ],
     "jewish-apocalyptic-repair-timeline": [
+      "theology-theology-jesus-analysis-god-law-cluster",
+      "apocalyptic-repair-theology",
+      "gnosticism-and-temple-trauma",
       "topic-apocalypse"
     ],
     "jews-and-canaanites-origins": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
     ],
     "johannine-theology-overview": [
       "topic-context"
     ],
     "joke-style-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "judaism-history-debate": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-traditions"
     ],
     "judas-gnostic-view-explained": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-gnosis"
     ],
     "jungian-dream-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
     ],
     "kabbalah-origins-question": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-traditions"
     ],
     "kirk-racism-equivalence-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "kubrick-gita-verse-removal": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "la-museums-destroyed-in-fire": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "law-of-attraction-analysis": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
     ],
     "law-of-attraction-and-magic": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
     ],
     "law-of-attraction-validation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
     ],
     "leibniz-branch-mesopotamia": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
     ],
     "lucifer-s-fall-explanation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "maccabees-jeremiah-and-dead-sea-scrolls": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
     ],
     "mark-16-textual-dispute": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
     ],
     "mark-of-the-beast-x": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "marvel-crisis-equivalent": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "meai-as-anti-psychotic": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
     ],
     "meme-creation-prophecy-and-peace": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-apocalypse"
     ],
     "messiah-role-in-qumran": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
     ],
     "mind-of-god-equation": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-machines"
     ],
     "mind-of-god-equation-2": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-machines"
     ],
     "modern-gnostic-critique-of-catholicism": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-gnosis"
     ],
     "modern-nazarenes-overview": [
       "topic-context"
     ],
     "moses-abraham-and-god": [
+      "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
     ],
     "moses-and-the-burning-bush": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
     ],
     "moses-dating-debate": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
     ],
     "muslim-view-of-jesus": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-traditions"
     ],
     "my-descent-into-death-summary": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "naming-god-as-purpose": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "nearest-wilderness-to-sf": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "neo-mind-cycle-evolution": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "netanyahu-s-controversial-rhetoric": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "neurohacker-bio-summary": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-machines"
     ],
     "nietzsche-jesus-gnostic-resources": [
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-gnosis"
     ],
     "no-pre-trib-rapture-arguments": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-apocalypse"
     ],
     "noah-and-moses-jewish-status": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
     ],
     "nuclear-war-survival-tips": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "oil-vs-gas-control": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "oneness-with-god-perspectives": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-practice"
     ],
     "oort-cloud-and-yec": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "original-sin-vs-ezekiel": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
     ],
     "parthians-and-medes-meaning": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "paul-and-the-resurrection": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
     ],
     "paul-mythicism-and-sources": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
     ],
     "paul-vs-james-movement": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
     ],
     "paul-vs-jesus-teachings": [
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
     ],
     "paul-vs-luke-resurrection": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
     ],
     "paul-s-antichristian-message": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-apocalypse"
     ],
     "peace-deal-credibility": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "peale-and-positive-thinking": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-practice"
     ],
     "philosophical-polarities-of-power": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "pie-and-mesopotamian-references": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "pilate-life-timeline": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
     ],
     "pistis-sophia-summary": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-gnosis"
     ],
     "plato-hermeticism-and-vibration": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
     ],
     "platonic-jewish-christianity-framework": [
+      "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-traditions"
     ],
     "pope-francis-and-ukraine": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "pope-leo-xiv-criticizes-vance": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "praise-poem-creation": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "proof-of-god-s-existence": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
     ],
     "proof-of-god-s-existence-2": [
       "topic-machines"
     ],
     "proving-netanyahu-s-claims": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "psychedelic-spiritual-experiences": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-practice"
     ],
     "publishing-cognitive-gnosticism-first": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "cognitive-gnosticism",
       "topic-gnosis"
     ],
     "putin-s-global-strategy": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "qgtcd-research-mapping": [
+      "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
     ],
     "quantum-entanglement-and-communication": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
     ],
     "quantum-time-solution-hubble": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
     ],
     "qumran-messianic-figures": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
     ],
     "qumran-survival-theory": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
     ],
     "qumran-text-history": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
     ],
     "quote-authenticity-check": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "ratm-and-gnosticism-comparison": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-gnosis"
     ],
     "reddit-group-search": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "rephrase-conjecture-on-genocide": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "research-on-lineage-descent": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "resurrection-debate-in-christianity": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
     ],
     "revelation-6-7-meaning": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
     ],
     "revelation-and-montanism": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
     ],
     "revelation-and-symbolic-language": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
     ],
     "revelation-interpretation-and-america": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
     ],
     "revelation-seal-opening-clarification": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
     ],
     "revelation-throne-inquiry": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
     ],
     "roy-casagranda-critique": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "russian-aliyah-impact": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "saints-and-us-democrats": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "samaritan-and-jewish-texts": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-revelation-qumran-proof-god-cluster",
+      "samaritan-texts-and-sacred-authority",
       "topic-traditions"
     ],
     "samuel-vs-micah-divide": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-jesus"
     ],
     "sanchuniathon-phoenician-mythology-summary": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "science-and-god-debate": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
     ],
     "science-and-spirituality-synergy": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
     ],
     "self-and-existence-question": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
     ],
     "self-declared-pope-controversy": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "seth-on-changing-past-future": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "simon-magus-and-logos": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "simulation-theory-debate": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "sith-rule-of-two-myth": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "song-style-analysis": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "spiritual-experience-integration": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-practice"
     ],
     "squid-imagery-and-propaganda": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "stages-of-awakening": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-practice"
     ],
     "stalin-putin-anti-christ-parallel": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-apocalypse"
     ],
     "stanley-fisher-clarification": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "starvation-in-gaza-crisis": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "stop-unnecessary-emphasis": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "sumerian-writing-and-language": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
     ],
     "sun-cycles-in-2-enoch": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
     ],
     "sunni-shia-and-christianity": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-debate-science-god-self-cluster",
       "topic-traditions"
     ],
     "svgn-io-news-website-guide": [
+      "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
     ],
     "talmud-vs-torah": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
     ],
     "teacher-of-righteousness-vs-gnostic-jesus": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-debate-science-god-self-cluster",
+      "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
     ],
     "teaching-cyclical-thinking": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "text-transcription-request": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "the-telos": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
-    "theology-theology-antichrist-mapping-abraham-hicks-cluster": [
-      "branch-riemann-curve-mapping",
-      "branch-plagiarism-equivalent-vs-plagiarism",
-      "branch-san-minkowski-model",
-      "conceptual-equivalences-mapping",
-      "leibniz-branch-mesopotamia",
-      "qgtcd-research-mapping",
-      "17th-century-christian-zionism",
-      "act-vs-abraham-hicks",
-      "agi-religious-framework",
-      "ai-conference-insights",
-      "ai-safety-and-lovecraft",
-      "ai-sword-revelation-review",
-      "ai-tech-and-generations",
-      "ai-and-religion-belief",
-      "abraham-hicks-vibration-clarification",
-      "abraham-hicks-and-gnosticism",
-      "advanced-gnosticism-scholarship-conclusions",
-      "aleph-metaphor-and-concepts",
-      "allegiance-vs-proclamation-of-christ",
-      "altman-antichrist-comparisons",
-      "ancient-cosmology-and-dreams",
-      "ancient-egypt-vs-fascism",
-      "antichrist-alignment-consequences",
-      "antichrist-covenant-and-peace",
-      "antichrist-middle-east-myth",
-      "antichrist-peace-and-war",
-      "antichrist-prophecy-and-war",
-      "antichrist-spiritual-inversion",
-      "antichrist-and-desire-of-women",
-      "antichrist-and-gold-obsession",
-      "antichrist-and-ridiculous-claims",
-      "antichrist-prophecy-in-tanakh",
-      "antichrist-salvation-discussions"
-    ],
-    "theology-theology-debate-science-god-self-cluster": [
-      "branch-riemann-curve-mapping",
-      "science-and-god-debate",
-      "science-and-spirituality-synergy",
-      "self-and-existence-question",
-      "self-declared-pope-controversy",
-      "seth-on-changing-past-future",
-      "simon-magus-and-logos",
-      "simulation-theory-debate",
-      "sith-rule-of-two-myth",
-      "song-style-analysis",
-      "spiritual-experience-integration",
-      "squid-imagery-and-propaganda",
-      "stages-of-awakening",
-      "stalin-putin-anti-christ-parallel",
-      "stanley-fisher-clarification",
-      "starvation-in-gaza-crisis",
-      "stop-unnecessary-emphasis",
-      "sumerian-writing-and-language",
-      "sun-cycles-in-2-enoch",
-      "sunni-shia-and-christianity",
-      "tim-teacher-of-righteousness",
-      "talmud-vs-torah",
-      "teacher-of-righteousness-vs-gnostic-jesus",
-      "teaching-cyclical-thinking",
-      "text-transcription-request",
-      "the-telos",
-      "timeline-creation-request",
-      "tolkien-vs-ai-epics",
-      "tony-robbins-criticism",
-      "torah-after-hellenistic-era",
-      "toxic-lyrics-impact",
-      "triune-god-historical-debate",
-      "trump-bible-vision"
-    ],
-    "theology-theology-debunking-jesus-calvary-chapel-cluster": [
-      "branch-riemann-curve-mapping",
-      "calvary-chapel-and-meat-industry",
-      "calvary-chapel-vs-gnosticism",
-      "canaanite-myths-vs-exodus",
-      "capitalism-and-democracy-threats",
-      "catholic-priests-and-ancient-texts",
-      "chatgpt-beasts-revelation-theory",
-      "chatgpt-file-splitting",
-      "cheese-varieties-from-milk",
-      "china-s-human-rights-abuses",
-      "christ-vs-antichrist-contrast",
-      "christian-salvation-without-supernaturalism",
-      "christian-view-of-death",
-      "church-corporate-sponsorship-evidence",
-      "churches-rejecting-paul-s-writings",
-      "city-of-david-structures",
-      "claude-deceptions-and-betrayals",
-      "clementine-homilies-and-recognitions",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "consciousness-and-existence-views",
-      "covenant-confirmation-in-israel",
-      "crucifixion-under-pilate",
-      "dan-response-inquiry",
-      "daniel-prophecy-and-temple",
-      "daniel-and-teacher-of-righteousness",
-      "dark-time-thermodynamics-theory",
-      "debunking-aaron-abke",
-      "debunking-greek-bible-myth",
-      "debunking-jewish-law-origin",
-      "deliberate-joy-concept",
-      "dimensional-resonance-vs-iit",
-      "dina-s-jewish-identity-in-tlou",
-      "disrespectful-religious-statement"
-    ],
-    "theology-theology-gaza-debate-faith-early-cluster": [
-      "branch-riemann-curve-mapping",
-      "divine-empowerment-through-christ",
-      "document-review",
-      "early-vs-later-gnosticism",
-      "ehrman-vs-tabor-debate",
-      "elohim-and-alien-theories",
-      "enoch-scroll-and-gnosticism",
-      "enoch-son-of-man",
-      "epstein-s-web-of-connections",
-      "eschatology-and-prophetic-timelines",
-      "essenes-and-early-christianity",
-      "european-gods-origins",
-      "evolving-god-and-naming",
-      "exodus-dating-and-evidence",
-      "ezekiel-s-dry-bones-vision",
-      "ezekiel-s-influence-on-prophecy",
-      "fact-check-trump-death-claim",
-      "fact-check-peace-plan",
-      "faith-and-comfort",
-      "faith-as-vibration-concept",
-      "fallout-vs-real-apocalypse",
-      "false-gnosis-warning",
-      "false-peace-prophecy",
-      "find-paper-online",
-      "fishburne-matrix-commentary-clarified",
-      "focus-your-energy",
-      "gset-verification-and-implications",
-      "galatians-3-faith-summary",
-      "gaza-coin-proposal",
-      "gaza-narrative-debate",
-      "gaza-relocation-debate",
-      "gaza-development-coalition-name",
-      "gaza-starvation-propaganda-debate"
-    ],
-    "theology-theology-gnostic-gnosticism-jesus-god-cluster": [
-      "branch-riemann-curve-mapping",
-      "glazing-brainwaves-reflected",
-      "gmirkin-hellenistic-bible-theory",
-      "gnosis-density-and-gravity",
-      "gnostic-christianity-and-jesus",
-      "gnostic-church-psychedelic-legalities",
-      "gnostic-divinity-and-dualism",
-      "gnostic-god-comparisons",
-      "gnostic-gospels-and-vocabulary",
-      "gnostic-gospels-in-film",
-      "gnostic-jesus-and-logos",
-      "gnostic-teachings-and-clarity",
-      "gnostic-texts-and-christianity",
-      "gnostic-texts-and-paul",
-      "gnostic-end-times-figures",
-      "gnosticism-and-evil-creator",
-      "gnosticism-and-original-sin",
-      "gnosticism-and-paul-s-letters",
-      "gnosticism-in-catholicism",
-      "god-and-sea-monsters",
-      "gog-magog-and-nations",
-      "greta-thunberg-and-iran",
-      "hamas-propaganda-and-hostages",
-      "haramein-vortex-gravity-model",
-      "harari-on-israel-and-gaza",
-      "heavier-than-a-feather",
-      "heisenberg-vtt-and-sit",
-      "hell-transformation-and-metatron",
-      "henosis-and-gnosticism-comparison",
-      "herod-timeline-clarification",
-      "hogs-and-authority-dynamics",
-      "horseman-of-death-fate",
-      "humanity-s-need-for-god"
-    ],
-    "theology-theology-jesus-analysis-god-law-cluster": [
-      "branch-riemann-curve-mapping",
-      "jesus-in-love-concept",
-      "jesus-teachings-on-divorce",
-      "jesus-timeline-analysis",
-      "jesus-vs-ahura-mazda",
-      "jesus-vs-paul-on-salvation",
-      "jesus-vs-paul-vs-gnosticism",
-      "jesus-vs-yahweh-debate",
-      "jewish-apocalyptic-repair-timeline",
-      "jews-and-canaanites-origins",
-      "joke-style-analysis",
-      "judaism-history-debate",
-      "judas-gnostic-view-explained",
-      "jungian-dream-analysis",
-      "kabbalah-origins-question",
-      "kirk-racism-equivalence-analysis",
-      "kubrick-gita-verse-removal",
-      "la-museums-destroyed-in-fire",
-      "law-of-attraction-validation",
-      "law-of-attraction-analysis",
-      "law-of-attraction-and-magic",
-      "lucifer-s-fall-explanation",
-      "meai-as-anti-psychotic",
-      "maccabees-jeremiah-and-dead-sea-scrolls",
-      "mark-16-textual-dispute",
-      "mark-of-the-beast-x",
-      "marvel-crisis-equivalent",
-      "meme-creation-prophecy-and-peace",
-      "messiah-role-in-qumran",
-      "mind-of-god-equation",
-      "mind-of-god-equation-2",
-      "modern-gnostic-critique-of-catholicism",
-      "moses-abraham-and-god"
-    ],
-    "theology-theology-jesus-teachings-dead-sea-cluster": [
-      "branch-riemann-curve-mapping",
-      "barnabas-gospel-debunked",
-      "gnostic-jesus-and-judas",
-      "hyksos-expulsion-overview",
-      "hyperion-cantos-summary",
-      "i-commit-my-spirit",
-      "if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia",
-      "image-and-identity-theme",
-      "inanna-death-and-resurrection",
-      "iran-amalek-prophecy-debate",
-      "islam-s-arrival-century",
-      "israel-democracy-debate",
-      "israel-gaza-famine-responsibility",
-      "james-tabor-expertise-gnosticism",
-      "james-the-just-analysis",
-      "jesus-7-levels-of-consciousness-fact-check",
-      "jesus-drives-out-merchants",
-      "jesus-gnosticism-and-myth",
-      "jesus-james-and-essenes",
-      "jesus-long-suffering-vs-abraham-hicks",
-      "jesus-sayings-fact-check",
-      "jesus-teachings-pineal-gland",
-      "jesus-teachings-simplified",
-      "jesus-temple-sacrifices-debate",
-      "jesus-way-origins",
-      "jesus-and-dead-sea-scrolls",
-      "jesus-and-gnostic-teachings",
-      "jesus-and-neo-matrix",
-      "jesus-and-biblical-figures",
-      "jesus-as-philosopher-teacher",
-      "jesus-as-storyteller",
-      "jesus-as-a-teenager",
-      "jesus-in-dead-sea-scrolls"
-    ],
-    "theology-theology-jesus-teachings-gnostic-paul-cluster": [
-      "jesus-teachings-pineal-gland",
-      "jesus-teachings-simplified",
-      "jesus-and-gnostic-teachings",
-      "jesus-teachings-on-divorce",
-      "paul-vs-jesus-teachings",
-      "abraham-hicks-vs-gnostic-jesus",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "gnostic-christianity-and-jesus",
-      "gnostic-jesus-and-logos",
-      "gnostic-teachings-and-clarity",
-      "jesus-7-levels-of-consciousness-fact-check",
-      "jesus-drives-out-merchants",
-      "jesus-gnosticism-and-myth",
-      "jesus-james-and-essenes",
-      "jesus-long-suffering-vs-abraham-hicks",
-      "jesus-sayings-fact-check",
-      "jesus-temple-sacrifices-debate",
-      "jesus-way-origins",
-      "jesus-and-neo-matrix",
-      "jesus-and-biblical-figures",
-      "jesus-as-philosopher-teacher",
-      "jesus-as-storyteller",
-      "jesus-as-a-teenager",
-      "jesus-in-love-concept",
-      "jesus-timeline-analysis",
-      "jesus-vs-ahura-mazda",
-      "jesus-vs-paul-on-salvation",
-      "jesus-vs-paul-vs-gnosticism",
-      "jesus-vs-yahweh-debate",
-      "muslim-view-of-jesus",
-      "nietzsche-jesus-gnostic-resources",
-      "teacher-of-righteousness-vs-gnostic-jesus"
-    ],
+    "theology-theology-antichrist-mapping-abraham-hicks-cluster": [],
+    "theology-theology-debate-science-god-self-cluster": [],
+    "theology-theology-debunking-jesus-calvary-chapel-cluster": [],
+    "theology-theology-gaza-debate-faith-early-cluster": [],
+    "theology-theology-gnostic-gnosticism-jesus-god-cluster": [],
+    "theology-theology-jesus-analysis-god-law-cluster": [],
+    "theology-theology-jesus-teachings-dead-sea-cluster": [],
+    "theology-theology-jesus-teachings-gnostic-paul-cluster": [],
     "theology-link-resolution-repair": [],
-    "theology-theology-paul-jesus-moses-summary-cluster": [
-      "branch-riemann-curve-mapping",
-      "moses-and-the-burning-bush",
-      "moses-dating-debate",
-      "muslim-view-of-jesus",
-      "my-descent-into-death-summary",
-      "naming-god-as-purpose",
-      "nearest-wilderness-to-sf",
-      "neo-mind-cycle-evolution",
-      "netanyahu-s-controversial-rhetoric",
-      "neurohacker-bio-summary",
-      "nietzsche-jesus-gnostic-resources",
-      "no-pre-trib-rapture-arguments",
-      "noah-and-moses-jewish-status",
-      "nuclear-war-survival-tips",
-      "oil-vs-gas-control",
-      "oneness-with-god-perspectives",
-      "oort-cloud-and-yec",
-      "original-sin-vs-ezekiel",
-      "pie-and-mesopotamian-references",
-      "parthians-and-medes-meaning",
-      "paul-mythicism-and-sources",
-      "paul-and-the-resurrection",
-      "paul-vs-james-movement",
-      "paul-vs-jesus-teachings",
-      "paul-vs-luke-resurrection",
-      "paul-s-antichristian-message",
-      "peace-deal-credibility",
-      "peale-and-positive-thinking",
-      "philosophical-polarities-of-power",
-      "pilate-life-timeline",
-      "pistis-sophia-summary",
-      "plato-hermeticism-and-vibration",
-      "platonic-jewish-christianity-framework"
-    ],
-    "theology-theology-proof-god-existence-bible-cluster": [
-      "branch-riemann-curve-mapping",
-      "branch-branch-branch-branch-proof-of-god-s-existence",
-      "branch-branch-branch-branch-proof-of-god-s-existence-2",
-      "branch-branch-branch-branch-proof-of-god-s-existence-3",
-      "branch-branch-branch-proof-of-god-s-existence",
-      "branch-branch-branch-proof-of-god-s-existence-2",
-      "branch-branch-israel-gaza-famine-responsibility",
-      "branch-branch-proof-of-god-s-existence",
-      "branch-israel-gaza-famine-responsibility",
-      "branch-proof-of-god-s-existence",
-      "ai-re-dates-dead-sea-scrolls",
-      "abraham-hicks-vs-gnostic-jesus",
-      "anunnaki-alien-theory-rejected",
-      "apocalipsis-y-nueva-humanidad",
-      "apocalypse-of-adam-outline",
-      "apocalypse-of-peter-comparison",
-      "article-review-feedback",
-      "assyrian-and-antichrist-connection",
-      "authoritarian-threats-to-democracy",
-      "authoritarianism-and-false-democracy",
-      "awakening-to-oneness",
-      "beasts-and-trumpets-symbolism",
-      "beloved-disciple-identity",
-      "bible-interpretation-and-faith",
-      "bible-verse-inspiration",
-      "bible-passage-on-deception",
-      "bible-prophecy-death-fractions",
-      "bible-text-sources-comparison",
-      "biblical-resurrection-interpretations",
-      "biblical-text-timeline",
-      "biblical-antichrist-interpretation",
-      "blue-fascism-explained",
-      "born-smart-the-story-of-scout"
-    ],
-    "theology-theology-revelation-qumran-proof-god-cluster": [
-      "branch-riemann-curve-mapping",
-      "pope-francis-and-ukraine",
-      "pope-leo-xiv-criticizes-vance",
-      "praise-poem-creation",
-      "proof-of-god-s-existence",
-      "proving-netanyahu-s-claims",
-      "psychedelic-spiritual-experiences",
-      "publishing-cognitive-gnosticism-first",
-      "putin-s-global-strategy",
-      "quantum-entanglement-and-communication",
-      "quantum-time-solution-hubble",
-      "qumran-survival-theory",
-      "qumran-text-history",
-      "qumran-messianic-figures",
-      "quote-authenticity-check",
-      "ratm-and-gnosticism-comparison",
-      "reddit-group-search",
-      "rephrase-conjecture-on-genocide",
-      "research-on-lineage-descent",
-      "resurrection-debate-in-christianity",
-      "revelation-6-7-meaning",
-      "revelation-interpretation-and-america",
-      "revelation-seal-opening-clarification",
-      "revelation-throne-inquiry",
-      "revelation-and-montanism",
-      "revelation-and-symbolic-language",
-      "roy-casagranda-critique",
-      "russian-aliyah-impact",
-      "svgn-io-news-website-guide",
-      "saints-and-us-democrats",
-      "samaritan-and-jewish-texts",
-      "samuel-vs-micah-divide",
-      "sanchuniathon-phoenician-mythology-summary"
-    ],
+    "theology-theology-paul-jesus-moses-summary-cluster": [],
+    "theology-theology-proof-god-existence-bible-cluster": [],
+    "theology-theology-revelation-qumran-proof-god-cluster": [],
     "sources-index": [
+      "home",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -1399,24 +1464,32 @@
     ],
     "theology-wikilink-density-repair": [],
     "tim-teacher-of-righteousness": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "timeline-creation-request": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "tolkien-vs-ai-epics": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
     ],
     "tony-robbins-criticism": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "torah-after-hellenistic-era": [
+      "abrahamic-rival-continuations-book-seed",
+      "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
     ],
     "toxic-lyrics-impact": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "triune-god-historical-debate": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-context"
     ],
     "trump-antichrist-analysis": [
@@ -1426,6 +1499,7 @@
       "topic-apocalypse"
     ],
     "trump-bible-vision": [
+      "theology-theology-debate-science-god-self-cluster",
       "topic-jesus"
     ],
     "trump-cyrus-messiah-belief": [
@@ -1438,6 +1512,7 @@
       "topic-context"
     ],
     "two-messiahs-in-judaism": [
+      "abrahamic-rival-continuations-book-seed",
       "topic-traditions"
     ],
     "two-prophets-in-eschatology": [
@@ -1504,67 +1579,74 @@
       "topic-apocalypse"
     ],
     "apocalyptic-repair-theology": [
+      "home",
       "antichrist-as-a-pattern-of-conduct",
+      "faith-as-deliberate-joy",
       "gnosticism-and-temple-trauma",
-      "early-vs-later-gnosticism",
-      "jewish-apocalyptic-repair-timeline",
-      "image-collection"
+      "research-method",
+      "topic-apocalypse",
+      "reading-paths"
     ],
     "cognitive-gnosticism": [
+      "home",
       "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
-      "research-method",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "publishing-cognitive-gnosticism-first",
-      "antichrist-spiritual-inversion"
+      "topic-gnosis",
+      "reading-paths"
     ],
     "christ-as-an-inner-model": [
-      "antichrist-as-a-pattern-of-conduct",
+      "home",
       "cognitive-gnosticism",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "antichrist-spiritual-inversion",
-      "image-collection"
+      "antichrist-as-a-pattern-of-conduct",
+      "samaritan-texts-and-sacred-authority",
+      "topic-jesus",
+      "reading-paths"
     ],
     "antichrist-as-a-pattern-of-conduct": [
-      "christ-as-an-inner-model",
+      "home",
       "apocalyptic-repair-theology",
-      "early-vs-later-gnosticism",
-      "antichrist-spiritual-inversion",
-      "image-collection"
+      "christ-as-an-inner-model",
+      "samaritan-texts-and-sacred-authority",
+      "topic-apocalypse",
+      "reading-paths"
     ],
     "religion-for-conscious-robots": [
-      "cognitive-gnosticism",
-      "agi-religious-framework",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus"
+      "home",
+      "research-method",
+      "topic-machines",
+      "reading-paths"
     ],
     "faith-as-deliberate-joy": [
+      "home",
       "cognitive-gnosticism",
-      "apocalyptic-repair-theology",
-      "deliberate-joy-concept",
-      "antichrist-spiritual-inversion",
-      "image-collection"
+      "topic-practice",
+      "reading-paths"
     ],
     "gnosticism-and-temple-trauma": [
+      "home",
+      "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
       "research-method",
-      "apocalyptic-repair-theology",
-      "early-vs-later-gnosticism",
-      "jewish-apocalyptic-repair-timeline"
+      "topic-origins",
+      "reading-paths"
     ],
     "samaritan-texts-and-sacred-authority": [
-      "antichrist-as-a-pattern-of-conduct",
-      "christ-as-an-inner-model",
+      "home",
       "gnosticism-and-temple-trauma",
-      "research-method",
-      "samaritan-and-jewish-texts"
+      "topic-traditions",
+      "reading-paths"
     ],
     "research-method": [
-      "apocalyptic-repair-theology",
+      "home",
+      "cognitive-gnosticism",
       "gnosticism-and-temple-trauma",
-      "religion-for-conscious-robots"
+      "samaritan-texts-and-sacred-authority",
+      "topic-context",
+      "reading-paths"
     ],
     "topic-gnosis": [
-      "cognitive-gnosticism",
+      "home",
       "abraham-hicks-and-gnosticism",
       "abraham-hicks-vs-gnostic-jesus",
       "advanced-gnosticism-scholarship-conclusions",
@@ -1603,12 +1685,10 @@
       "publishing-cognitive-gnosticism-first",
       "ratm-and-gnosticism-comparison",
       "teacher-of-righteousness-vs-gnostic-jesus",
-      "home",
       "sources-index"
     ],
     "topic-apocalypse": [
-      "apocalyptic-repair-theology",
-      "antichrist-as-a-pattern-of-conduct",
+      "home",
       "ai-sword-revelation-review",
       "altman-antichrist-comparisons",
       "antichrist-alignment-consequences",
@@ -1651,15 +1731,14 @@
       "revelation-seal-opening-clarification",
       "revelation-throne-inquiry",
       "stalin-putin-anti-christ-parallel",
+      "sources-index",
       "trump-antichrist-analysis",
       "trump-as-antichrist-hypothesis",
       "two-prophets-in-eschatology",
-      "zeus-antichrist-connection",
-      "home",
-      "sources-index"
+      "zeus-antichrist-connection"
     ],
     "topic-origins": [
-      "gnosticism-and-temple-trauma",
+      "home",
       "ai-re-dates-dead-sea-scrolls",
       "ancient-egypt-vs-fascism",
       "bible-text-sources-comparison",
@@ -1695,6 +1774,7 @@
       "sumerian-writing-and-language",
       "sun-cycles-in-2-enoch",
       "talmud-vs-torah",
+      "sources-index",
       "torah-after-hellenistic-era",
       "what-is-midian",
       "who-was-josepheous",
@@ -1702,12 +1782,10 @@
       "yahweh-annunaki-and-flood",
       "yahweh-el-or-enki",
       "yahwey-and-the-annunaki",
-      "yahwey-and-the-sky-people",
-      "home",
-      "sources-index"
+      "yahwey-and-the-sky-people"
     ],
     "topic-jesus": [
-      "christ-as-an-inner-model",
+      "home",
       "17th-century-christian-zionism",
       "allegiance-vs-proclamation-of-christ",
       "barnabas-gospel-debunked",
@@ -1740,13 +1818,12 @@
       "paul-vs-james-movement",
       "paul-vs-jesus-teachings",
       "samuel-vs-micah-divide",
+      "sources-index",
       "trump-bible-vision",
-      "unknown-gospel-details",
-      "home",
-      "sources-index"
+      "unknown-gospel-details"
     ],
     "topic-practice": [
-      "faith-as-deliberate-joy",
+      "home",
       "abraham-hicks-vibration-clarification",
       "act-vs-abraham-hicks",
       "ancient-cosmology-and-dreams",
@@ -1767,12 +1844,11 @@
       "psychedelic-spiritual-experiences",
       "spiritual-experience-integration",
       "stages-of-awakening",
-      "vessel-and-dmt-integration",
-      "home",
-      "sources-index"
+      "sources-index",
+      "vessel-and-dmt-integration"
     ],
     "topic-machines": [
-      "religion-for-conscious-robots",
+      "home",
       "agi-religious-framework",
       "ai-and-religion-belief",
       "ai-conference-insights",
@@ -1800,13 +1876,12 @@
       "science-and-god-debate",
       "science-and-spirituality-synergy",
       "self-and-existence-question",
+      "sources-index",
       "tolkien-vs-ai-epics",
-      "vtt-ai-plagiarism-analysis",
-      "home",
-      "sources-index"
+      "vtt-ai-plagiarism-analysis"
     ],
     "topic-traditions": [
-      "samaritan-texts-and-sacred-authority",
+      "home",
       "calvary-chapel-and-meat-industry",
       "church-corporate-sponsorship-evidence",
       "churches-rejecting-paul-s-writings",
@@ -1818,12 +1893,11 @@
       "platonic-jewish-christianity-framework",
       "samaritan-and-jewish-texts",
       "sunni-shia-and-christianity",
-      "two-messiahs-in-judaism",
-      "home",
-      "sources-index"
+      "sources-index",
+      "two-messiahs-in-judaism"
     ],
     "topic-context": [
-      "research-method",
+      "home",
       "aleph-metaphor-and-concepts",
       "anunnaki-alien-theory-rejected",
       "apocalipsis-y-nueva-humanidad",
@@ -1938,6 +2012,7 @@
       "teaching-cyclical-thinking",
       "text-transcription-request",
       "the-telos",
+      "sources-index",
       "tim-teacher-of-righteousness",
       "timeline-creation-request",
       "tony-robbins-criticism",
@@ -1954,24 +2029,21 @@
       "virgin-birth-debate",
       "voice-in-the-wilderness",
       "ye-are-gods-quote",
-      "zecharia-sitchin-overview",
-      "home",
-      "sources-index"
+      "zecharia-sitchin-overview"
     ],
     "reading-paths": [
-      "cognitive-gnosticism",
-      "christ-as-an-inner-model",
-      "faith-as-deliberate-joy",
-      "religion-for-conscious-robots",
-      "antichrist-as-a-pattern-of-conduct",
-      "apocalyptic-repair-theology",
-      "gnosticism-and-temple-trauma",
-      "samaritan-texts-and-sacred-authority",
-      "research-method"
+      "home",
+      "connections"
     ],
     "connections": [
-      "reading-paths"
+      "home"
     ],
-    "image-collection": []
+    "image-collection": [
+      "home",
+      "apocalyptic-repair-theology",
+      "christ-as-an-inner-model",
+      "antichrist-as-a-pattern-of-conduct",
+      "faith-as-deliberate-joy"
+    ]
   }
 }
