@@ -13,7 +13,7 @@ def check(v,s):
  assert v,s
  checks.append(s);print('PASS:',s,flush=True)
 def status(page):
- return page.evaluate('''()=>{const s=__sky.state,p=player,t=p?.track,k=t?.sky;return {won,tries,deliveries,routeQuota,stage:k?.stage,phase:k?(p.trackS/t.len-k.begin)/(k.end-k.begin):-1,armed:s.armed,loops:[...s.completed],transfers:s.transfers,launches:s.launches,catches:s.catches,steps:s.steps,dead:p?.dead,menu:__delivery.state.menu,backend:__merged.renderer.backend.constructor.name,three:__merged.get3D(),view:__delivery.state.view};}''')
+ return page.evaluate('''()=>{const s=__sky.state,p=player,t=p?.track,k=t?.sky;return {won,tries,deliveries,routeQuota,stage:k?.stage,phase:k?(p.trackS/t.len-k.begin)/(k.end-k.begin):-1,armed:s.armed,from:s.from,airFrames:s.airFrames,loops:[...s.completed],transfers:s.transfers,launches:s.launches,catches:s.catches,steps:s.steps,dead:p?.dead,menu:__delivery.state.menu,backend:__merged.renderer.backend.constructor.name,three:__merged.get3D(),view:__delivery.state.view};}''')
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.environ.get('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
@@ -33,24 +33,31 @@ with sync_playwright() as p:
    page.locator(f'[data-course="{route}"]').click();page.locator('#cv').focus()
    page.wait_for_function('mode==="play"&&player.track?.sky&&__sky.state.steps>0')
    check(page.evaluate('__merged.get3D()&&__delivery.state.view==="3d"'),'Route '+str(route+1)+' stays in the actual 3D renderer')
+   check(page.evaluate('!__merged.trackGroup.visible&&!__merged.curveGroup.visible'),'Legacy duplicate rails do not cover the volumetric sky rails')
    page.keyboard.down('KeyD');page.keyboard.down('KeyC')
-   saved=False;start=time.monotonic();last={}
+   saved=False;braking=False;start=time.monotonic();last={}
    while time.monotonic()-start<150:
     st=status(page);last=st
     if st['won']:break
+    should_brake=route==1 and st.get('from')=='loop-1' and st.get('airFrames',0)<55
+    if should_brake!=braking:
+     braking=should_brake
+     page.keyboard.up('KeyD' if braking else 'KeyA');page.keyboard.down('KeyA' if braking else 'KeyD')
     if st['phase']>=.64 and st['phase']<.96 and not st['armed']:
      page.keyboard.press('Space',delay=70)
     if st['transfers']>=1 and not saved:
      page.screenshot(path=str(OUT/f'route-{route+1}-transfer.png'));saved=True
     if st['tries']>2:raise AssertionError('Replay repeatedly missed a receiving rail: '+json.dumps(st))
     page.wait_for_timeout(35)
-   page.keyboard.up('KeyD');page.keyboard.up('KeyC');page.keyboard.up('Space')
+   page.keyboard.up('KeyA');page.keyboard.up('KeyD');page.keyboard.up('KeyC');page.keyboard.up('Space')
    check(last.get('won'),'Route '+str(route+1)+' completes from spawn using ordinary controls')
    check(len(last['loops'])==count and last['transfers']>=count-1,'Route '+str(route+1)+' traverses every loop and its open-air transfers')
    check(last['tries']==1,'Route '+str(route+1)+' completes without a death, checkpoint jump or teleport')
    check(last['deliveries']>=last['routeQuota'],'Route '+str(route+1)+' delivers real projectiles during flight')
    check(page.evaluate('!!JSON.parse(localStorage.getItem("svgn_delivery_records_v1")||"{}")[SkyRoutes.specs[__delivery.state.route].id]'),'Completed sky route saves its medal')
-   events=page.evaluate('__sky.state.events');runs.append({'route':route,'result':last,'events':events});page.screenshot(path=str(OUT/f'route-{route+1}-complete.png'))
+   events=page.evaluate('__sky.state.events')
+   if route==1:check(any(e.get('to')=='loop-2-low' for e in events),'The lower detour is traversed and reconnects during a complete 3D run')
+   runs.append({'route':route,'result':last,'events':events});page.screenshot(path=str(OUT/f'route-{route+1}-complete.png'))
    check(all(e['airFrames']>3 for e in events if e['type']=='transfer'),'Transfers include actual detached ballistic frames')
   check(not errors,'No uncaught errors during all three full 3D playthroughs')
   # A right-only run must not bypass the defining launch mechanic.

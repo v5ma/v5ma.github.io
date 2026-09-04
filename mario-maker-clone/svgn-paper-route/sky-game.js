@@ -137,7 +137,10 @@
   // Called from the existing renderer immediately before its real render pass.
   let cx=null,cy=null,zoom=1;
   window.__skyView=function(camera,view){
-    if(!active()){
+    const m=window.__merged;
+    if(m?.trackGroup)m.trackGroup.visible=mode==='play'&&!active();
+    if(m?.curveGroup)m.curveGroup.visible=mode==='edit'&&!window.__delivery?.state.menu;
+    if(!active()){camera.rotation.set(0,0,0);
       cx=cy=null;
       if(window.__delivery?.state.menu){camera.left=-view.w/1.5;camera.right=view.w/1.5;camera.top=view.h/1.5;camera.bottom=-view.h/1.5;camera.position.set(990,-1940,650);camera.updateProjectionMatrix();camera.updateMatrixWorld();}
       return;
@@ -148,7 +151,7 @@
     zoom+=(desired-zoom)*.045;cx=cx===null?targetX:cx+(targetX-cx)*.14;cy=cy===null?targetY:cy+(targetY-cy)*.13;
     // Bound lag so a high-speed reversal or retry never loses the rider.
     cx=Math.max(p.x-view.w/(zoom*2)*.62,Math.min(p.x+view.w/(zoom*2)*.62,cx));cy=Math.max(-p.y-view.h/(zoom*2)*.57,Math.min(-p.y+view.h/(zoom*2)*.57,cy));
-    camera.left=-view.w/(2*zoom);camera.right=view.w/(2*zoom);camera.top=view.h/(2*zoom);camera.bottom=-view.h/(2*zoom);camera.updateProjectionMatrix();camera.position.set(cx,cy,650);camera.updateMatrixWorld();
+    camera.left=-view.w/(2*zoom);camera.right=view.w/(2*zoom);camera.top=view.h/(2*zoom);camera.bottom=-view.h/(2*zoom);camera.updateProjectionMatrix();camera.position.set(cx+90,cy+60,650);camera.lookAt(cx,cy,0);camera.updateMatrixWorld();
   };
   const render=window.render;window.render=function(){render();hud();};
  }
