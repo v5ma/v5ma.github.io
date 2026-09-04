@@ -15,13 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Integrate sky courses in the existing game
-        run: python scripts/prepare-sky-route.py
+        run: |
+          python scripts/prepare-sky-route.py
+          python scripts/sky-polish.py
       - name: Record integrated source on the feature branch
         if: github.ref == 'refs/heads/feat/sky-loop-flight-20260904'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- index.html mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/delivery-upgrade.js mario-maker-clone/svgn-paper-route/sw.js tests/interactive_browser.py .github/workflows/public-interactive-upgrade.yml
+          git add -- index.html mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/delivery-upgrade.js mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sky-visual.js mario-maker-clone/svgn-paper-route/sky-routes.js tests/interactive_browser.py tests/sky_browser.py
           if ! git diff --cached --quiet; then git commit -m 'Integrate sky-loop main route and full replay verification'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - uses: actions/setup-node@v4
         with:
