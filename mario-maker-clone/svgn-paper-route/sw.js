@@ -8,7 +8,7 @@
    persistent bug in this project. Offline still works: the cache is the
    fallback, not the default.
    ========================================================================= */
-const CACHE = 'svgn-paper-route-v1';
+const CACHE = 'svgn-paper-route-delivery-20260904';
 
 /* only genuinely static things get served from cache first */
 const STATIC = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-180.png'];
@@ -24,7 +24,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(ks => Promise.all(ks.filter(k => k.startsWith('svgn-paper-route-') && k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())        /* control open tabs right away */
   );
 });

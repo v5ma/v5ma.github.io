@@ -1,0 +1,14 @@
+{
+  "name": "dino-atlas",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first 2D/3D paleontology expedition for young explorers.",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs",
+    "test": "node --test tests/unit.test.mjs",
+    "check": "node --check app.js && node --check world.js && node --check art.js && node --check core.js && node --check expedition.js && node --check dino-models.js"
+  },
+  "engines": { "node": ">=22" }
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183f39"><meta name="description" content="Explore a playable 2D and 3D dinosaur landscape. Walk, observe prehistoric animals, inspect fossil clues, and keep a field journal."><title>Dino Atlas | Into the ancient world</title><link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./expedition.css"><script type="module" src="./expedition.js"></script></head>
+<body>
+<header class="exp-header"><a href="../index.html" class="all-projects">All projects</a><a class="exp-brand" href="./index.html"><span class="brand-icon" aria-hidden="true">D</span><span>Dino Atlas<small>INTO THE ANCIENT WORLD</small></span></a><nav aria-label="Expedition navigation"><a href="./field-guide.html#dig">Fossil lab</a><a href="./field-guide.html#journal">Field journal <span id="saved-count">0</span></a><a href="./field-guide.html#grownups">For grown-ups</a></nav></header>
+<main>
+<section class="exp-world" aria-label="Dinosaur exploration game">
+  <canvas id="field-2d" tabindex="0" aria-label="Dinosaur field map. Move with WASD or arrow keys. Press E to inspect a nearby animal or clue."></canvas>
+  <canvas id="field-3d" tabindex="0" aria-label="Three-dimensional dinosaur landscape. Move with WASD or arrows. Drag to orbit the camera. Press E to inspect."></canvas>
+  <div class="scene-top"><div class="exp-era"><span class="live-dot" aria-hidden="true"></span><span id="era-location">LATE JURASSIC</span><small id="era-age">ABOUT 150 MILLION YEARS AGO</small></div><div class="view-controls"><button id="mode-2d" aria-pressed="false">2D map</button><button id="mode-3d" aria-pressed="true">3D world</button><button id="reset-camera" aria-label="Reset camera">Reset view</button></div></div>
+  <aside class="exp-mission"><p class="overline">YOUR FIELD MISSION</p><h1>Walk among<br>lost worlds.</h1><p id="mission-copy">Meet two dinosaurs. Find two clues. Follow the evidence.</p><div id="quest-progress" aria-live="polite">0 of 4 discoveries</div><progress id="quest-bar" max="4" value="0" aria-label="Chapter discoveries"></progress><p class="controls-guide">WASD / arrows to walk.<br>Drag to orbit. E to investigate.</p><button id="help-toggle">Hide field notes</button></aside>
+  <canvas id="minimap" width="180" height="180" aria-label="Map showing the explorer, dinosaurs, and evidence sites"></canvas>
+  <div id="interaction"><p id="interaction-hint">Approach an animal or an amber evidence marker.</p><button id="inspect" disabled>Explore the landscape</button></div>
+  <div id="touch-controls" aria-label="Movement controls"><button data-move="forward" aria-label="Walk forward">W</button><div><button data-move="left" aria-label="Walk left">A</button><button data-move="back" aria-label="Walk backward">S</button><button data-move="right" aria-label="Walk right">D</button></div></div>
+  <div class="scene-credit">Stylized learning landscape. Not a reconstruction of one fossil community.</div>
+</section>
+<section class="time-dock" aria-label="Travel through dinosaur time"><div class="time-label"><small>YOUR TIME MACHINE</small><strong>Choose a chapter.</strong></div><div id="period-buttons"></div><a class="guide-link" href="./field-guide.html#explore">Open the field guide</a></section>
+</main>
+<dialog id="discovery" aria-labelledby="discovery-title"><div id="discovery-content"></div><form method="dialog"><button class="explore-button">Back to exploring</button></form></dialog>
+<div id="exp-toast" role="status" aria-live="polite"></div>
+<noscript>This interactive application requires JavaScript. The field guide also requires JavaScript.</noscript>
+</body></html>
