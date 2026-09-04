@@ -2,7 +2,7 @@ name: Validate interactive projects
 on:
   push:
     branches: [feat/public-arcade-20260904, master]
-    paths: ["scripts/**", "tests/interactive*", "dino-atlas/**", "mario-maker-clone/svgn-paper-route/**", "theology-wiki/san-reader.html", "index.html", "projects.css", ".nojekyll", ".github/workflows/public-interactive-upgrade.yml"]
+    paths: ["scripts/**", "tests/**", "dino-atlas/**", "mario-maker-clone/svgn-paper-route/**", "theology-wiki/san-reader.html", "index.html", "projects.css", ".nojekyll", ".github/workflows/public-interactive-upgrade.yml"]
   workflow_dispatch:
 permissions:
   contents: write
@@ -12,7 +12,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - name: Integrate existing public applications
@@ -32,7 +32,7 @@ jobs:
           node --check mario-maker-clone/svgn-paper-route/campaign.js
           node --check mario-maker-clone/svgn-paper-route/delivery-upgrade.js
           node --check dino-atlas/expedition.js
-          node --test dino-atlas/tests/unit.test.mjs tests/interactive.test.mjs
+          node --test dino-atlas/tests/unit.test.mjs tests/interactive.test.mjs tests/sky_routes.test.mjs
       - name: Install browser test dependencies
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
@@ -55,12 +55,12 @@ jobs:
           python - <<'PY'
           import time,urllib.request,json
           urls={'home':'https://v5ma.github.io/index.html','game':'https://v5ma.github.io/mario-maker-clone/svgn-paper-route/index.html','dino':'https://v5ma.github.io/dino-atlas/index.html','wiki':'https://v5ma.github.io/theology-wiki/san-reader.html','voxel':'https://v5ma.github.io/mario-maker-clone/svgn-paper-route/_voxelizer.js','markdown':'https://v5ma.github.io/theology-wiki/content/home.md'}
-          expected={'home':'Follow your','game':'SVGN_INTERACTIVE_UPGRADE_20260904','dino':'expedition.js','wiki':'Theology Wiki','voxel':'voxelizeSprite','markdown':'Theology'}
+          expected={'home':'Follow your','game':'sky-routes.js','dino':'expedition.js','wiki':'Theology Wiki','voxel':'voxelizeSprite','markdown':'Theology'}
           for attempt in range(36):
             result={}
             for name,url in urls.items():
               try:
-                with urllib.request.urlopen(url+'?build=20260904',timeout=15) as r:
+                with urllib.request.urlopen(url+'?build=20260904sky',timeout=15) as r:
                   text=r.read().decode('utf-8');result[name]={'url':url,'status':r.status,'expected_content':expected[name] in text}
               except Exception as e:result[name]={'url':url,'error':str(e)}
             if all(r.get('status')==200 and r.get('expected_content') for r in result.values()):break
