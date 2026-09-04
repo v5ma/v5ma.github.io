@@ -1,0 +1,87 @@
+name: Validate Theology source edition
+on:
+  push:
+    branches: [feat/theology-source-edition-20260904, master]
+    paths: ["theology-wiki/**", "scripts/prepare-interactive-site.py", ".github/workflows/theology-source-edition.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: theology-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize reviewed source package when present
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,io,lzma,tarfile
+          packages=sorted(Path('theology-wiki').glob('source-edition-bootstrap-*.txt'))
+          if packages:
+            digest,payload=''.join(p.read_text().strip() for p in packages).split(':',1)
+            data=base64.b64decode(payload,validate=False)
+            assert hashlib.sha256(data).hexdigest()==digest,'Source package hash differs'
+            allowed={'theology-wiki/editorial/edition.cjs','theology-wiki/assets/js/research-core.js','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/css/research.css','theology-wiki/tools/build.cjs','theology-wiki/tools/media.py','theology-wiki/tests/research.test.cjs','theology-wiki/tests/browser.py','theology-wiki/README.md'}
+            with tarfile.open(fileobj=io.BytesIO(lzma.decompress(data)),mode='r:') as archive:
+              assert set(archive.getnames())==allowed
+              for item in archive.getmembers():
+                assert item.isfile() and item.size<100000,'Unexpected archive member'
+                target=Path(item.name);target.parent.mkdir(parents=True,exist_ok=True)
+                target.write_bytes(archive.extractfile(item).read())
+            for package in packages: package.unlink()
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and verify original source integrity
+        run: |
+          node theology-wiki/tools/build.cjs
+          node --check theology-wiki/assets/js/research-tools.js
+          node --check theology-wiki/assets/js/theology-reader.js
+          node --test theology-wiki/tests/research.test.cjs
+      - name: Install browser and image tooling
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Preserve public-domain museum images locally
+        run: python theology-wiki/tools/media.py
+      - name: Test native HTTP reader and source conversations
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py
+      - name: Commit tested generated files on the feature branch only
+        if: github.ref == 'refs/heads/feat/theology-source-edition-20260904'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki scripts/prepare-interactive-site.py
+          if ! git diff --cached --quiet; then git commit -m 'Develop Theology source articles, preserved conversations and tested reader'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - name: Record tested source and package review files
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD > theology-test-output/tested-commit.txt
+          git diff --stat > theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          out=Path('theology-test-output')
+          root=Path('theology-wiki')
+          with zipfile.ZipFile(out/'reader-review.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for f in root.rglob('*'):
+              if f.is_file() and '__pycache__' not in f.parts and not f.name.startswith('source-edition-bootstrap-'):z.write(f,f.as_posix())
+            z.write('scripts/prepare-interactive-site.py')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-verification
+          path: theology-test-output/
+          retention-days: 14
