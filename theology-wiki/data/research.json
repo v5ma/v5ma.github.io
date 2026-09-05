@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.05-foundations-1",
+  "version": "2026.09.05-roadmap-1",
   "categories": [
     {
       "id": "gnosis",
@@ -127,7 +127,7 @@
     }
   ],
   "sourceCount": 354,
-  "developedCount": 19,
+  "developedCount": 20,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -193,6 +193,7 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "sacred-inheritance-and-rival-continuations",
       "tor-thomas-and-gnostic-transmission",
+      "melchizedek-priesthood-and-transmission",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
@@ -1544,6 +1545,7 @@
     "theology-theology-revelation-qumran-proof-god-cluster": [],
     "sources-index": [
       "home",
+      "source-coverage",
       "guide-to-the-inquiry",
       "topic-gnosis",
       "topic-apocalypse",
@@ -1712,6 +1714,7 @@
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
       "tor-thomas-and-gnostic-transmission",
+      "melchizedek-priesthood-and-transmission",
       "guide-to-the-inquiry",
       "glossary",
       "topic-jesus",
@@ -1753,6 +1756,7 @@
       "tor-thomas-and-gnostic-transmission",
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
+      "melchizedek-priesthood-and-transmission",
       "guide-to-the-inquiry",
       "glossary",
       "research-method",
@@ -1785,6 +1789,7 @@
       "sacred-inheritance-and-rival-continuations",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
+      "melchizedek-priesthood-and-transmission",
       "guide-to-the-inquiry",
       "glossary",
       "topic-jesus",
@@ -1862,6 +1867,7 @@
       "religion-for-conscious-robots",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
+      "melchizedek-priesthood-and-transmission",
       "topic-traditions",
       "reading-paths",
       "book-contents",
@@ -1874,6 +1880,7 @@
       "sacred-inheritance-and-rival-continuations",
       "scripture-power-and-repair",
       "god-and-our-models-of-god",
+      "melchizedek-priesthood-and-transmission",
       "topic-origins",
       "reading-paths",
       "book-contents",
@@ -1890,6 +1897,7 @@
       "tor-thomas-and-gnostic-transmission",
       "scripture-power-and-repair",
       "god-and-our-models-of-god",
+      "melchizedek-priesthood-and-transmission",
       "topic-jesus",
       "reading-paths",
       "book-contents",
@@ -1899,6 +1907,7 @@
       "home",
       "sacred-inheritance-and-rival-continuations",
       "divine-will-and-self-authorizing-power",
+      "melchizedek-priesthood-and-transmission",
       "topic-jesus",
       "reading-paths",
       "book-contents",
@@ -1913,6 +1922,22 @@
       "reading-paths",
       "book-contents",
       "research-board"
+    ],
+    "melchizedek-priesthood-and-transmission": [
+      "home",
+      "tor-thomas-and-gnostic-transmission",
+      "topic-origins",
+      "book-contents",
+      "research-board"
+    ],
+    "research-roadmap": [
+      "home",
+      "melchizedek-priesthood-and-transmission",
+      "source-coverage"
+    ],
+    "source-coverage": [
+      "home",
+      "research-roadmap"
     ],
     "guide-to-the-inquiry": [
       "home"
@@ -2348,6 +2373,7 @@
       "cognitive-gnosticism",
       "sacred-inheritance-and-rival-continuations",
       "scripture-power-and-repair",
+      "research-roadmap",
       "research-board"
     ],
     "parallel-timelines": [
@@ -2359,6 +2385,7 @@
       "home",
       "cognitive-gnosticism",
       "scripture-power-and-repair",
+      "research-roadmap",
       "book-contents",
       "intellectual-debts"
     ],

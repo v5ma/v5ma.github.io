@@ -45,7 +45,7 @@ with sync_playwright() as tool:
     page.on('pageerror', lambda e: ERRORS.append(str(e)))
     try:
         open_page(page)
-        check('Native HTTP reader loads 408 indexed pages', page.evaluate('TheologyReader.pages().length') == 408)
+        check('Native HTTP reader loads 411 indexed pages', page.evaluate('TheologyReader.pages().length') == 411)
         check('Home prioritizes three flagship arguments', page.locator('.depth-featured .research-card').count() == 3)
         check('Homepage describes 354 original source conversations', '354' in page.locator('.depth-home-footer').inner_text())
         check('Eight subject collections are accessible in the sidebar', page.locator('.research-topic-link').count() == 8)
@@ -155,7 +155,7 @@ with sync_playwright() as tool:
         open_page(page,'reading-paths')
         check('Five reading routes are available',page.locator('#article-body h2, #article-body h3').count()>=5)
         page.goto(BASE+'?page=not-a-real-page',wait_until='domcontentloaded')
-        page.wait_for_timeout(500)
+        page.wait_for_function("window.TheologyReader && TheologyReader.current()===null && document.querySelector('#article-body').textContent.toLowerCase().includes('page index does not contain')")
         check('Unknown routes do not silently pretend to be home', page.evaluate('TheologyReader.current()===null') and 'page index does not contain' in page.locator('#article-body').inner_text().lower())
         # Delay one fetch while navigating elsewhere: only the newest article may render.
         open_page(page)
@@ -247,7 +247,10 @@ with sync_playwright() as tool:
 
         # Reader-depth edition: usability and evidence checks with native controls.
         open_page(page)
-        check('Home includes a connecting introduction and all other developed articles', page.locator('.depth-article-index a').count()==16 and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
+        expected_articles=set(page.evaluate("TheologyReader.pages().filter(p=>p.kind==='Developed article').map(p=>p.slug)"))
+        featured_articles=page.locator('.depth-featured a[data-page]').evaluate_all('(links)=>links.map(a=>a.dataset.page)')
+        indexed_articles=page.locator('.depth-article-index a[data-page]').evaluate_all('(links)=>links.map(a=>a.dataset.page)')
+        check('Home includes the connecting introduction and every developed article exactly once', len(expected_articles)==20 and len(featured_articles)==3 and len(indexed_articles)==len(expected_articles)-3 and len(set(featured_articles+indexed_articles))==len(expected_articles) and set(featured_articles+indexed_articles)==expected_articles and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
         page.locator('.depth-featured a[data-page="apocalyptic-repair-theology"]').click()
         page.wait_for_function('document.querySelector("#article-body")?.dataset.depthReady==="apocalyptic-repair-theology"')
         check('A normal homepage click opens the flagship article', page.evaluate('TheologyReader.current().slug')=='apocalyptic-repair-theology')
@@ -331,10 +334,13 @@ with sync_playwright() as tool:
         page.screenshot(path=str(OUT/'home-desktop-top.png'),full_page=False)
         from foundation_checks import run_foundation_checks
         run_foundation_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
+        from roadmap_checks import run_roadmap_checks
+        run_roadmap_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback
         (OUT/'failure-traceback.txt').write_text(traceback.format_exc())
+        (OUT/'failure-browser-state.json').write_text(json.dumps({'errors':ERRORS,'state':page.evaluate('({url:location.href,current:window.TheologyReader?.current()?.slug,title:document.querySelector("#article-title")?.textContent,body:document.querySelector("#article-body")?.textContent.slice(0,2000)})')},indent=2))
         screenshot(page,'failure.png')
         (OUT/'failure.html').write_text(page.content())
         raise

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.05-foundations-1",
+  "version": "2026.09.05-roadmap-1",
   "policy": "Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.",
   "edges": [
     {
@@ -322,6 +322,55 @@
       "to": "tor-thomas-and-gnostic-transmission",
       "type": "supports attribution",
       "why": "Named debts supply provenance for the investigation without making every later extension a claim endorsed by that author.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "melchizedek-priesthood-and-transmission",
+      "type": "develops",
+      "why": "The passage comparison carries out the requested Melchizedek sub-investigation without replacing the broader Teacher, Thomas and Gnostic reconstruction.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "to": "jesus-teacher-of-righteousness-hypothesis",
+      "type": "distinguishes",
+      "why": "Shared priestly language is relevant to the reconstruction but does not by itself establish the identity or genealogy of a historical teacher.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "applies",
+      "why": "Different texts can retain a recognizable priestly figure while changing how the figure authorizes a community.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "to": "apocalyptic-repair-theology",
+      "type": "compares",
+      "why": "Release from captivity motivates a philosophical comparison with repair; thematic usefulness is not proof of an uninterrupted genealogy.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "to": "divine-will-and-self-authorizing-power",
+      "type": "connects",
+      "why": "The source of legitimate authority and its relationship to an agent's desires remain separate questions.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "research-roadmap",
+      "to": "source-coverage",
+      "type": "documents",
+      "why": "Coverage records identify actual article links and selected anchors, not a speculative count of sources already read.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "research-roadmap",
+      "to": "book-contents",
+      "type": "organizes",
+      "why": "The deliverable sequence points to chapter routes without declaring the manuscript completed.",
       "origin": "Editorial relationship"
     },
     {
@@ -722,6 +771,13 @@
       "type": "source",
       "why": "The article develops an argument from Faith as Vibration Concept. Read the original speakers separately from the editorial prose.",
       "origin": "Article source reference"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
     }
   ],
   "anchors": [
@@ -761,6 +817,30 @@
       "from": "jesus-teacher-of-righteousness-hypothesis",
       "turn": 26,
       "why": "The author explains the later Peter and James as namesakes or descendants and proposes community continuity.",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "turn": 63,
+      "why": "The author asks for prior research and proposed Egyptian/Ethiopian transmission connections.",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "turn": 82,
+      "why": "The author explicitly asks about Melchizedek across the New Testament, Qumran and Gnostic material.",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "melchizedek-priesthood-and-transmission",
+      "turn": 84,
+      "why": "The author asks how Davidic and Zadokite lines relate to the Melchizedek question.",
       "to": "ai-re-dates-dead-sea-scrolls",
       "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
       "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"

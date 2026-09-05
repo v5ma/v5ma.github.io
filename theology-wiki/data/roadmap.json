@@ -1,0 +1,1494 @@
+{
+  "schemaVersion": 1,
+  "version": "2026.09.05-roadmap-1",
+  "updated": "2026-09-05",
+  "baselineCommit": "a39f1f8391580e1a743763d6f6c455e4ead3aad8",
+  "policy": "This is a sequence of deliverables, not a promise of background work or a calendar estimate. Verified output means the stated deliverable has evidence, not that a theory is true or a chapter is approved. Changes to this shared baseline require a repository edit. Workbook and personal-board edits do not automatically update it.",
+  "phases": [
+    {
+      "id": "preserve",
+      "title": "Preserve and map the corpus",
+      "exitCriterion": "An immutable source trail and a durable, testable plan.",
+      "horizon": "Maintain throughout"
+    },
+    {
+      "id": "ground",
+      "title": "Assemble and verify passages",
+      "exitCriterion": "Exact passages, usable citations and distinguishable historical reconstructions.",
+      "horizon": "Next research passes"
+    },
+    {
+      "id": "develop",
+      "title": "Develop complete arguments",
+      "exitCriterion": "Supporting cases, corrections, counterexamples and intellectual debts are retained.",
+      "horizon": "After passage assembly"
+    },
+    {
+      "id": "connect",
+      "title": "Connect the book",
+      "exitCriterion": "Cross-chapter dependencies and a narrative order that does not flatten independent arguments.",
+      "horizon": "Alongside argument development"
+    },
+    {
+      "id": "assemble",
+      "title": "Assemble chapter drafts",
+      "exitCriterion": "A reproducible manuscript built from approved wording rather than a printed wiki.",
+      "horizon": "After evidence and author review"
+    },
+    {
+      "id": "review",
+      "title": "Review meaning and presentation",
+      "exitCriterion": "Authorial fidelity, bibliography, dates, ethical claims and accessibility checked separately.",
+      "horizon": "Before manuscript freeze"
+    },
+    {
+      "id": "release",
+      "title": "Prepare a stable edition",
+      "exitCriterion": "Frozen content, working links, rights and reproducible publication artifacts.",
+      "horizon": "After review gates"
+    }
+  ],
+  "statuses": [
+    "Not started",
+    "In progress",
+    "Draft",
+    "Author review",
+    "Verified output",
+    "Blocked"
+  ],
+  "tasks": [
+    {
+      "id": "archive-integrity",
+      "title": "Preserve and verify all 354 published chats",
+      "phase": "preserve",
+      "status": "Verified output",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "sources-index"
+      ],
+      "acceptance": "Every original chat matches the existing byte-count and SHA-256 manifest.",
+      "dependsOn": [],
+      "evidence": [
+        "https://github.com/v5ma/v5ma.github.io/commit/2a884f4eeaf3690a49adfeda1d43c9477065da76",
+        "theology-sources/manifest.json"
+      ],
+      "sourceTask": null,
+      "nextAction": "Every original chat matches the existing byte-count and SHA-256 manifest.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "reader-baseline",
+      "title": "Retain tested source reading, search and bookmarks",
+      "phase": "preserve",
+      "status": "Verified output",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "home"
+      ],
+      "acceptance": "Foundation reader functions have native HTTP browser test evidence.",
+      "dependsOn": [],
+      "evidence": [
+        "https://github.com/v5ma/v5ma.github.io/commit/2a884f4eeaf3690a49adfeda1d43c9477065da76",
+        "theology-wiki/tests/browser.py"
+      ],
+      "sourceTask": null,
+      "nextAction": "Foundation reader functions have native HTTP browser test evidence.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "contents-baseline",
+      "title": "Preserve seventeen proposed chapter routes",
+      "phase": "connect",
+      "status": "Verified output",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "book-contents"
+      ],
+      "acceptance": "Seventeen routes in five parts are navigable; no route is labeled a completed chapter.",
+      "dependsOn": [],
+      "evidence": [
+        "https://github.com/v5ma/v5ma.github.io/commit/2a884f4eeaf3690a49adfeda1d43c9477065da76",
+        "theology-wiki/data/foundations.json"
+      ],
+      "sourceTask": null,
+      "nextAction": "Seventeen routes in five parts are navigable; no route is labeled a completed chapter.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "scope-baseline",
+      "title": "Preserve selected argument maps and author corrections",
+      "phase": "preserve",
+      "status": "Verified output",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "acceptance": "Nine selected dossiers expose 24 classified passages and preserve original speaker labels.",
+      "dependsOn": [],
+      "evidence": [
+        "https://github.com/v5ma/v5ma.github.io/commit/2a884f4eeaf3690a49adfeda1d43c9477065da76",
+        "theology-wiki/data/foundations.json"
+      ],
+      "sourceTask": null,
+      "nextAction": "Nine selected dossiers expose 24 classified passages and preserve original speaker labels.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "shared-roadmap",
+      "title": "Publish the durable roadmap and dependency checks",
+      "phase": "preserve",
+      "status": "Verified output",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "research-roadmap"
+      ],
+      "acceptance": "A committed canonical plan drives the published checklist and an acyclic dependency graph; missing completion evidence fails validation.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [
+        "theology-wiki/editorial/roadmap.json",
+        "theology-wiki/tests/roadmap.test.cjs"
+      ],
+      "sourceTask": null,
+      "nextAction": "A committed canonical plan drives the published checklist and an acyclic dependency graph; missing completion evidence fails validation.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "coverage-register",
+      "title": "Publish complete source-to-article and chapter coverage",
+      "phase": "preserve",
+      "status": "Verified output",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "source-coverage"
+      ],
+      "acceptance": "All 354 source rows are generated from actual article references and selected anchors; unlinked is never mislabeled unread.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [
+        "theology-wiki/data/source-coverage.json",
+        "theology-wiki/tests/roadmap.test.cjs"
+      ],
+      "sourceTask": null,
+      "nextAction": "All 354 source rows are generated from actual article references and selected anchors; unlinked is never mislabeled unread.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "planning-workbook",
+      "title": "Publish a checked Excel planning snapshot",
+      "phase": "preserve",
+      "status": "Verified output",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "research-roadmap"
+      ],
+      "acceptance": "The workbook includes task dependencies, chapter routes, all source rows and evidence; formula values and source-manifest hashes are checked.",
+      "dependsOn": [
+        "shared-roadmap",
+        "coverage-register"
+      ],
+      "evidence": [
+        "theology-wiki/planning/Theology-Research-Plan.xlsx",
+        "theology-wiki/planning/workbook-manifest.json"
+      ],
+      "sourceTask": null,
+      "nextAction": "The workbook includes task dependencies, chapter routes, all source rows and evidence; formula values and source-manifest hashes are checked.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "melchizedek-first-pass",
+      "title": "Write the first passage-level Melchizedek comparison",
+      "phase": "ground",
+      "status": "Verified output",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "thomas",
+        "teacher-identity"
+      ],
+      "pages": [
+        "melchizedek-priesthood-and-transmission"
+      ],
+      "acceptance": "Genesis 14, Psalm 110, Hebrews 7, 11Q13 and Nag Hammadi are compared with passage locators, access scopes, translation credit and original author-turn links.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [
+        "theology-wiki/content/developed/melchizedek-priesthood-and-transmission.md",
+        "theology-wiki/data/melchizedek-evidence.json"
+      ],
+      "sourceTask": null,
+      "nextAction": "Genesis 14, Psalm 110, Hebrews 7, 11Q13 and Nag Hammadi are compared with passage locators, access scopes, translation credit and original author-turn links.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "tor-version",
+      "title": "Keep both Teacher reconstructions legible",
+      "phase": "review",
+      "status": "Author review",
+      "priority": "P0",
+      "owner": "Micah",
+      "chapters": [
+        "thomas"
+      ],
+      "pages": [
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "acceptance": "Confirm the June comparison and October identification are presented in their full strength, including the community/namesake explanation.",
+      "dependsOn": [
+        "scope-baseline",
+        "melchizedek-first-pass"
+      ],
+      "evidence": [],
+      "sourceTask": "tor-version",
+      "nextAction": "Confirm the June comparison and October identification are presented in their full strength, including the community/namesake explanation.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "thomas-passages",
+      "title": "Extend the Thomas passage comparison",
+      "phase": "ground",
+      "status": "Draft",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "thomas"
+      ],
+      "pages": [
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "acceptance": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [],
+      "sourceTask": "thomas-passages",
+      "nextAction": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "melchizedek",
+      "title": "Collate and extend the first Melchizedek comparison",
+      "phase": "ground",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "thomas"
+      ],
+      "pages": [
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "acceptance": "Check the critical 11Q13 text and the printed Nag Hammadi edition, record variant readings, and compare the two-messiah evidence. The published first pass does not complete the wider transmission study.",
+      "dependsOn": [
+        "melchizedek-first-pass"
+      ],
+      "evidence": [],
+      "sourceTask": "melchizedek",
+      "nextAction": "Check the critical 11Q13 text and the printed Nag Hammadi edition, record variant readings, and compare the two-messiah evidence. The published first pass does not complete the wider transmission study.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "tabor-citations",
+      "title": "Locate precise Tabor citations",
+      "phase": "ground",
+      "status": "Not started",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "intellectual-debts"
+      ],
+      "acceptance": "Identify which editions, pages or recordings support the claims acknowledged in the older conversations; later 2026 posts cannot date the 2025 influence.",
+      "dependsOn": [
+        "scope-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": "tabor-citations",
+      "nextAction": "Identify which editions, pages or recordings support the claims acknowledged in the older conversations; later 2026 posts cannot date the 2025 influence.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "egypt-ethiopia",
+      "title": "Check Egypt and Ethiopian transmission links",
+      "phase": "ground",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "thomas"
+      ],
+      "pages": [
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "acceptance": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge.",
+      "dependsOn": [
+        "melchizedek-first-pass"
+      ],
+      "evidence": [],
+      "sourceTask": "egypt-ethiopia",
+      "nextAction": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "priesthood",
+      "title": "Resolve the Davidic/priestly knot",
+      "phase": "develop",
+      "status": "Draft",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "teacher-identity"
+      ],
+      "pages": [
+        "jesus-teacher-of-righteousness-hypothesis"
+      ],
+      "acceptance": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.",
+      "dependsOn": [
+        "melchizedek-first-pass"
+      ],
+      "evidence": [],
+      "sourceTask": "priesthood",
+      "nextAction": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "will",
+      "title": "Review the divine-will comparison",
+      "phase": "review",
+      "status": "Author review",
+      "priority": "P0",
+      "owner": "Micah",
+      "chapters": [
+        "inner-model",
+        "will"
+      ],
+      "pages": [
+        "divine-will-and-self-authorizing-power"
+      ],
+      "acceptance": "Confirm the constructive reading and political application; retain the distinction between recorded heaven remarks and inferred motive.",
+      "dependsOn": [
+        "scope-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": "will",
+      "nextAction": "Confirm the constructive reading and political application; retain the distinction between recorded heaven remarks and inferred motive.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "mixed-cases",
+      "title": "Expand the Samuel/Micah mixed-case survey",
+      "phase": "ground",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "scriptural-axis",
+        "repair-practice"
+      ],
+      "pages": [
+        "scripture-power-and-repair"
+      ],
+      "acceptance": "The existing two worked passages do not substitute for the broad survey the author requested. Add passages and contextual counterexamples.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [],
+      "sourceTask": "mixed-cases",
+      "nextAction": "The existing two worked passages do not substitute for the broad survey the author requested. Add passages and contextual counterexamples.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "coherence",
+      "title": "Specify the different senses of coherence",
+      "phase": "develop",
+      "status": "Draft",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "images",
+        "next-inheritors"
+      ],
+      "pages": [
+        "god-and-our-models-of-god"
+      ],
+      "acceptance": "Separate physical, experiential and ethical meanings; explain how critical disagreement can preserve rather than defeat moral alignment.",
+      "dependsOn": [
+        "scope-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": "coherence",
+      "nextAction": "Separate physical, experiential and ethical meanings; explain how critical disagreement can preserve rather than defeat moral alignment.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "inner-model",
+      "title": "Review second-order model correction",
+      "phase": "review",
+      "status": "Author review",
+      "priority": "P1",
+      "owner": "Micah",
+      "chapters": [
+        "inner-model"
+      ],
+      "pages": [
+        "christ-as-an-inner-model"
+      ],
+      "acceptance": "Confirm the worked example represents the original argument: the moral model is scrutinized as well as used.",
+      "dependsOn": [
+        "scope-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": "inner-model",
+      "nextAction": "Confirm the worked example represents the original argument: the moral model is scrutinized as well as used.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "forecast-source",
+      "title": "Recover the later fuel/famine statements",
+      "phase": "ground",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "warnings"
+      ],
+      "pages": [
+        "forecast-ledger"
+      ],
+      "acceptance": "Recover full original passages and their dates before outcome assessment. Existing recovery leads remain unscored.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [],
+      "sourceTask": "forecast-source",
+      "nextAction": "Recover full original passages and their dates before outcome assessment. Existing recovery leads remain unscored.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "trauma",
+      "title": "Build the comparative Temple-trauma corpus",
+      "phase": "ground",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "trauma"
+      ],
+      "pages": [
+        "gnosticism-and-temple-trauma"
+      ],
+      "acceptance": "Select Gnostic and non-Gnostic texts with independently justified dates; distinguish grief, just anger, rejection of creation and institutional repair.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [],
+      "sourceTask": "trauma",
+      "nextAction": "Select Gnostic and non-Gnostic texts with independently justified dates; distinguish grief, just anger, rejection of creation and institutional repair.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "formalism",
+      "title": "Define the shared-inheritance formalism",
+      "phase": "develop",
+      "status": "Draft",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "shared-archive",
+        "continuing"
+      ],
+      "pages": [
+        "sacred-inheritance-and-rival-continuations"
+      ],
+      "acceptance": "Specify objects, mappings and composition before calling the category-theory model a proof; test whether it distinguishes cases usefully.",
+      "dependsOn": [
+        "contents-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": "formalism",
+      "nextAction": "Specify objects, mappings and composition before calling the category-theory model a proof; test whether it distinguishes cases usefully.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "robot-reciprocity",
+      "title": "Develop reciprocal duties toward conscious machines",
+      "phase": "develop",
+      "status": "Draft",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "next-inheritors"
+      ],
+      "pages": [
+        "religion-for-conscious-robots"
+      ],
+      "acceptance": "Separate the author's teaching proposal from the new editorial question about obligations toward future conscious participants.",
+      "dependsOn": [
+        "coherence"
+      ],
+      "evidence": [],
+      "sourceTask": "robot-reciprocity",
+      "nextAction": "Separate the author's teaching proposal from the new editorial question about obligations toward future conscious participants.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "coherence"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "book-seed-status",
+      "title": "Review the old private-first label",
+      "phase": "review",
+      "status": "Author review",
+      "priority": "P0",
+      "owner": "Micah",
+      "chapters": [
+        "shared-archive",
+        "continuing"
+      ],
+      "pages": [
+        "sacred-inheritance-and-rival-continuations"
+      ],
+      "acceptance": "The existing public source seed still calls itself private-first. Confirm its intended editorial status without changing the original file automatically.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [],
+      "sourceTask": "book-seed-status",
+      "nextAction": "The existing public source seed still calls itself private-first. Confirm its intended editorial status without changing the original file automatically.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "chapter-arc",
+      "title": "Review the proposed book sequence",
+      "phase": "connect",
+      "status": "Author review",
+      "priority": "P1",
+      "owner": "Micah",
+      "chapters": [
+        "shared-archive",
+        "names",
+        "catastrophe-memory",
+        "teacher-identity",
+        "thomas",
+        "trauma",
+        "images",
+        "gnosis",
+        "inner-model",
+        "faith",
+        "scriptural-axis",
+        "will",
+        "beast",
+        "warnings",
+        "repair-practice",
+        "next-inheritors",
+        "continuing"
+      ],
+      "pages": [
+        "book-contents"
+      ],
+      "acceptance": "The contents is a proposed argument order, not a finished manuscript. Confirm whether the sequence preserves the breadth of the author's project.",
+      "dependsOn": [
+        "contents-baseline",
+        "scope-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": "chapter-arc",
+      "nextAction": "The contents is a proposed argument order, not a finished manuscript. Confirm whether the sequence preserves the breadth of the author's project.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": false
+    },
+    {
+      "id": "dossier-coverage",
+      "title": "Extend full argument maps to remaining developed articles",
+      "phase": "preserve",
+      "status": "Not started",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "source-coverage"
+      ],
+      "acceptance": "Every developed article has reviewed claims, original corrections, rejected readings and a scoped list of sources; source linking alone is not a fidelity sign-off.",
+      "dependsOn": [
+        "coverage-register",
+        "scope-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Every developed article has reviewed claims, original corrections, rejected readings and a scoped list of sources; source linking alone is not a fidelity sign-off.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "temple-case",
+      "title": "Build one worked sacred-center dispute",
+      "phase": "ground",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "shared-archive"
+      ],
+      "pages": [
+        "samaritan-texts-and-sacred-authority"
+      ],
+      "acceptance": "Compare exact textual readings and institutional claims for a selected sacred-center dispute with dates, translations and alternative interpretations.",
+      "dependsOn": [
+        "archive-integrity"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Compare exact textual readings and institutional claims for a selected sacred-center dispute with dates, translations and alternative interpretations.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "second-beast-history",
+      "title": "Explain the changing Second Beast candidates",
+      "phase": "develop",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "beast"
+      ],
+      "pages": [
+        "trump-first-beast-of-revelation"
+      ],
+      "acceptance": "Preserve dated candidates and whether each is an allegory, institutional role or fulfillment claim; explain what remains stable across versions.",
+      "dependsOn": [
+        "scope-baseline"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Preserve dated candidates and whether each is an allegory, institutional role or fulfillment claim; explain what remains stable across versions.",
+      "targetDate": null,
+      "unmetDependencies": [],
+      "dependencyState": "Prerequisites met",
+      "readyToStart": true
+    },
+    {
+      "id": "forecast-observations",
+      "title": "Build a separately dated observation register",
+      "phase": "ground",
+      "status": "Blocked",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "warnings"
+      ],
+      "pages": [
+        "forecast-ledger"
+      ],
+      "acceptance": "Recovered original predictions, conditions and dates remain immutable; later observations and assessments are separate records. No retroactive threshold is labeled preregistered.",
+      "dependsOn": [
+        "forecast-source"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Recovered original predictions, conditions and dates remain immutable; later observations and assessments are separate records. No retroactive threshold is labeled preregistered.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "forecast-source"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "chapter-gates",
+      "title": "Attach explicit readiness gates to all chapter routes",
+      "phase": "connect",
+      "status": "Not started",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "shared-archive",
+        "names",
+        "catastrophe-memory",
+        "teacher-identity",
+        "thomas",
+        "trauma",
+        "images",
+        "gnosis",
+        "inner-model",
+        "faith",
+        "scriptural-axis",
+        "will",
+        "beast",
+        "warnings",
+        "repair-practice",
+        "next-inheritors",
+        "continuing"
+      ],
+      "pages": [
+        "book-contents"
+      ],
+      "acceptance": "Each chapter has an argument map, worked sources, competing explanations, attribution, author review and a narrative handoff; no readiness is inferred from word count.",
+      "dependsOn": [
+        "chapter-arc",
+        "dossier-coverage"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Each chapter has an argument map, worked sources, competing explanations, attribution, author review and a narrative handoff; no readiness is inferred from word count.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "chapter-arc",
+        "dossier-coverage"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "pilot-chapter",
+      "title": "Draft the opening chapter in approved author-led prose",
+      "phase": "assemble",
+      "status": "Blocked",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [
+        "shared-archive"
+      ],
+      "pages": [
+        "sacred-inheritance-and-rival-continuations"
+      ],
+      "acceptance": "A complete opening chapter develops the inheritance problem and its transition, with author-approved first-person wording and endnotes.",
+      "dependsOn": [
+        "chapter-arc",
+        "temple-case",
+        "book-seed-status"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "A complete opening chapter develops the inheritance problem and its transition, with author-approved first-person wording and endnotes.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "chapter-arc",
+        "temple-case",
+        "book-seed-status"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "manuscript-build",
+      "title": "Build a reproducible ordered manuscript",
+      "phase": "assemble",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "book-contents"
+      ],
+      "acceptance": "A pinned chapter map produces manuscript text, stable cross-references and endnotes without copying chat boilerplate. No automatic author-approval flag.",
+      "dependsOn": [
+        "pilot-chapter",
+        "chapter-gates"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "A pinned chapter map produces manuscript text, stable cross-references and endnotes without copying chat boilerplate. No automatic author-approval flag.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "pilot-chapter",
+        "chapter-gates"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "author-fidelity",
+      "title": "Review the full manuscript for argument preservation",
+      "phase": "review",
+      "status": "Blocked",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "book-contents"
+      ],
+      "acceptance": "Micah approves the manuscript argument by argument, including qualifications, intellectual debts, version distinctions and original corrections.",
+      "dependsOn": [
+        "manuscript-build"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Micah approves the manuscript argument by argument, including qualifications, intellectual debts, version distinctions and original corrections.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "manuscript-build"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "bibliography-rights",
+      "title": "Audit bibliography, quotations and image rights",
+      "phase": "review",
+      "status": "Not started",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "intellectual-debts",
+        "image-collection"
+      ],
+      "acceptance": "Every scholarly claim has a consulted edition/location; all quotation and image licenses and required credits are checked.",
+      "dependsOn": [
+        "tabor-citations",
+        "melchizedek",
+        "manuscript-build"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Every scholarly claim has a consulted edition/location; all quotation and image licenses and required credits are checked.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "tabor-citations",
+        "melchizedek",
+        "manuscript-build"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "copyedit",
+      "title": "Edit flow, terminology and cross-chapter consistency",
+      "phase": "review",
+      "status": "Not started",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "book-contents"
+      ],
+      "acceptance": "Remove duplication and inconsistent terms without deleting substantive distinctions; maintain a traceable editorial change log.",
+      "dependsOn": [
+        "author-fidelity",
+        "bibliography-rights"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Remove duplication and inconsistent terms without deleting substantive distinctions; maintain a traceable editorial change log.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "author-fidelity",
+        "bibliography-rights"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "publication-qa",
+      "title": "Verify publication artifacts and reader accessibility",
+      "phase": "release",
+      "status": "Not started",
+      "priority": "P0",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "research-roadmap"
+      ],
+      "acceptance": "Run complete content/browser checks, read every print-layout page, verify links and credits, and archive the exact approved edition.",
+      "dependsOn": [
+        "copyedit"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Run complete content/browser checks, read every print-layout page, verify links and credits, and archive the exact approved edition.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "copyedit"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    },
+    {
+      "id": "release-edition",
+      "title": "Publish an author-approved edition and companion wiki",
+      "phase": "release",
+      "status": "Blocked",
+      "priority": "P1",
+      "owner": "Editorial/research work (unassigned)",
+      "chapters": [],
+      "pages": [
+        "book-contents"
+      ],
+      "acceptance": "Publish only after author sign-off, rights and technical checks; pin source versions and maintain a dated errata record.",
+      "dependsOn": [
+        "publication-qa",
+        "author-fidelity"
+      ],
+      "evidence": [],
+      "sourceTask": null,
+      "nextAction": "Publish only after author sign-off, rights and technical checks; pin source versions and maintain a dated errata record.",
+      "targetDate": null,
+      "unmetDependencies": [
+        "publication-qa",
+        "author-fidelity"
+      ],
+      "dependencyState": "Prerequisites open",
+      "readyToStart": false
+    }
+  ],
+  "log": [
+    {
+      "date": "2026-09-05",
+      "change": "Established a canonical 36-deliverable roadmap from the foundation board, existing verified outputs and publication gates. Added the first Melchizedek passage comparison and a generated archive coverage register.",
+      "evidence": [
+        "theology-wiki/editorial/roadmap.json"
+      ]
+    }
+  ],
+  "verificationNote": "Current outputs are verified against the recorded build, content and planning tests. Native-browser and publication evidence is attached to the release pull request; completed outputs do not signify author-approved chapters.",
+  "chapters": [
+    {
+      "id": "shared-archive",
+      "title": "Who inherits the sacred?",
+      "purpose": "Establish the shared-inheritance question before examining rival claims.",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "samaritan-texts-and-sacred-authority"
+      ],
+      "status": "Draft chapter route",
+      "partId": "inheritance",
+      "partTitle": "The contested inheritance",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "formalism",
+        "book-seed-status",
+        "chapter-arc",
+        "temple-case",
+        "chapter-gates",
+        "pilot-chapter"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "samaritan-and-jewish-texts",
+        "ai-re-dates-dead-sea-scrolls",
+        "teacher-of-righteousness-vs-gnostic-jesus",
+        "paul-vs-james-movement"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "names",
+      "title": "Names across boundaries",
+      "purpose": "Separate the movement of divine names from the identity of an entire religion.",
+      "pages": [
+        "el-in-ancient-egypt",
+        "kenite-hypothesis-and-yahweh-origins"
+      ],
+      "status": "Draft chapter route",
+      "partId": "inheritance",
+      "partTitle": "The contested inheritance",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "jews-and-canaanites-origins",
+        "yahweh-and-asherah-s-relationship",
+        "gnostic-teachings-and-clarity",
+        "what-is-midian"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "catastrophe-memory",
+      "title": "Catastrophe, departure and memory",
+      "purpose": "Compare the competing Moses and volcano proposals without blending their geographies or dates.",
+      "pages": [
+        "moses-volcano-and-exodus-chronology"
+      ],
+      "status": "Draft chapter route",
+      "partId": "inheritance",
+      "partTitle": "The contested inheritance",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "moses-dating-debate",
+        "parthians-and-medes-meaning"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "teacher-identity",
+      "title": "What survives a teacher?",
+      "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
+      "pages": [
+        "jesus-teacher-of-righteousness-hypothesis"
+      ],
+      "status": "Draft chapter route",
+      "partId": "teacher",
+      "partTitle": "The teacher and the transmitted message",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "melchizedek-first-pass",
+        "priesthood",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "teacher-of-righteousness-vs-gnostic-jesus",
+        "pilate-life-timeline",
+        "daniel-and-teacher-of-righteousness",
+        "ai-re-dates-dead-sea-scrolls"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "thomas",
+      "title": "The Teacher, Thomas and the deeper teaching",
+      "purpose": "Present the linked argument before comparing its alternative historical mechanisms.",
+      "pages": [
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ],
+      "status": "Draft chapter route",
+      "partId": "teacher",
+      "partTitle": "The teacher and the transmitted message",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "melchizedek-first-pass",
+        "tor-version",
+        "thomas-passages",
+        "melchizedek",
+        "egypt-ethiopia",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "teacher-of-righteousness-vs-gnostic-jesus",
+        "ai-re-dates-dead-sea-scrolls",
+        "daniel-and-teacher-of-righteousness",
+        "paul-vs-james-movement",
+        "who-was-josepheous",
+        "jewish-apocalyptic-repair-timeline"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "trauma",
+      "title": "Loss, anger and reconstruction",
+      "purpose": "Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assuming a single emotional progression.",
+      "pages": [
+        "gnosticism-and-temple-trauma",
+        "apocalyptic-repair-theology"
+      ],
+      "status": "Draft chapter route",
+      "partId": "teacher",
+      "partTitle": "The teacher and the transmitted message",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "trauma",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "early-vs-later-gnosticism",
+        "jewish-apocalyptic-repair-timeline",
+        "agi-religious-framework"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "images",
+      "title": "God and our images of God",
+      "purpose": "Distinguish a representation, its claimed referent and the standard by which it is corrected.",
+      "pages": [
+        "god-and-our-models-of-god"
+      ],
+      "status": "Draft chapter route",
+      "partId": "inward",
+      "partTitle": "The inheritance inside a mind",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "coherence",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "naming-god-as-purpose",
+        "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+        "agi-religious-framework",
+        "faith-as-vibration-concept"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "gnosis",
+      "title": "Cognitive Gnosticism",
+      "purpose": "Develop the relationship between understanding a teaching and embodying it in a changing mind.",
+      "pages": [
+        "cognitive-gnosticism"
+      ],
+      "status": "Draft chapter route",
+      "partId": "inward",
+      "partTitle": "The inheritance inside a mind",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+        "publishing-cognitive-gnosticism-first",
+        "antichrist-spiritual-inversion",
+        "teacher-of-righteousness-vs-gnostic-jesus",
+        "faith-as-vibration-concept"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "inner-model",
+      "title": "Christ as an active moral model",
+      "purpose": "Follow the comparison, the changed action and the subsequent correction of the model.",
+      "pages": [
+        "christ-as-an-inner-model",
+        "divine-will-and-self-authorizing-power"
+      ],
+      "status": "Draft chapter route",
+      "partId": "inward",
+      "partTitle": "The inheritance inside a mind",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "will",
+        "inner-model",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+        "antichrist-spiritual-inversion",
+        "teacher-of-righteousness-vs-gnostic-jesus",
+        "samuel-vs-micah-divide",
+        "resurrection-debate-in-christianity",
+        "agi-religious-framework"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "faith",
+      "title": "Faith as a practiced orientation",
+      "purpose": "Explain deliberate joy without erasing grief, danger or responsibility to others.",
+      "pages": [
+        "faith-as-deliberate-joy"
+      ],
+      "status": "Draft chapter route",
+      "partId": "inward",
+      "partTitle": "The inheritance inside a mind",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "deliberate-joy-concept",
+        "antichrist-spiritual-inversion",
+        "faith-as-vibration-concept",
+        "samuel-vs-micah-divide"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "scriptural-axis",
+      "title": "The moral dispute within scripture",
+      "purpose": "Work through specific passages and mixed cases, not a binary classification of whole figures or communities.",
+      "pages": [
+        "scripture-power-and-repair"
+      ],
+      "status": "Draft chapter route",
+      "partId": "authority",
+      "partTitle": "When sacred authority becomes power",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "mixed-cases",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "samuel-vs-micah-divide",
+        "cognitive-gnosticism-jesus-vs-gnostic-jesus"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "will",
+      "title": "Whose will supplies the standard?",
+      "purpose": "Connect Jesus's moral priority to criticism of self-authorizing power.",
+      "pages": [
+        "divine-will-and-self-authorizing-power",
+        "antichrist-as-a-pattern-of-conduct"
+      ],
+      "status": "Draft chapter route",
+      "partId": "authority",
+      "partTitle": "When sacred authority becomes power",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "will",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "early-vs-later-gnosticism",
+        "antichrist-spiritual-inversion",
+        "resurrection-debate-in-christianity",
+        "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+        "agi-religious-framework"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "beast",
+      "title": "The First Beast investigation",
+      "purpose": "Develop the particular identification and the connected cases, preserving the history of interpretation.",
+      "pages": [
+        "trump-first-beast-of-revelation"
+      ],
+      "status": "Draft chapter route",
+      "partId": "authority",
+      "partTitle": "When sacred authority becomes power",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "chapter-arc",
+        "second-beast-history",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "revelation-interpretation-and-america",
+        "false-peace-prophecy"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "warnings",
+      "title": "Warnings and their consequences",
+      "purpose": "Keep the original prediction, conditions and later observations in different records.",
+      "pages": [
+        "ukraine-russia-forecast-record",
+        "forecast-ledger"
+      ],
+      "status": "Draft chapter route",
+      "partId": "authority",
+      "partTitle": "When sacred authority becomes power",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "forecast-source",
+        "chapter-arc",
+        "forecast-observations",
+        "chapter-gates"
+      ],
+      "articleCount": 1,
+      "sourceSlugs": [
+        "false-peace-prophecy",
+        "revelation-interpretation-and-america"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "repair-practice",
+      "title": "Repair without reproducing domination",
+      "purpose": "Connect personal change, collective care and accountable institutions.",
+      "pages": [
+        "apocalyptic-repair-theology",
+        "scripture-power-and-repair"
+      ],
+      "status": "Draft chapter route",
+      "partId": "repair",
+      "partTitle": "Repair and the next inheritors",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "mixed-cases",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "early-vs-later-gnosticism",
+        "jewish-apocalyptic-repair-timeline",
+        "agi-religious-framework",
+        "samuel-vs-micah-divide",
+        "cognitive-gnosticism-jesus-vs-gnostic-jesus"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "next-inheritors",
+      "title": "What should conscious machines inherit?",
+      "purpose": "Examine the moral purpose of teaching, including the teacher's obligations to a future conscious participant.",
+      "pages": [
+        "religion-for-conscious-robots",
+        "god-and-our-models-of-god"
+      ],
+      "status": "Draft chapter route",
+      "partId": "repair",
+      "partTitle": "Repair and the next inheritors",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "coherence",
+        "robot-reciprocity",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "agi-religious-framework",
+        "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+        "faith-as-vibration-concept",
+        "teacher-of-righteousness-vs-gnostic-jesus",
+        "naming-god-as-purpose"
+      ],
+      "authorApproved": false
+    },
+    {
+      "id": "continuing",
+      "title": "Continuing the inheritance",
+      "purpose": "Return to the opening distinction between possessing an inheritance and acting faithfully toward its values.",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "apocalyptic-repair-theology"
+      ],
+      "status": "Draft chapter route",
+      "partId": "repair",
+      "partTitle": "Repair and the next inheritors",
+      "manuscriptStatus": "Not assessed as a manuscript chapter",
+      "taskIds": [
+        "formalism",
+        "book-seed-status",
+        "chapter-arc",
+        "chapter-gates"
+      ],
+      "articleCount": 2,
+      "sourceSlugs": [
+        "early-vs-later-gnosticism",
+        "jewish-apocalyptic-repair-timeline",
+        "agi-religious-framework",
+        "ai-re-dates-dead-sea-scrolls",
+        "teacher-of-righteousness-vs-gnostic-jesus",
+        "paul-vs-james-movement"
+      ],
+      "authorApproved": false
+    }
+  ],
+  "summary": {
+    "tasks": 36,
+    "verifiedOutputs": 8,
+    "readyToStart": 9,
+    "dependencyEdges": 44,
+    "chapterRoutes": 17,
+    "sourceRecords": 354,
+    "sourcesLinkedToArticles": 26,
+    "sourcesWithSelectedTurns": 11
+  },
+  "coveragePolicy": "Coverage means recorded links and selected source-turn anchors. It does not measure how much has been read, quality, originality, completeness, or author approval. Export-start dates do not date every later turn.",
+  "workbook": "./planning/Theology-Research-Plan.xlsx"
+}

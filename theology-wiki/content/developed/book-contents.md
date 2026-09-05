@@ -43,7 +43,7 @@ Keep individual identity, office, namesakes, community and sayings distinct.
 
 Present the linked argument before comparing its alternative historical mechanisms.
 
-[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]]
 
 ### Loss, anger and reconstruction
 

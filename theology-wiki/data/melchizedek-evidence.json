@@ -1,0 +1,87 @@
+{
+  "version": "2026.09.05-roadmap-1",
+  "article": "melchizedek-priesthood-and-transmission",
+  "policy": "Passage comparison, not identity proof. A translation, scholarly interpretation and direct manuscript collation are different evidence levels.",
+  "rows": [
+    {
+      "id": "genesis",
+      "title": "Genesis encounter",
+      "passage": "Genesis 14:18-20",
+      "reference": "melch-genesis14",
+      "role": "King-priest who blesses Abram and receives a tithe.",
+      "comparison": "Recognition of sacred authority is narrated before later explanations of institutional descent.",
+      "limit": "The passage does not supply an Aaronic or Zadokite genealogy or a transmission route to Qumran.",
+      "source": {
+        "id": "melch-genesis14",
+        "title": "Genesis 14:18-20, World English Bible",
+        "url": "https://ebible.org/engwebp/GEN14.htm",
+        "scope": "Primary chapter consulted. The encounter, blessing and tithe are kept separate from later lineage claims.",
+        "accessed": "2026-09-05"
+      }
+    },
+    {
+      "id": "psalm",
+      "title": "Royal priestly address",
+      "passage": "Psalm 110:1-7, especially verse 4",
+      "reference": "melch-psalm110",
+      "role": "An enduring priestly appointment in a royal and judicial setting.",
+      "comparison": "The figure authorizes a role; the surrounding enemy/judgment language must not be omitted.",
+      "limit": "A later reading of the royal address is not automatically the original setting of composition.",
+      "source": {
+        "id": "melch-psalm110",
+        "title": "Psalm 110, World English Bible",
+        "url": "https://ebible.org/engwebp/PSA110.htm",
+        "scope": "Primary psalm consulted, especially verses 1-7. Royal and judicial language is retained alongside the priestly address.",
+        "accessed": "2026-09-05"
+      }
+    },
+    {
+      "id": "qumran",
+      "title": "11QMelchizedek",
+      "passage": "11Q13 column II, lines 2-9 and 13, through Williams 2023",
+      "reference": "melch-williams2023",
+      "role": "Release, restoration and atonement in the consulted scholarly reading.",
+      "comparison": "Williams argues for an active subject in II 6 rather than an indefinite rendering; this affects the distribution of authority.",
+      "limit": "This reading is disputed. Access to a translation and argument does not constitute independent collation of the damaged manuscript.",
+      "source": {
+        "id": "melch-williams2023",
+        "title": "Logan Williams (2023), Melchizedek, the Son of Man, and Eschatological Jubilee",
+        "url": "https://journals.sagepub.com/doi/10.1177/0142064X231191176",
+        "scope": "Full-text HTML consulted, particularly the author's translation of 11Q13 II 2-9 and discussion of II 6 and 13. His active-agent reading is distinguished from the critical edition he disputes. The critical edition itself has not been collated in this pass. This is current editorial research, not a recovered author acknowledgment.",
+        "accessed": "2026-09-05"
+      }
+    },
+    {
+      "id": "hebrews",
+      "title": "Continuing priesthood",
+      "passage": "Hebrews 7:1-17 and 23-28",
+      "reference": "melch-hebrews7",
+      "role": "Interpretive superiority and enduring intercession, distinguished from ordinary Levitical qualification.",
+      "comparison": "The letter uses the inherited figure to reason about a different basis of authority.",
+      "limit": "Textual likeness and a continuing role are not evidence that Teacher, James and Jesus are one historical individual.",
+      "source": {
+        "id": "melch-hebrews7",
+        "title": "Hebrews 7, World English Bible",
+        "url": "https://ebible.org/engwebp/HEB07.htm",
+        "scope": "Primary chapter consulted, especially verses 1-17 and 23-28. Textual resemblance, descent and continuing priesthood are distinguished.",
+        "accessed": "2026-09-05"
+      }
+    },
+    {
+      "id": "nag-hammadi",
+      "title": "Melchizedek tractate",
+      "passage": "Nag Hammadi Codex IX,1; online translation, paragraphs on embodiment and the image of the high priest",
+      "reference": "melch-giversen-pearson",
+      "role": "Exalted priestly language with ritual participation and explicit embodiment language.",
+      "comparison": "The anti-docetic passage complicates a universal equation of Gnostic salvation with rejection of the body.",
+      "limit": "Extensive gaps prevent an effortless continuous reconstruction. Exact printed page/line citations remain a task.",
+      "source": {
+        "id": "melch-giversen-pearson",
+        "title": "Melchizedek, translated by Soren Giversen and Birger A. Pearson",
+        "url": "https://www.gnosis.org/naghamm/melchiz.html",
+        "scope": "Online translation retrieved in the indexed full-text result; direct-page retrieval failed. Marked lacunae are retained in the interpretation. The online notice requests published-edition citations for academic work; printed page/line collation remains open. Credit is for a textual source used by this edition, not a claimed personal influence on Micah.",
+        "accessed": "2026-09-05"
+      }
+    }
+  ]
+}

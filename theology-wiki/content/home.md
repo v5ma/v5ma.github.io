@@ -21,7 +21,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 ## Find your way through the inquiry
 
-[[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer seven longer routes, and the [[glossary|glossary]] explains the collection's terms.
+[[research-roadmap|The shared research roadmap and Excel checklist]] records deliverables, dependencies and evidence. [[source-coverage|Source coverage]] identifies which conversations have recorded article links. [[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer seven longer routes, and the [[glossary|glossary]] explains the collection's terms.
 
 ## All developed articles
 
@@ -63,6 +63,8 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[god-and-our-models-of-god|God and our models of God]]: An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.
 
+[[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]]: A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.
+
 ## Explore a subject
 
 [[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
@@ -85,4 +87,4 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-19 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.
+20 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.
