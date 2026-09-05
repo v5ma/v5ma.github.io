@@ -8,7 +8,7 @@
    persistent bug in this project. Offline still works: the cache is the
    fallback, not the default.
    ========================================================================= */
-const CACHE = 'svgn-paper-route-ground-first-20260905';
+const CACHE = 'svgn-paper-route-adventure-score-20260905';
 
 /* only genuinely static things get served from cache first */
 const STATIC = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-180.png'];
