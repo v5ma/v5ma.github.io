@@ -9,12 +9,12 @@ let preferences={version:1,saved:[]};
 try{const p=JSON.parse(localStorage.getItem(key)||'null');if(p?.version===1&&Array.isArray(p.saved))preferences.saved=p.saved.filter(x=>typeof x==='string').slice(0,2000);}catch{storageOK=false;}
 const announce=text=>{let el=$('#theology-status');if(!el){el=document.createElement('p');el.id='theology-status';el.setAttribute('role','status');el.className='research-sr';document.body.append(el);}el.textContent=text;};
 function save(){try{localStorage.setItem(key,JSON.stringify(preferences));}catch{storageOK=false;announce('Storage is unavailable. This reading list is session-only; export it to keep it.');}}
-const infoPromise=fetch('./data/research.json').then(r=>{if(!r.ok)throw Error('Research index unavailable');return r.json();}).then(x=>{info=x;reader()?.refresh();return x;}).catch(e=>{announce(e.message);return null;});
+const infoPromise=fetch('./data/research.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Research index unavailable');return r.json();}).then(x=>{info=x;reader()?.refresh();return x;}).catch(e=>{announce(e.message);return null;});
 let mediaPromise=null;
 function media(){return mediaPromise??=(fetch('./data/media.json').then(r=>r.ok?r.json():[]).catch(()=>[]));}
 function ensureFull(){
  if(fullPromise)return fullPromise;
- fullPromise=fetch('./data/search.json').then(r=>{if(!r.ok)throw Error('Full-text index unavailable');return r.json();}).then(x=>{full=x;reader()?.refresh();if(reader()?.current()?.slug==='sources-index')renderCatalogue();announce('Full conversation text is now included in search.');return x;}).catch(()=>{fullPromise=null;announce('Full-text search could not load. Title and summary search remain available.');const s=$('#search-scope');if(s)s.textContent='Title/summary search only; full-text index could not load.';return null;});
+ fullPromise=fetch('./data/search.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Full-text index unavailable');return r.json();}).then(x=>{full=x;reader()?.refresh();if(reader()?.current()?.slug==='sources-index')renderCatalogue();announce('Full conversation text is now included in search.');return x;}).catch(()=>{fullPromise=null;announce('Full-text search could not load. Title and summary search remain available.');const s=$('#search-scope');if(s)s.textContent='Title/summary search only; full-text index could not load.';return null;});
  return fullPromise;
 }
 function initControls(){
@@ -27,12 +27,12 @@ function initControls(){
  infoPromise.then(d=>{if(d)$('#theology-topic').innerHTML='<option value="">Every topic</option>'+d.categories.map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join('');});
  search.addEventListener('input',()=>{navLimit=40;const q=search.value.trim();if(q)ensureFull();const u=new URL(location.href);if(q)u.searchParams.set('q',q);else u.searchParams.delete('q');history.replaceState({},'',u.pathname+u.search+u.hash);});
  const strip=$('.wiki-family-strip');
- if(strip){const links=document.createElement('span');links.className='research-nav-links';links.innerHTML=a('sources-index','Conversations')+a('reading-paths','Reading paths')+a('image-collection','Images')+a('connections','Connections');strip.append(links);}
+ if(strip){const links=document.createElement('span');links.className='research-nav-links';links.innerHTML=a('forecast-ledger','Forecast ledger')+a('sources-index','Conversations')+a('reading-paths','Reading paths')+a('image-collection','Images')+a('connections','Connections');strip.append(links);}
 }
 function navOptions(){return {topic:$('#theology-topic')?.value||'',kind:$('#theology-kind')?.value||'featured',sort:$('#theology-sort')?.value||'relevance',saved:preferences.saved};}
 function navigation(list,current,query){
  initControls();const opts=navOptions(),all=C.select(list,query,opts,full);let visible=all.slice(0,navLimit);
- const linkItem=p=>`<li><a class="page-link page-no-thumbnail${current?.slug===p.slug?' active':''}" href="${href(p.slug)}" data-page="${esc(p.slug)}"${current?.slug===p.slug?' aria-current="page"':''}><span class="page-link-text"><span class="page-title">${esc(p.title)}</span><small class="page-meta">${esc(p.kind)}${p.date?' / '+p.date:''}${preferences.saved.includes(p.slug)?' / Saved':''}</small></span></a></li>`;
+ const linkItem=p=>`<li><a class="page-link page-no-thumbnail${current?.slug===p.slug?' active':''}" href="${href(p.slug)}" data-page="${esc(p.slug)}"${current?.slug===p.slug?' aria-current="page"':''}><span class="page-link-text"><span class="page-title">${esc(p.title)}</span><small class="page-meta">${esc(p.claimType||p.kind)}${p.featured?' / New investigation':''}${p.date?' / '+p.date:''}${preferences.saved.includes(p.slug)?' / Saved':''}</small></span></a></li>`;
  let html=visible.map(linkItem).join('');
  if(!query&&opts.kind==='featured'&&!opts.topic&&info){html='<li class="research-nav-label">Developed from the discussions</li>'+html+'<li class="research-nav-label">Browse by subject</li>'+info.categories.map(c=>`<li class="research-topic-link">${a('topic-'+c.id,c.title)}<small>${list.filter(p=>p.category===c.id&&p.sourceFile).length} conversations</small></li>`).join('');}
  if(!visible.length)html='<li class="research-empty">No matching pages. Try fewer words or reset the filters.</li>';
@@ -47,7 +47,7 @@ function topActions(page){
  $('#research-actions')?.remove();
  const div=document.createElement('section');div.id='research-actions';div.className='research-actions';div.setAttribute('aria-label','Page tools');
  const saved=preferences.saved.includes(page.slug);
- div.innerHTML=`<div class="research-labels"><span class="research-badge">${esc(page.kind||'Research note')}</span>${page.date?`<span>Conversation: ${esc(page.date)} UTC</span>`:''}${page.readMinutes?`<span>${page.readMinutes} minute read</span>`:''}</div><div class="research-buttons"><button data-research="save" data-slug="${page.slug}" type="button" aria-pressed="${saved}">${saved?'Saved':'Save page'}</button><a href="./content/${esc(page.path)}" download>Markdown source</a><a href="${href('connections')}&focus=${encodeURIComponent(page.slug)}">View connections</a><button type="button" data-research="print">Print</button><button type="button" data-research="export">Export reading list</button><button type="button" data-research="restore">Restore reading list</button><input type="file" id="reading-restore" accept="application/json,.json" hidden></div>${!storageOK?'<p class="research-small">Storage unavailable: saved pages last only for this session. Export them to keep a copy.</p>':''}`;
+ div.innerHTML=`<div class="research-labels"><span class="research-badge">${esc(page.kind||'Research note')}</span>${page.claimType?`<span class="research-badge claim-type">${esc(page.claimType)}</span>`:''}${page.date?`<span>Conversation: ${esc(page.date)} UTC</span>`:''}${page.readMinutes?`<span>${page.readMinutes} minute read</span>`:''}</div><div class="research-buttons"><button data-research="save" data-slug="${page.slug}" type="button" aria-pressed="${saved}">${saved?'Saved':'Save page'}</button><a href="./content/${esc(page.path)}" download>Markdown source</a><a href="${href('connections')}&focus=${encodeURIComponent(page.slug)}">View connections</a><button type="button" data-research="print">Print</button><button type="button" data-research="export">Export reading list</button><button type="button" data-research="restore">Restore reading list</button><input type="file" id="reading-restore" accept="application/json,.json" hidden></div>${!storageOK?'<p class="research-small">Storage unavailable: saved pages last only for this session. Export them to keep a copy.</p>':''}`;
  anchor.after(div);
 }
 function backlinks(page){
@@ -59,7 +59,7 @@ function sourceCard(p){
  const url='../theology-sources/chats/'+encodeURIComponent(p.sourceFile);
  return `<section class="source-record"><div class="source-record-heading"><span class="research-badge">Original conversation</span><span>${p.turnCount} top-level turns / ${esc(p.date||'Undated')} UTC</span></div><h3>The question in the source</h3><p class="source-excerpt">${esc(p.primaryExcerpt||p.summary)}</p><div class="research-buttons"><button data-research="load-source" type="button">Read the full conversation</button><a href="${url}" target="_blank" rel="noopener noreferrer">Open original text file</a>${a('topic-'+p.category,'Browse this topic')}</div><details><summary>Source integrity and attribution</summary><p>The original ${p.sourceBytes.toLocaleString()} bytes are preserved. The display separates top-level export speakers; a user turn can contain pasted AI text or quoted material. Dates come from export metadata, not an independent priority record.</p><p>SHA-256: <code>${esc(p.sourceSha256)}</code></p></details><div id="source-transcript"></div></section>`;
 }
-function cards(list){return `<div class="research-cards">${list.map(p=>`<article class="research-card"><span class="research-small">${esc(p.kind)}${p.date?' / '+p.date:''}</span><h3>${a(p.slug,p.title)}</h3><p>${esc(p.summary)}</p></article>`).join('')}</div>`;}
+function cards(list){return `<div class="research-cards">${list.map(p=>`<article class="research-card"><span class="research-small">${esc(p.claimType||p.kind)}${p.featured?' / New investigation':''}${p.date?' / '+p.date:''}</span><h3>${a(p.slug,p.title)}</h3><p>${esc(p.summary)}</p></article>`).join('')}</div>`;}
 async function onPage(p){
  const ticket=++renderTicket;await infoPromise;if(ticket!==renderTicket||reader()?.current()?.slug!==p.slug)return;
  topActions(p);backlinks(p);
@@ -76,10 +76,11 @@ async function onPage(p){
   const intro=document.createElement('section');intro.className='research-welcome';intro.innerHTML=`<div><span class="research-kicker">From the conversations</span><h3>Ideas worth following.</h3><p>Not just a list of exports. Explore an argument, follow its sources, and see where the conversation changes direction.</p></div><div class="research-counts"><span><b>${info?.developedCount||8}</b>developed articles</span><span><b>${info?.sourceCount||354}</b>source conversations</span><span><b>${info?.categories.length||8}</b>topic collections</span></div>`;body.prepend(intro);
   // Keep generated Markdown accessible; the first article section becomes browsable cards.
   const heading=[...body.querySelectorAll('h2, h3')].find(h=>h.textContent==='Ideas developed from the conversations');
-  if(heading){let n=heading.nextElementSibling;while(n&&n.tagName!==heading.tagName){const next=n.nextElementSibling;n.remove();n=next;}heading.insertAdjacentHTML('afterend',cards(pages().filter(x=>x.kind==='Developed article')));}
+  if(heading){let n=heading.nextElementSibling;while(n&&n.tagName!==heading.tagName){const next=n.nextElementSibling;n.remove();n=next;}heading.insertAdjacentHTML('afterend',cards(pages().filter(x=>x.kind==='Developed article').sort((a,b)=>Number(!!b.featured)-Number(!!a.featured))));}
  }
  if(p.slug==='sources-index'){const host=document.createElement('section');host.id='source-catalogue';host.className='research-section';host.innerHTML=`<h2>Conversation catalogue</h2><div class="catalogue-controls"><label>Search the full discussions<input id="catalogue-search" type="search" placeholder="Try coherence, compassion, or Temple"></label><label>Topic<select id="catalogue-topic"><option value="">Every topic</option>${(info?.categories||[]).map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join('')}</select></label><label>Order<select id="catalogue-sort"><option value="title">Title A-Z</option><option value="date">Newest conversation</option><option value="relevance">Relevance</option></select></label></div><p id="catalogue-count" class="research-small" role="status"></p><div id="catalogue-results"></div>`;body.append(host);catalogLimit=30;renderCatalogue();}
  if(p.slug==='connections')renderGraph();
+ if(p.slug==='forecast-ledger')await renderLedger(p,ticket);
  if(p.slug==='image-collection'){
   const entries=await media();if(ticket!==renderTicket)return;
   const gallery=document.createElement('section');gallery.className='research-gallery';gallery.innerHTML=entries.length?entries.map(m=>figure(m,true)).join(''):'<p>Image records could not load. Reload the page to retry.</p>';body.append(gallery);bindImages();
@@ -129,6 +130,28 @@ function renderTurns(){
 }
 function figure(m,large){const src=m.localPath?'./'+m.localPath:'';return `<figure class="research-figure${large?' gallery-figure':''}">${src?`<img src="${esc(src)}" alt="${esc(m.alt||m.title)}" loading="lazy" decoding="async"><p class="image-unavailable" hidden>The image could not load. The museum record and caption remain available.</p>`:'<p>Image not bundled. Open the museum record to inspect the object.</p>'}<figcaption><strong>${esc(m.title||m.fallbackTitle)}</strong><span>${esc(m.artist||'')} ${esc(m.date||'')}</span><p>${esc(m.context)}</p><span>${esc(m.credit||'')} ${esc(m.license||'')}</span><a href="${esc(m.objectURL||'https://www.metmuseum.org/art/collection/search/'+m.objectId)}" target="_blank" rel="noopener noreferrer">Museum record and image credit</a></figcaption></figure>`;}
 function bindImages(){$('#article-body')?.querySelectorAll('.research-figure img').forEach(img=>{img.addEventListener('error',()=>{img.hidden=true;img.nextElementSibling.hidden=false;},{once:true});});}
+let ledgerData=null;
+async function renderLedger(p,ticket){
+ const body=$('#article-body');
+ try{
+  if(!ledgerData){const r=await fetch('./data/forecast-ledger.json',{cache:'no-store'});if(!r.ok)throw Error('Ledger unavailable');ledgerData=await r.json();}
+  if(ticket!==renderTicket||reader()?.current()?.slug!==p.slug)return;
+  const section=document.createElement('section');section.id='forecast-explorer';section.className='forecast-explorer research-section';
+  section.innerHTML='<h3>Dated records, not claimed successes</h3><p>'+esc(ledgerData.policy)+'</p><div class="catalogue-controls"><label>Find a record<input id="forecast-search" type="search" placeholder="Try fuel, peace or deterrence"></label><label>Record type<select id="forecast-type"><option value="all">All record types</option>'+[...new Set(ledgerData.entries.map(e=>e.recordType))].map(t=>'<option>'+esc(t)+'</option>').join('')+'</select></label><label>Order<select id="forecast-order"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label></div><div class="research-buttons"><button type="button" data-research="export-forecasts">Export complete source register</button></div><p id="forecast-count" class="research-small" role="status"></p><div id="forecast-results"></div>';
+  // Preserve the static source register as a fallback and printable counterpart.
+  const details=document.createElement('details');details.className='forecast-static';const summary=document.createElement('summary');summary.textContent='Read the complete static register';details.append(summary);
+  while(body.firstChild)details.append(body.firstChild);
+  body.append(section,details);drawLedger();
+ }catch(e){if(ticket===renderTicket){const note=document.createElement('p');note.className='wiki-error';note.textContent='Interactive ledger could not load. The complete text below is still available.';body.prepend(note);}}
+}
+function drawLedger(){
+ if(!ledgerData||!$('#forecast-results'))return;
+ const query=$('#forecast-search').value,kind=$('#forecast-type').value,newest=$('#forecast-order').value==='newest';
+ const hits=ledgerData.entries.filter(e=>(kind==='all'||e.recordType===kind)&&C.tokens(query).every(t=>C.normalize([e.title,e.claim,e.mechanism,e.date,e.dateBasis,e.sourceStatus].join(' ')).includes(t))).sort((a,b)=>newest?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
+ $('#forecast-count').textContent=hits.length+' of '+ledgerData.entries.length+' records. No outcomes have been scored.';
+ const outline=$('#article-outline-list');if(outline)outline.innerHTML=hits.map(e=>'<li><a href="#forecast-'+esc(e.id)+'">'+esc(e.title)+'</a></li>').join('');
+ $('#forecast-results').innerHTML=hits.length?hits.map(e=>'<article class="forecast-card" id="forecast-'+esc(e.id)+'"><div class="forecast-meta"><time datetime="'+e.date+'">'+e.date+'</time><span class="research-badge">'+esc(e.recordType)+'</span></div><h3>'+esc(e.title)+'</h3><p>'+esc(e.claim)+'</p><p class="forecast-status">'+esc(e.sourceStatus)+' / '+esc(e.evaluation)+'</p><dl><dt>Date basis</dt><dd>'+esc(e.dateBasis)+'</dd><dt>Horizon</dt><dd>'+esc(e.horizon)+'</dd><dt>Mechanism</dt><dd>'+esc(e.mechanism)+'</dd><dt>Conditions</dt><dd>'+esc(e.conditions)+'</dd><dt>Proposed evaluation</dt><dd>'+esc(e.criterion)+'</dd></dl>'+(e.sourceSlug?'<a href="'+href(e.sourceSlug)+'&turn='+e.turn+'#source-transcript" data-page="'+esc(e.sourceSlug)+'">Read the original author turn</a>':e.sourceURL?'<a href="'+esc(e.sourceURL)+'" target="_blank" rel="noopener noreferrer">Read the dated publication</a>':'<p class="research-small">Source recovery pending. Not a transcript export.</p>')+'</article>').join(''):'<p>No records match. Change the query or record type.</p>';
+}
 function renderGraph(){
  const body=$('#article-body'),list=pages(),preferred=new URLSearchParams(location.search).get('focus')||'apocalyptic-repair-theology';
  const selected=list.find(p=>p.slug===preferred)||list.find(p=>p.kind==='Developed article');if(!selected)return;
@@ -152,13 +175,15 @@ document.addEventListener('click',event=>{
  if(action==='more-turns'){turnLimit+=16;renderTurns();}
  if(action==='more-catalogue'){catalogLimit+=30;renderCatalogue();}
  if(action==='print')window.print();
+ if(action==='export-forecasts'&&ledgerData)download(JSON.stringify(ledgerData,null,2),'theology-forecast-ledger.json');
  if(action==='export')download(JSON.stringify(preferences,null,2),'theology-reading-list.json');
  if(action==='restore')$('#reading-restore')?.click();
 });
 let timer;
-document.addEventListener('input',event=>{if(event.target.id==='catalogue-search'){clearTimeout(timer);timer=setTimeout(()=>{catalogLimit=30;renderCatalogue();},180);}if(event.target.id==='turn-search'){turnLimit=16;renderTurns();}});
+document.addEventListener('input',event=>{if(event.target.id==='forecast-search')drawLedger();if(event.target.id==='catalogue-search'){clearTimeout(timer);timer=setTimeout(()=>{catalogLimit=30;renderCatalogue();},180);}if(event.target.id==='turn-search'){turnLimit=16;renderTurns();}});
 document.addEventListener('change',async event=>{
  const id=event.target.id;
+ if(id==='forecast-type'||id==='forecast-order')drawLedger();
  if(id==='catalogue-topic'||id==='catalogue-sort'){catalogLimit=30;renderCatalogue();}
  if(id==='turn-speaker'){turnLimit=16;renderTurns();}
  if(id==='graph-page')drawGraph(event.target.value);

@@ -1,0 +1,68 @@
+name: Verify Cloudview playable graphics
+on:
+  push:
+    branches: [feat/cloudview-graphics-20260904]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cloudview-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  graphics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Integrate graphics only
+        run: |
+          python scripts/integrate-cloudview.py
+          python scripts/refine-cloudview.py
+      - name: Commit the integrated source to this feature branch
+        if: github.ref == 'refs/heads/feat/cloudview-graphics-20260904'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-world.js mario-maker-clone/svgn-paper-route/cloudview-assets.js tests/cloudview_browser.py tests/sky_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Integrate Cloudview renderer, HUD and play camera'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check sources and unchanged course data
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/cloudview-assets.js
+          node --check mario-maker-clone/svgn-paper-route/cloudview-world.js
+          node --check mario-maker-clone/svgn-paper-route/cloudview-ui.js
+          node --test tests/sky_routes.test.mjs
+      - name: Install test browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Capture the actual playable graphics
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/cloudview-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python tests/cloudview_browser.py
+          git rev-parse HEAD > test-output/cloudview/tested-commit.txt
+          git diff --stat > test-output/cloudview/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloudview-graphics-proof
+          path: test-output/cloudview/
+          retention-days: 7
+      - name: Replay all three courses in the real 3D renderer
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/cloudview-replay.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python tests/sky_browser.py
+          git rev-parse HEAD > test-output/sky/tested-commit.txt
+          git diff --stat > test-output/sky/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloudview-three-course-replay
+          path: test-output/sky/
+          retention-days: 7

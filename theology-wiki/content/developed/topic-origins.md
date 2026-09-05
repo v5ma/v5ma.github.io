@@ -13,6 +13,12 @@ Manuscripts, Temple history, divine names and the dating of ideas.
 
 ## Start with a developed argument
 
+[[el-in-ancient-egypt|El in Ancient Egypt]]: A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.
+
+[[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]: A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.
+
+[[kenite-hypothesis-and-yahweh-origins|The Kenite hypothesis and Yahweh's southern origins]]: How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.
+
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]: A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?
 
 ## Browse the source discussions

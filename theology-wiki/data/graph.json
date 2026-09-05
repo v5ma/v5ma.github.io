@@ -2,6 +2,12 @@
   "schema": "theology-source-edition/v2",
   "related": {
     "home": [
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
+      "el-in-ancient-egypt",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "moses-volcano-and-exodus-chronology",
+      "kenite-hypothesis-and-yahweh-origins",
       "apocalyptic-repair-theology",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
@@ -18,6 +24,7 @@
       "topic-machines",
       "topic-traditions",
       "topic-context",
+      "forecast-ledger",
       "reading-paths",
       "sources-index",
       "connections",
@@ -1503,11 +1510,61 @@
     "zeus-antichrist-connection": [
       "topic-apocalypse"
     ],
+    "trump-first-beast-of-revelation": [
+      "false-peace-prophecy",
+      "antichrist-as-a-pattern-of-conduct",
+      "ukraine-russia-forecast-record",
+      "forecast-ledger",
+      "apocalyptic-repair-theology",
+      "revelation-interpretation-and-america",
+      "image-collection"
+    ],
+    "ukraine-russia-forecast-record": [
+      "false-peace-prophecy",
+      "forecast-ledger",
+      "trump-first-beast-of-revelation",
+      "apocalyptic-repair-theology",
+      "revelation-interpretation-and-america"
+    ],
+    "el-in-ancient-egypt": [
+      "jews-and-canaanites-origins",
+      "yahweh-and-asherah-s-relationship",
+      "kenite-hypothesis-and-yahweh-origins",
+      "samaritan-texts-and-sacred-authority",
+      "moses-volcano-and-exodus-chronology",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "image-collection"
+    ],
+    "jesus-teacher-of-righteousness-hypothesis": [
+      "ai-re-dates-dead-sea-scrolls",
+      "gnosticism-and-temple-trauma",
+      "christ-as-an-inner-model",
+      "cognitive-gnosticism",
+      "teacher-of-righteousness-vs-gnostic-jesus",
+      "pilate-life-timeline",
+      "daniel-and-teacher-of-righteousness"
+    ],
+    "moses-volcano-and-exodus-chronology": [
+      "kenite-hypothesis-and-yahweh-origins",
+      "parthians-and-medes-meaning",
+      "el-in-ancient-egypt",
+      "samaritan-texts-and-sacred-authority",
+      "moses-dating-debate"
+    ],
+    "kenite-hypothesis-and-yahweh-origins": [
+      "gnostic-teachings-and-clarity",
+      "moses-volcano-and-exodus-chronology",
+      "el-in-ancient-egypt",
+      "samaritan-texts-and-sacred-authority",
+      "what-is-midian"
+    ],
     "apocalyptic-repair-theology": [
       "antichrist-as-a-pattern-of-conduct",
       "gnosticism-and-temple-trauma",
       "early-vs-later-gnosticism",
       "jewish-apocalyptic-repair-timeline",
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
       "image-collection"
     ],
     "cognitive-gnosticism": [
@@ -1523,6 +1580,7 @@
       "cognitive-gnosticism",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "antichrist-spiritual-inversion",
+      "jesus-teacher-of-righteousness-hypothesis",
       "image-collection"
     ],
     "antichrist-as-a-pattern-of-conduct": [
@@ -1549,14 +1607,24 @@
       "research-method",
       "apocalyptic-repair-theology",
       "early-vs-later-gnosticism",
-      "jewish-apocalyptic-repair-timeline"
+      "jewish-apocalyptic-repair-timeline",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "moses-volcano-and-exodus-chronology"
     ],
     "samaritan-texts-and-sacred-authority": [
       "antichrist-as-a-pattern-of-conduct",
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
       "research-method",
-      "samaritan-and-jewish-texts"
+      "samaritan-and-jewish-texts",
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins"
+    ],
+    "forecast-ledger": [
+      "false-peace-prophecy",
+      "ukraine-russia-forecast-record",
+      "trump-first-beast-of-revelation",
+      "research-method"
     ],
     "research-method": [
       "apocalyptic-repair-theology",
@@ -1607,6 +1675,8 @@
       "sources-index"
     ],
     "topic-apocalypse": [
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
       "apocalyptic-repair-theology",
       "antichrist-as-a-pattern-of-conduct",
       "ai-sword-revelation-review",
@@ -1659,6 +1729,9 @@
       "sources-index"
     ],
     "topic-origins": [
+      "el-in-ancient-egypt",
+      "moses-volcano-and-exodus-chronology",
+      "kenite-hypothesis-and-yahweh-origins",
       "gnosticism-and-temple-trauma",
       "ai-re-dates-dead-sea-scrolls",
       "ancient-egypt-vs-fascism",
@@ -1707,6 +1780,7 @@
       "sources-index"
     ],
     "topic-jesus": [
+      "jesus-teacher-of-righteousness-hypothesis",
       "christ-as-an-inner-model",
       "17th-century-christian-zionism",
       "allegiance-vs-proclamation-of-christ",
@@ -1959,13 +2033,20 @@
       "sources-index"
     ],
     "reading-paths": [
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
+      "forecast-ledger",
+      "apocalyptic-repair-theology",
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins",
+      "moses-volcano-and-exodus-chronology",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "gnosticism-and-temple-trauma",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
       "faith-as-deliberate-joy",
       "religion-for-conscious-robots",
       "antichrist-as-a-pattern-of-conduct",
-      "apocalyptic-repair-theology",
-      "gnosticism-and-temple-trauma",
       "samaritan-texts-and-sacred-authority",
       "research-method"
     ],

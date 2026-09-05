@@ -13,6 +13,8 @@ The teachings of Jesus, moral judgment and the authority of institutions.
 
 ## Start with a developed argument
 
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: Micah's proposed earlier origin for the Jesus tradition, examined through the distinction between an individual, a community, a title and a transmitted teaching.
+
 [[christ-as-an-inner-model|Christ as an inner model]]: The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.
 
 ## Browse the source discussions

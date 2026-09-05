@@ -217,7 +217,7 @@
       const now=performance.now();size();const m=window.__merged,available=window.__gpuReady===true&&m,three=state.view==='3d'&&available;
       fallback.style.visibility=three?'hidden':'visible';
       const gl=document.getElementById('gl');if(gl)gl.style.visibility=three?'visible':'hidden';
-      if(three){const k=[LW,LH,themeName,state.route,mode,state.menu].join(':');if(k!==envKey){envKey=k;buildEnvironment(m);}originalRender();}
+      if(three){const k=[LW,LH,themeName,state.route].join(':');if(k!==envKey){envKey=k;buildEnvironment(m);}originalRender();}
       else {try{cx.clearRect(0,0,cv.width,cv.height);}catch{}draw2D(now);}
       fg.setTransform(scale,0,0,scale,0,0);fg.clearRect(0,0,W,H);
       for(const f of state.fx){if(!state.paused){f.life-=1/60;f.y-=.28;}const[x,y]=projection(f.x,f.y);fg.globalAlpha=Math.min(1,f.life*2);fg.font='800 19px system-ui';fg.textAlign='center';fg.strokeStyle='#123440';fg.lineWidth=5;fg.strokeText(f.text,x,y);fg.fillStyle=f.color;fg.fillText(f.text,x,y);}fg.globalAlpha=1;state.fx=state.fx.filter(f=>f.life>0);
