@@ -1,0 +1,59 @@
+name: Verify side-by-side Cloudview Studio
+on:
+  push:
+    branches: [feat/cloudview-art-20260904]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cloudview-studio-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  studio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read immutable verified art source from this repository
+        run: git fetch --no-tags --depth=1 origin 9038b9df97f11de2da2339235216038b164546e0
+      - name: Assemble Studio without replacing the live renderer
+        run: python scripts/publish-cloudview-studio.py
+      - name: Commit only the preserved Studio integration
+        if: github.ref == 'refs/heads/feat/cloudview-art-20260904'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/cloudview-studio/ mario-maker-clone/svgn-paper-route/cloudview-ui.js tests/cloudview_studio_routes.py tests/cloudview_studio_visual.py
+          if ! git diff --cached --quiet; then git commit -m 'Publish verified Studio art alongside the newer live renderer'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and unchanged gameplay tests
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/cloudview-studio/cloudview-world.js
+          node --check mario-maker-clone/svgn-paper-route/cloudview-studio/cloudview-ui.js
+          node --check mario-maker-clone/svgn-paper-route/cloudview-ui.js
+          node --test dino-atlas/tests/unit.test.mjs tests/interactive.test.mjs tests/sky_routes.test.mjs
+      - name: Install pinned browser using hosted runner libraries
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install chromium
+      - name: Verify actual Studio path and existing-game navigation
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/cloudview-studio.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python tests/cloudview_studio_visual.py
+      - name: Record exact final source
+        if: always()
+        run: |
+          mkdir -p test-output/cloudview-studio
+          git rev-parse HEAD > test-output/cloudview-studio/tested-commit.txt
+          git diff --stat > test-output/cloudview-studio/uncommitted-diff.txt
+          cp mario-maker-clone/svgn-paper-route/cloudview-studio/source-manifest.json test-output/cloudview-studio/source-manifest.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloudview-studio-final
+          path: test-output/cloudview-studio/
+          retention-days: 7

@@ -1,0 +1,56 @@
+{
+  "source_commit": "9038b9df97f11de2da2339235216038b164546e0",
+  "preserved_live_baseline": "20d0a4e1464c80c27bd16771606d6a22985ac615",
+  "files": {
+    "cloudview-world.js": {
+      "source_sha256": "9d45a5a0660169b8cca351d90435ed312f153d68c3d2fa2bebec82517f719ccf",
+      "published_sha256": "9d45a5a0660169b8cca351d90435ed312f153d68c3d2fa2bebec82517f719ccf",
+      "byte_identical": true,
+      "only_change": null
+    },
+    "cloudview-ui.js": {
+      "source_sha256": "04cd061298a6dc206f92a4fbce48c69a50e3ad0717c8f21943ff7a74802450e0",
+      "published_sha256": "f86511d4d360ec4ed56eaf0d6b0b4a89e3018c68a936d5f3faf641b522a06405",
+      "byte_identical": false,
+      "only_change": "Append a link back to the preserved live art version."
+    },
+    "cloudview.css": {
+      "source_sha256": "c0020b0f4661d4f1bcee5ff03a398379b548e1d3f5e365922c9a3353b4b6d4c8",
+      "published_sha256": "c0020b0f4661d4f1bcee5ff03a398379b548e1d3f5e365922c9a3353b4b6d4c8",
+      "byte_identical": true,
+      "only_change": null
+    },
+    "sky-game.js": {
+      "source_sha256": "8a91aba9df2effdb1811b42e94a7e4dde39ddf2c9f005985d1f7240de0dc29eb",
+      "published_sha256": "8a91aba9df2effdb1811b42e94a7e4dde39ddf2c9f005985d1f7240de0dc29eb",
+      "byte_identical": true,
+      "only_change": null
+    },
+    "delivery-upgrade.js": {
+      "source_sha256": "b6e64585ac545eb8733ae44b4bcf904425af917c7ab7070ae111335244ccc9bb",
+      "published_sha256": "b6e64585ac545eb8733ae44b4bcf904425af917c7ab7070ae111335244ccc9bb",
+      "byte_identical": true,
+      "only_change": null
+    },
+    "index.html": {
+      "source_sha256": "48a0c98222d1bf47401d14666048b4bc221bb66f0a83ab86ac0cc2bb6780fc43",
+      "published_sha256": "31f46dc69ca8f19b5e89d6ef12e4aa36fa20df27f3a5860815e7a3491985ce06",
+      "byte_identical": false,
+      "only_change": "Set the original game directory as base URL and point five owned art/runtime files at the Studio subdirectory."
+    }
+  },
+  "shared_assets_checked": [
+    "campaign.js",
+    "sky-routes.js",
+    "sky-visual.js",
+    "delivery-upgrade.css",
+    "sky-style.css",
+    "_voxelizer.js",
+    "voxel-assets.json",
+    "vendor/three.core.js",
+    "vendor/three.module.js",
+    "vendor/three.tsl.js",
+    "vendor/three.webgpu.js"
+  ],
+  "live_change": "Append one Studio art navigation link to the live cloudview-ui.js; its preexisting bytes and behavior are retained."
+}

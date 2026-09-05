@@ -26,3 +26,6 @@ window.CloudHUD=(()=>{
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
  return {update};
 })();
+
+// Cloudview Studio navigation: preserves the existing renderer and UI.
+(()=>{function add(){if(document.getElementById("studio-art-link"))return;const host=document.querySelector('#delivery-header .actions');if(!host)return;const a=document.createElement('a');a.id="studio-art-link";a.className='delivery-btn';a.href=new URL("./cloudview-studio/index.html",location.href).href;a.textContent="Studio art";a.style.textDecoration='none';host.append(a);}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add,{once:true});else add();})();
