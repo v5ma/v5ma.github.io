@@ -3,8 +3,14 @@
 // Rebuild only the Theology collection. Published source bytes and other projects are read-only.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const ROOT=path.resolve(__dirname,'..'),SITE=path.dirname(ROOT);
-const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs');
-const E={...base,version:X.version,articles:[...X.articles,...base.articles],paths:[...X.paths,...base.paths]};
+const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs');
+const references=[...X.references,...D.references];
+const E={...base,version:D.version,articles:[...X.articles,...base.articles].map(p=>{
+ const update=D.overrides[p.slug]; if(!update)return p;
+ return {...p,...update,externalSources:[...new Set([...(p.externalSources||[]),...update.externalSources])],
+ sourceIds:[...new Set([...(p.sourceIds||[]),...D.anchors.filter(a=>a.from===p.slug).map(a=>a.sourceId)])],
+ attribution:'AI-assisted editorial synthesis of Micah Blumberg\'s source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.'};
+}),paths:[...X.paths,...base.paths]};
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8'),json=p=>JSON.parse(read(p).replace(/^\uFEFF/,''));
 const write=(p,value)=>{const target=path.join(ROOT,p);if(!target.startsWith(ROOT+path.sep))throw Error('Out-of-scope write');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,value);};
 const emit=(p,value)=>write(p,JSON.stringify(value,null,2)+'\n');
@@ -55,7 +61,7 @@ function build(){
   row.sourceFiles=[row.path];row.references=(p.sourceIds||[]).map(id=>{const s=sourceById.get(id);if(!s)throw Error('Unknown source ID '+id);return {slug:s.slug,file:s.sourceFile,title:s.title,date:s.date,sha256:s.sourceSha256};});
   if(row.references.length)body+='\n\n## Source conversations\n\n'+row.references.map(s=>`[[${s.slug}|${s.title}]] is the archived discussion dated ${s.date||'unknown'} (UTC export metadata).`).join('\n\n')+'\n\n'+p.attribution;
   if(p.externalSources?.length){
-   const refs=p.externalSources.map(id=>{const r=X.references.find(x=>x.id===id);if(!r)throw Error('Unknown external reference '+id);const url=new URL(r.url);if(url.protocol!=='https:'||url.username||url.password)throw Error('Unsafe citation '+id);return r;});
+   const refs=p.externalSources.map(id=>{const r=references.find(x=>x.id===id);if(!r)throw Error('Unknown external reference '+id);const url=new URL(r.url);if(url.protocol!=='https:'||url.username||url.password)throw Error('Unsafe citation '+id);return r;});
    body+='\n\n## External sources and access notes\n\n'+refs.map(r=>`[${r.title}](${r.url})\n\n${r.scope} Consulted ${r.accessed}.`).join('\n\n');
   }
   const followups={'apocalyptic-repair-theology':['trump-first-beast-of-revelation','ukraine-russia-forecast-record'],'christ-as-an-inner-model':['jesus-teacher-of-righteousness-hypothesis'],'gnosticism-and-temple-trauma':['jesus-teacher-of-righteousness-hypothesis','moses-volcano-and-exodus-chronology'],'samaritan-texts-and-sacred-authority':['el-in-ancient-egypt','kenite-hypothesis-and-yahweh-origins']};
@@ -67,16 +73,18 @@ function build(){
  }
  for(const p of E.articles)add(p,p.body);
  for(const [slug,names] of Object.entries(X.aliases))if(!bySlug.has(slug))throw Error('Alias destination missing '+slug);
+ add(D.guide,D.guide.body);
+ add({slug:'glossary',title:'Terms used in this inquiry',category:'context',kind:'Navigator',summary:'A short glossary of the terms and distinctions used in the developed articles.'},'These definitions describe usage in this collection, not a universal dictionary of every tradition.\n\n'+D.glossary.map(g=>`## ${g.term}\n\n${g.text}\n\n[[${g.page}|Read the connected investigation]]`).join('\n\n'));
  const ledger=JSON.parse(JSON.stringify(X.ledger));
  for(const e of ledger.entries){
   if(e.sourceId){const p=sourceById.get(e.sourceId);if(!p)throw Error('Unknown ledger source '+e.sourceId);e.sourceSlug=p.slug;e.sourceHash=p.sourceSha256;e.sourceFile=p.sourceFile;const t=chats.get(p.sourceFile).turns[e.turn-1];if(!t||t.speaker!=='Micah Blumberg')throw Error('Ledger turn must be an author turn');}
-  if(e.reference){const r=X.references.find(r=>r.id===e.reference);if(!r)throw Error('Unknown ledger reference');e.sourceURL=r.url;e.sourceTitle=r.title;}
+  if(e.reference){const r=references.find(r=>r.id===e.reference);if(!r)throw Error('Unknown ledger reference');e.sourceURL=r.url;e.sourceTitle=r.title;}
   delete e.sourceId;
  }
  const ledgerBody='This register separates predictions, interpretation updates and recovery leads. No outcome audit has been performed, and no fulfilled-prediction count is claimed. Criteria below are proposed editorial tests, not the author\'s original preregistration.\n\n'+ledger.entries.map(e=>`## ${e.date}: ${e.title}\n\n${e.recordType}. ${e.sourceStatus}. Evaluation: ${e.evaluation}.\n\n${e.claim}\n\nDate basis: ${e.dateBasis}\n\nHorizon: ${e.horizon}\n\nMechanism: ${e.mechanism}\n\nConditions: ${e.conditions}\n\n${e.criterion}\n\n${e.sourceSlug?`[[${e.sourceSlug}|Read the original conversation]] (turn ${e.turn}).`:e.sourceURL?`[Read the source publication](${e.sourceURL})`:'Source recovery is pending; this is not a new transcript.'}`).join('\n\n')+'\n\nContinue with [[ukraine-russia-forecast-record|the Ukraine and Russia forecast record]], [[trump-first-beast-of-revelation|Trump and the First Beast]] or [[research-method|the editorial method]].';
  add({slug:'forecast-ledger',title:'Dated forecast ledger',category:'apocalypse',kind:'Navigator',summary:'A dated source register of predictions, interpretation updates and recovery leads, without retrospective scoring.'},ledgerBody);
  emit('data/forecast-ledger.json',ledger);
- emit('data/external-sources.json',X.references);
+ emit('data/external-sources.json',references);
  add({...E.method,updated:'2026-09-04'},E.method.body);
  for(const c of E.categories){
   const records=pages.filter(p=>p.category===c.id&&p.sourceFile).sort((a,b)=>a.title.localeCompare(b.title));
@@ -84,7 +92,29 @@ function build(){
   const body=`${c.description}\n\n## Start with a developed argument\n\n${developed.length?developed.map(p=>`[[${p.slug}|${p.title}]]: ${p.summary}`).join('\n\n'):`[[research-method|From a conversation to a developed article]] explains how context becomes a source-grounded argument.`}\n\n## Browse the source discussions\n\nThese ${records.length} conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.\n\n${records.map(p=>`[[${p.slug}|${p.title}]] (${p.date||'date unavailable'}).`).join('\n\n')}\n\nReturn to [[home|the library]] or open [[sources-index|the full conversation catalogue]].`;
   add({slug:'topic-'+c.id,title:c.title,summary:c.description,category:c.id,kind:'Topic collection'},body);
  }
- const home=`The Theology Wiki follows Micah Blumberg's questions about awakening, religious authority, historical catastrophe and the possibility of repair. Begin with a developed argument, then follow its links into the conversations that shaped it.\n\n## Ideas developed from the conversations\n\n${E.articles.map(p=>`[[${p.slug}|${p.title}]]: ${p.summary}`).join('\n\n')}\n\n## Explore a subject\n\n${E.categories.map(c=>`[[topic-${c.id}|${c.title}]]: ${c.description}`).join('\n\n')}\n\n## Follow a longer question\n\n[[forecast-ledger|The dated forecast ledger]] distinguishes predictions from outcomes and recovery leads. [[reading-paths|Reading paths]] connect several arguments. [[sources-index|The conversation catalogue]] opens all ${manifest.length} published chats. [[connections|The connection map]] shows actual article links. [[image-collection|The image collection]] identifies every artwork and its source.\n\n## About this edition\n\n${E.articles.length} developed articles accompany the source archive. They are AI-assisted editorial syntheses, not replacement transcripts or newly attributed quotations. The rest of the collection includes source records and legacy research notes. [[research-method|Read the editorial method]] for speaker attribution, dates, claim status and source integrity.`;
+ const home=`Theology asks what we inherit, whom we trust, how a mind changes and what repair demands. This library develops Micah Blumberg's inquiries through source-linked arguments and preserved conversations.
+
+## Begin with an argument
+
+${D.featured.map(slug=>{const p=E.articles.find(p=>p.slug===slug);return `[[${p.slug}|${p.title}]]: ${p.summary}`;}).join('\n\n')}
+
+## Find your way through the inquiry
+
+[[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer five longer routes, and the [[glossary|glossary]] explains the collection's terms.
+
+## All developed articles
+
+${E.articles.map(p=>`[[${p.slug}|${p.title}]]: ${p.summary}`).join('\n\n')}
+
+## Explore a subject
+
+${E.categories.map(c=>`[[topic-${c.id}|${c.title}]]: ${c.description}`).join('\n\n')}
+
+## Sources and research tools
+
+[[sources-index|The conversation archive]] preserves ${manifest.length} original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
+
+${E.articles.length} developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.`;
  add({slug:'home',path:'home.md',title:'Theology Wiki',category:'context',kind:'Library home',summary:'Explore original questions, developed arguments and 354 source conversations.'},home);
  add({slug:'reading-paths',title:'Reading paths',category:'context',kind:'Navigator',summary:'Follow a question across the developed articles.'},E.paths.map(p=>`## ${p.title}\n\n${p.description}\n\n${p.pages.map(s=>`[[${s}|${bySlug.get(s).title}]]`).join('\n\n')}`).join('\n\n'));
  add({slug:'connections',title:'Connections between ideas',category:'context',kind:'Navigator',summary:'Explore explicit wikilinks and source relationships without treating resemblance as equivalence.'},'## Follow an argument\n\nChoose a page in the connection explorer below. Lines represent explicit reader links; incoming and outgoing relationships are also listed in text.\n\n[[reading-paths|Reading paths]] offer a guided alternative.');
@@ -93,6 +123,23 @@ function build(){
  const sourceIndex=bySlug.get('sources-index');sourceIndex.kind='Source catalogue';sourceIndex.category='context';sourceIndex.summary='Search, sort and open all 354 original conversations, with speaker labels and UTC export dates.';sourceIndex.primaryExcerpt='';
  const sb='## Read the conversations behind the ideas\n\nThe full catalogue below preserves the 354 published AI chats. Search matches may come from either speaker, not necessarily from Micah\'s own statements. Dates are export metadata, not independent publication certificates.\n\n'+E.categories.map(c=>`[[topic-${c.id}|${c.title}]]`).join('\n\n');
  write('content/'+sourceIndex.path,front(sourceIndex,sb));bodies.set(sourceIndex.slug,sb);
+ const relationships=D.relations.map(r=>({...r}));
+ for(const p of pages.filter(p=>p.kind==='Developed article'))for(const r of p.references||[])relationships.push({from:p.slug,to:r.slug,type:'source',why:`The article develops an argument from ${r.title}. Read the original speakers separately from the editorial prose.`,origin:'Article source reference'});
+ const anchors=D.anchors.map(a=>{
+  const p=sourceById.get(a.sourceId),t=chats.get(p?.sourceFile)?.turns[a.turn-1];
+  if(!p||!t||t.speaker!=='Micah Blumberg')throw Error('Invalid author-turn anchor');
+  const row={...a,to:p.slug,sourceFile:p.sourceFile,sourceHash:p.sourceSha256};delete row.sourceId;return row;
+ });
+ const chronology=D.chronology.map(c=>{const p=sourceById.get(c.sourceId);if(!p||!chats.get(p.sourceFile).turns[c.turn-1])throw Error('Invalid chronology source');const row={...c,sourceSlug:p.slug,sourceHash:p.sourceSha256};delete row.sourceId;return row;});
+ for(const r of relationships){if(!bySlug.has(r.from)||!bySlug.has(r.to)||r.from===r.to||!r.why)throw Error('Invalid explained relationship');}
+ emit('data/relationships.json',{version:E.version,policy:'Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.',edges:relationships,anchors});
+ emit('data/depth.json',{version:E.version,featured:D.featured,glossary:D.glossary,chronology,guide:D.guide.slug,updated:D.updated});
+ const turnRows=[],turnPostings=Object.create(null);
+ for(const p of pages.filter(p=>p.sourceFile))for(const t of chats.get(p.sourceFile).turns){
+  const index=turnRows.length;
+  turnRows.push({slug:p.slug,turn:t.number,speaker:t.speaker,preview:t.text.replace(/\s+/g,' ').slice(0,220)});
+  for(const term of C.tokens(t.text)){if(term.length>60)continue;(turnPostings[term]??=[]).push(index);}
+ }
  const graph={},backlinks={};for(const p of pages){graph[p.slug]=[];backlinks[p.slug]=[];}
  for(const p of pages){
   let targets;
@@ -100,17 +147,18 @@ function build(){
   else targets=[...String(bodies.get(p.slug)||'').matchAll(/\[\[([^\]|#]+)(?:[^\]]*)\]\]/g)].map(m=>m[1]);
   // Index is an established alias used in legacy home/source pages.
   if(p.editionGenerated||p.slug==='home'){for(const t of targets)if(!bySlug.has(t)&&t!=='index')throw Error('Broken authored wikilink '+p.slug+' -> '+t);}
+  targets.push(...relationships.filter(r=>r.from===p.slug).map(r=>r.to));
   p.related=[...new Set(targets.map(s=>s==='index'?'sources-index':s).filter(s=>s!==p.slug&&bySlug.has(s)))];graph[p.slug]=p.related;
   for(const target of p.related)backlinks[target].push(p.slug);
   const text=bodies.get(p.slug)||'';for(const term of C.tokens(text+' '+p.title+' '+p.summary+' '+(p.aliases||[]).join(' '))){if(term.length>60)continue;(postings[term]??=[]).push(pages.indexOf(p));}
  }
- const seenRefs=new Set();for(const r of X.references){if(seenRefs.has(r.id))throw Error('Duplicate external reference');seenRefs.add(r.id);}
+ const seenRefs=new Set();for(const r of references){if(seenRefs.has(r.id))throw Error('Duplicate external reference');seenRefs.add(r.id);}
  for(const p of pages){p.backlinkCount=backlinks[p.slug].length;p.backlinks=backlinks[p.slug];delete p.body;delete p.sourceIds;}
  emit('data/page-index.json',pages);emit('data/graph.json',{schema:'theology-source-edition/v2',related:graph});
- emit('data/research.json',{version:E.version,categories:E.categories,paths:E.paths,sourceCount:manifest.length,developedCount:E.articles.length,featured:X.articles.map(p=>p.slug),forecastRecords:ledger.entries.length,sourceIntegrity:'354/354 matched existing SHA-256 manifest',backlinks});
- write('data/search.json',JSON.stringify({version:E.version,ids:pages.map(p=>p.slug),scope:'All published chat text, both speakers, and reader text. AND keyword search; not author endorsement.',postings})+'\n');
+ emit('data/research.json',{version:E.version,categories:E.categories,paths:E.paths,sourceCount:manifest.length,developedCount:E.articles.length,featured:D.featured,forecastRecords:ledger.entries.length,sourceIntegrity:'354/354 matched existing SHA-256 manifest',backlinks});
+ write('data/search.json',JSON.stringify({version:E.version,ids:pages.map(p=>p.slug),scope:'All published text. Speaker searches require every query token within the same top-level source turn; user turns can include pasted quotations.',postings,turns:turnRows,turnPostings})+'\n');
  patchReaders();
- const report={version:E.version,pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:X.references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
+ const report={version:E.version,pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
  emit('data/build-report.json',report);return report;
 }
 function patchReaders(){
@@ -164,7 +212,13 @@ function patchReaders(){
   original=original.replace(/<script src="\.\/assets\/js\/wiki-app\.js[^\"]*" defer><\/script>/,'<script src="./assets/js/research-core.js?v='+E.version+'"></script><script src="./assets/js/research-tools.js?v='+E.version+'"></script><script src="./assets/js/theology-reader.js?v='+E.version+'" defer></script>');
  }
  original=original.replace(/(\.\/assets\/(?:js|css)\/(?:research-core\.js|research-tools\.js|theology-reader\.js|research\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
- write('index.html',original);
+ if(!html.includes('depth-tools.js'))html=html.replace('  <script src="./assets/js/research-tools.js', '  <script src="./assets/js/depth-tools.js?v='+E.version+'"></script>\n  <script src="./assets/js/research-tools.js');
+ if(!html.includes('depth.css'))html=html.replace('</head>','<link rel="stylesheet" href="./assets/css/depth.css?v='+E.version+'">\n</head>');
+ if(!original.includes('depth-tools.js'))original=original.replace('<script src="./assets/js/research-tools.js','<script src="./assets/js/depth-tools.js?v='+E.version+'"></script><script src="./assets/js/research-tools.js');
+ if(!original.includes('depth.css'))original=original.replace('</head>','<link rel="stylesheet" href="./assets/css/depth.css?v='+E.version+'"></head>');
+ const bump=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:depth-tools\.js|depth\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
+ write('san-reader.html',bump(html));
+ write('index.html',bump(original));
 }
 if(require.main===module){try{console.log(JSON.stringify(build(),null,2));}catch(e){console.error(e.stack);process.exitCode=1;}}
 module.exports={build,category};

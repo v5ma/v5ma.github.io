@@ -1,0 +1,118 @@
+{
+  "version": "2026.09.04-source-edition-3",
+  "featured": [
+    "apocalyptic-repair-theology",
+    "trump-first-beast-of-revelation",
+    "jesus-teacher-of-righteousness-hypothesis"
+  ],
+  "glossary": [
+    {
+      "term": "Teacher of Righteousness (TOR)",
+      "text": "The title used for a teacher associated with the Dead Sea Scrolls. In this wiki, Jesus/TOR names Micah's proposed historical identification; the abbreviation does not itself establish that identification.",
+      "page": "jesus-teacher-of-righteousness-hypothesis"
+    },
+    {
+      "term": "Pattern theology",
+      "text": "The interpretive method used here to compare connected roles and actions across sacred narratives and historical cases. It allows recurring patterns while preserving the author's stronger claim of a particular fulfillment.",
+      "page": "trump-first-beast-of-revelation"
+    },
+    {
+      "term": "Apocalyptic repair",
+      "text": "The proposal that domination can culminate in real catastrophe while acts of repair also accumulate. Practical care is not a denial of danger, and a warning is not permission to abandon care.",
+      "page": "apocalyptic-repair-theology"
+    },
+    {
+      "term": "Coherence and conformity",
+      "text": "The source theology connects coherence with God, creation and human flourishing. This edition distinguishes that moral claim from mere synchronized behavior or obedience. These are not interchangeable physical and ethical measurements.",
+      "page": "religion-for-conscious-robots"
+    },
+    {
+      "term": "Cognitive Gnosticism",
+      "text": "The proposal to examine spiritual ideas through how a mind represents and changes itself. A comparison with neural or computational language is an explanatory hypothesis, not an automatic identity between an ancient concept and a measured brain process.",
+      "page": "cognitive-gnosticism"
+    },
+    {
+      "term": "Inner model",
+      "text": "A representation of a person or ideal used as a standard for examining one's responses. The Christ-as-model discussion uses a gradient-descent analogy; it is not evidence that a specific learning algorithm has been measured in prayer.",
+      "page": "christ-as-an-inner-model"
+    },
+    {
+      "term": "Demiurge, archons and Pleroma",
+      "text": "Terms encountered in the Gnostic discussions for a creator figure, ruling powers and divine fullness. Their meanings vary across texts. The wiki's psychological applications must be distinguished from what each ancient work says.",
+      "page": "cognitive-gnosticism"
+    },
+    {
+      "term": "Manuscript, composition and event",
+      "text": "The surviving physical copy, the formation of a text and the event narrated by it are different dating questions. A proposed earlier copy date does not by itself identify a character or move a biography.",
+      "page": "jesus-teacher-of-righteousness-hypothesis"
+    },
+    {
+      "term": "Kenite hypothesis",
+      "text": "An existing historical proposal about the southern transmission of Yahweh worship. It is not Micah's coinage, and accepting that transmission proposal does not require accepting a volcanic identification of Sinai.",
+      "page": "kenite-hypothesis-and-yahweh-origins"
+    },
+    {
+      "term": "Forecast and recovery lead",
+      "text": "A forecast is an identifiable claim about a later outcome. A recovery lead points to a discussion whose full original passage is still missing. A lead is not a new transcript or a scored prediction.",
+      "page": "forecast-ledger"
+    }
+  ],
+  "chronology": [
+    {
+      "date": "167 BCE",
+      "layer": "Author hypothesis",
+      "title": "Proposed founding rupture",
+      "account": "The conversation associates this anchor with Onias III / John the Baptist. Both the date and the identification remain premises of the reconstruction.",
+      "turn": 24,
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "date": "147 BCE",
+      "layer": "Derived within the hypothesis",
+      "title": "Proposed beginning of the Teacher's ministry",
+      "account": "The date is obtained from the proposed starting anchor plus a 20-year interval. It is not independent confirmation of the anchor.",
+      "turn": 26,
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "date": "88 BCE",
+      "layer": "Author hypothesis",
+      "title": "Proposed death and succession",
+      "account": "The Teacher dies and leadership is associated with James. The article separates this proposed identity from continuity of the community.",
+      "turn": 24,
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "date": "37-50 CE",
+      "layer": "Author hypothesis",
+      "title": "Paul and later namesakes",
+      "account": "The conversation assigns this range to Paul and proposes later Peter/James namesakes. Galatians supplies relative intervals, not this absolute range by itself.",
+      "turn": 26,
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "date": "124-137 years",
+      "layer": "Arithmetic, not historical confirmation",
+      "title": "Elapsed time across the proposed gap",
+      "account": "Using conventional BCE/CE dating with no year zero: 88 + 37 - 1 = 124 and 88 + 50 - 1 = 137. The transcript's 133 years corresponds to 46 CE.",
+      "turn": 24,
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "date": "After 70 CE",
+      "layer": "Literary-development hypothesis",
+      "title": "Proposed response to Temple destruction",
+      "account": "The proposal distinguishes inherited sayings from later literary responses. It does not date every Gnostic text from its emotional tone.",
+      "turn": 26,
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    }
+  ],
+  "guide": "guide-to-the-inquiry",
+  "updated": "2026-09-04"
+}

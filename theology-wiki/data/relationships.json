@@ -1,0 +1,391 @@
+{
+  "version": "2026.09.04-source-edition-3",
+  "policy": "Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.",
+  "edges": [
+    {
+      "from": "guide-to-the-inquiry",
+      "to": "apocalyptic-repair-theology",
+      "type": "introduces",
+      "why": "The guide uses repair to connect historical warning with present action.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "antichrist-as-a-pattern-of-conduct",
+      "type": "applies",
+      "why": "The First Beast inquiry applies the general judgment of domination to a specific identification.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "religion-for-conscious-robots",
+      "type": "compares",
+      "why": "The procurement case asks who defines acceptable information; the robot-religion proposal asks what moral alignment should serve.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "apocalyptic-repair-theology",
+      "type": "contrasts",
+      "why": "The repair framework supplies a constructive standard against which the moral use of authority can be judged.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "forecast-ledger",
+      "type": "distinguishes",
+      "why": "A theological identification is not the same object as a dated prediction about an outcome.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "christ-as-an-inner-model",
+      "type": "extends",
+      "why": "A personal standard can become a community practice when institutions preserve the ability to correct behavior.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "religion-for-conscious-robots",
+      "type": "clarifies",
+      "why": "Coherence with human flourishing is distinguished from uniform obedience to an authority.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "gnosticism-and-temple-trauma",
+      "type": "distinguishes",
+      "why": "The constructive theology does not require the proposed genealogy of post-catastrophe literature to have been proved.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "ukraine-russia-forecast-record",
+      "type": "responds",
+      "why": "Repair asks what can be done while the destructive mechanisms proposed in a forecast remain risks.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "to": "gnosticism-and-temple-trauma",
+      "type": "connects",
+      "why": "An early sayings tradition and a later response to Temple destruction are different possible layers, not one undifferentiated date.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "to": "christ-as-an-inner-model",
+      "type": "distinguishes",
+      "why": "The identity of a historical teacher and the effect of an inward representation are separate claims.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "compares",
+      "why": "Both inquiries distinguish inherited teaching from a later community's claim to institutional continuity.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "moses-volcano-and-exodus-chronology",
+      "to": "kenite-hypothesis-and-yahweh-origins",
+      "type": "distinguishes",
+      "why": "The transmission of worship, a volcanic Sinai and the Thera/Ahmose chronology are separable proposals.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "el-in-ancient-egypt",
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "connects",
+      "why": "Evidence of a divine name crossing a boundary motivates a comparison without proving identical religious institutions.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "ukraine-russia-forecast-record",
+      "to": "forecast-ledger",
+      "type": "documents",
+      "why": "The register preserves original wording and date basis separately from any later outcome assessment.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "christ-as-an-inner-model",
+      "type": "develops",
+      "why": "The inward representation of Christ is a concrete example of the wider cognitive-spiritual comparison.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "faith-as-deliberate-joy",
+      "type": "connects",
+      "why": "Practice concerns the repeated use of an orientation, not only acceptance of a proposition.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "antichrist-as-a-pattern-of-conduct",
+      "type": "contrasts",
+      "why": "Alignment must remain answerable to welfare and truth rather than allowing sacred language to insulate domination.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "revelation-interpretation-and-america",
+      "type": "source",
+      "why": "The article develops an argument from Revelation Interpretation and America. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "false-peace-prophecy",
+      "type": "source",
+      "why": "The article develops an argument from False Peace Prophecy. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "ukraine-russia-forecast-record",
+      "to": "false-peace-prophecy",
+      "type": "source",
+      "why": "The article develops an argument from False Peace Prophecy. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "ukraine-russia-forecast-record",
+      "to": "revelation-interpretation-and-america",
+      "type": "source",
+      "why": "The article develops an argument from Revelation Interpretation and America. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "el-in-ancient-egypt",
+      "to": "jews-and-canaanites-origins",
+      "type": "source",
+      "why": "The article develops an argument from Jews and Canaanites Origins. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "el-in-ancient-egypt",
+      "to": "yahweh-and-asherah-s-relationship",
+      "type": "source",
+      "why": "The article develops an argument from Yahweh and Asherah's Relationship. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Teacher of Righteousness vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "to": "pilate-life-timeline",
+      "type": "source",
+      "why": "The article develops an argument from Pilate life timeline. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "to": "daniel-and-teacher-of-righteousness",
+      "type": "source",
+      "why": "The article develops an argument from Daniel and Teacher of Righteousness. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "moses-volcano-and-exodus-chronology",
+      "to": "moses-dating-debate",
+      "type": "source",
+      "why": "The article develops an argument from Moses dating debate. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "moses-volcano-and-exodus-chronology",
+      "to": "parthians-and-medes-meaning",
+      "type": "source",
+      "why": "The article develops an argument from Parthians and Medes meaning. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "kenite-hypothesis-and-yahweh-origins",
+      "to": "gnostic-teachings-and-clarity",
+      "type": "source",
+      "why": "The article develops an argument from Gnostic Teachings and Clarity. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "kenite-hypothesis-and-yahweh-origins",
+      "to": "what-is-midian",
+      "type": "source",
+      "why": "The article develops an argument from What is Midian. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "early-vs-later-gnosticism",
+      "type": "source",
+      "why": "The article develops an argument from Early vs Later Gnosticism. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "jewish-apocalyptic-repair-timeline",
+      "type": "source",
+      "why": "The article develops an argument from Jewish Apocalyptic Repair Timeline. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "agi-religious-framework",
+      "type": "source",
+      "why": "The article develops an argument from AGI Religious Framework. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Cognitive Gnosticism: Jesus vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "publishing-cognitive-gnosticism-first",
+      "type": "source",
+      "why": "The article develops an argument from Publishing Cognitive Gnosticism First. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "antichrist-spiritual-inversion",
+      "type": "source",
+      "why": "The article develops an argument from Antichrist Spiritual Inversion. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Cognitive Gnosticism: Jesus vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "antichrist-spiritual-inversion",
+      "type": "source",
+      "why": "The article develops an argument from Antichrist Spiritual Inversion. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "antichrist-as-a-pattern-of-conduct",
+      "to": "early-vs-later-gnosticism",
+      "type": "source",
+      "why": "The article develops an argument from Early vs Later Gnosticism. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "antichrist-as-a-pattern-of-conduct",
+      "to": "antichrist-spiritual-inversion",
+      "type": "source",
+      "why": "The article develops an argument from Antichrist Spiritual Inversion. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "agi-religious-framework",
+      "type": "source",
+      "why": "The article develops an argument from AGI Religious Framework. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Cognitive Gnosticism: Jesus vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "deliberate-joy-concept",
+      "type": "source",
+      "why": "The article develops an argument from Deliberate joy concept. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "antichrist-spiritual-inversion",
+      "type": "source",
+      "why": "The article develops an argument from Antichrist Spiritual Inversion. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "gnosticism-and-temple-trauma",
+      "to": "early-vs-later-gnosticism",
+      "type": "source",
+      "why": "The article develops an argument from Early vs Later Gnosticism. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "gnosticism-and-temple-trauma",
+      "to": "jewish-apocalyptic-repair-timeline",
+      "type": "source",
+      "why": "The article develops an argument from Jewish Apocalyptic Repair Timeline. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "samaritan-texts-and-sacred-authority",
+      "to": "samaritan-and-jewish-texts",
+      "type": "source",
+      "why": "The article develops an argument from Samaritan and Jewish Texts. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    }
+  ],
+  "anchors": [
+    {
+      "from": "apocalyptic-repair-theology",
+      "turn": 44,
+      "why": "The author corrects the reduction of historical catastrophe to a purely inward interpretation.",
+      "to": "early-vs-later-gnosticism",
+      "sourceFile": "gpt2026dragon1905_Early_vs_Later_Gnosticism.txt",
+      "sourceHash": "72cb9369c12ad2ab4acaa04e9d3c30e5984ae79fb1d84c4b8d6fd61bfa7ab7dc"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "turn": 46,
+      "why": "The author explicitly accepts the name Apocalyptic Repair Theology.",
+      "to": "early-vs-later-gnosticism",
+      "sourceFile": "gpt2026dragon1905_Early_vs_Later_Gnosticism.txt",
+      "sourceHash": "72cb9369c12ad2ab4acaa04e9d3c30e5984ae79fb1d84c4b8d6fd61bfa7ab7dc"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "turn": 3,
+      "why": "The author connects maximal coherence with God, creation and humanity rather than treating these as competing goals.",
+      "to": "agi-religious-framework",
+      "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+      "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "turn": 24,
+      "why": "The earlier-Teacher dates and identity proposal are stated together.",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "jesus-teacher-of-righteousness-hypothesis",
+      "turn": 26,
+      "why": "The author explains the later Peter and James as namesakes or descendants and proposes community continuity.",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    }
+  ]
+}
