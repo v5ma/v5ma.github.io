@@ -13,7 +13,10 @@ window.Cloudview=(()=>{
   const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const m=single(new T.PlaneGeometry(w,h),new T.MeshBasicNodeMaterial({map:tx,side:T.DoubleSide}));m.position.set(x,y,z);return m;
  }
  function build(m){
-  engine=m;const T=m.THREE;kit=CloudAssets.create(T);root=new T.Group();root.name='Cloudview playable world';m.scene.add(root);
+  engine=m;const T=m.THREE;kit=CloudAssets.create(T);
+  const spherePrimitive=kit.sphere();
+  for(let i=0;i<spherePrimitive.p.length;i+=9)for(const key of ['p','n'])for(let j=0;j<3;j++){const a=spherePrimitive[key][i+3+j];spherePrimitive[key][i+3+j]=spherePrimitive[key][i+6+j];spherePrimitive[key][i+6+j]=a;}
+  root=new T.Group();root.name='Cloudview playable world';m.scene.add(root);
   const menu=window.__delivery?.state.menu,active=window.__sky?.active();course=active?__sky.state.data:SkyRoutes.build(0,__gameRefs.T);
   const night=active&&themeName==='city',paths=active?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,sky:t.sky})):menu?course.ct.map(p=>({pts:p,sky:p.sky})):[];
   previous=-1;tailPoints=[];water=[];mail=[];pickups=[];signature=paths.map(p=>p.sky.id).join('|');
@@ -55,7 +58,7 @@ window.Cloudview=(()=>{
      lastArrow=distance;const cx=x-nx*7,cy=y-ny*7,c=Math.cos(angle),s=Math.sin(angle),q=(u,v,z=28)=>[cx+u*c-v*s,cy+u*s+v*c,z];
      // Front fascia chevrons are thick little light prisms, not screen arrows.
      glow.tri(q(-4,5),q(3,0),q(-4,-5),goldSector?'#fff5ac':'#ffda69');glow.tri(q(-7,5),q(-4,5),q(-4,-5),'#ffe283');
-     if(goldSector)glow.box(cx,cy,29,12,16,.1,'#ffce65',angle);
+     // Gold-sector chevrons remain legible; do not cover them with a luminous plate.
     }
     if(distance-lastTie>46){lastTie=distance;metal.box(x-nx*18,y-ny*18,0,8,9,63,'#294560',angle);metal.box(x-nx*21,y-ny*21,0,14,4,68,'#70879b',angle);}
    }
