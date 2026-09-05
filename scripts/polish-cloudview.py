@@ -2,7 +2,7 @@
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 p=ROOT/'mario-maker-clone/svgn-paper-route/cloudview-world.js';s=p.read_text()
-if 'cloudview-20260904-2' not in s:
+if 'cloudview-20260904-1' in s:
  s=s.replace("cloudview-20260904-1","cloudview-20260904-2")
  s=s.replace('let lastStep=-1, trail=[]','let envelopes=[], lastStep=-1, trail=[]')
  s=s.replace('this.p=[];this.n=[];this.c=[];','this.p=[];this.n=[];this.c=[];this.uv=[];')

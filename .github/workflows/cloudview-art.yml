@@ -18,12 +18,13 @@ jobs:
         run: |
           python scripts/prepare-cloudview.py
           python scripts/polish-cloudview.py
+          python scripts/guard-cloudview.py
       - name: Record integrated source on the art branch
         if: github.ref == 'refs/heads/feat/cloudview-art-20260904'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-world.js
+          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-world.js tests/cloudview_visual.py
           if ! git diff --cached --quiet; then git commit -m 'Integrate Cloudview art, camera and HUD'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - uses: actions/setup-node@v4
         with:
