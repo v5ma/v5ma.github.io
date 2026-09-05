@@ -247,7 +247,10 @@ with sync_playwright() as tool:
 
         # Reader-depth edition: usability and evidence checks with native controls.
         open_page(page)
-        check('Home includes a connecting introduction and all other developed articles', page.locator('.depth-article-index a').count()==16 and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
+        expected_articles=set(page.evaluate("TheologyReader.pages().filter(p=>p.kind==='Developed article').map(p=>p.slug)"))
+        featured_articles=page.locator('.depth-featured a[data-page]').evaluate_all('(links)=>links.map(a=>a.dataset.page)')
+        indexed_articles=page.locator('.depth-article-index a[data-page]').evaluate_all('(links)=>links.map(a=>a.dataset.page)')
+        check('Home includes the connecting introduction and every developed article exactly once', len(expected_articles)==20 and len(featured_articles)==3 and len(indexed_articles)==len(expected_articles)-3 and len(set(featured_articles+indexed_articles))==len(expected_articles) and set(featured_articles+indexed_articles)==expected_articles and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
         page.locator('.depth-featured a[data-page="apocalyptic-repair-theology"]').click()
         page.wait_for_function('document.querySelector("#article-body")?.dataset.depthReady==="apocalyptic-repair-theology"')
         check('A normal homepage click opens the flagship article', page.evaluate('TheologyReader.current().slug')=='apocalyptic-repair-theology')

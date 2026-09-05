@@ -3,6 +3,7 @@ const fs=require('node:fs'),path=require('node:path');
 const plan=require('./roadmap.json');
 const ref=(id,title,url,scope)=>({id,title,url,scope,accessed:'2026-09-05'});
 const references=[
+ ref("melch-kim2018","Dong-Hyuk Kim (2018), The Messiah of Aaron and Israel: Do We See Single or Double?, Korean Journal of Old Testament Studies 24(1), 190-213","https://journal.kci.go.kr/ksots/archive/articleView?artiId=ART002331289","Journal metadata, English abstract and bibliography consulted. DOI 10.24333/jkots.2018.24.1.190. The abstract establishes the dispute about the singular Damascus Document expression and states its argument for two figures. The full Korean article and the cited critical editions were not collated. This is current editorial research, not a recovered author acknowledgment."),
  ref('melch-genesis14','Genesis 14:18-20, World English Bible','https://ebible.org/engwebp/GEN14.htm','Primary chapter consulted. The encounter, blessing and tithe are kept separate from later lineage claims.'),
  ref('melch-psalm110','Psalm 110, World English Bible','https://ebible.org/engwebp/PSA110.htm','Primary psalm consulted, especially verses 1-7. Royal and judicial language is retained alongside the priestly address.'),
  ref('melch-hebrews7','Hebrews 7, World English Bible','https://ebible.org/engwebp/HEB07.htm','Primary chapter consulted, especially verses 1-17 and 23-28. Textual resemblance, descent and continuing priesthood are distinguished.'),

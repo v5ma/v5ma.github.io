@@ -12,7 +12,7 @@
   "pages": 411,
   "readingPaths": 7,
   "forecastRecords": 6,
-  "externalSources": 43,
+  "externalSources": 44,
   "sourceChats": 354,
   "verifiedHashes": 354,
   "developedArticles": 20,
@@ -21,6 +21,6 @@
   "anchoredSourceTurns": 32,
   "indexedTurns": 4980,
   "links": 1452,
-  "searchTerms": 47704,
+  "searchTerms": 47715,
   "sourceBytes": 17769481
 }

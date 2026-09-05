@@ -14091,6 +14091,7 @@
     "summary": "A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.",
     "claimType": "Textual comparison and historical transmission inquiry",
     "externalSources": [
+      "melch-kim2018",
       "melch-genesis14",
       "melch-psalm110",
       "melch-hebrews7",
@@ -14120,7 +14121,7 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 10,
+    "readMinutes": 13,
     "related": [
       "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
