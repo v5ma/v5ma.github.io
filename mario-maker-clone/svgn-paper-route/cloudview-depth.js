@@ -158,7 +158,7 @@
   }
   const base=Cloudview,build=base.build,update=base.update;
   base.build=function(m) {
-    if(lighting){m.scene.environment=null;lighting.environment?.dispose();lighting=null;}
+    if(lighting){m.scene.environment=null;lighting.environment?.dispose();lighting.sun.shadow?.dispose();lighting=null;}
     const root=build(m),T=m.THREE;
     const active=window.__sky?.active(),menu=window.__delivery?.state.menu;
     if(!active&&!menu){restore();return root;}
@@ -212,6 +212,7 @@
       const mat=o.material;
       if(o.renderOrder===-100&&mat?.map){const sky=mat.map.image,ctx=sky.getContext('2d'),gr=ctx.createLinearGradient(0,0,0,sky.height);gr.addColorStop(0,night?'#152b68':'#0873e9');gr.addColorStop(.55,night?'#577db0':'#349bed');gr.addColorStop(1,night?'#a3cde4':'#d3efff');ctx.fillStyle=gr;ctx.fillRect(0,0,sky.width,sky.height);mat.map.needsUpdate=true;mat.toneMapped=false;}
     }
+    lighting.stats.spatial=CloudDepthChunks.apply(m,root);
     kit.dispose();return root;
   };
   base.update=function() {

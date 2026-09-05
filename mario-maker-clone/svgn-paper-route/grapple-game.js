@@ -85,6 +85,29 @@
   window.win=function(){if(isOpen()&&state.releases<(S.data.requiredGrapples||0)){say('Use the whip crossing first');return;}if(isOpen())log('finish',{hooks:state.hooks,releases:state.releases});return previousWin();};
   const previousSwing=stepSwing;
   window.stepSwing=function(p){return __sky.active()?K.swing(p,input(),solid):previousSwing(p);};
+  // Do not let the legacy jump mapping swallow reeling, or let two
+  // different R handlers restart the same attempt twice.
+  const rawReelKeys=new Set();
+  window.addEventListener('keydown',e=>{
+   if(!enabled()||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName))return;
+   if(e.code==='KeyR'){
+    e.preventDefault();e.stopImmediatePropagation();
+    if(!e.repeat)document.getElementById('sky-retry').click();
+    return;
+   }
+   if(player.peg&&['ArrowUp','ArrowDown','KeyW','KeyS'].includes(e.code)){
+    e.preventDefault();e.stopImmediatePropagation();rawReelKeys.add(e.code);
+    keys.ArrowUp=rawReelKeys.has('ArrowUp')||rawReelKeys.has('KeyW');
+    keys.ArrowDown=rawReelKeys.has('ArrowDown')||rawReelKeys.has('KeyS');
+   }
+  },true);
+  window.addEventListener('keyup',e=>{
+   if(!rawReelKeys.has(e.code))return;
+   e.preventDefault();e.stopImmediatePropagation();rawReelKeys.delete(e.code);
+   keys.ArrowUp=rawReelKeys.has('ArrowUp')||rawReelKeys.has('KeyW');
+   keys.ArrowDown=rawReelKeys.has('ArrowDown')||rawReelKeys.has('KeyS');
+  },true);
+  window.addEventListener('blur',()=>{rawReelKeys.clear();keys.ArrowUp=keys.ArrowDown=false;});
   // Keyboard, touch, and remapped gamepad Z all use the same cast/release path.
   window.addEventListener('keydown',e=>{if(!enabled()||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName))return;if(e.code==='KeyZ'&&!e.repeat){keys.KeyZ=true;state.wasZ=true;cast();}if(e.code==='Space'&&isOpen()&&!e.repeat)state.jump=true;});
   window.addEventListener('keyup',e=>{if(e.code==='KeyZ'){keys.KeyZ=false;release();state.wasZ=false;}});

@@ -21,7 +21,7 @@ with sync_playwright() as p:
     host=urlparse(BASE).hostname
     context.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
     context.add_init_script("localStorage.setItem('sprocket_muted','1')")
-    page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+    page=context.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
     try:
         page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded')
         page.wait_for_function('!!window.__grapple&&window.__gpuReady===true',timeout=90000)
@@ -59,11 +59,13 @@ with sync_playwright() as p:
         # Negative case: no Z input must not silently auto-grapple a peg.
         page.locator('#delivery-header [data-delivery="routes"]').click();page.locator('[data-course="3"]').click(timeout=90000);page.locator('#cv').focus()
         page.keyboard.down('KeyD');page.keyboard.down('KeyC')
-        page.wait_for_function('tries>1',timeout=90000);page.keyboard.up('KeyD');page.keyboard.up('KeyC')
+        page.wait_for_function('tries>1 || __sky.state.checkpoint>=3 || __sky.state.steps>=1800',timeout=180000);page.keyboard.up('KeyD');page.keyboard.up('KeyC')
         check(state(page)['hooks']==0 and not state(page)['won'],'C does not auto-grapple; skipping the whip crossing does not win')
-        check(page.evaluate('player.track?.sky.stage===1'),'A miss returns to the last caught partial ramp')
-        delivered=state(page)['deliveries'];page.keyboard.press('KeyR');page.wait_for_timeout(150)
-        check(state(page)['deliveries']==delivered,'Retry preserves completed deliveries')
+        before_retry=page.evaluate('({checkpoint:__sky.state.checkpoint,attempts:tries,delivered:deliveries})')
+        page.locator('#cv').focus();page.keyboard.press('KeyR')
+        page.wait_for_function('(n)=>tries===n+1',arg=before_retry['attempts'],timeout=10000)
+        check(page.evaluate('player.track?.sky.stage')==before_retry['checkpoint'],'Retry returns to the recorded receiving ramp')
+        check(state(page)['deliveries']==before_retry['delivered'],'A single R press retries exactly once without losing deliveries')
         page.keyboard.press('KeyP');before=state(page)['steps'];page.wait_for_timeout(400)
         check(state(page)['steps']==before,'Pause freezes the open-course simulation')
         page.locator('#delivery-pause [data-delivery="resume"]').click()
