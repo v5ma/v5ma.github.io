@@ -1,0 +1,8 @@
+const fs=require('fs'),path=require('path');
+const root=path.join(__dirname,'../mario-maker-clone/svgn-paper-route'),dir=path.join(root,'planning/flow-reports');
+const plans=[0,1,2].map(i=>JSON.parse(fs.readFileSync(path.join(dir,`plan-${i}.json`))));
+fs.writeFileSync(path.join(root,'route-flow-plans.js'),'/* Deterministically compiled trajectory-fit plans. Full witnesses: planning/flow-reports/. */\nglobalThis.FLOW_PLANS='+JSON.stringify({version:'flow-1',chapters:plans})+';\n');
+const reports=[0,1,2].map(i=>JSON.parse(fs.readFileSync(path.join(dir,`chapter-${i}.json`))));
+const chapters=reports.map((r,i)=>({chapter:i+1,title:r.level,beforeSurfaces:r.before.metrics.surfaces,afterSurfaces:r.after.metrics.surfaces,beforeCrossings:r.before.metrics.crossings,afterCrossings:r.after.metrics.crossings,beforeClearance:r.before.metrics.clearanceConflicts,afterClearance:r.after.metrics.clearanceConflicts,beforeUnproven:r.before.composedUnproven.length,afterUnproven:r.after.composedUnproven.length,entryCount:r.after.entryCount,states:r.witnesses.states,truncated:r.witnesses.truncated,report:`flow-reports/chapter-${i}.json`,plan:`flow-reports/plan-${i}.json`,modelHash:r.modelHash,layoutHash:r.layoutHash}));
+fs.writeFileSync(path.join(root,'planning/metrics.json'),JSON.stringify({scope:'Finite composed-state search; not a universal reachability theorem. Zero overlap uses the 76-unit centerline design threshold. Native gameplay and human tuning remain additional gates.',chapters},null,2)+'\n');
+console.log(JSON.stringify(chapters.map(c=>({chapter:c.chapter,nodes:c.afterSurfaces,unproven:c.afterUnproven,crossings:c.afterCrossings,clearance:c.afterClearance}))));

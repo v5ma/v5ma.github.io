@@ -1,0 +1,62 @@
+{
+  "scope": "Finite composed-state search; not a universal reachability theorem. Zero overlap uses the 76-unit centerline design threshold. Native gameplay and human tuning remain additional gates.",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "Sunrise Borough",
+      "beforeSurfaces": 46,
+      "afterSurfaces": 30,
+      "beforeCrossings": 6,
+      "afterCrossings": 0,
+      "beforeClearance": 31,
+      "afterClearance": 0,
+      "beforeUnproven": 21,
+      "afterUnproven": 0,
+      "entryCount": 6,
+      "states": 714,
+      "truncated": false,
+      "report": "flow-reports/chapter-0.json",
+      "plan": "flow-reports/plan-0.json",
+      "modelHash": "ab8a6135a488b41d6da5fbf5f5a24bcafd050744c82167e46eaee1ab48c9d374",
+      "layoutHash": "2f72343e"
+    },
+    {
+      "chapter": 2,
+      "title": "Waterwheel Boulevard",
+      "beforeSurfaces": 54,
+      "afterSurfaces": 34,
+      "beforeCrossings": 7,
+      "afterCrossings": 0,
+      "beforeClearance": 34,
+      "afterClearance": 0,
+      "beforeUnproven": 24,
+      "afterUnproven": 0,
+      "entryCount": 6,
+      "states": 738,
+      "truncated": false,
+      "report": "flow-reports/chapter-1.json",
+      "plan": "flow-reports/plan-1.json",
+      "modelHash": "ab8a6135a488b41d6da5fbf5f5a24bcafd050744c82167e46eaee1ab48c9d374",
+      "layoutHash": "23342e6c"
+    },
+    {
+      "chapter": 3,
+      "title": "Copperleaf Gardens",
+      "beforeSurfaces": 62,
+      "afterSurfaces": 38,
+      "beforeCrossings": 8,
+      "afterCrossings": 0,
+      "beforeClearance": 38,
+      "afterClearance": 0,
+      "beforeUnproven": 27,
+      "afterUnproven": 0,
+      "entryCount": 7,
+      "states": 815,
+      "truncated": false,
+      "report": "flow-reports/chapter-2.json",
+      "plan": "flow-reports/plan-2.json",
+      "modelHash": "ab8a6135a488b41d6da5fbf5f5a24bcafd050744c82167e46eaee1ab48c9d374",
+      "layoutHash": "f947cb83"
+    }
+  ]
+}

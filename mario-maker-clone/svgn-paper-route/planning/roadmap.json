@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 1,
+  "project": "SVGN.io Paper Delivery",
+  "revision": "route-flow-20260905",
+  "baseCommit": "664323627954309a6fa921867b430169141b74de",
+  "vision": "Ground and sky belong to one playful world. Traversal follows legible, physics-feasible channels with optional faster and richer branches that rejoin. The editor and planner operate on the same document as the running game.",
+  "states": [
+    "Planned",
+    "In progress",
+    "Implemented",
+    "Verified",
+    "Released",
+    "Blocked"
+  ],
+  "tasks": [
+    {
+      "id": "FLOW-01",
+      "area": "Movement model",
+      "title": "Shared state-space solver",
+      "horizon": "This release",
+      "status": "Verified",
+      "priority": "P0",
+      "dependsOn": [],
+      "acceptance": "Compare planner rail/flight steps with GrappleCore; preserve actual velocity across edges.",
+      "caveat": "Conditional witnessed transitions; no proximity-only edges.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [
+        "../route-flow-core.js",
+        "flow-reports/chapter-0.json",
+        "flow-reports/chapter-1.json",
+        "flow-reports/chapter-2.json"
+      ],
+      "verificationScope": "Local shared-physics and composed-state audit only; native release gate is separate.",
+      "nextAction": "Compare planner rail/flight steps with GrappleCore; preserve actual velocity across edges."
+    },
+    {
+      "id": "FLOW-02",
+      "area": "Layout",
+      "title": "Overlap and clearance audit",
+      "horizon": "This release",
+      "status": "Verified",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-01"
+      ],
+      "acceptance": "Reject centerline crossings and insufficient body/roadway clearance.",
+      "caveat": "Clearance is a design threshold, not physical safety certification.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [
+        "../route-flow-core.js",
+        "flow-reports/chapter-0.json",
+        "flow-reports/chapter-1.json",
+        "flow-reports/chapter-2.json"
+      ],
+      "verificationScope": "Local shared-physics and composed-state audit only; native release gate is separate.",
+      "nextAction": "Reject centerline crossings and insufficient body/roadway clearance."
+    },
+    {
+      "id": "FLOW-03",
+      "area": "Layout",
+      "title": "Repair opening upper routes",
+      "horizon": "This release",
+      "status": "Verified",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-01",
+        "FLOW-02"
+      ],
+      "acceptance": "Every shipped upper surface has a composed entry witness and sampled return; preserve ground finish.",
+      "caveat": "Do not replace extensive exploration with forced aerial gates.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [
+        "../route-flow-core.js",
+        "flow-reports/chapter-0.json",
+        "flow-reports/chapter-1.json",
+        "flow-reports/chapter-2.json"
+      ],
+      "verificationScope": "Local shared-physics and composed-state audit only; native release gate is separate.",
+      "nextAction": "Every shipped upper surface has a composed entry witness and sampled return; preserve ground finish."
+    },
+    {
+      "id": "FLOW-04",
+      "area": "Workshop",
+      "title": "Flow analysis overlay",
+      "horizon": "This release",
+      "status": "Implemented",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-01"
+      ],
+      "acceptance": "Show actual flight arcs, conflicts, unknown access and stale evidence after edits.",
+      "caveat": "Never draw a green edge merely from metadata.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Show actual flight arcs, conflicts, unknown access and stale evidence after edits."
+    },
+    {
+      "id": "FLOW-05",
+      "area": "Workshop",
+      "title": "Receiver-fitting tool",
+      "horizon": "This release",
+      "status": "Implemented",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-01",
+        "FLOW-04"
+      ],
+      "acceptance": "Preview a physically fitted catcher before accepting one undoable edit.",
+      "caveat": "Never move the rider; retain generated proposal trace.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Preview a physically fitted catcher before accepting one undoable edit."
+    },
+    {
+      "id": "FLOW-06",
+      "area": "Layout",
+      "title": "All-chapter compilation and comparison",
+      "horizon": "This release",
+      "status": "Verified",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-03"
+      ],
+      "acceptance": "Generate chapter-specific data and reachability reports, preserving story IDs and music.",
+      "caveat": "Native playthrough claims remain separate.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [
+        "../route-flow-core.js",
+        "flow-reports/chapter-0.json",
+        "flow-reports/chapter-1.json",
+        "flow-reports/chapter-2.json"
+      ],
+      "verificationScope": "Local shared-physics and composed-state audit only; native release gate is separate.",
+      "nextAction": "Generate chapter-specific data and reachability reports, preserving story IDs and music."
+    },
+    {
+      "id": "FLOW-07",
+      "area": "Planning",
+      "title": "Canonical roadmap and workbook",
+      "horizon": "This release",
+      "status": "In progress",
+      "priority": "P0",
+      "dependsOn": [],
+      "acceptance": "Spreadsheet, dependency table, evidence register, route nodes and edge samples.",
+      "caveat": "Workbook is an editable snapshot; no silent GitHub sync.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Spreadsheet, dependency table, evidence register, route nodes and edge samples."
+    },
+    {
+      "id": "FLOW-08",
+      "area": "Planning",
+      "title": "Readable in-game planning board",
+      "horizon": "This release",
+      "status": "Implemented",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-07"
+      ],
+      "acceptance": "Static kanban view linked from Workshop and JSON export.",
+      "caveat": "Shared roadmap changes only through reviewed commits.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Static kanban view linked from Workshop and JSON export."
+    },
+    {
+      "id": "FLOW-09",
+      "area": "Gameplay",
+      "title": "Native road and branch replays",
+      "horizon": "This release",
+      "status": "Planned",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-03",
+        "FLOW-04"
+      ],
+      "acceptance": "Ordinary controls complete ground and main flow routes; replay a bonus detour.",
+      "caveat": "No player position or score assignments.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Ordinary controls complete ground and main flow routes; replay a bonus detour."
+    },
+    {
+      "id": "FLOW-10",
+      "area": "Physics",
+      "title": "Peg-to-peg reachability model",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-01"
+      ],
+      "acceptance": "Sample cast radius, line-of-sight, swing phase, rope length, release and receiver.",
+      "caveat": "Unanalysed pegs must be explicitly marked unknown.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Sample cast radius, line-of-sight, swing phase, rope length, release and receiver."
+    },
+    {
+      "id": "FLOW-11",
+      "area": "Layout",
+      "title": "Input-tolerance envelopes",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-03"
+      ],
+      "acceptance": "Test speed bands, jump windows and entry-position bands in actual engine.",
+      "caveat": "Single successful flight is not a forgiving route.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Test speed bands, jump windows and entry-position bands in actual engine."
+    },
+    {
+      "id": "FLOW-12",
+      "area": "Rewards",
+      "title": "Risk/reward Pareto routes",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-09",
+        "FLOW-11"
+      ],
+      "acceptance": "Compare time, unique rewards, difficulty and recovery; no cyclic reward farming.",
+      "caveat": "Do not claim a global longest/fastest optimum.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Compare time, unique rewards, difficulty and recovery; no cyclic reward farming."
+    },
+    {
+      "id": "FLOW-13",
+      "area": "Workshop",
+      "title": "Directed port snapping",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-05"
+      ],
+      "acceptance": "Snap entry/exit tangents, required speed and clearance with preview.",
+      "caveat": "Geometric snapping alone does not validate playability.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Snap entry/exit tangents, required speed and clearance with preview."
+    },
+    {
+      "id": "FLOW-14",
+      "area": "Workshop",
+      "title": "Prefab junction library",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-13"
+      ],
+      "acceptance": "Save tested split, merge, drop, switchback and grapple components.",
+      "caveat": "Respect native metadata and unknown fields.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Save tested split, merge, drop, switchback and grapple components."
+    },
+    {
+      "id": "FLOW-15",
+      "area": "Gameplay",
+      "title": "Readable route language",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-03"
+      ],
+      "acceptance": "Make main, bonus, return and danger cues consistent in art and rewards.",
+      "caveat": "Optional hints must not play the game automatically.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Make main, bonus, return and danger cues consistent in art and rewards."
+    },
+    {
+      "id": "FLOW-16",
+      "area": "Physics",
+      "title": "Body-volume swept collision parity",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-01"
+      ],
+      "acceptance": "Audit all actor/body/solid interactions during rail, flight and swing.",
+      "caveat": "Current rail solver and conservative clearance are different checks.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Audit all actor/body/solid interactions during rail, flight and swing."
+    },
+    {
+      "id": "FLOW-17",
+      "area": "QA",
+      "title": "Every optional branch native test",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-11"
+      ],
+      "acceptance": "Cover branches by an ordinary-input replay manifest with route fingerprints.",
+      "caveat": "Track per-branch gaps rather than assert universal reach.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Cover branches by an ordinary-input replay manifest with route fingerprints."
+    },
+    {
+      "id": "FLOW-18",
+      "area": "Performance",
+      "title": "Target hardware budgets",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-09"
+      ],
+      "acceptance": "Measure FPS, memory, input delay on desktop and phone hardware.",
+      "caveat": "Software GPU CI is not a performance certificate.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Measure FPS, memory, input delay on desktop and phone hardware."
+    },
+    {
+      "id": "FLOW-19",
+      "area": "Accessibility",
+      "title": "Controls and reading pass",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-04"
+      ],
+      "acceptance": "Keyboard, touch, gamepad, contrast, readable icons and reduced motion.",
+      "caveat": "No color-only diagnostic meaning.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Keyboard, touch, gamepad, contrast, readable icons and reduced motion."
+    },
+    {
+      "id": "FLOW-20",
+      "area": "Progression",
+      "title": "Intermediate worlds",
+      "horizon": "Later",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-11",
+        "FLOW-15"
+      ],
+      "acceptance": "Gradual optional ramp and whip skill teaching between street and sky trials.",
+      "caveat": "Keep first level approachable.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Gradual optional ramp and whip skill teaching between street and sky trials."
+    },
+    {
+      "id": "FLOW-21",
+      "area": "Exploration",
+      "title": "Quarry/Vault integration",
+      "horizon": "Later",
+      "status": "Blocked",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-16",
+        "FLOW-17"
+      ],
+      "acceptance": "Adapt PR19's exploration drafts to the current tested Workshop.",
+      "caveat": "Not currently released; avoid claiming those rooms playable.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Adapt PR19's exploration drafts to the current tested Workshop."
+    },
+    {
+      "id": "FLOW-22",
+      "area": "Art",
+      "title": "Reference-quality geometry and materials",
+      "horizon": "Later",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-18"
+      ],
+      "acceptance": "Reduce repetitive silhouettes and clutter; compare actual screenshots to target.",
+      "caveat": "Never substitute generated screenshots for implementation.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Reduce repetitive silhouettes and clutter; compare actual screenshots to target."
+    },
+    {
+      "id": "FLOW-23",
+      "area": "Audio",
+      "title": "Music review and future track slots",
+      "horizon": "Later",
+      "status": "Planned",
+      "priority": "P2",
+      "dependsOn": [
+        "FLOW-18"
+      ],
+      "acceptance": "User review of current instruments; support licensed external tracks later.",
+      "caveat": "No Suno connection or tracks requested now.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "User review of current instruments; support licensed external tracks later."
+    },
+    {
+      "id": "FLOW-24",
+      "area": "Editor",
+      "title": "Asset and enemy authoring",
+      "horizon": "Later",
+      "status": "Planned",
+      "priority": "P2",
+      "dependsOn": [
+        "FLOW-14"
+      ],
+      "acceptance": "Editable parameters for enemies, pickups, dialogue and encounter pacing.",
+      "caveat": "Do not silently change campaign saves.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Editable parameters for enemies, pickups, dialogue and encounter pacing."
+    },
+    {
+      "id": "FLOW-25",
+      "area": "QA",
+      "title": "Save migration and deterministic seeds",
+      "horizon": "Next",
+      "status": "Planned",
+      "priority": "P1",
+      "dependsOn": [
+        "FLOW-06"
+      ],
+      "acceptance": "Old .route files remain importable; graph evidence invalidates after rule changes.",
+      "caveat": "Keep explicit model/fingerprint version.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Old .route files remain importable; graph evidence invalidates after rule changes."
+    },
+    {
+      "id": "FLOW-26",
+      "area": "Release",
+      "title": "Merge and public verification",
+      "horizon": "This release",
+      "status": "Planned",
+      "priority": "P0",
+      "dependsOn": [
+        "FLOW-09"
+      ],
+      "acceptance": "Scoped merge, live hash checks, actual publication evidence.",
+      "caveat": "Do not call a branch live.",
+      "owner": "Project maintainer / coding assistant",
+      "targetDate": null,
+      "evidence": [],
+      "verificationScope": "Pending the stated acceptance evidence.",
+      "nextAction": "Scoped merge, live hash checks, actual publication evidence."
+    }
+  ],
+  "policy": "Shared task statuses are versioned in GitHub. The downloaded Excel file is editable but does not synchronize back automatically. Verified means the specifically stated evidence exists, not that every gameplay state is solved. No target dates have been promised.",
+  "updated": "2026-09-05",
+  "evidenceBaseline": "Reports use finite sampled input policies and the pinned GrappleCore rules. Native browser results will be attached to the release PR."
+}
