@@ -21,16 +21,24 @@ p.write_text(s)
 p=g/'cloudview-depth.js';s=p.read_text().replace('SkyRoutes.build(0,__gameRefs.T)','SkyRoutes.build(4,__gameRefs.T)');p.write_text(s)
 p=g/'cloudview-ui.js';s=p.read_text().replace('s.completed.size/count','s.completed.size/(count||1)');p.write_text(s)
 p=g/'sw.js';s=p.read_text().replace('svgn-paper-route-depth-20260905','svgn-paper-route-ground-first-20260905');p.write_text(s)
-# Existing advanced tests now reveal the retained expert shelf before selecting.
 for name in ['sky_browser.py','grapple_browser.py']:
  p=r/'tests'/name;s=p.read_text()
  s=s.replace("page.locator('[data-course]').count()==3", "page.locator('[data-course]').count()==7").replace("page.locator('[data-course]').count()==4", "page.locator('[data-course]').count()==7")
  s=s.replace("check('Rocket' in page.locator('#delivery-menu h1').inner_text(),'The default menu presents the sky loop game')", "check('Start on the street' in page.locator('#delivery-menu h1').inner_text(),'The default menu starts with approachable routes')")
- # Advanced links become visible after one intentional user action; later route
- # menus retain show-expert on the same element, so there is no extra test hook.
  if "page.locator('#advanced-routes-toggle').click()" not in s:
   needle="original=page.evaluate('levelCode()')" if name=='grapple_browser.py' else "original=page.evaluate('levelCode()');page.screenshot"
   if name=='grapple_browser.py':s=s.replace(needle,needle+"\n        page.locator('#advanced-routes-toggle').click()")
   else:s=s.replace(needle,"page.locator('#advanced-routes-toggle').click()\n  "+needle)
+ p.write_text(s)
+# Exercise retry with actual completed deliveries, not the trivial 0 -> 0 case.
+p=r/'tests/ground_browser.py';s=p.read_text()
+if 'Checkpoint retry has a real delivery to preserve' not in s:
+ needle="  before=state(page);page.keyboard.press('KeyR');page.wait_for_function('(n)=>tries===n+1',arg=before['tries'])"
+ replacement="""  page.keyboard.down('KeyD');page.keyboard.down('KeyC')
+  page.wait_for_function('deliveries>0&&player.x>1050',timeout=90000)
+  page.keyboard.up('KeyD');page.keyboard.up('KeyC')
+  before=state(page);check(before['deliveries']>0,'Checkpoint retry has a real delivery to preserve')
+  page.keyboard.press('KeyR');page.wait_for_function('(n)=>tries===n+1',arg=before['tries'])"""
+ if needle in s:s=s.replace(needle,replacement)
  p.write_text(s)
 print('Ground-first progression integrated; existing challenges and records retained.')

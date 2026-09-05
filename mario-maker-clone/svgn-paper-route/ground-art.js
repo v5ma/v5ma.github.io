@@ -3,13 +3,23 @@
 globalThis.GroundArt={
  populate({course,m,root,kit,metal,terrain,greenery,far,sign}){
   const style=course.gp.style,gy=-course.ground*36,length=course.width*36;
-  // The continuous lower route uses exactly the level's top solid row.
-  metal.box(length/2,gy-18,0,length,36,82,'#3e6176');
-  metal.box(length/2,gy-2,0,length,4,86,style==='village'?'#c9b992':style==='canal'?'#becfcd':'#c0bd96');
-  terrain.box(length/2,gy-180,-80,length+280,340,230,style==='garden'?'#4a7649':'#6b7765');
-  greenery.box(length/2,gy-3,-92,length+240,7,80,'#77aa43');
-  metal.box(length/2,gy-10,43,length,11,4,'#d9ca98');
-  for(let x=36;x<length;x+=72)metal.box(x,gy+1,11,22,1,3,'#e6debb');
+  // Build visible ground from real occupied tiles, including edited templates.
+  // Group runs for efficiency; deleting terrain never leaves a fake road behind.
+  for(let ty=0;ty<course.height;ty++){
+   let tx=0;
+   while(tx<course.width){
+    if(course.cells[ty*course.width+tx]!==1){tx++;continue;}
+    const a=tx;while(tx<course.width&&course.cells[ty*course.width+tx]===1)tx++;
+    metal.box((a+tx)*18,-ty*36-18,0,(tx-a)*36,36,82,'#3e6176');
+   }
+   for(let x=0;x<course.width;x++)if(course.cells[ty*course.width+x]===1&&(ty===0||course.cells[(ty-1)*course.width+x]!==1)){
+    metal.box(x*36+18,-ty*36-2,0,36,4,86,style==='village'?'#c9b992':style==='canal'?'#becfcd':'#c0bd96');
+    metal.box(x*36+18,-ty*36-10,43,36,11,4,'#d9ca98');
+    if(x%2)metal.box(x*36+18,-ty*36+1,11,22,1,3,'#e6debb');
+   }
+  }
+  terrain.box(length/2,gy-180,-230,length+280,340,210,style==='garden'?'#4a7649':'#6b7765');
+  greenery.box(length/2,gy-3,-150,length+240,7,72,'#77aa43');
   function house(x,z,s=1){
    const b=far;const cols=['#f1d6ae','#b7d8d7','#edb799'];
    b.box(x,gy+44*s,z,105*s,88*s,80*s,cols[Math.floor(x/200)%3]);
