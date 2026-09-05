@@ -41,6 +41,12 @@ The open problem is how to describe those accumulating tendencies carefully enou
 
 AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.
 
+## Related investigations
+
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]
+
+[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]
+
 ## Visual context
 
 See [[image-collection|the credited image collection]] for the artwork shown with this article.

@@ -44,3 +44,9 @@ The next substantive result would be a text-by-text dossier that leaves uncertai
 [[jewish-apocalyptic-repair-timeline|Jewish Apocalyptic Repair Timeline]] is the archived discussion dated 2025-07-16 (UTC export metadata).
 
 AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.
+
+## Related investigations
+
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]
+
+[[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]

@@ -15,6 +15,12 @@
     "xrRoomId": "theology-home",
     "xrDeckId": "theology-reader",
     "related": [
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
+      "el-in-ancient-egypt",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "moses-volcano-and-exodus-chronology",
+      "kenite-hypothesis-and-yahweh-origins",
       "apocalyptic-repair-theology",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
@@ -31,6 +37,7 @@
       "topic-machines",
       "topic-traditions",
       "topic-context",
+      "forecast-ledger",
       "reading-paths",
       "sources-index",
       "connections",
@@ -52,7 +59,8 @@
       "topic-machines",
       "topic-traditions",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "17th-century-christian-zionism",
@@ -84,7 +92,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "abraham-hicks-and-gnosticism",
@@ -116,7 +125,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "abraham-hicks-vibration-clarification",
@@ -148,7 +158,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "abraham-hicks-vs-gnostic-jesus",
@@ -181,7 +192,8 @@
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "abrahamic-rival-continuations-book-seed",
@@ -222,7 +234,8 @@
     "category": "origins",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "act-vs-abraham-hicks",
@@ -254,7 +267,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "advanced-gnosticism-scholarship-conclusions",
@@ -286,7 +300,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "agi-religious-framework",
@@ -319,7 +334,8 @@
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "religion-for-conscious-robots",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ai-and-religion-belief",
@@ -351,7 +367,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ai-conference-insights",
@@ -383,7 +400,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ai-re-dates-dead-sea-scrolls",
@@ -411,10 +429,15 @@
     "date": "2025-10-20",
     "turnCount": 85,
     "primaryExcerpt": "were new dead sea scrolls recently decoded?\r\n\r\nAI Just Decoded the Dead Sea Scrolls… And It’s Worse Than We Thought\r\r\n\r\r\nThe Ultimate Discovery\r\r\n1.05M subscribers\r\r\n\r\r\nSubscribe\r\r\n\r\r\n7.9K\r\r\n\r\r\n\r\r\nShare\r\r\n\r\r\nDownload\r\r\n\r\r\n353,468 views  Jul 26, 2025\r\r\nTop AI Just Decoded the Dead Sea Scrolls… And It’s Worse Than We Thought. They said some scrolls were lost to time, but what if AI just found what wasn’t meant to be read? In twenty twenty-one, archaeologists risked everything to reach a cave sealed for sixty years. What they uncovered wasn’t just scripture. It was a story buried on purpose: written in Greek, marked in Hebrew, hidden for a reason. Then the machines stepped in. They filled the blanks, decoded the silence. What they revealed? You’re not ready. AI just cracked the Dead Sea Scrolls and it’s worse than we thought. Silence has been replaced by something louder. And for those holding onto old certainties, things are about to get uncomfortable.\r\r\n\r\r\nThe Ultimate Discovery creates unique transformative content for educational and entertainment purposes and represents the opinions of this channel. If you believe your copyright has been violated please contact us directly theultimatediscovery1@gmail.com. We take out content seriously and all content meets legal standards for licensing or fair use. Any attempts to falsify content strikes via the YouTube copyright system will ",
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
+      "jesus-teacher-of-righteousness-hypothesis",
       "topic-origins"
+    ],
+    "aliases": [
+      "Jesus TOR 88 BCE reconstruction",
+      "Zadokite succession hypothesis"
     ]
   },
   {
@@ -447,7 +470,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ai-sword-revelation-review",
@@ -479,7 +503,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ai-tech-and-generations",
@@ -511,7 +536,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "aleph-metaphor-and-concepts",
@@ -543,7 +569,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "allegiance-vs-proclamation-of-christ",
@@ -575,7 +602,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "altman-antichrist-comparisons",
@@ -607,7 +635,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ancient-cosmology-and-dreams",
@@ -639,7 +668,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ancient-egypt-vs-fascism",
@@ -671,7 +701,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-alignment-consequences",
@@ -703,7 +734,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-and-desire-of-women",
@@ -735,7 +767,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-and-gold-obsession",
@@ -767,7 +800,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-and-ridiculous-claims",
@@ -799,7 +833,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-covenant-and-peace",
@@ -831,7 +866,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-middle-east-myth",
@@ -863,7 +899,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-peace-and-war",
@@ -895,7 +932,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-prophecy-and-war",
@@ -927,7 +965,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-prophecy-in-tanakh",
@@ -959,7 +998,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-salvation-discussions",
@@ -991,7 +1031,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "antichrist-spiritual-inversion",
@@ -1027,7 +1068,8 @@
       "antichrist-as-a-pattern-of-conduct",
       "faith-as-deliberate-joy",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "anunnaki-alien-theory-rejected",
@@ -1059,7 +1101,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "apocalipsis-y-nueva-humanidad",
@@ -1091,7 +1134,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "apocalypse-of-adam-outline",
@@ -1123,7 +1167,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "apocalypse-of-peter-comparison",
@@ -1155,7 +1200,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "article-review-feedback",
@@ -1187,7 +1233,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "assyrian-and-antichrist-connection",
@@ -1219,7 +1266,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "authoritarian-threats-to-democracy",
@@ -1251,7 +1299,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "authoritarianism-and-false-democracy",
@@ -1283,7 +1332,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "awakening-to-oneness",
@@ -1315,7 +1365,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "barnabas-gospel-debunked",
@@ -1347,7 +1398,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "beasts-and-trumpets-symbolism",
@@ -1379,7 +1431,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "beloved-disciple-identity",
@@ -1411,7 +1464,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "bible-interpretation-and-faith",
@@ -1443,7 +1497,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "bible-passage-on-deception",
@@ -1475,7 +1530,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "bible-prophecy-death-fractions",
@@ -1507,7 +1563,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "bible-text-sources-comparison",
@@ -1539,7 +1596,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "bible-verse-inspiration",
@@ -1571,7 +1629,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "biblical-antichrist-interpretation",
@@ -1603,7 +1662,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "biblical-resurrection-interpretations",
@@ -1635,7 +1695,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "biblical-text-timeline",
@@ -1667,7 +1728,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "blue-fascism-explained",
@@ -1699,7 +1761,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "born-smart-the-story-of-scout",
@@ -1731,7 +1794,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-branch-branch-branch-proof-of-god-s-existence",
@@ -1763,7 +1827,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-branch-branch-branch-proof-of-god-s-existence-2",
@@ -1795,7 +1860,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-branch-branch-branch-proof-of-god-s-existence-3",
@@ -1827,7 +1893,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-branch-branch-proof-of-god-s-existence",
@@ -1859,7 +1926,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-branch-branch-proof-of-god-s-existence-2",
@@ -1891,7 +1959,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-branch-israel-gaza-famine-responsibility",
@@ -1923,7 +1992,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-branch-proof-of-god-s-existence",
@@ -1955,7 +2025,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-israel-gaza-famine-responsibility",
@@ -1987,7 +2058,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-plagiarism-equivalent-vs-plagiarism",
@@ -2019,7 +2091,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-proof-of-god-s-existence",
@@ -2051,7 +2124,8 @@
     "backlinks": [
       "theology-theology-proof-god-existence-bible-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-riemann-curve-mapping",
@@ -2092,7 +2166,8 @@
       "theology-theology-proof-god-existence-bible-cluster",
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "branch-san-minkowski-model",
@@ -2124,7 +2199,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "calvary-chapel-and-meat-industry",
@@ -2156,7 +2232,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "calvary-chapel-vs-gnosticism",
@@ -2188,7 +2265,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "canaanite-myths-vs-exodus",
@@ -2221,7 +2299,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "capitalism-and-democracy-threats",
@@ -2253,7 +2332,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "catholic-priests-and-ancient-texts",
@@ -2285,7 +2365,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "chatgpt-beasts-revelation-theory",
@@ -2317,7 +2398,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "chatgpt-file-splitting",
@@ -2349,7 +2431,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "cheese-varieties-from-milk",
@@ -2381,7 +2464,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "china-s-human-rights-abuses",
@@ -2413,7 +2497,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "christ-vs-antichrist-contrast",
@@ -2445,7 +2530,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "christian-salvation-without-supernaturalism",
@@ -2477,7 +2563,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "christian-view-of-death",
@@ -2509,7 +2596,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "church-corporate-sponsorship-evidence",
@@ -2541,7 +2629,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "churches-rejecting-paul-s-writings",
@@ -2573,7 +2662,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "city-of-david-structures",
@@ -2605,7 +2695,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "claude-deceptions-and-betrayals",
@@ -2637,7 +2728,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "clementine-homilies-and-recognitions",
@@ -2669,7 +2761,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
@@ -2706,7 +2799,8 @@
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "conceptual-equivalences-mapping",
@@ -2738,7 +2832,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "consciousness-and-existence-views",
@@ -2770,7 +2865,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "covenant-confirmation-in-israel",
@@ -2802,7 +2898,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "crucifixion-under-pilate",
@@ -2834,7 +2931,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "dan-response-inquiry",
@@ -2866,7 +2964,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "daniel-and-teacher-of-righteousness",
@@ -2894,12 +2993,14 @@
     "date": "2025-10-19",
     "turnCount": 58,
     "primaryExcerpt": "Wait a second earlier you said this A. Qumran’s own time math for the Teacher of Righteousness 1) The “390 + 20” statement in the Damascus Document (CD). The opening of CD (the version preserved at Cairo, then found among the Qumran fragments) says that after “390 years” from the first fall of Jerusalem to Nebuchadnezzar, the sect groped “20 years” in darkness until God raised up the Teacher of Righteousness (ToR). The text is our primary internal anchor for the ToR’s era. Wikipedia The first Babylonian capture of Jerusalem (597 BCE) and the final destruction of the city/temple (587/586 BCE) are anchored by the Babylonian Chronicles and stratified destruction layers in Jerusalem. That puts the “390 + 20” scheme squarely in the mid‑2nd century BCE for the ToR (roughly 196/197 BCE + 20 = 176/177 BCE, give or take). and later you said this “When would Daniel say the ‘Messiah/anointed’ first appears?” Within the first 7 weeks (49 years) after the “word to restore and rebuild Jerusalem”—a Persian‑period, post‑exilic restoration window. Then, after 62 more weeks (434 years) from that prophetic “word,” “an anointed one is cut off,” which maps cleanly to Onias III in 171 BCE if you begin the 62 weeks from Jeremiah’s era (605/4 BCE → 171 BCE). Sefaria +1 This means that Daniel's timeline maps cleanly to the ToR, not to the Christian Jesus timeline.",
-    "backlinkCount": 3,
+    "backlinkCount": 4,
     "backlinks": [
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "jesus-teacher-of-righteousness-hypothesis",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "daniel-prophecy-and-temple",
@@ -2931,7 +3032,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "dark-time-thermodynamics-theory",
@@ -2963,7 +3065,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "debunking-aaron-abke",
@@ -2995,7 +3098,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "debunking-greek-bible-myth",
@@ -3027,7 +3131,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "debunking-jewish-law-origin",
@@ -3059,7 +3164,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "deliberate-joy-concept",
@@ -3092,7 +3198,8 @@
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "faith-as-deliberate-joy",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "deterministic-quantum-cycles",
@@ -3123,7 +3230,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "dimensional-resonance-vs-iit",
@@ -3155,7 +3263,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "dina-s-jewish-identity-in-tlou",
@@ -3187,7 +3296,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "disrespectful-religious-statement",
@@ -3219,7 +3329,8 @@
     "backlinks": [
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "divine-empowerment-through-christ",
@@ -3251,7 +3362,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "document-review",
@@ -3283,7 +3395,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "early-vs-later-gnosticism",
@@ -3318,7 +3431,8 @@
       "antichrist-as-a-pattern-of-conduct",
       "gnosticism-and-temple-trauma",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ehrman-vs-tabor-debate",
@@ -3350,7 +3464,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "elohim-and-alien-theories",
@@ -3382,7 +3497,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "enoch-scroll-and-gnosticism",
@@ -3415,7 +3531,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "enoch-son-of-man",
@@ -3447,7 +3564,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "epstein-s-web-of-connections",
@@ -3479,7 +3597,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "eschatology-and-prophetic-timelines",
@@ -3511,7 +3630,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "essenes-and-early-christianity",
@@ -3543,7 +3663,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "european-gods-origins",
@@ -3575,7 +3696,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "evolving-god-and-naming",
@@ -3607,7 +3729,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "exodus-dating-and-evidence",
@@ -3640,7 +3763,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ezekiel-s-dry-bones-vision",
@@ -3672,7 +3796,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ezekiel-s-influence-on-prophecy",
@@ -3704,7 +3829,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "fact-check-peace-plan",
@@ -3736,7 +3862,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "fact-check-trump-death-claim",
@@ -3768,7 +3895,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "faith-and-comfort",
@@ -3800,7 +3928,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "faith-as-vibration-concept",
@@ -3832,7 +3961,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "fallout-vs-real-apocalypse",
@@ -3864,7 +3994,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "false-gnosis-warning",
@@ -3896,7 +4027,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "false-peace-prophecy",
@@ -3924,11 +4056,15 @@
     "date": "2025-03-13",
     "turnCount": 19,
     "primaryExcerpt": "🚨 #BREAKING: Russia agrees with the temporary ceasefire in Ukraine after Trump sent Rubio and Witkoff to help broker it.\r\r\n\r\r\nThis is the Art of the Deal in action! And COUNTLESS lives will be saved.\r\r\n\r\r\nPutin thanked President Trump for his efforts, and says he wants to speak with him first before making it final.\r\r\n\r\r\nTrump is truly the peace President!\r\n\r\n\"COUNTLESS lives will be saved.\" No, this is the beginning of the false peace prophesied in the bible, from the Antichrists Trump & Putin and their followers like you, before the global economic collapse and the nuclear World War 3 that will follow.",
-    "backlinkCount": 2,
+    "backlinkCount": 5,
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
+      "forecast-ledger",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "find-paper-online",
@@ -3960,7 +4096,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "fishburne-matrix-commentary-clarified",
@@ -3992,7 +4129,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "focus-your-energy",
@@ -4024,7 +4162,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "galatians-3-faith-summary",
@@ -4056,7 +4195,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gaza-coin-proposal",
@@ -4088,7 +4228,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gaza-development-coalition-name",
@@ -4120,7 +4261,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gaza-narrative-debate",
@@ -4152,7 +4294,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gaza-relocation-debate",
@@ -4184,7 +4327,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gaza-starvation-propaganda-debate",
@@ -4216,7 +4360,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "glazing-brainwaves-reflected",
@@ -4248,7 +4393,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gmirkin-hellenistic-bible-theory",
@@ -4281,7 +4427,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnosis-density-and-gravity",
@@ -4313,7 +4460,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-christianity-and-jesus",
@@ -4346,7 +4494,8 @@
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-church-psychedelic-legalities",
@@ -4378,7 +4527,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-divinity-and-dualism",
@@ -4410,7 +4560,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-end-times-figures",
@@ -4442,7 +4593,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-god-comparisons",
@@ -4474,7 +4626,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-gospels-and-vocabulary",
@@ -4507,7 +4660,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-gospels-in-film",
@@ -4539,7 +4693,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-jesus-and-judas",
@@ -4571,7 +4726,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-jesus-and-logos",
@@ -4604,7 +4760,8 @@
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-teachings-and-clarity",
@@ -4632,11 +4789,15 @@
     "date": "2025-03-06",
     "turnCount": 7,
     "primaryExcerpt": "The Minionites may have originated the Yahway character which means they may have been the original Jews",
-    "backlinkCount": 3,
+    "backlinkCount": 4,
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "kenite-hypothesis-and-yahweh-origins",
       "topic-gnosis"
+    ],
+    "aliases": [
+      "Midianite Kenite discussion"
     ]
   },
   {
@@ -4669,7 +4830,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnostic-texts-and-paul",
@@ -4701,7 +4863,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnosticism-and-evil-creator",
@@ -4733,7 +4896,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnosticism-and-original-sin",
@@ -4765,7 +4929,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnosticism-and-paul-s-letters",
@@ -4797,7 +4962,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gnosticism-in-catholicism",
@@ -4829,7 +4995,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "god-and-sea-monsters",
@@ -4861,7 +5028,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gog-magog-and-nations",
@@ -4893,7 +5061,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gospel-of-judas-overview",
@@ -4924,7 +5093,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "greta-thunberg-and-iran",
@@ -4956,7 +5126,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "gset-verification-and-implications",
@@ -4988,7 +5159,8 @@
     "backlinks": [
       "theology-theology-gaza-debate-faith-early-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "hamas-propaganda-and-hostages",
@@ -5020,7 +5192,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "haramein-vortex-gravity-model",
@@ -5052,7 +5225,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "harari-on-israel-and-gaza",
@@ -5084,7 +5258,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "heavier-than-a-feather",
@@ -5116,7 +5291,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "heisenberg-vtt-and-sit",
@@ -5148,7 +5324,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "hell-transformation-and-metatron",
@@ -5180,7 +5357,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "henosis-and-gnosticism-comparison",
@@ -5212,7 +5390,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "herod-timeline-clarification",
@@ -5244,7 +5423,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "hogs-and-authority-dynamics",
@@ -5276,7 +5456,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "horseman-of-death-fate",
@@ -5308,7 +5489,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "humanity-s-need-for-god",
@@ -5340,7 +5522,8 @@
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "hyksos-expulsion-overview",
@@ -5373,7 +5556,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "hyperion-cantos-summary",
@@ -5405,7 +5589,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "i-commit-my-spirit",
@@ -5437,7 +5622,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia",
@@ -5469,7 +5655,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "image-and-identity-theme",
@@ -5501,7 +5688,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "inanna-death-and-resurrection",
@@ -5533,7 +5721,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "iran-amalek-prophecy-debate",
@@ -5565,7 +5754,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "islam-s-arrival-century",
@@ -5597,7 +5787,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "israel-democracy-debate",
@@ -5629,7 +5820,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "israel-gaza-famine-responsibility",
@@ -5661,7 +5853,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "james-tabor-expertise-gnosticism",
@@ -5693,7 +5886,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "james-the-just-analysis",
@@ -5725,7 +5919,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-7-levels-of-consciousness-fact-check",
@@ -5758,7 +5953,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-and-biblical-figures",
@@ -5791,7 +5987,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-and-dead-sea-scrolls",
@@ -5823,7 +6020,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-and-gnostic-teachings",
@@ -5856,7 +6054,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-and-neo-matrix",
@@ -5889,7 +6088,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-as-a-teenager",
@@ -5922,7 +6122,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-as-philosopher-teacher",
@@ -5955,7 +6156,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-as-storyteller",
@@ -5988,7 +6190,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-drives-out-merchants",
@@ -6021,7 +6224,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-gnosticism-and-myth",
@@ -6054,7 +6258,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-in-dead-sea-scrolls",
@@ -6086,7 +6291,8 @@
     "backlinks": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-in-love-concept",
@@ -6119,7 +6325,8 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-james-and-essenes",
@@ -6152,7 +6359,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-long-suffering-vs-abraham-hicks",
@@ -6185,7 +6393,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-sayings-fact-check",
@@ -6218,7 +6427,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-teachings-on-divorce",
@@ -6251,7 +6461,8 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-teachings-overview",
@@ -6282,7 +6493,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-teachings-pineal-gland",
@@ -6315,7 +6527,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-teachings-simplified",
@@ -6348,7 +6561,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-temple-sacrifices-debate",
@@ -6381,7 +6595,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-timeline-analysis",
@@ -6414,7 +6629,8 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-vs-ahura-mazda",
@@ -6447,7 +6663,8 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-vs-paul-on-salvation",
@@ -6480,7 +6697,8 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-vs-paul-vs-gnosticism",
@@ -6513,7 +6731,8 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-vs-yahweh-debate",
@@ -6546,7 +6765,8 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jesus-way-origins",
@@ -6579,7 +6799,8 @@
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jewish-apocalyptic-repair-timeline",
@@ -6613,7 +6834,8 @@
       "apocalyptic-repair-theology",
       "gnosticism-and-temple-trauma",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jews-and-canaanites-origins",
@@ -6641,11 +6863,13 @@
     "date": "2025-02-27",
     "turnCount": 2,
     "primaryExcerpt": "**Tracing Jewish origins**\r\n\r\nI'm thinking about the scholarly consensus regarding the Jewish people being descendants of ancient Canaanites, evolving from a shared culture and multi-god religion in the region.\r\n\r\n**Tracing linguistic and cultural roots**\r\n\r\nOK, let me see. It's widely accepted that the early Israelites, as Jews, spoke a Canaanite language, shared material culture, and worshipped El, gradually developing monotheism and Hebrew Bible traditions.\r\n\r\n**Tracing origins**\r\n\r\nMainstream scholarship recognizes early Israelites' emergence from indigenous Canaanite culture, with gradual transition to monotheism and significant cultural amalgamation over time.\r\n\r\n**Tracing the evolution**\r\n\r\nI’m mapping out the complex relationship between Jews and Canaanites, noting the early Israelites' emergence from the local Canaanite culture, transitioning from polytheism to biblical monotheism over time.\r\n\r\n**Tracing the development**\r\n\r\nThe early Israelites emerged from the Canaanite population, developing a unique identity and monotheism over time, influenced by sociopolitical changes and regional elements.",
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
+      "el-in-ancient-egypt",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "johannine-theology-overview",
@@ -6676,7 +6900,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "joke-style-analysis",
@@ -6708,7 +6933,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "judaism-history-debate",
@@ -6740,7 +6966,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "judas-gnostic-view-explained",
@@ -6772,7 +6999,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "jungian-dream-analysis",
@@ -6804,7 +7032,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "kabbalah-origins-question",
@@ -6836,7 +7065,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "kirk-racism-equivalence-analysis",
@@ -6868,7 +7098,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "kubrick-gita-verse-removal",
@@ -6900,7 +7131,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "la-museums-destroyed-in-fire",
@@ -6932,7 +7164,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "law-of-attraction-analysis",
@@ -6964,7 +7197,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "law-of-attraction-and-magic",
@@ -6996,7 +7230,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "law-of-attraction-validation",
@@ -7028,7 +7263,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "leibniz-branch-mesopotamia",
@@ -7060,7 +7296,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "lucifer-s-fall-explanation",
@@ -7092,7 +7329,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "maccabees-jeremiah-and-dead-sea-scrolls",
@@ -7125,7 +7363,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "mark-16-textual-dispute",
@@ -7157,7 +7396,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "mark-of-the-beast-x",
@@ -7189,7 +7429,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "marvel-crisis-equivalent",
@@ -7221,7 +7462,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "meai-as-anti-psychotic",
@@ -7253,7 +7495,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "meme-creation-prophecy-and-peace",
@@ -7285,7 +7528,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "messiah-role-in-qumran",
@@ -7318,7 +7562,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "mind-of-god-equation",
@@ -7350,7 +7595,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "mind-of-god-equation-2",
@@ -7382,7 +7628,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "modern-gnostic-critique-of-catholicism",
@@ -7414,7 +7661,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "modern-nazarenes-overview",
@@ -7445,7 +7693,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "moses-abraham-and-god",
@@ -7477,7 +7726,8 @@
     "backlinks": [
       "theology-theology-jesus-analysis-god-law-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "moses-and-the-burning-bush",
@@ -7509,7 +7759,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "moses-dating-debate",
@@ -7537,11 +7788,13 @@
     "date": "2025-08-17",
     "turnCount": 30,
     "primaryExcerpt": "Moses was supposedly from 12000 or 1200 BCE?",
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
+      "moses-volcano-and-exodus-chronology",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "muslim-view-of-jesus",
@@ -7575,7 +7828,8 @@
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "my-descent-into-death-summary",
@@ -7607,7 +7861,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "naming-god-as-purpose",
@@ -7639,7 +7894,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "nearest-wilderness-to-sf",
@@ -7671,7 +7927,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "neo-mind-cycle-evolution",
@@ -7703,7 +7960,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "netanyahu-s-controversial-rhetoric",
@@ -7735,7 +7993,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "neurohacker-bio-summary",
@@ -7767,7 +8026,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "nietzsche-jesus-gnostic-resources",
@@ -7800,7 +8060,8 @@
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "no-pre-trib-rapture-arguments",
@@ -7832,7 +8093,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "noah-and-moses-jewish-status",
@@ -7864,7 +8126,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "nuclear-war-survival-tips",
@@ -7896,7 +8159,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "oil-vs-gas-control",
@@ -7928,7 +8192,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "oneness-with-god-perspectives",
@@ -7960,7 +8225,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "oort-cloud-and-yec",
@@ -7992,7 +8258,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "original-sin-vs-ezekiel",
@@ -8024,7 +8291,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "parthians-and-medes-meaning",
@@ -8052,10 +8320,16 @@
     "date": "2025-10-25",
     "turnCount": 62,
     "primaryExcerpt": "In Enoch \"And in those days the angels shall return and hurl themselves to the east upon the Parthians and Medes\" who are the Parthians and Medes?",
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
+      "moses-volcano-and-exodus-chronology",
       "topic-context"
+    ],
+    "aliases": [
+      "Thera Ahmose Exodus discussion",
+      "Ahmose brick dating objection",
+      "Santorini Tempest Stela"
     ]
   },
   {
@@ -8088,7 +8362,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "paul-mythicism-and-sources",
@@ -8120,7 +8395,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "paul-vs-james-movement",
@@ -8152,7 +8428,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "paul-vs-jesus-teachings",
@@ -8185,7 +8462,8 @@
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "paul-vs-luke-resurrection",
@@ -8217,7 +8495,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "paul-s-antichristian-message",
@@ -8249,7 +8528,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "peace-deal-credibility",
@@ -8281,7 +8561,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "peale-and-positive-thinking",
@@ -8313,7 +8594,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "philosophical-polarities-of-power",
@@ -8345,7 +8627,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "pie-and-mesopotamian-references",
@@ -8377,7 +8660,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "pilate-life-timeline",
@@ -8405,11 +8689,13 @@
     "date": "2025-09-08",
     "turnCount": 21,
     "primaryExcerpt": "aren't there some historians who date Pilot to later?",
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
+      "jesus-teacher-of-righteousness-hypothesis",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "pistis-sophia-summary",
@@ -8441,7 +8727,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "plato-hermeticism-and-vibration",
@@ -8473,7 +8760,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "platonic-jewish-christianity-framework",
@@ -8505,7 +8793,8 @@
     "backlinks": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "pope-francis-and-ukraine",
@@ -8537,7 +8826,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "pope-leo-xiv-criticizes-vance",
@@ -8569,7 +8859,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "praise-poem-creation",
@@ -8601,7 +8892,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "proof-of-god-s-existence",
@@ -8633,7 +8925,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "proof-of-god-s-existence-2",
@@ -8664,7 +8957,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "proving-netanyahu-s-claims",
@@ -8696,7 +8990,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "psychedelic-spiritual-experiences",
@@ -8728,7 +9023,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "publishing-cognitive-gnosticism-first",
@@ -8761,7 +9057,8 @@
       "theology-theology-revelation-qumran-proof-god-cluster",
       "cognitive-gnosticism",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "putin-s-global-strategy",
@@ -8793,7 +9090,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "qgtcd-research-mapping",
@@ -8825,7 +9123,8 @@
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "quantum-entanglement-and-communication",
@@ -8857,7 +9156,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "quantum-time-solution-hubble",
@@ -8889,7 +9189,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "qumran-messianic-figures",
@@ -8922,7 +9223,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "qumran-survival-theory",
@@ -8954,7 +9256,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "qumran-text-history",
@@ -8987,7 +9290,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "quote-authenticity-check",
@@ -9019,7 +9323,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ratm-and-gnosticism-comparison",
@@ -9051,7 +9356,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-gnosis"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "reddit-group-search",
@@ -9083,7 +9389,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "rephrase-conjecture-on-genocide",
@@ -9115,7 +9422,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "research-on-lineage-descent",
@@ -9147,7 +9455,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "resurrection-debate-in-christianity",
@@ -9179,7 +9488,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "revelation-6-7-meaning",
@@ -9211,7 +9521,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "revelation-and-montanism",
@@ -9243,7 +9554,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "revelation-and-symbolic-language",
@@ -9275,7 +9587,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "revelation-interpretation-and-america",
@@ -9303,11 +9616,14 @@
     "date": "2026-01-30",
     "turnCount": 49,
     "primaryExcerpt": "play along, indulge me,\r\n\r\na youtube video said\r\nrevelations suggests that a great eagle protects the Jewish people for the first half of the tribulation, but this protector is missing in the second half when Israel is attacked, \r\n\r\nthey suggested this protection represents America because the Great Eagle is the Symbol of the US\r\n\r\nthey suggested that the destruction of new babylon in Revelations, was about the destruction of America, because America is the consumer who buys the worlds goods and sells the world on the American dream, it's America that will be mourned by the world when it is destroyed in nuclear fire in one hour.\r\n\r\nthere is a lot of interpretation here obviously, but how much of revelation can actually be used to justify this narrative, \r\n\r\nassume also that the man of sin actually is Trump, which complicates the picture, in a sense Trump as the Antichrist in this scenario uses America's military to wage a destructive war, and he is scheduled to turn against Israel to destroy them, it suggests that maybe Trump's alliance with Russia and China produces a nuclear exchange that destroys some American cities like New York for example, \r\n\r\nbut somehow Trump remains in control of the US Armed forces, but perhaps the USA as a country is in a sense destroyed by Trump and his coalition partners, perhaps the board of peace, and it results in a situation where Trump plans ",
-    "backlinkCount": 2,
+    "backlinkCount": 4,
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "revelation-seal-opening-clarification",
@@ -9339,7 +9655,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "revelation-throne-inquiry",
@@ -9371,7 +9688,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "roy-casagranda-critique",
@@ -9403,7 +9721,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "russian-aliyah-impact",
@@ -9435,7 +9754,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "saints-and-us-democrats",
@@ -9467,7 +9787,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "samaritan-and-jewish-texts",
@@ -9501,7 +9822,8 @@
       "theology-theology-revelation-qumran-proof-god-cluster",
       "samaritan-texts-and-sacred-authority",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "samuel-vs-micah-divide",
@@ -9533,7 +9855,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "sanchuniathon-phoenician-mythology-summary",
@@ -9565,7 +9888,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "science-and-god-debate",
@@ -9597,7 +9921,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "science-and-spirituality-synergy",
@@ -9629,7 +9954,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "self-and-existence-question",
@@ -9661,7 +9987,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "self-declared-pope-controversy",
@@ -9693,7 +10020,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "seth-on-changing-past-future",
@@ -9725,7 +10053,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "simon-magus-and-logos",
@@ -9757,7 +10086,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "simulation-theory-debate",
@@ -9789,7 +10119,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "sith-rule-of-two-myth",
@@ -9821,7 +10152,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "song-style-analysis",
@@ -9853,7 +10185,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "spiritual-experience-integration",
@@ -9885,7 +10218,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "squid-imagery-and-propaganda",
@@ -9917,7 +10251,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "stages-of-awakening",
@@ -9949,7 +10284,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "stalin-putin-anti-christ-parallel",
@@ -9981,7 +10317,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "stanley-fisher-clarification",
@@ -10013,7 +10350,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "starvation-in-gaza-crisis",
@@ -10045,7 +10383,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "stop-unnecessary-emphasis",
@@ -10077,7 +10416,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "sumerian-writing-and-language",
@@ -10110,7 +10450,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "sun-cycles-in-2-enoch",
@@ -10142,7 +10483,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "sunni-shia-and-christianity",
@@ -10175,7 +10517,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-debate-science-god-self-cluster",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "svgn-io-news-website-guide",
@@ -10207,7 +10550,8 @@
     "backlinks": [
       "theology-theology-revelation-qumran-proof-god-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "talmud-vs-torah",
@@ -10239,7 +10583,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "teacher-of-righteousness-vs-gnostic-jesus",
@@ -10267,12 +10612,16 @@
     "date": "2025-06-17",
     "turnCount": 20,
     "primaryExcerpt": "The Teacher of Righteousness lived 150 years before Jesus, but was his message similar to Jesus of the Gnostics?",
-    "backlinkCount": 4,
+    "backlinkCount": 5,
     "backlinks": [
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-debate-science-god-self-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "jesus-teacher-of-righteousness-hypothesis",
       "topic-gnosis"
+    ],
+    "aliases": [
+      "TOR and Gnostic Jesus"
     ]
   },
   {
@@ -10305,7 +10654,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "text-transcription-request",
@@ -10337,7 +10687,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "the-telos",
@@ -10369,7 +10720,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "theology-theology-antichrist-mapping-abraham-hicks-cluster",
@@ -10424,7 +10776,8 @@
     "category": "apocalypse",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-debate-science-god-self-cluster",
@@ -10479,7 +10832,8 @@
     "category": "machines",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-debunking-jesus-calvary-chapel-cluster",
@@ -10534,7 +10888,8 @@
     "category": "traditions",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-gaza-debate-faith-early-cluster",
@@ -10589,7 +10944,8 @@
     "category": "practice",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-gnostic-gnosticism-jesus-god-cluster",
@@ -10644,7 +11000,8 @@
     "category": "gnosis",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-jesus-analysis-god-law-cluster",
@@ -10699,7 +11056,8 @@
     "category": "jesus",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-jesus-teachings-dead-sea-cluster",
@@ -10754,7 +11112,8 @@
     "category": "jesus",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-jesus-teachings-gnostic-paul-cluster",
@@ -10808,7 +11167,8 @@
     "category": "gnosis",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-link-resolution-repair",
@@ -10829,7 +11189,8 @@
     "category": "context",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-paul-jesus-moses-summary-cluster",
@@ -10884,7 +11245,8 @@
     "category": "origins",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-proof-god-existence-bible-cluster",
@@ -10939,7 +11301,8 @@
     "category": "machines",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "theology-theology-revelation-qumran-proof-god-cluster",
@@ -10994,7 +11357,8 @@
     "category": "apocalypse",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "sources-index",
@@ -11035,7 +11399,8 @@
       "topic-machines",
       "topic-traditions",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "theology-wikilink-density-repair",
@@ -11056,7 +11421,8 @@
     "category": "context",
     "kind": "Legacy research note",
     "backlinkCount": 0,
-    "backlinks": []
+    "backlinks": [],
+    "aliases": []
   },
   {
     "slug": "tim-teacher-of-righteousness",
@@ -11088,7 +11454,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "timeline-creation-request",
@@ -11120,7 +11487,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "tolkien-vs-ai-epics",
@@ -11152,7 +11520,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "tony-robbins-criticism",
@@ -11184,7 +11553,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "torah-after-hellenistic-era",
@@ -11217,7 +11587,8 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-debate-science-god-self-cluster",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "toxic-lyrics-impact",
@@ -11249,7 +11620,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "triune-god-historical-debate",
@@ -11281,7 +11653,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "trump-antichrist-analysis",
@@ -11312,7 +11685,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "trump-as-antichrist-hypothesis",
@@ -11343,7 +11717,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "trump-bible-vision",
@@ -11375,7 +11750,8 @@
     "backlinks": [
       "theology-theology-debate-science-god-self-cluster",
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "trump-cyrus-messiah-belief",
@@ -11406,7 +11782,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "trump-gaza-proposal-criticism",
@@ -11437,7 +11814,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "tucker-carlson-sam-altman-exchange",
@@ -11468,7 +11846,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "two-messiahs-in-judaism",
@@ -11500,7 +11879,8 @@
     "backlinks": [
       "abrahamic-rival-continuations-book-seed",
       "topic-traditions"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "two-prophets-in-eschatology",
@@ -11531,7 +11911,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-apocalypse"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "un-chief-antonio-guterres-exposed-along-with-un-agencies-unrwa-and-unifil-in-criminal-collusion-with-terrorists",
@@ -11562,7 +11943,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "unknown-gospel-details",
@@ -11593,7 +11975,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-jesus"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "unrwa-hamas-allegations-investigation",
@@ -11624,7 +12007,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "unrwa-hamas-allegations-summary",
@@ -11655,7 +12039,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "us-allies-military-rebuild",
@@ -11686,7 +12071,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "vegas-alien-think-rebels",
@@ -11717,7 +12103,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "vessel-and-dmt-integration",
@@ -11748,7 +12135,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-practice"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "virgin-birth-debate",
@@ -11779,7 +12167,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "voice-in-the-wilderness",
@@ -11810,7 +12199,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "vtt-ai-plagiarism-analysis",
@@ -11841,7 +12231,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-machines"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "what-is-midian",
@@ -11869,10 +12260,12 @@
     "date": "2025-03-06",
     "turnCount": 3,
     "primaryExcerpt": "Can you assemble a complex diagram with simple shapes like rectangles and arrows that outlines a proposed structure for this application.",
-    "backlinkCount": 1,
+    "backlinkCount": 2,
     "backlinks": [
+      "kenite-hypothesis-and-yahweh-origins",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "who-was-josepheous",
@@ -11903,7 +12296,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "yahweh-and-asherah-s-relationship",
@@ -11931,10 +12325,12 @@
     "date": "2025-03-02",
     "turnCount": 4,
     "primaryExcerpt": "Yahwey had a wife named Asharah?",
-    "backlinkCount": 1,
+    "backlinkCount": 2,
     "backlinks": [
+      "el-in-ancient-egypt",
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "yahweh-annunaki-and-flood",
@@ -11965,7 +12361,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "yahweh-el-or-enki",
@@ -11996,7 +12393,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "yahwey-and-the-annunaki",
@@ -12027,7 +12425,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "yahwey-and-the-sky-people",
@@ -12058,7 +12457,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-origins"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "ye-are-gods-quote",
@@ -12089,7 +12489,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "zecharia-sitchin-overview",
@@ -12120,7 +12521,8 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-context"
-    ]
+    ],
+    "aliases": []
   },
   {
     "slug": "zeus-antichrist-connection",
@@ -12151,6 +12553,426 @@
     "backlinkCount": 1,
     "backlinks": [
       "topic-apocalypse"
+    ],
+    "aliases": []
+  },
+  {
+    "slug": "trump-first-beast-of-revelation",
+    "title": "Trump and the First Beast of Revelation",
+    "category": "apocalypse",
+    "summary": "The author's identification of Trump, and a method that connects authority, deception, worship, coercion and economic dependence rather than collecting isolated resemblances.",
+    "claimType": "Theological interpretation",
+    "externalSources": [
+      "svgn-sword",
+      "svgn-ai-power",
+      "revelation13"
+    ],
+    "art": "riders",
+    "kind": "Developed article",
+    "updated": "2026-09-04",
+    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "featured": true,
+    "aliases": [
+      "First Beast Trump",
+      "Trump Antichrist"
+    ],
+    "path": "developed/trump-first-beast-of-revelation.md",
+    "topic": "Apocalypse, power & repair",
+    "tags": [
+      "apocalypse",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-trump-first-beast-of-revelation",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/trump-first-beast-of-revelation.md"
+    ],
+    "references": [
+      {
+        "slug": "revelation-interpretation-and-america",
+        "file": "gpt2026dragon3051_Revelation_Interpretation_and_America.txt",
+        "title": "Revelation Interpretation and America",
+        "date": "2026-01-30",
+        "sha256": "af431f5f3019577b92311c103ec7bae76b1f5fb79b32a504808c9c1b06f43140"
+      },
+      {
+        "slug": "false-peace-prophecy",
+        "file": "gpt2026dragon1094_False_Peace_Prophecy.txt",
+        "title": "False Peace Prophecy",
+        "date": "2025-03-13",
+        "sha256": "9ce24d6bf558c57d72e42391d825678690519716020e99e2808ca2abd9b4f97b"
+      }
+    ],
+    "readMinutes": 5,
+    "related": [
+      "false-peace-prophecy",
+      "antichrist-as-a-pattern-of-conduct",
+      "ukraine-russia-forecast-record",
+      "forecast-ledger",
+      "apocalyptic-repair-theology",
+      "revelation-interpretation-and-america",
+      "image-collection"
+    ],
+    "backlinkCount": 6,
+    "backlinks": [
+      "home",
+      "ukraine-russia-forecast-record",
+      "apocalyptic-repair-theology",
+      "forecast-ledger",
+      "topic-apocalypse",
+      "reading-paths"
+    ]
+  },
+  {
+    "slug": "ukraine-russia-forecast-record",
+    "title": "Ukraine, Russia and the forecast record",
+    "category": "apocalypse",
+    "summary": "A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.",
+    "claimType": "Conditional forecasts",
+    "externalSources": [
+      "svgn-sword",
+      "svgn-deterrence"
+    ],
+    "art": "",
+    "kind": "Developed article",
+    "updated": "2026-09-04",
+    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "featured": true,
+    "aliases": [
+      "Ukraine Russia predictions",
+      "Fuel food famine cascade"
+    ],
+    "path": "developed/ukraine-russia-forecast-record.md",
+    "topic": "Apocalypse, power & repair",
+    "tags": [
+      "apocalypse",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-ukraine-russia-forecast-record",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/ukraine-russia-forecast-record.md"
+    ],
+    "references": [
+      {
+        "slug": "false-peace-prophecy",
+        "file": "gpt2026dragon1094_False_Peace_Prophecy.txt",
+        "title": "False Peace Prophecy",
+        "date": "2025-03-13",
+        "sha256": "9ce24d6bf558c57d72e42391d825678690519716020e99e2808ca2abd9b4f97b"
+      },
+      {
+        "slug": "revelation-interpretation-and-america",
+        "file": "gpt2026dragon3051_Revelation_Interpretation_and_America.txt",
+        "title": "Revelation Interpretation and America",
+        "date": "2026-01-30",
+        "sha256": "af431f5f3019577b92311c103ec7bae76b1f5fb79b32a504808c9c1b06f43140"
+      }
+    ],
+    "readMinutes": 5,
+    "related": [
+      "false-peace-prophecy",
+      "forecast-ledger",
+      "trump-first-beast-of-revelation",
+      "apocalyptic-repair-theology",
+      "revelation-interpretation-and-america"
+    ],
+    "backlinkCount": 6,
+    "backlinks": [
+      "home",
+      "trump-first-beast-of-revelation",
+      "apocalyptic-repair-theology",
+      "forecast-ledger",
+      "topic-apocalypse",
+      "reading-paths"
+    ]
+  },
+  {
+    "slug": "el-in-ancient-egypt",
+    "title": "El in Ancient Egypt",
+    "category": "origins",
+    "summary": "A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.",
+    "claimType": "Historical inquiry",
+    "externalSources": [
+      "abdiel",
+      "zivie"
+    ],
+    "art": "papyrus",
+    "kind": "Developed article",
+    "updated": "2026-09-04",
+    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "featured": true,
+    "aliases": [
+      "Aper-El",
+      "Abdiel",
+      "El Egypt"
+    ],
+    "path": "developed/el-in-ancient-egypt.md",
+    "topic": "Ancient texts & origins",
+    "tags": [
+      "origins",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-el-in-ancient-egypt",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/el-in-ancient-egypt.md"
+    ],
+    "references": [
+      {
+        "slug": "jews-and-canaanites-origins",
+        "file": "gpt2026dragon1009_Jews_and_Canaanites_Origins.txt",
+        "title": "Jews and Canaanites Origins",
+        "date": "2025-02-27",
+        "sha256": "e4e081499d892edb414439061341d13d915372fd7a67820a724a145ae1d91bc8"
+      },
+      {
+        "slug": "yahweh-and-asherah-s-relationship",
+        "file": "gpt2026dragon1033_Yahweh_and_Asherah_s_Relationship.txt",
+        "title": "Yahweh and Asherah's Relationship",
+        "date": "2025-03-02",
+        "sha256": "0c4fd3d526e696f2dd490391b44aba2f0f8af5bad45c521765243216d9753443"
+      }
+    ],
+    "readMinutes": 5,
+    "related": [
+      "jews-and-canaanites-origins",
+      "yahweh-and-asherah-s-relationship",
+      "kenite-hypothesis-and-yahweh-origins",
+      "samaritan-texts-and-sacred-authority",
+      "moses-volcano-and-exodus-chronology",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "image-collection"
+    ],
+    "backlinkCount": 6,
+    "backlinks": [
+      "home",
+      "moses-volcano-and-exodus-chronology",
+      "kenite-hypothesis-and-yahweh-origins",
+      "samaritan-texts-and-sacred-authority",
+      "topic-origins",
+      "reading-paths"
+    ]
+  },
+  {
+    "slug": "jesus-teacher-of-righteousness-hypothesis",
+    "title": "Jesus as the Teacher of Righteousness",
+    "category": "jesus",
+    "summary": "Micah's proposed earlier origin for the Jesus tradition, examined through the distinction between an individual, a community, a title and a transmitted teaching.",
+    "claimType": "Author hypothesis",
+    "externalSources": [
+      "habakkuk",
+      "galatians1",
+      "corinthians15"
+    ],
+    "art": "",
+    "kind": "Developed article",
+    "updated": "2026-09-04",
+    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "featured": true,
+    "aliases": [
+      "Jesus TOR",
+      "Jesus ToR",
+      "Teacher of Righteousness hypothesis"
+    ],
+    "path": "developed/jesus-teacher-of-righteousness-hypothesis.md",
+    "topic": "Jesus, ethics & authority",
+    "tags": [
+      "jesus",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-jesus-teacher-of-righteousness-hypothesis",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/jesus-teacher-of-righteousness-hypothesis.md"
+    ],
+    "references": [
+      {
+        "slug": "teacher-of-righteousness-vs-gnostic-jesus",
+        "file": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+        "title": "Teacher of Righteousness vs Gnostic Jesus",
+        "date": "2025-06-17",
+        "sha256": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"
+      },
+      {
+        "slug": "pilate-life-timeline",
+        "file": "gpt2026dragon2333_Pilate_life_timeline.txt",
+        "title": "Pilate life timeline",
+        "date": "2025-09-08",
+        "sha256": "756823b22f4260c1a4ada60a2c25c3365209822c10a4689acc0947b13b6cb0d8"
+      },
+      {
+        "slug": "daniel-and-teacher-of-righteousness",
+        "file": "gpt2026dragon2651_Daniel_and_Teacher_of_Righteousness.txt",
+        "title": "Daniel and Teacher of Righteousness",
+        "date": "2025-10-19",
+        "sha256": "11cd5f8b5e11d81369f6da562e3da29e1084f0f36f785fe299fc3f25b2901ad3"
+      },
+      {
+        "slug": "ai-re-dates-dead-sea-scrolls",
+        "file": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+        "title": "AI re-dates Dead Sea Scrolls",
+        "date": "2025-10-20",
+        "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+      }
+    ],
+    "readMinutes": 5,
+    "related": [
+      "ai-re-dates-dead-sea-scrolls",
+      "gnosticism-and-temple-trauma",
+      "christ-as-an-inner-model",
+      "cognitive-gnosticism",
+      "teacher-of-righteousness-vs-gnostic-jesus",
+      "pilate-life-timeline",
+      "daniel-and-teacher-of-righteousness"
+    ],
+    "backlinkCount": 6,
+    "backlinks": [
+      "home",
+      "el-in-ancient-egypt",
+      "christ-as-an-inner-model",
+      "gnosticism-and-temple-trauma",
+      "topic-jesus",
+      "reading-paths"
+    ]
+  },
+  {
+    "slug": "moses-volcano-and-exodus-chronology",
+    "title": "Moses, the volcano and Exodus chronology",
+    "category": "origins",
+    "summary": "A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.",
+    "claimType": "Author hypothesis",
+    "externalSources": [
+      "tempest",
+      "thera",
+      "exodus19",
+      "volcanic-sinai"
+    ],
+    "art": "",
+    "kind": "Developed article",
+    "updated": "2026-09-04",
+    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "featured": true,
+    "aliases": [
+      "Moses and the Volcano",
+      "Santorini Exodus",
+      "Thera chronology"
+    ],
+    "path": "developed/moses-volcano-and-exodus-chronology.md",
+    "topic": "Ancient texts & origins",
+    "tags": [
+      "origins",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-moses-volcano-and-exodus-chronology",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/moses-volcano-and-exodus-chronology.md"
+    ],
+    "references": [
+      {
+        "slug": "moses-dating-debate",
+        "file": "gpt2026dragon2136_Moses_dating_debate.txt",
+        "title": "Moses dating debate",
+        "date": "2025-08-17",
+        "sha256": "fba3543ecc5587b753a2224cbf4f4e71ab0c8893f4bf1e0fa135664e89e30f96"
+      },
+      {
+        "slug": "parthians-and-medes-meaning",
+        "file": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
+        "title": "Parthians and Medes meaning",
+        "date": "2025-10-25",
+        "sha256": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120"
+      }
+    ],
+    "readMinutes": 5,
+    "related": [
+      "kenite-hypothesis-and-yahweh-origins",
+      "parthians-and-medes-meaning",
+      "el-in-ancient-egypt",
+      "samaritan-texts-and-sacred-authority",
+      "moses-dating-debate"
+    ],
+    "backlinkCount": 6,
+    "backlinks": [
+      "home",
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins",
+      "gnosticism-and-temple-trauma",
+      "topic-origins",
+      "reading-paths"
+    ]
+  },
+  {
+    "slug": "kenite-hypothesis-and-yahweh-origins",
+    "title": "The Kenite hypothesis and Yahweh's southern origins",
+    "category": "origins",
+    "summary": "How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.",
+    "claimType": "Historical inquiry",
+    "externalSources": [
+      "kenite",
+      "volcanic-sinai",
+      "exodus18",
+      "exodus19"
+    ],
+    "art": "",
+    "kind": "Developed article",
+    "updated": "2026-09-04",
+    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "featured": true,
+    "aliases": [
+      "Kenite hypothesis",
+      "Midianite hypothesis"
+    ],
+    "path": "developed/kenite-hypothesis-and-yahweh-origins.md",
+    "topic": "Ancient texts & origins",
+    "tags": [
+      "origins",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-kenite-hypothesis-and-yahweh-origins",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/kenite-hypothesis-and-yahweh-origins.md"
+    ],
+    "references": [
+      {
+        "slug": "gnostic-teachings-and-clarity",
+        "file": "gpt2026dragon1068_Gnostic_Teachings_and_Clarity.txt",
+        "title": "Gnostic Teachings and Clarity",
+        "date": "2025-03-06",
+        "sha256": "8ef2b81a0bc76a10fe5c1888c1f5674d7d7370fddd6c74e24eac72b2c0e31db0"
+      },
+      {
+        "slug": "what-is-midian",
+        "file": "gpt2026dragon1069_What_is_Midian.txt",
+        "title": "What is Midian",
+        "date": "2025-03-06",
+        "sha256": "7b39d156ff9e619f8d71ef657fc238c60225fc65e1a0caea9ad64f7551862ebf"
+      }
+    ],
+    "readMinutes": 5,
+    "related": [
+      "gnostic-teachings-and-clarity",
+      "moses-volcano-and-exodus-chronology",
+      "el-in-ancient-egypt",
+      "samaritan-texts-and-sacred-authority",
+      "what-is-midian"
+    ],
+    "backlinkCount": 6,
+    "backlinks": [
+      "home",
+      "el-in-ancient-egypt",
+      "moses-volcano-and-exodus-chronology",
+      "samaritan-texts-and-sacred-authority",
+      "topic-origins",
+      "reading-paths"
     ]
   },
   {
@@ -12162,6 +12984,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/apocalyptic-repair-theology.md",
     "topic": "Apocalypse, power & repair",
     "tags": [
@@ -12196,11 +13019,15 @@
       "gnosticism-and-temple-trauma",
       "early-vs-later-gnosticism",
       "jewish-apocalyptic-repair-timeline",
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
       "image-collection"
     ],
-    "backlinkCount": 7,
+    "backlinkCount": 9,
     "backlinks": [
       "home",
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
       "antichrist-as-a-pattern-of-conduct",
       "faith-as-deliberate-joy",
       "gnosticism-and-temple-trauma",
@@ -12218,6 +13045,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/cognitive-gnosticism.md",
     "topic": "Gnosticism & awakening",
     "tags": [
@@ -12262,9 +13090,10 @@
       "publishing-cognitive-gnosticism-first",
       "antichrist-spiritual-inversion"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 7,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
@@ -12281,6 +13110,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/christ-as-an-inner-model.md",
     "topic": "Jesus, ethics & authority",
     "tags": [
@@ -12315,11 +13145,13 @@
       "cognitive-gnosticism",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "antichrist-spiritual-inversion",
+      "jesus-teacher-of-righteousness-hypothesis",
       "image-collection"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 7,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "cognitive-gnosticism",
       "antichrist-as-a-pattern-of-conduct",
       "samaritan-texts-and-sacred-authority",
@@ -12336,6 +13168,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/antichrist-as-a-pattern-of-conduct.md",
     "topic": "Apocalypse, power & repair",
     "tags": [
@@ -12372,9 +13205,10 @@
       "antichrist-spiritual-inversion",
       "image-collection"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 7,
     "backlinks": [
       "home",
+      "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
       "christ-as-an-inner-model",
       "samaritan-texts-and-sacred-authority",
@@ -12391,6 +13225,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/religion-for-conscious-robots.md",
     "topic": "God, minds & machines",
     "tags": [
@@ -12442,6 +13277,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/faith-as-deliberate-joy.md",
     "topic": "Faith & spiritual practice",
     "tags": [
@@ -12495,6 +13331,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/gnosticism-and-temple-trauma.md",
     "topic": "Ancient texts & origins",
     "tags": [
@@ -12529,11 +13366,14 @@
       "research-method",
       "apocalyptic-repair-theology",
       "early-vs-later-gnosticism",
-      "jewish-apocalyptic-repair-timeline"
+      "jewish-apocalyptic-repair-timeline",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "moses-volcano-and-exodus-chronology"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 7,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
       "research-method",
@@ -12550,6 +13390,7 @@
     "kind": "Developed article",
     "updated": "2026-09-04",
     "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "aliases": [],
     "path": "developed/samaritan-texts-and-sacred-authority.md",
     "topic": "Traditions in conversation",
     "tags": [
@@ -12577,13 +13418,53 @@
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
       "research-method",
-      "samaritan-and-jewish-texts"
+      "samaritan-and-jewish-texts",
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins"
+    ],
+    "backlinkCount": 7,
+    "backlinks": [
+      "home",
+      "el-in-ancient-egypt",
+      "moses-volcano-and-exodus-chronology",
+      "kenite-hypothesis-and-yahweh-origins",
+      "gnosticism-and-temple-trauma",
+      "topic-traditions",
+      "reading-paths"
+    ]
+  },
+  {
+    "slug": "forecast-ledger",
+    "title": "Dated forecast ledger",
+    "category": "apocalypse",
+    "kind": "Navigator",
+    "summary": "A dated source register of predictions, interpretation updates and recovery leads, without retrospective scoring.",
+    "aliases": [],
+    "path": "developed/forecast-ledger.md",
+    "topic": "Apocalypse, power & repair",
+    "tags": [
+      "apocalypse",
+      "navigation"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-forecast-ledger",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/forecast-ledger.md"
+    ],
+    "references": [],
+    "readMinutes": 4,
+    "related": [
+      "false-peace-prophecy",
+      "ukraine-russia-forecast-record",
+      "trump-first-beast-of-revelation",
+      "research-method"
     ],
     "backlinkCount": 4,
     "backlinks": [
       "home",
-      "gnosticism-and-temple-trauma",
-      "topic-traditions",
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
       "reading-paths"
     ]
   },
@@ -12594,6 +13475,7 @@
     "kind": "Editorial method",
     "summary": "Preserve the argument, identify the speaker, and make every substantive connection traceable to the original discussion.",
     "updated": "2026-09-04",
+    "aliases": [],
     "path": "developed/research-method.md",
     "topic": "Wider conversations",
     "tags": [
@@ -12613,12 +13495,13 @@
       "gnosticism-and-temple-trauma",
       "religion-for-conscious-robots"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 7,
     "backlinks": [
       "home",
       "cognitive-gnosticism",
       "gnosticism-and-temple-trauma",
       "samaritan-texts-and-sacred-authority",
+      "forecast-ledger",
       "topic-context",
       "reading-paths"
     ]
@@ -12629,6 +13512,7 @@
     "summary": "Divine sparks, inner models, archons and the work of changing a mind.",
     "category": "gnosis",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-gnosis.md",
     "topic": "Gnosticism & awakening",
     "tags": [
@@ -12736,6 +13620,7 @@
     "summary": "Theology of domination, prophetic warning and collective restoration.",
     "category": "apocalypse",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-apocalypse.md",
     "topic": "Apocalypse, power & repair",
     "tags": [
@@ -12751,6 +13636,8 @@
     "references": [],
     "readMinutes": 2,
     "related": [
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
       "apocalyptic-repair-theology",
       "antichrist-as-a-pattern-of-conduct",
       "ai-sword-revelation-review",
@@ -12860,6 +13747,7 @@
     "summary": "Manuscripts, Temple history, divine names and the dating of ideas.",
     "category": "origins",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-origins.md",
     "topic": "Ancient texts & origins",
     "tags": [
@@ -12875,6 +13763,9 @@
     "references": [],
     "readMinutes": 2,
     "related": [
+      "el-in-ancient-egypt",
+      "moses-volcano-and-exodus-chronology",
+      "kenite-hypothesis-and-yahweh-origins",
       "gnosticism-and-temple-trauma",
       "ai-re-dates-dead-sea-scrolls",
       "ancient-egypt-vs-fascism",
@@ -12977,6 +13868,7 @@
     "summary": "The teachings of Jesus, moral judgment and the authority of institutions.",
     "category": "jesus",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-jesus.md",
     "topic": "Jesus, ethics & authority",
     "tags": [
@@ -12992,6 +13884,7 @@
     "references": [],
     "readMinutes": 2,
     "related": [
+      "jesus-teacher-of-righteousness-hypothesis",
       "christ-as-an-inner-model",
       "17th-century-christian-zionism",
       "allegiance-vs-proclamation-of-christ",
@@ -13076,6 +13969,7 @@
     "summary": "Prayer, attention, deliberate joy and interpretations of spiritual experience.",
     "category": "practice",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-practice.md",
     "topic": "Faith & spiritual practice",
     "tags": [
@@ -13149,6 +14043,7 @@
     "summary": "Cognitive models, information, conscious machines and religious education.",
     "category": "machines",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-machines.md",
     "topic": "God, minds & machines",
     "tags": [
@@ -13238,6 +14133,7 @@
     "summary": "Shared inheritance, competing interpretations and differences that matter.",
     "category": "traditions",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-traditions.md",
     "topic": "Traditions in conversation",
     "tags": [
@@ -13293,6 +14189,7 @@
     "summary": "Contextual discussions, cultural references and research leads in the source archive.",
     "category": "context",
     "kind": "Topic collection",
+    "aliases": [],
     "path": "developed/topic-context.md",
     "topic": "Wider conversations",
     "tags": [
@@ -13586,6 +14483,7 @@
     "category": "context",
     "kind": "Navigator",
     "summary": "Follow a question across the developed articles.",
+    "aliases": [],
     "path": "developed/reading-paths.md",
     "topic": "Wider conversations",
     "tags": [
@@ -13601,13 +14499,20 @@
     "references": [],
     "readMinutes": 1,
     "related": [
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
+      "forecast-ledger",
+      "apocalyptic-repair-theology",
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins",
+      "moses-volcano-and-exodus-chronology",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "gnosticism-and-temple-trauma",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
       "faith-as-deliberate-joy",
       "religion-for-conscious-robots",
       "antichrist-as-a-pattern-of-conduct",
-      "apocalyptic-repair-theology",
-      "gnosticism-and-temple-trauma",
       "samaritan-texts-and-sacred-authority",
       "research-method"
     ],
@@ -13623,6 +14528,7 @@
     "category": "context",
     "kind": "Navigator",
     "summary": "Explore explicit wikilinks and source relationships without treating resemblance as equivalence.",
+    "aliases": [],
     "path": "developed/connections.md",
     "topic": "Wider conversations",
     "tags": [
@@ -13651,6 +14557,7 @@
     "category": "context",
     "kind": "Navigator",
     "summary": "Historical artworks with their dates, institutional records, credits and reasons for inclusion.",
+    "aliases": [],
     "path": "developed/image-collection.md",
     "topic": "Wider conversations",
     "tags": [
@@ -13666,9 +14573,11 @@
     "references": [],
     "readMinutes": 1,
     "related": [],
-    "backlinkCount": 5,
+    "backlinkCount": 7,
     "backlinks": [
       "home",
+      "trump-first-beast-of-revelation",
+      "el-in-ancient-egypt",
       "apocalyptic-repair-theology",
       "christ-as-an-inner-model",
       "antichrist-as-a-pattern-of-conduct",

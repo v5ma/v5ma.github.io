@@ -13,6 +13,18 @@ The Theology Wiki follows Micah Blumberg's questions about awakening, religious 
 
 ## Ideas developed from the conversations
 
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The author's identification of Trump, and a method that connects authority, deception, worship, coercion and economic dependence rather than collecting isolated resemblances.
+
+[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.
+
+[[el-in-ancient-egypt|El in Ancient Egypt]]: A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.
+
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: Micah's proposed earlier origin for the Jesus tradition, examined through the distinction between an individual, a community, a title and a transmitted teaching.
+
+[[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]: A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.
+
+[[kenite-hypothesis-and-yahweh-origins|The Kenite hypothesis and Yahweh's southern origins]]: How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.
+
 [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: A theology of two accumulating forces: domination can culminate in a real crisis, while acts of repair can accumulate toward its defeat.
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]: Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.
@@ -49,8 +61,8 @@ The Theology Wiki follows Micah Blumberg's questions about awakening, religious 
 
 ## Follow a longer question
 
-[[reading-paths|Reading paths]] connect several arguments. [[sources-index|The conversation catalogue]] opens all 354 published chats. [[connections|The connection map]] shows actual article links. [[image-collection|The image collection]] identifies every artwork and its source.
+[[forecast-ledger|The dated forecast ledger]] distinguishes predictions from outcomes and recovery leads. [[reading-paths|Reading paths]] connect several arguments. [[sources-index|The conversation catalogue]] opens all 354 published chats. [[connections|The connection map]] shows actual article links. [[image-collection|The image collection]] identifies every artwork and its source.
 
 ## About this edition
 
-Eight developed articles accompany the source archive. They are AI-assisted editorial syntheses, not replacement transcripts or newly attributed quotations. The rest of the collection includes source records and legacy research notes. [[research-method|Read the editorial method]] for speaker attribution, dates, claim status and source integrity.
+14 developed articles accompany the source archive. They are AI-assisted editorial syntheses, not replacement transcripts or newly attributed quotations. The rest of the collection includes source records and legacy research notes. [[research-method|Read the editorial method]] for speaker attribution, dates, claim status and source integrity.

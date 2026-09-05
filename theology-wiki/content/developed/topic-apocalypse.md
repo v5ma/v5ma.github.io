@@ -13,6 +13,10 @@ Theology of domination, prophetic warning and collective restoration.
 
 ## Start with a developed argument
 
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The author's identification of Trump, and a method that connects authority, deception, worship, coercion and economic dependence rather than collecting isolated resemblances.
+
+[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.
+
 [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: A theology of two accumulating forces: domination can culminate in a real crisis, while acts of repair can accumulate toward its defeat.
 
 [[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: A theological judgment about domination, deception and violence that can appear through many people and institutions.
