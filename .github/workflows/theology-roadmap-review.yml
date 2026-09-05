@@ -42,7 +42,9 @@ jobs:
               p=Path(name);assert not p.exists();p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
             workbook=base64.b64decode(package['workbook'],validate=True)
             assert len(workbook)==105034
-            assert hashlib.sha256(workbook).hexdigest()=='cbad3acde1cff0e66f97f9f2d04a2062896a81416d031b3e980699a6484b9d3d'
+            expected='00d32805c937d96641186ddf83cc05114bcddaefc518e78f74404aa8abea5d61'
+            manifest=json.loads((root/'planning/workbook-manifest.json').read_text())
+            assert hashlib.sha256(workbook).hexdigest()==manifest['sha256']==expected,'Workbook does not match its verified manifest'
             target=root/'planning/Theology-Research-Plan.xlsx';assert not target.exists();target.write_bytes(workbook)
             for p in parts:p.unlink()
             print('Source delta and nine-sheet Excel plan verified and materialized.')
