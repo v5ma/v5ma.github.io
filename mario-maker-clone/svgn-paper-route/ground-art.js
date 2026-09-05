@@ -46,7 +46,7 @@ globalThis.GroundArt={
    if(label){label.name='Ground route depot';label.userData.groundDepot=true;}
    for(let i=0;i<6;i++)for(let j=0;j<3;j++)metal.box(x+(i-2.5)*9,y+.6,(j-1)*21,9,.6,21,(i+j)%2?'#e8dab7':'#294c66');
   }
-  sign(course.name.toUpperCase(),180,gy+170,-130,240,57);
+  sign(String(course.name||'Your route').toUpperCase(),180,gy+170,-130,240,57);
   for(const [x,caption] of [[510,'GOLD RAMP: OPTIONAL\nSTREET: KEEP RIDING'],[1250,'BOTH ROUTES REJOIN\nNO NEED TO RUSH']]){
    if(x>length-400)continue;metal.rod([x,gy,-68],[x,gy+100,-68],2.8,'#697f78');sign(caption,x,gy+102,-64,185,52);
   }
