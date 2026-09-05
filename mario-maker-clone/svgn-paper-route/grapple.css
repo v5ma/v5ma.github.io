@@ -1,0 +1,10 @@
+/* New mechanics are visible in the main game, not hidden in a separate demo. */
+.delivery-course[data-course="3"]{order:-1;border:2px solid #ffd273;background:linear-gradient(125deg,#175877,#26394d);box-shadow:0 0 25px #2befe117}
+.delivery-course[data-course="3"] h2::after{content:' OPEN RAMPS + WHIP';display:block;font:700 9px system-ui;letter-spacing:1.8px;color:#96f7d7;margin-top:7px}
+#whip-control{display:none;position:absolute;right:23px;bottom:165px;z-index:46;min-width:135px;min-height:48px;touch-action:none;background:#16475f;color:#cefbe7;border:2px solid #9cc6cb;font-size:11px}
+.whip-enabled #whip-control{display:block}.delivery-menu-open #whip-control,.delivery-menu-open #whip-status{display:none!important}
+#whip-control.in-range{border-color:#8cffe5;box-shadow:0 0 16px #56ecc84a}#whip-control.hooked{background:#efc15b;color:#203b50;border-color:#fff2a1}
+#whip-status{display:none;position:absolute;z-index:8;right:24px;bottom:225px;padding:9px 13px;border-radius:10px;background:#143e58e8;color:#cdfae5;border:1px solid #779db9;font:700 10px system-ui;letter-spacing:.4px;pointer-events:none}
+.whip-enabled #whip-status{display:block}.open-course-active .cloud-flight-status{max-width:min(620px,94%)}
+#delivery-menu .delivery-courses{max-height:calc(100dvh - 170px);overflow:auto;padding:4px 8px 4px 0}
+@media(max-width:700px){#whip-control{right:13px;bottom:152px;min-width:126px;height:47px}#whip-status{right:12px;bottom:310px;font-size:8px;max-width:82%}.open-course-active #sky-flight{bottom:205px}.open-course-active #delivery-hint{bottom:270px}#delivery-menu .delivery-courses{max-height:none;overflow:visible}.open-course-active #cloud-control-tip{font-size:8px}}
