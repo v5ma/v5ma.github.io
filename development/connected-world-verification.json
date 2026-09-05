@@ -1,6 +1,6 @@
 {
-  "tested_sha": "a89c43496b9ed0fc3dd5688e0c339f3b4a09418c",
+  "tested_sha": "4207f70db0ff4ef529bbf7919412a8ede644963f",
   "prepare": "success",
-  "replay": "failure",
+  "replay": "cancelled",
   "reports": {}
 }
