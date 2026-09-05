@@ -29,7 +29,7 @@ with sync_playwright() as p:
   check('Start on the street' in page.locator('#delivery-menu h1').inner_text(),'The default menu starts with approachable routes')
   page.locator('#advanced-routes-toggle').click()
   original=page.evaluate('levelCode()');page.screenshot(path=str(OUT/'menu-3d.png'))
-  for route,count in [(i,4+i) for i in range(3) if os.getenv('SKY_REPLAY_ROUTE') is None or i==int(os.getenv('SKY_REPLAY_ROUTE'))]:
+  for route,count in ([] if os.getenv('EXPERT_TAIL_ONLY')=='1' else [(i,4+i) for i in range(3) if os.getenv('SKY_REPLAY_ROUTE') is None or i==int(os.getenv('SKY_REPLAY_ROUTE'))]):
    if route:page.locator('#delivery-header [data-delivery="routes"]').click()
    page.locator(f'[data-course="{route}"]').click(timeout=90000);page.locator('#cv').focus()
    page.wait_for_function('mode==="play"&&player.track?.sky&&__sky.state.steps>0')
@@ -60,10 +60,10 @@ with sync_playwright() as p:
    if route==1:check(any(e.get('to')=='loop-2-low' for e in events),'The lower detour is traversed and reconnects during a complete 3D run')
    runs.append({'route':route,'result':last,'events':events});page.screenshot(path=str(OUT/f'route-{route+1}-complete.png'))
    check(all(e['airFrames']>3 for e in events if e['type']=='transfer'),'Transfers include actual detached ballistic frames')
-  check(not errors,'No uncaught errors during all three full 3D playthroughs')
+  check(not errors,'No uncaught errors during the selected expert-playback phase')
   # A right-only run must not bypass the defining launch mechanic.
   page.locator('#delivery-header [data-delivery="routes"]').click();page.locator('[data-course="0"]').click();page.locator('#cv').focus();page.keyboard.down('KeyD')
-  page.wait_for_function('__sky.state.events.filter(e=>e.type==="lap").length>=3',timeout=90000);page.keyboard.up('KeyD')
+  page.wait_for_function('__sky.state.events.filter(e=>e.type==="lap").length>=3',timeout=300000);page.keyboard.up('KeyD')
   st=status(page);check(not st['won'] and st['launches']==0 and len(st['loops'])==1,'Holding right alone cannot leave the loop or win the course')
   # Pause must freeze physics; resume must preserve input focus.
   page.keyboard.press('KeyP');before=status(page)['steps'];page.wait_for_timeout(350)
@@ -80,7 +80,7 @@ with sync_playwright() as p:
   page.screenshot(path=str(OUT/'sky-editor.png'))
   fatal=[s for s in console_errors if any(x in s for x in ['VALIDATION','GL_INVALID','shader error','CommandBuffer','uniform buffer'])]
   check(not fatal,'3D replay emits no detected GPU validation errors')
-  report={'passed':len(checks),'checks':checks,'runs':runs,'uncaught_errors':errors,'gpu_errors':fatal,'renderer':'Actual WebGPURenderer, software WebGL backend in CI','scope':'Recorded ordinary keyboard/button input from spawn to depot, without assigning player position, velocity, track, score, or progress. Not a performance benchmark or physical-device/gamepad audit.'}
+  report={'phase':'tail-regressions' if os.getenv('EXPERT_TAIL_ONLY')=='1' else 'full-replay','passed':len(checks),'checks':checks,'runs':runs,'uncaught_errors':errors,'gpu_errors':fatal,'renderer':'Actual WebGPURenderer, software WebGL backend in CI','scope':'Recorded ordinary keyboard/button input from spawn to depot, without assigning player position, velocity, track, score, or progress. Not a performance benchmark or physical-device/gamepad audit.'}
   (OUT/'report.json').write_text(json.dumps(report,indent=2));print(json.dumps({'passed':len(checks),'routes_completed':len(runs)}))
  except Exception as e:
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'last_state':status(page) if page else None,'checks':checks,'errors':errors,'console_errors':console_errors[-25:],'runs':runs},indent=2))

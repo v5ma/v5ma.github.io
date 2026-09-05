@@ -2,6 +2,7 @@ name: Verify connected-world playable revision
 on:
   push:
     branches: [feat/connected-world-playable-20260905]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/sky_network*']
   workflow_dispatch:
 permissions:
   contents: read
