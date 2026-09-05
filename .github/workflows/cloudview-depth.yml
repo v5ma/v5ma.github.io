@@ -22,13 +22,14 @@ jobs:
           python scripts/integrate-depth.py
           python scripts/finalize-depth.py
           python scripts/depth-perspective.py
+          python scripts/polish-depth-lighting.py
       - name: Record exact integrated source
         if: github.ref == 'refs/heads/feat/cloudview-depth-20260905'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-depth.js mario-maker-clone/svgn-paper-route/grapple-game.js tests/grapple_browser.py tests/depth_capture.py tests/sky_browser.py
-          if ! git diff --cached --quiet; then git commit -m 'Integrate perspective camera, fixed-detail culling and whip input cleanup'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-depth.js mario-maker-clone/svgn-paper-route/cloudview-world.js mario-maker-clone/svgn-paper-route/grapple-game.js tests/grapple_browser.py tests/depth_capture.py tests/sky_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Integrate tuned lighting and visible whip geometry'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - id: identity
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - name: Package exact runtime
@@ -55,6 +56,7 @@ jobs:
         run: |
           node --check mario-maker-clone/svgn-paper-route/cloudview-depth.js
           node --check mario-maker-clone/svgn-paper-route/cloudview-camera.js
+          node --check mario-maker-clone/svgn-paper-route/whip-visual.js
           node --test tests/depth_geometry.test.mjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs
       - name: Install native browser
         run: |
@@ -85,7 +87,7 @@ jobs:
       matrix:
         route: ['0','1','2','whip']
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 22
     steps:
       - uses: actions/checkout@v4
         with:
@@ -102,9 +104,9 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           if [ "$REPLAY" = whip ]; then
-            timeout 900 python -u tests/grapple_browser.py
+            timeout 1140 python -u tests/grapple_browser.py
           else
-            SKY_REPLAY_ROUTE="$REPLAY" timeout 900 python -u tests/sky_browser.py
+            SKY_REPLAY_ROUTE="$REPLAY" timeout 1140 python -u tests/sky_browser.py
           fi
       - if: always()
         run: |

@@ -1,0 +1,42 @@
+name: Verify published Paper Delivery depth assets
+on:
+  push:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/cloudview-depth.js','mario-maker-clone/svgn-paper-route/cloudview-camera.js','mario-maker-clone/svgn-paper-route/whip-visual.js','.github/workflows/depth-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm deployed owned files byte-for-byte
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          folder='mario-maker-clone/svgn-paper-route/'
+          names=['index.html','cloudview-depth.js','cloudview-camera.js','cloudview-chunks.js','whip-visual.js','grapple-core.js','grapple-game.js','open-course.js']
+          expected={n:hashlib.sha256(Path(folder+n).read_bytes()).hexdigest() for n in names}
+          results={}
+          for attempt in range(48):
+            for name in names:
+              if results.get(name,{}).get('match'):continue
+              try:
+                with urllib.request.urlopen('https://v5ma.github.io/'+folder+name+'?depth=20260905',timeout=12) as r:data=r.read();code=r.status
+                digest=hashlib.sha256(data).hexdigest();results[name]={'status':code,'sha256':digest,'match':digest==expected[name]}
+              except Exception as e:results[name]={'error':str(e),'match':False}
+            if all(v.get('match') for v in results.values()):break
+            time.sleep(5)
+          Path('publication-proof.json').write_text(json.dumps(results,indent=2))
+          assert all(v.get('match') for v in results.values()),results
+          print(json.dumps(results,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: depth-publication-proof
+          path: publication-proof.json
+          retention-days: 14
