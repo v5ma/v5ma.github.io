@@ -191,7 +191,7 @@
     const paths=active?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,tag:t.sky})):course.ct.map(p=>({pts:p,tag:p.sky}));
     let panels=0;
     const tex=haloTexture(T);
-    for(const {pts,tag}of paths) {
+    if(!course.gp?.skyNetwork)for(const {pts,tag}of paths) {
       let distance=0,last=-50;
       const total=SkyRoutes.length(pts),start=tag.begin*total,end=tag.end*total;
       for(let i=1;i<pts.length;i++) {

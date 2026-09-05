@@ -45,7 +45,8 @@ window.Cloudview=(()=>{
    const foam=new T.Group();group.add(foam);const fb=new kit.Batch();for(let j=0;j<16;j++)fb.box(Math.sin(j*2.4)*width*.4,-j/16*height,3,1.3,12+j%3*6,.8,'#eeffff');fb.finish(m,foam,{unlit:true,transparent:true,opacity:.8,depthWrite:false});water.push({foam,height});stats.waterfalls++;
   }
   // Foreground paths exactly follow the existing collision geometry.
-  for(const {pts,sky:tag}of paths){
+  if(course.gp?.skyNetwork)SkyNetworkArt.populate({course,m,root,kit,metal,terrain,greenery,far,sign,paths});
+  else for(const {pts,sky:tag}of paths){
    let distance=0,lastPlate=-100,lastTie=-100,lastArrow=-100;
    const total=SkyRoutes.length(pts),begin=tag.begin*total,end=tag.end*total;
    for(let i=1;i<pts.length;i++){

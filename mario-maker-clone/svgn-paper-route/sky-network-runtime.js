@@ -7,6 +7,12 @@
   const active=()=>window.__ground?.active()&&!!__ground.meta?.skyNetwork;
   const record=(type,extra={})=>{state.events.push({type,step:__ground.state.steps,x:player.x,y:player.y,...extra});if(state.events.length>1200)state.events.shift();};
   const spawn=spawnWorld;window.spawnWorld=function(x,y){const keep=routeKeep;spawn(x,y);if(!active())return;player._networkAir=false;source=null;lastSurface=null;airStart=0;if(!keep){state.visits.clear();state.chain=state.bestChain=state.flights=0;state.events=[];state.minY=Infinity;}state.lastReleases=__grapple.state.releases;};
+  let releaseRequired=false;
+  const whipInput=__grapple.tickInput;
+  __grapple.tickInput=function(){
+    if(active()&&releaseRequired){const z=keys.KeyZ;keys.KeyZ=false;try{whipInput();}finally{keys.KeyZ=z;}if(!z)releaseRequired=false;}
+    else whipInput();
+  };
   const step=stepPlayer;window.stepPlayer=function(){
    if(!active())return step();const p=player,old=p.track,peg=p.peg;
    if(__grapple.state.releases!==state.lastReleases){p._networkAir=true;state.lastReleases=__grapple.state.releases;}
@@ -17,7 +23,7 @@
     const id=p.track.sky?.id;if(id){state.visits.add(id);state.chain=lastSurface&&airStart?state.chain+1:1;state.bestChain=Math.max(state.bestChain,state.chain);record('catch',{from:lastSurface,to:id,airTicks:airStart?__ground.state.steps-airStart:0});}
     p._networkAir=false;airStart=0;lastSurface=null;
    }
-   if(peg&&!p.peg){p._networkAir=true;airStart=__ground.state.steps;record('whip-release',{vx:p.vx,vy:p.vy});}
+   if(peg&&!p.peg){if(keys.KeyZ)releaseRequired=true;p._networkAir=true;airStart=__ground.state.steps;record('whip-release',{vx:p.vx,vy:p.vy});}
    if(p.onGround&&!p.track&&!p.peg){p._networkAir=false;state.chain=0;lastSurface=null;airStart=0;}
   };
   const buttons=document.querySelector('#delivery-header .actions');buttons.insertAdjacentHTML('beforeend','<button id="network-map-button" class="delivery-btn" title="Whole route map (M)">Route map</button><button id="network-wide-button" class="delivery-btn" aria-pressed="false" title="Wide view (V)">Wide view</button>');
