@@ -1,0 +1,100 @@
+name: Review resumed Theology foundations
+on:
+  push:
+    branches: [feat/theology-foundations-20260904]
+    paths: ['theology-wiki/**', '.github/workflows/theology-foundation-resume.yml']
+permissions:
+  contents: write
+concurrency:
+  group: theology-foundations-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize verified source package when present
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,json,lzma,subprocess
+          parts=sorted(Path('theology-wiki').glob('resume-foundation-*.txt'))
+          if parts:
+            assert len(parts)==6
+            digest,payload=''.join(p.read_text().strip() for p in parts).split(':',1)
+            assert digest=='fa4b47ba4f753ba18d46760a515d71d4bd7e88ec1b5042ad35a2f3510c127ee6'
+            packed=base64.b64decode(payload,validate=True)
+            assert hashlib.sha256(packed).hexdigest()==digest,'Transfer differs from tested local package'
+            decoded=lzma.decompress(packed)
+            assert len(decoded)<300000
+            package=json.loads(decoded)
+            modified={'theology-wiki/README.md','theology-wiki/tools/build.cjs','theology-wiki/assets/js/research-tools.js','theology-wiki/tests/research.test.cjs','theology-wiki/tests/browser.py'}
+            article_names={'expand-cognitive-gnosticism','expand-christ-as-an-inner-model','expand-religion-for-conscious-robots','god-and-our-models-of-god','tor-thomas-and-gnostic-transmission','expand-faith-as-deliberate-joy','scripture-power-and-repair','divine-will-and-self-authorizing-power','sacred-inheritance-and-rival-continuations'}
+            added={'theology-wiki/editorial/foundation-articles/'+n+'.md' for n in article_names}
+            added.update({'theology-wiki/editorial/foundations.json','theology-wiki/editorial/foundations.cjs','theology-wiki/assets/js/foundation-tools.js','theology-wiki/assets/css/foundation.css','theology-wiki/tests/foundations.test.cjs','theology-wiki/tests/foundation_checks.py'})
+            assert set(package['files'])==added
+            patch=Path('/tmp/theology-foundations.patch');patch.write_text(package['patch'])
+            actual={line.split('\t')[-1] for line in subprocess.check_output(['git','apply','--numstat',str(patch)],text=True).splitlines()}
+            assert actual==modified,actual
+            subprocess.run(['git','apply','--check',str(patch)],check=True)
+            subprocess.run(['git','apply',str(patch)],check=True)
+            for name,text in package['files'].items():
+              p=Path(name);assert not p.exists();p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+            for p in parts:p.unlink()
+            for name in ['foundation-transfer-01.txt','foundation-transfer-02.txt']:
+              p=Path('theology-wiki')/name
+              if p.exists():p.unlink()
+            print('Verified source package materialized; superseded partial transfers removed.')
+          PY
+          if [ -f theology-wiki/tools/foundation-review-fix.py ]; then python theology-wiki/tools/foundation-review-fix.py; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify build and unchanged source archive
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output
+          node theology-wiki/tools/build.cjs | tee theology-test-output/build-report.txt
+          node --check theology-wiki/assets/js/foundation-tools.js
+          node --check theology-wiki/assets/js/research-tools.js
+          node --test theology-wiki/tests/research.test.cjs | tee theology-test-output/node-tests.txt
+          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources
+      - name: Preserve readable source on the review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki
+          if ! git diff --cached --quiet; then git commit -m 'Develop source-grounded Theology foundations and chapter research tools'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - name: Install native browser tools
+        run: |
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium > /tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+      - name: Verify retained museum images
+        run: python theology-wiki/tools/media.py
+      - name: Test native HTTP reading and research tools
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py
+      - name: Preserve review evidence
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD > theology-test-output/tested-commit.txt
+          git diff --stat > theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('theology-test-output/review-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in Path('theology-wiki').rglob('*'):
+              if p.is_file() and '__pycache__' not in p.parts and p.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'} and 'transfer-' not in p.name and not p.name.startswith('resume-foundation-'):z.write(p,p.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-foundations-review
+          path: theology-test-output/
+          retention-days: 14
