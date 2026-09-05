@@ -289,7 +289,7 @@ with sync_playwright() as tool:
         check('Search snippet contains the matching passage from hash-checked source bytes', 'not two things' in page.locator('#page-list [data-excerpt-slug="agi-religious-framework"]').inner_text().lower())
         page.locator('#theology-speaker').select_option('ai')
         page.wait_for_timeout(300)
-        check('Switching global speaker does not label AI replies as author turns',all('Self Aware Networks GPT' in t for t in page.locator('#page-list .depth-search-match').all_inner_texts()))
+        check('Switching global speaker does not label AI replies as author turns',page.locator('#page-list .depth-search-match').count()>0 and all('Self Aware Networks GPT' in t for t in page.locator('#page-list .depth-search-match').all_inner_texts()))
         open_page(page,'sources-index')
         page.locator('#catalogue-search').fill('not two things')
         page.locator('#catalogue-speaker').select_option('author')

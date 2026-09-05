@@ -81,7 +81,7 @@ async function onPage(p){
  if(p.slug==='image-collection'){
   const entries=await media();if(ticket!==renderTicket)return;
   const gallery=document.createElement('section');gallery.className='research-gallery';gallery.innerHTML=entries.length?entries.map(m=>figure(m,true)).join(''):'<p>Image records could not load. Reload the page to retry.</p>';body.append(gallery);bindImages();
- }else if(p.art){const entries=await media();if(ticket!==renderTicket)return;const item=entries.find(x=>x.id===p.art);if(item){const wrapper=document.createElement('div');wrapper.innerHTML=figure(item,false);const second=[...body.querySelectorAll('h2,h3')][1];const figure=wrapper.firstElementChild;figure.querySelector('img').loading='eager';if(second)second.before(figure);else body.append(figure);bindImages();}}
+ }else if(p.art){const entries=await media();if(ticket!==renderTicket)return;const item=entries.find(x=>x.id===p.art);if(item){const wrapper=document.createElement('div');wrapper.innerHTML=figure(item,false);const second=[...body.querySelectorAll('h2,h3')][1];const illustration=wrapper.firstElementChild;illustration.querySelector('img').loading='eager';if(second)second.before(illustration);else body.append(illustration);bindImages();}}
  if(p.kind==='Developed article'){const line=document.createElement('details');line.className='research-attribution';line.innerHTML='<summary>About this article</summary><p>'+esc(p.attribution)+'</p>';$('#research-actions')?.append(line);}
  body.querySelectorAll('a[href]').forEach(link=>{if(/^https:\/\//.test(link.getAttribute('href'))){link.rel='noopener noreferrer';}});
  const title=$('#article-title');if(title)title.tabIndex=-1;
@@ -197,7 +197,7 @@ document.addEventListener('change',async event=>{
  }
 });
 window.addEventListener('theology:loading',()=>{++renderTicket;sourceAbort?.abort();$('#research-actions')?.remove();$('#research-backlinks')?.remove();});
-window.addEventListener('theology:page',event=>{onPage(event.detail).catch(e=>announce('Reader tools could not finish: '+e.message));});
+window.addEventListener('theology:page',event=>{onPage(event.detail).catch(e=>{announce('Reader tools could not finish: '+e.message);if(reader()?.current()?.slug===event.detail.slug){const note=document.createElement('p');note.className='wiki-error';note.textContent='Reader tools could not finish. The article text is still available; reload to retry.';$('#article-body')?.prepend(note);}});});
 window.TheologyExtension={navigation};
 initControls();
 })();
