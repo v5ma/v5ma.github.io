@@ -187,7 +187,7 @@
     engage(m);
     const kit=CloudAssets.create(T),b=new kit.Batch(),lamps=new kit.Batch(),bevel=makeBevel(T);
     const round=(x,y,z,w,h,d,color,a=0)=>b.add(bevel,color,[x,y,z],[w,h,d],[0,0,a]);
-    const course=active?__sky.state.data:SkyRoutes.build(0,__gameRefs.T);
+    const course=active?__sky.state.data:SkyRoutes.build(4,__gameRefs.T);
     const paths=active?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,tag:t.sky})):course.ct.map(p=>({pts:p,tag:p.sky}));
     let panels=0;
     const tex=haloTexture(T);

@@ -25,8 +25,9 @@ with sync_playwright() as p:
     try:
         page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded')
         page.wait_for_function('!!window.__grapple&&window.__gpuReady===true',timeout=90000)
-        check(page.locator('[data-course]').count()==4,'New open-ramp route is in the existing main menu')
+        check(page.locator('[data-course]').count()==7,'New open-ramp route is in the existing main menu')
         original=page.evaluate('levelCode()')
+        page.locator('#advanced-routes-toggle').click()
         page.locator('[data-course="3"]').click(timeout=90000);page.locator('#cv').focus()
         page.wait_for_function('__grapple.isOpen()&&!!__grapple.graphics',timeout=90000)
         check(page.evaluate('__grapple.pegs().length===2'),'Two physical grapple pegs exist in the course')
