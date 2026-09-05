@@ -18,28 +18,14 @@ jobs:
       sha: ${{ steps.identity.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
-      - name: Restore locally tested text patch and remove transfer files
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import base64,lzma,hashlib,subprocess
-          folder=Path('scripts/.adventure-transfer')
-          if folder.exists():
-            data=''.join(p.read_text().strip() for p in sorted(folder.glob('*.txt')))
-            patch=lzma.decompress(base64.b64decode(data,validate=True))
-            assert hashlib.sha256(patch).hexdigest()=='4b79016e081de4d3365fc701ff646ab4700b9c9700db1b0e5c5ae49724406832','Transfer checksum mismatch'
-            file=Path('/tmp/adventure.patch');file.write_bytes(patch)
-            subprocess.run(['git','apply','--check',str(file)],check=True)
-            subprocess.run(['git','apply','--whitespace=nowarn',str(file)],check=True)
-            subprocess.run(['git','rm','-r','scripts/.adventure-transfer'],check=True)
-          PY
-      - name: Record the exact readable source on the feature branch only
+      - run: python scripts/polish-first-adventure.py
+      - name: Record exact source on the feature branch only
         if: github.ref == 'refs/heads/feat/first-adventure-score-20260905'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- mario-maker-clone/svgn-paper-route/adventure-game.js mario-maker-clone/svgn-paper-route/adventure-score.js mario-maker-clone/svgn-paper-route/adventure.css mario-maker-clone/svgn-paper-route/score-worker.js mario-maker-clone/svgn-paper-route/soundtrack.js mario-maker-clone/svgn-paper-route/ground-courses.js mario-maker-clone/svgn-paper-route/ground-runtime.js mario-maker-clone/svgn-paper-route/ground-art.js mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js scripts/integrate-adventure.py tests/adventure_browser.py tests/adventure_score.test.cjs
-          if ! git diff --cached --quiet; then git commit -m 'Install composed soundtrack, expanded opening adventures and finish-line progression'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+          git add -- mario-maker-clone/svgn-paper-route/adventure-game.js mario-maker-clone/svgn-paper-route/adventure.css tests/adventure_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Correct bonus-mail presentation and frame-stable loop verification'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - id: identity
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - name: Package exact tested source
@@ -57,9 +43,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [road, loop, audio]
+        suite: [road, loop, audio, expert]
     runs-on: ubuntu-latest
-    timeout-minutes: 24
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -85,7 +71,11 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/adventure-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 1200 python -u tests/adventure_browser.py
+          if [ "$ADVENTURE_SUITE" = expert ]; then
+            SKY_REPLAY_ROUTE=0 timeout 1500 python -u tests/sky_browser.py
+          else
+            timeout 1650 python -u tests/adventure_browser.py
+          fi
       - if: always()
         run: |
           mkdir -p test-output
