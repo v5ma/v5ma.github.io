@@ -3,9 +3,9 @@
 'use strict';
 (() => {
   const previous = window.SkyVisual;
-  const VERSION = 'cloudview-20260904-1';
+  const VERSION = 'cloudview-20260904-2';
   let world=null, api=null, courier=null, wheels=[], scarf=null, boost=null, mailboxes=[], waterfalls=[], clouds=null;
-  let lastStep=-1, trail=[], trailMesh=null, hidden=new Map(), lastUi=0, units=null, colorCache=new Map();
+  let envelopes=[], lastStep=-1, trail=[], trailMesh=null, hidden=new Map(), lastUi=0, units=null, colorCache=new Map();
   const stats={version:VERSION,builds:0,triangles:0,objects:0,trackPanels:0,islands:0,mailboxes:0};
   const C={gold:'#ffc327',goldLight:'#ffdf67',goldDark:'#dc8b17',steel:'#344b69',dark:'#203047',asphalt:'#43546c',blue:'#26c9ff',white:'#fff4d8',green:'#76b83b',red:'#e54838'};
   const live=()=>window.__sky?.active();
@@ -13,26 +13,34 @@
   const rnd=n=>{const t=Math.sin(n*127.1+311.7)*43758.5453;return t-Math.floor(t);};
   function color(T,s){if(!colorCache.has(s))colorCache.set(s,new T.Color(s));return colorCache.get(s);}
   class GeometryBatch {
-    constructor(T,material){this.T=T;this.material=material;this.p=[];this.n=[];this.c=[];}
+    constructor(T,material){this.T=T;this.material=material;this.p=[];this.n=[];this.c=[];this.uv=[];}
     add(g,x,y,z,sx=1,sy=1,sz=1,rz=0,tint='#ffffff',ry=0,rx=0){
       const T=this.T,m=new T.Matrix4(),q=new T.Quaternion().setFromEuler(new T.Euler(rx,ry,rz));m.compose(new T.Vector3(x,y,z),q,new T.Vector3(sx,sy,sz));
       const a=g.attributes.position,b=g.attributes.normal,idx=g.index,col=color(T,tint),e=m.elements;
       const nr=new T.Vector3(),v=new T.Vector3();
       for(let k=0;k<(idx?idx.count:a.count);k++){
-        const i=idx?idx.getX(k):k;v.set(a.getX(i),a.getY(i),a.getZ(i)).applyMatrix4(m);this.p.push(v.x,v.y,v.z);
+        const i=idx?idx.getX(k):k;const uv=g.attributes.uv;this.uv.push(uv?uv.getX(i):0,uv?uv.getY(i):0);v.set(a.getX(i),a.getY(i),a.getZ(i)).applyMatrix4(m);this.p.push(v.x,v.y,v.z);
         nr.set(b.getX(i)/sx,b.getY(i)/sy,b.getZ(i)/sz).applyQuaternion(q).normalize();this.n.push(nr.x,nr.y,nr.z);
         const shade=.83+.17*Math.max(0,nr.y);this.c.push(col.r*shade,col.g*shade,col.b*shade);
       }
     }
     finish(parent,name){
       if(!this.p.length)return null;
-      const T=this.T,g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(this.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(this.n,3));g.setAttribute('color',new T.Float32BufferAttribute(this.c,3));g.computeBoundingSphere();
+      const T=this.T,g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(this.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(this.n,3));g.setAttribute('color',new T.Float32BufferAttribute(this.c,3));g.setAttribute('uv',new T.Float32BufferAttribute(this.uv,2));g.computeBoundingSphere();
       const m=api.makeSingle(g,this.material);m.name=name;m.frustumCulled=true;m.castShadow=true;m.receiveShadow=true;parent.add(m);stats.triangles+=this.p.length/9;stats.objects++;return m;
     }
   }
+  function paintFinish(T){
+    const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');
+    g.fillStyle='#f5f5f5';g.fillRect(0,0,128,128);
+    const edge=g.createLinearGradient(0,0,0,128);edge.addColorStop(0,'#fff');edge.addColorStop(.04,'#eee');edge.addColorStop(.94,'#f8f8f8');edge.addColorStop(1,'#a9adb3');g.fillStyle=edge;g.fillRect(0,0,128,128);
+    for(let i=0;i<280;i++){g.fillStyle=i%4?'#5564750c':'#ffffff77';g.fillRect(rnd(i)*128,rnd(i+901)*128,1+rnd(i+7)*5,1);}
+    g.strokeStyle='#67798766';g.lineWidth=1;g.strokeRect(1,1,126,126);
+    const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.anisotropy=4;return t;
+  }
   function materials(T){return {
-    painted:new T.MeshStandardNodeMaterial({vertexColors:true,roughness:.65,metalness:.1}),
-    metal:new T.MeshStandardNodeMaterial({vertexColors:true,roughness:.35,metalness:.48}),
+    painted:new T.MeshStandardNodeMaterial({vertexColors:true,roughness:.65,metalness:0}),
+    metal:new T.MeshStandardNodeMaterial({vertexColors:true,roughness:.42,metalness:.2,map:paintFinish(T)}),
     glow:new T.MeshBasicNodeMaterial({vertexColors:true}),
     nature:new T.MeshStandardNodeMaterial({vertexColors:true,roughness:1,metalness:0}),
     actor:new T.MeshStandardNodeMaterial({vertexColors:true,roughness:.48,metalness:.12,depthTest:true})
@@ -104,9 +112,10 @@
       b.add(units.ball,xx,y+3,zz,r*.095,r*.075,r*.085,0,['#6aad3c','#8ac746','#b1d25a'][i%3]);
       if(z>-200&&i%2){b.add(units.ball,xx+5,y+r*.08,zz+r*.1,2,3,2,0,i%3?'#ffbb2b':'#f06465');}
     }
+    for(let k=0;k<13;k++){const a=k*2.399,rr=r*(.78+rnd(seed+k)*.12);b.add(units.rock,x+Math.cos(a)*rr,y-r*(.23+rnd(k+seed+100)*.23),z+Math.sin(a)*r*.42,r*.16,r*(.33+rnd(k)*.25),r*.19,(rnd(k+42)-.5)*.4,k%3?'#9dabbc':'#c3c9cd',k);}
     if(town){
-      for(let i=0;i<12;i++){
-        const xx=x+(i%4-1.5)*r*.35,zz=z+(Math.floor(i/4)-1)*r*.26,ht=r*(.2+rnd(i+seed*3)*.32),ww=r*.2;
+      for(let i=0;i<20;i++){
+        const xx=x+(i%5-2)*r*.29,zz=z+(Math.floor(i/5)-1.5)*r*.24,ht=r*(.2+rnd(i+seed*3)*.37),ww=r*.17;
         stone.add(units.box,xx,y+ht/2,zz,ww,ht,ww*.78,0,i%3?'#ffedcd':'#e3dce6');
         stone.add(units.cone,xx,y+ht+ww*.24,zz,ww*.77,ww*.6,ww*.7,0,i%3?'#457ca2':C.gold,Math.PI/4);
         stone.add(units.box,xx,y+ht*.22,zz+ww*.4,ww*.18,ht*.28,1,0,'#3b6b86');
@@ -174,6 +183,15 @@
     const fire=new GeometryBatch(T,new T.MeshBasicNodeMaterial({vertexColors:true,transparent:true,opacity:.8,depthWrite:false}));fire.add(units.cone,-33,17,0,4,24,4,-Math.PI/2,'#6ce8ff');fire.add(units.cone,-29,17,0,2.5,19,2.5,-Math.PI/2,'#f4ffff');boost=fire.finish(root,'Rocket exhaust');
     return root;
   }
+  function makeEnvelope(parent,x,y,mats){
+    const T=api.THREE,root=new T.Group();root.position.set(x*36+18,-y*36-18,25);root.rotation.z=-.12+(x%3)*.12;parent.add(root);
+    const b=new GeometryBatch(T,mats.painted),glow=new GeometryBatch(T,mats.glow);
+    b.add(units.box,0,0,0,22,15,3,0,'#ffedbd');
+    b.add(units.box,-4.4,1,1.7,12,1,1,-.57,'#ca9759');b.add(units.box,4.4,1,1.7,12,1,1,.57,'#ca9759');
+    b.add(units.ball,0,-1,2.3,2.4,2.4,.9,0,'#d95138');
+    glow.add(units.box,0,7,1.5,20,.65,1,0,'#fffbe1');
+    b.finish(root,'Collectible sealed envelope');glow.finish(root,'Envelope edge light');envelopes.push({root,x,y,height:root.position.y});
+  }
   function mailbox(parent,box,mats){
     const T=api.THREE,x=box.x*36+18,y=-box.y*36-18,root=new T.Group();root.position.set(x,y,28);parent.add(root);
     const b=new GeometryBatch(T,mats.painted),m=new GeometryBatch(T,mats.metal);
@@ -190,33 +208,44 @@
   }
   function build(m){
     api=m;world=new m.THREE.Group();world.name='Cloudview City / real-time reference-inspired world';m.scene.add(world);
-    wheels=[];waterfalls=[];mailboxes=[];trail=[];lastStep=-1;stats.builds++;stats.triangles=stats.objects=stats.trackPanels=stats.islands=stats.mailboxes=0;colorCache=new Map();
+    wheels=[];waterfalls=[];mailboxes=[];envelopes=[];trail=[];lastStep=-1;stats.builds++;stats.triangles=stats.objects=stats.trackPanels=stats.islands=stats.mailboxes=0;colorCache=new Map();
     const T=m.THREE;units=primitives(T);const mats=materials(T);
     const data=window.__sky?.state.data||SkyRoutes.build(Math.max(0,window.__delivery?.state.route||0),__gameRefs.T);
     if(!live()&&!preview()){world.userData.cloudview=true;return world;}
     const paths=live()?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,sky:t.sky})):data.ct.map(p=>({pts:p,sky:p.sky}));
-    const night=themeName==='city',bg=night?'#779dcc':'#66b4f2';m.renderer.setClearColor(bg,1);
+    const night=themeName==='city',bg=night?'#779dcc':'#66b4f2';m.renderer.setClearColor(bg,1);m.scene.fog=new T.Fog(night?'#c4dced':'#b4dcf5',1050,2600);
     const skyCanvas=document.createElement('canvas');skyCanvas.width=64;skyCanvas.height=512;const sg=skyCanvas.getContext('2d'),gr=sg.createLinearGradient(0,0,0,512);gr.addColorStop(0,night?'#6486bd':'#3b97ed');gr.addColorStop(.5,night?'#bed4e7':'#a5d6fa');gr.addColorStop(1,'#f6faff');sg.fillStyle=gr;sg.fillRect(0,0,64,512);
-    const st=new T.CanvasTexture(skyCanvas);st.colorSpace=T.SRGBColorSpace;const sky=m.makeSingle(new T.PlaneGeometry(data.width*36+7000,7500),new T.MeshBasicNodeMaterial({map:st,depthWrite:false}));sky.position.set(data.width*18,-2400,-2600);sky.renderOrder=-100;world.add(sky);
+    const st=new T.CanvasTexture(skyCanvas);st.colorSpace=T.SRGBColorSpace;const sky=m.makeSingle(new T.PlaneGeometry(data.width*36+7000,7500),new T.MeshBasicNodeMaterial({map:st,depthWrite:false,fog:false}));sky.position.set(data.width*18,-2400,-2600);sky.renderOrder=-100;world.add(sky);
     const sun=new T.DirectionalLight('#fff0ca',2.65);sun.position.set(-600,800,1500);world.add(sun);
     const fill=new T.HemisphereLight('#def7ff','#53749c',1.7);world.add(fill);const rim=new T.DirectionalLight('#adf4ff',.75);rim.position.set(700,100,-1000);world.add(rim);
-    const cloudBatch=new GeometryBatch(T,mats.nature);
-    for(let i=0;i<120;i++){
-      const x=-700+i*167%(data.width*36+2000),y=-2470+Math.sin(i*1.7)*150,z=-650-rnd(i+50)*1200;
-      cloudBatch.add(units.ball,x,y,z,80+rnd(i)*70,35+rnd(i+3)*38,55,0,i%3?'#f5faff':'#e1edfb');
+    // Soft volumetric-cloud impostors are scenery only. Main islands, roads,
+    // targets and the rider remain actual geometry. Four textures avoid clones.
+    for(let variant=0;variant<4;variant++){
+      const c=document.createElement('canvas');c.width=512;c.height=256;const g=c.getContext('2d');
+      // Overlapping shaded billows, with soft alpha edges and no dark outline.
+      for(let k=0;k<40;k++){
+        const x=75+rnd(k+variant*47)*360,y=104+rnd(k+variant*13+7)*70,r=25+rnd(k+30)*48;
+        const grad=g.createRadialGradient(x-r*.15,y-r*.3,r*.07,x,y,r);
+        grad.addColorStop(0,'#fffffffa');grad.addColorStop(.54,'#fbffffee');grad.addColorStop(.8,'#def1fadd');grad.addColorStop(1,'#c6e5f600');g.fillStyle=grad;g.fillRect(x-r,y-r,r*2,r*2);
+      }
+      const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;
+      const cloud=new T.InstancedMesh(new T.PlaneGeometry(1,1),new T.MeshBasicNodeMaterial({map:tx,transparent:true,depthWrite:false,opacity:.91,side:T.DoubleSide,fog:false}),30);
+      cloud.frustumCulled=false;cloud.renderOrder=-20+variant;const mm=new T.Matrix4();
+      for(let i=0;i<30;i++){const id=i*4+variant,w=260+rnd(id+18)*420;mm.makeScale(w,w*.5,1);mm.setPosition(-950+id*211%(data.width*36+2300),-2350-rnd(id+57)*270,-850-rnd(id+60)*1350);cloud.setMatrixAt(i,mm);}
+      cloud.instanceMatrix.needsUpdate=true;world.add(cloud);
     }
-    cloudBatch.finish(world,'Layered billowing cloud sea');
     for(let i=0;i<paths.length;i++){
       const p=paths[i];if(p.sky.recovery)continue;const c=p.pts[21]||p.pts[0],x=c[0],y=-c[1];
       island(world,x+220,y+115,-700,140+i%2*25,20+i,mats,true);
       island(world,x-300,y+75,-1150,110,i+30,mats,true);
       island(world,x-20,y-96,-45,105,i+1,mats,false);support(world,p.pts,mats);
-      const distant=p.pts.map(v=>[v[0]+390,v[1]-140]);trackArt(world,distant,p.sky,mats,.44,-920,true);
+      const distant=p.pts.map(v=>[x+(v[0]-x)*.72+430,-y+(v[1]+y)*.72-160]);trackArt(world,distant,p.sky,mats,.44,-920,true);
       if(i%2===0)blimp(world,x+500,y+350,-850,mats);
       label(world,i===0?'SKY HIGHER\nDELIVER BRIGHTER':'BIG JUMPS\nBRIGHTER DAYS',x-145,y-117,18,69,86,{bg:'#325f97'});
     }
     paths.forEach(p=>trackArt(world,p.pts,p.sky,mats));
     for(const b of data.boxes||[])mailbox(world,b,mats);stats.mailboxes=mailboxes.length;
+    for(let k=0;k<data.cells.length;k++)if(data.cells[k]===__gameRefs.T.GEAR)makeEnvelope(world,k%data.width,Math.floor(k/data.width),mats);
     if(data.goal){const gx=data.goal.x*36,gy=-data.goal.y*36;island(world,gx,gy-22,-65,190,50,mats,true);label(world,'SVGN.io\nSKY POST DEPOT',gx,gy+100,-25,140,65,{bg:'#245783'});}
     courier=buildCourier(world,mats);courier.position.set(490,-2080,55);courier.visible=!!live();
     const tb=new GeometryBatch(T,mats.glow);tb.add(units.ball,0,0,0,1,1,1,0,'#d7fcff');const tgeo=new T.SphereGeometry(1,6,4);
@@ -231,8 +260,8 @@
     if(active||menu){
       for(const obj of api.scene.children)if(obj.isLight)hide(obj);
       hide(api.activePose);hide(api.rider?.body);hide(api.rider?.wheel);hide(api.playerVox);hide(api.body);
-      if(active)for(const[k,v]of api.voxMesh){const id=Number(String(k).split('#')[0]);if([__gameRefs.T.MAILBOX,__gameRefs.T.MAILDONE].includes(id))hide(v);}
-    }else{restore();if(courier)courier.visible=false;return;}
+      if(active)for(const[k,v]of api.voxMesh){const id=Number(String(k).split('#')[0]);if([__gameRefs.T.MAILBOX,__gameRefs.T.MAILDONE,__gameRefs.T.GEAR].includes(id))hide(v);}
+    }else{restore();api.scene.fog=null;if(courier)courier.visible=false;return;}
     if(courier)courier.visible=!!active;
     if(active){
       const p=player,s=__sky.state,step=s.steps,dt=Math.min(4,Math.max(0,step-lastStep)),t=step/60;
@@ -242,6 +271,7 @@
       for(const w of wheels)w.rotation.z=-(p.roll||t*6);
       if(scarf){scarf.rotation.z=Math.sin(t*16)*.045;scarf.position.y=Math.sin(t*12)*.45;}
       if(boost){boost.visible=!p.track&&Math.hypot(p.vx,p.vy)>10;boost.scale.x=1+Math.sin(t*37)*.13;}
+      for(const e of envelopes){e.root.visible=pg(e.x,e.y)===__gameRefs.T.GEAR;e.root.position.y=e.height+Math.sin(t*2+e.x)*1.5;}
       for(const box of mailboxes){const done=pg(box.box.x,box.box.y)===__gameRefs.T.MAILDONE;box.check.visible=done;}
       if(step!==lastStep){trail.push([p.x+13,-p.y-15,40]);if(trail.length>64)trail.shift();lastStep=step;for(const tx of waterfalls)tx.offset.y=-t*.35;}
       const fast=!p.track&&Math.hypot(p.vx,p.vy)>12;trailMesh.count=fast?trail.length:0;
