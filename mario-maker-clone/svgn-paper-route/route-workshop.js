@@ -87,20 +87,28 @@
   function playtest(){
    const notes=W.check(S.doc);$('maker-checks').textContent=[...notes.errors,...notes.warnings].join(' ');if(notes.errors.length){message(notes.errors.join(' '));return;}
    const code=current();S.testSnapshot={code,view:{...S.view},selection:[...S.selected],object:S.object?W.clone(S.object):null,history:S.history,saved:S.saved,dirty:S.dirty};
-   S.testing=true;creditBefore=credits;close();nativeEditor();__delivery.state.route=-1;__delivery.state.code='';__adventure.state.transition=null;resetKeys();
-   if(!loadCode(code)){S.testing=false;open();message('The game rejected this draft; your edits are intact.');return;}
+   S.testSnapshot.pack=packPlaying;S.testSnapshot.daily=dailyCode;S.testSnapshot.cleared=clearedCode;S.testing=true;creditBefore=credits;close();nativeEditor();__delivery.state.route=-1;__delivery.state.code='';__adventure.state.transition=null;packPlaying=null;dailyCode=null;clearedCode=null;resetKeys();
+   if(!loadCode(code)){returnToDraft();message('The game rejected this draft; your edits are intact.');return;}
    if(__delivery.state.view!=='3d')__delivery.act('view');
    hideGameDialogs();routeKeep=false;startPlay(true);$('maker-return').hidden=false;cv.focus({preventScroll:true});
   }
   function returnToDraft(){
    if(!S.testing)return;const saved=S.testSnapshot;S.testing=false;__adventure.state.transition=null;__delivery.act('resume');toEdit();hideGameDialogs();resetKeys();
-   loadCode(S.legacyCode||saved.code);if(creditBefore!==null){credits=creditBefore;creditBefore=null;updateHUD();}
+   loadCode(S.legacyCode||saved.code);packPlaying=saved.pack;dailyCode=saved.daily;clearedCode=saved.cleared;if(creditBefore!==null){credits=creditBefore;creditBefore=null;updateHUD();}
    S.active=true;host.hidden=false;host.inert=false;document.body.classList.add('maker-open');$('maker-return').hidden=true;S.doc=W.decode(saved.code);S.view={...saved.view};S.selected=new Set(saved.selection);S.object=saved.object;S.history=saved.history;S.saved=saved.saved;S.dirty=saved.dirty;size();refresh();canvas.focus();
   }
   const returnButton=document.createElement('button');returnButton.id='maker-return';returnButton.className='delivery-btn';returnButton.textContent='Return to Workshop';returnButton.hidden=true;document.querySelector('#delivery-header .actions').append(returnButton);returnButton.onclick=returnToDraft;
   const editCopy=document.createElement('button');editCopy.id='workshop-edit-current';editCopy.className='delivery-btn';editCopy.textContent='Edit this world';document.querySelector('#delivery-header .actions').append(editCopy);editCopy.onclick=()=>{if(S.testing){returnToDraft();return;}const code=__delivery.state.route>=0?(__delivery.state.code||levelCode()):levelCode();if(S.dirty&&!confirm('Open a copy of this world? Save or export your workshop edits first.'))return;open(code);};
   // Playtest progression is isolated from campaign records and persistent coins.
   const award=addCredits;window.addCredits=function(n,x,y){if(!S.testing)return award(n,x,y);credits+=n;if(x!==undefined)popText(x,y,'+'+n+' test coins','#a9efde');updateHUD();};
+  // Preview completion must not write campaign ghosts, daily results or
+  // delivery/win ledger events. Normal play still delegates to the originals.
+  const previewLedgerWrite=ledger;
+  window.ledger=function(...args){if(!S.testing)return previewLedgerWrite(...args);};
+  const previewGhostWrite=saveGhost;
+  window.saveGhost=function(...args){return S.testing?false:previewGhostWrite(...args);};
+  const previewDailyFinish=dailyFinish;
+  window.dailyFinish=function(...args){if(!S.testing)return previewDailyFinish(...args);};
   const poll=pollGamepadEdit;window.pollGamepadEdit=function(){if(!S.active)return poll();};
   function action(a){try{
    if(a==='undo'||a==='redo'){const ids=new Set(selected().map(p=>p.meta?.id).filter(Boolean));const indexes=new Set(S.selected);S.doc=W.decode(S.history[a]());S.selected=new Set(S.doc.paths.map((p,i)=>p.meta?.id?ids.has(p.meta.id)?i:-1:indexes.has(i)?i:-1).filter(i=>i>=0));S.object=null;S.dirty=current()!==S.saved;safeStore.set(recoveryKey,JSON.stringify({id:draftId,name:S.doc.name,code:current(),time:Date.now()}));refresh();return;}
