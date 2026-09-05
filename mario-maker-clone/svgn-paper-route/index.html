@@ -2809,7 +2809,10 @@ function levelCode(){
             ? t.anchors.map(a=>[Math.round(a.x),Math.round(a.y),Math.round(a.hx),Math.round(a.hy)])
             : 0)
         : undefined});
-  return b64e(meta)+'.'+btoa(String.fromCharCode(...rle));
+  // Bound argument count for large, densely edited maps.
+  let encodedTiles='';
+  for(let i=0;i<rle.length;i+=16000)encodedTiles+=String.fromCharCode(...rle.slice(i,i+16000));
+  return b64e(meta)+'.'+btoa(encodedTiles);
 }
 function loadCode(code){
   try{

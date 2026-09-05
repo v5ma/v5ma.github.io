@@ -32,3 +32,26 @@ test('Invalid imports are bounded and rejected before touching the live engine',
  const d=W.starter();d.extra.gp.cast=[{id:'x',name:'Unsafe',text:'x',x:NaN,y:40}];assert.throws(()=>W.encode(d));
 });
 test('Unexposed ordinary extension fields and Bezier handles survive a no-op round trip',()=>{const d=W.starter();d.extra.customSource={title:'Original project',version:2};d.paths[0].anchors=[[20,30,40,50],[60,70,20,-30]];const code=W.encode(d);assert.equal(W.encode(W.decode(code)),code);});
+
+// Run the real native serializer from the shipped HTML, not a reimplementation.
+function nativeLevelEncoderFixture(w,h,tiles,name){
+ const fs=require('node:fs'),vm=require('node:vm');
+ const html=fs.readFileSync(__dirname+'/../mario-maker-clone/svgn-paper-route/index.html','utf8');
+ const a=html.indexOf('function levelCode(){'),b=html.indexOf('\nfunction loadCode(',a);
+ if(a<0||b<a)throw Error('Native encoder was not found');
+ const ctx={grid:tiles,LW:w,LH:h,nameEl:{value:name},physName:'platform',themeName:'dawn',musicName:'morning',customTracks:[],btoa,b64e:s=>btoa(unescape(encodeURIComponent(s)))};
+ vm.createContext(ctx);vm.runInContext(html.slice(a,b),ctx);
+ const [meta,body]=ctx.levelCode().split('.'),raw=atob(body),out=[];
+ for(let i=0;i<raw.length;i+=2)for(let j=0;j<raw.charCodeAt(i+1);j++)out.push(raw.charCodeAt(i));
+ return {meta:JSON.parse(decodeURIComponent(escape(atob(meta)))),tiles:out};
+}
+test('Native levelCode handles a maximal high-entropy Workshop map',()=>{
+ const tiles=Uint8Array.from({length:640*280},(_,i)=>i%2?2:1);
+ const out=nativeLevelEncoderFixture(640,280,tiles,'Large map');
+ assert.deepEqual(out.tiles,Array.from(tiles));assert.equal(out.meta.w,640);assert.equal(out.meta.h,280);
+});
+test('Native save chunking retains RLE boundaries and UTF-8 metadata',()=>{
+ const tiles=new Uint8Array(96*68);tiles.fill(1,255,512);tiles[89]=15;tiles[900]=8;
+ const out=nativeLevelEncoderFixture(96,68,tiles,'Route \u00e9tendue');
+ assert.deepEqual(out.tiles,Array.from(tiles));assert.equal(out.meta.n,'Route \u00e9tendue');
+});
