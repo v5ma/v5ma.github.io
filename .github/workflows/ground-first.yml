@@ -1,0 +1,78 @@
+name: Verify ground-first progression
+on:
+  push:
+    branches: [feat/ground-first-progression-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ground-first-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/integrate-ground-first.py
+      - name: Record only integrated game files and affected tests
+        if: github.ref == 'refs/heads/feat/ground-first-progression-20260905'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/grapple-game.js mario-maker-clone/svgn-paper-route/cloudview-world.js mario-maker-clone/svgn-paper-route/cloudview-depth.js mario-maker-clone/svgn-paper-route/cloudview-ui.js mario-maker-clone/svgn-paper-route/sw.js tests/sky_browser.py tests/grapple_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Integrate safe-road progression into the live renderer'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - id: source
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  play:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ground, expert]
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check code and progression invariants
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/ground-runtime.js
+          node --check mario-maker-clone/svgn-paper-route/cloudview-world.js
+          node --test tests/ground_core.test.cjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/depth_geometry.test.mjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play the actual application via ordinary controls
+        env:
+          SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/ground-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$SUITE" = ground ]; then
+            timeout 1100 python -u tests/ground_browser.py
+          else
+            SKY_REPLAY_ROUTE=0 timeout 1100 python -u tests/sky_browser.py
+          fi
+      - name: Record tested source
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ground-first-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7

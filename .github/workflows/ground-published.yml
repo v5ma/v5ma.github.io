@@ -1,0 +1,41 @@
+name: Verify published ground-first game
+on:
+  push:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/ground*','.github/workflows/ground-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify deployed ground assets byte-for-byte
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          folder='mario-maker-clone/svgn-paper-route/'
+          names=['index.html','ground-courses.js','ground-runtime.js','ground-art.js','ground.css','grapple-game.js','cloudview-world.js']
+          expected={n:hashlib.sha256(Path(folder+n).read_bytes()).hexdigest() for n in names};result={}
+          for _ in range(48):
+            for n in names:
+              if result.get(n,{}).get('match'):continue
+              try:
+                with urllib.request.urlopen('https://v5ma.github.io/'+folder+n+'?ground=1788606001',timeout=10) as r:
+                  digest=hashlib.sha256(r.read()).hexdigest();result[n]={'status':r.status,'match':digest==expected[n],'sha256':digest}
+              except Exception as e:result[n]={'error':str(e),'match':False}
+            if len(result)==len(names) and all(v.get('match') for v in result.values()):break
+            time.sleep(5)
+          Path('ground-publication.json').write_text(json.dumps(result,indent=2))
+          assert all(v.get('match') for v in result.values()),result
+          print(json.dumps(result,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ground-publication
+          path: ground-publication.json
+          retention-days: 14
