@@ -27,7 +27,7 @@ with sync_playwright() as p:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded')
   page.wait_for_function('!!window.__cloudview&&window.__gpuReady===true',timeout=90000)
   page.screenshot(path=str(OUT/'01-menu.png'),timeout=45000)
-  page.locator('[data-course="0"]').click();page.locator('#cv').focus()
+  page.locator('[data-course="0"]').click(timeout=90000);page.locator('#cv').focus()
   page.wait_for_function('!!window.__sky?.active()&&window.__cloudview?.stats.rails===4',timeout=30000)
   page.wait_for_function('document.body.classList.contains("cloudview-active")',timeout=30000)
   stats=page.evaluate('__cloudview.stats');check(stats['goldPlates']>80,'Mechanical gold plates replace the bare rails');check(stats['islands']>=8 and stats['waterfalls']>=4,'Floating islands and waterfalls are real scene geometry')

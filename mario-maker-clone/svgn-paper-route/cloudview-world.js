@@ -12,6 +12,15 @@ window.Cloudview=(()=>{
   const lines=text.split('\n');g.fillStyle=gold?'#243f61':'#fff2cf';g.font='900 '+Math.min(65,Math.round(c.height/(lines.length+1)*.9))+'px system-ui';g.textAlign='center';g.textBaseline='middle';lines.forEach((s,i)=>g.fillText(s,256,c.height*(i+1)/(lines.length+1),470));
   const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const m=single(new T.PlaneGeometry(w,h),new T.MeshBasicNodeMaterial({map:tx,side:T.DoubleSide}));m.position.set(x,y,z);return m;
  }
+ function cloudBank(T,course,night){
+  const c=document.createElement('canvas');c.width=512;c.height=256;const g=c.getContext('2d');
+  // A reusable procedural weather texture, not an image of the level.
+  for(let i=0;i<24;i++){const x=70+(i*83%365),y=142-Math.sin(i*2.7)*35,r=38+i%5*9,gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.94)');gr.addColorStop(.62,'rgba(248,253,255,.92)');gr.addColorStop(.84,'rgba(231,245,255,.65)');gr.addColorStop(1,'rgba(230,246,255,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}
+  const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;
+  const im=new T.InstancedMesh(new T.PlaneGeometry(1,1),new T.MeshBasicNodeMaterial({map:tx,transparent:true,depthWrite:false,color:night?'#dbe7fa':'#ffffff',side:T.DoubleSide}),80),matrix=new T.Matrix4();
+  for(let i=0;i<80;i++){const x=-1000+i*135,y=-2150-(i%3)*125+Math.sin(i*2.13)*120,z=-1100-(i%5)*130;matrix.makeScale(260+i%4*60,140+i%3*35,1);matrix.setPosition(x,y,z);im.setMatrixAt(i,matrix);}im.instanceMatrix.needsUpdate=true;im.frustumCulled=false;root.add(im);
+ }
+ function cliffTexture(T){const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');g.fillStyle='#e5e6e3';g.fillRect(0,0,128,128);let seed=7;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};for(let i=0;i<3000;i++){const v=175+Math.floor(rand()*80);g.fillStyle=`rgba(${v},${v},${v},.18)`;g.fillRect(rand()*128,rand()*128,1+rand()*5,1+rand()*2);}for(let i=0;i<30;i++){g.strokeStyle='rgba(65,79,96,.10)';g.beginPath();let x=rand()*128,y=rand()*128;g.moveTo(x,y);for(let j=0;j<4;j++){x+=rand()*12;y+=rand()*8-4;g.lineTo(x,y);}g.stroke();}const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=1000;t.colorSpace=T.SRGBColorSpace;return t;}
  function build(m){
   engine=m;const T=m.THREE;kit=CloudAssets.create(T);
   const spherePrimitive=kit.sphere();
@@ -25,8 +34,8 @@ window.Cloudview=(()=>{
   // Soft atmospheric sky fills the camera, with no copied concept image.
   const c=document.createElement('canvas');c.width=32;c.height=512;const ctx=c.getContext('2d'),grad=ctx.createLinearGradient(0,0,0,512);
   grad.addColorStop(0,night?'#254684':'#227cdc');grad.addColorStop(.52,night?'#5b94c4':'#68b6ed');grad.addColorStop(1,night?'#bacfd4':'#e4f3f9');ctx.fillStyle=grad;ctx.fillRect(0,0,32,512);
-  const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const sky=single(new T.PlaneGeometry(Math.max(16000,course.width*36+9000),8500),new T.MeshBasicNodeMaterial({map:tx,depthWrite:false}));sky.position.set(course.width*18,-2200,-2400);sky.renderOrder=-100;
-  m.renderer.setClearColor(night?'#6f9ccb':'#77bce8',1);
+  const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const sky=single(new T.PlaneGeometry(Math.max(16000,course.width*36+9000),8500),new T.MeshBasicNodeMaterial({map:tx,depthWrite:false,fog:false}));sky.position.set(course.width*18,-2200,-2400);sky.renderOrder=-100;
+  m.renderer.setClearColor(night?'#6f9ccb':'#77bce8',1);m.scene.fog=new T.Fog(night?'#9ebbd6':'#b5dff6',1050,2450);
   const sun=new T.DirectionalLight(night?'#e0edff':'#fff2d2',2.4);sun.position.set(-1300,1800,1800);root.add(sun);root.add(new T.AmbientLight(night?'#b9d2f6':'#b9d8f3',1.25));const fill=new T.DirectionalLight('#83cffd',.8);fill.position.set(1300,-600,500);root.add(fill);
   function island(x,y,z,r,depth,seed,trees=5){kit.rock(terrain,x,y,z,r,depth,seed);kit.grass(greenery,x,y+2,z,r,1);for(let j=0;j<trees;j++){const a=j*2.4,rr=r*.72;kit.tree(greenery,x+Math.sin(a)*rr,y+5,z+Math.cos(a)*rr*.48,.6+(j%3)*.25,j);stats.trees++;}for(let j=0;j<4;j++)kit.flowers(greenery,x+(j-1.5)*r*.38,y+7,z+r*.4,1);stats.islands++;}
   function fall(x,y,z,height,width){
@@ -84,10 +93,10 @@ window.Cloudview=(()=>{
    for(let i=0;i<48;i++){const a=i/48*2*Math.PI,b=(i+1)/48*2*Math.PI;far.rod([cx+Math.cos(a)*r,by+Math.sin(a)*r,z],[cx+Math.cos(b)*r,by+Math.sin(b)*r,z],5.5,'#dcba61');if(i%4===0)far.ell(cx+Math.cos(a)*r,by+Math.sin(a)*r,z+6,2.5,2.5,2,'#b5f7fa');}
    far.rod([cx-100,by-95,z],[cx+700,by-20,z-65],3.5,'#82a9bd');far.rod([cx-100,by-85,z],[cx+700,by-10,z-65],3.5,'#c9dbe0');
   }
-  for(let i=0;i<150;i++){const x=-700+i*81,z=-650-(i%7)*125,y=-2360+Math.sin(i*2.38)*150;clouds.ell(x,y,z,56+i%4*20,26+i%5*6,30+i%3*13,night?'#c5dbe9':'#f0f8fb');}
+  cloudBank(T,course,night);
   // Playable depot surface is still the original collision pad.
   if(course.goal){const x=course.goal.x*36,y=-course.goal.y*36;island(x,y-45,-35,170,190,23,8);metal.box(x,y-17,0,330,30,68,'#496079');metal.box(x,y-3,0,330,8,73,'#e8b53b');for(let i=0;i<15;i++)metal.box(x-155+i*23,y-14,38,4,22,2,'#8b732d');sign('SVGN.io\nAIRMAIL DEPOT',x,y+97,-12,140,65);}
-  metal.finish(m,root,{roughness:.34,metalness:.38});glow.finish(m,root,{unlit:true});terrain.finish(m,root,{roughness:.95,metalness:0});greenery.finish(m,root,{roughness:.9,metalness:0});clouds.finish(m,root,{roughness:1,metalness:0});far.finish(m,root,{roughness:.75,metalness:.05});
+  metal.finish(m,root,{roughness:.4,metalness:.12});glow.finish(m,root,{unlit:true});terrain.finish(m,root,{roughness:.95,metalness:0,map:cliffTexture(T)});greenery.finish(m,root,{roughness:.9,metalness:0});clouds.finish(m,root,{roughness:1,metalness:0});far.finish(m,root,{roughness:.75,metalness:.05});
   // Red postal buoys occupy the existing mailbox hit locations.
   for(const box of course.boxes||[]){
    const g=new T.Group(),x=box.x*36+18,y=-box.y*36-18;g.position.set(x,y,0);g.name='Red airmail target';root.add(g);const b=new kit.Batch();
@@ -108,6 +117,7 @@ window.Cloudview=(()=>{
  }
  function update(){
   if(!root||!engine||!window.__sky)return;
+  if(!__sky.active()&&!__delivery.state.menu)engine.scene.fog=null;
   const active=__sky.active(),menu=__delivery.state.menu,s=__sky.state,p=player,t=(active?s.steps:performance.now()/16.667)/60,T=engine.THREE;
   // Renderer rebuilt legacy assets this frame. Hide only replacements in sky play.
   if(active){

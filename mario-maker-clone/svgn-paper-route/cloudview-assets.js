@@ -7,6 +7,7 @@ globalThis.CloudAssets=(()=>{
   const rgb=c=>{if(!colorCache.has(c)){const v=new T.Color(c);colorCache.set(c,[v.r,v.g,v.b]);}return colorCache.get(c);};
   function primitive(key,make){if(!cache.has(key))cache.set(key,make());return cache.get(key);}
   function sphere(){return primitive('sphere',()=>{const p=[],n=[];const v=(a,b)=>[Math.sin(a)*Math.cos(b),Math.cos(a),Math.sin(a)*Math.sin(b)];for(let i=0;i<12;i++)for(let j=0;j<20;j++){const a=i*Math.PI/12,b=(i+1)*Math.PI/12,c=j*Math.PI/10,d=(j+1)*Math.PI/10;for(const q of [v(a,c),v(b,c),v(b,d),v(a,c),v(b,d),v(a,d)]){p.push(...q);n.push(...q);}}return {p,n};});}
+  function smallSphere(){return primitive('smallSphere',()=>{const p=[],n=[],v=(a,b)=>[Math.sin(a)*Math.cos(b),Math.cos(a),Math.sin(a)*Math.sin(b)];for(let i=0;i<4;i++)for(let j=0;j<8;j++){const a=i*Math.PI/4,b=(i+1)*Math.PI/4,c=j*Math.PI/4,d=(j+1)*Math.PI/4;for(const q of[v(a,c),v(b,d),v(b,c),v(a,c),v(a,d),v(b,d)]){p.push(...q);n.push(...q);}}return {p,n};});}
   function cylinder(top=1,sides=12){return primitive('cyl'+top+':'+sides,()=>{const p=[],n=[];function tri(a,b,c,na,nb=na,nc=na){p.push(...a,...b,...c);n.push(...na,...nb,...nc);}for(let i=0;i<sides;i++){const a=i/sides*2*Math.PI,b=(i+1)/sides*2*Math.PI,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b),u=[ca,-.5,sa],v=[cb,-.5,sb],w=[cb*top,.5,sb*top],x=[ca*top,.5,sa],l=Math.hypot(1,1-top),na=[ca/l,(1-top)/l,sa/l],nb=[cb/l,(1-top)/l,sb/l];tri(u,w,v,na,nb,nb);tri(u,x,w,na,na,nb);tri([0,.5,0],w,x,[0,1,0]);tri([0,-.5,0],u,v,[0,-1,0]);}return {p,n};});}
   function torus(){return primitive('torus',()=>{const p=[],n=[];const at=(a,b)=>({p:[(1+.22*Math.cos(b))*Math.cos(a),(1+.22*Math.cos(b))*Math.sin(a),.22*Math.sin(b)],n:[Math.cos(b)*Math.cos(a),Math.cos(b)*Math.sin(a),Math.sin(b)]});for(let i=0;i<24;i++)for(let j=0;j<8;j++){const a=i/24*2*Math.PI,b=(i+1)/24*2*Math.PI,c=j/8*2*Math.PI,d=(j+1)/8*2*Math.PI;for(const v of[at(a,c),at(b,c),at(b,d),at(a,c),at(b,d),at(a,d)]){p.push(...v.p);n.push(...v.n);}}return {p,n};});}
   function box(){return primitive('box',()=>{const g=new T.BoxGeometry(1,1,1).toNonIndexed(),r={p:Array.from(g.attributes.position.array),n:Array.from(g.attributes.normal.array)};g.dispose();return r;});}
@@ -17,21 +18,21 @@ globalThis.CloudAssets=(()=>{
     for(let i=0;i<g.p.length;i+=3){const x=g.p[i]*sx,y=g.p[i+1]*sy,z=g.p[i+2]*sz;this.p.push(m[0]*x+m[4]*y+m[8]*z+pos[0],m[1]*x+m[5]*y+m[9]*z+pos[1],m[2]*x+m[6]*y+m[10]*z+pos[2]);const nx=g.n[i]/sx,ny=g.n[i+1]/sy,nz=g.n[i+2]/sz,l=Math.hypot(nx,ny,nz)||1;this.n.push((m[0]*nx+m[4]*ny+m[8]*nz)/l,(m[1]*nx+m[5]*ny+m[9]*nz)/l,(m[2]*nx+m[6]*ny+m[10]*nz)/l);this.c.push(...col);}return this;
    }
    box(x,y,z,w,h,d,c,rz=0){return this.add(box(),c,[x,y,z],[w,h,d],[0,0,rz]);}
-   ell(x,y,z,rx,ry,rz,c,angle=0){return this.add(sphere(),c,[x,y,z],[rx,ry,rz],[0,0,angle]);}
+   ell(x,y,z,rx,ry,rz,c,angle=0){return this.add(Math.max(rx,ry,rz)<=3.2?smallSphere():sphere(),c,[x,y,z],[rx,ry,rz],[0,0,angle]);}
    cone(x,y,z,r,h,c,top=0,sides=10){return this.add(cylinder(top,sides),c,[x,y,z],[r,h,r]);}
    torus(x,y,z,r,c){return this.add(torus(),c,[x,y,z],[r,r,r]);}
    rod(a,b,r,c){const v=new T.Vector3(b[0]-a[0],b[1]-a[1],b[2]-a[2]),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),v.clone().normalize()),rot=new T.Euler().setFromQuaternion(q);return this.add(cylinder(),c,a.map((n,i)=>(n+b[i])/2),[r,v.length()||.001,r],[rot.x,rot.y,rot.z]);}
    tri(a,b,c,color){const u=b.map((x,i)=>x-a[i]),v=c.map((x,i)=>x-a[i]),n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]],l=Math.hypot(...n)||1;return this.add({p:[...a,...b,...c],n:[...n.map(x=>x/l),...n.map(x=>x/l),...n.map(x=>x/l)]},color);}
    finish(m,parent,options={}){
     if(!this.p.length)return null;
-    const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(this.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(this.n,3));g.setAttribute('color',new T.Float32BufferAttribute(this.c,3));g.computeBoundingSphere();
+    const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(this.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(this.n,3));g.setAttribute('color',new T.Float32BufferAttribute(this.c,3));if(options.map){const uv=new Float32Array(this.p.length/3*2);for(let i=0,j=0;i<this.p.length;i+=3){uv[j++]=this.p[i]/110;uv[j++]=this.p[i+1]/110;}g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));}g.computeBoundingSphere();
     const {unlit=false,...opts}=options,mat=unlit?new T.MeshBasicNodeMaterial({vertexColors:true,side:T.DoubleSide,...opts}):new T.MeshStandardNodeMaterial({vertexColors:true,side:T.DoubleSide,roughness:.56,metalness:.08,...opts});const mesh=m.makeSingle(g,mat);mesh.name='Cloudview merged art';parent.add(mesh);return mesh;
    }
   }
   function rock(batch,x,y,z,r,depth,seed=1){
-   const rings=[],sides=13,cols=['#677e9c','#8c9eaf','#b5b9b8','#8294a8','#bcc7c9'];
-   for(let level=0;level<4;level++){const ring=[];for(let j=0;j<sides;j++){const a=j/sides*2*Math.PI,k=1+Math.sin(j*17+seed)*.12,rr=r*[1,.84,.55,.04][level]*k;ring.push([x+Math.cos(a)*rr,y-depth*[0,.32,.75,1][level]+Math.sin(j*7+seed)*r*.045,z+Math.sin(a)*rr*.65]);}rings.push(ring);}
-   for(let i=0;i<3;i++)for(let j=0;j<sides;j++){const k=(j+1)%sides;batch.tri(rings[i][j],rings[i+1][j],rings[i+1][k],cols[(j+i+seed)%cols.length]);batch.tri(rings[i][j],rings[i+1][k],rings[i][k],cols[(j+i+seed+1)%cols.length]);}
+   const rings=[],sides=25,cols=['#7389a0','#9cabb7','#b0b9ba','#8b9daa','#c2c8c4','#8091a2'];
+   for(let level=0;level<6;level++){const ring=[];for(let j=0;j<sides;j++){const a=j/sides*Math.PI*2,k=1+Math.sin(j*17+seed)*.13+Math.sin(level*7+j*3+seed)*.09,rr=r*[1,1.02,.82,.6,.30,.025][level]*k;ring.push([x+Math.cos(a)*rr,y-depth*[0,.13,.33,.58,.84,1][level]+Math.sin(j*7+seed+level)*r*.07,z+Math.sin(a)*rr*.65]);}rings.push(ring);}
+   for(let i=0;i<5;i++)for(let j=0;j<sides;j++){const k=(j+1)%sides;batch.tri(rings[i][j],rings[i+1][j],rings[i+1][k],cols[(j+i+seed)%cols.length]);batch.tri(rings[i][j],rings[i+1][k],rings[i][k],cols[(j+i+seed+1)%cols.length]);}
   }
   function tree(b,x,y,z,s=1,seed=1){b.cone(x,y+10*s,z,1.6*s,22*s,'#766247',.65,6);for(let i=0;i<4;i++)b.cone(x,y+(14+i*6)*s,z,(11-i*2)*s,(17-i)*s,['#36764d','#4c8a45','#62a04c','#83b253'][(i+seed)%4],0,9);}
   function flowers(b,x,y,z,s=1){for(let i=0;i<7;i++){const px=x+Math.sin(i*2.4)*s*11,pz=z+Math.cos(i*2.4)*s*5,h=(3+i%3)*s;b.rod([px,y,pz],[px,y+h,pz],.45*s,'#59922f');b.ell(px,y+h,pz,1.6*s,1.2*s,1.6*s,i%2?'#ffe471':'#f393b2');b.ell(px,y+h+.5*s,pz, .6*s,.7*s,.6*s,'#f9f5d0');}}
