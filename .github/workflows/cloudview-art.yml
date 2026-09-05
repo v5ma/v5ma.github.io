@@ -34,10 +34,10 @@ jobs:
           node --check mario-maker-clone/svgn-paper-route/cloudview-studio/cloudview-ui.js
           node --check mario-maker-clone/svgn-paper-route/cloudview-ui.js
           node --test dino-atlas/tests/unit.test.mjs tests/interactive.test.mjs tests/sky_routes.test.mjs
-      - name: Install browser
+      - name: Install pinned browser using hosted runner libraries
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
-          python -m playwright install --with-deps chromium
+          python -m playwright install chromium
       - name: Verify actual Studio path and existing-game navigation
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/cloudview-studio.log 2>&1 &
