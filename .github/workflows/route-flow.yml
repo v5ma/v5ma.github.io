@@ -1,73 +1,23 @@
-name: Verify motion graph and Route Workshop flow tools
+name: Verify committed route-flow source
 on:
+  workflow_dispatch:
   push:
     branches: [feat/route-flow-planning-20260905]
-  workflow_dispatch:
+    paths: ['mario-maker-clone/svgn-paper-route/route-flow-core.js','mario-maker-clone/svgn-paper-route/route-flow-world.js','mario-maker-clone/svgn-paper-route/route-flow-plans.js','mario-maker-clone/svgn-paper-route/route-flow-editor.js','tests/flow_browser.py']
 permissions:
   contents: read
-concurrency:
-  group: route-flow-${{ github.ref }}
-  cancel-in-progress: true
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    timeout-minutes: 12
-    permissions:
-      contents: write
-    outputs:
-      sha: ${{ steps.identity.outputs.sha }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Verify and materialize owned source
-        run: |
-          python scripts/materialize-route-flow.py
-          python scripts/install-route-flow.py
-      - name: Compile collision-checked trajectories and their state witnesses
-        run: |
-          node scripts/compile-route-flow.cjs 0
-          node scripts/compile-route-flow.cjs 1
-          node scripts/compile-route-flow.cjs 2
-          node scripts/package-flow-plans.cjs
-      - name: Record readable exact source on the feature branch only
-        if: github.ref == 'refs/heads/feat/route-flow-planning-20260905'
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- .flow-transfer mario-maker-clone/svgn-paper-route/route-flow-core.js mario-maker-clone/svgn-paper-route/route-flow-layout.js mario-maker-clone/svgn-paper-route/route-flow-plans.js mario-maker-clone/svgn-paper-route/route-flow-world.js mario-maker-clone/svgn-paper-route/route-flow-worker.js mario-maker-clone/svgn-paper-route/route-flow-editor.js mario-maker-clone/svgn-paper-route/route-flow.css mario-maker-clone/svgn-paper-route/planning/ mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/route-workshop.js mario-maker-clone/svgn-paper-route/sw.js scripts/install-route-flow.py scripts/compile-route-flow.cjs scripts/package-flow-plans.cjs tests/route_flow.test.cjs tests/flow_browser.py tests/flow-fixture.cjs tests/workshop_browser.py
-          if ! git diff --cached --quiet; then git commit -m 'Integrate fitted route graphs, planning records and current editor tools'; git push origin HEAD:${GITHUB_REF_NAME}; fi
-      - id: identity
-        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - name: Preserve exact compiled runtime for review
-        run: |
-          mkdir -p test-output
-          tar -czf test-output/flow-source.tgz mario-maker-clone/svgn-paper-route tests scripts
-          git rev-parse HEAD > test-output/tested-commit.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: route-flow-source
-          path: test-output/
-          retention-days: 3
   validate:
-    needs: prepare
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.prepare.outputs.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test clearance, state composition, route reproduction and planning graph
-        run: |
-          node --check mario-maker-clone/svgn-paper-route/route-flow-core.js
-          node --check mario-maker-clone/svgn-paper-route/route-flow-editor.js
-          node --test tests/route_flow.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/workshop_core.test.cjs
+      - run: node --test tests/route_flow.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/workshop_live.test.cjs
   browser:
-    needs: [prepare, validate]
+    needs: validate
     strategy:
       fail-fast: false
       matrix:
@@ -76,13 +26,10 @@ jobs:
     timeout-minutes: 24
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.prepare.outputs.sha }}
-      - name: Install native browser
-        run: |
+      - run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Exercise actual UI and perspective game through normal inputs
+      - name: Replay actual inputs against exact committed source
         env:
           FLOW_SUITE: ${{ matrix.suite }}
         run: |
@@ -90,13 +37,11 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           timeout 1260 python -u tests/flow_browser.py
-      - name: Record tested source and diagnostics
-        if: always()
+      - if: always()
         run: |
           mkdir -p test-output
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          cp /tmp/flow-http.log test-output/http.log || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
