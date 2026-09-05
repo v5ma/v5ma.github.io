@@ -12,7 +12,7 @@ OUT = ROOT / 'theology-test-output'
 OUT.mkdir(exist_ok=True)
 ORIGIN = os.environ.get('SITE_ORIGIN', 'http://127.0.0.1:4174').rstrip('/')
 BASE = ORIGIN + '/theology-wiki/san-reader.html'
-CHECKS, ERRORS = [], []
+CHECKS, ERRORS, LAYOUTS = [], [], []
 
 def check(name, condition):
     if not condition:
@@ -62,7 +62,7 @@ with sync_playwright() as tool:
         page.locator('[data-research="reset"]').click()
         page.locator('#page-search').fill('gradient descent')
         page.wait_for_function('document.querySelector("#search-scope")?.textContent.includes("complete source")')
-        page.locator('#page-list a[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').wait_for()
+        page.locator('#page-list .page-link[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').wait_for()
         check('Search includes full source text beyond titles and previews', True)
         page.locator('#page-search').fill('coherence qqqzzzzz')
         page.wait_for_timeout(400)
@@ -93,7 +93,7 @@ with sync_playwright() as tool:
         check('Catalogue expands to 60 records', page.locator('#catalogue-results .research-card').count()==60)
         page.locator('#catalogue-search').fill('gradient descent')
         page.wait_for_timeout(400)
-        check('Catalogue searches complete discussions', page.locator('#catalogue-results a[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').count()==1)
+        check('Catalogue searches complete discussions', page.locator('#catalogue-results h3 a[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').count()==1)
         navigate(page,'agi-religious-framework')
         check('Source card shows the actual opening question', 'Only Self Aware Conscious Metal Robots' in page.locator('.source-excerpt').inner_text())
         page.locator('[data-research="load-source"]').click()
@@ -308,6 +308,7 @@ with sync_playwright() as tool:
             page.set_viewport_size({'width':width,'height':844})
             open_page(page)
             first=page.locator('.depth-featured .research-card').first.bounding_box()
+            LAYOUTS.append({'viewportWidth':width,'firstArticleTop':round(first['y'],2),'viewportHeight':844})
             assert first['y']<600,(width,first)
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),width
         check('First article begins within 600 pixels on 320, 390 and 768 pixel screens',True)
@@ -336,5 +337,5 @@ with sync_playwright() as tool:
         (OUT/'failure.html').write_text(page.content())
         raise
     finally:
-        (OUT/'browser-report.json').write_text(json.dumps({'passed':len(CHECKS),'checks':CHECKS,'errors':ERRORS,'origin':ORIGIN,'scope':'Native Chromium HTTP scripts, actual source fetching and SHA verification, actual local images, and real-origin storage. One separate storage-denial fixture is explicitly injected.'},indent=2))
+        (OUT/'browser-report.json').write_text(json.dumps({'passed':len(CHECKS),'checks':CHECKS,'errors':ERRORS,'origin':ORIGIN,'mobileLayouts':LAYOUTS,'scope':'Native Chromium HTTP scripts, actual source fetching and SHA verification, actual local images, and real-origin storage. One separate storage-denial fixture is explicitly injected.'},indent=2))
         browser.close()

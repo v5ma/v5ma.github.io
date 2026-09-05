@@ -54,7 +54,7 @@ function chronology(body){
 function glossary(body){
  if(!data)return;
  body.innerHTML='<p>These entries explain usage in this collection. Meanings in other texts and traditions may differ.</p><label class="depth-glossary-label">Find a term<input id="glossary-search" type="search" placeholder="Try TOR, coherence or repair"></label><p id="glossary-count" class="research-small" role="status"></p><div id="glossary-results"></div>';
- const draw=()=>{const ts=C.tokens($('#glossary-search').value),found=data.glossary.filter(g=>ts.every(t=>C.normalize(g.term+' '+g.text).includes(t)));$('#glossary-count').textContent=found.length+' of '+data.glossary.length+' terms';$('#glossary-results').innerHTML=found.length?found.map(g=>`<section class="depth-glossary-entry"><h3>${esc(g.term)}</h3><p>${esc(g.text)}</p>${link(g.page,'Read the connected article')}</section>`).join(''):'<p>No terms match. Try another word.</p>';};$('#glossary-search').addEventListener('input',draw);draw();
+ const draw=()=>{const ts=C.tokens($('#glossary-search').value),found=data.glossary.filter(g=>ts.every(t=>C.tokens(g.term+' '+g.text).includes(t)));$('#glossary-count').textContent=found.length+' of '+data.glossary.length+' terms';$('#glossary-results').innerHTML=found.length?found.map(g=>`<section class="depth-glossary-entry"><h3>${esc(g.term)}</h3><p>${esc(g.text)}</p>${link(g.page,'Read the connected article')}</section>`).join(''):'<p>No terms match. Try another word.</p>';};$('#glossary-search').addEventListener('input',draw);draw();
 }
 async function enhance(p,info){
  await ready;if(current()?.slug!==p.slug)return;
