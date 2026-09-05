@@ -5,18 +5,95 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: adventure-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  baseline:
+  prepare:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.identity.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - name: Restore locally tested text patch and remove transfer files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,lzma,hashlib,subprocess
+          folder=Path('scripts/.adventure-transfer')
+          if folder.exists():
+            data=''.join(p.read_text().strip() for p in sorted(folder.glob('*.txt')))
+            patch=lzma.decompress(base64.b64decode(data,validate=True))
+            assert hashlib.sha256(patch).hexdigest()=='4b79016e081de4d3365fc701ff646ab4700b9c9700db1b0e5c5ae49724406832','Transfer checksum mismatch'
+            file=Path('/tmp/adventure.patch');file.write_bytes(patch)
+            subprocess.run(['git','apply','--check',str(file)],check=True)
+            subprocess.run(['git','apply','--whitespace=nowarn',str(file)],check=True)
+            subprocess.run(['git','rm','-r','scripts/.adventure-transfer'],check=True)
+          PY
+      - name: Record the exact readable source on the feature branch only
+        if: github.ref == 'refs/heads/feat/first-adventure-score-20260905'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/adventure-game.js mario-maker-clone/svgn-paper-route/adventure-score.js mario-maker-clone/svgn-paper-route/adventure.css mario-maker-clone/svgn-paper-route/score-worker.js mario-maker-clone/svgn-paper-route/soundtrack.js mario-maker-clone/svgn-paper-route/ground-courses.js mario-maker-clone/svgn-paper-route/ground-runtime.js mario-maker-clone/svgn-paper-route/ground-art.js mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js scripts/integrate-adventure.py tests/adventure_browser.py tests/adventure_score.test.cjs
+          if ! git diff --cached --quiet; then git commit -m 'Install composed soundtrack, expanded opening adventures and finish-line progression'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - id: identity
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Package exact tested source
+        run: |
           mkdir -p test-output
           tar -czf test-output/runtime.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
           git rev-parse HEAD > test-output/source-sha.txt
       - uses: actions/upload-artifact@v4
         with:
           name: adventure-source
+          path: test-output/
+          retention-days: 7
+  verify:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [road, loop, audio]
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate scores, level contents and shared mechanics
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/adventure-game.js
+          node --check mario-maker-clone/svgn-paper-route/soundtrack.js
+          node --check mario-maker-clone/svgn-paper-route/score-worker.js
+          node --check mario-maker-clone/svgn-paper-route/ground-runtime.js
+          node --test tests/adventure_score.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/depth_geometry.test.mjs
+      - name: Install native replay browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play and inspect the real application
+        env:
+          ADVENTURE_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/adventure-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1200 python -u tests/adventure_browser.py
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adventure-${{ matrix.suite }}
           path: test-output/
           retention-days: 7

@@ -1,0 +1,41 @@
+name: Verify published expanded adventure and soundtrack
+on:
+  push:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/adventure*','mario-maker-clone/svgn-paper-route/soundtrack.js','mario-maker-clone/svgn-paper-route/score-worker.js','.github/workflows/adventure-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare published runtime with this commit
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          folder='mario-maker-clone/svgn-paper-route/'
+          names=['index.html','adventure-game.js','adventure-score.js','adventure.css','soundtrack.js','score-worker.js','ground-courses.js','ground-runtime.js','ground-art.js','sw.js']
+          expected={n:hashlib.sha256(Path(folder+n).read_bytes()).hexdigest() for n in names};result={}
+          for _ in range(45):
+            for n in names:
+              if result.get(n,{}).get('match'):continue
+              try:
+                with urllib.request.urlopen('https://v5ma.github.io/'+folder+n+'?adventure=1788639901',timeout=10) as r:
+                  digest=hashlib.sha256(r.read()).hexdigest();result[n]={'status':r.status,'match':digest==expected[n],'sha256':digest}
+              except Exception as e:result[n]={'match':False,'error':str(e)}
+            if all(v.get('match') for v in result.values()):break
+            time.sleep(5)
+          Path('adventure-publication.json').write_text(json.dumps(result,indent=2))
+          assert all(v.get('match') for v in result.values()),result
+          print(json.dumps(result,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adventure-publication
+          path: adventure-publication.json
+          retention-days: 14
