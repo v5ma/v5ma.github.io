@@ -11,18 +11,20 @@ concurrency:
 jobs:
   rendering:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
-      - name: Integrate the render-only pass
-        run: python scripts/integrate-depth.py
-      - name: Commit only the integrated entry and cache version
+      - name: Integrate and retain fixed-detail performance
+        run: |
+          python scripts/integrate-depth.py
+          python scripts/finalize-depth.py
+      - name: Record the exact integrated source
         if: github.ref == 'refs/heads/feat/cloudview-depth-20260905'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js
-          if ! git diff --cached --quiet; then git commit -m 'Load the Cloudview depth pass in the live game'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-depth.js mario-maker-clone/svgn-paper-route/grapple-game.js tests/grapple_browser.py tests/depth_capture.py
+          if ! git diff --cached --quiet; then git commit -m 'Integrate fixed-detail culling and complete whip input cleanup'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - name: Package exact public runtime for review
         run: |
           mkdir -p test-output/depth
@@ -36,20 +38,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check gameplay and surface invariants
+      - name: Check graphics and gameplay invariants
         run: |
           node --check mario-maker-clone/svgn-paper-route/cloudview-depth.js
-          node --test tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs
+          node --test tests/depth_geometry.test.mjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs
       - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
       - name: Record real renderer at repeatable viewpoints
+        timeout-minutes: 7
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/depth-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          python tests/depth_capture.py
+          timeout 380 python -u tests/depth_capture.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
