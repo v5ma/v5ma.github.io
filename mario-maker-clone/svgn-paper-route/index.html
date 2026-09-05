@@ -206,6 +206,8 @@
 <link rel="stylesheet" href="./ground.css">
 <link rel="stylesheet" href="./adventure.css">
 <link rel="stylesheet" href="./sky-network.css">
+<link rel="stylesheet" href="./workshop.css">
+<script src="./workshop-input.js"></script>
 </head>
 <script id="network-dialog-keys">window.addEventListener("keydown",e=>{const d=document.getElementById("sky-network-map");if(d?.open&&(e.code==="Escape"||e.code==="KeyM")){e.preventDefault();e.stopImmediatePropagation();d.close();}},true);</script>
 <script>
@@ -2807,7 +2809,10 @@ function levelCode(){
             ? t.anchors.map(a=>[Math.round(a.x),Math.round(a.y),Math.round(a.hx),Math.round(a.hy)])
             : 0)
         : undefined});
-  return b64e(meta)+'.'+btoa(String.fromCharCode(...rle));
+  // Bound argument count for large, densely edited maps.
+  let encodedTiles='';
+  for(let i=0;i<rle.length;i+=16000)encodedTiles+=String.fromCharCode(...rle.slice(i,i+16000));
+  return b64e(meta)+'.'+btoa(encodedTiles);
 }
 function loadCode(code){
   try{
@@ -8539,7 +8544,7 @@ renderer.init().then(async ()=>{
 </script>
 <script>
 ;
-window.__BUILD=1788651001;
+window.__BUILD=1788655001;
 (function(){
   var told=false;
   async function check(){
@@ -8586,5 +8591,7 @@ window.__BUILD=1788651001;
 <script src="./ground-runtime.js"></script>
 <script src="./adventure-game.js"></script>
 <script src="./sky-network-runtime.js"></script>
+<script src="./workshop-core.js"></script>
+<script src="./route-workshop.js"></script>
 </body>
 </html>

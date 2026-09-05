@@ -36,8 +36,13 @@ with sync_playwright() as p:
             check(page.locator('a.primary-link[href="./'+href+'"]').count()==1,'Homepage links to '+href)
         page.screenshot(path=str(OUT/'homepage.png'),full_page=True)
         import subprocess,sys
-        subprocess.run([sys.executable,str(ROOT/'tests/sky_browser.py')],check=True)
-        check((OUT/'sky/report.json').exists(),'Full 3D sky-route replays pass')
+        # Validate the current main game and current Create workflow. The older
+        # expert regression assumes Create opens the legacy palette, which is
+        # now intentionally available through the explicit advanced-editor link.
+        subprocess.run([sys.executable,str(ROOT/'tests/sky_network_browser.py')],check=True,env={**os.environ,'NETWORK_SUITE':'flight'})
+        check((OUT/'network-flight/report.json').exists(),'The connected-world 3D route completes through ordinary controls')
+        subprocess.run([sys.executable,str(ROOT/'tests/workshop_browser.py')],check=True,env={**os.environ,'WORKSHOP_SUITE':'authoring'})
+        check((OUT/'workshop-authoring/report.json').exists(),'The current Workshop authoring, saves and imports pass')
 
         page.goto(BASE+'/dino-atlas/index.html',wait_until='domcontentloaded')
         page.wait_for_function('!!window.__dinoExpedition&&window.__dinoExpedition.ready',timeout=90000)
@@ -95,7 +100,7 @@ with sync_playwright() as p:
         check(not mobile.evaluate('document.documentElement.scrollWidth>innerWidth'),'Dinosaur UI fits a phone viewport')
         mobile.screenshot(path=str(OUT/'dinosaur-mobile.png'))
         phone.close()
-        result={'passed':len(checks),'checks':checks,'uncaught_errors':errors,'webgl_verified':True,'mode':'Native Chromium HTTP / SwiftShader WebGL','limitations':'Physics fixtures isolate delivery and depot behavior; not a full human playthrough. No live accounts, payments, cloud saves, gamepad hardware, Safari, or real phones tested.'}
+        result={'passed':len(checks),'checks':checks,'uncaught_errors':errors,'webgl_verified':True,'mode':'Native Chromium HTTP / SwiftShader WebGL','limitations':'The game uses ordinary keyboard/UI input; dinosaur discovery checks retain controlled position fixtures. No live accounts, payments, cloud saves, hardware gamepads, Safari or real phones tested.'}
         (OUT/'report.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
     except Exception as e:
         diagnostic=None

@@ -1,0 +1,17 @@
+# The live connected-world Route Workshop
+
+Create now opens a real full-document editor for the existing game. It is not a mockup, a second standalone application, or a claim that the old tile palette alone matched the new game.
+
+The blueprint view provides zoom/pan, neighborhood framing, ground/upper visibility filters, a minimap, a track list and properties. Eight reusable roadway shapes include a genuine suspended C-ramp, open bowls, catches, launches, shelves, S-bends and a full circle with an exit. Shapes can be drawn, selected together, moved, rotated, scaled, reflected, duplicated, joined or deformed. Terrain, pegs, enemies, pickups, mailboxes, Start and Finish remain native game objects. Postal neighbors and their messages are editable.
+
+Every supported native level field is retained, including unknown extension metadata, gp ground rules, adventure sections, cast, soundtrack, network sectors and links, track movement metadata and native anchors. Existing track identities survive edits; new tracks get new identities. Undo/redo stores the complete document. The library and recovery keys are separate from the game's coin and medal keys. Drafts can be saved locally and exported/imported as native .route codes. Browser storage is not a cloud backup.
+
+Playtest uses the actual 3D renderer and existing physics with the authored terrain, pegs, pickups and Finish. Return restores the exact unmodified document, editing view and history. Test coins are temporary and campaign medal/automatic-progression logic is not engaged. The original advanced editor remains explicitly accessible. The earlier PR19 Quarry/Vault layouts are not silently imported; those exploration prototypes still need their own integration and testing.
+
+Review fixes include selection surviving undo, real native object icons, recovery following undo instead of reviving discarded edits, Ctrl+S committing focused text fields, closable phone-width properties, and bounded native RLE encoding for a dense 640 by 280 map. File-size and geometry validation do not constitute a rendering-performance guarantee at the largest supported document size.
+
+The editor intentionally uses a legible 2D blueprint for construction and the real 3D game for playtesting. It is not direct vertex manipulation in a perspective viewport. The level checker catches malformed data, missing Start/Finish and out-of-bounds geometry, but does not prove every jump or route reachable. Arbitrary edits can make a level impossible; authors should test their intended paths.
+
+Acceptance separates pure metadata/geometry/serializer tests from real HTTP keyboard/pointer input. Authoring checks cover transforms, painting, peg movement, actual file export/import, rejection safety, local recovery and phone-width controls. Preview checks place an envelope and shield, relocate Finish, select music, collect the real objects, finish, restore the exact draft and test a full-world copy. A separate ordinary connected-world aerial run guards the featured campaign. Physical phones, hardware controllers, Safari and native GPU performance require separate testing.
+
+The public multi-project test entry now invokes the current main game and Workshop suites rather than assuming Create still opens the legacy palette. Dino Atlas, Theology, Studio, preprints and account configuration are untouched. Release claims should cite the exact tested source and public byte-comparison receipt. Revert the scoped merge for rollback; do not clear player saves or reset unrelated master history.
