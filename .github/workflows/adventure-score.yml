@@ -1,0 +1,89 @@
+name: Verify first adventure and soundtrack
+on:
+  push:
+    branches: [feat/first-adventure-score-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: adventure-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.identity.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/polish-first-adventure.py
+      - name: Record exact source on the feature branch only
+        if: github.ref == 'refs/heads/feat/first-adventure-score-20260905'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/adventure-game.js mario-maker-clone/svgn-paper-route/adventure.css tests/adventure_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Correct bonus-mail presentation and frame-stable loop verification'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - id: identity
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Package exact tested source
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/runtime.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/source-sha.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adventure-source
+          path: test-output/
+          retention-days: 7
+  verify:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [road, loop, audio, expert]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate scores, level contents and shared mechanics
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/adventure-game.js
+          node --check mario-maker-clone/svgn-paper-route/soundtrack.js
+          node --check mario-maker-clone/svgn-paper-route/score-worker.js
+          node --check mario-maker-clone/svgn-paper-route/ground-runtime.js
+          node --test tests/adventure_score.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/depth_geometry.test.mjs
+      - name: Install native replay browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play and inspect the real application
+        env:
+          ADVENTURE_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/adventure-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$ADVENTURE_SUITE" = expert ]; then
+            SKY_REPLAY_ROUTE=0 timeout 1500 python -u tests/sky_browser.py
+          else
+            timeout 1650 python -u tests/adventure_browser.py
+          fi
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adventure-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7

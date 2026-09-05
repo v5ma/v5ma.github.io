@@ -5,7 +5,7 @@
   const state={version:'ground-first-1',upper:new Set(),hooks:0,steps:0,events:[],onboarding:0};
   const active=()=>mode==='play'&&!!meta&&!!__sky.state.data;
   const originalLoad=loadCode,originalCode=levelCode;
-  function valid(v){return v&&v.version===1&&['village','canal','garden'].includes(v.style)&&Number.isInteger(v.ground)&&v.ground>2&&v.ground<280&&Number.isInteger(v.quota)&&v.quota>=0&&v.quota<=40;}
+  function valid(v){if(v?.adventure===2){if(!Array.isArray(v.sections)||v.sections.length>32||!Array.isArray(v.cast)||v.cast.length>24)return false;if(!v.sections.every(s=>Number.isFinite(s.x)&&typeof s.name==='string'&&s.name.length<100)||!v.cast.every(n=>Number.isFinite(n.x)&&Number.isFinite(n.y)&&typeof n.name==='string'&&n.name.length<60&&typeof n.text==='string'&&n.text.length<250))return false;}return v&&v.version===1&&['village','canal','garden'].includes(v.style)&&Number.isInteger(v.ground)&&v.ground>2&&v.ground<280&&Number.isInteger(v.quota)&&v.quota>=0&&v.quota<=40;}
   window.loadCode=function(code){
    let m;try{m=JSON.parse(b64d(code.split('.')[0]));if(m.gp&&!valid(m.gp))return false;}catch{return false;}
    const ok=originalLoad(code);if(ok)meta=m.gp?{...m.gp}:null;return ok;
@@ -17,7 +17,7 @@
    const keep=routeKeep;spawn(x,y);if(!meta)return;
    const boxes=[];let goal=null;for(let ty=0;ty<LH;ty++)for(let tx=0;tx<LW;tx++){const v=grid[ty*LW+tx];if(v===T.MAILBOX)boxes.push({x:tx,y:ty});if(v===T.GOAL)goal={x:tx,y:ty+1};}
    __sky.state.data={...__sky.state.data,kind:'ground',gp:meta,ground:meta.ground,cells:grid,ct:customTracks,width:LW,height:LH,boxes,goal,quota:meta.quota,stages:0,minTransfers:0,requiredGrapples:0};
-   routeQuota=Math.min(meta.quota,boxes.length);routeTotal=boxes.length;
+   routeQuota=0;routeTotal=boxes.length;
    player.track=null;player._bside=null;player.x=x*TILE+5;player.y=(y+1)*TILE-30;player.vx=player.vy=player.speed=0;player.drawA=0;player.onGround=false;player._jHeld=false;
    player.euc=true;player.veh='euc';player.whip=true;player.nitro=0;
    if(!keep){state.upper.clear();state.steps=0;state.events=[];state.hooks=0;state.onboarding=0;}
@@ -62,9 +62,9 @@
   function menu(){
    const menu=document.getElementById('delivery-menu');if(!menu?.classList.contains('open')||menu.querySelector('#advanced-routes-toggle'))return;
    menu.querySelector('h1').innerHTML='Start on the street.<br><em>Find your<br>own route.</em>';
-   menu.querySelector('.delivery-hero>p').textContent='A friendly first ride, then optional ramps, curved shortcuts and whip practice. Stay on the ground, explore above it, or return later for a better run.';
+   menu.querySelector('.delivery-hero>p').textContent='Explore six neighborhoods in Sunrise Borough, then continue along Waterwheel Boulevard and into Copperleaf Gardens. Ride, jump, meet neighbors, defeat bots and find optional high routes.';
    menu.querySelector('.delivery-controls').innerHTML='<span class="key">A / D</span> MOVE &nbsp; <span class="key">SPACE</span> JUMP &nbsp; <span class="key">C</span> DELIVER<br><span class="key">Z</span> OPTIONAL WHIP &nbsp; <span class="key">P</span> PAUSE';
-   menu.querySelector('.minor').textContent='No countdown, pits, enemies or required aerial tricks in the introductory routes. The former sky courses are still available as advanced challenges.';
+   menu.querySelector('.minor').textContent='Longer adventures, friendly neighbors, patrol bots, shields and loop routes. Cross the finish to continue; every delivery is a bonus.';
    const list=menu.querySelector('.delivery-courses');
    for(const i of order){const b=list.querySelector(`[data-course="${i}"]`);if(!b)continue;b.classList.toggle('expert-route',i<4);list.append(b);if(i>=4){b.querySelector('small').textContent=GroundCampaign.specs[i-4].district+' / '+GroundCampaign.specs[i-4].difficulty;}}
    const b=document.createElement('button');b.id='advanced-routes-toggle';b.className='delivery-btn';b.textContent='Advanced challenges: sky loops and Hookline Run';b.setAttribute('aria-expanded','false');b.onclick=()=>{const open=menu.classList.toggle('show-expert');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide advanced challenges':'Advanced challenges: sky loops and Hookline Run';};list.append(b);
@@ -76,7 +76,7 @@
    document.querySelector('#cloud-hud .cloud-loop .cloud-label').textContent='ROUTE';
    document.getElementById('cloud-loops').textContent=Math.floor(progress*100)+'%';
    document.getElementById('cloud-loop-progress').style.strokeDashoffset=245*(1-progress);
-   const text=state.steps<190?'A / D TO MOVE. TAKE YOUR TIME.':p.x<520?'C THROWS A PAPER. YOU CAN STOP AND TRY AGAIN.':p.x<1120?'JUMP ONTO GOLD TO EXPLORE. THE STREET IS ALWAYS OPEN.':meta.index===2?'Z: WHIP PRACTICE IS OPTIONAL. LAND SAFELY ON THE ROAD.':deliveries>=routeQuota?'DELIVERIES DONE. CONTINUE TO THE DEPOT AT YOUR OWN PACE.':'STAY LOW OR TRY AN UPPER SHORTCUT. BOTH REACH THE DEPOT.';
+   const text=state.steps<190?'A / D TO MOVE. TAKE YOUR TIME.':p.x<520?'C: BONUS DELIVERIES. SPACE: JUMP. THE FINISH IS ALWAYS OPEN.':p.x<1120?'JUMP ONTO GOLD TO EXPLORE. THE STREET IS ALWAYS OPEN.':meta.index===2?'Z: WHIP PRACTICE IS OPTIONAL. LAND SAFELY ON THE ROAD.':deliveries>=routeQuota?'REACH THE STRIPED FINISH. COLLECTIBLES AND MAIL ARE OPTIONAL.':'STAY LOW OR TRY AN UPPER SHORTCUT. BOTH REACH THE DEPOT.';
    document.getElementById('cloud-flight-label').textContent=text;
    document.getElementById('cloud-control-tip').textContent=`SPACE: JUMP / C: PAPER / Z: WHIP / UPPER ROUTES FOUND: ${state.upper.size}`;
    document.getElementById('cloud-phase-fill').style.width=Math.round(progress*100)+'%';
@@ -85,7 +85,7 @@
    document.getElementById('delivery-hint').textContent=text;
    document.getElementById('cloud-hud').classList.remove('ready','armed');document.body.classList.remove('sky-launch-ready');
    const res=document.getElementById('delivery-results');
-   if(won&&res?.classList.contains('open')){res.querySelector('.delivery-hero>p').textContent=`Route complete. ${state.upper.size} optional upper routes found. The ground route is a full completion; aerial exploration earns extra score. Your timer was informational, never a deadline.`;const b=res.querySelector('[data-delivery="next"]');if(b)b.textContent=meta.index<2?'Next neighborhood route':'Try an advanced challenge';}
+   if(won&&res?.classList.contains('open')){res.querySelector('.delivery-hero>p').textContent=`Level complete! ${deliveries} bonus deliveries and ${state.upper.size} upper routes found. Crossing the finish completes the adventure.`;const b=res.querySelector('[data-delivery="next"]');if(b)b.textContent=meta.index<2?'Next level':'Choose another adventure';}
   }
   // Capture navigation before the old index-based Next handler; course IDs and
   // saves remain stable. Nothing is locked behind a skill challenge.
