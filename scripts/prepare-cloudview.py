@@ -17,4 +17,9 @@ s=s.replace('Math.max(.85,Math.min(1.5,view.w/(speed>15?1160:1000)))','Math.max(
 s=s.replace('camera.position.set(cx+90,cy+60,650);camera.lookAt(cx,cy,0);','camera.position.set(cx+135,cy+140,800);camera.lookAt(cx,cy,0);')
 p.write_text(s)
 p=game/'sw.js';s=p.read_text().replace('svgn-paper-route-sky-20260904','svgn-paper-route-cloudview-20260904');p.write_text(s)
+# Entering or leaving play/editor must rebuild the scene even when the same
+# custom grid is retained. Otherwise the renderer can reuse an empty editor view.
+p=game/'delivery-upgrade.js';s=p.read_text()
+s=s.replace("const k=[LW,LH,themeName,state.route].join(':')", "const k=[LW,LH,themeName,state.route,mode,state.menu].join(':')")
+p.write_text(s)
 print('Cloudview 3D world, courier and HUD integrated; simulation and routes preserved.')
