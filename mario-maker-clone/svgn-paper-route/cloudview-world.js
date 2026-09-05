@@ -3,7 +3,7 @@
 'use strict';
 (() => {
   const previous = window.SkyVisual;
-  const VERSION = 'cloudview-20260904-2';
+  const VERSION = 'cloudview-20260904-3';
   let world=null, api=null, courier=null, wheels=[], scarf=null, boost=null, mailboxes=[], waterfalls=[], clouds=null;
   let envelopes=[], lastStep=-1, trail=[], trailMesh=null, hidden=new Map(), lastUi=0, units=null, colorCache=new Map();
   const stats={version:VERSION,builds:0,triangles:0,objects:0,trackPanels:0,islands:0,mailboxes:0};
@@ -77,7 +77,7 @@
           if(serial%3===0)glow.add(units.box,...at(1,side*27),7*scale,2*scale,2.5*scale,angle,goldSector?'#fff197':C.blue);
         }
         if(!scenic&&serial%4===0){
-          const q=at(-6,38.1);chevron(glow,...q,angle,goldSector?'#fff6a6':'#c9f7ff',scale*.86);
+          const q=at(-6,38.1);chevron(glow,...q,angle,goldSector?'#fff6a6':'#64e4ff',scale*.86);
           for(const side of[-1,1])glow.add(units.box,...at(.15,side*5),8*scale,.65*scale,2*scale,angle,C.blue,side*.55,0);
         }
         if(serial%8===0)metal.add(units.box,...at(-19),5*scale,9*scale,wide+11*scale,angle,C.dark);
@@ -207,14 +207,22 @@
     label(parent,'GOOD THINGS\nARRIVE HIGHER',x,y-115,30,73,38,{bg:'#426590'});
   }
   function build(m){
-    api=m;world=new m.THREE.Group();world.name='Cloudview City / real-time reference-inspired world';m.scene.add(world);
+    restore();api=m;world=new m.THREE.Group();world.name='Cloudview City / real-time reference-inspired world';m.scene.add(world);
     wheels=[];waterfalls=[];mailboxes=[];envelopes=[];trail=[];lastStep=-1;stats.builds++;stats.triangles=stats.objects=stats.trackPanels=stats.islands=stats.mailboxes=0;colorCache=new Map();
     const T=m.THREE;units=primitives(T);const mats=materials(T);
-    const data=window.__sky?.state.data||SkyRoutes.build(Math.max(0,window.__delivery?.state.route||0),__gameRefs.T);
+    const source=live()?window.__sky.state.data:SkyRoutes.build(Math.max(0,window.__delivery?.state.route||0),__gameRefs.T);
+    // Custom copies can move targets or omit the campaign-only cells/boxes.
+    // Build visuals from the authoritative grid, not stale campaign metadata.
+    const data={...source,width:live()?LW:source.width,cells:live()?playGrid:source.cells,boxes:[],goal:null};
+    for(let k=0;k<data.cells.length;k++){
+      const id=data.cells[k],x=k%data.width,y=Math.floor(k/data.width);
+      if(id===__gameRefs.T.MAILBOX||id===__gameRefs.T.MAILDONE)data.boxes.push({x,y});
+      if(id===__gameRefs.T.GOAL)data.goal={x,y};
+    }
     if(!live()&&!preview()){world.userData.cloudview=true;return world;}
     const paths=live()?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,sky:t.sky})):data.ct.map(p=>({pts:p,sky:p.sky}));
-    const night=themeName==='city',bg=night?'#779dcc':'#66b4f2';m.renderer.setClearColor(bg,1);m.scene.fog=new T.Fog(night?'#c4dced':'#b4dcf5',1050,2600);
-    const skyCanvas=document.createElement('canvas');skyCanvas.width=64;skyCanvas.height=512;const sg=skyCanvas.getContext('2d'),gr=sg.createLinearGradient(0,0,0,512);gr.addColorStop(0,night?'#6486bd':'#3b97ed');gr.addColorStop(.5,night?'#bed4e7':'#a5d6fa');gr.addColorStop(1,'#f6faff');sg.fillStyle=gr;sg.fillRect(0,0,64,512);
+    const night=themeName==='city',bg=night?'#779dcc':'#66b4f2';m.renderer.setClearColor(bg,1);m.scene.fog=new T.Fog(night?'#c4dced':'#b4dcf5',1400,3700);
+    const skyCanvas=document.createElement('canvas');skyCanvas.width=64;skyCanvas.height=512;const sg=skyCanvas.getContext('2d'),gr=sg.createLinearGradient(0,0,0,512);gr.addColorStop(0,night?'#6486bd':'#3b97ed');gr.addColorStop(.5,night?'#bed4e7':'#8dccfa');gr.addColorStop(1,'#f6faff');sg.fillStyle=gr;sg.fillRect(0,0,64,512);
     const st=new T.CanvasTexture(skyCanvas);st.colorSpace=T.SRGBColorSpace;const sky=m.makeSingle(new T.PlaneGeometry(data.width*36+7000,7500),new T.MeshBasicNodeMaterial({map:st,depthWrite:false,fog:false}));sky.position.set(data.width*18,-2400,-2600);sky.renderOrder=-100;world.add(sky);
     const sun=new T.DirectionalLight('#fff0ca',2.65);sun.position.set(-600,800,1500);world.add(sun);
     const fill=new T.HemisphereLight('#def7ff','#53749c',1.7);world.add(fill);const rim=new T.DirectionalLight('#adf4ff',.75);rim.position.set(700,100,-1000);world.add(rim);
@@ -224,9 +232,9 @@
       const c=document.createElement('canvas');c.width=512;c.height=256;const g=c.getContext('2d');
       // Overlapping shaded billows, with soft alpha edges and no dark outline.
       for(let k=0;k<40;k++){
-        const x=75+rnd(k+variant*47)*360,y=104+rnd(k+variant*13+7)*70,r=25+rnd(k+30)*48;
+        const x=75+rnd(k+variant*47)*360,y=150-Math.sin((x-75)/360*Math.PI)*48+rnd(k+variant*13+7)*30,r=25+rnd(k+30)*48;
         const grad=g.createRadialGradient(x-r*.15,y-r*.3,r*.07,x,y,r);
-        grad.addColorStop(0,'#fffffffa');grad.addColorStop(.54,'#fbffffee');grad.addColorStop(.8,'#def1fadd');grad.addColorStop(1,'#c6e5f600');g.fillStyle=grad;g.fillRect(x-r,y-r,r*2,r*2);
+        grad.addColorStop(0,'#fffffffc');grad.addColorStop(.56,'#fffffff2');grad.addColorStop(.83,'#ffffffc9');grad.addColorStop(1,'#ffffff00');g.fillStyle=grad;g.fillRect(x-r,y-r,r*2,r*2);
       }
       const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;
       const cloud=new T.InstancedMesh(new T.PlaneGeometry(1,1),new T.MeshBasicNodeMaterial({map:tx,transparent:true,depthWrite:false,opacity:.91,side:T.DoubleSide,fog:false}),30);
@@ -255,7 +263,8 @@
   function hide(obj){if(!obj)return;if(!hidden.has(obj))hidden.set(obj,obj.visible);obj.visible=false;}
   function restore(){for(const[o,v]of hidden)o.visible=v;hidden.clear();}
   function update(){
-    if(!api||!world?.parent)return;
+    if(!api)return;
+    if(!world?.parent){restore();api.scene.fog=null;return;}
     const active=live(),menu=preview();
     if(active||menu){
       for(const obj of api.scene.children)if(obj.isLight)hide(obj);

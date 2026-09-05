@@ -52,6 +52,18 @@ with sync_playwright() as p:
         check(page.evaluate('__sky.state.steps')==steps,'Pause still freezes simulation')
         page.locator('#delivery-pause [data-delivery="resume"]').click()
         check(page.evaluate('__merged.gpuLimitAudit().ok'),'GPU instance limits remain within the existing guard')
+        # Copy mode has different metadata from the campaign. The renderer must
+        # use the actual grid and restore the old lights when leaving a route.
+        page.locator('#sky-edit-copy').click()
+        page.wait_for_function('mode==="edit"')
+        page.screenshot(path=str(OUT/'cloudview-editor.png'),timeout=60000)
+        page.locator('#btnPlay').click();page.locator('#cv').focus()
+        page.wait_for_function('__sky.active()&&__cloudview.courier.visible',timeout=60000)
+        check(page.evaluate('__cloudview.stats.mailboxes===routeTotal'),'Edited sky copy can still be played with its actual delivery targets')
+        start_x=page.evaluate('player.x');page.keyboard.down('KeyD')
+        try:page.wait_for_function('(x)=>Math.abs(player.x-x)>20',arg=start_x,timeout=20000)
+        finally:page.keyboard.up('KeyD')
+        check(page.evaluate('Math.abs(player.x-'+str(start_x)+')>20'),'Edited copy retains ordinary control input')
         check(not errors,'No uncaught JavaScript errors in the art and input flow')
         check(not gpu_errors,'No detected GPU validation errors')
         (OUT/'report.json').write_text(json.dumps({'checks':checks,'passed':len(checks),'flight':st,'geometry':page.evaluate('__cloudview.stats'),'renderer':page.evaluate('__merged.renderer.backend.constructor.name'),'uncaught_errors':errors,'gpu_errors':gpu_errors,'limits':'Software WebGL rendering through the existing WebGPURenderer. Screenshots require human visual review; this is not a physical-device frame-rate benchmark.'},indent=2))
