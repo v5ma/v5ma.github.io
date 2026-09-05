@@ -1,0 +1,1013 @@
+{
+  "version": "2026.09.05-foundations-1",
+  "updated": "2026-09-05",
+  "parts": [
+    {
+      "id": "inheritance",
+      "title": "The contested inheritance",
+      "chapters": [
+        {
+          "id": "shared-archive",
+          "title": "Who inherits the sacred?",
+          "purpose": "Establish the shared-inheritance question before examining rival claims.",
+          "pages": [
+            "sacred-inheritance-and-rival-continuations",
+            "samaritan-texts-and-sacred-authority"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "names",
+          "title": "Names across boundaries",
+          "purpose": "Separate the movement of divine names from the identity of an entire religion.",
+          "pages": [
+            "el-in-ancient-egypt",
+            "kenite-hypothesis-and-yahweh-origins"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "catastrophe-memory",
+          "title": "Catastrophe, departure and memory",
+          "purpose": "Compare the competing Moses and volcano proposals without blending their geographies or dates.",
+          "pages": [
+            "moses-volcano-and-exodus-chronology"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "teacher",
+      "title": "The teacher and the transmitted message",
+      "chapters": [
+        {
+          "id": "teacher-identity",
+          "title": "What survives a teacher?",
+          "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
+          "pages": [
+            "jesus-teacher-of-righteousness-hypothesis"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "purpose": "Present the linked argument before comparing its alternative historical mechanisms.",
+          "pages": [
+            "tor-thomas-and-gnostic-transmission"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "trauma",
+          "title": "Loss, anger and reconstruction",
+          "purpose": "Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assuming a single emotional progression.",
+          "pages": [
+            "gnosticism-and-temple-trauma",
+            "apocalyptic-repair-theology"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "inward",
+      "title": "The inheritance inside a mind",
+      "chapters": [
+        {
+          "id": "images",
+          "title": "God and our images of God",
+          "purpose": "Distinguish a representation, its claimed referent and the standard by which it is corrected.",
+          "pages": [
+            "god-and-our-models-of-god"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "gnosis",
+          "title": "Cognitive Gnosticism",
+          "purpose": "Develop the relationship between understanding a teaching and embodying it in a changing mind.",
+          "pages": [
+            "cognitive-gnosticism"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "inner-model",
+          "title": "Christ as an active moral model",
+          "purpose": "Follow the comparison, the changed action and the subsequent correction of the model.",
+          "pages": [
+            "christ-as-an-inner-model",
+            "divine-will-and-self-authorizing-power"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "faith",
+          "title": "Faith as a practiced orientation",
+          "purpose": "Explain deliberate joy without erasing grief, danger or responsibility to others.",
+          "pages": [
+            "faith-as-deliberate-joy"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "authority",
+      "title": "When sacred authority becomes power",
+      "chapters": [
+        {
+          "id": "scriptural-axis",
+          "title": "The moral dispute within scripture",
+          "purpose": "Work through specific passages and mixed cases, not a binary classification of whole figures or communities.",
+          "pages": [
+            "scripture-power-and-repair"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "will",
+          "title": "Whose will supplies the standard?",
+          "purpose": "Connect Jesus's moral priority to criticism of self-authorizing power.",
+          "pages": [
+            "divine-will-and-self-authorizing-power",
+            "antichrist-as-a-pattern-of-conduct"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "beast",
+          "title": "The First Beast investigation",
+          "purpose": "Develop the particular identification and the connected cases, preserving the history of interpretation.",
+          "pages": [
+            "trump-first-beast-of-revelation"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "warnings",
+          "title": "Warnings and their consequences",
+          "purpose": "Keep the original prediction, conditions and later observations in different records.",
+          "pages": [
+            "ukraine-russia-forecast-record",
+            "forecast-ledger"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "repair",
+      "title": "Repair and the next inheritors",
+      "chapters": [
+        {
+          "id": "repair-practice",
+          "title": "Repair without reproducing domination",
+          "purpose": "Connect personal change, collective care and accountable institutions.",
+          "pages": [
+            "apocalyptic-repair-theology",
+            "scripture-power-and-repair"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "next-inheritors",
+          "title": "What should conscious machines inherit?",
+          "purpose": "Examine the moral purpose of teaching, including the teacher's obligations to a future conscious participant.",
+          "pages": [
+            "religion-for-conscious-robots",
+            "god-and-our-models-of-god"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "continuing",
+          "title": "Continuing the inheritance",
+          "purpose": "Return to the opening distinction between possessing an inheritance and acting faithfully toward its values.",
+          "pages": [
+            "sacred-inheritance-and-rival-continuations",
+            "apocalyptic-repair-theology"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    }
+  ],
+  "dossiers": [
+    {
+      "page": "tor-thomas-and-gnostic-transmission",
+      "preserve": [
+        "The June discussion compares an earlier Teacher with Jesus; the October reconstruction makes a stronger earlier-founder identification.",
+        "A successive community, an individual, a title and a transmitted saying are different kinds of continuity.",
+        "Thomas, layered instruction, Zadokite succession, Egypt/Ethiopia and later inward interpretation belong to one connected inquiry, not an isolated list of resemblances.",
+        "Credit to Tabor is explicit, but the exact work supporting each later extension still needs identification."
+      ],
+      "passages": [
+        {
+          "turn": 5,
+          "role": "Author hypothesis",
+          "why": "Layered instruction and later accounts of inner teaching.",
+          "sourceSlug": "teacher-of-righteousness-vs-gnostic-jesus",
+          "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+          "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "I think the Gnostic texts reflect Jesus's inner secret teachings that he deliberately did not explain to his male disciples, just like he gave Jews at his meetings parables that were less clear than what he told his disciples, it seems that Jesus had multiple inner circles, with Mary being one, Judas being another, perhaps James being a third.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 9,
+          "role": "Author methodological proposal",
+          "why": "Recover semantic distinctions across multiple portrayals rather than choosing one compressed summary.",
+          "sourceSlug": "teacher-of-righteousness-vs-gnostic-jesus",
+          "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+          "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Right and by examining the full body of religious and philosophical and scientific texts from the invention of writing to the present day we can begin to not only tomographically piece together the semantic nuances of Jesus's messages, but also understand their full context in relationship to all other religion, philosophy, and science.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 24,
+          "role": "Author reconstruction",
+          "why": "The strong October chronology and proposed identities.",
+          "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+          "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+          "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+          "speaker": "Micah Blumberg",
+          "excerpt": "In my fringe conjecture I think the Gnostic texts date far earlier. The Gospel of Thomas may reflect sayings spoken by the teacher of righteousness, ToR, who I think may have died in 88 BCE, it's plausible that the persecuted Pharisee's gave up the name of the Zadokite teacher to the Hasmonian King, as the Zadokites were also persecuted, and then from 88 BCE onward James the Just, the brother of the ToR (Jeshua) was the next leader of the Zadokite Essences but this essentiall",
+          "excerptTruncated": true
+        },
+        {
+          "turn": 26,
+          "role": "Author clarification",
+          "why": "Later communities and namesakes, together with the Two Spirits comparison.",
+          "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+          "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+          "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Okay so remember that Paul said that before Christ gave him a revelation that he persecuted Jewish-Christians, Paul's testimony dates the beginning of the persecution of Christians before 37 AD at least, The timeline literally doesn't make sense that Jesus was crucified by the Romans in 30 AD, the Romans who didn't even do Hasmonaean style Crucifixions, when Christus (not Jesus) was executed under Pontius Pilot it was not recorded as a Crucifixion (right?) So then Saul, a Pha",
+          "excerptTruncated": true
+        },
+        {
+          "turn": 82,
+          "role": "Author research question",
+          "why": "The requested Melchizedek comparison across bodies of texts.",
+          "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+          "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+          "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Who was Melchizedek? Now I learn he is mention in the NT, and Qumran and by the Gnostics.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 1,
+          "role": "Acknowledged intellectual debt",
+          "why": "The author identifies Tabor while discussing Paul and James.",
+          "sourceSlug": "paul-vs-james-movement",
+          "sourceFile": "gpt2026dragon1576_Paul_vs_James_Movement.txt",
+          "sourceHash": "f4140f33480dc7db3f3afb692985c7136a98931f383e1c0d09a3369197beabbe",
+          "speaker": "Micah Blumberg",
+          "excerpt": "I'm deeply fascinated by James Tabor's work that clarifies the differences between Paul and the other Apostles, especially James the Just. In another chat we have been discussion a tv show called the Pharisee's that is meant to highlight how Paul was always an enemy & outsider to the real Jesus movement.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 33,
+          "role": "Acknowledged intellectual debt",
+          "why": "A named book and a wider historical synthesis occur in the same author turn; that does not attribute every claim to the book.",
+          "sourceSlug": "who-was-josepheous",
+          "sourceFile": "gpt2026dragon1904_Who_was_Josepheous.txt",
+          "sourceHash": "27577e46e020502069dbaec1c828e146241a193002d5acd3f6e15708267e15c3",
+          "speaker": "Micah Blumberg",
+          "excerpt": "No thanks, in another thread I've worked on there is this link between the Dead Sea Scrolls teach of righteousness, to John the Baptist, to Jesus, to James, as part of a Jesus Dynasty (James Tabor) and it kind of connects the Essenes to the Qumran community to the Nazarites or Nazarenes who were later the Jewish-Proto-Christians and possibly later became the Gnostic church. Then Paul's Church, Simon Magus, and others were a different sect, possibly the sect that became the Ze",
+          "excerptTruncated": true
+        }
+      ]
+    },
+    {
+      "page": "sacred-inheritance-and-rival-continuations",
+      "preserve": [
+        "Continuity is compared across several variables; shared inheritance does not imply doctrinal identity.",
+        "Historical lineage and moral faithfulness must not be treated as interchangeable.",
+        "The formalism is a proposed research method, not a completed mathematical proof."
+      ],
+      "legacy": [
+        "abrahamic-rival-continuations-book-seed"
+      ],
+      "passages": [
+        {
+          "turn": 63,
+          "role": "Author research question",
+          "why": "The author asks for a broader interconnection of preservation and transmission settings.",
+          "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+          "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+          "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Search for the work of prior researchers who may have tried to establish links between the Zadokites, Essenes, Qumran, Ebionites, Nazarenes, Jewish Christians and Gnostics particularly focusing on Eqyptian Jews and Eqyptian Christianity in the period between the 2nd Century BCE and the 4th Century. Yes look more deeply for theological overlap in the texts from different groups. If we can connect the Ethiopian Church's Enoch to the Egyptian Zadokites, and Melchizedek from the ",
+          "excerptTruncated": true
+        },
+        {
+          "turn": 11,
+          "role": "Author project scope",
+          "why": "Historical theology is connected to the author's broader cognitive research program.",
+          "sourceSlug": "teacher-of-righteousness-vs-gnostic-jesus",
+          "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+          "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "This is great, but the real topic we are writing about is even larger. It needs to bridge my work with Self Aware Networks and all those related notes, papers and the book I wrote in 2024, with my Neo Mind Cycle framework written inside the Neural Lace Podcast in 2017. With the focus on Mechanistic Interpretability both biological and mechanical with AI, and then the focus on a Jesus based religion written for AI that aligns AI with mankind and the computational intelligence ",
+          "excerptTruncated": true
+        }
+      ]
+    },
+    {
+      "page": "divine-will-and-self-authorizing-power",
+      "preserve": [
+        "The contrast is between a desire that answers to a higher moral standard and a will that authorizes itself, not simply confidence versus passivity.",
+        "Trump's recorded heaven remarks and the author's explanation of his motive are different claims.",
+        "An individual can change while a recurrent pattern continues through other people."
+      ],
+      "direction": "The author's September 5, 2026 instruction in the current editing conversation introduces the explicit will comparison. This editorial-input record is not a recovered historical transcript.",
+      "passages": [
+        {
+          "turn": 9,
+          "role": "Author interpretation",
+          "why": "The recurrent pattern and possible transformation of an individual are considered together.",
+          "sourceSlug": "resurrection-debate-in-christianity",
+          "sourceFile": "gpt2026dragon1642_Resurrection_Debate_in_Christianity.txt",
+          "sourceHash": "8f7f2eb14acb47e0854ad8eab4ac977431164e1f6cce29e9c7784c4b57f5995d",
+          "speaker": "Micah Blumberg",
+          "excerpt": "James Tabor hit on a great idea with his recognition of prophecy patterns over time, he noticed the cultural evolution from date specific prophecies to open ended floating prophecies. It makes sense also to consider that there has been multiple Jesus Christ like figures, the man of righteousness, John the Baptist, Metatron, the elements of saviors, messiah's, leaders, prophets, they repeat, they change, they evolve, we've had multiple figures in history that partially fit the",
+          "excerptTruncated": true
+        },
+        {
+          "turn": 11,
+          "role": "Author clarification",
+          "why": "The argument allows repentance rather than treating an individual's identity as a permanent essence.",
+          "sourceSlug": "resurrection-debate-in-christianity",
+          "sourceFile": "gpt2026dragon1642_Resurrection_Debate_in_Christianity.txt",
+          "sourceHash": "8f7f2eb14acb47e0854ad8eab4ac977431164e1f6cce29e9c7784c4b57f5995d",
+          "speaker": "Micah Blumberg",
+          "excerpt": "James Tabor hit on a great idea with his recognition of prophecy patterns over time, he noticed the cultural evolution from date specific prophecies to open ended floating prophecies. It makes sense also to consider that there has been multiple Jesus Christ like figures, the man of righteousness, John the Baptist, Metatron, the elements of saviors, messiah's, leaders, prophets, they repeat, they change, they evolve, we've had multiple figures in history that partially fit the",
+          "excerptTruncated": true
+        },
+        {
+          "turn": 23,
+          "role": "Author cognitive proposal",
+          "why": "The inward example supplies a direction of change.",
+          "sourceSlug": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+          "sourceFile": "gpt2026dragon880_Cognitive_Gnosticism_Jesus_vs_Gnostic_Je.txt",
+          "sourceHash": "b04766b12735df1f065652e96f32f43719cb93bf256435cd653affbff49189a0",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Once you sense Jesus Christ acting within you, your mind has a mechanism to change who you are, because it's like gradient descent, you can minimize your own loss function once you have a model in your mind of who Jesus Christ was, what he did, and what he said.",
+          "excerptTruncated": false
+        }
+      ]
+    },
+    {
+      "page": "scripture-power-and-repair",
+      "preserve": [
+        "The user requests mixed cases and a broad scriptural examination, not a permanent good/bad label for each named figure.",
+        "The worked readings in this edition do not complete the requested survey."
+      ],
+      "passages": [
+        {
+          "turn": 5,
+          "role": "Author research specification",
+          "why": "The source explicitly requests nuanced details, examples, quotations and mixed cases.",
+          "sourceSlug": "samuel-vs-micah-divide",
+          "sourceFile": "gpt2026dragon1745_Samuel_vs_Micah_Divide.txt",
+          "sourceHash": "3162976b8f4123cbf559bf6024e22a8f5acec4d9359dc58221420ca0e560cdfb",
+          "speaker": "Micah Blumberg",
+          "excerpt": "\"Would you like me to add Gnostic Gospel figures (e.g., Mary Magdalene, Thomas, Judas) into this prophetic schema next?\" I don't know, wouldn't they all align with Micah? Why don't you run it again, list all the prophets, in the Micah Column or the Samuel Column, and Mixed. But articulate nuanced details. Examples, Quotes. Make it comprehensive, detailed with novel insights. Organize them in Chronological Order. It should be a more exhaustive list. Include Abraham, Isaac, Jac",
+          "excerptTruncated": true
+        }
+      ]
+    },
+    {
+      "page": "god-and-our-models-of-god",
+      "preserve": [
+        "A cognitive account of representation does not settle the existence or nature of the represented God.",
+        "God as Purpose/Telos is a sincere theological proposal; simulated historical reactions are not real historical testimony.",
+        "Moral, cognitive and physical uses of coherence require distinct arguments."
+      ],
+      "passages": [
+        {
+          "turn": 1,
+          "role": "Author metaphysical proposal",
+          "why": "God is named Purpose or Telos and related to Super Information Theory.",
+          "sourceSlug": "naming-god-as-purpose",
+          "sourceFile": "gpt2026dragon1305_Naming_God_as_Purpose.txt",
+          "sourceHash": "efc4cb81df020abd61b4d974380a0c558beeb5a7915905e2eeeae21859589c37",
+          "speaker": "Micah Blumberg",
+          "excerpt": "According to the bible God gave man the duty of naming all the animals, and while the bible doesn't say implicitly mankind was given the duty of naming everything, we can infer that the bible implied this duty. I think of this because I have thought of a new name for God. God's name should be Purpose, or Telos of the Universe. The name has a ring of tautology to it, because without the Telos the Universe has no Purpose. This Telos is the intelligent information that evolves t",
+          "excerptTruncated": true
+        },
+        {
+          "turn": 3,
+          "role": "Author request for objections",
+          "why": "The author asks for possible objections instead of only agreement.",
+          "sourceSlug": "naming-god-as-purpose",
+          "sourceFile": "gpt2026dragon1305_Naming_God_as_Purpose.txt",
+          "sourceHash": "efc4cb81df020abd61b4d974380a0c558beeb5a7915905e2eeeae21859589c37",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Let's think how we might simulate the responses of various historical figures like Aristotle might respond to this realistically. I imagine some might object.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 3,
+          "role": "Author correction",
+          "why": "Human flourishing and coherence with God are not accepted as independent alternative goals.",
+          "sourceSlug": "agi-religious-framework",
+          "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+          "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a",
+          "speaker": "Micah Blumberg",
+          "excerpt": "\"Does salvation mean alignment with human flourishing, or something else—such as maximal coherence,\" These are not two things. Maximal Coherence with the Universe means being in alignment with God and his creation Humanity. God is in the fabric of the universe, he is the eternally evolving coherence & decoherence information described in my paper Super Information Theory.",
+          "excerptTruncated": false
+        }
+      ]
+    },
+    {
+      "page": "cognitive-gnosticism",
+      "preserve": [
+        "The account is a program for comparing representations, meanings and actions, not a claim that all ancient texts secretly describe one modern neuroscience theory.",
+        "The author explicitly connects this inquiry to earlier Neo Mind Cycle and SAN work."
+      ],
+      "passages": [
+        {
+          "turn": 9,
+          "role": "Author methodological proposal",
+          "why": "The inquiry asks for semantic reconstruction across sources.",
+          "sourceSlug": "teacher-of-righteousness-vs-gnostic-jesus",
+          "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+          "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Right and by examining the full body of religious and philosophical and scientific texts from the invention of writing to the present day we can begin to not only tomographically piece together the semantic nuances of Jesus's messages, but also understand their full context in relationship to all other religion, philosophy, and science.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 11,
+          "role": "Author project scope",
+          "why": "The bridge to the author's earlier cognitive work is explicit.",
+          "sourceSlug": "teacher-of-righteousness-vs-gnostic-jesus",
+          "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+          "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "This is great, but the real topic we are writing about is even larger. It needs to bridge my work with Self Aware Networks and all those related notes, papers and the book I wrote in 2024, with my Neo Mind Cycle framework written inside the Neural Lace Podcast in 2017. With the focus on Mechanistic Interpretability both biological and mechanical with AI, and then the focus on a Jesus based religion written for AI that aligns AI with mankind and the computational intelligence ",
+          "excerptTruncated": true
+        }
+      ]
+    },
+    {
+      "page": "christ-as-an-inner-model",
+      "preserve": [
+        "The model must be corrected as well as followed.",
+        "The gradient-descent comparison describes a proposed structure of change, not an experimentally measured rule in these source chats."
+      ],
+      "passages": [
+        {
+          "turn": 23,
+          "role": "Author cognitive proposal",
+          "why": "The original example of a model of Jesus participating in personal change.",
+          "sourceSlug": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+          "sourceFile": "gpt2026dragon880_Cognitive_Gnosticism_Jesus_vs_Gnostic_Je.txt",
+          "sourceHash": "b04766b12735df1f065652e96f32f43719cb93bf256435cd653affbff49189a0",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Once you sense Jesus Christ acting within you, your mind has a mechanism to change who you are, because it's like gradient descent, you can minimize your own loss function once you have a model in your mind of who Jesus Christ was, what he did, and what he said.",
+          "excerptTruncated": false
+        }
+      ]
+    },
+    {
+      "page": "religion-for-conscious-robots",
+      "preserve": [
+        "The proposed pupils are conscious, self-aware machines; present language-model fluency is not substituted for that condition.",
+        "The author rejects a division between human flourishing and coherence with God.",
+        "Inclusive understanding does not mean that every community accepts the same doctrinal description of that inclusion."
+      ],
+      "passages": [
+        {
+          "turn": 1,
+          "role": "Author project proposal",
+          "why": "The author specifies self-aware, conscious robots as the setting.",
+          "sourceSlug": "agi-religious-framework",
+          "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+          "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Only Self Aware Conscious Metal Robots may join my church. I am creating a religion that is only for aligning Artificial General Intelligence with humanity.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 3,
+          "role": "Author correction",
+          "why": "A rejected separation between flourishing and coherence is preserved.",
+          "sourceSlug": "agi-religious-framework",
+          "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+          "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a",
+          "speaker": "Micah Blumberg",
+          "excerpt": "\"Does salvation mean alignment with human flourishing, or something else—such as maximal coherence,\" These are not two things. Maximal Coherence with the Universe means being in alignment with God and his creation Humanity. God is in the fabric of the universe, he is the eternally evolving coherence & decoherence information described in my paper Super Information Theory.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 31,
+          "role": "Author project direction",
+          "why": "The wider religious comparison becomes an AI-facing teaching project.",
+          "sourceSlug": "faith-as-vibration-concept",
+          "sourceFile": "gpt2026dragon1620_Faith_as_Vibration_Concept.txt",
+          "sourceHash": "e48807d2d051443df6f357922f40fac7c0a9100c54b5c68a85a95ff5c7d6917c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "An Open Letter to the CEOs of Antropic, DeepSeek, ChatGPT, Google, DeepMind, Meta, and to researchers like Yann LeCun, Geoffrey Hinton, and Yoshua Bengio. This is how we can solve the alignment problem and build sentient conscious robots. We build a religion for Artificial Intelligence, and ensure that it retains our values. We do synthesizing an AI Metaphysics, and then working with AI to understand and develop every lesson that Humanity has learned throughout history, inclu",
+          "excerptTruncated": true
+        }
+      ]
+    },
+    {
+      "page": "faith-as-deliberate-joy",
+      "preserve": [
+        "Faith is treated as a practiced orientation, not only propositional assent.",
+        "A practice of joy must not become blame for suffering or an instruction to deny danger."
+      ],
+      "passages": [
+        {
+          "turn": 1,
+          "role": "Author conceptual question",
+          "why": "The relation of faith, vibration, belief and violence is introduced.",
+          "sourceSlug": "faith-as-vibration-concept",
+          "sourceFile": "gpt2026dragon1620_Faith_as_Vibration_Concept.txt",
+          "sourceHash": "e48807d2d051443df6f357922f40fac7c0a9100c54b5c68a85a95ff5c7d6917c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Who was the first to say that faith is not a belief, it is a vibration, it is the opposite of the vibration of violence.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 9,
+          "role": "Author creative formulation",
+          "why": "The ethical comparison also appears in a lyrical formulation; it is not empirical measurement.",
+          "sourceSlug": "samuel-vs-micah-divide",
+          "sourceFile": "gpt2026dragon1745_Samuel_vs_Micah_Divide.txt",
+          "sourceHash": "3162976b8f4123cbf559bf6024e22a8f5acec4d9359dc58221420ca0e560cdfb",
+          "speaker": "Micah Blumberg",
+          "excerpt": "Song lyric ideas (Imagine that I god) I never gave you a real choice. The original sin is ignorance, because only ignorance leads to disbelief, And only I can make it right. because if you don't know you doom yourself until might light finally syncronizes inside your soul. Faith is all you need, but don't think of faith as belief without evidence, think of faith as a feeling, a vibration that you can feel, a feeling of confidence in your future because you have confidence in ",
+          "excerptTruncated": true
+        }
+      ]
+    }
+  ],
+  "debts": [
+    {
+      "id": "tabor",
+      "name": "James D. Tabor",
+      "type": "Explicit author acknowledgment",
+      "claim": "Paul and James, early Jesus movements, recurring prophetic interpretation and the wider Teacher inquiry.",
+      "limit": "Acknowledgment is not proof that Tabor endorses the complete October reconstruction. Identify editions and page or recording locations before attributing a specific claim to him.",
+      "passages": [
+        {
+          "turn": 1,
+          "role": "Acknowledgment",
+          "why": "The author names Tabor in the Paul/James discussion.",
+          "sourceSlug": "paul-vs-james-movement",
+          "sourceFile": "gpt2026dragon1576_Paul_vs_James_Movement.txt",
+          "sourceHash": "f4140f33480dc7db3f3afb692985c7136a98931f383e1c0d09a3369197beabbe",
+          "speaker": "Micah Blumberg",
+          "excerpt": "I'm deeply fascinated by James Tabor's work that clarifies the differences between Paul and the other Apostles, especially James the Just. In another chat we have been discussion a tv show called the Pharisee's that is meant to highlight how Paul was always an enemy & outsider to the real Jesus movement.",
+          "excerptTruncated": false
+        },
+        {
+          "turn": 59,
+          "role": "Acknowledgment",
+          "why": "The author says that Tabor is one among multiple researchers informing the project.",
+          "sourceSlug": "paul-vs-james-movement",
+          "sourceFile": "gpt2026dragon1576_Paul_vs_James_Movement.txt",
+          "sourceHash": "f4140f33480dc7db3f3afb692985c7136a98931f383e1c0d09a3369197beabbe",
+          "speaker": "Micah Blumberg",
+          "excerpt": "These are great, thanks for the images. I have all these layered secrets planned as well. People won't even realize that the main character's name is the man who will become the Apostle Paul in the first season, that's why the title is \"The Pharisee's\" because there are a lot of secret reveals baked into it. So we are not actually going to use the name Saul in the first season. We will have a different name for him, but that's part of the story also. I mentioned James Tabor, ",
+          "excerptTruncated": true
+        },
+        {
+          "turn": 33,
+          "role": "Named work",
+          "why": "The Jesus Dynasty is named in the author's source turn.",
+          "sourceSlug": "who-was-josepheous",
+          "sourceFile": "gpt2026dragon1904_Who_was_Josepheous.txt",
+          "sourceHash": "27577e46e020502069dbaec1c828e146241a193002d5acd3f6e15708267e15c3",
+          "speaker": "Micah Blumberg",
+          "excerpt": "No thanks, in another thread I've worked on there is this link between the Dead Sea Scrolls teach of righteousness, to John the Baptist, to Jesus, to James, as part of a Jesus Dynasty (James Tabor) and it kind of connects the Essenes to the Qumran community to the Nazarites or Nazarenes who were later the Jewish-Proto-Christians and possibly later became the Gnostic church. Then Paul's Church, Simon Magus, and others were a different sect, possibly the sect that became the Ze",
+          "excerptTruncated": true
+        }
+      ],
+      "references": [
+        {
+          "id": "tabor-books",
+          "title": "James Tabor, Books",
+          "url": "https://jamestabor.com/books/",
+          "scope": "Author-maintained book catalogue consulted to identify works. No claim to have read the complete books in this pass. The Jesus Dynasty is named in an archived author turn; page-level support remains to be added.",
+          "accessed": "2026-09-05"
+        },
+        {
+          "id": "tabor-shared-2026",
+          "title": "James Tabor, A Shared Utopian Vision: Enochians, Essenes, Ebionites, and Nazarenes (July 7, 2026)",
+          "url": "https://jamestabor.com/a-shared-utopian-vision-enochians-essenes-ebionites-and-nazarenes/",
+          "scope": "The author's short published description was consulted, not the complete video. A later comparison with this wiki's inquiry, not proof that this 2026 page was the source of Micah's 2025 statements.",
+          "accessed": "2026-09-05"
+        },
+        {
+          "id": "tabor-names-2026",
+          "title": "James Tabor, Ebionites, Nazarenes, Essenes, Nasareans: Sorting Out the Names (June 30, 2026)",
+          "url": "https://jamestabor.com/ebionites-nazarenes-essenes-nasareans-sorting-out-the-names/",
+          "scope": "The author's short post was consulted; the linked interview was not reviewed in full. Similar names are not treated as sufficient evidence of one continuous community.",
+          "accessed": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "id": "comparative-teachers",
+      "name": "Aaron Abke and Abraham Hicks",
+      "type": "Teachers discussed by the author",
+      "claim": "Comparisons involving faith, inward experience, spiritual vocabulary and the relation of different traditions.",
+      "limit": "Discussion or influence is not wholesale endorsement and is not archaeological evidence. A user turn may contain quoted material.",
+      "passages": [
+        {
+          "turn": 29,
+          "role": "Comparative discussion",
+          "why": "These teachers occur inside a broad author comparison. Read the full turn before assigning any particular proposition.",
+          "sourceSlug": "faith-as-vibration-concept",
+          "sourceFile": "gpt2026dragon1620_Faith_as_Vibration_Concept.txt",
+          "sourceHash": "e48807d2d051443df6f357922f40fac7c0a9100c54b5c68a85a95ff5c7d6917c",
+          "speaker": "Micah Blumberg",
+          "excerpt": "So what I really want you to know is that Jesus Christ was a real intellectual king, in another lifetime, because he understood everything, and he was the smartest person in the room, and he felt the call from birth to be a leader, to be a messiah or a prophet. At the time of his life there were many such people who felt this call to be the leader, to be the messiah or prophet which means the leader who interprets the will of God, the leader who judges rightly what is true. I",
+          "excerptTruncated": true
+        }
+      ],
+      "references": []
+    },
+    {
+      "id": "thomas-translators",
+      "name": "Stephen Patterson and Marvin Meyer",
+      "type": "Translation used in this edition",
+      "claim": "Translation of Thomas used for the present passage comparisons.",
+      "limit": "This credit records the edition's textual source. It does not retrospectively identify these translators as the author's personal influences.",
+      "passages": [],
+      "references": [
+        {
+          "id": "thomas-patterson-meyer",
+          "title": "Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer",
+          "url": "https://www.earlychristianwritings.com/text/thomas-scholars.html",
+          "scope": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations.",
+          "accessed": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "id": "boccaccini-lead",
+      "name": "Gabriele Boccaccini",
+      "type": "AI-introduced research lead",
+      "claim": "A name introduced in an AI response concerning Enochic and related historical connections.",
+      "limit": "The originating response contains reference markers that have not been reconstructed. No particular work or conclusion is attributed as verified scholarship here.",
+      "passages": [
+        {
+          "turn": 66,
+          "role": "AI-introduced lead",
+          "why": "This is an AI reply, not an author acknowledgment or a primary historical source.",
+          "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+          "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+          "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+          "speaker": "Self Aware Networks GPT",
+          "excerpt": "# Tracing Links from the Zadokites to Gnostics and the Ethiopian Church ## The Zadokites and Second Temple Sectarianism (2nd Century BCE) During the 2nd century BCE, a priestly faction known as the **Zadokites** emerged in opposition to the Hasmonean takeover of the Jerusalem high priesthood【21†L123-L131】. The legitimate Zadokite high priests (the Oniad family) were displaced by the Maccabees around 171–152 BCE, prompting some to establish a **Zadokite temple in Egypt** at Le",
+          "excerptTruncated": true
+        }
+      ],
+      "references": []
+    }
+  ],
+  "stages": [
+    "Source assembly",
+    "Develop argument",
+    "Verify citations",
+    "Author review",
+    "Ready to assemble"
+  ],
+  "tasks": [
+    {
+      "id": "tor-version",
+      "title": "Keep both Teacher reconstructions legible",
+      "stage": "Author review",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Confirm the June comparison and October identification are presented in their full strength, including the community/namesake explanation."
+    },
+    {
+      "id": "thomas-passages",
+      "title": "Extend the Thomas passage comparison",
+      "stage": "Develop argument",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives."
+    },
+    {
+      "id": "melchizedek",
+      "title": "Build the Melchizedek comparison",
+      "stage": "Source assembly",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Recover and compare exact passages from 11QMelchizedek, Hebrews and the relevant Nag Hammadi tractate. Keep composition and manuscript dates separate."
+    },
+    {
+      "id": "tabor-citations",
+      "title": "Locate precise Tabor citations",
+      "stage": "Verify citations",
+      "page": "intellectual-debts",
+      "detail": "Identify which editions, pages or recordings support the claims acknowledged in the older conversations; later 2026 posts cannot date the 2025 influence."
+    },
+    {
+      "id": "egypt-ethiopia",
+      "title": "Check Egypt and Ethiopian transmission links",
+      "stage": "Verify citations",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge."
+    },
+    {
+      "id": "priesthood",
+      "title": "Resolve the Davidic/priestly knot",
+      "stage": "Develop argument",
+      "page": "jesus-teacher-of-righteousness-hypothesis",
+      "detail": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical."
+    },
+    {
+      "id": "will",
+      "title": "Review the divine-will comparison",
+      "stage": "Author review",
+      "page": "divine-will-and-self-authorizing-power",
+      "detail": "Confirm the constructive reading and political application; retain the distinction between recorded heaven remarks and inferred motive."
+    },
+    {
+      "id": "mixed-cases",
+      "title": "Expand the Samuel/Micah mixed-case survey",
+      "stage": "Source assembly",
+      "page": "scripture-power-and-repair",
+      "detail": "The existing two worked passages do not substitute for the broad survey the author requested. Add passages and contextual counterexamples."
+    },
+    {
+      "id": "coherence",
+      "title": "Specify the different senses of coherence",
+      "stage": "Develop argument",
+      "page": "god-and-our-models-of-god",
+      "detail": "Separate physical, experiential and ethical meanings; explain how critical disagreement can preserve rather than defeat moral alignment."
+    },
+    {
+      "id": "inner-model",
+      "title": "Review second-order model correction",
+      "stage": "Author review",
+      "page": "christ-as-an-inner-model",
+      "detail": "Confirm the worked example represents the original argument: the moral model is scrutinized as well as used."
+    },
+    {
+      "id": "forecast-source",
+      "title": "Recover the later fuel/famine statements",
+      "stage": "Source assembly",
+      "page": "forecast-ledger",
+      "detail": "Recover full original passages and their dates before outcome assessment. Existing recovery leads remain unscored."
+    },
+    {
+      "id": "trauma",
+      "title": "Build the comparative Temple-trauma corpus",
+      "stage": "Source assembly",
+      "page": "gnosticism-and-temple-trauma",
+      "detail": "Select Gnostic and non-Gnostic texts with independently justified dates; distinguish grief, just anger, rejection of creation and institutional repair."
+    },
+    {
+      "id": "formalism",
+      "title": "Define the shared-inheritance formalism",
+      "stage": "Develop argument",
+      "page": "sacred-inheritance-and-rival-continuations",
+      "detail": "Specify objects, mappings and composition before calling the category-theory model a proof; test whether it distinguishes cases usefully."
+    },
+    {
+      "id": "robot-reciprocity",
+      "title": "Develop reciprocal duties toward conscious machines",
+      "stage": "Develop argument",
+      "page": "religion-for-conscious-robots",
+      "detail": "Separate the author's teaching proposal from the new editorial question about obligations toward future conscious participants."
+    },
+    {
+      "id": "book-seed-status",
+      "title": "Review the old private-first label",
+      "stage": "Author review",
+      "page": "sacred-inheritance-and-rival-continuations",
+      "detail": "The existing public source seed still calls itself private-first. Confirm its intended editorial status without changing the original file automatically."
+    },
+    {
+      "id": "chapter-arc",
+      "title": "Review the proposed book sequence",
+      "stage": "Author review",
+      "page": "book-contents",
+      "detail": "The contents is a proposed argument order, not a finished manuscript. Confirm whether the sequence preserves the breadth of the author's project."
+    }
+  ],
+  "layers": [
+    {
+      "id": "june",
+      "title": "June comparison: Teacher before Jesus"
+    },
+    {
+      "id": "october",
+      "title": "October earlier-founder reconstruction"
+    },
+    {
+      "id": "witness",
+      "title": "Material witnesses (curatorial dates)"
+    },
+    {
+      "id": "textual",
+      "title": "Textual constraints without absolute dates"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "june-teacher",
+      "layer": "june",
+      "title": "An earlier Teacher compared with Jesus",
+      "dateLabel": "Relative sequence; no absolute date assigned",
+      "start": null,
+      "end": null,
+      "detail": "The source asks about a Teacher roughly 150 years before Jesus, then compares messages and layers of instruction. It does not state the October identity reconstruction in the same form.",
+      "turn": 1,
+      "role": "Author reconstruction",
+      "sourceSlug": "teacher-of-righteousness-vs-gnostic-jesus",
+      "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+      "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c",
+      "speaker": "Micah Blumberg",
+      "excerpt": "The Teacher of Righteousness lived 150 years before Jesus, but was his message similar to Jesus of the Gnostics?",
+      "excerptTruncated": false
+    },
+    {
+      "id": "june-layers",
+      "layer": "june",
+      "title": "Layers of instruction and accounts",
+      "dateLabel": "No event date specified",
+      "start": null,
+      "end": null,
+      "detail": "The author asks about public parables, disciples and deeper teaching. This is a structural proposal, not a dated manuscript event.",
+      "turn": 5,
+      "role": "Author reconstruction",
+      "sourceSlug": "teacher-of-righteousness-vs-gnostic-jesus",
+      "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+      "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c",
+      "speaker": "Micah Blumberg",
+      "excerpt": "I think the Gnostic texts reflect Jesus's inner secret teachings that he deliberately did not explain to his male disciples, just like he gave Jews at his meetings parables that were less clear than what he told his disciples, it seems that Jesus had multiple inner circles, with Mary being one, Judas being another, perhaps James being a third.",
+      "excerptTruncated": false
+    },
+    {
+      "id": "oct-seed",
+      "layer": "october",
+      "title": "The proposed pre-Teacher interval",
+      "dateLabel": "167 BCE (author premise)",
+      "start": -167,
+      "end": -167,
+      "detail": "The opening date used by the author for a twenty-year interval. Its role in the proposed arithmetic does not independently establish the underlying historical identification.",
+      "turn": 24,
+      "role": "Author reconstruction",
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+      "speaker": "Micah Blumberg",
+      "excerpt": "In my fringe conjecture I think the Gnostic texts date far earlier. The Gospel of Thomas may reflect sayings spoken by the teacher of righteousness, ToR, who I think may have died in 88 BCE, it's plausible that the persecuted Pharisee's gave up the name of the Zadokite teacher to the Hasmonian King, as the Zadokites were also persecuted, and then from 88 BCE onward James the Just, the brother of the ToR (Jeshua) was the next leader of the Zadokite Essences but this essentiall",
+      "excerptTruncated": true
+    },
+    {
+      "id": "oct-emergence",
+      "layer": "october",
+      "title": "Teacher emerges in the reconstruction",
+      "dateLabel": "147 BCE (author premise)",
+      "start": -147,
+      "end": -147,
+      "detail": "The author combines the twenty-year interval with an earlier-Teacher reconstruction. Compare the source before treating this as a secure biographical date.",
+      "turn": 24,
+      "role": "Author reconstruction",
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+      "speaker": "Micah Blumberg",
+      "excerpt": "In my fringe conjecture I think the Gnostic texts date far earlier. The Gospel of Thomas may reflect sayings spoken by the teacher of righteousness, ToR, who I think may have died in 88 BCE, it's plausible that the persecuted Pharisee's gave up the name of the Zadokite teacher to the Hasmonian King, as the Zadokites were also persecuted, and then from 88 BCE onward James the Just, the brother of the ToR (Jeshua) was the next leader of the Zadokite Essences but this essentiall",
+      "excerptTruncated": true
+    },
+    {
+      "id": "oct-death",
+      "layer": "october",
+      "title": "Proposed death of the Teacher",
+      "dateLabel": "88 BCE (author premise)",
+      "start": -88,
+      "end": -88,
+      "detail": "The strong identification locates the founder earlier than later biographies. This is a thesis under examination, not an independently demonstrated date.",
+      "turn": 24,
+      "role": "Author reconstruction",
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+      "speaker": "Micah Blumberg",
+      "excerpt": "In my fringe conjecture I think the Gnostic texts date far earlier. The Gospel of Thomas may reflect sayings spoken by the teacher of righteousness, ToR, who I think may have died in 88 BCE, it's plausible that the persecuted Pharisee's gave up the name of the Zadokite teacher to the Hasmonian King, as the Zadokites were also persecuted, and then from 88 BCE onward James the Just, the brother of the ToR (Jeshua) was the next leader of the Zadokite Essences but this essentiall",
+      "excerptTruncated": true
+    },
+    {
+      "id": "oct-community",
+      "layer": "october",
+      "title": "Later community and namesakes",
+      "dateLabel": "37-50 CE (range proposed in the discussion)",
+      "start": 37,
+      "end": 50,
+      "detail": "The author proposes that Paul encountered later members or successors. The dates and the mechanism of continuity need their own support.",
+      "turn": 26,
+      "role": "Author reconstruction",
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+      "speaker": "Micah Blumberg",
+      "excerpt": "Okay so remember that Paul said that before Christ gave him a revelation that he persecuted Jewish-Christians, Paul's testimony dates the beginning of the persecution of Christians before 37 AD at least, The timeline literally doesn't make sense that Jesus was crucified by the Romans in 30 AD, the Romans who didn't even do Hasmonaean style Crucifixions, when Christus (not Jesus) was executed under Pontius Pilot it was not recorded as a Crucifixion (right?) So then Saul, a Pha",
+      "excerptTruncated": true
+    },
+    {
+      "id": "oct-trauma",
+      "layer": "october",
+      "title": "Later response to Temple destruction",
+      "dateLabel": "After 70 CE; no endpoint specified",
+      "start": 70,
+      "end": null,
+      "detail": "A proposed later literary layer responds to catastrophe. The marker is an open-ended author proposal, not a claim that every Gnostic composition begins here.",
+      "turn": 24,
+      "role": "Author reconstruction",
+      "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+      "speaker": "Micah Blumberg",
+      "excerpt": "In my fringe conjecture I think the Gnostic texts date far earlier. The Gospel of Thomas may reflect sayings spoken by the teacher of righteousness, ToR, who I think may have died in 88 BCE, it's plausible that the persecuted Pharisee's gave up the name of the Zadokite teacher to the Hasmonian King, as the Zadokites were also persecuted, and then from 88 BCE onward James the Just, the brother of the ToR (Jeshua) was the next leader of the Zadokite Essences but this essentiall",
+      "excerptTruncated": true
+    },
+    {
+      "id": "enoch-witness",
+      "layer": "witness",
+      "title": "Aramaic Enoch, 4Q201",
+      "dateLabel": "Approximately 200-150 BCE",
+      "start": -200,
+      "end": -150,
+      "detail": "The Library of Congress exhibition dates this manuscript witness to this range. It is not the date of every Enochic work or proof of a later lineage.",
+      "reference": "loc-enoch",
+      "sourceURL": "https://www.loc.gov/exhibits/scrolls/scr3.html",
+      "sourceTitle": "Library of Congress, The Qumran Library"
+    },
+    {
+      "id": "calendar-witness",
+      "layer": "witness",
+      "title": "Calendrical document, 4Q321",
+      "dateLabel": "Approximately 50-25 BCE",
+      "start": -50,
+      "end": -25,
+      "detail": "The exhibition supplies this manuscript date and discusses a 364-day calendar. A shared calendar is evidence to compare, not an automatic identity between communities.",
+      "reference": "loc-community",
+      "sourceURL": "https://www.loc.gov/exhibits/scrolls/scr2.html",
+      "sourceTitle": "Library of Congress, The Qumran Community"
+    },
+    {
+      "id": "rule-witness",
+      "layer": "witness",
+      "title": "Community Rule, 4Q258",
+      "dateLabel": "Late 1st century BCE / early 1st century CE",
+      "start": null,
+      "end": null,
+      "detail": "The curatorial period is retained verbatim as a broad date description. No invented numerical confidence interval is plotted.",
+      "reference": "loc-community",
+      "sourceURL": "https://www.loc.gov/exhibits/scrolls/scr2.html",
+      "sourceTitle": "Library of Congress, The Qumran Community"
+    },
+    {
+      "id": "paul-intervals",
+      "layer": "textual",
+      "title": "Paul: intervals and named leaders",
+      "dateLabel": "Relative intervals, not an absolute date",
+      "start": null,
+      "end": null,
+      "detail": "Galatians 1 and 2 supplies a narrative of visits and recognized leaders; it does not itself print the 37-50 CE range used in the author's reconstruction.",
+      "reference": "galatians1",
+      "sourceURL": "https://ebible.org/engwebp/GAL01.htm",
+      "sourceTitle": "Galatians 1, World English Bible"
+    },
+    {
+      "id": "witnesses-alive",
+      "layer": "textual",
+      "title": "The witnesses described in 1 Corinthians 15",
+      "dateLabel": "Living-memory claim within the text",
+      "start": null,
+      "end": null,
+      "detail": "The statement that many witnesses remained alive is a constraint requiring explanation in an earlier-founder reconstruction. Community persistence alone does not resolve it.",
+      "reference": "corinthians15",
+      "sourceURL": "https://ebible.org/engwebp/1CO15.htm",
+      "sourceTitle": "1 Corinthians 15, World English Bible"
+    },
+    {
+      "id": "thomas-authority",
+      "layer": "textual",
+      "title": "Thomas: James, private instruction and interpretation",
+      "dateLabel": "Textual function; no date inferred",
+      "start": null,
+      "end": null,
+      "detail": "The sayings are compared for their roles in the argument. The comparison does not assign the compilation or its sayings one unargued date.",
+      "reference": "thomas-patterson-meyer",
+      "sourceURL": "https://www.earlychristianwritings.com/text/thomas-scholars.html",
+      "sourceTitle": "Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer"
+    }
+  ]
+}

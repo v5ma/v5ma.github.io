@@ -23,12 +23,12 @@ def check(name, condition):
 def open_page(page, slug='home', extra=''):
     page.goto(BASE + '?page=' + quote(slug) + extra, wait_until='domcontentloaded')
     page.wait_for_function('(slug)=>window.TheologyReader?.current()?.slug===slug', arg=slug)
-    page.wait_for_function('(slug)=>document.querySelector("#article-body")?.dataset.depthReady===slug', arg=slug)
+    page.wait_for_function('(slug)=>document.querySelector("#article-body")?.dataset.foundationReady===slug', arg=slug)
     page.wait_for_timeout(150)
 
 def navigate(page, slug):
     page.evaluate('(slug)=>window.TheologyReader.navigate(slug, true)', slug)
-    page.wait_for_function('(slug)=>window.TheologyReader?.current()?.slug===slug && document.querySelector("#article-body")?.dataset.depthReady===slug', arg=slug)
+    page.wait_for_function('(slug)=>window.TheologyReader?.current()?.slug===slug && document.querySelector("#article-body")?.dataset.foundationReady===slug', arg=slug)
     page.wait_for_timeout(100)
 
 def screenshot(page, name):
@@ -45,7 +45,7 @@ with sync_playwright() as tool:
     page.on('pageerror', lambda e: ERRORS.append(str(e)))
     try:
         open_page(page)
-        check('Native HTTP reader loads 399 indexed pages', page.evaluate('TheologyReader.pages().length') == 399)
+        check('Native HTTP reader loads 408 indexed pages', page.evaluate('TheologyReader.pages().length') == 408)
         check('Home prioritizes three flagship arguments', page.locator('.depth-featured .research-card').count() == 3)
         check('Homepage describes 354 original source conversations', '354' in page.locator('.depth-home-footer').inner_text())
         check('Eight subject collections are accessible in the sidebar', page.locator('.research-topic-link').count() == 8)
@@ -247,7 +247,7 @@ with sync_playwright() as tool:
 
         # Reader-depth edition: usability and evidence checks with native controls.
         open_page(page)
-        check('Home includes a connecting introduction and all other developed articles', page.locator('.depth-article-index a').count()==11 and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
+        check('Home includes a connecting introduction and all other developed articles', page.locator('.depth-article-index a').count()==16 and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
         page.locator('.depth-featured a[data-page="apocalyptic-repair-theology"]').click()
         page.wait_for_function('document.querySelector("#article-body")?.dataset.depthReady==="apocalyptic-repair-theology"')
         check('A normal homepage click opens the flagship article', page.evaluate('TheologyReader.current().slug')=='apocalyptic-repair-theology')
@@ -329,6 +329,8 @@ with sync_playwright() as tool:
         open_page(page)
         screenshot(page,'home-desktop.png')
         page.screenshot(path=str(OUT/'home-desktop-top.png'),full_page=False)
+        from foundation_checks import run_foundation_checks
+        run_foundation_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback

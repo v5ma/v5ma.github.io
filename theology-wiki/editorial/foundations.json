@@ -1,0 +1,1252 @@
+{
+  "version": "2026.09.05-foundations-1",
+  "updated": "2026-09-05",
+  "references": [
+    {
+      "id": "will-luke22",
+      "title": "Luke 22, World English Bible",
+      "url": "https://ebible.org/engwebp/LUK22.htm",
+      "scope": "Primary text consulted, especially 22:42. The article distinguishes the petition and the priority of the Father's will from obedience to a human interpreter.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "will-john5",
+      "title": "John 5, World English Bible",
+      "url": "https://ebible.org/engwebp/JHN05.htm",
+      "scope": "Primary text consulted, especially 5:30. Supports the contrast between seeking one's own will and the will of the sender.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "will-john6",
+      "title": "John 6, World English Bible",
+      "url": "https://ebible.org/engwebp/JHN06.htm",
+      "scope": "Primary text consulted, especially 6:38. The contemporary political application is editorial/theological interpretation, not an assertion made by this text.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "samuel8-foundation",
+      "title": "1 Samuel 8, World English Bible",
+      "url": "https://ebible.org/engwebp/1SA08.htm",
+      "scope": "Primary text read for the warning about what kings take. This is a worked mixed case within the requested comparison, not an exhaustive classification of Samuel.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "micah6-foundation",
+      "title": "Micah 6, World English Bible",
+      "url": "https://ebible.org/engwebp/MIC06.htm",
+      "scope": "Primary text read for 6:6-8 and the later criticism of dishonest measures and violence. Distinguishes ritual escalation from justice, mercy and humility.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "thomas-patterson-meyer",
+      "title": "Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer",
+      "url": "https://www.earlychristianwritings.com/text/thomas-scholars.html",
+      "scope": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "loc-community",
+      "title": "Library of Congress, The Qumran Community",
+      "url": "https://www.loc.gov/exhibits/scrolls/scr2.html",
+      "scope": "Curated 1993 exhibition descriptions consulted for Community Rule 4Q258, calendar 4Q321 and MMT 4Q396. These are identified curatorial records, not a new critical edition or the latest dating consensus.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "loc-enoch",
+      "title": "Library of Congress, The Qumran Library",
+      "url": "https://www.loc.gov/exhibits/scrolls/scr3.html",
+      "scope": "Curated exhibition description consulted for Aramaic Enoch 4Q201, dated there to approximately 200-150 BCE. A manuscript witness does not date every Enochic composition or demonstrate a later community's ancestry.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "tabor-shared-2026",
+      "title": "James Tabor, A Shared Utopian Vision: Enochians, Essenes, Ebionites, and Nazarenes (July 7, 2026)",
+      "url": "https://jamestabor.com/a-shared-utopian-vision-enochians-essenes-ebionites-and-nazarenes/",
+      "scope": "The author's short published description was consulted, not the complete video. A later comparison with this wiki's inquiry, not proof that this 2026 page was the source of Micah's 2025 statements.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "tabor-names-2026",
+      "title": "James Tabor, Ebionites, Nazarenes, Essenes, Nasareans: Sorting Out the Names (June 30, 2026)",
+      "url": "https://jamestabor.com/ebionites-nazarenes-essenes-nasareans-sorting-out-the-names/",
+      "scope": "The author's short post was consulted; the linked interview was not reviewed in full. Similar names are not treated as sufficient evidence of one continuous community.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "tabor-books",
+      "title": "James Tabor, Books",
+      "url": "https://jamestabor.com/books/",
+      "scope": "Author-maintained book catalogue consulted to identify works. No claim to have read the complete books in this pass. The Jesus Dynasty is named in an archived author turn; page-level support remains to be added.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "heaven-august-2025",
+      "title": "Donald Trump, August 19, 2025 remarks on ending the war and getting to heaven",
+      "url": "https://www.realclearpolitics.com/video/2025/08/19/trump_i_want_to_try_to_get_to_heaven_if_possible_i_hear_im_not_doing_too_well_--_im_really_at_the_bottom_of_the_totem_pole.html",
+      "scope": "Published recording/transcript of the Fox interview excerpt consulted for the reported words, not independent validation of casualty estimates. The quoted speaker links ending the war to heaven; he does not explicitly explain his concern as putting his own will above God's. That further explanation is identified as the author's theological inference.",
+      "accessed": "2026-09-05"
+    }
+  ],
+  "articles": [
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "title": "Sacred inheritance and rival continuations",
+      "category": "traditions",
+      "summary": "How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.",
+      "sourceIds": [
+        "2656",
+        "1688",
+        "1576"
+      ],
+      "externalSources": [
+        "loc-community",
+        "loc-enoch"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-05",
+      "attribution": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established.",
+      "claimType": "Comparative framework"
+    },
+    {
+      "slug": "tor-thomas-and-gnostic-transmission",
+      "title": "The Teacher, Thomas and Gnostic transmission",
+      "category": "origins",
+      "summary": "A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.",
+      "sourceIds": [
+        "1688",
+        "2656",
+        "2651",
+        "1576",
+        "1904",
+        "1912"
+      ],
+      "externalSources": [
+        "thomas-patterson-meyer",
+        "loc-community",
+        "loc-enoch",
+        "tabor-shared-2026",
+        "tabor-names-2026",
+        "tabor-books",
+        "lim-habakkuk"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-05",
+      "attribution": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established.",
+      "claimType": "Historical reconstruction and textual comparison"
+    },
+    {
+      "slug": "divine-will-and-self-authorizing-power",
+      "title": "Divine will and self-authorizing power",
+      "category": "jesus",
+      "summary": "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.",
+      "sourceIds": [
+        "1642",
+        "880",
+        "1663"
+      ],
+      "externalSources": [
+        "will-luke22",
+        "will-john5",
+        "will-john6",
+        "heaven-august-2025",
+        "rnc-2016",
+        "clemency-2025",
+        "ai-procurement-2025"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-05",
+      "attribution": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established.",
+      "claimType": "Theological interpretation and moral argument"
+    },
+    {
+      "slug": "scripture-power-and-repair",
+      "title": "Scripture, power and the work of repair",
+      "category": "jesus",
+      "summary": "The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.",
+      "sourceIds": [
+        "1745",
+        "880"
+      ],
+      "externalSources": [
+        "samuel8-foundation",
+        "micah6-foundation",
+        "isaiah-1-depth",
+        "luke-10-depth"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-05",
+      "attribution": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established.",
+      "claimType": "Theological interpretation and moral argument"
+    },
+    {
+      "slug": "god-and-our-models-of-god",
+      "title": "God and our models of God",
+      "category": "machines",
+      "summary": "An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.",
+      "sourceIds": [
+        "1305",
+        "880",
+        "1663",
+        "1620"
+      ],
+      "externalSources": [
+        "will-john5",
+        "will-john6"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-05",
+      "attribution": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established.",
+      "claimType": "Theology and cognitive interpretation"
+    }
+  ],
+  "addenda": {
+    "cognitive-gnosticism": {
+      "file": "expand-cognitive-gnosticism.md",
+      "sourceIds": [
+        "1688",
+        "1620"
+      ],
+      "externalSources": []
+    },
+    "christ-as-an-inner-model": {
+      "file": "expand-christ-as-an-inner-model.md",
+      "sourceIds": [
+        "1688",
+        "1745"
+      ],
+      "externalSources": [
+        "will-luke22",
+        "will-john5"
+      ]
+    },
+    "religion-for-conscious-robots": {
+      "file": "expand-religion-for-conscious-robots.md",
+      "sourceIds": [
+        "1620",
+        "1688"
+      ],
+      "externalSources": [
+        "will-john6"
+      ]
+    },
+    "faith-as-deliberate-joy": {
+      "file": "expand-faith-as-deliberate-joy.md",
+      "sourceIds": [
+        "1620",
+        "1745"
+      ],
+      "externalSources": []
+    }
+  },
+  "parts": [
+    {
+      "id": "inheritance",
+      "title": "The contested inheritance",
+      "chapters": [
+        {
+          "id": "shared-archive",
+          "title": "Who inherits the sacred?",
+          "purpose": "Establish the shared-inheritance question before examining rival claims.",
+          "pages": [
+            "sacred-inheritance-and-rival-continuations",
+            "samaritan-texts-and-sacred-authority"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "names",
+          "title": "Names across boundaries",
+          "purpose": "Separate the movement of divine names from the identity of an entire religion.",
+          "pages": [
+            "el-in-ancient-egypt",
+            "kenite-hypothesis-and-yahweh-origins"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "catastrophe-memory",
+          "title": "Catastrophe, departure and memory",
+          "purpose": "Compare the competing Moses and volcano proposals without blending their geographies or dates.",
+          "pages": [
+            "moses-volcano-and-exodus-chronology"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "teacher",
+      "title": "The teacher and the transmitted message",
+      "chapters": [
+        {
+          "id": "teacher-identity",
+          "title": "What survives a teacher?",
+          "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
+          "pages": [
+            "jesus-teacher-of-righteousness-hypothesis"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "purpose": "Present the linked argument before comparing its alternative historical mechanisms.",
+          "pages": [
+            "tor-thomas-and-gnostic-transmission"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "trauma",
+          "title": "Loss, anger and reconstruction",
+          "purpose": "Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assuming a single emotional progression.",
+          "pages": [
+            "gnosticism-and-temple-trauma",
+            "apocalyptic-repair-theology"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "inward",
+      "title": "The inheritance inside a mind",
+      "chapters": [
+        {
+          "id": "images",
+          "title": "God and our images of God",
+          "purpose": "Distinguish a representation, its claimed referent and the standard by which it is corrected.",
+          "pages": [
+            "god-and-our-models-of-god"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "gnosis",
+          "title": "Cognitive Gnosticism",
+          "purpose": "Develop the relationship between understanding a teaching and embodying it in a changing mind.",
+          "pages": [
+            "cognitive-gnosticism"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "inner-model",
+          "title": "Christ as an active moral model",
+          "purpose": "Follow the comparison, the changed action and the subsequent correction of the model.",
+          "pages": [
+            "christ-as-an-inner-model",
+            "divine-will-and-self-authorizing-power"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "faith",
+          "title": "Faith as a practiced orientation",
+          "purpose": "Explain deliberate joy without erasing grief, danger or responsibility to others.",
+          "pages": [
+            "faith-as-deliberate-joy"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "authority",
+      "title": "When sacred authority becomes power",
+      "chapters": [
+        {
+          "id": "scriptural-axis",
+          "title": "The moral dispute within scripture",
+          "purpose": "Work through specific passages and mixed cases, not a binary classification of whole figures or communities.",
+          "pages": [
+            "scripture-power-and-repair"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "will",
+          "title": "Whose will supplies the standard?",
+          "purpose": "Connect Jesus's moral priority to criticism of self-authorizing power.",
+          "pages": [
+            "divine-will-and-self-authorizing-power",
+            "antichrist-as-a-pattern-of-conduct"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "beast",
+          "title": "The First Beast investigation",
+          "purpose": "Develop the particular identification and the connected cases, preserving the history of interpretation.",
+          "pages": [
+            "trump-first-beast-of-revelation"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "warnings",
+          "title": "Warnings and their consequences",
+          "purpose": "Keep the original prediction, conditions and later observations in different records.",
+          "pages": [
+            "ukraine-russia-forecast-record",
+            "forecast-ledger"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    },
+    {
+      "id": "repair",
+      "title": "Repair and the next inheritors",
+      "chapters": [
+        {
+          "id": "repair-practice",
+          "title": "Repair without reproducing domination",
+          "purpose": "Connect personal change, collective care and accountable institutions.",
+          "pages": [
+            "apocalyptic-repair-theology",
+            "scripture-power-and-repair"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "next-inheritors",
+          "title": "What should conscious machines inherit?",
+          "purpose": "Examine the moral purpose of teaching, including the teacher's obligations to a future conscious participant.",
+          "pages": [
+            "religion-for-conscious-robots",
+            "god-and-our-models-of-god"
+          ],
+          "status": "Draft chapter route"
+        },
+        {
+          "id": "continuing",
+          "title": "Continuing the inheritance",
+          "purpose": "Return to the opening distinction between possessing an inheritance and acting faithfully toward its values.",
+          "pages": [
+            "sacred-inheritance-and-rival-continuations",
+            "apocalyptic-repair-theology"
+          ],
+          "status": "Draft chapter route"
+        }
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "will-repair",
+      "title": "Will, correction and repair",
+      "description": "From an inward reference to a critique of self-authorizing power and the responsibilities of teachers.",
+      "pages": [
+        "god-and-our-models-of-god",
+        "christ-as-an-inner-model",
+        "divine-will-and-self-authorizing-power",
+        "scripture-power-and-repair",
+        "apocalyptic-repair-theology",
+        "religion-for-conscious-robots"
+      ]
+    },
+    {
+      "id": "teacher-transmission",
+      "title": "The teacher and the transmitted inheritance",
+      "description": "Compare the historical reconstruction, Thomas, changing communities and the later inward reading without erasing the differences.",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "jesus-teacher-of-righteousness-hypothesis",
+        "tor-thomas-and-gnostic-transmission",
+        "gnosticism-and-temple-trauma",
+        "cognitive-gnosticism"
+      ]
+    }
+  ],
+  "dossiers": [
+    {
+      "page": "tor-thomas-and-gnostic-transmission",
+      "preserve": [
+        "The June discussion compares an earlier Teacher with Jesus; the October reconstruction makes a stronger earlier-founder identification.",
+        "A successive community, an individual, a title and a transmitted saying are different kinds of continuity.",
+        "Thomas, layered instruction, Zadokite succession, Egypt/Ethiopia and later inward interpretation belong to one connected inquiry, not an isolated list of resemblances.",
+        "Credit to Tabor is explicit, but the exact work supporting each later extension still needs identification."
+      ],
+      "passages": [
+        {
+          "sourceId": "1688",
+          "turn": 5,
+          "role": "Author hypothesis",
+          "why": "Layered instruction and later accounts of inner teaching."
+        },
+        {
+          "sourceId": "1688",
+          "turn": 9,
+          "role": "Author methodological proposal",
+          "why": "Recover semantic distinctions across multiple portrayals rather than choosing one compressed summary."
+        },
+        {
+          "sourceId": "2656",
+          "turn": 24,
+          "role": "Author reconstruction",
+          "why": "The strong October chronology and proposed identities."
+        },
+        {
+          "sourceId": "2656",
+          "turn": 26,
+          "role": "Author clarification",
+          "why": "Later communities and namesakes, together with the Two Spirits comparison."
+        },
+        {
+          "sourceId": "2656",
+          "turn": 82,
+          "role": "Author research question",
+          "why": "The requested Melchizedek comparison across bodies of texts."
+        },
+        {
+          "sourceId": "1576",
+          "turn": 1,
+          "role": "Acknowledged intellectual debt",
+          "why": "The author identifies Tabor while discussing Paul and James."
+        },
+        {
+          "sourceId": "1904",
+          "turn": 33,
+          "role": "Acknowledged intellectual debt",
+          "why": "A named book and a wider historical synthesis occur in the same author turn; that does not attribute every claim to the book."
+        }
+      ]
+    },
+    {
+      "page": "sacred-inheritance-and-rival-continuations",
+      "preserve": [
+        "Continuity is compared across several variables; shared inheritance does not imply doctrinal identity.",
+        "Historical lineage and moral faithfulness must not be treated as interchangeable.",
+        "The formalism is a proposed research method, not a completed mathematical proof."
+      ],
+      "legacy": [
+        "abrahamic-rival-continuations-book-seed"
+      ],
+      "passages": [
+        {
+          "sourceId": "2656",
+          "turn": 63,
+          "role": "Author research question",
+          "why": "The author asks for a broader interconnection of preservation and transmission settings."
+        },
+        {
+          "sourceId": "1688",
+          "turn": 11,
+          "role": "Author project scope",
+          "why": "Historical theology is connected to the author's broader cognitive research program."
+        }
+      ]
+    },
+    {
+      "page": "divine-will-and-self-authorizing-power",
+      "preserve": [
+        "The contrast is between a desire that answers to a higher moral standard and a will that authorizes itself, not simply confidence versus passivity.",
+        "Trump's recorded heaven remarks and the author's explanation of his motive are different claims.",
+        "An individual can change while a recurrent pattern continues through other people."
+      ],
+      "direction": "The author's September 5, 2026 instruction in the current editing conversation introduces the explicit will comparison. This editorial-input record is not a recovered historical transcript.",
+      "passages": [
+        {
+          "sourceId": "1642",
+          "turn": 9,
+          "role": "Author interpretation",
+          "why": "The recurrent pattern and possible transformation of an individual are considered together."
+        },
+        {
+          "sourceId": "1642",
+          "turn": 11,
+          "role": "Author clarification",
+          "why": "The argument allows repentance rather than treating an individual's identity as a permanent essence."
+        },
+        {
+          "sourceId": "880",
+          "turn": 23,
+          "role": "Author cognitive proposal",
+          "why": "The inward example supplies a direction of change."
+        }
+      ]
+    },
+    {
+      "page": "scripture-power-and-repair",
+      "preserve": [
+        "The user requests mixed cases and a broad scriptural examination, not a permanent good/bad label for each named figure.",
+        "The worked readings in this edition do not complete the requested survey."
+      ],
+      "passages": [
+        {
+          "sourceId": "1745",
+          "turn": 5,
+          "role": "Author research specification",
+          "why": "The source explicitly requests nuanced details, examples, quotations and mixed cases."
+        }
+      ]
+    },
+    {
+      "page": "god-and-our-models-of-god",
+      "preserve": [
+        "A cognitive account of representation does not settle the existence or nature of the represented God.",
+        "God as Purpose/Telos is a sincere theological proposal; simulated historical reactions are not real historical testimony.",
+        "Moral, cognitive and physical uses of coherence require distinct arguments."
+      ],
+      "passages": [
+        {
+          "sourceId": "1305",
+          "turn": 1,
+          "role": "Author metaphysical proposal",
+          "why": "God is named Purpose or Telos and related to Super Information Theory."
+        },
+        {
+          "sourceId": "1305",
+          "turn": 3,
+          "role": "Author request for objections",
+          "why": "The author asks for possible objections instead of only agreement."
+        },
+        {
+          "sourceId": "1663",
+          "turn": 3,
+          "role": "Author correction",
+          "why": "Human flourishing and coherence with God are not accepted as independent alternative goals."
+        }
+      ]
+    },
+    {
+      "page": "cognitive-gnosticism",
+      "preserve": [
+        "The account is a program for comparing representations, meanings and actions, not a claim that all ancient texts secretly describe one modern neuroscience theory.",
+        "The author explicitly connects this inquiry to earlier Neo Mind Cycle and SAN work."
+      ],
+      "passages": [
+        {
+          "sourceId": "1688",
+          "turn": 9,
+          "role": "Author methodological proposal",
+          "why": "The inquiry asks for semantic reconstruction across sources."
+        },
+        {
+          "sourceId": "1688",
+          "turn": 11,
+          "role": "Author project scope",
+          "why": "The bridge to the author's earlier cognitive work is explicit."
+        }
+      ]
+    },
+    {
+      "page": "christ-as-an-inner-model",
+      "preserve": [
+        "The model must be corrected as well as followed.",
+        "The gradient-descent comparison describes a proposed structure of change, not an experimentally measured rule in these source chats."
+      ],
+      "passages": [
+        {
+          "sourceId": "880",
+          "turn": 23,
+          "role": "Author cognitive proposal",
+          "why": "The original example of a model of Jesus participating in personal change."
+        }
+      ]
+    },
+    {
+      "page": "religion-for-conscious-robots",
+      "preserve": [
+        "The proposed pupils are conscious, self-aware machines; present language-model fluency is not substituted for that condition.",
+        "The author rejects a division between human flourishing and coherence with God.",
+        "Inclusive understanding does not mean that every community accepts the same doctrinal description of that inclusion."
+      ],
+      "passages": [
+        {
+          "sourceId": "1663",
+          "turn": 1,
+          "role": "Author project proposal",
+          "why": "The author specifies self-aware, conscious robots as the setting."
+        },
+        {
+          "sourceId": "1663",
+          "turn": 3,
+          "role": "Author correction",
+          "why": "A rejected separation between flourishing and coherence is preserved."
+        },
+        {
+          "sourceId": "1620",
+          "turn": 31,
+          "role": "Author project direction",
+          "why": "The wider religious comparison becomes an AI-facing teaching project."
+        }
+      ]
+    },
+    {
+      "page": "faith-as-deliberate-joy",
+      "preserve": [
+        "Faith is treated as a practiced orientation, not only propositional assent.",
+        "A practice of joy must not become blame for suffering or an instruction to deny danger."
+      ],
+      "passages": [
+        {
+          "sourceId": "1620",
+          "turn": 1,
+          "role": "Author conceptual question",
+          "why": "The relation of faith, vibration, belief and violence is introduced."
+        },
+        {
+          "sourceId": "1745",
+          "turn": 9,
+          "role": "Author creative formulation",
+          "why": "The ethical comparison also appears in a lyrical formulation; it is not empirical measurement."
+        }
+      ]
+    }
+  ],
+  "debts": [
+    {
+      "id": "tabor",
+      "name": "James D. Tabor",
+      "type": "Explicit author acknowledgment",
+      "claim": "Paul and James, early Jesus movements, recurring prophetic interpretation and the wider Teacher inquiry.",
+      "limit": "Acknowledgment is not proof that Tabor endorses the complete October reconstruction. Identify editions and page or recording locations before attributing a specific claim to him.",
+      "passages": [
+        {
+          "sourceId": "1576",
+          "turn": 1,
+          "role": "Acknowledgment",
+          "why": "The author names Tabor in the Paul/James discussion."
+        },
+        {
+          "sourceId": "1576",
+          "turn": 59,
+          "role": "Acknowledgment",
+          "why": "The author says that Tabor is one among multiple researchers informing the project."
+        },
+        {
+          "sourceId": "1904",
+          "turn": 33,
+          "role": "Named work",
+          "why": "The Jesus Dynasty is named in the author's source turn."
+        }
+      ],
+      "references": [
+        "tabor-books",
+        "tabor-shared-2026",
+        "tabor-names-2026"
+      ]
+    },
+    {
+      "id": "comparative-teachers",
+      "name": "Aaron Abke and Abraham Hicks",
+      "type": "Teachers discussed by the author",
+      "claim": "Comparisons involving faith, inward experience, spiritual vocabulary and the relation of different traditions.",
+      "limit": "Discussion or influence is not wholesale endorsement and is not archaeological evidence. A user turn may contain quoted material.",
+      "passages": [
+        {
+          "sourceId": "1620",
+          "turn": 29,
+          "role": "Comparative discussion",
+          "why": "These teachers occur inside a broad author comparison. Read the full turn before assigning any particular proposition."
+        }
+      ],
+      "references": []
+    },
+    {
+      "id": "thomas-translators",
+      "name": "Stephen Patterson and Marvin Meyer",
+      "type": "Translation used in this edition",
+      "claim": "Translation of Thomas used for the present passage comparisons.",
+      "limit": "This credit records the edition's textual source. It does not retrospectively identify these translators as the author's personal influences.",
+      "passages": [],
+      "references": [
+        "thomas-patterson-meyer"
+      ]
+    },
+    {
+      "id": "boccaccini-lead",
+      "name": "Gabriele Boccaccini",
+      "type": "AI-introduced research lead",
+      "claim": "A name introduced in an AI response concerning Enochic and related historical connections.",
+      "limit": "The originating response contains reference markers that have not been reconstructed. No particular work or conclusion is attributed as verified scholarship here.",
+      "passages": [
+        {
+          "sourceId": "2656",
+          "turn": 66,
+          "role": "AI-introduced lead",
+          "why": "This is an AI reply, not an author acknowledgment or a primary historical source."
+        }
+      ],
+      "references": []
+    }
+  ],
+  "stages": [
+    "Source assembly",
+    "Develop argument",
+    "Verify citations",
+    "Author review",
+    "Ready to assemble"
+  ],
+  "tasks": [
+    {
+      "id": "tor-version",
+      "title": "Keep both Teacher reconstructions legible",
+      "stage": "Author review",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Confirm the June comparison and October identification are presented in their full strength, including the community/namesake explanation."
+    },
+    {
+      "id": "thomas-passages",
+      "title": "Extend the Thomas passage comparison",
+      "stage": "Develop argument",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives."
+    },
+    {
+      "id": "melchizedek",
+      "title": "Build the Melchizedek comparison",
+      "stage": "Source assembly",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Recover and compare exact passages from 11QMelchizedek, Hebrews and the relevant Nag Hammadi tractate. Keep composition and manuscript dates separate."
+    },
+    {
+      "id": "tabor-citations",
+      "title": "Locate precise Tabor citations",
+      "stage": "Verify citations",
+      "page": "intellectual-debts",
+      "detail": "Identify which editions, pages or recordings support the claims acknowledged in the older conversations; later 2026 posts cannot date the 2025 influence."
+    },
+    {
+      "id": "egypt-ethiopia",
+      "title": "Check Egypt and Ethiopian transmission links",
+      "stage": "Verify citations",
+      "page": "tor-thomas-and-gnostic-transmission",
+      "detail": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge."
+    },
+    {
+      "id": "priesthood",
+      "title": "Resolve the Davidic/priestly knot",
+      "stage": "Develop argument",
+      "page": "jesus-teacher-of-righteousness-hypothesis",
+      "detail": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical."
+    },
+    {
+      "id": "will",
+      "title": "Review the divine-will comparison",
+      "stage": "Author review",
+      "page": "divine-will-and-self-authorizing-power",
+      "detail": "Confirm the constructive reading and political application; retain the distinction between recorded heaven remarks and inferred motive."
+    },
+    {
+      "id": "mixed-cases",
+      "title": "Expand the Samuel/Micah mixed-case survey",
+      "stage": "Source assembly",
+      "page": "scripture-power-and-repair",
+      "detail": "The existing two worked passages do not substitute for the broad survey the author requested. Add passages and contextual counterexamples."
+    },
+    {
+      "id": "coherence",
+      "title": "Specify the different senses of coherence",
+      "stage": "Develop argument",
+      "page": "god-and-our-models-of-god",
+      "detail": "Separate physical, experiential and ethical meanings; explain how critical disagreement can preserve rather than defeat moral alignment."
+    },
+    {
+      "id": "inner-model",
+      "title": "Review second-order model correction",
+      "stage": "Author review",
+      "page": "christ-as-an-inner-model",
+      "detail": "Confirm the worked example represents the original argument: the moral model is scrutinized as well as used."
+    },
+    {
+      "id": "forecast-source",
+      "title": "Recover the later fuel/famine statements",
+      "stage": "Source assembly",
+      "page": "forecast-ledger",
+      "detail": "Recover full original passages and their dates before outcome assessment. Existing recovery leads remain unscored."
+    },
+    {
+      "id": "trauma",
+      "title": "Build the comparative Temple-trauma corpus",
+      "stage": "Source assembly",
+      "page": "gnosticism-and-temple-trauma",
+      "detail": "Select Gnostic and non-Gnostic texts with independently justified dates; distinguish grief, just anger, rejection of creation and institutional repair."
+    },
+    {
+      "id": "formalism",
+      "title": "Define the shared-inheritance formalism",
+      "stage": "Develop argument",
+      "page": "sacred-inheritance-and-rival-continuations",
+      "detail": "Specify objects, mappings and composition before calling the category-theory model a proof; test whether it distinguishes cases usefully."
+    },
+    {
+      "id": "robot-reciprocity",
+      "title": "Develop reciprocal duties toward conscious machines",
+      "stage": "Develop argument",
+      "page": "religion-for-conscious-robots",
+      "detail": "Separate the author's teaching proposal from the new editorial question about obligations toward future conscious participants."
+    },
+    {
+      "id": "book-seed-status",
+      "title": "Review the old private-first label",
+      "stage": "Author review",
+      "page": "sacred-inheritance-and-rival-continuations",
+      "detail": "The existing public source seed still calls itself private-first. Confirm its intended editorial status without changing the original file automatically."
+    },
+    {
+      "id": "chapter-arc",
+      "title": "Review the proposed book sequence",
+      "stage": "Author review",
+      "page": "book-contents",
+      "detail": "The contents is a proposed argument order, not a finished manuscript. Confirm whether the sequence preserves the breadth of the author's project."
+    }
+  ],
+  "layers": [
+    {
+      "id": "june",
+      "title": "June comparison: Teacher before Jesus"
+    },
+    {
+      "id": "october",
+      "title": "October earlier-founder reconstruction"
+    },
+    {
+      "id": "witness",
+      "title": "Material witnesses (curatorial dates)"
+    },
+    {
+      "id": "textual",
+      "title": "Textual constraints without absolute dates"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "june-teacher",
+      "layer": "june",
+      "title": "An earlier Teacher compared with Jesus",
+      "dateLabel": "Relative sequence; no absolute date assigned",
+      "start": null,
+      "end": null,
+      "detail": "The source asks about a Teacher roughly 150 years before Jesus, then compares messages and layers of instruction. It does not state the October identity reconstruction in the same form.",
+      "sourceId": "1688",
+      "turn": 1
+    },
+    {
+      "id": "june-layers",
+      "layer": "june",
+      "title": "Layers of instruction and accounts",
+      "dateLabel": "No event date specified",
+      "start": null,
+      "end": null,
+      "detail": "The author asks about public parables, disciples and deeper teaching. This is a structural proposal, not a dated manuscript event.",
+      "sourceId": "1688",
+      "turn": 5
+    },
+    {
+      "id": "oct-seed",
+      "layer": "october",
+      "title": "The proposed pre-Teacher interval",
+      "dateLabel": "167 BCE (author premise)",
+      "start": -167,
+      "end": -167,
+      "detail": "The opening date used by the author for a twenty-year interval. Its role in the proposed arithmetic does not independently establish the underlying historical identification.",
+      "sourceId": "2656",
+      "turn": 24
+    },
+    {
+      "id": "oct-emergence",
+      "layer": "october",
+      "title": "Teacher emerges in the reconstruction",
+      "dateLabel": "147 BCE (author premise)",
+      "start": -147,
+      "end": -147,
+      "detail": "The author combines the twenty-year interval with an earlier-Teacher reconstruction. Compare the source before treating this as a secure biographical date.",
+      "sourceId": "2656",
+      "turn": 24
+    },
+    {
+      "id": "oct-death",
+      "layer": "october",
+      "title": "Proposed death of the Teacher",
+      "dateLabel": "88 BCE (author premise)",
+      "start": -88,
+      "end": -88,
+      "detail": "The strong identification locates the founder earlier than later biographies. This is a thesis under examination, not an independently demonstrated date.",
+      "sourceId": "2656",
+      "turn": 24
+    },
+    {
+      "id": "oct-community",
+      "layer": "october",
+      "title": "Later community and namesakes",
+      "dateLabel": "37-50 CE (range proposed in the discussion)",
+      "start": 37,
+      "end": 50,
+      "detail": "The author proposes that Paul encountered later members or successors. The dates and the mechanism of continuity need their own support.",
+      "sourceId": "2656",
+      "turn": 26
+    },
+    {
+      "id": "oct-trauma",
+      "layer": "october",
+      "title": "Later response to Temple destruction",
+      "dateLabel": "After 70 CE; no endpoint specified",
+      "start": 70,
+      "end": null,
+      "detail": "A proposed later literary layer responds to catastrophe. The marker is an open-ended author proposal, not a claim that every Gnostic composition begins here.",
+      "sourceId": "2656",
+      "turn": 24
+    },
+    {
+      "id": "enoch-witness",
+      "layer": "witness",
+      "title": "Aramaic Enoch, 4Q201",
+      "dateLabel": "Approximately 200-150 BCE",
+      "start": -200,
+      "end": -150,
+      "detail": "The Library of Congress exhibition dates this manuscript witness to this range. It is not the date of every Enochic work or proof of a later lineage.",
+      "reference": "loc-enoch"
+    },
+    {
+      "id": "calendar-witness",
+      "layer": "witness",
+      "title": "Calendrical document, 4Q321",
+      "dateLabel": "Approximately 50-25 BCE",
+      "start": -50,
+      "end": -25,
+      "detail": "The exhibition supplies this manuscript date and discusses a 364-day calendar. A shared calendar is evidence to compare, not an automatic identity between communities.",
+      "reference": "loc-community"
+    },
+    {
+      "id": "rule-witness",
+      "layer": "witness",
+      "title": "Community Rule, 4Q258",
+      "dateLabel": "Late 1st century BCE / early 1st century CE",
+      "start": null,
+      "end": null,
+      "detail": "The curatorial period is retained verbatim as a broad date description. No invented numerical confidence interval is plotted.",
+      "reference": "loc-community"
+    },
+    {
+      "id": "paul-intervals",
+      "layer": "textual",
+      "title": "Paul: intervals and named leaders",
+      "dateLabel": "Relative intervals, not an absolute date",
+      "start": null,
+      "end": null,
+      "detail": "Galatians 1 and 2 supplies a narrative of visits and recognized leaders; it does not itself print the 37-50 CE range used in the author's reconstruction.",
+      "reference": "galatians1"
+    },
+    {
+      "id": "witnesses-alive",
+      "layer": "textual",
+      "title": "The witnesses described in 1 Corinthians 15",
+      "dateLabel": "Living-memory claim within the text",
+      "start": null,
+      "end": null,
+      "detail": "The statement that many witnesses remained alive is a constraint requiring explanation in an earlier-founder reconstruction. Community persistence alone does not resolve it.",
+      "reference": "corinthians15"
+    },
+    {
+      "id": "thomas-authority",
+      "layer": "textual",
+      "title": "Thomas: James, private instruction and interpretation",
+      "dateLabel": "Textual function; no date inferred",
+      "start": null,
+      "end": null,
+      "detail": "The sayings are compared for their roles in the argument. The comparison does not assign the compilation or its sayings one unargued date.",
+      "reference": "thomas-patterson-meyer"
+    }
+  ],
+  "relations": [
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "develops",
+      "why": "The comparative method separates canon, sacred place and institutional claims rather than treating shared inheritance as identical religion.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "applies",
+      "why": "The Teacher inquiry tests whether continuities of message, institution and identity track one another or diverge.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "god-and-our-models-of-god",
+      "type": "extends",
+      "why": "Historical inheritance becomes an inward representation; criticism of the representation is not automatically denial of its referent.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "el-in-ancient-egypt",
+      "type": "compares",
+      "why": "The movement of a name is a concrete case of a boundary crossing that does not establish complete institutional continuity.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "jesus-teacher-of-righteousness-hypothesis",
+      "type": "develops",
+      "why": "The historical identification is one strand inside a larger comparison of teaching, transmission and later interpretations.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "cognitive-gnosticism",
+      "type": "connects",
+      "why": "The source asks how overlapping portrayals can be used to reconstruct semantic distinctions and inward meaning.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "gnosticism-and-temple-trauma",
+      "type": "distinguishes",
+      "why": "An early teacher tradition and a later literary response to loss can occupy separate layers without proving a direct genealogy.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "intellectual-debts",
+      "type": "documents",
+      "why": "Explicit scholarly acknowledgments are retained separately from AI-introduced names and new editorial sources.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "parallel-timelines",
+      "type": "compares",
+      "why": "The June comparison and October earlier-founder reconstruction can be inspected without silently merging their chronologies.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "christ-as-an-inner-model",
+      "type": "clarifies",
+      "why": "An inward moral model must be able to challenge the person's immediate desire rather than merely justify it.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "trump-first-beast-of-revelation",
+      "type": "applies",
+      "why": "The priority of a higher moral standard informs the critique of self-authorizing power while leaving individual factual premises checkable.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "apocalyptic-repair-theology",
+      "type": "extends",
+      "why": "Repair requires the actor to be correctable, not merely successful at enforcing a preferred outcome.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "religion-for-conscious-robots",
+      "type": "tests",
+      "why": "A teaching system that equates God's will with an operator's commands would fail this proposed moral distinction.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "connects",
+      "why": "Changing a canon changes which narratives confer authority, but no shorter canon is assumed to settle all moral questions.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "antichrist-as-a-pattern-of-conduct",
+      "type": "grounds",
+      "why": "The conduct-based judgment is developed through specific scriptural arguments, including mixed cases.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "divine-will-and-self-authorizing-power",
+      "type": "clarifies",
+      "why": "A claim to act for God requires moral examination; sacred status is not the conclusion of that examination.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "apocalyptic-repair-theology",
+      "type": "develops",
+      "why": "Justice and accountable care supply a constructive contrast to the religious legitimation of harm.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "cognitive-gnosticism",
+      "type": "distinguishes",
+      "why": "Explaining a representation does not itself establish or eliminate the existence of what it represents.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "faith-as-deliberate-joy",
+      "type": "clarifies",
+      "why": "Practiced orientation and emotional experience are related to metaphysical belief without being substituted for proof of it.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "religion-for-conscious-robots",
+      "type": "grounds",
+      "why": "The teacher's own understanding of God and correction becomes part of what is transmitted to a future conscious participant.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "extends",
+      "why": "The broader source comparison is one application of the proposed semantic reconstruction method.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "divine-will-and-self-authorizing-power",
+      "type": "tests",
+      "why": "A vivid model is not enough; the will comparison asks whether the model can correct self-interest.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "extends",
+      "why": "Future conscious machines raise the opening inheritance question again: what is transmitted, and by what authority?",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "apocalyptic-repair-theology",
+      "type": "clarifies",
+      "why": "Sustained orientation is connected to concrete repair rather than compulsory cheerfulness or denial of danger.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "book-contents",
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "introduces",
+      "why": "The proposed book begins with rival claims to shared inheritance rather than treating the wiki as an alphabetical manuscript.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "book-contents",
+      "to": "research-board",
+      "type": "tracks",
+      "why": "Chapter routes are separated from the concrete research and author-review tasks still required.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "parallel-timelines",
+      "to": "jesus-teacher-of-righteousness-hypothesis",
+      "type": "tests",
+      "why": "A visualization preserves the distinction between proposed dates, material evidence and relative textual constraints.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "intellectual-debts",
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "supports attribution",
+      "why": "Named debts supply provenance for the investigation without making every later extension a claim endorsed by that author.",
+      "origin": "Editorial relationship"
+    }
+  ]
+}

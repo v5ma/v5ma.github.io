@@ -180,5 +180,89 @@
     "url": "https://ebible.org/engwebp/REV21.htm",
     "scope": "Primary text read in full, especially verses 1-5. Supports renewal and the end of mourning as part of the narrative, rather than treating destruction as its sole purpose.",
     "accessed": "2026-09-04"
+  },
+  {
+    "id": "will-luke22",
+    "title": "Luke 22, World English Bible",
+    "url": "https://ebible.org/engwebp/LUK22.htm",
+    "scope": "Primary text consulted, especially 22:42. The article distinguishes the petition and the priority of the Father's will from obedience to a human interpreter.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "will-john5",
+    "title": "John 5, World English Bible",
+    "url": "https://ebible.org/engwebp/JHN05.htm",
+    "scope": "Primary text consulted, especially 5:30. Supports the contrast between seeking one's own will and the will of the sender.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "will-john6",
+    "title": "John 6, World English Bible",
+    "url": "https://ebible.org/engwebp/JHN06.htm",
+    "scope": "Primary text consulted, especially 6:38. The contemporary political application is editorial/theological interpretation, not an assertion made by this text.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "samuel8-foundation",
+    "title": "1 Samuel 8, World English Bible",
+    "url": "https://ebible.org/engwebp/1SA08.htm",
+    "scope": "Primary text read for the warning about what kings take. This is a worked mixed case within the requested comparison, not an exhaustive classification of Samuel.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "micah6-foundation",
+    "title": "Micah 6, World English Bible",
+    "url": "https://ebible.org/engwebp/MIC06.htm",
+    "scope": "Primary text read for 6:6-8 and the later criticism of dishonest measures and violence. Distinguishes ritual escalation from justice, mercy and humility.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "thomas-patterson-meyer",
+    "title": "Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer",
+    "url": "https://www.earlychristianwritings.com/text/thomas-scholars.html",
+    "scope": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "loc-community",
+    "title": "Library of Congress, The Qumran Community",
+    "url": "https://www.loc.gov/exhibits/scrolls/scr2.html",
+    "scope": "Curated 1993 exhibition descriptions consulted for Community Rule 4Q258, calendar 4Q321 and MMT 4Q396. These are identified curatorial records, not a new critical edition or the latest dating consensus.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "loc-enoch",
+    "title": "Library of Congress, The Qumran Library",
+    "url": "https://www.loc.gov/exhibits/scrolls/scr3.html",
+    "scope": "Curated exhibition description consulted for Aramaic Enoch 4Q201, dated there to approximately 200-150 BCE. A manuscript witness does not date every Enochic composition or demonstrate a later community's ancestry.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "tabor-shared-2026",
+    "title": "James Tabor, A Shared Utopian Vision: Enochians, Essenes, Ebionites, and Nazarenes (July 7, 2026)",
+    "url": "https://jamestabor.com/a-shared-utopian-vision-enochians-essenes-ebionites-and-nazarenes/",
+    "scope": "The author's short published description was consulted, not the complete video. A later comparison with this wiki's inquiry, not proof that this 2026 page was the source of Micah's 2025 statements.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "tabor-names-2026",
+    "title": "James Tabor, Ebionites, Nazarenes, Essenes, Nasareans: Sorting Out the Names (June 30, 2026)",
+    "url": "https://jamestabor.com/ebionites-nazarenes-essenes-nasareans-sorting-out-the-names/",
+    "scope": "The author's short post was consulted; the linked interview was not reviewed in full. Similar names are not treated as sufficient evidence of one continuous community.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "tabor-books",
+    "title": "James Tabor, Books",
+    "url": "https://jamestabor.com/books/",
+    "scope": "Author-maintained book catalogue consulted to identify works. No claim to have read the complete books in this pass. The Jesus Dynasty is named in an archived author turn; page-level support remains to be added.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "heaven-august-2025",
+    "title": "Donald Trump, August 19, 2025 remarks on ending the war and getting to heaven",
+    "url": "https://www.realclearpolitics.com/video/2025/08/19/trump_i_want_to_try_to_get_to_heaven_if_possible_i_hear_im_not_doing_too_well_--_im_really_at_the_bottom_of_the_totem_pole.html",
+    "scope": "Published recording/transcript of the Fox interview excerpt consulted for the reported words, not independent validation of casualty estimates. The quoted speaker links ending the war to heaven; he does not explicitly explain his concern as putting his own will above God's. That further explanation is identified as the author's theological inference.",
+    "accessed": "2026-09-05"
   }
 ]

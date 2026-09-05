@@ -17,6 +17,10 @@ The teachings of Jesus, moral judgment and the authority of institutions.
 
 [[christ-as-an-inner-model|Christ as an inner model]]: The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.
 
+[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.
+
+[[scripture-power-and-repair|Scripture, power and the work of repair]]: The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.
+
 ## Browse the source discussions
 
 These 34 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.

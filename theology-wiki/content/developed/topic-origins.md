@@ -21,6 +21,8 @@ Manuscripts, Temple history, divine names and the dating of ideas.
 
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]: A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?
 
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]: A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.
+
 ## Browse the source discussions
 
 These 43 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.

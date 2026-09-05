@@ -66,3 +66,33 @@ Separate textual differences, proposed ancestry and evidence that could decide b
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]
 
 [[research-method|From a conversation to a developed article]]
+
+## Will, correction and repair
+
+From an inward reference to a critique of self-authorizing power and the responsibilities of teachers.
+
+[[god-and-our-models-of-god|God and our models of God]]
+
+[[christ-as-an-inner-model|Christ as an inner model]]
+
+[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]
+
+[[scripture-power-and-repair|Scripture, power and the work of repair]]
+
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]
+
+[[religion-for-conscious-robots|Religion for conscious robots]]
+
+## The teacher and the transmitted inheritance
+
+Compare the historical reconstruction, Thomas, changing communities and the later inward reading without erasing the differences.
+
+[[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]]
+
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]
+
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]
+
+[[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]
+
+[[cognitive-gnosticism|Cognitive Gnosticism]]
