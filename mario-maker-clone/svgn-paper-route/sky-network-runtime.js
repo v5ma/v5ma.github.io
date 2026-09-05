@@ -43,7 +43,7 @@
    if(!active())return;
    const c=document.getElementById('network-map-canvas'),g=c.getContext('2d'),all=tracks.filter(t=>t.sky?.network),ground=__ground.meta.ground*36,w=LW*36;
    // Equal-scale projection preserves the shape of C-ramps and open bowls.
-   const ext=all.flatMap(t=>t.pts),top=Math.max(0,Math.min(...ext.map(p=>p[1]))-90);
+   const ext=all.flatMap(t=>t.pts),top=Math.max(0,(ext.length?Math.min(...ext.map(p=>p[1])):ground-600)-90);
    let bounds={x:0,y:top,w,h:ground-top+70};
    if(mapLocal){const h=1200,bw=h*(c.width-48)/(c.height-74);bounds={x:Math.max(0,Math.min(w-bw,player.x-bw*.4)),y:Math.max(0,Math.min(ground-h+70,player.y-h*.70)),w:bw,h};}
    const scale=Math.min((c.width-48)/bounds.w,(c.height-74)/bounds.h),ox=(c.width-bounds.w*scale)/2,oy=36+(c.height-74-bounds.h*scale)/2;
