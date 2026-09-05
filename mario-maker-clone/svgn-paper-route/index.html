@@ -201,6 +201,7 @@
 <!-- SVGN_INTERACTIVE_UPGRADE_20260904 -->
 <link rel="stylesheet" href="./delivery-upgrade.css">
 <link rel="stylesheet" href="./sky-style.css">
+<link rel="stylesheet" href="./cloudview.css">
 </head>
 <script>
 ;
@@ -8499,7 +8500,7 @@ function gpuLimitAudit(){
 }
 setTimeout(gpuLimitAudit, 1500);
 
-window.__merged = {THREE, renderer, scene, camera, tiles, gpuLimitAudit, get gizmoMesh(){return gizmoMesh}, get curveGroup(){return curveGroup}, get gridMesh(){return gridMesh}, get cursorMesh(){return cursorMesh}, get trackGroup(){return trackGroup}, get entMesh(){return entMesh}, buildRidePose, rideKindFor, rideGeo, syncFromGame, tintOf, frameAll, matchTo2D, railMat, actorMat, ACTOR_ORDER, prewarmPoses, posePool, showPose, get activePose(){return activePose}, makeSingle, setSingle, voxMatMesh, get worldTypesLive(){return worldTypesLive}, buildEditGrid, updateEditGrid, screenToTile, tileToWorld, buildEditCurves3D, buildCurveGizmos, BAKE_SPECS, buildMailGeo, mailGeo, exportVoxelAssets, downloadVoxelAssets, loadBakedAssets, liveGrid, fitFor, entVoxGeo, ENT_FIT, buildCharAnim, animFrameFor, animGeo, buildTracks3D, buildSparks3D, buildMisc3D, buildMovers3D, buildPackets3D, charVoxel, syncRiderChar, buildGearMesh, charGeo, buildRider, driveRider, rider, buildWorldMesh, buildEntMesh, buildVoxelEntities, foeVoxMesh, useVoxels, buildVoxelWorld, syncVoxels, voxGeo, voxMesh, applyLayer, body, bodyLamp, syncPlayer, foes, syncEnemies, tintOfFoe, picks, parts, movs, syncPickups, syncParticles, syncMovers, tintOfPick, VIEW, get gridMesh(){return gridMesh}, get curveGroup(){return curveGroup}, get trackGroup(){return trackGroup}, get worldMesh(){return worldMesh}, get entMesh(){return entMesh}, get playerVox(){return playerVox}, set3D:v=>{layer3D=v;applyLayer();}, get3D:()=>layer3D, stats:()=>({tiles:tiles.count, calls:renderer.info.render.calls, tris:renderer.info.render.triangles})};
+window.__merged = {cloudReplaced:()=>[gearMesh,packetMesh],THREE, renderer, scene, camera, tiles, gpuLimitAudit, get gizmoMesh(){return gizmoMesh}, get curveGroup(){return curveGroup}, get gridMesh(){return gridMesh}, get cursorMesh(){return cursorMesh}, get trackGroup(){return trackGroup}, get entMesh(){return entMesh}, buildRidePose, rideKindFor, rideGeo, syncFromGame, tintOf, frameAll, matchTo2D, railMat, actorMat, ACTOR_ORDER, prewarmPoses, posePool, showPose, get activePose(){return activePose}, makeSingle, setSingle, voxMatMesh, get worldTypesLive(){return worldTypesLive}, buildEditGrid, updateEditGrid, screenToTile, tileToWorld, buildEditCurves3D, buildCurveGizmos, BAKE_SPECS, buildMailGeo, mailGeo, exportVoxelAssets, downloadVoxelAssets, loadBakedAssets, liveGrid, fitFor, entVoxGeo, ENT_FIT, buildCharAnim, animFrameFor, animGeo, buildTracks3D, buildSparks3D, buildMisc3D, buildMovers3D, buildPackets3D, charVoxel, syncRiderChar, buildGearMesh, charGeo, buildRider, driveRider, rider, buildWorldMesh, buildEntMesh, buildVoxelEntities, foeVoxMesh, useVoxels, buildVoxelWorld, syncVoxels, voxGeo, voxMesh, applyLayer, body, bodyLamp, syncPlayer, foes, syncEnemies, tintOfFoe, picks, parts, movs, syncPickups, syncParticles, syncMovers, tintOfPick, VIEW, get gridMesh(){return gridMesh}, get curveGroup(){return curveGroup}, get trackGroup(){return trackGroup}, get worldMesh(){return worldMesh}, get entMesh(){return entMesh}, get playerVox(){return playerVox}, set3D:v=>{layer3D=v;applyLayer();}, get3D:()=>layer3D, stats:()=>({tiles:tiles.count, calls:renderer.info.render.calls, tris:renderer.info.render.triangles})};
 
 
 /* ---- BOOT THE 3D PATH ----------------------------------------------------
@@ -8533,7 +8534,7 @@ renderer.init().then(async ()=>{
 </script>
 <script>
 ;
-window.__BUILD=1788562801;
+window.__BUILD=1788568001;
 (function(){
   var told=false;
   async function check(){
@@ -8559,7 +8560,10 @@ window.__BUILD=1788562801;
 <script src="./campaign.js"></script>
 <script src="./sky-routes.js"></script>
 <script src="./sky-visual.js"></script>
+<script src="./cloudview-assets.js"></script>
+<script src="./cloudview-world.js"></script>
 <script src="./delivery-upgrade.js"></script>
 <script src="./sky-game.js"></script>
+<script src="./cloudview-ui.js"></script>
 </body>
 </html>

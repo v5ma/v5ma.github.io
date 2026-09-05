@@ -110,7 +110,7 @@ window.Cloudview=(()=>{
   if(active){
    engine.posePool.forEach(o=>o.visible=false);if(engine.rider.body)engine.rider.body.visible=false;if(engine.rider.wheel)engine.rider.wheel.visible=false;if(engine.body)engine.body.visible=false;if(engine.playerVox)engine.playerVox.visible=false;
    for(const [key,obj]of engine.voxMesh){const id=Number(String(key).split('#')[0]);if([__gameRefs.T.MAILBOX,__gameRefs.T.MAILDONE,__gameRefs.T.GEAR,__gameRefs.T.STEEL,__gameRefs.T.GOAL].includes(id))obj.visible=false;}
-   if(engine.cloudReplaced)for(const o of engine.cloudReplaced())if(o)o.visible=false;
+   if(engine.cloudReplaced){const [gears]=engine.cloudReplaced();if(gears)gears.visible=false;}
   }
   hero.group.visible=active&&!p.dead;
   if(active){

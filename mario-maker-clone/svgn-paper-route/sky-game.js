@@ -147,9 +147,9 @@
       if(window.__delivery?.state.menu){camera.left=-view.w/1.5;camera.right=view.w/1.5;camera.top=view.h/1.5;camera.bottom=-view.h/1.5;camera.position.set(990,-1940,650);camera.updateProjectionMatrix();camera.updateMatrixWorld();}
       return;
     }
-    const p=player,speed=Math.hypot(p.vx,p.vy),ahead=p.track?150:Math.max(-210,Math.min(240,p.vx*14));
-    const targetX=p.x+13+ahead,targetY=-p.y+65-p.vy*6;
-    const desired=Math.max(.85,Math.min(1.5,view.w/(speed>15?1160:1000)));
+    const p=player,speed=Math.hypot(p.vx,p.vy),ahead=p.track?45:Math.max(-210,Math.min(240,p.vx*14));
+    const targetX=p.x+13+ahead,targetY=-p.y+28-p.vy*4;
+    const desired=Math.max(.8,Math.min(p.track?2.05:1.5,view.w/(p.track?650:980)));
     zoom+=(desired-zoom)*.045;cx=cx===null?targetX:cx+(targetX-cx)*.14;cy=cy===null?targetY:cy+(targetY-cy)*.13;
     // Bound lag so a high-speed reversal or retry never loses the rider.
     cx=Math.max(p.x-view.w/(zoom*2)*.62,Math.min(p.x+view.w/(zoom*2)*.62,cx));cy=Math.max(-p.y-view.h/(zoom*2)*.57,Math.min(-p.y+view.h/(zoom*2)*.57,cy));
