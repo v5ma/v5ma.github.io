@@ -41,6 +41,7 @@ with sync_playwright() as p:
                 page.keyboard.down('KeyZ');held=True
             if q['hook']:
                 if not snap:
+                    page.wait_for_function('__grapple.graphics.chain.count>0',timeout=10000)
                     check(page.evaluate('__grapple.graphics.chain.count>0'),'Attached whip is rendered as a segmented 3D chain')
                     page.screenshot(path=str(OUT/'02-whip-swing.png'));snap=True
                 th=q['hook']['th']%(2*3.141592653589793)

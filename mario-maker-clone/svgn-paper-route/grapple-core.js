@@ -41,7 +41,7 @@
  function release(p){const a=p.peg;if(!a)return null;const boost=1+Math.min(.25,a.loops*.08),speed=clamp(a.om*a.r*boost,-26,26);p.vx=speed*Math.cos(a.th);p.vy=-speed*Math.sin(a.th);p.peg=null;p.onGround=false;p.jumping=false;p.trackCD=6;p._airTicks=0;return {id:a.id,r:a.r,th:a.th,loops:a.loops,speed:Math.abs(speed),vx:p.vx,vy:p.vy};}
  function swing(p,input,solid=()=>false){const a=p.peg;if(!a)return null;const old={x:p.x+p.w/2,y:p.y+p.h/2};
   if(input.up||input.down){const r=clamp(a.r+(input.up?-1.2:1.2),48,REACH);a.om*=a.r*a.r/(r*r);a.r=r;}
-  a.om+=-G/a.r*Math.sin(a.th)+(input.right?.0032:0)-(input.left?.0032:0);a.om=clamp(a.om*.9988,-26/a.r,26/a.r);a.th+=a.om;a.acc=Math.abs(a.th-a.start);a.loops=Math.floor(a.acc/(2*Math.PI));
+  a.om+=-G/a.r*Math.sin(a.th)+(input.right?.0052:0)-(input.left?.0052:0);a.om=clamp(a.om*.9988,-26/a.r,26/a.r);a.th+=a.om;a.acc=Math.abs(a.th-a.start);a.loops=Math.floor(a.acc/(2*Math.PI));
   const next={x:a.x+Math.sin(a.th)*a.r,y:a.y+Math.cos(a.th)*a.r};
   if(!lineClear(old,next,(x,y)=>solid(x,y)||solid(x-10,y+8)||solid(x+10,y+8))){release(p);p.vx*=-.25;p.vy*=-.25;return {type:'blocked'};}
   p.x=next.x-p.w/2;p.y=next.y-p.h/2;p.vx=Math.cos(a.th)*a.om*a.r;p.vy=-Math.sin(a.th)*a.om*a.r;p.onGround=false;p.drawA=-a.th;p.dir=p.vx<0?-1:1;return null;

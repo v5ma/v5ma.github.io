@@ -3,7 +3,7 @@
  'use strict';
  function boot(){
   const K=GrappleCore,S=__sky.state;
-  const state={hooks:0,releases:0,turns:0,events:[],target:null,checkpoint:null,from:null,castTicks:0,lash:0,jump:false,wasZ:false,lastReleased:null};
+  const state={hooks:0,releases:0,turns:0,events:[],target:null,checkpoint:null,checkpoints:{},pendingRelease:false,from:null,castTicks:0,lash:0,jump:false,wasZ:false,lastReleased:null};
   const isOpen=()=>__sky.active()&&S.data.kind==='open';
   const enabled=()=>__sky.active()&&!__delivery.paused&&!__delivery.state.menu&&!won&&player.dead===0;
   const log=(type,extra={})=>{const e={type,step:S.steps,x:player.x,y:player.y,...extra};state.events.push(e);if(state.events.length>800)state.events.shift();};
@@ -12,8 +12,8 @@
   let pegList=[],cooldown=0,touchHeld=false,jumpHeld=false,sceneObjects=null;
   function say(s){popText(player.x+13,player.y-25,s,'#b9f9df');}
   const previousSpawn=spawnWorld;
-  window.spawnWorld=function(x,y){const keep=routeKeep,checkpoint=state.checkpoint;previousSpawn(x,y);pegList=pegs();cooldown=0;state.castTicks=0;state.lash=0;state.target=null;state.wasZ=false;touchHeld=false;
-   if(!keep){state.hooks=state.releases=state.turns=0;state.events=[];state.checkpoint=null;state.from=null;state.lastReleased=null;}
+  window.spawnWorld=function(x,y){const keep=routeKeep,checkpoint=state.checkpoints[S.checkpoint]||state.checkpoint;previousSpawn(x,y);pegList=pegs();cooldown=0;state.castTicks=0;state.lash=0;state.target=null;state.wasZ=false;state.pendingRelease=false;touchHeld=false;jumpHeld=false;
+   if(!keep){state.hooks=state.releases=state.turns=0;state.events=[];state.checkpoint=null;state.from=null;state.lastReleased=null;state.checkpoints={};}
    if(customTracks.some(t=>t.sky?.kind==='open')){
     const boxes=[];let goal=null;for(let yy=0;yy<LH;yy++)for(let xx=0;xx<LW;xx++){if(grid[yy*LW+xx]===T.MAILBOX)boxes.push({x:xx,y:yy});if(grid[yy*LW+xx]===T.GOAL)goal={x:xx,y:yy+1};}
     S.data={...S.data,kind:'open',width:LW,height:LH,ct:customTracks,boxes,goal,requiredGrapples:pegList.length?1:0};
@@ -36,9 +36,10 @@
    if(target&&K.cast(player,target)){S.from=from||'whip';state.hooks++;state.from=state.from||'whip';state.castTicks=0;log('hook',{peg:target.id,r:player.peg.r,speed:Math.hypot(player.vx,player.vy)});say('HOOKED / STEER TO WIND UP');return true;}
    state.lash=12;cooldown=10;return false;
   }
-  function release(){if(!enabled()||!player.peg)return;const r=K.release(player);S.airFrames=0;state.releases++;state.turns=Math.max(state.turns,r.loops);state.lastReleased=r.id;cooldown=10;state.from='whip';log('release',r);say(r.loops?'WIND-UP RELEASE!':'GRAPPLE RELEASE');}
+  function release(){if(!player?.peg)return;if(__sky.active()&&(__delivery.paused||__delivery.state.menu)){state.pendingRelease=true;return;}if(!enabled())return;state.pendingRelease=false;const r=K.release(player);S.airFrames=0;state.releases++;state.turns=Math.max(state.turns,r.loops);state.lastReleased=r.id;cooldown=10;state.from='whip';log('release',r);say(r.loops?'WIND-UP RELEASE!':'GRAPPLE RELEASE');}
   function input(){return {right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft),up:!!keys.ArrowUp,down:!!keys.ArrowDown};}
   function tickWhip(){
+   if(state.pendingRelease&&enabled())release();
    if(cooldown>0)cooldown--;if(state.lash>0)state.lash--;
    const z=!!(keys.KeyZ||touchHeld);
    if(z&&!state.wasZ)state.castTicks=18;
@@ -71,7 +72,7 @@
     const hit=K.catchRail(p,old,tracks,state.from);
     if(hit){
      S.catches++;S.transfers++;S.checkpoint=hit.tr.sky.stage;S.seen.add(S.checkpoint);S.from=null;
-     state.checkpoint={id:hit.tr.sky.id,s:hit.s};
+     state.checkpoint={id:hit.tr.sky.id,s:hit.s};state.checkpoints[hit.tr.sky.stage]=state.checkpoint;
      log('catch',{stage:hit.tr.sky.stage,from:state.from,airTicks:p._airTicks,normalSpeed:p.speed,s:hit.s});
      state.from=null;p._airTicks=0;S.airFrames=0;say('CURVED RAMP CATCH');
     }
@@ -87,7 +88,7 @@
   // Keyboard, touch, and remapped gamepad Z all use the same cast/release path.
   window.addEventListener('keydown',e=>{if(!enabled()||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName))return;if(e.code==='KeyZ'&&!e.repeat){keys.KeyZ=true;state.wasZ=true;cast();}if(e.code==='Space'&&isOpen()&&!e.repeat)state.jump=true;});
   window.addEventListener('keyup',e=>{if(e.code==='KeyZ'){keys.KeyZ=false;release();state.wasZ=false;}});
-  function loseInput(){keys.KeyZ=false;touchHeld=false;state.wasZ=false;state.castTicks=0;if(player?.peg&&__sky.active()){K.release(player);state.from='whip';cooldown=10;}}
+  function loseInput(){keys.KeyZ=false;touchHeld=false;state.wasZ=false;state.castTicks=0;if(player?.peg&&__sky.active())state.pendingRelease=true;}
   window.addEventListener('blur',loseInput);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseInput();});
   document.getElementById('stagewrap').insertAdjacentHTML('beforeend','<button id="whip-control" class="delivery-btn" aria-label="Hold to whip a peg; release to launch">HOLD: WHIP</button><div id="whip-status" role="status" aria-live="polite"></div>');
   const button=document.getElementById('whip-control');
@@ -108,7 +109,8 @@
     set('cloud-flight-label',cue);set('cloud-control-tip','D: THROTTLE / Z: WHIP / UP-DOWN: REEL / C: MAIL');
     set('sky-state',cue);set('sky-loop-count',`SECTIONS ${S.completed.size} / ${S.data.stages}`);set('delivery-hint','Open lips launch automatically. Z catches a peg; releasing Z preserves your swing momentum. R retries a caught section.');
     set('sky-launch-touch','JUMP OFF');
-    document.querySelector('#cloud-hud .cloud-loop .cloud-label')?.replaceChildren(document.createTextNode('SECTIONS'));
+    const label=document.querySelector('#cloud-hud .cloud-loop .cloud-label');if(label&&label.textContent!=='SECTIONS')label.textContent='SECTIONS';
+    for(const o of document.querySelectorAll('#sky-checkpoint option'))if(o.textContent.includes('loop'))o.textContent=o.textContent.replace('loop','section');
     document.body.classList.remove('sky-launch-ready');document.getElementById('cloud-hud')?.classList.remove('ready','armed');
     const fill=document.getElementById('cloud-phase-fill');if(fill)fill.style.width=`${a?Math.min(100,a.loops*30):p.track?p.trackS/p.track.len*100:0}%`;
    }else{const label=document.querySelector('#cloud-hud .cloud-loop .cloud-label');if(label&&label.textContent!=='LOOPS')label.textContent='LOOPS';}
