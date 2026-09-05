@@ -1,0 +1,101 @@
+name: Review Theology depth and reading experience
+on:
+  push:
+    branches: [feat/theology-depth-reader-20260904]
+    paths: ['theology-wiki/**', '.github/workflows/theology-depth-review.yml']
+permissions:
+  contents: write
+concurrency:
+  group: theology-depth-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize integrity-checked source delta
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,json,lzma,subprocess
+          parts=sorted(Path('theology-wiki').glob('depth-transfer-*.txt'))
+          if parts:
+            digest,payload=''.join(p.read_text().strip() for p in parts).split(':',1)
+            assert digest=='a0451317bc79ecd26c62915052b649d705caaf0dad0fddbdbd67a995bad956f1'
+            data=base64.b64decode(payload,validate=True)
+            assert hashlib.sha256(data).hexdigest()==digest,'Source package differs'
+            package=json.loads(lzma.decompress(data))
+            modified={'theology-wiki/README.md','theology-wiki/tools/build.cjs','theology-wiki/assets/js/research-core.js','theology-wiki/assets/js/research-tools.js','theology-wiki/tests/research.test.cjs','theology-wiki/tests/browser.py'}
+            added={'theology-wiki/editorial/depth.cjs','theology-wiki/assets/js/depth-tools.js','theology-wiki/assets/css/depth.css'}
+            patch=Path('/tmp/theology-depth.patch');patch.write_text(package['patch'])
+            actual={line.split('\t')[-1] for line in subprocess.check_output(['git','apply','--numstat',str(patch)],text=True).splitlines()}
+            assert actual==modified and set(package['files'])==added
+            subprocess.run(['git','apply','--check',str(patch)],check=True)
+            subprocess.run(['git','apply',str(patch)],check=True)
+            for name,text in package['files'].items():
+              p=Path(name);assert not p.exists();p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+            hashes={
+              'theology-wiki/README.md':'8b149a0b9dd6e39b27ed685971759869d2f3aca574e8892781f3ec34c9ab106e',
+              'theology-wiki/tools/build.cjs':'0ded5f0f5d25b0b20589e91ed407fa8902505ef4fbe88105533b28dd9ea2bea9',
+              'theology-wiki/assets/js/research-core.js':'82ca28dd27a9c0acf5ca6750f5c4e56e28e8c9b145afce10b62f0be2b6bcd750',
+              'theology-wiki/assets/js/research-tools.js':'c8f23681211f38afbd53d67f66ca12cb580dbcf91fcde0138af1d81e77fcae0d',
+              'theology-wiki/tests/research.test.cjs':'67d856ddaf773e6bd54f5fb323b23431dbee46ba8e9b7f61be8f1b4fa23eda5d',
+              'theology-wiki/tests/browser.py':'f05db3603948ac0fa6b61a261fbab19e302807335810682749417bb23a550bc5',
+              'theology-wiki/editorial/depth.cjs':'e7df5acc8d19c5c6410ecc4b24fee8043a9f2f3c19451e19aeb3e3fa4cb3c59f',
+              'theology-wiki/assets/js/depth-tools.js':'5c66a3269f7e54eb638ac631d05861c7a05d3e86354fc7eaee15c438061309e9',
+              'theology-wiki/assets/css/depth.css':'24daac8cdb86329a0a09cddcf2006484bdcb614314a878e59deb6460f26bb2c7'}
+            for name,digest in hashes.items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==digest,name
+            for p in parts:p.unlink()
+          PY
+          if [ -f theology-wiki/tools/depth-review-fix.py ]; then python theology-wiki/tools/depth-review-fix.py; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and test the preserved source and reader
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output
+          node theology-wiki/tools/build.cjs | tee theology-test-output/build-report.txt
+          node --check theology-wiki/assets/js/depth-tools.js
+          node --check theology-wiki/assets/js/research-tools.js
+          node --test theology-wiki/tests/research.test.cjs | tee theology-test-output/node-tests.txt
+          git diff --exit-code -- theology-sources san-wiki-shell scripts
+      - name: Record readable generated source on this branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki
+          if ! git diff --cached --quiet; then git commit -m 'Deepen Theology arguments, explain relationships and simplify the reader'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - name: Install native browser tooling
+        run: |
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium > /tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+      - name: Verify the bundled museum pictures
+        run: python theology-wiki/tools/media.py
+      - name: Exercise native HTTP reader and archive workflows
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py
+      - name: Preserve review evidence
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD > theology-test-output/tested-commit.txt
+          git diff --stat > theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('theology-test-output/review-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for f in Path('theology-wiki').rglob('*'):
+              if f.is_file() and '__pycache__' not in f.parts and f.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'} and not f.name.startswith('depth-transfer-'):z.write(f,f.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-depth-review
+          path: theology-test-output/
+          retention-days: 14
