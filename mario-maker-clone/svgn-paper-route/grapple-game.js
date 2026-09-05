@@ -167,7 +167,7 @@
    ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);ctx.scale(z,z);ctx.translate(-cam.x,-cam.y);const a=player.peg||state.target;ctx.strokeStyle='#ffd27a';ctx.lineWidth=2.5;ctx.beginPath();ctx.arc(a.x,a.y,12,0,Math.PI*2);ctx.stroke();
    if(player.peg){ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(player.x+13,player.y+10);ctx.lineTo(a.x,a.y);ctx.stroke();}ctx.restore();
   }};
-  window.__grapple={state,isOpen,tickInput:tickWhip,pegs:()=>pegList,get graphics(){return sceneObjects}};
+  window.__grapple={state,isOpen,tickInput:tickWhip,tickInput:tickWhip,pegs:()=>pegList,get graphics(){return sceneObjects}};
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
