@@ -37,7 +37,7 @@ def start_input(page,route):
      }
      frame=requestAnimationFrame(poll);
    }
-   window.__skyReplayInput={events,stop(){running=false;cancelAnimationFrame(frame);key('KeyA',false);key('KeyD',false);key('Space',false);}};
+   window.__skyReplayInput={events,stop(){if(!running)return;running=false;cancelAnimationFrame(frame);key('KeyA',false);key('KeyD',false);key('Space',false);}};
    frame=requestAnimationFrame(poll);
  }''',route)
 with sync_playwright() as p:
@@ -60,7 +60,7 @@ with sync_playwright() as p:
    page.wait_for_function('mode==="play"&&player.track?.sky&&__sky.state.steps>0')
    check(page.evaluate('__merged.get3D()&&__delivery.state.view==="3d"'),'Route '+str(route+1)+' stays in the actual 3D renderer')
    check(page.evaluate('!__merged.trackGroup.visible&&!__merged.curveGroup.visible'),'Legacy duplicate rails do not cover the volumetric sky rails')
-   page.keyboard.down('KeyD');page.keyboard.down('KeyC');start_input(page,route)
+   start_input(page,route);page.keyboard.down('KeyD');page.keyboard.down('KeyC')
    saved=False;start=time.monotonic();last={};logged=-1
    while time.monotonic()-start<REPLAY_SECONDS:
     st=status(page);last=st
