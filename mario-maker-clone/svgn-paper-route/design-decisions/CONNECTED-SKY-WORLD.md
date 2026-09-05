@@ -1,0 +1,13 @@
+# One scene, not separate sky attractions
+
+The three supplied screenshots are interpreted together: broad wedge ramps, open suspended curves, shelves, exposed ends, gaps and a road underneath. The requested change is spatial continuity across dozens of these arrangements, not another row of complete circles or a new image.
+
+The opening adventure's upper layout is replaced by several linked clusters with a sustained middle through-line, lower entry/recovery routes, higher shelves and open hooks, and physical peg ladders. Its exact counts are recorded by the geometry tests and native browser report rather than inferred from promotional artwork. The through-line is positioned from the shared ballistic integrator. That design-time calculation changes track geometry only; runtime transfers advance the rider through velocity, gravity and swept rail collisions.
+
+Track art is a wide extruded double-edged roadway. It follows the same polyline that the rider uses, including the open end caps. Sparse braces and section signs replace the repeated floating-island/ring display. The street, encounters, original synthesized score, finish-only rule and automatic story progression are retained. Upper exploration and grappling remain optional. A real geometry map and a wider view expose the layers without moving the rider or selecting a route for them.
+
+A flight adapter preserves launched momentum instead of applying ground-style midair braking between every ramp. Peg collision recovery requires releasing and recasting instead of repeatedly attaching after a blocked swing. Changes are restricted to network levels; the previous expert courses keep their explicit challenge rules.
+
+The existing creator can edit/export the full track list and metadata. The separate Route Workshop overhaul remains a draft and is not declared complete here. Metadata links document intended traversal choices, not a proof that every possible branch is reachable. Acceptance records distinguish pure geometry fixtures, a full ground-only browser finish, a sustained actual aerial run, and a sampled grapple interaction. Browser tests use ordinary keys and buttons rather than assigning player position, velocity or progress.
+
+The original screenshots and commercial franchise assets are not bundled or used as textures. Native software-WebGL tests and inspected captures are required before publication; they are not a physical-phone/native-GPU performance certification. No unrelated app, account setting or private source is changed. Rollback is a scoped release revert, never a reset of unrelated repository history or clearing saved player data.
