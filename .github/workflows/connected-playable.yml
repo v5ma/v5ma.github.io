@@ -1,0 +1,24 @@
+name: Verify connected-world playable revision
+on:
+  push:
+    branches: [feat/connected-world-playable-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve exact game source for local review
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/runtime.tgz mario-maker-clone/svgn-paper-route tests scripts development .github/workflows
+          git rev-parse HEAD > test-output/source-sha.txt
+          find . -iname 'agents.md' -not -path './.git/*' > test-output/agent-files.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: connected-runtime-source
+          path: test-output/
+          retention-days: 3
