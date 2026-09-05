@@ -109,6 +109,7 @@ with sync_playwright() as p:
         else:
             action(page,'starter');action(page,'fit')
             page.locator('#maker-name').fill('Playtest neighborhood');page.locator('#maker-name').press('Tab')
+            page.locator('#maker-tiles [data-tile="5"]').click();click_world(page,10*36+18,59*36+18)
             page.locator('#maker-tiles [data-tile="43"]').click();click_world(page,12*36+18,59*36+18)
             page.locator('#maker-tiles [data-tile="8"]').click();click_world(page,48*36+18,59*36+18)
             page.locator('#maker-music').select_option('canal')
@@ -119,6 +120,7 @@ with sync_playwright() as p:
             check(page.evaluate('__delivery.state.route===-1&&__sky.state.data.stages===0'),'Custom playtests remain optional-route adventures, not campaign record attempts')
             page.locator('#cv').focus();page.keyboard.down('KeyD');page.wait_for_function('player.shield',timeout=120000)
             check(page.evaluate('player.shield'),'The shield placed through the editor is collected by the real rider')
+            check(page.evaluate('credits')>credits,'A real collected envelope changes test coins before restoration')
             page.screenshot(path=str(OUT/'actual-3d-playtest.png'))
             page.wait_for_function('won',timeout=180000);page.keyboard.up('KeyD')
             check(page.evaluate('won&&tries===1&&__adventure.state.transition===null'),'Reaching the edited finish completes the test without jumping to a featured campaign level')
