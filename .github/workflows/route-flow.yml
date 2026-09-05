@@ -1,0 +1,50 @@
+name: Verify committed route-flow source
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/route-flow-planning-20260905]
+    paths: ['mario-maker-clone/svgn-paper-route/route-flow-core.js','mario-maker-clone/svgn-paper-route/route-flow-world.js','mario-maker-clone/svgn-paper-route/route-flow-plans.js','mario-maker-clone/svgn-paper-route/route-flow-editor.js','tests/flow_browser.py']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/route_flow.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/workshop_live.test.cjs
+  browser:
+    needs: validate
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [editor, board, road, spine, branch, peg]
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Replay actual inputs against exact committed source
+        env:
+          FLOW_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/flow-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1260 python -u tests/flow_browser.py
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: route-flow-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7

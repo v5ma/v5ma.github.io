@@ -1,0 +1,42 @@
+name: Measure real fitted-branch input windows
+on:
+  push:
+    branches: [feat/route-flow-planning-20260905]
+    paths: ['tests/flow_branch_window.py','.github/workflows/flow-branch-window.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  branch:
+    strategy:
+      fail-fast: false
+      matrix:
+        phase: ['.40','.43','.47']
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prove tested gameplay source is unchanged
+        run: |
+          git fetch --depth=1 origin b009ddfc2814f3c43e5c9892e94907e7c6a01e77
+          git diff --exit-code b009ddfc2814f3c43e5c9892e94907e7c6a01e77 HEAD -- mario-maker-clone/svgn-paper-route/
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - env:
+          JUMP_PHASE: ${{ matrix.phase }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/branch-window.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 940 python -u tests/flow_branch_window.py
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flow-branch-${{ matrix.phase }}
+          path: test-output/
+          retention-days: 7
