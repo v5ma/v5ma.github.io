@@ -19,6 +19,11 @@ globalThis.SkyNetworkArt=(()=>{
     if(i%7===0)quad(markers,v(a,.9,-1.5),v(a,.9,1.5),v(b,.9,1.5),v(b,.9,-1.5),'#d2d4af');
    }
    for(const end of[f[0],f.at(-1)])quad(edges,v(end,0,-32),v(end,-34,-32),v(end,-34,32),v(end,0,32),gold);
+   if(tag.entry){
+    const first=pts[0],ground=course.ground*36,x=first[0]-62;
+    metal.rod([x,-ground,-40],[x,-ground+102,-40],2.5,'#526d74');
+    sign('UPPER ROUTE '+(tag.sector+1)+' / JUMP',x,-ground+110,-32,174,35);
+   }
    count++;
   }
   const ground=course.ground*36;

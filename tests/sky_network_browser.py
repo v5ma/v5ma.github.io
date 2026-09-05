@@ -30,12 +30,25 @@ with sync_playwright() as p:
   if MODE=='survey':
    page.locator('#network-map-button').click();page.wait_for_selector('#sky-network-map[open]');frozen=state(page);page.wait_for_timeout(250)
    check(state(page)['steps']==frozen['steps'],'The whole-world map pauses the rider')
-   page.screenshot(path=str(OUT/'whole-connected-level.png'));page.keyboard.press('Escape');page.wait_for_function('!document.getElementById("sky-network-map").open')
+   page.screenshot(path=str(OUT/'whole-connected-level.png'))
+   page.locator('#network-map-nearby').click()
+   check(page.evaluate('__network.mapLocal'),'Nearby view exposes individual ramps and pegs without moving the player')
+   page.screenshot(path=str(OUT/'nearby-route-map.png'))
+   check(state(page)['steps']==frozen['steps'] and state(page)['x']==frozen['x'],'Both map scales remain paused and non-teleporting')
+   page.locator('#network-map-world').click();check(not page.evaluate('__network.mapLocal'),'The whole-world view remains available from the local map')
+   page.keyboard.press('Escape');page.wait_for_function('!document.getElementById("sky-network-map").open')
    check(abs(state(page)['x']-frozen['x'])<2,'Closing the map does not teleport the rider')
    page.locator('#network-wide-button').click();check(page.evaluate('__network.wide'),'Wide view can show more of the connected tiers')
+   page.wait_for_function('!!__network.backdrop')
+   backdrop=page.evaluate('''()=>{const b=__network.backdrop,T=__merged.THREE,c=__merged.camera,w=b.geometry.parameters.width/2,h=b.geometry.parameters.height/2;return [[-w,-h],[w,-h],[w,h],[-w,h]].map(([x,y])=>new T.Vector3(x,y,0).applyMatrix4(b.matrixWorld).project(c).toArray());}''')
+   check(min(v[0] for v in backdrop)<-1 and max(v[0] for v in backdrop)>1 and min(v[1] for v in backdrop)<-1 and max(v[1] for v in backdrop)>1,'Wide perspective has full sky coverage without a visible backdrop edge')
    page.screenshot(path=str(OUT/'first-neighborhood.png'))
    page.keyboard.down('KeyD');page.wait_for_function('player.x>=630',timeout=120000);page.keyboard.down('Space');page.wait_for_function('player.track?.sky.id==="loop-0"',timeout=40000);page.keyboard.up('Space');page.keyboard.up('KeyD')
    page.screenshot(path=str(OUT/'ramp-cluster.png'))
+   page.locator('#cv').focus();page.keyboard.press('KeyP');page.wait_for_function('__delivery.paused')
+   page.locator('#network-map-button').click();page.wait_for_selector('#sky-network-map[open]');page.locator('#network-map-close').click()
+   check(page.evaluate('__delivery.paused'),'Closing a map opened from Pause does not resume the game unexpectedly')
+   page.locator('#delivery-pause [data-delivery="resume"]').click()
    page.locator('#delivery-header [data-delivery="editor"]').click();check(page.evaluate('levelCode()')==original,'Create restores the preceding complete blueprint')
    page.on('dialog',lambda d:d.accept());page.locator('#beginner-blueprint').click();code=page.evaluate('levelCode()');meta=json.loads(__import__('base64').b64decode(code.split('.')[0]));check(len(meta['ct'])>=40 and all(m['network'] for m in meta['cm']),'An editable copy exports the entire network and its track metadata')
   elif MODE=='road':
@@ -74,6 +87,11 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUT/'whip-in-network.png'));before=state(page);page.keyboard.up('KeyZ');page.wait_for_function('!player.peg')
     page.wait_for_function('(n)=>__network.state.visits.size>n||player.onGround',arg=len(before['visits']),timeout=180000)
     after=state(page);check(after['releases']>0,'Releasing Z produces a real momentum release')
+    check(any(e['type']=='whip-release' and e.get('vx',0)>0 for e in after['events']),'Between-frame key-up is recorded as an actual tangential whip release')
+    # A receiving rail or safe road is acceptable recovery. Report which one
+    # actually occurred; this sample is not proof of every upper peg ladder.
+    if after.get('track'):
+     check(any(e['type']=='catch' and str(e.get('from','')).startswith('peg:') and e.get('airTicks',0)>3 for e in after['events']),'Whip-to-rail recovery follows detached ballistic frames')
     check(after['tries']==1,'The optional grapple attempt remains within the same live run')
     page.screenshot(path=str(OUT/'grapple-reconnection.png'));page.keyboard.up('KeyD')
   check(not errors,'No uncaught JavaScript errors in the tested 3D flow')

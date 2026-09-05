@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [survey, flight, grapple, road]
+        suite: [survey, flight, grapple, road, expert]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -38,7 +38,11 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/network-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 1260 python -u tests/sky_network_browser.py
+          if [ "$NETWORK_SUITE" = expert ]; then
+            SKY_REPLAY_ROUTE=0 timeout 1260 python -u tests/sky_browser.py
+          else
+            timeout 1260 python -u tests/sky_network_browser.py
+          fi
       - name: Record source and preserve failure evidence
         if: always()
         run: |
