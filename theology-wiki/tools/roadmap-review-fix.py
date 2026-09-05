@@ -1,5 +1,6 @@
 """Apply the inspected homepage regression test and a source-grounded textual clarification."""
 from pathlib import Path
+import json
 root=Path(__file__).resolve().parents[1]
 p=root/'tests/browser.py';s=p.read_text()
 old="        check('Home includes a connecting introduction and all other developed articles', page.locator('.depth-article-index a').count()==16 and page.locator('.depth-route-banner a[data-page=\"guide-to-the-inquiry\"]').count()==1)"
@@ -11,7 +12,8 @@ assert s.count(old)==1,'Homepage fixture differs from inspected source'
 p.write_text(s.replace(old,new))
 p=root/'editorial/roadmap.cjs';s=p.read_text()
 needle="const references=[\n"
-addition=" ref('melch-kim2018','Dong-Hyuk Kim (2018), The Messiah of Aaron and Israel: Do We See Single or Double?, Korean Journal of Old Testament Studies 24(1), 190-213','https://journal.kci.go.kr/ksots/archive/articleView?artiId=ART002331289','Journal metadata, English abstract and bibliography consulted. DOI 10.24333/jkots.2018.24.1.190. The abstract establishes the dispute about the singular Damascus Document expression and states the author\'s argument for two figures. The full Korean article and the cited critical editions were not collated. This is current editorial research, not a recovered author acknowledgment.'),\n"
+record=['melch-kim2018','Dong-Hyuk Kim (2018), The Messiah of Aaron and Israel: Do We See Single or Double?, Korean Journal of Old Testament Studies 24(1), 190-213','https://journal.kci.go.kr/ksots/archive/articleView?artiId=ART002331289','Journal metadata, English abstract and bibliography consulted. DOI 10.24333/jkots.2018.24.1.190. The abstract establishes the dispute about the singular Damascus Document expression and states its argument for two figures. The full Korean article and the cited critical editions were not collated. This is current editorial research, not a recovered author acknowledgment.']
+addition=' ref('+','.join(json.dumps(x) for x in record)+'),\n'
 assert s.count(needle)==1
 p.write_text(s.replace(needle,needle+addition))
 p=root/'editorial/roadmap-articles/melchizedek-priesthood-and-transmission.md';s=p.read_text()
@@ -38,6 +40,7 @@ s+='''\ntest('Messianic-number clarification preserves the author question and i
 test('Release tree contains developed roadmap sources, not transfer placeholders',()=>{for(const f of ['editorial/roadmap.cjs','data/roadmap.json','planning/Theology-Research-Plan.xlsx'])assert(fs.existsSync(path.join(ROOT,f)));for(const f of fs.readdirSync(ROOT))assert(!/^(roadmap-transfer-|resume-foundation-|foundation-transfer-)/.test(f));assert(!fs.existsSync(path.join(ROOT,'tools/roadmap-review-fix.py')));});
 '''
 p.write_text(s)
+p=root/'tests/research.test.cjs';s=p.read_text();old='assert.equal(refs.length,43)';assert s.count(old)==1;p.write_text(s.replace(old,'assert.equal(refs.length,44)'))
 p=root/'README.md';s=p.read_text();s+='''\n## Roadmap continuation: actual deployment gates\n\nThe continued roadmap pass corrects the workbook transfer digest to the preserved workbook manifest and replaces stale test selectors with assertions against the actual reader. Homepage coverage now checks that all developed article destinations occur exactly once across featured and remaining articles. Missing-page tests await the real error state rather than a fixed delay. Workbook download checks require nine sheets and the published SHA-256 digest. A release-tree test rejects leftover transfer placeholders and temporary patch scripts.\n\nThe Melchizedek article now separately treats the number of messianic agents and the qualification of their authority. It identifies the compression in the archived AI reply to the author's turn-84 question and credits Dong-Hyuk Kim's 2018 study at the actual abstract-level access scope. The workbook remains the same verified planning snapshot; no task is marked author-approved by this textual clarification.\n'''
 p.write_text(s)
 Path(__file__).unlink()
