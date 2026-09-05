@@ -3,7 +3,7 @@ The temporary source envelope is removed before the verified commit is tested.
 This script never changes workflow permissions, accounts or unrelated apps.
 """
 from pathlib import Path
-import hashlib,json,lzma,re
+import hashlib,json,lzma,re,subprocess,sys
 ROOT=Path(__file__).resolve().parents[1]
 GAME=ROOT/'mario-maker-clone/svgn-paper-route'
 ALLOWED={'mario-maker-clone/svgn-paper-route/'+n for n in ['workshop-core.js','route-workshop.js','workshop.css','workshop-input.js']}|{'tests/workshop_live.test.cjs','tests/workshop_browser.py'}
@@ -28,4 +28,5 @@ if 'src="./workshop-input.js"' not in s:
 p.write_text(s,newline='\r\n')
 p=GAME/'sky-network-runtime.js';s=p.read_text().replace('Math.min(...ext.map(p=>p[1]))-90','(ext.length?Math.min(...ext.map(p=>p[1])):ground-600)-90');p.write_text(s)
 p=GAME/'sw.js';s=re.sub(r"const CACHE = '[^']+';", "const CACHE = 'svgn-paper-route-workshop-live-20260905';",p.read_text());p.write_text(s)
+subprocess.run([sys.executable,str(ROOT/'scripts/polish-workshop-live.py')],check=True)
 print('Live editor source integrated. Campaign, physics and all other applications retained.')
