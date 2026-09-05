@@ -21,7 +21,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 ## Find your way through the inquiry
 
-[[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer five longer routes, and the [[glossary|glossary]] explains the collection's terms.
+[[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer seven longer routes, and the [[glossary|glossary]] explains the collection's terms.
 
 ## All developed articles
 
@@ -53,6 +53,16 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: Micah's comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
 
+[[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]]: How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.
+
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]: A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.
+
+[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.
+
+[[scripture-power-and-repair|Scripture, power and the work of repair]]: The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.
+
+[[god-and-our-models-of-god|God and our models of God]]: An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.
+
 ## Explore a subject
 
 [[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
@@ -75,4 +85,4 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-14 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.
+19 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.

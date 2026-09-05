@@ -3,14 +3,14 @@
 // Rebuild only the Theology collection. Published source bytes and other projects are read-only.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const ROOT=path.resolve(__dirname,'..'),SITE=path.dirname(ROOT);
-const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs');
-const references=[...X.references,...D.references];
-const E={...base,version:D.version,articles:[...X.articles,...base.articles].map(p=>{
+const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs'),F=require('../editorial/foundations.cjs');
+const references=[...X.references,...D.references,...F.references];
+const E={...base,version:F.version,articles:[...X.articles,...base.articles].map(p=>{
  const update=D.overrides[p.slug]; if(!update)return p;
  return {...p,...update,externalSources:[...new Set([...(p.externalSources||[]),...update.externalSources])],
  sourceIds:[...new Set([...(p.sourceIds||[]),...D.anchors.filter(a=>a.from===p.slug).map(a=>a.sourceId)])],
  attribution:'AI-assisted editorial synthesis of Micah Blumberg\'s source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.'};
-}),paths:[...X.paths,...base.paths]};
+}).map(p=>{const x=F.addenda[p.slug];return x?{...p,body:p.body+'\n\n'+x.body,updated:F.updated,sourceIds:[...new Set([...(p.sourceIds||[]),...x.sourceIds])],externalSources:[...new Set([...(p.externalSources||[]),...x.externalSources])]}:p;}).concat(F.articles),paths:[...X.paths,...base.paths,...F.paths]};
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8'),json=p=>JSON.parse(read(p).replace(/^\uFEFF/,''));
 const write=(p,value)=>{const target=path.join(ROOT,p);if(!target.startsWith(ROOT+path.sep))throw Error('Out-of-scope write');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,value);};
 const emit=(p,value)=>write(p,JSON.stringify(value,null,2)+'\n');
@@ -100,7 +100,7 @@ ${D.featured.map(slug=>{const p=E.articles.find(p=>p.slug===slug);return `[[${p.
 
 ## Find your way through the inquiry
 
-[[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer five longer routes, and the [[glossary|glossary]] explains the collection's terms.
+[[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer seven longer routes, and the [[glossary|glossary]] explains the collection's terms.
 
 ## All developed articles
 
@@ -119,11 +119,38 @@ ${E.articles.length} developed articles accompany the archive. They are attribut
  add({slug:'reading-paths',title:'Reading paths',category:'context',kind:'Navigator',summary:'Follow a question across the developed articles.'},E.paths.map(p=>`## ${p.title}\n\n${p.description}\n\n${p.pages.map(s=>`[[${s}|${bySlug.get(s).title}]]`).join('\n\n')}`).join('\n\n'));
  add({slug:'connections',title:'Connections between ideas',category:'context',kind:'Navigator',summary:'Explore explicit wikilinks and source relationships without treating resemblance as equivalence.'},'## Follow an argument\n\nChoose a page in the connection explorer below. Lines represent explicit reader links; incoming and outgoing relationships are also listed in text.\n\n[[reading-paths|Reading paths]] offer a guided alternative.');
  add({slug:'image-collection',title:'Images, manuscripts and interpretation',category:'context',kind:'Navigator',summary:'Historical artworks with their dates, institutional records, credits and reasons for inclusion.'},'## A picture also needs a source\n\nThe collection distinguishes historical objects from later interpretations of sacred narratives. Each image includes its museum record and public-domain status. An illustration is not independent verification of the theology it accompanies.');
+ const navigator=(slug,title,summary,body)=>add({slug,title,summary,category:'context',kind:'Navigator',updated:F.updated},body);
+ navigator('book-contents','The Theology book: proposed contents','A navigable draft chapter order connecting sacred inheritance, the Teacher, inward models, public power and repair.',
+  'The book is taking shape as an argument, not a printed alphabetical wiki. These are proposed chapter routes, not finished chapters. The shorter route descriptions lead to the developed arguments; they do not replace them.\n\n'+F.parts.map(part=>'## '+part.title+'\n\n'+part.chapters.map(c=>'### '+c.title+'\n\n'+c.purpose+'\n\n'+c.pages.map(slug=>`[[${slug}|${bySlug.get(slug).title}]]`).join(' / ')).join('\n\n')).join('\n\n')+'\n\n[[parallel-timelines|Compare timeline layers]], [[connections|follow explained relationships]], [[intellectual-debts|read the intellectual debts]], or [[research-board|review concrete research tasks]].');
+ navigator('parallel-timelines','Parallel timelines and versions','Inspect different source reconstructions and manuscript witnesses without collapsing them into a single chronology.',
+  'These records distinguish the June comparison, the stronger October reconstruction, dated material witnesses and textual constraints. Unknown dates remain unknown. Choosing a layer does not endorse it as established history.\n\n'+F.layers.map(layer=>'## '+layer.title+'\n\n'+F.timeline.filter(t=>t.layer===layer.id).map(t=>'### '+t.title+'\n\n'+t.dateLabel+'. '+t.detail).join('\n\n')).join('\n\n')+'\n\n[[tor-thomas-and-gnostic-transmission|Read the full transmission inquiry]] and [[jesus-teacher-of-righteousness-hypothesis|the earlier-Teacher reconstruction]].');
+ navigator('research-board','Research and author-review board','Concrete source, citation, argument and author-review tasks; personal planning changes do not edit the published research record.',
+  'The board tracks work, not the truth or falsity of an entire theory. Browser changes are personal planning notes only. They are not shared editorial decisions and do not change GitHub or the public site.\n\n'+F.stages.map(stage=>'## '+stage+'\n\n'+(F.tasks.filter(t=>t.stage===stage).map(t=>'### '+t.title+'\n\n'+t.detail+'\n\n[['+t.page+'|Open the related investigation]]').join('\n\n')||'No task is assigned to this stage in the published baseline.')).join('\n\n'));
+ navigator('intellectual-debts','Intellectual debts and source lineage','Explicit acknowledgments, translation credit and AI-introduced research leads are recorded separately.',
+  'Credit belongs to the particular contribution actually documented. A name appearing in an AI reply is not automatically an acknowledgment by the author; a later article is not retroactive evidence of an earlier influence.\n\n'+F.debts.map(d=>'## '+d.name+'\n\n'+d.type+'. '+d.claim+'\n\n'+d.limit).join('\n\n')+'\n\n[[tor-thomas-and-gnostic-transmission|Read the Teacher and Gnostic transmission inquiry]] or [[research-board|review the citation tasks]].');
  // Existing source-index remains at its established URL; only its generated landing content changes.
  const sourceIndex=bySlug.get('sources-index');sourceIndex.kind='Source catalogue';sourceIndex.category='context';sourceIndex.summary='Search, sort and open all 354 original conversations, with speaker labels and UTC export dates.';sourceIndex.primaryExcerpt='';
  const sb='## Read the conversations behind the ideas\n\nThe full catalogue below preserves the 354 published AI chats. Search matches may come from either speaker, not necessarily from Micah\'s own statements. Dates are export metadata, not independent publication certificates.\n\n'+E.categories.map(c=>`[[topic-${c.id}|${c.title}]]`).join('\n\n');
  write('content/'+sourceIndex.path,front(sourceIndex,sb));bodies.set(sourceIndex.slug,sb);
- const relationships=D.relations.map(r=>({...r}));
+ const foundations=JSON.parse(JSON.stringify(F));
+ delete foundations.articles; delete foundations.addenda; delete foundations.references; delete foundations.relations; delete foundations.paths;
+ function resolvePassage(a){
+  const p=sourceById.get(a.sourceId),t=chats.get(p?.sourceFile)?.turns[a.turn-1];
+  const expected=a.role==='AI-introduced lead'?'Self Aware Networks GPT':'Micah Blumberg';
+  if(!p||!t||t.speaker!==expected)throw Error('Foundation source/speaker mismatch '+a.sourceId+':'+a.turn+' '+t?.speaker);
+  const row={...a,sourceSlug:p.slug,sourceFile:p.sourceFile,sourceHash:p.sourceSha256,speaker:t.speaker,excerpt:t.text.replace(/\s+/g,' ').slice(0,480),excerptTruncated:t.text.replace(/\s+/g,' ').length>480};delete row.sourceId;return row;
+ }
+ for(const d of foundations.dossiers){if(!bySlug.has(d.page))throw Error('Unknown dossier page');d.passages=d.passages.map(resolvePassage);for(const slug of d.legacy||[])if(!bySlug.has(slug))throw Error('Unknown legacy source');}
+ for(const d of foundations.debts){d.passages=d.passages.map(resolvePassage);d.references=d.references.map(id=>{const r=references.find(r=>r.id===id);if(!r)throw Error('Unknown debt reference');return r;});}
+ for(const t of foundations.timeline){
+  if(t.start===0||t.end===0||t.start!==null&&!Number.isInteger(t.start)||t.end!==null&&!Number.isInteger(t.end))throw Error('Invalid historical year');
+  if(t.sourceId){Object.assign(t,resolvePassage({...t,role:'Author reconstruction'}));delete t.sourceId;}
+  if(t.reference){const ref=references.find(r=>r.id===t.reference);if(!ref)throw Error('Unknown timeline source');t.sourceURL=ref.url;t.sourceTitle=ref.title;}
+ }
+ for(const part of F.parts)for(const c of part.chapters)for(const slug of c.pages)if(!bySlug.has(slug))throw Error('Unknown chapter page '+slug);
+ for(const task of F.tasks)if(!bySlug.has(task.page)||!F.stages.includes(task.stage))throw Error('Invalid research task '+task.id);
+ emit('data/foundations.json',foundations);
+ const relationships=[...D.relations,...F.relations].map(r=>({...r}));
  for(const p of pages.filter(p=>p.kind==='Developed article'))for(const r of p.references||[])relationships.push({from:p.slug,to:r.slug,type:'source',why:`The article develops an argument from ${r.title}. Read the original speakers separately from the editorial prose.`,origin:'Article source reference'});
  const anchors=D.anchors.map(a=>{
   const p=sourceById.get(a.sourceId),t=chats.get(p?.sourceFile)?.turns[a.turn-1];
@@ -131,6 +158,9 @@ ${E.articles.length} developed articles accompany the archive. They are attribut
   const row={...a,to:p.slug,sourceFile:p.sourceFile,sourceHash:p.sourceSha256};delete row.sourceId;return row;
  });
  const chronology=D.chronology.map(c=>{const p=sourceById.get(c.sourceId);if(!p||!chats.get(p.sourceFile).turns[c.turn-1])throw Error('Invalid chronology source');const row={...c,sourceSlug:p.slug,sourceHash:p.sourceSha256};delete row.sourceId;return row;});
+ for(const d of foundations.dossiers)for(const a of d.passages){
+  if(a.speaker==='Micah Blumberg'&&!anchors.some(x=>x.from===d.page&&x.to===a.sourceSlug&&x.turn===a.turn))anchors.push({from:d.page,to:a.sourceSlug,turn:a.turn,why:a.why,role:a.role,sourceFile:a.sourceFile,sourceHash:a.sourceHash});
+ }
  for(const r of relationships){if(!bySlug.has(r.from)||!bySlug.has(r.to)||r.from===r.to||!r.why)throw Error('Invalid explained relationship');}
  emit('data/relationships.json',{version:E.version,policy:'Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.',edges:relationships,anchors});
  emit('data/depth.json',{version:E.version,featured:D.featured,glossary:D.glossary,chronology,guide:D.guide.slug,updated:D.updated});
@@ -158,7 +188,7 @@ ${E.articles.length} developed articles accompany the archive. They are attribut
  emit('data/research.json',{version:E.version,categories:E.categories,paths:E.paths,sourceCount:manifest.length,developedCount:E.articles.length,featured:D.featured,forecastRecords:ledger.entries.length,sourceIntegrity:'354/354 matched existing SHA-256 manifest',backlinks});
  write('data/search.json',JSON.stringify({version:E.version,ids:pages.map(p=>p.slug),scope:'All published text. Speaker searches require every query token within the same top-level source turn; user turns can include pasted quotations.',postings,turns:turnRows,turnPostings})+'\n');
  patchReaders();
- const report={version:E.version,pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
+ const report={version:E.version,bookParts:F.parts.length,chapterRoutes:F.parts.reduce((n,p)=>n+p.chapters.length,0),researchTasks:F.tasks.length,timelineRecords:F.timeline.length,argumentDossiers:F.dossiers.length,reviewedPassages:foundations.dossiers.reduce((n,d)=>n+d.passages.length,0),pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
  emit('data/build-report.json',report);return report;
 }
 function patchReaders(){
@@ -216,6 +246,12 @@ function patchReaders(){
  if(!html.includes('depth.css'))html=html.replace('</head>','<link rel="stylesheet" href="./assets/css/depth.css?v='+E.version+'">\n</head>');
  if(!original.includes('depth-tools.js'))original=original.replace('<script src="./assets/js/research-tools.js','<script src="./assets/js/depth-tools.js?v='+E.version+'"></script><script src="./assets/js/research-tools.js');
  if(!original.includes('depth.css'))original=original.replace('</head>','<link rel="stylesheet" href="./assets/css/depth.css?v='+E.version+'"></head>');
+ if(!html.includes('foundation-tools.js'))html=html.replace('  <script src="./assets/js/research-tools.js','  <script src="./assets/js/foundation-tools.js?v='+E.version+'"></script>\n  <script src="./assets/js/research-tools.js');
+ if(!original.includes('foundation-tools.js'))original=original.replace('<script src="./assets/js/research-tools.js','<script src="./assets/js/foundation-tools.js?v='+E.version+'"></script><script src="./assets/js/research-tools.js');
+ if(!html.includes('foundation.css'))html=html.replace('</head>','<link rel="stylesheet" href="./assets/css/foundation.css?v='+E.version+'">\n</head>');
+ if(!original.includes('foundation.css'))original=original.replace('</head>','<link rel="stylesheet" href="./assets/css/foundation.css?v='+E.version+'"></head>');
+ html=html.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
+ original=original.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  const bump=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:depth-tools\.js|depth\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  write('san-reader.html',bump(html));
  write('index.html',bump(original));

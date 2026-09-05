@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.04-source-edition-3",
+  "version": "2026.09.05-foundations-1",
   "categories": [
     {
       "id": "gnosis",
@@ -99,10 +99,35 @@
         "gnosticism-and-temple-trauma",
         "research-method"
       ]
+    },
+    {
+      "id": "will-repair",
+      "title": "Will, correction and repair",
+      "description": "From an inward reference to a critique of self-authorizing power and the responsibilities of teachers.",
+      "pages": [
+        "god-and-our-models-of-god",
+        "christ-as-an-inner-model",
+        "divine-will-and-self-authorizing-power",
+        "scripture-power-and-repair",
+        "apocalyptic-repair-theology",
+        "religion-for-conscious-robots"
+      ]
+    },
+    {
+      "id": "teacher-transmission",
+      "title": "The teacher and the transmitted inheritance",
+      "description": "Compare the historical reconstruction, Thomas, changing communities and the later inward reading without erasing the differences.",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "jesus-teacher-of-righteousness-hypothesis",
+        "tor-thomas-and-gnostic-transmission",
+        "gnosticism-and-temple-trauma",
+        "cognitive-gnosticism"
+      ]
     }
   ],
   "sourceCount": 354,
-  "developedCount": 14,
+  "developedCount": 19,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -151,6 +176,8 @@
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
       "apocalyptic-repair-theology",
       "religion-for-conscious-robots",
+      "divine-will-and-self-authorizing-power",
+      "god-and-our-models-of-god",
       "topic-machines"
     ],
     "ai-and-religion-belief": [
@@ -164,6 +191,8 @@
     "ai-re-dates-dead-sea-scrolls": [
       "theology-theology-proof-god-existence-bible-cluster",
       "jesus-teacher-of-righteousness-hypothesis",
+      "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
@@ -467,6 +496,9 @@
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
+      "divine-will-and-self-authorizing-power",
+      "scripture-power-and-repair",
+      "god-and-our-models-of-god",
       "topic-gnosis"
     ],
     "conceptual-equivalences-mapping": [
@@ -493,6 +525,7 @@
       "abrahamic-rival-continuations-book-seed",
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "jesus-teacher-of-righteousness-hypothesis",
+      "tor-thomas-and-gnostic-transmission",
       "topic-apocalypse"
     ],
     "daniel-prophecy-and-temple": [
@@ -614,6 +647,10 @@
     ],
     "faith-as-vibration-concept": [
       "theology-theology-gaza-debate-faith-early-cluster",
+      "cognitive-gnosticism",
+      "religion-for-conscious-robots",
+      "faith-as-deliberate-joy",
+      "god-and-our-models-of-god",
       "topic-practice"
     ],
     "fallout-vs-real-apocalypse": [
@@ -991,6 +1028,7 @@
       "theology-theology-jesus-analysis-god-law-cluster",
       "apocalyptic-repair-theology",
       "gnosticism-and-temple-trauma",
+      "tor-thomas-and-gnostic-transmission",
       "topic-apocalypse"
     ],
     "jews-and-canaanites-origins": [
@@ -1123,6 +1161,7 @@
     ],
     "naming-god-as-purpose": [
       "theology-theology-paul-jesus-moses-summary-cluster",
+      "god-and-our-models-of-god",
       "topic-context"
     ],
     "nearest-wilderness-to-sf": [
@@ -1189,6 +1228,8 @@
     ],
     "paul-vs-james-movement": [
       "theology-theology-paul-jesus-moses-summary-cluster",
+      "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission",
       "topic-jesus"
     ],
     "paul-vs-jesus-teachings": [
@@ -1321,6 +1362,7 @@
     ],
     "resurrection-debate-in-christianity": [
       "theology-theology-revelation-qumran-proof-god-cluster",
+      "divine-will-and-self-authorizing-power",
       "topic-origins"
     ],
     "revelation-6-7-meaning": [
@@ -1369,6 +1411,9 @@
     ],
     "samuel-vs-micah-divide": [
       "theology-theology-revelation-qumran-proof-god-cluster",
+      "christ-as-an-inner-model",
+      "faith-as-deliberate-joy",
+      "scripture-power-and-repair",
       "topic-jesus"
     ],
     "sanchuniathon-phoenician-mythology-summary": [
@@ -1466,6 +1511,11 @@
       "theology-theology-debate-science-god-self-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
       "jesus-teacher-of-righteousness-hypothesis",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
+      "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission",
       "topic-gnosis"
     ],
     "teaching-cyclical-thinking": [
@@ -1595,6 +1645,7 @@
       "topic-origins"
     ],
     "who-was-josepheous": [
+      "tor-thomas-and-gnostic-transmission",
       "topic-origins"
     ],
     "yahweh-and-asherah-s-relationship": [
@@ -1626,11 +1677,14 @@
       "home",
       "ukraine-russia-forecast-record",
       "apocalyptic-repair-theology",
+      "divine-will-and-self-authorizing-power",
+      "scripture-power-and-repair",
       "guide-to-the-inquiry",
       "glossary",
       "forecast-ledger",
       "topic-apocalypse",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "ukraine-russia-forecast-record": [
       "home",
@@ -1638,26 +1692,33 @@
       "guide-to-the-inquiry",
       "forecast-ledger",
       "topic-apocalypse",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "el-in-ancient-egypt": [
       "home",
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
       "samaritan-texts-and-sacred-authority",
+      "sacred-inheritance-and-rival-continuations",
       "guide-to-the-inquiry",
       "topic-origins",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "jesus-teacher-of-righteousness-hypothesis": [
       "home",
       "el-in-ancient-egypt",
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
+      "tor-thomas-and-gnostic-transmission",
       "guide-to-the-inquiry",
       "glossary",
       "topic-jesus",
-      "reading-paths"
+      "reading-paths",
+      "book-contents",
+      "parallel-timelines",
+      "research-board"
     ],
     "moses-volcano-and-exodus-chronology": [
       "home",
@@ -1665,30 +1726,39 @@
       "kenite-hypothesis-and-yahweh-origins",
       "gnosticism-and-temple-trauma",
       "topic-origins",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "kenite-hypothesis-and-yahweh-origins": [
       "home",
       "el-in-ancient-egypt",
       "moses-volcano-and-exodus-chronology",
       "samaritan-texts-and-sacred-authority",
+      "sacred-inheritance-and-rival-continuations",
       "guide-to-the-inquiry",
       "glossary",
       "topic-origins",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "apocalyptic-repair-theology": [
       "home",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
+      "christ-as-an-inner-model",
       "antichrist-as-a-pattern-of-conduct",
+      "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
       "gnosticism-and-temple-trauma",
+      "tor-thomas-and-gnostic-transmission",
+      "divine-will-and-self-authorizing-power",
+      "scripture-power-and-repair",
       "guide-to-the-inquiry",
       "glossary",
       "research-method",
       "topic-apocalypse",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "cognitive-gnosticism": [
       "home",
@@ -1696,10 +1766,13 @@
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
+      "tor-thomas-and-gnostic-transmission",
+      "god-and-our-models-of-god",
       "guide-to-the-inquiry",
       "glossary",
       "topic-gnosis",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "christ-as-an-inner-model": [
       "home",
@@ -1707,11 +1780,17 @@
       "apocalyptic-repair-theology",
       "cognitive-gnosticism",
       "antichrist-as-a-pattern-of-conduct",
+      "faith-as-deliberate-joy",
       "samaritan-texts-and-sacred-authority",
+      "sacred-inheritance-and-rival-continuations",
+      "divine-will-and-self-authorizing-power",
+      "god-and-our-models-of-god",
       "guide-to-the-inquiry",
       "glossary",
       "topic-jesus",
-      "reading-paths"
+      "reading-paths",
+      "book-contents",
+      "research-board"
     ],
     "antichrist-as-a-pattern-of-conduct": [
       "home",
@@ -1720,36 +1799,48 @@
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "samaritan-texts-and-sacred-authority",
+      "scripture-power-and-repair",
       "guide-to-the-inquiry",
       "topic-apocalypse",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "religion-for-conscious-robots": [
       "home",
       "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
+      "sacred-inheritance-and-rival-continuations",
+      "divine-will-and-self-authorizing-power",
+      "god-and-our-models-of-god",
       "guide-to-the-inquiry",
       "glossary",
       "research-method",
       "topic-machines",
-      "reading-paths"
+      "reading-paths",
+      "book-contents",
+      "research-board"
     ],
     "faith-as-deliberate-joy": [
       "home",
       "cognitive-gnosticism",
+      "god-and-our-models-of-god",
       "guide-to-the-inquiry",
       "topic-practice",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
     ],
     "gnosticism-and-temple-trauma": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
+      "tor-thomas-and-gnostic-transmission",
       "guide-to-the-inquiry",
       "research-method",
       "topic-origins",
-      "reading-paths"
+      "reading-paths",
+      "book-contents",
+      "research-board"
     ],
     "samaritan-texts-and-sacred-authority": [
       "home",
@@ -1758,9 +1849,70 @@
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
       "gnosticism-and-temple-trauma",
+      "sacred-inheritance-and-rival-continuations",
+      "scripture-power-and-repair",
       "guide-to-the-inquiry",
       "topic-traditions",
-      "reading-paths"
+      "reading-paths",
+      "book-contents"
+    ],
+    "sacred-inheritance-and-rival-continuations": [
+      "home",
+      "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
+      "divine-will-and-self-authorizing-power",
+      "god-and-our-models-of-god",
+      "topic-traditions",
+      "reading-paths",
+      "book-contents",
+      "research-board"
+    ],
+    "tor-thomas-and-gnostic-transmission": [
+      "home",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "sacred-inheritance-and-rival-continuations",
+      "scripture-power-and-repair",
+      "god-and-our-models-of-god",
+      "topic-origins",
+      "reading-paths",
+      "book-contents",
+      "parallel-timelines",
+      "research-board",
+      "intellectual-debts"
+    ],
+    "divine-will-and-self-authorizing-power": [
+      "home",
+      "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
+      "faith-as-deliberate-joy",
+      "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission",
+      "scripture-power-and-repair",
+      "god-and-our-models-of-god",
+      "topic-jesus",
+      "reading-paths",
+      "book-contents",
+      "research-board"
+    ],
+    "scripture-power-and-repair": [
+      "home",
+      "sacred-inheritance-and-rival-continuations",
+      "divine-will-and-self-authorizing-power",
+      "topic-jesus",
+      "reading-paths",
+      "book-contents",
+      "research-board"
+    ],
+    "god-and-our-models-of-god": [
+      "home",
+      "cognitive-gnosticism",
+      "faith-as-deliberate-joy",
+      "sacred-inheritance-and-rival-continuations",
+      "topic-machines",
+      "reading-paths",
+      "book-contents",
+      "research-board"
     ],
     "guide-to-the-inquiry": [
       "home"
@@ -1774,7 +1926,9 @@
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
       "glossary",
-      "reading-paths"
+      "reading-paths",
+      "book-contents",
+      "research-board"
     ],
     "research-method": [
       "home",
@@ -2177,7 +2331,8 @@
     ],
     "connections": [
       "home",
-      "guide-to-the-inquiry"
+      "guide-to-the-inquiry",
+      "book-contents"
     ],
     "image-collection": [
       "home",
@@ -2187,6 +2342,32 @@
       "christ-as-an-inner-model",
       "antichrist-as-a-pattern-of-conduct",
       "faith-as-deliberate-joy"
+    ],
+    "book-contents": [
+      "home",
+      "cognitive-gnosticism",
+      "sacred-inheritance-and-rival-continuations",
+      "scripture-power-and-repair",
+      "research-board"
+    ],
+    "parallel-timelines": [
+      "home",
+      "tor-thomas-and-gnostic-transmission",
+      "book-contents"
+    ],
+    "research-board": [
+      "home",
+      "cognitive-gnosticism",
+      "scripture-power-and-repair",
+      "book-contents",
+      "intellectual-debts"
+    ],
+    "intellectual-debts": [
+      "religion-for-conscious-robots",
+      "tor-thomas-and-gnostic-transmission",
+      "god-and-our-models-of-god",
+      "book-contents",
+      "research-board"
     ]
   }
 }

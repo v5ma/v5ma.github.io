@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.04-source-edition-3",
+  "version": "2026.09.05-foundations-1",
   "policy": "Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.",
   "edges": [
     {
@@ -126,6 +126,202 @@
       "to": "antichrist-as-a-pattern-of-conduct",
       "type": "contrasts",
       "why": "Alignment must remain answerable to welfare and truth rather than allowing sacred language to insulate domination.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "develops",
+      "why": "The comparative method separates canon, sacred place and institutional claims rather than treating shared inheritance as identical religion.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "applies",
+      "why": "The Teacher inquiry tests whether continuities of message, institution and identity track one another or diverge.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "god-and-our-models-of-god",
+      "type": "extends",
+      "why": "Historical inheritance becomes an inward representation; criticism of the representation is not automatically denial of its referent.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "el-in-ancient-egypt",
+      "type": "compares",
+      "why": "The movement of a name is a concrete case of a boundary crossing that does not establish complete institutional continuity.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "jesus-teacher-of-righteousness-hypothesis",
+      "type": "develops",
+      "why": "The historical identification is one strand inside a larger comparison of teaching, transmission and later interpretations.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "cognitive-gnosticism",
+      "type": "connects",
+      "why": "The source asks how overlapping portrayals can be used to reconstruct semantic distinctions and inward meaning.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "gnosticism-and-temple-trauma",
+      "type": "distinguishes",
+      "why": "An early teacher tradition and a later literary response to loss can occupy separate layers without proving a direct genealogy.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "intellectual-debts",
+      "type": "documents",
+      "why": "Explicit scholarly acknowledgments are retained separately from AI-introduced names and new editorial sources.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "parallel-timelines",
+      "type": "compares",
+      "why": "The June comparison and October earlier-founder reconstruction can be inspected without silently merging their chronologies.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "christ-as-an-inner-model",
+      "type": "clarifies",
+      "why": "An inward moral model must be able to challenge the person's immediate desire rather than merely justify it.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "trump-first-beast-of-revelation",
+      "type": "applies",
+      "why": "The priority of a higher moral standard informs the critique of self-authorizing power while leaving individual factual premises checkable.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "apocalyptic-repair-theology",
+      "type": "extends",
+      "why": "Repair requires the actor to be correctable, not merely successful at enforcing a preferred outcome.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "religion-for-conscious-robots",
+      "type": "tests",
+      "why": "A teaching system that equates God's will with an operator's commands would fail this proposed moral distinction.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "connects",
+      "why": "Changing a canon changes which narratives confer authority, but no shorter canon is assumed to settle all moral questions.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "antichrist-as-a-pattern-of-conduct",
+      "type": "grounds",
+      "why": "The conduct-based judgment is developed through specific scriptural arguments, including mixed cases.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "divine-will-and-self-authorizing-power",
+      "type": "clarifies",
+      "why": "A claim to act for God requires moral examination; sacred status is not the conclusion of that examination.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "apocalyptic-repair-theology",
+      "type": "develops",
+      "why": "Justice and accountable care supply a constructive contrast to the religious legitimation of harm.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "cognitive-gnosticism",
+      "type": "distinguishes",
+      "why": "Explaining a representation does not itself establish or eliminate the existence of what it represents.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "faith-as-deliberate-joy",
+      "type": "clarifies",
+      "why": "Practiced orientation and emotional experience are related to metaphysical belief without being substituted for proof of it.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "religion-for-conscious-robots",
+      "type": "grounds",
+      "why": "The teacher's own understanding of God and correction becomes part of what is transmitted to a future conscious participant.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "extends",
+      "why": "The broader source comparison is one application of the proposed semantic reconstruction method.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "divine-will-and-self-authorizing-power",
+      "type": "tests",
+      "why": "A vivid model is not enough; the will comparison asks whether the model can correct self-interest.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "extends",
+      "why": "Future conscious machines raise the opening inheritance question again: what is transmitted, and by what authority?",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "apocalyptic-repair-theology",
+      "type": "clarifies",
+      "why": "Sustained orientation is connected to concrete repair rather than compulsory cheerfulness or denial of danger.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "book-contents",
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "introduces",
+      "why": "The proposed book begins with rival claims to shared inheritance rather than treating the wiki as an alphabetical manuscript.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "book-contents",
+      "to": "research-board",
+      "type": "tracks",
+      "why": "Chapter routes are separated from the concrete research and author-review tasks still required.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "parallel-timelines",
+      "to": "jesus-teacher-of-righteousness-hypothesis",
+      "type": "tests",
+      "why": "A visualization preserves the distinction between proposed dates, material evidence and relative textual constraints.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "intellectual-debts",
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "supports attribution",
+      "why": "Named debts supply provenance for the investigation without making every later extension a claim endorsed by that author.",
       "origin": "Editorial relationship"
     },
     {
@@ -269,6 +465,20 @@
       "origin": "Article source reference"
     },
     {
+      "from": "cognitive-gnosticism",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Teacher of Righteousness vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "faith-as-vibration-concept",
+      "type": "source",
+      "why": "The article develops an argument from Faith as Vibration Concept. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
       "from": "christ-as-an-inner-model",
       "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "type": "source",
@@ -280,6 +490,20 @@
       "to": "antichrist-spiritual-inversion",
       "type": "source",
       "why": "The article develops an argument from Antichrist Spiritual Inversion. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Teacher of Righteousness vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "samuel-vs-micah-divide",
+      "type": "source",
+      "why": "The article develops an argument from Samuel vs Micah Divide. Read the original speakers separately from the editorial prose.",
       "origin": "Article source reference"
     },
     {
@@ -311,6 +535,20 @@
       "origin": "Article source reference"
     },
     {
+      "from": "religion-for-conscious-robots",
+      "to": "faith-as-vibration-concept",
+      "type": "source",
+      "why": "The article develops an argument from Faith as Vibration Concept. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Teacher of Righteousness vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
       "from": "faith-as-deliberate-joy",
       "to": "deliberate-joy-concept",
       "type": "source",
@@ -322,6 +560,20 @@
       "to": "antichrist-spiritual-inversion",
       "type": "source",
       "why": "The article develops an argument from Antichrist Spiritual Inversion. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "faith-as-vibration-concept",
+      "type": "source",
+      "why": "The article develops an argument from Faith as Vibration Concept. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "samuel-vs-micah-divide",
+      "type": "source",
+      "why": "The article develops an argument from Samuel vs Micah Divide. Read the original speakers separately from the editorial prose.",
       "origin": "Article source reference"
     },
     {
@@ -343,6 +595,132 @@
       "to": "samaritan-and-jewish-texts",
       "type": "source",
       "why": "The article develops an argument from Samaritan and Jewish Texts. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Teacher of Righteousness vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "paul-vs-james-movement",
+      "type": "source",
+      "why": "The article develops an argument from Paul vs James Movement. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Teacher of Righteousness vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "daniel-and-teacher-of-righteousness",
+      "type": "source",
+      "why": "The article develops an argument from Daniel and Teacher of Righteousness. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "paul-vs-james-movement",
+      "type": "source",
+      "why": "The article develops an argument from Paul vs James Movement. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "who-was-josepheous",
+      "type": "source",
+      "why": "The article develops an argument from Who was Josepheous. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "jewish-apocalyptic-repair-timeline",
+      "type": "source",
+      "why": "The article develops an argument from Jewish Apocalyptic Repair Timeline. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "resurrection-debate-in-christianity",
+      "type": "source",
+      "why": "The article develops an argument from Resurrection Debate in Christianity. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Cognitive Gnosticism: Jesus vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "agi-religious-framework",
+      "type": "source",
+      "why": "The article develops an argument from AGI Religious Framework. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "samuel-vs-micah-divide",
+      "type": "source",
+      "why": "The article develops an argument from Samuel vs Micah Divide. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Cognitive Gnosticism: Jesus vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "naming-god-as-purpose",
+      "type": "source",
+      "why": "The article develops an argument from Naming God as Purpose. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Cognitive Gnosticism: Jesus vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "agi-religious-framework",
+      "type": "source",
+      "why": "The article develops an argument from AGI Religious Framework. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "faith-as-vibration-concept",
+      "type": "source",
+      "why": "The article develops an argument from Faith as Vibration Concept. Read the original speakers separately from the editorial prose.",
       "origin": "Article source reference"
     }
   ],
@@ -386,6 +764,222 @@
       "to": "ai-re-dates-dead-sea-scrolls",
       "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
       "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "turn": 5,
+      "why": "Layered instruction and later accounts of inner teaching.",
+      "role": "Author hypothesis",
+      "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+      "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "turn": 9,
+      "why": "Recover semantic distinctions across multiple portrayals rather than choosing one compressed summary.",
+      "role": "Author methodological proposal",
+      "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+      "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "turn": 24,
+      "why": "The strong October chronology and proposed identities.",
+      "role": "Author reconstruction",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "turn": 26,
+      "why": "Later communities and namesakes, together with the Two Spirits comparison.",
+      "role": "Author clarification",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "turn": 82,
+      "why": "The requested Melchizedek comparison across bodies of texts.",
+      "role": "Author research question",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "paul-vs-james-movement",
+      "turn": 1,
+      "why": "The author identifies Tabor while discussing Paul and James.",
+      "role": "Acknowledged intellectual debt",
+      "sourceFile": "gpt2026dragon1576_Paul_vs_James_Movement.txt",
+      "sourceHash": "f4140f33480dc7db3f3afb692985c7136a98931f383e1c0d09a3369197beabbe"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "who-was-josepheous",
+      "turn": 33,
+      "why": "A named book and a wider historical synthesis occur in the same author turn; that does not attribute every claim to the book.",
+      "role": "Acknowledged intellectual debt",
+      "sourceFile": "gpt2026dragon1904_Who_was_Josepheous.txt",
+      "sourceHash": "27577e46e020502069dbaec1c828e146241a193002d5acd3f6e15708267e15c3"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "turn": 63,
+      "why": "The author asks for a broader interconnection of preservation and transmission settings.",
+      "role": "Author research question",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "turn": 11,
+      "why": "Historical theology is connected to the author's broader cognitive research program.",
+      "role": "Author project scope",
+      "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+      "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "resurrection-debate-in-christianity",
+      "turn": 9,
+      "why": "The recurrent pattern and possible transformation of an individual are considered together.",
+      "role": "Author interpretation",
+      "sourceFile": "gpt2026dragon1642_Resurrection_Debate_in_Christianity.txt",
+      "sourceHash": "8f7f2eb14acb47e0854ad8eab4ac977431164e1f6cce29e9c7784c4b57f5995d"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "resurrection-debate-in-christianity",
+      "turn": 11,
+      "why": "The argument allows repentance rather than treating an individual's identity as a permanent essence.",
+      "role": "Author clarification",
+      "sourceFile": "gpt2026dragon1642_Resurrection_Debate_in_Christianity.txt",
+      "sourceHash": "8f7f2eb14acb47e0854ad8eab4ac977431164e1f6cce29e9c7784c4b57f5995d"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "turn": 23,
+      "why": "The inward example supplies a direction of change.",
+      "role": "Author cognitive proposal",
+      "sourceFile": "gpt2026dragon880_Cognitive_Gnosticism_Jesus_vs_Gnostic_Je.txt",
+      "sourceHash": "b04766b12735df1f065652e96f32f43719cb93bf256435cd653affbff49189a0"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "samuel-vs-micah-divide",
+      "turn": 5,
+      "why": "The source explicitly requests nuanced details, examples, quotations and mixed cases.",
+      "role": "Author research specification",
+      "sourceFile": "gpt2026dragon1745_Samuel_vs_Micah_Divide.txt",
+      "sourceHash": "3162976b8f4123cbf559bf6024e22a8f5acec4d9359dc58221420ca0e560cdfb"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "naming-god-as-purpose",
+      "turn": 1,
+      "why": "God is named Purpose or Telos and related to Super Information Theory.",
+      "role": "Author metaphysical proposal",
+      "sourceFile": "gpt2026dragon1305_Naming_God_as_Purpose.txt",
+      "sourceHash": "efc4cb81df020abd61b4d974380a0c558beeb5a7915905e2eeeae21859589c37"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "naming-god-as-purpose",
+      "turn": 3,
+      "why": "The author asks for possible objections instead of only agreement.",
+      "role": "Author request for objections",
+      "sourceFile": "gpt2026dragon1305_Naming_God_as_Purpose.txt",
+      "sourceHash": "efc4cb81df020abd61b4d974380a0c558beeb5a7915905e2eeeae21859589c37"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "agi-religious-framework",
+      "turn": 3,
+      "why": "Human flourishing and coherence with God are not accepted as independent alternative goals.",
+      "role": "Author correction",
+      "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+      "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "turn": 9,
+      "why": "The inquiry asks for semantic reconstruction across sources.",
+      "role": "Author methodological proposal",
+      "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+      "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "teacher-of-righteousness-vs-gnostic-jesus",
+      "turn": 11,
+      "why": "The bridge to the author's earlier cognitive work is explicit.",
+      "role": "Author project scope",
+      "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
+      "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "turn": 23,
+      "why": "The original example of a model of Jesus participating in personal change.",
+      "role": "Author cognitive proposal",
+      "sourceFile": "gpt2026dragon880_Cognitive_Gnosticism_Jesus_vs_Gnostic_Je.txt",
+      "sourceHash": "b04766b12735df1f065652e96f32f43719cb93bf256435cd653affbff49189a0"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "agi-religious-framework",
+      "turn": 1,
+      "why": "The author specifies self-aware, conscious robots as the setting.",
+      "role": "Author project proposal",
+      "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+      "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "agi-religious-framework",
+      "turn": 3,
+      "why": "A rejected separation between flourishing and coherence is preserved.",
+      "role": "Author correction",
+      "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+      "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "faith-as-vibration-concept",
+      "turn": 31,
+      "why": "The wider religious comparison becomes an AI-facing teaching project.",
+      "role": "Author project direction",
+      "sourceFile": "gpt2026dragon1620_Faith_as_Vibration_Concept.txt",
+      "sourceHash": "e48807d2d051443df6f357922f40fac7c0a9100c54b5c68a85a95ff5c7d6917c"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "faith-as-vibration-concept",
+      "turn": 1,
+      "why": "The relation of faith, vibration, belief and violence is introduced.",
+      "role": "Author conceptual question",
+      "sourceFile": "gpt2026dragon1620_Faith_as_Vibration_Concept.txt",
+      "sourceHash": "e48807d2d051443df6f357922f40fac7c0a9100c54b5c68a85a95ff5c7d6917c"
+    },
+    {
+      "from": "faith-as-deliberate-joy",
+      "to": "samuel-vs-micah-divide",
+      "turn": 9,
+      "why": "The ethical comparison also appears in a lyrical formulation; it is not empirical measurement.",
+      "role": "Author creative formulation",
+      "sourceFile": "gpt2026dragon1745_Samuel_vs_Micah_Divide.txt",
+      "sourceHash": "3162976b8f4123cbf559bf6024e22a8f5acec4d9359dc58221420ca0e560cdfb"
     }
   ]
 }

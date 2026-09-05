@@ -86,6 +86,7 @@ async function onPage(p){
  body.querySelectorAll('a[href]').forEach(link=>{if(/^https:\/\//.test(link.getAttribute('href'))){link.rel='noopener noreferrer';}});
  const title=$('#article-title');if(title)title.tabIndex=-1;
  await window.TheologyDepth?.enhance(p,info);if(ticket!==renderTicket)return;
+ await window.TheologyFoundation?.enhance(p,info);if(ticket!==renderTicket)return;
  announce((p.title||p.slug)+' loaded.');
 }
 function renderCatalogue(){

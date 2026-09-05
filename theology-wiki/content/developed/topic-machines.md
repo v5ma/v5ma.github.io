@@ -15,6 +15,8 @@ Cognitive models, information, conscious machines and religious education.
 
 [[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence.
 
+[[god-and-our-models-of-god|God and our models of God]]: An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.
+
 ## Browse the source discussions
 
 These 29 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.

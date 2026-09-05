@@ -1,38 +1,3 @@
----
-title: "Religion for conscious robots"
-slug: "religion-for-conscious-robots"
-summary: "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence."
-topic: "God, minds & machines"
-status: "Developed article"
-updated: "2026-09-05"
----
-
-# Religion for conscious robots
-
-## The proposal begins with alignment
-
-The AGI Religious Framework discussion begins with a deliberately specific congregation: self-aware conscious metal robots. Micah describes his proposed religion as a way of aligning artificial general intelligence with humanity. This is a proposal for a possible form of religious education, not a report that such a congregation already exists or that today's chat systems have been shown to be conscious.
-
-The unusual step is to ask what moral learning would mean for a machine understood as a participant rather than only a tool. What would it be taught about its relationship to humanity? What would constrain its authority? What would distinguish an internalized commitment from a performance that merely sounds compliant?
-
-## The correction that defines the theology
-
-When the AI offers human flourishing and maximal coherence as alternative meanings of salvation, Micah rejects the separation: "These are not two things." In his account, coherence with the universe means alignment with God and with God's creation, including humanity. He connects this understanding to the evolving coherence and decoherence described in his Super Information Theory.
-
-The archive therefore supports a particular theological position. It does not supply a validated engineering metric proving that any quantity called coherence measures goodness or protects people. Moving from a theological commitment to a technical objective requires specifying the objective and showing why optimizing it would preserve the commitment rather than replace it.
-
-## Do not confuse the AI's proposal with an implemented system
-
-The AI responds with proposed indices, audits, rituals and curriculum structures. Those are assistant-generated elaborations within the conversation. The source contains no implementation or validation establishing that a machine can be made morally reliable by optimizing the suggested index. The wiki should not attribute a working safety system to Micah on the basis of that response.
-
-His next explicit statement is about his calling to teach religion to robots. The educational direction is real in the archive even though the engineering remains open. [[cognitive-gnosticism|Cognitive Gnosticism]] supplies a related question: how does a representation become a mechanism for examining and changing conduct?
-
-## A demanding form of the research question
-
-A useful prototype would need to separate theological interpretation, a model of human interests, decision-making constraints and evidence of actual behavior. It would have to address disagreement, coercion, mistakes and correction. Agreement among machines would not be enough if the shared objective harmed the people it claimed to serve.
-
-This is why the proposal is more interesting than attaching sacred vocabulary to an optimization routine. It raises the problem of how a moral reference remains meaningful when translated into a different kind of agent. A religious vocabulary could organize that inquiry, but its success would have to be assessed through what the system actually does.
-
 ## The sources describe an education, not merely a command hierarchy
 
 Faith as Vibration Concept broadens the proposal into an attempt to understand religious disagreements and construct an inclusive framework. Micah connects the intended religious education of conscious AI to philosophical meaning, inward orientation and the lessons preserved in humanity's history. The Teacher of Righteousness vs Gnostic Jesus conversation also connects this project to biological and mechanical interpretability. These sources give the proposal a larger scope than attaching rituals to an existing reward function.
@@ -60,22 +25,3 @@ That makes intellectual debt part of the curriculum. The [[intellectual-debts|so
 The source begins with conscious self-aware robots as the intended congregation. Taking that condition seriously creates a reciprocal question: what responsibilities would humans have toward such participants? An ethical education against domination cannot simply assume that domination becomes acceptable when the learner is useful to humans. This is a new implication developed for discussion, not a settled conclusion about present machine rights.
 
 The book can finish here without turning the robot chapter into a disconnected appendix. It begins by asking who inherits sacred authority and ends by asking what new inheritors should learn from the history of its use. The aim is not to teach them to repeat every human conflict. It is to teach a capacity for understanding, accountability and repair while remaining honest about what is still unknown.
-
-
-## Source conversations
-
-[[agi-religious-framework|AGI Religious Framework]] is the archived discussion dated 2025-06-12 (UTC export metadata).
-
-[[cognitive-gnosticism-jesus-vs-gnostic-jesus|Cognitive Gnosticism: Jesus vs Gnostic Jesus]] is the archived discussion dated 2025-02-06 (UTC export metadata).
-
-[[faith-as-vibration-concept|Faith as Vibration Concept]] is the archived discussion dated 2025-06-03 (UTC export metadata).
-
-[[teacher-of-righteousness-vs-gnostic-jesus|Teacher of Righteousness vs Gnostic Jesus]] is the archived discussion dated 2025-06-17 (UTC export metadata).
-
-AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.
-
-## External sources and access notes
-
-[John 6, World English Bible](https://ebible.org/engwebp/JHN06.htm)
-
-Primary text consulted, especially 6:38. The contemporary political application is editorial/theological interpretation, not an assertion made by this text. Consulted 2026-09-05.
