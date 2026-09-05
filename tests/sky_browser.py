@@ -25,7 +25,7 @@ with sync_playwright() as p:
  page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console_errors.append(m.text) if m.type=='error' else None)
  try:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.__sky&&window.__gpuReady===true',timeout=90000)
-  check(page.locator('[data-course]').count()==3,'Three loop-first routes appear in the main game menu')
+  check(all(page.locator('[data-course="'+str(i)+'"]').count()==1 for i in range(3)),'All three original loop routes remain in the main game menu')
   check('Rocket' in page.locator('#delivery-menu h1').inner_text(),'The default menu presents the sky loop game')
   original=page.evaluate('levelCode()');page.screenshot(path=str(OUT/'menu-3d.png'))
   for route,count in [(0,4),(1,5),(2,6)]:
