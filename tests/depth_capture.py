@@ -19,16 +19,20 @@ with sync_playwright() as p:
     page.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
     try:
         print('CAPTURE: loading game',flush=True)
+        print('CAPTURE: loading game',flush=True)
         page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded')
         page.wait_for_function('window.__gpuReady===true&&!!window.__cloudview')
         page.wait_for_timeout(1200)
         print('CAPTURE: menu ready',flush=True)
+        print('CAPTURE: menu ready',flush=True)
         page.screenshot(path=str(OUT/'01-menu.png'))
+        print('CAPTURE: start route',flush=True)
         print('CAPTURE: start route',flush=True)
         page.locator('[data-course="0"]').click()
         page.wait_for_function('mode==="play"&&player?.track&&__sky.state.steps>5')
         page.locator('#cv').focus();page.wait_for_timeout(800)
         page.screenshot(path=str(OUT/'02-start.png'))
+        print('CAPTURE: drive loop',flush=True)
         print('CAPTURE: drive loop',flush=True)
         page.keyboard.down('KeyD');page.keyboard.down('KeyC')
         start=time.monotonic();captured=False
@@ -41,9 +45,13 @@ with sync_playwright() as p:
             page.wait_for_timeout(45)
         page.keyboard.up('KeyD');page.keyboard.up('KeyC')
         page.screenshot(path=str(OUT/'04-flight-catch.png'))
-        data=page.evaluate('''()=>({cloudview:__cloudview.stats,depth:window.__cloudDepth?.stats,transfers:__sky.state.transfers,loops:[...__sky.state.completed],tries,deliveries,renderer:__merged.renderer.backend.constructor.name,shadow:__merged.renderer.shadowMap.enabled,toneMapping:__merged.renderer.toneMapping,calls:__merged.renderer.info.render.calls,triangles:__merged.renderer.info.render.triangles})''')
+        data=page.evaluate('''()=>({cloudview:__cloudview.stats,depth:window.__cloudDepth?.stats,transfers:__sky.state.transfers,loops:[...__sky.state.completed],tries,deliveries,renderer:__merged.renderer.backend.constructor.name,shadow:__merged.renderer.shadowMap.enabled,toneMapping:__merged.renderer.toneMapping,camera:__merged.camera.type,calls:__merged.renderer.info.render.calls,triangles:__merged.renderer.info.render.triangles})''')
         assert data.get('depth',{}).get('version'),'Depth renderer did not initialize'
         assert data['shadow'] and data['toneMapping']==4,data
+        assert data['camera']=='PerspectiveCamera',data
+        assert data.get('depth',{}).get('version'),'Depth renderer did not initialize'
+        assert data['shadow'] and data['toneMapping']==4,data
+        assert data['camera']=='PerspectiveCamera',data
         assert data['transfers']>=1 and data['tries']==1,data
         assert not errors,errors
         (OUT/'review.json').write_text(json.dumps({'state':data,'errors':errors,'console_errors':console},indent=2))

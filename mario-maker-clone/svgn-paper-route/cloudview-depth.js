@@ -4,7 +4,7 @@
  */
 'use strict';
 (() => {
-  const VERSION = '2026.09.05-depth1';
+  const VERSION = '2026.09.05-depth2';
   const palette = {
     '#e6a82e':'#eea10b', '#f1be49':'#ffbf24', '#577491':'#284e79',
     '#3c5a77':'#19355b', '#294560':'#122b4c', '#70879b':'#577895',
@@ -127,7 +127,7 @@
     if(!saved){saved={renderer:m.renderer,scene:m.scene,lights:[],tone:m.renderer.toneMapping,exposure:m.renderer.toneMappingExposure,shadows:m.renderer.shadowMap.enabled,environment:m.scene.environment,fog:null};}
     for(const light of m.scene.children)if(light.isLight&&!saved.lights.some(([a])=>a===light))saved.lights.push([light,light.intensity]);
     for(const [light]of saved.lights)light.intensity=0;
-    m.renderer.toneMapping=4;m.renderer.toneMappingExposure=1.10;
+    m.renderer.toneMapping=4;m.renderer.toneMappingExposure=.74;
     m.renderer.shadowMap.enabled=true;m.renderer.shadowMap.type=1;
     enabled=true;
   }
@@ -192,16 +192,16 @@
     const sun=new T.DirectionalLight(night?'#d4e6ff':'#fff0cf',night?2.5:3.4);
     sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-450;sun.shadow.camera.right=450;sun.shadow.camera.top=400;sun.shadow.camera.bottom=-400;sun.shadow.camera.near=10;sun.shadow.camera.far=2100;sun.shadow.bias=-.00015;sun.shadow.normalBias=1.2;
     root.add(sun,sun.target);
-    const fill=new T.DirectionalLight('#96c9ff',.52);fill.position.set(1200,-1500,1300);fill.target.position.set(700,-2100,0);root.add(fill,fill.target);
-    const rim=new T.DirectionalLight(night?'#86cfff':'#ffe9b0',1.45);rim.position.set(700,-1700,-450);rim.target.position.set(650,-2100,0);root.add(rim,rim.target);
-    root.add(new T.AmbientLight(night?'#9ebbe9':'#c4e0fa',.32));
+    const fill=new T.DirectionalLight('#96c9ff',.30);fill.position.set(1200,-1500,1300);fill.target.position.set(700,-2100,0);root.add(fill,fill.target);
+    const rim=new T.DirectionalLight(night?'#86cfff':'#ffe9b0',1.10);rim.position.set(700,-1700,-450);rim.target.position.set(650,-2100,0);root.add(rim,rim.target);
+    root.add(new T.AmbientLight(night?'#9ebbe9':'#c4e0fa',.22));
     const env=reflectionSky(T);m.scene.environment=env;
     m.scene.fog=new T.Fog(night?'#a7c7e9':'#c5e7fa',1200,3000);
     const hero=__cloudview.hero;
     root.traverse(o=>{
       if(!o.material||!o.geometry)return;
       const mat=o.material;
-      if(mat.isMeshStandardNodeMaterial){mat.envMapIntensity=.40;o.receiveShadow=true;}
+      if(mat.isMeshStandardNodeMaterial){mat.envMapIntensity=.24;o.receiveShadow=true;}
       if(o.parent===hero.group&&mat.isMeshStandardNodeMaterial){o.castShadow=true;mat.roughness=.31;mat.metalness=.18;}
       if(o.name==='Cloudview merged art'&&o.geometry.attributes.position.count>100000&&!mat.transparent)o.castShadow=true;
     });
@@ -210,9 +210,13 @@
     __cloudview.stats.depthVersion=VERSION;__cloudview.stats.beveledPanels=panels;
     for(const o of root.children) {
       const mat=o.material;
-      if(o.renderOrder===-100&&mat?.map){const sky=mat.map.image,ctx=sky.getContext('2d'),gr=ctx.createLinearGradient(0,0,0,sky.height);gr.addColorStop(0,night?'#152b68':'#0873e9');gr.addColorStop(.55,night?'#577db0':'#349bed');gr.addColorStop(1,night?'#a3cde4':'#d3efff');ctx.fillStyle=gr;ctx.fillRect(0,0,sky.width,sky.height);mat.map.needsUpdate=true;mat.toneMapped=false;}
+      if(o.renderOrder===-100&&mat?.map){const sky=mat.map.image,ctx=sky.getContext('2d'),gr=ctx.createLinearGradient(0,0,0,sky.height);gr.addColorStop(0,night?'#152b68':'#064eee');gr.addColorStop(.55,night?'#577db0':'#116aed');gr.addColorStop(1,night?'#a3cde4':'#d3efff');ctx.fillStyle=gr;ctx.fillRect(0,0,sky.width,sky.height);mat.map.needsUpdate=true;mat.toneMapped=false;}
     }
     lighting.stats.spatial=CloudDepthChunks.apply(m,root);
+    // Cloud color remains luminous under the filmic highlight curve.
+    for(const object of root.children)if(object.count===80&&object.material?.map&&object.material.transparent){
+      object.material.color.setRGB(2.1,2.2,2.4);
+    }
     kit.dispose();return root;
   };
   base.update=function() {
@@ -225,9 +229,6 @@
     const x=active?p.x+110:500,y=active?-p.y: -2000;
     const snap=16,tx=Math.round(x/snap)*snap,ty=Math.round(y/snap)*snap;
     lighting.sun.position.set(tx-330,ty+600,750);lighting.sun.target.position.set(tx,ty,0);lighting.sun.target.updateMatrixWorld();
-    if(active&&m.camera) {
-      const dir=new m.THREE.Vector3();m.camera.getWorldDirection(dir);
-      if(Math.abs(dir.z)>.01){const f=-m.camera.position.z/dir.z,c=m.camera.position.clone().addScaledVector(dir,f);m.camera.position.set(c.x+170,c.y+95,800);m.camera.lookAt(c.x,c.y,0);m.camera.updateMatrixWorld();}
-    }
+
   };
 })();

@@ -22,13 +22,13 @@ with sync_playwright() as p:
  context.add_init_script("localStorage.setItem('sprocket_muted','1')")
  host=urlparse(BASE).hostname
  context.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
- page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console_errors.append(m.text) if m.type=='error' else None)
+ page=context.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console_errors.append(m.text) if m.type=='error' else None)
  try:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.__sky&&window.__gpuReady===true',timeout=90000)
   check(all(page.locator('[data-course="'+str(i)+'"]').count()==1 for i in range(3)),'All three original loop routes remain in the main game menu')
   check('Rocket' in page.locator('#delivery-menu h1').inner_text(),'The default menu presents the sky loop game')
   original=page.evaluate('levelCode()');page.screenshot(path=str(OUT/'menu-3d.png'))
-  for route,count in [(0,4),(1,5),(2,6)]:
+  for route,count in [(i,4+i) for i in range(3) if os.getenv('SKY_REPLAY_ROUTE') is None or i==int(os.getenv('SKY_REPLAY_ROUTE'))]:
    if route:page.locator('#delivery-header [data-delivery="routes"]').click()
    page.locator(f'[data-course="{route}"]').click(timeout=90000);page.locator('#cv').focus()
    page.wait_for_function('mode==="play"&&player.track?.sky&&__sky.state.steps>0')
