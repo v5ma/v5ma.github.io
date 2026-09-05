@@ -15,13 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Integrate graphics only
-        run: python scripts/integrate-cloudview.py
+        run: |
+          python scripts/integrate-cloudview.py
+          python scripts/refine-cloudview.py
       - name: Commit the integrated source to this feature branch
         if: github.ref == 'refs/heads/feat/cloudview-graphics-20260904'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-world.js
+          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-world.js mario-maker-clone/svgn-paper-route/cloudview-assets.js tests/cloudview_browser.py
           if ! git diff --cached --quiet; then git commit -m 'Integrate Cloudview renderer, HUD and play camera'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - uses: actions/setup-node@v4
         with:
