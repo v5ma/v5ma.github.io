@@ -1,0 +1,62 @@
+{
+  "integrity": "PASS",
+  "date": "2026-09-05",
+  "files_in_manifest": 833,
+  "bytes_in_manifest": 111865347,
+  "previous_frozen_files_unchanged": 800,
+  "source_hashes_unchanged": {
+    "SOURCE-FREEZE.json": 10,
+    "SIBLING-SOURCE-FREEZE-03.json": 4
+  },
+  "mutable_front_doors": [
+    "CLAIM-SOURCE-MATRIX.md",
+    "DRAFT-AND-REVIEW-LEDGER.md",
+    "EVIDENCE-INDEX.md",
+    "GOAL.md",
+    "NEXT-PHASE.md",
+    "README.md",
+    "applications/README.md",
+    "formal/README.md"
+  ],
+  "new_manuscript_files": 23,
+  "changed_or_new_local_links_checked": 1396,
+  "broken_links": [],
+  "manuscript_versions": [
+    10,
+    10
+  ],
+  "pages": [
+    15,
+    17
+  ],
+  "words": [
+    5208,
+    6195
+  ],
+  "equations": [
+    12,
+    14
+  ],
+  "references": [
+    24,
+    25
+  ],
+  "prior_draft_blocks_retained": 430,
+  "shared_research_blocks_retained": 36,
+  "genealogy_paragraphs_verbatim": 8,
+  "pdfs_created": true,
+  "pages_screen_reviewed": 32,
+  "previously_accepted_application_tests": 84,
+  "new_model_runs": 0,
+  "new_lean_statements": 0,
+  "previously_accepted_lean_statements": 31,
+  "independent_review": false,
+  "author_readback": false,
+  "browser_ui_acceptance": false,
+  "publication": false,
+  "original_deepseek_executed": false,
+  "model_binary_hash_sweep_this_turn": false,
+  "manifest_sha256": "3ac99a164f6d22307a20cd8b4be57c2abc27550322bb5cecbc417fcf0265635b",
+  "validator_sha256": "9641c8dc605ade07fa983902ec86ddceb76df0031be5aa7a9e2ad6c52b7587b6",
+  "limits": "File integrity, source retention, numbered-reference coverage and local layout acceptance do not certify scientific validity or final publication readiness"
+}

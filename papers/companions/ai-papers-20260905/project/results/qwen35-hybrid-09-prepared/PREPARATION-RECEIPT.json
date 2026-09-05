@@ -1,0 +1,10 @@
+{
+  "status": "FROZEN_BEFORE_FOLLOWUP_INFERENCE",
+  "case_count": 16,
+  "family_count": 4,
+  "planned_arm_answers": 288,
+  "planned_fresh_workflow_answers": 12,
+  "case_sha256": "b4f58e73d2a1d4b62d424c8f8754c84e9099b5bbe669c163501d28a5900f8fc7",
+  "input_sha256": "7a34199e3bc63cece6432aca52ca3d98644333146e963e59a5aff73b92bb555c",
+  "new_model_fitting": false
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "analysis_type": "Post-hoc diagnostic, not a preregistered endpoint",
+  "source_sha256": "1c861e3f39f77ac9d2db1496f48c17061cdc789cdf13667d3637ed6afe1a0da1",
+  "script_sha256": "20cd021392f7dc7a4947900e3afd3b27f68ead88b9b7f7e0f86f24a9e009f03c",
+  "rows_checked": 240,
+  "family_arm_pairs": 120,
+  "original_endpoints_unchanged": true,
+  "independent_review": false
+}

@@ -1,0 +1,293 @@
+{
+  "schema": "san-saved-evidence/v1",
+  "date": "2026-09-05",
+  "status": "LOCAL_CANDIDATE_NOT_PUBLICATION_CLEARED",
+  "parent_manifest_sha256": "5ad6c41488f0286fe818c963df7dd81e3219808521953d035eb35fa5c9970437",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3244,
+      "sha256": "d132bac425681f08b0b89ab540080712d83190deeda18c27688ebed35f00f8e2",
+      "copy": "new_companion_file"
+    },
+    {
+      "path": "THIRD-PARTY-AND-LICENSE-STATUS.md",
+      "bytes": 1511,
+      "sha256": "120c1e8589052c898dd76498ae8cd7b1249af1fb5caeb24b475a2927d863a315",
+      "copy": "new_companion_file"
+    },
+    {
+      "path": "data/learned/answers-00.json",
+      "bytes": 31332,
+      "sha256": "66f3e72f69f24b53ac307b258331ab3594da5a22bda3d7c6fde54123881f0aad",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-0/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-01.json",
+      "bytes": 31350,
+      "sha256": "792efcff431921a01ee248e4f99d2c8d3a1e52c651e768c170fa726e66dd001e",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-1/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-02.json",
+      "bytes": 31276,
+      "sha256": "cbc6b7615f9473c046e6387dbd359ea6d431e3d2e4f4e7865baed281b8cebc28",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-2/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-03.json",
+      "bytes": 31290,
+      "sha256": "80ea42f08762f95b465625e076aa7c3f08c30f08a6e8cfe6d690b869e8a17a6f",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-3/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-04.json",
+      "bytes": 31419,
+      "sha256": "a5e440a731ba951821992c5cafbc03a37967615e3da99e712a7df605c273fe8e",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-4/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-05.json",
+      "bytes": 31450,
+      "sha256": "e16da33b5d15a5f22f8b35d3cb444a6536e22a4f94c18bea68231442cf67f3d0",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-5/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-06.json",
+      "bytes": 31388,
+      "sha256": "217fb443be67f1169b6a5ecd0f54456d83082f49fe35d4556f35dc0d93e2dd55",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-6/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-07.json",
+      "bytes": 31388,
+      "sha256": "a103ffcdc51c41cf921af2ff94112941495add05f42a1f54d87f44a7be6f551a",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-7/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-08.json",
+      "bytes": 31407,
+      "sha256": "858722667fe4722e3a93440adb2013dfced5dbbbe37bb949daf34f849e461e6a",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-8/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-09.json",
+      "bytes": 31344,
+      "sha256": "7dcd3c80dafc315237baef2636d299a55f2b2482bcfeb76de68dfd949ea05f63",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-9/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-10.json",
+      "bytes": 31332,
+      "sha256": "8e62d277016b9e5b3b3fe86d09d3b79a14412d1a3de60a54b9eb5131e557b656",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-10/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-11.json",
+      "bytes": 31318,
+      "sha256": "97cb77cf6889b665d207076651481e821c4e0bb1a389c0d4558bc1075972d886",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-11/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-12.json",
+      "bytes": 31455,
+      "sha256": "f4dcd8708d89bee6fb8b344ff36947e3956fe2742a854b329934ac732d8586b6",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-12/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-13.json",
+      "bytes": 31481,
+      "sha256": "fbc2f0ca0126fcceab253df843bee0ed60c1b39c0de9d357a218ef7982dbb61e",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-13/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-14.json",
+      "bytes": 31419,
+      "sha256": "7f203f9ad7e30db0aa0e6f172d2ec650159c22cb43a5a8cf9676bbcb15a43b17",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-14/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/answers-15.json",
+      "bytes": 31444,
+      "sha256": "5f83acf85aa6ac1f469f83fce40625ab7949bfe58b5ed3c0f11880810c40f7da",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-test-15/ANSWERS.json"
+    },
+    {
+      "path": "data/learned/cases.json",
+      "bytes": 59853,
+      "sha256": "dad439abc6ad3d81a89e93ccd6e1e268a6bcba5d7d82d12badc6b79a735a0e6c",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-learning-10-prepared/TEST-CASES.json"
+    },
+    {
+      "path": "data/learned/groups.json",
+      "bytes": 10426,
+      "sha256": "979f35080ebc5eb79ee52fff9fbf47f4f83fc2703578a70b8ea45c24d2c06c09",
+      "copy": "exact_source_bytes",
+      "source_path": "reviews/qwen35-learning-10/GROUPS.json"
+    },
+    {
+      "path": "data/learned/metrics.json",
+      "bytes": 4641,
+      "sha256": "fec1fc9b8dfd1022b0748cefd89a64edc88f6fb9fb47a7310894aa3b7ee6a32b",
+      "copy": "exact_source_bytes",
+      "source_path": "reviews/qwen35-learning-10/METRICS.json"
+    },
+    {
+      "path": "data/transfer/answers-00.json",
+      "bytes": 106008,
+      "sha256": "31a9d14f48ef3d193c3748374586d2602c54a10f1390aeea832dcb0b87980bf4",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-0/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-01.json",
+      "bytes": 106017,
+      "sha256": "56cfd27f032e6f33d8ada581b30f2e6560e39e99bf364c7c6dafc1c4c3231d9f",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-1/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-02.json",
+      "bytes": 106091,
+      "sha256": "54144b44062a99cc2c4b7ec34ac4c37ceaf212f514514348761aa9ad8d9e632d",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-2/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-03.json",
+      "bytes": 106094,
+      "sha256": "5263df7aabb9e554318dda4b494d3c1e088be1c1fb8178bec5debe4fbb592e71",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-3/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-04.json",
+      "bytes": 105913,
+      "sha256": "217ab0fafd079d91e154ace52c9adb3a57a551c84826bd019643e1ab3f6b6e7c",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-4/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-05.json",
+      "bytes": 105914,
+      "sha256": "97b2dcf022c9746f94f4455f1de2e12c5f746371e03a5d03a9acc3339a70d5a3",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-5/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-06.json",
+      "bytes": 106008,
+      "sha256": "a560b4cb74451f7ffbe3a646f6296191af139cbbc26f3bc28b037ba77c47d6a8",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-6/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-07.json",
+      "bytes": 106009,
+      "sha256": "c08a6b659fc2a5811cc65cb3a22ed954ab6c989fec30988a053c24ee986f0449",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-7/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-08.json",
+      "bytes": 105976,
+      "sha256": "58532bf0b9eaf4b68bbf3e20f4cef50a24db7e19bb2065774ea0a8a0eb849bf3",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-8/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-09.json",
+      "bytes": 105971,
+      "sha256": "22ee62d05d65f35a9ffa671ff9d9a6aa7bc2c9e3987d124e9e8d8986cef3d7c0",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-9/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-10.json",
+      "bytes": 106061,
+      "sha256": "142bd2e3aad27df5e79060b246b91a37a3339912227454fe9b16bae1e76005f9",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-10/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-11.json",
+      "bytes": 106061,
+      "sha256": "30335d922778db741f3ebaa9f5d4e7cbd86b3b25f3758ee9923cc30fd4c34dc1",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-11/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-12.json",
+      "bytes": 105879,
+      "sha256": "d9691ee3b19feab54c85b4b86cf1adda43c2a996557ed69f41ceb860f1d3a8de",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-12/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-13.json",
+      "bytes": 105873,
+      "sha256": "7a772e7e08bd632999eaa6608653f8b911b8245367c1fcc9a1256ec9cc4273f9",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-13/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-14.json",
+      "bytes": 105971,
+      "sha256": "189d14786df099519efb16f47149adcbf4b3eb7b72bbdb0cc25efa04e15223af",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-14/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/answers-15.json",
+      "bytes": 105971,
+      "sha256": "b9f75d19584f58f81d25dc1f622f87024d4d8782cf0696c3b3436b923860b682",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-case-15/ANSWERS.json"
+    },
+    {
+      "path": "data/transfer/cases.json",
+      "bytes": 36789,
+      "sha256": "b4f58e73d2a1d4b62d424c8f8754c84e9099b5bbe669c163501d28a5900f8fc7",
+      "copy": "exact_source_bytes",
+      "source_path": "results/qwen35-hybrid-09-prepared/CASES.json"
+    },
+    {
+      "path": "data/transfer/groups.json",
+      "bytes": 7489,
+      "sha256": "108e6812705430fcc1167d945f71746b7416a9538d38e386efbc4b7abab55659",
+      "copy": "exact_source_bytes",
+      "source_path": "reviews/qwen35-hybrid-09/JOINT-DETAIL.json"
+    },
+    {
+      "path": "data/transfer/metrics.json",
+      "bytes": 5104,
+      "sha256": "450ed35306fa3d1265a3d56b68d3d1e70f78dad8c71925e5cfc589c00915168b",
+      "copy": "exact_source_bytes",
+      "source_path": "reviews/qwen35-hybrid-09/METRICS.json"
+    },
+    {
+      "path": "verify_saved_results.py",
+      "bytes": 10049,
+      "sha256": "128728a9d6314ce0c781c750704a78cc27e17e48ff4a1f61d41dc64e35408d43",
+      "copy": "new_companion_file"
+    }
+  ],
+  "limits": "Arithmetic of saved model answers; no native model, complete publication packet or independent review"
+}

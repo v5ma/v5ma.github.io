@@ -1,0 +1,9 @@
+{
+  "results\\gpt2-learning-06\\INPUT-FREEZE.json": "ec2cac4b861714be6bf0f1fc768609c6370cb0fb06ee74cdf1b62cddc9815f7d",
+  "results\\gpt2-learning-06\\TRAINING-RECEIPT.json": "b240eb33e00cc8f77a036270f576b8ec11659bac7f2ee8842b174779c0074c22",
+  "results\\gpt2-learning-06\\basis.npz": "b310c5bda2c59d3f1f284e367cd39d27c37ee3a798ace13a1c59b452d92f0496",
+  "results\\gpt2-learning-06\\learned-parameters.npz": "fc6242f0980c2c352de8981764dccf997047eb5871f71547f50649e1bb4e4e95",
+  "results\\gpt2-learning-06\\parameter-history.npz": "c0b55025eea48b7106d3d2c55cdf2b53e5df40a95b0615f3bfc29ffb26bce478",
+  "applications/evaluate_gpt2_learning_v6.py": "04c702192dfe7337f5df1124b856f0ab76ee0c98d371763334fe745e72614d96",
+  "applications/commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6"
+}

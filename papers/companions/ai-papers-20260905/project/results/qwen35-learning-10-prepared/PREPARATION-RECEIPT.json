@@ -1,0 +1,18 @@
+{
+  "status": "FROZEN_BEFORE_TRAINING_AND_TEST_INFERENCE",
+  "training_prefixes": 24,
+  "test_prefixes": 16,
+  "primary_test_answers": 384,
+  "fresh_workflow_answers": 9,
+  "window_shape": [
+    12,
+    9,
+    512
+  ],
+  "files": {
+    "INPUT-FREEZE.json": "555b3720b70f181e759660f28f00dd89bc01ba3d4d20d336bc50d41a7b1e85e9",
+    "TEST-CASES.json": "dad439abc6ad3d81a89e93ccd6e1e268a6bcba5d7d82d12badc6b79a735a0e6c",
+    "TRAIN-CASES.json": "f7c5515ffe07803d3e0c764f4d3166831fca21cdb3175c0be0abea82936118ac",
+    "YOKED-PERMUTATION.json": "72bd5fb1fb81bf72372f9edad74d8396d0c87bbb9523003ed7c7e3cd003122f7"
+  }
+}

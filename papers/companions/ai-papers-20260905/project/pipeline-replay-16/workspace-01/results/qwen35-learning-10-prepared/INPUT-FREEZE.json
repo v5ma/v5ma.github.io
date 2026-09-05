@@ -1,0 +1,12 @@
+{
+  "applications/PROTOCOL-QWEN35-LEARNING-10.json": "db5818ac8d11bf281ed85d5b6ad8cf2711d576609a695b17c6566ef711869055",
+  "applications/qwen35_learning_v10.py": "b3d25b4b8eb31f950ebb6b639c586a420063aac721c3a7469d638a620d869880",
+  "applications/test_qwen35_learning_v10.py": "37635b10f020bc3ffb63b757916fef1fcf06a0ba057d54788997ca7019a1f121",
+  "sources/QWEN35-LEARNED-REPAIR-METHODS-10.md": "9208d27b1ae10afc483b7076e2f35087cb0453650900ac4fafbbe97b04e608cc",
+  "applications/qwen35_adapter_v9.py": "a3bbfc57b54d6b5db45090452d3847fd3f5351e789862ac88dad5b3d4649a372",
+  "applications/qwen35_hybrid_v9.py": "5011d222ae4acc16881fdea8f840be95bfda992f2c805d8a963651e6854ce1aa",
+  "applications/commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6",
+  "model-dependencies/qwen35-onnx-opt-fafab72d/GRAPH-INTAKE-RECEIPT.json": "7e9e5b780153d5a5f1eb879504f68a1c6d7c0fa4f33881bd4c69563f9a5633f7",
+  "model-dependencies/qwen35-onnx-opt-fafab72d/WEIGHTS-INTAKE-RECEIPT.json": "f4db3fbfcf7109e2b5c3bd40de886a758e457409ee576f1ee4772b91b618b356",
+  "runtime-dependencies/onnxruntime-1.29.0/INTAKE-RECEIPT.json": "a80eb4016bb4401f89d477bdb66c09067c3389c4d3649bf605066cd9ee84a722"
+}

@@ -1,0 +1,13 @@
+'SAN.PassiveFeedback.positive_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SAN.PassiveFeedback.negative_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SAN.PassiveFeedback.nonzero_fixed_point_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SAN.PassiveFeedback.affine_error_iteration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SAN.PassiveFeedback.positive_error_at_any_horizon' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SAN.PassiveFeedback.negative_error_at_any_horizon' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SAN.PassiveFeedback.receiver_preserves_bounded_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SAN.PassiveFeedback.separated_hidden_states_with_identical_output' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SAN.ScopeEvidence.indistinguishable_origins_prevent_exact_permission' does not depend on any axioms
+'SAN.ScopeEvidence.derivative_permission_requires_every_origin' depends on axioms: [propext, Quot.sound]
+'SAN.ScopeEvidence.revoked_origin_blocks_every_derived_artifact' depends on axioms: [propext, Quot.sound]

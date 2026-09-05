@@ -1,0 +1,27 @@
+{
+  "status": "PASS_NATIVE_EXACT_RECONSTRUCTION_SAME_AUTHOR_SHARED_ADAPTER",
+  "split": "train",
+  "index": 0,
+  "exact_generated_answers_and_first_logits": 12,
+  "native_calls": 32,
+  "auditor_sha256": "b35fb74f376c170b9379f30e6b91f11565b05d134b97e838686eb218b4680222",
+  "source_receipt_sha256": "bbcbcc5e5fa74580b033440231593e7223305d8e40b996e3b0bc35e3fa84bbc4",
+  "resource": {
+    "elapsed_seconds": 11.375,
+    "initial": {
+      "available_ram_bytes": 21741592576,
+      "process_commit_bytes": 34824192,
+      "peak_process_commit_bytes": 34824192,
+      "working_set_bytes": 56893440
+    },
+    "final": {
+      "available_ram_bytes": 21156843520,
+      "process_commit_bytes": 514551808,
+      "peak_process_commit_bytes": 567988224,
+      "working_set_bytes": 645525504
+    },
+    "peak_commit_bytes": 567988224,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  }
+}

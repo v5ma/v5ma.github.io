@@ -1,0 +1,15 @@
+{
+  "status": "EXECUTED_NOT_INDEPENDENTLY_REVIEWED",
+  "model_sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+  "modified_graph_sha256": "10538cd24a8cce3cc8b054f42156b549bb7880746060f14477a4d1ce219847c2",
+  "families": 12,
+  "prompt_variants": 48,
+  "step_calls": 896,
+  "intervention_rows": 240,
+  "authority_rows": 1200,
+  "elapsed_seconds": 39.56200000003446,
+  "numerical_threads": 1,
+  "all_cache_restorations_bit_exact": true,
+  "new_learned_parameters": 0,
+  "model": "Pinned quantized GPT-2; not DeepSeek or frontier validation"
+}

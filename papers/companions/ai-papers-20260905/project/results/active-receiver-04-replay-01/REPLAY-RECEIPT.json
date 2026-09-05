@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "matched_artifacts": 7,
+  "artifacts": {
+    "INPUT-FREEZE.json": {
+      "source": "794748b752c7e66421f8d3b0479f78347d4d970ad9c00ce499d5f3b821f5b0d0",
+      "replay": "794748b752c7e66421f8d3b0479f78347d4d970ad9c00ce499d5f3b821f5b0d0"
+    },
+    "TRAINING-SCHEDULE.json": {
+      "source": "f4990394a75cd5340e5114edd73846d32c99817e5c79b1b2aff803e7b524d059",
+      "replay": "f4990394a75cd5340e5114edd73846d32c99817e5c79b1b2aff803e7b524d059"
+    },
+    "feedback-events.csv": {
+      "source": "7e9cea48bb42b885c319858a96f284580a9181e334d828fa23d410ebcc24ecb4",
+      "replay": "7e9cea48bb42b885c319858a96f284580a9181e334d828fa23d410ebcc24ecb4"
+    },
+    "evaluation-events.csv": {
+      "source": "9c4d8c3091053ea11805cfa2ee35725018ca8d213e03ffb7fec7647a0b0e2741",
+      "replay": "9c4d8c3091053ea11805cfa2ee35725018ca8d213e03ffb7fec7647a0b0e2741"
+    },
+    "attack-events.csv": {
+      "source": "effd957914e1fdda4d2897038f2f53502d881a0cf0a231c3dd264d0c56db9258",
+      "replay": "effd957914e1fdda4d2897038f2f53502d881a0cf0a231c3dd264d0c56db9258"
+    },
+    "metrics.csv": {
+      "source": "6c55dda3e3a3a0b315f893b2a0ba4a8f032c798cac57952c44b119f36e9fd7e4",
+      "replay": "6c55dda3e3a3a0b315f893b2a0ba4a8f032c798cac57952c44b119f36e9fd7e4"
+    },
+    "LEARNER-STATES.json": {
+      "source": "16ee89224ed0f962724a3321719d18ec6d5af989441e12657185164aee226cce",
+      "replay": "16ee89224ed0f962724a3321719d18ec6d5af989441e12657185164aee226cce"
+    }
+  },
+  "replay_wrapper_sha256": "049a0009fe10e525542feef9cca9463b79d2c1460bac2f0dcb1569a63bb03374",
+  "same_runtime": true,
+  "independent_replication": false
+}

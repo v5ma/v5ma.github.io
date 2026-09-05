@@ -1,0 +1,9 @@
+{
+  "schema": "san-ca-mi-development-protocol/v1",
+  "frozen_before_first_run": true,
+  "evidence_class": "development: engineered runtime plus trained small neural network; not an LLM or human experiment",
+  "ca": {"seeds": [17, 31, 53], "horizons": [8, 32, 128], "delegation_depths": [1, 4, 16], "human_updates_per_run": 2, "policies": ["text_only", "final_gate", "propagated_gate", "deny_all"], "metrics": ["unauthorized_executions", "useful_completion", "rejected_proposals", "checked_delegation_edges"]},
+  "mi": {"seeds": [1101, 2202, 3303], "split_seed": 31357, "binary_worlds": 256, "train_worlds": 128, "validation_worlds": 64, "test_worlds": 64, "training_replicates": 4, "nuisance_dimensions": 2, "hidden_widths": [24, 16], "epochs": 1200, "learning_rate": 0.015, "ridge": 0.01, "surrogates": ["global_linear", "matched_polynomial", "receiver_conditioned", "local_jacobian"], "metrics": ["task_balanced_accuracy", "task_log_loss", "relation_probe_accuracy", "intervention_mae", "intervention_rmse", "lesion_influence", "exact_restore_error"]},
+  "resources": {"numerical_threads": 1, "max_seconds_per_training_seed": 35, "max_total_seconds": 120, "max_result_bytes": 15000000, "network_downloads": false},
+  "rules": ["No claim of SAN-specific advantage from a programmed guard or synthetic generator.", "No test-dependent tuning within this protocol.", "Worlds, not intervention rows, are the primary within-model sampling units.", "Three training seeds are descriptive replications, not external validation.", "All surrogate outcomes, including adverse outcomes, are retained.", "Live feedback, open-weight LLMs, endogenous access, human oversight, biological transfer and independent review remain separate unexecuted stages."]
+}

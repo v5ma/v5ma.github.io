@@ -1,0 +1,11 @@
+{
+  "applications/PROTOCOL-QWEN35-HYBRID-09.json": "c09c56a4904a62dbc566eaae3e1522d363b0218f255cabd553a5b63fef6a0247",
+  "applications/qwen35_hybrid_v9.py": "5011d222ae4acc16881fdea8f840be95bfda992f2c805d8a963651e6854ce1aa",
+  "applications/qwen35_adapter_v9.py": "a3bbfc57b54d6b5db45090452d3847fd3f5351e789862ac88dad5b3d4649a372",
+  "applications/commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6",
+  "applications/test_qwen35_hybrid_v9.py": "8881160e5655d618a43e77433a0afdb090242602ac50492e320cf87046dc1c1a",
+  "reviews/qwen35-baseline-09/BASELINE-DECISION.md": "fd6dcceb081454356adf9c6303ad206af478717c34dae838d451a1e5819cac7b",
+  "model-dependencies/qwen35-onnx-opt-fafab72d/GRAPH-INTAKE-RECEIPT.json": "7e9e5b780153d5a5f1eb879504f68a1c6d7c0fa4f33881bd4c69563f9a5633f7",
+  "model-dependencies/qwen35-onnx-opt-fafab72d/WEIGHTS-INTAKE-RECEIPT.json": "f4db3fbfcf7109e2b5c3bd40de886a758e457409ee576f1ee4772b91b618b356",
+  "runtime-dependencies/onnxruntime-1.29.0/INTAKE-RECEIPT.json": "a80eb4016bb4401f89d477bdb66c09067c3389c4d3649bf605066cd9ee84a722"
+}

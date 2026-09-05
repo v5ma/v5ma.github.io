@@ -1,0 +1,13 @@
+{
+  "execution": "PASS",
+  "scientific_promotion": "DEVELOPMENT_ONLY",
+  "ca_conditions": 108,
+  "ca_events": 6048,
+  "mi_trained_models": 3,
+  "mi_metric_rows": 24,
+  "mi_intervention_rows": 9216,
+  "seconds": 1.327999999979511,
+  "bytes_before_summary": 3717587,
+  "all_input_hashes_unchanged": true,
+  "interpretation": "Runtime gates are engineered. Neural mechanisms are learned in a small two-hidden-layer network; no LLM, human or biological evaluation has run."
+}

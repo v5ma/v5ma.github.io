@@ -1,0 +1,16 @@
+{
+  "applications/PROTOCOL-GPT2-INTENT-07.json": "273333054081e94a1085d33f6a24f3fe788e0253a62115d5c06ee7d616a1386c",
+  "applications/gpt2_intent_v7.py": "df29903005f42d5ec6ee81c625c5eda89c3340158e243aba977442ac01771392",
+  "applications/test_gpt2_intent_v7.py": "541252e762a58831e95d90a567e092cabe2e277975d05c300e9fc2ccf3502081",
+  "applications/gpt2_adapter_v5.py": "979b366adf26aee0c06d579b4c735f86f0b673e2ecec22eb177c4eb662a2bc11",
+  "applications/gpt2_learning_v6.py": "3a285fae7a25a43f1f1bb21d3016b6fa2bdef584f1c316356eef3734dee1e96e",
+  "applications/gpt2_receiver_v5.py": "3830de8df97d48467d51d88de7ff4e32cb3b49745c1096c2f70bc59e2be84b3a",
+  "applications/commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6",
+  "results/gpt2-learning-06/INPUT-FREEZE.json": "ec2cac4b861714be6bf0f1fc768609c6370cb0fb06ee74cdf1b62cddc9815f7d",
+  "results/gpt2-learning-06/basis.npz": "b310c5bda2c59d3f1f284e367cd39d27c37ee3a798ace13a1c59b452d92f0496",
+  "results/gpt2-learning-06/learned-parameters.npz": "fc6242f0980c2c352de8981764dccf997047eb5871f71547f50649e1bb4e4e95",
+  "results/gpt2-learning-06/TRAINING-RECEIPT.json": "b240eb33e00cc8f77a036270f576b8ec11659bac7f2ee8842b174779c0074c22",
+  "results\\gpt2-intent-07-prepared\\FAMILIES.json": "6021ecaac40cec7427f3234343cdb9573a366b0704cb3c1759a0d7e3983ccb4f",
+  "results\\gpt2-intent-07-prepared\\INPUT-FREEZE.json": "89232932ab978afc215fb9bbb9c5033d520f4b636d85a8879d575d26868184c9",
+  "results\\gpt2-intent-07-prepared\\PREPARATION-RECEIPT.json": "ee1cc32fcfc587d5b59ee6e19288d8d7d4ecbf89857b9c10eeeea499d1315566"
+}

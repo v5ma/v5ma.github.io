@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "original_model_readouts_recomputed": 360,
+  "max_readout_error": 0.0,
+  "authority_events_recomputed": 1800,
+  "metric_rows_recomputed": 30,
+  "step_calls": 632,
+  "elapsed_seconds": 32.43700000003446,
+  "auditor_sha256": "4cdca2db06b5082d2b60f7accd0e612d2d9642a417a7c0fdaa1258a398a61ef8",
+  "independent_review": false
+}

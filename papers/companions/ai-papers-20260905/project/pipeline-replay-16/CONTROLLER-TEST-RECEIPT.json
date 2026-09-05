@@ -1,0 +1,10 @@
+{
+  "tests": 23,
+  "passed": 23,
+  "failures": [],
+  "errors": [],
+  "scope": "Controller/receipt guards, not scientific experiments",
+  "model_calls": 0,
+  "test_source_sha256": "25e4fb2d4990d5faae2aeeca988896415aa085613db28ad2db43c57dea43bde0",
+  "controller_sha256": "a316c6ee25e6ff051e2dbcdf1bfbb2df698571f2036064719096707b26561134"
+}

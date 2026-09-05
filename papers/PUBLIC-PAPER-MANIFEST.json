@@ -1,11 +1,11 @@
 {
   "schema": "svgn.public-github-paper-mirror.v1",
-  "count": 106,
-  "total_pdf_bytes": 112350604,
-  "selection": "Current public PDF for each of Papers 1–106 as of 2026-08-25.",
+  "count": 108,
+  "total_pdf_bytes": 113639926,
+  "selection": "Current public PDF for each of Papers 1-108 as of 2026-09-05; preceding 106 PDF selections unchanged.",
   "catalog": "https://pub.svgn.io/",
   "osf_archive": "https://osf.io/3vsar/",
-  "source_manifest_sha256": "49AE0AF24F50261537CF78703E20822479710CA1BA74B1F5F272AC9DBDA5E28A",
+  "source_manifest_sha256": "F2348070349D8DAABADE6B4A48DB18CA63B10453D61F99A2864F06AF22B9AC76",
   "papers": [
     {
       "number": 1,
@@ -1068,6 +1068,31 @@
       "osf": "https://osf.io/j2xsc/",
       "verified": true,
       "version": "1.0"
+    },
+    {
+      "number": 107,
+      "title": "AI Core Alignment Across Scales: Human-Guided Co-Regulation in Self-Aware Artificial Networks",
+      "filename": "107 - AI Core Alignment Across Scales Human-Guided Co-Regulation in Self-Aware Artificial Networks.pdf",
+      "bytes": 624334,
+      "sha256": "3452FAE9EDA0F1CA09375C564CB04C351FEB74424AB16B762C5EED2004BF5D49",
+      "zenodo": "https://zenodo.org/records/22360017",
+      "osf": "https://files.us.osf.io/v1/resources/3vsar/providers/osfstorage/6a9c46ebf47a7a40bc5b52a3",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/ai-papers-20260905"
+    },
+    {
+      "number": 108,
+      "title": "AI Mechanistic Interpretability and Self-Aware Networks: From Neural Decoding to Causal Self-Regulation",
+      "filename": "108 - AI Mechanistic Interpretability and Self-Aware Networks From Neural Decoding to Causal Self-Regulation.pdf",
+      "bytes": 664988,
+      "sha256": "44C85CB7AD4A977E67841345AB058ED4D8A44A30CA0275774D8D9F540B7D9333",
+      "zenodo": "https://zenodo.org/records/22360027",
+      "osf": "https://files.us.osf.io/v1/resources/3vsar/providers/osfstorage/6a9c46fa10084707992a9c4f",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/ai-papers-20260905"
     }
-  ]
+  ],
+  "shared_companion": "companions/ai-papers-20260905/README.md"
 }

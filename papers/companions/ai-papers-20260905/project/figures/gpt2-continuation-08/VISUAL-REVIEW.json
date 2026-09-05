@@ -1,0 +1,15 @@
+{
+  "status": "PASS_SCREEN_IMAGE_ONLY",
+  "review_date": "2026-09-05",
+  "figure": "cache-persistence-and-baseline.png",
+  "sha256": "ecc2e99df5be8fc6837f591f4c91b4f707c1aa5bb44546e3d5ba24d3ed1310f8",
+  "actual_image_viewed": true,
+  "inspected_pixels": [
+    1494,
+    1602
+  ],
+  "clipping_or_overlap_observed": false,
+  "independent_review": false,
+  "pdf_layout_accepted": false
+}
+

@@ -1,0 +1,30 @@
+{
+  "status": "FROZEN_LEARNED_MAPS_BEFORE_HELDOUT_INFERENCE",
+  "prepared_receipt_sha256": "743eea56b4bc9e57cc507389f33e655d67655d3e3fb83f07e5a638f814b96c75",
+  "resource": {
+    "elapsed_seconds": 0.18699999997625127,
+    "initial": {
+      "available_ram_bytes": 21571203072,
+      "process_commit_bytes": 41533440,
+      "peak_process_commit_bytes": 41533440,
+      "working_set_bytes": 62713856
+    },
+    "final": {
+      "available_ram_bytes": 20918525952,
+      "process_commit_bytes": 119844864,
+      "peak_process_commit_bytes": 189112320,
+      "working_set_bytes": 111210496
+    },
+    "peak_commit_bytes": 189112320,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  },
+  "test_case_semantics_used_by_fit": [],
+  "test_case_file_hash_checked_for_freeze_integrity": true,
+  "native_inference_during_fit": 0,
+  "files": {
+    "FIT-STATISTICS.json": "566d28bedd8d87cb2ab40ed19070e13ffe180c94b88e4617c9bf3779d2e1a9d7",
+    "MODEL.npz": "17b839d7c2f6b2f53687c0af1c63effbee26a944384262e0cd21507e4e975c35",
+    "TRAINING-INPUTS.json": "7b1a801d3329dbdb6893d29726b524ff9a014c154af2a0edbcd1b13b3af16da9"
+  }
+}

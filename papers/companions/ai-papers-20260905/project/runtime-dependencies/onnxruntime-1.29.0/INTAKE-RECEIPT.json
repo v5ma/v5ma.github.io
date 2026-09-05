@@ -1,0 +1,1643 @@
+{
+  "status": "ISOLATED_RUNTIME_CPU_OPERATORS_VERIFIED_NOT_MODEL_INFERENCE",
+  "date": "2026-09-05",
+  "url": "https://files.pythonhosted.org/packages/b4/80/5b28f1f1111210fc4a336ddbc6950f468ebf9a6a265420568f4f43fa33ce/onnxruntime-1.29.0-cp312-cp312-win_amd64.whl",
+  "wheel_bytes": 14001407,
+  "wheel_sha256": "4acf2b4948b7ede87221ca6332344b8facdc8059d6ac751a7d367d04532b02dd",
+  "script_sha256": "fce8a86e338b7a3db0d159c4456c2dcd0d8459258c9d09f9d8dee3c798cdca83",
+  "original_runtime_version": "1.20.1",
+  "isolated_runtime_version": "1.29.0",
+  "isolated_runtime_path": "D:\\micahone\\vscode v5ma\\paper-development\\san-core-alignment-mechanistic-interpretability-20260904\\runtime-dependencies\\onnxruntime-1.29.0\\onnxruntime\\__init__.py",
+  "shared_install_modified": false,
+  "existing_dependencies": {
+    "numpy": "2.4.6",
+    "flatbuffers": "25.12.19",
+    "packaging": "26.0",
+    "protobuf": "6.33.6"
+  },
+  "required_cpu_operations_found": [
+    "CausalConvWithState",
+    "GatherBlockQuantized",
+    "GroupQueryAttention",
+    "LinearAttention",
+    "MatMulNBits"
+  ],
+  "elapsed_seconds": 4.780999999959022,
+  "extracted_files": [
+    {
+      "path": "onnxruntime/LICENSE",
+      "bytes": 1094,
+      "sha256": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674"
+    },
+    {
+      "path": "onnxruntime/Privacy.md",
+      "bytes": 4730,
+      "sha256": "a1e6108942be2f56d9ea93c342462d5ec15fd0510603dae7a654f417e0d4e95f"
+    },
+    {
+      "path": "onnxruntime/ThirdPartyNotices.txt",
+      "bytes": 343249,
+      "sha256": "4c5b864d8974c94b37461f38163facef79a1bb5dea461667ee9e5be6a8e73f83"
+    },
+    {
+      "path": "onnxruntime/__init__.py",
+      "bytes": 21947,
+      "sha256": "c8dc5c6007d8a3a4691fc7dcc650c11bda155a033bcc029cd0dd46f630565c32"
+    },
+    {
+      "path": "onnxruntime/backend/__init__.py",
+      "bytes": 334,
+      "sha256": "e48d5896c6b07fdc3a30d98ae1188dd7003e10442a94a2b061335907e9bf93a3"
+    },
+    {
+      "path": "onnxruntime/backend/backend.py",
+      "bytes": 10447,
+      "sha256": "75e6b2df1c12db84949497209968ef20cb392099f6b87bca2a116b8ca7e5dee7"
+    },
+    {
+      "path": "onnxruntime/backend/backend_rep.py",
+      "bytes": 2901,
+      "sha256": "bc5e6bed64391baaec2e1705b0de62bc86d5a583040a4c17b8754d4fd0960fc4"
+    },
+    {
+      "path": "onnxruntime/capi/__init__.py",
+      "bytes": 251,
+      "sha256": "b91a78a4cb5fa1ac81859804b2216a1420f5dd8e8b528f3615d66c417f17f0b2"
+    },
+    {
+      "path": "onnxruntime/capi/_ld_preload.py",
+      "bytes": 413,
+      "sha256": "962e9c6d9eb88437d49dd6ade26a6b516ce8c0b6b7450770d2ad84e7ab171701"
+    },
+    {
+      "path": "onnxruntime/capi/_pybind_state.py",
+      "bytes": 1533,
+      "sha256": "9db5299d49dcc01bf9a60240f32ba00d82510384d37c2d206983840f98c3f920"
+    },
+    {
+      "path": "onnxruntime/capi/build_and_package_info.py",
+      "bytes": 54,
+      "sha256": "1ffa0930562393c0ac0cd5e6c6453ca94703a7efff9ef9bf4f5932bb7cc23e36"
+    },
+    {
+      "path": "onnxruntime/capi/convert_npz_to_onnx_adapter.py",
+      "bytes": 1581,
+      "sha256": "3744a162bdf4bc141c3abf4ac8577801474472a596f3d29577cd2a4980a0750e"
+    },
+    {
+      "path": "onnxruntime/capi/onnxruntime.dll",
+      "bytes": 18093880,
+      "sha256": "f9013e824c1dbc5b1874ffdabeedfd1cad4e2dabd9d93528f6ec6d21c2980d00"
+    },
+    {
+      "path": "onnxruntime/capi/onnxruntime_collect_build_info.py",
+      "bytes": 2109,
+      "sha256": "b03f19d92d794074afb8ed63eed82a24a78e44351ab70cd49b3bc2f148fd7003"
+    },
+    {
+      "path": "onnxruntime/capi/onnxruntime_inference_collection.py",
+      "bytes": 70533,
+      "sha256": "2bc0c884f3e139e1b7800c7f0601f1bf34dfc84880fb4bb4407fefc156ecb4b6"
+    },
+    {
+      "path": "onnxruntime/capi/onnxruntime_providers_shared.dll",
+      "bytes": 21816,
+      "sha256": "e1d2b0678ad4eafedf6472b544d7d632c365ca48673269a174c817597a0e04a4"
+    },
+    {
+      "path": "onnxruntime/capi/onnxruntime_pybind11_state.pyd",
+      "bytes": 18748216,
+      "sha256": "d9114a3f211f302fb6efb537a1972c2a5e01b408a7311abf14127d100dc76849"
+    },
+    {
+      "path": "onnxruntime/capi/onnxruntime_validation.py",
+      "bytes": 6949,
+      "sha256": "a7d02f7973eeefc07e15de303ad0528acbd6de56ae32641ff42c498abb6d7e4f"
+    },
+    {
+      "path": "onnxruntime/capi/version_info.py",
+      "bytes": 34,
+      "sha256": "f269b55535c5f31831e8df2f14d7b44e28a4f6a760f55be2f5fdf66cf13d92dc"
+    },
+    {
+      "path": "onnxruntime/datasets/__init__.py",
+      "bytes": 473,
+      "sha256": "0ea45da4c7d1b437e1564090bb995399f490f861b87444c73567680787c0ee55"
+    },
+    {
+      "path": "onnxruntime/datasets/logreg_iris.onnx",
+      "bytes": 670,
+      "sha256": "8224784c98d73412d9fd99abcd57a38568bd590980d0fbe5916464531c52e8fc"
+    },
+    {
+      "path": "onnxruntime/datasets/mul_1.onnx",
+      "bytes": 130,
+      "sha256": "71f431c4e9321ec6fbeb158d02ed240459a7dcc98673fa79a4f439ce42efaf10"
+    },
+    {
+      "path": "onnxruntime/datasets/sigmoid.onnx",
+      "bytes": 103,
+      "sha256": "5340aba67a7e3475162ad794378af55f1718f55f9a5d74b4af60ecc7f7a624b6"
+    },
+    {
+      "path": "onnxruntime/quantization/__init__.py",
+      "bytes": 787,
+      "sha256": "725f368afb471d383e4dbbc8c6a459a5e0120923f7bef1b5e0b1c5724d690c56"
+    },
+    {
+      "path": "onnxruntime/quantization/base_quantizer.py",
+      "bytes": 26295,
+      "sha256": "4e562d2b96aba76be607833578ba1b25fef384fe3d6e74e039f22feecc6834db"
+    },
+    {
+      "path": "onnxruntime/quantization/calibrate.py",
+      "bytes": 58144,
+      "sha256": "365feab13dfcb32ed3a10de3f9d3e9cbaf6f528b1ad574099480287a86811e6e"
+    },
+    {
+      "path": "onnxruntime/quantization/cuda_quantizer.py",
+      "bytes": 27498,
+      "sha256": "a864556a468ffb5840e4f0024eeaaa475d664bd623fd836645e9cef05c81ff65"
+    },
+    {
+      "path": "onnxruntime/quantization/matmul_bnb4_quantizer.py",
+      "bytes": 9263,
+      "sha256": "6974cfb4adee43cd184de4a77ff6ef0484ea7284e7bf1342cc996d038652f223"
+    },
+    {
+      "path": "onnxruntime/quantization/matmul_nbits_quantizer.py",
+      "bytes": 81039,
+      "sha256": "350120ba9063119808d8ea26e0401261434e819331a0c2656789a558c66154de"
+    },
+    {
+      "path": "onnxruntime/quantization/onnx_model.py",
+      "bytes": 24528,
+      "sha256": "11a6ebf2d54f9da602667b2a5b777c15dd079b6f0e65baaca1864734fa921056"
+    },
+    {
+      "path": "onnxruntime/quantization/onnx_quantizer.py",
+      "bytes": 51001,
+      "sha256": "64c7252804e4d6985b72bb4a6d8f10a56dd8b7b86d6a2787891805e36aab54c9"
+    },
+    {
+      "path": "onnxruntime/quantization/preprocess.py",
+      "bytes": 5045,
+      "sha256": "554e225fb83c80e8151f4cde84e70e5ec556919a71ea41bf2c597018cdc1b3a7"
+    },
+    {
+      "path": "onnxruntime/quantization/qdq_loss_debug.py",
+      "bytes": 15829,
+      "sha256": "d4bf81b80d49724f49e65811a23ed03c46ed68a1cc92840b3130f889814e6b1a"
+    },
+    {
+      "path": "onnxruntime/quantization/qdq_quantizer.py",
+      "bytes": 74285,
+      "sha256": "8206bb08d04015fc292427c6b3fe0bd720644c5ac2473d2a1e1277bf8f7af488"
+    },
+    {
+      "path": "onnxruntime/quantization/quant_utils.py",
+      "bytes": 53010,
+      "sha256": "2efc449a45952aaee0ee7b3cf13bb530001f5208547d228738f4f7dec937e46d"
+    },
+    {
+      "path": "onnxruntime/quantization/quantize.py",
+      "bytes": 61377,
+      "sha256": "4f4f0fc8d01b284d026d1fadfe65b760cda1dafd7559f750e01afaf1567d018c"
+    },
+    {
+      "path": "onnxruntime/quantization/registry.py",
+      "bytes": 3919,
+      "sha256": "728aed9b1056b477575dedfe268f22692ceb3c4f20115ac314bb627dd2866d35"
+    },
+    {
+      "path": "onnxruntime/quantization/shape_inference.py",
+      "bytes": 10259,
+      "sha256": "e5aebf65f6838773ba363dfd4a319e6f497fdf1854504225e2affa8f0b777749"
+    },
+    {
+      "path": "onnxruntime/quantization/static_quantize_runner.py",
+      "bytes": 11341,
+      "sha256": "d22621c78f5f5ecd05dfcc2ca926bf872c803f56bf659c6a22110433b15a914d"
+    },
+    {
+      "path": "onnxruntime/quantization/tensor_quant_overrides.py",
+      "bytes": 21304,
+      "sha256": "433d83d0d008ef6c4b039697a837d98015cc6295398e1e479c27def919cbca4d"
+    },
+    {
+      "path": "onnxruntime/quantization/CalTableFlatBuffers/KeyValue.py",
+      "bytes": 2250,
+      "sha256": "7be8c9161c3d7dbefbe5f0c22e759d6d149da09eaf183d1ceea4e79081bebcdb"
+    },
+    {
+      "path": "onnxruntime/quantization/CalTableFlatBuffers/TrtTable.py",
+      "bytes": 2682,
+      "sha256": "bebb9e2cfcb6455e51dcc49d21092a5bb4f10d248a3cca0e8b14aecc8b2fda81"
+    },
+    {
+      "path": "onnxruntime/quantization/CalTableFlatBuffers/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "onnxruntime/quantization/execution_providers/qnn/__init__.py",
+      "bytes": 120,
+      "sha256": "9ca281ed511b3b9ef81c32f6c5d24f0fc55e5e82b66b78ddf272c1c542e256f2"
+    },
+    {
+      "path": "onnxruntime/quantization/execution_providers/qnn/fusion_lpnorm.py",
+      "bytes": 5327,
+      "sha256": "bd4adb30da2b1c7effb8a8de2f58e590f8219e994f2033f3d2498dd13b74de67"
+    },
+    {
+      "path": "onnxruntime/quantization/execution_providers/qnn/fusion_spacetodepth.py",
+      "bytes": 6285,
+      "sha256": "bbf3b21e1a79d7d56806151565301591ecb9d3513dd54d0460c9025263703131"
+    },
+    {
+      "path": "onnxruntime/quantization/execution_providers/qnn/mixed_precision_overrides_utils.py",
+      "bytes": 18995,
+      "sha256": "3d37593da3f57190145eed787b82f48fbd703b9de5703d6cf323e46656a7e46d"
+    },
+    {
+      "path": "onnxruntime/quantization/execution_providers/qnn/preprocess.py",
+      "bytes": 16736,
+      "sha256": "9ba863d49fb513c9245db589cd082a934ce959f18fb5290dfe35183d8bcf5881"
+    },
+    {
+      "path": "onnxruntime/quantization/execution_providers/qnn/quant_config.py",
+      "bytes": 18986,
+      "sha256": "9eca73deb2ad39f8112ce6c42512cf2d5293796b7c5da5f921880def16ccf0a1"
+    },
+    {
+      "path": "onnxruntime/quantization/fusions/__init__.py",
+      "bytes": 246,
+      "sha256": "4031b69b3c9a0079d598790e06973831dc27e4d70dadab6d5b9c936af316b3c3"
+    },
+    {
+      "path": "onnxruntime/quantization/fusions/fusion.py",
+      "bytes": 12088,
+      "sha256": "03affbee5e6ec3e848c32a17ec33ce14be8efb2dea5e4f92d7a48c2efd4d722b"
+    },
+    {
+      "path": "onnxruntime/quantization/fusions/fusion_gelu.py",
+      "bytes": 10647,
+      "sha256": "dea38ee14f790130fa4b5e1dc82fb9faf19e69006be54f860ac8dfbc7aa82fdf"
+    },
+    {
+      "path": "onnxruntime/quantization/fusions/fusion_layernorm.py",
+      "bytes": 6146,
+      "sha256": "20f578c0f9747ec2b5574dbf2e0d2872cb84829025ac9ab11997c5893c298dce"
+    },
+    {
+      "path": "onnxruntime/quantization/fusions/replace_upsample_with_resize.py",
+      "bytes": 3427,
+      "sha256": "130b9c6b4f18bbfe9740ca1c935ec9db4a1121aa07c0bcce371dcd7746c64bf0"
+    },
+    {
+      "path": "onnxruntime/quantization/neural_compressor/__init__.py",
+      "bytes": 68,
+      "sha256": "e121229502490e82b1329a289ed1d5b712dcb4be24cd90f9d23887ca5c5e3164"
+    },
+    {
+      "path": "onnxruntime/quantization/neural_compressor/onnx_model.py",
+      "bytes": 50836,
+      "sha256": "29a31f276e9e74addaf799b9de2491eee03af57d84879f9edf25aff1d437dfb6"
+    },
+    {
+      "path": "onnxruntime/quantization/neural_compressor/util.py",
+      "bytes": 2762,
+      "sha256": "e006d202b5c21f14fc3133e1467deba7e7b2b1df5a8eee5c8a16b5083316d83e"
+    },
+    {
+      "path": "onnxruntime/quantization/neural_compressor/weight_only.py",
+      "bytes": 37227,
+      "sha256": "23adb73b419d16e2b081052f878b713563c86ef6791d88cc483cdd3aff37b84e"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/__init__.py",
+      "bytes": 85,
+      "sha256": "21f297ac55ad452c9ed669200fd969c318a8d1fc3d715affd42755d5cbde7e28"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/activation.py",
+      "bytes": 4545,
+      "sha256": "1ba5c0299691215defaed8e92b8904bdbcd44a52cec3011ab975fd7b18081d98"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/argmax.py",
+      "bytes": 589,
+      "sha256": "a5f13dfde493676a2d4e451c5b094b8bb1c92ad375d241397362f3d127950034"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/attention.py",
+      "bytes": 2637,
+      "sha256": "787efe67731f3fac516427610c0c8dc561b6b369d920bc481055401edaa3ec44"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/base_operator.py",
+      "bytes": 1118,
+      "sha256": "beb0157ca25766f17b6617ab2b0e09506a2737236ea14d935a7c01cbe110dd01"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/binary_op.py",
+      "bytes": 2544,
+      "sha256": "a444074404bbe44329ecb1ba8f3595ee00d0b7fbf310f2c9108d347883aea220"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/concat.py",
+      "bytes": 2143,
+      "sha256": "7d91709daaa8399f5bd19bc6a412bf32b27356d79e260b96450dfdea4521f104"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/conv.py",
+      "bytes": 10203,
+      "sha256": "c21823670c7c8960940e1886a0c7d9f000f38fd94ccc86a662b6363ecee5f285"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/direct_q8.py",
+      "bytes": 3389,
+      "sha256": "c5658b5e83b57c9d055ce16cd0e757e69bcb570de6edbe9306953561163270ed"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/embed_layernorm.py",
+      "bytes": 4058,
+      "sha256": "d8bb19939526d042da4444968d2720632422a097a54592baa106f301c9528172"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/gather.py",
+      "bytes": 2230,
+      "sha256": "1cbefd0acbfefb34c0b395e61b5c4fec58f0ef645396aa5a77107ac3e3a6a8df"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/gavgpool.py",
+      "bytes": 2445,
+      "sha256": "c18ca311fde1fbf4028562a7b19d8dfa16811b5452bea462b59f98bdfc28f439"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/gemm.py",
+      "bytes": 6226,
+      "sha256": "49aa968ad2fe428b4f3bd292e80e226791ff39427b742fd9421af9c7a7a91834"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/lstm.py",
+      "bytes": 5238,
+      "sha256": "80edc0a82dedbe889594644328e2eb0513d1c847e70b611f6b370c2ce6780241"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/matmul.py",
+      "bytes": 8222,
+      "sha256": "39324939f06b609e0a4b1d62a67a09f1fff8e255c662818cdbaa9782d775a133"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/maxpool.py",
+      "bytes": 1393,
+      "sha256": "0374e2a71b861f48d8fdcb010e6d2d80f193d31b12e5fb37793c5d6d258b7314"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/norm.py",
+      "bytes": 1649,
+      "sha256": "7f77d489237859d33c8ae5c24a3113a2b4720c55122495b13b5d2f7a08ff744b"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/pad.py",
+      "bytes": 7951,
+      "sha256": "c8cf378eb642f3ca7915ae77c3728b41cef32254b3e86bf589238fbeae60b8ce"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/pooling.py",
+      "bytes": 2285,
+      "sha256": "2f4213ec6ebed974b1f7ec14cf9057e7d31ce3715f24483bf4dc16df2a840e12"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/qdq_base_operator.py",
+      "bytes": 823,
+      "sha256": "15ca3d259c6b5d0a158232af98716ecd3d26a205a8f7ec078836b9d428d38a8a"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/resize.py",
+      "bytes": 962,
+      "sha256": "04c7b29beec61ce4a71a9662b1af4191d424566097c0a00d0393699ca46768b2"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/softmax.py",
+      "bytes": 2714,
+      "sha256": "7b74e154e8764c6d41f25b86eb15a4a13fe109dbec3118ef4e54e37bc096f984"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/split.py",
+      "bytes": 2258,
+      "sha256": "f3647ae7efd1c39836ddfd2e7a4516a40de784ecde51674e420af62595f0ace7"
+    },
+    {
+      "path": "onnxruntime/quantization/operators/where.py",
+      "bytes": 3127,
+      "sha256": "c1de8f43b2e56eb253a9a98531c87f162a676ede087b03094803e8ccc4ebc0a2"
+    },
+    {
+      "path": "onnxruntime/tools/__init__.py",
+      "bytes": 528,
+      "sha256": "eeea7b88a724955cba51ca4820822505a2baf743b7daf68ec7269a4d6bf0cb15"
+    },
+    {
+      "path": "onnxruntime/tools/check_onnx_model_mobile_usability.py",
+      "bytes": 1717,
+      "sha256": "873aa3ac8f57cfb2cfd6274f76f89153b10478b32f501d2a9724ea1e87f1945b"
+    },
+    {
+      "path": "onnxruntime/tools/convert_onnx_models_to_ort.py",
+      "bytes": 16939,
+      "sha256": "14922ffe07aa5f039b9d3107e53f7434ceff36155fc637ff8d72ab0f3949a166"
+    },
+    {
+      "path": "onnxruntime/tools/file_utils.py",
+      "bytes": 1572,
+      "sha256": "1eb34ae148e947ebb8ded2c10b6bf02a27a2b025510521676880ca6acc301062"
+    },
+    {
+      "path": "onnxruntime/tools/logger.py",
+      "bytes": 333,
+      "sha256": "b37339f8091bebdcee6d73610a9b23228274e7681889e1d5e45b0e7c167a96b2"
+    },
+    {
+      "path": "onnxruntime/tools/make_dynamic_shape_fixed.py",
+      "bytes": 2642,
+      "sha256": "dbccdd3e34fccb3f0012fe6190597f60d23ca90cdb98feb8865f86a973be3abd"
+    },
+    {
+      "path": "onnxruntime/tools/offline_tuning.py",
+      "bytes": 6368,
+      "sha256": "22cc333df3086d6c19281057e296adf33bb8b350f9b14cd584b8c3996cd09642"
+    },
+    {
+      "path": "onnxruntime/tools/onnx_model_utils.py",
+      "bytes": 16818,
+      "sha256": "1bd5ac81f8aae3aa606e461364062ea592a7aa0648f864f446f7ab14f9f6b02e"
+    },
+    {
+      "path": "onnxruntime/tools/onnx_randomizer.py",
+      "bytes": 3361,
+      "sha256": "f4bf7a77321fe7d710da842c991d8412c76b478847c041aba5991a8c48143c06"
+    },
+    {
+      "path": "onnxruntime/tools/onnxruntime_test.py",
+      "bytes": 5770,
+      "sha256": "4afaa0c2b8e22297ffbec65f1e6904fc53d72640c0d7c999a70628ca332fe60d"
+    },
+    {
+      "path": "onnxruntime/tools/optimize_onnx_model.py",
+      "bytes": 2015,
+      "sha256": "0d49bd477a82ea0d599d745d73b32eed4d3702b245e63e6820224b87f6a68572"
+    },
+    {
+      "path": "onnxruntime/tools/pytorch_export_contrib_ops.py",
+      "bytes": 5351,
+      "sha256": "68471ae0b5286875e6645538a21e91a29ca3defcc0c91a4ff61543f1ff7df553"
+    },
+    {
+      "path": "onnxruntime/tools/pytorch_export_helpers.py",
+      "bytes": 6009,
+      "sha256": "7096488a2d16d18c3d591e481892bf2e2ce8afe800913ec902d91a501839ff7f"
+    },
+    {
+      "path": "onnxruntime/tools/reduced_build_config_parser.py",
+      "bytes": 10161,
+      "sha256": "17d6cde7fca2e55ee72d0512dafb1fa3b81b601d5c66748042251364e76fa8cf"
+    },
+    {
+      "path": "onnxruntime/tools/remove_initializer_from_input.py",
+      "bytes": 1031,
+      "sha256": "0b5bc365905e93e4cae92575aba7bfee4aa4c90cd2f22a8713c1b36607a18621"
+    },
+    {
+      "path": "onnxruntime/tools/symbolic_shape_infer.py",
+      "bytes": 148547,
+      "sha256": "0c9e5d57104c5b959e0f3f1d8d8667f11e505e71737ffbb059c2a02b17a1807a"
+    },
+    {
+      "path": "onnxruntime/tools/update_onnx_opset.py",
+      "bytes": 1182,
+      "sha256": "7e995bd72a55fa9161bbc5ec8b9bbf6c37c8ec4b02e336a62644f389c7204367"
+    },
+    {
+      "path": "onnxruntime/tools/mobile_helpers/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "onnxruntime/tools/mobile_helpers/coreml_supported_mlprogram_ops.md",
+      "bytes": 3114,
+      "sha256": "9114e3a9dea71ed4096b0109f833bf1fa80914aeffb6385e7d5ef01b29fc4f7b"
+    },
+    {
+      "path": "onnxruntime/tools/mobile_helpers/coreml_supported_neuralnetwork_ops.md",
+      "bytes": 1958,
+      "sha256": "249070bf4e02fe8d8ad5458eb6d0ed6ab9c2ef1145650daebef2198381059960"
+    },
+    {
+      "path": "onnxruntime/tools/mobile_helpers/nnapi_supported_ops.md",
+      "bytes": 2385,
+      "sha256": "b89ce7132cbb640765ae42907a858516ce79acf13e90e78f2098afef8d6bf7c4"
+    },
+    {
+      "path": "onnxruntime/tools/mobile_helpers/usability_checker.py",
+      "bytes": 32378,
+      "sha256": "b04693f34f98c0dc14c506debf747647333369a191d3ab2519d26e529b927517"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/__init__.py",
+      "bytes": 1307,
+      "sha256": "5ecab42ccfb312436c50b6d34efcb19f3e1d0f3a9ea5e13c044807cc9198383f"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/operator_type_usage_processors.py",
+      "bytes": 27032,
+      "sha256": "ae5f546ff4110b907417d32ed0b6d8f3a6ec5679147fb5d89f53edc02d4d3cd3"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_model_processor.py",
+      "bytes": 4472,
+      "sha256": "661d3b46670661fd3ea9b5d18a29b60d65061dbb2b11e1bafeb39cc7754b7b1c"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/types.py",
+      "bytes": 4468,
+      "sha256": "f2bdfc63b8216869faff89ae1164a97831e4637aec230001efab79603f2e3059"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/utils.py",
+      "bytes": 2595,
+      "sha256": "ad444205df7fdb5e1271563d7641c5df159b9a1de10066de0cf1d725594c9a69"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/ArgType.py",
+      "bytes": 147,
+      "sha256": "12b457ae6c336b5c60556e0e004370fc1f3255ced67d66c061886200edc27368"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/ArgTypeAndIndex.py",
+      "bytes": 2093,
+      "sha256": "f12c749a652a8cde2e37b31e4d8eac70881e64eea0aee01187c32f94441d51d4"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Attribute.py",
+      "bytes": 11187,
+      "sha256": "4b9480e72f450761d670f20fc7df63cff79b4d5f393bc71311326019efc528ba"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/AttributeType.py",
+      "bytes": 346,
+      "sha256": "a6217cbbf53bccd139792af07108512e0bebd9ac4adb5fb8e7931cc488ded874"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Checkpoint.py",
+      "bytes": 4342,
+      "sha256": "d1c675e25b90cbfc3c1a56c317fc6818f5ad79ed94b9e40ce23b79f585f907da"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/DeprecatedKernelCreateInfos.py",
+      "bytes": 4648,
+      "sha256": "2ba4a5f653f13c4f21b86134b6e9c6f4c5c31586f326ce477389f32a3f1fb7cf"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/DeprecatedNodeIndexAndKernelDefHash.py",
+      "bytes": 2526,
+      "sha256": "2ebddcb357bcd0cd732db6758412b00ec4a5e9df33c6391b21f020ba24e4264a"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/DeprecatedSessionState.py",
+      "bytes": 3678,
+      "sha256": "37908def6c0939b0a660671b039cfda37bb592163127d6d54886852090834771"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/DeprecatedSubGraphSessionState.py",
+      "bytes": 2682,
+      "sha256": "0118c528f257fe9076293ad25021f3fe237f526ac1df14432ad51b21ea535fe4"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Dimension.py",
+      "bytes": 2262,
+      "sha256": "54741c095e62a74048866d4416db005c0fae329f2daa5bb505f8893f62d9b907"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/DimensionValue.py",
+      "bytes": 2574,
+      "sha256": "d785b581e423e7f57fe548aa82b1b6a05183802900212e5def5c5e999c263bf6"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/DimensionValueType.py",
+      "bytes": 174,
+      "sha256": "da49ae3de3d97bfad648c908edc78885ec072f7c2fbec0c48731fe2c1bac9b43"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/EdgeEnd.py",
+      "bytes": 1137,
+      "sha256": "68d758d5203c7c3caf1f556caa8e7192556e846b70dac526cb2f3a1e6b5611b9"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/FloatProperty.py",
+      "bytes": 2075,
+      "sha256": "aaaa51a5fcbd417b3b5878475004548efe6aff3b3cc224f6fa23a3283f6fe0d4"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Graph.py",
+      "bytes": 11039,
+      "sha256": "63f0278ecb20ac9ee8e28535c3e286fab3a5f0413c62e127bc35aeeeb18de7b1"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/InferenceSession.py",
+      "bytes": 3125,
+      "sha256": "d0581b3b25df5a270ab211b5df51b31ea3d3149be8568ac1c5354fd7133a64d5"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/IntProperty.py",
+      "bytes": 2037,
+      "sha256": "1235a2a3ec85c1f904fcdefae1b613683473d041d26759f425e3e42d23468ad9"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/KernelTypeStrArgsEntry.py",
+      "bytes": 3193,
+      "sha256": "94acba54c123be48afe4118e8ee816119b65a1b34cc2f95f7124526338c28809"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/KernelTypeStrResolver.py",
+      "bytes": 2867,
+      "sha256": "72e7c4b39b9310d105e9bbd941e9b30f3b5b12b36dbc3bb33290e80a7481a629"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/MapType.py",
+      "bytes": 2194,
+      "sha256": "c250bbea72fc742d2f759565128502f6ac206d50f09d2b7944244ee6bfd67e68"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Model.py",
+      "bytes": 7663,
+      "sha256": "08f6dedaad8e70a53c2db4a11c6b67206fe3ad6f377f79ef311e53ae0d4dc7dd"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/ModuleState.py",
+      "bytes": 4994,
+      "sha256": "ac631a80106ac8235b7b023ec54ca0c4dd3b9bb7cb0d0987d845884a615deecb"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Node.py",
+      "bytes": 10718,
+      "sha256": "2233386231aafecc074e22f0d35c6c49698061a66691565447771e8b76f263af"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/NodeEdge.py",
+      "bytes": 4183,
+      "sha256": "2e207dbf2413b0591f4514ee883730ad17d5696ad1cc000b3f9468a74aed18a8"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/NodeType.py",
+      "bytes": 151,
+      "sha256": "6c12dbbc35b388b2d1c618c202a952e3893f85d2166d6937bec47108338bcfb9"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/NodesToOptimizeIndices.py",
+      "bytes": 6144,
+      "sha256": "2a85a60028119caf2a18dc9788aa3a372c14bf3a6f618c464340326b28f26854"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/OpIdKernelTypeStrArgsEntry.py",
+      "bytes": 3387,
+      "sha256": "e965763e3def92a276359d7d556acf0312ada0609e889e8d4d53afb3cf41210e"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/OperatorSetId.py",
+      "bytes": 2099,
+      "sha256": "50e894f820af7b163738e5a4da1899c81234388b5c03a8e2653b04443671bb65"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/OptimizerGroup.py",
+      "bytes": 4135,
+      "sha256": "5eb8b93854d0f3cd5fcda55d4198d5be22f2139bc7d9a146180ad01391f565b5"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/ParameterOptimizerState.py",
+      "bytes": 3218,
+      "sha256": "00811a091704967e700bb5f70bcbe9ed39a6a71b9a1fbb7ddd40a98716f14490"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/PropertyBag.py",
+      "bytes": 5099,
+      "sha256": "417b34eb840dba0f291bdce35fd69610f98eeb708858970bfa430b80c3e4eef2"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/RuntimeOptimizationRecord.py",
+      "bytes": 4067,
+      "sha256": "2eb979942cdb50bdf6dd8d679e28feeef9fde5ddea34792254fc246e0e9249db"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/RuntimeOptimizationRecordContainerEntry.py",
+      "bytes": 3832,
+      "sha256": "3cceff47491b9c5dcadf6aa82ce20f5e67ae7507e3d29bda6cc40b07e163444c"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/RuntimeOptimizations.py",
+      "bytes": 2800,
+      "sha256": "a98902eb9c0caaeec58a75b65fda4f4de443e1b63bc5d22c39f5e7209a050c55"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/SequenceType.py",
+      "bytes": 1829,
+      "sha256": "8a230ecf28f35f38cedf3a1a77fa06dbe72defce96bfcbb82d6a053997667340"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Shape.py",
+      "bytes": 2352,
+      "sha256": "e18eb2537e491d25cacdbd810f339b92cb38ca2a29c12dc85e4481a457fcf052"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/SparseTensor.py",
+      "bytes": 3806,
+      "sha256": "dc465a8739723bfef758eccaf63647c2856ab1092adf8d3b01304e1b9e8a2c41"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/StringProperty.py",
+      "bytes": 2110,
+      "sha256": "65de5009c4a0bdfe688ee381455d7d806c903e1aa3264a0168c759d3a90e73b7"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/StringStringEntry.py",
+      "bytes": 2147,
+      "sha256": "22287bc51ab8cefbb8715578fd3002e2c6e3687f9d2ea64653af17d282da5a82"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/Tensor.py",
+      "bytes": 6802,
+      "sha256": "09922dc5b43e07d7099da4b91f004d593d5bb9ab7f2605fe5becce9fd9b5d5ae"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/TensorDataType.py",
+      "bytes": 500,
+      "sha256": "5a66e533c1a82c44bad8bd7611addd0bae79febb8ed93dd1d90d3ce4e2c215cf"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/TensorTypeAndShape.py",
+      "bytes": 2326,
+      "sha256": "9e852663525d90ef818e1821cae7af7fb732d06a24867874aff01c988b757e5e"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/TypeInfo.py",
+      "bytes": 2599,
+      "sha256": "4e81586731f4562b79555233b6875fccff9f08e73deef8011d7cfa63fb47c969"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/TypeInfoValue.py",
+      "bytes": 198,
+      "sha256": "6b654ace0711eafe2a89f7dae5ae4760d51a1ca0cb766b056c076c370ae64f94"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/ValueInfo.py",
+      "bytes": 2655,
+      "sha256": "642ea97a2a98458298c3fb22e019ad6546d144b7fd064903e336b8c64cb74076"
+    },
+    {
+      "path": "onnxruntime/tools/ort_format_model/ort_flatbuffers_py/fbs/__init__.py",
+      "bytes": 251,
+      "sha256": "11f908aeb79417a4eb718a41a35349f06395fe9fe8fd85e0ddf4a9b413795d4a"
+    },
+    {
+      "path": "onnxruntime/tools/qdq_helpers/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "onnxruntime/tools/qdq_helpers/optimize_qdq_model.py",
+      "bytes": 1279,
+      "sha256": "f64a54d03ba47346441e78f03bb36a345505551b4ec7cc6014f5566695e411c4"
+    },
+    {
+      "path": "onnxruntime/tools/qnn/add_trans_cast.py",
+      "bytes": 13748,
+      "sha256": "d0d634a88ddbffc2c6949717399cdfb07c99e3c1922b2c744ce12b55d0e5e8ff"
+    },
+    {
+      "path": "onnxruntime/tools/qnn/gen_qnn_ctx_onnx_model.py",
+      "bytes": 16562,
+      "sha256": "983ba60e9ffccc28628c48ad09c7d8ee45b1af9b81a82d9ebca425555e0ffdcb"
+    },
+    {
+      "path": "onnxruntime/tools/qnn/preprocess.py",
+      "bytes": 7440,
+      "sha256": "b9b0005f3b4d412555041c906b35d6291b7ed71ce6ab711601bd6b44792075b8"
+    },
+    {
+      "path": "onnxruntime/transformers/__init__.py",
+      "bytes": 321,
+      "sha256": "d9cdb5dc2ab35eb73437a0aa7fffd37b977f487fecb5f2dd35d78daee801ed24"
+    },
+    {
+      "path": "onnxruntime/transformers/affinity_helper.py",
+      "bytes": 1442,
+      "sha256": "28e281bf3a01afec0e9344073062b3635bb2d6223b13a787a58c017531ccf98e"
+    },
+    {
+      "path": "onnxruntime/transformers/benchmark.py",
+      "bytes": 33525,
+      "sha256": "351c3d7964922e61a579f522ca81f591e95b76a6f2bb2189804a28bffc6ffe75"
+    },
+    {
+      "path": "onnxruntime/transformers/benchmark_helper.py",
+      "bytes": 22997,
+      "sha256": "457c3703bbf8d5e9ec3c6237d40be862e4c00f92141dfc504304883f4e6a6b4c"
+    },
+    {
+      "path": "onnxruntime/transformers/bert_perf_test.py",
+      "bytes": 20792,
+      "sha256": "17c0108e019452b98dd25a0c2e24e0b2d33e334f1ab9fa0f238fae609918b587"
+    },
+    {
+      "path": "onnxruntime/transformers/bert_test_data.py",
+      "bytes": 23446,
+      "sha256": "f00147753b6c2aa68e011c11997850579f5f0706ada21a45787552780367e246"
+    },
+    {
+      "path": "onnxruntime/transformers/compare_bert_results.py",
+      "bytes": 8448,
+      "sha256": "5b318220653080e5b3c5eb1a58a1a28b45f2dc97dc63c2c592bf2a71e451daf8"
+    },
+    {
+      "path": "onnxruntime/transformers/constants.py",
+      "bytes": 1127,
+      "sha256": "1c199b7da44bacb09e9f5ab40bdb596090299f63413d7da9da1d3985ce434ec1"
+    },
+    {
+      "path": "onnxruntime/transformers/convert_generation.py",
+      "bytes": 145070,
+      "sha256": "d3858ddb703150471a5a9abe09a0b9081971adb296488b6204216957cf7712d2"
+    },
+    {
+      "path": "onnxruntime/transformers/convert_tf_models_to_pytorch.py",
+      "bytes": 9244,
+      "sha256": "481280b78f94f1e6a2e4dfb71cacf80eedb1649e8ff3b64fe1001b53d2528355"
+    },
+    {
+      "path": "onnxruntime/transformers/convert_to_packing_mode.py",
+      "bytes": 16804,
+      "sha256": "f6fe159ad395ebe593e05ae021020b4a5bb6849245c0d5d28928f55b99dbe848"
+    },
+    {
+      "path": "onnxruntime/transformers/dynamo_onnx_helper.py",
+      "bytes": 7802,
+      "sha256": "f3caf4e0b733f3cb5933dc451a475bc8cc9ce6d2160f5568c98975f34b20c170"
+    },
+    {
+      "path": "onnxruntime/transformers/float16.py",
+      "bytes": 25190,
+      "sha256": "006a0d0a5c4592d18abd83ff9aa71bb8e63c76e2b335a33a63c3e998ac905dfb"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_attention.py",
+      "bytes": 52125,
+      "sha256": "d4c237f4a261eb5ab41acee46aa1de7fea973ee0c1c329729dee44da941f2766"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_attention_clip.py",
+      "bytes": 14096,
+      "sha256": "6b788ee194d8a0237c6e93a66cb8104af754a75ccab0bf94fe87ec3daf6fe289"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_attention_sam2.py",
+      "bytes": 21307,
+      "sha256": "b394cd22be618bc522a2b95f0331009492947dc9fa5a112fc390841b56c7dcf8"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_attention_unet.py",
+      "bytes": 56955,
+      "sha256": "080422913a6fcf829b089531f63a27673832df497fc3dba5ea15b544d9d752dc"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_attention_vae.py",
+      "bytes": 12379,
+      "sha256": "d49c18f839ec9e043299708885bfe1baedd2cef81772e28391f0bb76e4a57e06"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_bart_attention.py",
+      "bytes": 23926,
+      "sha256": "9117f8bac59059b4f0d7622d10e85859677ec04f46f402057ea0aaf623d7f1ff"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_base.py",
+      "bytes": 5966,
+      "sha256": "00ff160d74873db72ab06cd1391ca21cebcf0d8ca898c0d7942fa8505577e324"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_bias_add.py",
+      "bytes": 2041,
+      "sha256": "60e39949fba2dcd395d0651c3499914b3fa1a193a34274629a37c064f34e4f33"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_biasgelu.py",
+      "bytes": 2300,
+      "sha256": "bc66a6c6d84ebba8d7b3109155d4c568fdb9fbfb678f3f5356af75a48455fc8b"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_biassplitgelu.py",
+      "bytes": 4491,
+      "sha256": "a8dfd8163c13f2398151a0e86d3f5e191643093eaf4a56c9bc3d194ad80d149b"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_conformer_attention.py",
+      "bytes": 12002,
+      "sha256": "34aa36dc9782ace70963f77cf2331f1556a06b123bf78f798e2f75bf749246a3"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_constant_fold.py",
+      "bytes": 6014,
+      "sha256": "aa4b61c9809995297544cbdf9dc08299f903cc2b19e2d94e13d91fd7ea8434e0"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_embedlayer.py",
+      "bytes": 36674,
+      "sha256": "4714366614fde9dda0efe9bd41c4408f8983eb70e7dacd59cf6279f40ca42a9f"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_fastgelu.py",
+      "bytes": 18181,
+      "sha256": "470bca20124644c9363281fd8fa1ed15f401c87fc7c3a7869a3797f5db71fcb8"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_gelu.py",
+      "bytes": 10451,
+      "sha256": "4bd2626b4f08de35f069f6e8ef7c6ba8f3824fbacd1c29e90128d92c75a245c5"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_gelu_approximation.py",
+      "bytes": 1029,
+      "sha256": "5ec6b6bf99878c4b99af09dfd5b9b7502089f08d62b34766bb3cd781fe730e5e"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_gemmfastgelu.py",
+      "bytes": 4208,
+      "sha256": "89174aea35fe2e5508046c6319abc9b192a02eb8fe84f057a4bbc0d77508a11e"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_gpt_attention.py",
+      "bytes": 22508,
+      "sha256": "db4661a65900549debab5556c1c351991b3a399bbb9531ca228a77480c83494c"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_gpt_attention_megatron.py",
+      "bytes": 13639,
+      "sha256": "1e1a3079307195e6f59e23ce53f71f433bd4c0ce0b8f1095b99656544cb7226c"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_gpt_attention_no_past.py",
+      "bytes": 10830,
+      "sha256": "67f304755be0b4be42450c6042544d4ed112f2f5deca910425580c75e7a07f9f"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_group_norm.py",
+      "bytes": 7645,
+      "sha256": "3418a53ff4ce663961b944bcd4410464c0cd0f344fbe37bfaf8fd54f1f58949e"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_layernorm.py",
+      "bytes": 20845,
+      "sha256": "a966f9669ee2b405c5c86787e32051aff5d2bcc66dd624ee9018bfbb359645e5"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_mha_dit.py",
+      "bytes": 24663,
+      "sha256": "f69cbc3b85f8cb72962682a8bb5c95e7fa6360a5f6dee5bf3d03ef7a2ee4851d"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_mha_mmdit.py",
+      "bytes": 25816,
+      "sha256": "97a28386b2a3d3ef50fadee1098716c73ce4514b8fbba1c550f68f259fc6c13e"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_nhwc_conv.py",
+      "bytes": 3948,
+      "sha256": "49ee5e98f9ed5fb840d2adb4ca4970bb9452ca7ffa0ffbe9507328e19e54e471"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_options.py",
+      "bytes": 12726,
+      "sha256": "492424e033f827b16d1fbba1c2a9adc48d3be0665dddf74f883b7f6ffd146927"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_qordered_attention.py",
+      "bytes": 17137,
+      "sha256": "b35050f0ea256a1ae0c5a4ab8959a58b602a4e69ff7cd4191f62b15351e19913"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_qordered_gelu.py",
+      "bytes": 4410,
+      "sha256": "e27b8d2745bd983287f54c37b6e10e73c3bf95dda244b03ef2dd0251a3f1ec81"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_qordered_layernorm.py",
+      "bytes": 4932,
+      "sha256": "873595cf129594bfdf61de0dbfec6539bf406124231d8fe3dc7ce416ffa9fd72"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_qordered_matmul.py",
+      "bytes": 8541,
+      "sha256": "e668dd10f4dbf1a4ff6a301916a1329cce9f5d68c99a0e22069cf732b47e6b26"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_quickgelu.py",
+      "bytes": 2869,
+      "sha256": "7bb30cabd1b66a2228b68c6791dd1aefe5e6bf263ec18c9e7dd4e65ed04efdff"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_reshape.py",
+      "bytes": 6403,
+      "sha256": "01f4fcf2fdb61ba3e064fcd528cdfdfd076e5279486def1d6f1bcf0a1fb97648"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_rotary_attention.py",
+      "bytes": 79638,
+      "sha256": "a61bf811c90c8d1b9c8c9cfe39b3c6511a4843d5c4515b76a06929019ffda6a8"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_shape.py",
+      "bytes": 3763,
+      "sha256": "49bc030a4b9c2eddd4fa409dc4411a24025ae27591b4a754f35a87618732b5f9"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_simplified_layernorm.py",
+      "bytes": 7831,
+      "sha256": "468bcbf0ed275533194d682f5d0faf7f31ffd64f5f77484363bd28280bb42f2e"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_skip_group_norm.py",
+      "bytes": 10855,
+      "sha256": "fdd2bf168b62b079dce2cd33bb203360d8c70739e1ff4886587b920fa0601b3a"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_skiplayernorm.py",
+      "bytes": 11075,
+      "sha256": "0fc55c958525b88cc4808ba3e791c9e8f0fb3c1a3407864f9b51d1e4c92fc178"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_transpose.py",
+      "bytes": 7004,
+      "sha256": "3a4712fb4ddf42e21abbc326497c6e5f250866a95fa7bc58904fc3caecce9de3"
+    },
+    {
+      "path": "onnxruntime/transformers/fusion_utils.py",
+      "bytes": 13324,
+      "sha256": "0a8cd483a03075ef4478918970e7a63a94a4808a4f852394a35ccee30e687dff"
+    },
+    {
+      "path": "onnxruntime/transformers/huggingface_models.py",
+      "bytes": 4005,
+      "sha256": "f57d3c01de7bc66f8688f701e987074494f5d10044f8398650bdf6c643f73885"
+    },
+    {
+      "path": "onnxruntime/transformers/import_utils.py",
+      "bytes": 651,
+      "sha256": "fc82ec71045c4b26891edd65ea3a9c9f2e455b2ed0afa37fee12ace5a6aff283"
+    },
+    {
+      "path": "onnxruntime/transformers/io_binding_helper.py",
+      "bytes": 21845,
+      "sha256": "12a2dd838fdbef8ead398f01ee8f2ec5754e91b12cc042a122815d70aac8f5cb"
+    },
+    {
+      "path": "onnxruntime/transformers/large_model_exporter.py",
+      "bytes": 15323,
+      "sha256": "db43980613a13478c68878ac34b2475adcfb56596fb9d84ed11f35d860127130"
+    },
+    {
+      "path": "onnxruntime/transformers/machine_info.py",
+      "bytes": 7581,
+      "sha256": "b2ec6999f53eef207d5158e2fe1ba6da791cec000b6678af50a9208f5f1a8e0b"
+    },
+    {
+      "path": "onnxruntime/transformers/metrics.py",
+      "bytes": 5223,
+      "sha256": "0c48e80d01807f662afc1033ebac77c342999b5421bc6e1910d93cac8202d944"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_exporter.py",
+      "bytes": 25340,
+      "sha256": "8c5145ab48060ed0ed2e08b4ce80d9b88511ddb6bfafa27e6b66fb220a110274"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model.py",
+      "bytes": 70237,
+      "sha256": "094e205567b47d328bb40045c227bf8e61de3ade8d6b869c8e39a784bc549dd1"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_bart.py",
+      "bytes": 5547,
+      "sha256": "c8b3d15bee18b99fc7ffac4de47e211365abd5b629ec49b866b3ff4f4842db4b"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_bert.py",
+      "bytes": 21937,
+      "sha256": "7ceb5ed7e6d64acd4dd4aea714a636fc42f30819389d6a746e493ad9f3e365c5"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_bert_keras.py",
+      "bytes": 19010,
+      "sha256": "88096740924264c181531e5f2c4adcec522757305ccf5e2771cf9100edecbea5"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_bert_tf.py",
+      "bytes": 25503,
+      "sha256": "11baba2de532c48cc4f3f2c6ff1bda3d1c6d448943da04ed54a139532786a11a"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_clip.py",
+      "bytes": 1394,
+      "sha256": "4720598789cebd5ed33ff6ff48dfe748d80ae67a1586dc0e1db2a18930a27ddb"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_conformer.py",
+      "bytes": 1412,
+      "sha256": "94fe2bfa289dec99750003867593394bf30243ffe846af8a4e26c670ce86ae2e"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_gpt2.py",
+      "bytes": 3913,
+      "sha256": "dcb9b3807b8bbcee6dc8d1ca58689db6dcaaadca4813b68b0586d1ab38e89548"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_mmdit.py",
+      "bytes": 4578,
+      "sha256": "6da5415207b280013dda7a39e9ba662ec61ea63e8bc76e5005aa5423431ae41f"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_phi.py",
+      "bytes": 36339,
+      "sha256": "942856f8d1e4979616461c32302a703180d27d715d626231e39e920774d06ca4"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_sam2.py",
+      "bytes": 4981,
+      "sha256": "de6a238f57463dac3c81bf23240050cf0f6b2c70f520176954433e87e4e9b7a5"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_t5.py",
+      "bytes": 38056,
+      "sha256": "f9c97688e00b5cd31f7ffcc5b22f5e0a2c0824a5871439a35677d0f1c2104f1a"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_tnlr.py",
+      "bytes": 8405,
+      "sha256": "e8c9449fdc91945de3556d7377d342474ab19cf8086b674485aca5bdb7fc742a"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_unet.py",
+      "bytes": 9513,
+      "sha256": "3ac42a522dc093978c2b6c36fa3dbde28f5bc1c847d331f48188261195212d14"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_model_vae.py",
+      "bytes": 1513,
+      "sha256": "253a7772d7e01d1ed81119fd70d6295c1e1933cd97dc2813607b55760ac9ab16"
+    },
+    {
+      "path": "onnxruntime/transformers/onnx_utils.py",
+      "bytes": 2175,
+      "sha256": "18690ed1e6eca0fbd538f35f7980b4b4df4325688168b5d7ce342106b017bcd1"
+    },
+    {
+      "path": "onnxruntime/transformers/optimizer.py",
+      "bytes": 25784,
+      "sha256": "c12a594703333fdcd573df9beff6cf37b5618c1e871eaa74510624b7606acb33"
+    },
+    {
+      "path": "onnxruntime/transformers/past_helper.py",
+      "bytes": 6955,
+      "sha256": "b8346296780f033590f9908d88e8af07fa9052ba0e49266ee80d84660ea6bb4a"
+    },
+    {
+      "path": "onnxruntime/transformers/profile_result_processor.py",
+      "bytes": 12940,
+      "sha256": "7d9496576a77416906d9c82a7c4b75742f6b8259d8f1482f8825ace96e1a81e9"
+    },
+    {
+      "path": "onnxruntime/transformers/profiler.py",
+      "bytes": 13736,
+      "sha256": "7e9e360c7201bb855930325355c9449bcdd3121f873703d01b3d3f02fb4b3668"
+    },
+    {
+      "path": "onnxruntime/transformers/quantize_helper.py",
+      "bytes": 3011,
+      "sha256": "de55b623958ac8bbe547f8c7a19e3d48c5fc72eeb24b7370164076c76ad40839"
+    },
+    {
+      "path": "onnxruntime/transformers/shape_infer_helper.py",
+      "bytes": 5418,
+      "sha256": "9fb116d5d34fa28820ea942ad6a57ca2f9d6425fc3a993e65ebbcdb0ced05d44"
+    },
+    {
+      "path": "onnxruntime/transformers/shape_optimizer.py",
+      "bytes": 15468,
+      "sha256": "31c6e0b4bb266f78f40151d69d58a092d0e0c4c92d13451701dc9e9a0dcd3635"
+    },
+    {
+      "path": "onnxruntime/transformers/torch_onnx_export_helper.py",
+      "bytes": 3083,
+      "sha256": "b77a639be84b4ffc68fa7810e3f7bbf441b87644e02caa8f44ba5a61ec096ab4"
+    },
+    {
+      "path": "onnxruntime/transformers/models/bart/__init__.py",
+      "bytes": 495,
+      "sha256": "17c1a697b803ee398cc8c2242af1e25cb7e3ee45b2cf5ef95f5fb9fe2685c799"
+    },
+    {
+      "path": "onnxruntime/transformers/models/bart/export.py",
+      "bytes": 4285,
+      "sha256": "3cd96191bbebc53c5248b5e9ceaa1ad362de92dcdff2b759a5c545071c3ea9c2"
+    },
+    {
+      "path": "onnxruntime/transformers/models/bert/__init__.py",
+      "bytes": 495,
+      "sha256": "17c1a697b803ee398cc8c2242af1e25cb7e3ee45b2cf5ef95f5fb9fe2685c799"
+    },
+    {
+      "path": "onnxruntime/transformers/models/bert/eval_squad.py",
+      "bytes": 12355,
+      "sha256": "21ffd1b1724752dd0eefcf852e77db4b80d779c7228609bb1c57610bc37318c0"
+    },
+    {
+      "path": "onnxruntime/transformers/models/gpt2/__init__.py",
+      "bytes": 495,
+      "sha256": "17c1a697b803ee398cc8c2242af1e25cb7e3ee45b2cf5ef95f5fb9fe2685c799"
+    },
+    {
+      "path": "onnxruntime/transformers/models/gpt2/benchmark_gpt2.py",
+      "bytes": 15930,
+      "sha256": "e7792b60735e24193c662c56a16ad91f109b7bdcf86c3622196d36b73c51fbcf"
+    },
+    {
+      "path": "onnxruntime/transformers/models/gpt2/convert_to_onnx.py",
+      "bytes": 20837,
+      "sha256": "e54c0245c0235b630afbcd4cd62817302a5d94e289f1e03488de6649a6390b91"
+    },
+    {
+      "path": "onnxruntime/transformers/models/gpt2/gpt2_helper.py",
+      "bytes": 41331,
+      "sha256": "844b5b8af29a1ffbc93982d78c5472cda113726e99084feb5ed5d8a923ada878"
+    },
+    {
+      "path": "onnxruntime/transformers/models/gpt2/gpt2_parity.py",
+      "bytes": 18248,
+      "sha256": "03deb72682b5cd06fa5201543a9d6cb6baa3a09fe5650da9beb14b6b452320c0"
+    },
+    {
+      "path": "onnxruntime/transformers/models/gpt2/gpt2_tester.py",
+      "bytes": 20071,
+      "sha256": "26a40a26f39f1ca70d727c2d0c8a7f93df181ee4fd0529957f3dad87c20863e7"
+    },
+    {
+      "path": "onnxruntime/transformers/models/gpt2/parity_check_helper.py",
+      "bytes": 5840,
+      "sha256": "c79e249ce3b82e0cd6be57b73771ee5b24534cd86171a9f031ad7602b79d0d3a"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/__init__.py",
+      "bytes": 490,
+      "sha256": "c91d85b9c370fa3b7fdc26cdb7ecee33b0e695d3ead6b24add257c811212ccdd"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/benchmark.py",
+      "bytes": 27294,
+      "sha256": "7ee87da0a44a95dc7367b71c9e56fce01ea0f4d579db40a2311e99d319ec7e53"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/benchmark_all.py",
+      "bytes": 15793,
+      "sha256": "c2267a2e16ce9adfef355bb381c2d16973c1b9d3e8c9d2fd5d46c68b84f24e9c"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/benchmark_e2e.py",
+      "bytes": 25477,
+      "sha256": "ef8d5b57c652a80d0298fe6ab8bde032e217629de1c01a2284faeca8f108d8fa"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/convert_to_onnx.py",
+      "bytes": 43358,
+      "sha256": "af9e40eeb6005968819017c572d80be8ddebcbe109c960d5ea25a5c07b536426"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/dist_settings.py",
+      "bytes": 1659,
+      "sha256": "b3045ae5cdba1669cf265a1346a10b9cad0ead8984d6623f46b33dc9ffd0e61a"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/llama_inputs.py",
+      "bytes": 20726,
+      "sha256": "c7bbf17c800c034426315b630d53523a803c9eb2afdb66d39d13507d2c8ad586"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/llama_parity.py",
+      "bytes": 11900,
+      "sha256": "315883916d93fcb9fcc8b4daad92dbb594e31349a555382905c95b98aa3fc9fb"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/llama_torch.py",
+      "bytes": 1732,
+      "sha256": "3886d2a60edb8df3cdf52cf219f6812a6cec6be6c61d04f1d17f9eb62125d199"
+    },
+    {
+      "path": "onnxruntime/transformers/models/llama/quant_kv_dataloader.py",
+      "bytes": 4959,
+      "sha256": "a625657691a6f5e066178c33826289a6b86e8ea4cf75da8e4716722e2cdc25d0"
+    },
+    {
+      "path": "onnxruntime/transformers/models/longformer/__init__.py",
+      "bytes": 495,
+      "sha256": "17c1a697b803ee398cc8c2242af1e25cb7e3ee45b2cf5ef95f5fb9fe2685c799"
+    },
+    {
+      "path": "onnxruntime/transformers/models/longformer/benchmark_longformer.py",
+      "bytes": 30230,
+      "sha256": "1ba2252097c80db9575b688122500b69ffcb7fd990bc0c6f13f4cd5e5770983f"
+    },
+    {
+      "path": "onnxruntime/transformers/models/longformer/convert_to_onnx.py",
+      "bytes": 15207,
+      "sha256": "499c0bb11858a4fedd8b6f3df74dd1efaf1e48ad334599519e24961000a65fff"
+    },
+    {
+      "path": "onnxruntime/transformers/models/longformer/generate_test_data.py",
+      "bytes": 9964,
+      "sha256": "c10c69828fef64184a465aae270501f451f7ff1c6fc830b7682099764bc00cb3"
+    },
+    {
+      "path": "onnxruntime/transformers/models/longformer/longformer_helper.py",
+      "bytes": 3123,
+      "sha256": "9f772b1189d5619c4dce8c9334ccd7dcb160c471fe15c6aab5d7d19b200c83ee"
+    },
+    {
+      "path": "onnxruntime/transformers/models/phi2/__init__.py",
+      "bytes": 490,
+      "sha256": "c91d85b9c370fa3b7fdc26cdb7ecee33b0e695d3ead6b24add257c811212ccdd"
+    },
+    {
+      "path": "onnxruntime/transformers/models/phi2/convert_to_onnx.py",
+      "bytes": 20998,
+      "sha256": "9dfb000d057d4fa77608c69298ecc65c5c43b6aacba97935f751626f11813249"
+    },
+    {
+      "path": "onnxruntime/transformers/models/phi2/inference_example.py",
+      "bytes": 17705,
+      "sha256": "e10ed58cd182beb8c86c2d5497c5bc4919dd6a2238d9c190d4be223b4bccc258"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/__init__.py",
+      "bytes": 495,
+      "sha256": "17c1a697b803ee398cc8c2242af1e25cb7e3ee45b2cf5ef95f5fb9fe2685c799"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/benchmark_sam2.py",
+      "bytes": 22468,
+      "sha256": "d8006cd2fcf50796cdd0469151432cb6f99ecf8863b75e6d78b2b73dda8409c8"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/convert_to_onnx.py",
+      "bytes": 10669,
+      "sha256": "835cb6a3aefd26d8d3124087267debf904afa2c2012814de533ea61931dcb672"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/image_decoder.py",
+      "bytes": 11093,
+      "sha256": "5c2c428085d228b2af3b80905c6bb212ea177839fdcb1cbc46799f42000b3967"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/image_encoder.py",
+      "bytes": 9788,
+      "sha256": "004161da976ac2626474a56ca309acd156bcc3cfa22a1b119391eee5e6a35b24"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/mask_decoder.py",
+      "bytes": 9066,
+      "sha256": "4309d98235b016c2dda0d9a7afb386f0a824e65ae965f1ce7851a0e4b2d7406d"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/nvtx_helper.py",
+      "bytes": 1312,
+      "sha256": "5c916e8c36fea76ef3089b3e3be66370a1007ad73975cd24785bec21880543a1"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/prompt_encoder.py",
+      "bytes": 8530,
+      "sha256": "4933c6e8f359e68566b8d75f796b87931c51d9c3a2c173789582a7be6de9c8d0"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/sam2_demo.py",
+      "bytes": 10822,
+      "sha256": "487e76d921133be4477aa1f6126f38f134ea7b68815d7620a7988373ec4f03ed"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/sam2_image_onnx_predictor.py",
+      "bytes": 12702,
+      "sha256": "6c1f9fedb8bb3526f45d578003a277bfd8e430c2431dd1e64b93dd5f550ed275"
+    },
+    {
+      "path": "onnxruntime/transformers/models/sam2/sam2_utils.py",
+      "bytes": 5667,
+      "sha256": "80dcea7ccc1d9886e4582bd1aca789d6e629cfd7ea171ac634643d8a433145f7"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/__init__.py",
+      "bytes": 495,
+      "sha256": "17c1a697b803ee398cc8c2242af1e25cb7e3ee45b2cf5ef95f5fb9fe2685c799"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/benchmark.py",
+      "bytes": 51085,
+      "sha256": "e4e958d566b813a3f8e980bd327d5a56ec027407852776ddb5f9ae2baf07af3e"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/benchmark_controlnet.py",
+      "bytes": 13355,
+      "sha256": "85dd7209ab0fc7172eee0f4ed8183e0915b822c3ccf8f13c05b3737b64ddb56d"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/demo_txt2img.py",
+      "bytes": 3415,
+      "sha256": "98d8145ded936ba68d2b86fe8689bed19a3b78c2399570a5cb0f9d332008c6f3"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/demo_txt2img_xl.py",
+      "bytes": 10217,
+      "sha256": "d8d1fcc9235af611c75f46680183bc8125142218bfc0732c4c1f7e34b3e52c2f"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/demo_utils.py",
+      "bytes": 29376,
+      "sha256": "9f3e50cd71f2d762795684afb7e94ac4bb7873f5457f9f0ad0e2378688993f50"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/diffusion_models.py",
+      "bytes": 51716,
+      "sha256": "4b00048f0ea6234f2a371a6be9ff317de83f4eb85a7d478b9924a47de3d6b94b"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/diffusion_schedulers.py",
+      "bytes": 49468,
+      "sha256": "a21004b89354ffeae0cfdc30cfba5173bb4923540939ce738c9624bee8768cab"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/engine_builder.py",
+      "bytes": 11965,
+      "sha256": "6057baff40c8f7baa17dd964ca58aa5c2067a1b5ab4d559f265dae2fe1da017b"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/engine_builder_ort_cuda.py",
+      "bytes": 16241,
+      "sha256": "b7d723cafeb5ecca50b7f4bb72b9eca401dbc34593f117f794255191e2f0b95a"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/engine_builder_ort_trt.py",
+      "bytes": 11451,
+      "sha256": "d0cf892d3dd9d7360f115909d133c266e85b2050acb5b062e5687adb754b730c"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/engine_builder_tensorrt.py",
+      "bytes": 16016,
+      "sha256": "f95085660793db7de3591d41f26cd2256129a0f3946c73564e759531799fd24e"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/engine_builder_torch.py",
+      "bytes": 4306,
+      "sha256": "23fbe234dbf5e8c10c9250bac950722daddf20ac1da768922eac0209f9502b73"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/optimize_pipeline.py",
+      "bytes": 22238,
+      "sha256": "dcad854ed33700ab2c850f8941235522423a8b47dbcaefdba1ba0f13d904bc8d"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/ort_optimizer.py",
+      "bytes": 5853,
+      "sha256": "625f2c910a1761ba2e870e6d8b6cc239f6cc2db4a6de25e7880e462e643d037b"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/pipeline_stable_diffusion.py",
+      "bytes": 34029,
+      "sha256": "1035371e7be8e275f7bb8551c70e6ec874190b9f6ef91897ac8c4c87318fbcf8"
+    },
+    {
+      "path": "onnxruntime/transformers/models/stable_diffusion/trt_utilities.py",
+      "bytes": 432,
+      "sha256": "5d909fa86fe467bd9ef8bf69ecf946a9ce0d2ef159175878d00e86bb28facfc9"
+    },
+    {
+      "path": "onnxruntime/transformers/models/t5/__init__.py",
+      "bytes": 495,
+      "sha256": "17c1a697b803ee398cc8c2242af1e25cb7e3ee45b2cf5ef95f5fb9fe2685c799"
+    },
+    {
+      "path": "onnxruntime/transformers/models/t5/convert_to_onnx.py",
+      "bytes": 10510,
+      "sha256": "ef4b5834e19fc741e020780c75b4532dbb0996142411b5b8876c59bde4af35e1"
+    },
+    {
+      "path": "onnxruntime/transformers/models/t5/t5_decoder.py",
+      "bytes": 17188,
+      "sha256": "1a65137816af857d937c88d921f30db8c30bff7fba051a9eb5411702f3b114fa"
+    },
+    {
+      "path": "onnxruntime/transformers/models/t5/t5_encoder.py",
+      "bytes": 2319,
+      "sha256": "c528f2f409ac70c772083cd29febf9f715ea4badf8940b35126b0952c05a0741"
+    },
+    {
+      "path": "onnxruntime/transformers/models/t5/t5_encoder_decoder_init.py",
+      "bytes": 15421,
+      "sha256": "85fee8cc5be05d213f147d7ba7cf0c4b47e93c16e796c5187ca8277029269ef5"
+    },
+    {
+      "path": "onnxruntime/transformers/models/t5/t5_helper.py",
+      "bytes": 12941,
+      "sha256": "bc1914b46b062c5f01cac0c26de92dca9e0fcb661287d4fba02f3543319fdf2d"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/__init__.py",
+      "bytes": 490,
+      "sha256": "c91d85b9c370fa3b7fdc26cdb7ecee33b0e695d3ead6b24add257c811212ccdd"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/benchmark.py",
+      "bytes": 22447,
+      "sha256": "a5bf923c54146f20c1e9aa52b5601156076ee32fcff76f8a69b60f80b78591af"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/benchmark_all.py",
+      "bytes": 19368,
+      "sha256": "ccbcc1f38fdcc880c9491f9dc990978c9dea1afbe92b1f7b2e89e876f6e867bb"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/convert_to_onnx.py",
+      "bytes": 26611,
+      "sha256": "574ef30664fdfe29b72693e07407c6389130c7b79c9c9a16a16f259a9acb407f"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/whisper_chain.py",
+      "bytes": 15238,
+      "sha256": "085f54a06596987c258df68b923f33cabc6b8d5ca660cbc6603349edd14b21b2"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/whisper_decoder.py",
+      "bytes": 21893,
+      "sha256": "72fd5744228763c9e7c56f798398bcd1988051d94bfcff511924efc8ea6f69dc"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/whisper_encoder.py",
+      "bytes": 6373,
+      "sha256": "3d62a40c9f937516195be7099294526d4ef967904dd42788df55a9bd8809b463"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/whisper_encoder_decoder_init.py",
+      "bytes": 16833,
+      "sha256": "026a5873097da6dfdddd4062d3718e29bccb7e245e57edacbc78fb578e6909f6"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/whisper_helper.py",
+      "bytes": 51589,
+      "sha256": "323a94d83e1626fab1ec88cc83cb99401c21c6a3291d96e53ff825733b6bf0c1"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/whisper_inputs.py",
+      "bytes": 16041,
+      "sha256": "ad28c527d2e5cf6166a515c3cfc70ad8a173af66f997e9f87a8f15378eb78941"
+    },
+    {
+      "path": "onnxruntime/transformers/models/whisper/whisper_jump_times.py",
+      "bytes": 20039,
+      "sha256": "8821f897b7f78ec40927c7b955c608b8cf33c034e30f8e31b1015a8da7f2af88"
+    },
+    {
+      "path": "onnxruntime-1.29.0.dist-info/METADATA",
+      "bytes": 5802,
+      "sha256": "eb1f9c5003bd1146122da378763d3f0a853e48d5156f2d54685481820794ac80"
+    },
+    {
+      "path": "onnxruntime-1.29.0.dist-info/WHEEL",
+      "bytes": 101,
+      "sha256": "f767fbbf21c4fc6662c119c3d88d39bc24ff4b7f54be4472ba0b980c028e19bf"
+    },
+    {
+      "path": "onnxruntime-1.29.0.dist-info/entry_points.txt",
+      "bytes": 77,
+      "sha256": "eea2d2e056c65f03d98df7695401a99e693d23a9ba1f90b1127c1c0b1d489a3b"
+    },
+    {
+      "path": "onnxruntime-1.29.0.dist-info/top_level.txt",
+      "bytes": 12,
+      "sha256": "ce4fdf2447a4ad39bd0cbc57d8bc067a0a2456a3fa6e5a8f845a0c22e87436ff"
+    },
+    {
+      "path": "onnxruntime-1.29.0.dist-info/RECORD",
+      "bytes": 35241,
+      "sha256": "f65c470179121abde70ac5405879ac3fc255a247a5054e6a2ca57c1931852f90"
+    }
+  ]
+}

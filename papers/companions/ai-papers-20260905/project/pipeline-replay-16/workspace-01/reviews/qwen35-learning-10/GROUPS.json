@@ -1,0 +1,450 @@
+[
+  {
+    "arm": "original",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "original",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "original",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "original",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "original",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "original",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "original",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "original",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": true,
+    "all_six_original": false
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-0/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-0/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-0/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-0/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-1/pair-0",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-1/pair-0",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": false
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-1/pair-1",
+    "color": "purple",
+    "all_six_swapped": false,
+    "all_six_original": true
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-1/pair-1",
+    "color": "orange",
+    "all_six_swapped": false,
+    "all_six_original": true
+  }
+]

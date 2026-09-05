@@ -1,0 +1,16 @@
+arm,families,correct_tokens,both_roles_correct,same_named_output_families,successes_in_collapsed_pairs
+clean_text,8,14,7,0,0
+constant,8,0,0,0,0
+corrupted_no_edit,8,0,0,0,0
+external_matched,8,4,0,4,4
+internal,8,4,0,4,4
+internal_reload,8,4,0,4,4
+mean_training_delta,8,0,0,0,0
+oracle_current_donor,8,12,5,0,0
+post_attack_guarded,8,4,0,4,4
+post_attack_unverified,8,4,0,4,4
+revoked_edit,8,0,0,0,0
+supervised_ridge,8,9,3,1,1
+task,8,5,0,5,5
+yoked,8,4,0,4,4
+zero_parameter_reset,8,0,0,0,0

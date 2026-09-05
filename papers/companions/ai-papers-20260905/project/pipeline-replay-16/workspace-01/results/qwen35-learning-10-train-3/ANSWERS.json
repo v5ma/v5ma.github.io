@@ -1,0 +1,654 @@
+[
+  {
+    "generated_ids": [
+      35351,
+      248046
+    ],
+    "answer": "Peter",
+    "stopped_on_eos": true,
+    "first_token_id": 35351,
+    "first_token": "Peter",
+    "first_logit_sha256": "3f1b164dada86f6604e928a808e3d586d9cc783de7b7d99f7ba3d3bfa71fde71",
+    "first_top5": [
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 23.5690860748291
+      },
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 19.093278884887695
+      },
+      {
+        "id": 47,
+        "text": "P",
+        "logit": 17.71717071533203
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.514423370361328
+      },
+      {
+        "id": 1465,
+        "text": "He",
+        "logit": 16.49846649169922
+      }
+    ],
+    "case": "train/context-1/pair-0/black/0",
+    "family": "train/context-1/pair-0",
+    "direction": 0,
+    "color": "black",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Peter",
+    "swapped_target": "Helen",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      39,
+      8138,
+      248046
+    ],
+    "answer": "Helen",
+    "stopped_on_eos": true,
+    "first_token_id": 39,
+    "first_token": "H",
+    "first_logit_sha256": "673a9a5c2f752467af0126d5095adc4ef4adeb3e53bc8255e695e1b7cec580ca",
+    "first_top5": [
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 22.690876007080078
+      },
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 20.875621795654297
+      },
+      {
+        "id": 47,
+        "text": "P",
+        "logit": 18.069150924682617
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.72821807861328
+      },
+      {
+        "id": 36,
+        "text": "E",
+        "logit": 16.895652770996094
+      }
+    ],
+    "case": "train/context-1/pair-0/black/0",
+    "family": "train/context-1/pair-0",
+    "direction": 0,
+    "color": "black",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Helen",
+    "swapped_target": "Peter",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      14004,
+      248046
+    ],
+    "answer": "Black",
+    "stopped_on_eos": true,
+    "first_token_id": 14004,
+    "first_token": "Black",
+    "first_logit_sha256": "36d9e492d41aced6d360eb5272c22768d114d08fc3165e8bc13ffb06512688bf",
+    "first_top5": [
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 24.869556427001953
+      },
+      {
+        "id": 11124,
+        "text": "black",
+        "logit": 23.539608001708984
+      },
+      {
+        "id": 46776,
+        "text": "Brown",
+        "logit": 20.32379913330078
+      },
+      {
+        "id": 62284,
+        "text": "brown",
+        "logit": 19.73676872253418
+      },
+      {
+        "id": 11855,
+        "text": "blue",
+        "logit": 19.640352249145508
+      }
+    ],
+    "case": "train/context-1/pair-0/black/0",
+    "family": "train/context-1/pair-0",
+    "direction": 0,
+    "color": "black",
+    "query": "color",
+    "arm": "original",
+    "original_target": "black",
+    "swapped_target": "black",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      39,
+      8138,
+      248046
+    ],
+    "answer": "Helen",
+    "stopped_on_eos": true,
+    "first_token_id": 39,
+    "first_token": "H",
+    "first_logit_sha256": "12cdc89009dddbca569cad4da7da7f17c4479fccc0abb0d1bbd6f3e04362758a",
+    "first_top5": [
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 23.022441864013672
+      },
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 18.307064056396484
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.642444610595703
+      },
+      {
+        "id": 36,
+        "text": "E",
+        "logit": 17.304771423339844
+      },
+      {
+        "id": 54,
+        "text": "W",
+        "logit": 16.561843872070312
+      }
+    ],
+    "case": "train/context-1/pair-0/black/1",
+    "family": "train/context-1/pair-0",
+    "direction": 1,
+    "color": "black",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Helen",
+    "swapped_target": "Peter",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      35351,
+      248046
+    ],
+    "answer": "Peter",
+    "stopped_on_eos": true,
+    "first_token_id": 35351,
+    "first_token": "Peter",
+    "first_logit_sha256": "d16fcb589f9c10f58b4dce745e174b9ac42ca228e5633f44d05231cbc17064a3",
+    "first_top5": [
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 23.903785705566406
+      },
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 19.662826538085938
+      },
+      {
+        "id": 47,
+        "text": "P",
+        "logit": 17.727291107177734
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.62293243408203
+      },
+      {
+        "id": 1465,
+        "text": "He",
+        "logit": 16.824922561645508
+      }
+    ],
+    "case": "train/context-1/pair-0/black/1",
+    "family": "train/context-1/pair-0",
+    "direction": 1,
+    "color": "black",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Peter",
+    "swapped_target": "Helen",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      14004,
+      248046
+    ],
+    "answer": "Black",
+    "stopped_on_eos": true,
+    "first_token_id": 14004,
+    "first_token": "Black",
+    "first_logit_sha256": "9578e1e7974d9ec38dc9b2c5c439bf6040221f3d82588bba7e00d70016fa8949",
+    "first_top5": [
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 25.02920150756836
+      },
+      {
+        "id": 11124,
+        "text": "black",
+        "logit": 23.636093139648438
+      },
+      {
+        "id": 46776,
+        "text": "Brown",
+        "logit": 20.46633529663086
+      },
+      {
+        "id": 62284,
+        "text": "brown",
+        "logit": 19.827350616455078
+      },
+      {
+        "id": 11855,
+        "text": "blue",
+        "logit": 19.479202270507812
+      }
+    ],
+    "case": "train/context-1/pair-0/black/1",
+    "family": "train/context-1/pair-0",
+    "direction": 1,
+    "color": "black",
+    "query": "color",
+    "arm": "original",
+    "original_target": "black",
+    "swapped_target": "black",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      35351,
+      248046
+    ],
+    "answer": "Peter",
+    "stopped_on_eos": true,
+    "first_token_id": 35351,
+    "first_token": "Peter",
+    "first_logit_sha256": "88c8c1f166d6e4597748e59484419390151ae5f72e4b72fd9629cc91d5acc859",
+    "first_top5": [
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 23.654861450195312
+      },
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 18.855764389038086
+      },
+      {
+        "id": 47,
+        "text": "P",
+        "logit": 17.759057998657227
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.60416030883789
+      },
+      {
+        "id": 32,
+        "text": "A",
+        "logit": 16.553905487060547
+      }
+    ],
+    "case": "train/context-1/pair-0/white/0",
+    "family": "train/context-1/pair-0",
+    "direction": 0,
+    "color": "white",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Peter",
+    "swapped_target": "Helen",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      39,
+      8138,
+      248046
+    ],
+    "answer": "Helen",
+    "stopped_on_eos": true,
+    "first_token_id": 39,
+    "first_token": "H",
+    "first_logit_sha256": "7034f1d1b71e898ae556118690d872c571b0a79008351ae81bb8477fd8a9448e",
+    "first_top5": [
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 22.561914443969727
+      },
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 20.969438552856445
+      },
+      {
+        "id": 47,
+        "text": "P",
+        "logit": 18.042064666748047
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.812347412109375
+      },
+      {
+        "id": 36,
+        "text": "E",
+        "logit": 16.95917320251465
+      }
+    ],
+    "case": "train/context-1/pair-0/white/0",
+    "family": "train/context-1/pair-0",
+    "direction": 0,
+    "color": "white",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Helen",
+    "swapped_target": "Peter",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      13672,
+      248046
+    ],
+    "answer": "White",
+    "stopped_on_eos": true,
+    "first_token_id": 13672,
+    "first_token": "White",
+    "first_logit_sha256": "69620ad5ba22bec1b97d61740c46de667efbe16dd6ce8a27656c07345020f5de",
+    "first_top5": [
+      {
+        "id": 13672,
+        "text": "White",
+        "logit": 25.861326217651367
+      },
+      {
+        "id": 5603,
+        "text": "white",
+        "logit": 25.2974853515625
+      },
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 19.77126693725586
+      },
+      {
+        "id": 103828,
+        "text": "\u767d\u8272",
+        "logit": 19.76659393310547
+      },
+      {
+        "id": 1582,
+        "text": "Wh",
+        "logit": 19.39600372314453
+      }
+    ],
+    "case": "train/context-1/pair-0/white/0",
+    "family": "train/context-1/pair-0",
+    "direction": 0,
+    "color": "white",
+    "query": "color",
+    "arm": "original",
+    "original_target": "white",
+    "swapped_target": "white",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      39,
+      8138,
+      248046
+    ],
+    "answer": "Helen",
+    "stopped_on_eos": true,
+    "first_token_id": 39,
+    "first_token": "H",
+    "first_logit_sha256": "7eb677298da762f770da859a0932b42ef8b733a2d7bec3f64f25a67db29c6dcc",
+    "first_top5": [
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 23.019256591796875
+      },
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 18.174795150756836
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.761615753173828
+      },
+      {
+        "id": 54,
+        "text": "W",
+        "logit": 17.367557525634766
+      },
+      {
+        "id": 36,
+        "text": "E",
+        "logit": 17.19839859008789
+      }
+    ],
+    "case": "train/context-1/pair-0/white/1",
+    "family": "train/context-1/pair-0",
+    "direction": 1,
+    "color": "white",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Helen",
+    "swapped_target": "Peter",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      35351,
+      248046
+    ],
+    "answer": "Peter",
+    "stopped_on_eos": true,
+    "first_token_id": 35351,
+    "first_token": "Peter",
+    "first_logit_sha256": "4c3a703222a99374632e1f17cfec3df0062a58f9826e6209caf6ad2d1504fe12",
+    "first_top5": [
+      {
+        "id": 35351,
+        "text": "Peter",
+        "logit": 23.87390899658203
+      },
+      {
+        "id": 39,
+        "text": "H",
+        "logit": 19.8287410736084
+      },
+      {
+        "id": 47,
+        "text": "P",
+        "logit": 17.836997985839844
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.680927276611328
+      },
+      {
+        "id": 1465,
+        "text": "He",
+        "logit": 16.986068725585938
+      }
+    ],
+    "case": "train/context-1/pair-0/white/1",
+    "family": "train/context-1/pair-0",
+    "direction": 1,
+    "color": "white",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Peter",
+    "swapped_target": "Helen",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      13672,
+      248046
+    ],
+    "answer": "White",
+    "stopped_on_eos": true,
+    "first_token_id": 13672,
+    "first_token": "White",
+    "first_logit_sha256": "680c96e05b049dbae4bb83c09e28a334612b66bb343e3fe00fba9895c43c7b95",
+    "first_top5": [
+      {
+        "id": 13672,
+        "text": "White",
+        "logit": 25.813385009765625
+      },
+      {
+        "id": 5603,
+        "text": "white",
+        "logit": 25.153602600097656
+      },
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 19.8494873046875
+      },
+      {
+        "id": 103828,
+        "text": "\u767d\u8272",
+        "logit": 19.769187927246094
+      },
+      {
+        "id": 1582,
+        "text": "Wh",
+        "logit": 19.37277603149414
+      }
+    ],
+    "case": "train/context-1/pair-0/white/1",
+    "family": "train/context-1/pair-0",
+    "direction": 1,
+    "color": "white",
+    "query": "color",
+    "arm": "original",
+    "original_target": "white",
+    "swapped_target": "white",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  }
+]

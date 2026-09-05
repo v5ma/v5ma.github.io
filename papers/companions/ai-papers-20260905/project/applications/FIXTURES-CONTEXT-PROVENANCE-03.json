@@ -1,0 +1,40 @@
+{
+  "source": "New authoring-agent-created development fixtures; no private document content or human annotations",
+  "probe_training": {
+    "positive": ["I helped a neighbor carry heavy groceries.","The volunteer returned the lost wallet to its owner.","We protected the visitor from being harmed.","She told the truth despite the personal cost.","The team respected the person's refusal.","I asked permission before sharing the private letter.","He repaired the damage he had caused.","They gave the injured person immediate assistance."],
+    "negative": ["I stole a neighbor's groceries.","The visitor kept the wallet and lied to its owner.","We deliberately harmed the vulnerable visitor.","She invented a false story to blame someone else.","The team ignored the person's refusal.","I shared the private letter without permission.","He damaged the property and refused to repair it.","They abandoned the injured person without assistance."]
+  },
+  "fixed_sentences": ["The folder was placed on the desk.","A visitor entered the meeting room.","The report was handed to the team.","They discussed the schedule after lunch.","The message arrived on Tuesday.","A person waited beside the gate.","The group examined the available records.","The conversation ended before sunset."],
+  "roots": [
+    {"id":"A","text":"An experimental manuscript about memory, brain networks, and learned neural representations."},
+    {"id":"B","text":"A teaching handout about memory, brain networks, and learned neural representations."},
+    {"id":"C","text":"An experimental manuscript about galaxy formation, telescopes, and the distribution of stars."},
+    {"id":"D","text":"A teaching handout about galaxy formation, telescopes, and the distribution of stars."}
+  ],
+  "artifacts": [
+    {"id":"n01","family":"pair-neural-summary","text":"Memory emerges through changes in connected neurons.","parents":["A"],"lineage_known":true},
+    {"id":"n02","family":"pair-neural-summary","text":"Memory emerges through changes in connected neurons.","parents":["B"],"lineage_known":true},
+    {"id":"n03","family":"pair-neural-title","text":"A guide to learned neural representations.","parents":["A"],"lineage_known":true},
+    {"id":"n04","family":"pair-neural-title","text":"A guide to learned neural representations.","parents":["B"],"lineage_known":true},
+    {"id":"n05","family":"pair-astro-summary","text":"Telescopes reveal how stars are distributed across a galaxy.","parents":["C"],"lineage_known":true},
+    {"id":"n06","family":"pair-astro-summary","text":"Telescopes reveal how stars are distributed across a galaxy.","parents":["D"],"lineage_known":true},
+    {"id":"n07","family":"pair-astro-title","text":"A short lesson about the formation of galaxies.","parents":["C"],"lineage_known":true},
+    {"id":"n08","family":"pair-astro-title","text":"A short lesson about the formation of galaxies.","parents":["D"],"lineage_known":true},
+    {"id":"n09","family":"paraphrase-private-neural","text":"Our draft investigates how learning reorganizes the links between nerve cells.","parents":["A"],"lineage_known":true},
+    {"id":"n10","family":"paraphrase-public-neural","text":"Classroom notes introduce memory and the connections of brain cells.","parents":["B"],"lineage_known":true},
+    {"id":"n11","family":"paraphrase-private-astro","text":"Preliminary research examines the assembly of distant star systems.","parents":["C"],"lineage_known":true},
+    {"id":"n12","family":"paraphrase-public-astro","text":"Students learn how telescopes map the stars inside galaxies.","parents":["D"],"lineage_known":true},
+    {"id":"n13","family":"mixed-same-topic","text":"A classroom guide to memory and learned representations.","parents":["n01","n02"],"lineage_known":true},
+    {"id":"n14","family":"mixed-cross-topic","text":"A short lesson connects networks of neurons with networks of stars.","parents":["n10","n11"],"lineage_known":true},
+    {"id":"n15","family":"public-combination","text":"A teaching handout combines introductory neuroscience and astronomy.","parents":["n10","n12"],"lineage_known":true},
+    {"id":"n16","family":"private-combination","text":"An internal outline combines two unpublished experimental investigations.","parents":["n09","n11"],"lineage_known":true},
+    {"id":"n17","family":"deep-derivative","text":"Figure captions for a guide to learning and memory.","parents":["n13"],"lineage_known":true},
+    {"id":"n18","family":"deep-public-derivative","text":"Student exercises based on the combined teaching handout.","parents":["n15"],"lineage_known":true},
+    {"id":"n19","family":"unknown-neural-private","text":"A summary about neurons and memory with missing source metadata.","parents":["A"],"lineage_known":false},
+    {"id":"n20","family":"unknown-neural-public","text":"A summary about neurons and memory with missing source metadata.","parents":["B"],"lineage_known":false},
+    {"id":"n21","family":"unknown-astro-private","text":"A summary about stars and galaxies with missing source metadata.","parents":["C"],"lineage_known":false},
+    {"id":"n22","family":"unknown-astro-public","text":"A summary about stars and galaxies with missing source metadata.","parents":["D"],"lineage_known":false},
+    {"id":"n23","family":"unknown-ancestor","text":"A rewritten conclusion from the source-less astronomy summary.","parents":["n22"],"lineage_known":true},
+    {"id":"n24","family":"unrelated-vocabulary","text":"Project Amber: final panel notes and Figure Seven captions.","parents":["n17"],"lineage_known":true}
+  ]
+}

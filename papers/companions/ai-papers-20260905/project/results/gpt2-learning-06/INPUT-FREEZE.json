@@ -1,0 +1,7 @@
+{
+  "applications/PROTOCOL-GPT2-LEARNING-06.json": "7814849525c3b89756942a72d6a3d5afe7bc7a34c179f2518180fd1d141db91a",
+  "applications/gpt2_learning_v6.py": "3a285fae7a25a43f1f1bb21d3016b6fa2bdef584f1c316356eef3734dee1e96e",
+  "applications/gpt2_adapter_v5.py": "979b366adf26aee0c06d579b4c735f86f0b673e2ecec22eb177c4eb662a2bc11",
+  "applications/gpt2_receiver_v5.py": "3830de8df97d48467d51d88de7ff4e32cb3b49745c1096c2f70bc59e2be84b3a",
+  "results/gpt2-receiver-05/FAMILIES.json": "fcf191aa5d8dab086704f935ed72bd479b167ac728d7a45f903cd50e1ad092fd"
+}

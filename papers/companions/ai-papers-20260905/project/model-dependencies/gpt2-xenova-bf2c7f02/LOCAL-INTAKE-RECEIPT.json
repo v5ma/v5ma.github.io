@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "repository": "Xenova/gpt2",
+  "revision": "bf2c7f02e0b826c60d03af341171bde20893da66",
+  "bytes": 128678749,
+  "files": [
+    {
+      "path": "onnx/decoder_with_past_model_quantized.onnx",
+      "bytes": 126565928,
+      "sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+      "upstream_blob_id": "ba8bf3c9f2074c85c65fbb0c8e8089b38ac29cc0"
+    },
+    {
+      "path": "tokenizer.json",
+      "bytes": 2107653,
+      "sha256": "cda20b8ca044949aa07ac4078420c80d1a57139d5f9f33700e46fb2d891e7c66",
+      "upstream_blob_id": "5de8effbe407429dce1f3ad068cd1bbd215d3a5c"
+    },
+    {
+      "path": "config.json",
+      "bytes": 884,
+      "sha256": "c9e2a8cc16fced63fa05e353a330ec236bf52d16f01d27c18ee50f39849a39a5",
+      "upstream_blob_id": "21ce5b3bf7549b9f93941c417d5cb6e092e4212a"
+    },
+    {
+      "path": "quantize_config.json",
+      "bytes": 2403,
+      "sha256": "94aa158875c2669fbc9d50a151617f232734662132e120169e5993f7975e066b",
+      "upstream_blob_id": "47195b3c9ad4d9b9e14c8fd08b3e4bf279ee056d"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "bytes": 234,
+      "sha256": "551e26ec611d8d0c8edc3ef72e518a38418cb71f40de1347dd486a595e1557d7",
+      "upstream_blob_id": "546efe6d18ae2ad7758d0c9ef51cacdb81c8dc9d"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "bytes": 99,
+      "sha256": "6f50ab5a5a509a1c309d6171f339b196a900dc9c99ad0408ff23bb615fdae7ad",
+      "upstream_blob_id": "0204ed10c186a4c7c68f55dff8f26087a45898d6"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1548,
+      "sha256": "1343bb7b4aa0a0abe78777cf7f1565092bfa92f465655351df5d6dcd514e78ec",
+      "upstream_blob_id": "a07d622634a5e30128ea3b6b19c4370417ce1f02"
+    }
+  ],
+  "elapsed_seconds": 22.89100000000326,
+  "precision": "community ONNX dynamic quantization; see quantize_config.json",
+  "fp32_upstream_equivalence_verified": false,
+  "weights_redistribution_cleared": false,
+  "scope": "Public dependency only; no external inference and no private uploads",
+  "intake_script_sha256": "51fc7bdddc7d0da5a2b0829ba19bd246d235a2230dafcfe7b08ba590e0257eaf"
+}

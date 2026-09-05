@@ -1,9 +1,9 @@
-# Micah Blumberg Research Papers 1–106
+# Micah Blumberg Research Papers 1–108
 
-This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–106 as of August 25, 2026.
+This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–108 as of September 5, 2026.
 
 - Searchable catalog: [pub.svgn.io](https://pub.svgn.io/)
-- Unified OSF archive: [Papers 1–106](https://osf.io/3vsar/)
+- Unified OSF archive: [Papers 1–108](https://osf.io/3vsar/)
 - Machine-readable inventory: [`PUBLIC-PAPER-MANIFEST.json`](./PUBLIC-PAPER-MANIFEST.json)
 - Integrity list: [`SHA256SUMS.txt`](./SHA256SUMS.txt)
 
@@ -117,3 +117,11 @@ The PDFs are mirrored for public access, review, citation, and provenance. Each 
 104. [The Learning Loop That Learns Itself: From Recursive Self-Reference to Phase-Compatible Self-World Reinstatement in Self-Aware Networks](./104%20-%20The%20Learning%20Loop%20That%20Learns%20Itself%20From%20Recursive%20Self-Reference%20to%20Phase-Compatible%20Self-World%20Reinstatement%20in%20Self-Aware%20Networks.pdf) — [Zenodo](https://zenodo.org/records/21928537) · [OSF](https://osf.io/jqu4b/)
 105. [Oscillatory Credit Assignment: When Phase-Relative Neural Updates Approximate Gradient Learning](./105%20-%20Oscillatory%20Credit%20Assignment%20When%20Phase-Relative%20Neural%20Updates%20Approximate%20Gradient%20Learning.pdf) — [Zenodo](https://zenodo.org/records/22099005) · [OSF](https://osf.io/r3s2n/)
 106. [Reciprocal AI–Neuroscience Translation: From Biological Mechanism to Engineered Failure, Rescue, and Biological Retest](./106%20-%20Reciprocal%20AI-Neuroscience%20Translation%20From%20Biological%20Mechanism%20to%20Engineered%20Failure%2C%20Rescue%2C%20and%20Biological%20Retest.pdf) — [Zenodo](https://zenodo.org/records/22100941) · [OSF](https://osf.io/j2xsc/)
+
+107. [AI Core Alignment Across Scales: Human-Guided Co-Regulation in Self-Aware Artificial Networks](./107%20-%20AI%20Core%20Alignment%20Across%20Scales%20Human-Guided%20Co-Regulation%20in%20Self-Aware%20Artificial%20Networks.pdf) — [Zenodo](https://zenodo.org/records/22360017) · [OSF](https://files.us.osf.io/v1/resources/3vsar/providers/osfstorage/6a9c46ebf47a7a40bc5b52a3)
+
+108. [AI Mechanistic Interpretability and Self-Aware Networks: From Neural Decoding to Causal Self-Regulation](./108%20-%20AI%20Mechanistic%20Interpretability%20and%20Self-Aware%20Networks%20From%20Neural%20Decoding%20to%20Causal%20Self-Regulation.pdf) — [Zenodo](https://zenodo.org/records/22360027) · [OSF](https://files.us.osf.io/v1/resources/3vsar/providers/osfstorage/6a9c46fa10084707992a9c4f)
+
+## Shared AI research companion
+
+[Read the applications, proofs, data, figures and reproduction guide](./companions/ai-papers-20260905/README.md). The two AI papers share this evidence; it is not two independent replications. Their unsuccessful learned-correction result and explicit research limits are retained. Base-model/runtime binaries and private source originals are excluded. See the companion's own license and notices.

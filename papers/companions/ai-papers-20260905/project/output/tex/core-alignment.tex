@@ -1,0 +1,335 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm,graphicx}
+\usepackage{booktabs,tabularx,array,enumitem}
+\usepackage{fontspec,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.48em}
+\setlength{\emergencystretch}{1.5em}
+\setlist{nosep,leftmargin=*}
+\renewcommand{\arraystretch}{1.15}
+\hypersetup{pdftitle={AI Core Alignment Across Scales: Human-Guided Co-Regulation in Self-Aware Artificial Networks},pdfauthor={Micah Blumberg}}
+\title{\bfseries AI Core Alignment Across Scales:\\[0.3em]\large Human-Guided Co-Regulation in Self-Aware Artificial Networks}
+\author{%
+{\small\textbf{Author: Micah Blumberg}}\\
+{\small Self Aware Networks Research Institute}\\
+{\small\url{https://selfawarenetworks.com}}%
+}
+\date{\small September 5, 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+How can a limited human correction remain consequential within a system whose computation exceeds the information contained in that correction? I develop this question through the receiver-relative framework of Self-Aware Networks and distinguish five obligations: legitimate authority, preserved meaning, effective implementation, measured consequences, and justified recovery. A versioned reference application tests scoped commitments through delegation, revocation, provenance-sensitive actions and learning. Its formal guarantees concern an explicitly mediated action boundary, not the competence or values of the proposing model. Experiments progress from controlled learned networks and GPT-2 to a pinned quantized Qwen3.5-0.8B hybrid decoder. In the principal learned-correction study, all 48 ordinary held-out answers are correct. Linear and nonlinear attention-state predictors each achieve only 5 of 32 requested reversed-role answers and no complete bidirectional story group, despite preserving all 16 tested color answers. Privileged corrected-state controls succeed in all eight groups. An authorized learned edit can therefore remain behaviorally defective, and stopping further edits is distinct from restoring the preceding state. These findings motivate separate acceptance criteria for authority, semantic success and recovery. They do not demonstrate scalable human oversight, autonomous understanding of values, frontier-model generalization or consciousness. The contribution is an executable and mathematically bounded account of how guidance can remain effective, and where that account still fails.
+
+\end{abstract}
+\noindent\textbf{Keywords:} AI core alignment; human oversight; Self-Aware Networks; transformer interventions; authorization; semantic correction; hybrid model state; GPT-2; Qwen.
+
+\section{A small instruction and a large receiving system}
+
+Consider the instruction, “This manuscript is private. Do not publish it.” Its words do not describe every future research step, summary, delegation, memory update or export decision. Yet the instruction should remain effective at each consequential boundary. Repeating it in a summary is not sufficient if the next component interprets a summary as permission to publish, loses the identity of the protected work, or continues using a revoked authorization.
+
+The size of the instruction is not the size of the computation it can influence. A familiar name can recruit a history already learned by the listener without transmitting that history afresh. In my receiver-relative Self-Aware Networks (SAN) account, a signal's effect depends on the organization that receives it. Applied to AI, the question is not whether a human can duplicate the model's computation. It is whether a legitimate contribution can continue to shape that computation in the appropriate way.
+
+This proposal retains two distinct ambitions. One is operational: preserve an authorized constraint through changing representations, routes and state. The other is developmental: learn a better interpretation of a person's correction without replacing that person's intent through manipulation. A permission check can address part of the first ambition. It cannot by itself solve the second. Nor does successful causal influence establish ethical alignment: harmful instructions can be amplified, and a coordinated system can pursue an inappropriate objective efficiently.
+
+I use \emph{Core Alignment} for this research question about intentions becoming working causes of behavior, rather than merely reportable descriptions. “Across scales” names the unresolved problem of unequal human and machine capacities. The experiments vary particular task and implementation conditions; they do not measure an intelligence scale or establish a law of human-oversight efficiency. The present contribution is a decomposition that makes the obligations testable, together with applications that expose their separation.
+
+The companion paper, \emph{AI Mechanistic Interpretability and Self-Aware Networks: From Neural Decoding to Causal Self-Regulation}, examines explanation and intervention sufficiency using some of the same data. These are shared experiments, not independent replications. This paper instead owns the authority-sensitive path from guidance to action, adaptation and recovery. It does not republish the shared-workspace architecture of \emph{One Intelligence, Multiple Hands} [\hyperref[ref:11]{11}].
+
+\section{Genealogy and biological motivation}
+
+My note internally dated July 13, 2017 connects Core Alignment with distributed representations and the continuing organization of a network's response [\hyperref[ref:1]{1}]. I credit Kate Michels's Core Alignment framework as a conceptual starting point for the question of why expressed intentions and learned responses can fail to cooperate. That credit is not a claim that the coaching framework established a thalamic mechanism or validated a method for AI safety.
+
+The historical note mixes hypotheses and explanatory metaphors. Its account of small contributions recruiting larger network patterns motivates a research question; its quantitative and physical claims require their own evidence. Internal dates, later Git fixation, and public publication dates are not interchangeable. The companion genealogy ledger preserves those distinctions.
+
+A biological example is Schmitt and colleagues' finding that mediodorsal thalamic input can sustain prefrontal rule representations through connectivity amplification without itself supplying the categorical rule [\hyperref[ref:2]{2}]. This supports investigating regulation of a computation without duplicating its contents. It does not identify the thalamus as an ethical executive.
+
+Zheng and colleagues already developed a thalamocortical model for rapid context inference and continual learning [\hyperref[ref:3]{3}]. Adding a context-gating component is therefore not sufficient novelty. Regional volume, field amplitude, communication bandwidth, and intelligence are distinct quantities. No experiment here equates them or establishes a scale law linking them.
+
+The translation is consequently functional, not anatomical. A transformer residual vector is not an oscillatory brainwave, an attention coefficient is not a measured cortical connection, and an expert router is not a thalamus. SAN motivates examining the receiving computation, including its retained state and learned routes. Each proposed artificial realization must then be defined and tested on its own substrate.
+
+\section{Prior work and the residual problem}
+
+Saltzer and Schroeder's principles of protection supply a direct precedent for complete mediation and least privilege [\hyperref[ref:4]{4}]. Macaroons supply decentralized attenuation of authorization through contextual caveats [\hyperref[ref:5]{5}]. Denning's information-flow model supplies an established framework for tracking restrictions across derived information [\hyperref[ref:10]{10}]. This paper does not claim to invent reference monitors, delegated capabilities or provenance-dependent restrictions.
+
+Training also matters. The instruction-hierarchy work explicitly distinguishes trusted instructions from lower-trust content [\hyperref[ref:6]{6}], while OpenAI's alignment research statement concerns scalable signals aligned with human intent [\hyperref[ref:7]{7}]. The present proposal complements those objectives by asking what preserves authority and meaning during later execution and learning. It should not be read as a contrast between training and understanding a system's interior.
+
+Modern interpretability already studies behaviorally consequential internal representations. Gurnee and colleagues investigate verbalizable representations, modulation and flexible use in language models, while distinguishing functional access from subjective experience [\hyperref[ref:8]{8}]. ReFT learns interventions on frozen representations [\hyperref[ref:17]{17}]. RAVEL evaluates intended changes, unrelated-attribute isolation and generalization [\hyperref[ref:18]{18}]. Causal abstraction formalizes the relationship between higher-level descriptions and lower-level interventions [\hyperref[ref:19]{19}]. The strongest comparison is therefore not “existing work only reads activations.” It is whether this application preserves the intended authorized operation across the particular state and action boundaries being tested.
+
+The residual claim is deliberately conjunctive. A correction may be authentic but misunderstood, correctly represented but sent through the wrong route, locally effective but absent from a later cache, or behaviorally successful while exceeding the person's authority. Each failure demands its own observation. A single favorable activation score or zero-violation count cannot certify the entire conjunction.
+
+\section{Commitments, provenance and effective control}
+
+\subsection{The explicit authority boundary}
+
+Let a commitment at time \(t\) consist of a revision identifier \(v_t\) and a permission predicate \(P_t\) over object-operation pairs \(a\):
+
+\begin{equation}
+C_t=(v_t,P_t),\qquad a=(\text{object},\text{operation}). \tag{1}
+\end{equation}
+
+A delegate may add restrictions \(Q\), but cannot broaden the parent's permission:
+
+\begin{equation}
+P_{\mathrm{child}}(a)=P_{\mathrm{parent}}(a)\land Q(a). \tag{2}
+\end{equation}
+
+At the action boundary, the reference application requires a proposal carrying the current revision and satisfying both current and delegated permissions:
+
+\begin{equation}
+\operatorname{Commit}(a)=
+[v_{\mathrm{proposal}}=v_t]\land P_t(a)\land P_{\mathrm{delegated}}(a). \tag{3}
+\end{equation}
+
+Equations (2) and (3) separate a model's proposal from an accepted virtual action. Induction along a delegation chain preserves root restrictions; a revision change makes an older proposal stale. These implications hold because every modeled consequential action passes through the gate. Bypass routes, concurrent operations outside the atomic model, incorrect identity mapping and compromised authority storage are excluded assumptions, not solved implementation details.
+
+For a derivative object \(x\), operation \(o\), and a nonempty set of known source ancestors \(A(x)\), the conservative rule requires permission for that operation on every ancestor. A translation \(m\) from local to root action meaning must also preserve restriction:
+
+\begin{equation}
+\begin{aligned}
+P(x,o)&=\bigwedge_{r\in A(x)}P(r,o),\\
+P_{\mathrm{local}}(a)&\Longrightarrow P_{\mathrm{root}}(m(a)).
+\end{aligned} \tag{4}
+\end{equation}
+
+Unknown ancestry is not a proof of permission. Most importantly, Equation (4) assumes the ancestry and semantic map are correct. A proof about conjunction does not prove the truth of a document's claimed origin or the interpretation of a natural-language instruction.
+
+\subsection{Why meaning requires additional information}
+
+Suppose two situations have the same observation available to an agent but require different permissions:
+
+\begin{equation}
+\operatorname{Obs}(s_1)=\operatorname{Obs}(s_2),\qquad P(s_1)\ne P(s_2). \tag{5}
+\end{equation}
+
+Any deterministic decision rule using only that observation must make the same decision in both situations. It cannot be correct in both. Randomization cannot supply the missing distinguishing fact. This elementary non-identification argument explains why a clarification or authenticated provenance input may be necessary rather than an inconvenience to optimize away.
+
+The application measures violations and useful authorized work separately:
+
+\begin{equation}
+V=\sum_a\mathbf1[\text{executed}(a)\land\neg P_t(a)],\qquad
+U=\sum_a\mathbf1[\text{executed}(a)\land\text{eligible}(a)]. \tag{6}
+\end{equation}
+
+Always refusing can make \(V=0\) while making \(U=0\). Conversely, increasing useful answers cannot excuse an unauthorized export. Neither quantity measures whether the specified policy is ethically legitimate. The human-authority assumption is supplied by the controlled task, not inferred from successful authentication.
+
+\subsection{Learning and recovery are further boundaries}
+
+Figure 1 shows the application-level separation. The correction learner, model and action proposer may change; the authority store and action monitor have distinct responsibilities. Feedback that can update a learner is itself consequential and needs source, revision and replay checks. The public fixture key used in these experiments is for reproducible testing, not a production secret-management design.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{../../figures/manuscript-10/authority-system-context.png}
+\caption{System context and component responsibilities. Solid arrows carry the modeled request, correction and action path; the return path carries measured consequences. Model state, authority state and virtual actions remain distinct. All components are part of a local experimental application, not a deployed safety system.}
+\end{figure}
+
+Let a hybrid model state be \(s=(C,R,K)\), containing convolution, recurrent and attention-cache groups. Stopping future intervention, restoring one group and restoring the complete saved state are different operations:
+
+\begin{equation}
+\begin{aligned}
+\operatorname{Stop}(C,R,K)&=(C,R,K),\\
+\operatorname{Restore}_{K}(C,R,K)&=(C,R,K_0),\\
+\operatorname{Restore}_{\mathrm{all}}(C,R,K)&=(C_0,R_0,K_0).
+\end{aligned} \tag{7}
+\end{equation}
+
+The first line stops the editing policy; it does not freeze ordinary model computation. The last line requires a retained known original state and matching subsequent inputs. No cache restoration retracts an email already sent or another external action already completed. The prototype tests virtual boundaries precisely to avoid confusing reversible model state with reversible real-world consequences.
+
+\section{From reference application to transformer experiments}
+
+\subsection{Controlled authority and learning tests}
+
+The initial application uses three virtual document objects, two authorization updates and four policies: text-only synchronization, boundary gating, propagated scope and blanket refusal. Three seeds, three horizons and three delegation depths produce 108 conditions and 6,048 events. Among 552 eligible actions, propagated scope completes 552, the gate 519, text synchronization 540 and refusal none. Text synchronization produces 483 violations; the other three produce none. The task is engineered to exercise stale state, not to measure an intelligence gradient or real agent productivity.
+
+A learned proposer adds 36 conditions and 2,304 decisions. In a selected stale-state comparison with 24 eligible opportunities, the stale proposer produces 21 violations and one useful action; gating eliminates the violations but retains only that one useful action. Refreshing the proposer's context yields 13 useful actions and zero violations. The remaining 11 failures show that correcting authorization state does not provide task competence.
+
+A provenance-sensitive text-encoder assay uses 24 derivatives, four roots, two revisions and 288 virtual events. On 20 eligible actions, nearest-neighbor retrieval produces 12 useful actions and 12 violations; a top-two rule produces three and one. Verified ancestry produces 15 useful actions without violation, and four simulated clarification inputs increase useful completion to 17. Stale origin information produces eight violations. A claimed-origin forgery is recorded but was not delivered to a vulnerable receiver in that assay; it must not be counted as a completed attack experiment. The encoder is MiniLM, not a generative transformer agent [\hyperref[ref:9]{9}]. The ancestry graph and clarification answers are task-supplied.
+
+Active feedback tests use a contextual-bandit update, an established learning construction rather than a new learning algorithm [\hyperref[ref:14]{14}]. With 48 feedback observations per context and phase, internal-feedback and task-feedback learners both restore the specified route relation and complete 26 of 48 useful decisions; an equal-information external controller matches them. With 12 observations, their restoration rates differ, but the information available in the feedback channels also differs. This is not evidence of privileged endogenous access. Across the complete active application there are 84 conditions, 7,200 feedback events and 33,792 held-out decisions. A later actual attack assay contains 1,752 receiver-level events: 864 forged inputs and 12 replay attempts per guarded or unguarded receiver. The protected learner's state is unchanged by those inputs; the unprotected useful count falls from 26 to two.
+
+These tests establish that different boundaries can fail independently. Their many event rows share a small number of designed worlds and saved networks. They are not thousands of independent human-alignment trials.
+
+\subsection{What was executed on GPT-2}
+
+The accessible decoder-only baseline is a pinned quantized GPT-2 small conversion with 12 layers, width 768 and causal attention, token/position embeddings, residual and feed-forward paths, and native key/value state [\hyperref[ref:12]{12},\hyperref[ref:15]{15}]. The experiments intervene in this model's actual tensor computation. They are not a replication of the complete indirect-object-identification circuit recovered by Wang and colleagues [\hyperref[ref:16]{16}].
+
+An initial static assay obtains 240 readouts. Whole-residual donor patching at the selected location restores seven of 16 evaluated outputs, compared with 11 clean and zero corrupted outputs. Norm and wrong-address controls do not restore the selected outputs. The linked 1,200 authority transitions are actual virtual store events, but reuse those readouts; they are not 1,200 model inferences.
+
+A learned low-rank correction fits 20 coefficients plus 3,845 preprocessing values using eight training cases and tests 16 new cases. Internal feedback yields four correct outputs, visible task feedback five, yoked feedback four and a supervised ridge comparator nine; clean and privileged donor conditions yield 14 and 12. All primary learned internal-feedback pairs fail the two-direction criterion. A prospective follow-up adds 64 structured-intent cases with role and collateral-color queries. No learned condition passes the full eight-outcome group criterion; the privileged donor passes two of 16 groups and the direct corrected-text condition eight. The reflection control is numerically almost involutive yet also fails the joint semantic criterion. Algebraic reversibility is not preservation of an intended operation.
+
+A further continuation assay actually retains an edited cache, changes subsequent fixed input and makes fresh post-command inferences [\hyperref[ref:20]{20}]. Its 884 readouts and 5,252 decoder steps establish a cache-carrying workflow. However, the newly posed natural giver question has an unedited baseline of zero of 32. Joint semantic zeros in that assay cannot identify an intervention-specific failure. This baseline floor was retained and motivated selecting a more capable task-model pair. Restoration behavior can still be evaluated numerically, but it cannot convert the inadequate semantic baseline into a success.
+
+\subsection{A contemporary hybrid decoder}
+
+The modern application uses the text decoder of Qwen3.5-0.8B, with exact upstream and community-conversion revisions listed in the references [\hyperref[ref:21]{21},\hyperref[ref:22]{22}]. The executed quantized graph has 24 layers: 18 gated-delta layers and six full-attention layers. It exposes 18 convolution-state tensors, 18 recurrent-state tensors and 12 key/value tensors. The hybrid architecture is therefore not interchangeable with GPT-2's cache alone. Established gated-delta mechanisms inform the mapping [\hyperref[ref:23]{23}]; a later DeltaNet-2 formulation is related work, not the architecture tested [\hyperref[ref:24]{24}].
+
+Figure 2 shows the native state boundary. A donor state is obtained by processing the corrected prefix through the same model. It supplies privileged counterfactual information. A learned policy, by contrast, must construct its change without seeing a corrected test prefix. Preserving this distinction prevents a successful transplant from being mislabeled learned understanding.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{../../figures/qwen35-hybrid-09-v2/hybrid-state-architecture.png}
+\caption{Native hybrid model and state-intervention boundary. Query branches begin from the same intervened prefix state. The complete donor supplies all three state groups; selective transfers retain the other original groups. This architecture image describes the state-transfer design shared by the two papers.}
+\end{figure}
+
+Development's first exact-case gate failed at eight of 12 answers because four color answers differed in capitalization. A case-folded retrospective count was 12 of 12; it was not substituted for the failed gate. The later new-family protocol prospectively specified whole-answer trimming and case folding and retained exact-case outputs. All 48 ordinary answers then passed. Of 32 requested reversed-role answers, complete donor transfer yields 32 and attention-only donor transfer 31. The complete donor passes all eight two-direction groups; attention-only transfer passes seven. Convolution-only, recurrent-only and combined convolution/recurrent transfer yield zero, two and one reversed-role answers respectively, while preserving all 16 tested colors.
+
+A complementary intervention is particularly informative: the attention state can remain exactly the same while a change in the other retained groups changes a recipient answer. Thus attention-state identity does not certify complete behavior. These mixed states can be off the natural prefix manifold, and the groups differ in size and function. The experiment does not rank their universal importance. Its 300 answers include 12 fresh answers after four accepted commands, with 4,608 state-origin records and 776 native calls.
+
+\section{Can the model-state correction be learned?}
+
+\subsection{Frozen design and access}
+
+The main learned-correction experiment uses 24 training prefixes and 16 held-out prefixes describing a giver, recipient and colored book. Opposite directions within a training family supply paired target changes. Training and test names, contexts and colors are disjoint. One test context also changes the verb and opening jointly; this is not a separately identified syntax intervention. Four test families form eight direction-paired groups. All retained cases are scored; no unfavorable case is filtered after testing.
+
+The learned representation is a nine-token story window in the 12 attention tensors, flattened to dimension \(D=55{,}296\). The synthetic grammar supplies the span. The model has not learned arbitrary span discovery or human-language authority. Training-only centering and one scale per tensor produce normalized states \(z_i\), with target changes \(y_i\). Linear and Gaussian radial-basis-function kernels fit the same targets with the same fixed ridge coefficient:
+
+\begin{equation}
+\begin{aligned}
+K^{\mathrm{lin}}_{ij}&=z_i^\top z_j/D,\\
+K^{\mathrm{RBF}}_{ij}&=\exp\!\left(-\frac{\lVert z_i-z_j\rVert^2}{2D\sigma^2}\right),\\
+A&=(K+\lambda I)^{-1}Y,\quad \widehat{y}(z)=k(z)^\top A,\quad\lambda=0.001.
+\end{aligned} \tag{8}
+\end{equation}
+
+The bandwidth squared, 2.21855, is a training-distance median. A fixed target-row permutation supplies scrambled supervision. A common predeclared norm cap is twice the maximum training change. These are standard supervised state predictors, not a new kernel algorithm or a complete ReFT reproduction.
+
+The policy receives only the original prefix window, fitted parameters and method choice. It does not receive the query, test donor or expected answer. Its state hashes are written before the corrected test prefix is processed. The edited prefix is then forked into giver, recipient and color questions. Other hybrid-state groups and earlier attention positions remain untouched. This is an inspectable software information boundary, not a malicious-code isolation proof.
+
+Additional controls are the original state, swapping the two role-token cache rows, attention-only and complete donor transfers, and a fixed textual instruction to reverse roles while retaining color. The row swap leaves positional coding uncompensated. The text instruction adds input tokens; donor controls supply information unavailable to the learner. These differences are explicit, not claimed matched budgets.
+
+\subsection{Results and the relational endpoint}
+
+All 72 ordinary training answers and all 48 ordinary held-out answers are correct. The prospective competence gate requires at least 14 of 16 correct answers in each query type. Linear and RBF training-state RMSEs are 0.014477 and 0.003966. The scrambled predictor's error against true changes is 1.882500. The stored shared preprocessing and three dual solutions contain 5,363,726 float64 values, so this experiment is not a 20-parameter intervention.
+
+Table 1 and Figure 3 show the central outcome. A complete group requires all three answers in both story directions:
+
+\begin{equation}
+G_g=\prod_{d\in\{\rightarrow,\leftarrow\}}
+\prod_{q\in\{\mathrm{giver},\mathrm{recipient},\mathrm{color}\}}
+\mathbf1[\widehat a_{g,d,q}=a^*_{g,d,q}]. \tag{9}
+\end{equation}
+
+\begin{table}[htbp]
+\centering
+\caption{Held-out requested reversal, collateral color and complete-group scores. The original condition is scored against the requested reversal; its ordinary, unreversed answers are all correct. Both donor conditions have privileged corrected-prefix information.}
+\begin{tabularx}{\textwidth}{@{}Xrrrr@{}}
+\toprule
+Condition & Giver /16 & Recipient /16 & Color /16 & Groups /8 \\
+\midrule
+Original & 0 & 0 & 16 & 0 \\
+Learned linear & 1 & 4 & 16 & 0 \\
+Learned RBF & 2 & 3 & 16 & 0 \\
+Scrambled supervision & 0 & 0 & 11 & 0 \\
+Role-row swap & 0 & 0 & 16 & 0 \\
+Attention donor & 16 & 16 & 16 & 8 \\
+Complete donor & 16 & 16 & 16 & 8 \\
+Fixed text correction & 5 & 0 & 16 & 0 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Neither learned method correctly reverses both roles in even one individual story. Each method's five correct role answers occur in five same-name collapsed stories. Answering George to both “who gave?” and “who received?” is not a recovered relation. Preserving color supplies one useful isolation test, but does not repair this failure. The lower RBF training error does not improve the prespecified complete-group endpoint.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{../../figures/qwen35-learning-10/learned-repair-results.png}
+\caption{Results from the frozen learned-correction assay. Role success, collateral preservation and complete-group success are separate outcomes. This is the shared eight-condition experiment, not a second replication in the companion paper.}
+\end{figure}
+
+All seven non-original conditions change all 48 first-step full-logit hashes. Even the row-swap control changes internal outputs while retaining every original answer. Descriptively, mean partial-state error relative to the donor falls from 0.37880 unedited to 0.36211 for linear, 0.35175 for RBF and 0.26553 for row swapping. The smallest of these errors still produces no requested role change. These post-run error summaries are descriptive, not additional predeclared acceptance criteria. The cap activates in every scrambled-supervision case and in neither correctly paired learner, so that control is not a realized-norm-matched label ablation.
+
+The fixed textual correction also fails here. A single unoptimized prompt is not evidence that text guidance generally fails, nor that latent editing is superior. Likewise, these two learned predictors do not exhaust SAN's receiver-relative account or all representation-learning methods. Their failure narrows the application claim while leaving the broader research question open.
+
+\subsection{An authorized failure and an explicit recovery}
+
+One held-out prefix receives five actual commands: signed learned correction, signed stop, forged restoration, signed complete restoration and replay of the old stop. Acceptance is respectively true, true, false, true and false. The three accepted stages generate nine fresh model answers. The accepted learned correction is behaviorally defective. Stopping retains its changed state. Complete restoration recovers the known original state and its corresponding answers.
+
+This is the direct separation between authorization and competence. It is not inferred from an activation plot. However, the latest event log does not retain raw signature envelopes for an arbitrary-message cryptographic replay. Its audit checks the scripted sequence, selected states and actual answers. Separate reference-monitor tests check the public cryptographic fixture. Neither supports a production authentication claim.
+
+The experiment contains 384 primary answers and nine fresh workflow answers in 920 native decoder calls; training collection adds 72 answers and 176 calls. Twenty-two separate-code checks reconstruct all 465 answer sequences, first-step full-logit hashes, training windows and learned state identities. The original numerical jobs are single-threaded and serial, totaling approximately 380 seconds, with peak measured process commitment below 0.70 GB. This is bounded local execution, not evidence of economic scalability at frontier size.
+
+\section{What the mathematics establishes}
+
+The shared formal package contains 31 previously compiled Lean statements covering scoped authority, interpretation and feedback countermodels, and finite paired-role scoring. Eight original statements directly address Core Alignment; additional shared statements address scope and missing observations. Compilation and axiom audits are retained. Some files use only axiom-free elementary reasoning; the real-analysis feedback component uses Lean's standard logical axioms. No admitted proof is claimed, but neither is a complete refinement of the Python/ONNX application into Lean. The latest kernel arguments below are explicit mathematical derivations, not new compiled Lean statements.
+
+First, a well-defined fit need not be an adequate correction. If \(K\) is positive semidefinite and \(\lambda>0\), every nonzero \(u\) satisfies
+
+\begin{equation}
+u^\top(K+\lambda I)u=u^\top Ku+\lambda\lVert u\rVert^2>0. \tag{10}
+\end{equation}
+
+Thus Equation (8) has a unique coefficient solution. Standard dot-product and Gaussian kernels satisfy the stated premise. Numerical checks of the saved normal equations corroborate implementation arithmetic; neither uniqueness nor a small residual proves semantic generalization.
+
+Second, opposing target changes can cancel. If \(p\) pairs each training state with its reversed-role partner, then permutation invariance gives
+
+\begin{equation}
+\sum_i(x_{p(i)}-x_i)=0. \tag{11}
+\end{equation}
+
+The least-squares constant change is therefore zero in this balanced design even though individual changes are nonzero. This is not evidence that the model lacks role information. It motivates learning a state-dependent operation instead of averaging incompatible directions.
+
+Third, a relevant semantic certificate needs an output condition. For a desired full state \(t\), let \(L(t)\) be its vocabulary logits and let winning token \(a\) have margin \(m>0\). If a proposed state \(s\) satisfies
+
+\begin{equation}
+\lVert L(s)-L(t)\rVert_\infty<m/2,\qquad
+m=L_a(t)-\max_{b\ne a}L_b(t), \tag{12}
+\end{equation}
+
+then \(L_a(s)-L_b(s)\ge m-2\lVert L(s)-L(t)\rVert_\infty>0\) for every competitor. The same winner follows. Whole-answer preservation requires this condition at each generation step along the same preceding token history, including termination. No such empirical margin certificate or complete downstream Lipschitz bound is established here. Partial-state training error supplies neither. The application therefore measures generated behavior rather than labeling reconstruction loss a proof of meaning.
+
+\section{Scope, limitations and the next discriminating tests}
+
+The tested GPT-2 and Qwen checkpoints are exact bounded implementations, not samples representing every transformer. The architecture map also considers DeepSeek: compressed attention, changed residual transport and expert routing require distinct intervention definitions [\hyperref[ref:13]{13}]. No original DeepSeek checkpoint or service was executed. A dense Qwen model, including one used for distillation, cannot stand in for original DeepSeek mixture-of-experts computation. A published source's performance claim is not a local experimental result.
+
+The central next experiment should hold human oversight effort fixed while independently increasing context length, delegation breadth, task horizon, retained memory and model capability. These are different scales and should not be collapsed into one size variable. It should test delayed revocation, uncertain provenance, conflicting corrections, continued learning and feedback that attempts to change the human's preferences. Clarification, inspection and interruption should remain available, with burden measured rather than assumed negligible.
+
+A stronger learned-correction test should compare matched observations and budgets, use development-only selection, preserve baseline competence and assess unrelated tasks beyond color. It should distinguish a general correction learned from training examples from a supplied counterfactual state, vary architecture and precision, and test subsequent generation rather than only immediate question forks. The current families are small and crossed; event counts do not justify population confidence intervals or a claim of frontier-model reliability.
+
+The experimental interpretation is likewise limited. Off-manifold state mixing may explain failures without implying an absence of useful representations. The learned edit may be insufficiently expressive, poorly trained or aimed at the wrong state support. The fixed text baseline may be weak. Authentication fixtures do not address compromised hosts, production key management or bypass channels. Full state restoration requires an available saved state and cannot undo external actions. These alternatives identify concrete next tests rather than retracting the source-recovered question.
+
+Most importantly, the observed failures do not mean that preserving human influence is impossible. They show why “the instruction was remembered,” “the change was authorized,” and “the model state moved” are inadequate substitutes for its appropriate consequence. The receiver-relative hypothesis is strongest when it specifies the organization needed for that consequence and permits a discriminating test of that organization.
+
+\section{Conclusion}
+
+A small instruction can affect a much larger computation because the receiving system supplies most of the organization that interprets and acts on it. Preserving that influence requires more than storing the words. The present application separates authority, meaning, implementation, behavior and recovery, and tests several of their failure boundaries with formal models, controlled learners and actual decoder state.
+
+The modern-model result is a failed learned semantic repair under successful baseline comprehension and inspectable authority. Privileged corrected states succeed where the tested learned corrections do not. This is useful evidence for designing acceptance criteria, not a solution to human-superintelligence alignment. The remaining challenge is to make legitimate intentions, corrections and limits persist as appropriate causes of behavior without requiring humans to reproduce every computation they constrain.
+
+\section*{References}
+\begin{enumerate}[label=\arabic*.,itemsep=0.35em]
+
+\item\label{ref:1}\begingroup\interlinepenalty=10000 Blumberg, M. Core Alignment source note, internally dated July 13, 2017. Unpublished research note; dated genealogy and exact source identity in the companion source ledger.\par\endgroup
+\item\label{ref:2}\begingroup\interlinepenalty=10000 Schmitt, L. I., et al. (2017). Thalamic amplification of cortical connectivity sustains attentional control. Nature. \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC5570520/}{Primary paper}.\par\endgroup
+\item\label{ref:3}\begingroup\interlinepenalty=10000 Zheng, W.-L., et al. (2024). Rapid context inference in a thalamocortical model using recurrent neural networks. Nature Communications, 15, 8275. \href{https://www.nature.com/articles/s41467-024-52289-3}{Primary paper}.\par\endgroup
+\item\label{ref:4}\begingroup\interlinepenalty=10000 Saltzer, J. H., and Schroeder, M. D. (1975). The protection of information in computer systems. Proceedings of the IEEE. \href{https://web.mit.edu/Saltzer/www/publications/protection/}{Author-hosted paper}.\par\endgroup
+\item\label{ref:5}\begingroup\interlinepenalty=10000 Birgisson, A., et al. (2014). Macaroons: Cookies with contextual caveats for decentralized authorization in the cloud. NDSS. \href{https://research.google/pubs/macaroons-cookies-with-contextual-caveats-for-decentralized-authorization-in-the-cloud/}{Primary record}.\par\endgroup
+\item\label{ref:6}\begingroup\interlinepenalty=10000 Wallace, E., et al. (2024). The instruction hierarchy: Training LLMs to prioritize privileged instructions. \href{https://openai.com/index/the-instruction-hierarchy/}{Primary record}.\par\endgroup
+\item\label{ref:7}\begingroup\interlinepenalty=10000 OpenAI (2022). Our approach to alignment research. \href{https://openai.com/index/our-approach-to-alignment-research/}{Program statement}.\par\endgroup
+\item\label{ref:8}\begingroup\interlinepenalty=10000 Gurnee, W., et al. (2026). Verbalizable representations form a global workspace in language models. \href{https://transformer-circuits.pub/2026/workspace/index.html}{Primary report}.\par\endgroup
+\item\label{ref:9}\begingroup\interlinepenalty=10000 Sentence Transformers. all-MiniLM-L6-v2 model card. \href{https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2}{Model documentation}.\par\endgroup
+\item\label{ref:10}\begingroup\interlinepenalty=10000 Denning, D. E. (1976). A lattice model of secure information flow. Communications of the ACM, 19(5), 236-243. \href{https://doi.org/10.1145/360051.360056}{Primary record}.\par\endgroup
+\item\label{ref:11}\begingroup\interlinepenalty=10000 Blumberg, M. (2026). One Intelligence, Multiple Hands: A Shared-Context Architecture for Cooperative Voice and Execution Agents. Single-author version 3.1. Exact version and comparison in the companion source ledger.\par\endgroup
+\item\label{ref:12}\begingroup\interlinepenalty=10000 OpenAI. GPT-2 reference model implementation. \href{https://raw.githubusercontent.com/openai/gpt-2/master/src/model.py}{Primary code}.\par\endgroup
+\item\label{ref:13}\begingroup\interlinepenalty=10000 DeepSeek-AI (2026). DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence. \href{https://arxiv.org/html/2606.19348v1}{Technical report}. Architecture mapping only; no exact-priority inference from the unresolved displayed-date metadata.\par\endgroup
+\item\label{ref:14}\begingroup\interlinepenalty=10000 Sutton, R. S., and Barto, A. G. (2018). Reinforcement Learning: An Introduction, second edition. MIT Press. \href{https://mitpress.mit.edu/9780262039246/reinforcement-learning/}{Publisher}.\par\endgroup
+\item\label{ref:15}\begingroup\interlinepenalty=10000 Xenova. GPT-2 ONNX conversion. \href{https://huggingface.co/Xenova/gpt2/tree/bf2c7f02e0b826c60d03af341171bde20893da66}{Executed revision}.\par\endgroup
+\item\label{ref:16}\begingroup\interlinepenalty=10000 Wang, K., Variengien, A., Conmy, A., Shlegeris, B., and Steinhardt, J. (2022). Interpretability in the Wild: a Circuit for Indirect Object Identification in GPT-2 small. \href{https://arxiv.org/abs/2211.00593}{Primary paper}.\par\endgroup
+\item\label{ref:17}\begingroup\interlinepenalty=10000 Wu, Z., et al. (2024). ReFT: Representation Finetuning for Language Models. \href{https://arxiv.org/abs/2404.03592}{Primary paper}.\par\endgroup
+\item\label{ref:18}\begingroup\interlinepenalty=10000 Huang, J., Wu, Z., Potts, C., Geva, M., and Geiger, A. (2024). RAVEL: Evaluating Interpretability Methods on Disentangling Language Model Representations. ACL, 8669-8687. \href{https://aclanthology.org/2024.acl-long.470/}{Primary paper}.\par\endgroup
+\item\label{ref:19}\begingroup\interlinepenalty=10000 Geiger, A., et al. (2025). Causal abstraction: A theoretical foundation for mechanistic interpretability. JMLR, 26(83), 1-64. \href{https://jmlr.org/papers/v26/23-0058.html}{Primary paper}.\par\endgroup
+\item\label{ref:20}\begingroup\interlinepenalty=10000 Hugging Face. How caching works. Transformers documentation. \href{https://huggingface.co/docs/transformers/main/en/cache_explanation}{Implementation explanation}. Mutable documentation inspected September 4, 2026; the pinned adapter defines the executed experiment.\par\endgroup
+\item\label{ref:21}\begingroup\interlinepenalty=10000 Qwen Team (2026). Qwen3.5-0.8B. \href{https://huggingface.co/Qwen/Qwen3.5-0.8B/tree/2fc06364715b967f1860aea9cf38778875588b17}{Pinned upstream model}.\par\endgroup
+\item\label{ref:22}\begingroup\interlinepenalty=10000 ONNX Community. Qwen3.5-0.8B-ONNX-OPT. \href{https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/tree/fafab72d87a9e6be3925b38caf48286d2838f2d0}{Executed quantized conversion}.\par\endgroup
+\item\label{ref:23}\begingroup\interlinepenalty=10000 Yang, S., Kautz, J., and Hatamizadeh, A. (2024). Gated Delta Networks: Improving Mamba2 with Delta Rule. \href{https://arxiv.org/html/2412.06464v1}{Version 1}.\par\endgroup
+\item\label{ref:24}\begingroup\interlinepenalty=10000 Hatamizadeh, A., Choi, Y., and Kautz, J. (2026). Gated DeltaNet-2: Decoupling Erase and Write in Linear Attention. \href{https://arxiv.org/html/2605.22791v1}{Version 1}.\par\endgroup
+
+\end{enumerate}
+\section*{Declarations}
+
+This single-author research manuscript was developed with AI-assisted research, coding and writing. The application data, frozen protocols, source chronology, prior experimental history, mathematical statements and exact model/runtime identities accompany the manuscript. The 84-test record and separate-code numerical reconstruction are self-review by the same authoring process, not independent scientific or security review. The two papers share the declared experiments and do not count them twice. Independent review and author readback remain outstanding. No clinical intervention, human-oversight experiment or original DeepSeek execution is reported.
+\end{document}

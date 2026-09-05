@@ -1,0 +1,46 @@
+{
+  "current_reader_missing": [],
+  "historical_omitted_routes": [
+    {
+      "from": "project/reviews/qwen35-learning-10/REVIEW.md",
+      "target": "project/PACKAGE-VALIDATION-RESEARCH-10.json",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    },
+    {
+      "from": "project/reviews/qwen35-learning-10/REVIEW.md",
+      "target": "project/PACKAGE-MANIFEST-RESEARCH-10.json",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    },
+    {
+      "from": "project/sources/SIBLING-FULL-TEXT-REVIEW-03.md",
+      "target": "san-external-cortex-loop-20260801/release/final-preprint-v1.0/manuscript/the-external-cortex-loop.md",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    },
+    {
+      "from": "project/sources/SIBLING-FULL-TEXT-REVIEW-03.md",
+      "target": "san-network-learns-it-is-network-20260801/release/final-preprint-v1.0/manuscript/the-network-that-learns-it-is-a-network.md",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    },
+    {
+      "from": "project/sources/SIBLING-FULL-TEXT-REVIEW-03.md",
+      "target": "unified-agentic-workspace-paper-20260721/release/uaw-two-task-pilot-preprint-20260808-v7-review-ready/paper/manuscript-source.md",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    },
+    {
+      "from": "project/sources/SIBLING-FULL-TEXT-REVIEW-03.md",
+      "target": "san-reciprocal-ai-neuroscience-translation-20260825/release/final-preprint/manuscript.md",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    },
+    {
+      "from": "project/sources/SIBLING-FULL-TEXT-REVIEW-03.md",
+      "target": "project/sources/SIBLING-SOURCE-FREEZE-03.json",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    },
+    {
+      "from": "project/sources/TRANSFORMER-BRIDGE-AND-ACCEPTANCE-04.md",
+      "target": "project/GOAL.md",
+      "role": "Historical internal workflow/source route, not part of the selected public distribution"
+    }
+  ],
+  "boundary": "Finite literal link inventory, not external-URL or fragment verification; omitted historical workflow links are not public source evidence"
+}

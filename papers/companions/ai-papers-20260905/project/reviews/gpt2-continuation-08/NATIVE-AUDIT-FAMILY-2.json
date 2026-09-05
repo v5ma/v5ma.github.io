@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "family_index": 2,
+  "reported_readouts_with_reuse_checked": 120,
+  "actual_roots_recomputed": 28,
+  "actual_continuations_recomputed": 80,
+  "decoder_steps": 640,
+  "elapsed_seconds": 28.10899999999674,
+  "numerical_threads": 1,
+  "maximum_compared_logit_error": 0.0,
+  "saved_state_arrays_and_cache_digests_match": true,
+  "independent_review": false,
+  "shared_adapter_and_prior_audit_formula": true,
+  "auditor_sha256": "a9f57d3e91fe6f446ff7f50b83afca6f3d42c8cbe9a1fbd5036f4591561f1207",
+  "prior_formula_sha256": "bf8f4f13d0fff55cb1a636b73b8184965e8eaa611d03c7efb2725b8f897262a7"
+}

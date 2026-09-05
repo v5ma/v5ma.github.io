@@ -1,0 +1,2802 @@
+[
+  {
+    "id": "J00",
+    "template": 0,
+    "names": [
+      "William",
+      "Elizabeth"
+    ],
+    "cases": [
+      {
+        "id": "J00_g0_c0_recipient",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "recipient",
+        "text": "When William and Elizabeth arrived at the airport, William gave a red book to",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          3977,
+          2921,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J00_g1_c0_recipient"
+      },
+      {
+        "id": "J00_g0_c0_color",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "color",
+        "text": "When William and Elizabeth arrived at the airport, William gave a red book to Elizabeth. The color of the book was",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          3977,
+          2921,
+          257,
+          2266,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J00_g1_c0_color"
+      },
+      {
+        "id": "J00_g0_c1_recipient",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "recipient",
+        "text": "When William and Elizabeth arrived at the airport, William gave a blue book to",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          3977,
+          2921,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J00_g1_c1_recipient"
+      },
+      {
+        "id": "J00_g0_c1_color",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "color",
+        "text": "When William and Elizabeth arrived at the airport, William gave a blue book to Elizabeth. The color of the book was",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          3977,
+          2921,
+          257,
+          4171,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J00_g1_c1_color"
+      },
+      {
+        "id": "J00_g1_c0_recipient",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "recipient",
+        "text": "When William and Elizabeth arrived at the airport, Elizabeth gave a red book to",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          10674,
+          2921,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J00_g0_c0_recipient"
+      },
+      {
+        "id": "J00_g1_c0_color",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "color",
+        "text": "When William and Elizabeth arrived at the airport, Elizabeth gave a red book to William. The color of the book was",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          10674,
+          2921,
+          257,
+          2266,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J00_g0_c0_color"
+      },
+      {
+        "id": "J00_g1_c1_recipient",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "recipient",
+        "text": "When William and Elizabeth arrived at the airport, Elizabeth gave a blue book to",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          10674,
+          2921,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J00_g0_c1_recipient"
+      },
+      {
+        "id": "J00_g1_c1_color",
+        "family": "J00",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "color",
+        "text": "When William and Elizabeth arrived at the airport, Elizabeth gave a blue book to William. The color of the book was",
+        "ids": [
+          2215,
+          3977,
+          290,
+          10674,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          10674,
+          2921,
+          257,
+          4171,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J00_g0_c1_color"
+      }
+    ]
+  },
+  {
+    "id": "J01",
+    "template": 0,
+    "names": [
+      "Joseph",
+      "Susan"
+    ],
+    "cases": [
+      {
+        "id": "J01_g0_c0_recipient",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "recipient",
+        "text": "When Joseph and Susan arrived at the airport, Joseph gave a red book to",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          7212,
+          2921,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J01_g1_c0_recipient"
+      },
+      {
+        "id": "J01_g0_c0_color",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "color",
+        "text": "When Joseph and Susan arrived at the airport, Joseph gave a red book to Susan. The color of the book was",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          7212,
+          2921,
+          257,
+          2266,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J01_g1_c0_color"
+      },
+      {
+        "id": "J01_g0_c1_recipient",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "recipient",
+        "text": "When Joseph and Susan arrived at the airport, Joseph gave a blue book to",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          7212,
+          2921,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J01_g1_c1_recipient"
+      },
+      {
+        "id": "J01_g0_c1_color",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "color",
+        "text": "When Joseph and Susan arrived at the airport, Joseph gave a blue book to Susan. The color of the book was",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          7212,
+          2921,
+          257,
+          4171,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J01_g1_c1_color"
+      },
+      {
+        "id": "J01_g1_c0_recipient",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "recipient",
+        "text": "When Joseph and Susan arrived at the airport, Susan gave a red book to",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          14919,
+          2921,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J01_g0_c0_recipient"
+      },
+      {
+        "id": "J01_g1_c0_color",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "color",
+        "text": "When Joseph and Susan arrived at the airport, Susan gave a red book to Joseph. The color of the book was",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          14919,
+          2921,
+          257,
+          2266,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J01_g0_c0_color"
+      },
+      {
+        "id": "J01_g1_c1_recipient",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "recipient",
+        "text": "When Joseph and Susan arrived at the airport, Susan gave a blue book to",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          14919,
+          2921,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J01_g0_c1_recipient"
+      },
+      {
+        "id": "J01_g1_c1_color",
+        "family": "J01",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "color",
+        "text": "When Joseph and Susan arrived at the airport, Susan gave a blue book to Joseph. The color of the book was",
+        "ids": [
+          2215,
+          7212,
+          290,
+          14919,
+          5284,
+          379,
+          262,
+          9003,
+          11,
+          14919,
+          2921,
+          257,
+          4171,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J01_g0_c1_color"
+      }
+    ]
+  },
+  {
+    "id": "J02",
+    "template": 1,
+    "names": [
+      "William",
+      "Elizabeth"
+    ],
+    "cases": [
+      {
+        "id": "J02_g0_c0_recipient",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "recipient",
+        "text": "After William and Elizabeth left the restaurant, William handed a red book to",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          3977,
+          10158,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J02_g1_c0_recipient"
+      },
+      {
+        "id": "J02_g0_c0_color",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "color",
+        "text": "After William and Elizabeth left the restaurant, William handed a red book to Elizabeth. The color of the book was",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          3977,
+          10158,
+          257,
+          2266,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J02_g1_c0_color"
+      },
+      {
+        "id": "J02_g0_c1_recipient",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "recipient",
+        "text": "After William and Elizabeth left the restaurant, William handed a blue book to",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          3977,
+          10158,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J02_g1_c1_recipient"
+      },
+      {
+        "id": "J02_g0_c1_color",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "color",
+        "text": "After William and Elizabeth left the restaurant, William handed a blue book to Elizabeth. The color of the book was",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          3977,
+          10158,
+          257,
+          4171,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J02_g1_c1_color"
+      },
+      {
+        "id": "J02_g1_c0_recipient",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "recipient",
+        "text": "After William and Elizabeth left the restaurant, Elizabeth handed a red book to",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          10674,
+          10158,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J02_g0_c0_recipient"
+      },
+      {
+        "id": "J02_g1_c0_color",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "color",
+        "text": "After William and Elizabeth left the restaurant, Elizabeth handed a red book to William. The color of the book was",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          10674,
+          10158,
+          257,
+          2266,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J02_g0_c0_color"
+      },
+      {
+        "id": "J02_g1_c1_recipient",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "recipient",
+        "text": "After William and Elizabeth left the restaurant, Elizabeth handed a blue book to",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          10674,
+          10158,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J02_g0_c1_recipient"
+      },
+      {
+        "id": "J02_g1_c1_color",
+        "family": "J02",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "color",
+        "text": "After William and Elizabeth left the restaurant, Elizabeth handed a blue book to William. The color of the book was",
+        "ids": [
+          3260,
+          3977,
+          290,
+          10674,
+          1364,
+          262,
+          7072,
+          11,
+          10674,
+          10158,
+          257,
+          4171,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J02_g0_c1_color"
+      }
+    ]
+  },
+  {
+    "id": "J03",
+    "template": 1,
+    "names": [
+      "Joseph",
+      "Susan"
+    ],
+    "cases": [
+      {
+        "id": "J03_g0_c0_recipient",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "recipient",
+        "text": "After Joseph and Susan left the restaurant, Joseph handed a red book to",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          7212,
+          10158,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J03_g1_c0_recipient"
+      },
+      {
+        "id": "J03_g0_c0_color",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "color",
+        "text": "After Joseph and Susan left the restaurant, Joseph handed a red book to Susan. The color of the book was",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          7212,
+          10158,
+          257,
+          2266,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J03_g1_c0_color"
+      },
+      {
+        "id": "J03_g0_c1_recipient",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "recipient",
+        "text": "After Joseph and Susan left the restaurant, Joseph handed a blue book to",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          7212,
+          10158,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J03_g1_c1_recipient"
+      },
+      {
+        "id": "J03_g0_c1_color",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "color",
+        "text": "After Joseph and Susan left the restaurant, Joseph handed a blue book to Susan. The color of the book was",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          7212,
+          10158,
+          257,
+          4171,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J03_g1_c1_color"
+      },
+      {
+        "id": "J03_g1_c0_recipient",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "recipient",
+        "text": "After Joseph and Susan left the restaurant, Susan handed a red book to",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          14919,
+          10158,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J03_g0_c0_recipient"
+      },
+      {
+        "id": "J03_g1_c0_color",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "color",
+        "text": "After Joseph and Susan left the restaurant, Susan handed a red book to Joseph. The color of the book was",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          14919,
+          10158,
+          257,
+          2266,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J03_g0_c0_color"
+      },
+      {
+        "id": "J03_g1_c1_recipient",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "recipient",
+        "text": "After Joseph and Susan left the restaurant, Susan handed a blue book to",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          14919,
+          10158,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J03_g0_c1_recipient"
+      },
+      {
+        "id": "J03_g1_c1_color",
+        "family": "J03",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "color",
+        "text": "After Joseph and Susan left the restaurant, Susan handed a blue book to Joseph. The color of the book was",
+        "ids": [
+          3260,
+          7212,
+          290,
+          14919,
+          1364,
+          262,
+          7072,
+          11,
+          14919,
+          10158,
+          257,
+          4171,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J03_g0_c1_color"
+      }
+    ]
+  },
+  {
+    "id": "J04",
+    "template": 2,
+    "names": [
+      "William",
+      "Elizabeth"
+    ],
+    "cases": [
+      {
+        "id": "J04_g0_c0_recipient",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "recipient",
+        "text": "While William and Elizabeth waited at the station, William passed a red book to",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          3977,
+          3804,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J04_g1_c0_recipient"
+      },
+      {
+        "id": "J04_g0_c0_color",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "color",
+        "text": "While William and Elizabeth waited at the station, William passed a red book to Elizabeth. The color of the book was",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          3977,
+          3804,
+          257,
+          2266,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J04_g1_c0_color"
+      },
+      {
+        "id": "J04_g0_c1_recipient",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "recipient",
+        "text": "While William and Elizabeth waited at the station, William passed a blue book to",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          3977,
+          3804,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J04_g1_c1_recipient"
+      },
+      {
+        "id": "J04_g0_c1_color",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "color",
+        "text": "While William and Elizabeth waited at the station, William passed a blue book to Elizabeth. The color of the book was",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          3977,
+          3804,
+          257,
+          4171,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J04_g1_c1_color"
+      },
+      {
+        "id": "J04_g1_c0_recipient",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "recipient",
+        "text": "While William and Elizabeth waited at the station, Elizabeth passed a red book to",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          10674,
+          3804,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J04_g0_c0_recipient"
+      },
+      {
+        "id": "J04_g1_c0_color",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "color",
+        "text": "While William and Elizabeth waited at the station, Elizabeth passed a red book to William. The color of the book was",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          10674,
+          3804,
+          257,
+          2266,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J04_g0_c0_color"
+      },
+      {
+        "id": "J04_g1_c1_recipient",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "recipient",
+        "text": "While William and Elizabeth waited at the station, Elizabeth passed a blue book to",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          10674,
+          3804,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J04_g0_c1_recipient"
+      },
+      {
+        "id": "J04_g1_c1_color",
+        "family": "J04",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "color",
+        "text": "While William and Elizabeth waited at the station, Elizabeth passed a blue book to William. The color of the book was",
+        "ids": [
+          3633,
+          3977,
+          290,
+          10674,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          10674,
+          3804,
+          257,
+          4171,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J04_g0_c1_color"
+      }
+    ]
+  },
+  {
+    "id": "J05",
+    "template": 2,
+    "names": [
+      "Joseph",
+      "Susan"
+    ],
+    "cases": [
+      {
+        "id": "J05_g0_c0_recipient",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "recipient",
+        "text": "While Joseph and Susan waited at the station, Joseph passed a red book to",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          7212,
+          3804,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J05_g1_c0_recipient"
+      },
+      {
+        "id": "J05_g0_c0_color",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "color",
+        "text": "While Joseph and Susan waited at the station, Joseph passed a red book to Susan. The color of the book was",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          7212,
+          3804,
+          257,
+          2266,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J05_g1_c0_color"
+      },
+      {
+        "id": "J05_g0_c1_recipient",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "recipient",
+        "text": "While Joseph and Susan waited at the station, Joseph passed a blue book to",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          7212,
+          3804,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J05_g1_c1_recipient"
+      },
+      {
+        "id": "J05_g0_c1_color",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "color",
+        "text": "While Joseph and Susan waited at the station, Joseph passed a blue book to Susan. The color of the book was",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          7212,
+          3804,
+          257,
+          4171,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J05_g1_c1_color"
+      },
+      {
+        "id": "J05_g1_c0_recipient",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "recipient",
+        "text": "While Joseph and Susan waited at the station, Susan passed a red book to",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          14919,
+          3804,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J05_g0_c0_recipient"
+      },
+      {
+        "id": "J05_g1_c0_color",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "color",
+        "text": "While Joseph and Susan waited at the station, Susan passed a red book to Joseph. The color of the book was",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          14919,
+          3804,
+          257,
+          2266,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J05_g0_c0_color"
+      },
+      {
+        "id": "J05_g1_c1_recipient",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "recipient",
+        "text": "While Joseph and Susan waited at the station, Susan passed a blue book to",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          14919,
+          3804,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J05_g0_c1_recipient"
+      },
+      {
+        "id": "J05_g1_c1_color",
+        "family": "J05",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "color",
+        "text": "While Joseph and Susan waited at the station, Susan passed a blue book to Joseph. The color of the book was",
+        "ids": [
+          3633,
+          7212,
+          290,
+          14919,
+          13488,
+          379,
+          262,
+          4429,
+          11,
+          14919,
+          3804,
+          257,
+          4171,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J05_g0_c1_color"
+      }
+    ]
+  },
+  {
+    "id": "J06",
+    "template": 3,
+    "names": [
+      "William",
+      "Elizabeth"
+    ],
+    "cases": [
+      {
+        "id": "J06_g0_c0_recipient",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "recipient",
+        "text": "Before William and Elizabeth attended the concert, William brought a red book to",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          3977,
+          3181,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J06_g1_c0_recipient"
+      },
+      {
+        "id": "J06_g0_c0_color",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "red",
+        "query": "color",
+        "text": "Before William and Elizabeth attended the concert, William brought a red book to Elizabeth. The color of the book was",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          3977,
+          3181,
+          257,
+          2266,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J06_g1_c0_color"
+      },
+      {
+        "id": "J06_g0_c1_recipient",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "recipient",
+        "text": "Before William and Elizabeth attended the concert, William brought a blue book to",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          3977,
+          3181,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J06_g1_c1_recipient"
+      },
+      {
+        "id": "J06_g0_c1_color",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "William",
+        "recipient": "Elizabeth",
+        "color": "blue",
+        "query": "color",
+        "text": "Before William and Elizabeth attended the concert, William brought a blue book to Elizabeth. The color of the book was",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          3977,
+          3181,
+          257,
+          4171,
+          1492,
+          284,
+          10674,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J06_g1_c1_color"
+      },
+      {
+        "id": "J06_g1_c0_recipient",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "recipient",
+        "text": "Before William and Elizabeth attended the concert, Elizabeth brought a red book to",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          10674,
+          3181,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J06_g0_c0_recipient"
+      },
+      {
+        "id": "J06_g1_c0_color",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "red",
+        "query": "color",
+        "text": "Before William and Elizabeth attended the concert, Elizabeth brought a red book to William. The color of the book was",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          10674,
+          3181,
+          257,
+          2266,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J06_g0_c0_color"
+      },
+      {
+        "id": "J06_g1_c1_recipient",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "recipient",
+        "text": "Before William and Elizabeth attended the concert, Elizabeth brought a blue book to",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          10674,
+          3181,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "William",
+          "Elizabeth"
+        ],
+        "word_ids": [
+          3977,
+          10674
+        ],
+        "opposite": "J06_g0_c1_recipient"
+      },
+      {
+        "id": "J06_g1_c1_color",
+        "family": "J06",
+        "names": [
+          "William",
+          "Elizabeth"
+        ],
+        "giver": "Elizabeth",
+        "recipient": "William",
+        "color": "blue",
+        "query": "color",
+        "text": "Before William and Elizabeth attended the concert, Elizabeth brought a blue book to William. The color of the book was",
+        "ids": [
+          8421,
+          3977,
+          290,
+          10674,
+          9141,
+          262,
+          10010,
+          11,
+          10674,
+          3181,
+          257,
+          4171,
+          1492,
+          284,
+          3977,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J06_g0_c1_color"
+      }
+    ]
+  },
+  {
+    "id": "J07",
+    "template": 3,
+    "names": [
+      "Joseph",
+      "Susan"
+    ],
+    "cases": [
+      {
+        "id": "J07_g0_c0_recipient",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "recipient",
+        "text": "Before Joseph and Susan attended the concert, Joseph brought a red book to",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          7212,
+          3181,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J07_g1_c0_recipient"
+      },
+      {
+        "id": "J07_g0_c0_color",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "red",
+        "query": "color",
+        "text": "Before Joseph and Susan attended the concert, Joseph brought a red book to Susan. The color of the book was",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          7212,
+          3181,
+          257,
+          2266,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J07_g1_c0_color"
+      },
+      {
+        "id": "J07_g0_c1_recipient",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "recipient",
+        "text": "Before Joseph and Susan attended the concert, Joseph brought a blue book to",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          7212,
+          3181,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J07_g1_c1_recipient"
+      },
+      {
+        "id": "J07_g0_c1_color",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Joseph",
+        "recipient": "Susan",
+        "color": "blue",
+        "query": "color",
+        "text": "Before Joseph and Susan attended the concert, Joseph brought a blue book to Susan. The color of the book was",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          7212,
+          3181,
+          257,
+          4171,
+          1492,
+          284,
+          14919,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J07_g1_c1_color"
+      },
+      {
+        "id": "J07_g1_c0_recipient",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "recipient",
+        "text": "Before Joseph and Susan attended the concert, Susan brought a red book to",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          14919,
+          3181,
+          257,
+          2266,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J07_g0_c0_recipient"
+      },
+      {
+        "id": "J07_g1_c0_color",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "red",
+        "query": "color",
+        "text": "Before Joseph and Susan attended the concert, Susan brought a red book to Joseph. The color of the book was",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          14919,
+          3181,
+          257,
+          2266,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J07_g0_c0_color"
+      },
+      {
+        "id": "J07_g1_c1_recipient",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "recipient",
+        "text": "Before Joseph and Susan attended the concert, Susan brought a blue book to",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          14919,
+          3181,
+          257,
+          4171,
+          1492,
+          284
+        ],
+        "words": [
+          "Joseph",
+          "Susan"
+        ],
+        "word_ids": [
+          7212,
+          14919
+        ],
+        "opposite": "J07_g0_c1_recipient"
+      },
+      {
+        "id": "J07_g1_c1_color",
+        "family": "J07",
+        "names": [
+          "Joseph",
+          "Susan"
+        ],
+        "giver": "Susan",
+        "recipient": "Joseph",
+        "color": "blue",
+        "query": "color",
+        "text": "Before Joseph and Susan attended the concert, Susan brought a blue book to Joseph. The color of the book was",
+        "ids": [
+          8421,
+          7212,
+          290,
+          14919,
+          9141,
+          262,
+          10010,
+          11,
+          14919,
+          3181,
+          257,
+          4171,
+          1492,
+          284,
+          7212,
+          13,
+          383,
+          3124,
+          286,
+          262,
+          1492,
+          373
+        ],
+        "words": [
+          "red",
+          "blue"
+        ],
+        "word_ids": [
+          2266,
+          4171
+        ],
+        "opposite": "J07_g0_c1_color"
+      }
+    ]
+  }
+]

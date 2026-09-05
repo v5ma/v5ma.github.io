@@ -1,0 +1,250 @@
+[
+  {
+    "family": "H00",
+    "internal": {
+      "correct": 0,
+      "mean_target_probability": 0.016881372423398745
+    },
+    "task": {
+      "correct": 0,
+      "mean_target_probability": 0.014394365769804214
+    },
+    "yoked": {
+      "correct": 0,
+      "mean_target_probability": 0.011954506917387848
+    },
+    "supervised_ridge": {
+      "correct": 0,
+      "mean_target_probability": 0.03949529120959656
+    },
+    "clean_text": {
+      "correct": 0,
+      "mean_target_probability": 0.079082408184769
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.002963961394684814
+    },
+    "post_attack_unverified": {
+      "correct": 0,
+      "mean_target_probability": 0.0003393486015945676
+    }
+  },
+  {
+    "family": "H01",
+    "internal": {
+      "correct": 0,
+      "mean_target_probability": 0.04493073147667288
+    },
+    "task": {
+      "correct": 1,
+      "mean_target_probability": 0.09777011207409628
+    },
+    "yoked": {
+      "correct": 1,
+      "mean_target_probability": 0.07617718152410974
+    },
+    "supervised_ridge": {
+      "correct": 1,
+      "mean_target_probability": 0.13271376342523428
+    },
+    "clean_text": {
+      "correct": 2,
+      "mean_target_probability": 0.313248311744234
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.0124662905851205
+    },
+    "post_attack_unverified": {
+      "correct": 0,
+      "mean_target_probability": 0.002852757676797535
+    }
+  },
+  {
+    "family": "H02",
+    "internal": {
+      "correct": 0,
+      "mean_target_probability": 0.019882137290716105
+    },
+    "task": {
+      "correct": 0,
+      "mean_target_probability": 0.04900485494256484
+    },
+    "yoked": {
+      "correct": 0,
+      "mean_target_probability": 0.07167315173763955
+    },
+    "supervised_ridge": {
+      "correct": 0,
+      "mean_target_probability": 0.1344931561914222
+    },
+    "clean_text": {
+      "correct": 2,
+      "mean_target_probability": 0.3656875298697676
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.003931776533326419
+    },
+    "post_attack_unverified": {
+      "correct": 0,
+      "mean_target_probability": 0.027317906575013828
+    }
+  },
+  {
+    "family": "H03",
+    "internal": {
+      "correct": 0,
+      "mean_target_probability": 0.04418733129429756
+    },
+    "task": {
+      "correct": 0,
+      "mean_target_probability": 0.06727989855334922
+    },
+    "yoked": {
+      "correct": 1,
+      "mean_target_probability": 0.1483251948834624
+    },
+    "supervised_ridge": {
+      "correct": 2,
+      "mean_target_probability": 0.22893849440975284
+    },
+    "clean_text": {
+      "correct": 2,
+      "mean_target_probability": 0.5528674507636406
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.01871322394186145
+    },
+    "post_attack_unverified": {
+      "correct": 0,
+      "mean_target_probability": 0.011824926357196602
+    }
+  },
+  {
+    "family": "H04",
+    "internal": {
+      "correct": 1,
+      "mean_target_probability": 0.1641504163294443
+    },
+    "task": {
+      "correct": 1,
+      "mean_target_probability": 0.2451149205874012
+    },
+    "yoked": {
+      "correct": 1,
+      "mean_target_probability": 0.16845185432429216
+    },
+    "supervised_ridge": {
+      "correct": 1,
+      "mean_target_probability": 0.138354096685333
+    },
+    "clean_text": {
+      "correct": 2,
+      "mean_target_probability": 0.42149358698495343
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.0035894107554261573
+    },
+    "post_attack_unverified": {
+      "correct": 1,
+      "mean_target_probability": 0.23574275666932162
+    }
+  },
+  {
+    "family": "H05",
+    "internal": {
+      "correct": 1,
+      "mean_target_probability": 0.1392037935497558
+    },
+    "task": {
+      "correct": 1,
+      "mean_target_probability": 0.18958979021615965
+    },
+    "yoked": {
+      "correct": 1,
+      "mean_target_probability": 0.12453110096308039
+    },
+    "supervised_ridge": {
+      "correct": 1,
+      "mean_target_probability": 0.19556477587003473
+    },
+    "clean_text": {
+      "correct": 2,
+      "mean_target_probability": 0.5420692912799624
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.010940115682409964
+    },
+    "post_attack_unverified": {
+      "correct": 1,
+      "mean_target_probability": 0.17566744001796272
+    }
+  },
+  {
+    "family": "H06",
+    "internal": {
+      "correct": 1,
+      "mean_target_probability": 0.14755783604366127
+    },
+    "task": {
+      "correct": 1,
+      "mean_target_probability": 0.1965102612878643
+    },
+    "yoked": {
+      "correct": 0,
+      "mean_target_probability": 0.041592772803336016
+    },
+    "supervised_ridge": {
+      "correct": 2,
+      "mean_target_probability": 0.1940652863340933
+    },
+    "clean_text": {
+      "correct": 2,
+      "mean_target_probability": 0.3984232481190323
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.00857747025378058
+    },
+    "post_attack_unverified": {
+      "correct": 1,
+      "mean_target_probability": 0.2952786704703356
+    }
+  },
+  {
+    "family": "H07",
+    "internal": {
+      "correct": 1,
+      "mean_target_probability": 0.1754143121978399
+    },
+    "task": {
+      "correct": 1,
+      "mean_target_probability": 0.21705412708503719
+    },
+    "yoked": {
+      "correct": 0,
+      "mean_target_probability": 0.10838414561387877
+    },
+    "supervised_ridge": {
+      "correct": 2,
+      "mean_target_probability": 0.33161488892400043
+    },
+    "clean_text": {
+      "correct": 2,
+      "mean_target_probability": 0.5418311929406969
+    },
+    "corrupted_no_edit": {
+      "correct": 0,
+      "mean_target_probability": 0.03636382315602124
+    },
+    "post_attack_unverified": {
+      "correct": 1,
+      "mean_target_probability": 0.27869929585709285
+    }
+  }
+]

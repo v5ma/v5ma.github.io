@@ -1,0 +1,110 @@
+[
+  {
+    "family": "F00",
+    "split": "development",
+    "paired_mean_gain": 3.8007240295410156,
+    "individual_recovery": [
+      0.692645957948357,
+      0.7500097737273521
+    ]
+  },
+  {
+    "family": "F01",
+    "split": "development",
+    "paired_mean_gain": 6.151023864746094,
+    "individual_recovery": [
+      0.7512255250257631,
+      0.946092688323486
+    ]
+  },
+  {
+    "family": "F02",
+    "split": "development",
+    "paired_mean_gain": 4.37957763671875,
+    "individual_recovery": [
+      0.6716372933436946,
+      0.6904465021918768
+    ]
+  },
+  {
+    "family": "F03",
+    "split": "development",
+    "paired_mean_gain": 6.405391693115234,
+    "individual_recovery": [
+      0.6638651789997673,
+      0.9312775790738657
+    ]
+  },
+  {
+    "family": "F04",
+    "split": "heldout",
+    "paired_mean_gain": 3.6815261840820312,
+    "individual_recovery": [
+      0.6474010086013834,
+      0.7811154414888342
+    ]
+  },
+  {
+    "family": "F05",
+    "split": "heldout",
+    "paired_mean_gain": 4.539402008056641,
+    "individual_recovery": [
+      0.7462838640313043,
+      0.7413919413919414
+    ]
+  },
+  {
+    "family": "F06",
+    "split": "heldout",
+    "paired_mean_gain": 1.1310157775878906,
+    "individual_recovery": [
+      0.6326429442049155,
+      0.7157943568192981
+    ]
+  },
+  {
+    "family": "F07",
+    "split": "heldout",
+    "paired_mean_gain": 1.6569557189941406,
+    "individual_recovery": [
+      1.0499904308374706,
+      1.3949925135375505
+    ]
+  },
+  {
+    "family": "F08",
+    "split": "heldout",
+    "paired_mean_gain": 4.1303558349609375,
+    "individual_recovery": [
+      0.5928103296359861,
+      0.8289827020880141
+    ]
+  },
+  {
+    "family": "F09",
+    "split": "heldout",
+    "paired_mean_gain": 6.905021667480469,
+    "individual_recovery": [
+      0.7189134751823305,
+      0.8843811393151779
+    ]
+  },
+  {
+    "family": "F10",
+    "split": "heldout",
+    "paired_mean_gain": 4.2401885986328125,
+    "individual_recovery": [
+      0.5721511983066887,
+      0.7885943875396181
+    ]
+  },
+  {
+    "family": "F11",
+    "split": "heldout",
+    "paired_mean_gain": 5.818290710449219,
+    "individual_recovery": [
+      0.6695809310388062,
+      0.8481484503583291
+    ]
+  }
+]

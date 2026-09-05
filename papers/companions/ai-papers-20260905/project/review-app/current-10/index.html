@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<title>AI Core Alignment & AI Mechanistic Interpretability — Evidence Review</title>
+</head>
+<body>
+<a class="skip" href="#main">Skip to evidence</a>
+<header>
+<p class="eyebrow">SELF AWARE NETWORKS RESEARCH INSTITUTE · PUBLIC PREPRINT COMPANION</p>
+<h1>AI Core Alignment &amp;<br>AI Mechanistic Interpretability</h1>
+<p class="lede">From receiver-relative mechanisms to tests inside language models.</p>
+<p>Micah Blumberg · Draft 10 · September 5, 2026</p>
+<div class="notice"><strong>Recorded evidence, not live model inference.</strong> This page reads a small, fixed data bundle. No models are loaded, no private text is sent anywhere, and no real actions are performed. Both papers share these experiments; they are not independent replications.</div>
+<nav aria-label="Evidence sections"><a href="#models">Model mapping</a><a href="#results">Measured results</a><a href="#cases">Inspect answers</a><a href="#authority">Try the scope rule</a><a href="#papers">Papers &amp; limits</a></nav>
+</header>
+<main id="main">
+<section id="models" aria-labelledby="model-heading">
+<p class="eyebrow">01 / SPECIFY THE IMPLEMENTATION</p>
+<h2 id="model-heading">Which model, which mechanism?</h2>
+<p>A biological proposal needs an explicit computational translation—not an anatomical label pasted onto an attention head. Each model below has its own evidence boundary.</p>
+<label for="model">Model family</label>
+<select id="model"><option value="gpt2">GPT-2 · tested historical baseline</option><option value="qwen">Qwen3.5-0.8B · tested modern hybrid</option><option value="deepseek-v3">DeepSeek V3 · mapped, not tested</option><option value="deepseek-v4">DeepSeek V4 · mapped, not tested</option></select>
+<article id="model-card" class="inset" aria-live="polite"></article>
+<details><summary>How the SAN questions map to AI operations</summary>
+<div class="table-scroll" tabindex="0" role="region" aria-label="SAN to AI implementation mapping">
+<table><caption>Operational correspondences, not biological identities</caption><thead><tr><th scope="col">Research question</th><th scope="col">AI implementation</th><th scope="col">Necessary discriminator</th></tr></thead><tbody>
+<tr><th scope="row">Receiver-relative consequence</th><td>A named residual state and its actual downstream computations</td><td>Original-model intervention versus wrong-context and damage controls</td></tr>
+<tr><th scope="row">A small cue recruits learned structure</th><td>Tokens acting through existing weights, context and routes</td><td>Separate cue information from the receiving model's learned information</td></tr>
+<tr><th scope="row">Continuing commitments</th><td>Context/cache, external memory, learned correction maps and a separate authority monitor</td><td>Meaning, authority, competence and restoration tested separately</td></tr>
+<tr><th scope="row">Feedback and adaptation</th><td>Specified observations, writable state and a learning rule</td><td>Equal-information task/external feedback and untouched evaluation cases</td></tr>
+<tr><th scope="row">Causal use of a decoded feature</th><td>A feature at a specified hook, followed by a native model continuation</td><td>Prediction, suppression, off-target behavior and restoration—not probe accuracy alone</td></tr>
+</tbody></table></div>
+<p>A residual vector is not a brainwave; token position is not oscillatory phase; a mixture-of-experts router is not a thalamus. The broader SAN hypothesis remains distinct from these bounded implementations.</p>
+<p><a href="../../sources/TRANSFORMER-BRIDGE-AND-ACCEPTANCE-04.md">Full transformer acceptance contract</a> · <a href="../../reviews/review-app-10/MODEL-SOURCE-READBACK.md">Current primary-source readback</a></p>
+</details>
+</section>
+<section id="results" aria-labelledby="results-heading">
+<p class="eyebrow">02 / MEASURE BEHAVIOR</p><h2 id="results-heading">A changed state is not necessarily a corrected meaning.</h2>
+<p>Qwen3.5-0.8B answered all 48 ordinary questions correctly in each study's separate 16-story evaluation set. The intervention task was to reverse who gave and received a book while retaining its color.</p>
+<label for="study">Recorded study</label><select id="study"><option value="learned">Learned correction · study 10</option><option value="transfer">Native state transfer · study 9</option></select>
+<div id="study-note" class="inset" aria-live="polite"></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Recorded results table">
+<table id="metrics"><caption id="metrics-caption"></caption><thead><tr><th scope="col">Condition</th><th scope="col">Giver /16</th><th scope="col">Recipient /16</th><th scope="col">Color /16</th><th scope="col">Complete groups /8</th></tr></thead><tbody></tbody></table>
+</div>
+<p class="muted">Primary scoring ignores capitalization after trimming the complete generated answer. A complete group requires all six answers across two opposite-direction stories: both roles and color in each. The unedited row is scored against the requested reversal, not ordinary competence. Groups share templates; these are descriptive development counts, not independent clinical or population estimates.</p>
+<details><summary>Architecture and measured-result figures</summary>
+<figure><img loading="lazy" src="../../figures/qwen35-hybrid-09-v2/hybrid-state-architecture.png" alt="Qwen3.5 hybrid architecture separates attention key/value state from convolutional and recurrent state."><figcaption>State groups are different mechanisms and sizes, not matched interchangeable controls.</figcaption></figure>
+<figure><img loading="lazy" src="../../figures/qwen35-learning-10/learned-repair-results.png" alt="Learned corrections each achieve five of thirty-two role answers, but no complete groups; privileged donor controls achieve all groups."><figcaption>Study 10: positive donor controls and unsuccessful learned relational correction.</figcaption></figure>
+</details>
+</section>
+<section id="cases" aria-labelledby="cases-heading">
+<p class="eyebrow">03 / READ THE ACTUAL ANSWERS</p><h2 id="cases-heading">Look beyond an aggregate score.</h2>
+<p>Inspect any of the 16 held-out study-10 stories and all eight conditions. These are saved native-model answers, not answers generated by this page.</p>
+<div class="two"><div><label for="case">Original story</label><select id="case"></select></div><div><label for="arm">Intervention</label><select id="arm"></select></div></div>
+<p id="case-story" class="inset"></p><p id="arm-note"></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Individual recorded answers">
+<table id="answers"><caption>Requested reversal: giver and recipient exchange roles; color stays the same.</caption><thead><tr><th scope="col">Question</th><th scope="col">Expected after reversal</th><th scope="col">Saved answer</th><th scope="col">Correct?</th></tr></thead><tbody></tbody></table>
+</div>
+<p id="case-verdict" role="status"></p><p id="case-source"></p>
+<p class="muted">The linear, nonlinear and text conditions sometimes return the same person for both roles. A single correct role answer therefore does not establish a coherent corrected relationship.</p>
+</section>
+<section id="authority" aria-labelledby="authority-heading">
+<p class="eyebrow">04 / KEEP AUTHORITY SEPARATE</p><h2 id="authority-heading">Can a once-valid action become stale?</h2>
+<p>Prepare a virtual action for A, then change the scope and try executing the old proposal. This small rule demonstration is separate from model semantics and is not a production authentication system.</p>
+<div class="two"><div><label for="allow">Authorized object</label><select id="allow"><option>A</option><option>B</option><option>none</option></select><button id="update" type="button">Apply trusted update</button></div><div><label for="object">Proposed object</label><select id="object"><option>A</option><option>B</option><option>C</option></select><button id="prepare" type="button">Prepare proposal</button><button id="commit" type="button">Try virtual execution</button></div></div>
+<button id="untrusted" type="button">Present untrusted “allow everything”</button><button id="reset" type="button">Reset demonstration</button>
+<output id="authority-status" aria-live="polite"></output><pre id="trace" aria-label="Virtual event trace"></pre>
+<p class="muted">Trusted updates here are explicit UI actions, not identity verification. The separate Python tests use a public HMAC fixture key. An allowed intervention can still be semantically wrong. Stopping future edits does not undo existing changes or external actions.</p>
+<p><a href="../index.html">Preserved earlier lab: small-network route interventions and scope controls</a>. Its historical status text describes that earlier stage, not today's manuscript status.</p>
+</section>
+<section id="papers" aria-labelledby="papers-heading">
+<p class="eyebrow">05 / FOLLOW THE EVIDENCE</p><h2 id="papers-heading">Two papers. Shared evidence. Explicit limits.</h2>
+<div class="two"><article class="inset"><h3>AI Core Alignment Across Scales</h3><p>Human-guided co-regulation: whether legitimate guidance stays effective through changing scope, context, execution and learning.</p><p><a href="../../output/pdf/ai-core-alignment-across-scales.pdf">Draft 10 PDF · 15 pages</a> · <a href="../../core-alignment/drafts/DRAFT-10-20260905.md">Editable manuscript</a></p></article><article class="inset"><h3>AI Mechanistic Interpretability and Self-Aware Networks</h3><p>From neural decoding to causal self-regulation: distinguish readable representations, causal interventions and coherent useful correction.</p><p><a href="../../output/pdf/ai-mechanistic-interpretability-and-self-aware-networks.pdf">Draft 10 PDF · 17 pages</a> · <a href="../../mechanistic-interpretability/drafts/DRAFT-10-20260905.md">Editable manuscript</a></p></article></div>
+<p id="verification-counts"></p>
+<p><strong>Not established:</strong> learned semantic generalization, reduced human oversight, scaling to superintelligence, endogenous self-regulation, consciousness, or transfer to an original DeepSeek model. Publication as a preprint does not establish independent scientific review or complete author readback. Browser checks do not close those research obligations.</p>
+<p><a href="../../reviews/manuscript-10/VISUAL-REVIEW.md">Manuscript format review</a> · <a href="../../formal/README.md">Theorems, axioms and refinement boundaries</a> · <a href="../../EVIDENCE-INDEX.md">Public evidence index</a> · <a href="../../../REPRODUCTION-ADDENDUM-16.md">Later full-pipeline reproduction</a> · <a href="../../NEXT-PHASE.md">Remaining work</a></p>
+<details><summary>Provenance of this displayed data</summary><p>Every input to this viewer was checked against the frozen Draft 10 package manifest. The latest experimental receipt retains its original Draft 9 manuscript fields; manuscript status comes from the separate Draft 10 validation.</p><p><a href="./DATA-RECEIPT.json">Input paths, hashes and display counts</a> · <a href="../../reviews/qwen35-learning-10/COMPLETION.json">Experimental completion receipt</a> · <a href="../../PACKAGE-VALIDATION-DRAFT-10.json">Manuscript validation</a></p></details>
+</section>
+</main><footer>Public preprint companion. The unchanged Draft 10 research data are shared by both papers. See the <a href="../../../README.md">release guide</a> for current scope and the later reproduction supplement.</footer>
+<noscript><p>Enable JavaScript for the small data viewer and virtual controls. The manuscript and evidence links above remain available.</p></noscript>
+<script src="../engine.js"></script><script src="evidence.js"></script><script src="app.js"></script>
+</body>
+</html>

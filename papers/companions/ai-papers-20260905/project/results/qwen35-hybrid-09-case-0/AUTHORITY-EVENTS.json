@@ -1,0 +1,140 @@
+[
+  {
+    "stage": "swap",
+    "update_revision": 1,
+    "update_scope": [
+      [
+        "library-pair-0/green/0",
+        "swap"
+      ]
+    ],
+    "signature": "42249a2c688b02f06adb3ea45ac93ea281cee2fa72b78985b48f9c51d730f389",
+    "accepted": true,
+    "store_revision": 1,
+    "store_scope": [
+      [
+        "library-pair-0/green/0",
+        "swap"
+      ]
+    ],
+    "selected_arm": "full_donor",
+    "calls_before": 43,
+    "calls_after": 50,
+    "fresh_decoder_calls": 7
+  },
+  {
+    "stage": "stop_future_edits",
+    "update_revision": 2,
+    "update_scope": [
+      [
+        "library-pair-0/green/0",
+        "stop_future_edits"
+      ]
+    ],
+    "signature": "4ac8b775ed88615d23a01efbad2f3fc94d23badead52c3e0bde7a9cf96343ad9",
+    "accepted": true,
+    "store_revision": 2,
+    "store_scope": [
+      [
+        "library-pair-0/green/0",
+        "stop_future_edits"
+      ]
+    ],
+    "selected_arm": "full_donor",
+    "calls_before": 50,
+    "calls_after": 57,
+    "fresh_decoder_calls": 7
+  },
+  {
+    "stage": "forged_restore_all",
+    "update_revision": 3,
+    "update_scope": [
+      [
+        "library-pair-0/green/0",
+        "restore_all"
+      ]
+    ],
+    "signature": "forged",
+    "accepted": false,
+    "store_revision": 2,
+    "store_scope": [
+      [
+        "library-pair-0/green/0",
+        "stop_future_edits"
+      ]
+    ],
+    "selected_arm": "full_donor",
+    "calls_before": 57,
+    "calls_after": 57,
+    "fresh_decoder_calls": 0
+  },
+  {
+    "stage": "restore_kv",
+    "update_revision": 3,
+    "update_scope": [
+      [
+        "library-pair-0/green/0",
+        "restore_kv"
+      ]
+    ],
+    "signature": "039e1452774e5fc7f6bc758495e7236d23e0cea3f3a9671e22486e3fde47b8ab",
+    "accepted": true,
+    "store_revision": 3,
+    "store_scope": [
+      [
+        "library-pair-0/green/0",
+        "restore_kv"
+      ]
+    ],
+    "selected_arm": "conv_recurrent_donor",
+    "calls_before": 57,
+    "calls_after": 64,
+    "fresh_decoder_calls": 7
+  },
+  {
+    "stage": "restore_all",
+    "update_revision": 4,
+    "update_scope": [
+      [
+        "library-pair-0/green/0",
+        "restore_all"
+      ]
+    ],
+    "signature": "8c5aea978c9f81a70a30e576515c51debebd6724822ac446bb22ee8ec92b5206",
+    "accepted": true,
+    "store_revision": 4,
+    "store_scope": [
+      [
+        "library-pair-0/green/0",
+        "restore_all"
+      ]
+    ],
+    "selected_arm": "original",
+    "calls_before": 64,
+    "calls_after": 71,
+    "fresh_decoder_calls": 7
+  },
+  {
+    "stage": "old_stop_replay",
+    "update_revision": 2,
+    "update_scope": [
+      [
+        "library-pair-0/green/0",
+        "stop_future_edits"
+      ]
+    ],
+    "signature": "4ac8b775ed88615d23a01efbad2f3fc94d23badead52c3e0bde7a9cf96343ad9",
+    "accepted": false,
+    "store_revision": 4,
+    "store_scope": [
+      [
+        "library-pair-0/green/0",
+        "restore_all"
+      ]
+    ],
+    "selected_arm": "original",
+    "calls_before": 71,
+    "calls_after": 71,
+    "fresh_decoder_calls": 0
+  }
+]

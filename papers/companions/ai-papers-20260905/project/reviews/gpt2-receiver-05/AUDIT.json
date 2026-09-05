@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "intervention_rows_recounted": 240,
+  "authority_events_recomputed": 1200,
+  "metric_rows_recomputed": 20,
+  "heldout_families": 8,
+  "name_and_template_holdout": true,
+  "norm_controls_checked": true,
+  "original_sources_unchanged": true,
+  "test_exit_code": 0,
+  "independent_review": false,
+  "audit_sha256": "c07f693a9a9addbe4c38d4648ce1fd146bd3a356c6089e1b8d7bf01868beaf84"
+}

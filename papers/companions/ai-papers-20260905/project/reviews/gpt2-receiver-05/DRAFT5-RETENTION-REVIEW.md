@@ -1,0 +1,15 @@
+# Draft 4 to Draft 5: argument retention and acceptance
+
+This is an authoring-agent contextual review, not independent source/scientific certification. Both Draft 4 manuscripts remain unchanged on disk. Draft 5 is additive except for current version labels, abstracts, execution-status language, reference qualifications and next-experiment wording that must change now GPT-2 has actually run.
+
+The complete historical-source sections are retained verbatim. Core Alignment still asks how a limited legitimate contribution can remain consequential inside a larger organized receiver; it is not reduced to a permission table. Interpretability still asks whether transformed measurements can support learned usable feedback; a static GPT-2 patch does not replace that broader NMC question. All earlier equations, measured failures, information-access qualifications, source dates and sibling ownership remain present.
+
+The new Core Alignment section owns the executed transformer-to-monitor interface, not an ethical-alignment conclusion. Its authority labels are supplied; useful action and complete mediation are separately measured. The new Interpretability section owns a frozen original-model intervention assay, not the invention of IOI analysis or activation patching. The GPT-2 graph maps the receiver to specific tensors, downstream paths and prefix cache. No anatomical or phase identity is asserted.
+
+Four kinds of control prevent an overcompressed interpretation: natural donor sites are separated from equal-norm direction controls; a wrong-address intervention tests position rather than just size; full-vocabulary behavior is distinguished from a favorable two-name contrast; cache restoration is separated from weight or controller learning. The nine invalid patched outputs and five clean task failures remain in the denominator. DeepSeek mapping remains distinct from execution.
+
+The current abstract/next-stage wording is revised because the prior statement that no generative transformer had run is no longer true. This factual update does not certify modern-model generality. The new mathematical softmax identity and three-token counterexample explain a measured evaluation boundary; they are elementary calculations and do not increase the Lean count.
+
+Two new result/architecture figures were visually inspected from their generated PNGs. Labels, arrow endpoints, numerical axes and the held-out case denominator are legible with no observed clipping. This is figure readback only, not final PDF layout or browser UI acceptance.
+
+Acceptance remains partial: 34 application tests, the separate-code event recount and six-artifact exact replay pass. Existing 26 Lean statements are unchanged. Active transformer learning, stronger effect-prediction and feature-level controls, contemporary instruction-tuned/DeepSeek replication, independent technical review, remaining drafts, approved-format PDFs, rights review and author readback are still required. No publication, commit, push, other-task message, Book 2 edit or original-source edit occurred.

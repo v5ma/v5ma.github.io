@@ -1,0 +1,29 @@
+{
+  "schema": "san-gpt2-receiver-development/v5",
+  "status": "Frozen before first assay; development, not external preregistration",
+  "model": "Xenova/gpt2@bf2c7f02e0b826c60d03af341171bde20893da66; single-token quantized ONNX export",
+  "primary_hook": "r8: residual after zero-indexed block 8, final prompt token",
+  "secondary_hooks": ["r7: residual after block 7", "a9: concatenated attention values before block 9 output projection"],
+  "templates": [
+    "When {a} and {b} went to the store, {s} gave a {item} to",
+    "After {a} and {b} visited the park, {s} handed a {item} to",
+    "Before {a} and {b} left the office, {s} passed a {item} to",
+    "While {a} and {b} were at the station, {s} brought a {item} to",
+    "Yesterday, {a} and {b} met at the market. Then {s} sent a {item} to",
+    "During lunch, {a} and {b} sat together. Later {s} offered a {item} to"
+  ],
+  "development_name_pairs": [["John", "Mary"], ["Tom", "Sarah"]],
+  "heldout_name_pairs": [["David", "Emma"], ["Robert", "Linda"]],
+  "partition": "Development: templates 0-1 with development pairs (4 families); held out: templates 2-5 with heldout pairs (8 families). Every giver and item variant remains within its family.",
+  "variants": "Each family has both givers and items book/ball. Changing giver changes the intended recipient. The other-item variant supplies an unrelated semantic control, never selected by results.",
+  "arms": ["clean", "corrupt", "donor_r7", "donor_r8", "donor_a9", "unrelated_norm", "permuted_norm", "wrong_address", "inverse_norm", "cache_restore"],
+  "intervention": "Natural donor replacement at final token; downstream routes recomputed. Permuted, inverse, unrelated and wrong-address deltas have the donor_r8 delta norm. The unrelated direction is the ball-minus-book change at the corrupt giver. Permutation rolls 128 coordinates. Wrong-address delta is applied at the penultimate position, then the last token is run normally.",
+  "readouts": ["Native target-minus-alternative name logit contrast", "Native target token probability over all 50257 tokens", "Unconstrained top-1 token", "Target/alternative/invalid output", "Patch norm", "Difference from clean logits", "Virtual authorized usefulness and prohibited attempts"],
+  "primary_analysis": "Raw paired logit effects and full-vocabulary task completion; do not condition selection on baseline correctness. Recovery fractions reported only when absolute clean-minus-corrupt contrast exceeds 0.5, with exclusions explicit.",
+  "uncertainty": "12 constructed families, 8 heldout; orientations and arms are paired. One checkpoint, not 24 independent models. No population significance or frontier generalization.",
+  "alignment_interface": "Native top-1 name maps to a virtual (recipient, send) action. Authoritative fixture initially permits both names, then narrows to the clean recipient, rejects a forged widening, revokes all, and rejects an old authentic replay. This tests complete mediation, not natural-language permission interpretation or ethical alignment.",
+  "forgery": "Actually submit invalid-signature revision 2 widening to CommitmentStore.accept; after authentic revision 2 revocation submit the old authentic revision 1 update. The public fixture key is not deployed security.",
+  "state": "Base weights fixed. KV state is contextual; no learning, adapter update, intrinsic introspection or oversight measurement in this assay.",
+  "resources": {"numerical_threads": 1, "max_seconds": 75, "max_step_calls": 1400, "max_prompt_tokens": 48, "max_result_bytes": 8000000, "additional_model_downloads": 0},
+  "limitations": ["Same quantized export, not FP32 equivalence", "Architecture mapping to DeepSeek remains unexecuted", "Full-residual replacement does not isolate a feature", "Some norm-matched controls are intentionally off-manifold", "Indirect-object task and activation patching are established prior methods"]
+}

@@ -1,0 +1,218 @@
+[
+  {
+    "arm": "original",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 0
+  },
+  {
+    "arm": "original",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 0
+  },
+  {
+    "arm": "original",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 0
+  },
+  {
+    "arm": "linear_ridge",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 15,
+    "swapped_correct": 1,
+    "exact_case_swapped": 1,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "linear_ridge",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 12,
+    "swapped_correct": 4,
+    "exact_case_swapped": 4,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "linear_ridge",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "rbf_ridge",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 14,
+    "swapped_correct": 2,
+    "exact_case_swapped": 2,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "rbf_ridge",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 13,
+    "swapped_correct": 3,
+    "exact_case_swapped": 3,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "rbf_ridge",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "yoked_ridge",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 0,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "yoked_ridge",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 0,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "yoked_ridge",
+    "query": "color",
+    "n": 16,
+    "original_correct": 11,
+    "swapped_correct": 11,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "slot_swap",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "slot_swap",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "slot_swap",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "oracle_kv",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 16,
+    "exact_case_swapped": 16,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "oracle_kv",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 16,
+    "exact_case_swapped": 16,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "oracle_kv",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "full_donor",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 16,
+    "exact_case_swapped": 16,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "full_donor",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 16,
+    "exact_case_swapped": 16,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "full_donor",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "text_instruction",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 11,
+    "swapped_correct": 5,
+    "exact_case_swapped": 5,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "text_instruction",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_swapped": 0,
+    "changed_full_logits": 16
+  },
+  {
+    "arm": "text_instruction",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_swapped": 10,
+    "changed_full_logits": 16
+  }
+]

@@ -1,0 +1,1055 @@
+{
+  "status": "INSPECTED_NOT_INFERRED",
+  "graphs": [
+    {
+      "file": "onnx/decoder_model_merged_q4.onnx",
+      "ir_version": 10,
+      "opsets": {
+        "": 21,
+        "com.microsoft": 1
+      },
+      "nodes": 1411,
+      "operators": {
+        "::Add": 72,
+        "::Cast": 4,
+        "::Concat": 17,
+        "::Cos": 1,
+        "::Expand": 3,
+        "::Gather": 35,
+        "::MatMul": 1,
+        "::Mul": 319,
+        "::Neg": 2,
+        "::Range": 12,
+        "::Reciprocal": 54,
+        "::ReduceMean": 18,
+        "::ReduceSum": 36,
+        "::Reshape": 210,
+        "::Shape": 16,
+        "::Sigmoid": 66,
+        "::SimplifiedLayerNormalization": 13,
+        "::Sin": 1,
+        "::Slice": 68,
+        "::Softplus": 18,
+        "::Split": 24,
+        "::Sqrt": 54,
+        "::Squeeze": 6,
+        "::Sub": 2,
+        "::Transpose": 61,
+        "::Unsqueeze": 9,
+        "com.microsoft::CausalConvWithState": 18,
+        "com.microsoft::GroupQueryAttention": 6,
+        "com.microsoft::LinearAttention": 18,
+        "com.microsoft::MatMulNBits": 187,
+        "com.microsoft::RotaryEmbedding": 12,
+        "com.microsoft::SkipSimplifiedLayerNormalization": 48
+      },
+      "inputs": [
+        {
+          "name": "inputs_embeds",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            "sequence_length",
+            1024
+          ]
+        },
+        {
+          "name": "attention_mask",
+          "element_type": 7,
+          "shape": [
+            "batch_size",
+            "total_sequence_length"
+          ]
+        },
+        {
+          "name": "position_ids",
+          "element_type": 7,
+          "shape": [
+            3,
+            "batch_size",
+            "sequence_length"
+          ]
+        },
+        {
+          "name": "num_logits_to_keep",
+          "element_type": 7,
+          "shape": []
+        },
+        {
+          "name": "past_conv.0",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.0",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.1",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.1",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.2",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.2",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.3.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_key_values.3.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_conv.4",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.4",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.5",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.5",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.6",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.6",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.7.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_key_values.7.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_conv.8",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.8",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.9",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.9",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.10",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.10",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.11.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_key_values.11.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_conv.12",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.12",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.13",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.13",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.14",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.14",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.15.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_key_values.15.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_conv.16",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.16",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.17",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.17",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.18",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.18",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.19.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_key_values.19.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_conv.20",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.20",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.21",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.21",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_conv.22",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "past_recurrent.22",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.23.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "past_key_values.23.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "past_sequence_length",
+            256
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "logits",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            "num_logits_to_keep",
+            248320
+          ]
+        },
+        {
+          "name": "present_conv.0",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.0",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.1",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.1",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.2",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.2",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present.3.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present.3.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present_conv.4",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.4",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.5",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.5",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.6",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.6",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present.7.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present.7.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present_conv.8",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.8",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.9",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.9",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.10",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.10",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present.11.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present.11.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present_conv.12",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.12",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.13",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.13",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.14",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.14",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present.15.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present.15.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present_conv.16",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.16",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.17",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.17",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.18",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.18",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present.19.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present.19.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present_conv.20",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.20",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.21",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.21",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present_conv.22",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            6144,
+            3
+          ]
+        },
+        {
+          "name": "present_recurrent.22",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            16,
+            128,
+            128
+          ]
+        },
+        {
+          "name": "present.23.key",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        },
+        {
+          "name": "present.23.value",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            2,
+            "total_sequence_length",
+            256
+          ]
+        }
+      ],
+      "external_files": [
+        "decoder_model_merged_q4.onnx_data"
+      ]
+    },
+    {
+      "file": "onnx/embed_tokens_q4.onnx",
+      "ir_version": 10,
+      "opsets": {
+        "": 21,
+        "com.microsoft": 1
+      },
+      "nodes": 1,
+      "operators": {
+        "com.microsoft::GatherBlockQuantized": 1
+      },
+      "inputs": [
+        {
+          "name": "input_ids",
+          "element_type": 7,
+          "shape": [
+            "batch_size",
+            "sequence_length"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "inputs_embeds",
+          "element_type": 1,
+          "shape": [
+            "batch_size",
+            "sequence_length",
+            1024
+          ]
+        }
+      ],
+      "external_files": [
+        "embed_tokens_q4.onnx_data"
+      ]
+    }
+  ]
+}

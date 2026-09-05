@@ -1,0 +1,13 @@
+{
+  "status": "EXECUTED_NOT_INDEPENDENTLY_REVIEWED",
+  "step_calls": 656,
+  "cases": 24,
+  "evaluation_rows": 360,
+  "authority_rows": 1800,
+  "elapsed_seconds": 33.15600000001723,
+  "parameter_hashes_unchanged": true,
+  "exact_reload_external_guarded_and_reset_relations": true,
+  "heldout_clean_states_used_by_learners": false,
+  "novel_task_domain": false,
+  "base_weights_changed": false
+}

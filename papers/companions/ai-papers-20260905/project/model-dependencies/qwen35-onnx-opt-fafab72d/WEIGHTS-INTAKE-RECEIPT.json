@@ -1,0 +1,26 @@
+{
+  "phase": "weights",
+  "status": "DOWNLOADED_HASHED_NOT_INFERENCE",
+  "plan_sha256": "564e74e858f53b07ffefba0fdd54acdb4cd1587ced9a303bb33aa1a84aac3b4f",
+  "script_sha256": "c24531fa227604c56a6a0df55670f1a349b5781b3e128f348d9b30df042dff26",
+  "files": [
+    {
+      "path": "onnx/decoder_model_merged_q4.onnx_data",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/onnx/decoder_model_merged_q4.onnx_data",
+      "bytes": 483655680,
+      "sha256": "1a9165072dd51a9b6a917b6357a3686372b7429313022802cd4c9a730e8c9749",
+      "seconds": 23.67200000002049
+    },
+    {
+      "path": "onnx/embed_tokens_q4.onnx_data",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/onnx/embed_tokens_q4.onnx_data",
+      "bytes": 162897920,
+      "sha256": "9210b1d26eb14136d3522584d17da14cc5f4b82b6f5607e6d80d59424a8cbe99",
+      "seconds": 4.686999999976251
+    }
+  ],
+  "bytes": 646553600,
+  "elapsed_seconds": 28.35899999999674,
+  "vision_downloaded": false,
+  "model_inference_executed": false
+}

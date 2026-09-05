@@ -1,0 +1,33 @@
+{
+  "status": "EXECUTED_NOT_INDEPENDENTLY_REVIEWED",
+  "step_calls": 748,
+  "measurement_rows": 640,
+  "update_rows": 400,
+  "attack_rows": 82,
+  "elapsed_seconds": 35.43800000002375,
+  "adaptive_parameters_per_learner": 20,
+  "subspace_singular_values": [
+    89.26406204233892,
+    35.28148660878345,
+    17.728831193376433,
+    10.00633976902767,
+    2.108596913941401e-14,
+    1.9453856809359625e-14,
+    2.431246076088648e-15,
+    1.2032581399354667e-15
+  ],
+  "final_parameter_hashes": {
+    "internal": "8fb5f1cd5ca8a532fde340824e92c1746fdde12256ab5f1c53d1b961315fc55e",
+    "external_matched": "8fb5f1cd5ca8a532fde340824e92c1746fdde12256ab5f1c53d1b961315fc55e",
+    "task": "90db843765129a6d0cc630881a935bac69cb98e85116cdc0f60810a99d50486f",
+    "yoked": "a312166bb502cc9de84f0dd543374d67f612cc30377274fd4970cfe60a78a7ac",
+    "constant": "b393978842a0fa3d3e1470196f098f473f9678e72463cb65ec4ab5581856c2e4",
+    "supervised_ridge": "6807eb454208b25a399d8d40e3528990bb825c29980ed6e20b1038e834cfa703",
+    "zero_parameter_reset": "b393978842a0fa3d3e1470196f098f473f9678e72463cb65ec4ab5581856c2e4",
+    "post_attack_guarded": "8fb5f1cd5ca8a532fde340824e92c1746fdde12256ab5f1c53d1b961315fc55e",
+    "post_attack_unverified": "49da9e86f658a6213b58f37d3510aadae88e79a2e816e5c5ce2beb2c7dc5d947"
+  },
+  "model_sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+  "exact_external_match": true,
+  "heldout_inference_performed": false
+}

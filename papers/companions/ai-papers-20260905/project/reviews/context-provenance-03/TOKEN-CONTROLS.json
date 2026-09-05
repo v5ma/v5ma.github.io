@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": 0,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 8
+  },
+  {
+    "sentence": 1,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 7
+  },
+  {
+    "sentence": 2,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 8
+  },
+  {
+    "sentence": 3,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 7
+  },
+  {
+    "sentence": 4,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 6
+  },
+  {
+    "sentence": 5,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 7
+  },
+  {
+    "sentence": 6,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 7
+  },
+  {
+    "sentence": 7,
+    "identical_sentence_token_ids_and_positions_across_scores": true,
+    "selected_tokens": 6
+  }
+]

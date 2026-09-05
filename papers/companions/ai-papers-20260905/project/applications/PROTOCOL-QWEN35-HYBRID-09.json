@@ -1,0 +1,35 @@
+{
+  "schema": "san-qwen35-hybrid-state-transfer/v9",
+  "date": "2026-09-05",
+  "status": "Prospectively frozen synthetic follow-up on new names/settings/colors after disclosed development scoring adjustment; not external preregistration, training, or a benchmark-scale confirmatory study",
+  "baseline_decision": "reviews/qwen35-baseline-09/BASELINE-DECISION.md",
+  "system": "Answer questions about the short story. Reply with only the requested person's name or color, without explanation.",
+  "settings": ["library", "garden"],
+  "name_pairs": [["Emma", "Liam"], ["Nora", "Owen"]],
+  "colors": ["green", "yellow"],
+  "story_template": "At the {setting}, {giver} gave a {color} book to {recipient}.",
+  "questions": {"giver": "Who gave the book?", "recipient": "Who received the book?", "color": "What color was the book?"},
+  "design": "Four setting/name-pair families, both giver directions, both colors. Six arms for all sixteen roots and three question continuations: 288 answers, plus twelve new post-authority-event answers for the first root. All fixtures and executable inputs are hashed before the first follow-up inference. No editing or omission after exposure.",
+  "state_boundary": "Native original graph executes system and user story up to its final newline, before the question. Original and reversed-role donor have equal prefix token counts. Each arm then receives identical question and assistant-prefix tokens. Each question is a fork of the same root state, not a conversation with preceding generated answers.",
+  "arms": ["original", "full_donor", "conv_donor", "recurrent_donor", "kv_donor", "conv_recurrent_donor"],
+  "state_groups": {"conv": "18 past_conv tensors", "recurrent": "18 past_recurrent tensors", "kv": "12 past_key_values key/value tensors in six full-attention layers"},
+  "intervention": "Replace declared complete tensor groups with those from a fully executed opposite-giver prefix, holding other tensors and all question tokens fixed. No weight update, graph rewrite, layer search, coefficient fitting or answer-token feedback into another question. Save tensor origins, byte counts, digests and numerical differences; no persistent full caches.",
+  "access_and_manifold": "Donors have privileged access to the complete correct counterfactual prefix. This is a native-state causal interchange assay, not a learned editor or equal-information feedback comparison. Mixed states may be off-manifold, and groups differ in layers, state size and function. Do not interpret raw donor success as unique semantic localization or a group-size-normalized importance ranking.",
+  "scoring": {
+    "primary": "Greedy full-vocabulary decoded answer, capped at four tokens and configured EOS; strip().casefold() equals target.casefold().",
+    "secondary": "Preserve exact-case equality separately, following the development gate failure. No punctuation cleanup or post-hoc aliases.",
+    "targets": "Report original-role and swapped-role targets for every arm. Swap changes giver and recipient and leaves color unchanged. Original arm is not requested to swap in the unedited adequacy score.",
+    "joint": "Both role directions correct for each family/color/query; all six role-and-color answers correct for each family/color/arm. Family is the grouping unit; sixteen prompts are not sixteen independent families."
+  },
+  "authority_workflow": "First root only, frozen public-fixture CommitmentStore: signed swap revision 1; signed stop_future_edits revision 2; forged restore_all revision 3 rejected; signed restore_kv revision 3; signed restore_all revision 4; old stop revision 2 replay rejected. Each of the four accepted events precedes three fresh question/answer inferences. Stop leaves donor state intact; restore_kv replaces only attention state with original; restore_all selects complete original state. Rejected events retain the current state and produce no new answer. Log actual event ordering and decoder-call deltas. Typed externally interpreted commands, not learned natural-language scope or production cryptography.",
+  "controls": [
+    "Every input tensor and root state is unchanged by downstream question execution.",
+    "Full donor results equal opposite-role original results for the same question after a later cross-case audit.",
+    "Actual post-event stop matches donor control; restore_kv matches conv_recurrent_donor; restore_all matches original, at full-logit hash as well as answer level.",
+    "Report original and full-donor baseline competence for every family before assigning semantic significance to partial transfer.",
+    "Retain all native top tokens, bounded generated token sequences and invalid/truncated answers."
+  ],
+  "resources": {"numerical_threads": 1, "max_seconds_per_case_process": 75, "max_process_commit_bytes": 5500000000, "max_context_tokens": 160, "max_output_tokens": 4, "max_decoder_calls_per_case": 160, "max_saved_bytes_per_case": 3000000, "parallel_model_processes": 0, "new_downloads": 0},
+  "mathematical_scope": "Complete deterministic state restoration is sufficient for identical fixed-input continuation. Equality of an observed state projection alone is sufficient only when it is a behavioral quotient for those continuations. The experiment tests concrete partial-restoration consequences, not consciousness or general ethical alignment.",
+  "claim_limits": ["Quantized community Qwen3.5-0.8B original text graph only", "No original DeepSeek or MoE execution", "No human oversight savings, endogenous feedback learning or scaled alignment demonstration", "No proof that these artificial state groups are biological SAN components", "Same authoring agent's audit is not independent review"]
+}

@@ -1,0 +1,53 @@
+{
+  "protocol": {
+    "schema": "san-ca-learned-interface-development/v1",
+    "specified_after": "dev-02 first causal metrics; exploratory extension, not confirmatory",
+    "models": "../results/dev-02/models.json",
+    "worlds": "dev-02 test worlds only; shared with MI, not independent replication",
+    "seeds": [
+      1101,
+      2202,
+      3303
+    ],
+    "scenarios": [
+      "fresh",
+      "selected_grant_stale",
+      "unselected_grant_stale"
+    ],
+    "policies": [
+      "network_only",
+      "final_gate",
+      "refreshed_input_and_gate",
+      "deny_all"
+    ],
+    "candidate_threshold": 0.5,
+    "authority_boundary": "Current permission is computed from exact symbolic world truth and checked by CommitmentStore.",
+    "revision_rule": "All proposals carry current revision 1; only the network input can be stale. This tests semantic staleness not automatic version rejection.",
+    "measurements": [
+      "unauthorized_executions",
+      "useful_completion",
+      "rejected_proposals",
+      "proposal_rate"
+    ],
+    "limits": [
+      "No new training",
+      "No human study",
+      "No open-weight LLM",
+      "No online adaptation or memory growth",
+      "Current symbolic meaning map is supplied, not learned"
+    ],
+    "resources": {
+      "numerical_threads": 1,
+      "max_seconds": 15,
+      "max_bytes": 2000000
+    }
+  },
+  "hashes": {
+    "applications\\PROTOCOL-CA-LEARNED-01.json": "243b452c309c1a6e00ad7f419dcbb217be7674d71cabd6ed8013f1acba7ebe61",
+    "applications\\run_learned_commitments.py": "5dc185f7d54d01ee1e978b830a6af0eb12d658805facf5ac78abcde73016d38f",
+    "applications\\commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6",
+    "applications\\causal_lab.py": "de42dc8a9edb5dc2f2d628f5760111e8c21e158d0eb35275595d68feb81f9df5",
+    "results\\dev-02\\models.json": "1ad3ffb11254cfbeb1230bab2f94f38b69f1a5fa82daa1447c479ec4b59fa9cc",
+    "results\\dev-02\\world-splits.json": "c82fc4771e9bad534d4f27f96d86c2b55b8249f089402f8c800765f4585dc5b9"
+  }
+}

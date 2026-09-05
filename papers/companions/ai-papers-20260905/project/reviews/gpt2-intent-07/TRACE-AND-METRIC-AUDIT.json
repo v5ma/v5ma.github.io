@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "original_model_measurements": 512,
+  "outcomes_reconstructed": 1536,
+  "authority_events_reconstructed": 512,
+  "aggregate_rows": 48,
+  "paired_role_rows": 384,
+  "contract_rows": 192,
+  "application_tests": 51,
+  "numerical_threads": 1,
+  "independent_review": false,
+  "auditor_sha256": "bf8f4f13d0fff55cb1a636b73b8184965e8eaa611d03c7efb2725b8f897262a7",
+  "max_double_reflection_error": 1.9073486328125e-06,
+  "max_orthogonal_complement_error": 1.8445338838546377e-06
+}

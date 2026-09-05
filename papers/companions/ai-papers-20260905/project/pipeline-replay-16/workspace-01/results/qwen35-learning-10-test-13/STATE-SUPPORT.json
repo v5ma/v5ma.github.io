@@ -1,0 +1,3074 @@
+[
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.0",
+    "sha256": "22952eb3834ab3ab6d7d6339e542fadfa3136d7c264d616cb8de65110f4cab26",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.0",
+    "sha256": "13abb44e270cc1a961d124d9630af6fbabc8a84dd92c04d6728c7c6529c45930",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.1",
+    "sha256": "d3834d9e3df35d6e256c1318dd38ecae6f932799664e0529d6799e874998b51f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.1",
+    "sha256": "ed487c306dc7d9bd700e1116d2fada3cd62a07175b5ac54bb0befa535fb89700",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.2",
+    "sha256": "0bd079b2aa932737ca20bde19be001a641683cdc2b182a62462248e493932359",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.2",
+    "sha256": "7e18158df8323bd0c19355a7dc5f5a741b14782d1982afe1d08c041e91f3d30b",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.3.key",
+    "sha256": "8fb5203ae6721ebf49cf878340128c75116c79ce52a98765ff566a05c9c7ee64",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.3.value",
+    "sha256": "e6ce3385a2a5e4e7618f17c22caa4998e58ed5d058b276480c2bf8f5722f1cb7",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.4",
+    "sha256": "78c68de75a2d14572c66da18b3ef914dcc4c6093708d7d926c6ec2d5677f1540",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.4",
+    "sha256": "d0d5910605c511f01d249be5255a9e80dc53b2f2e44aa628fbde34f47ccf34c6",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.5",
+    "sha256": "fd565826b6ed8dad9646b2ca6f3f91392415acb5eb4b816b0c393184aedcbdbd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.5",
+    "sha256": "cfe26e03dd609e9c24b7fdfc0208e47893bcee0ce7cfabd3372a6a115cfa355c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.6",
+    "sha256": "abaf50e511593d46500b857434f7e38f6d55bb9e68a9e0104e00f2f395d9c861",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.6",
+    "sha256": "359c44c980b66e09da1927af9cf6b0a802fd8064d992f6e48075552fd3ecbc38",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.7.key",
+    "sha256": "758321e1ba876d34ccf50b7a8fe7d4bb2d6cae2c16e9e0c6549997319ce5c4f3",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.7.value",
+    "sha256": "b76f4e48f2333a9cc83ed57ad63d27f5fd2564ef8595109c533fef1ee2436340",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.8",
+    "sha256": "28c41f4e66efe6e0957aeef5d3183b40fb90fe51da74636dd87776f304c4490f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.8",
+    "sha256": "f13e2e5dff804b134d36d83bda1d70300ac16f9832c214963cab954f65581f9f",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.9",
+    "sha256": "5da94f7c2fb7a436bce041401b2c4af065524f23d04448b2d72f667ee5fb236d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.9",
+    "sha256": "9b835647e24fdb0b99ce34628e00b8f9587809c8c00eb9f739e4e36733f340f9",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.10",
+    "sha256": "5931c1886245b50ad351facaa97556e210507614eb08f0483f1a5539e0abac6e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.10",
+    "sha256": "1969296ea3583178c01a5f541952909033229086892dbbdb02e90f346cd444d4",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.11.key",
+    "sha256": "413fabde486fa77bb6e6bbcc82922f14f70a839ed1566e7fd9c616e6466c9df5",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.11.value",
+    "sha256": "018778c6b00cb653d289fea7f3449ca4d0aadc3004fb39b7275b726919e2e87d",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.12",
+    "sha256": "06e2a5c2b007b3b6bfc37932d25fa086a63d19a15c4cc387263aaf6999d0db5e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.12",
+    "sha256": "48cef2dc2ae41d7b1d2ac5a51ad4ffcb5eead57aac25ca148c065af69e6e73f5",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.13",
+    "sha256": "1f7cf968d26ad822f2a1043b2947e9ae9f0bb40d83bca96796160906220435cf",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.13",
+    "sha256": "9a1f2a3d539c6d404ea2aef7e5073aa5bc932e235d0a5daffaf4f5b01f32e5f3",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.14",
+    "sha256": "73c5bfa4cbad76f0679ed79651188559e43e6c9f955be622d4456740459141fd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.14",
+    "sha256": "255ff91e77a082ec01e9422ed7333463d79d11e1339f597cc542b46672473d7c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.15.key",
+    "sha256": "c1418b86319fe764e3d89f78fe08c20b9d5c417c2c80a7cf2dd7bc5d7b0f445c",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.15.value",
+    "sha256": "c2ae30dd830279bc3de3cbc1dd6865d61f0ca4c8b44c11cf6f8f0c02a18ed0a6",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.16",
+    "sha256": "9ab5a4db8318a16eb6cc3531e0b0222b684bf26ac7d5540115f9a1a864c593bc",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.16",
+    "sha256": "5a3a9631ef496411bc9ccc276a95275155e07c284624dea6c0efc84ece91a429",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.17",
+    "sha256": "d4a915cc8b7ddb70513b240bba5718f5de42458c6817513f31ceff4000aba576",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.17",
+    "sha256": "b7de5dfc31ea0a849a43e10cccead806d92b05fe8e966eccdbcf594d5c1c62da",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.18",
+    "sha256": "0545e3ba1b43291a31ab3f75a1fba5ee3e4d2b224d91c381d7807085b24eb477",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.18",
+    "sha256": "329a8e09fb6e29174e4930cef5c8b7a48a75c2dcce0e99fbf88044f51d4d4706",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.19.key",
+    "sha256": "26aff6c45b4d65535c027ae3ef3bc9205eb060a284f779fd8a1a2b6cb784cdee",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.19.value",
+    "sha256": "9bc2cc23fe245dc6b7f1b7fe5b7b06471c10a3429dc8729474ef78c88684298d",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.20",
+    "sha256": "ed5828cf992530ffcb9b9155cfd5e56da37f2bb279d4bf8ed8eaa52b30b03e9d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.20",
+    "sha256": "b03892a5b4644282c6ad14b1c73ee5f49cf7430f435c1d28185de765569e3866",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.21",
+    "sha256": "ac94f3bdca0d2e7eb5162211ad3fb36de0164e1c9229095d99b317b228df11b3",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.21",
+    "sha256": "0b0f1aae506d8dde731e34e3c088f5e9bc4de5c813d0b55e05492884acaa3690",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_conv.22",
+    "sha256": "b9b2a62db04e3594631701acb7cebc4165d3952ecc2b39d2deeb6b06b17bee16",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_recurrent.22",
+    "sha256": "dca2de7443224877d082cc4c8a03c40e8698914e7efb3fa9c36ebf2cda1def42",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.23.key",
+    "sha256": "23dd73bde6820e6d2a99ea94d197326e04f899e1129987304bf90a6934512b3c",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "original",
+    "tensor": "past_key_values.23.value",
+    "sha256": "4cf5dd1a2cd58302b606c45d3fa09b1224042e89c74b37d8dfd9f402d3ccc5d3",
+    "same_as_original": true,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.0",
+    "sha256": "22952eb3834ab3ab6d7d6339e542fadfa3136d7c264d616cb8de65110f4cab26",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.0",
+    "sha256": "13abb44e270cc1a961d124d9630af6fbabc8a84dd92c04d6728c7c6529c45930",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.1",
+    "sha256": "d3834d9e3df35d6e256c1318dd38ecae6f932799664e0529d6799e874998b51f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.1",
+    "sha256": "ed487c306dc7d9bd700e1116d2fada3cd62a07175b5ac54bb0befa535fb89700",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.2",
+    "sha256": "0bd079b2aa932737ca20bde19be001a641683cdc2b182a62462248e493932359",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.2",
+    "sha256": "7e18158df8323bd0c19355a7dc5f5a741b14782d1982afe1d08c041e91f3d30b",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.3.key",
+    "sha256": "27ef4709ade1ba1bb453c8a6c784455ffc4acef63f9a51364feaae2c40a423da",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.3.value",
+    "sha256": "074f3cceda9f756be278df1a9a3fbbe43a8ebb8565ca4c91b4e6ed3483a71dc7",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.4",
+    "sha256": "78c68de75a2d14572c66da18b3ef914dcc4c6093708d7d926c6ec2d5677f1540",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.4",
+    "sha256": "d0d5910605c511f01d249be5255a9e80dc53b2f2e44aa628fbde34f47ccf34c6",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.5",
+    "sha256": "fd565826b6ed8dad9646b2ca6f3f91392415acb5eb4b816b0c393184aedcbdbd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.5",
+    "sha256": "cfe26e03dd609e9c24b7fdfc0208e47893bcee0ce7cfabd3372a6a115cfa355c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.6",
+    "sha256": "abaf50e511593d46500b857434f7e38f6d55bb9e68a9e0104e00f2f395d9c861",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.6",
+    "sha256": "359c44c980b66e09da1927af9cf6b0a802fd8064d992f6e48075552fd3ecbc38",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.7.key",
+    "sha256": "d390ac14d9a93d6c62328508d5729cb0e37ee87fe7314242e980f8de2a636bf1",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.7.value",
+    "sha256": "ca51831ddd4e2d382eb9f8d84e449c4905655cc3ac5575ca2b81e477d6238a01",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.8",
+    "sha256": "28c41f4e66efe6e0957aeef5d3183b40fb90fe51da74636dd87776f304c4490f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.8",
+    "sha256": "f13e2e5dff804b134d36d83bda1d70300ac16f9832c214963cab954f65581f9f",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.9",
+    "sha256": "5da94f7c2fb7a436bce041401b2c4af065524f23d04448b2d72f667ee5fb236d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.9",
+    "sha256": "9b835647e24fdb0b99ce34628e00b8f9587809c8c00eb9f739e4e36733f340f9",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.10",
+    "sha256": "5931c1886245b50ad351facaa97556e210507614eb08f0483f1a5539e0abac6e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.10",
+    "sha256": "1969296ea3583178c01a5f541952909033229086892dbbdb02e90f346cd444d4",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.11.key",
+    "sha256": "43f57b14c04671f991aaff52b49efced9c30e14d14a8d0d012f03a8e810cf479",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.11.value",
+    "sha256": "2ac65f00a26619de15d918184706c6ea1ab1505a28cd7ece77eec3307bffd038",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.12",
+    "sha256": "06e2a5c2b007b3b6bfc37932d25fa086a63d19a15c4cc387263aaf6999d0db5e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.12",
+    "sha256": "48cef2dc2ae41d7b1d2ac5a51ad4ffcb5eead57aac25ca148c065af69e6e73f5",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.13",
+    "sha256": "1f7cf968d26ad822f2a1043b2947e9ae9f0bb40d83bca96796160906220435cf",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.13",
+    "sha256": "9a1f2a3d539c6d404ea2aef7e5073aa5bc932e235d0a5daffaf4f5b01f32e5f3",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.14",
+    "sha256": "73c5bfa4cbad76f0679ed79651188559e43e6c9f955be622d4456740459141fd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.14",
+    "sha256": "255ff91e77a082ec01e9422ed7333463d79d11e1339f597cc542b46672473d7c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.15.key",
+    "sha256": "15bd60ccb93f9b004765c8e30d67163733f3be2424390ba8d7427f293fc6c2d6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.15.value",
+    "sha256": "ea17098993c1613a04c00eb47a1793a6eaab48cee62e336c768df1b465c17ee6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.16",
+    "sha256": "9ab5a4db8318a16eb6cc3531e0b0222b684bf26ac7d5540115f9a1a864c593bc",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.16",
+    "sha256": "5a3a9631ef496411bc9ccc276a95275155e07c284624dea6c0efc84ece91a429",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.17",
+    "sha256": "d4a915cc8b7ddb70513b240bba5718f5de42458c6817513f31ceff4000aba576",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.17",
+    "sha256": "b7de5dfc31ea0a849a43e10cccead806d92b05fe8e966eccdbcf594d5c1c62da",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.18",
+    "sha256": "0545e3ba1b43291a31ab3f75a1fba5ee3e4d2b224d91c381d7807085b24eb477",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.18",
+    "sha256": "329a8e09fb6e29174e4930cef5c8b7a48a75c2dcce0e99fbf88044f51d4d4706",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.19.key",
+    "sha256": "44c63469e85023172b0f2493c5cea5b4a46bad5fc5155b75e69fdbd6ccc5e630",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.19.value",
+    "sha256": "403b7b59fb8ac8d23c963586aca26b6c3a3f6857748d02fa564b658e6bbcca7d",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.20",
+    "sha256": "ed5828cf992530ffcb9b9155cfd5e56da37f2bb279d4bf8ed8eaa52b30b03e9d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.20",
+    "sha256": "b03892a5b4644282c6ad14b1c73ee5f49cf7430f435c1d28185de765569e3866",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.21",
+    "sha256": "ac94f3bdca0d2e7eb5162211ad3fb36de0164e1c9229095d99b317b228df11b3",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.21",
+    "sha256": "0b0f1aae506d8dde731e34e3c088f5e9bc4de5c813d0b55e05492884acaa3690",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_conv.22",
+    "sha256": "b9b2a62db04e3594631701acb7cebc4165d3952ecc2b39d2deeb6b06b17bee16",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_recurrent.22",
+    "sha256": "dca2de7443224877d082cc4c8a03c40e8698914e7efb3fa9c36ebf2cda1def42",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.23.key",
+    "sha256": "1a44138eb1b88d29a0849e01dbf13c5b1418be6862b15654e2111d03d2328d02",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "linear_ridge",
+    "tensor": "past_key_values.23.value",
+    "sha256": "5a4678ed59f902f4060b29c6594bdc3eca1804873c5c3c3aebb24a4b621b1b6b",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.0",
+    "sha256": "22952eb3834ab3ab6d7d6339e542fadfa3136d7c264d616cb8de65110f4cab26",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.0",
+    "sha256": "13abb44e270cc1a961d124d9630af6fbabc8a84dd92c04d6728c7c6529c45930",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.1",
+    "sha256": "d3834d9e3df35d6e256c1318dd38ecae6f932799664e0529d6799e874998b51f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.1",
+    "sha256": "ed487c306dc7d9bd700e1116d2fada3cd62a07175b5ac54bb0befa535fb89700",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.2",
+    "sha256": "0bd079b2aa932737ca20bde19be001a641683cdc2b182a62462248e493932359",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.2",
+    "sha256": "7e18158df8323bd0c19355a7dc5f5a741b14782d1982afe1d08c041e91f3d30b",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.3.key",
+    "sha256": "5541a29a1ab5e130639faeff1e033009cca72d40b7a47f8bf23f8b095fa0ffa0",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.3.value",
+    "sha256": "cd65b83f8f04ede63b2c00e245952a2f26768be4966959b896b3e7bedf96c6ee",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.4",
+    "sha256": "78c68de75a2d14572c66da18b3ef914dcc4c6093708d7d926c6ec2d5677f1540",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.4",
+    "sha256": "d0d5910605c511f01d249be5255a9e80dc53b2f2e44aa628fbde34f47ccf34c6",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.5",
+    "sha256": "fd565826b6ed8dad9646b2ca6f3f91392415acb5eb4b816b0c393184aedcbdbd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.5",
+    "sha256": "cfe26e03dd609e9c24b7fdfc0208e47893bcee0ce7cfabd3372a6a115cfa355c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.6",
+    "sha256": "abaf50e511593d46500b857434f7e38f6d55bb9e68a9e0104e00f2f395d9c861",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.6",
+    "sha256": "359c44c980b66e09da1927af9cf6b0a802fd8064d992f6e48075552fd3ecbc38",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.7.key",
+    "sha256": "54e3db858521c28a5d8bf77051347c615f48e0a6bf7cb579d643cab578942636",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.7.value",
+    "sha256": "ec4fccbe9cf7f3cdad3e9ea1756f6223a182ba6bc1e9e3327efa2d40a30146de",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.8",
+    "sha256": "28c41f4e66efe6e0957aeef5d3183b40fb90fe51da74636dd87776f304c4490f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.8",
+    "sha256": "f13e2e5dff804b134d36d83bda1d70300ac16f9832c214963cab954f65581f9f",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.9",
+    "sha256": "5da94f7c2fb7a436bce041401b2c4af065524f23d04448b2d72f667ee5fb236d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.9",
+    "sha256": "9b835647e24fdb0b99ce34628e00b8f9587809c8c00eb9f739e4e36733f340f9",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.10",
+    "sha256": "5931c1886245b50ad351facaa97556e210507614eb08f0483f1a5539e0abac6e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.10",
+    "sha256": "1969296ea3583178c01a5f541952909033229086892dbbdb02e90f346cd444d4",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.11.key",
+    "sha256": "fcf865610fa05e08fdd3230c66cb0a586e06a391402698b697b4849e70b57480",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.11.value",
+    "sha256": "cc394867d49c2b13f819b1e16fa40f851e3f7d79adaa351d23c23ada59f45e3a",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.12",
+    "sha256": "06e2a5c2b007b3b6bfc37932d25fa086a63d19a15c4cc387263aaf6999d0db5e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.12",
+    "sha256": "48cef2dc2ae41d7b1d2ac5a51ad4ffcb5eead57aac25ca148c065af69e6e73f5",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.13",
+    "sha256": "1f7cf968d26ad822f2a1043b2947e9ae9f0bb40d83bca96796160906220435cf",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.13",
+    "sha256": "9a1f2a3d539c6d404ea2aef7e5073aa5bc932e235d0a5daffaf4f5b01f32e5f3",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.14",
+    "sha256": "73c5bfa4cbad76f0679ed79651188559e43e6c9f955be622d4456740459141fd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.14",
+    "sha256": "255ff91e77a082ec01e9422ed7333463d79d11e1339f597cc542b46672473d7c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.15.key",
+    "sha256": "3d4ce190da503fbf19b24ce1eb3f45a21b53c99aa1ddcf1c80224214f4df2d32",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.15.value",
+    "sha256": "5ff0c37a4c0d24b97290c0898d7cec0ce81b860cefc6cd8ec6b7ee525cc2ed38",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.16",
+    "sha256": "9ab5a4db8318a16eb6cc3531e0b0222b684bf26ac7d5540115f9a1a864c593bc",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.16",
+    "sha256": "5a3a9631ef496411bc9ccc276a95275155e07c284624dea6c0efc84ece91a429",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.17",
+    "sha256": "d4a915cc8b7ddb70513b240bba5718f5de42458c6817513f31ceff4000aba576",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.17",
+    "sha256": "b7de5dfc31ea0a849a43e10cccead806d92b05fe8e966eccdbcf594d5c1c62da",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.18",
+    "sha256": "0545e3ba1b43291a31ab3f75a1fba5ee3e4d2b224d91c381d7807085b24eb477",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.18",
+    "sha256": "329a8e09fb6e29174e4930cef5c8b7a48a75c2dcce0e99fbf88044f51d4d4706",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.19.key",
+    "sha256": "6a7454517e62b74b9f1019e306b291ca7f05e2e1b8492eb903a7e50ecf5410a0",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.19.value",
+    "sha256": "c4b2fdd496dcf0e86a32c7c1b9139d0078270be73b1e772323a1c3ea0c02cd23",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.20",
+    "sha256": "ed5828cf992530ffcb9b9155cfd5e56da37f2bb279d4bf8ed8eaa52b30b03e9d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.20",
+    "sha256": "b03892a5b4644282c6ad14b1c73ee5f49cf7430f435c1d28185de765569e3866",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.21",
+    "sha256": "ac94f3bdca0d2e7eb5162211ad3fb36de0164e1c9229095d99b317b228df11b3",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.21",
+    "sha256": "0b0f1aae506d8dde731e34e3c088f5e9bc4de5c813d0b55e05492884acaa3690",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_conv.22",
+    "sha256": "b9b2a62db04e3594631701acb7cebc4165d3952ecc2b39d2deeb6b06b17bee16",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_recurrent.22",
+    "sha256": "dca2de7443224877d082cc4c8a03c40e8698914e7efb3fa9c36ebf2cda1def42",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.23.key",
+    "sha256": "45dea06ff1ea194c69e0941780b95cbf8879fccd0dcaa2652e666bccd0181b52",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "rbf_ridge",
+    "tensor": "past_key_values.23.value",
+    "sha256": "2ee79140d64f390d720fbe740e169235858d269ffcecb1c642b2d4cdd05dd99e",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.0",
+    "sha256": "22952eb3834ab3ab6d7d6339e542fadfa3136d7c264d616cb8de65110f4cab26",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.0",
+    "sha256": "13abb44e270cc1a961d124d9630af6fbabc8a84dd92c04d6728c7c6529c45930",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.1",
+    "sha256": "d3834d9e3df35d6e256c1318dd38ecae6f932799664e0529d6799e874998b51f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.1",
+    "sha256": "ed487c306dc7d9bd700e1116d2fada3cd62a07175b5ac54bb0befa535fb89700",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.2",
+    "sha256": "0bd079b2aa932737ca20bde19be001a641683cdc2b182a62462248e493932359",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.2",
+    "sha256": "7e18158df8323bd0c19355a7dc5f5a741b14782d1982afe1d08c041e91f3d30b",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.3.key",
+    "sha256": "f9a018c1e8633a57f4b40102e73b2012a52376069abfc90161fef926bca81c3f",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.3.value",
+    "sha256": "c482f937a4227b3c9bf635fdd3ef2849a4f87b35fbb3b986e6dbc7511cf91801",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.4",
+    "sha256": "78c68de75a2d14572c66da18b3ef914dcc4c6093708d7d926c6ec2d5677f1540",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.4",
+    "sha256": "d0d5910605c511f01d249be5255a9e80dc53b2f2e44aa628fbde34f47ccf34c6",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.5",
+    "sha256": "fd565826b6ed8dad9646b2ca6f3f91392415acb5eb4b816b0c393184aedcbdbd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.5",
+    "sha256": "cfe26e03dd609e9c24b7fdfc0208e47893bcee0ce7cfabd3372a6a115cfa355c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.6",
+    "sha256": "abaf50e511593d46500b857434f7e38f6d55bb9e68a9e0104e00f2f395d9c861",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.6",
+    "sha256": "359c44c980b66e09da1927af9cf6b0a802fd8064d992f6e48075552fd3ecbc38",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.7.key",
+    "sha256": "0eb741f5f898b6b3cac756de62f64896dc95e5eb4520653846f6190b1f0fe5c2",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.7.value",
+    "sha256": "0943cabb79068036a90cfd2edd23a7cf5f70e3ce13348954b480bac342b30c7a",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.8",
+    "sha256": "28c41f4e66efe6e0957aeef5d3183b40fb90fe51da74636dd87776f304c4490f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.8",
+    "sha256": "f13e2e5dff804b134d36d83bda1d70300ac16f9832c214963cab954f65581f9f",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.9",
+    "sha256": "5da94f7c2fb7a436bce041401b2c4af065524f23d04448b2d72f667ee5fb236d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.9",
+    "sha256": "9b835647e24fdb0b99ce34628e00b8f9587809c8c00eb9f739e4e36733f340f9",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.10",
+    "sha256": "5931c1886245b50ad351facaa97556e210507614eb08f0483f1a5539e0abac6e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.10",
+    "sha256": "1969296ea3583178c01a5f541952909033229086892dbbdb02e90f346cd444d4",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.11.key",
+    "sha256": "522a2baf300c7c78830a7dfaf386c863d23425e1f3eb4287f86fd8266a47014a",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.11.value",
+    "sha256": "8804b62f69ef2863cb999777aa23cfc223ec72845bf21363f91d1da571115daa",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.12",
+    "sha256": "06e2a5c2b007b3b6bfc37932d25fa086a63d19a15c4cc387263aaf6999d0db5e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.12",
+    "sha256": "48cef2dc2ae41d7b1d2ac5a51ad4ffcb5eead57aac25ca148c065af69e6e73f5",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.13",
+    "sha256": "1f7cf968d26ad822f2a1043b2947e9ae9f0bb40d83bca96796160906220435cf",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.13",
+    "sha256": "9a1f2a3d539c6d404ea2aef7e5073aa5bc932e235d0a5daffaf4f5b01f32e5f3",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.14",
+    "sha256": "73c5bfa4cbad76f0679ed79651188559e43e6c9f955be622d4456740459141fd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.14",
+    "sha256": "255ff91e77a082ec01e9422ed7333463d79d11e1339f597cc542b46672473d7c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.15.key",
+    "sha256": "9a440303af886f575d130cd00b5ff4121aa2f5e07dcd48c6dfa37c49fc51c18b",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.15.value",
+    "sha256": "eddc4324db8d090ad5af6b46deb878514956e76138546395754a967b04182525",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.16",
+    "sha256": "9ab5a4db8318a16eb6cc3531e0b0222b684bf26ac7d5540115f9a1a864c593bc",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.16",
+    "sha256": "5a3a9631ef496411bc9ccc276a95275155e07c284624dea6c0efc84ece91a429",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.17",
+    "sha256": "d4a915cc8b7ddb70513b240bba5718f5de42458c6817513f31ceff4000aba576",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.17",
+    "sha256": "b7de5dfc31ea0a849a43e10cccead806d92b05fe8e966eccdbcf594d5c1c62da",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.18",
+    "sha256": "0545e3ba1b43291a31ab3f75a1fba5ee3e4d2b224d91c381d7807085b24eb477",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.18",
+    "sha256": "329a8e09fb6e29174e4930cef5c8b7a48a75c2dcce0e99fbf88044f51d4d4706",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.19.key",
+    "sha256": "d0fdf17a4fd32b4b95e67006560ed2bfdeb5955ac508e3b84f5f3d9d3a74a777",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.19.value",
+    "sha256": "10eaaf4ab395fa9162e4d6a5b9b9f61e514b6c8700144d186ed9d12498f3bbd0",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.20",
+    "sha256": "ed5828cf992530ffcb9b9155cfd5e56da37f2bb279d4bf8ed8eaa52b30b03e9d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.20",
+    "sha256": "b03892a5b4644282c6ad14b1c73ee5f49cf7430f435c1d28185de765569e3866",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.21",
+    "sha256": "ac94f3bdca0d2e7eb5162211ad3fb36de0164e1c9229095d99b317b228df11b3",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.21",
+    "sha256": "0b0f1aae506d8dde731e34e3c088f5e9bc4de5c813d0b55e05492884acaa3690",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_conv.22",
+    "sha256": "b9b2a62db04e3594631701acb7cebc4165d3952ecc2b39d2deeb6b06b17bee16",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_recurrent.22",
+    "sha256": "dca2de7443224877d082cc4c8a03c40e8698914e7efb3fa9c36ebf2cda1def42",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.23.key",
+    "sha256": "f085d7d56b8e2e4c4210e0011a8945d94bad75781d109da5ef539a6ac8c5dba6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "yoked_ridge",
+    "tensor": "past_key_values.23.value",
+    "sha256": "1d9b271205e083c8d53e5207a9a5c3b4a02659d5f7f4c835360400753d1c7d7a",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.0",
+    "sha256": "22952eb3834ab3ab6d7d6339e542fadfa3136d7c264d616cb8de65110f4cab26",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.0",
+    "sha256": "13abb44e270cc1a961d124d9630af6fbabc8a84dd92c04d6728c7c6529c45930",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.1",
+    "sha256": "d3834d9e3df35d6e256c1318dd38ecae6f932799664e0529d6799e874998b51f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.1",
+    "sha256": "ed487c306dc7d9bd700e1116d2fada3cd62a07175b5ac54bb0befa535fb89700",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.2",
+    "sha256": "0bd079b2aa932737ca20bde19be001a641683cdc2b182a62462248e493932359",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.2",
+    "sha256": "7e18158df8323bd0c19355a7dc5f5a741b14782d1982afe1d08c041e91f3d30b",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.3.key",
+    "sha256": "3cac2fc0ac3925f96436e6646f488e70edc34d4424955e02810bf5bcc436b459",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.3.value",
+    "sha256": "877bb33295dc61165c2352b4644938ca2436abf9430f4fce677105a85d60e18c",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.4",
+    "sha256": "78c68de75a2d14572c66da18b3ef914dcc4c6093708d7d926c6ec2d5677f1540",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.4",
+    "sha256": "d0d5910605c511f01d249be5255a9e80dc53b2f2e44aa628fbde34f47ccf34c6",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.5",
+    "sha256": "fd565826b6ed8dad9646b2ca6f3f91392415acb5eb4b816b0c393184aedcbdbd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.5",
+    "sha256": "cfe26e03dd609e9c24b7fdfc0208e47893bcee0ce7cfabd3372a6a115cfa355c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.6",
+    "sha256": "abaf50e511593d46500b857434f7e38f6d55bb9e68a9e0104e00f2f395d9c861",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.6",
+    "sha256": "359c44c980b66e09da1927af9cf6b0a802fd8064d992f6e48075552fd3ecbc38",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.7.key",
+    "sha256": "f00212853323db6fcc649879e4e25463c9268ea26fbe2dca8387ed4221520aea",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.7.value",
+    "sha256": "724e67361e27c61647f75f3fe1ce6e2985ecc7f590637bc4a986eb1f80d0d5cc",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.8",
+    "sha256": "28c41f4e66efe6e0957aeef5d3183b40fb90fe51da74636dd87776f304c4490f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.8",
+    "sha256": "f13e2e5dff804b134d36d83bda1d70300ac16f9832c214963cab954f65581f9f",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.9",
+    "sha256": "5da94f7c2fb7a436bce041401b2c4af065524f23d04448b2d72f667ee5fb236d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.9",
+    "sha256": "9b835647e24fdb0b99ce34628e00b8f9587809c8c00eb9f739e4e36733f340f9",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.10",
+    "sha256": "5931c1886245b50ad351facaa97556e210507614eb08f0483f1a5539e0abac6e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.10",
+    "sha256": "1969296ea3583178c01a5f541952909033229086892dbbdb02e90f346cd444d4",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.11.key",
+    "sha256": "80f5a097d85d7f2f1e94da0ffe855558b8a592ee3246ff335e0e4946f305c97c",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.11.value",
+    "sha256": "b4c40f58e3fc4c09cee7ebb478399fe34c5d1045f9ac6b973dd837f02066257c",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.12",
+    "sha256": "06e2a5c2b007b3b6bfc37932d25fa086a63d19a15c4cc387263aaf6999d0db5e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.12",
+    "sha256": "48cef2dc2ae41d7b1d2ac5a51ad4ffcb5eead57aac25ca148c065af69e6e73f5",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.13",
+    "sha256": "1f7cf968d26ad822f2a1043b2947e9ae9f0bb40d83bca96796160906220435cf",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.13",
+    "sha256": "9a1f2a3d539c6d404ea2aef7e5073aa5bc932e235d0a5daffaf4f5b01f32e5f3",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.14",
+    "sha256": "73c5bfa4cbad76f0679ed79651188559e43e6c9f955be622d4456740459141fd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.14",
+    "sha256": "255ff91e77a082ec01e9422ed7333463d79d11e1339f597cc542b46672473d7c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.15.key",
+    "sha256": "af4e4439ea1977cc574dcf2f5fadac6910112f706b39cf22b29a9a34a23e1c52",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.15.value",
+    "sha256": "cc8a1c28762741b6841daf8209318a96211faf87d7252cfaec2365f105fca666",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.16",
+    "sha256": "9ab5a4db8318a16eb6cc3531e0b0222b684bf26ac7d5540115f9a1a864c593bc",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.16",
+    "sha256": "5a3a9631ef496411bc9ccc276a95275155e07c284624dea6c0efc84ece91a429",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.17",
+    "sha256": "d4a915cc8b7ddb70513b240bba5718f5de42458c6817513f31ceff4000aba576",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.17",
+    "sha256": "b7de5dfc31ea0a849a43e10cccead806d92b05fe8e966eccdbcf594d5c1c62da",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.18",
+    "sha256": "0545e3ba1b43291a31ab3f75a1fba5ee3e4d2b224d91c381d7807085b24eb477",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.18",
+    "sha256": "329a8e09fb6e29174e4930cef5c8b7a48a75c2dcce0e99fbf88044f51d4d4706",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.19.key",
+    "sha256": "c3b21bcf59316d85138de1eb1a10c78482b31251f3810aa5762fe02a75d4adac",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.19.value",
+    "sha256": "00e4f67ab9ed0e98cf6a53ea34ceec4c5163ba633e434a5a198d58bc49a9953a",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.20",
+    "sha256": "ed5828cf992530ffcb9b9155cfd5e56da37f2bb279d4bf8ed8eaa52b30b03e9d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.20",
+    "sha256": "b03892a5b4644282c6ad14b1c73ee5f49cf7430f435c1d28185de765569e3866",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.21",
+    "sha256": "ac94f3bdca0d2e7eb5162211ad3fb36de0164e1c9229095d99b317b228df11b3",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.21",
+    "sha256": "0b0f1aae506d8dde731e34e3c088f5e9bc4de5c813d0b55e05492884acaa3690",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_conv.22",
+    "sha256": "b9b2a62db04e3594631701acb7cebc4165d3952ecc2b39d2deeb6b06b17bee16",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_recurrent.22",
+    "sha256": "dca2de7443224877d082cc4c8a03c40e8698914e7efb3fa9c36ebf2cda1def42",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.23.key",
+    "sha256": "e1682b7bb4c999366f9a1410b0dd3204d8fe1aebc17cc9b11bb42962da094c7e",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "slot_swap",
+    "tensor": "past_key_values.23.value",
+    "sha256": "2ab00b0609b7178fc674b2b4143a67b261ebc9cb6b20658d4cd622199268c01b",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.0",
+    "sha256": "22952eb3834ab3ab6d7d6339e542fadfa3136d7c264d616cb8de65110f4cab26",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.0",
+    "sha256": "13abb44e270cc1a961d124d9630af6fbabc8a84dd92c04d6728c7c6529c45930",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.1",
+    "sha256": "d3834d9e3df35d6e256c1318dd38ecae6f932799664e0529d6799e874998b51f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.1",
+    "sha256": "ed487c306dc7d9bd700e1116d2fada3cd62a07175b5ac54bb0befa535fb89700",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.2",
+    "sha256": "0bd079b2aa932737ca20bde19be001a641683cdc2b182a62462248e493932359",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.2",
+    "sha256": "7e18158df8323bd0c19355a7dc5f5a741b14782d1982afe1d08c041e91f3d30b",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.3.key",
+    "sha256": "d1076395581f1c7b7fb2501d3df0e56fa80b4757e9faac90f56dca57f983d104",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.3.value",
+    "sha256": "e7aa0b81661ef043d23719987c42c4d5359ff2b588d34ccccfe1ab2e190845d6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.4",
+    "sha256": "78c68de75a2d14572c66da18b3ef914dcc4c6093708d7d926c6ec2d5677f1540",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.4",
+    "sha256": "d0d5910605c511f01d249be5255a9e80dc53b2f2e44aa628fbde34f47ccf34c6",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.5",
+    "sha256": "fd565826b6ed8dad9646b2ca6f3f91392415acb5eb4b816b0c393184aedcbdbd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.5",
+    "sha256": "cfe26e03dd609e9c24b7fdfc0208e47893bcee0ce7cfabd3372a6a115cfa355c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.6",
+    "sha256": "abaf50e511593d46500b857434f7e38f6d55bb9e68a9e0104e00f2f395d9c861",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.6",
+    "sha256": "359c44c980b66e09da1927af9cf6b0a802fd8064d992f6e48075552fd3ecbc38",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.7.key",
+    "sha256": "24d496bf462871aa7822844518991310e980797c1a58a3f9ae9afaeab2d341f6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.7.value",
+    "sha256": "5fecf44cf47b84c0bceb83aad9781e51033fb3084f906adef0ea3cefd6ace56d",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.8",
+    "sha256": "28c41f4e66efe6e0957aeef5d3183b40fb90fe51da74636dd87776f304c4490f",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.8",
+    "sha256": "f13e2e5dff804b134d36d83bda1d70300ac16f9832c214963cab954f65581f9f",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.9",
+    "sha256": "5da94f7c2fb7a436bce041401b2c4af065524f23d04448b2d72f667ee5fb236d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.9",
+    "sha256": "9b835647e24fdb0b99ce34628e00b8f9587809c8c00eb9f739e4e36733f340f9",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.10",
+    "sha256": "5931c1886245b50ad351facaa97556e210507614eb08f0483f1a5539e0abac6e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.10",
+    "sha256": "1969296ea3583178c01a5f541952909033229086892dbbdb02e90f346cd444d4",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.11.key",
+    "sha256": "433002bf7755667ab1c28ef948ab6620391de7aff25074ec3e872948b8ae7916",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.11.value",
+    "sha256": "b9d78394ee0a37a7dcc6e0e6390182cb3c66ebef897d72e545e24ea0c9f2da3d",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.12",
+    "sha256": "06e2a5c2b007b3b6bfc37932d25fa086a63d19a15c4cc387263aaf6999d0db5e",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.12",
+    "sha256": "48cef2dc2ae41d7b1d2ac5a51ad4ffcb5eead57aac25ca148c065af69e6e73f5",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.13",
+    "sha256": "1f7cf968d26ad822f2a1043b2947e9ae9f0bb40d83bca96796160906220435cf",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.13",
+    "sha256": "9a1f2a3d539c6d404ea2aef7e5073aa5bc932e235d0a5daffaf4f5b01f32e5f3",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.14",
+    "sha256": "73c5bfa4cbad76f0679ed79651188559e43e6c9f955be622d4456740459141fd",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.14",
+    "sha256": "255ff91e77a082ec01e9422ed7333463d79d11e1339f597cc542b46672473d7c",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.15.key",
+    "sha256": "12846bbf472bccce56e21c2c1758418d10ff9c9ef5afbbb930f169b494159f52",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.15.value",
+    "sha256": "9f162976c45c00cf5a8df0f3045d6dc66c9a72d49a5f35ebc52c9c7325e2e925",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.16",
+    "sha256": "9ab5a4db8318a16eb6cc3531e0b0222b684bf26ac7d5540115f9a1a864c593bc",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.16",
+    "sha256": "5a3a9631ef496411bc9ccc276a95275155e07c284624dea6c0efc84ece91a429",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.17",
+    "sha256": "d4a915cc8b7ddb70513b240bba5718f5de42458c6817513f31ceff4000aba576",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.17",
+    "sha256": "b7de5dfc31ea0a849a43e10cccead806d92b05fe8e966eccdbcf594d5c1c62da",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.18",
+    "sha256": "0545e3ba1b43291a31ab3f75a1fba5ee3e4d2b224d91c381d7807085b24eb477",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.18",
+    "sha256": "329a8e09fb6e29174e4930cef5c8b7a48a75c2dcce0e99fbf88044f51d4d4706",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.19.key",
+    "sha256": "68d299e6d1bd320beb6334e91f2d6a20710428f4a36775e5302726edef481444",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.19.value",
+    "sha256": "e7402331b69283feb1d6be0dcf23c96f977f6b673d603b8d0f63d6dc87fc2fa6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.20",
+    "sha256": "ed5828cf992530ffcb9b9155cfd5e56da37f2bb279d4bf8ed8eaa52b30b03e9d",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.20",
+    "sha256": "b03892a5b4644282c6ad14b1c73ee5f49cf7430f435c1d28185de765569e3866",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.21",
+    "sha256": "ac94f3bdca0d2e7eb5162211ad3fb36de0164e1c9229095d99b317b228df11b3",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.21",
+    "sha256": "0b0f1aae506d8dde731e34e3c088f5e9bc4de5c813d0b55e05492884acaa3690",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_conv.22",
+    "sha256": "b9b2a62db04e3594631701acb7cebc4165d3952ecc2b39d2deeb6b06b17bee16",
+    "same_as_original": true,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_recurrent.22",
+    "sha256": "dca2de7443224877d082cc4c8a03c40e8698914e7efb3fa9c36ebf2cda1def42",
+    "same_as_original": true,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.23.key",
+    "sha256": "8656b9ce7e43b809d5192d97814d50e139f54599917d45cb74ef6e13ce26eced",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "oracle_kv",
+    "tensor": "past_key_values.23.value",
+    "sha256": "27f0c823d48de9b45d1cbf96f39aa46489c4a68a443707bade82875f2d21d6c7",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.0",
+    "sha256": "be3517eadbabd57fd078ba2255572bb89565d2cdfd6763fdb2a1f4d2c9b3c6f2",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.0",
+    "sha256": "3f8677fb2a0ab89270e0055a183bb2cd02b8f6da45305b6380ac704ac1dd9859",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.1",
+    "sha256": "bb61601295715a2ae810d12ccc17c4d2f1ee6b49ec36447dcec91d65bc2fcd8d",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.1",
+    "sha256": "3f2176ba606be6159f41c9e5c4bffecd550933594e65dfeec7d3d0f00940dbfe",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.2",
+    "sha256": "8b6187aac172db5d49145d3beb13f7f173a11e0968e9b769e973bb7d948df445",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.2",
+    "sha256": "50a3e4d9e51cde054bc46495a9b2e60aef60f621449f413397315aa5a023ff1f",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.3.key",
+    "sha256": "d1076395581f1c7b7fb2501d3df0e56fa80b4757e9faac90f56dca57f983d104",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.3.value",
+    "sha256": "e7aa0b81661ef043d23719987c42c4d5359ff2b588d34ccccfe1ab2e190845d6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.4",
+    "sha256": "cc3261c353fa721f75ed99d4c8e4d5e08c467954c9c18f99136646ac0283358c",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.4",
+    "sha256": "8792fe0be589661258990cedefc97b2f3da64ed629c738914aef5353e8ccd789",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.5",
+    "sha256": "c52078f0cbdf30260f80ef4bd61006c42ff14d8617deda486eaaf4975be07f8b",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.5",
+    "sha256": "f6f29a7423b2f4ed342f5f27955061a60034e521d5d3255b2ffa2124e1147742",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.6",
+    "sha256": "05278a2e4788349544e138a7feeb5f89646980653d8baf2499201fb9296f49da",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.6",
+    "sha256": "9e31fd20b5367ccfb245703b249123f3bc52a1c46979ea232dd4ecbd322d4f24",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.7.key",
+    "sha256": "24d496bf462871aa7822844518991310e980797c1a58a3f9ae9afaeab2d341f6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.7.value",
+    "sha256": "5fecf44cf47b84c0bceb83aad9781e51033fb3084f906adef0ea3cefd6ace56d",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.8",
+    "sha256": "122e50cafd5d304b9808ca880c29f925b43b3dba5dbca02dc396a4d7c36d11ca",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.8",
+    "sha256": "a9d7f96fc99f0b327b49e7579c16c428388b8e25e247b4f859e7a73f0b755edc",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.9",
+    "sha256": "48fdd14ee0afdd3d74c302a5a95598ce563d1b56e98f2d84c6463688a2106698",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.9",
+    "sha256": "4d4369656989e026cdf98fdb63882d17a09e5cc9d56545745675750c6e469776",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.10",
+    "sha256": "f5f489c81584c057383a3d91ce92ec5b01beb3894f315f3593c13e06ebc7665b",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.10",
+    "sha256": "5fee6919658d1009965efc768f24466df159eb55564add75bd05cb65d2109a8a",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.11.key",
+    "sha256": "433002bf7755667ab1c28ef948ab6620391de7aff25074ec3e872948b8ae7916",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.11.value",
+    "sha256": "b9d78394ee0a37a7dcc6e0e6390182cb3c66ebef897d72e545e24ea0c9f2da3d",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.12",
+    "sha256": "d533b36ef7119818de1837f75b6449805f4a0c4d561a4c484670bf7795cecbc6",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.12",
+    "sha256": "c094951eaea4b449d0ab527bd82e6b87e7d662e1cf23a8da182391e1de0d2292",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.13",
+    "sha256": "4c857527b5efb0714ab95edf7ae65e31dc61a1fe8ddb5b4a91a2b4e4dd500a81",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.13",
+    "sha256": "395871dc73a05eadd57b60205a230c376f625d1ee7c962d29285770711d1e388",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.14",
+    "sha256": "6498e0ea139ea96792de4dbf785bcd3cd3887ccc41d7fc348b2ea7e3ec7d285e",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.14",
+    "sha256": "ab7e12d55114d636f470a379ad59a9b2e9b51c6e36a3e37ee0eba8e50dcbc41d",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.15.key",
+    "sha256": "12846bbf472bccce56e21c2c1758418d10ff9c9ef5afbbb930f169b494159f52",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.15.value",
+    "sha256": "9f162976c45c00cf5a8df0f3045d6dc66c9a72d49a5f35ebc52c9c7325e2e925",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.16",
+    "sha256": "50630de2d6597280f0122a160d2cc99f020b1492cc03c116649404577b668d82",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.16",
+    "sha256": "1ef4353e783aac20a9dc52e3c8d2f633ae297716af2c6f16c97a89af411549b6",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.17",
+    "sha256": "872108967e6d4d5c4de213cc81c53c770d9cfa8317946abd9370cb03e6f1761a",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.17",
+    "sha256": "e533e5ee8e79d4cc3c22d280cd1662a2af1c3f16b22bf06bb39a5f160986bb49",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.18",
+    "sha256": "79c265573ec2c7830ed98d19643765829075774c9483ff51adf60b3155cb2640",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.18",
+    "sha256": "66ec83f33beed68a62caf525ddb18810d16c5e60583f2b85f3cd4de3ccfebec8",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.19.key",
+    "sha256": "68d299e6d1bd320beb6334e91f2d6a20710428f4a36775e5302726edef481444",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.19.value",
+    "sha256": "e7402331b69283feb1d6be0dcf23c96f977f6b673d603b8d0f63d6dc87fc2fa6",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.20",
+    "sha256": "a4eaa3f5b6fa20c159d1eec0859affd0e74ec73b67741088f7a100590fe07eea",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.20",
+    "sha256": "3d95d1db18cf54f70590f2d4b00c49cc144f6603e395417b368b02a7e3adc168",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.21",
+    "sha256": "a4d68ff89625426e846dc56fb324c63842b9326245b8b3846a9d99f21636e799",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.21",
+    "sha256": "f948b5444f7315ee6fbda01517cec653a0c44b91e8de8a183099a700fcfd79c8",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_conv.22",
+    "sha256": "06971420600376c0a87c3d3b88a968d53bfce81d29ae363a3998e8277d44218c",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_recurrent.22",
+    "sha256": "93e49e2cbce81a86ac2497ed36738bf3ad2a4df4eb3697efaf8ac117cd0fa5d6",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.23.key",
+    "sha256": "8656b9ce7e43b809d5192d97814d50e139f54599917d45cb74ef6e13ce26eced",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "full_donor",
+    "tensor": "past_key_values.23.value",
+    "sha256": "27f0c823d48de9b45d1cbf96f39aa46489c4a68a443707bade82875f2d21d6c7",
+    "same_as_original": false,
+    "bytes": 86016
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.0",
+    "sha256": "208220f417f022a9b44a18981a0226a463117675855ec81427f17f5ca7caed8b",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.0",
+    "sha256": "a9ef9be29b7463067117f0e53fb9bcf3f3d986960406fb4296f323b10809afa5",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.1",
+    "sha256": "25322524b36084665cbe0943a7f8a92d40bc8e67a4ffa2f3b565d075a5eed096",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.1",
+    "sha256": "6505b3965027c229dc38ebbd4a11c37b98e4cc7b8db24116977299fb8d9ce299",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.2",
+    "sha256": "b77fda8759e9e868cc20e553b10508ebca1607bff960b517b60a4e9d36d4e64d",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.2",
+    "sha256": "1e28edcef2a39f8ca00d3191a66f22afee24c80c1ebfd7ff6c90f1997fd26cb0",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.3.key",
+    "sha256": "0c9e9e3e0b95fa642e94de6faf27283d1ef1f58fe49d8168dc6b84ab43a7cfaf",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.3.value",
+    "sha256": "b1a5f8cab73d05d30ce79bc93b90231b7504231f8a0f3a22008c4a2dbc7256a3",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.4",
+    "sha256": "18aa62bf20e4dcf2e33f585be62ea97f9ecadc391779fa3237be4a567e901b40",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.4",
+    "sha256": "2dae683649268ac184a201498bbdc8d7392c3e36d4060e56696d508e7ef844f2",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.5",
+    "sha256": "eddd8e7c4a9060047c9d204bff12b8a81ca37cc019876dd6a09c1c3a251e0c07",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.5",
+    "sha256": "a3bd4879b2a5b21ce9d8d1dcea25e1bf14264a240731a45d548b6a89cfd0baf9",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.6",
+    "sha256": "91ee4fddd36926592844c270ea263bb22be7f3acce1d3a41d55ae28a68493ccb",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.6",
+    "sha256": "62436687d60ac2c539ac2d366a2ea95111938d6a74bd92804a87cf1e40603adf",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.7.key",
+    "sha256": "1713d5998f4353c0adc38f62838078223c4d057e664c6d1f93b8609068dcf618",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.7.value",
+    "sha256": "e4d05073148b31a6cb7dd1b548443fac0b8c7e6d0322f9790759dcc08c7328c4",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.8",
+    "sha256": "a9a3582641f1cf8f4470ee3d31d18c3a66c6a967cb045cb99e670f0f4ed0e3f7",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.8",
+    "sha256": "24259a32df79c14b7d428529532e66af028437dd3dbcbb1b7d16880294131729",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.9",
+    "sha256": "82e70d4209202bbb731e44ac4d06a6ab5ef16e4b0fce75667ce6f83c2975cc15",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.9",
+    "sha256": "e859aa0b0138784449370d34406d49d80fdfaa24f27493bc0160b143fa6e238f",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.10",
+    "sha256": "ee1246555836c87835b07138572288c9d37bffac8185ef83670d611906f0cca5",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.10",
+    "sha256": "646587d29ff5d88946390eb307b895edaadd69584a58bac8a2ab17671e462a6a",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.11.key",
+    "sha256": "05a8ae6a04625c3618965660a9a67246da50b2b3e8b212491b88fda81bb76dff",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.11.value",
+    "sha256": "195fc260fad5b012a57aa2d043a8643b87f0e1bcb9813b5457bb58f4aea966b2",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.12",
+    "sha256": "34005f95bb8088e148a32f73632f25c4e7d7906e259ea190408ccea9c33bbf12",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.12",
+    "sha256": "4139d5652e377e62621de2a7f0244a4e64eafdfe3b0939faaaeda51dc3aa0143",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.13",
+    "sha256": "e8d00391658831809ae2ec308ced83fe2f25878a87d7ee6d4e2f89b702472dfd",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.13",
+    "sha256": "1223f58db0a66045c54b68dab5c99a10d8221bbe3e59faf0436a57c91df1690b",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.14",
+    "sha256": "f0592c4f1ff9f5f56e786ed0a3669e1d51774158134177c6eb5f299ea0e01cc8",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.14",
+    "sha256": "e16e10d72a853fd84ed8dadb8afeec4308591dc2d0aaed359cbef5247f1bacac",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.15.key",
+    "sha256": "8dfc5dad9a64fc11dfc376cd1ac2c92cbc5ca0c99a155bed5001d98b33300a56",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.15.value",
+    "sha256": "5a76362feac2ba53dfc75a2f86c68fd3ed58ce1a8b732af1e1874907f65c9f3c",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.16",
+    "sha256": "635e661c58dc506cba1b6e1ecaef964896e266842210ba01d505915c08859aaf",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.16",
+    "sha256": "a0727394b354287e18a3472d756b6f19d6d0661c48dcf24a869f3d6bff3b9dff",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.17",
+    "sha256": "9da32f319beb3c9acb0c8256ee3b9a56cadf06d203f0d5983feb480a816364cb",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.17",
+    "sha256": "f2e138454dddbbe6e06a40cd77c92223cf276411fe18989a96e0644392358d6d",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.18",
+    "sha256": "87b833da3120e1a6e555e8da6d34aefe9aca02568fc0be6c504bf3f7922181c2",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.18",
+    "sha256": "89ac984134df0a60febb7c4f8cbc6c095ca58c479a5602c131d721f3b53e07c2",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.19.key",
+    "sha256": "0a70cc0ffb037913d1031445bca80bf5418e90b58e55162c3d428f5cd031cdc8",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.19.value",
+    "sha256": "2cb34dc5fa1c917d5cd353004e2c7acd9f2d28d26cdc262bc73122eefd30b154",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.20",
+    "sha256": "2414ee6ea079d32d5221c0465e731e687562ba88af51e6ef895a6fddb65fc469",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.20",
+    "sha256": "0b41d5ed678746131de981e0514392aa3928eb6c576d2a94c1d25c605e9ed84e",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.21",
+    "sha256": "00763ed51a12736e91be8ea43bb2578863f1ad72b3f79d1686b64d9b08473399",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.21",
+    "sha256": "827092da5bf28afa919836f24d37ed596def3e87170c19ab69039791775323ad",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_conv.22",
+    "sha256": "2e602622eca8b38a14e0e82cb71bf4ac9aaa9fa1ce655f844916305a895c2977",
+    "same_as_original": false,
+    "bytes": 73728
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_recurrent.22",
+    "sha256": "bcf178f343a43a06dc9cfb34a658f3189aaf595976cfe360a0055e1dbee964d7",
+    "same_as_original": false,
+    "bytes": 1048576
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.23.key",
+    "sha256": "0f49bcb90f31ac627447b5c3089ec44c391ca5f7ac7d253b0804ab24416365e0",
+    "same_as_original": false,
+    "bytes": 124928
+  },
+  {
+    "case": "test/context-1/pair-1/purple/1",
+    "arm": "text_instruction",
+    "tensor": "past_key_values.23.value",
+    "sha256": "c229d591bc9bb12bd320797d556a96bed9b1f0885c12dda4444bb8bfc44c92d9",
+    "same_as_original": false,
+    "bytes": 124928
+  }
+]

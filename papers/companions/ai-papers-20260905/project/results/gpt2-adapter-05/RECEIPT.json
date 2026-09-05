@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "onnxruntime": "1.20.1",
+  "onnx": "1.19.1",
+  "numpy": "2.4.6",
+  "model_sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+  "modified_graph_sha256": "10538cd24a8cce3cc8b054f42156b549bb7880746060f14477a4d1ce219847c2",
+  "adapter_sha256": "979b366adf26aee0c06d579b4c735f86f0b673e2ecec22eb177c4eb662a2bc11",
+  "single_token_export": true,
+  "input_ids": [
+    2215,
+    1757,
+    290,
+    5335,
+    1816,
+    284,
+    262,
+    3650,
+    11,
+    1757,
+    2921,
+    257,
+    1492,
+    284
+  ],
+  "prompt": "When John and Mary went to the store, John gave a book to",
+  "token_count": 14,
+  "hooks": {
+    "r7": "/transformer/h.7/Add_1_output_0",
+    "r8": "/transformer/h.8/Add_1_output_0",
+    "a9": "/transformer/h.9/attn/Reshape_3_output_0"
+  },
+  "original_vs_instrumented_max_logit_error": 0.0,
+  "original_vs_instrumented_max_cache_error": 0.0,
+  "self_replacement_max_logit_error": 0.0,
+  "persisted_cache_reload_max_logit_error": 0.0,
+  "cache_reset_max_logit_difference": 58.0281982421875,
+  "top_tokens": [
+    {
+      "id": 5335,
+      "text": " Mary",
+      "logit": -74.15451049804688
+    },
+    {
+      "id": 606,
+      "text": " them",
+      "logit": -75.63256072998047
+    },
+    {
+      "id": 262,
+      "text": " the",
+      "logit": -75.89356231689453
+    },
+    {
+      "id": 683,
+      "text": " him",
+      "logit": -76.29530334472656
+    },
+    {
+      "id": 607,
+      "text": " her",
+      "logit": -76.51221466064453
+    }
+  ],
+  "elapsed_seconds": 3.0780000000377186,
+  "fp32_equivalence": "Not tested; comparison uses the same pinned quantized single-token export",
+  "full_sequence_vs_incremental": "Not tested: this export declares sequence length one"
+}

@@ -1,0 +1,9 @@
+{
+  "execution": "PASS",
+  "scientific_promotion": "DEVELOPMENT_ONLY",
+  "conditions": 36,
+  "events": 2304,
+  "seconds": 0.09399999998277053,
+  "bytes_before_summary": 220310,
+  "shared_models_and_test_worlds": "dev-02; do not count as independent replication"
+}

@@ -1,0 +1,19 @@
+{
+  "claimId": "SAN-CA-MI-PAIRED-ROLE-METRIC-06",
+  "stage": "Draft 6 post-hoc evaluation diagnostic",
+  "status": "yellow",
+  "pieceType": "lemma",
+  "scope": "Finite two-prompt opposite-target evaluation; not neural understanding",
+  "provides": ["Identical named predictions score one of two", "Same-choice predictions cannot recover both roles", "Score two iff both target identities are correct", "Different predictions alone are insufficient", "Accuracy can increase without paired-role recovery"],
+  "requires": ["Two distinct target identities", "Exactly one native top-one prediction per prompt", "Explicit case-to-target mapping", "Accepted compiler receipt before machine-check claim"],
+  "objects": ["Choice = a | b | other", "hit", "pairScore"],
+  "constants": {"prompts": 2, "choices": 3, "maximum_pair_score": 2},
+  "quantifiers": "For all choices in the specified finite type; explicit counterexamples",
+  "equivalenceRelation": "All non-target outputs may be grouped as other for correctness, not for semantic identity",
+  "projectionInterface": "CSV expected-name mapping -> a on first prompt and b on opposite-role prompt; INVALID -> other",
+  "sourceAnchors": ["PairedRoleMetric.lean", "../../reviews/gpt2-learning-06/ROLE-PAIR-DETAIL.csv", "../../reviews/gpt2-learning-06/ROLE-PAIR-SUMMARY.csv"],
+  "forbiddenOverclaims": ["A compiler-verified Python refinement", "GPT-2 or SAN consciousness", "Proof of robust generalization", "A novel theorem of learning", "Independent scientific review"],
+  "blockers": ["Independent review remains open", "Executable projection is tested, not formally refined"],
+  "downstreamCandidates": ["Draft 6 paired-role reporting", "Prospective Draft 7 role-sensitive endpoint"],
+  "formalProof": {"file": "PairedRoleMetric.lean", "toolchain": "Lean 4.30.0", "command": "./verify.ps1 -Run attempt-01", "buildStatus": "Consult verification-attempt-01/RECEIPT.json", "formalizationScope": "Five finite statements", "openFormalGaps": ["Python/CSV refinement"]}
+}

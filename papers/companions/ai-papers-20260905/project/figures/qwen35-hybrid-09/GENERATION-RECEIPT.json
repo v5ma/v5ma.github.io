@@ -1,0 +1,19 @@
+{
+  "status": "GENERATED_PENDING_VISUAL_INSPECTION",
+  "script_sha256": "15b529b5b0dbc1ac9931e91a6d07b1bb540843c652fc1a988414b0fd767519c5",
+  "sources": {
+    "reviews\\qwen35-hybrid-09\\METRICS.json": "450ed35306fa3d1265a3d56b68d3d1e70f78dad8c71925e5cfc589c00915168b",
+    "reviews\\qwen35-hybrid-09\\JOINT-DETAIL.json": "108e6812705430fcc1167d945f71746b7416a9538d38e386efbc4b7abab55659"
+  },
+  "files": {
+    "hybrid-state-architecture.png": {
+      "bytes": 162372,
+      "sha256": "3b0ecc9fbae48031adbb36bf13b3c147cb95212e97220e49662dc84a0965d807"
+    },
+    "hybrid-transfer-results.png": {
+      "bytes": 139334,
+      "sha256": "9bcada9f702cbc2a60e144ed41efc7cdd3e71bb5db175f93ac1ae03cdeb1cf95"
+    }
+  },
+  "pdf_layout_validated": false
+}

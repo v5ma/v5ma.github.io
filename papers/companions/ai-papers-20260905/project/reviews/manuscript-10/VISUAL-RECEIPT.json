@@ -1,0 +1,210 @@
+{
+  "scope": "Authoring-assistant screen review; not independent or author acceptance",
+  "review_note_sha256": "8467952cc47c540178fe0d396019d51a801f44e03c1d58dfcc7c5d91134d3376",
+  "pdfs": [
+    {
+      "path": "output/pdf/ai-core-alignment-across-scales.pdf",
+      "sha256": "3452fae9eda0f1ca09375c564cb04c351feb74424ab16b762c5eed2004bf5d49"
+    },
+    {
+      "path": "output/pdf/ai-mechanistic-interpretability-and-self-aware-networks.pdf",
+      "sha256": "44c85cb7ad4a977e67841345ab058ed4d8a44a30ca0275774d8d9f540b7d9333"
+    }
+  ],
+  "page_render_hashes": [
+    {
+      "paper": "core-alignment",
+      "page": 1,
+      "render": "tmp/pdfs/ca/page-01.png",
+      "sha256": "fbc3e7f4db79bcf65bd9665da5c6596700987dd92d99826f893d4d0c17388bb8"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 2,
+      "render": "tmp/pdfs/ca/page-02.png",
+      "sha256": "b795f674032a77fe188a6195e9e08f605c35525ce540e99ce2bb45495631572d"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 3,
+      "render": "tmp/pdfs/ca/page-03.png",
+      "sha256": "9c13153a7b7b86326534f72b6aa2b543f86eea51774f6ab4199ca38b57954c20"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 4,
+      "render": "tmp/pdfs/ca/page-04.png",
+      "sha256": "930e8097b7c356354684f4c4ddf386727381ad160f247170ddad7c6ddaacdbe5"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 5,
+      "render": "tmp/pdfs/ca/page-05.png",
+      "sha256": "b221be0a73f4e3c30fa8fbd6aaa0349fbc0e64bf9520b762bb6fab60504cb92f"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 6,
+      "render": "tmp/pdfs/ca/page-06.png",
+      "sha256": "3278dd8448da4fffd2260ae9be592e5fc4d0ae8387901718c11f1f43a52b708d"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 7,
+      "render": "tmp/pdfs/ca/page-07.png",
+      "sha256": "9292e25ce5f1e77dae9eaf1599388f85734f017c4806e0fd58ccf352751fd94d"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 8,
+      "render": "tmp/pdfs/ca/page-08.png",
+      "sha256": "308e1eddaa5fc381737280901b1635f4689520778c09a6b5e07e69f2c6cc629d"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 9,
+      "render": "tmp/pdfs/ca/page-09.png",
+      "sha256": "40b869614e54862d558443738ed3925e50b39289323e3af9c9d7520a5b5373e4"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 10,
+      "render": "tmp/pdfs/ca/page-10.png",
+      "sha256": "a6e1e99d20514b5e2975d3450018c69174eef29a1a468c4756dfeb0e7ee957fb"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 11,
+      "render": "tmp/pdfs/ca/page-11.png",
+      "sha256": "a00a93e0e9b625e810a4dc8750033e982de5dc95bd0b115bc20a97345ee2cb91"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 12,
+      "render": "tmp/pdfs/ca/page-12.png",
+      "sha256": "9e2d65678019d611abcf3c75bbeaa845892921bed6ccb3f032004a741a4e220c"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 13,
+      "render": "tmp/pdfs/ca/page-13.png",
+      "sha256": "073eec9718ffd77cfd55dc88ff14afaeb0640eecffc5b53a4241bfcedc2e52d9"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 14,
+      "render": "tmp/pdfs/ca/page-14.png",
+      "sha256": "af4ce9b2fd9fa9caf8a7921eb21326e919e31670bc7a126aa1b5a7d727600ca1"
+    },
+    {
+      "paper": "core-alignment",
+      "page": 15,
+      "render": "tmp/pdfs/ca/page-15.png",
+      "sha256": "ec7fc489e689915a99d4320478a9009969b96cb09fb779b3b8dc4470e4296489"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 1,
+      "render": "tmp/pdfs/mi/page-01.png",
+      "sha256": "f0e3c48c7c52a60dd83110d7020bd5480e710e9d6734e89128e6ba50502d9fd2"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 2,
+      "render": "tmp/pdfs/mi/page-02.png",
+      "sha256": "b2cb085be4ecfe605390f4a86dd6165199891ad53845bdf541754fbf78d6d103"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 3,
+      "render": "tmp/pdfs/mi/page-03.png",
+      "sha256": "ba9fac20d74ddada2e727289690ff8900be7023e497c8cd2be86295229fd18ea"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 4,
+      "render": "tmp/pdfs/mi/page-04.png",
+      "sha256": "d33b1a97b1089aa50f7f0d7d760ea2a8fca84338068c840f1bf130ae0312b680"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 5,
+      "render": "tmp/pdfs/mi/page-05.png",
+      "sha256": "475f2e13c1ad34338010e2414f770e0de910a99ac52060b44431560fb2dc3c99"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 6,
+      "render": "tmp/pdfs/mi/page-06.png",
+      "sha256": "543cc1c6e19ffe0a6c6a3ebd2b1178539fe19b882d0690569afb417414441b20"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 7,
+      "render": "tmp/pdfs/mi/page-07.png",
+      "sha256": "a002537ab43c1206fe20735bd7d71c37d2664af9565f5d83c53276acc797868d"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 8,
+      "render": "tmp/pdfs/mi/page-08.png",
+      "sha256": "600b51ad6cd58f7e33d7d2a8697d038032581ef55b4e27035c0a414dfe06a1fc"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 9,
+      "render": "tmp/pdfs/mi/page-09.png",
+      "sha256": "0c4f5ea936b889dacd127711441cfcbc1e29c03f74533589dac0bae519b94736"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 10,
+      "render": "tmp/pdfs/mi/page-10.png",
+      "sha256": "d2acecf925fa1f21e5e1ca3574e01463f76c09f4f40c886cd3c67d2ea8806eb6"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 11,
+      "render": "tmp/pdfs/mi/page-11.png",
+      "sha256": "0b4dd19ac88302d438f1b4f1b8876cf3f6eb1675b244a4369226a10c0fcb6e5d"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 12,
+      "render": "tmp/pdfs/mi/page-12.png",
+      "sha256": "73cea06006959f287279327a723cadab051c2e0d971f43425fea46828e4b291c"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 13,
+      "render": "tmp/pdfs/mi/page-13.png",
+      "sha256": "7246e9849213a636860c5a62a5ed52863540771d253549c97794d116d0bc1bf0"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 14,
+      "render": "tmp/pdfs/mi/page-14.png",
+      "sha256": "bb8b67668ff8b91bc870fe08945a76f4865e9f728083253e30e9a2804e8d2ca7"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 15,
+      "render": "tmp/pdfs/mi/page-15.png",
+      "sha256": "08cc235562201d6a439a1090c758f0bac5d1884c9d67a4055fae54ed66096c7f"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 16,
+      "render": "tmp/pdfs/mi/page-16.png",
+      "sha256": "08b2ca28d42b932232af7f9c92b2b4f7f9a839fccf32b25a95cd5a7895c8b05e"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "page": 17,
+      "render": "tmp/pdfs/mi/page-17.png",
+      "sha256": "67ee7cc670b01c84147d17b9cadbe042cfb2b6586e95377488b1190fa7abf63c"
+    }
+  ],
+  "all_pages_screen_reviewed": true,
+  "human_readback": false
+}

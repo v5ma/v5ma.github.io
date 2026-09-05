@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "scope": "Two named Draft 7/Draft 8 manuscripts",
+  "independent_review": false,
+  "reviewer": "authoring agent and exact paragraph checks",
+  "records": [
+    {
+      "paper": "core-alignment",
+      "old_sha256": "4b8975a4109e3e3e8c13280d318aac2d85a7a82d45326e526d8c6460397ad28b",
+      "new_sha256": "b8ebfa236b5086c73c9bf7bd5c0a0dfa5341d89328ecfdf9fad0b49743faaa70",
+      "old_paragraphs": 166,
+      "retained_exact_paragraphs": 163,
+      "changed_paragraphs": [
+        {
+          "starts_with": "September 4, 2026 \u00b7 Draft 7",
+          "reason": "Current version label only; frozen Draft 7 retained.",
+          "old_line": 8,
+          "old_paragraph_sha256": "bb4ed13d33fb962e6563e84eeafab9a6bb7db57c2083452133092a301c977ae1"
+        },
+        {
+          "starts_with": "How can a limited human contribution",
+          "reason": "Abstract now incorporates cache and baseline findings; original argument and earlier evidence remain in the body.",
+          "old_line": 12,
+          "old_paragraph_sha256": "6b015f962c3593073df8d3333ec4bf0fdd647ae6bd91d6c87e3c65c0fe78a67e"
+        },
+        {
+          "starts_with": "The substantive alignment requirement is now sharper",
+          "reason": "Future persistence recommendation now points to executed section 6.10; broader semantic and review gates remain.",
+          "old_line": 321,
+          "old_paragraph_sha256": "f094b9f6a20806c624f560468fe4e1d8ca8d1ff73f2e24a78986ae086d7c5dae"
+        }
+      ],
+      "source_section_verbatim": true,
+      "all_other_original_paragraphs_retained": true,
+      "new_words_including_references": 8750,
+      "numbered_equations": 11
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "old_sha256": "1f218eeadfc1f405b2e1f22fac62d230327c2547891d3fef0857ceb362824c69",
+      "new_sha256": "5577ce48a061beed31b17e70723306231966de0ad42e747146517c2ebc5b6ed6",
+      "old_paragraphs": 182,
+      "retained_exact_paragraphs": 179,
+      "changed_paragraphs": [
+        {
+          "starts_with": "September 4, 2026 \u00b7 Draft 7",
+          "reason": "Current version label only; frozen Draft 7 retained.",
+          "old_line": 8,
+          "old_paragraph_sha256": "bb4ed13d33fb962e6563e84eeafab9a6bb7db57c2083452133092a301c977ae1"
+        },
+        {
+          "starts_with": "Decoding a state, identifying its causal use",
+          "reason": "Abstract now incorporates cache and baseline findings; original argument and earlier evidence remain in the body.",
+          "old_line": 12,
+          "old_paragraph_sha256": "9ff0cd02060a2937978916cb6899b981458c0e6d9fdc8d652d8b50796e5c955c"
+        },
+        {
+          "starts_with": "The passive assay has implemented live",
+          "reason": "Next-test summary now distinguishes executed continuation controls from baseline-inadequate semantic evaluation.",
+          "old_line": 391,
+          "old_paragraph_sha256": "b6c741a34f94a10d92e645905b5be502649caddd1ca3ee78bda904318fdd0329"
+        }
+      ],
+      "source_section_verbatim": true,
+      "all_other_original_paragraphs_retained": true,
+      "new_words_including_references": 10036,
+      "numbered_equations": 15
+    }
+  ],
+  "script_sha256": "d70f5c319a2aedbb4cf77e292008b78753f0ffaecad557229fc1ba43d314618a"
+}

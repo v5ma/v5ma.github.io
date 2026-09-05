@@ -1,0 +1,13 @@
+{
+  "schema": "san-context-provenance-compiler/v1",
+  "source": "PassiveFeedbackAndScope.lean",
+  "sha256": "C16E33DD34F63020EDCF86DDC7DE491A3E1225923CC5A303E3FEC4633B8D2989",
+  "compiler_success": false,
+  "source_unchanged": true,
+  "admitted_axiom_in_output": false,
+  "stated_theorems": 11,
+  "elapsed_seconds": 14.227706,
+  "independent_review": false,
+  "python_refinement_proof": false,
+  "log": "PassiveFeedbackAndScope.lean.log"
+}

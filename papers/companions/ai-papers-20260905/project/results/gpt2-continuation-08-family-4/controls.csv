@@ -1,0 +1,5 @@
+case,upper_restoration_equals_original_cache,lower_restoration_equals_edited_cache,all_suffixes_leave_root_cache_unchanged,root_cache_unchanged_after_branches
+J04_g0_c0_recipient,True,True,True,True
+J04_g0_c1_recipient,True,True,True,True
+J04_g1_c0_recipient,True,True,True,True
+J04_g1_c1_recipient,True,True,True,True

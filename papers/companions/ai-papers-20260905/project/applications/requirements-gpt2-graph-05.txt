@@ -1,0 +1,2 @@
+onnx==1.19.1 --hash=sha256:bc7e2e4e163e679721e547958b5a7db875bf822cad371b7c1304aa4401a7c7a4
+ml_dtypes==0.5.3 --hash=sha256:da65e5fd3eea434ccb8984c3624bc234ddcc0d9f4c81864af611aaebcc08a50e

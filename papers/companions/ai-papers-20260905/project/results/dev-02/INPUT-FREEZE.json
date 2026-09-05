@@ -1,0 +1,72 @@
+{
+  "protocol": {
+    "schema": "san-ca-mi-development-protocol/v2",
+    "purpose": "Repair donor exposure and test full-state derivative comparators; not confirmatory",
+    "specified_after": "dev-01 results and donor-crossing audit",
+    "seeds": [
+      1101,
+      2202,
+      3303
+    ],
+    "split_seed": 7919,
+    "family": "All four combinations of the two grant bits; other six world bits fixed",
+    "families": 64,
+    "partition_families": {
+      "train": 32,
+      "validation": 16,
+      "test": 16
+    },
+    "positive_family_strata": {
+      "train": 8,
+      "validation": 4,
+      "test": 4
+    },
+    "training_replicates": 4,
+    "epochs": 1200,
+    "learning_rate": 0.015,
+    "ridge": 0.01,
+    "donors": [
+      "selected_grant",
+      "unselected_grant"
+    ],
+    "methods": [
+      "global_linear",
+      "matched_polynomial",
+      "unit_local_context",
+      "local_jacobian",
+      "averaged_jacobian",
+      "wrong_context_jacobian"
+    ],
+    "primary_development_contrasts": [
+      "local_jacobian versus averaged_jacobian",
+      "local_jacobian versus wrong_context_jacobian",
+      "unit_local_context versus matched_polynomial"
+    ],
+    "controls": [
+      "selected versus unselected donor",
+      "same-unit outgoing route removed",
+      "adjacent-unit outgoing route removed",
+      "exact original weights restored"
+    ],
+    "inference_unit": "intervention family within trained seed; neither unit patches nor world repetitions are independent samples",
+    "intervals": "descriptive across 3 trained seeds; no confirmatory p value",
+    "resources": {
+      "numerical_threads": 1,
+      "max_seconds_per_training_seed": 35,
+      "max_total_seconds": 120,
+      "max_result_bytes": 15000000
+    },
+    "scope": [
+      "No LLM, human or clinical experiment",
+      "No endogenous-access claim",
+      "No architecture superiority from the virtual reference monitor",
+      "No mapping of artificial hidden units onto particular cortical cell classes"
+    ]
+  },
+  "hashes": {
+    "PROTOCOL-DEV-02.json": "d7ce25bf56298cf43077179311b7bfb1379761ed1b673a86633cc7fdea99537d",
+    "run_development_v2.py": "0e092f2d4219fb8a7ccba64c0ac40ed5f4ae25ba8d64e7c120bc65ff4d57d023",
+    "causal_lab.py": "de42dc8a9edb5dc2f2d628f5760111e8c21e158d0eb35275595d68feb81f9df5"
+  },
+  "numpy": "2.4.6"
+}

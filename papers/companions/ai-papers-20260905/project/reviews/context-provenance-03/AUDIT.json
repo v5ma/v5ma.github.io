@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "application_tests": 21,
+  "probe_refit_and_metrics": true,
+  "feedback_events_checked": 960,
+  "scope_events_checked": 288,
+  "exact_rational_null_rows": 42,
+  "fixed_sentence_token_position_control": [
+    {
+      "sentence": 0,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 8
+    },
+    {
+      "sentence": 1,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 7
+    },
+    {
+      "sentence": 2,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 8
+    },
+    {
+      "sentence": 3,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 7
+    },
+    {
+      "sentence": 4,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 6
+    },
+    {
+      "sentence": 5,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 7
+    },
+    {
+      "sentence": 6,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 7
+    },
+    {
+      "sentence": 7,
+      "identical_sentence_token_ids_and_positions_across_scores": true,
+      "selected_tokens": 6
+    }
+  ],
+  "source_model_hashes_unchanged": true,
+  "independent_review": false,
+  "limits": [
+    "Same authoring agent, separate recount, not independent scientific review",
+    "Probe has training accuracy only; neutral evaluation sentences have no semantic ground truth",
+    "Forged origins test separation of an excluded field, not resilience to natural-language prompt injection",
+    "Stale arm deliberately uses a stale authority store, not the proved current-store premise",
+    "Learned encoder is not generative, and no useful feedback-controlled behavior is evaluated"
+  ]
+}

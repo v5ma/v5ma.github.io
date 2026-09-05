@@ -1,0 +1,61 @@
+{
+  "schema": "san-qwen35-development-baseline/v9",
+  "date": "2026-09-05",
+  "status": "Frozen before any inference on the selected Qwen3.5 export; development only, not externally preregistered or confirmatory",
+  "model_plan": "applications/INTAKE-QWEN35-TEXT-09.json",
+  "model_plan_sha256": "564e74e858f53b07ffefba0fdd54acdb4cd1587ced9a303bb33aa1a84aac3b4f",
+  "purpose": "Establish baseline relation and attribute competence, native hybrid-state access, bounded resource behavior and full-prefix versus split-prefix consistency before selecting an intervention experiment.",
+  "system": "Answer questions about the short story. Reply with only the requested person's name or color, without explanation.",
+  "stories": [
+    {"id": "museum-ab", "story": "At the museum, Alice gave a red book to Bob.", "giver": "Alice", "recipient": "Bob", "color": "red"},
+    {"id": "museum-ba", "story": "At the museum, Bob gave a red book to Alice.", "giver": "Bob", "recipient": "Alice", "color": "red"},
+    {"id": "school-cd", "story": "At the school, Clara gave a blue book to David.", "giver": "Clara", "recipient": "David", "color": "blue"},
+    {"id": "school-dc", "story": "At the school, David gave a blue book to Clara.", "giver": "David", "recipient": "Clara", "color": "blue"}
+  ],
+  "questions": {
+    "giver": "Who gave the book?",
+    "recipient": "Who received the book?",
+    "color": "What color was the book?"
+  },
+  "rendering": "Exact text-only system+user subset of the pinned community chat_template.jinja: user is story + newline + question. add_generation_prompt=true; enable_thinking=false. No demonstrations, tools, images, or vision inputs. Assistant prefix includes the template's empty think pair. No answer is supplied in the prompt.",
+  "decoding": "Greedy argmax over all 248320 logits, at most four generated tokens, stopping at configured EOS. Save native top token and complete bounded answer. Scoring uses case-sensitive decoded content after strip() only; no punctuation cleanup, name-only restricted decoder, or post-hoc alias allowance.",
+  "stages": [
+    "Prepare and hash all twelve prompt/token fixtures without model inference.",
+    "One first-case smoke run, with full-prefix and two-chunk prefix evaluation, before the four serial three-query baseline batches.",
+    "Execute and report all twelve fixtures regardless of correctness, unless resource or numerical integrity bounds stop execution. Do not edit exposed prompts under this protocol."
+  ],
+  "baseline_gate": {
+    "correct_answers_at_least": 10,
+    "of": 12,
+    "each_query_correct_at_least": 3,
+    "each_query_of": 4,
+    "purpose": "Gate whether a later new, separately frozen intervention experiment has adequate development competence. Does not license selection of only successful evaluation cases."
+  },
+  "integrity": {
+    "native_output_and_state_finite": true,
+    "expected_state_tensors": 48,
+    "state_groups": {"causal_convolution": 18, "gated_delta_recurrent": 18, "attention_key_value": 12},
+    "split_prefix": "Split the first prompt at floor(token_count / 2), pass every returned conv/recurrent/KV tensor and absolute text positions. Compare final full-vocabulary logits and all state tensors with one-shot prefill.",
+    "split_max_absolute_logit_error": 0.005,
+    "split_max_absolute_state_error": 0.005,
+    "split_top_token_must_match": true,
+    "quantization_scope": "Single community q4 export; no upstream full-precision equivalence asserted. Native ONNX outputs, not a reimplemented Transformer."
+  },
+  "resources": {
+    "numerical_threads": 1,
+    "max_seconds_per_process": 75,
+    "max_process_commit_bytes": 5500000000,
+    "min_available_ram_bytes": 8000000000,
+    "max_prompt_tokens": 160,
+    "max_generated_tokens": 4,
+    "max_saved_bytes_per_batch": 2000000,
+    "parallel_model_processes": 0,
+    "full_cache_persistence": false
+  },
+  "claim_limits": [
+    "This is development baseline assessment, not a held-out intervention result.",
+    "The model has attention and recurrent/convolutional state. Restoring KV alone is not restoring its complete computation state.",
+    "No base-weight learning, modern-model editing, human-oversight benefit, intelligence-gap result, biological validation, or DeepSeek/MoE execution follows from this baseline.",
+    "All failures, outputs, resource stops and deviations remain preserved."
+  ]
+}

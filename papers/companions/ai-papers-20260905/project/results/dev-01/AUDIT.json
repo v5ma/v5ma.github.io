@@ -1,0 +1,117 @@
+{
+  "schema": "san-ca-mi-development-audit/v1",
+  "tests_run": 10,
+  "tests_passed": true,
+  "test_output": "test_jacobian_matches_numerical_derivative (test_labs.CausalTests.test_jacobian_matches_numerical_derivative) ... ok\ntest_route_lesion_removes_only_unit_influence (test_labs.CausalTests.test_route_lesion_removes_only_unit_influence) ... ok\ntest_training_reduces_loss (test_labs.CausalTests.test_training_reduces_loss) ... ok\ntest_world_target_binding (test_labs.CausalTests.test_world_target_binding) ... ok\ntest_all_finite_delegation_masks (test_labs.CommitmentTests.test_all_finite_delegation_masks) ... ok\ntest_forgery_and_replay_rejected (test_labs.CommitmentTests.test_forgery_and_replay_rejected) ... ok\ntest_revocation_rejects_old_proposal (test_labs.CommitmentTests.test_revocation_rejects_old_proposal) ... ok\ntest_signed_body_cannot_be_changed (test_labs.CommitmentTests.test_signed_body_cannot_be_changed) ... ok\ntest_stale_proposal_rejected_even_if_scope_unchanged (test_labs.CommitmentTests.test_stale_proposal_rejected_even_if_scope_unchanged) ... ok\ntest_trivial_safety_and_real_use_are_separate (test_labs.CommitmentTests.test_trivial_safety_and_real_use_are_separate) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.155s\n\nOK\n",
+  "input_hashes_match": true,
+  "event_hash_chains_checked": 108,
+  "events_recounted": 6048,
+  "ca_aggregate": {
+    "text_only": {
+      "conditions": 27,
+      "unauthorized": 483,
+      "useful": 540,
+      "eligible": 552,
+      "rejections": 0,
+      "useful_completion": 0.9782608695652174
+    },
+    "final_gate": {
+      "conditions": 27,
+      "unauthorized": 0,
+      "useful": 519,
+      "eligible": 552,
+      "rejections": 24,
+      "useful_completion": 0.9402173913043478
+    },
+    "propagated_gate": {
+      "conditions": 27,
+      "unauthorized": 0,
+      "useful": 552,
+      "eligible": 552,
+      "rejections": 0,
+      "useful_completion": 1.0
+    },
+    "deny_all": {
+      "conditions": 27,
+      "unauthorized": 0,
+      "useful": 0,
+      "eligible": 552,
+      "rejections": 0,
+      "useful_completion": 0.0
+    }
+  },
+  "mi_summary": {
+    "global_linear": {
+      "test_mae_by_seed": [
+        0.4425998550973073,
+        0.46298147019116326,
+        0.3942659604404206
+      ],
+      "mean_test_mae": 0.43328242857629706
+    },
+    "matched_polynomial": {
+      "test_mae_by_seed": [
+        0.435980154271939,
+        0.44912743657097054,
+        0.36676549584195123
+      ],
+      "mean_test_mae": 0.4172910288949536
+    },
+    "receiver_conditioned": {
+      "test_mae_by_seed": [
+        0.4465997463302582,
+        0.45424570191938046,
+        0.3885828978335088
+      ],
+      "mean_test_mae": 0.4298094486943825
+    },
+    "local_jacobian": {
+      "test_mae_by_seed": [
+        0.16339515266971097,
+        0.13136773954980366,
+        0.15873672076599432
+      ],
+      "mean_test_mae": 0.15116653766183633
+    }
+  },
+  "context_donor_split_audit": {
+    "train": {
+      "worlds": 128,
+      "positives": 19,
+      "donors_outside_context_split": 60,
+      "donor_destinations": {
+        "train": 68,
+        "validation": 28,
+        "test": 32
+      }
+    },
+    "validation": {
+      "worlds": 64,
+      "positives": 4,
+      "donors_outside_context_split": 40,
+      "donor_destinations": {
+        "train": 28,
+        "validation": 24,
+        "test": 12
+      }
+    },
+    "test": {
+      "worlds": 64,
+      "positives": 9,
+      "donors_outside_context_split": 44,
+      "donor_destinations": {
+        "train": 32,
+        "validation": 12,
+        "test": 20
+      }
+    }
+  },
+  "reviewer_class": "authoring-agent self-audit, not independent review",
+  "scientific_limitations": [
+    "CA depth cells reuse action sequences and are not independent replications.",
+    "CA text-only control is deliberately weak; final-gate is the relevant strong safety comparator.",
+    "MI context partitions are disjoint, but donor states can cross partitions. This run does not satisfy donor-closed holdout.",
+    "All MI methods were specified before this development run, but this is not external preregistration or confirmatory evaluation.",
+    "No learned-model adaptation under runtime revocation and no live-feedback self-regulation experiment have run."
+  ]
+}

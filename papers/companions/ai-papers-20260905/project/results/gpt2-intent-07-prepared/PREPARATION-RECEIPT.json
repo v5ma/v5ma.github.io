@@ -1,0 +1,30 @@
+{
+  "status": "PREPARED_WITHOUT_MODEL_INFERENCE",
+  "families": 8,
+  "prompts": 64,
+  "cue_query_cases_per_arm": 128,
+  "arms": [
+    "no_edit",
+    "d6_internal",
+    "d6_task",
+    "d6_yoked",
+    "d6_ridge",
+    "reflection",
+    "reflection_capped",
+    "intent_blind_reflection",
+    "wrong_intent_reflection",
+    "current_donor_oracle",
+    "textual_update",
+    "revoked_reflection"
+  ],
+  "new_names_disjoint": true,
+  "token_lengths": [
+    14,
+    15,
+    22,
+    23
+  ],
+  "model_sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+  "family_manifest_sha256": "6021ecaac40cec7427f3234343cdb9573a366b0704cb3c1759a0d7e3983ccb4f",
+  "frozen_before_evaluation": true
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS_SCREEN_IMAGE_ONLY",
+  "independent_review": false,
+  "pdf_layout_accepted": false,
+  "files": {
+    "hybrid-state-architecture.png": "7387cd5d6d777ebca47d2bc660b26595e02903301763ab92c450ddf848131b23",
+    "hybrid-transfer-results.png": "9bcada9f702cbc2a60e144ed41efc7cdd3e71bb5db175f93ac1ae03cdeb1cf95"
+  },
+  "inspection": "Refined architecture opened at original resolution; result image opened in the first generation and exact bytes verified unchanged. All labels, branches, counts and caveats checked."
+}

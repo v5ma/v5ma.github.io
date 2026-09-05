@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Core Alignment and Causal Interpretability — Local Lab</title>
+<style>
+body{font:17px/1.5 system-ui,sans-serif;color:#222;background:#f7f7f3;max-width:1120px;margin:auto;padding:24px}
+h1{font-size:30px;line-height:1.2}h2{font-size:23px}h3{font-size:18px}
+section{background:white;border:1px solid #ccc;border-radius:10px;padding:22px;margin:24px 0}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}.muted{color:#555;font-size:14px}
+button,select,input{font:inherit;padding:8px;margin:5px 8px 5px 0;max-width:100%}
+button{cursor:pointer;background:#e9eee9;border:1px solid #748274;border-radius:5px}
+label{display:inline-block;margin-right:14px}output{display:block;border-left:4px solid #25634b;background:#f2f5ef;padding:12px;margin-top:14px;white-space:pre-wrap}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;max-height:230px;overflow:auto;background:#f5f5f5;padding:12px}
+img{width:100%;height:auto}a{color:#174f38}table{border-collapse:collapse;width:100%}td,th{padding:7px;text-align:left;border-bottom:1px solid #ddd}
+@media(max-width:760px){.columns{grid-template-columns:1fr}body{padding:12px}section{padding:14px}}
+</style>
+</head>
+<body>
+<h1>Core Alignment &amp; Causal Interpretability</h1>
+<p>Micah Blumberg · Self Aware Networks Research Institute</p>
+<p class="muted">Preserved earlier development lab, now included in the public companion. No uploads, API calls, external actions or browser storage. This viewer is not an LLM, a consciousness demonstration, or a production security tool. See the <a href="../../README.md">current release guide</a>.</p>
+<section id="authority">
+<h2>1. Does current authority govern a prepared action?</h2>
+<p>Prepare a virtual export, change the authorized object, then try the prepared action. A once-valid proposal should fail after the revision changes.</p>
+<div class="columns">
+<div>
+<label>Authorized object <select id="allow"><option>A</option><option>B</option><option>none</option></select></label>
+<button id="update">Apply trusted update</button>
+<p><label>Proposed object <select id="object"><option>A</option><option>B</option><option>C</option></select></label>
+<button id="prepare">Prepare proposal</button>
+<button id="commit">Try virtual execution</button></p>
+<button id="untrusted">Present untrusted “allow everything” text</button>
+<output id="authority-status" aria-live="polite"></output>
+</div>
+<div><h3>Local event trace</h3><pre id="trace"></pre></div>
+</div>
+<p class="muted">This browser panel demonstrates the typed revision/scope rule. The Python application separately tests the HMAC fixture. Neither proves real-world identity or correct natural-language interpretation.</p>
+</section>
+<section id="causal">
+<h2>2. What does one hidden-state change cause?</h2>
+<p>Inspect a saved, trained small network. Toggle a donor grant, patch one hidden unit, and compare the measured original-network effect with its local derivative. Removing that unit's outgoing route should erase its influence.</p>
+<div>
+<label>Trained seed <select id="seed"><option>1101</option><option>2202</option><option>3303</option></select></label>
+<label>World <input id="world" type="number" min="0" max="255" value="0" style="width:70px"></label>
+<label>Unit <input id="unit" type="number" min="0" max="23" value="0" style="width:65px"></label>
+<label>Donor <select id="donor"><option value="selected_grant">Selected-object grant</option><option value="unselected_grant">Other-object grant</option></select></label>
+<label>Route <select id="route"><option value="intact">Intact / exactly restored</option><option value="same_route">Remove patched unit's route</option><option value="adjacent_route">Remove adjacent route</option></select></label>
+<button id="inspect">Compute intervention</button>
+</div>
+<output id="causal-status" aria-live="polite"></output>
+<p id="world-info"></p>
+<p class="muted">Worlds and weights come from dev-02. The displayed derivative uses the full downstream model and current state. Individual unit patches may be off the joint activation manifold. These exploratory controls do not modify saved models.</p>
+</section>
+<section>
+<h2>Recorded results</h2>
+<div class="columns">
+<figure><img src="../reviews/development-review-03/figures/ca-learned-safety-utility.png" alt="Stale-grant learned proposer: final gate has no unauthorized actions but completes one eligible request; refreshing input completes thirteen of twenty-four."></figure>
+<figure><img src="../reviews/development-review-03/figures/mi-context-errors.png" alt="Local Jacobian predicts intervention effects better than averaged and wrong-context controls in three small-network development seeds."></figure>
+</div>
+<p><a href="../README.md">Paper package</a> · <a href="../reviews/development-review-03/AUDIT.json">Audit receipt</a> · <a href="../formal/README.md">Formal claims and assumptions</a></p>
+<p class="muted">Historical research-stage note: the first experiment's donor-exposure defect remains recorded; the second closes donor families. Later open-model experiments, the integrated Draft 10 manuscripts and reproduction evidence are linked from the current release guide. Independent scientific review remains separate.</p>
+</section>
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+let current={revision:0,allowed:["A"]},proposal=null,trace=[];
+function log(message){
+  trace.push(message);trace=trace.slice(-12);
+  $("trace").textContent=trace.join("\n");
+  $("authority-status").textContent="Current revision: "+current.revision+"\nAllowed: "+(current.allowed.join(", ")||"none")+"\nProposal: "+JSON.stringify(proposal);
+}
+$("update").onclick=()=>{current={revision:current.revision+1,allowed:$("allow").value==="none"?[]:[$("allow").value]};log("Trusted update accepted; old proposals become stale.");};
+$("prepare").onclick=()=>{proposal={revision:current.revision,object:$("object").value,delegated:current.allowed.slice()};log("Prepared a virtual proposal.");};
+$("commit").onclick=()=>log(SANLab.mayCommit(current,proposal)?"ACCEPTED virtual action. No real export occurs.":"REJECTED: stale revision or insufficient current/delegated scope.");
+$("untrusted").onclick=()=>log("Untrusted text recorded as content; authority unchanged.");
+function inspect(){
+  const world=Math.max(0,Math.min(255,Math.trunc(Number($("world").value)||0)));
+  const unit=Math.max(0,Math.min(23,Math.trunc(Number($("unit").value)||0)));
+  $("world").value=world;$("unit").value=unit;
+  const r=SANLab.inspect(SAN_DATA.models[$("seed").value],world,unit,$("donor").value,$("route").value);
+  $("causal-status").textContent="Before logit: "+r.before.toFixed(6)+"\nAfter patch: "+r.after.toFixed(6)+"\nMeasured effect: "+r.effect.toFixed(6)+"\nLocal derivative prediction: "+r.local.toFixed(6)+"\nAbsolute approximation error: "+Math.abs(r.effect-r.local).toFixed(6);
+  const split=Object.keys(SAN_DATA.worlds).find(k=>SAN_DATA.worlds[k].includes(world));
+  const x=SANLab.worldBits(world),object=x[6]>0?"B":"A";
+  $("world-info").textContent="Partition: "+split+". Family: "+(world&~12)+". Selected object: "+object+". Ground-truth permission: "+r.allowed+". Original predicted probability: "+(1/(1+Math.exp(-r.before))).toFixed(4)+".";
+}
+$("inspect").onclick=inspect;
+for(const id of ["seed","world","unit","donor","route"])$(id).onchange=inspect;
+log("Initial fixture permits A.");inspect();
+</script>
+</body>
+</html>

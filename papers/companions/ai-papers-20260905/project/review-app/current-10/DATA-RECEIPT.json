@@ -1,0 +1,129 @@
+{
+  "date": "2026-09-05",
+  "scope": "Presentation of frozen evidence, not a new experiment",
+  "inputs": [
+    {
+      "path": "reviews/qwen35-learning-10/METRICS.json",
+      "bytes": 4641,
+      "sha256": "fec1fc9b8dfd1022b0748cefd89a64edc88f6fb9fb47a7310894aa3b7ee6a32b"
+    },
+    {
+      "path": "reviews/qwen35-hybrid-09/METRICS.json",
+      "bytes": 5104,
+      "sha256": "450ed35306fa3d1265a3d56b68d3d1e70f78dad8c71925e5cfc589c00915168b"
+    },
+    {
+      "path": "reviews/qwen35-learning-10/GROUPS.json",
+      "bytes": 10426,
+      "sha256": "979f35080ebc5eb79ee52fff9fbf47f4f83fc2703578a70b8ea45c24d2c06c09"
+    },
+    {
+      "path": "reviews/qwen35-hybrid-09/JOINT-DETAIL.json",
+      "bytes": 7489,
+      "sha256": "108e6812705430fcc1167d945f71746b7416a9538d38e386efbc4b7abab55659"
+    },
+    {
+      "path": "reviews/qwen35-learning-10/COMPLETION.json",
+      "bytes": 2894,
+      "sha256": "65f9b54159b9de216bf09a4e1ca3077d614c130807ce3283de9134f6442cbd78"
+    },
+    {
+      "path": "results/qwen35-learning-10-prepared/TEST-CASES.json",
+      "bytes": 59853,
+      "sha256": "dad439abc6ad3d81a89e93ccd6e1e268a6bcba5d7d82d12badc6b79a735a0e6c"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-0/ANSWERS.json",
+      "bytes": 31332,
+      "sha256": "66f3e72f69f24b53ac307b258331ab3594da5a22bda3d7c6fde54123881f0aad"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-1/ANSWERS.json",
+      "bytes": 31350,
+      "sha256": "792efcff431921a01ee248e4f99d2c8d3a1e52c651e768c170fa726e66dd001e"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-2/ANSWERS.json",
+      "bytes": 31276,
+      "sha256": "cbc6b7615f9473c046e6387dbd359ea6d431e3d2e4f4e7865baed281b8cebc28"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-3/ANSWERS.json",
+      "bytes": 31290,
+      "sha256": "80ea42f08762f95b465625e076aa7c3f08c30f08a6e8cfe6d690b869e8a17a6f"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-4/ANSWERS.json",
+      "bytes": 31419,
+      "sha256": "a5e440a731ba951821992c5cafbc03a37967615e3da99e712a7df605c273fe8e"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-5/ANSWERS.json",
+      "bytes": 31450,
+      "sha256": "e16da33b5d15a5f22f8b35d3cb444a6536e22a4f94c18bea68231442cf67f3d0"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-6/ANSWERS.json",
+      "bytes": 31388,
+      "sha256": "217fb443be67f1169b6a5ecd0f54456d83082f49fe35d4556f35dc0d93e2dd55"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-7/ANSWERS.json",
+      "bytes": 31388,
+      "sha256": "a103ffcdc51c41cf921af2ff94112941495add05f42a1f54d87f44a7be6f551a"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-8/ANSWERS.json",
+      "bytes": 31407,
+      "sha256": "858722667fe4722e3a93440adb2013dfced5dbbbe37bb949daf34f849e461e6a"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-9/ANSWERS.json",
+      "bytes": 31344,
+      "sha256": "7dcd3c80dafc315237baef2636d299a55f2b2482bcfeb76de68dfd949ea05f63"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-10/ANSWERS.json",
+      "bytes": 31332,
+      "sha256": "8e62d277016b9e5b3b3fe86d09d3b79a14412d1a3de60a54b9eb5131e557b656"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-11/ANSWERS.json",
+      "bytes": 31318,
+      "sha256": "97cb77cf6889b665d207076651481e821c4e0bb1a389c0d4558bc1075972d886"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-12/ANSWERS.json",
+      "bytes": 31455,
+      "sha256": "f4dcd8708d89bee6fb8b344ff36947e3956fe2742a854b329934ac732d8586b6"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-13/ANSWERS.json",
+      "bytes": 31481,
+      "sha256": "fbc2f0ca0126fcceab253df843bee0ed60c1b39c0de9d357a218ef7982dbb61e"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-14/ANSWERS.json",
+      "bytes": 31419,
+      "sha256": "7f203f9ad7e30db0aa0e6f172d2ec650159c22cb43a5a8cf9676bbcb15a43b17"
+    },
+    {
+      "path": "results/qwen35-learning-10-test-15/ANSWERS.json",
+      "bytes": 31444,
+      "sha256": "5f83acf85aa6ac1f469f83fce40625ab7949bfe58b5ed3c0f11880810c40f7da"
+    }
+  ],
+  "source_inputs": 22,
+  "heldout_stories": 16,
+  "displayed_saved_answers": 384,
+  "study_metric_rows": 14,
+  "study_metric_cells": 56,
+  "recomputed_learned_answer_scores": 384,
+  "recomputed_learned_group_scores": 64,
+  "model_cards": 4,
+  "evidence_bytes": 54340,
+  "evidence_sha256": "8e6543548d48e18600980c396ad936fbb80dc7c08a22383cb09022da433c7ed5",
+  "new_model_runs": 0,
+  "new_lean_statements": 0,
+  "independent_review": false
+}

@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "independent_review": false,
+  "scope": "Two exact Draft 8 to Draft 9 pairs; paragraph preservation and current-result integration, not independent scientific endorsement",
+  "script_sha256": "f3a04ed166e23d9bd208a35dfac04f2a39c2e7314868ee55b99da808a808d640",
+  "records": [
+    {
+      "paper": "core-alignment",
+      "old_sha256": "b8ebfa236b5086c73c9bf7bd5c0a0dfa5341d89328ecfdf9fad0b49743faaa70",
+      "new_sha256": "4ecba45e7b097660f9f9b4b16a8a894e0f003c82ba8a7ec547393d9a7eec4c40",
+      "old_paragraphs": 185,
+      "retained_exact_paragraphs": 183,
+      "changed_paragraphs": [
+        {
+          "type": "version_line",
+          "reason": "New stage identity",
+          "old_paragraph": "September 5, 2026 \u00b7 Draft 8 \u00b7 Carried context, restoration and baseline adequacy; development manuscript, not a final preprint",
+          "old_paragraph_sha256": "14dd89640b0b15a36fb27a0f02bdee278af094f189b787798c8da66ba211d2d4"
+        },
+        {
+          "type": "abstract",
+          "reason": "Current measured hybrid results; all earlier argument/evidence paragraphs retained",
+          "old_paragraph": "How can limited human guidance remain consequential inside a system capable of far more computation than its author can inspect? I develop a receiver-relative Self Aware Networks (SAN) formulation separating authority, referent, useful behavior and correction of the receiving state. Applications test versioned execution, learned proposals, document provenance and a learned correction layer inside pretrained GPT-2. Earlier experiments expose semantic errors despite correct enforcement and individual accuracy gains without complete role recovery. A temporal follow-up now carries a root intervention through the transformer's key/value cache under identical fixed continuation text. Selectively restoring the changed upper-layer cache reproduces original future outputs; restoring unchanged lower-layer entries preserves the intervention. An actual signed-request workflow distinguishes stopping further edits from restoring original source-conditioned state. The behavioral probe also exposes a limitation: unedited GPT-2 answers none of thirty-two natural-giver follow-ups correctly, so joint zero scores cannot identify intervention-specific semantic failure. This weakness remains explicit alongside successful cache and authority controls. The stage executes 884 measured outputs; separate-code reconstruction and sixty-one cumulative tests support bounded implementation claims. Thirty-one previously checked Lean statements delimit authority, identification and evaluation without certifying learned human-intent interpretation. The result is a concrete research architecture and controlled evidence of its limits\u2014not reduced human oversight, a new security primitive or frontier-model alignment. Baseline-competent contemporary-model evaluation and independent review remain necessary.",
+          "old_paragraph_sha256": "643473fad354295f57ec70f68dee5143285a0e02a51a46b777ab7d546dbd98dc"
+        }
+      ],
+      "source_section_verbatim": true,
+      "all_other_original_paragraphs_retained": true,
+      "numbered_equations": 12,
+      "words_including_references": 9860,
+      "new_section": "6.11"
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "old_sha256": "5577ce48a061beed31b17e70723306231966de0ad42e747146517c2ebc5b6ed6",
+      "new_sha256": "f4e6254ec25a9f7d49f04746390f8be0213351747ad9ee908f45f2f4f078da98",
+      "old_paragraphs": 202,
+      "retained_exact_paragraphs": 200,
+      "changed_paragraphs": [
+        {
+          "type": "version_line",
+          "reason": "New stage identity",
+          "old_paragraph": "September 5, 2026 \u00b7 Draft 8 \u00b7 Carried context, restoration and baseline adequacy; development manuscript, not a final preprint",
+          "old_paragraph_sha256": "14dd89640b0b15a36fb27a0f02bdee278af094f189b787798c8da66ba211d2d4"
+        },
+        {
+          "type": "abstract",
+          "reason": "Current measured hybrid results; all earlier argument/evidence paragraphs retained",
+          "old_paragraph": "Decoding a state, identifying its causal use and learning to regulate it are different achievements. I develop a Self Aware Networks (SAN) research program connecting those distinctions to the Neo Mind Cycle's measurement\u2013feedback\u2013learning loop, while crediting established causal and representation-editing methods. Working applications progress from small-network causal prediction and passive-feedback controls to actual GPT-2 interventions, a learned correction layer and prospective intent/collateral-behavior tests. A new diagnostic applies one residual edit and measures subsequent computation through the decoder's retained key/value cache, without further editing or feeding back a generated answer. Selectively restoring affected cache layers exactly restores the original continuation; restoring unchanged layers does not. Thus the intervention has persistent computational consequences. It does not establish coherent semantic control: the unedited model answers none of thirty-two natural-giver follow-ups correctly, and a richer reversed-prefix control also fails the intended later-giver test. The complete semantic score is consequently non-discriminating. Four signed-request workflows additionally distinguish stopping future edits from actually restoring earlier state through fresh post-request inference. Eight serial batches produce 884 actual model outputs; sixty-one cumulative tests and separate-code reconstruction support the execution record. Thirty-one previously checked Lean statements bound inference, authority and evaluation claims; the cache argument adds no new compiled theorem. The contribution remains a bounded transformer measurement and control study, not privileged introspection or successful general self-regulation. Baseline-competent, matched-information tests on a contemporary model and independent review remain necessary.",
+          "old_paragraph_sha256": "d599d3004e12177b9442a270a5dff8ca864bf33a28f187bce67076fdb2f1fcd5"
+        }
+      ],
+      "source_section_verbatim": true,
+      "all_other_original_paragraphs_retained": true,
+      "numbered_equations": 16,
+      "words_including_references": 11348,
+      "new_section": "6.10"
+    }
+  ]
+}

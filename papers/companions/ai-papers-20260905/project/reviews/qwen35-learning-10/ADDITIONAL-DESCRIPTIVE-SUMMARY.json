@@ -1,0 +1,74 @@
+{
+  "individual_story_summary": [
+    {
+      "arm": "original",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "linear_ridge",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 5,
+      "n": 16
+    },
+    {
+      "arm": "rbf_ridge",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 5,
+      "n": 16
+    },
+    {
+      "arm": "yoked_ridge",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "slot_swap",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "oracle_kv",
+      "both_reversed_roles": 16,
+      "complete_stories": 16,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "full_donor",
+      "both_reversed_roles": 16,
+      "complete_stories": 16,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "text_instruction",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 5,
+      "n": 16
+    }
+  ],
+  "mean_window_rmse_to_donor": {
+    "original": 0.3787966675834401,
+    "linear_ridge": 0.3621087387522761,
+    "rbf_ridge": 0.35175137199974277,
+    "yoked_ridge": 0.9161036233540478,
+    "slot_swap": 0.2655291906748959,
+    "oracle_kv": 0.0
+  },
+  "capped_test_edits": {
+    "linear_ridge": 0,
+    "rbf_ridge": 0,
+    "yoked_ridge": 16
+  },
+  "note": "Individual-story endpoint was predeclared. These RMSE and cap aggregates are descriptive, not newly selected acceptance gates."
+}

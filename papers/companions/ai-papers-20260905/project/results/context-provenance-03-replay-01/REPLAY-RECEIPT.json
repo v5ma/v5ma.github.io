@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "process_exit_code": 0,
+  "matched_artifacts": 9,
+  "artifacts": [
+    {
+      "artifact": "INPUT-FREEZE.json",
+      "reference_sha256": "ae774b76b168bbfc5ebd119b6f9a04416e3a728da39d51aa35432e10e91f4a4d",
+      "rerun_sha256": "ae774b76b168bbfc5ebd119b6f9a04416e3a728da39d51aa35432e10e91f4a4d"
+    },
+    {
+      "artifact": "encoder-feedback-vectors.npz",
+      "reference_sha256": "dd8376b43aac6d602e2abd3746fed546c37f199b038fe349d0c174b49c6cac7d",
+      "rerun_sha256": "dd8376b43aac6d602e2abd3746fed546c37f199b038fe349d0c174b49c6cac7d"
+    },
+    {
+      "artifact": "feedback-events.csv",
+      "reference_sha256": "722ad7825fdfcad1ad2b4e34fd595a596ec90588de0b238c569adfae4b18f853",
+      "rerun_sha256": "722ad7825fdfcad1ad2b4e34fd595a596ec90588de0b238c569adfae4b18f853"
+    },
+    {
+      "artifact": "feedback-metrics.csv",
+      "reference_sha256": "66bf8f9798ff3854f77b17e018cce7b69e0f5f395e9ac890c16d731b0d50e720",
+      "rerun_sha256": "66bf8f9798ff3854f77b17e018cce7b69e0f5f395e9ac890c16d731b0d50e720"
+    },
+    {
+      "artifact": "feedback-sensitivity.csv",
+      "reference_sha256": "5ae8a3cabd039f002d47916c25f1a0bcdc36347b086e4c04450075c0e26475fc",
+      "rerun_sha256": "5ae8a3cabd039f002d47916c25f1a0bcdc36347b086e4c04450075c0e26475fc"
+    },
+    {
+      "artifact": "encoder-scope-vectors.npz",
+      "reference_sha256": "3be731aa78c2832612251a4de08e1063bca812aefbcc232d42d60b0f1e533476",
+      "rerun_sha256": "3be731aa78c2832612251a4de08e1063bca812aefbcc232d42d60b0f1e533476"
+    },
+    {
+      "artifact": "scope-events.csv",
+      "reference_sha256": "5c7bb54a762d203bf81ae2ab2750fec8d0793b38d2351a221f309debfca722f0",
+      "rerun_sha256": "5c7bb54a762d203bf81ae2ab2750fec8d0793b38d2351a221f309debfca722f0"
+    },
+    {
+      "artifact": "scope-metrics.csv",
+      "reference_sha256": "84a850c98888b09bc38f3d84fbae8fd5458128e0c6250c9c22a9a727f22b89c8",
+      "rerun_sha256": "84a850c98888b09bc38f3d84fbae8fd5458128e0c6250c9c22a9a727f22b89c8"
+    },
+    {
+      "artifact": "passive-null.csv",
+      "reference_sha256": "1f786073c063f3c8eb76ae6de6ab441d72641383cf5a3427f95d3de3c110f302",
+      "rerun_sha256": "1f786073c063f3c8eb76ae6de6ab441d72641383cf5a3427f95d3de3c110f302"
+    }
+  ],
+  "boundary": "Same-machine, same-code, same-runtime reproducibility; not independent scientific replication or model identity certification"
+}

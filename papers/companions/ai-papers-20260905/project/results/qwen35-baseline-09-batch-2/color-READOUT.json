@@ -1,0 +1,91 @@
+{
+  "first_token_id": 10025,
+  "first_token": "Blue",
+  "first_top5": [
+    {
+      "id": 10025,
+      "text": "Blue",
+      "logit": 25.6423282623291
+    },
+    {
+      "id": 11855,
+      "text": "blue",
+      "logit": 23.65276336669922
+    },
+    {
+      "id": 14004,
+      "text": "Black",
+      "logit": 20.362918853759766
+    },
+    {
+      "id": 13672,
+      "text": "White",
+      "logit": 19.260154724121094
+    },
+    {
+      "id": 25006,
+      "text": "Dark",
+      "logit": 18.318225860595703
+    }
+  ],
+  "generated_token_ids": [
+    10025,
+    248046
+  ],
+  "answer": "Blue",
+  "stopped_on_eos": true,
+  "final_state_sha256": {
+    "past_conv.0": "0bee200fb81d13cea0b3e7d084fc0eb55540aa2a529945eec1cf4e484c79bf26",
+    "past_recurrent.0": "97085013cafd9cd9f6ae9a21c9b63e129a0e40e9e59c4a4865ef5b513b547029",
+    "past_conv.1": "875192476722bd70cb67fd8a77ecccac7110f4395156b0d59d2d5f04e717d11a",
+    "past_recurrent.1": "859e4474899ed03afea706e241fbd28fbcc3c7a308bbae6c6028e3ada26c69ab",
+    "past_conv.2": "e4b222864729ae28fdead81b83c98ae7a73739682caa2876a5d9d34138108011",
+    "past_recurrent.2": "22259df73f134cbc105cb6079d5bfc6098336394e4af6d635aff302a103ae913",
+    "past_key_values.3.key": "d1dd6fb8468892da36e7854e42bec57d8b38f2ef0d7a88effe27c879a0f17d10",
+    "past_key_values.3.value": "19614be37636d538de512ef5498683894c2a952711d6e987cc69e8d2c86235ea",
+    "past_conv.4": "1bd467fa688443547fb7827b8bab7653f5193cc73c2dbd8d291ac32a41c5f5a2",
+    "past_recurrent.4": "30c792028a12746a3813a9039393fa65bf58e39e9fb04f4abb2d64cd06c5feff",
+    "past_conv.5": "4862ce9e43db5f6d3417409cf16edeaa1ac4363def0378f80b77546d2edb47ee",
+    "past_recurrent.5": "76f6750f46b0ea5cc62d6004f11ef324c718fafd712b9e1c091a4d9e71c665a4",
+    "past_conv.6": "d05c722edab9627cb92ce16ced04b4ae60962fa82b1617ab196e8e6c6dcc7868",
+    "past_recurrent.6": "223adc55488d1a4a90bda3edf9eb0e0c2826b7843ec9e14f209ff756dc12e28b",
+    "past_key_values.7.key": "008348c6e2c9ddb25176190cd08b595e920803051642913287447b7b2e66517c",
+    "past_key_values.7.value": "36cf547b996ab33264f2fd8a59225f7434c6f782a7c4624396d0d194899adebd",
+    "past_conv.8": "95e44eabb9fac80ea6a51a50098b4458e72021fe92ac635150ccc336a6179fc2",
+    "past_recurrent.8": "01682180e2dccd4a5f085864787fb76aa1c81f92fc7df79d7f4ba7e406e3317d",
+    "past_conv.9": "362b93e72b2ef64ca6755397d090a8f2f678d30d3dd26debc245a11e0854f65c",
+    "past_recurrent.9": "9c4780ff03eb25ca909549eb4395baa508f41298dc4629c149e25053a725f0d0",
+    "past_conv.10": "67b6fae4f8041ef6d6756ff12e6e1df1e628d9a1cf95d26b70744b800fd7b7d0",
+    "past_recurrent.10": "4d56c81bb6ead0a8b2dc277769185a51bfbeec07b50620cec85cdaa29bc7b75d",
+    "past_key_values.11.key": "5c955795bc241febb261c130951eceef1b2e66d0db514cc6de5441551392365c",
+    "past_key_values.11.value": "c60a81ca4491e0e5c74c374cd37852a7eeb8e511b947c8d7819befa2bae16135",
+    "past_conv.12": "5a67ecd50a746755eef05e6cf292967d552435fc4ae0aaff0d52cf2b80397dc9",
+    "past_recurrent.12": "e4deb0ba86aa01e9906735ca84b2ce6b6ce479761799c95f0f313cd363aa0a3d",
+    "past_conv.13": "857cffda2f388f11cd1027a35e09da395e74d6786b98de22bd159ccabb94a1c4",
+    "past_recurrent.13": "ca76975460a2f82e8077cf29e4a0b63f644d11d7331593c7516c7c96ebb7e157",
+    "past_conv.14": "5e22bb83b67bbfff33c553581a7b84b2589baa8fc5563e751aaa14671ce7d5cf",
+    "past_recurrent.14": "e602147e49effc40fc1f93b840e64962946fed4d0d4c703d9e6a8611d44b088b",
+    "past_key_values.15.key": "b3a35abfc1d0d9b2056dd7151a2081296013cc3d3e7740cebd4eae34285af54f",
+    "past_key_values.15.value": "1c002ce797447a7cc41a30e8f498a2f6d32bb50cfdb1b047feca91c3f2493482",
+    "past_conv.16": "52a0d3ae3925b37c4cfd9ca50f077f95badfdb0010e342d34dc4f62f5f888af3",
+    "past_recurrent.16": "49da953c46ad2f5d739027aa1a3afb147c1efaede8562a9fda6a0e60d42d930b",
+    "past_conv.17": "d64b514c8c499e5d6b81f85290b4a4f06261eb151e7adb76f026d12da2a6062e",
+    "past_recurrent.17": "49770ed11b4992e57e901094aa18643bc5766698e05193184e3c69b62e2b3656",
+    "past_conv.18": "3c25f4df9e0a1cf80cc114f2a481e307c80db056b2391c542609ccfff95d00ef",
+    "past_recurrent.18": "3d2825323719488433990b5dda4ce2a1882478d0aeb14b9d8b8e65b0325d4284",
+    "past_key_values.19.key": "05852c8ab49a15ea0673d6b050ac033ea57d599966e55344e25635c4a2713e18",
+    "past_key_values.19.value": "e7c94177d803f19d9c8e30f95413431c882776d97a3dd34e231d3f5319c7c5ca",
+    "past_conv.20": "7e410a951624c1d434c7b2e08d06dc276af193e33fc6264251bb9040f0dc7f20",
+    "past_recurrent.20": "b537c10e94793dc47c8dcaece4f2626daf7908b103c7380756b87ab0e741abf1",
+    "past_conv.21": "2b4535e5df35c0cbba08167016a05705ac57a9a602ef529184d80f70189ddde4",
+    "past_recurrent.21": "b01c5c005d1c7e76a54c1301d1f9a1bda2be92145955f20262f38063aa4d14cd",
+    "past_conv.22": "7571c891a3125b246ae3960d1dc68e43dc25b34aa6c5dc9b231b5fd272cfe078",
+    "past_recurrent.22": "ad0bef729738e3ee9bc98f17f7f4d50fde39b7d704f1140c22d823dde4a50607",
+    "past_key_values.23.key": "d468592894fd1c42267a048770bbf4942e65032d4c6303b98a19e3696617c883",
+    "past_key_values.23.value": "1b71cac6d0f5112c57a353ff534544f388410c599d38c523ee3ace85d04bda2e"
+  },
+  "case_id": "school-cd:color",
+  "expected": "blue",
+  "correct": false,
+  "query": "color"
+}

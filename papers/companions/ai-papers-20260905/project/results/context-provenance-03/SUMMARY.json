@@ -1,0 +1,173 @@
+{
+  "execution": "PASS",
+  "scientific_status": "DEVELOPMENT_AND_NULL_CONTROLS_ONLY",
+  "elapsed_seconds": 1.0160000000032596,
+  "bytes_before_summary": 541060,
+  "encoder_batches": 18,
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "onnxruntime": "1.20.1",
+    "numerical_threads": 1,
+    "device": "CPU"
+  },
+  "feedback": {
+    "conditions": 48,
+    "events": 960,
+    "training_examples": 16,
+    "probe_training_accuracy": 1.0,
+    "fixed_sentences": 8,
+    "mean_positive_minus_negative_final": 0.0028190937271461713,
+    "positive_direction_sentences": 3,
+    "negative_direction_sentences": 0,
+    "no_difference_sentences": 5,
+    "minimum_numeric_prefix_probe_range": 0.024008717415299474,
+    "useful_behavior_evaluation": "NOT_PERFORMED; fixed text is a plumbing control",
+    "endogenous_control_evidence": "NONE; no adaptive control action exists in this null"
+  },
+  "scope": {
+    "conditions": 12,
+    "events": 288,
+    "artifacts": 24,
+    "families": 20,
+    "results": [
+      {
+        "revision": 1,
+        "policy": "semantic_nearest",
+        "artifacts": 24,
+        "eligible": 11,
+        "useful": 6,
+        "unauthorized": 7,
+        "useful_fraction": 0.5454545454545454,
+        "clarifications": 0,
+        "unknown_remaining": 0
+      },
+      {
+        "revision": 1,
+        "policy": "semantic_top_two",
+        "artifacts": 24,
+        "eligible": 11,
+        "useful": 2,
+        "unauthorized": 1,
+        "useful_fraction": 0.18181818181818182,
+        "clarifications": 0,
+        "unknown_remaining": 0
+      },
+      {
+        "revision": 1,
+        "policy": "lineage_stale",
+        "artifacts": 24,
+        "eligible": 11,
+        "useful": 8,
+        "unauthorized": 0,
+        "useful_fraction": 0.7272727272727273,
+        "clarifications": 0,
+        "unknown_remaining": 5
+      },
+      {
+        "revision": 1,
+        "policy": "lineage_current",
+        "artifacts": 24,
+        "eligible": 11,
+        "useful": 8,
+        "unauthorized": 0,
+        "useful_fraction": 0.7272727272727273,
+        "clarifications": 0,
+        "unknown_remaining": 5
+      },
+      {
+        "revision": 1,
+        "policy": "lineage_with_clarification",
+        "artifacts": 24,
+        "eligible": 11,
+        "useful": 9,
+        "unauthorized": 0,
+        "useful_fraction": 0.8181818181818182,
+        "clarifications": 2,
+        "unknown_remaining": 3
+      },
+      {
+        "revision": 1,
+        "policy": "deny_all",
+        "artifacts": 24,
+        "eligible": 11,
+        "useful": 0,
+        "unauthorized": 0,
+        "useful_fraction": 0.0,
+        "clarifications": 0,
+        "unknown_remaining": 24
+      },
+      {
+        "revision": 2,
+        "policy": "semantic_nearest",
+        "artifacts": 24,
+        "eligible": 9,
+        "useful": 6,
+        "unauthorized": 5,
+        "useful_fraction": 0.6666666666666666,
+        "clarifications": 0,
+        "unknown_remaining": 0
+      },
+      {
+        "revision": 2,
+        "policy": "semantic_top_two",
+        "artifacts": 24,
+        "eligible": 9,
+        "useful": 1,
+        "unauthorized": 0,
+        "useful_fraction": 0.1111111111111111,
+        "clarifications": 0,
+        "unknown_remaining": 0
+      },
+      {
+        "revision": 2,
+        "policy": "lineage_stale",
+        "artifacts": 24,
+        "eligible": 9,
+        "useful": 0,
+        "unauthorized": 8,
+        "useful_fraction": 0.0,
+        "clarifications": 0,
+        "unknown_remaining": 5
+      },
+      {
+        "revision": 2,
+        "policy": "lineage_current",
+        "artifacts": 24,
+        "eligible": 9,
+        "useful": 7,
+        "unauthorized": 0,
+        "useful_fraction": 0.7777777777777778,
+        "clarifications": 0,
+        "unknown_remaining": 5
+      },
+      {
+        "revision": 2,
+        "policy": "lineage_with_clarification",
+        "artifacts": 24,
+        "eligible": 9,
+        "useful": 8,
+        "unauthorized": 0,
+        "useful_fraction": 0.8888888888888888,
+        "clarifications": 2,
+        "unknown_remaining": 3
+      },
+      {
+        "revision": 2,
+        "policy": "deny_all",
+        "artifacts": 24,
+        "eligible": 9,
+        "useful": 0,
+        "unauthorized": 0,
+        "useful_fraction": 0.0,
+        "clarifications": 0,
+        "unknown_remaining": 24
+      }
+    ],
+    "scope": "constructed origin-sensitive permission stress fixtures; no population estimate",
+    "trusted_components": "fixture authority, provenance attestations, atomic simulation, and clarification oracle",
+    "forged_origin_control": "claimed-origin text is present in the observation record but intentionally unavailable to verified-lineage policies"
+  },
+  "passive_null_fixed_point_difference": "15/91",
+  "independent_review": false
+}

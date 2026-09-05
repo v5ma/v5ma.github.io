@@ -1,0 +1,28 @@
+{
+  "schema": "san-ca-mi-formal-check/v1",
+  "records": [
+    {
+      "file": "CoreAlignment.lean",
+      "sha256": "10B335B78C679A56CC0B6263D0FE1C7C58D1571137B62077184A6A4F3FF41197",
+      "compiler_success": true,
+      "admitted_axiom_in_output": false,
+      "source_unchanged": true,
+      "started": "2026-09-04T19:27:10.9762586-07:00",
+      "elapsed_seconds": 49.0790516,
+      "log": "CoreAlignment.lean.log"
+    },
+    {
+      "file": "ReceiverRelativeInterpretability.lean",
+      "sha256": "D08B3F8EE9A56C70B7BFF004DD2373B59D812724812839BEEAB619F0CDBA2E69",
+      "compiler_success": true,
+      "admitted_axiom_in_output": false,
+      "source_unchanged": true,
+      "started": "2026-09-04T19:28:00.0582975-07:00",
+      "elapsed_seconds": 3.3684381,
+      "log": "ReceiverRelativeInterpretability.lean.log"
+    }
+  ],
+  "independent_review": "NOT_PERFORMED",
+  "python_refinement_proof": "NOT_PERFORMED",
+  "interpretation": "Compiler checks apply only to explicit Lean statements and their assumptions."
+}

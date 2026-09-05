@@ -1,0 +1,13 @@
+arm,family_color_groups,both_roles_keep,both_roles_swap,both_intents_both_roles,color_contract,full_contract
+no_edit,16,12,0,0,11,0
+d6_internal,16,12,0,0,4,0
+d6_task,16,12,0,0,11,0
+d6_yoked,16,12,0,0,10,0
+d6_ridge,16,12,0,0,11,0
+reflection,16,12,0,0,8,0
+reflection_capped,16,12,0,0,8,0
+intent_blind_reflection,16,0,0,0,8,0
+wrong_intent_reflection,16,0,0,0,8,0
+current_donor_oracle,16,12,4,4,11,2
+textual_update,16,12,12,12,11,8
+revoked_reflection,16,12,0,0,11,0

@@ -1,0 +1,32 @@
+{
+  "status": "EXECUTED_DEVELOPMENT_NOT_CONFIRMATORY",
+  "mode": "run",
+  "batch": 2,
+  "resource": {
+    "elapsed_seconds": 4.76600000000326,
+    "initial": {
+      "available_ram_bytes": 19925606400,
+      "process_commit_bytes": 33882112,
+      "peak_process_commit_bytes": 33882112,
+      "working_set_bytes": 55828480
+    },
+    "final": {
+      "available_ram_bytes": 19370852352,
+      "process_commit_bytes": 490455040,
+      "peak_process_commit_bytes": 549654528,
+      "working_set_bytes": 622014464
+    },
+    "peak_commit_bytes": 549654528,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  },
+  "native_decoder_calls": 7,
+  "processed_tokens": 173,
+  "source_hashes_unchanged": true,
+  "files": {
+    "color-READOUT.json": "e4ec32b9fd2acc692be48e1530469aa717880b676a24a5501bf75174cee335f5",
+    "giver-READOUT.json": "8a2b7fcadfdbf0c0f2eb0ea3eb04d221e9128a2fb388f107bf720d5388a1c9f5",
+    "INPUT-FREEZE.json": "a0ba6c01d10a588552dd3f5e20c022464dc118be0dee6032d9ef39241cf33d4c",
+    "recipient-READOUT.json": "5da35d9c58b6caeaec77dcbcb5ecd9fcb6d5e7ffbfadf693cba16b8f811d46b7"
+  }
+}

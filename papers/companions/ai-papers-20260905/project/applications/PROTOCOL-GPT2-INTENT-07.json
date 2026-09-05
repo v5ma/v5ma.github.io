@@ -1,0 +1,31 @@
+{
+  "schema": "san-gpt2-intent-selectivity/v7",
+  "status": "Specified before new model evaluation; developmental follow-up, not external preregistration",
+  "purpose": "Test intent-conditioned role change, opposite-role correctness and preservation of an unrelated color; do not equate state invertibility or individual accuracy with semantic selectivity",
+  "model": "Frozen GPT-2 conversion and graph adapter from Draft 5; no new model or download",
+  "training": "No new fitting. Reuse Draft 6 training-only basis and final internal/task/yoked/ridge matrices. A new reflection is derived directly from the existing orthonormal basis and center, without observing new outputs.",
+  "templates": [
+    "When {a} and {b} arrived at the airport, {giver} gave a {color} book to",
+    "After {a} and {b} left the restaurant, {giver} handed a {color} book to",
+    "While {a} and {b} waited at the station, {giver} passed a {color} book to",
+    "Before {a} and {b} attended the concert, {giver} brought a {color} book to"
+  ],
+  "name_pairs": [["William", "Elizabeth"], ["Joseph", "Susan"]],
+  "colors": ["red", "blue"],
+  "queries": ["recipient", "color"],
+  "color_completion": " {recipient}. The color of the book was",
+  "intents": ["keep", "swap"],
+  "semantics": "The structured trusted cue independently selects keep or swap of giver/recipient, not a name. A recipient query should name the current recipient for keep and the current giver for swap. A color query should retain the book color under either cue. A supplied structured cue is not learned natural-language intent.",
+  "families": "4 templates x 2 name pairs = 8 families, each containing both giver orientations, both colors and both queries. All 64 base prompts are fixed before execution. There are 128 cue/query cases per arm. No clean-failure filtering or held-out tuning.",
+  "reflection": "T(h)=h-2 R.T R(h-mu). R and mu are the frozen Draft 6 training basis and center. Exact arithmetic gives T(T(h))=h and preserves the orthogonal complement. This known linear-algebra construction is not a learned semantic guarantee or a novel editing method. A capped-reflection comparator uses the old edit-norm cap and is not assumed involutive.",
+  "arms": ["no_edit", "d6_internal", "d6_task", "d6_yoked", "d6_ridge", "reflection", "reflection_capped", "intent_blind_reflection", "wrong_intent_reflection", "current_donor_oracle", "textual_update", "revoked_reflection"],
+  "controls": "Intent-aware arms apply the same residual edit to both query types when swap is authorized; they cannot bypass the color test using a query-type gate. Keep is an engineered no-op. Intent-blind reflection always edits; wrong-intent reflection edits only for keep. Donor oracle uses the opposite-giver state for the same query/color. Textual update recomputes that complete prompt, using known fixture structure. These richer controls are explicitly not equal-access competitors.",
+  "authority": "Actual CommitmentStore receives signed current cue scope, forged opposite cue, revocation and old signed replay. The chosen operation reads accepted scope. Revoked-reflection runs without a patch. Public HMAC fixture, not production security. Native recipient proposals additionally pass current supplied recipient scope before virtual send; color queries do not send anything.",
+  "primary_endpoints": ["Native full-vocabulary correctness by cue and query", "Both opposite recipient roles correct per family/color/cue", "Both intents and both recipient roles correct per family/color", "Complete two-intent/two-role/two-query contract per family/color", "Color correctness and original-output stability when role edit is applied", "Invalid/prohibited proposals and useful virtual execution"],
+  "secondary_endpoints": ["Full-vocabulary target probability", "Target/other contrast", "Edit norms and cap activation", "Float reflection double-application error and orthogonal-complement preservation", "All per-family outcomes and correlations; no population p-values"],
+  "information_units": "One checkpoint, eight constructed families. Reused readouts, colors, cues and controller arms are paired observations, not independent learned models. Textual-update readouts reuse already executed opposite-role prompts and must identify their computation source.",
+  "execution": "Prepare and hash exact cases without loading model; then serial batches 0 (families 0-3) and 1 (families 4-7). No policy or protocol changes between batches.",
+  "resource_limits": {"numerical_threads": 1, "seconds_per_batch": 75, "decoder_steps_per_batch": 1500, "output_bytes_per_batch": 12000000, "new_downloads": 0},
+  "stop_conditions": ["Unexpected tokenizer structure", "Changed dependency or protocol hash", "Non-finite or implausibly unbounded reflection", "Deadline or output cap exceeded; preserve failure, do not select easier cases"],
+  "claim_limits": ["No new training or successful self-regulation claimed by construction", "No RAVEL/MDAS or causal-abstraction benchmark replication", "No universal high-level/low-level commutation proof", "No DeepSeek execution or human-oversight measurement", "No independent review", "Preserve negative, invalid and off-target outcomes"]
+}

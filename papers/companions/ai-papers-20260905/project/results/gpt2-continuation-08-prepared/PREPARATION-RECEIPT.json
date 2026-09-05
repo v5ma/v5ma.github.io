@@ -1,0 +1,13 @@
+{
+  "status": "PREPARED_WITHOUT_MODEL_INFERENCE",
+  "families": 8,
+  "root_prompts": 32,
+  "case_status": "Previously exposed Draft 7 families; no untouched-data claim",
+  "branch_lengths": [
+    6,
+    8
+  ],
+  "family_manifest_sha256": "ddf16bdc6a4fd878f2c79b5da99c740423a46163ccc967a1079137f76c10f88a",
+  "model_sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+  "frozen_before_new_continuations": true
+}

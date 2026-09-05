@@ -1,0 +1,28 @@
+{
+  "feature_dimension": 55296,
+  "training_rows": 24,
+  "scale_values": [
+    0.30764045091771236,
+    0.15738387736538878,
+    0.3690074400311897,
+    0.12481942562426397,
+    0.2853798772892226,
+    0.09438972910916606,
+    0.24170874587192281,
+    0.2220909674639143,
+    0.2393526348985159,
+    0.43084835928233917,
+    0.3148004670667344,
+    0.2649878360344506
+  ],
+  "bandwidth_squared": 2.218548574382412,
+  "ridge_lambda": 0.001,
+  "standardized_cap": 715.3291869008028,
+  "raw_mean_delta_norm": 0.0,
+  "mean_delta_symmetry_max_abs": 0.0,
+  "linear_training_delta_rmse": 0.014477003379221327,
+  "rbf_training_delta_rmse": 0.0039662719367580005,
+  "yoked_training_to_true_delta_rmse": 1.8825003685140564,
+  "stored_float64_scalars": 5363726,
+  "new_native_calls_during_fit": 0
+}

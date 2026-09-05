@@ -1,0 +1,12 @@
+{
+  "status": "GENERATED_PENDING_SCREEN_REVIEW",
+  "figure_sha256": "ecc2e99df5be8fc6837f591f4c91b4f707c1aa5bb44546e3d5ba24d3ed1310f8",
+  "source_sha256": "1b7632ea99dff87ee0b61e6f91811fff2be5473761ed7c7b7378244f367d86f0",
+  "generator_sha256": "f24a8cd0b40e7d132f5be0a56aea9f6d6ba3ce24cc48121d8459cde580d55000",
+  "pixels": [
+    1494,
+    1602
+  ],
+  "screen_reviewed": false,
+  "pdf_accepted": false
+}
