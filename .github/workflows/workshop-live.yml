@@ -18,15 +18,16 @@ jobs:
       sha: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
-      - run: python scripts/integrate-workshop-live.py
+      - run: |
+          python scripts/integrate-workshop-live.py
+          python scripts/workshop-release-checks.py
       - name: Commit only explicit editor integration files
         if: github.ref == 'refs/heads/feat/route-workshop-live-20260905'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- mario-maker-clone/svgn-paper-route/workshop-core.js mario-maker-clone/svgn-paper-route/route-workshop.js mario-maker-clone/svgn-paper-route/workshop.css mario-maker-clone/svgn-paper-route/workshop-input.js mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sky-network-runtime.js mario-maker-clone/svgn-paper-route/sw.js tests/workshop_live.test.cjs tests/workshop_browser.py
-          if git ls-files .workshop-incoming | grep -q .; then git add -u -- .workshop-incoming; fi
-          if ! git diff --cached --quiet; then git commit -m 'Integrate readable live Route Workshop source and preserve all world metadata'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+          if ! git diff --cached --quiet; then git commit -m 'Record exact editor integration and meaningful preview isolation checks'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - id: source
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - name: Archive exact integrated runtime
@@ -58,6 +59,7 @@ jobs:
         run: |
           node --check mario-maker-clone/svgn-paper-route/workshop-core.js
           node --check mario-maker-clone/svgn-paper-route/route-workshop.js
+          python -m py_compile tests/interactive_browser.py tests/workshop_browser.py
           node --test tests/workshop_live.test.cjs tests/sky_network.test.cjs tests/adventure_score.test.cjs tests/grapple_core.test.cjs tests/depth_geometry.test.mjs
       - name: Install native test browser
         run: |
