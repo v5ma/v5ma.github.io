@@ -2,6 +2,7 @@ name: Verify ground-first progression
 on:
   push:
     branches: [feat/ground-first-progression-20260905]
+    paths: ['mario-maker-clone/svgn-paper-route/ground-runtime.js','mario-maker-clone/svgn-paper-route/ground-courses.js','mario-maker-clone/svgn-paper-route/index.html','scripts/integrate-ground-first.py','tests/ground_browser.py']
   workflow_dispatch:
 permissions:
   contents: read

@@ -1,19 +1,17 @@
-/* Collision-backed streets and different grounded neighborhoods. The decorative
- * canal and planting are behind the road, never invisible gameplay hazards. */
+/* Collision-backed streets. Decorative water and plants stay behind the road. */
 globalThis.GroundArt={
  populate({course,m,root,kit,metal,terrain,greenery,far,sign}){
   const style=course.gp.style,gy=-course.ground*36,length=course.width*36;
-  // Build visible ground from real occupied tiles, including edited templates.
-  // Group runs for efficiency; deleting terrain never leaves a fake road behind.
   for(let ty=0;ty<course.height;ty++){
    let tx=0;
    while(tx<course.width){
     if(course.cells[ty*course.width+tx]!==1){tx++;continue;}
     const a=tx;while(tx<course.width&&course.cells[ty*course.width+tx]===1)tx++;
-    metal.box((a+tx)*18,-ty*36-18,0,(tx-a)*36,36,82,'#3e6176');
+    // The structural bed is below the wearing surface, never coplanar with it.
+    metal.box((a+tx)*18,-ty*36-19.5,0,(tx-a)*36,36,82,'#3e6176');
    }
    for(let x=0;x<course.width;x++)if(course.cells[ty*course.width+x]===1&&(ty===0||course.cells[(ty-1)*course.width+x]!==1)){
-    metal.box(x*36+18,-ty*36-2,0,36,4,86,style==='village'?'#c9b992':style==='canal'?'#becfcd':'#c0bd96');
+    metal.box(x*36+18,-ty*36-1,0,36,2,86,style==='village'?'#c9b992':style==='canal'?'#becfcd':'#c0bd96');
     metal.box(x*36+18,-ty*36-10,43,36,11,4,'#d9ca98');
     if(x%2)metal.box(x*36+18,-ty*36+1,11,22,1,3,'#e6debb');
    }
@@ -33,14 +31,20 @@ globalThis.GroundArt={
    kit.tree(greenery,x+80,gy+5,z,.8+(i%3)*.18,i);
    if(style==='village'&&i%2===0)house(x-48,-220,.8);
    if(style==='canal'){
-    far.box(x,gy-3,-330,240,9,250,'#64b8d3');
-    far.box(x,gy+7,-180,200,10,14,'#d1c9a7');
+    far.box(x,gy-3,-330,240,9,250,'#64b8d3');far.box(x,gy+7,-180,200,10,14,'#d1c9a7');
     for(let k=0;k<3;k++)far.box(x-65+k*65,gy+25,-180,5,36,6,'#557a7e');
     if(i%4===0){far.box(x,gy+65,-450,130,132,85,'#efce96');far.cone(x,gy+153,-450,110,54,'#688895',0,4);}
    }else if(style==='garden'){
     for(let k=0;k<3;k++)kit.flowers(greenery,x-50+k*32,gy+5,-90,.9);
     if(i%3===0){far.box(x,gy+104,-240,110,13,65,'#9b8560');for(const d of[-48,48])far.box(x+d,gy+51,-240,9,101,60,'#cfb897');for(let j=0;j<5;j++)far.ell(x-45+j*22,gy+122,-235,20,12,25,'#49793b');}
    }else kit.flowers(greenery,x,gy+5,-75,.7);
+  }
+  if(course.goal){
+   const x=course.goal.x*36+18,y=-course.goal.y*36;
+   for(const dx of[-60,60])metal.rod([x+dx,y,-38],[x+dx,y+150,-38],3,'#526e7d');
+   const label=sign('SVGN.io DEPOT\nFINISH YOUR ROUTE',x,y+126,-28,166,61,true);
+   if(label){label.name='Ground route depot';label.userData.groundDepot=true;}
+   for(let i=0;i<6;i++)for(let j=0;j<3;j++)metal.box(x+(i-2.5)*9,y+.6,(j-1)*21,9,.6,21,(i+j)%2?'#e8dab7':'#294c66');
   }
   sign(course.name.toUpperCase(),180,gy+170,-130,240,57);
   for(const [x,caption] of [[510,'GOLD RAMP: OPTIONAL\nSTREET: KEEP RIDING'],[1250,'BOTH ROUTES REJOIN\nNO NEED TO RUSH']]){
