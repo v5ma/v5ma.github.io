@@ -13,12 +13,6 @@ The board tracks work, not the truth or falsity of an entire theory. Browser cha
 
 ## Source assembly
 
-### Build the Melchizedek comparison
-
-Recover and compare exact passages from 11QMelchizedek, Hebrews and the relevant Nag Hammadi tractate. Keep composition and manuscript dates separate.
-
-[[tor-thomas-and-gnostic-transmission|Open the related investigation]]
-
 ### Expand the Samuel/Micah mixed-case survey
 
 The existing two worked passages do not substitute for the broad survey the author requested. Add passages and contextual counterexamples.
@@ -70,6 +64,12 @@ Separate the author's teaching proposal from the new editorial question about ob
 [[religion-for-conscious-robots|Open the related investigation]]
 
 ## Verify citations
+
+### Collate and extend the first Melchizedek comparison
+
+The first passage comparison is published. Next collate the critical 11Q13 and printed Nag Hammadi editions, compare variant readings and the two-messiah evidence, and test rather than assume the proposed transmission chain.
+
+[[melchizedek-priesthood-and-transmission|Open the related investigation]]
 
 ### Locate precise Tabor citations
 

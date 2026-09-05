@@ -87,6 +87,7 @@ async function onPage(p){
  const title=$('#article-title');if(title)title.tabIndex=-1;
  await window.TheologyDepth?.enhance(p,info);if(ticket!==renderTicket)return;
  await window.TheologyFoundation?.enhance(p,info);if(ticket!==renderTicket)return;
+ await window.TheologyRoadmap?.enhance(p);if(ticket!==renderTicket)return;
  announce((p.title||p.slug)+' loaded.');
 }
 function renderCatalogue(){

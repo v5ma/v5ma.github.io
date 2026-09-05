@@ -292,7 +292,8 @@
           "title": "The Teacher, Thomas and the deeper teaching",
           "purpose": "Present the linked argument before comparing its alternative historical mechanisms.",
           "pages": [
-            "tor-thomas-and-gnostic-transmission"
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
           ],
           "status": "Draft chapter route"
         },
@@ -797,10 +798,10 @@
     },
     {
       "id": "melchizedek",
-      "title": "Build the Melchizedek comparison",
-      "stage": "Source assembly",
-      "page": "tor-thomas-and-gnostic-transmission",
-      "detail": "Recover and compare exact passages from 11QMelchizedek, Hebrews and the relevant Nag Hammadi tractate. Keep composition and manuscript dates separate."
+      "title": "Collate and extend the first Melchizedek comparison",
+      "stage": "Verify citations",
+      "page": "melchizedek-priesthood-and-transmission",
+      "detail": "The first passage comparison is published. Next collate the critical 11Q13 and printed Nag Hammadi editions, compare variant readings and the two-messiah evidence, and test rather than assume the proposed transmission chain."
     },
     {
       "id": "tabor-citations",

@@ -23,6 +23,8 @@ Manuscripts, Temple history, divine names and the dating of ideas.
 
 [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]: A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.
 
+[[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]]: A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.
+
 ## Browse the source discussions
 
 These 43 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.
