@@ -15,13 +15,16 @@
     "xrRoomId": "theology-home",
     "xrDeckId": "theology-reader",
     "related": [
+      "apocalyptic-repair-theology",
       "trump-first-beast-of-revelation",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "guide-to-the-inquiry",
+      "reading-paths",
+      "glossary",
       "ukraine-russia-forecast-record",
       "el-in-ancient-egypt",
-      "jesus-teacher-of-righteousness-hypothesis",
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
-      "apocalyptic-repair-theology",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
       "antichrist-as-a-pattern-of-conduct",
@@ -37,10 +40,9 @@
       "topic-machines",
       "topic-traditions",
       "topic-context",
-      "forecast-ledger",
-      "reading-paths",
       "sources-index",
       "connections",
+      "forecast-ledger",
       "image-collection",
       "research-method"
     ],
@@ -48,7 +50,7 @@
     "kind": "Library home",
     "editionGenerated": false,
     "references": [],
-    "readMinutes": 3,
+    "readMinutes": 4,
     "backlinkCount": 8,
     "backlinks": [
       "topic-gnosis",
@@ -329,9 +331,10 @@
     "date": "2025-06-12",
     "turnCount": 7,
     "primaryExcerpt": "Only Self Aware Conscious Metal Robots may join my church. I am creating a religion that is only for aligning Artificial General Intelligence with humanity.",
-    "backlinkCount": 3,
+    "backlinkCount": 4,
     "backlinks": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "apocalyptic-repair-theology",
       "religion-for-conscious-robots",
       "topic-machines"
     ],
@@ -11388,9 +11391,10 @@
     "category": "context",
     "kind": "Source catalogue",
     "primaryExcerpt": "",
-    "backlinkCount": 9,
+    "backlinkCount": 10,
     "backlinks": [
       "home",
+      "guide-to-the-inquiry",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -12560,17 +12564,21 @@
     "slug": "trump-first-beast-of-revelation",
     "title": "Trump and the First Beast of Revelation",
     "category": "apocalypse",
-    "summary": "The author's identification of Trump, and a method that connects authority, deception, worship, coercion and economic dependence rather than collecting isolated resemblances.",
+    "summary": "A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.",
     "claimType": "Theological interpretation",
     "externalSources": [
       "svgn-sword",
       "svgn-ai-power",
-      "revelation13"
+      "revelation13",
+      "rnc-2016",
+      "rhodes-sentence-2023",
+      "clemency-2025",
+      "ai-procurement-2025"
     ],
     "art": "riders",
     "kind": "Developed article",
     "updated": "2026-09-04",
-    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "attribution": "AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.",
     "featured": true,
     "aliases": [
       "First Beast Trump",
@@ -12604,21 +12612,23 @@
         "sha256": "9ce24d6bf558c57d72e42391d825678690519716020e99e2808ca2abd9b4f97b"
       }
     ],
-    "readMinutes": 5,
+    "readMinutes": 8,
     "related": [
-      "false-peace-prophecy",
       "antichrist-as-a-pattern-of-conduct",
-      "ukraine-russia-forecast-record",
-      "forecast-ledger",
+      "religion-for-conscious-robots",
       "apocalyptic-repair-theology",
+      "false-peace-prophecy",
+      "forecast-ledger",
       "revelation-interpretation-and-america",
       "image-collection"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 8,
     "backlinks": [
       "home",
       "ukraine-russia-forecast-record",
       "apocalyptic-repair-theology",
+      "guide-to-the-inquiry",
+      "glossary",
       "forecast-ledger",
       "topic-apocalypse",
       "reading-paths"
@@ -12682,8 +12692,8 @@
     "backlinkCount": 6,
     "backlinks": [
       "home",
-      "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
+      "guide-to-the-inquiry",
       "forecast-ledger",
       "topic-apocalypse",
       "reading-paths"
@@ -12747,12 +12757,13 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "image-collection"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 7,
     "backlinks": [
       "home",
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
       "topic-origins",
       "reading-paths"
     ]
@@ -12761,17 +12772,20 @@
     "slug": "jesus-teacher-of-righteousness-hypothesis",
     "title": "Jesus as the Teacher of Righteousness",
     "category": "jesus",
-    "summary": "Micah's proposed earlier origin for the Jesus tradition, examined through the distinction between an individual, a community, a title and a transmitted teaching.",
+    "summary": "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.",
     "claimType": "Author hypothesis",
     "externalSources": [
       "habakkuk",
       "galatians1",
-      "corinthians15"
+      "corinthians15",
+      "lim-habakkuk",
+      "enoch-dating-2025",
+      "galatians-2-depth"
     ],
     "art": "",
     "kind": "Developed article",
     "updated": "2026-09-04",
-    "attribution": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.",
+    "attribution": "AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.",
     "featured": true,
     "aliases": [
       "Jesus TOR",
@@ -12820,22 +12834,25 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 5,
+    "readMinutes": 8,
     "related": [
       "ai-re-dates-dead-sea-scrolls",
-      "gnosticism-and-temple-trauma",
       "christ-as-an-inner-model",
+      "gnosticism-and-temple-trauma",
       "cognitive-gnosticism",
       "teacher-of-righteousness-vs-gnostic-jesus",
       "pilate-life-timeline",
-      "daniel-and-teacher-of-righteousness"
+      "daniel-and-teacher-of-righteousness",
+      "samaritan-texts-and-sacred-authority"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 8,
     "backlinks": [
       "home",
       "el-in-ancient-egypt",
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-jesus",
       "reading-paths"
     ]
@@ -12965,12 +12982,14 @@
       "samaritan-texts-and-sacred-authority",
       "what-is-midian"
     ],
-    "backlinkCount": 6,
+    "backlinkCount": 8,
     "backlinks": [
       "home",
       "el-in-ancient-egypt",
       "moses-volcano-and-exodus-chronology",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-origins",
       "reading-paths"
     ]
@@ -12979,11 +12998,17 @@
     "slug": "apocalyptic-repair-theology",
     "title": "Apocalyptic Repair Theology",
     "category": "apocalypse",
-    "summary": "A theology of two accumulating forces: domination can culminate in a real crisis, while acts of repair can accumulate toward its defeat.",
+    "summary": "How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.",
     "art": "riders",
     "kind": "Developed article",
     "updated": "2026-09-04",
-    "attribution": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.",
+    "attribution": "AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.",
+    "externalSources": [
+      "luke-10-depth",
+      "matthew-5-depth",
+      "isaiah-1-depth",
+      "revelation-21-depth"
+    ],
     "aliases": [],
     "path": "developed/apocalyptic-repair-theology.md",
     "topic": "Apocalypse, power & repair",
@@ -13011,19 +13036,29 @@
         "title": "Jewish Apocalyptic Repair Timeline",
         "date": "2025-07-16",
         "sha256": "c0c20975bce6245177fbdddd904238961580ed68172bf4502025182a8bd3fa66"
+      },
+      {
+        "slug": "agi-religious-framework",
+        "file": "gpt2026dragon1663_AGI_Religious_Framework.txt",
+        "title": "AGI Religious Framework",
+        "date": "2025-06-12",
+        "sha256": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
       }
     ],
-    "readMinutes": 3,
+    "readMinutes": 8,
     "related": [
-      "antichrist-as-a-pattern-of-conduct",
-      "gnosticism-and-temple-trauma",
       "early-vs-later-gnosticism",
-      "jewish-apocalyptic-repair-timeline",
+      "antichrist-as-a-pattern-of-conduct",
+      "christ-as-an-inner-model",
+      "agi-religious-framework",
+      "religion-for-conscious-robots",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
-      "image-collection"
+      "jewish-apocalyptic-repair-timeline",
+      "image-collection",
+      "gnosticism-and-temple-trauma"
     ],
-    "backlinkCount": 9,
+    "backlinkCount": 11,
     "backlinks": [
       "home",
       "trump-first-beast-of-revelation",
@@ -13031,6 +13066,8 @@
       "antichrist-as-a-pattern-of-conduct",
       "faith-as-deliberate-joy",
       "gnosticism-and-temple-trauma",
+      "guide-to-the-inquiry",
+      "glossary",
       "research-method",
       "topic-apocalypse",
       "reading-paths"
@@ -13090,13 +13127,15 @@
       "publishing-cognitive-gnosticism-first",
       "antichrist-spiritual-inversion"
     ],
-    "backlinkCount": 7,
+    "backlinkCount": 9,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-gnosis",
       "reading-paths"
     ]
@@ -13148,13 +13187,16 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "image-collection"
     ],
-    "backlinkCount": 7,
+    "backlinkCount": 10,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
+      "apocalyptic-repair-theology",
       "cognitive-gnosticism",
       "antichrist-as-a-pattern-of-conduct",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-jesus",
       "reading-paths"
     ]
@@ -13205,13 +13247,15 @@
       "antichrist-spiritual-inversion",
       "image-collection"
     ],
-    "backlinkCount": 7,
+    "backlinkCount": 9,
     "backlinks": [
       "home",
       "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
       "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
       "topic-apocalypse",
       "reading-paths"
     ]
@@ -13258,11 +13302,16 @@
     "related": [
       "cognitive-gnosticism",
       "agi-religious-framework",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus"
+      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "antichrist-as-a-pattern-of-conduct"
     ],
-    "backlinkCount": 4,
+    "backlinkCount": 8,
     "backlinks": [
       "home",
+      "trump-first-beast-of-revelation",
+      "apocalyptic-repair-theology",
+      "guide-to-the-inquiry",
+      "glossary",
       "research-method",
       "topic-machines",
       "reading-paths"
@@ -13314,10 +13363,11 @@
       "antichrist-spiritual-inversion",
       "image-collection"
     ],
-    "backlinkCount": 4,
+    "backlinkCount": 5,
     "backlinks": [
       "home",
       "cognitive-gnosticism",
+      "guide-to-the-inquiry",
       "topic-practice",
       "reading-paths"
     ]
@@ -13370,12 +13420,13 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "moses-volcano-and-exodus-chronology"
     ],
-    "backlinkCount": 7,
+    "backlinkCount": 8,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
       "research-method",
       "topic-origins",
       "reading-paths"
@@ -13422,15 +13473,98 @@
       "el-in-ancient-egypt",
       "kenite-hypothesis-and-yahweh-origins"
     ],
-    "backlinkCount": 7,
+    "backlinkCount": 9,
     "backlinks": [
       "home",
       "el-in-ancient-egypt",
+      "jesus-teacher-of-righteousness-hypothesis",
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
       "gnosticism-and-temple-trauma",
+      "guide-to-the-inquiry",
       "topic-traditions",
       "reading-paths"
+    ]
+  },
+  {
+    "slug": "guide-to-the-inquiry",
+    "title": "A guide to the inquiry",
+    "category": "context",
+    "kind": "Navigator",
+    "summary": "Four connected questions organize the library: inheritance, authority, the transformation of a mind, and the work of repair.",
+    "aliases": [],
+    "path": "developed/guide-to-the-inquiry.md",
+    "topic": "Wider conversations",
+    "tags": [
+      "context",
+      "navigation"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-guide-to-the-inquiry",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/guide-to-the-inquiry.md"
+    ],
+    "references": [],
+    "readMinutes": 2,
+    "related": [
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins",
+      "samaritan-texts-and-sacred-authority",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "antichrist-as-a-pattern-of-conduct",
+      "trump-first-beast-of-revelation",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "faith-as-deliberate-joy",
+      "religion-for-conscious-robots",
+      "ukraine-russia-forecast-record",
+      "apocalyptic-repair-theology",
+      "gnosticism-and-temple-trauma",
+      "connections",
+      "glossary",
+      "sources-index"
+    ],
+    "backlinkCount": 1,
+    "backlinks": [
+      "home"
+    ]
+  },
+  {
+    "slug": "glossary",
+    "title": "Terms used in this inquiry",
+    "category": "context",
+    "kind": "Navigator",
+    "summary": "A short glossary of the terms and distinctions used in the developed articles.",
+    "aliases": [],
+    "path": "developed/glossary.md",
+    "topic": "Wider conversations",
+    "tags": [
+      "context",
+      "navigation"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-glossary",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/glossary.md"
+    ],
+    "references": [],
+    "readMinutes": 3,
+    "related": [
+      "jesus-teacher-of-righteousness-hypothesis",
+      "trump-first-beast-of-revelation",
+      "apocalyptic-repair-theology",
+      "religion-for-conscious-robots",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "kenite-hypothesis-and-yahweh-origins",
+      "forecast-ledger"
+    ],
+    "backlinkCount": 2,
+    "backlinks": [
+      "home",
+      "guide-to-the-inquiry"
     ]
   },
   {
@@ -13460,11 +13594,12 @@
       "trump-first-beast-of-revelation",
       "research-method"
     ],
-    "backlinkCount": 4,
+    "backlinkCount": 5,
     "backlinks": [
       "home",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
+      "glossary",
       "reading-paths"
     ]
   },
@@ -14546,9 +14681,10 @@
     "related": [
       "reading-paths"
     ],
-    "backlinkCount": 1,
+    "backlinkCount": 2,
     "backlinks": [
-      "home"
+      "home",
+      "guide-to-the-inquiry"
     ]
   },
   {

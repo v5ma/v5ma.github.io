@@ -2,13 +2,16 @@
   "schema": "theology-source-edition/v2",
   "related": {
     "home": [
+      "apocalyptic-repair-theology",
       "trump-first-beast-of-revelation",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "guide-to-the-inquiry",
+      "reading-paths",
+      "glossary",
       "ukraine-russia-forecast-record",
       "el-in-ancient-egypt",
-      "jesus-teacher-of-righteousness-hypothesis",
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
-      "apocalyptic-repair-theology",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
       "antichrist-as-a-pattern-of-conduct",
@@ -24,10 +27,9 @@
       "topic-machines",
       "topic-traditions",
       "topic-context",
-      "forecast-ledger",
-      "reading-paths",
       "sources-index",
       "connections",
+      "forecast-ledger",
       "image-collection",
       "research-method"
     ],
@@ -1511,11 +1513,11 @@
       "topic-apocalypse"
     ],
     "trump-first-beast-of-revelation": [
-      "false-peace-prophecy",
       "antichrist-as-a-pattern-of-conduct",
-      "ukraine-russia-forecast-record",
-      "forecast-ledger",
+      "religion-for-conscious-robots",
       "apocalyptic-repair-theology",
+      "false-peace-prophecy",
+      "forecast-ledger",
       "revelation-interpretation-and-america",
       "image-collection"
     ],
@@ -1537,12 +1539,13 @@
     ],
     "jesus-teacher-of-righteousness-hypothesis": [
       "ai-re-dates-dead-sea-scrolls",
-      "gnosticism-and-temple-trauma",
       "christ-as-an-inner-model",
+      "gnosticism-and-temple-trauma",
       "cognitive-gnosticism",
       "teacher-of-righteousness-vs-gnostic-jesus",
       "pilate-life-timeline",
-      "daniel-and-teacher-of-righteousness"
+      "daniel-and-teacher-of-righteousness",
+      "samaritan-texts-and-sacred-authority"
     ],
     "moses-volcano-and-exodus-chronology": [
       "kenite-hypothesis-and-yahweh-origins",
@@ -1559,13 +1562,16 @@
       "what-is-midian"
     ],
     "apocalyptic-repair-theology": [
-      "antichrist-as-a-pattern-of-conduct",
-      "gnosticism-and-temple-trauma",
       "early-vs-later-gnosticism",
-      "jewish-apocalyptic-repair-timeline",
+      "antichrist-as-a-pattern-of-conduct",
+      "christ-as-an-inner-model",
+      "agi-religious-framework",
+      "religion-for-conscious-robots",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
-      "image-collection"
+      "jewish-apocalyptic-repair-timeline",
+      "image-collection",
+      "gnosticism-and-temple-trauma"
     ],
     "cognitive-gnosticism": [
       "christ-as-an-inner-model",
@@ -1593,7 +1599,8 @@
     "religion-for-conscious-robots": [
       "cognitive-gnosticism",
       "agi-religious-framework",
-      "cognitive-gnosticism-jesus-vs-gnostic-jesus"
+      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "antichrist-as-a-pattern-of-conduct"
     ],
     "faith-as-deliberate-joy": [
       "cognitive-gnosticism",
@@ -1619,6 +1626,34 @@
       "samaritan-and-jewish-texts",
       "el-in-ancient-egypt",
       "kenite-hypothesis-and-yahweh-origins"
+    ],
+    "guide-to-the-inquiry": [
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins",
+      "samaritan-texts-and-sacred-authority",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "antichrist-as-a-pattern-of-conduct",
+      "trump-first-beast-of-revelation",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "faith-as-deliberate-joy",
+      "religion-for-conscious-robots",
+      "ukraine-russia-forecast-record",
+      "apocalyptic-repair-theology",
+      "gnosticism-and-temple-trauma",
+      "connections",
+      "glossary",
+      "sources-index"
+    ],
+    "glossary": [
+      "jesus-teacher-of-righteousness-hypothesis",
+      "trump-first-beast-of-revelation",
+      "apocalyptic-repair-theology",
+      "religion-for-conscious-robots",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "kenite-hypothesis-and-yahweh-origins",
+      "forecast-ledger"
     ],
     "forecast-ledger": [
       "false-peace-prophecy",

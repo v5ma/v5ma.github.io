@@ -103,5 +103,82 @@
     "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0330702",
     "scope": "Open research paper: abstract and methodological discussion consulted. Multiple Egyptian objects are compared with Thera-context dates; authors conclude Thera predates Ahmose. This edition does not independently reanalyse the numerical dataset.",
     "accessed": "2026-09-04"
+  },
+  {
+    "id": "rnc-2016",
+    "title": "Donald Trump, Republican nomination acceptance address (July 21, 2016)",
+    "url": "https://www.presidency.ucsb.edu/documents/address-accepting-the-presidential-nomination-the-republican-national-convention-cleveland",
+    "scope": "Full primary speech transcript hosted by the American Presidency Project. Supports the indispensability-rhetoric case, including the same speech's references to working with officials and allies.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "clemency-2025",
+    "title": "White House, January 6 clemency proclamation (January 20, 2025)",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/01/granting-pardons-and-commutation-of-sentences-for-certain-offenses-relating-to-the-events-at-or-near-the-united-states-capitol-on-january-6-2021/",
+    "scope": "Primary proclamation read in full. Records named commutations, other pardons and its stated reconciliation rationale. The article describes the dated action, not the present status of every case.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "rhodes-sentence-2023",
+    "title": "U.S. Attorney, Rhodes and Meggs sentencing record (May 25, 2023)",
+    "url": "https://www.justice.gov/usao-dc/pr/court-sentences-two-oath-keepers-leaders-18-years-prison-seditious-conspiracy-and-other",
+    "scope": "Indexed primary Justice Department release retrieved; direct page loading failed. Its opening records the 2023 seditious-conspiracy sentences and the trial finding about opposing transfer of power. Used only for that historical record, not current case status.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "ai-procurement-2025",
+    "title": "Executive Order 14319, Preventing Woke AI in the Federal Government (July 23, 2025)",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-federal-government/",
+    "scope": "Primary order read in full. Sections 3 and 4 provide the procurement conditions discussed in the third worked case. This review examines the order as issued, not every later implementing rule or litigation outcome.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "lim-habakkuk",
+    "title": "Timothy H. Lim, The Earliest Commentary on the Prophecy of Habakkuk (2020)",
+    "url": "https://academic.oup.com/book/40505",
+    "scope": "Author's publisher abstract consulted, not the full monograph or a fresh translation of the scroll. Supports the stated alternative interpretation of the Teacher's role and the importance of fidelity to his teachings.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "enoch-dating-2025",
+    "title": "Popovic and colleagues, Dating ancient manuscripts using radiocarbon and AI-based writing style analysis (2025)",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0323185",
+    "scope": "Published research article consulted in HTML. Used for the distinction between dating manuscript material/handwriting and identifying a historical person. No figure was reproduced and no death date for Jesus or the Teacher was inferred from the model.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "galatians-2-depth",
+    "title": "Galatians 2, World English Bible",
+    "url": "https://ebible.org/engwebp/GAL02.htm",
+    "scope": "Primary text read in full, especially verses 1-10 on an interval, companions and recognized leaders. The passage does not by itself supply an absolute calendar date for the visit.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "luke-10-depth",
+    "title": "Luke 10, World English Bible",
+    "url": "https://ebible.org/engwebp/LUK10.htm",
+    "scope": "Primary text read in full. Verses 30-37 supply the sequence of practical care discussed in the repair article. Institutional examples are new editorial applications, not reported historical cases.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "matthew-5-depth",
+    "title": "Matthew 5, World English Bible",
+    "url": "https://ebible.org/engwebp/MAT05.htm",
+    "scope": "Primary text read in full. Verses 9, 23-24 and 43-48 support the discussion of peacemaking, reconciliation and enemies. The article separately states its proposed safety and accountability framework.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "isaiah-1-depth",
+    "title": "Isaiah 1, World English Bible",
+    "url": "https://ebible.org/engwebp/ISA01.htm",
+    "scope": "Primary text read in full, especially verses 11-17. Supports the contrast between religious performance and the demand to correct wrongdoing and defend vulnerable people.",
+    "accessed": "2026-09-04"
+  },
+  {
+    "id": "revelation-21-depth",
+    "title": "Revelation 21, World English Bible",
+    "url": "https://ebible.org/engwebp/REV21.htm",
+    "scope": "Primary text read in full, especially verses 1-5. Supports renewal and the end of mourning as part of the narrative, rather than treating destruction as its sole purpose.",
+    "accessed": "2026-09-04"
   }
 ]

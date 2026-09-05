@@ -12,7 +12,7 @@ OUT = ROOT / 'theology-test-output'
 OUT.mkdir(exist_ok=True)
 ORIGIN = os.environ.get('SITE_ORIGIN', 'http://127.0.0.1:4174').rstrip('/')
 BASE = ORIGIN + '/theology-wiki/san-reader.html'
-CHECKS, ERRORS = [], []
+CHECKS, ERRORS, LAYOUTS = [], [], []
 
 def check(name, condition):
     if not condition:
@@ -23,12 +23,12 @@ def check(name, condition):
 def open_page(page, slug='home', extra=''):
     page.goto(BASE + '?page=' + quote(slug) + extra, wait_until='domcontentloaded')
     page.wait_for_function('(slug)=>window.TheologyReader?.current()?.slug===slug', arg=slug)
-    page.locator('#research-actions').wait_for()
+    page.wait_for_function('(slug)=>document.querySelector("#article-body")?.dataset.depthReady===slug', arg=slug)
     page.wait_for_timeout(150)
 
 def navigate(page, slug):
     page.evaluate('(slug)=>window.TheologyReader.navigate(slug, true)', slug)
-    page.wait_for_function('(slug)=>window.TheologyReader?.current()?.slug===slug && !!document.querySelector("#research-actions")', arg=slug)
+    page.wait_for_function('(slug)=>window.TheologyReader?.current()?.slug===slug && document.querySelector("#article-body")?.dataset.depthReady===slug', arg=slug)
     page.wait_for_timeout(100)
 
 def screenshot(page, name):
@@ -45,9 +45,9 @@ with sync_playwright() as tool:
     page.on('pageerror', lambda e: ERRORS.append(str(e)))
     try:
         open_page(page)
-        check('Native HTTP reader loads 397 indexed pages', page.evaluate('TheologyReader.pages().length') == 397)
-        check('Home promotes fourteen developed arguments', page.locator('.research-card').count() == 14)
-        check('Homepage describes 354 original source conversations', '354' in page.locator('.research-counts').inner_text())
+        check('Native HTTP reader loads 399 indexed pages', page.evaluate('TheologyReader.pages().length') == 399)
+        check('Home prioritizes three flagship arguments', page.locator('.depth-featured .research-card').count() == 3)
+        check('Homepage describes 354 original source conversations', '354' in page.locator('.depth-home-footer').inner_text())
         check('Eight subject collections are accessible in the sidebar', page.locator('.research-topic-link').count() == 8)
         check('Unrelated cross-project controls are not shown',not page.locator('#northstar-cluster-list').is_visible())
         screenshot(page,'home-desktop.png')
@@ -62,7 +62,7 @@ with sync_playwright() as tool:
         page.locator('[data-research="reset"]').click()
         page.locator('#page-search').fill('gradient descent')
         page.wait_for_function('document.querySelector("#search-scope")?.textContent.includes("complete source")')
-        page.locator('#page-list a[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').wait_for()
+        page.locator('#page-list .page-link[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').wait_for()
         check('Search includes full source text beyond titles and previews', True)
         page.locator('#page-search').fill('coherence qqqzzzzz')
         page.wait_for_timeout(400)
@@ -93,7 +93,7 @@ with sync_playwright() as tool:
         check('Catalogue expands to 60 records', page.locator('#catalogue-results .research-card').count()==60)
         page.locator('#catalogue-search').fill('gradient descent')
         page.wait_for_timeout(400)
-        check('Catalogue searches complete discussions', page.locator('#catalogue-results a[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').count()==1)
+        check('Catalogue searches complete discussions', page.locator('#catalogue-results h3 a[data-page="cognitive-gnosticism-jesus-vs-gnostic-jesus"]').count()==1)
         navigate(page,'agi-religious-framework')
         check('Source card shows the actual opening question', 'Only Self Aware Conscious Metal Robots' in page.locator('.source-excerpt').inner_text())
         page.locator('[data-research="load-source"]').click()
@@ -140,6 +140,7 @@ with sync_playwright() as tool:
         check('Bookmark survives a real-origin page reload',page.locator('[data-research="save"]').get_attribute('aria-pressed')=='true')
         page.locator('#theology-kind').select_option('saved')
         check('Saved-page filter returns the stored reading list',page.locator('#page-list .page-link').count()==1)
+        page.locator('#reader-more-tools > summary').click()
         with page.expect_download() as downloaded:
             page.locator('[data-research="export"]').click()
         backup=json.loads(Path(downloaded.value.path()).read_text())
@@ -197,7 +198,10 @@ with sync_playwright() as tool:
         for slug in new_slugs:
             open_page(page,slug)
             assert page.locator('.claim-type').count()==1,slug
+            assert not page.locator('.depth-source-notes').get_attribute('open'),slug
+            page.locator('.depth-source-notes > summary').click()
             assert 'External sources and access notes' in page.locator('#article-body').inner_text(),slug
+            page.locator('.depth-source-notes > summary').click()
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),slug
         check('Six new investigations have visible claim types, sources and mobile layouts',True)
         open_page(page,'jesus-teacher-of-righteousness-hypothesis')
@@ -207,7 +211,7 @@ with sync_playwright() as tool:
         open_page(page,'el-in-ancient-egypt')
         check('El article distinguishes the newer inquiry from the archived background','not presented here as a recovered transcript' in page.locator('#article-body').inner_text())
         open_page(page,'trump-first-beast-of-revelation')
-        check('First Beast article preserves dates and differing interpretations','October 12, 2025' in page.locator('#article-body').inner_text() and 'metaphorical' in page.locator('#article-body').inner_text())
+        check('First Beast article preserves dates and differing interpretations','2025' in page.locator('#article-body').inner_text() and 'allegor' in page.locator('#article-body').inner_text())
         page.set_viewport_size({'width':1440,'height':1000})
         screenshot(page,'first-beast-desktop.png')
         open_page(page,'forecast-ledger')
@@ -240,6 +244,91 @@ with sync_playwright() as tool:
         page.set_viewport_size({'width':1440,'height':1000})
         open_page(page)
         screenshot(page,'home-desktop.png')
+
+        # Reader-depth edition: usability and evidence checks with native controls.
+        open_page(page)
+        check('Home includes a connecting introduction and all other developed articles', page.locator('.depth-article-index a').count()==11 and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
+        page.locator('.depth-featured a[data-page="apocalyptic-repair-theology"]').click()
+        page.wait_for_function('document.querySelector("#article-body")?.dataset.depthReady==="apocalyptic-repair-theology"')
+        check('A normal homepage click opens the flagship article', page.evaluate('TheologyReader.current().slug')=='apocalyptic-repair-theology')
+        check('Repair includes practical cases and the coherence/conformity distinction', all(word in page.locator('#article-body').inner_text().lower() for word in ['community','institution','conformity']))
+        check('Source history is collapsed without concealing the main argument', not page.locator('.depth-source-notes').get_attribute('open') and page.locator('.depth-relationships').is_visible())
+        check('Explained relationships give a reason, not only a destination', page.locator('.depth-relationships article p').first.inner_text().__len__()>60)
+        page.locator('.depth-source-notes > summary').click()
+        check('Original author turns remain accessible in the source notes', page.locator('.depth-author-anchors a').count()==3)
+        page.locator('.depth-author-anchors a').first.click()
+        page.locator('#turn-44').wait_for()
+        check('An evidence anchor opens the exact original author correction', 'Micah Blumberg' in page.locator('#turn-44 header').inner_text())
+        open_page(page,'trump-first-beast-of-revelation')
+        text=page.locator('#article-body').inner_text()
+        check('First Beast presents dated primary-record cases', all(x in text for x in ['2016','2025','14319','Rhodes']))
+        open_page(page,'jesus-teacher-of-righteousness-hypothesis')
+        check('Chronology displays nine distinctly labeled records',page.locator('.depth-time-card').count()==9)
+        page.locator('#chronology-layer').select_option('arithmetic')
+        check('Arithmetic layer is separately inspectable',page.locator('.depth-time-card').count()==1 and '124' in page.locator('.depth-time-card').inner_text() and '137' in page.locator('.depth-time-card').inner_text())
+        page.locator('#chronology-layer').select_option('constraint')
+        check('Textual and manuscript constraints have their own layer',page.locator('.depth-time-card').count()==3)
+        page.locator('#chronology-layer').select_option('all')
+        screenshot(page,'chronology-desktop.png')
+        open_page(page,'glossary')
+        check('Glossary has ten connected definitions',page.locator('.depth-glossary-entry').count()==10)
+        page.locator('#glossary-search').fill('TOR')
+        check('Glossary filtering finds the Teacher of Righteousness',page.locator('.depth-glossary-entry').count()==1 and 'Teacher of Righteousness' in page.locator('#glossary-results').inner_text())
+        page.locator('#glossary-search').fill('qqzzunknown')
+        check('Glossary gives a useful no-results message','No terms match' in page.locator('#glossary-results').inner_text())
+        open_page(page,'connections','&focus=apocalyptic-repair-theology')
+        check('Graph defaults to explained argument and source relationships',page.locator('#graph-mode').input_value()=='explained' and page.locator('.depth-edge-why').count()>0)
+        page.locator('#graph-mode').select_option('all')
+        check('Full navigation network is still available',page.locator('.research-graph-svg a').count()>0)
+        open_page(page)
+        page.locator('#page-search').fill('not two things')
+        page.locator('#theology-speaker').select_option('author')
+        page.locator('#page-list a[data-page="agi-religious-framework"]').first.wait_for()
+        page.wait_for_function('document.querySelector("#page-list [data-excerpt-slug=agi-religious-framework]")?.dataset.verified==="true"')
+        check('Global author search shows an actual matching author turn', 'Micah Blumberg' in page.locator('#page-list .depth-search-match').first.inner_text())
+        check('Search snippet contains the matching passage from hash-checked source bytes', 'not two things' in page.locator('#page-list [data-excerpt-slug="agi-religious-framework"]').inner_text().lower())
+        page.locator('#theology-speaker').select_option('ai')
+        page.wait_for_timeout(300)
+        check('Switching global speaker does not label AI replies as author turns',page.locator('#page-list .depth-search-match').count()>0 and all('Self Aware Networks GPT' in t for t in page.locator('#page-list .depth-search-match').all_inner_texts()))
+        open_page(page,'sources-index')
+        page.locator('#catalogue-search').fill('not two things')
+        page.locator('#catalogue-speaker').select_option('author')
+        page.locator('#catalogue-results a[data-page="agi-religious-framework"]').first.wait_for()
+        check('Catalogue composes its own speaker and text filters',page.locator('#catalogue-speaker').input_value()=='author' and page.locator('#catalogue-results .depth-search-match').count()>0)
+        open_page(page,'agi-religious-framework')
+        check('Conversation introduction no longer calls the complete source a recovery stub','stub' not in page.locator('#article-summary').inner_text().lower() and 'preserved conversation' in page.locator('#article-summary').inner_text())
+        open_page(page,'cognitive-gnosticism')
+        check('Only save and share are primary page buttons',not page.locator('[data-research="export"]').is_visible() and page.locator('[data-depth="share"]').is_visible())
+        # Deny clipboard in this fixture to exercise the fallback without reading the clipboard.
+        page.evaluate('Object.defineProperty(navigator,"clipboard",{configurable:true,value:{writeText:()=>Promise.reject(Error("denied"))}})')
+        page.locator('[data-depth="share"]').click()
+        page.locator('#depth-share-result input').wait_for()
+        check('Share has a usable fallback when clipboard permission is denied','page=cognitive-gnosticism' in page.locator('#depth-share-result input').input_value())
+        for width in [320,390,768]:
+            page.set_viewport_size({'width':width,'height':844})
+            open_page(page)
+            first=page.locator('.depth-featured .research-card').first.bounding_box()
+            LAYOUTS.append({'viewportWidth':width,'firstArticleTop':round(first['y'],2),'viewportHeight':844})
+            assert first['y']<600,(width,first)
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),width
+        check('First article begins within 600 pixels on 320, 390 and 768 pixel screens',True)
+        page.set_viewport_size({'width':390,'height':844})
+        open_page(page)
+        screenshot(page,'home-mobile.png')
+        page.screenshot(path=str(OUT/'home-mobile-top.png'),full_page=False)
+        page.keyboard.press('Control+k')
+        check('Keyboard search opens the mobile drawer and focuses search',page.evaluate('document.activeElement.id')=='page-search' and page.locator('#mobile-nav-toggle').get_attribute('aria-expanded')=='true')
+        page.keyboard.press('Escape')
+        page.locator('.skip-link').focus()
+        page.keyboard.press('Enter')
+        check('Home skip link reaches the first reading heading',page.evaluate('document.activeElement.id')=='depth-start')
+        open_page(page,'jesus-teacher-of-righteousness-hypothesis')
+        check('Interactive chronology fits the mobile reader',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+        screenshot(page,'chronology-mobile.png')
+        page.set_viewport_size({'width':1440,'height':1000})
+        open_page(page)
+        screenshot(page,'home-desktop.png')
+        page.screenshot(path=str(OUT/'home-desktop-top.png'),full_page=False)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback
@@ -248,5 +337,5 @@ with sync_playwright() as tool:
         (OUT/'failure.html').write_text(page.content())
         raise
     finally:
-        (OUT/'browser-report.json').write_text(json.dumps({'passed':len(CHECKS),'checks':CHECKS,'errors':ERRORS,'origin':ORIGIN,'scope':'Native Chromium HTTP scripts, actual source fetching and SHA verification, actual local images, and real-origin storage. One separate storage-denial fixture is explicitly injected.'},indent=2))
+        (OUT/'browser-report.json').write_text(json.dumps({'passed':len(CHECKS),'checks':CHECKS,'errors':ERRORS,'origin':ORIGIN,'mobileLayouts':LAYOUTS,'scope':'Native Chromium HTTP scripts, actual source fetching and SHA verification, actual local images, and real-origin storage. One separate storage-denial fixture is explicitly injected.'},indent=2))
         browser.close()

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.04-source-edition-2",
+  "version": "2026.09.04-source-edition-3",
   "categories": [
     {
       "id": "gnosis",
@@ -104,12 +104,9 @@
   "sourceCount": 354,
   "developedCount": 14,
   "featured": [
+    "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
-    "ukraine-russia-forecast-record",
-    "el-in-ancient-egypt",
-    "jesus-teacher-of-righteousness-hypothesis",
-    "moses-volcano-and-exodus-chronology",
-    "kenite-hypothesis-and-yahweh-origins"
+    "jesus-teacher-of-righteousness-hypothesis"
   ],
   "forecastRecords": 6,
   "sourceIntegrity": "354/354 matched existing SHA-256 manifest",
@@ -152,6 +149,7 @@
     ],
     "agi-religious-framework": [
       "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "apocalyptic-repair-theology",
       "religion-for-conscious-robots",
       "topic-machines"
     ],
@@ -1496,6 +1494,7 @@
     "theology-theology-revelation-qumran-proof-god-cluster": [],
     "sources-index": [
       "home",
+      "guide-to-the-inquiry",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -1627,14 +1626,16 @@
       "home",
       "ukraine-russia-forecast-record",
       "apocalyptic-repair-theology",
+      "guide-to-the-inquiry",
+      "glossary",
       "forecast-ledger",
       "topic-apocalypse",
       "reading-paths"
     ],
     "ukraine-russia-forecast-record": [
       "home",
-      "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
+      "guide-to-the-inquiry",
       "forecast-ledger",
       "topic-apocalypse",
       "reading-paths"
@@ -1644,6 +1645,7 @@
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
       "topic-origins",
       "reading-paths"
     ],
@@ -1652,6 +1654,8 @@
       "el-in-ancient-egypt",
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-jesus",
       "reading-paths"
     ],
@@ -1668,6 +1672,8 @@
       "el-in-ancient-egypt",
       "moses-volcano-and-exodus-chronology",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-origins",
       "reading-paths"
     ],
@@ -1678,6 +1684,8 @@
       "antichrist-as-a-pattern-of-conduct",
       "faith-as-deliberate-joy",
       "gnosticism-and-temple-trauma",
+      "guide-to-the-inquiry",
+      "glossary",
       "research-method",
       "topic-apocalypse",
       "reading-paths"
@@ -1688,15 +1696,20 @@
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-gnosis",
       "reading-paths"
     ],
     "christ-as-an-inner-model": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
+      "apocalyptic-repair-theology",
       "cognitive-gnosticism",
       "antichrist-as-a-pattern-of-conduct",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
+      "glossary",
       "topic-jesus",
       "reading-paths"
     ],
@@ -1705,12 +1718,18 @@
       "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
       "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
       "topic-apocalypse",
       "reading-paths"
     ],
     "religion-for-conscious-robots": [
       "home",
+      "trump-first-beast-of-revelation",
+      "apocalyptic-repair-theology",
+      "guide-to-the-inquiry",
+      "glossary",
       "research-method",
       "topic-machines",
       "reading-paths"
@@ -1718,6 +1737,7 @@
     "faith-as-deliberate-joy": [
       "home",
       "cognitive-gnosticism",
+      "guide-to-the-inquiry",
       "topic-practice",
       "reading-paths"
     ],
@@ -1726,6 +1746,7 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
+      "guide-to-the-inquiry",
       "research-method",
       "topic-origins",
       "reading-paths"
@@ -1733,16 +1754,26 @@
     "samaritan-texts-and-sacred-authority": [
       "home",
       "el-in-ancient-egypt",
+      "jesus-teacher-of-righteousness-hypothesis",
       "moses-volcano-and-exodus-chronology",
       "kenite-hypothesis-and-yahweh-origins",
       "gnosticism-and-temple-trauma",
+      "guide-to-the-inquiry",
       "topic-traditions",
       "reading-paths"
+    ],
+    "guide-to-the-inquiry": [
+      "home"
+    ],
+    "glossary": [
+      "home",
+      "guide-to-the-inquiry"
     ],
     "forecast-ledger": [
       "home",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
+      "glossary",
       "reading-paths"
     ],
     "research-method": [
@@ -2145,7 +2176,8 @@
       "connections"
     ],
     "connections": [
-      "home"
+      "home",
+      "guide-to-the-inquiry"
     ],
     "image-collection": [
       "home",

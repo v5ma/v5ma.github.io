@@ -21,33 +21,36 @@ function initControls(){
  if($('#theology-kind'))return;
  const search=$('#page-search');if(!search)return;
  const wrapper=document.createElement('div');wrapper.className='research-filters';
- wrapper.innerHTML=`<label>Browse<select id="theology-kind"><option value="featured">Featured arguments</option><option value="all">All pages</option><option value="article">Developed articles</option><option value="chat">Source conversations</option><option value="saved">Saved pages</option></select></label><label>Topic<select id="theology-topic"><option value="">Every topic</option></select></label><label>Sort<select id="theology-sort"><option value="relevance">Relevance / A-Z</option><option value="title">Title A-Z</option><option value="date">Newest conversation</option><option value="linked">Most incoming links</option></select></label><p id="search-scope" class="research-small">Search titles and summaries. Full discussion text loads when you search.</p><button type="button" data-research="reset">Reset search and filters</button>`;
+ wrapper.innerHTML=`<label>Browse<select id="theology-kind"><option value="featured">Featured arguments</option><option value="all">All pages</option><option value="article">Developed articles</option><option value="chat">Source conversations</option><option value="saved">Saved pages</option></select></label><label>Topic<select id="theology-topic"><option value="">Every topic</option></select></label><label>Sort<select id="theology-sort"><option value="relevance">Relevance / A-Z</option><option value="title">Title A-Z</option><option value="date">Newest conversation</option><option value="linked">Most incoming links</option></select></label><label>Search speaker<select id="theology-speaker"><option value="all">All writing</option><option value="author">Micah's turns</option><option value="ai">AI replies</option></select></label><p id="search-scope" class="research-small">Search titles and summaries. Full discussion text loads when you search.</p><button type="button" data-research="reset">Reset search and filters</button>`;
  search.after(wrapper);search.placeholder='Search ideas or conversation text';search.setAttribute('aria-label','Search the Theology library');
- for(const select of wrapper.querySelectorAll('select'))select.addEventListener('change',()=>{navLimit=40;reader()?.refresh();});
+ for(const select of wrapper.querySelectorAll('select'))select.addEventListener('change',()=>{navLimit=40;if(select.id==='theology-speaker'&&select.value!=='all'){ensureFull();$('#theology-kind').value='chat';}reader()?.refresh();});
  infoPromise.then(d=>{if(d)$('#theology-topic').innerHTML='<option value="">Every topic</option>'+d.categories.map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join('');});
  search.addEventListener('input',()=>{navLimit=40;const q=search.value.trim();if(q)ensureFull();const u=new URL(location.href);if(q)u.searchParams.set('q',q);else u.searchParams.delete('q');history.replaceState({},'',u.pathname+u.search+u.hash);});
  const strip=$('.wiki-family-strip');
- if(strip){const links=document.createElement('span');links.className='research-nav-links';links.innerHTML=a('forecast-ledger','Forecast ledger')+a('sources-index','Conversations')+a('reading-paths','Reading paths')+a('image-collection','Images')+a('connections','Connections');strip.append(links);}
+ if(strip&&!window.TheologyDepth){const links=document.createElement('span');links.className='research-nav-links';links.innerHTML=a('forecast-ledger','Forecast ledger')+a('sources-index','Conversations')+a('reading-paths','Reading paths')+a('image-collection','Images')+a('connections','Connections');strip.append(links);}
 }
-function navOptions(){return {topic:$('#theology-topic')?.value||'',kind:$('#theology-kind')?.value||'featured',sort:$('#theology-sort')?.value||'relevance',saved:preferences.saved};}
+function navOptions(){return {topic:$('#theology-topic')?.value||'',kind:$('#theology-kind')?.value||'featured',sort:$('#theology-sort')?.value||'relevance',speaker:$('#theology-speaker')?.value||'all',saved:preferences.saved};}
 function navigation(list,current,query){
  initControls();const opts=navOptions(),all=C.select(list,query,opts,full);let visible=all.slice(0,navLimit);
- const linkItem=p=>`<li><a class="page-link page-no-thumbnail${current?.slug===p.slug?' active':''}" href="${href(p.slug)}" data-page="${esc(p.slug)}"${current?.slug===p.slug?' aria-current="page"':''}><span class="page-link-text"><span class="page-title">${esc(p.title)}</span><small class="page-meta">${esc(p.claimType||p.kind)}${p.featured?' / New investigation':''}${p.date?' / '+p.date:''}${preferences.saved.includes(p.slug)?' / Saved':''}</small></span></a></li>`;
+ const matchMap=new Map();for(const t of C.findTurns(full,query,opts.speaker))if(!matchMap.has(t.slug))matchMap.set(t.slug,t);
+ const linkItem=p=>`<li><a class="page-link page-no-thumbnail${current?.slug===p.slug?' active':''}" href="${href(p.slug)}" data-page="${esc(p.slug)}"${current?.slug===p.slug?' aria-current="page"':''}><span class="page-link-text"><span class="page-title">${esc(p.title)}</span><small class="page-meta">${esc(p.claimType||p.kind)}${p.featured?' / New investigation':''}${p.date?' / '+p.date:''}${preferences.saved.includes(p.slug)?' / Saved':''}</small></span></a>${query&&matchMap.has(p.slug)?searchMatch(matchMap.get(p.slug)):''}</li>`;
  let html=visible.map(linkItem).join('');
  if(!query&&opts.kind==='featured'&&!opts.topic&&info){html='<li class="research-nav-label">Developed from the discussions</li>'+html+'<li class="research-nav-label">Browse by subject</li>'+info.categories.map(c=>`<li class="research-topic-link">${a('topic-'+c.id,c.title)}<small>${list.filter(p=>p.category===c.id&&p.sourceFile).length} conversations</small></li>`).join('');}
  if(!visible.length)html='<li class="research-empty">No matching pages. Try fewer words or reset the filters.</li>';
  if(all.length>visible.length)html+=`<li><button data-research="more-nav" type="button">Show ${Math.min(40,all.length-visible.length)} more</button></li>`;
  if($('#page-list'))$('#page-list').innerHTML=html;
  if($('#page-list-status'))$('#page-list-status').textContent=`${visible.length} of ${all.length} ${query?'matching ':''}pages`;
- const scope=$('#search-scope');if(scope)scope.textContent=query?(full?'Search covers complete source conversations and reader articles. All keywords must match.':'Searching titles and summaries; loading full discussion index...'):'Search titles and summaries. Full discussion text loads when you search.';
- if(query&&!full)ensureFull();
+ const scope=$('#search-scope');if(scope)scope.textContent=query?(full?(opts.speaker==='all'?'Search covers complete source conversations and reader articles. All keywords must match.':'Search covers complete source turns from '+(opts.speaker==='author'?'Micah Blumberg':'the AI')+'. Every keyword must occur in the same turn. User turns can include pasted quotations.'):'Searching titles and summaries; loading full discussion index...'):'Search titles and summaries. Full discussion text loads when you search.';
+ if((query||opts.speaker!=='all')&&!full)ensureFull();
+ if(query&&full&&$('#page-list'))window.TheologyDepth?.snippets($('#page-list'),matchMap,query);
 }
+function searchMatch(t){return `<div class="depth-search-match"><p class="research-small">${esc(t.speaker)} / turn ${t.turn}</p><p data-excerpt-slug="${esc(t.slug)}">${esc(t.preview)}</p><a href="${href(t.slug)}&turn=${t.turn}#source-transcript" data-page="${esc(t.slug)}">Open the matching turn</a></div>`;}
 function topActions(page){
  const anchor=$('.article-header')||$('#article-summary');if(!anchor)return;
  $('#research-actions')?.remove();
  const div=document.createElement('section');div.id='research-actions';div.className='research-actions';div.setAttribute('aria-label','Page tools');
  const saved=preferences.saved.includes(page.slug);
- div.innerHTML=`<div class="research-labels"><span class="research-badge">${esc(page.kind||'Research note')}</span>${page.claimType?`<span class="research-badge claim-type">${esc(page.claimType)}</span>`:''}${page.date?`<span>Conversation: ${esc(page.date)} UTC</span>`:''}${page.readMinutes?`<span>${page.readMinutes} minute read</span>`:''}</div><div class="research-buttons"><button data-research="save" data-slug="${page.slug}" type="button" aria-pressed="${saved}">${saved?'Saved':'Save page'}</button><a href="./content/${esc(page.path)}" download>Markdown source</a><a href="${href('connections')}&focus=${encodeURIComponent(page.slug)}">View connections</a><button type="button" data-research="print">Print</button><button type="button" data-research="export">Export reading list</button><button type="button" data-research="restore">Restore reading list</button><input type="file" id="reading-restore" accept="application/json,.json" hidden></div>${!storageOK?'<p class="research-small">Storage unavailable: saved pages last only for this session. Export them to keep a copy.</p>':''}`;
+ div.innerHTML=`<div class="research-labels"><span class="research-badge">${esc(page.kind||'Research note')}</span>${page.claimType?`<span class="research-badge claim-type">${esc(page.claimType)}</span>`:''}${page.date?`<span>Conversation: ${esc(page.date)} UTC</span>`:''}${page.readMinutes?`<span>${page.readMinutes} minute read</span>`:''}</div><div class="research-buttons"><button data-research="save" data-slug="${page.slug}" type="button" aria-pressed="${saved}">${saved?'Saved':'Save page'}</button><button data-depth="share" type="button">Share page</button><details id="reader-more-tools" class="depth-more-tools"><summary>More tools</summary><div class="research-buttons"><a href="./content/${esc(page.path)}" download>Markdown source</a><a href="${href('connections')}&focus=${encodeURIComponent(page.slug)}">View connections</a><button type="button" data-research="print">Print</button><button type="button" data-research="export">Export reading list</button><button type="button" data-research="restore">Restore reading list</button><input type="file" id="reading-restore" accept="application/json,.json" hidden></div></details></div>${!storageOK?'<p class="research-small">Storage unavailable: saved pages last only for this session. Export them to keep a copy.</p>':''}`;
  anchor.after(div);
 }
 function backlinks(page){
@@ -72,31 +75,30 @@ async function onPage(p){
 
  const body=$('#article-body');if(!body)return;
  if(p.sourceFile){body.innerHTML=sourceCard(p);const cited=pages().filter(x=>x.references?.some(s=>s.slug===p.slug));if(cited.length){const s=document.createElement('section');s.className='research-section';s.innerHTML='<h3>Developed from this discussion</h3>'+cards(cited);body.append(s);}if(new URLSearchParams(location.search).has('turn'))loadSource(p);}
- if(p.slug==='home'){
-  const intro=document.createElement('section');intro.className='research-welcome';intro.innerHTML=`<div><span class="research-kicker">From the conversations</span><h3>Ideas worth following.</h3><p>Not just a list of exports. Explore an argument, follow its sources, and see where the conversation changes direction.</p></div><div class="research-counts"><span><b>${info?.developedCount||8}</b>developed articles</span><span><b>${info?.sourceCount||354}</b>source conversations</span><span><b>${info?.categories.length||8}</b>topic collections</span></div>`;body.prepend(intro);
-  // Keep generated Markdown accessible; the first article section becomes browsable cards.
-  const heading=[...body.querySelectorAll('h2, h3')].find(h=>h.textContent==='Ideas developed from the conversations');
-  if(heading){let n=heading.nextElementSibling;while(n&&n.tagName!==heading.tagName){const next=n.nextElementSibling;n.remove();n=next;}heading.insertAdjacentHTML('afterend',cards(pages().filter(x=>x.kind==='Developed article').sort((a,b)=>Number(!!b.featured)-Number(!!a.featured))));}
- }
- if(p.slug==='sources-index'){const host=document.createElement('section');host.id='source-catalogue';host.className='research-section';host.innerHTML=`<h2>Conversation catalogue</h2><div class="catalogue-controls"><label>Search the full discussions<input id="catalogue-search" type="search" placeholder="Try coherence, compassion, or Temple"></label><label>Topic<select id="catalogue-topic"><option value="">Every topic</option>${(info?.categories||[]).map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join('')}</select></label><label>Order<select id="catalogue-sort"><option value="title">Title A-Z</option><option value="date">Newest conversation</option><option value="relevance">Relevance</option></select></label></div><p id="catalogue-count" class="research-small" role="status"></p><div id="catalogue-results"></div>`;body.append(host);catalogLimit=30;renderCatalogue();}
- if(p.slug==='connections')renderGraph();
+ if(p.slug==='sources-index'){const host=document.createElement('section');host.id='source-catalogue';host.className='research-section';host.innerHTML=`<h2>Conversation catalogue</h2><div class="catalogue-controls"><label>Search the full discussions<input id="catalogue-search" type="search" placeholder="Try coherence, compassion, or Temple"></label><label>Topic<select id="catalogue-topic"><option value="">Every topic</option>${(info?.categories||[]).map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join('')}</select></label><label>Speaker<select id="catalogue-speaker"><option value="all">All turns</option><option value="author">Micah's turns</option><option value="ai">AI replies</option></select></label><label>Order<select id="catalogue-sort"><option value="title">Title A-Z</option><option value="date">Newest conversation</option><option value="relevance">Relevance</option></select></label></div><p id="catalogue-count" class="research-small" role="status"></p><div id="catalogue-results"></div>`;body.append(host);catalogLimit=30;renderCatalogue();}
+ if(p.slug==='connections'){await window.TheologyDepth?.ready;if(ticket!==renderTicket)return;renderGraph();}
  if(p.slug==='forecast-ledger')await renderLedger(p,ticket);
  if(p.slug==='image-collection'){
   const entries=await media();if(ticket!==renderTicket)return;
   const gallery=document.createElement('section');gallery.className='research-gallery';gallery.innerHTML=entries.length?entries.map(m=>figure(m,true)).join(''):'<p>Image records could not load. Reload the page to retry.</p>';body.append(gallery);bindImages();
- }else if(p.art){const entries=await media();if(ticket!==renderTicket)return;const item=entries.find(x=>x.id===p.art);if(item){const wrapper=document.createElement('div');wrapper.innerHTML=figure(item,false);body.prepend(wrapper.firstElementChild);bindImages();}}
+ }else if(p.art){const entries=await media();if(ticket!==renderTicket)return;const item=entries.find(x=>x.id===p.art);if(item){const wrapper=document.createElement('div');wrapper.innerHTML=figure(item,false);const second=[...body.querySelectorAll('h2,h3')][1];const illustration=wrapper.firstElementChild;illustration.querySelector('img').loading='eager';if(second)second.before(illustration);else body.append(illustration);bindImages();}}
  if(p.kind==='Developed article'){const line=document.createElement('details');line.className='research-attribution';line.innerHTML='<summary>About this article</summary><p>'+esc(p.attribution)+'</p>';$('#research-actions')?.append(line);}
  body.querySelectorAll('a[href]').forEach(link=>{if(/^https:\/\//.test(link.getAttribute('href'))){link.rel='noopener noreferrer';}});
  const title=$('#article-title');if(title)title.tabIndex=-1;
+ await window.TheologyDepth?.enhance(p,info);if(ticket!==renderTicket)return;
  announce((p.title||p.slug)+' loaded.');
 }
 function renderCatalogue(){
  const host=$('#catalogue-results');if(!host)return;
  const q=$('#catalogue-search')?.value||'',topic=$('#catalogue-topic')?.value||'',sort=$('#catalogue-sort')?.value||'title';
- const hits=C.select(pages(),q,{topic,kind:'chat',sort},full);
+ const hits=C.select(pages(),q,{topic,kind:'chat',sort,speaker:$('#catalogue-speaker')?.value||'all'},full);
  $('#catalogue-count').textContent=`${hits.length} conversations. Showing ${Math.min(hits.length,catalogLimit)}.${q&&!full?' Loading full-text search...':''}`;
  host.innerHTML=hits.length?cards(hits.slice(0,catalogLimit))+(hits.length>catalogLimit?'<button type="button" data-research="more-catalogue">Show more conversations</button>':''):'<p>No conversations match these filters.</p>';
- if(q&&!full)ensureFull();
+ if((q||$('#catalogue-speaker')?.value!=='all')&&!full)ensureFull();
+ if(q&&full){const matchMap=new Map();for(const t of C.findTurns(full,q,$('#catalogue-speaker')?.value||'all'))if(!matchMap.has(t.slug))matchMap.set(t.slug,t);
+  for(const card of host.querySelectorAll('.research-card')){const slug=card.querySelector('a[data-page]')?.dataset.page;if(matchMap.has(slug))card.insertAdjacentHTML('beforeend',searchMatch(matchMap.get(slug)));}
+  window.TheologyDepth?.snippets(host,matchMap,q);
+ }
 }
 async function loadSource(p){
  if(!C.safeSourceFile(p.sourceFile))return;
@@ -156,13 +158,14 @@ function renderGraph(){
  const body=$('#article-body'),list=pages(),preferred=new URLSearchParams(location.search).get('focus')||'apocalyptic-repair-theology';
  const selected=list.find(p=>p.slug===preferred)||list.find(p=>p.kind==='Developed article');if(!selected)return;
  const host=document.createElement('section');host.id='research-graph';host.className='research-section';body.append(host);
- host.innerHTML=`<label class="graph-label">Explore links around<select id="graph-page">${list.slice().sort((a,b)=>a.title.localeCompare(b.title)).map(p=>`<option value="${p.slug}"${p.slug===selected.slug?' selected':''}>${esc(p.title)}</option>`).join('')}</select></label><div id="graph-canvas"></div>`;drawGraph(selected.slug);
+ host.innerHTML=`<label class="graph-label">Explore links around<select id="graph-page">${list.slice().sort((a,b)=>a.title.localeCompare(b.title)).map(p=>`<option value="${p.slug}"${p.slug===selected.slug?' selected':''}>${esc(p.title)}</option>`).join('')}</select></label><label class="graph-label">Relationships<select id="graph-mode"><option value="explained">Explained relationships</option><option value="all">All navigation links</option></select></label><div id="graph-canvas"></div>`;drawGraph(selected.slug);
 }
 function drawGraph(slug){
  const p=pages().find(p=>p.slug===slug);if(!p)return;
- const incoming=info?.backlinks[slug]||[],out=p.related||[],all=[...new Set([...out,...incoming])].filter(s=>s!==slug),shown=all.slice(0,16);let lines='',nodes='';
+ const explained=$('#graph-mode')?.value!=='all',edges=window.TheologyDepth?.graphEdges(slug)||[];
+ const incoming=explained?[...new Set(edges.filter(r=>r.to===slug).map(r=>r.from))]:(info?.backlinks[slug]||[]),out=explained?[...new Set(edges.filter(r=>r.from===slug).map(r=>r.to))]:(p.related||[]),all=[...new Set([...out,...incoming])].filter(s=>s!==slug),shown=all.slice(0,16);let lines='',nodes='';
  shown.forEach((s,i)=>{const angle=2*Math.PI*i/Math.max(1,shown.length)-Math.PI/2,x=300+210*Math.cos(angle),y=280+195*Math.sin(angle),label=pages().find(x=>x.slug===s)?.title||s;lines+=`<line x1="300" y1="280" x2="${x}" y2="${y}"/>`;nodes+=`<a href="${href(s)}" tabindex="0" aria-label="${esc(label)}"><title>${esc(label)}</title><circle cx="${x}" cy="${y}" r="7"/><text x="${x}" y="${y+21}" text-anchor="middle">${esc(label.length>25?label.slice(0,22)+'...':label)}</text></a>`;});
- $('#graph-canvas').innerHTML=`<svg class="research-graph-svg" viewBox="0 0 600 560" role="group" aria-label="Local link neighborhood; complete directional text follows."><g class="graph-lines">${lines}</g><g class="graph-nodes">${nodes}<a href="${href(slug)}"><circle class="graph-center" cx="300" cy="280" r="11"/><text x="300" y="255" text-anchor="middle">${esc(p.title.length>30?p.title.slice(0,27)+'...':p.title)}</text></a></g></svg><p class="research-small">${shown.length} of ${all.length} neighbors drawn. The complete links below retain direction. A link is a reading relationship, not a proof of equivalence.</p><div class="graph-text"><section><h3>This page links to ${out.length} pages</h3>${out.map(s=>'<p>'+a(s)+'</p>').join('')||'<p>No outgoing links.</p>'}</section><section><h3>${incoming.length} pages link here</h3>${incoming.map(s=>'<p>'+a(s)+'</p>').join('')||'<p>No incoming links.</p>'}</section></div>`;
+ $('#graph-canvas').innerHTML=`<svg class="research-graph-svg" viewBox="0 0 600 560" role="group" aria-label="Local link neighborhood; complete directional text follows."><g class="graph-lines">${lines}</g><g class="graph-nodes">${nodes}<a href="${href(slug)}"><circle class="graph-center" cx="300" cy="280" r="11"/><text x="300" y="255" text-anchor="middle">${esc(p.title.length>30?p.title.slice(0,27)+'...':p.title)}</text></a></g></svg><p class="research-small">${shown.length} of ${all.length} neighbors drawn. The complete links below retain direction. A link is a reading relationship, not a proof of equivalence.</p><div class="graph-text"><section><h3>This page links to ${out.length} pages</h3>${out.map(s=>{const r=window.TheologyDepth?.edge(slug,s);return '<p>'+a(s)+(r?'<span class="depth-edge-type">'+esc(r.type)+'</span><span class="depth-edge-why">'+esc(r.why)+'</span>':'')+'</p>';}).join('')||'<p>No outgoing links.</p>'}</section><section><h3>${incoming.length} pages link here</h3>${incoming.map(s=>{const r=window.TheologyDepth?.edge(s,slug);return '<p>'+a(s)+(r?'<span class="depth-edge-type">'+esc(r.type)+'</span><span class="depth-edge-why">'+esc(r.why)+'</span>':'')+'</p>';}).join('')||'<p>No incoming links.</p>'}</section></div>`;
  const u=new URL(location.href);u.searchParams.set('focus',slug);history.replaceState({},'',u.pathname+u.search);
 }
 function download(text,name){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
@@ -170,7 +173,7 @@ document.addEventListener('click',event=>{
  const button=event.target.closest('[data-research]');if(!button)return;const action=button.dataset.research;
  if(action==='save'){const slug=button.dataset.slug;if(!pages().some(p=>p.slug===slug))return;preferences.saved=preferences.saved.includes(slug)?preferences.saved.filter(s=>s!==slug):[...preferences.saved,slug];save();button.textContent=preferences.saved.includes(slug)?'Saved':'Save page';button.setAttribute('aria-pressed',String(preferences.saved.includes(slug)));reader()?.refresh();announce(button.textContent+(storageOK?'':'; session-only storage'));}
  if(action==='more-nav'){navLimit+=40;reader()?.refresh();}
- if(action==='reset'){for(const id of ['theology-topic','page-search'])$('#'+id).value='';$('#theology-kind').value='featured';$('#theology-sort').value='relevance';$('#page-search').dispatchEvent(new Event('input',{bubbles:true}));reader()?.refresh();}
+ if(action==='reset'){for(const id of ['theology-topic','page-search'])$('#'+id).value='';$('#theology-kind').value='featured';$('#theology-speaker').value='all';$('#theology-sort').value='relevance';$('#page-search').dispatchEvent(new Event('input',{bubbles:true}));reader()?.refresh();}
  if(action==='load-source')loadSource(reader().current());
  if(action==='more-turns'){turnLimit+=16;renderTurns();}
  if(action==='more-catalogue'){catalogLimit+=30;renderCatalogue();}
@@ -184,9 +187,9 @@ document.addEventListener('input',event=>{if(event.target.id==='forecast-search'
 document.addEventListener('change',async event=>{
  const id=event.target.id;
  if(id==='forecast-type'||id==='forecast-order')drawLedger();
- if(id==='catalogue-topic'||id==='catalogue-sort'){catalogLimit=30;renderCatalogue();}
+ if(id==='catalogue-topic'||id==='catalogue-sort'||id==='catalogue-speaker'){catalogLimit=30;renderCatalogue();}
  if(id==='turn-speaker'){turnLimit=16;renderTurns();}
- if(id==='graph-page')drawGraph(event.target.value);
+ if(id==='graph-page'||id==='graph-mode')drawGraph($('#graph-page').value);
  if(id==='reading-restore'){
   const file=event.target.files?.[0];if(!file)return;
   try{if(file.size>500000)throw Error('Reading-list file is too large.');const p=C.validateState(JSON.parse(await file.text()),new Set(pages().map(x=>x.slug)));preferences.saved=[...new Set([...preferences.saved,...p.saved])];save();topActions(reader().current());reader()?.refresh();announce('Reading list restored without removing existing saved pages.');}
@@ -194,7 +197,7 @@ document.addEventListener('change',async event=>{
  }
 });
 window.addEventListener('theology:loading',()=>{++renderTicket;sourceAbort?.abort();$('#research-actions')?.remove();$('#research-backlinks')?.remove();});
-window.addEventListener('theology:page',event=>{onPage(event.detail).catch(e=>announce('Reader tools could not finish: '+e.message));});
+window.addEventListener('theology:page',event=>{onPage(event.detail).catch(e=>{announce('Reader tools could not finish: '+e.message);if(reader()?.current()?.slug===event.detail.slug){const note=document.createElement('p');note.className='wiki-error';note.textContent='Reader tools could not finish. The article text is still available; reload to retry.';$('#article-body')?.prepend(note);}});});
 window.TheologyExtension={navigation};
 initControls();
 })();

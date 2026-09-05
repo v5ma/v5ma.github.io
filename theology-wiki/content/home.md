@@ -9,23 +9,35 @@ updated: "2026-09-04"
 
 # Theology Wiki
 
-The Theology Wiki follows Micah Blumberg's questions about awakening, religious authority, historical catastrophe and the possibility of repair. Begin with a developed argument, then follow its links into the conversations that shaped it.
+Theology asks what we inherit, whom we trust, how a mind changes and what repair demands. This library develops Micah Blumberg's inquiries through source-linked arguments and preserved conversations.
 
-## Ideas developed from the conversations
+## Begin with an argument
 
-[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The author's identification of Trump, and a method that connects authority, deception, worship, coercion and economic dependence rather than collecting isolated resemblances.
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
+
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.
+
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
+
+## Find your way through the inquiry
+
+[[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer five longer routes, and the [[glossary|glossary]] explains the collection's terms.
+
+## All developed articles
+
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.
 
 [[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.
 
 [[el-in-ancient-egypt|El in Ancient Egypt]]: A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: Micah's proposed earlier origin for the Jesus tradition, examined through the distinction between an individual, a community, a title and a transmitted teaching.
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
 
 [[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]: A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.
 
 [[kenite-hypothesis-and-yahweh-origins|The Kenite hypothesis and Yahweh's southern origins]]: How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.
 
-[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: A theology of two accumulating forces: domination can culminate in a real crisis, while acts of repair can accumulate toward its defeat.
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]: Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.
 
@@ -59,10 +71,8 @@ The Theology Wiki follows Micah Blumberg's questions about awakening, religious 
 
 [[topic-context|Wider conversations]]: Contextual discussions, cultural references and research leads in the source archive.
 
-## Follow a longer question
+## Sources and research tools
 
-[[forecast-ledger|The dated forecast ledger]] distinguishes predictions from outcomes and recovery leads. [[reading-paths|Reading paths]] connect several arguments. [[sources-index|The conversation catalogue]] opens all 354 published chats. [[connections|The connection map]] shows actual article links. [[image-collection|The image collection]] identifies every artwork and its source.
+[[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-## About this edition
-
-14 developed articles accompany the source archive. They are AI-assisted editorial syntheses, not replacement transcripts or newly attributed quotations. The rest of the collection includes source records and legacy research notes. [[research-method|Read the editorial method]] for speaker attribution, dates, claim status and source integrity.
+14 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.
