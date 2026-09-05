@@ -1,0 +1,85 @@
+name: Verify authored flow routes
+on:
+  push:
+    branches: [feat/authored-flow-phrases-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: authored-flow-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/materialize-authored-flow.py
+      - name: Commit readable game source only
+        if: github.ref == 'refs/heads/feat/authored-flow-phrases-20260905'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/flow-core.js mario-maker-clone/svgn-paper-route/phrase-geometry.js mario-maker-clone/svgn-paper-route/phrase-data.js mario-maker-clone/svgn-paper-route/phrase-layout.js mario-maker-clone/svgn-paper-route/phrase-playback.js mario-maker-clone/svgn-paper-route/phrase-runtime.js mario-maker-clone/svgn-paper-route/phrase-coach.js mario-maker-clone/svgn-paper-route/phrase.css mario-maker-clone/svgn-paper-route/planning/AUTHORED-FLOW-NOTES.md mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js scripts/install-flow-phrases.py tests/phrase_flow.test.cjs tests/phrase_browser.py
+          git add -u -- .phrase-incoming || true
+          if ! git diff --cached --quiet; then git commit -m 'Integrate verified authored-flow source and remove temporary transport'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - id: source
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - run: |
+          mkdir -p test-output
+          tar -czf test-output/source.tgz mario-maker-clone/svgn-paper-route tests scripts
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: authored-source
+          path: test-output/
+          retention-days: 3
+  native:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [sky, canal, whip, editor, road]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rehearse geometry and preserve movement invariants
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/phrase-runtime.js
+          node --check mario-maker-clone/svgn-paper-route/phrase-coach.js
+          node --test tests/phrase_flow.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/workshop_live.test.cjs tests/adventure_score.test.cjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Test actual 3D and editor using ordinary controls
+        env:
+          PHRASE_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/phrases-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1260 python -u tests/phrase_browser.py
+      - name: Preserve exact source identity and all outcomes
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          cp /tmp/phrases-http.log test-output/http.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: authored-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7
