@@ -1,11 +1,14 @@
 {
-  "version": "2026.09.04-source-edition-1",
-  "pages": 390,
+  "version": "2026.09.04-source-edition-2",
+  "pages": 397,
+  "readingPaths": 5,
+  "forecastRecords": 6,
+  "externalSources": 15,
   "sourceChats": 354,
   "verifiedHashes": 354,
-  "developedArticles": 8,
+  "developedArticles": 14,
   "topicCollections": 8,
-  "links": 1195,
-  "searchTerms": 47589,
+  "links": 1262,
+  "searchTerms": 47624,
   "sourceBytes": 17769481
 }

@@ -41,6 +41,10 @@ The practical insight remains clear even before such a study: an example can bec
 
 AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.
 
+## Related investigations
+
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]
+
 ## Visual context
 
 See [[image-collection|the credited image collection]] for the artwork shown with this article.

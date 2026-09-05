@@ -42,3 +42,9 @@ The most useful framework is therefore not a contest over which tradition is mer
 [[samaritan-and-jewish-texts|Samaritan and Jewish Texts]] is the archived discussion dated 2026-01-31 (UTC export metadata).
 
 AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.
+
+## Related investigations
+
+[[el-in-ancient-egypt|El in Ancient Egypt]]
+
+[[kenite-hypothesis-and-yahweh-origins|The Kenite hypothesis and Yahweh's southern origins]]
