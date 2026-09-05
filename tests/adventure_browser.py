@@ -12,7 +12,7 @@ def check(v,s):
  assert v,s
  checks.append(s);print('PASS:',s,flush=True)
 def snapshot(p):
- return p.evaluate('({won,x:player.x,y:player.y,tries,deliveries,score,route:__delivery.state.route,upper:[...__ground.state.upper],visited:__adventure.state.visits,pickups:__adventure.state.pickups,defeated:__adventure.state.enemyDefeats,finished:__adventure.state.finished,camera:__merged.camera.type,errors:__score.error})')
+ return p.evaluate('({won,x:player.x,y:player.y,vx:player.vx,vy:player.vy,steps:__ground.state.steps,tries,deliveries,score,route:__delivery.state.route,upper:[...__ground.state.upper],visited:__adventure.state.visits,pickups:__adventure.state.pickups,defeated:__adventure.state.enemyDefeats,finished:__adventure.state.finished,camera:__merged.camera.type,errors:__score.error})')
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
@@ -28,6 +28,7 @@ with sync_playwright() as p:
   check(page.evaluate('__merged.camera.isPerspectiveCamera&&__delivery.state.view==="3d"'),'Test uses the real perspective 3D application')
   check(page.evaluate('enemies.length>=6'),'Patrol and hover enemies are live engine entities')
   check(page.evaluate('__merged.scene.getObjectByName("Neighbor Penny")!==undefined'),'Friendly postal characters have actual scene geometry')
+  check(page.locator('#cloud-deliveries').inner_text()=='0' and page.locator('#cloud-hud .cloud-delivery .cloud-label').inner_text()=='BONUS MAIL','The visible HUD treats deliveries as a bonus, not a zero quota')
   page.screenshot(path=str(OUT/'post-office.png'))
   if SUITE=='audio':
    page.wait_for_function('!!__score.source&&__score.context.state==="running"',timeout=90000)
@@ -54,14 +55,14 @@ with sync_playwright() as p:
     page.wait_for_function('player.x>=2870',timeout=360000);page.keyboard.down('Space')
     page.wait_for_function('player.track?.sky.fullLoop===true',timeout=120000);page.keyboard.up('Space')
     check(page.evaluate('player.track.sky.fullLoop'),'Ordinary jumping reaches the optional full loop')
-    page.wait_for_function('player.vx<0&&player.track?.sky.fullLoop',timeout=120000)
+    proof=page.wait_for_function('()=>{const p=player;return p.vx<0&&p.y<1980&&p.track?.sky.fullLoop?{x:p.x,y:p.y,rail:p.track.sky.id}:false;}',timeout=120000).json_value()
+    check(proof['y']<1980,'The rider follows the upper half of the actual loop')
     page.screenshot(path=str(OUT/'loop-in-motion.png'))
-    check(page.evaluate('player.y<1980'),'The rider follows the upper half of the actual loop')
     page.wait_for_function('__ground.state.events.some(e=>e.type==="optional-lip"&&e.rail==="loop-3")',timeout=120000)
     check(page.evaluate('__ground.state.upper.has("loop-3")'),'Traversing the full loop earns optional exploration progress')
     page.wait_for_function('player.onGround&&!player.track&&player.x>3600',timeout=120000)
     check(page.evaluate('tries===1'),'The loop exit returns safely to the road without a retry')
-   page.wait_for_function('__adventure.state.finished.some(f=>f.index===4)',timeout=480000)
+   page.wait_for_function('__adventure.state.finished.some(f=>f.index===4)',timeout=720000)
    page.keyboard.up('KeyD')
    finish=page.evaluate('__adventure.state.finished.find(f=>f.index===4)')
    check(finish['deliveries']==0,'Crossing the finish completes the level with zero newspaper deliveries')

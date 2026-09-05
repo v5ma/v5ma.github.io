@@ -34,12 +34,16 @@
  const visuals=SkyVisual.update;SkyVisual.update=function(){visuals();art();if(on()){const t=__ground.state.steps/60;for(let i=0;i<cast.length;i++)cast[i].mesh.rotation.z=Math.sin(t*2+i)*.025;}};
  function ui(){const now=performance.now(),dt=Math.min(.1,(now-lastFrame)/1000);lastFrame=now;
   if(state.transition){const t=state.transition;if(!on()||!won||__delivery.state.route!==t.index)state.transition=null;else if(!document.hidden&&!__delivery.paused){t.remaining-=dt;const el=document.getElementById('next-level-countdown');if(el)el.textContent='Next level in '+Math.max(1,Math.ceil(t.remaining))+'...';if(t.remaining<=0){state.transition=null;__delivery.startRoute(t.next);}}}
+  const mailLabel=document.querySelector('#cloud-hud .cloud-delivery .cloud-label'),retry=document.getElementById('sky-retry');
+  if(mailLabel)mailLabel.textContent=on()?'BONUS MAIL':'DELIVERIES';
+  if(retry)retry.textContent=on()?'Retry checkpoint':'Retry catch';
   if(!on()){panel.hidden=true;return;}
   const p=player,n=(__ground.meta.cast||[]).find(n=>Math.abs(p.x-n.x*TILE)<135&&Math.abs(p.y-(n.y*TILE-30))<100);
   panel.hidden=!n||won||__delivery.state.menu;if(n){panel.textContent=n.name+': '+n.text;state.talked.add(n.id);}
   const label=document.getElementById('cloud-flight-label');if(label&&!won)label.textContent=state.section.toUpperCase()+' / REACH THE FINISH TO CONTINUE';
   const help=document.getElementById('cloud-control-tip');if(help&&!won)help.textContent=(p.shield?'SHIELD / ':'')+(p.star>0?'STAR '+Math.ceil(p.star/60)+'s / ':'')+'NITRO '+p.nitro+' (X) / SPACE: JUMP / Z: WHIP';
   const post=document.getElementById('delivery-count');if(post)post.textContent=deliveries+' bonus';
+  const cloudMail=document.getElementById('cloud-deliveries');if(cloudMail)cloudMail.textContent=String(deliveries);
  }
  const render=window.render;window.render=function(){render();ui();};
  window.__adventure={state,on,version:'2026.09.05-longplay'};
