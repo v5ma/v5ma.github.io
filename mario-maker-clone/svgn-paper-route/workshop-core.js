@@ -86,14 +86,14 @@
   {id:'bowl',name:'Open bowl',hint:'Catch, descend and climb the opposite side.'},
   {id:'shelf',name:'Drop shelf',hint:'A short elevated surface ending in a drop.'},
   {id:'s-curve',name:'S-bend',hint:'A flowing descent, not a closed loop.'},
-  {id:'loop',name:'Full loop',hint:'A gold-sector timed exit. One option, not every level.'}
+  {id:'loop',name:'Full loop',hint:'A complete circle with an open exit. Custom adventures ride off its lip.'}
  ];
  function piece(id,x,y){
   let pts;
   if(id==='ramp')pts=[[0,0],[120,0],...cubic([120,0],[220,0],[240,-80],[300,-140]).slice(1)];
   else if(id==='catcher')pts=cubic([0,-180],[35,-65],[105,0],[250,0]);
   else if(id==='quarter')pts=arc(0,-130,130,90,0);
-  else if(id==='half')pts=arc(130,-65,130,162,18);
+  else if(id==='half')pts=arc(150,-150,150,45,315,72);
   else if(id==='bowl')pts=arc(150,-140,150,180,0);
   else if(id==='shelf')pts=[[0,0],[100,0],[220,0]];
   else if(id==='s-curve')pts=cubic([0,-130],[170,-150],[95,70],[300,0]);
