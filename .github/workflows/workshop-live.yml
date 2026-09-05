@@ -1,0 +1,26 @@
+name: Verify live Route Workshop
+on:
+  push:
+    branches: [feat/route-workshop-live-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package current runtime and prior draft without executing draft code
+        run: |
+          mkdir -p test-output/draft
+          git fetch --depth=1 origin 2dbd9b0286189044620075c18672990bbd66b686
+          for f in workshop-core.js route-workshop.js workshop.css; do git show 2dbd9b0286189044620075c18672990bbd66b686:mario-maker-clone/svgn-paper-route/$f > test-output/draft/$f; done
+          find . -iname AGENTS.md -not -path './.git/*' -print -exec cat {} \; > test-output/agent-instructions.txt
+          tar -czf test-output/live-source.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/source-sha.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: workshop-source
+          path: test-output/
+          retention-days: 3
