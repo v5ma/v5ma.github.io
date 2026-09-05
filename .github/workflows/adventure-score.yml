@@ -1,0 +1,22 @@
+name: Verify first adventure and soundtrack
+on:
+  push:
+    branches: [feat/first-adventure-score-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p test-output
+          tar -czf test-output/runtime.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/source-sha.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adventure-source
+          path: test-output/
+          retention-days: 7
