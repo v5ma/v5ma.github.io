@@ -24,3 +24,5 @@
 #maker-inspector-toggle{display:none}#maker-canvas{outline-offset:-3px!important}
 @media(min-width:1300px){.maker-layout{grid-template-columns:220px minmax(300px,1fr) 245px}#maker-pieces canvas{height:46px}.maker-library p{font-size:12px}.maker-top{min-height:88px}}
 @media(max-width:740px){#maker-inspector-toggle{display:block}.maker-inspector{z-index:6;position:absolute;right:0;top:160px;bottom:34px;width:min(240px,75vw);box-shadow:-12px 0 25px #071d2855}.show-inspector .maker-inspector{display:block}.maker-library select{font-size:10px!important}.maker-top{min-height:123px}#route-workshop .maker-actions button{font-size:10px;padding:6px;min-height:33px}#maker-layer,#maker-sector{max-width:128px!important}#route-workshop details button{font-size:10px}.maker-stage{min-height:190px}}
+
+#maker-inspector-close{display:none}@media(max-width:740px){#maker-inspector-close{display:block;width:100%;margin:0 0 12px;background:#d8c18c!important;color:#153340!important}}
