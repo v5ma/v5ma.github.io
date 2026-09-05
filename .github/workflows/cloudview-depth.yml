@@ -1,0 +1,50 @@
+name: Verify Cloudview depth and color
+on:
+  push:
+    branches: [feat/cloudview-depth-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cloudview-depth-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rendering:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package exact public runtime for review
+        run: |
+          mkdir -p test-output/depth
+          tar -czf test-output/depth/source.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/depth/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: depth-source
+          path: test-output/depth/source.tgz
+          retention-days: 3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check gameplay and surface invariants
+        run: node --test tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Record real renderer at repeatable viewpoints
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/depth-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python tests/depth_capture.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: depth-render-review
+          path: |
+            test-output/depth/*.png
+            test-output/depth/*.json
+            test-output/depth/*.txt
+          retention-days: 7
