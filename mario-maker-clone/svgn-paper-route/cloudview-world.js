@@ -15,7 +15,7 @@ window.Cloudview=(()=>{
  function cloudBank(T,course,night){
   const c=document.createElement('canvas');c.width=512;c.height=256;const g=c.getContext('2d');
   // A reusable procedural weather texture, not an image of the level.
-  for(let i=0;i<24;i++){const x=70+(i*83%365),y=142-Math.sin(i*2.7)*35,r=38+i%5*9,gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.94)');gr.addColorStop(.62,'rgba(248,253,255,.92)');gr.addColorStop(.84,'rgba(231,245,255,.65)');gr.addColorStop(1,'rgba(230,246,255,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}
+  for(let i=0;i<24;i++){const x=70+(i*83%365),y=142-Math.sin(i*2.7)*35,r=38+i%5*9,gr=g.createRadialGradient(x-r*.28,y-r*.35,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.96)');gr.addColorStop(.48,'rgba(244,252,255,.93)');gr.addColorStop(.78,'rgba(173,206,238,.64)');gr.addColorStop(1,'rgba(166,204,239,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}
   const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;
   const im=new T.InstancedMesh(new T.PlaneGeometry(1,1),new T.MeshBasicNodeMaterial({map:tx,transparent:true,depthWrite:false,color:night?'#dbe7fa':'#ffffff',side:T.DoubleSide,fog:false}),80),matrix=new T.Matrix4();
   for(let i=0;i<80;i++){const x=-1000+i*135,y=-2150-(i%3)*125+Math.sin(i*2.13)*120,z=-1100-(i%5)*130;matrix.makeScale(260+i%4*60,140+i%3*35,1);matrix.setPosition(x,y,z);im.setMatrixAt(i,matrix);}im.instanceMatrix.needsUpdate=true;im.frustumCulled=false;root.add(im);

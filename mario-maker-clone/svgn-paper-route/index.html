@@ -202,6 +202,7 @@
 <link rel="stylesheet" href="./delivery-upgrade.css">
 <link rel="stylesheet" href="./sky-style.css">
 <link rel="stylesheet" href="./cloudview.css">
+<link rel="stylesheet" href="./grapple.css">
 </head>
 <script>
 ;
@@ -6750,8 +6751,8 @@ Object.defineProperty(window,"charName",{get(){return charName},set(v){charName=
 <script type="module">
 ;
 import {voxelizeSprite, extractSpans, geometryFromSpans} from './_voxelizer.js?v=1786230731';
-import {NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Quaternion,Euler,Vector3,MeshStandardNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh} from './vendor/three.webgpu.js';
-const THREE={NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Vector3,Euler,Quaternion,MeshStandardNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh,REVISION:'177'};
+import {NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Quaternion,Euler,Vector3,MeshStandardNodeMaterial,MeshLambertNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PerspectiveCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh} from './vendor/three.webgpu.js';
+const THREE={NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Vector3,Euler,Quaternion,MeshStandardNodeMaterial,MeshLambertNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PerspectiveCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh,REVISION:'177'};
 /* ---------------- renderer: WebGPU when available, WebGL2 fallback ------- */
 const canvas = document.getElementById('gl');
 const renderer = new THREE.WebGPURenderer({canvas, antialias:true, alpha:false,
@@ -7084,7 +7085,7 @@ window.render = function(){
   }
   window.__skyView?.(camera, VIEW);
   window.SkyVisual?.update();
-  renderer.render(scene, camera);
+  renderer.render(scene, window.CloudDepthCamera ? CloudDepthCamera.forFrame(camera,VIEW) : camera);
 };
 
 /* ---- entity path, test case #1: the player -----------------------------
@@ -8500,7 +8501,7 @@ function gpuLimitAudit(){
 }
 setTimeout(gpuLimitAudit, 1500);
 
-window.__merged = {cloudReplaced:()=>[gearMesh,packetMesh],THREE, renderer, scene, camera, tiles, gpuLimitAudit, get gizmoMesh(){return gizmoMesh}, get curveGroup(){return curveGroup}, get gridMesh(){return gridMesh}, get cursorMesh(){return cursorMesh}, get trackGroup(){return trackGroup}, get entMesh(){return entMesh}, buildRidePose, rideKindFor, rideGeo, syncFromGame, tintOf, frameAll, matchTo2D, railMat, actorMat, ACTOR_ORDER, prewarmPoses, posePool, showPose, get activePose(){return activePose}, makeSingle, setSingle, voxMatMesh, get worldTypesLive(){return worldTypesLive}, buildEditGrid, updateEditGrid, screenToTile, tileToWorld, buildEditCurves3D, buildCurveGizmos, BAKE_SPECS, buildMailGeo, mailGeo, exportVoxelAssets, downloadVoxelAssets, loadBakedAssets, liveGrid, fitFor, entVoxGeo, ENT_FIT, buildCharAnim, animFrameFor, animGeo, buildTracks3D, buildSparks3D, buildMisc3D, buildMovers3D, buildPackets3D, charVoxel, syncRiderChar, buildGearMesh, charGeo, buildRider, driveRider, rider, buildWorldMesh, buildEntMesh, buildVoxelEntities, foeVoxMesh, useVoxels, buildVoxelWorld, syncVoxels, voxGeo, voxMesh, applyLayer, body, bodyLamp, syncPlayer, foes, syncEnemies, tintOfFoe, picks, parts, movs, syncPickups, syncParticles, syncMovers, tintOfPick, VIEW, get gridMesh(){return gridMesh}, get curveGroup(){return curveGroup}, get trackGroup(){return trackGroup}, get worldMesh(){return worldMesh}, get entMesh(){return entMesh}, get playerVox(){return playerVox}, set3D:v=>{layer3D=v;applyLayer();}, get3D:()=>layer3D, stats:()=>({tiles:tiles.count, calls:renderer.info.render.calls, tris:renderer.info.render.triangles})};
+window.__merged = {cloudReplaced:()=>[gearMesh,packetMesh],THREE, renderer, scene, get camera(){return window.__sky?.active()&&window.CloudDepthCamera?.active||camera}, tiles, gpuLimitAudit, get gizmoMesh(){return gizmoMesh}, get curveGroup(){return curveGroup}, get gridMesh(){return gridMesh}, get cursorMesh(){return cursorMesh}, get trackGroup(){return trackGroup}, get entMesh(){return entMesh}, buildRidePose, rideKindFor, rideGeo, syncFromGame, tintOf, frameAll, matchTo2D, railMat, actorMat, ACTOR_ORDER, prewarmPoses, posePool, showPose, get activePose(){return activePose}, makeSingle, setSingle, voxMatMesh, get worldTypesLive(){return worldTypesLive}, buildEditGrid, updateEditGrid, screenToTile, tileToWorld, buildEditCurves3D, buildCurveGizmos, BAKE_SPECS, buildMailGeo, mailGeo, exportVoxelAssets, downloadVoxelAssets, loadBakedAssets, liveGrid, fitFor, entVoxGeo, ENT_FIT, buildCharAnim, animFrameFor, animGeo, buildTracks3D, buildSparks3D, buildMisc3D, buildMovers3D, buildPackets3D, charVoxel, syncRiderChar, buildGearMesh, charGeo, buildRider, driveRider, rider, buildWorldMesh, buildEntMesh, buildVoxelEntities, foeVoxMesh, useVoxels, buildVoxelWorld, syncVoxels, voxGeo, voxMesh, applyLayer, body, bodyLamp, syncPlayer, foes, syncEnemies, tintOfFoe, picks, parts, movs, syncPickups, syncParticles, syncMovers, tintOfPick, VIEW, get gridMesh(){return gridMesh}, get curveGroup(){return curveGroup}, get trackGroup(){return trackGroup}, get worldMesh(){return worldMesh}, get entMesh(){return entMesh}, get playerVox(){return playerVox}, set3D:v=>{layer3D=v;applyLayer();}, get3D:()=>layer3D, stats:()=>({tiles:tiles.count, calls:renderer.info.render.calls, tris:renderer.info.render.triangles})};
 
 
 /* ---- BOOT THE 3D PATH ----------------------------------------------------
@@ -8534,7 +8535,7 @@ renderer.init().then(async ()=>{
 </script>
 <script>
 ;
-window.__BUILD=1788568001;
+window.__BUILD=1788586201;
 (function(){
   var told=false;
   async function check(){
@@ -8559,11 +8560,18 @@ window.__BUILD=1788568001;
 </script>
 <script src="./campaign.js"></script>
 <script src="./sky-routes.js"></script>
+<script src="./grapple-core.js"></script>
+<script src="./open-course.js"></script>
 <script src="./sky-visual.js"></script>
 <script src="./cloudview-assets.js"></script>
 <script src="./cloudview-world.js"></script>
+<script src="./cloudview-chunks.js"></script>
+<script src="./cloudview-depth.js"></script>
+<script src="./cloudview-camera.js"></script>
 <script src="./delivery-upgrade.js"></script>
 <script src="./sky-game.js"></script>
 <script src="./cloudview-ui.js"></script>
+<script src="./grapple-game.js"></script>
+<script src="./whip-visual.js"></script>
 </body>
 </html>

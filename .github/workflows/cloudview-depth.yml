@@ -1,0 +1,121 @@
+name: Verify Cloudview depth and color
+on:
+  push:
+    branches: [feat/cloudview-depth-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cloudview-depth-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      tested_sha: ${{ steps.identity.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python scripts/integrate-depth.py
+          python scripts/finalize-depth.py
+          python scripts/depth-perspective.py
+          python scripts/polish-depth-lighting.py
+      - name: Record exact integrated source
+        if: github.ref == 'refs/heads/feat/cloudview-depth-20260905'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/cloudview-depth.js mario-maker-clone/svgn-paper-route/cloudview-world.js mario-maker-clone/svgn-paper-route/grapple-game.js tests/grapple_browser.py tests/depth_capture.py tests/sky_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Integrate tuned lighting and visible whip geometry'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - id: identity
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Package exact runtime
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/source.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: depth-source
+          path: test-output/source.tgz
+          retention-days: 3
+  rendering:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.tested_sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check graphics and gameplay invariants
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/cloudview-depth.js
+          node --check mario-maker-clone/svgn-paper-route/cloudview-camera.js
+          node --check mario-maker-clone/svgn-paper-route/whip-visual.js
+          node --test tests/depth_geometry.test.mjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Record the real renderer
+        timeout-minutes: 8
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/depth-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 440 python -u tests/depth_capture.py
+      - if: always()
+        run: |
+          mkdir -p test-output/depth
+          git rev-parse HEAD > test-output/depth/tested-commit.txt
+          git diff --stat > test-output/depth/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: depth-render-review
+          path: test-output/depth/
+          retention-days: 7
+  gameplay:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        route: ['0','1','2','whip']
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.tested_sha }}
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Replay through ordinary controls
+        env:
+          REPLAY: ${{ matrix.route }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/game-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$REPLAY" = whip ]; then
+            timeout 1140 python -u tests/grapple_browser.py
+          else
+            SKY_REPLAY_ROUTE="$REPLAY" timeout 1140 python -u tests/sky_browser.py
+          fi
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: depth-gameplay-${{ matrix.route }}
+          path: test-output/
+          retention-days: 7
