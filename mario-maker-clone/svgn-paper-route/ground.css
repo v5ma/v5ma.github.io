@@ -1,0 +1,19 @@
+/* Keep approachable levels first, while retaining every advanced course. */
+#delivery-menu .expert-route{display:none}#delivery-menu.show-expert .expert-route{display:block}
+#delivery-menu .delivery-courses{max-height:90%;overflow-y:auto;padding-right:8px}
+#delivery-menu .delivery-hero h1{font-size:clamp(40px,5vw,70px);letter-spacing:-2px}
+#delivery-menu .minor{line-height:1.6}
+.ground-route-active #sky-checkpoint,.ground-route-active #sky-edit-copy{display:none}
+.ground-route-active #sky-flight{display:none}
+.ground-route-active .cloud-left,.ground-route-active .cloud-right{transform:scale(.83);transform-origin:top left}
+.ground-route-active .cloud-right{transform-origin:top right}
+.ground-route-active .cloud-flight-status{font-size:11px;max-width:min(740px,90vw)}
+.ground-route-active #sky-launch-touch{display:none}
+#beginner-blueprint{font-size:10px}
+.ground-route-active #cloud-control-tip{white-space:normal;line-height:1.6}
+@media(pointer:coarse),(max-width:700px){
+ .ground-route-active #sky-launch-touch{display:block;background:#244865;color:#fff3c7;border-color:#8bcdd6}
+ .ground-route-active #sky-flight{display:none}
+ .ground-route-active .cloud-left,.ground-route-active .cloud-right{transform:scale(.73)}
+ .ground-route-active .cloud-flight-status{max-width:95vw;font-size:9px}
+}

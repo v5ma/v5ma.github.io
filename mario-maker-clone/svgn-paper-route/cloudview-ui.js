@@ -20,7 +20,7 @@ window.CloudHUD=(()=>{
   const tr=p.track,phase=tr?.sky?(p.trackS/tr.len-tr.sky.begin)/(tr.sky.end-tr.sky.begin):0,ready=phase>=.55&&phase<=1.02;
   text('cloud-flight-label',s.armed?'EXIT ARMED. NEXT STOP: THE SKY.':ready?'SPACE TO LAUNCH!':tr?'BUILD SPEED. WATCH FOR GOLD.':'AIRBORNE! CATCH THE NEXT SKYWAY.');
   ui.classList.toggle('ready',ready&&!s.armed);ui.classList.toggle('armed',s.armed);phaseMeter.style.width=`${Math.max(0,Math.min(1,phase))*100}%`;
-  document.getElementById('cloud-loop-progress').style.strokeDashoffset=String(245*(1-s.completed.size/count));
+  document.getElementById('cloud-loop-progress').style.strokeDashoffset=String(245*(1-s.completed.size/(count||1)));
   const a=Math.PI+Math.min(1,Math.hypot(p.vx,p.vy)/24)*Math.PI;needle.setAttribute('d',`M50 56L${50+Math.cos(a)*31} ${56+Math.sin(a)*31}`);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();

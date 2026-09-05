@@ -26,7 +26,8 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.__sky&&window.__gpuReady===true',timeout=90000)
   check(all(page.locator('[data-course="'+str(i)+'"]').count()==1 for i in range(3)),'All three original loop routes remain in the main game menu')
-  check('Rocket' in page.locator('#delivery-menu h1').inner_text(),'The default menu presents the sky loop game')
+  check('Start on the street' in page.locator('#delivery-menu h1').inner_text(),'The default menu starts with approachable routes')
+  page.locator('#advanced-routes-toggle').click()
   original=page.evaluate('levelCode()');page.screenshot(path=str(OUT/'menu-3d.png'))
   for route,count in [(i,4+i) for i in range(3) if os.getenv('SKY_REPLAY_ROUTE') is None or i==int(os.getenv('SKY_REPLAY_ROUTE'))]:
    if route:page.locator('#delivery-header [data-delivery="routes"]').click()

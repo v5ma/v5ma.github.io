@@ -1,0 +1,42 @@
+name: Verify final ground surfaces and depot
+on:
+  push:
+    branches: [feat/ground-first-progression-20260905]
+    paths: ['mario-maker-clone/svgn-paper-route/ground-art.js','tests/ground_visual.py','tests/ground_terrain.test.cjs','.github/workflows/ground-final-visual.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prove that game rules and inputs match the completed 48-check replay
+        run: |
+          git fetch --depth=1 origin bdbe48d60f2db845d521cf2e4da53bc75dc23d20
+          git diff --exit-code bdbe48d60f2db845d521cf2e4da53bc75dc23d20 HEAD -- mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/ground-runtime.js mario-maker-clone/svgn-paper-route/ground-courses.js mario-maker-clone/svgn-paper-route/grapple-game.js mario-maker-clone/svgn-paper-route/grapple-core.js mario-maker-clone/svgn-paper-route/sky-game.js mario-maker-clone/svgn-paper-route/sky-routes.js mario-maker-clone/svgn-paper-route/open-course.js mario-maker-clone/svgn-paper-route/delivery-upgrade.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check mario-maker-clone/svgn-paper-route/ground-art.js && node --test tests/ground_core.test.cjs tests/ground_terrain.test.cjs
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Verify the final surfaces and complete a road delivery
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/ground-final.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 500 python -u tests/ground_visual.py
+      - if: always()
+        run: |
+          mkdir -p test-output/ground-finish
+          git rev-parse HEAD > test-output/ground-finish/tested-commit.txt
+          git diff --stat > test-output/ground-finish/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ground-final-visual
+          path: test-output/ground-finish/
+          retention-days: 7

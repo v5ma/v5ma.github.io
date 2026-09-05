@@ -26,7 +26,7 @@ window.Cloudview=(()=>{
   const spherePrimitive=kit.sphere();
   for(let i=0;i<spherePrimitive.p.length;i+=9)for(const key of ['p','n'])for(let j=0;j<3;j++){const a=spherePrimitive[key][i+3+j];spherePrimitive[key][i+3+j]=spherePrimitive[key][i+6+j];spherePrimitive[key][i+6+j]=a;}
   root=new T.Group();root.name='Cloudview playable world';m.scene.add(root);
-  const menu=window.__delivery?.state.menu,active=window.__sky?.active();course=active?__sky.state.data:SkyRoutes.build(0,__gameRefs.T);
+  const menu=window.__delivery?.state.menu,active=window.__sky?.active();course=active?__sky.state.data:SkyRoutes.build(4,__gameRefs.T);
   const night=active&&themeName==='city',paths=active?tracks.filter(t=>t.sky).map(t=>({pts:t.pts,sky:t.sky})):menu?course.ct.map(p=>({pts:p,sky:p.sky})):[];
   previous=-1;tailPoints=[];water=[];mail=[];pickups=[];signature=paths.map(p=>p.sky.id).join('|');
   stats={version:VERSION,rails:paths.length,goldPlates:0,islands:0,trees:0,waterfalls:0,vertices:0,model:'helmeted courier with jet bike',source:'procedural geometry; no reference image is loaded'};
@@ -73,6 +73,7 @@ window.Cloudview=(()=>{
    }
    const base=pts[21]||pts[0],cx=base[0],by=-base[1],lip=pts.at(-1),lp=pts.at(-2),ang=-Math.atan2(lip[1]-lp[1],lip[0]-lp[0]);
    // Engineering structure and green land beneath each loop.
+   if(!course.gp){
    island(cx-45,by-57,-58,185,205,tag.stage+3,9);
    metal.rod([cx-145,by-37,-16],[cx+30,by-43,-16],5,'#38536c');metal.rod([cx-110,by-55,10],[cx+110,by-5,10],3.5,'#435e77');
    for(const xo of[-120,0,100]){metal.box(cx+xo,by-40,0,8,65,36,'#3d5870');metal.box(cx+xo,by-30,0,16,8,46,'#efb538');}
@@ -86,16 +87,18 @@ window.Cloudview=(()=>{
     sign('CLOUDVIEW\nCITY',ix,iy-62,iz+120,116,59);
     island(cx-355,by+116,-700,115,220,tag.stage+1,7);kit.city(far,cx-355,by+120,-700,.5);
    }
+   }
   }
   // Distant rail networks, scaled into the scenery for the sky-maze silhouette.
-  for(let k=0;k<course.stages+2;k++){
+  if(!course.gp)for(let k=0;k<course.stages+2;k++){
    const cx=150+k*850,by=-1790+Math.sin(k*1.7)*120,z=-800-(k%2)*150,r=110;
    for(let i=0;i<48;i++){const a=i/48*2*Math.PI,b=(i+1)/48*2*Math.PI;far.rod([cx+Math.cos(a)*r,by+Math.sin(a)*r,z],[cx+Math.cos(b)*r,by+Math.sin(b)*r,z],5.5,'#dcba61');if(i%4===0)far.ell(cx+Math.cos(a)*r,by+Math.sin(a)*r,z+6,2.5,2.5,2,'#b5f7fa');}
    far.rod([cx-100,by-95,z],[cx+700,by-20,z-65],3.5,'#82a9bd');far.rod([cx-100,by-85,z],[cx+700,by-10,z-65],3.5,'#c9dbe0');
   }
   cloudBank(T,course,night);
+  if(course.gp)GroundArt.populate({course,m,root,kit,metal,terrain,greenery,far,sign});
   // Playable depot surface is still the original collision pad.
-  if(course.goal){const x=course.goal.x*36,y=-course.goal.y*36;island(x,y-45,-35,170,190,23,8);metal.box(x,y-17,0,330,30,68,'#496079');metal.box(x,y-3,0,330,8,73,'#e8b53b');for(let i=0;i<15;i++)metal.box(x-155+i*23,y-14,38,4,22,2,'#8b732d');sign('SVGN.io\nAIRMAIL DEPOT',x,y+97,-12,140,65);}
+  if(course.goal&&!course.gp){const x=course.goal.x*36,y=-course.goal.y*36;island(x,y-45,-35,170,190,23,8);metal.box(x,y-17,0,330,30,68,'#496079');metal.box(x,y-3,0,330,8,73,'#e8b53b');for(let i=0;i<15;i++)metal.box(x-155+i*23,y-14,38,4,22,2,'#8b732d');sign('SVGN.io\nAIRMAIL DEPOT',x,y+97,-12,140,65);}
   metal.finish(m,root,{roughness:.4,metalness:.12});glow.finish(m,root,{unlit:true});terrain.finish(m,root,{roughness:.95,metalness:0,map:cliffTexture(T)});greenery.finish(m,root,{roughness:.9,metalness:0});clouds.finish(m,root,{roughness:1,metalness:0});far.finish(m,root,{roughness:.75,metalness:.05});
   // Red postal buoys occupy the existing mailbox hit locations.
   for(const box of course.boxes||[]){
