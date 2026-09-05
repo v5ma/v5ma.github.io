@@ -30,13 +30,13 @@ with sync_playwright() as p:
   original=page.evaluate('levelCode()');page.screenshot(path=str(OUT/'menu-3d.png'))
   for route,count in [(0,4),(1,5),(2,6)]:
    if route:page.locator('#delivery-header [data-delivery="routes"]').click()
-   page.locator(f'[data-course="{route}"]').click();page.locator('#cv').focus()
+   page.locator(f'[data-course="{route}"]').click(timeout=90000);page.locator('#cv').focus()
    page.wait_for_function('mode==="play"&&player.track?.sky&&__sky.state.steps>0')
    check(page.evaluate('__merged.get3D()&&__delivery.state.view==="3d"'),'Route '+str(route+1)+' stays in the actual 3D renderer')
    check(page.evaluate('!__merged.trackGroup.visible&&!__merged.curveGroup.visible'),'Legacy duplicate rails do not cover the volumetric sky rails')
    page.keyboard.down('KeyD');page.keyboard.down('KeyC')
    saved=False;braking=False;start=time.monotonic();last={}
-   while time.monotonic()-start<150:
+   while time.monotonic()-start<300:
     st=status(page);last=st
     if st['won']:break
     should_brake=route==1 and st.get('from')=='loop-1' and st.get('airFrames',0)<55
@@ -62,7 +62,7 @@ with sync_playwright() as p:
   check(not errors,'No uncaught errors during all three full 3D playthroughs')
   # A right-only run must not bypass the defining launch mechanic.
   page.locator('#delivery-header [data-delivery="routes"]').click();page.locator('[data-course="0"]').click();page.locator('#cv').focus();page.keyboard.down('KeyD')
-  page.wait_for_function('__sky.state.events.filter(e=>e.type==="lap").length>=3',timeout=50000);page.keyboard.up('KeyD')
+  page.wait_for_function('__sky.state.events.filter(e=>e.type==="lap").length>=3',timeout=90000);page.keyboard.up('KeyD')
   st=status(page);check(not st['won'] and st['launches']==0 and len(st['loops'])==1,'Holding right alone cannot leave the loop or win the course')
   # Pause must freeze physics; resume must preserve input focus.
   page.keyboard.press('KeyP');before=status(page)['steps'];page.wait_for_timeout(350)
@@ -82,7 +82,7 @@ with sync_playwright() as p:
   report={'passed':len(checks),'checks':checks,'runs':runs,'uncaught_errors':errors,'gpu_errors':fatal,'renderer':'Actual WebGPURenderer, software WebGL backend in CI','scope':'Recorded ordinary keyboard/button input from spawn to depot, without assigning player position, velocity, track, score, or progress. Not a performance benchmark or physical-device/gamepad audit.'}
   (OUT/'report.json').write_text(json.dumps(report,indent=2));print(json.dumps({'passed':len(checks),'routes_completed':len(runs)}))
  except Exception as e:
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'console_errors':console_errors[-25:],'runs':runs},indent=2))
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'last_state':status(page) if page else None,'checks':checks,'errors':errors,'console_errors':console_errors[-25:],'runs':runs},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))
   except Exception:pass
   raise

@@ -17,7 +17,7 @@ window.Cloudview=(()=>{
   // A reusable procedural weather texture, not an image of the level.
   for(let i=0;i<24;i++){const x=70+(i*83%365),y=142-Math.sin(i*2.7)*35,r=38+i%5*9,gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.94)');gr.addColorStop(.62,'rgba(248,253,255,.92)');gr.addColorStop(.84,'rgba(231,245,255,.65)');gr.addColorStop(1,'rgba(230,246,255,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}
   const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;
-  const im=new T.InstancedMesh(new T.PlaneGeometry(1,1),new T.MeshBasicNodeMaterial({map:tx,transparent:true,depthWrite:false,color:night?'#dbe7fa':'#ffffff',side:T.DoubleSide}),80),matrix=new T.Matrix4();
+  const im=new T.InstancedMesh(new T.PlaneGeometry(1,1),new T.MeshBasicNodeMaterial({map:tx,transparent:true,depthWrite:false,color:night?'#dbe7fa':'#ffffff',side:T.DoubleSide,fog:false}),80),matrix=new T.Matrix4();
   for(let i=0;i<80;i++){const x=-1000+i*135,y=-2150-(i%3)*125+Math.sin(i*2.13)*120,z=-1100-(i%5)*130;matrix.makeScale(260+i%4*60,140+i%3*35,1);matrix.setPosition(x,y,z);im.setMatrixAt(i,matrix);}im.instanceMatrix.needsUpdate=true;im.frustumCulled=false;root.add(im);
  }
  function cliffTexture(T){const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');g.fillStyle='#e5e6e3';g.fillRect(0,0,128,128);let seed=7;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};for(let i=0;i<3000;i++){const v=175+Math.floor(rand()*80);g.fillStyle=`rgba(${v},${v},${v},.18)`;g.fillRect(rand()*128,rand()*128,1+rand()*5,1+rand()*2);}for(let i=0;i<30;i++){g.strokeStyle='rgba(65,79,96,.10)';g.beginPath();let x=rand()*128,y=rand()*128;g.moveTo(x,y);for(let j=0;j<4;j++){x+=rand()*12;y+=rand()*8-4;g.lineTo(x,y);}g.stroke();}const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=1000;t.colorSpace=T.SRGBColorSpace;return t;}
@@ -34,7 +34,7 @@ window.Cloudview=(()=>{
   // Soft atmospheric sky fills the camera, with no copied concept image.
   const c=document.createElement('canvas');c.width=32;c.height=512;const ctx=c.getContext('2d'),grad=ctx.createLinearGradient(0,0,0,512);
   grad.addColorStop(0,night?'#254684':'#227cdc');grad.addColorStop(.52,night?'#5b94c4':'#68b6ed');grad.addColorStop(1,night?'#bacfd4':'#e4f3f9');ctx.fillStyle=grad;ctx.fillRect(0,0,32,512);
-  const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const sky=single(new T.PlaneGeometry(Math.max(16000,course.width*36+9000),8500),new T.MeshBasicNodeMaterial({map:tx,depthWrite:false,fog:false}));sky.position.set(course.width*18,-2200,-2400);sky.renderOrder=-100;
+  const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const sky=single(new T.PlaneGeometry(Math.max(16000,course.width*36+9000),2600),new T.MeshBasicNodeMaterial({map:tx,depthWrite:false,fog:false}));sky.position.set(course.width*18,-2200,-2400);sky.renderOrder=-100;
   m.renderer.setClearColor(night?'#6f9ccb':'#77bce8',1);m.scene.fog=new T.Fog(night?'#9ebbd6':'#b5dff6',1050,2450);
   const sun=new T.DirectionalLight(night?'#e0edff':'#fff2d2',2.4);sun.position.set(-1300,1800,1800);root.add(sun);root.add(new T.AmbientLight(night?'#b9d2f6':'#b9d8f3',1.25));const fill=new T.DirectionalLight('#83cffd',.8);fill.position.set(1300,-600,500);root.add(fill);
   function island(x,y,z,r,depth,seed,trees=5){kit.rock(terrain,x,y,z,r,depth,seed);kit.grass(greenery,x,y+2,z,r,1);for(let j=0;j<trees;j++){const a=j*2.4,rr=r*.72;kit.tree(greenery,x+Math.sin(a)*rr,y+5,z+Math.cos(a)*rr*.48,.6+(j%3)*.25,j);stats.trees++;}for(let j=0;j<4;j++)kit.flowers(greenery,x+(j-1.5)*r*.38,y+7,z+r*.4,1);stats.islands++;}
@@ -66,7 +66,7 @@ window.Cloudview=(()=>{
     if(distance-lastArrow>32){
      lastArrow=distance;const cx=x-nx*7,cy=y-ny*7,c=Math.cos(angle),s=Math.sin(angle),q=(u,v,z=28)=>[cx+u*c-v*s,cy+u*s+v*c,z];
      // Front fascia chevrons are thick little light prisms, not screen arrows.
-     glow.tri(q(-4,5),q(3,0),q(-4,-5),goldSector?'#fff5ac':'#ffda69');glow.tri(q(-7,5),q(-4,5),q(-4,-5),'#ffe283');
+     const chevron=goldSector?'#fff5ac':'#ffdc72';glow.tri(q(-6,6),q(-1,6),q(6,0),chevron);glow.tri(q(-6,6),q(6,0),q(1,0),chevron);glow.tri(q(1,0),q(6,0),q(-1,-6),chevron);glow.tri(q(1,0),q(-1,-6),q(-6,-6),chevron);
      // Gold-sector chevrons remain legible; do not cover them with a luminous plate.
     }
     if(distance-lastTie>46){lastTie=distance;metal.box(x-nx*18,y-ny*18,0,8,9,63,'#294560',angle);metal.box(x-nx*21,y-ny*21,0,14,4,68,'#70879b',angle);}
@@ -122,12 +122,12 @@ window.Cloudview=(()=>{
   // Renderer rebuilt legacy assets this frame. Hide only replacements in sky play.
   if(active){
    engine.posePool.forEach(o=>o.visible=false);if(engine.rider.body)engine.rider.body.visible=false;if(engine.rider.wheel)engine.rider.wheel.visible=false;if(engine.body)engine.body.visible=false;if(engine.playerVox)engine.playerVox.visible=false;
-   for(const [key,obj]of engine.voxMesh){const id=Number(String(key).split('#')[0]);if([__gameRefs.T.MAILBOX,__gameRefs.T.MAILDONE,__gameRefs.T.GEAR,__gameRefs.T.STEEL,__gameRefs.T.GOAL].includes(id))obj.visible=false;}
+   for(const [key,obj]of engine.voxMesh){const id=Number(String(key).split('#')[0]);if([__gameRefs.T.MAILBOX,__gameRefs.T.MAILDONE,__gameRefs.T.GEAR,__gameRefs.T.STEEL,__gameRefs.T.GOAL,__gameRefs.T.EUCDOCK].includes(id))obj.visible=false;}
    if(engine.cloudReplaced){const [gears]=engine.cloudReplaced();if(gears)gears.visible=false;}
   }
   hero.group.visible=active&&!p.dead;
   if(active){
-   const track=p.track,angle=track?p.drawA:Math.max(-.65,Math.min(.65,Math.atan2(-p.vy,Math.abs(p.vx)||1)*.32));
+   const track=p.track,angle=track?-(p.drawA||0):Math.max(-.65,Math.min(.65,Math.atan2(-p.vy,Math.abs(p.vx)||1)*.32));
    hero.group.position.set(p.x+13,-p.y-15,22);hero.group.rotation.z=angle;hero.group.rotation.y=track?0:p.dir<0?Math.PI:0;
    hero.scarf.rotation.z=reduced()?0:Math.sin(t*12)*.1;hero.flame.scale.x=(p.track?.65:1.7)*(reduced()?1:1+Math.sin(t*33)*.2);
    for(const item of mail){const done=pg(item.box.x,item.box.y)===__gameRefs.T.MAILDONE;item.flag.visible=done;}

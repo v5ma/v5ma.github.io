@@ -40,10 +40,15 @@ with sync_playwright() as p:
   page.screenshot(path=str(OUT/'02-playable-world.png'),timeout=45000)
   page.locator('#gl').screenshot(path=str(OUT/'03-real-renderer.png'),timeout=45000)
   im=Image.open(OUT/'03-real-renderer.png').convert('RGB').resize((200,120));check(len(set(im.getdata()))>900,'Actual rendered world has visible multicolor detail')
-  page.keyboard.down('KeyD');page.keyboard.down('KeyC');start=time.monotonic();recorded=False;frames=[]
+  page.keyboard.down('KeyD');page.keyboard.down('KeyC');start=time.monotonic();recorded=False;orientation_checked=False;frames=[]
   while time.monotonic()-start<180:
    s=page.evaluate('''()=>{const p=player,t=p.track,k=t?.sky;return {phase:k?(p.trackS/t.len-k.begin)/(k.end-k.begin):-1,armed:__sky.state.armed,transfers:__sky.state.transfers,launches:__sky.state.launches,loops:[...__sky.state.completed],steps:__sky.state.steps,tries,deliveries};}''');frames.append(s)
    if s['transfers']>=1:break
+   if not orientation_checked and .15<s['phase']<.48:
+    alignment=page.evaluate('''()=>{const p=player,q=trackPoint(p.track,p.trackS,p._bside),a=__cloudview.hero.group.rotation.z;return -Math.sin(a)*q.bx-Math.cos(a)*q.by;}''')
+    check(alignment>.99,'The rider remains correctly oriented against the loop surface')
+    page.screenshot(path=str(OUT/'07-rider-on-loop.png'),timeout=45000)
+    orientation_checked=True
    if s['phase']>=.64 and s['phase']<.96 and not s['armed']:page.keyboard.press('Space',delay=80)
    if s['launches']>=1 and not recorded:
     page.screenshot(path=str(OUT/'04-airborne.png'),timeout=45000);recorded=True
