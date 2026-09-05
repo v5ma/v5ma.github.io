@@ -1,7 +1,7 @@
 /* Broad double-edged roadway follows the actual collision polylines.
  * Colors remain original Cloudview art; no reference screenshot is textured in. */
 globalThis.SkyNetworkArt=(()=>{
- function sectionFrames(points){return points.map((p,i)=>{const a=points[Math.max(0,i-1)],b=points[Math.min(points.length-1,i+1)],dx=b[0]-a[0],dy=-(b[1]-a[1]),l=Math.hypot(dx,dy)||1;let miter=1;if(i>0&&i<points.length-1){const ux=p[0]-points[i-1][0],uy=-(p[1]-points[i-1][1]),ul=Math.hypot(ux,uy)||1;miter=Math.min(1.65,1/Math.max(.35,(dx*ux+dy*uy)/(l*ul)));}return {x:p[0],y:-p[1],tx:dx/l,ty:dy/l,nx:-dy/l,ny:dx/l,miter};});}
+ function sectionFrames(points){return points.map((p,i)=>{const a=points[Math.max(0,i-1)],b=points[Math.min(points.length-1,i+1)],dx=b[0]-a[0],dy=-(b[1]-a[1]),l=Math.hypot(dx,dy)||1;let miter=1;if(i>0&&i<points.length-1){const ux=p[0]-points[i-1][0],uy=-(p[1]-points[i-1][1]),ul=Math.hypot(ux,uy)||1;miter=Math.max(1,Math.min(1.65,1/Math.max(.35,(dx*ux+dy*uy)/(l*ul))));}return {x:p[0],y:-p[1],tx:dx/l,ty:dy/l,nx:-dy/l,ny:dx/l,miter};});}
  function populate({course,m,root,kit,metal,terrain,greenery,far,sign,paths}){
   const road=new kit.Batch(),edges=new kit.Batch(),markers=new kit.Batch();let count=0;
   const quad=(b,a,c,d,e,color)=>{b.tri(a,c,d,color);b.tri(a,d,e,color);};
