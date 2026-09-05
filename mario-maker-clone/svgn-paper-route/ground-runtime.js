@@ -41,7 +41,11 @@
     if(exit){S.launches++;lastTrack=tr.sky.id;p._airTicks=0;log('optional-lip',{rail:lastTrack});}
     if(p.inv>0)p.inv--;interactTiles(p);
    }else{
-    GroundNative.step();if(player!==p)return;
+    if(p._networkAir && meta.skyNetwork && !p.onGround){
+      if(p.trackCD>0)p.trackCD--;fireNitro(p);fireGun(p);
+      K.flight(p,{right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft)},q=>{moveX(q);moveY(q);});
+      if(p.inv>0)p.inv--;interactTiles(p);
+    }else GroundNative.step();if(player!==p)return;
     p._airTicks=(p._airTicks||0)+1;
     const hit=K.catchRail(p,old,tracks,lastTrack);
     if(hit){

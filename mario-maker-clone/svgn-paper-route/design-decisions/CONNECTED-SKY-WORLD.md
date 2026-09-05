@@ -1,0 +1,15 @@
+# Connected optional upper world
+
+The user's Motocross reference screenshots describe parts of one continuous multilevel scene: an angular launch beneath suspended partial curves, shelves above and below, pegs between heights, and extensive alternate routes across a normal ground-based adventure. A row of isolated loops does not meet that intention. This revision develops actual broad roadway surfaces and a spatial network across the existing story chapters, without making aerial exploration a finish requirement.
+
+The first chapter contains 46 individually editable track surfaces, with additional surfaces in later chapters. The layout includes main airborne transfers, lower entries, reverse hooks, C-shaped upper galleries, partial vertical turns, bowls and street-return exits. The first main-chain route is tested with ordinary inputs through six receiving surfaces; that evidence is not a proof that every optional branch is equally easy or reachable. Peg ladders and intersecting routes still need continued human playtesting and tuning.
+
+The same point arrays and saved metadata feed collision, actual extruded 3D roads and the map. The map has equal-scale Whole world and Nearby routes views, entrance symbols and visited-track coloring. It pauses and never relocates the player; closing it preserves an already-paused state. Wide view is a camera option, not a physics change. The sky gradient is fitted behind the active camera so zooming out cannot expose the old finite backdrop edge. The scene itself, including rails and weather, remains world-space geometry.
+
+Airborne motion preserves actual tangential launch velocity. Z release may occur between simulation steps; it is observed before the next flight step and is recorded separately from a collision-forced detach. The change prevents a genuine whip release from losing its aerial-chain history. Blocked swings require release before recasting rather than an automatic repeated attachment cycle. No target relocation, automatic hit, position assignment or automatic upper-route completion is used.
+
+The beginner road, checkpoints, enemies, power-ups, original instrumental music, optional deliveries and finish-line progression are retained. Advanced course IDs and saves stay intact. The original creator exports the full network. The Route Workshop rewrite remains separate WIP PR19 and is not included in this release.
+
+Verification uses the committed source directly, with read-only GitHub Actions permissions. The obsolete self-modifying recovery workflows and temporary encoded transfer files from the unfinished development checkpoint are removed. Native HTTP WebGL screenshots, run reports and source hashes are artifacts. Physics fixtures are distinct from recorded UI/keyboard playthroughs; neither is a physical-device performance certification. Do not claim a release until the final native tests and deployment checks succeed.
+
+Roll back by reverting the release merge. Do not clear player data, reset master history, or modify the independent Theology, Dino Atlas, Studio or account configuration.

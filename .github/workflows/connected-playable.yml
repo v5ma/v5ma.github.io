@@ -1,0 +1,59 @@
+name: Verify connected-world playable revision
+on:
+  push:
+    branches: [feat/connected-world-playable-20260905]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/sky_network*']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: connected-playable-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [survey, flight, grapple, road, expert]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact committed source and gameplay invariants
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/sky-network-layout.js
+          node --check mario-maker-clone/svgn-paper-route/sky-network-runtime.js
+          node --check mario-maker-clone/svgn-paper-route/sky-network-art.js
+          node --test tests/sky_network.test.cjs tests/adventure_score.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/depth_geometry.test.mjs
+      - name: Install native verification browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play through ordinary inputs in the actual renderer
+        env:
+          NETWORK_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/network-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$NETWORK_SUITE" = expert ]; then
+            SKY_REPLAY_ROUTE=0 timeout 1260 python -u tests/sky_browser.py
+          else
+            timeout 1260 python -u tests/sky_network_browser.py
+          fi
+      - name: Record source and preserve failure evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          cp /tmp/network-http.log test-output/http.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: connected-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7

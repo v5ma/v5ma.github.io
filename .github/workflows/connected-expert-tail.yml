@@ -1,0 +1,46 @@
+name: Complete connected-world expert regression checks
+on:
+  push:
+    branches: [feat/connected-world-playable-20260905]
+    paths: ['tests/sky_browser.py','.github/workflows/connected-expert-tail.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  expert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prove all runtime files match the completed road, air and whip replays
+        run: |
+          git fetch --depth=1 origin a26507af6b21d018dd63c8056aba3d8f5bbabf29
+          git diff --exit-code a26507af6b21d018dd63c8056aba3d8f5bbabf29 HEAD -- mario-maker-clone/svgn-paper-route/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recheck source invariants
+        run: node --test tests/sky_network.test.cjs tests/adventure_score.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/depth_geometry.test.mjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Retain three-lap requirement with a software-GPU time allowance
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/expert-tail-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          EXPERT_TAIL_ONLY=1 timeout 700 python -u tests/sky_browser.py
+      - name: Record exact scope and source
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          printf '%s\n' 'This run checks three real unarmed laps, pause and creator restoration using ordinary controls. It does not repeat the full expert course. The full First Flight run succeeded earlier in run 33986113142 before the old 90-second negative-case timeout. Every runtime file is compared byte-for-byte with that tested source before this run.' > test-output/scope.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: connected-expert-tail
+          path: test-output/
+          retention-days: 7

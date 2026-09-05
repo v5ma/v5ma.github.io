@@ -1,0 +1,41 @@
+name: Verify deployed connected-world game
+on:
+  push:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/sky-network*','.github/workflows/connected-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact public runtime bytes
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          folder='mario-maker-clone/svgn-paper-route/'
+          names=['index.html','sky-network-layout.js','sky-network-runtime.js','sky-network-art.js','sky-network.css','ground-runtime.js','cloudview-world.js','cloudview-depth.js','sw.js']
+          expected={n:hashlib.sha256(Path(folder+n).read_bytes()).hexdigest() for n in names};result={}
+          for _ in range(45):
+            for n in names:
+              if result.get(n,{}).get('match'):continue
+              try:
+                with urllib.request.urlopen('https://v5ma.github.io/'+folder+n+'?connected=20260905b',timeout=10) as r:
+                  h=hashlib.sha256(r.read()).hexdigest();result[n]={'status':r.status,'sha256':h,'match':h==expected[n]}
+              except Exception as e:result[n]={'error':str(e),'match':False}
+            if len(result)==len(names) and all(x.get('match') for x in result.values()):break
+            time.sleep(5)
+          Path('connected-publication.json').write_text(json.dumps(result,indent=2))
+          assert all(x.get('match') for x in result.values()),result
+          print(json.dumps(result,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: connected-publication
+          path: connected-publication.json
+          retention-days: 14
