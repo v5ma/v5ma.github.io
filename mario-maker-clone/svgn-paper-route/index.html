@@ -6751,8 +6751,8 @@ Object.defineProperty(window,"charName",{get(){return charName},set(v){charName=
 <script type="module">
 ;
 import {voxelizeSprite, extractSpans, geometryFromSpans} from './_voxelizer.js?v=1786230731';
-import {NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Quaternion,Euler,Vector3,MeshStandardNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PerspectiveCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh} from './vendor/three.webgpu.js';
-const THREE={NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Vector3,Euler,Quaternion,MeshStandardNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PerspectiveCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh,REVISION:'177'};
+import {NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Quaternion,Euler,Vector3,MeshStandardNodeMaterial,MeshLambertNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PerspectiveCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh} from './vendor/three.webgpu.js';
+const THREE={NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Vector3,Euler,Quaternion,MeshStandardNodeMaterial,MeshLambertNodeMaterial,MeshBasicNodeMaterial,Scene,OrthographicCamera,PerspectiveCamera,PlaneGeometry,MeshBasicMaterial,InstancedMesh,DynamicDrawUsage,Matrix4,Color,BoxGeometry,MeshStandardMaterial,AmbientLight,DirectionalLight,PointLight,CanvasTexture,SRGBColorSpace,LinearFilter,BufferGeometry,Float32BufferAttribute,DoubleSide,Mesh,REVISION:'177'};
 /* ---------------- renderer: WebGPU when available, WebGL2 fallback ------- */
 const canvas = document.getElementById('gl');
 const renderer = new THREE.WebGPURenderer({canvas, antialias:true, alpha:false,
@@ -8572,5 +8572,6 @@ window.__BUILD=1788586201;
 <script src="./sky-game.js"></script>
 <script src="./cloudview-ui.js"></script>
 <script src="./grapple-game.js"></script>
+<script src="./whip-visual.js"></script>
 </body>
 </html>

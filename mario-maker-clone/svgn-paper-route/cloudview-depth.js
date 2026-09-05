@@ -4,7 +4,7 @@
  */
 'use strict';
 (() => {
-  const VERSION = '2026.09.05-depth2';
+  const VERSION = '2026.09.05-depth3';
   const palette = {
     '#e6a82e':'#eea10b', '#f1be49':'#ffbf24', '#577491':'#284e79',
     '#3c5a77':'#19355b', '#294560':'#122b4c', '#70879b':'#577895',
@@ -103,6 +103,28 @@
     };
     return kit;
   };
+  // Diffuse rocks/foliage do not need a metallic environment BRDF. Keep
+  // the same geometry, normal maps, colors and real directional lighting.
+  function matteScenery(m,root){
+    const replacements=new Map();let diffuse=0,distant=0;
+    root.traverse(o=>{
+      const old=o.material;if(!old||!o.geometry)return;
+      if(old.isMeshStandardNodeMaterial&&old.roughness>=.7&&old.metalness<=.06){
+        if(!replacements.has(old))replacements.set(old,new m.THREE.MeshLambertNodeMaterial({
+          color:old.color,vertexColors:old.vertexColors,map:old.map,side:old.side,
+          fog:old.fog,transparent:old.transparent,opacity:old.opacity,
+          depthWrite:old.depthWrite,emissive:old.emissive,emissiveIntensity:old.emissiveIntensity
+        }));
+        o.material=replacements.get(old);diffuse++;
+      }
+      if(o.name.includes('/ spatial ')){
+        o.geometry.computeBoundingBox();
+        if(o.geometry.boundingBox.max.z < -120){o.castShadow=false;o.receiveShadow=false;distant++;}
+      }
+    });
+    for(const old of replacements.keys())old.dispose();
+    return {diffuseBatches:diffuse,distantShadowExclusions:distant,geometryReduced:false};
+  }
   function makeBevel(T) {
     const p=[],n=[],vals=[-.5,-.38,.38,.5];
     function vertex(axis,sign,u,v) {
@@ -118,16 +140,16 @@
   }
   function restore() {
     if(!saved)return;
-    for(const [light,intensity]of saved.lights)light.intensity=intensity;
+    for(const [light,intensity,visible]of saved.lights){light.intensity=intensity;light.visible=visible;}
     saved.renderer.toneMapping=saved.tone;saved.renderer.toneMappingExposure=saved.exposure;
     saved.renderer.shadowMap.enabled=saved.shadows;
     saved.scene.environment=saved.environment;saved.scene.fog=saved.fog;enabled=false;
   }
   function engage(m) {
     if(!saved){saved={renderer:m.renderer,scene:m.scene,lights:[],tone:m.renderer.toneMapping,exposure:m.renderer.toneMappingExposure,shadows:m.renderer.shadowMap.enabled,environment:m.scene.environment,fog:null};}
-    for(const light of m.scene.children)if(light.isLight&&!saved.lights.some(([a])=>a===light))saved.lights.push([light,light.intensity]);
-    for(const [light]of saved.lights)light.intensity=0;
-    m.renderer.toneMapping=4;m.renderer.toneMappingExposure=.74;
+    for(const light of m.scene.children)if(light.isLight&&!saved.lights.some(([a])=>a===light))saved.lights.push([light,light.intensity,light.visible]);
+    for(const [light]of saved.lights){light.intensity=0;light.visible=false;}
+    m.renderer.toneMapping=4;m.renderer.toneMappingExposure=.91;
     m.renderer.shadowMap.enabled=true;m.renderer.shadowMap.type=1;
     enabled=true;
   }
@@ -187,7 +209,7 @@
     }
     const plates=b.finish(m,root,{roughness:.28,metalness:.48});if(plates){plates.name='Beveled enamel and gold panels';plates.castShadow=true;plates.receiveShadow=true;}
     const lights=lamps.finish(m,root,{unlit:true,toneMapped:false});if(lights)lights.name='Luminous direction inlays';
-    root.traverse(o=>{if(o.isLight)o.intensity=0;});
+    root.traverse(o=>{if(o.isLight){o.intensity=0;o.visible=false;}});
     const night=active&&themeName==='city';
     const sun=new T.DirectionalLight(night?'#d4e6ff':'#fff0cf',night?2.5:3.4);
     sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-450;sun.shadow.camera.right=450;sun.shadow.camera.top=400;sun.shadow.camera.bottom=-400;sun.shadow.camera.near=10;sun.shadow.camera.far=2100;sun.shadow.bias=-.00015;sun.shadow.normalBias=1.2;
@@ -210,9 +232,9 @@
     __cloudview.stats.depthVersion=VERSION;__cloudview.stats.beveledPanels=panels;
     for(const o of root.children) {
       const mat=o.material;
-      if(o.renderOrder===-100&&mat?.map){const sky=mat.map.image,ctx=sky.getContext('2d'),gr=ctx.createLinearGradient(0,0,0,sky.height);gr.addColorStop(0,night?'#152b68':'#064eee');gr.addColorStop(.55,night?'#577db0':'#116aed');gr.addColorStop(1,night?'#a3cde4':'#d3efff');ctx.fillStyle=gr;ctx.fillRect(0,0,sky.width,sky.height);mat.map.needsUpdate=true;mat.toneMapped=false;}
+      if(o.renderOrder===-100&&mat?.map){const sky=mat.map.image,ctx=sky.getContext('2d'),gr=ctx.createLinearGradient(0,0,0,sky.height);gr.addColorStop(0,night?'#152b68':'#298cf4');gr.addColorStop(.55,night?'#577db0':'#71c9ff');gr.addColorStop(1,night?'#a3cde4':'#d3efff');ctx.fillStyle=gr;ctx.fillRect(0,0,sky.width,sky.height);mat.map.needsUpdate=true;mat.toneMapped=false;}
     }
-    lighting.stats.spatial=CloudDepthChunks.apply(m,root);
+    lighting.stats.spatial=CloudDepthChunks.apply(m,root);lighting.stats.materials=matteScenery(m,root);
     // Cloud color remains luminous under the filmic highlight curve.
     for(const object of root.children)if(object.count===80&&object.material?.map&&object.material.transparent){
       object.material.color.setRGB(2.1,2.2,2.4);

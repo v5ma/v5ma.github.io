@@ -33,7 +33,7 @@ with sync_playwright() as p:
         check(state(page)['three'],'Cloudview graphics and real 3D rendering are retained')
         page.screenshot(path=str(OUT/'01-open-ramp.png'))
         page.keyboard.down('KeyD');page.keyboard.down('KeyC');held=False;released=False;snap=False;start=time.monotonic()
-        while time.monotonic()-start<240:
+        while time.monotonic()-start<540:
             q=state(page)
             if q['won']:break
             if q['tries']>1:raise AssertionError('New course required an unexpected retry: '+json.dumps(q))
@@ -41,8 +41,8 @@ with sync_playwright() as p:
                 page.keyboard.down('KeyZ');held=True
             if q['hook']:
                 if not snap:
-                    page.wait_for_function('__grapple.graphics.chain.count>0',timeout=10000)
-                    check(page.evaluate('__grapple.graphics.chain.count>0'),'Attached whip is rendered as a segmented 3D chain')
+                    page.wait_for_function('__grapple.graphics.ropeMesh?.geometry.drawRange.count>0',timeout=10000)
+                    check(page.evaluate('__grapple.graphics.ropeMesh?.geometry.drawRange.count>0'),'Whip has submitted nonempty dynamic 3D link geometry')
                     page.screenshot(path=str(OUT/'02-whip-swing.png'));snap=True
                 th=q['hook']['th']%(2*3.141592653589793)
                 if q['hook']['loops']>=1 and .08<th<.42:

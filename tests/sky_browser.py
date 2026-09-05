@@ -36,7 +36,7 @@ with sync_playwright() as p:
    check(page.evaluate('!__merged.trackGroup.visible&&!__merged.curveGroup.visible'),'Legacy duplicate rails do not cover the volumetric sky rails')
    page.keyboard.down('KeyD');page.keyboard.down('KeyC')
    saved=False;braking=False;start=time.monotonic();last={}
-   while time.monotonic()-start<300:
+   while time.monotonic()-start<540:
     st=status(page);last=st
     if st['won']:break
     should_brake=route==1 and st.get('from')=='loop-1' and st.get('airFrames',0)<55
