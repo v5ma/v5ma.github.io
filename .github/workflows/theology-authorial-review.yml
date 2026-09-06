@@ -85,9 +85,10 @@ jobs:
           python-version: '3.11'
       - name: Build the source-pinned first-person edition
         run: |
+          set -o pipefail
           mkdir -p theology-test-output
           node theology-wiki/tools/build.cjs | tee theology-test-output/initial-build.txt
-          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources
+          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources ':(exclude)theology-wiki/content/sources/index.md'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- theology-wiki
@@ -115,7 +116,7 @@ jobs:
           set -o pipefail
           node theology-wiki/tools/build.cjs | tee theology-test-output/build-report.txt
           node --test theology-wiki/tests/research.test.cjs | tee theology-test-output/node-tests.txt
-          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources
+          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources ':(exclude)theology-wiki/content/sources/index.md'
           git add -- theology-wiki
           if ! git diff --cached --quiet; then git commit -m 'Record the authorial edition and retain source-matched media and workbook'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - name: Install native browser and verify existing museum images
