@@ -1,4 +1,4 @@
-name: Integrate checked transfer review
+name: Correct sign visibility and optic exit from native visual review
 on:
   push:
     branches: [feat/aether-arsenal-and-sky-transfers]
@@ -16,22 +16,27 @@ jobs:
           node-version: '22'
       - run: |
           python - <<'PY'
-          import json,hashlib
           from pathlib import Path
-          edits=json.loads(Path('aether-reach/tools/transfer-review.json').read_text());pending=[]
-          assert set(edits)=={'aether-reach/'+x for x in ['model.mjs','tests/arsenal_browser.py','tests/combat.test.mjs']}
-          for name,c in edits.items():
-            p=Path(name);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==c['before'],name
+          import hashlib
+          edits={
+            'scene.mjs':('a535f7380466f8491b53d133f41a5f085708f445d34ed0c7e59fda400eb3e8ad','fc507bd179c8a5ff28d8af737c9b1c5001eee474bd7ee65aebd0e4fb86424747',"g.font='600 '+fs+'px Georgia';lines.forEach","g.font='600 '+fs+'px Georgia';g.fillStyle=fg;lines.forEach"),
+            'combat-ui.mjs':('b32cf9bbae1d4d3d64fa09ea1e5095bad0361a456cdc894745df79e27377bddd','45e88a15caf9a91c609e89b05ca54e72fe3dafdba785518df5bedc376563bfba',' function stock(){'," const exit=document.createElement('button');exit.id='optic-exit';exit.textContent='Leave optic · Z / release aim';exit.onclick=()=>{reset();api.focus();};$('scope-view').append(exit);\n function stock(){"),
+            'combat.css':('92667e69cc44aeb08b4411744a01a1c13f8df502352f63e1f805c564b510685a','1ba47163e219d56718f06de7f19625fc5602f23d448fed2d64f2c851e4cd8c68',None,'\nbody:has(#scope-view:not([hidden])) #interaction,body:has(#scope-view:not([hidden])) #transfer-help{visibility:hidden}#optic-exit{pointer-events:auto;position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:9px 16px;background:#183c46;border:1px solid #b7d9cf;color:#eef3dd;font:11px system-ui;border-radius:5px;z-index:20}\n')
+          };pending=[]
+          for name,(before,after,old,new) in edits.items():
+            p=Path('aether-reach')/name;raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==before,name
             s=raw.decode()
-            for i,j,v in reversed(c['ops']):s=s[:i]+v+s[j:]
-            raw=s.encode();assert hashlib.sha256(raw).hexdigest()==c['after'],name
+            if old is None:s+=new
+            else:
+              assert s.count(old)==1,name
+              s=s.replace(old,new,1)
+            raw=s.encode();assert hashlib.sha256(raw).hexdigest()==after,name
             pending.append((p,raw))
           for p,raw in pending:p.write_bytes(raw)
           PY
           node --test aether-reach/tests/*.test.mjs
-          python -m py_compile aether-reach/tests/arsenal_browser.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add aether-reach/model.mjs aether-reach/tests/arsenal_browser.py aether-reach/tests/combat.test.mjs
-          git commit -m 'Broaden the physical Gale receiving corridor and test actions against simulation time'
+          git add aether-reach/scene.mjs aether-reach/combat-ui.mjs aether-reach/combat.css
+          git commit -m 'Restore readable district sign text and keep optic interaction unobstructed'
           git push origin HEAD:feat/aether-arsenal-and-sky-transfers
