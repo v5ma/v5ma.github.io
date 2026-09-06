@@ -1,0 +1,41 @@
+name: Apply exact reviewed combat corrections
+on:
+  push:
+    branches: [feat/aether-arsenal-and-sky-transfers]
+    paths: [.github/workflows/aether-review-fixes.yml]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify before and after bytes of only the reviewed files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          edits=json.loads(Path('aether-reach/tools/review-fixes.json').read_text())
+          assert set(edits)=={'aether-reach/'+n for n in ['model.mjs','scene.mjs','combat.css','tests/arsenal_browser.py','tests/combat.test.mjs']}
+          pending=[]
+          for name,c in edits.items():
+            p=Path(name);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==c['before'],name
+            s=raw.decode()
+            for i,j,value in reversed(c['ops']):s=s[:i]+value+s[j:]
+            raw=s.encode();assert hashlib.sha256(raw).hexdigest()==c['after'],name
+            pending.append((p,raw))
+          for p,raw in pending:p.write_bytes(raw)
+          PY
+          node --test aether-reach/tests/*.test.mjs
+          python -m py_compile aether-reach/tests/arsenal_browser.py
+      - name: Commit reviewed correction
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add aether-reach/model.mjs aether-reach/scene.mjs aether-reach/combat.css aether-reach/tests/arsenal_browser.py aether-reach/tests/combat.test.mjs
+          git commit -m 'Buffer deliberate rail catch inputs, retain launch momentum and clear the sight-line HUD'
+          git push origin HEAD:feat/aether-arsenal-and-sky-transfers
