@@ -29,15 +29,19 @@
   }catch(e){if(request===ticket){$('#listen-text').textContent='The source could not be verified. '+e.message;status(e.message);}}
  }
   function attachRecording(el,record){
-    const key=record.kind+'/'+record.id;
-    const prior=stored.recordings[key];let initialized=false,active=false,last=-1;
-    const save=()=>{if(!initialized||!active||!Number.isFinite(el.currentTime)||el.readyState===0)return;stored.recordings[key]={hash:record.sourceSha256,seconds:el.ended?0:Math.min(el.currentTime,record.durationSeconds)};store();};
+    const key=record.kind+'/'+record.id,prior=stored.recordings[key];
+    let target=prior?.hash===record.sourceSha256&&Number.isFinite(prior.seconds)&&prior.seconds>0&&prior.seconds<record.durationSeconds-1?prior.seconds:null;
+    let initialized=false,active=false,restoring=false,last=-1;
+    const note=text=>{const n=$('#recorded-resume-note');if(n)n.textContent=text;};
+    const save=()=>{if(target!==null||!initialized||!active||!Number.isFinite(el.currentTime)||el.readyState===0)return;stored.recordings[key]={hash:record.sourceSha256,seconds:el.ended?0:Math.min(el.currentTime,record.durationSeconds)};store();};
+    const restore=()=>{if(target===null||el.readyState<2||el.seeking||restoring)return;for(let i=0;i<el.seekable.length;i++){if(target>=el.seekable.start(i)&&target<el.seekable.end(i)){restoring=true;el.currentTime=target;return;}}};
     mediaSavers.set(el,save);el.playbackRate=stored.rate;
-    el.addEventListener('loadedmetadata',()=>{if(prior?.hash===record.sourceSha256&&Number.isFinite(prior.seconds)&&prior.seconds>0&&prior.seconds<Math.min(el.duration,record.durationSeconds)-1){el.currentTime=prior.seconds;const note=$('#recorded-resume-note');if(note)note.textContent='Resumed recording at '+Math.floor(prior.seconds)+' seconds. Playback starts only when you press Play.';}initialized=true;});
+    el.addEventListener('loadedmetadata',()=>{initialized=true;if(target!==null)note('Preparing the saved position at '+target.toFixed(1)+' seconds. Playback starts only when you press Play.');});
+    for(const event of ['loadeddata','canplay','canplaythrough','progress'])el.addEventListener(event,restore);
     el.addEventListener('timeupdate',()=>{const now=Math.floor(el.currentTime);if(now!==last){last=now;save();}});
-    el.addEventListener('seeked',()=>{active=true;save();});
+    el.addEventListener('seeked',()=>{if(restoring){restoring=false;if(Math.abs(el.currentTime-target)>.15)return;note('Resumed recording at '+target.toFixed(1)+' seconds. Playback starts only when you press Play.');target=null;}active=true;save();});
     for(const event of ['pause','ended'])el.addEventListener(event,save);
-    el.addEventListener('play',()=>{active=true;speaker?.stop();document.querySelectorAll('#product-workspace audio,#product-workspace video').forEach(other=>{if(other!==el)pauseMedia(other);});});
+    el.addEventListener('play',()=>{active=true;speaker?.stop();document.querySelectorAll('#product-workspace audio,#product-workspace video').forEach(other=>{if(other!==el)pauseMedia(other);});restore();});
   }
  function showRecording(item){const host=$('#listen-recorded');const record=config.media.assets.find(a=>a.kind==='article'&&a.id===item.slug);if(!record){host.innerHTML='<p class="product-small">No prerecorded full study is listed for this article yet. Device read-aloud and transcript export remain available.</p>';return;}const mp3=record.files.find(f=>f.role==='audio');host.innerHTML=`<h3>Recorded full-study draft</h3><p id="recorded-resume-note" class="product-small">Recorded progress is saved separately from the device-reading paragraph.</p><p>Synthetic narration: ${esc(record.voice)}. Not Micah's voice. ${Math.round(record.durationSeconds/60)} minutes; pronunciation and editorial approval remain open.</p><audio id="listen-recording" controls preload="none" src="./${esc(mp3.path)}"></audio><div class="product-actions"><button id="recorded-play" type="button">Play recording</button><a download href="./${esc(mp3.path)}">Download MP3</a></div>`;audio=$('#listen-recording');attachRecording(audio,record);$('#recorded-play').onclick=()=>{speaker?.stop();audio.play().catch(()=>status('Recording playback was blocked. Use the audio controls to retry.'));};}
  function drawArticles(){const chapter=$('#listen-chapter').value,q=$('#listen-search').value.toLowerCase().trim();const rows=library.articles.filter(a=>(!chapter||a.chapters.some(c=>c.id===chapter))&&(!q||(a.title+' '+a.summary).toLowerCase().includes(q)));const old=$('#listen-article').value;$('#listen-article').innerHTML=rows.map(a=>`<option value="${a.slug}">${esc(a.title)}</option>`).join('');if(rows.some(a=>a.slug===old))$('#listen-article').value=old;$('#listen-count').textContent=rows.length+' complete developed articles match.';$('#listen-load').disabled=!rows.length;}

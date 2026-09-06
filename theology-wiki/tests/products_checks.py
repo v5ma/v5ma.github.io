@@ -19,7 +19,7 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     if page.evaluate('speechSynthesis.getVoices().filter(v=>v.localService).length===0'):
         check('A browser without local voices shows the honest unavailable fallback',page.locator('#listen-play').is_disabled() and 'not exposed' in page.locator('#listen-voice-help').inner_text())
     for selector in ['.listen-deck label','.listen-deck h2','#listen-source a','.listen-deck .product-small']:
-        ratio=page.locator(selector).first.evaluate("""(el)=>{
+        ratio=page.locator(selector).first.evaluate(r"""(el)=>{
           const rgb=s=>(s.match(/[\d.]+/g)||[]).map(Number);
           const lum=c=>c.slice(0,3).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
           const fg=rgb(getComputedStyle(el).color);let node=el,bg=[255,255,255];
@@ -55,9 +55,9 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     ready(extra='&listen='+slug)
     page.locator('#listen-recording').evaluate('(a)=>a.load()')
     try:
-        page.wait_for_function('document.querySelector("#listen-recording").readyState>0 && document.querySelector("#listen-recording").currentTime>0')
+        page.wait_for_function('document.querySelector("#listen-recording").readyState>1 && !document.querySelector("#listen-recording").seeking && document.querySelector("#listen-recording").currentTime>0')
     finally:
-        (OUT/'recording-after-reload.json').write_text(json.dumps(page.evaluate('({stored:localStorage.getItem("theology:listening:v1"),time:document.querySelector("#listen-recording").currentTime,ready:document.querySelector("#listen-recording").readyState,duration:document.querySelector("#listen-recording").duration,note:document.querySelector("#recorded-resume-note").textContent})'),indent=2))
+        (OUT/'recording-after-reload.json').write_text(json.dumps(page.evaluate('({stored:localStorage.getItem("theology:listening:v1"),time:document.querySelector("#listen-recording").currentTime,ready:document.querySelector("#listen-recording").readyState,ranges:Array.from({length:document.querySelector("#listen-recording").seekable.length},(_,i)=>[document.querySelector("#listen-recording").seekable.start(i),document.querySelector("#listen-recording").seekable.end(i)]),duration:document.querySelector("#listen-recording").duration,note:document.querySelector("#recorded-resume-note").textContent})'),indent=2))
     check('Recorded time resumes after reload without autoplay',page.locator('#listen-recording').evaluate('(a,t)=>a.paused&&Math.abs(a.currentTime-t)<.15',saved_time))
     page.locator('#listen-title').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'listening-player-desktop.png'))
     with page.expect_download() as ev:page.locator('#listen-recorded a[download]').click()
