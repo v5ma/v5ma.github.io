@@ -25,7 +25,7 @@ def run_atlas_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BAS
     with page.expect_download() as ev:
         page.locator('#atlas-export').click()
     data = json.loads(Path(ev.value.path()).read_text())
-    check('Atlas export retains typed edges and explicit open leads', len(data['edges']) == 45 and len([r for r in data['records'] if r['kind'] == 'research-lead']) == 3)
+    check('Atlas export retains all 57 typed edges and three explicit open leads', len(data['edges']) == 57 and len([r for r in data['records'] if r['kind'] == 'research-lead']) == 3)
     screenshot(page, 'atlas-desktop.png')
     open_('source-atlas', '&record=fragment-manetho')
     check('Deep atlas URL opens the exact mediated source', page.locator('#atlas-selected').input_value() == 'fragment-manetho' and 'Josephus' in page.locator('#atlas-cards').inner_text())
