@@ -1,10 +1,11 @@
 /* Collision and readable choices, not steering assistance. All positive paths
  * work without a bump. Misses meet the same 34px road bodies that are drawn. */
 (function(){'use strict';function boot(){
- const state={brushes:[],speedSamples:[],branch:null};let source=null,rails=[];
+ const state={brushes:[],speedSamples:[],branch:null,input:[]};let source=null,rails=[];
  const active=()=>__ground.active()&&__ground.meta?.flowPlan?.version===2;
  function compile(){if(source===tracks)return;source=tracks;rails=PhrasePlayback.compile(tracks.filter(t=>t.sky?.network).map(t=>({points:t.pts,meta:t.sky})));}
  const spawn=spawnWorld;window.spawnWorld=function(x,y){spawn(x,y);source=null;state.brushes=[];state.branch=null;};
+ window.addEventListener('keydown',e=>{if(active()&&['Space','KeyZ'].includes(e.code)&&!e.repeat){state.input.push({code:e.code,x:player.x,y:player.y,step:__ground.state.steps,focus:e.target.tagName,target:__grapple.state.target?{x:__grapple.state.target.x,y:__grapple.state.target.y}:null});if(state.input.length>80)state.input.shift();}},true);
  const step=stepPlayer;window.stepPlayer=function(){if(!active())return step();compile();const p=player,previous=[p.x+p.w/2,p.y+p.h/2],old=p.track;step();if(player!==p||p.dead>0)return;
   if(!p.track&&!p.onGround){const hit=PhrasePlayback.sweepBody(previous,[p.x+p.w/2,p.y+p.h/2],rails);if(hit){PhrasePlayback.deflect(p,hit);state.brushes.push({id:hit.id,step:__ground.state.steps,x:p.x,y:p.y});if(state.brushes.length>120)state.brushes.shift();}}
   if(p.track!==old&&p.track){state.branch=p.track.sky.id;}

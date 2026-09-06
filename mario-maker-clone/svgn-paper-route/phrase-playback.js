@@ -22,6 +22,19 @@
   }return null;
  }
  function deflect(p,hit){if(p.peg)K.release(p);p.x=hit.point[0]-p.w/2;p.y=hit.point[1]-p.h/2;const dot=p.vx*hit.normal[0]+p.vy*hit.normal[1];if(dot<0){p.vx-=1.20*dot*hit.normal[0];p.vy-=1.20*dot*hit.normal[1];}p.track=null;p.onGround=false;p.trackCD=6;p._networkAir=true;}
+ function enter(paths,{entry='m0',speed=7.5,offset=190,ground=2160,jump=-13,gravity=.55,maxTicks=100}={}){
+  const rails=compile(paths),tr=rails.find(t=>t.sky.id===entry);if(!tr)throw Error('Missing route entrance');
+  const p={w:26,h:30,x:tr.pts[0][0]-offset,y:ground-30,vx:speed,vy:jump,trackCD:0,_airTicks:0,onGround:false,roll:0};
+  const trace=[[p.x+13,p.y+15]];
+  for(let tick=1;tick<=maxTicks;tick++){
+   const old={x:p.x,y:p.y},a=[p.x+13,p.y+15];p.vy=Math.min(13,p.vy+gravity);p.x+=p.vx;p.y+=p.vy;p._airTicks++;
+   const hit=K.catchRail(p,old,rails),b=[p.x+13,p.y+15];trace.push(b);
+   const contact=sweepBody(a,b,rails);
+   if(contact)return {success:false,to:'body-blocked',contact,trace,ticks:tick,speed,offset};
+   if(hit)return {success:hit.tr.sky.id===entry,to:hit.tr.sky.id,state:p,trace,ticks:tick,speed,offset};
+   if(p.y+p.h>=ground)return {success:false,to:'road',trace,ticks:tick,speed,offset};
+  }return {success:false,to:'timeout',trace,speed,offset};
+ }
  function run(paths,{entry='m0',speed=7.5,seed=null,brake=null,jump=null,peg=null,castX=4400,releaseAngle=75,windups=1,air='throttle',maxTicks=4000,ground=2160,width=8064,keepFrames=true,solidRoads=false}={}){
   const rails=compile(paths),first=rails.find(r=>r.sky.id===entry);if(!first)throw Error('Missing route entrance');
   let p=seed?{...seed.state,_bside:seed.state._bside?{...seed.state._bside}:null}:{w:26,h:30,x:0,y:0,vx:0,vy:0,speed,track:first,trackS:1,trackCD:0,_airTicks:0,roll:0};if(seed)p.track=rails.find(r=>r.sky.id===seed.to);else K.pose(p,first,1);
@@ -50,5 +63,5 @@
   return finish('timeout',maxTicks);
   function finish(exit,ticks){return {exit,completed:exit==='road',ticks,visited:[...visited],events,contacts,trace,ranges,casted,released,routeCredit:visited.size*100,final:{x:p.x,y:p.y,vx:p.vx,vy:p.vy}};}
  }
- const api={compile,volumeContacts,sweepBody,deflect,run};root.PhrasePlayback=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
+ const api={enter,compile,volumeContacts,sweepBody,deflect,run};root.PhrasePlayback=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

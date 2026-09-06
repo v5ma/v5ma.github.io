@@ -11,7 +11,7 @@ def check(v,s):
  assert v,s
  checks.append(s);print('PASS: '+s,flush=True)
 def snapshot(page):
- return page.evaluate('''()=>({x:player.x,y:player.y,vx:player.vx,vy:player.vy,won,tries,deliveries,steps:__ground.state.steps,track:player.track?.sky.id,remaining:player.track?player.track.len-player.trackS:null,peg:player.peg?{x:player.peg.x,y:player.peg.y,th:player.peg.th,loops:player.peg.loops}:null,visited:[...__network.state.visits],events:__network.state.events,brushes:__phrases.state.brushes,hooks:__grapple.state.hooks,releases:__grapple.state.releases})''')
+ return page.evaluate('''()=>({x:player.x,y:player.y,vx:player.vx,vy:player.vy,won,tries,deliveries,steps:__ground.state.steps,track:player.track?.sky.id,remaining:player.track?player.track.len-player.trackS:null,peg:player.peg?{x:player.peg.x,y:player.peg.y,th:player.peg.th,loops:player.peg.loops}:null,visited:[...__network.state.visits],events:__network.state.events,brushes:__phrases.state.brushes,hooks:__grapple.state.hooks,releases:__grapple.state.releases,input:__phrases.state.input,whipEvents:__grapple.state.events,held:keys.KeyZ,target:__grapple.state.target,focus:document.activeElement.tagName})''')
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
  context=browser.new_context(viewport={'width':1440,'height':940},service_workers='block',record_video_dir=str(OUT/'video'))
@@ -43,15 +43,15 @@ with sync_playwright() as p:
    check(page.evaluate('tracks.filter(t=>t.sky?.network).length===15'),'The rendered game uses the new collision-backed geometry')
    page.keyboard.down('KeyD')
    if MODE!='road':
-    page.wait_for_function('player.x>=245',timeout=120000);page.keyboard.down('Space');page.wait_for_function('player.track?.sky.id==="m0"',timeout=45000);page.keyboard.up('Space')
+    page.wait_for_function('player.x>=280',timeout=120000);page.keyboard.down('Space');page.wait_for_function('player.track?.sky.id==="m0"',timeout=45000);page.keyboard.up('Space')
     check(True,'A normal ground jump enters the rising runway')
     page.wait_for_function('__network.state.visits.has("m2")',timeout=180000);page.screenshot(path=str(OUT/'clocktower-curl.png'))
     if MODE in ['canal','whip']:
-     page.wait_for_function('player.track?.sky.id==="m4"&&player.track.len-player.trackS<200',timeout=180000);page.keyboard.up('KeyD');page.keyboard.down('KeyA')
+     page.wait_for_function('player.track?.sky.id==="m4"&&player.track.len-player.trackS<150',timeout=180000);page.keyboard.up('KeyD');page.keyboard.down('KeyA')
      page.wait_for_function('!player.track',timeout=45000);page.keyboard.up('KeyA');page.keyboard.down('KeyD')
      page.wait_for_function('player.track?.sky.id==="b0"',timeout=60000);check(True,'Braking deliberately selects the lower collector rather than a scripted lane switch')
     if MODE=='whip':
-     page.wait_for_function('player.x>=4480&&__grapple.state.target',timeout=90000);page.keyboard.down('KeyZ');page.wait_for_function('!!player.peg',timeout=15000);check(True,'Z catches the real authored peg')
+     page.wait_for_function('player.x>=4480&&__grapple.state.target',timeout=90000);print('CAST READY',json.dumps(snapshot(page)),flush=True);page.locator('#cv').focus();page.keyboard.down('KeyZ');page.wait_for_function('!!player.peg',timeout=15000);check(True,'Z catches the real authored peg')
      page.wait_for_function('player.peg?.loops>=1',timeout=90000)
      page.wait_for_function('player.peg&&((player.peg.th*180/Math.PI)%360+360)%360>=55&&((player.peg.th*180/Math.PI)%360+360)%360<100',timeout=60000)
      page.screenshot(path=str(OUT/'whip-windup.png'));page.keyboard.up('KeyZ');page.wait_for_function('!player.peg')
@@ -60,7 +60,7 @@ with sync_playwright() as p:
      page.wait_for_function('player.track?.sky.id==="m6"',timeout=240000);page.screenshot(path=str(OUT/'bellflower-hook.png'))
      page.wait_for_function('player.track?.sky.id==="m7"',timeout=60000);page.screenshot(path=str(OUT/'reverse-catch.png'))
    page.wait_for_function('won',timeout=650000);result=snapshot(page);page.keyboard.up('KeyD');page.keyboard.up('KeyA');page.keyboard.up('KeyZ')
-   if page.locator('#stay-results').is_visible():page.locator('#stay-results').click()
+   if page.locator('#stay-results').count() and page.locator('#stay-results').is_visible():page.locator('#stay-results').click()
    check(result['won'] and result['tries']==1,'The selected route reaches the finish on its first attempt')
    check(result['deliveries']==0,'The normal finish never requires newspaper deliveries')
    if MODE=='road':check(not result['visited'] and result['hooks']==0,'The populated road remains a complete, non-grapple route')

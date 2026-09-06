@@ -29,7 +29,7 @@ globalThis.SkyNetworkArt=(()=>{
   const ground=course.ground*36;
   for(let i=0;i<course.gp.skyNetwork.sectors.length;i++){
    const s=course.gp.skyNetwork.sectors[i],x=s.x+s.w*.46,y=-s.y-120,z=-170;
-   far.box(x,-ground+220,z,12,440,16,'#637b7c');far.rod([x,-ground+360,z],[x+240,y-70,z],5,'#7a938d');
+   if(course.gp.flowPlan?.version!==2){far.box(x,-ground+220,z,12,440,16,'#637b7c');far.rod([x,-ground+360,z],[x+240,y-70,z],5,'#7a938d');}
    if(i%2===0){kit.rock(terrain,x+170,y-130,-240,88,130,i+2);kit.grass(greenery,x+170,y-128,-240,88,.55);kit.tree(greenery,x+170,y-122,-240,.55,i);}
    sign(s.name.toUpperCase(),x,y+95,-90,180,39);
   }

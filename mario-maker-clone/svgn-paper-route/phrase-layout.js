@@ -9,7 +9,7 @@
   const point=(x,y,id)=>{const tx=Math.round((x-18)/36),ty=Math.round((y-18)/36);if(tx>2&&tx<d.width-5&&ty>2&&ty<d.ground-2)d.cells[ty*d.width+tx]=id;};
   const peg=PhraseData.routes.find(p=>p.peg).peg;point(peg.x,peg.y,T.PEG);
   for(const path of d.ct){const tr=GrappleCore.rail(path);const step=['m2','m6','m7'].includes(path.sky.id)?85:145;for(let s=55;s<tr.len-30;s+=step){const p=GrappleCore.sample(tr,s);point(p.x+p.nx*48,p.y+p.ny*48,T.GEAR);}}
-  const sectors=[{id:'post',name:'Post Office runway',x:280,y:1690,w:950,h:480},{id:'clock',name:'Clocktower curl and drop',x:1270,y:1130,w:1140,h:1040},{id:'fork',name:'Canal fork and collector',x:2450,y:980,w:1880,h:1190},{id:'bell',name:'Bellflower hook and return',x:4380,y:480,w:1080,h:1690},{id:'finish',name:'Orchard swoop and festival',x:5420,y:1020,w:2400,h:1150}];
+  const sectors=[{id:'post',name:'Post Office runway',x:300,y:1690,w:930,h:480},{id:'clock',name:'Clocktower curl and drop',x:1270,y:1130,w:1140,h:1040},{id:'fork',name:'Canal fork and collector',x:2450,y:980,w:1880,h:1190},{id:'bell',name:'Bellflower hook and return',x:4380,y:480,w:1080,h:1690},{id:'finish',name:'Orchard swoop and festival',x:5420,y:1020,w:2400,h:1150}];
   const links=[];for(const route of PhraseData.routes)for(let i=1;i<route.expected.length;i++)if(!links.some(e=>e.from===route.expected[i-1]&&e.to===route.expected[i]))links.push({from:route.expected[i-1],to:route.expected[i],type:route.peg?'rehearsal-route':'carried-state-route'});
   d.gp.skyNetwork={version:1,sectors,links,mainIDs:PhraseData.routes[0].expected,pegCount:1,groundOptional:true};
   d.gp.flowPlan={version:2,id:'authored-first-chapter',solidRoads:true,routeNames:PhraseData.routes.map(p=>p.name)};
