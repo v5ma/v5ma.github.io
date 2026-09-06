@@ -1,18 +1,15 @@
-# Engine mastery and future Quest 3 adapter
+# Engine mastery and Quest 3 track
 
-The public demo is the test environment for mechanics, not a release of any private story. The existing first-person model, rendered world and input adapter remain separate. Population: One and BioShock Infinite are mechanical references, not source-asset dependencies. The headset features below are planned, not delivered by the desktop demo.
+The current plan is [roadmap.json](./roadmap.json), browsable as a [Kanban](./roadmap.html). Its IDs replace the initial Q01-Q08 sketch with implementation tasks and separate acceptance gates.
 
-| ID | Mechanical goal | Dependencies and acceptance |
-| --- | --- | --- |
-| Q01 | Action-based input and tracked rig | Preserve desktop/touch bindings; separate head pose, locomotion rig and controller aim; no forced rail-camera head rotation. |
-| Q02 | Two-handed climbing | Hand contact, grip/release, body collision, both-handed transitions and recovering from a missed hold; physical Quest 3 playtest. |
-| Q03 | Gliding and rail release | Preserve release momentum; explicit deploy/cancel; stable landing volume; no unintended flight from a modal/menu input. |
-| Q04 | Embodied weapon handling | Independent tracked aim, two-hand stabilization, reload interaction and pulse; revalidate enemy/wall occlusion. |
-| Q05 | Shared rail/flight/foot traversal | Readable attachment range, deliberate reverse/switch, reachability maps and recovery routes; no scripted player teleport. |
-| Q06 | VR interface and comfort | World-space HUD, ray/poke UI, snap/smooth turn choice, comfort vignette and session-loss recovery; do not port the flat HUD unchanged. |
-| Q07 | Temporary tactical cover | Only after movement/collision is stable; constrained placement, clear resource use and no geometry exploits. |
-| Q08 | Headset performance gate | Measure CPU/GPU frame times on Quest 3, stereo rendering, controller tracking, suspension/resume and sustained play. No performance claim from software WebGL. |
+The model (`model.mjs`), rendering (`scene.mjs`), browser adapter (`app.mjs`), pure input normalization (`input-core.mjs`), device action binding (`controllers.mjs`) and XR lifecycle/rig (`xr-session.mjs`) remain separate. The v0.2.0 candidate includes an actual immersive-vr entry path, not only a feature request. Nevertheless, no physical Quest 3 or Xbox verification has been performed here.
 
-Mechanical reference: POPULATION: ONE's developer describes climbing, gliding and cover building at https://www.populationonevr.com/ . These are design inspirations, not implemented features or imported assets. Meta's locomotion guidance (https://developers.meta.com/horizon/documentation/iwsdk/concepts/locomotion/) supports explicit comfort choices and target-headset testing; no SDK migration is committed by this plan.
+## Present controls foundation
+Standard gamepads provide analog movement/looking and action edges. XR controllers are read from handed input sources, not assumed to be ordinary desktop gamepads. The locomotion rig keeps headset orientation independent of rail steering; tracked weapon rays are separately validated by collision and distance. Menus, session suspension and device disconnects clear held actions.
 
-Unpublished narrative remains outside this public project and its workflows. See PUBLIC_BUILD.md. A later approved content package must not introduce hidden private endpoints or credentials into the browser.
+## Next mechanical work
+Climbing and gliding are unimplemented. Each needs a focused collision/comfort test scene before being combined with rail entry/release. Real two-hand reload/stabilization, richer enemies, tactical cover, interior exploration, a 3D authoring interface and multiplayer are later tasks, not implied by the new device adapter. Existing Paper Delivery tools are not silently treated as features of this separate game.
+
+The physical-headset gate checks reference space, tracking, frame time, sustained rendering, controller labels, pause/resume and comfort. A stereo API emulator exercises the real renderer and game logic, but cannot establish real headset tracking quality or user comfort.
+
+Primary references: https://threejs.org/manual/en/webxr-basics.html ; https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/gamepad ; https://developers.meta.com/horizon/documentation/web/browser-specs/ . All dependencies remain pinned and local. Private narrative and authoring remain outside this public project.

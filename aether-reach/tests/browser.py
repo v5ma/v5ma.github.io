@@ -34,7 +34,7 @@ def walk(page,targets):
    controls(set())
  finally:controls(set())
 def use(page):
- page.keyboard.press('KeyE');page.wait_for_timeout(150)
+ page.locator('#world').focus();page.keyboard.press('KeyE',delay=120);page.wait_for_timeout(150)
  if page.locator('#record-dialog[open]').count():page.locator('#record-dialog button').click()
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
@@ -42,6 +42,7 @@ with sync_playwright() as p:
  b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':1280,'height':800},service_workers='block')
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
+ page.add_init_script("window.testKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyE','KeyQ','KeyC'].includes(e.code)){testKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,state:window.AetherReach?.snapshot()});if(testKeyLog.length>16)testKeyLog.shift();}},true)")
  try:
   page.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach')
   check(page.locator('#start').is_enabled(),'A separately hosted first-person application loads its local renderer')
@@ -53,7 +54,6 @@ with sync_playwright() as p:
   check(snap(page)['time']==before['time'],'The field map freezes gameplay rather than letting enemies run behind it')
   page.screenshot(path=str(OUT/('map-'+MODE+'.png')));page.locator('#map-dialog form button').click()
   if MODE=='expedition':
-   # Read a real world object and return. Arrow keys work without pointer lock.
    walk(page,[(-5,4)]);use(page);check('quay-letter' in snap(page)['records'],'An archive is discovered through proximity and E interaction')
    walk(page,[(3,0),(9,-5)]);use(page);page.wait_for_function('!!AetherReach.snapshot().rail')
    check(snap(page)['rail']['id']=='glassline','The sky clamp boards the physical Glasshouse freight line')
@@ -69,7 +69,6 @@ with sync_playwright() as p:
    walk(page,[(62,-33)]);use(page);page.wait_for_function('AetherReach.snapshot().rail?.id==="sunline"')
    page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW')
    walk(page,[(43,-123),(45,-126)]);use(page);page.wait_for_function('AetherReach.snapshot().relays.includes("spire")')
-   # Take the crosswind backward from the spire to the works.
    walk(page,[(50,-120),(51,-113)]);use(page);page.wait_for_function('AetherReach.snapshot().rail?.id==="crossline"')
    check(snap(page)['rail']['dir']==-1,'The opposite station boards a rail in the returning direction')
    page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW')
@@ -85,22 +84,18 @@ with sync_playwright() as p:
    page.reload(wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach');check(page.locator('#continue').is_visible(),'Continue appears after reloading a real saved expedition')
    page.locator('#continue').click();page.wait_for_function('AetherReach.snapshot().playing');check(len(snap(page)['relays'])==3 and snap(page)['checkpoint']=='foundry','Continue restores the checkpoint and restored relays, not an arbitrary position')
   else:
-   # Real GUI/audio settings and mobile layout/failure boundaries.
    walk(page,[(0,-10)]);page.keyboard.press('KeyP');page.wait_for_selector('#pause-dialog[open]');old=snap(page);page.keyboard.down('KeyW');page.wait_for_timeout(300);page.keyboard.up('KeyW');check(snap(page)['position']==old['position'],'Movement inputs do not leak through the pause dialog')
    page.locator('#pause-settings').click();page.locator('#fov').fill('85');page.locator('#sensitivity').fill('1.4');page.locator('#sound').check();page.locator('#reduced').check();page.locator('#settings-dialog button').click()
    check(page.evaluate('JSON.parse(localStorage.getItem("aether-reach.settings.v1")).fov')==85,'View and comfort settings persist on this device')
    page.keyboard.press('KeyR');page.keyboard.down('KeyF');page.wait_for_timeout(700);page.keyboard.up('KeyF');check(snap(page)['ammo']<8,'The first-person arc caster fires and consumes charges')
    page.keyboard.press('KeyR');page.wait_for_function('AetherReach.snapshot().ammo===8');check(True,'Reload restores the weapon after its real cooldown')
    page.set_viewport_size({'width':390,'height':844})
-   # The resize event and WebGL viewport update are asynchronous, especially on
-   # software GPUs. Wait for the required UI state; a fixed 250 ms is not proof.
    page.wait_for_function('innerWidth===390&&!document.getElementById("touch").hidden')
    page.locator('#touch').wait_for(state='visible')
    check(page.locator('#touch').is_visible(),'Touch movement, look and action controls exist on a narrow display')
    check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The HUD and menus do not overflow the phone-width viewport')
    page.screenshot(path=str(OUT/'touch-layout.png'))
    page.locator('#pause-button').click();page.locator('#return-title').click();check(page.locator('#menu').is_visible(),'The player can return to the title without leaving running input')
-   # Saved data denial: boot and play must survive browser restrictions.
    denied=ctx.new_page();denied.on('pageerror',lambda e:errors.append(str(e)));denied.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Denied','SecurityError')}})")
    denied.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');denied.wait_for_function('!!window.AetherReach');denied.locator('#start').click();denied.wait_for_function('AetherReach.snapshot().playing');check(True,'A denied storage API does not prevent a new expedition');denied.close()
   check(not errors,'No uncaught JavaScript errors in the verified scenario')
@@ -108,7 +103,7 @@ with sync_playwright() as p:
  except Exception as e:
   try:s=snap(page)
   except:s=None
-  (OUT/(MODE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'state':s,'errors':errors},indent=2))
+  (OUT/(MODE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'state':s,'errors':errors,'keys':page.evaluate('window.testKeyLog||[]')},indent=2))
   try:page.screenshot(path=str(OUT/(MODE+'-failure.png')))
   except:pass
   raise
