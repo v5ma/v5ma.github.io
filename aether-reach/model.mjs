@@ -1,6 +1,6 @@
 /* Aether Reach: original, deterministic first-person expedition simulation.
  * Rendering is a client of this state. No account, analytics or remote service. */
-export const VERSION='0.1.0';
+export const VERSION='0.2.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -89,7 +89,10 @@ export function interact(s){const n=nearby(s),p=s.p;if(!n)return false;
  if(n.type==='hook'&&p.hookCooldown<=0){const r=n.target.rail,q=pointOnRail(r,n.target.s),dir=forward(p.yaw,p.pitch);let sign=dir.x*q.tangent.x+dir.z*q.tangent.z>=0?1:-1;if(n.target.s<4)sign=1;if(n.target.s>r.length-4)sign=-1;p.rail={id:r.id,s:n.target.s,dir:sign};p.speed=12;p.vy=0;p.grounded=false;s.stats.rails++;emit(s,'hook',{id:r.id});return true;}return false;}
 export function detach(s,jump=true){const p=s.p;if(!p.rail)return;const r=RAILS.find(r=>r.id===p.rail.id),q=pointOnRail(r,p.rail.s),dir=p.rail.dir;p.vx=q.tangent.x*p.speed*dir;p.vz=q.tangent.z*p.speed*dir;p.vy=q.tangent.y*p.speed*dir+(jump?5:0);p.rail=null;p.hookCooldown=.6;p.grounded=false;emit(s,'release');}
 export function reverseRail(s){if(!s.p.rail)return;s.p.rail.dir*=-1;s.p.speed=Math.max(7,s.p.speed*.72);s.stats.reversals++;emit(s,'reverse');}
-export function fire(s){const p=s.p;if(p.shoot>0||p.reload>0||p.ammo<=0||s.won)return false;p.shoot=.23;p.ammo--;s.stats.shots++;const o={x:p.x,y:p.y+1.6,z:p.z},d=forward(p.yaw,p.pitch);let limit=85,hit=null;for(const b of SOLIDS){const t=rayBox(o,d,b,limit);if(t!==null)limit=t;}
+export function fire(s,aim=null){const p=s.p;if(p.shoot>0||p.reload>0||p.ammo<=0||s.won)return false;const head={x:p.x,y:p.y+1.6,z:p.z};
+ let o=head,d=forward(p.yaw,p.pitch);
+ if(aim){if(!aim.origin||!aim.direction||!['x','y','z'].every(k=>Number.isFinite(aim.origin[k])&&Number.isFinite(aim.direction[k])))return false;const len=Math.hypot(aim.direction.x,aim.direction.y,aim.direction.z);if(len<.001||distance(head,aim.origin)>2.5||!clearLine(head,aim.origin))return false;o={...aim.origin};d={x:aim.direction.x/len,y:aim.direction.y/len,z:aim.direction.z/len};}
+p.shoot=.23;p.ammo--;s.stats.shots++;let limit=85,hit=null;for(const b of SOLIDS){const t=rayBox(o,d,b,limit);if(t!==null)limit=t;}
  for(const bot of s.drones){if(bot.hp<=0)continue;const t=raySphere(o,d,bot,1.35);if(t!==null&&t<limit){limit=t;hit=bot;}}if(hit){hit.hp-=34;hit.stun=.3;s.stats.hits++;if(hit.hp<=0){s.stats.defeated++;emit(s,'defeat',{id:hit.id});}else emit(s,'hit');}
  emit(s,'shot',{o,end:{x:o.x+d.x*limit,y:o.y+d.y*limit,z:o.z+d.z*limit},hit:!!hit});return true;}
 export function pulse(s){const p=s.p;if(p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){s.stats.defeated++;emit(s,'defeat',{id:b.id});}}emit(s,'pulse',{hits:n});return true;}
@@ -104,7 +107,7 @@ export function step(s,input,dt){
   if(input.railCamera!==false){const yaw=Math.atan2(q.tangent.x*p.rail.dir,-q.tangent.z*p.rail.dir),delta=Math.atan2(Math.sin(yaw-p.yaw),Math.cos(yaw-p.yaw));p.yaw+=delta*Math.min(1,dt*2.5);}
   if(p.rail.s===0||p.rail.s===r.length){const end=p.rail.s===0?r.from:r.to;detach(s,false);p.vx=p.vz=0;const floor=groundAt(p.x,p.z,p.y+1);if(Number.isFinite(floor.y)){p.y=floor.y+.01;p.grounded=true;}emit(s,'arrive',{district:end});}
  }else{
-  const f=forward(p.yaw),rx=Math.cos(p.yaw),rz=Math.sin(p.yaw),ix=(input.right?1:0)-(input.left?1:0),iz=(input.forward?1:0)-(input.back?1:0),len=Math.hypot(ix,iz)||1,speed=input.boost?10.5:6.5;
+  const f=forward(p.yaw),rx=Math.cos(p.yaw),rz=Math.sin(p.yaw),ix=Number.isFinite(input.moveX)?clamp(input.moveX,-1,1):(input.right?1:0)-(input.left?1:0),iz=Number.isFinite(input.moveZ)?clamp(input.moveZ,-1,1):(input.forward?1:0)-(input.back?1:0),len=Math.max(1,Math.hypot(ix,iz)),speed=input.boost?10.5:6.5;
   const targetX=(f.x*iz+rx*ix)/len*speed,targetZ=(f.z*iz+rz*ix)/len*speed,blend=1-Math.exp(-dt*(p.grounded?14:2.2));p.vx+=(targetX-p.vx)*blend;p.vz+=(targetZ-p.vz)*blend;
   const oldY=p.y,was=p.grounded;const nx=p.x+p.vx*dt,nz=p.z+p.vz*dt;if(!occupied(nx,p.y,p.z))p.x=nx;else p.vx=0;if(!occupied(p.x,p.y,nz))p.z=nz;else p.vz=0;
   const floor=groundAt(p.x,p.z,oldY+(was?.55:0));p.vy-=18*dt;p.y+=p.vy*dt;p.grounded=false;
@@ -117,3 +120,6 @@ export function step(s,input,dt){
  for(let i=s.bullets.length-1;i>=0;i--){const b=s.bullets[i];b.life-=dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;if(distance(b,{x:p.x,y:p.y+1,z:p.z})<.85){hurt(s,input.explorer?8:15);b.life=0;}if(b.life<=0||SOLIDS.some(q=>b.x>q.x1&&b.x<q.x2&&b.y>q.y1&&b.y<q.y2&&b.z>q.z1&&b.z<q.z2))s.bullets.splice(i,1);}
 }
 export function jump(s){if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
+
+// Room-scale translation is collision checked independently of joystick motion.
+export function roomMove(s,dx,dz){if(!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>.5||s.p.rail)return false;const p=s.p;if(!occupied(p.x+dx,p.y,p.z))p.x+=dx;if(!occupied(p.x,p.y,p.z+dz))p.z+=dz;return true;}
