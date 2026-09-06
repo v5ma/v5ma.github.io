@@ -20,7 +20,7 @@ export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,b
  }
  label('LARCH WARD\nFIELD CLINIC',-21,3.45,9.57,9,1.9,'#35544e');label('TRANSIT / 08\nFREIGHT HALL',21,4,-7.4,10,1.8,'#48463d');
  label('FLOODGATE\nEMERGENCY EXIT',0,3.7,-42.5,9,2,'#405e55');label('SOUTH SHELTER',0,2.6,31.42,6,1,'#605139');
- for(const c of SHELTERS){add('box',c.x,1.1,c.z+.5,.55,.5,.3,0xb17b40,'metal');const light=new T.PointLight(0xffc47a,6,7,2);light.position.set(c.x,2.1,c.z);scene.add(light);add('ball',c.x,2.1,c.z,.08,.15,.08,0xffdf9b,'glow');}
+ for(const c of SHELTERS){const x=c.x+2.4,z=c.z+.5;add('box',x,1.1,z,.55,.5,.3,0xb17b40,'metal');const light=new T.PointLight(0xffc47a,6,7,2);light.position.set(x,2.1,z);scene.add(light);add('ball',x,2.1,z,.08,.15,.08,0xffdf9b,'glow');}
  add('box',-20,1.05,2,4.8,.10,1.1,0xb7bba0,'cloth');
  add('box',0,1,-43,1.7,2,1.1,0x365a55,'metal');for(let x=-.55;x<.8;x+=.35)add('box',x,1.55,-42.43,.18,.16,.02,0xb6cba5,'glow');
  for(let x=-4;x<=4;x+=.5)add('box',x,1.5,-44.5,.09,3,.1,0x6d7f74,'metal');add('box',0,3,-44.5,9,.14,.2,0xb19459,'metal');
