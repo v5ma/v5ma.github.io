@@ -1,0 +1,304 @@
+{
+  "schema": "theology-narration/v1",
+  "slug": "jesus-teacher-of-righteousness-hypothesis",
+  "title": "Jesus as the Teacher of Righteousness",
+  "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+  "sourceSha256": "eef4b965e8ad5634dc28d5e9c7d28a7175e0ae7c8b47f81f0c94cc4cdefebf99",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "segments": [
+    {
+      "id": "segment-0001",
+      "section": "Jesus as the Teacher of Righteousness",
+      "notes": false,
+      "text": "Jesus as the Teacher of Righteousness"
+    },
+    {
+      "id": "segment-0002",
+      "section": "An earlier founder and a surviving community",
+      "notes": false,
+      "text": "An earlier founder and a surviving community"
+    },
+    {
+      "id": "segment-0003",
+      "section": "An earlier founder and a surviving community",
+      "notes": false,
+      "text": "The Teacher of Righteousness hypothesis proposes an earlier origin for the Jesus tradition. In its strong form, the teacher remembered by a Zadokite community becomes the historical source of the Jesus tradition, while later narratives relocate his life into another period. Paul then encounters a continuing community, not necessarily the founder's original generation. This is an identification and transmission argument, not only a list of similar teachings."
+    },
+    {
+      "id": "segment-0004",
+      "section": "An earlier founder and a surviving community",
+      "notes": false,
+      "text": "The fullest statement used here is in AI re-dates Dead Sea Scrolls, especially author turns 24 and 26. It combines an earlier teacher, succession through James, later namesakes, and a distinction between inherited sayings and later responses to the destruction of the Temple. Reading those turns together changes the argument: the apparent gap is meant to be bridged by generations of transmission, not by people remaining alive for more than a century."
+    },
+    {
+      "id": "segment-0005",
+      "section": "An earlier founder and a surviving community",
+      "notes": false,
+      "text": "The reconstruction below preserves those commitments while marking which dates belong to the proposal. The original transcript remains unchanged, including its numerical and historical claims."
+    },
+    {
+      "id": "segment-0006",
+      "section": "Working chronology",
+      "notes": false,
+      "text": "Working chronology"
+    },
+    {
+      "id": "segment-0007",
+      "section": "Working chronology",
+      "notes": false,
+      "text": "The proposed sequence begins with 167 BCE as an anchor associated in the conversation with Onias III and John the Baptist. The source itself proposes their identification. This edition has not established that identification or verified 167 BCE as the correct date for Onias III's death; the row records a premise to be tested, not a settled historical anchor."
+    },
+    {
+      "id": "segment-0008",
+      "section": "Working chronology",
+      "notes": false,
+      "text": "The next proposed point is 147 BCE, derived by placing the teacher's appearance 20 years after that anchor. The inference only fixes a date if the starting date and the meaning of the 20-year interval are correct. It is not an independent second measurement."
+    },
+    {
+      "id": "segment-0009",
+      "section": "Working chronology",
+      "notes": false,
+      "text": "The proposed death of the Teacher is 88 BCE, followed by leadership associated with James. That is the central early-founder claim. The argument links the teacher to sayings later attributed to Jesus and assigns succession to the community rather than assuming the founder continues to lead it."
+    },
+    {
+      "id": "segment-0010",
+      "section": "Working chronology",
+      "notes": false,
+      "text": "The conversation places Paul's activity in 37-50 CE and identifies the Peter and James he encounters as later namesakes or descendants. Those absolute dates are the conversation's working range. Galatians gives relative intervals and names, but does not itself supply that complete calendar range."
+    },
+    {
+      "id": "segment-0011",
+      "section": "Working chronology",
+      "notes": false,
+      "text": "The post-70 CE stage concerns the proposed effect of Temple destruction on later Gnostic writing. An earlier sayings tradition and a later expression of rage against cosmic or institutional authority are different layers of the hypothesis. They need not be assigned one composition date."
+    },
+    {
+      "id": "segment-0012",
+      "section": "A calculation that changes the comparison",
+      "notes": false,
+      "text": "A calculation that changes the comparison"
+    },
+    {
+      "id": "segment-0013",
+      "section": "A calculation that changes the comparison",
+      "notes": false,
+      "text": "There is no year zero between 1 BCE and 1 CE in conventional historical dating. From an 88 BCE death to 37 CE is therefore 88 + 37 - 1 = 124 years; to 50 CE it is 137 years. The transcript's single figure of 133 years is not the elapsed time to both ends of its proposed range. It corresponds to 46 CE under that convention."
+    },
+    {
+      "id": "segment-0014",
+      "section": "A calculation that changes the comparison",
+      "notes": false,
+      "text": "That correction does not decide the identity question. It makes the implied transmission problem explicit: roughly 124-137 years separate the proposed death from the proposed Pauline range. Successor names could explain that interval only if there is evidence for the succession and for applying that reading to the particular passages. The calculation is separate from both the source's wording and the judgment about whether its chronology is right."
+    },
+    {
+      "id": "segment-0015",
+      "section": "Worked comparison: Galatians and the names of leaders",
+      "notes": false,
+      "text": "Worked comparison: Galatians and the names of leaders"
+    },
+    {
+      "id": "segment-0016",
+      "section": "Worked comparison: Galatians and the names of leaders",
+      "notes": false,
+      "text": "Galatians 1:13-24 describes persecution of the assembly, a revelation, a period in Arabia and Damascus, and a visit after three years to Peter, during which Paul also encounters James. Galatians 2:1-10 adds a visit after fourteen years and identifies recognized leaders. These passages establish a sequence and relationships within Paul's account, not an absolute year for the founding of every community he encountered."
+    },
+    {
+      "id": "segment-0017",
+      "section": "Worked comparison: Galatians and the names of leaders",
+      "notes": false,
+      "text": "This leaves a real opening for the continuity question: persecution presupposes a community already present before Paul's changed allegiance. It does not by itself tell us that the community began only a few years earlier. But the language about James as the Lord's brother in Galatians 1:19 is a more specific constraint than the mere existence of a community. Reading that James as a later namesake requires an explanation of the kinship language as well as the name."
+    },
+    {
+      "id": "segment-0018",
+      "section": "Worked comparison: Galatians and the names of leaders",
+      "notes": false,
+      "text": "A long-lived community can therefore be compatible with the passage without establishing that its founder is the Teacher. The stronger identity argument needs a further bridge. The same distinction applies to titles: recurrence can document continuity of an office without demonstrating that two references concern the same person."
+    },
+    {
+      "id": "segment-0019",
+      "section": "Worked comparison: living witnesses in 1 Corinthians 15",
+      "notes": false,
+      "text": "Worked comparison: living witnesses in 1 Corinthians 15"
+    },
+    {
+      "id": "segment-0020",
+      "section": "Worked comparison: living witnesses in 1 Corinthians 15",
+      "notes": false,
+      "text": "First Corinthians 15:3-8 presents received tradition, then appearances to named individuals and groups. Verse 6 says that many among the group of more than five hundred remain alive. In the ordinary reading, Paul places at least part of the testimony within living memory of the people he addresses."
+    },
+    {
+      "id": "segment-0021",
+      "section": "Worked comparison: living witnesses in 1 Corinthians 15",
+      "notes": false,
+      "text": "An earlier-Teacher reconstruction cannot address that sentence merely by allowing the institutional community to survive. It needs to explain the relationship between the early death, the appearances and the still-living witnesses. Possibilities such as later revelatory experiences, reuse of names or later textual shaping are distinct proposals. Each would change a different part of the argument and require corresponding textual evidence."
+    },
+    {
+      "id": "segment-0022",
+      "section": "Worked comparison: living witnesses in 1 Corinthians 15",
+      "notes": false,
+      "text": "This gives the inquiry a concrete discriminating point. Evidence that an old community survived supports continuity. Evidence that a saying traveled supports transmission. Neither alone resolves a statement about witnesses still living. A successful early-founder reconstruction must handle all three levels rather than use the weakest bridge for every passage."
+    },
+    {
+      "id": "segment-0023",
+      "section": "Worked comparison: the Teacher as interpreter",
+      "notes": false,
+      "text": "Worked comparison: the Teacher as interpreter"
+    },
+    {
+      "id": "segment-0024",
+      "section": "Worked comparison: the Teacher as interpreter",
+      "notes": false,
+      "text": "The Israel Museum's description of the Habakkuk Commentary identifies the Teacher, Wicked Priest and Man of Lies without claiming secure historical identities for them. Timothy H. Lim's published abstract offers a particular reconstruction: the Teacher's importance lies in his authoritative interpretation of prophecy, and fidelity to his teachings matters to the community's expectation of judgment."
+    },
+    {
+      "id": "segment-0025",
+      "section": "Worked comparison: the Teacher as interpreter",
+      "notes": false,
+      "text": "That role provides a focused comparison with the authority of a teacher whose message continues to guide a community. The point of contact is not simply that both figures are called good or persecuted. A community receives a reading of its world through an authoritative interpreter and organizes conduct around fidelity to that reading."
+    },
+    {
+      "id": "segment-0026",
+      "section": "Worked comparison: the Teacher as interpreter",
+      "notes": false,
+      "text": "There is also an important alternative in Lim's account: he distinguishes a sectarian interpreter from a deposed Hasmonean high priest. His abstract does not settle the identities in Micah's proposal, but it shows that even the Teacher's institutional role needs argument. This edition uses the museum description and Lim's abstract here; it does not present an unread full commentary or a new translation of 1QpHab as completed textual work."
+    },
+    {
+      "id": "segment-0027",
+      "section": "Manuscript dates are not biographies",
+      "notes": false,
+      "text": "Manuscript dates are not biographies"
+    },
+    {
+      "id": "segment-0028",
+      "section": "Manuscript dates are not biographies",
+      "notes": false,
+      "text": "The 2025 Enoch study combines radiocarbon samples with writing-style analysis to estimate manuscript dates. Earlier estimates for particular manuscripts can change the time available for ideas to circulate. They do not identify a teacher, date a death, or demonstrate that a later biography moved a person to another century."
+    },
+    {
+      "id": "segment-0029",
+      "section": "Manuscript dates are not biographies",
+      "notes": false,
+      "text": "Material, copying, composition and narrated events must therefore remain distinct. A manuscript is a physical witness to a text. The text can draw on an older tradition, and the event it describes can be earlier again. A new date constrains these possibilities; it does not make all their dates identical."
+    },
+    {
+      "id": "segment-0030",
+      "section": "Manuscript dates are not biographies",
+      "notes": false,
+      "text": "The Temple-trauma hypothesis can use that distinction to ask which layers preserve older teaching and which express later responses to catastrophe. Cognitive Gnosticism asks a different question about how those representations transform a living mind. The historical identification matters, but it is not a prerequisite for studying the psychological function of an inward model."
+    },
+    {
+      "id": "segment-0031",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "Source conversations"
+    },
+    {
+      "id": "segment-0032",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "Teacher of Righteousness vs Gnostic Jesus is the archived discussion dated 2025-06-17 (UTC export metadata)."
+    },
+    {
+      "id": "segment-0033",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "Pilate life timeline is the archived discussion dated 2025-09-08 (UTC export metadata)."
+    },
+    {
+      "id": "segment-0034",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "Daniel and Teacher of Righteousness is the archived discussion dated 2025-10-19 (UTC export metadata)."
+    },
+    {
+      "id": "segment-0035",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "AI re-dates Dead Sea Scrolls is the archived discussion dated 2025-10-20 (UTC export metadata)."
+    },
+    {
+      "id": "segment-0036",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations."
+    },
+    {
+      "id": "segment-0037",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "External sources and access notes"
+    },
+    {
+      "id": "segment-0038",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Israel Museum, Commentary on Habakkuk"
+    },
+    {
+      "id": "segment-0039",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Curator Adolfo D. Roitman's indexed institutional description was retrieved. Direct page loading failed during research. The description says the Teacher, Wicked Priest and Man of Lies are not securely identified. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0040",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Galatians 1, World English Bible"
+    },
+    {
+      "id": "segment-0041",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Primary text: Paul's account of persecution, revelation, earlier apostles and a visit to Peter and James. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0042",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "1 Corinthians 15, World English Bible"
+    },
+    {
+      "id": "segment-0043",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Primary text: received tradition, named witnesses and the statement that many witnesses remained alive. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0044",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Timothy H. Lim, The Earliest Commentary on the Prophecy of Habakkuk (2020)"
+    },
+    {
+      "id": "segment-0045",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Author's publisher abstract consulted, not the full monograph or a fresh translation of the scroll. Supports the stated alternative interpretation of the Teacher's role and the importance of fidelity to his teachings. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0046",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Popovic and colleagues, Dating ancient manuscripts using radiocarbon and AI-based writing style analysis (2025)"
+    },
+    {
+      "id": "segment-0047",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Published research article consulted in HTML. Used for the distinction between dating manuscript material/handwriting and identifying a historical person. No figure was reproduced and no death date for Jesus or the Teacher was inferred from the model. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0048",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Galatians 2, World English Bible"
+    },
+    {
+      "id": "segment-0049",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Primary text read in full, especially verses 1-10 on an interval, companions and recognized leaders. The passage does not by itself supply an absolute calendar date for the visit. Consulted 2026-09-04."
+    }
+  ]
+}

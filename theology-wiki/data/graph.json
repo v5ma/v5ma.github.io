@@ -5,6 +5,9 @@
       "apocalyptic-repair-theology",
       "trump-first-beast-of-revelation",
       "jesus-teacher-of-righteousness-hypothesis",
+      "listening-room",
+      "production-studio",
+      "product-pathways",
       "research-roadmap",
       "source-coverage",
       "book-contents",
@@ -1761,6 +1764,19 @@
       "ai-re-dates-dead-sea-scrolls",
       "jewish-apocalyptic-repair-timeline",
       "sacred-inheritance-and-rival-continuations"
+    ],
+    "listening-room": [
+      "production-studio",
+      "product-pathways"
+    ],
+    "production-studio": [
+      "listening-room",
+      "product-pathways"
+    ],
+    "product-pathways": [
+      "listening-room",
+      "production-studio",
+      "research-roadmap"
     ],
     "source-atlas": [
       "museum-trails",

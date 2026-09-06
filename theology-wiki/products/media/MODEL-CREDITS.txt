@@ -1,0 +1,11 @@
+Synthetic speech production
+
+Model: hexgrad/Kokoro-82M
+Model revision: 30618d04b530efb8e3ac3bace784f9d4a8dcaa01
+Model weights: Apache-2.0, as declared by the upstream model card.
+Inference library: https://github.com/hexgrad/kokoro
+Model card: https://huggingface.co/hexgrad/Kokoro-82M
+Voice: af_heart; no imitation of Micah Blumberg.
+
+Original editorial script and typographic cards. No licensed music, external artifact photography, model weights or font files are redistributed. Source citations do not confer scan reuse rights.
+Generated recordings are technical production drafts, not approved final audiobooks. Headless playback checks do not certify voice quality or historical conclusions.
