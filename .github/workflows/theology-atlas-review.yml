@@ -1,0 +1,129 @@
+name: Review Theology source atlas and museum content
+on:
+  push:
+    branches: [feat/theology-source-atlas-20260905]
+    paths: ['theology-wiki/**', '.github/workflows/theology-atlas-review.yml']
+permissions:
+  contents: write
+concurrency:
+  group: theology-atlas-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize verified source and planning workbook delta
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,io,json,lzma,subprocess,zipfile
+          root=Path('theology-wiki')
+          parts=sorted(root.glob('atlas-transfer-*.txt'))
+          if parts:
+            assert len(parts)==5
+            digest,payload=''.join(p.read_text().strip() for p in parts).split(':',1)
+            assert digest=='87bd00b0297d94e788dcb25d0b59ba8078b37da5283a2bfea35c364d2f8b30fd'
+            packed=base64.b64decode(payload,validate=True)
+            assert hashlib.sha256(packed).hexdigest()==digest,'Transfer differs from reviewed package'
+            decoded=lzma.decompress(packed)
+            assert len(decoded)<400000
+            package=json.loads(decoded)
+            modified={'theology-wiki/README.md','theology-wiki/tools/build.cjs','theology-wiki/assets/js/research-tools.js','theology-wiki/editorial/foundations.json','theology-wiki/editorial/roadmap.json','theology-wiki/editorial/foundation-articles/tor-thomas-and-gnostic-transmission.md','theology-wiki/tests/research.test.cjs','theology-wiki/tests/foundations.test.cjs','theology-wiki/tests/browser.py','theology-wiki/planning/workbook-manifest.json'}
+            added={'theology-wiki/editorial/atlas.json','theology-wiki/editorial/atlas.cjs','theology-wiki/editorial/atlas-articles/exodus-to-temple-competing-chronologies.md','theology-wiki/editorial/atlas-articles/manuscripts-movements-and-survival.md','theology-wiki/assets/js/atlas-core.js','theology-wiki/assets/js/atlas-tools.js','theology-wiki/assets/css/atlas.css','theology-wiki/tools/atlas.cjs','theology-wiki/tests/atlas.test.cjs','theology-wiki/tests/atlas_checks.py','theology-wiki/planning/BOOK-MUSEUM-ATLAS-HANDOFF.md'}
+            assert set(package['files'])==added
+            assert set(package['hashes'])==modified|added
+            patch=Path('/tmp/theology-atlas.patch');patch.write_text(package['patch'])
+            actual={line.split('\t')[-1] for line in subprocess.check_output(['git','apply','--numstat',str(patch)],text=True).splitlines()}
+            assert actual==modified,actual
+            subprocess.run(['git','apply','--check',str(patch)],check=True)
+            subprocess.run(['git','apply',str(patch)],check=True)
+            for name,text in package['files'].items():
+              p=Path(name);assert not p.exists();p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+            target=root/'planning/Theology-Research-Plan.xlsx'
+            old=target.read_bytes();delta=package['workbookDelta']
+            assert hashlib.sha256(old).hexdigest()==delta['base'],'Unexpected baseline workbook'
+            out=io.BytesIO()
+            with zipfile.ZipFile(io.BytesIO(old)) as a,zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as b:
+              assert len(delta['entries'])==36
+              names=set()
+              for row in delta['entries']:
+                name=row['name']
+                assert not name.startswith('/') and '..' not in Path(name).parts and name not in names
+                names.add(name)
+                if row.get('copy'):data=a.read(name)
+                elif 'literal' in row:data=row['literal'].encode()
+                else:
+                  tokens=a.read(name).decode().split('><') if name in a.namelist() else []
+                  values=[]
+                  for seg in row['segments']:
+                    if seg and isinstance(seg[0],int):
+                      assert len(seg)==2 and 0<=seg[0]<=seg[1]<=len(tokens)
+                      values.extend(tokens[seg[0]:seg[1]])
+                    else:
+                      assert all(isinstance(v,str) for v in seg)
+                      values.extend(seg)
+                  data='><'.join(values).encode()
+                info=zipfile.ZipInfo(name,(1980,1,1,0,0,0))
+                info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o600<<16
+                b.writestr(info,data,compress_type=zipfile.ZIP_DEFLATED,compresslevel=6)
+            workbook=out.getvalue()
+            assert hashlib.sha256(workbook).hexdigest()==delta['sha256']=='28473f631712ddae0a0adffc6907473000c4c2428f9d96a2379fe976d96210dc'
+            target.write_bytes(workbook)
+            for name,expected in package['hashes'].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==expected,name
+            for p in parts:p.unlink()
+            print('All 21 source files and the nine-sheet workbook match the checked local edition.')
+          PY
+          if [ -f theology-wiki/tools/atlas-review-fix.py ]; then python theology-wiki/tools/atlas-review-fix.py; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify build, source links, calculations and original archive
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output
+          node theology-wiki/tools/build.cjs | tee theology-test-output/build-report.txt
+          node --check theology-wiki/assets/js/atlas-core.js
+          node --check theology-wiki/assets/js/atlas-tools.js
+          node --check theology-wiki/assets/js/research-tools.js
+          node --test theology-wiki/tests/research.test.cjs | tee theology-test-output/node-tests.txt
+          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources
+      - name: Preserve generated source on isolated review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki
+          if ! git diff --cached --quiet; then git commit -m 'Develop source atlas, challenge records, chronology comparison and book-museum handoff'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - name: Install native browser and image tooling
+        run: |
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium > /tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+      - name: Verify retained museum images
+        run: python theology-wiki/tools/media.py
+      - name: Test native HTTP source atlas and original reader
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py
+      - name: Preserve review evidence
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD > theology-test-output/tested-commit.txt
+          git diff --stat > theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('theology-test-output/review-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in Path('theology-wiki').rglob('*'):
+              if p.is_file() and '__pycache__' not in p.parts and p.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'} and not p.name.startswith('atlas-transfer-'):z.write(p,p.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-atlas-review
+          path: theology-test-output/
+          retention-days: 14
