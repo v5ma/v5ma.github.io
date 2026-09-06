@@ -161,9 +161,9 @@
         }
       ],
       "source": "content/developed/tor-thomas-and-gnostic-transmission.md",
-      "sourceSha256": "a6c37cb98f838b9d9e50c08817b63fd59440d9bbd7d852918d69ebcaeff40b10",
+      "sourceSha256": "9bf6d70da07f93a645ea85e8e7c92ab73e17a71e32cc2bd7afcb8c9b9ff630bd",
       "narration": "data/listening/tor-thomas-and-gnostic-transmission.json",
-      "narrationSha256": "1fc02348d133ba7cd7e4b239efb635439915fd4a532e4156205eb5faf50d7bcc",
+      "narrationSha256": "245f920064d74a21239cf31dd7d7daa25505b0c795c8c4c980fadb60b101eeba",
       "transcript": "products/transcripts/tor-thomas-and-gnostic-transmission.txt",
       "segments": 64,
       "words": 1840
@@ -181,9 +181,9 @@
         }
       ],
       "source": "content/developed/melchizedek-priesthood-and-transmission.md",
-      "sourceSha256": "7f5e01946f6a55d08a7896d0b6356a23f5466fcd50ef28681e609b2a71368c36",
+      "sourceSha256": "e396acb4cc8fdaaa03598220d741122a12c4d4ddbaff30ba1a11f39b5b516b01",
       "narration": "data/listening/melchizedek-priesthood-and-transmission.json",
-      "narrationSha256": "4932d3255ef71f112baf456136f22ba89c654b40d9b864bfb1a04bfd589b595b",
+      "narrationSha256": "b156c62e32e56d20acbb8ee8a3b044f5bc32bb30b93138d5e49146d24aa74586",
       "transcript": "products/transcripts/melchizedek-priesthood-and-transmission.txt",
       "segments": 59,
       "words": 2027
@@ -201,9 +201,9 @@
         }
       ],
       "source": "content/developed/manuscripts-movements-and-survival.md",
-      "sourceSha256": "4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f",
+      "sourceSha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13",
       "narration": "data/listening/manuscripts-movements-and-survival.json",
-      "narrationSha256": "a4477c258b991a9f7e91d7cde6580360ac86625f70568c51ddd17b3e8b0003ac",
+      "narrationSha256": "c567bcad66ed8213829ed4056916ca6a093aeefe0693a80fb1b052ba9c408788",
       "transcript": "products/transcripts/manuscripts-movements-and-survival.txt",
       "segments": 45,
       "words": 1427
@@ -341,9 +341,9 @@
         }
       ],
       "source": "content/developed/divine-will-and-self-authorizing-power.md",
-      "sourceSha256": "a0b9cd0fb094e70254e6acd895be4ad040cb20a2e7e2e4c525394fc08f124636",
+      "sourceSha256": "1da4858029ebe6347647d06bc8566574b90bc6b5e233032e2a41f24353469fa9",
       "narration": "data/listening/divine-will-and-self-authorizing-power.json",
-      "narrationSha256": "412840e684347525fa12982f0f41b483ef06b5b8d9d403b2870d35e67f5ee3be",
+      "narrationSha256": "730165d518fb0a3379a2529d7b8c9f5b95874c6828153a58b9590575705f51cb",
       "transcript": "products/transcripts/divine-will-and-self-authorizing-power.txt",
       "segments": 50,
       "words": 1347
@@ -361,9 +361,9 @@
         }
       ],
       "source": "content/developed/inner-formation-texts-and-material-witnesses.md",
-      "sourceSha256": "3816327ed62374694ceb7558cbf2a234985294a5a1a51570688d97b3683cae0a",
+      "sourceSha256": "9cbdea7551f77ec14e6ad300a3b6e5a0c2a03da8acf7c89d8e5ae7e60c2273d6",
       "narration": "data/listening/inner-formation-texts-and-material-witnesses.json",
-      "narrationSha256": "639b55447b3828683bc5429a61f46cbae3589373dbee0bd229e6a0c7ea2d27b4",
+      "narrationSha256": "5813199e6c1608296fccee331b83bdf019e21c7c39da39fa91ff9b2a6b8a4ce5",
       "transcript": "products/transcripts/inner-formation-texts-and-material-witnesses.txt",
       "segments": 64,
       "words": 1546
@@ -446,9 +446,9 @@
         }
       ],
       "source": "content/developed/trump-first-beast-of-revelation.md",
-      "sourceSha256": "7cadbd29fa920d3085a664d879484ae59022c2f4724d08f4f9e5f10a420d1c15",
+      "sourceSha256": "036c8c6988bb7ff092e00e9e06fc66ae670cf2e3b8add2fbd980d2280953cbd6",
       "narration": "data/listening/trump-first-beast-of-revelation.json",
-      "narrationSha256": "819dbfc33ad588eef4a625e415672d656930f8f085769a8d6ed9916810012d4a",
+      "narrationSha256": "7389bfa7119cbfc9f692d7c5e86c04addc83af7cc17e475ae535553cc94d5ed0",
       "transcript": "products/transcripts/trump-first-beast-of-revelation.txt",
       "segments": 48,
       "words": 1201

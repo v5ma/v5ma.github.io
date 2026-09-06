@@ -9,4 +9,7 @@ function reword(value,key=''){
  return value;
 }
 const articles=data.articles.map(p=>({...p,body:fs.readFileSync(path.join(__dirname,'authorial-articles',p.slug+'.md'),'utf8')}));
-module.exports={...data,articles,reword};
+const presentation=require('./authorial-presentation.json');
+// Only generated editorial prose passes through this exact, reviewed map.
+function present(text){for(const [old,replacement] of Object.entries(presentation))text=text.split(old).join(replacement);return text;}
+module.exports={...data,articles,reword,present};

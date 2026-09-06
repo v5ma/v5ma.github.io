@@ -74,7 +74,7 @@ Author publication consulted in full for its theological argument, predictions a
 
 [SVGN, News analysis: Trump's AI Fascism is taking shape (June 27, 2026)](https://www.svgn.io/wiki/svgn/articles/2026-06-27-news-analysis-trump-s-ai-fascism-is-taking-shape-svgn-203786008)
 
-The author's published political-theological interpretation. The First/Second Beast passage explicitly uses an allegory; this edition does not independently audit every policy or product claim in the news article. Consulted 2026-09-04.
+My published political-theological interpretation. The First/Second Beast passage explicitly uses an allegory; this edition does not independently audit every policy or product claim in the news article. Consulted 2026-09-04.
 
 [Revelation 13, World English Bible](https://ebible.org/engwebp/REV13.htm)
 

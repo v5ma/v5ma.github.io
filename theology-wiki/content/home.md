@@ -9,7 +9,7 @@ updated: "2026-09-04"
 
 # Theology Wiki
 
-Theology asks what we inherit, whom we trust, how a mind changes and what repair demands. This library develops Micah Blumberg's inquiries through source-linked arguments and preserved conversations.
+Theology asks what we inherit, whom we trust, how a mind changes and what repair demands. This library develops my inquiries through source-linked arguments and preserved conversations.
 
 ## Begin with an argument
 

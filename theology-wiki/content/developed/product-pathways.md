@@ -19,7 +19,7 @@ Browser voices depend on the listener's device. Local voices are preferred. Remo
 
 ## Episodes should create curiosity without changing the claim
 
-The [[production-studio|audio and video studio]] begins with three editorial scripts: competing chronologies, the earlier Teacher and historical carriers, and what an objection should preserve. Each script gives the positive proposal room before examining the relevant comparison. An introductory episode is not a complete version of a long argument, and it is not a newly recovered quotation by Micah.
+The [[production-studio|audio and video studio]] begins with three editorial scripts: competing chronologies, the earlier Teacher and historical carriers, and what an objection should preserve. Each script gives the positive proposal room before examining the relevant comparison. An introductory episode is not a complete version of a long argument, and it is not a newly recovered quotation from an older conversation.
 
 The earlier-Teacher episode retains the proposed earlier founder, successor community and relocated biography. The chronology episode retains political reversal and disaster as an event sequence rather than treating the work as a preferred date. The challenge episode restores the already stated distinction between famine and a later firstborn narrative. Those are production requirements, not decorative disclaimers. Removing them would alter the project.
 
@@ -35,6 +35,6 @@ An episode script is a distinct editorial work based on particular public articl
 
 The shared [[research-roadmap|research plan]] still owns the sources, historical comparisons, chapter development and author-review requirements. The product register below adds delivery work: playback, pronunciation review, narration choice, captions, media production, device testing, XR consumption and distribution. A functioning player is not the same milestone as an approved audiobook. A video on this website is not automatically a YouTube publication or podcast launch.
 
-No narrator identity is assumed. The current recordings, when present, are explicitly synthetic production drafts. Micah can approve a voice and presentation style before the final book and series adopt them. The current implementation does not clone his voice or publish private SAN manuscript content.
+No narrator identity is assumed. The current recordings, when present, are explicitly synthetic production drafts. I will choose a voice and presentation style before adopting them for the final book and series. The current implementation does not clone my voice or publish private SAN manuscript content.
 
 The next useful growth is not to invent a different story for every channel. It is to improve the common research, develop episodes that preserve its most interesting mechanisms, and make the complete evidence easier to reach from whatever format brings a person into the inquiry.

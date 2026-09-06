@@ -132,4 +132,4 @@ Primary full-text HTML consulted, especially abstract and archaeological context
 
 [Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer](https://www.earlychristianwritings.com/text/thomas-scholars.html)
 
-Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations. Consulted 2026-09-05.
+Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in my older conversations. Consulted 2026-09-05.

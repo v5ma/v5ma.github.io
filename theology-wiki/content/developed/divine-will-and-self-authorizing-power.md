@@ -94,7 +94,7 @@ Primary text consulted, especially 6:38. The contemporary political application 
 
 [Donald Trump, August 19, 2025 remarks on ending the war and getting to heaven](https://www.realclearpolitics.com/video/2025/08/19/trump_i_want_to_try_to_get_to_heaven_if_possible_i_hear_im_not_doing_too_well_--_im_really_at_the_bottom_of_the_totem_pole.html)
 
-Published recording/transcript of the Fox interview excerpt consulted for the reported words, not independent validation of casualty estimates. The quoted speaker links ending the war to heaven; he does not explicitly explain his concern as putting his own will above God's. That further explanation is identified as the author's theological inference. Consulted 2026-09-05.
+Published recording/transcript of the Fox interview excerpt consulted for the reported words, not independent validation of casualty estimates. The quoted speaker links ending the war to heaven; he does not explicitly explain his concern as putting his own will above God's. That further explanation is my theological inference. Consulted 2026-09-05.
 
 [Donald Trump, Republican nomination acceptance address (July 21, 2016)](https://www.presidency.ucsb.edu/documents/address-accepting-the-presidential-nomination-the-republican-national-convention-cleveland)
 

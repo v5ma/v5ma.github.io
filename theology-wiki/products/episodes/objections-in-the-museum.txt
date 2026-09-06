@@ -34,11 +34,11 @@ Sources and full arguments
 
 Challenges, corrections and preserved arguments
 https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges
-SHA-256: 460c7dc7beaa00eedbf13e3885918c5cb507e1d5dde27fabe58ddc327b1cd34d
+SHA-256: e39320b38275a0793ace96608e0228792eb7d4420f328d5783ca2888d5c386dc
 
 Manuscripts, movements and survival
 https://v5ma.github.io/theology-wiki/san-reader.html?page=manuscripts-movements-and-survival
-SHA-256: 4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f
+SHA-256: 99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13
 
 From Exodus to Temple: competing chronologies
 https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies

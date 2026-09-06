@@ -13,7 +13,7 @@ An objection can fail to address an argument without thereby proving its histori
 
 ## The firstborn objection omits the narration mechanism
 
-An environmental catastrophe may later have been narrated as selecting firstborns; the author explicitly denies that natural famine itself selects birth order.
+An environmental catastrophe may later have been narrated as selecting firstborns; I distinguish that narration from a natural famine that does not itself select birth order.
 
 Challenge: An age-based mortality mechanism cannot by itself explain firstborn selection.
 

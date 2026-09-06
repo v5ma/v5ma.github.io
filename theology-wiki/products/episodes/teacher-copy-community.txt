@@ -38,12 +38,12 @@ Sources and full arguments
 
 Manuscripts, movements and survival
 https://v5ma.github.io/theology-wiki/san-reader.html?page=manuscripts-movements-and-survival
-SHA-256: 4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f
+SHA-256: 99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13
 
 The Teacher, Thomas and Gnostic transmission
 https://v5ma.github.io/theology-wiki/san-reader.html?page=tor-thomas-and-gnostic-transmission
-SHA-256: a6c37cb98f838b9d9e50c08817b63fd59440d9bbd7d852918d69ebcaeff40b10
+SHA-256: 9bf6d70da07f93a645ea85e8e7c92ab73e17a71e32cc2bd7afcb8c9b9ff630bd
 
 Melchizedek: priesthood, release and transmission
 https://v5ma.github.io/theology-wiki/san-reader.html?page=melchizedek-priesthood-and-transmission
-SHA-256: 7f5e01946f6a55d08a7896d0b6356a23f5466fcd50ef28681e609b2a71368c36
+SHA-256: e396acb4cc8fdaaa03598220d741122a12c4d4ddbaff30ba1a11f39b5b516b01

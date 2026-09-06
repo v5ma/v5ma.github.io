@@ -112,4 +112,4 @@ Full-text HTML consulted, particularly the author's translation of 11Q13 II 2-9 
 
 [Melchizedek, translated by Soren Giversen and Birger A. Pearson](https://www.gnosis.org/naghamm/melchiz.html)
 
-Online translation retrieved in the indexed full-text result; direct-page retrieval failed. Marked lacunae are retained in the interpretation. The online notice requests published-edition citations for academic work; printed page/line collation remains open. Credit is for a textual source used by this edition, not a claimed personal influence on Micah. Consulted 2026-09-05.
+Online translation retrieved in the indexed full-text result; direct-page retrieval failed. Marked lacunae are retained in the interpretation. The online notice requests published-edition citations for academic work; printed page/line collation remains open. Credit is for a textual source used by this edition, not a claimed personal influence on my earlier research. Consulted 2026-09-05.

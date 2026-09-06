@@ -3,7 +3,7 @@
   "slug": "manuscripts-movements-and-survival",
   "title": "Manuscripts, movements and survival",
   "source": "content/developed/manuscripts-movements-and-survival.md",
-  "sourceSha256": "4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f",
+  "sourceSha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13",
   "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
@@ -274,7 +274,7 @@
       "id": "segment-0045",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations. Consulted 2026-09-05."
+      "text": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in my older conversations. Consulted 2026-09-05."
     }
   ]
 }

@@ -64,6 +64,7 @@ function build(){
   const followups={'apocalyptic-repair-theology':['trump-first-beast-of-revelation','ukraine-russia-forecast-record'],'christ-as-an-inner-model':['jesus-teacher-of-righteousness-hypothesis'],'gnosticism-and-temple-trauma':['jesus-teacher-of-righteousness-hypothesis','moses-volcano-and-exodus-chronology'],'samaritan-texts-and-sacred-authority':['el-in-ancient-egypt','kenite-hypothesis-and-yahweh-origins']};
   if(followups[p.slug])body+='\n\n## Related investigations\n\n'+followups[p.slug].map(id=>{const dest=X.articles.find(x=>x.slug===id);return `[[${id}|${dest.title}]]`;}).join('\n\n');
   if(p.art)body+=`\n\n## Visual context\n\nSee [[image-collection|the credited image collection]] for the artwork shown with this article.`;
+  body=H.present(body);
   row.readMinutes=Math.max(1,Math.ceil(body.split(/\s+/).length/200));
   if(existing){Object.assign(existing,row);bySlug.set(row.slug,existing);}else{pages.push(row);bySlug.set(row.slug,row);}
   write('content/'+row.path,front(row,body));bodies.set(row.slug,body);

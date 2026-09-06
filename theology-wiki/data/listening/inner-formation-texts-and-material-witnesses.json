@@ -3,7 +3,7 @@
   "slug": "inner-formation-texts-and-material-witnesses",
   "title": "Inner formation: texts, communities and material witnesses",
   "source": "content/developed/inner-formation-texts-and-material-witnesses.md",
-  "sourceSha256": "3816327ed62374694ceb7558cbf2a234985294a5a1a51570688d97b3683cae0a",
+  "sourceSha256": "9cbdea7551f77ec14e6ad300a3b6e5a0c2a03da8acf7c89d8e5ae7e60c2273d6",
   "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
@@ -388,7 +388,7 @@
       "id": "segment-0064",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations. Consulted 2026-09-05."
+      "text": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in my older conversations. Consulted 2026-09-05."
     }
   ]
 }

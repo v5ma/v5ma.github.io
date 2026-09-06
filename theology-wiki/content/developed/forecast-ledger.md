@@ -9,7 +9,7 @@ updated: "2026-09-04"
 
 # Dated forecast ledger
 
-This register separates predictions, interpretation updates and recovery leads. No outcome audit has been performed, and no fulfilled-prediction count is claimed. Criteria below are proposed editorial tests, not the author's original preregistration.
+This register separates predictions, interpretation updates and recovery leads. No outcome audit has been performed, and no fulfilled-prediction count is claimed. Criteria below are proposed editorial tests, not a recovered original preregistration of my predictions.
 
 ## 2025-03-13: A peace announcement read as the beginning of false peace
 

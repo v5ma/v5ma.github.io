@@ -102,7 +102,7 @@ Authorial working edition developed with AI assistance. The argument is presente
 
 [Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer](https://www.earlychristianwritings.com/text/thomas-scholars.html)
 
-Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations. Consulted 2026-09-05.
+Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in my older conversations. Consulted 2026-09-05.
 
 [Library of Congress, The Qumran Community](https://www.loc.gov/exhibits/scrolls/scr2.html)
 
@@ -114,7 +114,7 @@ Curated exhibition description consulted for Aramaic Enoch 4Q201, dated there to
 
 [James Tabor, A Shared Utopian Vision: Enochians, Essenes, Ebionites, and Nazarenes (July 7, 2026)](https://jamestabor.com/a-shared-utopian-vision-enochians-essenes-ebionites-and-nazarenes/)
 
-The author's short published description was consulted, not the complete video. A later comparison with this wiki's inquiry, not proof that this 2026 page was the source of Micah's 2025 statements. Consulted 2026-09-05.
+The author's short published description was consulted, not the complete video. A later comparison with this wiki's inquiry, not proof that this 2026 page was the source of my 2025 statements. Consulted 2026-09-05.
 
 [James Tabor, Ebionites, Nazarenes, Essenes, Nasareans: Sorting Out the Names (June 30, 2026)](https://jamestabor.com/ebionites-nazarenes-essenes-nasareans-sorting-out-the-names/)
 
