@@ -1,0 +1,134 @@
+{
+  "id": "teacher-copy-community",
+  "title": "The teacher, the copy, and the community",
+  "summary": "An introduction to the stronger earlier-Teacher reconstruction and the different things that could survive through transmission.",
+  "status": "Editorial production draft",
+  "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+  "pages": [
+    "manuscripts-movements-and-survival",
+    "tor-thomas-and-gnostic-transmission",
+    "melchizedek-priesthood-and-transmission"
+  ],
+  "recordIds": [
+    "hypothesis-teacher-october",
+    "work-thomas",
+    "work-damascus",
+    "witness-genizah-damascus",
+    "work-enoch",
+    "witness-4q201",
+    "work-11qmelchizedek"
+  ],
+  "scenes": [
+    {
+      "id": "teacher-copy-community-01",
+      "title": "More than a resemblance",
+      "narration": "Micah's stronger proposal is not merely that Jesus resembled an earlier Jewish teacher. It asks whether an earlier founder's teachings, community, and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    },
+    {
+      "id": "teacher-copy-community-02",
+      "title": "Different histories can separate",
+      "narration": "A teacher's lifetime, the first collection of sayings, a later literary arrangement, and a surviving manuscript are different historical questions. A date attached to one of them does not automatically answer all the others.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    },
+    {
+      "id": "teacher-copy-community-03",
+      "title": "The objection must meet the actual theory",
+      "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism in Micah's reconstruction. The harder question is what could document successors, repeated names, inherited offices, or changes in the presentation of relationships.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    },
+    {
+      "id": "teacher-copy-community-04",
+      "title": "A concrete history of survival",
+      "narration": "The Damascus Document provides a useful comparison. Copies from the Cairo Genizah and older witnesses from the Dead Sea Scrolls allow a work's survival to be examined across a large interval. A late copy need not mean a recently created work.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    },
+    {
+      "id": "teacher-copy-community-05",
+      "title": "A precedent is not an identification",
+      "narration": "That comparison opens a question about earlier layers in Thomas; it does not identify their author by itself. Distinctive readings, a traceable sayings collection, or a particular pattern of interpretation would do more work than a generic resemblance.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    },
+    {
+      "id": "teacher-copy-community-06",
+      "title": "Texts and institutions need different links",
+      "narration": "Micah also proposes historical relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The institutional question needs evidence about people, leadership, practices, and places as well as books.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    },
+    {
+      "id": "teacher-copy-community-07",
+      "title": "What does authority inherit?",
+      "narration": "The Melchizedek investigation adds another dimension. A tradition can change the grounds of priestly legitimacy while preserving a recognizable figure or function. An inherited name, a family line, and an office must therefore be compared rather than treated as interchangeable.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    },
+    {
+      "id": "teacher-copy-community-08",
+      "title": "Inspect the reconstruction",
+      "narration": "The wiki keeps the stronger earlier-founder hypothesis, its revisions, and its objections available together. This episode is a doorway into that argument. The source atlas makes the works, copies, translations, and proposed historical links separately inspectable.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "slug": "manuscripts-movements-and-survival",
+      "title": "Manuscripts, movements and survival",
+      "path": "content/developed/manuscripts-movements-and-survival.md",
+      "sha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166"
+    },
+    {
+      "slug": "tor-thomas-and-gnostic-transmission",
+      "title": "The Teacher, Thomas and Gnostic transmission",
+      "path": "content/developed/tor-thomas-and-gnostic-transmission.md",
+      "sha256": "36233093b51f15ddf23e898f6e58d55029f7b87631fbd74e6f6c73c76c9b1aac"
+    },
+    {
+      "slug": "melchizedek-priesthood-and-transmission",
+      "title": "Melchizedek: priesthood, release and transmission",
+      "path": "content/developed/melchizedek-priesthood-and-transmission.md",
+      "sha256": "d928cb68ba3b1dce3e192fd7e8b1fa197311ed80c51fe56738da55190f15bda6"
+    }
+  ],
+  "script": "products/episodes/teacher-copy-community.txt",
+  "production": "products/episodes/teacher-copy-community.json",
+  "words": 302
+}

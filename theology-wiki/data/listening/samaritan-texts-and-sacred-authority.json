@@ -1,0 +1,136 @@
+{
+  "schema": "theology-narration/v1",
+  "slug": "samaritan-texts-and-sacred-authority",
+  "title": "Samaritan texts and sacred authority",
+  "source": "content/developed/samaritan-texts-and-sacred-authority.md",
+  "sourceSha256": "7f6107271287a46b217ff75273cb9afa986905e9d20d6d4d6bccba087b0d8230",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "segments": [
+    {
+      "id": "segment-0001",
+      "section": "Samaritan texts and sacred authority",
+      "notes": false,
+      "text": "Samaritan texts and sacred authority"
+    },
+    {
+      "id": "segment-0002",
+      "section": "The question beneath the place name",
+      "notes": false,
+      "text": "The question beneath the place name"
+    },
+    {
+      "id": "segment-0003",
+      "section": "The question beneath the place name",
+      "notes": false,
+      "text": "The Samaritan and Jewish Texts discussion begins with Mount Gerizim and quickly becomes a question about inheritance. Micah asks where Samaritan and Jewish texts divide, why a community would accept shared Mosaic material, and what changes when some later books are not included in its scriptural collection."
+    },
+    {
+      "id": "segment-0004",
+      "section": "The question beneath the place name",
+      "notes": false,
+      "text": "Several historical explanations are proposed or repeated as questions in the exchange. Those questions should not be converted into established facts merely because they appear in a source chat. The durable research problem is the relationship between shared text and competing claims to continuity."
+    },
+    {
+      "id": "segment-0005",
+      "section": "Three comparisons that must not be collapsed",
+      "notes": false,
+      "text": "Three comparisons that must not be collapsed"
+    },
+    {
+      "id": "segment-0006",
+      "section": "Three comparisons that must not be collapsed",
+      "notes": false,
+      "text": "A difference between readings in a manuscript is not the same thing as a difference in the books accepted as scripture. Neither is identical to a disagreement over the proper sacred center. Micah asks about all three: wording associated with Mount Ebal and Mount Gerizim, the boundaries of a Samaritan canon, and what those boundaries mean for the authority of figures such as Samuel, David and Solomon."
+    },
+    {
+      "id": "segment-0007",
+      "section": "Three comparisons that must not be collapsed",
+      "notes": false,
+      "text": "Separating the questions makes the comparison more powerful. A community could share a textual feature without sharing every institutional allegiance. A canon could omit a book without eliminating every ethical difficulty in the books it retains. An argument about sacred geography needs its own textual and archaeological evidence."
+    },
+    {
+      "id": "segment-0008",
+      "section": "The Dead Sea Scrolls question",
+      "notes": false,
+      "text": "The Dead Sea Scrolls question"
+    },
+    {
+      "id": "segment-0009",
+      "section": "The Dead Sea Scrolls question",
+      "notes": false,
+      "text": "The AI's discussion of pre-Samaritan textual forms leads Micah to ask whether the Dead Sea Scrolls therefore supported the Gerizim claim. The move from textual affinity to a community's allegiance is exactly the inference that needs checking. A shared reading or harmonizing style would not, by itself, settle a particular manuscript's view of a sanctuary."
+    },
+    {
+      "id": "segment-0010",
+      "section": "The Dead Sea Scrolls question",
+      "notes": false,
+      "text": "A developed historical article should identify the manuscript and disputed passage, show the relevant readings and explain why each reading matters. This edition records the research question rather than supplying a verdict from an unverified AI summary."
+    },
+    {
+      "id": "segment-0011",
+      "section": "The ethical question is not incidental",
+      "notes": false,
+      "text": "The ethical question is not incidental"
+    },
+    {
+      "id": "segment-0012",
+      "section": "The ethical question is not incidental",
+      "notes": false,
+      "text": "Micah is also asking what happens to moral interpretation when the canon changes. His concern about Samuel is part of a broader inquiry into whether religious authority can authorize conduct he regards as objectionable. That makes the comparison relevant to the judgment of conduct and the content of an inward moral model."
+    },
+    {
+      "id": "segment-0013",
+      "section": "The ethical question is not incidental",
+      "notes": false,
+      "text": "The question is not answered by announcing that a shorter canon must be ethically simpler. Each retained passage and each rejected claim to authority still needs examination. The same caution applies when comparing Micah's questions with later selective readings of scripture."
+    },
+    {
+      "id": "segment-0014",
+      "section": "Shared inheritance, different continuations",
+      "notes": false,
+      "text": "Shared inheritance, different continuations"
+    },
+    {
+      "id": "segment-0015",
+      "section": "Shared inheritance, different continuations",
+      "notes": false,
+      "text": "The most useful framework is therefore not a contest over which tradition is merely a copy. It is an inquiry into what was shared, what diverged, how those differences were justified and what consequences followed. The Temple-trauma hypothesis raises a related question about later trajectories. The research method distinguishes evidence of a shared inheritance from a proposed story about how one tradition became another."
+    },
+    {
+      "id": "segment-0016",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "Source conversations"
+    },
+    {
+      "id": "segment-0017",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "Samaritan and Jewish Texts is the archived discussion dated 2026-01-31 (UTC export metadata)."
+    },
+    {
+      "id": "segment-0018",
+      "section": "Source conversations",
+      "notes": true,
+      "text": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him."
+    },
+    {
+      "id": "segment-0019",
+      "section": "Related investigations",
+      "notes": true,
+      "text": "Related investigations"
+    },
+    {
+      "id": "segment-0020",
+      "section": "Related investigations",
+      "notes": true,
+      "text": "El in Ancient Egypt"
+    },
+    {
+      "id": "segment-0021",
+      "section": "Related investigations",
+      "notes": true,
+      "text": "The Kenite hypothesis and Yahweh's southern origins"
+    }
+  ]
+}

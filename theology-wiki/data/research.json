@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.05-atlas-1",
+  "version": "2026.09.06-products-1",
   "categories": [
     {
       "id": "gnosis",
@@ -1971,6 +1971,21 @@
       "topic-origins",
       "book-contents"
     ],
+    "listening-room": [
+      "home",
+      "production-studio",
+      "product-pathways"
+    ],
+    "production-studio": [
+      "home",
+      "listening-room",
+      "product-pathways"
+    ],
+    "product-pathways": [
+      "home",
+      "listening-room",
+      "production-studio"
+    ],
     "source-atlas": [
       "exodus-to-temple-competing-chronologies",
       "argument-challenges"
@@ -1987,6 +2002,7 @@
     "research-roadmap": [
       "home",
       "melchizedek-priesthood-and-transmission",
+      "product-pathways",
       "source-atlas",
       "source-coverage"
     ],

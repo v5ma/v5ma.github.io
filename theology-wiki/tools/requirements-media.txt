@@ -1,0 +1,8 @@
+# Install CPU torch separately from https://download.pytorch.org/whl/cpu.
+# System packages: espeak-ng and ffmpeg. No runtime dependency in the reader.
+kokoro==0.9.4
+soundfile==0.13.1
+numpy==2.2.6
+Pillow==11.3.0
+huggingface-hub==0.34.4
+transformers==4.51.3

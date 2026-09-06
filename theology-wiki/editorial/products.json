@@ -1,0 +1,487 @@
+{
+  "schema": "theology-products/v1",
+  "version": "2026.09.06-products-1",
+  "updated": "2026-09-06",
+  "policy": "One public research foundation, several ways to encounter it. Full article narration is distinct from edited episodes. Draft scripts are editorial adaptations, not newly recovered statements by Micah. The separate XR runtime and private SAN manuscript are not included.",
+  "reference": {
+    "title": "SAN private chapter reader supplied by Micah",
+    "scope": "Private reference only. Its public access and deployed audiobook layer were not verified here. This implementation is independent; no SAN manuscript or private credentials are redistributed."
+  },
+  "channels": [
+    {
+      "id": "wiki",
+      "title": "Research library",
+      "state": "Available",
+      "page": "home",
+      "purpose": "Develop the full reconstructions and preserve original source conversations."
+    },
+    {
+      "id": "listen",
+      "title": "Listening room",
+      "state": "Available with device voices",
+      "page": "listening-room",
+      "purpose": "Read the full developed article aloud, choose a section, save a position, or use a recorded study when available."
+    },
+    {
+      "id": "episodes",
+      "title": "Audio and video studio",
+      "state": "Draft production series",
+      "page": "production-studio",
+      "purpose": "Short editorial episodes, evidence links, exportable scripts and a recorded pilot. Not a substitute for the full argument."
+    },
+    {
+      "id": "book",
+      "title": "Book and audiobook",
+      "state": "Research sequence; not final manuscript",
+      "page": "book-contents",
+      "purpose": "Build a sustained narrative from the existing chapter routes; author review precedes a final audiobook edition."
+    },
+    {
+      "id": "experiments",
+      "title": "Chronology application",
+      "state": "Available",
+      "page": "exodus-to-temple-competing-chronologies",
+      "purpose": "Change stated anchor assumptions while keeping source intervals and rival historical sequences visible."
+    },
+    {
+      "id": "museum",
+      "title": "AR and VR museum",
+      "state": "Content handoff; separate implementation",
+      "page": "museum-trails",
+      "purpose": "Reuse stable source records, full arguments and challenge histories inside the other development thread's experience."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "listening-core",
+      "title": "Full-article listening and source-hash resume",
+      "status": "Delivered implementation",
+      "owner": "Application editor",
+      "dependsOn": [],
+      "acceptance": "All developed articles have generated full-text segments, source hashes, local-voice fallback and tested playback state transitions. Physical-device voice quality remains separate."
+    },
+    {
+      "id": "narration-pilot",
+      "title": "Record one complete historical investigation",
+      "status": "Production draft",
+      "owner": "Audio producer",
+      "dependsOn": [
+        "listening-core"
+      ],
+      "acceptance": "A downloadable audio file, measured cues, original source hash and explicit synthetic-voice credit; author approval is not inferred."
+    },
+    {
+      "id": "video-pilot",
+      "title": "Publish a source-linked captioned video pilot",
+      "status": "Production draft",
+      "owner": "Video producer",
+      "dependsOn": [
+        "episode-scripts"
+      ],
+      "acceptance": "Actual MP4 and separate captions with measured scene timings, full transcript, source links and no unlicensed artwork or music."
+    },
+    {
+      "id": "episode-scripts",
+      "title": "Develop the opening three episodes",
+      "status": "Editorial draft",
+      "owner": "Research editor",
+      "dependsOn": [],
+      "acceptance": "Each script preserves the positive reconstruction, defines the issue being tested, links exact source records and distinguishes episode text from the full study."
+    },
+    {
+      "id": "pronunciation",
+      "title": "Review names, abbreviations and spoken arithmetic",
+      "status": "Needs review",
+      "owner": "Micah / audio editor",
+      "dependsOn": [
+        "narration-pilot"
+      ],
+      "acceptance": "Review Teacher of Righteousness, Qumran, Zadokite, Onias, textual sigla and dates in actual audio; record approved pronunciation choices."
+    },
+    {
+      "id": "author-voice",
+      "title": "Approve the narrative voice for the public series",
+      "status": "Needs author decision",
+      "owner": "Micah",
+      "dependsOn": [
+        "episode-scripts",
+        "narration-pilot"
+      ],
+      "acceptance": "Choose synthetic or recorded narration, tone, intro, first-person permissions and whether a host persona is appropriate. No imitation of Micah is assumed."
+    },
+    {
+      "id": "book-audio",
+      "title": "Produce the final chapter audiobook",
+      "status": "Planned",
+      "owner": "Book and audio editors",
+      "dependsOn": [
+        "author-voice",
+        "pronunciation"
+      ],
+      "acceptance": "Author-approved manuscript chapter versions, full recordings, chapter metadata, edited audio and complete text/audio correspondence. Proposed chapter routes do not count as completed chapters."
+    },
+    {
+      "id": "xr-consumer",
+      "title": "Consume shared content in the separate XR application",
+      "status": "Handoff ready; integration unverified",
+      "owner": "Separate XR thread",
+      "dependsOn": [
+        "episode-scripts"
+      ],
+      "acceptance": "Resolve stable IDs and hashes, display full arguments and source kinds, keep unknown dates, and provide a non-spatial reading alternative."
+    },
+    {
+      "id": "distribution",
+      "title": "Prepare podcast and video-channel distribution",
+      "status": "Planned",
+      "owner": "Publisher",
+      "dependsOn": [
+        "author-voice",
+        "video-pilot"
+      ],
+      "acceptance": "Approved titles, thumbnails, transcripts, feed metadata and platform credentials; public site delivery alone is not a YouTube or podcast-platform release."
+    },
+    {
+      "id": "mobile-audio",
+      "title": "Test long-form listening on physical devices",
+      "status": "Needs device review",
+      "owner": "Listener testers",
+      "dependsOn": [
+        "listening-core",
+        "narration-pilot"
+      ],
+      "acceptance": "Check screen lock, interruptions, Bluetooth, voice availability and resumption on real desktop and mobile devices. Headless testing is not a physical-device pass."
+    }
+  ],
+  "episodes": [
+    {
+      "id": "counting-the-departure",
+      "title": "Counting the departure: why one date is not the whole history",
+      "summary": "A narrated introduction to the competing Exodus-to-Temple chronologies and Micah's earlier-departure reconstruction.",
+      "status": "Editorial production draft",
+      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "pages": [
+        "exodus-to-temple-competing-chronologies",
+        "moses-volcano-and-exodus-chronology"
+      ],
+      "recordIds": [
+        "work-kings",
+        "translation-kings-web",
+        "translation-kings-brenton",
+        "work-antiquities",
+        "work-apion",
+        "fragment-manetho",
+        "work-daniel"
+      ],
+      "scenes": [
+        {
+          "id": "counting-the-departure-01",
+          "title": "Start with the proposed history",
+          "narration": "Micah Blumberg's reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-02",
+          "title": "Ask the sources how they count",
+          "narration": "The question is not simply whether an earlier Exodus sounds possible. It is how that reconstruction compares with the different ancient intervals between the departure from Egypt and the building of Solomon's Temple.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-03",
+          "title": "Two notices, two counts",
+          "narration": "The Hebrew-based translation consulted in the wiki gives the four hundred and eightieth year. Brenton's Greek translation gives the four hundred and fortieth. This difference exists before a modern date is assigned to the Temple.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-04",
+          "title": "Name the endpoint",
+          "narration": "The opening of First Kings, chapter six, dates the start of construction, not the completed building. A calculation that substitutes completion for foundation has changed the event being measured, even if its arithmetic remains correct.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-05",
+          "title": "Longer ancient intervals",
+          "narration": "Josephus preserves longer intervals: five hundred and ninety-two years in one passage and six hundred and twelve in another. These are not invented additions to the chronology, but neither are they independent eyewitness reports of Moses.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-06",
+          "title": "An anchor is an assumption",
+          "narration": "Assigning the foundation to nine hundred and sixty-seven B C E, solely for comparison, places a five hundred and ninety-two year interval around fifteen fifty-nine B C E. The result is conditional. Josephus did not write that modern date.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-07",
+          "title": "Keep the entire system visible",
+          "narration": "Another Josephus passage connects construction, destruction, and departure. Borrowing one useful interval while hiding the rest of that system would weaken the reconstruction. The chronology application lets the different endpoints remain visible.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-08",
+          "title": "A departure remembered through another author",
+          "narration": "Against Apion adds a different question. Josephus quotes an account attributed to Manetho and interprets the departure of the shepherd rulers as part of his people's ancestral history. Quotation and interpretation are related, but they are not identical evidence.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-09",
+          "title": "A hypothesis worth examining in full",
+          "narration": "These sources create a specific investigation for the earlier-departure model. Which sequence best accounts for the political story, the transmitted intervals, and their disagreements? An objection to one calculation should not silently replace the larger historical proposal.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        },
+        {
+          "id": "counting-the-departure-10",
+          "title": "From a short episode to an open inquiry",
+          "narration": "This episode introduces the problem. The full study preserves the calculations, source versions, competing event orders, and remaining questions. Open the source atlas and chronology application to examine the reconstruction rather than accept its conclusion on authority.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "exodus-to-temple-competing-chronologies",
+            "moses-volcano-and-exodus-chronology"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "teacher-copy-community",
+      "title": "The teacher, the copy, and the community",
+      "summary": "An introduction to the stronger earlier-Teacher reconstruction and the different things that could survive through transmission.",
+      "status": "Editorial production draft",
+      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "pages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission"
+      ],
+      "recordIds": [
+        "hypothesis-teacher-october",
+        "work-thomas",
+        "work-damascus",
+        "witness-genizah-damascus",
+        "work-enoch",
+        "witness-4q201",
+        "work-11qmelchizedek"
+      ],
+      "scenes": [
+        {
+          "id": "teacher-copy-community-01",
+          "title": "More than a resemblance",
+          "narration": "Micah's stronger proposal is not merely that Jesus resembled an earlier Jewish teacher. It asks whether an earlier founder's teachings, community, and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        },
+        {
+          "id": "teacher-copy-community-02",
+          "title": "Different histories can separate",
+          "narration": "A teacher's lifetime, the first collection of sayings, a later literary arrangement, and a surviving manuscript are different historical questions. A date attached to one of them does not automatically answer all the others.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        },
+        {
+          "id": "teacher-copy-community-03",
+          "title": "The objection must meet the actual theory",
+          "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism in Micah's reconstruction. The harder question is what could document successors, repeated names, inherited offices, or changes in the presentation of relationships.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        },
+        {
+          "id": "teacher-copy-community-04",
+          "title": "A concrete history of survival",
+          "narration": "The Damascus Document provides a useful comparison. Copies from the Cairo Genizah and older witnesses from the Dead Sea Scrolls allow a work's survival to be examined across a large interval. A late copy need not mean a recently created work.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        },
+        {
+          "id": "teacher-copy-community-05",
+          "title": "A precedent is not an identification",
+          "narration": "That comparison opens a question about earlier layers in Thomas; it does not identify their author by itself. Distinctive readings, a traceable sayings collection, or a particular pattern of interpretation would do more work than a generic resemblance.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        },
+        {
+          "id": "teacher-copy-community-06",
+          "title": "Texts and institutions need different links",
+          "narration": "Micah also proposes historical relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The institutional question needs evidence about people, leadership, practices, and places as well as books.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        },
+        {
+          "id": "teacher-copy-community-07",
+          "title": "What does authority inherit?",
+          "narration": "The Melchizedek investigation adds another dimension. A tradition can change the grounds of priestly legitimacy while preserving a recognizable figure or function. An inherited name, a family line, and an office must therefore be compared rather than treated as interchangeable.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        },
+        {
+          "id": "teacher-copy-community-08",
+          "title": "Inspect the reconstruction",
+          "narration": "The wiki keeps the stronger earlier-founder hypothesis, its revisions, and its objections available together. This episode is a doorway into that argument. The source atlas makes the works, copies, translations, and proposed historical links separately inspectable.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "manuscripts-movements-and-survival",
+            "tor-thomas-and-gnostic-transmission",
+            "melchizedek-priesthood-and-transmission"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objections-in-the-museum",
+      "title": "Put the objection in the museum",
+      "summary": "Why the research archive includes challenges, corrections and the full versions of the arguments being challenged.",
+      "status": "Editorial production draft",
+      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "pages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "recordIds": [
+        "hypothesis-moses-october",
+        "hypothesis-teacher-october",
+        "work-daniel"
+      ],
+      "scenes": [
+        {
+          "id": "objections-in-the-museum-01",
+          "title": "The missing part of an exhibit",
+          "narration": "A museum label normally offers a conclusion. This project can also display how a reconstruction was challenged, how its author answered, and whether the objection addressed the actual theory.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "argument-challenges",
+            "manuscripts-movements-and-survival",
+            "exodus-to-temple-competing-chronologies"
+          ]
+        },
+        {
+          "id": "objections-in-the-museum-02",
+          "title": "Preserve the two-stage argument",
+          "narration": "In the original Moses discussion, Micah already distinguished a famine from a later account describing a firstborn plague. He did not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "argument-challenges",
+            "manuscripts-movements-and-survival",
+            "exodus-to-temple-competing-chronologies"
+          ]
+        },
+        {
+          "id": "objections-in-the-museum-03",
+          "title": "Ask the remaining historical question",
+          "narration": "Recovering that qualification does not establish the famine explanation. It changes the research task: what evidence might support the proposed disaster and its later narration? The full claim deserves examination instead of a reply to a claim the author rejected.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "argument-challenges",
+            "manuscripts-movements-and-survival",
+            "exodus-to-temple-competing-chronologies"
+          ]
+        },
+        {
+          "id": "objections-in-the-museum-04",
+          "title": "Do not replace a historical connection",
+          "narration": "Another exchange concerns communities remaining in Judea while others establish themselves in Egypt. The AI restates this as ideological similarity. The archive keeps both passages visible because the narrower restatement does not exhaust the institutional proposal.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "argument-challenges",
+            "manuscripts-movements-and-survival",
+            "exodus-to-temple-competing-chronologies"
+          ]
+        },
+        {
+          "id": "objections-in-the-museum-05",
+          "title": "Check favorable answers too",
+          "narration": "An encouraging AI answer can also be wrong. The Daniel discussion contains arithmetic that needs repair. Agreement is not an additional ancient witness. A useful research record identifies unsupported support as carefully as an inadequate dismissal.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "argument-challenges",
+            "manuscripts-movements-and-survival",
+            "exodus-to-temple-competing-chronologies"
+          ]
+        },
+        {
+          "id": "objections-in-the-museum-06",
+          "title": "An argument has a route",
+          "narration": "Each challenge record connects the claim, its version, the objection, the answer, and what remains open. The visitor can move from a short exhibit label into the complete conversation instead of trusting a curator's verdict.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "argument-challenges",
+            "manuscripts-movements-and-survival",
+            "exodus-to-temple-competing-chronologies"
+          ]
+        },
+        {
+          "id": "objections-in-the-museum-07",
+          "title": "Several products, one research foundation",
+          "narration": "The book can provide a sustained narrative. Audio and video can introduce a question. An interactive exhibit can make comparisons tangible. Their value depends on keeping the full research reachable, rather than allowing each format to invent a simpler history.",
+          "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+          "sourcePages": [
+            "argument-challenges",
+            "manuscripts-movements-and-survival",
+            "exodus-to-temple-competing-chronologies"
+          ]
+        }
+      ]
+    }
+  ]
+}

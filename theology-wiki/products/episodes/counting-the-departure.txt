@@ -1,0 +1,53 @@
+Counting the departure: why one date is not the whole history
+
+Editorial adaptation of Micah Blumberg's public research. Synthetic production draft; not the author's recorded voice.
+
+Start with the proposed history
+
+Micah Blumberg's reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.
+
+Ask the sources how they count
+
+The question is not simply whether an earlier Exodus sounds possible. It is how that reconstruction compares with the different ancient intervals between the departure from Egypt and the building of Solomon's Temple.
+
+Two notices, two counts
+
+The Hebrew-based translation consulted in the wiki gives the four hundred and eightieth year. Brenton's Greek translation gives the four hundred and fortieth. This difference exists before a modern date is assigned to the Temple.
+
+Name the endpoint
+
+The opening of First Kings, chapter six, dates the start of construction, not the completed building. A calculation that substitutes completion for foundation has changed the event being measured, even if its arithmetic remains correct.
+
+Longer ancient intervals
+
+Josephus preserves longer intervals: five hundred and ninety-two years in one passage and six hundred and twelve in another. These are not invented additions to the chronology, but neither are they independent eyewitness reports of Moses.
+
+An anchor is an assumption
+
+Assigning the foundation to nine hundred and sixty-seven B C E, solely for comparison, places a five hundred and ninety-two year interval around fifteen fifty-nine B C E. The result is conditional. Josephus did not write that modern date.
+
+Keep the entire system visible
+
+Another Josephus passage connects construction, destruction, and departure. Borrowing one useful interval while hiding the rest of that system would weaken the reconstruction. The chronology application lets the different endpoints remain visible.
+
+A departure remembered through another author
+
+Against Apion adds a different question. Josephus quotes an account attributed to Manetho and interprets the departure of the shepherd rulers as part of his people's ancestral history. Quotation and interpretation are related, but they are not identical evidence.
+
+A hypothesis worth examining in full
+
+These sources create a specific investigation for the earlier-departure model. Which sequence best accounts for the political story, the transmitted intervals, and their disagreements? An objection to one calculation should not silently replace the larger historical proposal.
+
+From a short episode to an open inquiry
+
+This episode introduces the problem. The full study preserves the calculations, source versions, competing event orders, and remaining questions. Open the source atlas and chronology application to examine the reconstruction rather than accept its conclusion on authority.
+
+Sources and full arguments
+
+From Exodus to Temple: competing chronologies
+https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies
+SHA-256: b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3
+
+Moses, the volcano and Exodus chronology
+https://v5ma.github.io/theology-wiki/san-reader.html?page=moses-volcano-and-exodus-chronology
+SHA-256: 90f7032d1bfee77f01fe56ea8c6129b27fe937a3adb1c3b8c422b4a4a1da2704

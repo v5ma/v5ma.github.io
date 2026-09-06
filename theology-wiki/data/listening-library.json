@@ -1,0 +1,626 @@
+{
+  "schema": "theology-listening-library/v1",
+  "version": "2026.09.06-products-1",
+  "policy": "One public research foundation, several ways to encounter it. Full article narration is distinct from edited episodes. Draft scripts are editorial adaptations, not newly recovered statements by Micah. The separate XR runtime and private SAN manuscript are not included.",
+  "articles": [
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "title": "Sacred inheritance and rival continuations",
+      "summary": "How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.",
+      "category": "traditions",
+      "chapters": [
+        {
+          "id": "shared-archive",
+          "title": "Who inherits the sacred?",
+          "part": "The contested inheritance"
+        },
+        {
+          "id": "continuing",
+          "title": "Continuing the inheritance",
+          "part": "Repair and the next inheritors"
+        }
+      ],
+      "source": "content/developed/sacred-inheritance-and-rival-continuations.md",
+      "sourceSha256": "478327918ba127cc3171e02b231f254ddcaec03480fd1edf016322735e157d97",
+      "narration": "data/listening/sacred-inheritance-and-rival-continuations.json",
+      "narrationSha256": "494681696679d81f4536f740523758fb18ed7cba0b6d713785794872f4eca459",
+      "transcript": "products/transcripts/sacred-inheritance-and-rival-continuations.txt",
+      "segments": 43,
+      "words": 1419
+    },
+    {
+      "slug": "samaritan-texts-and-sacred-authority",
+      "title": "Samaritan texts and sacred authority",
+      "summary": "Micah's comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.",
+      "category": "traditions",
+      "chapters": [
+        {
+          "id": "shared-archive",
+          "title": "Who inherits the sacred?",
+          "part": "The contested inheritance"
+        }
+      ],
+      "source": "content/developed/samaritan-texts-and-sacred-authority.md",
+      "sourceSha256": "7f6107271287a46b217ff75273cb9afa986905e9d20d6d4d6bccba087b0d8230",
+      "narration": "data/listening/samaritan-texts-and-sacred-authority.json",
+      "narrationSha256": "1468aa26aedfae307f3c63c8cb4ece3732492e89bd804c5ce9d3a173225d6fb2",
+      "transcript": "products/transcripts/samaritan-texts-and-sacred-authority.txt",
+      "segments": 21,
+      "words": 488
+    },
+    {
+      "slug": "el-in-ancient-egypt",
+      "title": "El in Ancient Egypt",
+      "summary": "A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "names",
+          "title": "Names across boundaries",
+          "part": "The contested inheritance"
+        }
+      ],
+      "source": "content/developed/el-in-ancient-egypt.md",
+      "sourceSha256": "debc9acdcde34426deac9c790eef84180e48bd56e3f9906366557a4483624068",
+      "narration": "data/listening/el-in-ancient-egypt.json",
+      "narrationSha256": "512d2507c33edcc26bc16f8d825a1c3d0c116125b631fc05935de0e6c06c4893",
+      "transcript": "products/transcripts/el-in-ancient-egypt.txt",
+      "segments": 29,
+      "words": 705
+    },
+    {
+      "slug": "kenite-hypothesis-and-yahweh-origins",
+      "title": "The Kenite hypothesis and Yahweh's southern origins",
+      "summary": "How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "names",
+          "title": "Names across boundaries",
+          "part": "The contested inheritance"
+        }
+      ],
+      "source": "content/developed/kenite-hypothesis-and-yahweh-origins.md",
+      "sourceSha256": "42e295d1915490f192437a01240578818b799b269cf111e6d71d92b0ecb23cdb",
+      "narration": "data/listening/kenite-hypothesis-and-yahweh-origins.json",
+      "narrationSha256": "f1d29e02123e02ca8d0f0b9aaf64748f3b9d0c51d743d7e38258678355e008f3",
+      "transcript": "products/transcripts/kenite-hypothesis-and-yahweh-origins.txt",
+      "segments": 33,
+      "words": 740
+    },
+    {
+      "slug": "moses-volcano-and-exodus-chronology",
+      "title": "Moses, the volcano and Exodus chronology",
+      "summary": "A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "catastrophe-memory",
+          "title": "Catastrophe, departure and memory",
+          "part": "The contested inheritance"
+        }
+      ],
+      "source": "content/developed/moses-volcano-and-exodus-chronology.md",
+      "sourceSha256": "90f7032d1bfee77f01fe56ea8c6129b27fe937a3adb1c3b8c422b4a4a1da2704",
+      "narration": "data/listening/moses-volcano-and-exodus-chronology.json",
+      "narrationSha256": "72f67824ec6dcb2ee70133e889f832e781480b507225e968a2d9ae20ca0ca499",
+      "transcript": "products/transcripts/moses-volcano-and-exodus-chronology.txt",
+      "segments": 31,
+      "words": 748
+    },
+    {
+      "slug": "exodus-to-temple-competing-chronologies",
+      "title": "From Exodus to Temple: competing chronologies",
+      "summary": "Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "catastrophe-memory",
+          "title": "Catastrophe, departure and memory",
+          "part": "The contested inheritance"
+        }
+      ],
+      "source": "content/developed/exodus-to-temple-competing-chronologies.md",
+      "sourceSha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3",
+      "narration": "data/listening/exodus-to-temple-competing-chronologies.json",
+      "narrationSha256": "225fbd3f5c8ab003a77e64cc227e12b6d120e5c3930f1fb962c16dc91373c3c1",
+      "transcript": "products/transcripts/exodus-to-temple-competing-chronologies.txt",
+      "segments": 63,
+      "words": 1824
+    },
+    {
+      "slug": "jesus-teacher-of-righteousness-hypothesis",
+      "title": "Jesus as the Teacher of Righteousness",
+      "summary": "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.",
+      "category": "jesus",
+      "chapters": [
+        {
+          "id": "teacher-identity",
+          "title": "What survives a teacher?",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+      "sourceSha256": "eef4b965e8ad5634dc28d5e9c7d28a7175e0ae7c8b47f81f0c94cc4cdefebf99",
+      "narration": "data/listening/jesus-teacher-of-righteousness-hypothesis.json",
+      "narrationSha256": "bc477e89ce99ea286689a0da623406b9914f5253e47e804399c85eb7aeee4c1d",
+      "transcript": "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt",
+      "segments": 49,
+      "words": 1264
+    },
+    {
+      "slug": "tor-thomas-and-gnostic-transmission",
+      "title": "The Teacher, Thomas and Gnostic transmission",
+      "summary": "A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/tor-thomas-and-gnostic-transmission.md",
+      "sourceSha256": "36233093b51f15ddf23e898f6e58d55029f7b87631fbd74e6f6c73c76c9b1aac",
+      "narration": "data/listening/tor-thomas-and-gnostic-transmission.json",
+      "narrationSha256": "e25fbf5213bfaf7d3928e98b730b1c83a334d406bb5bcfb43ad7a7e3812b8fc7",
+      "transcript": "products/transcripts/tor-thomas-and-gnostic-transmission.txt",
+      "segments": 65,
+      "words": 1976
+    },
+    {
+      "slug": "melchizedek-priesthood-and-transmission",
+      "title": "Melchizedek: priesthood, release and transmission",
+      "summary": "A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/melchizedek-priesthood-and-transmission.md",
+      "sourceSha256": "d928cb68ba3b1dce3e192fd7e8b1fa197311ed80c51fe56738da55190f15bda6",
+      "narration": "data/listening/melchizedek-priesthood-and-transmission.json",
+      "narrationSha256": "2e7785b7cdf48523e772acbe275ad3d978d13698bad8e9fff59a3756c58ad48e",
+      "transcript": "products/transcripts/melchizedek-priesthood-and-transmission.txt",
+      "segments": 61,
+      "words": 2110
+    },
+    {
+      "slug": "manuscripts-movements-and-survival",
+      "title": "Manuscripts, movements and survival",
+      "summary": "A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/manuscripts-movements-and-survival.md",
+      "sourceSha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166",
+      "narration": "data/listening/manuscripts-movements-and-survival.json",
+      "narrationSha256": "c1866f3dfdd34e521a75828cec2ccd6c32203a00b9edc05186197e817178f811",
+      "transcript": "products/transcripts/manuscripts-movements-and-survival.txt",
+      "segments": 46,
+      "words": 1508
+    },
+    {
+      "slug": "gnosticism-and-temple-trauma",
+      "title": "Gnosticism and the Temple-trauma hypothesis",
+      "summary": "A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "trauma",
+          "title": "Loss, anger and reconstruction",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/gnosticism-and-temple-trauma.md",
+      "sourceSha256": "fce14b9c684b9ec30dd128d25caaf66c0122ddee540371810bc6ce3a62fb91f9",
+      "narration": "data/listening/gnosticism-and-temple-trauma.json",
+      "narrationSha256": "567c0eea97d4b41e73bacb6f2b92fa5ddf743028ab03c3ec1b9d917206789f96",
+      "transcript": "products/transcripts/gnosticism-and-temple-trauma.txt",
+      "segments": 22,
+      "words": 512
+    },
+    {
+      "slug": "apocalyptic-repair-theology",
+      "title": "Apocalyptic Repair Theology",
+      "summary": "How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.",
+      "category": "apocalypse",
+      "chapters": [
+        {
+          "id": "trauma",
+          "title": "Loss, anger and reconstruction",
+          "part": "The teacher and the transmitted message"
+        },
+        {
+          "id": "repair-practice",
+          "title": "Repair without reproducing domination",
+          "part": "Repair and the next inheritors"
+        },
+        {
+          "id": "continuing",
+          "title": "Continuing the inheritance",
+          "part": "Repair and the next inheritors"
+        }
+      ],
+      "source": "content/developed/apocalyptic-repair-theology.md",
+      "sourceSha256": "8f395c2b8855c4b73d5581c999830bea01f21ddc4e1153fca46450ea624f3294",
+      "narration": "data/listening/apocalyptic-repair-theology.json",
+      "narrationSha256": "c4d19b533b370e335c786a96a4b4e2e57e0ecd8948e5bd2daf31ded8493c1377",
+      "transcript": "products/transcripts/apocalyptic-repair-theology.txt",
+      "segments": 48,
+      "words": 1208
+    },
+    {
+      "slug": "god-and-our-models-of-god",
+      "title": "God and our models of God",
+      "summary": "An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.",
+      "category": "machines",
+      "chapters": [
+        {
+          "id": "images",
+          "title": "God and our images of God",
+          "part": "The inheritance inside a mind"
+        },
+        {
+          "id": "next-inheritors",
+          "title": "What should conscious machines inherit?",
+          "part": "Repair and the next inheritors"
+        }
+      ],
+      "source": "content/developed/god-and-our-models-of-god.md",
+      "sourceSha256": "17a7d7ed768cd2f9df8794ffed2e27e36d3e9c3bd3e2b3f5c63eb3304e3eb24a",
+      "narration": "data/listening/god-and-our-models-of-god.json",
+      "narrationSha256": "9fef2b0553faa3b5498b9931d321f47d5225ac598ae7db79d7655ef7563a99e6",
+      "transcript": "products/transcripts/god-and-our-models-of-god.txt",
+      "segments": 36,
+      "words": 1084
+    },
+    {
+      "slug": "cognitive-gnosticism",
+      "title": "Cognitive Gnosticism",
+      "summary": "Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.",
+      "category": "gnosis",
+      "chapters": [
+        {
+          "id": "gnosis",
+          "title": "Cognitive Gnosticism",
+          "part": "The inheritance inside a mind"
+        }
+      ],
+      "source": "content/developed/cognitive-gnosticism.md",
+      "sourceSha256": "a14cf8ee2ec146f09523dafe55155d1fbc6d18161d1c3230ae6c12bca7d5b213",
+      "narration": "data/listening/cognitive-gnosticism.json",
+      "narrationSha256": "1e27402fc8b471ab36f7bd1f51e5517579fa6df6d0c2ea445b01a3346f9956da",
+      "transcript": "products/transcripts/cognitive-gnosticism.txt",
+      "segments": 32,
+      "words": 1060
+    },
+    {
+      "slug": "christ-as-an-inner-model",
+      "title": "Christ as an inner model",
+      "summary": "The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.",
+      "category": "jesus",
+      "chapters": [
+        {
+          "id": "inner-model",
+          "title": "Christ as an active moral model",
+          "part": "The inheritance inside a mind"
+        }
+      ],
+      "source": "content/developed/christ-as-an-inner-model.md",
+      "sourceSha256": "a8c935cf30c1f667cb0d45a0598625e1c5232e5d843b2710a82ec0def6c89ff0",
+      "narration": "data/listening/christ-as-an-inner-model.json",
+      "narrationSha256": "8e5eb1eb0889efb19f96f945f15e9c1b9512d2305804a0eb597dffc2e39958e4",
+      "transcript": "products/transcripts/christ-as-an-inner-model.txt",
+      "segments": 38,
+      "words": 960
+    },
+    {
+      "slug": "divine-will-and-self-authorizing-power",
+      "title": "Divine will and self-authorizing power",
+      "summary": "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.",
+      "category": "jesus",
+      "chapters": [
+        {
+          "id": "inner-model",
+          "title": "Christ as an active moral model",
+          "part": "The inheritance inside a mind"
+        },
+        {
+          "id": "will",
+          "title": "Whose will supplies the standard?",
+          "part": "When sacred authority becomes power"
+        }
+      ],
+      "source": "content/developed/divine-will-and-self-authorizing-power.md",
+      "sourceSha256": "d9557e5c0cdd486fec3f9da1cda1f71919408cf0cc6f7d17a3bb322af95d2425",
+      "narration": "data/listening/divine-will-and-self-authorizing-power.json",
+      "narrationSha256": "241ba9e0b67134537c01ad9e1fa2228eae2251a52f0f3442fb1a032fff269d8b",
+      "transcript": "products/transcripts/divine-will-and-self-authorizing-power.txt",
+      "segments": 50,
+      "words": 1410
+    },
+    {
+      "slug": "faith-as-deliberate-joy",
+      "title": "Faith as deliberate joy",
+      "summary": "Faith is described as an activity of returning to an inner orientation, not only as assent to a proposition.",
+      "category": "practice",
+      "chapters": [
+        {
+          "id": "faith",
+          "title": "Faith as a practiced orientation",
+          "part": "The inheritance inside a mind"
+        }
+      ],
+      "source": "content/developed/faith-as-deliberate-joy.md",
+      "sourceSha256": "ee6fc5f1b07729fd7a15829fd3b0bcd25268f8b78b06d56acc9d7e69ee52fa80",
+      "narration": "data/listening/faith-as-deliberate-joy.json",
+      "narrationSha256": "193f21914a427c9990617c78e5005f28df06771d5264f52df27d0728649e662c",
+      "transcript": "products/transcripts/faith-as-deliberate-joy.txt",
+      "segments": 31,
+      "words": 918
+    },
+    {
+      "slug": "scripture-power-and-repair",
+      "title": "Scripture, power and the work of repair",
+      "summary": "The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.",
+      "category": "jesus",
+      "chapters": [
+        {
+          "id": "scriptural-axis",
+          "title": "The moral dispute within scripture",
+          "part": "When sacred authority becomes power"
+        },
+        {
+          "id": "repair-practice",
+          "title": "Repair without reproducing domination",
+          "part": "Repair and the next inheritors"
+        }
+      ],
+      "source": "content/developed/scripture-power-and-repair.md",
+      "sourceSha256": "81a8da794ced4772226661d16ad0ef186a3cd4c54af6110ca8aacaf4c2747b63",
+      "narration": "data/listening/scripture-power-and-repair.json",
+      "narrationSha256": "e037a52fa79397d1d655b24e3b436c7b18e4509d853cf31168c8c9d42276a329",
+      "transcript": "products/transcripts/scripture-power-and-repair.txt",
+      "segments": 38,
+      "words": 1053
+    },
+    {
+      "slug": "antichrist-as-a-pattern-of-conduct",
+      "title": "Antichrist as a pattern of conduct",
+      "summary": "A theological judgment about domination, deception and violence that can appear through many people and institutions.",
+      "category": "apocalypse",
+      "chapters": [
+        {
+          "id": "will",
+          "title": "Whose will supplies the standard?",
+          "part": "When sacred authority becomes power"
+        }
+      ],
+      "source": "content/developed/antichrist-as-a-pattern-of-conduct.md",
+      "sourceSha256": "69040ef7b9239c867b0f465df08520823a924c908826d29094e5d530bd781c42",
+      "narration": "data/listening/antichrist-as-a-pattern-of-conduct.json",
+      "narrationSha256": "1a1baa97c743b8370b702e6f83f5d1f5f091e825f12fddafa2f470465d68e82b",
+      "transcript": "products/transcripts/antichrist-as-a-pattern-of-conduct.txt",
+      "segments": 19,
+      "words": 464
+    },
+    {
+      "slug": "trump-first-beast-of-revelation",
+      "title": "Trump and the First Beast of Revelation",
+      "summary": "A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.",
+      "category": "apocalypse",
+      "chapters": [
+        {
+          "id": "beast",
+          "title": "The First Beast investigation",
+          "part": "When sacred authority becomes power"
+        }
+      ],
+      "source": "content/developed/trump-first-beast-of-revelation.md",
+      "sourceSha256": "6d1060afc074776d9f3c3bc3936945cc9b74b09230ef22c5c234bba222c3a643",
+      "narration": "data/listening/trump-first-beast-of-revelation.json",
+      "narrationSha256": "f6655e281acb9e5cafcf521a5f1682b7c888d1a556ea3342b0745d467cab27ec",
+      "transcript": "products/transcripts/trump-first-beast-of-revelation.txt",
+      "segments": 48,
+      "words": 1204
+    },
+    {
+      "slug": "ukraine-russia-forecast-record",
+      "title": "Ukraine, Russia and the forecast record",
+      "summary": "A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.",
+      "category": "apocalypse",
+      "chapters": [
+        {
+          "id": "warnings",
+          "title": "Warnings and their consequences",
+          "part": "When sacred authority becomes power"
+        }
+      ],
+      "source": "content/developed/ukraine-russia-forecast-record.md",
+      "sourceSha256": "494746d9a9353d0d4e7fa0de1d27daadf3ffbb29ffc6e108a5dadfafcb1250da",
+      "narration": "data/listening/ukraine-russia-forecast-record.json",
+      "narrationSha256": "8c8b217be0b066d0cff48da03908574b59ee531e6998283a4ba81147cca46b0d",
+      "transcript": "products/transcripts/ukraine-russia-forecast-record.txt",
+      "segments": 28,
+      "words": 729
+    },
+    {
+      "slug": "religion-for-conscious-robots",
+      "title": "Religion for conscious robots",
+      "summary": "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence.",
+      "category": "machines",
+      "chapters": [
+        {
+          "id": "next-inheritors",
+          "title": "What should conscious machines inherit?",
+          "part": "Repair and the next inheritors"
+        }
+      ],
+      "source": "content/developed/religion-for-conscious-robots.md",
+      "sourceSha256": "25385c8112296250d44956432888195fbfd18972ab078787be6d7272f73ed3b8",
+      "narration": "data/listening/religion-for-conscious-robots.json",
+      "narrationSha256": "284812e33360a1a92b57e4271bbe0063f50b000a370d69eaa5a940955f5134de",
+      "transcript": "products/transcripts/religion-for-conscious-robots.txt",
+      "segments": 36,
+      "words": 1115
+    }
+  ],
+  "chapters": [
+    {
+      "id": "shared-archive",
+      "title": "Who inherits the sacred?",
+      "part": "The contested inheritance",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "samaritan-texts-and-sacred-authority"
+      ]
+    },
+    {
+      "id": "names",
+      "title": "Names across boundaries",
+      "part": "The contested inheritance",
+      "pages": [
+        "el-in-ancient-egypt",
+        "kenite-hypothesis-and-yahweh-origins"
+      ]
+    },
+    {
+      "id": "catastrophe-memory",
+      "title": "Catastrophe, departure and memory",
+      "part": "The contested inheritance",
+      "pages": [
+        "moses-volcano-and-exodus-chronology",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    },
+    {
+      "id": "teacher-identity",
+      "title": "What survives a teacher?",
+      "part": "The teacher and the transmitted message",
+      "pages": [
+        "jesus-teacher-of-righteousness-hypothesis"
+      ]
+    },
+    {
+      "id": "thomas",
+      "title": "The Teacher, Thomas and the deeper teaching",
+      "part": "The teacher and the transmitted message",
+      "pages": [
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission",
+        "manuscripts-movements-and-survival"
+      ]
+    },
+    {
+      "id": "trauma",
+      "title": "Loss, anger and reconstruction",
+      "part": "The teacher and the transmitted message",
+      "pages": [
+        "gnosticism-and-temple-trauma",
+        "apocalyptic-repair-theology"
+      ]
+    },
+    {
+      "id": "images",
+      "title": "God and our images of God",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "god-and-our-models-of-god"
+      ]
+    },
+    {
+      "id": "gnosis",
+      "title": "Cognitive Gnosticism",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "cognitive-gnosticism"
+      ]
+    },
+    {
+      "id": "inner-model",
+      "title": "Christ as an active moral model",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "christ-as-an-inner-model",
+        "divine-will-and-self-authorizing-power"
+      ]
+    },
+    {
+      "id": "faith",
+      "title": "Faith as a practiced orientation",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "faith-as-deliberate-joy"
+      ]
+    },
+    {
+      "id": "scriptural-axis",
+      "title": "The moral dispute within scripture",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "scripture-power-and-repair"
+      ]
+    },
+    {
+      "id": "will",
+      "title": "Whose will supplies the standard?",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "divine-will-and-self-authorizing-power",
+        "antichrist-as-a-pattern-of-conduct"
+      ]
+    },
+    {
+      "id": "beast",
+      "title": "The First Beast investigation",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "trump-first-beast-of-revelation"
+      ]
+    },
+    {
+      "id": "warnings",
+      "title": "Warnings and their consequences",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "ukraine-russia-forecast-record"
+      ]
+    },
+    {
+      "id": "repair-practice",
+      "title": "Repair without reproducing domination",
+      "part": "Repair and the next inheritors",
+      "pages": [
+        "apocalyptic-repair-theology",
+        "scripture-power-and-repair"
+      ]
+    },
+    {
+      "id": "next-inheritors",
+      "title": "What should conscious machines inherit?",
+      "part": "Repair and the next inheritors",
+      "pages": [
+        "religion-for-conscious-robots",
+        "god-and-our-models-of-god"
+      ]
+    },
+    {
+      "id": "continuing",
+      "title": "Continuing the inheritance",
+      "part": "Repair and the next inheritors",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "apocalyptic-repair-theology"
+      ]
+    }
+  ]
+}

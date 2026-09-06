@@ -18,6 +18,9 @@
       "apocalyptic-repair-theology",
       "trump-first-beast-of-revelation",
       "jesus-teacher-of-righteousness-hypothesis",
+      "listening-room",
+      "production-studio",
+      "product-pathways",
       "research-roadmap",
       "source-coverage",
       "book-contents",
@@ -14307,6 +14310,103 @@
     ]
   },
   {
+    "slug": "listening-room",
+    "title": "Listening room",
+    "category": "context",
+    "kind": "Navigator",
+    "summary": "Full developed articles, paragraph navigation, device voices and recorded studies.",
+    "aliases": [],
+    "path": "developed/listening-room.md",
+    "topic": "Wider conversations",
+    "tags": [
+      "context",
+      "navigation"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-listening-room",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/listening-room.md"
+    ],
+    "references": [],
+    "readMinutes": 1,
+    "related": [
+      "production-studio",
+      "product-pathways"
+    ],
+    "backlinkCount": 3,
+    "backlinks": [
+      "home",
+      "production-studio",
+      "product-pathways"
+    ]
+  },
+  {
+    "slug": "production-studio",
+    "title": "Audio and video studio",
+    "category": "context",
+    "kind": "Navigator",
+    "summary": "A source-linked production series with scripts, transcripts, recordings and measured captions.",
+    "aliases": [],
+    "path": "developed/production-studio.md",
+    "topic": "Wider conversations",
+    "tags": [
+      "context",
+      "navigation"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-production-studio",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/production-studio.md"
+    ],
+    "references": [],
+    "readMinutes": 1,
+    "related": [
+      "listening-room",
+      "product-pathways"
+    ],
+    "backlinkCount": 3,
+    "backlinks": [
+      "home",
+      "listening-room",
+      "product-pathways"
+    ]
+  },
+  {
+    "slug": "product-pathways",
+    "title": "One inquiry, several products",
+    "category": "context",
+    "kind": "Navigator",
+    "summary": "The book, listening edition, applications, video series and separately developed museum share one research foundation.",
+    "aliases": [],
+    "path": "developed/product-pathways.md",
+    "topic": "Wider conversations",
+    "tags": [
+      "context",
+      "navigation"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-product-pathways",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/product-pathways.md"
+    ],
+    "references": [],
+    "readMinutes": 4,
+    "related": [
+      "listening-room",
+      "production-studio",
+      "research-roadmap"
+    ],
+    "backlinkCount": 3,
+    "backlinks": [
+      "home",
+      "listening-room",
+      "production-studio"
+    ]
+  },
+  {
     "slug": "source-atlas",
     "title": "Source atlas: works, witnesses and arguments",
     "category": "context",
@@ -14444,10 +14544,11 @@
       "research-board",
       "source-coverage"
     ],
-    "backlinkCount": 4,
+    "backlinkCount": 5,
     "backlinks": [
       "home",
       "melchizedek-priesthood-and-transmission",
+      "product-pathways",
       "source-atlas",
       "source-coverage"
     ]

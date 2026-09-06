@@ -1,5 +1,9 @@
 {
-  "version": "2026.09.05-atlas-1",
+  "version": "2026.09.06-products-1",
+  "listeningArticles": 22,
+  "episodeDrafts": 3,
+  "productTasks": 10,
+  "recordedAssets": 0,
   "atlasRecords": 29,
   "atlasRelationships": 21,
   "challengeRecords": 4,
@@ -15,7 +19,7 @@
   "timelineRecords": 13,
   "argumentDossiers": 9,
   "reviewedPassages": 24,
-  "pages": 416,
+  "pages": 419,
   "readingPaths": 7,
   "forecastRecords": 6,
   "externalSources": 58,
@@ -26,7 +30,7 @@
   "explainedRelationships": 123,
   "anchoredSourceTurns": 38,
   "indexedTurns": 4980,
-  "links": 1498,
-  "searchTerms": 47739,
+  "links": 1508,
+  "searchTerms": 47742,
   "sourceBytes": 17769481
 }

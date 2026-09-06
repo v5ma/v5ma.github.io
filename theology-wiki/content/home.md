@@ -19,6 +19,10 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
 
+## Read, listen and explore
+
+[[listening-room|Listen to full articles]], explore [[production-studio|the audio and video studio]], or follow [[product-pathways|the connected product pathways]].
+
 ## Find your way through the inquiry
 
 [[research-roadmap|The shared research roadmap and Excel checklist]] records deliverables, dependencies and evidence. [[source-coverage|Source coverage]] identifies which conversations have recorded article links. [[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer seven longer routes, and the [[glossary|glossary]] explains the collection's terms.

@@ -1,0 +1,119 @@
+{
+  "id": "objections-in-the-museum",
+  "title": "Put the objection in the museum",
+  "summary": "Why the research archive includes challenges, corrections and the full versions of the arguments being challenged.",
+  "status": "Editorial production draft",
+  "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+  "pages": [
+    "argument-challenges",
+    "manuscripts-movements-and-survival",
+    "exodus-to-temple-competing-chronologies"
+  ],
+  "recordIds": [
+    "hypothesis-moses-october",
+    "hypothesis-teacher-october",
+    "work-daniel"
+  ],
+  "scenes": [
+    {
+      "id": "objections-in-the-museum-01",
+      "title": "The missing part of an exhibit",
+      "narration": "A museum label normally offers a conclusion. This project can also display how a reconstruction was challenged, how its author answered, and whether the objection addressed the actual theory.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    },
+    {
+      "id": "objections-in-the-museum-02",
+      "title": "Preserve the two-stage argument",
+      "narration": "In the original Moses discussion, Micah already distinguished a famine from a later account describing a firstborn plague. He did not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    },
+    {
+      "id": "objections-in-the-museum-03",
+      "title": "Ask the remaining historical question",
+      "narration": "Recovering that qualification does not establish the famine explanation. It changes the research task: what evidence might support the proposed disaster and its later narration? The full claim deserves examination instead of a reply to a claim the author rejected.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    },
+    {
+      "id": "objections-in-the-museum-04",
+      "title": "Do not replace a historical connection",
+      "narration": "Another exchange concerns communities remaining in Judea while others establish themselves in Egypt. The AI restates this as ideological similarity. The archive keeps both passages visible because the narrower restatement does not exhaust the institutional proposal.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    },
+    {
+      "id": "objections-in-the-museum-05",
+      "title": "Check favorable answers too",
+      "narration": "An encouraging AI answer can also be wrong. The Daniel discussion contains arithmetic that needs repair. Agreement is not an additional ancient witness. A useful research record identifies unsupported support as carefully as an inadequate dismissal.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    },
+    {
+      "id": "objections-in-the-museum-06",
+      "title": "An argument has a route",
+      "narration": "Each challenge record connects the claim, its version, the objection, the answer, and what remains open. The visitor can move from a short exhibit label into the complete conversation instead of trusting a curator's verdict.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    },
+    {
+      "id": "objections-in-the-museum-07",
+      "title": "Several products, one research foundation",
+      "narration": "The book can provide a sustained narrative. Audio and video can introduce a question. An interactive exhibit can make comparisons tangible. Their value depends on keeping the full research reachable, rather than allowing each format to invent a simpler history.",
+      "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
+      "sourcePages": [
+        "argument-challenges",
+        "manuscripts-movements-and-survival",
+        "exodus-to-temple-competing-chronologies"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "slug": "argument-challenges",
+      "title": "Challenges, corrections and preserved arguments",
+      "path": "content/developed/argument-challenges.md",
+      "sha256": "1b16f49e9ffb925eb3971fc2b6f7eebd341046491524de7381151241e1ef6f8b"
+    },
+    {
+      "slug": "manuscripts-movements-and-survival",
+      "title": "Manuscripts, movements and survival",
+      "path": "content/developed/manuscripts-movements-and-survival.md",
+      "sha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166"
+    },
+    {
+      "slug": "exodus-to-temple-competing-chronologies",
+      "title": "From Exodus to Temple: competing chronologies",
+      "path": "content/developed/exodus-to-temple-competing-chronologies.md",
+      "sha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3"
+    }
+  ],
+  "script": "products/episodes/objections-in-the-museum.txt",
+  "production": "products/episodes/objections-in-the-museum.json",
+  "words": 255
+}
