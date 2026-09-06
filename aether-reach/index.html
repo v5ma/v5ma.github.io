@@ -25,5 +25,10 @@
 <dialog id="record-dialog" aria-labelledby="record-title"><p class="eyebrow">RECOVERED FROM THE CITY ARCHIVE</p><h2 id="record-title"></h2><p id="record-text" class="record-text"></p><form method="dialog"><button class="primary">Keep exploring</button></form></dialog>
 <dialog id="complete-dialog" aria-labelledby="complete-title"><p class="eyebrow">EXPEDITION COMPLETE</p><h2 id="complete-title">The city has a voice.</h2><p>Iona’s signal is back on the public air. The doors are not all open yet, but someone is listening.</p><div id="run-stats"></div><p class="fine">This is the end of the first prototype expedition, not the finished campaign.</p><button id="explore-more" class="primary">Stay and explore</button><button id="new-expedition">New expedition</button><a href="../index.html">Return to SVGN Interactive</a></dialog>
 <noscript><p class="no-js">Aether Reach requires JavaScript and WebGL2. <a href="../index.html">Return to the project homepage.</a></p></noscript>
+<script>
+// Ignore the two recenter notifications emitted when pointer lock starts.
+// Only this canvas is affected; subsequent relative mouse input is untouched.
+(()=>{let warm=0;const world=document.getElementById('world');document.addEventListener('pointerlockchange',()=>{warm=document.pointerLockElement===world?2:0;},true);document.addEventListener('pointermove',e=>{if(warm&&document.pointerLockElement===world&&e.target===world){warm--;e.stopImmediatePropagation();}},true);})();
+</script>
 <script type="module" src="./app.mjs"></script>
 </body></html>
