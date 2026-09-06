@@ -41,7 +41,7 @@ From an inward model of Christ to spiritual practice and machine education.
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]
 
-[[christ-as-an-inner-model|Christ as an inner model]]
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]
 
 [[faith-as-deliberate-joy|Faith as deliberate joy]]
 
@@ -73,7 +73,7 @@ From an inward reference to a critique of self-authorizing power and the respons
 
 [[god-and-our-models-of-god|God and our models of God]]
 
-[[christ-as-an-inner-model|Christ as an inner model]]
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]
 
 [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]
 
@@ -96,3 +96,19 @@ Compare the historical reconstruction, Thomas, changing communities and the late
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]
+
+## Reality, inheritance and the constructive self
+
+From the computational-God argument through flood inheritance, inward formation and repair. Full claims remain distinct from their evidence maps.
+
+[[computational-divine-immanence|Computational Divine Immanence]]
+
+[[flood-inheritance-and-deep-time|Flood inheritance and deep time]]
+
+[[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]]
+
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]

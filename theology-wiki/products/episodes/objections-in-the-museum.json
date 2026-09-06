@@ -3,7 +3,7 @@
   "title": "Put the objection in the museum",
   "summary": "Why the research archive includes challenges, corrections and the full versions of the arguments being challenged.",
   "status": "Editorial production draft",
-  "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+  "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
   "pages": [
     "argument-challenges",
     "manuscripts-movements-and-survival",
@@ -29,7 +29,7 @@
     {
       "id": "objections-in-the-museum-02",
       "title": "Preserve the two-stage argument",
-      "narration": "In the original Moses discussion, Micah already distinguished a famine from a later account describing a firstborn plague. He did not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
+      "narration": "The famine-narration conjecture distinguishes a famine from a later account describing a firstborn plague. I do not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
       "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
       "sourcePages": [
         "argument-challenges",
@@ -40,7 +40,7 @@
     {
       "id": "objections-in-the-museum-03",
       "title": "Ask the remaining historical question",
-      "narration": "Recovering that qualification does not establish the famine explanation. It changes the research task: what evidence might support the proposed disaster and its later narration? The full claim deserves examination instead of a reply to a claim the author rejected.",
+      "narration": "That distinction does not establish the famine explanation. It clarifies the research task: what evidence supports the proposed disaster and its later narration? The full claim deserves examination rather than a reply to a claim already rejected.",
       "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
       "sourcePages": [
         "argument-challenges",
@@ -98,22 +98,22 @@
       "slug": "argument-challenges",
       "title": "Challenges, corrections and preserved arguments",
       "path": "content/developed/argument-challenges.md",
-      "sha256": "1b16f49e9ffb925eb3971fc2b6f7eebd341046491524de7381151241e1ef6f8b"
+      "sha256": "e39320b38275a0793ace96608e0228792eb7d4420f328d5783ca2888d5c386dc"
     },
     {
       "slug": "manuscripts-movements-and-survival",
       "title": "Manuscripts, movements and survival",
       "path": "content/developed/manuscripts-movements-and-survival.md",
-      "sha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166"
+      "sha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13"
     },
     {
       "slug": "exodus-to-temple-competing-chronologies",
       "title": "From Exodus to Temple: competing chronologies",
       "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-      "sha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3"
+      "sha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3"
     }
   ],
   "script": "products/episodes/objections-in-the-museum.txt",
   "production": "products/episodes/objections-in-the-museum.json",
-  "words": 255
+  "words": 248
 }

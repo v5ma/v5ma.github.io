@@ -45,7 +45,7 @@ with sync_playwright() as tool:
     page.on('pageerror', lambda e: ERRORS.append(str(e)))
     try:
         open_page(page)
-        check('Native HTTP reader loads 419 indexed pages', page.evaluate('TheologyReader.pages().length') == 419)
+        check('Native HTTP reader loads 423 indexed pages', page.evaluate('TheologyReader.pages().length') == 423)
         check('Home prioritizes three flagship arguments', page.locator('.depth-featured .research-card').count() == 3)
         check('Homepage describes 354 original source conversations', '354' in page.locator('.depth-home-footer').inner_text())
         check('Eight subject collections are accessible in the sidebar', page.locator('.research-topic-link').count() == 8)
@@ -209,7 +209,7 @@ with sync_playwright() as tool:
         open_page(page,'moses-volcano-and-exodus-chronology')
         check('Moses article preserves the accession objection and contrary research','accession' in page.locator('#article-body').inner_text() and 'Bruins' in page.locator('#article-body').inner_text())
         open_page(page,'el-in-ancient-egypt')
-        check('El article distinguishes the newer inquiry from the archived background','not presented here as a recovered transcript' in page.locator('#article-body').inner_text())
+        check('El article distinguishes the newer inquiry from the archived background','not an assumed transcript of a more recent conversation' in page.locator('#article-body').inner_text())
         open_page(page,'trump-first-beast-of-revelation')
         check('First Beast article preserves dates and differing interpretations','2025' in page.locator('#article-body').inner_text() and 'allegor' in page.locator('#article-body').inner_text())
         page.set_viewport_size({'width':1440,'height':1000})
@@ -250,7 +250,7 @@ with sync_playwright() as tool:
         expected_articles=set(page.evaluate("TheologyReader.pages().filter(p=>p.kind==='Developed article').map(p=>p.slug)"))
         featured_articles=page.locator('.depth-featured a[data-page]').evaluate_all('(links)=>links.map(a=>a.dataset.page)')
         indexed_articles=page.locator('.depth-article-index a[data-page]').evaluate_all('(links)=>links.map(a=>a.dataset.page)')
-        check('Home includes the connecting introduction and every developed article exactly once', len(expected_articles)==22 and len(featured_articles)==3 and len(indexed_articles)==len(expected_articles)-3 and len(set(featured_articles+indexed_articles))==len(expected_articles) and set(featured_articles+indexed_articles)==expected_articles and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
+        check('Home includes the connecting introduction and every developed article exactly once', len(expected_articles)==25 and len(featured_articles)==3 and len(indexed_articles)==len(expected_articles)-3 and len(set(featured_articles+indexed_articles))==len(expected_articles) and set(featured_articles+indexed_articles)==expected_articles and page.locator('.depth-route-banner a[data-page="guide-to-the-inquiry"]').count()==1)
         page.locator('.depth-featured a[data-page="apocalyptic-repair-theology"]').click()
         page.wait_for_function('document.querySelector("#article-body")?.dataset.depthReady==="apocalyptic-repair-theology"')
         check('A normal homepage click opens the flagship article', page.evaluate('TheologyReader.current().slug')=='apocalyptic-repair-theology')
@@ -338,15 +338,22 @@ with sync_playwright() as tool:
         run_roadmap_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
         from atlas_checks import run_atlas_checks
         run_atlas_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
+        from authorial_checks import run_authorial_checks
+        run_authorial_checks(page, open_page, check, OUT)
+        from computational_checks import run_computational_checks
+        run_computational_checks(page, open_page, check, OUT)
         from products_checks import run_products_checks
         run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback
         (OUT/'failure-traceback.txt').write_text(traceback.format_exc())
-        (OUT/'failure-browser-state.json').write_text(json.dumps({'errors':ERRORS,'state':page.evaluate('({url:location.href,current:window.TheologyReader?.current()?.slug,title:document.querySelector("#article-title")?.textContent,body:document.querySelector("#article-body")?.textContent.slice(0,2000)})')},indent=2))
-        screenshot(page,'failure.png')
-        (OUT/'failure.html').write_text(page.content())
+        try:
+            (OUT/'failure-browser-state.json').write_text(json.dumps({'errors':ERRORS,'state':page.evaluate('({url:location.href,current:window.TheologyReader?.current()?.slug,title:document.querySelector("#article-title")?.textContent,body:document.querySelector("#article-body")?.textContent.slice(0,2000)})')},indent=2))
+            screenshot(page,'failure.png')
+            (OUT/'failure.html').write_text(page.content())
+        except Exception as diagnostics_error:
+            (OUT/'failure-diagnostics.txt').write_text(str(diagnostics_error))
         raise
     finally:
         (OUT/'browser-report.json').write_text(json.dumps({'passed':len(CHECKS),'checks':CHECKS,'errors':ERRORS,'origin':ORIGIN,'mobileLayouts':LAYOUTS,'scope':'Native Chromium HTTP scripts, actual source fetching and SHA verification, actual local images, and real-origin storage. One separate storage-denial fixture is explicitly injected.'},indent=2))

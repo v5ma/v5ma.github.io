@@ -1,12 +1,12 @@
 {
   "version": "2026.09.05-atlas-1",
   "file": "Theology-Research-Plan.xlsx",
-  "sha256": "28473f631712ddae0a0adffc6907473000c4c2428f9d96a2379fe976d96210dc",
+  "sha256": "983eaf6f05fbd428dc27863a456a614b265c7287af3402b954a39f41cd43acc9",
   "inputHashes": {
-    "editorial/roadmap.json": "e81291e0af5473d1a658e2f772e9513f84bcede3f26e2473e54b66baa3b8333e",
-    "data/roadmap.json": "e2f183eed94cec38546f7223efd465db2719824862c2c49c94ecaa7234537684",
-    "data/source-coverage.json": "bc1285810a52c88a56944c30e8da7a5844c245bd690c7bac1d69ae3a5fa2bac1",
-    "data/foundations.json": "1a0f2abde913357658cdebbfa8fea711db513fe6ded828fc74681f8d0372341b",
+    "editorial/roadmap.json": "c07deda3ca3a1d40a5aac849eb2178767c02db8da140d5c9267df6930c832347",
+    "data/roadmap.json": "4cca03db6ce2b5195ce34113cb5334beae4a85aa8465c4c34e49603912c09b13",
+    "data/source-coverage.json": "0ea3fdc80fe8a5f0ea7c560a3fc93710b033b5f7fb67a8f6b3c4c6cc5771d2df",
+    "data/foundations.json": "2d1016f320c421d13a478ce43cf2e31f7769d9609402de80c30d4ed1fbee0878",
     "data/melchizedek-evidence.json": "6a2af6be2557749e90bc5377f6347dbbd684d9130c34de0579220e5325b44c1a"
   },
   "sheets": [
@@ -23,5 +23,6 @@
   "formulaCells": 942,
   "formulaErrorCount": 0,
   "policy": "A checked planning snapshot; local edits never update the shared site automatically. Re-export after changing source JSON. Cached figures are not author approval or a whole-project completion percentage.",
-  "inspection": "Imported using artifact_tool; preserved 942 formulas and native chart, refreshed changed tasks, source anchors and chapter links, and inspected calculated counts and dashboard rendering. Source anchor inputs retain the original Turn N text format."
+  "inspection": "Imported and updated with artifact_tool. Nine sheets and 942 formulas retained. Chapter article links, shared task status and evidence, next actions and edition notes refreshed. Rendered overview and chapter range inspected; no cached formula errors. Source links and counts do not assert author approval.",
+  "contentEdition": "2026.09.06-connected-foundations-1"
 }

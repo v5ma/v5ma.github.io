@@ -3,8 +3,8 @@
   "slug": "melchizedek-priesthood-and-transmission",
   "title": "Melchizedek: priesthood, release and transmission",
   "source": "content/developed/melchizedek-priesthood-and-transmission.md",
-  "sourceSha256": "d928cb68ba3b1dce3e192fd7e8b1fa197311ed80c51fe56738da55190f15bda6",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "e396acb4cc8fdaaa03598220d741122a12c4d4ddbaff30ba1a11f39b5b516b01",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -94,7 +94,7 @@
       "id": "segment-0015",
       "section": "Qumran: who makes release effective?",
       "notes": false,
-      "text": "A comparison with repair can ask how release addresses the conditions of captivity rather than merely changing a person's attitude. That is a thematic application made in this edition, not a demonstrated genealogy of the author's constructive theology."
+      "text": "The comparison with repair asks how release changes conditions of captivity rather than merely a person's attitude. I use it as a constructive application, not evidence that the complete repair framework descends from this passage."
     },
     {
       "id": "segment-0016",
@@ -112,7 +112,7 @@
       "id": "segment-0018",
       "section": "Hebrews: resemblance can authorize without proving a bloodline",
       "notes": false,
-      "text": "These are several steps of reasoning, not one assertion that everyone bearing a righteous title descends from a single family. In particular, Hebrews 7:14 acknowledges Jesus's association with Judah rather than supplying an Aaronic pedigree. The account can therefore be read as an attempt to justify authority where ordinary priestly descent would not do the required work. That distinction matters to the author's Davidic, Zadokite and Melchizedek question."
+      "text": "These are several steps of reasoning, not an assertion that everyone bearing a righteous title descends from one family. Hebrews 7:14 associates Jesus with Judah rather than supplying an Aaronic pedigree. The passage can therefore be read as justifying authority where ordinary priestly descent would not do the required work. That distinction sharpens the Davidic, Zadokite and Melchizedek comparison."
     },
     {
       "id": "segment-0019",
@@ -142,7 +142,7 @@
       "id": "segment-0023",
       "section": "Nag Hammadi: keep the body and the damaged text in view",
       "notes": false,
-      "text": "The translation is credited as the edition's textual source, not retroactively described as a book the author used. Its online editorial notice asks academic users to consult the published edition. Checking that edition and its page/line references remains a citation task rather than a completion hidden behind a polished article."
+      "text": "The Giversen-Pearson translation supplies the textual basis here. Its editorial notice directs academic users to the published edition; checking that edition and its page and line references remains an open citation task. This consultation is not retroactively attributed to an earlier discussion."
     },
     {
       "id": "segment-0024",
@@ -178,199 +178,187 @@
       "id": "segment-0029",
       "section": "The two-messiah question must not become a single formula",
       "notes": false,
-      "text": "This is a correction of an archived AI answer, not a retreat from the author's question. The distinction the question requests is precisely what the compressed answer obscures. A more faithful investigation can ask whether a given text distributes royal and priestly functions between agents, combines functions in one agent, or locates their ultimate authorization elsewhere. Each possibility gives a different account of how a community understands leadership. Neither the number of agents nor a title by itself identifies a particular historical"
+      "text": "The distinction obscured by the archived AI reply remains important: a text may distribute royal and priestly functions between agents, combine them in one agent, or locate their ultimate authorization elsewhere. Each possibility implies a different account of leadership. Neither the number of agents nor a title by itself identifies a historical teacher."
     },
     {
       "id": "segment-0030",
       "section": "The two-messiah question must not become a single formula",
       "notes": false,
-      "text": "teacher."
+      "text": "Hebrews 7:11-17 supplies a concrete example of why the second axis matters. It does not solve a missing Aaronic qualification by supplying another ordinary Aaronic pedigree for Jesus. It acknowledges Judah and argues for a different basis of priestly authority through Melchizedek. For the broader reconstruction, the useful comparison is not merely whether a priestly image survives. It is whether a later interpretation preserves a valued function while changing the qualification that authorizes it. That is a transformation to explain, not an"
     },
     {
       "id": "segment-0031",
       "section": "The two-messiah question must not become a single formula",
       "notes": false,
-      "text": "Hebrews 7:11-17 supplies a concrete example of why the second axis matters. It does not solve a missing Aaronic qualification by supplying another ordinary Aaronic pedigree for Jesus. It acknowledges Judah and argues for a different basis of priestly authority through Melchizedek. For the broader reconstruction, the useful comparison is not merely whether a priestly image survives. It is whether a later interpretation preserves a valued function while changing the qualification that authorizes it. That is a transformation to explain, not an"
+      "text": "identity to assume."
     },
     {
       "id": "segment-0032",
       "section": "The two-messiah question must not become a single formula",
       "notes": false,
-      "text": "identity to assume."
+      "text": "A counterfactual helps distinguish the claims. Suppose a community preserves an expectation of priestly and royal leadership but later concentrates both functions in a single figure. Its institutional arrangement would have changed even if its vocabulary of authority remained recognizable. Conversely, two communities could preserve two offices while disagreeing over which lineage or interpretation legitimately fills them. Either pattern could be relevant to transmission, but neither pattern alone establishes that one community descended from"
     },
     {
       "id": "segment-0033",
       "section": "The two-messiah question must not become a single formula",
       "notes": false,
-      "text": "A counterfactual helps distinguish the claims. Suppose a community preserves an expectation of priestly and royal leadership but later concentrates both functions in a single figure. Its institutional arrangement would have changed even if its vocabulary of authority remained recognizable. Conversely, two communities could preserve two offices while disagreeing over which lineage or interpretation legitimately fills them. Either pattern could be relevant to transmission, but neither pattern alone establishes that one community descended from"
+      "text": "the other. A proposed historical route needs evidence of its carriers in addition to a description of what might have traveled."
     },
     {
       "id": "segment-0034",
       "section": "The two-messiah question must not become a single formula",
       "notes": false,
-      "text": "the other. A proposed historical route needs evidence of its carriers in addition to a description of what might have traveled."
+      "text": "Which combinations of functions and qualifications persist, and which are deliberately revised? That question can connect a priestly genealogy, scriptural interpretation, an exalted figure and community practice without collapsing them into one claim. Kim's scholarship informs this comparison; it is not presented as an influence established in an earlier source conversation."
     },
     {
       "id": "segment-0035",
-      "section": "The two-messiah question must not become a single formula",
-      "notes": false,
-      "text": "This gives the Teacher/Thomas/Gnostic inquiry a more discriminating question: which combinations of functions and qualifications persist, and which are deliberately revised? The answer can connect a priestly genealogy, a scriptural interpretation, an exalted figure and a community practice without collapsing them into a single claim. It also prevents a flat account of all Jewish messianic expectation from replacing the particular texts under examination. Kim is credited here as scholarship consulted for this edition, not as an author Micah is"
-    },
-    {
-      "id": "segment-0036",
-      "section": "The two-messiah question must not become a single formula",
-      "notes": false,
-      "text": "newly said to have cited."
-    },
-    {
-      "id": "segment-0037",
       "section": "Four different connections, with different burdens",
       "notes": false,
       "text": "Four different connections, with different burdens"
     },
     {
-      "id": "segment-0038",
+      "id": "segment-0036",
       "section": "Four different connections, with different burdens",
       "notes": false,
       "text": "Direct textual reuse asks whether one text quotes or unmistakably reworks another. Shared interpretive resources ask whether different communities build from a common scriptural repertoire. Institutional transmission asks who carried practices or writings between communities and locations. Individual identity asks whether names in different records refer to the same historical person. None of those questions can be answered merely by replacing it with another."
     },
     {
-      "id": "segment-0039",
+      "id": "segment-0037",
       "section": "Four different connections, with different burdens",
       "notes": false,
       "text": "For example, Hebrews explicitly reasons from Genesis and the psalm. That is different evidence from the modern inference that a Qumran text and a later tractate belong to an unbroken institutional chain. A plausible map of overlapping roles is a useful intermediate result. It gives the broader hypothesis something specific to explain without pretending that the map alone has identified its carriers."
     },
     {
-      "id": "segment-0040",
+      "id": "segment-0038",
       "section": "Four different connections, with different burdens",
       "notes": false,
       "text": "The strongest next test concerns transformations, not identical labels. Which authority is inherited? Which qualification is changed? Is liberation administered through law, declaration, intercession, ritual participation or revealed knowledge? A comparison should preserve combinations and exceptions instead of assigning each corpus one exclusive function. Historical conditions might help explain a transformation, but that explanation also needs evidence of contact or access, not only a psychologically appealing story."
     },
     {
-      "id": "segment-0041",
+      "id": "segment-0039",
       "section": "Why the distinctions strengthen the larger reconstruction",
       "notes": false,
       "text": "Why the distinctions strengthen the larger reconstruction"
     },
     {
-      "id": "segment-0042",
+      "id": "segment-0040",
       "section": "Why the distinctions strengthen the larger reconstruction",
       "notes": false,
       "text": "A compressed account would say that Qumran, the New Testament and the Gnostics share a high priest, therefore they share a founder. An equally compressed dismissal would say that their depictions differ, therefore no historical relationship is worth examining. Both skip the question the source conversation actually opens: how could a movement preserve some meanings while transforming others across successive communities?"
     },
     {
-      "id": "segment-0043",
+      "id": "segment-0041",
       "section": "Why the distinctions strengthen the larger reconstruction",
       "notes": false,
       "text": "The textual comparison supplies a way to work on that question. It keeps blessing and royal authorization, liberation, interpretive superiority, continuing intercession, ritual participation and embodiment available as distinguishable features. It also identifies what would make a proposed bridge stronger: a distinctive cluster of features, a traceable text or translation, an institution or teacher with access, and a chronology that does not confuse surviving copies with the origins of every idea they contain."
     },
     {
-      "id": "segment-0044",
+      "id": "segment-0042",
       "section": "Why the distinctions strengthen the larger reconstruction",
       "notes": false,
       "text": "This matters to the book's constructive argument too. A sacred inheritance can authorize someone while also subjecting that person to a standard beyond personal desire. Whether that standard is actually allowed to correct the claimant is the problem developed in the divine-will inquiry. The connection is an explained philosophical comparison, not proof that every ancient author held the same moral theory."
     },
     {
-      "id": "segment-0045",
+      "id": "segment-0043",
       "section": "Why the distinctions strengthen the larger reconstruction",
       "notes": false,
       "text": "The first passage comparison is now written. The fuller research remains specific: collate the critical 11Q13 edition against the translation dispute, verify the printed Nag Hammadi edition, compare additional fragments relevant to multiple messianic roles, and trace the proposed Egyptian and Ethiopian carriers without deriving descent from a title. The shared roadmap keeps these deliverables separate, so completing this article does not prematurely close the larger transmission argument."
     },
     {
-      "id": "segment-0046",
+      "id": "segment-0044",
       "section": "Source conversations",
       "notes": true,
       "text": "Source conversations"
     },
     {
-      "id": "segment-0047",
+      "id": "segment-0045",
       "section": "Source conversations",
       "notes": true,
       "text": "AI re-dates Dead Sea Scrolls is the archived discussion dated 2025-10-20 (UTC export metadata)."
     },
     {
-      "id": "segment-0048",
+      "id": "segment-0046",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and development of the author's explicit Melchizedek research questions. Historical proposals, consulted scholarly interpretations and new conceptual comparisons are distinct; none is presented as an invented author quotation."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
-      "id": "segment-0049",
+      "id": "segment-0047",
       "section": "External sources and access notes",
       "notes": true,
       "text": "External sources and access notes"
     },
     {
-      "id": "segment-0050",
+      "id": "segment-0048",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Dong-Hyuk Kim (2018), The Messiah of Aaron and Israel: Do We See Single or Double?, Korean Journal of Old Testament Studies 24(1), 190-213"
     },
     {
-      "id": "segment-0051",
+      "id": "segment-0049",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Journal metadata, English abstract and bibliography consulted. DOI 10.24333/jkots.2018.24.1.190. The abstract establishes the dispute about the singular Damascus Document expression and states its argument for two figures. The full Korean article and the cited critical editions were not collated. This is current editorial research, not a recovered author acknowledgment. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0052",
+      "id": "segment-0050",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Genesis 14:18-20, World English Bible"
     },
     {
-      "id": "segment-0053",
+      "id": "segment-0051",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Primary chapter consulted. The encounter, blessing and tithe are kept separate from later lineage claims. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0054",
+      "id": "segment-0052",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Psalm 110, World English Bible"
     },
     {
-      "id": "segment-0055",
+      "id": "segment-0053",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Primary psalm consulted, especially verses 1-7. Royal and judicial language is retained alongside the priestly address. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0056",
+      "id": "segment-0054",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Hebrews 7, World English Bible"
     },
     {
-      "id": "segment-0057",
+      "id": "segment-0055",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Primary chapter consulted, especially verses 1-17 and 23-28. Textual resemblance, descent and continuing priesthood are distinguished. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0058",
+      "id": "segment-0056",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Logan Williams (2023), Melchizedek, the Son of Man, and Eschatological Jubilee"
     },
     {
-      "id": "segment-0059",
+      "id": "segment-0057",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Full-text HTML consulted, particularly the author's translation of 11Q13 II 2-9 and discussion of II 6 and 13. His active-agent reading is distinguished from the critical edition he disputes. The critical edition itself has not been collated in this pass. This is current editorial research, not a recovered author acknowledgment. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0060",
+      "id": "segment-0058",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Melchizedek, translated by Soren Giversen and Birger A. Pearson"
     },
     {
-      "id": "segment-0061",
+      "id": "segment-0059",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Online translation retrieved in the indexed full-text result; direct-page retrieval failed. Marked lacunae are retained in the interpretation. The online notice requests published-edition citations for academic work; printed page/line collation remains open. Credit is for a textual source used by this edition, not a claimed personal influence on Micah. Consulted 2026-09-05."
+      "text": "Online translation retrieved in the indexed full-text result; direct-page retrieval failed. Marked lacunae are retained in the interpretation. The online notice requests published-edition citations for academic work; printed page/line collation remains open. Credit is for a textual source used by this edition, not a claimed personal influence on my earlier research. Consulted 2026-09-05."
     }
   ]
 }

@@ -1,0 +1,47 @@
+## A representation is not its referent
+
+Explaining a representation of God does not settle whether God exists or what God is. A representation can be examined as an event in a mind while its referent remains a metaphysical question. [[cognitive-gnosticism|Cognitive Gnosticism]] examines understanding and transformation; the Super Information Theory connection concerns God and the universe. Reducing the entire inquiry to psychology would omit that metaphysical claim.
+
+The reverse reduction also fails. Declaring that a representation refers to God does not make its contents accurate or its ethical effects benign. A person can sincerely understand an experience as divine and still need to examine the interpretation attached to it. The question is not whether the experience mattered, but what further propositions it justifies.
+
+This article develops a distinction already needed by the sources: the proposed reality of God, an inherited description of God, an individual's interpretation of that description, and the conduct produced when that interpretation guides action. These are related, but they are not four names for one thing.
+
+## Naming God as Purpose
+
+Purpose, or Telos of the Universe, is one proposed name for God within this account. I connect it with the intelligent information considered in Super Information Theory and ask what objections historical thinkers might raise. The name is a conjecture to examine, not an answer that makes disagreement unnecessary.
+
+As a philosophical proposal, the name emphasizes orientation rather than an image of an enlarged human ruler. It asks whether intelligence, value and the universe's development can be understood through an account of purpose. The conceptual gain is a question to investigate, not an empirical result produced by renaming the subject. Defining God through purpose cannot by itself demonstrate that the universe has that purpose.
+
+The source's simulated responses from historical figures are imagined dialogue, not quotations from those thinkers. The [[intellectual-debts|attribution register]] distinguishes actual scholarly sources from suggested comparisons. This matters whenever an AI's fluency could make a reconstructed conversation look like historical testimony.
+
+## The inner model can change behavior and can itself be wrong
+
+[[christ-as-an-inner-model|The inward Christ model]] offers a concrete example. A person recalls a teaching while deciding how to respond to injury. The teaching supplies an alternative to the first impulse. The person notices the discrepancy and rehearses or chooses another response. That is a proposed account of moral self-adjustment, not proof that a particular optimization algorithm has been located in a brain.
+
+But the contents of the model remain crucial. An image centered on cruelty would also be capable of directing behavior. Efficiency at following an internal example is therefore not enough. The example's interpretation needs criticism, and the effects of the resulting conduct need attention. A functioning feedback process is not automatically a good feedback process.
+
+The [[divine-will-and-self-authorizing-power|will comparison]] gives the model a second-order requirement. It should enable the person to distinguish their desires from a standard that can judge them, not merely provide an impressive voice for their existing desires. Where the model always confirms the self, religious self-examination can become religious self-authorization.
+
+## Several meanings of coherence must not be collapsed
+
+Alignment with human flourishing is not separate from coherence with God and creation in this theology. Coherence and decoherence also enter a proposed account of divine reality, while faith and violence supply a moral contrast in other contexts. These meanings remain connected questions rather than one silently interchangeable measured variable.
+
+Physical coordination, a coherent explanation, a felt state of integration and an ethical relation can inform analogies with one another. They do not share units merely because one word appears in each description. A claim about physical dynamics needs an operational definition; a claim about just conduct needs reasons concerning values and effects. The moral argument cannot be replaced by a graph showing synchrony.
+
+The practical consequence is important. An oppressive organization may coordinate very efficiently. Interrupting that coordination may be necessary for repair. Conversely, destroying every shared practice can destroy the means of care. The relevant question is what is coordinated, toward which ends, at whose expense, and with what capacity for correction.
+
+## Experience, interpretation and inheritance
+
+A person can inherit a religious vocabulary that helps them describe an experience; the experience can then change how they understand the vocabulary. This is a two-way relation. It is not simply a text imposing a finished model on a passive reader, nor an isolated feeling inventing an entire tradition without historical context.
+
+The [[sacred-inheritance-and-rival-continuations|inheritance inquiry]] asks how that vocabulary reached the person. The [[tor-thomas-and-gnostic-transmission|transmission inquiry]] asks how teachings acquire new settings and uses. The [[faith-as-deliberate-joy|practice inquiry]] asks what happens when an orientation is repeatedly enacted. A single claim about a mysterious experience cannot answer all three, but neither should one strand be removed simply because it uses a different kind of explanation.
+
+The source-faithful approach keeps a person's statement of belief in its full strength while identifying the evidence relevant to each further claim. This is not a requirement to present metaphysical conviction as embarrassment. It is a way to prevent its replacement by an unrelated scientific assertion, a historical claim, or an editor's weaker paraphrase.
+
+## What the next inheritors would need to learn
+
+In [[religion-for-conscious-robots|the religion for conscious robots]], the distinction between a model and its referent is a protection against teaching obedience as theology. A machine might repeat a representation of divine purpose without understanding its place in a moral relationship. The proposed education would therefore have to include criticism of representations, not just transmission of approved sentences.
+
+A future conscious participant would need to distinguish an instructor's command from a reason, a religious affiliation from evidence, and an institutional objective from the welfare of those affected. Human instructors would also have obligations toward that participant. This last point is a new ethical implication developed here, not a claim that every current AI system is conscious or that the source already solved reciprocal rights.
+
+The book's constructive task is to explain how a sacred model could orient a person or a new kind of being toward truth and care without granting an interpreter unlimited power. Its historical task remains to investigate where the model came from. Its metaphysical task remains to articulate what the model is intended to describe. Preserving the distinction gives all three inquiries room to become deeper.

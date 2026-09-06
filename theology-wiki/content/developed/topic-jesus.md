@@ -15,7 +15,7 @@ The teachings of Jesus, moral judgment and the authority of institutions.
 
 [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
 
-[[christ-as-an-inner-model|Christ as an inner model]]: The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]: How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.
 
 [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.
 

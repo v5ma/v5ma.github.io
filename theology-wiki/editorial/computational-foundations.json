@@ -1,0 +1,387 @@
+{
+  "schema": "theology-computational-foundations-intake/v1",
+  "prepared": "2026-09-06",
+  "publicationState": "Integrated research working edition; author approval and independent argument audits remain separate.",
+  "authorialVoice": "Concept-led first-person exposition; original archives unchanged.",
+  "privacy": "Personal journal, relationship information and personal supernatural identity claims are not reproduced.",
+  "records": [
+    {
+      "id": "rr-2024",
+      "title": "Reframing Reality: How a Computational Universe Bridges Science, Spirituality, and Atheism",
+      "kind": "authorial philosophical dialogue",
+      "url": "https://www.svgn.io/p/reframing-reality-how-a-computational",
+      "displayedPublicationDate": "2024-12-03",
+      "access": "Full current webpage read; original-day content fixation not independently established.",
+      "scope": "Motivating computational-God synthesis. Hypothetical atheist responses are not actual endorsements."
+    },
+    {
+      "id": "god-proof-2026",
+      "title": "A Computational-Tomographic Proof of God",
+      "kind": "authorial philosophical argument",
+      "url": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86c120caf27b210e50d4",
+      "documentDate": "2026-07-28",
+      "version": "Restored Draft 2, as described in the supplied PDF",
+      "pages": 15,
+      "sha256": "b51c965f58ddffd0c2a6a91611227474cce00d83b769cdc03886f54c978e0391",
+      "access": "Full PDF retrieved; argumentative sections 1-10 and conclusion reviewed; bridge table visually inspected. Companion code was not run.",
+      "scope": "Affirmative conditional necessary-ground, agency, identity and S5 argument; not an empirical detection of God.",
+      "keySections": [
+        "3.3 cosmic limit",
+        "4 necessary ground",
+        "5 agency comparison",
+        "6 identity bridge",
+        "7.1 finite-model witness",
+        "8 numerical evidence stop rule",
+        "9.7 goodness",
+        "9.9 necessary agent and change"
+      ]
+    },
+    {
+      "id": "tcnr-2026",
+      "title": "Tomographic Coherence-Based Neural Rendering",
+      "kind": "authorial neuroscience protocol and conceptual bridge",
+      "url": "https://zenodo.org/records/21693924",
+      "mirror": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86bbc7fae5fe6622f006",
+      "documentDate": "2026-07-27",
+      "repositoryPublicationDate": "2026-07-29",
+      "version": "Draft 7, corrected house-style edition",
+      "pages": 20,
+      "sha256": "665c2d9345bfcf63886ea7323dd7bab340195578db0057896a1f140e80d34830",
+      "access": "PDF and Zenodo metadata retrieved; abstract and sections 1, 13-19 reviewed; coherence table visually inspected.",
+      "scope": "No dataset result in this paper; neural test, consciousness theory and cosmic extension have different evidentiary roles.",
+      "keySections": [
+        "13.2 four meanings of coherence",
+        "13.3 surprise and meaning",
+        "14 prediction and action",
+        "15.1 report convergence",
+        "16.5 historical cosmic bridge",
+        "17 cross-substrate criteria"
+      ]
+    },
+    {
+      "id": "sit-2026",
+      "title": "Super Information Theory: Coherence, Time Density, Informational Dissipation, and Gravity",
+      "kind": "authorial layered physics research program",
+      "url": "https://osf.io/3vsar/files/osfstorage/6a7eb5433da97c3f1bd90da5",
+      "download": "https://files.osf.io/v1/resources/3vsar/providers/osfstorage/6a7eb5433da97c3f1bd90da5",
+      "documentDate": "July 2026",
+      "repositoryFileCreatedUTC": "2026-08-14T06:27:15.484493Z",
+      "version": "Correction-integrated Draft 13",
+      "pages": 26,
+      "sha256": "5ffa4cabd5d4d4758dce28a235f34ec3c1b2a68ac26cba27614a77bc20523c98",
+      "access": "PDF and OSF file metadata retrieved; abstract and sections 3-4, 8-9, 13-14 reviewed. Not every mathematical derivation independently checked.",
+      "scope": "Calibrated state-to-field and metric couplings with proposed residual tests; not a confirmed unification.",
+      "keySections": [
+        "4.2 coherence observations",
+        "4.4 state-to-field map",
+        "8 corrected thermodynamic bridge",
+        "13 contribution and limitations"
+      ]
+    },
+    {
+      "id": "annunaki-dialogue",
+      "title": "Annunaki",
+      "kind": "published mixed-speaker research dialogue",
+      "url": "https://github.com/n5ro/gold/blob/main/Annunaki",
+      "gitBlobSha": "86d9d58c6a2ba51bd62714973341e24384e21be3",
+      "access": "Initial passage and mapping discussion read through the GitHub connector; no new cuneiform collation.",
+      "scope": "Author-directed formal narrative comparison. AI-generated illustrative probabilities are not calibrated findings."
+    },
+    {
+      "id": "sumerian-flood",
+      "title": "The Flood Story, ETCSL 1.7.4",
+      "kind": "ancient work in scholarly online translation",
+      "url": "https://etcsl.orinst.ox.ac.uk/section1/tr174.htm",
+      "locators": [
+        "segments C-E"
+      ],
+      "access": "Translation consulted; lacunae retained.",
+      "scope": "Textual witness to narrative structure; no independent absolute date of the narrated disaster."
+    },
+    {
+      "id": "sumerian-kings",
+      "title": "Sumerian King List, ETCSL 2.1.1",
+      "kind": "ancient work in scholarly online translation",
+      "url": "https://etcsl.orinst.ox.ac.uk/section2/tr211.htm",
+      "locators": [
+        "lines 1-94"
+      ],
+      "access": "Translation and variant notices consulted.",
+      "scope": "Internal royal/flood chronology; not a calibrated geochronological table."
+    },
+    {
+      "id": "genesis-web",
+      "title": "Genesis, World English Bible",
+      "kind": "modern translation of biblical text",
+      "urls": [
+        "https://ebible.org/engwebp/GEN05.htm",
+        "https://ebible.org/engwebp/GEN08.htm",
+        "https://ebible.org/engwebp/GEN11.htm"
+      ],
+      "locators": [
+        "5",
+        "8:6-12 and 8:20-22",
+        "11"
+      ],
+      "access": "Named chapters consulted; no complete Hebrew/Greek/Samaritan variant collation.",
+      "scope": "Genealogical counts and bird-release sequence; not an independently dated geological event."
+    },
+    {
+      "id": "gilgamesh-k3375",
+      "title": "K.3375, Flood Tablet, Gilgamesh XI",
+      "kind": "material witness catalogue",
+      "url": "https://www.britishmuseum.org/collection/object/W_K-3375",
+      "witnessDate": "seventh century BCE, museum attribution",
+      "eventDate": null,
+      "access": "British Museum indexed catalogue record consulted; direct page fetch was unavailable.",
+      "scope": "Object identity and attributed production date. No new scan, image permission or excavation analysis."
+    },
+    {
+      "id": "maldacena-1997",
+      "title": "The Large N Limit of Superconformal Field Theories and Supergravity",
+      "kind": "primary theoretical physics paper",
+      "url": "https://arxiv.org/abs/hep-th/9711200",
+      "access": "Abstract and relevant PDF discussion consulted.",
+      "scope": "Specific holographic duality proposal; does not establish an external simulator or a cosmic conscious observer."
+    },
+    {
+      "id": "coherence-2014",
+      "title": "Quantifying Coherence",
+      "kind": "primary theoretical physics paper",
+      "url": "https://arxiv.org/abs/1311.0275",
+      "access": "Abstract and relevant PDF discussion consulted.",
+      "scope": "Basis-relative quantum coherence measures; not a universal identity among binding, consciousness and entropy."
+    },
+    {
+      "id": "pair-production-2021",
+      "title": "Measurement of electron-positron Momentum and Angular Distributions from Linearly Polarized Photon Collisions",
+      "kind": "primary experimental physics paper",
+      "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.052302",
+      "institutionReport": "https://www.bnl.gov/newsroom/news.php?a=119023",
+      "access": "Publisher page and Brookhaven report consulted.",
+      "scope": "Photon interaction and pair production; not a claim that a photon contains electron and positron halves."
+    },
+    {
+      "id": "dmt-eegfmri-2023",
+      "title": "Human brain effects of DMT assessed via EEG-fMRI",
+      "kind": "primary neuroscience study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36940333/",
+      "access": "Indexed abstract consulted; full PMC page returned a browser challenge.",
+      "scope": "Altered brain activity and subjective state in controlled participants; not verification of the external cause of an individual experience."
+    },
+    {
+      "id": "tame-2022",
+      "title": "Technological Approach to Mind Everywhere: An Experimentally-Grounded Framework for Understanding Diverse Bodies and Minds",
+      "kind": "researcher-authored conceptual framework",
+      "url": "https://www.frontiersin.org/journals/systems-neuroscience/articles/10.3389/fnsys.2022.768201/full",
+      "access": "Relevant framework discussion consulted.",
+      "scope": "Operational investigation of diverse intelligence; not evidence assigning supernatural identity to any living person."
+    },
+    {
+      "id": "ruliad-2021",
+      "title": "The Concept of the Ruliad",
+      "kind": "researcher-authored computational proposal",
+      "url": "https://writings.stephenwolfram.com/2021/11/the-concept-of-the-ruliad/",
+      "displayedPublicationDate": "2021-11-10",
+      "access": "Relevant conceptual discussion consulted.",
+      "scope": "A computational possibility construction; its identity with an ancient theological realm is a further proposed comparison."
+    },
+    {
+      "id": "apocryphon-john-long",
+      "title": "Apocryphon of John, long version",
+      "kind": "ancient work in edited online translation",
+      "url": "https://www.gnosis.org/naghamm/apocjn-long.html",
+      "translationCredit": "Michael Waldstein and Frederik Wisse; edited and formatted by Lance Owens",
+      "access": "Online opening and Monad discussion consulted; printed synopsis not collated.",
+      "scope": "Modern comparative interpretation must not be presented as ancient computational terminology or proven identity with the Ruliad."
+    },
+    {
+      "id": "first-star-2001",
+      "title": "The Formation of the First Star in the Universe",
+      "kind": "primary astrophysical simulation study",
+      "url": "https://arxiv.org/abs/astro-ph/0112088",
+      "access": "Abstract consulted.",
+      "scope": "Specific gravitational/cooling formation model; no evidence that a general-purpose coherence quantity alone explains stellar formation."
+    }
+  ],
+  "bridges": [
+    {
+      "id": "ground",
+      "from": "god-proof-2026",
+      "to": "god-proof-2026",
+      "type": "conditional philosophical derivation",
+      "question": "Do the totality, contingency, PSR-C and noncircularity premises license a necessary ground?",
+      "status": "Argument mapped; independent proof audit not performed.",
+      "page": "computational-divine-immanence"
+    },
+    {
+      "id": "agency",
+      "from": "god-proof-2026",
+      "to": "tcnr-2026",
+      "type": "comparative philosophical bridge",
+      "question": "Does reasons-responsive selection explain contingent actualization better than the declared impersonal alternatives?",
+      "status": "Affirmative argument preserved; not classified as an empirical finding.",
+      "page": "computational-divine-immanence"
+    },
+    {
+      "id": "immanence",
+      "from": "god-proof-2026",
+      "to": "rr-2024",
+      "type": "new interpretive development",
+      "question": "Is the world identical with, dependent on, or an expression within the proposed necessary ground?",
+      "status": "Working interpretation; identity not obtained merely by renaming reality.",
+      "page": "computational-divine-immanence"
+    },
+    {
+      "id": "quantum-neural",
+      "from": "tcnr-2026",
+      "to": "coherence-2014",
+      "type": "definition boundary",
+      "question": "Which declared coherence statistic is being used, at what scale, and with which counterexamples?",
+      "status": "Distinct meanings retained.",
+      "page": "computational-divine-immanence"
+    },
+    {
+      "id": "coherence-gravity",
+      "from": "sit-2026",
+      "to": "tcnr-2026",
+      "type": "cross-domain physical hypothesis",
+      "question": "What calibrated, dimensionally consistent state-to-field map supplies a residual beyond ordinary preparation effects?",
+      "status": "Prospective hypothesis; no confirmed SIT-specific signal claimed.",
+      "page": "computational-divine-immanence"
+    },
+    {
+      "id": "flood-inheritance",
+      "from": "sumerian-flood",
+      "to": "genesis-web",
+      "type": "textual comparison with transmission hypothesis",
+      "question": "Which sequence, roles and theological transformations are preserved, and which alternatives explain them?",
+      "status": "Initial passages compared; no numerical odds assigned.",
+      "page": "flood-inheritance-and-deep-time"
+    },
+    {
+      "id": "witness-event-date",
+      "from": "gilgamesh-k3375",
+      "to": "sumerian-kings",
+      "type": "chronology-layer distinction",
+      "question": "Which date concerns an artifact, a composition, an internal chronology or a hypothesized event?",
+      "status": "No absolute flood date inferred.",
+      "page": "flood-inheritance-and-deep-time"
+    },
+    {
+      "id": "mapping-probabilities",
+      "from": "annunaki-dialogue",
+      "to": "god-proof-2026",
+      "type": "later methodological correction",
+      "question": "Can narrative-comparison likelihoods meet the later paper's source-backed, dependency-aware stop rule?",
+      "status": "Original claims retained as archive; illustrative Bayes factors not promoted to findings.",
+      "page": "flood-inheritance-and-deep-time"
+    },
+    {
+      "id": "experience-explanation",
+      "from": "dmt-eegfmri-2023",
+      "to": "tcnr-2026",
+      "type": "evidence-scope distinction",
+      "question": "What separates a report of meaning and imagery from an independently identified external cause?",
+      "status": "No personal testimony published in this intake.",
+      "page": "computational-divine-immanence"
+    },
+    {
+      "id": "ruliad-monad",
+      "from": "ruliad-2021",
+      "to": "apocryphon-john-long",
+      "type": "modern conceptual analogy",
+      "question": "Which roles correspond, and which differences prevent an identity claim?",
+      "status": "Comparative proposal, not a recovered historical transmission.",
+      "page": "computational-divine-immanence"
+    }
+  ],
+  "retrievalEvidence": [
+    {
+      "id": "computational-proof",
+      "requestedUrl": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86c120caf27b210e50d4",
+      "checkedAtUTC": "2026-09-06T20:31:47Z",
+      "status": 200,
+      "file": "computational-proof.pdf",
+      "kind": "pdf",
+      "bytes": 183888,
+      "sha256": "b51c965f58ddffd0c2a6a91611227474cce00d83b769cdc03886f54c978e0391"
+    },
+    {
+      "id": "tcnr-zenodo",
+      "requestedUrl": "https://zenodo.org/api/records/21693924",
+      "checkedAtUTC": "2026-09-06T20:31:48Z",
+      "status": 200,
+      "file": "tcnr-zenodo.json",
+      "kind": "json",
+      "bytes": 5700,
+      "sha256": "83ea19c9792b7125b99e1eedce7f8a19325404f7f5ea4ef53f31d413ca9ca7c0",
+      "metadata": {
+        "title": "Tomographic Coherence-Based Neural Rendering",
+        "publication_date": "2026-07-29",
+        "version": "Corrected house-style edition, 2026-07-29",
+        "doi": "10.5281/zenodo.21693924"
+      }
+    },
+    {
+      "id": "tcnr-osf-mirror",
+      "requestedUrl": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86bbc7fae5fe6622f006",
+      "checkedAtUTC": "2026-09-06T20:31:49Z",
+      "status": 200,
+      "file": "tcnr-osf-mirror.pdf",
+      "kind": "pdf",
+      "bytes": 200433,
+      "sha256": "665c2d9345bfcf63886ea7323dd7bab340195578db0057896a1f140e80d34830"
+    },
+    {
+      "id": "additional-osf-metadata",
+      "requestedUrl": "https://api.osf.io/v2/files/6a7eb5433da97c3f1bd90da5/",
+      "checkedAtUTC": "2026-09-06T20:31:50Z",
+      "status": 200,
+      "file": "additional-osf-metadata.json",
+      "kind": "json",
+      "bytes": 2306,
+      "sha256": "d63a7581fd7dace04b014c530c714feb645bb7c9f83ad5bf0d8aea5e0e85339c",
+      "metadata": {
+        "guid": "hkt83",
+        "checkout": null,
+        "name": "002 - Super Information Theory Coherence, Time Density, Informational Dissipation, and Gravity.pdf",
+        "kind": "file",
+        "path": "/6a7eb5433da97c3f1bd90da5",
+        "size": 252499,
+        "provider": "osfstorage",
+        "materialized_path": "/002 - Super Information Theory Coherence, Time Density, Informational Dissipation, and Gravity.pdf",
+        "last_touched": null,
+        "date_modified": "2026-08-14T06:27:15.484493",
+        "date_created": "2026-08-14T06:27:15.484493Z",
+        "extra": {
+          "hashes": {
+            "md5": "af9ca02ce9ad5da8a22cbf35b173c961",
+            "sha256": "5ffa4cabd5d4d4758dce28a235f34ec3c1b2a68ac26cba27614a77bc20523c98"
+          },
+          "downloads": 4
+        },
+        "tags": [],
+        "current_user_can_comment": false,
+        "current_version": 1,
+        "show_as_unviewed": false
+      }
+    },
+    {
+      "id": "additional-osf-direct",
+      "requestedUrl": "https://files.osf.io/v1/resources/3vsar/providers/osfstorage/6a7eb5433da97c3f1bd90da5",
+      "checkedAtUTC": "2026-09-06T20:31:50Z",
+      "status": 200,
+      "file": "additional-osf-direct.pdf",
+      "kind": "pdf",
+      "bytes": 252499,
+      "sha256": "5ffa4cabd5d4d4758dce28a235f34ec3c1b2a68ac26cba27614a77bc20523c98"
+    }
+  ],
+  "version": "2026.09.06-connected-foundations-1",
+  "integrationReview": "Existing verified intake retained. Primary flood translations rechecked on September 6, 2026. No new personal testimony, numerical historical odds, physical experiment or XR runtime.",
+  "articles": [
+    "computational-divine-immanence",
+    "flood-inheritance-and-deep-time"
+  ]
+}

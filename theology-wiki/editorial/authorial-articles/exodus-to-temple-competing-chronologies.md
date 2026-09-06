@@ -1,0 +1,67 @@
+## Begin with the history being reconstructed
+
+The earlier-Exodus reconstruction asks whether the departure tradition preserves a political reversal and environmental catastrophe near the end of Hyksos power rather than the setting usually supplied by a later Egyptian place-name. Its explanatory ambition is a sequence, not an isolated date: a population acquires standing, loses protection during a change of rule, experiences coercion and disaster, and departs. [[moses-volcano-and-exodus-chronology|The Moses investigation]] develops that sequence. Here I compare it with ancient intervals between departure and sanctuary.
+
+The latest discussion adds a useful test from outside the existing article: Solomon's Temple is said to follow the Exodus by a stated number of years. That is not one uncontested number. The consulted Hebrew-based English text, one Greek translation tradition and Josephus preserve substantially different intervals. An earlier departure therefore deserves comparison with the longer ancient counts, not rejection merely because it differs from one familiar modern calculation. Conversely, choosing the longest count solely because it helps a preferred Egyptian identification would leave the rest of the source's chronological system unexplained.
+
+This investigation keeps the reconstruction intact while separating four things: the words and endpoints of an interval, the textual form in which it is encountered, the interpretation of the count, and the absolute anchor supplied by a modern calculation. The interactive comparison below changes the fourth without silently changing the first three. Its default date is an example, not an archaeological finding.
+
+## The first endpoint is the foundation, not the dedication
+
+In the World English Bible's rendering of 1 Kings 6:1, construction begins in the 480th year after departure from Egypt and the fourth regnal year of Solomon. Verses 37-38 distinguish the foundation from completion in his eleventh year and describe seven years of construction. A comparison using the foundation date should not quietly substitute a completion or dedication date for that endpoint.
+
+Brenton's Septuagint translation gives the 440th year in the corresponding opening. Its additional verse lettering also places the foundation and completion notices differently. This edition records that specific translated witness. It does not claim that every Greek manuscript has one identical reading, or that inspecting an English translation is a critical collation of Hebrew and Greek manuscripts.
+
+The forty-year difference exists before an absolute BCE date is selected. Neither a debate about Solomon's accession nor a change in a proposed eruption date makes that difference disappear. The textual question is why these versions count differently; the historical question is which, if either, preserves an elapsed interval relevant to the proposed departure. Those questions can inform one another without being treated as identical.
+
+## The longer counts are not inventions of this reconstruction
+
+Josephus, Antiquities 8.3.1, places the commencement of the Temple 592 years after the Exodus. Antiquities 20.10.1 gives 612 years in a priestly succession account extending from departure under Moses to Solomon's Temple. These are genuinely longer transmitted counts. They should not be described as two independent contemporary witnesses to Moses, and the succession paragraph should not be silently upgraded into a precise foundation-day notice. Its endpoint is recorded here as the Temple in the succession account, with alignment to the foundation made explicit as an assumption in the calculator.
+
+The difference between 592 and 612 is itself part of the research. It might invite textual, computational or compositional investigation; the present comparison does not resolve it by selecting a preferred number and suppressing the other. Josephus is valuable partly because he preserves a different way of arranging the past, and partly because different passages require reconciliation even within the transmitted work.
+
+Against Apion 1.14-16 is a different kind of source. Josephus quotes material attributed to Manetho about the shepherd rulers and their departure, then interprets that story in relation to his people's ancestors. The ancient association of Hyksos departure with ancestral departure is therefore an actual comparison target. But Manetho's quoted account and Josephus's interpretation have a dependency between them. Counting them as two independent eyewitness reports would double-count the same chain of transmission.
+
+The proposed historical reconstruction can investigate what that chain preserves and changes. An ancient identification is neither automatically accurate nor historically irrelevant. Its content, purpose, chronological distance and dependence are all part of the evidence. The [[source-atlas|source atlas]] keeps a work, a quotation surviving inside another work, and a modern interpretation as distinct records.
+
+## Show the consequences of an anchor rather than hiding it
+
+Suppose, solely to compare the intervals, that the foundation is assigned to 967 BCE. Treating an ordinal "480th year" as 479 elapsed years gives 1446 BCE; treating the 440th year in the same way gives 1406 BCE. Counting 480 or 440 fully elapsed years instead changes each result by one year. The tool exposes that counting choice rather than announcing a spurious exactness.
+
+With the same hypothetical foundation anchor, 592 elapsed years gives 1559 BCE. Aligning the 612-year succession endpoint to the foundation gives 1579 BCE. The proposed earlier departure therefore has a relevant ancient chronological comparison. This arithmetic does not establish that Josephus assigned those BCE dates, identify an eruption or settle the relationship between departure and an Egyptian accession.
+
+An internally connected Josephus passage changes the experiment. Antiquities 10.8.5 places destruction 470 years, six months and ten days after construction, and 1062 years with the same additional months and days after the Exodus. The whole-year difference, 1062 minus 470, is 592. Thus the 592-year count participates in a larger chronological arrangement, not just a detachable number that can be attached to any chosen Temple date.
+
+Assigning destruction to 586 BCE as a separate example gives approximately 1648 BCE for departure and 1056 BCE for construction in that arrangement, using whole years only. This is not the same experiment as retaining a 967 BCE foundation and adding 592. The calculator prevents the destruction interval from appearing in the foundation comparison. It also labels the dropped months and days, so the displayed whole-year arithmetic does not claim day-level precision.
+
+## The interval before departure matters too
+
+Exodus 12:40 supplies another warning about what a number measures. The consulted Hebrew-based English form places 430 years in Egypt. Brenton's Greek rendering includes Egypt and Canaan within 430 years. The number stays fixed while its scope changes. A proposed reconstruction of arrival, status, political reversal and departure needs to state which scope it uses. It cannot adopt the duration from one version and the geographical span from the other without acknowledging the combination.
+
+Judges 11:26 supplies a separate 300-year interval in Jephthah's speech about occupation of Heshbon, Aroer and associated territory. It is a claim made inside a narrated dispute, not a newly dated archaeological layer. Nevertheless, it belongs in a reconstruction of the time between departure and monarchy. Ignoring it because another passage offers a convenient total would remove a relevant constraint.
+
+These passages do not force every narrated judge or political event into a strictly sequential list. Neither do they license arbitrary overlap whenever a calculation becomes inconvenient. The source atlas records the stated endpoints; a fuller chronology must explain how the intervening events are arranged and why. That is a concrete next task, not a reason to replace the earlier-Exodus investigation with an introductory consensus summary.
+
+## Distinguishing catastrophe from its later narration
+
+A natural famine would not selectively target firstborn children. The conjecture distinguishes an underlying catastrophe from a later narrator's subjective impression of whom it targeted. This distinction is already explicit in the [[parthians-and-medes-meaning|original famine discussion]], author turn 23; it is part of the reconstruction, not an objection awaiting discovery.
+
+Age-based vulnerability and birth order are different variables. The remaining historical question is whether a particular disaster was narrated through a firstborn pattern. The proposed account of children's vulnerability is a component of the conjecture, not a medical finding or proof of a particular royal death.
+
+A serious challenge can question the environmental cascade, chronology, transformation of the narrative or basis for a royal identification. Repeating only that famine does not select firstborns does not test the distinction between catastrophe and narration. [[argument-challenges|The challenge record]] preserves the original qualification and the still-open historical question.
+
+## Keep the order of events visible when versions change
+
+The October version places conquest and loss of status before catastrophe and departure. A later alternative explores departure before Ahmose's accession. These are different causal orders. I retain them as separate versions rather than combine incompatible steps into a new account. The order of causes needs as much care as the absolute dates.
+
+The accession objection likewise addresses an ordering inference. An object produced during a reign gives a point within that reign. If an eruption predates the object, the relative order of eruption and accession is not fixed by those two facts alone. With A for accession, E for eruption and B for the object, A < B and E < B do not decide whether A < E or E < A. Applying that valid distinction to a multi-object chronological study requires addressing the study's full assumptions; it is not equivalent to refuting the entire analysis.
+
+The atlas can therefore preserve both the logical result and the unfinished empirical comparison. A short museum label should not present either "the date proves Moses" or "science ruled it out" where the actual argument is about what a particular inference establishes.
+
+## From a lost sanctuary to the promise of restoration
+
+The connection to Daniel does not depend on treating 480 and 490 as interchangeable. Daniel 9 recalls departure from Egypt in verse 15, asks for the desolate sanctuary's restoration in verse 17, and introduces seventy weeks in verse 24. Deliverance, sanctuary, loss and restoration belong to its own narrative framework. That supplies a textual reason to compare its sacred chronology with the Exodus-to-Temple arrangements.
+
+The proposed connection to [[jesus-teacher-of-righteousness-hypothesis|the Teacher reconstruction]] asks who subsequently claimed to occupy the promised restoration and how that claim survived. The arithmetic cannot identify a teacher until the starting event, counting rule and endpoint have been specified. An appearance, a death and a community's anticipated vindication are not interchangeable endpoints merely because their dates lie near one another.
+
+The connection to [[apocalyptic-repair-theology|repair]] concerns a community locating itself within an inherited account of deliverance and disruption, then asking what restoration requires. This is a constructive comparison, not a claim that every ancient text contains the complete later theory. The [[museum-trails|museum trails]] connect a source, its interval, the competing reconstruction and the argument between them.

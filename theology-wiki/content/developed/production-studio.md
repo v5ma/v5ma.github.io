@@ -9,4 +9,4 @@ updated: "2026-09-04"
 
 # Audio and video studio
 
-These are attributed editorial adaptations, not first-person author quotations or completed manuscript chapters. Full-article narration remains in the [[listening-room|listening room]]. [[product-pathways|Product pathways]] records the shared production plan.
+These are first-person authorial scripts and synthetic narration drafts. They are not recovered verbatim quotations, recordings of my voice, or completed manuscript chapters. Full-article narration remains in the [[listening-room|listening room]]. [[product-pathways|Product pathways]] records the shared production plan.

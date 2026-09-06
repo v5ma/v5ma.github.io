@@ -9,7 +9,7 @@ updated: "2026-09-04"
 
 # Theology Wiki
 
-Theology asks what we inherit, whom we trust, how a mind changes and what repair demands. This library develops Micah Blumberg's inquiries through source-linked arguments and preserved conversations.
+Theology asks what we inherit, whom we trust, how a mind changes and what repair demands. This library develops my inquiries through source-linked arguments and preserved conversations.
 
 ## Begin with an argument
 
@@ -25,7 +25,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 ## Find your way through the inquiry
 
-[[research-roadmap|The shared research roadmap and Excel checklist]] records deliverables, dependencies and evidence. [[source-coverage|Source coverage]] identifies which conversations have recorded article links. [[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer seven longer routes, and the [[glossary|glossary]] explains the collection's terms.
+[[research-roadmap|The shared research roadmap and Excel checklist]] records deliverables, dependencies and evidence. [[source-coverage|Source coverage]] identifies which conversations have recorded article links. [[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer eight longer routes, and the [[glossary|glossary]] explains the collection's terms.
 
 ## All developed articles
 
@@ -43,19 +43,19 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
 
-[[cognitive-gnosticism|Cognitive Gnosticism]]: Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.
+[[cognitive-gnosticism|Cognitive Gnosticism]]: An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.
 
-[[christ-as-an-inner-model|Christ as an inner model]]: The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]: How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.
 
 [[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: A theological judgment about domination, deception and violence that can appear through many people and institutions.
 
-[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence.
+[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.
 
 [[faith-as-deliberate-joy|Faith as deliberate joy]]: Faith is described as an activity of returning to an inner orientation, not only as assent to a proposition.
 
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]: A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?
 
-[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: Micah's comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
+[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: The comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
 
 [[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]]: How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.
 
@@ -72,6 +72,12 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 [[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]: Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.
 
 [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]: A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]: Connect inward covenant, community discipline, Sabbath liturgy, Pauline formation, P46 and Dura without collapsing a text, its witness and its interpretation.
+
+[[computational-divine-immanence|Computational Divine Immanence]]: A computational-God interpretation connecting a necessary ground, reasons-responsive agency, constructive selfhood and repair without treating the different arguments as one experiment.
+
+[[flood-inheritance-and-deep-time|Flood inheritance and deep time]]: A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.
 
 ## Explore a subject
 
@@ -93,6 +99,6 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 ## Sources and research tools
 
-[[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
+[[computational-argument-map|The computational theology argument map]] connects the new sources and ten research questions. [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-22 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.
+25 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.

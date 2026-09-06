@@ -1,0 +1,85 @@
+## Christic Self-Formation Theory
+
+Christ can become more than an object of belief. An inwardly present model of Christ can participate in the process through which a person perceives a situation, considers a response and becomes capable of acting differently. I call this Christic Self-Formation Theory. The name identifies a proposed mechanism of transformation: the model helps form the self that will encounter the next situation.
+
+The starting point is the difference between repeating a teaching and having that teaching available inside an actual choice. A person can know the words associated with mercy while preparing to humiliate someone. The words have been remembered, but they have not yet changed what the situation means or which responses become possible. An inward model becomes active when the discrepancy between the response being prepared and the example of Christ enters that process.
+
+This is not simply admiration for a historical personality. Who Jesus was, what he did and what he said supply the content of a model that can be felt as a presence, recruited as an example and used to reconsider a developing action. The conjecture asks how that inward participation changes the person, not merely whether a religious name appears in the person's vocabulary.
+
+## The self being formed
+
+Self Aware Networks gives this question a more specific structure. I distinguish the living body-brain, its learned self-model and its momentary experience. The organism maintains a history and a capacity for action. The learned self-model relates that body to memories, roles, commitments, other people and expected consequences. The present state brings some of those relations into use while leaving others in the background. They are connected levels of one living process, not interchangeable meanings of the word self.
+
+A rigid identity can therefore change without another organism appearing in its place. The person who expects every criticism to be an attack can learn to recognize useful information within an unpleasant encounter. The change concerns what the person anticipates, attends to and prepares to do. It need not erase memory, responsibility or continuity.
+
+In SAN, the self is a maintained prediction pattern inside a recurrent process. The system learns its own body, actions and consequences along with the world it encounters. A representation of what kind of person one is can therefore become part of what causes the next action. Constructed does not mean causally powerless. It means the organization has a history, depends on conditions and can be changed through further experience.
+
+Christic self-formation adds a direction to that construction. The inward example participates in the self-model, but it need not agree with the identity already being defended. A person may expect to win by domination while recognizing that truthful repair would better express the Christlike response. Transformation begins when that difference is allowed to matter.
+
+## An inner model is not only a picture
+
+The model can include remembered words, imagined conduct, anticipated consequences, bodily feeling and a changed interpretation of another person. Someone who does not form vivid visual images could still understand a teaching and reorganize a response around it. The relevant question is what becomes available to perception and action, not whether everyone sees the same inward portrait.
+
+The inner-mask metaphor helps distinguish a rehearsed identity from the full living person. A mask in this sense is a configuration through which the world and the self are interpreted, not necessarily a deliberate deception. One configuration prepares humiliation as victory; another makes admitting an error compatible with dignity. The theological question is which configuration is being strengthened and what happens when it returns as the seemingly natural response.
+
+SAN's neural-rendering conjecture proposes that distributed living tissue produces, receives and transforms patterns within an evolving self-and-world state. No separate spectator has to watch a finished inner picture. The proposed connection here is that a religious model can become part of that state and alter the path toward action. The cellular and oscillatory explanation remains a research question; the ancient texts are not being recast as manuals of neurophysiology.
+
+## The recurrent correction
+
+The comparison with gradient descent is useful because it gives change a direction. A current response differs from a represented example. Noticing that difference makes another response available. Action, rehearsal and returned consequences can then change what the person is ready to do when a related situation occurs again.
+
+But there are two things to correct, not one. Conduct can be brought closer to an ideal, and the interpretation of the ideal can itself be revised. A person who equates mercy with never setting a boundary may become consistent at permitting harm. Further attention to truth, protection and the neighbor's welfare can reveal that the model of mercy was inadequate. Fidelity sometimes requires changing the representation through which fidelity had been understood.
+
+This is why minimizing a discrepancy cannot by itself define goodness. A cruel institution can teach a vivid ideal and reward increasingly efficient obedience to it. The content of the standard and its consequences remain essential. Christic self-formation concerns a particular moral orientation, not any successful process of making behavior conform to a model.
+
+## Choice without a separate chooser
+
+Choice does not require a little sovereign standing outside the brain. Within SAN, it is a time-extended process in which available alternatives are represented, evaluated, brought into competition, committed to and revised. Evidence, bodily condition, memory, inhibition, learned criteria and anticipated consequences help determine which routes are available. An action that can be described in a sentence is not necessarily an option the person can currently recognize or enact.
+
+An inward teaching can matter before the moment that feels like a decision. It can change what is noticed, what counts as a threat, whose suffering receives attention and which consequences are imagined. It can also matter afterward, when a person interprets the result and learns what to prepare next time. The formative process therefore extends beyond a last-second veto over an otherwise completed choice.
+
+Physical causation does not make this contribution disappear. If learning changes the criteria under which a later response becomes possible, then learning belongs to the causes of that response. The theological question becomes how an orientation toward Christ changes those criteria, not how a person escapes every cause in order to choose.
+
+## No-self and a self that can change
+
+The no-self comparison becomes useful when it loosens the claim that a passing thought, defensive identity or feeling must be an unchanging owner of experience. In SN 22.59, the not-self examination concerns form, feeling, perception, fabrications and consciousness, considered through change, affliction and the limits of control. It is not a neural experiment or a declaration that actions have no consequences.
+
+I use this as a comparison, not an assertion that Buddhist liberation, Christian transformation and SAN are the same doctrine. The constructive connection is that a person need not preserve every familiar identity as an essence. An experience of anger can occur without making anger the final authority over action. A self-model can lose its claim to absolute rule while the embodied person continues to learn, care and remain answerable for conduct.
+
+Christic self-formation also asks what is cultivated when an old orientation is relinquished. Letting go of self-authorization is not the same as becoming available for another person's domination. The model must preserve the capacity to examine a demand, recognize harm and refuse false claims of sacred authority.
+
+## Christ within, and the person who still acts
+
+Galatians 2:20 places Christ's inward life alongside the speaker's continuing embodied life. Galatians 4:19 describes Christ being formed in the recipients. I read these as important textual openings for a formative interpretation: the relationship to Christ concerns the constitution of a life, not only assent to a claim about the past. The texts' theological assertions remain larger than a modern psychological description.
+
+Romans 12 connects renewal of the mind with embodied conduct, relations within a community and responses to enemies. Philippians 2 connects a Christ-oriented disposition with attention to others rather than the exclusive pursuit of one's own interests. These contexts matter because an inward model does not finish its work by producing an impressive private experience. The comparison returns to what the person does with and to other people.
+
+Luke 22:42 adds a demanding distinction. A wish is expressed, yet the Father's will is given priority. The [[divine-will-and-self-authorizing-power|will comparison]] develops its opposition to a me-first stance: the person remains capable of desire but does not grant desire the authority to make itself right. A model that always declares one's preferred action to be God's will has removed the discrepancy that could correct it.
+
+## A worked decision and its second correction
+
+Consider a community editor receiving hostile but partly accurate criticism. A familiar defensive pattern prepares retaliation. Bringing the Christlike example into the encounter makes another route available: separate the accurate observation from the insult, correct the error and refuse to use authority to punish the critic for exposing it. The difference is not merely a nicer description of the same act. A correction is made that the defensive pattern would have resisted.
+
+Now suppose the editor interprets mercy as never intervening. The same critic begins harassing someone else. Consistency with that model would permit further harm. A second correction becomes necessary: care includes protecting the person being targeted, setting a boundary and preserving a truthful account of what happened. The representation of mercy changes together with the response.
+
+The example exposes the two-level mechanism. The first correction changes conduct in relation to an example. The second changes an interpretation of the example in light of consequences and a fuller understanding of the teaching. Neither requires treating the inner model as infallible or making a human authority its unquestionable owner.
+
+## What neuroscience can help distinguish
+
+Farb and colleagues' 2007 study distinguishes a narrative mode of self-reference from attention to present experience and examines how mindfulness training relates to those task-dependent patterns. It provides a relevant comparison for separating an enduring self-description from a momentary mode of attention. It does not establish a Christ-specific mechanism or prove a religious doctrine about the self.
+
+Weng and colleagues' 2013 experiment compared compassion training with reappraisal training and measured subsequent altruistic behavior and neural responses. This helps make a narrower question concrete: can a practiced orientation affect behavior outside the training exercise? Its reported results do not make every religious practice effective or turn a short experiment into a guarantee of permanent moral transformation.
+
+Maoz and colleagues' 2019 experiment compared arbitrary choices with consequential donation decisions and reported a different readiness-potential pattern between them. This challenges an automatic extension of arbitrary-movement findings to every meaningful decision. It does not demonstrate uncaused will. For the present theory, the important lesson is to investigate the kind of choice actually at issue rather than substitute a different task and declare the question settled.
+
+A discriminating study of Christic self-formation would compare a Christ-oriented exemplar with a matched nonreligious exemplar, propositional recall without exemplar rehearsal and an appropriate active control. It would measure available alternatives, changed interpretations, behavior and later transfer rather than rely only on reports of spiritual intensity. Prior commitments, expectancy and group pressure would need attention. Any neural claim would require its own declared measurement and competing explanations.
+
+## History, mechanism and interpretation
+
+The historical reconstruction and the present mechanism can inform one another without becoming the same inference. Recovering a neglected saying may change the inward model. A text's later reuse may reveal how a community cultivated an orientation. But the model's present influence cannot identify an ancient founder, and the uncertain identity of an ancient founder does not make a received portrayal inert.
+
+The [[inner-formation-texts-and-material-witnesses|formation-and-witness investigation]] connects prophetic inward renewal, community discipline, Pauline formation language, surviving manuscripts and material settings of Christian practice. It supplies evidence to compare with the [[tor-thomas-and-gnostic-transmission|Teacher and Gnostic transmission conjecture]] while keeping a proposed institutional route distinct from a shared theme.
+
+I treat Christic Self-Formation Theory as a constructive alternative interpretation whose different claims face different evidence. The surviving facts can permit more than one account; compatibility is not the same as confirmation, and a specific contradictory fact can matter to a specific historical link. The purpose is not to make the interpretation immune to correction. It is to state the full mechanism and reconstruction clearly enough that evidence addresses what is actually proposed.
+
+The practical question remains demanding: does the inward Christ merely decorate the identity already being defended, or participate in changing the person who acts? The theory begins where that difference becomes real in perception, choice and the capacity to repair what has been done.

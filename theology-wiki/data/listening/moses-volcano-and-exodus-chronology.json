@@ -3,8 +3,8 @@
   "slug": "moses-volcano-and-exodus-chronology",
   "title": "Moses, the volcano and Exodus chronology",
   "source": "content/developed/moses-volcano-and-exodus-chronology.md",
-  "sourceSha256": "90f7032d1bfee77f01fe56ea8c6129b27fe937a3adb1c3b8c422b4a4a1da2704",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -32,25 +32,25 @@
     },
     {
       "id": "segment-0005",
-      "section": "The order of events in Micah's proposal",
+      "section": "The political reversal and catastrophe sequence",
       "notes": false,
-      "text": "The order of events in Micah's proposal"
+      "text": "The political reversal and catastrophe sequence"
     },
     {
       "id": "segment-0006",
-      "section": "The order of events in Micah's proposal",
+      "section": "The political reversal and catastrophe sequence",
       "notes": false,
-      "text": "The unexpectedly titled Parthians and Medes meaning contains an extensive discussion of Thera, Ahmose and the Exodus. Micah proposes a sequence: a population with status under Hyksos rule loses that status after conquest, is subjected to labor, experiences a catastrophe, and interprets the disruption as an opportunity for departure. The biblical associations with Joseph and Moses are parts of the proposed reconstruction, not identifications already demonstrated by archaeology."
+      "text": "The political-reversal reconstruction begins with a population whose status under Hyksos rule is lost after conquest. Coercive labor follows; catastrophe then disrupts the existing order and creates an opportunity for departure. The associations with Joseph and Moses belong to this proposed reconstruction, not to identifications already demonstrated by archaeology. The detailed source discussion is preserved under Parthians and Medes meaning."
     },
     {
       "id": "segment-0007",
-      "section": "The order of events in Micah's proposal",
+      "section": "The political reversal and catastrophe sequence",
       "notes": false,
       "text": "The ordering is central. For this version of the argument to work, the change in political status must precede the eruption, and the departure must follow the disaster. A date that merely falls in a broad Bronze Age interval is not enough. The model needs a relationship among the transition of rule, the population's circumstances and the event later remembered."
     },
     {
       "id": "segment-0008",
-      "section": "The order of events in Micah's proposal",
+      "section": "The political reversal and catastrophe sequence",
       "notes": false,
       "text": "The source also explores famine as an element of a disaster sequence. That would not, by itself, explain a selective death of firstborn children. The inference from general hardship to a particular literary claim remains another step requiring evidence; this article does not present the proposed naturalistic chain as established history."
     },
@@ -82,7 +82,7 @@
       "id": "segment-0013",
       "section": "Dating an object is not automatically dating an accession",
       "notes": false,
-      "text": "Micah's objection is specific: a construction object made during a reign need not identify the beginning of that reign. If an eruption precedes a mid-reign construction episode, that relationship alone does not determine whether the eruption also precedes accession. In abstract form, evidence for eruption before object and accession before object does not settle the order of eruption and accession."
+      "text": "A construction object made during a reign need not identify the beginning of that reign. If an eruption precedes a mid-reign construction episode, that relationship alone does not determine whether the eruption also precedes accession. Evidence for eruption before object and accession before object leaves the order of eruption and accession open. This is the specific chronological objection, not a dismissal of the dated object."
     },
     {
       "id": "segment-0014",
@@ -112,7 +112,7 @@
       "id": "segment-0018",
       "section": "Keep the event, the effects and the story separate",
       "notes": false,
-      "text": "El in Ancient Egypt concerns another kind of bridge between Egyptian evidence and religious history. Samaritan texts and sacred authority addresses the authority of later traditions. Putting these inquiries together is valuable only if their different periods and evidence are retained. The point is to develop Micah's sequence into an inspectable argument, not declare that resemblance has already supplied every missing link."
+      "text": "El in Ancient Egypt concerns another bridge between Egyptian evidence and religious history. Samaritan texts and sacred authority addresses the authority of later traditions. I connect these inquiries while retaining their different periods and evidence: a causal reconstruction gains strength from tested intermediate links, not from resemblance alone."
     },
     {
       "id": "segment-0019",
@@ -136,7 +136,7 @@
       "id": "segment-0022",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0023",

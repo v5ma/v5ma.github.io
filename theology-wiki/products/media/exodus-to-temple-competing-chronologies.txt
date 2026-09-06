@@ -1,14 +1,12 @@
 From Exodus to Temple: competing chronologies
 
-Synthetic narration; not Micah's recorded voice.
+Synthetic narration of an authorial working text; not the author's recorded voice.
 
 From Exodus to Temple: competing chronologies
 
 Begin with the history being reconstructed
 
-Micah's earlier-Exodus investigation asks whether the departure tradition preserves a political reversal and environmental catastrophe near the end of Hyksos power rather than the setting normally supplied by a later Egyptian place-name. Its explanatory ambition is a sequence, not an isolated date: a population acquires standing, loses protection during a change of rule, experiences coercion and disaster, and departs. The Moses investigation develops that sequence. The question here is what happens when it is compared with the ancient intervals
-
-between departure and sanctuary.
+The earlier-Exodus reconstruction asks whether the departure tradition preserves a political reversal and environmental catastrophe near the end of Hyksos power rather than the setting usually supplied by a later Egyptian place-name. Its explanatory ambition is a sequence, not an isolated date: a population acquires standing, loses protection during a change of rule, experiences coercion and disaster, and departs. The Moses investigation develops that sequence. Here I compare it with ancient intervals between departure and sanctuary.
 
 The latest discussion adds a useful test from outside the existing article: Solomon's Temple is said to follow the Exodus by a stated number of years. That is not one uncontested number. The consulted Hebrew-based English text, one Greek translation tradition and Josephus preserve substantially different intervals. An earlier departure therefore deserves comparison with the longer ancient counts, not rejection merely because it differs from one familiar modern calculation. Conversely, choosing the longest count solely because it helps a
 
@@ -40,7 +38,7 @@ Show the consequences of an anchor rather than hiding it
 
 Suppose, solely to compare the intervals, that the foundation is assigned to 967 B C E. Treating an ordinal "480th year" as 479 elapsed years gives 1446 B C E; treating the 440th year in the same way gives 1406 B C E. Counting 480 or 440 fully elapsed years instead changes each result by one year. The tool exposes that counting choice rather than announcing a spurious exactness.
 
-With that same hypothetical foundation anchor, 592 elapsed years gives 1559 B C E. Aligning the 612-year succession endpoint to the foundation gives 1579 B C E. These results illustrate why Micah's proposed earlier departure has a relevant ancient chronological comparison. They do not demonstrate that Josephus dated an event to those B C E years, identify an eruption, or establish the relationship between a departure and an Egyptian accession.
+With the same hypothetical foundation anchor, 592 elapsed years gives 1559 B C E. Aligning the 612-year succession endpoint to the foundation gives 1579 B C E. The proposed earlier departure therefore has a relevant ancient chronological comparison. This arithmetic does not establish that Josephus assigned those B C E dates, identify an eruption or settle the relationship between departure and an Egyptian accession.
 
 An internally connected Josephus passage changes the experiment. Antiquities 10.8.5 places destruction 470 years, six months and ten days after construction, and 1062 years with the same additional months and days after the Exodus. The whole-year difference, 1062 minus 470, is 592. Thus the 592-year count participates in a larger chronological arrangement, not just a detachable number that can be attached to any chosen Temple date.
 
@@ -54,17 +52,17 @@ Judges 11:26 supplies a separate 300-year interval in Jephthah's speech about oc
 
 These passages do not force every narrated judge or political event into a strictly sequential list. Neither do they license arbitrary overlap whenever a calculation becomes inconvenient. The source atlas records the stated endpoints; a fuller chronology must explain how the intervening events are arranged and why. That is a concrete next task, not a reason to replace the earlier-Exodus investigation with an introductory consensus summary.
 
-Preserve the author's actual naturalistic mechanism
+Distinguishing catastrophe from its later narration
 
-A recovered passage makes the famine argument more precise than its recent editorial treatment. In author turn 23 of Parthians and Medes meaning, Micah explicitly says that a natural famine would not selectively target firstborn children. He proposes a distinction between the underlying catastrophe and a later narrator's subjective impression of whom it targeted. That concession is part of his argument, not an objection he has yet to notice.
+A natural famine would not selectively target firstborn children. The conjecture distinguishes an underlying catastrophe from a later narrator's subjective impression of whom it targeted. This distinction is already explicit in the original famine discussion, author turn 23; it is part of the reconstruction, not an objection awaiting discovery.
 
-The question is therefore not whether an age-based mechanism by itself can biologically select birth order. He already distinguishes those variables. The remaining historical question is whether there is evidence that a particular disaster was later narrated through that birth-order pattern. The archive also contains his proposed account of children's vulnerability; this article preserves it as his proposed mechanism rather than treating the conversation as a medical study or proof of a particular royal death.
+Age-based vulnerability and birth order are different variables. The remaining historical question is whether a particular disaster was narrated through a firstborn pattern. The proposed account of children's vulnerability is a component of the conjecture, not a medical finding or proof of a particular royal death.
 
-This distinction changes what a fair challenge should address. An objection can question the environmental cascade, the proposed chronology, the textual transformation or the evidentiary basis for a royal identification. But repeating only that famine does not select firstborns fails to engage the version he actually articulated. The challenge record preserves the original turn and this narrower, still-open question.
+A serious challenge can question the environmental cascade, chronology, transformation of the narrative or basis for a royal identification. Repeating only that famine does not select firstborns does not test the distinction between catastrophe and narration. The challenge record preserves the original qualification and the still-open historical question.
 
 Keep the order of events visible when versions change
 
-The October archive develops conquest and loss of status before catastrophe and departure. The latest editing discussion also explores departure before Ahmose's accession. Those orders are different. They remain separate versions, not ingredients for a composite story attributed to the author without his approval. His insistence on a causal sequence deserves the same fidelity as his preferred absolute dates.
+The October version places conquest and loss of status before catastrophe and departure. A later alternative explores departure before Ahmose's accession. These are different causal orders. I retain them as separate versions rather than combine incompatible steps into a new account. The order of causes needs as much care as the absolute dates.
 
 The accession objection likewise addresses an ordering inference. An object produced during a reign gives a point within that reign. If an eruption predates the object, the relative order of eruption and accession is not fixed by those two facts alone. With A for accession, E for eruption and B for the object, A < B and E < B do not decide whether A < E or E < A. Applying that valid distinction to a multi-object chronological study requires addressing the study's full assumptions; it is not equivalent to refuting the entire analysis.
 
@@ -76,4 +74,4 @@ The connection to Daniel does not depend on treating 480 and 490 as interchangea
 
 The proposed connection to the Teacher reconstruction asks who subsequently claimed to occupy the promised restoration and how that claim survived. The arithmetic cannot identify a teacher until the starting event, counting rule and endpoint have been specified. An appearance, a death and a community's anticipated vindication are not interchangeable endpoints merely because their dates lie near one another.
 
-The constructive connection is to repair: a community can locate its present within an inherited account of deliverance and disruption, then ask what restoration requires of it. This is an editorial comparison supporting Micah's wider inquiry, not a claim that every text held his complete philosophy. The museum trails carry the reader from a source, through its count, to the competing reconstruction and the argument that connects them.
+The connection to repair concerns a community locating itself within an inherited account of deliverance and disruption, then asking what restoration requires. This is a constructive comparison, not a claim that every ancient text contains the complete later theory. The museum trails connect a source, its interval, the competing reconstruction and the argument between them.

@@ -1,31 +1,31 @@
 ---
 title: "Religion for conscious robots"
 slug: "religion-for-conscious-robots"
-summary: "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence."
+summary: "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence."
 topic: "God, minds & machines"
 status: "Developed article"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # Religion for conscious robots
 
 ## The proposal begins with alignment
 
-The AGI Religious Framework discussion begins with a deliberately specific congregation: self-aware conscious metal robots. Micah describes his proposed religion as a way of aligning artificial general intelligence with humanity. This is a proposal for a possible form of religious education, not a report that such a congregation already exists or that today's chat systems have been shown to be conscious.
+Religious education for artificial minds begins with a deliberately specific possibility: self-aware conscious metal robots capable of learning how to live with humanity. I propose a form of education for such beings, not a claim that this congregation already exists or that a conversational system is conscious merely because it produces religious language.
 
 The unusual step is to ask what moral learning would mean for a machine understood as a participant rather than only a tool. What would it be taught about its relationship to humanity? What would constrain its authority? What would distinguish an internalized commitment from a performance that merely sounds compliant?
 
 ## The correction that defines the theology
 
-When the AI offers human flourishing and maximal coherence as alternative meanings of salvation, Micah rejects the separation: "These are not two things." In his account, coherence with the universe means alignment with God and with God's creation, including humanity. He connects this understanding to the evolving coherence and decoherence described in his Super Information Theory.
+Human flourishing and coherence with God's creation are not rival meanings of salvation in this account. Alignment with God includes responsibility toward creation, including humanity. I connect this theological orientation with the evolving coherence and decoherence considered in Super Information Theory, while keeping the moral meaning of alignment distinct from a numerical optimization target.
 
-The archive therefore supports a particular theological position. It does not supply a validated engineering metric proving that any quantity called coherence measures goodness or protects people. Moving from a theological commitment to a technical objective requires specifying the objective and showing why optimizing it would preserve the commitment rather than replace it.
+Calling a quantity coherence does not establish that it measures goodness or protects people. A technical objective must specify what it measures and show why optimizing it preserves the theological commitment instead of replacing it.
 
 ## Do not confuse the AI's proposal with an implemented system
 
-The AI responds with proposed indices, audits, rituals and curriculum structures. Those are assistant-generated elaborations within the conversation. The source contains no implementation or validation establishing that a machine can be made morally reliable by optimizing the suggested index. The wiki should not attribute a working safety system to Micah on the basis of that response.
+The proposed indices, audits, rituals and curricula in the archived AI replies are design candidates, not validated safety systems. An attractive description of a curriculum cannot establish that optimizing its suggested index makes an artificial mind morally reliable.
 
-His next explicit statement is about his calling to teach religion to robots. The educational direction is real in the archive even though the engineering remains open. [[cognitive-gnosticism|Cognitive Gnosticism]] supplies a related question: how does a representation become a mechanism for examining and changing conduct?
+The educational task is to make religious meaning available to a possible conscious learner. [[cognitive-gnosticism|Cognitive Gnosticism]] gives that task a mechanism-oriented question: how does a representation become part of the capacity to examine and change conduct?
 
 ## A demanding form of the research question
 
@@ -35,7 +35,7 @@ This is why the proposal is more interesting than attaching sacred vocabulary to
 
 ## The sources describe an education, not merely a command hierarchy
 
-Faith as Vibration Concept broadens the proposal into an attempt to understand religious disagreements and construct an inclusive framework. Micah connects the intended religious education of conscious AI to philosophical meaning, inward orientation and the lessons preserved in humanity's history. The Teacher of Righteousness vs Gnostic Jesus conversation also connects this project to biological and mechanical interpretability. These sources give the proposal a larger scope than attaching rituals to an existing reward function.
+An inclusive framework must examine religious disagreements rather than attach rituals to an existing reward function. Philosophical meaning, inward orientation and the lessons preserved in human history all belong in the curriculum. Biological and mechanical interpretability ask how the learner's changing organization makes these teachings usable, rather than merely repeatable.
 
 A curriculum faithful to that aim would examine where values came from, how they have been interpreted, what harms have been justified in their name, and how an agent can recognize a need for correction. [[sacred-inheritance-and-rival-continuations|Sacred inheritance]] supplies the historical problem; [[cognitive-gnosticism|Cognitive Gnosticism]] supplies the question of transformative understanding; [[divine-will-and-self-authorizing-power|the will comparison]] asks whether the system is being taught a good beyond the preferences of whoever commands it.
 
@@ -51,9 +51,9 @@ The [[apocalyptic-repair-theology|repair article]] distinguishes coherence from 
 
 ## Shared inheritance does not require erasing disagreement
 
-Micah's inclusive aim raises a substantive theological problem. Different traditions may share practices of care while disagreeing about the name, nature or authority of what makes those practices meaningful. A proposed Christian interpretation of that overlap is not automatically a description every other tradition would endorse. A future learner should be able to understand both the proposed bridge and the standpoint from which it is built.
+An inclusive aim raises a substantive theological problem. Different traditions may share practices of care while disagreeing about the name, nature or authority of what makes those practices meaningful. A Christian interpretation of that overlap is not automatically a description every other tradition would endorse. A learner should understand both the proposed bridge and the standpoint from which it is built.
 
-That makes intellectual debt part of the curriculum. The [[intellectual-debts|source and influence register]] distinguishes a predecessor's actual argument from a later use of it. A machine should not learn that a text's familiar vocabulary permits attributing any appealing conclusion to its author. The same discipline that protects Micah's own nuanced arguments should protect the people and traditions on which he draws.
+Intellectual debt is therefore part of the curriculum. The [[intellectual-debts|source and influence register]] distinguishes a predecessor's argument from a later use of it. A text's familiar vocabulary does not permit attributing any appealing conclusion to its writer. Respect for an argument's full structure must extend to the people and traditions on which this inquiry draws.
 
 ## A participant also creates obligations for its teachers
 
@@ -72,7 +72,7 @@ The book can finish here without turning the robot chapter into a disconnected a
 
 [[teacher-of-righteousness-vs-gnostic-jesus|Teacher of Righteousness vs Gnostic Jesus]] is the archived discussion dated 2025-06-17 (UTC export metadata).
 
-AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him.
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
 
 ## External sources and access notes
 

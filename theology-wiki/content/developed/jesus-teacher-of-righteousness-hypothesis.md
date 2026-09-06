@@ -4,7 +4,7 @@ slug: "jesus-teacher-of-righteousness-hypothesis"
 summary: "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary."
 topic: "Jesus, ethics & authority"
 status: "Developed article"
-updated: "2026-09-04"
+updated: "2026-09-06"
 ---
 
 # Jesus as the Teacher of Righteousness
@@ -57,7 +57,7 @@ The Israel Museum's description of the Habakkuk Commentary identifies the Teache
 
 That role provides a focused comparison with the [[christ-as-an-inner-model|authority of a teacher whose message continues to guide a community]]. The point of contact is not simply that both figures are called good or persecuted. A community receives a reading of its world through an authoritative interpreter and organizes conduct around fidelity to that reading.
 
-There is also an important alternative in Lim's account: he distinguishes a sectarian interpreter from a deposed Hasmonean high priest. His abstract does not settle the identities in Micah's proposal, but it shows that even the Teacher's institutional role needs argument. This edition uses the museum description and Lim's abstract here; it does not present an unread full commentary or a new translation of 1QpHab as completed textual work.
+There is also an important alternative in Lim's account: he distinguishes a sectarian interpreter from a deposed Hasmonean high priest. This does not settle the proposed earlier-Teacher identification, but it makes the Teacher's institutional role another question to investigate. The comparison here uses the museum description and Lim's published abstract; it is not a new translation of 1QpHab or a completed reading of his full commentary.
 
 ## Manuscript dates are not biographies
 
@@ -66,6 +66,7 @@ The 2025 Enoch study combines radiocarbon samples with writing-style analysis to
 Material, copying, composition and narrated events must therefore remain distinct. A manuscript is a physical witness to a text. The text can draw on an older tradition, and the event it describes can be earlier again. A new date constrains these possibilities; it does not make all their dates identical.
 
 [[gnosticism-and-temple-trauma|The Temple-trauma hypothesis]] can use that distinction to ask which layers preserve older teaching and which express later responses to catastrophe. [[cognitive-gnosticism|Cognitive Gnosticism]] asks a different question about how those representations transform a living mind. The historical identification matters, but it is not a prerequisite for studying the psychological function of an inward model.
+
 
 ## Source conversations
 
@@ -77,7 +78,7 @@ Material, copying, composition and narrated events must therefore remain distinc
 
 [[ai-re-dates-dead-sea-scrolls|AI re-dates Dead Sea Scrolls]] is the archived discussion dated 2025-10-20 (UTC export metadata).
 
-AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
 
 ## External sources and access notes
 

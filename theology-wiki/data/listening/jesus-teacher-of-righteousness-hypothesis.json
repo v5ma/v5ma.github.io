@@ -3,8 +3,8 @@
   "slug": "jesus-teacher-of-righteousness-hypothesis",
   "title": "Jesus as the Teacher of Righteousness",
   "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-  "sourceSha256": "eef4b965e8ad5634dc28d5e9c7d28a7175e0ae7c8b47f81f0c94cc4cdefebf99",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "5a4ac0ff1213b95f68adbac46e4319ac7392085764d02afa6ee60ae186cc52d3",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -160,7 +160,7 @@
       "id": "segment-0026",
       "section": "Worked comparison: the Teacher as interpreter",
       "notes": false,
-      "text": "There is also an important alternative in Lim's account: he distinguishes a sectarian interpreter from a deposed Hasmonean high priest. His abstract does not settle the identities in Micah's proposal, but it shows that even the Teacher's institutional role needs argument. This edition uses the museum description and Lim's abstract here; it does not present an unread full commentary or a new translation of 1QpHab as completed textual work."
+      "text": "There is also an important alternative in Lim's account: he distinguishes a sectarian interpreter from a deposed Hasmonean high priest. This does not settle the proposed earlier-Teacher identification, but it makes the Teacher's institutional role another question to investigate. The comparison here uses the museum description and Lim's published abstract; it is not a new translation of 1QpHab or a completed reading of his full commentary."
     },
     {
       "id": "segment-0027",
@@ -220,7 +220,7 @@
       "id": "segment-0036",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0037",

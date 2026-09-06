@@ -4,16 +4,16 @@ slug: "el-in-ancient-egypt"
 summary: "A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity."
 topic: "Ancient texts & origins"
 status: "Developed article"
-updated: "2026-09-04"
+updated: "2026-09-06"
 ---
 
 # El in Ancient Egypt
 
 ## What would it mean for El to be present?
 
-Micah's question about El in Egypt opens several different investigations. A divine name can occur in a person's name, in an inscription, in a community's devotional practice or in an institution's official cult. Evidence at one level can be important without establishing every other level. The useful starting point is not a blanket yes or no, but a particular object, reading and claim.
+Did El have a presence in ancient Egypt? A divine name can occur in a person's name, in an inscription, in a community's devotional practice or in an institution's official cult. Evidence at one level can matter without establishing every other level. I begin with a particular object, reading and claim rather than a blanket yes or no.
 
-The archived discussions [[jews-and-canaanites-origins|Jews and Canaanites: origins]] and [[yahweh-and-asherah-s-relationship|Yahweh and Asherah's relationship]] supply background for Micah's interest in religious inheritance. They are not presented here as a recovered transcript of his newer question about El in Egypt. The specific archaeological case below is an addition to that research agenda.
+The [[jews-and-canaanites-origins|Canaanite inheritance]] and [[yahweh-and-asherah-s-relationship|Yahweh and Asherah]] inquiries raise a larger question about contact across later religious boundaries. The archaeological case below extends that question to an Egyptian setting. Its evidentiary basis is the cited object study, not an assumed transcript of a more recent conversation.
 
 ## Aper-El as a concrete case
 
@@ -37,11 +37,12 @@ That is where [[kenite-hypothesis-and-yahweh-origins|the Kenite hypothesis]] bec
 
 ## A history of contact is not a single uninterrupted lineage
 
-Micah's broader interest is in the possibility that rigid later categories conceal a more connected past. The El question contributes a specific test case to that interest. To move from an individual name to a larger genealogy, the argument would need intermediate evidence rather than a leap across periods and communities.
+Rigid later categories may conceal a more connected past. An El-bearing name gives that possibility a concrete point of investigation. To move from an individual name to a larger genealogy, however, I need intermediate evidence about the people, practices and institutions that could carry the connection.
 
 The same principle matters for [[moses-volcano-and-exodus-chronology|Moses and Exodus chronology]] and [[jesus-teacher-of-righteousness-hypothesis|Jesus and the Teacher of Righteousness]]. Each proposes or investigates a connection across a historical gap. Naming the gap makes the investigation possible; it does not erase the significance of the material on either side.
 
 The accompanying Egyptian papyrus belongs to a different funerary context. It is not a portrait of Aper-El, an inscription naming El or proof of this particular identification. The distinction between illustration and evidence is part of the article's method.
+
 
 ## Source conversations
 
@@ -49,7 +50,7 @@ The accompanying Egyptian papyrus belongs to a different funerary context. It is
 
 [[yahweh-and-asherah-s-relationship|Yahweh and Asherah's Relationship]] is the archived discussion dated 2025-03-02 (UTC export metadata).
 
-AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion.
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
 
 ## External sources and access notes
 

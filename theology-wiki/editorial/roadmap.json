@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "version": "2026.09.05-atlas-1",
-  "updated": "2026-09-05",
+  "updated": "2026-09-06",
   "baselineCommit": "a39f1f8391580e1a743763d6f6c455e4ead3aad8",
   "policy": "This is a sequence of deliverables, not a promise of background work or a calendar estimate. Verified output means the stated deliverable has evidence, not that a theory is true or a chapter is approved. Changes to this shared baseline require a repository edit. Workbook and personal-board edits do not automatically update it.",
   "phases": [
@@ -428,15 +428,20 @@
         "next-inheritors"
       ],
       "pages": [
-        "god-and-our-models-of-god"
+        "god-and-our-models-of-god",
+        "computational-divine-immanence",
+        "computational-argument-map"
       ],
       "acceptance": "Separate physical, experiential and ethical meanings; explain how critical disagreement can preserve rather than defeat moral alignment.",
       "dependsOn": [
         "scope-baseline"
       ],
-      "evidence": [],
+      "evidence": [
+        "theology-wiki/editorial/authorial-articles/computational-divine-immanence.md",
+        "theology-wiki/editorial/computational-foundations.json"
+      ],
       "sourceTask": "coherence",
-      "nextAction": "Separate physical, experiential and ethical meanings; explain how critical disagreement can preserve rather than defeat moral alignment.",
+      "nextAction": "Review the TCNR/SIT operational distinctions and the explicit cross-scale bridge. No confirmed new physical signal is claimed.",
       "targetDate": null
     },
     {
@@ -517,15 +522,18 @@
         "continuing"
       ],
       "pages": [
-        "sacred-inheritance-and-rival-continuations"
+        "sacred-inheritance-and-rival-continuations",
+        "flood-inheritance-and-deep-time"
       ],
       "acceptance": "Specify objects, mappings and composition before calling the category-theory model a proof; test whether it distinguishes cases usefully.",
       "dependsOn": [
         "contents-baseline"
       ],
-      "evidence": [],
+      "evidence": [
+        "theology-wiki/editorial/authorial-articles/flood-inheritance-and-deep-time.md"
+      ],
       "sourceTask": "formalism",
-      "nextAction": "Specify objects, mappings and composition before calling the category-theory model a proof; test whether it distinguishes cases usefully.",
+      "nextAction": "Extend exact flood-passage mappings and competing transmission accounts; replace illustrative likelihoods only after calibration and dependency review.",
       "targetDate": null
     },
     {
@@ -903,6 +911,10 @@
     {
       "date": "2026-09-05",
       "change": "Source-atlas first pass: 29 typed records, six source intervals, four challenge records and three content-only museum trails. Two new comparative articles attach to existing chapter routes. Larger dossier and historical-carrier tasks advance to Draft, not completed or approved."
+    },
+    {
+      "date": "2026-09-06",
+      "change": "Integrated the computational-God and flood-inheritance drafts with complete articles, source records, chapter routes and museum trails; coherence and formal-comparison tasks remain Draft."
     }
   ],
   "verificationNote": "Current outputs are verified against the recorded build, content and planning tests. Native-browser and publication evidence is attached to the release pull request; completed outputs do not signify author-approved chapters."

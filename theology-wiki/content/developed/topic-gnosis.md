@@ -13,7 +13,7 @@ Divine sparks, inner models, archons and the work of changing a mind.
 
 ## Start with a developed argument
 
-[[cognitive-gnosticism|Cognitive Gnosticism]]: Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.
+[[cognitive-gnosticism|Cognitive Gnosticism]]: An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.
 
 ## Browse the source discussions
 

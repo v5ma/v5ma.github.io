@@ -3,8 +3,8 @@
   "slug": "scripture-power-and-repair",
   "title": "Scripture, power and the work of repair",
   "source": "content/developed/scripture-power-and-repair.md",
-  "sourceSha256": "81a8da794ced4772226661d16ad0ef186a3cd4c54af6110ca8aacaf4c2747b63",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "4983177af2461954d08a735d9754756f10716c33e92c16486bdb052978bc179a",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -22,7 +22,7 @@
       "id": "segment-0003",
       "section": "An axis within an inheritance",
       "notes": false,
-      "text": "Micah's Samuel vs Micah Divide conversation asks for a comparison across canonical and extracanonical texts along an explicit moral axis: violence, power and sacrifice on one side, nonviolent faith and coherence with God and neighbor on the other. He requests mixed cases, detailed passages and chronological context. The question is not adequately preserved by attaching a permanent good or bad label to each biblical figure."
+      "text": "The Samuel-Micah comparison follows an explicit moral axis across canonical and extracanonical texts: violence, power and sacrifice on one side; nonviolent faith and coherence with God and neighbor on the other. I include mixed cases, detailed passages and chronological context rather than assign a permanent good or bad label to each biblical figure."
     },
     {
       "id": "segment-0004",
@@ -52,7 +52,7 @@
       "id": "segment-0008",
       "section": "Samuel's warning complicates a simple label",
       "notes": false,
-      "text": "This passage is particularly relevant to Micah's request for a mixed category. Samuel here warns against concentration of power. A comparison that declared every passage associated with Samuel to be a celebration of domination would erase evidence within the very text under examination. Preserving that complexity is stronger than allowing a convenient label to settle the reading."
+      "text": "This is a mixed case: Samuel warns against the concentration of power. Declaring every passage associated with Samuel a celebration of domination would erase evidence within the text itself. The comparison must preserve that complexity instead of allowing a convenient label to settle the reading."
     },
     {
       "id": "segment-0009",
@@ -62,25 +62,25 @@
     },
     {
       "id": "segment-0010",
-      "section": "Micah redirects the question from payment to conduct",
+      "section": "The prophet Micah redirects payment toward conduct",
       "notes": false,
-      "text": "Micah redirects the question from payment to conduct"
+      "text": "The prophet Micah redirects payment toward conduct"
     },
     {
       "id": "segment-0011",
-      "section": "Micah redirects the question from payment to conduct",
+      "section": "The prophet Micah redirects payment toward conduct",
       "notes": false,
       "text": "Micah 6:6-8 stages an escalating question about what offering might satisfy God. The response turns attention to justice, mercy and humility. Later in the same chapter, dishonest measures, deceit and violence become concrete matters of judgment. This is more than a contrast between one ritual and another: it asks whether religious expense can substitute for moral relation."
     },
     {
       "id": "segment-0012",
-      "section": "Micah redirects the question from payment to conduct",
+      "section": "The prophet Micah redirects payment toward conduct",
       "notes": false,
       "text": "The reading challenges a transactional shortcut. A person may hope that a conspicuous offering cancels harm without requiring changed conduct toward those harmed. Under the framework developed here, generosity would matter through what it accomplishes, not as a purchase of immunity from criticism. This connects the chapter to the wiki's developing inquiry into wealth and spiritual prestige without claiming that every wealthy donor has the same motives."
     },
     {
       "id": "segment-0013",
-      "section": "Micah redirects the question from payment to conduct",
+      "section": "The prophet Micah redirects payment toward conduct",
       "notes": false,
       "text": "The text also prevents a sentimental compression of mercy. It contains accusation and judgment as well as the demand for compassion. Anger at injustice is not automatically the opposite of repair. The issue is what the anger exposes, how it acts, and whether it becomes an excuse for reproducing the injury it condemns."
     },
@@ -100,7 +100,7 @@
       "id": "segment-0016",
       "section": "The conflict is about interpretation, not religious essence",
       "notes": false,
-      "text": "This is equally important when comparing Gnostic and canonical texts. A claim to inner knowledge can challenge illegitimate authority, but it can also become another gatekeeping device. A canonical appeal to obedience can serve power, but canonical texts can also challenge rulers and religious display. A fair development of Micah's argument tests the function of each passage and use, rather than sorting whole libraries into morally pure camps."
+      "text": "The same problem arises in Gnostic and canonical comparisons. Inner knowledge can challenge illegitimate authority or become another gatekeeping device. Canonical obedience can serve power, while canonical texts can also challenge rulers and religious display. I examine the function of each passage and use rather than sort entire libraries into morally pure camps."
     },
     {
       "id": "segment-0017",
@@ -178,7 +178,7 @@
       "id": "segment-0029",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0030",

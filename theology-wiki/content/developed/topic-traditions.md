@@ -13,7 +13,7 @@ Shared inheritance, competing interpretations and differences that matter.
 
 ## Start with a developed argument
 
-[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: Micah's comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
+[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: The comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
 
 [[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]]: How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.
 

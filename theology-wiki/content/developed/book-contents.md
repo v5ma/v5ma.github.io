@@ -17,7 +17,7 @@ The book is taking shape as an argument, not a printed alphabetical wiki. These 
 
 Establish the shared-inheritance question before examining rival claims.
 
-[[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]] / [[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]
+[[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]] / [[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]] / [[flood-inheritance-and-deep-time|Flood inheritance and deep time]]
 
 ### Names across boundaries
 
@@ -57,7 +57,7 @@ Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assum
 
 Distinguish a representation, its claimed referent and the standard by which it is corrected.
 
-[[god-and-our-models-of-god|God and our models of God]]
+[[god-and-our-models-of-god|God and our models of God]] / [[computational-divine-immanence|Computational Divine Immanence]]
 
 ### Cognitive Gnosticism
 
@@ -65,11 +65,11 @@ Develop the relationship between understanding a teaching and embodying it in a 
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]
 
-### Christ as an active moral model
+### Christic self-formation and bounded agency
 
-Follow the comparison, the changed action and the subsequent correction of the model.
+Develop the embodied self, learned self-model, recurrent choice and correction of the Christ model, then examine the textual and material history of formation.
 
-[[christ-as-an-inner-model|Christ as an inner model]] / [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]] / [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]] / [[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
 
 ### Faith as a practiced orientation
 
@@ -115,7 +115,7 @@ Connect personal change, collective care and accountable institutions.
 
 Examine the moral purpose of teaching, including the teacher's obligations to a future conscious participant.
 
-[[religion-for-conscious-robots|Religion for conscious robots]] / [[god-and-our-models-of-god|God and our models of God]]
+[[religion-for-conscious-robots|Religion for conscious robots]] / [[god-and-our-models-of-god|God and our models of God]] / [[computational-divine-immanence|Computational Divine Immanence]]
 
 ### Continuing the inheritance
 

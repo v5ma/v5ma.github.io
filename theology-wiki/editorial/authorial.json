@@ -1,0 +1,784 @@
+{
+  "version": "2026.09.06-connected-foundations-1",
+  "updated": "2026-09-06",
+  "theoryNameStatus": "Christic Self-Formation Theory is the proposed working name, not a claim of established nomenclature or worldwide priority.",
+  "articles": [
+    {
+      "slug": "trump-first-beast-of-revelation",
+      "title": "Trump and the First Beast of Revelation",
+      "category": "apocalypse",
+      "summary": "A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.",
+      "sourceIds": [
+        "3051",
+        "1094"
+      ],
+      "claimType": "Theological interpretation",
+      "externalSources": [
+        "svgn-sword",
+        "svgn-ai-power",
+        "revelation13",
+        "rnc-2016",
+        "rhodes-sentence-2023",
+        "clemency-2025",
+        "ai-procurement-2025"
+      ],
+      "art": "riders",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "featured": true
+    },
+    {
+      "slug": "ukraine-russia-forecast-record",
+      "title": "Ukraine, Russia and the forecast record",
+      "category": "apocalypse",
+      "summary": "A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.",
+      "sourceIds": [
+        "1094",
+        "3051"
+      ],
+      "claimType": "Conditional forecasts",
+      "externalSources": [
+        "svgn-sword",
+        "svgn-deterrence"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "featured": true
+    },
+    {
+      "slug": "el-in-ancient-egypt",
+      "title": "El in Ancient Egypt",
+      "category": "origins",
+      "summary": "A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.",
+      "sourceIds": [
+        "1009",
+        "1033"
+      ],
+      "claimType": "Historical inquiry",
+      "externalSources": [
+        "abdiel",
+        "zivie"
+      ],
+      "art": "papyrus",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "featured": true
+    },
+    {
+      "slug": "jesus-teacher-of-righteousness-hypothesis",
+      "title": "Jesus as the Teacher of Righteousness",
+      "category": "jesus",
+      "summary": "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.",
+      "sourceIds": [
+        "1688",
+        "2333",
+        "2651",
+        "2656"
+      ],
+      "claimType": "Author hypothesis",
+      "externalSources": [
+        "habakkuk",
+        "galatians1",
+        "corinthians15",
+        "lim-habakkuk",
+        "enoch-dating-2025",
+        "galatians-2-depth"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "featured": true
+    },
+    {
+      "slug": "moses-volcano-and-exodus-chronology",
+      "title": "Moses, the volcano and Exodus chronology",
+      "category": "origins",
+      "summary": "A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.",
+      "sourceIds": [
+        "2136",
+        "2684"
+      ],
+      "claimType": "Author hypothesis",
+      "externalSources": [
+        "tempest",
+        "thera",
+        "exodus19",
+        "volcanic-sinai"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "featured": true
+    },
+    {
+      "slug": "kenite-hypothesis-and-yahweh-origins",
+      "title": "The Kenite hypothesis and Yahweh's southern origins",
+      "category": "origins",
+      "summary": "How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.",
+      "sourceIds": [
+        "1068",
+        "1069"
+      ],
+      "claimType": "Historical inquiry",
+      "externalSources": [
+        "kenite",
+        "volcanic-sinai",
+        "exodus18",
+        "exodus19"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "featured": true
+    },
+    {
+      "slug": "apocalyptic-repair-theology",
+      "title": "Apocalyptic Repair Theology",
+      "category": "apocalypse",
+      "summary": "How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.",
+      "sourceIds": [
+        "1905",
+        "1912",
+        "1663"
+      ],
+      "art": "riders",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "externalSources": [
+        "luke-10-depth",
+        "matthew-5-depth",
+        "isaiah-1-depth",
+        "revelation-21-depth"
+      ],
+      "claimType": "Constructive theological interpretation and conjecture"
+    },
+    {
+      "slug": "cognitive-gnosticism",
+      "title": "Cognitive Gnosticism",
+      "category": "gnosis",
+      "summary": "An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.",
+      "sourceIds": [
+        "880",
+        "1003",
+        "1081",
+        "1688",
+        "1620"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "externalSources": [],
+      "claimType": "Constructive theological interpretation and conjecture"
+    },
+    {
+      "slug": "christ-as-an-inner-model",
+      "title": "Christic Self-Formation Theory: Christ as an inner model",
+      "category": "jesus",
+      "summary": "How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.",
+      "sourceIds": [
+        "880",
+        "1081",
+        "1688",
+        "1745"
+      ],
+      "art": "hours",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "externalSources": [
+        "will-luke22",
+        "will-john5",
+        "galatians-2-depth",
+        "formation-gal4",
+        "formation-rom12",
+        "formation-phil2",
+        "formation-notself",
+        "formation-farb2007",
+        "formation-weng2013",
+        "formation-maoz2019"
+      ],
+      "claimType": "Constructive theological interpretation and conjecture",
+      "aliases": [
+        "Christ as an inner model",
+        "Christic Self-Formation Theory",
+        "CSFT",
+        "constructed self",
+        "no self",
+        "not self",
+        "inner masks",
+        "bounded agency"
+      ]
+    },
+    {
+      "slug": "antichrist-as-a-pattern-of-conduct",
+      "title": "Antichrist as a pattern of conduct",
+      "category": "apocalypse",
+      "summary": "A theological judgment about domination, deception and violence that can appear through many people and institutions.",
+      "sourceIds": [
+        "1905",
+        "1081"
+      ],
+      "art": "riders",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Constructive theological interpretation and conjecture"
+    },
+    {
+      "slug": "religion-for-conscious-robots",
+      "title": "Religion for conscious robots",
+      "category": "machines",
+      "summary": "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.",
+      "sourceIds": [
+        "1663",
+        "880",
+        "1620",
+        "1688"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "externalSources": [
+        "will-john6"
+      ],
+      "claimType": "Constructive theological interpretation and conjecture"
+    },
+    {
+      "slug": "faith-as-deliberate-joy",
+      "title": "Faith as deliberate joy",
+      "category": "practice",
+      "summary": "Faith is described as an activity of returning to an inner orientation, not only as assent to a proposition.",
+      "sourceIds": [
+        "2693",
+        "1081",
+        "1620",
+        "1745"
+      ],
+      "art": "hours",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "externalSources": [],
+      "claimType": "Constructive theological interpretation and conjecture"
+    },
+    {
+      "slug": "gnosticism-and-temple-trauma",
+      "title": "Gnosticism and the Temple-trauma hypothesis",
+      "category": "origins",
+      "summary": "A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?",
+      "sourceIds": [
+        "1905",
+        "1912"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Constructive theological interpretation and conjecture"
+    },
+    {
+      "slug": "samaritan-texts-and-sacred-authority",
+      "title": "Samaritan texts and sacred authority",
+      "category": "traditions",
+      "summary": "The comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.",
+      "sourceIds": [
+        "3056"
+      ],
+      "art": "",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Constructive theological interpretation and conjecture"
+    },
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "title": "Sacred inheritance and rival continuations",
+      "category": "traditions",
+      "summary": "How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.",
+      "sourceIds": [
+        "2656",
+        "1688",
+        "1576"
+      ],
+      "externalSources": [
+        "loc-community",
+        "loc-enoch"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Comparative framework"
+    },
+    {
+      "slug": "tor-thomas-and-gnostic-transmission",
+      "title": "The Teacher, Thomas and Gnostic transmission",
+      "category": "origins",
+      "summary": "A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.",
+      "sourceIds": [
+        "1688",
+        "2656",
+        "2651",
+        "1576",
+        "1904",
+        "1912"
+      ],
+      "externalSources": [
+        "thomas-patterson-meyer",
+        "loc-community",
+        "loc-enoch",
+        "tabor-shared-2026",
+        "tabor-names-2026",
+        "tabor-books",
+        "lim-habakkuk"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Historical reconstruction and textual comparison"
+    },
+    {
+      "slug": "divine-will-and-self-authorizing-power",
+      "title": "Divine will and self-authorizing power",
+      "category": "jesus",
+      "summary": "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.",
+      "sourceIds": [
+        "1642",
+        "880",
+        "1663"
+      ],
+      "externalSources": [
+        "will-luke22",
+        "will-john5",
+        "will-john6",
+        "heaven-august-2025",
+        "rnc-2016",
+        "clemency-2025",
+        "ai-procurement-2025"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Theological interpretation and moral argument"
+    },
+    {
+      "slug": "scripture-power-and-repair",
+      "title": "Scripture, power and the work of repair",
+      "category": "jesus",
+      "summary": "The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.",
+      "sourceIds": [
+        "1745",
+        "880"
+      ],
+      "externalSources": [
+        "samuel8-foundation",
+        "micah6-foundation",
+        "isaiah-1-depth",
+        "luke-10-depth"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Theological interpretation and moral argument"
+    },
+    {
+      "slug": "god-and-our-models-of-god",
+      "title": "God and our models of God",
+      "category": "machines",
+      "summary": "An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.",
+      "sourceIds": [
+        "1305",
+        "880",
+        "1663",
+        "1620"
+      ],
+      "externalSources": [
+        "will-john5",
+        "will-john6"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "claimType": "Theology and cognitive interpretation"
+    },
+    {
+      "slug": "melchizedek-priesthood-and-transmission",
+      "title": "Melchizedek: priesthood, release and transmission",
+      "category": "origins",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "summary": "A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.",
+      "claimType": "Textual comparison and historical transmission inquiry",
+      "sourceIds": [
+        "2656"
+      ],
+      "externalSources": [
+        "melch-kim2018",
+        "melch-genesis14",
+        "melch-psalm110",
+        "melch-hebrews7",
+        "melch-williams2023",
+        "melch-giversen-pearson"
+      ],
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
+    },
+    {
+      "slug": "exodus-to-temple-competing-chronologies",
+      "title": "From Exodus to Temple: competing chronologies",
+      "summary": "Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.",
+      "sourceIds": [
+        "2684",
+        "2651"
+      ],
+      "externalSources": [
+        "atlas-kings-web",
+        "atlas-kings-greek",
+        "atlas-ant8",
+        "atlas-ant20",
+        "atlas-ant10",
+        "atlas-apion",
+        "atlas-exodus-web",
+        "atlas-exodus-greek",
+        "atlas-judges",
+        "atlas-daniel"
+      ],
+      "category": "origins",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "claimType": "Source comparison and alternative reconstruction",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
+    },
+    {
+      "slug": "manuscripts-movements-and-survival",
+      "title": "Manuscripts, movements and survival",
+      "summary": "A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.",
+      "sourceIds": [
+        "2656",
+        "1912"
+      ],
+      "externalSources": [
+        "atlas-cambridge",
+        "atlas-eni",
+        "atlas-apion",
+        "atlas-onias",
+        "thomas-patterson-meyer"
+      ],
+      "category": "origins",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "claimType": "Source comparison and alternative reconstruction",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
+    },
+    {
+      "slug": "inner-formation-texts-and-material-witnesses",
+      "title": "Inner formation: texts, communities and material witnesses",
+      "category": "origins",
+      "summary": "Connect inward covenant, community discipline, Sabbath liturgy, Pauline formation, P46 and Dura without collapsing a text, its witness and its interpretation.",
+      "sourceIds": [
+        "880",
+        "2656"
+      ],
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "claimType": "Source comparison and constructive transmission conjecture",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "externalSources": [
+        "formation-jer31",
+        "formation-ezek36",
+        "formation-community",
+        "loc-enoch",
+        "galatians-2-depth",
+        "formation-gal4",
+        "formation-rom12",
+        "formation-phil2",
+        "formation-p46",
+        "formation-dura",
+        "formation-pettegrew2024",
+        "formation-angelo-silver2024",
+        "thomas-patterson-meyer"
+      ]
+    },
+    {
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "sourceIds": [],
+      "attribution": "Authorial working edition developed with AI assistance from the supplied public writings. The working theory name and expanded prose remain open to author revision. Sources, proposed connections and limits are recorded separately; no personal journal material is reproduced.",
+      "slug": "computational-divine-immanence",
+      "title": "Computational Divine Immanence",
+      "category": "machines",
+      "summary": "A computational-God interpretation connecting a necessary ground, reasons-responsive agency, constructive selfhood and repair without treating the different arguments as one experiment.",
+      "claimType": "Philosophical and theological argument",
+      "externalSources": [
+        "cf-rr-2024",
+        "cf-god-proof-2026",
+        "cf-tcnr-2026",
+        "cf-sit-2026",
+        "cf-ruliad-2021",
+        "cf-apocryphon-john-long"
+      ]
+    },
+    {
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "sourceIds": [],
+      "attribution": "Authorial working edition developed with AI assistance from the supplied public writings. The working theory name and expanded prose remain open to author revision. Sources, proposed connections and limits are recorded separately; no personal journal material is reproduced.",
+      "slug": "flood-inheritance-and-deep-time",
+      "title": "Flood inheritance and deep time",
+      "category": "origins",
+      "summary": "A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.",
+      "claimType": "Textual comparison and historical conjecture",
+      "externalSources": [
+        "cf-sumerian-flood",
+        "cf-sumerian-kings",
+        "cf-genesis-web",
+        "cf-genesis-web-2",
+        "cf-genesis-web-3",
+        "cf-gilgamesh-k3375",
+        "cf-annunaki-dialogue",
+        "cf-god-proof-2026"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "id": "formation-gal4",
+      "title": "Galatians 4, World English Bible",
+      "url": "https://ebible.org/engwebp/GAL04.htm",
+      "scope": "Primary translated chapter consulted, particularly verses 6, 16-19. The inward-formation interpretation is a comparison, not a claim that the chapter states a modern neural theory.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-rom12",
+      "title": "Romans 12, World English Bible",
+      "url": "https://ebible.org/engwebp/ROM12.htm",
+      "scope": "Primary translated chapter consulted for mind renewal, embodied and communal conduct, and responses to enemies. Passage wording is distinguished from the constructive interpretation.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-phil2",
+      "title": "Philippians 2, World English Bible",
+      "url": "https://ebible.org/engwebp/PHP02.htm",
+      "scope": "Primary translated chapter consulted for Christ-oriented disposition, attention to others and the relation of willing to divine action. No modern cognitive mechanism is attributed to the text.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-jer31",
+      "title": "Jeremiah 31, World English Bible",
+      "url": "https://ebible.org/engwebp/JER31.htm",
+      "scope": "Primary translated verses 31-34 consulted in their Israel/Judah restoration setting. No compositional date or physical manuscript date is inferred from this modern translation.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-ezek36",
+      "title": "Ezekiel 36, World English Bible",
+      "url": "https://ebible.org/engwebp/EZK36.htm",
+      "scope": "Primary translated verses 24-28 consulted for new heart and spirit, conduct and restoration to land. The collective setting is preserved, not reduced to private psychology.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-notself",
+      "title": "SN 22.59, Thanissaro Bhikkhu translation",
+      "url": "https://www.dhammatalks.org/suttas/SN/SN22_59.html",
+      "scope": "Primary translated discourse consulted for not-self reasoning about the five aggregates, change, affliction and control. Brief paraphrase only; no asserted Buddhist-to-Christian transmission or identity with SAN.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-farb2007",
+      "title": "Farb and colleagues, Attending to the present (2007)",
+      "url": "https://scholars.mssm.edu/en/publications/attending-to-the-present-mindfulness-meditation-reveals-distinct--2/",
+      "scope": "Author-affiliated institutional abstract and bibliographic record consulted; DOI 10.1093/scan/nsm030. Supports the narrative/experiential task distinction, not verification of Christic formation or a no-self doctrine.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-weng2013",
+      "title": "Weng and colleagues, Compassion Training Alters Altruism and Neural Responses to Suffering (2013)",
+      "url": "https://journals.sagepub.com/doi/10.1177/0956797612469537",
+      "scope": "Primary research article and its indexed abstract/results consulted; DOI 10.1177/0956797612469537. The comparison is short-term compassion versus reappraisal training and a subsequent redistribution task, not clinical efficacy of Christian practice.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-maoz2019",
+      "title": "Maoz, Yaffe, Koch and Mudrik, Neural precursors of decisions that matter (2019)",
+      "url": "https://elifesciences.org/articles/39787",
+      "scope": "Primary full-text HTML abstract, task description and results consulted; DOI 10.7554/eLife.39787. Deliberate versus arbitrary donation choices constrain generalization from readiness potentials, not proof of uncaused will.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-p46",
+      "title": "University of Michigan, P46 leaf: Hebrews 1:7-2:3",
+      "url": "https://apps.lib.umich.edu/online-exhibits/items/show/4994",
+      "scope": "Institutional item record consulted: P.Mich.inv. 6238, Greek, approximate date 180-220 CE, unknown provenance within Egypt, acquired 1930/1931. The selected leaf is Hebrews, not a photographed Galatians 4 passage. No scan reuse claimed.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-dura",
+      "title": "Yale University Art Gallery, Dura-Europos Christian Building",
+      "url": "https://duraeuropos.artgallery.yale.edu/christian-building",
+      "scope": "Institutional excavation/conservation narrative consulted for font and paintings. Its older house-church account is compared with both 2024 archaeological interpretations, not treated as a settled construction/function chronology. No images copied.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-pettegrew2024",
+      "title": "David K. Pettegrew, Rethinking the archaeology of the Christian Building (2024)",
+      "url": "https://www.journals.uchicago.edu/doi/10.1086/730388",
+      "scope": "Published abstract and bibliographic metadata consulted, not the paywalled full article. Proposes retained domestic use and an earlier construction date. Published online June 11, 2024; American Journal of Archaeology 128(3), 341-379.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-angelo-silver2024",
+      "title": "Camille Leon Angelo and Joshua Silver, Debating the domus ecclesiae at Dura-Europos (2024)",
+      "url": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/debating-the-domus-ecclesiae-at-duraeuropos-the-christian-building-in-context/E76ED3AD86D09A74893368840DEDFA6A",
+      "scope": "Primary full-text HTML consulted, especially abstract and archaeological context; DOI 10.1017/S1047759424000126. Distinguishes renovated space from domestic antecedents, questions the 232/233 construction inference and places sealing in 254-256 CE. No meshes or figures reused.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "formation-community",
+      "title": "Library of Congress / Israel Antiquities Authority, Community Rule 4Q258",
+      "url": "https://www.loc.gov/exhibits/scrolls/late.html",
+      "scope": "Institutional catalogue and displayed translation scope consulted. Broad late-first-century-BCE/early-first-century-CE copy date is not converted into an invented numerical interval. This selected 4Q258 record is not a direct collation of 1QS III-IV.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-rr-2024",
+      "title": "Reframing Reality: How a Computational Universe Bridges Science, Spirituality, and Atheism",
+      "url": "https://www.svgn.io/p/reframing-reality-how-a-computational",
+      "scope": "Full current webpage read; original-day content fixation not independently established. Motivating computational-God synthesis. Hypothetical atheist responses are not actual endorsements. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-god-proof-2026",
+      "title": "A Computational-Tomographic Proof of God",
+      "url": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86c120caf27b210e50d4",
+      "scope": "Full PDF retrieved; argumentative sections 1-10 and conclusion reviewed; bridge table visually inspected. Companion code was not run. Affirmative conditional necessary-ground, agency, identity and S5 argument; not an empirical detection of God. Sections: 3.3 cosmic limit, 4 necessary ground, 5 agency comparison, 6 identity bridge, 7.1 finite-model witness, 8 numerical evidence stop rule, 9.7 goodness, 9.9 necessary agent and change. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-tcnr-2026",
+      "title": "Tomographic Coherence-Based Neural Rendering",
+      "url": "https://zenodo.org/records/21693924",
+      "scope": "PDF and Zenodo metadata retrieved; abstract and sections 1, 13-19 reviewed; coherence table visually inspected. No dataset result in this paper; neural test, consciousness theory and cosmic extension have different evidentiary roles. Sections: 13.2 four meanings of coherence, 13.3 surprise and meaning, 14 prediction and action, 15.1 report convergence, 16.5 historical cosmic bridge, 17 cross-substrate criteria. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-sit-2026",
+      "title": "Super Information Theory: Coherence, Time Density, Informational Dissipation, and Gravity",
+      "url": "https://osf.io/3vsar/files/osfstorage/6a7eb5433da97c3f1bd90da5",
+      "scope": "PDF and OSF file metadata retrieved; abstract and sections 3-4, 8-9, 13-14 reviewed. Not every mathematical derivation independently checked. Calibrated state-to-field and metric couplings with proposed residual tests; not a confirmed unification. Sections: 4.2 coherence observations, 4.4 state-to-field map, 8 corrected thermodynamic bridge, 13 contribution and limitations. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-annunaki-dialogue",
+      "title": "Annunaki",
+      "url": "https://github.com/n5ro/gold/blob/main/Annunaki",
+      "scope": "Initial passage and mapping discussion read through the GitHub connector; no new cuneiform collation. Author-directed formal narrative comparison. AI-generated illustrative probabilities are not calibrated findings. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-sumerian-flood",
+      "title": "The Flood Story, ETCSL 1.7.4",
+      "url": "https://etcsl.orinst.ox.ac.uk/section1/tr174.htm",
+      "scope": "Translation consulted; lacunae retained. Textual witness to narrative structure; no independent absolute date of the narrated disaster. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-sumerian-kings",
+      "title": "Sumerian King List, ETCSL 2.1.1",
+      "url": "https://etcsl.orinst.ox.ac.uk/section2/tr211.htm",
+      "scope": "Translation and variant notices consulted. Internal royal/flood chronology; not a calibrated geochronological table. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-genesis-web",
+      "title": "Genesis, World English Bible (chapter 5)",
+      "url": "https://ebible.org/engwebp/GEN05.htm",
+      "scope": "Named chapters consulted; no complete Hebrew/Greek/Samaritan variant collation. Genealogical counts and bird-release sequence; not an independently dated geological event. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-genesis-web-2",
+      "title": "Genesis, World English Bible (chapter 8)",
+      "url": "https://ebible.org/engwebp/GEN08.htm",
+      "scope": "Named chapters consulted; no complete Hebrew/Greek/Samaritan variant collation. Genealogical counts and bird-release sequence; not an independently dated geological event. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-genesis-web-3",
+      "title": "Genesis, World English Bible (chapter 11)",
+      "url": "https://ebible.org/engwebp/GEN11.htm",
+      "scope": "Named chapters consulted; no complete Hebrew/Greek/Samaritan variant collation. Genealogical counts and bird-release sequence; not an independently dated geological event. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-gilgamesh-k3375",
+      "title": "K.3375, Flood Tablet, Gilgamesh XI",
+      "url": "https://www.britishmuseum.org/collection/object/W_K-3375",
+      "scope": "British Museum indexed catalogue record consulted; direct page fetch was unavailable. Object identity and attributed production date. No new scan, image permission or excavation analysis. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-maldacena-1997",
+      "title": "The Large N Limit of Superconformal Field Theories and Supergravity",
+      "url": "https://arxiv.org/abs/hep-th/9711200",
+      "scope": "Abstract and relevant PDF discussion consulted. Specific holographic duality proposal; does not establish an external simulator or a cosmic conscious observer. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-coherence-2014",
+      "title": "Quantifying Coherence",
+      "url": "https://arxiv.org/abs/1311.0275",
+      "scope": "Abstract and relevant PDF discussion consulted. Basis-relative quantum coherence measures; not a universal identity among binding, consciousness and entropy. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-pair-production-2021",
+      "title": "Measurement of electron-positron Momentum and Angular Distributions from Linearly Polarized Photon Collisions",
+      "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.052302",
+      "scope": "Publisher page and Brookhaven report consulted. Photon interaction and pair production; not a claim that a photon contains electron and positron halves. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-dmt-eegfmri-2023",
+      "title": "Human brain effects of DMT assessed via EEG-fMRI",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36940333/",
+      "scope": "Indexed abstract consulted; full PMC page returned a browser challenge. Altered brain activity and subjective state in controlled participants; not verification of the external cause of an individual experience. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-tame-2022",
+      "title": "Technological Approach to Mind Everywhere: An Experimentally-Grounded Framework for Understanding Diverse Bodies and Minds",
+      "url": "https://www.frontiersin.org/journals/systems-neuroscience/articles/10.3389/fnsys.2022.768201/full",
+      "scope": "Relevant framework discussion consulted. Operational investigation of diverse intelligence; not evidence assigning supernatural identity to any living person. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-ruliad-2021",
+      "title": "The Concept of the Ruliad",
+      "url": "https://writings.stephenwolfram.com/2021/11/the-concept-of-the-ruliad/",
+      "scope": "Relevant conceptual discussion consulted. A computational possibility construction; its identity with an ancient theological realm is a further proposed comparison. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-apocryphon-john-long",
+      "title": "Apocryphon of John, long version",
+      "url": "https://www.gnosis.org/naghamm/apocjn-long.html",
+      "scope": "Online opening and Monad discussion consulted; printed synopsis not collated. Modern comparative interpretation must not be presented as ancient computational terminology or proven identity with the Ruliad. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "cf-first-star-2001",
+      "title": "The Formation of the First Star in the Universe",
+      "url": "https://arxiv.org/abs/astro-ph/0112088",
+      "scope": "Abstract consulted. Specific gravitational/cooling formation model; no evidence that a general-purpose coherence quantity alone explains stellar formation. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    }
+  ]
+}

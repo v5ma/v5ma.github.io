@@ -11,7 +11,7 @@ updated: "2026-09-04"
 
 ## Read the conversations behind the ideas
 
-The full catalogue below preserves the 354 published AI chats. Search matches may come from either speaker, not necessarily from Micah's own statements. Dates are export metadata, not independent publication certificates.
+The full catalogue below preserves the 354 published AI chats. Search matches may come from either speaker, not necessarily from my statements. Dates are export metadata, not independent publication certificates.
 
 [[topic-gnosis|Gnosticism & awakening]]
 
