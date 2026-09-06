@@ -1,12 +1,13 @@
 name: Verify Ride Lab and live flight guide
 on:
-  push:
-    branches: [feat/ride-lab-flow-20260906]
+  pull_request:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/ride*','scripts/check-rail-release.py','.github/workflows/ride-lab-acceptance.yml']
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: ride-lab-${{ github.ref }}
+  group: ride-lab-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   checks:
