@@ -1,0 +1,23 @@
+name: Verify rail grip and Bezier editor
+on:
+  push:
+    branches: [feat/rail-grip-bezier-20260906]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p test-output
+          tar -czf test-output/source.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/tested-commit.txt
+          find . -name AGENTS.md -not -path './.git/*' > test-output/agent-files.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rail-editor-source
+          path: test-output/
+          retention-days: 3
