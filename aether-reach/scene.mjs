@@ -97,7 +97,7 @@ export function makeView(canvas,quality='balanced'){
   for(let i=0;i<bulletMeshes.length;i++){const v=bulletMeshes[i],b=state.bullets[i];v.visible=!!b;if(b)v.position.set(b.x,b.y,b.z);}
   for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];s.t-=dt;if(s.t<=0){scene.remove(s.mesh);s.mesh.geometry.dispose();s.mesh.material.dispose();sparks.splice(i,1);continue;}if(s.pulse){s.mesh.scale.setScalar(1+(1-s.t/.6)*13);s.mesh.material.opacity=s.t*.35;}else s.mesh.material.opacity=s.t*10;}
   if(!reduced){turbines.forEach(g=>g.rotation.z+=dt*.2);flags.forEach((m,i)=>{const pos=m.geometry.attributes.position;for(let k=0;k<pos.count;k++){const x=pos.getX(k);pos.setZ(k,Math.sin(x*1.5+t*2.3+i)*.18*(x+1.5)/3);}pos.needsUpdate=true;m.geometry.computeVertexNormals();});}
-  hand.visible=false;hook.visible=!menu&&!renderer.xr.isPresenting;combatArt.update(state,dt,menu,reduced,renderer.xr.isPresenting);hook.position.y=state.p.rail?.24:0;hook.rotation.z=state.p.rail?-.18:0;
+  hand.visible=false;hook.visible=!menu&&!renderer.xr.isPresenting&&!(state.p.scoped&&state.p.weapon==='sniper');hook.scale.setScalar(.78);hook.position.x=-.055;hook.position.z=-.09;combatArt.update(state,dt,menu,reduced,renderer.xr.isPresenting);hook.position.y=state.p.rail?.24:0;hook.rotation.z=state.p.rail?-.18:0;
   const recoil=Math.max(0,1-(performance.now()-lastShot)/140);hand.position.z=recoil*.075;hand.rotation.x=recoil*.06;
  }
  function resize(w,h){if(renderer.xr.isPresenting)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}

@@ -77,7 +77,7 @@ export function clearLine(a,b){const l=distance(a,b);if(l<1e-8)return !SOLIDS.so
 const pointFor=id=>{const d=DISTRICTS.find(p=>p.id===id)||DISTRICTS[0];return {x:d.x,y:d.y+.02,z:d.z+5};};
 export function createState(save=null){
  const safe=readSave(save),kit=cleanKit(safe.kit),p=pointFor(safe.checkpoint);
- return {p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};
+ return {p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};
 }
 export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit)};}
 export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit)});}
@@ -112,7 +112,11 @@ export function nearby(s){const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.ra
  if(distance(p,EXTRACTION)<3.8)return {type:'exit',label:s.relays.size===3?'E · Broadcast the signal':'Restore three relays, then return here'};
  const box=loot(s).find(b=>distance(p,b)<3);if(box)return {type:'loot',id:box.id,label:'E · '+box.label+' / '+box.credits+' credits'};
  const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'E · Hook '+target.rail.name};return null;}
-export function interact(s){const n=nearby(s),p=s.p;if(!n)return false;
+export function interact(s){const n=nearby(s),p=s.p;
+ // A deliberate catch pressed during the release cooldown is remembered for
+ // 0.30 simulation seconds. Never auto-grab without input or through a wall.
+ if(!p.rail&&!p.grounded&&p.lastRail&&(!n||n.type==='hook')&&(!n||p.hookCooldown>0)){p.hookRequest=.30;return true;}
+ if(!n)return false;
  if(n.type==='loot')return collect(s,n.id);
  if(n.type==='relay'){s.kit.credits=Math.min(99999,s.kit.credits+90);s.relays.add(n.id);s.checkpoint=n.id;p.health=100;p.shield=60+s.kit.shield*20;p.ammo=weaponStats(s).mag;emit(s,'relay',{id:n.id});emit(s,'save');return true;}
  if(n.type==='record'){s.records.add(n.id);emit(s,'record',{id:n.id});emit(s,'save');return true;}
@@ -121,10 +125,10 @@ export function interact(s){const n=nearby(s),p=s.p;if(!n)return false;
   if(p.rail){detach(s,true);emit(s,'transfer-ready',{id:n.target.rail.id});return true;}
   const r=n.target.rail,q=pointOnRail(r,n.target.s),dir=forward(p.yaw,p.pitch),speed=Math.hypot(p.vx,p.vy,p.vz);let sign=dir.x*q.tangent.x+dir.z*q.tangent.z>=0?1:-1;if(n.target.s<4)sign=1;if(n.target.s>r.length-4)sign=-1;
   const transfer=p.lastRail&&p.lastRail!==r.id&&!p.grounded;
-  p.latch={x:p.x,y:p.y,z:p.z,t:0};p.rail={id:r.id,s:n.target.s,dir:sign};p.speed=clamp(speed||12,10,28);p.vy=0;p.grounded=false;s.stats.rails++;if(transfer)s.stats.transfers++;emit(s,'hook',{id:r.id,transfer:!!transfer});return true;
+  p.hookRequest=0;p.latch={x:p.x,y:p.y,z:p.z,t:0};p.rail={id:r.id,s:n.target.s,dir:sign};p.speed=clamp(speed||12,10,28);p.vy=0;p.grounded=false;s.stats.rails++;if(transfer)s.stats.transfers++;emit(s,'hook',{id:r.id,transfer:!!transfer});return true;
  }return false;
 }
-export function detach(s,jump=true){const p=s.p;if(!p.rail)return;const r=RAILS.find(r=>r.id===p.rail.id),q=pointOnRail(r,p.rail.s),dir=p.rail.dir;p.vx=q.tangent.x*p.speed*dir;p.vz=q.tangent.z*p.speed*dir;p.vy=q.tangent.y*p.speed*dir+(jump?5:0);p.lastRail=p.rail.id;p.airSince=s.time;p.rail=null;p.latch=null;p.hookCooldown=.14;p.grounded=false;emit(s,'release');}
+export function detach(s,jump=true){const p=s.p;if(!p.rail)return;const r=RAILS.find(r=>r.id===p.rail.id),q=pointOnRail(r,p.rail.s),dir=p.rail.dir;p.vx=q.tangent.x*p.speed*dir;p.vz=q.tangent.z*p.speed*dir;p.vy=q.tangent.y*p.speed*dir+(jump?5:0);p.lastRail=p.rail.id;p.airSince=s.time;p.rail=null;p.latch=null;p.hookCooldown=.14;p.hookRequest=0;p.grounded=false;emit(s,'release');}
 export function reverseRail(s){if(!s.p.rail)return;s.p.rail.dir*=-1;s.p.speed=Math.max(7,s.p.speed*.72);s.stats.reversals++;emit(s,'reverse');}
 export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.reload>0||p.ammo<=0||s.won)return false;const head={x:p.x,y:p.y+1.6,z:p.z};let o=head,d=forward(p.yaw,p.pitch);
  if(aim){if(!aim.origin||!aim.direction||!['x','y','z'].every(k=>Number.isFinite(aim.origin[k])&&Number.isFinite(aim.direction[k])))return false;const len=Math.hypot(aim.direction.x,aim.direction.y,aim.direction.z);if(len<.001||distance(head,aim.origin)>2.5||!clearLine(head,aim.origin))return false;o={...aim.origin};d={x:aim.direction.x/len,y:aim.direction.y/len,z:aim.direction.z/len};}
@@ -140,14 +144,14 @@ export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.re
  }return true;
 }
 export function pulse(s){const p=s.p;if(p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){defeated(s,b);}}emit(s,'pulse',{hits:n});return true;}
-export function rescue(s,death=false){const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,grounded:true,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];emit(s,'rescue',{death});}
+export function rescue(s,death=false){const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,grounded:true,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];emit(s,'rescue',{death});}
 function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;let left=amount;if(p.shield>0){const k=Math.min(left,p.shield);p.shield-=k;left-=k;}p.health-=left;s.damagedAt=s.time;emit(s,'damage');if(p.health<=0)rescue(s,true);}
 function occupied(x,y,z){return SOLIDS.some(b=>x+.38>b.x1&&x-.38<b.x2&&y+1.8>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2);}
 export function step(s,input,dt){
  if(s.won)return;dt=clamp(dt,0,.025);s.time+=dt;const p=s.p;
  for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload-=dt;if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
  if(input.reload&&p.ammo<weaponStats(s).mag&&p.reload<=0&&(p.weapon==='arc'||s.kit.reserve[p.weapon]>0))p.reload=weaponStats(s).reload;
- if(p.rail){const r=RAILS.find(r=>r.id===p.rail.id);p.speed=clamp(p.speed+(input.back?-16:input.boost?15:4)*dt,3,input.boost?28:19);const old=p.rail.s;p.rail.s=clamp(old+p.speed*p.rail.dir*dt,0,r.length);s.stats.railDistance+=Math.abs(old-p.rail.s);const q=pointOnRail(r,p.rail.s);if(p.latch){p.latch.t+=dt;const f=Math.min(1,p.latch.t/.18);p.x=p.latch.x+(q.x-p.latch.x)*f;p.y=p.latch.y+(q.y-2.65-p.latch.y)*f;p.z=p.latch.z+(q.z-p.latch.z)*f;if(f===1)p.latch=null;}else{p.x=q.x;p.y=q.y-2.65;p.z=q.z;}
+ if(p.rail){const r=RAILS.find(r=>r.id===p.rail.id);p.speed=clamp(p.speed+(input.back?-16:input.boost?15:p.speed>19?-3:4)*dt,3,input.boost||p.speed>19?28:19);const old=p.rail.s;p.rail.s=clamp(old+p.speed*p.rail.dir*dt,0,r.length);s.stats.railDistance+=Math.abs(old-p.rail.s);const q=pointOnRail(r,p.rail.s);if(p.latch){p.latch.t+=dt;const f=Math.min(1,p.latch.t/.18);p.x=p.latch.x+(q.x-p.latch.x)*f;p.y=p.latch.y+(q.y-2.65-p.latch.y)*f;p.z=p.latch.z+(q.z-p.latch.z)*f;if(f===1)p.latch=null;}else{p.x=q.x;p.y=q.y-2.65;p.z=q.z;}
   if(input.railCamera===true&&!p.scoped){const yaw=Math.atan2(q.tangent.x*p.rail.dir,-q.tangent.z*p.rail.dir),delta=Math.atan2(Math.sin(yaw-p.yaw),Math.cos(yaw-p.yaw));p.yaw+=delta*Math.min(1,dt*2.5);}
   if(p.rail.s===0||p.rail.s===r.length){const end=p.rail.s===0?r.from:r.to;detach(s,false);p.vx=p.vz=0;const floor=groundAt(p.x,p.z,p.y+1);if(Number.isFinite(floor.y)){p.y=floor.y+.01;p.grounded=true;}emit(s,'arrive',{district:end});}
  }else{
@@ -157,6 +161,11 @@ export function step(s,input,dt){
   const floor=groundAt(p.x,p.z,oldY+(was?.55:0));p.vy-=18*dt;p.y+=p.vy*dt;p.grounded=false;
   if(Number.isFinite(floor.y)&&((was&&floor.y-oldY<=.55)||(oldY>=floor.y&&p.y<=floor.y))){p.y=floor.y;p.vy=0;p.grounded=true;}
   if(p.y<-45)rescue(s);
+ }
+ if(p.hookRequest>0){
+  p.hookRequest=Math.max(0,p.hookRequest-dt);
+  if(p.grounded||p.rail)p.hookRequest=0;
+  else if(p.hookCooldown<=0&&nearby(s)?.type==='hook'){p.hookRequest=0;interact(s);}
  }
  for(let i=0;i<s.drones.length;i++){
   const b=s.drones[i];if(b.hp<=0||b.kind==='target')continue;b.stun=Math.max(0,b.stun-dt);if(b.stun>0){b.telegraph=0;continue;}
