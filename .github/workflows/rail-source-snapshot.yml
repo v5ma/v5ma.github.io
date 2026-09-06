@@ -1,0 +1,29 @@
+name: Capture exact Paper Delivery source
+on:
+  push:
+    branches: [feat/rail-grip-bezier-20260906]
+    paths: ['.github/workflows/rail-source-snapshot.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package the exact committed game and test source
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/runtime.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --exit-code
+          find . -name AGENTS.md -not -path './.git/*' > test-output/agent-files.txt
+          sha256sum test-output/runtime.tgz > test-output/archive.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rail-exact-source
+          path: test-output/
+          retention-days: 7
