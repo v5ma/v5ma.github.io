@@ -23,7 +23,10 @@ with sync_playwright() as p:
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.08,'Clicking to capture the mouse does not apply a cursor-warp rotation')
   page.screenshot(path=str(OUT/'first-person-street.png'));page.wait_for_timeout(200)
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.08,'Mouse recenter notifications do not create a delayed view jump')
-  touch=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True,service_workers='block');touch.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());phone=touch.new_page();phone.on('pageerror',lambda e:errors.append(str(e)));phone.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');phone.wait_for_function('!!window.AetherReach');phone.locator('#start').tap();phone.locator('[data-key="fire"]').tap();phone.wait_for_function('AetherReach.snapshot().ammo<8');phone.locator('[data-key="reload"]').tap();phone.wait_for_function('AetherReach.snapshot().ammo===8')
+  # Release the first live WebGL context before starting the separate touch
+  # device; two concurrent software GPUs are not a mobile-support test.
+  page.goto('about:blank')
+  touch=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True,service_workers='block');touch.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());phone=touch.new_page();phone.on('pageerror',lambda e:errors.append(str(e)));phone.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded',timeout=60000);phone.wait_for_function('!!window.AetherReach');phone.locator('#start').tap();phone.locator('[data-key="fire"]').tap();phone.wait_for_function('AetherReach.snapshot().ammo<8');phone.locator('[data-key="reload"]').tap();phone.wait_for_function('AetherReach.snapshot().ammo===8')
   check(True,'A real touch fire and reload works without a physical keyboard')
   check(not phone.evaluate('document.documentElement.scrollWidth>innerWidth'),'The touch HUD remains within its viewport')
   phone.screenshot(path=str(OUT/'touch-playable.png'));touch.close();check(not errors,'No uncaught browser exceptions during launch and touch checks')

@@ -14,12 +14,12 @@ export function installControllers(api){
   return {root,title:root.querySelector('h1,h2')?.textContent||'Menu',description:root.querySelector('p:not(.eyebrow)')?.textContent||'',items};
  }
  const xr=createXR(api.view,{state:api.state,start:api.start,clear:reset,pause:api.pause,menu:()=>{
-  const m=currentMenu();if(m){m.items=m.items.slice(0,5);m.items.push({element:document.getElementById('exit-vr'),label:'Exit VR',focused:document.activeElement?.id==='exit-vr'});}return m;
+  const m=currentMenu();if(m){const at=Math.max(0,m.items.findIndex(i=>i.focused)),start=Math.floor(at/5)*5; m.items=m.items.slice(start,start+5);m.items.push({element:document.getElementById('exit-vr'),label:'Exit VR',focused:document.activeElement?.id==='exit-vr'});}return m;
  },focus:e=>e.focus({preventScroll:true}),hint:api.hint});
  function reset(){sampler.reset();navLatch=false;horizontalLatch=false;frameInput=null;}
  function back(menu){if(menu?.root.id==='complete-dialog')document.getElementById('explore-more').click();else if(menu?.root.tagName==='DIALOG')menu.root.close();}
  function menuInput(m,data,pad){
-  const items=xr.active?[...m.items.slice(0,5),{element:document.getElementById('exit-vr')}]:m.items;if(!items.length)return;
+  const items=xr.active?[...m.items,{element:document.getElementById('exit-vr')}]:m.items;if(!items.length)return;
   let index=items.findIndex(e=>e.element===document.activeElement);if(index<0){index=0;items[0].element.focus({preventScroll:true});}
   const axis=data.menuAxis||data.move,up=pad?.buttons?.[12]?.pressed,down=pad?.buttons?.[13]?.pressed,dy=down?1:up?-1:axis[1];
   if(Math.abs(dy)<.3)navLatch=false;
