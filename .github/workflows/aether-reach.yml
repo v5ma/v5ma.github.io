@@ -18,30 +18,36 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [expedition, interface]
+        suite: [expedition, interface, launch]
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check model and source syntax
+      - name: Check public model, privacy boundary and source syntax
         run: |
           for f in aether-reach/*.mjs; do node --check "$f"; done
-          node --test aether-reach/tests/model.test.mjs
+          node --test aether-reach/tests/model.test.mjs aether-reach/tests/public-build.test.mjs
+          node aether-reach/tests/release-manifest.mjs
       - name: Install the actual browser
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Exercise the actual HTTP WebGL expedition
+      - name: Exercise the actual HTTP WebGL client
         env:
           AETHER_SUITE: ${{ matrix.suite }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/aether-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          python -u aether-reach/tests/browser.py
-          if [ "$AETHER_SUITE" = interface ]; then python -u aether-reach/tests/launch.py; fi
-      - name: Record the exact tested version
+          if [ "$AETHER_SUITE" = launch ]; then
+            python -u aether-reach/tests/launch.py
+          else
+            python -u aether-reach/tests/browser.py
+          fi
+      - name: Record exact tested source without changing it
         if: always()
         run: |
           mkdir -p aether-reach/test-output

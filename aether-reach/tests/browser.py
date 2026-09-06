@@ -91,7 +91,11 @@ with sync_playwright() as p:
    check(page.evaluate('JSON.parse(localStorage.getItem("aether-reach.settings.v1")).fov')==85,'View and comfort settings persist on this device')
    page.keyboard.press('KeyR');page.keyboard.down('KeyF');page.wait_for_timeout(700);page.keyboard.up('KeyF');check(snap(page)['ammo']<8,'The first-person arc caster fires and consumes charges')
    page.keyboard.press('KeyR');page.wait_for_function('AetherReach.snapshot().ammo===8');check(True,'Reload restores the weapon after its real cooldown')
-   page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(250)
+   page.set_viewport_size({'width':390,'height':844})
+   # The resize event and WebGL viewport update are asynchronous, especially on
+   # software GPUs. Wait for the required UI state; a fixed 250 ms is not proof.
+   page.wait_for_function('innerWidth===390&&!document.getElementById("touch").hidden')
+   page.locator('#touch').wait_for(state='visible')
    check(page.locator('#touch').is_visible(),'Touch movement, look and action controls exist on a narrow display')
    check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The HUD and menus do not overflow the phone-width viewport')
    page.screenshot(path=str(OUT/'touch-layout.png'))
