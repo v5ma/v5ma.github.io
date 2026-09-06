@@ -1,0 +1,68 @@
+{
+  "schema": "theology-computational-foundations-index/v1",
+  "prepared": "2026-09-06",
+  "status": "Author-review research drafts; not integrated into the live reader",
+  "proposedTheoryName": "Computational Divine Immanence",
+  "drafts": [
+    {"path": "Computational-Divine-Immanence.txt", "gitBlobSha": "dce6fedb033a1d8ef35f9e0df47b83ef694d3d7b"},
+    {"path": "Flood-Inheritance-and-Deep-Time.txt", "gitBlobSha": "715a72e49354cfb2a4cff014f7d2c671d0d61ff9"}
+  ],
+  "suppliedPapers": [
+    {
+      "id": "god-proof-2026",
+      "title": "A Computational-Tomographic Proof of God",
+      "documentDate": "2026-07-28",
+      "version": "Restored Draft 2, as described in the supplied PDF",
+      "url": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86c120caf27b210e50d4",
+      "bytes": 183888,
+      "sha256": "b51c965f58ddffd0c2a6a91611227474cce00d83b769cdc03886f54c978e0391",
+      "review": "Argumentative sections and bridge table reviewed; companion modal code not independently executed.",
+      "scope": "Affirmative conditional philosophical argument. Necessary ground, agency, ground-renderer identification, modal amplification and empirical evidence have distinct burdens."
+    },
+    {
+      "id": "tcnr-2026",
+      "title": "Tomographic Coherence-Based Neural Rendering",
+      "documentDate": "2026-07-27",
+      "repositoryPublicationDate": "2026-07-29",
+      "version": "Draft 7; corrected house-style edition",
+      "url": "https://zenodo.org/records/21693924",
+      "retrievedMirror": "https://files.us.osf.io/v1/resources/3nywu/providers/osfstorage/6a6a86bbc7fae5fe6622f006",
+      "bytes": 200433,
+      "sha256": "665c2d9345bfcf63886ea7323dd7bab340195578db0057896a1f140e80d34830",
+      "review": "Abstract, scope and sections 13-19 reviewed; coherence table visually inspected.",
+      "scope": "Prospective neural protocol and conceptual bridge, not a report of a completed dataset analysis or a consciousness measurement."
+    },
+    {
+      "id": "sit-2026",
+      "title": "Super Information Theory: Coherence, Time Density, Informational Dissipation, and Gravity",
+      "documentDate": "July 2026",
+      "repositoryFileCreatedUTC": "2026-08-14T06:27:15.484493Z",
+      "version": "Correction-integrated Draft 13",
+      "url": "https://osf.io/3vsar/files/osfstorage/6a7eb5433da97c3f1bd90da5",
+      "retrievedDownload": "https://files.osf.io/v1/resources/3vsar/providers/osfstorage/6a7eb5433da97c3f1bd90da5",
+      "bytes": 252499,
+      "sha256": "5ffa4cabd5d4d4758dce28a235f34ec3c1b2a68ac26cba27614a77bc20523c98",
+      "review": "Abstract and operational/thermodynamic sections reviewed; not every derivation independently checked.",
+      "scope": "Layered state-to-field and metric-coupling research program; no confirmed SIT-specific anomaly reported."
+    }
+  ],
+  "connections": [
+    {"id": "necessary-ground", "kind": "conditional derivation", "source": "god-proof-2026", "locator": "section 4", "question": "Do the contingency, totality, sufficient-reason and noncircularity premises support the necessary-ground conclusion?"},
+    {"id": "agency", "kind": "comparative philosophical bridge", "source": "god-proof-2026", "locator": "section 5", "question": "Can reasons-responsive non-entailing selection meet the contrastive explanatory demand better than the declared impersonal alternatives?"},
+    {"id": "immanence", "kind": "new interpretive development", "source": "god-proof-2026", "locator": "sections 6 and 9.9", "question": "Does the proposed world-ground relation express identity, dependence or expression-within, and which additional premises connect these?"},
+    {"id": "bounded-choice", "kind": "cross-scale distinction", "source": "tcnr-2026", "locator": "sections 14 and 16.5", "question": "How does physically implemented organism-level deliberation relate to, without silently becoming, the stronger agent-causal metaphysical claim?"},
+    {"id": "coherence", "kind": "operational definition boundary", "source": "tcnr-2026", "locator": "section 13.2", "question": "Which meaning of coherence is being measured, and what permits a translation between domains?"},
+    {"id": "thermodynamics", "kind": "physical bridge", "source": "sit-2026", "locator": "sections 4 and 8", "question": "Which calibrated state-to-field map or physical entropy-production accounting turns a proposed connection into a test?"},
+    {"id": "goodness", "kind": "ethical bridge", "source": "god-proof-2026", "locator": "sections 6 and 9.7", "question": "What additional argument connects intelligence or explanatory necessity to moral goodness?"},
+    {"id": "flood-inheritance", "kind": "textual comparison", "source": "Flood-Inheritance-and-Deep-Time.txt", "locator": "source notes", "question": "Which narrative relations survive transformation, and which witnesses, dates and alternative transmission accounts constrain the conclusion?"},
+    {"id": "numeric-evidence", "kind": "later methodological correction", "source": "god-proof-2026", "locator": "section 8", "question": "Can the earlier dialogue's proposed narrative comparison meet the source-backed, dependency-aware standard before numerical odds are reported?"},
+    {"id": "ruliad-monad", "kind": "modern conceptual analogy", "source": "Computational-Divine-Immanence.txt", "locator": "source notes", "question": "Which explanatory roles correspond without claiming that distinct ancient and modern constructions are already proved identical?"}
+  ],
+  "retrieval": {
+    "runId": 34058271148,
+    "artifactId": 9996639481,
+    "result": "All three public PDFs retrieved with HTTP 200; God and TCNR hashes match the earlier research manifest; SIT hash matches OSF provider metadata.",
+    "workflow": "Temporary read-only retrieval workflow removed from final branch diff. No credentials or unpublished personal material were used."
+  },
+  "publicationBoundary": "Personal journal and relationship material are excluded. No original conversation, live article, audio recording, workbook, museum runtime or private manuscript is modified by this intake."
+}
