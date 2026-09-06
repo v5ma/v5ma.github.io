@@ -33,9 +33,9 @@ translation / Greek biblical. This translation gives the 440th year. It is a tex
 
 ## Josephus: Jewish Antiquities
 
-work / Jewish historiography. Separate the foundation count, priestly succession count, destruction system and Egyptian sanctuary narrative within one transmitted work.
+work / Jewish historiography. Separate the foundation count, priestly succession count, destruction system and Egyptian sanctuary narrative within one transmitted work. The Oniad family and cross-border counsel are now examined in their own full study.
 
-[[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]
+[[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
 
 ## Josephus: Against Apion
 
@@ -77,13 +77,13 @@ work / Biblical. The 300-year claim has territorial endpoints; it is not itself 
 
 work / Jewish apocalypse. Chapter 9 supplies a narrative connection between Exodus and sanctuary restoration as well as its numerical scheme. Absolute identifications require additional premises.
 
-[[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]] / [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]
+[[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]] / [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
 
 ## Damascus Document
 
 work / Qumran and Genizah. The reception case makes copying date distinct from a work's antiquity. Its complete route through later communities remains a separate investigation.
 
-[[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]
+[[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
 
 ## Genizah witnesses to the Damascus Document
 
@@ -119,7 +119,7 @@ translation / Modern translation. This credits the consulted translation; it doe
 
 work / Qumran. The full comparison asks who proclaims or effects release and how the inherited scriptural passages are joined.
 
-[[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]
+[[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
 
 ## 11Q13: damaged material witness
 
@@ -129,9 +129,9 @@ material-witness / Qumran. A disputed restoration or subject reading must remain
 
 ## Logan Williams: jubilee, 11Q13 and Mark
 
-study / Modern scholarship. The argued shared scriptural configuration is not presented as proof that Mark read this manuscript or that the Teacher and Jesus are one person.
+study / Modern scholarship. The argued shared scriptural configuration is not presented as proof that Mark read this manuscript or that the Teacher and Jesus are one person. The new chronology study distinguishes the revised II 6-7 reading from the older tenth-jubilee restoration.
 
-[[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]
+[[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
 
 ## Nag Hammadi Melchizedek
 
@@ -167,7 +167,7 @@ hypothesis / Alternative reconstruction. The recent editing discussion explores 
 
 hypothesis / Alternative reconstruction. The stronger version proposes an earlier founder, successive leaders, descendants or namesakes, transmitted sayings and later chronological relocation of biography. Do not replace it with shared motifs only.
 
-[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
 
 ## Sibylline Oracles: repair comparison dossier
 
@@ -336,3 +336,57 @@ study / Modern mixed-speaker research dialogue. The mapping proposal and its AI-
 study / Computational philosophy. A modern comparison with an ultimate order, not evidence that ancient authors described the same formal construction.
 
 [[computational-divine-immanence|Computational Divine Immanence]]
+
+## Leviticus: counting years and proclaiming release
+
+work / Biblical. Leviticus 25:8-13 relates the counted cycle to release and return. A numerical interval and the authority to proclaim it are connected questions.
+
+[[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
+
+## Josephus: Jewish War, households and the Egyptian sanctuary
+
+work / Jewish historiography. War 7.10 supplies a sanctuary narrative and closure with disputed particulars; 2.8.13 describes a marrying Essene order. Distinct sections of one transmitted work are not independent authors.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
+
+## Second Maccabees: the murder of Onias
+
+work / Jewish historiography. Second Maccabees 4:33-38 supplies named relationships around an unjust priestly death. Identifying its victim with a later narrative predecessor is a further hypothesis.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
+
+## Isaiah: an altar in Egypt
+
+work / Biblical. Isaiah 19:19-25 permits comparison of divine blessing and a sanctuary beyond Judea. Josephus reports an appeal to the prophecy; this does not independently authenticate his quoted letters.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
+
+## Collins: the Teacher within a schematic 490-year history
+
+study / Modern scholarship. The argument distinguishes CD's stated 390 years, 20 years and roughly 40 post-Teacher years from a further reconstructed 40-year career. Household rules receive a separate passage locator.
+
+[[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
+
+## Klukowski: the 364-day schematic year
+
+study / Modern scholarship. Abstract-level calendrical comparison. Year structure, practical operation, historical anchoring and individual identification remain different research questions.
+
+[[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
+
+## Gruen: alternatives to the rival-temple model
+
+study / Modern scholarship. The consulted abstract challenges a simple schism interpretation and proposes mutual support. Neither full critical-text review nor endorsement of the broader Teacher genealogy is implied.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
+
+## Priestly Branch-and-Reunion Hypothesis
+
+hypothesis / Authorial reconstruction. Working description of the proposed Egyptian and Judean branches, family and office succession, later contact and transformed inheritance. The strong institutional proposal is not reduced to thematic similarity.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
+
+## Strabo as quoted by Josephus on Onias's sons
+
+quoted-fragment / Mediated historical testimony. Antiquities 13.10.4 attributes a passage about Chelcias and Ananias to Strabo. The quoted testimony is read through Josephus, not counted as an independently recovered document.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]

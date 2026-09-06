@@ -4,7 +4,7 @@ slug: "research-board"
 summary: "Concrete source, citation, argument and author-review tasks; personal planning changes do not edit the published research record."
 topic: "Wider conversations"
 status: "Navigator"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # Research and author-review board

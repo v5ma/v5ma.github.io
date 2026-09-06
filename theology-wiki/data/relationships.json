@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-connected-foundations-1",
+  "version": "2026.09.06-priesthood-time-1",
   "policy": "Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.",
   "edges": [
     {
@@ -379,6 +379,48 @@
       "type": "compares",
       "why": "The inward reference and the cosmic ground are connected interpretations, not identical models or measurements.",
       "origin": "Editorial relationship"
+    },
+    {
+      "to": "daniel-jubilee-and-the-teachers-time",
+      "type": "develops",
+      "why": "The identity proposal now has a complete companion examination of counted history, event assignments and incompatible chronology versions.",
+      "origin": "Editorial relationship",
+      "from": "jesus-teacher-of-righteousness-hypothesis"
+    },
+    {
+      "to": "onias-egypt-and-priestly-continuity",
+      "type": "develops",
+      "why": "The proposed Egyptian-Judean institutional network is examined through actual reported staff, successors, political connections and closure.",
+      "origin": "Editorial relationship",
+      "from": "tor-thomas-and-gnostic-transmission"
+    },
+    {
+      "to": "onias-egypt-and-priestly-continuity",
+      "type": "connects",
+      "why": "Onias as a predecessor and the Teacher as a later founder require separate events and a specified interval rather than a silently shared date.",
+      "origin": "Editorial relationship",
+      "from": "daniel-jubilee-and-the-teachers-time"
+    },
+    {
+      "to": "apocalyptic-repair-theology",
+      "type": "connects",
+      "why": "The end of a prophetic count concerns the authority to release and restore a community, not merely numerical agreement.",
+      "origin": "Editorial relationship",
+      "from": "daniel-jubilee-and-the-teachers-time"
+    },
+    {
+      "to": "gnosticism-and-temple-trauma",
+      "type": "develops",
+      "why": "Closure of a second sanctuary makes institutional loss and dispersed continuity a more specific mechanism for the comparative trauma investigation.",
+      "origin": "Editorial relationship",
+      "from": "onias-egypt-and-priestly-continuity"
+    },
+    {
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "compares",
+      "why": "Legitimacy through scripture, separate sacred centers and continued political relationships need not have a single uniform relationship.",
+      "origin": "Editorial relationship",
+      "from": "onias-egypt-and-priestly-continuity"
     },
     {
       "from": "tor-thomas-and-gnostic-transmission",
@@ -963,6 +1005,27 @@
     },
     {
       "from": "inner-formation-texts-and-material-witnesses",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "daniel-jubilee-and-the-teachers-time",
+      "to": "daniel-and-teacher-of-righteousness",
+      "type": "source",
+      "why": "The article develops an argument from Daniel and Teacher of Righteousness. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "daniel-jubilee-and-the-teachers-time",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "onias-egypt-and-priestly-continuity",
       "to": "ai-re-dates-dead-sea-scrolls",
       "type": "source",
       "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",

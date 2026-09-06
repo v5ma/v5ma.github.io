@@ -33,6 +33,10 @@ Manuscripts, Temple history, divine names and the dating of ideas.
 
 [[flood-inheritance-and-deep-time|Flood inheritance and deep time]]: A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.
 
+[[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]: The counted history, competing Teacher chronologies and authority to proclaim release are examined without merging an appearance, a death and a restoration.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]: A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.
+
 ## Browse the source discussions
 
 These 43 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.

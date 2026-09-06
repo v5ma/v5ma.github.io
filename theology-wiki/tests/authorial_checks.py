@@ -19,7 +19,7 @@ def run_authorial_checks(page, open_page, check, OUT):
     page.wait_for_function('document.querySelector("#atlas-selected")?.value==="hypothesis-christic-formation"')
     check('Named theory is a hypothesis record, not a dated ancient witness','Christic' in page.locator('#atlas-cards').inner_text() and 'hypothesis' in page.locator('#atlas-cards').inner_text().lower())
     open_page(page,'museum-trails')
-    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===6')
+    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===8')
     trail=page.locator('.atlas-trail').filter(has_text='How an inward model acquires a history')
     check('New museum trail exposes all five source-linked stops',trail.count()==1 and trail.locator('.atlas-stop').count()==5)
     trail.scroll_into_view_if_needed();page.screenshot(path=str(OUT/'formation-museum-trail.png'))

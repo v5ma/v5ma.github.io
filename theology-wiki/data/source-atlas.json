@@ -1,8 +1,8 @@
 {
   "schema": "theology-source-atlas/1",
-  "version": "2026.09.06-connected-foundations-1",
+  "version": "2026.09.06-priesthood-time-1",
   "updated": "2026-09-06",
-  "baselineCommit": "0a9c9cf8b12232b6f69b00342ab8fb75570017ff",
+  "baselineCommit": "32875e660a61f175727d99433d25887cd0707851",
   "policy": "A curated starting catalogue, not an exhaustive list of all sources in 354 chats. Kinds, access scopes, hypotheses and unresolved leads are distinct. A shared source does not imply independent corroboration or a proven genealogy.",
   "references": [
     {
@@ -126,10 +126,10 @@
     },
     {
       "id": "atlas-onias",
-      "title": "Josephus, Antiquities 13.3, Whiston translation",
+      "title": "Josephus, Antiquities 13.3.1-3, 13.10.4 and 13.13.2, Whiston translation",
       "url": "https://penelope.uchicago.edu/josephus/ant-13.html",
-      "scope": "Primary translated narrative of the Onias sanctuary consulted. This institutional account does not by itself establish subsequent household migration or Nag Hammadi ancestry.",
-      "accessed": "2026-09-05"
+      "scope": "Primary translated passages consulted for the sanctuary, royal petition and permission, Onias's sons Chelcias and Ananias, and Ananias's counsel concerning Alexander. Strabo is encountered through Josephus's quotation, not as an independently inspected document. These relations do not establish subsequent Teacher or Gnostic transmission.",
+      "accessed": "2026-09-06"
     },
     {
       "id": "atlas-beni",
@@ -326,6 +326,62 @@
       "url": "https://www.gnosis.org/naghamm/apocjn-long.html",
       "scope": "Online opening and Monad discussion consulted; printed synopsis not collated. Modern comparative interpretation must not be presented as ancient computational terminology or proven identity with the Ruliad. Access scope retained from the supplied research intake; not an independent replication.",
       "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-collins",
+      "title": "John J. Collins, The Dead Sea Scrolls (Anchor Bible Dictionary, 1992)",
+      "url": "https://cojs.org/the_dead_sea_scrolls-_john_j-_collins-_anchor_bible_dictionary_-ed-_david_noel_freedman-_doubleday-_ny-_1992-_vol-2-_p-85-101/",
+      "scope": "Sections C and J of the full online reproduction consulted for CD 1, CD 20:15, and household rules at CD 7:6-7. The 40-year Teacher career is a reconstructed interval. This is a dated scholarly interpretation, not a new Hebrew collation or current manuscript inventory.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-lev25",
+      "title": "Leviticus 25, World English Bible",
+      "url": "https://ebible.org/engwebp/LEV25.htm",
+      "scope": "Primary translated chapter consulted, particularly verses 8-13: seven weeks of years, the fiftieth year, liberty and return. Identifying a later agent of release is a further interpretive step.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-calendar",
+      "title": "Michal Jaroslaw Klukowski, The Tradition of the 364-Day Year in Second Temple Period Judaism",
+      "url": "https://czasopisma.kul.pl/index.php/vv/article/view/1935",
+      "scope": "Published scholarly abstract consulted for the 364-day schematic-year tradition and its relationship to calendrical texts. No claim of full-paper review, a settled origin, or a proved practical intercalation scheme is made.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-war7",
+      "title": "Josephus, War 7.10.2-4, William Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/war-7.html",
+      "scope": "Primary translated narrative consulted for the Onias sanctuary, different parentage and architectural description, support and closure under Lupus and Paulinus, and the transmitted 343-year duration. Editorial bracketed dates and Whiston notes are not words of the ancient narrative.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-war2",
+      "title": "Josephus, War 2.8.13, William Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/war-2.html",
+      "scope": "Primary translated passage consulted for the marrying Essene order and its concern with succession. It is not a roster of the households or branches proposed in this reconstruction.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-macc4",
+      "title": "Second Maccabees 4:33-38, USCCB translation",
+      "url": "https://bible.usccb.org/bible/2maccabees/4",
+      "scope": "Primary translated passage consulted for the death of Onias, the roles of Andronicus and Menelaus, and the king's response. It does not itself identify John the Baptist or a 20-year interval to the Teacher.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-isa19",
+      "title": "Isaiah 19, World English Bible",
+      "url": "https://ebible.org/engwebp/ISA19.htm",
+      "scope": "Primary translated chapter consulted, particularly verses 19-25: an altar in Egypt and blessing involving Egypt, Assyria and Israel. Its use in Josephus is a reported interpretation, not independent verification of royal correspondence.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-gruen",
+      "title": "Erich S. Gruen, The Origins and Objectives of Onias' Temple (1997)",
+      "url": "https://scriptaclassica.org/index.php/sci/article/view/4239",
+      "scope": "Published abstract consulted. It challenges the conventional rival-temple account and proposes mutual support between Jerusalem and Leontopolis while noting problems in Josephus. The full article and its critical apparatus were not independently reviewed in this pass; publication is 1997, not the website upload date.",
+      "accessed": "2026-09-06"
     }
   ],
   "records": [
@@ -407,7 +463,7 @@
       "title": "Josephus: Jewish Antiquities",
       "kind": "work",
       "corpus": "Jewish historiography",
-      "detail": "Separate the foundation count, priestly succession count, destruction system and Egyptian sanctuary narrative within one transmitted work.",
+      "detail": "Separate the foundation count, priestly succession count, destruction system and Egyptian sanctuary narrative within one transmitted work. The Oniad family and cross-border counsel are now examined in their own full study.",
       "sources": [
         "atlas-ant8",
         "atlas-ant20",
@@ -416,7 +472,8 @@
       ],
       "pages": [
         "exodus-to-temple-competing-chronologies",
-        "manuscripts-movements-and-survival"
+        "manuscripts-movements-and-survival",
+        "onias-egypt-and-priestly-continuity"
       ],
       "date": {
         "label": "Not assigned in this record",
@@ -589,7 +646,8 @@
       ],
       "pages": [
         "exodus-to-temple-competing-chronologies",
-        "jesus-teacher-of-righteousness-hypothesis"
+        "jesus-teacher-of-righteousness-hypothesis",
+        "daniel-jubilee-and-the-teachers-time"
       ],
       "date": {
         "label": "Not assigned in this record",
@@ -610,11 +668,14 @@
       "corpus": "Qumran and Genizah",
       "detail": "The reception case makes copying date distinct from a work's antiquity. Its complete route through later communities remains a separate investigation.",
       "sources": [
-        "atlas-cambridge"
+        "atlas-cambridge",
+        "priests-collins"
       ],
       "pages": [
         "manuscripts-movements-and-survival",
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "daniel-jubilee-and-the-teachers-time",
+        "onias-egypt-and-priestly-continuity"
       ],
       "date": {
         "label": "Not assigned in this record",
@@ -766,7 +827,8 @@
       ],
       "pages": [
         "melchizedek-priesthood-and-transmission",
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "daniel-jubilee-and-the-teachers-time"
       ],
       "date": {
         "label": "Not assigned in this record",
@@ -810,13 +872,14 @@
       "title": "Logan Williams: jubilee, 11Q13 and Mark",
       "kind": "study",
       "corpus": "Modern scholarship",
-      "detail": "The argued shared scriptural configuration is not presented as proof that Mark read this manuscript or that the Teacher and Jesus are one person.",
+      "detail": "The argued shared scriptural configuration is not presented as proof that Mark read this manuscript or that the Teacher and Jesus are one person. The new chronology study distinguishes the revised II 6-7 reading from the older tenth-jubilee restoration.",
       "sources": [
         "melch-williams2023"
       ],
       "pages": [
         "melchizedek-priesthood-and-transmission",
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "daniel-jubilee-and-the-teachers-time"
       ],
       "date": {
         "label": "Not assigned in this record",
@@ -959,7 +1022,9 @@
       "pages": [
         "tor-thomas-and-gnostic-transmission",
         "jesus-teacher-of-righteousness-hypothesis",
-        "manuscripts-movements-and-survival"
+        "manuscripts-movements-and-survival",
+        "daniel-jubilee-and-the-teachers-time",
+        "onias-egypt-and-priestly-continuity"
       ],
       "date": {
         "label": "Proposed founder period, not assigned as a witness date",
@@ -1657,6 +1722,224 @@
         "status": "No bundled asset",
         "reason": "Source access does not confer scan, image, recording or translation reuse permission."
       }
+    },
+    {
+      "id": "work-leviticus-jubilee",
+      "title": "Leviticus: counting years and proclaiming release",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Leviticus 25:8-13 relates the counted cycle to release and return. A numerical interval and the authority to proclaim it are connected questions.",
+      "sources": [
+        "priests-lev25"
+      ],
+      "pages": [
+        "daniel-jubilee-and-the-teachers-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "work-jewish-war",
+      "title": "Josephus: Jewish War, households and the Egyptian sanctuary",
+      "kind": "work",
+      "corpus": "Jewish historiography",
+      "detail": "War 7.10 supplies a sanctuary narrative and closure with disputed particulars; 2.8.13 describes a marrying Essene order. Distinct sections of one transmitted work are not independent authors.",
+      "sources": [
+        "priests-war7",
+        "priests-war2"
+      ],
+      "pages": [
+        "onias-egypt-and-priestly-continuity"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "work-second-maccabees",
+      "title": "Second Maccabees: the murder of Onias",
+      "kind": "work",
+      "corpus": "Jewish historiography",
+      "detail": "Second Maccabees 4:33-38 supplies named relationships around an unjust priestly death. Identifying its victim with a later narrative predecessor is a further hypothesis.",
+      "sources": [
+        "priests-macc4"
+      ],
+      "pages": [
+        "onias-egypt-and-priestly-continuity",
+        "daniel-jubilee-and-the-teachers-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "work-isaiah-egypt",
+      "title": "Isaiah: an altar in Egypt",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Isaiah 19:19-25 permits comparison of divine blessing and a sanctuary beyond Judea. Josephus reports an appeal to the prophecy; this does not independently authenticate his quoted letters.",
+      "sources": [
+        "priests-isa19"
+      ],
+      "pages": [
+        "onias-egypt-and-priestly-continuity"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "study-collins-teacher",
+      "title": "Collins: the Teacher within a schematic 490-year history",
+      "kind": "study",
+      "corpus": "Modern scholarship",
+      "detail": "The argument distinguishes CD's stated 390 years, 20 years and roughly 40 post-Teacher years from a further reconstructed 40-year career. Household rules receive a separate passage locator.",
+      "sources": [
+        "priests-collins"
+      ],
+      "pages": [
+        "daniel-jubilee-and-the-teachers-time",
+        "onias-egypt-and-priestly-continuity"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "study-klukowski-calendar",
+      "title": "Klukowski: the 364-day schematic year",
+      "kind": "study",
+      "corpus": "Modern scholarship",
+      "detail": "Abstract-level calendrical comparison. Year structure, practical operation, historical anchoring and individual identification remain different research questions.",
+      "sources": [
+        "priests-calendar"
+      ],
+      "pages": [
+        "daniel-jubilee-and-the-teachers-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted abstract",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "study-gruen-onias",
+      "title": "Gruen: alternatives to the rival-temple model",
+      "kind": "study",
+      "corpus": "Modern scholarship",
+      "detail": "The consulted abstract challenges a simple schism interpretation and proposes mutual support. Neither full critical-text review nor endorsement of the broader Teacher genealogy is implied.",
+      "sources": [
+        "priests-gruen"
+      ],
+      "pages": [
+        "onias-egypt-and-priestly-continuity"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted abstract",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "hypothesis-priestly-branches",
+      "title": "Priestly Branch-and-Reunion Hypothesis",
+      "kind": "hypothesis",
+      "corpus": "Authorial reconstruction",
+      "detail": "Working description of the proposed Egyptian and Judean branches, family and office succession, later contact and transformed inheritance. The strong institutional proposal is not reduced to thematic similarity.",
+      "sources": [],
+      "pages": [
+        "onias-egypt-and-priestly-continuity",
+        "daniel-jubilee-and-the-teachers-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working hypothesis",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
+    },
+    {
+      "id": "fragment-strabo-onias",
+      "title": "Strabo as quoted by Josephus on Onias's sons",
+      "kind": "quoted-fragment",
+      "corpus": "Mediated historical testimony",
+      "detail": "Antiquities 13.10.4 attributes a passage about Chelcias and Ananias to Strabo. The quoted testimony is read through Josephus, not counted as an independently recovered document.",
+      "sources": [
+        "atlas-onias"
+      ],
+      "pages": [
+        "onias-egypt-and-priestly-continuity"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Passage relation, scholarly interpretation or proposed historical connection; not a newly dated artifact.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
+      }
     }
   ],
   "edges": [
@@ -2019,6 +2302,102 @@
       "relation": "compares",
       "why": "Conceptual analogy needs an explicit mapping and is not a demonstrated ancient transmission.",
       "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "priests-link-1",
+      "fromId": "work-jewish-war",
+      "toId": "work-antiquities",
+      "relation": "compares",
+      "why": "The founder parentage, architectural particulars and institutional roles are compared across Josephus's accounts, not silently harmonized.",
+      "basis": "Primary translated narratives"
+    },
+    {
+      "id": "priests-link-2",
+      "fromId": "work-antiquities",
+      "toId": "fragment-strabo-onias",
+      "relation": "quotes",
+      "why": "The account explicitly introduces Strabo for the position of the Oniad sons; this is a mediated quotation, not a second independently inspected record.",
+      "basis": "Reported quotation"
+    },
+    {
+      "id": "priests-link-3",
+      "fromId": "work-antiquities",
+      "toId": "work-isaiah-egypt",
+      "relation": "interprets",
+      "why": "The sanctuary petition is reported as appealing to Isaiah's Egyptian altar; the use of scripture is itself part of the legitimacy argument.",
+      "basis": "Reported scriptural appeal"
+    },
+    {
+      "id": "priests-link-4",
+      "fromId": "study-gruen-onias",
+      "toId": "work-antiquities",
+      "relation": "interprets",
+      "why": "A published scholarly abstract proposes mutual support rather than a simple rival-temple model. The full-paper review remains open.",
+      "basis": "Abstract-level scholarly interpretation"
+    },
+    {
+      "id": "priests-link-5",
+      "fromId": "study-collins-teacher",
+      "toId": "work-damascus",
+      "relation": "interprets",
+      "why": "The 490-year reconstruction contains an inferred Teacher career alongside stated intervals; the two evidence statuses must remain distinct.",
+      "basis": "Scholarly reconstruction"
+    },
+    {
+      "id": "priests-link-6",
+      "fromId": "study-collins-teacher",
+      "toId": "work-daniel",
+      "relation": "compares",
+      "why": "The proposed sum is compared with seventy weeks of years without claiming that either a modern BCE anchor or individual identity follows automatically.",
+      "basis": "Comparative chronology"
+    },
+    {
+      "id": "priests-link-7",
+      "fromId": "work-11qmelchizedek",
+      "toId": "work-leviticus-jubilee",
+      "relation": "interprets",
+      "why": "Counted release and return are interpreted in an eschatological account of liberation; a changed agent or function is an explicit research question.",
+      "basis": "Textual interpretation"
+    },
+    {
+      "id": "priests-link-8",
+      "fromId": "hypothesis-priestly-branches",
+      "toId": "work-antiquities",
+      "relation": "investigates",
+      "why": "Reported priests, sanctuary and named descendants provide possible carriers for the proposed Egyptian branch; direct Teacher transmission remains to be tested.",
+      "basis": "Institutional hypothesis"
+    },
+    {
+      "id": "priests-link-9",
+      "fromId": "hypothesis-priestly-branches",
+      "toId": "work-jewish-war",
+      "relation": "investigates",
+      "why": "Household plurality and sanctuary closure both constrain the proposed migration and reunion mechanism.",
+      "basis": "Institutional hypothesis"
+    },
+    {
+      "id": "priests-link-10",
+      "fromId": "hypothesis-priestly-branches",
+      "toId": "hypothesis-teacher-october",
+      "relation": "proposes-transmission",
+      "why": "The branch network is proposed as a carrier of an earlier founder's inheritance, including succession and a later relocated biography.",
+      "basis": "Proposed historical continuity"
+    },
+    {
+      "id": "priests-link-11",
+      "fromId": "hypothesis-priestly-branches",
+      "toId": "work-second-maccabees",
+      "relation": "investigates",
+      "why": "The priestly death is a candidate predecessor narrative, not an already demonstrated John-the-Baptist identification.",
+      "basis": "Proposed narrative identification"
+    },
+    {
+      "id": "priests-link-12",
+      "fromId": "study-klukowski-calendar",
+      "toId": "work-daniel",
+      "relation": "compares",
+      "why": "Year length and the placement of historical anchors are explicitly distinguished; a short calendar-year difference cannot supply a missing century on its own.",
+      "basis": "Calendrical comparison"
     }
   ],
   "intervals": [
@@ -2571,23 +2950,157 @@
           "challengeIds": []
         }
       ]
+    },
+    {
+      "id": "teacher-prophetic-time",
+      "title": "The Teacher and prophetic time",
+      "question": "Which event does a sacred count identify: appearance, death or restoration?",
+      "chapter": "teacher-identity",
+      "stops": [
+        {
+          "id": "pt-daniel-order",
+          "title": "The sequence before the name",
+          "label": "Seven weeks, 62 weeks and a final week must be assigned to events before a date can identify a person.",
+          "records": [
+            "work-daniel"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": [
+            "daniel-endpoints"
+          ]
+        },
+        {
+          "id": "pt-damascus-count",
+          "title": "The counted history",
+          "label": "390 and 20 place the Teacher's appearance within the model. The extra 40-year career is a reconstruction, not a fourth explicit datum.",
+          "records": [
+            "work-damascus",
+            "study-collins-teacher"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": [
+            "daniel-endpoints"
+          ]
+        },
+        {
+          "id": "pt-jubilee-release",
+          "title": "What the count authorizes",
+          "label": "Release, forgiveness and anointed authority create a specific interpretive connection. Competing readings of damaged words change the sequence.",
+          "records": [
+            "work-11qmelchizedek",
+            "study-williams",
+            "work-leviticus-jubilee"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": []
+        },
+        {
+          "id": "pt-versions",
+          "title": "Two versions must not be blended",
+          "label": "The illustrative 176 BCE appearance and the October 147-to-88 BCE reconstruction have different assumptions. Neither supplies an archaeological date.",
+          "records": [
+            "hypothesis-teacher-october"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": []
+        },
+        {
+          "id": "pt-carriers",
+          "title": "From sacred time to transmitted life",
+          "label": "A displaced-biography claim needs carriers of the founder's memory, not only a matching number. Follow the proposed Egyptian branch.",
+          "records": [
+            "hypothesis-priestly-branches"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [
+            "institution-not-motif"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onias-priestly-branches",
+      "title": "Onias and the priestly branches",
+      "question": "How could a priestly inheritance persist across borders and after its sanctuary closes?",
+      "chapter": "thomas",
+      "stops": [
+        {
+          "id": "pt-sanctuary",
+          "title": "An institution beyond Jerusalem",
+          "label": "Josephus supplies a reported sanctuary, priests and royal permission. The appeal to Isaiah explains a claim of continuity, not only a break.",
+          "records": [
+            "work-antiquities",
+            "work-isaiah-egypt"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": []
+        },
+        {
+          "id": "pt-descendants",
+          "title": "A named next generation",
+          "label": "Chelcias and Ananias appear as sons of the temple-founder. Their offices and cross-border counsel give the carrier question specific actors.",
+          "records": [
+            "work-antiquities",
+            "fragment-strabo-onias",
+            "study-gruen-onias"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": []
+        },
+        {
+          "id": "pt-households",
+          "title": "Families and specialized groups",
+          "label": "A marrying Essene order and household rules complicate a uniform celibate picture. Neither is a roster of the proposed migration.",
+          "records": [
+            "work-jewish-war",
+            "work-damascus"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [
+            "institution-not-motif"
+          ]
+        },
+        {
+          "id": "pt-closure",
+          "title": "The destination also closes",
+          "label": "The Egyptian sanctuary is not an indefinitely available refuge. Its reported closure makes surviving households and dispersed institutions a new research question.",
+          "records": [
+            "work-jewish-war"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": []
+        },
+        {
+          "id": "pt-reunion",
+          "title": "What changes, and what survives?",
+          "label": "Reunion, succession and transformed interpretation are the positive reconstruction. Texts, dates and actual intermediates must support each proposed connection.",
+          "records": [
+            "hypothesis-priestly-branches",
+            "hypothesis-teacher-october"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [
+            "institution-not-motif"
+          ]
+        }
+      ]
     }
   ],
   "counts": {
-    "records": 54,
+    "records": 63,
     "kinds": {
-      "work": 21,
+      "work": 25,
       "translation": 7,
       "material-witness": 9,
-      "quoted-fragment": 1,
-      "study": 8,
-      "hypothesis": 5,
+      "quoted-fragment": 2,
+      "study": 11,
+      "hypothesis": 6,
       "research-lead": 3
     },
-    "relationships": 45,
+    "relationships": 57,
     "intervals": 6,
     "challenges": 4,
-    "trails": 6,
-    "stops": 24
+    "trails": 8,
+    "stops": 34
   }
 }

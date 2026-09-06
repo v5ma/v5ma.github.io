@@ -178,3 +178,71 @@ Compare the organization of judgment, rescue and responsibility rather than only
 Connect the flood comparison to departure and sanctuary while keeping each source count explicit.
 
 [[exodus-to-temple-competing-chronologies|Read the full investigation]]
+
+## The Teacher and prophetic time
+
+Which event does a sacred count identify: appearance, death or restoration?
+
+### The sequence before the name
+
+Seven weeks, 62 weeks and a final week must be assigned to events before a date can identify a person.
+
+[[daniel-jubilee-and-the-teachers-time|Read the full investigation]]
+
+### The counted history
+
+390 and 20 place the Teacher's appearance within the model. The extra 40-year career is a reconstruction, not a fourth explicit datum.
+
+[[daniel-jubilee-and-the-teachers-time|Read the full investigation]]
+
+### What the count authorizes
+
+Release, forgiveness and anointed authority create a specific interpretive connection. Competing readings of damaged words change the sequence.
+
+[[daniel-jubilee-and-the-teachers-time|Read the full investigation]]
+
+### Two versions must not be blended
+
+The illustrative 176 BCE appearance and the October 147-to-88 BCE reconstruction have different assumptions. Neither supplies an archaeological date.
+
+[[daniel-jubilee-and-the-teachers-time|Read the full investigation]]
+
+### From sacred time to transmitted life
+
+A displaced-biography claim needs carriers of the founder's memory, not only a matching number. Follow the proposed Egyptian branch.
+
+[[onias-egypt-and-priestly-continuity|Read the full investigation]]
+
+## Onias and the priestly branches
+
+How could a priestly inheritance persist across borders and after its sanctuary closes?
+
+### An institution beyond Jerusalem
+
+Josephus supplies a reported sanctuary, priests and royal permission. The appeal to Isaiah explains a claim of continuity, not only a break.
+
+[[onias-egypt-and-priestly-continuity|Read the full investigation]]
+
+### A named next generation
+
+Chelcias and Ananias appear as sons of the temple-founder. Their offices and cross-border counsel give the carrier question specific actors.
+
+[[onias-egypt-and-priestly-continuity|Read the full investigation]]
+
+### Families and specialized groups
+
+A marrying Essene order and household rules complicate a uniform celibate picture. Neither is a roster of the proposed migration.
+
+[[onias-egypt-and-priestly-continuity|Read the full investigation]]
+
+### The destination also closes
+
+The Egyptian sanctuary is not an indefinitely available refuge. Its reported closure makes surviving households and dispersed institutions a new research question.
+
+[[onias-egypt-and-priestly-continuity|Read the full investigation]]
+
+### What changes, and what survives?
+
+Reunion, succession and transformed interpretation are the positive reconstruction. Texts, dates and actual intermediates must support each proposed connection.
+
+[[onias-egypt-and-priestly-continuity|Read the full investigation]]

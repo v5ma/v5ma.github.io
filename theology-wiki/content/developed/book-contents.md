@@ -4,7 +4,7 @@ slug: "book-contents"
 summary: "A navigable draft chapter order connecting sacred inheritance, the Teacher, inward models, public power and repair."
 topic: "Wider conversations"
 status: "Navigator"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # The Theology book: proposed contents
@@ -37,19 +37,19 @@ Compare the competing Moses and volcano proposals without blending their geograp
 
 Keep individual identity, office, namesakes, community and sayings distinct.
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
 
 ### The Teacher, Thomas and the deeper teaching
 
 Present the linked argument before comparing its alternative historical mechanisms.
 
-[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
 
 ### Loss, anger and reconstruction
 
 Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assuming a single emotional progression.
 
-[[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]] / [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]
+[[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]] / [[apocalyptic-repair-theology|Apocalyptic Repair Theology]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
 
 ## The inheritance inside a mind
 

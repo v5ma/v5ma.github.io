@@ -4,7 +4,7 @@ slug: "intellectual-debts"
 summary: "Explicit acknowledgments, translation credit and AI-introduced research leads are recorded separately."
 topic: "Wider conversations"
 status: "Navigator"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # Intellectual debts and source lineage
