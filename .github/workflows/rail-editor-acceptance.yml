@@ -1,7 +1,5 @@
 name: Verify rail grip and Bezier editor
 on:
-  push:
-    branches: [feat/rail-grip-bezier-20260906]
   pull_request:
     branches: [master]
     paths: ['mario-maker-clone/svgn-paper-route/**','tests/rail*','scripts/check-rail-release.py','.github/workflows/rail-editor-acceptance.yml']

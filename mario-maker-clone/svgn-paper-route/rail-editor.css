@@ -9,3 +9,5 @@ body.delivery-upgraded #rail-update{white-space:nowrap;min-width:78px;min-height
 body.delivery-upgraded #rail-build{align-self:center}
 body.delivery-upgraded #stagewrap{min-width:0;width:100%}
 @media(max-width:700px){body.delivery-upgraded #delivery-header .actions{flex-basis:100%;justify-content:flex-start;flex-wrap:wrap;max-height:112px;overflow-y:auto}body.delivery-upgraded #delivery-header{padding:6px 9px}body.delivery-upgraded #delivery-header .actions>button{min-height:32px}body.delivery-upgraded #rail-build{display:inline;font-size:8px}}
+/* A centered overflowing grid hides its first cards above the scroll origin. */
+body.delivery-upgraded #delivery-menu .delivery-courses{align-content:start;min-height:0;overscroll-behavior:contain}

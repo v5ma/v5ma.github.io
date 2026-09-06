@@ -12,7 +12,7 @@ def check(ok,name):
     assert ok,name
     checks.append(name);print('PASS:',name,flush=True)
 def state(page):
-    return page.evaluate('''()=>{const p=player,a=p.peg;return {x:p.x,y:p.y,vx:p.vx,vy:p.vy,stage:p.track?.sky?.stage,open:__grapple.isOpen(),target:__grapple.state.target?.d,hook:a?{th:a.th,loops:a.loops,r:a.r}:null,turns:__grapple.state.turns,hooks:__grapple.state.hooks,releases:__grapple.state.releases,completed:__sky.state.completed.size,transfers:__sky.state.transfers,tries,deliveries,quota:routeQuota,won,three:__merged.get3D()&&__delivery.state.view==='3d',steps:__sky.state.steps};}''')
+    return page.evaluate('''()=>{const p=player,a=p.peg;return {x:p.x,y:p.y,vx:p.vx,vy:p.vy,speed:p.speed,stage:p.track?.sky?.stage,open:__grapple.isOpen(),target:__grapple.state.target?.d,hook:a?{th:a.th,loops:a.loops,r:a.r}:null,turns:__grapple.state.turns,hooks:__grapple.state.hooks,releases:__grapple.state.releases,completed:__sky.state.completed.size,transfers:__sky.state.transfers,tries,deliveries,quota:routeQuota,won,three:__merged.get3D()&&__delivery.state.view==='3d',steps:__sky.state.steps};}''')
 with sync_playwright() as p:
     options={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
     if os.getenv('CHROMIUM_PATH'):options['executable_path']=os.environ['CHROMIUM_PATH']
@@ -33,10 +33,16 @@ with sync_playwright() as p:
         check(page.evaluate('__grapple.pegs().length===2'),'Two physical grapple pegs exist in the course')
         check(state(page)['three'],'Cloudview graphics and real 3D rendering are retained')
         page.screenshot(path=str(OUT/'01-open-ramp.png'))
-        page.keyboard.down('KeyD');page.keyboard.down('KeyC');held=False;released=False;snap=False;start=time.monotonic()
+        page.keyboard.down('KeyD');page.keyboard.down('KeyC');held=False;released=False;snap=False;braking=False;braked=False;start=time.monotonic()
         while time.monotonic()-start<540:
             q=state(page)
             if q['won']:break
+            # Momentum is no longer silently capped at a receiving rail. Use
+            # the real brake on the long cradle before its final launch.
+            brake=q.get('stage')==2 and q['speed']>(17.5 if braking else 19)
+            if brake!=braking:
+                braking=brake;braked=braked or brake
+                page.keyboard.up('KeyD' if braking else 'KeyA');page.keyboard.down('KeyA' if braking else 'KeyD')
             if q['tries']>1:raise AssertionError('New course required an unexpected retry: '+json.dumps(q))
             if q.get('stage') is None and q['x']>1250 and not held and not released and ((q.get('target') or 999)<120 or q['vy']>0):
                 page.keyboard.down('KeyZ');held=True
@@ -49,8 +55,9 @@ with sync_playwright() as p:
                 if q['hook']['loops']>=1 and .08<th<.42:
                     page.keyboard.up('KeyZ');held=False;released=True
             page.wait_for_timeout(20)
-        page.keyboard.up('KeyD');page.keyboard.up('KeyC');page.keyboard.up('KeyZ');q=state(page)
+        page.keyboard.up('KeyA');page.keyboard.up('KeyD');page.keyboard.up('KeyC');page.keyboard.up('KeyZ');q=state(page)
         check(q['won'] and q['tries']==1,'Open-ramp course completes with normal controls and no teleport or retry')
+        check(braked,'The rider deliberately brakes retained whip momentum before the next launch')
         check(q['completed']==4 and q['transfers']>=3,'Four open sections and three disconnected catches are traversed')
         check(q['hooks']>=1 and q['releases']>=1 and q['turns']>=1,'Whip catches a peg, winds up and releases into the next catcher')
         check(q['deliveries']>=q['quota'],'Actual newspapers meet the delivery quota')
