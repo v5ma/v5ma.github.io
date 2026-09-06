@@ -1,0 +1,37 @@
+"""Exercise the integrated full articles, source map and content-only museum routes."""
+import json
+
+def run_computational_checks(page, open_page, check, OUT):
+    page.set_viewport_size({'width':1440,'height':1000})
+    open_page(page,'computational-argument-map')
+    body=page.locator('#article-body').inner_text()
+    check('Argument map exposes ten distinct connection questions',page.locator('#article-body h2').count()>=10 and 'necessary-ground' not in body and 'necessary ground' in body.lower())
+    check('Map retains full arguments rather than only a diagram',page.locator('#article-body a[data-page="computational-divine-immanence"]').count()>=1 and page.locator('#article-body a[data-page="flood-inheritance-and-deep-time"]').count()>=1)
+    link=page.locator('#article-body a[href$="data/computational-foundations.json"]')
+    check('Source register is downloadable as working JSON',link.count()==1)
+    response=page.request.get(link.evaluate('(e)=>e.href'))
+    register=response.json()
+    check('Downloaded register contains seventeen sources and ten connections',response.ok and len(register['records'])==17 and len(register['bridges'])==10)
+    page.screenshot(path=str(OUT/'computational-argument-map-desktop.png'))
+    for slug,phrase in [('computational-divine-immanence','necessary ground'),('flood-inheritance-and-deep-time','continuity through transformation')]:
+        open_page(page,slug)
+        body=page.locator('#article-body').inner_text()
+        check('Full concept-led investigation renders: '+slug,phrase.lower() in body.lower() and len(body.split())>1400 and "Micah's proposal" not in body)
+        check('Public-writing source notes are visible: '+slug,'supplied public writings' in body and 'External sources' in body)
+        check('Article has an entry into full-study listening: '+slug,page.locator('a[href*="listen='+slug+'"]').count()>0)
+        page.screenshot(path=str(OUT/(slug+'-desktop.png')))
+        page.set_viewport_size({'width':390,'height':844})
+        check('Full investigation fits a 390px viewport: '+slug,page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+        page.screenshot(path=str(OUT/(slug+'-mobile.png')))
+        page.set_viewport_size({'width':1440,'height':1000})
+    open_page(page,'source-atlas','&record=witness-gilgamesh-k3375')
+    page.wait_for_function('document.querySelector("#atlas-selected")?.value==="witness-gilgamesh-k3375"')
+    check('Flood Tablet card identifies its century as a surviving object date','Seventh century BCE' in page.locator('#atlas-cards').inner_text() and 'not an event date' in page.locator('#atlas-cards').inner_text())
+    open_page(page,'museum-trails')
+    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===6')
+    for title in ['A world, a mind and a proposed ground','The flood and the inheritance it carries']:
+        trail=page.locator('.atlas-trail').filter(has_text=title)
+        check('Content trail exposes four full-argument stops: '+title,trail.count()==1 and trail.locator('.atlas-stop').count()==4)
+    page.screenshot(path=str(OUT/'connected-museum-trails.png'))
+    open_page(page,'reading-paths')
+    check('Reading paths include the connected cosmology and inheritance route','Reality, inheritance and the constructive self' in page.locator('#article-body').inner_text())

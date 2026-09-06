@@ -29,7 +29,7 @@ Josephus preserves more than one interval. Change an assumed anchor without rewr
 
 ### Disaster and its narration
 
-The author already distinguished famine from a later firstborn interpretation. The remaining question concerns evidence for the narrative change.
+The famine-narration conjecture already distinguishes the disaster from a later firstborn interpretation. The open question concerns evidence for the narrative change.
 
 [[exodus-to-temple-competing-chronologies|Read the full investigation]]
 
@@ -88,3 +88,93 @@ The requested cross-corpus study will separate independently argued dates from d
 The constructive theology asks how an inward standard can correct desire and how repair can avoid reproducing domination.
 
 [[religion-for-conscious-robots|Read the full investigation]]
+
+## How an inward model acquires a history
+
+How do teachings, communities, copies and ritual settings participate in formation?
+
+### An inward covenant
+
+Inward instruction and renewal occur within Israel/Judah restoration settings. Work-level dates remain open.
+
+[[inner-formation-texts-and-material-witnesses|Read the full investigation]]
+
+### Formation through a community
+
+Compare admission, conduct and liturgical participation. A physical copy is not the composition date or proof of a later institutional route.
+
+[[inner-formation-texts-and-material-witnesses|Read the full investigation]]
+
+### Christ formed, and the surviving witness
+
+The Pauline passages and the P46 collection witness have different roles. The selected Michigan image shows Hebrews, not Galatians 4:19.
+
+[[inner-formation-texts-and-material-witnesses|Read the full investigation]]
+
+### Interpretation that changes the receiver
+
+Compare interpretive knowledge, priestly authority and recurrent self-formation without collapsing them into one doctrine.
+
+[[christ-as-an-inner-model|Read the full investigation]]
+
+### An embodied setting and two interpretations
+
+The font and painted setting are material evidence. Domestic continuity, architectural differentiation and construction dates remain separately inspectable interpretations.
+
+[[inner-formation-texts-and-material-witnesses|Read the full investigation]]
+
+## A world, a mind and a proposed ground
+
+What changes when physical reality is interpreted as an expression within divine reality?
+
+### A representation is not its referent
+
+Begin with the full cosmic argument, then distinguish a generated experience from an externally created object.
+
+[[computational-divine-immanence|Read the full investigation]]
+
+### Necessity and selection
+
+Inspect the move from contingency to a necessary ground, then the further argument for agency.
+
+[[computational-divine-immanence|Read the full investigation]]
+
+### One word, several measures
+
+Neural coherence, integration and quantum coherence do not become identical merely by sharing a name.
+
+[[computational-divine-immanence|Read the full investigation]]
+
+### The self that can be corrected
+
+Follow the inward model into choices and repair, without making computation alone a moral standard.
+
+[[christ-as-an-inner-model|Read the full investigation]]
+
+## The flood and the inheritance it carries
+
+How can a tradition preserve a narrative while changing what its survival means?
+
+### Before the ancestral beginning
+
+Read the Sumerian comparison and Genesis without treating Abraham as the beginning of every inherited story.
+
+[[flood-inheritance-and-deep-time|Read the full investigation]]
+
+### An object with its own date
+
+The seventh-century attribution belongs to K.3375, not to the flood or the first telling of the story.
+
+[[flood-inheritance-and-deep-time|Read the full investigation]]
+
+### What changes when the roles merge?
+
+Compare the organization of judgment, rescue and responsibility rather than only names.
+
+[[flood-inheritance-and-deep-time|Read the full investigation]]
+
+### A chronology needs endpoints
+
+Connect the flood comparison to departure and sanctuary while keeping each source count explicit.
+
+[[exodus-to-temple-competing-chronologies|Read the full investigation]]

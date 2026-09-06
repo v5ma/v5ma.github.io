@@ -4,14 +4,14 @@ slug: "god-and-our-models-of-god"
 summary: "An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching."
 topic: "God, minds & machines"
 status: "Developed article"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # God and our models of God
 
 ## A representation is not its referent
 
-Explaining how someone represents God does not settle whether God exists or what God is. A representation can be examined as an event in a mind while its referent remains a metaphysical question. Micah's theological project involves both. [[cognitive-gnosticism|Cognitive Gnosticism]] examines understanding and transformation; the Super Information Theory connection proposes an account of God and the universe. Reducing the whole project to psychology would omit its metaphysical claim.
+Explaining a representation of God does not settle whether God exists or what God is. A representation can be examined as an event in a mind while its referent remains a metaphysical question. [[cognitive-gnosticism|Cognitive Gnosticism]] examines understanding and transformation; the Super Information Theory connection concerns God and the universe. Reducing the entire inquiry to psychology would omit that metaphysical claim.
 
 The reverse reduction also fails. Declaring that a representation refers to God does not make its contents accurate or its ethical effects benign. A person can sincerely understand an experience as divine and still need to examine the interpretation attached to it. The question is not whether the experience mattered, but what further propositions it justifies.
 
@@ -19,7 +19,7 @@ This article develops a distinction already needed by the sources: the proposed 
 
 ## Naming God as Purpose
 
-In Naming God as Purpose, Micah proposes Purpose or Telos of the Universe as a name for God. He connects it to the intelligent information described in his physics work. He then asks the AI to consider how historical thinkers might object. The request for objections belongs to the source just as much as the initial proposal; a celebratory summary that omits it would distort the inquiry.
+Purpose, or Telos of the Universe, is one proposed name for God within this account. I connect it with the intelligent information considered in Super Information Theory and ask what objections historical thinkers might raise. The name is a conjecture to examine, not an answer that makes disagreement unnecessary.
 
 As a philosophical proposal, the name emphasizes orientation rather than an image of an enlarged human ruler. It asks whether intelligence, value and the universe's development can be understood through an account of purpose. The conceptual gain is a question to investigate, not an empirical result produced by renaming the subject. Defining God through purpose cannot by itself demonstrate that the universe has that purpose.
 
@@ -35,7 +35,7 @@ The [[divine-will-and-self-authorizing-power|will comparison]] gives the model a
 
 ## Several meanings of coherence must not be collapsed
 
-In AGI Religious Framework, Micah refuses to separate alignment with human flourishing from coherence with God and creation. He also describes the proposed divine reality through coherence and decoherence. In other source discussions, those terms enter a moral contrast between faith and violence. A rich account preserves the different levels of use instead of silently treating them as one measured variable.
+Alignment with human flourishing is not separate from coherence with God and creation in this theology. Coherence and decoherence also enter a proposed account of divine reality, while faith and violence supply a moral contrast in other contexts. These meanings remain connected questions rather than one silently interchangeable measured variable.
 
 Physical coordination, a coherent explanation, a felt state of integration and an ethical relation can inform analogies with one another. They do not share units merely because one word appears in each description. A claim about physical dynamics needs an operational definition; a claim about just conduct needs reasons concerning values and effects. The moral argument cannot be replaced by a graph showing synchrony.
 
@@ -68,7 +68,7 @@ The book's constructive task is to explain how a sacred model could orient a per
 
 [[faith-as-vibration-concept|Faith as Vibration Concept]] is the archived discussion dated 2025-06-03 (UTC export metadata).
 
-AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established.
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
 
 ## External sources and access notes
 

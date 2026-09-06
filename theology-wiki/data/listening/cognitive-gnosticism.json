@@ -3,8 +3,8 @@
   "slug": "cognitive-gnosticism",
   "title": "Cognitive Gnosticism",
   "source": "content/developed/cognitive-gnosticism.md",
-  "sourceSha256": "a14cf8ee2ec146f09523dafe55155d1fbc6d18161d1c3230ae6c12bca7d5b213",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "1d8da168c497d957d53e7f4e0340c068b45efa8a0be96dfc160bae1e687d64f3",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -22,13 +22,13 @@
       "id": "segment-0003",
       "section": "From a sacred story to an operation of mind",
       "notes": false,
-      "text": "In the long conversation titled Cognitive Gnosticism Jesus vs Gnostic Jesus, Micah supplies a compact formulation: \"Cognitive Gnosticism, Spiritual Ideas through the Lens of Neuroscience.\" The proposal is not simply that two vocabularies resemble each other. It asks whether an account of mental representation can explain why particular spiritual ideas alter experience and behavior."
+      "text": "Cognitive Gnosticism examines spiritual ideas through the lens of neuroscience. I ask how mental representation, interpretation and learning can make a spiritual teaching operative within experience and conduct. The point is not merely to pair a sacred term with a scientific term, but to investigate the process through which understanding changes a conscious being."
     },
     {
       "id": "segment-0004",
       "section": "From a sacred story to an operation of mind",
       "notes": false,
-      "text": "A key example is the inward representation of Jesus. Micah describes a mind containing a model of who Jesus was, what he did and what he said. Once present, that model can become a standard against which a person evaluates and changes themselves. He compares this to gradient descent: a discrepancy is recognized, and an adjustment reduces it. Christ as an inner model develops that mechanism separately."
+      "text": "An inward model of Christ gives this inquiry a specific case. Who Jesus was, what he did and what he said can supply a represented example against which a response is examined. The discrepancy can invite a change in conduct and a revision of the self-model that prepares future conduct. Christic Self-Formation Theory develops this recurrent mechanism rather than reducing it to admiration for an exemplar."
     },
     {
       "id": "segment-0005",
@@ -40,7 +40,7 @@
       "id": "segment-0006",
       "section": "The bridge is interpretive, not an identity claim",
       "notes": false,
-      "text": "The discussion ranges through the divine spark, the Pleroma, the shadow, meditation and Micah's account of neural rendering. He considers spiritual imagery alongside his proposals about oscillations, traveling signals and inhibition. Those passages document the structure of his comparison. They do not, by themselves, demonstrate that ancient authors were describing neuronal circuitry or that a theological term is the name of a measured brain process."
+      "text": "The divine spark, Pleroma, shadow and inward ascent raise questions about the organization and interpretation of experience. I compare them with the Self Aware Networks account of neural rendering, oscillatory coordination and inhibition. Ancient theological meanings and proposed biological mechanisms remain distinguishable: a useful comparison does not require ancient writers to have possessed a modern account of circuitry."
     },
     {
       "id": "segment-0007",
@@ -58,13 +58,13 @@
       "id": "segment-0009",
       "section": "Why the inner model matters",
       "notes": false,
-      "text": "Without an internal standard, a demand to become better can remain abstract. With one, a person can compare a response with an imagined example and rehearse another way of acting. In this framework, spiritual practice works partly by making a different pattern available to the person who must choose. This is a reading of Micah's proposal, not a claim that all religious practice works by one mechanism."
+      "text": "An instruction to become better can remain abstract until a different response becomes available. An inward model can give a person something to compare with, rehearse and enact. I examine this as one proposed formative mechanism, not a universal explanation of every religious practice."
     },
     {
       "id": "segment-0010",
       "section": "Why the inner model matters",
       "notes": false,
-      "text": "His later statement that \"Spirituality is technology for evolving consciousness\" gives the project its practical direction. A practice is examined for what it enables a mind to do, not only for the propositions it asks a person to repeat. Faith as deliberate joy supplies a different example of practice as an ongoing activity."
+      "text": "Spirituality can be understood as technology for evolving consciousness when practice is examined for what it enables a mind to do. That includes perception, interpretation, choice and returned consequences, not only propositions repeated aloud. Faith as deliberate joy develops another example of an ongoing inward activity."
     },
     {
       "id": "segment-0011",
@@ -76,7 +76,7 @@
       "id": "segment-0012",
       "section": "The publication question",
       "notes": false,
-      "text": "Publishing Cognitive Gnosticism First records Micah considering how to introduce the concept and create a traceable publication record. That conversation is evidence of his intention and his use of the term in this archive. Its timestamp is not, on its own, independent proof of worldwide priority or scholarly reception."
+      "text": "The historical meaning of gnosis and the constructive use of Cognitive Gnosticism remain related but different inquiries. The dated concept discussion preserves the terminology and earlier formulation; the name alone does not settle the interpretation of ancient texts or a claim to worldwide priority."
     },
     {
       "id": "segment-0013",
@@ -94,109 +94,103 @@
       "id": "segment-0015",
       "section": "Interpretive reconstruction across several kinds of evidence",
       "notes": false,
-      "text": "The Teacher of Righteousness vs Gnostic Jesus conversation makes the scope substantially broader than an analogy between a religious word and a brain process. In author turn 9, Micah proposes reconstructing the semantic nuances of Jesus's messages through a wide comparison of religious, philosophical and scientific texts. Turn 11 explicitly connects that program to Neo Mind Cycle, biological and machine interpretability, Self Aware Networks and religious education for AI. These are parts of the proposed architecture, not unrelated biographical"
+      "text": "The reconstruction of meaning requires a wide comparison of religious, philosophical and scientific texts. Differentiated teaching, biological and machine interpretability, Self Aware Networks and the possible religious education of conscious artificial beings belong to one inquiry: how does a received representation become intelligible enough to change the receiver? Historical transmission and present operation are connected questions, not interchangeable proofs."
     },
     {
       "id": "segment-0016",
       "section": "Interpretive reconstruction across several kinds of evidence",
       "notes": false,
-      "text": "details."
+      "text": "The tomography metaphor is useful when its limits are explicit. Different sources supply different views of a proposed structure. One text may clarify a teaching's vocabulary, another its social conflict, another a possible inward interpretation. Combining them could reveal a relation that no isolated source makes obvious. But incompatible views cannot simply be averaged into a preferred answer. Their dates, genres, speakers and disagreements remain information about what the reconstruction can support."
     },
     {
       "id": "segment-0017",
       "section": "Interpretive reconstruction across several kinds of evidence",
       "notes": false,
-      "text": "The tomography metaphor is useful when its limits are explicit. Different sources supply different views of a proposed structure. One text may clarify a teaching's vocabulary, another its social conflict, another a possible inward interpretation. Combining them could reveal a relation that no isolated source makes obvious. But incompatible views cannot simply be averaged into a preferred answer. Their dates, genres, speakers and disagreements remain information about what the reconstruction can support."
-    },
-    {
-      "id": "segment-0018",
-      "section": "Interpretive reconstruction across several kinds of evidence",
-      "notes": false,
       "text": "The transmission investigation therefore asks more than whether religious communities share uplifting themes. It asks which interpretive functions travel, what changes around them and how an inherited message can acquire a new role. A text can change a modern reader without thereby proving the reader's account of the text's origin. Preserving both questions is essential to the proposal's breadth."
     },
     {
-      "id": "segment-0019",
+      "id": "segment-0018",
       "section": "Understanding is different from repeating an answer",
       "notes": false,
       "text": "Understanding is different from repeating an answer"
     },
     {
-      "id": "segment-0020",
+      "id": "segment-0019",
       "section": "Understanding is different from repeating an answer",
       "notes": false,
       "text": "Consider a reader who can repeat a saying about mercy but responds to disagreement by humiliation. In the proposed model, the missing step is not simply another copy of the saying. The teaching must become available within the situation in which an alternative response is needed. The reader notices what the impulse would do, compares it with the meaning they intend to enact, and changes the response. Later reflection may reveal that the interpretation itself was incomplete."
     },
     {
-      "id": "segment-0021",
+      "id": "segment-0020",
       "section": "Understanding is different from repeating an answer",
       "notes": false,
       "text": "The point of the example is not to reduce gnosis to politeness. It is to show the distinction between possessing a sentence and understanding it in a way that reorganizes judgment. A person may need to resist rather than accommodate, speak forcefully rather than withdraw, or admit that an apparently compassionate act served their reputation more than another person's need. A transformed orientation changes how a problem is perceived, not only which scripted answer is chosen."
     },
     {
-      "id": "segment-0022",
+      "id": "segment-0021",
       "section": "Understanding is different from repeating an answer",
       "notes": false,
       "text": "God and our models of God prevents a further compression: the account of an inward mechanism is not the claim that its divine referent is unreal. It also prevents the converse error, in which naming the referent divine exempts the interpretation from criticism. Cognitive, historical and metaphysical questions belong together without being treated as one already completed proof."
     },
     {
-      "id": "segment-0023",
+      "id": "segment-0022",
       "section": "An inquiry that can test its own readings",
       "notes": false,
       "text": "An inquiry that can test its own readings"
     },
     {
-      "id": "segment-0024",
+      "id": "segment-0023",
       "section": "An inquiry that can test its own readings",
       "notes": false,
       "text": "The source conversation repeatedly asks for broader coverage rather than selective examples. The new chapter map and research board turn that request into a visible development task. A worked case should retain the relevant text, the interpretation being proposed, the competing interpretation it addresses, and the consequence of choosing one over the other. A diagram can show those relations, but the source must remain accessible behind it."
     },
     {
-      "id": "segment-0025",
+      "id": "segment-0024",
       "section": "An inquiry that can test its own readings",
       "notes": false,
       "text": "This is also where the relation to interpretability becomes intellectually productive. A fluent explanation of a decision is not automatically an account of the process that produced it. Studying how a person or machine describes its interpretation and studying the causal process of its decisions are different tasks. The proposal aims to bring them closer; it should not claim they have become identical because both use the word understanding."
     },
     {
-      "id": "segment-0026",
+      "id": "segment-0025",
       "section": "Source conversations",
       "notes": true,
       "text": "Source conversations"
     },
     {
-      "id": "segment-0027",
+      "id": "segment-0026",
       "section": "Source conversations",
       "notes": true,
       "text": "Cognitive Gnosticism: Jesus vs Gnostic Jesus is the archived discussion dated 2025-02-06 (UTC export metadata)."
     },
     {
-      "id": "segment-0028",
+      "id": "segment-0027",
       "section": "Source conversations",
       "notes": true,
       "text": "Publishing Cognitive Gnosticism First is the archived discussion dated 2025-02-26 (UTC export metadata)."
     },
     {
-      "id": "segment-0029",
+      "id": "segment-0028",
       "section": "Source conversations",
       "notes": true,
       "text": "Antichrist Spiritual Inversion is the archived discussion dated 2025-03-09 (UTC export metadata)."
     },
     {
-      "id": "segment-0030",
+      "id": "segment-0029",
       "section": "Source conversations",
       "notes": true,
       "text": "Teacher of Righteousness vs Gnostic Jesus is the archived discussion dated 2025-06-17 (UTC export metadata)."
     },
     {
-      "id": "segment-0031",
+      "id": "segment-0030",
       "section": "Source conversations",
       "notes": true,
       "text": "Faith as Vibration Concept is the archived discussion dated 2025-06-03 (UTC export metadata)."
     },
     {
-      "id": "segment-0032",
+      "id": "segment-0031",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     }
   ]
 }

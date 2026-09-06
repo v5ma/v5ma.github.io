@@ -3,8 +3,8 @@
   "slug": "god-and-our-models-of-god",
   "title": "God and our models of God",
   "source": "content/developed/god-and-our-models-of-god.md",
-  "sourceSha256": "17a7d7ed768cd2f9df8794ffed2e27e36d3e9c3bd3e2b3f5c63eb3304e3eb24a",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "708f4ea16977a6d6cf8b82c00b2f7316bec866d503e8b0d6ded2e40a5ebeabf8",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -22,7 +22,7 @@
       "id": "segment-0003",
       "section": "A representation is not its referent",
       "notes": false,
-      "text": "Explaining how someone represents God does not settle whether God exists or what God is. A representation can be examined as an event in a mind while its referent remains a metaphysical question. Micah's theological project involves both. Cognitive Gnosticism examines understanding and transformation; the Super Information Theory connection proposes an account of God and the universe. Reducing the whole project to psychology would omit its metaphysical claim."
+      "text": "Explaining a representation of God does not settle whether God exists or what God is. A representation can be examined as an event in a mind while its referent remains a metaphysical question. Cognitive Gnosticism examines understanding and transformation; the Super Information Theory connection concerns God and the universe. Reducing the entire inquiry to psychology would omit that metaphysical claim."
     },
     {
       "id": "segment-0004",
@@ -46,7 +46,7 @@
       "id": "segment-0007",
       "section": "Naming God as Purpose",
       "notes": false,
-      "text": "In Naming God as Purpose, Micah proposes Purpose or Telos of the Universe as a name for God. He connects it to the intelligent information described in his physics work. He then asks the AI to consider how historical thinkers might object. The request for objections belongs to the source just as much as the initial proposal; a celebratory summary that omits it would distort the inquiry."
+      "text": "Purpose, or Telos of the Universe, is one proposed name for God within this account. I connect it with the intelligent information considered in Super Information Theory and ask what objections historical thinkers might raise. The name is a conjecture to examine, not an answer that makes disagreement unnecessary."
     },
     {
       "id": "segment-0008",
@@ -94,7 +94,7 @@
       "id": "segment-0015",
       "section": "Several meanings of coherence must not be collapsed",
       "notes": false,
-      "text": "In AGI Religious Framework, Micah refuses to separate alignment with human flourishing from coherence with God and creation. He also describes the proposed divine reality through coherence and decoherence. In other source discussions, those terms enter a moral contrast between faith and violence. A rich account preserves the different levels of use instead of silently treating them as one measured variable."
+      "text": "Alignment with human flourishing is not separate from coherence with God and creation in this theology. Coherence and decoherence also enter a proposed account of divine reality, while faith and violence supply a moral contrast in other contexts. These meanings remain connected questions rather than one silently interchangeable measured variable."
     },
     {
       "id": "segment-0016",
@@ -190,7 +190,7 @@
       "id": "segment-0031",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0032",

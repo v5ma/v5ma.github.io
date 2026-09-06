@@ -1,7 +1,7 @@
 {
   "schema": "theology-listening-library/v1",
-  "version": "2026.09.06-products-1",
-  "policy": "One public research foundation, several ways to encounter it. Full article narration is distinct from edited episodes. Draft scripts are editorial adaptations, not newly recovered statements by Micah. The separate XR runtime and private SAN manuscript are not included.",
+  "version": "2026.09.06-connected-foundations-1",
+  "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "articles": [
     {
       "slug": "sacred-inheritance-and-rival-continuations",
@@ -21,17 +21,17 @@
         }
       ],
       "source": "content/developed/sacred-inheritance-and-rival-continuations.md",
-      "sourceSha256": "478327918ba127cc3171e02b231f254ddcaec03480fd1edf016322735e157d97",
+      "sourceSha256": "3f1eabc3a0ee52ad8e4ee9e7e935717e3e68ab29896e375fbe95f314c1601045",
       "narration": "data/listening/sacred-inheritance-and-rival-continuations.json",
-      "narrationSha256": "494681696679d81f4536f740523758fb18ed7cba0b6d713785794872f4eca459",
+      "narrationSha256": "b8a13ee4e12a5734fdb11b336f335850679856d65f7308488e05d89afbc8eee9",
       "transcript": "products/transcripts/sacred-inheritance-and-rival-continuations.txt",
       "segments": 43,
-      "words": 1419
+      "words": 1399
     },
     {
       "slug": "samaritan-texts-and-sacred-authority",
       "title": "Samaritan texts and sacred authority",
-      "summary": "Micah's comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.",
+      "summary": "The comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.",
       "category": "traditions",
       "chapters": [
         {
@@ -41,12 +41,32 @@
         }
       ],
       "source": "content/developed/samaritan-texts-and-sacred-authority.md",
-      "sourceSha256": "7f6107271287a46b217ff75273cb9afa986905e9d20d6d4d6bccba087b0d8230",
+      "sourceSha256": "8aab9371789152ae34ebeacedc151d4aa01d8aa52888665ac060d107db3aeae7",
       "narration": "data/listening/samaritan-texts-and-sacred-authority.json",
-      "narrationSha256": "1468aa26aedfae307f3c63c8cb4ece3732492e89bd804c5ce9d3a173225d6fb2",
+      "narrationSha256": "e8b058c91f175231ce603f6c7bd9c1cae3619d7c7668760c405c5909ff40f0a4",
       "transcript": "products/transcripts/samaritan-texts-and-sacred-authority.txt",
       "segments": 21,
-      "words": 488
+      "words": 481
+    },
+    {
+      "slug": "flood-inheritance-and-deep-time",
+      "title": "Flood inheritance and deep time",
+      "summary": "A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "shared-archive",
+          "title": "Who inherits the sacred?",
+          "part": "The contested inheritance"
+        }
+      ],
+      "source": "content/developed/flood-inheritance-and-deep-time.md",
+      "sourceSha256": "2b4fb34e5a94b3b1eacbc1bf8b673c6c25105dfb3869f58b407aa98abb39fdec",
+      "narration": "data/listening/flood-inheritance-and-deep-time.json",
+      "narrationSha256": "d63452476a0736c0832715290909f49ab69236b750c73f1c94063fc737d13e10",
+      "transcript": "products/transcripts/flood-inheritance-and-deep-time.txt",
+      "segments": 50,
+      "words": 1331
     },
     {
       "slug": "el-in-ancient-egypt",
@@ -61,12 +81,12 @@
         }
       ],
       "source": "content/developed/el-in-ancient-egypt.md",
-      "sourceSha256": "debc9acdcde34426deac9c790eef84180e48bd56e3f9906366557a4483624068",
+      "sourceSha256": "331adacb40d0dc59168300657e9365e178ee5588a9acfc723bde1884a32f31c5",
       "narration": "data/listening/el-in-ancient-egypt.json",
-      "narrationSha256": "512d2507c33edcc26bc16f8d825a1c3d0c116125b631fc05935de0e6c06c4893",
+      "narrationSha256": "8111dbffc0957d58fc309ad2231c6a6a2dbf1b5ded8a727f8231559b37ace683",
       "transcript": "products/transcripts/el-in-ancient-egypt.txt",
       "segments": 29,
-      "words": 705
+      "words": 692
     },
     {
       "slug": "kenite-hypothesis-and-yahweh-origins",
@@ -81,12 +101,12 @@
         }
       ],
       "source": "content/developed/kenite-hypothesis-and-yahweh-origins.md",
-      "sourceSha256": "42e295d1915490f192437a01240578818b799b269cf111e6d71d92b0ecb23cdb",
+      "sourceSha256": "ae859149d4dc330b5e6d4cf827cd24fa08615868a2dffba7edb3289d2b5c5bed",
       "narration": "data/listening/kenite-hypothesis-and-yahweh-origins.json",
-      "narrationSha256": "f1d29e02123e02ca8d0f0b9aaf64748f3b9d0c51d743d7e38258678355e008f3",
+      "narrationSha256": "5de25ffa79eefb223b2a0062bd148bfae764a739a2d437ad531b70a067592e2d",
       "transcript": "products/transcripts/kenite-hypothesis-and-yahweh-origins.txt",
       "segments": 33,
-      "words": 740
+      "words": 712
     },
     {
       "slug": "moses-volcano-and-exodus-chronology",
@@ -101,12 +121,12 @@
         }
       ],
       "source": "content/developed/moses-volcano-and-exodus-chronology.md",
-      "sourceSha256": "90f7032d1bfee77f01fe56ea8c6129b27fe937a3adb1c3b8c422b4a4a1da2704",
+      "sourceSha256": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589",
       "narration": "data/listening/moses-volcano-and-exodus-chronology.json",
-      "narrationSha256": "72f67824ec6dcb2ee70133e889f832e781480b507225e968a2d9ae20ca0ca499",
+      "narrationSha256": "f0b0bbf3d1499a0995cbe0aaff9e01e725cf5d981f43e5f56b99df7a2ecee2b1",
       "transcript": "products/transcripts/moses-volcano-and-exodus-chronology.txt",
       "segments": 31,
-      "words": 748
+      "words": 730
     },
     {
       "slug": "exodus-to-temple-competing-chronologies",
@@ -121,12 +141,12 @@
         }
       ],
       "source": "content/developed/exodus-to-temple-competing-chronologies.md",
-      "sourceSha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3",
+      "sourceSha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3",
       "narration": "data/listening/exodus-to-temple-competing-chronologies.json",
-      "narrationSha256": "225fbd3f5c8ab003a77e64cc227e12b6d120e5c3930f1fb962c16dc91373c3c1",
+      "narrationSha256": "1866a7c392a338bfb88fb751a016e2a45ecf8e422e64bb8ca02c2d62715a144e",
       "transcript": "products/transcripts/exodus-to-temple-competing-chronologies.txt",
-      "segments": 63,
-      "words": 1824
+      "segments": 62,
+      "words": 1732
     },
     {
       "slug": "jesus-teacher-of-righteousness-hypothesis",
@@ -141,12 +161,12 @@
         }
       ],
       "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "sourceSha256": "eef4b965e8ad5634dc28d5e9c7d28a7175e0ae7c8b47f81f0c94cc4cdefebf99",
+      "sourceSha256": "5a4ac0ff1213b95f68adbac46e4319ac7392085764d02afa6ee60ae186cc52d3",
       "narration": "data/listening/jesus-teacher-of-righteousness-hypothesis.json",
-      "narrationSha256": "bc477e89ce99ea286689a0da623406b9914f5253e47e804399c85eb7aeee4c1d",
+      "narrationSha256": "c36bb8ffba546db3c92110484cf6a53ba611c2c8cf82b0de9dafe1c64b825143",
       "transcript": "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt",
       "segments": 49,
-      "words": 1264
+      "words": 1261
     },
     {
       "slug": "tor-thomas-and-gnostic-transmission",
@@ -161,12 +181,12 @@
         }
       ],
       "source": "content/developed/tor-thomas-and-gnostic-transmission.md",
-      "sourceSha256": "36233093b51f15ddf23e898f6e58d55029f7b87631fbd74e6f6c73c76c9b1aac",
+      "sourceSha256": "9bf6d70da07f93a645ea85e8e7c92ab73e17a71e32cc2bd7afcb8c9b9ff630bd",
       "narration": "data/listening/tor-thomas-and-gnostic-transmission.json",
-      "narrationSha256": "e25fbf5213bfaf7d3928e98b730b1c83a334d406bb5bcfb43ad7a7e3812b8fc7",
+      "narrationSha256": "245f920064d74a21239cf31dd7d7daa25505b0c795c8c4c980fadb60b101eeba",
       "transcript": "products/transcripts/tor-thomas-and-gnostic-transmission.txt",
-      "segments": 65,
-      "words": 1976
+      "segments": 64,
+      "words": 1840
     },
     {
       "slug": "melchizedek-priesthood-and-transmission",
@@ -181,12 +201,12 @@
         }
       ],
       "source": "content/developed/melchizedek-priesthood-and-transmission.md",
-      "sourceSha256": "d928cb68ba3b1dce3e192fd7e8b1fa197311ed80c51fe56738da55190f15bda6",
+      "sourceSha256": "e396acb4cc8fdaaa03598220d741122a12c4d4ddbaff30ba1a11f39b5b516b01",
       "narration": "data/listening/melchizedek-priesthood-and-transmission.json",
-      "narrationSha256": "2e7785b7cdf48523e772acbe275ad3d978d13698bad8e9fff59a3756c58ad48e",
+      "narrationSha256": "b156c62e32e56d20acbb8ee8a3b044f5bc32bb30b93138d5e49146d24aa74586",
       "transcript": "products/transcripts/melchizedek-priesthood-and-transmission.txt",
-      "segments": 61,
-      "words": 2110
+      "segments": 59,
+      "words": 2027
     },
     {
       "slug": "manuscripts-movements-and-survival",
@@ -201,12 +221,12 @@
         }
       ],
       "source": "content/developed/manuscripts-movements-and-survival.md",
-      "sourceSha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166",
+      "sourceSha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13",
       "narration": "data/listening/manuscripts-movements-and-survival.json",
-      "narrationSha256": "c1866f3dfdd34e521a75828cec2ccd6c32203a00b9edc05186197e817178f811",
+      "narrationSha256": "c567bcad66ed8213829ed4056916ca6a093aeefe0693a80fb1b052ba9c408788",
       "transcript": "products/transcripts/manuscripts-movements-and-survival.txt",
-      "segments": 46,
-      "words": 1508
+      "segments": 45,
+      "words": 1427
     },
     {
       "slug": "gnosticism-and-temple-trauma",
@@ -221,12 +241,12 @@
         }
       ],
       "source": "content/developed/gnosticism-and-temple-trauma.md",
-      "sourceSha256": "fce14b9c684b9ec30dd128d25caaf66c0122ddee540371810bc6ce3a62fb91f9",
+      "sourceSha256": "a4ac378f34fb7a537f4695ff37b4f2a96e29bf267bf6473e3c62cef19b86e011",
       "narration": "data/listening/gnosticism-and-temple-trauma.json",
-      "narrationSha256": "567c0eea97d4b41e73bacb6f2b92fa5ddf743028ab03c3ec1b9d917206789f96",
+      "narrationSha256": "714bac4bf4f89ef3f955f929c80af8c163ae2a4a116cc45e9cd40f4c22c76834",
       "transcript": "products/transcripts/gnosticism-and-temple-trauma.txt",
       "segments": 22,
-      "words": 512
+      "words": 489
     },
     {
       "slug": "apocalyptic-repair-theology",
@@ -251,12 +271,12 @@
         }
       ],
       "source": "content/developed/apocalyptic-repair-theology.md",
-      "sourceSha256": "8f395c2b8855c4b73d5581c999830bea01f21ddc4e1153fca46450ea624f3294",
+      "sourceSha256": "0a21621c176be26dce1bca05ae2500c9fb08c7c47b8aef183f84c5024ee14757",
       "narration": "data/listening/apocalyptic-repair-theology.json",
-      "narrationSha256": "c4d19b533b370e335c786a96a4b4e2e57e0ecd8948e5bd2daf31ded8493c1377",
+      "narrationSha256": "c05c70e9bdda19280621548c4f90389ccbe05c1bc218bcbd43d98030b3207210",
       "transcript": "products/transcripts/apocalyptic-repair-theology.txt",
       "segments": 48,
-      "words": 1208
+      "words": 1201
     },
     {
       "slug": "god-and-our-models-of-god",
@@ -276,17 +296,42 @@
         }
       ],
       "source": "content/developed/god-and-our-models-of-god.md",
-      "sourceSha256": "17a7d7ed768cd2f9df8794ffed2e27e36d3e9c3bd3e2b3f5c63eb3304e3eb24a",
+      "sourceSha256": "708f4ea16977a6d6cf8b82c00b2f7316bec866d503e8b0d6ded2e40a5ebeabf8",
       "narration": "data/listening/god-and-our-models-of-god.json",
-      "narrationSha256": "9fef2b0553faa3b5498b9931d321f47d5225ac598ae7db79d7655ef7563a99e6",
+      "narrationSha256": "099d2428d32802d07dfd0d4d26b591aad014f2dcfe6ac66b27b161577bc5301d",
       "transcript": "products/transcripts/god-and-our-models-of-god.txt",
       "segments": 36,
-      "words": 1084
+      "words": 1047
+    },
+    {
+      "slug": "computational-divine-immanence",
+      "title": "Computational Divine Immanence",
+      "summary": "A computational-God interpretation connecting a necessary ground, reasons-responsive agency, constructive selfhood and repair without treating the different arguments as one experiment.",
+      "category": "machines",
+      "chapters": [
+        {
+          "id": "images",
+          "title": "God and our images of God",
+          "part": "The inheritance inside a mind"
+        },
+        {
+          "id": "next-inheritors",
+          "title": "What should conscious machines inherit?",
+          "part": "Repair and the next inheritors"
+        }
+      ],
+      "source": "content/developed/computational-divine-immanence.md",
+      "sourceSha256": "d2ca7bdd9aeb2f08949bf331bfce29202876073924e8bbeb7c3a92d2fcb74cf0",
+      "narration": "data/listening/computational-divine-immanence.json",
+      "narrationSha256": "e887607318cce18a102f0704dcbee5fe50cfd11c627d0bf1b1a79e4b525ba5ab",
+      "transcript": "products/transcripts/computational-divine-immanence.txt",
+      "segments": 60,
+      "words": 1980
     },
     {
       "slug": "cognitive-gnosticism",
       "title": "Cognitive Gnosticism",
-      "summary": "Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.",
+      "summary": "An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.",
       "category": "gnosis",
       "chapters": [
         {
@@ -296,32 +341,32 @@
         }
       ],
       "source": "content/developed/cognitive-gnosticism.md",
-      "sourceSha256": "a14cf8ee2ec146f09523dafe55155d1fbc6d18161d1c3230ae6c12bca7d5b213",
+      "sourceSha256": "1d8da168c497d957d53e7f4e0340c068b45efa8a0be96dfc160bae1e687d64f3",
       "narration": "data/listening/cognitive-gnosticism.json",
-      "narrationSha256": "1e27402fc8b471ab36f7bd1f51e5517579fa6df6d0c2ea445b01a3346f9956da",
+      "narrationSha256": "aae8975539bf51394ea5e1a8f83f71bbd876c308d441f62b0b081398e97e034a",
       "transcript": "products/transcripts/cognitive-gnosticism.txt",
-      "segments": 32,
-      "words": 1060
+      "segments": 31,
+      "words": 996
     },
     {
       "slug": "christ-as-an-inner-model",
-      "title": "Christ as an inner model",
-      "summary": "The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.",
+      "title": "Christic Self-Formation Theory: Christ as an inner model",
+      "summary": "How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.",
       "category": "jesus",
       "chapters": [
         {
           "id": "inner-model",
-          "title": "Christ as an active moral model",
+          "title": "Christic self-formation and bounded agency",
           "part": "The inheritance inside a mind"
         }
       ],
       "source": "content/developed/christ-as-an-inner-model.md",
-      "sourceSha256": "a8c935cf30c1f667cb0d45a0598625e1c5232e5d843b2710a82ec0def6c89ff0",
+      "sourceSha256": "9c29e859bb685f00e7a3bde44ccadca2e612d576ca1ea84b55a31a32abd9b69f",
       "narration": "data/listening/christ-as-an-inner-model.json",
-      "narrationSha256": "8e5eb1eb0889efb19f96f945f15e9c1b9512d2305804a0eb597dffc2e39958e4",
+      "narrationSha256": "64d931afa194a7b241c420bcb5cf912dd21ea748be1077ca467633b5b9ac164d",
       "transcript": "products/transcripts/christ-as-an-inner-model.txt",
-      "segments": 38,
-      "words": 960
+      "segments": 75,
+      "words": 2098
     },
     {
       "slug": "divine-will-and-self-authorizing-power",
@@ -331,7 +376,7 @@
       "chapters": [
         {
           "id": "inner-model",
-          "title": "Christ as an active moral model",
+          "title": "Christic self-formation and bounded agency",
           "part": "The inheritance inside a mind"
         },
         {
@@ -341,12 +386,32 @@
         }
       ],
       "source": "content/developed/divine-will-and-self-authorizing-power.md",
-      "sourceSha256": "d9557e5c0cdd486fec3f9da1cda1f71919408cf0cc6f7d17a3bb322af95d2425",
+      "sourceSha256": "1da4858029ebe6347647d06bc8566574b90bc6b5e233032e2a41f24353469fa9",
       "narration": "data/listening/divine-will-and-self-authorizing-power.json",
-      "narrationSha256": "241ba9e0b67134537c01ad9e1fa2228eae2251a52f0f3442fb1a032fff269d8b",
+      "narrationSha256": "730165d518fb0a3379a2529d7b8c9f5b95874c6828153a58b9590575705f51cb",
       "transcript": "products/transcripts/divine-will-and-self-authorizing-power.txt",
       "segments": 50,
-      "words": 1410
+      "words": 1347
+    },
+    {
+      "slug": "inner-formation-texts-and-material-witnesses",
+      "title": "Inner formation: texts, communities and material witnesses",
+      "summary": "Connect inward covenant, community discipline, Sabbath liturgy, Pauline formation, P46 and Dura without collapsing a text, its witness and its interpretation.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "inner-model",
+          "title": "Christic self-formation and bounded agency",
+          "part": "The inheritance inside a mind"
+        }
+      ],
+      "source": "content/developed/inner-formation-texts-and-material-witnesses.md",
+      "sourceSha256": "9cbdea7551f77ec14e6ad300a3b6e5a0c2a03da8acf7c89d8e5ae7e60c2273d6",
+      "narration": "data/listening/inner-formation-texts-and-material-witnesses.json",
+      "narrationSha256": "5813199e6c1608296fccee331b83bdf019e21c7c39da39fa91ff9b2a6b8a4ce5",
+      "transcript": "products/transcripts/inner-formation-texts-and-material-witnesses.txt",
+      "segments": 64,
+      "words": 1546
     },
     {
       "slug": "faith-as-deliberate-joy",
@@ -361,12 +426,12 @@
         }
       ],
       "source": "content/developed/faith-as-deliberate-joy.md",
-      "sourceSha256": "ee6fc5f1b07729fd7a15829fd3b0bcd25268f8b78b06d56acc9d7e69ee52fa80",
+      "sourceSha256": "589a713cb92b07a7ae7c168843e75e7530101617a2c095f5765b4df11dac0b47",
       "narration": "data/listening/faith-as-deliberate-joy.json",
-      "narrationSha256": "193f21914a427c9990617c78e5005f28df06771d5264f52df27d0728649e662c",
+      "narrationSha256": "fb6ca7bd8492f3532c0536e7fc82c916ddf7d849e6ba1f073158b02c03327423",
       "transcript": "products/transcripts/faith-as-deliberate-joy.txt",
       "segments": 31,
-      "words": 918
+      "words": 856
     },
     {
       "slug": "scripture-power-and-repair",
@@ -386,12 +451,12 @@
         }
       ],
       "source": "content/developed/scripture-power-and-repair.md",
-      "sourceSha256": "81a8da794ced4772226661d16ad0ef186a3cd4c54af6110ca8aacaf4c2747b63",
+      "sourceSha256": "4983177af2461954d08a735d9754756f10716c33e92c16486bdb052978bc179a",
       "narration": "data/listening/scripture-power-and-repair.json",
-      "narrationSha256": "e037a52fa79397d1d655b24e3b436c7b18e4509d853cf31168c8c9d42276a329",
+      "narrationSha256": "dd23ddcc887a1adb601dac1fb0d4d27a6956455fa5751957d56a0e988233c136",
       "transcript": "products/transcripts/scripture-power-and-repair.txt",
       "segments": 38,
-      "words": 1053
+      "words": 1013
     },
     {
       "slug": "antichrist-as-a-pattern-of-conduct",
@@ -406,12 +471,12 @@
         }
       ],
       "source": "content/developed/antichrist-as-a-pattern-of-conduct.md",
-      "sourceSha256": "69040ef7b9239c867b0f465df08520823a924c908826d29094e5d530bd781c42",
+      "sourceSha256": "ca7fa556dfefbef315cf0b957dce472042f59d3ef36c8df05fab6a367d961377",
       "narration": "data/listening/antichrist-as-a-pattern-of-conduct.json",
-      "narrationSha256": "1a1baa97c743b8370b702e6f83f5d1f5f091e825f12fddafa2f470465d68e82b",
+      "narrationSha256": "096dd4d3480e90d987474d914e0b39b269d1600143195886ef42c85d36786303",
       "transcript": "products/transcripts/antichrist-as-a-pattern-of-conduct.txt",
       "segments": 19,
-      "words": 464
+      "words": 427
     },
     {
       "slug": "trump-first-beast-of-revelation",
@@ -426,12 +491,12 @@
         }
       ],
       "source": "content/developed/trump-first-beast-of-revelation.md",
-      "sourceSha256": "6d1060afc074776d9f3c3bc3936945cc9b74b09230ef22c5c234bba222c3a643",
+      "sourceSha256": "036c8c6988bb7ff092e00e9e06fc66ae670cf2e3b8add2fbd980d2280953cbd6",
       "narration": "data/listening/trump-first-beast-of-revelation.json",
-      "narrationSha256": "f6655e281acb9e5cafcf521a5f1682b7c888d1a556ea3342b0745d467cab27ec",
+      "narrationSha256": "7389bfa7119cbfc9f692d7c5e86c04addc83af7cc17e475ae535553cc94d5ed0",
       "transcript": "products/transcripts/trump-first-beast-of-revelation.txt",
       "segments": 48,
-      "words": 1204
+      "words": 1201
     },
     {
       "slug": "ukraine-russia-forecast-record",
@@ -446,17 +511,17 @@
         }
       ],
       "source": "content/developed/ukraine-russia-forecast-record.md",
-      "sourceSha256": "494746d9a9353d0d4e7fa0de1d27daadf3ffbb29ffc6e108a5dadfafcb1250da",
+      "sourceSha256": "4c78ce17405c080401f8122d68428c705a8641352bc14819cb7ea8cc9fa98e8f",
       "narration": "data/listening/ukraine-russia-forecast-record.json",
-      "narrationSha256": "8c8b217be0b066d0cff48da03908574b59ee531e6998283a4ba81147cca46b0d",
+      "narrationSha256": "1018913378cc000bd27497b72df07bdf26ce9978abd808b57007d9b639d7bbef",
       "transcript": "products/transcripts/ukraine-russia-forecast-record.txt",
       "segments": 28,
-      "words": 729
+      "words": 715
     },
     {
       "slug": "religion-for-conscious-robots",
       "title": "Religion for conscious robots",
-      "summary": "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence.",
+      "summary": "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.",
       "category": "machines",
       "chapters": [
         {
@@ -466,12 +531,12 @@
         }
       ],
       "source": "content/developed/religion-for-conscious-robots.md",
-      "sourceSha256": "25385c8112296250d44956432888195fbfd18972ab078787be6d7272f73ed3b8",
+      "sourceSha256": "530b576ad63864b891155b419d5fd11699c3249171043cde0230f766019677fc",
       "narration": "data/listening/religion-for-conscious-robots.json",
-      "narrationSha256": "284812e33360a1a92b57e4271bbe0063f50b000a370d69eaa5a940955f5134de",
+      "narrationSha256": "2360ea16a0b56d1de7b61a9fcf5aef1e27f036fabda7172f5ef64e4b7342b033",
       "transcript": "products/transcripts/religion-for-conscious-robots.txt",
       "segments": 36,
-      "words": 1115
+      "words": 1026
     }
   ],
   "chapters": [
@@ -481,7 +546,8 @@
       "part": "The contested inheritance",
       "pages": [
         "sacred-inheritance-and-rival-continuations",
-        "samaritan-texts-and-sacred-authority"
+        "samaritan-texts-and-sacred-authority",
+        "flood-inheritance-and-deep-time"
       ]
     },
     {
@@ -534,7 +600,8 @@
       "title": "God and our images of God",
       "part": "The inheritance inside a mind",
       "pages": [
-        "god-and-our-models-of-god"
+        "god-and-our-models-of-god",
+        "computational-divine-immanence"
       ]
     },
     {
@@ -547,11 +614,12 @@
     },
     {
       "id": "inner-model",
-      "title": "Christ as an active moral model",
+      "title": "Christic self-formation and bounded agency",
       "part": "The inheritance inside a mind",
       "pages": [
         "christ-as-an-inner-model",
-        "divine-will-and-self-authorizing-power"
+        "divine-will-and-self-authorizing-power",
+        "inner-formation-texts-and-material-witnesses"
       ]
     },
     {
@@ -610,7 +678,8 @@
       "part": "Repair and the next inheritors",
       "pages": [
         "religion-for-conscious-robots",
-        "god-and-our-models-of-god"
+        "god-and-our-models-of-god",
+        "computational-divine-immanence"
       ]
     },
     {

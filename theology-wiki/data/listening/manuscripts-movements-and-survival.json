@@ -3,8 +3,8 @@
   "slug": "manuscripts-movements-and-survival",
   "title": "Manuscripts, movements and survival",
   "source": "content/developed/manuscripts-movements-and-survival.md",
-  "sourceSha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -28,7 +28,7 @@
       "id": "segment-0004",
       "section": "The object, the work and the movement have different histories",
       "notes": false,
-      "text": "A manuscript is a physical witness to a text at a stage in its transmission. A work can be copied, translated, excerpted or rearranged. An institution can preserve a work without descending from its first community. A community can inherit an office or practice without preserving every original text. These are distinctions within a possible historical connection, not reasons to reduce Micah's institutional hypothesis to harmless thematic similarity."
+      "text": "A manuscript physically witnesses a text at a stage of transmission. A work can be copied, translated, excerpted or rearranged. An institution can preserve a work without descending from its first community; a community can inherit an office or practice without preserving every original text. These distinctions sharpen the institutional-transmission conjecture rather than reduce it to thematic similarity."
     },
     {
       "id": "segment-0005",
@@ -88,199 +88,193 @@
       "id": "segment-0014",
       "section": "Ethiopia is a history of reception, not merely a pin on a map",
       "notes": false,
-      "text": "Micah's Egyptian and Ethiopian inquiry should retain its stronger institutional ambition while these questions are examined. A proposal that some people remained in Judea while others established a community elsewhere has a different structure from a claim that a book happened to survive in Egypt. It needs records of people and institutions as well as textual evidence. A museum should display the institutional path as a proposed path, not erase it because it has not yet been established and not render it indistinguishably from a documented"
+      "text": "The Egyptian and Ethiopian reconstruction has an institutional ambition. Some people remaining in Judea while others establish a community elsewhere is a different proposition from a book surviving in Egypt. I therefore look for records of people and institutions alongside texts. The museum should display the proposed institutional path without either erasing it or giving it the status of a documented manuscript location."
     },
     {
       "id": "segment-0015",
-      "section": "Ethiopia is a history of reception, not merely a pin on a map",
-      "notes": false,
-      "text": "manuscript location."
-    },
-    {
-      "id": "segment-0016",
       "section": "Josephus demonstrates mediated evidence in plain sight",
       "notes": false,
       "text": "Josephus demonstrates mediated evidence in plain sight"
     },
     {
-      "id": "segment-0017",
+      "id": "segment-0016",
       "section": "Josephus demonstrates mediated evidence in plain sight",
       "notes": false,
       "text": "Against Apion is useful both for what it says about an ancestral departure and for how the account reaches the reader. Josephus presents material attributed to Manetho and argues about its interpretation. A source relationship therefore runs from a quoted earlier account, through Josephus's presentation, to a later surviving text and modern translation. Each stage can preserve information while also introducing selection or framing."
     },
     {
-      "id": "segment-0018",
+      "id": "segment-0017",
       "section": "Josephus demonstrates mediated evidence in plain sight",
       "notes": false,
       "text": "That gives the Hyksos-Exodus inquiry a precise question. What content is attributed to the earlier author, what interpretation belongs to Josephus, and what assumptions belong to a modern reconstruction? The answer should not be compressed into either \"an Egyptian historian proved Exodus\" or \"a Jewish interpretation has no historical value.\" Both would bypass the actual transmission of the account."
     },
     {
-      "id": "segment-0019",
+      "id": "segment-0018",
       "section": "Josephus demonstrates mediated evidence in plain sight",
       "notes": false,
-      "text": "Antiquities 13.3 supplies another kind of evidence: a narrated Egyptian sanctuary associated with Onias. Its account is an institutional comparison target for Micah's displaced-priestly-community hypothesis. It does not, without additional arguments, specify the households left behind, identify John the Baptist with an earlier murdered priest, or establish the route to the Nag Hammadi texts. Those are particular links in the proposed reconstruction. They should be traced, not silently removed from its statement."
+      "text": "Antiquities 13.3 describes an Egyptian sanctuary associated with Onias, providing an institutional comparison for the displaced-priestly-community conjecture. It does not by itself identify the households left behind, make John the Baptist an earlier murdered priest or establish a route to Nag Hammadi. Those are specific proposed links to investigate, not parts to silently delete from the reconstruction."
     },
     {
-      "id": "segment-0020",
+      "id": "segment-0019",
       "section": "Names can carry an office, a memory or an individual",
       "notes": false,
       "text": "Names can carry an office, a memory or an individual"
     },
     {
-      "id": "segment-0021",
+      "id": "segment-0020",
       "section": "Names can carry an office, a memory or an individual",
       "notes": false,
-      "text": "In the October Teacher discussion, Micah introduces succession, descendants and recurrent names to account for the movement's later participants. An objection that the same individuals would need to survive for more than a century does not address that formulation. The relevant questions concern how succession is documented, whether a designation refers to a name or office in each passage, and whether a later narrative represents a relationship differently."
+      "text": "Succession, descendants and recurrent names provide the proposed mechanism for later participants in the movement. An objection requiring the same individuals to survive more than a century does not address that mechanism. The evidence must instead bear on succession, the use of names and offices, and possible later changes in the representation of relationships."
     },
     {
-      "id": "segment-0022",
+      "id": "segment-0021",
       "section": "Names can carry an office, a memory or an individual",
       "notes": false,
       "text": "Thomas's saying 12 directs attention to James; saying 13 distinguishes private instruction. They therefore give the investigation particular textual places to examine leadership and access to teaching, rather than only a modern preference for those subjects. Their functions do not automatically establish a Zadokite pedigree. But a response that refutes a pedigree inferred solely from an English synonym has not thereby answered a reconstruction based on naming, leadership, place, practice and historical continuity together."
     },
     {
-      "id": "segment-0023",
+      "id": "segment-0022",
       "section": "Names can carry an office, a memory or an individual",
       "notes": false,
       "text": "The Melchizedek comparison is now available as a completed first passage study. It identifies several different grounds for priestly authority rather than treating every title as a family name. The next work is a fuller critical-text and historical-carrier comparison. The main transmission article has been corrected to link this completed first study instead of announcing that it still needs to be written."
     },
     {
-      "id": "segment-0024",
+      "id": "segment-0023",
       "section": "A museum can expose the argument rather than dramatize a verdict",
       "notes": false,
       "text": "A museum can expose the argument rather than dramatize a verdict"
     },
     {
-      "id": "segment-0025",
+      "id": "segment-0024",
       "section": "A museum can expose the argument rather than dramatize a verdict",
       "notes": false,
       "text": "The future XR experience belongs to a separate implementation. This edition supplies content records for it, not rooms, navigation physics or a deployed headset application. Each proposed exhibit stop has a short label, the full argument behind the label, its source records, and the question a visitor should be able to investigate. Illustrations without verified reuse permission remain links, not downloadable textures disguised as cleared assets."
     },
     {
-      "id": "segment-0026",
+      "id": "segment-0025",
       "section": "A museum can expose the argument rather than dramatize a verdict",
       "notes": false,
-      "text": "The visitor should be able to distinguish a document's words from a scholar's reading and Micah's reconstruction. A proposal can be shown at full strength: an earlier founder, a successor community, a displaced biography, a competing chronology. Its display should also expose the evidence needed by a particular link. This makes a hypothesis inspectable without requiring a curator to normalize it into the dominant account before admitting it to the museum."
+      "text": "The museum distinguishes a document's words, a scholar's interpretation and the reconstruction developed here. The earlier founder, successor community, displaced biography and competing chronology remain visible at full strength. Each proposed link also exposes the evidence it needs. An alternative need not first become the dominant account before it deserves a clear, inspectable presentation."
     },
     {
-      "id": "segment-0027",
+      "id": "segment-0026",
       "section": "A museum can expose the argument rather than dramatize a verdict",
       "notes": false,
       "text": "That is also why a disagreement with an AI is recorded by outcome, not by applause. An objection that confuses copying with composition or ignores an explicitly stated mechanism can fail as an objection. That failure is a real argumentative result, but it is not a new manuscript. An unresolved identity question remains visible even when a particular dismissal is shown to be inadequate. The challenge record preserves those distinctions alongside the actual source turns."
     },
     {
-      "id": "segment-0028",
+      "id": "segment-0027",
       "section": "The book supplies the sequence; the atlas preserves its branches",
       "notes": false,
       "text": "The book supplies the sequence; the atlas preserves its branches"
     },
     {
-      "id": "segment-0029",
+      "id": "segment-0028",
       "section": "The book supplies the sequence; the atlas preserves its branches",
       "notes": false,
       "text": "The book can lead from shared inheritance to contested teachers, inward interpretation, public authority and repair. The atlas allows a reader to pause that sequence and inspect an object, a passage, an alternative chronology or an answered objection. The museum can make those same branches spatial, with doors representing explained relationships rather than arbitrary proximity."
     },
     {
-      "id": "segment-0030",
+      "id": "segment-0029",
       "section": "The book supplies the sequence; the atlas preserves its branches",
       "notes": false,
       "text": "The value is not a claim that every source has never appeared in another bibliography. It is the research configuration: what these sources are asked to explain together, which historical route is proposed, how the proposal changes when evidence is examined, and which debts make that inquiry possible. A shorter introduction should orient the reader inside that configuration, not replace its full argument."
     },
     {
-      "id": "segment-0031",
+      "id": "segment-0030",
       "section": "The book supplies the sequence; the atlas preserves its branches",
       "notes": false,
       "text": "The first catalogue is deliberately bounded. Records labeled as leads are not represented as completed textual studies, and linking a work to a trail does not claim that its complete reception history has been reconstructed. The shared roadmap retains those tasks. What is already supplied is a connected route through evidence and reasoning that the book, wiki and future museum can use without maintaining three incompatible accounts."
     },
     {
-      "id": "segment-0032",
+      "id": "segment-0031",
       "section": "Source conversations",
       "notes": true,
       "text": "Source conversations"
     },
     {
-      "id": "segment-0033",
+      "id": "segment-0032",
       "section": "Source conversations",
       "notes": true,
       "text": "AI re-dates Dead Sea Scrolls is the archived discussion dated 2025-10-20 (UTC export metadata)."
     },
     {
-      "id": "segment-0034",
+      "id": "segment-0033",
       "section": "Source conversations",
       "notes": true,
       "text": "Jewish Apocalyptic Repair Timeline is the archived discussion dated 2025-07-16 (UTC export metadata)."
     },
     {
-      "id": "segment-0035",
+      "id": "segment-0034",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and development of Micah Blumberg's archived arguments and the current editing discussion. Selected original qualifications and hypothesis versions are preserved. New source comparisons and arithmetic are editorial analysis, not invented author quotations or independent confirmation of the reconstruction."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
-      "id": "segment-0036",
+      "id": "segment-0035",
       "section": "External sources and access notes",
       "notes": true,
       "text": "External sources and access notes"
     },
     {
-      "id": "segment-0037",
+      "id": "segment-0036",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Cambridge, Artefacts of Ancient Judaism"
     },
     {
-      "id": "segment-0038",
+      "id": "segment-0037",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Institutional project introduction and catalogue highlights consulted for Damascus Document reception and Ethiopic Enoch preservation. Individual dynamic object-detail pages returned an empty template, so shelfmarks, full transcriptions and image rights were not independently verified here. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0039",
+      "id": "segment-0038",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Library of Congress, The Qumran Library"
     },
     {
-      "id": "segment-0040",
+      "id": "segment-0039",
       "section": "External sources and access notes",
       "notes": true,
       "text": "1993 exhibition text was consulted earlier in this editing session through indexed content; a later direct fetch returned 403. The 4Q201 range is an identified historical curatorial copying estimate, not a current critical redating. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0041",
+      "id": "segment-0040",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Josephus, Against Apion 1.14-16, Whiston translation"
     },
     {
-      "id": "segment-0042",
+      "id": "segment-0041",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Primary translated sections consulted. A quotation attributed to Manetho and Josephus's interpretation are dependent stages, not two independent eyewitnesses. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0043",
+      "id": "segment-0042",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Josephus, Antiquities 13.3, Whiston translation"
     },
     {
-      "id": "segment-0044",
+      "id": "segment-0043",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Primary translated narrative of the Onias sanctuary consulted. This institutional account does not by itself establish subsequent household migration or Nag Hammadi ancestry. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0045",
+      "id": "segment-0044",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer"
     },
     {
-      "id": "segment-0046",
+      "id": "segment-0045",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations. Consulted 2026-09-05."
+      "text": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in my older conversations. Consulted 2026-09-05."
     }
   ]
 }

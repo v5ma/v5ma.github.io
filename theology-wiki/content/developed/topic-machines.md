@@ -13,9 +13,11 @@ Cognitive models, information, conscious machines and religious education.
 
 ## Start with a developed argument
 
-[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence.
+[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.
 
 [[god-and-our-models-of-god|God and our models of God]]: An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.
+
+[[computational-divine-immanence|Computational Divine Immanence]]: A computational-God interpretation connecting a necessary ground, reasons-responsive agency, constructive selfhood and repair without treating the different arguments as one experiment.
 
 ## Browse the source discussions
 

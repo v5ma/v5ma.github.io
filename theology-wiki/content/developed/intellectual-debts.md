@@ -9,7 +9,7 @@ updated: "2026-09-05"
 
 # Intellectual debts and source lineage
 
-Credit belongs to the particular contribution actually documented. A name appearing in an AI reply is not automatically an acknowledgment by the author; a later article is not retroactive evidence of an earlier influence.
+Credit belongs to the particular contribution actually documented. A name appearing in an AI reply is not automatically an acknowledgment of influence; a later article is not retroactive evidence of an earlier influence.
 
 ## James D. Tabor
 
@@ -19,7 +19,7 @@ Acknowledgment is not proof that Tabor endorses the complete October reconstruct
 
 ## Aaron Abke and Abraham Hicks
 
-Teachers discussed by the author. Comparisons involving faith, inward experience, spiritual vocabulary and the relation of different traditions.
+Teachers discussed in the source inquiry. Comparisons involving faith, inward experience, spiritual vocabulary and the relation of different traditions.
 
 Discussion or influence is not wholesale endorsement and is not archaeological evidence. A user turn may contain quoted material.
 
@@ -27,7 +27,7 @@ Discussion or influence is not wholesale endorsement and is not archaeological e
 
 Translation used in this edition. Translation of Thomas used for the present passage comparisons.
 
-This credit records the edition's textual source. It does not retrospectively identify these translators as the author's personal influences.
+This credit records the edition's textual source. It does not retrospectively identify these translators as my personal influences.
 
 ## Gabriele Boccaccini
 

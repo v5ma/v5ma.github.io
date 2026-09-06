@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-products-1",
+  "version": "2026.09.06-connected-foundations-1",
   "categories": [
     {
       "id": "gnosis",
@@ -124,10 +124,23 @@
         "gnosticism-and-temple-trauma",
         "cognitive-gnosticism"
       ]
+    },
+    {
+      "id": "cosmos-inheritance",
+      "title": "Reality, inheritance and the constructive self",
+      "description": "From the computational-God argument through flood inheritance, inward formation and repair. Full claims remain distinct from their evidence maps.",
+      "pages": [
+        "computational-divine-immanence",
+        "flood-inheritance-and-deep-time",
+        "sacred-inheritance-and-rival-continuations",
+        "christ-as-an-inner-model",
+        "inner-formation-texts-and-material-witnesses",
+        "apocalyptic-repair-theology"
+      ]
     }
   ],
   "sourceCount": 354,
-  "developedCount": 22,
+  "developedCount": 25,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -195,6 +208,7 @@
       "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
@@ -501,6 +515,7 @@
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
       "god-and-our-models-of-god",
+      "inner-formation-texts-and-material-witnesses",
       "topic-gnosis"
     ],
     "conceptual-equivalences-mapping": [
@@ -1721,6 +1736,7 @@
       "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "argument-challenges",
       "museum-trails",
@@ -1759,7 +1775,6 @@
       "home",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
-      "christ-as-an-inner-model",
       "antichrist-as-a-pattern-of-conduct",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
@@ -1769,6 +1784,7 @@
       "scripture-power-and-repair",
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
+      "flood-inheritance-and-deep-time",
       "source-atlas",
       "guide-to-the-inquiry",
       "glossary",
@@ -1780,7 +1796,6 @@
     "cognitive-gnosticism": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
-      "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
       "tor-thomas-and-gnostic-transmission",
@@ -1800,9 +1815,14 @@
       "faith-as-deliberate-joy",
       "samaritan-texts-and-sacred-authority",
       "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
+      "inner-formation-texts-and-material-witnesses",
+      "computational-divine-immanence",
+      "source-atlas",
+      "museum-trails",
       "guide-to-the-inquiry",
       "glossary",
       "topic-jesus",
@@ -1814,7 +1834,6 @@
       "home",
       "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
-      "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "samaritan-texts-and-sacred-authority",
       "scripture-power-and-repair",
@@ -1854,6 +1873,7 @@
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
       "tor-thomas-and-gnostic-transmission",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "museum-trails",
       "guide-to-the-inquiry",
@@ -1879,12 +1899,12 @@
     ],
     "sacred-inheritance-and-rival-continuations": [
       "home",
-      "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
+      "flood-inheritance-and-deep-time",
       "topic-traditions",
       "reading-paths",
       "book-contents",
@@ -1899,6 +1919,7 @@
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -1938,6 +1959,7 @@
       "cognitive-gnosticism",
       "faith-as-deliberate-joy",
       "sacred-inheritance-and-rival-continuations",
+      "computational-divine-immanence",
       "topic-machines",
       "reading-paths",
       "book-contents",
@@ -1947,6 +1969,7 @@
       "home",
       "tor-thomas-and-gnostic-transmission",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -1956,6 +1979,7 @@
     "exodus-to-temple-competing-chronologies": [
       "home",
       "moses-volcano-and-exodus-chronology",
+      "flood-inheritance-and-deep-time",
       "source-atlas",
       "argument-challenges",
       "museum-trails",
@@ -1969,6 +1993,37 @@
       "argument-challenges",
       "museum-trails",
       "topic-origins",
+      "book-contents"
+    ],
+    "inner-formation-texts-and-material-witnesses": [
+      "home",
+      "christ-as-an-inner-model",
+      "tor-thomas-and-gnostic-transmission",
+      "source-atlas",
+      "museum-trails",
+      "topic-origins",
+      "reading-paths",
+      "book-contents"
+    ],
+    "computational-divine-immanence": [
+      "home",
+      "christ-as-an-inner-model",
+      "flood-inheritance-and-deep-time",
+      "source-atlas",
+      "museum-trails",
+      "topic-machines",
+      "reading-paths",
+      "computational-argument-map",
+      "book-contents"
+    ],
+    "flood-inheritance-and-deep-time": [
+      "home",
+      "computational-divine-immanence",
+      "source-atlas",
+      "museum-trails",
+      "topic-origins",
+      "reading-paths",
+      "computational-argument-map",
       "book-contents"
     ],
     "listening-room": [
@@ -1988,7 +2043,8 @@
     ],
     "source-atlas": [
       "exodus-to-temple-competing-chronologies",
-      "argument-challenges"
+      "argument-challenges",
+      "computational-argument-map"
     ],
     "argument-challenges": [
       "exodus-to-temple-competing-chronologies",
@@ -1997,7 +2053,9 @@
     ],
     "museum-trails": [
       "exodus-to-temple-competing-chronologies",
-      "source-atlas"
+      "inner-formation-texts-and-material-witnesses",
+      "source-atlas",
+      "computational-argument-map"
     ],
     "research-roadmap": [
       "home",
@@ -2439,6 +2497,10 @@
       "antichrist-as-a-pattern-of-conduct",
       "faith-as-deliberate-joy"
     ],
+    "computational-argument-map": [
+      "home",
+      "computational-divine-immanence"
+    ],
     "book-contents": [
       "home",
       "cognitive-gnosticism",
@@ -2446,6 +2508,7 @@
       "scripture-power-and-repair",
       "museum-trails",
       "research-roadmap",
+      "computational-argument-map",
       "research-board"
     ],
     "parallel-timelines": [

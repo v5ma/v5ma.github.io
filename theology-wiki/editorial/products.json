@@ -1,10 +1,10 @@
 {
   "schema": "theology-products/v1",
-  "version": "2026.09.06-products-1",
+  "version": "2026.09.06-connected-foundations-1",
   "updated": "2026-09-06",
-  "policy": "One public research foundation, several ways to encounter it. Full article narration is distinct from edited episodes. Draft scripts are editorial adaptations, not newly recovered statements by Micah. The separate XR runtime and private SAN manuscript are not included.",
+  "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "reference": {
-    "title": "SAN private chapter reader supplied by Micah",
+    "title": "SAN private chapter-reader reference",
     "scope": "Private reference only. Its public access and deployed audiobook layer were not verified here. This implementation is independent; no SAN manuscript or private credentials are redistributed."
   },
   "channels": [
@@ -107,7 +107,7 @@
         "episode-scripts",
         "narration-pilot"
       ],
-      "acceptance": "Choose synthetic or recorded narration, tone, intro, first-person permissions and whether a host persona is appropriate. No imitation of Micah is assumed."
+      "acceptance": "First-person, theory-centered wording is authorized. Review the working theory name, exact script, synthetic or recorded narration, tone and pronunciations. No voice imitation is assumed."
     },
     {
       "id": "book-audio",
@@ -157,9 +157,9 @@
     {
       "id": "counting-the-departure",
       "title": "Counting the departure: why one date is not the whole history",
-      "summary": "A narrated introduction to the competing Exodus-to-Temple chronologies and Micah's earlier-departure reconstruction.",
+      "summary": "A narrated introduction to competing Exodus-to-Temple chronologies and the earlier-departure reconstruction.",
       "status": "Editorial production draft",
-      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
       "pages": [
         "exodus-to-temple-competing-chronologies",
         "moses-volcano-and-exodus-chronology"
@@ -177,7 +177,7 @@
         {
           "id": "counting-the-departure-01",
           "title": "Start with the proposed history",
-          "narration": "Micah Blumberg's reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.",
+          "narration": "The earlier-Exodus reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "exodus-to-temple-competing-chronologies",
@@ -281,7 +281,7 @@
       "title": "The teacher, the copy, and the community",
       "summary": "An introduction to the stronger earlier-Teacher reconstruction and the different things that could survive through transmission.",
       "status": "Editorial production draft",
-      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
       "pages": [
         "manuscripts-movements-and-survival",
         "tor-thomas-and-gnostic-transmission",
@@ -300,7 +300,7 @@
         {
           "id": "teacher-copy-community-01",
           "title": "More than a resemblance",
-          "narration": "Micah's stronger proposal is not merely that Jesus resembled an earlier Jewish teacher. It asks whether an earlier founder's teachings, community, and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
+          "narration": "The stronger Teacher-transmission conjecture is not merely that Jesus resembled an earlier Jewish teacher. I ask whether an earlier founder's teachings, community and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "manuscripts-movements-and-survival",
@@ -322,7 +322,7 @@
         {
           "id": "teacher-copy-community-03",
           "title": "The objection must meet the actual theory",
-          "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism in Micah's reconstruction. The harder question is what could document successors, repeated names, inherited offices, or changes in the presentation of relationships.",
+          "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism. The harder question is what could document successors, repeated names, inherited offices or changes in the presentation of relationships.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "manuscripts-movements-and-survival",
@@ -355,7 +355,7 @@
         {
           "id": "teacher-copy-community-06",
           "title": "Texts and institutions need different links",
-          "narration": "Micah also proposes historical relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The institutional question needs evidence about people, leadership, practices, and places as well as books.",
+          "narration": "The institutional reconstruction also proposes relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The question needs evidence about people, leadership, practices and places as well as books.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "manuscripts-movements-and-survival",
@@ -392,7 +392,7 @@
       "title": "Put the objection in the museum",
       "summary": "Why the research archive includes challenges, corrections and the full versions of the arguments being challenged.",
       "status": "Editorial production draft",
-      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
       "pages": [
         "argument-challenges",
         "manuscripts-movements-and-survival",
@@ -418,7 +418,7 @@
         {
           "id": "objections-in-the-museum-02",
           "title": "Preserve the two-stage argument",
-          "narration": "In the original Moses discussion, Micah already distinguished a famine from a later account describing a firstborn plague. He did not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
+          "narration": "The famine-narration conjecture distinguishes a famine from a later account describing a firstborn plague. I do not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "argument-challenges",
@@ -429,7 +429,7 @@
         {
           "id": "objections-in-the-museum-03",
           "title": "Ask the remaining historical question",
-          "narration": "Recovering that qualification does not establish the famine explanation. It changes the research task: what evidence might support the proposed disaster and its later narration? The full claim deserves examination instead of a reply to a claim the author rejected.",
+          "narration": "That distinction does not establish the famine explanation. It clarifies the research task: what evidence supports the proposed disaster and its later narration? The full claim deserves examination rather than a reply to a claim already rejected.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "argument-challenges",

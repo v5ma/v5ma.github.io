@@ -3,8 +3,8 @@
   "slug": "antichrist-as-a-pattern-of-conduct",
   "title": "Antichrist as a pattern of conduct",
   "source": "content/developed/antichrist-as-a-pattern-of-conduct.md",
-  "sourceSha256": "69040ef7b9239c867b0f465df08520823a924c908826d29094e5d530bd781c42",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "ca7fa556dfefbef315cf0b957dce472042f59d3ef36c8df05fab6a367d961377",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -22,7 +22,7 @@
       "id": "segment-0003",
       "section": "More than the search for a single name",
       "notes": false,
-      "text": "In Early vs Later Gnosticism, Micah describes the spirit of the Antichrist through actions: power dominating compassion, violence displacing healing and fragmentation defeating unity. That account does not require an institution to renounce Christianity before it can be criticized as antichristian. A declared allegiance and the conduct carried out under its protection can point in opposite directions."
+      "text": "The Antichrist pattern is visible in conduct: power dominating compassion, violence displacing healing and fragmentation defeating unity. An institution need not renounce Christianity before its actions can be judged antichristian. A declared allegiance and the conduct carried out under its protection can point in opposite directions."
     },
     {
       "id": "segment-0004",
@@ -40,7 +40,7 @@
       "id": "segment-0006",
       "section": "Preserve the force of the judgment",
       "notes": false,
-      "text": "The archive does not treat this as a request to turn a strong theological claim into a polite disagreement about branding. Micah connects the pattern to real power and to the possibility of historical catastrophe. An editorial account should therefore preserve the conclusion and the reasons he gives, while distinguishing reported conduct from the theological interpretation of that conduct."
+      "text": "This is a theological judgment about real power and the possibility of historical catastrophe, not a polite disagreement about religious branding. The judgment must retain its reasons and its force. I distinguish the conduct documented by a source from the theological interpretation of that conduct without making either disappear."
     },
     {
       "id": "segment-0007",
@@ -58,7 +58,7 @@
       "id": "segment-0009",
       "section": "Inner and institutional readings",
       "notes": false,
-      "text": "Antichrist Spiritual Inversion also explores spiritual ascent as a present struggle with fear, illusion and ignorance rather than only a story about events after death. In that discussion, Micah links spiritual imagery to the transformation of consciousness. Read alongside the later two-current argument, the inward and public dimensions become connected questions: what patterns are reproduced in a mind, and what happens when institutions reward them?"
+      "text": "Spiritual ascent can also be understood as a present struggle with fear, illusion and ignorance, not only as a story about events after death. Spiritual inversion connects that inward transformation with the public two-current argument: what patterns are reproduced in a mind, and what happens when institutions reward them?"
     },
     {
       "id": "segment-0010",
@@ -106,7 +106,7 @@
       "id": "segment-0017",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis of Micah Blumberg's archived discussions. Quoted words are preserved as quotations; explanatory prose is not presented as a newly authored statement by him."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0018",

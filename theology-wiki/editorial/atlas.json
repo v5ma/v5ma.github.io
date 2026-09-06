@@ -1,7 +1,7 @@
 {
   "schema": "theology-source-atlas/1",
-  "version": "2026.09.05-atlas-1",
-  "updated": "2026-09-05",
+  "version": "2026.09.06-connected-foundations-1",
+  "updated": "2026-09-06",
   "baselineCommit": "0a9c9cf8b12232b6f69b00342ab8fb75570017ff",
   "policy": "A curated starting catalogue, not an exhaustive list of all sources in 354 chats. Kinds, access scopes, hypotheses and unresolved leads are distinct. A shared source does not imply independent corroboration or a proven genealogy.",
   "references": [
@@ -817,6 +817,622 @@
         "status": "No bundled asset",
         "reason": "External source access is not image, scan or translation reuse permission."
       }
+    },
+    {
+      "id": "work-jeremiah-formation",
+      "title": "Jeremiah: inward covenant",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Jeremiah 31:31-34 connects inward instruction with Israel and Judah. Its modern translation is not a dated manuscript.",
+      "sources": [
+        "formation-jer31"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-ezekiel-formation",
+      "title": "Ezekiel: new heart and spirit",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Ezekiel 36:24-28 relates inward renewal, conduct and land restoration. The collective setting is retained.",
+      "sources": [
+        "formation-ezek36"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-community-rule",
+      "title": "Community Rule: membership and conduct",
+      "kind": "work",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "Regulated community formation provides a comparison target. The present catalogue access is not a completed collation of 1QS III-IV.",
+      "sources": [
+        "formation-community"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-4q258",
+      "title": "4Q258: Community Rule copy",
+      "kind": "material-witness",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "Specific Cave 4 witness, distinguished from the Cave 1 scroll and from the composition history of the work.",
+      "sources": [
+        "formation-community"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Late first century BCE / early first century CE",
+        "basis": "Broad curatorial copy-date description; no invented numerical interval.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-sabbath-songs",
+      "title": "Songs of the Sabbath Sacrifice",
+      "kind": "work",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "The liturgical cycle supplies a comparison for rehearsed heavenly priestly participation, not a measurement of ancient minds.",
+      "sources": [
+        "loc-enoch"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-4q403",
+      "title": "4Q403: Sabbath Songs copy",
+      "kind": "material-witness",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "The catalogue describes a physical copy and records additional witnesses at Qumran and Masada. Distribution does not by itself establish one institutional genealogy.",
+      "sources": [
+        "loc-enoch"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Mid-first-century BCE",
+        "basis": "Curatorial copy-date description, not a composition date or numerical confidence interval.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-pauline-formation",
+      "title": "Pauline collection: inward life and formation",
+      "kind": "work",
+      "corpus": "New Testament",
+      "detail": "A passage group across Galatians, Romans and Philippians, not a claim that these form one separately composed work. Christ-formation language is considered with communal conduct.",
+      "sources": [
+        "galatians-2-depth",
+        "formation-gal4",
+        "formation-rom12",
+        "formation-phil2"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-p46",
+      "title": "P46: Michigan leaf Hebrews 1:7-2:3",
+      "kind": "material-witness",
+      "corpus": "New Testament",
+      "detail": "P.Mich.inv. 6238. The selected leaf contains Hebrews, not Galatians 4:19. Unknown provenance within Egypt; acquisition in 1930/1931 does not identify an excavated reading community.",
+      "sources": [
+        "formation-p46"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Approximately 180-220 CE",
+        "basis": "Institutional curatorial date for the copy; not a statistical interval.",
+        "start": 180,
+        "end": 220
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-dura-formation",
+      "title": "Dura-Europos: Christian ritual setting",
+      "kind": "material-witness",
+      "corpus": "Early Christian archaeology",
+      "detail": "Font and painted setting provide material context for practice. Construction, renovation, domestic use and sealing are different questions; both 2024 interpretations are linked.",
+      "sources": [
+        "formation-dura",
+        "formation-pettegrew2024",
+        "formation-angelo-silver2024"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Sealing boundary: 254-256 CE",
+        "basis": "Dates sealing in the cited 2024 study, not the building or paintings construction.",
+        "start": 254,
+        "end": 256
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "study-pettegrew2024",
+      "title": "Pettegrew: domestic continuity interpretation",
+      "kind": "study",
+      "corpus": "Archaeological interpretation",
+      "detail": "Published abstract argues for retained domestic aspects and an earlier construction chronology. Full paywalled paper not reviewed in this pass.",
+      "sources": [
+        "formation-pettegrew2024"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Published 2024",
+        "basis": "Study publication, not ancient event.",
+        "start": 2024,
+        "end": 2024
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "study-angelo-silver2024",
+      "title": "Leon Angelo and Silver: architectural differentiation",
+      "kind": "study",
+      "corpus": "Archaeological interpretation",
+      "detail": "Full-text discussion distinguishes renovated space from domestic antecedents and questions an inscription-to-construction inference. Recorded alongside a competing interpretation.",
+      "sources": [
+        "formation-angelo-silver2024"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Published 2024",
+        "basis": "Study publication, not ancient event.",
+        "start": 2024,
+        "end": 2024
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "hypothesis-christic-formation",
+      "title": "Christic Self-Formation Theory",
+      "kind": "hypothesis",
+      "corpus": "Constructive theology",
+      "detail": "Proposed working name for recurrent self-formation through an inward Christ model, with revision of conduct and of the interpreted standard. Compatibility, mechanism and historical genealogy have distinct evidentiary requirements.",
+      "sources": [
+        "formation-gal4",
+        "formation-notself",
+        "formation-farb2007",
+        "formation-weng2013",
+        "formation-maoz2019"
+      ],
+      "pages": [
+        "christ-as-an-inner-model",
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Working formulation, September 2026",
+        "basis": "No claimed ancient formulation or worldwide priority.",
+        "start": null,
+        "end": null
+      },
+      "status": "Constructive conjecture",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "study-computational-god",
+      "title": "A Computational-Tomographic Proof of God",
+      "kind": "study",
+      "corpus": "Computational theology",
+      "detail": "Conditional necessary-ground, agency and identity arguments; sections 4-8. The finite-model construction was not independently executed.",
+      "sources": [
+        "cf-god-proof-2026"
+      ],
+      "pages": [
+        "computational-divine-immanence"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "study-tcnr",
+      "title": "Tomographic Coherence-Based Neural Rendering",
+      "kind": "study",
+      "corpus": "Neuroscience",
+      "detail": "The supplied Draft 7 separates the proposed neural protocol, consciousness hypothesis and cosmic extension.",
+      "sources": [
+        "cf-tcnr-2026"
+      ],
+      "pages": [
+        "computational-divine-immanence",
+        "christ-as-an-inner-model"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "study-sit",
+      "title": "Super Information Theory: correction-integrated Draft 13",
+      "kind": "study",
+      "corpus": "Physics",
+      "detail": "Operational coherence measures and physical accounting constrain rather than silently establish a cosmic theological interpretation.",
+      "sources": [
+        "cf-sit-2026"
+      ],
+      "pages": [
+        "computational-divine-immanence"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-reframing-reality",
+      "title": "Reframing Reality: computational universe dialogue",
+      "kind": "work",
+      "corpus": "Modern philosophical publication",
+      "detail": "The page displays December 3, 2024. Hypothetical responses by named atheist writers are not their endorsements; original-day wording is not independently fixed.",
+      "sources": [
+        "cf-rr-2024"
+      ],
+      "pages": [
+        "computational-divine-immanence"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "hypothesis-divine-immanence",
+      "title": "Computational Divine Immanence",
+      "kind": "hypothesis",
+      "corpus": "Constructive theology",
+      "detail": "The proposed expression-within relation distinguishes an immanent divine ground from an external simulation operator. A working label, not an established school.",
+      "sources": [
+        "cf-god-proof-2026",
+        "cf-rr-2024"
+      ],
+      "pages": [
+        "computational-divine-immanence"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-sumerian-flood",
+      "title": "Sumerian Flood Story: Zi-ud-sura",
+      "kind": "work",
+      "corpus": "Sumerian literature",
+      "detail": "Warning, survival and post-flood restoration are compared through the translation with its lacunae left visible.",
+      "sources": [
+        "cf-sumerian-flood"
+      ],
+      "pages": [
+        "flood-inheritance-and-deep-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "translation-sumerian-flood",
+      "title": "ETCSL 1.7.4: Flood Story translation",
+      "kind": "translation",
+      "corpus": "Modern scholarly translation",
+      "detail": "Access to a composite text, not a newly examined tablet or a date for a physical flood.",
+      "sources": [
+        "cf-sumerian-flood"
+      ],
+      "pages": [
+        "flood-inheritance-and-deep-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-sumerian-kings",
+      "title": "Sumerian King List: before and after the flood",
+      "kind": "work",
+      "corpus": "Sumerian literature",
+      "detail": "The internal royal sequence is evidence for a representation of time, not a calibrated geological event date.",
+      "sources": [
+        "cf-sumerian-kings"
+      ],
+      "pages": [
+        "flood-inheritance-and-deep-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-genesis-inheritance",
+      "title": "Genesis: creation, flood and ancestral inheritance",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Compare genealogical intervals and narrative order without making Abraham the beginning of every inherited tradition.",
+      "sources": [
+        "cf-genesis-web",
+        "cf-genesis-web-2",
+        "cf-genesis-web-3"
+      ],
+      "pages": [
+        "flood-inheritance-and-deep-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "witness-gilgamesh-k3375",
+      "title": "K.3375: Gilgamesh XI, the Flood Tablet",
+      "kind": "material-witness",
+      "corpus": "Mesopotamian literature",
+      "detail": "Museum catalogue object and attributed copy century. Neither the narrated disaster nor every earlier form of the poem receives this date.",
+      "sources": [
+        "cf-gilgamesh-k3375"
+      ],
+      "pages": [
+        "flood-inheritance-and-deep-time"
+      ],
+      "date": {
+        "label": "Seventh century BCE",
+        "basis": "Museum attribution to the surviving tablet; not an event date.",
+        "start": -700,
+        "end": -601
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-gilgamesh-flood",
+      "title": "Gilgamesh XI: flood narrative",
+      "kind": "work",
+      "corpus": "Akkadian literature",
+      "detail": "A work and its physical witness have separate records. Full critical-text comparison remains to be extended.",
+      "sources": [
+        "cf-gilgamesh-k3375"
+      ],
+      "pages": [
+        "flood-inheritance-and-deep-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "study-narrative-mapping",
+      "title": "Annunaki: proposed narrative-mapping method",
+      "kind": "study",
+      "corpus": "Modern mixed-speaker research dialogue",
+      "detail": "The mapping proposal and its AI-generated illustrative probabilities remain separately attributable. No calibrated historical odds are reported here.",
+      "sources": [
+        "cf-annunaki-dialogue",
+        "cf-god-proof-2026"
+      ],
+      "pages": [
+        "flood-inheritance-and-deep-time"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
+    },
+    {
+      "id": "study-ruliad",
+      "title": "The Ruliad: computational possibility construction",
+      "kind": "study",
+      "corpus": "Computational philosophy",
+      "detail": "A modern comparison with an ultimate order, not evidence that ancient authors described the same formal construction.",
+      "sources": [
+        "cf-ruliad-2021",
+        "cf-apocryphon-john-long"
+      ],
+      "pages": [
+        "computational-divine-immanence"
+      ],
+      "date": {
+        "label": "No absolute date assigned",
+        "basis": "Work, version and narrated event dates are not interchangeable.",
+        "start": null,
+        "end": null
+      },
+      "status": "Working research record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Source access does not confer scan, image, recording or translation reuse permission."
+      }
     }
   ],
   "edges": [
@@ -987,6 +1603,198 @@
       "relation": "planned-comparison",
       "why": "Historical continuity and philosophical comparison will be tested separately.",
       "basis": "Research task"
+    },
+    {
+      "id": "formation-link-1",
+      "fromId": "witness-4q258",
+      "toId": "work-community-rule",
+      "relation": "witnesses",
+      "why": "A specific copy witnesses the work without containing every passage of every other copy.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-2",
+      "fromId": "witness-4q403",
+      "toId": "work-sabbath-songs",
+      "relation": "witnesses",
+      "why": "Physical copy and liturgical work have distinct histories.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-3",
+      "fromId": "witness-p46",
+      "toId": "work-pauline-formation",
+      "relation": "witnesses",
+      "why": "Collection-level material comparison only: the selected photographed leaf is Hebrews, not a transcription of the Galatians formation passage.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-4",
+      "fromId": "work-jeremiah-formation",
+      "toId": "work-ezekiel-formation",
+      "relation": "compares",
+      "why": "Inward renewal is compared in collective restoration contexts; this edge does not assign direct literary dependence.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-5",
+      "fromId": "work-community-rule",
+      "toId": "work-sabbath-songs",
+      "relation": "compares",
+      "why": "Community regulation and liturgical participation offer different operations to compare, not one presumed doctrine.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-6",
+      "fromId": "hypothesis-christic-formation",
+      "toId": "work-pauline-formation",
+      "relation": "interprets",
+      "why": "The modern theory interprets inward formation language; the source does not state a modern neural mechanism.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-7",
+      "fromId": "hypothesis-christic-formation",
+      "toId": "work-jeremiah-formation",
+      "relation": "compares",
+      "why": "The comparison situates inward instruction within Jewish restoration language rather than inventing a purely external antecedent.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-8",
+      "fromId": "hypothesis-christic-formation",
+      "toId": "witness-dura-formation",
+      "relation": "compares",
+      "why": "The setting can inform an embodied-practice conjecture without measuring any individual ancient experience.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-9",
+      "fromId": "work-pauline-formation",
+      "toId": "work-thomas",
+      "relation": "compares",
+      "why": "Canonical formation and interpreted sayings are compared without concluding that one directly borrowed from the other.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-10",
+      "fromId": "study-pettegrew2024",
+      "toId": "witness-dura-formation",
+      "relation": "interprets",
+      "why": "This published abstract argues for retained domestic aspects; it is not an undisputed description of the building.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-11",
+      "fromId": "study-angelo-silver2024",
+      "toId": "witness-dura-formation",
+      "relation": "interprets",
+      "why": "This study argues for architectural differentiation and is retained alongside the alternative interpretation.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-12",
+      "fromId": "study-angelo-silver2024",
+      "toId": "study-pettegrew2024",
+      "relation": "compares",
+      "why": "The inquiry compares their interpretations; this edge does not assert that either paper directly responds to the other.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "cf-edge-1",
+      "fromId": "hypothesis-divine-immanence",
+      "toId": "study-computational-god",
+      "relation": "interprets",
+      "why": "The ground-to-world relation is an explicit added interpretation of the argument.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-2",
+      "fromId": "hypothesis-divine-immanence",
+      "toId": "study-tcnr",
+      "relation": "compares",
+      "why": "The cosmic and neural models require different evidence and must not be treated as the same measured system.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-3",
+      "fromId": "study-tcnr",
+      "toId": "study-sit",
+      "relation": "compares",
+      "why": "The coherence terms have operational meanings rather than one automatic physical identity.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-4",
+      "fromId": "work-reframing-reality",
+      "toId": "hypothesis-divine-immanence",
+      "relation": "compares",
+      "why": "The earlier external-programmer framing and the proposed expression-within relation remain distinguishable.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-5",
+      "fromId": "hypothesis-divine-immanence",
+      "toId": "hypothesis-christic-formation",
+      "relation": "compares",
+      "why": "A constructive self is a finite practical inquiry within the wider theological interpretation.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-6",
+      "fromId": "translation-sumerian-flood",
+      "toId": "work-sumerian-flood",
+      "relation": "renders",
+      "why": "The translation gives access to this composite work and marks missing passages.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-7",
+      "fromId": "work-sumerian-flood",
+      "toId": "work-genesis-inheritance",
+      "relation": "compares",
+      "why": "Warning, catastrophe, survival and the transformed aftermath are explicit comparison questions.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-8",
+      "fromId": "witness-gilgamesh-k3375",
+      "toId": "work-gilgamesh-flood",
+      "relation": "witnesses",
+      "why": "The dated tablet witnesses the poem; its century does not date the narrated flood.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-9",
+      "fromId": "work-sumerian-kings",
+      "toId": "work-sumerian-flood",
+      "relation": "compares",
+      "why": "The flood is related to kingship and community continuity in different literary settings.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-10",
+      "fromId": "study-narrative-mapping",
+      "toId": "study-computational-god",
+      "relation": "compares",
+      "why": "The later paper supplies a dependency-aware standard for reviewing earlier favorable AI numerical claims.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-11",
+      "fromId": "work-genesis-inheritance",
+      "toId": "work-exodus",
+      "relation": "compares",
+      "why": "An inherited ancestral sequence and a departure narrative are connected without forcing their intervals into a single modern date.",
+      "basis": "Named research connection; consult the complete argument."
+    },
+    {
+      "id": "cf-edge-12",
+      "fromId": "study-ruliad",
+      "toId": "hypothesis-divine-immanence",
+      "relation": "compares",
+      "why": "Conceptual analogy needs an explicit mapping and is not a demonstrated ancient transmission.",
+      "basis": "Named research connection; consult the complete argument."
     }
   ],
   "intervals": [
@@ -1316,6 +2124,177 @@
             "hypothesis-teacher-october"
           ],
           "page": "religion-for-conscious-robots",
+          "challengeIds": []
+        }
+      ]
+    },
+    {
+      "id": "inner-formation-witnesses",
+      "title": "How an inward model acquires a history",
+      "question": "How do teachings, communities, copies and ritual settings participate in formation?",
+      "chapter": "inner-model",
+      "stops": [
+        {
+          "id": "formation-covenant",
+          "title": "An inward covenant",
+          "label": "Inward instruction and renewal occur within Israel/Judah restoration settings. Work-level dates remain open.",
+          "records": [
+            "work-jeremiah-formation",
+            "work-ezekiel-formation"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-community",
+          "title": "Formation through a community",
+          "label": "Compare admission, conduct and liturgical participation. A physical copy is not the composition date or proof of a later institutional route.",
+          "records": [
+            "work-community-rule",
+            "witness-4q258",
+            "work-sabbath-songs",
+            "witness-4q403"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-paul",
+          "title": "Christ formed, and the surviving witness",
+          "label": "The Pauline passages and the P46 collection witness have different roles. The selected Michigan image shows Hebrews, not Galatians 4:19.",
+          "records": [
+            "work-pauline-formation",
+            "witness-p46"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-interpretation",
+          "title": "Interpretation that changes the receiver",
+          "label": "Compare interpretive knowledge, priestly authority and recurrent self-formation without collapsing them into one doctrine.",
+          "records": [
+            "work-thomas",
+            "work-11qmelchizedek",
+            "hypothesis-christic-formation"
+          ],
+          "page": "christ-as-an-inner-model",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-setting",
+          "title": "An embodied setting and two interpretations",
+          "label": "The font and painted setting are material evidence. Domestic continuity, architectural differentiation and construction dates remain separately inspectable interpretations.",
+          "records": [
+            "witness-dura-formation",
+            "study-pettegrew2024",
+            "study-angelo-silver2024"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": []
+        }
+      ]
+    },
+    {
+      "id": "cosmos-mind-repair",
+      "title": "A world, a mind and a proposed ground",
+      "question": "What changes when physical reality is interpreted as an expression within divine reality?",
+      "chapter": "images",
+      "stops": [
+        {
+          "id": "cf-model",
+          "title": "A representation is not its referent",
+          "label": "Begin with the full cosmic argument, then distinguish a generated experience from an externally created object.",
+          "records": [
+            "study-tcnr",
+            "hypothesis-divine-immanence"
+          ],
+          "page": "computational-divine-immanence",
+          "challengeIds": []
+        },
+        {
+          "id": "cf-ground",
+          "title": "Necessity and selection",
+          "label": "Inspect the move from contingency to a necessary ground, then the further argument for agency.",
+          "records": [
+            "study-computational-god"
+          ],
+          "page": "computational-divine-immanence",
+          "challengeIds": []
+        },
+        {
+          "id": "cf-coherence",
+          "title": "One word, several measures",
+          "label": "Neural coherence, integration and quantum coherence do not become identical merely by sharing a name.",
+          "records": [
+            "study-tcnr",
+            "study-sit"
+          ],
+          "page": "computational-divine-immanence",
+          "challengeIds": []
+        },
+        {
+          "id": "cf-formation",
+          "title": "The self that can be corrected",
+          "label": "Follow the inward model into choices and repair, without making computation alone a moral standard.",
+          "records": [
+            "hypothesis-christic-formation",
+            "hypothesis-divine-immanence"
+          ],
+          "page": "christ-as-an-inner-model",
+          "challengeIds": []
+        }
+      ]
+    },
+    {
+      "id": "flood-inheritance",
+      "title": "The flood and the inheritance it carries",
+      "question": "How can a tradition preserve a narrative while changing what its survival means?",
+      "chapter": "shared-archive",
+      "stops": [
+        {
+          "id": "cf-flood-survival",
+          "title": "Before the ancestral beginning",
+          "label": "Read the Sumerian comparison and Genesis without treating Abraham as the beginning of every inherited story.",
+          "records": [
+            "work-sumerian-flood",
+            "work-genesis-inheritance"
+          ],
+          "page": "flood-inheritance-and-deep-time",
+          "challengeIds": []
+        },
+        {
+          "id": "cf-tablet",
+          "title": "An object with its own date",
+          "label": "The seventh-century attribution belongs to K.3375, not to the flood or the first telling of the story.",
+          "records": [
+            "witness-gilgamesh-k3375",
+            "work-gilgamesh-flood"
+          ],
+          "page": "flood-inheritance-and-deep-time",
+          "challengeIds": []
+        },
+        {
+          "id": "cf-transformation",
+          "title": "What changes when the roles merge?",
+          "label": "Compare the organization of judgment, rescue and responsibility rather than only names.",
+          "records": [
+            "work-sumerian-flood",
+            "work-genesis-inheritance",
+            "study-narrative-mapping"
+          ],
+          "page": "flood-inheritance-and-deep-time",
+          "challengeIds": []
+        },
+        {
+          "id": "cf-accounting",
+          "title": "A chronology needs endpoints",
+          "label": "Connect the flood comparison to departure and sanctuary while keeping each source count explicit.",
+          "records": [
+            "work-sumerian-kings",
+            "work-kings"
+          ],
+          "page": "exodus-to-temple-competing-chronologies",
           "challengeIds": []
         }
       ]

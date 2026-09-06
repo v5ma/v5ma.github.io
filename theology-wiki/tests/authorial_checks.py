@@ -1,0 +1,30 @@
+"""Check the published authorial article, its source routes and the new museum trail."""
+import re
+
+def run_authorial_checks(page, open_page, check, OUT):
+    page.set_viewport_size({'width':1440,'height':1000})
+    open_page(page,'christ-as-an-inner-model')
+    body=page.locator('#article-body').inner_text()
+    check('Original Christ permalink opens the named formation theory','Christic Self-Formation Theory' in page.locator('#article-title').inner_text())
+    check('Main article no longer narrates its author in third person',not re.search(r"Micah(?:'s|’s) proposal|Micah compares|He writes that|he suggests that",body))
+    check('Expanded theory includes embodied self, two-level correction and bounded choice',all(x in body for x in ['living body-brain','learned self-model','momentary experience','interpretation of the ideal','Physical causation','SN 22.59']))
+    check('Historical and empirical claims retain distinct evidence conditions','would compare' in body and 'compatibility is not the same as confirmation' in body)
+    page.screenshot(path=str(OUT/'christic-formation-desktop.png'))
+    open_page(page,'inner-formation-texts-and-material-witnesses')
+    body=page.locator('#article-body').inner_text()
+    check('Historical companion keeps work, copy and archaeological interpretation distinct',all(x in body for x in ['4Q258','4Q403','Galatians 4:19','Hebrews 1:7','232/233','254 and 256','Pettegrew','Angelo']))
+    check('New investigation exposes the full argument rather than only atlas cards',len(body.split())>1500)
+    page.screenshot(path=str(OUT/'formation-witnesses-desktop.png'))
+    open_page(page,'source-atlas','&record=hypothesis-christic-formation')
+    page.wait_for_function('document.querySelector("#atlas-selected")?.value==="hypothesis-christic-formation"')
+    check('Named theory is a hypothesis record, not a dated ancient witness','Christic' in page.locator('#atlas-cards').inner_text() and 'hypothesis' in page.locator('#atlas-cards').inner_text().lower())
+    open_page(page,'museum-trails')
+    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===6')
+    trail=page.locator('.atlas-trail').filter(has_text='How an inward model acquires a history')
+    check('New museum trail exposes all five source-linked stops',trail.count()==1 and trail.locator('.atlas-stop').count()==5)
+    trail.scroll_into_view_if_needed();page.screenshot(path=str(OUT/'formation-museum-trail.png'))
+    for slug in ['christ-as-an-inner-model','inner-formation-texts-and-material-witnesses']:
+        page.set_viewport_size({'width':390,'height':844});open_page(page,slug)
+        check('Authorial article fits a 390px screen: '+slug,page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+        page.screenshot(path=str(OUT/(slug+'-authorial-mobile.png')))
+    page.set_viewport_size({'width':1440,'height':1000})

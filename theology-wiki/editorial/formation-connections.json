@@ -1,0 +1,37 @@
+[
+  {
+    "to": "christ-as-an-inner-model",
+    "type": "extends",
+    "why": "The source comparison supplies a historical and material inquiry for the proposed recurrent Christic formation mechanism.",
+    "origin": "Authorial research relationship",
+    "from": "inner-formation-texts-and-material-witnesses"
+  },
+  {
+    "to": "tor-thomas-and-gnostic-transmission",
+    "type": "compares",
+    "why": "Formation is a functional comparison within the stronger proposed institutional reconstruction, not a replacement for it.",
+    "origin": "Authorial research relationship",
+    "from": "inner-formation-texts-and-material-witnesses"
+  },
+  {
+    "to": "gnosticism-and-temple-trauma",
+    "type": "tests",
+    "why": "The distribution of inward language across texts constrains a simple late-origin or purely rejectionist chronology.",
+    "origin": "Authorial research relationship",
+    "from": "inner-formation-texts-and-material-witnesses"
+  },
+  {
+    "to": "melchizedek-priesthood-and-transmission",
+    "type": "compares",
+    "why": "Heavenly participation, priestly functions and embodied practice provide distinct components of the formation inquiry.",
+    "origin": "Authorial research relationship",
+    "from": "inner-formation-texts-and-material-witnesses"
+  },
+  {
+    "to": "museum-trails",
+    "type": "organizes",
+    "why": "The five new stops expose source identities, scope limits and full arguments for a separately developed museum runtime.",
+    "origin": "Authorial research relationship",
+    "from": "inner-formation-texts-and-material-witnesses"
+  }
+]

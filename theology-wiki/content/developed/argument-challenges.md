@@ -13,7 +13,7 @@ An objection can fail to address an argument without thereby proving its histori
 
 ## The firstborn objection omits the narration mechanism
 
-An environmental catastrophe may later have been narrated as selecting firstborns; the author explicitly denies that natural famine itself selects birth order.
+An environmental catastrophe may later have been narrated as selecting firstborns; I distinguish that narration from a natural famine that does not itself select birth order.
 
 Challenge: An age-based mortality mechanism cannot by itself explain firstborn selection.
 
@@ -27,7 +27,7 @@ Remaining work: Test the environmental and literary links separately. No medical
 
 ## Institutional reconstruction reduced to thematic similarity
 
-Two priestly branches separate and later reconnect; the author proposes people and institutions as carriers, not only shared ideas.
+Two priestly branches separate and later reconnect; I propose people and institutions as carriers, not only shared ideas.
 
 Challenge: The AI restates the proposal as not claiming a straight institutional pipeline.
 
@@ -59,7 +59,7 @@ The Teacher's sacred chronology is investigated as part of the stronger identifi
 
 Challenge: A favorable AI answer juxtaposes 176 BCE for appearance and 171 BCE for a removed anointed one as chronological alignment.
 
-Response: The dates differ and the endpoints differ. The calculation also needs an explicit treatment of Daniel's first seven weeks. Correcting favorable AI arithmetic preserves the author's inquiry rather than treating the reply as evidence.
+Response: The dates differ and the endpoints differ. The calculation also needs an explicit treatment of Daniel's first seven weeks. Correcting favorable AI arithmetic preserves my inquiry rather than treating the reply as evidence.
 
 Outcome: AI support requires repair, not counted as corroboration.
 

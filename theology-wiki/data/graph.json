@@ -35,6 +35,9 @@
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
+      "computational-divine-immanence",
+      "flood-inheritance-and-deep-time",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -43,6 +46,7 @@
       "topic-machines",
       "topic-traditions",
       "topic-context",
+      "computational-argument-map",
       "sources-index",
       "connections",
       "forecast-ledger",
@@ -1593,36 +1597,34 @@
     "cognitive-gnosticism": [
       "christ-as-an-inner-model",
       "faith-as-deliberate-joy",
+      "publishing-cognitive-gnosticism-first",
       "research-method",
       "tor-thomas-and-gnostic-transmission",
       "god-and-our-models-of-god",
       "book-contents",
       "research-board",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "publishing-cognitive-gnosticism-first",
       "antichrist-spiritual-inversion",
       "teacher-of-righteousness-vs-gnostic-jesus",
       "faith-as-vibration-concept"
     ],
     "christ-as-an-inner-model": [
-      "antichrist-as-a-pattern-of-conduct",
-      "cognitive-gnosticism",
       "divine-will-and-self-authorizing-power",
+      "inner-formation-texts-and-material-witnesses",
       "tor-thomas-and-gnostic-transmission",
-      "sacred-inheritance-and-rival-continuations",
-      "apocalyptic-repair-theology",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "antichrist-spiritual-inversion",
       "teacher-of-righteousness-vs-gnostic-jesus",
       "samuel-vs-micah-divide",
       "jesus-teacher-of-righteousness-hypothesis",
-      "image-collection"
+      "image-collection",
+      "computational-divine-immanence"
     ],
     "antichrist-as-a-pattern-of-conduct": [
+      "antichrist-spiritual-inversion",
       "christ-as-an-inner-model",
       "apocalyptic-repair-theology",
       "early-vs-later-gnosticism",
-      "antichrist-spiritual-inversion",
       "image-collection"
     ],
     "religion-for-conscious-robots": [
@@ -1686,7 +1688,9 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "parallel-timelines",
       "cognitive-gnosticism",
+      "christ-as-an-inner-model",
       "divine-will-and-self-authorizing-power",
+      "inner-formation-texts-and-material-witnesses",
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
       "gnosticism-and-temple-trauma",
@@ -1705,8 +1709,8 @@
       "apocalyptic-repair-theology",
       "christ-as-an-inner-model",
       "trump-first-beast-of-revelation",
-      "religion-for-conscious-robots",
       "resurrection-debate-in-christianity",
+      "religion-for-conscious-robots",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "agi-religious-framework"
     ],
@@ -1750,11 +1754,11 @@
     "exodus-to-temple-competing-chronologies": [
       "moses-volcano-and-exodus-chronology",
       "source-atlas",
+      "parthians-and-medes-meaning",
       "argument-challenges",
       "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "museum-trails",
-      "parthians-and-medes-meaning",
       "daniel-and-teacher-of-righteousness"
     ],
     "manuscripts-movements-and-survival": [
@@ -1764,6 +1768,28 @@
       "ai-re-dates-dead-sea-scrolls",
       "jewish-apocalyptic-repair-timeline",
       "sacred-inheritance-and-rival-continuations"
+    ],
+    "inner-formation-texts-and-material-witnesses": [
+      "christ-as-an-inner-model",
+      "tor-thomas-and-gnostic-transmission",
+      "melchizedek-priesthood-and-transmission",
+      "gnosticism-and-temple-trauma",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "ai-re-dates-dead-sea-scrolls",
+      "museum-trails"
+    ],
+    "computational-divine-immanence": [
+      "god-and-our-models-of-god",
+      "christ-as-an-inner-model",
+      "flood-inheritance-and-deep-time",
+      "computational-argument-map"
+    ],
+    "flood-inheritance-and-deep-time": [
+      "exodus-to-temple-competing-chronologies",
+      "sacred-inheritance-and-rival-continuations",
+      "apocalyptic-repair-theology",
+      "computational-divine-immanence"
     ],
     "listening-room": [
       "production-studio",
@@ -1790,7 +1816,11 @@
       "melchizedek-priesthood-and-transmission",
       "el-in-ancient-egypt",
       "gnosticism-and-temple-trauma",
-      "apocalyptic-repair-theology"
+      "apocalyptic-repair-theology",
+      "inner-formation-texts-and-material-witnesses",
+      "christ-as-an-inner-model",
+      "computational-divine-immanence",
+      "flood-inheritance-and-deep-time"
     ],
     "argument-challenges": [
       "exodus-to-temple-competing-chronologies",
@@ -1806,6 +1836,10 @@
       "melchizedek-priesthood-and-transmission",
       "gnosticism-and-temple-trauma",
       "religion-for-conscious-robots",
+      "inner-formation-texts-and-material-witnesses",
+      "christ-as-an-inner-model",
+      "computational-divine-immanence",
+      "flood-inheritance-and-deep-time",
       "book-contents"
     ],
     "research-roadmap": [
@@ -1962,6 +1996,8 @@
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
+      "flood-inheritance-and-deep-time",
       "ai-re-dates-dead-sea-scrolls",
       "ancient-egypt-vs-fascism",
       "bible-text-sources-comparison",
@@ -2079,6 +2115,7 @@
     "topic-machines": [
       "religion-for-conscious-robots",
       "god-and-our-models-of-god",
+      "computational-divine-immanence",
       "agi-religious-framework",
       "ai-and-religion-belief",
       "ai-conference-insights",
@@ -2286,15 +2323,26 @@
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
       "sacred-inheritance-and-rival-continuations",
-      "tor-thomas-and-gnostic-transmission"
+      "tor-thomas-and-gnostic-transmission",
+      "computational-divine-immanence",
+      "flood-inheritance-and-deep-time",
+      "inner-formation-texts-and-material-witnesses"
     ],
     "connections": [
       "reading-paths"
     ],
     "image-collection": [],
+    "computational-argument-map": [
+      "computational-divine-immanence",
+      "flood-inheritance-and-deep-time",
+      "source-atlas",
+      "museum-trails",
+      "book-contents"
+    ],
     "book-contents": [
       "sacred-inheritance-and-rival-continuations",
       "samaritan-texts-and-sacred-authority",
+      "flood-inheritance-and-deep-time",
       "el-in-ancient-egypt",
       "kenite-hypothesis-and-yahweh-origins",
       "moses-volcano-and-exodus-chronology",
@@ -2306,9 +2354,11 @@
       "gnosticism-and-temple-trauma",
       "apocalyptic-repair-theology",
       "god-and-our-models-of-god",
+      "computational-divine-immanence",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
       "divine-will-and-self-authorizing-power",
+      "inner-formation-texts-and-material-witnesses",
       "faith-as-deliberate-joy",
       "scripture-power-and-repair",
       "antichrist-as-a-pattern-of-conduct",

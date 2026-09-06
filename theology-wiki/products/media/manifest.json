@@ -1,6 +1,6 @@
 {
   "schema": "theology-recorded-media/v1",
-  "version": "2026.09.06-products-1",
+  "version": "2026.09.06-authorial-1",
   "production": {
     "engine": "Kokoro 0.9.4",
     "model": "hexgrad/Kokoro-82M",
@@ -23,47 +23,47 @@
       "title": "Counting the departure: why one date is not the whole history",
       "status": "Synthetic production draft; author and pronunciation review pending",
       "voice": "Kokoro 0.9.4 / af_heart",
-      "sourceSha256": "eec60d95f7d59338ec70c797dffd392c255977bdd58b7102cc247baf23da04e7",
-      "spokenSha256": "167d28a1a54e060bc0a1c1864e933f905deef29303b833fb912251c054128854",
-      "durationSeconds": 161.525,
+      "sourceSha256": "92901efe0a344ce343c2398d91b1ee7782a9f59de969bdaf7f108b34c4444167",
+      "spokenSha256": "83273f02ee233ca8ac1b546ce176337ead1f8970960097b09cd9f10223b6ad07",
+      "durationSeconds": 161.775,
       "segments": 10,
       "scope": "Short editorial episode; full argument linked separately.",
       "files": [
         {
           "role": "audio",
           "path": "products/media/counting-the-departure.mp3",
-          "bytes": 1939579,
-          "sha256": "d08ce25bf37a8374287ee121c23e828672391b8fc3d48b98a82f000af00c2207"
+          "bytes": 1942459,
+          "sha256": "90d86dd4335d118954d81546674c5c25023849922df012cec5e12975aba8eeb8"
         },
         {
           "role": "captions",
           "path": "products/media/counting-the-departure.vtt",
-          "bytes": 3045,
-          "sha256": "6355498bcfb46dc90eb69ca65e2051afa87c4dcbbeca721a4e2b2738ccec5100"
+          "bytes": 3047,
+          "sha256": "b50394cbf6844be8966e8b35efa8dadf6e9ba691999dee93e9ec8cb8f0cfac2b"
         },
         {
           "role": "cues",
           "path": "products/media/counting-the-departure.cues.json",
-          "bytes": 6813,
-          "sha256": "134ec24571020187716aae064a2646aa42fc3cc62c5e4a7b7a3a153a6620f303"
+          "bytes": 6817,
+          "sha256": "fc8f0c1f58753068ab575fbe1ae8f1711e8f707de2c808af655973b69a97f2f5"
         },
         {
           "role": "spoken-transcript",
           "path": "products/media/counting-the-departure.txt",
-          "bytes": 2590,
-          "sha256": "9ab627e47d0358bf7d0315a3770bbc641379faf0d0a7e13a7d341862bc66f189"
+          "bytes": 2626,
+          "sha256": "e650cc6712d8b4d454f3e89c816c36d4cf7ee03734cdd21ae6768069ce50e7a3"
         },
         {
           "role": "video",
           "path": "products/media/counting-the-departure.mp4",
-          "bytes": 2960411,
-          "sha256": "720cc97e419d777ecfdf09b9603971196f968c00a3012dd76d4bcf16f06da054"
+          "bytes": 2966212,
+          "sha256": "eb4c9cd600c989ef0cc107d7351cf0e0153dee619fd2bb0a76f104726e61b305"
         },
         {
           "role": "poster",
           "path": "products/media/counting-the-departure.png",
-          "bytes": 47698,
-          "sha256": "df10e6a8d2f34e674892f4b259b0512195efade1a31d5dbf6ae5beadd09bcf0a"
+          "bytes": 47081,
+          "sha256": "1c8050c177499ffe9892bfe5dcb11ebc4e67a94b60301221e88934238bf469dc"
         }
       ]
     },
@@ -73,35 +73,35 @@
       "title": "From Exodus to Temple: competing chronologies",
       "status": "Synthetic production draft; author and pronunciation review pending",
       "voice": "Kokoro 0.9.4 / af_heart",
-      "sourceSha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3",
-      "spokenSha256": "8b468cade1b3a4756a579efd037caa98cc40f7786b8e92715ab7bcbef159fc25",
-      "durationSeconds": 823.17,
-      "segments": 38,
+      "sourceSha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3",
+      "spokenSha256": "7f26e30ed4545e861ad5369a2c094e2f0715d391cf2676439cf61766e96dca8a",
+      "durationSeconds": 788.23,
+      "segments": 37,
       "scope": "Complete main article including headings; separately labeled source/visual notes are excluded from this recording.",
       "files": [
         {
           "role": "audio",
           "path": "products/media/exodus-to-temple-competing-chronologies.mp3",
-          "bytes": 9879147,
-          "sha256": "16223c2a5db12b82a411a7795a949a8a6908a2472754f34eef08c9d49a7e4522"
+          "bytes": 9459819,
+          "sha256": "9a62a4234db502725c929b671045edc572ebdbc71515fed4fbe6d571c1f9d564"
         },
         {
           "role": "captions",
           "path": "products/media/exodus-to-temple-competing-chronologies.vtt",
-          "bytes": 13919,
-          "sha256": "6c6087a34fefe85f0c667c3edbd8004131c38ba4e060355924881a31b23cbfa8"
+          "bytes": 13313,
+          "sha256": "c46b842f189ae45e44b718972e97e2c2b03e80027edd712a002a6b648e2c893e"
         },
         {
           "role": "cues",
           "path": "products/media/exodus-to-temple-competing-chronologies.cues.json",
-          "bytes": 30944,
-          "sha256": "79cf2f8bc5f000820533e0af46291ba5677a1d336bc7fb506f1536d7251e946a"
+          "bytes": 29637,
+          "sha256": "ad4fd746e610a8cfaf66a6813e39f727786a40b3b321e98859bf9f129c1befbd"
         },
         {
           "role": "spoken-transcript",
           "path": "products/media/exodus-to-temple-competing-chronologies.txt",
-          "bytes": 12396,
-          "sha256": "9ade5d5aac7bb9b47057c04d36e483ab6195fa6a45dfe917feb533246e98f7c4"
+          "bytes": 11867,
+          "sha256": "6b4303c65f9c790b3659d646cf9927a8f8caa5ab5a1527e8cf062ebe120ae674"
         }
       ]
     }

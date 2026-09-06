@@ -29,6 +29,10 @@ Manuscripts, Temple history, divine names and the dating of ideas.
 
 [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]: A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.
 
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]: Connect inward covenant, community discipline, Sabbath liturgy, Pauline formation, P46 and Dura without collapsing a text, its witness and its interpretation.
+
+[[flood-inheritance-and-deep-time|Flood inheritance and deep time]]: A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.
+
 ## Browse the source discussions
 
 These 43 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.
