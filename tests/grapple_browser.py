@@ -12,7 +12,7 @@ def check(ok,name):
     assert ok,name
     checks.append(name);print('PASS:',name,flush=True)
 def state(page):
-    return page.evaluate('''()=>{const p=player,a=p.peg;return {x:p.x,y:p.y,vx:p.vx,vy:p.vy,speed:p.speed,stage:p.track?.sky?.stage,open:__grapple.isOpen(),target:__grapple.state.target?.d,hook:a?{th:a.th,loops:a.loops,r:a.r}:null,turns:__grapple.state.turns,hooks:__grapple.state.hooks,releases:__grapple.state.releases,completed:__sky.state.completed.size,transfers:__sky.state.transfers,tries,deliveries,quota:routeQuota,won,three:__merged.get3D()&&__delivery.state.view==='3d',steps:__sky.state.steps};}''')
+    return page.evaluate('''()=>{const p=player,a=p.peg;return {x:p.x,y:p.y,vx:p.vx,vy:p.vy,speed:p.speed,stage:p.track?.sky?.stage,open:__grapple.isOpen(),target:__grapple.state.target?.d,hook:a?{th:a.th,loops:a.loops,r:a.r}:null,turns:__grapple.state.turns,hooks:__grapple.state.hooks,releases:__grapple.state.releases,completed:__sky.state.completed.size,transfers:__sky.state.transfers,tries,deliveries,quota:routeQuota,won,three:__merged.get3D()&&__delivery.state.view==='3d',steps:__sky.state.steps,rendered:__grapple.graphics?.ropeDraw||null};}''')
 with sync_playwright() as p:
     options={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
     if os.getenv('CHROMIUM_PATH'):options['executable_path']=os.environ['CHROMIUM_PATH']
@@ -48,16 +48,20 @@ with sync_playwright() as p:
             if q.get('stage') is None and q['x']>1250 and not held and not released and ((q.get('target') or 999)<120 or q['vy']>0):
                 page.keyboard.down('KeyZ');held=True
             if q['hook']:
-                if not snap:
-                    page.wait_for_function('__grapple.graphics.ropeMesh?.geometry.drawRange.count>0',timeout=10000)
-                    check(page.evaluate('__grapple.graphics.ropeMesh?.geometry.drawRange.count>0'),'Whip has submitted nonempty dynamic 3D link geometry')
-                    page.screenshot(path=str(OUT/'02-whip-swing.png'));snap=True
+                # Keep steering responsive while the first chain frame compiles.
+                # Read the render receipt without waiting or taking a blocking
+                # screenshot in the middle of the player's release window.
+                if not snap and q.get('rendered',{}):
+                    snap=True
+                    check(q['rendered']['vertices']>0,'Attached whip completed a real 3D render submission')
+                    (OUT/'whip-render.json').write_text(json.dumps(q['rendered'],indent=2))
                 th=q['hook']['th']%(2*3.141592653589793)
                 if q['hook']['loops']>=1 and .08<th<.42:
                     page.keyboard.up('KeyZ');held=False;released=True
             page.wait_for_timeout(20)
         page.keyboard.up('KeyA');page.keyboard.up('KeyD');page.keyboard.up('KeyC');page.keyboard.up('KeyZ');q=state(page)
         check(q['won'] and q['tries']==1,'Open-ramp course completes with normal controls and no teleport or retry')
+        check(snap,'The uninterrupted run includes a rendered three-dimensional whip')
         check(braked,'The rider deliberately brakes retained whip momentum before the next launch')
         check(q['completed']==4 and q['transfers']>=3,'Four open sections and three disconnected catches are traversed')
         check(q['hooks']>=1 and q['releases']>=1 and q['turns']>=1,'Whip catches a peg, winds up and releases into the next catcher')

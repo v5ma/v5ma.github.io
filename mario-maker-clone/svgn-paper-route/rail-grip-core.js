@@ -2,6 +2,7 @@
  * near-miss assistance. No world-space target teleporting or automatic route wins. */
 (function(root){'use strict';
  const K=root.GrappleCore;if(!K)throw Error('GrappleCore must load before RailGripCore');
+ function create(){
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  let mode='forgiving',solid=()=>false;
  const history=[];
@@ -47,7 +48,10 @@
   if(!hit)return null;const before={x:p.x,y:p.y,vx:p.vx,vy:p.vy};p.speed=p.vx*hit.tx+p.vy*hit.ty;p.track=hit.tr;p.trackS=hit.s;p._railFace=hit.face;p._gripSlow=0;p._railAir=false;pose(p,hit.tr,hit.s);
   const event={id:hit.tr.sky?.id||'native',face:hit.face,side:hit.face>0?'top':'underside',speed:p.speed,assist:hit.assist,mode,x:p.x,y:p.y};history.push(event);if(history.length>400)history.shift();return {...hit,before};
  }
- const API={...K,pose,ride,catchRail};root.GrappleCore=Object.freeze(API);
- root.RailGripCore=Object.freeze({configure,depth,pose,ride,catchRail,history,get mode(){return mode}});
+ const physics=Object.freeze({...K,pose,ride,catchRail});
+ const grip=Object.freeze({configure,depth,pose,ride,catchRail,history,create,get mode(){return mode}});
+ return {physics,grip};
+ }
+ const live=create();root.GrappleCore=live.physics;root.RailGripCore=live.grip;
  if(typeof module!=='undefined')module.exports=root.RailGripCore;
 })(globalThis);

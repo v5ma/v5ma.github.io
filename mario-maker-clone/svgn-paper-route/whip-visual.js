@@ -29,7 +29,13 @@
     SkyVisual.update=function(){
       old();const g=__grapple.graphics;
       if(!g||!__sky.active())return;
-      if(owner!==g){owner=g;T=__merged.THREE;rope=make(72,'#ffe394',g.group);ring=make(24,'#91ffed',g.group);rope.name='Physical whip chain links';ring.name='Peg targeting ring';g.ropeMesh=rope;g.targetMesh=ring;}
+      if(owner!==g){owner=g;T=__merged.THREE;rope=make(72,'#ffe394',g.group);ring=make(24,'#91ffed',g.group);rope.name='Physical whip chain links';ring.name='Peg targeting ring';g.ropeMesh=rope;g.targetMesh=ring;
+        // Observe actual render submission, not only a positive buffer count.
+        g.ropeDraw=null;rope.onAfterRender=function(){
+          const vertices=this.geometry.drawRange.count;
+          if(vertices>0&&player.peg)g.ropeDraw={step:__sky.state.steps,vertices,peg:player.peg.id};
+        };
+      }
       g.chain.visible=false;g.halo.visible=false;
       const p=player,a=p.peg;
       const hand=__cloudview.hero.group.localToWorld(new T.Vector3(16,11,7));

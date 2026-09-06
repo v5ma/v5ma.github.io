@@ -13,5 +13,14 @@ test('Swept one-sided rail catch works at high speed and rejects the underside',
 test('A short back-and-forth pump is not falsely counted as a revolution',()=>{const p=rider();K.cast(p,{x:13,y:-60});p.peg.th=p.peg.start+.3;for(let i=0;i<12;i++)K.swing(p,{left:true});assert.equal(p.peg.loops,0);});
 const sandbox={TextEncoder,btoa,atob,escape,unescape};vm.createContext(sandbox);for(const file of ['campaign.js','sky-routes.js','open-course.js'])vm.runInContext(fs.readFileSync(path+file,'utf8'),sandbox);
 const source=fs.readFileSync(path+'index.html','utf8');const T=vm.runInNewContext('({'+source.match(/const T = \{([\s\S]+?)\n\};/)[1].replace(/\/\*[\s\S]*?\*\//g,'').replace(/\/\/[^\n]*/g,'')+'})');
-test('New featured route has four genuinely open surfaces, pegs, and no bypass floor',()=>{const r=sandbox.OpenCourse.build(3,T);assert.equal(r.ct.length,4);assert(r.ct.every(p=>p.sky.kind==='open'&&Math.hypot(p[0][0]-p.at(-1)[0],p[0][1]-p.at(-1)[1])>200));assert.equal(r.cells.filter(t=>t===T.PEG).length,2);assert(r.cells.filter(t=>t===T.STEEL).length<40);assert.equal(sandbox.DeliveryCampaign.routes.length,4);});
+test('New featured route has four genuinely open surfaces, pegs, and no bypass floor',()=>{
+ const r=sandbox.OpenCourse.build(3,T);assert.equal(r.ct.length,4);
+ assert(r.ct.every(p=>p.sky.kind==='open'&&Math.hypot(p[0][0]-p.at(-1)[0],p[0][1]-p.at(-1)[1])>200));assert.equal(r.cells.filter(t=>t===T.PEG).length,2);
+ // Check WHERE solid floor exists, not a brittle count that forbids extending
+ // the final landing pad while saying nothing about a mid-course bypass.
+ const floor=[];r.cells.forEach((t,i)=>{if(t===T.STEEL)floor.push({x:i%r.width,y:Math.floor(i/r.width)});});
+ assert.equal(floor.length,40);
+ assert(floor.every(p=>(p.x>=1&&p.x<5&&p.y===59)||(p.x>=130&&p.x<148&&(p.y===64||p.y===65))));
+ assert(!floor.some(p=>p.x>=5&&p.x<130));assert.equal(sandbox.DeliveryCampaign.routes.length,4);
+});
 test('Saved blueprints retain open-ramp metadata without changing original routes',()=>{const r=sandbox.OpenCourse.build(3,T),meta=JSON.parse(Buffer.from(sandbox.DeliveryCampaign.encode(r).split('.')[0],'base64'));assert(meta.cm.every(t=>t.kind==='open'));assert.equal(sandbox.DeliveryCampaign.build(0,T).stages,4);assert.equal(sandbox.DeliveryCampaign.build(2,T).stages,6);});
