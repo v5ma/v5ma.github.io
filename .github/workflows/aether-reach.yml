@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: aether-${{ github.event.pull_request.number || github.ref }}
+  group: aether-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
   verify:
@@ -40,6 +40,7 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           python -u aether-reach/tests/browser.py
+          if [ "$AETHER_SUITE" = interface ]; then python -u aether-reach/tests/launch.py; fi
       - name: Record the exact tested version
         if: always()
         run: |
