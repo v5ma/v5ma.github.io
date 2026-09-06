@@ -102,7 +102,11 @@
   const world=compile(doc),inner=bridge.points.slice(3,-3);
   for(let k=1;k<inner.length;k++){
    if(terrain(inner[k-1],inner[k],world.at))throw Error('The bridge intersects occupied terrain. Move the endpoints first.');
-   for(const t of world.rails.filter(t=>t.index!==i&&t.index!==j))for(let m=1;m<t.pts.length;m++)if(root.GrappleCore.sweep(...inner[k-1],...inner[k],...t.pts[m-1],...t.pts[m]))throw Error('The bridge crosses another rail. Move it before joining.');
+   for(const t of world.rails)for(let m=1;m<t.pts.length;m++){
+    const nearSeam=[a.p,b.p].some(port=>Math.min(Math.hypot(...sub(t.pts[m-1],port)),Math.hypot(...sub(t.pts[m],port)))<20);
+    if((t.index===i||t.index===j)&&nearSeam)continue;
+    if(root.GrappleCore.sweep(...inner[k-1],...inner[k],...t.pts[m-1],...t.pts[m]))throw Error('The bridge crosses another rail. Move it before joining.');
+   }
   }
   for(const p of copies)if(!p.bezier)p.bezier=B.convert(p).bezier;
   const left=copies[0].bezier.at(-1),right=copies[1].bezier[0];left.o=nodes[0].o;right.i=nodes[1].i;left.mode=right.mode='smooth';

@@ -25,7 +25,7 @@ with sync_playwright() as pw:
  try:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded')
   page.wait_for_function('window.__gpuReady===true&&window.__railRepair&&window.RouteWorkshop')
-  check(page.locator('#rail-build').inner_text()=='v0.11.0','Visible build identifies the installed repair')
+  check(page.locator('#rail-build').inner_text()=='v'+json.loads((Path(__file__).resolve().parents[1]/'mario-maker-clone/svgn-paper-route/release.json').read_text())['version'],'Visible build identifies the installed repair')
   page.locator('#rail-update').click();page.wait_for_function('document.getElementById("rail-update").textContent==="Up to date"')
   check(True,'Same-origin release manifest matches the running code')
   records=page.evaluate('localStorage.getItem("svgn_delivery_records_v1")')
