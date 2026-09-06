@@ -1,27 +1,35 @@
-# Aether Reach — The Silent Network
+# Aether Reach — arsenal and sky-transfer prototype
 
-An original first-person sky-city mechanics prototype for SVGN Interactive. This separate project does not replace Paper Delivery, Dino Atlas or the Theology Wiki. Public prototype story and art are placeholders, not private narrative material.
+An original first-person sky-city mechanics project for SVGN Interactive. This is a separate public application; Paper Delivery, Dino Atlas and the Theology Wiki are not replaced. No unpublished narrative is included.
 
-## Play and plan
+## v0.3 playable candidate
 
-Serve the repository root using `python -m http.server 4173` and open `/aether-reach/`, or use the public project homepage. Runtime dependencies are pinned locally. There is no package-install step, account, API key, CDN or paid service. WebGL2 is required; renderer failure produces an honest message.
+Four original weapons have different magazines, cadence, ray spread, damage, range, reload and meshes. The starting Arc Caster recharges; the Tempest Carbine, Horizon Longglass and Foundry Scattergun have finite reserve ammunition. The Longglass uses actual 4x angular camera magnification in its flat-screen optic. Targets are not auto-hit. Mouse/keyboard/controller aiming becomes slower while scoped; the optic has an explicit exit control.
 
-Version 0.2.0 adds standard-mapped Xbox-style controls, an **experimental WebXR preview targeting Quest 3**, and a [development Kanban](./roadmap.html). The committed canonical plan is [roadmap.json](./roadmap.json): 26 tasks, 38 dependency links, acceptance criteria, evidence and separate physical-device gates. A six-sheet Excel snapshot accompanies the release handoff. Local board edits/export do not change GitHub or gameplay saves.
+The player starts with 400 local game credits. Outfitters sells the carbine for 180, sniper for 300 and scattergun for 220. Damage and reload upgrades apply to a particular weapon; shield upgrades expand capacity. New expedition resets the kit; Continue preserves bought equipment, credits, upgrades and once-only pickups. World caches unlock equipment; defeated patrols leave physical salvage rather than awarding their drops remotely. This is a single-player economy, not real-money purchases or a secure network wallet.
 
-See [DEVICE-SUPPORT.md](./DEVICE-SUPPORT.md) for controller and headset bindings. Xbox: left stick moves, right stick looks, A jumps, Y interacts, X reloads, RT fires, LB pulses, RB reverses, View maps and Menu pauses. Menus use D-pad or left stick plus A/B. Press a controller button while the browser is focused. Unknown non-standard mappings are not guessed.
+Three active enemy patterns are differentiated: a moving scout, a slower armored burst attacker, and a long-range sentry with a visible wind-up. A passive range target near the quay teaches aiming and salvage. Bazaar stalls, greenhouse roof/flowers, a foundry gantry/chimneys and spire solar/beacon structures begin a district-art pass. The procedural art remains an evolving prototype, not the finished visual standard.
 
-On a capable HTTPS headset browser, Enter VR (preview) requests an immersive local-floor session. It uses tracked head/controllers, left-stick movement, snap turning, an independent weapon ray and spatial status/menu panels. Physical Xbox, Quest 3 tracking, frame time and comfort have NOT been tested here. Climbing, gliding, hand tracking, full embodied reload and multiplayer are not yet implemented.
+Seven bidirectional rails retain the original five plus Gale Market Loop and Prism Detour. Looking is independent of rail travel by default; the previous automatic rail camera can still be explicitly enabled. Jump toward a highlighted eligible line and press interact to catch. The catch needs range, line of sight and a clear body approach; no input teleports the actor. A deliberate airborne catch request is buffered for up to 0.30 simulation seconds through the release cooldown, then expires. Momentum above cruise speed decays rather than being clipped instantly.
 
-Keyboard/touch remain: WASD moves; mouse/arrow keys look; E interacts, Space jumps or releases, C reverses rails, Shift sprints/boosts, F/click fires, R reloads, Q pulses, M maps, Esc/P pauses. Pointer-lock failure leaves drag-look and keyboard look available. Checkpoints and settings stay local and versioned; denied storage is tolerated.
+Restore the three original district relays and return to Arrival Quay to broadcast. The complete foot route and local checkpoints remain.
 
-Restore three relays and return to Arrival Quay to broadcast. Five districts connect through five walkable bridges and five bidirectional freight lines. There are three simple patrol drones and four optional archives. You may finish on foot, ride the rails, and explore after completion. Momentum release is continuous, not a scene-loading teleport. Decorative foliage/furniture are not fully physical.
+## Controls
 
-## Development and verification
+WASD moves; mouse/arrow keys look. E interacts or hooks a nearby line, Space jumps/releases, C reverses a rail, Shift sprints/boosts, F/click fires, R reloads, Q pulses, M opens the map, Esc/P pauses. B opens a nearby Outfitters kiosk. Z toggles aim, right mouse holds aim, and 1–4 selects an owned weapon. The touch HUD has buy/aim/swap and weapon controls without covering movement/action pads.
 
-`model.mjs` owns movement, collisions, combat and saves. `scene.mjs` renders authoritative world definitions. `app.mjs` owns browser UI and the fixed-step loop. `input-core.mjs` normalizes device state; `controllers.mjs` maps actions and menus; `xr-session.mjs` owns tracked space and lifecycle.
+Xbox-standard mapping: left stick moves, right stick looks, A jumps, Y interacts, X reloads, RT fires, LT aims, LB pulses, RB reverses, View maps and Menu pauses. D-pad up/down cycles owned weapons; right opens nearby Outfitters. Menus use D-pad/left stick and A/B. Physical pairing and hardware-controller QA remain unverified.
 
-Run `node --test aether-reach/tests/*.test.mjs`. Native HTTP tests are `tests/browser.py` and `tests/launch.py`. `tests/devices.py` runs the real WebGL app with **emulated Gamepad/WebXR APIs only**; it does not assign actor position or objective state. That is integration evidence, not physical hardware certification. No test-only device implementation is imported by runtime modules.
+The existing experimental Quest 3 WebXR adapter is retained. It uses independent tracked head/controller poses and does not magnify the whole eye projection to fake a VR optic. The new 4x optical view is FLAT-SCREEN ONLY. A real tracked magnified scope, richer in-headset inventory/weapon presentation, physical tracking, comfort and frame-time measurements remain separate work. Climbing, gliding, embodied reload and multiplayer are not shipped by this candidate.
 
-The final source workflows are read-only and produce runtime hashes. Publication checks compare the explicit public file list to the merged bytes. See [PUBLIC_BUILD.md](./PUBLIC_BUILD.md), [ENGINE-ROADMAP.md](./ENGINE-ROADMAP.md) and [ROADMAP.md](./ROADMAP.md).
+## Plan and review
 
-Primary references: https://threejs.org/manual/en/webxr-basics.html ; https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/gamepad ; https://developer.mozilla.org/en-US/docs/Web/API/Gamepad/mapping . Existing Three.js r177 remains pinned; see `vendor/LICENSE`.
+[roadmap.html](./roadmap.html) is a searchable, browser-local Kanban backed by [roadmap.json](./roadmap.json): 35 tasks and 58 dependency links. Browser edits/export do not modify GitHub or game saves. The workbook handoff adds weapon balance and combat-review sheets. [REVIEW-03.md](./REVIEW-03.md) records the reference study, failed native observations and resulting corrections.
+
+B01–B05 track this implementation; B06 requires player balance feedback. N02 requires two real clients and server-owned state, and N03 covers shared pickup/economy authority. Local drones are never presented as multiplayer. X07 tracks the true headset optic. Device and private-content boundaries are in [DEVICE-SUPPORT.md](./DEVICE-SUPPORT.md) and [PUBLIC_BUILD.md](./PUBLIC_BUILD.md).
+
+## Development / release
+
+Serve the repository root with `python -m http.server 4173` and open `/aether-reach/`. Three.js r177 is pinned locally; there is no runtime CDN, service key, account or telemetry. Run `node --test aether-reach/tests/*.test.mjs`.
+
+Native acceptance includes `tests/arsenal_browser.py` for the buy/scope/shot/drop/upgrade/save sequence and ordinary-input rail transfer. Existing expedition, interface, touch and device-emulated controller/XR suites remain regressions. Seeded model samples do not replace a native playthrough or certify enjoyment. The final workflows are read-only and public-file hashes must match before a release is called deployed.

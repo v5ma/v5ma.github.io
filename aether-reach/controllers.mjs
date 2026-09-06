@@ -4,13 +4,13 @@ import {createXR} from './xr-session.mjs';
 export function installControllers(api){
  const sampler=new InputSampler();let lastDevice=null,frameInput=null,navLatch=false,horizontalLatch=false,lastActivity=0,lastMenu=null;
  const badge=document.createElement('span');badge.id='controller-status';badge.textContent='Xbox controller: press a button to connect';document.getElementById('masthead').append(badge);
- const controls=document.createElement('p');controls.className='fine';controls.textContent='Xbox: left stick moves; right stick looks; A jumps/releases; Y interacts/hooks; X reloads; RT fires; LB pulses; RB reverses; L-stick click boosts; View opens map; Menu pauses. D-pad / A / B navigates menus. VR: left stick moves; right stick snap-turns; right grip interacts; A jumps; B reloads; right trigger fires; left trigger pulses; left grip reverses; X atlas; Y pauses.';document.getElementById('settings-dialog').insertBefore(controls,document.querySelector('#settings-dialog form'));
+ const controls=document.createElement('p');controls.className='fine';controls.textContent='Xbox: left stick moves; right stick looks; A jumps/releases; Y interacts/hooks; X reloads; RT fires; LT aims; D-pad up/down swaps; D-pad right buys nearby; LB pulses; RB reverses; L-stick click boosts; View opens map; Menu pauses. D-pad / A / B navigates menus. VR: left stick moves; right stick snap-turns; right grip interacts; A jumps; B reloads; right trigger fires; left trigger pulses; left grip reverses; X atlas; Y pauses.';document.getElementById('settings-dialog').insertBefore(controls,document.querySelector('#settings-dialog form'));
  const options=document.createElement('label');options.textContent='Controller look speed';const speed=document.createElement('input');speed.id='controller-look-speed';speed.type='range';speed.min='.5';speed.max='2.5';speed.step='.1';speed.value=api.settings.controllerSpeed??1;options.append(speed);document.querySelector('.settings-grid').append(options);speed.oninput=()=>{api.settings.controllerSpeed=Number(speed.value);api.saveSettings();};
  const invert=document.createElement('label');invert.innerHTML='<input id="controller-invert" type="checkbox"> Invert controller look';document.querySelector('.settings-grid').append(invert);invert.firstElementChild.checked=!!api.settings.invertY;invert.firstElementChild.onchange=()=>{api.settings.invertY=invert.firstElementChild.checked;api.saveSettings();};
  function currentMenu(){
   const modal=[...document.querySelectorAll('dialog[open]')].at(-1),root=modal||(!api.playing()?document.getElementById('menu'):null);if(!root)return null;
   const nodes=[...root.querySelectorAll('button,input,select,a[href]')].filter(e=>!e.disabled&&!e.hidden&&e.getClientRects().length&&e.id!=='enter-vr');
-  const items=nodes.map(e=>({element:e,label:(e.closest('label')?.textContent||e.textContent||e.getAttribute('aria-label')||'Control').trim()+(e.type==='checkbox'?' ['+(e.checked?'on':'off')+']':e.type==='range'?' '+e.value:''),focused:document.activeElement===e}));
+  const items=nodes.map(e=>({element:e,label:(e.closest('label')?.textContent||e.getAttribute('aria-label')||e.textContent||'Control').trim()+(e.type==='checkbox'?' ['+(e.checked?'on':'off')+']':e.type==='range'?' '+e.value:''),focused:document.activeElement===e}));
   return {root,title:root.querySelector('h1,h2')?.textContent||'Menu',description:root.querySelector('p:not(.eyebrow)')?.textContent||'',items};
  }
  const xr=createXR(api.view,{state:api.state,start:api.start,clear:reset,pause:api.pause,menu:()=>{
@@ -44,12 +44,12 @@ export function installControllers(api){
   const m=currentMenu();if(m){menuInput(m,data,pad);frameInput=null;return;}
   if(!api.playing()||api.paused()||document.hidden){frameInput=null;return;}
   if(data.edges.pause){api.pause();frameInput=null;return;}if(data.edges.map){api.map();frameInput=null;return;}
-  if(!xr.active){api.state().p.yaw+=data.look[0]*dt*2.2*(api.settings.controllerSpeed||1);api.state().p.pitch=clamp(api.state().p.pitch-data.look[1]*dt*1.6*(api.settings.controllerSpeed||1)*(api.settings.invertY?-1:1),-1.35,1.35);}
-  for(const name of ['jump','interact','reload','pulse','reverse'])if(data.edges[name])api.action(name);
+  if(!xr.active){api.state().p.yaw+=data.look[0]*dt*2.2*(api.settings.controllerSpeed||1)*(api.state().p.scoped?.35:1);api.state().p.pitch=clamp(api.state().p.pitch-data.look[1]*dt*1.6*(api.settings.controllerSpeed||1)*(api.settings.invertY?-1:1)*(api.state().p.scoped?.35:1),-1.35,1.35);}
+  for(const name of ['jump','interact','reload','pulse','reverse','next','previous','shop'])if(data.edges[name])api.action(name);
   frameInput=data;if(data.move.some(x=>x)||data.look?.some(x=>x)||Object.values(data.held).some(Boolean))lastActivity=now;
  }
  function merge(base){if(!frameInput)return xr.active?{...base,railCamera:false}:base;const [x,y]=frameInput.move;return {...base,moveX:clamp((base.right?1:0)-(base.left?1:0)+x,-1,1),moveZ:clamp((base.forward?1:0)-(base.back?1:0)-y,-1,1),back:base.back||y>.25,boost:base.boost||frameInput.held.boost,railCamera:xr.active?false:base.railCamera};}
  window.addEventListener('blur',reset);document.addEventListener('visibilitychange',reset);
  const link=document.createElement('a');link.href='./roadmap.html';link.textContent='Development roadmap ↗';link.className='roadmap-link';document.querySelector('.start-actions').append(link);
- return {frame,merge,xr,reset,get firing(){return !!frameInput?.held.fire&&(!xr.active||!!xr.aim)},get aim(){return xr.active?xr.aim:null},snapshot:()=>({gamepad:!!lastDevice,xr:xr.active,lastActivity,move:frameInput?.move||[0,0],xrPhysicalQA:false})};
+ return {frame,merge,xr,reset,get aimHeld(){return !!frameInput?.held.aim},get firing(){return !!frameInput?.held.fire&&(!xr.active||!!xr.aim)},get aim(){return xr.active?xr.aim:null},snapshot:()=>({gamepad:!!lastDevice,xr:xr.active,lastActivity,move:frameInput?.move||[0,0],xrPhysicalQA:false})};
 }

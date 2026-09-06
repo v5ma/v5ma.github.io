@@ -1,20 +1,19 @@
-# Controller and immersive preview
+# Devices and current boundaries
 
-The v0.2.0 candidate adds standard-mapped Xbox-style gamepad input and a feature-detected WebXR `immersive-vr` adapter targeting Quest 3. No physical Xbox or Quest 3 test has been performed in development here; model and browser-emulated device tests are distinct from physical support certification.
+The v0.3 candidate retains v0.2 Xbox-standard gamepad and experimental WebXR support. Physical Xbox USB/Bluetooth and Quest 3 frame time, tracking and comfort have not been tested here.
 
-## Xbox / standard gamepad
-Connect via your operating system, then press a button with the page focused. Left stick moves with a radial deadzone; right stick looks. A jumps/releases, Y interacts/hooks, X reloads, RT fires, LB pulses, RB reverses a rail, left-stick click boosts, View opens the atlas, Menu pauses. D-pad or left stick navigates menus; A activates and B closes. Look speed and vertical inversion are settings. A disconnected active pad pauses, and held buttons must be released after reconnect or a modal transition. Non-standard device mappings are not guessed.
+## Desktop / Xbox
 
-## Immersive preview
-Open the public game in an HTTPS WebXR-capable headset browser and use Enter VR (preview). The button is enabled only after `isSessionSupported('immersive-vr')` succeeds; `local-floor` is requested on an explicit click. The renderer uses its XR animation loop, tracked eyes and controllers. The separate locomotion rig provides left-stick walking and right-stick 30-degree snap turning. Camera-following on rails does not change headset orientation. Right trigger fires a validated controller ray, right grip interacts, A jumps/releases, B reloads, left trigger pulses, left grip reverses, X opens the atlas and Y pauses. Spatial HUD/menu panels provide status and an Exit VR action. Desktop/touch remain available after session exit or refusal.
+Keyboard: WASD moves, mouse or arrows look, Space jumps/releases, E interacts/hooks, C reverses, Shift sprints/boosts, F/click fires, R reloads, Q pulses, M maps, P/Esc pauses. B opens a kiosk in range, Z toggles aim, right mouse holds aim, digits 1–4 select owned weapons. Rail free-look is now the default; the camera-follow setting remains optional.
 
-This is not a claim that climbing, gliding, hand tracking, full embodied reload, multiplayer or polished VR comfort are complete. The current avatar uses the existing standing collision envelope. Reference-space calibration, long-session performance and physical headset comfort are explicit open gates in the roadmap. Do not infer hardware frame rate from software WebGL.
+Standard gamepad: left stick moves, right stick looks, A jumps/releases, Y interacts/hooks, X reloads, RT fires, LT aims, LB pulses, RB reverses, L-stick click boosts, View maps, Menu pauses. D-pad up/down cycles weapons; right opens nearby Outfitters. Menu D-pad or stick selects, A confirms and B closes. Neutral reconnection/held-trigger protection and look/inversion settings remain.
 
-## Planning
-`roadmap.json` is the committed canonical public plan; `roadmap.html` provides a local-editable Kanban with dependency IDs, acceptance criteria and evidence. Changes in the board are browser-local and exportable, not GitHub writes. The downloadable workbook is a versioned snapshot of the same plan. Private narrative remains outside all public files and workflows.
+## Quest 3 target / WebXR preview
 
-## Primary API references
-- https://threejs.org/manual/en/webxr-basics.html
-- https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/gamepad
-- https://developer.mozilla.org/en-US/docs/Web/API/Gamepad/mapping
-- https://developers.meta.com/horizon/documentation/web/browser-specs/
+Enter VR appears only in a capable secure browser. The existing immersive local-floor session uses independent tracked head/controller pose, joystick movement, 30-degree snap turn, world-space status/menu panels and safe exit/refusal handling. Original bindings remain in Controls & settings. The model supports selected-weapon firing through the controller ray; full weapon-specific tracked presentation, richer inventory ergonomics and hardware comfort are not complete.
+
+The 4x Longglass optic changes the FLAT-SCREEN camera projection only. XR eye projection is never globally zoomed. A true tracked magnified lens is X07 in the roadmap, requiring render-target and physical-device checks. Climbing, gliding, hand tracking, full embodied reload, shared rooms and multiplayer do not exist merely because WebXR is supported.
+
+## Evidence scope
+
+Pure model tests, native ordinary-input WebGL tests and emulated-device tests are separate evidence categories. Device emulation supplies API poses/buttons while the game/renderer run normally; it cannot certify real pairing, tracking or comfort. No private content, account credential or telemetry is part of the public adapter.

@@ -1,5 +1,5 @@
 /* Deterministic device-to-action normalization. No DOM, timers or game state. */
-export const BUTTONS=Object.freeze({jump:0,back:1,reload:2,interact:3,pulse:4,reverse:5,fire:7,map:8,pause:9,boost:10});
+export const BUTTONS=Object.freeze({jump:0,back:1,reload:2,interact:3,pulse:4,reverse:5,fire:7,aim:6,next:12,previous:13,shop:15,map:8,pause:9,boost:10});
 const finite=n=>Number.isFinite(n)?n:0;
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function stick(x,y,dead=.18){x=finite(x);y=finite(y);const len=Math.hypot(x,y);if(len<=dead)return [0,0];const scale=(Math.min(1,len)-dead)/(1-dead)/len;return [x*scale,y*scale];}
@@ -24,7 +24,7 @@ export function xrControls(sampler,sources){
  let left=null,right=null;const present=new Set();
  for(const s of sources||[]){if(!['left','right'].includes(s.handedness)||s.gamepad?.mapping!=='xr-standard')continue;present.add(s.handedness);const p=sampler.read(s.gamepad,s.handedness,true);if(s.handedness==='left')left=p;else right=p;}
  for(const hand of ['left','right'])if(!present.has(hand))sampler.previous.delete(hand);
- return {move:left?.move||[0,0],turn:right?.move?.[0]||0,menuAxis:left?.move||[0,0],held:{fire:right?.held.fire||false,boost:left?.held.boost||false},edges:{jump:right?.edges.jump||false,reload:right?.edges.reload||false,interact:right?.edges.interact||false,pulse:left?.edges.fire||false,reverse:left?.edges.interact||false,map:left?.edges.jump||false,pause:left?.edges.reload||false,confirm:right?.edges.fire||false,back:right?.edges.reload||false}};
+ return {move:left?.move||[0,0],turn:right?.move?.[0]||0,menuAxis:left?.move||[0,0],held:{aim:right?.held.boost||false,fire:right?.held.fire||false,boost:left?.held.boost||false},edges:{jump:right?.edges.jump||false,reload:right?.edges.reload||false,interact:right?.edges.interact||false,pulse:left?.edges.fire||false,reverse:left?.edges.interact||false,map:left?.edges.jump||false,pause:left?.edges.reload||false,confirm:right?.edges.fire||false,back:right?.edges.reload||false}};
 }
 export class SnapTurn{
  constructor(){this.latched=false;}
