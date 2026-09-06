@@ -306,5 +306,103 @@
     "url": "https://www.gnosis.org/naghamm/melchiz.html",
     "scope": "Online translation retrieved in the indexed full-text result; direct-page retrieval failed. Marked lacunae are retained in the interpretation. The online notice requests published-edition citations for academic work; printed page/line collation remains open. Credit is for a textual source used by this edition, not a claimed personal influence on Micah.",
     "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-kings-web",
+    "title": "1 Kings 6, World English Bible",
+    "url": "https://ebible.org/engwebp/1KI06.htm",
+    "scope": "Primary translated chapter consulted: verses 1 and 37-38 distinguish the 480th-year foundation from completion. Public-domain translation; no critical manuscript collation.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-kings-greek",
+    "title": "Kings III 6, Brenton Septuagint translation",
+    "url": "https://ebible.org/eng-Brenton/1KI06.htm",
+    "scope": "Primary translated chapter consulted: 440th-year notice and the foundation/completion additions. Records this translation, not a claim about every Greek witness. Public-domain translation.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-ant8",
+    "title": "Josephus, Antiquities 8.3.1, Whiston translation",
+    "url": "https://penelope.uchicago.edu/josephus/ant-8.html",
+    "scope": "Primary translated passage consulted for the 592-year departure-to-foundation interval. Modern editorial bracketed dates are not treated as Josephus's BCE dates.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-ant20",
+    "title": "Josephus, Antiquities 20.10.1, Whiston translation",
+    "url": "https://penelope.uchicago.edu/josephus/ant-20.html",
+    "scope": "Primary translated succession paragraph consulted for 612 years from departure to Solomon's Temple. Equating that endpoint to the foundation is a separately stated assumption.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-ant10",
+    "title": "Josephus, Antiquities 10.8.5, Whiston translation",
+    "url": "https://penelope.uchicago.edu/josephus/ant-10.html",
+    "scope": "Primary translated paragraph consulted for 470 years, six months and ten days from construction to destruction and 1062 years with the same added units from Exodus. Calculator uses whole-year components only.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-apion",
+    "title": "Josephus, Against Apion 1.14-16, Whiston translation",
+    "url": "https://penelope.uchicago.edu/josephus/apion-1.html",
+    "scope": "Primary translated sections consulted. A quotation attributed to Manetho and Josephus's interpretation are dependent stages, not two independent eyewitnesses.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-exodus-web",
+    "title": "Exodus 12, World English Bible",
+    "url": "https://ebible.org/engwebp/EXO12.htm",
+    "scope": "Primary translated chapter consulted, especially verse 40. Its 430 years are assigned to residence in Egypt. Public-domain text.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-exodus-greek",
+    "title": "Exodus 12, Brenton Septuagint translation",
+    "url": "https://ebible.org/eng-Brenton/EXO12.htm",
+    "scope": "Primary translated verse 40 consulted: Egypt and Canaan share the stated 430 years. This is a scope difference, not a different number. Public-domain text.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-judges",
+    "title": "Judges 11, World English Bible",
+    "url": "https://ebible.org/engwebp/JDG11.htm",
+    "scope": "Primary translated verse 26 consulted. The 300 years occur in Jephthah's narrated territorial claim, not an independently dated archaeological layer.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-daniel",
+    "title": "Daniel 9, World English Bible",
+    "url": "https://ebible.org/engwebp/DAN09.htm",
+    "scope": "Primary translated chapter consulted, especially verses 2, 15, 17 and 24-27. Exodus, sanctuary, desolation and restoration remain separate from any proposed absolute-year calculation.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-cambridge",
+    "title": "Cambridge, Artefacts of Ancient Judaism",
+    "url": "https://www.artefacts.divinity.cam.ac.uk/",
+    "scope": "Institutional project introduction and catalogue highlights consulted for Damascus Document reception and Ethiopic Enoch preservation. Individual dynamic object-detail pages returned an empty template, so shelfmarks, full transcriptions and image rights were not independently verified here.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-eni",
+    "title": "Library of Congress, The Qumran Library",
+    "url": "https://www.loc.gov/exhibits/scrolls/scr3.html",
+    "scope": "1993 exhibition text was consulted earlier in this editing session through indexed content; a later direct fetch returned 403. The 4Q201 range is an identified historical curatorial copying estimate, not a current critical redating.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-onias",
+    "title": "Josephus, Antiquities 13.3, Whiston translation",
+    "url": "https://penelope.uchicago.edu/josephus/ant-13.html",
+    "scope": "Primary translated narrative of the Onias sanctuary consulted. This institutional account does not by itself establish subsequent household migration or Nag Hammadi ancestry.",
+    "accessed": "2026-09-05"
+  },
+  {
+    "id": "atlas-beni",
+    "title": "Egyptian Ministry, Tomb of Khnumhotep II",
+    "url": "https://egymonuments.gov.eg/monuments/the-tomb-of-khnumhotep-ii/",
+    "scope": "Institutional description consulted for the delegation, Abisha(i), foreign-ruler title and eye-paint. The description does not identify Abram or record a famine. Images have not been cleared for reuse.",
+    "accessed": "2026-09-05"
   }
 ]

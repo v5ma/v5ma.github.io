@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.05-roadmap-1",
+  "version": "2026.09.05-atlas-1",
   "categories": [
     {
       "id": "gnosis",
@@ -127,7 +127,7 @@
     }
   ],
   "sourceCount": 354,
-  "developedCount": 20,
+  "developedCount": 22,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -194,6 +194,7 @@
       "sacred-inheritance-and-rival-continuations",
       "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
+      "manuscripts-movements-and-survival",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
@@ -527,6 +528,7 @@
       "theology-theology-debunking-jesus-calvary-chapel-cluster",
       "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
+      "exodus-to-temple-competing-chronologies",
       "topic-apocalypse"
     ],
     "daniel-prophecy-and-temple": [
@@ -1030,6 +1032,7 @@
       "apocalyptic-repair-theology",
       "gnosticism-and-temple-trauma",
       "tor-thomas-and-gnostic-transmission",
+      "manuscripts-movements-and-survival",
       "topic-apocalypse"
     ],
     "jews-and-canaanites-origins": [
@@ -1217,6 +1220,7 @@
     "parthians-and-medes-meaning": [
       "theology-theology-paul-jesus-moses-summary-cluster",
       "moses-volcano-and-exodus-chronology",
+      "exodus-to-temple-competing-chronologies",
       "topic-context"
     ],
     "paul-and-the-resurrection": [
@@ -1703,6 +1707,7 @@
       "kenite-hypothesis-and-yahweh-origins",
       "samaritan-texts-and-sacred-authority",
       "sacred-inheritance-and-rival-continuations",
+      "source-atlas",
       "guide-to-the-inquiry",
       "topic-origins",
       "reading-paths",
@@ -1715,6 +1720,10 @@
       "gnosticism-and-temple-trauma",
       "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
+      "exodus-to-temple-competing-chronologies",
+      "source-atlas",
+      "argument-challenges",
+      "museum-trails",
       "guide-to-the-inquiry",
       "glossary",
       "topic-jesus",
@@ -1728,6 +1737,8 @@
       "el-in-ancient-egypt",
       "kenite-hypothesis-and-yahweh-origins",
       "gnosticism-and-temple-trauma",
+      "exodus-to-temple-competing-chronologies",
+      "source-atlas",
       "topic-origins",
       "reading-paths",
       "book-contents"
@@ -1757,6 +1768,8 @@
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
       "melchizedek-priesthood-and-transmission",
+      "exodus-to-temple-competing-chronologies",
+      "source-atlas",
       "guide-to-the-inquiry",
       "glossary",
       "research-method",
@@ -1817,6 +1830,7 @@
       "sacred-inheritance-and-rival-continuations",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
+      "museum-trails",
       "guide-to-the-inquiry",
       "glossary",
       "research-method",
@@ -1840,6 +1854,8 @@
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
       "tor-thomas-and-gnostic-transmission",
+      "source-atlas",
+      "museum-trails",
       "guide-to-the-inquiry",
       "research-method",
       "topic-origins",
@@ -1868,6 +1884,7 @@
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
+      "manuscripts-movements-and-survival",
       "topic-traditions",
       "reading-paths",
       "book-contents",
@@ -1881,6 +1898,9 @@
       "scripture-power-and-repair",
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
+      "manuscripts-movements-and-survival",
+      "source-atlas",
+      "museum-trails",
       "topic-origins",
       "reading-paths",
       "book-contents",
@@ -1926,13 +1946,48 @@
     "melchizedek-priesthood-and-transmission": [
       "home",
       "tor-thomas-and-gnostic-transmission",
+      "manuscripts-movements-and-survival",
+      "source-atlas",
+      "museum-trails",
       "topic-origins",
       "book-contents",
       "research-board"
     ],
+    "exodus-to-temple-competing-chronologies": [
+      "home",
+      "moses-volcano-and-exodus-chronology",
+      "source-atlas",
+      "argument-challenges",
+      "museum-trails",
+      "topic-origins",
+      "book-contents"
+    ],
+    "manuscripts-movements-and-survival": [
+      "home",
+      "tor-thomas-and-gnostic-transmission",
+      "source-atlas",
+      "argument-challenges",
+      "museum-trails",
+      "topic-origins",
+      "book-contents"
+    ],
+    "source-atlas": [
+      "exodus-to-temple-competing-chronologies",
+      "argument-challenges"
+    ],
+    "argument-challenges": [
+      "exodus-to-temple-competing-chronologies",
+      "manuscripts-movements-and-survival",
+      "source-atlas"
+    ],
+    "museum-trails": [
+      "exodus-to-temple-competing-chronologies",
+      "source-atlas"
+    ],
     "research-roadmap": [
       "home",
       "melchizedek-priesthood-and-transmission",
+      "source-atlas",
       "source-coverage"
     ],
     "source-coverage": [
@@ -2373,6 +2428,7 @@
       "cognitive-gnosticism",
       "sacred-inheritance-and-rival-continuations",
       "scripture-power-and-repair",
+      "museum-trails",
       "research-roadmap",
       "research-board"
     ],

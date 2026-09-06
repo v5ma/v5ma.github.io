@@ -1,0 +1,1411 @@
+{
+  "schema": "theology-source-atlas/1",
+  "version": "2026.09.05-atlas-1",
+  "updated": "2026-09-05",
+  "baselineCommit": "0a9c9cf8b12232b6f69b00342ab8fb75570017ff",
+  "policy": "A curated starting catalogue, not an exhaustive list of all sources in 354 chats. Kinds, access scopes, hypotheses and unresolved leads are distinct. A shared source does not imply independent corroboration or a proven genealogy.",
+  "references": [
+    {
+      "id": "thomas-patterson-meyer",
+      "title": "Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer",
+      "url": "https://www.earlychristianwritings.com/text/thomas-scholars.html",
+      "scope": "Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in the author's older conversations.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "melch-williams2023",
+      "title": "Logan Williams (2023), Melchizedek, the Son of Man, and Eschatological Jubilee",
+      "url": "https://journals.sagepub.com/doi/10.1177/0142064X231191176",
+      "scope": "Full-text HTML consulted, particularly the author's translation of 11Q13 II 2-9 and discussion of II 6 and 13. His active-agent reading is distinguished from the critical edition he disputes. The critical edition itself has not been collated in this pass. This is current editorial research, not a recovered author acknowledgment.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "melch-giversen-pearson",
+      "title": "Melchizedek, translated by Soren Giversen and Birger A. Pearson",
+      "url": "https://www.gnosis.org/naghamm/melchiz.html",
+      "scope": "Online translation retrieved in the indexed full-text result; direct-page retrieval failed. Marked lacunae are retained in the interpretation. The online notice requests published-edition citations for academic work; printed page/line collation remains open. Credit is for a textual source used by this edition, not a claimed personal influence on Micah.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-kings-web",
+      "title": "1 Kings 6, World English Bible",
+      "url": "https://ebible.org/engwebp/1KI06.htm",
+      "scope": "Primary translated chapter consulted: verses 1 and 37-38 distinguish the 480th-year foundation from completion. Public-domain translation; no critical manuscript collation.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-kings-greek",
+      "title": "Kings III 6, Brenton Septuagint translation",
+      "url": "https://ebible.org/eng-Brenton/1KI06.htm",
+      "scope": "Primary translated chapter consulted: 440th-year notice and the foundation/completion additions. Records this translation, not a claim about every Greek witness. Public-domain translation.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-ant8",
+      "title": "Josephus, Antiquities 8.3.1, Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/ant-8.html",
+      "scope": "Primary translated passage consulted for the 592-year departure-to-foundation interval. Modern editorial bracketed dates are not treated as Josephus's BCE dates.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-ant20",
+      "title": "Josephus, Antiquities 20.10.1, Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/ant-20.html",
+      "scope": "Primary translated succession paragraph consulted for 612 years from departure to Solomon's Temple. Equating that endpoint to the foundation is a separately stated assumption.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-ant10",
+      "title": "Josephus, Antiquities 10.8.5, Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/ant-10.html",
+      "scope": "Primary translated paragraph consulted for 470 years, six months and ten days from construction to destruction and 1062 years with the same added units from Exodus. Calculator uses whole-year components only.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-apion",
+      "title": "Josephus, Against Apion 1.14-16, Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/apion-1.html",
+      "scope": "Primary translated sections consulted. A quotation attributed to Manetho and Josephus's interpretation are dependent stages, not two independent eyewitnesses.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-exodus-web",
+      "title": "Exodus 12, World English Bible",
+      "url": "https://ebible.org/engwebp/EXO12.htm",
+      "scope": "Primary translated chapter consulted, especially verse 40. Its 430 years are assigned to residence in Egypt. Public-domain text.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-exodus-greek",
+      "title": "Exodus 12, Brenton Septuagint translation",
+      "url": "https://ebible.org/eng-Brenton/EXO12.htm",
+      "scope": "Primary translated verse 40 consulted: Egypt and Canaan share the stated 430 years. This is a scope difference, not a different number. Public-domain text.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-judges",
+      "title": "Judges 11, World English Bible",
+      "url": "https://ebible.org/engwebp/JDG11.htm",
+      "scope": "Primary translated verse 26 consulted. The 300 years occur in Jephthah's narrated territorial claim, not an independently dated archaeological layer.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-daniel",
+      "title": "Daniel 9, World English Bible",
+      "url": "https://ebible.org/engwebp/DAN09.htm",
+      "scope": "Primary translated chapter consulted, especially verses 2, 15, 17 and 24-27. Exodus, sanctuary, desolation and restoration remain separate from any proposed absolute-year calculation.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-cambridge",
+      "title": "Cambridge, Artefacts of Ancient Judaism",
+      "url": "https://www.artefacts.divinity.cam.ac.uk/",
+      "scope": "Institutional project introduction and catalogue highlights consulted for Damascus Document reception and Ethiopic Enoch preservation. Individual dynamic object-detail pages returned an empty template, so shelfmarks, full transcriptions and image rights were not independently verified here.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-eni",
+      "title": "Library of Congress, The Qumran Library",
+      "url": "https://www.loc.gov/exhibits/scrolls/scr3.html",
+      "scope": "1993 exhibition text was consulted earlier in this editing session through indexed content; a later direct fetch returned 403. The 4Q201 range is an identified historical curatorial copying estimate, not a current critical redating.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-onias",
+      "title": "Josephus, Antiquities 13.3, Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/ant-13.html",
+      "scope": "Primary translated narrative of the Onias sanctuary consulted. This institutional account does not by itself establish subsequent household migration or Nag Hammadi ancestry.",
+      "accessed": "2026-09-05"
+    },
+    {
+      "id": "atlas-beni",
+      "title": "Egyptian Ministry, Tomb of Khnumhotep II",
+      "url": "https://egymonuments.gov.eg/monuments/the-tomb-of-khnumhotep-ii/",
+      "scope": "Institutional description consulted for the delegation, Abisha(i), foreign-ruler title and eye-paint. The description does not identify Abram or record a famine. Images have not been cleared for reuse.",
+      "accessed": "2026-09-05"
+    }
+  ],
+  "records": [
+    {
+      "id": "work-kings",
+      "title": "Kings: departure to sanctuary",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Compare the construction endpoint and transmitted interval rather than beginning with a fixed BCE Exodus date.",
+      "sources": [
+        "atlas-kings-web",
+        "atlas-kings-greek"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "translation-kings-web",
+      "title": "Kings 6 in World English Bible",
+      "kind": "translation",
+      "corpus": "Biblical",
+      "detail": "The foundation notice uses the 480th year; completion is separately described.",
+      "sources": [
+        "atlas-kings-web"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "translation-kings-brenton",
+      "title": "Kings III 6 in Brenton",
+      "kind": "translation",
+      "corpus": "Greek biblical",
+      "detail": "This translation gives the 440th year. It is a textual comparison target, not a critical apparatus for all Greek copies.",
+      "sources": [
+        "atlas-kings-greek"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-antiquities",
+      "title": "Josephus: Jewish Antiquities",
+      "kind": "work",
+      "corpus": "Jewish historiography",
+      "detail": "Separate the foundation count, priestly succession count, destruction system and Egyptian sanctuary narrative within one transmitted work.",
+      "sources": [
+        "atlas-ant8",
+        "atlas-ant20",
+        "atlas-ant10",
+        "atlas-onias"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies",
+        "manuscripts-movements-and-survival"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-apion",
+      "title": "Josephus: Against Apion",
+      "kind": "work",
+      "corpus": "Jewish historiography",
+      "detail": "The author preserves and argues about an account attributed to Manetho. Quotation and interpretation must not be counted as independent testimonies.",
+      "sources": [
+        "atlas-apion"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies",
+        "manuscripts-movements-and-survival"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "fragment-manetho",
+      "title": "Manetho as quoted by Josephus",
+      "kind": "quoted-fragment",
+      "corpus": "Egyptian account through Jewish historiography",
+      "detail": "A quoted earlier account about shepherd rulers is accessible through Josephus. The current edition consults that mediated text, not an independently surviving Manetho manuscript.",
+      "sources": [
+        "atlas-apion"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies",
+        "manuscripts-movements-and-survival"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-exodus",
+      "title": "Exodus: residence and departure",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "The scope of the residence count matters to the arrival-to-departure sequence. The famine explanation also distinguishes a proposed event from its later narration.",
+      "sources": [
+        "atlas-exodus-web",
+        "atlas-exodus-greek"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies",
+        "moses-volcano-and-exodus-chronology"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "translation-exodus-web",
+      "title": "Exodus 12 in World English Bible",
+      "kind": "translation",
+      "corpus": "Biblical",
+      "detail": "The residence statement assigns 430 years to Egypt.",
+      "sources": [
+        "atlas-exodus-web"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "translation-exodus-brenton",
+      "title": "Exodus 12 in Brenton",
+      "kind": "translation",
+      "corpus": "Greek biblical",
+      "detail": "The residence statement includes Egypt and Canaan within 430 years.",
+      "sources": [
+        "atlas-exodus-greek"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-judges",
+      "title": "Judges: territorial time in a narrated speech",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "The 300-year claim has territorial endpoints; it is not itself a date for the beginning of Exodus.",
+      "sources": [
+        "atlas-judges"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-daniel",
+      "title": "Daniel: deliverance, sanctuary and sacred time",
+      "kind": "work",
+      "corpus": "Jewish apocalypse",
+      "detail": "Chapter 9 supplies a narrative connection between Exodus and sanctuary restoration as well as its numerical scheme. Absolute identifications require additional premises.",
+      "sources": [
+        "atlas-daniel"
+      ],
+      "pages": [
+        "exodus-to-temple-competing-chronologies",
+        "jesus-teacher-of-righteousness-hypothesis"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-damascus",
+      "title": "Damascus Document",
+      "kind": "work",
+      "corpus": "Qumran and Genizah",
+      "detail": "The reception case makes copying date distinct from a work's antiquity. Its complete route through later communities remains a separate investigation.",
+      "sources": [
+        "atlas-cambridge"
+      ],
+      "pages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "witness-genizah-damascus",
+      "title": "Genizah witnesses to the Damascus Document",
+      "kind": "material-witness",
+      "corpus": "Cairo Genizah",
+      "detail": "The project links this late reception to the older work attested near the Dead Sea. This record does not invent a shelfmark or an uninterrupted institutional ancestry.",
+      "sources": [
+        "atlas-cambridge"
+      ],
+      "pages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Later witnesses; exact copying dates not entered",
+        "basis": "Institutional reception description",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-enoch",
+      "title": "Enochic literature",
+      "kind": "work",
+      "corpus": "Jewish apocalypse and Ethiopic reception",
+      "detail": "This is a corpus-level entry. Parts of the corpus, their composition and their manuscript witnesses require separate records before fine chronological comparison.",
+      "sources": [
+        "atlas-cambridge",
+        "atlas-eni"
+      ],
+      "pages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "witness-4q201",
+      "title": "Aramaic Enoch: 4Q201",
+      "kind": "material-witness",
+      "corpus": "Qumran",
+      "detail": "A copying range in the 1993 exhibition describes this fragment, not the whole Ethiopic collection or every Enochic composition.",
+      "sources": [
+        "atlas-eni"
+      ],
+      "pages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Approximately 200-150 BCE",
+        "basis": "Library of Congress 1993 curatorial estimate",
+        "start": -200,
+        "end": -150
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-thomas",
+      "title": "Gospel of Thomas",
+      "kind": "work",
+      "corpus": "Sayings and Nag Hammadi",
+      "detail": "The earlier-founder inquiry asks about the speaker, collection and transmitted arrangement separately. Sayings 12 and 13 are specific leadership and instruction comparisons.",
+      "sources": [
+        "thomas-patterson-meyer"
+      ],
+      "pages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission",
+        "jesus-teacher-of-righteousness-hypothesis"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Existing-edition translation record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "translation-thomas",
+      "title": "Patterson and Meyer: Thomas translation",
+      "kind": "translation",
+      "corpus": "Modern translation",
+      "detail": "Translation credit belongs to this consulted textual access, not automatically to an influence acknowledged by Micah in an earlier chat.",
+      "sources": [
+        "thomas-patterson-meyer"
+      ],
+      "pages": [
+        "manuscripts-movements-and-survival",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Existing-edition translation record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-11qmelchizedek",
+      "title": "11QMelchizedek: release and anointed agency",
+      "kind": "work",
+      "corpus": "Qumran",
+      "detail": "The full comparison asks who proclaims or effects release and how the inherited scriptural passages are joined.",
+      "sources": [
+        "melch-williams2023"
+      ],
+      "pages": [
+        "melchizedek-priesthood-and-transmission",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "witness-11q13",
+      "title": "11Q13: damaged material witness",
+      "kind": "material-witness",
+      "corpus": "Qumran",
+      "detail": "A disputed restoration or subject reading must remain visible. This edition uses the cited scholar's translation and argument, not a new manuscript collation.",
+      "sources": [
+        "melch-williams2023"
+      ],
+      "pages": [
+        "melchizedek-priesthood-and-transmission",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "study-williams",
+      "title": "Logan Williams: jubilee, 11Q13 and Mark",
+      "kind": "study",
+      "corpus": "Modern scholarship",
+      "detail": "The argued shared scriptural configuration is not presented as proof that Mark read this manuscript or that the Teacher and Jesus are one person.",
+      "sources": [
+        "melch-williams2023"
+      ],
+      "pages": [
+        "melchizedek-priesthood-and-transmission",
+        "tor-thomas-and-gnostic-transmission"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "work-nag-melchizedek",
+      "title": "Nag Hammadi Melchizedek",
+      "kind": "work",
+      "corpus": "Nag Hammadi",
+      "detail": "Compare ritual participation, priestly imagery and the text's embodiment language. The damaged tractate is not a stand-in for every Gnostic text.",
+      "sources": [
+        "melch-giversen-pearson"
+      ],
+      "pages": [
+        "melchizedek-priesthood-and-transmission",
+        "manuscripts-movements-and-survival"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Existing-edition translation record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "translation-nag-melchizedek",
+      "title": "Giversen and Pearson: Melchizedek translation",
+      "kind": "translation",
+      "corpus": "Modern translation",
+      "detail": "Retain the translation credit and lacunae. Printed-edition page and line verification remains open.",
+      "sources": [
+        "melch-giversen-pearson"
+      ],
+      "pages": [
+        "melchizedek-priesthood-and-transmission"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Existing-edition translation record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "artifact-beni-hasan",
+      "title": "Beni Hasan: Abisha(i) delegation scene",
+      "kind": "material-witness",
+      "corpus": "Egyptian archaeological description",
+      "detail": "The named delegation and title are evidence to compare with the patriarchal reconstruction. The Abram identification is a further hypothesis, not the caption's statement.",
+      "sources": [
+        "atlas-beni"
+      ],
+      "pages": [
+        "el-in-ancient-egypt",
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "Reign of Senusret II in the institutional description",
+        "basis": "No modern absolute year imposed",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "hypothesis-moses-october",
+      "title": "Moses: conquest before catastrophe",
+      "kind": "hypothesis",
+      "corpus": "Micah reconstruction",
+      "detail": "The archived version orders favorable status, political reversal, loss of status, environmental catastrophe and departure. Numerical examples in a chat are not independent archaeological anchors.",
+      "sources": [],
+      "pages": [
+        "moses-volcano-and-exodus-chronology",
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "October 2025 export-start context",
+        "basis": "Order from selected author turns; no exact turn timestamp inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Author proposal",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "hypothesis-moses-recent",
+      "title": "Moses: pre-accession departure explored",
+      "kind": "hypothesis",
+      "corpus": "Micah reconstruction",
+      "detail": "The recent editing discussion explores departure before Ahmose's accession. It is preserved separately from the earlier order and is not a newly exported chat.",
+      "sources": [],
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "date": {
+        "label": "September 2026 editing discussion",
+        "basis": "Current supplied conversation, not an independently timestamped historical export",
+        "start": null,
+        "end": null
+      },
+      "status": "Author proposal",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "hypothesis-teacher-october",
+      "title": "Earlier Teacher and displaced biography",
+      "kind": "hypothesis",
+      "corpus": "Micah reconstruction",
+      "detail": "The stronger version proposes an earlier founder, successive leaders, descendants or namesakes, transmitted sayings and later chronological relocation of biography. Do not replace it with shared motifs only.",
+      "sources": [],
+      "pages": [
+        "tor-thomas-and-gnostic-transmission",
+        "jesus-teacher-of-righteousness-hypothesis",
+        "manuscripts-movements-and-survival"
+      ],
+      "date": {
+        "label": "Proposed founder period, not assigned as a witness date",
+        "basis": "Versioned author reconstruction; actual passage links accompany the challenge record",
+        "start": null,
+        "end": null
+      },
+      "status": "Author proposal",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "lead-sibylline",
+      "title": "Sibylline Oracles: repair comparison dossier",
+      "kind": "research-lead",
+      "corpus": "Apocalyptic comparison",
+      "detail": "The author requests integration into the cross-corpus repair inquiry. Specific books, layers, passages and editions still need records; this entry does not claim a completed chronology.",
+      "sources": [],
+      "pages": [
+        "gnosticism-and-temple-trauma",
+        "apocalyptic-repair-theology"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Passage dossier not yet built",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "lead-johannine",
+      "title": "John traditions: distinguish the works",
+      "kind": "research-lead",
+      "corpus": "Johannine and Gnostic comparison",
+      "detail": "Gospel of John, Revelation and Apocryphon of John require separate work records and passage dossiers. This index lead is not an assertion of one author or one chronology.",
+      "sources": [],
+      "pages": [
+        "gnosticism-and-temple-trauma",
+        "apocalyptic-repair-theology"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Passage dossier not yet built",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    },
+    {
+      "id": "lead-kabbalah",
+      "title": "Later Jewish mysticism: continuity or counterfactual?",
+      "kind": "research-lead",
+      "corpus": "Repair and reception",
+      "detail": "The historical-transmission proposal and the counterfactual trajectory toward Kabbalah need separate arguments. A similar restoration motif alone cannot decide between them.",
+      "sources": [],
+      "pages": [
+        "gnosticism-and-temple-trauma",
+        "apocalyptic-repair-theology"
+      ],
+      "date": {
+        "label": "Not assigned in this record",
+        "basis": "No absolute date inferred",
+        "start": null,
+        "end": null
+      },
+      "status": "Passage dossier not yet built",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "External source access is not image, scan or translation reuse permission."
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "link-1",
+      "fromId": "translation-kings-web",
+      "toId": "work-kings",
+      "relation": "renders",
+      "why": "This particular translation provides access to the work; it is not the original manuscript.",
+      "basis": "Translation relationship"
+    },
+    {
+      "id": "link-2",
+      "fromId": "translation-kings-brenton",
+      "toId": "work-kings",
+      "relation": "renders",
+      "why": "This particular translation provides access to the work; it is not the original manuscript.",
+      "basis": "Translation relationship"
+    },
+    {
+      "id": "link-3",
+      "fromId": "translation-exodus-web",
+      "toId": "work-exodus",
+      "relation": "renders",
+      "why": "This particular translation provides access to the work; it is not the original manuscript.",
+      "basis": "Translation relationship"
+    },
+    {
+      "id": "link-4",
+      "fromId": "translation-exodus-brenton",
+      "toId": "work-exodus",
+      "relation": "renders",
+      "why": "This particular translation provides access to the work; it is not the original manuscript.",
+      "basis": "Translation relationship"
+    },
+    {
+      "id": "link-5",
+      "fromId": "translation-thomas",
+      "toId": "work-thomas",
+      "relation": "renders",
+      "why": "This particular translation provides access to the work; it is not the original manuscript.",
+      "basis": "Translation relationship"
+    },
+    {
+      "id": "link-6",
+      "fromId": "translation-nag-melchizedek",
+      "toId": "work-nag-melchizedek",
+      "relation": "renders",
+      "why": "This particular translation provides access to the work; it is not the original manuscript.",
+      "basis": "Translation relationship"
+    },
+    {
+      "id": "link-7",
+      "fromId": "work-apion",
+      "toId": "fragment-manetho",
+      "relation": "quotes",
+      "why": "The earlier account is consulted through Josephus; this makes the evidence dependent.",
+      "basis": "Explicit quotation in consulted translation"
+    },
+    {
+      "id": "link-8",
+      "fromId": "witness-genizah-damascus",
+      "toId": "work-damascus",
+      "relation": "witnesses",
+      "why": "The late reception case must not be confused with the origin of the work.",
+      "basis": "Institutional description"
+    },
+    {
+      "id": "link-9",
+      "fromId": "witness-4q201",
+      "toId": "work-enoch",
+      "relation": "witnesses",
+      "why": "This fragment witnesses a part of Enochic literature, not every component of a later corpus.",
+      "basis": "Institutional description"
+    },
+    {
+      "id": "link-10",
+      "fromId": "witness-11q13",
+      "toId": "work-11qmelchizedek",
+      "relation": "witnesses",
+      "why": "Damaged words and alternative restorations belong to the witness-level comparison.",
+      "basis": "Consulted scholarly translation"
+    },
+    {
+      "id": "link-11",
+      "fromId": "study-williams",
+      "toId": "work-11qmelchizedek",
+      "relation": "interprets",
+      "why": "The study argues for a particular assignment of agency in the release announcement.",
+      "basis": "Modern scholarly argument"
+    },
+    {
+      "id": "link-12",
+      "fromId": "work-11qmelchizedek",
+      "toId": "work-nag-melchizedek",
+      "relation": "compares",
+      "why": "Priestly authority and release are compared; an institutional carrier has not been established by this edge.",
+      "basis": "Editorial comparison"
+    },
+    {
+      "id": "link-13",
+      "fromId": "work-kings",
+      "toId": "work-antiquities",
+      "relation": "compares",
+      "why": "The transmitted departure-to-Temple counts differ and need separate endpoint assumptions.",
+      "basis": "Consulted translated passages"
+    },
+    {
+      "id": "link-14",
+      "fromId": "work-kings",
+      "toId": "work-daniel",
+      "relation": "compares",
+      "why": "Deliverance and sanctuary provide a narrative bridge; 480 and 490 are not treated as equal counts.",
+      "basis": "Editorial comparison of consulted texts"
+    },
+    {
+      "id": "link-15",
+      "fromId": "hypothesis-moses-october",
+      "toId": "fragment-manetho",
+      "relation": "investigates",
+      "why": "The ancient departure account is a target for the proposed Hyksos-to-Exodus reconstruction.",
+      "basis": "Author hypothesis; not identity proof"
+    },
+    {
+      "id": "link-16",
+      "fromId": "hypothesis-moses-recent",
+      "toId": "hypothesis-moses-october",
+      "relation": "alternative-version",
+      "why": "The relative order of accession and departure differs; do not merge the sequences.",
+      "basis": "Author versions"
+    },
+    {
+      "id": "link-17",
+      "fromId": "hypothesis-teacher-october",
+      "toId": "work-thomas",
+      "relation": "proposes-origin",
+      "why": "The stronger reconstruction locates the teaching with an earlier founder, not merely a similar teacher.",
+      "basis": "Author hypothesis"
+    },
+    {
+      "id": "link-18",
+      "fromId": "hypothesis-teacher-october",
+      "toId": "work-damascus",
+      "relation": "investigates",
+      "why": "Community interpretation and succession are investigated as parts of a proposed historical route.",
+      "basis": "Author hypothesis"
+    },
+    {
+      "id": "link-19",
+      "fromId": "hypothesis-teacher-october",
+      "toId": "work-nag-melchizedek",
+      "relation": "proposes-transmission",
+      "why": "Egyptian branches and later reunion are proposed as a carrier, not supplied as an established genealogy.",
+      "basis": "Author hypothesis"
+    },
+    {
+      "id": "link-20",
+      "fromId": "lead-sibylline",
+      "toId": "lead-johannine",
+      "relation": "planned-comparison",
+      "why": "A text-by-text repair comparison is requested; no dates are assigned from emotional tone.",
+      "basis": "Research task"
+    },
+    {
+      "id": "link-21",
+      "fromId": "lead-johannine",
+      "toId": "lead-kabbalah",
+      "relation": "planned-comparison",
+      "why": "Historical continuity and philosophical comparison will be tested separately.",
+      "basis": "Research task"
+    }
+  ],
+  "intervals": [
+    {
+      "id": "kings-480",
+      "title": "Kings: 480th year",
+      "record": "translation-kings-web",
+      "reference": "atlas-kings-web",
+      "locator": "1 Kings 6:1; 37-38",
+      "anchor": "foundation",
+      "years": 480,
+      "mode": "ordinal",
+      "startEvent": "Departure from Egypt",
+      "endEvent": "Beginning of Temple construction",
+      "note": "Ordinal mode uses 479 elapsed whole years. Completion is a different endpoint."
+    },
+    {
+      "id": "kings-440",
+      "title": "Brenton: 440th year",
+      "record": "translation-kings-brenton",
+      "reference": "atlas-kings-greek",
+      "locator": "Kings III 6:1 and 1c-1d",
+      "anchor": "foundation",
+      "years": 440,
+      "mode": "ordinal",
+      "startEvent": "Departure from Egypt",
+      "endEvent": "Foundation in Solomon's fourth year",
+      "note": "This translation is not a collation of all Greek witnesses."
+    },
+    {
+      "id": "josephus-592",
+      "title": "Antiquities 8: 592 years",
+      "record": "work-antiquities",
+      "reference": "atlas-ant8",
+      "locator": "Antiquities 8.3.1",
+      "anchor": "foundation",
+      "years": 592,
+      "mode": "elapsed",
+      "startEvent": "Departure from Egypt",
+      "endEvent": "Commencement of Temple construction",
+      "note": "Absolute dates are computed assumptions, not written BCE dates in Josephus."
+    },
+    {
+      "id": "josephus-612",
+      "title": "Antiquities 20: 612 years",
+      "record": "work-antiquities",
+      "reference": "atlas-ant20",
+      "locator": "Antiquities 20.10.1",
+      "anchor": "foundation",
+      "years": 612,
+      "mode": "elapsed",
+      "startEvent": "Departure under Moses",
+      "endEvent": "Solomon's Temple in priestly succession account",
+      "note": "Calculator explicitly assumes this endpoint aligns to the foundation; the passage is not a foundation-day notice."
+    },
+    {
+      "id": "josephus-1062",
+      "title": "Antiquities 10: 1062 years",
+      "record": "work-antiquities",
+      "reference": "atlas-ant10",
+      "locator": "Antiquities 10.8.5",
+      "anchor": "destruction",
+      "years": 1062,
+      "mode": "elapsed",
+      "startEvent": "Departure from Egypt",
+      "endEvent": "Destruction of the Temple",
+      "note": "Whole-year component only. The text adds six months and ten days."
+    },
+    {
+      "id": "josephus-470",
+      "title": "Antiquities 10: 470 years",
+      "record": "work-antiquities",
+      "reference": "atlas-ant10",
+      "locator": "Antiquities 10.8.5",
+      "anchor": "destruction",
+      "years": 470,
+      "mode": "elapsed",
+      "startEvent": "Construction of the Temple",
+      "endEvent": "Destruction of the Temple",
+      "note": "Whole-year component only. Together with 1062 this yields a 592-year difference."
+    }
+  ],
+  "challenges": [
+    {
+      "id": "firstborn-narration",
+      "title": "The firstborn objection omits the narration mechanism",
+      "page": "exodus-to-temple-competing-chronologies",
+      "claim": "An environmental catastrophe may later have been narrated as selecting firstborns; the author explicitly denies that natural famine itself selects birth order.",
+      "objection": "An age-based mortality mechanism cannot by itself explain firstborn selection.",
+      "answer": "That is a valid distinction, but it is already in the original proposal. The unanswered historical question is evidence for the proposed transformation of the narrative.",
+      "outcome": "Qualification recovered; objection narrowed",
+      "remaining": "Test the environmental and literary links separately. No medical mechanism, royal identity or famine date is certified here.",
+      "passages": [
+        {
+          "turn": 23,
+          "speaker": "Micah Blumberg",
+          "sourceSlug": "parthians-and-medes-meaning",
+          "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
+          "sha256": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120",
+          "sourceBytes": 147369,
+          "excerpt": "environmental local environmental catastrophes following a great volcanic eruption, then famine could be one of those natural catastrophes. No a natural famine would not selectively target the first born children, but it would affect children more quickly than adults. Some biblical author from that time might mistakenly record that first born children seemed to have been targeted by this famine, but that would be perhaps because of a subjective impression. The bible suggested the enslaved Jews were building the city of Ramses? So tell me about Egypt in the time of the Santorini eruption roughly 1609-1560 BCE the Second Intermediate ",
+          "omittedBefore": true,
+          "omittedAfter": true,
+          "fullSourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=parthians-and-medes-meaning&turn=23",
+          "dateBasis": "Export-start date 2025-10-25 is not an independently verified timestamp for this turn."
+        }
+      ]
+    },
+    {
+      "id": "institution-not-motif",
+      "title": "Institutional reconstruction reduced to thematic similarity",
+      "page": "manuscripts-movements-and-survival",
+      "claim": "Two priestly branches separate and later reconnect; the author proposes people and institutions as carriers, not only shared ideas.",
+      "objection": "The AI restates the proposal as not claiming a straight institutional pipeline.",
+      "answer": "Author turn 22 explicitly describes separation and reunion. The AI's narrower restatement in turn 23 changes the claim instead of testing its proposed carriers.",
+      "outcome": "AI restatement mismatch documented",
+      "remaining": "The proposed migration, reunion and descent still need evidence. Correcting the restatement is not evidence that the genealogy occurred.",
+      "passages": [
+        {
+          "turn": 22,
+          "speaker": "Micah Blumberg",
+          "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+          "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+          "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+          "sourceBytes": 194933,
+          "excerpt": "Right but I mean in the text, the Zadokite seem to have split into two groups in the mid-2nd century BCE, some going to Egypt, others going to hide in the hills of Qumran, becoming known to outsiders as the Essenes. Later after the fall of the 2nd Temple, The Zadokite Essences still in Israel moved to Eqypt to join their Zadokite brothers and there they developed Gnosticism, which was post 2nd Temple Jewish-Christianity. So there must be textual links between the two groups of Zadokite/Jewish Christians (this is my fringe conjectu",
+          "omittedBefore": false,
+          "omittedAfter": true,
+          "fullSourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=ai-re-dates-dead-sea-scrolls&turn=22",
+          "dateBasis": "Export-start date 2025-10-20 is not an independently verified timestamp for this turn."
+        },
+        {
+          "turn": 23,
+          "speaker": "Self Aware Networks GPT",
+          "sourceSlug": "ai-re-dates-dead-sea-scrolls",
+          "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+          "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2",
+          "sourceBytes": 194933,
+          "excerpt": "ed for **Jewish roots** to strands of Egyptian Gnosticism. citeturn0search9turn1search1 # E. What to say when critics push back - You’re **not** claiming a straight institutional pipeline; you’re arguing **ideological and ritual continuities** along a **documented migration route** (Zadokites → Egypt), with **textual motifs** that reappear in **Egyptian Christian** literature. - Your **strongest “textual” exhibit** is the **Melchizedek angle** (11Q13 ↔ Nag Hammadi Melchizedek). Pair that with **dualism** (1QS) and **immersion rites** (mikveh ↔ Five Seals) to make a **three-strand cord** of continuity. citeturn0search5turn0sea",
+          "omittedBefore": true,
+          "omittedAfter": true,
+          "fullSourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=ai-re-dates-dead-sea-scrolls&turn=23",
+          "dateBasis": "Export-start date 2025-10-20 is not an independently verified timestamp for this turn."
+        }
+      ]
+    },
+    {
+      "id": "accession-not-object",
+      "title": "Object date and accession are different events",
+      "page": "exodus-to-temple-competing-chronologies",
+      "claim": "Dating a royal-name object within a reign does not on its own date the beginning of the reign.",
+      "objection": "An eruption before the dated object is treated as necessarily before accession.",
+      "answer": "A < B and E < B do not order A and E. The logical correction is valid at that scope, but a multi-object study may use additional premises.",
+      "outcome": "Narrow inference distinguished from full-study assessment",
+      "remaining": "Reconstruct the full published model, sample context and uncertainties; do not conflate the last sampled object with the last object ever made.",
+      "passages": [
+        {
+          "turn": 46,
+          "speaker": "Micah Blumberg",
+          "sourceSlug": "parthians-and-medes-meaning",
+          "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
+          "sha256": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120",
+          "sourceBytes": 147369,
+          "excerpt": "Oh I just thought of something, the 2025 radiocarbon study dated the relative time of when bricks stamped with the name of Ahmose were made, but it didn't distinguish whether those were new Ahmose bricks or old Ahmos bricks. Do you see my point? If Thera erupted during the time of Ahmos and was connected to Tempest Stela, Ahmos is not going to stop making bricks, in fact Ahmos stamped bricks may have continued to have been made in exactly the same way with exactly the same stamp well into the reign of Ahmos II, so the 2025 study does not conclusively prove that The",
+          "omittedBefore": false,
+          "omittedAfter": true,
+          "fullSourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=parthians-and-medes-meaning&turn=46",
+          "dateBasis": "Export-start date 2025-10-25 is not an independently verified timestamp for this turn."
+        },
+        {
+          "turn": 48,
+          "speaker": "Micah Blumberg",
+          "sourceSlug": "parthians-and-medes-meaning",
+          "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
+          "sha256": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120",
+          "sourceBytes": 147369,
+          "excerpt": "No. My point is still valid. Try supporting my point this time. \"Oh I just thought of something, the 2025 radiocarbon study dated the relative time of when bricks stamped with the name of Ahmose were made, but it didn't distinguish whether those were new Ahmose bricks or old Ahmos bricks. Do you see my point? If Thera erupted during the time of Ahmos and was connected to Tempest Stela, Ahmos is not going to stop making bricks\" \"so the 2025 study does not conclusively prove that Ther",
+          "omittedBefore": false,
+          "omittedAfter": true,
+          "fullSourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=parthians-and-medes-meaning&turn=48",
+          "dateBasis": "Export-start date 2025-10-25 is not an independently verified timestamp for this turn."
+        }
+      ]
+    },
+    {
+      "id": "daniel-endpoints",
+      "title": "Near dates do not supply an exact fulfillment calculation",
+      "page": "jesus-teacher-of-righteousness-hypothesis",
+      "claim": "The Teacher's sacred chronology is investigated as part of the stronger identification with the later Jesus tradition.",
+      "objection": "A favorable AI answer juxtaposes 176 BCE for appearance and 171 BCE for a removed anointed one as chronological alignment.",
+      "answer": "The dates differ and the endpoints differ. The calculation also needs an explicit treatment of Daniel's first seven weeks. Correcting favorable AI arithmetic preserves the author's inquiry rather than treating the reply as evidence.",
+      "outcome": "AI support requires repair, not counted as corroboration",
+      "remaining": "Collate the Damascus Document passages and competing 11Q13 restorations with exact editions; evaluate the particular event assignments before absolute dates.",
+      "passages": [
+        {
+          "turn": 2,
+          "speaker": "Self Aware Networks GPT",
+          "sourceSlug": "daniel-and-teacher-of-righteousness",
+          "sourceFile": "gpt2026dragon2651_Daniel_and_Teacher_of_Righteousness.txt",
+          "sha256": "11cd5f8b5e11d81369f6da562e3da29e1084f0f36f785fe299fc3f25b2901ad3",
+          "sourceBytes": 122485,
+          "excerpt": ")** until an “anointed one is cut off.” If you count from a late 7th-century BCE reference point (Jeremiah’s era/early exile, 605/604 BCE), the math lands at **171 BCE**, the year **Onias III** (High Priest = “anointed”) was assassinated: `605 − 434 = 171`. That’s a standard identification in modern scholarship. The “abomination that desolates” then fits **Antiochus IV** in **167 BCE**. citeturn1search0turn0search3turn0search4turn0search6 3) **Do these two clocks align?** - **Yes, historically adjacent.** CD’s Teacher ≈ **176 BCE**; Daniel’s **“anointed one cut off” = Onias III in 171 BCE**; Antiochus’s temple profanation = **",
+          "omittedBefore": true,
+          "omittedAfter": true,
+          "fullSourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=daniel-and-teacher-of-righteousness&turn=2",
+          "dateBasis": "Export-start date 2025-10-19 is not an independently verified timestamp for this turn."
+        },
+        {
+          "turn": 5,
+          "speaker": "Micah Blumberg",
+          "sourceSlug": "daniel-and-teacher-of-righteousness",
+          "sourceFile": "gpt2026dragon2651_Daniel_and_Teacher_of_Righteousness.txt",
+          "sha256": "11cd5f8b5e11d81369f6da562e3da29e1084f0f36f785fe299fc3f25b2901ad3",
+          "sourceBytes": 122485,
+          "excerpt": "according to one widely rejected early interpretation of the Dead Sea Scrolls. We can suppose then, that the Teacher of Righteousness was a contemporary of 2nd Century BCE 2nd Author of Daniel. ToR, 'may' have been THE voice of the teachings recorded by the Thomas in the Gospel of Thomas that were later attributed to Jesus the Christ, or he may have been Jesus/Yeshua the anointed one and the Jewish Zadokite/Hasmonean era Priest at the same time. Onias, the anointed one his predecessor, may have been John Onias the Baptist.",
+          "omittedBefore": false,
+          "omittedAfter": false,
+          "fullSourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=daniel-and-teacher-of-righteousness&turn=5",
+          "dateBasis": "Export-start date 2025-10-19 is not an independently verified timestamp for this turn."
+        }
+      ]
+    }
+  ],
+  "trails": [
+    {
+      "id": "departure-and-sanctuary",
+      "title": "From departure to a rebuilt sanctuary",
+      "question": "How do rival chronologies connect deliverance, temple and restoration?",
+      "chapter": "catastrophe-memory",
+      "stops": [
+        {
+          "id": "count-start",
+          "title": "Choose the endpoint",
+          "label": "Foundation and completion are different events. Compare the actual Kings notices before assigning a BCE date.",
+          "records": [
+            "work-kings",
+            "translation-kings-web",
+            "translation-kings-brenton"
+          ],
+          "page": "exodus-to-temple-competing-chronologies",
+          "challengeIds": []
+        },
+        {
+          "id": "longer-counts",
+          "title": "The longer ancient counts",
+          "label": "Josephus preserves more than one interval. Change an assumed anchor without rewriting what the source counts.",
+          "records": [
+            "work-antiquities",
+            "work-apion",
+            "fragment-manetho"
+          ],
+          "page": "exodus-to-temple-competing-chronologies",
+          "challengeIds": [
+            "accession-not-object"
+          ]
+        },
+        {
+          "id": "departure-memory",
+          "title": "Disaster and its narration",
+          "label": "The author already distinguished famine from a later firstborn interpretation. The remaining question concerns evidence for the narrative change.",
+          "records": [
+            "work-exodus",
+            "hypothesis-moses-october",
+            "hypothesis-moses-recent"
+          ],
+          "page": "exodus-to-temple-competing-chronologies",
+          "challengeIds": [
+            "firstborn-narration"
+          ]
+        },
+        {
+          "id": "restoration-clock",
+          "title": "A sanctuary awaiting restoration",
+          "label": "Daniel connects departure from Egypt with a desolate sanctuary. An exact fulfillment claim needs its own endpoints and counting rules.",
+          "records": [
+            "work-daniel"
+          ],
+          "page": "jesus-teacher-of-righteousness-hypothesis",
+          "challengeIds": [
+            "daniel-endpoints"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "teacher-and-carriers",
+      "title": "The teacher and the carriers of a teaching",
+      "question": "What survives: a person, an office, a community, a text or an interpretation?",
+      "chapter": "thomas",
+      "stops": [
+        {
+          "id": "full-hypothesis",
+          "title": "Begin with the full reconstruction",
+          "label": "The earlier-founder hypothesis includes succession and relocated biography. Shared motifs alone are not an adequate restatement.",
+          "records": [
+            "hypothesis-teacher-october"
+          ],
+          "page": "tor-thomas-and-gnostic-transmission",
+          "challengeIds": [
+            "institution-not-motif"
+          ]
+        },
+        {
+          "id": "late-witness",
+          "title": "A later copy of an older work",
+          "label": "The Damascus Document reception case distinguishes a work's antiquity from the copying date of a surviving witness.",
+          "records": [
+            "work-damascus",
+            "witness-genizah-damascus"
+          ],
+          "page": "manuscripts-movements-and-survival",
+          "challengeIds": []
+        },
+        {
+          "id": "teaching-and-authority",
+          "title": "Leadership and differentiated teaching",
+          "label": "Selected Thomas sayings supply concrete comparison points. Priesthood is examined through functions and qualifications, not names alone.",
+          "records": [
+            "work-thomas",
+            "translation-thomas",
+            "work-11qmelchizedek",
+            "witness-11q13"
+          ],
+          "page": "melchizedek-priesthood-and-transmission",
+          "challengeIds": []
+        },
+        {
+          "id": "languages-and-routes",
+          "title": "Preservation is not the same as origin",
+          "label": "Enochic and Nag Hammadi reception opens a wider map, while proposed institutional carriers remain separately inspectable.",
+          "records": [
+            "work-enoch",
+            "witness-4q201",
+            "work-nag-melchizedek"
+          ],
+          "page": "manuscripts-movements-and-survival",
+          "challengeIds": []
+        }
+      ]
+    },
+    {
+      "id": "inheritance-and-repair",
+      "title": "Inheritance, judgment and repair",
+      "question": "How does an inherited source become an argument about authority and restoration?",
+      "chapter": "repair-practice",
+      "stops": [
+        {
+          "id": "king-and-priest",
+          "title": "Who can authorize release?",
+          "label": "Follow the completed Melchizedek comparison from inherited roles to different grounds of authority.",
+          "records": [
+            "work-11qmelchizedek",
+            "study-williams",
+            "work-nag-melchizedek"
+          ],
+          "page": "melchizedek-priesthood-and-transmission",
+          "challengeIds": []
+        },
+        {
+          "id": "catastrophe-responses",
+          "title": "Do not date a text from its emotion",
+          "label": "The requested cross-corpus study will separate independently argued dates from descriptions of anger, resistance and repair.",
+          "records": [
+            "lead-sibylline",
+            "lead-johannine",
+            "lead-kabbalah"
+          ],
+          "page": "gnosticism-and-temple-trauma",
+          "challengeIds": []
+        },
+        {
+          "id": "next-inheritors",
+          "title": "What should the next conscious beings inherit?",
+          "label": "The constructive theology asks how an inward standard can correct desire and how repair can avoid reproducing domination.",
+          "records": [
+            "hypothesis-teacher-october"
+          ],
+          "page": "religion-for-conscious-robots",
+          "challengeIds": []
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "records": 29,
+    "kinds": {
+      "work": 11,
+      "translation": 6,
+      "material-witness": 4,
+      "quoted-fragment": 1,
+      "study": 1,
+      "hypothesis": 3,
+      "research-lead": 3
+    },
+    "relationships": 21,
+    "intervals": 6,
+    "challenges": 4,
+    "trails": 3,
+    "stops": 11
+  }
+}

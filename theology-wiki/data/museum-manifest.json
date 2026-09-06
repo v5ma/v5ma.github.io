@@ -1,0 +1,262 @@
+{
+  "schema": "theology-museum-content/1",
+  "version": "2026.09.05-atlas-1",
+  "contentOnly": true,
+  "runtimeOwnership": "XR implementation is maintained separately. This manifest supplies curation and evidence, not a working XR scene.",
+  "atlas": {
+    "path": "source-atlas.json",
+    "sha256": "36ebdd06cb674faea5b8f5f522de6bc85568c60e2e3a556c6dcc908d682b97ae"
+  },
+  "assetPolicy": "No new scan, photograph, 3D mesh or translated full text is licensed by this manifest. All stops have empty asset lists until explicit permission and identity are checked. Existing wiki illustrations remain contextual, not facsimiles of these objects.",
+  "trailPolicy": "A short label must expose its fullArgumentURL, sourceURLs and challengeURLs. Never substitute a label for the full reconstruction or treat a proposed link as a demonstrated event.",
+  "trails": [
+    {
+      "id": "departure-and-sanctuary",
+      "title": "From departure to a rebuilt sanctuary",
+      "question": "How do rival chronologies connect deliverance, temple and restoration?",
+      "chapter": "catastrophe-memory",
+      "stops": [
+        {
+          "id": "count-start",
+          "title": "Choose the endpoint",
+          "label": "Foundation and completion are different events. Compare the actual Kings notices before assigning a BCE date.",
+          "records": [
+            "work-kings",
+            "translation-kings-web",
+            "translation-kings-brenton"
+          ],
+          "page": "exodus-to-temple-competing-chronologies",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-kings",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=translation-kings-web",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=translation-kings-brenton"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "longer-counts",
+          "title": "The longer ancient counts",
+          "label": "Josephus preserves more than one interval. Change an assumed anchor without rewriting what the source counts.",
+          "records": [
+            "work-antiquities",
+            "work-apion",
+            "fragment-manetho"
+          ],
+          "page": "exodus-to-temple-competing-chronologies",
+          "challengeIds": [
+            "accession-not-object"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-antiquities",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-apion",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=fragment-manetho"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=accession-not-object"
+          ],
+          "assetIds": []
+        },
+        {
+          "id": "departure-memory",
+          "title": "Disaster and its narration",
+          "label": "The author already distinguished famine from a later firstborn interpretation. The remaining question concerns evidence for the narrative change.",
+          "records": [
+            "work-exodus",
+            "hypothesis-moses-october",
+            "hypothesis-moses-recent"
+          ],
+          "page": "exodus-to-temple-competing-chronologies",
+          "challengeIds": [
+            "firstborn-narration"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-exodus",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-moses-october",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-moses-recent"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=firstborn-narration"
+          ],
+          "assetIds": []
+        },
+        {
+          "id": "restoration-clock",
+          "title": "A sanctuary awaiting restoration",
+          "label": "Daniel connects departure from Egypt with a desolate sanctuary. An exact fulfillment claim needs its own endpoints and counting rules.",
+          "records": [
+            "work-daniel"
+          ],
+          "page": "jesus-teacher-of-righteousness-hypothesis",
+          "challengeIds": [
+            "daniel-endpoints"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-daniel"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=jesus-teacher-of-righteousness-hypothesis",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=daniel-endpoints"
+          ],
+          "assetIds": []
+        }
+      ]
+    },
+    {
+      "id": "teacher-and-carriers",
+      "title": "The teacher and the carriers of a teaching",
+      "question": "What survives: a person, an office, a community, a text or an interpretation?",
+      "chapter": "thomas",
+      "stops": [
+        {
+          "id": "full-hypothesis",
+          "title": "Begin with the full reconstruction",
+          "label": "The earlier-founder hypothesis includes succession and relocated biography. Shared motifs alone are not an adequate restatement.",
+          "records": [
+            "hypothesis-teacher-october"
+          ],
+          "page": "tor-thomas-and-gnostic-transmission",
+          "challengeIds": [
+            "institution-not-motif"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-teacher-october"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=tor-thomas-and-gnostic-transmission",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=institution-not-motif"
+          ],
+          "assetIds": []
+        },
+        {
+          "id": "late-witness",
+          "title": "A later copy of an older work",
+          "label": "The Damascus Document reception case distinguishes a work's antiquity from the copying date of a surviving witness.",
+          "records": [
+            "work-damascus",
+            "witness-genizah-damascus"
+          ],
+          "page": "manuscripts-movements-and-survival",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-damascus",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-genizah-damascus"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=manuscripts-movements-and-survival",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "teaching-and-authority",
+          "title": "Leadership and differentiated teaching",
+          "label": "Selected Thomas sayings supply concrete comparison points. Priesthood is examined through functions and qualifications, not names alone.",
+          "records": [
+            "work-thomas",
+            "translation-thomas",
+            "work-11qmelchizedek",
+            "witness-11q13"
+          ],
+          "page": "melchizedek-priesthood-and-transmission",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-thomas",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=translation-thomas",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-11qmelchizedek",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-11q13"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=melchizedek-priesthood-and-transmission",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "languages-and-routes",
+          "title": "Preservation is not the same as origin",
+          "label": "Enochic and Nag Hammadi reception opens a wider map, while proposed institutional carriers remain separately inspectable.",
+          "records": [
+            "work-enoch",
+            "witness-4q201",
+            "work-nag-melchizedek"
+          ],
+          "page": "manuscripts-movements-and-survival",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-enoch",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-4q201",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-nag-melchizedek"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=manuscripts-movements-and-survival",
+          "challengeURLs": [],
+          "assetIds": []
+        }
+      ]
+    },
+    {
+      "id": "inheritance-and-repair",
+      "title": "Inheritance, judgment and repair",
+      "question": "How does an inherited source become an argument about authority and restoration?",
+      "chapter": "repair-practice",
+      "stops": [
+        {
+          "id": "king-and-priest",
+          "title": "Who can authorize release?",
+          "label": "Follow the completed Melchizedek comparison from inherited roles to different grounds of authority.",
+          "records": [
+            "work-11qmelchizedek",
+            "study-williams",
+            "work-nag-melchizedek"
+          ],
+          "page": "melchizedek-priesthood-and-transmission",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-11qmelchizedek",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-williams",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-nag-melchizedek"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=melchizedek-priesthood-and-transmission",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "catastrophe-responses",
+          "title": "Do not date a text from its emotion",
+          "label": "The requested cross-corpus study will separate independently argued dates from descriptions of anger, resistance and repair.",
+          "records": [
+            "lead-sibylline",
+            "lead-johannine",
+            "lead-kabbalah"
+          ],
+          "page": "gnosticism-and-temple-trauma",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=lead-sibylline",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=lead-johannine",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=lead-kabbalah"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=gnosticism-and-temple-trauma",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "next-inheritors",
+          "title": "What should the next conscious beings inherit?",
+          "label": "The constructive theology asks how an inward standard can correct desire and how repair can avoid reproducing domination.",
+          "records": [
+            "hypothesis-teacher-october"
+          ],
+          "page": "religion-for-conscious-robots",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-teacher-october"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=religion-for-conscious-robots",
+          "challengeURLs": [],
+          "assetIds": []
+        }
+      ]
+    }
+  ]
+}

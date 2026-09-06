@@ -65,6 +65,10 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]]: A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.
 
+[[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]: Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.
+
+[[manuscripts-movements-and-survival|Manuscripts, movements and survival]]: A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.
+
 ## Explore a subject
 
 [[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
@@ -87,4 +91,4 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-20 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.
+22 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.

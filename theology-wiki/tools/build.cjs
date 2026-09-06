@@ -3,14 +3,14 @@
 // Rebuild only the Theology collection. Published source bytes and other projects are read-only.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const ROOT=path.resolve(__dirname,'..'),SITE=path.dirname(ROOT);
-const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs'),F=require('../editorial/foundations.cjs'),R=require('../editorial/roadmap.cjs'),Roadmap=require('./roadmap.cjs');
-const references=[...X.references,...D.references,...F.references,...R.references];
-const E={...base,version:R.version,articles:[...X.articles,...base.articles].map(p=>{
+const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs'),F=require('../editorial/foundations.cjs'),R=require('../editorial/roadmap.cjs'),Roadmap=require('./roadmap.cjs'),A=require('../editorial/atlas.cjs'),Atlas=require('./atlas.cjs');
+const references=[...X.references,...D.references,...F.references,...R.references,...A.references];
+const E={...base,version:A.version,articles:[...X.articles,...base.articles].map(p=>{
  const update=D.overrides[p.slug]; if(!update)return p;
  return {...p,...update,externalSources:[...new Set([...(p.externalSources||[]),...update.externalSources])],
  sourceIds:[...new Set([...(p.sourceIds||[]),...D.anchors.filter(a=>a.from===p.slug).map(a=>a.sourceId)])],
  attribution:'AI-assisted editorial synthesis of Micah Blumberg\'s source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.'};
-}).map(p=>{const x=F.addenda[p.slug];return x?{...p,body:p.body+'\n\n'+x.body,updated:F.updated,sourceIds:[...new Set([...(p.sourceIds||[]),...x.sourceIds])],externalSources:[...new Set([...(p.externalSources||[]),...x.externalSources])]}:p;}).concat(F.articles,R.articles),paths:[...X.paths,...base.paths,...F.paths]};
+}).map(p=>{const x=F.addenda[p.slug];return x?{...p,body:p.body+'\n\n'+x.body,updated:F.updated,sourceIds:[...new Set([...(p.sourceIds||[]),...x.sourceIds])],externalSources:[...new Set([...(p.externalSources||[]),...x.externalSources])]}:p;}).concat(F.articles,R.articles,A.articles),paths:[...X.paths,...base.paths,...F.paths]};
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8'),json=p=>JSON.parse(read(p).replace(/^\uFEFF/,''));
 const write=(p,value)=>{const target=path.join(ROOT,p);if(!target.startsWith(ROOT+path.sep))throw Error('Out-of-scope write');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,value);};
 const emit=(p,value)=>write(p,JSON.stringify(value,null,2)+'\n');
@@ -72,6 +72,10 @@ function build(){
   write('content/'+row.path,front(row,body));bodies.set(row.slug,body);
  }
  for(const p of E.articles)add(p,p.body);
+ add({slug:'source-atlas',title:'Source atlas: works, witnesses and arguments',category:'context',kind:'Navigator',summary:'A curated cross-collection source catalogue with typed relationships, exact passages and museum-ready IDs.'},A.data.policy+'\n\n[[museum-trails|Museum trails]] / [[argument-challenges|Argument challenge record]] / [[research-roadmap|Shared plan]].\n\n'+A.data.records.map(r=>'## '+r.title+'\n\n'+r.kind+' / '+r.corpus+'. '+r.detail+'\n\n'+r.pages.map(slug=>'[['+slug+'|'+bySlug.get(slug).title+']]').join(' / ')).join('\n\n'));
+ add({slug:'argument-challenges',title:'Challenges, corrections and preserved arguments',category:'context',kind:'Navigator',summary:'Inspect a challenged claim, its actual source version, the response and the remaining question.'},'An objection can fail to address an argument without thereby proving its historical conclusion. These selected records include both skeptical restatement errors and favorable AI arithmetic that needs correction.\n\n'+A.data.challenges.map(c=>'## '+c.title+'\n\n'+c.claim+'\n\nChallenge: '+c.objection+'\n\nResponse: '+c.answer+'\n\nOutcome: '+c.outcome+'.\n\nRemaining work: '+c.remaining+'\n\n[['+c.page+'|Read the full investigation]]').join('\n\n'));
+ add({slug:'museum-trails',title:'Museum trails: from exhibit label to full argument',category:'context',kind:'Navigator',summary:'Three content trails for the book, wiki and separately implemented XR museum.'},'This is a content handoff, not a deployed XR scene. Each label leads to the full reconstruction and its inspectable evidence. No rights to external pictures are implied.\n\n'+A.data.trails.map(t=>'## '+t.title+'\n\n'+t.question+'\n\n'+t.stops.map(q=>'### '+q.title+'\n\n'+q.label+'\n\n[['+q.page+'|Read the full investigation]]').join('\n\n')).join('\n\n'));
+
  add({slug:'research-roadmap',title:'Long-term research roadmap',category:'context',kind:'Navigator',summary:'The shared checklist, dependencies, completion evidence and Excel planning snapshot.'},'The canonical plan is committed in the repository. It separates delivered tools and first comparisons from author approval and manuscript readiness. [[book-contents|Book contents]], [[research-board|personal research board]], and [[source-coverage|source coverage]] are complementary views. A workbook or local board edit does not automatically change the shared plan.');
  add({slug:'source-coverage',title:'Source coverage and argument breadth',category:'context',kind:'Navigator',summary:'Every original conversation with its recorded article links and selected source anchors.'},'All 354 conversations remain available. This register reports links from developed articles, not whether a source has been read. [[research-roadmap|The long-term roadmap]] tracks expansion; [[sources-index|the archive]] preserves original turns.');
  for(const [slug,names] of Object.entries(X.aliases))if(!bySlug.has(slug))throw Error('Alias destination missing '+slug);
@@ -153,9 +157,9 @@ ${E.articles.length} developed articles accompany the archive. They are attribut
  for(const task of F.tasks)if(!bySlug.has(task.page)||!F.stages.includes(task.stage))throw Error('Invalid research task '+task.id);
  emit('data/foundations.json',foundations);
  emit('data/melchizedek-evidence.json',{version:E.version,article:R.articles[0].slug,policy:'Passage comparison, not identity proof. A translation, scholarly interpretation and direct manuscript collation are different evidence levels.',rows:R.evidence.map(e=>({...e,source:references.find(r=>r.id===e.reference)}))});
- const relationships=[...D.relations,...F.relations,...R.relations].map(r=>({...r}));
+ const relationships=[...D.relations,...F.relations,...R.relations,...A.relations].map(r=>({...r}));
  for(const p of pages.filter(p=>p.kind==='Developed article'))for(const r of p.references||[])relationships.push({from:p.slug,to:r.slug,type:'source',why:`The article develops an argument from ${r.title}. Read the original speakers separately from the editorial prose.`,origin:'Article source reference'});
- const anchors=[...D.anchors,...R.anchors].map(a=>{
+ const anchors=[...D.anchors,...R.anchors,...A.anchors].map(a=>{
   const p=sourceById.get(a.sourceId),t=chats.get(p?.sourceFile)?.turns[a.turn-1];
   if(!p||!t||t.speaker!=='Micah Blumberg')throw Error('Invalid author-turn anchor');
   const row={...a,to:p.slug,sourceFile:p.sourceFile,sourceHash:p.sourceSha256};delete row.sourceId;return row;
@@ -192,7 +196,8 @@ ${E.articles.length} developed articles accompany the archive. They are attribut
  write('data/search.json',JSON.stringify({version:E.version,ids:pages.map(p=>p.slug),scope:'All published text. Speaker searches require every query token within the same top-level source turn; user turns can include pasted quotations.',postings,turns:turnRows,turnPostings})+'\n');
  const roadmap=Roadmap.build({root:ROOT,plan:R.plan,pages,foundations,anchors});
  patchReaders();
- const report={version:E.version,roadmapTasks:roadmap.summary.tasks,roadmapDependencies:roadmap.summary.dependencyEdges,sourcesLinkedToArticles:roadmap.summary.sourcesLinkedToArticles,bookParts:F.parts.length,chapterRoutes:F.parts.reduce((n,p)=>n+p.chapters.length,0),researchTasks:F.tasks.length,timelineRecords:F.timeline.length,argumentDossiers:F.dossiers.length,reviewedPassages:foundations.dossiers.reduce((n,d)=>n+d.passages.length,0),pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
+ const atlas=Atlas.build({root:ROOT,data:A.data,references,pages,sourceById,chats,foundations});
+ const report={version:E.version,atlasRecords:atlas.counts.records,atlasRelationships:atlas.counts.relationships,challengeRecords:atlas.counts.challenges,museumTrails:atlas.counts.trails,museumStops:atlas.counts.stops,chronologyIntervals:atlas.counts.intervals,roadmapTasks:roadmap.summary.tasks,roadmapDependencies:roadmap.summary.dependencyEdges,sourcesLinkedToArticles:roadmap.summary.sourcesLinkedToArticles,bookParts:F.parts.length,chapterRoutes:F.parts.reduce((n,p)=>n+p.chapters.length,0),researchTasks:F.tasks.length,timelineRecords:F.timeline.length,argumentDossiers:F.dossiers.length,reviewedPassages:foundations.dossiers.reduce((n,d)=>n+d.passages.length,0),pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
  emit('data/build-report.json',report);return report;
 }
 function patchReaders(){
@@ -257,12 +262,12 @@ function patchReaders(){
  html=html.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  original=original.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  const bump=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:depth-tools\.js|depth\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
- for(const [asset,type] of [['roadmap-tools.js','js'],['roadmap.css','css']]){
+ for(const [asset,type] of [['roadmap-tools.js','js'],['roadmap.css','css'],['atlas-core.js','js'],['atlas-tools.js','js'],['atlas.css','css']]){
   const tag=type==='js'?'<script src="./assets/js/'+asset+'?v='+E.version+'"></script>':'<link rel="stylesheet" href="./assets/css/'+asset+'?v='+E.version+'">';
   const addAsset=text=>text.includes(asset)?text:text.replace(type==='js'?'<script src="./assets/js/research-tools.js':'</head>',type==='js'?tag+'<script src="./assets/js/research-tools.js':tag+'</head>');
   html=addAsset(html);original=addAsset(original);
  }
- const bumpRoadmap=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:roadmap-tools\.js|roadmap\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
+ const bumpRoadmap=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:roadmap-tools\.js|roadmap\.css|atlas-core\.js|atlas-tools\.js|atlas\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  html=bumpRoadmap(html);original=bumpRoadmap(original);
  write('san-reader.html',bump(html));
  write('index.html',bump(original));

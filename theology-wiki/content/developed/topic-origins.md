@@ -25,6 +25,10 @@ Manuscripts, Temple history, divine names and the dating of ideas.
 
 [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]]: A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.
 
+[[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]: Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.
+
+[[manuscripts-movements-and-survival|Manuscripts, movements and survival]]: A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.
+
 ## Browse the source discussions
 
 These 43 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.
