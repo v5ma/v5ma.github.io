@@ -18,6 +18,15 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     check('Remote device voices are opt-in and playback does not auto-start',not page.locator('#listen-remote').is_checked() and 'Ready' in page.locator('#listen-counter').inner_text())
     if page.evaluate('speechSynthesis.getVoices().filter(v=>v.localService).length===0'):
         check('A browser without local voices shows the honest unavailable fallback',page.locator('#listen-play').is_disabled() and 'not exposed' in page.locator('#listen-voice-help').inner_text())
+    for selector in ['.listen-deck label','.listen-deck h2','#listen-source a','.listen-deck .product-small']:
+        ratio=page.locator(selector).first.evaluate("""(el)=>{
+          const rgb=s=>(s.match(/[\d.]+/g)||[]).map(Number);
+          const lum=c=>c.slice(0,3).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
+          const fg=rgb(getComputedStyle(el).color);let node=el,bg=[255,255,255];
+          while(node){const c=rgb(getComputedStyle(node).backgroundColor);if(c.length===3||c[3]===1){bg=c;break;}node=node.parentElement;}
+          const a=lum(fg),b=lum(bg);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        }""")
+        check('Core listening text contrast is at least 4.5:1: '+selector,ratio>=4.5)
     page.locator('#listen-next').click();page.locator('#listen-next').click()
     check('Paragraph controls move to an actual transcript paragraph',page.locator('#listen-position').input_value()=='2' and page.locator('.listen-paragraph[aria-current=true]').get_attribute('data-segment')=='2')
     page.locator('#listen-rate').select_option('1.2')
@@ -42,11 +51,15 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     page.locator('#listen-recording').evaluate('(a)=>a.pause()')
     check('Reading speed also applies to the real recorded study',page.locator('#listen-recording').evaluate('(a)=>Math.abs(a.playbackRate-1.2)<.001'))
     saved_time=page.locator('#listen-recording').evaluate('(a)=>a.currentTime')
+    (OUT/'recording-before-reload.json').write_text(json.dumps(page.evaluate('({stored:localStorage.getItem("theology:listening:v1"),time:document.querySelector("#listen-recording").currentTime})'),indent=2))
     ready(extra='&listen='+slug)
     page.locator('#listen-recording').evaluate('(a)=>a.load()')
-    page.wait_for_function('document.querySelector("#listen-recording").readyState>0 && document.querySelector("#listen-recording").currentTime>0')
+    try:
+        page.wait_for_function('document.querySelector("#listen-recording").readyState>0 && document.querySelector("#listen-recording").currentTime>0')
+    finally:
+        (OUT/'recording-after-reload.json').write_text(json.dumps(page.evaluate('({stored:localStorage.getItem("theology:listening:v1"),time:document.querySelector("#listen-recording").currentTime,ready:document.querySelector("#listen-recording").readyState,duration:document.querySelector("#listen-recording").duration,note:document.querySelector("#recorded-resume-note").textContent})'),indent=2))
     check('Recorded time resumes after reload without autoplay',page.locator('#listen-recording').evaluate('(a,t)=>a.paused&&Math.abs(a.currentTime-t)<.15',saved_time))
-    page.locator('#product-workspace').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'listening-player-desktop.png'))
+    page.locator('#listen-title').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'listening-player-desktop.png'))
     with page.expect_download() as ev:page.locator('#listen-recorded a[download]').click()
     mp3=Path(ev.value.path()).read_bytes();cfg=page.request.get(BASE.rsplit('/',1)[0]+'/data/products.json').json();asset=next(a for a in cfg['media']['assets'] if a['kind']=='article');file=next(f for f in asset['files'] if f['role']=='audio')
     check('Downloaded study MP3 matches its production manifest',len(mp3)>100000 and hashlib.sha256(mp3).hexdigest()==file['sha256'])
