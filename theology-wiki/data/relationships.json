@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.05-roadmap-1",
+  "version": "2026.09.05-atlas-1",
   "policy": "Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.",
   "edges": [
     {
@@ -371,6 +371,62 @@
       "to": "book-contents",
       "type": "organizes",
       "why": "The deliverable sequence points to chapter routes without declaring the manuscript completed.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "moses-volcano-and-exodus-chronology",
+      "to": "exodus-to-temple-competing-chronologies",
+      "type": "extends",
+      "why": "The interval comparison examines a missing chronological constraint and recovers the author's explicit famine-versus-narration qualification.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "exodus-to-temple-competing-chronologies",
+      "to": "jesus-teacher-of-righteousness-hypothesis",
+      "type": "compares",
+      "why": "Daniel connects deliverance and sanctuary restoration, but its event assignments must not be inferred from numerical proximity alone.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "manuscripts-movements-and-survival",
+      "type": "extends",
+      "why": "The source atlas preserves a proposed institutional reconstruction rather than replacing it with thematic similarity.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "manuscripts-movements-and-survival",
+      "to": "melchizedek-priesthood-and-transmission",
+      "type": "uses",
+      "why": "The completed first passage comparison is an available component of the larger transmission investigation.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "manuscripts-movements-and-survival",
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "applies",
+      "why": "Textual survival, institutional continuity and moral fidelity are distinct dimensions of an inheritance.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "source-atlas",
+      "to": "museum-trails",
+      "type": "organizes",
+      "why": "Stable source and challenge IDs can support an XR consumer without duplicating or shortening the full arguments.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "museum-trails",
+      "to": "book-contents",
+      "type": "organizes",
+      "why": "Trails point to existing chapter routes, not claims that the book or headset experience is complete.",
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "argument-challenges",
+      "to": "source-atlas",
+      "type": "documents",
+      "why": "An AI restatement mismatch or invalid inference is documented as an argument outcome, not counted as new archaeological evidence.",
       "origin": "Editorial relationship"
     },
     {
@@ -778,6 +834,34 @@
       "type": "source",
       "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
       "origin": "Article source reference"
+    },
+    {
+      "from": "exodus-to-temple-competing-chronologies",
+      "to": "parthians-and-medes-meaning",
+      "type": "source",
+      "why": "The article develops an argument from Parthians and Medes meaning. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "exodus-to-temple-competing-chronologies",
+      "to": "daniel-and-teacher-of-righteousness",
+      "type": "source",
+      "why": "The article develops an argument from Daniel and Teacher of Righteousness. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "manuscripts-movements-and-survival",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "manuscripts-movements-and-survival",
+      "to": "jewish-apocalyptic-repair-timeline",
+      "type": "source",
+      "why": "The article develops an argument from Jewish Apocalyptic Repair Timeline. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
     }
   ],
   "anchors": [
@@ -844,6 +928,54 @@
       "to": "ai-re-dates-dead-sea-scrolls",
       "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
       "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "exodus-to-temple-competing-chronologies",
+      "turn": 23,
+      "why": "The author explicitly distinguishes a non-selective famine from a proposed later firstborn narration.",
+      "to": "parthians-and-medes-meaning",
+      "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
+      "sourceHash": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120"
+    },
+    {
+      "from": "exodus-to-temple-competing-chronologies",
+      "turn": 29,
+      "why": "The author states the conquest-before-catastrophe order with illustrative dates.",
+      "to": "parthians-and-medes-meaning",
+      "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
+      "sourceHash": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120"
+    },
+    {
+      "from": "exodus-to-temple-competing-chronologies",
+      "turn": 46,
+      "why": "The author distinguishes an object date from the beginning of the reign.",
+      "to": "parthians-and-medes-meaning",
+      "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
+      "sourceHash": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120"
+    },
+    {
+      "from": "manuscripts-movements-and-survival",
+      "turn": 22,
+      "why": "The author proposes a split and later reunion of communities, not only thematic resemblance.",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "manuscripts-movements-and-survival",
+      "turn": 26,
+      "why": "The author proposes succession, descendants and repeated names as a continuity mechanism.",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
+      "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
+    },
+    {
+      "from": "manuscripts-movements-and-survival",
+      "turn": 1,
+      "why": "The author asks for the non-Gnostic Jewish comparison; the turn also contains quoted prior context.",
+      "to": "jewish-apocalyptic-repair-timeline",
+      "sourceFile": "gpt2026dragon1912_Jewish_Apocalyptic_Repair_Timeline.txt",
+      "sourceHash": "c0c20975bce6245177fbdddd904238961580ed68172bf4502025182a8bd3fa66"
     },
     {
       "from": "tor-thomas-and-gnostic-transmission",

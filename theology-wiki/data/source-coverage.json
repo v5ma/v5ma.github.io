@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.05-roadmap-1",
+  "version": "2026.09.05-atlas-1",
   "policy": "Coverage means recorded links and selected source-turn anchors. It does not measure how much has been read, quality, originality, completeness, or author approval. Export-start dates do not date every later turn.",
   "rows": [
     {
@@ -165,7 +165,8 @@
         "jesus-teacher-of-righteousness-hypothesis",
         "sacred-inheritance-and-rival-continuations",
         "tor-thomas-and-gnostic-transmission",
-        "melchizedek-priesthood-and-transmission"
+        "melchizedek-priesthood-and-transmission",
+        "manuscripts-movements-and-survival"
       ],
       "chapters": [
         "shared-archive",
@@ -174,6 +175,7 @@
         "continuing"
       ],
       "selectedTurns": [
+        22,
         24,
         26,
         63,
@@ -1361,9 +1363,11 @@
       "turnCount": 58,
       "articles": [
         "jesus-teacher-of-righteousness-hypothesis",
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "exodus-to-temple-competing-chronologies"
       ],
       "chapters": [
+        "catastrophe-memory",
         "teacher-identity",
         "thomas"
       ],
@@ -3132,7 +3136,8 @@
       "articles": [
         "apocalyptic-repair-theology",
         "gnosticism-and-temple-trauma",
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "manuscripts-movements-and-survival"
       ],
       "chapters": [
         "thomas",
@@ -3140,7 +3145,9 @@
         "repair-practice",
         "continuing"
       ],
-      "selectedTurns": [],
+      "selectedTurns": [
+        1
+      ],
       "coverage": "Linked to developed article",
       "readingStatus": "Not inferred",
       "sourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=jewish-apocalyptic-repair-timeline"
@@ -3830,12 +3837,17 @@
       "exportStartDate": "2025-10-25",
       "turnCount": 62,
       "articles": [
-        "moses-volcano-and-exodus-chronology"
+        "moses-volcano-and-exodus-chronology",
+        "exodus-to-temple-competing-chronologies"
       ],
       "chapters": [
         "catastrophe-memory"
       ],
-      "selectedTurns": [],
+      "selectedTurns": [
+        23,
+        29,
+        46
+      ],
       "coverage": "Linked to developed article",
       "readingStatus": "Not inferred",
       "sourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=parthians-and-medes-meaning"

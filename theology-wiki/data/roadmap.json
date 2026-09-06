@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.09.05-roadmap-1",
+  "version": "2026.09.05-atlas-1",
   "updated": "2026-09-05",
   "baselineCommit": "a39f1f8391580e1a743763d6f6c455e4ead3aad8",
   "policy": "This is a sequence of deliverables, not a promise of background work or a calendar estimate. Verified output means the stated deliverable has evidence, not that a theory is true or a chapter is approved. Changes to this shared baseline require a repository edit. Workbook and personal-board edits do not automatically update it.",
@@ -364,7 +364,7 @@
       "id": "egypt-ethiopia",
       "title": "Check Egypt and Ethiopian transmission links",
       "phase": "ground",
-      "status": "Not started",
+      "status": "Draft",
       "priority": "P1",
       "owner": "Editorial/research work (unassigned)",
       "chapters": [
@@ -373,17 +373,19 @@
       "pages": [
         "tor-thomas-and-gnostic-transmission"
       ],
-      "acceptance": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge.",
+      "acceptance": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge. The first reception comparison is available, but the proposed institutional carriers and exact critical editions remain to be tested.",
       "dependsOn": [
         "melchizedek-first-pass"
       ],
-      "evidence": [],
+      "evidence": [
+        "theology-wiki/content/developed/manuscripts-movements-and-survival.md"
+      ],
       "sourceTask": "egypt-ethiopia",
       "nextAction": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
-      "readyToStart": true
+      "readyToStart": false
     },
     {
       "id": "priesthood",
@@ -688,25 +690,28 @@
       "id": "dossier-coverage",
       "title": "Extend full argument maps to remaining developed articles",
       "phase": "preserve",
-      "status": "Not started",
+      "status": "Draft",
       "priority": "P0",
       "owner": "Editorial/research work (unassigned)",
       "chapters": [],
       "pages": [
         "source-coverage"
       ],
-      "acceptance": "Every developed article has reviewed claims, original corrections, rejected readings and a scoped list of sources; source linking alone is not a fidelity sign-off.",
+      "acceptance": "Every developed article has reviewed claims, original corrections, rejected readings and a scoped list of sources; source linking alone is not a fidelity sign-off. The first source-atlas pass adds four explicitly bounded challenge records; remaining article dossiers and author review are still required.",
       "dependsOn": [
         "coverage-register",
         "scope-baseline"
       ],
-      "evidence": [],
+      "evidence": [
+        "theology-wiki/data/source-atlas.json",
+        "theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md"
+      ],
       "sourceTask": null,
       "nextAction": "Every developed article has reviewed claims, original corrections, rejected readings and a scoped list of sources; source linking alone is not a fidelity sign-off.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
-      "readyToStart": true
+      "readyToStart": false
     },
     {
       "id": "temple-case",
@@ -1030,6 +1035,10 @@
       "evidence": [
         "theology-wiki/editorial/roadmap.json"
       ]
+    },
+    {
+      "date": "2026-09-05",
+      "change": "Source-atlas first pass: 29 typed records, six source intervals, four challenge records and three content-only museum trails. Two new comparative articles attach to existing chapter routes. Larger dossier and historical-carrier tasks advance to Draft, not completed or approved."
     }
   ],
   "verificationNote": "Current outputs are verified against the recorded build, content and planning tests. Native-browser and publication evidence is attached to the release pull request; completed outputs do not signify author-approved chapters.",
@@ -1093,7 +1102,8 @@
       "title": "Catastrophe, departure and memory",
       "purpose": "Compare the competing Moses and volcano proposals without blending their geographies or dates.",
       "pages": [
-        "moses-volcano-and-exodus-chronology"
+        "moses-volcano-and-exodus-chronology",
+        "exodus-to-temple-competing-chronologies"
       ],
       "status": "Draft chapter route",
       "partId": "inheritance",
@@ -1103,10 +1113,11 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 1,
+      "articleCount": 2,
       "sourceSlugs": [
         "moses-dating-debate",
-        "parthians-and-medes-meaning"
+        "parthians-and-medes-meaning",
+        "daniel-and-teacher-of-righteousness"
       ],
       "authorApproved": false
     },
@@ -1142,7 +1153,8 @@
       "purpose": "Present the linked argument before comparing its alternative historical mechanisms.",
       "pages": [
         "tor-thomas-and-gnostic-transmission",
-        "melchizedek-priesthood-and-transmission"
+        "melchizedek-priesthood-and-transmission",
+        "manuscripts-movements-and-survival"
       ],
       "status": "Draft chapter route",
       "partId": "teacher",
@@ -1157,7 +1169,7 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 2,
+      "articleCount": 3,
       "sourceSlugs": [
         "teacher-of-righteousness-vs-gnostic-jesus",
         "ai-re-dates-dead-sea-scrolls",
@@ -1482,12 +1494,12 @@
   "summary": {
     "tasks": 36,
     "verifiedOutputs": 8,
-    "readyToStart": 9,
+    "readyToStart": 7,
     "dependencyEdges": 44,
     "chapterRoutes": 17,
     "sourceRecords": 354,
     "sourcesLinkedToArticles": 26,
-    "sourcesWithSelectedTurns": 11
+    "sourcesWithSelectedTurns": 13
   },
   "coveragePolicy": "Coverage means recorded links and selected source-turn anchors. It does not measure how much has been read, quality, originality, completeness, or author approval. Export-start dates do not date every later turn.",
   "workbook": "./planning/Theology-Research-Plan.xlsx"

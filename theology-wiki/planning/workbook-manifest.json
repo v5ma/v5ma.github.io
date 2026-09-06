@@ -1,13 +1,13 @@
 {
-  "version": "2026.09.05-roadmap-1",
+  "version": "2026.09.05-atlas-1",
   "file": "Theology-Research-Plan.xlsx",
-  "sha256": "00d32805c937d96641186ddf83cc05114bcddaefc518e78f74404aa8abea5d61",
+  "sha256": "28473f631712ddae0a0adffc6907473000c4c2428f9d96a2379fe976d96210dc",
   "inputHashes": {
-    "editorial/roadmap.json": "95a4a7e194158f92d31e63ea5cd7e995f4233027dcfca9130f5ff0f3f01550fa",
-    "data/roadmap.json": "1c6a5ec26b644f0c28f43c78516cb8c44f788cc2380c9f6d6dca69f3ec4c8aa7",
-    "data/source-coverage.json": "28c0250df4efe946a3cd583666aad1ecb76cecae92f8d8205f000fe7e4b00edf",
-    "data/foundations.json": "99e18f739b469832571ce93eccae32c5a154d08daf603865991a7500b7af9f37",
-    "data/melchizedek-evidence.json": "e06642658ae039278caf7da5d9efffe2bd2504f32b5d748b0505f8f402df073a"
+    "editorial/roadmap.json": "e81291e0af5473d1a658e2f772e9513f84bcede3f26e2473e54b66baa3b8333e",
+    "data/roadmap.json": "e2f183eed94cec38546f7223efd465db2719824862c2c49c94ecaa7234537684",
+    "data/source-coverage.json": "bc1285810a52c88a56944c30e8da7a5844c245bd690c7bac1d69ae3a5fa2bac1",
+    "data/foundations.json": "1a0f2abde913357658cdebbfa8fea711db513fe6ded828fc74681f8d0372341b",
+    "data/melchizedek-evidence.json": "6a2af6be2557749e90bc5377f6347dbbd684d9130c34de0579220e5325b44c1a"
   },
   "sheets": [
     "Overview",
@@ -22,5 +22,6 @@
   ],
   "formulaCells": 942,
   "formulaErrorCount": 0,
-  "policy": "A checked planning snapshot; local edits never update the shared site automatically. Re-export after changing source JSON. Cached figures are not author approval or a whole-project completion percentage."
+  "policy": "A checked planning snapshot; local edits never update the shared site automatically. Re-export after changing source JSON. Cached figures are not author approval or a whole-project completion percentage.",
+  "inspection": "Imported using artifact_tool; preserved 942 formulas and native chart, refreshed changed tasks, source anchors and chapter links, and inspected calculated counts and dashboard rendering. Source anchor inputs retain the original Turn N text format."
 }

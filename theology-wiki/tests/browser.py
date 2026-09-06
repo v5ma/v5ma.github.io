@@ -336,6 +336,8 @@ with sync_playwright() as tool:
         run_foundation_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
         from roadmap_checks import run_roadmap_checks
         run_roadmap_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
+        from atlas_checks import run_atlas_checks
+        run_atlas_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback

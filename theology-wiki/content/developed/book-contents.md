@@ -29,7 +29,7 @@ Separate the movement of divine names from the identity of an entire religion.
 
 Compare the competing Moses and volcano proposals without blending their geographies or dates.
 
-[[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]
+[[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]] / [[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]
 
 ## The teacher and the transmitted message
 
@@ -43,7 +43,7 @@ Keep individual identity, office, namesakes, community and sayings distinct.
 
 Present the linked argument before comparing its alternative historical mechanisms.
 
-[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]]
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]
 
 ### Loss, anger and reconstruction
 
