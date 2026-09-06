@@ -11,7 +11,7 @@ def run_atlas_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BAS
     open_('source-atlas')
     check('Atlas distinguishes 54 typed records from a count of ancient works', '54 records' in page.locator('#article-body').inner_text() and page.locator('#atlas-list a').count() == 54)
     page.locator('#atlas-kind').select_option('translation')
-    check('Translation filter isolates six access records', page.locator('#atlas-list a').count() == 6)
+    check('Translation filter isolates seven access records', page.locator('#atlas-list a').count() == 7)
     page.locator('#atlas-search').fill('zzzz-unmatched')
     check('Atlas empty state permits recovery', 'No records match' in page.locator('#atlas-list').inner_text())
     page.locator('#atlas-search').fill('')

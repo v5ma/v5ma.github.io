@@ -19,11 +19,11 @@ def run_foundation_checks(page, ctx, open_page, navigate, check, screenshot, out
     open_page(page,'book-contents','#chapter-thomas')
     check('Chapter-route deep links resolve to a real element',page.locator('#chapter-thomas').count()==1)
     open_page(page,'parallel-timelines')
-    check('Timeline shows seventeen records on four explicit layers',page.locator('.foundation-time-record').count()==17 and page.locator('.foundation-layer-controls input').count()==4)
+    check('Timeline shows nineteen records on four explicit layers',page.locator('.foundation-time-record').count()==19 and page.locator('.foundation-layer-controls input').count()==4)
     check('The chart has an accessible title and description',page.locator('#foundation-chart-title').count()==1 and page.locator('#foundation-chart-description').count()==1)
     screenshot(page,'foundation-timelines-desktop.png')
     page.locator('#timeline-scope').select_option('undated')
-    check('Undated constraints are preserved rather than assigned coordinates',page.locator('.foundation-time-record').count()==8)
+    check('Undated constraints are preserved rather than assigned coordinates',page.locator('.foundation-time-record').count()==9)
     page.locator('#timeline-scope').select_option('all')
     for layer in ['june','witness','textual']:
         page.locator(f'.foundation-layer-controls input[value="{layer}"]').uncheck()
