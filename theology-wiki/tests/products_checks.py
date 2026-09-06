@@ -59,6 +59,7 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     finally:
         (OUT/'recording-after-reload.json').write_text(json.dumps(page.evaluate('({stored:localStorage.getItem("theology:listening:v1"),time:document.querySelector("#listen-recording").currentTime,ready:document.querySelector("#listen-recording").readyState,ranges:Array.from({length:document.querySelector("#listen-recording").seekable.length},(_,i)=>[document.querySelector("#listen-recording").seekable.start(i),document.querySelector("#listen-recording").seekable.end(i)]),duration:document.querySelector("#listen-recording").duration,note:document.querySelector("#recorded-resume-note").textContent})'),indent=2))
     check('Recorded time resumes after reload without autoplay',page.locator('#listen-recording').evaluate('(a,t)=>a.paused&&Math.abs(a.currentTime-t)<.15',saved_time))
+    check('Resumed recording remains playable with a nonempty seekable range',page.locator('#listen-recording').evaluate('(a)=>a.seekable.length>0&&a.seekable.end(a.seekable.length-1)>a.currentTime'))
     page.locator('#listen-title').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'listening-player-desktop.png'))
     with page.expect_download() as ev:page.locator('#listen-recorded a[download]').click()
     mp3=Path(ev.value.path()).read_bytes();cfg=page.request.get(BASE.rsplit('/',1)[0]+'/data/products.json').json();asset=next(a for a in cfg['media']['assets'] if a['kind']=='article');file=next(f for f in asset['files'] if f['role']=='audio')
