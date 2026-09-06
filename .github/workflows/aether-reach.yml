@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Validate every source byte and replace temporary transport
+      - name: Validate source and remove temporary transport
         run: |
           python - <<'PY'
           import base64,hashlib,json,lzma,shutil
@@ -25,22 +25,21 @@ jobs:
           allowed={'index.html','projects.css','.github/workflows/aether-reach.yml','.github/workflows/aether-published.yml','aether-reach/cover.svg','aether-reach/model.mjs','aether-reach/.gitignore','aether-reach/release.json','aether-reach/ROADMAP.md','aether-reach/index.html','aether-reach/scene.mjs','aether-reach/style.css','aether-reach/app.mjs','aether-reach/README.md','aether-reach/tests/browser.py','aether-reach/tests/model.test.mjs','aether-reach/vendor/LICENSE'}
           assert set(files)==allowed
           for name,item in files.items():
-              rawfile=item['text'].encode('utf-8')
-              assert hashlib.sha256(rawfile).hexdigest()==item['sha256'],name
+              assert hashlib.sha256(item['text'].encode('utf-8')).hexdigest()==item['sha256'],name
           for name,item in files.items():
+              if name.startswith('.github/'):continue
               p=Path(name);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(item['text'].encode('utf-8'))
           shutil.rmtree('.aether-incoming')
-          assert 'contents: read' in Path('.github/workflows/aether-reach.yml').read_text()
-          print('17 source files verified. Final acceptance workflow is read-only.')
+          print('Application and homepage source verified. Workflow updates are handled separately.')
           PY
           node --test aether-reach/tests/model.test.mjs
-      - name: Commit readable application and remove staging
+      - name: Commit only application source
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html projects.css aether-reach .aether-incoming .github/workflows/aether-reach.yml .github/workflows/aether-published.yml
+          git add index.html projects.css aether-reach .aether-incoming
           git diff --cached --stat
-          git commit -m 'Build Aether Reach original first-person sky-city expedition and homepage launch'
+          git commit -m 'Implement Aether Reach original first-person sky-city expedition and homepage launch'
           git push origin HEAD:feat/aether-reach-first-expedition
           git rev-parse HEAD > materialized-source.txt
       - uses: actions/upload-artifact@v4
