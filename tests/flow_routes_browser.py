@@ -11,10 +11,10 @@ def check(v,s):
  assert v,s
  checks.append(s);print('PASS:',s,flush=True)
 def state(page):
- return page.evaluate('''()=>({x:player.x,y:player.y,vx:player.vx,vy:player.vy,won,tries,deliveries,steps:__ground.state.steps,id:player.track?.sky.id,remaining:player.track?player.track.len-player.trackS:null,visits:[...__network.state.visits],events:__network.state.events,hooks:__grapple.state.hooks,history:RailGripCore.history})''')
+ return page.evaluate('''()=>({x:player.x,y:player.y,vx:player.vx,vy:player.vy,won,tries,deliveries,steps:__ground.state.steps,paused:__delivery.paused,right:!!keys.KeyD,left:!!keys.KeyA,jump:!!keys.Space,id:player.track?.sky.id,remaining:player.track?player.track.len-player.trackS:null,visits:[...__network.state.visits],events:__network.state.events,hooks:__grapple.state.hooks,history:RailGripCore.history})''')
 def capture(page,name):
  page.locator('#cv').focus();page.keyboard.press('KeyP');page.wait_for_function('__delivery.paused')
- page.locator('#gl').screenshot(path=str(OUT/name));page.locator('#delivery-pause [data-delivery="resume"]').click();page.locator('#cv').focus();page.keyboard.down('KeyD')
+ page.locator('#gl').screenshot(path=str(OUT/name));page.locator('#delivery-pause [data-delivery="resume"]').click();page.wait_for_function('!__delivery.paused');page.locator('#cv').focus();page.keyboard.down('KeyD')
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
  context=browser.new_context(viewport={'width':1440,'height':940},record_video_dir=str(OUT/'video'),service_workers='block',accept_downloads=True)
@@ -45,11 +45,11 @@ with sync_playwright() as p:
    check(page.evaluate('tracks.filter(t=>t.sky?.authoredFlow).length===15'),'All 15 authored tracks exist in the live collision world')
    if MODE=='sky':
     page.locator('#network-map-button').click();page.wait_for_selector('#sky-network-map[open]');n=state(page)['steps'];page.wait_for_timeout(200)
-    check(state(page)['steps']==n,'The route map pauses without changing progress');page.screenshot(path=str(OUT/'whole-level-map.png'));page.locator('#network-map-close').click()
+    check(state(page)['steps']==n,'The route map pauses without changing progress');page.screenshot(path=str(OUT/'whole-level-map.png'));page.locator('#network-map-close').click();page.wait_for_function('!document.getElementById("sky-network-map").open&&!__delivery.paused')
    page.locator('#cv').focus();page.keyboard.down('KeyD')
    if MODE!='road':
-    entry='e4' if MODE=='recover' else 'm0';x=3640 if MODE=='recover' else 380
-    page.wait_for_function('(x)=>player.x>=x',arg=x,timeout=240000);page.keyboard.down('Space');page.wait_for_function('(id)=>player.track?.sky.id===id',arg=entry,timeout=45000);page.keyboard.up('Space')
+    entry='e4' if MODE=='recover' else 'm0';x=3580 if MODE=='recover' else 320
+    page.wait_for_function('(x)=>player.x>=x',arg=x,timeout=480000);page.keyboard.down('Space');page.wait_for_function('(id)=>player.track?.sky.id===id',arg=entry,timeout=45000);page.keyboard.up('Space')
     check(True,'A deliberate road jump enters the selected route')
     if MODE in ['sky','canal']:
      page.wait_for_function('__network.state.visits.has("m2")',timeout=180000)

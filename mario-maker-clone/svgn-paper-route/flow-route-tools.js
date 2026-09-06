@@ -4,7 +4,9 @@
  const active=()=>window.__ground?.active()&&__ground.meta?.flowRoutes?.version===3;
  const render=window.render;window.render=function(){render();if(!active()||won||__delivery.state.menu||RouteWorkshop.active||__delivery.state.route!==4)return;
   const p=player,t=p.track,id=t?.sky.id,remaining=t?t.len-p.trackS:0;let text=null;
-  if(id==='m4')text=remaining<150?'FORK: BRAKE NOW FOR THE CANAL / KEEP THROTTLING FOR THE HIGH HOOK':'CANAL FORK AHEAD: THE LAST GOLD LIP OFFERS A LOWER LINE';
+  if(!id&&p.x<550)text='OPTIONAL SKY: JUMP AT THE EARLY SIGN TO USE THE FULL RUNWAY';
+  else if(id==='m0')text='BUILD SPEED THROUGH THE LONG RUNWAY BEFORE ITS RISING LIP';
+  else if(id==='m4')text=remaining<150?'FORK: BRAKE NOW FOR THE CANAL / KEEP THROTTLING FOR THE HIGH HOOK':'CANAL FORK AHEAD: THE LAST GOLD LIP OFFERS A LOWER LINE';
   else if(id==='m6'||id==='m7')text='FOLLOW THE CURL LEFT; THE CRADLE TURNS YOU BACK RIGHT';
   else if(id==='b0')text='LOWER LINE: REBUILD SPEED THROUGH THE CANAL COLLECTOR';
   else if(id==='m9')text='ORCHARD SHELF: A BREATHER BEFORE THE DOWNHILL RETURN';
