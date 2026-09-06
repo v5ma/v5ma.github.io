@@ -1,0 +1,39 @@
+name: Verify published Aether Reach
+on:
+  push:
+    branches: [master]
+    paths: ['aether-reach/**','index.html','projects.css','.github/workflows/aether-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare hosted application with committed source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request
+          names=['index.html','projects.css']+[str(p) for p in Path('aether-reach').glob('*') if p.is_file() and p.suffix in ['.mjs','.css','.html','.svg','.json']]+['aether-reach/vendor/three.module.js','aether-reach/vendor/three.core.js']
+          expected={n:hashlib.sha256(Path(n).read_bytes()).hexdigest() for n in names};result={}
+          for attempt in range(45):
+            for n in names:
+              if result.get(n,{}).get('match'):continue
+              try:
+                with urllib.request.urlopen('https://v5ma.github.io/'+n+'?aether=010',timeout=15) as r:
+                  got=hashlib.sha256(r.read()).hexdigest();result[n]={'status':r.status,'sha256':got,'match':got==expected[n]}
+              except Exception as e:result[n]={'match':False,'error':str(e)}
+            if all(x.get('match') for x in result.values()) and len(result)==len(names):break
+            time.sleep(6)
+          Path('aether-publication.json').write_text(json.dumps(result,indent=2))
+          assert all(x.get('match') for x in result.values()), result
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-publication
+          path: aether-publication.json
+          retention-days: 14

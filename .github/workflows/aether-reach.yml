@@ -1,49 +1,54 @@
-name: Materialize checked Aether Reach source
+name: Aether Reach validation
 on:
   push:
     branches: [feat/aether-reach-first-expedition]
+    paths: ['aether-reach/**','index.html','projects.css','.github/workflows/aether-reach.yml']
+  pull_request:
+    paths: ['aether-reach/**','index.html','projects.css','.github/workflows/aether-reach.yml']
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: aether-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
-  materialize:
-    if: github.ref == 'refs/heads/feat/aether-reach-first-expedition'
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [expedition, interface]
     steps:
       - uses: actions/checkout@v4
-      - name: Validate source and remove temporary transport
-        run: |
-          python - <<'PY'
-          import base64,hashlib,json,lzma,shutil
-          from pathlib import Path
-          data=''.join(Path(f'.aether-incoming/part-{i}.txt').read_text() for i in range(9))
-          raw=lzma.decompress(base64.b64decode(data,validate=True))
-          assert len(raw)==119903
-          assert hashlib.sha256(raw).hexdigest()=='b67e8a118ea91a875f056d20e4aac0db65adf017422721553fcc5635d00d4c3d'
-          files=json.loads(raw)
-          allowed={'index.html','projects.css','.github/workflows/aether-reach.yml','.github/workflows/aether-published.yml','aether-reach/cover.svg','aether-reach/model.mjs','aether-reach/.gitignore','aether-reach/release.json','aether-reach/ROADMAP.md','aether-reach/index.html','aether-reach/scene.mjs','aether-reach/style.css','aether-reach/app.mjs','aether-reach/README.md','aether-reach/tests/browser.py','aether-reach/tests/model.test.mjs','aether-reach/vendor/LICENSE'}
-          assert set(files)==allowed
-          for name,item in files.items():
-              assert hashlib.sha256(item['text'].encode('utf-8')).hexdigest()==item['sha256'],name
-          for name,item in files.items():
-              if name.startswith('.github/'):continue
-              p=Path(name);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(item['text'].encode('utf-8'))
-          shutil.rmtree('.aether-incoming')
-          print('Application and homepage source verified. Workflow updates are handled separately.')
-          PY
-          node --test aether-reach/tests/model.test.mjs
-      - name: Commit only application source
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html projects.css aether-reach .aether-incoming
-          git diff --cached --stat
-          git commit -m 'Implement Aether Reach original first-person sky-city expedition and homepage launch'
-          git push origin HEAD:feat/aether-reach-first-expedition
-          git rev-parse HEAD > materialized-source.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          name: aether-materialized-source
-          path: materialized-source.txt
-          retention-days: 3
+          node-version: '22'
+      - name: Check model and source syntax
+        run: |
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/model.test.mjs
+      - name: Install the actual browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the actual HTTP WebGL expedition
+        env:
+          AETHER_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/aether-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/browser.py
+      - name: Record the exact tested version
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-${{ matrix.suite }}
+          path: aether-reach/test-output
+          retention-days: 7
