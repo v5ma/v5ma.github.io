@@ -1,0 +1,27 @@
+name: Aether Reach validation
+on:
+  push:
+    branches: [feat/aether-reach-first-expedition]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Capture existing public-site conventions and pinned renderer
+        run: |
+          git rev-parse HEAD > source-sha.txt
+          git ls-files | grep -iE '(^|/)agents\.md$' > agent-paths.txt || true
+          while IFS= read -r path; do printf '\n--- %s ---\n' "$path"; cat "$path"; done < agent-paths.txt > agent-instructions.txt
+          tar -czf context.tgz index.html projects.css .github/workflows mario-maker-clone/svgn-paper-route/vendor
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aether-source-context
+          path: |
+            context.tgz
+            source-sha.txt
+            agent-instructions.txt
+          retention-days: 3
