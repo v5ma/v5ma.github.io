@@ -6,10 +6,11 @@ export function artkit(scene){
  function texture(type){if(textures[type])return textures[type];const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');g.fillStyle=type==='road'?'#969e99':type==='brick'?'#d2c4ad':'#bdc7b6';g.fillRect(0,0,256,256);
   for(let i=0;i<4400;i++){const x=rnd(i+11)*256,y=rnd(i+73)*256;g.fillStyle=i%3?'#13292a16':'#e4ecd616';g.fillRect(x,y,1+rnd(i)*4,1+rnd(i+7)*5);}
   if(type==='brick'){g.strokeStyle='#333f4160';g.lineWidth=2;for(let y=0;y<256;y+=32){g.beginPath();g.moveTo(0,y);g.lineTo(256,y);g.stroke();for(let x=(y/32%2)*32;x<256;x+=64){g.beginPath();g.moveTo(x,y);g.lineTo(x,y+32);g.stroke();}}}
-  else{g.strokeStyle='#243e3c55';g.lineWidth=1;for(let i=0;i<12;i++){g.beginPath();g.moveTo(rnd(i)*256,rnd(i+5)*256);for(let j=0;j<4;j++)g.lineTo(rnd(i+j+9)*256,rnd(i+j+91)*256);g.stroke();}}
-  const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;textures[type]=t;return t;
+  else{g.strokeStyle='#243e3c25';g.lineWidth=1;for(let i=0;i<12;i++){g.beginPath();g.moveTo(rnd(i)*256,rnd(i+5)*256);for(let j=0;j<4;j++)g.lineTo(rnd(i+j+9)*256,rnd(i+j+91)*256);g.stroke();}}
+  const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;if(type==='road')t.repeat.set(9,25);if(type==='brick')t.repeat.set(3,3);textures[type]=t;return t;
  }
  const geos={box:new T.BoxGeometry(1,1,1),ball:new T.SphereGeometry(1,10,8),cyl:new T.CylinderGeometry(1,1,1,8),cone:new T.ConeGeometry(1,1,7),plane:new T.PlaneGeometry(1,1),capsule:new T.CapsuleGeometry(.5,1,4,8)};
+ const blade=new T.BufferGeometry();blade.setAttribute('position',new T.Float32BufferAttribute([-.5,0,0,.5,0,0,.13,1,.18],3));blade.computeVertexNormals();geos.blade=blade;
  const mats=new Map(),buckets=new Map(),dynamic=[];
  function mat(color,type='stone',extra={}){const key=color+':'+type;if(!mats.has(key))mats.set(key,new T.MeshStandardMaterial({color,roughness:type==='metal'?.42:.9,metalness:type==='metal'?.4:0,map:['stone','brick','road'].includes(type)?texture(type):null,...extra}));return mats.get(key);}
  function add(shape,x,y,z,sx,sy,sz,color,type='stone',rx=0,ry=0,rz=0){const m=mat(color,type),key=shape+':'+color+':'+type;let b=buckets.get(key);if(!b){b={geo:geos[shape],mat:m,items:[]};buckets.set(key,b);}const matrix=new T.Matrix4().compose(new T.Vector3(x,y,z),new T.Quaternion().setFromEuler(new T.Euler(rx,ry,rz)),new T.Vector3(sx,sy,sz));b.items.push(matrix);}

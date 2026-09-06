@@ -14,17 +14,17 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, mission]
+        suite: [ui, mission, controller]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Model and input checks
+      - name: Model and public-boundary checks
         run: |
           for file in rainward/*.mjs; do node --check "$file"; done
           node --test rainward/tests/*.test.mjs
@@ -39,11 +39,13 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          timeout 850 python -u rainward/tests/browser.py
+          if [ "$RAINWARD_SUITE" = controller ]; then FILE=controller.py; else FILE=browser.py; fi
+          timeout 1000 python -u "rainward/tests/$FILE"
       - name: Preserve exact source and test evidence
         if: always()
         run: |
           mkdir -p test-output
+          python rainward/tests/release.py
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
           tar -czf test-output/rainward-source.tgz rainward index.html projects.css
