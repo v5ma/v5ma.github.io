@@ -1,0 +1,40 @@
+name: Review flowing route integration
+on:
+  push:
+    branches: [feat/flow-routes-playable-20260906]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            mario-maker-clone/svgn-paper-route
+            tests
+            scripts
+            .github/workflows
+      - run: |
+          mkdir -p test-output
+          tar -czf test-output/current.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/source.txt
+          find . -name AGENTS.md -not -path './.git/*' > test-output/agent-files.txt
+      - uses: actions/checkout@v4
+        with:
+          ref: 8c0cac3e980ef3158300d82ae7584bd1de94d71b
+          path: prior-design
+          persist-credentials: false
+          sparse-checkout: |
+            mario-maker-clone/svgn-paper-route
+            tests
+            scripts
+      - run: tar -C prior-design -czf test-output/prior-design.tgz mario-maker-clone/svgn-paper-route tests scripts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flow-route-source
+          path: test-output/
+          retention-days: 3
