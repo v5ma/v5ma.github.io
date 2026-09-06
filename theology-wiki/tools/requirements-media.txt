@@ -5,4 +5,4 @@ soundfile==0.13.1
 numpy==2.2.6
 Pillow==11.3.0
 huggingface-hub==0.34.4
-transformers==4.51.3
+transformers==5.10.1
