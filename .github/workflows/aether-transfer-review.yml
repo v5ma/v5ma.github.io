@@ -1,0 +1,37 @@
+name: Integrate checked transfer review
+on:
+  push:
+    branches: [feat/aether-arsenal-and-sky-transfers]
+    paths: [.github/workflows/aether-transfer-review.yml]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          edits=json.loads(Path('aether-reach/tools/transfer-review.json').read_text());pending=[]
+          assert set(edits)=={'aether-reach/'+x for x in ['model.mjs','tests/arsenal_browser.py','tests/combat.test.mjs']}
+          for name,c in edits.items():
+            p=Path(name);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==c['before'],name
+            s=raw.decode()
+            for i,j,v in reversed(c['ops']):s=s[:i]+v+s[j:]
+            raw=s.encode();assert hashlib.sha256(raw).hexdigest()==c['after'],name
+            pending.append((p,raw))
+          for p,raw in pending:p.write_bytes(raw)
+          PY
+          node --test aether-reach/tests/*.test.mjs
+          python -m py_compile aether-reach/tests/arsenal_browser.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add aether-reach/model.mjs aether-reach/tests/arsenal_browser.py aether-reach/tests/combat.test.mjs
+          git commit -m 'Broaden the physical Gale receiving corridor and test actions against simulation time'
+          git push origin HEAD:feat/aether-arsenal-and-sky-transfers
