@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.06-connected-foundations-1",
-  "updated": "2026-09-05",
+  "version": "2026.09.06-priesthood-time-1",
+  "updated": "2026-09-06",
   "parts": [
     {
       "id": "inheritance",
@@ -48,7 +48,8 @@
           "title": "What survives a teacher?",
           "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
           "pages": [
-            "jesus-teacher-of-righteousness-hypothesis"
+            "jesus-teacher-of-righteousness-hypothesis",
+            "daniel-jubilee-and-the-teachers-time"
           ],
           "status": "Draft chapter route"
         },
@@ -59,7 +60,8 @@
           "pages": [
             "tor-thomas-and-gnostic-transmission",
             "melchizedek-priesthood-and-transmission",
-            "manuscripts-movements-and-survival"
+            "manuscripts-movements-and-survival",
+            "onias-egypt-and-priestly-continuity"
           ],
           "status": "Draft chapter route"
         },
@@ -69,7 +71,8 @@
           "purpose": "Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assuming a single emotional progression.",
           "pages": [
             "gnosticism-and-temple-trauma",
-            "apocalyptic-repair-theology"
+            "apocalyptic-repair-theology",
+            "onias-egypt-and-priestly-continuity"
           ],
           "status": "Draft chapter route"
         }
@@ -1087,6 +1090,54 @@
       "reference": "cf-sumerian-kings",
       "sourceURL": "https://etcsl.orinst.ox.ac.uk/section2/tr211.htm",
       "sourceTitle": "Sumerian King List, ETCSL 2.1.1"
+    },
+    {
+      "id": "pt-damascus-intervals",
+      "layer": "textual",
+      "title": "The Teacher inside the counted history",
+      "dateLabel": "390 + 20; an additional career interval is reconstructed",
+      "start": null,
+      "end": null,
+      "detail": "Appearance, death and anticipated restoration are different endpoints. The illustrative 586 BCE anchor is not a date written in CD.",
+      "reference": "priests-collins",
+      "sourceURL": "https://cojs.org/the_dead_sea_scrolls-_john_j-_collins-_anchor_bible_dictionary_-ed-_david_noel_freedman-_doubleday-_ny-_1992-_vol-2-_p-85-101/",
+      "sourceTitle": "John J. Collins, The Dead Sea Scrolls (Anchor Bible Dictionary, 1992)"
+    },
+    {
+      "id": "pt-11q13-readings",
+      "layer": "textual",
+      "title": "Release in or after the tenth jubilee",
+      "dateLabel": "Competing restorations; no absolute date assigned",
+      "start": null,
+      "end": null,
+      "detail": "Williams adopts the revised after-ten-cycles reading of 11Q13 II 6-7. Critical manuscript collation and an identification with the Teacher remain separate work.",
+      "reference": "melch-williams2023",
+      "sourceURL": "https://journals.sagepub.com/doi/10.1177/0142064X231191176",
+      "sourceTitle": "Logan Williams (2023), Melchizedek, the Son of Man, and Eschatological Jubilee"
+    },
+    {
+      "id": "pt-oniad-generation",
+      "layer": "textual",
+      "title": "Oniad sons and cross-border counsel",
+      "dateLabel": "Narrative succession and royal service, not a new artifact date",
+      "start": null,
+      "end": null,
+      "detail": "Antiquities 13.10.4 identifies sons of the founder; 13.13.2 reports Ananias defending Alexander. This supplies a possible carrier network, not proof of Teacher transmission.",
+      "reference": "atlas-onias",
+      "sourceURL": "https://penelope.uchicago.edu/josephus/ant-13.html",
+      "sourceTitle": "Josephus, Antiquities 13.3.1-3, 13.10.4 and 13.13.2, Whiston translation"
+    },
+    {
+      "id": "pt-oniad-closure",
+      "layer": "textual",
+      "title": "The Egyptian sanctuary becomes inaccessible",
+      "dateLabel": "Post-revolt closure sequence; exact year not adopted here",
+      "start": null,
+      "end": null,
+      "detail": "War 7.10.4 describes successive restrictions by Lupus and Paulinus. Its transmitted 343-year duration and editorial bracketed dates are not silently harmonized.",
+      "reference": "priests-war7",
+      "sourceURL": "https://penelope.uchicago.edu/josephus/war-7.html",
+      "sourceTitle": "Josephus, War 7.10.2-4, William Whiston translation"
     }
   ]
 }

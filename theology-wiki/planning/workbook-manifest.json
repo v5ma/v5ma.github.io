@@ -1,12 +1,12 @@
 {
   "version": "2026.09.05-atlas-1",
   "file": "Theology-Research-Plan.xlsx",
-  "sha256": "983eaf6f05fbd428dc27863a456a614b265c7287af3402b954a39f41cd43acc9",
+  "sha256": "f4fe2fbabc3daf4dab70e3198d0b06c533830313fb0ec3d27dfd685cf9414cbe",
   "inputHashes": {
-    "editorial/roadmap.json": "c07deda3ca3a1d40a5aac849eb2178767c02db8da140d5c9267df6930c832347",
-    "data/roadmap.json": "4cca03db6ce2b5195ce34113cb5334beae4a85aa8465c4c34e49603912c09b13",
-    "data/source-coverage.json": "0ea3fdc80fe8a5f0ea7c560a3fc93710b033b5f7fb67a8f6b3c4c6cc5771d2df",
-    "data/foundations.json": "2d1016f320c421d13a478ce43cf2e31f7769d9609402de80c30d4ed1fbee0878",
+    "editorial/roadmap.json": "42f0e8bc2dae03cb760f5abd329449ec56efdf4e816d6665820055df4c6dce80",
+    "data/roadmap.json": "c5f9b95706c04cc66aa985c3120e47ed69fb98c4de3d545c27e6b7859944bef3",
+    "data/source-coverage.json": "5d7a8f4427f306cce62ab345c5f7f7d04513beb17521f342c7a9e80b3f2d4386",
+    "data/foundations.json": "674d649ba10f954f2d75f4d0c133237fcb0628caeeb6bfe4af5ab6dce8357d00",
     "data/melchizedek-evidence.json": "6a2af6be2557749e90bc5377f6347dbbd684d9130c34de0579220e5325b44c1a"
   },
   "sheets": [
@@ -23,6 +23,13 @@
   "formulaCells": 942,
   "formulaErrorCount": 0,
   "policy": "A checked planning snapshot; local edits never update the shared site automatically. Re-export after changing source JSON. Cached figures are not author approval or a whole-project completion percentage.",
-  "inspection": "Imported and updated with artifact_tool. Nine sheets and 942 formulas retained. Chapter article links, shared task status and evidence, next actions and edition notes refreshed. Rendered overview and chapter range inspected; no cached formula errors. Source links and counts do not assert author approval.",
-  "contentEdition": "2026.09.06-connected-foundations-1"
+  "inspection": {
+    "method": "artifact_tool import, focused planning and source-coverage updates, calculation/error scan, visual review and export",
+    "sheets": 9,
+    "formulaCells": 942,
+    "formulaErrorCount": 0,
+    "visualSummary": "Formula-backed overview totals and phase counts",
+    "note": "No task stage or author approval was promoted by this update. Chart export is not claimed."
+  },
+  "contentEdition": "2026.09.06-priesthood-time-1"
 }

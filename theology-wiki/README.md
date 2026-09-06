@@ -134,3 +134,13 @@ The first-person edition is recovered and tested before publication, and the two
 The source atlas gains thirteen records and twelve typed connections; two content-only museum trails add eight stops. The book still has seventeen proposed chapter routes, now linking both investigations. Device narration is generated for all twenty-five articles. The two existing recordings remain source-pinned to the recovered first-person edition; the new articles are not advertised as prerecorded. Existing archives, forecast observations, private SAN files, XR runtime and unrelated applications are unchanged.
 
 The research plan advances only the bounded coherence and formal-comparison tasks to Draft and records remaining empirical and textual work. A revised nine-sheet workbook must match the regenerated inputs. This is not author approval of the whole manuscript or confirmation of a reconstructed event.
+
+## Priesthood and prophetic time edition
+
+The authorial studies `daniel-jubilee-and-the-teachers-time` and `onias-egypt-and-priestly-continuity` develop the earlier-founder and institutional branch/reunion proposals through specific passages, named successors, competing chronology assignments and sanctuary closure. The approximately 147 BCE appearance and 88 BCE death remain a versioned hypothesis, separate from the illustrative 586 BCE/CD count. A reconstructed 40-year career is never labeled as another explicit CD datum.
+
+`editorial/priestly-evidence.json` is the 12-claim source register. `tools/priestly.cjs` validates source locators, derives the conditional elapsed-year sequence, and attaches three original conversation turns and their source hashes. The resulting `data/priestly-evidence.json` is linked from both studies. Its year arithmetic supports BCE/CE without a year zero; it is not a calendar-reconstruction or historical-identification engine.
+
+The typed source atlas adds nine records and twelve relationships, including Strabo as quoted through Josephus. Two new content-only museum trails contain ten stops. Four new timeline records are undated textual constraints, not invented artifact dates. Existing full-study recordings, original conversations, separate XR code and other projects are untouched. All 27 studies have source-pinned device-reading documents; these two new articles have no claimed prerecorded MP3.
+
+The research workbook retains nine sheets and 942 formulas with refreshed task links, chapter coverage and source coverage. Review states are unchanged: critical collation, precise event dates and later transmission intermediates remain research tasks. Native chart export is not asserted; the overview supplies formula-backed totals and phase counts.

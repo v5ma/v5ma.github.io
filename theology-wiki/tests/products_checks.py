@@ -12,7 +12,7 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     page.set_viewport_size({'width':1440,'height':1000})
     ready(extra='&listen='+slug)
     page.wait_for_function('(s)=>document.querySelector("#product-workspace")?.dataset.articleReady===s',arg=slug)
-    check('Listening app exposes all 25 complete articles and 17 chapter routes',page.locator('#listen-article option').count()==25 and page.locator('#listen-chapter option').count()==18)
+    check('Listening app exposes all 27 complete articles and 17 chapter routes',page.locator('#listen-article option').count()==27 and page.locator('#listen-chapter option').count()==18)
     check('Listening app verifies both narration and original source bytes','hashes match' in page.locator('#listen-version').inner_text())
     check('Listening transcript includes the complete main study, not an episode summary',page.locator('.listen-paragraph').count()>25 and '1062' in page.locator('#listen-text').inner_text())
     check('Remote device voices are opt-in and playback does not auto-start',not page.locator('#listen-remote').is_checked() and 'Ready' in page.locator('#listen-counter').inner_text())

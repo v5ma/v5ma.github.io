@@ -4,7 +4,7 @@ slug: "parallel-timelines"
 summary: "Inspect different source reconstructions and manuscript witnesses without collapsing them into a single chronology."
 topic: "Wider conversations"
 status: "Navigator"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # Parallel timelines and versions
@@ -94,5 +94,21 @@ Textual relationship; no composition date assigned here. Galatians 4:19 supplies
 ### The flood divides the Sumerian King List
 
 Internal narrative division; no calibrated event date. The sequence can be compared without treating its royal reign lengths as a modern geochronology.
+
+### The Teacher inside the counted history
+
+390 + 20; an additional career interval is reconstructed. Appearance, death and anticipated restoration are different endpoints. The illustrative 586 BCE anchor is not a date written in CD.
+
+### Release in or after the tenth jubilee
+
+Competing restorations; no absolute date assigned. Williams adopts the revised after-ten-cycles reading of 11Q13 II 6-7. Critical manuscript collation and an identification with the Teacher remain separate work.
+
+### Oniad sons and cross-border counsel
+
+Narrative succession and royal service, not a new artifact date. Antiquities 13.10.4 identifies sons of the founder; 13.13.2 reports Ananias defending Alexander. This supplies a possible carrier network, not proof of Teacher transmission.
+
+### The Egyptian sanctuary becomes inaccessible
+
+Post-revolt closure sequence; exact year not adopted here. War 7.10.4 describes successive restrictions by Lupus and Paulinus. Its transmitted 343-year duration and editorial bracketed dates are not silently harmonized.
 
 [[tor-thomas-and-gnostic-transmission|Read the full transmission inquiry]] and [[jesus-teacher-of-righteousness-hypothesis|the earlier-Teacher reconstruction]].

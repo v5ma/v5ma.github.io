@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.06-connected-foundations-1",
-  "updated": "2026-09-05",
+  "version": "2026.09.06-priesthood-time-1",
+  "updated": "2026-09-06",
   "references": [
     {
       "id": "will-luke22",
@@ -285,7 +285,8 @@
           "title": "What survives a teacher?",
           "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
           "pages": [
-            "jesus-teacher-of-righteousness-hypothesis"
+            "jesus-teacher-of-righteousness-hypothesis",
+            "daniel-jubilee-and-the-teachers-time"
           ],
           "status": "Draft chapter route"
         },
@@ -296,7 +297,8 @@
           "pages": [
             "tor-thomas-and-gnostic-transmission",
             "melchizedek-priesthood-and-transmission",
-            "manuscripts-movements-and-survival"
+            "manuscripts-movements-and-survival",
+            "onias-egypt-and-priestly-continuity"
           ],
           "status": "Draft chapter route"
         },
@@ -306,7 +308,8 @@
           "purpose": "Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assuming a single emotional progression.",
           "pages": [
             "gnosticism-and-temple-trauma",
-            "apocalyptic-repair-theology"
+            "apocalyptic-repair-theology",
+            "onias-egypt-and-priestly-continuity"
           ],
           "status": "Draft chapter route"
         }
@@ -1129,6 +1132,46 @@
       "end": null,
       "detail": "The sequence can be compared without treating its royal reign lengths as a modern geochronology.",
       "reference": "cf-sumerian-kings"
+    },
+    {
+      "id": "pt-damascus-intervals",
+      "layer": "textual",
+      "title": "The Teacher inside the counted history",
+      "dateLabel": "390 + 20; an additional career interval is reconstructed",
+      "start": null,
+      "end": null,
+      "detail": "Appearance, death and anticipated restoration are different endpoints. The illustrative 586 BCE anchor is not a date written in CD.",
+      "reference": "priests-collins"
+    },
+    {
+      "id": "pt-11q13-readings",
+      "layer": "textual",
+      "title": "Release in or after the tenth jubilee",
+      "dateLabel": "Competing restorations; no absolute date assigned",
+      "start": null,
+      "end": null,
+      "detail": "Williams adopts the revised after-ten-cycles reading of 11Q13 II 6-7. Critical manuscript collation and an identification with the Teacher remain separate work.",
+      "reference": "melch-williams2023"
+    },
+    {
+      "id": "pt-oniad-generation",
+      "layer": "textual",
+      "title": "Oniad sons and cross-border counsel",
+      "dateLabel": "Narrative succession and royal service, not a new artifact date",
+      "start": null,
+      "end": null,
+      "detail": "Antiquities 13.10.4 identifies sons of the founder; 13.13.2 reports Ananias defending Alexander. This supplies a possible carrier network, not proof of Teacher transmission.",
+      "reference": "atlas-onias"
+    },
+    {
+      "id": "pt-oniad-closure",
+      "layer": "textual",
+      "title": "The Egyptian sanctuary becomes inaccessible",
+      "dateLabel": "Post-revolt closure sequence; exact year not adopted here",
+      "start": null,
+      "end": null,
+      "detail": "War 7.10.4 describes successive restrictions by Lupus and Paulinus. Its transmitted 343-year duration and editorial bracketed dates are not silently harmonized.",
+      "reference": "priests-war7"
     }
   ],
   "relations": [
@@ -1383,6 +1426,48 @@
       "type": "compares",
       "why": "The inward reference and the cosmic ground are connected interpretations, not identical models or measurements.",
       "origin": "Editorial relationship"
+    },
+    {
+      "to": "daniel-jubilee-and-the-teachers-time",
+      "type": "develops",
+      "why": "The identity proposal now has a complete companion examination of counted history, event assignments and incompatible chronology versions.",
+      "origin": "Editorial relationship",
+      "from": "jesus-teacher-of-righteousness-hypothesis"
+    },
+    {
+      "to": "onias-egypt-and-priestly-continuity",
+      "type": "develops",
+      "why": "The proposed Egyptian-Judean institutional network is examined through actual reported staff, successors, political connections and closure.",
+      "origin": "Editorial relationship",
+      "from": "tor-thomas-and-gnostic-transmission"
+    },
+    {
+      "to": "onias-egypt-and-priestly-continuity",
+      "type": "connects",
+      "why": "Onias as a predecessor and the Teacher as a later founder require separate events and a specified interval rather than a silently shared date.",
+      "origin": "Editorial relationship",
+      "from": "daniel-jubilee-and-the-teachers-time"
+    },
+    {
+      "to": "apocalyptic-repair-theology",
+      "type": "connects",
+      "why": "The end of a prophetic count concerns the authority to release and restore a community, not merely numerical agreement.",
+      "origin": "Editorial relationship",
+      "from": "daniel-jubilee-and-the-teachers-time"
+    },
+    {
+      "to": "gnosticism-and-temple-trauma",
+      "type": "develops",
+      "why": "Closure of a second sanctuary makes institutional loss and dispersed continuity a more specific mechanism for the comparative trauma investigation.",
+      "origin": "Editorial relationship",
+      "from": "onias-egypt-and-priestly-continuity"
+    },
+    {
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "compares",
+      "why": "Legitimacy through scripture, separate sacred centers and continued political relationships need not have a single uniform relationship.",
+      "origin": "Editorial relationship",
+      "from": "onias-egypt-and-priestly-continuity"
     }
   ]
 }

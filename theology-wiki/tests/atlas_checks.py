@@ -9,7 +9,7 @@ def run_atlas_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BAS
         page.wait_for_function('(slug)=>document.querySelector("#article-body").dataset.atlasReady===slug', arg=slug)
     page.set_viewport_size({'width': 1440, 'height': 1000})
     open_('source-atlas')
-    check('Atlas distinguishes 54 typed records from a count of ancient works', '54 records' in page.locator('#article-body').inner_text() and page.locator('#atlas-list a').count() == 54)
+    check('Atlas distinguishes 63 typed records from a count of ancient works', '63 records' in page.locator('#article-body').inner_text() and page.locator('#atlas-list a').count() == 63)
     page.locator('#atlas-kind').select_option('translation')
     check('Translation filter isolates seven access records', page.locator('#atlas-list a').count() == 7)
     page.locator('#atlas-search').fill('zzzz-unmatched')
@@ -25,7 +25,7 @@ def run_atlas_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BAS
     with page.expect_download() as ev:
         page.locator('#atlas-export').click()
     data = json.loads(Path(ev.value.path()).read_text())
-    check('Atlas export retains typed edges and explicit open leads', len(data['edges']) == 45 and len([r for r in data['records'] if r['kind'] == 'research-lead']) == 3)
+    check('Atlas export retains all 57 typed edges and three explicit open leads', len(data['edges']) == 57 and len([r for r in data['records'] if r['kind'] == 'research-lead']) == 3)
     screenshot(page, 'atlas-desktop.png')
     open_('source-atlas', '&record=fragment-manetho')
     check('Deep atlas URL opens the exact mediated source', page.locator('#atlas-selected').input_value() == 'fragment-manetho' and 'Josephus' in page.locator('#atlas-cards').inner_text())
@@ -51,7 +51,7 @@ def run_atlas_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BAS
     page.locator('#atlas-chronology').scroll_into_view_if_needed()
     page.screenshot(path=str(OUT/'interval-experiment.png'))
     open_('museum-trails')
-    check('Museum content trails expose twenty-four stops with full arguments', page.locator('.atlas-trail').count() == 6 and page.locator('.atlas-stop').count() == 24 and page.locator('.atlas-stop a').count() >= 16)
+    check('Museum content trails expose thirty-four stops with full arguments', page.locator('.atlas-trail').count() == 8 and page.locator('.atlas-stop').count() == 34 and page.locator('.atlas-stop a').count() >= 16)
     with page.expect_download() as ev:
         page.locator('#museum-manifest').click()
     museum = json.loads(Path(ev.value.path()).read_text())
