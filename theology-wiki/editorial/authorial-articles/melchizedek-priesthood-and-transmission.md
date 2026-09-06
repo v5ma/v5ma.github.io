@@ -1,0 +1,71 @@
+## The connection is a problem of authority, not just a repeated name
+
+The Melchizedek inquiry belongs inside the larger Teacher, Thomas and Gnostic reconstruction. It asks how priestly authority can be carried, transformed and claimed when inherited institutions no longer supply an uncontested standard. A recurring name can make that question visible, but a name alone cannot answer it. The productive comparison concerns what the figure does, how the text authorizes him, who benefits from his action and how a later community can participate in that authority.
+
+The original discussion is more demanding than a list of parallels. In AI re-dates Dead Sea Scrolls, author turn 63 asks for prior research connecting Egyptian Jewish and Christian settings with Zadokite, Qumran, Ethiopian and Gnostic traditions. Turn 82 asks specifically about Melchizedek in the New Testament, Qumran and Gnostic material. Turn 84 then asks whether the two-messiah expectation concerns Davidic and Zadokite lines rather than a Melchizedek line. These questions make the distinction among genealogy, office and interpretive identification part of the investigation itself.
+
+This comparison develops that request through particular passages. It supports a more precise account of the repertoire of priestly legitimacy available to the reconstruction. It does not turn the recurrence of Melchizedek into a shortcut that identifies the Teacher, James and Jesus as one person. The earlier-founder hypothesis remains available in [[jesus-teacher-of-righteousness-hypothesis|the TOR reconstruction]], and the proposed routes of teaching and community continuity remain in [[tor-thomas-and-gnostic-transmission|the transmission investigation]]. Neither is replaced by this narrower textual comparison.
+
+## Genesis and the psalm do different work
+
+Genesis 14:18-20 introduces Melchizedek as king of Salem and priest of God Most High. He blesses Abram, and Abram gives him a tenth. The episode makes recognition of sacred authority possible across a boundary: the ancestor can receive a blessing rather than being the source of every legitimate blessing. It does not provide a genealogy connecting this priest to Aaron or Zadok, nor does it narrate the institutional succession required by a later lineage claim.
+
+Psalm 110:4 places an enduring priesthood associated with Melchizedek inside a royal address. Reading it with verses 1-3 and 5-7 keeps kingship, enemies and judgment visible. It is not simply an inward portrait of peaceful contemplation. The priestly image can be used in an account of public authority, which makes it relevant to [[scripture-power-and-repair|the moral dispute within scripture]] as well as to the history of priesthood.
+
+The first distinction is therefore between a narrated encounter and a legitimating address. A later interpreter may connect them; the reader should be able to see the connection being made. The presence of the same name does not mean the two passages already supply every feature of the later figure. This is one way [[sacred-inheritance-and-rival-continuations|shared inheritance]] becomes an active process: a community retains recognizable material while changing the question that material is asked to answer.
+
+## Qumran: who makes release effective?
+
+For 11QMelchizedek, the accessible passage basis used here is Logan Williams's 2023 article, including his translation of column II, lines 2-9, and his discussion of line 13. Williams reads the combination of jubilee, remission and captives as linking restoration with release from sins and Belial's power. He argues that Melchizedek is the active subject of the declaration in II 6. He contrasts that reading with an indefinite rendering in the critical edition and connects the issue to Mark's account of delegated authority to forgive. He explicitly does not claim that Mark knew this scroll.
+
+The difference is consequential. A proclamation can report another agent's action, mediate it or perform an authorized act. Those possibilities assign different roles to the speaker. The historical inquiry gains precision by asking which action the passage gives the figure, instead of treating every salvific role as interchangeable. Williams's argument is a consulted scholarly interpretation, not an established author influence or an uncontested reconstruction of damaged text.
+
+The comparison with [[apocalyptic-repair-theology|repair]] asks how release changes conditions of captivity rather than merely a person's attitude. I use it as a constructive application, not evidence that the complete repair framework descends from this passage.
+
+## Hebrews: resemblance can authorize without proving a bloodline
+
+Hebrews 7:1-3 rereads the Genesis encounter through the name, kingship and absence of genealogy in its presentation. Verses 4-10 use blessing and tithing to develop a ranking argument involving Abraham and Levi. Verses 11-17 distinguish another priesthood from the Levitical order and connect the claim to a changed basis of qualification. Verses 23-28 contrast mortal succession with the continuing intercession attributed to Jesus.
+
+These are several steps of reasoning, not an assertion that everyone bearing a righteous title descends from one family. Hebrews 7:14 associates Jesus with Judah rather than supplying an Aaronic pedigree. The passage can therefore be read as justifying authority where ordinary priestly descent would not do the required work. That distinction sharpens the Davidic, Zadokite and Melchizedek comparison.
+
+An argument about textual resemblance should not silently become a genealogical conclusion. Conversely, the absence of an ordinary descent claim does not make the passage unimportant to the transmission inquiry. It identifies a mechanism by which sacred legitimacy can be claimed through interpretation and an enduring role, rather than through a simple family list. Whether another community used a comparable mechanism is a further comparison that can be investigated.
+
+## Nag Hammadi: keep the body and the damaged text in view
+
+The tractate Melchizedek is read here in the online translation credited to Soren Giversen and Birger A. Pearson. Its many marked gaps restrict continuous reconstruction. In the surviving text, exalted priestly language coexists with teaching about Jesus, baptism and offering. Especially important is a passage rejecting claims that he did not eat, suffer or come in flesh. Elsewhere the speaker's self-description involves being an image of the true high priest. These details complicate a blanket description of Gnostic salvation as simply rejection of embodiment.
+
+The Giversen-Pearson translation supplies the textual basis here. Its editorial notice directs academic users to the published edition; checking that edition and its page and line references remains an open citation task. This consultation is not retroactively attributed to an earlier discussion.
+
+The point is not to make this tractate representative of every text called Gnostic. It is to avoid removing the very differences that might explain a particular route of transmission. A theory about disembodied knowledge needs to account for an embodied passage, not discard it because it disrupts a familiar label. A theory about participation in a priestly image should distinguish resemblance, identification and historical succession before connecting it to [[christ-as-an-inner-model|the inward-model argument]].
+
+## The two-messiah question must not become a single formula
+
+The distinction raised in author turn 84 concerns two different axes: how many messianic figures a text anticipates, and what qualifies each figure to exercise authority. Answering the first does not automatically settle the second. A royal office, a priestly descent claim and an interpretive model of enduring priesthood are not three interchangeable family names. The question is about their relationship, not simply a choice of label.
+
+The AI reply in turn 85 compresses the Community Rule and Damascus Document into a repeated plural formula. The Damascus Document requires a more precise treatment. Its expression "the messiah of Aaron and Israel" is the subject of a scholarly dispute about one figure or two. Dong-Hyuk Kim's 2018 study argues for two through grammar, context and patterns of leadership; its abstract also identifies scholars who challenge that interpretation. The singular wording is therefore neither an automatic refutation of a two-figure reading nor permission to pretend the wording itself is plural. The journal's abstract and bibliographic record, rather than a new collation of the manuscript, are the access basis for this clarification.
+
+The distinction obscured by the archived AI reply remains important: a text may distribute royal and priestly functions between agents, combine them in one agent, or locate their ultimate authorization elsewhere. Each possibility implies a different account of leadership. Neither the number of agents nor a title by itself identifies a historical teacher.
+
+Hebrews 7:11-17 supplies a concrete example of why the second axis matters. It does not solve a missing Aaronic qualification by supplying another ordinary Aaronic pedigree for Jesus. It acknowledges Judah and argues for a different basis of priestly authority through Melchizedek. For the broader reconstruction, the useful comparison is not merely whether a priestly image survives. It is whether a later interpretation preserves a valued function while changing the qualification that authorizes it. That is a transformation to explain, not an identity to assume.
+
+A counterfactual helps distinguish the claims. Suppose a community preserves an expectation of priestly and royal leadership but later concentrates both functions in a single figure. Its institutional arrangement would have changed even if its vocabulary of authority remained recognizable. Conversely, two communities could preserve two offices while disagreeing over which lineage or interpretation legitimately fills them. Either pattern could be relevant to transmission, but neither pattern alone establishes that one community descended from the other. A proposed historical route needs evidence of its carriers in addition to a description of what might have traveled.
+
+Which combinations of functions and qualifications persist, and which are deliberately revised? That question can connect a priestly genealogy, scriptural interpretation, an exalted figure and community practice without collapsing them into one claim. Kim's scholarship informs this comparison; it is not presented as an influence established in an earlier source conversation.
+
+## Four different connections, with different burdens
+
+Direct textual reuse asks whether one text quotes or unmistakably reworks another. Shared interpretive resources ask whether different communities build from a common scriptural repertoire. Institutional transmission asks who carried practices or writings between communities and locations. Individual identity asks whether names in different records refer to the same historical person. None of those questions can be answered merely by replacing it with another.
+
+For example, Hebrews explicitly reasons from Genesis and the psalm. That is different evidence from the modern inference that a Qumran text and a later tractate belong to an unbroken institutional chain. A plausible map of overlapping roles is a useful intermediate result. It gives the broader hypothesis something specific to explain without pretending that the map alone has identified its carriers.
+
+The strongest next test concerns transformations, not identical labels. Which authority is inherited? Which qualification is changed? Is liberation administered through law, declaration, intercession, ritual participation or revealed knowledge? A comparison should preserve combinations and exceptions instead of assigning each corpus one exclusive function. Historical conditions might help explain a transformation, but that explanation also needs evidence of contact or access, not only a psychologically appealing story.
+
+## Why the distinctions strengthen the larger reconstruction
+
+A compressed account would say that Qumran, the New Testament and the Gnostics share a high priest, therefore they share a founder. An equally compressed dismissal would say that their depictions differ, therefore no historical relationship is worth examining. Both skip the question the source conversation actually opens: how could a movement preserve some meanings while transforming others across successive communities?
+
+The textual comparison supplies a way to work on that question. It keeps blessing and royal authorization, liberation, interpretive superiority, continuing intercession, ritual participation and embodiment available as distinguishable features. It also identifies what would make a proposed bridge stronger: a distinctive cluster of features, a traceable text or translation, an institution or teacher with access, and a chronology that does not confuse surviving copies with the origins of every idea they contain.
+
+This matters to the book's constructive argument too. A sacred inheritance can authorize someone while also subjecting that person to a standard beyond personal desire. Whether that standard is actually allowed to correct the claimant is the problem developed in [[divine-will-and-self-authorizing-power|the divine-will inquiry]]. The connection is an explained philosophical comparison, not proof that every ancient author held the same moral theory.
+
+The first passage comparison is now written. The fuller research remains specific: collate the critical 11Q13 edition against the translation dispute, verify the printed Nag Hammadi edition, compare additional fragments relevant to multiple messianic roles, and trace the proposed Egyptian and Ethiopian carriers without deriving descent from a title. [[research-roadmap|The shared roadmap]] keeps these deliverables separate, so completing this article does not prematurely close the larger transmission argument.

@@ -3,7 +3,7 @@
   "title": "The teacher, the copy, and the community",
   "summary": "An introduction to the stronger earlier-Teacher reconstruction and the different things that could survive through transmission.",
   "status": "Editorial production draft",
-  "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+  "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
   "pages": [
     "manuscripts-movements-and-survival",
     "tor-thomas-and-gnostic-transmission",
@@ -22,7 +22,7 @@
     {
       "id": "teacher-copy-community-01",
       "title": "More than a resemblance",
-      "narration": "Micah's stronger proposal is not merely that Jesus resembled an earlier Jewish teacher. It asks whether an earlier founder's teachings, community, and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
+      "narration": "The stronger Teacher-transmission conjecture is not merely that Jesus resembled an earlier Jewish teacher. I ask whether an earlier founder's teachings, community and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
       "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
       "sourcePages": [
         "manuscripts-movements-and-survival",
@@ -44,7 +44,7 @@
     {
       "id": "teacher-copy-community-03",
       "title": "The objection must meet the actual theory",
-      "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism in Micah's reconstruction. The harder question is what could document successors, repeated names, inherited offices, or changes in the presentation of relationships.",
+      "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism. The harder question is what could document successors, repeated names, inherited offices or changes in the presentation of relationships.",
       "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
       "sourcePages": [
         "manuscripts-movements-and-survival",
@@ -77,7 +77,7 @@
     {
       "id": "teacher-copy-community-06",
       "title": "Texts and institutions need different links",
-      "narration": "Micah also proposes historical relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The institutional question needs evidence about people, leadership, practices, and places as well as books.",
+      "narration": "The institutional reconstruction also proposes relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The question needs evidence about people, leadership, practices and places as well as books.",
       "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
       "sourcePages": [
         "manuscripts-movements-and-survival",
@@ -113,22 +113,22 @@
       "slug": "manuscripts-movements-and-survival",
       "title": "Manuscripts, movements and survival",
       "path": "content/developed/manuscripts-movements-and-survival.md",
-      "sha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166"
+      "sha256": "4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f"
     },
     {
       "slug": "tor-thomas-and-gnostic-transmission",
       "title": "The Teacher, Thomas and Gnostic transmission",
       "path": "content/developed/tor-thomas-and-gnostic-transmission.md",
-      "sha256": "36233093b51f15ddf23e898f6e58d55029f7b87631fbd74e6f6c73c76c9b1aac"
+      "sha256": "a6c37cb98f838b9d9e50c08817b63fd59440d9bbd7d852918d69ebcaeff40b10"
     },
     {
       "slug": "melchizedek-priesthood-and-transmission",
       "title": "Melchizedek: priesthood, release and transmission",
       "path": "content/developed/melchizedek-priesthood-and-transmission.md",
-      "sha256": "d928cb68ba3b1dce3e192fd7e8b1fa197311ed80c51fe56738da55190f15bda6"
+      "sha256": "7f5e01946f6a55d08a7896d0b6356a23f5466fcd50ef28681e609b2a71368c36"
     }
   ],
   "script": "products/episodes/teacher-copy-community.txt",
   "production": "products/episodes/teacher-copy-community.json",
-  "words": 302
+  "words": 300
 }

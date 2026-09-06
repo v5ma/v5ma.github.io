@@ -1,7 +1,7 @@
 {
   "schema": "theology-source-atlas/1",
-  "version": "2026.09.05-atlas-1",
-  "updated": "2026-09-05",
+  "version": "2026.09.06-authorial-1",
+  "updated": "2026-09-06",
   "baselineCommit": "0a9c9cf8b12232b6f69b00342ab8fb75570017ff",
   "policy": "A curated starting catalogue, not an exhaustive list of all sources in 354 chats. Kinds, access scopes, hypotheses and unresolved leads are distinct. A shared source does not imply independent corroboration or a proven genealogy.",
   "references": [
@@ -817,6 +817,304 @@
         "status": "No bundled asset",
         "reason": "External source access is not image, scan or translation reuse permission."
       }
+    },
+    {
+      "id": "work-jeremiah-formation",
+      "title": "Jeremiah: inward covenant",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Jeremiah 31:31-34 connects inward instruction with Israel and Judah. Its modern translation is not a dated manuscript.",
+      "sources": [
+        "formation-jer31"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-ezekiel-formation",
+      "title": "Ezekiel: new heart and spirit",
+      "kind": "work",
+      "corpus": "Biblical",
+      "detail": "Ezekiel 36:24-28 relates inward renewal, conduct and land restoration. The collective setting is retained.",
+      "sources": [
+        "formation-ezek36"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-community-rule",
+      "title": "Community Rule: membership and conduct",
+      "kind": "work",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "Regulated community formation provides a comparison target. The present catalogue access is not a completed collation of 1QS III-IV.",
+      "sources": [
+        "formation-community"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-4q258",
+      "title": "4Q258: Community Rule copy",
+      "kind": "material-witness",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "Specific Cave 4 witness, distinguished from the Cave 1 scroll and from the composition history of the work.",
+      "sources": [
+        "formation-community"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Late first century BCE / early first century CE",
+        "basis": "Broad curatorial copy-date description; no invented numerical interval.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-sabbath-songs",
+      "title": "Songs of the Sabbath Sacrifice",
+      "kind": "work",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "The liturgical cycle supplies a comparison for rehearsed heavenly priestly participation, not a measurement of ancient minds.",
+      "sources": [
+        "loc-enoch"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-4q403",
+      "title": "4Q403: Sabbath Songs copy",
+      "kind": "material-witness",
+      "corpus": "Dead Sea Scrolls",
+      "detail": "The catalogue describes a physical copy and records additional witnesses at Qumran and Masada. Distribution does not by itself establish one institutional genealogy.",
+      "sources": [
+        "loc-enoch"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Mid-first-century BCE",
+        "basis": "Curatorial copy-date description, not a composition date or numerical confidence interval.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "work-pauline-formation",
+      "title": "Pauline collection: inward life and formation",
+      "kind": "work",
+      "corpus": "New Testament",
+      "detail": "A passage group across Galatians, Romans and Philippians, not a claim that these form one separately composed work. Christ-formation language is considered with communal conduct.",
+      "sources": [
+        "galatians-2-depth",
+        "formation-gal4",
+        "formation-rom12",
+        "formation-phil2"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this work record",
+        "basis": "Work and copy date are separate",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-p46",
+      "title": "P46: Michigan leaf Hebrews 1:7-2:3",
+      "kind": "material-witness",
+      "corpus": "New Testament",
+      "detail": "P.Mich.inv. 6238. The selected leaf contains Hebrews, not Galatians 4:19. Unknown provenance within Egypt; acquisition in 1930/1931 does not identify an excavated reading community.",
+      "sources": [
+        "formation-p46"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Approximately 180-220 CE",
+        "basis": "Institutional curatorial date for the copy; not a statistical interval.",
+        "start": 180,
+        "end": 220
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "witness-dura-formation",
+      "title": "Dura-Europos: Christian ritual setting",
+      "kind": "material-witness",
+      "corpus": "Early Christian archaeology",
+      "detail": "Font and painted setting provide material context for practice. Construction, renovation, domestic use and sealing are different questions; both 2024 interpretations are linked.",
+      "sources": [
+        "formation-dura",
+        "formation-pettegrew2024",
+        "formation-angelo-silver2024"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Sealing boundary: 254-256 CE",
+        "basis": "Dates sealing in the cited 2024 study, not the building or paintings construction.",
+        "start": 254,
+        "end": 256
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "study-pettegrew2024",
+      "title": "Pettegrew: domestic continuity interpretation",
+      "kind": "study",
+      "corpus": "Archaeological interpretation",
+      "detail": "Published abstract argues for retained domestic aspects and an earlier construction chronology. Full paywalled paper not reviewed in this pass.",
+      "sources": [
+        "formation-pettegrew2024"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Published 2024",
+        "basis": "Study publication, not ancient event.",
+        "start": 2024,
+        "end": 2024
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "study-angelo-silver2024",
+      "title": "Leon Angelo and Silver: architectural differentiation",
+      "kind": "study",
+      "corpus": "Archaeological interpretation",
+      "detail": "Full-text discussion distinguishes renovated space from domestic antecedents and questions an inscription-to-construction inference. Recorded alongside a competing interpretation.",
+      "sources": [
+        "formation-angelo-silver2024"
+      ],
+      "pages": [
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Published 2024",
+        "basis": "Study publication, not ancient event.",
+        "start": 2024,
+        "end": 2024
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
+    },
+    {
+      "id": "hypothesis-christic-formation",
+      "title": "Christic Self-Formation Theory",
+      "kind": "hypothesis",
+      "corpus": "Constructive theology",
+      "detail": "Proposed working name for recurrent self-formation through an inward Christ model, with revision of conduct and of the interpreted standard. Compatibility, mechanism and historical genealogy have distinct evidentiary requirements.",
+      "sources": [
+        "formation-gal4",
+        "formation-notself",
+        "formation-farb2007",
+        "formation-weng2013",
+        "formation-maoz2019"
+      ],
+      "pages": [
+        "christ-as-an-inner-model",
+        "inner-formation-texts-and-material-witnesses"
+      ],
+      "date": {
+        "label": "Working formulation, September 2026",
+        "basis": "No claimed ancient formulation or worldwide priority.",
+        "start": null,
+        "end": null
+      },
+      "status": "Constructive conjecture",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Bibliographic access does not license a facsimile, image or reconstructed mesh."
+      }
     }
   ],
   "edges": [
@@ -987,6 +1285,102 @@
       "relation": "planned-comparison",
       "why": "Historical continuity and philosophical comparison will be tested separately.",
       "basis": "Research task"
+    },
+    {
+      "id": "formation-link-1",
+      "fromId": "witness-4q258",
+      "toId": "work-community-rule",
+      "relation": "witnesses",
+      "why": "A specific copy witnesses the work without containing every passage of every other copy.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-2",
+      "fromId": "witness-4q403",
+      "toId": "work-sabbath-songs",
+      "relation": "witnesses",
+      "why": "Physical copy and liturgical work have distinct histories.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-3",
+      "fromId": "witness-p46",
+      "toId": "work-pauline-formation",
+      "relation": "witnesses",
+      "why": "Collection-level material comparison only: the selected photographed leaf is Hebrews, not a transcription of the Galatians formation passage.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-4",
+      "fromId": "work-jeremiah-formation",
+      "toId": "work-ezekiel-formation",
+      "relation": "compares",
+      "why": "Inward renewal is compared in collective restoration contexts; this edge does not assign direct literary dependence.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-5",
+      "fromId": "work-community-rule",
+      "toId": "work-sabbath-songs",
+      "relation": "compares",
+      "why": "Community regulation and liturgical participation offer different operations to compare, not one presumed doctrine.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-6",
+      "fromId": "hypothesis-christic-formation",
+      "toId": "work-pauline-formation",
+      "relation": "interprets",
+      "why": "The modern theory interprets inward formation language; the source does not state a modern neural mechanism.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-7",
+      "fromId": "hypothesis-christic-formation",
+      "toId": "work-jeremiah-formation",
+      "relation": "compares",
+      "why": "The comparison situates inward instruction within Jewish restoration language rather than inventing a purely external antecedent.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-8",
+      "fromId": "hypothesis-christic-formation",
+      "toId": "witness-dura-formation",
+      "relation": "compares",
+      "why": "The setting can inform an embodied-practice conjecture without measuring any individual ancient experience.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-9",
+      "fromId": "work-pauline-formation",
+      "toId": "work-thomas",
+      "relation": "compares",
+      "why": "Canonical formation and interpreted sayings are compared without concluding that one directly borrowed from the other.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
+    },
+    {
+      "id": "formation-link-10",
+      "fromId": "study-pettegrew2024",
+      "toId": "witness-dura-formation",
+      "relation": "interprets",
+      "why": "This published abstract argues for retained domestic aspects; it is not an undisputed description of the building.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-11",
+      "fromId": "study-angelo-silver2024",
+      "toId": "witness-dura-formation",
+      "relation": "interprets",
+      "why": "This study argues for architectural differentiation and is retained alongside the alternative interpretation.",
+      "basis": "Declared work/witness or interpretive relationship"
+    },
+    {
+      "id": "formation-link-12",
+      "fromId": "study-angelo-silver2024",
+      "toId": "study-pettegrew2024",
+      "relation": "compares",
+      "why": "The inquiry compares their interpretations; this edge does not assert that either paper directly responds to the other.",
+      "basis": "Source-grounded comparison; not an asserted transmission event"
     }
   ],
   "intervals": [
@@ -1316,6 +1710,73 @@
             "hypothesis-teacher-october"
           ],
           "page": "religion-for-conscious-robots",
+          "challengeIds": []
+        }
+      ]
+    },
+    {
+      "id": "inner-formation-witnesses",
+      "title": "How an inward model acquires a history",
+      "question": "How do teachings, communities, copies and ritual settings participate in formation?",
+      "chapter": "inner-model",
+      "stops": [
+        {
+          "id": "formation-covenant",
+          "title": "An inward covenant",
+          "label": "Inward instruction and renewal occur within Israel/Judah restoration settings. Work-level dates remain open.",
+          "records": [
+            "work-jeremiah-formation",
+            "work-ezekiel-formation"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-community",
+          "title": "Formation through a community",
+          "label": "Compare admission, conduct and liturgical participation. A physical copy is not the composition date or proof of a later institutional route.",
+          "records": [
+            "work-community-rule",
+            "witness-4q258",
+            "work-sabbath-songs",
+            "witness-4q403"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-paul",
+          "title": "Christ formed, and the surviving witness",
+          "label": "The Pauline passages and the P46 collection witness have different roles. The selected Michigan image shows Hebrews, not Galatians 4:19.",
+          "records": [
+            "work-pauline-formation",
+            "witness-p46"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-interpretation",
+          "title": "Interpretation that changes the receiver",
+          "label": "Compare interpretive knowledge, priestly authority and recurrent self-formation without collapsing them into one doctrine.",
+          "records": [
+            "work-thomas",
+            "work-11qmelchizedek",
+            "hypothesis-christic-formation"
+          ],
+          "page": "christ-as-an-inner-model",
+          "challengeIds": []
+        },
+        {
+          "id": "formation-setting",
+          "title": "An embodied setting and two interpretations",
+          "label": "The font and painted setting are material evidence. Domestic continuity, architectural differentiation and construction dates remain separately inspectable interpretations.",
+          "records": [
+            "witness-dura-formation",
+            "study-pettegrew2024",
+            "study-angelo-silver2024"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
           "challengeIds": []
         }
       ]

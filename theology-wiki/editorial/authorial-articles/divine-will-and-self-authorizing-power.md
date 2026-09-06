@@ -1,0 +1,57 @@
+## Desire is present, but it is not the final authority
+
+Jesus's distinction between his will and God's will is more exacting than an instruction to have no desires. Luke 22:42 depicts an expressed wish that the cup be removed and a decision to place the Father's will first. The tension matters: an immediate preference is acknowledged without becoming the measure of what ought to happen. The prayer presents a relationship between personal agency and a purpose the speaker does not claim to manufacture.
+
+I read this as the spiritual opposite of self-authorizing power. In a me-first structure, the leader's desire supplies the standard and religious language legitimizes it afterward. In the contrasting structure, the person remains answerable to something they cannot make true merely by wanting it. This does not make every unpleasant sacrifice a divine demand; it makes the source and content of the demand open to judgment.
+
+John 5:30 relates Jesus's judgment to seeking the will of the one who sent him rather than his own. John 6:38 makes a related distinction about his mission. Read together with the prayer, these passages make submission more than a last-minute response to suffering: it is a stated orientation of judgment and action. The issue is whose will governs the use of power.
+
+## Three distinctions prevent a distorted reading
+
+Wanting relief is not identical to making the self sovereign. A person can acknowledge fear, grief or a need for protection while refusing to harm someone else for personal advantage. Eliminating the acknowledgement of need would remove the moral tension rather than explain how it is resolved.
+
+Submission to God is not interchangeable with submission to whichever human authority claims to speak for God. A leader can reverse the relation by making loyalty to himself the test of loyalty to the divine. The [[sacred-inheritance-and-rival-continuations|inheritance inquiry]] asks how that claim acquires credibility; the [[scripture-power-and-repair|scriptural authority inquiry]] tests what the claim permits the leader to do.
+
+Likewise, rejecting selfish domination does not require erasing agency, consent or self-respect. A person who is commanded to accept abuse may rightly question the command. The standard developed in [[apocalyptic-repair-theology|the repair framework]] requires attention to truth, consequences and protection, including protection for the person being asked to sacrifice. Humility is not a license for an institution to silence testimony.
+
+## The reference point must itself remain open to examination
+
+The distinction can be expressed as a problem of moral learning. An impulse supplies a proposed action. An inward model of Christ supplies a comparison. The person notices a discrepancy and changes the response. But the process only becomes ethically useful if the model is not secretly defined to agree with every impulse. A conscience that always ratifies its owner's preferences has lost its corrective role.
+
+This is the connection to [[christ-as-an-inner-model|Christ as an inner model]]. A person may begin by asking what response an admired figure would make. The harder question is what corrects their interpretation of that figure. Scripture, the experience of people affected, criticism from others, and acknowledgment of uncertainty can all enter that examination. The article proposes these as practices of accountability, not a measurement of a neural process.
+
+A leader can insulate the model from correction: disagreement proves disloyalty; failure proves enemies were stronger; success proves divine favor. Evidence then becomes a permanent defense of the leader. The opposition is not merely confidence versus modesty. It is a will that can be judged versus a will that controls the terms of judgment.
+
+## A contemporary application without inventing a confession
+
+The comparison with Trump applies this opposition to public power. I interpret the remarks about heaven through the possibility of personal will being placed above God's. That is a theological explanation, not access to the speaker's private reasoning.
+
+In the August 19, 2025 Fox & Friends exchange, Trump connected ending the Ukraine war and saving lives with his hope of reaching heaven while expressing doubts about his prospects. The cited clip and transcript support that account. They do not record him explaining those doubts by saying that he places his will above God's. The proposed explanation is therefore an inference, not a quotation or established confession.
+
+That distinction does not remove the argument. It makes its real target visible. One can examine whether a public narrative centers personal recognition, moral accountability, the welfare of those affected, or some combination. Seeking salvation is not by itself proof of selfishness, just as using religious language is not proof of selflessness. The case becomes stronger through documented conduct and the structure of authority, not by claiming direct access to a person's interior reasons.
+
+The [[trump-first-beast-of-revelation|First Beast investigation]] already develops dated examples of personal indispensability, political allegiance and control over acceptable information. This article adds a criterion for interpreting that pattern: whether sacred legitimacy limits the leader's desires or is used to exempt them from judgment. It does not use a statement about heaven as a shortcut around the larger factual case.
+
+## A role is not an immutable essence of a person
+
+The pattern leaves room for repentance. An individual can change while a destructive orientation continues through another person. The [[resurrection-debate-in-christianity|recurring-prophecy discussion]] connects this possibility with Tabor's treatment of recurrence. A theological interpretation that makes a person's evil identity unchangeable would miss this distinction.
+
+This gives the will comparison a dynamic rather than purely classificatory role. The question is not only which label belongs to a person. It is what the person repeatedly puts first and whether that orientation can change. A confession of affiliation would not be sufficient under this account; the practical ordering of action must change. At the same time, the continued existence of a destructive pattern would not prove that no individual had changed.
+
+A recurring pattern and a specific prophetic fulfillment therefore require separate treatment. The former describes a moral structure that can recur; the latter proposes a particular role in a narrative of history. I connect them without allowing one level to silently replace the other.
+
+## Repair asks what sacrifice is for
+
+A community can demand sacrifice to preserve a leader's reputation, or organize shared effort to protect people who are being harmed. Both can involve giving up something desired. The moral difference concerns the purpose, the distribution of burdens, and who remains able to challenge the arrangement. Calling every sacrifice obedience to God would erase those differences.
+
+A concrete example is an institution confronted by truthful criticism. A self-protective response treats the report as damage to the institution's sacred image. A repair-oriented response examines the report, protects the people affected and accepts consequences even when those consequences are costly. The latter does not abandon its commitments; it refuses to substitute its appearance of righteousness for the work those commitments require.
+
+The same principle scales down to ordinary conduct. A person can relinquish the satisfaction of humiliation without relinquishing the truth of an accusation. They can resist aggression without defining cruelty as justified whenever it serves their side. Putting a moral purpose before personal gratification is not the same as becoming passive.
+
+## The implications for conscious machines
+
+[[religion-for-conscious-robots|The robot-religion proposal]] makes this question concrete in a new setting. A system taught to equate its owner's orders with the good has not thereby learned the distinction between personal will and moral authority. Obedience, accuracy and coordination are different properties; none alone establishes benevolence.
+
+An agent's goals and the commands of its controllers must remain answerable to the welfare and truth the system is meant to serve. For a genuinely conscious participant, the inquiry also concerns its own treatment, not only the usefulness of obedience. This extends the theology into an ethical design question; it neither declares present software conscious nor treats religious vocabulary as a guaranteed solution to alignment.
+
+The foundational contrast can now be stated without compression: Christ's example is not the disappearance of a will, but a will that does not appoint itself the highest authority. Its opposite is not merely being confident or pursuing an aim. It is making personal desire immune to judgment, including by borrowing God's name to authorize that immunity.

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-products-1",
+  "version": "2026.09.06-authorial-1",
   "policy": "Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.",
   "edges": [
     {
@@ -377,7 +377,7 @@
       "from": "moses-volcano-and-exodus-chronology",
       "to": "exodus-to-temple-competing-chronologies",
       "type": "extends",
-      "why": "The interval comparison examines a missing chronological constraint and recovers the author's explicit famine-versus-narration qualification.",
+      "why": "The interval comparison examines a missing chronological constraint and recovers my explicit famine-versus-narration qualification.",
       "origin": "Editorial relationship"
     },
     {
@@ -428,6 +428,41 @@
       "type": "documents",
       "why": "An AI restatement mismatch or invalid inference is documented as an argument outcome, not counted as new archaeological evidence.",
       "origin": "Editorial relationship"
+    },
+    {
+      "to": "christ-as-an-inner-model",
+      "type": "extends",
+      "why": "The source comparison supplies a historical and material inquiry for the proposed recurrent Christic formation mechanism.",
+      "origin": "Authorial research relationship",
+      "from": "inner-formation-texts-and-material-witnesses"
+    },
+    {
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "compares",
+      "why": "Formation is a functional comparison within the stronger proposed institutional reconstruction, not a replacement for it.",
+      "origin": "Authorial research relationship",
+      "from": "inner-formation-texts-and-material-witnesses"
+    },
+    {
+      "to": "gnosticism-and-temple-trauma",
+      "type": "tests",
+      "why": "The distribution of inward language across texts constrains a simple late-origin or purely rejectionist chronology.",
+      "origin": "Authorial research relationship",
+      "from": "inner-formation-texts-and-material-witnesses"
+    },
+    {
+      "to": "melchizedek-priesthood-and-transmission",
+      "type": "compares",
+      "why": "Heavenly participation, priestly functions and embodied practice provide distinct components of the formation inquiry.",
+      "origin": "Authorial research relationship",
+      "from": "inner-formation-texts-and-material-witnesses"
+    },
+    {
+      "to": "museum-trails",
+      "type": "organizes",
+      "why": "The five new stops expose source identities, scope limits and full arguments for a separately developed museum runtime.",
+      "origin": "Authorial research relationship",
+      "from": "inner-formation-texts-and-material-witnesses"
     },
     {
       "from": "trump-first-beast-of-revelation",
@@ -862,13 +897,27 @@
       "type": "source",
       "why": "The article develops an argument from Jewish Apocalyptic Repair Timeline. Read the original speakers separately from the editorial prose.",
       "origin": "Article source reference"
+    },
+    {
+      "from": "inner-formation-texts-and-material-witnesses",
+      "to": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "type": "source",
+      "why": "The article develops an argument from Cognitive Gnosticism: Jesus vs Gnostic Jesus. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "inner-formation-texts-and-material-witnesses",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
     }
   ],
   "anchors": [
     {
       "from": "apocalyptic-repair-theology",
       "turn": 44,
-      "why": "The author corrects the reduction of historical catastrophe to a purely inward interpretation.",
+      "why": "I correct the reduction of historical catastrophe to a purely inward interpretation.",
       "to": "early-vs-later-gnosticism",
       "sourceFile": "gpt2026dragon1905_Early_vs_Later_Gnosticism.txt",
       "sourceHash": "72cb9369c12ad2ab4acaa04e9d3c30e5984ae79fb1d84c4b8d6fd61bfa7ab7dc"
@@ -876,7 +925,7 @@
     {
       "from": "apocalyptic-repair-theology",
       "turn": 46,
-      "why": "The author explicitly accepts the name Apocalyptic Repair Theology.",
+      "why": "I explicitly accept the name Apocalyptic Repair Theology.",
       "to": "early-vs-later-gnosticism",
       "sourceFile": "gpt2026dragon1905_Early_vs_Later_Gnosticism.txt",
       "sourceHash": "72cb9369c12ad2ab4acaa04e9d3c30e5984ae79fb1d84c4b8d6fd61bfa7ab7dc"
@@ -884,7 +933,7 @@
     {
       "from": "apocalyptic-repair-theology",
       "turn": 3,
-      "why": "The author connects maximal coherence with God, creation and humanity rather than treating these as competing goals.",
+      "why": "I connect maximal coherence with God, creation and humanity rather than treating these as competing goals.",
       "to": "agi-religious-framework",
       "sourceFile": "gpt2026dragon1663_AGI_Religious_Framework.txt",
       "sourceHash": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
@@ -900,7 +949,7 @@
     {
       "from": "jesus-teacher-of-righteousness-hypothesis",
       "turn": 26,
-      "why": "The author explains the later Peter and James as namesakes or descendants and proposes community continuity.",
+      "why": "I explain the later Peter and James as namesakes or descendants and propose community continuity.",
       "to": "ai-re-dates-dead-sea-scrolls",
       "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
       "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
@@ -932,7 +981,7 @@
     {
       "from": "exodus-to-temple-competing-chronologies",
       "turn": 23,
-      "why": "The author explicitly distinguishes a non-selective famine from a proposed later firstborn narration.",
+      "why": "I explicitly distinguish a non-selective famine from a proposed later firstborn narration.",
       "to": "parthians-and-medes-meaning",
       "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
       "sourceHash": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120"
@@ -940,7 +989,7 @@
     {
       "from": "exodus-to-temple-competing-chronologies",
       "turn": 29,
-      "why": "The author states the conquest-before-catastrophe order with illustrative dates.",
+      "why": "I state the conquest-before-catastrophe order with illustrative dates.",
       "to": "parthians-and-medes-meaning",
       "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
       "sourceHash": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120"
@@ -948,7 +997,7 @@
     {
       "from": "exodus-to-temple-competing-chronologies",
       "turn": 46,
-      "why": "The author distinguishes an object date from the beginning of the reign.",
+      "why": "I distinguish an object date from the beginning of the reign.",
       "to": "parthians-and-medes-meaning",
       "sourceFile": "gpt2026dragon2684_Parthians_and_Medes_meaning.txt",
       "sourceHash": "bb9bcbad543b9871a4be878556fcf93650cf625755754b129bf877627cafb120"
@@ -956,7 +1005,7 @@
     {
       "from": "manuscripts-movements-and-survival",
       "turn": 22,
-      "why": "The author proposes a split and later reunion of communities, not only thematic resemblance.",
+      "why": "I propose a split and later reunion of communities, not only thematic resemblance.",
       "to": "ai-re-dates-dead-sea-scrolls",
       "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
       "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
@@ -964,7 +1013,7 @@
     {
       "from": "manuscripts-movements-and-survival",
       "turn": 26,
-      "why": "The author proposes succession, descendants and repeated names as a continuity mechanism.",
+      "why": "I propose succession, descendants and repeated names as a continuity mechanism.",
       "to": "ai-re-dates-dead-sea-scrolls",
       "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
       "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
@@ -972,7 +1021,7 @@
     {
       "from": "manuscripts-movements-and-survival",
       "turn": 1,
-      "why": "The author asks for the non-Gnostic Jewish comparison; the turn also contains quoted prior context.",
+      "why": "I ask for the non-Gnostic Jewish comparison; the turn also contains quoted prior context.",
       "to": "jewish-apocalyptic-repair-timeline",
       "sourceFile": "gpt2026dragon1912_Jewish_Apocalyptic_Repair_Timeline.txt",
       "sourceHash": "c0c20975bce6245177fbdddd904238961580ed68172bf4502025182a8bd3fa66"
@@ -1026,7 +1075,7 @@
       "from": "tor-thomas-and-gnostic-transmission",
       "to": "paul-vs-james-movement",
       "turn": 1,
-      "why": "The author identifies Tabor while discussing Paul and James.",
+      "why": "I identify Tabor while discussing Paul and James.",
       "role": "Acknowledged intellectual debt",
       "sourceFile": "gpt2026dragon1576_Paul_vs_James_Movement.txt",
       "sourceHash": "f4140f33480dc7db3f3afb692985c7136a98931f383e1c0d09a3369197beabbe"
@@ -1044,7 +1093,7 @@
       "from": "sacred-inheritance-and-rival-continuations",
       "to": "ai-re-dates-dead-sea-scrolls",
       "turn": 63,
-      "why": "The author asks for a broader interconnection of preservation and transmission settings.",
+      "why": "I ask for a broader interconnection of preservation and transmission settings.",
       "role": "Author research question",
       "sourceFile": "gpt2026dragon2656_AI_re-dates_Dead_Sea_Scrolls.txt",
       "sourceHash": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
@@ -1053,7 +1102,7 @@
       "from": "sacred-inheritance-and-rival-continuations",
       "to": "teacher-of-righteousness-vs-gnostic-jesus",
       "turn": 11,
-      "why": "Historical theology is connected to the author's broader cognitive research program.",
+      "why": "Historical theology is connected to my broader cognitive research program.",
       "role": "Author project scope",
       "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
       "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"
@@ -1107,7 +1156,7 @@
       "from": "god-and-our-models-of-god",
       "to": "naming-god-as-purpose",
       "turn": 3,
-      "why": "The author asks for possible objections instead of only agreement.",
+      "why": "I ask for possible objections instead of only agreement.",
       "role": "Author request for objections",
       "sourceFile": "gpt2026dragon1305_Naming_God_as_Purpose.txt",
       "sourceHash": "efc4cb81df020abd61b4d974380a0c558beeb5a7915905e2eeeae21859589c37"
@@ -1134,7 +1183,7 @@
       "from": "cognitive-gnosticism",
       "to": "teacher-of-righteousness-vs-gnostic-jesus",
       "turn": 11,
-      "why": "The bridge to the author's earlier cognitive work is explicit.",
+      "why": "The bridge to my earlier cognitive work is explicit.",
       "role": "Author project scope",
       "sourceFile": "gpt2026dragon1688_Teacher_of_Righteousness_vs_Gnostic_Jesu.txt",
       "sourceHash": "93420993fe257f66938e6db185e878f441a643ddab8194ce05af501521c17e9c"

@@ -4,7 +4,7 @@ slug: "divine-will-and-self-authorizing-power"
 summary: "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power."
 topic: "Jesus, ethics & authority"
 status: "Developed article"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # Divine will and self-authorizing power
@@ -13,7 +13,7 @@ updated: "2026-09-05"
 
 Jesus's distinction between his will and God's will is more exacting than an instruction to have no desires. Luke 22:42 depicts an expressed wish that the cup be removed and a decision to place the Father's will first. The tension matters: an immediate preference is acknowledged without becoming the measure of what ought to happen. The prayer presents a relationship between personal agency and a purpose the speaker does not claim to manufacture.
 
-Micah's new comparison asks whether that stance is the spiritual opposite of self-authorizing power. In a me-first structure, the leader's desire supplies the standard and religious language legitimizes it afterward. In the contrasting structure, the person remains answerable to something they cannot make true merely by wanting it. This is a philosophical account of the contrast, not an assertion that every unpleasant sacrifice is God's demand.
+I read this as the spiritual opposite of self-authorizing power. In a me-first structure, the leader's desire supplies the standard and religious language legitimizes it afterward. In the contrasting structure, the person remains answerable to something they cannot make true merely by wanting it. This does not make every unpleasant sacrifice a divine demand; it makes the source and content of the demand open to judgment.
 
 John 5:30 relates Jesus's judgment to seeking the will of the one who sent him rather than his own. John 6:38 makes a related distinction about his mission. Read together with the prayer, these passages make submission more than a last-minute response to suffering: it is a stated orientation of judgment and action. The issue is whose will governs the use of power.
 
@@ -31,13 +31,13 @@ The distinction can be expressed as a problem of moral learning. An impulse supp
 
 This is the connection to [[christ-as-an-inner-model|Christ as an inner model]]. A person may begin by asking what response an admired figure would make. The harder question is what corrects their interpretation of that figure. Scripture, the experience of people affected, criticism from others, and acknowledgment of uncertainty can all enter that examination. The article proposes these as practices of accountability, not a measurement of a neural process.
 
-A leader can instead insulate the model from correction: disagreement proves disloyalty; failure proves enemies were stronger; success proves divine favor. That arrangement converts evidence into a permanent defense of the leader. The opposition Micah identifies is therefore not simply between confidence and modesty. It is between a will that can be judged and a will that controls the terms of judgment.
+A leader can insulate the model from correction: disagreement proves disloyalty; failure proves enemies were stronger; success proves divine favor. Evidence then becomes a permanent defense of the leader. The opposition is not merely confidence versus modesty. It is a will that can be judged versus a will that controls the terms of judgment.
 
 ## A contemporary application without inventing a confession
 
-Micah applies this opposition to Trump and interprets Trump's remarks about heaven through the idea of putting personal will above God's. The interpretation is part of the author's current argument. The documentary record, however, must remain distinct from the explanation attributed to the speaker's private reasoning.
+The comparison with Trump applies this opposition to public power. I interpret the remarks about heaven through the possibility of personal will being placed above God's. That is a theological explanation, not access to the speaker's private reasoning.
 
-In the August 19, 2025 Fox & Friends exchange, Trump connected efforts to end the Ukraine war and save lives with his hope of reaching heaven, while expressing doubts about his prospects. The available clip and transcript support that description. They do not record him explaining those doubts by saying that he places his will above God's. The page therefore preserves Micah's proposed explanation as a theological inference, not a quotation or an established confession.
+In the August 19, 2025 Fox & Friends exchange, Trump connected ending the Ukraine war and saving lives with his hope of reaching heaven while expressing doubts about his prospects. The cited clip and transcript support that account. They do not record him explaining those doubts by saying that he places his will above God's. The proposed explanation is therefore an inference, not a quotation or established confession.
 
 That distinction does not remove the argument. It makes its real target visible. One can examine whether a public narrative centers personal recognition, moral accountability, the welfare of those affected, or some combination. Seeking salvation is not by itself proof of selfishness, just as using religious language is not proof of selflessness. The case becomes stronger through documented conduct and the structure of authority, not by claiming direct access to a person's interior reasons.
 
@@ -45,11 +45,11 @@ The [[trump-first-beast-of-revelation|First Beast investigation]] already develo
 
 ## A role is not an immutable essence of a person
 
-An important nuance already present in Micah's archive is the possibility of change. In Resurrection Debate in Christianity, author turns 9 and 11 connect Tabor's discussion of recurring prophecy to Christlike and antichristian orientations. Micah says an individual could repent and change while the destructive pattern continues through another person. A brief article that describes an unchangeable evil identity would lose that distinction.
+The pattern leaves room for repentance. An individual can change while a destructive orientation continues through another person. The [[resurrection-debate-in-christianity|recurring-prophecy discussion]] connects this possibility with Tabor's treatment of recurrence. A theological interpretation that makes a person's evil identity unchangeable would miss this distinction.
 
 This gives the will comparison a dynamic rather than purely classificatory role. The question is not only which label belongs to a person. It is what the person repeatedly puts first and whether that orientation can change. A confession of affiliation would not be sufficient under this account; the practical ordering of action must change. At the same time, the continued existence of a destructive pattern would not prove that no individual had changed.
 
-That is also why a recurring pattern and a specific prophetic fulfillment need separate treatment. The former describes a moral structure that can recur. The latter proposes a particular role in a narrative of history. Readers should be able to follow how Micah connects them without having one level silently replace the other.
+A recurring pattern and a specific prophetic fulfillment therefore require separate treatment. The former describes a moral structure that can recur; the latter proposes a particular role in a narrative of history. I connect them without allowing one level to silently replace the other.
 
 ## Repair asks what sacrifice is for
 
@@ -63,7 +63,7 @@ The same principle scales down to ordinary conduct. A person can relinquish the 
 
 [[religion-for-conscious-robots|The robot-religion proposal]] makes this question concrete in a new setting. A system taught to equate its owner's orders with the good has not thereby learned the distinction between personal will and moral authority. Obedience, accuracy and coordination are different properties; none alone establishes benevolence.
 
-The philosophical lesson proposed here is that an agent's goals and the commands of its controllers must remain answerable to the welfare and truth the system is intended to serve. For a genuinely conscious participant, that inquiry would also concern its own treatment, not only the usefulness of its obedience. This is an ethical design question within Micah's future-directed theology, not a claim that present software possesses consciousness or a guarantee that a religious vocabulary solves alignment.
+An agent's goals and the commands of its controllers must remain answerable to the welfare and truth the system is meant to serve. For a genuinely conscious participant, the inquiry also concerns its own treatment, not only the usefulness of obedience. This extends the theology into an ethical design question; it neither declares present software conscious nor treats religious vocabulary as a guaranteed solution to alignment.
 
 The foundational contrast can now be stated without compression: Christ's example is not the disappearance of a will, but a will that does not appoint itself the highest authority. Its opposite is not merely being confident or pursuing an aim. It is making personal desire immune to judgment, including by borrowing God's name to authorize that immunity.
 
@@ -76,7 +76,7 @@ The foundational contrast can now be stated without compression: Christ's exampl
 
 [[agi-religious-framework|AGI Religious Framework]] is the archived discussion dated 2025-06-12 (UTC export metadata).
 
-AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established.
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
 
 ## External sources and access notes
 

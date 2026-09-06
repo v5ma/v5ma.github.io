@@ -1257,11 +1257,12 @@
     },
     {
       "id": "inner-model",
-      "title": "Christ as an active moral model",
-      "purpose": "Follow the comparison, the changed action and the subsequent correction of the model.",
+      "title": "Christic self-formation and bounded agency",
+      "purpose": "Develop the embodied self, learned self-model, recurrent choice and correction of the Christ model, then examine the textual and material history of formation.",
       "pages": [
         "christ-as-an-inner-model",
-        "divine-will-and-self-authorizing-power"
+        "divine-will-and-self-authorizing-power",
+        "inner-formation-texts-and-material-witnesses"
       ],
       "status": "Draft chapter route",
       "partId": "inward",
@@ -1273,14 +1274,15 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 2,
+      "articleCount": 3,
       "sourceSlugs": [
         "cognitive-gnosticism-jesus-vs-gnostic-jesus",
         "antichrist-spiritual-inversion",
         "teacher-of-righteousness-vs-gnostic-jesus",
         "samuel-vs-micah-divide",
         "resurrection-debate-in-christianity",
-        "agi-religious-framework"
+        "agi-religious-framework",
+        "ai-re-dates-dead-sea-scrolls"
       ],
       "authorApproved": false
     },

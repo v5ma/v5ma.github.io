@@ -3,8 +3,8 @@
   "slug": "apocalyptic-repair-theology",
   "title": "Apocalyptic Repair Theology",
   "source": "content/developed/apocalyptic-repair-theology.md",
-  "sourceSha256": "8f395c2b8855c4b73d5581c999830bea01f21ddc4e1153fca46450ea624f3294",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "0a21621c176be26dce1bca05ae2500c9fb08c7c47b8aef183f84c5024ee14757",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -154,7 +154,7 @@
       "id": "segment-0025",
       "section": "Coherence is not the same as conformity",
       "notes": false,
-      "text": "Under the repair framework, the second is the better model of moral alignment because coordination remains answerable to welfare and truth. This is an editorial development connecting the two source arguments, not a new physical definition of coherence or an experimentally validated metric. It identifies a practical requirement: the ability to correct authority must not be destroyed in the name of alignment."
+      "text": "Under the repair framework, the second is the better model of moral alignment because coordination remains answerable to welfare and truth. This extends the theological account into an ethical requirement, not a new physical definition or experimentally validated measure of coherence: the ability to correct authority must not be destroyed in the name of alignment."
     },
     {
       "id": "segment-0026",
@@ -208,7 +208,7 @@
       "id": "segment-0034",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0035",

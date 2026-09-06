@@ -1,10 +1,10 @@
 The teacher, the copy, and the community
 
-Editorial adaptation of Micah Blumberg's public research. Synthetic production draft; not the author's recorded voice.
+First-person authorial research script. Synthetic production draft; not the author's recorded voice.
 
 More than a resemblance
 
-Micah's stronger proposal is not merely that Jesus resembled an earlier Jewish teacher. It asks whether an earlier founder's teachings, community, and biography survived through successors, with the founding story later located in the familiar Jesus chronology.
+The stronger Teacher-transmission conjecture is not merely that Jesus resembled an earlier Jewish teacher. I ask whether an earlier founder's teachings, community and biography survived through successors, with the founding story later located in the familiar Jesus chronology.
 
 Different histories can separate
 
@@ -12,7 +12,7 @@ A teacher's lifetime, the first collection of sayings, a later literary arrangem
 
 The objection must meet the actual theory
 
-A reply that assumes the same disciples had to live for more than a century misses the succession mechanism in Micah's reconstruction. The harder question is what could document successors, repeated names, inherited offices, or changes in the presentation of relationships.
+A reply that assumes the same disciples had to live for more than a century misses the succession mechanism. The harder question is what could document successors, repeated names, inherited offices or changes in the presentation of relationships.
 
 A concrete history of survival
 
@@ -24,7 +24,7 @@ That comparison opens a question about earlier layers in Thomas; it does not ide
 
 Texts and institutions need different links
 
-Micah also proposes historical relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The institutional question needs evidence about people, leadership, practices, and places as well as books.
+The institutional reconstruction also proposes relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The question needs evidence about people, leadership, practices and places as well as books.
 
 What does authority inherit?
 
@@ -38,12 +38,12 @@ Sources and full arguments
 
 Manuscripts, movements and survival
 https://v5ma.github.io/theology-wiki/san-reader.html?page=manuscripts-movements-and-survival
-SHA-256: 381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166
+SHA-256: 4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f
 
 The Teacher, Thomas and Gnostic transmission
 https://v5ma.github.io/theology-wiki/san-reader.html?page=tor-thomas-and-gnostic-transmission
-SHA-256: 36233093b51f15ddf23e898f6e58d55029f7b87631fbd74e6f6c73c76c9b1aac
+SHA-256: a6c37cb98f838b9d9e50c08817b63fd59440d9bbd7d852918d69ebcaeff40b10
 
 Melchizedek: priesthood, release and transmission
 https://v5ma.github.io/theology-wiki/san-reader.html?page=melchizedek-priesthood-and-transmission
-SHA-256: d928cb68ba3b1dce3e192fd7e8b1fa197311ed80c51fe56738da55190f15bda6
+SHA-256: 7f5e01946f6a55d08a7896d0b6356a23f5466fcd50ef28681e609b2a71368c36

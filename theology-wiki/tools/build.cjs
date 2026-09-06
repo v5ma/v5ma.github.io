@@ -4,14 +4,10 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const ROOT=path.resolve(__dirname,'..'),SITE=path.dirname(ROOT);
 const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs'),F=require('../editorial/foundations.cjs'),R=require('../editorial/roadmap.cjs'),Roadmap=require('./roadmap.cjs'),A=require('../editorial/atlas.cjs'),Atlas=require('./atlas.cjs');
-const Products=require('./products.cjs');
-const references=[...X.references,...D.references,...F.references,...R.references,...A.references];
-const E={...base,version:'2026.09.06-products-1',articles:[...X.articles,...base.articles].map(p=>{
- const update=D.overrides[p.slug]; if(!update)return p;
- return {...p,...update,externalSources:[...new Set([...(p.externalSources||[]),...update.externalSources])],
- sourceIds:[...new Set([...(p.sourceIds||[]),...D.anchors.filter(a=>a.from===p.slug).map(a=>a.sourceId)])],
- attribution:'AI-assisted editorial synthesis of Micah Blumberg\'s source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.'};
-}).map(p=>{const x=F.addenda[p.slug];return x?{...p,body:p.body+'\n\n'+x.body,updated:F.updated,sourceIds:[...new Set([...(p.sourceIds||[]),...x.sourceIds])],externalSources:[...new Set([...(p.externalSources||[]),...x.externalSources])]}:p;}).concat(F.articles,R.articles,A.articles),paths:[...X.paths,...base.paths,...F.paths]};
+const Products=require('./products.cjs'),H=require('../editorial/authorial.cjs');
+for(const data of [base,X,D,F,A])H.reword(data);
+const references=[...X.references,...D.references,...F.references,...R.references,...A.references,...H.references];
+const E={...base,version:H.version,articles:H.articles,paths:[...X.paths,...base.paths,...F.paths]};
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8'),json=p=>JSON.parse(read(p).replace(/^\uFEFF/,''));
 const write=(p,value)=>{const target=path.join(ROOT,p);if(!target.startsWith(ROOT+path.sep))throw Error('Out-of-scope write');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,value);};
 const emit=(p,value)=>write(p,JSON.stringify(value,null,2)+'\n');
@@ -74,7 +70,7 @@ function build(){
  }
  for(const p of E.articles)add(p,p.body);
  add({slug:'listening-room',title:'Listening room',category:'context',kind:'Navigator',summary:'Full developed articles, paragraph navigation, device voices and recorded studies.'},'Listen to the complete public argument, not a substitute summary. Select an article or chapter route below. Browser voices vary by device; a recorded study is listed separately when available. [[production-studio|Audio and video episodes]] introduce shorter investigations. [[product-pathways|Product pathways]] keeps the work connected to the book and museum.');
- add({slug:'production-studio',title:'Audio and video studio',category:'context',kind:'Navigator',summary:'A source-linked production series with scripts, transcripts, recordings and measured captions.'},'These are attributed editorial adaptations, not first-person author quotations or completed manuscript chapters. Full-article narration remains in the [[listening-room|listening room]]. [[product-pathways|Product pathways]] records the shared production plan.');
+ add({slug:'production-studio',title:'Audio and video studio',category:'context',kind:'Navigator',summary:'A source-linked production series with scripts, transcripts, recordings and measured captions.'},'These are first-person authorial scripts and synthetic narration drafts. They are not recovered verbatim quotations, recordings of the author, or completed manuscript chapters. Full-article narration remains in the [[listening-room|listening room]]. [[product-pathways|Product pathways]] records the shared production plan.');
  add({slug:'product-pathways',title:'One inquiry, several products',category:'context',kind:'Navigator',summary:'The book, listening edition, applications, video series and separately developed museum share one research foundation.'},read('editorial/product-guide.md'));
 
  add({slug:'source-atlas',title:'Source atlas: works, witnesses and arguments',category:'context',kind:'Navigator',summary:'A curated cross-collection source catalogue with typed relationships, exact passages and museum-ready IDs.'},A.data.policy+'\n\n[[museum-trails|Museum trails]] / [[argument-challenges|Argument challenge record]] / [[research-roadmap|Shared plan]].\n\n'+A.data.records.map(r=>'## '+r.title+'\n\n'+r.kind+' / '+r.corpus+'. '+r.detail+'\n\n'+r.pages.map(slug=>'[['+slug+'|'+bySlug.get(slug).title+']]').join(' / ')).join('\n\n'));
@@ -129,7 +125,7 @@ ${E.categories.map(c=>`[[topic-${c.id}|${c.title}]]: ${c.description}`).join('\n
 
 [[sources-index|The conversation archive]] preserves ${manifest.length} original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-${E.articles.length} developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.`;
+${E.articles.length} developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.`;
  add({slug:'home',path:'home.md',title:'Theology Wiki',category:'context',kind:'Library home',summary:'Explore original questions, developed arguments and 354 source conversations.'},home);
  add({slug:'reading-paths',title:'Reading paths',category:'context',kind:'Navigator',summary:'Follow a question across the developed articles.'},E.paths.map(p=>`## ${p.title}\n\n${p.description}\n\n${p.pages.map(s=>`[[${s}|${bySlug.get(s).title}]]`).join('\n\n')}`).join('\n\n'));
  add({slug:'connections',title:'Connections between ideas',category:'context',kind:'Navigator',summary:'Explore explicit wikilinks and source relationships without treating resemblance as equivalence.'},'## Follow an argument\n\nChoose a page in the connection explorer below. Lines represent explicit reader links; incoming and outgoing relationships are also listed in text.\n\n[[reading-paths|Reading paths]] offer a guided alternative.');
@@ -142,10 +138,10 @@ ${E.articles.length} developed articles accompany the archive. They are attribut
  navigator('research-board','Research and author-review board','Concrete source, citation, argument and author-review tasks; personal planning changes do not edit the published research record.',
   'The board tracks work, not the truth or falsity of an entire theory. Browser changes are personal planning notes only. They are not shared editorial decisions and do not change GitHub or the public site.\n\n'+F.stages.map(stage=>'## '+stage+'\n\n'+(F.tasks.filter(t=>t.stage===stage).map(t=>'### '+t.title+'\n\n'+t.detail+'\n\n[['+t.page+'|Open the related investigation]]').join('\n\n')||'No task is assigned to this stage in the published baseline.')).join('\n\n'));
  navigator('intellectual-debts','Intellectual debts and source lineage','Explicit acknowledgments, translation credit and AI-introduced research leads are recorded separately.',
-  'Credit belongs to the particular contribution actually documented. A name appearing in an AI reply is not automatically an acknowledgment by the author; a later article is not retroactive evidence of an earlier influence.\n\n'+F.debts.map(d=>'## '+d.name+'\n\n'+d.type+'. '+d.claim+'\n\n'+d.limit).join('\n\n')+'\n\n[[tor-thomas-and-gnostic-transmission|Read the Teacher and Gnostic transmission inquiry]] or [[research-board|review the citation tasks]].');
+  'Credit belongs to the particular contribution actually documented. A name appearing in an AI reply is not automatically an acknowledgment of influence; a later article is not retroactive evidence of an earlier influence.\n\n'+F.debts.map(d=>'## '+d.name+'\n\n'+d.type+'. '+d.claim+'\n\n'+d.limit).join('\n\n')+'\n\n[[tor-thomas-and-gnostic-transmission|Read the Teacher and Gnostic transmission inquiry]] or [[research-board|review the citation tasks]].');
  // Existing source-index remains at its established URL; only its generated landing content changes.
  const sourceIndex=bySlug.get('sources-index');sourceIndex.kind='Source catalogue';sourceIndex.category='context';sourceIndex.summary='Search, sort and open all 354 original conversations, with speaker labels and UTC export dates.';sourceIndex.primaryExcerpt='';
- const sb='## Read the conversations behind the ideas\n\nThe full catalogue below preserves the 354 published AI chats. Search matches may come from either speaker, not necessarily from Micah\'s own statements. Dates are export metadata, not independent publication certificates.\n\n'+E.categories.map(c=>`[[topic-${c.id}|${c.title}]]`).join('\n\n');
+ const sb='## Read the conversations behind the ideas\n\nThe full catalogue below preserves the 354 published AI chats. Search matches may come from either speaker, not necessarily from my statements. Dates are export metadata, not independent publication certificates.\n\n'+E.categories.map(c=>`[[topic-${c.id}|${c.title}]]`).join('\n\n');
  write('content/'+sourceIndex.path,front(sourceIndex,sb));bodies.set(sourceIndex.slug,sb);
  const foundations=JSON.parse(JSON.stringify(F));
  delete foundations.articles; delete foundations.addenda; delete foundations.references; delete foundations.relations; delete foundations.paths;
@@ -166,7 +162,7 @@ ${E.articles.length} developed articles accompany the archive. They are attribut
  for(const task of F.tasks)if(!bySlug.has(task.page)||!F.stages.includes(task.stage))throw Error('Invalid research task '+task.id);
  emit('data/foundations.json',foundations);
  emit('data/melchizedek-evidence.json',{version:R.version,article:R.articles[0].slug,policy:'Passage comparison, not identity proof. A translation, scholarly interpretation and direct manuscript collation are different evidence levels.',rows:R.evidence.map(e=>({...e,source:references.find(r=>r.id===e.reference)}))});
- const relationships=[...D.relations,...F.relations,...R.relations,...A.relations].map(r=>({...r}));
+ const relationships=[...D.relations,...F.relations,...R.relations,...A.relations,...require('../editorial/formation-connections.json')].map(r=>({...r}));
  for(const p of pages.filter(p=>p.kind==='Developed article'))for(const r of p.references||[])relationships.push({from:p.slug,to:r.slug,type:'source',why:`The article develops an argument from ${r.title}. Read the original speakers separately from the editorial prose.`,origin:'Article source reference'});
  const anchors=[...D.anchors,...R.anchors,...A.anchors].map(a=>{
   const p=sourceById.get(a.sourceId),t=chats.get(p?.sourceFile)?.turns[a.turn-1];

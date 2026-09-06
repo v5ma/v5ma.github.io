@@ -1,12 +1,12 @@
 {
   "version": "2026.09.05-atlas-1",
   "file": "Theology-Research-Plan.xlsx",
-  "sha256": "28473f631712ddae0a0adffc6907473000c4c2428f9d96a2379fe976d96210dc",
+  "sha256": "7e9a32790b44a4af778a388cca8969dbb01e22d1e18368a32d7f3ff80770d959",
   "inputHashes": {
     "editorial/roadmap.json": "e81291e0af5473d1a658e2f772e9513f84bcede3f26e2473e54b66baa3b8333e",
-    "data/roadmap.json": "e2f183eed94cec38546f7223efd465db2719824862c2c49c94ecaa7234537684",
-    "data/source-coverage.json": "bc1285810a52c88a56944c30e8da7a5844c245bd690c7bac1d69ae3a5fa2bac1",
-    "data/foundations.json": "1a0f2abde913357658cdebbfa8fea711db513fe6ded828fc74681f8d0372341b",
+    "data/roadmap.json": "dd53203ffdd0cc9757d4e2764e9bb11d216535b8bb73c20fc28bd2bd96712187",
+    "data/source-coverage.json": "0ea3fdc80fe8a5f0ea7c560a3fc93710b033b5f7fb67a8f6b3c4c6cc5771d2df",
+    "data/foundations.json": "7b611a74a7b0e6333632902b693672e89583b4642da401822dcb7c1e59dfa77a",
     "data/melchizedek-evidence.json": "6a2af6be2557749e90bc5377f6347dbbd684d9130c34de0579220e5325b44c1a"
   },
   "sheets": [
@@ -23,5 +23,6 @@
   "formulaCells": 942,
   "formulaErrorCount": 0,
   "policy": "A checked planning snapshot; local edits never update the shared site automatically. Re-export after changing source JSON. Cached figures are not author approval or a whole-project completion percentage.",
-  "inspection": "Imported using artifact_tool; preserved 942 formulas and native chart, refreshed changed tasks, source anchors and chapter links, and inspected calculated counts and dashboard rendering. Source anchor inputs retain the original Turn N text format."
+  "inspection": "Imported and edited with artifact_tool. Refreshed chapter, source and intellectual-debt links, preserved nine sheets and 942 formulas, inspected the updated chapter range and scanned for formula errors. Shared task statuses remain unchanged. ZIP transport normalization preserves all exported workbook parts.",
+  "contentEdition": "2026.09.06-authorial-1"
 }

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-products-1",
+  "version": "2026.09.06-authorial-1",
   "categories": [
     {
       "id": "gnosis",
@@ -127,7 +127,7 @@
     }
   ],
   "sourceCount": 354,
-  "developedCount": 22,
+  "developedCount": 23,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -195,6 +195,7 @@
       "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
@@ -501,6 +502,7 @@
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
       "god-and-our-models-of-god",
+      "inner-formation-texts-and-material-witnesses",
       "topic-gnosis"
     ],
     "conceptual-equivalences-mapping": [
@@ -1721,6 +1723,7 @@
       "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "argument-challenges",
       "museum-trails",
@@ -1759,7 +1762,6 @@
       "home",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
-      "christ-as-an-inner-model",
       "antichrist-as-a-pattern-of-conduct",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
@@ -1780,7 +1782,6 @@
     "cognitive-gnosticism": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
-      "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
       "tor-thomas-and-gnostic-transmission",
@@ -1800,9 +1801,13 @@
       "faith-as-deliberate-joy",
       "samaritan-texts-and-sacred-authority",
       "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
+      "inner-formation-texts-and-material-witnesses",
+      "source-atlas",
+      "museum-trails",
       "guide-to-the-inquiry",
       "glossary",
       "topic-jesus",
@@ -1814,7 +1819,6 @@
       "home",
       "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
-      "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "samaritan-texts-and-sacred-authority",
       "scripture-power-and-repair",
@@ -1854,6 +1858,7 @@
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
       "tor-thomas-and-gnostic-transmission",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "museum-trails",
       "guide-to-the-inquiry",
@@ -1879,7 +1884,6 @@
     ],
     "sacred-inheritance-and-rival-continuations": [
       "home",
-      "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",
@@ -1899,6 +1903,7 @@
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -1947,6 +1952,7 @@
       "home",
       "tor-thomas-and-gnostic-transmission",
       "manuscripts-movements-and-survival",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -1967,6 +1973,15 @@
       "tor-thomas-and-gnostic-transmission",
       "source-atlas",
       "argument-challenges",
+      "museum-trails",
+      "topic-origins",
+      "book-contents"
+    ],
+    "inner-formation-texts-and-material-witnesses": [
+      "home",
+      "christ-as-an-inner-model",
+      "tor-thomas-and-gnostic-transmission",
+      "source-atlas",
       "museum-trails",
       "topic-origins",
       "book-contents"
@@ -1997,6 +2012,7 @@
     ],
     "museum-trails": [
       "exodus-to-temple-competing-chronologies",
+      "inner-formation-texts-and-material-witnesses",
       "source-atlas"
     ],
     "research-roadmap": [

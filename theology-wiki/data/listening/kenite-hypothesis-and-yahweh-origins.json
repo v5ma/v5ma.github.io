@@ -3,8 +3,8 @@
   "slug": "kenite-hypothesis-and-yahweh-origins",
   "title": "The Kenite hypothesis and Yahweh's southern origins",
   "source": "content/developed/kenite-hypothesis-and-yahweh-origins.md",
-  "sourceSha256": "42e295d1915490f192437a01240578818b799b269cf111e6d71d92b0ecb23cdb",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "ae859149d4dc330b5e6d4cf827cd24fa08615868a2dffba7edb3289d2b5c5bed",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -22,13 +22,13 @@
       "id": "segment-0003",
       "section": "The transmission question",
       "notes": false,
-      "text": "The Midianite-Kenite hypothesis asks whether early Israelite worship of Yahweh incorporated a tradition associated with southern groups and the Midianite connections of Moses. It is an existing scholarly proposal, not a term invented by Micah. His discussions make it relevant to a broader inquiry: how do gods, names and ritual traditions move between communities, and how do later origin stories represent that movement?"
+      "text": "The Midianite-Kenite hypothesis asks whether early Israelite worship of Yahweh incorporated a tradition associated with southern groups and the Midianite connections of Moses. I draw on this existing scholarly hypothesis to investigate a broader problem: how do gods, names and ritual traditions move between communities, and how do later origin stories represent that movement?"
     },
     {
       "id": "segment-0004",
       "section": "The transmission question",
       "notes": false,
-      "text": "Gnostic Teachings and Clarity records his questions about possible relationships among Midianite Yahweh, Dionysus and other deities. The AI introduces an account of the Midianite-Kenite framework. That is evidence of what the conversation considered, not independent evidence that its historical explanation is correct."
+      "text": "The comparison with Dionysus and other deities raises a related question about contact and reinterpretation. The earlier discussion includes an AI introduction to the Midianite-Kenite framework; the independently cited scholarship, rather than that generated explanation, supplies the basis for evaluating the historical proposal."
     },
     {
       "id": "segment-0005",
@@ -82,7 +82,7 @@
       "id": "segment-0013",
       "section": "Similar deities do not establish a direction of borrowing",
       "notes": false,
-      "text": "Micah's question about Dionysus raises a general methodological problem. Shared attributes could result from contact, inherited motifs, independent development or selective comparison. A case for direct borrowing needs a plausible route and chronology as well as the resemblance. The argument also needs to specify which form of a deity, in which text or cult, it compares with which other form."
+      "text": "The Dionysus comparison makes the methodological problem concrete. Shared attributes could result from contact, inherited motifs, independent development or selective comparison. A case for direct borrowing needs a plausible route and chronology as well as resemblance. I must specify which form of a deity, in which text or cult, is being compared with which other form."
     },
     {
       "id": "segment-0014",
@@ -106,7 +106,7 @@
       "id": "segment-0017",
       "section": "Community identity and divine identity are separate questions",
       "notes": false,
-      "text": "This is why the Kenite hypothesis belongs with shared inheritance and sacred authority in this wiki. It gives the broader question a defined historical proposal and a set of sources that can be scrutinized. It also clarifies attribution: the scholarly hypothesis, the AI's explanation and Micah's own comparative questions are related but not identical contributions."
+      "text": "The Kenite hypothesis belongs with shared inheritance and sacred authority because it gives the broader inquiry a defined historical proposal and inspectable sources. Its scholarly origin, its presentation in an AI conversation and the additional comparative conjectures remain different contributions."
     },
     {
       "id": "segment-0018",
@@ -148,7 +148,7 @@
       "id": "segment-0024",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0025",

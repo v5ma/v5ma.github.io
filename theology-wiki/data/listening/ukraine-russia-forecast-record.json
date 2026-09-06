@@ -3,8 +3,8 @@
   "slug": "ukraine-russia-forecast-record",
   "title": "Ukraine, Russia and the forecast record",
   "source": "content/developed/ukraine-russia-forecast-record.md",
-  "sourceSha256": "494746d9a9353d0d4e7fa0de1d27daadf3ffbb29ffc6e108a5dadfafcb1250da",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "4c78ce17405c080401f8122d68428c705a8641352bc14819cb7ea8cc9fa98e8f",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -22,13 +22,13 @@
       "id": "segment-0003",
       "section": "A warning with more than one layer",
       "notes": false,
-      "text": "Micah connects his reading of prophecy to expectations about Ukraine, Russia and wider instability. Those expectations should not be collapsed into a single undated claim that an apocalypse is approaching. A theological judgment identifies the moral character of power. A causal argument proposes how decisions produce consequences. A forecast says that some consequence will occur, under stated conditions or within a stated time. These three activities can support one another without becoming interchangeable."
+      "text": "Prophecy, causal explanation and forecasting ask related but different questions about Ukraine, Russia and wider instability. A theological judgment identifies the moral character of power. A causal argument proposes how decisions produce consequences. A forecast says that some consequence will occur, under stated conditions or within a stated time. I connect these activities without collapsing them into a single undated declaration that an apocalypse is approaching."
     },
     {
       "id": "segment-0004",
       "section": "A warning with more than one layer",
       "notes": false,
-      "text": "The False Peace Prophecy conversation begins with a response to a reported ceasefire development. Micah rejects the celebratory reading and anticipates deceptive peace followed by economic collapse and nuclear war. That establishes what the archived statement predicts. It does not, by itself, verify the reported ceasefire or establish that the subsequent sequence occurred."
+      "text": "The False Peace Prophecy reconstruction treats the reported ceasefire not as grounds for celebration but as a possible deceptive peace preceding economic collapse and nuclear war. That is the sequence proposed in the dated discussion. Its preservation does not, by itself, verify the reported ceasefire or establish that the predicted consequences occurred."
     },
     {
       "id": "segment-0005",
@@ -64,7 +64,7 @@
       "id": "segment-0010",
       "section": "The proposed fuel-to-food cascade",
       "notes": false,
-      "text": "In his more recent topic directions and recovered July-August discussion context, Micah identifies a chain connecting strikes on energy infrastructure, shortages of usable fuel, transportation and farm operations, harvest or distribution disruption, and food insecurity. The archive does not yet contain a verified full transcript of those later exchanges. Here the mechanism is recorded as a recovered research lead, not a newly exported or independently timestamped prediction."
+      "text": "The energy-to-food disruption hypothesis connects strikes on energy infrastructure with shortages of usable fuel, transportation and farm operations, harvest or distribution disruption, and food insecurity. The recovered July-August discussion context supplies this research lead, but the archive does not yet contain a verified full transcript of those later exchanges. I therefore keep the mechanism separate from the independently recoverable, dated predictions."
     },
     {
       "id": "segment-0011",
@@ -100,7 +100,7 @@
       "id": "segment-0016",
       "section": "What an evaluation would actually compare",
       "notes": false,
-      "text": "The ledger begins with unassessed records. It does not award successful-prediction labels, assign probabilities retrospectively or set a new deadline that the original statement lacked. Its suggested evaluation criteria are explicitly editorial proposals, not assertions that Micah preregistered those criteria."
+      "text": "The ledger begins with unassessed records. It does not award successful-prediction labels, assign probabilities retrospectively or invent a deadline the original statement lacked. The suggested evaluation criteria are present research proposals, not criteria retrospectively described as preregistered."
     },
     {
       "id": "segment-0017",
@@ -112,7 +112,7 @@
       "id": "segment-0018",
       "section": "Why this belongs beside the First Beast article",
       "notes": false,
-      "text": "Trump and the First Beast explains the prophetic identification. This record asks what historical consequences Micah expected and how the evidence could bear on those expectations. Repair theology asks what forms of care and resistance remain necessary regardless of which forecast succeeds."
+      "text": "Trump and the First Beast explains the prophetic identification. This record asks which historical consequences follow from the proposed causal sequence and how the evidence bears on those expectations. Repair theology asks what forms of care and resistance remain necessary regardless of which forecast succeeds."
     },
     {
       "id": "segment-0019",
@@ -142,7 +142,7 @@
       "id": "segment-0023",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0024",

@@ -335,11 +335,12 @@
         },
         {
           "id": "inner-model",
-          "title": "Christ as an active moral model",
-          "purpose": "Follow the comparison, the changed action and the subsequent correction of the model.",
+          "title": "Christic self-formation and bounded agency",
+          "purpose": "Develop the embodied self, learned self-model, recurrent choice and correction of the Christ model, then examine the textual and material history of formation.",
           "pages": [
             "christ-as-an-inner-model",
-            "divine-will-and-self-authorizing-power"
+            "divine-will-and-self-authorizing-power",
+            "inner-formation-texts-and-material-witnesses"
           ],
           "status": "Draft chapter route"
         },
@@ -1052,6 +1053,46 @@
       "end": null,
       "detail": "The sayings are compared for their roles in the argument. The comparison does not assign the compilation or its sayings one unargued date.",
       "reference": "thomas-patterson-meyer"
+    },
+    {
+      "id": "formation-sabbath-copy",
+      "layer": "witness",
+      "title": "Songs of the Sabbath Sacrifice, 4Q403",
+      "dateLabel": "Mid-first-century BCE (catalogue description)",
+      "start": null,
+      "end": null,
+      "detail": "The selected catalogue dates a physical copy and records witnesses at Qumran and Masada. This does not fix composition or institutional descent.",
+      "reference": "loc-enoch"
+    },
+    {
+      "id": "formation-p46-copy",
+      "layer": "witness",
+      "title": "P46, selected Michigan leaf",
+      "dateLabel": "Approximately 180-220 CE",
+      "start": 180,
+      "end": 220,
+      "detail": "A curatorial copy-date range, not a statistical confidence interval or composition date. The selected leaf is Hebrews 1:7-2:3; provenance is unknown within Egypt.",
+      "reference": "formation-p46"
+    },
+    {
+      "id": "formation-dura-sealing",
+      "layer": "witness",
+      "title": "Dura Christian Building: sealing boundary",
+      "dateLabel": "Sealed between 254 and 256 CE in the cited 2024 study",
+      "start": 254,
+      "end": 256,
+      "detail": "This dates sealing, not construction. Competing 2024 interpretations of domestic continuity and architectural differentiation remain separately recorded.",
+      "reference": "formation-angelo-silver2024"
+    },
+    {
+      "id": "formation-paul-text",
+      "layer": "textual",
+      "title": "Christ formed in the recipients",
+      "dateLabel": "Textual relationship; no composition date assigned here",
+      "start": null,
+      "end": null,
+      "detail": "Galatians 4:19 supplies formation language. A functional comparison with a modern theory does not identify the originating institution.",
+      "reference": "formation-gal4"
     }
   ],
   "relations": [

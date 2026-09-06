@@ -13,13 +13,13 @@ These definitions describe usage in this collection, not a universal dictionary 
 
 ## Teacher of Righteousness (TOR)
 
-The title used for a teacher associated with the Dead Sea Scrolls. In this wiki, Jesus/TOR names Micah's proposed historical identification; the abbreviation does not itself establish that identification.
+The title used for a teacher associated with the Dead Sea Scrolls. In this wiki, Jesus/TOR names my proposed historical identification; the abbreviation does not itself establish that identification.
 
 [[jesus-teacher-of-righteousness-hypothesis|Read the connected investigation]]
 
 ## Pattern theology
 
-The interpretive method used here to compare connected roles and actions across sacred narratives and historical cases. It allows recurring patterns while preserving the author's stronger claim of a particular fulfillment.
+The interpretive method used here to compare connected roles and actions across sacred narratives and historical cases. It allows recurring patterns while preserving my stronger claim of a particular fulfillment.
 
 [[trump-first-beast-of-revelation|Read the connected investigation]]
 
@@ -61,7 +61,7 @@ The surviving physical copy, the formation of a text and the event narrated by i
 
 ## Kenite hypothesis
 
-An existing historical proposal about the southern transmission of Yahweh worship. It is not Micah's coinage, and accepting that transmission proposal does not require accepting a volcanic identification of Sinai.
+An existing scholarly proposal about the southern transmission of Yahweh worship. I draw on it without claiming its invention; accepting it does not require a volcanic identification of Sinai.
 
 [[kenite-hypothesis-and-yahweh-origins|Read the connected investigation]]
 

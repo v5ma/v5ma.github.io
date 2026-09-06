@@ -3,8 +3,8 @@
   "slug": "divine-will-and-self-authorizing-power",
   "title": "Divine will and self-authorizing power",
   "source": "content/developed/divine-will-and-self-authorizing-power.md",
-  "sourceSha256": "d9557e5c0cdd486fec3f9da1cda1f71919408cf0cc6f7d17a3bb322af95d2425",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "a0b9cd0fb094e70254e6acd895be4ad040cb20a2e7e2e4c525394fc08f124636",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -28,7 +28,7 @@
       "id": "segment-0004",
       "section": "Desire is present, but it is not the final authority",
       "notes": false,
-      "text": "Micah's new comparison asks whether that stance is the spiritual opposite of self-authorizing power. In a me-first structure, the leader's desire supplies the standard and religious language legitimizes it afterward. In the contrasting structure, the person remains answerable to something they cannot make true merely by wanting it. This is a philosophical account of the contrast, not an assertion that every unpleasant sacrifice is God's demand."
+      "text": "I read this as the spiritual opposite of self-authorizing power. In a me-first structure, the leader's desire supplies the standard and religious language legitimizes it afterward. In the contrasting structure, the person remains answerable to something they cannot make true merely by wanting it. This does not make every unpleasant sacrifice a divine demand; it makes the source and content of the demand open to judgment."
     },
     {
       "id": "segment-0005",
@@ -82,7 +82,7 @@
       "id": "segment-0013",
       "section": "The reference point must itself remain open to examination",
       "notes": false,
-      "text": "A leader can instead insulate the model from correction: disagreement proves disloyalty; failure proves enemies were stronger; success proves divine favor. That arrangement converts evidence into a permanent defense of the leader. The opposition Micah identifies is therefore not simply between confidence and modesty. It is between a will that can be judged and a will that controls the terms of judgment."
+      "text": "A leader can insulate the model from correction: disagreement proves disloyalty; failure proves enemies were stronger; success proves divine favor. Evidence then becomes a permanent defense of the leader. The opposition is not merely confidence versus modesty. It is a will that can be judged versus a will that controls the terms of judgment."
     },
     {
       "id": "segment-0014",
@@ -94,13 +94,13 @@
       "id": "segment-0015",
       "section": "A contemporary application without inventing a confession",
       "notes": false,
-      "text": "Micah applies this opposition to Trump and interprets Trump's remarks about heaven through the idea of putting personal will above God's. The interpretation is part of the author's current argument. The documentary record, however, must remain distinct from the explanation attributed to the speaker's private reasoning."
+      "text": "The comparison with Trump applies this opposition to public power. I interpret the remarks about heaven through the possibility of personal will being placed above God's. That is a theological explanation, not access to the speaker's private reasoning."
     },
     {
       "id": "segment-0016",
       "section": "A contemporary application without inventing a confession",
       "notes": false,
-      "text": "In the August 19, 2025 Fox & Friends exchange, Trump connected efforts to end the Ukraine war and save lives with his hope of reaching heaven, while expressing doubts about his prospects. The available clip and transcript support that description. They do not record him explaining those doubts by saying that he places his will above God's. The page therefore preserves Micah's proposed explanation as a theological inference, not a quotation or an established confession."
+      "text": "In the August 19, 2025 Fox & Friends exchange, Trump connected ending the Ukraine war and saving lives with his hope of reaching heaven while expressing doubts about his prospects. The cited clip and transcript support that account. They do not record him explaining those doubts by saying that he places his will above God's. The proposed explanation is therefore an inference, not a quotation or established confession."
     },
     {
       "id": "segment-0017",
@@ -124,7 +124,7 @@
       "id": "segment-0020",
       "section": "A role is not an immutable essence of a person",
       "notes": false,
-      "text": "An important nuance already present in Micah's archive is the possibility of change. In Resurrection Debate in Christianity, author turns 9 and 11 connect Tabor's discussion of recurring prophecy to Christlike and antichristian orientations. Micah says an individual could repent and change while the destructive pattern continues through another person. A brief article that describes an unchangeable evil identity would lose that distinction."
+      "text": "The pattern leaves room for repentance. An individual can change while a destructive orientation continues through another person. The recurring-prophecy discussion connects this possibility with Tabor's treatment of recurrence. A theological interpretation that makes a person's evil identity unchangeable would miss this distinction."
     },
     {
       "id": "segment-0021",
@@ -136,7 +136,7 @@
       "id": "segment-0022",
       "section": "A role is not an immutable essence of a person",
       "notes": false,
-      "text": "That is also why a recurring pattern and a specific prophetic fulfillment need separate treatment. The former describes a moral structure that can recur. The latter proposes a particular role in a narrative of history. Readers should be able to follow how Micah connects them without having one level silently replace the other."
+      "text": "A recurring pattern and a specific prophetic fulfillment therefore require separate treatment. The former describes a moral structure that can recur; the latter proposes a particular role in a narrative of history. I connect them without allowing one level to silently replace the other."
     },
     {
       "id": "segment-0023",
@@ -178,7 +178,7 @@
       "id": "segment-0029",
       "section": "The implications for conscious machines",
       "notes": false,
-      "text": "The philosophical lesson proposed here is that an agent's goals and the commands of its controllers must remain answerable to the welfare and truth the system is intended to serve. For a genuinely conscious participant, that inquiry would also concern its own treatment, not only the usefulness of its obedience. This is an ethical design question within Micah's future-directed theology, not a claim that present software possesses consciousness or a guarantee that a religious vocabulary solves alignment."
+      "text": "An agent's goals and the commands of its controllers must remain answerable to the welfare and truth the system is meant to serve. For a genuinely conscious participant, the inquiry also concerns its own treatment, not only the usefulness of obedience. This extends the theology into an ethical design question; it neither declares present software conscious nor treats religious vocabulary as a guaranteed solution to alignment."
     },
     {
       "id": "segment-0030",
@@ -214,7 +214,7 @@
       "id": "segment-0035",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and development of Micah Blumberg's arguments from the linked sources. Original positions, corrections, acknowledged influences and new editorial applications are distinguished. Publication is not an assertion that all historical reconstructions are established."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0036",

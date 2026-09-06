@@ -65,11 +65,11 @@ Develop the relationship between understanding a teaching and embodying it in a 
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]
 
-### Christ as an active moral model
+### Christic self-formation and bounded agency
 
-Follow the comparison, the changed action and the subsequent correction of the model.
+Develop the embodied self, learned self-model, recurrent choice and correction of the Christ model, then examine the textual and material history of formation.
 
-[[christ-as-an-inner-model|Christ as an inner model]] / [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]] / [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]] / [[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
 
 ### Faith as a practiced orientation
 

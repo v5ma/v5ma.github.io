@@ -1,11 +1,11 @@
 {
   "schema": "theology-museum-content/1",
-  "version": "2026.09.05-atlas-1",
+  "version": "2026.09.06-authorial-1",
   "contentOnly": true,
   "runtimeOwnership": "XR implementation is maintained separately. This manifest supplies curation and evidence, not a working XR scene.",
   "atlas": {
     "path": "source-atlas.json",
-    "sha256": "36ebdd06cb674faea5b8f5f522de6bc85568c60e2e3a556c6dcc908d682b97ae"
+    "sha256": "d723fa9205cf16f3cc02db413315e9cce4d652903d92622d3be1e3ef4dec2123"
   },
   "assetPolicy": "No new scan, photograph, 3D mesh or translated full text is licensed by this manifest. All stops have empty asset lists until explicit permission and identity are checked. Existing wiki illustrations remain contextual, not facsimiles of these objects.",
   "trailPolicy": "A short label must expose its fullArgumentURL, sourceURLs and challengeURLs. Never substitute a label for the full reconstruction or treat a proposed link as a demonstrated event.",
@@ -63,7 +63,7 @@
         {
           "id": "departure-memory",
           "title": "Disaster and its narration",
-          "label": "The author already distinguished famine from a later firstborn interpretation. The remaining question concerns evidence for the narrative change.",
+          "label": "The famine-narration conjecture already distinguishes the disaster from a later firstborn interpretation. The open question concerns evidence for the narrative change.",
           "records": [
             "work-exodus",
             "hypothesis-moses-october",
@@ -253,6 +253,112 @@
             "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-teacher-october"
           ],
           "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=religion-for-conscious-robots",
+          "challengeURLs": [],
+          "assetIds": []
+        }
+      ]
+    },
+    {
+      "id": "inner-formation-witnesses",
+      "title": "How an inward model acquires a history",
+      "question": "How do teachings, communities, copies and ritual settings participate in formation?",
+      "chapter": "inner-model",
+      "stops": [
+        {
+          "id": "formation-covenant",
+          "title": "An inward covenant",
+          "label": "Inward instruction and renewal occur within Israel/Judah restoration settings. Work-level dates remain open.",
+          "records": [
+            "work-jeremiah-formation",
+            "work-ezekiel-formation"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-jeremiah-formation",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-ezekiel-formation"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=inner-formation-texts-and-material-witnesses",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "formation-community",
+          "title": "Formation through a community",
+          "label": "Compare admission, conduct and liturgical participation. A physical copy is not the composition date or proof of a later institutional route.",
+          "records": [
+            "work-community-rule",
+            "witness-4q258",
+            "work-sabbath-songs",
+            "witness-4q403"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-community-rule",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-4q258",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-sabbath-songs",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-4q403"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=inner-formation-texts-and-material-witnesses",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "formation-paul",
+          "title": "Christ formed, and the surviving witness",
+          "label": "The Pauline passages and the P46 collection witness have different roles. The selected Michigan image shows Hebrews, not Galatians 4:19.",
+          "records": [
+            "work-pauline-formation",
+            "witness-p46"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-pauline-formation",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-p46"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=inner-formation-texts-and-material-witnesses",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "formation-interpretation",
+          "title": "Interpretation that changes the receiver",
+          "label": "Compare interpretive knowledge, priestly authority and recurrent self-formation without collapsing them into one doctrine.",
+          "records": [
+            "work-thomas",
+            "work-11qmelchizedek",
+            "hypothesis-christic-formation"
+          ],
+          "page": "christ-as-an-inner-model",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-thomas",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-11qmelchizedek",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-christic-formation"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=christ-as-an-inner-model",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "formation-setting",
+          "title": "An embodied setting and two interpretations",
+          "label": "The font and painted setting are material evidence. Domestic continuity, architectural differentiation and construction dates remain separately inspectable interpretations.",
+          "records": [
+            "witness-dura-formation",
+            "study-pettegrew2024",
+            "study-angelo-silver2024"
+          ],
+          "page": "inner-formation-texts-and-material-witnesses",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-dura-formation",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-pettegrew2024",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-angelo-silver2024"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=inner-formation-texts-and-material-witnesses",
           "challengeURLs": [],
           "assetIds": []
         }

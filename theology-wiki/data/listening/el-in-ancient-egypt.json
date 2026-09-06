@@ -3,8 +3,8 @@
   "slug": "el-in-ancient-egypt",
   "title": "El in Ancient Egypt",
   "source": "content/developed/el-in-ancient-egypt.md",
-  "sourceSha256": "debc9acdcde34426deac9c790eef84180e48bd56e3f9906366557a4483624068",
-  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an editorial article, not a recovered author recording.",
+  "sourceSha256": "331adacb40d0dc59168300657e9365e178ee5588a9acfc723bde1884a32f31c5",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
       "id": "segment-0001",
@@ -22,13 +22,13 @@
       "id": "segment-0003",
       "section": "What would it mean for El to be present?",
       "notes": false,
-      "text": "Micah's question about El in Egypt opens several different investigations. A divine name can occur in a person's name, in an inscription, in a community's devotional practice or in an institution's official cult. Evidence at one level can be important without establishing every other level. The useful starting point is not a blanket yes or no, but a particular object, reading and claim."
+      "text": "Did El have a presence in ancient Egypt? A divine name can occur in a person's name, in an inscription, in a community's devotional practice or in an institution's official cult. Evidence at one level can matter without establishing every other level. I begin with a particular object, reading and claim rather than a blanket yes or no."
     },
     {
       "id": "segment-0004",
       "section": "What would it mean for El to be present?",
       "notes": false,
-      "text": "The archived discussions Jews and Canaanites: origins and Yahweh and Asherah's relationship supply background for Micah's interest in religious inheritance. They are not presented here as a recovered transcript of his newer question about El in Egypt. The specific archaeological case below is an addition to that research agenda."
+      "text": "The Canaanite inheritance and Yahweh and Asherah inquiries raise a larger question about contact across later religious boundaries. The archaeological case below extends that question to an Egyptian setting. Its evidentiary basis is the cited object study, not an assumed transcript of a more recent conversation."
     },
     {
       "id": "segment-0005",
@@ -100,7 +100,7 @@
       "id": "segment-0016",
       "section": "A history of contact is not a single uninterrupted lineage",
       "notes": false,
-      "text": "Micah's broader interest is in the possibility that rigid later categories conceal a more connected past. The El question contributes a specific test case to that interest. To move from an individual name to a larger genealogy, the argument would need intermediate evidence rather than a leap across periods and communities."
+      "text": "Rigid later categories may conceal a more connected past. An El-bearing name gives that possibility a concrete point of investigation. To move from an individual name to a larger genealogy, however, I need intermediate evidence about the people, practices and institutions that could carry the connection."
     },
     {
       "id": "segment-0017",
@@ -136,7 +136,7 @@
       "id": "segment-0022",
       "section": "Source conversations",
       "notes": true,
-      "text": "AI-assisted editorial synthesis and source research for Micah Blumberg's Theology Wiki. The author's arguments are attributed; new analysis is not presented as his verbatim writing. Historical proposals and future outcomes are not certified by inclusion."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0023",

@@ -43,19 +43,19 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
 
-[[cognitive-gnosticism|Cognitive Gnosticism]]: Micah's proposal to examine spiritual ideas through a model of how minds represent, interpret and change themselves.
+[[cognitive-gnosticism|Cognitive Gnosticism]]: An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.
 
-[[christ-as-an-inner-model|Christ as an inner model]]: The gradient-descent analogy: an internal representation of Jesus becomes a standard for examining and changing one's responses.
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]: How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.
 
 [[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: A theological judgment about domination, deception and violence that can appear through many people and institutions.
 
-[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in Micah's theology of coherence.
+[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.
 
 [[faith-as-deliberate-joy|Faith as deliberate joy]]: Faith is described as an activity of returning to an inner orientation, not only as assent to a proposition.
 
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]: A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?
 
-[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: Micah's comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
+[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: The comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
 
 [[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]]: How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.
 
@@ -72,6 +72,8 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 [[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]: Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.
 
 [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]: A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]: Connect inward covenant, community discipline, Sabbath liturgy, Pauline formation, P46 and Dura without collapsing a text, its witness and its interpretation.
 
 ## Explore a subject
 
@@ -95,4 +97,4 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-22 developed articles accompany the archive. They are attributed editorial syntheses, not newly authored first-person statements or replacement transcripts.
+23 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.

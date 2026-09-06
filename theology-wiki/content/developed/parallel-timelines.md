@@ -19,17 +19,17 @@ Relative sequence; no absolute date assigned. The source asks about a Teacher ro
 
 ### Layers of instruction and accounts
 
-No event date specified. The author asks about public parables, disciples and deeper teaching. This is a structural proposal, not a dated manuscript event.
+No event date specified. I ask about public parables, disciples and deeper teaching. This is a structural proposal, not a dated manuscript event.
 
 ## October earlier-founder reconstruction
 
 ### The proposed pre-Teacher interval
 
-167 BCE (author premise). The opening date used by the author for a twenty-year interval. Its role in the proposed arithmetic does not independently establish the underlying historical identification.
+167 BCE (author premise). The opening date used in the reconstruction for a twenty-year interval. Its role in the proposed arithmetic does not independently establish the underlying historical identification.
 
 ### Teacher emerges in the reconstruction
 
-147 BCE (author premise). The author combines the twenty-year interval with an earlier-Teacher reconstruction. Compare the source before treating this as a secure biographical date.
+147 BCE (author premise). I combine the twenty-year interval with an earlier-Teacher reconstruction. Compare the source before treating this as a secure biographical date.
 
 ### Proposed death of the Teacher
 
@@ -37,7 +37,7 @@ No event date specified. The author asks about public parables, disciples and de
 
 ### Later community and namesakes
 
-37-50 CE (range proposed in the discussion). The author proposes that Paul encountered later members or successors. The dates and the mechanism of continuity need their own support.
+37-50 CE (range proposed in the discussion). I propose that Paul encountered later members or successors. The dates and the mechanism of continuity need their own support.
 
 ### Later response to Temple destruction
 
@@ -57,11 +57,23 @@ Approximately 50-25 BCE. The exhibition supplies this manuscript date and discus
 
 Late 1st century BCE / early 1st century CE. The curatorial period is retained verbatim as a broad date description. No invented numerical confidence interval is plotted.
 
+### Songs of the Sabbath Sacrifice, 4Q403
+
+Mid-first-century BCE (catalogue description). The selected catalogue dates a physical copy and records witnesses at Qumran and Masada. This does not fix composition or institutional descent.
+
+### P46, selected Michigan leaf
+
+Approximately 180-220 CE. A curatorial copy-date range, not a statistical confidence interval or composition date. The selected leaf is Hebrews 1:7-2:3; provenance is unknown within Egypt.
+
+### Dura Christian Building: sealing boundary
+
+Sealed between 254 and 256 CE in the cited 2024 study. This dates sealing, not construction. Competing 2024 interpretations of domestic continuity and architectural differentiation remain separately recorded.
+
 ## Textual constraints without absolute dates
 
 ### Paul: intervals and named leaders
 
-Relative intervals, not an absolute date. Galatians 1 and 2 supplies a narrative of visits and recognized leaders; it does not itself print the 37-50 CE range used in the author's reconstruction.
+Relative intervals, not an absolute date. Galatians 1 and 2 supplies a narrative of visits and recognized leaders; it does not itself print the 37-50 CE range used in my reconstruction.
 
 ### The witnesses described in 1 Corinthians 15
 
@@ -70,5 +82,9 @@ Living-memory claim within the text. The statement that many witnesses remained 
 ### Thomas: James, private instruction and interpretation
 
 Textual function; no date inferred. The sayings are compared for their roles in the argument. The comparison does not assign the compilation or its sayings one unargued date.
+
+### Christ formed in the recipients
+
+Textual relationship; no composition date assigned here. Galatians 4:19 supplies formation language. A functional comparison with a modern theory does not identify the originating institution.
 
 [[tor-thomas-and-gnostic-transmission|Read the full transmission inquiry]] and [[jesus-teacher-of-righteousness-hypothesis|the earlier-Teacher reconstruction]].

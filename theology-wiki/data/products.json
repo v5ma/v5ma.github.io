@@ -1,10 +1,10 @@
 {
   "schema": "theology-products/v1",
-  "version": "2026.09.06-products-1",
+  "version": "2026.09.06-authorial-1",
   "updated": "2026-09-06",
-  "policy": "One public research foundation, several ways to encounter it. Full article narration is distinct from edited episodes. Draft scripts are editorial adaptations, not newly recovered statements by Micah. The separate XR runtime and private SAN manuscript are not included.",
+  "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "reference": {
-    "title": "SAN private chapter reader supplied by Micah",
+    "title": "SAN private chapter-reader reference",
     "scope": "Private reference only. Its public access and deployed audiobook layer were not verified here. This implementation is independent; no SAN manuscript or private credentials are redistributed."
   },
   "channels": [
@@ -107,7 +107,7 @@
         "episode-scripts",
         "narration-pilot"
       ],
-      "acceptance": "Choose synthetic or recorded narration, tone, intro, first-person permissions and whether a host persona is appropriate. No imitation of Micah is assumed."
+      "acceptance": "First-person, theory-centered wording is authorized. Review the working theory name, exact script, synthetic or recorded narration, tone and pronunciations. No voice imitation is assumed."
     },
     {
       "id": "book-audio",
@@ -157,9 +157,9 @@
     {
       "id": "counting-the-departure",
       "title": "Counting the departure: why one date is not the whole history",
-      "summary": "A narrated introduction to the competing Exodus-to-Temple chronologies and Micah's earlier-departure reconstruction.",
+      "summary": "A narrated introduction to competing Exodus-to-Temple chronologies and the earlier-departure reconstruction.",
       "status": "Editorial production draft",
-      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
       "pages": [
         "exodus-to-temple-competing-chronologies",
         "moses-volcano-and-exodus-chronology"
@@ -177,7 +177,7 @@
         {
           "id": "counting-the-departure-01",
           "title": "Start with the proposed history",
-          "narration": "Micah Blumberg's reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.",
+          "narration": "The earlier-Exodus reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "exodus-to-temple-competing-chronologies",
@@ -280,13 +280,13 @@
           "slug": "exodus-to-temple-competing-chronologies",
           "title": "From Exodus to Temple: competing chronologies",
           "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-          "sha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3"
+          "sha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3"
         },
         {
           "slug": "moses-volcano-and-exodus-chronology",
           "title": "Moses, the volcano and Exodus chronology",
           "path": "content/developed/moses-volcano-and-exodus-chronology.md",
-          "sha256": "90f7032d1bfee77f01fe56ea8c6129b27fe937a3adb1c3b8c422b4a4a1da2704"
+          "sha256": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589"
         }
       ],
       "script": "products/episodes/counting-the-departure.txt",
@@ -298,7 +298,7 @@
       "title": "The teacher, the copy, and the community",
       "summary": "An introduction to the stronger earlier-Teacher reconstruction and the different things that could survive through transmission.",
       "status": "Editorial production draft",
-      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
       "pages": [
         "manuscripts-movements-and-survival",
         "tor-thomas-and-gnostic-transmission",
@@ -317,7 +317,7 @@
         {
           "id": "teacher-copy-community-01",
           "title": "More than a resemblance",
-          "narration": "Micah's stronger proposal is not merely that Jesus resembled an earlier Jewish teacher. It asks whether an earlier founder's teachings, community, and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
+          "narration": "The stronger Teacher-transmission conjecture is not merely that Jesus resembled an earlier Jewish teacher. I ask whether an earlier founder's teachings, community and biography survived through successors, with the founding story later located in the familiar Jesus chronology.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "manuscripts-movements-and-survival",
@@ -339,7 +339,7 @@
         {
           "id": "teacher-copy-community-03",
           "title": "The objection must meet the actual theory",
-          "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism in Micah's reconstruction. The harder question is what could document successors, repeated names, inherited offices, or changes in the presentation of relationships.",
+          "narration": "A reply that assumes the same disciples had to live for more than a century misses the succession mechanism. The harder question is what could document successors, repeated names, inherited offices or changes in the presentation of relationships.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "manuscripts-movements-and-survival",
@@ -372,7 +372,7 @@
         {
           "id": "teacher-copy-community-06",
           "title": "Texts and institutions need different links",
-          "narration": "Micah also proposes historical relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The institutional question needs evidence about people, leadership, practices, and places as well as books.",
+          "narration": "The institutional reconstruction also proposes relationships between communities in Judea and Egypt. Replacing that proposal with shared themes changes the claim. The question needs evidence about people, leadership, practices and places as well as books.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "manuscripts-movements-and-survival",
@@ -408,31 +408,31 @@
           "slug": "manuscripts-movements-and-survival",
           "title": "Manuscripts, movements and survival",
           "path": "content/developed/manuscripts-movements-and-survival.md",
-          "sha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166"
+          "sha256": "4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f"
         },
         {
           "slug": "tor-thomas-and-gnostic-transmission",
           "title": "The Teacher, Thomas and Gnostic transmission",
           "path": "content/developed/tor-thomas-and-gnostic-transmission.md",
-          "sha256": "36233093b51f15ddf23e898f6e58d55029f7b87631fbd74e6f6c73c76c9b1aac"
+          "sha256": "a6c37cb98f838b9d9e50c08817b63fd59440d9bbd7d852918d69ebcaeff40b10"
         },
         {
           "slug": "melchizedek-priesthood-and-transmission",
           "title": "Melchizedek: priesthood, release and transmission",
           "path": "content/developed/melchizedek-priesthood-and-transmission.md",
-          "sha256": "d928cb68ba3b1dce3e192fd7e8b1fa197311ed80c51fe56738da55190f15bda6"
+          "sha256": "7f5e01946f6a55d08a7896d0b6356a23f5466fcd50ef28681e609b2a71368c36"
         }
       ],
       "script": "products/episodes/teacher-copy-community.txt",
       "production": "products/episodes/teacher-copy-community.json",
-      "words": 302
+      "words": 300
     },
     {
       "id": "objections-in-the-museum",
       "title": "Put the objection in the museum",
       "summary": "Why the research archive includes challenges, corrections and the full versions of the arguments being challenged.",
       "status": "Editorial production draft",
-      "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+      "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
       "pages": [
         "argument-challenges",
         "manuscripts-movements-and-survival",
@@ -458,7 +458,7 @@
         {
           "id": "objections-in-the-museum-02",
           "title": "Preserve the two-stage argument",
-          "narration": "In the original Moses discussion, Micah already distinguished a famine from a later account describing a firstborn plague. He did not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
+          "narration": "The famine-narration conjecture distinguishes a famine from a later account describing a firstborn plague. I do not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "argument-challenges",
@@ -469,7 +469,7 @@
         {
           "id": "objections-in-the-museum-03",
           "title": "Ask the remaining historical question",
-          "narration": "Recovering that qualification does not establish the famine explanation. It changes the research task: what evidence might support the proposed disaster and its later narration? The full claim deserves examination instead of a reply to a claim the author rejected.",
+          "narration": "That distinction does not establish the famine explanation. It clarifies the research task: what evidence supports the proposed disaster and its later narration? The full claim deserves examination rather than a reply to a claim already rejected.",
           "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
           "sourcePages": [
             "argument-challenges",
@@ -527,133 +527,29 @@
           "slug": "argument-challenges",
           "title": "Challenges, corrections and preserved arguments",
           "path": "content/developed/argument-challenges.md",
-          "sha256": "1b16f49e9ffb925eb3971fc2b6f7eebd341046491524de7381151241e1ef6f8b"
+          "sha256": "460c7dc7beaa00eedbf13e3885918c5cb507e1d5dde27fabe58ddc327b1cd34d"
         },
         {
           "slug": "manuscripts-movements-and-survival",
           "title": "Manuscripts, movements and survival",
           "path": "content/developed/manuscripts-movements-and-survival.md",
-          "sha256": "381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166"
+          "sha256": "4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f"
         },
         {
           "slug": "exodus-to-temple-competing-chronologies",
           "title": "From Exodus to Temple: competing chronologies",
           "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-          "sha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3"
+          "sha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3"
         }
       ],
       "script": "products/episodes/objections-in-the-museum.txt",
       "production": "products/episodes/objections-in-the-museum.json",
-      "words": 255
+      "words": 248
     }
   ],
   "media": {
     "schema": "theology-recorded-media/v1",
-    "version": "2026.09.06-products-1",
-    "production": {
-      "engine": "Kokoro 0.9.4",
-      "model": "hexgrad/Kokoro-82M",
-      "revision": "30618d04b530efb8e3ac3bace784f9d4a8dcaa01",
-      "voice": "af_heart",
-      "modelLicense": "Apache-2.0",
-      "inference": "CPU, no paid API or voice cloning"
-    },
-    "pronunciationOverrides": {
-      "BCE": "B C E",
-      "11Q13": "eleven Q thirteen",
-      "TOR": "Teacher of Righteousness"
-    },
-    "rights": "Original editorial script and typographic cards. No licensed music, external artifact photography, model weights or font files are redistributed. Source citations do not confer scan reuse rights.",
-    "review": "Generated recordings are technical production drafts, not approved final audiobooks. Headless playback checks do not certify voice quality or historical conclusions.",
-    "assets": [
-      {
-        "id": "counting-the-departure",
-        "kind": "episode",
-        "title": "Counting the departure: why one date is not the whole history",
-        "status": "Synthetic production draft; author and pronunciation review pending",
-        "voice": "Kokoro 0.9.4 / af_heart",
-        "sourceSha256": "eec60d95f7d59338ec70c797dffd392c255977bdd58b7102cc247baf23da04e7",
-        "spokenSha256": "167d28a1a54e060bc0a1c1864e933f905deef29303b833fb912251c054128854",
-        "durationSeconds": 161.525,
-        "segments": 10,
-        "scope": "Short editorial episode; full argument linked separately.",
-        "files": [
-          {
-            "role": "audio",
-            "path": "products/media/counting-the-departure.mp3",
-            "bytes": 1939579,
-            "sha256": "d08ce25bf37a8374287ee121c23e828672391b8fc3d48b98a82f000af00c2207"
-          },
-          {
-            "role": "captions",
-            "path": "products/media/counting-the-departure.vtt",
-            "bytes": 3045,
-            "sha256": "6355498bcfb46dc90eb69ca65e2051afa87c4dcbbeca721a4e2b2738ccec5100"
-          },
-          {
-            "role": "cues",
-            "path": "products/media/counting-the-departure.cues.json",
-            "bytes": 6813,
-            "sha256": "134ec24571020187716aae064a2646aa42fc3cc62c5e4a7b7a3a153a6620f303"
-          },
-          {
-            "role": "spoken-transcript",
-            "path": "products/media/counting-the-departure.txt",
-            "bytes": 2590,
-            "sha256": "9ab627e47d0358bf7d0315a3770bbc641379faf0d0a7e13a7d341862bc66f189"
-          },
-          {
-            "role": "video",
-            "path": "products/media/counting-the-departure.mp4",
-            "bytes": 2960411,
-            "sha256": "720cc97e419d777ecfdf09b9603971196f968c00a3012dd76d4bcf16f06da054"
-          },
-          {
-            "role": "poster",
-            "path": "products/media/counting-the-departure.png",
-            "bytes": 47698,
-            "sha256": "df10e6a8d2f34e674892f4b259b0512195efade1a31d5dbf6ae5beadd09bcf0a"
-          }
-        ]
-      },
-      {
-        "id": "exodus-to-temple-competing-chronologies",
-        "kind": "article",
-        "title": "From Exodus to Temple: competing chronologies",
-        "status": "Synthetic production draft; author and pronunciation review pending",
-        "voice": "Kokoro 0.9.4 / af_heart",
-        "sourceSha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3",
-        "spokenSha256": "8b468cade1b3a4756a579efd037caa98cc40f7786b8e92715ab7bcbef159fc25",
-        "durationSeconds": 823.17,
-        "segments": 38,
-        "scope": "Complete main article including headings; separately labeled source/visual notes are excluded from this recording.",
-        "files": [
-          {
-            "role": "audio",
-            "path": "products/media/exodus-to-temple-competing-chronologies.mp3",
-            "bytes": 9879147,
-            "sha256": "16223c2a5db12b82a411a7795a949a8a6908a2472754f34eef08c9d49a7e4522"
-          },
-          {
-            "role": "captions",
-            "path": "products/media/exodus-to-temple-competing-chronologies.vtt",
-            "bytes": 13919,
-            "sha256": "6c6087a34fefe85f0c667c3edbd8004131c38ba4e060355924881a31b23cbfa8"
-          },
-          {
-            "role": "cues",
-            "path": "products/media/exodus-to-temple-competing-chronologies.cues.json",
-            "bytes": 30944,
-            "sha256": "79cf2f8bc5f000820533e0af46291ba5677a1d336bc7fb506f1536d7251e946a"
-          },
-          {
-            "role": "spoken-transcript",
-            "path": "products/media/exodus-to-temple-competing-chronologies.txt",
-            "bytes": 12396,
-            "sha256": "9ade5d5aac7bb9b47057c04d36e483ab6195fa6a45dfe917feb533246e98f7c4"
-          }
-        ]
-      }
-    ]
+    "assets": [],
+    "status": "No generated recording has been installed in this build."
   }
 }

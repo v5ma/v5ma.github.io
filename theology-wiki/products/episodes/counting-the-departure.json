@@ -1,9 +1,9 @@
 {
   "id": "counting-the-departure",
   "title": "Counting the departure: why one date is not the whole history",
-  "summary": "A narrated introduction to the competing Exodus-to-Temple chronologies and Micah's earlier-departure reconstruction.",
+  "summary": "A narrated introduction to competing Exodus-to-Temple chronologies and the earlier-departure reconstruction.",
   "status": "Editorial production draft",
-  "voice": "Third-person editorial narration; not an imitation or recording of Micah.",
+  "voice": "First-person authorial script with a stock synthetic narrator; not an imitation of the author's voice.",
   "pages": [
     "exodus-to-temple-competing-chronologies",
     "moses-volcano-and-exodus-chronology"
@@ -21,7 +21,7 @@
     {
       "id": "counting-the-departure-01",
       "title": "Start with the proposed history",
-      "narration": "Micah Blumberg's reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.",
+      "narration": "The earlier-Exodus reconstruction begins with a sequence: a population gains standing in Egypt, loses protection during political change, experiences coercion and catastrophe, and departs. Moving a date is only one part of that proposed history.",
       "visual": "Original typographic evidence card. No invented artifact, portrait, excavation or manuscript scan.",
       "sourcePages": [
         "exodus-to-temple-competing-chronologies",
@@ -124,13 +124,13 @@
       "slug": "exodus-to-temple-competing-chronologies",
       "title": "From Exodus to Temple: competing chronologies",
       "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-      "sha256": "b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3"
+      "sha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3"
     },
     {
       "slug": "moses-volcano-and-exodus-chronology",
       "title": "Moses, the volcano and Exodus chronology",
       "path": "content/developed/moses-volcano-and-exodus-chronology.md",
-      "sha256": "90f7032d1bfee77f01fe56ea8c6129b27fe937a3adb1c3b8c422b4a4a1da2704"
+      "sha256": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589"
     }
   ],
   "script": "products/episodes/counting-the-departure.txt",

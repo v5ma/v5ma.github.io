@@ -74,7 +74,7 @@ def main():
         img=Image.new('RGB',(1280,720),'#0b1423');d=ImageDraw.Draw(img)
         d.rectangle((0,0,16,720),fill='#d8b977');d.line((72,104,1208,104),fill='#41566e',width=2)
         f=lambda size,bold=False:ImageFont.truetype(bold_path if bold else font_path,size)
-        d.text((72,45),'THEOLOGY  /  MICAH BLUMBERG\'S RESEARCH',font=f(20,True),fill='#d8b977')
+        d.text((72,45),'THEOLOGY  /  FORMATION AND INHERITANCE',font=f(20,True),fill='#d8b977')
         d.text((72,128),f'COUNTING THE DEPARTURE     |     SCENE {index+1:02} OF {total:02}',font=f(17),fill='#a5b7cc')
         y=177
         def wrapped(text,font,width):
@@ -109,7 +109,7 @@ def main():
             command(['ffmpeg','-v','error','-y','-i',str(work/'complete.wav'),'-c:a','libmp3lame','-b:a','96k','-metadata','title='+title,'-metadata','artist=Synthetic editorial narration; research by Micah Blumberg',str(mp3)])
             vtt=stem.with_suffix('.vtt');vtt.write_text('WEBVTT\n\n'+'\n\n'.join(c['id']+'\n'+timestamp(c['start'])+' --> '+timestamp(c['end'])+'\n'+c['text'] for c in cues)+'\n')
             cuefile=stem.with_suffix('.cues.json');cuefile.write_text(json.dumps({'schema':'theology-media-cues/v1','basis':'Measured generated segment lengths, including an explicit 0.24-second pause. Segment boundaries, not claimed word alignment.','sampleRate':RATE,'cues':cues},indent=2)+'\n')
-            textfile=stem.with_suffix('.txt');textfile.write_text(title+'\n\nSynthetic narration; not Micah\'s recorded voice.\n\n'+'\n\n'.join(spoken)+'\n')
+            textfile=stem.with_suffix('.txt');textfile.write_text(title+'\n\nSynthetic narration of an authorial working text; not the author\'s recorded voice.\n\n'+'\n\n'.join(spoken)+'\n')
             files=[('audio',mp3),('captions',vtt),('cues',cuefile),('spoken-transcript',textfile)]
             if make_video:
                 concat=work/'slides.txt';concat.write_text(''.join("file '"+str(image)+"'\nduration "+str(duration)+'\n' for image,duration in slides)+"file '"+str(slides[-1][0])+"'\n")

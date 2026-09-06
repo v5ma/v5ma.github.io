@@ -15,7 +15,7 @@ The board tracks work, not the truth or falsity of an entire theory. Browser cha
 
 ### Expand the Samuel/Micah mixed-case survey
 
-The existing two worked passages do not substitute for the broad survey the author requested. Add passages and contextual counterexamples.
+The existing two worked passages do not substitute for the broad survey the inquiry requires. Add passages and contextual counterexamples.
 
 [[scripture-power-and-repair|Open the related investigation]]
 
@@ -41,7 +41,7 @@ Compare additional passages with exact textual witnesses, differences and altern
 
 ### Resolve the Davidic/priestly knot
 
-Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.
+Present my Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.
 
 [[jesus-teacher-of-righteousness-hypothesis|Open the related investigation]]
 
@@ -59,7 +59,7 @@ Specify objects, mappings and composition before calling the category-theory mod
 
 ### Develop reciprocal duties toward conscious machines
 
-Separate the author's teaching proposal from the new editorial question about obligations toward future conscious participants.
+Separate my teaching proposal from the new editorial question about obligations toward future conscious participants.
 
 [[religion-for-conscious-robots|Open the related investigation]]
 
@@ -111,7 +111,7 @@ The existing public source seed still calls itself private-first. Confirm its in
 
 ### Review the proposed book sequence
 
-The contents is a proposed argument order, not a finished manuscript. Confirm whether the sequence preserves the breadth of the author's project.
+The contents is a proposed argument order, not a finished manuscript. Confirm whether the sequence preserves the breadth of my project.
 
 [[book-contents|Open the related investigation]]
 

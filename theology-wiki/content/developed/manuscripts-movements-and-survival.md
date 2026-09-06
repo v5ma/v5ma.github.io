@@ -4,7 +4,7 @@ slug: "manuscripts-movements-and-survival"
 summary: "A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence."
 topic: "Ancient texts & origins"
 status: "Developed article"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # Manuscripts, movements and survival
@@ -13,7 +13,7 @@ updated: "2026-09-05"
 
 The earlier-Teacher reconstruction proposes more than the survival of a sentence. It proposes that a founder's teaching, the community that preserved it, successor leadership and later biography have histories that can come apart and reconnect. [[tor-thomas-and-gnostic-transmission|The full transmission argument]] explains that ambition. A museum built from the research should let visitors inspect those different histories without turning one date on a wall label into a verdict about all of them.
 
-A manuscript is a physical witness to a text at a stage in its transmission. A work can be copied, translated, excerpted or rearranged. An institution can preserve a work without descending from its first community. A community can inherit an office or practice without preserving every original text. These are distinctions within a possible historical connection, not reasons to reduce Micah's institutional hypothesis to harmless thematic similarity.
+A manuscript physically witnesses a text at a stage of transmission. A work can be copied, translated, excerpted or rearranged. An institution can preserve a work without descending from its first community; a community can inherit an office or practice without preserving every original text. These distinctions sharpen the institutional-transmission conjecture rather than reduce it to thematic similarity.
 
 The strongest investigation asks which of those things is proposed to continue at each step and which evidence bears on that particular step. The source atlas makes the question explicit. Its catalogue separates works, material witnesses, translations, modern studies and author reconstructions, then gives each relationship a verb and a reason. "Survives in this copy" is different from "was composed here"; "quotes this work" is different from "descends from this community."
 
@@ -31,7 +31,7 @@ The same Cambridge project presents Enoch through its preservation in full by th
 
 Together the cases make it reasonable to investigate a history wider than one discovery location or one language. They do not by themselves identify an uninterrupted chain from Zadokite priests to every community that later preserved Enoch. The relevant intermediate questions concern which texts circulated, their languages, who had access to them, and what could be learned about reception independently of a proposed ancestry.
 
-Micah's Egyptian and Ethiopian inquiry should retain its stronger institutional ambition while these questions are examined. A proposal that some people remained in Judea while others established a community elsewhere has a different structure from a claim that a book happened to survive in Egypt. It needs records of people and institutions as well as textual evidence. A museum should display the institutional path as a proposed path, not erase it because it has not yet been established and not render it indistinguishably from a documented manuscript location.
+The Egyptian and Ethiopian reconstruction has an institutional ambition. Some people remaining in Judea while others establish a community elsewhere is a different proposition from a book surviving in Egypt. I therefore look for records of people and institutions alongside texts. The museum should display the proposed institutional path without either erasing it or giving it the status of a documented manuscript location.
 
 ## Josephus demonstrates mediated evidence in plain sight
 
@@ -39,11 +39,11 @@ Against Apion is useful both for what it says about an ancestral departure and f
 
 That gives the Hyksos-Exodus inquiry a precise question. What content is attributed to the earlier author, what interpretation belongs to Josephus, and what assumptions belong to a modern reconstruction? The answer should not be compressed into either "an Egyptian historian proved Exodus" or "a Jewish interpretation has no historical value." Both would bypass the actual transmission of the account.
 
-Antiquities 13.3 supplies another kind of evidence: a narrated Egyptian sanctuary associated with Onias. Its account is an institutional comparison target for Micah's displaced-priestly-community hypothesis. It does not, without additional arguments, specify the households left behind, identify John the Baptist with an earlier murdered priest, or establish the route to the Nag Hammadi texts. Those are particular links in the proposed reconstruction. They should be traced, not silently removed from its statement.
+Antiquities 13.3 describes an Egyptian sanctuary associated with Onias, providing an institutional comparison for the displaced-priestly-community conjecture. It does not by itself identify the households left behind, make John the Baptist an earlier murdered priest or establish a route to Nag Hammadi. Those are specific proposed links to investigate, not parts to silently delete from the reconstruction.
 
 ## Names can carry an office, a memory or an individual
 
-In the October Teacher discussion, Micah introduces succession, descendants and recurrent names to account for the movement's later participants. An objection that the same individuals would need to survive for more than a century does not address that formulation. The relevant questions concern how succession is documented, whether a designation refers to a name or office in each passage, and whether a later narrative represents a relationship differently.
+Succession, descendants and recurrent names provide the proposed mechanism for later participants in the movement. An objection requiring the same individuals to survive more than a century does not address that mechanism. The evidence must instead bear on succession, the use of names and offices, and possible later changes in the representation of relationships.
 
 Thomas's saying 12 directs attention to James; saying 13 distinguishes private instruction. They therefore give the investigation particular textual places to examine leadership and access to teaching, rather than only a modern preference for those subjects. Their functions do not automatically establish a Zadokite pedigree. But a response that refutes a pedigree inferred solely from an English synonym has not thereby answered a reconstruction based on naming, leadership, place, practice and historical continuity together.
 
@@ -53,7 +53,7 @@ The [[melchizedek-priesthood-and-transmission|Melchizedek comparison]] is now av
 
 The future XR experience belongs to a separate implementation. This edition supplies content records for it, not rooms, navigation physics or a deployed headset application. Each proposed exhibit stop has a short label, the full argument behind the label, its source records, and the question a visitor should be able to investigate. Illustrations without verified reuse permission remain links, not downloadable textures disguised as cleared assets.
 
-The visitor should be able to distinguish a document's words from a scholar's reading and Micah's reconstruction. A proposal can be shown at full strength: an earlier founder, a successor community, a displaced biography, a competing chronology. Its display should also expose the evidence needed by a particular link. This makes a hypothesis inspectable without requiring a curator to normalize it into the dominant account before admitting it to the museum.
+The museum distinguishes a document's words, a scholar's interpretation and the reconstruction developed here. The earlier founder, successor community, displaced biography and competing chronology remain visible at full strength. Each proposed link also exposes the evidence it needs. An alternative need not first become the dominant account before it deserves a clear, inspectable presentation.
 
 That is also why a disagreement with an AI is recorded by outcome, not by applause. An objection that confuses copying with composition or ignores an explicitly stated mechanism can fail as an objection. That failure is a real argumentative result, but it is not a new manuscript. An unresolved identity question remains visible even when a particular dismissal is shown to be inadequate. [[argument-challenges|The challenge record]] preserves those distinctions alongside the actual source turns.
 
@@ -72,7 +72,7 @@ The first catalogue is deliberately bounded. Records labeled as leads are not re
 
 [[jewish-apocalyptic-repair-timeline|Jewish Apocalyptic Repair Timeline]] is the archived discussion dated 2025-07-16 (UTC export metadata).
 
-AI-assisted editorial synthesis and development of Micah Blumberg's archived arguments and the current editing discussion. Selected original qualifications and hypothesis versions are preserved. New source comparisons and arithmetic are editorial analysis, not invented author quotations or independent confirmation of the reconstruction.
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
 
 ## External sources and access notes
 

@@ -41,7 +41,7 @@ From an inward model of Christ to spiritual practice and machine education.
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]
 
-[[christ-as-an-inner-model|Christ as an inner model]]
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]
 
 [[faith-as-deliberate-joy|Faith as deliberate joy]]
 
@@ -73,7 +73,7 @@ From an inward reference to a critique of self-authorizing power and the respons
 
 [[god-and-our-models-of-god|God and our models of God]]
 
-[[christ-as-an-inner-model|Christ as an inner model]]
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]
 
 [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]
 

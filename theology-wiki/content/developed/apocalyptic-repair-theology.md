@@ -4,7 +4,7 @@ slug: "apocalyptic-repair-theology"
 summary: "How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions."
 topic: "Apocalypse, power & repair"
 status: "Developed article"
-updated: "2026-09-04"
+updated: "2026-09-06"
 ---
 
 # Apocalyptic Repair Theology
@@ -55,7 +55,7 @@ In [[agi-religious-framework|AGI Religious Framework]], author turn 3 refuses a 
 
 The distinction can be developed through an illustrative contrast. One system suppresses every complaint so that all public reports agree. Another records disagreement, investigates harms and revises a policy when the reports reveal an error. The first has achieved uniformity by eliminating corrective information. The second preserves the possibility of learning from the people affected.
 
-Under the repair framework, the second is the better model of moral alignment because coordination remains answerable to welfare and truth. This is an editorial development connecting the two source arguments, not a new physical definition of coherence or an experimentally validated metric. It identifies a practical requirement: the ability to correct authority must not be destroyed in the name of alignment.
+Under the repair framework, the second is the better model of moral alignment because coordination remains answerable to welfare and truth. This extends the theological account into an ethical requirement, not a new physical definition or experimentally validated measure of coherence: the ability to correct authority must not be destroyed in the name of alignment.
 
 ## The outcome a warning should keep in view
 
@@ -65,6 +65,7 @@ Revelation 21:1-5 describes renewal and the end of death, mourning and pain. Rea
 
 The historical hypothesis about Gnostic responses to Temple destruction remains a related but separate research project. A resemblance between escape, healing and restoration does not establish a single uninterrupted genealogy among traditions. The theological argument here stands on its own explicit distinction: real danger is a reason to organize repair, not a reason to postpone it.
 
+
 ## Source conversations
 
 [[early-vs-later-gnosticism|Early vs Later Gnosticism]] is the archived discussion dated 2025-07-15 (UTC export metadata).
@@ -73,7 +74,7 @@ The historical hypothesis about Gnostic responses to Temple destruction remains 
 
 [[agi-religious-framework|AGI Religious Framework]] is the archived discussion dated 2025-06-12 (UTC export metadata).
 
-AI-assisted editorial synthesis of Micah Blumberg's source discussions, with new worked comparisons. Theological identifications remain attributed; editorial applications and arithmetic are not new author quotations.
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
 
 ## External sources and access notes
 

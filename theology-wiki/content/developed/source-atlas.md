@@ -39,7 +39,7 @@ work / Jewish historiography. Separate the foundation count, priestly succession
 
 ## Josephus: Against Apion
 
-work / Jewish historiography. The author preserves and argues about an account attributed to Manetho. Quotation and interpretation must not be counted as independent testimonies.
+work / Jewish historiography. Josephus preserves and argues about an account attributed to Manetho. Quotation and interpretation must not be counted as independent testimonies.
 
 [[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]
 
@@ -111,7 +111,7 @@ work / Sayings and Nag Hammadi. The earlier-founder inquiry asks about the speak
 
 ## Patterson and Meyer: Thomas translation
 
-translation / Modern translation. Translation credit belongs to this consulted textual access, not automatically to an influence acknowledged by Micah in an earlier chat.
+translation / Modern translation. This credits the consulted translation; it does not retrospectively assert an earlier personal influence.
 
 [[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]
 
@@ -153,25 +153,25 @@ material-witness / Egyptian archaeological description. The named delegation and
 
 ## Moses: conquest before catastrophe
 
-hypothesis / Micah reconstruction. The archived version orders favorable status, political reversal, loss of status, environmental catastrophe and departure. Numerical examples in a chat are not independent archaeological anchors.
+hypothesis / Alternative reconstruction. The archived version orders favorable status, political reversal, loss of status, environmental catastrophe and departure. Numerical examples in a chat are not independent archaeological anchors.
 
 [[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]] / [[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]
 
 ## Moses: pre-accession departure explored
 
-hypothesis / Micah reconstruction. The recent editing discussion explores departure before Ahmose's accession. It is preserved separately from the earlier order and is not a newly exported chat.
+hypothesis / Alternative reconstruction. The recent editing discussion explores departure before Ahmose's accession. It is preserved separately from the earlier order and is not a newly exported chat.
 
 [[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]
 
 ## Earlier Teacher and displaced biography
 
-hypothesis / Micah reconstruction. The stronger version proposes an earlier founder, successive leaders, descendants or namesakes, transmitted sayings and later chronological relocation of biography. Do not replace it with shared motifs only.
+hypothesis / Alternative reconstruction. The stronger version proposes an earlier founder, successive leaders, descendants or namesakes, transmitted sayings and later chronological relocation of biography. Do not replace it with shared motifs only.
 
 [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]]
 
 ## Sibylline Oracles: repair comparison dossier
 
-research-lead / Apocalyptic comparison. The author requests integration into the cross-corpus repair inquiry. Specific books, layers, passages and editions still need records; this entry does not claim a completed chronology.
+research-lead / Apocalyptic comparison. I request integration into the cross-corpus repair inquiry. Specific books, layers, passages and editions still need records; this entry does not claim a completed chronology.
 
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]] / [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]
 
@@ -186,3 +186,75 @@ research-lead / Johannine and Gnostic comparison. Gospel of John, Revelation and
 research-lead / Repair and reception. The historical-transmission proposal and the counterfactual trajectory toward Kabbalah need separate arguments. A similar restoration motif alone cannot decide between them.
 
 [[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]] / [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]
+
+## Jeremiah: inward covenant
+
+work / Biblical. Jeremiah 31:31-34 connects inward instruction with Israel and Judah. Its modern translation is not a dated manuscript.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Ezekiel: new heart and spirit
+
+work / Biblical. Ezekiel 36:24-28 relates inward renewal, conduct and land restoration. The collective setting is retained.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Community Rule: membership and conduct
+
+work / Dead Sea Scrolls. Regulated community formation provides a comparison target. The present catalogue access is not a completed collation of 1QS III-IV.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## 4Q258: Community Rule copy
+
+material-witness / Dead Sea Scrolls. Specific Cave 4 witness, distinguished from the Cave 1 scroll and from the composition history of the work.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Songs of the Sabbath Sacrifice
+
+work / Dead Sea Scrolls. The liturgical cycle supplies a comparison for rehearsed heavenly priestly participation, not a measurement of ancient minds.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## 4Q403: Sabbath Songs copy
+
+material-witness / Dead Sea Scrolls. The catalogue describes a physical copy and records additional witnesses at Qumran and Masada. Distribution does not by itself establish one institutional genealogy.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Pauline collection: inward life and formation
+
+work / New Testament. A passage group across Galatians, Romans and Philippians, not a claim that these form one separately composed work. Christ-formation language is considered with communal conduct.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## P46: Michigan leaf Hebrews 1:7-2:3
+
+material-witness / New Testament. P.Mich.inv. 6238. The selected leaf contains Hebrews, not Galatians 4:19. Unknown provenance within Egypt; acquisition in 1930/1931 does not identify an excavated reading community.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Dura-Europos: Christian ritual setting
+
+material-witness / Early Christian archaeology. Font and painted setting provide material context for practice. Construction, renovation, domestic use and sealing are different questions; both 2024 interpretations are linked.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Pettegrew: domestic continuity interpretation
+
+study / Archaeological interpretation. Published abstract argues for retained domestic aspects and an earlier construction chronology. Full paywalled paper not reviewed in this pass.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Leon Angelo and Silver: architectural differentiation
+
+study / Archaeological interpretation. Full-text discussion distinguishes renovated space from domestic antecedents and questions an inscription-to-construction inference. Recorded alongside a competing interpretation.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+
+## Christic Self-Formation Theory
+
+hypothesis / Constructive theology. Proposed working name for recurrent self-formation through an inward Christ model, with revision of conduct and of the interpreted standard. Compatibility, mechanism and historical genealogy have distinct evidentiary requirements.
+
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]] / [[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]

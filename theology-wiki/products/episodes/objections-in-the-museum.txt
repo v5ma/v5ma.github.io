@@ -1,6 +1,6 @@
 Put the objection in the museum
 
-Editorial adaptation of Micah Blumberg's public research. Synthetic production draft; not the author's recorded voice.
+First-person authorial research script. Synthetic production draft; not the author's recorded voice.
 
 The missing part of an exhibit
 
@@ -8,11 +8,11 @@ A museum label normally offers a conclusion. This project can also display how a
 
 Preserve the two-stage argument
 
-In the original Moses discussion, Micah already distinguished a famine from a later account describing a firstborn plague. He did not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.
+The famine-narration conjecture distinguishes a famine from a later account describing a firstborn plague. I do not propose that famine biologically selects birth order. Repeating that objection alone misses the proposed transformation of the narrative.
 
 Ask the remaining historical question
 
-Recovering that qualification does not establish the famine explanation. It changes the research task: what evidence might support the proposed disaster and its later narration? The full claim deserves examination instead of a reply to a claim the author rejected.
+That distinction does not establish the famine explanation. It clarifies the research task: what evidence supports the proposed disaster and its later narration? The full claim deserves examination rather than a reply to a claim already rejected.
 
 Do not replace a historical connection
 
@@ -34,12 +34,12 @@ Sources and full arguments
 
 Challenges, corrections and preserved arguments
 https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges
-SHA-256: 1b16f49e9ffb925eb3971fc2b6f7eebd341046491524de7381151241e1ef6f8b
+SHA-256: 460c7dc7beaa00eedbf13e3885918c5cb507e1d5dde27fabe58ddc327b1cd34d
 
 Manuscripts, movements and survival
 https://v5ma.github.io/theology-wiki/san-reader.html?page=manuscripts-movements-and-survival
-SHA-256: 381e87678f5f6fbb877e673b8ccfe7df75db40152f46634897f2723ee5e18166
+SHA-256: 4d10376a5ac85f297b0929d97d18ca3b34518ffd66969fe49bba87aaef704b1f
 
 From Exodus to Temple: competing chronologies
 https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies
-SHA-256: b3abbfdc43d216ff13cac813bec551a8ca190d86ecb89e2a7b39f0d90a97c2f3
+SHA-256: 53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3

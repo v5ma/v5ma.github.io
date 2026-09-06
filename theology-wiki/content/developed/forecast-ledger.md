@@ -15,7 +15,7 @@ This register separates predictions, interpretation updates and recovery leads. 
 
 Archived prediction. Original chat available. Evaluation: Not assessed.
 
-Micah anticipates deceptive peace, global economic collapse and nuclear World War 3 after rejecting a celebratory account of a reported ceasefire.
+I anticipate deceptive peace, global economic collapse and nuclear World War 3 after rejecting a celebratory account of a reported ceasefire.
 
 Date basis: Export-start metadata; this opening turn is at the start of a file that also contains later updates.
 
@@ -51,7 +51,7 @@ Proposed review: evaluate the specific sequence separately from the broader meta
 
 Interpretation update. Original chat available. Evaluation: Not an outcome claim.
 
-Micah identifies Trump as the First Beast and considers Netanyahu in the second role, updating the earlier discussion.
+I identify Trump as the First Beast and considers Netanyahu in the second role, updating the earlier discussion.
 
 Date basis: Date explicitly stated inside turn 13; do not backdate this update to the March export-start date.
 
@@ -75,7 +75,7 @@ Date basis: Displayed SVGN publication date; no independent archival timestamp f
 
 Horizon: No fixed completion date.
 
-Mechanism: The author argues that an enduring imbalance pushes policy toward a different deterrent position.
+Mechanism: I argue that an enduring imbalance pushes policy toward a different deterrent position.
 
 Conditions: The stated incentive structure is a condition of the prediction. The article is not evidence that a transfer or restoration has occurred.
 
