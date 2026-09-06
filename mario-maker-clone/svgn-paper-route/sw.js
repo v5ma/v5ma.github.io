@@ -8,7 +8,7 @@
    persistent bug in this project. Offline still works: the cache is the
    fallback, not the default.
    ========================================================================= */
-const CACHE = 'svgn-paper-route-workshop-live-20260905';
+const CACHE = 'svgn-paper-route-rail-editor-1788668401';
 
 /* only genuinely static things get served from cache first */
 const STATIC = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-180.png'];
@@ -58,7 +58,7 @@ self.addEventListener('fetch', e => {
         if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
         return res;
       })
-      .catch(() => caches.match(req).then(hit => hit || caches.match('./index.html')))
+      .catch(() => caches.match(req).then(async hit => hit || (req.mode === 'navigate' ? await caches.match('./index.html') : null) || Response.error()))
   );
 });
 

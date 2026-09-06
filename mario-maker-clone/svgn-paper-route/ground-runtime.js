@@ -36,12 +36,12 @@
     fireGun(p);K.swing(p,{right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft),up:!!keys.ArrowUp,down:!!keys.ArrowDown},(x,y)=>SOLID.has(pg(Math.floor(x/36),Math.floor(y/36))));
     if(p.inv>0)p.inv--;interactTiles(p);
    }else if(tr){
-    if(p.trackCD>0)p.trackCD--;fireGun(p);
+    if(p.trackCD>0)p.trackCD--;fireNitro(p);fireGun(p);
     const exit=K.ride(p,{right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft),jump:jp});
     if(exit){S.launches++;lastTrack=tr.sky.id;p._airTicks=0;log('optional-lip',{rail:lastTrack});}
     if(p.inv>0)p.inv--;interactTiles(p);
    }else{
-    if(p._networkAir && meta.skyNetwork && !p.onGround){
+    if((p._networkAir&&meta.skyNetwork||p._railAir||p.nitroT>0)&&!p.onGround){
       if(p.trackCD>0)p.trackCD--;fireNitro(p);fireGun(p);
       K.flight(p,{right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft)},q=>{moveX(q);moveY(q);});
       if(p.inv>0)p.inv--;interactTiles(p);
