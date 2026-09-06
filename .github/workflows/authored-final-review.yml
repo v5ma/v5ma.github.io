@@ -1,0 +1,97 @@
+name: Final authored route review
+on:
+  push:
+    branches: [feat/authored-flow-phrases-20260905]
+    paths: ['.github/workflows/authored-final-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.identity.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recover the exact reviewed source objects
+        run: |
+          python - <<'PY'
+          import urllib.request,json,base64,hashlib
+          from pathlib import Path
+          repo='https://api.github.com/repos/v5ma/v5ma.github.io'
+          tree='a02c168f0456e3f9448f47901cccd3aec09e120e'
+          wanted={'scripts/polish-authored-final.py','scripts/record-authored-inputs.py','mario-maker-clone/svgn-paper-route/phrase-framing.js'}
+          def read(url):
+            with urllib.request.urlopen(urllib.request.Request(url,headers={'Accept':'application/vnd.github+json','User-Agent':'Paper-Delivery-source-review'}),timeout=25) as r:return json.load(r)
+          result=read(repo+'/git/trees/'+tree+'?recursive=1')
+          assert not result.get('truncated'),'Incomplete source tree'
+          entries={e['path']:e for e in result['tree'] if e['path'] in wanted}
+          assert set(entries)==wanted,'Missing preserved source'
+          for name,e in entries.items():
+            obj=read(repo+'/git/blobs/'+e['sha']);raw=base64.b64decode(obj['content'])
+            actual=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+            assert actual==e['sha'],'Source object mismatch'
+            text=raw.decode('utf-8');assert len(raw)<50000,'Oversized source'
+            p=Path(name);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          PY
+      - name: Integrate the reviewed physical fork and receiving-camera pass
+        run: |
+          python scripts/materialize-authored-flow.py
+          python scripts/refine-authored-flow.py
+          python scripts/polish-authored-final.py
+          python scripts/record-authored-inputs.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- scripts/polish-authored-final.py scripts/record-authored-inputs.py mario-maker-clone/svgn-paper-route/phrase-framing.js mario-maker-clone/svgn-paper-route/phrase-data.js mario-maker-clone/svgn-paper-route/phrase-layout.js mario-maker-clone/svgn-paper-route/phrase-playback.js mario-maker-clone/svgn-paper-route/phrase-runtime.js mario-maker-clone/svgn-paper-route/sky-network-art.js mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/grapple-core.js tests/phrase_flow.test.cjs tests/phrase_browser.py tests/workshop_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Integrate bounded fork braking and visible receiving cradles'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - id: identity
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  verify:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [sky, canal, whip, road, editor, workshop]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify geometry and existing movement contracts
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/phrase-framing.js
+          node --test tests/phrase_flow.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/workshop_live.test.cjs tests/adventure_score.test.cjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Replay the real game and authoring interfaces
+        env:
+          PHRASE_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/authored-final.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$PHRASE_SUITE" = workshop ]; then
+            WORKSHOP_SUITE=playtest timeout 1260 python -u tests/workshop_browser.py
+          else
+            timeout 1260 python -u tests/phrase_browser.py
+          fi
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: authored-final-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7
