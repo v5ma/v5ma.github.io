@@ -2,7 +2,7 @@
  * never moved. It estimates steady-input motion, not enemies or future choices. */
 (function(){
  'use strict';
- let enabled=false,worker=null,pending=false,scene=null,lastTick=-1,id=0,result=null,requestAt=0,signature='',requestPeg=false,code=null,watchdog=null,retryAfter=0;
+ let enabled=false,worker=null,pending=false,scene=null,lastTick=-1,id=0,result=null,requestAt=0,signature='',requestPeg=false,code=null,watchdog=null,retryAfter=0,requestMode='forgiving';
  const stage=document.getElementById('stagewrap'),canvas=document.createElement('canvas'),note=document.createElement('div'),button=document.createElement('button');
  canvas.id='ride-guide';canvas.hidden=true;canvas.setAttribute('aria-hidden','true');note.id='ride-guide-note';note.hidden=true;button.id='ride-guide-toggle';button.className='delivery-btn';button.textContent='Flight guide';button.setAttribute('aria-pressed','false');button.title='Optional predicted landing guide (G). It never steers the rider.';stage.append(canvas,note);document.querySelector('#delivery-header .actions').append(button);const ctx=canvas.getContext('2d');
  const active=()=>enabled&&mode==='play'&&__sky.active()&&!__delivery.state.menu&&!RouteWorkshop.active;
@@ -28,10 +28,10 @@
   if(scene!==tracks||!code){dispose();scene=tracks;code=snapshot();}
   const fields={};for(const k of['x','y','w','h','vx','vy','speed','trackS','trackCD','_airTicks','_railFace','_gripSlow','nitroT','roll'])fields[k]=p[k]??0;
   fields.railIndex=p.track?tracks.indexOf(p.track):null;fields.peg=p.peg?{...p.peg}:null;
-  signature=keysNow();requestPeg=!!fields.peg;requestAt=tick;const current=++id;pending=true;
-  if(!worker){worker=new Worker('./ride-lab-worker.js');worker.onmessage=e=>{if(e.data.id!==id||!active())return;pending=false;clearTimeout(watchdog);if(e.data.error){result=null;note.textContent='Guide unavailable for this geometry: '+e.data.error;return;}result={trace:e.data.traces[0],at:requestAt,peg:requestPeg};};worker.onerror=()=>{dispose();note.textContent='Flight guide unavailable. Normal riding is unchanged.';};}
+  signature=keysNow();requestPeg=!!fields.peg;requestAt=tick;requestMode=RailGripCore.mode;const current=++id;pending=true;
+  if(!worker){worker=new Worker('./ride-lab-worker.js');worker.onmessage=e=>{if(e.data.id!==id||!active())return;pending=false;clearTimeout(watchdog);if(e.data.error){result=null;note.textContent='Guide unavailable for this geometry: '+e.data.error;return;}result={trace:e.data.traces[0],at:requestAt,peg:requestPeg,control:signature,mode:requestMode};};worker.onerror=()=>{dispose();note.textContent='Flight guide unavailable. Normal riding is unchanged.';};}
   watchdog=setTimeout(()=>{dispose();note.textContent='Guide timed out. Normal riding is unchanged.';},8000);
-  worker.postMessage({id:current,code,settings:{ticks:150,control:signature,mode:RailGripCore.mode,solids:[...SOLID]},liveSeed:fields});
+  worker.postMessage({id:current,code,settings:{ticks:150,control:signature,mode:requestMode,solids:[...SOLID]},liveSeed:fields});
  }
  function draw(){
   canvas.hidden=note.hidden=!active();if(!active()){if(pending)dispose();return;}
@@ -40,13 +40,14 @@
   if(canvas.width!==Math.round(width*ratio)||canvas.height!==Math.round(height*ratio)){canvas.width=width*ratio;canvas.height=height*ratio;}
   ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
   try{compute();}catch(error){dispose();retryAfter=performance.now()+5000;note.textContent='Guide unavailable for this draft: '+String(error.message||error).slice(0,120);return;}
-  if(!result||!__merged.camera?.isPerspectiveCamera||signature!==keysNow())return;
+  if(!result||!__merged.camera?.isPerspectiveCamera)return;
+  if(result.control!==keysNow()||result.peg!==!!player.peg||result.mode!==RailGripCore.mode){note.textContent='Controls changed. Updating the flight estimate...';return;}
   const t=result.trace,elapsed=result.peg?0:Math.max(0,__sky.state.steps-result.at),T=__merged.THREE,camera=__merged.camera;
   if(elapsed>35)return;const project=f=>{const p=new T.Vector3(f.x,-f.y,28).project(camera);return [(p.x*.5+.5)*width,(-p.y*.5+.5)*height,p.z];};
   const samples=t.frames.filter(f=>f.tick>=elapsed);ctx.strokeStyle='#c0e5d2';ctx.lineWidth=2;ctx.setLineDash([5,6]);ctx.beginPath();let started=false;
-  for(const f of samples){const [x,y,z]=project(f);if(z< -1||z>1){started=false;continue;}if(started)ctx.lineTo(x,y);else ctx.moveTo(x,y);started=true;}ctx.stroke();ctx.setLineDash([]);
+  for(const f of samples){const [x,y,z]=project(f);if(z< -1||z>1){started=false;continue;}if(started)ctx.lineTo(x,y);else ctx.moveTo(x,y);started=true;}ctx.strokeStyle='#163d50aa';ctx.lineWidth=4;ctx.stroke();ctx.strokeStyle='#b5e9d3';ctx.lineWidth=2;ctx.stroke();ctx.setLineDash([]);
   const next=t.events.find(e=>e.type==='catch'&&e.tick>=elapsed);
-  if(next){const f=t.frames[next.tick],a=project(f);ctx.strokeStyle=next.face<0?'#c6a9ff':'#92e6c8';ctx.lineWidth=3;ctx.beginPath();ctx.arc(a[0],a[1],9,0,7);ctx.stroke();note.textContent=(result.peg?'IF Z RELEASED NOW: ':'STEADY INPUT: ')+(next.face<0?'underside':'top')+' catch in '+((next.tick-elapsed)/60).toFixed(1)+' s. Prediction only; keep checking the path.';}
+  if(next){const f=t.frames[next.tick],a=project(f),x=Math.max(24,Math.min(width-24,a[0])),y=Math.max(45,Math.min(height-110,a[1])),off=Math.abs(x-a[0])+Math.abs(y-a[1])>1;ctx.strokeStyle=next.face<0?'#c6a9ff':'#92e6c8';ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,9,0,7);ctx.stroke();if(off){ctx.save();ctx.translate(x,y);ctx.rotate(Math.atan2(a[1]-y,a[0]-x));ctx.fillStyle=ctx.strokeStyle;ctx.beginPath();ctx.moveTo(18,0);ctx.lineTo(9,-5);ctx.lineTo(9,5);ctx.fill();ctx.restore();}note.textContent=(result.peg?'IF Z RELEASED NOW: ':'STEADY INPUT: ')+(next.face<0?'underside':'top')+' catch'+(off?' beyond view':'')+' in '+((next.tick-elapsed)/60).toFixed(1)+' s. Prediction only; keep checking the path.';}
   else note.textContent=(result.peg?'Release preview: ':'Flight guide: ')+t.status.replaceAll('-',' ')+'. Enemies and moving objects are not predicted.';
  }
  const render=window.render;window.render=function(){render();draw();};

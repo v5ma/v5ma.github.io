@@ -21,10 +21,11 @@ jobs:
           node-version: '22'
       - name: Check isolated live-physics rehearsals and editable geometry
         run: |
+          python scripts/check-rail-release.py
           node --check mario-maker-clone/svgn-paper-route/ride-lab-core.js
           node --check mario-maker-clone/svgn-paper-route/ride-lab-editor.js
           node --check mario-maker-clone/svgn-paper-route/ride-guide.js
-          node --test tests/ride_lab.test.cjs tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/rail_hookline_flow.test.cjs tests/workshop_live.test.cjs
+          node --test tests/ride_lab.test.cjs tests/ride_guide_state.test.cjs tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/rail_hookline_flow.test.cjs tests/workshop_live.test.cjs
           git diff --exit-code
   native:
     needs: checks
@@ -54,10 +55,11 @@ jobs:
         if: always()
         run: |
           mkdir -p test-output
+          python scripts/check-rail-release.py
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
           cp /tmp/ride-lab-http.log test-output/http.log || true
-          tar -czf test-output/ride-lab-source.tgz mario-maker-clone/svgn-paper-route tests/ride_lab.test.cjs tests/ride_lab_browser.py
+          tar -czf test-output/ride-lab-source.tgz mario-maker-clone/svgn-paper-route tests/ride_lab.test.cjs tests/ride_lab_browser.py tests/ride_guide_state.test.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
