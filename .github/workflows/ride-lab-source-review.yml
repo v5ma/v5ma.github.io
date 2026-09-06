@@ -1,0 +1,27 @@
+name: Capture Ride Lab source for focused review
+on:
+  push:
+    branches: [feat/ride-lab-flow-20260906]
+    paths: ['.github/workflows/ride-lab-source-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package only the game, tests, and release scripts
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/source.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/source-sha.txt
+          find . -name AGENTS.md -not -path './.git/*' -print -exec cat {} \; > test-output/agent-instructions.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ride-lab-source-review
+          path: test-output/
+          retention-days: 3
