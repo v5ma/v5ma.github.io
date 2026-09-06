@@ -11,7 +11,7 @@ def check(v,s):
 def snapshot(p):return p.evaluate('Rainward.snapshot()')
 def goto(p,x,z,sprint=True):
  p.evaluate('''async ({x,z,sprint})=>{
-  const W=await import('./world.mjs'),route=W.findPath(Rainward.state.player,{x,z});route.push({x,z});
+  const W=await import('./world.mjs'),route=Rainward.state.player.stance==='prone'?[]:W.findPath(Rainward.state.player,{x,z});route.push({x,z});
   const points=route.filter((p,i,a)=>i===a.length-1||i===0||i<a.length-1&&(p.x-a[i-1].x!==a[i+1].x-p.x||p.z-a[i-1].z!==a[i+1].z-p.z));
   const keys=new Set(),canvas=document.getElementById('world');canvas.focus();
   function key(k,on){if(keys.has(k)===on)return;keys[on?'add':'delete'](k);canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code:k,key:k.startsWith('Key')?k.slice(3).toLowerCase():k,bubbles:true,cancelable:true}));}

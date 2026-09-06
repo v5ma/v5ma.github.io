@@ -64,8 +64,9 @@ export function obstruction(a,b){const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len=Math
 }
 export const coverAt=p=>GRASS.some(g=>inside(p,g));
 const navWidth=69,navHeight=83,navMinX=-34,navMinZ=-48;
+// Reserve clearance for the character radius plus finite-step steering around corners.
 const navBlocked=new Uint8Array(navWidth*navHeight);
-for(let z=0;z<navHeight;z++)for(let x=0;x<navWidth;x++)navBlocked[z*navWidth+x]=solidAt(x+navMinX,z+navMinZ,1.72,.38)?1:0;
+for(let z=0;z<navHeight;z++)for(let x=0;x<navWidth;x++)navBlocked[z*navWidth+x]=solidAt(x+navMinX,z+navMinZ,1.72,.60)?1:0;
 function node(p){let x=clamp(Math.round(p.x-navMinX),0,navWidth-1),z=clamp(Math.round(p.z-navMinZ),0,navHeight-1),id=z*navWidth+x;if(!navBlocked[id])return id;
  for(let r=1;r<=4;r++)for(let dy=-r;dy<=r;dy++)for(let dx=-r;dx<=r;dx++){let a=x+dx,b=z+dy,j=b*navWidth+a;if(a>=0&&a<navWidth&&b>=0&&b<navHeight&&!navBlocked[j])return j;}return null;
 }
