@@ -26,3 +26,7 @@ test('An early deliberate catch survives the release cooldown; there is no unsol
 });
 test('An expired catch request cannot attach later or survive rescue',()=>{const s=createState();Object.assign(s.p,{x:110,y:30,z:110,grounded:false,lastRail:'glassline',airSince:s.time,hookCooldown:.14});interact(s);assert.equal(s.p.hookRequest,.3);run(s,.4);assert.equal(s.p.hookRequest,0);assert.equal(s.p.rail,null);rescue(s);assert.equal(s.p.hookRequest,0);assert.equal(s.p.lastRail,null);});
 test('Incoming rail momentum above cruise speed decays instead of being clipped at the next frame',()=>{const s=createState();Object.assign(s.p,{x:9,y:0,z:-5});interact(s);s.p.speed=25;step(s,{},dt);assert.ok(s.p.speed>24.9&&s.p.speed<25);run(s,.5);assert.ok(s.p.speed>23);});
+
+test('The broadened Gale transfer shelf accepts 21 recorded-direction release/delay combinations',()=>{
+ for(const at of[38,41,43.90416666666655,46,49,52,55])for(const delay of[.16,.23,.30]){const s=createState();Object.assign(s.p,{x:9,y:0,z:-5});interact(s);while(s.p.rail.s<at)step(s,{explorer:true},dt);s.p.yaw=2.1729166666666697;s.p.pitch=0;jump(s);run(s,delay);interact(s);run(s,1);assert.equal(s.p.rail?.id,'gale-loop',`arc length ${at}, delay ${delay}`);assert.equal(s.stats.transfers,1);assert.equal(s.stats.rescues,0);}
+});
