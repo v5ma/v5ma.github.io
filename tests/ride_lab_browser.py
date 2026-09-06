@@ -23,7 +23,7 @@ with sync_playwright() as pw:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('dialog',lambda d:d.accept())
  try:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded');page.wait_for_function('window.__gpuReady===true&&window.RideLabReady===true')
-  check(page.evaluate('PaperDeliveryRelease.version==="0.12.0"'),'The running build identifies the Ride Lab release')
+  check(page.evaluate('PaperDeliveryRelease.version')==json.loads((ROOT/'mario-maker-clone/svgn-paper-route/release.json').read_text())['version'],'The running build matches the committed release manifest')
   page.locator('#delivery-header [data-delivery="editor"]').click();page.wait_for_function('RouteWorkshop.active');page.locator('#rail-yard').click();original=code(page)
   check(page.evaluate('RouteWorkshop.state.doc.paths[2].points[0][0]===1760'),'The yard uses the clearance-corrected receiving lip')
   if MODE=='editor':
@@ -41,11 +41,9 @@ with sync_playwright() as pw:
    check(page.locator('#lab-case option').count()==5,'Five distinct initial speeds are compared rather than relabeled as one certified path')
    with page.expect_download() as ev:page.locator('#lab-export').click()
    file=OUT/'trace.json';ev.value.save_as(file);data=json.loads(file.read_text());check(data['document']==original and len(data['traces'])==5,'The exported model includes its exact source document and assumptions')
-   # Edit via the actual numeric inspector and confirm invalidation, then undo.
    page.locator('#maker-x').fill('668');page.locator('#maker-x').press('Tab');page.wait_for_function('!RideLab.result')
    check('invalid' in page.locator('#lab-status').inner_text().lower() or 'changed' in page.locator('#lab-status').inner_text().lower(),'Editing a curve invalidates its previous rehearsal')
    act(page,'undo');check(code(page)==original,'Undo restores the full yard, independent of rehearsal state')
-   # Two real canvas selections followed by a smooth geometry operation.
    page.locator('#ride-lab-toggle').click();act(page,'fit');page.wait_for_timeout(150)
    p0=page.evaluate('RouteWorkshop.state.doc.paths[0].points[18]');p1=page.evaluate('RouteWorkshop.state.doc.paths[1].points[22]')
    page.mouse.click(*point(page,p0));page.keyboard.down('Shift');page.mouse.click(*point(page,p1));page.keyboard.up('Shift')

@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,re,subprocess
 ROOT=Path(__file__).resolve().parents[1]
 GAME=ROOT/'mario-maker-clone/svgn-paper-route'
-FILES=['index.html','route-workshop.js','ground-runtime.js','bezier-core.js','bezier-editor.js','rail-editor.css','rail-grip-core.js','rail-runtime.js','rail-training.js','release-status.js','release.json','sw.js','ride-lab-core.js','ride-lab-editor.js','ride-lab-worker.js','ride-lab-loader.js','hookline-feedback.js','whip-visual.js','ride-lab.css','ride-guide.js','open-course.js']
+FILES=['index.html','route-workshop.js','ground-runtime.js','bezier-core.js','bezier-editor.js','rail-editor.css','rail-grip-core.js','rail-runtime.js','rail-training.js','release-status.js','release.json','sw.js','ride-lab-core.js','ride-lab-editor.js','ride-lab-worker.js','ride-lab-loader.js','hookline-feedback.js','whip-visual.js','ride-lab.css','ride-guide.js','open-course.js','sky-network-layout.js','flow-route-tools.js','sky-network-art.js']
 for carrier in ['.rail-incoming','.rail-recovery']:
     assert not (ROOT/carrier).exists(),f'Incomplete transfer directory is not a release: {carrier}'
 manifest=json.loads((GAME/'release.json').read_text())
@@ -20,9 +20,10 @@ assert status.count("import('./ride-lab-loader.js')")==1,'Ride Lab must have one
 loader=(GAME/'ride-lab-loader.js').read_text()
 assert loader.index("import('./ride-lab-core.js')")<loader.index("import('./ride-lab-editor.js')")
 assert "import('./ride-guide.js')" in loader and 'ride-lab.css' in loader
+assert loader.count("import('./flow-route-tools.js')")==1,'The route tools must load once'
 worker=(GAME/'ride-lab-worker.js').read_text()
 assert worker.index('grapple-core.js')<worker.index('rail-grip-core.js')<worker.index('ride-lab-core.js')
-for path in ['rail-editor-acceptance.yml','ride-lab-acceptance.yml']:
+for path in ['rail-editor-acceptance.yml','ride-lab-acceptance.yml','flow-route-review.yml']:
     flow=(ROOT/'.github/workflows'/path).read_text()
     assert 'contents: read' in flow and 'contents: write' not in flow,'Acceptance must not edit the repository'
     assert 'git push' not in flow and 'persist-credentials: false' in flow
