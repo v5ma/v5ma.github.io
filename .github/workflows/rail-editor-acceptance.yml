@@ -1,0 +1,81 @@
+name: Verify rail grip and Bezier editor
+on:
+  pull_request:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/rail*','scripts/check-rail-release.py','.github/workflows/rail-editor-acceptance.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rail-verified-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the exact committed release, not a prepared working tree
+        run: |
+          python scripts/check-rail-release.py
+          node --check mario-maker-clone/svgn-paper-route/rail-runtime.js
+          node --check mario-maker-clone/svgn-paper-route/bezier-editor.js
+          node --test tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/rail_hookline_flow.test.cjs tests/workshop_live.test.cjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/adventure_score.test.cjs tests/depth_geometry.test.mjs
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rail-source-contract
+          path: test-output/
+          retention-days: 7
+  native:
+    needs: checks
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [editor, ride, road, expert, whip]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install the pinned native verification browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play the actual HTTP application using ordinary controls
+        env:
+          SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rail-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$SUITE" = road ]; then
+            NETWORK_SUITE=road timeout 1320 python -u tests/sky_network_browser.py
+          elif [ "$SUITE" = expert ]; then
+            SKY_REPLAY_ROUTE=0 timeout 1320 python -u tests/sky_browser.py
+          elif [ "$SUITE" = whip ]; then
+            timeout 1320 python -u tests/grapple_browser.py
+          else
+            RAIL_SUITE="$SUITE" timeout 1320 python -u tests/rail_editor_browser.py
+          fi
+      - name: Record the tested source and preserve failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python scripts/check-rail-release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          cp /tmp/rail-http.log test-output/http.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rail-native-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7

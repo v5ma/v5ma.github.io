@@ -36,18 +36,20 @@
     fireGun(p);K.swing(p,{right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft),up:!!keys.ArrowUp,down:!!keys.ArrowDown},(x,y)=>SOLID.has(pg(Math.floor(x/36),Math.floor(y/36))));
     if(p.inv>0)p.inv--;interactTiles(p);
    }else if(tr){
-    if(p.trackCD>0)p.trackCD--;fireGun(p);
+    if(p.trackCD>0)p.trackCD--;fireNitro(p);fireGun(p);
     const exit=K.ride(p,{right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft),jump:jp});
     if(exit){S.launches++;lastTrack=tr.sky.id;p._airTicks=0;log('optional-lip',{rail:lastTrack});}
     if(p.inv>0)p.inv--;interactTiles(p);
    }else{
-    if(p._networkAir && meta.skyNetwork && !p.onGround){
+    if((p._networkAir&&meta.skyNetwork||p._railAir||p.nitroT>0)&&!p.onGround){
       if(p.trackCD>0)p.trackCD--;fireNitro(p);fireGun(p);
       K.flight(p,{right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft)},q=>{moveX(q);moveY(q);});
       if(p.inv>0)p.inv--;interactTiles(p);
     }else GroundNative.step();if(player!==p)return;
     p._airTicks=(p._airTicks||0)+1;
-    const hit=K.catchRail(p,old,tracks,lastTrack);
+    // Riding the street is an intentional route. Grip only after leaving it,
+    // never turn a grounded pass underneath a low ramp into an automatic climb.
+    const hit=p.onGround&&!p.track?null:K.catchRail(p,old,tracks,lastTrack);
     if(hit){
      S.catches++;S.transfers++;p.jumping=false;p.dbl=false;p._airTicks=0;lastTrack=null;
      if(!state.upper.has(hit.tr.sky.id)){state.upper.add(hit.tr.sky.id);addScore(100,p.x,p.y-20,'UPPER ROUTE +100');log('upper-route',{rail:hit.tr.sky.id});}

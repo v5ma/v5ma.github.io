@@ -40,7 +40,7 @@ with sync_playwright() as p:
         page.locator('#delivery-header [data-delivery="editor"]').click();wait_editor(page)
         check(page.evaluate('RouteWorkshop.state.doc.paths.length===46'),'Create opens the full connected-world Workshop, not the old palette')
         check(page.evaluate('RouteWorkshop.state.doc.extra.gp.cast.length>0&&RouteWorkshop.state.doc.extra.gp.skyNetwork.pegCount===38'),'The complete world preserves native characters and all peg metadata')
-        check(page.locator('#maker-pieces [data-piece]').count()==8,'Open ramps, partial loops, bowls, shelves and full loops are available as editable parts')
+        check(page.locator('#maker-pieces [data-piece]').count()>=13,'Open ramps, partial loops, bowls, shelves and full loops are available as editable parts')
         page.screenshot(path=str(OUT/'editor-overview.png'))
         if MODE=='authoring':
             page.locator('#maker-sector').select_option('0')

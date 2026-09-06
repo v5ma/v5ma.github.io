@@ -12,7 +12,7 @@ def check(ok,name):
     assert ok,name
     checks.append(name);print('PASS:',name,flush=True)
 def state(page):
-    return page.evaluate('''()=>{const p=player,a=p.peg;return {x:p.x,y:p.y,vx:p.vx,vy:p.vy,stage:p.track?.sky?.stage,open:__grapple.isOpen(),target:__grapple.state.target?.d,hook:a?{th:a.th,loops:a.loops,r:a.r}:null,turns:__grapple.state.turns,hooks:__grapple.state.hooks,releases:__grapple.state.releases,completed:__sky.state.completed.size,transfers:__sky.state.transfers,tries,deliveries,quota:routeQuota,won,three:__merged.get3D()&&__delivery.state.view==='3d',steps:__sky.state.steps};}''')
+    return page.evaluate('''()=>{const p=player,a=p.peg;return {x:p.x,y:p.y,vx:p.vx,vy:p.vy,speed:p.speed,stage:p.track?.sky?.stage,open:__grapple.isOpen(),target:__grapple.state.target?.d,hook:a?{th:a.th,loops:a.loops,r:a.r}:null,turns:__grapple.state.turns,hooks:__grapple.state.hooks,releases:__grapple.state.releases,completed:__sky.state.completed.size,transfers:__sky.state.transfers,tries,deliveries,quota:routeQuota,won,three:__merged.get3D()&&__delivery.state.view==='3d',steps:__sky.state.steps};}''')
 with sync_playwright() as p:
     options={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
     if os.getenv('CHROMIUM_PATH'):options['executable_path']=os.environ['CHROMIUM_PATH']
@@ -33,10 +33,17 @@ with sync_playwright() as p:
         check(page.evaluate('__grapple.pegs().length===2'),'Two physical grapple pegs exist in the course')
         check(state(page)['three'],'Cloudview graphics and real 3D rendering are retained')
         page.screenshot(path=str(OUT/'01-open-ramp.png'))
-        page.keyboard.down('KeyD');page.keyboard.down('KeyC');held=False;released=False;snap=False;start=time.monotonic()
+        page.keyboard.down('KeyD');page.keyboard.down('KeyC');held=False;released=False;snap=False;braking=False;braked=False;start=time.monotonic()
         while time.monotonic()-start<540:
             q=state(page)
             if q['won']:break
+            # Momentum is no longer silently capped at a receiving rail. Use
+            # the real brake on the flat cradle, then release it BEFORE
+            # the uphill exit. Continuing to brake on the lip loses the jump.
+            brake=q.get('stage')==2 and q['x']<3300 and q['speed']>(18 if braking else 19)
+            if brake!=braking:
+                braking=brake;braked=braked or brake
+                page.keyboard.up('KeyD' if braking else 'KeyA');page.keyboard.down('KeyA' if braking else 'KeyD')
             if q['tries']>1:raise AssertionError('New course required an unexpected retry: '+json.dumps(q))
             if q.get('stage') is None and q['x']>1250 and not held and not released and ((q.get('target') or 999)<120 or q['vy']>0):
                 page.keyboard.down('KeyZ');held=True
@@ -49,8 +56,9 @@ with sync_playwright() as p:
                 if q['hook']['loops']>=1 and .08<th<.42:
                     page.keyboard.up('KeyZ');held=False;released=True
             page.wait_for_timeout(20)
-        page.keyboard.up('KeyD');page.keyboard.up('KeyC');page.keyboard.up('KeyZ');q=state(page)
+        page.keyboard.up('KeyA');page.keyboard.up('KeyD');page.keyboard.up('KeyC');page.keyboard.up('KeyZ');q=state(page)
         check(q['won'] and q['tries']==1,'Open-ramp course completes with normal controls and no teleport or retry')
+        check(braked,'The rider deliberately brakes retained whip momentum before the next launch')
         check(q['completed']==4 and q['transfers']>=3,'Four open sections and three disconnected catches are traversed')
         check(q['hooks']>=1 and q['releases']>=1 and q['turns']>=1,'Whip catches a peg, winds up and releases into the next catcher')
         check(q['deliveries']>=q['quota'],'Actual newspapers meet the delivery quota')
@@ -72,11 +80,12 @@ with sync_playwright() as p:
         page.locator('#delivery-pause [data-delivery="resume"]').click()
         page.locator('#delivery-header [data-delivery="editor"]').click()
         check(page.evaluate('levelCode()')==original,'Create restores the original full blueprint')
+        if page.locator('#route-workshop').is_visible():page.locator('#route-workshop [data-mk="exit"]').click()
         page.locator('#delivery-header [data-delivery="routes"]').click();page.locator('[data-course="3"]').click(timeout=90000);page.locator('#sky-edit-copy').click()
-        check(page.evaluate('mode==="edit"&&customTracks.filter(t=>t.sky?.kind==="open").length===4'),'Open ramps are editable in the existing creator')
-        encoded=page.evaluate('levelCode()');meta=json.loads(__import__('base64').b64decode(encoded.split('.')[0]))
+        check(page.evaluate('RouteWorkshop.active&&RouteWorkshop.state.doc.paths.filter(t=>t.meta?.kind==="open").length===4'),'Open ramps are editable in the existing creator')
+        encoded=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)');meta=json.loads(__import__('base64').b64decode(encoded.split('.')[0]))
         check(len(meta['cm'])==4 and all(t['kind']=='open' for t in meta['cm']),'Saved code preserves the open-ramp behavior')
-        page.locator('#btnPlay').click(timeout=90000);page.wait_for_function('__grapple.isOpen()',timeout=90000)
+        page.locator('#route-workshop [data-mk="test"]').click(timeout=90000);page.wait_for_function('__grapple.isOpen()',timeout=90000)
         check(page.evaluate('__grapple.pegs().length===2'),'Playing an edited copy retains grapple pegs and open movement')
         page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(400)
         check(page.locator('#whip-control').is_visible(),'A touch-accessible whip button is available')
