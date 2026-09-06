@@ -12,6 +12,7 @@
   window.RideLab=lab;
   const render=window.render;window.render=function(){render();if(W.active)lab.draw();else if(lab.busy)lab.clear();};
   await import('./ride-guide.js');
+  await import('./hookline-feedback.js');
   window.RideLabReady=true;
  }catch(error){
   const notice=document.createElement('button');notice.id='ride-lab-failed';notice.className='delivery-btn';notice.textContent='Ride Lab did not load';notice.title=String(error.message||error);document.querySelector('#delivery-header .actions')?.append(notice);

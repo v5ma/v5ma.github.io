@@ -2,7 +2,7 @@ name: Verify Ride Lab and live flight guide
 on:
   pull_request:
     branches: [master]
-    paths: ['mario-maker-clone/svgn-paper-route/**','tests/ride*','tests/hookline_receiver.test.cjs','scripts/check-rail-release.py','.github/workflows/ride-lab-acceptance.yml']
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/ride*','tests/hookline_receiver.test.cjs','tests/hookline_feedback.test.cjs','scripts/check-rail-release.py','.github/workflows/ride-lab-acceptance.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,7 +26,7 @@ jobs:
           node --check mario-maker-clone/svgn-paper-route/ride-lab-core.js
           node --check mario-maker-clone/svgn-paper-route/ride-lab-editor.js
           node --check mario-maker-clone/svgn-paper-route/ride-guide.js
-          node --test tests/ride_lab.test.cjs tests/ride_guide_state.test.cjs tests/hookline_receiver.test.cjs tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/rail_hookline_flow.test.cjs tests/workshop_live.test.cjs
+          node --test tests/ride_lab.test.cjs tests/ride_guide_state.test.cjs tests/hookline_receiver.test.cjs tests/hookline_feedback.test.cjs tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/rail_hookline_flow.test.cjs tests/workshop_live.test.cjs
           git diff --exit-code
   native:
     needs: checks
