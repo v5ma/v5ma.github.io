@@ -1,0 +1,23 @@
+name: SVGN City verification
+on:
+  push:
+    branches: [feat/svgn-city-first-dispatch]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Snapshot pinned shared renderer and site navigation
+        run: |
+          mkdir -p city-evidence
+          git rev-parse HEAD > city-evidence/source-sha.txt
+          find . -maxdepth 3 -iname AGENTS.md -not -path './.git/*' -print -exec cat {} \; > city-evidence/agent-instructions.txt
+          tar -czf city-evidence/bootstrap.tgz aether-reach/vendor index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: svgn-city-source
+          path: city-evidence/
+          retention-days: 7
