@@ -40,6 +40,12 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     page.wait_for_function('document.querySelector("#listen-recording").currentTime>0.4')
     check('A real prerecorded full study advances through native audio playback',page.locator('#listen-recording').evaluate('(a)=>a.duration>300&&!a.paused'))
     page.locator('#listen-recording').evaluate('(a)=>a.pause()')
+    check('Reading speed also applies to the real recorded study',page.locator('#listen-recording').evaluate('(a)=>Math.abs(a.playbackRate-1.2)<.001'))
+    saved_time=page.locator('#listen-recording').evaluate('(a)=>a.currentTime')
+    ready(extra='&listen='+slug)
+    page.locator('#listen-recording').evaluate('(a)=>a.load()')
+    page.wait_for_function('document.querySelector("#listen-recording").readyState>0 && document.querySelector("#listen-recording").currentTime>0')
+    check('Recorded time resumes after reload without autoplay',page.locator('#listen-recording').evaluate('(a,t)=>a.paused&&Math.abs(a.currentTime-t)<.15',saved_time))
     page.locator('#product-workspace').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'listening-player-desktop.png'))
     with page.expect_download() as ev:page.locator('#listen-recorded a[download]').click()
     mp3=Path(ev.value.path()).read_bytes();cfg=page.request.get(BASE.rsplit('/',1)[0]+'/data/products.json').json();asset=next(a for a in cfg['media']['assets'] if a['kind']=='article');file=next(f for f in asset['files'] if f['role']=='audio')
@@ -80,6 +86,18 @@ def run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, 
     page.locator('#listen-import').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':b'{"version":0}'})
     page.wait_for_function('document.querySelector("#listen-status").textContent.includes("not restored")')
     check('Invalid listening backup shows a visible error','Unrecognized' in page.locator('#listen-status').inner_text())
+    # A separate real browser context denies only localStorage; no media or voices are faked.
+    denied=ctx.browser.new_context(viewport={'width':1440,'height':1000})
+    denied.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Storage denied','SecurityError');}})")
+    denied_page=denied.new_page();denied_errors=[]
+    denied_page.on('pageerror',lambda e:denied_errors.append(str(e)))
+    try:
+        open_page(denied_page,'listening-room','&listen='+slug)
+        denied_page.wait_for_function('(s)=>document.querySelector("#product-workspace")?.dataset.articleReady===s',arg=slug)
+        denied_page.locator('#listen-next').click()
+        check('Storage denial retains session controls and explains backup export','session-only' in denied_page.locator('#listen-storage').inner_text() and denied_page.locator('#listen-position').input_value()=='1' and not denied_errors)
+    finally:
+        denied.close()
     open_page(page,slug)
     page.locator('[data-listen-link]').click()
     page.wait_for_function('(s)=>document.querySelector("#product-workspace")?.dataset.articleReady===s',arg=slug)

@@ -23,11 +23,12 @@
    this.generation++;this.synth.cancel();this.speak(this.generation);
   }
   speak(token){if(token!==this.generation)return;if(this.index>=this.parts.length){this.index=Math.max(0,this.parts.length-1);this.emit('ended');return;}
+   if(!this.voice){this.stop();this.emit('unavailable','The selected voice is no longer available. Choose another voice or use the recording.');return;}
    const u=new this.Utterance(this.parts[this.index].text);u.voice=this.voice;u.lang=this.voice.lang;u.rate=this.rate;this.utterance=u;this.emit('starting');
    this.timer=setTimeout(()=>{if(token===this.generation&&this.state==='starting'){this.stop();this.emit('unavailable','The voice did not start. Choose another voice or use the recording.');}},12000);
-   u.onstart=()=>{if(token!==this.generation||this.utterance!==u)return;clearTimeout(this.timer);this.emit('playing');};
+   u.onstart=()=>{if(token!==this.generation||this.utterance!==u)return;clearTimeout(this.timer);if(this.state!=='paused')this.emit('playing');};
    u.onend=()=>{if(token!==this.generation||this.utterance!==u)return;clearTimeout(this.timer);this.index++;this.speak(token);};
-   u.onerror=e=>{if(token!==this.generation||this.utterance!==u)return;clearTimeout(this.timer);this.emit('error','Speech stopped: '+(e.error||'voice unavailable')+'. Your paragraph position is retained.');};this.synth.speak(u);
+   u.onerror=e=>{if(token!==this.generation||this.utterance!==u)return;clearTimeout(this.timer);++this.generation;this.utterance=null;this.synth.cancel();this.emit('error','Speech stopped: '+(e.error||'voice unavailable')+'. Your paragraph position is retained.');};this.synth.speak(u);
   }
   pause(){if(this.state==='starting'||this.state==='playing'){clearTimeout(this.timer);this.synth.pause();this.emit('paused');}}
   seek(index){const playing=this.state==='playing'||this.state==='starting';this.stop();this.index=Math.max(0,Math.min(this.parts.length-1,index));this.emit('ready');if(playing)this.play();}
