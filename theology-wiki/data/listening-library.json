@@ -321,12 +321,12 @@
         }
       ],
       "source": "content/developed/computational-divine-immanence.md",
-      "sourceSha256": "d2ca7bdd9aeb2f08949bf331bfce29202876073924e8bbeb7c3a92d2fcb74cf0",
+      "sourceSha256": "4bb2c6eaf8ef1f825a3c4d122e74deb12b5849f7fcd29b1391c9f366e8235078",
       "narration": "data/listening/computational-divine-immanence.json",
-      "narrationSha256": "e887607318cce18a102f0704dcbee5fe50cfd11c627d0bf1b1a79e4b525ba5ab",
+      "narrationSha256": "217fb2929b9d2981541ae393d444c99bba21e4dc29284ee0864ab11ed6564362",
       "transcript": "products/transcripts/computational-divine-immanence.txt",
       "segments": 60,
-      "words": 1980
+      "words": 1982
     },
     {
       "slug": "cognitive-gnosticism",

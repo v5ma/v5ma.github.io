@@ -32,7 +32,7 @@ The paper's three-world model makes one connection particularly useful for the t
 
 I use the language of divine immanence to ask whether nature and the divine have been separated too quickly. In this interpretation, evolution is not evidence that creation has stopped or that order must be imposed from outside. Evolution belongs to the changing forms through which a generative reality is expressed. The theological claim concerns the character of that reality; it does not replace the particular mechanisms that biological or physical inquiry must explain.
 
-The house analogy can help, provided that its limits remain visible. Earth is a place where embodied lives develop; a house is not the whole of the ground that makes it possible. Calling the world a dwelling within divine reality expresses dependence and belonging. It does not identify another planet as inhabited, assign a hidden identity to a scientist, or turn an internal image into an astronomical observation.
+The house analogy can help, provided that its limits remain visible. Earth is a place where embodied lives develop; a house is not the whole of the ground that makes it possible. Calling the world a dwelling within divine reality expresses dependence and belonging. The analogy expresses a proposed relation between a world and its ground; it does not supply evidence about the population or physical properties of another world.
 
 
 
@@ -46,7 +46,7 @@ The earlier picture of opposing tendencies toward coherence and decoherence ther
 
 ## An inward model and a constructive self
 
-At the personal scale, the relevant connection is to Christic Self-Construction Theory. An inward model of Christ can be proposed as part of the organization through which situations, motives, and possible responses are interpreted. The exemplar matters not because its name is repeated, but because its content can challenge a current impulse. A model that always sanctifies an existing desire does not perform the same function as one that makes an uncomfortable correction possible.
+At the personal scale, the relevant connection is to [[christ-as-an-inner-model|Christic Self-Formation Theory]]. An inward model of Christ can be proposed as part of the organization through which situations, motives, and possible responses are interpreted. The exemplar matters not because its name is repeated, but because its content can challenge a current impulse. A model that always sanctifies an existing desire does not perform the same function as one that makes an uncomfortable correction possible.
 
 This approach to transformation does not need an unchanging inner spectator. A constructive self can preserve bodily, historical, and practical continuity while its representations change. Choice then belongs to the processes that make alternatives available, compare their consequences, select an action, and learn afterward. A physically caused deliberation need not be an irrelevant deliberation. The account should not silently identify this bounded, organism-level agency with the stronger non-necessitating agency proposed in the metaphysical argument.
 

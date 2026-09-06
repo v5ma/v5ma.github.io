@@ -4,14 +4,16 @@ slug: "computational-argument-map"
 summary: "Ten explicit connections among physics, neural rendering, God, historical inheritance and constructive theology."
 topic: "Wider conversations"
 status: "Navigator"
-updated: "2026-09-05"
+updated: "2026-09-06"
 ---
 
 # Computational theology: argument map
 
 The connected theory needs more than a shared vocabulary. Each connection below identifies the argument being made, its source records and the question that must be answered. The full expositions remain in [[computational-divine-immanence|Computational Divine Immanence]] and [[flood-inheritance-and-deep-time|Flood inheritance and deep time]].
 
-## ground: conditional philosophical derivation
+## A necessary ground
+
+conditional philosophical derivation.
 
 Do the totality, contingency, PSR-C and noncircularity premises license a necessary ground?
 
@@ -21,7 +23,9 @@ Sources: [A Computational-Tomographic Proof of God](https://files.us.osf.io/v1/r
 
 [[computational-divine-immanence|Read the complete argument]].
 
-## agency: comparative philosophical bridge
+## Reasons and selection
+
+comparative philosophical bridge.
 
 Does reasons-responsive selection explain contingent actualization better than the declared impersonal alternatives?
 
@@ -31,7 +35,9 @@ Sources: [A Computational-Tomographic Proof of God](https://files.us.osf.io/v1/r
 
 [[computational-divine-immanence|Read the complete argument]].
 
-## immanence: new interpretive development
+## The world within its ground
+
+new interpretive development.
 
 Is the world identical with, dependent on, or an expression within the proposed necessary ground?
 
@@ -41,7 +47,9 @@ Sources: [A Computational-Tomographic Proof of God](https://files.us.osf.io/v1/r
 
 [[computational-divine-immanence|Read the complete argument]].
 
-## quantum neural: definition boundary
+## Which meaning of coherence?
+
+definition boundary.
 
 Which declared coherence statistic is being used, at what scale, and with which counterexamples?
 
@@ -51,7 +59,9 @@ Sources: [Tomographic Coherence-Based Neural Rendering](https://zenodo.org/recor
 
 [[computational-divine-immanence|Read the complete argument]].
 
-## coherence gravity: cross-domain physical hypothesis
+## From coherence to a physical field
+
+cross-domain physical hypothesis.
 
 What calibrated, dimensionally consistent state-to-field map supplies a residual beyond ordinary preparation effects?
 
@@ -61,7 +71,9 @@ Sources: [Super Information Theory: Coherence, Time Density, Informational Dissi
 
 [[computational-divine-immanence|Read the complete argument]].
 
-## flood inheritance: textual comparison with transmission hypothesis
+## Inheritance through transformation
+
+textual comparison with transmission hypothesis.
 
 Which sequence, roles and theological transformations are preserved, and which alternatives explain them?
 
@@ -71,7 +83,9 @@ Sources: [The Flood Story, ETCSL 1.7.4](https://etcsl.orinst.ox.ac.uk/section1/t
 
 [[flood-inheritance-and-deep-time|Read the complete argument]].
 
-## witness event date: chronology-layer distinction
+## The object, the work and the event
+
+chronology-layer distinction.
 
 Which date concerns an artifact, a composition, an internal chronology or a hypothesized event?
 
@@ -81,7 +95,9 @@ Sources: [K.3375, Flood Tablet, Gilgamesh XI](https://www.britishmuseum.org/coll
 
 [[flood-inheritance-and-deep-time|Read the complete argument]].
 
-## mapping probabilities: later methodological correction
+## Narrative mappings and evidence
+
+later methodological correction.
 
 Can narrative-comparison likelihoods meet the later paper's source-backed, dependency-aware stop rule?
 
@@ -91,7 +107,9 @@ Sources: [Annunaki](https://github.com/n5ro/gold/blob/main/Annunaki) / [A Comput
 
 [[flood-inheritance-and-deep-time|Read the complete argument]].
 
-## experience explanation: evidence-scope distinction
+## Experience and its explanation
+
+evidence-scope distinction.
 
 What separates a report of meaning and imagery from an independently identified external cause?
 
@@ -101,7 +119,9 @@ Sources: [Human brain effects of DMT assessed via EEG-fMRI](https://pubmed.ncbi.
 
 [[computational-divine-immanence|Read the complete argument]].
 
-## ruliad monad: modern conceptual analogy
+## The Ruliad and the Monad
+
+modern conceptual analogy.
 
 Which roles correspond, and which differences prevent an identity claim?
 
