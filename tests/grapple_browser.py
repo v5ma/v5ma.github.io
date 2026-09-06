@@ -38,8 +38,9 @@ with sync_playwright() as p:
             q=state(page)
             if q['won']:break
             # Momentum is no longer silently capped at a receiving rail. Use
-            # the real brake on the long cradle before its final launch.
-            brake=q.get('stage')==2 and q['speed']>(17.5 if braking else 19)
+            # the real brake on the flat cradle, then release it BEFORE
+            # the uphill exit. Continuing to brake on the lip loses the jump.
+            brake=q.get('stage')==2 and q['x']<3300 and q['speed']>(18 if braking else 19)
             if brake!=braking:
                 braking=brake;braked=braked or brake
                 page.keyboard.up('KeyD' if braking else 'KeyA');page.keyboard.down('KeyA' if braking else 'KeyD')

@@ -59,6 +59,8 @@ with sync_playwright() as pw:
    check(file.read_text()==saved,'Export preserves all current points and Bezier handles byte-for-byte')
    meta=json.loads(__import__('base64').b64decode(file.read_text().split('.')[0]));check(meta['cb'][-1]['nodes'],'Portable file includes independent handles')
    action(page,'starter');page.locator('#maker-file').set_input_files(str(file))
+   # File.text() is asynchronous: a dispatched change event is not an import receipt.
+   page.wait_for_function('(code)=>WorkshopCore.encode(RouteWorkshop.state.doc)===code',arg=saved)
    check(draft(page)==saved,'File import exactly restores the edited document and handles')
    page.locator('#maker-outline [data-track="2"]').click();action(page,'focus');page.locator('#maker-handles').check();page.locator('#curve-pen').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'bezier-controls.png'))
    page.locator('#curve-pen').click();r=page.locator('#maker-canvas').bounding_box()

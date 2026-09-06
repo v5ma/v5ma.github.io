@@ -25,7 +25,7 @@ jobs:
           python scripts/check-rail-release.py
           node --check mario-maker-clone/svgn-paper-route/rail-runtime.js
           node --check mario-maker-clone/svgn-paper-route/bezier-editor.js
-          node --test tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/workshop_live.test.cjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/adventure_score.test.cjs tests/depth_geometry.test.mjs
+          node --test tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/rail_hookline_flow.test.cjs tests/workshop_live.test.cjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/adventure_score.test.cjs tests/depth_geometry.test.mjs
           git diff --exit-code
       - uses: actions/upload-artifact@v4
         if: always()
