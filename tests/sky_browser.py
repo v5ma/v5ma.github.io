@@ -73,10 +73,12 @@ with sync_playwright() as p:
   page.locator('#delivery-header [data-delivery="editor"]').click()
   check(page.evaluate('levelCode()')==original,'Create restores the complete pre-campaign blueprint')
   check(page.locator('#palette .pal').count()>50,'Original curve and tile editor is still available')
+  # Create is now a full-screen Workshop. Leave it via its real Back button.
+  if page.locator('#route-workshop').is_visible():page.locator('#route-workshop [data-mk="exit"]').click()
   page.locator('#delivery-header [data-delivery="routes"]').click();page.locator('[data-course="0"]').click()
   page.locator('#sky-edit-copy').click()
-  check(page.evaluate('mode==="edit"&&customTracks.length===4'),'Edit route copy exposes all four sky rails in the existing editor')
-  code=page.evaluate('levelCode()');meta=json.loads(__import__('base64').b64decode(code.split('.')[0]));check(len(meta.get('cm',[]))==4,'Saved sky blueprint retains launch and lap metadata')
+  check(page.evaluate('RouteWorkshop.active&&RouteWorkshop.state.doc.paths.length===4'),'Edit route copy exposes all four sky rails in the existing editor')
+  code=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)');meta=json.loads(__import__('base64').b64decode(code.split('.')[0]));check(len(meta.get('cm',[]))==4,'Saved sky blueprint retains launch and lap metadata')
   page.screenshot(path=str(OUT/'sky-editor.png'))
   fatal=[s for s in console_errors if any(x in s for x in ['VALIDATION','GL_INVALID','shader error','CommandBuffer','uniform buffer'])]
   check(not fatal,'3D replay emits no detected GPU validation errors')

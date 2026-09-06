@@ -2,112 +2,56 @@ name: Verify rail grip and Bezier editor
 on:
   push:
     branches: [feat/rail-grip-bezier-20260906]
+  pull_request:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/rail*','scripts/check-rail-release.py','.github/workflows/rail-editor-acceptance.yml']
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: rail-editor-${{ github.ref }}
+  group: rail-verified-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
-  recover:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      contents: write
-    outputs:
-      sha: ${{ steps.source.outputs.sha }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Retain complete transport for checksum diagnosis
-        uses: actions/upload-artifact@v4
-        with:
-          name: rail-recovery-audit
-          path: .rail-recovery/
-          include-hidden-files: true
-          retention-days: 3
-      - name: Recover only a complete exact-source package
-        run: |
-          python - <<'PY'
-          import base64,hashlib,json,subprocess,zlib
-          from pathlib import Path,PurePosixPath
-          carrier=Path('.rail-recovery')
-          parts=sorted(carrier.glob('part-*.txt'))
-          assert len(parts)==4,'A partial package cannot become a release.'
-          codes=[p.read_text() for p in parts]
-          correction=carrier/'corrections.json'
-          if correction.exists():
-            for item in json.loads(correction.read_text()):
-              i=item['part'];s=codes[i]
-              for a,b,old,new in sorted(item['edits'],reverse=True):
-                assert s[a:b]==old,'Correction does not match the audited bytes'
-                s=s[:a]+new+s[b:]
-              codes[i]=s
-          raw=zlib.decompress(base64.b64decode(''.join(codes),validate=True))
-          assert len(raw)==88085
-          assert hashlib.sha256(raw).hexdigest()=='67a3dd731d7ab6ef0f4d837d17a92d03b6bdae404aae0b198be6a5222e7bb965','Source checksum mismatch'
-          data=json.loads(raw);assert data['version']==1
-          prefix='mario-maker-clone/svgn-paper-route/'
-          allowed_tests={'tests/rail_repair.test.cjs','tests/rail_editor_browser.py','tests/workshop_browser.py'}
-          def safe(name):
-            p=PurePosixPath(name)
-            assert not p.is_absolute() and '..' not in p.parts
-            assert name.startswith(prefix) or name in allowed_tests,name
-            assert not Path(name).is_symlink()
-          digest=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
-          for name,want in data['before'].items():
-            safe(name);assert digest(name)==want,'Baseline changed: '+name
-          for name in data['files']:
-            safe(name);assert not Path(name).exists(),'Refusing to overwrite new file: '+name
-          assert set(data['after'])==set(data['before'])|set(data['files'])
-          patch=Path('/tmp/rail-repair.patch');patch.write_bytes(data['patch'].encode('utf-8'))
-          subprocess.run(['git','apply','--check',str(patch)],check=True)
-          subprocess.run(['git','apply',str(patch)],check=True)
-          for name,text in data['files'].items():
-            p=Path(name);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(text.encode('utf-8'))
-          for name,want in data['after'].items():assert digest(name)==want,'Recovered mismatch: '+name
-          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
-          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
-          subprocess.run(['git','add','--',*data['after']],check=True)
-          subprocess.run(['git','rm','-r','--','.rail-recovery'],check=True)
-          subprocess.run(['git','commit','-m','Recover complete hash-verified rail and editor source; remove transport fragments'],check=True)
-          subprocess.run(['git','push','origin','HEAD:feat/rail-grip-bezier-20260906'],check=True)
-          print('Recovered all 16 files without modifying unrelated applications or accounts.')
-          PY
-      - id: source
-        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   checks:
-    needs: recover
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.recover.outputs.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Complete document, Bezier and rail invariants
+      - name: Check the exact committed release, not a prepared working tree
         run: |
+          python scripts/check-rail-release.py
           node --check mario-maker-clone/svgn-paper-route/rail-runtime.js
           node --check mario-maker-clone/svgn-paper-route/bezier-editor.js
-          node --test tests/rail_repair.test.cjs tests/workshop_live.test.cjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/adventure_score.test.cjs tests/depth_geometry.test.mjs
+          node --test tests/rail_repair.test.cjs tests/rail_yard.test.cjs tests/workshop_live.test.cjs tests/sky_routes.test.mjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/adventure_score.test.cjs tests/depth_geometry.test.mjs
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rail-source-contract
+          path: test-output/
+          retention-days: 7
   native:
-    needs: recover
+    needs: checks
     strategy:
       fail-fast: false
       matrix:
-        suite: [editor, ride, road, expert]
+        suite: [editor, ride, road, expert, whip]
     runs-on: ubuntu-latest
-    timeout-minutes: 24
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.recover.outputs.sha }}
-      - name: Install native verification browser
+          persist-credentials: false
+      - name: Install the pinned native verification browser
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Verify the actual HTTP renderer through user controls
+      - name: Play the actual HTTP application using ordinary controls
         env:
           SUITE: ${{ matrix.suite }}
         run: |
@@ -115,16 +59,19 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           if [ "$SUITE" = road ]; then
-            NETWORK_SUITE=road timeout 1260 python -u tests/sky_network_browser.py
+            NETWORK_SUITE=road timeout 1320 python -u tests/sky_network_browser.py
           elif [ "$SUITE" = expert ]; then
-            SKY_REPLAY_ROUTE=0 timeout 1260 python -u tests/sky_browser.py
+            SKY_REPLAY_ROUTE=0 timeout 1320 python -u tests/sky_browser.py
+          elif [ "$SUITE" = whip ]; then
+            timeout 1320 python -u tests/grapple_browser.py
           else
-            RAIL_SUITE="$SUITE" timeout 1260 python -u tests/rail_editor_browser.py
+            RAIL_SUITE="$SUITE" timeout 1320 python -u tests/rail_editor_browser.py
           fi
-      - name: Record the tested revision and preserve errors
+      - name: Record the tested source and preserve failures
         if: always()
         run: |
           mkdir -p test-output
+          python scripts/check-rail-release.py
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
           cp /tmp/rail-http.log test-output/http.log || true

@@ -1,0 +1,25 @@
+"""Check the committed release without rewriting source or using write tokens."""
+from pathlib import Path
+import hashlib,json,re,subprocess
+ROOT=Path(__file__).resolve().parents[1]
+GAME=ROOT/'mario-maker-clone/svgn-paper-route'
+FILES=['index.html','route-workshop.js','ground-runtime.js','bezier-core.js','bezier-editor.js','rail-editor.css','rail-grip-core.js','rail-runtime.js','rail-training.js','release-status.js','release.json','sw.js']
+for carrier in ['.rail-incoming','.rail-recovery']:
+    assert not (ROOT/carrier).exists(),f'Incomplete transfer directory is not a release: {carrier}'
+manifest=json.loads((GAME/'release.json').read_text())
+status=(GAME/'release-status.js').read_text()
+assert manifest['version'] in status and manifest['build'] in status,'Build labels disagree'
+html=(GAME/'index.html').read_text()
+scripts=re.findall(r'<script[^>]+src="\./([^"?]+)',html)
+for name in ['bezier-core.js','bezier-editor.js','rail-grip-core.js','rail-runtime.js','rail-training.js','release-status.js']:
+    assert scripts.count(name)==1,f'Missing or duplicate script: {name}'
+assert scripts.index('grapple-core.js')<scripts.index('rail-grip-core.js')<scripts.index('rail-runtime.js')
+assert scripts.index('workshop-core.js')<scripts.index('bezier-core.js')<scripts.index('bezier-editor.js')<scripts.index('route-workshop.js')
+assert 'rail-editor.css' in html
+flow=(ROOT/'.github/workflows/rail-editor-acceptance.yml').read_text()
+assert 'contents: read' in flow and 'contents: write' not in flow,'Acceptance must not edit the repository'
+assert 'git push' not in flow and 'persist-credentials: false' in flow
+out=ROOT/'test-output';out.mkdir(exist_ok=True)
+record={'version':manifest['version'],'build':manifest['build'],'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'files':{name:hashlib.sha256((GAME/name).read_bytes()).hexdigest() for name in FILES}}
+(out/'rail-source-manifest.json').write_text(json.dumps(record,indent=2))
+print('PASS: complete source, single-loaded modules, ordered dependencies, read-only CI and matching build metadata')

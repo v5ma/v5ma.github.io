@@ -1,0 +1,50 @@
+name: Verify published rail editor release
+on:
+  push:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/rail*','mario-maker-clone/svgn-paper-route/bezier*','mario-maker-clone/svgn-paper-route/release*','.github/workflows/rail-editor-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Produce the exact release manifest
+        run: python scripts/check-rail-release.py
+      - name: Wait for GitHub Pages and verify every owned release file
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor
+          source=json.loads(Path('test-output/rail-source-manifest.json').read_text())
+          base='https://v5ma.github.io/mario-maker-clone/svgn-paper-route/'
+          results={}
+          def check(name):
+            try:
+              with urllib.request.urlopen(base+name+'?verified='+source['source'][:12],timeout=12) as response:
+                data=response.read();digest=hashlib.sha256(data).hexdigest()
+                return name,{'status':response.status,'sha256':digest,'match':digest==source['files'][name]}
+            except Exception as error:return name,{'error':str(error),'match':False}
+          for attempt in range(45):
+            pending=[n for n in source['files'] if not results.get(n,{}).get('match')]
+            with ThreadPoolExecutor(max_workers=4) as executor:
+              for name,result in executor.map(check,pending):results[name]=result
+            if all(r.get('match') for r in results.values()):break
+            time.sleep(6)
+          proof={'build':source['build'],'version':source['version'],'source':source['source'],'files':results,'all_match':all(r.get('match') for r in results.values())}
+          Path('test-output/rail-publication.json').write_text(json.dumps(proof,indent=2))
+          assert proof['all_match'],proof
+          print(json.dumps(proof,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rail-editor-publication
+          path: test-output/*.json
+          retention-days: 14

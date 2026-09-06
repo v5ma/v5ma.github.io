@@ -47,7 +47,9 @@
       if(p.inv>0)p.inv--;interactTiles(p);
     }else GroundNative.step();if(player!==p)return;
     p._airTicks=(p._airTicks||0)+1;
-    const hit=K.catchRail(p,old,tracks,lastTrack);
+    // Riding the street is an intentional route. Grip only after leaving it,
+    // never turn a grounded pass underneath a low ramp into an automatic climb.
+    const hit=p.onGround&&!p.track?null:K.catchRail(p,old,tracks,lastTrack);
     if(hit){
      S.catches++;S.transfers++;p.jumping=false;p.dbl=false;p._airTicks=0;lastTrack=null;
      if(!state.upper.has(hit.tr.sky.id)){state.upper.add(hit.tr.sky.id);addScore(100,p.x,p.y-20,'UPPER ROUTE +100');log('upper-route',{rail:hit.tr.sky.id});}
