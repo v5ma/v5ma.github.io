@@ -18,15 +18,16 @@ jobs:
       sha: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
-      - run: python scripts/materialize-authored-flow.py
-      - name: Commit readable game source only
+      - run: |
+          python scripts/materialize-authored-flow.py
+          python scripts/refine-authored-flow.py
+      - name: Commit only reviewed game and test integration
         if: github.ref == 'refs/heads/feat/authored-flow-phrases-20260905'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- mario-maker-clone/svgn-paper-route/flow-core.js mario-maker-clone/svgn-paper-route/phrase-geometry.js mario-maker-clone/svgn-paper-route/phrase-data.js mario-maker-clone/svgn-paper-route/phrase-layout.js mario-maker-clone/svgn-paper-route/phrase-playback.js mario-maker-clone/svgn-paper-route/phrase-runtime.js mario-maker-clone/svgn-paper-route/phrase-coach.js mario-maker-clone/svgn-paper-route/phrase.css mario-maker-clone/svgn-paper-route/planning/AUTHORED-FLOW-NOTES.md mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js scripts/install-flow-phrases.py tests/phrase_flow.test.cjs tests/phrase_browser.py
-          git add -u -- .phrase-incoming || true
-          if ! git diff --cached --quiet; then git commit -m 'Integrate verified authored-flow source and remove temporary transport'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+          git add -- mario-maker-clone/svgn-paper-route/phrase-data.js mario-maker-clone/svgn-paper-route/phrase-layout.js mario-maker-clone/svgn-paper-route/phrase-playback.js mario-maker-clone/svgn-paper-route/phrase-runtime.js mario-maker-clone/svgn-paper-route/sky-network-art.js mario-maker-clone/svgn-paper-route/index.html mario-maker-clone/svgn-paper-route/sw.js tests/phrase_flow.test.cjs tests/phrase_browser.py
+          if ! git diff --cached --quiet; then git commit -m 'Correct physical entry windows and remove misleading decorative struts'; git push origin HEAD:${GITHUB_REF_NAME}; fi
       - id: source
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - run: |
