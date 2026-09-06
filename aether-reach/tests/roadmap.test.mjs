@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+const plan=JSON.parse(fs.readFileSync(new URL('../roadmap.json',import.meta.url),'utf8')),ids=new Set(plan.tasks.map(t=>t.id));
+test('Roadmap has stable IDs, explicit gates and no missing dependencies or cycles',()=>{assert.equal(ids.size,plan.tasks.length);assert.ok(ids.size>=25);const visiting=new Set(),done=new Set();function visit(id){assert.ok(ids.has(id));assert.ok(!visiting.has(id));if(done.has(id))return;visiting.add(id);const t=plan.tasks.find(t=>t.id===id);assert.ok(t.acceptance&&t.evidence&&t.next);for(const d of t.depends)visit(d);visiting.delete(id);done.add(id);}plan.tasks.forEach(t=>visit(t.id));});
+test('Actual Xbox and Quest acceptance stay separate from simulated-device checks',()=>{for(const id of ['I03','X04','X05'])assert.equal(plan.tasks.find(t=>t.id===id).status,'Hardware QA');});
