@@ -1,0 +1,30 @@
+name: Aether Reach source snapshot
+on:
+  push:
+    branches: [feat/aether-reach-first-expedition]
+    paths: [.github/workflows/aether-source.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package only the public game and public hosting configuration
+        run: |
+          git rev-parse HEAD > source-sha.txt
+          git ls-files | grep -iE '(^|/)agents\.md$' > agent-paths.txt || true
+          while IFS= read -r file; do printf '\n--- %s ---\n' "$file"; cat "$file"; done < agent-paths.txt > agent-instructions.txt
+          tar -czf aether-public-source.tgz aether-reach index.html projects.css .github/workflows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aether-public-source
+          path: |
+            aether-public-source.tgz
+            source-sha.txt
+            agent-instructions.txt
+          retention-days: 3
