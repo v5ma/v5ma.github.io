@@ -1,25 +1,27 @@
 # Aether Reach — The Silent Network
 
-A separate, original first-person sky-city expedition for SVGN Interactive. Working title, first playable slice, not a complete commercial game. Nothing in this directory replaces SVGN.io Paper Delivery, Dino Atlas, or the Theology Wiki.
+An original first-person sky-city mechanics prototype for SVGN Interactive. This separate project does not replace Paper Delivery, Dino Atlas or the Theology Wiki. Public prototype story and art are placeholders, not private narrative material.
 
-## Play
+## Play and plan
 
-Serve this folder via HTTP (from the repository root: `python -m http.server 4173`). Open `/aether-reach/`. No package installation, account, API key, CDN or paid service is required. WebGL2 is required; a failed renderer leaves a readable error instead of a fake 2D game. Third-party renderer code is pinned and stored locally.
+Serve the repository root using `python -m http.server 4173` and open `/aether-reach/`, or use the public project homepage. Runtime dependencies are pinned locally. There is no package-install step, account, API key, CDN or paid service. WebGL2 is required; renderer failure produces an honest message.
 
-WASD moves; mouse or arrow keys look; drag-look remains available without pointer lock. E interacts with a nearby rail/relay/archive. Space jumps or releases the sky clamp with momentum. W accelerates, S brakes, C reverses on rails; Shift sprints or boosts. F or click fires. R reloads. Q spends suit energy to pulse/stun patrol machines. M opens the paused field atlas. Esc/P pauses. Touch controls are provided, but physical mobile performance is unverified.
+Version 0.2.0 adds standard-mapped Xbox-style controls, an **experimental WebXR preview targeting Quest 3**, and a [development Kanban](./roadmap.html). The committed canonical plan is [roadmap.json](./roadmap.json): 26 tasks, 38 dependency links, acceptance criteria, evidence and separate physical-device gates. A six-sheet Excel snapshot accompanies the release handoff. Local board edits/export do not change GitHub or gameplay saves.
 
-Restore the greenhouse, freight and broadcast relays, then return to the signal terminal at Arrival Quay. The bridges form a complete foot route. Rails provide bidirectional alternate paths, not scene-loading teleports. Archives provide optional original world-building. Falls/death use a visible checkpoint rescue. The player can stay after the mission. Checkpoints/settings are local and versioned; unavailable storage is tolerated. No multiplayer, cloud saves, purchases, coupons or Supabase changes are included.
+See [DEVICE-SUPPORT.md](./DEVICE-SUPPORT.md) for controller and headset bindings. Xbox: left stick moves, right stick looks, A jumps, Y interacts, X reloads, RT fires, LB pulses, RB reverses, View maps and Menu pauses. Menus use D-pad or left stick plus A/B. Press a controller button while the browser is focused. Unknown non-standard mappings are not guessed.
 
-## Design boundaries
+On a capable HTTPS headset browser, Enter VR (preview) requests an immersive local-floor session. It uses tracked head/controllers, left-stick movement, snap turning, an independent weapon ray and spatial status/menu panels. Physical Xbox, Quest 3 tracking, frame time and comfort have NOT been tested here. Climbing, gliding, hand tracking, full embodied reload and multiplayer are not yet implemented.
 
-BioShock Infinite's first-person floating-city/rail traversal is the requested mechanical inspiration, not a source of copied assets. This project uses its own title, districts, writing, procedural art, weapon and pulse ability. It contains no Columbia, Booker, Elizabeth, commercial audio or extracted game data. Distinctive original characters, deeper combat and an expanding narrative are future development work.
+Keyboard/touch remain: WASD moves; mouse/arrow keys look; E interacts, Space jumps or releases, C reverses rails, Shift sprints/boosts, F/click fires, R reloads, Q pulses, M maps, Esc/P pauses. Pointer-lock failure leaves drag-look and keyboard look available. Checkpoints and settings stay local and versioned; denied storage is tolerated.
 
-The current expedition has five districts, five curved freight routes, five walkable bridges, three restoration relays, four discoverable texts and three patrol drones. Physics uses a fixed 120 Hz step with bounded frame catch-up. Art consumes the same authoritative district, collision and sampled rail definitions as simulation. All rail samples are tested against building collision bounds including roof clearance. Scene foliage/furniture are decorative and are not fully physical.
+Restore three relays and return to Arrival Quay to broadcast. Five districts connect through five walkable bridges and five bidirectional freight lines. There are three simple patrol drones and four optional archives. You may finish on foot, ride the rails, and explore after completion. Momentum release is continuous, not a scene-loading teleport. Decorative foliage/furniture are not fully physical.
 
-## Tests and continuation
+## Development and verification
 
-`node --test aether-reach/tests/model.test.mjs` from the repo root tests saved-data validation, full walking connectivity, bidirectional rail completion, momentum release, combat, obstacles, mission state and checkpoint recovery. `python aether-reach/tests/browser.py` exercises the actual HTTP/WebGL client. Browser tests navigate through ordinary inputs using read-only observations; they do not set actor positions or mission progress. Model fixtures are separate evidence.
+`model.mjs` owns movement, collisions, combat and saves. `scene.mjs` renders authoritative world definitions. `app.mjs` owns browser UI and the fixed-step loop. `input-core.mjs` normalizes device state; `controllers.mjs` maps actions and menus; `xr-session.mjs` owns tracked space and lifecycle.
 
-Future work lives in `ROADMAP.md`. Keep source modules separate rather than appending patches to Paper Delivery. No automatic branching claim: the user-described new branch was not visible, so the actual implementation branch is `feat/aether-reach-first-expedition`.
+Run `node --test aether-reach/tests/*.test.mjs`. Native HTTP tests are `tests/browser.py` and `tests/launch.py`. `tests/devices.py` runs the real WebGL app with **emulated Gamepad/WebXR APIs only**; it does not assign actor position or objective state. That is integration evidence, not physical hardware certification. No test-only device implementation is imported by runtime modules.
 
-Technical references: https://threejs.org/docs/pages/PerspectiveCamera.html ; https://threejs.org/docs/pages/Raycaster.html ; https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API . The existing repository's Three.js r177 distribution is reused byte-for-byte in this project's own vendor folder; see `vendor/LICENSE`.
+The final source workflows are read-only and produce runtime hashes. Publication checks compare the explicit public file list to the merged bytes. See [PUBLIC_BUILD.md](./PUBLIC_BUILD.md), [ENGINE-ROADMAP.md](./ENGINE-ROADMAP.md) and [ROADMAP.md](./ROADMAP.md).
+
+Primary references: https://threejs.org/manual/en/webxr-basics.html ; https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/gamepad ; https://developer.mozilla.org/en-US/docs/Web/API/Gamepad/mapping . Existing Three.js r177 remains pinned; see `vendor/LICENSE`.
