@@ -1,16 +1,19 @@
-# Aether Reach development roadmap
+# Review → plan → build → playtest → revise
 
-The committed canonical roadmap is [roadmap.json](./roadmap.json). The [public Kanban](./roadmap.html) provides search, workstream filters, stable IDs, dependencies, acceptance criteria, evidence and local-only status editing/JSON export. Browser edits do not write GitHub or change game checkpoints. A versioned six-sheet Excel snapshot accompanies the development handoff.
+The canonical public plan is [roadmap.json](./roadmap.json), with the [Kanban UI](./roadmap.html). It now tracks 35 tasks / 58 prerequisites. The companion workbook preserves controller, XR and physical-QA planning and adds combat review and formula-driven weapon tuning. Local board/workbook edits do not commit to GitHub.
 
-## Implementation order
-1. Preserve the playable floating-city expedition and public/private content boundary.
-2. Make controller input dependable: analog movement, aiming, menu actions, release/reconnect behavior and physical Xbox checks.
-3. Establish the immersive WebXR rig, independent tracked aiming, snap turning, headset-readable UI and safe session lifecycle. The v0.2.0 candidate is an experimental implementation, not a physical Quest 3 certification.
-4. Measure physical headset frame time, room calibration and comfort before enlarging scenes or adding richer locomotion.
-5. Develop climbing and gliding individually, then join them to rails with explicit momentum, collision and recovery rules.
-6. Improve embodied weapons, enemies, branching traversal, environments, puzzles and audio within the measured performance budget.
-7. Design authoring, authenticated cloud levels and multiplayer as later projects with their own security and synchronization gates.
+## This review cycle
 
-Task states separate implementation, browser checks, physical-device QA and release. I03 (physical Xbox), X04 (physical Quest) and X05 (headset performance) remain open even when simulated-device tests pass. No made-up delivery dates or hardware performance promises are attached to the plan.
+The v0.2 release established device support but did not change the visible game enough. B01–B05 address that directly: distinct equipment and a scoped viewfinder, buy/upgrade decisions, physical drops/caches, independent looking with adjacent rail detours, and differentiated silhouettes/landmarks. Read [REVIEW-03.md](./REVIEW-03.md) for the actual reference material and native test corrections.
 
-See [DEVICE-SUPPORT.md](./DEVICE-SUPPORT.md) for bindings and limitations, [PUBLIC_BUILD.md](./PUBLIC_BUILD.md) for content isolation, and [ENGINE-ROADMAP.md](./ENGINE-ROADMAP.md) for architecture guidance.
+A model success is not a player approval. B06 records encounter balance, ammunition demand, path readability, rewards and full mission replay with alternative loadouts. Preserve the complete foot route and accessible controls.
+
+## Next concrete multiplayer slice
+
+N01 defines authority and protocol; N02 requires two actual browser clients that see each other's movement and rail transitions in a shared room. N03 validates shared loot claims, currency, ammunition and damage on the server. Do not call a local patrol a remote player or show a fake connected lobby. No backend or account service is deployed by v0.3.
+
+## Device continuity
+
+I03, X04 and X05 remain physical Xbox, Quest 3 and headset performance gates. X07 is a real tracked magnified optic, distinct from flat-screen camera zoom. Climbing/gliding are developed separately before integration; no forced rail-follow head orientation is permitted. Hardware comfort and performance require measurements, not desktop screenshots.
+
+All work remains public mechanics/placeholder assets only. Private narrative is excluded. Future publication status and exact verification receipts are recorded in the corresponding pull request, not inferred from a task's implementation state.
