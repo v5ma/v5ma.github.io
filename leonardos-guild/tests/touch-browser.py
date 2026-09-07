@@ -24,7 +24,7 @@ with sync_playwright() as pw:
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  try:
   page.goto(BASE+'/leonardos-guild/',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').tap();tick(2)
-  check(read()['version']=='0.2.0','The browser loads the new online-game version')
+  check(read()['version']==json.loads((Path(__file__).resolve().parents[1]/'release.json').read_text())['version'],'The browser loads the new online-game version')
   check(read()['touchEnabled'] and page.locator('#move-stick').is_visible(),'Touch devices get an actual joystick automatically')
   check(read()['render']['triangles']>50000 and read()['render']['visuals']['instancedFoliage'],'The real WebGL scene contains the new foliage and town graphics')
   page.screenshot(path=str(OUT/'landscape-start.png'))

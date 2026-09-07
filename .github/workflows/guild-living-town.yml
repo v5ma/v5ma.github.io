@@ -1,0 +1,64 @@
+name: Leonardo living town and interior journeys
+on:
+  push:
+    branches: [feat/guild-living-town-20260907]
+  pull_request:
+    paths: ['leonardos-guild/**','.github/workflows/guild-living-town.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: guild-life-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  journey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [interiors, watch, north]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax, old mechanics and nine-commission dependency checks
+        run: |
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          mkdir -p leonardos-guild/life-output/${{ matrix.mode }}
+          npm --prefix leonardos-guild test | tee leonardos-guild/life-output/${{ matrix.mode }}/model-tests.txt
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Walk, ride, use stairs, solve and return with ordinary controls
+        env:
+          LIFE_SUITE: ${{ matrix.mode }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/guild-living-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/life-browser.py
+      - name: Record exact read-only source and any failures
+        if: always()
+        env:
+          LIFE_SUITE: ${{ matrix.mode }}
+        run: |
+          python - <<'PY'
+          import os,json,hashlib,subprocess,tarfile
+          from pathlib import Path
+          root=Path('leonardos-guild');out=root/'life-output'/os.environ['LIFE_SUITE'];out.mkdir(parents=True,exist_ok=True)
+          (out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          (out/'uncommitted-diff.txt').write_text(subprocess.check_output(['git','diff','--stat'],text=True))
+          files={str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.rglob('*') if f.is_file() and not any(k in f.parts for k in ['life-output','test-output','touch-output','__pycache__']) and f.suffix in ['.js','.mjs','.css','.html','.json','.webp','.md']}
+          (out/'source-hashes.json').write_text(json.dumps(files,indent=2))
+          with tarfile.open(out/'source.tgz','w:gz') as tar:
+            for name in files:tar.add(root/name,arcname='leonardos-guild/'+name)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-life-${{ matrix.mode }}
+          path: leonardos-guild/life-output/${{ matrix.mode }}/
+          retention-days: 7
