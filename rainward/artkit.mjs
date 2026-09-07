@@ -1,8 +1,9 @@
+import {physicalSurface,worldTexturing} from './surface-work.mjs';
 import * as T from './vendor/three.module.js';
 export const rnd=n=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x);};
 export const colors={brick:0x5f655f,wall:0x49534e,road:0x303c3c,moss:0x496343,metal:0x3c5756,amber:0xdfb781};
 export function artkit(scene){
- const textures={};
+ const textures={},surfaces={};
  function texture(type){if(textures[type])return textures[type];const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');g.fillStyle=type==='road'?'#969e99':type==='brick'?'#d2c4ad':'#bdc7b6';g.fillRect(0,0,256,256);
   for(let i=0;i<4400;i++){const x=rnd(i+11)*256,y=rnd(i+73)*256;g.fillStyle=i%3?'#13292a16':'#e4ecd616';g.fillRect(x,y,1+rnd(i)*4,1+rnd(i+7)*5);}
   if(type==='brick'){g.strokeStyle='#333f4160';g.lineWidth=2;for(let y=0;y<256;y+=32){g.beginPath();g.moveTo(0,y);g.lineTo(256,y);g.stroke();for(let x=(y/32%2)*32;x<256;x+=64){g.beginPath();g.moveTo(x,y);g.lineTo(x,y+32);g.stroke();}}}
@@ -11,11 +12,12 @@ export function artkit(scene){
  }
  const geos={box:new T.BoxGeometry(1,1,1),ball:new T.SphereGeometry(1,14,10),cyl:new T.CylinderGeometry(1,1,1,8),cone:new T.ConeGeometry(1,1,7),plane:new T.PlaneGeometry(1,1),capsule:new T.CapsuleGeometry(.5,1,4,8)};
  const blade=new T.BufferGeometry();blade.setAttribute('position',new T.Float32BufferAttribute([-.5,0,0,.5,0,0,.13,1,.18],3));blade.computeVertexNormals();geos.blade=blade;
+ const rock=new T.IcosahedronGeometry(1,3),rp=rock.attributes.position;for(let i=0;i<rp.count;i++){const x=rp.getX(i),y=rp.getY(i),z=rp.getZ(i),r=1+.09*Math.sin(x*11+y*7+z*9)+.065*Math.cos(y*17-z*8);rp.setXYZ(i,x*r,y*r,z*r);}rock.computeVertexNormals();geos.rock=rock;
  const mats=new Map(),buckets=new Map(),dynamic=[];
  function mat(color,type='stone',extra={}){const key=color+':'+type;if(!mats.has(key)){
  const material=new T.MeshStandardMaterial({color,roughness:type==='metal'?.36:type==='road'?.40:.82,metalness:type==='metal'?.55:0,map:['stone','brick','road','rock'].includes(type)?texture(type==='rock'?'stone':type):null,...extra});
  if(type==='glow'){material.emissive=new T.Color(color);material.emissiveIntensity=1.5;}
- if(['stone','brick','road','rock'].includes(type)){const bump=texture(type==='rock'?'stone':type).clone();bump.colorSpace=T.NoColorSpace;material.bumpMap=bump;material.bumpScale=type==='road'?.035:.10;}
+ if(['stone','brick','road','rock'].includes(type)){const maps=surfaces[type]||(surfaces[type]=physicalSurface(type));material.map=maps.map;material.bumpMap=maps.bump;material.roughnessMap=maps.rough;material.bumpScale=type==='rock'?.24:.10;worldTexturing(material,type==='brick'?2.4:type==='road'?3.5:2.8);}
  mats.set(key,material);}return mats.get(key);}
  function add(shape,x,y,z,sx,sy,sz,color,type='stone',rx=0,ry=0,rz=0){const m=mat(color,type),key=shape+':'+color+':'+type;let b=buckets.get(key);if(!b){b={geo:geos[shape],mat:m,items:[]};buckets.set(key,b);}const matrix=new T.Matrix4().compose(new T.Vector3(x,y,z),new T.Quaternion().setFromEuler(new T.Euler(rx,ry,rz)),new T.Vector3(sx,sy,sz));b.items.push(matrix);}
  function mesh(shape,scale,color,type='cloth'){const m=new T.Mesh(geos[shape],mat(color,type));m.scale.set(...scale);m.castShadow=true;m.receiveShadow=true;return m;}

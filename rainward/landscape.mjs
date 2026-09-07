@@ -5,13 +5,13 @@ import * as T from './vendor/three.module.js';
 import {CURRENT,OBSTACLES,heightAt,GRASS} from './world.mjs';
 import {rnd} from './artkit.mjs';
 export function skyEnvironment(scene,renderer){
- const c=document.createElement('canvas');c.width=1024;c.height=512;const g=c.getContext('2d'),grad=g.createLinearGradient(0,0,0,512);grad.addColorStop(0,'#314e63');grad.addColorStop(.42,'#9ab6b4');grad.addColorStop(.56,'#ebe0b7');grad.addColorStop(.65,'#6d806b');grad.addColorStop(1,'#1b2921');g.fillStyle=grad;g.fillRect(0,0,1024,512);
+ const c=document.createElement('canvas');c.width=1024;c.height=512;const g=c.getContext('2d'),grad=g.createLinearGradient(0,0,0,512);grad.addColorStop(0,'#314e63');grad.addColorStop(.42,'#9ab6b4');grad.addColorStop(.56,'#d6e0e4');grad.addColorStop(.65,'#737e78');grad.addColorStop(1,'#282f34');g.fillStyle=grad;g.fillRect(0,0,1024,512);
  for(let i=0;i<100;i++){const x=rnd(i)*1024,y=40+rnd(i+190)*190,r=18+rnd(i+800)*80;const glow=g.createRadialGradient(x,y,0,x,y,r);glow.addColorStop(0,'#f2efdf55');glow.addColorStop(1,'#f2efdf00');g.fillStyle=glow;g.fillRect(x-r,y-r,2*r,2*r);}
  const tex=new T.CanvasTexture(c);tex.mapping=T.EquirectangularReflectionMapping;tex.colorSpace=T.SRGBColorSpace;scene.background=tex;const pm=new T.PMREMGenerator(renderer),env=pm.fromEquirectangular(tex);scene.environment=env.texture;scene.environmentIntensity=.45;pm.dispose();return {dispose(){env.dispose();tex.dispose();}};
 }
 export function buildConservatory(scene,A){
  const {add,mesh,label,ivy,mat,geos,buckets}=A;const dynamic={gates:[],wheels:[],water:[],lights:[]};
- const stone=0x8e8e72,light=0xb9af8a,dark=0x4a5b51,bronze=0x80795a;
+ const stone=0xb4b0a2,light=0xd0c7b3,dark=0x65716c,bronze=0x80795a;
  // Continuous terraced floor matches heightAt used by movement and perception.
  buildTerrain(scene,A);
  // Physical obstacles are always represented, and moving gates remain separate.
@@ -41,8 +41,8 @@ export function buildConservatory(scene,A){
  for(const side of[-1,1])for(const z of[7,-3,-13,-23]){column(side*35,z,7.5);for(const x of[side*25,side*45]){add('box',x,2,z,2,4,1.4,dark);add('box',x,4,z,2.4,.35,1.7,light);}}
  for(const side of[-1,1])for(let i=0;i<10;i++){const z=6-i*3;add('box',side*35,8.5,z,25,.5,.35,bronze,'metal',0,0,side*.02);}
  // Far canyon geometry creates parallax and skyline, not a flat backdrop.
- for(let side of[-1,1])for(let i=0;i<13;i++){const x=side*(57+rnd(i+side)*22),z=52-i*11,h=18+rnd(i+77)*37;add('ball',x,h*.32,z,8+rnd(i)*7,h,9+rnd(i+19)*8,[0x6b7665,0x858773,0x59665a][i%3],'rock',rnd(i),rnd(i+3),rnd(i+11)*.3);}
- for(let i=0;i<7;i++){const x=-70+i*23,h=40+rnd(i+49)*30;add('cone',x,h*.5,-118,17,h,17,0x869887,'rock');}
+ for(let side of[-1,1])for(let i=0;i<13;i++){const x=side*(57+rnd(i+side)*22),z=52-i*11,h=18+rnd(i+77)*37;add('rock',x,h*.42,z,11+rnd(i)*7,h*.66,12+rnd(i+19)*8,[0x747e7c,0x91938a,0x697977][i%3],'rock',rnd(i),rnd(i+3),rnd(i+11)*.3);}
+ for(let i=0;i<7;i++){const x=-70+i*23,h=40+rnd(i+49)*30;add('rock',x,h*.46,-121,21,h*.65,22,0x7e9096,'rock');}
  // Visible side waterfalls, fine spray, layered water surface and lily mats.
  const waterMaterial=new T.MeshStandardMaterial({color:0x3a7c6c,transparent:true,opacity:.68,roughness:.18,metalness:.35,side:T.DoubleSide});
  for(const p of CURRENT.water){const m=new T.Mesh(new T.PlaneGeometry(p.w,p.d,12,16),waterMaterial);m.rotation.x=-Math.PI/2;m.position.set(p.x,.16,p.z);scene.add(m);dynamic.water.push(m);
@@ -60,11 +60,11 @@ export function buildConservatory(scene,A){
  const lm=mat(0x81985a,'leafcard');lm.map=tex;lm.alphaTest=.45;lm.side=T.DoubleSide;lm.roughness=1;
  // Landmark and puzzle texts remain readable in the game world.
  label('THE DROWNED\nCONSERVATORY',-8,9.2,47,3.5,.8,'#3a4e43','#ddcf9d');label('ARCHIVE / WEST',-34,5,9.8,12,1.5);label('GLASSHOUSE / EAST',35,5,10.8,13,1.5);
- label('SUN · LEAF · WAVE\nGARDEN → NORTH',-28,2.4,7.1,5.8,1.6,'#39463c','#e3d3aa');
+ label('INSCRIPTION / PRESS E\nGARDEN → NORTH',-28,2.4,7.1,5.8,1.6,'#39463c','#e3d3aa');
  for(const [i,w]of CURRENT.puzzle.wheels.entries()){
   add('box',w.x,1,w.z,1.7,2,1.6,dark);const wheel=new T.Mesh(new T.TorusGeometry(.64,.10,8,24),mat(0xc5a76a,'metal'));wheel.position.set(w.x,1.85,w.z+.86);scene.add(wheel);dynamic.wheels.push(wheel);
   for(let j=0;j<4;j++){const a=j*Math.PI/2;add('ball',w.x+Math.sin(a)*.63,1.85+Math.cos(a)*.63,w.z+.89,.07,.07,.05,0xdebc7b,'metal');}
-  label(['GARDEN','ARCHIVE','DEEP'][i],w.x,2.9,w.z+.88,2.1,.6);}
+  label(['1 · GARDEN','2 · ARCHIVE','3 · DEEP'][i],w.x,2.9,w.z+.88,2.1,.6);}
  // Baked instancing; the renderer still uses real scene objects and collisions.
  for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=!['grass','glass','leafcard'].some(t=>[...A.mats].find(([k,v])=>v===m)?.[0].endsWith(':'+t));inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}
  for(const [key,m]of A.mats)if(key.endsWith(':grass'))m.side=T.DoubleSide;

@@ -1,1 +1,13 @@
-{"version":"0.3.0","build":"rainward-conservatory-expedition","stage":"two-chapter prototype","xr":false,"multiplayer":false}
+{
+  "version": "0.4.0",
+  "build": "rainward-terminus-guidance-20260907",
+  "stage": "mechanics prototype",
+  "xr": false,
+  "multiplayer": false,
+  "changes": [
+    "Discoverable clues, numbered puzzle controls and optional progressive hints",
+    "Bellweather Terminus: third original chapter with linked power circuits",
+    "World-scaled albedo, height and roughness materials; varied rock silhouette and human proportions",
+    "Original chapters, controls and shelter checkpoint compatibility preserved"
+  ]
+}
