@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.09.05-atlas-1",
+  "version": "2026.09.06-james-transmission-1",
   "updated": "2026-09-06",
   "baselineCommit": "a39f1f8391580e1a743763d6f6c455e4ead3aad8",
   "policy": "This is a sequence of deliverables, not a promise of background work or a calendar estimate. Verified output means the stated deliverable has evidence, not that a theory is true or a chapter is approved. Changes to this shared baseline require a repository edit. Workbook and personal-board edits do not automatically update it.",
@@ -274,15 +274,20 @@
         "thomas"
       ],
       "pages": [
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "thomas-sayings-and-transmission",
+        "james-and-contested-succession"
       ],
       "acceptance": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.",
       "dependsOn": [
         "archive-integrity"
       ],
-      "evidence": [],
+      "evidence": [
+        "editorial/authorial-articles/thomas-sayings-and-transmission.md",
+        "editorial/transmission-evidence.json"
+      ],
       "sourceTask": "thomas-passages",
-      "nextAction": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.",
+      "nextAction": "Collate the relevant Greek and Coptic witnesses and review the full Gathercole/James-fragment critical editions. Distinguish institutional succession from changed interpretation; retain unresolved dependence alternatives.",
       "targetDate": null
     },
     {
@@ -365,7 +370,8 @@
       ],
       "pages": [
         "jesus-teacher-of-righteousness-hypothesis",
-        "onias-egypt-and-priestly-continuity"
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession"
       ],
       "acceptance": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.",
       "dependsOn": [
@@ -375,7 +381,7 @@
         "theology-wiki/data/priestly-evidence.json"
       ],
       "sourceTask": "priesthood",
-      "nextAction": "Compare inherited descent, continuing office and scriptural authorization, including Onias's reported sons; do not turn righteousness vocabulary alone into a pedigree.",
+      "nextAction": "Trace an evidenced route from Egyptian priestly carriers to James-centered traditions. Test genealogy, office, mediated priestly imagery and adverse sect classifications separately.",
       "targetDate": null
     },
     {
@@ -927,6 +933,10 @@
     {
       "date": "2026-09-06",
       "change": "Developed the Daniel/Teacher and Onias branch investigations with explicit source relations, two museum trails and an evidence register. Preserved all task stages: these bounded comparisons do not complete the critical collation or the proposed transmission genealogy."
+    },
+    {
+      "date": "2026-09-06",
+      "change": "Developed Jamesian succession and Thomas transmission/formation studies with 18 new passage claims and a comparison workspace. Added ten museum stops. Research remains Draft or citation verification; no author approval or completed critical-edition claim."
     }
   ],
   "verificationNote": "Current outputs are verified against the recorded build, content and planning tests. Native-browser and publication evidence is attached to the release pull request; completed outputs do not signify author-approved chapters."

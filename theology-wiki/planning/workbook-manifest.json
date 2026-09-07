@@ -1,13 +1,15 @@
 {
-  "version": "2026.09.05-atlas-1",
+  "version": "2026.09.06-james-transmission-1",
   "file": "Theology-Research-Plan.xlsx",
-  "sha256": "f4fe2fbabc3daf4dab70e3198d0b06c533830313fb0ec3d27dfd685cf9414cbe",
+  "sha256": "391f57c9c251870174554e90b85281e273d45de0c0c5a2b594a596871c161bd9",
   "inputHashes": {
-    "editorial/roadmap.json": "42f0e8bc2dae03cb760f5abd329449ec56efdf4e816d6665820055df4c6dce80",
-    "data/roadmap.json": "c5f9b95706c04cc66aa985c3120e47ed69fb98c4de3d545c27e6b7859944bef3",
-    "data/source-coverage.json": "5d7a8f4427f306cce62ab345c5f7f7d04513beb17521f342c7a9e80b3f2d4386",
-    "data/foundations.json": "674d649ba10f954f2d75f4d0c133237fcb0628caeeb6bfe4af5ab6dce8357d00",
-    "data/melchizedek-evidence.json": "6a2af6be2557749e90bc5377f6347dbbd684d9130c34de0579220e5325b44c1a"
+    "editorial/roadmap.json": "963d4751477872a4c7f9a4cefb0cbfff02dca90b08f17d9a64f002e39d84feda",
+    "data/roadmap.json": "3654b250f759f7b8b7de29b3dab44927c24fa274a76d9012fd3c3bcbc06dcf44",
+    "data/source-coverage.json": "c6523e52d4e65d89e4e9cb2b652766b2904ef935798af122bcbcb2903763c09e",
+    "data/foundations.json": "0050f900c897923531d2b759d3dd015802ed18df867c238cf6e343349b0ac0ec",
+    "data/melchizedek-evidence.json": "887b0386ef47515ed8d0082bf6fe2c785a53e8fe17c7edfc592110002644ac04",
+    "editorial/transmission-evidence.json": "3968301260521e3ad70afcc324711951cc413cb1ed7f3dd6254c4643ec910ae8",
+    "data/evidence-workbench.json": "474002b9c61204bf0debcdf8b1a684dbcbaa6246559feac12ab4cdfda755928b"
   },
   "sheets": [
     "Overview",
@@ -29,7 +31,7 @@
     "formulaCells": 942,
     "formulaErrorCount": 0,
     "visualSummary": "Formula-backed overview totals and phase counts",
-    "note": "No task stage or author approval was promoted by this update. Chart export is not claimed."
+    "note": "Retains 942 evaluated formulas and prior research stages; expands Textual Evidence to include the 30-record comparison workspace, with channels and next questions. Overview and representative evidence rows visually inspected. No whole-project or author approval inferred."
   },
-  "contentEdition": "2026.09.06-priesthood-time-1"
+  "contentEdition": "2026.09.06-james-transmission-1"
 }

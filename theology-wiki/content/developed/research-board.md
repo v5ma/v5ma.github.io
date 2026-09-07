@@ -33,12 +33,6 @@ Select Gnostic and non-Gnostic texts with independently justified dates; disting
 
 ## Develop argument
 
-### Extend the Thomas passage comparison
-
-Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.
-
-[[tor-thomas-and-gnostic-transmission|Open the related investigation]]
-
 ### Resolve the Davidic/priestly knot
 
 Present my Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.
@@ -64,6 +58,12 @@ Separate my teaching proposal from the new editorial question about obligations 
 [[religion-for-conscious-robots|Open the related investigation]]
 
 ## Verify citations
+
+### Extend the Thomas passage comparison
+
+Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.
+
+[[tor-thomas-and-gnostic-transmission|Open the related investigation]]
 
 ### Collate and extend the first Melchizedek comparison
 

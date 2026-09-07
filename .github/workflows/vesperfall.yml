@@ -2,9 +2,9 @@ name: Verify Vesperfall archery and XR
 on:
   push:
     branches: [feat/vesperfall-quest-archery]
-    paths: ['vesperfall/**','scripts/*vesperfall*','.github/workflows/vesperfall.yml','index.html']
+    paths: ['vesperfall/**','gloamward/index.html','scripts/*vesperfall*','.github/workflows/vesperfall.yml','index.html']
   pull_request:
-    paths: ['vesperfall/**','scripts/*vesperfall*','.github/workflows/vesperfall.yml','index.html']
+    paths: ['vesperfall/**','gloamward/index.html','scripts/*vesperfall*','.github/workflows/vesperfall.yml','index.html']
   workflow_dispatch:
 permissions:
   contents: read
@@ -14,11 +14,11 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, expedition, xr]
+        suite: [ui, expedition, xr, gallery]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,7 +28,7 @@ jobs:
         run: |
           node --check vesperfall/app.js
           node --check vesperfall/art.js
-          node --test vesperfall/tests/core.test.cjs | tee core-tests.tap
+          node --test vesperfall/tests/*.test.cjs | tee core-tests.tap
           python scripts/check-vesperfall.py
       - name: Install native browser
         run: |
@@ -41,14 +41,14 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/vesper-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 850 python -u vesperfall/tests/browser.py
+          timeout 1020 python -u vesperfall/tests/browser.py
       - if: always()
         run: |
           mkdir -p test-output
           cp core-tests.tap test-output/ || true
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          tar -czf test-output/source.tgz vesperfall index.html scripts/check-vesperfall.py
+          tar -czf test-output/source.tgz vesperfall gloamward index.html scripts/check-vesperfall.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

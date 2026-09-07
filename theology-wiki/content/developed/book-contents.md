@@ -37,13 +37,13 @@ Compare the competing Moses and volcano proposals without blending their geograp
 
 Keep individual identity, office, namesakes, community and sayings distinct.
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]] / [[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]] / [[james-and-contested-succession|James and contested succession]]
 
 ### The Teacher, Thomas and the deeper teaching
 
 Present the linked argument before comparing its alternative historical mechanisms.
 
-[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]] / [[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]] / [[manuscripts-movements-and-survival|Manuscripts, movements and survival]] / [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]] / [[james-and-contested-succession|James and contested succession]] / [[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
 
 ### Loss, anger and reconstruction
 
@@ -63,13 +63,13 @@ Distinguish a representation, its claimed referent and the standard by which it 
 
 Develop the relationship between understanding a teaching and embodying it in a changing mind.
 
-[[cognitive-gnosticism|Cognitive Gnosticism]]
+[[cognitive-gnosticism|Cognitive Gnosticism]] / [[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
 
 ### Christic self-formation and bounded agency
 
 Develop the embodied self, learned self-model, recurrent choice and correction of the Christ model, then examine the textual and material history of formation.
 
-[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]] / [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]] / [[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]] / [[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]] / [[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]] / [[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
 
 ### Faith as a practiced orientation
 

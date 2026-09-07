@@ -246,3 +246,71 @@ The Egyptian sanctuary is not an indefinitely available refuge. Its reported clo
 Reunion, succession and transformed interpretation are the positive reconstruction. Texts, dates and actual intermediates must support each proposed connection.
 
 [[onias-egypt-and-priestly-continuity|Read the full investigation]]
+
+## James: authority, family and knowledge
+
+What is transmitted when the founder is no longer present?
+
+### A named teaching chain
+
+Compare the reported knowledge transmission with the leadership question, without treating one surviving host as many independent witnesses.
+
+[[james-and-contested-succession|Read the full investigation]]
+
+### A priestly portrait
+
+Ritual authority, holiness and genealogy are different possible explanations of the portrait.
+
+[[james-and-contested-succession|Read the full investigation]]
+
+### Succession and contested classification
+
+Family selection does not erase the account's classification of Essenes as opponents.
+
+[[james-and-contested-succession|Read the full investigation]]
+
+### Rival continuations
+
+External Ebionite reports preserve both useful affinities and differences that a transmission model must explain.
+
+[[james-and-contested-succession|Read the full investigation]]
+
+### An inheritance with several carriers
+
+Read the complete proposed history of leadership, households and transmitted teaching.
+
+[[james-and-contested-succession|Read the full investigation]]
+
+## Thomas: reading, formation and carriers
+
+What changes in a copied text, and what changes in its reader?
+
+### Leadership and private understanding
+
+The comparison separates communal authority from an interpreter's encounter.
+
+[[thomas-sayings-and-transmission|Read the full investigation]]
+
+### An earlier reading of transformation
+
+Credit Owens's earlier comparison without confusing it with the stronger displaced-founder chronology.
+
+[[thomas-sayings-and-transmission|Read the full investigation]]
+
+### Partial witnesses
+
+A Greek fragment can attest its surviving sayings, not all the absent contents of a collection.
+
+[[thomas-sayings-and-transmission|Read the full investigation]]
+
+### A possible educational carrier
+
+The reported Greek James revelation suggests a teaching context. Its date belongs to the copy, and its image is not redistributed.
+
+[[thomas-sayings-and-transmission|Read the full investigation]]
+
+### From received words to an operative model
+
+Read the full historical argument alongside the modern constructive account, without treating one as proof of the other.
+
+[[christ-as-an-inner-model|Read the full investigation]]

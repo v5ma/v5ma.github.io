@@ -1,6 +1,6 @@
 {
   "schema": "theology-listening-library/v1",
-  "version": "2026.09.06-priesthood-time-1",
+  "version": "2026.09.06-james-transmission-1",
   "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "articles": [
     {
@@ -189,6 +189,31 @@
       "words": 2152
     },
     {
+      "slug": "james-and-contested-succession",
+      "title": "James and contested succession",
+      "summary": "A Jamesian succession model joins transmitted knowledge, kinship, priestly imagery and contested authority while preserving the stronger earlier-founder reconstruction.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "teacher-identity",
+          "title": "What survives a teacher?",
+          "part": "The teacher and the transmitted message"
+        },
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/james-and-contested-succession.md",
+      "sourceSha256": "f260d79a1d49146182663e3ace16f7715dec553d3feadcad6939694f6f1f2a00",
+      "narration": "data/listening/james-and-contested-succession.json",
+      "narrationSha256": "3c96abbbab495f08c68194c08088babcd21874eab39384c0c4562da8e0aa8c62",
+      "transcript": "products/transcripts/james-and-contested-succession.txt",
+      "segments": 71,
+      "words": 2169
+    },
+    {
       "slug": "tor-thomas-and-gnostic-transmission",
       "title": "The Teacher, Thomas and Gnostic transmission",
       "summary": "A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.",
@@ -272,6 +297,36 @@
       "transcript": "products/transcripts/onias-egypt-and-priestly-continuity.txt",
       "segments": 66,
       "words": 2336
+    },
+    {
+      "slug": "thomas-sayings-and-transmission",
+      "title": "Thomas, sayings and transformed understanding",
+      "summary": "Compare communal succession, interpretive transformation, Greek witnesses and material carriers without collapsing the work, its copies and its proposed inheritance.",
+      "category": "gnosis",
+      "chapters": [
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "part": "The teacher and the transmitted message"
+        },
+        {
+          "id": "gnosis",
+          "title": "Cognitive Gnosticism",
+          "part": "The inheritance inside a mind"
+        },
+        {
+          "id": "inner-model",
+          "title": "Christic self-formation and bounded agency",
+          "part": "The inheritance inside a mind"
+        }
+      ],
+      "source": "content/developed/thomas-sayings-and-transmission.md",
+      "sourceSha256": "2d19ee88f3a4f2ef816be72684891e5ba0cfcf6861769dcd4107f10b8b283bf9",
+      "narration": "data/listening/thomas-sayings-and-transmission.json",
+      "narrationSha256": "bba7b628866845a1dd4227eda24d024fe69ad06f8d33b038db162d19f0348d67",
+      "transcript": "products/transcripts/thomas-sayings-and-transmission.txt",
+      "segments": 71,
+      "words": 2276
     },
     {
       "slug": "gnosticism-and-temple-trauma",
@@ -619,7 +674,8 @@
       "part": "The teacher and the transmitted message",
       "pages": [
         "jesus-teacher-of-righteousness-hypothesis",
-        "daniel-jubilee-and-the-teachers-time"
+        "daniel-jubilee-and-the-teachers-time",
+        "james-and-contested-succession"
       ]
     },
     {
@@ -630,7 +686,9 @@
         "tor-thomas-and-gnostic-transmission",
         "melchizedek-priesthood-and-transmission",
         "manuscripts-movements-and-survival",
-        "onias-egypt-and-priestly-continuity"
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession",
+        "thomas-sayings-and-transmission"
       ]
     },
     {
@@ -657,7 +715,8 @@
       "title": "Cognitive Gnosticism",
       "part": "The inheritance inside a mind",
       "pages": [
-        "cognitive-gnosticism"
+        "cognitive-gnosticism",
+        "thomas-sayings-and-transmission"
       ]
     },
     {
@@ -667,7 +726,8 @@
       "pages": [
         "christ-as-an-inner-model",
         "divine-will-and-self-authorizing-power",
-        "inner-formation-texts-and-material-witnesses"
+        "inner-formation-texts-and-material-witnesses",
+        "thomas-sayings-and-transmission"
       ]
     },
     {
