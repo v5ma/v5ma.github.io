@@ -14,6 +14,9 @@ def snap(page):return page.evaluate('Vesperfall.snapshot()')
 def aim(page,target,speed=36):
  # A controller expressed as real keyboard events, not assignments to camera/state.
  page.evaluate('''async ({target,speed})=>{const c=Vesperfall.component;const p=c.head.object3D.getWorldPosition(new AFRAME.THREE.Vector3()),dx=target[0]-p.x,dz=target[2]-p.z,d=Math.hypot(dx,dz),dy=target[1]-p.y,v2=speed*speed,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2);const yaw=Math.atan2(-dx,-dz),pitch=disc>0?Math.atan((v2-Math.sqrt(disc))/(9.8*d)):Math.atan2(dy,d);const held=new Set();function key(k,on){if(held.has(k)===on)return;document.querySelector('a-scene').canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code:k,key:k,bubbles:true,cancelable:true}));if(on)held.add(k);else held.delete(k);}await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw)),b=pitch-c.pitch;key('ArrowLeft',a>.018);key('ArrowRight',a<-.018);key('ArrowUp',b>.013);key('ArrowDown',b<-.013);if(Math.abs(a)<.035&&Math.abs(b)<.035||performance.now()-start>20000){for(const k of [...held])key(k,false);clearInterval(timer);resolve();}},4);});}''',{'target':target,'speed':speed})
+def preview_release(page,height):
+ # Read the rendered valid-landing cue, without calling the engine to teleport.
+ page.evaluate("""async height=>{const c=Vesperfall.component,canvas=AFRAME.scenes[0].canvas;const key=(type)=>canvas.dispatchEvent(new KeyboardEvent(type,{code:'Space',bubbles:true}));key('keydown');await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const valid=c.charge>.08&&c.blinkTrace?.ok&&Math.abs(c.blinkTrace.destination[1]-height)<.03;if(valid||performance.now()-start>25000){key('keyup');clearInterval(timer);valid?resolve():reject(Error('No valid landing cue'));}},2);});}""",height)
 def shot(page):
  # Wait for charge AND consumption of keyup by a real simulation frame.
  # The software renderer can take longer than a fixed 500ms delay.
@@ -25,7 +28,7 @@ with sync_playwright() as p:
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
  # Screenshots remain evidence. The long traversal suites use a smaller view;
  # geometry, materials, collision, game clock and damage remain unchanged.
- browser=p.chromium.launch(**opts);context=browser.new_context(viewport=({'width':640,'height':480} if MODE in ('expedition','gallery') else {'width':1024,'height':720}),service_workers='block')
+ browser=p.chromium.launch(**opts);context=browser.new_context(viewport=({'width':640,'height':480} if MODE in ('expedition','gallery') else {'width':1024,'height':720}),device_scale_factor=(.5 if MODE in ('expedition','gallery') else 1),service_workers='block')
  host=urlparse(BASE).hostname;context.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
  if MODE=='xr':context.add_init_script((ROOT/'vesperfall/tests/fake-xr.js').read_text())
  page=context.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
@@ -62,11 +65,11 @@ with sync_playwright() as p:
    check(snap(page)['shots']==1,'A physical arrow fired from the gallery hits the lower courtyard bell')
    walk(page,-4.65,-4.85,.12);walk(page,-4.65,4.6,.12);walk(page,0,3,.12)
    check(abs(snap(page)['player'][1])<.02,'The player can descend and return to the original route')
-   page.keyboard.press('Digit4');aim(page,[-4.65,3.2,-4.85],17)
-   page.keyboard.down('Space');page.wait_for_function('Vesperfall.component.charge>.95');page.keyboard.up('Space')
+   page.keyboard.press('Digit4');aim(page,[0,3.2,-4.85],11)
+   preview_release(page,3.2)
    page.wait_for_function('Vesperfall.state.events.some(e=>e.type==="blink")')
    check(snap(page)['player'][1]>3.1,'A real blink-arrow impact can land on the upper floor')
-   aim(page,[0,0,2],17);page.keyboard.down('Space');page.wait_for_function('Vesperfall.component.charge>.95');page.keyboard.up('Space')
+   aim(page,[0,0,2],10);preview_release(page,0)
    page.wait_for_function('Vesperfall.state.p[1]<.05')
    check(abs(snap(page)['player'][1])<.05,'A return blink lands on the lower floor instead of retaining an incorrect gallery height')
    metrics=page.evaluate('({calls:Vesperfall.component.stats.drawCalls,triangles:Vesperfall.component.stats.triangles})')
@@ -112,7 +115,7 @@ with sync_playwright() as p:
    page.evaluate('TestXR.hide(true)');page.wait_for_function('Vesperfall.component.paused');check(snap(page)['paused'],'Session visibility loss pauses safely')
    page.evaluate('TestXR.hide(false);TestXR.state.session.end()');page.wait_for_function('!Vesperfall.component.xr');check(page.locator('#menu.open').is_visible(),'Ending XR returns to a usable paused desktop menu')
   check(not errors,'No uncaught application errors in the tested flow')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snap(page),'scope':'Native HTTP A-Frame WebGL. Expedition uses ordinary keyboard events with observed navigation; XR substitutes device poses/buttons only. No hardware/comfort or physical draw calibration certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snap(page),'scope':'Native HTTP A-Frame WebGL. Expedition uses ordinary keyboard events with observed navigation; XR substitutes device poses/buttons only. Long traversal suites use emulated pixel ratio .5 for the software GPU. No hardware/comfort or physical draw calibration certification.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None

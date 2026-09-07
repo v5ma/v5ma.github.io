@@ -1,4 +1,4 @@
-# Vesperfall — The Bellward Trials
+# Vesperfall — Arrows Unchained
 
 An original A-Frame archery roguelite prototype, targeting Quest 3 through immersive WebXR and offering a keyboard/mouse practice mode. This is not a port, asset pack or endorsed version of any commercial game. The model, code, world layouts, UI and procedural artwork are original; A-Frame is vendored under its license.
 
@@ -8,17 +8,17 @@ Serve the repository root over HTTP for desktop development (`python -m http.ser
 
 ## Play
 
-A seeded sector has nine connected cloisters, ten door/bridge links, five wardens, optional supplies, three practice targets and one locked beacon. Clear the wardens; reach the beacon and interact; choose a blessing to generate the next sector. Depth increases health/difficulty, cycles among three original palettes, and rerolls the layout. This is endless sector succession, not an unbounded continuously streamed world. Renown from kills is banked at death or sector completion, once per active run. Two permanent upgrades apply on the next run. Saves are local, editable client data, not a secure leaderboard.
+A seeded sector has nine connected cloisters, ten door/bridge links, five wardens, optional supplies, four practice targets and one locked beacon. Clear the wardens; reach the beacon and interact; choose a blessing to generate the next sector. Depth increases health/difficulty, cycles among three original palettes, and rerolls the layout. This is endless sector succession, not an unbounded continuously streamed world. Renown from kills is banked at death or sector completion, once per active run. Two permanent upgrades apply on the next run. Saves are local, editable client data, not a secure leaderboard.
 
 Desktop: WASD moves, mouse (after clicking) or arrow keys looks, hold click or Space to draw, release to fire, Q/right-click cancels. 1/2/3/4 choose standard/cinder/frost/blink. E uses the beacon. Ctrl crouches, M toggles the map, P/Escape pauses. Standard gamepad: sticks move/look, RT draw/release, A interact, Y cycle arrow, B toggle blink, LB cancel, Menu pause. Touch has movement, drag looking, draw and interact buttons.
 
 Quest preview: bow is held in the chosen bow hand. Bring the other hand close to its string, hold the draw-hand trigger, physically draw back and release the trigger. Both controller poses must be valid. Draw-hand A cycles arrows; B toggles blink arrows. Bow-hand X interacts; Y opens the spatial menu. Right/draw-hand stick snap-turns. Blink-arrow travel is the default; slow stick locomotion is opt-in. The menu supports controller rays or stick navigation and has Exit VR. Draw lengths of 40/56/70 cm are options, not calibrated anatomical claims. Camera head tracking remains independent of locomotion. Pose loss, pausing, overextension and session changes cancel a drawn arrow.
 
-Standard arrows are unlimited. Cinder bursts affect nearby unoccluded enemies. Frost slows enemies. Blink arrows move you only after a projectile reaches a clear floor with sufficient landing space. Teleport preview is approximate; it cannot bypass walls or place the player inside an enemy. Misses do not refund special arrows. Real head position is used for incoming bolts so ducking/dodging changes collision.
+Standard arrows are unlimited. Cinder bursts affect nearby unoccluded enemies. Frost slows enemies. Blink arrows move you only after a projectile reaches a clear floor with sufficient landing space. Teleport preview shares the actual projectile stepping and first-hit tests; it cannot bypass walls or place the player inside an enemy. Misses do not refund special arrows. Real head position is used for incoming bolts so ducking/dodging changes collision.
 
 ## Honest scope
 
-Physical Quest 3 testing is still required for hand alignment, bow feel, locomotion comfort, floor calibration, stereo performance, thermal behavior and battery use. API emulation is not that testing. There is no crossbow, hand-tracking-only mode, full-body avatar, multiplayer, cloud save, commercial asset reuse or complete campaign in this first release. Continuous cliffs are prevented by the virtual footprint; do not rely on the game for real-world boundary safety. Play in a clear space and stop if uncomfortable.
+Physical Quest 3 testing is still required for hand alignment, bow feel, locomotion comfort, floor calibration, stereo performance, thermal behavior and battery use. API emulation is not that testing. There is no hand-tracking-only mode, full-body avatar, multiplayer, cloud save, commercial asset reuse or complete campaign. The v0.3 crossbow uses a deliberate button reload, not a physical wind/reload gesture. Continuous cliffs are prevented by the virtual footprint; do not rely on the game for real-world boundary safety. Play in a clear space and stop if uncomfortable.
 
 The public prototype uses disposable original lore. No private repository, unpublished story, privileged service key or private narrative material is part of this app or its build. Existing public games are separate. Only the new folder and the root homepage link are intended changes.
 
@@ -53,3 +53,22 @@ The starting room has a real 3.2 m choir gallery. Walk to the left-hand staircas
 A-Frame references: https://aframe.io/docs/1.8.0/introduction/best-practices.html and https://aframe.io/docs/1.8.0/introduction/developing-with-threejs.html . Runtime creation remains owned by the existing A-Frame component; static repeated geometry is batched and local textures are reused. No hardware FPS or headset comfort claim follows from this implementation.
 
 Release gates: core/vertical checks, desktop controls, actual full expedition, tracked-device emulation and normal-input gallery ascent/return, followed by served-file hash verification. Quest 3 physical play-space, tracking, draw calibration and sustained performance remain open.
+
+
+## Arrows Unchained / v0.3.0
+
+This continues the live browser game at https://v5ma.github.io/vesperfall/index.html . Existing renown, purchases and local best scores are migrated in place. The homepage route and earlier-name redirect are retained.
+
+**Combat tools:** V switches bow/crossbow; R manually reloads the crossbow; hold H raises the directional Wardglass shield; B spends a regenerating shard for a short supported-ground step; 5 selects three-arrow Volley. Clickable controls expose the same actions. Bow charge remains physical/held input; crossbow fires once per fresh press, with a real empty state and manual timed reload. Switching weapons cannot refill it.
+
+**Defend, then shoot:** the shield has a front-facing disk, not omnidirectional invulnerability. It drains guard while held and on a hit, breaks under pressure, and regenerates after recovery. You cannot shoot through your own raised guard. Wardens commit their projectile aim at windup so dodging is meaningful. Shard steps stop before walls, enemies or unsupported edges. They are directional microdashes, not simulated physical thrown-shard gestures.
+
+**Blink:** the displayed arc now uses exactly the same fixed-step projectile and first-hit collision as the fired arrow. A green marker means a clear landing at the current draw; coral shows a blocked/invalid destination. This is not auto-aim: releasing at a different charge changes the trajectory, and moving enemies may occupy the destination before impact. The starting gallery has a widened marked central landing. A light pull, rather than maximum range, is useful for nearby upper floors. The underside still blocks arrows.
+
+**Chronicle:** banked totals unlock Choirbreaker (five kills, four Volley charges in new runs), Steady Hand (three precision hits, faster crossbow reload), Unbroken (five blocks, more guard), Wayfarer (five blinks, a third step charge), and Beyond the Bell (one sector, optional Nightfall). Practice offers trial arrows but never advances achievements. Scores are local editable client records, not a secure online leaderboard. This is not full-run save/resume.
+
+**Quest preview additions:** bow-hand grip holds the shield; draw-hand grip performs one shard step; bow-hand stick click switches weapons; draw-hand stick click reloads. Crossbow aim follows the bow controller, fired by the draw-hand trigger. A fresh neutral trigger is required after tracking returns. Existing two-hand bow, face-button arrow selection, snap turning and spatial menus remain. For standard gamepads: LT shield, X reload, RB step, right-stick click weapon; RT fires/draws, A interacts and Y cycles arrows. Physical controller and Quest 3 calibration, frame time, comfort and thermal testing remain open.
+
+Original shield/crossbow geometry, pooled embers, a twilight/daylight option and an opt-in quiet synthetic choir drone accompany the mechanics. There are no ripped sounds, recorded Gregorian chants, franchise characters, private narrative imports or remote credentials. Source existence and emulated tests do not establish commercial-quality graphics or physical-headset acceptance.
+
+New modules are `chronicle.js` (bounded local progression) and `arsenal.js` (equipment presentation and input integration). `tests/unchained.test.cjs` contains 17 new pure regression scenarios; `unchained-browser.py` and `unchained-combat.py` drive the actual A-Frame app through ordinary UI/keyboard events or emulated device poses. Native source manifests and failures are preserved by the read-only acceptance workflow. Publication is confirmed only by the separate served-file receipt.

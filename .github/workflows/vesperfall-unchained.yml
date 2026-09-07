@@ -1,0 +1,56 @@
+name: Vesperfall Arrows Unchained acceptance
+on:
+  pull_request:
+    paths: ['vesperfall/**','scripts/check-vesperfall.py','.github/workflows/vesperfall-unchained.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: unchained-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [desktop, xr, launch, combat]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the committed simulation and release boundary
+        run: |
+          set -o pipefail
+          node --check vesperfall/app.js
+          node --check vesperfall/arsenal.js
+          node --test vesperfall/tests/*.test.cjs | tee core-tests.tap
+          python scripts/check-vesperfall.py
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play the actual application without replacing its simulation
+        env:
+          UNCHAINED_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/unchained-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$UNCHAINED_SUITE" = launch ]; then timeout 1000 python -u vesperfall/tests/launch.py; elif [ "$UNCHAINED_SUITE" = combat ]; then timeout 1000 python -u vesperfall/tests/unchained-combat.py; else timeout 1000 python -u vesperfall/tests/unchained-browser.py; fi
+      - name: Record tested source and failures honestly
+        if: always()
+        run: |
+          mkdir -p test-output
+          cp core-tests.tap test-output/ || true
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar czf test-output/source.tgz vesperfall scripts/check-vesperfall.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unchained-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
