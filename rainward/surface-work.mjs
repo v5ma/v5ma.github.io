@@ -49,3 +49,26 @@ export function worldTexturing(material,metres=2.6){
   #endif`);
  };return material;
 }
+
+/* Reduced Graphics uses a single world-scaled color fetch per fragment. Select
+ * the dominant plane per vertex; unlike the PBR tier this has no three-axis
+ * blending or height derivatives. It changes material cost, not scene geometry. */
+export function reducedWorldTexturing(material,metres=2.6){
+ material.userData.worldSurface=metres;material.userData.surfaceTier='single-projection';
+ material.customProgramCacheKey=()=>`rainward-surface-simple-v4-${metres}`;
+ material.onBeforeCompile=shader=>{
+  shader.vertexShader='varying vec2 vRWUv;\n'+shader.vertexShader;
+  shader.vertexShader=shader.vertexShader.replace('#include <project_vertex>',`#include <project_vertex>
+   vec4 rwP=vec4(transformed,1.0);vec3 rwN=normal;
+   #ifdef USE_INSTANCING
+    rwP=instanceMatrix*rwP;rwN=mat3(instanceMatrix)*rwN;
+   #endif
+   vec3 rwWorld=(modelMatrix*rwP).xyz/${Number(metres).toFixed(3)};
+   vec3 rwAxis=abs(normalize(mat3(modelMatrix)*rwN));
+   vRWUv=rwAxis.y>=rwAxis.x&&rwAxis.y>=rwAxis.z?rwWorld.xz:(rwAxis.x>=rwAxis.z?rwWorld.zy:rwWorld.xy);`);
+  shader.fragmentShader='varying vec2 vRWUv;\n'+shader.fragmentShader;
+  shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#ifdef USE_MAP
+   diffuseColor *= texture2D(map,vRWUv);
+  #endif`);
+ };return material;
+}
