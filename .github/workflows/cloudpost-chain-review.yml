@@ -1,0 +1,51 @@
+name: Inspect Cloudpost chain visibility
+on:
+  push:
+    branches: [test/cloudpost-chain-20260907]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Ride to the peg and observe the submitted tether
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/chain-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from urllib.parse import urlparse
+          from playwright.sync_api import sync_playwright
+          out=Path('test-output/chain');out.mkdir(parents=True,exist_ok=True)
+          with sync_playwright() as p:
+            b=p.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+            c=b.new_context(viewport={'width':1440,'height':940},service_workers='block')
+            c.add_init_script("localStorage.setItem('sprocket_muted','1')")
+            c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname=='127.0.0.1' or r.request.url.startswith(('data:','blob:')) else r.abort())
+            page=c.new_page();page.set_default_timeout(360000)
+            try:
+              page.goto('http://127.0.0.1:4173/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded')
+              page.wait_for_function('window.SkyRelayReady&&window.__gpuReady===true');page.locator('[data-course="4"]').click()
+              page.wait_for_function('SkyRelay.active()&&player.onGround');page.locator('#cv').focus();page.keyboard.down('KeyD')
+              page.wait_for_function('player.x>=320');page.keyboard.down('Space');page.wait_for_function('player.track?.sky.id==="m0"');page.keyboard.up('Space')
+              page.wait_for_function('player.track?.sky.id==="m5"');page.keyboard.down('KeyZ');page.wait_for_function('player.peg?.id===SkyRelay.PEG.id')
+              page.wait_for_function('player.peg?.loops>=1')
+              result=page.evaluate('''()=>{const g=__grapple.graphics,r=g.ropeMesh,T=__merged.THREE;const all=[];for(let o=r;o;o=o.parent)all.push({name:o.name,type:o.type,visible:o.visible,position:o.position.toArray(),scale:o.scale.toArray()});const pos=r.geometry.attributes.position,points=[];for(let i=0;i<r.geometry.drawRange.count;i+=72){const v=new T.Vector3().fromBufferAttribute(pos,i);points.push({local:v.toArray(),screen:v.applyMatrix4(r.matrixWorld).project(__merged.camera).toArray()});}return {steps:__sky.state.steps,player:{x:player.x,y:player.y,peg:player.peg.id},draw:g.ropeDraw,path:g.ropePath,count:r.count,drawRange:r.geometry.drawRange,ancestors:all,points,material:{visible:r.material.visible,opacity:r.material.opacity,depthTest:r.material.depthTest,transparent:r.material.transparent},info:__merged.renderer.info.render};}''')
+              (out/'diagnostic.json').write_text(json.dumps(result,indent=2));page.screenshot(path=str(out/'chain.png'))
+            finally:c.close();b.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloudpost-chain-diagnostic
+          path: test-output/
+          retention-days: 7
