@@ -19,7 +19,7 @@ export function tacticsScene(T,{scene,camera,part,box,label,material,movingPart}
   for(const [id,g]of bots){const b=s.drones.find(d=>d.id===id);g.visible=!!b&&b.hp>0;if(g.visible){g.position.set(b.x,b.y,b.z);g.lookAt(RECOVERY.x,b.y,RECOVERY.z);}}
   for(const [id,m]of auras){const b=s.drones.find(b=>b.id===id);m.visible=!!b&&b.hp>0&&(b.shocked>0||b.burning>0);if(m.visible){m.position.set(b.x,b.y,b.z);m.rotation.y=s.time*2;m.material.color.set(b.shocked>0?'#8edbff':'#ffad75');}}
   for(let i=0;i<bolts.length;i++){const b=t.projectiles[i];bolts[i].visible=!!b;if(b)bolts[i].position.set(b.x,b.y,b.z);}
-  gauntlet.visible=!menu&&!xr&&t.learned&&t.power!=='pulse'&&!s.p.rail&&!s.p.scoped;palm.material.color.set(POWERS[t.power].color);palm.scale.setScalar(t.flash>0?1.9:1);gauntlet.rotation.x=t.flash*.6;
+  gauntlet.visible=!menu&&!xr&&t.learned&&t.power!=='pulse'&&!s.p.rail&&!s.p.scoped;palm.material.color.set(POWERS[t.power].color);palm.scale.setScalar(.065*(t.flash>0?1.9:1));gauntlet.rotation.x=t.flash*.6;
   for(const f of fx){if(f.ttl<=0)continue;f.ttl=Math.max(0,f.ttl-dt);f.m.visible=f.ttl>0;f.m.material.opacity=f.ttl/.25;}
  }
  return {effect,update};

@@ -13,6 +13,12 @@ def check(v,text):
 def snap(p):return p.evaluate('AetherReach.snapshot()')
 def use(p):
  p.locator('#world').focus();p.keyboard.press('KeyE',delay=80);p.wait_for_timeout(100)
+def close_field(p):
+ p.locator('#field-close').click()
+ p.wait_for_function('!AetherReach.snapshot().paused&&!document.querySelector("dialog[open]")')
+ p.locator('#world').focus()
+ # Wait for the close event and resumed input frame, not an assumed millisecond delay.
+ old=snap(p)['time'];p.wait_for_function('(t)=>AetherReach.snapshot().time>t',arg=old)
 def walk(p,targets):
  held=set()
  def keys(new):
@@ -56,30 +62,31 @@ with sync_playwright() as pw:
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
  b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':1280,'height':850},service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());p=ctx.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)))
+ p.add_init_script("window.tacticalKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyQ','KeyF','KeyE'].includes(e.code)){tacticalKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,paused:window.AetherReach?.snapshot().paused});if(tacticalKeyLog.length>20)tacticalKeyLog.shift();}},true);")
  try:
   p.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');p.locator('#start').click();p.wait_for_function('AetherReach.snapshot().playing')
   check(not snap(p)['tactics']['learned'],'The loan rig is acquired in the world, not silently awarded at spawn')
   walk(p,[(3,4),(7,4)]);use(p);p.wait_for_selector('#field-dialog[open]');check(snap(p)['tactics']['learned'],'Physical Quay bench interaction equips the field rig')
-  p.locator('#power-current').click();p.locator('#field-close').click();p.locator('#world').focus();walk(p,[(10,2),(14,2)]);aim(p,'range');p.keyboard.press('KeyJ',delay=70);p.wait_for_function('AetherReach.snapshot().tactics.research.includes("target")');check(True,'The survey lens records an actual living range machine')
-  p.keyboard.press('KeyN');p.locator('#module-capacitor').click();p.locator('#field-close').click();p.locator('#world').focus();check(snap(p)['tactics']['module']=='capacitor','Research unlocks a passive that can be selected through the real field UI')
-  before=snap(p);p.keyboard.press('KeyQ',delay=50);p.keyboard.press('KeyF',delay=50);p.wait_for_function('AetherReach.snapshot().tactics.metrics.combos>0');after=snap(p)
+  p.locator('#power-current').click();close_field(p);walk(p,[(10,4),(17,2)]);aim(p,'range');p.keyboard.press('KeyJ',delay=70);p.wait_for_function('AetherReach.snapshot().tactics.research.includes("target")');check(True,'The survey lens records an actual living range machine')
+  p.keyboard.press('KeyN');p.locator('#module-capacitor').click();close_field(p);check(snap(p)['tactics']['module']=='capacitor','Research unlocks a passive that can be selected through the real field UI')
+  before=snap(p);p.keyboard.press('KeyQ',delay=100);p.wait_for_function('AetherReach.snapshot().tactics.metrics.casts>0');p.keyboard.press('KeyF',delay=100);p.wait_for_function('AetherReach.snapshot().tactics.metrics.combos>0');after=snap(p)
   check(after['ammo']<before['ammo'] and after['energy']<before['energy'],'Gun and power are both usable without switching the weapon away')
   check(after['tactics']['hazards']['quay-water']>0,'Electricity activates the actual water surface')
   p.screenshot(path=str(OUT/'current-and-gun.png'))
-  p.keyboard.press('KeyN');p.wait_for_selector('#field-dialog[open]');t=snap(p)['time'];p.wait_for_timeout(250);check(snap(p)['time']==t,'Loadout planning pauses combat and hazard time');p.locator('#field-close').click();p.locator('#world').focus()
+  p.keyboard.press('KeyN');p.wait_for_selector('#field-dialog[open]');t=snap(p)['time'];p.wait_for_timeout(250);check(snap(p)['time']==t,'Loadout planning pauses combat and hazard time');close_field(p)
   walk(p,[(3,0),(0,-14),(0,-33),(5,-37),(7,-44)]);use(p);p.wait_for_selector('#field-circuit')
   p.locator('#field-energize').click();check(not snap(p)['tactics']['hacked'],'An unconnected circuit does not grant a friendly turret')
   for cell,n in [(0,1),(1,1),(2,2),(3,3),(5,3)]:
    for _ in range(n):p.locator('#circuit-'+str(cell)).click()
   p.screenshot(path=str(OUT/'security-routing.png'));p.locator('#field-energize').click();p.wait_for_function('AetherReach.snapshot().tactics.hacked');check(True,'Solving the visible conductor network changes the real security faction')
-  p.locator('#module-engineer').click();p.locator('#power-cinder').click();p.locator('#field-close').click();p.locator('#world').focus()
+  p.locator('#module-engineer').click();p.locator('#power-cinder').click();close_field(p)
   check(snap(p)['tactics']['module']=='engineer','The hacked security unlocks the Engineer passive')
   if MODE=='tools':
    walk(p,[(4,-45)]);aim(p,(-5,3.06,-49));p.keyboard.press('KeyQ',delay=60);p.wait_for_function('AetherReach.snapshot().tactics.hazards["atrium-oil"]>0');check(True,'Cinder ignites a persistent oil trap at its real surface location');p.screenshot(path=str(OUT/'cinder-oil-trap.png'))
    saved=snap(p);p.reload(wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');p.locator('#continue').click();p.wait_for_function('AetherReach.snapshot().playing');r=snap(p)
    check(r['tactics']['hacked'] and r['tactics']['research']==saved['tactics']['research'] and r['tactics']['module']=='engineer','Reload preserves learned powers, the hacked turret, research and equipped module')
    check(r['tactics']['hazards']['atrium-oil']==0 and r['tactics']['encounter']['phase']=='idle','Reload does not resurrect an active hazard or fabricate a defense success')
-   p.set_viewport_size({'width':390,'height':844});p.wait_for_function('!document.getElementById("touch").hidden');p.locator('#field-open').click();p.wait_for_selector('#field-dialog[open]');p.screenshot(path=str(OUT/'tactical-mobile.png'));check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'Field loadout and puzzle controls fit the phone-width interface');p.locator('#field-close').click();p.locator('#field-cycle').click();check(snap(p)['tactics']['power']=='pulse','Touch-sized power cycling calls the real model action')
+   p.set_viewport_size({'width':390,'height':844});p.wait_for_function('!document.getElementById("touch").hidden');p.locator('#field-open').click();p.wait_for_selector('#field-dialog[open]');p.screenshot(path=str(OUT/'tactical-mobile.png'));check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'Field loadout and puzzle controls fit the phone-width interface');close_field(p);p.locator('#field-cycle').click();check(snap(p)['tactics']['power']=='pulse','Touch-sized power cycling calls the real model action')
   else:
    # Defender navigates and aims through ordinary keyboard actions. The model
    # receives no special HP, damage, elapsed-time or mission-state assignments.
@@ -108,5 +115,5 @@ with sync_playwright() as pw:
  except Exception as e:
   try:state=snap(p)
   except:state=None
-  (OUT/(MODE+'-tactics-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2));p.screenshot(path=str(OUT/(MODE+'-tactics-failure.png')));raise
+  (OUT/(MODE+'-tactics-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'keys':p.evaluate('window.tacticalKeyLog||[]')},indent=2));p.screenshot(path=str(OUT/(MODE+'-tactics-failure.png')));raise
  finally:ctx.close();b.close()
