@@ -27,6 +27,8 @@ def trial(page,kind):
  if page.evaluate('Vesperfall.component.running&&!Vesperfall.component.paused'):page.keyboard.press('KeyP')
  page.locator('#sparring-kind').select_option(kind);page.locator('#sparring').click();page.wait_for_function('(k)=>Vesperfall.component.training===k&&!Vesperfall.component.paused',arg=kind);page.locator('a-scene canvas').focus()
 def shoot(page,charge=1,height=.62):
+ # A broken guard deliberately staggers firing; wait for the real recovery.
+ page.wait_for_function('Vesperfall.state.guardLock===0')
  n=snap(page)['shots'];page.evaluate(INPUT,{'charge':charge,'height':height});page.wait_for_function('(n)=>Vesperfall.state.shots>n',arg=n);page.wait_for_function('Vesperfall.state.arrows.length===0')
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}

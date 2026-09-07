@@ -93,7 +93,7 @@
    const readout=$('hunt-readout');readout.hidden=!active;
    if(active){const remaining=s.world.enemies.filter(e=>!e.dead).length,room=s.world.rooms[VesperCore.roomAt(s.world,s.p)];
     const phase=target?(target.frozen>0?'FROZEN':target.wind>0?(target.kind==='stalker'?'CHARGE INCOMING':'VOLLEY INCOMING'):target.recovery>0?'RECOVERING — STRIKE':VesperEncounters.guardActive(target)?'GUARDING — AIM HIGH':'HUNTING'):'';
-    const text=target?VesperEncounters.names[target.kind]+' · '+phase:g.training?(remaining?'SPARRING · guard, sidestep, then shoot':'TRIAL COMPLETE · P to choose another opponent'):(room.family||'Cloister')+' · '+(s.p[1]>2?'UPPER ROUTE':'GROUND ROUTE');
+    const text=s.guardLock>0?'GUARD BROKEN · recover '+s.guardLock.toFixed(1)+'s':target?VesperEncounters.names[target.kind]+' · '+phase:g.training?(remaining?'SPARRING · guard, sidestep, then shoot':'TRIAL COMPLETE · P to choose another opponent'):(room.family||'Cloister')+' · '+(s.p[1]>2?'UPPER ROUTE':'GROUND ROUTE');
     if(readout.textContent!==text)readout.textContent=text;
     if(g.xr&&target&&!s.shield&&s.type!=='blink')g.xrNotice=text;
     if(g.training&&!remaining&&!trainingWon){trainingWon=true;g.toast('TRIAL COMPLETE · no permanent rewards awarded. P opens the practice selector.');}

@@ -22,7 +22,10 @@
    }
    if(c.left<=.01){e.charge=null;e.recovery=1.15;e.phase='recovering';emit(s,'enemy-recover',{id:e.id,kind:e.kind});}return;
   }
-  e.facing=unit([delta[0],0,delta[2]]);e.cd-=dt;
+  const desired=unit([delta[0],0,delta[2]]);
+  // Armor has weight: a flanking player is not instantly faced on the next tick.
+  if(e.kind==='warden'&&e.facing){const from=Math.atan2(e.facing[0],e.facing[2]),to=Math.atan2(desired[0],desired[2]),angle=Math.atan2(Math.sin(to-from),Math.cos(to-from)),turn=Math.max(-1.8*dt,Math.min(1.8*dt,angle));e.facing=[Math.sin(from+turn),0,Math.cos(from+turn)];}else e.facing=desired;
+  e.cd-=dt;
   if(e.recovery>0){e.phase='recovering';return;}
   if(e.wind>0){
    e.phase='winding';e.wind-=dt;
