@@ -17,13 +17,14 @@ def see(p):return p.evaluate('GloamwardDemo.observe()')
 SHOOT="""async id=>{
  const held=new Set(),canvas=document.querySelector('a-scene').canvas;
  function key(code,on){if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,key:code,bubbles:true,cancelable:true}));if(on)held.add(code);else held.delete(code);}
- await new Promise((resolve,reject)=>{const start=performance.now();let aiming=0;const timer=setInterval(()=>{
+ await new Promise((resolve,reject)=>{const start=performance.now();const timer=setInterval(()=>{
   const s=GloamwardDemo.snapshot(),o=GloamwardDemo.observe(),e=o.enemies.find(e=>e.id===id);
   if(s.state!=='playing'||!e?.alive||performance.now()-start>35000){for(const k of [...held])key(k,false);clearInterval(timer);if(s.state==='dead')reject(Error('Rider defeated'));else if(performance.now()-start>35000)reject(Error('Cannot aim at '+id));else resolve();return;}
-  const dx=e.pos.x-o.position.x,dz=e.pos.z-o.position.z,d=Math.hypot(dx,dz),dy=e.pos.y+1-o.position.y,v2=37*37,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2);
+  const dx=e.pos.x-o.position.x,dz=e.pos.z-o.position.z,d=Math.hypot(dx,dz),dy=e.pos.y+1.28-o.position.y,v2=37*37,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2);
   const yaw=Math.atan2(-dx,-dz),pitch=disc>0?Math.atan((v2-Math.sqrt(disc))/(9.8*d)):Math.atan2(dy,d),a=Math.atan2(Math.sin(yaw-o.yaw),Math.cos(yaw-o.yaw)),b=pitch-o.pitch;
   key('ArrowLeft',a>.022);key('ArrowRight',a<-.022);key('ArrowUp',b>.017);key('ArrowDown',b<-.017);
-  // Start drawing while lining up; aim continues to follow the moving target.
+  // Aim at the exposed upper torso above low cover (inside its real hit sphere).
+  // Continue tracking while drawing; no auto-aim is installed in the game.
   key('KeyF',true);
   if(o.pull>.985&&Math.abs(a)<.045&&Math.abs(b)<.034){for(const k of [...held])key(k,false);clearInterval(timer);resolve();}
  },8);});
@@ -34,7 +35,7 @@ WALK="""async ({x,z,combat})=>{
  const C=await import('/gloamward/core.mjs');
  await new Promise((resolve,reject)=>{const start=performance.now();const timer=setInterval(()=>{
   const s=GloamwardDemo.snapshot(),o=GloamwardDemo.observe(),p=o.position,dx=x-p.x,dz=z-p.z,d=Math.hypot(dx,dz),a=Math.atan2(Math.sin(Math.atan2(-dx,-dz)-o.yaw),Math.cos(Math.atan2(-dx,-dz)-o.yaw));
-  const enemy=combat&&o.enemies.some(e=>e.alive&&e.room===o.room&&Math.hypot(e.pos.x-p.x,e.pos.z-p.z)<16&&!o.obstacles.some(b=>C.intersects(p,{x:e.pos.x,y:1,z:e.pos.z},b,.01)!==null));
+  const enemy=combat&&o.enemies.some(e=>e.alive&&e.room===o.room&&Math.hypot(e.pos.x-p.x,e.pos.z-p.z)<16&&!o.obstacles.some(b=>C.intersects(p,{x:e.pos.x,y:1.28,z:e.pos.z},b,.01)!==null));
   key('ArrowLeft',a>.035);key('ArrowRight',a<-.035);key('KeyW',Math.abs(a)<.13&&d>.65);
   if(d<.65||enemy||s.state!=='playing'||performance.now()-start>60000){for(const k of [...held])key(k,false);clearInterval(timer);if(d<.65||enemy||s.state==='won'||s.state==='upgrade')resolve();else reject(Error('Walk stopped at '+JSON.stringify(p)+' seeking '+x+','+z));}
  },8);});
@@ -55,7 +56,7 @@ with sync_playwright() as pw:
    if state['state']=='won':break
    if state['state']=='upgrade':
     page.locator('#menu-actions button').first.wait_for(state='visible');page.screenshot(path=str(OUT/f'court-{upgrades+1}-cleared.png'));page.locator('#menu-actions button').first.click();upgrades+=1;page.wait_for_function('(n)=>GloamwardDemo.snapshot().room===n',arg=upgrades);check(True,'Courtyard completion and a deliberate upgrade open the next route');continue
-   enemies=page.evaluate("""async ()=>{const C=await import('/gloamward/core.mjs'),o=GloamwardDemo.observe(),p=o.position;return o.enemies.filter(e=>e.alive&&e.room===o.room&&Math.hypot(e.pos.x-p.x,e.pos.z-p.z)<17&&!o.obstacles.some(b=>C.intersects(p,{x:e.pos.x,y:1,z:e.pos.z},b,.01)!==null)).sort((a,b)=>Math.hypot(a.pos.x-p.x,a.pos.z-p.z)-Math.hypot(b.pos.x-p.x,b.pos.z-p.z)).map(e=>e.id);} """)
+   enemies=page.evaluate("""async ()=>{const C=await import('/gloamward/core.mjs'),o=GloamwardDemo.observe(),p=o.position;return o.enemies.filter(e=>e.alive&&e.room===o.room&&Math.hypot(e.pos.x-p.x,e.pos.z-p.z)<17&&!o.obstacles.some(b=>C.intersects(p,{x:e.pos.x,y:1.28,z:e.pos.z},b,.01)!==null)).sort((a,b)=>Math.hypot(a.pos.x-p.x,a.pos.z-p.z)-Math.hypot(b.pos.x-p.x,b.pos.z-p.z)).map(e=>e.id);} """)
    if enemies:
     page.evaluate(SHOOT,enemies[0]);total+=1;page.wait_for_timeout(500)
    else:
