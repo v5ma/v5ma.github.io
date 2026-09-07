@@ -1,0 +1,30 @@
+name: Aether tactical public source
+on:
+  push:
+    branches: [feat/aether-tactical-relay]
+    paths: [.github/workflows/aether-tactics-source.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Capture public project source and instructions
+        run: |
+          mkdir -p /tmp/tactical-source
+          git rev-parse HEAD > /tmp/tactical-source/source-sha.txt
+          for file in AGENTS.md aether-reach/AGENTS.md .github/AGENTS.md .github/workflows/AGENTS.md; do
+            if test -f "$file"; then printf '\n--- %s ---\n' "$file"; cat "$file"; fi
+          done > /tmp/tactical-source/instructions.txt
+          find aether-reach -name AGENTS.md -print -exec cat {} \; >> /tmp/tactical-source/instructions.txt
+          tar --exclude='aether-reach/test-output' -czf /tmp/tactical-source/source.tgz aether-reach index.html projects.css .github/workflows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aether-tactical-public-source
+          path: /tmp/tactical-source/
+          retention-days: 3
