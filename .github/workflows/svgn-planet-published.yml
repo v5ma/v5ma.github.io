@@ -1,4 +1,4 @@
-name: Verify published SVGN Little Planet
+name: Verify published 3D Paper Delivery
 on:
   push:
     branches: [master]
@@ -12,11 +12,14 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Compare deployed game and homepage with committed source
         run: |
           python - <<'PY'
           from pathlib import Path
           import hashlib,json,urllib.request,time,subprocess
+          source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
           paths=[p for p in Path('svgn-planet').rglob('*') if p.is_file() and p.suffix in ['.html','.css','.mjs','.js','.json','.webp'] and 'tests' not in p.parts]
           paths.append(Path('index.html'))
           expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths};results={}
@@ -24,18 +27,18 @@ jobs:
             for name,sha in expected.items():
               if results.get(name,{}).get('match'):continue
               try:
-                with urllib.request.urlopen('https://v5ma.github.io/'+name+'?little-planet=0.1.0',timeout=10) as response:
+                with urllib.request.urlopen('https://v5ma.github.io/'+name+'?paper-delivery='+source,timeout=10) as response:
                   h=hashlib.sha256(response.read()).hexdigest();results[name]={'status':response.status,'sha256':h,'match':h==sha}
               except Exception as e:results[name]={'match':False,'error':str(e)}
             if len(results)==len(expected) and all(r['match'] for r in results.values()):break
             time.sleep(5)
           ok=len(results)==len(expected) and all(r['match'] for r in results.values())
-          Path('planet-publication.json').write_text(json.dumps({'version':'0.1.0','source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':results,'all_match':ok},indent=2))
+          Path('planet-publication.json').write_text(json.dumps({'version':'0.2.0','source':source,'files':results,'all_match':ok},indent=2))
           assert ok,results
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: svgn-planet-publication
+          name: paper-delivery-3d-publication
           path: planet-publication.json
           retention-days: 14
