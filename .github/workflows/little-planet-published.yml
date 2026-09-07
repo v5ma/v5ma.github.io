@@ -1,0 +1,40 @@
+name: Verify published Little Planet
+on:
+  push:
+    branches: [master]
+    paths: ['little-planet/**','.github/workflows/little-planet-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the exact publicly served runtime
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request,subprocess
+          paths=[p for p in Path('little-planet').rglob('*') if p.is_file() and 'tests' not in p.parts and p.suffix in ['.html','.mjs','.js','.css','.json','.webp']]+[Path('index.html')]
+          expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths};result={}
+          for attempt in range(45):
+            for name,h in expected.items():
+              if result.get(name,{}).get('match'):continue
+              try:
+                with urllib.request.urlopen('https://v5ma.github.io/'+name+'?planet=0.1.0',timeout=10) as response:
+                  actual=hashlib.sha256(response.read()).hexdigest();result[name]={'status':response.status,'sha256':actual,'match':actual==h}
+              except Exception as e:result[name]={'match':False,'error':str(e)}
+            if len(result)==len(expected) and all(v['match'] for v in result.values()):break
+            time.sleep(5)
+          all_match=len(result)==len(expected) and all(v['match'] for v in result.values())
+          Path('planet-publication.json').write_text(json.dumps({'version':'0.1.0','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':result,'all_match':all_match},indent=2))
+          assert all_match,result
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: little-planet-publication
+          path: planet-publication.json
+          retention-days: 14
