@@ -1,6 +1,6 @@
 /* Explicit installed-build reporting; updates never discard a draft silently. */
 (function(){'use strict';
- const VERSION='0.13.0',BUILD='flow-routes-2026.09.06';
+ const VERSION='0.14.0',BUILD='sky-post-2026.09.07';
  function boot(){const host=document.querySelector('#delivery-header .actions');if(!host)return;const label=document.createElement('span');label.id='rail-build';label.textContent='v'+VERSION;label.title=BUILD;const button=document.createElement('button');button.id='rail-update';button.textContent='Check update';host.append(label,button);
   let latest=null;
   button.onclick=async()=>{if(latest&&latest.build!==BUILD){if(window.RouteWorkshop?.state.dirty&&!confirm('Save or export your unsaved Workshop draft before reloading. Reload now?'))return;try{const r=await navigator.serviceWorker?.getRegistration();await r?.update();}catch{}location.reload();return;}

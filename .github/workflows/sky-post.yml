@@ -1,0 +1,76 @@
+name: Verify Sky Post relay and route discoveries
+on:
+  pull_request:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/sky_post*','tests/helpers/sky-post-fixture.cjs','tests/build_sky_post_preview.cjs','.github/workflows/sky-post.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sky-post-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source identity, all original routes and declared relay windows
+        run: |
+          python scripts/check-rail-release.py
+          node --check mario-maker-clone/svgn-paper-route/sky-post-ui.js
+          node --test tests/sky_post*.test.cjs tests/flow_routes.test.cjs tests/sky_network.test.cjs
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-post-source
+          path: test-output/
+          retention-days: 7
+  native:
+    needs: models
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [relay, passport]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned actual browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play the real release via ordinary keys, buttons and files
+        env:
+          POST_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/sky-post-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1320 python -u tests/sky_post_browser.py
+      - name: Preserve exact source, rendered evidence and failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python scripts/check-rail-release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/runtime.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          cp /tmp/sky-post-http.log test-output/http.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-post-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7

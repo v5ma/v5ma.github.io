@@ -6,7 +6,9 @@
 (() => {
   function boot(){
     if(window.__delivery||!window.DeliveryCampaign||typeof startPlay!=='function')return;
-    const C=window.DeliveryCampaign, root=document.getElementById('stagewrap');
+    // Resolve the current registry so asynchronously loaded route modules and
+    // Workshop copies cannot disagree about which document Play should load.
+    const C=new Proxy({}, {get(_target,key){return window.DeliveryCampaign[key];}}), root=document.getElementById('stagewrap');
     const state={route:-1,code:'',paused:false,pauseAt:0,menu:true,delivered:new Set(),streak:0,lastDelivery:0,fx:[],records:C.loadRecords(localStorage),view:'3d',lastHUD:0,elapsed:0};
     const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const btn=(text,act,cls='')=>`<button type="button" class="delivery-btn ${cls}" data-delivery="${act}">${text}</button>`;
@@ -242,6 +244,9 @@
     }
     document.addEventListener('click',e=>{const course=e.target.closest('[data-course]');if(course){startRoute(Number(course.dataset.course));return;}const b=e.target.closest('[data-delivery]');if(b)act(b.dataset.delivery);});
     window.addEventListener('keydown',e=>{
+      // Native modal dialogs own Escape/Tab; game shortcuts must not resume a
+      // route or steal focus while a passport, map or settings dialog is open.
+      if(document.querySelector('dialog[open]'))return;
       if(e.code==='KeyP'||e.code==='Escape'){if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;e.preventDefault();e.stopImmediatePropagation();if(state.menu&&mode==='play'&&!won)act('resume');else act('pause');return;}
       const panel=document.querySelector('#delivery-menu.open,#delivery-results.open,#delivery-pause.open');
       if(panel&&e.key==='Tab'){const list=[...panel.querySelectorAll('button,a')],first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}e.stopPropagation();return;}

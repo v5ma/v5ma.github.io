@@ -30,7 +30,7 @@ with sync_playwright() as p:
   if MODE=='editor':
    page.locator('#delivery-header [data-delivery="editor"]').click();page.wait_for_function('RouteWorkshop.active')
    page.locator('#maker-route').select_option('4');page.locator('#route-workshop [data-mk="route"]').click()
-   check(page.evaluate('RouteWorkshop.state.doc.paths.length===15&&RouteWorkshop.state.doc.extra.gp.flowRoutes.version===3'),'The real Workshop loads the complete authored first chapter')
+   check(page.evaluate('RouteWorkshop.state.doc.paths.length===16&&RouteWorkshop.state.doc.extra.gp.flowRoutes.version===3'),'The real Workshop loads the complete authored first chapter')
    code=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')
    page.locator('#maker-sector').select_option('1');page.screenshot(path=str(OUT/'clocktower-editor.png'))
    page.locator('#maker-outline [data-track="0"]').click();page.locator('#maker-x').fill('518');page.locator('#maker-x').press('Tab')
@@ -44,7 +44,7 @@ with sync_playwright() as p:
   else:
    page.locator('[data-course="4"]').click();page.wait_for_function('__flowRoutes.active()&&player.onGround');page.locator('#cv').focus()
    check(page.evaluate('__merged.camera.isPerspectiveCamera&&__delivery.state.view==="3d"'),'The actual perspective renderer is used')
-   check(page.evaluate('tracks.filter(t=>t.sky?.authoredFlow).length===15'),'All 15 authored tracks exist in the live collision world')
+   check(page.evaluate('tracks.filter(t=>t.sky?.authoredFlow).length===16'),'All 16 authored tracks exist in the live collision world')
    if MODE=='sky':
     page.locator('#network-map-button').click();page.wait_for_selector('#sky-network-map[open]');n=state(page)['steps'];page.wait_for_timeout(200)
     check(state(page)['steps']==n,'The route map pauses without changing progress');page.screenshot(path=str(OUT/'whole-level-map.png'));page.locator('#network-map-close').click();page.wait_for_function('!document.getElementById("sky-network-map").open&&!__delivery.paused')

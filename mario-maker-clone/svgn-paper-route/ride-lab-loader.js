@@ -14,6 +14,9 @@
   await import('./ride-guide.js');
   await import('./hookline-feedback.js');
   await import('./flow-route-tools.js');
+  await import('./sky-post-route.js');
+  await import('./sky-post-core.js');
+  await import('./sky-post-ui.js');
   window.RideLabReady=true;
  }catch(error){
   const notice=document.createElement('button');notice.id='ride-lab-failed';notice.className='delivery-btn';notice.textContent='Ride Lab did not load';notice.title=String(error.message||error);document.querySelector('#delivery-header .actions')?.append(notice);
