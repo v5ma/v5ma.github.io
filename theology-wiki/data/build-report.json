@@ -1,5 +1,6 @@
 {
-  "version": "2026.09.06-james-transmission-1",
+  "version": "2026.09.06-pauline-chronology-1",
+  "paulineChronologyLab": true,
   "evidenceClaims": 30,
   "priestlyEvidenceClaims": 12,
   "listeningArticles": 29,
@@ -24,7 +25,7 @@
   "pages": 428,
   "readingPaths": 8,
   "forecastRecords": 6,
-  "externalSources": 109,
+  "externalSources": 113,
   "sourceChats": 354,
   "verifiedHashes": 354,
   "developedArticles": 29,
@@ -32,7 +33,7 @@
   "explainedRelationships": 157,
   "anchoredSourceTurns": 38,
   "indexedTurns": 4980,
-  "links": 1617,
-  "searchTerms": 47893,
+  "links": 1619,
+  "searchTerms": 47900,
   "sourceBytes": 17769481
 }

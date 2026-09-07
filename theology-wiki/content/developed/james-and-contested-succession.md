@@ -97,6 +97,56 @@ The strongest next step is to compare rival reconstructions on the same evidence
 
 This is where the original historical conjecture remains the subject. The objective is not to replace it with a catalogue of conventional dates, nor to treat every challenge as a victory merely because a total disproof is unavailable. It is to develop an affirmative sequence detailed enough that readers can inspect its carriers, transformations, and points of tension.
 
+## Persecution, revelation and the age of an inheritance
+
+The compressed chronology deserves a direct answer. An earlier founder gives a movement more time to build institutions, transmit teaching and accumulate conflicts before Paul encounters it. That is an explanatory advantage worth investigating. It is not yet a measurement of how long the movement had existed. The useful comparison is between two histories of an inherited institution, not between a large number of years and a small number of years considered in isolation.
+
+I develop the longer history as a possible continuation of the earlier Teacher's movement: founding authority is preserved by successors; the movement acquires a history of conflict; Paul first opposes it and later claims authority through revelation; the mission he constructs negotiates with, competes against and reinterprets an inheritance he did not originate. The institutional claim is stronger than the arithmetic. It proposes a reason why a community could already possess recognized leaders and a disputed teaching when Paul enters the record.
+
+Galatians 1:13-24 supports one essential part of that sequence. In Paul's account, the assembly and the faith he persecuted precede his proclamation; other apostles precede him as well. His movement does not begin with his discovery of an empty social world. This establishes a pre-Pauline inheritance within the letter's account without by itself dating its founder to either proposed century.
+
+The difference between inheriting a movement and inheriting an interpretation is important. A later missionary can adopt the significance of a founder while challenging the founder's established custodians. That permits a more pointed account of Pauline appropriation than either calling Paul the inventor of everything or treating his mission as an uncontested extension of the earlier community. The central conflict can concern who has the right to define what the inheritance now requires.
+
+Acts 9 supplies a different narrative presentation. It places Saul's persecution before the Damascus encounter, depicts Ananias receiving him there, and has Barnabas introduce him at Jerusalem. The local Ananias in this account must not be identified merely by name with the earlier Egyptian Ananias in the Oniad investigation. Keeping those people distinct allows the concrete role of a receiving community to become visible: even the narrative of a dramatic revelation needs intermediaries, protection and recognition.
+
+## Three different clocks, not a single seven-year story
+
+The years preceding Paul's revelatory transition, the three-year interval before a Jerusalem visit, and the fourteen-year interval before another visit are different clocks. Galatians does not specify how many years Paul persecuted the assembly. Its three-year expression follows the account of revelation, Arabia and a return to Damascus. Using those three years as a measured duration of the earlier persecution would move an interval across the event that separates it.
+
+The fourteen years in Galatians 2:1 introduce another visit but do not explicitly name the starting event of the count. Measuring from the revelatory transition and measuring from the first visit therefore give different reconstructions. Neither can be chosen by arithmetic alone. The calendar convention adds a further question: ancient year-counting expressions need not state an exact number of completed anniversaries.
+
+For a transparent illustration, let the revelatory transition fall in 37 CE. This is an input drawn from the archived reconstruction, not an absolute date supplied by Galatians. Treating the numbers as completed elapsed years puts the first visit in 40 CE. Measuring the fourteen years from the transition puts the later visit in 51 CE; measuring from the first visit puts it in 54 CE. These are the consequences of stated choices, not three dates independently established by the letter.
+
+A separate inclusive year-label illustration counts the starting year as the first numbered year. On that convention, a three-year label spans a difference of two calendar-year numbers, and a fourteen-year label spans thirteen. With the same 37 CE input, the nominal first visit becomes 39 CE and the later visit becomes 50 CE or 52 CE. This simple convention is not a claim that Paul's expressions can be resolved to exact years without further evidence. It shows why the counting rule must travel with the result.
+
+The earlier-founder arithmetic also needs its full interval. From a proposed death in 88 BCE to a selected 37 CE transition is 124 years; to 50 CE it is 137 years. There is no historical year zero. A blanket description of the whole 37-50 CE range as 133 years later would therefore conceal different intervals. Correcting that arithmetic preserves the longer reconstruction while making its generational burden inspectable.
+
+The chronology lab on this page lets these inputs vary without editing the source record. The 88 BCE and 37 CE illustration retains the earlier-founder question. The 30 CE and 37 CE illustration displays a seven-year separation. That separation is not itself a duration of persecution and does not establish that seven years was either sufficient or insufficient for the proposed social history. The test must return to people, institutions and transmission.
+
+## What Paul's external reference can actually anchor
+
+In 2 Corinthians 11:32-33, Paul associates an escape from Damascus with an ethnarch under King Aretas. This is valuable because the account connects personal movement to a named political authority rather than supplying only an interval. However, the passage gives no regnal year and does not explain the precise jurisdiction of the ethnarch. Dating the king's reign and reconstructing that official's authority are additional historical investigations, not information printed in these two verses.
+
+Acts 9:23-25 also narrates an escape from Damascus, but describes the hostile watch in another way. It is tempting to make both texts a single seamless episode. The comparison is better when the proposed identification remains visible: the accounts may concern the same escape, but one cannot count an inferred harmonization as a second independent date for the event. The obstacle is not that political history is useless; it is that each link from name to jurisdiction to episode to year has to be justified.
+
+The earlier-founder model does not need to relocate Paul's whole career into the second century BCE. Its distinctive claim is that Paul encountered a later stage of an older inheritance. That makes the historical placement of Paul a constraint on the successor communities he could meet, while the founder's placement remains the disputed earlier part of the sequence. Moving everything together would discard the actual explanatory distinction.
+
+## A living transmission can also carry a difficult chronological claim
+
+First Corinthians 15:3-11 gives a sequence of appearances involving Cephas, the Twelve, more than five hundred, James, the apostles and finally Paul. It also states that most of the five hundred remain alive. That is more specific than a general claim that the teaching continued. An earlier-founder reconstruction must decide what history of appearances and recipients it is proposing.
+
+If all those appearances are placed immediately after a founder's death in 88 BCE while most of the recipients are still alive when a letter is placed around 50 CE, the nominal span is 137 years. A succession model cannot remove this difficulty simply by supplying replacement names: the living-recipient statement itself still needs an explanation. A model of recurring revelatory encounters among later communities would address a different sequence. A model of textual revision would address a different textual history. Neither is established merely by being available as a possible answer.
+
+The positive implication is that the appearance tradition, succession tradition and founding biography should be compared as related histories rather than assumed to be one indivisible story. First Corinthians gives Paul a final place in the appearance sequence even though his own account emphasizes revelation. This makes different modes of encountering the inherited Christ a meaningful research question. It does not prove that every earlier appearance meant exactly what Paul's encounter meant.
+
+The [[thomas-sayings-and-transmission|Thomas transmission investigation]] asks how a teaching might change its recipient. The [[christ-as-an-inner-model|Christic self-formation investigation]] asks how a model can become operative within a life. Those questions can help formulate the longer historical reconstruction, but they cannot erase the particular kinship and living-recipient claims that the reconstruction must explain. The stronger account needs both a mechanism of continuity and an account of the passages that resist it.
+
+## Passage notes for the chronological continuation
+
+The pre-Pauline inheritance and visit sequence are read in Galatians 1:13-24 and 2:1-14. The receiving community and escape are compared with Acts 9:1-30. The named political connection is 2 Corinthians 11:32-33. The received appearance sequence and living-recipient constraint are 1 Corinthians 15:3-11. All four comparisons use the World English Bible; they are readings of those accounts, not a new manuscript collation. Exact source links are retained in the external notes below.
+
+The original longer-history question is preserved in [[ai-re-dates-dead-sea-scrolls|the archived Dead Sea Scrolls discussion]], especially turns 24 and 26. The 37 CE input, the seven-year objection and the namesake-successor proposal come from that discussion. The calculator's two counting conventions and selectable interval origins are new explanatory tools, not recovered claims that the historical uncertainty has already been resolved.
+
 ## Sources, passages and intellectual debts
 
 The comparisons use Eusebius 2.1.3-4 and 2.23 for the mediated Clement and Hegesippus passages, 4.22.4-7 for succession and classifications, and 3.27 for the Ebionite account. The New Advent translations are consulted texts, not a collation of Greek manuscripts. Irenaeus 1.26.2 is read as a polemical report. Antiquities 20.200 is consulted directly in Whiston's translation at Lexundria; no new authenticity adjudication is implied.
@@ -149,3 +199,15 @@ Primary text read in full, especially verses 1-10 on an interval, companions and
 [Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer](https://www.earlychristianwritings.com/text/thomas-scholars.html)
 
 Translation consulted for sayings 1, 3, 12, 13, 39 and 108. The edition uses brief paraphrases and links, not a reproduction of the translation. Translation credit is distinct from an acknowledged influence in my older conversations. Consulted 2026-09-05.
+
+[Acts 9:1-30, World English Bible](https://ebible.org/engwebp/ACT09.htm)
+
+Primary chapter consulted for persecution, Damascus reception, Barnabas at Jerusalem and the escape account. Compared with Galatians without presuming that all visits and escapes are independently dated or already harmonized. Consulted 2026-09-06.
+
+[2 Corinthians 11:32-33, World English Bible](https://ebible.org/engwebp/2CO11.htm)
+
+Primary chapter consulted for the Damascus escape and ethnarch under King Aretas. These verses do not state a regnal year or define the official's precise jurisdiction. No new political chronology or manuscript collation is claimed. Consulted 2026-09-06.
+
+[1 Corinthians 15:3-11, World English Bible](https://ebible.org/engwebp/1CO15.htm)
+
+Primary chapter consulted for received tradition, the appearance sequence, Paul's final place and the claim that most of the five hundred recipients remain alive. The source comparison does not independently identify or date those recipients. Consulted 2026-09-06.

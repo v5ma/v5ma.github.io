@@ -348,6 +348,8 @@ with sync_playwright() as tool:
         run_products_checks(page, ctx, open_page, navigate, check, screenshot, OUT, BASE)
         from evidence_checks import run_evidence_checks
         run_evidence_checks(page, ctx, open_page, check, OUT, BASE)
+        from pauline_checks import run_pauline_checks
+        run_pauline_checks(page, ctx, open_page, check, OUT, BASE)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback
