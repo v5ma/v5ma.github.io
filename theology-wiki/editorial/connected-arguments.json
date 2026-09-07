@@ -1,0 +1,636 @@
+{
+  "schema": "theology-connected-arguments/v1",
+  "version": "2026.09.07-bridges-1",
+  "studies": [
+    {
+      "slug": "contested-memories-of-catastrophe",
+      "title": "Contested memories of catastrophe",
+      "summary": "How disasters become inherited explanations, and why an event, its memory and a warning require different evidence.",
+      "category": "origins",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-et-flood",
+        "bridge-gen9"
+      ],
+      "upstream": [
+        "flood-inheritance-and-deep-time",
+        "moses-volcano-and-exodus-chronology",
+        "exodus-to-temple-competing-chronologies",
+        "gnosticism-and-temple-trauma",
+        "ukraine-russia-forecast-record"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "slug": "sanctuary-community-and-body",
+      "title": "Sanctuary, community and body",
+      "summary": "Follow sacred continuity through institution, community, body and renewed city without making those forms one chronology.",
+      "category": "jesus",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-jer7",
+        "bridge-cor3",
+        "bridge-john2",
+        "bridge-john4",
+        "bridge-rev21",
+        "bridge-rev22"
+      ],
+      "upstream": [
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession",
+        "inner-formation-texts-and-material-witnesses",
+        "samaritan-texts-and-sacred-authority",
+        "apocalyptic-repair-theology"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "slug": "apocalypse-and-repair",
+      "title": "Apocalypse and repair",
+      "summary": "Join particular Beast identifications, recurring patterns of domination, warnings and the constructive work of restoration.",
+      "category": "apocalypse",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-rev21",
+        "bridge-rev22",
+        "bridge-luke22"
+      ],
+      "upstream": [
+        "apocalyptic-repair-theology",
+        "antichrist-as-a-pattern-of-conduct",
+        "trump-first-beast-of-revelation",
+        "scripture-power-and-repair",
+        "ukraine-russia-forecast-record"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "slug": "inward-formation-and-accountable-intelligence",
+      "title": "Inward formation and accountable intelligence",
+      "summary": "Connect the constructive self, two levels of correction, bounded choice and obligations to possible future conscious participants.",
+      "category": "machines",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-gal4",
+        "bridge-phil2",
+        "bridge-luke22"
+      ],
+      "upstream": [
+        "christ-as-an-inner-model",
+        "cognitive-gnosticism",
+        "god-and-our-models-of-god",
+        "computational-divine-immanence",
+        "religion-for-conscious-robots"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    }
+  ],
+  "references": [
+    {
+      "id": "bridge-et-flood",
+      "title": "The Sumerian Flood Story, segments C-E",
+      "url": "https://etcsl.orinst.ox.ac.uk/section1/tr174.htm",
+      "scope": "Oxford ETCSL composite translation; warning, flood, sacrifice and the ending were read with the marked lacunae. No new cuneiform collation or physical-event identification.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-gen9",
+      "title": "Genesis 9:8-17",
+      "url": "https://ebible.org/engwebp/GEN09.htm",
+      "scope": "Read the post-flood covenant in the World English Bible. This is a textual comparison of the promise and its scope, not a geological date.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-jer7",
+      "title": "Jeremiah 7:1-15",
+      "url": "https://ebible.org/engwebp/JER07.htm",
+      "scope": "Read the temple address in the World English Bible, including conduct and Shiloh. No independent archaeological claim or critical-text collation.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-cor3",
+      "title": "1 Corinthians 3:5-17",
+      "url": "https://ebible.org/engwebp/1CO03.htm",
+      "scope": "Read the planting, building and temple imagery in its communal context in the World English Bible. No claim that it describes an isolated self-model.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-john2",
+      "title": "John 2:19-22",
+      "url": "https://ebible.org/engwebp/JHN02.htm",
+      "scope": "Read the narrative identification of the temple with Jesus's body in the World English Bible. Narrative setting and composition date are not equated.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-john4",
+      "title": "John 4:19-24",
+      "url": "https://ebible.org/engwebp/JHN04.htm",
+      "scope": "Read the competing places of worship and spirit/truth passage in the World English Bible. Its statement about salvation from the Jews is retained.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-rev21",
+      "title": "Revelation 21:1-4 and 21:22",
+      "url": "https://ebible.org/engwebp/REV21.htm",
+      "scope": "Read the divine dwelling and city without a separate temple in the World English Bible. The constructive interpretation does not establish a transmission route.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-rev22",
+      "title": "Revelation 22:1-2",
+      "url": "https://ebible.org/engwebp/REV22.htm",
+      "scope": "Read the river, tree and healing of nations in the World English Bible. Practical applications are identified as interpretation, not specified modern policy.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-luke22",
+      "title": "Luke 22:24-27 and 22:42",
+      "url": "https://ebible.org/engwebp/LUK22.htm",
+      "scope": "Read the service contrast and distinction of wills in the World English Bible. No inference about a present-day individual's private motive is established by this text.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-gal4",
+      "title": "Galatians 4:19",
+      "url": "https://ebible.org/engwebp/GAL04.htm",
+      "scope": "Read the formation language in the World English Bible. Its theological claim is not treated as an experimental observation of a neural mechanism.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-phil2",
+      "title": "Philippians 2:1-5",
+      "url": "https://ebible.org/engwebp/PHP02.htm",
+      "scope": "Read the concern beyond one's own interests in the World English Bible. No critical-edition comparison or Christ-specific behavioral experiment was performed.",
+      "accessed": "2026-09-07"
+    }
+  ],
+  "relations": [
+    {
+      "from": "contested-memories-of-catastrophe",
+      "to": "flood-inheritance-and-deep-time",
+      "type": "connects",
+      "why": "Compare narrative inheritance through changes in the meaning assigned to survival, rather than treating every flood motif as one historical event.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "flood-inheritance-and-deep-time",
+      "to": "contested-memories-of-catastrophe",
+      "type": "connects",
+      "why": "Compare narrative inheritance through changes in the meaning assigned to survival, rather than treating every flood motif as one historical event.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "contested-memories-of-catastrophe",
+      "to": "moses-volcano-and-exodus-chronology",
+      "type": "connects",
+      "why": "The proposed political and environmental sequence needs a separate account of how the catastrophe was subsequently narrated.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "moses-volcano-and-exodus-chronology",
+      "to": "contested-memories-of-catastrophe",
+      "type": "connects",
+      "why": "The proposed political and environmental sequence needs a separate account of how the catastrophe was subsequently narrated.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "contested-memories-of-catastrophe",
+      "to": "exodus-to-temple-competing-chronologies",
+      "type": "connects",
+      "why": "The historical anchors and counting assumptions constrain the proposed sequence without deciding how its meaning was inherited.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "exodus-to-temple-competing-chronologies",
+      "to": "contested-memories-of-catastrophe",
+      "type": "connects",
+      "why": "The historical anchors and counting assumptions constrain the proposed sequence without deciding how its meaning was inherited.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "contested-memories-of-catastrophe",
+      "to": "gnosticism-and-temple-trauma",
+      "type": "connects",
+      "why": "The catastrophe model connects remembered loss to the reconstruction of divine and institutional authority.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "gnosticism-and-temple-trauma",
+      "to": "contested-memories-of-catastrophe",
+      "type": "connects",
+      "why": "The catastrophe model connects remembered loss to the reconstruction of divine and institutional authority.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "contested-memories-of-catastrophe",
+      "to": "ukraine-russia-forecast-record",
+      "type": "connects",
+      "why": "Distinguishing events from their interpretation also requires keeping original warnings separate from later outcome assessments.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "ukraine-russia-forecast-record",
+      "to": "contested-memories-of-catastrophe",
+      "type": "connects",
+      "why": "Distinguishing events from their interpretation also requires keeping original warnings separate from later outcome assessments.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "sanctuary-community-and-body",
+      "to": "onias-egypt-and-priestly-continuity",
+      "type": "connects",
+      "why": "The Egyptian branch provides an institutional route to examine when asking where sacred authority could continue after displacement.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "onias-egypt-and-priestly-continuity",
+      "to": "sanctuary-community-and-body",
+      "type": "connects",
+      "why": "The Egyptian branch provides an institutional route to examine when asking where sacred authority could continue after displacement.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "sanctuary-community-and-body",
+      "to": "james-and-contested-succession",
+      "type": "connects",
+      "why": "Succession can transmit family, office or teaching; the sanctuary bridge asks which relationship carries authority.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "james-and-contested-succession",
+      "to": "sanctuary-community-and-body",
+      "type": "connects",
+      "why": "Succession can transmit family, office or teaching; the sanctuary bridge asks which relationship carries authority.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "sanctuary-community-and-body",
+      "to": "inner-formation-texts-and-material-witnesses",
+      "type": "connects",
+      "why": "Community and bodily sanctuary language supplies a textual comparison for inward formation, not a direct neuroscience result.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "inner-formation-texts-and-material-witnesses",
+      "to": "sanctuary-community-and-body",
+      "type": "connects",
+      "why": "Community and bodily sanctuary language supplies a textual comparison for inward formation, not a direct neuroscience result.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "sanctuary-community-and-body",
+      "to": "samaritan-texts-and-sacred-authority",
+      "type": "connects",
+      "why": "John 4 allows the location of worship and the histories of rival communities to be compared without erasing their differences.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "samaritan-texts-and-sacred-authority",
+      "to": "sanctuary-community-and-body",
+      "type": "connects",
+      "why": "John 4 allows the location of worship and the histories of rival communities to be compared without erasing their differences.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "sanctuary-community-and-body",
+      "to": "apocalyptic-repair-theology",
+      "type": "connects",
+      "why": "The city without a separate temple connects sacred presence to a transformed shared world rather than private experience alone.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "sanctuary-community-and-body",
+      "type": "connects",
+      "why": "The city without a separate temple connects sacred presence to a transformed shared world rather than private experience alone.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "apocalypse-and-repair",
+      "to": "apocalyptic-repair-theology",
+      "type": "connects",
+      "why": "The bridge preserves both material danger and accumulating repair, rather than translating the entire warning into metaphor.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "apocalypse-and-repair",
+      "type": "connects",
+      "why": "The bridge preserves both material danger and accumulating repair, rather than translating the entire warning into metaphor.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "apocalypse-and-repair",
+      "to": "antichrist-as-a-pattern-of-conduct",
+      "type": "connects",
+      "why": "A recurrent pattern can have multiple embodiments while the evidence for a particular identification remains a distinct argument.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "antichrist-as-a-pattern-of-conduct",
+      "to": "apocalypse-and-repair",
+      "type": "connects",
+      "why": "A recurrent pattern can have multiple embodiments while the evidence for a particular identification remains a distinct argument.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "apocalypse-and-repair",
+      "to": "trump-first-beast-of-revelation",
+      "type": "connects",
+      "why": "The named identification leads to the practical question of resisting domination without reproducing its exemptions from accountability.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "apocalypse-and-repair",
+      "type": "connects",
+      "why": "The named identification leads to the practical question of resisting domination without reproducing its exemptions from accountability.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "apocalypse-and-repair",
+      "to": "scripture-power-and-repair",
+      "type": "connects",
+      "why": "Scriptural criticism of harmful authority supplies a standard for judging institutions that claim a sacred mission.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "scripture-power-and-repair",
+      "to": "apocalypse-and-repair",
+      "type": "connects",
+      "why": "Scriptural criticism of harmful authority supplies a standard for judging institutions that claim a sacred mission.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "apocalypse-and-repair",
+      "to": "ukraine-russia-forecast-record",
+      "type": "connects",
+      "why": "The moral judgment and the success or failure of a dated forecast must remain separate conclusions with separate evidence.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "ukraine-russia-forecast-record",
+      "to": "apocalypse-and-repair",
+      "type": "connects",
+      "why": "The moral judgment and the success or failure of a dated forecast must remain separate conclusions with separate evidence.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "inward-formation-and-accountable-intelligence",
+      "to": "christ-as-an-inner-model",
+      "type": "connects",
+      "why": "Changing action and correcting the interpretation of the exemplar are distinct parts of the recurrent formation mechanism.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "inward-formation-and-accountable-intelligence",
+      "type": "connects",
+      "why": "Changing action and correcting the interpretation of the exemplar are distinct parts of the recurrent formation mechanism.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "inward-formation-and-accountable-intelligence",
+      "to": "cognitive-gnosticism",
+      "type": "connects",
+      "why": "Possessing a teaching and integrating it into perception and conduct are different functions of a received representation.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "cognitive-gnosticism",
+      "to": "inward-formation-and-accountable-intelligence",
+      "type": "connects",
+      "why": "Possessing a teaching and integrating it into perception and conduct are different functions of a received representation.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "inward-formation-and-accountable-intelligence",
+      "to": "god-and-our-models-of-god",
+      "type": "connects",
+      "why": "A representation must remain corrigible rather than acquiring immunity by being identified with divine reality itself.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "inward-formation-and-accountable-intelligence",
+      "type": "connects",
+      "why": "A representation must remain corrigible rather than acquiring immunity by being identified with divine reality itself.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "inward-formation-and-accountable-intelligence",
+      "to": "computational-divine-immanence",
+      "type": "connects",
+      "why": "A neural mechanism and a metaphysical ground require explicit connecting arguments instead of borrowing each other's certainty.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "computational-divine-immanence",
+      "to": "inward-formation-and-accountable-intelligence",
+      "type": "connects",
+      "why": "A neural mechanism and a metaphysical ground require explicit connecting arguments instead of borrowing each other's certainty.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "inward-formation-and-accountable-intelligence",
+      "to": "religion-for-conscious-robots",
+      "type": "connects",
+      "why": "The teacher's duties to a possible conscious participant must remain distinct from training a system for unquestioning obedience.",
+      "origin": "Connected-arguments edition"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "inward-formation-and-accountable-intelligence",
+      "type": "connects",
+      "why": "The teacher's duties to a possible conscious participant must remain distinct from training a system for unquestioning obedience.",
+      "origin": "Connected-arguments edition"
+    }
+  ],
+  "transitions": [
+    {
+      "chapter": "shared-archive",
+      "question": "What makes an inheritance recognizable across communities?",
+      "work": "Distinguish the history of a tradition from the community that later claims it.",
+      "nextQuestion": "How do divine names cross the boundaries that communities draw?",
+      "bridge": "contested-memories-of-catastrophe"
+    },
+    {
+      "chapter": "names",
+      "question": "Does a shared divine name imply the same institution or theology?",
+      "work": "Separate names, practices and the relationships that would establish transmission.",
+      "nextQuestion": "How does a received account turn disaster into sacred history?",
+      "bridge": "contested-memories-of-catastrophe"
+    },
+    {
+      "chapter": "catastrophe-memory",
+      "question": "Can the proposed political and environmental sequence explain the received departure story?",
+      "work": "Compare complete chronological versions rather than combining favorable intervals.",
+      "nextQuestion": "What could preserve a founder's inheritance after the founder disappears?",
+      "bridge": "contested-memories-of-catastrophe"
+    },
+    {
+      "chapter": "teacher-identity",
+      "question": "What would identify an earlier founder rather than a comparable teacher?",
+      "work": "Present founder identity, succession and displaced biography as related but distinct propositions.",
+      "nextQuestion": "Which people and institutions could carry the teaching between settings?",
+      "bridge": "sanctuary-community-and-body"
+    },
+    {
+      "chapter": "thomas",
+      "question": "Can the proposed carriers connect the earlier Teacher to sayings and later communities?",
+      "work": "Follow the institutional route and the particular textual relationships without substituting themes for identity.",
+      "nextQuestion": "What changes when the institutions carrying authority are disrupted?",
+      "bridge": "sanctuary-community-and-body"
+    },
+    {
+      "chapter": "trauma",
+      "question": "How could loss transform an account of divine protection and authority?",
+      "work": "Compare reconstruction, relocation and critique without one universal psychological sequence.",
+      "nextQuestion": "What happens when the inherited image of God becomes the object of criticism?",
+      "bridge": "sanctuary-community-and-body"
+    },
+    {
+      "chapter": "images",
+      "question": "How can a representation be corrected without confusing it with its referent?",
+      "work": "Distinguish a model of God, a metaphysical claim and the criteria used to evaluate the model.",
+      "nextQuestion": "What changes when a teaching is understood rather than merely retained?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "gnosis",
+      "question": "What is gained by understanding a saying that was already available?",
+      "work": "Develop interpretation as a possible change in the organization of experience and conduct.",
+      "nextQuestion": "How could that change enter deliberation and action?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "inner-model",
+      "question": "How does a Christic exemplar participate in the constructive self?",
+      "work": "Separate correction of action from correction of the interpreted ideal, keeping bounded agency explicit.",
+      "nextQuestion": "How is that orientation sustained without denying grief or danger?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "faith",
+      "question": "Can deliberate joy support responsibility without becoming denial?",
+      "work": "Distinguish an orientation that sustains care from one that refuses distressing evidence.",
+      "nextQuestion": "What happens when sacred language authorizes harmful power?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "scriptural-axis",
+      "question": "How does scripture judge authorities claiming to speak for it?",
+      "work": "Work through conflicting conduct and specific passages rather than classifying whole traditions as uniform.",
+      "nextQuestion": "Which will supplies the standard when authority is challenged?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "will",
+      "question": "Does religious authority correct desire or simply consecrate it?",
+      "work": "Connect the distinction of wills to the refusal of self-authorizing domination.",
+      "nextQuestion": "How does that pattern support a particular prophetic identification?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "beast",
+      "question": "What supports a named First Beast identification while allowing other embodiments?",
+      "work": "Preserve the particular argument and distinguish it from the more general conduct pattern.",
+      "nextQuestion": "What must a warning preserve so that its consequences can be evaluated?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "warnings",
+      "question": "What was predicted, under which conditions, and what later happened?",
+      "work": "Keep the original forecast and outcome record separate from the theological interpretation.",
+      "nextQuestion": "What can be repaired before a final outcome is known?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "repair-practice",
+      "question": "How can repair change institutions without reproducing domination?",
+      "work": "Connect care, protection and correction at personal and collective scales.",
+      "nextQuestion": "What should a new kind of conscious participant inherit from that work?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "next-inheritors",
+      "question": "What obligations would teachers have to a possible conscious machine?",
+      "work": "Separate possible experience, agentic capacity, moral orientation and obedience.",
+      "nextQuestion": "What deserves to continue when neither the carrier nor the world is unchanged?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "continuing",
+      "question": "How can an inheritance remain recognizable while becoming more accountable?",
+      "work": "Return to continuity through correction instead of possession through an unquestionable identity.",
+      "nextQuestion": "Which specific unresolved link should the next edition investigate?",
+      "bridge": "sanctuary-community-and-body"
+    }
+  ],
+  "research": [
+    {
+      "id": "flood-endings",
+      "page": "contested-memories-of-catastrophe",
+      "title": "Compare the ends of the flood narratives.",
+      "status": "First passage comparison completed; textual history open.",
+      "nextAction": "Collate Zi-ud-sura, Atrahasis, Gilgamesh XI and Genesis 8-9 in named editions; keep missing passages and alternative transmission directions visible."
+    },
+    {
+      "id": "exodus-anchor",
+      "page": "contested-memories-of-catastrophe",
+      "title": "Keep competing Exodus anchors independent.",
+      "status": "Open historical research.",
+      "nextAction": "Collect excavation reports and calibrated dating studies for each proposed material anchor; do not infer a Hyksos family identity from a single name."
+    },
+    {
+      "id": "sanctuary-context",
+      "page": "sanctuary-community-and-body",
+      "title": "Compare the functions of sanctuary language.",
+      "status": "Seven selected biblical passages read; institutional derivation open.",
+      "nextAction": "Compare community-rule sanctuary passages with the Pauline and Johannine passages in named translations; test dates and independent origins before asserting a lineage."
+    },
+    {
+      "id": "onias-successors",
+      "page": "sanctuary-community-and-body",
+      "title": "Identify the intermediate Egyptian carriers.",
+      "status": "Open historical research.",
+      "nextAction": "Extend the named Oniad people and institutions with dated inscriptions or papyri; distinguish a family link, an office and transmitted teaching."
+    },
+    {
+      "id": "apocalypse-family",
+      "page": "apocalypse-and-repair",
+      "title": "Compare restoration across apocalyptic works.",
+      "status": "Revelation 21-22 read; extra-biblical comparison open.",
+      "nextAction": "Select exact units from the Sibylline Oracles, Qumran and Nag Hammadi texts; record each unit's dating and transmission argument instead of treating each collection as one date."
+    },
+    {
+      "id": "conduct-record",
+      "page": "apocalypse-and-repair",
+      "title": "Evaluate specific contemporary identifications.",
+      "status": "No new outcome audit performed.",
+      "nextAction": "Attach dated primary statements and actions to each proposed Beast-role correspondence; preserve alternative explanations and the original forecast conditions."
+    },
+    {
+      "id": "formation-test",
+      "page": "inward-formation-and-accountable-intelligence",
+      "title": "Discriminate formative effects from assent.",
+      "status": "Study design question, not experimental results.",
+      "nextAction": "Specify active controls, observable conduct and transfer tests for exemplar integration; keep expectancy and social-pressure explanations in scope."
+    },
+    {
+      "id": "chapter-redundancy",
+      "page": "inward-formation-and-accountable-intelligence",
+      "title": "Convert chapter routes into a cumulative manuscript.",
+      "status": "Seventeen editorial transitions drafted; chapters not approved.",
+      "nextAction": "Use the inherited question and handoff at every chapter boundary; retain one full treatment per mechanism and link rather than repeatedly compressing it."
+    }
+  ]
+}

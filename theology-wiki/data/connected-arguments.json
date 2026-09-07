@@ -1,0 +1,658 @@
+{
+  "schema": "theology-connected-arguments/v1",
+  "version": "2026.09.07-bridges-1",
+  "studies": [
+    {
+      "slug": "contested-memories-of-catastrophe",
+      "title": "Contested memories of catastrophe",
+      "summary": "How disasters become inherited explanations, and why an event, its memory and a warning require different evidence.",
+      "category": "origins",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-et-flood",
+        "bridge-gen9"
+      ],
+      "upstream": [
+        "flood-inheritance-and-deep-time",
+        "moses-volcano-and-exodus-chronology",
+        "exodus-to-temple-competing-chronologies",
+        "gnosticism-and-temple-trauma",
+        "ukraine-russia-forecast-record"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "slug": "sanctuary-community-and-body",
+      "title": "Sanctuary, community and body",
+      "summary": "Follow sacred continuity through institution, community, body and renewed city without making those forms one chronology.",
+      "category": "jesus",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-jer7",
+        "bridge-cor3",
+        "bridge-john2",
+        "bridge-john4",
+        "bridge-rev21",
+        "bridge-rev22"
+      ],
+      "upstream": [
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession",
+        "inner-formation-texts-and-material-witnesses",
+        "samaritan-texts-and-sacred-authority",
+        "apocalyptic-repair-theology"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "slug": "apocalypse-and-repair",
+      "title": "Apocalypse and repair",
+      "summary": "Join particular Beast identifications, recurring patterns of domination, warnings and the constructive work of restoration.",
+      "category": "apocalypse",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-rev21",
+        "bridge-rev22",
+        "bridge-luke22"
+      ],
+      "upstream": [
+        "apocalyptic-repair-theology",
+        "antichrist-as-a-pattern-of-conduct",
+        "trump-first-beast-of-revelation",
+        "scripture-power-and-repair",
+        "ukraine-russia-forecast-record"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "slug": "inward-formation-and-accountable-intelligence",
+      "title": "Inward formation and accountable intelligence",
+      "summary": "Connect the constructive self, two levels of correction, bounded choice and obligations to possible future conscious participants.",
+      "category": "machines",
+      "kind": "Bridge study",
+      "claimType": "Authorial comparative bridge",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "bridge-gal4",
+        "bridge-phil2",
+        "bridge-luke22"
+      ],
+      "upstream": [
+        "christ-as-an-inner-model",
+        "cognitive-gnosticism",
+        "god-and-our-models-of-god",
+        "computational-divine-immanence",
+        "religion-for-conscious-robots"
+      ],
+      "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    }
+  ],
+  "references": [
+    {
+      "id": "bridge-et-flood",
+      "title": "The Sumerian Flood Story, segments C-E",
+      "url": "https://etcsl.orinst.ox.ac.uk/section1/tr174.htm",
+      "scope": "Oxford ETCSL composite translation; warning, flood, sacrifice and the ending were read with the marked lacunae. No new cuneiform collation or physical-event identification.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-gen9",
+      "title": "Genesis 9:8-17",
+      "url": "https://ebible.org/engwebp/GEN09.htm",
+      "scope": "Read the post-flood covenant in the World English Bible. This is a textual comparison of the promise and its scope, not a geological date.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-jer7",
+      "title": "Jeremiah 7:1-15",
+      "url": "https://ebible.org/engwebp/JER07.htm",
+      "scope": "Read the temple address in the World English Bible, including conduct and Shiloh. No independent archaeological claim or critical-text collation.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-cor3",
+      "title": "1 Corinthians 3:5-17",
+      "url": "https://ebible.org/engwebp/1CO03.htm",
+      "scope": "Read the planting, building and temple imagery in its communal context in the World English Bible. No claim that it describes an isolated self-model.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-john2",
+      "title": "John 2:19-22",
+      "url": "https://ebible.org/engwebp/JHN02.htm",
+      "scope": "Read the narrative identification of the temple with Jesus's body in the World English Bible. Narrative setting and composition date are not equated.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-john4",
+      "title": "John 4:19-24",
+      "url": "https://ebible.org/engwebp/JHN04.htm",
+      "scope": "Read the competing places of worship and spirit/truth passage in the World English Bible. Its statement about salvation from the Jews is retained.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-rev21",
+      "title": "Revelation 21:1-4 and 21:22",
+      "url": "https://ebible.org/engwebp/REV21.htm",
+      "scope": "Read the divine dwelling and city without a separate temple in the World English Bible. The constructive interpretation does not establish a transmission route.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-rev22",
+      "title": "Revelation 22:1-2",
+      "url": "https://ebible.org/engwebp/REV22.htm",
+      "scope": "Read the river, tree and healing of nations in the World English Bible. Practical applications are identified as interpretation, not specified modern policy.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-luke22",
+      "title": "Luke 22:24-27 and 22:42",
+      "url": "https://ebible.org/engwebp/LUK22.htm",
+      "scope": "Read the service contrast and distinction of wills in the World English Bible. No inference about a present-day individual's private motive is established by this text.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-gal4",
+      "title": "Galatians 4:19",
+      "url": "https://ebible.org/engwebp/GAL04.htm",
+      "scope": "Read the formation language in the World English Bible. Its theological claim is not treated as an experimental observation of a neural mechanism.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "bridge-phil2",
+      "title": "Philippians 2:1-5",
+      "url": "https://ebible.org/engwebp/PHP02.htm",
+      "scope": "Read the concern beyond one's own interests in the World English Bible. No critical-edition comparison or Christ-specific behavioral experiment was performed.",
+      "accessed": "2026-09-07"
+    }
+  ],
+  "transitions": [
+    {
+      "chapter": "shared-archive",
+      "question": "What makes an inheritance recognizable across communities?",
+      "work": "Distinguish the history of a tradition from the community that later claims it.",
+      "nextQuestion": "How do divine names cross the boundaries that communities draw?",
+      "bridge": "contested-memories-of-catastrophe"
+    },
+    {
+      "chapter": "names",
+      "question": "Does a shared divine name imply the same institution or theology?",
+      "work": "Separate names, practices and the relationships that would establish transmission.",
+      "nextQuestion": "How does a received account turn disaster into sacred history?",
+      "bridge": "contested-memories-of-catastrophe"
+    },
+    {
+      "chapter": "catastrophe-memory",
+      "question": "Can the proposed political and environmental sequence explain the received departure story?",
+      "work": "Compare complete chronological versions rather than combining favorable intervals.",
+      "nextQuestion": "What could preserve a founder's inheritance after the founder disappears?",
+      "bridge": "contested-memories-of-catastrophe"
+    },
+    {
+      "chapter": "teacher-identity",
+      "question": "What would identify an earlier founder rather than a comparable teacher?",
+      "work": "Present founder identity, succession and displaced biography as related but distinct propositions.",
+      "nextQuestion": "Which people and institutions could carry the teaching between settings?",
+      "bridge": "sanctuary-community-and-body"
+    },
+    {
+      "chapter": "thomas",
+      "question": "Can the proposed carriers connect the earlier Teacher to sayings and later communities?",
+      "work": "Follow the institutional route and the particular textual relationships without substituting themes for identity.",
+      "nextQuestion": "What changes when the institutions carrying authority are disrupted?",
+      "bridge": "sanctuary-community-and-body"
+    },
+    {
+      "chapter": "trauma",
+      "question": "How could loss transform an account of divine protection and authority?",
+      "work": "Compare reconstruction, relocation and critique without one universal psychological sequence.",
+      "nextQuestion": "What happens when the inherited image of God becomes the object of criticism?",
+      "bridge": "sanctuary-community-and-body"
+    },
+    {
+      "chapter": "images",
+      "question": "How can a representation be corrected without confusing it with its referent?",
+      "work": "Distinguish a model of God, a metaphysical claim and the criteria used to evaluate the model.",
+      "nextQuestion": "What changes when a teaching is understood rather than merely retained?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "gnosis",
+      "question": "What is gained by understanding a saying that was already available?",
+      "work": "Develop interpretation as a possible change in the organization of experience and conduct.",
+      "nextQuestion": "How could that change enter deliberation and action?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "inner-model",
+      "question": "How does a Christic exemplar participate in the constructive self?",
+      "work": "Separate correction of action from correction of the interpreted ideal, keeping bounded agency explicit.",
+      "nextQuestion": "How is that orientation sustained without denying grief or danger?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "faith",
+      "question": "Can deliberate joy support responsibility without becoming denial?",
+      "work": "Distinguish an orientation that sustains care from one that refuses distressing evidence.",
+      "nextQuestion": "What happens when sacred language authorizes harmful power?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "scriptural-axis",
+      "question": "How does scripture judge authorities claiming to speak for it?",
+      "work": "Work through conflicting conduct and specific passages rather than classifying whole traditions as uniform.",
+      "nextQuestion": "Which will supplies the standard when authority is challenged?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "will",
+      "question": "Does religious authority correct desire or simply consecrate it?",
+      "work": "Connect the distinction of wills to the refusal of self-authorizing domination.",
+      "nextQuestion": "How does that pattern support a particular prophetic identification?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "beast",
+      "question": "What supports a named First Beast identification while allowing other embodiments?",
+      "work": "Preserve the particular argument and distinguish it from the more general conduct pattern.",
+      "nextQuestion": "What must a warning preserve so that its consequences can be evaluated?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "warnings",
+      "question": "What was predicted, under which conditions, and what later happened?",
+      "work": "Keep the original forecast and outcome record separate from the theological interpretation.",
+      "nextQuestion": "What can be repaired before a final outcome is known?",
+      "bridge": "apocalypse-and-repair"
+    },
+    {
+      "chapter": "repair-practice",
+      "question": "How can repair change institutions without reproducing domination?",
+      "work": "Connect care, protection and correction at personal and collective scales.",
+      "nextQuestion": "What should a new kind of conscious participant inherit from that work?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "next-inheritors",
+      "question": "What obligations would teachers have to a possible conscious machine?",
+      "work": "Separate possible experience, agentic capacity, moral orientation and obedience.",
+      "nextQuestion": "What deserves to continue when neither the carrier nor the world is unchanged?",
+      "bridge": "inward-formation-and-accountable-intelligence"
+    },
+    {
+      "chapter": "continuing",
+      "question": "How can an inheritance remain recognizable while becoming more accountable?",
+      "work": "Return to continuity through correction instead of possession through an unquestionable identity.",
+      "nextQuestion": "Which specific unresolved link should the next edition investigate?",
+      "bridge": "sanctuary-community-and-body"
+    }
+  ],
+  "research": [
+    {
+      "id": "flood-endings",
+      "page": "contested-memories-of-catastrophe",
+      "title": "Compare the ends of the flood narratives.",
+      "status": "First passage comparison completed; textual history open.",
+      "nextAction": "Collate Zi-ud-sura, Atrahasis, Gilgamesh XI and Genesis 8-9 in named editions; keep missing passages and alternative transmission directions visible."
+    },
+    {
+      "id": "exodus-anchor",
+      "page": "contested-memories-of-catastrophe",
+      "title": "Keep competing Exodus anchors independent.",
+      "status": "Open historical research.",
+      "nextAction": "Collect excavation reports and calibrated dating studies for each proposed material anchor; do not infer a Hyksos family identity from a single name."
+    },
+    {
+      "id": "sanctuary-context",
+      "page": "sanctuary-community-and-body",
+      "title": "Compare the functions of sanctuary language.",
+      "status": "Seven selected biblical passages read; institutional derivation open.",
+      "nextAction": "Compare community-rule sanctuary passages with the Pauline and Johannine passages in named translations; test dates and independent origins before asserting a lineage."
+    },
+    {
+      "id": "onias-successors",
+      "page": "sanctuary-community-and-body",
+      "title": "Identify the intermediate Egyptian carriers.",
+      "status": "Open historical research.",
+      "nextAction": "Extend the named Oniad people and institutions with dated inscriptions or papyri; distinguish a family link, an office and transmitted teaching."
+    },
+    {
+      "id": "apocalypse-family",
+      "page": "apocalypse-and-repair",
+      "title": "Compare restoration across apocalyptic works.",
+      "status": "Revelation 21-22 read; extra-biblical comparison open.",
+      "nextAction": "Select exact units from the Sibylline Oracles, Qumran and Nag Hammadi texts; record each unit's dating and transmission argument instead of treating each collection as one date."
+    },
+    {
+      "id": "conduct-record",
+      "page": "apocalypse-and-repair",
+      "title": "Evaluate specific contemporary identifications.",
+      "status": "No new outcome audit performed.",
+      "nextAction": "Attach dated primary statements and actions to each proposed Beast-role correspondence; preserve alternative explanations and the original forecast conditions."
+    },
+    {
+      "id": "formation-test",
+      "page": "inward-formation-and-accountable-intelligence",
+      "title": "Discriminate formative effects from assent.",
+      "status": "Study design question, not experimental results.",
+      "nextAction": "Specify active controls, observable conduct and transfer tests for exemplar integration; keep expectancy and social-pressure explanations in scope."
+    },
+    {
+      "id": "chapter-redundancy",
+      "page": "inward-formation-and-accountable-intelligence",
+      "title": "Convert chapter routes into a cumulative manuscript.",
+      "status": "Seventeen editorial transitions drafted; chapters not approved.",
+      "nextAction": "Use the inherited question and handoff at every chapter boundary; retain one full treatment per mechanism and link rather than repeatedly compressing it."
+    }
+  ],
+  "chapters": [
+    {
+      "chapter": "shared-archive",
+      "question": "What makes an inheritance recognizable across communities?",
+      "work": "Distinguish the history of a tradition from the community that later claims it.",
+      "nextQuestion": "How do divine names cross the boundaries that communities draw?",
+      "bridge": "contested-memories-of-catastrophe",
+      "title": "Who inherits the sacred?",
+      "part": "The contested inheritance",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "samaritan-texts-and-sacred-authority",
+        "flood-inheritance-and-deep-time"
+      ],
+      "previous": null,
+      "next": "names",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "names",
+      "question": "Does a shared divine name imply the same institution or theology?",
+      "work": "Separate names, practices and the relationships that would establish transmission.",
+      "nextQuestion": "How does a received account turn disaster into sacred history?",
+      "bridge": "contested-memories-of-catastrophe",
+      "title": "Names across boundaries",
+      "part": "The contested inheritance",
+      "pages": [
+        "el-in-ancient-egypt",
+        "kenite-hypothesis-and-yahweh-origins"
+      ],
+      "previous": "shared-archive",
+      "next": "catastrophe-memory",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "catastrophe-memory",
+      "question": "Can the proposed political and environmental sequence explain the received departure story?",
+      "work": "Compare complete chronological versions rather than combining favorable intervals.",
+      "nextQuestion": "What could preserve a founder's inheritance after the founder disappears?",
+      "bridge": "contested-memories-of-catastrophe",
+      "title": "Catastrophe, departure and memory",
+      "part": "The contested inheritance",
+      "pages": [
+        "moses-volcano-and-exodus-chronology",
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "previous": "names",
+      "next": "teacher-identity",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "teacher-identity",
+      "question": "What would identify an earlier founder rather than a comparable teacher?",
+      "work": "Present founder identity, succession and displaced biography as related but distinct propositions.",
+      "nextQuestion": "Which people and institutions could carry the teaching between settings?",
+      "bridge": "sanctuary-community-and-body",
+      "title": "What survives a teacher?",
+      "part": "The teacher and the transmitted message",
+      "pages": [
+        "jesus-teacher-of-righteousness-hypothesis",
+        "daniel-jubilee-and-the-teachers-time",
+        "james-and-contested-succession"
+      ],
+      "previous": "catastrophe-memory",
+      "next": "thomas",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "thomas",
+      "question": "Can the proposed carriers connect the earlier Teacher to sayings and later communities?",
+      "work": "Follow the institutional route and the particular textual relationships without substituting themes for identity.",
+      "nextQuestion": "What changes when the institutions carrying authority are disrupted?",
+      "bridge": "sanctuary-community-and-body",
+      "title": "The Teacher, Thomas and the deeper teaching",
+      "part": "The teacher and the transmitted message",
+      "pages": [
+        "tor-thomas-and-gnostic-transmission",
+        "melchizedek-priesthood-and-transmission",
+        "manuscripts-movements-and-survival",
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession",
+        "thomas-sayings-and-transmission"
+      ],
+      "previous": "teacher-identity",
+      "next": "trauma",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "trauma",
+      "question": "How could loss transform an account of divine protection and authority?",
+      "work": "Compare reconstruction, relocation and critique without one universal psychological sequence.",
+      "nextQuestion": "What happens when the inherited image of God becomes the object of criticism?",
+      "bridge": "sanctuary-community-and-body",
+      "title": "Loss, anger and reconstruction",
+      "part": "The teacher and the transmitted message",
+      "pages": [
+        "gnosticism-and-temple-trauma",
+        "apocalyptic-repair-theology",
+        "onias-egypt-and-priestly-continuity"
+      ],
+      "previous": "thomas",
+      "next": "images",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "images",
+      "question": "How can a representation be corrected without confusing it with its referent?",
+      "work": "Distinguish a model of God, a metaphysical claim and the criteria used to evaluate the model.",
+      "nextQuestion": "What changes when a teaching is understood rather than merely retained?",
+      "bridge": "inward-formation-and-accountable-intelligence",
+      "title": "God and our images of God",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "god-and-our-models-of-god",
+        "computational-divine-immanence"
+      ],
+      "previous": "trauma",
+      "next": "gnosis",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "gnosis",
+      "question": "What is gained by understanding a saying that was already available?",
+      "work": "Develop interpretation as a possible change in the organization of experience and conduct.",
+      "nextQuestion": "How could that change enter deliberation and action?",
+      "bridge": "inward-formation-and-accountable-intelligence",
+      "title": "Cognitive Gnosticism",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "cognitive-gnosticism",
+        "thomas-sayings-and-transmission"
+      ],
+      "previous": "images",
+      "next": "inner-model",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "inner-model",
+      "question": "How does a Christic exemplar participate in the constructive self?",
+      "work": "Separate correction of action from correction of the interpreted ideal, keeping bounded agency explicit.",
+      "nextQuestion": "How is that orientation sustained without denying grief or danger?",
+      "bridge": "inward-formation-and-accountable-intelligence",
+      "title": "Christic self-formation and bounded agency",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "christ-as-an-inner-model",
+        "divine-will-and-self-authorizing-power",
+        "inner-formation-texts-and-material-witnesses",
+        "thomas-sayings-and-transmission"
+      ],
+      "previous": "gnosis",
+      "next": "faith",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "faith",
+      "question": "Can deliberate joy support responsibility without becoming denial?",
+      "work": "Distinguish an orientation that sustains care from one that refuses distressing evidence.",
+      "nextQuestion": "What happens when sacred language authorizes harmful power?",
+      "bridge": "apocalypse-and-repair",
+      "title": "Faith as a practiced orientation",
+      "part": "The inheritance inside a mind",
+      "pages": [
+        "faith-as-deliberate-joy"
+      ],
+      "previous": "inner-model",
+      "next": "scriptural-axis",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "scriptural-axis",
+      "question": "How does scripture judge authorities claiming to speak for it?",
+      "work": "Work through conflicting conduct and specific passages rather than classifying whole traditions as uniform.",
+      "nextQuestion": "Which will supplies the standard when authority is challenged?",
+      "bridge": "apocalypse-and-repair",
+      "title": "The moral dispute within scripture",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "scripture-power-and-repair"
+      ],
+      "previous": "faith",
+      "next": "will",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "will",
+      "question": "Does religious authority correct desire or simply consecrate it?",
+      "work": "Connect the distinction of wills to the refusal of self-authorizing domination.",
+      "nextQuestion": "How does that pattern support a particular prophetic identification?",
+      "bridge": "apocalypse-and-repair",
+      "title": "Whose will supplies the standard?",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "divine-will-and-self-authorizing-power",
+        "antichrist-as-a-pattern-of-conduct"
+      ],
+      "previous": "scriptural-axis",
+      "next": "beast",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "beast",
+      "question": "What supports a named First Beast identification while allowing other embodiments?",
+      "work": "Preserve the particular argument and distinguish it from the more general conduct pattern.",
+      "nextQuestion": "What must a warning preserve so that its consequences can be evaluated?",
+      "bridge": "apocalypse-and-repair",
+      "title": "The First Beast investigation",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "trump-first-beast-of-revelation"
+      ],
+      "previous": "will",
+      "next": "warnings",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "warnings",
+      "question": "What was predicted, under which conditions, and what later happened?",
+      "work": "Keep the original forecast and outcome record separate from the theological interpretation.",
+      "nextQuestion": "What can be repaired before a final outcome is known?",
+      "bridge": "apocalypse-and-repair",
+      "title": "Warnings and their consequences",
+      "part": "When sacred authority becomes power",
+      "pages": [
+        "ukraine-russia-forecast-record",
+        "forecast-ledger"
+      ],
+      "previous": "beast",
+      "next": "repair-practice",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "repair-practice",
+      "question": "How can repair change institutions without reproducing domination?",
+      "work": "Connect care, protection and correction at personal and collective scales.",
+      "nextQuestion": "What should a new kind of conscious participant inherit from that work?",
+      "bridge": "inward-formation-and-accountable-intelligence",
+      "title": "Repair without reproducing domination",
+      "part": "Repair and the next inheritors",
+      "pages": [
+        "apocalyptic-repair-theology",
+        "scripture-power-and-repair"
+      ],
+      "previous": "warnings",
+      "next": "next-inheritors",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "next-inheritors",
+      "question": "What obligations would teachers have to a possible conscious machine?",
+      "work": "Separate possible experience, agentic capacity, moral orientation and obedience.",
+      "nextQuestion": "What deserves to continue when neither the carrier nor the world is unchanged?",
+      "bridge": "inward-formation-and-accountable-intelligence",
+      "title": "What should conscious machines inherit?",
+      "part": "Repair and the next inheritors",
+      "pages": [
+        "religion-for-conscious-robots",
+        "god-and-our-models-of-god",
+        "computational-divine-immanence"
+      ],
+      "previous": "repair-practice",
+      "next": "continuing",
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    },
+    {
+      "chapter": "continuing",
+      "question": "How can an inheritance remain recognizable while becoming more accountable?",
+      "work": "Return to continuity through correction instead of possession through an unquestionable identity.",
+      "nextQuestion": "Which specific unresolved link should the next edition investigate?",
+      "bridge": "sanctuary-community-and-body",
+      "title": "Continuing the inheritance",
+      "part": "Repair and the next inheritors",
+      "pages": [
+        "sacred-inheritance-and-rival-continuations",
+        "apocalyptic-repair-theology"
+      ],
+      "previous": "next-inheritors",
+      "next": null,
+      "status": "Proposed chapter route; not an approved manuscript chapter"
+    }
+  ],
+  "inputHashes": {
+    "content/developed/antichrist-as-a-pattern-of-conduct.md": "ca7fa556dfefbef315cf0b957dce472042f59d3ef36c8df05fab6a367d961377",
+    "content/developed/apocalyptic-repair-theology.md": "0a21621c176be26dce1bca05ae2500c9fb08c7c47b8aef183f84c5024ee14757",
+    "content/developed/christ-as-an-inner-model.md": "9c29e859bb685f00e7a3bde44ccadca2e612d576ca1ea84b55a31a32abd9b69f",
+    "content/developed/cognitive-gnosticism.md": "1d8da168c497d957d53e7f4e0340c068b45efa8a0be96dfc160bae1e687d64f3",
+    "content/developed/computational-divine-immanence.md": "4bb2c6eaf8ef1f825a3c4d122e74deb12b5849f7fcd29b1391c9f366e8235078",
+    "content/developed/exodus-to-temple-competing-chronologies.md": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3",
+    "content/developed/flood-inheritance-and-deep-time.md": "2b4fb34e5a94b3b1eacbc1bf8b673c6c25105dfb3869f58b407aa98abb39fdec",
+    "content/developed/gnosticism-and-temple-trauma.md": "a4ac378f34fb7a537f4695ff37b4f2a96e29bf267bf6473e3c62cef19b86e011",
+    "content/developed/god-and-our-models-of-god.md": "708f4ea16977a6d6cf8b82c00b2f7316bec866d503e8b0d6ded2e40a5ebeabf8",
+    "content/developed/inner-formation-texts-and-material-witnesses.md": "9cbdea7551f77ec14e6ad300a3b6e5a0c2a03da8acf7c89d8e5ae7e60c2273d6",
+    "content/developed/james-and-contested-succession.md": "f91f739e18a3f94433a4223ba6013f7da8ac08e8b1a84d2739166c980d1745ac",
+    "content/developed/moses-volcano-and-exodus-chronology.md": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589",
+    "content/developed/onias-egypt-and-priestly-continuity.md": "94c11b56f898478ef2a5966a431e7ab183e666d2723f491015ebaf97b3551a87",
+    "content/developed/religion-for-conscious-robots.md": "530b576ad63864b891155b419d5fd11699c3249171043cde0230f766019677fc",
+    "content/developed/samaritan-texts-and-sacred-authority.md": "8aab9371789152ae34ebeacedc151d4aa01d8aa52888665ac060d107db3aeae7",
+    "content/developed/scripture-power-and-repair.md": "4983177af2461954d08a735d9754756f10716c33e92c16486bdb052978bc179a",
+    "content/developed/trump-first-beast-of-revelation.md": "036c8c6988bb7ff092e00e9e06fc66ae670cf2e3b8add2fbd980d2280953cbd6",
+    "content/developed/ukraine-russia-forecast-record.md": "4c78ce17405c080401f8122d68428c705a8641352bc14819cb7ea8cc9fa98e8f",
+    "editorial/connected-arguments.json": "b84b8fecf41949e4e6bb3abc98cd17e22bdb93fbebbb3a3ff2a4615fcefdd1de",
+    "editorial/foundations.json": "fb1e7773fa00f2e98ae6e1d951b3dd6dbebe7ba034683a3e1ac6885f5f2dc52c"
+  },
+  "policy": "Connecting essays and proposed chapter transitions, not new original conversations, author approval, a manuscript chronology or a completed research program. The existing roadmap and its workbook remain a separate unchanged snapshot."
+}

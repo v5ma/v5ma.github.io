@@ -45,7 +45,7 @@ with sync_playwright() as tool:
     page.on('pageerror', lambda e: ERRORS.append(str(e)))
     try:
         open_page(page)
-        check('Native HTTP reader loads 428 indexed pages', page.evaluate('TheologyReader.pages().length') == 428)
+        check('Native HTTP reader loads 433 indexed pages', page.evaluate('TheologyReader.pages().length') == 433)
         check('Home prioritizes three flagship arguments', page.locator('.depth-featured .research-card').count() == 3)
         check('Homepage describes 354 original source conversations', '354' in page.locator('.depth-home-footer').inner_text())
         check('Eight subject collections are accessible in the sidebar', page.locator('.research-topic-link').count() == 8)
@@ -350,6 +350,8 @@ with sync_playwright() as tool:
         run_evidence_checks(page, ctx, open_page, check, OUT, BASE)
         from pauline_checks import run_pauline_checks
         run_pauline_checks(page, ctx, open_page, check, OUT, BASE)
+        from connected_checks import run_connected_checks
+        run_connected_checks(page, ctx, open_page, check, OUT, BASE)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback
