@@ -1,7 +1,7 @@
 /* Leonardo’s Guild / first Renaissance commission. Deterministic, renderer-independent simulation.
  * Coordinates are metres; fixed-step driver calls step() at 60 Hz. All mechanisms
  * is fictional world-state interaction; no network or account APIs are used. */
-export const VERSION='0.1.0';
+export const VERSION='0.2.0';
 export const SAVE_KEY='svgn.leonardos-guild.v1';
 export const LIMITS={x:148,zMin:-26,zMax:406};
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -104,7 +104,7 @@ export function step(s,w,input,dt){
   s.yaw-=steer*2.6*dt;s.speed+=(throttle*(input.boost?7:4.6)-s.speed)*Math.min(1,dt*12);
  }else{
   const car=s.mode==='car',top=car?29:input.boost?18:13,acc=car?9:6;
-  if(throttle)s.speed+=throttle*(s.speed*throttle<0?15:acc)*dt;else s.speed*=Math.exp(-dt*(car?.6:.8));
+  if(throttle){if(input.analog){const target=throttle*(throttle>0?top:car?9:4);s.speed+=clamp((target-s.speed)*2,-15,acc)*dt;}else s.speed+=throttle*(s.speed*throttle<0?15:acc)*dt;}else s.speed*=Math.exp(-dt*(car?.6:.8));
   if(input.brake)s.speed*=Math.exp(-dt*(car?3.5:5));
   s.speed=clamp(s.speed,car?-9:-4,top);s.yaw-=steer*(car?1.2:1.7)*clamp(Math.abs(s.speed)/5,0,1.2)*Math.sign(s.speed||1)*dt;
  }

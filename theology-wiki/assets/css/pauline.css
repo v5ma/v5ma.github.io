@@ -7,3 +7,17 @@
 #pc-results{border-left:4px solid #2d657d;padding-left:16px;margin-top:18px}#pauline-lab #pc-error{color:#892a16;font-weight:600}#pauline-lab .pauline-scope,#pauline-lab #pc-rules{font-size:.85rem}#pauline-lab :focus-visible{outline:3px solid #a94319;outline-offset:3px}
 @media(max-width:700px){#pauline-lab .pauline-fields{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}#pauline-lab .pauline-options{grid-template-columns:1fr}#pauline-lab{padding:15px}}
 @media print{#pauline-lab form,#pauline-lab #pc-url-note,#pauline-lab #pc-share{display:none}#pauline-lab{break-inside:avoid}}
+
+/* Live chronology: labels stay at reading size while the point positions rescale. */
+.pauline-jump{font-family:"Segoe UI",Arial,sans-serif;padding:12px 0;margin:0 0 18px;line-height:1.6}
+.pauline-jump a{display:inline-block;min-height:44px;line-height:44px;text-decoration:underline;color:#174f74}
+#pauline-lab{scroll-margin-top:24px}
+#pauline-lab #pc-timeline{margin:24px 0 12px;border-top:1px solid #a4b8c5;padding-top:18px;min-width:0}
+#pc-timeline figcaption{font-weight:700;font-size:1rem;line-height:1.5;color:#102a3a}
+#pauline-lab .pc-timeline-list{list-style:none;margin:16px 0 0;padding:0}
+#pc-timeline .pc-timeline-list li{display:grid;grid-template-columns:minmax(0,215px) minmax(0,1fr);gap:20px;align-items:center;padding:12px 0;margin:0;border-top:1px solid #cfdae1;min-width:0}
+#pc-timeline .pc-event-label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;line-height:1.5;color:#102a3a}
+#pc-timeline .pc-time-lane{display:block;position:relative;height:4px;margin:8px;background:#607d90;min-width:0}
+#pc-timeline .pc-time-point{display:block;position:absolute;width:14px;height:14px;border:2px solid #193c55;border-radius:50%;background:#fff;top:50%;transform:translate(-50%,-50%);box-sizing:border-box}
+@media(max-width:550px){#pc-timeline .pc-timeline-list li{grid-template-columns:1fr;gap:9px}#pc-timeline .pc-event-label{flex-direction:row;justify-content:space-between;gap:12px}#pc-timeline .pc-event-label strong{white-space:nowrap}}
+@media print{.pauline-jump{display:none}#pc-timeline{break-inside:avoid}}

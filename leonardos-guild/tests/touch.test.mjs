@@ -1,0 +1,12 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {stickVector,StickState} from '../touch-controls.mjs';
+import {newState,makeWorld,step,SAVE_KEY} from '../model.mjs';
+const w=makeWorld(),ticks=(s,input,n=120)=>{for(let k=0;k<n;k++)step(s,w,input,1/60);};
+test('Radial deadzone suppresses tiny drift without changing axis directions',()=>{assert.deepEqual(stickVector(2,1,50),{x:0,y:-0,strength:0});const p=stickVector(25,-25,50);assert.ok(p.x>0&&p.y>0);assert.ok(Math.abs(p.x-p.y)<1e-9);});
+test('Thumb travel is continuous and diagonal input cannot exceed full strength',()=>{let previous=0;for(let r=0;r<=150;r++){const p=stickVector(r,-r,50);assert.ok(p.strength>=previous&&p.strength<=1);assert.ok(Math.hypot(p.x,p.y)<=1+1e-12);previous=p.strength;}});
+test('Malformed coordinates and invalid joystick dimensions produce neutral input',()=>{for(const vals of[[NaN,0,40],[0,Infinity,50],[0,10,0],[3,2,40,1],[3,2,40,-1]])assert.equal(stickVector(...vals).strength,0);});
+test('Only the captured finger can move or release a joystick',()=>{const s=new StickState();assert.ok(s.begin(7,100,100,50));assert.equal(s.begin(8,0,0,50),false);assert.equal(s.move(8,900,0),false);assert.ok(s.move(7,100,50));assert.equal(s.value.y,1);assert.equal(s.end(8),false);assert.equal(s.value.y,1);assert.ok(s.end(7));assert.equal(s.value.strength,0);assert.equal(s.pointer,null);});
+test('Cancellation resets all stick axes and permits a fresh finger',()=>{const s=new StickState();s.begin(1,0,0,50);s.move(1,20,-40);s.reset();assert.equal(s.value.strength,0);assert.ok(s.begin(2,20,20,30));assert.equal(s.value.strength,0);});
+test('A fractional thumb holds a lower bicycle cruising speed than a full thumb',()=>{const a=newState(),b=newState();ticks(a,{throttle:.25,analog:true},90);ticks(b,{throttle:1,analog:true},90);assert.ok(a.speed<4);assert.ok(b.speed>a.speed+3);});
+test('Joystick braking wins against held throttle and release coasts without stuck acceleration',()=>{const s=newState();ticks(s,{throttle:1,analog:true},80);const fast=s.speed;ticks(s,{throttle:1,analog:true,brake:true},35);assert.ok(s.speed<fast*.45);ticks(s,{},80);assert.ok(s.speed<1);});
+test('The same joystick supports reversing and on-foot movement without changing saves',()=>{const s=newState();ticks(s,{throttle:-.7,analog:true},45);assert.ok(s.speed<0);const f=newState();f.mode='foot';ticks(f,{throttle:.4,steer:.2,analog:true},35);assert.ok(f.speed>0&&f.yaw<0);assert.equal(SAVE_KEY,'svgn.leonardos-guild.v1');});

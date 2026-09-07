@@ -1,0 +1,121 @@
+name: Archive verified Aether release
+on:
+  workflow_run:
+    workflows: ['Verify published Aether Reach']
+    types: [completed]
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  scope:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - id: diff
+        name: Ignore unrelated homepage-only publications
+        run: |
+          if git diff --quiet HEAD^ HEAD -- aether-reach .github/workflows/aether-release-backup.yml; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+  archive:
+    needs: scope
+    if: needs.scope.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+      actions: read
+      pull-requests: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      SOURCE: ${{ github.event.workflow_run.head_sha }}
+      PUBLICATION_RUN: ${{ github.event.workflow_run.id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate trusted published revision and receipt
+        run: |
+          git merge-base --is-ancestor "$SOURCE" origin/master
+          gh run download "$PUBLICATION_RUN" --name aether-publication --dir /tmp/aether-publication
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,os
+          p=Path('/tmp/aether-publication/aether-publication.json');r=json.loads(p.read_text())
+          assert r['all_match'] and r['source']==os.environ['SOURCE']
+          for name,item in r['files'].items():
+            assert item['status']==200 and item['match']
+            assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==item['sha256'],name
+          print('All published runtime bytes match the exact source to archive.')
+          PY
+      - name: Build public backup and verify its clean restoration
+        run: |
+          python aether-reach/tools/backup.py --out /tmp/aether-release
+          ZIP=$(find /tmp/aether-release -name '*source.zip' -print -quit)
+          python aether-reach/tools/backup.py --restore "$ZIP" --destination /tmp/aether-release-restore
+          (cd /tmp/aether-release-restore && node --test aether-reach/tests/*.test.mjs) > /tmp/aether-release/restore-check.txt
+          python aether-reach/tools/collect_release_evidence.py
+          cp aether-reach/planning/*.xlsx /tmp/aether-release/
+          cp /tmp/aether-publication/aether-publication.json /tmp/aether-release/
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          folder=Path('/tmp/aether-release');m=json.loads(Path('aether-reach/planning/WORKBOOK-MANIFEST.json').read_text())
+          assert hashlib.sha256((folder/m['workbook']).read_bytes()).hexdigest()==m['sha256']
+          names=sorted(p for p in folder.iterdir() if p.is_file() and p.name!='SHA256SUMS.txt')
+          (folder/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in names))
+          PY
+      - name: Create a versioned release without overwriting history
+        run: |
+          VERSION=$(node -p "JSON.parse(require('fs').readFileSync('aether-reach/release.json')).version")
+          TAG="aether-v$VERSION"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release download "$TAG" --pattern BACKUP-MANIFEST.json --dir /tmp/aether-existing
+            python - <<'PY'
+          import json,os
+          from pathlib import Path
+          m=json.loads(Path('/tmp/aether-existing/BACKUP-MANIFEST.json').read_text())
+          assert m['source']==os.environ['SOURCE'],'This version already belongs to a different commit; refusing replacement.'
+          PY
+          else
+            printf 'Verified public Aether Reach %s. Source: %s.\n\nIncludes committed public game source, the archived v0.3 workbook, checksums, a clean-restore model test, native flight evidence and the deployment receipt. No private narrative or player browser saves. This is a game snapshot, not a full Git mirror or independent off-site backup. See aether-reach/BACKUPS.md.\n' "$VERSION" "$SOURCE" >/tmp/aether-release-notes.md
+            gh release create "$TAG" /tmp/aether-release/* --target "$SOURCE" --title "Aether Reach $VERSION — verified source backup" --notes-file /tmp/aether-release-notes.md --latest=false
+          fi
+          echo "$TAG" > /tmp/aether-release-tag.txt
+      - name: Download the published assets and verify the backup actually exists
+        run: |
+          TAG=$(cat /tmp/aether-release-tag.txt)
+          gh release download "$TAG" --dir /tmp/aether-release-roundtrip
+          (cd /tmp/aether-release-roundtrip && sha256sum --check SHA256SUMS.txt)
+          python - <<'PY'
+          from pathlib import Path
+          import os,json,hashlib
+          root=Path('/tmp/aether-release-roundtrip');manifest=json.loads((root/'BACKUP-MANIFEST.json').read_text())
+          assert manifest['source']==os.environ['SOURCE']
+          report={'source':manifest['source'],'version':manifest['version'],'releaseTag':Path('/tmp/aether-release-tag.txt').read_text().strip(),'downloadedAndVerified':True,'sourceFiles':len(manifest['files']),'assets':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in root.iterdir() if p.is_file()},'scope':'Public game only. No browser saves, private story, full Git history or off-site mirroring.'}
+          Path('/tmp/aether-backup-receipt.json').write_text(json.dumps(report,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-release-backup-receipt
+          path: |
+            /tmp/aether-backup-receipt.json
+            /tmp/aether-release/restore-check.txt
+          retention-days: 30
