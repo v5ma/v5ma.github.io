@@ -8,7 +8,10 @@
  function build(index,T){if(index<3)return oldBuild(index,T);if(index!==3)throw new RangeError('Unknown route');
   const a=[[100,2100],[310,2100]];bez(a,a.at(-1),[410,2100],[440,2040],[505,1975]);
   const b=arc(1110,1840,185,162,18);
-  const c=[[1760,1840]];bez(c,c[0],[1860,2020],[1900,2190],[2100,2190]);c.push([3400,2190]);bez(c,c.at(-1),[3500,2190],[3530,2130],[3595,2065]);
+  // A low curved mouth catches late/near-vertical whip releases without
+  // changing the established cradle or its downstream launch tangent.
+  const c=[[1460,2050]];bez(c,c[0],[1500,1820],[1720,1768],[1760,1840],48);
+  bez(c,c.at(-1),[1860,2020],[1900,2190],[2100,2190]);c.push([3400,2190]);bez(c,c.at(-1),[3500,2190],[3530,2130],[3595,2065]);
   const d=[[4140,1990]];bez(d,d[0],[4260,2100],[4300,2304],[4460,2304]);
   // Raised rolling catchers receive faster whip arrivals without hidden snaps.
   bez(d,d.at(-1),[4540,2304],[4650,2140],[4800,2140],24);d.push([4960,2140]);

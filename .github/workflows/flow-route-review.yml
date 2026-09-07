@@ -2,7 +2,7 @@ name: Verify authored flowing routes
 on:
   pull_request:
     branches: [master]
-    paths: ['mario-maker-clone/svgn-paper-route/**','tests/flow*','tests/helpers/flow-fixture.cjs','.github/workflows/flow-route-review.yml']
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/flow*','tests/helpers/flow-fixture.cjs','tests/hookline_release_window.test.cjs','.github/workflows/flow-route-review.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,19 +20,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify current-physics carried states, physical clearance and saved documents
+      - name: Verify carried states, delayed releases, physical clearance and saved documents
         run: |
           python scripts/check-rail-release.py
           node --check mario-maker-clone/svgn-paper-route/sky-network-layout.js
           node --check mario-maker-clone/svgn-paper-route/flow-route-tools.js
-          node --test tests/flow_routes.test.cjs tests/sky_network.test.cjs
+          node --test tests/flow_routes.test.cjs tests/sky_network.test.cjs tests/hookline_release_window.test.cjs
           git diff --exit-code
   native:
     needs: models
     strategy:
       fail-fast: false
       matrix:
-        route: [sky, canal, recover, road, editor]
+        route: [sky, canal, recover, reentry, road, editor]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -58,7 +58,7 @@ jobs:
           python scripts/check-rail-release.py
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          tar -czf test-output/flow-runtime.tgz mario-maker-clone/svgn-paper-route tests/flow_routes* tests/helpers/flow-fixture.cjs
+          tar -czf test-output/flow-runtime.tgz mario-maker-clone/svgn-paper-route tests/flow_routes* tests/helpers/flow-fixture.cjs tests/hookline_release_window.test.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -11,7 +11,7 @@ def check(v,s):
  assert v,s
  checks.append(s);print('PASS:',s,flush=True)
 def state(page):
- return page.evaluate('''()=>({x:player.x,y:player.y,vx:player.vx,vy:player.vy,won,tries,deliveries,steps:__ground.state.steps,paused:__delivery.paused,right:!!keys.KeyD,left:!!keys.KeyA,jump:!!keys.Space,id:player.track?.sky.id,remaining:player.track?player.track.len-player.trackS:null,visits:[...__network.state.visits],events:__network.state.events,hooks:__grapple.state.hooks,history:RailGripCore.history})''')
+ return page.evaluate('''()=>({x:player.x,y:player.y,vx:player.vx,vy:player.vy,won,tries,deliveries,steps:__ground.state.steps,paused:__delivery.paused,right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft),jump:!!keys.Space,id:player.track?.sky.id,remaining:player.track?player.track.len-player.trackS:null,visits:[...__network.state.visits],events:__network.state.events,hooks:__grapple.state.hooks,history:RailGripCore.history})''')
 def capture(page,name):
  page.locator('#cv').focus();page.keyboard.press('KeyP');page.wait_for_function('__delivery.paused')
  page.locator('#gl').screenshot(path=str(OUT/name));page.locator('#delivery-pause [data-delivery="resume"]').click();page.wait_for_function('!__delivery.paused');page.locator('#cv').focus();page.keyboard.down('KeyD')
@@ -20,7 +20,8 @@ with sync_playwright() as p:
  context=browser.new_context(viewport={'width':1440,'height':940},record_video_dir=str(OUT/'video'),service_workers='block',accept_downloads=True)
  context.add_init_script("localStorage.setItem('sprocket_muted','1')")
  host=urlparse(BASE).hostname;context.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
- page=context.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('dialog',lambda d:d.accept())
+ page=context.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
+ page.add_init_script("window.__flowTestInput=[];for(const type of ['keydown','keyup'])window.addEventListener(type,e=>{if(!['KeyD','KeyA','Space'].includes(e.code))return;__flowTestInput.push({type,code:e.code,step:window.__ground?.state.steps});if(__flowTestInput.length>100)__flowTestInput.shift();},true);");page.on('dialog',lambda d:d.accept())
  try:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded')
   page.wait_for_function('window.__flowRoutes&&window.RideLabReady&&window.__gpuReady===true')
@@ -48,7 +49,7 @@ with sync_playwright() as p:
     check(state(page)['steps']==n,'The route map pauses without changing progress');page.screenshot(path=str(OUT/'whole-level-map.png'));page.locator('#network-map-close').click();page.wait_for_function('!document.getElementById("sky-network-map").open&&!__delivery.paused')
    page.locator('#cv').focus();page.keyboard.down('KeyD')
    if MODE!='road':
-    entry='e4' if MODE=='recover' else 'm0';x=3580 if MODE=='recover' else 320
+    entry='e4' if MODE=='recover' else 'e2' if MODE=='reentry' else 'm0';x=3580 if MODE=='recover' else 2212 if MODE=='reentry' else 320
     page.wait_for_function('(x)=>player.x>=x',arg=x,timeout=480000);page.keyboard.down('Space');page.wait_for_function('(id)=>player.track?.sky.id===id',arg=entry,timeout=45000);page.keyboard.up('Space')
     check(True,'A deliberate road jump enters the selected route')
     if MODE in ['sky','canal']:
@@ -80,7 +81,7 @@ with sync_playwright() as p:
  except Exception as e:
   try:detail=state(page)
   except:detail=None
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':detail},indent=2))
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'inputs':page.evaluate('window.__flowTestInput||[]'),'state':detail},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))
   except:pass
   raise

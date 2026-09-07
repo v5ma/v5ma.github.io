@@ -40,3 +40,15 @@ test('Distinct roadway bodies keep a 70-pixel centerline clearance instead of ov
  function distance(a,b,c,d){const dx=b[0]-a[0],dy=b[1]-a[1],ex=d[0]-c[0],ey=d[1]-c[1],det=dx*ey-dy*ex;if(det){const u=((c[0]-a[0])*ey-(c[1]-a[1])*ex)/det,v=((c[0]-a[0])*dy-(c[1]-a[1])*dx)/det;if(u>=0&&u<=1&&v>=0&&v<=1)return 0;}return Math.min(pointDistance(a,c,d),pointDistance(b,c,d),pointDistance(c,a,b),pointDistance(d,a,b));}
  for(let i=0;i<pieces.length;i++)for(let j=i+1;j<pieces.length;j++){let min=Infinity;for(let a=1;a<pieces[i].length;a++)for(let b=1;b<pieces[j].length;b++)min=Math.min(min,distance(pieces[i][a-1],pieces[i][a],pieces[j][b-1],pieces[j][b]));assert.ok(min>=70,pieces[i].sky.id+' / '+pieces[j].sky.id+': '+min);}
 });
+
+// Timing spread is a control scenario, not an enlarged snap radius. The native
+// fork failure had the correct exit velocity but held the brake into flight.
+test('The collector accepts delayed brake releases without blocking the other road entrance',()=>{
+ const route=routes.find(r=>r.id==='canal');
+ for(const remaining of[100,120,140])for(const brakeAfter of[0,2,4,6,8,10,12]){
+  const r=replay(c,route,{remaining,brakeAfter});
+  assert.deepEqual(r.visits,normal(route.expected),`brake ${remaining}, release delay ${brakeAfter}`);
+  assert.deepEqual(r.warnings,[]);assert.equal(r.exit,'road');
+ }
+ const reentry=replay(c,routes.find(r=>r.id==='reentry'));assert.deepEqual(reentry.warnings,[]);
+});

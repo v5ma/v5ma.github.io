@@ -4,7 +4,7 @@ const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const root=path.join(__dirname,'../../mario-maker-clone/svgn-paper-route');
 function context(){const c={console,btoa,atob,TextEncoder,escape,unescape,stepPlayer(){}};c.window=c;vm.createContext(c);for(const f of['campaign.js','sky-routes.js','grapple-core.js','rail-grip-core.js','open-course.js','ground-courses.js','sky-network-layout.js','workshop-core.js','bezier-core.js','ride-lab-core.js'])vm.runInContext(fs.readFileSync(path.join(root,f),'utf8'),c,{filename:f});return c;}
 const T={STEEL:1,BRICK:2,CRATE:3,GEAR:5,SPRING:6,PLAT:7,GOAL:8,BCRATE:9,CHECK:13,START:15,BLOOP:16,SHELL:17,HOVER:18,NITRO:27,BIKEDOCK:36,SHIELD:43,STAR:44,PEG:60,MAILBOX:63,QBLOCK:84};
-function replay(c,route,{speed=7.5,offset=120,remaining=route.brake?.remaining,mode='forgiving',jump=null}={}){
+function replay(c,route,{speed=7.5,offset=120,remaining=route.brake?.remaining,mode='forgiving',jump=null,brakeAfter=0}={}){
  const d=c.GroundCampaign.make(0,T),fork=c.RailGripCore.create(),K=fork.physics;
  fork.grip.configure({mode});const rails=d.ct.map(p=>K.rail(p,p.sky)),t=rails.find(t=>t.sky.id===route.entry);
  const p={x:t.pts[0][0]-offset,y:d.ground*36-30,w:26,h:30,vx:speed,vy:-13,trackCD:0,_airTicks:0,onGround:false,roll:0};
@@ -31,7 +31,7 @@ function replay(c,route,{speed=7.5,offset=120,remaining=route.brake?.remaining,m
    const hop=jump&&!jumped&&tr.sky.id===jump.id&&p.trackS/tr.len>=jump.fraction;if(hop)jumped=true;
    const exit=K.ride(p,{right:!brake,left:!!brake,jump:!!hop});if(exit){from=tr.sky.id;p._airTicks=0;events.push({type:'exit',id:from,tick,vx:p.vx,vy:p.vy});}
   }else{
-   if(!entered){p.vy=Math.min(13,p.vy+.55);p.x+=p.vx;p.y+=p.vy;}else K.flight(p,{right:true});p._airTicks++;
+   if(!entered){p.vy=Math.min(13,p.vy+.55);p.x+=p.vx;p.y+=p.vy;}else K.flight(p,{right:!(from===route.brake?.surface&&p._airTicks<brakeAfter),left:from===route.brake?.surface&&p._airTicks<brakeAfter});p._airTicks++;
    const v=Math.hypot(p.vx,p.vy),hit=K.catchRail(p,old,rails,from);
    if(hit){entered=true;visits.add(hit.tr.sky.id);events.push({type:'catch',id:hit.tr.sky.id,tick,face:hit.face,speed:p.speed,retention:Math.abs(p.speed)/(v||1),airTicks:p._airTicks});from=null;p._airTicks=0;}
   }
