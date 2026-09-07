@@ -21,7 +21,7 @@ export function building(parent,site){const g=anchor(parent,site.n,0,site.type==
  if(t==='post'){const c=document.createElement('canvas');c.width=256;c.height=96;const x=c.getContext('2d');x.fillStyle='#254f51';x.fillRect(0,0,256,96);x.fillStyle='#fff0bc';x.font='bold 49px sans-serif';x.textAlign='center';x.fillText('SVGN',128,67);const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const sign=new T.Mesh(new T.PlaneGeometry(1.75,.65),new T.MeshStandardMaterial({map:tx,roughness:.8}));sign.position.set(0,1.97,2.48);g.add(sign);}
  let wheel=null;if(t==='mill'){wheel=new T.Group();wheel.position.set(1.6,.9,0);g.add(wheel);for(let i=0;i<10;i++){const a=i/10*Math.PI*2;mesh(wheel,'box','#b98151',[0,Math.sin(a),Math.cos(a)],[.45,.22,.5],[a,0,0]);}for(let i=0;i<5;i++)mesh(wheel,'box','#dfb87b',[0,0,0],[.14,.12,2.2],[i*Math.PI/5,0,0]);}
  return {g,wheel};}
-export function mailbox(parent,site){const g=anchor(parent,site.mail);mesh(g,'cylinder','#8f7658',[0,.45,0],[.06,.9,.06]);mesh(g,'box','#e8c389',[0,.88,0],[.55,.42,.42]);mesh(g,'box','#2a5763',[0,.9,.23],[.4,.1,.025]);const flag=mesh(g,'box','#f0a454',[.34,1.03,0],[.2,.3,.04]);return {g,flag};}
+export function mailbox(parent,site){const g=anchor(parent,site.mail);mesh(g,'cylinder','#8f7658',[0,.45,0],[.06,.9,.06]);mesh(g,'box','#e8c389',[0,.88,0],[.55,.42,.42]);mesh(g,'box','#2a5763',[0,.9,.23],[.4,.1,.025]);const flag=mesh(g,'box','#f0a454',[.34,1.03,0],[.2,.3,.04]);flag.material=flag.material.clone();return {g,flag};}
 export function bridge(parent){const g=anchor(parent,at(5.55,1),.30,-.05);for(let i=-6;i<=6;i++){const y=.15+.20*Math.cos(i/6*Math.PI/2);mesh(g,'box','#c18e59',[i*.28,y,0],[.26,.18,1.6]);}
  for(const z of[-.77,.77]){for(const x of[-1.7,-.85,0,.85,1.7])mesh(g,'box','#91673f',[x,.55,z],[.1,1,.1]);mesh(g,'box','#dfb779',[0,.88,z],[3.7,.09,.09]);}return g;}
 export function avatar(parent){const g=new T.Group();parent.add(g);const body=new T.Group();g.add(body);
@@ -29,6 +29,14 @@ export function avatar(parent){const g=new T.Group();parent.add(g);const body=ne
  for(const x of[-.33,.33])mesh(body,'box','#dca576',[x,.97,0],[.14,.48,.17],[0,0,-x*.35]);const legs=[];
  for(const x of[-.14,.14]){const l=new T.Group();l.position.set(x,.86,0);body.add(l);mesh(l,'box','#385e6c',[0,-.23,0],[.18,.5,.18]);mesh(l,'box','#f0d5a6',[0,-.51,-.07],[.21,.14,.32]);legs.push(l);}
  const unicycle=new T.Group();g.add(unicycle);const wheel=mesh(unicycle,'cylinder','#294a52',[0,.38,0],[.38,.19,.38],[0,0,Math.PI/2]);mesh(unicycle,'cylinder','#c7d9ca',[.11,.38,0],[.24,.025,.24],[0,0,Math.PI/2]);mesh(unicycle,'box','#d79542',[0,.62,0],[.28,.24,.45]);for(const x of[-.27,.27])mesh(unicycle,'box','#576f74',[x,.42,0],[.35,.08,.23]);return {g,body,legs,wheel,unicycle};}
-export function road(parent,points,width,color,raise=.045){const pos=[],normal=[],verts=[];for(let i=0;i<points.length;i++){const n=points[i],next=points[Math.min(points.length-1,i+1)],prev=points[Math.max(0,i-1)],t=norm(add(next,mul(prev,-1))),side=norm(cross(n,t));for(const k of[-1,1]){const v=norm(add(n,mul(side,k*width/RADIUS/2)));verts.push(point(v,raise));}}
- for(let i=1;i<points.length;i++){for(const idx of[(i-1)*2,(i-1)*2+1,i*2,i*2,(i-1)*2+1,i*2+1]){pos.push(...verts[idx]);normal.push(...norm(verts[idx]));}}
+export function road(parent,points,width,color,raise=.12){const pos=[],normal=[],verts=[];for(let i=0;i<points.length;i++){const n=points[i],next=points[Math.min(points.length-1,i+1)],prev=points[Math.max(0,i-1)],t=norm(add(next,mul(prev,-1))),side=norm(cross(n,t));for(const k of[-1,1]){const v=norm(add(n,mul(side,k*width/RADIUS/2)));verts.push(point(v,raise));}}
+ for(let i=1;i<points.length;i++){for(const idx of[(i-1)*2,i*2,(i-1)*2+1,i*2,i*2+1,(i-1)*2+1]){pos.push(...verts[idx]);normal.push(...norm(verts[idx]));}}
  const geo=new T.BufferGeometry();geo.setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setAttribute('normal',new T.Float32BufferAttribute(normal,3));const material=new T.MeshStandardMaterial({color,roughness:.98,side:T.DoubleSide});const m=new T.Mesh(geo,material);m.receiveShadow=true;parent.add(m);return m;}
+
+/* Collapse static trees/flowers into instanced draws without changing any
+ * authored positions or shared geometry. Dynamic props stay separate. */
+export function batchStatic(group){
+ group.updateWorldMatrix(true,true);const batches=new Map(),inverse=group.matrixWorld.clone().invert();
+ group.traverse(o=>{if(!o.isMesh)return;const key=o.geometry.uuid+o.material.uuid;if(!batches.has(key))batches.set(key,{geometry:o.geometry,material:o.material,matrices:[]});batches.get(key).matrices.push(new T.Matrix4().multiplyMatrices(inverse,o.matrixWorld));});
+ group.clear();for(const b of batches.values()){const m=new T.InstancedMesh(b.geometry,b.material,b.matrices.length);b.matrices.forEach((matrix,i)=>m.setMatrixAt(i,matrix));m.instanceMatrix.needsUpdate=true;m.computeBoundingSphere();m.castShadow=m.receiveShadow=true;group.add(m);}
+}

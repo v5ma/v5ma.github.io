@@ -51,6 +51,10 @@ with sync_playwright() as p:
   page.wait_for_function('SVGNPlanet.inspect().lift===0');page.keyboard.press('KeyF');check(state(page)['ride'],'F switches to the visible electric unicycle without relocating the player')
   sites={p['id']:p['n'] for p in state(page)['sites']}
   for i,name in enumerate(['cabin','beacon','mill']):
+   if name=='mill':
+    # Approach the front walk via the village path, not through the cottage wall.
+    for x,z in [(0,0),(4,7),(11,7)]:
+     navigate(page,[math.sin(x/22)*math.cos(z/22),math.cos(x/22)*math.cos(z/22),math.sin(z/22)])
    navigate(page,sites[name]);page.keyboard.press('KeyE');page.wait_for_function('(id)=>SVGNPlanet.inspect().deliveries.includes(id)',arg=name)
    check(True,'Real movement and local interaction delivered to '+name)
    page.screenshot(path=str(OUT/f'0{i+2}-{name}.png'))
