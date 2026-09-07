@@ -20,8 +20,10 @@ def hold(page,codes):
  held=codes
 def stop(page):
  hold(page,[])
- if read(page)['speed']>.6:
-  hold(page,['KeyS']);page.wait_for_function('SVGNCity.inspect().speed<.6',timeout=20000);hold(page,[])
+ s=read(page)
+ if abs(s['speed'])>.6:
+  if s['mode']!='foot':hold(page,['KeyS' if s['speed']>0 else 'KeyW'])
+  page.wait_for_function('Math.abs(SVGNCity.inspect().speed)<.6',timeout=20000);hold(page,[])
 def drive(page,x,z,radius=2.3,limit=140):
  started=time.monotonic()
  while time.monotonic()-started<limit:
@@ -32,7 +34,9 @@ def drive(page,x,z,radius=2.3,limit=140):
   desired=min(9 if s['mode']=='car' else 7 if s['mode']=='bike' else 4,math.sqrt(max(.1,dist-radius)*4))
   if abs(angle)>.5:desired=min(desired,3.0)
   keys=[]
-  if s['speed']>desired+.4:keys.append('KeyS')
+  if s['mode']=='foot':
+   if abs(angle)<1.2:keys.append('KeyW')
+  elif s['speed']>desired+.4:keys.append('KeyS')
   elif s['speed']<desired-.2:keys.append('KeyW')
   if angle>.055:keys.append('KeyA')
   elif angle<-.055:keys.append('KeyD')
@@ -66,7 +70,7 @@ with sync_playwright() as p:
   check(read(page)['steps']==snap['steps'],'The map pauses simulation rather than moving the rider')
   page.screenshot(path=str(OUT/'03-city-map.png'));page.locator('#map-close').click()
   check(not read(page)['paused'],'Closing the map restores ordinary play')
-  drive(page,2,170);drive(page,8.5,190,3)
+  drive(page,0,110);drive(page,0,170);drive(page,8.5,190,3)
   page.keyboard.press('KeyX');hold(page,['KeyH']);page.wait_for_function('SVGNCity.inspect().relay',timeout=30000);hold(page,[])
   check(read(page)['mission']==2,'Proximity + scan + held interaction unlocks the civic shortcut')
   page.screenshot(path=str(OUT/'04-city-link.png'))
