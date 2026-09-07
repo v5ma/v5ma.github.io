@@ -1,0 +1,28 @@
+name: Rainward public source snapshot
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/rainward-first-survival]
+    paths: [.github/workflows/rainward-source.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package only public shared inputs and scoped source
+        run: |
+          mkdir -p /tmp/rainward-source
+          git rev-parse HEAD > /tmp/rainward-source/source-sha.txt
+          find . -name AGENTS.md -not -path './.git/*' -print > /tmp/rainward-source/agent-paths.txt
+          for f in AGENTS.md .github/AGENTS.md .github/workflows/AGENTS.md; do
+            if test -f "$f"; then printf '\n--- %s ---\n' "$f" >> /tmp/rainward-source/instructions.txt; cat "$f" >> /tmp/rainward-source/instructions.txt; fi
+          done
+          tar -czf /tmp/rainward-source/shared.tgz index.html projects.css aether-reach/vendor
+          if test -d rainward; then tar -czf /tmp/rainward-source/rainward.tgz rainward; fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rainward-public-source
+          path: /tmp/rainward-source
+          retention-days: 7

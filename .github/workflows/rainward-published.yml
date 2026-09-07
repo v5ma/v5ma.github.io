@@ -1,0 +1,24 @@
+name: Verify published Rainward demo
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths: ['rainward/**','.github/workflows/rainward-published.yml']
+permissions:
+  contents: read
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare the public demo with the merged source
+        run: python rainward/tests/release.py --published
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-publication
+          path: |
+            test-output/rainward-source-manifest.json
+            test-output/rainward-publication.json
+          retention-days: 14
