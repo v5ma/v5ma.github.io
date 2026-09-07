@@ -36,10 +36,10 @@ export function createScene(canvas,world,state){
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(44,1,.15,500),planet=new T.Group();scene.add(planet);scene.background=new T.Color('#173b48');
  const hemi=new T.HemisphereLight('#e3f6db','#56707a',1.7),sun=new T.DirectionalLight('#fff0c2',3.5);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-46,right:46,top:46,bottom:-46,near:1,far:220});sun.shadow.bias=-.0003;sun.shadow.normalBias=.05;scene.add(hemi,sun,sun.target);
  const fill=new T.DirectionalLight('#b4e4f1',1.15);fill.position.set(-40,10,60);scene.add(fill);
- const geo=new T.IcosahedronGeometry(R,5),p=geo.attributes.position,colors=[];
+ const geo=new T.IcosahedronGeometry(R,20),p=geo.attributes.position,colors=[];
  for(let i=0;i<p.count;i+=3){const ns=[0,1,2].map(k=>unit([p.getX(i+k),p.getY(i+k),p.getZ(i+k)])),center=unit(ns.reduce((a,b)=>add(a,b),[0,0,0])),wet=water(center),c=new T.Color(wet?'#378c91':Math.abs(dot(center,riverAxis))<.075&&Math.abs(center[2])>.075?'#b7b87a':['#6eaa61','#80b366','#75ad60','#83b568','#73a958'][Math.floor(rand(i)*5)]);for(let j=0;j<3;j++){const v=scale(ns[j],R+height(ns[j]));p.setXYZ(i+j,...v);colors.push(c.r,c.g,c.b);}}
  geo.setAttribute('color',new T.Float32BufferAttribute(colors,3));geo.computeVertexNormals();const ground=new T.Mesh(geo,new T.MeshStandardMaterial({vertexColors:true,flatShading:true,roughness:1}));ground.receiveShadow=true;planet.add(ground);
- const sea=new T.Mesh(new T.IcosahedronGeometry(R-.27,5),new T.MeshStandardMaterial({color:'#55c2b2',flatShading:true,roughness:.35,metalness:.1}));planet.add(sea);
+ const sea=new T.Mesh(new T.IcosahedronGeometry(R-.27,18),new T.MeshStandardMaterial({color:'#55c2b2',flatShading:true,roughness:.35,metalness:.1}));planet.add(sea);
  const roads=new Batch(),props=new Batch(),leaves=new Batch(),wood=new Batch(),stone=new Batch();
  function curve(a,b,t){return unit(add(scale(a,1-t),scale(b,t)));}
  // Ribbon vertices are projected onto the same radial ground the rider uses.

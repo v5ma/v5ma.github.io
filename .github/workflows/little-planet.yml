@@ -22,8 +22,9 @@ jobs:
           node-version: '22'
       - name: Check spherical movement and source
         run: |
+          set -o pipefail
           mkdir -p planet-evidence
-          node --test little-planet/tests/model.test.mjs | tee planet-evidence/model-tests.txt
+          node --test little-planet/tests/*.test.mjs | tee planet-evidence/model-tests.txt
           for file in little-planet/*.mjs; do node --check "$file"; done
           find . -maxdepth 2 -iname AGENTS.md -not -path './.git/*' -print -exec cat {} \; > planet-evidence/agent-instructions.txt
       - name: Install native Chromium

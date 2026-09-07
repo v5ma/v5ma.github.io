@@ -39,7 +39,11 @@ export function makeWorld(){
  for(const s of stops)colliders.push({n:s.house,radius:s.kind==='lighthouse'?1.6:2.0,id:s.id});
  for(let i=0;i<32;i++)coins.push({id:'stamp-'+i,n:ring((i+.5)/32*Math.PI*2,i%4===0?.09:0)});
  for(const [j,b]of beacons.entries())for(let i=1;i<5;i++){const lon=[.35,2.4,4.6][j],lat=Math.asin(b.n[2])*i/5;coins.push({id:'branch-'+j+'-'+i,n:ring(lon,lat)});}
- return {stops,beacons,paths,trees,rocks,colliders,coins,mountains};
+ // Keep complete walking corridors along every optional beacon trail. The
+ // rendered obstacles and collision list are filtered by the same predicate.
+ const samples=paths.filter(p=>p.id.startsWith('beacon')).flatMap(p=>Array.from({length:41},(_,i)=>unit(add(scale(p.nodes[0],1-i/40),scale(p.nodes[1],i/40)))));
+ const clearTrail=(n,radius)=>!samples.some(p=>distance(n,p)<radius+1.0);
+ return {stops,beacons,paths,trees:trees.filter(t=>clearTrail(t.n,.47)),rocks:rocks.filter(t=>clearTrail(t.n,.6)),colliders:colliders.filter(c=>clearTrail(c.n,c.radius)),coins,mountains};
 }
 export function newState(saved=null){return {n:[0,1,0],f:[1,0,0],speed:0,lift:0,vy:0,mode:'foot',distance:0,steps:0,time:0,delivered:new Set(saved?.delivered||[]),visited:new Set(saved?.visited||['stop-0']),collected:new Set(saved?.collected||[]),lit:new Set(saved?.lit||[]),completed:!!saved?.completed,toast:'Walk the round-world path. Four neighbors are waiting for their parcels.',toastT:6,events:[],laps:0,journey:0};}
 export function notice(s,text){s.toast=text;s.toastT=4.5;}

@@ -3,7 +3,7 @@ The full round must physically reach the far hemisphere and come home again.
 """
 from pathlib import Path
 from urllib.parse import urlparse
-import os,json,time
+import os,json,time,math
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'test-output';OUT.mkdir(exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[]
@@ -11,6 +11,28 @@ def check(v,s):
  assert v,s
  checks.append(s);print('PASS:',s,flush=True)
 def read(p):return p.evaluate('LittlePlanet.inspect()')
+def walk_to(page,target,timeout=70):
+ # A read-only observation driver presses ordinary movement keys. The actual
+ # game integrates every turn and step around the sphere; no state writes.
+ held=set();start=time.monotonic()
+ def set_keys(wanted):
+  nonlocal held
+  for key in held-wanted:page.keyboard.up(key)
+  for key in wanted-held:page.keyboard.down(key)
+  held=wanted
+ try:
+  while time.monotonic()-start<timeout:
+   s=read(page);n=s['n'];f=s['f'];dot=lambda a,b:sum(x*y for x,y in zip(a,b));d=math.acos(max(-1,min(1,dot(n,target))))*32
+   if d<1.6:return
+   q=[target[i]-dot(n,target)*n[i] for i in range(3)];mag=math.sqrt(dot(q,q));q=[x/max(mag,1e-9) for x in q]
+   cr=[f[1]*q[2]-f[2]*q[1],f[2]*q[0]-f[0]*q[2],f[0]*q[1]-f[1]*q[0]];angle=math.atan2(dot(n,cr),dot(f,q))
+   wanted=set()
+   if angle>.06:wanted.add('KeyA')
+   elif angle<-.06:wanted.add('KeyD')
+   if abs(angle)<.75:wanted.add('KeyW')
+   set_keys(wanted);page.wait_for_timeout(45)
+  raise AssertionError('Could not walk the curved optional trail: '+json.dumps(read(page)))
+ finally:set_keys(set())
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
@@ -43,7 +65,14 @@ with sync_playwright() as pw:
   p.locator('#atlas').click();p.wait_for_selector('#atlas-dialog[open]');before=read(p);p.wait_for_timeout(400);check(read(p)['steps']==before['steps'],'The atlas pauses movement without teleporting the player');p.screenshot(path=str(OUT/'07-planet-atlas.png'));p.locator('#close-atlas').click();p.wait_for_function('!LittlePlanet.inspect().paused')
   p.locator('#world').focus();p.keyboard.down('KeyS');p.wait_for_function('LittlePlanet.inspect().speed<-3');p.keyboard.up('KeyS');check(True,'The bicycle can reverse to revisit paths')
   p.locator('#pause').click();p.wait_for_selector('#pause-dialog[open]');q=read(p);p.wait_for_timeout(300);check(read(p)['steps']==q['steps'],'Pause clears held controls and freezes the actual simulation');p.locator('#resume').click();p.wait_for_function('!LittlePlanet.inspect().paused')
+  p.locator('#world').focus();p.keyboard.press('KeyF');p.wait_for_function('LittlePlanet.inspect().mode==="foot"')
+  walk_to(p,[math.sin(.35),math.cos(.35),0])
+  walk_to(p,[math.sin(.35)*math.cos(-.70),math.cos(.35)*math.cos(-.70),math.sin(-.70)])
+  p.keyboard.press('KeyE');p.wait_for_function('LittlePlanet.inspect().lit.includes("beacon-0")')
+  check(True,'Ordinary turning and walking reach and activate the optional Pinecrest beacon')
+  p.screenshot(path=str(OUT/'09-optional-beacon.png'))
   before=read(p);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.LittlePlanet');check(read(p)['completed'] and read(p)['delivered']==before['delivered'],'Delivered parcels and completion survive a real page reload')
+  check(read(p)['lit']==['beacon-0'],'Optional exploration progress survives the same save/reload')
   check(p.evaluate('!!localStorage.getItem("svgn.little-planet.v1")'),'Progress uses an isolated Little Planet save namespace')
   p.set_viewport_size({'width':390,'height':844});p.screenshot(path=str(OUT/'08-mobile-title.png'));check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'The title and game UI fit a phone-width viewport')
   check(not errors,'No uncaught browser errors during the full round')
