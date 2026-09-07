@@ -5,7 +5,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {Document,NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
-import {mergeDocuments,weld,simplify,dedup,prune,textureCompress,getBounds} from '@gltf-transform/functions';
+import {mergeDocuments,weld,simplify,dedup,prune,unpartition,textureCompress,getBounds} from '@gltf-transform/functions';
 import {MeshoptSimplifier} from 'meshoptimizer';
 import sharp from 'sharp';
 const [source,out]=process.argv.slice(2);if(!source||!out)throw Error('Usage: pack-quay-art.mjs <prepared input> <output art directory>');
@@ -24,7 +24,7 @@ for(const profile of ['desktop','mobile']){
   }
   scene.addChild(container);
  }
- await lib.transform(dedup(),prune(),textureCompress({encoder:sharp,targetFormat:'webp',resize:profile==='desktop'?[1024,1024]:[512,512],quality:88}));
+ await lib.transform(dedup(),prune(),unpartition(),textureCompress({encoder:sharp,targetFormat:'webp',resize:profile==='desktop'?[1024,1024]:[512,512],quality:88}));
  const name='architecture-'+profile+'.glb';await io.write(path.join(out,name),lib);
  report.push({file:name,source:'Quaternius Downtown City MegaKit Standard',templates:names,triangles:count(lib),textures:lib.getRoot().listTextures().length});
  for(const id of ['street_lamp_01','potted_plant_01']){
