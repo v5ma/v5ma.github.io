@@ -1,0 +1,67 @@
+name: Verify authored flowing routes
+on:
+  pull_request:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/flow*','tests/helpers/flow-fixture.cjs','tests/hookline_release_window.test.cjs','.github/workflows/flow-route-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: flowing-routes-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify carried states, delayed releases, physical clearance and saved documents
+        run: |
+          python scripts/check-rail-release.py
+          node --check mario-maker-clone/svgn-paper-route/sky-network-layout.js
+          node --check mario-maker-clone/svgn-paper-route/flow-route-tools.js
+          node --test tests/flow_routes.test.cjs tests/sky_network.test.cjs tests/hookline_release_window.test.cjs
+          git diff --exit-code
+  native:
+    needs: models
+    strategy:
+      fail-fast: false
+      matrix:
+        route: [sky, canal, recover, reentry, road, editor]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install the pinned real browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Drive the same 3D world through normal controls
+        env:
+          FLOW_SUITE: ${{ matrix.route }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/flow-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1320 python -u tests/flow_routes_browser.py
+      - name: Preserve exact source and failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python scripts/check-rail-release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/flow-runtime.tgz mario-maker-clone/svgn-paper-route tests/flow_routes* tests/helpers/flow-fixture.cjs tests/hookline_release_window.test.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flow-route-${{ matrix.route }}
+          path: test-output/
+          retention-days: 7

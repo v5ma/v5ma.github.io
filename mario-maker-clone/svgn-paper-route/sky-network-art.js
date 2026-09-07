@@ -6,7 +6,7 @@ globalThis.SkyNetworkArt=(()=>{
   const road=new kit.Batch(),edges=new kit.Batch(),markers=new kit.Batch();let count=0;
   const quad=(b,a,c,d,e,color)=>{b.tri(a,c,d,color);b.tri(a,d,e,color);};
   for(const {pts,sky:tag}of paths){
-   const f=sectionFrames(pts),v=(a,n,z)=>[a.x+a.nx*n*a.miter,a.y+a.ny*n*a.miter,z],gold=tag.tier===3?'#eac576':'#d9ba63';
+   const f=sectionFrames(pts),v=(a,n,z)=>[a.x+a.nx*n*a.miter,a.y+a.ny*n*a.miter,z],gold=tag.authoredFlow&&tag.id.startsWith('b')?'#85d5c7':tag.tier===3?'#eac576':'#d9ba63';
    for(let i=1;i<f.length;i++){
     const a=f[i-1],b=f[i];
     quad(road,v(a,0,-32),v(a,0,32),v(b,0,32),v(b,0,-32),'#315c61');
@@ -20,7 +20,7 @@ globalThis.SkyNetworkArt=(()=>{
    }
    for(const end of[f[0],f.at(-1)])quad(edges,v(end,0,-32),v(end,-34,-32),v(end,-34,32),v(end,0,32),gold);
    if(tag.entry){
-    const first=pts[0],ground=course.ground*36,x=first[0]-62;
+    const first=pts[0],ground=course.ground*36,x=first[0]-(tag.authoredFlow?180:62);
     metal.rod([x,-ground,-40],[x,-ground+102,-40],2.5,'#526d74');
     sign('UPPER ROUTE '+(tag.sector+1)+' / JUMP',x,-ground+110,-32,174,35);
    }
@@ -29,7 +29,7 @@ globalThis.SkyNetworkArt=(()=>{
   const ground=course.ground*36;
   for(let i=0;i<course.gp.skyNetwork.sectors.length;i++){
    const s=course.gp.skyNetwork.sectors[i],x=s.x+s.w*.46,y=-s.y-120,z=-170;
-   far.box(x,-ground+220,z,12,440,16,'#637b7c');far.rod([x,-ground+360,z],[x+240,y-70,z],5,'#7a938d');
+   if(!course.gp.flowRoutes){far.box(x,-ground+220,z,12,440,16,'#637b7c');far.rod([x,-ground+360,z],[x+240,y-70,z],5,'#7a938d');}
    if(i%2===0){kit.rock(terrain,x+170,y-130,-240,88,130,i+2);kit.grass(greenery,x+170,y-128,-240,88,.55);kit.tree(greenery,x+170,y-122,-240,.55,i);}
    sign(s.name.toUpperCase(),x,y+95,-90,180,39);
   }
