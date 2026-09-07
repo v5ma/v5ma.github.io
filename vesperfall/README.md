@@ -40,3 +40,16 @@ Run `node --test vesperfall/tests/core.test.cjs`. Browser suites require Playwri
 - A-Frame tracked controller concepts: https://aframe.io/docs/1.8.0/components/tracked-controls.html
 - A-Frame renderer settings: https://aframe.io/docs/1.8.0/components/renderer.html
 - WebXR input sources: https://immersive-web.github.io/webxr/#xrinputsource-interface
+
+
+## Gothic gallery pass / v0.2.0
+
+This continues the existing Vesperfall A-Frame implementation. The separately supplied Gloamward source candidate is not silently mixed into its mechanics. `/gloamward/` forwards to the maintained browser game to keep the previously suggested address useful.
+
+New original assets: generated masonry/cobblestone textures, radial rose glass, vault ribs, window tracery, paired pillars, archive props, a bow wrist brace and enemy armor trim. References informed architectural scale, material contrast and first-person composition; no screenshot, ripped asset, franchise character, level, dialogue or sound is included.
+
+The starting room has a real 3.2 m choir gallery. Walk to the left-hand staircase near the starting courtyard's back edge, ascend, cross the upper walk, then return down the same stair. Walking, clearances, blink landings and arrow collisions account for height. This is one accessible upper gallery, not a claim that every visible tower is explorable. Other room doorways, five-enemy progression and blessing gates remain connected.
+
+A-Frame references: https://aframe.io/docs/1.8.0/introduction/best-practices.html and https://aframe.io/docs/1.8.0/introduction/developing-with-threejs.html . Runtime creation remains owned by the existing A-Frame component; static repeated geometry is batched and local textures are reused. No hardware FPS or headset comfort claim follows from this implementation.
+
+Release gates: core/vertical checks, desktop controls, actual full expedition, tracked-device emulation and normal-input gallery ascent/return, followed by served-file hash verification. Quest 3 physical play-space, tracking, draw calibration and sustained performance remain open.

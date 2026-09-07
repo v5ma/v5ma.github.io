@@ -2,7 +2,7 @@
  * Static collision geometry also drives rendering. All projectile hits sweep
  * between positions so a fast arrow cannot tunnel through a thin wall. */
 (function(root){'use strict';
- const VERSION='0.1.0',G=9.8,R=.28;
+ const VERSION='0.2.0',G=9.8,R=.28;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0),len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
  function hash(text){let h=2166136261;for(const c of String(text).slice(0,64))h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
@@ -12,8 +12,9 @@
  function sphereHit(a,b,c,r){const d=sub(b,a),o=sub(a,c),A=dot(d,d),B=2*dot(o,d),C=dot(o,o)-r*r;if(C<=0)return 0;const D=B*B-4*A*C;if(D<0||A<1e-10)return null;const t=(-B-Math.sqrt(D))/(2*A);return t>=0&&t<=1?t:null;}
  function rect(x,z,w,d,y=0,type='stone'){return {x,z,w,d,y,type};}
  function inside(p,s,margin=0){return p[0]>=s.x-s.w/2+margin&&p[0]<=s.x+s.w/2-margin&&p[2]>=s.z-s.d/2+margin&&p[2]<=s.z+s.d/2-margin;}
- function floorAt(world,p,margin=0){const hit=world.floors.find(f=>inside(p,f,margin));return hit?hit.y:null;}
- function walkable(world,p,r=R){return [[0,0],[r,0],[-r,0],[0,r],[0,-r]].every(([x,z])=>floorAt(world,[p[0]+x,0,p[2]+z])!==null)&&!world.solids.some(b=>p[0]>b.min[0]-r&&p[0]<b.max[0]+r&&p[2]>b.min[2]-r&&p[2]<b.max[2]+r&&b.max[1]>.25);}
+ const architecture=root.CloisterLayout||(typeof require!=='undefined'?require('./architecture.js'):null);
+ function floorAt(world,p,margin=0){return architecture.floorAt(world,p,margin);}
+ function walkable(world,p,r=R){const y=architecture.floorAt(world,p,0,.42,.55);return y!==null&&[[0,0],[r,0],[-r,0],[0,r],[0,-r]].every(([x,z])=>architecture.floorAt(world,[p[0]+x,y,p[2]+z],0,.42,.55)!==null)&&!world.solids.some(b=>p[0]>b.min[0]-r&&p[0]<b.max[0]+r&&p[2]>b.min[2]-r&&p[2]<b.max[2]+r&&b.max[1]>y+.1&&b.min[1]<y+1.65);}
  function segmentBlocked(world,a,b,pad=0){return world.solids.some(w=>boxHit(a,b,w,pad)!==null);}
  function route(world,from,to){const q=[from],prev=new Map([[from,null]]);for(let i=0;i<q.length;i++)for(const n of world.links[q[i]])if(!prev.has(n)){prev.set(n,q[i]);q.push(n);}if(!prev.has(to))return [];const out=[];for(let n=to;n!==null;n=prev.get(n))out.unshift(n);return out;}
  function roomAt(world,p){let id=0,dist=Infinity;for(const r of world.rooms){const d=Math.hypot(r.x-p[0],r.z-p[2]);if(d<dist){dist=d;id=r.id;}}return id;}
@@ -37,7 +38,7 @@
   const occupied=shuffle(rooms.filter(r=>r.id!==1&&r.id!==world.exit),random).slice(0,4);occupied.push(rooms[world.exit]);
   for(let i=0;i<occupied.length;i++){const r=occupied[i];world.enemies.push({id:i,room:r.id,p:[r.x,1.05,r.z],hp:i===4?110+depth*8:65+depth*5,maxHp:i===4?110+depth*8:65+depth*5,kind:i===4?'warden':i%2?'stalker':'cantor',speed:i===4?.65:i%2?.95:.4,cd:2+i*.4,wind:0,slow:0,dead:false,aware:false});}
   for(const r of rooms.filter(r=>r.id!==1))world.pickups.push({id:r.id,p:[r.x-3.4,.3,r.z],kind:r.id%3===0?'health':r.id%2?'cinder':'frost',taken:false});
-  return world;
+  return architecture.augment(world);
  }
  function drawState(bow,string,maxDraw=.56){if(!bow||!string||!bow.every(Number.isFinite)||!string.every(Number.isFinite))return null;const v=sub(bow,string),d=len(v);if(d<.045||d>1.05)return null;return {direction:unit(v),charge:clamp((d-.08)/clamp(maxDraw,.3,.75),0,1),distance:d};}
  function create(seed='BELL-01',depth=1,upgrades={}){const world=generate(seed,depth);return {world,p:[...world.start],head:[0,1.65,3],health:100+(upgrades.heart?15:0),maxHealth:100+(upgrades.heart?15:0),power:upgrades.power?1.08:1,phase:'playing',time:0,arrows:[],bolts:[],sparks:[],events:[],score:0,kills:0,shots:0,hits:0,blinkCD:0,invuln:0,ammo:{cinder:4,frost:6},type:'plain',finished:false,portalReady:false,damageTaken:0,targets:new Set()};}
@@ -49,8 +50,8 @@
   charge=clamp(charge,0,1);if(type in s.ammo)s.ammo[type]--;if(type==='blink')s.blinkCD=.85;else s.shots++;
   const speed=type==='blink'?7+charge*10:12+charge*24,arrow={p:[...origin],v:mul(direction,speed),type,damage:(24+charge*48)*s.power,life:4,dead:false};s.arrows.push(arrow);if(s.arrows.length>48)s.arrows.shift();emit(s,'shot',{arrow:type,charge});return true;
  }
- function move(s,dx,dz){if(s.phase!=='playing'||!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>5)return;const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.15));for(let i=0;i<n;i++){const x=s.p[0]+dx/n,z=s.p[2]+dz/n;if(walkable(s.world,[x,0,s.p[2]]))s.p[0]=x;if(walkable(s.world,[s.p[0],0,z]))s.p[2]=z;}}
- function blink(s,p){if(!walkable(s.world,p,.42)||s.world.enemies.some(e=>!e.dead&&Math.hypot(e.p[0]-p[0],e.p[2]-p[2])<1.25))return false;s.p=[p[0],0,p[2]];s.invuln=Math.max(s.invuln,.25);emit(s,'blink',{p:[...s.p]});return true;}
+ function move(s,dx,dz){if(s.phase!=='playing'||!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>5)return;const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.15));for(let i=0;i<n;i++){const x=s.p[0]+dx/n,z=s.p[2]+dz/n;if(walkable(s.world,[x,s.p[1],s.p[2]])){s.p[0]=x;s.p[1]=floorAt(s.world,s.p);}if(walkable(s.world,[s.p[0],s.p[1],z])){s.p[2]=z;s.p[1]=floorAt(s.world,s.p);}}}
+ function blink(s,p){if(!walkable(s.world,p,.42)||s.world.enemies.some(e=>!e.dead&&Math.hypot(e.p[0]-p[0],e.p[2]-p[2])<1.25))return false;s.p=[p[0],floorAt(s.world,p),p[2]];s.invuln=Math.max(s.invuln,.25);emit(s,'blink',{p:[...s.p]});return true;}
  function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;e.hp-=amount;e.aware=true;if(type==='frost')e.slow=4;s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind});}else emit(s,'hit',{id:e.id,head});}
  function strike(s,a,hit){
   if(hit.kind==='enemy'){s.hits++;damageEnemy(s,hit.enemy,a.damage*(hit.head?1.5:1),a.type,hit.head);if(a.type==='cinder')for(const e of s.world.enemies)if(e!==hit.enemy&&!e.dead&&len(sub(e.p,hit.p))<3&&!segmentBlocked(s.world,hit.p,e.p))damageEnemy(s,e,a.damage*.65,'cinder');}
@@ -64,8 +65,8 @@
    for(const e of s.world.enemies)if(!e.dead){candidate(sphereHit(old,next,add(e.p,[0,.62,0]),e.kind==='warden'?.36:.25),{kind:'enemy',enemy:e,head:true});candidate(sphereHit(old,next,e.p,e.kind==='warden'?.65:.48),{kind:'enemy',enemy:e,head:false});}
    s.world.targets.forEach((t,i)=>{if(!s.targets.has(i))candidate(sphereHit(old,next,t,.5),{kind:'target',id:i});});
   }
-  if(old[1]>=.02&&next[1]<=.02){const t=(old[1]-.02)/(old[1]-next[1]),p=add(old,mul(sub(next,old),t));if(floorAt(s.world,p)!==null)candidate(t,{kind:'floor'});}
-  if(best){best.p=add(old,mul(sub(next,old),best.t));strike(s,a,best);}else a.p=next;
+  const floor=architecture.floorHit(s.world,old,next);if(floor)candidate(floor.t,{kind:'floor',landing:floor.p});
+  if(best){best.p=best.landing||add(old,mul(sub(next,old),best.t));strike(s,a,best);}else a.p=next;
   a.life-=dt;if(a.life<=0||a.p[1]<-8)a.dead=true;
  }
  function hurt(s,n){if(s.invuln>0||s.phase!=='playing')return;s.health=Math.max(0,s.health-n);s.damageTaken+=n;s.invuln=.8;emit(s,'hurt',{amount:n});if(!s.health){s.phase='dead';emit(s,'death');}}
@@ -81,7 +82,7 @@
   for(const f of s.sparks)f.life-=dt;s.sparks=s.sparks.filter(f=>f.life>0).slice(-32);
   if(!s.portalReady&&s.world.enemies.every(e=>e.dead)){s.portalReady=true;emit(s,'gate-open');}
  }
- function interact(s){const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;emit(s,'sector-complete');return true;}return false;}
+ function interact(s){const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.abs(s.p[1])<.5&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;emit(s,'sector-complete');return true;}return false;}
  function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1);n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
- const api={VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
+ const api={VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
