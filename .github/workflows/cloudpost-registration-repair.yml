@@ -1,0 +1,96 @@
+name: Repair Cloudpost route registration
+on:
+  push:
+    branches: [feat/cloudpost-relay-20260906]
+    paths: [.github/workflows/cloudpost-registration-repair.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cloudpost-registration-repair
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/feat/cloudpost-relay-20260906'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      source: ${{ steps.identity.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/cloudpost-relay-20260906
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply only the known campaign-registry correction
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+          path=Path('mario-maker-clone/svgn-paper-route/sky-network-layout.js')
+          old=b'const buildRoute=(i,T)=>i<4?campaign.build(i,T):build(i-4,T);'
+          new=b'const buildRoute=(i,T)=>i<4?campaign.build(i,T):(root.SkyRelay?root.SkyRelay.make(i-4,T):build(i-4,T));'
+          data=path.read_bytes()
+          if new not in data:
+              assert data.count(old)==1,'Refusing to patch a different route registry'
+              path.write_bytes(data.replace(old,new))
+          assert path.read_bytes().count(new)==1
+          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          assert not changed or changed==[str(path)],changed
+          PY
+          node --check mario-maker-clone/svgn-paper-route/sky-network-layout.js
+          node --test tests/sky_relay.test.cjs
+          git diff --check
+      - name: Record the single-file fix without resetting shared history
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- mario-maker-clone/svgn-paper-route/sky-network-layout.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'Resolve deferred Cloudpost route data through retained campaign references'
+            git push origin HEAD:feat/cloudpost-relay-20260906
+          fi
+      - id: identity
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  native:
+    needs: repair
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ride, coast, editor]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.repair.outputs.source }}
+          persist-credentials: false
+      - name: Install the native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the corrected committed application
+        env:
+          RELAY_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/cloudpost-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1320 python -u tests/sky_relay_browser.py
+      - name: Preserve exact source and diagnostic evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/cloudpost-runtime.tgz mario-maker-clone/svgn-paper-route tests/sky_relay* tests/helpers/relay-fixture.cjs
+          cp /tmp/cloudpost-http.log test-output/http.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloudpost-registration-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7
