@@ -29,7 +29,7 @@ DRIVE="""async options=>{
 with sync_playwright() as pw:
  args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
- browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':640,'height':480},service_workers='block');host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort());page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
+ browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':640,'height':480},device_scale_factor=.5,service_workers='block');host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort());page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto(BASE+'/vesperfall/',wait_until='domcontentloaded');page.wait_for_function('window.Vesperfall?.component.arsenal&&Vesperfall.component.rendererReady');page.locator('#start').click();page.locator('a-scene canvas').focus();deadline=time.monotonic()+730;blocked=False
   check(snap(page)['phase']=='playing' and not page.evaluate('Vesperfall.component.practice'),'Start a real scored run, not a practice encounter')
@@ -61,7 +61,7 @@ with sync_playwright() as pw:
   page.keyboard.press('KeyP');page.wait_for_function('Vesperfall.component.paused');page.reload(wait_until='domcontentloaded');page.wait_for_function('window.Vesperfall?.component.arsenal')
   check(snap(page)['profile']['volley'] and snap(page)['profile']['nightfall'],'Permanent rewards persist through a real browser reload')
   check(not errors,'No uncaught errors in the complete scored expedition')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'earned':earned,'state':snap(page),'scope':'Actual HTTP A-Frame, 640x480 software-WebGL viewport. Ordinary keys/buttons, observed target/navigation controller. No actor/health/clock/progress assignments; one seed is not every seed or physical hardware testing.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'earned':earned,'state':snap(page),'scope':'Actual HTTP A-Frame, 640x480 CSS / 320x240 drawing buffer (emulated pixel ratio .5) software-WebGL. Lower pixel count reduces software GPU load, not gameplay time, geometry or difficulty. Ordinary keys/buttons, observed target/navigation controller. No actor/health/clock/progress assignments; one seed is not every seed or physical hardware testing.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None
