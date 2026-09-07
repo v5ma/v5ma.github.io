@@ -46,10 +46,18 @@ def run_evidence_checks(page, ctx, open_page, check, OUT, BASE):
           const a=lum(fg),b=lum(bg);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);
         }''')
         check('Comparison text contrast is at least 4.5:1: '+selector,ratio>=4.5)
+    def list_labels_fit(label):
+        check('All thirty comparison labels fit their buttons: '+label,page.locator('#evidence-list button').evaluate_all('(items)=>items.length===30&&items.every(b=>b.scrollHeight<=b.clientHeight+1&&b.querySelector("small").getBoundingClientRect().bottom<=b.getBoundingClientRect().bottom-4)'))
+        page.locator('#evidence-list button').last.scroll_into_view_if_needed()
+        check('Last comparison remains reachable within the scrollable list: '+label,page.locator('#evidence-list').evaluate('(el)=>{const b=el.lastElementChild.getBoundingClientRect(),r=el.getBoundingClientRect();return el.scrollHeight>el.clientHeight&&el.scrollTop>0&&b.bottom<=r.bottom+1&&b.top>=r.top-1;}'))
+        page.locator('#evidence-list').evaluate('(el)=>el.scrollTop=0')
+    list_labels_fit('desktop')
     page.locator('#evidence-workspace h2').evaluate('(el)=>el.scrollIntoView({block:"start"})');page.screenshot(path=str(OUT/'evidence-desktop.png'))
     page.locator('#evidence-cards').evaluate('(el)=>el.scrollIntoView({block:"start"})');page.screenshot(path=str(OUT/'evidence-comparison-desktop.png'))
     page.set_viewport_size({'width':390,'height':844})
     check('Evidence comparison fits a real 390px layout',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+    list_labels_fit('390px mobile')
+    page.locator('#evidence-workspace h2').evaluate('(el)=>el.scrollIntoView({block:"start"})')
     page.screenshot(path=str(OUT/'evidence-mobile.png'))
     ready('&claim=not-a-real-claim&compare=%3Cimg%3E')
     check('Unknown claims give a safe visible explanation','unknown claim' in page.locator('#evidence-request-note').inner_text() and page.locator('#evidence-first').input_value()=='jt-knowledge')
