@@ -25,6 +25,8 @@ def stop(page):
   if s['mode']!='foot':hold(page,['KeyS' if s['speed']>0 else 'KeyW'])
   page.wait_for_function('Math.abs(LeonardoGuild.inspect().speed)<.6',timeout=20000);hold(page,[])
 def drive(page,x,z,radius=2.3,limit=140):
+ # Dialog.close() restores input on a subsequent event, not on click return.
+ page.wait_for_function('!LeonardoGuild.inspect().paused');page.locator('#world').focus()
  started=time.monotonic()
  while time.monotonic()-started<limit:
   s=read(page);dx=x-s['x'];dz=z-s['z'];dist=math.hypot(dx,dz)
@@ -49,26 +51,30 @@ with sync_playwright() as p:
  host=urlparse(BASE).hostname;context.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=context.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
-  page.goto(BASE+'/leonardos-guild/index.html',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
+  page.goto(BASE+'/',wait_until='domcontentloaded')
+  card=page.locator('article.leonardo');check(card.count()==1,'The homepage has one distinct Leonardo’s Guild game card')
+  check(page.locator('.projects article').count()>=6,'Existing homepage projects are preserved')
+  page.wait_for_function('document.querySelector("article.leonardo img")?.naturalWidth>0')
+  check(card.locator('img').evaluate('(img)=>img.complete&&img.naturalWidth>0'),'The card shows an actual rendered game capture')
+  page.screenshot(path=str(OUT/'00-homepage.png'))
+  card.locator('a.primary-link').click();page.wait_for_function('window.LeonardoGuild')
+  check('/leonardos-guild/' in page.url,'The homepage card opens the independently hosted browser game')
   check(read(page)['version']=='0.1.0','The isolated Leonardo’s Guild application loads')
   check(read(page)['render']['triangles']>50000,'Native WebGL draws the actual city geometry')
   page.screenshot(path=str(OUT/'01-sunrise-title.png'))
-  # High-quality real scene smoke above; the complete long mission uses the
-  # same user-accessible low-power mode, without altering simulation timing.
+  # The full mission uses the same user-accessible low-power setting and a
+  # smaller browser window. Neither simulation timing nor input is accelerated.
   page.goto(BASE+'/leonardos-guild/index.html?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
-  page.set_viewport_size({'width':1280,'height':800})
+  page.set_viewport_size({'width':960,'height':640})
   page.locator('#start').click();page.locator('#world').focus()
-  # An intentional paper round, not an automatic win or a twenty-paper spray.
-  # The actual keyboard-driven rider stops at two addresses and throws to both
-  # sides; swept projectile contacts, not these actions, credit the deliveries.
   for z,completed in [(16,0),(53,2)]:
    drive(page,2,z,2.3)
    page.keyboard.press('KeyQ');page.wait_for_function('(n)=>LeonardoGuild.inspect().deliveries.length===n',arg=completed+1,timeout=30000)
    page.keyboard.press('KeyC');page.wait_for_function('(n)=>LeonardoGuild.inspect().deliveries.length===n',arg=completed+2,timeout=30000)
   page.wait_for_function('LeonardoGuild.inspect().mission===1');stop(page)
-  s=read(page);check(len(s['deliveries'])>=4,'Real paper projectiles complete the morning delivery chapter')
-  check(sum(e['type']=='delivery' for e in s['events'])>=4 and s['score']>=400,'Delivery score comes from collected projectiles, not button presses')
-  check(s['papers']<20,'Thrown newspapers consume the finite inventory')
+  s=read(page);check(len(s['deliveries'])>=4,'Real projectiles complete the letter-delivery chapter')
+  check(sum(e['type']=='delivery' for e in s['events'])>=4 and s['score']>=400,'Delivery score comes from projectile contacts, not button presses')
+  check(s['papers']<20,'Thrown letters consume the finite inventory')
   page.screenshot(path=str(OUT/'02-neighborhood-ride.png'))
   page.locator('#map-button').click();snap=read(page);page.wait_for_timeout(250)
   check(read(page)['steps']==snap['steps'],'The map pauses simulation rather than moving the rider')
@@ -77,7 +83,7 @@ with sync_playwright() as p:
   drive(page,0,110);drive(page,0,155);drive(page,10,170,2)
   page.keyboard.press('KeyB');page.wait_for_selector('#shop-dialog[open]');check(read(page)['paused'],'The merchant pauses movement while trading')
   before_money=read(page)['credits'];page.locator('#shop-staff').click();check(read(page)['upgraded'] and read(page)['credits']==before_money-45,'Florins buy a real staff upgrade, without real payments')
-  page.screenshot(path=str(OUT/'04-artisans-market.png'));page.locator('#shop-close').click()
+  page.screenshot(path=str(OUT/'04-artisans-market.png'));page.locator('#shop-close').click();page.wait_for_function('!LeonardoGuild.inspect().paused');page.locator('#world').focus();hold(page,[])
   drive(page,8.5,190,2.5);page.keyboard.press('KeyX');hold(page,['KeyH']);page.wait_for_function('LeonardoGuild.inspect().relay',timeout=30000);hold(page,[])
   check(read(page)['mission']==2,'Inspection and held interaction restore the waterwheel and open the bridge')
   drive(page,8,216,2);page.keyboard.press('KeyF');check(read(page)['mode']=='foot','F dismounts into the same explorable world')
@@ -94,7 +100,7 @@ with sync_playwright() as p:
   page.screenshot(path=str(OUT/'05-guard-yields.png'))
   drive(page,80,352,3);hold(page,['KeyH']);page.wait_for_function('LeonardoGuild.inspect().folio');hold(page,[])
   check(read(page)['mission']==3 and not read(page)['completed'],'Recovering the folio creates a return mission rather than an automatic win')
-  # Return by normal movement and the parked carriage; recovery is not a shortcut.
+  # The return uses movement and the parked carriage, not workshop recovery.
   drive(page,80,325,2);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="car"')
   drive(page,80,240,3);drive(page,40,240,3);drive(page,0,240,3);drive(page,0,120,3);drive(page,0,10,3);drive(page,-8,2,2)
   hold(page,['KeyH']);page.wait_for_function('LeonardoGuild.inspect().completed',timeout=15000);hold(page,[])
@@ -104,7 +110,7 @@ with sync_playwright() as p:
   page.reload(wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');check(read(page)['completed'] and read(page)['credits']==before['credits'],'Completed story progress survives a real page reload')
   page.locator('#start').click();page.locator('#pause-button').click();snap=read(page);page.wait_for_timeout(300);check(read(page)['steps']==snap['steps'],'Pause freezes the game and clears held driving controls')
   page.locator('#recover').click();check(read(page)['mode']=='bike' and len(read(page)['deliveries'])>=4,'Workshop recovery preserves completed deliveries and restores the bicycle')
-  page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(OUT/'06-narrow-layout.png'))
+  page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(OUT/'07-narrow-layout.png'))
   check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The user interface fits a narrow viewport')
   check(page.evaluate('localStorage.getItem("svgn.city.first-dispatch.v1")') is None,'The Renaissance game never overwrites the modern city save')
   check(not errors,'No uncaught script errors in the full native scenario')
