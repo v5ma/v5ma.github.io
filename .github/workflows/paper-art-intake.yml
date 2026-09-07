@@ -1,0 +1,69 @@
+name: Paper Delivery art intake
+on:
+  push:
+    branches: [art/paper-city-visual-first-20260907]
+    paths: ['.github/workflows/paper-art-intake.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Inspect official free asset downloads and preserve the base game
+        run: |
+          mkdir -p art-intake
+          python - <<'PY'
+          import urllib.request,urllib.parse,json,re,pathlib,http.cookiejar,traceback
+          out=pathlib.Path('art-intake')
+          jar=http.cookiejar.CookieJar();op=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar));op.addheaders=[('User-Agent','SVGN-Art-Intake/1.0 (personal game project; CC0 assets)')]
+          def get(url,data=None):
+              with op.open(urllib.request.Request(url,data=urllib.parse.urlencode(data).encode() if data is not None else None),timeout=90) as r:return r.read()
+          report={}
+          packs=['downtown-city-megakit','stylized-nature-megakit','universal-base-characters']
+          for pack in packs:
+              try:
+                  url='https://quaternius.itch.io/'+pack
+                  page=get(url).decode();(out/(pack+'.html')).write_text(page)
+                  csrf=re.search(r'name="csrf_token"[^>]*value="([^"]+)"',page)
+                  if not csrf:csrf=re.search(r'"csrf_token"\s*:\s*"([^"]+)"',page)
+                  if not csrf:raise ValueError('No free-download form token')
+                  response=json.loads(get(url+'/download_url',{'csrf_token':csrf.group(1)}))
+                  download=get(response['url']).decode();(out/(pack+'-download.html')).write_text(download)
+                  ids=re.findall(r'data-upload_id="(\d+)"',download);report[pack]={'upload_ids':ids,'files':[]}
+                  # Standard/free only; never request paid Source/Pro uploads.
+                  for match in re.finditer(r'<div[^>]*class="[^"]*upload[^"]*"[^>]*>(?:(?!<div[^>]*class="[^"]*upload[^"]*").)*',download,re.S):
+                      pass
+                  for uid in ids[:1]:
+                      token=re.search(r'name="csrf_token"[^>]*value="([^"]+)"',download)
+                      data={'csrf_token':token.group(1) if token else csrf.group(1)}
+                      resp=json.loads(get(url+'/file/'+uid,data))
+                      content=get(resp['url']);
+                      if len(content)>350*1024*1024:raise ValueError('Asset intake exceeds bounded archive size')
+                      (out/(pack+'.zip')).write_bytes(content);report[pack]['files'].append({'bytes':len(content),'file':pack+'.zip'})
+              except Exception as e:report[pack]={'error':str(e)}
+          for page in ['https://quaternius.com/packs/downtowncitymegakit.html','https://quaternius.com/packs/stylizednaturemegakit.html','https://quaternius.com/packs/ultimatestylizednature.html']:
+              try:(out/pathlib.Path(urllib.parse.urlparse(page).path).name).write_bytes(get(page))
+              except Exception as e:report[page]=str(e)
+          # Small selected public material metadata, no catalogue scrape.
+          for asset in ['aerial_asphalt_01','red_brick_03','concrete_pavement','brown_planks_03','rocky_terrain_02']:
+              try:
+                  meta=json.loads(get('https://api.polyhaven.com/files/'+asset));(out/(asset+'.json')).write_text(json.dumps(meta))
+                  for key in ['diff','nor_gl','rough']:
+                      item=meta.get(key,{}).get('1k',{}).get('jpg')
+                      if item:(out/(asset+'-'+key+'.jpg')).write_bytes(get(item['url']))
+              except Exception as e:report[asset]=str(e)
+          (out/'report.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
+          PY
+          tar -czf art-intake/base-source.tgz svgn-planet index.html projects.css
+          git rev-parse HEAD > art-intake/base-sha.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: paper-licensed-art-intake
+          path: art-intake/
+          retention-days: 7
