@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Retrieve only the already-reviewed free art and toolchain
+      - name: Retrieve reviewed input and consolidate the portable GLB libraries
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -36,9 +36,9 @@ jobs:
           manifest=json.loads(Path('aether-reach/art/manifest.json').read_text());assert manifest['totalBytes']<14000000
           for f in manifest['files']:
             p=Path('aether-reach/art')/f['file'];assert p.stat().st_size==f['bytes'];assert hashlib.sha256(p.read_bytes()).hexdigest()==f['sha256']
-          print('Stored only runtime variants, pinned loaders and license/source register.')
+          print('Stored only runtime variants, pinned loaders and source register.')
           PY
-      - name: Commit only the generated artwork and pinned loaders
+      - name: Commit only checked artwork and pinned loaders
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -47,14 +47,14 @@ jobs:
           git commit -m 'Vendor CC0 modular facades, modeled lamps and foliage, PBR paving and sky with lighter variants'
           git push origin HEAD:feat/aether-quay-art-pass
       - name: Archive materialized art for visual review
-        if: always()
+        if: success()
         run: |
           mkdir -p /tmp/art-output
           tar -czf /tmp/art-output/art.tgz aether-reach/art aether-reach/vendor/loaders aether-reach/vendor/utils
           cp aether-reach/art/manifest.json /tmp/art-output/manifest.json
           git rev-parse HEAD > /tmp/art-output/source-sha.txt
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: success()
         with:
           name: aether-materialized-art
           path: /tmp/art-output/
