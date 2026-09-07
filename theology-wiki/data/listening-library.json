@@ -1,6 +1,6 @@
 {
   "schema": "theology-listening-library/v1",
-  "version": "2026.09.06-james-transmission-1",
+  "version": "2026.09.06-pauline-chronology-1",
   "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "articles": [
     {
@@ -206,12 +206,12 @@
         }
       ],
       "source": "content/developed/james-and-contested-succession.md",
-      "sourceSha256": "f260d79a1d49146182663e3ace16f7715dec553d3feadcad6939694f6f1f2a00",
+      "sourceSha256": "f91f739e18a3f94433a4223ba6013f7da8ac08e8b1a84d2739166c980d1745ac",
       "narration": "data/listening/james-and-contested-succession.json",
-      "narrationSha256": "3c96abbbab495f08c68194c08088babcd21874eab39384c0c4562da8e0aa8c62",
+      "narrationSha256": "16119c1b342da85a83a4be465b5e0c37aa7173f6f8017d74c08a3bd130b05de4",
       "transcript": "products/transcripts/james-and-contested-succession.txt",
-      "segments": 71,
-      "words": 2169
+      "segments": 104,
+      "words": 3655
     },
     {
       "slug": "tor-thomas-and-gnostic-transmission",
@@ -321,12 +321,12 @@
         }
       ],
       "source": "content/developed/thomas-sayings-and-transmission.md",
-      "sourceSha256": "2d19ee88f3a4f2ef816be72684891e5ba0cfcf6861769dcd4107f10b8b283bf9",
+      "sourceSha256": "debf2e9a32fd3545789cf6d1789b1a5d1c451dfe3bb9b5838100789847a757c9",
       "narration": "data/listening/thomas-sayings-and-transmission.json",
-      "narrationSha256": "bba7b628866845a1dd4227eda24d024fe69ad06f8d33b038db162d19f0348d67",
+      "narrationSha256": "876c3e19ebeced54d466fe003c49e83ad6949d44b9460e426e561c780340f184",
       "transcript": "products/transcripts/thomas-sayings-and-transmission.txt",
-      "segments": 71,
-      "words": 2276
+      "segments": 91,
+      "words": 3005
     },
     {
       "slug": "gnosticism-and-temple-trauma",

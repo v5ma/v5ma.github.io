@@ -1,0 +1,9 @@
+/* Scoped to the new reading companion, independent of the surrounding theme. */
+#pauline-lab{background:#f2f6f8;color:#102a3a;border:1px solid #a4b8c5;border-radius:12px;padding:22px;margin:1.5rem 0;overflow-wrap:anywhere;font-family:"Segoe UI",Arial,sans-serif}
+#pauline-lab :is(h3,p,label){color:inherit}#pauline-lab h3{font-size:1.25rem;line-height:1.4;margin:0 0 1rem}#pauline-lab p{line-height:1.6}#pauline-lab a{color:#174f74;text-decoration:underline}#pauline-lab label{display:block;font-size:.95rem;font-weight:600}
+#pauline-lab :is(input,select){width:100%;min-width:0;max-width:100%;box-sizing:border-box;font:inherit;min-height:44px;padding:10px;background:#fff;color:#102a3a;border:1px solid #607d90;border-radius:5px;display:block;margin-top:6px}
+#pauline-lab .pauline-fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,2fr) minmax(0,1fr);gap:12px}#pauline-lab .pauline-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+#pauline-lab .pauline-buttons{display:flex;flex-wrap:wrap;gap:10px}#pauline-lab button{font:inherit;min-height:44px;white-space:normal;padding:10px 14px;border:1px solid #193c55;border-radius:5px;background:#193c55;color:#fff;cursor:pointer}
+#pc-results{border-left:4px solid #2d657d;padding-left:16px;margin-top:18px}#pauline-lab #pc-error{color:#892a16;font-weight:600}#pauline-lab .pauline-scope,#pauline-lab #pc-rules{font-size:.85rem}#pauline-lab :focus-visible{outline:3px solid #a94319;outline-offset:3px}
+@media(max-width:700px){#pauline-lab .pauline-fields{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}#pauline-lab .pauline-options{grid-template-columns:1fr}#pauline-lab{padding:15px}}
+@media print{#pauline-lab form,#pauline-lab #pc-url-note,#pauline-lab #pc-share{display:none}#pauline-lab{break-inside:avoid}}
