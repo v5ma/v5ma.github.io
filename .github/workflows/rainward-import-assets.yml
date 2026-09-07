@@ -1,0 +1,53 @@
+name: Import selected Rainward CC0 visual assets
+on:
+  push:
+    branches: [feat/rainward-scanned-assets]
+    paths: ['.github/workflows/rainward-import-assets.yml','rainward/tools/import_scanned.py','rainward/tools/optimize_scanned.mjs']
+permissions:
+  contents: read
+jobs:
+  import:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/feat/rainward-scanned-assets'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated asset optimizers
+        run: |
+          python -m pip install Pillow==11.3.0
+          mkdir -p /tmp/rainward-art-tools
+          cd /tmp/rainward-art-tools
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund @gltf-transform/core@4.2.1 @gltf-transform/extensions@4.2.1 @gltf-transform/functions@4.2.1 meshoptimizer@0.23.0 sharp@0.34.3
+      - name: Download selected licensed sources and preserve texture UV data
+        run: |
+          python -u rainward/tools/import_scanned.py
+          node rainward/tools/optimize_scanned.mjs
+      - name: Commit only the isolated imported assets and renderer addons
+        run: |
+          git fetch origin feat/rainward-scanned-assets
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          git add rainward/assets/scanned rainward/vendor/GLTFLoader.js rainward/vendor/RGBELoader.js rainward/vendor/BufferGeometryUtils.js rainward/vendor/ADDON-SOURCES.md
+          git diff --cached --name-only | python -c "import sys; p=sys.stdin.read().splitlines(); assert all(x.startswith(('rainward/assets/scanned/','rainward/vendor/')) for x in p)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --quiet || git commit -m 'Import eight credited Poly Haven CC0 sources and pinned glTF/HDR loaders for Rainward'
+          git push origin HEAD:feat/rainward-scanned-assets
+      - name: Package reviewable asset evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/rw-import
+          git rev-parse HEAD > /tmp/rw-import/commit.txt
+          tar -czf /tmp/rw-import/assets.tgz rainward/assets rainward/vendor || true
+          if test -f rainward/assets/scanned/manifest.json; then cp rainward/assets/scanned/manifest.json /tmp/rw-import/; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-imported-assets
+          path: /tmp/rw-import
+          retention-days: 7
