@@ -1,0 +1,44 @@
+name: Rainward CC0 asset audit
+on:
+  push:
+    branches: [feat/rainward-scanned-assets]
+    paths: ['.github/workflows/rainward-asset-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read source instructions and bounded asset metadata
+        run: |
+          mkdir -p /tmp/rw-assets
+          for f in AGENTS.md rainward/AGENTS.md .github/AGENTS.md .github/workflows/AGENTS.md; do
+            if test -f "$f"; then echo "--- $f" >> /tmp/rw-assets/instructions.txt; cat "$f" >> /tmp/rw-assets/instructions.txt; fi
+          done
+          python - <<'PY'
+          import json,time,urllib.request,pathlib
+          root=pathlib.Path('/tmp/rw-assets')
+          def get(endpoint):
+              req=urllib.request.Request('https://api.polyhaven.com/'+endpoint,headers={'User-Agent':'Rainward-Asset-Import/0.5 (v5ma.github.io/rainward; one-time CC0 selection)'})
+              with urllib.request.urlopen(req,timeout=35) as r:return json.load(r)
+          assets=get('assets')
+          words=['boulder','rock','fern','ivy','forest_ground','stone_wall','castle_brick','mossy','puresky']
+          selected={k:v for k,v in assets.items() if any(w in k for w in words)}
+          (root/'candidates.json').write_text(json.dumps(selected,indent=2))
+          ids=['boulder_01','fern_01','forest_ground_04','stone_wall_02','castle_brick_02_red','mossy_cobblestone','kloppenheim_06_puresky']
+          for asset in ids:
+              if asset not in assets:continue
+              (root/(asset+'.json')).write_text(json.dumps({'info':assets[asset],'files':get('files/'+asset)},indent=2));time.sleep(.5)
+          PY
+          git rev-parse HEAD > /tmp/rw-assets/source-sha.txt
+          tar -czf /tmp/rw-assets/rainward-source.tgz rainward .github/workflows/rainward.yml .github/workflows/rainward-published.yml index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-asset-audit
+          path: /tmp/rw-assets
+          retention-days: 7
