@@ -19,7 +19,8 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/',wait_until='domcontentloaded')
   for route in ['vesperfall/index.html','leonardos-guild/index.html','svgn-planet/index.html','little-planet/','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']:
-   check(page.locator('a.primary-link[href="./'+route+'"]').count()==1,'Homepage contains exactly one playable card for '+route)
+   # Keep project-card uniqueness; a separate quick-launch shortcut is valid.
+   check(page.locator('.projects .project a.primary-link[href="./'+route+'"]').count()==1,'Homepage contains exactly one playable card for '+route)
   page.screenshot(path=str(OUT/'public-games-list.png'),full_page=True)
   page.locator('a.primary-link[href="./vesperfall/index.html"]').click()
   page.wait_for_function('window.Vesperfall?.component.rendererReady&&AFRAME.scenes[0].renderer.info.render.calls>0')
