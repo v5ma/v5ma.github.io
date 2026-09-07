@@ -1,0 +1,59 @@
+name: Aether tactical encounter validation
+on:
+  push:
+    branches: [feat/aether-tactical-relay]
+    paths: ['aether-reach/**','.github/workflows/aether-tactics.yml']
+  pull_request:
+    paths: ['aether-reach/**','.github/workflows/aether-tactics.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aether-tactics-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  play:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [tools, recovery]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check existing game and isolated tactical model
+        run: |
+          mkdir -p aether-reach/test-output
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/model-tests.txt
+          for file in aether-reach/*.mjs; do node --check "$file"; done
+          node aether-reach/tests/release-manifest.mjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play physical interactions, powers, puzzle and encounter
+        env:
+          TACTIC_SUITE: ${{ matrix.scenario }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/tactical-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/tactics_browser.py
+      - name: Preserve exact public source and diagnostics
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+          tar --exclude='aether-reach/test-output' -czf aether-reach/test-output/public-source.tgz aether-reach index.html projects.css .github/workflows
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-tactical-${{ matrix.scenario }}
+          path: aether-reach/test-output/
+          retention-days: 14
