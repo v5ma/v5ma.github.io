@@ -19,12 +19,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate source and carried-state flight
+      - name: Validate source, input boundaries and carried-state flight
         run: |
           for f in aether-reach/*.mjs; do node --check "$f"; done
           node --test aether-reach/tests/*.test.mjs
+          python aether-reach/tests/backup_test.py
           node aether-reach/tests/release-manifest.mjs
-      - name: Prove that a clean source backup restores and passes the model tests
+      - name: Prove that a clean backup restores and passes the model tests
         run: |
           python aether-reach/tools/backup.py --out /tmp/aether-backup
           ZIP=$(find /tmp/aether-backup -name '*source.zip' -print -quit)

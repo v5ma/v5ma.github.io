@@ -1,19 +1,19 @@
-"""Build or restore a self-contained *public Aether Reach* source snapshot.
-No private repositories, runtime accounts, credentials or local player saves.
-This is a release snapshot, not a replacement for an independent Git mirror.
+"""Build or restore a self-contained PUBLIC Aether Reach source snapshot.
+No private repositories, credentials or browser player saves are included.
+This is a release snapshot, not an independent mirror of GitHub history.
 """
 from pathlib import Path, PurePosixPath
 import argparse, hashlib, json, re, subprocess, zipfile
 ROOT=Path(__file__).resolve().parents[2]
 def allowed(name):
  p=PurePosixPath(name)
- return (not p.is_absolute() and '..' not in p.parts and '\\' not in name and
+ return (p.as_posix()==name and not p.is_absolute() and '..' not in p.parts and '\\' not in name and
   (name in {'index.html','projects.css','.nojekyll'} or name.startswith('aether-reach/') or name.startswith('.github/workflows/aether-')) and
   not any(x in p.parts for x in ['test-output','__pycache__','node_modules','.git']) and
   not any(x.startswith('.env') or x.startswith('integrate-') for x in p.parts) and p.suffix not in {'.pyc','.pem','.key'})
 def sha(b):return hashlib.sha256(b).hexdigest()
 def build(out):
- if subprocess.run(['git','diff','--quiet','HEAD','--','aether-reach'],cwd=ROOT).returncode:raise ValueError('Commit game changes before creating a release snapshot')
+ if subprocess.run(['git','diff','--quiet','HEAD','--','aether-reach','index.html','projects.css','.github/workflows/aether-*'],cwd=ROOT).returncode:raise ValueError('Commit game changes before creating a release snapshot')
  source=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
  version=json.loads((ROOT/'aether-reach/release.json').read_text())['version']
  if not re.fullmatch(r'\d+\.\d+\.\d+',version):raise ValueError('Invalid release version')
@@ -42,7 +42,7 @@ def restore(archive,dest):
    if not allowed(name) or (z.getinfo(name).external_attr>>16)&0o170000==0o120000:raise ValueError('Unsafe path: '+name)
    raw=z.read(name)
    if len(raw)!=spec['size'] or sha(raw)!=spec['sha256']:raise ValueError('Checksum mismatch: '+name)
-  # Only write after every member has passed validation.
+  # Only write after EVERY member has passed validation.
   for name in names:
    p=dest/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(z.read(name))
  print('Restored',len(m['files']),'verified public files at',m['source']);return m
