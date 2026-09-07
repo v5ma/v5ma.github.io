@@ -86,7 +86,7 @@ with sync_playwright() as pw:
    walk(p,[(-10,40.5),(-10,36),(10,36),(10,40.5),(10,43.8)]);talk(p,'Mayor','finish-permit')
    check('permit' in state(p)['city']['flags'],'Resolved missions grant the hangar permit rather than an always-open gate')
    look(p,10.4,45.3);photo(p,'mayor-civic-hall.png')
-   walk(p,[(10,40.5),(10,36),(-3,36),(-3,43),(-17,43),(-25,43),(-29,37),(-39,38),(-39,42.5),(-41.2,44.9)])
+   walk(p,[(10,40.5),(10,36),(-17,36),(-17,43),(-25,43),(-29,37),(-39,38),(-39,42.5),(-41.2,44.9)])
    talk(p,'Ivo','start-airmail');photo(p,'skywright-workshop.png')
    walk(p,[(-39,42.5),(-39,38),(-30,35)]);use(p);p.wait_for_function('AetherReach.snapshot().vehicle==="kestrel"')
    check(True,'The permit opens a reachable hangar and a mountable flying machine')

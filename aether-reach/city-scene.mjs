@@ -2,6 +2,7 @@
  * citizens, model-aligned open rooms and real stair/landing-pad geometry. */
 import {ROOMS,roomWalls,CITY_GATES,CITY_FURNITURE,PEOPLE,CITIZENS,CATS,THINGS,DOCKS,STAIR,catPosition,citizenPose,insideRoom} from './city-world.mjs';
 export function buildCityScene(T,scene,camera,quality='balanced'){
+ const interiorLight=new T.PointLight('#ffcf8d',0,12,1.3);scene.add(interiorLight);
  const low=quality==='low',buckets=new Map(),mats=new Map(),matrices=new T.Matrix4(),q=new T.Quaternion();
  const geos={box:new T.BoxGeometry(1,1,1),sphere:new T.SphereGeometry(1,low?12:24,low?8:16),cyl:new T.CylinderGeometry(1,1,1,low?12:24),cone:new T.ConeGeometry(1,1,low?12:24),ring:new T.TorusGeometry(1,.065,low?6:10,low?24:48)};
  const mat=(color,kind='')=>{const key=color+kind;if(!mats.has(key))mats.set(key,new T.MeshStandardMaterial({color,roughness:kind==='metal'?.35:.78,metalness:kind==='metal'?.6:0,emissive:kind==='glow'?color:0,emissiveIntensity:kind==='glow'?.6:0}));return mats.get(key);};
@@ -51,7 +52,8 @@ export function buildCityScene(T,scene,camera,quality='balanced'){
    const lampX=r.id==='cafe'?-9:r.x;
    beam([lampX,r.y+r.height,r.z],[lampX,r.y+r.height-.7,r.z],.035,'#bd9a62');
    add('sphere',[lampX,r.y+r.height-.85,r.z],[.21,.24,.21],'#ffe2a0',[],'glow');
-   const light=new T.PointLight('#ffcf8d',low?1.1:1.9,11,1.3);light.position.set(lampX,r.y+r.height-.9,r.z);scene.add(light);
+   // One moving interior fill is shared across rooms; simultaneous point lights
+   // multiply fragment-light work throughout the exterior view.
   }
  }
  // A continuously sloped physical stair, with visible treads and handrails.
@@ -139,6 +141,8 @@ export function buildCityScene(T,scene,camera,quality='balanced'){
  craftPart('cone',[0,.67,2.02],[.50,.9,.3],'#976846',[Math.PI/2,0,0]);sign('K E S T R E L',[0,.70,1.87],1.55,.28,'#415764',craft);
  let lastRoom=null;
  return {update(s,dt,menu=false,reduced=false){
+  const lit=insideRoom(s.p);interiorLight.intensity=lit&&!menu?(low?1.1:2.1):0;
+  if(lit)interiorLight.position.set(lit.id==='cafe'?-9:lit.x,lit.y+lit.height-.85,lit.z);
   for(const {d,g}of gateMeshes)g.visible=!s.city.flags.includes(d.requires);
   propGroups.get('pump-fuse').visible=!s.city.flags.includes('fuse');
   for(const [id,g]of propGroups)if(g.userData.ring){g.userData.ring.rotation.y=reduced?0:s.time*.6;g.userData.jewel.scale.setScalar(s.city.flags.includes('glyph-solved')?1.12:1);}

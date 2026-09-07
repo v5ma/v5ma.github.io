@@ -12,7 +12,7 @@ export const MISSIONS=[
  {id:'company',title:'A table for two',giver:'mara',xp:0,credits:0,description:'After helping Mara and Nora, choose whether to share a friendly coffee or accept Mara’s optional date invitation. Both characters are adults.'},
  {id:'voices',title:'A city worth hearing',giver:'mayor',xp:140,credits:110,description:'Restore the original three district relays, then report to the mayor. The original broadcast ending remains.'}
 ];
-const VALID_FLAGS=['cat-found','cellar-key','fuse','pump-fixed','ledger','coil-returned','permit','glyph-solved','mend','parcel','delivered','coffee','dating','friends'];
+const VALID_FLAGS=['cat-found','cellar-key','fuse','pump-fixed','ledger','coil-returned','permit','glyph-solved','mend','parcel','skiff-garden-arrival','delivered','coffee','dating','friends'];
 const strings=(v,allowed)=>[...new Set(Array.isArray(v)?v.filter(x=>typeof x==='string'&&allowed.includes(x)):[])];
 export function cleanCity(v){
  if(!v||typeof v!=='object'||Array.isArray(v))v={};
@@ -137,7 +137,7 @@ export function cityInteract(s,n){
   if(s.city.glyphStep===3){flag(s,'glyph-solved');notify(s,'The three glyphs resonate together. Return to Sel.');}else notify(s,'Resonance pattern '+s.city.glyphStep+'/3. Roots, tide, then stars.');
  }else if(n.id==='mailbox-garden'){
   if(!has(s,'parcel')){notify(s,'Ivo handles airmail parcels at the Skywright hangar.');return true;}
-  if(!s.cityFlightArrived&&!has(s,'delivered')){notify(s,'This delivery needs an actual skiff arrival at the Garden pad.');return true;}
+  if(!has(s,'skiff-garden-arrival')&&!has(s,'delivered')){notify(s,'This delivery needs an actual skiff arrival at the Garden pad.');return true;}
   flag(s,'delivered');notify(s,'Garden airmail delivered. Return to Ivo.');
  }else return false;
  persist(s);return true;

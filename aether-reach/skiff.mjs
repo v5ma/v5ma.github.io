@@ -11,7 +11,8 @@ export function boardSkiff(s){
 export function parkSkiff(s){
  if(!s.p.vehicle)return false;const d=skiffDock(s.p);if(!d||!s.p.grounded){s.events.push({type:'city-message',text:'Descend onto a marked landing pad before parking. SPACE rises; C descends.'});return true;}
  Object.assign(s.skiff,{x:s.p.x,y:s.p.y,z:s.p.z,yaw:s.p.yaw});s.p.vehicle=null;s.p.vx=s.p.vy=s.p.vz=0;
- if(d.id==='garden'&&s.city.flags.includes('parcel'))s.cityFlightArrived=true;
+ if(d.id==='garden'&&s.city.flags.includes('parcel')&&!s.city.flags.includes('skiff-garden-arrival'))s.city.flags.push('skiff-garden-arrival');
+ s.events.push({type:'save'});
  s.events.push({type:'city-message',text:'Parked at '+d.name+'. E interacts with people and objects again.'});return true;
 }
 export function vehicleStep(s,input,dt,world){
