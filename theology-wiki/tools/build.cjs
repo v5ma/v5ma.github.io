@@ -4,10 +4,10 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const ROOT=path.resolve(__dirname,'..'),SITE=path.dirname(ROOT);
 const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs'),F=require('../editorial/foundations.cjs'),R=require('../editorial/roadmap.cjs'),Roadmap=require('./roadmap.cjs'),A=require('../editorial/atlas.cjs'),Atlas=require('./atlas.cjs');
-const Evidence=require('./evidence.cjs');
+const Evidence=require('./evidence.cjs'),Connected=require('./connected.cjs');
 const Products=require('./products.cjs'),H=require('../editorial/authorial.cjs');
 for(const data of [base,X,D,F,A])H.reword(data);
-const references=[...X.references,...D.references,...F.references,...R.references,...A.references,...H.references];
+const references=[...X.references,...D.references,...F.references,...R.references,...A.references,...H.references,...Connected.data.references];
 const E={...base,version:H.version,articles:H.articles,paths:[...X.paths,...base.paths,...F.paths]};
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8'),json=p=>JSON.parse(read(p).replace(/^\uFEFF/,''));
 const write=(p,value)=>{const target=path.join(ROOT,p);if(!target.startsWith(ROOT+path.sep))throw Error('Out-of-scope write');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,value);};
@@ -72,6 +72,9 @@ function build(){
   write('content/'+row.path,front(row,body));bodies.set(row.slug,body);
  }
  for(const p of E.articles)add(p,p.body);
+ for(const p of Connected.studies(ROOT))add(p,p.body);
+ add({slug:'connected-arguments',title:'The book argument map and connecting studies',category:'context',kind:'Navigator',summary:'Four bridge studies, seventeen chapter handoffs, three linked diagrams and eight explicit research questions.',updated:'2026-09-07'},Connected.markdown(F.parts));
+ emit('data/connected-arguments.json',Connected.compile(ROOT,F.parts,pages));
  add({slug:'evidence-workbench',title:'Evidence workbench: passages and interpretations',category:'context',kind:'Navigator',summary:'Compare thirty passage-level claims, their surviving channels, contributions and next research questions.'},Evidence.markdown(ROOT,references));
  add({slug:'listening-room',title:'Listening room',category:'context',kind:'Navigator',summary:'Full developed articles, paragraph navigation, device voices and recorded studies.'},'Listen to the complete public argument, not a substitute summary. Select an article or chapter route below. Browser voices vary by device; a recorded study is listed separately when available. [[production-studio|Audio and video episodes]] introduce shorter investigations. [[product-pathways|Product pathways]] keeps the work connected to the book and museum.');
  add({slug:'production-studio',title:'Audio and video studio',category:'context',kind:'Navigator',summary:'A source-linked production series with scripts, transcripts, recordings and measured captions.'},'These are first-person authorial scripts and synthetic narration drafts. They are not recovered verbatim quotations, recordings of the author, or completed manuscript chapters. Full-article narration remains in the [[listening-room|listening room]]. [[product-pathways|Product pathways]] records the shared production plan.');
@@ -115,6 +118,8 @@ ${D.featured.map(slug=>{const p=E.articles.find(p=>p.slug===slug);return `[[${p.
 
 ## Find your way through the inquiry
 
+[[connected-arguments|The book argument map]] connects four bridge essays, seventeen chapter handoffs and an explicit research agenda.
+
 [[research-roadmap|The shared research roadmap and Excel checklist]] records deliverables, dependencies and evidence. [[source-coverage|Source coverage]] identifies which conversations have recorded article links. [[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer eight longer routes, and the [[glossary|glossary]] explains the collection's terms.
 
 ## All developed articles
@@ -140,7 +145,7 @@ ${E.articles.length} developed articles accompany the archive. They present the 
  emit('data/computational-foundations.json',computational);
  navigator('computational-argument-map','Computational theology: argument map','Ten explicit connections among physics, neural rendering, God, historical inheritance and constructive theology.', 'The connected theory needs more than a shared vocabulary. Each connection below identifies the argument being made, its source records and the question that must be answered. The full expositions remain in [[computational-divine-immanence|Computational Divine Immanence]] and [[flood-inheritance-and-deep-time|Flood inheritance and deep time]].\n\n'+computational.bridges.map(b=>{const source=id=>{const r=computational.records.find(r=>r.id===id);if(!r)throw Error('Unknown computational source '+id);return '['+r.title+']('+(r.url||r.urls[0])+')';};return '## '+(bridgeTitles[b.id]||b.id.replaceAll('-',' '))+'\n\n'+b.type+'.\n\n'+b.question+'\n\n'+b.status+'\n\nSources: '+[...new Set([b.from,b.to])].map(source).join(' / ')+'.\n\n[['+b.page+'|Read the complete argument]].';}).join('\n\n')+'\n\n[Download the source-and-connection register](./data/computational-foundations.json). This is research data, not a set of computed truth scores. [[source-atlas|Inspect the source atlas]], [[museum-trails|follow the museum trails]], or [[book-contents|open the book routes]].');
  navigator('book-contents','The Theology book: proposed contents','A navigable draft chapter order connecting sacred inheritance, the Teacher, inward models, public power and repair.',
-  'The book is taking shape as an argument, not a printed alphabetical wiki. These are proposed chapter routes, not finished chapters. The shorter route descriptions lead to the developed arguments; they do not replace them.\n\n'+F.parts.map(part=>'## '+part.title+'\n\n'+part.chapters.map(c=>'### '+c.title+'\n\n'+c.purpose+'\n\n'+c.pages.map(slug=>`[[${slug}|${bySlug.get(slug).title}]]`).join(' / ')).join('\n\n')).join('\n\n')+'\n\n[[parallel-timelines|Compare timeline layers]], [[connections|follow explained relationships]], [[intellectual-debts|read the intellectual debts]], or [[research-board|review concrete research tasks]].');
+  '[[connected-arguments|Follow the chapter-by-chapter argument map and connecting essays]].\n\nThe book is taking shape as an argument, not a printed alphabetical wiki. These are proposed chapter routes, not finished chapters. The shorter route descriptions lead to the developed arguments; they do not replace them.\n\n'+F.parts.map(part=>'## '+part.title+'\n\n'+part.chapters.map(c=>'### '+c.title+'\n\n'+c.purpose+'\n\n'+c.pages.map(slug=>`[[${slug}|${bySlug.get(slug).title}]]`).join(' / ')).join('\n\n')).join('\n\n')+'\n\n[[parallel-timelines|Compare timeline layers]], [[connections|follow explained relationships]], [[intellectual-debts|read the intellectual debts]], or [[research-board|review concrete research tasks]].');
  navigator('parallel-timelines','Parallel timelines and versions','Inspect different source reconstructions and manuscript witnesses without collapsing them into a single chronology.',
   'These records distinguish the June comparison, the stronger October reconstruction, dated material witnesses and textual constraints. Unknown dates remain unknown. Choosing a layer does not endorse it as established history.\n\n'+F.layers.map(layer=>'## '+layer.title+'\n\n'+F.timeline.filter(t=>t.layer===layer.id).map(t=>'### '+t.title+'\n\n'+t.dateLabel+'. '+t.detail).join('\n\n')).join('\n\n')+'\n\n[[tor-thomas-and-gnostic-transmission|Read the full transmission inquiry]] and [[jesus-teacher-of-righteousness-hypothesis|the earlier-Teacher reconstruction]].');
  navigator('research-board','Research and author-review board','Concrete source, citation, argument and author-review tasks; personal planning changes do not edit the published research record.',
@@ -170,7 +175,7 @@ ${E.articles.length} developed articles accompany the archive. They present the 
  for(const task of F.tasks)if(!bySlug.has(task.page)||!F.stages.includes(task.stage))throw Error('Invalid research task '+task.id);
  emit('data/foundations.json',foundations);
  emit('data/melchizedek-evidence.json',{version:R.version,article:R.articles[0].slug,policy:'Passage comparison, not identity proof. A translation, scholarly interpretation and direct manuscript collation are different evidence levels.',rows:R.evidence.map(e=>({...e,source:references.find(r=>r.id===e.reference)}))});
- const relationships=[...D.relations,...F.relations,...R.relations,...A.relations,...require('../editorial/formation-connections.json')].map(r=>({...r}));
+ const relationships=[...D.relations,...F.relations,...R.relations,...A.relations,...require('../editorial/formation-connections.json'),...Connected.data.relations].map(r=>({...r}));
  for(const p of pages.filter(p=>p.kind==='Developed article'))for(const r of p.references||[])relationships.push({from:p.slug,to:r.slug,type:'source',why:`The article develops an argument from ${r.title}. Read the original speakers separately from the editorial prose.`,origin:'Article source reference'});
  const anchors=[...D.anchors,...R.anchors,...A.anchors].map(a=>{
   const p=sourceById.get(a.sourceId),t=chats.get(p?.sourceFile)?.turns[a.turn-1];
@@ -213,7 +218,7 @@ ${E.articles.length} developed articles accompany the archive. They present the 
  patchReaders();
  const atlas=Atlas.build({root:ROOT,data:A.data,references,pages,sourceById,chats,foundations});
  const productReport=Products.build(ROOT,pages);
- const report={version:E.version,paulineChronologyLab:true,evidenceClaims:evidence.claims.length,priestlyEvidenceClaims:priestly.claims.length,...productReport,atlasRecords:atlas.counts.records,atlasRelationships:atlas.counts.relationships,challengeRecords:atlas.counts.challenges,museumTrails:atlas.counts.trails,museumStops:atlas.counts.stops,chronologyIntervals:atlas.counts.intervals,roadmapTasks:roadmap.summary.tasks,roadmapDependencies:roadmap.summary.dependencyEdges,sourcesLinkedToArticles:roadmap.summary.sourcesLinkedToArticles,bookParts:F.parts.length,chapterRoutes:F.parts.reduce((n,p)=>n+p.chapters.length,0),researchTasks:F.tasks.length,timelineRecords:F.timeline.length,argumentDossiers:F.dossiers.length,reviewedPassages:foundations.dossiers.reduce((n,d)=>n+d.passages.length,0),pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
+ const report={version:E.version,connectedEdition:Connected.data.version,bridgeStudies:Connected.data.studies.length,chapterTransitions:Connected.data.transitions.length,bridgeResearchQuestions:Connected.data.research.length,paulineChronologyLab:true,evidenceClaims:evidence.claims.length,priestlyEvidenceClaims:priestly.claims.length,...productReport,atlasRecords:atlas.counts.records,atlasRelationships:atlas.counts.relationships,challengeRecords:atlas.counts.challenges,museumTrails:atlas.counts.trails,museumStops:atlas.counts.stops,chronologyIntervals:atlas.counts.intervals,roadmapTasks:roadmap.summary.tasks,roadmapDependencies:roadmap.summary.dependencyEdges,sourcesLinkedToArticles:roadmap.summary.sourcesLinkedToArticles,bookParts:F.parts.length,chapterRoutes:F.parts.reduce((n,p)=>n+p.chapters.length,0),researchTasks:F.tasks.length,timelineRecords:F.timeline.length,argumentDossiers:F.dossiers.length,reviewedPassages:foundations.dossiers.reduce((n,d)=>n+d.passages.length,0),pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
  emit('data/build-report.json',report);return report;
 }
 function patchReaders(){
@@ -278,7 +283,7 @@ function patchReaders(){
  html=html.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  original=original.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  const bump=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:depth-tools\.js|depth\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
- for(const [asset,type] of [['roadmap-tools.js','js'],['roadmap.css','css'],['atlas-core.js','js'],['atlas-tools.js','js'],['atlas.css','css'],['listening-core.js','js'],['products-tools.js','js'],['products.css','css'],['evidence-core.js','js'],['evidence-tools.js','js'],['evidence.css','css'],['pauline-core.js','js'],['pauline-tools.js','js'],['pauline.css','css']]){
+ for(const [asset,type] of [['roadmap-tools.js','js'],['roadmap.css','css'],['atlas-core.js','js'],['atlas-tools.js','js'],['atlas.css','css'],['listening-core.js','js'],['products-tools.js','js'],['products.css','css'],['evidence-core.js','js'],['evidence-tools.js','js'],['evidence.css','css'],['pauline-core.js','js'],['pauline-tools.js','js'],['pauline.css','css'],['connected-tools.js','js'],['connected.css','css']]){
   const tag=type==='js'?'<script src="./assets/js/'+asset+'?v='+E.version+'"></script>':'<link rel="stylesheet" href="./assets/css/'+asset+'?v='+E.version+'">';
   const addAsset=text=>text.includes(asset)?text:text.replace(type==='js'?'<script src="./assets/js/research-tools.js':'</head>',type==='js'?tag+'<script src="./assets/js/research-tools.js':tag+'</head>');
   html=addAsset(html);original=addAsset(original);
@@ -288,6 +293,9 @@ function patchReaders(){
  // A UI-only improvement must not require changing historical or planning editions.
  const pinCompanion=text=>text.replace(/(\.\/assets\/(js|css)\/(pauline-core\.js|pauline-tools\.js|pauline\.css)\?v=)[^"'\s]+/g,(_,prefix,type,name)=>prefix+E.version+'&amp;asset='+sha(fs.readFileSync(path.join(ROOT,'assets',type,name))).slice(0,16));
  html=pinCompanion(html);original=pinCompanion(original);
+ // Content hashes version the new extension and its integration without rewriting old audio sources.
+ const pinConnected=text=>text.replace(/(\.\/assets\/(js|css)\/(connected-tools\.js|connected\.css|research-tools\.js)\?v=)[^"'\s]+/g,(_,prefix,type,name)=>prefix+E.version+'&amp;asset='+sha(fs.readFileSync(path.join(ROOT,'assets',type,name))).slice(0,16));
+ html=pinConnected(html);original=pinConnected(original);
  write('san-reader.html',bump(html));
  write('index.html',bump(original));
 }

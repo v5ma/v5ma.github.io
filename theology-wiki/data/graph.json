@@ -8,6 +8,7 @@
       "listening-room",
       "production-studio",
       "product-pathways",
+      "connected-arguments",
       "research-roadmap",
       "source-coverage",
       "book-contents",
@@ -1543,14 +1544,17 @@
       "false-peace-prophecy",
       "forecast-ledger",
       "revelation-interpretation-and-america",
-      "image-collection"
+      "image-collection",
+      "apocalypse-and-repair"
     ],
     "ukraine-russia-forecast-record": [
       "false-peace-prophecy",
       "forecast-ledger",
       "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
-      "revelation-interpretation-and-america"
+      "revelation-interpretation-and-america",
+      "contested-memories-of-catastrophe",
+      "apocalypse-and-repair"
     ],
     "el-in-ancient-egypt": [
       "jews-and-canaanites-origins",
@@ -1578,7 +1582,8 @@
       "el-in-ancient-egypt",
       "samaritan-texts-and-sacred-authority",
       "moses-dating-debate",
-      "exodus-to-temple-competing-chronologies"
+      "exodus-to-temple-competing-chronologies",
+      "contested-memories-of-catastrophe"
     ],
     "kenite-hypothesis-and-yahweh-origins": [
       "gnostic-teachings-and-clarity",
@@ -1597,7 +1602,9 @@
       "ukraine-russia-forecast-record",
       "jewish-apocalyptic-repair-timeline",
       "image-collection",
-      "gnosticism-and-temple-trauma"
+      "gnosticism-and-temple-trauma",
+      "sanctuary-community-and-body",
+      "apocalypse-and-repair"
     ],
     "cognitive-gnosticism": [
       "christ-as-an-inner-model",
@@ -1611,7 +1618,8 @@
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "antichrist-spiritual-inversion",
       "teacher-of-righteousness-vs-gnostic-jesus",
-      "faith-as-vibration-concept"
+      "faith-as-vibration-concept",
+      "inward-formation-and-accountable-intelligence"
     ],
     "christ-as-an-inner-model": [
       "divine-will-and-self-authorizing-power",
@@ -1623,14 +1631,16 @@
       "samuel-vs-micah-divide",
       "jesus-teacher-of-righteousness-hypothesis",
       "image-collection",
-      "computational-divine-immanence"
+      "computational-divine-immanence",
+      "inward-formation-and-accountable-intelligence"
     ],
     "antichrist-as-a-pattern-of-conduct": [
       "antichrist-spiritual-inversion",
       "christ-as-an-inner-model",
       "apocalyptic-repair-theology",
       "early-vs-later-gnosticism",
-      "image-collection"
+      "image-collection",
+      "apocalypse-and-repair"
     ],
     "religion-for-conscious-robots": [
       "cognitive-gnosticism",
@@ -1642,7 +1652,8 @@
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "faith-as-vibration-concept",
       "teacher-of-righteousness-vs-gnostic-jesus",
-      "antichrist-as-a-pattern-of-conduct"
+      "antichrist-as-a-pattern-of-conduct",
+      "inward-formation-and-accountable-intelligence"
     ],
     "faith-as-deliberate-joy": [
       "cognitive-gnosticism",
@@ -1663,7 +1674,8 @@
       "early-vs-later-gnosticism",
       "jewish-apocalyptic-repair-timeline",
       "jesus-teacher-of-righteousness-hypothesis",
-      "moses-volcano-and-exodus-chronology"
+      "moses-volcano-and-exodus-chronology",
+      "contested-memories-of-catastrophe"
     ],
     "samaritan-texts-and-sacred-authority": [
       "antichrist-as-a-pattern-of-conduct",
@@ -1672,7 +1684,8 @@
       "research-method",
       "samaritan-and-jewish-texts",
       "el-in-ancient-egypt",
-      "kenite-hypothesis-and-yahweh-origins"
+      "kenite-hypothesis-and-yahweh-origins",
+      "sanctuary-community-and-body"
     ],
     "sacred-inheritance-and-rival-continuations": [
       "samaritan-texts-and-sacred-authority",
@@ -1731,7 +1744,8 @@
       "book-contents",
       "samuel-vs-micah-divide",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "samaritan-texts-and-sacred-authority"
+      "samaritan-texts-and-sacred-authority",
+      "apocalypse-and-repair"
     ],
     "god-and-our-models-of-god": [
       "cognitive-gnosticism",
@@ -1745,7 +1759,8 @@
       "naming-god-as-purpose",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "agi-religious-framework",
-      "faith-as-vibration-concept"
+      "faith-as-vibration-concept",
+      "inward-formation-and-accountable-intelligence"
     ],
     "melchizedek-priesthood-and-transmission": [
       "jesus-teacher-of-righteousness-hypothesis",
@@ -1766,7 +1781,8 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "museum-trails",
-      "daniel-and-teacher-of-righteousness"
+      "daniel-and-teacher-of-righteousness",
+      "contested-memories-of-catastrophe"
     ],
     "manuscripts-movements-and-survival": [
       "tor-thomas-and-gnostic-transmission",
@@ -1784,19 +1800,22 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "ai-re-dates-dead-sea-scrolls",
-      "museum-trails"
+      "museum-trails",
+      "sanctuary-community-and-body"
     ],
     "computational-divine-immanence": [
       "christ-as-an-inner-model",
       "god-and-our-models-of-god",
       "flood-inheritance-and-deep-time",
-      "computational-argument-map"
+      "computational-argument-map",
+      "inward-formation-and-accountable-intelligence"
     ],
     "flood-inheritance-and-deep-time": [
       "exodus-to-temple-competing-chronologies",
       "sacred-inheritance-and-rival-continuations",
       "apocalyptic-repair-theology",
-      "computational-divine-immanence"
+      "computational-divine-immanence",
+      "contested-memories-of-catastrophe"
     ],
     "daniel-jubilee-and-the-teachers-time": [
       "jesus-teacher-of-righteousness-hypothesis",
@@ -1820,7 +1839,8 @@
       "gnosticism-and-temple-trauma",
       "manuscripts-movements-and-survival",
       "ai-re-dates-dead-sea-scrolls",
-      "james-and-contested-succession"
+      "james-and-contested-succession",
+      "sanctuary-community-and-body"
     ],
     "james-and-contested-succession": [
       "onias-egypt-and-priestly-continuity",
@@ -1832,7 +1852,8 @@
       "ai-re-dates-dead-sea-scrolls",
       "james-the-just-analysis",
       "paul-vs-james-movement",
-      "jesus-and-biblical-figures"
+      "jesus-and-biblical-figures",
+      "sanctuary-community-and-body"
     ],
     "thomas-sayings-and-transmission": [
       "tor-thomas-and-gnostic-transmission",
@@ -1846,6 +1867,92 @@
       "source-atlas",
       "jesus-and-biblical-figures",
       "ai-re-dates-dead-sea-scrolls"
+    ],
+    "contested-memories-of-catastrophe": [
+      "flood-inheritance-and-deep-time",
+      "moses-volcano-and-exodus-chronology",
+      "gnosticism-and-temple-trauma",
+      "sacred-inheritance-and-rival-continuations",
+      "exodus-to-temple-competing-chronologies",
+      "sanctuary-community-and-body",
+      "apocalypse-and-repair",
+      "ukraine-russia-forecast-record",
+      "connected-arguments"
+    ],
+    "sanctuary-community-and-body": [
+      "onias-egypt-and-priestly-continuity",
+      "james-and-contested-succession",
+      "inner-formation-texts-and-material-witnesses",
+      "apocalyptic-repair-theology",
+      "manuscripts-movements-and-survival",
+      "scripture-power-and-repair",
+      "christ-as-an-inner-model",
+      "thomas-sayings-and-transmission",
+      "apocalypse-and-repair",
+      "connected-arguments",
+      "samaritan-texts-and-sacred-authority"
+    ],
+    "apocalypse-and-repair": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "apocalyptic-repair-theology",
+      "divine-will-and-self-authorizing-power",
+      "sanctuary-community-and-body",
+      "contested-memories-of-catastrophe",
+      "ukraine-russia-forecast-record",
+      "inward-formation-and-accountable-intelligence",
+      "connected-arguments",
+      "scripture-power-and-repair"
+    ],
+    "inward-formation-and-accountable-intelligence": [
+      "christ-as-an-inner-model",
+      "cognitive-gnosticism",
+      "computational-divine-immanence",
+      "religion-for-conscious-robots",
+      "thomas-sayings-and-transmission",
+      "god-and-our-models-of-god",
+      "apocalypse-and-repair",
+      "connected-arguments"
+    ],
+    "connected-arguments": [
+      "contested-memories-of-catastrophe",
+      "sanctuary-community-and-body",
+      "apocalypse-and-repair",
+      "inward-formation-and-accountable-intelligence",
+      "book-contents",
+      "sacred-inheritance-and-rival-continuations",
+      "samaritan-texts-and-sacred-authority",
+      "flood-inheritance-and-deep-time",
+      "el-in-ancient-egypt",
+      "kenite-hypothesis-and-yahweh-origins",
+      "moses-volcano-and-exodus-chronology",
+      "exodus-to-temple-competing-chronologies",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "daniel-jubilee-and-the-teachers-time",
+      "james-and-contested-succession",
+      "tor-thomas-and-gnostic-transmission",
+      "melchizedek-priesthood-and-transmission",
+      "manuscripts-movements-and-survival",
+      "onias-egypt-and-priestly-continuity",
+      "thomas-sayings-and-transmission",
+      "gnosticism-and-temple-trauma",
+      "apocalyptic-repair-theology",
+      "god-and-our-models-of-god",
+      "computational-divine-immanence",
+      "cognitive-gnosticism",
+      "christ-as-an-inner-model",
+      "divine-will-and-self-authorizing-power",
+      "inner-formation-texts-and-material-witnesses",
+      "faith-as-deliberate-joy",
+      "scripture-power-and-repair",
+      "antichrist-as-a-pattern-of-conduct",
+      "trump-first-beast-of-revelation",
+      "ukraine-russia-forecast-record",
+      "forecast-ledger",
+      "religion-for-conscious-robots",
+      "research-roadmap",
+      "connections",
+      "museum-trails"
     ],
     "evidence-workbench": [
       "james-and-contested-succession",
@@ -2415,6 +2522,7 @@
       "book-contents"
     ],
     "book-contents": [
+      "connected-arguments",
       "sacred-inheritance-and-rival-continuations",
       "samaritan-texts-and-sacred-authority",
       "flood-inheritance-and-deep-time",

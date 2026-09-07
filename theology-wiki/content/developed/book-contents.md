@@ -9,6 +9,8 @@ updated: "2026-09-06"
 
 # The Theology book: proposed contents
 
+[[connected-arguments|Follow the chapter-by-chapter argument map and connecting essays]].
+
 The book is taking shape as an argument, not a printed alphabetical wiki. These are proposed chapter routes, not finished chapters. The shorter route descriptions lead to the developed arguments; they do not replace them.
 
 ## The contested inheritance
