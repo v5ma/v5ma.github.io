@@ -272,16 +272,19 @@
         "thomas"
       ],
       "pages": [
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "daniel-jubilee-and-the-teachers-time"
       ],
       "acceptance": "Confirm the June comparison and October identification are presented in their full strength, including the community/namesake explanation.",
       "dependsOn": [
         "scope-baseline",
         "melchizedek-first-pass"
       ],
-      "evidence": [],
+      "evidence": [
+        "theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md"
+      ],
       "sourceTask": "tor-version",
-      "nextAction": "Confirm the June comparison and October identification are presented in their full strength, including the community/namesake explanation.",
+      "nextAction": "Review the separation of the illustrative 176 BCE model from the October 147 BCE appearance and 88 BCE death; assign a specific starting event and distinguish career, office and successor intervals.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
@@ -331,7 +334,7 @@
       ],
       "evidence": [],
       "sourceTask": "melchizedek",
-      "nextAction": "Check the critical 11Q13 text and the printed Nag Hammadi edition, record variant readings, and compare the two-messiah evidence. The published first pass does not complete the wider transmission study.",
+      "nextAction": "Independently collate 11Q13 II 6-7 and II 18, then verify the full specialist Teacher identification. The new chronology article reviews Williams, not the missing critical-edition work.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
@@ -371,17 +374,19 @@
         "thomas"
       ],
       "pages": [
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "onias-egypt-and-priestly-continuity"
       ],
       "acceptance": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge. The first reception comparison is available, but the proposed institutional carriers and exact critical editions remain to be tested.",
       "dependsOn": [
         "melchizedek-first-pass"
       ],
       "evidence": [
-        "theology-wiki/content/developed/manuscripts-movements-and-survival.md"
+        "theology-wiki/content/developed/manuscripts-movements-and-survival.md",
+        "theology-wiki/content/developed/onias-egypt-and-priestly-continuity.md"
       ],
       "sourceTask": "egypt-ethiopia",
-      "nextAction": "Distinguish preservation in a region, movement of texts and biological or institutional lineage. Attach evidence to each proposed bridge.",
+      "nextAction": "Collate the incompatible Onias accounts and the 343-year duration; investigate actual intermediates from the reported Egyptian priestly network to later Gnostic and Ethiopian traditions.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
@@ -398,15 +403,18 @@
         "teacher-identity"
       ],
       "pages": [
-        "jesus-teacher-of-righteousness-hypothesis"
+        "jesus-teacher-of-righteousness-hypothesis",
+        "onias-egypt-and-priestly-continuity"
       ],
       "acceptance": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.",
       "dependsOn": [
         "melchizedek-first-pass"
       ],
-      "evidence": [],
+      "evidence": [
+        "theology-wiki/data/priestly-evidence.json"
+      ],
       "sourceTask": "priesthood",
-      "nextAction": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.",
+      "nextAction": "Compare inherited descent, continuing office and scriptural authorization, including Onias's reported sons; do not turn righteousness vocabulary alone into a pedigree.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
@@ -1051,6 +1059,10 @@
     {
       "date": "2026-09-06",
       "change": "Integrated the computational-God and flood-inheritance drafts with complete articles, source records, chapter routes and museum trails; coherence and formal-comparison tasks remain Draft."
+    },
+    {
+      "date": "2026-09-06",
+      "change": "Developed the Daniel/Teacher and Onias branch investigations with explicit source relations, two museum trails and an evidence register. Preserved all task stages: these bounded comparisons do not complete the critical collation or the proposed transmission genealogy."
     }
   ],
   "verificationNote": "Current outputs are verified against the recorded build, content and planning tests. Native-browser and publication evidence is attached to the release pull request; completed outputs do not signify author-approved chapters.",
@@ -1139,7 +1151,8 @@
       "title": "What survives a teacher?",
       "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
       "pages": [
-        "jesus-teacher-of-righteousness-hypothesis"
+        "jesus-teacher-of-righteousness-hypothesis",
+        "daniel-jubilee-and-the-teachers-time"
       ],
       "status": "Draft chapter route",
       "partId": "teacher",
@@ -1151,7 +1164,7 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 1,
+      "articleCount": 2,
       "sourceSlugs": [
         "teacher-of-righteousness-vs-gnostic-jesus",
         "pilate-life-timeline",
@@ -1167,7 +1180,8 @@
       "pages": [
         "tor-thomas-and-gnostic-transmission",
         "melchizedek-priesthood-and-transmission",
-        "manuscripts-movements-and-survival"
+        "manuscripts-movements-and-survival",
+        "onias-egypt-and-priestly-continuity"
       ],
       "status": "Draft chapter route",
       "partId": "teacher",
@@ -1182,7 +1196,7 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 3,
+      "articleCount": 4,
       "sourceSlugs": [
         "teacher-of-righteousness-vs-gnostic-jesus",
         "ai-re-dates-dead-sea-scrolls",
@@ -1199,7 +1213,8 @@
       "purpose": "Apply the proposed comparison to Gnostic and non-Gnostic texts rather than assuming a single emotional progression.",
       "pages": [
         "gnosticism-and-temple-trauma",
-        "apocalyptic-repair-theology"
+        "apocalyptic-repair-theology",
+        "onias-egypt-and-priestly-continuity"
       ],
       "status": "Draft chapter route",
       "partId": "teacher",
@@ -1210,11 +1225,12 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 2,
+      "articleCount": 3,
       "sourceSlugs": [
         "early-vs-later-gnosticism",
         "jewish-apocalyptic-repair-timeline",
-        "agi-religious-framework"
+        "agi-religious-framework",
+        "ai-re-dates-dead-sea-scrolls"
       ],
       "authorApproved": false
     },

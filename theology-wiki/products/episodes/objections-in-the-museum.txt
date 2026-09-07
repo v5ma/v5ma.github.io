@@ -38,7 +38,7 @@ SHA-256: e39320b38275a0793ace96608e0228792eb7d4420f328d5783ca2888d5c386dc
 
 Manuscripts, movements and survival
 https://v5ma.github.io/theology-wiki/san-reader.html?page=manuscripts-movements-and-survival
-SHA-256: 99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13
+SHA-256: 4fa02b7d1368a20e22a0d9e37ec3d069e5ecf92ba303def12fc0b93e6b298590
 
 From Exodus to Temple: competing chronologies
 https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies

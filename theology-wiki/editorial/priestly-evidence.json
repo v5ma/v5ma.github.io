@@ -1,0 +1,242 @@
+{
+  "schema": "theology-priesthood-time/v1",
+  "version": "2026.09.06-priesthood-time-1",
+  "updated": "2026-09-06",
+  "policy": "Passages, reconstructions, hypotheses and arithmetic have distinct statuses. These records provide no probability scores or independent proof of personal identity. Textual constraints are not automatically plotted as dated artifacts.",
+  "articles": [
+    "daniel-jubilee-and-the-teachers-time",
+    "onias-egypt-and-priestly-continuity"
+  ],
+  "claims": [
+    {
+      "id": "pt-daniel-order",
+      "page": "daniel-jubilee-and-the-teachers-time",
+      "reference": "atlas-daniel",
+      "locator": "Daniel 9:24-27",
+      "status": "Primary translated sequence",
+      "contribution": "Seven weeks, 62 weeks and a final week require explicit event assignments.",
+      "boundary": "A numerical sequence alone does not identify its persons or choose a modern calendar anchor.",
+      "nextQuestion": "State the beginning event and which anointed figure belongs to each interval."
+    },
+    {
+      "id": "pt-cd-appearance",
+      "page": "daniel-jubilee-and-the-teachers-time",
+      "reference": "priests-collins",
+      "locator": "CD 1:3-11, as discussed in Collins section J",
+      "status": "Textual intervals through identified scholarship",
+      "contribution": "390 years followed by 20 precede the Teacher's appearance in the discussed chronology.",
+      "boundary": "A chosen 586 BCE anchor yields an illustrative 176 BCE appearance, not a date inscribed in the text.",
+      "nextQuestion": "Collate the Hebrew witness and evaluate independent anchoring evidence."
+    },
+    {
+      "id": "pt-cd-career",
+      "page": "daniel-jubilee-and-the-teachers-time",
+      "reference": "priests-collins",
+      "locator": "CD 20:15 and Collins section J",
+      "status": "Scholarly reconstruction",
+      "contribution": "The reconstructed 40-year career completes 390 + 20 + 40 + 40 = 490.",
+      "boundary": "The career interval is supplied; it must not be labeled as directly attested like the other intervals.",
+      "nextQuestion": "Compare proposed career, office and generation interpretations before identifying a death."
+    },
+    {
+      "id": "pt-jubilee",
+      "page": "daniel-jubilee-and-the-teachers-time",
+      "reference": "melch-williams2023",
+      "locator": "11Q13 II 6-7 in Williams's translation and discussion",
+      "status": "Competing manuscript restoration",
+      "contribution": "Williams adopts a reading placing liberation at the beginning of the cycle after ten jubilees.",
+      "boundary": "The older tenth-jubilee reading remains a distinct restoration; neither fixes a Teacher identity or a BCE date.",
+      "nextQuestion": "Independently collate II 6-7 and II 18 against the critical edition and photographs."
+    },
+    {
+      "id": "pt-calendar",
+      "page": "daniel-jubilee-and-the-teachers-time",
+      "reference": "priests-calendar",
+      "locator": "Published abstract, DOI 10.31743/vv.1935",
+      "status": "Abstract-level scholarship and conditional arithmetic",
+      "contribution": "364-day and 365-day idealized units differ by 490 days across 490 years.",
+      "boundary": "This is not a model of practical intercalation and cannot alone shift a chronology by a century.",
+      "nextQuestion": "Distinguish calendar operation from the count's chosen historical starting event."
+    },
+    {
+      "id": "pt-sanctuary",
+      "page": "onias-egypt-and-priestly-continuity",
+      "reference": "atlas-onias",
+      "locator": "Antiquities 13.3.1-3",
+      "status": "Reported institutional narrative",
+      "contribution": "The account supplies royal permission, priests and Levites, and a scriptural argument for a sanctuary in Egypt.",
+      "boundary": "Reported correspondence is not an independently inspected original royal document.",
+      "nextQuestion": "Compare the Greek text, the identity of the founder and competing foundation dates."
+    },
+    {
+      "id": "pt-sons",
+      "page": "onias-egypt-and-priestly-continuity",
+      "reference": "atlas-onias",
+      "locator": "Antiquities 13.10.4 and 13.13.2",
+      "status": "Reported descent and political relationship",
+      "contribution": "Chelcias and Ananias are identified as sons of the founder; Ananias defends Alexander against a proposed dispossession.",
+      "boundary": "This supplies candidate carriers and contact, not proof of Essene affiliation or Thomas transmission.",
+      "nextQuestion": "Trace the family and institutional relations in independently supported evidence."
+    },
+    {
+      "id": "pt-conflict",
+      "page": "onias-egypt-and-priestly-continuity",
+      "reference": "priests-war7",
+      "locator": "War 7.10.2-3 compared with Antiquities 13.3.1-3",
+      "status": "Disagreement between transmitted narratives",
+      "contribution": "Parentage and architectural particulars differ across the two accounts.",
+      "boundary": "Do not silently turn son of Simon and son of Onias into one agreed identification.",
+      "nextQuestion": "Record variant readings, authorial development and competing historical explanations."
+    },
+    {
+      "id": "pt-closure",
+      "page": "onias-egypt-and-priestly-continuity",
+      "reference": "priests-war7",
+      "locator": "War 7.10.4",
+      "status": "Reported closure and disputed interval",
+      "contribution": "Lupus and Paulinus restrict the sanctuary; the transmitted duration is 343 years.",
+      "boundary": "No precise foundation or closure date is adopted from this inconsistent duration.",
+      "nextQuestion": "Investigate contacts before closure and possible dispersed institutions afterward."
+    },
+    {
+      "id": "pt-households",
+      "page": "onias-egypt-and-priestly-continuity",
+      "reference": "priests-war2",
+      "locator": "War 2.8.13; compare CD 7:6-7 through Collins",
+      "status": "Plurality in reported community practice",
+      "contribution": "Josephus describes a marrying Essene order concerned with succession.",
+      "boundary": "A wider household population does not establish the proposed demographic split or identify every community.",
+      "nextQuestion": "Compare household rules, actual names and institutional practice without a uniform celibate stereotype."
+    },
+    {
+      "id": "pt-predecessor",
+      "page": "onias-egypt-and-priestly-continuity",
+      "reference": "priests-macc4",
+      "locator": "Second Maccabees 4:33-38",
+      "status": "Primary translated death narrative",
+      "contribution": "The passage identifies relations around a priestly murder involving Onias and Andronicus.",
+      "boundary": "The John-the-Baptist identification and a 20-year transition are additional claims.",
+      "nextQuestion": "Compare narrative sequence and historical carriers, not merely a shared execution motif."
+    },
+    {
+      "id": "pt-cooperation",
+      "page": "onias-egypt-and-priestly-continuity",
+      "reference": "priests-gruen",
+      "locator": "Published abstract, Scripta Classica Israelica 16 (1997), 47-70",
+      "status": "Abstract-level alternative interpretation",
+      "contribution": "Gruen proposes mutual support rather than a simply rival sanctuary model.",
+      "boundary": "Full-paper review and endorsement of the broader branch genealogy are not claimed.",
+      "nextQuestion": "Consult the full critical discussion and compare its argument with the actual Josephus passages."
+    }
+  ],
+  "authorPassages": [
+    {
+      "id": "pt-original-daniel",
+      "sourceId": "2651",
+      "turn": 1,
+      "speaker": "Micah Blumberg",
+      "contains": "390 + 20",
+      "scope": "A top-level author turn quotes an earlier AI calculation and challenges its consequences. The embedded calculation is not relabeled as an independently authored or verified historical statement."
+    },
+    {
+      "id": "pt-original-branches",
+      "sourceId": "2656",
+      "turn": 22,
+      "speaker": "Micah Blumberg",
+      "contains": "split into two groups",
+      "scope": "The passage explicitly proposes separation and later reunion of communities; correcting the AI's narrower restatement does not independently establish the migration."
+    },
+    {
+      "id": "pt-original-succession",
+      "sourceId": "2656",
+      "turn": 26,
+      "speaker": "Micah Blumberg",
+      "contains": "Seven years is a small",
+      "scope": "This turn develops the earlier-founder chronology with succession and recurring names. Its proposed dates are not independent event anchors."
+    }
+  ],
+  "models": [
+    {
+      "id": "cd-illustrative",
+      "kind": "Conditional elapsed-year model",
+      "anchor": {
+        "year": 586,
+        "era": "BCE",
+        "status": "Assumed illustrative anchor, not a date written in CD"
+      },
+      "steps": [
+        {
+          "event": "root",
+          "years": 390,
+          "status": "Textual interval discussed in Collins"
+        },
+        {
+          "event": "teacher-appearance",
+          "years": 20,
+          "status": "Textual interval discussed in Collins"
+        },
+        {
+          "event": "teacher-death",
+          "years": 40,
+          "status": "Reconstructed career, not directly stated in the cited CD passages"
+        },
+        {
+          "event": "expected-restoration",
+          "years": 40,
+          "status": "Approximately stated expectation; treated as whole years in this illustration"
+        }
+      ],
+      "reference": "priests-collins"
+    },
+    {
+      "id": "october-version",
+      "kind": "Archived hypothesis, not a derived CD chronology",
+      "appearance": {
+        "year": 147,
+        "era": "BCE"
+      },
+      "death": {
+        "year": 88,
+        "era": "BCE"
+      },
+      "careerElapsedYears": 59,
+      "passage": "pt-original-succession",
+      "status": "Preserve separately from the illustrative 176 BCE appearance and reconstructed 40-year career."
+    },
+    {
+      "id": "missing-seven-weeks",
+      "kind": "Arithmetic audit, not an adopted identification",
+      "anchorBCE": 605,
+      "weeksUsed": 62,
+      "omittedWeeks": 7,
+      "yearsPerWeek": 7,
+      "resultUsing62BCE": 171,
+      "resultUsing69BCE": 122,
+      "passage": "pt-original-daniel",
+      "status": "Shows the effect of an unassigned initial seven weeks, not a preferred historical anchor."
+    },
+    {
+      "id": "calendar-units",
+      "kind": "Idealized arithmetic, not ancient practice",
+      "units": 490,
+      "dayLengths": [
+        364,
+        365
+      ],
+      "totals": [
+        178360,
+        178850
+      ],
+      "differenceDays": 490,
+      "reference": "priests-calendar",
+      "status": "No intercalation model is asserted; year length alone does not produce a century of displacement."
+    }
+  ],
+  "openCollations": [
+    "CD Hebrew intervals and historical anchoring",
+    "11Q13 II 6-7 and II 18 critical readings and the full specialist Teacher identification",
+    "Josephus founder parentage, architectural particulars and anomalous 343-year duration",
+    "Actual Egyptian-to-Gnostic and Ethiopian intermediates"
+  ],
+  "rights": "No new scan, photograph, translation license or 3D object rights are conveyed."
+}

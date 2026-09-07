@@ -10,11 +10,11 @@ permissions:
   contents: read
 concurrency:
   group: svgn-city-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   city:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,6 +24,20 @@ jobs:
         run: |
           node --test svgn-city/tests/model.test.mjs
           for f in svgn-city/*.mjs; do node --check "$f"; done
+          python - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          class Links(HTMLParser):
+            def __init__(self):super().__init__();self.links=set()
+            def handle_starttag(self,tag,attrs):
+              d=dict(attrs)
+              if tag=='a' and 'primary-link' in d.get('class',''):self.links.add(d.get('href'))
+          p=Links();p.feed(Path('index.html').read_text())
+          expected={'./svgn-city/index.html','./rainward/index.html','./aether-reach/index.html','./mario-maker-clone/svgn-paper-route/index.html','./theology-wiki/san-reader.html','./dino-atlas/index.html'}
+          assert expected<=p.links,p.links
+          assert not Path('svgn-city/.incoming').exists()
+          assert not Path('.github/workflows/svgn-city-materialize.yml').exists()
+          PY
       - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0
@@ -41,7 +55,7 @@ jobs:
           cp -r svgn-city/test-output city-evidence/ 2>/dev/null || true
           git rev-parse HEAD > city-evidence/source-sha.txt
           git diff --stat > city-evidence/uncommitted-diff.txt
-          tar --exclude='test-output' --exclude='__pycache__' -czf city-evidence/source.tgz svgn-city
+          tar --exclude='test-output' --exclude='__pycache__' -czf city-evidence/source.tgz svgn-city index.html
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-connected-foundations-1",
+  "version": "2026.09.06-priesthood-time-1",
   "updated": "2026-09-06",
   "theoryNameStatus": "Christic Self-Formation Theory is the proposed working name, not a claim of established nomenclature or worldwide priority.",
   "articles": [
@@ -546,6 +546,59 @@
         "cf-annunaki-dialogue",
         "cf-god-proof-2026"
       ]
+    },
+    {
+      "slug": "daniel-jubilee-and-the-teachers-time",
+      "title": "Daniel, jubilee and the Teacher's time",
+      "summary": "The counted history, competing Teacher chronologies and authority to proclaim release are examined without merging an appearance, a death and a restoration.",
+      "sourceIds": [
+        "2651",
+        "2656"
+      ],
+      "externalSources": [
+        "atlas-daniel",
+        "priests-collins",
+        "priests-lev25",
+        "melch-williams2023",
+        "priests-calendar"
+      ],
+      "aliases": [
+        "Daniel seventy weeks Teacher of Righteousness",
+        "490 410 176 147 88 BCE calendar"
+      ],
+      "category": "origins",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "claimType": "Historical conjecture and passage-level source comparison",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "art": ""
+    },
+    {
+      "slug": "onias-egypt-and-priestly-continuity",
+      "title": "Onias, Egypt and priestly continuity",
+      "summary": "A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.",
+      "sourceIds": [
+        "2656"
+      ],
+      "externalSources": [
+        "atlas-onias",
+        "priests-war7",
+        "priests-war2",
+        "priests-macc4",
+        "priests-isa19",
+        "priests-gruen",
+        "priests-collins"
+      ],
+      "aliases": [
+        "Onias III Onias IV Zadokite priestly branches",
+        "Chelcias Ananias Leontopolis James succession"
+      ],
+      "category": "origins",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "claimType": "Historical conjecture and passage-level source comparison",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "art": ""
     }
   ],
   "references": [
@@ -778,6 +831,62 @@
       "title": "The Formation of the First Star in the Universe",
       "url": "https://arxiv.org/abs/astro-ph/0112088",
       "scope": "Abstract consulted. Specific gravitational/cooling formation model; no evidence that a general-purpose coherence quantity alone explains stellar formation. Access scope retained from the supplied research intake; not an independent replication.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-collins",
+      "title": "John J. Collins, The Dead Sea Scrolls (Anchor Bible Dictionary, 1992)",
+      "url": "https://cojs.org/the_dead_sea_scrolls-_john_j-_collins-_anchor_bible_dictionary_-ed-_david_noel_freedman-_doubleday-_ny-_1992-_vol-2-_p-85-101/",
+      "scope": "Sections C and J of the full online reproduction consulted for CD 1, CD 20:15, and household rules at CD 7:6-7. The 40-year Teacher career is a reconstructed interval. This is a dated scholarly interpretation, not a new Hebrew collation or current manuscript inventory.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-lev25",
+      "title": "Leviticus 25, World English Bible",
+      "url": "https://ebible.org/engwebp/LEV25.htm",
+      "scope": "Primary translated chapter consulted, particularly verses 8-13: seven weeks of years, the fiftieth year, liberty and return. Identifying a later agent of release is a further interpretive step.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-calendar",
+      "title": "Michal Jaroslaw Klukowski, The Tradition of the 364-Day Year in Second Temple Period Judaism",
+      "url": "https://czasopisma.kul.pl/index.php/vv/article/view/1935",
+      "scope": "Published scholarly abstract consulted for the 364-day schematic-year tradition and its relationship to calendrical texts. No claim of full-paper review, a settled origin, or a proved practical intercalation scheme is made.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-war7",
+      "title": "Josephus, War 7.10.2-4, William Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/war-7.html",
+      "scope": "Primary translated narrative consulted for the Onias sanctuary, different parentage and architectural description, support and closure under Lupus and Paulinus, and the transmitted 343-year duration. Editorial bracketed dates and Whiston notes are not words of the ancient narrative.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-war2",
+      "title": "Josephus, War 2.8.13, William Whiston translation",
+      "url": "https://penelope.uchicago.edu/josephus/war-2.html",
+      "scope": "Primary translated passage consulted for the marrying Essene order and its concern with succession. It is not a roster of the households or branches proposed in this reconstruction.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-macc4",
+      "title": "Second Maccabees 4:33-38, USCCB translation",
+      "url": "https://bible.usccb.org/bible/2maccabees/4",
+      "scope": "Primary translated passage consulted for the death of Onias, the roles of Andronicus and Menelaus, and the king's response. It does not itself identify John the Baptist or a 20-year interval to the Teacher.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-isa19",
+      "title": "Isaiah 19, World English Bible",
+      "url": "https://ebible.org/engwebp/ISA19.htm",
+      "scope": "Primary translated chapter consulted, particularly verses 19-25: an altar in Egypt and blessing involving Egypt, Assyria and Israel. Its use in Josephus is a reported interpretation, not independent verification of royal correspondence.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "priests-gruen",
+      "title": "Erich S. Gruen, The Origins and Objectives of Onias' Temple (1997)",
+      "url": "https://scriptaclassica.org/index.php/sci/article/view/4239",
+      "scope": "Published abstract consulted. It challenges the conventional rival-temple account and proposes mutual support between Jerusalem and Leontopolis while noting problems in Josephus. The full article and its critical apparatus were not independently reviewed in this pass; publication is 1997, not the website upload date.",
       "accessed": "2026-09-06"
     }
   ]

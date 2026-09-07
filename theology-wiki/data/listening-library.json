@@ -1,6 +1,6 @@
 {
   "schema": "theology-listening-library/v1",
-  "version": "2026.09.06-connected-foundations-1",
+  "version": "2026.09.06-priesthood-time-1",
   "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "articles": [
     {
@@ -169,6 +169,26 @@
       "words": 1261
     },
     {
+      "slug": "daniel-jubilee-and-the-teachers-time",
+      "title": "Daniel, jubilee and the Teacher's time",
+      "summary": "The counted history, competing Teacher chronologies and authority to proclaim release are examined without merging an appearance, a death and a restoration.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "teacher-identity",
+          "title": "What survives a teacher?",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/daniel-jubilee-and-the-teachers-time.md",
+      "sourceSha256": "78e5b6dfa1c66abe72b5c3b54283b5ef748db6b17a9c750171c4cf3ffa27f001",
+      "narration": "data/listening/daniel-jubilee-and-the-teachers-time.json",
+      "narrationSha256": "2bffa22c053ad894972dabced5bc7675b154cbc4fa3751bd0c9728d37d4a4d89",
+      "transcript": "products/transcripts/daniel-jubilee-and-the-teachers-time.txt",
+      "segments": 54,
+      "words": 2152
+    },
+    {
       "slug": "tor-thomas-and-gnostic-transmission",
       "title": "The Teacher, Thomas and Gnostic transmission",
       "summary": "A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.",
@@ -221,12 +241,37 @@
         }
       ],
       "source": "content/developed/manuscripts-movements-and-survival.md",
-      "sourceSha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13",
+      "sourceSha256": "4fa02b7d1368a20e22a0d9e37ec3d069e5ecf92ba303def12fc0b93e6b298590",
       "narration": "data/listening/manuscripts-movements-and-survival.json",
-      "narrationSha256": "c567bcad66ed8213829ed4056916ca6a093aeefe0693a80fb1b052ba9c408788",
+      "narrationSha256": "363c06ea397403548e166ff05d7a88958309f3f4a87f6523b0e5e6389b9f7424",
       "transcript": "products/transcripts/manuscripts-movements-and-survival.txt",
       "segments": 45,
       "words": 1427
+    },
+    {
+      "slug": "onias-egypt-and-priestly-continuity",
+      "title": "Onias, Egypt and priestly continuity",
+      "summary": "A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.",
+      "category": "origins",
+      "chapters": [
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "part": "The teacher and the transmitted message"
+        },
+        {
+          "id": "trauma",
+          "title": "Loss, anger and reconstruction",
+          "part": "The teacher and the transmitted message"
+        }
+      ],
+      "source": "content/developed/onias-egypt-and-priestly-continuity.md",
+      "sourceSha256": "94c11b56f898478ef2a5966a431e7ab183e666d2723f491015ebaf97b3551a87",
+      "narration": "data/listening/onias-egypt-and-priestly-continuity.json",
+      "narrationSha256": "b13137bd762f2534ccbf9cc23bf6629ce42e9326d974f6dad8f248574940508b",
+      "transcript": "products/transcripts/onias-egypt-and-priestly-continuity.txt",
+      "segments": 66,
+      "words": 2336
     },
     {
       "slug": "gnosticism-and-temple-trauma",
@@ -573,7 +618,8 @@
       "title": "What survives a teacher?",
       "part": "The teacher and the transmitted message",
       "pages": [
-        "jesus-teacher-of-righteousness-hypothesis"
+        "jesus-teacher-of-righteousness-hypothesis",
+        "daniel-jubilee-and-the-teachers-time"
       ]
     },
     {
@@ -583,7 +629,8 @@
       "pages": [
         "tor-thomas-and-gnostic-transmission",
         "melchizedek-priesthood-and-transmission",
-        "manuscripts-movements-and-survival"
+        "manuscripts-movements-and-survival",
+        "onias-egypt-and-priestly-continuity"
       ]
     },
     {
@@ -592,7 +639,8 @@
       "part": "The teacher and the transmitted message",
       "pages": [
         "gnosticism-and-temple-trauma",
-        "apocalyptic-repair-theology"
+        "apocalyptic-repair-theology",
+        "onias-egypt-and-priestly-continuity"
       ]
     },
     {

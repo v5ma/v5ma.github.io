@@ -1,6 +1,6 @@
 # SVGN City — First Dispatch
 
-A separate, original third-person city game for SVGN. This project does **not** replace Paper Delivery, Route Workshop, Aether Reach, Dino Atlas, or the Theology Wiki. It is a playable foundation, not a completed GTA/Watch Dogs-scale game.
+A separate, original third-person city game for SVGN. This project does **not** replace Paper Delivery, Route Workshop, Aether Reach, Rainward, Dino Atlas, or the Theology Wiki. It is a playable foundation, not a completed GTA/Watch Dogs-scale game.
 
 ## Reference and first chapter
 
@@ -20,6 +20,8 @@ Serve the repository root, then open `/svgn-city/`. For a standalone copy of thi
 - M: map. P/Escape: pause. Drag the game view for a temporary look-around.
 - The pause menu provides explicit recovery and a confirmed reset of this game's own progress.
 
+A low-power graphics link on the title/pause screen disables shadows without changing the world or physics. The link restarts at the kiosk and retains completed progress.
+
 Sound is opt-in synthesized ambience/effects, not a copied commercial soundtrack. Touch buttons appear on touch-capable devices. Keyboard/mouse is the initial primary target; physical mobile hardware and controllers require separate testing.
 
 ## Architecture
@@ -30,6 +32,8 @@ The retained Three.js files are copied exactly from the repository's pinned, MIT
 
 ## Tests and release
 
-`npm test` runs renderer-independent fixtures. `python tests/browser.py` exercises the served repository through normal keys/UI in Chromium after installing Playwright. Its scenario completes paper deliveries, scans/links the relay, dismounts, enters the car, drives through the open gate to the newsroom, reloads the saved progress, and checks pause/recovery. Model fixtures and native browser evidence are separate. A failed run is not a passing release; see the committed review notes and Actions artifacts.
+`npm test` runs renderer-independent fixtures. `python tests/browser.py` exercises the served repository through normal keys/UI in Chromium after installing Playwright. The high-quality renderer receives a visual smoke check; the longer software-rendered playthrough uses the user-accessible low-power graphics setting without changing the simulation clock. Its scenario completes paper deliveries, scans/links the relay, dismounts, enters the car, drives through the open gate to the newsroom, reloads the saved progress, and checks pause/recovery. Model fixtures and native browser evidence are separate. A failed run is not a passing release; see the Actions artifacts.
+
+The homepage cover is an actual native gameplay capture from this implementation, not a concept image or frame copied from the user's reference video. The CI workflow reads committed source; it does not rewrite application files. The publication workflow compares owned public runtime files to that source.
 
 Technical references used for implementation: Three.js WebGLRenderer documentation and color-management manual; MDN 3D collision detection. No similarity to an inspiration's commercial scale, asset quality or full feature set is claimed.

@@ -88,9 +88,9 @@ Institutional project introduction and catalogue highlights consulted for Damasc
 
 Primary translated sections consulted. A quotation attributed to Manetho and Josephus's interpretation are dependent stages, not two independent eyewitnesses. Consulted 2026-09-05.
 
-[Josephus, Antiquities 13.3, Whiston translation](https://penelope.uchicago.edu/josephus/ant-13.html)
+[Josephus, Antiquities 13.3.1-3, 13.10.4 and 13.13.2, Whiston translation](https://penelope.uchicago.edu/josephus/ant-13.html)
 
-Primary translated narrative of the Onias sanctuary consulted. This institutional account does not by itself establish subsequent household migration or Nag Hammadi ancestry. Consulted 2026-09-05.
+Primary translated passages consulted for the sanctuary, royal petition and permission, Onias's sons Chelcias and Ananias, and Ananias's counsel concerning Alexander. Strabo is encountered through Josephus's quotation, not as an independently inspected document. These relations do not establish subsequent Teacher or Gnostic transmission. Consulted 2026-09-06.
 
 [Gospel of Thomas, translation by Stephen Patterson and Marvin Meyer](https://www.earlychristianwritings.com/text/thomas-scholars.html)
 

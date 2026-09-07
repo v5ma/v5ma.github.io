@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-connected-foundations-1",
+  "version": "2026.09.06-priesthood-time-1",
   "categories": [
     {
       "id": "gnosis",
@@ -140,7 +140,7 @@
     }
   ],
   "sourceCount": 354,
-  "developedCount": 25,
+  "developedCount": 27,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -209,6 +209,8 @@
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
       "inner-formation-texts-and-material-witnesses",
+      "daniel-jubilee-and-the-teachers-time",
+      "onias-egypt-and-priestly-continuity",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
@@ -544,6 +546,7 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
       "exodus-to-temple-competing-chronologies",
+      "daniel-jubilee-and-the-teachers-time",
       "topic-apocalypse"
     ],
     "daniel-prophecy-and-temple": [
@@ -1737,6 +1740,7 @@
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
       "inner-formation-texts-and-material-witnesses",
+      "daniel-jubilee-and-the-teachers-time",
       "source-atlas",
       "argument-challenges",
       "museum-trails",
@@ -1785,6 +1789,7 @@
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
       "flood-inheritance-and-deep-time",
+      "daniel-jubilee-and-the-teachers-time",
       "source-atlas",
       "guide-to-the-inquiry",
       "glossary",
@@ -1821,6 +1826,8 @@
       "melchizedek-priesthood-and-transmission",
       "inner-formation-texts-and-material-witnesses",
       "computational-divine-immanence",
+      "daniel-jubilee-and-the-teachers-time",
+      "onias-egypt-and-priestly-continuity",
       "source-atlas",
       "museum-trails",
       "guide-to-the-inquiry",
@@ -1874,6 +1881,7 @@
       "samaritan-texts-and-sacred-authority",
       "tor-thomas-and-gnostic-transmission",
       "inner-formation-texts-and-material-witnesses",
+      "onias-egypt-and-priestly-continuity",
       "source-atlas",
       "museum-trails",
       "guide-to-the-inquiry",
@@ -1892,6 +1900,7 @@
       "gnosticism-and-temple-trauma",
       "sacred-inheritance-and-rival-continuations",
       "scripture-power-and-repair",
+      "onias-egypt-and-priestly-continuity",
       "guide-to-the-inquiry",
       "topic-traditions",
       "reading-paths",
@@ -1905,6 +1914,7 @@
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
       "flood-inheritance-and-deep-time",
+      "onias-egypt-and-priestly-continuity",
       "topic-traditions",
       "reading-paths",
       "book-contents",
@@ -1920,6 +1930,8 @@
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
       "inner-formation-texts-and-material-witnesses",
+      "daniel-jubilee-and-the-teachers-time",
+      "onias-egypt-and-priestly-continuity",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -1949,6 +1961,7 @@
       "sacred-inheritance-and-rival-continuations",
       "divine-will-and-self-authorizing-power",
       "melchizedek-priesthood-and-transmission",
+      "daniel-jubilee-and-the-teachers-time",
       "topic-jesus",
       "reading-paths",
       "book-contents",
@@ -1970,6 +1983,8 @@
       "tor-thomas-and-gnostic-transmission",
       "manuscripts-movements-and-survival",
       "inner-formation-texts-and-material-witnesses",
+      "daniel-jubilee-and-the-teachers-time",
+      "onias-egypt-and-priestly-continuity",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -1980,6 +1995,7 @@
       "home",
       "moses-volcano-and-exodus-chronology",
       "flood-inheritance-and-deep-time",
+      "daniel-jubilee-and-the-teachers-time",
       "source-atlas",
       "argument-challenges",
       "museum-trails",
@@ -1989,6 +2005,7 @@
     "manuscripts-movements-and-survival": [
       "home",
       "tor-thomas-and-gnostic-transmission",
+      "onias-egypt-and-priestly-continuity",
       "source-atlas",
       "argument-challenges",
       "museum-trails",
@@ -2024,6 +2041,24 @@
       "topic-origins",
       "reading-paths",
       "computational-argument-map",
+      "book-contents"
+    ],
+    "daniel-jubilee-and-the-teachers-time": [
+      "home",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "onias-egypt-and-priestly-continuity",
+      "source-atlas",
+      "museum-trails",
+      "topic-origins",
+      "book-contents"
+    ],
+    "onias-egypt-and-priestly-continuity": [
+      "home",
+      "tor-thomas-and-gnostic-transmission",
+      "daniel-jubilee-and-the-teachers-time",
+      "source-atlas",
+      "museum-trails",
+      "topic-origins",
       "book-contents"
     ],
     "listening-room": [

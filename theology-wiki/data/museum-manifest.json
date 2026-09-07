@@ -1,11 +1,11 @@
 {
   "schema": "theology-museum-content/1",
-  "version": "2026.09.06-connected-foundations-1",
+  "version": "2026.09.06-priesthood-time-1",
   "contentOnly": true,
   "runtimeOwnership": "XR implementation is maintained separately. This manifest supplies curation and evidence, not a working XR scene.",
   "atlas": {
     "path": "source-atlas.json",
-    "sha256": "02eeff57c0a3ab5108efbb8390c67d57d86cb99c3f83728197a4b669d11540c6"
+    "sha256": "92d5945bf8da3f6acdf8ed91e6f783a5a009d097d79534bebb35511eb94b3d1b"
   },
   "assetPolicy": "No new scan, photograph, 3D mesh or translated full text is licensed by this manifest. All stops have empty asset lists until explicit permission and identity are checked. Existing wiki illustrations remain contextual, not facsimiles of these objects.",
   "trailPolicy": "A short label must expose its fullArgumentURL, sourceURLs and challengeURLs. Never substitute a label for the full reconstruction or treat a proposed link as a demonstrated event.",
@@ -520,6 +520,218 @@
           ],
           "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=exodus-to-temple-competing-chronologies",
           "challengeURLs": [],
+          "assetIds": []
+        }
+      ]
+    },
+    {
+      "id": "teacher-prophetic-time",
+      "title": "The Teacher and prophetic time",
+      "question": "Which event does a sacred count identify: appearance, death or restoration?",
+      "chapter": "teacher-identity",
+      "stops": [
+        {
+          "id": "pt-daniel-order",
+          "title": "The sequence before the name",
+          "label": "Seven weeks, 62 weeks and a final week must be assigned to events before a date can identify a person.",
+          "records": [
+            "work-daniel"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": [
+            "daniel-endpoints"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-daniel"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=daniel-jubilee-and-the-teachers-time",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=daniel-endpoints"
+          ],
+          "assetIds": []
+        },
+        {
+          "id": "pt-damascus-count",
+          "title": "The counted history",
+          "label": "390 and 20 place the Teacher's appearance within the model. The extra 40-year career is a reconstruction, not a fourth explicit datum.",
+          "records": [
+            "work-damascus",
+            "study-collins-teacher"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": [
+            "daniel-endpoints"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-damascus",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-collins-teacher"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=daniel-jubilee-and-the-teachers-time",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=daniel-endpoints"
+          ],
+          "assetIds": []
+        },
+        {
+          "id": "pt-jubilee-release",
+          "title": "What the count authorizes",
+          "label": "Release, forgiveness and anointed authority create a specific interpretive connection. Competing readings of damaged words change the sequence.",
+          "records": [
+            "work-11qmelchizedek",
+            "study-williams",
+            "work-leviticus-jubilee"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-11qmelchizedek",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-williams",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-leviticus-jubilee"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=daniel-jubilee-and-the-teachers-time",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "pt-versions",
+          "title": "Two versions must not be blended",
+          "label": "The illustrative 176 BCE appearance and the October 147-to-88 BCE reconstruction have different assumptions. Neither supplies an archaeological date.",
+          "records": [
+            "hypothesis-teacher-october"
+          ],
+          "page": "daniel-jubilee-and-the-teachers-time",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-teacher-october"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=daniel-jubilee-and-the-teachers-time",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "pt-carriers",
+          "title": "From sacred time to transmitted life",
+          "label": "A displaced-biography claim needs carriers of the founder's memory, not only a matching number. Follow the proposed Egyptian branch.",
+          "records": [
+            "hypothesis-priestly-branches"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [
+            "institution-not-motif"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-priestly-branches"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=onias-egypt-and-priestly-continuity",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=institution-not-motif"
+          ],
+          "assetIds": []
+        }
+      ]
+    },
+    {
+      "id": "onias-priestly-branches",
+      "title": "Onias and the priestly branches",
+      "question": "How could a priestly inheritance persist across borders and after its sanctuary closes?",
+      "chapter": "thomas",
+      "stops": [
+        {
+          "id": "pt-sanctuary",
+          "title": "An institution beyond Jerusalem",
+          "label": "Josephus supplies a reported sanctuary, priests and royal permission. The appeal to Isaiah explains a claim of continuity, not only a break.",
+          "records": [
+            "work-antiquities",
+            "work-isaiah-egypt"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-antiquities",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-isaiah-egypt"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=onias-egypt-and-priestly-continuity",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "pt-descendants",
+          "title": "A named next generation",
+          "label": "Chelcias and Ananias appear as sons of the temple-founder. Their offices and cross-border counsel give the carrier question specific actors.",
+          "records": [
+            "work-antiquities",
+            "fragment-strabo-onias",
+            "study-gruen-onias"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-antiquities",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=fragment-strabo-onias",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-gruen-onias"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=onias-egypt-and-priestly-continuity",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "pt-households",
+          "title": "Families and specialized groups",
+          "label": "A marrying Essene order and household rules complicate a uniform celibate picture. Neither is a roster of the proposed migration.",
+          "records": [
+            "work-jewish-war",
+            "work-damascus"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [
+            "institution-not-motif"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-jewish-war",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-damascus"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=onias-egypt-and-priestly-continuity",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=institution-not-motif"
+          ],
+          "assetIds": []
+        },
+        {
+          "id": "pt-closure",
+          "title": "The destination also closes",
+          "label": "The Egyptian sanctuary is not an indefinitely available refuge. Its reported closure makes surviving households and dispersed institutions a new research question.",
+          "records": [
+            "work-jewish-war"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-jewish-war"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=onias-egypt-and-priestly-continuity",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "pt-reunion",
+          "title": "What changes, and what survives?",
+          "label": "Reunion, succession and transformed interpretation are the positive reconstruction. Texts, dates and actual intermediates must support each proposed connection.",
+          "records": [
+            "hypothesis-priestly-branches",
+            "hypothesis-teacher-october"
+          ],
+          "page": "onias-egypt-and-priestly-continuity",
+          "challengeIds": [
+            "institution-not-motif"
+          ],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-priestly-branches",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-teacher-october"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=onias-egypt-and-priestly-continuity",
+          "challengeURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=institution-not-motif"
+          ],
           "assetIds": []
         }
       ]

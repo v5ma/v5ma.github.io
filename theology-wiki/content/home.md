@@ -79,6 +79,10 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[flood-inheritance-and-deep-time|Flood inheritance and deep time]]: A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.
 
+[[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]: The counted history, competing Teacher chronologies and authority to proclaim release are examined without merging an appearance, a death and a restoration.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]: A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.
+
 ## Explore a subject
 
 [[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
@@ -101,4 +105,4 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[computational-argument-map|The computational theology argument map]] connects the new sources and ten research questions. [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-25 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.
+27 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.

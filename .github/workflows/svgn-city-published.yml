@@ -16,9 +16,10 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import hashlib,urllib.request,json,time
+          import hashlib,urllib.request,json,time,subprocess
           root=Path('svgn-city')
           files=[p for p in root.rglob('*') if p.is_file() and p.suffix in ['.html','.css','.mjs','.js','.json','.webp'] and 'tests' not in p.parts]
+          files.append(Path('index.html'))
           expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
           results={}
           for attempt in range(50):
@@ -28,9 +29,9 @@ jobs:
                 with urllib.request.urlopen('https://v5ma.github.io/'+name+'?first-dispatch=0.1.0',timeout=12) as r:
                   digest=hashlib.sha256(r.read()).hexdigest();results[name]={'status':r.status,'match':digest==h,'sha256':digest}
               except Exception as e: results[name]={'match':False,'error':str(e)}
-            if all(v['match'] for v in results.values()): break
+            if len(results)==len(expected) and all(v['match'] for v in results.values()): break
             time.sleep(5)
-          Path('city-publication.json').write_text(json.dumps(results,indent=2))
+          Path('city-publication.json').write_text(json.dumps({'version':'0.1.0','source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':results,'all_match':len(results)==len(expected) and all(v['match'] for v in results.values())},indent=2))
           assert len(results)==len(expected) and all(v['match'] for v in results.values()),results
           PY
       - uses: actions/upload-artifact@v4

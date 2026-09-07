@@ -1,6 +1,6 @@
 {
   "schema": "theology-products/v1",
-  "version": "2026.09.06-connected-foundations-1",
+  "version": "2026.09.06-priesthood-time-1",
   "updated": "2026-09-06",
   "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "reference": {
@@ -408,7 +408,7 @@
           "slug": "manuscripts-movements-and-survival",
           "title": "Manuscripts, movements and survival",
           "path": "content/developed/manuscripts-movements-and-survival.md",
-          "sha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13"
+          "sha256": "4fa02b7d1368a20e22a0d9e37ec3d069e5ecf92ba303def12fc0b93e6b298590"
         },
         {
           "slug": "tor-thomas-and-gnostic-transmission",
@@ -533,7 +533,7 @@
           "slug": "manuscripts-movements-and-survival",
           "title": "Manuscripts, movements and survival",
           "path": "content/developed/manuscripts-movements-and-survival.md",
-          "sha256": "99811582dd6b5fe44166bdbf6c5c0dcd1d1133667f476e2664ab22961619af13"
+          "sha256": "4fa02b7d1368a20e22a0d9e37ec3d069e5ecf92ba303def12fc0b93e6b298590"
         },
         {
           "slug": "exodus-to-temple-competing-chronologies",

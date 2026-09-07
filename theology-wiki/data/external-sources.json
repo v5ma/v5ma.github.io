@@ -393,10 +393,10 @@
   },
   {
     "id": "atlas-onias",
-    "title": "Josephus, Antiquities 13.3, Whiston translation",
+    "title": "Josephus, Antiquities 13.3.1-3, 13.10.4 and 13.13.2, Whiston translation",
     "url": "https://penelope.uchicago.edu/josephus/ant-13.html",
-    "scope": "Primary translated narrative of the Onias sanctuary consulted. This institutional account does not by itself establish subsequent household migration or Nag Hammadi ancestry.",
-    "accessed": "2026-09-05"
+    "scope": "Primary translated passages consulted for the sanctuary, royal petition and permission, Onias's sons Chelcias and Ananias, and Ananias's counsel concerning Alexander. Strabo is encountered through Josephus's quotation, not as an independently inspected document. These relations do not establish subsequent Teacher or Gnostic transmission.",
+    "accessed": "2026-09-06"
   },
   {
     "id": "atlas-beni",
@@ -634,6 +634,62 @@
     "title": "The Formation of the First Star in the Universe",
     "url": "https://arxiv.org/abs/astro-ph/0112088",
     "scope": "Abstract consulted. Specific gravitational/cooling formation model; no evidence that a general-purpose coherence quantity alone explains stellar formation. Access scope retained from the supplied research intake; not an independent replication.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-collins",
+    "title": "John J. Collins, The Dead Sea Scrolls (Anchor Bible Dictionary, 1992)",
+    "url": "https://cojs.org/the_dead_sea_scrolls-_john_j-_collins-_anchor_bible_dictionary_-ed-_david_noel_freedman-_doubleday-_ny-_1992-_vol-2-_p-85-101/",
+    "scope": "Sections C and J of the full online reproduction consulted for CD 1, CD 20:15, and household rules at CD 7:6-7. The 40-year Teacher career is a reconstructed interval. This is a dated scholarly interpretation, not a new Hebrew collation or current manuscript inventory.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-lev25",
+    "title": "Leviticus 25, World English Bible",
+    "url": "https://ebible.org/engwebp/LEV25.htm",
+    "scope": "Primary translated chapter consulted, particularly verses 8-13: seven weeks of years, the fiftieth year, liberty and return. Identifying a later agent of release is a further interpretive step.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-calendar",
+    "title": "Michal Jaroslaw Klukowski, The Tradition of the 364-Day Year in Second Temple Period Judaism",
+    "url": "https://czasopisma.kul.pl/index.php/vv/article/view/1935",
+    "scope": "Published scholarly abstract consulted for the 364-day schematic-year tradition and its relationship to calendrical texts. No claim of full-paper review, a settled origin, or a proved practical intercalation scheme is made.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-war7",
+    "title": "Josephus, War 7.10.2-4, William Whiston translation",
+    "url": "https://penelope.uchicago.edu/josephus/war-7.html",
+    "scope": "Primary translated narrative consulted for the Onias sanctuary, different parentage and architectural description, support and closure under Lupus and Paulinus, and the transmitted 343-year duration. Editorial bracketed dates and Whiston notes are not words of the ancient narrative.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-war2",
+    "title": "Josephus, War 2.8.13, William Whiston translation",
+    "url": "https://penelope.uchicago.edu/josephus/war-2.html",
+    "scope": "Primary translated passage consulted for the marrying Essene order and its concern with succession. It is not a roster of the households or branches proposed in this reconstruction.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-macc4",
+    "title": "Second Maccabees 4:33-38, USCCB translation",
+    "url": "https://bible.usccb.org/bible/2maccabees/4",
+    "scope": "Primary translated passage consulted for the death of Onias, the roles of Andronicus and Menelaus, and the king's response. It does not itself identify John the Baptist or a 20-year interval to the Teacher.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-isa19",
+    "title": "Isaiah 19, World English Bible",
+    "url": "https://ebible.org/engwebp/ISA19.htm",
+    "scope": "Primary translated chapter consulted, particularly verses 19-25: an altar in Egypt and blessing involving Egypt, Assyria and Israel. Its use in Josephus is a reported interpretation, not independent verification of royal correspondence.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "priests-gruen",
+    "title": "Erich S. Gruen, The Origins and Objectives of Onias' Temple (1997)",
+    "url": "https://scriptaclassica.org/index.php/sci/article/view/4239",
+    "scope": "Published abstract consulted. It challenges the conventional rival-temple account and proposes mutual support between Jerusalem and Leontopolis while noting problems in Josephus. The full article and its critical apparatus were not independently reviewed in this pass; publication is 1997, not the website upload date.",
     "accessed": "2026-09-06"
   }
 ]
