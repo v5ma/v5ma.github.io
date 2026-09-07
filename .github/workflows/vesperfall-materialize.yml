@@ -24,29 +24,28 @@ jobs:
           import hashlib,lzma,json
           data=b''.join(Path(f'.vesperfall-incoming/part-{i}').read_bytes() for i in range(5))
           assert hashlib.sha256(data).hexdigest()=='0210bf9c7457a9171adc70572b0eb15462522bf3468c6e15d51ae3f6ff705ddf'
-          files=json.loads(lzma.decompress(data))
+          files=json.loads(lzma.decompress(data));assert len(files)==18
           allowed={'.github/workflows/vesperfall.yml','.github/workflows/vesperfall-published.yml','scripts/integrate-vesperfall.py','scripts/check-vesperfall.py'}
-          assert len(files)==18
           for name,text in files.items():
             p=PurePosixPath(name)
             assert not p.is_absolute() and '..' not in p.parts and (name.startswith('vesperfall/') or name in allowed)
-            target=Path(name)
+            target=Path(name);assert isinstance(text,str)
+            if name.startswith('.github/'):
+              assert target.read_bytes()==text.encode(),name
+              continue
             assert not target.exists(),name
-            assert isinstance(text,str)
-            target.parent.mkdir(parents=True,exist_ok=True)
-            target.write_bytes(text.encode('utf-8'))
+            target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(text.encode('utf-8'))
           PY
           python scripts/integrate-vesperfall.py
           node --test vesperfall/tests/core.test.cjs
           python scripts/check-vesperfall.py
-      - name: Commit readable source and remove transport
+      - name: Commit readable source without modifying workflow permissions
         run: |
           rm -rf .vesperfall-incoming
-          rm -f .github/workflows/vesperfall-bootstrap.yml .github/workflows/vesperfall-materialize.yml
           git config user.name 'Vesperfall source integration'
           git config user.email 'vesperfall@users.noreply.github.com'
-          git add vesperfall index.html scripts/integrate-vesperfall.py scripts/check-vesperfall.py .github/workflows/vesperfall.yml .github/workflows/vesperfall-published.yml
-          git add -u .github/workflows .vesperfall-incoming
+          git add vesperfall index.html scripts/integrate-vesperfall.py scripts/check-vesperfall.py
+          git add -u .vesperfall-incoming
           git commit -m 'Implement Vesperfall A-Frame archery roguelite and public project entry'
           git push origin HEAD:feat/vesperfall-quest-archery
       - name: Preserve source audit

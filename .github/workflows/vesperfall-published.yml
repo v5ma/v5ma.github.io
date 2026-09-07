@@ -1,0 +1,39 @@
+name: Verify published Vesperfall demo
+on:
+  push:
+    branches: [master]
+    paths: ['vesperfall/**','scripts/check-vesperfall.py','.github/workflows/vesperfall-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/check-vesperfall.py
+      - name: Compare actual public bytes with the merged source
+        run: |
+          python - <<'PY'
+          import json,hashlib,time,urllib.request
+          from pathlib import Path
+          m=json.loads(Path('test-output/vesperfall-manifest.json').read_text());results={}
+          for attempt in range(60):
+            for name,expected in m['files'].items():
+              if results.get(name,{}).get('match'):continue
+              try:
+                with urllib.request.urlopen('https://v5ma.github.io/'+name+'?vesper='+m['source'],timeout=10) as r:
+                  sha=hashlib.sha256(r.read()).hexdigest();results[name]={'status':r.status,'sha256':sha,'match':sha==expected}
+              except Exception as e:results[name]={'match':False,'error':str(e)}
+            if len(results)==len(m['files']) and all(v['match'] for v in results.values()):break
+            time.sleep(5)
+          Path('test-output/publication.json').write_text(json.dumps({'source':m['source'],'version':m['version'],'files':results,'all_match':all(v['match'] for v in results.values())},indent=2))
+          assert all(v['match'] for v in results.values()),results
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-publication
+          path: test-output/
+          retention-days: 14
