@@ -1,6 +1,6 @@
 {
   "schema": "theology-source-atlas/1",
-  "version": "2026.09.06-priesthood-time-1",
+  "version": "2026.09.06-james-transmission-1",
   "updated": "2026-09-06",
   "baselineCommit": "32875e660a61f175727d99433d25887cd0707851",
   "policy": "A curated starting catalogue, not an exhaustive list of all sources in 354 chats. Kinds, access scopes, hypotheses and unresolved leads are distinct. A shared source does not imply independent corroboration or a proven genealogy.",
@@ -1660,6 +1660,247 @@
         "status": "No bundled asset",
         "reason": "Textual consultation does not license a new image, scan, translated full text or archaeological reconstruction."
       }
+    },
+    {
+      "id": "work-eusebius-history",
+      "title": "Eusebius: the surviving channel for several earlier accounts",
+      "kind": "work",
+      "corpus": "Christian historical writing",
+      "detail": "A host text preserves quotations and classifications. Earlier speakers remain separately attributed, not automatically counted as independent surviving objects.",
+      "sources": [
+        "jt-eusebius2",
+        "jt-eusebius3",
+        "jt-eusebius4"
+      ],
+      "pages": [
+        "james-and-contested-succession"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "fragment-clement-knowledge",
+      "title": "Clement on James and transmitted knowledge, through Eusebius",
+      "kind": "quoted-fragment",
+      "corpus": "Mediated teaching tradition",
+      "detail": "Church History 2.1.4 quotes Hypotyposes 7. The passage supports a reported chain of transmission, not an identification of its contents with Thomas.",
+      "sources": [
+        "jt-eusebius2"
+      ],
+      "pages": [
+        "james-and-contested-succession",
+        "thomas-sayings-and-transmission"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "fragment-hegesippus-james",
+      "title": "Hegesippus on James and succession, through Eusebius",
+      "kind": "quoted-fragment",
+      "corpus": "Mediated communal memory",
+      "detail": "The priestly portrait and kinship succession invite comparison. The account's adverse sect classifications and mediation remain visible.",
+      "sources": [
+        "jt-eusebius2",
+        "jt-eusebius4"
+      ],
+      "pages": [
+        "james-and-contested-succession"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "work-irenaeus-ebionites",
+      "title": "Irenaeus on the people called Ebionites",
+      "kind": "work",
+      "corpus": "Polemical classification",
+      "detail": "Against Heresies 1.26.2 describes law, Creator, Matthew and opposition to Paul. This is an external report rather than a recovered group confession.",
+      "sources": [
+        "jt-irenaeus"
+      ],
+      "pages": [
+        "james-and-contested-succession"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "work-first-apocalypse-james",
+      "title": "First Apocalypse of James: spiritual kinship and revelation",
+      "kind": "work",
+      "corpus": "James revelation literature",
+      "detail": "The opening spiritual-brotherhood comparison must not be transferred automatically to Paul's description of James.",
+      "sources": [
+        "jt-first-apocalypse"
+      ],
+      "pages": [
+        "james-and-contested-succession",
+        "thomas-sayings-and-transmission"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "witness-greek-james-report",
+      "title": "Greek First Apocalypse of James fragments: 2017 report",
+      "kind": "material-witness",
+      "corpus": "Reported manuscript evidence",
+      "detail": "Smith and Landau describe a Greek witness with syllabic divisions and propose educational use. It is a witness to a James revelation, not to Thomas.",
+      "sources": [
+        "jt-ut-james"
+      ],
+      "pages": [
+        "thomas-sayings-and-transmission"
+      ],
+      "date": {
+        "label": "Fifth or sixth century CE, as reported in 2017",
+        "basis": "Broad reported copy-date range, not composition or narrative date; no independent redating performed.",
+        "start": 401,
+        "end": 600
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "study-thomas-greek-coverage",
+      "title": "Gathercole on the coverage of Greek Thomas witnesses",
+      "kind": "study",
+      "corpus": "Published extract",
+      "detail": "The consulted extract describes P.Oxy. 1 and P.Oxy. 655; it does not provide a complete Greek witness to all the sayings.",
+      "sources": [
+        "jt-gathercole"
+      ],
+      "pages": [
+        "thomas-sayings-and-transmission"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "study-owens-vision",
+      "title": "Owens: Thomas and the hermeneutics of vision",
+      "kind": "study",
+      "corpus": "Earlier interpretive comparison",
+      "detail": "The 2002 essay connects James, apocalyptic inheritance and changed understanding. It is newly consulted research, not a recovered earlier personal acknowledgment.",
+      "sources": [
+        "jt-owens"
+      ],
+      "pages": [
+        "thomas-sayings-and-transmission"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "hypothesis-jamesian-succession",
+      "title": "Jamesian Succession Model",
+      "kind": "hypothesis",
+      "corpus": "Earlier-Teacher reconstruction",
+      "detail": "Working model separating kinship, office and teaching within the proposed continuity; not an established genealogy.",
+      "sources": [],
+      "pages": [
+        "james-and-contested-succession"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
+    },
+    {
+      "id": "hypothesis-thomas-formation",
+      "title": "Thomas Transmission-and-Formation Model",
+      "kind": "hypothesis",
+      "corpus": "Historical and constructive interpretation",
+      "detail": "Working model joins textual transmission and changed interpretation while retaining the stronger earlier-founder hypothesis and its additional burdens.",
+      "sources": [],
+      "pages": [
+        "thomas-sayings-and-transmission"
+      ],
+      "date": {
+        "label": "No absolute date assigned in this record",
+        "basis": "Textual relationship or interpretation, not an independently dated event.",
+        "start": null,
+        "end": null
+      },
+      "status": "Consulted record",
+      "asset": {
+        "status": "No bundled asset",
+        "reason": "Reading a record does not grant image rights or produce an authenticated scan."
+      }
     }
   ],
   "edges": [
@@ -2118,6 +2359,94 @@
       "relation": "compares",
       "why": "Year length and the placement of historical anchors are explicitly distinguished; a short calendar-year difference cannot supply a missing century on its own.",
       "basis": "Calendrical comparison"
+    },
+    {
+      "id": "jt-edge-1",
+      "fromId": "work-eusebius-history",
+      "toId": "fragment-clement-knowledge",
+      "relation": "quotes",
+      "why": "The teaching chain is read inside Eusebius rather than in an independently recovered complete Hypotyposes.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-2",
+      "fromId": "work-eusebius-history",
+      "toId": "fragment-hegesippus-james",
+      "relation": "quotes",
+      "why": "The priestly portrait and succession account reach this comparison through one historical host.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-3",
+      "fromId": "fragment-clement-knowledge",
+      "toId": "hypothesis-jamesian-succession",
+      "relation": "interprets",
+      "why": "Named recipients and subsequent transmitters supply a reported mechanism to investigate.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-4",
+      "fromId": "fragment-hegesippus-james",
+      "toId": "hypothesis-jamesian-succession",
+      "relation": "compares",
+      "why": "Kinship and priestly imagery coexist with adverse classifications that the reconstruction must address.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-5",
+      "fromId": "work-irenaeus-ebionites",
+      "toId": "hypothesis-jamesian-succession",
+      "relation": "compares",
+      "why": "Creator affirmation and anti-Pauline classification must not be collapsed into every later Gnostic cosmology.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-6",
+      "fromId": "work-first-apocalypse-james",
+      "toId": "hypothesis-thomas-formation",
+      "relation": "compares",
+      "why": "Spiritual kinship supplies a comparison, not an automatic interpretation of every brother statement.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-7",
+      "fromId": "witness-greek-james-report",
+      "toId": "work-first-apocalypse-james",
+      "relation": "witnesses",
+      "why": "The report concerns a physical copy of a James revelation, not a Thomas manuscript.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-8",
+      "fromId": "study-thomas-greek-coverage",
+      "toId": "hypothesis-thomas-formation",
+      "relation": "compares",
+      "why": "Partial witness coverage prevents a copy date from being extended to unpreserved sayings.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-9",
+      "fromId": "study-owens-vision",
+      "toId": "hypothesis-thomas-formation",
+      "relation": "interprets",
+      "why": "An earlier interpreter-change comparison deserves credit; the current earlier-founder reconstruction makes an additional historical claim.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-10",
+      "fromId": "hypothesis-jamesian-succession",
+      "toId": "hypothesis-thomas-formation",
+      "relation": "planned-comparison",
+      "why": "Institutional succession and the transformation of an interpreter are related but different continuity mechanisms.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
+    },
+    {
+      "id": "jt-edge-11",
+      "fromId": "hypothesis-priestly-branches",
+      "toId": "hypothesis-jamesian-succession",
+      "relation": "planned-comparison",
+      "why": "The Egyptian carrier model needs a separately evidenced connection to Jamesian inheritance rather than a shared epithet.",
+      "basis": "Passage-level comparison and explicitly labeled working reconstruction."
     }
   ],
   "intervals": [
@@ -2753,6 +3082,128 @@
           "challengeIds": [
             "institution-not-motif"
           ]
+        }
+      ]
+    },
+    {
+      "id": "james-authority-and-inheritance",
+      "title": "James: authority, family and knowledge",
+      "question": "What is transmitted when the founder is no longer present?",
+      "chapter": "teacher-identity",
+      "stops": [
+        {
+          "id": "jt-chain",
+          "title": "A named teaching chain",
+          "label": "Compare the reported knowledge transmission with the leadership question, without treating one surviving host as many independent witnesses.",
+          "records": [
+            "fragment-clement-knowledge",
+            "work-eusebius-history"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-priest",
+          "title": "A priestly portrait",
+          "label": "Ritual authority, holiness and genealogy are different possible explanations of the portrait.",
+          "records": [
+            "fragment-hegesippus-james"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-family",
+          "title": "Succession and contested classification",
+          "label": "Family selection does not erase the account's classification of Essenes as opponents.",
+          "records": [
+            "fragment-hegesippus-james",
+            "hypothesis-jamesian-succession"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-rival",
+          "title": "Rival continuations",
+          "label": "External Ebionite reports preserve both useful affinities and differences that a transmission model must explain.",
+          "records": [
+            "work-irenaeus-ebionites",
+            "hypothesis-jamesian-succession"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-continuity",
+          "title": "An inheritance with several carriers",
+          "label": "Read the complete proposed history of leadership, households and transmitted teaching.",
+          "records": [
+            "hypothesis-priestly-branches",
+            "hypothesis-jamesian-succession"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": []
+        }
+      ]
+    },
+    {
+      "id": "thomas-reading-and-carriers",
+      "title": "Thomas: reading, formation and carriers",
+      "question": "What changes in a copied text, and what changes in its reader?",
+      "chapter": "thomas",
+      "stops": [
+        {
+          "id": "jt-distributed",
+          "title": "Leadership and private understanding",
+          "label": "The comparison separates communal authority from an interpreter's encounter.",
+          "records": [
+            "hypothesis-thomas-formation",
+            "fragment-clement-knowledge"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-interpret",
+          "title": "An earlier reading of transformation",
+          "label": "Credit Owens's earlier comparison without confusing it with the stronger displaced-founder chronology.",
+          "records": [
+            "study-owens-vision"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-fragments",
+          "title": "Partial witnesses",
+          "label": "A Greek fragment can attest its surviving sayings, not all the absent contents of a collection.",
+          "records": [
+            "study-thomas-greek-coverage"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-school",
+          "title": "A possible educational carrier",
+          "label": "The reported Greek James revelation suggests a teaching context. Its date belongs to the copy, and its image is not redistributed.",
+          "records": [
+            "witness-greek-james-report",
+            "work-first-apocalypse-james"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": []
+        },
+        {
+          "id": "jt-formation",
+          "title": "From received words to an operative model",
+          "label": "Read the full historical argument alongside the modern constructive account, without treating one as proof of the other.",
+          "records": [
+            "hypothesis-thomas-formation"
+          ],
+          "page": "christ-as-an-inner-model",
+          "challengeIds": []
         }
       ]
     }

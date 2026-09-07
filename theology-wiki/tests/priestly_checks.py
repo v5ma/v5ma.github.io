@@ -24,7 +24,7 @@ def run_priestly_checks(page, open_page, check, OUT):
     page.wait_for_function('document.querySelector("#atlas-selected")?.value==="fragment-strabo-onias"')
     check('Strabo opens as a mediated quotation rather than an independent artifact','through Josephus' in page.locator('#atlas-cards').inner_text())
     open_page(page,'museum-trails')
-    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===8')
+    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===10')
     for title in ['The Teacher and prophetic time','Onias and the priestly branches']:
         trail=page.locator('.atlas-trail').filter(has_text=title)
         check('New museum trail has five linked exhibit stops: '+title,trail.count()==1 and trail.locator('.atlas-stop').count()==5)

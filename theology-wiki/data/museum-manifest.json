@@ -1,11 +1,11 @@
 {
   "schema": "theology-museum-content/1",
-  "version": "2026.09.06-priesthood-time-1",
+  "version": "2026.09.06-james-transmission-1",
   "contentOnly": true,
   "runtimeOwnership": "XR implementation is maintained separately. This manifest supplies curation and evidence, not a working XR scene.",
   "atlas": {
     "path": "source-atlas.json",
-    "sha256": "92d5945bf8da3f6acdf8ed91e6f783a5a009d097d79534bebb35511eb94b3d1b"
+    "sha256": "a838942dd4373bf48aeb7446cdacc72775f65ee6018c09fbd94a65e9403545f6"
   },
   "assetPolicy": "No new scan, photograph, 3D mesh or translated full text is licensed by this manifest. All stops have empty asset lists until explicit permission and identity are checked. Existing wiki illustrations remain contextual, not facsimiles of these objects.",
   "trailPolicy": "A short label must expose its fullArgumentURL, sourceURLs and challengeURLs. Never substitute a label for the full reconstruction or treat a proposed link as a demonstrated event.",
@@ -732,6 +732,194 @@
           "challengeURLs": [
             "https://v5ma.github.io/theology-wiki/san-reader.html?page=argument-challenges&challenge=institution-not-motif"
           ],
+          "assetIds": []
+        }
+      ]
+    },
+    {
+      "id": "james-authority-and-inheritance",
+      "title": "James: authority, family and knowledge",
+      "question": "What is transmitted when the founder is no longer present?",
+      "chapter": "teacher-identity",
+      "stops": [
+        {
+          "id": "jt-chain",
+          "title": "A named teaching chain",
+          "label": "Compare the reported knowledge transmission with the leadership question, without treating one surviving host as many independent witnesses.",
+          "records": [
+            "fragment-clement-knowledge",
+            "work-eusebius-history"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=fragment-clement-knowledge",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-eusebius-history"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=james-and-contested-succession",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-priest",
+          "title": "A priestly portrait",
+          "label": "Ritual authority, holiness and genealogy are different possible explanations of the portrait.",
+          "records": [
+            "fragment-hegesippus-james"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=fragment-hegesippus-james"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=james-and-contested-succession",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-family",
+          "title": "Succession and contested classification",
+          "label": "Family selection does not erase the account's classification of Essenes as opponents.",
+          "records": [
+            "fragment-hegesippus-james",
+            "hypothesis-jamesian-succession"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=fragment-hegesippus-james",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-jamesian-succession"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=james-and-contested-succession",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-rival",
+          "title": "Rival continuations",
+          "label": "External Ebionite reports preserve both useful affinities and differences that a transmission model must explain.",
+          "records": [
+            "work-irenaeus-ebionites",
+            "hypothesis-jamesian-succession"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-irenaeus-ebionites",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-jamesian-succession"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=james-and-contested-succession",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-continuity",
+          "title": "An inheritance with several carriers",
+          "label": "Read the complete proposed history of leadership, households and transmitted teaching.",
+          "records": [
+            "hypothesis-priestly-branches",
+            "hypothesis-jamesian-succession"
+          ],
+          "page": "james-and-contested-succession",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-priestly-branches",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-jamesian-succession"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=james-and-contested-succession",
+          "challengeURLs": [],
+          "assetIds": []
+        }
+      ]
+    },
+    {
+      "id": "thomas-reading-and-carriers",
+      "title": "Thomas: reading, formation and carriers",
+      "question": "What changes in a copied text, and what changes in its reader?",
+      "chapter": "thomas",
+      "stops": [
+        {
+          "id": "jt-distributed",
+          "title": "Leadership and private understanding",
+          "label": "The comparison separates communal authority from an interpreter's encounter.",
+          "records": [
+            "hypothesis-thomas-formation",
+            "fragment-clement-knowledge"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-thomas-formation",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=fragment-clement-knowledge"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=thomas-sayings-and-transmission",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-interpret",
+          "title": "An earlier reading of transformation",
+          "label": "Credit Owens's earlier comparison without confusing it with the stronger displaced-founder chronology.",
+          "records": [
+            "study-owens-vision"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-owens-vision"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=thomas-sayings-and-transmission",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-fragments",
+          "title": "Partial witnesses",
+          "label": "A Greek fragment can attest its surviving sayings, not all the absent contents of a collection.",
+          "records": [
+            "study-thomas-greek-coverage"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=study-thomas-greek-coverage"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=thomas-sayings-and-transmission",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-school",
+          "title": "A possible educational carrier",
+          "label": "The reported Greek James revelation suggests a teaching context. Its date belongs to the copy, and its image is not redistributed.",
+          "records": [
+            "witness-greek-james-report",
+            "work-first-apocalypse-james"
+          ],
+          "page": "thomas-sayings-and-transmission",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=witness-greek-james-report",
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=work-first-apocalypse-james"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=thomas-sayings-and-transmission",
+          "challengeURLs": [],
+          "assetIds": []
+        },
+        {
+          "id": "jt-formation",
+          "title": "From received words to an operative model",
+          "label": "Read the full historical argument alongside the modern constructive account, without treating one as proof of the other.",
+          "records": [
+            "hypothesis-thomas-formation"
+          ],
+          "page": "christ-as-an-inner-model",
+          "challengeIds": [],
+          "recordURLs": [
+            "https://v5ma.github.io/theology-wiki/san-reader.html?page=source-atlas&record=hypothesis-thomas-formation"
+          ],
+          "fullArgumentURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=christ-as-an-inner-model",
+          "challengeURLs": [],
           "assetIds": []
         }
       ]

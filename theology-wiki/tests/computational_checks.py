@@ -29,7 +29,7 @@ def run_computational_checks(page, open_page, check, OUT):
     page.wait_for_function('document.querySelector("#atlas-selected")?.value==="witness-gilgamesh-k3375"')
     check('Flood Tablet card identifies its century as a surviving object date','Seventh century BCE' in page.locator('#atlas-cards').inner_text() and 'not an event date' in page.locator('#atlas-cards').inner_text())
     open_page(page,'museum-trails')
-    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===8')
+    page.wait_for_function('document.querySelectorAll(".atlas-trail").length===10')
     for title in ['A world, a mind and a proposed ground','The flood and the inheritance it carries']:
         trail=page.locator('.atlas-trail').filter(has_text=title)
         check('Content trail exposes four full-argument stops: '+title,trail.count()==1 and trail.locator('.atlas-stop').count()==4)

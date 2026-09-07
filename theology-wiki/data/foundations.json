@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-priesthood-time-1",
+  "version": "2026.09.06-james-transmission-1",
   "updated": "2026-09-06",
   "parts": [
     {
@@ -49,7 +49,8 @@
           "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
           "pages": [
             "jesus-teacher-of-righteousness-hypothesis",
-            "daniel-jubilee-and-the-teachers-time"
+            "daniel-jubilee-and-the-teachers-time",
+            "james-and-contested-succession"
           ],
           "status": "Draft chapter route"
         },
@@ -61,7 +62,9 @@
             "tor-thomas-and-gnostic-transmission",
             "melchizedek-priesthood-and-transmission",
             "manuscripts-movements-and-survival",
-            "onias-egypt-and-priestly-continuity"
+            "onias-egypt-and-priestly-continuity",
+            "james-and-contested-succession",
+            "thomas-sayings-and-transmission"
           ],
           "status": "Draft chapter route"
         },
@@ -97,7 +100,8 @@
           "title": "Cognitive Gnosticism",
           "purpose": "Develop the relationship between understanding a teaching and embodying it in a changing mind.",
           "pages": [
-            "cognitive-gnosticism"
+            "cognitive-gnosticism",
+            "thomas-sayings-and-transmission"
           ],
           "status": "Draft chapter route"
         },
@@ -108,7 +112,8 @@
           "pages": [
             "christ-as-an-inner-model",
             "divine-will-and-self-authorizing-power",
-            "inner-formation-texts-and-material-witnesses"
+            "inner-formation-texts-and-material-witnesses",
+            "thomas-sayings-and-transmission"
           ],
           "status": "Draft chapter route"
         },
@@ -686,6 +691,23 @@
         }
       ],
       "references": []
+    },
+    {
+      "id": "owens-vision-comparison",
+      "name": "Lance S. Owens",
+      "type": "Newly consulted earlier interpretation",
+      "claim": "The 2002 essay already connects Thomas, James, apocalyptic inheritance and transformation of the interpreter.",
+      "limit": "Not a recovered personal acknowledgment from older conversations; no claim that the essay establishes the proposed earlier-founder chronology or a complete transmission chain to Kabbalah.",
+      "passages": [],
+      "references": [
+        {
+          "id": "jt-owens",
+          "title": "Lance S. Owens, The Gospel of Thomas and the Hermeneutics of Vision, 2002",
+          "url": "https://www.gnosis.org/naghamm/gth_hermen.htm",
+          "scope": "Earlier interpretive essay, copyright 2002, consulted through indexed text. Credits the James/apocalyptic/transformative-reading comparison without adopting all historical assertions or claiming a demonstrated chain to Kabbalah. This is a newly consulted comparison, not a documented personal influence on the older conversations.",
+          "accessed": "2026-09-06"
+        }
+      ]
     }
   ],
   "stages": [
@@ -706,7 +728,7 @@
     {
       "id": "thomas-passages",
       "title": "Extend the Thomas passage comparison",
-      "stage": "Develop argument",
+      "stage": "Verify citations",
       "page": "tor-thomas-and-gnostic-transmission",
       "detail": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives."
     },
