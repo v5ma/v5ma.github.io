@@ -2,6 +2,11 @@
 (async()=>{'use strict';
  const status=document.getElementById('loading-status');
  function script(src){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=()=>{s.remove();reject(Error('Could not load '+src));};document.head.append(s);});}
- try{await script('./vendor/aframe-1.8.0.min.js');await import('./game.mjs');}
+ try{await script('./vendor/aframe-1.8.0.min.js');await import('./game.mjs');
+  // The dynamically upgraded scene installs its own F/Escape shortcut after
+  // parsing attributes. Remove that optional component once initialization ends.
+  const scene=document.getElementById('scene'),reserveGameKeys=()=>scene.removeAttribute('keyboard-shortcuts');
+  if(scene.hasLoaded)reserveGameKeys();else scene.addEventListener('loaded',reserveGameKeys,{once:true});
+ }
  catch(e){status.textContent='The game could not load. Check the connection and reload. '+e.message;document.getElementById('loading').classList.add('failed');}
 })();
