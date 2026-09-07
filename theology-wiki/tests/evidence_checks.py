@@ -35,7 +35,19 @@ def run_evidence_checks(page, ctx, open_page, check, OUT, BASE):
     page.locator('.evidence-fallback summary').click()
     check('Complete reading fallback remains accessible',len(page.locator('.evidence-fallback').inner_text())>10000)
     page.locator('.evidence-fallback summary').click()
-    page.locator('#evidence-workspace').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'evidence-desktop.png'))
+    page.locator('#evidence-search').focus();page.keyboard.press('Tab')
+    check('Keyboard traversal reaches the next labeled filter',page.locator('#evidence-topic').evaluate('(el)=>el===document.activeElement'))
+    for selector in ['#evidence-workspace h2','.evidence-card p','.evidence-card a','.evidence-kicker','#evidence-search']:
+        ratio=page.locator(selector).first.evaluate(r'''(el)=>{
+          const rgb=s=>(s.match(/[\d.]+/g)||[]).map(Number);
+          const lum=c=>c.slice(0,3).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
+          const fg=rgb(getComputedStyle(el).color);let node=el,bg=[255,255,255];
+          while(node){const c=rgb(getComputedStyle(node).backgroundColor);if(c.length===3||c[3]===1){bg=c;break;}node=node.parentElement;}
+          const a=lum(fg),b=lum(bg);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        }''')
+        check('Comparison text contrast is at least 4.5:1: '+selector,ratio>=4.5)
+    page.locator('#evidence-workspace h2').evaluate('(el)=>el.scrollIntoView({block:"start"})');page.screenshot(path=str(OUT/'evidence-desktop.png'))
+    page.locator('#evidence-cards').evaluate('(el)=>el.scrollIntoView({block:"start"})');page.screenshot(path=str(OUT/'evidence-comparison-desktop.png'))
     page.set_viewport_size({'width':390,'height':844})
     check('Evidence comparison fits a real 390px layout',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
     page.screenshot(path=str(OUT/'evidence-mobile.png'))
