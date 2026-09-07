@@ -20,3 +20,6 @@ with zipfile.ZipFile(out/f'Aether-Reach-v{version}-native-flight-evidence.zip','
  for name in ['glide-report.json','foldwing-from-rail.png','glider-garden-landing.png','tested-commit.txt','runtime-manifest.json']:z.write(folder/name,name)
  z.writestr('evidence-scope.json',json.dumps({'releaseSource':source,'testedHead':head,'workflow':run['id'],'scope':'Public HTTP/software-WebGL keyboard flight replay. No physical-device certification. Runtime hashes match the released source.'},indent=2))
 print('Archived native flight report and actual captures from',run['id'])
+
+if Path("aether-reach/tactics-core.mjs").exists():
+ subprocess.run(["python","aether-reach/tools/collect_tactical_evidence.py"],check=True)

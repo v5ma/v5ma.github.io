@@ -3,7 +3,7 @@ import {fieldChoose,fieldModule,fieldCast,fieldScan,fieldRotate,fieldHack,fieldS
 export function installTacticsUI(api){
  const $=id=>document.getElementById(id),dialog=$('field-dialog'),body=$('field-body');let page='kit',stamp='',flashUntil=0;
  const button=(label,id,fn)=>{const b=document.createElement('button');b.textContent=label;b.id=id;b.onclick=fn;return b;};
- const tools=document.createElement('div');tools.id='field-tools';tools.append(button('N · Field rig','field-open',()=>action('field')),button('T · Power','field-cycle',()=>action('power-next')),button('J · Survey','field-scan',()=>action('survey')));$('hud').append(tools);
+ const tools=document.createElement('div');tools.id='field-tools';tools.append(button('N · Field rig','field-open',()=>action('field')),button('T · Power','field-cycle',()=>action('power-next')),button('J · Survey','field-scan',()=>action('survey')));tools.hidden=true;document.body.append(tools);
  const badge=document.createElement('div');badge.id='field-power';badge.setAttribute('aria-live','polite');$('hud').append(badge);
  const battle=document.createElement('div');battle.id='field-battle';battle.hidden=true;$('hud').append(battle);
  const scanFlash=document.createElement('div');scanFlash.id='survey-flash';scanFlash.hidden=true;$('hud').append(scanFlash);
@@ -38,7 +38,7 @@ export function installTacticsUI(api){
   return false;
  }
  function effect(e){if(e.type==='field-open')open(e.page);if(e.type==='survey'){flashUntil=performance.now()+500;api.toast('SURVEY: '+e.kind+' recorded. +10% weapon damage against this class. New passives may be available.',5);}if(e.type==='tactical-hack')api.toast('Security rerouted. The Atrium turret now fights for you.',5);if(e.type==='tactical-start')api.toast('Recovery active. Defend the collector; primed water and oil are useful traps.',5);if(e.type==='tactical-wave')api.toast('RECOVERY WAVE '+e.number+' / 3',3);if(e.type==='tactical-reward')api.toast('RECOVERY COMPLETE · '+e.credits+' credits. Replays are practice only.',6);if(e.type==='tactical-end'&&e.reason!=='complete')api.toast('Recovery '+e.reason+'. Return to the collector to retry.',5);if(e.type==='tactical-combo'){$('hit-confirm').hidden=false;badge.classList.add('combo');setTimeout(()=>badge.classList.remove('combo'),220);}}
- function update(){const s=api.state(),t=s.tactics;if(!t)return;badge.textContent=`Q · ${POWERS[t.power].name.toUpperCase()} / ${t.module.toUpperCase()}${t.learned?'':' · loan rig at Quay bench'}`;scanFlash.hidden=performance.now()>flashUntil||api.paused();scanFlash.textContent='CLASS RECORDED';
+ function update(){tools.hidden=!api.playing()||api.paused();const s=api.state(),t=s.tactics;if(!t)return;badge.textContent=`Q · ${POWERS[t.power].name.toUpperCase()} / ${t.module.toUpperCase()}${t.learned?'':' · loan rig at Quay bench'}`;scanFlash.hidden=performance.now()>flashUntil||api.paused();scanFlash.textContent='CLASS RECORDED';
   const e=t.encounter;battle.hidden=e.phase!=='active';if(!battle.hidden){const remaining=s.drones.filter(b=>b.tactical&&b.hp>0).length;battle.textContent=`RECOVERY ${Math.min(100,Math.floor(e.time/RECOVERY.duration*100))}%  ·  CORE ${Math.ceil(e.hull)}/${RECOVERY.hull}  ·  WAVE ${e.wave}/3  ·  ${remaining} HOSTILES${t.hacked?'  ·  TURRET '+e.turretCharge+'/14':''}`;}
   if(dialog.open&&stamp!==[t.power,t.module,t.research.length,t.hacked,t.learned].join(':'))stock();
  }
