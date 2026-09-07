@@ -1,5 +1,6 @@
 /* Original fictional level and game collision geometry. */
-export const VERSION='0.2.0';
+import {CONSERVATORY} from './conservatory.mjs';
+export const VERSION='0.3.0';
 export const BOUNDS={x0:-35,x1:35,z0:-49,z1:34};
 export const START={x:0,z:27};
 const box=(id,x,z,w,d,h,kind='wall',bottom=0)=>({id,x,z,w,d,h,kind,bottom});
@@ -42,6 +43,19 @@ export const PATROLS=[
  {id:'watch-4',name:'Quay lookout',type:'watcher',points:[[4,-38],[-3,-38],[-3,-31],[4,-31]],yaw:Math.PI/2},
  {id:'drifter',name:'Echo drifter',type:'drifter',points:[[-4,-23],[-4,-27],[6,-26],[6,-22]],yaw:0},
 ];
+const DISTRICT={id:'district',title:'The Floodgate',subtitle:'CHAPTER 01 / LARCH WARD',bounds:{...BOUNDS},start:{...START},obstacles:OBSTACLES.map(o=>({...o})),grass:GRASS.map(o=>({...o})),items:ITEMS.map(o=>({...o})),shelters:SHELTERS.map(o=>({...o})),exit:{...EXIT},patrols:PATROLS.map(o=>({...o})),water:[],zones:[],objectiveNames:{cell:'Signal battery',crank:'Gate spindle'}};
+export const LEVELS=Object.freeze({district:DISTRICT,conservatory:CONSERVATORY});
+export let CURRENT=DISTRICT;
+export function useLevel(id='district'){
+ const data=LEVELS[id];if(!data)throw Error('Unknown chapter');CURRENT=data;
+ Object.assign(BOUNDS,data.bounds);Object.assign(START,data.start);Object.assign(EXIT,data.exit);
+ for(const [a,b]of [[OBSTACLES,data.obstacles],[GRASS,data.grass],[ITEMS,data.items],[SHELTERS,data.shelters],[PATROLS,data.patrols]])a.splice(0,a.length,...b.map(o=>({...o})));
+ rebuildNav();return data;
+}
+export function levelHeight(id,x,z){if(id!=='conservatory')return 0;return z>26?Math.min(8,(z-26)*8/14):z< -44?Math.min(5,(-z-44)*5/18):0;}
+export const heightAt=(x,z)=>levelHeight(CURRENT.id,x,z);
+export function waterAt(p){return CURRENT.water?.find(r=>inside(p,r))||null;}
+export function syncGates(puzzle){let changed=false;for(const b of OBSTACLES)if(b.openWhen){const disabled=!!puzzle?.solved;if(b.disabled!==disabled){b.disabled=disabled;changed=true;}}if(changed)rebuildNav();}
 export const HEIGHT={stand:1.72,crouch:1.02,prone:.40};
 export const RAD=.32;
 export const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
@@ -49,9 +63,10 @@ export const dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 export function inside(p,r,padding=0){return Math.abs(p.x-r.x)<r.w/2+padding&&Math.abs(p.z-r.z)<r.d/2+padding;}
 export function solidAt(x,z,height=1.72,radius=RAD,ignore=null){
  if(x<BOUNDS.x0+radius||x>BOUNDS.x1-radius||z<BOUNDS.z0+radius||z>BOUNDS.z1-radius)return true;
- return OBSTACLES.some(o=>o.id!==ignore&&o.bottom<height-.02&&inside({x,z},o,radius));
+ const floor=heightAt(x,z);return OBSTACLES.some(o=>!o.disabled&&o.id!==ignore&&o.bottom<floor+height-.02&&o.bottom+o.h>floor+.03&&inside({x,z},o,radius));
 }
 export function rayBox(origin,dir,box,max=100){
+ if(box.disabled)return null;
  let enter=0,leave=max;
  for(const [axis,lo,hi]of [['x',box.x-box.w/2,box.x+box.w/2],['y',box.bottom,box.bottom+box.h],['z',box.z-box.d/2,box.z+box.d/2]]){
   if(Math.abs(dir[axis])<1e-8){if(origin[axis]<lo||origin[axis]>hi)return null;continue;}
@@ -63,10 +78,11 @@ export function obstruction(a,b){const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len=Math
  for(const o of OBSTACLES){const t=rayBox(a,dir,o,len);if(t!==null&&t<len-.05&&(!result||t<result.t))result={t,o};}return result;
 }
 export const coverAt=p=>GRASS.some(g=>inside(p,g));
-const navWidth=69,navHeight=83,navMinX=-34,navMinZ=-48;
-// Reserve clearance for the character radius plus finite-step steering around corners.
-const navBlocked=new Uint8Array(navWidth*navHeight);
-for(let z=0;z<navHeight;z++)for(let x=0;x<navWidth;x++)navBlocked[z*navWidth+x]=solidAt(x+navMinX,z+navMinZ,1.72,.60)?1:0;
+let navWidth=0,navHeight=0,navMinX=0,navMinZ=0,navBlocked;
+export function rebuildNav(){navMinX=Math.ceil(BOUNDS.x0+1);navMinZ=Math.ceil(BOUNDS.z0+1);navWidth=Math.floor(BOUNDS.x1-navMinX);navHeight=Math.floor(BOUNDS.z1-navMinZ);navBlocked=new Uint8Array(navWidth*navHeight);
+ for(let z=0;z<navHeight;z++)for(let x=0;x<navWidth;x++)navBlocked[z*navWidth+x]=solidAt(x+navMinX,z+navMinZ,1.72,.60)?1:0;
+}
+rebuildNav();
 function node(p){let x=clamp(Math.round(p.x-navMinX),0,navWidth-1),z=clamp(Math.round(p.z-navMinZ),0,navHeight-1),id=z*navWidth+x;if(!navBlocked[id])return id;
  for(let r=1;r<=4;r++)for(let dy=-r;dy<=r;dy++)for(let dx=-r;dx<=r;dx++){let a=x+dx,b=z+dy,j=b*navWidth+a;if(a>=0&&a<navWidth&&b>=0&&b<navHeight&&!navBlocked[j])return j;}return null;
 }

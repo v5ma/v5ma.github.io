@@ -9,10 +9,14 @@ export function artkit(scene){
   else{g.strokeStyle='#243e3c25';g.lineWidth=1;for(let i=0;i<12;i++){g.beginPath();g.moveTo(rnd(i)*256,rnd(i+5)*256);for(let j=0;j<4;j++)g.lineTo(rnd(i+j+9)*256,rnd(i+j+91)*256);g.stroke();}}
   const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;if(type==='road')t.repeat.set(9,25);if(type==='brick')t.repeat.set(3,3);textures[type]=t;return t;
  }
- const geos={box:new T.BoxGeometry(1,1,1),ball:new T.SphereGeometry(1,10,8),cyl:new T.CylinderGeometry(1,1,1,8),cone:new T.ConeGeometry(1,1,7),plane:new T.PlaneGeometry(1,1),capsule:new T.CapsuleGeometry(.5,1,4,8)};
+ const geos={box:new T.BoxGeometry(1,1,1),ball:new T.SphereGeometry(1,14,10),cyl:new T.CylinderGeometry(1,1,1,8),cone:new T.ConeGeometry(1,1,7),plane:new T.PlaneGeometry(1,1),capsule:new T.CapsuleGeometry(.5,1,4,8)};
  const blade=new T.BufferGeometry();blade.setAttribute('position',new T.Float32BufferAttribute([-.5,0,0,.5,0,0,.13,1,.18],3));blade.computeVertexNormals();geos.blade=blade;
  const mats=new Map(),buckets=new Map(),dynamic=[];
- function mat(color,type='stone',extra={}){const key=color+':'+type;if(!mats.has(key))mats.set(key,new T.MeshStandardMaterial({color,roughness:type==='metal'?.42:.9,metalness:type==='metal'?.4:0,map:['stone','brick','road'].includes(type)?texture(type):null,...extra}));return mats.get(key);}
+ function mat(color,type='stone',extra={}){const key=color+':'+type;if(!mats.has(key)){
+ const material=new T.MeshStandardMaterial({color,roughness:type==='metal'?.36:type==='road'?.40:.82,metalness:type==='metal'?.55:0,map:['stone','brick','road','rock'].includes(type)?texture(type==='rock'?'stone':type):null,...extra});
+ if(type==='glow'){material.emissive=new T.Color(color);material.emissiveIntensity=1.5;}
+ if(['stone','brick','road','rock'].includes(type)){const bump=texture(type==='rock'?'stone':type).clone();bump.colorSpace=T.NoColorSpace;material.bumpMap=bump;material.bumpScale=type==='road'?.035:.10;}
+ mats.set(key,material);}return mats.get(key);}
  function add(shape,x,y,z,sx,sy,sz,color,type='stone',rx=0,ry=0,rz=0){const m=mat(color,type),key=shape+':'+color+':'+type;let b=buckets.get(key);if(!b){b={geo:geos[shape],mat:m,items:[]};buckets.set(key,b);}const matrix=new T.Matrix4().compose(new T.Vector3(x,y,z),new T.Quaternion().setFromEuler(new T.Euler(rx,ry,rz)),new T.Vector3(sx,sy,sz));b.items.push(matrix);}
  function mesh(shape,scale,color,type='cloth'){const m=new T.Mesh(geos[shape],mat(color,type));m.scale.set(...scale);m.castShadow=true;m.receiveShadow=true;return m;}
  function label(text,x,y,z,w,h,bg='#283e39',fg='#ddd6ac',rotation=0){const c=document.createElement('canvas');c.width=512;c.height=160;const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,512,160);g.strokeStyle=fg;g.lineWidth=3;g.strokeRect(9,9,494,142);g.fillStyle=fg;g.font='bold 39px Arial';g.textAlign='center';g.textBaseline='middle';const lines=text.split('\n');lines.forEach((l,i)=>g.fillText(l,256,80+(i-(lines.length-1)/2)*46,470));const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;const m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshStandardMaterial({map:t,roughness:.85,side:T.DoubleSide}));m.position.set(x,y,z);m.rotation.y=rotation;scene.add(m);return m;}

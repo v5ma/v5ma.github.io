@@ -1,17 +1,17 @@
-import {START,BOUNDS,OBSTACLES,ITEMS,SHELTERS,EXIT,PATROLS,HEIGHT,RAD,clamp,dist,inside,solidAt,rayBox,obstruction,coverAt,findPath} from './world.mjs';
+import {heightAt,START,BOUNDS,OBSTACLES,ITEMS,SHELTERS,EXIT,PATROLS,HEIGHT,RAD,clamp,dist,inside,solidAt,rayBox,obstruction,coverAt,findPath} from './world.mjs';
 import {forward,emit,hint,noise} from './state.mjs';
-export function bottle(s,yaw){const p=s.player;if(s.status!=='playing'||!p.bottles||p.craft)return false;const f=forward(yaw),target={x:clamp(p.x+f.x*11,BOUNDS.x0+1,BOUNDS.x1-1),y:.4,z:clamp(p.z+f.z*11,BOUNDS.z0+1,BOUNDS.z1-1)},a={x:p.x,y:1,z:p.z},hit=obstruction(a,target);
+export function bottle(s,yaw){const p=s.player;if(s.status!=='playing'||!p.bottles||p.craft)return false;const f=forward(yaw),target={x:clamp(p.x+f.x*11,BOUNDS.x0+1,BOUNDS.x1-1),y:heightAt(p.x+f.x*11,p.z+f.z*11)+.4,z:clamp(p.z+f.z*11,BOUNDS.z0+1,BOUNDS.z1-1)},a={x:p.x,y:heightAt(p.x,p.z)+1,z:p.z},hit=obstruction(a,target);
  if(hit){const range=Math.max(.6,hit.t-.6);target.x=p.x+f.x*range;target.z=p.z+f.z*range;}p.bottles--;s.projectiles.push({x:p.x,z:p.z,to:target,life:.65,total:.65});s.stats.bottles++;emit(s,'throw',{x:p.x,z:p.z,to:target});return true;}
 export function fire(s,direction){const p=s.player;if(s.status!=='playing'||p.reload||p.shotCD||p.craft)return false;if(!p.mag){hint(s,'Empty. Reload or find ammunition.');return false;}
- const len=Math.hypot(direction.x,direction.y,direction.z);if(!Number.isFinite(len)||len<.001)return false;const d={x:direction.x/len,y:direction.y/len,z:direction.z/len},o={x:p.x,y:HEIGHT[p.stance]*.82,z:p.z};p.mag--;p.shotCD=.38;s.stats.shots++;noise(s,p.x,p.z,26,'shot');let nearest=60,victim=null;
+ const len=Math.hypot(direction.x,direction.y,direction.z);if(!Number.isFinite(len)||len<.001)return false;const d={x:direction.x/len,y:direction.y/len,z:direction.z/len},o={x:p.x,y:heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,z:p.z};p.mag--;p.shotCD=.38;s.stats.shots++;noise(s,p.x,p.z,26,'shot');let nearest=60,victim=null;
  for(const b of OBSTACLES){const hit=rayBox(o,d,b,nearest);if(hit!==null)nearest=Math.min(nearest,hit);}
- for(const e of s.enemies){if(e.hp<=0)continue;const hit=rayBox(o,d,{x:e.x,z:e.z,w:.68,d:.68,bottom:0,h:1.8},nearest);if(hit!==null&&hit<nearest){nearest=hit;victim=e;}}
+ for(const e of s.enemies){if(e.hp<=0)continue;const hit=rayBox(o,d,{x:e.x,z:e.z,w:e.type==='brute'?1.7:e.type==='prowler'?.86:.68,d:e.type==='brute'?1.2:e.type==='prowler'?2.3:.68,bottom:heightAt(e.x,e.z),h:e.type==='brute'?2.5:e.type==='prowler'?1:1.8},nearest);if(hit!==null&&hit<nearest){nearest=hit;victim=e;}}
  if(victim){victim.hp--;s.stats.hits++;victim.state=victim.hp<=0?'down':'chase';victim.target={x:p.x,z:p.z};victim.awareness=1;victim.repath=0;}
  emit(s,'shot',{from:o,to:{x:o.x+d.x*nearest,y:o.y+d.y*nearest,z:o.z+d.z*nearest},hit:victim?.id||null});return true;
 }
 export function vaultCandidate(p,dx,dz){
  const length=Math.hypot(dx,dz);if(length<.1){const f=forward(p.yaw);dx=f.x;dz=f.z;}else{dx/=length;dz/=length;}
- const wall=OBSTACLES.find(o=>o.bottom===0&&o.h<=1.15&&inside({x:p.x+dx*.9,z:p.z+dz*.9},o,RAD));if(!wall)return null;
+ const wall=OBSTACLES.find(o=>!o.disabled&&Math.abs(o.bottom-heightAt(p.x,p.z))<.2&&o.h<=1.15&&inside({x:p.x+dx*.9,z:p.z+dz*.9},o,RAD));if(!wall)return null;
  const span=Math.abs(dx)>Math.abs(dz)?wall.w:wall.d,range=span+1.25,end={x:p.x+dx*range,z:p.z+dz*range};
  if(range>=6||solidAt(end.x,end.z,HEIGHT.stand))return null;
  for(let d=0;d<=range;d+=.08)if(solidAt(p.x+dx*d,p.z+dz*d,HEIGHT.stand,RAD,wall.id))return null;

@@ -29,7 +29,7 @@ with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
  browser=pw.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':1180,'height':780},service_workers='block',record_video_dir=str(OUT/'video'))
- ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:"+('true' if MODE=='mission' else 'false')+",sensitivity:85}))")
+ ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:"+'true'+",sensitivity:85}))")
  hostname=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==hostname or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None);page.on('dialog',lambda d:d.accept())
@@ -71,7 +71,7 @@ with sync_playwright() as pw:
    (OUT/'completed-run.json').write_text(json.dumps(snapshot(page),indent=2))
    page.reload(wait_until='domcontentloaded');page.wait_for_function('!!window.Rainward');page.locator('#continue').click();awaitstate('Rainward.mode==="play"');q=snapshot(page);check(q['objectives']['cell'] and not q['objectives']['crank'] and abs(q['player']['x']+24)<.1,'Reload resumes the exact saved shelter, not a fabricated final state')
   check(not errors,'No uncaught script errors in the verified flow')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP/WebGL software renderer; mission uses the public Reduced Graphics preset, UI starts with full quality. Gameplay uses normal keyboard/DOM events. Mission navigation uses read-only path guidance. Physical GPU/controller/phone performance and enjoyment not certified.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP/WebGL software renderer; mission and interface use the public Reduced Graphics preset; conservatory visual acceptance separately exercises full-quality captures. Gameplay uses normal keyboard/DOM events. Mission navigation uses read-only path guidance. Physical GPU/controller/phone performance and enjoyment not certified.'},indent=2))
  except Exception as e:
   try:state=snapshot(page)
   except:state=None
