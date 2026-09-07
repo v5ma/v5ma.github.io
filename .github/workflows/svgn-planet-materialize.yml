@@ -1,0 +1,75 @@
+name: Materialize and test the actual little planet
+on:
+  push:
+    branches: [feat/svgn-little-planet]
+    paths: ['svgn-planet/.incoming/**','.github/workflows/svgn-planet-materialize.yml']
+permissions:
+  contents: write
+jobs:
+  planet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/svgn-little-planet
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact authored source before writing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,zlib,json,hashlib,shutil
+          a=Path('svgn-planet/.incoming/0.bin').read_bytes()
+          assert hashlib.sha1(b'blob '+str(len(a)).encode()+b'\0'+a).hexdigest()=='81e18456dbfcf9e7027629d16632f513d68de0be'
+          # Correct one diagnosed transport insertion, then verify the ORIGINAL
+          # byte identity; this is not an application-source transformation.
+          text=base64.b64encode(a).decode().rstrip('=')
+          assert len(text)==10002 and text.count('iahcrcrk')==1
+          a=base64.b64decode(text.replace('iahcrcrk','iahcrk'),validate=True)
+          assert hashlib.sha1(b'blob '+str(len(a)).encode()+b'\0'+a).hexdigest()=='fa86ac828d8eacd6f353aa697bc083081534c175'
+          data=a+b''.join(Path(f'svgn-planet/.incoming/{i}.bin').read_bytes() for i in [1,2])
+          assert len(data)==20809 and hashlib.sha256(data).hexdigest()=='38281fdbc1b73af8ff24eb585df59884f38af14b23fd022589c1bacaad6666f1'
+          dec=zlib.decompressobj();raw=dec.decompress(data,2000000)
+          assert dec.eof and not dec.unused_data and len(raw)==54682
+          files=json.loads(raw)
+          names=['model.mjs','art.mjs','scene.mjs','app.mjs','index.html','style.css','release.json','package.json','.gitignore','README.md','tests/model.test.mjs','tests/browser.py']
+          assert set(files)=={'svgn-planet/'+n for n in names}
+          for n,s in files.items():
+            p=Path(n);assert not p.exists(),n
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(s.encode())
+          shutil.rmtree('svgn-planet/.incoming')
+          PY
+          node --test svgn-planet/tests/model.test.mjs
+          for f in svgn-planet/*.mjs; do node --check "$f"; done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add svgn-planet
+          git commit -m 'Build playable SVGN Little Planet with spherical gravity, radial scenery, unicycle and delivery exploration'
+          git push origin HEAD:feat/svgn-little-planet
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play on the sphere through normal controls
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/planet-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u svgn-planet/tests/browser.py
+      - name: Preserve exact source and actual 3D evidence
+        if: always()
+        run: |
+          mkdir -p planet-evidence
+          cp -r svgn-planet/test-output planet-evidence/ 2>/dev/null || true
+          git rev-parse HEAD > planet-evidence/source-sha.txt
+          git diff --stat > planet-evidence/uncommitted-diff.txt
+          find . -maxdepth 3 -iname AGENTS.md -not -path './.git/*' -print -exec cat {} \; > planet-evidence/agent-instructions.txt
+          tar --exclude='test-output' --exclude='__pycache__' --exclude='.incoming' -czf planet-evidence/source.tgz svgn-planet index.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: svgn-planet-initial-verification
+          path: planet-evidence/
+          retention-days: 14
