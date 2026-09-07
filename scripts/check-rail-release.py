@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,re,subprocess
 ROOT=Path(__file__).resolve().parents[1]
 GAME=ROOT/'mario-maker-clone/svgn-paper-route'
-FILES=['index.html','route-workshop.js','ground-runtime.js','bezier-core.js','bezier-editor.js','rail-editor.css','rail-grip-core.js','rail-runtime.js','rail-training.js','release-status.js','release.json','sw.js','ride-lab-core.js','ride-lab-editor.js','ride-lab-worker.js','ride-lab-loader.js','hookline-feedback.js','whip-visual.js','ride-lab.css','ride-guide.js','open-course.js','sky-network-layout.js','flow-route-tools.js','sky-network-art.js','sky-post-route.js','sky-post-core.js','sky-post-ui.js','sky-post.css']
+FILES=['index.html','route-workshop.js','ground-runtime.js','bezier-core.js','bezier-editor.js','rail-editor.css','rail-grip-core.js','rail-runtime.js','rail-training.js','release-status.js','release.json','sw.js','ride-lab-core.js','ride-lab-editor.js','ride-lab-worker.js','ride-lab-loader.js','hookline-feedback.js','whip-visual.js','ride-lab.css','ride-guide.js','open-course.js','sky-network-layout.js','flow-route-tools.js','sky-network-art.js','sky-post-route.js','sky-post-core.js','sky-post-ui.js','sky-post.css','delivery-upgrade.js']
 for carrier in ['.rail-incoming','.rail-recovery']:
     assert not (ROOT/carrier).exists(),f'Incomplete transfer directory is not a release: {carrier}'
 manifest=json.loads((GAME/'release.json').read_text())
