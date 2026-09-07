@@ -1,0 +1,49 @@
+name: Gloamward browser acceptance
+on:
+  pull_request:
+    paths: ['gloamward/**', 'scripts/*gloamward*', '.github/workflows/gloamward.yml', 'index.html']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gloamward-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Model and source checks
+        run: |
+          set -o pipefail
+          node --check gloamward/game.mjs
+          node --test gloamward/tests/core.test.mjs | tee core-tests.tap
+          python scripts/check-gloamward.py
+      - name: Browser dependencies
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Test actual HTTP A-Frame
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/gloamward-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 700 python -u gloamward/tests/browser_smoke.py
+      - name: Record exact source and results
+        if: always()
+        run: |
+          mkdir -p test-output
+          cp core-tests.tap test-output/ || true
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/source.tgz gloamward index.html scripts/check-gloamward.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gloamward-browser
+          path: test-output/
+          retention-days: 14

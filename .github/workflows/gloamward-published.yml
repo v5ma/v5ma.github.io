@@ -1,0 +1,22 @@
+name: Verify published Gloamward
+on:
+  push:
+    branches: [master]
+    paths: ['gloamward/**', 'scripts/check-gloamward.py', '.github/workflows/gloamward-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify public files match the merged build
+        run: python scripts/check-gloamward.py --published
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gloamward-publication
+          path: test-output/
+          retention-days: 14

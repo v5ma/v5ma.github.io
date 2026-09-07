@@ -1,0 +1,7 @@
+{
+  "library": "A-Frame",
+  "version": "1.8.0",
+  "upstream_commit": "6dd37629cb24b378ea925820d0c9605f8907a1b1",
+  "sha256": "27a49c530c18c0710f5d0b9492934d5ba6670fe492be37a5e5ea890f26a9864f",
+  "source": "https://github.com/aframevr/releases/blob/6dd37629cb24b378ea925820d0c9605f8907a1b1/1.8.0/aframe.min.js"
+}
