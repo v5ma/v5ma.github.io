@@ -37,13 +37,14 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()==2,'Both the original district and new chapter are selectable')
   page.locator('#chapter-select').select_option('conservatory');page.locator('#start').click();wait(page,'Rainward.state.level==="conservatory"&&Rainward.mode==="play"');check(snap(page)['player']['y']==8,'The second expedition starts on a real elevated terrace')
+  initial=page.evaluate('Rainward.state.enemies.find(e=>e.id==="rootback")');page.wait_for_function('(p)=>{const e=Rainward.state.enemies.find(e=>e.id==="rootback");return Math.hypot(e.x-p.x,e.z-p.z)>.8;}',arg=initial);check(True,'The Rootback patrol moves through its authored path instead of starting embedded in a pillar')
   if MODE=='visual':quality(page,False)
   page.screenshot(path=str(OUT/'arrival-overlook.png'));check(page.evaluate('Rainward.renderer.info.render.triangles>10000'),'The new location renders real 3D geometry, not a backdrop screenshot')
   if MODE=='visual':
    quality(page,True)
    go(page,0,34,False);check(snap(page)['player']['y']<8,'Descending the terraced approach updates physical elevation');quality(page,False);page.screenshot(path=str(OUT/'glass-dome-vista.png'));quality(page,True)
    go(page,-7,19);page.keyboard.press('KeyE');wait(page,'Rainward.state.checkpoint==="garden"');check(True,'The new garden checkpoint can be used normally')
-   go(page,-29,7);page.keyboard.press('KeyE');wait(page,'Rainward.state.puzzle.clueRead');page.keyboard.press('KeyM');page.locator('#puzzle-journal').wait_for(state='visible');check('SUN' in page.locator('#puzzle-journal').inner_text(),'Reading the physical inscription records a puzzle clue in the field map');page.screenshot(path=str(OUT/'puzzle-journal.png'));page.locator('#map-close').click()
+   go(page,-29,7);page.keyboard.press('KeyE');wait(page,'Rainward.state.puzzle.clueRead');page.keyboard.press('KeyM');page.locator('#puzzle-journal').wait_for(state='visible');wait(page,'document.getElementById("puzzle-journal").textContent.includes("SUN")');check('SUN' in page.locator('#puzzle-journal').inner_text(),'Reading the physical inscription records a puzzle clue in the field map');page.screenshot(path=str(OUT/'puzzle-journal.png'));page.locator('#map-close').click()
    page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(OUT/'mobile-archive.png'));check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'Chapter and clue UI fit a phone-width viewport')
   else:
    go(page,2,46);page.keyboard.press('KeyE');wait(page,'Rainward.state.taken.has("ruins-supplies")');page.locator('#pack-button').click()

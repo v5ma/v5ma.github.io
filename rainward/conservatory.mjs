@@ -47,7 +47,7 @@ export const CONSERVATORY={
  patrols:[
   {id:'ruin-watch',name:'Archive scavenger',type:'watcher',points:[[-19,4],[-17,-4],[-19,-20],[-13,-8]],yaw:0},
   {id:'mire-hound',name:'Mire hound',type:'prowler',points:[[-34,-15],[-39,-20],[-40,-12],[-32,-8]],yaw:0},
-  {id:'rootback',name:'Rootback',type:'brute',points:[[34,-14],[39,-12],[39,-20],[29,-18]],yaw:0},
+  {id:'rootback',name:'Rootback',type:'brute',points:[[32,-16],[39,-12],[39,-20],[32,-19]],yaw:0},
   {id:'north-hound',name:'Mire hound',type:'prowler',points:[[-18,-43],[-16,-52],[-21,-58],[-23,-49]],yaw:0},
   {id:'north-watch',name:'Sanctuary scavenger',type:'watcher',points:[[12,-64],[12,-73],[8,-74],[7,-64]],yaw:0},
  ],
