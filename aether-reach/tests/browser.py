@@ -87,7 +87,10 @@ with sync_playwright() as p:
    walk(page,[(0,-10)]);page.keyboard.press('KeyP');page.wait_for_selector('#pause-dialog[open]');old=snap(page);page.keyboard.down('KeyW');page.wait_for_timeout(300);page.keyboard.up('KeyW');check(snap(page)['position']==old['position'],'Movement inputs do not leak through the pause dialog')
    page.locator('#pause-settings').click();page.locator('#fov').fill('85');page.locator('#sensitivity').fill('1.4');page.locator('#sound').check();page.locator('#reduced').check();page.locator('#settings-dialog button').click()
    check(page.evaluate('JSON.parse(localStorage.getItem("aether-reach.settings.v1")).fov')==85,'View and comfort settings persist on this device')
-   page.keyboard.press('KeyR');page.keyboard.down('KeyF');page.wait_for_timeout(700);page.keyboard.up('KeyF');check(snap(page)['ammo']<8,'The first-person arc caster fires and consumes charges')
+   # A dialog close is asynchronous. Wait for actual resumed gameplay before
+   # firing; do not spend a fixed wall-clock delay while still in the menu.
+   page.wait_for_function('!AetherReach.snapshot().paused&&!document.querySelector("dialog[open]")');page.locator('#world').focus()
+   page.keyboard.down('KeyF');page.wait_for_function('AetherReach.snapshot().ammo<8');page.keyboard.up('KeyF');check(snap(page)['ammo']<8,'The first-person arc caster fires and consumes charges')
    page.keyboard.press('KeyR');page.wait_for_function('AetherReach.snapshot().ammo===8');check(True,'Reload restores the weapon after its real cooldown')
    page.set_viewport_size({'width':390,'height':844})
    page.wait_for_function('innerWidth===390&&!document.getElementById("touch").hidden')
