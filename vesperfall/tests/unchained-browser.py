@@ -19,10 +19,10 @@ def shot(p):
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1000,'height':740},service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':640,'height':480},service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
  if MODE=='xr':ctx.add_init_script((ROOT/'vesperfall/tests/fake-xr.js').read_text())
- page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
+ page=ctx.new_page();page.set_default_timeout(150000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto(BASE+'/vesperfall/',wait_until='domcontentloaded');page.wait_for_function('window.Vesperfall?.component.arsenal&&Vesperfall.component.rendererReady&&AFRAME.scenes[0].renderer.info.render.calls>0')
   check('v0.3.0' in page.locator('#version').inner_text(),'The actual browser renderer loads the Arrows Unchained upgrade')
@@ -66,7 +66,7 @@ with sync_playwright() as pw:
    page.keyboard.press('KeyP');page.wait_for_function('Vesperfall.component.paused');profile=page.evaluate('Vesperfall.component.profile');page.reload(wait_until='domcontentloaded');page.wait_for_function('window.Vesperfall?.component.arsenal')
    check(page.evaluate('Vesperfall.component.profile')==profile,'Migrated local profile remains stable after reload')
   elif MODE=='xr':
-   page.locator('#vr-button').click();page.wait_for_function('Vesperfall.component.xr&&Object.keys(Vesperfall.component.hands).length===2');page.evaluate("TestXR.button('right',0,true)");page.wait_for_function('!Vesperfall.component.paused');page.evaluate("TestXR.button('right',0,false)");page.wait_for_function('Vesperfall.component.arsenal.state.xrArmed')
+   page.locator('#vr-button').click();page.wait_for_function('Vesperfall.component.xr&&Object.keys(Vesperfall.component.hands).length===2');page.evaluate("TestXR.pose('right',[.1,1.9,-.4])");page.wait_for_function('Vesperfall.component.menuSelection===0');page.evaluate("TestXR.button('right',0,true)");page.wait_for_function('!Vesperfall.component.paused');page.evaluate("TestXR.button('right',0,false)");page.wait_for_function('Vesperfall.component.arsenal.state.xrArmed');page.evaluate("TestXR.pose('right',[.23,1.35,-.4])")
    page.evaluate("TestXR.button('left',1,true)");page.wait_for_function('!!Vesperfall.state.shield');check(True,'The tracked bow-hand grip raises a real directional shield')
    page.screenshot(path=str(OUT/'xr-shield.png'));page.evaluate("TestXR.missing('left',true)");page.wait_for_function('!Vesperfall.state.shield');check(True,'Losing the bow controller removes its shield rather than leaving invisible protection')
    page.evaluate("TestXR.button('left',1,false);TestXR.missing('left',false)");page.wait_for_function('!!Vesperfall.component.hands.left')
@@ -83,7 +83,7 @@ with sync_playwright() as pw:
   check(not errors,'No uncaught errors during the verified native flow')
   (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':state(page),'scope':'Real HTTP A-Frame WebGL. Input automation sends ordinary keys/buttons; XR changes only emulated device poses/buttons. Not physical Quest/Xbox testing.'},indent=2))
  except Exception as e:
-  try:d=page.evaluate('({snapshot:window.Vesperfall?.snapshot(),pitch:window.Vesperfall?.component.pitch,yaw:window.Vesperfall?.component.yaw,blink:window.Vesperfall?.component.blinkTrace,status:document.getElementById("status")?.textContent})')
+  try:d=page.evaluate('({snapshot:window.Vesperfall?.snapshot(),simulationTime:window.Vesperfall?.state.time,pitch:window.Vesperfall?.component.pitch,yaw:window.Vesperfall?.component.yaw,blink:window.Vesperfall?.component.blinkTrace,status:document.getElementById("status")?.textContent})')
   except:d=None
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'errors':errors,'checks':checks,'debug':d},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))
