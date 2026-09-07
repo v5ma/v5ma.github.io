@@ -39,7 +39,7 @@ export function createTactics({solids,clearLine,rayBox,raySphere,forward,emit,de
   for(const p of PATCHES){if(Math.abs(d.y)<.0001)continue;const t=(p.y+.06-o.y)/d.y;if(t<=0||t>=limit)continue;const hit={x:o.x+d.x*t,y:o.y+d.y*t,z:o.z+d.z*t};if(planar(hit,p)<=p.r){limit=t;result={kind:'patch',patch:p};}}
   return {o,d,end:{x:o.x+d.x*limit,y:o.y+d.y*limit,z:o.z+d.z*limit},...result};
  }
- function damage(s,b,n,source){if(b.hp<=0)return;b.hp-=n;if(b.hp<=0)defeated(s,b);else emit(s,'hit',{id:b.id,damage:n});if(source==='area')s.tactics.metrics.areaHits++;}
+ function damage(s,b,n,source){if(b.hp<=0)return;b.hp-=n;if(b.hp<=0)defeated(s,b);else if(n>=1||s.time-(b.fieldHitAt??-1)>=.12){b.fieldHitAt=s.time;emit(s,'hit',{id:b.id,damage:n});}if(source==='area')s.tactics.metrics.areaHits++;}
  function choose(s,power){if(!Object.hasOwn(POWERS,power)||power!=='pulse'&&!s.tactics.learned||s.won)return false;s.tactics.power=power;emit(s,'save');return true;}
  function module(s,name){if(s.won||!s.p.grounded||s.p.rail||s.tactics.encounter.phase==='active'||!unlocked(s.tactics,name))return false;s.tactics.module=name;emit(s,'save');return true;}
  function cast(s,aim=null){const t=s.tactics,p=s.p,power=t.power;if(s.won||!t.learned||power==='pulse'||t.cooldown>0)return false;const cost=POWERS[power].cost*(t.module==='capacitor'?.75:1);if(p.energy<cost)return false;const hit=target(s,aim);if(!hit)return false;p.energy-=cost;t.cooldown=.7;t.flash=.3;t.metrics.casts++;

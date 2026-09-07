@@ -6,7 +6,7 @@ import {InputSampler,SnapTurn,xrControls} from './input-core.mjs';
 export function createXR(view,api){
  const {renderer,scene,camera}=view,rig=new T.Group(),inputs=new InputSampler(),turn=new SnapTurn();
  rig.name='XR locomotion rig';scene.add(rig);renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local-floor');renderer.xr.setFramebufferScaleFactor(.8);renderer.xr.setFoveation?.(1);
- let session=null,entering=false,offsetYaw=0,lastHead=null,head=null,suspended=false,lastPaint=0,aim=null,shadowBefore=true;
+ let session=null,entering=false,offsetYaw=0,lastHead=null,head=null,suspended=false,lastPaint=0,aim=null,powerAim=null,shadowBefore=true;
  const button=document.createElement('button');button.id='enter-vr';button.textContent='Checking VR support…';button.disabled=true;document.querySelector('.start-actions').append(button);
  const exit=document.createElement('button');exit.id='exit-vr';exit.textContent='Exit VR';exit.hidden=true;document.getElementById('masthead').append(exit);
  const status=document.createElement('p');status.id='xr-status';status.className='fine';status.textContent='Experimental Quest 3 target. Physical headset tracking, comfort and performance are not yet certified.';document.querySelector('.title-copy').append(status);
@@ -29,6 +29,12 @@ export function createXR(view,api){
   hi.clearRect(0,0,1024,256);hi.fillStyle='#123540e8';hi.fillRect(0,0,1024,256);hi.fillStyle='#e7d4a2';hi.font='bold 31px sans-serif';hi.fillText('AETHER REACH · VR PREVIEW',28,44);hi.fillStyle='#d2efe5';hi.font='29px sans-serif';hi.fillText(`Health ${Math.ceil(s.p.health)}   Shield ${Math.ceil(s.p.shield)}   Ammo ${s.p.ammo}/8`,28,88);hi.fillText(`Relays ${s.relays.size}/3 · Right grip: interact · A: jump/release`,28,130);hi.font='23px sans-serif';wrapped(hi,api.hint()||'Left stick: move · right stick: snap turn · Y: pause / controls',28,173,965,30);ht.needsUpdate=true;
   if(!menu)return;ink.clearRect(0,0,1024,768);ink.fillStyle='#133846f8';ink.fillRect(0,0,1024,768);ink.strokeStyle='#c6b785';ink.lineWidth=4;ink.strokeRect(3,3,1018,762);ink.fillStyle='#ffe6b5';ink.font='bold 36px sans-serif';ink.fillText(menu.title.slice(0,45),34,55);ink.font='24px sans-serif';ink.fillStyle='#c8e1d6';wrapped(ink,menu.description.slice(0,460),34,98,952,31);
   if(menu.root?.id==='map-dialog')ink.drawImage(document.getElementById('map'),30,80,964,210);
+  if(menu.root?.id==='field-dialog'&&document.getElementById('field-circuit')){
+   ink.fillStyle='#12303d';ink.fillRect(24,70,976,218);ink.strokeStyle='#dfc382';ink.lineWidth=5;
+   const cells=s.tactics.circuit;cells.forEach((mask,i)=>{const x=380+(i%3)*68,y=76+Math.floor(i/3)*68;ink.fillStyle='#244e60';ink.fillRect(x,y,62,62);ink.beginPath();for(const [bit,dx,dy]of [[1,31,0],[2,62,31],[4,31,62],[8,0,31]])if(mask&bit){ink.moveTo(x+31,y+31);ink.lineTo(x+dx,y+dy);}ink.stroke();ink.fillStyle='#ffffff';ink.font='16px sans-serif';ink.fillText(String(i+1),x+3,y+58);});
+   ink.fillStyle='#eddbb1';ink.font='22px sans-serif';ink.fillText('SOURCE →',237,183);ink.fillText('→ TURRET',591,183);
+  }
+
   menu.items.slice(0,6).forEach((item,i)=>{const y=302+i*60;ink.fillStyle=item.focused?'#dec083':'#255665';ink.fillRect(25,y,974,51);ink.fillStyle=item.focused?'#102d3b':'#e7eee0';ink.font='25px sans-serif';ink.fillText(item.label.slice(0,64),40,y+34);});ink.font='20px sans-serif';ink.fillStyle='#b9d6cf';ink.fillText('Left stick / ray: select · right trigger: confirm · B: back',34,736);tex.needsUpdate=true;
  }
  async function end(){if(session)try{await session.end();}catch(e){status.textContent='Unable to close XR session: '+e.message;}}
@@ -54,11 +60,12 @@ export function createXR(view,api){
   if(!menu){offsetYaw+=turn.update(controls.turn);if(lastHead)roomMove(api.state(),(raw.x-lastHead.x)*Math.cos(offsetYaw)-(raw.z-lastHead.z)*Math.sin(offsetYaw),(raw.x-lastHead.x)*Math.sin(offsetYaw)+(raw.z-lastHead.z)*Math.cos(offsetYaw));}else turn.reset();
   head={x:raw.x,y:raw.y,z:raw.z};lastHead={...head};syncRig();
   rotation.set(pose.transform.orientation.x,pose.transform.orientation.y,pose.transform.orientation.z,pose.transform.orientation.w);vector.set(0,0,-1).applyQuaternion(rotation);p.yaw=offsetYaw+Math.atan2(vector.x,-vector.z);p.pitch=Math.asin(Math.max(-1,Math.min(1,vector.y)));
-  aim=null;const hand=controllers.find(c=>c.source?.handedness==='right');if(hand){const inputPose=frame.getPose(hand.source.targetRaySpace,renderer.xr.getReferenceSpace());if(inputPose){const pos=inputPose.transform.position,q=inputPose.transform.orientation;vector.set(pos.x,pos.y,pos.z).applyMatrix4(rig.matrixWorld);const origin={x:vector.x,y:vector.y,z:vector.z};rotation.set(q.x,q.y,q.z,q.w).premultiply(rig.quaternion);vector.set(0,0,-1).applyQuaternion(rotation);aim={origin,direction:{x:vector.x,y:vector.y,z:vector.z}};
+  aim=null;powerAim=null;const hand=controllers.find(c=>c.source?.handedness==='right');if(hand){const inputPose=frame.getPose(hand.source.targetRaySpace,renderer.xr.getReferenceSpace());if(inputPose){const pos=inputPose.transform.position,q=inputPose.transform.orientation;vector.set(pos.x,pos.y,pos.z).applyMatrix4(rig.matrixWorld);const origin={x:vector.x,y:vector.y,z:vector.z};rotation.set(q.x,q.y,q.z,q.w).premultiply(rig.quaternion);vector.set(0,0,-1).applyQuaternion(rotation);aim={origin,direction:{x:vector.x,y:vector.y,z:vector.z}};
    if(menu){panel.updateWorldMatrix(true,false);raycaster.set(new T.Vector3(origin.x,origin.y,origin.z),vector);const hit=raycaster.intersectObject(panel)[0];if(hit?.uv){const row=Math.floor(((1-hit.uv.y)*768-302)/60);if(row>=0&&row<menu.items.length)api.focus(menu.items[row].element);}}
   }}
+  const left=controllers.find(c=>c.source?.handedness==='left');if(left){const pose=frame.getPose(left.source.targetRaySpace,renderer.xr.getReferenceSpace());if(pose){const p=pose.transform.position,q=pose.transform.orientation;vector.set(p.x,p.y,p.z).applyMatrix4(rig.matrixWorld);const origin={x:vector.x,y:vector.y,z:vector.z};rotation.set(q.x,q.y,q.z,q.w).premultiply(rig.quaternion);vector.set(0,0,-1).applyQuaternion(rotation);powerAim={origin,direction:{x:vector.x,y:vector.y,z:vector.z}};}}
   if(performance.now()-lastPaint>120){paint(menu);lastPaint=performance.now();}
   return controls;
  }
- return {frame,syncRig,end,reset(){inputs.reset();turn.reset();},get active(){return !!session},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
+ return {frame,syncRig,end,reset(){inputs.reset();turn.reset();},get active(){return !!session},get powerAim(){return powerAim},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
 }
