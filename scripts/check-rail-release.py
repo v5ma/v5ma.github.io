@@ -21,7 +21,7 @@ loader=(GAME/'ride-lab-loader.js').read_text()
 assert loader.index("import('./ride-lab-core.js')")<loader.index("import('./ride-lab-editor.js')")
 assert "import('./ride-guide.js')" in loader and 'ride-lab.css' in loader
 assert loader.count("import('./flow-route-tools.js')")==1,'The route tools must load once'
-assert loader.count("import('./sky-relay.js')")==1 and loader.index("import('./sky-relay.js')")>loader.index("import('./flow-route-tools.js')"),'The optional relay must follow the authored-route tools'
+assert status.count("import('./sky-relay.js')")==1 and "sky-relay.js" not in loader,'Campaign registration must not depend on optional Ride Lab'
 worker=(GAME/'ride-lab-worker.js').read_text()
 assert worker.index('grapple-core.js')<worker.index('rail-grip-core.js')<worker.index('ride-lab-core.js')
 for path in ['rail-editor-acceptance.yml','ride-lab-acceptance.yml','flow-route-review.yml','sky-relay.yml']:
