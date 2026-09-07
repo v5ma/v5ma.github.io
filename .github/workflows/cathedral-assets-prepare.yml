@@ -2,7 +2,7 @@ name: Prepare Vesperfall CC0 art
 on:
   push:
     branches: [feat/vesperfall-living-cathedral]
-    paths: [.github/workflows/cathedral-assets-prepare.yml]
+    paths: [.github/workflows/cathedral-assets-prepare.yml, scripts/prepare-cathedral-assets.py]
 permissions:
   contents: write
 jobs:
