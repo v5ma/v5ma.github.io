@@ -47,7 +47,7 @@ export function createScene(canvas,w,s,quality='high'){
  const goal=new T.Mesh(new T.TorusGeometry(7,.12,6,48),new T.MeshBasicMaterial({color:'#f2d28c'}));goal.rotation.x=-Math.PI/2;goal.position.set(w.newsroom.x,heightAt(w.newsroom.x,w.newsroom.z)+.07,w.newsroom.z);root.add(goal);
  const scanRings=deviceMeshes.map(({n,g})=>{const a=new T.Mesh(new T.TorusGeometry(1.6,.05,5,32),new T.MeshBasicMaterial({color:'#88ffe0',transparent:true,opacity:.85,depthTest:false}));a.position.y=2.8;a.renderOrder=50;g.add(a);return a;});
  const paperGeo=new T.BoxGeometry(.32,.025,.22),paperMat=new T.MeshStandardMaterial({color:'#fff2cf'}),papers=[];for(let i=0;i<24;i++){const mesh=new T.Mesh(paperGeo,paperMat);mesh.visible=false;scene.add(mesh);papers.push(mesh);}
- const guild=dressGuild(root,w,m);
+ const guild=dressGuild(root,w,m,rider);
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0;
  function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){

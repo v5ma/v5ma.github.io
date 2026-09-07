@@ -35,8 +35,18 @@ export function car(m,tint='#976b43'){
  for(const x of[-.99,.99])for(const z of[-1.28,1.27]){const g=new T.Group();g.position.set(x,.46,z);root.add(g);const t=new Batch();t.add(unit.ring,0,0,0,.43,.43,.43,'#604731',0,Math.PI/2);for(let i=0;i<10;i++)t.rod([0,0,0],[0,Math.cos(i*Math.PI/5)*.39,Math.sin(i*Math.PI/5)*.39],.023,'#ba925b');t.add(unit.cyl,0,0,0,.11,.25,.11,'#9d8a59',0,0,Math.PI/2);t.finish(g,m.trim,'Wooden wagon wheel');wheels.push(g);}
  return {root,wheels};
 }
-export function dressGuild(root,w,m){
+export function dressGuild(root,w,m,rider){
  const b=new Batch(),stone=new Batch(),figures={};
+ // Horizontal road UVs must use x/z rather than the wall projection x/y.
+ const road=root.getObjectByName('Interconnected ochre stone streets');
+ if(road){const p=road.geometry.attributes.position,uv=road.geometry.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,p.getX(i)*.25,p.getZ(i)*.25);uv.needsUpdate=true;
+  const canvas=document.createElement('canvas');canvas.width=canvas.height=256;const ctx=canvas.getContext('2d');ctx.fillStyle='#9d9788';ctx.fillRect(0,0,256,256);
+  for(let y=0;y<8;y++)for(let x=-1;x<8;x++){const xx=x*40+(y%2?20:0),c=192+Math.floor(rand(x*17+y*91)*42);ctx.fillStyle=`rgb(${c},${c-3},${c-13})`;ctx.fillRect(xx+2,y*32+2,36,28);ctx.fillStyle='#ffffff22';ctx.fillRect(xx+3,y*32+3,34,2);}
+  const tex=new T.CanvasTexture(canvas);tex.colorSpace=T.SRGBColorSpace;tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.anisotropy=4;road.material.map=tex;road.material.needsUpdate=true;
+ }
+ const fence=root.getObjectByName('Picket fences');if(fence){const col=new T.Color('#ad956f'),a=fence.geometry.attributes.color;for(let i=0;i<a.count;i++)a.setXYZ(i,col.r,col.g,col.b);a.needsUpdate=true;}
+ const staff=new T.Group();staff.position.set(.33,1.18,.2);const sb=new Batch();sb.rod([0,-.62,0],[0,1.0,0],.04,'#967344');sb.add(unit.cyl,0,-.6,0,.047,.15,.047,'#c1a56c');sb.finish(staff,m.trim,'Apprentice staff');rider.root.add(staff);
+
  // The workshop and market are original places at the existing interaction coordinates.
  const master=person(m,'master');master.root.position.set(-10,heightAt(-10,2),2);master.root.rotation.y=Math.PI/2;root.add(master.root);const beard=new Batch();beard.ball(0,1.57,.14,.14,.22,.10,'#d9d3b6');beard.finish(master.root,m.trim,'Leonardo’s beard');figures.master=master;
  label(root,'LEONARDO\nWORKSHOP',-11.6,heightAt(-15,1)+3.2,1,3.8,1.6,Math.PI/2,'#735236');
@@ -51,7 +61,7 @@ export function dressGuild(root,w,m){
  const guard=person(m,'bandit');guard.root.position.set(w.bandit.x,heightAt(w.bandit.x,w.bandit.z),w.bandit.z);guard.root.rotation.y=Math.PI;root.add(guard.root);const stick=new Batch();stick.rod([.34,.4,.2],[.34,2.1,.2],.045,'#9f7b4e');stick.finish(guard.root,m.trim,'Guard practice staff');figures.guard=guard;
  // Readable silhouette landmarks, not modern office towers.
  for(const [x,z,height]of [[-95,126,22],[115,265,30],[-105,360,26]]){const y=heightAt(x,z);stone.box(x,y+height/2,z,6,height,6,'#c1ac7f');stone.box(x,y+height-2,z,7.2,2,7.2,'#dccaa2');stone.add(unit.cone,x,y+height+2,z,5.3,5,5.3,'#93623f',0,Math.PI/4);for(const dx of[-1.3,1.3])stone.box(x+dx,y+height-4,z-3.03,1.1,2,.1,'#475341');}
- for(let z=10;z<400;z+=48){const x=-11.5,y=heightAt(x,z);b.rod([x,y,z],[x,y+3.8,z],.065,'#4d5c4c');b.box(x,y+3.75,z,.52,.72,.52,'#e3bb67');b.add(unit.cone,x,y+4.25,z,.43,.35,.43,'#716044',0,Math.PI/4);}
+ for(let z=10;z<400;z+=48){const x=-11.5,y=heightAt(x,z);b.rod([x,y,z],[x,y+3.8,z],.065,'#4d5c4c');b.box(x,y+3.75,z,.52,.72,.52,'#e3bb7d');b.add(unit.cone,x,y+4.25,z,.43,.35,.43,'#716044',0,Math.PI/4);}
  b.finish(root,m.trim,'Market awnings, lanterns and workshop machines');stone.finish(root,m.roof,'Belltowers and canvas experimental screw');
- return {update(s,dt){wheel.rotation.x+=s.relay?dt*.8:0;guard.root.visible=true;guard.root.rotation.x=s.defeated?.55:0;guard.root.rotation.z=s.banditPhase==='windup'?-.2:0;if(!s.defeated)guard.root.rotation.y=Math.atan2(s.x-w.bandit.x,s.z-w.bandit.z);},figures};
+ return {update(s,dt){staff.visible=s.mode==='foot';staff.rotation.z=s.guarding?1.05:s.attackT>0?Math.sin(s.attackT*12)*1.5:0;staff.rotation.x=s.guarding?.25:0;wheel.rotation.x+=s.relay?dt*.8:0;guard.root.visible=true;guard.root.rotation.x=s.defeated?.55:0;guard.root.rotation.z=s.banditPhase==='windup'?-.2:0;if(!s.defeated)guard.root.rotation.y=Math.atan2(s.x-w.bandit.x,s.z-w.bandit.z);},figures};
 }
