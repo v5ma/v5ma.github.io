@@ -1,21 +1,27 @@
-# Leonardo’s Guild: development path
+# Leonardo’s Guild: growing the same world
 
-## Available in the first playable chapter
+## Implemented foundation
 
-Third-person bicycling and walking; a pedal carriage; three connected districts; physical letter delivery; one shop using earned florins; an operable waterwheel/gate; a staff encounter with brace/retreat; folio recovery and a workshop return; a map, pause and local saves. All of this is a single-player prototype.
+The Stolen Folio’s bicycle/on-foot/carriage movement, real letter throws, three starting districts, waterwheel, shop, staff encounter, map and local saving remain. Version 0.2 added the analogue joystick, independent multi-finger camera/actions and live graphics preferences.
 
-## Next: deepen the place before enlarging it
+## Living-town expansion, version 0.3
 
-Improve the rider animation, staff contact feedback, accessibility/remappable controls, street pathfinding and bicycle handling on slopes. Add several meaningful local commissions with different routes, named artisans and a visitable workshop interior. Inspect and tune actual render captures on desktop and physical phones. Preserve easy riding and useful recovery, rather than making every errand a combat gate.
+Nine side commissions, six walkable ground-floor interiors, two basements, a north gate unlocked through linked work, four northern buildings, named artisans/civic characters, three cats and an optional follower, experience/attributes, earned Courier/Cargo bikes and Lantern discovery magic. Adult optional relationships are simple conversation/commission choices and a shared garden meeting, not a full social simulation. Read [LIVING-TOWN.md](./LIVING-TOWN.md) for mechanics and limits.
 
-## Then: interconnected adventures
+The existing first-commission and touch regressions remain release requirements alongside new interior journeys. The complete nine-quest dependency chain is modeled, while native tests separately state whether they begin fresh or from a documented progressed save. No test result may be relabeled as a full human or massively multiplayer experience.
 
-Add countryside and another settlement, navigation choices, reputation, equipment and crafting, secret paths and cooperative mission designs. Expand the world from playable geography rather than a bigger non-interactive horizon. Include clear alternate-history labels and researched notes where history is discussed.
+## Next: deepen the density
 
-## Shared world, after the local adventure is solid
+Add stronger character-specific dialogue, schedules, shop crafting, return visits, more furnished rooms and meaningful branching outcomes. Improve companion navigation and staff contact feedback. Expand nearby routes from playable geography, not a larger decorative horizon. Keep direct riding and foot exploration useful; not every errand should demand combat. Preserve old saves and remappable/touch accessibility.
 
-An MMO requires an authoritative multiplayer service, validated inventories and economy, secure identities, persistence, moderation, reconnect behavior and abuse protection. Those systems do not exist in this release. Start with a small cooperative session before promising massive concurrency. Paid memberships or coupons require a separate authorized account and entitlement design, not a client-side boolean.
+## Flying-machine milestone
 
-## Branch rule
+Skyward, One Day currently opens the research design. A future piloted invention needs actual takeoff, steering, altitude, landing, collision, camera, input, recovery and mission tests. The blueprint is not a working flying vehicle. Add flight as another way to explore the same town and surroundings, not a replacement game.
 
-Keep this game separate from SVGN City and Paper Delivery. Avoid framework rewrites or deleting working content. The new folder has its own saves, release manifest and acceptance tests. Screenshots on the games list should come from the running game, not an aspirational image.
+## Cooperative sessions before MMO claims
+
+A shared world requires authoritative movement and inventories, secure accounts, reconnect behavior, economic validation, moderation and abuse protection. None of that is implied by locally saved NPCs. Begin with a tested small cooperative expedition, then evaluate a larger population. Purchased memberships/coupons are a separate authorized entitlement project, never a client-side boolean.
+
+## Release discipline
+
+Keep this folder separate from SVGN City, Paper Delivery and the other projects. Do not delete working content, reset unrelated history or clear saves. Capture images from the real renderer, record tested commits, retain failed attempts, and compare the public files to the merged source. A richer single-player world is valuable without pretending the MMO infrastructure is already present.

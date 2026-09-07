@@ -7,18 +7,18 @@ export function house(parent,h,m){
  const group=new T.Group();group.position.set(h.x,heightAt(h.x,h.z),h.z);group.rotation.y=h.side<0?Math.PI/2:-Math.PI/2;parent.add(group);
  const wall=new Batch(),trim=new Batch(),roof=new Batch(),windows=new Batch(),w=h.d,d=h.w,ht=7.5+h.kind*.6;
  const plaster=['#e4c891','#c7b78c','#dcaa82','#e1d4aa','#bfb88e'][h.kind];
- wall.box(0,ht/2,0,w,ht,d,plaster);trim.box(0,.7,0,w+.3,1.4,d+.3,'#a19b7d');trim.box(0,4.2,0,w+.45,.24,d+.4,'#e9d6ae');
+ if(!h.room)wall.box(0,ht/2,0,w,ht,d,plaster);else{wall.box(0,ht/2,-d/2+.15,w,ht,.3,plaster);for(const sign of[-1,1]){wall.box(sign*(w/2-.15),ht/2,0,.3,ht,d,plaster);wall.box(sign*(w+2.8)/4,ht/2,d/2-.15,(w-2.8)/2,ht,.3,plaster);}wall.box(0,(ht+3.3)/2,d/2-.15,2.8,ht-3.3,.3,plaster);}if(!h.room)trim.box(0,.7,0,w+.3,1.4,d+.3,'#a19b7d');else{trim.box(0,.7,-d/2,w+.3,1.4,.35,'#a19b7d');for(const sign of[-1,1]){trim.box(sign*w/2,.7,0,.35,1.4,d,'#a19b7d');trim.box(sign*(w+2.8)/4,.7,d/2,(w-2.8)/2,1.4,.35,'#a19b7d');}}trim.box(0,4.2,0,w+.45,.24,d+.4,'#e9d6ae');
  for(const x of[-w/2+.25,w/2-.25])for(let y=1.8;y<ht;y+=.85)trim.box(x,y,d/2+.08,.65,.67,.22,'#cbbd98');
  const ridge=ht+2.6;for(const side of[-1,1]){roof.tri([side*(w/2+.5),ht,d/2+.5],[0,ridge,d/2+.5],[0,ridge,-d/2-.5],'#a35235');roof.tri([side*(w/2+.5),ht,d/2+.5],[0,ridge,-d/2-.5],[side*(w/2+.5),ht,-d/2-.5],'#bd7047');for(let x=0;x<=w/2;x+=.75){const y=ht+2.6*(1-x/(w/2+.5));trim.rod([side*x,y+.05,-d/2-.45],[side*x,y+.05,d/2+.45],.06,'#d09362');}}
  wall.tri([-w/2,ht,d/2],[w/2,ht,d/2],[0,ridge,d/2],plaster);wall.tri([w/2,ht,-d/2],[-w/2,ht,-d/2],[0,ridge,-d/2],plaster);
  for(const x of[-w*.31,w*.31])for(const y of[2.7,6.2]){trim.box(x,y,d/2+.06,2.4,2.65,.16,'#ead8b0');windows.box(x,y,d/2+.17,1.9,2.15,.07,'#254d4b');trim.box(x,y,d/2+.23,.08,2.2,.06,'#8b7b59');for(const side of[-1,1]){trim.box(x+side*1.22,y,d/2+.23,.43,2.3,.13,'#517064');for(let k=-4;k<=4;k++)trim.box(x+side*1.22,y+k*.22,d/2+.31,.44,.08,.05,'#729079');}}
  // Oak door with a curved stone surround; actual entry interaction is outside.
- trim.box(0,1.45,d/2+.14,1.85,2.9,.24,'#624b31');for(let k=0;k<9;k++){const a=Math.PI*k/8;trim.box(Math.cos(a)*1.13,2.63+Math.sin(a)*1.13,d/2+.24,.43,.44,.3,'#dac69c',0,0,a);}
+ if(!h.room)trim.box(0,1.45,d/2+.14,1.85,2.9,.24,'#624b31');else trim.box(1.25,1.45,d/2+.7,.16,2.9,1.85,'#624b31');for(let k=0;k<9;k++){const a=Math.PI*k/8;trim.box(Math.cos(a)*1.13,2.63+Math.sin(a)*1.13,d/2+.24,.43,.44,.3,'#dac69c',0,0,a);}
  trim.ball(.62,1.42,d/2+.31,.08,.08,.08,'#cca652');trim.box(0,.15,d/2+.7,2.7,.3,1.25,'#b9ae8b');
  if(h.kind%2===0){trim.box(0,5.07,d/2+.75,4.5,.24,1.5,'#afa181');for(let x=-2;x<=2;x+=.55)trim.rod([x,5.18,d/2+1.3],[x,6,d/2+1.3],.04,'#354b44');trim.rod([-2.1,6,d/2+1.3],[2.1,6,d/2+1.3],.045,'#354b44');}
  else{for(let k=-3;k<=3;k++)roof.box(k*.65,3.45,d/2+1.1,.65,.1,2.4,k%2?'#a6553c':'#e7c593',0,.12);trim.rod([-2.1,3.45,d/2+.3],[-2.1,3.25,d/2+2],.05,'#7f653d');}
  trim.box(w*.3,ht+1.8,-1,1.1,3,1,'#ac8060');trim.box(w*.3,ht+3.3,-1,1.4,.3,1.3,'#d3bda0');
- wall.finish(group,m.wall,'Renaissance plaster and masonry');roof.finish(group,m.roof,'Terracotta roof tiles');trim.finish(group,m.trim,'Stone arches, oak doors and shutters');windows.finish(group,m.glass,'Deep recessed windows');return group;
+ group.userData.room=h.room||null;wall.finish(group,m.wall,'Renaissance plaster and masonry');roof.finish(group,m.roof,'Terracotta roof tiles');trim.finish(group,m.trim,'Stone arches, oak doors and shutters');windows.finish(group,m.glass,'Deep recessed windows');return group;
 }
 export function person(m,kind='apprentice'){
  const root=new T.Group(),body=new Batch(),legs=[];

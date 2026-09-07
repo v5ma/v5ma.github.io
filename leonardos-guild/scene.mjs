@@ -1,3 +1,5 @@
+import {createTownLifeVisuals} from './life-visuals.mjs';
+import {roomAt,stats} from './life-core.mjs';
 import * as T from './vendor/three.module.js';
 import {Batch,materials,bicycle,label,unit,rand} from './art.mjs';
 import {house,person,car,dressGuild} from './guild-art.mjs';
@@ -9,18 +11,18 @@ export function createScene(canvas,w,s,quality='high'){
  const camera=new T.PerspectiveCamera(58,1,.12,1300),m=materials(),root=new T.Group();scene.add(root);
  const ambient=new T.HemisphereLight('#bdd3de','#85704b',.85);scene.add(ambient);const sun=new T.DirectionalLight('#ffe2af',3.1);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-45,right:45,top:54,bottom:-40,near:1,far:450});sun.shadow.bias=-.0002;sun.shadow.normalBias=.05;scene.add(sun,sun.target);
  const skyGeo=new T.SphereGeometry(1050,24,16);const sky=new T.Mesh(skyGeo,new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{top:{value:new T.Color('#178bd9')},bottom:{value:new T.Color('#dcecef')}},vertexShader:'varying vec3 v;void main(){v=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'varying vec3 v;uniform vec3 top;uniform vec3 bottom;void main(){float h=clamp(normalize(v).y*.85+.16,0.,1.);gl_FragColor=vec4(mix(bottom,top,pow(h,.55)),1.);\n#include <colorspace_fragment>\n}',toneMapped:false}));scene.add(sky);
- const groundGeo=new T.PlaneGeometry(390,540,65,90);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(0,0,180);const pos=groundGeo.attributes.position;for(let i=0;i<pos.count;i++)pos.setY(i,heightAt(pos.getX(i),pos.getZ(i))-.06);groundGeo.computeVertexNormals();const groundMat=new T.MeshStandardMaterial({color:'#879c55',roughness:1,map:m.leaf.map.clone()});groundMat.map.repeat.set(55,75);const ground=new T.Mesh(groundGeo,groundMat);ground.receiveShadow=true;root.add(ground);
+ const groundGeo=new T.PlaneGeometry(390,750,65,120);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(0,0,260);const pos=groundGeo.attributes.position;for(let i=0;i<pos.count;i++)pos.setY(i,heightAt(pos.getX(i),pos.getZ(i))-.06);groundGeo.computeVertexNormals();const groundMat=new T.MeshStandardMaterial({color:'#879c55',roughness:1,map:m.leaf.map.clone()});groundMat.map.repeat.set(55,75);const ground=new T.Mesh(groundGeo,groundMat);ground.receiveShadow=true;root.add(ground);
  const road=new Batch(),walk=new Batch(),detail=new Batch(),green=new Batch(),rail=new Batch();
  function strip(x1,z1,x2,z2,width,batch,c,raise=0){const dx=x2-x1,dz=z2-z1,len=Math.hypot(dx,dz),nx=-dz/len*width/2,nz=dx/len*width/2,N=Math.ceil(len/8);for(let i=0;i<N;i++){const a=i/N,b=(i+1)/N,verts=[[x1+dx*a+nx,z1+dz*a+nz],[x1+dx*b+nx,z1+dz*b+nz],[x1+dx*b-nx,z1+dz*b-nz],[x1+dx*a-nx,z1+dz*a-nz]].map(([x,z])=>[x,heightAt(x,z)+raise,z]);batch.tri(verts[0],verts[1],verts[2],c);batch.tri(verts[0],verts[2],verts[3],c);}}
- for(const x of w.roads){let prev=-30;for(const z of [...w.crossings,414]){const end=z===414?414:z-7;strip(x,prev,x,end,14,road,'#958768',.01);strip(x-9,prev,x-9,end,4,walk,'#bfb190',.08);strip(x+9,prev,x+9,end,4,walk,'#bfb190',.08);prev=z+7;}
+ for(const x of w.roads){let prev=-30;for(const z of [...w.crossings,459,520,574]){const end=z===574?574:z-7;strip(x,prev,x,end,14,road,'#958768',.01);strip(x-9,prev,x-9,end,4,walk,'#bfb190',.08);strip(x+9,prev,x+9,end,4,walk,'#bfb190',.08);prev=z+7;}
 
  }
- for(const z of w.crossings){strip(-150,z,150,z,14,road,'#958768',.011);for(const dz of[-9,9])for(const [a,b]of[[-145,-91],[-69,-11],[11,69],[91,145]])strip(a,z+dz,b,z+dz,4,walk,'#bfb190',.081);}
+ for(const z of [...w.crossings,459,520]){strip(-150,z,150,z,14,road,'#958768',.011);for(const dz of[-9,9])for(const [a,b]of[[-145,-91],[-69,-11],[11,69],[91,145]])strip(a,z+dz,b,z+dz,4,walk,'#bfb190',.081);}
  // Each plot has a walk, a fence with a genuine gate opening, and a front lawn.
  for(const h of w.houses){house(root,h,m);const bx=h.road+h.side*11.1;strip(bx,h.z,h.x,h.z,2.1,walk,'#cfc8ac',.1);
   for(let j=-16;j<=16;j+=.62){if(Math.abs(j)<1.7)continue;const z=h.z+j,y=heightAt(bx,z);rail.box(bx,y+.66,z,.12,1.2,.25,'#e9e5c8');rail.add(unit.cone,bx,y+1.32,z,.18,.22,.18,'#eee7ce',0,Math.PI/4);}
   for(const span of[-1,1])for(const yy of[.43,.95])rail.rod([bx,heightAt(bx,h.z+span*2)+yy,h.z+span*2],[bx,heightAt(bx,h.z+span*16)+yy,h.z+span*16],.047,'#dcdabf');
-  for(let k=0;k<5;k++){const x=h.x+Math.sin(k*2.4)*6.2,z=h.z+Math.cos(k*2.4)*7.8;green.ball(x,heightAt(x,z)+.45,z,.7,.5,.8,'#678f40');}
+  if(!h.room)for(let k=0;k<5;k++){const x=h.x+Math.sin(k*2.4)*6.2,z=h.z+Math.cos(k*2.4)*7.8;green.ball(x,heightAt(x,z)+.45,z,.7,.5,.8,'#678f40');}
  }
  for(const t of w.trees){const b={x:t.x,z:t.z};detail.box(b.x,heightAt(b.x,b.z)+.02,b.z,2.8,.035,2.8,'#a4a17d');}
  trees(root,w.trees,m);
@@ -49,15 +51,18 @@ export function createScene(canvas,w,s,quality='high'){
  const scanRings=deviceMeshes.map(({n,g})=>{const a=new T.Mesh(new T.TorusGeometry(1.6,.05,5,32),new T.MeshBasicMaterial({color:'#88ffe0',transparent:true,opacity:.85,depthTest:false}));a.position.y=2.8;a.renderOrder=50;g.add(a);return a;});
  const paperGeo=new T.BoxGeometry(.32,.025,.22),paperMat=new T.MeshStandardMaterial({color:'#fff2cf'}),papers=[];for(let i=0;i<24;i++){const mesh=new T.Mesh(paperGeo,paperMat);mesh.visible=false;scene.add(mesh);papers.push(mesh);}
  const guild=dressGuild(root,w,m,rider),finish=enhanceTown(scene,root,w,m,rider);
+ const outdoors=scene.children.filter(o=>o!==rider.root&&!o.isLight);let wasBelow=false;const outdoorVisibility=new Map();
+ const townLife=createTownLifeVisuals({scene,root,w,m,rider,bike,camera});
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality;
  function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
-  const p=state,f=headingVector(p.yaw),y=heightAt(p.x,p.z);if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
+  const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=p.life?.inside?-5:0,y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
   const angle=p.yaw+orbit,follow=(p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;
-  carCam.set(p.x-Math.sin(angle)*follow,y+camHeight+p.lift*.5,p.z-Math.cos(angle)*follow);carCam.y=Math.max(carCam.y,heightAt(carCam.x,carCam.z)+.65);
+  const roomFollow=currentRoom?Math.min(3.1,follow):follow;
+  carCam.set(p.x-Math.sin(angle)*roomFollow,y+camHeight+p.lift*.5,p.z-Math.cos(angle)*roomFollow);carCam.y=Math.max(carCam.y,heightAt(carCam.x,carCam.z)+depth+.65);
   // Keep the third-person camera in front of solid houses rather than inside them.
   for(let f=1;f>.13;f-=.08){const xx=p.x+(carCam.x-p.x)*f,zz=p.z+(carCam.z-p.z)*f;if(!w.colliders.some(b=>!b.low&&Math.abs(xx-b.x)<b.hx+.4&&Math.abs(zz-b.z)<b.hz+.4)){carCam.x=xx;carCam.z=zz;break;}}
-  look.set(p.x+f.x*7,y+1.6+p.lift*.5,p.z+f.z*7);
+  look.set(p.x+f.x*(currentRoom?1.2:7),y+1.6+p.lift*.5,p.z+f.z*(currentRoom?1.2:7));
   if(!initialized||input.snap){camera.position.copy(carCam);initialized=true;}else camera.position.lerp(carCam,1-Math.exp(-dt*5));camera.lookAt(look);camera.fov=T.MathUtils.lerp(camera.fov,58+Math.min(7,Math.abs(p.speed)*.2),Math.min(1,dt*3));camera.updateProjectionMatrix();
   sky.position.copy(camera.position);sun.position.set(p.x-45,y+ 75,p.z-50);sun.target.position.set(p.x,y,p.z+20);sun.target.updateMatrixWorld();
   for(const [key,model]of[['bike',bike],['car',pressCar]]){const v=p.vehicle[key];model.root.position.set(v.x,heightAt(v.x,v.z)+(p.mode===key?p.lift:0),v.z);model.root.rotation.set(-Math.atan((heightAt(v.x,v.z+.5)-heightAt(v.x,v.z-.5)))*Math.cos(v.yaw),v.yaw,p.mode===key&&key==='bike'?-(input.steer||0)*Math.min(.17,Math.abs(p.speed)*.012):0);if(p.mode===key)for(const wheel of model.wheels)wheel.rotation.x+=p.speed*dt/(key==='bike'?.39:.37);}
@@ -69,11 +74,13 @@ export function createScene(canvas,w,s,quality='high'){
   arm.rotation.x=T.MathUtils.lerp(arm.rotation.x,p.relay?Math.PI/2:0,Math.min(1,dt*4));scanRings.forEach(r=>{r.visible=p.scan>0;r.lookAt(camera.position);r.rotation.z+=dt;});
   for(let i=0;i<papers.length;i++){const b=p.shots[i],mesh=papers[i];mesh.visible=!!b;if(b){mesh.position.set(b.x,b.y,b.z);mesh.rotation.set(p.time*13,p.time*7,p.time*9);}}
   guild.update(p,dt);finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
-  goal.visible=p.mission===2&&p.defeated;renderer.render(scene,camera);
+  goal.visible=p.mission===2&&p.defeated;
+  if(!!p.life.inside!==wasBelow){if(p.life.inside)for(const object of outdoors){outdoorVisibility.set(object,object.visible);object.visible=false;}else for(const object of outdoors)object.visible=outdoorVisibility.get(object);wasBelow=!!p.life.inside;}if(p.life.inside)for(const object of outdoors)object.visible=false;
+  townLife.update(p,dt,currentRoom);renderer.render(scene,camera);
  }
  function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
  function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.85:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
  function recenter(){orbit=pitch=0;}
  function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
- setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false})};
+ setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect()})};
 }
