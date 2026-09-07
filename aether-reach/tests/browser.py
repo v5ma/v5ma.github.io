@@ -13,6 +13,7 @@ def check(ok,label):
  checks.append(label);print('PASS',label,flush=True)
 def snap(p):return p.evaluate('AetherReach.snapshot()')
 def walk(page,targets):
+ page.wait_for_function('!AetherReach.snapshot().paused')
  held=set()
  def controls(new):
   nonlocal held
@@ -34,6 +35,7 @@ def walk(page,targets):
    controls(set())
  finally:controls(set())
 def use(page):
+ page.wait_for_function('!AetherReach.snapshot().paused')
  page.locator('#world').focus();page.keyboard.press('KeyE',delay=120);page.wait_for_timeout(150)
  if page.locator('#record-dialog[open]').count():page.locator('#record-dialog button').click()
 with sync_playwright() as p:
@@ -54,7 +56,9 @@ with sync_playwright() as p:
   check(snap(page)['time']==before['time'],'The field map freezes gameplay rather than letting enemies run behind it')
   page.screenshot(path=str(OUT/('map-'+MODE+'.png')));page.locator('#map-dialog form button').click()
   if MODE=='expedition':
-   walk(page,[(-5,4)]);use(page);check('quay-letter' in snap(page)['records'],'An archive is discovered through proximity and E interaction')
+   # Approach objects with margin for the driver's stopping tolerance and
+   # deceleration, rather than pressing E just outside their real use radius.
+   walk(page,[(-6,3.5)]);page.wait_for_function('AetherReach.snapshot().interaction==="record"');use(page);check('quay-letter' in snap(page)['records'],'An archive is discovered through proximity and E interaction')
    walk(page,[(3,0),(9,-5)]);use(page);page.wait_for_function('!!AetherReach.snapshot().rail')
    check(snap(page)['rail']['id']=='glassline','The sky clamp boards the physical Glasshouse freight line')
    page.keyboard.down('KeyW');page.wait_for_function('AetherReach.snapshot().rail?.s>10')
@@ -62,7 +66,7 @@ with sync_playwright() as p:
    page.keyboard.press('KeyC');page.wait_for_function('AetherReach.snapshot().position.y>9');page.screenshot(path=str(OUT/'riding-above-the-city.png'))
    page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW')
    check(snap(page)['stats']['rescu es'.replace(' ','')]==0,'The complete first rail ride lands on its intended district without a rescue')
-   walk(page,[(65,-22),(64,-29)])
+   walk(page,[(65,-22),(64,-31)]);page.wait_for_function('AetherReach.snapshot().interaction==="relay"')
    page.keyboard.press('KeyQ');page.wait_for_timeout(200);check(snap(page)['energy']<100,'Pulse spends actual suit energy')
    use(page);page.wait_for_function('AetherReach.snapshot().relays.includes("garden")')
    check(page.evaluate('JSON.parse(localStorage.getItem("aether-reach.expedition.v1")).checkpoint')=='garden','Restoring a relay creates a validated local checkpoint')
@@ -87,8 +91,7 @@ with sync_playwright() as p:
    walk(page,[(0,-10)]);page.keyboard.press('KeyP');page.wait_for_selector('#pause-dialog[open]');old=snap(page);page.keyboard.down('KeyW');page.wait_for_timeout(300);page.keyboard.up('KeyW');check(snap(page)['position']==old['position'],'Movement inputs do not leak through the pause dialog')
    page.locator('#pause-settings').click();page.locator('#fov').fill('85');page.locator('#sensitivity').fill('1.4');page.locator('#sound').check();page.locator('#reduced').check();page.locator('#settings-dialog button').click()
    check(page.evaluate('JSON.parse(localStorage.getItem("aether-reach.settings.v1")).fov')==85,'View and comfort settings persist on this device')
-   # A dialog close is asynchronous. Wait for actual resumed gameplay before
-   # firing; do not spend a fixed wall-clock delay while still in the menu.
+   # Dialog close is asynchronous; wait for resumed gameplay before firing.
    page.wait_for_function('!AetherReach.snapshot().paused&&!document.querySelector("dialog[open]")');page.locator('#world').focus()
    page.keyboard.down('KeyF');page.wait_for_function('AetherReach.snapshot().ammo<8');page.keyboard.up('KeyF');check(snap(page)['ammo']<8,'The first-person arc caster fires and consumes charges')
    page.keyboard.press('KeyR');page.wait_for_function('AetherReach.snapshot().ammo===8');check(True,'Reload restores the weapon after its real cooldown')
