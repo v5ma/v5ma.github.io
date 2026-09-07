@@ -121,9 +121,9 @@ export function use(s,w,id,action){
   else if(s.life.runes.length===3){s.life.flags.prism=true;text='The prism is revealed. Take it, then return to Ada.';}
   else text=`${s.life.runes.map(x=>x.toUpperCase()).join(' → ')}. The mechanism is listening.`;
  }
- else if(action.startsWith('buy:')){const item=GOODS.find(x=>x.id===action.slice(4));if(['courier','cargo'].includes(item.id)&&s.life.owned.includes(item.id)){s.life.bike=item.id;text=item.name+' equipped.';}
+ else if(action.startsWith('buy:')){const item=GOODS.find(x=>x.id===action.slice(4));if(['standard','courier','cargo'].includes(item.id)&&s.life.owned.includes(item.id)){s.life.bike=item.id;text=item.name+' equipped.';}
   else{const cost=price(s,item);if(s.credits<cost)return {ok:false,text:`You need ${cost} florins. No real-money purchases are used.`};s.credits-=cost;
-   if(item.id==='tonic')s.health=stats(s).maxHealth;else if(item.id==='focus')s.life.focus=stats(s).maxFocus;else if(item.id==='flowers')text='A bouquet for your workshop. Speak to Isabella or Sofia to offer a personal gift.';
+   if(item.id==='tonic')s.health=stats(s).maxHealth;else if(item.id==='focus')s.life.focus=stats(s).maxFocus;
    else{s.life.owned.push(item.id);s.life.bike=item.id;}text=text||item.name+' purchased.';notify(s,text,'town-trade',{item:item.id,cost});}
  }
  else if(action==='chat'){if((s.life.friends[id]||0)<3)s.life.friends[id]=(s.life.friends[id]||0)+1;text=id==='isabella'?'Isabella tells you about painting the town as its citizens remember it.':'Sofia explains why she makes instruments rather than selling predictions.';}

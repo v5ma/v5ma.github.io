@@ -30,9 +30,9 @@ export const CATS=[{id:'pippa',name:'Pippa',x:91,z:202,color:'#c78340'},{id:'ner
 export const OBJECTS=[
  {id:'prism',name:'Three-symbol prism lock',x:-25,z:28,inside:'workshop',kind:'runes'},
  {id:'cog',name:'Stored bronze cog',x:-21,z:25,inside:'workshop',kind:'pickup'},
- {id:'ledger',name:'Faded guild ledger',x:109,z:176,inside:'inn',kind:'hidden'},
+ {id:'ledger',name:'Faded guild ledger',x:101,z:174,inside:'inn',kind:'hidden'},
  {id:'pump',name:'Orchard pump and north gate',x:0,z:401,kind:'mechanism'},
- {id:'pigment-red',name:'Madder pigment',x:-23,z:460,kind:'plant'},
+ {id:'pigment-red',name:'Madder pigment',x:-14,z:460,kind:'plant'},
  {id:'pigment-blue',name:'Woad pigment',x:70,z:479,kind:'plant'},
  {id:'pigment-gold',name:'Ochre pigment',x:-70,z:527,kind:'plant'},
  {id:'lens-east',name:'Eastern lens test',x:80,z:460,kind:'survey'},
@@ -58,7 +58,7 @@ export const QUESTS=[
 export const GOODS=[
  {id:'tonic',name:'Restorative cordial',price:15,seller:['ada','marta'],text:'Restore vitality. No real-money purchases.'},
  {id:'focus',name:'Focus cordial',price:18,seller:['ada'],text:'Refill focus for Lantern magic.'},
- {id:'flowers',name:'Garden bouquet',price:12,seller:['marta'],text:'A friendly gift; gifts alone never unlock romance.'},
+ {id:'standard',name:'Leonardo’s original bicycle',price:0,seller:['bartolo'],text:'Your original frame is always available to equip without charge.'},
  {id:'courier',name:'Brass Courier bicycle',price:85,seller:['bartolo'],quest:'courier',text:'Lighter gearing: faster pedaling, same steering controls.'},
  {id:'cargo',name:'Artisan Cargo bicycle',price:75,seller:['bartolo'],quest:'ink',text:'Carries 30 letters; slower top speed and larger panniers.'}
 ];

@@ -1,29 +1,33 @@
-# Leonardo’s Guild — The Stolen Folio
+# Leonardo’s Guild — A Living Town
 
-A separate, original third-person 3D Renaissance adventure for SVGN. **Single-player first chapter**, not yet an MMO. An alternate history: Leonardo’s bicycle and pedal carriage are fictional experimental inventions, not assertions about historical artifacts.
+An original third-person Renaissance browser adventure for SVGN. Version 0.3 expands the same town: nine additional commissions, six walkable interiors, two basements, a locked northern garden, named residents, cats, character progression, Lantern magic and earned bicycle variants. **Single-player**, not yet an MMO. Leonardo’s bicycle, pedal carriage and magical research belong to an explicitly alternate-history story, not historical assertions.
 
-## Play
+## Play online
 
-Open `/leonardos-guild/index.html` from the public homepage, or serve the repository root with `python -m http.server 4173`. The included Three.js renderer is local, pinned, MIT-licensed, and requires WebGL2. No API key, installation, network account, analytics or external asset download is required. The low-power link switches off shadows, without changing the world or simulation.
+Open `/leonardos-guild/` from the existing SVGN homepage card. All code, procedural art and the pinned MIT-licensed Three.js renderer are hosted locally. WebGL2 is required. No API keys, real-money purchases, account installation or external asset download is needed.
 
-W/S accelerate, brake and reverse; A/D steer. Shift pedals harder or sprints. Space hops on the bicycle or jumps on foot, and brakes the pedal carriage. Q/C throw sealed letters left/right. F mounts or dismounts a nearby invention after stopping. X inspects mechanisms; hold H beside one to operate it. J swings the staff on foot; hold K to brace. B, or F at the market stall, opens the shop. M opens the map; P/Escape pauses. Drag the world to look around. Touch buttons are included; physical-phone/controller testing is still needed.
+W/S move, brake and reverse; A/D steer; Shift sprints/pedals harder. Space hops or brakes the carriage. Q/C throw letters. F mounts/dismounts after stopping. X inspects; hold H to operate the original mechanisms. J strikes with the staff; K braces. B opens the original nearby market stall. M opens the map, P/Escape pauses. The v0.2 analogue joystick, simultaneous camera/action touches, live quality settings and camera distance remain.
 
-## First commission
+**New controls: T / Talk, N / Journal, R / Magic.** Dismount, approach Leonardo and ask about Ink and Feathers. Enter Ada’s signed doorway, speak with her, and bring the ink back. The journal tracks additional commissions and character points; its blue map destination does not move the player. The Talk and Magic touch buttons provide the same interactions.
 
-You begin as Leonardo’s apprentice, on his bicycle in Vinci Heights. Deliver four plans, earn florins, trade for supplies or a reinforced staff, restore the market waterwheel, and cross toward the Arno outskirts. Dismount to confront a folio guard. Attacks are non-graphic and telegraphed; bracing and retreat remain available. Retrieve the folio and return to Leonardo to finish. You may continue roaming, delivering letters and using the inventions afterward.
+## The town grows rather than restarts
 
-The three connected districts contain 45 homes, independent streets/crossings, walking townspeople, wagon traffic, Renaissance-style buildings, market awnings, belltowers and workshop experiments. The distant skyline is background scenery, not a promised playable city. The aerial screw is scenery, not a flyable vehicle. Shops spend **in-game florins only**.
+The Stolen Folio remains the original complete adventure: deliver four plans, trade, restore the waterwheel, confront the folio guard, retrieve the folio and return to Leonardo. Its original 45 houses, delivery locations, streets, pedestrians and carriage are preserved. The northern extension adds four buildings and 160 metres of traversable terrain behind a mission-gated passage.
 
-## Scope and preservation
+Only the six signed open-door buildings are enterable. Interiors have floor collision, furnishings, residents and camera cutaways. The workshop and inn have paired basement stairs; the inn cellar requires helping its owner. Vehicles remain parked outside. Further buildings, the distant skyline, and the research aerial screw remain scenery. Read [LIVING-TOWN.md](./LIVING-TOWN.md) for the nine-commission dependency chain, shops, cats, adult optional relationships and limitations.
 
-Forked from the preserved SVGN City source at `1fe25b143a788fa74a17cd77b43db7f6c9b95929`. Bicycle/on-foot movement, mounting, camera, physical delivery projectiles, map and fixed-step collision handling are retained. Modern street signs, vehicles and architecture are adapted to a distinct Renaissance world. All new geometry and story are original SVGN content; reference screenshots and commercial-game assets are not shipped.
+Experience and bounded attribute points affect Vitality, Riding, Ingenuity and Empathy. Earned florins buy supplies or unlocked Cargo/Courier bicycle variants. Bartolo can re-equip the original bicycle for free. Lantern consumes focus and reveals the ledger. The flying-machine quest unlocks a research design only: **piloted flight is future work**. City-watch characters take part in an investigation; this is not a citywide police/wanted simulation.
 
-Only `leonardos-guild/`, its scoped CI workflows and the homepage entry belong to this release. Paper Delivery, its Workshop, Aether Reach, Rainward, Dino Atlas, Theology, the private NerveGear project and the separate SVGN City candidate remain untouched. Saves use `svgn.leonardos-guild.v1` only; existing game saves are never migrated or cleared.
+## Persistence and preservation
 
-Multiplayer persistence, guilds, trading between players, account purchase/coupons, large battles, further towns, interiors, and historical/educational research are future work. No Supabase schema, payment system or production authentication is modified. See [ROADMAP.md](./ROADMAP.md).
+The existing `svgn.leonardos-guild.v1` save namespace and outer JSON version 2 remain. Old saves retain their original progress and initialize a validated `life` record. Side quests, one-time rewards, attributes, bikes, relationships and discoveries persist on this device. Continuing starts at the workshop rather than inside a potentially blocked room. No sibling-game saves are cleared.
+
+The game began from the preserved SVGN City engine `1fe25b143a788fa74a17cd77b43db7f6c9b95929`. This update stays in the Leonardo folder and its acceptance workflow; it does not alter Paper Delivery, Dino Atlas, Theology, Little Planet, Aether Reach, Rainward, Vesperfall, account/payment systems or Supabase. [ROADMAP.md](./ROADMAP.md) separates implemented features from future work.
 
 ## Verification
 
-`npm test` runs deterministic model tests, including complete mission gating, physical letters, stopping/mounting, collision substeps, local shop spending, cooldowns, defense and save validation. These fixtures may explicitly set starting states; they are not native gameplay claims.
+`npm test` runs the original mechanics/touch models and new dependency, save, reward, door, room, gate, magic, trade and relationship tests. The approach audit also detects an activity accidentally placed inside a sealed building and ambiguous cellar interactions. These fixtures may place actors explicitly; they are not claimed native replays.
 
-`python tests/browser.py` exercises served WebGL2 via normal keys/UI, completing the commission, opening shops and maps, preserving saves and replaying after reload. Its read-only observer `LeonardoGuild.inspect()` returns copies, not controls or a teleport API. CI records source identity, screenshots and any failure without rewriting runtime files. Hardware performance and subjective visual parity are not certified by software-rendered CI.
+`tests/browser.py` is the independent original full-commission HTTP/WebGL regression. `tests/life-browser.py` adds actual keyboard/UI journeys: a fresh ink commission with two interiors and a basement puzzle, and documented resumed-save stages for the watch investigation and northern garden. Those tests never write live actor position, clock or progression. Existing native touch/graphics/lifecycle tests remain. CI retains exact source hashes, failures and screenshots without rewriting runtime code. The post-merge publication workflow must match served files to the merged source before a live-release claim.
+
+Physical hardware performance, every optional human route, full life simulation and multiplayer are not certified by software-rendered CI. The story, controls and art should continue to improve in the same map.

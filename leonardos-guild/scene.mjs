@@ -22,7 +22,7 @@ export function createScene(canvas,w,s,quality='high'){
  for(const h of w.houses){house(root,h,m);const bx=h.road+h.side*11.1;strip(bx,h.z,h.x,h.z,2.1,walk,'#cfc8ac',.1);
   for(let j=-16;j<=16;j+=.62){if(Math.abs(j)<1.7)continue;const z=h.z+j,y=heightAt(bx,z);rail.box(bx,y+.66,z,.12,1.2,.25,'#e9e5c8');rail.add(unit.cone,bx,y+1.32,z,.18,.22,.18,'#eee7ce',0,Math.PI/4);}
   for(const span of[-1,1])for(const yy of[.43,.95])rail.rod([bx,heightAt(bx,h.z+span*2)+yy,h.z+span*2],[bx,heightAt(bx,h.z+span*16)+yy,h.z+span*16],.047,'#dcdabf');
-  for(let k=0;k<5;k++){const x=h.x+Math.sin(k*2.4)*6.2,z=h.z+Math.cos(k*2.4)*7.8;green.ball(x,heightAt(x,z)+.45,z,.7,.5,.8,'#678f40');}
+  if(!h.room)for(let k=0;k<5;k++){const x=h.x+Math.sin(k*2.4)*6.2,z=h.z+Math.cos(k*2.4)*7.8;green.ball(x,heightAt(x,z)+.45,z,.7,.5,.8,'#678f40');}
  }
  for(const t of w.trees){const b={x:t.x,z:t.z};detail.box(b.x,heightAt(b.x,b.z)+.02,b.z,2.8,.035,2.8,'#a4a17d');}
  trees(root,w.trees,m);

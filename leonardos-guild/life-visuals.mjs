@@ -9,6 +9,7 @@ export function createTownLifeVisuals({scene,root,w,m,rider,bike,camera}){
  const world=new T.Group();world.name='Living town extension';root.add(world);const cellars=new T.Group();cellars.name='Below the same town';scene.add(cellars);cellars.visible=false;
  const baseBackground=scene.background,baseFog=scene.fog,belowBackground=new T.Color('#2c2520'),belowFog=new T.Fog('#2c2520',30,90);
  const people=[],cats=[],objects=[],rooms=[],cellarRooms=[],textLabels=[];
+ const parentQuaternion=new T.Quaternion(),labelPosition=new T.Vector3();
  const wood='#9c724b',oak='#6a4c35',stone='#b5a383',gold='#ddb771',paper='#e8d7ae';
  function bookcase(b,x,z,y=0){b.box(x,y+1.1,z,2.6,2.2,.5,oak);for(let shelf=0;shelf<3;shelf++){b.box(x,y+.35+shelf*.65,z+.03,2.7,.10,.6,wood);for(let k=0;k<10;k++)b.box(x-1.1+k*.24,y+.62+shelf*.65,z+.3,.15,.35+rand(k+shelf*12)*.14,.25,['#b06345','#6e8173','#c2aa79'][k%3]);}}
  function table(b,x,z,y=0){b.box(x,y+.83,z,2,.16,1.2,wood);for(const a of[-.8,.8])for(const c of[-.43,.43])b.box(x+a,y+.4,z+c,.12,.8,.12,oak);b.box(x,y+.95,z,.75,.02,.5,paper);b.add(unit.cyl,x+.6,y+1.08,z,.08,.23,.08,'#b09c75');}
@@ -36,8 +37,12 @@ export function createTownLifeVisuals({scene,root,w,m,rider,bike,camera}){
   const threshold=new Batch();threshold.box(room.door.x,heightAt(room.door.x,room.door.z)+.13,room.door.z,1.6,.12,2.6,gold);threshold.finish(world,m.trim,'Open shop threshold');
  }
  for(const p of PEOPLE.filter(p=>!p.existing)){
-  const model=person(m,p.enemy?'bandit':'apprentice'),g=model.root;const attire=new Batch();const tint=p.id==='isabella'?'#a96056':p.id==='sofia'?'#557e93':p.id==='mayor'?'#856646':p.id==='lucia'||p.id==='guard'?'#536f84':'#7c886b';
-  attire.box(0,1.03,0,.49,.43,.38,tint);if(p.romance)attire.add(unit.cone,0,.75,0,.39,.75,.34,tint);if(p.id==='lucia'||p.id==='guard'||p.enemy){attire.box(0,1.3,.24,.3,.4,.04,'#d7bd82');attire.rod([.34,.3,0],[.34,2.2,0],.035,oak);}attire.finish(g,m.trim,p.name+' clothing');
+  const model=person(m,p.enemy?'bandit':'apprentice'),g=model.root;const attire=new Batch();const tint=({ada:'#857194',beatrice:'#b68367',isabella:'#a96056',sofia:'#557e93',mayor:'#965b56',lucia:'#536f84',guard:'#536f84',luca:'#b68c4d',neri:'#8a7a60'})[p.id]||'#7c886b';
+  attire.box(0,1.03,0,.49,.43,.38,tint);attire.box(0,1.28,.205,.39,.44,.055,tint);
+  if(['ada','beatrice'].includes(p.id)){attire.box(0,1.05,.235,.33,.6,.04,'#e6dac0');attire.ball(0,1.92,-.02,.21,.055,.17,p.id==='ada'?'#a697b6':'#f1e5c9');}
+  if(p.id==='mayor'){attire.box(0,1.1,-.245,.57,.85,.10,tint);attire.add(unit.ring,0,1.35,.255,.15,.15,.045,gold);}
+  if(p.romance){attire.box(0,1.58,-.13,.25,.35,.12,p.id==='isabella'?'#614737':'#815938');}
+  if(p.romance)attire.add(unit.cone,0,.75,0,.39,.75,.34,tint);if(p.id==='lucia'||p.id==='guard'||p.enemy){attire.box(0,1.3,.24,.3,.4,.04,'#d7bd82');attire.rod([.34,.3,0],[.34,2.2,0],.035,oak);}attire.finish(g,m.trim,p.name+' clothing');
   (p.inside?cellars:world).add(g);const tag=label(g,p.name+'\n'+(p.enemy?'T / TALK OR J / DEFEND':'T / TALK'),0,2.65,0,1.7,.64,0,'#385a58');textLabels.push(tag);people.push({p,model});
  }
  function catModel(p){const root=new T.Group(),b=new Batch();b.ball(0,.35,0,.21,.22,.46,p.color);b.ball(0,.48,.39,.21,.19,.20,p.color);for(const side of[-1,1]){b.add(unit.cone,side*.13,.68,.4,.11,.20,.11,p.color);b.ball(side*.09,.51,.56,.025,.035,.015,'#e4d78a');}b.ball(0,.43,.59,.055,.035,.03,'#b08f81');b.finish(root,m.trim,'Cat fur');const legs=[];for(const x of[-.14,.14])for(const z of[-.26,.25]){const mesh=new T.Mesh(new T.CylinderGeometry(.04,.05,.28,5),new T.MeshStandardMaterial({color:p.color}));mesh.position.set(x,.14,z);root.add(mesh);legs.push(mesh);}const tail=new T.Group(),tb=new Batch();tb.rod([0,.1,0],[0,.7,-.2],.04,p.color);tb.finish(tail,m.trim,'Cat tail');tail.position.set(0,.4,-.36);root.add(tail);return {root,legs,tail};}
@@ -63,7 +68,9 @@ export function createTownLifeVisuals({scene,root,w,m,rider,bike,camera}){
   for(const {p,model} of people){const point=personAt(p,s);model.root.visible=(point.inside||null)===(s.life.inside||null);model.root.position.set(point.x,heightAt(point.x,point.z)+(p.inside?-5:0),point.z);model.root.rotation.y=Math.hypot(s.x-point.x,s.z-point.z)<8?Math.atan2(s.x-point.x,s.z-point.z):Math.PI;model.root.rotation.x=p.id==='rocco'&&s.life.flags.rocco?.25:0;model.root.rotation.z=p.id==='rocco'&&s.life.attackPending?-.17:0;}
   for(const {p,model}of cats){const following=p.id==='pippa'&&s.life.cat;const x=following?s.life.petX:p.x+Math.sin(s.time*.45+p.z)*.5,z=following?s.life.petZ:p.z+Math.cos(s.time*.4)*.4;model.root.position.set(x,heightAt(x,z),z);model.root.rotation.y=Math.atan2(s.x-x,s.z-z);model.tail.rotation.z=Math.sin(s.time*2)*.2;model.legs.forEach((l,i)=>l.rotation.x=Math.sin(s.time*7+i*Math.PI)*.22);}
   for(const {o,g,tag}of objects){g.visible=(o.inside||null)===(s.life.inside||null);if(o.kind==='hidden')g.visible=g.visible&&(s.life.aura>0||s.life.flags.ledger);tag.visible=Math.hypot(s.x-o.x,s.z-o.z)<18;}
-  for(const tag of textLabels)tag.quaternion.copy(camera.quaternion);gate.position.y=heightAt(0,407)+(s.life.flags.garden?5:0);ring.visible=s.life.aura>0;ring.position.set(s.x,heightAt(s.x,s.z)+(below?-5:0)+.25,s.z);ring.scale.setScalar(2+Math.sin(s.time*2)*.15);cargo.visible=s.life.bike==='cargo';courier.visible=s.life.bike==='courier';
+  // Labels need camera orientation relative to their rotated parent, not an
+  // absolute camera quaternion that turns a resident's name edge-on.
+  for(const tag of textLabels){tag.parent.updateWorldMatrix(true,false);tag.parent.getWorldQuaternion(parentQuaternion);tag.quaternion.copy(parentQuaternion.invert().multiply(camera.quaternion));tag.getWorldPosition(labelPosition);tag.visible=Math.hypot(labelPosition.x-s.x,labelPosition.z-s.z)<18;}gate.position.y=heightAt(0,407)+(s.life.flags.garden?5:0);ring.visible=s.life.aura>0;ring.position.set(s.x,heightAt(s.x,s.z)+(below?-5:0)+.25,s.z);ring.scale.setScalar(2+Math.sin(s.time*2)*.15);cargo.visible=s.life.bike==='cargo';courier.visible=s.life.bike==='courier';
  }
  return {update,inspect:()=>({room:current,below:cellars.visible,rooms:rooms.length,basements:cellarRooms.length,characters:people.length+2,cats:cats.length})};
 }

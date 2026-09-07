@@ -21,8 +21,12 @@ def hold(codes):
 def stop():
  hold([]);s=read()
  if abs(s['speed'])>.45:
-  if s['mode']!='foot':hold(['KeyS' if s['speed']>0 else 'KeyW'])
-  page.wait_for_function('Math.abs(LeonardoGuild.inspect().speed)<.45',timeout=30000);hold([])
+  if s['mode']!='foot':
+   sign=1 if s['speed']>0 else -1;hold(['KeyS' if sign>0 else 'KeyW'])
+   # A reverse-capable brake may cross zero between software-rendered frames.
+   # Release on crossing instead of waiting forever in a tiny absolute window.
+   page.wait_for_function('(sign)=>LeonardoGuild.inspect().speed*sign<=.45',arg=sign,timeout=30000);hold([])
+  page.wait_for_function('Math.abs(LeonardoGuild.inspect().speed)<.45',timeout=30000)
 def drive(x,z,radius=1.1,limit=160):
  page.wait_for_function('LeonardoGuild.inspect().running');page.locator('#world').focus();start=time.monotonic()
  while time.monotonic()-start<limit:
@@ -95,7 +99,7 @@ with sync_playwright() as p:
   elif MODE=='watch':
    drive(0,136,2);drive(80,140,2);drive(90,178,1.3);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(97,178,.7);drive(102,178,.7)
    check(read()['render']['interior']['room']=='inn','The Copper Cat is a walkable inn with a resident innkeeper')
-   page.screenshot(path=str(OUT/'copper-cat-inn.png'));drive(108,174.5,.8);interact('stairs');drive(109,177,.6)
+   page.screenshot(path=str(OUT/'copper-cat-inn.png'));drive(108,174.5,.8);interact('stairs');drive(101,175,.6)
    page.keyboard.press('KeyT');page.wait_for_selector('#life-dialog[open]');check(page.locator('[data-use="progress:receipts"]').is_disabled(),'Hidden evidence cannot be read without Lantern')
    page.locator('#life-close').click();page.wait_for_function('!LeonardoGuild.inspect().paused');focus=read()['life']['focus'];page.keyboard.press('KeyR');page.wait_for_function('LeonardoGuild.inspect().life.aura>0')
    check(read()['life']['focus']<focus,'The actual magic action consumes focus')
