@@ -1,0 +1,59 @@
+name: Aether living-city validation
+on:
+  push:
+    branches: [feat/aether-living-city]
+  pull_request:
+    paths: ['aether-reach/**','.github/workflows/aether-city.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aether-city-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  city:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [civic, magic]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate existing systems and the new connected city
+        run: |
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs
+          python aether-reach/tests/backup_test.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Install native test browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play actual missions, rooms, glyphs and aircraft through ordinary input
+        env:
+          CITY_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/aether-city.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/city.py
+      - name: Preserve exact source and failures as well as successes
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+          tar --exclude='aether-reach/test-output' --exclude='*/__pycache__' -czf aether-reach/test-output/city-source.tgz aether-reach index.html projects.css .github/workflows
+          git ls-files | grep -iE '(^|/)agents\.md$' > aether-reach/test-output/agent-paths.txt || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-city-${{ matrix.suite }}
+          path: aether-reach/test-output
+          retention-days: 14
