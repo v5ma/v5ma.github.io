@@ -9,21 +9,49 @@ const diagrams=[
  {id:'dates',title:'Four dates that must not collapse into one',note:'This is a distinction among kinds of dates. It assigns no new historical years and establishes no order of transmission.',nodes:[['parallel-timelines','Narrated event','When does a story place the event? A narrative date is not automatically an independent observation.'],['tor-thomas-and-gnostic-transmission','Composition','When was this form of the work composed? Individual material may have a different history.'],['source-atlas','Surviving copy','When was this object produced? Its age does not by itself date every statement it contains.'],['evidence-workbench','Reception and interpretation','Who preserves or interprets the passage? A quotation through another writer needs its channel identified.']],edges:['Event and composition: related only through an explicit historical argument.','Composition and copy: a surviving witness sets constraints, not an automatic origin date.','Copy and interpretation: preservation and understanding have distinct histories.']},
  {id:'formation',title:'Two corrections inside a constructive process',note:'This is the proposed formative mechanism, not a measured neural pathway or proof that a current AI is conscious.',nodes:[['cognitive-gnosticism','Situation as perceived','Attention and interpretation shape which needs and threats become salient.'],['christ-as-an-inner-model','Interpreted exemplar','The inward model makes possible actions and reasons available for comparison.'],['divine-will-and-self-authorizing-power','Deliberation and conduct','The present desire does not automatically authorize the selected response.'],['apocalyptic-repair-theology','Consequences for others','Correction one: change conduct that fails the represented standard.'],['god-and-our-models-of-god','Revise the interpretation','Correction two: examine whether the represented standard itself concealed harm.']],edges:['Conduct to feedback: assess what the action did, not only what it intended.','Feedback to conduct: change a response in relation to the exemplar.','Feedback to interpretation: revise the model when its reading of care was inadequate.','Revised model to the next situation: formation changes what may be perceived and chosen.']}
 ];
+// Each lens changes the question, not the source records or their chronology.
+function comparison(body,data){
+ const host=element('section',null,'connected-workspace');host.id='restoration-workspace';host.setAttribute('aria-label','Compare six restoration passages');
+ host.append(element('h2','Six passages, three questions'),element('p','Compare who acts, when change occurs within the narrative, and who benefits. These are selected textual interpretations, not equivalent doctrines or an established descent tree.'));
+ const lenses={agency:'Who acts?',timing:'When does change occur?',boundary:'Who benefits or remains excluded?'};
+ const controls=element('div',null,'connected-step-controls');controls.setAttribute('aria-label','Comparison lens');
+ const request=new URLSearchParams(location.search).get('lens');let selected=Object.hasOwn(lenses,request)?request:'agency';
+ const status=element('p',request&&!Object.hasOwn(lenses,request)?'Unknown comparison lens; who acts is shown.':'','connected-notice');status.id='restoration-status';status.setAttribute('role','status');
+ const cards=element('div',null,'restoration-cards');cards.id='restoration-cards';
+ const share=element('a','Open this comparison lens');share.id='restoration-share';
+ const sources=new Map(data.references.map(r=>[r.id,r]));
+ function draw(update){
+  cards.replaceChildren();host.dataset.lens=selected;
+  for(const r of data.comparison.records){
+   const card=element('article',null,'connected-node restoration-card');card.dataset.record=r.id;card.append(element('h3',r.title),element('p',r.locator,'connected-kicker'),element('h4',lenses[selected]),element('p',r[selected],'restoration-reading'));
+   const notes=element('details');notes.append(element('summary','Source, scope and next question'),element('p',r.scope),element('p',r.question),element('p','Dating: '+r.dateStatus));
+   for(const id of r.sourceIds){const source=sources.get(id);if(!source)continue;const url=new URL(source.url);if(url.protocol!=='https:'||url.username||url.password)continue;const p=element('p'),a=element('a',source.title);a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';p.append(a);notes.append(p);}
+   card.append(notes);cards.append(card);
+  }
+  for(const b of controls.children)b.setAttribute('aria-pressed',String(b.dataset.lens===selected));
+  const url=new URL(location.href);url.searchParams.set('lens',selected);share.href=url.href;
+  if(update){status.textContent='Showing '+lenses[selected]+' The underlying six records are unchanged.';try{history.replaceState(history.state,'',url);}catch{status.textContent+=' The address could not update; the comparison link still works.';}}
+ }
+ for(const [id,title] of Object.entries(lenses)){const b=element('button',title);b.type='button';b.dataset.lens=id;b.onclick=()=>{selected=id;draw(true);};controls.append(b);}
+ const essay=element('a','Continue to the full argument'),heading=body.querySelector('h2');if(heading&&!heading.id)heading.id='restoration-essay';essay.id='restoration-read';essay.href=heading?'#'+heading.id:'#article-title';essay.onclick=e=>{if(heading){e.preventDefault();heading.tabIndex=-1;heading.focus({preventScroll:true});heading.scrollIntoView({block:'start'});}};
+ host.append(controls,status,share,cards,essay);body.prepend(host);draw(false);host.dataset.ready='true';
+}
 async function enhance(p){
  const menu=document.querySelector('.depth-site-menu>div');if(menu&&!menu.querySelector('[data-page="connected-arguments"]'))menu.prepend(pageLink('connected-arguments','Book argument map'));
  const body=document.querySelector('#article-body');if(!body||body.dataset.connectedReady===p.slug)return;
  let data;try{data=await load();}catch{
-  if(p.slug==='connected-arguments'){const n=element('p','The interactive map could not load. The complete bridge essays, chapter transitions and research questions remain below.','connected-notice');n.setAttribute('role','alert');body.prepend(n);}
+  if(['connected-arguments','rival-continuations-and-restoration'].includes(p.slug)){const n=element('p','The interactive companion could not load. The complete argument, comparison records and source notes remain below.','connected-notice');n.setAttribute('role','alert');body.prepend(n);}
   return;
  }
  if(!body.isConnected||window.TheologyReader?.current()?.slug!==p.slug)return;
  const applicable=data.studies.filter(s=>s.upstream.includes(p.slug));
  if(['home','book-contents'].includes(p.slug)){
-  const box=element('aside',null,'connected-entry');box.append(pageLink('connected-arguments','Follow the book argument map'),element('p','Four bridge studies connect the historical investigations to inward formation, public power and repair. Each chapter has an inherited question and a next step.'));
+  const box=element('aside',null,'connected-entry');box.append(pageLink('connected-arguments','Follow the book argument map'),element('p',data.studies.length+' bridge studies connect the historical investigations to inward formation, public power and repair. Each chapter has an inherited question and a next step.'));
   if(p.slug==='home')body.querySelector('.depth-route-banner')?.after(box);else body.prepend(box);
  }else if(applicable.length){
   const box=element('aside',null,'connected-entry');box.append(element('h2','Continue through a connecting argument'));for(const s of applicable){const q=element('p');q.append(pageLink(s.slug,s.title));box.append(q);}body.append(box);
  }
+ if(p.slug===data.comparison?.slug)comparison(body,data);
  if(p.slug==='connected-arguments'){
   const host=element('section',null,'connected-workspace');host.id='connected-workspace';host.setAttribute('aria-label','Interactive book argument map');
   host.append(element('h2','Find the next question'));
@@ -34,7 +62,7 @@ async function enhance(p){
   function chapter(update){
    const c=data.chapters.find(c=>c.chapter===select.value);detail.replaceChildren(element('p',c.part,'connected-kicker'),element('h3',c.title));
    for(const [title,text] of [['The inherited question',c.question],["The chapter's work",c.work],['The next question',c.nextQuestion]])detail.append(element('h4',title),element('p',text));
-   const l=element('p');l.append(pageLink(c.bridge,'Read the connecting essay'));detail.append(l);
+   const l=element('p');l.append(pageLink(c.bridge,'Read the connecting essay'));for(const id of c.additionalBridges||[]){l.append(document.createTextNode(' / '),pageLink(id,'Read the passage comparison'));}detail.append(l);
    const source=element('p');c.pages.forEach((id,i)=>{if(i)source.append(document.createTextNode(' / '));source.append(pageLink(id,window.TheologyReader.pages().find(p=>p.slug===id)?.title||id));});detail.append(source);
    const controls=element('div',null,'connected-step-controls');for(const [id,text] of [[c.previous,'Previous chapter'],[c.next,'Next chapter']]){const b=element('button',text);b.type='button';b.disabled=!id;b.onclick=()=>{select.value=id;chapter(true);};controls.append(b);}detail.append(controls);
    const u=new URL(location.href);u.searchParams.set('chapter',c.chapter);const share=element('a','Open this exact chapter handoff');share.id='connected-share';share.href=u.href;detail.append(share);

@@ -5,3 +5,7 @@
 .connected-diagram{margin:0;padding:18px;border:1px solid #a8becb;border-radius:8px;background:#fff}.connected-diagram figcaption{font-weight:700;font-size:1.15rem}.connected-nodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}.connected-node{padding:15px;border:1px solid #a8becb;border-top:4px solid #216b74;border-radius:6px;min-width:0}.connected-node a{font-weight:700}.connected-edges{border-left:4px solid #996420;padding-left:16px}.connected-workspace .connected-notice{font-size:.9rem;color:#465f73}.connected-workspace :focus-visible,.connected-entry :focus-visible{outline:3px solid #a54415;outline-offset:3px}
 @media(max-width:550px){.connected-workspace,.connected-entry{padding:14px}.connected-chapter-card,.connected-diagram{padding:12px}.connected-nodes{grid-template-columns:1fr}}
 @media print{.connected-workspace,.connected-entry{display:none}}
+
+/* Comparison cards keep full source labels at reading size on narrow screens. */
+.restoration-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}.restoration-card{background:#fff}.restoration-card p{font-size:1rem}.restoration-card summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:600}.restoration-card a{overflow-wrap:anywhere}.restoration-reading{min-height:3em}#restoration-share{display:inline-block;padding:8px 0;min-height:44px}
+@media(max-width:650px){.restoration-cards{grid-template-columns:1fr}}

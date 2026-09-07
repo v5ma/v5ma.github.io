@@ -866,5 +866,47 @@
     "url": "https://ebible.org/engwebp/PHP02.htm",
     "scope": "Read the concern beyond one's own interests in the World English Bible. No critical-edition comparison or Christ-specific behavioral experiment was performed.",
     "accessed": "2026-09-07"
+  },
+  {
+    "id": "restore-rule",
+    "title": "Community Rule: E. Qimron exhibition translation",
+    "url": "https://www.loc.gov/exhibits/scrolls/trans3.html",
+    "scope": "The displayed extract was read for instruction, separation, divine will and the expected day of revenge. This is a named translation of the exhibition fragment, not a new translation or a collation of all Community Rule manuscripts.",
+    "accessed": "2026-09-07"
+  },
+  {
+    "id": "restore-rule-object",
+    "title": "Library of Congress: Community Rule fragment 4Q258",
+    "url": "https://www.loc.gov/exhibits/scrolls/late.html",
+    "scope": "The Community Rule object entry identifies 4QSd / 4Q258 and directs to the Qimron translation. This catalogue relationship was checked; no new copy/composition chronology is assigned by this comparison.",
+    "accessed": "2026-09-07"
+  },
+  {
+    "id": "restore-secret-john",
+    "title": "Apocryphon of John, long version: flood passage",
+    "url": "https://www.gnosis.org/naghamm/apocjn-long.html",
+    "scope": "Waldstein-Wisse translation, web edition edited by Lance Owens. The indexed flood passage beginning with the ruler regretting creation was read. Direct page retrieval failed; no full critical-edition or long/short recension collation is claimed.",
+    "accessed": "2026-09-07"
+  },
+  {
+    "id": "restore-adam",
+    "title": "Apocalypse of Adam: Noah and the protected generation",
+    "url": "https://gnosis.org/naghamm/adam.html",
+    "scope": "George W. MacRae translation in the Gnostic Society Library. The indexed flood/Noah passage, including Deucalion and the denial of ancestry, was read. Lacunae remain unfilled; direct page retrieval and critical manuscript collation were not completed.",
+    "accessed": "2026-09-07"
+  },
+  {
+    "id": "restore-sibyl4",
+    "title": "Sibylline Oracles IV: conditional warning",
+    "url": "https://en.wikisource.org/wiki/The_Sibylline_Oracles_(Terry,_2nd_edition)/Book_4",
+    "scope": "Milton S. Terry, second-edition English translation, displayed lines 210-248. These are English line locators, not an asserted Greek verse concordance. Selected passage read; composition-date proposals and the Greek critical text require separate review.",
+    "accessed": "2026-09-07"
+  },
+  {
+    "id": "restore-sibyl2",
+    "title": "Sibylline Oracles II: intercession and its reported rejection",
+    "url": "https://en.wikisource.org/wiki/The_Sibylline_Oracles_(Terry,_2nd_edition)/Book_2",
+    "scope": "Terry second-edition English lines 404-415 and note 24. The reported anti-restoration manuscript addition is mediated through Terry, not independently inspected. His account is not a new discovery or proof that every sinner is eventually saved.",
+    "accessed": "2026-09-07"
   }
 ]

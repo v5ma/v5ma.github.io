@@ -25,7 +25,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 ## Find your way through the inquiry
 
-[[connected-arguments|The book argument map]] connects four bridge essays, seventeen chapter handoffs and an explicit research agenda.
+[[connected-arguments|The book argument map]] connects five bridge essays, seventeen chapter handoffs and an explicit research agenda.
 
 [[research-roadmap|The shared research roadmap and Excel checklist]] records deliverables, dependencies and evidence. [[source-coverage|Source coverage]] identifies which conversations have recorded article links. [[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer eight longer routes, and the [[glossary|glossary]] explains the collection's terms.
 

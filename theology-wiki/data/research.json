@@ -1723,6 +1723,7 @@
       "apocalyptic-repair-theology",
       "contested-memories-of-catastrophe",
       "apocalypse-and-repair",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "guide-to-the-inquiry",
       "forecast-ledger",
@@ -1808,6 +1809,7 @@
       "daniel-jubilee-and-the-teachers-time",
       "sanctuary-community-and-body",
       "apocalypse-and-repair",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "source-atlas",
       "guide-to-the-inquiry",
@@ -1914,6 +1916,7 @@
       "inner-formation-texts-and-material-witnesses",
       "onias-egypt-and-priestly-continuity",
       "contested-memories-of-catastrophe",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "source-atlas",
       "museum-trails",
@@ -1951,6 +1954,7 @@
       "flood-inheritance-and-deep-time",
       "onias-egypt-and-priestly-continuity",
       "contested-memories-of-catastrophe",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "topic-traditions",
       "reading-paths",
@@ -1970,6 +1974,7 @@
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
       "thomas-sayings-and-transmission",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "source-atlas",
       "museum-trails",
@@ -2019,6 +2024,7 @@
       "sacred-inheritance-and-rival-continuations",
       "computational-divine-immanence",
       "inward-formation-and-accountable-intelligence",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "topic-machines",
       "reading-paths",
@@ -2058,6 +2064,7 @@
       "onias-egypt-and-priestly-continuity",
       "thomas-sayings-and-transmission",
       "sanctuary-community-and-body",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "source-atlas",
       "argument-challenges",
@@ -2094,6 +2101,7 @@
       "home",
       "computational-divine-immanence",
       "contested-memories-of-catastrophe",
+      "rival-continuations-and-restoration",
       "connected-arguments",
       "source-atlas",
       "museum-trails",
@@ -2160,6 +2168,7 @@
       "exodus-to-temple-competing-chronologies",
       "flood-inheritance-and-deep-time",
       "apocalypse-and-repair",
+      "rival-continuations-and-restoration",
       "connected-arguments"
     ],
     "sanctuary-community-and-body": [
@@ -2170,6 +2179,7 @@
       "james-and-contested-succession",
       "contested-memories-of-catastrophe",
       "apocalypse-and-repair",
+      "rival-continuations-and-restoration",
       "connected-arguments"
     ],
     "apocalypse-and-repair": [
@@ -2181,6 +2191,7 @@
       "contested-memories-of-catastrophe",
       "sanctuary-community-and-body",
       "inward-formation-and-accountable-intelligence",
+      "rival-continuations-and-restoration",
       "connected-arguments"
     ],
     "inward-formation-and-accountable-intelligence": [
@@ -2190,6 +2201,18 @@
       "god-and-our-models-of-god",
       "computational-divine-immanence",
       "apocalypse-and-repair",
+      "rival-continuations-and-restoration",
+      "connected-arguments"
+    ],
+    "rival-continuations-and-restoration": [
+      "apocalyptic-repair-theology",
+      "gnosticism-and-temple-trauma",
+      "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission",
+      "god-and-our-models-of-god",
+      "flood-inheritance-and-deep-time",
+      "contested-memories-of-catastrophe",
+      "apocalypse-and-repair",
       "connected-arguments"
     ],
     "connected-arguments": [
@@ -2198,6 +2221,7 @@
       "sanctuary-community-and-body",
       "apocalypse-and-repair",
       "inward-formation-and-accountable-intelligence",
+      "rival-continuations-and-restoration",
       "book-contents"
     ],
     "evidence-workbench": [
