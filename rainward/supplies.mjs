@@ -1,15 +1,19 @@
-import {START,BOUNDS,OBSTACLES,ITEMS,SHELTERS,EXIT,PATROLS,HEIGHT,RAD,clamp,dist,inside,solidAt,rayBox,obstruction,coverAt,findPath} from './world.mjs';
+import {lootTarget,collectDrop,puzzleTarget} from './rewards.mjs';
+import {CURRENT,syncGates,heightAt,START,BOUNDS,OBSTACLES,ITEMS,SHELTERS,EXIT,PATROLS,HEIGHT,RAD,clamp,dist,inside,solidAt,rayBox,obstruction,coverAt,findPath} from './world.mjs';
 import {forward,emit,hint,noise,RECIPES} from './state.mjs';
-export function interactable(s){const p=s.player;const item=ITEMS.find(i=>!s.taken.has(i.id)&&dist(i,p)<1.8&&!obstruction({x:p.x,y:.4,z:p.z},{x:i.x,y:.4,z:i.z}));if(item)return {kind:'item',id:item.id,label:item.label};
- if(dist(EXIT,p)<2.7)return {kind:'exit',label:s.objectives.cell&&s.objectives.crank?'Open the floodgate / extract':'Floodgate: battery + spindle required'};
+export function interactable(s){const p=s.player;const puzzle=puzzleTarget(s);if(puzzle)return puzzle;const drop=lootTarget(s);if(drop)return {kind:'loot',id:drop.id,label:'Scavenge dropped supplies'};const item=ITEMS.find(i=>!s.taken.has(i.id)&&dist(i,p)<1.8&&!obstruction({x:p.x,y:heightAt(p.x,p.z)+.4,z:p.z},{x:i.x,y:heightAt(i.x,i.z)+.4,z:i.z}));if(item)return {kind:'item',id:item.id,label:item.label};
+ if(dist(EXIT,p)<2.7)return {kind:'exit',label:s.objectives.cell&&s.objectives.crank?CURRENT.id==='district'?'Open the floodgate / extract':'Activate the archive lift / finish':CURRENT.id==='district'?'Floodgate: battery + spindle required':'Archive lift: lens + core required'};
  const save=SHELTERS.find(c=>dist(c,p)<1.7);if(save)return {kind:'shelter',id:save.id,label:'Save at '+save.name};
- const enemy=s.enemies.find(e=>e.hp>0&&e.state!=='chase'&&dist(e,p)<1.75&&((p.x-e.x)*forward(e.yaw).x+(p.z-e.z)*forward(e.yaw).z)<-.15&&!obstruction({x:p.x,y:1,z:p.z},{x:e.x,y:1,z:e.z}));if(enemy)return {kind:'takedown',id:enemy.id,label:'Silent takedown'};return null;
+ const enemy=s.enemies.find(e=>e.hp>0&&!['prowler','brute'].includes(e.type)&&e.state!=='chase'&&dist(e,p)<1.75&&((p.x-e.x)*forward(e.yaw).x+(p.z-e.z)*forward(e.yaw).z)<-.15&&!obstruction({x:p.x,y:heightAt(p.x,p.z)+1,z:p.z},{x:e.x,y:heightAt(e.x,e.z)+1,z:e.z}));if(enemy)return {kind:'takedown',id:enemy.id,label:'Silent takedown'};return null;
 }
 export function interact(s){if(s.status!=='playing'||s.player.craft)return false;const target=interactable(s);if(!target){hint(s,'Move closer to a supply, shelter or unaware lookout.');return false;}
+ if(target.kind==='clue'){s.puzzle.clueRead=true;hint(s,CURRENT.puzzle.clue.text);s.hintTime=12;emit(s,'clue');return true;}
+ if(target.kind==='wheel'){if(s.puzzle.solved){hint(s,'The sluice is open. Follow the north causeway.');return true;}const i=target.index;s.puzzle.wheels[i]=(s.puzzle.wheels[i]+1)%4;s.puzzle.solved=s.puzzle.wheels.every((v,j)=>v===CURRENT.puzzle.targets[j]);syncGates(s.puzzle);emit(s,s.puzzle.solved?'puzzle-solved':'wheel',{index:i});hint(s,s.puzzle.solved?'The waterway gate rises. The north sanctuary is reachable.':CURRENT.puzzle.wheels[i].label+': '+CURRENT.puzzle.symbols[s.puzzle.wheels[i]]);return true;}
+ if(target.kind==='loot'){const got=collectDrop(s,target.id);if(!got||!Object.keys(got).length){hint(s,'Those supplies are full. The drop stays here.');return false;}hint(s,'Recovered '+Object.entries(got).map(([k,v])=>v+' '+k).join(', '));emit(s,'loot',{id:target.id,items:got});return true;}
  if(target.kind==='item'){const i=ITEMS.find(i=>i.id===target.id);s.taken.add(i.id);if(i.objective)s.objectives[i.objective]=true;for(const k of ['cloth','canister','bottles'])s.player[k]=Math.min(12,s.player[k]+(i[k]||0));s.player.reserve=Math.min(36,s.player.reserve+(i.ammo||0));emit(s,'pickup',{id:i.id});hint(s,'Recovered: '+i.label);}
  if(target.kind==='shelter'){s.checkpoint=target.id;emit(s,'checkpoint',{id:target.id});hint(s,'Checkpoint saved. Supplies and objectives are recorded.');}
  if(target.kind==='takedown'){const e=s.enemies.find(e=>e.id===target.id);e.hp=0;e.state='down';s.stats.takedowns++;emit(s,'takedown',{id:e.id});noise(s,e.x,e.z,2,'scuffle');hint(s,'Lookout subdued. No ammunition spent.');}
- if(target.kind==='exit'){if(!s.objectives.cell||!s.objectives.crank){hint(s,'Recover both marked components first.');return false;}s.status='won';emit(s,'complete');}
+ if(target.kind==='exit'){if(!s.objectives.cell||!s.objectives.crank||s.puzzle&&!s.puzzle.solved){hint(s,'Recover both components and open the marked route first.');return false;}s.status='won';emit(s,'complete');}
  return true;
 }
 export function craft(s,item){const p=s.player,r=RECIPES[item];if(s.status!=='playing'||!r||p.craft||p[item]>=3||p.cloth<r.cloth||p.canister<r.canister){hint(s,'Need 1 fabric and 1 salvage. You can carry 3 of each crafted item.');return false;}p.cloth-=r.cloth;p.canister-=r.canister;p.craft={item,left:r.time};emit(s,'craft-start',{item});return true;}
