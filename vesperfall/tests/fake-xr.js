@@ -1,0 +1,17 @@
+/* TEST ONLY: emulates device poses and buttons. No game globals are modified.
+ * The A-Frame renderer still receives stereo XR frames; hardware is not tested. */
+(()=>{
+ const pad=()=>({id:'Emulated Quest Touch',connected:true,mapping:'xr-standard',axes:[0,0,0,0],buttons:Array.from({length:6},()=>({pressed:false,touched:false,value:0}))});
+ const state={deny:false,session:null,head:[0,1.65,0],hands:{left:[-.23,1.35,-.4],right:[.23,1.35,-.4]},missing:new Set(),yaw:0};
+ function transform(p,yaw=0){const c=Math.cos(yaw),s=Math.sin(yaw);return {position:{x:p[0],y:p[1],z:p[2]},orientation:{x:0,y:Math.sin(yaw/2),z:0,w:Math.cos(yaw/2)},matrix:new Float32Array([c,0,-s,0,0,1,0,0,s,0,c,0,...p,1])};}
+ const projection=new Float32Array([1.6,0,0,0,0,1.5,0,0,0,0,-1.0001,-1,0,0,-.12,0]);
+ class Space extends EventTarget{getOffsetReferenceSpace(){return this;}}
+ class Session extends EventTarget{
+  constructor(){super();this.environmentBlendMode='opaque';this.visibilityState='visible';this.enabledFeatures=['local-floor'];this.renderState={depthNear:.06,depthFar:250};this.inputSources=['left','right'].map(hand=>({handedness:hand,targetRayMode:'tracked-pointer',profiles:['oculus-touch-v3','generic-trigger-squeeze-thumbstick'],targetRaySpace:{hand},gripSpace:{hand},gamepad:pad()}));this.started=false;this.ended=false;}
+  requestReferenceSpace(){return Promise.resolve(new Space());}updateRenderState(s){Object.assign(this.renderState,s);}requestAnimationFrame(fn){if(this.ended)return 0;return requestAnimationFrame(t=>{if(this.ended)return;if(!this.started){this.started=true;const e=new Event('inputsourceschange');e.added=this.inputSources;e.removed=[];this.dispatchEvent(e);}const head=transform(state.head,state.yaw),views=['left','right'].map((eye,i)=>({eye,projectionMatrix:projection,transform:transform([state.head[0]+(i?.032:-.032),state.head[1],state.head[2]],state.yaw)}));fn(t,{session:this,getViewerPose:()=>({transform:head,views}),getPose:space=>state.missing.has(space.hand)?null:{transform:transform(state.hands[space.hand]),emulatedPosition:false}});});}cancelAnimationFrame(id){cancelAnimationFrame(id);}async end(){this.ended=true;this.dispatchEvent(new Event('end'));}
+ }
+ const xr=new EventTarget();xr.isSessionSupported=async mode=>mode==='immersive-vr';xr.requestSession=async()=>{if(state.deny)throw new DOMException('Test refusal','NotAllowedError');state.session=new Session();return state.session;};Object.defineProperty(navigator,'xr',{value:xr,configurable:true});window.XRSession=Session;
+ for(const type of[window.WebGLRenderingContext,window.WebGL2RenderingContext])if(type)type.prototype.makeXRCompatible=async()=>{};
+ window.XRWebGLBinding=undefined;window.XRWebGLLayer=class{constructor(){this.framebuffer=null;this.framebufferWidth=960;this.framebufferHeight=640;this.ignoreDepthValues=false;this.fixedFoveation=1;}getViewport(v){return {x:v.eye==='left'?0:480,y:0,width:480,height:640};}};
+ window.TestXR={state,pose(hand,p){state.hands[hand]=p;},button(hand,i,on){const p=state.session.inputSources.find(s=>s.handedness===hand).gamepad;p.buttons[i]={pressed:on,touched:on,value:on?1:0};},axes(hand,x,y){state.session.inputSources.find(s=>s.handedness===hand).gamepad.axes=[0,0,x,y];},missing(hand,value){if(value)state.missing.add(hand);else state.missing.delete(hand);},hide(v){state.session.visibilityState=v?'hidden':'visible';state.session.dispatchEvent(new Event('visibilitychange'));}};
+})();
