@@ -1,0 +1,58 @@
+name: Verify Leonardo's Guild first commission
+on:
+  push:
+    branches: [feat/leonardos-guild-20260906]
+    paths: ['leonardos-guild/**','index.html','.github/workflows/leonardos-guild.yml']
+  pull_request:
+    paths: ['leonardos-guild/**','index.html','.github/workflows/leonardos-guild.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: leonardos-guild-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  chapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source and deterministic mechanics
+        run: |
+          node --check leonardos-guild/app.mjs
+          node --check leonardos-guild/scene.mjs
+          node --check leonardos-guild/guild-art.mjs
+          mkdir -p leonardos-guild/test-output
+          npm --prefix leonardos-guild test | tee leonardos-guild/test-output/model-tests.txt
+      - name: Install Chromium
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play the actual commission with keyboard and UI
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/leonardo-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/browser.py
+      - name: Capture exact source receipt
+        if: always()
+        run: |
+          git rev-parse HEAD > leonardos-guild/test-output/tested-commit.txt
+          git diff --stat > leonardos-guild/test-output/uncommitted-diff.txt
+          tar -czf leonardos-guild/test-output/source.tgz --exclude=test-output leonardos-guild
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('leonardos-guild')
+          files={str(f.relative_to(p)):hashlib.sha256(f.read_bytes()).hexdigest() for f in p.rglob('*') if f.is_file() and 'test-output' not in f.parts and f.suffix in ['.mjs','.js','.css','.html','.json','.webp']}
+          (p/'test-output/source-hashes.json').write_text(json.dumps(files,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: leonardos-guild-first-commission
+          path: leonardos-guild/test-output/
+          retention-days: 7

@@ -1,19 +1,21 @@
-# SVGN City / evolving toward a miniature open-world sandbox
+# Leonardo’s Guild: development path
 
-The first dispatch is a foundation, not a promise of a finished commercial-scale clone. Keep the suburban paper-route identity while expanding agency, density and missions. Do not overwrite other SVGN projects. Every release must preserve this folder's saves and show actual gameplay evidence.
+## Available in the first playable chapter
 
-| Stage | Status | Upgrade | Acceptance gate |
-|---|---|---|---|
-| 01 Neighborhood | Implemented; native verification required | Bicycle, moving traffic, people, assisted physical newspaper throws, three connected districts | Finish deliveries using ordinary controls; render and inspect the real street |
-| 02 Shared world | Implemented; native verification required | Dismount, walk, enter the press hatchback, drive/reverse/brake, rejoin bicycle | Swap modes without entering buildings, losing mission state or writing other games' saves |
-| 03 City Link | Implemented; native verification required | Proximity scanner, relay opens a physical gate, traffic-controller state | No real systems accessed; distant/blocked/unscanned actions cannot complete |
-| 04 Route quality | Next | More distinctive road shapes, traversable hills/alleys, connected shortcuts, authored reward routes, better traffic yielding | Graph of road access; no inaccessible mandatory objective; multiple meaningful routes from the same start |
-| 05 Sandbox systems | Planned | Deeper dispatch contracts, vehicle customization, witnessed actions, bounded patrol pursuit/evasion | Human-playtested feedback; save safety; agents respond to the actual event, not scripted teleportation |
-| 06 World authoring | Planned | District/mission editor, traffic lane graph, scene streaming, interiors and rooftop routes | Export/import round trips; tested mission dependencies; interactive world remains performant |
-| 07 Expressive character | Planned | Improved animation, bicycles/unicycles/motorcycles, vehicle-specific handling, dialogue | Inputs and animation agree; no hidden physics swaps; physical-device tests |
-| 08 Multiplayer/community | Deferred | Optional cooperative dispatch, account-linked saves, shared authored districts | Explicit auth, ownership, privacy, moderation and cost design before enabling a backend |
-| 09 Commercial-scale ambitions | Long term | Richer city stories, combat/stealth where appropriate, advanced fictional intrusion missions | Original IP and content; scoped milestones instead of claiming GTA 6 or Watch Dogs 2 feature parity |
+Third-person bicycling and walking; a pedal carriage; three connected districts; physical letter delivery; one shop using earned florins; an operable waterwheel/gate; a staff encounter with brace/retreat; folio recovery and a workshop return; a map, pause and local saves. All of this is a single-player prototype.
 
-## Design rules
+## Next: deepen the place before enlarging it
 
-Keep freedom from the start: the rider can stop, turn around and choose streets. Receiving a job is not being locked to a corridor. Hacking is a readable fictional interaction with the world, not a real-world exploitation tool. Match geometry to collision; the map must not suggest access that is absent. A nice screenshot is not proof of a finished mission. Retain failure evidence, then make a real correction before shipping. Judge the result by whether it feels good to ride and explore, not by object or feature count.
+Improve the rider animation, staff contact feedback, accessibility/remappable controls, street pathfinding and bicycle handling on slopes. Add several meaningful local commissions with different routes, named artisans and a visitable workshop interior. Inspect and tune actual render captures on desktop and physical phones. Preserve easy riding and useful recovery, rather than making every errand a combat gate.
+
+## Then: interconnected adventures
+
+Add countryside and another settlement, navigation choices, reputation, equipment and crafting, secret paths and cooperative mission designs. Expand the world from playable geography rather than a bigger non-interactive horizon. Include clear alternate-history labels and researched notes where history is discussed.
+
+## Shared world, after the local adventure is solid
+
+An MMO requires an authoritative multiplayer service, validated inventories and economy, secure identities, persistence, moderation, reconnect behavior and abuse protection. Those systems do not exist in this release. Start with a small cooperative session before promising massive concurrency. Paid memberships or coupons require a separate authorized account and entitlement design, not a client-side boolean.
+
+## Branch rule
+
+Keep this game separate from SVGN City and Paper Delivery. Avoid framework rewrites or deleting working content. The new folder has its own saves, release manifest and acceptance tests. Screenshots on the games list should come from the running game, not an aspirational image.
