@@ -4,6 +4,7 @@ import {road,mailbox} from './art.mjs';
 import {home,avenueTree,streetLamp,mesh,anchor,batchStatic,faceSurface,groundShadow} from './neighborhood.mjs';
 import {createCourier,createCar} from './vehicles.mjs';
 import {createSky} from './sky.mjs';
+import {leafyTree} from './foliage.mjs';
 import {CAMERA_PRESETS,chooseGraphics} from './presentation.mjs';
 export function createScene(canvas){
  const touch=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0;
@@ -11,20 +12,20 @@ export function createScene(canvas){
  const renderer=new T.WebGLRenderer({canvas,antialias:false,powerPreference:'default',stencil:false,preserveDrawingBuffer:false});
  const recoveryExtension=renderer.getContext().getExtension('WEBGL_lose_context');
  renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.shadowMap.enabled=quality.shadows;renderer.shadowMap.type=T.PCFShadowMap;
- const scene=new T.Scene(),camera=new T.PerspectiveCamera(62,1,.1,RADIUS*8);scene.background=new T.Color('#87c9df');scene.fog=new T.Fog('#b8d7d7',65,190);
- scene.add(new T.HemisphereLight('#c9e8f1','#8a9670',2));const sun=new T.DirectionalLight('#ffe1b0',2.4);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-27,right:27,top:27,bottom:-27,near:1,far:100});sun.shadow.normalBias=.055;sun.shadow.bias=-.0002;scene.add(sun,sun.target);
- const streetFog=scene.fog,sky=createSky(scene,RADIUS*4);
+ const scene=new T.Scene(),camera=new T.PerspectiveCamera(62,1,.1,RADIUS*8);scene.background=new T.Color('#87c9df');scene.fog=new T.Fog('#bddde3',105,240);
+ scene.add(new T.HemisphereLight('#d8edff','#a2a182',1.65));const sun=new T.DirectionalLight('#ffe4b5',2.75);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-27,right:27,top:27,bottom:-27,near:1,far:100});sun.shadow.normalBias=.055;sun.shadow.bias=-.0002;scene.add(sun,sun.target);
+ const streetFog=scene.fog,sky=createSky(scene,RADIUS);
  const root=new T.Group();scene.add(root);const landGeo=new T.SphereGeometry(RADIUS,96,64),p=landGeo.attributes.position,colors=[],color=new T.Color();
  for(let i=0;i<p.count;i++){const n=norm([p.getX(i),p.getY(i),p.getZ(i)]);p.setXYZ(i,...point(n));color.set('#809c61').multiplyScalar(.96+rand(i)*.09);colors.push(color.r,color.g,color.b);}landGeo.setAttribute('color',new T.Float32BufferAttribute(colors,3));landGeo.computeVertexNormals();const land=new T.Mesh(landGeo,new T.MeshStandardMaterial({vertexColors:true,roughness:1}));land.receiveShadow=true;root.add(land);
  const sea=new T.Mesh(new T.SphereGeometry(RADIUS-.38,64,40),new T.MeshStandardMaterial({color:'#4faeb8',roughness:.6}));root.add(sea);
  const route=offset=>Array.from({length:553},(_,i)=>street(i/552*Math.PI*2*RADIUS,offset));
- const asphalt=road(root,route(0),6.4,'#79847b',.16);const uv=[];for(let i=1;i<=552;i++)for(const j of[(i-1)*2,i*2,(i-1)*2+1,i*2,i*2+1,(i-1)*2+1])uv.push(j%2,Math.floor(j/2)*Math.PI*2*RADIUS/552/4);asphalt.geometry.setAttribute('uv',new T.Float32BufferAttribute(uv,2));const grain=document.createElement('canvas');grain.width=grain.height=128;const gc=grain.getContext('2d'),image=gc.createImageData(128,128);for(let i=0;i<128*128;i++){const v=180+Math.floor(rand(i)*22);image.data.set([v,v,v,255],i*4);}gc.putImageData(image,0,0);const tex=new T.CanvasTexture(grain);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.colorSpace=T.SRGBColorSpace;asphalt.material.map=tex;for(const side of[-1,1]){road(root,route(side*4.22),1.78,'#d4cbb5',.2);road(root,route(side*3.26),.18,'#eee5cf',.23);}
+ const asphalt=road(root,route(0),6.4,'#687373',.16);const uv=[];for(let i=1;i<=552;i++)for(const j of[(i-1)*2,i*2,(i-1)*2+1,i*2,i*2+1,(i-1)*2+1])uv.push(j%2,Math.floor(j/2)*Math.PI*2*RADIUS/552/4);asphalt.geometry.setAttribute('uv',new T.Float32BufferAttribute(uv,2));const grain=document.createElement('canvas');grain.width=grain.height=128;const gc=grain.getContext('2d'),image=gc.createImageData(128,128);for(let i=0;i<128*128;i++){const v=180+Math.floor(rand(i)*22);image.data.set([v,v,v,255],i*4);}gc.putImageData(image,0,0);const tex=new T.CanvasTexture(grain);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.colorSpace=T.SRGBColorSpace;asphalt.material.map=tex;for(const side of[-1,1]){road(root,route(side*4.22),1.78,'#d4cbb5',.2);road(root,route(side*3.26),.18,'#eee5cf',.23);}
  // The optional equatorial footpath yields to the asphalt at its crossings.
  const trail=Array.from({length:361},(_,i)=>at(i/360*Math.PI*2*RADIUS,0));road(root,trail.slice(6,176),2.4,'#c6b98d',.13);road(root,trail.slice(186,356),2.4,'#c6b98d',.13);
  const stat=new T.Group();root.add(stat);
  for(let t=0;t<Math.PI*2*RADIUS;t+=4){const g=new T.Group();stat.add(g);faceSurface(g,street(t),add(street(t+1),mul(street(t),-1)));mesh(g,'box','#eadca6',[0,.22,0],[.085,.018,1.65]);}
  for(const [i,s] of WORLD.buildings.entries()){if(s.type!=='garden')home(stat,s,i);groundShadow(stat,s.n,3.2,3);const ps=Array.from({length:17},(_,i)=>street(s.t,s.side*(4.7+i*.11)));road(root,ps,1.35,'#c7c1ad',.24);}
- for(const t of WORLD.trees){avenueTree(stat,t);groundShadow(stat,t.n,1.7*t.size,1.4*t.size);}
+ for(const t of WORLD.trees){if(t.id.startsWith('avenue-'))leafyTree(stat,t);else avenueTree(stat,t);groundShadow(stat,t.n,1.7*t.size,1.4*t.size);}
  for(let i=0;i<8;i++)streetLamp(stat,9+i*15,i%2?1:-1);
  for(const r of WORLD.rocks){const g=anchor(stat,r.n);mesh(g,'ball','#839182',[0,r.size*.35,0],[r.size*.43,r.size*.9,r.size*.42]);mesh(g,'cone','#c9ccb6',[0,r.size*1.05,0],[r.size*.29,r.size*.65,r.size*.28]);}
  const garden=anchor(stat,WORLD.sites.at(-1).n);for(let i=0;i<4;i++)for(let j=0;j<7;j++){mesh(garden,'box','#7c694c',[(j-3)*.45,.1,(i-1.5)*.65],[.43,.15,.5]);mesh(garden,'ball',i%2?'#dca14e':'#68a064',[(j-3)*.45,.3,(i-1.5)*.65],[.19,.25,.2]);}
@@ -55,8 +56,9 @@ export function createScene(canvas){
   if(mode==='overview'){desired.copy(n).multiplyScalar(RADIUS*(camera.aspect<1?4.2:3.05)).addScaledVector(forward,-RADIUS*.9);aim.set(0,0,0);scene.fog=null;}else{scene.fog=streetFog;desired.copy(aim).addScaledVector(up,preset.height).addScaledVector(forward,-preset.distance);const ray=new T.Ray(aim.clone(),desired.clone().sub(aim).normalize()),hit=new T.Vector3();let clearance=desired.distanceTo(aim);for(const h of WORLD.buildings){if(h.type==='garden')continue;const sphere=new T.Sphere(new T.Vector3(...point(h.n,1.5)),2.7);if(ray.intersectSphere(sphere,hit)){const d=aim.distanceTo(hit)-.4;if(d>2&&d<clearance)clearance=d;}}desired.copy(aim).addScaledVector(ray.direction,clearance);}
   if(!ready||snap){camera.position.copy(desired);ready=true;}else camera.position.lerp(desired,1-Math.exp(-dt*9));camera.up.copy(up);camera.lookAt(aim);camera.updateMatrixWorld();
   sun.position.set(...point(s.n,35)).addScaledVector(right,-22).addScaledVector(forward,-18);sun.target.position.set(...point(s.n));
+  clouds.visible=mode==='overview';
   sky.update(camera,up,mode!=='overview');
   renderer.render(scene,camera);const bottom=new T.Vector3(...point(s.n,.1+s.lift)).project(camera),top=new T.Vector3(...point(s.n,2.12+s.lift+(s.ride?.26:0))).project(camera);screenHeight=Math.abs(top.y-bottom.y)/2;
  }
- resize();return {update,resize,setCamera,setQuality,restoreGraphics:()=>recoveryExtension?.restoreContext(),orbitBy,movementBasis,renderer,scene,camera,get fps(){return quality.fps;},inspect:()=>({triangles:renderer.info.render.triangles,calls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,low:quality.low,shadows:renderer.shadowMap.enabled,pixelRatio:renderer.getPixelRatio(),cameraMode:mode,playerScreenHeight:screenHeight,webgl:!renderer.getContext().isContextLost(),radius:RADIUS})};
+ resize();return {update,resize,setCamera,setQuality,restoreGraphics:()=>recoveryExtension?.restoreContext(),orbitBy,movementBasis,renderer,scene,camera,get fps(){return quality.fps;},inspect:()=>({triangles:renderer.info.render.triangles,calls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,low:quality.low,shadows:renderer.shadowMap.enabled,pixelRatio:renderer.getPixelRatio(),cameraMode:mode,playerScreenHeight:screenHeight,webgl:!renderer.getContext().isContextLost(),radius:RADIUS,sky:sky.inspect(),leafyAvenue:true})};
 }

@@ -40,8 +40,17 @@ with sync_playwright() as p:
   check('Paper Delivery' in page.title(),'The application uses the requested SVGN Paper Delivery identity')
   check(snap(page)['render']['cameraMode']=='street','The first playable view follows the character, not the planet center')
   check(snap(page)['render']['playerScreenHeight']>.14,'The rider occupies a readable portion of the viewport')
+  check(snap(page)['render']['sky']['rendered']>0 and snap(page)['render']['sky']['visible'],'The daylight background has actually been submitted to the renderer')
+  # A focus blip must release held input, not end the game or open a quit modal.
+  page.evaluate('window.dispatchEvent(new Event("blur"))');old=snap(page)['steps'];page.wait_for_timeout(2200)
+  check(snap(page)['steps']>old and not snap(page)['paused'] and not snap(page)['failed'],'The first two seconds and a transient focus loss do not quit the session')
   page.screenshot(path=str(OUT/(MODE+'-street-start.png')))
+  # A simple rendering regression: do not call an unrendered grey field a blue sky.
+  from PIL import Image
+  im=Image.open(OUT/(MODE+'-street-start.png')).convert('RGB');pixels=list(im.crop((0,int(im.height*.15),im.width,int(im.height*.48))).getdata());blue=sum(b>r*1.2 and g>r*1.08 for r,g,b in pixels)
+  check(blue>len(pixels)*.018,'The street capture has visible daylight-blue sky, not just an advertised shader')
   if not mobile:
+   page.keyboard.press('KeyP');page.locator('#vehicle-pause').select_option('bicycle');page.locator('#resume').click();page.wait_for_timeout(250);page.screenshot(path=str(OUT/'desktop-bicycle-start.png'))
    page.keyboard.press('KeyP');page.locator('#quality').select_option('low');page.locator('#resume').click()
    page.keyboard.down('KeyW');page.wait_for_function('SVGNPlanet.inspect().distance>1',timeout=30000);page.keyboard.up('KeyW');check(snap(page)['distance']>1,'The first movement press after Resume is not erased by a late dialog event')
    walk(page,street(8));page.keyboard.press('KeyQ');page.wait_for_function('SVGNPlanet.inspect().deliveries.length===1');check(True,'A paper flies to the first mailbox and completes a real delivery')
@@ -64,6 +73,7 @@ with sync_playwright() as p:
    before=snap(page);page.evaluate("document.getElementById('world').getContext('webgl2').getExtension('WEBGL_lose_context').loseContext()");page.wait_for_function('SVGNPlanet.inspect().graphicsLost');check(page.locator('#failure').is_visible(),'A graphics interruption has a recoverable in-game message')
    page.locator('#retry').tap();page.wait_for_function('!SVGNPlanet.inspect().graphicsLost&&SVGNPlanet.inspect().render.webgl');page.wait_for_function('SVGNPlanet.inspect().steps>'+str(before['steps']+5));check(snap(page)['started'] and not snap(page)['failed'],'Graphics recovery keeps the running game rather than navigating away')
    check(snap(page)['deliveries']==before['deliveries'],'Graphics recovery preserves delivery progress')
+   check(snap(page)['render']['sky']['rendered']>0 and snap(page)['render']['sky']['visible'],'The new sky and street renderer also recover after context interruption')
    page.set_viewport_size({'width':844,'height':390});page.wait_for_timeout(400);check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'Landscape touch layout stays within the screen');page.screenshot(path=str(OUT/'mobile-landscape.png'))
    page.wait_for_timeout(max(0,60-(time.monotonic()-begin))*1000);check(snap(page)['started'] and snap(page)['steps']>600 and not snap(page)['failed'],'A sixty-second mobile-browser session stays running')
   check(not errors,'No uncaught JavaScript exceptions in this scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'checks':checks,'snapshot':snap(page),'errors':errors,'scope':'Chromium software WebGL; touch is emulated, not physical iPhone Safari certification.'},indent=2))

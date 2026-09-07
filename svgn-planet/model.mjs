@@ -1,6 +1,6 @@
 import {RADIUS,WORLD,street,at,add,mul,norm,cross,dot,clamp,tangent,rotate,distance,height} from './world.mjs';
 export * from './world.mjs';
-export const VERSION='0.2.0',SAVE_KEY='svgn.paper-delivery-3d.v1',LEGACY_SAVE_KEY='svgn.little-planet.v1';
+export const VERSION='0.2.1',SAVE_KEY='svgn.paper-delivery-3d.v1',LEGACY_SAVE_KEY='svgn.little-planet.v1';
 export function readSave(raw){try{if(!raw||raw.length>12000)return null;const s=JSON.parse(raw);if(s?.v!==1)return null;const known=(a,list)=>Array.isArray(a)?[...new Set(a.filter(id=>list.some(h=>h.id===id)))]:[];const delivered=known(s.delivered,WORLD.homes);return {delivered,stamps:known(s.stamps,WORLD.stars),complete:s.complete===true&&delivered.length===WORLD.homes.length,ride:s.ride===true};}catch{return null;}}
 export function initial(saved=null){return {n:street(0,-1.5),north:[0,0,-1],facing:[0,0,-1],speed:0,lift:0,vy:0,energy:1,ride:saved?.ride??false,delivered:new Set(saved?.delivered||[]),stamps:new Set(saved?.stamps||[]),complete:!!saved?.complete,time:0,steps:0,distance:0,toast:'',toastT:0,lastSite:null,events:[],paper:null,paperCooldown:0};}
 export const saveData=s=>({v:1,delivered:[...s.delivered],stamps:[...s.stamps],complete:s.complete,ride:s.ride});
