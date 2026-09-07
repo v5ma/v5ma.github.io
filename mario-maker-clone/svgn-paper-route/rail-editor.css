@@ -11,3 +11,6 @@ body.delivery-upgraded #stagewrap{min-width:0;width:100%}
 @media(max-width:700px){body.delivery-upgraded #delivery-header .actions{flex-basis:100%;justify-content:flex-start;flex-wrap:wrap;max-height:112px;overflow-y:auto}body.delivery-upgraded #delivery-header{padding:6px 9px}body.delivery-upgraded #delivery-header .actions>button{min-height:32px}body.delivery-upgraded #rail-build{display:inline;font-size:8px}}
 /* A centered overflowing grid hides its first cards above the scroll origin. */
 body.delivery-upgraded #delivery-menu .delivery-courses{align-content:start;min-height:0;overscroll-behavior:contain}
+
+/* Return to the collection stays visible and touch-sized on narrow screens. */
+@media(max-width:700px){body.delivery-upgraded #delivery-header>a:first-child{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:6px 9px;border:1px solid #668ea3;border-radius:6px;flex:0 0 auto;font-size:10px;line-height:1.3;white-space:nowrap}}

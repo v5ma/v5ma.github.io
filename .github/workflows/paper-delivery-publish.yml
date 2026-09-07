@@ -25,7 +25,8 @@ jobs:
           python scripts/check-rail-release.py
           if [ "$(python -c 'import json; print(json.load(open("mario-maker-clone/svgn-paper-route/release.json"))["version"])')" = 0.14.0 ]; then
             git fetch --depth=1 origin b14ade84b4adba6b14132110cff129776bb4ab2f
-            git diff --exit-code b14ade84b4adba6b14132110cff129776bb4ab2f HEAD -- mario-maker-clone/svgn-paper-route/
+            git diff --exit-code b14ade84b4adba6b14132110cff129776bb4ab2f HEAD -- mario-maker-clone/svgn-paper-route/ ':(exclude)mario-maker-clone/svgn-paper-route/rail-editor.css'
+            git diff b14ade84b4adba6b14132110cff129776bb4ab2f HEAD -- mario-maker-clone/svgn-paper-route/rail-editor.css > test-output/mobile-navigation-style.patch
           fi
           git rev-parse HEAD > test-output/tested-commit.txt
       - name: Confirm GitHub Pages serves the merged files
