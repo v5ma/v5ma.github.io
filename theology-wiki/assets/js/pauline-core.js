@@ -17,5 +17,12 @@
  }
  function fromParams(params){const s={...defaults};let supplied=false;for(const k of keys){if(params.has('pc_'+k)){s[k]=params.get('pc_'+k);supplied=true;}}try{calculate(s);return {state:s,invalid:false,supplied};}catch{return {state:{...defaults},invalid:true,supplied};}}
  function toParams(url,state){calculate(state);const u=new URL(url);for(const k of keys)u.searchParams.set('pc_'+k,state[k]);return u;}
- return {defaults,keys,date,label,calculate,fromParams,toParams};
+ // Each event has its own lane, including events sharing a calendar-year number.
+ function timeline(state){
+  const result=calculate(state),start=date(state.founder,state.founderEra),transition=date(state.transition,state.transitionEra);
+  const first=transition+result.three,last=(state.origin==='visit'?first:transition)+result.fourteen,span=last-start;
+  const events=[['founder','Proposed founder death',start],['transition','Revelatory transition',transition],['first','First Jerusalem visit',first],['later','Later Jerusalem visit',last]].map(([id,title,year])=>({id,title,year,date:label(year),position:(year-start)/span}));
+  return {start:label(start),end:label(last),span,events};
+ }
+ return {defaults,keys,date,label,calculate,fromParams,toParams,timeline};
 });
