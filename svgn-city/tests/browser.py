@@ -49,8 +49,15 @@ with sync_playwright() as p:
   check(read(page)['version']=='0.1.0','The isolated SVGN City application loads')
   check(read(page)['render']['triangles']>50000,'Native WebGL draws the actual city geometry')
   page.screenshot(path=str(OUT/'01-sunrise-title.png'))
-  page.locator('#start').click();page.locator('#world').focus();hold(page,['KeyW','KeyQ','KeyC'])
-  page.wait_for_function('SVGNCity.inspect().mission===1',timeout=180000);stop(page)
+  page.locator('#start').click();page.locator('#world').focus()
+  # An intentional paper round, not an automatic win or a twenty-paper spray.
+  # The actual keyboard-driven rider stops at two addresses and throws to both
+  # sides; swept projectile contacts, not these actions, credit the deliveries.
+  for z,completed in [(16,0),(53,2)]:
+   drive(page,2,z,2.3)
+   page.keyboard.press('KeyQ');page.wait_for_function('(n)=>SVGNCity.inspect().deliveries.length===n',arg=completed+1,timeout=30000)
+   page.keyboard.press('KeyC');page.wait_for_function('(n)=>SVGNCity.inspect().deliveries.length===n',arg=completed+2,timeout=30000)
+  page.wait_for_function('SVGNCity.inspect().mission===1');stop(page)
   s=read(page);check(len(s['deliveries'])>=4,'Real paper projectiles complete the morning delivery chapter')
   check(sum(e['type']=='delivery' for e in s['events'])>=4 and s['score']>=400,'Delivery score comes from collected projectiles, not button presses')
   check(s['papers']<20,'Thrown newspapers consume the finite inventory')

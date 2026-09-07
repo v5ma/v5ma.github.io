@@ -2,22 +2,49 @@ name: SVGN City verification
 on:
   push:
     branches: [feat/svgn-city-first-dispatch]
+    paths: ['svgn-city/**','.github/workflows/svgn-city.yml']
+  pull_request:
+    paths: ['svgn-city/**','.github/workflows/svgn-city.yml']
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: svgn-city-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  source:
+  city:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: Snapshot pinned shared renderer and site navigation
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate isolated simulation and modules
+        run: |
+          node --test svgn-city/tests/model.test.mjs
+          for f in svgn-city/*.mjs; do node --check "$f"; done
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play the full dispatch with ordinary controls
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/city-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u svgn-city/tests/browser.py
+      - name: Preserve exact source and results
+        if: always()
         run: |
           mkdir -p city-evidence
+          cp -r svgn-city/test-output city-evidence/ 2>/dev/null || true
           git rev-parse HEAD > city-evidence/source-sha.txt
-          find . -maxdepth 3 -iname AGENTS.md -not -path './.git/*' -print -exec cat {} \; > city-evidence/agent-instructions.txt
-          tar -czf city-evidence/bootstrap.tgz aether-reach/vendor index.html
+          git diff --stat > city-evidence/uncommitted-diff.txt
+          tar --exclude='test-output' --exclude='__pycache__' -czf city-evidence/source.tgz svgn-city
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: svgn-city-source
+          name: svgn-city-verification
           path: city-evidence/
-          retention-days: 7
+          retention-days: 14

@@ -1,4 +1,4 @@
-import {makeWorld,newState,readSave,saveData,SAVE_KEY,VERSION,step,enterExit,scan,recover,activeTarget,missionText,nearestNode,district,distance} from './model.mjs';
+import {makeWorld,newState,readSave,saveData,SAVE_KEY,VERSION,step,throwPaper,enterExit,scan,recover,activeTarget,missionText,nearestNode,district,distance} from './model.mjs';
 import {createScene} from './scene.mjs';
 const $=id=>document.getElementById(id),world=makeWorld();let storage=true,saved=null;
 try{saved=readSave(localStorage.getItem(SAVE_KEY),world);}catch{storage=false;}
@@ -22,9 +22,10 @@ const handled=new Set(['KeyW','KeyS','KeyA','KeyD','ArrowUp','ArrowDown','ArrowL
 window.addEventListener('keydown',e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||!playing)return;
  if((e.code==='KeyP'||e.code==='Escape')&&!e.repeat){if($('map-dialog').open)$('map-dialog').close();else if($('pause-dialog').open)$('pause-dialog').close();else pause();e.preventDefault();return;}
  if(paused)return;if(handled.has(e.code))e.preventDefault();keys.add(e.code);if(e.repeat)return;
+ if(e.code==='KeyQ')throwPaper(state,world,1);if(e.code==='KeyC')throwPaper(state,world,-1);
  if(e.code==='KeyM')map();if(e.code==='KeyF'||e.code==='KeyE')enterExit(state,world);if(e.code==='KeyX')scan(state);if(e.code==='Space')jump=true;
 });window.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{if(playing&&!paused)pause();else clearInput();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)pause();});
-for(const b of document.querySelectorAll('[data-hold]')){const code=b.dataset.hold;b.onpointerdown=e=>{if(!playing||paused)return;e.preventDefault();touch.add(code);b.classList.add('held');b.setPointerCapture(e.pointerId);};for(const type of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(type,()=>{touch.delete(code);b.classList.remove('held');});}
+for(const b of document.querySelectorAll('[data-hold]')){const code=b.dataset.hold;b.onpointerdown=e=>{if(!playing||paused)return;e.preventDefault();touch.add(code);if(code==='q')throwPaper(state,world,1);if(code==='c')throwPaper(state,world,-1);b.classList.add('held');b.setPointerCapture(e.pointerId);};for(const type of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(type,()=>{touch.delete(code);b.classList.remove('held');});}
 for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>{if(paused||!playing)return;switch(b.dataset.action){case'vehicle':enterExit(state,world);break;case'scan':scan(state);break;case'jump':jump=true;}};
 if(matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0)document.body.classList.add('touch');
 $('world').addEventListener('pointerdown',e=>{if(!playing||paused)return;drag={id:e.pointerId,x:e.clientX};$('world').setPointerCapture(e.pointerId);});$('world').addEventListener('pointermove',e=>{if(drag?.id===e.pointerId){look-=(e.clientX-drag.x)*.003;drag.x=e.clientX;}});for(const e of['pointerup','pointercancel','lostpointercapture'])$('world').addEventListener(e,()=>drag=null);
