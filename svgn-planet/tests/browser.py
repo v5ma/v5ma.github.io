@@ -43,7 +43,11 @@ with sync_playwright() as p:
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('dialog',lambda d:d.accept())
  try:
-  page.goto(BASE+'/svgn-planet/index.html',wait_until='domcontentloaded');page.wait_for_function('window.SVGNPlanet&&SVGNPlanet.inspect().render.triangles>1000')
+  page.goto(BASE+'/',wait_until='domcontentloaded')
+  expected=['./svgn-planet/index.html','./rainward/index.html','./aether-reach/index.html','./mario-maker-clone/svgn-paper-route/index.html','./theology-wiki/san-reader.html','./dino-atlas/index.html']
+  check(all(page.locator('a.primary-link[href="'+url+'"]').count()==1 for url in expected),'The homepage links the new planet beside all five existing projects')
+  page.locator('a.primary-link[href="./svgn-planet/index.html"]').click()
+  page.wait_for_function('window.SVGNPlanet&&SVGNPlanet.inspect().render.triangles>1000')
   check(state(page)['render']['webgl'],'The actual 3D renderer draws a spherical world')
   page.screenshot(path=str(OUT/'01-little-planet.png'))
   page.locator('#start').click();page.locator('#world').focus()
