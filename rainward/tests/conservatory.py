@@ -25,19 +25,23 @@ def go(page,x,z,sprint=True):
  },16);});}''',{'x':x,'z':z,'sprint':sprint})
  (OUT/'progress.json').write_text(json.dumps(snap(page),indent=2))
 def wait(page,q):page.wait_for_function(q,timeout=90000)
+def quality(page,low):
+ page.keyboard.press('KeyP');wait(page,'Rainward.mode==="pause"');page.locator('#low').set_checked(low);page.locator('#resume').click();wait(page,'Rainward.mode==="play"');n=page.evaluate('Rainward.renderer.info.render.frame');page.wait_for_function('(n)=>Rainward.renderer.info.render.frame>=n+2',arg=n)
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1366,'height':860},service_workers='block',record_video_dir=str(OUT/'video'))
- c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:"+('false' if MODE=='visual' else 'true')+",sensitivity:85}))")
+ c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:"+'true'+",sensitivity:85}))")
  host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=c.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None);page.on('dialog',lambda d:d.accept())
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()==2,'Both the original district and new chapter are selectable')
   page.locator('#chapter-select').select_option('conservatory');page.locator('#start').click();wait(page,'Rainward.state.level==="conservatory"&&Rainward.mode==="play"');check(snap(page)['player']['y']==8,'The second expedition starts on a real elevated terrace')
+  if MODE=='visual':quality(page,False)
   page.screenshot(path=str(OUT/'arrival-overlook.png'));check(page.evaluate('Rainward.renderer.info.render.triangles>10000'),'The new location renders real 3D geometry, not a backdrop screenshot')
   if MODE=='visual':
-   go(page,0,34,False);check(snap(page)['player']['y']<8,'Descending the terraced approach updates physical elevation');page.screenshot(path=str(OUT/'glass-dome-vista.png'))
+   quality(page,True)
+   go(page,0,34,False);check(snap(page)['player']['y']<8,'Descending the terraced approach updates physical elevation');quality(page,False);page.screenshot(path=str(OUT/'glass-dome-vista.png'));quality(page,True)
    go(page,-7,19);page.keyboard.press('KeyE');wait(page,'Rainward.state.checkpoint==="garden"');check(True,'The new garden checkpoint can be used normally')
    go(page,-29,7);page.keyboard.press('KeyE');wait(page,'Rainward.state.puzzle.clueRead');page.keyboard.press('KeyM');page.locator('#puzzle-journal').wait_for(state='visible');check('SUN' in page.locator('#puzzle-journal').inner_text(),'Reading the physical inscription records a puzzle clue in the field map');page.screenshot(path=str(OUT/'puzzle-journal.png'));page.locator('#map-close').click()
    page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(OUT/'mobile-archive.png'));check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'Chapter and clue UI fit a phone-width viewport')
@@ -59,7 +63,7 @@ with sync_playwright() as p:
    check(snap(page)['objectives']=={'cell':True,'crank':True} and snap(page)['puzzle']['solved'],'The complete live chapter finishes only after both objectives and the gate puzzle');page.screenshot(path=str(OUT/'north-sanctuary-complete.png'));(OUT/'completed.json').write_text(json.dumps(snap(page),indent=2))
    page.reload(wait_until='domcontentloaded');wait(page,'window.Rainward');page.locator('#continue').click();wait(page,'Rainward.mode==="play"');q=snap(page);check(q['level']=='conservatory' and q['puzzle']['solved'] and q['objectives']['cell'] and not q['objectives']['crank'],'Reload restores the earlier second-chapter checkpoint and solved physical gate')
   check(not errors,'No uncaught game exceptions in the new expedition')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'scope':'Actual HTTP/WebGL with ordinary keyboard/menu actions, read-only route guidance; no gameplay-state assignments. Visual suite uses full shadows, expedition reduced graphics. No physical-device or performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'scope':'Actual HTTP/WebGL with ordinary keyboard/menu actions, read-only route guidance; no gameplay-state assignments. Travel uses the public Reduced Graphics preset; visual suite explicitly switches to full PBR/shadows for actual arrival/vista captures. No physical-device or performance certification.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None

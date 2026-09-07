@@ -1,3 +1,4 @@
+import {buildTerrain} from './terrain-art.mjs';
 /* Hand-built scene composition, procedural materials, original architecture.
  * All effects run in the renderer; no screenshot/backplate is used as a level. */
 import * as T from './vendor/three.module.js';
@@ -12,8 +13,7 @@ export function buildConservatory(scene,A){
  const {add,mesh,label,ivy,mat,geos,buckets}=A;const dynamic={gates:[],wheels:[],water:[],lights:[]};
  const stone=0x8e8e72,light=0xb9af8a,dark=0x4a5b51,bronze=0x80795a;
  // Continuous terraced floor matches heightAt used by movement and perception.
- for(let z=-80;z<56;z+=1){const y=heightAt(0,z+.5);add('box',0,y-.35,z+.5,104,.7,1.01,z>26?0x888577:0x66705a,'stone');}
- for(let z=-76;z<52;z+=2){const y=heightAt(0,z);for(const x of [-8,8])add('box',x,y+.06,z,1.1,.12,1.94,light,'stone');add('box',0,y+.012,z,13,.025,1.98,0x93947b,'stone');}
+ buildTerrain(scene,A);
  // Physical obstacles are always represented, and moving gates remain separate.
  for(const o of OBSTACLES){if(o.kind==='rock'||o.renderSeparately)continue;
   if(o.openWhen){const gate=new T.Group();gate.position.set(o.x,o.bottom,o.z);for(let x=-5.5;x<=5.5;x+=.55){const b=mesh('box',[.18,7,.24],bronze,'metal');b.position.set(x,3.5,0);gate.add(b);}for(const y of[1,3.5,6]){const b=mesh('box',[12,.19,.3],bronze,'metal');b.position.y=y;gate.add(b);}scene.add(gate);dynamic.gates.push(gate);continue;}
@@ -59,7 +59,7 @@ export function buildConservatory(scene,A){
  for(let j=0;j<9;j++){const a=j*2.4,r=1+rnd(i+j)*3;add('cyl',x+Math.sin(a)*r/2,base+h*.78,z+Math.cos(a)*r/2,.06,r*1.8,.06,0x555441,'wood',Math.cos(a),0,Math.sin(a));add('plane',x+Math.sin(a)*r,base+h+Math.sin(j)*1.2,z+Math.cos(a)*r,3.5,2.7,1,0x81985a,'leafcard',rnd(j)*.5,rnd(j+2)*6,rnd(j+3));}}
  const lm=mat(0x81985a,'leafcard');lm.map=tex;lm.alphaTest=.45;lm.side=T.DoubleSide;lm.roughness=1;
  // Landmark and puzzle texts remain readable in the game world.
- label('THE DROWNED\nCONSERVATORY',0,12,40,12,2.4,'#3a4e43','#ddcf9d');label('ARCHIVE / WEST',-34,5,9.8,12,1.5);label('GLASSHOUSE / EAST',35,5,10.8,13,1.5);
+ label('THE DROWNED\nCONSERVATORY',-8,9.2,47,3.5,.8,'#3a4e43','#ddcf9d');label('ARCHIVE / WEST',-34,5,9.8,12,1.5);label('GLASSHOUSE / EAST',35,5,10.8,13,1.5);
  label('SUN · LEAF · WAVE\nGARDEN → NORTH',-28,2.4,7.1,5.8,1.6,'#39463c','#e3d3aa');
  for(const [i,w]of CURRENT.puzzle.wheels.entries()){
   add('box',w.x,1,w.z,1.7,2,1.6,dark);const wheel=new T.Mesh(new T.TorusGeometry(.64,.10,8,24),mat(0xc5a76a,'metal'));wheel.position.set(w.x,1.85,w.z+.86);scene.add(wheel);dynamic.wheels.push(wheel);
