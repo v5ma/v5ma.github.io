@@ -8,6 +8,7 @@
       "title": "Sacred inheritance and rival continuations",
       "summary": "How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.",
       "category": "traditions",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "shared-archive",
@@ -33,6 +34,7 @@
       "title": "Samaritan texts and sacred authority",
       "summary": "The comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.",
       "category": "traditions",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "shared-archive",
@@ -53,6 +55,7 @@
       "title": "Flood inheritance and deep time",
       "summary": "A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "shared-archive",
@@ -73,6 +76,7 @@
       "title": "El in Ancient Egypt",
       "summary": "A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "names",
@@ -93,6 +97,7 @@
       "title": "The Kenite hypothesis and Yahweh's southern origins",
       "summary": "How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "names",
@@ -113,6 +118,7 @@
       "title": "Moses, the volcano and Exodus chronology",
       "summary": "A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "catastrophe-memory",
@@ -133,6 +139,7 @@
       "title": "From Exodus to Temple: competing chronologies",
       "summary": "Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "catastrophe-memory",
@@ -153,6 +160,7 @@
       "title": "Jesus as the Teacher of Righteousness",
       "summary": "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.",
       "category": "jesus",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "teacher-identity",
@@ -173,6 +181,7 @@
       "title": "Daniel, jubilee and the Teacher's time",
       "summary": "The counted history, competing Teacher chronologies and authority to proclaim release are examined without merging an appearance, a death and a restoration.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "teacher-identity",
@@ -193,6 +202,7 @@
       "title": "James and contested succession",
       "summary": "A Jamesian succession model joins transmitted knowledge, kinship, priestly imagery and contested authority while preserving the stronger earlier-founder reconstruction.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "teacher-identity",
@@ -218,6 +228,7 @@
       "title": "The Teacher, Thomas and Gnostic transmission",
       "summary": "A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "thomas",
@@ -238,6 +249,7 @@
       "title": "Melchizedek: priesthood, release and transmission",
       "summary": "A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "thomas",
@@ -258,6 +270,7 @@
       "title": "Manuscripts, movements and survival",
       "summary": "A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "thomas",
@@ -278,6 +291,7 @@
       "title": "Onias, Egypt and priestly continuity",
       "summary": "A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "thomas",
@@ -303,6 +317,7 @@
       "title": "Thomas, sayings and transformed understanding",
       "summary": "Compare communal succession, interpretive transformation, Greek witnesses and material carriers without collapsing the work, its copies and its proposed inheritance.",
       "category": "gnosis",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "thomas",
@@ -333,6 +348,7 @@
       "title": "Gnosticism and the Temple-trauma hypothesis",
       "summary": "A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "trauma",
@@ -353,6 +369,7 @@
       "title": "Apocalyptic Repair Theology",
       "summary": "How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.",
       "category": "apocalypse",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "trauma",
@@ -383,6 +400,7 @@
       "title": "God and our models of God",
       "summary": "An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.",
       "category": "machines",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "images",
@@ -408,6 +426,7 @@
       "title": "Computational Divine Immanence",
       "summary": "A computational-God interpretation connecting a necessary ground, reasons-responsive agency, constructive selfhood and repair without treating the different arguments as one experiment.",
       "category": "machines",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "images",
@@ -433,6 +452,7 @@
       "title": "Cognitive Gnosticism",
       "summary": "An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.",
       "category": "gnosis",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "gnosis",
@@ -453,6 +473,7 @@
       "title": "Christic Self-Formation Theory: Christ as an inner model",
       "summary": "How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.",
       "category": "jesus",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "inner-model",
@@ -473,6 +494,7 @@
       "title": "Divine will and self-authorizing power",
       "summary": "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.",
       "category": "jesus",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "inner-model",
@@ -498,6 +520,7 @@
       "title": "Inner formation: texts, communities and material witnesses",
       "summary": "Connect inward covenant, community discipline, Sabbath liturgy, Pauline formation, P46 and Dura without collapsing a text, its witness and its interpretation.",
       "category": "origins",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "inner-model",
@@ -518,6 +541,7 @@
       "title": "Faith as deliberate joy",
       "summary": "Faith is described as an activity of returning to an inner orientation, not only as assent to a proposition.",
       "category": "practice",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "faith",
@@ -538,6 +562,7 @@
       "title": "Scripture, power and the work of repair",
       "summary": "The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.",
       "category": "jesus",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "scriptural-axis",
@@ -563,6 +588,7 @@
       "title": "Antichrist as a pattern of conduct",
       "summary": "A theological judgment about domination, deception and violence that can appear through many people and institutions.",
       "category": "apocalypse",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "will",
@@ -583,6 +609,7 @@
       "title": "Trump and the First Beast of Revelation",
       "summary": "A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.",
       "category": "apocalypse",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "beast",
@@ -603,6 +630,7 @@
       "title": "Ukraine, Russia and the forecast record",
       "summary": "A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.",
       "category": "apocalypse",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "warnings",
@@ -623,6 +651,7 @@
       "title": "Religion for conscious robots",
       "summary": "A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.",
       "category": "machines",
+      "kind": "Developed article",
       "chapters": [
         {
           "id": "next-inheritors",
@@ -637,6 +666,212 @@
       "transcript": "products/transcripts/religion-for-conscious-robots.txt",
       "segments": 36,
       "words": 1026
+    },
+    {
+      "slug": "apocalypse-and-repair",
+      "title": "Apocalypse and repair",
+      "summary": "Join particular Beast identifications, recurring patterns of domination, warnings and the constructive work of restoration.",
+      "category": "apocalypse",
+      "kind": "Bridge study",
+      "chapters": [
+        {
+          "id": "faith",
+          "title": "Faith as a practiced orientation",
+          "part": "The inheritance inside a mind",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "scriptural-axis",
+          "title": "The moral dispute within scripture",
+          "part": "When sacred authority becomes power",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "will",
+          "title": "Whose will supplies the standard?",
+          "part": "When sacred authority becomes power",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "beast",
+          "title": "The First Beast investigation",
+          "part": "When sacred authority becomes power",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "warnings",
+          "title": "Warnings and their consequences",
+          "part": "When sacred authority becomes power",
+          "role": "Supplementary bridge"
+        }
+      ],
+      "source": "content/bridges/apocalypse-and-repair.md",
+      "sourceSha256": "6b97384414423e8d1adef87e193e263fc0e79c53b81eaebbad2f7bffe11ec7e6",
+      "narration": "data/listening/apocalypse-and-repair.json",
+      "narrationSha256": "1d5a496d7806439318bec4c4084e66d7fc821bf1e64c1442e0548de8327a535b",
+      "transcript": "products/transcripts/apocalypse-and-repair.txt",
+      "segments": 35,
+      "words": 1005
+    },
+    {
+      "slug": "contested-memories-of-catastrophe",
+      "title": "Contested memories of catastrophe",
+      "summary": "How disasters become inherited explanations, and why an event, its memory and a warning require different evidence.",
+      "category": "origins",
+      "kind": "Bridge study",
+      "chapters": [
+        {
+          "id": "shared-archive",
+          "title": "Who inherits the sacred?",
+          "part": "The contested inheritance",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "names",
+          "title": "Names across boundaries",
+          "part": "The contested inheritance",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "catastrophe-memory",
+          "title": "Catastrophe, departure and memory",
+          "part": "The contested inheritance",
+          "role": "Supplementary bridge"
+        }
+      ],
+      "source": "content/bridges/contested-memories-of-catastrophe.md",
+      "sourceSha256": "6cd1caadb5eb95db2233efda98eba3b83fd4e52c7a86e7b0c1e512cabe1ffffb",
+      "narration": "data/listening/contested-memories-of-catastrophe.json",
+      "narrationSha256": "912a1afcf3c25ea57f8c4a30be38c1a86f3890c4cc7ba8de6ecbecc259217a95",
+      "transcript": "products/transcripts/contested-memories-of-catastrophe.txt",
+      "segments": 29,
+      "words": 937
+    },
+    {
+      "slug": "inward-formation-and-accountable-intelligence",
+      "title": "Inward formation and accountable intelligence",
+      "summary": "Connect the constructive self, two levels of correction, bounded choice and obligations to possible future conscious participants.",
+      "category": "machines",
+      "kind": "Bridge study",
+      "chapters": [
+        {
+          "id": "images",
+          "title": "God and our images of God",
+          "part": "The inheritance inside a mind",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "gnosis",
+          "title": "Cognitive Gnosticism",
+          "part": "The inheritance inside a mind",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "inner-model",
+          "title": "Christic self-formation and bounded agency",
+          "part": "The inheritance inside a mind",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "repair-practice",
+          "title": "Repair without reproducing domination",
+          "part": "Repair and the next inheritors",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "next-inheritors",
+          "title": "What should conscious machines inherit?",
+          "part": "Repair and the next inheritors",
+          "role": "Supplementary bridge"
+        }
+      ],
+      "source": "content/bridges/inward-formation-and-accountable-intelligence.md",
+      "sourceSha256": "76955d9b863c3d8b9d4125463823b092825b6150a35db76e0066948272cc9a93",
+      "narration": "data/listening/inward-formation-and-accountable-intelligence.json",
+      "narrationSha256": "95e67ec803f981b07f557851e765d1cb27600e4726425e9d41533b871283a784",
+      "transcript": "products/transcripts/inward-formation-and-accountable-intelligence.txt",
+      "segments": 38,
+      "words": 1055
+    },
+    {
+      "slug": "rival-continuations-and-restoration",
+      "title": "Rival continuations and the repair of the world",
+      "summary": "Compare six selected textual units across Qumran, Nag Hammadi, the Sibylline Oracles and Revelation: agents, timing, rescue and exclusion.",
+      "category": "apocalypse",
+      "kind": "Bridge study",
+      "chapters": [
+        {
+          "id": "shared-archive",
+          "title": "Who inherits the sacred?",
+          "part": "The contested inheritance",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "trauma",
+          "title": "Loss, anger and reconstruction",
+          "part": "The teacher and the transmitted message",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "scriptural-axis",
+          "title": "The moral dispute within scripture",
+          "part": "When sacred authority becomes power",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "repair-practice",
+          "title": "Repair without reproducing domination",
+          "part": "Repair and the next inheritors",
+          "role": "Supplementary bridge"
+        }
+      ],
+      "source": "content/bridges/rival-continuations-and-restoration.md",
+      "sourceSha256": "fd78564f66c132f620a91a664ed85109e900377606a23a8bb11978b0a328d4be",
+      "narration": "data/listening/rival-continuations-and-restoration.json",
+      "narrationSha256": "fc9371f14b0b3c29c41b62addfb9d7fb68e7689efcf3c979debae575e99df41c",
+      "transcript": "products/transcripts/rival-continuations-and-restoration.txt",
+      "segments": 116,
+      "words": 2460
+    },
+    {
+      "slug": "sanctuary-community-and-body",
+      "title": "Sanctuary, community and body",
+      "summary": "Follow sacred continuity through institution, community, body and renewed city without making those forms one chronology.",
+      "category": "jesus",
+      "kind": "Bridge study",
+      "chapters": [
+        {
+          "id": "teacher-identity",
+          "title": "What survives a teacher?",
+          "part": "The teacher and the transmitted message",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "thomas",
+          "title": "The Teacher, Thomas and the deeper teaching",
+          "part": "The teacher and the transmitted message",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "trauma",
+          "title": "Loss, anger and reconstruction",
+          "part": "The teacher and the transmitted message",
+          "role": "Supplementary bridge"
+        },
+        {
+          "id": "continuing",
+          "title": "Continuing the inheritance",
+          "part": "Repair and the next inheritors",
+          "role": "Supplementary bridge"
+        }
+      ],
+      "source": "content/bridges/sanctuary-community-and-body.md",
+      "sourceSha256": "e2bab674d5d080d23dd3cc2e150f5efa12b66e32bd206ea4e6b1c1d1abe865ec",
+      "narration": "data/listening/sanctuary-community-and-body.json",
+      "narrationSha256": "6f5f0e87da20167ebc10960be7d02f11995f1a3ec2ea3cde1c547afeef690a72",
+      "transcript": "products/transcripts/sanctuary-community-and-body.txt",
+      "segments": 41,
+      "words": 1025
     }
   ],
   "chapters": [
@@ -648,6 +883,10 @@
         "sacred-inheritance-and-rival-continuations",
         "samaritan-texts-and-sacred-authority",
         "flood-inheritance-and-deep-time"
+      ],
+      "supplementaryPages": [
+        "contested-memories-of-catastrophe",
+        "rival-continuations-and-restoration"
       ]
     },
     {
@@ -657,6 +896,9 @@
       "pages": [
         "el-in-ancient-egypt",
         "kenite-hypothesis-and-yahweh-origins"
+      ],
+      "supplementaryPages": [
+        "contested-memories-of-catastrophe"
       ]
     },
     {
@@ -666,6 +908,9 @@
       "pages": [
         "moses-volcano-and-exodus-chronology",
         "exodus-to-temple-competing-chronologies"
+      ],
+      "supplementaryPages": [
+        "contested-memories-of-catastrophe"
       ]
     },
     {
@@ -676,6 +921,9 @@
         "jesus-teacher-of-righteousness-hypothesis",
         "daniel-jubilee-and-the-teachers-time",
         "james-and-contested-succession"
+      ],
+      "supplementaryPages": [
+        "sanctuary-community-and-body"
       ]
     },
     {
@@ -689,6 +937,9 @@
         "onias-egypt-and-priestly-continuity",
         "james-and-contested-succession",
         "thomas-sayings-and-transmission"
+      ],
+      "supplementaryPages": [
+        "sanctuary-community-and-body"
       ]
     },
     {
@@ -699,6 +950,10 @@
         "gnosticism-and-temple-trauma",
         "apocalyptic-repair-theology",
         "onias-egypt-and-priestly-continuity"
+      ],
+      "supplementaryPages": [
+        "rival-continuations-and-restoration",
+        "sanctuary-community-and-body"
       ]
     },
     {
@@ -708,6 +963,9 @@
       "pages": [
         "god-and-our-models-of-god",
         "computational-divine-immanence"
+      ],
+      "supplementaryPages": [
+        "inward-formation-and-accountable-intelligence"
       ]
     },
     {
@@ -717,6 +975,9 @@
       "pages": [
         "cognitive-gnosticism",
         "thomas-sayings-and-transmission"
+      ],
+      "supplementaryPages": [
+        "inward-formation-and-accountable-intelligence"
       ]
     },
     {
@@ -728,6 +989,9 @@
         "divine-will-and-self-authorizing-power",
         "inner-formation-texts-and-material-witnesses",
         "thomas-sayings-and-transmission"
+      ],
+      "supplementaryPages": [
+        "inward-formation-and-accountable-intelligence"
       ]
     },
     {
@@ -736,6 +1000,9 @@
       "part": "The inheritance inside a mind",
       "pages": [
         "faith-as-deliberate-joy"
+      ],
+      "supplementaryPages": [
+        "apocalypse-and-repair"
       ]
     },
     {
@@ -744,6 +1011,10 @@
       "part": "When sacred authority becomes power",
       "pages": [
         "scripture-power-and-repair"
+      ],
+      "supplementaryPages": [
+        "apocalypse-and-repair",
+        "rival-continuations-and-restoration"
       ]
     },
     {
@@ -753,6 +1024,9 @@
       "pages": [
         "divine-will-and-self-authorizing-power",
         "antichrist-as-a-pattern-of-conduct"
+      ],
+      "supplementaryPages": [
+        "apocalypse-and-repair"
       ]
     },
     {
@@ -761,6 +1035,9 @@
       "part": "When sacred authority becomes power",
       "pages": [
         "trump-first-beast-of-revelation"
+      ],
+      "supplementaryPages": [
+        "apocalypse-and-repair"
       ]
     },
     {
@@ -769,6 +1046,9 @@
       "part": "When sacred authority becomes power",
       "pages": [
         "ukraine-russia-forecast-record"
+      ],
+      "supplementaryPages": [
+        "apocalypse-and-repair"
       ]
     },
     {
@@ -778,6 +1058,10 @@
       "pages": [
         "apocalyptic-repair-theology",
         "scripture-power-and-repair"
+      ],
+      "supplementaryPages": [
+        "inward-formation-and-accountable-intelligence",
+        "rival-continuations-and-restoration"
       ]
     },
     {
@@ -788,6 +1072,9 @@
         "religion-for-conscious-robots",
         "god-and-our-models-of-god",
         "computational-divine-immanence"
+      ],
+      "supplementaryPages": [
+        "inward-formation-and-accountable-intelligence"
       ]
     },
     {
@@ -797,6 +1084,9 @@
       "pages": [
         "sacred-inheritance-and-rival-continuations",
         "apocalyptic-repair-theology"
+      ],
+      "supplementaryPages": [
+        "sanctuary-community-and-body"
       ]
     }
   ]

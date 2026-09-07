@@ -6,17 +6,18 @@ function build(root,pages){
  const config=JSON.parse(fs.readFileSync(path.join(root,'editorial/products.json'))),atlas=JSON.parse(fs.readFileSync(path.join(root,'data/source-atlas.json'))),book=JSON.parse(fs.readFileSync(path.join(root,'data/foundations.json')));
  const out=(p,v)=>{const f=path.join(root,p);fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,typeof v==='string'?v:JSON.stringify(v,null,2)+'\n');};
  const canonical=new Map(pages.map(p=>[p.slug,p]));const records=new Set(atlas.records.map(r=>r.id));
- const library=[];
- for(const p of pages.filter(p=>p.kind==='Developed article')){
+ const library=[],connected=JSON.parse(fs.readFileSync(path.join(root,'data/connected-arguments.json')));
+ for(const p of pages.filter(p=>['Developed article','Bridge study'].includes(p.kind))){
   const source=fs.readFileSync(path.join(root,'content',p.path));const segments=C.segment(source.toString('utf8'));
   if(!segments.length||segments.some(s=>s.text.length>550))throw Error('Invalid narration '+p.slug);
   const chapters=book.parts.flatMap(part=>part.chapters.filter(c=>c.pages.includes(p.slug)).map(c=>({id:c.id,title:c.title,part:part.title})));
+  const bridgeChapters=p.kind==='Bridge study'?connected.chapters.filter(c=>c.bridge===p.slug||(c.additionalBridges||[]).includes(p.slug)).map(c=>({id:c.chapter,title:c.title,part:c.part,role:'Supplementary bridge'})):[];
   const x={schema:'theology-narration/v1',slug:p.slug,title:p.title,source:'content/'+p.path,sourceSha256:sha(source),policy:'Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.',segments};
   const bytes=JSON.stringify(x,null,2)+'\n';out('data/listening/'+p.slug+'.json',bytes);out('products/transcripts/'+p.slug+'.txt',segments.map(s=>s.text).join('\n\n')+'\n');
-  library.push({slug:p.slug,title:p.title,summary:p.summary,category:p.category,chapters,source:x.source,sourceSha256:x.sourceSha256,narration:'data/listening/'+p.slug+'.json',narrationSha256:sha(bytes),transcript:'products/transcripts/'+p.slug+'.txt',segments:segments.length,words:segments.filter(s=>!s.notes).reduce((n,s)=>n+s.text.split(/\s+/).length,0)});
+  library.push({slug:p.slug,title:p.title,summary:p.summary,category:p.category,kind:p.kind,chapters:[...chapters,...bridgeChapters],source:x.source,sourceSha256:x.sourceSha256,narration:'data/listening/'+p.slug+'.json',narrationSha256:sha(bytes),transcript:'products/transcripts/'+p.slug+'.txt',segments:segments.length,words:segments.filter(s=>!s.notes).reduce((n,s)=>n+s.text.split(/\s+/).length,0)});
  }
  const ordered=book.parts.flatMap(part=>part.chapters.flatMap(c=>c.pages));library.sort((a,b)=>(ordered.indexOf(a.slug)<0?999:ordered.indexOf(a.slug))-(ordered.indexOf(b.slug)<0?999:ordered.indexOf(b.slug))||a.title.localeCompare(b.title));
- const lib={schema:'theology-listening-library/v1',version:config.version,policy:config.policy,articles:library,chapters:book.parts.flatMap(p=>p.chapters.map(c=>({id:c.id,title:c.title,part:p.title,pages:c.pages.filter(s=>library.some(a=>a.slug===s))})))};out('data/listening-library.json',lib);
+ const lib={schema:'theology-listening-library/v1',version:config.version,policy:config.policy,articles:library,chapters:book.parts.flatMap(p=>p.chapters.map(c=>({id:c.id,title:c.title,part:p.title,pages:c.pages.filter(s=>library.some(a=>a.slug===s)),supplementaryPages:library.filter(a=>a.kind==='Bridge study'&&a.chapters.some(x=>x.id===c.id)).map(a=>a.slug)})))};out('data/listening-library.json',lib);
  const ids=new Set(config.tasks.map(t=>t.id));if(ids.size!==config.tasks.length)throw Error('Duplicate product task');
  const visiting=new Set(),done=new Set();function visit(id){if(visiting.has(id))throw Error('Product dependency cycle');if(done.has(id))return;const t=config.tasks.find(x=>x.id===id);if(!t)throw Error('Missing product prerequisite');visiting.add(id);t.dependsOn.forEach(visit);visiting.delete(id);done.add(id);}ids.forEach(visit);
  for(const e of config.episodes){

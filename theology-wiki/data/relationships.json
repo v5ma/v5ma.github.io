@@ -867,6 +867,118 @@
       "origin": "Connected-arguments edition"
     },
     {
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "sacred-inheritance-and-rival-continuations"
+    },
+    {
+      "to": "gnosticism-and-temple-trauma",
+      "type": "connects",
+      "why": "Compare rival accounts of divine authority and rescue before proposing which institutional rupture could have carried a changed interpretation.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Compare rival accounts of divine authority and rescue before proposing which institutional rupture could have carried a changed interpretation.",
+      "origin": "Restoration comparison edition",
+      "from": "gnosticism-and-temple-trauma"
+    },
+    {
+      "to": "apocalyptic-repair-theology",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "apocalyptic-repair-theology"
+    },
+    {
+      "to": "flood-inheritance-and-deep-time",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "flood-inheritance-and-deep-time"
+    },
+    {
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "connects",
+      "why": "The selected passages supply operations to investigate in a carrier history without identifying their authors as the earlier Teacher.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "The selected passages supply operations to investigate in a carrier history without identifying their authors as the earlier Teacher.",
+      "origin": "Restoration comparison edition",
+      "from": "tor-thomas-and-gnostic-transmission"
+    },
+    {
+      "to": "god-and-our-models-of-god",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "god-and-our-models-of-god"
+    },
+    {
+      "to": "contested-memories-of-catastrophe",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "contested-memories-of-catastrophe"
+    },
+    {
+      "to": "apocalypse-and-repair",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "apocalypse-and-repair"
+    },
+    {
       "from": "trump-first-beast-of-revelation",
       "to": "revelation-interpretation-and-america",
       "type": "source",

@@ -1,6 +1,6 @@
 {
   "schema": "theology-connected-arguments/v1",
-  "version": "2026.09.07-bridges-1",
+  "version": "2026.09.07-restoration-listening-2",
   "studies": [
     {
       "slug": "contested-memories-of-catastrophe",
@@ -91,6 +91,35 @@
         "religion-for-conscious-robots"
       ],
       "attribution": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "slug": "rival-continuations-and-restoration",
+      "title": "Rival continuations and the repair of the world",
+      "summary": "Compare six selected textual units across Qumran, Nag Hammadi, the Sibylline Oracles and Revelation: agents, timing, rescue and exclusion.",
+      "category": "apocalypse",
+      "kind": "Bridge study",
+      "claimType": "Passage-level comparative reconstruction",
+      "updated": "2026-09-07",
+      "externalSources": [
+        "restore-rule",
+        "restore-rule-object",
+        "restore-secret-john",
+        "restore-adam",
+        "restore-sibyl4",
+        "restore-sibyl2",
+        "bridge-gen9",
+        "bridge-rev21",
+        "bridge-rev22"
+      ],
+      "upstream": [
+        "sacred-inheritance-and-rival-continuations",
+        "gnosticism-and-temple-trauma",
+        "apocalyptic-repair-theology",
+        "flood-inheritance-and-deep-time",
+        "tor-thomas-and-gnostic-transmission",
+        "god-and-our-models-of-god"
+      ],
+      "attribution": "Authorial working bridge edition. This comparison develops the Rival Continuations Model and its proposed transmission questions. It is a new editorial study, not an older recovered conversation or proof of a completed historical lineage."
     }
   ],
   "references": [
@@ -169,6 +198,48 @@
       "title": "Philippians 2:1-5",
       "url": "https://ebible.org/engwebp/PHP02.htm",
       "scope": "Read the concern beyond one's own interests in the World English Bible. No critical-edition comparison or Christ-specific behavioral experiment was performed.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "restore-rule",
+      "title": "Community Rule: E. Qimron exhibition translation",
+      "url": "https://www.loc.gov/exhibits/scrolls/trans3.html",
+      "scope": "The displayed extract was read for instruction, separation, divine will and the expected day of revenge. This is a named translation of the exhibition fragment, not a new translation or a collation of all Community Rule manuscripts.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "restore-rule-object",
+      "title": "Library of Congress: Community Rule fragment 4Q258",
+      "url": "https://www.loc.gov/exhibits/scrolls/late.html",
+      "scope": "The Community Rule object entry identifies 4QSd / 4Q258 and directs to the Qimron translation. This catalogue relationship was checked; no new copy/composition chronology is assigned by this comparison.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "restore-secret-john",
+      "title": "Apocryphon of John, long version: flood passage",
+      "url": "https://www.gnosis.org/naghamm/apocjn-long.html",
+      "scope": "Waldstein-Wisse translation, web edition edited by Lance Owens. The indexed flood passage beginning with the ruler regretting creation was read. Direct page retrieval failed; no full critical-edition or long/short recension collation is claimed.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "restore-adam",
+      "title": "Apocalypse of Adam: Noah and the protected generation",
+      "url": "https://gnosis.org/naghamm/adam.html",
+      "scope": "George W. MacRae translation in the Gnostic Society Library. The indexed flood/Noah passage, including Deucalion and the denial of ancestry, was read. Lacunae remain unfilled; direct page retrieval and critical manuscript collation were not completed.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "restore-sibyl4",
+      "title": "Sibylline Oracles IV: conditional warning",
+      "url": "https://en.wikisource.org/wiki/The_Sibylline_Oracles_(Terry,_2nd_edition)/Book_4",
+      "scope": "Milton S. Terry, second-edition English translation, displayed lines 210-248. These are English line locators, not an asserted Greek verse concordance. Selected passage read; composition-date proposals and the Greek critical text require separate review.",
+      "accessed": "2026-09-07"
+    },
+    {
+      "id": "restore-sibyl2",
+      "title": "Sibylline Oracles II: intercession and its reported rejection",
+      "url": "https://en.wikisource.org/wiki/The_Sibylline_Oracles_(Terry,_2nd_edition)/Book_2",
+      "scope": "Terry second-edition English lines 404-415 and note 24. The reported anti-restoration manuscript addition is mediated through Terry, not independently inspected. His account is not a new discovery or proof that every sinner is eventually saved.",
       "accessed": "2026-09-07"
     }
   ],
@@ -452,6 +523,118 @@
       "type": "connects",
       "why": "The teacher's duties to a possible conscious participant must remain distinct from training a system for unquestioning obedience.",
       "origin": "Connected-arguments edition"
+    },
+    {
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "sacred-inheritance-and-rival-continuations"
+    },
+    {
+      "to": "gnosticism-and-temple-trauma",
+      "type": "connects",
+      "why": "Compare rival accounts of divine authority and rescue before proposing which institutional rupture could have carried a changed interpretation.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Compare rival accounts of divine authority and rescue before proposing which institutional rupture could have carried a changed interpretation.",
+      "origin": "Restoration comparison edition",
+      "from": "gnosticism-and-temple-trauma"
+    },
+    {
+      "to": "apocalyptic-repair-theology",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "apocalyptic-repair-theology"
+    },
+    {
+      "to": "flood-inheritance-and-deep-time",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "flood-inheritance-and-deep-time"
+    },
+    {
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "connects",
+      "why": "The selected passages supply operations to investigate in a carrier history without identifying their authors as the earlier Teacher.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "The selected passages supply operations to investigate in a carrier history without identifying their authors as the earlier Teacher.",
+      "origin": "Restoration comparison edition",
+      "from": "tor-thomas-and-gnostic-transmission"
+    },
+    {
+      "to": "god-and-our-models-of-god",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "god-and-our-models-of-god"
+    },
+    {
+      "to": "contested-memories-of-catastrophe",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "contested-memories-of-catastrophe"
+    },
+    {
+      "to": "apocalypse-and-repair",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "rival-continuations-and-restoration"
+    },
+    {
+      "to": "rival-continuations-and-restoration",
+      "type": "connects",
+      "why": "Inspect the agents, timing and beneficiary boundaries of restoration in named textual passages rather than treating all apocalyptic narratives as one doctrine.",
+      "origin": "Restoration comparison edition",
+      "from": "apocalypse-and-repair"
     }
   ],
   "transitions": [
@@ -460,7 +643,10 @@
       "question": "What makes an inheritance recognizable across communities?",
       "work": "Distinguish the history of a tradition from the community that later claims it.",
       "nextQuestion": "How do divine names cross the boundaries that communities draw?",
-      "bridge": "contested-memories-of-catastrophe"
+      "bridge": "contested-memories-of-catastrophe",
+      "additionalBridges": [
+        "rival-continuations-and-restoration"
+      ]
     },
     {
       "chapter": "names",
@@ -495,7 +681,10 @@
       "question": "How could loss transform an account of divine protection and authority?",
       "work": "Compare reconstruction, relocation and critique without one universal psychological sequence.",
       "nextQuestion": "What happens when the inherited image of God becomes the object of criticism?",
-      "bridge": "sanctuary-community-and-body"
+      "bridge": "sanctuary-community-and-body",
+      "additionalBridges": [
+        "rival-continuations-and-restoration"
+      ]
     },
     {
       "chapter": "images",
@@ -530,7 +719,10 @@
       "question": "How does scripture judge authorities claiming to speak for it?",
       "work": "Work through conflicting conduct and specific passages rather than classifying whole traditions as uniform.",
       "nextQuestion": "Which will supplies the standard when authority is challenged?",
-      "bridge": "apocalypse-and-repair"
+      "bridge": "apocalypse-and-repair",
+      "additionalBridges": [
+        "rival-continuations-and-restoration"
+      ]
     },
     {
       "chapter": "will",
@@ -558,7 +750,10 @@
       "question": "How can repair change institutions without reproducing domination?",
       "work": "Connect care, protection and correction at personal and collective scales.",
       "nextQuestion": "What should a new kind of conscious participant inherit from that work?",
-      "bridge": "inward-formation-and-accountable-intelligence"
+      "bridge": "inward-formation-and-accountable-intelligence",
+      "additionalBridges": [
+        "rival-continuations-and-restoration"
+      ]
     },
     {
       "chapter": "next-inheritors",
@@ -606,10 +801,10 @@
     },
     {
       "id": "apocalypse-family",
-      "page": "apocalypse-and-repair",
+      "page": "rival-continuations-and-restoration",
       "title": "Compare restoration across apocalyptic works.",
-      "status": "Revelation 21-22 read; extra-biblical comparison open.",
-      "nextAction": "Select exact units from the Sibylline Oracles, Qumran and Nag Hammadi texts; record each unit's dating and transmission argument instead of treating each collection as one date."
+      "status": "Six selected textual units compared in named translations; manuscript collation and transmission chronology remain open.",
+      "nextAction": "Check critical editions of the two Nag Hammadi flood passages, the Community Rule witnesses and Sibylline II/IV; establish the English-to-Greek concordance and independently inspect Terry's reported anti-restoration addition before dating the proposed transmission."
     },
     {
       "id": "conduct-record",
@@ -632,5 +827,128 @@
       "status": "Seventeen editorial transitions drafted; chapters not approved.",
       "nextAction": "Use the inherited question and handoff at every chapter boundary; retain one full treatment per mechanism and link rather than repeatedly compressing it."
     }
-  ]
+  ],
+  "comparison": {
+    "schema": "theology-restoration-comparison/v1",
+    "slug": "rival-continuations-and-restoration",
+    "policy": "Selected passage interpretations, not equivalent doctrines, a descent tree, a dating consensus or a completed manuscript collation. Composition and copy dates are deliberately unset in this comparison; the existing atlas remains separate.",
+    "records": [
+      {
+        "id": "community-rule",
+        "title": "Community Rule",
+        "locator": "4QSd / 4Q258, Library of Congress displayed extract",
+        "sourceIds": [
+          "restore-rule",
+          "restore-rule-object"
+        ],
+        "agency": "Instruction and communal discipline",
+        "timing": "Practice before anticipated judgment",
+        "boundary": "The selected community; separation remains explicit.",
+        "question": "How does later inheritance change the boundary of membership?",
+        "scope": "Named exhibition translation; compare Cave 1 and Cave 4 witnesses separately.",
+        "compositionDate": null,
+        "copyDate": null,
+        "dateStatus": "Not independently reviewed in this comparison."
+      },
+      {
+        "id": "secret-john",
+        "title": "Apocryphon of John",
+        "locator": "Long version, flood passage before section 25",
+        "sourceIds": [
+          "restore-secret-john"
+        ],
+        "agency": "Forethought warns against the ruler's flood",
+        "timing": "Rescue within a rewritten catastrophe",
+        "boundary": "Noah and others receive an alternative refuge.",
+        "question": "Which recension preserves each change to the Mosaic account?",
+        "scope": "Indexed Waldstein-Wisse web translation; no new manuscript collation.",
+        "compositionDate": null,
+        "copyDate": null,
+        "dateStatus": "Not independently reviewed in this comparison."
+      },
+      {
+        "id": "adam",
+        "title": "Apocalypse of Adam",
+        "locator": "Flood, Noah/Deucalion and the other generation",
+        "sourceIds": [
+          "restore-adam"
+        ],
+        "agency": "Angelic protection distinguishes an inheritance",
+        "timing": "A divided account of who survives",
+        "boundary": "Ark protection and the knowledge-bearing group differ.",
+        "question": "What establishes ancestry or community behind this narrative distinction?",
+        "scope": "Indexed MacRae translation; lacunae are not reconstructed.",
+        "compositionDate": null,
+        "copyDate": null,
+        "dateStatus": "Not independently reviewed in this comparison."
+      },
+      {
+        "id": "sibyl4",
+        "title": "Sibylline Oracles IV",
+        "locator": "Terry English lines 210-248",
+        "sourceIds": [
+          "restore-sibyl4"
+        ],
+        "agency": "The hearers can abandon violence",
+        "timing": "Prevention before threatened destruction",
+        "boundary": "A conditional response is requested; judgment follows rejection.",
+        "question": "Which Greek lines correspond to these English locators?",
+        "scope": "Terry second-edition translation; no absolute dates imported.",
+        "compositionDate": null,
+        "copyDate": null,
+        "dateStatus": "Not independently reviewed in this comparison."
+      },
+      {
+        "id": "sibyl2",
+        "title": "Sibylline Oracles II",
+        "locator": "Terry English lines 404-415; note 24",
+        "sourceIds": [
+          "restore-sibyl2"
+        ],
+        "agency": "The righteous intercede for release",
+        "timing": "Rescue after punishment has begun",
+        "boundary": "The boundary can reopen; universal scope is not established.",
+        "question": "Which manuscripts contain the objection reported by Terry?",
+        "scope": "Passage and editorial report are distinct channels, not two independent ancient witnesses.",
+        "compositionDate": null,
+        "copyDate": null,
+        "dateStatus": "Not independently reviewed in this comparison."
+      },
+      {
+        "id": "revelation",
+        "title": "Revelation",
+        "locator": "21:1-4, 8, 22-27; 22:1-5, 15",
+        "sourceIds": [
+          "bridge-rev21",
+          "bridge-rev22"
+        ],
+        "agency": "Divine renewal joins dwelling and healing",
+        "timing": "A renewed shared world after judgment",
+        "boundary": "Healing for nations coexists with stated exclusions.",
+        "question": "How should the restorative and exclusionary passages be read together?",
+        "scope": "World English Bible passages; not the Gospel of John or the Apocryphon of John.",
+        "compositionDate": null,
+        "copyDate": null,
+        "dateStatus": "Not independently reviewed in this comparison."
+      }
+    ]
+  },
+  "improvementCycle": {
+    "baseline": "Published PR 66: four bridge essays, 29 listening texts and an open extra-biblical restoration comparison.",
+    "reviewFindings": [
+      "The new bridge essays had no full listening entry, despite being published reading material.",
+      "The apocalypse research task named several collections but had not compared selected passages within them."
+    ],
+    "implemented": [
+      "All five bridge essays now have full source-verified narration text and supplementary chapter links.",
+      "Six named passage units now have separate agents, narrative timing, beneficiary boundaries, access scope and next questions.",
+      "The book map links the new comparison into four existing chapter handoffs without changing their principal readings."
+    ],
+    "remaining": [
+      "Review the original-language critical texts and the different Apocryphon of John recensions.",
+      "Identify and inspect the witnesses behind Terry's reported anti-restoration addition.",
+      "Research Egyptian intermediaries and later mystical transmission rather than treating these comparisons as a completed lineage.",
+      "Record additional audio only from a verified final text; device reading is not a newly produced MP3."
+    ]
+  }
 }

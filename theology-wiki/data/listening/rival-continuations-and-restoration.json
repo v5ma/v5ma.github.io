@@ -1,0 +1,706 @@
+{
+  "schema": "theology-narration/v1",
+  "slug": "rival-continuations-and-restoration",
+  "title": "Rival continuations and the repair of the world",
+  "source": "content/bridges/rival-continuations-and-restoration.md",
+  "sourceSha256": "fd78564f66c132f620a91a664ed85109e900377606a23a8bb11978b0a328d4be",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
+  "segments": [
+    {
+      "id": "segment-0001",
+      "section": "Rival continuations and the repair of the world",
+      "notes": false,
+      "text": "Rival continuations and the repair of the world"
+    },
+    {
+      "id": "segment-0002",
+      "section": "One inheritance can sustain more than one account of rescue",
+      "notes": false,
+      "text": "One inheritance can sustain more than one account of rescue"
+    },
+    {
+      "id": "segment-0003",
+      "section": "One inheritance can sustain more than one account of rescue",
+      "notes": false,
+      "text": "A religious inheritance does not survive only by remaining unchanged. A community can preserve the names, conflicts and expectations of a story while disputing what those things mean. The disagreement can occur inside the inheritance: which authority speaks for God, which people need rescue, and whether rescue means defending the present order, transforming it, or escaping its ruler. I develop that problem here as the restoration branch of the Rival Continuations Model."
+    },
+    {
+      "id": "segment-0004",
+      "section": "One inheritance can sustain more than one account of rescue",
+      "notes": false,
+      "text": "The proposal is not that every tradition secretly says the same thing. It is that a recognizable inheritance can become the terrain on which competing continuations struggle. A rewriting may preserve enough of an earlier story to make its disagreement intelligible. What looks like an entirely foreign religion from the outside can therefore contain an argument about the ownership and interpretation of a shared past."
+    },
+    {
+      "id": "segment-0005",
+      "section": "One inheritance can sustain more than one account of rescue",
+      "notes": false,
+      "text": "Sacred inheritance and rival continuations develops the larger model. Here the comparison becomes passage-specific. The Community Rule, the Apocryphon of John, the Apocalypse of Adam, two different Sibylline books, and Revelation receive separate treatments. A collection name is not allowed to stand in for the particular text being interpreted."
+    },
+    {
+      "id": "segment-0006",
+      "section": "One inheritance can sustain more than one account of rescue",
+      "notes": false,
+      "text": "The question linking these readings is not simply whether they predict disaster. It is what kind of repair each allows, who participates in it, and which boundary it refuses to cross. That question connects inherited catastrophe to the work of repair without treating either as a decorative theme."
+    },
+    {
+      "id": "segment-0007",
+      "section": "A rule for the present can prepare an expected future",
+      "notes": false,
+      "text": "A rule for the present can prepare an expected future"
+    },
+    {
+      "id": "segment-0008",
+      "section": "A rule for the present can prepare an expected future",
+      "notes": false,
+      "text": "In E. Qimron's translated Community Rule extract presented by the Library of Congress, the instructor orders conduct, maintains separation, teaches the selected members and prepares for a future day of revenge. Submission to God's will appears alongside an enduring division from the people rejected. The exhibition identifies its fragment as 4QSd, 4Q258; it is not the complete Cave 1 scroll."
+    },
+    {
+      "id": "segment-0009",
+      "section": "A rule for the present can prepare an expected future",
+      "notes": false,
+      "text": "The useful comparison concerns that conjunction. Present formation and anticipated judgment are not mutually exclusive. But disciplined conduct does not automatically imply an ethic of indiscriminate inclusion. The passage makes the beneficiary boundary part of the inquiry, rather than a detail that can be removed to make every ancient community endorse a modern repair program."
+    },
+    {
+      "id": "segment-0010",
+      "section": "A rule for the present can prepare an expected future",
+      "notes": false,
+      "text": "The sanctuary bridge can therefore be developed without assuming that all sacred authority has simply moved from a building into a private mind. Instruction, membership, shared practice and the interpretation of divine will can sustain an organized community. Its inward orientation can remain socially demanding and exclusive. A proposed later continuation must explain which of those relations it retains and which it changes."
+    },
+    {
+      "id": "segment-0011",
+      "section": "The flood can become an argument against its ruler",
+      "notes": false,
+      "text": "The flood can become an argument against its ruler"
+    },
+    {
+      "id": "segment-0012",
+      "section": "The flood can become an argument against its ruler",
+      "notes": false,
+      "text": "The long Apocryphon of John does not merely repeat Noah's rescue. In the consulted Waldstein-Wisse translation, the ruler plans the flood while luminous forethought warns Noah. The account explicitly contests the Mosaic version of an ark refuge, placing Noah and others in a luminous cloud. Rescue and destructive rule are assigned different roles within the inherited narrative."
+    },
+    {
+      "id": "segment-0013",
+      "section": "The flood can become an argument against its ruler",
+      "notes": false,
+      "text": "That is more specific than a shared flood motif. The story recognizes an earlier account and disputes its explanation. The distinction between God and an inherited model of God acquires a historical comparison here: an authority's claim to govern creation can itself become an object of theological judgment. The inference concerns an interpretive operation, not the external truth of the cosmology."
+    },
+    {
+      "id": "segment-0014",
+      "section": "The flood can become an argument against its ruler",
+      "notes": false,
+      "text": "The Gospel of John, the Apocryphon of John and Revelation must remain separately named works. A shared Johannine name does not establish one author, one school or one date. Their possible relationships require evidence; their distinct uses of revelation and divine authority should not disappear into a single label."
+    },
+    {
+      "id": "segment-0015",
+      "section": "A second Nag Hammadi account preserves a different Noah",
+      "notes": false,
+      "text": "A second Nag Hammadi account preserves a different Noah"
+    },
+    {
+      "id": "segment-0016",
+      "section": "A second Nag Hammadi account preserves a different Noah",
+      "notes": false,
+      "text": "The Apocalypse of Adam, in George W. MacRae's translation, distinguishes Noah's ark protection from an angelically protected group bearing knowledge. Noah denies that this other group descends from him or his sons. The same passage identifies Noah with Deucalion. It places recognizable flood figures inside a dispute about ancestry and the authority of the creator."
+    },
+    {
+      "id": "segment-0017",
+      "section": "A second Nag Hammadi account preserves a different Noah",
+      "notes": false,
+      "text": "This is not identical to the Apocryphon of John's alternative refuge. One cannot silently combine both accounts into a single Gnostic flood story. Their difference is useful: the comparison can follow how an inherited narrative allocates survival, kinship and knowledge differently, rather than treating all departures from Genesis as one doctrine."
+    },
+    {
+      "id": "segment-0018",
+      "section": "A second Nag Hammadi account preserves a different Noah",
+      "notes": false,
+      "text": "The proposed Egyptian transmission history has something concrete to investigate in that difference. What sort of community could preserve a story while revising its authorized ancestors? Could a change in institutional allegiance change who counts as the legitimate remnant? Those are questions for the carrier model, not deductions from the presence of a familiar name. The Teacher and transmission investigation retains the stronger founder hypothesis, but these passages do not identify their writers as that founder or his successors."
+    },
+    {
+      "id": "segment-0019",
+      "section": "Prevention is different from survival after destruction",
+      "notes": false,
+      "text": "Prevention is different from survival after destruction"
+    },
+    {
+      "id": "segment-0020",
+      "section": "Prevention is different from survival after destruction",
+      "notes": false,
+      "text": "Sibylline Book IV, in Milton S. Terry's second-edition English translation, calls for abandoning violence and seeking pardon. Lines 210-220 make the threatened destruction conditional on the response; the following section describes destruction and judgment if the warning is rejected. Its repair question therefore includes prevention, not only the selection of survivors after a catastrophe."
+    },
+    {
+      "id": "segment-0021",
+      "section": "Prevention is different from survival after destruction",
+      "notes": false,
+      "text": "A warning used in this way is an attempted intervention. Its constructive purpose can be to produce a different course of action. That does not mean every unfulfilled warning was successful. To distinguish prevention from a failed prediction, a later assessment would need the prior wording, the relevant conditions, the intervention and evidence about its effects. The forecast record addresses that separate evidentiary problem."
+    },
+    {
+      "id": "segment-0022",
+      "section": "Prevention is different from survival after destruction",
+      "notes": false,
+      "text": "The comparison also clarifies why repair cannot be reduced to inward consolation. A change in orientation has public consequences in the proposed mechanism: violence is abandoned rather than merely renamed. The text is not a modern policy manual, but it makes the relation between moral response and threatened outcome visible."
+    },
+    {
+      "id": "segment-0023",
+      "section": "Intercession can reopen a boundary after judgment",
+      "notes": false,
+      "text": "Intercession can reopen a boundary after judgment"
+    },
+    {
+      "id": "segment-0024",
+      "section": "Intercession can reopen a boundary after judgment",
+      "notes": false,
+      "text": "Sibylline Book II offers a different sequence. Terry's English lines 404-415 describe the righteous asking for people to be released from punishment, followed by divine rescue. His note reports an opposing addition in some manuscripts that rejects an end to punishment. The rescue passage and the reported objection must not be treated as one undivided voice."
+    },
+    {
+      "id": "segment-0025",
+      "section": "Intercession can reopen a boundary after judgment",
+      "notes": false,
+      "text": "The present comparison uses Terry's English line numbering, not a verified concordance with Greek verse numbers. The manuscript objection is known here through his editorial note; I have not inspected its manuscript witnesses. The accessible text supports a precise research question: does restoration reopen the beneficiary boundary, and how did later readers contest that possibility? It does not by itself establish unrestricted universal salvation."
+    },
+    {
+      "id": "segment-0026",
+      "section": "Intercession can reopen a boundary after judgment",
+      "notes": false,
+      "text": "This makes mercy more than a reward enjoyed privately by the approved group. In the proposed constructive reading, the position gained by the righteous can become a basis for seeking another person's release. The inference is not that accountability becomes unnecessary, but that rescue and exclusion need not be the final mutually exhaustive categories."
+    },
+    {
+      "id": "segment-0027",
+      "section": "A renewed world can heal and still distinguish",
+      "notes": false,
+      "text": "A renewed world can heal and still distinguish"
+    },
+    {
+      "id": "segment-0028",
+      "section": "A renewed world can heal and still distinguish",
+      "notes": false,
+      "text": "Revelation 21-22 joins the end of mourning and pain to a renewed city, the absence of a separate temple within it, and healing for the nations. Yet the same chapters retain judgments and exclusions. Revelation 21:8 and 21:27 and 22:15 cannot be removed from the comparison simply because the restorative images are attractive."
+    },
+    {
+      "id": "segment-0029",
+      "section": "A renewed world can heal and still distinguish",
+      "notes": false,
+      "text": "This creates a demanding question for Apocalyptic Repair Theology. How do healing, protection, judgment and continued exclusion relate? A constructive interpretation can argue that repair is more than defeating an enemy, but it still needs to explain which boundaries protect the vulnerable and which merely preserve the dominance of a favored group."
+    },
+    {
+      "id": "segment-0030",
+      "section": "A renewed world can heal and still distinguish",
+      "notes": false,
+      "text": "The interpretation developed here does not claim that every voice in Revelation endorses the same scope of restoration as Sibylline Book II. Nor does it turn the illuminated refuge in the Apocryphon of John into Revelation's renewed city. The distinction among repaired world, alternative refuge, changed community and release from punishment is part of the argument's substance."
+    },
+    {
+      "id": "segment-0031",
+      "section": "Compare operations before declaring a lineage",
+      "notes": false,
+      "text": "Compare operations before declaring a lineage"
+    },
+    {
+      "id": "segment-0032",
+      "section": "Compare operations before declaring a lineage",
+      "notes": false,
+      "text": "These readings reveal more than a collection of impressive similarities. They expose a set of transformations that a transmission hypothesis can try to explain. Rescue can change its agent. A beneficiary group can change its genealogy. A warning can become conditional. An accepted judgment can become the object of intercession. A shared world can be renewed while its boundary remains contested."
+    },
+    {
+      "id": "segment-0033",
+      "section": "Compare operations before declaring a lineage",
+      "notes": false,
+      "text": "The strong historical proposal is that communities may carry such transformations through disputes about a shared inheritance. The smaller observation is that the selected texts contain comparable operations. Those propositions should be joined by an argument, not equated. Direct dependence, indirect inheritance, independent reinterpretation and the reuse of widespread motifs remain different candidate explanations."
+    },
+    {
+      "id": "segment-0034",
+      "section": "Compare operations before declaring a lineage",
+      "notes": false,
+      "text": "A useful comparison also needs negative evidence. What would a claimed transmission predict that the proposed receiving text does not preserve? Does the hypothesized carrier explain the differences, or only the similarities? Are two apparent witnesses independent, or does one survive through the other's quotation? These questions make the theory more discriminating without replacing it with a conventional narrative before the comparison begins."
+    },
+    {
+      "id": "segment-0035",
+      "section": "Compare operations before declaring a lineage",
+      "notes": false,
+      "text": "The chronology must receive the same treatment on every side. An early surviving copy can constrain a late-composition proposal. A late copy does not, by itself, establish a late origin for all its contents. But an earlier-origin proposal still needs evidence for its transmission. Manuscripts, movements and survival explains why neither convenient dating shortcut is sufficient."
+    },
+    {
+      "id": "segment-0036",
+      "section": "A museum should show the disagreement rather than erase it",
+      "notes": false,
+      "text": "A museum should show the disagreement rather than erase it"
+    },
+    {
+      "id": "segment-0037",
+      "section": "A museum should show the disagreement rather than erase it",
+      "notes": false,
+      "text": "The online comparison companion treats each selected passage as a record with an identified edition, a locator, a described operation and an unresolved question. Visitors can inspect the same records through three lenses: who acts, when change occurs within the narrative, and who benefits or remains excluded. The lenses are reading aids, not numerical truth scores."
+    },
+    {
+      "id": "segment-0038",
+      "section": "A museum should show the disagreement rather than erase it",
+      "notes": false,
+      "text": "The companion deliberately assigns no new absolute dates. The selected copy, proposed composition and narrated event need separate records before they can share a chronological exhibit. Leaving a date unset in this new comparison is not a claim that scholarship has no dating proposals. It means this pass has not completed the source-specific review required to import one responsibly."
+    },
+    {
+      "id": "segment-0039",
+      "section": "A museum should show the disagreement rather than erase it",
+      "notes": false,
+      "text": "Nor should the image of one artifact be made to authenticate every passage in a collection. The Community Rule fragment on display is a particular witness. The long and short versions of the Apocryphon of John require their own comparison. The consulted Sibylline translation requires a critical-text concordance before its English line numbers can become Greek locators. Those are concrete additions for the next museum research pass."
+    },
+    {
+      "id": "segment-0040",
+      "section": "Where this carries the book",
+      "notes": false,
+      "text": "Where this carries the book"
+    },
+    {
+      "id": "segment-0041",
+      "section": "Where this carries the book",
+      "notes": false,
+      "text": "The chapter on sacred inheritance now has a passage-level example of competing continuations. The catastrophe chapter gains a distinction between preventing destruction and reallocating the identity of its survivors. The Temple-trauma investigation gains a question about legitimacy that is not reducible to a change of building. The repair chapters inherit a harder problem than the simple defeat of evil: what kind of shared life becomes possible afterward, and for whom?"
+    },
+    {
+      "id": "segment-0042",
+      "section": "Where this carries the book",
+      "notes": false,
+      "text": "The later comparison with Kabbalah must distinguish historical descent, parallel development and a counterfactual path a tradition could have taken. This study does not supply the missing intervening teachers or textual witnesses. Its contribution is to identify what could be transmitted: a problem about the relation among divine authority, damaged order, human transformation and restoration. A similar problem is not yet an identical solution."
+    },
+    {
+      "id": "segment-0043",
+      "section": "Where this carries the book",
+      "notes": false,
+      "text": "The strongest version of the project consequently does not become a generic account of religious agreement. It reconstructs rival claims upon an inheritance and asks how those claims change people and institutions. Accountable inward formation provides the constructive counterpart. An inherited model becomes morally significant when it can be examined through the consequences it produces, including for people it was tempted to leave outside its concern."
+    },
+    {
+      "id": "segment-0044",
+      "section": "The six-passage comparison record",
+      "notes": false,
+      "text": "The six-passage comparison record"
+    },
+    {
+      "id": "segment-0045",
+      "section": "The six-passage comparison record",
+      "notes": false,
+      "text": "Selected passage interpretations, not equivalent doctrines, a descent tree, a dating consensus or a completed manuscript collation. Composition and copy dates are deliberately unset in this comparison; the existing atlas remains separate."
+    },
+    {
+      "id": "segment-0046",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Community Rule"
+    },
+    {
+      "id": "segment-0047",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Locator: 4QSd / 4Q258, Library of Congress displayed extract."
+    },
+    {
+      "id": "segment-0048",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Who acts: Instruction and communal discipline."
+    },
+    {
+      "id": "segment-0049",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Narrative timing: Practice before anticipated judgment."
+    },
+    {
+      "id": "segment-0050",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Beneficiaries and boundary: The selected community; separation remains explicit."
+    },
+    {
+      "id": "segment-0051",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Research question: How does later inheritance change the boundary of membership?"
+    },
+    {
+      "id": "segment-0052",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Access scope: Named exhibition translation; compare Cave 1 and Cave 4 witnesses separately."
+    },
+    {
+      "id": "segment-0053",
+      "section": "Community Rule",
+      "notes": false,
+      "text": "Dating scope: Not independently reviewed in this comparison."
+    },
+    {
+      "id": "segment-0054",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Apocryphon of John"
+    },
+    {
+      "id": "segment-0055",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Locator: Long version, flood passage before section 25."
+    },
+    {
+      "id": "segment-0056",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Who acts: Forethought warns against the ruler's flood."
+    },
+    {
+      "id": "segment-0057",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Narrative timing: Rescue within a rewritten catastrophe."
+    },
+    {
+      "id": "segment-0058",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Beneficiaries and boundary: Noah and others receive an alternative refuge."
+    },
+    {
+      "id": "segment-0059",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Research question: Which recension preserves each change to the Mosaic account?"
+    },
+    {
+      "id": "segment-0060",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Access scope: Indexed Waldstein-Wisse web translation; no new manuscript collation."
+    },
+    {
+      "id": "segment-0061",
+      "section": "Apocryphon of John",
+      "notes": false,
+      "text": "Dating scope: Not independently reviewed in this comparison."
+    },
+    {
+      "id": "segment-0062",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Apocalypse of Adam"
+    },
+    {
+      "id": "segment-0063",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Locator: Flood, Noah/Deucalion and the other generation."
+    },
+    {
+      "id": "segment-0064",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Who acts: Angelic protection distinguishes an inheritance."
+    },
+    {
+      "id": "segment-0065",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Narrative timing: A divided account of who survives."
+    },
+    {
+      "id": "segment-0066",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Beneficiaries and boundary: Ark protection and the knowledge-bearing group differ."
+    },
+    {
+      "id": "segment-0067",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Research question: What establishes ancestry or community behind this narrative distinction?"
+    },
+    {
+      "id": "segment-0068",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Access scope: Indexed MacRae translation; lacunae are not reconstructed."
+    },
+    {
+      "id": "segment-0069",
+      "section": "Apocalypse of Adam",
+      "notes": false,
+      "text": "Dating scope: Not independently reviewed in this comparison."
+    },
+    {
+      "id": "segment-0070",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Sibylline Oracles IV"
+    },
+    {
+      "id": "segment-0071",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Locator: Terry English lines 210-248."
+    },
+    {
+      "id": "segment-0072",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Who acts: The hearers can abandon violence."
+    },
+    {
+      "id": "segment-0073",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Narrative timing: Prevention before threatened destruction."
+    },
+    {
+      "id": "segment-0074",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Beneficiaries and boundary: A conditional response is requested; judgment follows rejection."
+    },
+    {
+      "id": "segment-0075",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Research question: Which Greek lines correspond to these English locators?"
+    },
+    {
+      "id": "segment-0076",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Access scope: Terry second-edition translation; no absolute dates imported."
+    },
+    {
+      "id": "segment-0077",
+      "section": "Sibylline Oracles IV",
+      "notes": false,
+      "text": "Dating scope: Not independently reviewed in this comparison."
+    },
+    {
+      "id": "segment-0078",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Sibylline Oracles II"
+    },
+    {
+      "id": "segment-0079",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Locator: Terry English lines 404-415; note 24."
+    },
+    {
+      "id": "segment-0080",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Who acts: The righteous intercede for release."
+    },
+    {
+      "id": "segment-0081",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Narrative timing: Rescue after punishment has begun."
+    },
+    {
+      "id": "segment-0082",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Beneficiaries and boundary: The boundary can reopen; universal scope is not established."
+    },
+    {
+      "id": "segment-0083",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Research question: Which manuscripts contain the objection reported by Terry?"
+    },
+    {
+      "id": "segment-0084",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Access scope: Passage and editorial report are distinct channels, not two independent ancient witnesses."
+    },
+    {
+      "id": "segment-0085",
+      "section": "Sibylline Oracles II",
+      "notes": false,
+      "text": "Dating scope: Not independently reviewed in this comparison."
+    },
+    {
+      "id": "segment-0086",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Revelation"
+    },
+    {
+      "id": "segment-0087",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Locator: 21:1-4, 8, 22-27; 22:1-5, 15."
+    },
+    {
+      "id": "segment-0088",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Who acts: Divine renewal joins dwelling and healing."
+    },
+    {
+      "id": "segment-0089",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Narrative timing: A renewed shared world after judgment."
+    },
+    {
+      "id": "segment-0090",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Beneficiaries and boundary: Healing for nations coexists with stated exclusions."
+    },
+    {
+      "id": "segment-0091",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Research question: How should the restorative and exclusionary passages be read together?"
+    },
+    {
+      "id": "segment-0092",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Access scope: World English Bible passages; not the Gospel of John or the Apocryphon of John."
+    },
+    {
+      "id": "segment-0093",
+      "section": "Revelation",
+      "notes": false,
+      "text": "Dating scope: Not independently reviewed in this comparison."
+    },
+    {
+      "id": "segment-0094",
+      "section": "Follow the connected argument",
+      "notes": false,
+      "text": "Follow the connected argument"
+    },
+    {
+      "id": "segment-0095",
+      "section": "Follow the connected argument",
+      "notes": false,
+      "text": "Open the chapter argument map, diagrams and research agenda. The full investigations linked above remain the primary treatments of each proposal."
+    },
+    {
+      "id": "segment-0096",
+      "section": "Source and edition note",
+      "notes": false,
+      "text": "Source and edition note"
+    },
+    {
+      "id": "segment-0097",
+      "section": "Source and edition note",
+      "notes": false,
+      "text": "Authorial working bridge edition. This comparison develops the Rival Continuations Model and its proposed transmission questions. It is a new editorial study, not an older recovered conversation or proof of a completed historical lineage."
+    },
+    {
+      "id": "segment-0098",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "External sources and access notes"
+    },
+    {
+      "id": "segment-0099",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Community Rule: E. Qimron exhibition translation"
+    },
+    {
+      "id": "segment-0100",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "The displayed extract was read for instruction, separation, divine will and the expected day of revenge. This is a named translation of the exhibition fragment, not a new translation or a collation of all Community Rule manuscripts. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0101",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Library of Congress: Community Rule fragment 4Q258"
+    },
+    {
+      "id": "segment-0102",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "The Community Rule object entry identifies 4QSd / 4Q258 and directs to the Qimron translation. This catalogue relationship was checked; no new copy/composition chronology is assigned by this comparison. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0103",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Apocryphon of John, long version: flood passage"
+    },
+    {
+      "id": "segment-0104",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Waldstein-Wisse translation, web edition edited by Lance Owens. The indexed flood passage beginning with the ruler regretting creation was read. Direct page retrieval failed; no full critical-edition or long/short recension collation is claimed. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0105",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Apocalypse of Adam: Noah and the protected generation"
+    },
+    {
+      "id": "segment-0106",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "George W. MacRae translation in the Gnostic Society Library. The indexed flood/Noah passage, including Deucalion and the denial of ancestry, was read. Lacunae remain unfilled; direct page retrieval and critical manuscript collation were not completed. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0107",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Sibylline Oracles IV: conditional warning/Book4)"
+    },
+    {
+      "id": "segment-0108",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Milton S. Terry, second-edition English translation, displayed lines 210-248. These are English line locators, not an asserted Greek verse concordance. Selected passage read; composition-date proposals and the Greek critical text require separate review. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0109",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Sibylline Oracles II: intercession and its reported rejection/Book2)"
+    },
+    {
+      "id": "segment-0110",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Terry second-edition English lines 404-415 and note 24. The reported anti-restoration manuscript addition is mediated through Terry, not independently inspected. His account is not a new discovery or proof that every sinner is eventually saved. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0111",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Genesis 9:8-17"
+    },
+    {
+      "id": "segment-0112",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Read the post-flood covenant in the World English Bible. This is a textual comparison of the promise and its scope, not a geological date. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0113",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Revelation 21:1-4 and 21:22"
+    },
+    {
+      "id": "segment-0114",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Read the divine dwelling and city without a separate temple in the World English Bible. The constructive interpretation does not establish a transmission route. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0115",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Revelation 22:1-2"
+    },
+    {
+      "id": "segment-0116",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Read the river, tree and healing of nations in the World English Bible. Practical applications are identified as interpretation, not specified modern policy. Consulted 2026-09-07."
+    }
+  ]
+}

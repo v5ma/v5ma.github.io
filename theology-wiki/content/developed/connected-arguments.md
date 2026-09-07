@@ -1,7 +1,7 @@
 ---
 title: "The book argument map and connecting studies"
 slug: "connected-arguments"
-summary: "Four bridge studies, seventeen chapter handoffs, three linked diagrams and eight explicit research questions."
+summary: "Five bridge studies, seventeen chapter handoffs, three linked diagrams and eight explicit research questions."
 topic: "Wider conversations"
 status: "Navigator"
 updated: "2026-09-07"
@@ -11,7 +11,29 @@ updated: "2026-09-07"
 
 ## Follow the argument, not just the subject
 
-The book connects the inheritance of sacred stories, the survival of a teacher, the construction of a self and the work of repair. Four connecting essays develop the transitions. They are supplementary bridge studies, not replacements for the full investigations or newly recovered source conversations.
+The book connects the inheritance of sacred stories, the survival of a teacher, the construction of a self and the work of repair. Five connecting essays develop the transitions. They are supplementary bridge studies, not replacements for the full investigations or newly recovered source conversations.
+
+## Review and improvement cycle
+
+Baseline reviewed: Published PR 66: four bridge essays, 29 listening texts and an open extra-biblical restoration comparison.
+
+Review finding: The new bridge essays had no full listening entry, despite being published reading material.
+
+Review finding: The apocalypse research task named several collections but had not compared selected passages within them.
+
+Implemented in this edition: All five bridge essays now have full source-verified narration text and supplementary chapter links.
+
+Implemented in this edition: Six named passage units now have separate agents, narrative timing, beneficiary boundaries, access scope and next questions.
+
+Implemented in this edition: The book map links the new comparison into four existing chapter handoffs without changing their principal readings.
+
+Still open: Review the original-language critical texts and the different Apocryphon of John recensions.
+
+Still open: Identify and inspect the witnesses behind Terry's reported anti-restoration addition.
+
+Still open: Research Egyptian intermediaries and later mystical transmission rather than treating these comparisons as a completed lineage.
+
+Still open: Record additional audio only from a verified final text; device reading is not a newly produced MP3.
 
 ## Contested memories of catastrophe
 
@@ -37,6 +59,12 @@ Connect the constructive self, two levels of correction, bounded choice and obli
 
 [[inward-formation-and-accountable-intelligence|Read the full bridge study]]
 
+## Rival continuations and the repair of the world
+
+Compare six selected textual units across Qumran, Nag Hammadi, the Sibylline Oracles and Revelation: agents, timing, rescue and exclusion.
+
+[[rival-continuations-and-restoration|Read the full bridge study]]
+
 ## The seventeen chapter transitions
 
 These editorial handoffs supplement [[book-contents|the existing table of contents]]. They keep its chapter identities and reading membership unchanged.
@@ -53,7 +81,7 @@ The next question: How do divine names cross the boundaries that communities dra
 
 [[sacred-inheritance-and-rival-continuations|sacred inheritance and rival continuations]] / [[samaritan-texts-and-sacred-authority|samaritan texts and sacred authority]] / [[flood-inheritance-and-deep-time|flood inheritance and deep time]]
 
-[[contested-memories-of-catastrophe|Read the connecting essay]]
+[[contested-memories-of-catastrophe|Read the connecting essay]] / [[rival-continuations-and-restoration|Read the passage comparison]]
 
 #### Names across boundaries
 
@@ -115,7 +143,7 @@ The next question: What happens when the inherited image of God becomes the obje
 
 [[gnosticism-and-temple-trauma|gnosticism and temple trauma]] / [[apocalyptic-repair-theology|apocalyptic repair theology]] / [[onias-egypt-and-priestly-continuity|onias egypt and priestly continuity]]
 
-[[sanctuary-community-and-body|Read the connecting essay]]
+[[sanctuary-community-and-body|Read the connecting essay]] / [[rival-continuations-and-restoration|Read the passage comparison]]
 
 ### The inheritance inside a mind
 
@@ -179,7 +207,7 @@ The next question: Which will supplies the standard when authority is challenged
 
 [[scripture-power-and-repair|scripture power and repair]]
 
-[[apocalypse-and-repair|Read the connecting essay]]
+[[apocalypse-and-repair|Read the connecting essay]] / [[rival-continuations-and-restoration|Read the passage comparison]]
 
 #### Whose will supplies the standard?
 
@@ -229,7 +257,7 @@ The next question: What should a new kind of conscious participant inherit from 
 
 [[apocalyptic-repair-theology|apocalyptic repair theology]] / [[scripture-power-and-repair|scripture power and repair]]
 
-[[inward-formation-and-accountable-intelligence|Read the connecting essay]]
+[[inward-formation-and-accountable-intelligence|Read the connecting essay]] / [[rival-continuations-and-restoration|Read the passage comparison]]
 
 #### What should conscious machines inherit?
 
@@ -293,11 +321,11 @@ Extend the named Oniad people and institutions with dated inscriptions or papyri
 
 ### Compare restoration across apocalyptic works.
 
-Revelation 21-22 read; extra-biblical comparison open.
+Six selected textual units compared in named translations; manuscript collation and transmission chronology remain open.
 
-Select exact units from the Sibylline Oracles, Qumran and Nag Hammadi texts; record each unit's dating and transmission argument instead of treating each collection as one date.
+Check critical editions of the two Nag Hammadi flood passages, the Community Rule witnesses and Sibylline II/IV; establish the English-to-Greek concordance and independently inspect Terry's reported anti-restoration addition before dating the proposed transmission.
 
-[[apocalypse-and-repair|Open the relevant bridge]]
+[[rival-continuations-and-restoration|Open the relevant bridge]]
 
 ### Evaluate specific contemporary identifications.
 

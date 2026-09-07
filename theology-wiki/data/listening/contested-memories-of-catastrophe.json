@@ -1,0 +1,184 @@
+{
+  "schema": "theology-narration/v1",
+  "slug": "contested-memories-of-catastrophe",
+  "title": "Contested memories of catastrophe",
+  "source": "content/bridges/contested-memories-of-catastrophe.md",
+  "sourceSha256": "6cd1caadb5eb95db2233efda98eba3b83fd4e52c7a86e7b0c1e512cabe1ffffb",
+  "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
+  "segments": [
+    {
+      "id": "segment-0001",
+      "section": "Contested memories of catastrophe",
+      "notes": false,
+      "text": "Contested memories of catastrophe"
+    },
+    {
+      "id": "segment-0002",
+      "section": "Catastrophe does not carry its own interpretation",
+      "notes": false,
+      "text": "Catastrophe does not carry its own interpretation"
+    },
+    {
+      "id": "segment-0003",
+      "section": "Catastrophe does not carry its own interpretation",
+      "notes": false,
+      "text": "A disaster and an explanation of that disaster are not the same event. Water can destroy a settlement without declaring whom a god intended to punish. A population can be displaced without its descendants agreeing about why they survived. The Catastrophe-and-Reinterpretation Model asks how material disruption, communal memory and an interpretation of divine action become joined, and how that joining can change as a tradition is inherited."
+    },
+    {
+      "id": "segment-0004",
+      "section": "Catastrophe does not carry its own interpretation",
+      "notes": false,
+      "text": "This is the connection between flood inheritance, the earlier Exodus reconstruction and the Temple-trauma hypothesis. Each investigation asks whether a received account preserves a real disruption through a transformed explanation. They need not concern the same catastrophe, the same century or the same process of transmission. What connects them is the question of how a community turns survival into an account of the world."
+    },
+    {
+      "id": "segment-0005",
+      "section": "The ending can reveal what changed",
+      "notes": false,
+      "text": "The ending can reveal what changed"
+    },
+    {
+      "id": "segment-0006",
+      "section": "The ending can reveal what changed",
+      "notes": false,
+      "text": "The Sumerian Flood Story, in Oxford's composite translation, preserves a warning, a boat, a flood, sacrifice and the grant of godlike life to Zi-ud-sura. It also marks large gaps. Genesis 9:8-17 presents the post-flood covenant as extending to descendants and living creatures. The comparison is therefore not exhausted by observing that both stories contain a boat. Their respective endings organize the meaning of survival differently."
+    },
+    {
+      "id": "segment-0007",
+      "section": "The ending can reveal what changed",
+      "notes": false,
+      "text": "I read this as a productive test of inheritance through transformation. Preserving a narrative structure while changing the distribution of divine agency or the scope of the resulting promise can be more informative than either verbatim repetition or complete difference. The historical inquiry must then ask how the relevant forms could have traveled. A correspondence supplies a relationship to explain; it does not, by itself, identify the route."
+    },
+    {
+      "id": "segment-0008",
+      "section": "The ending can reveal what changed",
+      "notes": false,
+      "text": "The shared-inheritance investigation begins here. A community can understand an inherited story as its own without having originated every element. A receiving tradition can also make a genuine theological contribution by changing what the inheritance demands of people. Cultural ancestry and theological agreement are different questions."
+    },
+    {
+      "id": "segment-0009",
+      "section": "Exodus as a sequence rather than one convenient date",
+      "notes": false,
+      "text": "Exodus as a sequence rather than one convenient date"
+    },
+    {
+      "id": "segment-0010",
+      "section": "Exodus as a sequence rather than one convenient date",
+      "notes": false,
+      "text": "The earlier Exodus proposal becomes more substantial when its political and environmental sequence is stated before a preferred year is selected. The model connects population status, a change in power, coercion, crisis and departure. Its proposed Hyksos and Egyptian relationships have to explain that sequence together. Matching one name or one dramatic death is not the full case."
+    },
+    {
+      "id": "segment-0011",
+      "section": "Exodus as a sequence rather than one convenient date",
+      "notes": false,
+      "text": "The Exodus-to-Temple comparison supplies the chronological questions. The number assigned to an interval, the event chosen as its endpoint and the convention for counting it each contribute to the result. They cannot be borrowed from different candidate histories and then presented as one reconstruction. An exact calculation can expose a disagreement; it cannot decide which historical anchor is correct."
+    },
+    {
+      "id": "segment-0012",
+      "section": "Exodus as a sequence rather than one convenient date",
+      "notes": false,
+      "text": "The distinction between famine and its narration as a firstborn catastrophe belongs to the same method. Natural scarcity and a story selecting victims by birth order are different propositions. The catastrophe hypothesis does not need to assume that a famine biologically recognizes firstborn status. It needs to examine whether a later narrative could have organized a remembered crisis in that way. That is a historical explanation requiring evidence, not an automatic consequence of a physiological claim."
+    },
+    {
+      "id": "segment-0013",
+      "section": "Loss can change the question being asked of God",
+      "notes": false,
+      "text": "Loss can change the question being asked of God"
+    },
+    {
+      "id": "segment-0014",
+      "section": "Loss can change the question being asked of God",
+      "notes": false,
+      "text": "The Temple-trauma hypothesis extends the inquiry from the narration of an event to the reconstruction of authority. When a sacred center fails, the question is not only what happened to the building. A community may have to reconsider the relationship among promise, protection, legitimacy and the world it actually encounters."
+    },
+    {
+      "id": "segment-0015",
+      "section": "Loss can change the question being asked of God",
+      "notes": false,
+      "text": "Several responses are possible within the model. An institution can be rebuilt, a rival center recognized, a remaining community treated as the bearer of holiness, or the relation between worldly power and divine goodness reconsidered. These are alternative and potentially overlapping responses. They should not be forced into a universal psychological sequence in which every disappointed believer must become a Gnostic."
+    },
+    {
+      "id": "segment-0016",
+      "section": "Loss can change the question being asked of God",
+      "notes": false,
+      "text": "Sanctuary, community and body follows those alternatives. The earlier Teacher and Egyptian-carrier reconstruction remains one proposed historical route through them. Comparing responses to institutional loss does not substitute for that stronger reconstruction; it identifies what the proposed carriers would have to preserve or transform."
+    },
+    {
+      "id": "segment-0017",
+      "section": "Memory, warning and future responsibility",
+      "notes": false,
+      "text": "Memory, warning and future responsibility"
+    },
+    {
+      "id": "segment-0018",
+      "section": "Memory, warning and future responsibility",
+      "notes": false,
+      "text": "A remembered catastrophe concerns an account of what has happened. A warning concerns what may happen. They can interact when an inherited narrative becomes a model for recognizing danger, but the evidence supporting one is not automatically evidence for the other. Apocalypse and repair connects that distinction to present responsibility."
+    },
+    {
+      "id": "segment-0019",
+      "section": "Memory, warning and future responsibility",
+      "notes": false,
+      "text": "The forecast record must preserve the original statement, its timing, its conditions and later observations separately. A response that helps avert a danger need not make a warning meaningless. Nor can every outcome be redescribed as a successful prediction. The declared claim determines what would count as support, failure or a changed condition."
+    },
+    {
+      "id": "segment-0020",
+      "section": "Memory, warning and future responsibility",
+      "notes": false,
+      "text": "The museum should make this layered inquiry inspectable. A visitor can begin with the object or passage, examine its proposed relationship to an event, and then compare the explanations attached to it. The resulting exhibit does not have to choose between an unquestionable official history and an alternative protected from correction. It can show why an alternative was proposed, what it explains, and which unresolved connection now deserves the closest research."
+    },
+    {
+      "id": "segment-0021",
+      "section": "Follow the connected argument",
+      "notes": false,
+      "text": "Follow the connected argument"
+    },
+    {
+      "id": "segment-0022",
+      "section": "Follow the connected argument",
+      "notes": false,
+      "text": "Open the chapter argument map, diagrams and research agenda. The full investigations linked above remain the primary treatments of each proposal."
+    },
+    {
+      "id": "segment-0023",
+      "section": "Source and edition note",
+      "notes": false,
+      "text": "Source and edition note"
+    },
+    {
+      "id": "segment-0024",
+      "section": "Source and edition note",
+      "notes": false,
+      "text": "Authorial working bridge edition. This new connecting essay develops the linked investigations; it is not a newly recovered conversation or an approved manuscript chapter. Exact textual readings and remaining research limits appear in the source notes."
+    },
+    {
+      "id": "segment-0025",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "External sources and access notes"
+    },
+    {
+      "id": "segment-0026",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "The Sumerian Flood Story, segments C-E"
+    },
+    {
+      "id": "segment-0027",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Oxford ETCSL composite translation; warning, flood, sacrifice and the ending were read with the marked lacunae. No new cuneiform collation or physical-event identification. Consulted 2026-09-07."
+    },
+    {
+      "id": "segment-0028",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Genesis 9:8-17"
+    },
+    {
+      "id": "segment-0029",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Read the post-flood covenant in the World English Bible. This is a textual comparison of the promise and its scope, not a geological date. Consulted 2026-09-07."
+    }
+  ]
+}
