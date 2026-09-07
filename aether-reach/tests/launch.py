@@ -13,7 +13,9 @@ with sync_playwright() as p:
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1280,'height':800},service_workers='block');host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());page=c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.set_default_timeout(60000)
  try:
   page.goto(BASE+'/index.html',wait_until='domcontentloaded')
-  check(page.locator('.project').count()==4,'The public project page includes the new game alongside all three previous projects')
+  # New independent projects may be added; the original four routes must remain.
+  # Their exact unique links are checked below, not inferred from a card count.
+  check(page.locator('.project').count()>=4,'The public project page retains capacity for all four original entries')
   for route in ['aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']:
    check(page.locator('a.primary-link[href="./'+route+'"]').count()==1,'Homepage retains playable route: '+route)
   page.screenshot(path=str(OUT/'public-projects.png'),full_page=True)
