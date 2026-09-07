@@ -1,1 +1,13 @@
-{"version":"0.1.0","build":"rainward-first-survival-20260906","stage":"mechanics prototype","xr":false,"multiplayer":false}
+{
+  "version": "0.2.0",
+  "build": "rainward-stealth-camera-20260907",
+  "stage": "mechanics prototype",
+  "xr": false,
+  "multiplayer": false,
+  "changes": [
+    "Bounded last-clue searches and attack windups",
+    "Near-plane-aware camera and shoulder switching",
+    "Stealth/noise readout, search callouts and directional sight warnings",
+    "Smoothed movement, stamina recovery, safe crawlspace dodge and swept vaults"
+  ]
+}

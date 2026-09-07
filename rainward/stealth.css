@@ -1,0 +1,7 @@
+/* v0.2: separate visual/noise feedback and sightline-only directional warnings. */
+#stealth-readout{position:absolute;left:33px;bottom:100px;width:240px;font:8px/1.6 Arial;letter-spacing:1px;color:#dce1c9}
+#stealth-readout>div:first-child{display:flex;justify-content:space-between;gap:9px}.noise-track{height:3px;margin:6px 0;background:#c0cda430}.noise-track i{display:block;height:100%;background:#d1b075;transform-origin:left}
+#stealth-advice{letter-spacing:0;font-size:10px;line-height:1.5;color:#c4d0b7;margin:6px 0;min-height:30px}
+#threat-ring{position:absolute;left:50%;top:50%;width:0;height:0}.threat-arc{position:absolute;width:22px;height:5px;margin-left:-11px;border-radius:8px;background:#e8d7a0;box-shadow:0 1px 5px #0b231c;transform-origin:11px 2px}.threat-arc.danger{background:#f19e7e}
+#guard-callout{position:absolute;bottom:95px;left:50%;transform:translateX(-50%);max-width:38%;font:10px/1.6 Arial;color:#eee1be;background:#17342bd9;border-left:2px solid #d7b478;padding:9px 12px;text-align:center}
+@media(max-width:700px){#stealth-readout{left:17px;top:132px;bottom:auto;width:190px;font-size:7px}#stealth-advice{font-size:9px;max-width:185px}#guard-callout{bottom:309px;width:85%;max-width:85%;font-size:9px}.touch-actions{grid-template-columns:repeat(2,60px);gap:6px}.touch-actions button{min-height:37px}}
