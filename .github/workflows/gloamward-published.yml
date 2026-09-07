@@ -14,6 +14,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify public files match the merged build
         run: python scripts/check-gloamward.py --published
+      - name: Install verification browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play from the actual public games card
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+        run: timeout 240 python -u gloamward/tests/browser_smoke.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

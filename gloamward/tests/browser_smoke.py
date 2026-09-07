@@ -1,11 +1,11 @@
-"""Native HTTP A-Frame smoke checks; NOT a physical Quest acceptance test.
-No fake headset session or controller pose is presented as headset evidence.
+"""Native HTTP A-Frame checks from the public project card.
+This is not a physical Quest acceptance test.
 """
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 out=Path(os.getenv('TEST_OUTPUT','test-output'));out.mkdir(exist_ok=True)
-checks=[];errors=[]
+checks=[];errors=[];base=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/')
 with sync_playwright() as p:
     args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
     if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
@@ -13,10 +13,15 @@ with sync_playwright() as p:
     page.on('pageerror',lambda e:errors.append(str(e)))
     def check(v,name):
         assert v,name
-        checks.append(name)
+        checks.append(name);print('PASS:',name,flush=True)
     try:
-        page.goto(os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/gloamward/',wait_until='domcontentloaded')
+        page.goto(base+'/',wait_until='domcontentloaded')
+        routes=['gloamward/index.html','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']
+        check(all(page.locator('a.primary-link[href="./'+r+'"]').count()==1 for r in routes),'The public list contains one playable link for the new game and all five existing projects')
+        page.screenshot(path=str(out/'public-games-list.png'),full_page=True)
+        page.locator('a.primary-link[href="./gloamward/index.html"]').click()
         page.wait_for_function('!!window.GloamwardDemo',timeout=90000)
+        check('/gloamward/' in page.url,'The new public card opens the separate game folder')
         check(page.evaluate('AFRAME.version.startsWith("1.8.")'),'Pinned A-Frame renderer loaded')
         check(page.locator('#menu').is_visible(),'Title and controls are readable')
         page.screenshot(path=str(out/'title.png'))
@@ -36,7 +41,7 @@ with sync_playwright() as p:
         check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'Narrow viewport does not overflow horizontally')
         page.screenshot(path=str(out/'mobile-menu.png'))
         check(not errors,'No uncaught browser errors in the exercised flow')
-        (out/'browser-report.json').write_text(json.dumps({'checks':checks,'passed':len(checks),'errors':errors,'scope':'Native HTTP smoke test; no full mission or physical Quest pass.'},indent=2))
+        (out/'browser-report.json').write_text(json.dumps({'checks':checks,'passed':len(checks),'errors':errors,'base':base,'scope':'Native HTTP A-Frame from the public project card. No physical Quest pass.'},indent=2))
     except Exception as e:
         (out/'browser-failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':page.evaluate('window.GloamwardDemo?.snapshot()'),'observation':page.evaluate('window.GloamwardDemo?.observe()')},indent=2))
         try:page.screenshot(path=str(out/'failure.png'))
