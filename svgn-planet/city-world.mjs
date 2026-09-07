@@ -35,7 +35,7 @@ export const CITY={
   place('front-right','Checkpoint fence',170,29.5,{w:3,d:.3,h:2.5}),
   place('cover-1','Loading cases',180,21.5,{w:1.5,d:3,h:1.25}),
   place('cover-2','Cable drums',184,28.5,{w:1.5,d:2,h:1.2}),
-  place('vault','Low garden barrier',159,15.2,{w:1.7,d:.45,h:.55})
+  place('vault','Low garden barrier',161,15.2,{w:1.7,d:.45,h:.55})
  ],
  gate:place('gate-barrier','Vehicle checkpoint',170,25.5,{w:5,d:.32,h:2.5}),
  devices:[

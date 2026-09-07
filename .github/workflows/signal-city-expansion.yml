@@ -1,8 +1,5 @@
 name: Signal City open-world mission
 on:
-  push:
-    branches: [feat/signal-city-waterfront-20260907]
-    paths: ['svgn-planet/**','.github/workflows/signal-city-expansion.yml']
   pull_request:
     paths: ['svgn-planet/**','.github/workflows/signal-city-expansion.yml']
   workflow_dispatch:
