@@ -1,7 +1,7 @@
 from pathlib import Path
 import hashlib,json,re,subprocess
 root=Path(__file__).resolve().parents[1];app=root/'vesperfall';vendor=json.loads((app/'vendor/manifest.json').read_text());assert hashlib.sha256((app/'vendor/aframe-1.8.0.min.js').read_bytes()).hexdigest()==vendor['sha256']
-files=['index.html','projects.css','gloamward/index.html']+['vesperfall/'+n for n in ['index.html','style.css','unchained.css','chronicle.js','arsenal.js','architecture.js','gothic-art.js','core.js','input.js','art.js','app.js','cover.svg','roadmap.html','roadmap.json','README.md','release.json','vendor/aframe-1.8.0.min.js','vendor/AFRAME-LICENSE.txt','vendor/manifest.json']]
+files=['index.html','projects.css','gloamward/index.html']+['vesperfall/'+n for n in ['index.html','style.css','unchained.css','hunt.css','hunt.js','encounters.js','chronicle.js','arsenal.js','architecture.js','gothic-art.js','core.js','input.js','art.js','app.js','cover.svg','roadmap.html','roadmap.json','README.md','release.json','vendor/aframe-1.8.0.min.js','vendor/AFRAME-LICENSE.txt','vendor/manifest.json']]
 for name in files:
  p=root/name;assert p.is_file(),name
  if name.startswith('vesperfall/') and '/vendor/' not in name:

@@ -23,6 +23,22 @@
   world.solids.push(box([4.65,3.2,-5.5],[4.88,4.08,-3.57],'balustrade'));
   // Top landing is reached from the stair at x=-4.65; no auto-lift or teleport.
   world.architecture={version:1,galleryHeight:GALLERY_Y,blinkPad:[0,GALLERY_Y,-4.85],stairEntry:[-4.65,0,4.75],viewpoint:[3.9,GALLERY_Y,-4.85],floorIDs:floors.map(f=>f.id)};
+  world.architecture.lofts=[];
+  // Use the two nearest non-start, non-beacon rooms. Each has two independently
+  // reachable stairs, a broad cross-gallery, and one height-gated supply cache.
+  const selected=world.rooms.filter(r=>r.id!==1&&r.id!==world.exit).sort((a,b)=>(Math.abs(a.x)+Math.abs(a.z))-(Math.abs(b.x)+Math.abs(b.z))).slice(0,2);
+  for(const [i,r] of selected.entries()){
+   r.family=i?'Reliquary Walk':'Archive Loft';const x=r.x,z=r.z;
+   // Relocate no hidden blockers: remove only low cover intersecting the stairs.
+   world.solids=world.solids.filter(b=>!(b.type==='cover'&&Math.abs((b.min[0]+b.max[0])/2-x)<6&&Math.abs((b.min[2]+b.max[2])/2-z)<5));
+   for(const side of[-1,1])world.floors.push({id:'loft-'+r.id+'-'+side,type:'stair',x:x+side*4.85,z:z+.2,w:1.6,d:8.8,y:0,slopeZ:-GALLERY_Y/8.8,anchorZ:z+4.6});
+   world.floors.push({id:'loft-'+r.id+'-walk',type:'gallery',x,z:z-4.85,w:8.1,d:2.1,y:GALLERY_Y});
+   world.solids.push(box([x-4.05,2.96,z-5.9],[x+4.05,3.19,z-3.8],'gallery-deck'));
+   for(const side of[-1,1]){const xx=x+side*4.85;world.floors.push({id:'loft-'+r.id+'-landing-'+side,type:'gallery',x:xx,z:z-5.05,w:1.6,d:1.7,y:GALLERY_Y});world.solids.push(box([xx-.8,2.96,z-5.9],[xx+.8,3.19,z-4.2],'gallery-deck'));}
+   for(const side of[-1,1]){const a=side<0?-3.95:1.25,b=side<0?-1.25:3.95;world.solids.push(box([x+a,3.2,z-3.8],[x+b,4.05,z-3.62],'balustrade'));}
+   world.pickups.push({id:'loft-'+r.id,p:[x+2.7,3.5,z-4.85],kind:i?'frost':'cinder',taken:false});
+   world.architecture.lofts.push({room:r.id,label:r.family,entry:[x-4.85,0,z+4.75],otherEntry:[x+4.85,0,z+4.75],pad:[x,3.2,z-4.85]});
+  }
   return world;
  }
  function elevation(f,p){return f.y+(f.slopeZ||0)*(p[2]-(f.anchorZ??f.z))+(f.slopeX||0)*(p[0]-(f.anchorX??f.x));}

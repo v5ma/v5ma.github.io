@@ -25,7 +25,7 @@ with sync_playwright() as pw:
  page=ctx.new_page();page.set_default_timeout(150000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto(BASE+'/vesperfall/',wait_until='domcontentloaded');page.wait_for_function('window.Vesperfall?.component.arsenal&&Vesperfall.component.rendererReady&&AFRAME.scenes[0].renderer.info.render.calls>0')
-  check('v0.3.0' in page.locator('#version').inner_text(),'The actual browser renderer loads the Arrows Unchained upgrade')
+  check('v'+page.evaluate('VesperCore.VERSION') in page.locator('#version').inner_text(),'The actual browser renderer loads the Arrows Unchained upgrade')
   page.locator('#practice').click();page.wait_for_function('Vesperfall.component.running&&!Vesperfall.component.paused');focus(page)
   before_profile=page.evaluate('VesperInput.cleanProfile(Vesperfall.component.profile)')
   if MODE=='desktop':
