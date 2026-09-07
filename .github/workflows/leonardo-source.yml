@@ -1,0 +1,33 @@
+name: Inspect Leonardo game source
+on:
+  push:
+    branches: [feat/leonardos-guild-20260906]
+    paths: ['.github/workflows/leonardo-source.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            leonardos-guild
+            .github/workflows
+          sparse-checkout-cone-mode: true
+      - name: Record source and repository instructions
+        run: |
+          mkdir -p review
+          git rev-parse HEAD > review/source-sha.txt
+          git ls-tree -r --name-only HEAD | grep -i 'agents.md$' > review/agent-paths.txt || true
+          while IFS= read -r path; do
+            case "$path" in AGENTS.md|agents.md|leonardos-guild/*|.github/*) echo "--- $path"; git show "HEAD:$path";; esac
+          done < review/agent-paths.txt > review/agent-instructions.txt
+          tar -czf review/source.tgz leonardos-guild index.html projects.css .github/workflows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: leonardo-original-source
+          path: review/
+          retention-days: 7
