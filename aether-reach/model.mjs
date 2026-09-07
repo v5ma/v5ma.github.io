@@ -2,9 +2,10 @@
  * Rendering is a client of this state. No account, analytics or remote service. */
 import {WEAPONS,DEPOTS,CACHES,ENEMIES,cleanKit,weaponStats,upgradePrice} from './arsenal.mjs';
 export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
+import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.4.0';
+export const VERSION='0.4.1';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -60,6 +61,7 @@ export const BUILDINGS=[
 // Relays and notes sit outside solid buildings, intentionally reachable on foot.
 RELAYS[0].x=64;RELAYS[1].x=-28;
 export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b.h+4,z1:b.z-b.d/2,z2:b.z+b.d/2}));
+const tactical=createTactics({solids:SOLIDS,clearLine,rayBox,raySphere,forward,emit,defeated,hurt});
 export function pointOnRail(r,s){
  s=clamp(s,0,r.length);let lo=0,hi=r.cum.length-1;while(lo+1<hi){const m=(lo+hi)>>1;if(r.cum[m]<s)lo=m;else hi=m;}
  const a=r.pts[lo],b=r.pts[hi],len=r.cum[hi]-r.cum[lo],t=(s-r.cum[lo])/(len||1);return {x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,z:a.z+(b.z-a.z)*t,tangent:{x:(b.x-a.x)/len,y:(b.y-a.y)/len,z:(b.z-a.z)/len}};
@@ -79,10 +81,10 @@ export function clearLine(a,b){const l=distance(a,b);if(l<1e-8)return !SOLIDS.so
 const pointFor=id=>{const d=DISTRICTS.find(p=>p.id===id)||DISTRICTS[0];return {x:d.x,y:d.y+.02,z:d.z+5};};
 export function createState(save=null){
  const safe=readSave(save),kit=cleanKit(safe.kit),p=pointFor(safe.checkpoint);
- return {p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};
+ const state={p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};tactical.init(state,safe.tactics);return state;
 }
-export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit)};}
-export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit)});}
+export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit),tactics:cleanTactics(s.tactics)};}
+export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit),tactics:saveTactics(s)});}
 export function emit(s,type,data={}){s.events.push({type,...data});if(s.events.length>80)s.events.shift();}
 export function depotNear(s){return !s.p.rail&&s.p.grounded?DEPOTS.find(d=>distance(s.p,d)<4.5):null;}
 export function equip(s,id){if(!s.kit.owns.includes(id)||!Object.hasOwn(WEAPONS,id))return false;s.kit.mags[s.p.weapon]=s.p.ammo;s.p.weapon=id;s.kit.selected=id;s.p.ammo=s.kit.mags[id];s.p.reload=0;s.p.scoped=false;emit(s,'equip',{id});return true;}
@@ -102,13 +104,14 @@ export function buy(s,id,kind='weapon'){if(s.won)return false;
 }
 export function loot(s){const boxes=CACHES.map(c=>({...c,kind:'cache'}));for(const id of s.kit.dead){const b=ENEMIES.find(e=>e.id===id);const floor=groundAt(b.x,b.z);boxes.push({id:'drop-'+id,x:b.x,y:Number.isFinite(floor.y)?floor.y:b.y-2,z:b.z,credits:b.reward,kind:'drop',label:b.kind+' salvage'});}return boxes.filter(b=>!s.kit.taken.includes(b.id));}
 export function collect(s,id){const b=loot(s).find(b=>b.id===id);if(!b||distance(s.p,b)>3||!clearLine({x:s.p.x,y:s.p.y+1,z:s.p.z},{...b,y:b.y+1}))return false;s.kit.taken.push(b.id);s.kit.credits=Math.min(99999,s.kit.credits+b.credits);s.p.health=Math.min(100,s.p.health+15);for(const id of s.kit.owns)if(id!=='arc')s.kit.reserve[id]=Math.min(WEAPONS[id].reserve*3,s.kit.reserve[id]+WEAPONS[id].mag*2);if(b.weapon&&!s.kit.owns.includes(b.weapon)){const id=b.weapon;s.kit.owns.push(id);s.kit.mags[id]=WEAPONS[id].mag;s.kit.reserve[id]=WEAPONS[id].reserve;s.kit.tune[id]={damage:0,reload:0};}emit(s,'loot',{id:b.id,credits:b.credits,weapon:b.weapon});emit(s,'save');return true;}
-function defeated(s,b){if(s.kit.dead.includes(b.id))return;s.kit.dead.push(b.id);s.stats.defeated++;emit(s,'defeat',{id:b.id});emit(s,'save');}
+function defeated(s,b){if(tactical.killed(s,b))return;if(s.kit.dead.includes(b.id))return;s.kit.dead.push(b.id);s.stats.defeated++;emit(s,'defeat',{id:b.id});emit(s,'save');}
 // Aim-weighted reachable candidates, not a global nearest-rail teleport.
 export function railTarget(s){const p=s.p,head={x:p.x,y:p.y+1.6,z:p.z},view=forward(p.yaw,p.pitch);let best=null;
  for(const r of RAILS){if(r.id===p.rail?.id||!p.grounded&&s.time-p.airSince<.85&&r.id===p.lastRail)continue;const target=nearestRailOn(head,r,p.grounded?4.3:6.3);if(!target)continue;const v={x:target.point.x-head.x,y:target.point.y-head.y,z:target.point.z-head.z},dot=(v.x*view.x+v.y*view.y+v.z*view.z)/(target.distance||1);if(!p.grounded&&dot<-.12)continue;if(!clearLine(head,target.point))continue;const dest={x:target.point.x,y:target.point.y-2.65,z:target.point.z};if(occupied(dest.x,dest.y,dest.z)||!clearLine({...head,y:head.y-.6},{...dest,y:dest.y+1}))continue;const score=target.distance-(p.grounded?0:dot*2.8);if(!best||score<best.score)best={...target,score,dot};}return best;
 }
 function nearestRailOn(p,r,max){let best=null;for(let i=1;i<r.pts.length;i++){const a=r.pts[i-1],b=r.pts[i],dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len2=dx*dx+dy*dy+dz*dz,t=clamp(((p.x-a.x)*dx+(p.y-a.y)*dy+(p.z-a.z)*dz)/len2,0,1),q={x:a.x+dx*t,y:a.y+dy*t,z:a.z+dz*t},d=distance(p,q);if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};}return best;}
 export function nearby(s){const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
+ const field=tactical.nearby(s);if(field)return field;
  const relay=RELAYS.find(r=>!s.relays.has(r.id)&&distance(p,r)<3.8);if(relay)return {type:'relay',id:relay.id,label:'E · Restore '+relay.title.replace('The ','')};
  const record=RECORDS.find(r=>!s.records.has(r.id)&&distance(p,r)<3.2);if(record)return {type:'record',id:record.id,label:'E · Read '+record.title};
  if(distance(p,EXTRACTION)<3.8)return {type:'exit',label:s.relays.size===3?'E · Broadcast the signal':'Restore three relays, then return here'};
@@ -119,6 +122,7 @@ export function interact(s){const n=nearby(s),p=s.p;
  // 0.30 simulation seconds. Never auto-grab without input or through a wall.
  if(!p.rail&&!p.grounded&&p.lastRail&&(!n||n.type==='hook')&&(!n||p.hookCooldown>0)){p.hookRequest=.30;return true;}
  if(!n)return false;
+ if(n.type.startsWith('field-'))return tactical.handle(s,n.type);
  if(n.type==='loot')return collect(s,n.id);
  if(n.type==='relay'){s.kit.credits=Math.min(99999,s.kit.credits+90);s.relays.add(n.id);s.checkpoint=n.id;p.health=100;p.shield=60+s.kit.shield*20;p.ammo=weaponStats(s).mag;emit(s,'relay',{id:n.id});emit(s,'save');return true;}
  if(n.type==='record'){s.records.add(n.id);emit(s,'record',{id:n.id});emit(s,'save');return true;}
@@ -141,12 +145,12 @@ export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.re
   const v={x:d.x+across.x*dx+up.x*dy,y:d.y+up.y*dy,z:d.z+across.z*dx+up.z*dy},len=Math.hypot(v.x,v.y,v.z);for(const k of['x','y','z'])v[k]/=len;
   let limit=w.range,hit=null,critical=false;for(const b of SOLIDS){const t=rayBox(o,v,b,limit);if(t!==null)limit=t;}
   for(const bot of s.drones){if(bot.hp<=0)continue;const t=raySphere(o,v,bot,bot.kind==='heavy'?1.5:1.15);if(t!==null&&t<limit){limit=t;hit=bot;critical=raySphere(o,v,{x:bot.x,y:bot.y+.55,z:bot.z},.31)!==null;}}
-  if(hit){const falloff=w.id==='scatter'?Math.max(.25,1-limit/40):1,damage=w.damage*falloff*(critical?1.6:1);hit.hp-=damage;hit.stun=Math.max(hit.stun,w.id==='sniper'?.5:.16);s.stats.hits++;if(critical)s.stats.critical++;if(hit.hp<=0)defeated(s,hit);else emit(s,'hit',{id:hit.id,damage,critical});}
+  if(hit){const falloff=w.id==='scatter'?Math.max(.25,1-limit/40):1,damage=w.damage*falloff*(critical?1.6:1)*tactical.multiplier(s,hit);tactical.onHit(s,hit);hit.hp-=damage;hit.stun=Math.max(hit.stun,w.id==='sniper'?.5:.16);s.stats.hits++;if(critical)s.stats.critical++;if(hit.hp<=0)defeated(s,hit);else emit(s,'hit',{id:hit.id,damage,critical});}
   emit(s,'shot',{weapon:w.id,o,end:{x:o.x+v.x*limit,y:o.y+v.y*limit,z:o.z+v.z*limit},hit:!!hit,critical});
  }return true;
 }
 export function pulse(s){const p=s.p;if(p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){defeated(s,b);}}emit(s,'pulse',{hits:n});return true;}
-export function rescue(s,death=false){const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];emit(s,'rescue',{death});}
+export function rescue(s,death=false){tactical.end(s,death?'failed':'retreated');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];emit(s,'rescue',{death});}
 function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;let left=amount;if(p.shield>0){const k=Math.min(left,p.shield);p.shield-=k;left-=k;}p.health-=left;s.damagedAt=s.time;emit(s,'damage');if(p.health<=0)rescue(s,true);}
 function occupied(x,y,z){return SOLIDS.some(b=>x+.38>b.x1&&x-.38<b.x2&&y+1.8>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2);}
 export function step(s,input,dt){
@@ -173,7 +177,7 @@ export function step(s,input,dt){
   else if(p.hookCooldown<=0&&nearby(s)?.type==='hook'){p.hookRequest=0;interact(s);}
  }
  for(let i=0;i<s.drones.length;i++){
-  const b=s.drones[i];if(b.hp<=0||b.kind==='target')continue;b.stun=Math.max(0,b.stun-dt);if(b.stun>0){b.telegraph=0;continue;}
+  const b=s.drones[i];if(b.hp<=0||b.kind==='target'||b.tactical)continue;b.stun=Math.max(0,b.stun-dt);if(b.stun>0){b.telegraph=0;continue;}
   const t=s.time*(b.kind==='scout'?.75:.3)+i,amplitude=b.kind==='heavy'?.7:b.kind==='sentry'?0:2.4;
   b.x=b.origin.x+Math.sin(t)*amplitude;b.z=b.origin.z+Math.cos(t*.8)*amplitude;b.y=b.origin.y+Math.sin(t*2)*(b.kind==='heavy'?.07:.45);b.attack-=dt;
   const range=b.kind==='sentry'?52:30,seen=distance(p,b)<range&&clearLine(b,{x:p.x,y:p.y+1.3,z:p.z});b.telegraph=seen&&b.attack<.8?Math.max(0,1-b.attack/.8):0;
@@ -183,6 +187,7 @@ export function step(s,input,dt){
   }
  }
  for(let i=s.bullets.length-1;i>=0;i--){const b=s.bullets[i];b.life-=dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;if(distance(b,{x:p.x,y:p.y+1,z:p.z})<.85){hurt(s,(b.damage||15)*(input.explorer?.53:1));b.life=0;}if(b.life<=0||SOLIDS.some(q=>b.x>q.x1&&b.x<q.x2&&b.y>q.y1&&b.y<q.y2&&b.z>q.z1&&b.z<q.z2))s.bullets.splice(i,1);}
+ tactical.step(s,input,dt);
 }
 export function jump(s){if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
 
@@ -191,3 +196,14 @@ export function roomMove(s,dx,dz){if(!Number.isFinite(dx)||!Number.isFinite(dz)|
 
 export function foldGlide(s,reason='manual'){if(!s.p.gliding)return false;s.p.gliding=false;emit(s,'glide-fold',{reason});return true;}
 export function toggleGlide(s){const p=s.p;if(s.won)return false;if(p.gliding)return foldGlide(s);const floor=groundAt(p.x,p.z,p.y);if(p.grounded||p.rail||p.glideCharge<8||occupied(p.x,p.y,p.z)||(Number.isFinite(floor.y)&&p.y-floor.y<1.2))return false;p.gliding=true;s.stats.glides++;emit(s,'glide-open');return true;}
+
+// Public actions: all UI adapters call these guarded model operations.
+export const fieldChoose=(s,id)=>tactical.choose(s,id);
+export const fieldModule=(s,id)=>tactical.module(s,id);
+export const fieldCast=(s,aim=null)=>s.tactics.power==='pulse'?pulse(s):tactical.cast(s,aim);
+export const fieldScan=(s,aim=null)=>tactical.scan(s,aim);
+export const fieldRotate=(s,i)=>tactical.turn(s,i);
+export const fieldHack=s=>tactical.hack(s);
+export const fieldStart=s=>tactical.start(s);
+export const fieldUnlocked=(s,id)=>tactical.unlocked(s.tactics,id);
+export const fieldTarget=(s,aim=null)=>tactical.target(s,aim,45);

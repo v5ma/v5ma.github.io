@@ -1,5 +1,5 @@
 /* Deterministic device-to-action normalization. No DOM, timers or game state. */
-export const BUTTONS=Object.freeze({jump:0,back:1,reload:2,interact:3,pulse:4,reverse:5,fire:7,aim:6,next:12,previous:13,shop:15,map:8,pause:9,boost:10});
+export const BUTTONS=Object.freeze({jump:0,back:1,reload:2,interact:3,pulse:4,reverse:5,fire:7,aim:6,next:12,previous:13,shop:15,field:14,map:8,pause:9,boost:10});
 const finite=n=>Number.isFinite(n)?n:0;
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function stick(x,y,dead=.18){x=finite(x);y=finite(y);const len=Math.hypot(x,y);if(len<=dead)return [0,0];const scale=(Math.min(1,len)-dead)/(1-dead)/len;return [x*scale,y*scale];}

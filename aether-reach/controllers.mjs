@@ -46,11 +46,11 @@ export function installControllers(api){
   if(data.edges.pause){api.pause();frameInput=null;return;}if(data.edges.map){api.map();frameInput=null;return;}
   if(!xr.active&&data.edges.back)api.action('glide');
   if(!xr.active){api.state().p.yaw+=data.look[0]*dt*2.2*(api.settings.controllerSpeed||1)*(api.state().p.scoped?.35:1);api.state().p.pitch=clamp(api.state().p.pitch-data.look[1]*dt*1.6*(api.settings.controllerSpeed||1)*(api.settings.invertY?-1:1)*(api.state().p.scoped?.35:1),-1.35,1.35);}
-  for(const name of ['jump','interact','reload','pulse','reverse','next','previous','shop'])if(data.edges[name])api.action(name);
+  for(const name of ['jump','interact','reload','pulse','reverse','next','previous','shop','field'])if(data.edges[name])api.action(name);
   frameInput=data;if(data.move.some(x=>x)||data.look?.some(x=>x)||Object.values(data.held).some(Boolean))lastActivity=now;
  }
  function merge(base){if(!frameInput)return xr.active?{...base,railCamera:false}:base;const [x,y]=frameInput.move;return {...base,moveX:clamp((base.right?1:0)-(base.left?1:0)+x,-1,1),moveZ:clamp((base.forward?1:0)-(base.back?1:0)-y,-1,1),back:base.back||y>.25,boost:base.boost||frameInput.held.boost,railCamera:xr.active?false:base.railCamera};}
  window.addEventListener('blur',reset);document.addEventListener('visibilitychange',reset);
  const link=document.createElement('a');link.href='./roadmap.html';link.textContent='Development roadmap ↗';link.className='roadmap-link';document.querySelector('.start-actions').append(link);
- return {frame,merge,xr,reset,get aimHeld(){return !!frameInput?.held.aim},get firing(){return !!frameInput?.held.fire&&(!xr.active||!!xr.aim)},get aim(){return xr.active?xr.aim:null},snapshot:()=>({gamepad:!!lastDevice,xr:xr.active,lastActivity,move:frameInput?.move||[0,0],xrPhysicalQA:false})};
+ return {frame,merge,xr,reset,get aimHeld(){return !!frameInput?.held.aim},get firing(){return !!frameInput?.held.fire&&(!xr.active||!!xr.aim)},get powerAim(){return xr.active?xr.powerAim:null},get aim(){return xr.active?xr.aim:null},snapshot:()=>({gamepad:!!lastDevice,xr:xr.active,lastActivity,move:frameInput?.move||[0,0],xrPhysicalQA:false})};
 }
