@@ -16,8 +16,8 @@ def aim(page,target,speed=36):
  page.evaluate('''async ({target,speed})=>{const c=Vesperfall.component;const p=c.head.object3D.getWorldPosition(new AFRAME.THREE.Vector3()),dx=target[0]-p.x,dz=target[2]-p.z,d=Math.hypot(dx,dz),dy=target[1]-p.y,v2=speed*speed,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2);const yaw=Math.atan2(-dx,-dz),pitch=disc>0?Math.atan((v2-Math.sqrt(disc))/(9.8*d)):Math.atan2(dy,d);const held=new Set();function key(k,on){if(held.has(k)===on)return;document.querySelector('a-scene').canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code:k,key:k,bubbles:true,cancelable:true}));if(on)held.add(k);else held.delete(k);}await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw)),b=pitch-c.pitch;key('ArrowLeft',a>.018);key('ArrowRight',a<-.018);key('ArrowUp',b>.013);key('ArrowDown',b<-.013);if(Math.abs(a)<.035&&Math.abs(b)<.035||performance.now()-start>20000){for(const k of [...held])key(k,false);clearInterval(timer);resolve();}},4);});}''',{'target':target,'speed':speed})
 def shot(page):
  page.keyboard.down('Space');page.wait_for_function('Vesperfall.component.charge>.98',timeout=20000);page.keyboard.up('Space');page.wait_for_timeout(500)
-def walk(page,x,z,close=.7):
- page.evaluate('''async ({x,z,close})=>{const c=Vesperfall.component,held=new Set();function key(k,on){if(held.has(k)===on)return;document.querySelector('a-scene').canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code:k,key:k,bubbles:true,cancelable:true}));if(on)held.add(k);else held.delete(k);}await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const p=Vesperfall.state.p,dx=x-p[0],dz=z-p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw));key('ArrowLeft',a>.04);key('ArrowRight',a<-.04);key('KeyW',Math.abs(a)<.2&&d>close);if(d<close||Vesperfall.state.phase!=='playing'||performance.now()-start>160000){for(const k of [...held])key(k,false);clearInterval(timer);if(d<close)resolve();else reject(Error('Walking stopped at '+p+' instead of '+x+','+z));}},4);});}''',{'x':x,'z':z,'close':close})
+def walk(page,x,z,close=.7,combat=False):
+ page.evaluate('''async ({x,z,close,combat})=>{const c=Vesperfall.component,held=new Set();function key(k,on){if(held.has(k)===on)return;document.querySelector('a-scene').canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code:k,key:k,bubbles:true,cancelable:true}));if(on)held.add(k);else held.delete(k);}await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const p=Vesperfall.state.p,dx=x-p[0],dz=z-p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw));key('ArrowLeft',a>.04);key('ArrowRight',a<-.04);key('KeyW',Math.abs(a)<.2&&d>close);const enemy= combat && Vesperfall.state.world.enemies.some(e=>!e.dead&&VesperCore.len(VesperCore.sub(e.p,Vesperfall.state.head))<15&&!VesperCore.segmentBlocked(Vesperfall.state.world,Vesperfall.state.head,VesperCore.add(e.p,[0,.5,0])));if(d<close||enemy||Vesperfall.state.phase!=='playing'||performance.now()-start>160000){for(const k of [...held])key(k,false);clearInterval(timer);if(d<close||enemy)resolve();else reject(Error('Walking stopped at '+p+' instead of '+x+','+z));}},4);});}''',{'x':x,'z':z,'close':close,'combat':combat})
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
@@ -46,7 +46,9 @@ with sync_playwright() as p:
    page.set_viewport_size({'width':390,'height':844});page.keyboard.press('KeyP');page.screenshot(path=str(OUT/'mobile-menu.png'));check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'Narrow-screen settings fit the viewport')
   elif MODE=='expedition':
    page.locator('#start').click();page.locator('a-scene canvas').focus()
-   # Visit nodes along the generated graph; stop to shoot actual visible enemies.
+   # Visit real graph doorways, but stop as soon as a patrol is visible.
+   # The old driver walked into each room centre while absorbing multiple bolts.
+   # Difficulty and actor/enemy state are unchanged; only ordinary input choices differ.
    deadline=time.monotonic()+680
    while not snap(page)['portalReady'] and time.monotonic()<deadline:
     s=snap(page);assert s['phase']=='playing','The ordinary-input run died';enemies=[e for e in s['enemies'] if not e['dead']]
@@ -55,7 +57,7 @@ with sync_playwright() as p:
      enemy=next(e for e in enemies if e['id']==visible[0]);aim(page,[enemy['p'][0],enemy['p'][1]+.45,enemy['p'][2]]);shot(page)
     else:
      travel=page.evaluate('(()=>{const s=Vesperfall.state,w=s.world,here=VesperCore.roomAt(w,s.p),e=w.enemies.filter(e=>!e.dead).sort((a,b)=>VesperCore.route(w,here,a.room).length-VesperCore.route(w,here,b.room).length)[0],path=VesperCore.route(w,here,e.room),target=w.rooms[path[1]??e.room];return {x:target.x,z:target.z}})()')
-     walk(page,travel['x'],travel['z'],1)
+     walk(page,travel['x'],travel['z'],1,combat=True)
    check(snap(page)['portalReady'],'Real projectile combat defeats all five wardens and opens the beacon')
    check(snap(page)['hits']>=5 and snap(page)['shots']>=5,'Mission progress comes from swept arrow hits, not injected enemy health or kills')
    s=snap(page);page.screenshot(path=str(OUT/'beacon-open.png'))
