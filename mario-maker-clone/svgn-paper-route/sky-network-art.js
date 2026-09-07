@@ -6,7 +6,7 @@ globalThis.SkyNetworkArt=(()=>{
   const road=new kit.Batch(),edges=new kit.Batch(),markers=new kit.Batch();let count=0;
   const quad=(b,a,c,d,e,color)=>{b.tri(a,c,d,color);b.tri(a,d,e,color);};
   for(const {pts,sky:tag}of paths){
-   const f=sectionFrames(pts),v=(a,n,z)=>[a.x+a.nx*n*a.miter,a.y+a.ny*n*a.miter,z],gold=tag.authoredFlow&&tag.id.startsWith('b')?'#85d5c7':tag.tier===3?'#eac576':'#d9ba63';
+   const f=sectionFrames(pts),v=(a,n,z)=>[a.x+a.nx*n*a.miter,a.y+a.ny*n*a.miter,z],gold=tag.skyPost?'#d9a4ee':tag.authoredFlow&&tag.id.startsWith('b')?'#85d5c7':tag.tier===3?'#eac576':'#d9ba63';
    for(let i=1;i<f.length;i++){
     const a=f[i-1],b=f[i];
     quad(road,v(a,0,-32),v(a,0,32),v(b,0,32),v(b,0,-32),'#315c61');
