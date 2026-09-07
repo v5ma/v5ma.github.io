@@ -1,10 +1,7 @@
 name: Verify Vesperfall archery and XR
 on:
-  push:
-    branches: [feat/vesperfall-quest-archery]
-    paths: ['vesperfall/**','gloamward/index.html','scripts/*vesperfall*','.github/workflows/vesperfall.yml','index.html']
   pull_request:
-    paths: ['vesperfall/**','gloamward/index.html','scripts/*vesperfall*','.github/workflows/vesperfall.yml','index.html']
+    paths: ['vesperfall/**','gloamward/index.html','scripts/check-vesperfall.py','.github/workflows/vesperfall.yml','index.html']
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,37 +15,39 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, expedition, xr, gallery]
+        suite: [launch, ui, expedition, xr, gallery]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check deterministic core and public-only source
+      - name: Check committed models and public-only source
         run: |
+          set -o pipefail
           node --check vesperfall/app.js
-          node --check vesperfall/art.js
+          node --check vesperfall/gothic-art.js
           node --test vesperfall/tests/*.test.cjs | tee core-tests.tap
           python scripts/check-vesperfall.py
       - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Exercise actual A-Frame runtime
+      - name: Exercise actual HTTP A-Frame runtime
         env:
           VESPER_SUITE: ${{ matrix.suite }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/vesper-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 1020 python -u vesperfall/tests/browser.py
-      - if: always()
+          if [ "$VESPER_SUITE" = launch ]; then timeout 240 python -u vesperfall/tests/launch.py; else timeout 1020 python -u vesperfall/tests/browser.py; fi
+      - name: Record tested source without rewriting it
+        if: always()
         run: |
           mkdir -p test-output
           cp core-tests.tap test-output/ || true
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          tar -czf test-output/source.tgz vesperfall gloamward index.html scripts/check-vesperfall.py
+          tar -czf test-output/source.tgz vesperfall gloamward index.html projects.css scripts/check-vesperfall.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

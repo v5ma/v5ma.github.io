@@ -1,0 +1,52 @@
+name: SVGN Little Planet acceptance
+on:
+  push:
+    branches: [feat/svgn-little-planet]
+    paths: ['svgn-planet/**','.github/workflows/svgn-planet.yml','index.html']
+  pull_request:
+    paths: ['svgn-planet/**','.github/workflows/svgn-planet.yml','index.html']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: svgn-planet-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  planet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Model and real geometry tests
+        run: |
+          node --test svgn-planet/tests/*.test.mjs
+          for f in svgn-planet/*.mjs; do node --check "$f"; done
+          test ! -e svgn-planet/.incoming
+          test ! -e .github/workflows/svgn-planet-materialize.yml
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Explore the actual sphere using ordinary controls
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/planet-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u svgn-planet/tests/browser.py
+      - name: Preserve source identity and real captures
+        if: always()
+        run: |
+          mkdir -p planet-evidence
+          cp -r svgn-planet/test-output planet-evidence/ 2>/dev/null || true
+          git rev-parse HEAD > planet-evidence/source-sha.txt
+          git diff --stat > planet-evidence/uncommitted-diff.txt
+          tar --exclude='test-output' --exclude='__pycache__' -czf planet-evidence/source.tgz svgn-planet index.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: svgn-planet-verification
+          path: planet-evidence/
+          retention-days: 14

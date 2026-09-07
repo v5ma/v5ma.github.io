@@ -18,9 +18,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, mission, controller]
+        suite: [ui, mission, controller, improvements]
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -39,7 +41,11 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          if [ "$RAINWARD_SUITE" = controller ]; then FILE=controller.py; else FILE=browser.py; fi
+          case "$RAINWARD_SUITE" in
+            controller) FILE=controller.py ;;
+            improvements) FILE=improvements.py ;;
+            *) FILE=browser.py ;;
+          esac
           timeout 1000 python -u "rainward/tests/$FILE"
       - name: Preserve exact source and test evidence
         if: always()

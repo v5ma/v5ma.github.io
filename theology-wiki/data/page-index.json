@@ -13354,7 +13354,7 @@
       "image-collection",
       "computational-divine-immanence"
     ],
-    "backlinkCount": 25,
+    "backlinkCount": 26,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
@@ -13372,6 +13372,7 @@
       "computational-divine-immanence",
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
+      "james-and-contested-succession",
       "thomas-sayings-and-transmission",
       "source-atlas",
       "museum-trails",
@@ -14004,7 +14005,7 @@
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "agi-religious-framework"
     ],
-    "backlinkCount": 13,
+    "backlinkCount": 14,
     "backlinks": [
       "home",
       "christ-as-an-inner-model",
@@ -14015,6 +14016,7 @@
       "scripture-power-and-repair",
       "god-and-our-models-of-god",
       "melchizedek-priesthood-and-transmission",
+      "thomas-sayings-and-transmission",
       "topic-jesus",
       "reading-paths",
       "book-contents",
@@ -14719,7 +14721,10 @@
       "jt-josephus-james",
       "galatians1",
       "galatians-2-depth",
-      "thomas-patterson-meyer"
+      "thomas-patterson-meyer",
+      "paul-acts9",
+      "paul-2cor11",
+      "paul-1cor15"
     ],
     "aliases": [
       "Jamesian Succession Model",
@@ -14778,17 +14783,18 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 13,
+    "readMinutes": 21,
     "related": [
       "onias-egypt-and-priestly-continuity",
       "evidence-workbench",
       "thomas-sayings-and-transmission",
       "source-atlas",
       "daniel-jubilee-and-the-teachers-time",
+      "christ-as-an-inner-model",
+      "ai-re-dates-dead-sea-scrolls",
       "james-the-just-analysis",
       "paul-vs-james-movement",
-      "jesus-and-biblical-figures",
-      "ai-re-dates-dead-sea-scrolls"
+      "jesus-and-biblical-figures"
     ],
     "backlinkCount": 8,
     "backlinks": [
@@ -14813,7 +14819,10 @@
       "jt-gathercole",
       "jt-ut-james",
       "jt-owens",
-      "galatians1"
+      "galatians1",
+      "galatians-2-depth",
+      "paul-1cor11",
+      "paul-1cor15"
     ],
     "aliases": [
       "Thomas Transmission-and-Formation Model",
@@ -14857,7 +14866,7 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 14,
+    "readMinutes": 18,
     "related": [
       "tor-thomas-and-gnostic-transmission",
       "evidence-workbench",
@@ -14865,6 +14874,7 @@
       "christ-as-an-inner-model",
       "onias-egypt-and-priestly-continuity",
       "manuscripts-movements-and-survival",
+      "divine-will-and-self-authorizing-power",
       "intellectual-debts",
       "source-atlas",
       "jesus-and-biblical-figures",

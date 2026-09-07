@@ -1,0 +1,46 @@
+name: Verify published Leonardo's Guild
+on:
+  push:
+    branches: [master]
+    paths: ['leonardos-guild/**','.github/workflows/leonardos-guild-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match browser files and homepage card to the merged source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request,subprocess
+          source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          paths=[Path('index.html'),Path('projects.css')]+[p for p in Path('leonardos-guild').rglob('*') if p.is_file() and 'tests' not in p.parts and p.suffix in ('.html','.mjs','.js','.css','.webp','.json','.md')]
+          expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+          found={}
+          for attempt in range(60):
+            for name,digest in expected.items():
+              if found.get(name,{}).get('match'):continue
+              try:
+                req=urllib.request.Request('https://v5ma.github.io/'+name+'?leonardo='+source[:12],headers={'Cache-Control':'no-cache','User-Agent':'SVGN-publication-check'})
+                with urllib.request.urlopen(req,timeout=12) as response:
+                  raw=response.read();actual=hashlib.sha256(raw).hexdigest()
+                  found[name]={'status':response.status,'sha256':actual,'expected':digest,'match':actual==digest}
+              except Exception as e:found[name]={'match':False,'error':str(e)}
+            if len(found)==len(expected) and all(v['match'] for v in found.values()):break
+            time.sleep(5)
+          result={'source':source,'game':'https://v5ma.github.io/leonardos-guild/','homepage':'https://v5ma.github.io/','files':found,'all_match':len(found)==len(expected) and all(v['match'] for v in found.values())}
+          Path('leonardo-publication.json').write_text(json.dumps(result,indent=2))
+          assert result['all_match'],result
+          assert './leonardos-guild/index.html' in Path('index.html').read_text()
+          print('Published game and homepage match',source)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: leonardos-guild-publication
+          path: leonardo-publication.json
+          retention-days: 14
