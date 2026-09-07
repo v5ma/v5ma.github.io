@@ -285,6 +285,9 @@ function patchReaders(){
  }
  const bumpRoadmap=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:roadmap-tools\.js|roadmap\.css|atlas-core\.js|atlas-tools\.js|atlas\.css|listening-core\.js|products-tools\.js|products\.css|evidence-core\.js|evidence-tools\.js|evidence\.css|pauline-core\.js|pauline-tools\.js|pauline\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  html=bumpRoadmap(html);original=bumpRoadmap(original);
+ // A UI-only improvement must not require changing historical or planning editions.
+ const pinCompanion=text=>text.replace(/(\.\/assets\/(js|css)\/(pauline-core\.js|pauline-tools\.js|pauline\.css)\?v=)[^"'\s]+/g,(_,prefix,type,name)=>prefix+E.version+'&amp;asset='+sha(fs.readFileSync(path.join(ROOT,'assets',type,name))).slice(0,16));
+ html=pinCompanion(html);original=pinCompanion(original);
  write('san-reader.html',bump(html));
  write('index.html',bump(original));
 }
