@@ -102,10 +102,12 @@ with sync_playwright() as p:
    check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The HUD and menus do not overflow the phone-width viewport')
    page.screenshot(path=str(OUT/'touch-layout.png'))
    page.locator('#pause-button').click();page.locator('#return-title').click();check(page.locator('#menu').is_visible(),'The player can return to the title without leaving running input')
+   # Destroy the first software-WebGL context before testing storage denial.
+   before_denial=snap(page);page.goto('about:blank')
    denied=ctx.new_page();denied.on('pageerror',lambda e:errors.append(str(e)));denied.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Denied','SecurityError')}})")
    denied.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');denied.wait_for_function('!!window.AetherReach');denied.locator('#start').click();denied.wait_for_function('AetherReach.snapshot().playing');check(True,'A denied storage API does not prevent a new expedition');denied.close()
   check(not errors,'No uncaught JavaScript errors in the verified scenario')
-  (OUT/(MODE+'-report.json')).write_text(json.dumps({'passed':len(checks),'checks':checks,'snapshot':snap(page),'errors':errors,'scope':'Actual HTTP Chromium software-WebGL, pointer/buttons and normal keyboard input. Read-only snapshots for assertions. No physical-device performance certification.'},indent=2))
+  (OUT/(MODE+'-report.json')).write_text(json.dumps({'passed':len(checks),'checks':checks,'snapshot':before_denial if MODE=='interface' else snap(page),'errors':errors,'scope':'Actual HTTP Chromium software-WebGL, pointer/buttons and normal keyboard input. Read-only snapshots for assertions. No physical-device performance certification.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None

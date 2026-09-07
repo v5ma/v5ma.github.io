@@ -24,7 +24,7 @@ export function xrControls(sampler,sources){
  let left=null,right=null;const present=new Set();
  for(const s of sources||[]){if(!['left','right'].includes(s.handedness)||s.gamepad?.mapping!=='xr-standard')continue;present.add(s.handedness);const p=sampler.read(s.gamepad,s.handedness,true);if(s.handedness==='left')left=p;else right=p;}
  for(const hand of ['left','right'])if(!present.has(hand))sampler.previous.delete(hand);
- return {move:left?.move||[0,0],turn:right?.move?.[0]||0,menuAxis:left?.move||[0,0],held:{aim:right?.held.boost||false,fire:right?.held.fire||false,boost:left?.held.boost||false},edges:{jump:right?.edges.jump||false,reload:right?.edges.reload||false,interact:right?.edges.interact||false,pulse:left?.edges.fire||false,reverse:left?.edges.interact||false,map:left?.edges.jump||false,pause:left?.edges.reload||false,confirm:right?.edges.fire||false,back:right?.edges.reload||false}};
+ return {move:left?.move||[0,0],turn:right?.move?.[0]||0,menuAxis:left?.move||[0,0],held:{jump:right?.held.jump||false,reverse:left?.held.interact||false,aim:right?.held.boost||false,fire:right?.held.fire||false,boost:left?.held.boost||false},edges:{jump:right?.edges.jump||false,reload:right?.edges.reload||false,interact:right?.edges.interact||false,pulse:left?.edges.fire||false,reverse:left?.edges.interact||false,map:left?.edges.jump||false,pause:left?.edges.reload||false,confirm:right?.edges.fire||false,back:right?.edges.reload||false}};
 }
 export class SnapTurn{
  constructor(){this.latched=false;}
