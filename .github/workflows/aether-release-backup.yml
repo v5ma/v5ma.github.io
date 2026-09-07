@@ -7,8 +7,29 @@ on:
 permissions:
   contents: read
 jobs:
-  archive:
+  scope:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - id: diff
+        name: Ignore unrelated homepage-only publications
+        run: |
+          if git diff --quiet HEAD^ HEAD -- aether-reach .github/workflows/aether-release-backup.yml; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+  archive:
+    needs: scope
+    if: needs.scope.outputs.changed == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -48,6 +69,7 @@ jobs:
           ZIP=$(find /tmp/aether-release -name '*source.zip' -print -quit)
           python aether-reach/tools/backup.py --restore "$ZIP" --destination /tmp/aether-release-restore
           (cd /tmp/aether-release-restore && node --test aether-reach/tests/*.test.mjs) > /tmp/aether-release/restore-check.txt
+          python aether-reach/tools/collect_release_evidence.py
           cp aether-reach/planning/*.xlsx /tmp/aether-release/
           cp /tmp/aether-publication/aether-publication.json /tmp/aether-release/
           python - <<'PY'
@@ -71,7 +93,7 @@ jobs:
           assert m['source']==os.environ['SOURCE'],'This version already belongs to a different commit; refusing replacement.'
           PY
           else
-            printf 'Verified public Aether Reach %s. Source: %s.\n\nIncludes committed public game source, the archived v0.3 workbook, per-file checksums, a successful clean-restore model test and the public deployment receipt. No private narrative or player browser saves. The archive is scoped to this game, not a full Git mirror or an independent off-site backup. See aether-reach/BACKUPS.md.\n' "$VERSION" "$SOURCE" >/tmp/aether-release-notes.md
+            printf 'Verified public Aether Reach %s. Source: %s.\n\nIncludes committed public game source, the archived v0.3 workbook, checksums, a clean-restore model test, native flight evidence and the deployment receipt. No private narrative or player browser saves. This is a game snapshot, not a full Git mirror or independent off-site backup. See aether-reach/BACKUPS.md.\n' "$VERSION" "$SOURCE" >/tmp/aether-release-notes.md
             gh release create "$TAG" /tmp/aether-release/* --target "$SOURCE" --title "Aether Reach $VERSION — verified source backup" --notes-file /tmp/aether-release-notes.md --latest=false
           fi
           echo "$TAG" > /tmp/aether-release-tag.txt

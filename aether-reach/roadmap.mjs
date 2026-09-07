@@ -12,3 +12,4 @@ function draw(){const q=$('search').value.toLowerCase(),phase=$('phase').value;c
  }
 }
 $('search').oninput=draw;$('phase').onchange=draw;$('reset').onclick=()=>{if(confirm('Reset local roadmap edits to the committed plan?')){edits={};save();draw();}};$('export').onclick=()=>{const text=JSON.stringify({...data,localOnly:true,tasks:data.tasks.map(t=>({...t,status:current(t)}))},null,2),a=document.createElement('a'),u=URL.createObjectURL(new Blob([text],{type:'application/json'}));a.href=u;a.download='aether-reach-roadmap.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);};draw();
+for(const [href,title]of [['./planning/Aether-Reach-Development-Roadmap-v0.3.xlsx','Workbook archive · v0.3'],['https://github.com/v5ma/v5ma.github.io/releases','Versioned source backups']]){const a=document.createElement('a');a.href=href;a.textContent=title;document.querySelector('.controls').append(a);}
