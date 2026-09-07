@@ -1,0 +1,70 @@
+name: Recover checked Rainward conservatory source
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/rainward-conservatory-expedition]
+    paths: ['.rw3-transfer/**','.github/workflows/rainward-recover-v3.yml']
+permissions:
+  contents: write
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/rainward-conservatory-expedition
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate the complete public-source delta before writing any file
+        run: |
+          python - <<'PY'
+          from pathlib import Path, PurePosixPath
+          import hashlib,json,lzma,shutil
+          digest=lambda b:hashlib.sha256(b).hexdigest()
+          packed=b''.join(Path(f'.rw3-transfer/{i}.bin').read_bytes() for i in range(6))
+          assert len(packed)==23860
+          assert digest(packed)=='2c47b4e578ca542329adb7a977d660d05711b7961b2a7442d88d4f915d2159db'
+          raw=lzma.decompress(packed)
+          assert len(raw)<1000000
+          assert digest(raw)=='b91ee90309eae43268b6fb18be931f817ec3fbc90c8819e49982a3e13053c1ed'
+          payload=json.loads(raw);assert len(payload)==28
+          output={}
+          for name,record in payload.items():
+            rel=PurePosixPath(name)
+            assert rel.parts[0]=='rainward' and '..' not in rel.parts and not rel.is_absolute()
+            assert rel.suffix in {'.mjs','.md','.html','.css','.json','.py'}
+            p=Path(name)
+            assert not p.is_symlink() and all(not parent.is_symlink() for parent in p.parents)
+            if record['before'] is None:
+              assert not p.exists(),name
+              original=b''
+            else:
+              assert p.is_file(),name
+              original=p.read_bytes()
+              assert digest(original)==record['before'],name
+            text=original.decode('utf-8');edits=record['edits'];end=0
+            for a,b,new in edits:
+              assert isinstance(a,int) and isinstance(b,int) and end<=a<=b<=len(text)
+              assert isinstance(new,str)
+              end=b
+            for a,b,new in reversed(edits):text=text[:a]+new+text[b:]
+            final=text.encode('utf-8');assert digest(final)==record['after'],name
+            output[p]=final
+          for p,final in output.items():
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(final)
+          shutil.rmtree('.rw3-transfer')
+          print('Recovered 28 exact public Rainward source files; every preimage and result hash verified.')
+          PY
+      - name: Check recovered syntax and behavior before committing
+        run: |
+          for file in rainward/*.mjs; do node --check "$file"; done
+          node --test rainward/tests/*.test.mjs
+      - name: Commit readable source on the development branch without force
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A rainward .rw3-transfer
+          git commit -m 'Recover verified Conservatory source, persistent loot, monsters and native route tests'
+          git push origin HEAD:feat/rainward-conservatory-expedition

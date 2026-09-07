@@ -14,11 +14,11 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 26
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, mission, controller, improvements]
+        suite: [ui, mission, controller, improvements, expedition, visual, loot]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,6 +37,7 @@ jobs:
       - name: Play the actual HTTP game
         env:
           RAINWARD_SUITE: ${{ matrix.suite }}
+          RUINS_SUITE: ${{ matrix.suite }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
@@ -44,9 +45,11 @@ jobs:
           case "$RAINWARD_SUITE" in
             controller) FILE=controller.py ;;
             improvements) FILE=improvements.py ;;
+            expedition|visual) FILE=conservatory.py ;;
+            loot) FILE=loot.py ;;
             *) FILE=browser.py ;;
           esac
-          timeout 1000 python -u "rainward/tests/$FILE"
+          timeout 1380 python -u "rainward/tests/$FILE"
       - name: Preserve exact source and test evidence
         if: always()
         run: |
