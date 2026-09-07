@@ -83,6 +83,10 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]: A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.
 
+[[james-and-contested-succession|James and contested succession]]: A Jamesian succession model joins transmitted knowledge, kinship, priestly imagery and contested authority while preserving the stronger earlier-founder reconstruction.
+
+[[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]: Compare communal succession, interpretive transformation, Greek witnesses and material carriers without collapsing the work, its copies and its proposed inheritance.
+
 ## Explore a subject
 
 [[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
@@ -105,4 +109,4 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[computational-argument-map|The computational theology argument map]] connects the new sources and ten research questions. [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-27 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.
+29 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.

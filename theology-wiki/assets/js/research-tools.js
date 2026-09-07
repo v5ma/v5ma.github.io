@@ -89,6 +89,7 @@ async function onPage(p){
  await window.TheologyFoundation?.enhance(p,info);if(ticket!==renderTicket)return;
  await window.TheologyRoadmap?.enhance(p);if(ticket!==renderTicket)return;
  await window.TheologyAtlas?.enhance(p);if(ticket!==renderTicket)return;
+ await window.TheologyEvidence?.enhance(p);if(ticket!==renderTicket)return;
  await window.TheologyProducts?.enhance(p);if(ticket!==renderTicket)return;
  announce((p.title||p.slug)+' loaded.');
 }

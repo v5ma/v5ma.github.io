@@ -390,3 +390,63 @@ hypothesis / Authorial reconstruction. Working description of the proposed Egypt
 quoted-fragment / Mediated historical testimony. Antiquities 13.10.4 attributes a passage about Chelcias and Ananias to Strabo. The quoted testimony is read through Josephus, not counted as an independently recovered document.
 
 [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]
+
+## Eusebius: the surviving channel for several earlier accounts
+
+work / Christian historical writing. A host text preserves quotations and classifications. Earlier speakers remain separately attributed, not automatically counted as independent surviving objects.
+
+[[james-and-contested-succession|James and contested succession]]
+
+## Clement on James and transmitted knowledge, through Eusebius
+
+quoted-fragment / Mediated teaching tradition. Church History 2.1.4 quotes Hypotyposes 7. The passage supports a reported chain of transmission, not an identification of its contents with Thomas.
+
+[[james-and-contested-succession|James and contested succession]] / [[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
+
+## Hegesippus on James and succession, through Eusebius
+
+quoted-fragment / Mediated communal memory. The priestly portrait and kinship succession invite comparison. The account's adverse sect classifications and mediation remain visible.
+
+[[james-and-contested-succession|James and contested succession]]
+
+## Irenaeus on the people called Ebionites
+
+work / Polemical classification. Against Heresies 1.26.2 describes law, Creator, Matthew and opposition to Paul. This is an external report rather than a recovered group confession.
+
+[[james-and-contested-succession|James and contested succession]]
+
+## First Apocalypse of James: spiritual kinship and revelation
+
+work / James revelation literature. The opening spiritual-brotherhood comparison must not be transferred automatically to Paul's description of James.
+
+[[james-and-contested-succession|James and contested succession]] / [[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
+
+## Greek First Apocalypse of James fragments: 2017 report
+
+material-witness / Reported manuscript evidence. Smith and Landau describe a Greek witness with syllabic divisions and propose educational use. It is a witness to a James revelation, not to Thomas.
+
+[[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
+
+## Gathercole on the coverage of Greek Thomas witnesses
+
+study / Published extract. The consulted extract describes P.Oxy. 1 and P.Oxy. 655; it does not provide a complete Greek witness to all the sayings.
+
+[[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
+
+## Owens: Thomas and the hermeneutics of vision
+
+study / Earlier interpretive comparison. The 2002 essay connects James, apocalyptic inheritance and changed understanding. It is newly consulted research, not a recovered earlier personal acknowledgment.
+
+[[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
+
+## Jamesian Succession Model
+
+hypothesis / Earlier-Teacher reconstruction. Working model separating kinship, office and teaching within the proposed continuity; not an established genealogy.
+
+[[james-and-contested-succession|James and contested succession]]
+
+## Thomas Transmission-and-Formation Model
+
+hypothesis / Historical and constructive interpretation. Working model joins textual transmission and changed interpretation while retaining the stronger earlier-founder hypothesis and its additional burdens.
+
+[[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]
