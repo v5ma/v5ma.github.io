@@ -1,0 +1,87 @@
+name: Review Theology Pauline chronology
+on:
+  push:
+    branches: [feat/theology-pauline-chronology-20260906]
+    paths: ['theology-wiki/**', '.github/workflows/theology-pauline-review.yml']
+permissions:
+  contents: write
+concurrency:
+  group: theology-pauline-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize the exact reviewed source patch
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,lzma,subprocess
+          parts=sorted(Path('theology-wiki').glob('pauline-transfer-*.txt'))
+          if parts:
+            assert len(parts)==3
+            data=base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True)
+            assert hashlib.sha256(data).hexdigest()=='67df33c5dc9371f716d2edfdce2d1d304dd53effc567471a54c1f5784bcccf2d'
+            patch=lzma.decompress(data)
+            assert len(patch)==63702
+            assert hashlib.sha256(patch).hexdigest()=='696cad4acbc4f61ac0323aca07566f296fcbdf83b13b0429576fc52cef227a84'
+            path=Path('/tmp/theology-pauline.patch');path.write_bytes(patch)
+            names={line.split('\t')[-1] for line in subprocess.check_output(['git','apply','--numstat',str(path)],text=True).splitlines()}
+            assert len(names)==16
+            for name in names:
+              assert '..' not in Path(name).parts
+              assert name=='theology-wiki/README.md' or name.startswith(('theology-wiki/editorial/','theology-wiki/assets/','theology-wiki/tests/','theology-wiki/tools/'))
+            subprocess.run(['git','apply','--check',str(path)],check=True)
+            subprocess.run(['git','apply',str(path)],check=True)
+            for p in parts:p.unlink()
+            print('Verified and applied sixteen reviewed source changes.')
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and check authorial sources, chronology arithmetic and archive integrity
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output
+          node theology-wiki/tools/build.cjs | tee theology-test-output/build-report.txt
+          node --test theology-wiki/tests/research.test.cjs | tee theology-test-output/node-tests.txt
+          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources theology-wiki/products/media theology-wiki/planning
+      - name: Preserve generated edition on the isolated branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki
+          if ! git diff --cached --quiet; then git commit -m 'Deepen Pauline succession and inward formation with a source-linked chronology lab'; git push origin HEAD:${GITHUB_REF_NAME}; fi
+      - name: Install native browser and verify retained images
+        run: |
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium >/tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+          python theology-wiki/tools/media.py
+      - name: Exercise actual HTTP reader, chronology controls and existing recordings
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py
+      - name: Preserve tested source and review evidence
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD >theology-test-output/tested-commit.txt
+          git diff --stat >theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('theology-test-output/review-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in Path('theology-wiki').rglob('*'):
+              if p.is_file() and '__pycache__' not in p.parts and p.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'} and not p.name.startswith('pauline-transfer-'):z.write(p,p.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-pauline-review
+          path: theology-test-output/
+          retention-days: 14
