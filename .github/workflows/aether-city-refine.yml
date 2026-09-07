@@ -1,0 +1,29 @@
+name: Integrate reviewed city refinements
+on:
+  push:
+    branches: [feat/aether-living-city]
+    paths: [.github/workflows/aether-city-refine.yml]
+permissions:
+  contents: write
+jobs:
+  refine:
+    if: github.ref == 'refs/heads/feat/aether-living-city'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact source hashes and rerun the models
+        run: |
+          python aether-reach/tools/refine_city_source.py
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs
+      - name: Commit only the checked public module and test files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add aether-reach/app.mjs aether-reach/input-core.mjs aether-reach/city-state.mjs aether-reach/city-scene.mjs aether-reach/skiff.mjs aether-reach/scene.mjs aether-reach/tests/browser.py aether-reach/tests/city.py aether-reach/tests/public-build.test.mjs
+          git commit -m 'Refine city lighting, sky color output, held flight controls and checkpoint-safe airmail'
+          git push origin HEAD:feat/aether-living-city
