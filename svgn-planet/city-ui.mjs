@@ -1,5 +1,5 @@
 import {CITY,STORY,coordinates,cityDistrict} from './city-world.mjs';
-import {mission,selectedDevice,focus} from './city-model.mjs';
+import {mission,selectedDevice,focus,nearbyVehicle} from './city-model.mjs';
 import {distance} from './world.mjs';
 export function createCityUI({get,act,pause,resume}){
  const host=document.createElement('div');host.innerHTML=`
@@ -31,7 +31,7 @@ export function createCityUI({get,act,pause,resume}){
   $('job-current').textContent=mission(c).name+' — '+mission(c).detail;$('begin-city').textContent=c.active?'Continue assignment':'Take the assignment';$('city-distance-stats').textContent='On foot / riding: '+Math.round(c.walked)+' m · Driving: '+Math.round(c.driven)+' m'+(c.nitro?' · Nitro fitted':'');
   host.querySelectorAll('[data-buy]').forEach(b=>{b.disabled=distance(s.n,CITY.garage.n)>6||c.drone.active||(b.dataset.buy==='nitro'&&c.nitro);});
   if(c.active){$('objective-title').textContent=mission(c).name;$('objective-text').textContent=mission(c).detail;}
-  const v=c.vehicles.find(v=>v.id===c.car);if(v)$('ride-name').textContent='CAR / '+Math.ceil(v.fuel)+'% FUEL / '+Math.ceil(v.condition)+'% CONDITION';
+  $('objective').querySelector('.eyebrow').textContent=c.active?'CURRENT ASSIGNMENT':'NEXT DELIVERY';$('touch-jump').textContent=c.drone.active?'Rise ↑':c.car?'Brake':'Hop';const nearby=nearbyVehicle(s,c);if(!c.car&&!c.drone.active&&nearby)$('context').textContent='F · Enter '+nearby.name;const v=c.vehicles.find(v=>v.id===c.car);if(v)$('ride-name').textContent='CAR / '+Math.ceil(v.fuel)+'% FUEL / '+Math.ceil(v.condition)+'% CONDITION';
   if(c.drone.active)$('ride-name').textContent='REMOTE SCOUT';else if(c.crouch)$('ride-name').textContent='CROUCH / USE SOLID COVER';map($('city-mini'));
  }
  return {update,map,open:()=>$('jobs-button').click(),dialog:$('job-board')};
