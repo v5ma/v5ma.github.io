@@ -15,6 +15,8 @@ Divine sparks, inner models, archons and the work of changing a mind.
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]: An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.
 
+[[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]: Compare communal succession, interpretive transformation, Greek witnesses and material carriers without collapsing the work, its copies and its proposed inheritance.
+
 ## Browse the source discussions
 
 These 38 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.

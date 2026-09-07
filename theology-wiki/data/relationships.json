@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-priesthood-time-1",
+  "version": "2026.09.06-james-transmission-1",
   "policy": "Selected editorial relationships, not automatic proof or equivalence. All navigation links remain separately available.",
   "edges": [
     {
@@ -421,6 +421,30 @@
       "why": "Legitimacy through scripture, separate sacred centers and continued political relationships need not have a single uniform relationship.",
       "origin": "Editorial relationship",
       "from": "onias-egypt-and-priestly-continuity"
+    },
+    {
+      "from": "james-and-contested-succession",
+      "to": "thomas-sayings-and-transmission",
+      "type": "Historical mechanism",
+      "why": "Communal succession and interpretive transformation are different possible carriers of a shared inheritance."
+    },
+    {
+      "from": "onias-egypt-and-priestly-continuity",
+      "to": "james-and-contested-succession",
+      "type": "Institutional bridge",
+      "why": "The Egyptian institutional model requires an evidenced route to James, not identification by righteousness alone."
+    },
+    {
+      "from": "thomas-sayings-and-transmission",
+      "to": "christ-as-an-inner-model",
+      "type": "Constructive interpretation",
+      "why": "The interpreter-change question connects to self-formation without claiming ancient neural measurements."
+    },
+    {
+      "from": "tor-thomas-and-gnostic-transmission",
+      "to": "thomas-sayings-and-transmission",
+      "type": "Passage-level development",
+      "why": "The new comparison develops succession, witness coverage and changed understanding in distinct claims."
     },
     {
       "from": "tor-thomas-and-gnostic-transmission",
@@ -1026,6 +1050,48 @@
     },
     {
       "from": "onias-egypt-and-priestly-continuity",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "james-and-contested-succession",
+      "to": "james-the-just-analysis",
+      "type": "source",
+      "why": "The article develops an argument from James the Just Analysis. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "james-and-contested-succession",
+      "to": "paul-vs-james-movement",
+      "type": "source",
+      "why": "The article develops an argument from Paul vs James Movement. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "james-and-contested-succession",
+      "to": "jesus-and-biblical-figures",
+      "type": "source",
+      "why": "The article develops an argument from Jesus and biblical figures. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "james-and-contested-succession",
+      "to": "ai-re-dates-dead-sea-scrolls",
+      "type": "source",
+      "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "thomas-sayings-and-transmission",
+      "to": "jesus-and-biblical-figures",
+      "type": "source",
+      "why": "The article develops an argument from Jesus and biblical figures. Read the original speakers separately from the editorial prose.",
+      "origin": "Article source reference"
+    },
+    {
+      "from": "thomas-sayings-and-transmission",
       "to": "ai-re-dates-dead-sea-scrolls",
       "type": "source",
       "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",

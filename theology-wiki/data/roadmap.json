@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.09.05-atlas-1",
+  "version": "2026.09.06-james-transmission-1",
   "updated": "2026-09-06",
   "baselineCommit": "a39f1f8391580e1a743763d6f6c455e4ead3aad8",
   "policy": "This is a sequence of deliverables, not a promise of background work or a calendar estimate. Verified output means the stated deliverable has evidence, not that a theory is true or a chapter is approved. Changes to this shared baseline require a repository edit. Workbook and personal-board edits do not automatically update it.",
@@ -301,15 +301,20 @@
         "thomas"
       ],
       "pages": [
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "thomas-sayings-and-transmission",
+        "james-and-contested-succession"
       ],
       "acceptance": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.",
       "dependsOn": [
         "archive-integrity"
       ],
-      "evidence": [],
+      "evidence": [
+        "editorial/authorial-articles/thomas-sayings-and-transmission.md",
+        "editorial/transmission-evidence.json"
+      ],
       "sourceTask": "thomas-passages",
-      "nextAction": "Compare additional passages with exact textual witnesses, differences and alternative transmission paths; do not infer identity from common adjectives.",
+      "nextAction": "Collate the relevant Greek and Coptic witnesses and review the full Gathercole/James-fragment critical editions. Distinguish institutional succession from changed interpretation; retain unresolved dependence alternatives.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
@@ -404,7 +409,8 @@
       ],
       "pages": [
         "jesus-teacher-of-righteousness-hypothesis",
-        "onias-egypt-and-priestly-continuity"
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession"
       ],
       "acceptance": "Present the author's Aaronic, Zadokite, Davidic and dual-messiah questions without silently making the categories identical.",
       "dependsOn": [
@@ -414,7 +420,7 @@
         "theology-wiki/data/priestly-evidence.json"
       ],
       "sourceTask": "priesthood",
-      "nextAction": "Compare inherited descent, continuing office and scriptural authorization, including Onias's reported sons; do not turn righteousness vocabulary alone into a pedigree.",
+      "nextAction": "Trace an evidenced route from Egyptian priestly carriers to James-centered traditions. Test genealogy, office, mediated priestly imagery and adverse sect classifications separately.",
       "targetDate": null,
       "unmetDependencies": [],
       "dependencyState": "Prerequisites met",
@@ -1063,6 +1069,10 @@
     {
       "date": "2026-09-06",
       "change": "Developed the Daniel/Teacher and Onias branch investigations with explicit source relations, two museum trails and an evidence register. Preserved all task stages: these bounded comparisons do not complete the critical collation or the proposed transmission genealogy."
+    },
+    {
+      "date": "2026-09-06",
+      "change": "Developed Jamesian succession and Thomas transmission/formation studies with 18 new passage claims and a comparison workspace. Added ten museum stops. Research remains Draft or citation verification; no author approval or completed critical-edition claim."
     }
   ],
   "verificationNote": "Current outputs are verified against the recorded build, content and planning tests. Native-browser and publication evidence is attached to the release pull request; completed outputs do not signify author-approved chapters.",
@@ -1152,7 +1162,8 @@
       "purpose": "Keep individual identity, office, namesakes, community and sayings distinct.",
       "pages": [
         "jesus-teacher-of-righteousness-hypothesis",
-        "daniel-jubilee-and-the-teachers-time"
+        "daniel-jubilee-and-the-teachers-time",
+        "james-and-contested-succession"
       ],
       "status": "Draft chapter route",
       "partId": "teacher",
@@ -1164,12 +1175,15 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 2,
+      "articleCount": 3,
       "sourceSlugs": [
         "teacher-of-righteousness-vs-gnostic-jesus",
         "pilate-life-timeline",
         "daniel-and-teacher-of-righteousness",
-        "ai-re-dates-dead-sea-scrolls"
+        "ai-re-dates-dead-sea-scrolls",
+        "james-the-just-analysis",
+        "paul-vs-james-movement",
+        "jesus-and-biblical-figures"
       ],
       "authorApproved": false
     },
@@ -1181,7 +1195,9 @@
         "tor-thomas-and-gnostic-transmission",
         "melchizedek-priesthood-and-transmission",
         "manuscripts-movements-and-survival",
-        "onias-egypt-and-priestly-continuity"
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession",
+        "thomas-sayings-and-transmission"
       ],
       "status": "Draft chapter route",
       "partId": "teacher",
@@ -1196,14 +1212,16 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 4,
+      "articleCount": 6,
       "sourceSlugs": [
         "teacher-of-righteousness-vs-gnostic-jesus",
         "ai-re-dates-dead-sea-scrolls",
         "daniel-and-teacher-of-righteousness",
         "paul-vs-james-movement",
         "who-was-josepheous",
-        "jewish-apocalyptic-repair-timeline"
+        "jewish-apocalyptic-repair-timeline",
+        "james-the-just-analysis",
+        "jesus-and-biblical-figures"
       ],
       "authorApproved": false
     },
@@ -1265,7 +1283,8 @@
       "title": "Cognitive Gnosticism",
       "purpose": "Develop the relationship between understanding a teaching and embodying it in a changing mind.",
       "pages": [
-        "cognitive-gnosticism"
+        "cognitive-gnosticism",
+        "thomas-sayings-and-transmission"
       ],
       "status": "Draft chapter route",
       "partId": "inward",
@@ -1275,13 +1294,15 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 1,
+      "articleCount": 2,
       "sourceSlugs": [
         "cognitive-gnosticism-jesus-vs-gnostic-jesus",
         "publishing-cognitive-gnosticism-first",
         "antichrist-spiritual-inversion",
         "teacher-of-righteousness-vs-gnostic-jesus",
-        "faith-as-vibration-concept"
+        "faith-as-vibration-concept",
+        "jesus-and-biblical-figures",
+        "ai-re-dates-dead-sea-scrolls"
       ],
       "authorApproved": false
     },
@@ -1292,7 +1313,8 @@
       "pages": [
         "christ-as-an-inner-model",
         "divine-will-and-self-authorizing-power",
-        "inner-formation-texts-and-material-witnesses"
+        "inner-formation-texts-and-material-witnesses",
+        "thomas-sayings-and-transmission"
       ],
       "status": "Draft chapter route",
       "partId": "inward",
@@ -1304,7 +1326,7 @@
         "chapter-arc",
         "chapter-gates"
       ],
-      "articleCount": 3,
+      "articleCount": 4,
       "sourceSlugs": [
         "cognitive-gnosticism-jesus-vs-gnostic-jesus",
         "antichrist-spiritual-inversion",
@@ -1312,7 +1334,8 @@
         "samuel-vs-micah-divide",
         "resurrection-debate-in-christianity",
         "agi-religious-framework",
-        "ai-re-dates-dead-sea-scrolls"
+        "ai-re-dates-dead-sea-scrolls",
+        "jesus-and-biblical-figures"
       ],
       "authorApproved": false
     },
@@ -1531,7 +1554,7 @@
     "dependencyEdges": 44,
     "chapterRoutes": 17,
     "sourceRecords": 354,
-    "sourcesLinkedToArticles": 26,
+    "sourcesLinkedToArticles": 28,
     "sourcesWithSelectedTurns": 13
   },
   "coveragePolicy": "Coverage means recorded links and selected source-turn anchors. It does not measure how much has been read, quality, originality, completeness, or author approval. Export-start dates do not date every later turn.",

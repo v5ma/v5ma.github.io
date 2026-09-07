@@ -35,4 +35,10 @@ AI-introduced research lead. A name introduced in an AI response concerning Enoc
 
 The originating response contains reference markers that have not been reconstructed. No particular work or conclusion is attributed as verified scholarship here.
 
+## Lance S. Owens
+
+Newly consulted earlier interpretation. The 2002 essay already connects Thomas, James, apocalyptic inheritance and transformation of the interpreter.
+
+Not a recovered personal acknowledgment from older conversations; no claim that the essay establishes the proposed earlier-founder chronology or a complete transmission chain to Kabbalah.
+
 [[tor-thomas-and-gnostic-transmission|Read the Teacher and Gnostic transmission inquiry]] or [[research-board|review the citation tasks]].

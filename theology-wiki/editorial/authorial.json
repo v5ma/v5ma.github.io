@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-priesthood-time-1",
+  "version": "2026.09.06-james-transmission-1",
   "updated": "2026-09-06",
   "theoryNameStatus": "Christic Self-Formation Theory is the proposed working name, not a claim of established nomenclature or worldwide priority.",
   "articles": [
@@ -599,6 +599,74 @@
       "claimType": "Historical conjecture and passage-level source comparison",
       "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
       "art": ""
+    },
+    {
+      "slug": "james-and-contested-succession",
+      "title": "James and contested succession",
+      "summary": "A Jamesian succession model joins transmitted knowledge, kinship, priestly imagery and contested authority while preserving the stronger earlier-founder reconstruction.",
+      "sourceIds": [
+        "1461",
+        "1576",
+        "2331",
+        "2656"
+      ],
+      "externalSources": [
+        "jt-eusebius2",
+        "jt-eusebius3",
+        "jt-eusebius4",
+        "jt-irenaeus",
+        "jt-josephus-james",
+        "galatians1",
+        "galatians-2-depth",
+        "thomas-patterson-meyer"
+      ],
+      "aliases": [
+        "Jamesian Succession Model",
+        "James the Just",
+        "Hegesippus",
+        "Clement",
+        "Symeon",
+        "Ebionites",
+        "Zadokite"
+      ],
+      "category": "origins",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "claimType": "Historical conjecture and passage-level interpretation",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "art": ""
+    },
+    {
+      "slug": "thomas-sayings-and-transmission",
+      "title": "Thomas, sayings and transformed understanding",
+      "summary": "Compare communal succession, interpretive transformation, Greek witnesses and material carriers without collapsing the work, its copies and its proposed inheritance.",
+      "sourceIds": [
+        "2331",
+        "2656"
+      ],
+      "externalSources": [
+        "thomas-patterson-meyer",
+        "jt-luke11",
+        "jt-first-apocalypse",
+        "jt-gathercole",
+        "jt-ut-james",
+        "jt-owens",
+        "galatians1"
+      ],
+      "aliases": [
+        "Thomas Transmission-and-Formation Model",
+        "P.Oxy. 1",
+        "P.Oxy. 655",
+        "First Apocalypse of James",
+        "Owens",
+        "hermeneutics"
+      ],
+      "category": "gnosis",
+      "kind": "Developed article",
+      "updated": "2026-09-06",
+      "claimType": "Historical conjecture and passage-level interpretation",
+      "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
+      "art": ""
     }
   ],
   "references": [
@@ -887,6 +955,76 @@
       "title": "Erich S. Gruen, The Origins and Objectives of Onias' Temple (1997)",
       "url": "https://scriptaclassica.org/index.php/sci/article/view/4239",
       "scope": "Published abstract consulted. It challenges the conventional rival-temple account and proposes mutual support between Jerusalem and Leontopolis while noting problems in Josephus. The full article and its critical apparatus were not independently reviewed in this pass; publication is 1997, not the website upload date.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-eusebius2",
+      "title": "Eusebius, Church History 2.1 and 2.23, McGiffert translation",
+      "url": "https://www.newadvent.org/fathers/250102.htm",
+      "scope": "Consulted the English translation of 2.1.3-4 and 2.23.4-18. Clement and Hegesippus are quoted through Eusebius, not independently recovered complete works. No Greek manuscript collation; narrative details are reported claims, not all independently established events.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-eusebius3",
+      "title": "Eusebius, Church History 3.27, McGiffert translation",
+      "url": "https://www.newadvent.org/fathers/250103.htm",
+      "scope": "Consulted chapter 27 on the categories called Ebionites. An external polemical classification with internal distinctions, not an unmediated self-description or catalogue identification of an extant Hebrews gospel.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-eusebius4",
+      "title": "Eusebius, Church History 4.22, McGiffert translation",
+      "url": "https://www.newadvent.org/fathers/250104.htm",
+      "scope": "Consulted 4.22.4-7, including Hegesippus on Symeon, the disputed succession and the classification of Essenes as opponents. The reported kinship and polemical framing remain explicit; no independent reconstruction of the lost Memoirs.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-irenaeus",
+      "title": "Irenaeus, Against Heresies 1.26.2, Roberts-Rambaut translation",
+      "url": "https://www.newadvent.org/fathers/0103126.htm",
+      "scope": "Consulted the translated Ebionite description, including Matthew, opposition to Paul, law observance and Creator affirmation. This is a hostile classifier, not a surviving membership statement from all groups given the name.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-josephus-james",
+      "title": "Josephus, Antiquities 20.200, Whiston translation",
+      "url": "https://lexundria.com/j_aj/20.200/wst",
+      "scope": "Consulted the individual paragraph directly: James, the relational identification, and the Festus-Albinus interval. No new authenticity adjudication, identification of an interpolator, or independent calendar reconstruction is claimed.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-luke11",
+      "title": "Luke 11:52, World English Bible",
+      "url": "https://ebible.org/engwebp/LUK11.htm",
+      "scope": "Primary translated passage for the criticism of obstructed access to knowledge. A thematic and functional comparison with Thomas 39, not a demonstrated direction of literary dependence.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-first-apocalypse",
+      "title": "First Apocalypse of James, William R. Schoedel translation",
+      "url": "https://www.gnosis.org/naghamm/1ja.html",
+      "scope": "Consulted the opening distinction between material and spiritual brotherhood through the indexed translation. Direct page retrieval was unavailable during this intake. This is not a full-text review or a new Greek/Coptic collation.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-gathercole",
+      "title": "Simon Gathercole, A Proposed Rereading of P.Oxy. 654 line 41 (Gos. Thom. 7), 2006",
+      "url": "https://doi.org/10.1017/S0017816006001283",
+      "scope": "Consulted the Cambridge-published extract describing the partial Greek Thomas witnesses P.Oxy. 1 and P.Oxy. 655. The full article and proposed line-41 rereading were not reviewed; its witness description does not date the complete Coptic collection.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-ut-james",
+      "title": "University of Texas, Smith and Landau report Greek First Apocalypse of James fragments, 2017",
+      "url": "https://news.utexas.edu/2017/11/29/ut-austin-professors-discover-copy-of-jesus-secret-teaching/",
+      "scope": "Institutional report of the researchers' discovery, published November 29, 2017. Fifth/sixth-century dating and possible educational use are reported interpretations. The later critical edition and physical fragments were not independently inspected. The report assigns fragment and image rights to the Egypt Exploration Society.",
+      "accessed": "2026-09-06"
+    },
+    {
+      "id": "jt-owens",
+      "title": "Lance S. Owens, The Gospel of Thomas and the Hermeneutics of Vision, 2002",
+      "url": "https://www.gnosis.org/naghamm/gth_hermen.htm",
+      "scope": "Earlier interpretive essay, copyright 2002, consulted through indexed text. Credits the James/apocalyptic/transformative-reading comparison without adopting all historical assertions or claiming a demonstrated chain to Kabbalah. This is a newly consulted comparison, not a documented personal influence on the older conversations.",
       "accessed": "2026-09-06"
     }
   ]
