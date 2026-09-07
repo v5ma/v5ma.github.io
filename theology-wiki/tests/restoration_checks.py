@@ -24,8 +24,9 @@ def run_restoration_checks(page, ctx, open_page, check, OUT, BASE):
         check('Six-source comparison fits '+str(width)+'px with normal reading text',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1') and page.locator('.restoration-reading').evaluate_all('(els)=>els.length===6&&els.every(e=>parseFloat(getComputedStyle(e).fontSize)>=14)'))
         check('Every comparison card preserves its complete label at '+str(width)+'px',page.locator('.restoration-card').evaluate_all('(els)=>els.every(e=>e.scrollWidth<=e.clientWidth+1&&e.querySelector("summary").getBoundingClientRect().bottom<=e.getBoundingClientRect().bottom)'))
     page.set_viewport_size({'width':390,'height':844});page.locator('#restoration-workspace h2').evaluate('(e)=>e.scrollIntoView({block:"start"})');page.screenshot(path=str(OUT/'restoration-mobile.png'))
+    target=page.locator('#restoration-read').get_attribute('href').removeprefix('#')
     page.locator('#restoration-read').click()
-    check('Full argument shortcut moves actual keyboard focus without replacing the article heading',page.evaluate('document.activeElement.tagName==="H2"') and 'inheritance' in page.evaluate('document.activeElement.textContent').lower())
+    check('Full argument shortcut moves actual keyboard focus to its linked article heading',page.evaluate('(id)=>document.activeElement?.id===id',target))
     ready('&lens=%3Cimg%20src=x%3E')
     check('Unknown lens fails safely without HTML injection','Unknown comparison lens' in page.locator('#restoration-status').inner_text() and page.locator('#restoration-workspace img').count()==0 and page.locator('#restoration-workspace').get_attribute('data-lens')=='agency')
     # Exercise a real resolved article link, not a route stub.
