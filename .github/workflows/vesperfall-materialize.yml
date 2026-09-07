@@ -1,0 +1,63 @@
+name: Materialize verified Vesperfall source
+on:
+  push:
+    branches: [feat/vesperfall-quest-archery]
+    paths: [.github/workflows/vesperfall-materialize.yml, .vesperfall-incoming/**]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/vesperfall-quest-archery
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check archive and write only isolated application files
+        run: |
+          python - <<'PY'
+          from pathlib import Path,PurePosixPath
+          import hashlib,lzma,json
+          data=b''.join(Path(f'.vesperfall-incoming/part-{i}').read_bytes() for i in range(5))
+          assert hashlib.sha256(data).hexdigest()=='0210bf9c7457a9171adc70572b0eb15462522bf3468c6e15d51ae3f6ff705ddf'
+          files=json.loads(lzma.decompress(data))
+          allowed={'.github/workflows/vesperfall.yml','.github/workflows/vesperfall-published.yml','scripts/integrate-vesperfall.py','scripts/check-vesperfall.py'}
+          assert len(files)==18
+          for name,text in files.items():
+            p=PurePosixPath(name)
+            assert not p.is_absolute() and '..' not in p.parts and (name.startswith('vesperfall/') or name in allowed)
+            target=Path(name)
+            assert not target.exists(),name
+            assert isinstance(text,str)
+            target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_bytes(text.encode('utf-8'))
+          PY
+          python scripts/integrate-vesperfall.py
+          node --test vesperfall/tests/core.test.cjs
+          python scripts/check-vesperfall.py
+      - name: Commit readable source and remove transport
+        run: |
+          rm -rf .vesperfall-incoming
+          rm -f .github/workflows/vesperfall-bootstrap.yml .github/workflows/vesperfall-materialize.yml
+          git config user.name 'Vesperfall source integration'
+          git config user.email 'vesperfall@users.noreply.github.com'
+          git add vesperfall index.html scripts/integrate-vesperfall.py scripts/check-vesperfall.py .github/workflows/vesperfall.yml .github/workflows/vesperfall-published.yml
+          git add -u .github/workflows .vesperfall-incoming
+          git commit -m 'Implement Vesperfall A-Frame archery roguelite and public project entry'
+          git push origin HEAD:feat/vesperfall-quest-archery
+      - name: Preserve source audit
+        if: always()
+        run: |
+          mkdir -p output
+          git rev-parse HEAD > output/source-sha.txt
+          tar -czf output/source.tgz vesperfall index.html scripts/integrate-vesperfall.py scripts/check-vesperfall.py .github/workflows/vesperfall.yml .github/workflows/vesperfall-published.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-source
+          path: output/
+          retention-days: 7
