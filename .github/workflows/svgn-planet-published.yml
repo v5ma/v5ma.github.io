@@ -33,7 +33,8 @@ jobs:
             if len(results)==len(expected) and all(r['match'] for r in results.values()):break
             time.sleep(5)
           ok=len(results)==len(expected) and all(r['match'] for r in results.values())
-          Path('planet-publication.json').write_text(json.dumps({'version':'0.2.0','source':source,'files':results,'all_match':ok},indent=2))
+          version=json.loads(Path('svgn-planet/release.json').read_text())['version']
+          Path('planet-publication.json').write_text(json.dumps({'version':version,'source':source,'files':results,'all_match':ok},indent=2))
           assert ok,results
           PY
       - uses: actions/upload-artifact@v4

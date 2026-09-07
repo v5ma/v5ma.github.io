@@ -15,9 +15,9 @@ function leafMaterial(){
 // Pure bounded mesh builder for deterministic geometry tests and rendering.
 export function canopyGeometry(seed,size=1){
  const positions=[],normals=[],uv=[],colors=[],palette=['#3d793c','#568b42','#79a550','#95b655','#629341'].map(c=>new T.Color(c));
- for(let i=0;i<128;i++){
+ for(let i=0;i<512;i++){
   const a=i*2.399963,b=rand(seed*7+i+31)*2-1,r=Math.sqrt(1-b*b),radius=(.25+.75*Math.cbrt(rand(seed+i*3+89)))*1.4*size;
-  const center=new T.Vector3(Math.cos(a)*r*radius,(3.05+b*.63)*size,Math.sin(a)*r*radius),w=(.22+rand(i+seed)*.24)*size;
+  const center=new T.Vector3(Math.cos(a)*r*radius,(3.05+b*.63)*size,Math.sin(a)*r*radius),w=(.13+rand(i+seed)*.13)*size;
   const normal=new T.Vector3(Math.cos(a)*.65,.4+rand(seed+i*5),Math.sin(a)*.65).normalize();
   const u=new T.Vector3().crossVectors(normal,new T.Vector3(0,0,1)).normalize(),v=new T.Vector3().crossVectors(normal,u).normalize();
   const color=palette[i%palette.length];

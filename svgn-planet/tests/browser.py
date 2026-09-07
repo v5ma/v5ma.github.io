@@ -50,6 +50,7 @@ with sync_playwright() as p:
   im=Image.open(OUT/(MODE+'-street-start.png')).convert('RGB');pixels=list(im.crop((0,int(im.height*.15),im.width,int(im.height*.48))).getdata());blue=sum(b>r*1.2 and g>r*1.08 for r,g,b in pixels)
   check(blue>len(pixels)*.018,'The street capture has visible daylight-blue sky, not just an advertised shader')
   if not mobile:
+   page.keyboard.press('KeyP');page.locator('#vehicle-pause').select_option('bicycle');page.locator('#resume').click();page.wait_for_timeout(250);page.screenshot(path=str(OUT/'desktop-bicycle-start.png'))
    page.keyboard.press('KeyP');page.locator('#quality').select_option('low');page.locator('#resume').click()
    page.keyboard.down('KeyW');page.wait_for_function('SVGNPlanet.inspect().distance>1',timeout=30000);page.keyboard.up('KeyW');check(snap(page)['distance']>1,'The first movement press after Resume is not erased by a late dialog event')
    walk(page,street(8));page.keyboard.press('KeyQ');page.wait_for_function('SVGNPlanet.inspect().deliveries.length===1');check(True,'A paper flies to the first mailbox and completes a real delivery')
