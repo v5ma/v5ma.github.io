@@ -35,6 +35,7 @@ jobs:
     permissions:
       contents: write
       actions: read
+      pull-requests: read
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
