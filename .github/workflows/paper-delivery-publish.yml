@@ -1,0 +1,59 @@
+name: Verify Paper Delivery homepage and publication
+on:
+  pull_request:
+    branches: [master]
+    paths: ['index.html','project-shortcuts.css','tests/paper_delivery_entry_browser.py','scripts/verify-paper-publication.py','.github/workflows/paper-delivery-publish.yml']
+  push:
+    branches: [master]
+    paths: ['index.html','project-shortcuts.css','mario-maker-clone/svgn-paper-route/release.json','.github/workflows/paper-delivery-publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: paper-entry-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  entry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Record the exact source and retain the previously completed game
+        run: |
+          python scripts/check-rail-release.py
+          if [ "$(python -c 'import json; print(json.load(open("mario-maker-clone/svgn-paper-route/release.json"))["version"])')" = 0.14.0 ]; then
+            git fetch --depth=1 origin b14ade84b4adba6b14132110cff129776bb4ab2f
+            git diff --exit-code b14ade84b4adba6b14132110cff129776bb4ab2f HEAD -- mario-maker-clone/svgn-paper-route/ ':(exclude)mario-maker-clone/svgn-paper-route/rail-editor.css'
+            git diff b14ade84b4adba6b14132110cff129776bb4ab2f HEAD -- mario-maker-clone/svgn-paper-route/rail-editor.css > test-output/mobile-navigation-style.patch
+          fi
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - name: Confirm GitHub Pages serves the merged files
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master')
+        run: python scripts/verify-paper-publication.py
+      - name: Install the native verification browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Follow the homepage menu into the actual game and editor
+        env:
+          IS_PUBLIC: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master') }}
+        run: |
+          if [ "$IS_PUBLIC" = true ]; then
+            export TEST_BASE_URL=https://v5ma.github.io
+          else
+            python -m http.server 4173 --bind 127.0.0.1 >/tmp/paper-entry.log 2>&1 &
+            SERVER=$!
+            trap 'kill $SERVER' EXIT
+            export TEST_BASE_URL=http://127.0.0.1:4173
+          fi
+          ENTRY_VIEW=desktop timeout 260 python -u tests/paper_delivery_entry_browser.py
+          ENTRY_VIEW=mobile timeout 220 python -u tests/paper_delivery_entry_browser.py
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: paper-delivery-entry-${{ github.event_name }}
+          path: test-output/
+          retention-days: 14

@@ -99,7 +99,7 @@
   d.description='Ride the clocktower curl, choose the high hook or canal sprint, and re-enter from the street. The ground still finishes.';d.difficulty='LOOPING LINES / OPTIONAL SKY';return d;
  }
  const ids={STEEL:1,BRICK:2,CRATE:3,GEAR:5,SPRING:6,PLAT:7,GOAL:8,BCRATE:9,CHECK:13,START:15,BLOOP:16,SHELL:17,HOVER:18,NITRO:27,BIKEDOCK:36,SHIELD:43,STAR:44,PEG:60,MAILBOX:63,QBLOCK:84};
- const buildRoute=(i,T)=>i<4?campaign.build(i,T):build(i-4,T);
+ const buildRoute=(i,T)=>i<4?campaign.build(i,T):(root.SkyRelay?root.SkyRelay.make(i-4,T):build(i-4,T));
  SkyRoutes.build=buildRoute;root.GroundCampaign=Object.freeze({...previous,make:build,build:buildRoute});
  root.DeliveryCampaign=Object.freeze({...campaign,build:buildRoute,routes:campaign.routes.map((r,i)=>i===4?(()=>{const {ct,cells,...v}=build(0,ids);return v;})():r)});
  root.FlowRoutes=Object.freeze({path,build,previous:previous.make});
