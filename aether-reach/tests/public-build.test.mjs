@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const dir=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>fs.readFileSync(path.join(dir,p),'utf8');
-const runtime=['app.mjs','model.mjs','scene.mjs','input-core.mjs','controllers.mjs','xr-session.mjs'];
+const runtime=['app.mjs','glide.mjs','flight-ui.mjs','model.mjs','scene.mjs','input-core.mjs','controllers.mjs','xr-session.mjs'];
 test('Runtime imports stay in the public project without private/network/test loaders',()=>{
  for(const file of runtime){const s=read(file);for(const m of s.matchAll(/(?:from\s*|import\s*)['"]([^'"]+)['"]/g)){assert.ok(m[1].startsWith('./'),file+': '+m[1]);assert.ok(!m[1].includes('..'));assert.ok(!m[1].includes('tests/'));assert.ok(fs.existsSync(path.join(dir,m[1])));}assert.doesNotMatch(s,/\b(?:fetch|XMLHttpRequest|WebSocket|EventSource)\s*\(/);assert.doesNotMatch(s,/document\.cookie|\.sendBeacon\(/);}
 });
