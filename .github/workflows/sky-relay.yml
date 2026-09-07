@@ -1,5 +1,7 @@
 name: Verify the optional Cloudpost relay
 on:
+  push:
+    branches: [feat/cloudpost-relay-20260906]
   pull_request:
     branches: [master]
     paths: ['mario-maker-clone/svgn-paper-route/**','tests/sky_relay*','tests/helpers/relay-fixture.cjs','.github/workflows/sky-relay.yml']
@@ -17,6 +19,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Preserve the exact source used by this run
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/runtime.tgz mario-maker-clone/svgn-paper-route tests scripts .github/workflows
+          git rev-parse HEAD > test-output/source-commit.txt
+          find . -name AGENTS.md -not -path './.git/*' > test-output/repository-instructions.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cloudpost-runtime-source
+          path: test-output/
+          retention-days: 3
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
