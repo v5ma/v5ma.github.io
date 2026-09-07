@@ -14,6 +14,7 @@ def state(page):
  return page.evaluate('''()=>({x:player.x,y:player.y,vx:player.vx,vy:player.vy,won,tries,deliveries,steps:__ground.state.steps,paused:__delivery.paused,right:!!(keys.KeyD||keys.ArrowRight),left:!!(keys.KeyA||keys.ArrowLeft),jump:!!keys.Space,id:player.track?.sky.id,remaining:player.track?player.track.len-player.trackS:null,visits:[...__network.state.visits],events:__network.state.events,hooks:__grapple.state.hooks,history:RailGripCore.history})''')
 def capture(page,name):
  page.locator('#cv').focus();page.keyboard.press('KeyP');page.wait_for_function('__delivery.paused')
+ page.locator('#flow-study-toggle').click();before=state(page)['steps'];page.wait_for_timeout(200);check(state(page)['steps']==before,'Inspect scene reveals the real world without advancing the rider')
  page.locator('#gl').screenshot(path=str(OUT/name));page.locator('#delivery-pause [data-delivery="resume"]').click();page.wait_for_function('!__delivery.paused');page.locator('#cv').focus();page.keyboard.down('KeyD')
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])

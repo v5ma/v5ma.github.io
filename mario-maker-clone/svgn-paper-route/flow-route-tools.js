@@ -28,5 +28,18 @@
  const button=document.createElement('button');button.id='flow-previous-layout';button.textContent='Previous dense sky layout';button.title='Load the previous Sunrise Borough geometry as an editable copy.';
  document.querySelector('#route-workshop .maker-library details')?.append(button);
  button.onclick=()=>{if(RouteWorkshop.state.dirty&&!confirm('Replace this draft with the previous layout? Save or export your changes first.'))return;RouteWorkshop.open(GroundCampaign.encode(FlowRoutes.previous(0,T)));};
+ // Real pause UI: let players study a curl and its catcher without blur.
+ const pause=document.getElementById('delivery-pause'),study=document.createElement('button');
+ study.id='flow-study-toggle';study.className='delivery-btn';study.textContent='Inspect scene';study.setAttribute('aria-pressed','false');study.title='Keep the game paused and reveal the surrounding routes.';
+ pause.querySelector('.delivery-pause-card').append(study);
+ const css=document.createElement('style');css.textContent=`
+ #delivery-pause.flow-study{backdrop-filter:none!important;background:transparent!important;place-items:end center!important;padding:12px!important}
+ #delivery-pause.flow-study .delivery-pause-card{max-width:min(700px,96%);padding:10px 14px;border-radius:10px;background:#143446ed}
+ #delivery-pause.flow-study .delivery-kicker,#delivery-pause.flow-study p{display:none}
+ #delivery-pause.flow-study h2{font-size:15px;margin:0 0 8px}
+ #flow-study-toggle{margin-left:5px;margin-top:5px}
+ `;document.head.append(css);
+ study.onclick=()=>{if(!__delivery.paused)return;const on=pause.classList.toggle('flow-study');study.textContent=on?'Pause menu':'Inspect scene';study.setAttribute('aria-pressed',String(on));};
+ const inspectRender=window.render;window.render=function(){inspectRender();if(!__delivery.paused&&pause.classList.contains('flow-study')){pause.classList.remove('flow-study');study.textContent='Inspect scene';study.setAttribute('aria-pressed','false');}};
  window.__flowRoutes={active,version:3};
 })();
