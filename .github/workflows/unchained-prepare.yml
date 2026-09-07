@@ -1,0 +1,62 @@
+name: Integrate exact Vesperfall combat upgrade
+on:
+  push:
+    branches: [feat/vesperfall-arrows-unchained]
+    paths: [.unchained-edits.json, .github/workflows/unchained-prepare.yml]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/vesperfall-arrows-unchained
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and apply exact bounded source edits
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          changes=json.loads(Path('.unchained-edits.json').read_text())
+          allowed={'app.js','architecture.js','core.js','gothic-art.js','index.html','input.js','release.json','tests/architecture.test.cjs'}
+          assert set(changes)=={'vesperfall/'+n for n in allowed}
+          staged={}
+          for name,item in changes.items():
+            p=Path(name);assert not p.is_symlink()
+            raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==item['before'],name
+            text=raw.decode('utf-8');last=len(text)+1
+            for a,b,value in reversed(item['edits']):
+              assert 0<=a<=b<last and isinstance(value,str)
+              text=text[:a]+value+text[b:];last=a+1
+            output=text.encode('utf-8');assert hashlib.sha256(output).hexdigest()==item['after'],name
+            staged[name]=output
+          for name,raw in staged.items():Path(name).write_bytes(raw)
+          p=Path('vesperfall/arsenal.js');s=p.read_text();s=s.replace('function render(){\n   const s=g.game;', 'function render(){\n   const s=g.game;if(state.game!==s){state.game=s;state.lastEvent=0;state.hudAt=-1;}');p.write_text(s)
+          Path('.unchained-edits.json').unlink()
+          PY
+          node --check vesperfall/app.js
+          node --check vesperfall/arsenal.js
+          node --test vesperfall/tests/*.test.cjs
+      - name: Commit readable game source only
+        run: |
+          git config user.name 'Vesperfall combat integration'
+          git config user.email 'vesperfall@users.noreply.github.com'
+          git add vesperfall
+          git add -u .unchained-edits.json
+          git commit -m 'Add exact blink physics, shield, shard steps, crossbow, volley and permanent Chronicle'
+          git push origin HEAD:feat/vesperfall-arrows-unchained
+      - if: always()
+        run: |
+          mkdir -p output
+          git rev-parse HEAD > output/source-sha.txt
+          tar czf output/source.tgz vesperfall index.html scripts/check-vesperfall.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unchained-source
+          path: output/
+          retention-days: 7
