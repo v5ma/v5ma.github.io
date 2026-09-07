@@ -31,20 +31,16 @@ def walk(page,points):
    keys(set())
  finally:keys(set())
 def aim(page,x,y,z):
- held=set();start=time.monotonic()
- try:
-  while time.monotonic()-start<100:
-   s=snap(page)['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch'];new=set()
-   if abs(dy)>.015:new.add('ArrowRight' if dy>0 else 'ArrowLeft')
-   if abs(dp)>.015:new.add('ArrowUp' if dp>0 else 'ArrowDown')
-   for k in held-new:page.keyboard.up(k)
-   for k in new-held:page.keyboard.down(k)
-   held=new
-   if not held:return
-   page.wait_for_timeout(30)
-  raise AssertionError('Aim did not settle')
- finally:
-  for k in held:page.keyboard.up(k)
+ # Precision aiming uses normal mouse drag-look rather than holding a key
+ # whose fixed-step motion can overshoot on slow software-renderer frames.
+ start=time.monotonic();box=page.locator('#world').bounding_box()
+ while time.monotonic()-start<35:
+  state=snap(page);s=state['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch']
+  if abs(dy)<.012 and abs(dp)<.012:return
+  scale=.004*(.35 if state['scoped'] else 1)
+  dx=max(-260,min(260,dy/scale));dv=max(-180,min(180,-dp/scale));cx=box['x']+box['width']*.5;cy=box['y']+box['height']*.5
+  page.mouse.move(cx,cy);page.mouse.down();page.mouse.move(cx+dx,cy+dv,steps=2);page.mouse.up();page.wait_for_timeout(30)
+ raise AssertionError('Native mouse aim did not settle')
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
@@ -74,7 +70,7 @@ with sync_playwright() as pw:
    page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail');released=snap(page)['time'];page.wait_for_function('(t)=>AetherReach.snapshot().time>=t+.18',arg=released);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().rail?.id==="gale-loop"');check(snap(page)['stats']['transfers']==1,'A real jump and aimed catch changes onto the new rail without a scripted position assignment')
    page.screenshot(path=str(OUT/'on-gale-market-loop.png'));page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW');check(snap(page)['stats']['rescues']==0,'The transferred ride reaches its real garden endpoint without a rescue shortcut')
    walk(page,[(78,-25)]);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().owned.includes("carbine")');check(True,'The garden supply cache unlocks a weapon after actual exploration');page.screenshot(path=str(OUT/'glasshouse-diversity.png'))
-  check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))
+  check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, native mouse drag-look, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None
