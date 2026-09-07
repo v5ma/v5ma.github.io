@@ -1,3 +1,4 @@
 test-output/
+touch-output/
 __pycache__/
 *.pyc
