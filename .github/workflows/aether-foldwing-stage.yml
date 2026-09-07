@@ -1,0 +1,30 @@
+name: Integrate the checked public foldwing
+on:
+  push:
+    branches: [feat/aether-glide-and-release-backups]
+    paths: [.github/workflows/aether-foldwing-stage.yml]
+permissions:
+  contents: write
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/aether-glide-and-release-backups'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact base and destination hashes
+        run: |
+          python aether-reach/tools/integrate-foldwing.py
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs
+      - name: Save the reviewed game changes in branch history
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add aether-reach
+          git diff --cached --stat
+          git commit -m 'Implement optional carried-momentum foldwing and retain existing arsenal and inputs'
+          git push origin HEAD:feat/aether-glide-and-release-backups
