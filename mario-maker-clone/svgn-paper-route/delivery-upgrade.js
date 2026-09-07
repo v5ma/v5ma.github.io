@@ -6,7 +6,9 @@
 (() => {
   function boot(){
     if(window.__delivery||!window.DeliveryCampaign||typeof startPlay!=='function')return;
-    const C=window.DeliveryCampaign, root=document.getElementById('stagewrap');
+    // Resolve route definitions at use time so late optional modules share the
+    // same catalog as the Workshop, including retry and next-route navigation.
+    const C=new Proxy({}, {get:(_target,key)=>window.DeliveryCampaign[key]}), root=document.getElementById('stagewrap');
     const state={route:-1,code:'',paused:false,pauseAt:0,menu:true,delivered:new Set(),streak:0,lastDelivery:0,fx:[],records:C.loadRecords(localStorage),view:'3d',lastHUD:0,elapsed:0};
     const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const btn=(text,act,cls='')=>`<button type="button" class="delivery-btn ${cls}" data-delivery="${act}">${text}</button>`;

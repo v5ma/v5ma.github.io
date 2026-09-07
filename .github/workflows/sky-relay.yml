@@ -1,12 +1,13 @@
 name: Verify the optional Cloudpost relay
 on:
-  push:
-    branches: [feat/cloudpost-relay-20260906]
+  pull_request:
+    branches: [master]
+    paths: ['mario-maker-clone/svgn-paper-route/**','tests/sky_relay*','tests/helpers/relay-fixture.cjs','.github/workflows/sky-relay.yml']
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: sky-relay-${{ github.ref }}
+  group: sky-relay-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   model:
@@ -20,6 +21,7 @@ jobs:
         with:
           node-version: '22'
       - run: |
+          python scripts/check-rail-release.py
           node --check mario-maker-clone/svgn-paper-route/sky-relay.js
           node --test tests/sky_relay.test.cjs tests/flow_routes.test.cjs tests/rail_repair.test.cjs
           git diff --exit-code
@@ -50,9 +52,9 @@ jobs:
         if: always()
         run: |
           mkdir -p test-output
+          python scripts/check-rail-release.py
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          sha256sum mario-maker-clone/svgn-paper-route/sky-relay.js mario-maker-clone/svgn-paper-route/ride-lab-loader.js > test-output/new-runtime-sha256.txt
           cp /tmp/sky-relay.log test-output/http.log || true
       - uses: actions/upload-artifact@v4
         if: always()

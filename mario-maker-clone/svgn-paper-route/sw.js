@@ -8,7 +8,7 @@
    persistent bug in this project. Offline still works: the cache is the
    fallback, not the default.
    ========================================================================= */
-const CACHE = 'svgn-paper-route-flow-routes-1788735601';
+const CACHE = 'svgn-paper-route-cloudpost-relay-20260906';
 
 /* only genuinely static things get served from cache first */
 const STATIC = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-180.png'];

@@ -23,14 +23,14 @@ with sync_playwright() as p:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded');page.wait_for_function('window.SkyRelayReady&&window.__gpuReady===true')
   if MODE=='editor':
    page.locator('#delivery-header [data-delivery="editor"]').click();page.wait_for_function('RouteWorkshop.active');page.locator('#maker-route').select_option('4');page.locator('[data-mk="route"]').click()
-   original=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)');check(page.evaluate('RouteWorkshop.state.doc.paths.length===16&&RouteWorkshop.state.doc.extra.gp.skyRelay.version===1'),'The complete sixteen-surface world and relay metadata load in the real Workshop')
+   records=page.evaluate('localStorage.getItem("svgn_delivery_records_v1")');original=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)');check(page.evaluate('RouteWorkshop.state.doc.paths.length===16&&RouteWorkshop.state.doc.extra.gp.skyRelay.version===1'),'The complete sixteen-surface world and relay metadata load in the real Workshop')
    page.locator('#maker-outline [data-track="15"]').click();page.locator('[data-mk="focus"]').click();page.screenshot(path=str(OUT/'editable-relay.png'))
    page.locator('#maker-x').fill('5268');page.locator('#maker-x').press('Tab');check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')!=original,'The new receiving surface is editable, not locked artwork')
    page.locator('[data-mk="undo"]').click();check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==original,'Undo restores the receiving geometry and metadata exactly')
    with page.expect_download() as ev:page.locator('[data-mk="export"]').click()
    ev.value.save_as(OUT/'Sky-Relay-Sunrise.route');check((OUT/'Sky-Relay-Sunrise.route').read_text()==original,'Export preserves the complete new world')
    page.locator('[data-mk="test"]').click();page.wait_for_function('SkyRelay.active()&&mode==="play"');check(page.evaluate('tracks.some(t=>t.sky.id===SkyRelay.ID)&&__grapple.pegs().some(p=>p.id===SkyRelay.PEG.id)'),'The same physical peg and receiving track exist in 3D playtesting')
-   page.locator('#maker-return').click();check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==original,'Returning from 3D playtest preserves the entire draft')
+   page.locator('#maker-return').click();check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==original,'Returning from 3D playtest preserves the entire draft');check(page.evaluate('localStorage.getItem("svgn_delivery_records_v1")')==records,'Editor and preview do not write campaign medals')
   else:
    page.locator('[data-course="4"]').click();page.wait_for_function('SkyRelay.active()&&player.onGround');page.locator('#cv').focus()
    check(page.evaluate('tracks.length===16&&__grapple.pegs().length===2'),'One real receiving road and peg supplement the existing authored chapter')
@@ -58,8 +58,10 @@ with sync_playwright() as p:
    if MODE=='coast':check(not result['relay']['awarded'] and 'cloudpost-relay' not in result['visits'],'Ignoring the relay preserves the complete original Clocktower/Bellflower line')
    else:
     check(result['visits']==['m0','m1','m2','m3','m4','m5','cloudpost-relay','m8'],'The relay reconnects to the Festival glide as one continuous airborne route')
-    check(result['relay']['events'].count(next(e for e in result['relay']['events'] if e['type']=='relay'))==1,'The bonus is not awarded repeatedly while riding the balcony')
+    check(sum(e['type']=='relay' for e in result['relay']['events'])==1,'The bonus is not awarded repeatedly while riding the balcony')
    (OUT/'run.json').write_text(json.dumps(result,indent=2));page.screenshot(path=str(OUT/'route-finish.png'))
+   page.locator('#delivery-results [data-delivery="retry"]').click();page.wait_for_function('SkyRelay.active()&&player.onGround&&!won')
+   check(page.evaluate('tracks.length===16&&!SkyRelay.state.awarded&&!SkyRelay.state.release'),'Run it again uses the current level builder and resets the new-run award')
   check(not errors,'No uncaught errors in the tested game and editor flow')
   (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'scope':'Real HTTP/software WebGL; ordinary pointer, keyboard and file actions. No live position, velocity, score or progress assignments; not a physical-device performance certification.'},indent=2))
  except Exception as e:
