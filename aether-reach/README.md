@@ -1,35 +1,33 @@
-# Aether Reach — arsenal and sky-transfer prototype
+# Aether Reach — public mechanics demo
 
-An original first-person sky-city mechanics project for SVGN Interactive. This is a separate public application; Paper Delivery, Dino Atlas and the Theology Wiki are not replaced. No unpublished narrative is included.
+## v0.4.0: Foldwing and recoverable releases
 
-## v0.3 playable candidate
+Release an elevated rail, then **G** opens/folds a controllable glider. Movement keys/stick steer; looking alone does not. S/back brakes. Xbox **B** operates the canopy in gameplay; menus retain B/back. Touch has a Foldwing button. In experimental WebXR, another A action while airborne deploys/folds. Charge lasts approximately eight seconds, refills on ground/rail, and the canopy closes on landing, attachment, depletion or rescue. See [FOLDWING.md](./FOLDWING.md). Physical-device comfort and flight balance remain open.
 
-Four original weapons have different magazines, cadence, ray spread, damage, range, reload and meshes. The starting Arc Caster recharges; the Tempest Carbine, Horizon Longglass and Foundry Scattergun have finite reserve ammunition. The Longglass uses actual 4x angular camera magnification in its flat-screen optic. Targets are not auto-hit. Mouse/keyboard/controller aiming becomes slower while scoped; the optic has an explicit exit control.
+The public source, tests and roadmap are committed in Git. The [eight-sheet v0.3 workbook](./planning/Aether-Reach-Development-Roadmap-v0.3.xlsx) is now committed too. It is a historical snapshot; [roadmap.json](./roadmap.json) and the [Kanban](./roadmap.html) remain the current plan (36 tasks, 59 dependency links). Browser-local board edits do not write GitHub.
 
-The player starts with 400 local game credits. Outfitters sells the carbine for 180, sniper for 300 and scattergun for 220. Damage and reload upgrades apply to a particular weapon; shield upgrades expand capacity. New expedition resets the kit; Continue preserves bought equipment, credits, upgrades and once-only pickups. World caches unlock equipment; defeated patrols leave physical salvage rather than awarding their drops remotely. This is a single-player economy, not real-money purchases or a secure network wallet.
+After public-file verification, [versioned GitHub Releases](https://github.com/v5ma/v5ma.github.io/releases) store the source ZIP, workbook, checksums, clean-restore test and deployment receipt. These backups exclude private story, player browser saves and unrelated applications. They are not an independent off-site mirror. See [BACKUPS.md](./BACKUPS.md).
 
-Three active enemy patterns are differentiated: a moving scout, a slower armored burst attacker, and a long-range sentry with a visible wind-up. A passive range target near the quay teaches aiming and salvage. Bazaar stalls, greenhouse roof/flowers, a foundry gantry/chimneys and spire solar/beacon structures begin a district-art pass. The procedural art remains an evolving prototype, not the finished visual standard.
+## Retained expedition and arsenal
 
-Seven bidirectional rails retain the original five plus Gale Market Loop and Prism Detour. Looking is independent of rail travel by default; the previous automatic rail camera can still be explicitly enabled. Jump toward a highlighted eligible line and press interact to catch. The catch needs range, line of sight and a clear body approach; no input teleports the actor. A deliberate airborne catch request is buffered for up to 0.30 simulation seconds through the release cooldown, then expires. Momentum above cruise speed decays rather than being clipped instantly.
+This separate original sky-city prototype does not replace Paper Delivery, Dino Atlas, Rainward or the Theology Wiki. Restore three district relays and return to Arrival Quay to broadcast. The complete foot route and local checkpoints remain. Seven bidirectional rails include the Gale Market Loop and Prism Detour. Rail look is independent by default, and transfers need a nearby visible target and a clear body approach; no jump assigns a destination position.
 
-Restore the three original district relays and return to Arrival Quay to broadcast. The complete foot route and local checkpoints remain.
+Four original weapons retain distinct magazines, cadence, spread, damage, range, reload and meshes. Arc Caster recharges; Tempest Carbine, Horizon Longglass and Foundry Scattergun use finite reserves. Longglass uses actual 4x flat-screen angular magnification. The player starts with 400 local credits; Outfitters sells carbine for 180, sniper for 300 and scattergun for 220, plus damage/reload tiers and shield capacity. World caches and physical defeated-enemy salvage are once-only. This is not a real-money or network-authoritative economy.
 
-## Controls
+Scout, armored burst attacker, telegraphing sentry and passive range target remain. Bazaar, greenhouse, industrial and observatory scenery are original procedural prototype art, not imported franchise assets.
 
-WASD moves; mouse/arrow keys look. E interacts or hooks a nearby line, Space jumps/releases, C reverses a rail, Shift sprints/boosts, F/click fires, R reloads, Q pulses, M opens the map, Esc/P pauses. B opens a nearby Outfitters kiosk. Z toggles aim, right mouse holds aim, and 1–4 selects an owned weapon. The touch HUD has buy/aim/swap and weapon controls without covering movement/action pads.
+## Controls and device scope
 
-Xbox-standard mapping: left stick moves, right stick looks, A jumps, Y interacts, X reloads, RT fires, LT aims, LB pulses, RB reverses, View maps and Menu pauses. D-pad up/down cycles owned weapons; right opens nearby Outfitters. Menus use D-pad/left stick and A/B. Physical pairing and hardware-controller QA remain unverified.
+WASD moves; mouse/arrow keys look. E interacts/hooks, Space jumps/releases, G opens/folds the glider, C reverses, Shift sprints/boosts, F/click fires, R reloads, Q pulses, M maps, Esc/P pauses, B opens nearby Outfitters. Z/right mouse aims; 1–4 selects owned weapons.
 
-The existing experimental Quest 3 WebXR adapter is retained. It uses independent tracked head/controller poses and does not magnify the whole eye projection to fake a VR optic. The new 4x optical view is FLAT-SCREEN ONLY. A real tracked magnified scope, richer in-headset inventory/weapon presentation, physical tracking, comfort and frame-time measurements remain separate work. Climbing, gliding, embodied reload and multiplayer are not shipped by this candidate.
+Xbox standard mapping uses left/right sticks for movement/look, A jump, B glide, Y interact, X reload, RT fire, LT aim, LB pulse, RB reverse, View map and Menu pause. D-pad up/down cycles weapons; right opens Outfitters. Controller menus retain A/activate and B/back. Physical pairing and hardware QA are not certified.
 
-## Plan and review
+The experimental Quest 3 WebXR adapter keeps head orientation independent of rail steering. The sniper's 4x optic remains flat-screen only. A true tracked magnified optic, two-hand climbing, embodied reload, multiplayer, physical tracking, frame time and comfort are separate work. Read [DEVICE-SUPPORT.md](./DEVICE-SUPPORT.md) and [PUBLIC_BUILD.md](./PUBLIC_BUILD.md); unpublished narrative remains private.
 
-[roadmap.html](./roadmap.html) is a searchable, browser-local Kanban backed by [roadmap.json](./roadmap.json): 35 tasks and 58 dependency links. Browser edits/export do not modify GitHub or game saves. The workbook handoff adds weapon balance and combat-review sheets. [REVIEW-03.md](./REVIEW-03.md) records the reference study, failed native observations and resulting corrections.
+## Run, test and recover
 
-B01–B05 track this implementation; B06 requires player balance feedback. N02 requires two real clients and server-owned state, and N03 covers shared pickup/economy authority. Local drones are never presented as multiplayer. X07 tracks the true headset optic. Device and private-content boundaries are in [DEVICE-SUPPORT.md](./DEVICE-SUPPORT.md) and [PUBLIC_BUILD.md](./PUBLIC_BUILD.md).
+Serve the repository root with `python -m http.server 4173`, then open `/aether-reach/`. Three.js r177 is pinned locally. No account, runtime CDN or service key is required.
 
-## Development / release
+Run `node --test aether-reach/tests/*.test.mjs` and `python aether-reach/tests/backup_test.py`. Native client, combat, glider and device-emulated browser suites are separate from pure seeded-model tests. See [REVIEW-03.md](./REVIEW-03.md) for earlier combat/rail design corrections. Ordinary acceptance is read-only. Only the post-publication backup job receives release/tag permission; it never rewrites game source.
 
-Serve the repository root with `python -m http.server 4173` and open `/aether-reach/`. Three.js r177 is pinned locally; there is no runtime CDN, service key, account or telemetry. Run `node --test aether-reach/tests/*.test.mjs`.
-
-Native acceptance includes `tests/arsenal_browser.py` for the buy/scope/shot/drop/upgrade/save sequence and ordinary-input rail transfer. Existing expedition, interface, touch and device-emulated controller/XR suites remain regressions. Seeded model samples do not replace a native playthrough or certify enjoyment. The final workflows are read-only and public-file hashes must match before a release is called deployed.
+A source backup can be restored into an empty folder and tested before use. It contains this game and its planning files, not every project linked by the preserved root chooser. Player checkpoints and kit remain browser-local and are not captured by Git source backups.

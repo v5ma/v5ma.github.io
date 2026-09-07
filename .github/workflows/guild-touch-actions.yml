@@ -1,0 +1,42 @@
+name: Leonardo touch action lifecycle
+on:
+  pull_request:
+    paths: ['leonardos-guild/**','tests/leonardo_touch_actions.py','.github/workflows/guild-touch-actions.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Walk, jump, brace, swing and rotate using actual touch inputs
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/guild-actions-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u tests/leonardo_touch_actions.py
+      - name: Preserve exact tested files
+        if: always()
+        run: |
+          mkdir -p guild-action-evidence
+          git rev-parse HEAD > guild-action-evidence/tested-commit.txt
+          git diff --stat > guild-action-evidence/uncommitted-diff.txt
+          cp tests/leonardo_touch_actions.py guild-action-evidence/test-source.py
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          r=Path('leonardos-guild')
+          hashes={str(p.relative_to(r)):hashlib.sha256(p.read_bytes()).hexdigest() for p in r.rglob('*') if p.is_file() and p.suffix in ['.js','.mjs','.css','.json','.html']}
+          Path('guild-action-evidence/source-hashes.json').write_text(json.dumps(hashes,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-touch-actions
+          path: guild-action-evidence/
+          retention-days: 7

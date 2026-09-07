@@ -1,0 +1,53 @@
+name: Leonardo joystick and graphics
+on:
+  push:
+    branches: [feat/guild-joystick-20260907]
+    paths: ['leonardos-guild/**','.github/workflows/guild-touch.yml']
+  pull_request:
+    paths: ['leonardos-guild/**','.github/workflows/guild-touch.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact source and model
+        run: |
+          mkdir -p leonardos-guild/touch-output
+          for file in leonardos-guild/*.mjs; do node --check "$file"; done
+          npm --prefix leonardos-guild test | tee leonardos-guild/touch-output/model-tests.txt
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Real multitouch and graphics setting changes
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/guild-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/touch-browser.py
+      - name: Record exact tested source
+        if: always()
+        run: |
+          mkdir -p leonardos-guild/touch-output
+          git rev-parse HEAD > leonardos-guild/touch-output/tested-commit.txt
+          git diff --stat > leonardos-guild/touch-output/uncommitted-diff.txt
+          tar -czf leonardos-guild/touch-output/source.tgz --exclude=touch-output --exclude=test-output leonardos-guild
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          r=Path('leonardos-guild')
+          files={str(p.relative_to(r)):hashlib.sha256(p.read_bytes()).hexdigest() for p in r.rglob('*') if p.is_file() and 'touch-output' not in p.parts and 'test-output' not in p.parts}
+          (r/'touch-output/source-hashes.json').write_text(json.dumps(files,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-multitouch
+          path: leonardos-guild/touch-output/
+          retention-days: 7

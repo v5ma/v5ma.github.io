@@ -1,4 +1,6 @@
-import {HEIGHT,clamp,dist} from './world.mjs';
+import {syncDrops} from './rewards.mjs';
+import {isMonster,updateMonster} from './monsters.mjs';
+import {heightAt,waterAt,HEIGHT,clamp,dist} from './world.mjs';
 import {emit,hint,noise} from './state.mjs';
 import {move} from './motion.mjs';
 import {updatePatrol} from './awareness.mjs';
@@ -9,7 +11,7 @@ export function update(s,input,dt){if(s.status!=='playing')return;dt=clamp(dt,0,
  if(p.stamina<=5)p.exhausted=true;else if(p.stamina>=25)p.exhausted=false;
  const dx=Number.isFinite(input.x)?input.x:0,dz=Number.isFinite(input.z)?input.z:0,l=Math.hypot(dx,dz),scale=Math.min(1,l),sprint=input.sprint&&p.stance==='stand'&&!p.exhausted&&p.stamina>5&&!input.aim&&!p.craft;
  p.aim=!!input.aim;p.listen=!!input.listen;
- let speed=p.stance==='prone'?.85:p.stance==='crouch'?1.7:3.1;if(sprint)speed=5.3;if(p.aim)speed*=.6;if(p.listen)speed*=.45;if(p.craft)speed=0;
+ let speed=p.stance==='prone'?.85:p.stance==='crouch'?1.7:3.1;if(sprint)speed=5.3;if(p.aim)speed*=.6;if(p.listen)speed*=.45;if(waterAt(p))speed*=.66;if(p.craft)speed=0;
  const old={x:p.x,z:p.z};
  if(p.vault){const v=p.vault;v.t+=dt;const t=clamp(v.t/v.duration,0,1),smooth=t*t*(3-2*t),x=v.start.x+(v.end.x-v.start.x)*smooth,z=v.start.z+(v.end.z-v.start.z)*smooth;move(p,x-p.x,z-p.z,HEIGHT[p.stance],v.ignore);if(t>=1)p.vault=null;}
  else if(p.dodge>0){p.dodge-=dt;move(p,p.dodgeDir.x*6.2*dt,p.dodgeDir.z*6.2*dt,HEIGHT.crouch);}
@@ -20,5 +22,5 @@ export function update(s,input,dt){if(s.status!=='playing')return;dt=clamp(dt,0,
  p.step=(p.step||0)+dt;if(p.step>.6&&p.speed>.2){p.step=0;if(p.noise>1)noise(s,p.x,p.z,p.noise*1.65,'footstep');}
  for(const projectile of s.projectiles){projectile.life-=dt;if(projectile.life<=0&&!projectile.hit){projectile.hit=true;noise(s,projectile.to.x,projectile.to.z,18,'bottle');}}
  s.projectiles=s.projectiles.filter(p=>p.life>0);for(const cloud of s.smokes)cloud.life-=dt;s.smokes=s.smokes.filter(c=>c.life>0);
- for(const e of s.enemies){if(s.status!=='playing')break;updatePatrol(s,e,dt);}for(const sound of s.sounds)sound.life-=dt;s.sounds=s.sounds.filter(s=>s.life>0);
+ for(const e of s.enemies){if(s.status!=='playing')break;if(isMonster(e))updateMonster(s,e,dt);else updatePatrol(s,e,dt);}syncDrops(s);p.y=heightAt(p.x,p.z);for(const sound of s.sounds)sound.life-=dt;s.sounds=s.sounds.filter(s=>s.life>0);
 }

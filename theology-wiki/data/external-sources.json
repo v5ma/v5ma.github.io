@@ -761,5 +761,33 @@
     "url": "https://www.gnosis.org/naghamm/gth_hermen.htm",
     "scope": "Earlier interpretive essay, copyright 2002, consulted through indexed text. Credits the James/apocalyptic/transformative-reading comparison without adopting all historical assertions or claiming a demonstrated chain to Kabbalah. This is a newly consulted comparison, not a documented personal influence on the older conversations.",
     "accessed": "2026-09-06"
+  },
+  {
+    "id": "paul-acts9",
+    "title": "Acts 9:1-30, World English Bible",
+    "url": "https://ebible.org/engwebp/ACT09.htm",
+    "scope": "Primary chapter consulted for persecution, Damascus reception, Barnabas at Jerusalem and the escape account. Compared with Galatians without presuming that all visits and escapes are independently dated or already harmonized.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "paul-2cor11",
+    "title": "2 Corinthians 11:32-33, World English Bible",
+    "url": "https://ebible.org/engwebp/2CO11.htm",
+    "scope": "Primary chapter consulted for the Damascus escape and ethnarch under King Aretas. These verses do not state a regnal year or define the official's precise jurisdiction. No new political chronology or manuscript collation is claimed.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "paul-1cor15",
+    "title": "1 Corinthians 15:3-11, World English Bible",
+    "url": "https://ebible.org/engwebp/1CO15.htm",
+    "scope": "Primary chapter consulted for received tradition, the appearance sequence, Paul's final place and the claim that most of the five hundred recipients remain alive. The source comparison does not independently identify or date those recipients.",
+    "accessed": "2026-09-06"
+  },
+  {
+    "id": "paul-1cor11",
+    "title": "1 Corinthians 11:17-34, World English Bible",
+    "url": "https://ebible.org/engwebp/1CO11.htm",
+    "scope": "Primary chapter consulted for the meal divisions, received supper tradition and treatment of people without food. Its application to Christic self-formation is a constructive interpretation, not a claim of ancient neuroscience.",
+    "accessed": "2026-09-06"
   }
 ]

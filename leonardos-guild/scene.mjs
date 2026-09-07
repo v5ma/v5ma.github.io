@@ -1,12 +1,13 @@
 import * as T from './vendor/three.module.js';
-import {Batch,materials,trees,bicycle,label,unit,rand} from './art.mjs';
+import {Batch,materials,bicycle,label,unit,rand} from './art.mjs';
 import {house,person,car,dressGuild} from './guild-art.mjs';
+import {grove as trees,enhanceTown} from './town-visuals.mjs';
 import {heightAt,headingVector,activeTarget} from './model.mjs';
 export function createScene(canvas,w,s,quality='high'){
- const renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,quality==='low'?1:1.5));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.17;renderer.shadowMap.enabled=quality!=='low';renderer.shadowMap.type=T.PCFSoftShadowMap;
- const scene=new T.Scene();scene.background=new T.Color('#9bcceb');scene.fog=new T.Fog('#b5d9dc',140,670);
+ const renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,quality==='low'?1:1.5));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.06;renderer.shadowMap.enabled=quality!=='low';renderer.shadowMap.type=T.PCFSoftShadowMap;
+ const scene=new T.Scene();scene.background=new T.Color('#9bcceb');scene.fog=new T.Fog('#b8cebd',210,780);
  const camera=new T.PerspectiveCamera(58,1,.12,1300),m=materials(),root=new T.Group();scene.add(root);
- const ambient=new T.HemisphereLight('#d2eafb','#716b41',1.4);scene.add(ambient);const sun=new T.DirectionalLight('#ffe0ad',3.2);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-70,right:70,top:85,bottom:-55,near:1,far:450});sun.shadow.bias=-.0002;sun.shadow.normalBias=.05;scene.add(sun,sun.target);
+ const ambient=new T.HemisphereLight('#bdd3de','#85704b',.85);scene.add(ambient);const sun=new T.DirectionalLight('#ffe2af',3.1);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-45,right:45,top:54,bottom:-40,near:1,far:450});sun.shadow.bias=-.0002;sun.shadow.normalBias=.05;scene.add(sun,sun.target);
  const skyGeo=new T.SphereGeometry(1050,24,16);const sky=new T.Mesh(skyGeo,new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{top:{value:new T.Color('#178bd9')},bottom:{value:new T.Color('#dcecef')}},vertexShader:'varying vec3 v;void main(){v=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'varying vec3 v;uniform vec3 top;uniform vec3 bottom;void main(){float h=clamp(normalize(v).y*.85+.16,0.,1.);gl_FragColor=vec4(mix(bottom,top,pow(h,.55)),1.);\n#include <colorspace_fragment>\n}',toneMapped:false}));scene.add(sky);
  const groundGeo=new T.PlaneGeometry(390,540,65,90);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(0,0,180);const pos=groundGeo.attributes.position;for(let i=0;i<pos.count;i++)pos.setY(i,heightAt(pos.getX(i),pos.getZ(i))-.06);groundGeo.computeVertexNormals();const groundMat=new T.MeshStandardMaterial({color:'#879c55',roughness:1,map:m.leaf.map.clone()});groundMat.map.repeat.set(55,75);const ground=new T.Mesh(groundGeo,groundMat);ground.receiveShadow=true;root.add(ground);
  const road=new Batch(),walk=new Batch(),detail=new Batch(),green=new Batch(),rail=new Batch();
@@ -47,15 +48,18 @@ export function createScene(canvas,w,s,quality='high'){
  const goal=new T.Mesh(new T.TorusGeometry(7,.12,6,48),new T.MeshBasicMaterial({color:'#f2d28c'}));goal.rotation.x=-Math.PI/2;goal.position.set(w.newsroom.x,heightAt(w.newsroom.x,w.newsroom.z)+.07,w.newsroom.z);root.add(goal);
  const scanRings=deviceMeshes.map(({n,g})=>{const a=new T.Mesh(new T.TorusGeometry(1.6,.05,5,32),new T.MeshBasicMaterial({color:'#88ffe0',transparent:true,opacity:.85,depthTest:false}));a.position.y=2.8;a.renderOrder=50;g.add(a);return a;});
  const paperGeo=new T.BoxGeometry(.32,.025,.22),paperMat=new T.MeshStandardMaterial({color:'#fff2cf'}),papers=[];for(let i=0;i<24;i++){const mesh=new T.Mesh(paperGeo,paperMat);mesh.visible=false;scene.add(mesh);papers.push(mesh);}
- const guild=dressGuild(root,w,m,rider);
- const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0;
+ const guild=dressGuild(root,w,m,rider),finish=enhanceTown(scene,root,w,m,rider);
+ const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality;
  function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
-  const p=state,f=headingVector(p.yaw),y=heightAt(p.x,p.z);if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);
-  const angle=p.yaw+orbit,follow=p.mode==='car'?9:p.mode==='foot'?5:6.6,camHeight=p.mode==='car'?4:p.mode==='foot'?2.9:3.4;
-  carCam.set(p.x-Math.sin(angle)*follow,y+camHeight+p.lift*.5,p.z-Math.cos(angle)*follow);look.set(p.x+f.x*7,y+1.6+p.lift*.5,p.z+f.z*7);
+  const p=state,f=headingVector(p.yaw),y=heightAt(p.x,p.z);if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
+  const angle=p.yaw+orbit,follow=(p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;
+  carCam.set(p.x-Math.sin(angle)*follow,y+camHeight+p.lift*.5,p.z-Math.cos(angle)*follow);carCam.y=Math.max(carCam.y,heightAt(carCam.x,carCam.z)+.65);
+  // Keep the third-person camera in front of solid houses rather than inside them.
+  for(let f=1;f>.13;f-=.08){const xx=p.x+(carCam.x-p.x)*f,zz=p.z+(carCam.z-p.z)*f;if(!w.colliders.some(b=>!b.low&&Math.abs(xx-b.x)<b.hx+.4&&Math.abs(zz-b.z)<b.hz+.4)){carCam.x=xx;carCam.z=zz;break;}}
+  look.set(p.x+f.x*7,y+1.6+p.lift*.5,p.z+f.z*7);
   if(!initialized||input.snap){camera.position.copy(carCam);initialized=true;}else camera.position.lerp(carCam,1-Math.exp(-dt*5));camera.lookAt(look);camera.fov=T.MathUtils.lerp(camera.fov,58+Math.min(7,Math.abs(p.speed)*.2),Math.min(1,dt*3));camera.updateProjectionMatrix();
-  sky.position.copy(camera.position);sun.position.set(p.x-70,y+130,p.z-85);sun.target.position.set(p.x,y,p.z+20);sun.target.updateMatrixWorld();
+  sky.position.copy(camera.position);sun.position.set(p.x-45,y+ 75,p.z-50);sun.target.position.set(p.x,y,p.z+20);sun.target.updateMatrixWorld();
   for(const [key,model]of[['bike',bike],['car',pressCar]]){const v=p.vehicle[key];model.root.position.set(v.x,heightAt(v.x,v.z)+(p.mode===key?p.lift:0),v.z);model.root.rotation.set(-Math.atan((heightAt(v.x,v.z+.5)-heightAt(v.x,v.z-.5)))*Math.cos(v.yaw),v.yaw,p.mode===key&&key==='bike'?-(input.steer||0)*Math.min(.17,Math.abs(p.speed)*.012):0);if(p.mode===key)for(const wheel of model.wheels)wheel.rotation.x+=p.speed*dt/(key==='bike'?.39:.37);}
   rider.root.visible=p.mode!=='car';rider.root.position.set(p.x,y+p.lift+(p.mode==='bike'?.03:0),p.z);rider.root.rotation.set(p.mode==='bike'?.14:0,p.yaw,0);if(p.mode==='bike'){for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.distance*3+i*Math.PI)*.6;rider.root.position.z-=f.z*.12;rider.root.position.x-=f.x*.12;}else for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.time*10+i*Math.PI)*Math.min(.5,Math.abs(p.speed)*.14);
   for(let i=0;i<p.traffic.length;i++){const t=p.traffic[i],c=traffic[i];c.root.position.set(t.x,heightAt(t.x,t.z),t.z);c.root.rotation.y=t.dir>0?0:Math.PI;for(const w of c.wheels)w.rotation.x+=t.dir*t.speed*dt/.37;}
@@ -64,9 +68,12 @@ export function createScene(canvas,w,s,quality='high'){
   for(const [id,{ring}]of boxes){ring.visible=!p.deliveries.has(id);ring.material.color.set(p.mission===0&&w.mailboxes.find(b=>b.id===id).route?'#ffd585':'#7eccc0');}
   arm.rotation.x=T.MathUtils.lerp(arm.rotation.x,p.relay?Math.PI/2:0,Math.min(1,dt*4));scanRings.forEach(r=>{r.visible=p.scan>0;r.lookAt(camera.position);r.rotation.z+=dt;});
   for(let i=0;i<papers.length;i++){const b=p.shots[i],mesh=papers[i];mesh.visible=!!b;if(b){mesh.position.set(b.x,b.y,b.z);mesh.rotation.set(p.time*13,p.time*7,p.time*9);}}
-  guild.update(p,dt);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
+  guild.update(p,dt);finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
   goal.visible=p.mission===2&&p.defeated;renderer.render(scene,camera);
  }
- function clampOrbit(a){return Math.max(-1.25,Math.min(1.25,a));}
- resize();return {renderer,scene,camera,update,resize,inspect:()=>({triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false})};
+ function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
+ function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.85:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
+ function recenter(){orbit=pitch=0;}
+ function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
+ setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false})};
 }

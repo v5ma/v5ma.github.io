@@ -21,10 +21,15 @@ export function house(parent,h,m){
  wall.finish(group,m.wall,'Renaissance plaster and masonry');roof.finish(group,m.roof,'Terracotta roof tiles');trim.finish(group,m.trim,'Stone arches, oak doors and shutters');windows.finish(group,m.glass,'Deep recessed windows');return group;
 }
 export function person(m,kind='apprentice'){
- const base=cityPerson(m),b=new Batch();
- // Soft cap, tunic hem, leather belt and a satchel remain readable while riding.
- b.box(0,1.05,0,.47,.20,.37,kind==='bandit'?'#83553e':'#566a4c');b.box(0,1.17,0,.48,.07,.39,'#65452d');b.box(0,1.19,.215,.11,.11,.025,'#d8b660');b.ball(0,1.98,-.015,.23,.09,.22,kind==='master'?'#56483c':'#775946');
- b.finish(base.root,m.trim,'Renaissance cap, tunic and belt');return base;
+ const root=new T.Group(),body=new Batch(),legs=[];
+ const tunic=kind==='bandit'?'#815344':kind==='master'?'#645944':'#477568';
+ body.add(unit.cyl,0,1.28,0,.245,.52,.18,tunic);body.ball(0,1.47,0,.26,.16,.18,tunic);body.add(unit.cone,0,.98,0,.29,.25,.22,tunic,Math.PI,0);
+ body.box(0,1.08,0,.48,.08,.38,'#675139');body.box(0,1.08,.201,.10,.095,.025,'#d5b677');body.rod([0,1.52,0],[0,1.65,0],.07,'#c58f6b');body.ball(0,1.76,.02,.155,.2,.145,'#d2a37e');body.ball(0,1.9,-.018,.17,.07,.15,'#6c513c');
+ body.ball(0,1.91,-.015,.205,.06,.18,kind==='bandit'?'#4d4b3d':'#5e7250');body.box(0,1.9,.15,.26,.033,.11,'#798859');body.ball(0,1.76,.165,.035,.04,.04,'#c58e6c');for(const x of[-.068,.068])body.ball(x,1.81,.15,.019,.014,.008,'#343e35');
+ for(const side of[-1,1]){body.rod([side*.23,1.45,0],[side*.29,1.27,.08],.074,tunic);body.rod([side*.29,1.27,.08],[side*.30,1.2,.29],.052,'#d2a37e');body.ball(side*.30,1.2,.3,.058,.065,.068,'#d2a37e');}
+ body.box(0,1.28,-.225,.31,.34,.12,'#a78151');body.box(0,1.43,-.295,.32,.10,.055,'#ceb47d');body.rod([-.17,1.5,-.16],[.17,1.12,-.20],.022,'#70543c');body.finish(root,m.trim,'Doublet, cap, articulated arms and courier satchel');
+ for(const side of[-1,1]){const g=new T.Group();g.position.set(side*.105,1.02,0);root.add(g);const b=new Batch();b.rod([0,0,0],[0,-.39,.055],.078,'#5c6350');b.rod([0,-.39,.055],[0,-.80,0],.053,'#756348');b.box(0,-.83,.08,.145,.13,.29,'#624c35');b.finish(g,m.trim,'Boots and animated leg');legs.push(g);}
+ return {root,legs};
 }
 export function car(m,tint='#976b43'){
  const root=new T.Group(),b=new Batch(),wheels=[];

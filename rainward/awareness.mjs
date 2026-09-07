@@ -1,6 +1,6 @@
 /* Rainward browser game: fictional NPC state machine. Targets come only from
  * simulated sight/sound/ally reports; no external input or real-world control. */
-import {clamp,dist,findPath,solidAt,obstruction} from './world.mjs';
+import {heightAt,clamp,dist,findPath,solidAt,obstruction} from './world.mjs';
 import {emit} from './state.mjs';
 import {move,visible} from './motion.mjs';
 const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
@@ -30,7 +30,7 @@ export function updatePatrol(s,e,dt){
   if(e.state==='chase')investigate(s,e,e.lastKnown||e.target||e,'sight');
  }
  let heard=null,best=-Infinity,seenID=e.lastNoise||0;
- if(e.state!=='chase')for(const n of s.sounds){if(n.id<=seenID)continue;const d=dist(e,n),occluded=obstruction({x:e.x,y:.5,z:e.z},{x:n.x,y:.5,z:n.z}),radius=n.radius*(occluded?.55:1);if(d>=radius)continue;const score=(n.type==='bottle'||n.type==='shot'?2:0)+1-d/radius;if(score>best){heard=n;best=score;}}
+ if(e.state!=='chase')for(const n of s.sounds){if(n.id<=seenID)continue;const d=dist(e,n),occluded=obstruction({x:e.x,y:heightAt(e.x,e.z)+.5,z:e.z},{x:n.x,y:heightAt(n.x,n.z)+.5,z:n.z}),radius=n.radius*(occluded?.55:1);if(d>=radius)continue;const score=(n.type==='bottle'||n.type==='shot'?2:0)+1-d/radius;if(score>best){heard=n;best=score;}}
  for(const n of s.sounds)e.lastNoise=Math.max(e.lastNoise||0,n.id);
  if(heard&&!saw){investigate(s,e,heard,'sound');emit(s,'investigate',{id:e.id,x:heard.x,z:heard.z});}
  if(!saw&&e.state!=='patrol'&&e.timer<=0){e.state='patrol';e.target=null;e.lastKnown=null;e.path=[];e.sweep=null;e.repath=0;e.alerted=false;e.awareness=0;s.stats.escapes=(s.stats.escapes||0)+1;say(s,e,'All clear. Returning to patrol.');}
@@ -39,7 +39,7 @@ export function updatePatrol(s,e,dt){
   e.yaw=Math.atan2(-(p.x-e.x),-(p.z-e.z));e.aimTime+=dt;e.attack=Math.max(0,e.attack-dt);
   const windup=e.type==='drifter'?.55:.85;
   if(e.aimTime>=windup&&e.attack<=0){e.attack=e.type==='drifter'?1.1:1.7;e.aimTime=0;
-   emit(s,'enemy-shot',{id:e.id,from:{x:e.x,y:1.35,z:e.z},to:{x:p.x,y:p.stance==='prone'?.32:p.stance==='crouch'?.8:1.38,z:p.z}});
+   emit(s,'enemy-shot',{id:e.id,from:{x:e.x,y:heightAt(e.x,e.z)+1.35,z:e.z},to:{x:p.x,y:heightAt(p.x,p.z)+(p.stance==='prone'?.32:p.stance==='crouch'?.8:1.38),z:p.z}});
    if(p.invulnerable<=0){p.hp=Math.max(0,p.hp-17);p.invulnerable=.35;emit(s,'damage');if(!p.hp){s.status='dead';emit(s,'death');}}
   }return;
  }

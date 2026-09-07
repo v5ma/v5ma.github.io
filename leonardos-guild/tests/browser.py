@@ -52,12 +52,12 @@ with sync_playwright() as p:
   page.goto(BASE+'/',wait_until='domcontentloaded');card=page.locator('article.leonardo')
   check(card.count()==1,'The homepage has one distinct Leonardo’s Guild game card')
   for name in ['little-planet','rainward','aether','delivery','theology','dinosaur']:assert page.locator('article.'+name).count()==1,name
-  check(True,'All six existing homepage cards remain, including Little Planet')
+  check(True,'The existing homepage cards remain, including Little Planet')
   page.wait_for_function('document.querySelector("article.leonardo img")?.naturalWidth>0')
   check(card.locator('img').evaluate('(img)=>img.complete&&img.naturalWidth>0'),'The card shows an actual rendered game capture')
   page.screenshot(path=str(OUT/'00-homepage.png'));card.locator('a.primary-link').click();page.wait_for_function('window.LeonardoGuild')
   check('/leonardos-guild/' in page.url,'The homepage card opens the independently hosted browser game')
-  check(read(page)['version']=='0.1.0','The isolated Leonardo’s Guild application loads')
+  check(read(page)['version']==json.loads((ROOT/'release.json').read_text())['version'],'The isolated Leonardo’s Guild application matches its release version')
   check(read(page)['render']['triangles']>50000,'Native WebGL draws the actual city geometry')
   page.screenshot(path=str(OUT/'01-sunrise-title.png'))
   # User-accessible low-power mode and a smaller window, not faster simulation.

@@ -30,7 +30,7 @@ with sync_playwright() as pw:
  ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach');frames(page)
-  check(snapshot(page)['version'] if 'version' in snapshot(page) else page.evaluate('AetherReach.version==="0.3.0"'),'Updated public app loads the separate input/XR modules')
+  check(snapshot(page)['version'] if 'version' in snapshot(page) else page.evaluate('AetherReach.version')==json.loads((ROOT/'aether-reach/release.json').read_text())['version'],'Updated public app loads the separate input/XR modules')
   if MODE=='pad':
    page.evaluate('TestPad.connect()');frames(page);tap(page,0);page.wait_for_function('AetherReach.snapshot().playing')
    check(True,'A standard controller starts from the title without clicking Play')
