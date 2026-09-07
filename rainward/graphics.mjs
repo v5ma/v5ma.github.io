@@ -3,7 +3,7 @@
  * collision, interaction targets and inventory remain completely unchanged. */
 import * as T from './vendor/three.module.js';
 export function graphicsPreset(scene,renderer){
- const environment=scene.environment,originals=new WeakMap(),variants=new Map();let reduced=false;
+ const environment=scene.environment,originals=new WeakMap(),variants=new Map(),localLights=new Map();let reduced=false;
  function material(original){
   if(!original?.isMeshStandardMaterial)return original;
   if(!variants.has(original)){
@@ -12,8 +12,8 @@ export function graphicsPreset(scene,renderer){
   }
   return variants.get(original);
  }
- function update(){scene.traverse(o=>{if(!o.material)return;let original=originals.get(o);if(!original){original=o.material;originals.set(o,original);}o.material=reduced?(Array.isArray(original)?original.map(material):material(original)):original;});}
- function set(low){reduced=!!low;scene.environment=reduced?null:environment;renderer.setPixelRatio(reduced?.85:Math.min(globalThis.devicePixelRatio||1,1.6));renderer.shadowMap.enabled=!reduced;update();}
- function dispose(){reduced=false;update();for(const m of variants.values())m.dispose();variants.clear();}
+ function update(){scene.traverse(o=>{if(o.isPointLight||o.isSpotLight){if(!localLights.has(o))localLights.set(o,o.visible);o.visible=reduced?false:localLights.get(o);}if(!o.material)return;let original=originals.get(o);if(!original){original=o.material;originals.set(o,original);}o.material=reduced?(Array.isArray(original)?original.map(material):material(original)):original;});}
+ function set(low){reduced=!!low;scene.environment=reduced?null:environment;renderer.setPixelRatio(reduced?.6:Math.min(globalThis.devicePixelRatio||1,1.6));renderer.shadowMap.enabled=!reduced;update();}
+ function dispose(){reduced=false;update();for(const m of variants.values())m.dispose();variants.clear();localLights.clear();}
  return {set,update,dispose,get reduced(){return reduced}};
 }
