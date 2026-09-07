@@ -56,7 +56,7 @@ def run_pauline_checks(page, ctx, open_page, check, OUT, BASE):
         finally:isolated.close()
     # Explicit browser-policy failure: useful results and a link remain available.
     ready()
-    page.evaluate('window.__savedReplace=history.replaceState;history.replaceState=()=>{throw new Error("blocked history fixture")};')
+    page.evaluate('()=>{window.__savedReplace=history.replaceState;history.replaceState=()=>{throw new Error("blocked history fixture")};return true;}')
     try:
         page.locator('#pc-origin').select_option('visit')
         check('History-write denial preserves calculation and share link','54 CE' in result() and 'pc_origin=visit' in page.locator('#pc-share').get_attribute('href') and 'did not update' in page.locator('#pc-url-note').inner_text())
