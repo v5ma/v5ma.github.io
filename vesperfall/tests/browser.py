@@ -31,10 +31,11 @@ with sync_playwright() as p:
   page.screenshot(path=str(OUT/'title.png'))
   if MODE=='ui':
    page.locator('#practice').click();page.wait_for_function('Vesperfall.component.running&&!Vesperfall.component.paused');page.locator('a-scene canvas').focus()
+   check(page.evaluate('Vesperfall.component.isPlaying'),'Starting the run preserves A-Frame tick registration')
    check(len(snap(page)['enemies'])==0,'Practice is explicitly non-combat and has no progression farming')
    await_pose=snap(page)['player'];page.keyboard.down('KeyW');page.wait_for_function('(z)=>Vesperfall.state.p[2]<z-.6',arg=await_pose[2]);page.keyboard.up('KeyW')
    check(snap(page)['player'][2]<await_pose[2]-.6,'Forward input moves along the view, not backward')
-   await_pose=snap(page)['player'];page.keyboard.press('KeyP');page.wait_for_function('Vesperfall.component.paused');page.wait_for_timeout(300);check(snap(page)['player']==await_pose,'Pause cancels movement and freezes the run')
+   page.keyboard.press('KeyP');page.wait_for_function('Vesperfall.component.paused');await_pose=snap(page)['player'];page.wait_for_timeout(300);check(snap(page)['player']==await_pose,'Pause cancels movement and freezes the run')
    page.locator('#resume').click();page.locator('a-scene canvas').focus();aim(page,[0,1.5,-4]);shot(page);page.wait_for_function('Vesperfall.state.targets.size>0');check(snap(page)['shots']==1,'A charged/released arrow hits a physical practice target')
    page.keyboard.press('Digit2');before=snap(page)['ammo']['cinder'];shot(page);check(snap(page)['ammo']['cinder']==before-1,'Special arrows consume their real limited ammunition')
    page.keyboard.press('Digit4');aim(page,[1,0,0],14);before=snap(page)['player'];page.keyboard.down('Space');page.wait_for_function('Vesperfall.component.charge>.6');page.keyboard.up('Space');page.wait_for_function('Vesperfall.state.events.some(e=>e.type==="blink")');check(snap(page)['player']!=before,'A blink arrow moves the player only after a real floor impact')
