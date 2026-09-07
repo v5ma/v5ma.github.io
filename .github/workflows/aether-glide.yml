@@ -1,0 +1,56 @@
+name: Aether foldwing and restore validation
+on:
+  pull_request:
+    paths: ['aether-reach/**','.github/workflows/aether-glide.yml','.github/workflows/aether-release-backup.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aether-foldwing-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source and carried-state flight
+        run: |
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs
+          node aether-reach/tests/release-manifest.mjs
+      - name: Prove that a clean source backup restores and passes the model tests
+        run: |
+          python aether-reach/tools/backup.py --out /tmp/aether-backup
+          ZIP=$(find /tmp/aether-backup -name '*source.zip' -print -quit)
+          python aether-reach/tools/backup.py --restore "$ZIP" --destination /tmp/aether-restored
+          (cd /tmp/aether-restored && node --test aether-reach/tests/*.test.mjs)
+      - name: Install actual test browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Fly the actual game with normal keyboard actions
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/aether-glide.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/glide_browser.py
+      - name: Preserve exact source and outcomes
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+          cp /tmp/aether-backup/BACKUP-MANIFEST.json aether-reach/test-output/ || true
+          cp /tmp/aether-backup/*source.zip aether-reach/test-output/ || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-foldwing-restore
+          path: aether-reach/test-output
+          retention-days: 14
