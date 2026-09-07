@@ -41,7 +41,7 @@ def fetch(url,meta=None):
 def api(endpoint):return json.loads(fetch('https://api.polyhaven.com/'+endpoint))
 def save_image(meta,path,size,lossless=False):
  raw=fetch(meta['url'],meta);im=Image.open(io.BytesIO(raw)).convert('RGB');im.thumbnail((size,size),Image.Resampling.LANCZOS)
- im.save(path,'WEBP',quality=93,lossless=lossless,method=6)
+ im.save(path,'WEBP',quality=95 if path.stem=='normal' else 86,lossless=lossless,method=6)
  return {'path':str(path.relative_to(OUT)),'width':im.width,'height':im.height}
 
 selected={'stone':'stone_wall_02','brick':'castle_brick_02_red','paving':'mossy_cobblestone','ground':'forest_ground_04'}
@@ -52,7 +52,7 @@ for key,id in selected.items():
  prefix=OUT/key;prefix.mkdir(exist_ok=True)
  entry={'asset':id,'metres':(meta.get('dimensions') or [2500])[0]/1000}
  for slot,source,res,size in [('color','Diffuse','2k',2048),('normal','nor_gl','1k',1024),('orm','arm','1k',512)]:
-  f=files[source][res];v=f.get('png') or f['jpg'];entry[slot]=save_image(v,prefix/(slot+'.webp'),size,slot!='color')
+  f=files[source][res];v=f.get('png') or f['jpg'];entry[slot]=save_image(v,prefix/(slot+'.webp'),size,slot=='orm')
  manifest['surfaces'][key]=entry
  print('Imported material',id,flush=True)
 for id in model_ids:
@@ -66,7 +66,6 @@ for id in model_ids:
  print('Downloaded model',id,flush=True)
 id='kloppenheim_06_puresky';meta=assets[id];files=api('files/'+id);hdr=files['hdri']['1k']['hdr'];(OUT/'daylight.hdr').write_bytes(fetch(hdr['url'],hdr))
 manifest['assets'][id]={'title':meta['name'],'authors':meta['authors'],'url':'https://polyhaven.com/a/'+id,'license':'CC0-1.0'};manifest['environment']={'asset':id,'path':'daylight.hdr','resolution':'1k'}
-# Addons match the already vendored Three.js r177, not latest/main.
 V=ROOT/'vendor';V.mkdir(exist_ok=True)
 for name,source in [('GLTFLoader.js','loaders/GLTFLoader.js'),('RGBELoader.js','loaders/RGBELoader.js'),('BufferGeometryUtils.js','utils/BufferGeometryUtils.js')]:
  raw=fetch('https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/'+source).decode()

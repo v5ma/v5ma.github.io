@@ -13,9 +13,8 @@ for(const [id,def]of Object.entries(m.models)){
  const count=()=>doc.getRoot().listMeshes().reduce((n,mesh)=>n+mesh.listPrimitives().reduce((s,p)=>s+(p.getIndices()?.getCount()||p.getAttribute('POSITION').getCount())/3,0),0);
  const before=count();
  await doc.transform(dedup(),weld());
- if(id!=='fern_02')await doc.transform(simplify({simplifier:MeshoptSimplifier,ratio:id==='boulder_01'?.09:.35,error:.006}));
+ if(id!=='fern_02')await doc.transform(simplify({simplifier:MeshoptSimplifier,ratio:id==='boulder_01'?.09:.35,error:id==='boulder_01'?.025:.006}));
  await doc.transform(prune(),textureCompress({encoder:sharp,targetFormat:'webp',resize:[1024,1024],quality:93}));
- // Do not drop UVs, normal textures, alpha cutouts or material texture bindings.
  for(const mesh of doc.getRoot().listMeshes())for(const p of mesh.listPrimitives())if(!p.getAttribute('TEXCOORD_0'))throw Error('Lost authored UVs');
  await io.write(path.join(out,def.path),doc);
  def.triangles=count();def.beforeTriangles=before;def.meshes=doc.getRoot().listMeshes().map(mesh=>({name:mesh.getName(),triangles:mesh.listPrimitives().reduce((s,p)=>s+(p.getIndices()?.getCount()||p.getAttribute('POSITION').getCount())/3,0)}));
@@ -23,7 +22,7 @@ for(const [id,def]of Object.entries(m.models)){
  console.log(id,before,'->',def.triangles,'triangles');
 }
 m.tools={'gltf-transform':'4.2.1','meshoptimizer':'0.23.0','sharp':'0.34.3','Pillow':'11.3.0','Three.js':'r177'};
-m.transformations=['Source glTF UVs, materials, normal textures and alpha cutouts retained.','Rock meshes simplified with meshoptimizer (bounded error); fern geometry retained.','Surface color 2048px WebP; normal 1024px lossless WebP; packed AO/roughness/metalness 512px lossless WebP.','Model textures resized to at most 1024px and WebP encoded.','Real 1k HDR capture retained as HDR; no screenshot backdrop.'];
+m.transformations=['Source glTF UVs, materials, normal textures and alpha cutouts retained.','Rock meshes simplified with meshoptimizer (bounded error); fern geometry retained.','Surface color 2048px WebP; normal 1024px quality95 WebP; packed AO/roughness/metalness 512px lossless WebP.','Model textures resized to at most 1024px and WebP encoded.','Real 1k HDR capture retained as HDR; no screenshot backdrop.'];
 m.files={};let bytes=0;
 const visit=(dir)=>{for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())visit(p);else if(/\.(webp|glb|hdr)$/.test(e.name)){const buf=fs.readFileSync(p),rel=path.relative(out,p);bytes+=buf.length;m.files[rel]={bytes:buf.length,sha256:crypto.createHash('sha256').update(buf).digest('hex')};}}};visit(out);
 if(bytes>14000000)throw Error('Asset pack exceeds 14 MB budget');m.totalBytes=bytes;
