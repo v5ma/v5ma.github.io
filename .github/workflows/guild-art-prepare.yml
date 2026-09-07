@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: read
 jobs:
   assets:
     if: github.ref == 'refs/heads/feat/guild-market-life-20260907'
@@ -15,8 +16,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: feat/guild-market-life-20260907
+      - uses: actions/download-artifact@v4
+        with:
+          name: guild-licensed-art-intake
+          run-id: 34170775055
+          github-token: ${{ github.token }}
+          path: verified-intake
       - run: python -m pip install Pillow==11.3.0
-      - name: Download only hashed Standard archives and prepare selected redistributable files
+      - name: Prepare only exact license-inspected and hash-verified archives
+        env:
+          GUILD_ART_CACHE: verified-intake
         run: python leonardos-guild/scripts/import-curated-art.py
       - name: Commit only declared art and pinned loader files, never gameplay source
         run: |
@@ -33,7 +42,7 @@ jobs:
           mkdir -p prepared-art
           git rev-parse HEAD > prepared-art/source-sha.txt
           tar -czf prepared-art/source.tgz leonardos-guild .github/workflows
-          cp leonardos-guild/ASSET-REGISTER.json prepared-art/
+          test ! -f leonardos-guild/ASSET-REGISTER.json || cp leonardos-guild/ASSET-REGISTER.json prepared-art/
       - uses: actions/upload-artifact@v4
         if: always()
         with:
