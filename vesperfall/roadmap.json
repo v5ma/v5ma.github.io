@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "project": "Vesperfall: Arrows Unchained",
   "scope": "Original public mechanics prototype. No private story material.",
   "tasks": [
@@ -177,6 +177,41 @@
       "title": "Physical crossbow wind/reload gesture",
       "status": "Planned",
       "gate": "Separate comfortable interaction for both handedness settings, with an accessible button alternative."
+    },
+    {
+      "id": "V26",
+      "area": "Combat",
+      "title": "Hollow Hunt: committed cantor volleys, hound charges and sentinel guard",
+      "status": "Implemented",
+      "gate": "Shared physical projectiles/collision, visible warning, dodge/block/counterplay, no homing charge."
+    },
+    {
+      "id": "V27",
+      "area": "Traversal",
+      "title": "Two optional double-stair loft loops and elevation-gated caches",
+      "status": "Implemented",
+      "gate": "Preserve ground graph links; walk both stairways and collect upper supply only at its elevation."
+    },
+    {
+      "id": "V28",
+      "area": "Practice",
+      "title": "Three repeatable adversary trials and field guide",
+      "status": "Implemented",
+      "gate": "Ordinary menus spawn real AI. Trial counters never change the Chronicle or prior purchases."
+    },
+    {
+      "id": "V29",
+      "area": "Archery",
+      "title": "Surface-triggered Cinder bursts and interrupting Frost",
+      "status": "Implemented",
+      "gate": "Cover occludes area damage; freeze interrupts charges and has a shorter sentinel duration."
+    },
+    {
+      "id": "V30",
+      "area": "Future",
+      "title": "Physical thrown-shard and crossbow winding gestures",
+      "status": "Planned",
+      "gate": "Retain accessible button alternatives; headset motion must be tested physically before release."
     }
   ]
 }

@@ -72,3 +72,18 @@ This continues the live browser game at https://v5ma.github.io/vesperfall/index.
 Original shield/crossbow geometry, pooled embers, a twilight/daylight option and an opt-in quiet synthetic choir drone accompany the mechanics. There are no ripped sounds, recorded Gregorian chants, franchise characters, private narrative imports or remote credentials. Source existence and emulated tests do not establish commercial-quality graphics or physical-headset acceptance.
 
 New modules are `chronicle.js` (bounded local progression) and `arsenal.js` (equipment presentation and input integration). `tests/unchained.test.cjs` contains 17 new pure regression scenarios; `unchained-browser.py` and `unchained-combat.py` drive the actual A-Frame app through ordinary UI/keyboard events or emulated device poses. Native source manifests and failures are preserved by the read-only acceptance workflow. Publication is confirmed only by the separate served-file receipt.
+
+
+## Hollow Hunt / v0.4.0
+
+The existing shields, bow/crossbow, finite spell quivers, blink previews, shard steps and Chronicle remain. This update differentiates the opponents: Ash Cantors telegraph a committed three-bolt volley; Rift Hounds mark and charge a fixed line, then recover; Bell Sentinels deflect frontal torso shots with a physical shield but expose their heads and drop guard while attacking/recovering. Moving after windup, blocking, flanking and precise shots now serve different purposes.
+
+Cinder now detonates on its first physical impact, including floors and walls. Nearby enemies take falloff damage only with clear line of sight; cover blocks the burst. Frost briefly immobilizes and interrupts attacks/charges before slowing movement (shorter freezing for sentinels). Player guard and all projectile/teleport checks remain active.
+
+The menu adds three repeatable single-opponent combat trials and a field guide. They use real enemy AI and damage, but are always practice: no permanent unlocks, renown or records can be farmed. Use the browser menu to select a trial before entering VR. Existing headset weapon, grip, arrow and movement controls are unchanged.
+
+Two nearby non-beacon rooms now have an additional upper gallery with stairs on both sides. Each creates a continuous optional loop from the ground, across an upper firing route, and back down. Cinder/Frost caches are elevation-gated: walking under an upper supply no longer collects it. The original choir gallery and all ground-level graph links remain. This is three rooms with galleries, not a fully traversable city or a complete campaign.
+
+Original jointed enemy models, shield geometry, overhead vitality bars, windup rings, charge lines, impact colors and a context-sensitive threat readout make combat readable. Supported XR haptics provide brief bounded feedback; the game still works without haptics. Rendered geometry and shared collider positions agree at head and shield targets.
+
+New source modules: `encounters.js` is deterministic enemy behavior; `hunt.js` owns models and presentation inside the existing A-Frame component; `hunt.css` styles trials and feedback. `tests/hunt.test.cjs` checks combat/occlusion/vertical routes, and `tests/hunt-browser.py` drives the real game through ordinary UI and keyboard events. Release evidence must distinguish those tests from physical Quest 3 tracking, comfort and sustained frame-rate measurements, which remain open.

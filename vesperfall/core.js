@@ -2,7 +2,7 @@
  * Static collision geometry also drives rendering. All projectile hits sweep
  * between positions so a fast arrow cannot tunnel through a thin wall. */
 (function(root){'use strict';
- const VERSION='0.3.0',G=9.8,R=.28;
+ const VERSION='0.4.0',G=9.8,R=.28;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0),len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
  function hash(text){let h=2166136261;for(const c of String(text).slice(0,64))h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
@@ -12,6 +12,7 @@
  function sphereHit(a,b,c,r){const d=sub(b,a),o=sub(a,c),A=dot(d,d),B=2*dot(o,d),C=dot(o,o)-r*r;if(C<=0)return 0;const D=B*B-4*A*C;if(D<0||A<1e-10)return null;const t=(-B-Math.sqrt(D))/(2*A);return t>=0&&t<=1?t:null;}
  function rect(x,z,w,d,y=0,type='stone'){return {x,z,w,d,y,type};}
  function inside(p,s,margin=0){return p[0]>=s.x-s.w/2+margin&&p[0]<=s.x+s.w/2-margin&&p[2]>=s.z-s.d/2+margin&&p[2]<=s.z+s.d/2-margin;}
+ const encounters=root.VesperEncounters||(typeof require!=='undefined'?require('./encounters.js'):null);
  const architecture=root.CloisterLayout||(typeof require!=='undefined'?require('./architecture.js'):null);
  function floorAt(world,p,margin=0){return architecture.floorAt(world,p,margin);}
  function walkable(world,p,r=R){const y=architecture.floorAt(world,p,0,.42,.55);return y!==null&&[[0,0],[r,0],[-r,0],[0,r],[0,-r]].every(([x,z])=>architecture.floorAt(world,[p[0]+x,y,p[2]+z],0,.42,.55)!==null)&&!world.solids.some(b=>p[0]>b.min[0]-r&&p[0]<b.max[0]+r&&p[2]>b.min[2]-r&&p[2]<b.max[2]+r&&b.max[1]>y+.1&&b.min[1]<y+1.65);}
@@ -56,17 +57,29 @@
  }
  function move(s,dx,dz){if(s.phase!=='playing'||!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>5)return;const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.15));for(let i=0;i<n;i++){const x=s.p[0]+dx/n,z=s.p[2]+dz/n;if(walkable(s.world,[x,s.p[1],s.p[2]])){s.p[0]=x;s.p[1]=floorAt(s.world,s.p);}if(walkable(s.world,[s.p[0],s.p[1],z])){s.p[2]=z;s.p[1]=floorAt(s.world,s.p);}}}
  function blink(s,p){if(!landing(s,p).ok)return false;s.p=[p[0],floorAt(s.world,p),p[2]];s.invuln=Math.max(s.invuln,.25);s.blinks++;emit(s,'blink',{p:[...s.p]});return true;}
- function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;if(head)s.headshots++;e.hp-=amount;e.aware=true;if(type==='frost')e.slow=4;s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind,head});}else emit(s,'hit',{id:e.id,head});}
+ function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;if(head)s.headshots++;e.hp-=amount;e.aware=true;if(type==='frost'){e.slow=4;e.frozen=e.kind==='warden'?.65:1.35;e.wind=0;e.charge=null;e.recovery=.4;}s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind,head});}else emit(s,'hit',{id:e.id,head});}
  function strike(s,a,hit){
-  if(hit.kind==='enemy'){s.hits++;damageEnemy(s,hit.enemy,a.damage*(hit.head?1.5:1),a.type,hit.head);if(a.type==='cinder')for(const e of s.world.enemies)if(e!==hit.enemy&&!e.dead&&len(sub(e.p,hit.p))<3&&!segmentBlocked(s.world,hit.p,e.p))damageEnemy(s,e,a.damage*.65,'cinder');}
+  if(hit.kind==='enemy'){s.hits++;damageEnemy(s,hit.enemy,a.damage*(hit.head?1.5:1),a.type,hit.head);}
+  else if(hit.kind==='guard'){s.sparks.push({p:hit.p,life:.38,type:'guard'});emit(s,'enemy-deflect',{id:hit.enemy.id,p:hit.p});}
   else if(hit.kind==='target'){if(!s.targets.has(hit.id)){s.targets.add(hit.id);s.score+=10;emit(s,'target',{id:hit.id});}}
   else if(hit.kind==='floor'&&a.type==='blink'){if(!blink(s,hit.p))emit(s,'blink-denied');}
+  if(a.type==='cinder'){
+   // Detonate on the first actual surface, not only on a direct enemy hit.
+   const center=add(hit.p,mul(unit(a.v),-.065));center[1]=Math.max(center[1],hit.kind==='floor'?hit.p[1]+.06:center[1]);
+   for(const e of s.world.enemies){if(e.dead||hit.kind==='enemy'&&e===hit.enemy)continue;const distance=len(sub(e.p,center));if(distance<3&&!segmentBlocked(s.world,center,e.p))damageEnemy(s,e,a.damage*.7*(1-distance/4),'cinder');}
+   s.sparks.push({p:center,life:.55,type:'blast'});emit(s,'explosion',{p:center,radius:3});
+  }
   s.sparks.push({p:hit.p,life:.3,type:a.type});a.dead=true;
  }
  function probe(s,a,next){const old=a.p;let best=null;const candidate=(t,h)=>{if(t!==null&&t>=0&&t<=1&&(!best||t<best.t))best={t,...h};};
   for(const b of s.world.solids)candidate(boxHit(old,next,b,.02),{kind:'wall'});
   if(a.type!=='blink'){
-   for(const e of s.world.enemies)if(!e.dead){candidate(sphereHit(old,next,add(e.p,[0,.62,0]),e.kind==='warden'?.36:.25),{kind:'enemy',enemy:e,head:true});candidate(sphereHit(old,next,e.p,e.kind==='warden'?.65:.48),{kind:'enemy',enemy:e,head:false});}
+   for(const e of s.world.enemies)if(!e.dead){
+    if(encounters.guardActive(e)){
+     const normal=e.facing||unit([s.head[0]-e.p[0],0,s.head[2]-e.p[2]]),center=add(e.p,mul(normal,.78)),da=dot(sub(old,center),normal),db=dot(sub(next,center),normal);
+     if(da>=0&&db<=0&&da-db>1e-8){const t=da/(da-db),p=add(old,mul(sub(next,old),t));if(len(sub(p,center))<=.53)candidate(t,{kind:'guard',enemy:e});}
+    }
+    candidate(sphereHit(old,next,add(e.p,[0,.62,0]),e.kind==='warden'?.36:.25),{kind:'enemy',enemy:e,head:true});candidate(sphereHit(old,next,e.p,e.kind==='warden'?.65:.48),{kind:'enemy',enemy:e,head:false});}
    s.world.targets.forEach((t,i)=>{if(!s.targets.has(i))candidate(sphereHit(old,next,t,.5),{kind:'target',id:i});});
   }
   const floor=architecture.floorHit(s.world,old,next);if(floor)candidate(floor.t,{kind:'floor',landing:floor.p});
@@ -110,17 +123,14 @@
   if(s.shardCharges<s.maxShards){s.shardRecharge-=dt;if(s.shardRecharge<=0){s.shardCharges++;s.shardRecharge=3.5;}}
 
   for(const a of s.arrows)arrowStep(s,a,dt);s.arrows=s.arrows.filter(a=>!a.dead);
-  for(const p of s.world.pickups)if(!p.taken&&Math.hypot(p.p[0]-s.p[0],p.p[2]-s.p[2])<1){p.taken=true;if(p.kind==='health')s.health=Math.min(s.maxHealth,s.health+25);else s.ammo[p.kind]+=3;emit(s,'pickup',{kind:p.kind});}
-  for(const e of s.world.enemies){if(e.dead)continue;e.slow=Math.max(0,e.slow-dt);const distance=len(sub(e.p,s.head)),visible=distance<17&&!segmentBlocked(s.world,add(e.p,[0,.5,0]),s.head);if(visible)e.aware=true;if(!e.aware)continue;
-   e.cd-=dt;if(e.wind>0){e.wind-=dt;if(e.wind<=0&&visible){if(distance<2.1&&e.kind==='stalker'){const guard=shieldHit(s,add(e.p,[0,.45,0]),s.head);if(guard)block(s,guard.p);else hurt(s,14);}else{s.bolts.push({p:add(e.p,[0,.45,0]),v:mul(unit(sub(e.aim||s.head,add(e.p,[0,.45,0]))),e.kind==='warden'?5.5:4.5),life:6});emit(s,'enemy-shot');}}}
-   else if(visible&&e.cd<=0){e.wind=.8;e.aim=[...s.head];e.cd=(e.kind==='warden'?2.3:3.6);}
-   if(e.wind<=0&&distance>2.2){const er=roomAt(s.world,e.p),pr=roomAt(s.world,s.p),path=route(s.world,er,pr),goal=path.length>1?s.world.rooms[path[1]]:{x:s.p[0],z:s.p[2]};const dx=goal.x-e.p[0],dz=goal.z-e.p[2],d=Math.hypot(dx,dz)||1,v=e.speed*(e.slow>0?.3:1)*dt;if(walkable(s.world,[e.p[0]+dx/d*v,0,e.p[2]+dz/d*v],.4)){e.p[0]+=dx/d*v;e.p[2]+=dz/d*v;}}
-  }
+  for(const p of s.world.pickups)if(!p.taken&&Math.hypot(p.p[0]-s.p[0],p.p[2]-s.p[2])<1&&Math.abs(p.p[1]-(s.p[1]+.3))<.65){p.taken=true;if(p.kind==='health')s.health=Math.min(s.maxHealth,s.health+25);else s.ammo[p.kind]+=3;emit(s,'pickup',{kind:p.kind});}
+  for(const e of s.world.enemies)encounters.update(s,e,dt,enemyAPI);
   for(const b of s.bolts){const end=add(b.p,mul(b.v,dt));const wall=s.world.solids.reduce((v,w)=>{const t=boxHit(b.p,end,w,.06);return t!==null?Math.min(t,v):v;},2),body=sphereHit(b.p,end,s.head,.22),guard=shieldHit(s,b.p,end);if(guard&&guard.t<wall&&(body===null||guard.t<body)){block(s,guard.p);b.life=0;}else if(body!==null&&body<wall){hurt(s,12);b.life=0;}else if(wall<=1)b.life=0;b.p=end;b.life-=dt;}s.bolts=s.bolts.filter(b=>b.life>0);
   for(const f of s.sparks)f.life-=dt;s.sparks=s.sparks.filter(f=>f.life>0).slice(-32);
   if(!s.portalReady&&s.world.enemies.every(e=>e.dead)){s.portalReady=true;emit(s,'gate-open');}
  }
  function interact(s){const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.abs(s.p[1])<.5&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;s.sectors++;emit(s,'sector-complete');return true;}return false;}
  function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1,{challenge:s.challenge?'nightfall':'normal'});n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.weapon=s.weapon;n.quickwind=s.quickwind;n.volleyUnlocked=s.volleyUnlocked;n.ammo.volley=(s.ammo.volley||0)+(s.volleyUnlocked?3:0);n.maxGuard=s.maxGuard;n.guard=n.maxGuard;n.maxShards=s.maxShards;n.shardCharges=n.maxShards;for(const key of['headshots','blocks','blinks','shardsUsed','sectors'])n[key]=s[key];n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
+ const enemyAPI={add,sub,mul,unit,len,walkable,route,roomAt,segmentBlocked,emit,shieldHit,block,hurt};
  const api={VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,landing,predictBlink,setWeapon,reload,shield,shieldHit,shard,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

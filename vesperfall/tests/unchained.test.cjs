@@ -53,7 +53,7 @@ test('Practice cannot advance permanent achievements; future sectors retain earn
  const s=fresh();s.kills=9;s.blocks=8;s.headshots=5;assert.equal(P.bank({},s,{},true).profile.stats.kills,0);s.phase='reward';const n=C.reward(s,'power');assert.equal(n.kills,9);assert.equal(n.blocks,8);assert.equal(n.headshots,5);assert.equal(n.power,s.power+.12);
 });
 test('Enemy attacks lock an observed aim at windup so moving away is a meaningful defense',()=>{
- const s=C.create('BELL-01'),e=s.world.enemies[0];e.p=[0,1.05,-2];e.aware=true;e.cd=0;s.world.enemies=[e];C.step(s,1/90,s.head);const aim=[...e.aim];s.head=[2,1.65,3];tick(s,76);assert.deepEqual(e.aim,aim);assert.ok(s.bolts.length>0);assert.ok(Math.abs(s.bolts[0].v[0])<.01);
+ const s=C.create('BELL-01'),e=s.world.enemies[0];e.p=[0,1.05,-2];e.aware=true;e.cd=0;s.world.enemies=[e];C.step(s,1/90,s.head);const aim=[...e.aim];s.head=[2,1.65,3];tick(s,100);assert.deepEqual(e.aim,aim);assert.ok(s.bolts.length>0);assert.ok(Math.abs(s.bolts[0].v[0])<.01);
 });
 test('Nightfall changes enemies only when explicitly selected and survives sector transition',()=>{
  const base=C.create('N'),hard=C.create('N',1,{challenge:'nightfall'});assert.ok(hard.world.enemies[0].hp>base.world.enemies[0].hp);hard.phase='reward';const next=C.reward(hard,'supplies');assert.equal(next.challenge,true);
