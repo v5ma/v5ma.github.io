@@ -1,5 +1,5 @@
 /* Original fictional level and game collision geometry. */
-export const VERSION='0.1.0';
+export const VERSION='0.2.0';
 export const BOUNDS={x0:-35,x1:35,z0:-49,z1:34};
 export const START={x:0,z:27};
 const box=(id,x,z,w,d,h,kind='wall',bottom=0)=>({id,x,z,w,d,h,kind,bottom});
