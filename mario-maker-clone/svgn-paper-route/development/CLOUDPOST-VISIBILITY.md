@@ -1,0 +1,7 @@
+# A passing ride is not proof of a visible tether
+
+Visual review of the otherwise passing Cloudpost run showed an absent chain. A separate native diagnostic on the exact runtime found valid finite on-screen vertex positions, visible ancestors and a positive draw range, but no onAfterRender receipt after a complete swing. The earlier Hookline receipt did not establish visibility in this new longer scenario.
+
+The render-only correction constructs each dynamic chain or target-ring mesh on its first nonempty frame, rather than submitting it initially with a zero draw range. Inactive meshes are hidden, active buffers retain their real hand-to-peg positions, and the single instance is initialized explicitly. The unlit chain bypasses atmospheric fog and tone mapping for readability. Native diagnostic run 34158340842 then recorded a current-frame submission at the real relay peg and a screenshot with the actual segmented chain visible between hand and peg. No controls, player state, physics constants or level geometry were modified.
+
+The final full relay acceptance now requires a recent render receipt and actual peg-aligned geometry, captures the first completed wind-up, then still requires the normal release, balcony catch, one-time award, Festival reconnection, finish and clean new-run reset. The existing full editor, ground, grip, loop, whip and rehearsal gates repeat on the final candidate. Both the missing-chain diagnostic and the corrected capture are retained as evidence; a positive CPU-buffer count alone is not presented as rendered visibility.

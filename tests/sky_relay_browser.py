@@ -42,7 +42,11 @@ with sync_playwright() as p:
    else:
     page.keyboard.down('KeyZ');page.wait_for_function('player.peg?.id===SkyRelay.PEG.id',timeout=90000)
     check(page.evaluate('player.peg.r>=200&&player.peg.r<=240'),'A normal held whip catches the physical relay peg without relocation')
-    page.screenshot(path=str(OUT/'mint-relay-swing.png'))
+    page.wait_for_function('__grapple.graphics?.ropeDraw?.peg===SkyRelay.PEG.id&&__sky.state.steps-__grapple.graphics.ropeDraw.step<5',timeout=30000)
+    check(page.evaluate('__grapple.graphics.ropeDraw.vertices>0'),'The Cloudpost tether reaches a real current-frame render submission, not only a populated CPU buffer')
+    check(page.evaluate('(()=>{const g=__grapple.graphics,p=g.ropePath;return g.ropeMesh.visible&&p.flat().every(Number.isFinite)&&Math.hypot(p[1][0]-player.peg.x,p[1][1]+player.peg.y)<.1;})()'),'The visible chain follows the actual attached peg')
+    page.wait_for_function('player.peg?.loops>=1',timeout=90000)
+    page.screenshot(path=str(OUT/'mint-relay-swing.png'));(OUT/'whip-render.json').write_text(json.dumps(page.evaluate('__grapple.graphics.ropeDraw'),indent=2))
     page.wait_for_function('SkyRelay.releaseWindow(player)',timeout=180000);page.keyboard.up('KeyZ')
     page.wait_for_function('SkyRelay.state.reached',timeout=180000)
     check(page.evaluate('SkyRelay.state.release.loops>=1&&SkyRelay.state.release.vx>0&&SkyRelay.state.release.vy<0'),'The player winds up and releases real up-right momentum')
