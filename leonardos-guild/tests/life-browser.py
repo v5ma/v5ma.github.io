@@ -111,14 +111,17 @@ with sync_playwright() as p:
    page.screenshot(path=str(OUT/'mayors-hall.png'));interact('progress:receipts','Mayor')
    check(read()['life']['flags']['charter'] and read()['life']['quests']['receipts']==5,'Returning the investigation awards the actual garden charter')
   else:
-   drive(0,140,2.5);drive(0,240,2.5);drive(0,390,2.5);stop();page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(0,400,.8)
+   drive(0,140,2.5);drive(0,240,2.5);drive(0,340,2.5);drive(0,390,2.5);stop();page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(0,400,.8)
    check(not read()['life']['flags'].get('garden'),'The extension begins locked in this resumed repair-stage save')
    interact('progress:orchard','pump');check(read()['life']['flags']['garden'],'The actual pump action opens the northern gate')
    drive(0,414,1);page.screenshot(path=str(OUT/'north-gate-open.png'));check(read()['z']>410,'Ordinary movement can now cross the former map boundary')
    drive(0,459,2);drive(17,496,1);drive(23,496,1)
    check(read()['render']['interior']['room']=='observatory','The new garden leads to an actual conservatory interior with Sofia')
    page.screenshot(path=str(OUT/'sofia-conservatory.png'));page.keyboard.press('KeyT');page.wait_for_selector('#life-dialog[open]');check('Sofia' in page.locator('#life-title').inner_text(),'The new region has an interactive named resident, not just scenery');page.locator('#life-close').click();page.wait_for_function('!LeonardoGuild.inspect().paused')
-   drive(17,496);drive(0,496);drive(0,415);mount();drive(0,218,2);drive(-12,215,1);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-18,215,.7);drive(-23,216,.8)
+   # Use real junctions on the return instead of a 170m one-shot waypoint.
+   # Software WebGL reached z221 at its 160s wall deadline (target z218),
+   # still moving with no collision: that was a driver budget, not a game gate.
+   drive(17,496);drive(0,496);drive(0,415);mount();drive(0,340,2.5);drive(0,240,2.5);drive(0,218,2);drive(-12,215,1);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-18,215,.7);drive(-23,216,.8)
    check(read()['render']['interior']['room']=='smith','Bartolo’s cycle shop is a real furnished interior')
    interact('progress:orchard','Bartolo');check(read()['life']['quests']['orchard']==4,'Returning to the smith completes the garden-opening quest')
    page.keyboard.press('KeyT');page.wait_for_selector('#life-dialog[open]');money=read()['credits'];page.locator('[data-use="buy:cargo"]').click();check(read()['life']['bike']=='cargo' and read()['credits']<money,'The expanded shop sells and equips an actual cargo bicycle')
