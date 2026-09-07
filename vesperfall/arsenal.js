@@ -5,7 +5,7 @@
  function install(g){
   const T=g.T,art=g.art,state={lastEvent:0,receipt:{},xrArmed:false,padShield:false,padTrigger:false,desktopTrigger:false};
   const shield=new T.Group();shield.name='Wardglass / directional shield';g.scene.object3D.add(shield);
-  const face=new T.Mesh(new T.CircleGeometry(.59,12),new T.MeshStandardMaterial({color:'#4c737e',metalness:.55,roughness:.38,side:T.DoubleSide}));shield.add(face);
+  const face=new T.Mesh(new T.CircleGeometry(.59,12),new T.MeshStandardMaterial({color:'#76b7b0',metalness:.35,roughness:.3,side:T.DoubleSide,transparent:true,opacity:.24,depthWrite:false}));shield.add(face);
   const border=new T.Mesh(new T.TorusGeometry(.59,.035,6,36),art.mat('#c6a56b',.6));shield.add(border);
   const inner=new T.Mesh(new T.TorusGeometry(.37,.012,4,24),art.mat('#d4c392',.4));inner.position.z=.023;shield.add(inner);
   const boss=new T.Mesh(new T.OctahedronGeometry(.11),art.mat('#a1e3ce',.25,true));boss.position.z=.1;shield.add(boss);
@@ -52,7 +52,7 @@
   const oldCancel=g.cancel.bind(g);g.cancel=function(){oldCancel();C.shield(g.game,null);state.xrArmed=false;state.desktopTrigger=false;g.crossHeld=false;};
   const oldPause=g.setPaused.bind(g);g.setPaused=function(v){oldPause(v);state.padShield=false;audio();};
   const oldMenu=g.menuUI.bind(g);g.menuUI=function(){oldMenu();journal();};
-  const oldType=g.setType.bind(g);g.setType=function(type){if(type==='volley'&&!g.game.volleyUnlocked){g.toast('Choirbreaker unlock: bank five warden kills across runs. Practice offers a trial quiver.');return;}oldType(type);};
+  const oldType=g.setType.bind(g);g.setType=function(type){if(type==='volley'&&!g.game.volleyUnlocked){g.toast('Choirbreaker unlock: bank five warden kills across runs. Practice offers a trial quiver.');return;}oldType(type);if(type==='volley')g.toast('Volley · three physical arrows per charge. Practice quiver is separate from earned unlocks.');};
   const oldVisual=g.visuals.bind(g);g.visuals=function(){oldVisual();render();};
   const oldRemove=g.remove.bind(g);g.remove=function(){if(choir){for(const o of choir.voices)o.stop();choir.gain.disconnect();}oldRemove();};
   for(const [id,fn]of[['weapon-toggle',equip],['reload-action',reload],['shard-action',()=>shard()]])$(id).onclick=()=>{fn();g.scene.canvas.focus();};
