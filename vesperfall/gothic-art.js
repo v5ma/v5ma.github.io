@@ -85,6 +85,7 @@
    for(const x of[-5.65,-3.65])line(b,[x,.45,4.6],[x,3.65,-4.2],.09,gold);
    for(let j=0;j<9;j++){const z=4.6-j*1.1,y=j*.4;box(b,gold,-5.65,y+.22,z,.07,.44,.07);}
    kit.label(group,'CHOIR GALLERY  /  WALK UP THE STAIR',-4.65,1.05,4.65,2.7,.29,'#273c46','#eadab6');
+   const pad=model.architecture.blinkPad;const landingRing=new T.Mesh(new T.TorusGeometry(.48,.025,6,36),kit.mat('#92d7b4',0,true));landingRing.rotation.x=-Math.PI/2;landingRing.position.set(pad[0],pad[1]+.04,pad[2]);group.add(landingRing);kit.label(group,'LIGHT DRAW / GREEN RING: SAFE BLINK',0,4.3,-5.7,3.2,.24,'#263743','#bde7c1');
    kit.label(group,'THE COURT BELOW',3.85,3.95,-5.46,1.45,.22,'#263743','#e5d3a5');
    for(const [i,p]of model.targets.entries()){b.add('cylinder',gold,p[0],.65,p[2],.065,1.3,.065);b.add('ring','#dcc992',...p,.48,.48,.48,0,0,0,.25);b.add('ball','#77b8ac',...p,.25,.25,.1,0,0,0,0,true);}
    const exit=model.rooms[model.exit];pointed(b,exit.x,0,exit.z-4,2.25,6.1,0,.22,gold);kit.label(group,'THE NEXT BELL',exit.x,5.25,exit.z-3.8,3.8,.5);

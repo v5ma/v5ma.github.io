@@ -15,6 +15,6 @@
   }
  }
  function deadzone(v,d=.18){if(!Number.isFinite(v)||Math.abs(v)<d)return 0;return Math.sign(v)*Math.min(1,(Math.abs(v)-d)/(1-d));}
- function cleanProfile(p){return {version:1,shards:Math.round(C.clamp(Number(p?.shards)||0,0,100000)),best:Math.round(C.clamp(Number(p?.best)||0,0,1000000)),depth:Math.round(C.clamp(Number(p?.depth)||0,0,99)),heart:p?.heart===true,power:p?.power===true};}
+ function cleanProfile(p){return (root.VesperChronicle||(typeof require!=='undefined'?require('./chronicle.js'):null)).clean(p);}
  root.VesperInput={BowLatch,deadzone,cleanProfile};if(typeof module!=='undefined')module.exports=root.VesperInput;
 })(globalThis);

@@ -66,7 +66,7 @@
    if(g.game.weapon==='crossbow'&&rise(drawName,0)&&state.xrArmed&&!g.game.shield&&!g.headBlocked){crossShot(bow);state.xrArmed=false;}
   }
   function render(){
-   const s=g.game;g.visualBow.group.visible=s.weapon==='bow'&&!s.shield;g.visualArrow.visible=g.visualArrow.visible&&s.weapon==='bow'&&!s.shield;crossbow.visible=s.weapon==='crossbow'&&!s.shield;
+   const s=g.game;if(state.game!==s){state.game=s;state.lastEvent=0;state.hudAt=-1;}g.visualBow.group.visible=s.weapon==='bow'&&!s.shield;g.visualArrow.visible=g.visualArrow.visible&&s.weapon==='bow'&&!s.shield;crossbow.visible=s.weapon==='crossbow'&&!s.shield;
    bolt.visible=s.crossbow.loaded;const a=string.geometry.attributes.position;a.setXYZ(1,0,.03,s.crossbow.loaded?.06:-.43+(1-s.crossbow.reload/(s.quickwind?1.05:1.55))*.49);a.needsUpdate=true;
    shield.visible=active()&&!!s.shield;if(shield.visible){shield.position.set(...s.shield.p);shield.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),new T.Vector3(...s.shield.normal));boss.scale.setScalar(.75+.25*s.guard/s.maxGuard);}
    dust.rotation.y=Math.sin(s.time*.015)*.12;

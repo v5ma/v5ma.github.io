@@ -11,16 +11,18 @@
   const floors=[
    {id:'choir-stair',type:'stair',x:-4.65,z:.2,w:1.8,d:8.8,y:0,slopeZ:-GALLERY_Y/8.8,anchorZ:4.6},
    {id:'choir-landing',type:'gallery',x:-4.65,z:-4.85,w:1.8,d:1.3,y:GALLERY_Y},
-   {id:'choir-gallery',type:'gallery',x:.5,z:-4.85,w:8.5,d:1.3,y:GALLERY_Y}
+   {id:'choir-gallery',type:'gallery',x:.5,z:-4.85,w:8.5,d:2.2,y:GALLERY_Y}
   ];
   world.floors.push(...floors);
   world.targets.push([3.2,1.5,2.8]); // Court bell visible from the upper gallery.
   // Floor slab and front balustrade share their visible/collision bounds.
-  world.solids.push(box([-5.55,2.96,-5.5],[4.75,3.19,-4.2],'gallery-deck'));
-  world.solids.push(box([-3.72,3.2,-4.2],[4.75,4.08,-4.02],'balustrade'));
-  world.solids.push(box([4.65,3.2,-5.5],[4.88,4.08,-4.05],'balustrade'));
+  world.solids.push(box([-5.55,2.96,-5.5],[-3.75,3.19,-4.2],'gallery-deck'));
+  world.solids.push(box([-3.75,2.96,-5.95],[4.75,3.19,-3.75],'gallery-deck'));
+  world.solids.push(box([-3.72,3.2,-3.75],[-1.25,4.08,-3.57],'balustrade'));
+  world.solids.push(box([1.25,3.2,-3.75],[4.75,4.08,-3.57],'balustrade'));
+  world.solids.push(box([4.65,3.2,-5.5],[4.88,4.08,-3.57],'balustrade'));
   // Top landing is reached from the stair at x=-4.65; no auto-lift or teleport.
-  world.architecture={version:1,galleryHeight:GALLERY_Y,stairEntry:[-4.65,0,4.75],viewpoint:[3.9,GALLERY_Y,-4.85],floorIDs:floors.map(f=>f.id)};
+  world.architecture={version:1,galleryHeight:GALLERY_Y,blinkPad:[0,GALLERY_Y,-4.85],stairEntry:[-4.65,0,4.75],viewpoint:[3.9,GALLERY_Y,-4.85],floorIDs:floors.map(f=>f.id)};
   return world;
  }
  function elevation(f,p){return f.y+(f.slopeZ||0)*(p[2]-(f.anchorZ??f.z))+(f.slopeX||0)*(p[0]-(f.anchorX??f.x));}
