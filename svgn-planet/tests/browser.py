@@ -30,7 +30,7 @@ def walk(page,target):
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- b=p.chromium.launch(**kw);mobile=MODE=='mobile';ctx=b.new_context(viewport={'width':390 if mobile else 1280,'height':844 if mobile else 800},is_mobile=mobile,has_touch=mobile,service_workers='block');page=ctx.new_page();page.set_default_timeout(45000);page.on('pageerror',lambda e:errors.append(str(e)))
+ b=p.chromium.launch(**kw);mobile=MODE=='mobile';ctx=b.new_context(viewport={'width':390 if mobile else 1280,'height':844 if mobile else 800},is_mobile=mobile,has_touch=mobile,service_workers='block');page=ctx.new_page();page.set_default_timeout(45000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:errors.append(m.text) if 'THREE.WebGLProgram: Shader Error' in m.text else None)
  try:
   page.goto(BASE+'/svgn-planet/index.html',wait_until='domcontentloaded');page.wait_for_function('window.SVGNPlanet&&SVGNPlanet.inspect().render');page.locator('#start').click();page.wait_for_timeout(900);begin=time.monotonic()
   check('Paper Delivery' in page.title(),'The application uses the requested SVGN Paper Delivery identity')
@@ -39,6 +39,7 @@ with sync_playwright() as p:
   page.screenshot(path=str(OUT/(MODE+'-street-start.png')))
   if not mobile:
    page.keyboard.press('KeyP');page.locator('#quality').select_option('low');page.locator('#resume').click()
+   page.keyboard.down('KeyW');page.wait_for_timeout(500);page.keyboard.up('KeyW');check(snap(page)['distance']>.2,'The first movement press after Resume is not erased by a late dialog event')
    walk(page,street(8));page.keyboard.press('KeyQ');page.wait_for_function('SVGNPlanet.inspect().deliveries.length===1');check(True,'A paper flies to the first mailbox and completes a real delivery')
    for i in range(1,8):
     t=12+i*12;side=1 if i%2 else -1

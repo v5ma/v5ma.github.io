@@ -7,7 +7,7 @@ export function createSky(scene, radius) {
   fragmentShader:`precision mediump float;varying vec3 direction;uniform vec3 up;
   float hash(vec3 p){p=fract(p*.3183099+vec3(.1,.3,.7));p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
   float noise(vec3 p){vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(mix(hash(i),hash(i+vec3(1,0,0)),f.x),mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);}
-  void main(){vec3 d=normalize(direction);float h=dot(d,up);vec3 blue=mix(vec3(.62,.79,.83),vec3(.09,.47,.73),smoothstep(-.08,.85,h));vec3 p=d*6.+vec3(7,2,11);float n=noise(p)*.6+noise(p*2.03)*.28+noise(p*4.1)*.12;float c=smoothstep(.48,.68,n)*smoothstep(.025,.22,h);vec3 cloud=mix(vec3(.7,.8,.8),vec3(.98,.95,.84),smoothstep(.52,.75,n));gl_FragColor=vec4(mix(blue,cloud,c),1.0);
+  void main(){vec3 d=normalize(direction);float h=dot(d,up);vec3 blue=mix(vec3(.10,.34,.58),vec3(.012,.18,.55),smoothstep(-.5,.45,h));vec3 p=d*6.+vec3(7,2,11);float n=noise(p)*.6+noise(p*2.03)*.28+noise(p*4.1)*.12;float c=smoothstep(.48,.68,n)*smoothstep(-.25,.08,h);vec3 cloud=mix(vec3(.7,.8,.8),vec3(.98,.95,.84),smoothstep(.52,.75,n));gl_FragColor=vec4(mix(blue,cloud,c),1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>
   }`});

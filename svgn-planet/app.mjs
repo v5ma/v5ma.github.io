@@ -7,10 +7,10 @@ const diagnostics=[];
 function record(type,message=''){diagnostics.push({type,message,time:Date.now()});if(diagnostics.length>20)diagnostics.shift();}
 function clear(){keys.clear();stick=[0,0];jump=boost=false;acc=0;$('stick').querySelector('i').style.transform='';}
 function persist(){const raw=JSON.stringify(saveData(s));if(raw===saveStamp)return;try{localStorage.setItem(SAVE_KEY,raw);saveStamp=raw;}catch{storage=false;}}
-function showFailure(message){failed=true;clear();persist();$('failure').hidden=false;$('failure-message').textContent=message;record('error',message);}
-function pause(){if(!started||paused)return;paused=true;clear();persist();$('pause-dialog').showModal();}
+function showFailure(message){failed=true;for(const id of ['pause-dialog','map-dialog'])if($(id).open)$(id).close();clear();persist();$('failure').hidden=false;$('failure-message').textContent=message;record('error',message);}
+function pause(){if(!started||paused||graphicsLost||failed)return;paused=true;clear();persist();$('pause-dialog').showModal();}
 function resume(){if(graphicsLost||failed)return;paused=false;clear();last=0;for(const id of ['pause-dialog','map-dialog'])if($(id).open)$(id).close();canvas.focus({preventScroll:true});}
-for(const id of ['pause-dialog','map-dialog']){$(id).addEventListener('close',()=>{if(!graphicsLost&&!failed)paused=false;clear();last=0;canvas.focus({preventScroll:true});});}
+for(const id of ['pause-dialog','map-dialog']){$(id).addEventListener('close',()=>{if(graphicsLost||failed||!paused||document.querySelector('dialog[open]'))return;paused=false;clear();last=0;canvas.focus({preventScroll:true});});}
 $('start').onclick=()=>{started=true;paused=false;vehicle=$('vehicle').value;s.ride=true;clear();$('welcome').hidden=true;document.body.classList.remove('title');view.setCamera('street');mode=0;canvas.focus({preventScroll:true});record('started');};
 $('pause').onclick=pause;$('resume').onclick=resume;
 $('reset').onclick=()=>{$('confirm-reset').hidden=false;};$('cancel-reset').onclick=()=>$('confirm-reset').hidden=true;
