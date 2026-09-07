@@ -7,8 +7,15 @@ import {mesh,anchor,road,batchStatic} from './art.mjs';
 import {faceSurface,groundShadow} from './neighborhood.mjs';
 import {createCourier,createCar} from './vehicles.mjs';
 const front=n=>tangent(add(street(Math.atan2(-n[2],n[1])*110+1,Math.asin(n[0])*110),mul(n,-1)),n);
-function sign(parent,text,p,width=4,color='#17495b'){const canvas=document.createElement('canvas');canvas.width=512;canvas.height=128;const g=canvas.getContext('2d');g.fillStyle=color;g.fillRect(0,0,512,128);g.fillStyle='#fff0d1';g.font='bold 39px system-ui';g.textAlign='center';g.fillText(text,256,79,485);const tex=new T.CanvasTexture(canvas);tex.colorSpace=T.SRGBColorSpace;const m=new T.Mesh(new T.PlaneGeometry(width,width/4),new T.MeshBasicMaterial({map:tex,side:T.FrontSide,roughness:1}));m.position.set(...p);parent.add(m);return m;}
+function sign(parent,text,p,width=4,color='#17495b'){const canvas=document.createElement('canvas');canvas.width=512;canvas.height=128;const g=canvas.getContext('2d');g.fillStyle=color;g.fillRect(0,0,512,128);g.fillStyle='#fff0d1';g.font='bold 39px system-ui';g.textAlign='center';g.fillText(text,256,79,485);const tex=new T.CanvasTexture(canvas);tex.colorSpace=T.SRGBColorSpace;const m=new T.Mesh(new T.PlaneGeometry(width,width/4),new T.MeshBasicMaterial({map:tex,side:T.FrontSide}));m.position.set(...p);parent.add(m);return m;}
 function posed(parent,n){const g=new T.Group();parent.add(g);faceSurface(g,n,front(n));return g;}
+// A ground-level, forward-facing fan rather than a backward decorative cone.
+// Nominal ranges match the current patrol model; real walls still occlude sight.
+export function patrolFanGeometry(range=14){
+ const p=[],half=Math.acos(.25),R=110,span=R*Math.sin(range/R),drop=R*(Math.cos(range/R)-1);
+ for(let i=0;i<32;i++){const a=-half+2*half*i/32,b=-half+2*half*(i+1)/32;p.push(0,0,0,span*Math.sin(a),drop,-span*Math.cos(a),span*Math.sin(b),drop,-span*Math.cos(b));}
+ const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(p,3));g.computeBoundingSphere();return g;
+}
 export function createCityVisual(root){
  const fixed=new T.Group();root.add(fixed);
  for(const r of CITY.roads){const length=Math.hypot(r.b[0]-r.a[0],r.b[1]-r.a[1]);const pts=Array.from({length:Math.ceil(length)+1},(_,i)=>street(r.a[0]+(r.b[0]-r.a[0])*i/Math.ceil(length),r.a[1]+(r.b[1]-r.a[1])*i/Math.ceil(length)));
@@ -42,15 +49,15 @@ export function createCityVisual(root){
  const guards=CITY.guards.map(()=>{const a=createCourier(root,'#5c7175');a.bicycle.visible=a.unicycle.visible=false;return a;});
  const drone=new T.Group();root.add(drone);mesh(drone,'box','#344853',[0,0,0],[.48,.16,.42]);mesh(drone,'round','#77e2d2',[0,-.1,-.17],[.1,.08,.08]);const rotors=[];for(const x of[-.42,.42])for(const z of[-.35,.35]){mesh(drone,'box','#d9c797',[x/2,0,z/2],[.5,.06,.07],[0,-Math.atan2(z,x),0]);const m=mesh(drone,'box','#254249',[x,.07,z],[.48,.025,.06]);rotors.push(m);}
  const marker=posed(root,CITY.desk.n);const ring=new T.Mesh(new T.TorusGeometry(1.15,.055,6,32),new T.MeshBasicMaterial({color:'#efc77d'}));ring.rotation.x=Math.PI/2;ring.position.y=.3;marker.add(ring);const beacon=mesh(marker,'cone','#efc77d',[0,2.4,0],[.2,.5,.2],[Math.PI,0,0]);
- const coneGeometry=new T.ConeGeometry(1,1,28,1,true);coneGeometry.translate(0,-.5,0);coneGeometry.rotateX(-Math.PI/2);
- const cones=guards.map(()=>{const m=new T.Mesh(coneGeometry,new T.MeshBasicMaterial({color:'#e7bc78',transparent:true,opacity:.14,depthWrite:false,side:T.DoubleSide}));root.add(m);return m;});
+ const fans=new Map([8,13,14].map(r=>[r,patrolFanGeometry(r)]));
+ const cones=guards.map(()=>{const m=new T.Mesh(fans.get(14),new T.MeshBasicMaterial({color:'#e7bc78',transparent:true,opacity:.14,depthWrite:false,side:T.DoubleSide}));root.add(m);return m;});
  function update(dt,s,c,camera){if(!c)return;const selected=selectedDevice(s,c),f=focus(s,c);
   vehicles.forEach((g,i)=>{const v=c.vehicles[i];faceSurface(g,v.n,mul(v.f,-1));});
   arm.rotation.z=T.MathUtils.lerp(arm.rotation.z,c.gate?Math.PI/2:0,Math.min(1,dt*7));
   drone.visible=c.drone.active;if(drone.visible){faceSurface(drone,c.drone.n,c.drone.facing);drone.position.set(...point(c.drone.n,c.drone.lift));rotors.forEach(r=>r.rotation.y+=dt*42);}
   devices.forEach(({d,g,ring,lamp})=>{ring.visible=c.scan>0&&distance(f.n,d.n)<20;ring.lookAt(camera.position);ring.scale.setScalar(selected?.id===d.id?1.4:1);ring.material.color.set(selected?.id===d.id?'#ffe3a1':'#70ead5');if(d.kind==='traffic')lamp.material.color.set(c.red>0?'#ee735e':'#71cf9e');});
   guards.forEach((a,i)=>{const g=c.guards[i];faceSurface(a.g,g.n,mul(g.f,-1));a.body.rotation.z=g.stun>0?.65:0;a.legs.forEach((l,k)=>l.rotation.x=g.stun>0?0:Math.sin(s.time*5+k*Math.PI)*.32);
-   const cone=cones[i];cone.visible=c.scan>0&&g.stun===0;faceSurface(cone,g.n,g.f);cone.position.set(...point(g.n,1.4));cone.scale.set(7,4,12);});
+   const cone=cones[i];cone.visible=c.scan>0&&g.stun===0;faceSurface(cone,g.n,g.f);cone.geometry=fans.get(c.drone.active?13:c.crouch?8:14);cone.position.set(...point(g.n,.3));});
   marker.visible=c.active&&!c.completed;if(marker.visible){faceSurface(marker,mission(c).site.n,front(mission(c).site.n));beacon.position.y=2.4+Math.sin(s.time*2)*.15;}
  }
  return {update,obstacles:CITY.buildings,inspect:()=>({roads:CITY.roads.length,buildings:CITY.buildings.length,devices:devices.length,vehicles:vehicles.length,guards:guards.length,renderer:'shared'})};
