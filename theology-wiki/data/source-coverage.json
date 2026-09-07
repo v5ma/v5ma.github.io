@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.05-atlas-1",
+  "version": "2026.09.06-james-transmission-1",
   "policy": "Coverage means recorded links and selected source-turn anchors. It does not measure how much has been read, quality, originality, completeness, or author approval. Export-start dates do not date every later turn.",
   "rows": [
     {
@@ -169,13 +169,16 @@
         "manuscripts-movements-and-survival",
         "inner-formation-texts-and-material-witnesses",
         "daniel-jubilee-and-the-teachers-time",
-        "onias-egypt-and-priestly-continuity"
+        "onias-egypt-and-priestly-continuity",
+        "james-and-contested-succession",
+        "thomas-sayings-and-transmission"
       ],
       "chapters": [
         "shared-archive",
         "teacher-identity",
         "thomas",
         "trauma",
+        "gnosis",
         "inner-model",
         "continuing"
       ],
@@ -2735,10 +2738,15 @@
       "bytes": 7882,
       "exportStartDate": "2025-05-10",
       "turnCount": 4,
-      "articles": [],
-      "chapters": [],
+      "articles": [
+        "james-and-contested-succession"
+      ],
+      "chapters": [
+        "teacher-identity",
+        "thomas"
+      ],
       "selectedTurns": [],
-      "coverage": "No developed-article link recorded",
+      "coverage": "Linked to developed article",
       "readingStatus": "Not inferred",
       "sourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=james-the-just-analysis"
     },
@@ -2765,10 +2773,18 @@
       "bytes": 49857,
       "exportStartDate": "2025-09-08",
       "turnCount": 10,
-      "articles": [],
-      "chapters": [],
+      "articles": [
+        "james-and-contested-succession",
+        "thomas-sayings-and-transmission"
+      ],
+      "chapters": [
+        "teacher-identity",
+        "thomas",
+        "gnosis",
+        "inner-model"
+      ],
       "selectedTurns": [],
-      "coverage": "No developed-article link recorded",
+      "coverage": "Linked to developed article",
       "readingStatus": "Not inferred",
       "sourceURL": "https://v5ma.github.io/theology-wiki/san-reader.html?page=jesus-and-biblical-figures"
     },
@@ -3899,10 +3915,12 @@
       "turnCount": 82,
       "articles": [
         "sacred-inheritance-and-rival-continuations",
-        "tor-thomas-and-gnostic-transmission"
+        "tor-thomas-and-gnostic-transmission",
+        "james-and-contested-succession"
       ],
       "chapters": [
         "shared-archive",
+        "teacher-identity",
         "thomas",
         "continuing"
       ],

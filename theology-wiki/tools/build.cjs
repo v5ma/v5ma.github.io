@@ -4,6 +4,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const ROOT=path.resolve(__dirname,'..'),SITE=path.dirname(ROOT);
 const C=require('../assets/js/research-core.js'),base=require('../editorial/edition.cjs'),X=require('../editorial/expansion.cjs'),D=require('../editorial/depth.cjs'),F=require('../editorial/foundations.cjs'),R=require('../editorial/roadmap.cjs'),Roadmap=require('./roadmap.cjs'),A=require('../editorial/atlas.cjs'),Atlas=require('./atlas.cjs');
+const Evidence=require('./evidence.cjs');
 const Products=require('./products.cjs'),H=require('../editorial/authorial.cjs');
 for(const data of [base,X,D,F,A])H.reword(data);
 const references=[...X.references,...D.references,...F.references,...R.references,...A.references,...H.references];
@@ -71,6 +72,7 @@ function build(){
   write('content/'+row.path,front(row,body));bodies.set(row.slug,body);
  }
  for(const p of E.articles)add(p,p.body);
+ add({slug:'evidence-workbench',title:'Evidence workbench: passages and interpretations',category:'context',kind:'Navigator',summary:'Compare thirty passage-level claims, their surviving channels, contributions and next research questions.'},Evidence.markdown(ROOT,references));
  add({slug:'listening-room',title:'Listening room',category:'context',kind:'Navigator',summary:'Full developed articles, paragraph navigation, device voices and recorded studies.'},'Listen to the complete public argument, not a substitute summary. Select an article or chapter route below. Browser voices vary by device; a recorded study is listed separately when available. [[production-studio|Audio and video episodes]] introduce shorter investigations. [[product-pathways|Product pathways]] keeps the work connected to the book and museum.');
  add({slug:'production-studio',title:'Audio and video studio',category:'context',kind:'Navigator',summary:'A source-linked production series with scripts, transcripts, recordings and measured captions.'},'These are first-person authorial scripts and synthetic narration drafts. They are not recovered verbatim quotations, recordings of the author, or completed manuscript chapters. Full-article narration remains in the [[listening-room|listening room]]. [[product-pathways|Product pathways]] records the shared production plan.');
  add({slug:'product-pathways',title:'One inquiry, several products',category:'context',kind:'Navigator',summary:'The book, listening edition, applications, video series and separately developed museum share one research foundation.'},read('editorial/product-guide.md'));
@@ -206,11 +208,12 @@ ${E.articles.length} developed articles accompany the archive. They present the 
  emit('data/research.json',{version:E.version,categories:E.categories,paths:E.paths,sourceCount:manifest.length,developedCount:E.articles.length,featured:D.featured,forecastRecords:ledger.entries.length,sourceIntegrity:'354/354 matched existing SHA-256 manifest',backlinks});
  write('data/search.json',JSON.stringify({version:E.version,ids:pages.map(p=>p.slug),scope:'All published text. Speaker searches require every query token within the same top-level source turn; user turns can include pasted quotations.',postings,turns:turnRows,turnPostings})+'\n');
  const priestly=require('./priestly.cjs').compile({root:ROOT,pages,references,sourceById,chats});
+ const evidence=Evidence.compile({root:ROOT,pages,references,sourceById,chats});
  const roadmap=Roadmap.build({root:ROOT,plan:R.plan,pages,foundations,anchors});
  patchReaders();
  const atlas=Atlas.build({root:ROOT,data:A.data,references,pages,sourceById,chats,foundations});
  const productReport=Products.build(ROOT,pages);
- const report={version:E.version,priestlyEvidenceClaims:priestly.claims.length,...productReport,atlasRecords:atlas.counts.records,atlasRelationships:atlas.counts.relationships,challengeRecords:atlas.counts.challenges,museumTrails:atlas.counts.trails,museumStops:atlas.counts.stops,chronologyIntervals:atlas.counts.intervals,roadmapTasks:roadmap.summary.tasks,roadmapDependencies:roadmap.summary.dependencyEdges,sourcesLinkedToArticles:roadmap.summary.sourcesLinkedToArticles,bookParts:F.parts.length,chapterRoutes:F.parts.reduce((n,p)=>n+p.chapters.length,0),researchTasks:F.tasks.length,timelineRecords:F.timeline.length,argumentDossiers:F.dossiers.length,reviewedPassages:foundations.dossiers.reduce((n,d)=>n+d.passages.length,0),pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
+ const report={version:E.version,evidenceClaims:evidence.claims.length,priestlyEvidenceClaims:priestly.claims.length,...productReport,atlasRecords:atlas.counts.records,atlasRelationships:atlas.counts.relationships,challengeRecords:atlas.counts.challenges,museumTrails:atlas.counts.trails,museumStops:atlas.counts.stops,chronologyIntervals:atlas.counts.intervals,roadmapTasks:roadmap.summary.tasks,roadmapDependencies:roadmap.summary.dependencyEdges,sourcesLinkedToArticles:roadmap.summary.sourcesLinkedToArticles,bookParts:F.parts.length,chapterRoutes:F.parts.reduce((n,p)=>n+p.chapters.length,0),researchTasks:F.tasks.length,timelineRecords:F.timeline.length,argumentDossiers:F.dossiers.length,reviewedPassages:foundations.dossiers.reduce((n,d)=>n+d.passages.length,0),pages:pages.length,readingPaths:E.paths.length,forecastRecords:ledger.entries.length,externalSources:references.length,sourceChats:manifest.length,verifiedHashes:chats.size,developedArticles:E.articles.length,topicCollections:E.categories.length,explainedRelationships:relationships.length,anchoredSourceTurns:anchors.length,indexedTurns:turnRows.length,links:Object.values(graph).reduce((n,x)=>n+x.length,0),searchTerms:Object.keys(postings).length,sourceBytes:[...chats.values()].reduce((n,x)=>n+x.bytes,0)};
  emit('data/build-report.json',report);return report;
 }
 function patchReaders(){
@@ -275,12 +278,12 @@ function patchReaders(){
  html=html.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  original=original.replace(/(\.\/assets\/(?:js|css)\/(?:foundation-tools\.js|foundation\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  const bump=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:depth-tools\.js|depth\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
- for(const [asset,type] of [['roadmap-tools.js','js'],['roadmap.css','css'],['atlas-core.js','js'],['atlas-tools.js','js'],['atlas.css','css'],['listening-core.js','js'],['products-tools.js','js'],['products.css','css']]){
+ for(const [asset,type] of [['roadmap-tools.js','js'],['roadmap.css','css'],['atlas-core.js','js'],['atlas-tools.js','js'],['atlas.css','css'],['listening-core.js','js'],['products-tools.js','js'],['products.css','css'],['evidence-core.js','js'],['evidence-tools.js','js'],['evidence.css','css']]){
   const tag=type==='js'?'<script src="./assets/js/'+asset+'?v='+E.version+'"></script>':'<link rel="stylesheet" href="./assets/css/'+asset+'?v='+E.version+'">';
   const addAsset=text=>text.includes(asset)?text:text.replace(type==='js'?'<script src="./assets/js/research-tools.js':'</head>',type==='js'?tag+'<script src="./assets/js/research-tools.js':tag+'</head>');
   html=addAsset(html);original=addAsset(original);
  }
- const bumpRoadmap=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:roadmap-tools\.js|roadmap\.css|atlas-core\.js|atlas-tools\.js|atlas\.css|listening-core\.js|products-tools\.js|products\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
+ const bumpRoadmap=text=>text.replace(/(\.\/assets\/(?:js|css)\/(?:roadmap-tools\.js|roadmap\.css|atlas-core\.js|atlas-tools\.js|atlas\.css|listening-core\.js|products-tools\.js|products\.css|evidence-core\.js|evidence-tools\.js|evidence\.css)\?v=)[^"'\s]+/g,'$1'+E.version);
  html=bumpRoadmap(html);original=bumpRoadmap(original);
  write('san-reader.html',bump(html));
  write('index.html',bump(original));

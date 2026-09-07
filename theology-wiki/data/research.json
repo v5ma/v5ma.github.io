@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-priesthood-time-1",
+  "version": "2026.09.06-james-transmission-1",
   "categories": [
     {
       "id": "gnosis",
@@ -140,7 +140,7 @@
     }
   ],
   "sourceCount": 354,
-  "developedCount": 27,
+  "developedCount": 29,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -211,6 +211,8 @@
       "inner-formation-texts-and-material-witnesses",
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
       "topic-origins"
     ],
     "ai-safety-and-lovecraft": [
@@ -917,6 +919,7 @@
     ],
     "james-the-just-analysis": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
+      "james-and-contested-succession",
       "topic-context"
     ],
     "jesus-7-levels-of-consciousness-fact-check": [
@@ -927,6 +930,8 @@
     "jesus-and-biblical-figures": [
       "theology-theology-jesus-teachings-dead-sea-cluster",
       "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
       "topic-jesus"
     ],
     "jesus-and-dead-sea-scrolls": [
@@ -1253,6 +1258,7 @@
       "theology-theology-paul-jesus-moses-summary-cluster",
       "sacred-inheritance-and-rival-continuations",
       "tor-thomas-and-gnostic-transmission",
+      "james-and-contested-succession",
       "topic-jesus"
     ],
     "paul-vs-jesus-teachings": [
@@ -1828,6 +1834,7 @@
       "computational-divine-immanence",
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
+      "thomas-sayings-and-transmission",
       "source-atlas",
       "museum-trails",
       "guide-to-the-inquiry",
@@ -1932,6 +1939,7 @@
       "inner-formation-texts-and-material-witnesses",
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
+      "thomas-sayings-and-transmission",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -2006,6 +2014,7 @@
       "home",
       "tor-thomas-and-gnostic-transmission",
       "onias-egypt-and-priestly-continuity",
+      "thomas-sayings-and-transmission",
       "source-atlas",
       "argument-challenges",
       "museum-trails",
@@ -2047,6 +2056,8 @@
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
       "onias-egypt-and-priestly-continuity",
+      "james-and-contested-succession",
+      "evidence-workbench",
       "source-atlas",
       "museum-trails",
       "topic-origins",
@@ -2056,10 +2067,37 @@
       "home",
       "tor-thomas-and-gnostic-transmission",
       "daniel-jubilee-and-the-teachers-time",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
+      "evidence-workbench",
       "source-atlas",
       "museum-trails",
       "topic-origins",
       "book-contents"
+    ],
+    "james-and-contested-succession": [
+      "home",
+      "onias-egypt-and-priestly-continuity",
+      "thomas-sayings-and-transmission",
+      "evidence-workbench",
+      "source-atlas",
+      "museum-trails",
+      "topic-origins",
+      "book-contents"
+    ],
+    "thomas-sayings-and-transmission": [
+      "home",
+      "tor-thomas-and-gnostic-transmission",
+      "james-and-contested-succession",
+      "evidence-workbench",
+      "source-atlas",
+      "museum-trails",
+      "topic-gnosis",
+      "book-contents"
+    ],
+    "evidence-workbench": [
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission"
     ],
     "listening-room": [
       "home",
@@ -2078,6 +2116,9 @@
     ],
     "source-atlas": [
       "exodus-to-temple-competing-chronologies",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
+      "evidence-workbench",
       "argument-challenges",
       "computational-argument-map"
     ],
@@ -2563,6 +2604,7 @@
       "religion-for-conscious-robots",
       "tor-thomas-and-gnostic-transmission",
       "god-and-our-models-of-god",
+      "thomas-sayings-and-transmission",
       "book-contents",
       "research-board"
     ]

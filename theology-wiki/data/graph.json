@@ -40,6 +40,8 @@
       "flood-inheritance-and-deep-time",
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -1705,7 +1707,8 @@
       "paul-vs-james-movement",
       "who-was-josepheous",
       "jewish-apocalyptic-repair-timeline",
-      "onias-egypt-and-priestly-continuity"
+      "onias-egypt-and-priestly-continuity",
+      "thomas-sayings-and-transmission"
     ],
     "divine-will-and-self-authorizing-power": [
       "sacred-inheritance-and-rival-continuations",
@@ -1816,7 +1819,38 @@
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
       "manuscripts-movements-and-survival",
+      "ai-re-dates-dead-sea-scrolls",
+      "james-and-contested-succession"
+    ],
+    "james-and-contested-succession": [
+      "onias-egypt-and-priestly-continuity",
+      "evidence-workbench",
+      "thomas-sayings-and-transmission",
+      "source-atlas",
+      "daniel-jubilee-and-the-teachers-time",
+      "james-the-just-analysis",
+      "paul-vs-james-movement",
+      "jesus-and-biblical-figures",
       "ai-re-dates-dead-sea-scrolls"
+    ],
+    "thomas-sayings-and-transmission": [
+      "tor-thomas-and-gnostic-transmission",
+      "evidence-workbench",
+      "james-and-contested-succession",
+      "christ-as-an-inner-model",
+      "onias-egypt-and-priestly-continuity",
+      "manuscripts-movements-and-survival",
+      "intellectual-debts",
+      "source-atlas",
+      "jesus-and-biblical-figures",
+      "ai-re-dates-dead-sea-scrolls"
+    ],
+    "evidence-workbench": [
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
+      "source-atlas",
+      "daniel-jubilee-and-the-teachers-time",
+      "onias-egypt-and-priestly-continuity"
     ],
     "listening-room": [
       "production-studio",
@@ -1849,7 +1883,9 @@
       "inner-formation-texts-and-material-witnesses",
       "christ-as-an-inner-model",
       "computational-divine-immanence",
-      "flood-inheritance-and-deep-time"
+      "flood-inheritance-and-deep-time",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission"
     ],
     "argument-challenges": [
       "exodus-to-temple-competing-chronologies",
@@ -1871,6 +1907,8 @@
       "flood-inheritance-and-deep-time",
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
       "book-contents"
     ],
     "research-roadmap": [
@@ -1923,6 +1961,7 @@
     ],
     "topic-gnosis": [
       "cognitive-gnosticism",
+      "thomas-sayings-and-transmission",
       "abraham-hicks-and-gnosticism",
       "abraham-hicks-vs-gnostic-jesus",
       "advanced-gnosticism-scholarship-conclusions",
@@ -2031,6 +2070,7 @@
       "flood-inheritance-and-deep-time",
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
+      "james-and-contested-succession",
       "ai-re-dates-dead-sea-scrolls",
       "ancient-egypt-vs-fascism",
       "bible-text-sources-comparison",
@@ -2382,10 +2422,12 @@
       "exodus-to-temple-competing-chronologies",
       "jesus-teacher-of-righteousness-hypothesis",
       "daniel-jubilee-and-the-teachers-time",
+      "james-and-contested-succession",
       "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
       "onias-egypt-and-priestly-continuity",
+      "thomas-sayings-and-transmission",
       "gnosticism-and-temple-trauma",
       "apocalyptic-repair-theology",
       "god-and-our-models-of-god",
@@ -2414,11 +2456,11 @@
       "scripture-power-and-repair",
       "forecast-ledger",
       "gnosticism-and-temple-trauma",
-      "tor-thomas-and-gnostic-transmission",
       "jesus-teacher-of-righteousness-hypothesis",
       "god-and-our-models-of-god",
       "sacred-inheritance-and-rival-continuations",
       "religion-for-conscious-robots",
+      "tor-thomas-and-gnostic-transmission",
       "melchizedek-priesthood-and-transmission",
       "intellectual-debts",
       "divine-will-and-self-authorizing-power",
