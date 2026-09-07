@@ -47,7 +47,12 @@ with sync_playwright() as p:
   check(abs(end['position']['y']-6)<.05 and 47<=end['position']['x']<=83 and -42<=end['position']['z']<=-10,'The landing happens on actual garden terrain')
   check(not end['glider']['active'],'The canopy folds automatically on landing')
   old=end['glider']['charge'];page.wait_for_function('(n)=>AetherReach.snapshot().glider.charge>n',arg=old);check(True,'Charge replenishes on the ground rather than continuously in free fall')
-  travel(page,(64,-29));page.keyboard.press('KeyE');page.wait_for_function('AetherReach.snapshot().relays.includes("garden")');check(True,'A restored relay remains reachable after the gliding route')
+  # The relay is at (64,-32), with a 3.8 m use radius. The old (64,-29)
+  # waypoint plus stopping tolerance/inertia sometimes ended OUTSIDE that
+  # radius. Walk up to the console; do not enlarge its radius or fake a use.
+  travel(page,(64,-31));page.locator('#world').focus()
+  check(snap(page)['interaction']=='relay','The rider walks within the actual console interaction radius after landing')
+  page.keyboard.press('KeyE',delay=120);page.wait_for_function('AetherReach.snapshot().relays.includes("garden")');check(True,'A restored relay remains reachable after the gliding route')
   page.screenshot(path=str(OUT/'glider-garden-landing.png'))
   check(not errors,'No uncaught exceptions in the native flight scenario')
   (OUT/'glide-report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'state':snap(page),'errors':errors,'scope':'Native HTTP software WebGL; keyboard and UI inputs only. No physical Quest or Xbox certification.'},indent=2))
