@@ -27,7 +27,9 @@ with sync_playwright() as p:
   guard=center('[data-hold="guard"]');staff=center('[data-action="attack"]')
   fingers('touchStart',point(1,guard));ticks();fingers('touchStart',point(1,guard),point(2,staff));ticks()
   check(read()['guarding'] and any(e['type']=='swing' for e in read()['events']),'Two actual fingers can brace and swing the staff together')
-  fingers('touchEnd',point(1,guard));ticks();check(read()['guarding'],'Releasing the staff finger does not cancel the brace finger')
+  # Chromium's per-point end identifies the finger being lifted, not the one
+  # remaining. Verified against emitted pointerup events on an isolated page.
+  fingers('touchEnd',point(2,staff));ticks();check(read()['guarding'],'Releasing the staff finger does not cancel the brace finger')
   fingers('touchEnd');ticks();check(not read()['guarding'] and read()['input']['buttons']==0,'Lifting the brace finger releases defense')
   page.locator('[data-action="jump"]').tap();ticks();check(read()['lift']>0,'The touch Hop button jumps in the real world')
   page.wait_for_function('LeonardoGuild.inspect().lift===0')
