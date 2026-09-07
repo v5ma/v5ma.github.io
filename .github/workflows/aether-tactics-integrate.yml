@@ -1,0 +1,30 @@
+name: Integrate reviewed tactical game modules
+on:
+  push:
+    branches: [feat/aether-tactical-relay]
+    paths: [.github/workflows/aether-tactics-integrate.yml]
+permissions:
+  contents: write
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/aether-tactical-relay'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify every base and result before applying source wiring
+        run: |
+          python aether-reach/tools/integrate-tactics.py
+          for file in aether-reach/*.mjs; do node --check "$file"; done
+          node --test aether-reach/tests/*.test.mjs
+      - name: Commit only the guarded public files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add aether-reach/app.mjs aether-reach/controllers.mjs aether-reach/index.html aether-reach/input-core.mjs aether-reach/model.mjs aether-reach/release.json aether-reach/scene.mjs aether-reach/xr-session.mjs aether-reach/tactics-core.mjs aether-reach/tactics-ui.mjs aether-reach/tests/public-build.test.mjs aether-reach/tests/release-manifest.mjs
+          git diff --cached --stat
+          git commit -m 'Connect elemental powers, conductor puzzle and optional recovery encounter to public gameplay'
+          git push origin HEAD:feat/aether-tactical-relay
