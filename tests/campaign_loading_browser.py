@@ -40,14 +40,14 @@ with sync_playwright() as p:
      check(len(held)==1,'Campaign content is requested exactly once')
      held.pop().continue_()
     elif scenario=='campaign-fail':
-     page.wait_for_function('PaperDeliveryCampaign.status==="error"')
+     page.wait_for_function('window.PaperDeliveryCampaign?.status==="error"')
      check(page.locator('#campaign-load-retry').is_visible(),'A failed content download provides an explicit retry action')
      check(page.locator('[data-course="4"]').is_disabled() and page.evaluate('__delivery.state.route===-1'),'Failure never silently starts an obsolete level')
      check(page.locator('#delivery-header [data-delivery="editor"]').is_enabled(),'Authoring access is preserved on a campaign-loading failure')
      page.screenshot(path=str(OUT/'load-failure-recovery.png'))
      context.unroute('**/sky-relay.js',abort)
      page.locator('#campaign-load-retry').click()
-    page.wait_for_function('PaperDeliveryCampaign.status==="ready"&&window.__gpuReady===true')
+    page.wait_for_function('window.PaperDeliveryCampaign?.status==="ready"&&window.__gpuReady===true')
     if scenario=='optional-tools-fail':
      page.wait_for_selector('#ride-lab-failed')
      check(not page.evaluate('!!window.RideLabReady'),'The optional tool failure was actually exercised')
