@@ -1,5 +1,5 @@
 /* Shared world coordinates, in meters. Every route remains on the same sphere. */
-export const RADIUS=55;
+export const RADIUS=110;
 export const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
 export const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 export const add=(a,b)=>a.map((v,i)=>v+b[i]);
@@ -22,8 +22,10 @@ export function world(){
  const homes=sites.filter(s=>!['post','garden'].includes(s.id)),trees=[];
  for(let i=0;i<200;i++){const z=rand(i+991)*2-1,a=rand(i)*Math.PI*2,n=[Math.sqrt(1-z*z)*Math.sin(a),Math.sqrt(1-z*z)*Math.cos(a),z];if(Math.abs(n[0])<.24||Math.abs(n[2])<.08||sites.some(s=>distance(s.n,n)<5)||height(n)<-.3)continue;trees.push({id:'tree-'+i,n,size:1.25+rand(i+2)*1.5,style:i%5===0?'fir':'oak',seed:i});}
  for(let i=0;i<12;i++)for(const side of[-1,1])trees.push({id:'avenue-'+i+'-'+side,n:street(i*12+5,side*6.8),size:1.15+rand(i)*.5,style:'oak',seed:i+300});
- const rocks=[[125,19,9],[150,21,14],[180,-24,12],[220,-18,7]].map(([t,x,size],i)=>({n:street(t,x),size,id:'rock-'+i}));
+ const rocks=[[65,-36,28],[100,45,40],[140,40,35],[35,45,20],[220,-30,15]].map(([t,x,size],i)=>({n:street(t,x),size,id:'rock-'+i}));
  const stars=Array.from({length:16},(_,i)=>({id:'stamp-'+i,n:street(7+i*15,(i%2?1:-1)*4.3)}));
- return {sites,homes,trees,rocks,stars};
+ const buildings=[...sites,...homes.map((h,i)=>({...h,id:'scenery-'+i,type:'cabin',side:-h.side,n:street(h.t,-h.side*9.3),mail:street(h.t,-h.side*5.1),color:['#d5c9b8','#e2c8a1','#bdd0c2'][i%3]}))];
+ for(let i=0;i<22;i++){const n=street(i*5, (i%2?1:-1)*(17+rand(i)*6));if(!buildings.some(h=>distance(h.n,n)<5))trees.push({id:'garden-tree-'+i,n,size:1.4,style:'oak',seed:500+i});}
+ return {sites,homes,buildings,trees,rocks,stars};
 }
 export const WORLD=world();

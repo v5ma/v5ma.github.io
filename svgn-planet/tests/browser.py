@@ -9,13 +9,13 @@ def check(ok,name):
  checks.append(name);print('PASS',name,flush=True)
 def snap(page):return page.evaluate('SVGNPlanet.inspect()')
 def street(t,x=0):
- a=t/55;b=x/55
+ a=t/110;b=x/110
  return [math.sin(b),math.cos(b)*math.cos(a),-math.cos(b)*math.sin(a)]
 def walk(page,target):
  held=set();start=time.monotonic()
  try:
   while time.monotonic()-start<60:
-   s=snap(page);n=s['n'];dot=sum(a*b for a,b in zip(n,target));d=math.acos(max(-1,min(1,dot)))*55
+   s=snap(page);n=s['n'];dot=sum(a*b for a,b in zip(n,target));d=math.acos(max(-1,min(1,dot)))*110
    if d<1.7:return
    direction=[b-dot*a for a,b in zip(n,target)];length=math.sqrt(sum(a*a for a in direction));direction=[a/length for a in direction]
    x=sum(a*b for a,b in zip(direction,s['basis']['right']));z=sum(a*b for a,b in zip(direction,s['basis']['forward']));new=set()
@@ -38,12 +38,15 @@ with sync_playwright() as p:
   check(snap(page)['render']['playerScreenHeight']>.14,'The rider occupies a readable portion of the viewport')
   page.screenshot(path=str(OUT/(MODE+'-street-start.png')))
   if not mobile:
+   page.keyboard.press('KeyP');page.locator('#quality').select_option('low');page.locator('#resume').click()
    walk(page,street(8));page.keyboard.press('KeyQ');page.wait_for_function('SVGNPlanet.inspect().deliveries.length===1');check(True,'A paper flies to the first mailbox and completes a real delivery')
    for i in range(1,8):
     t=12+i*12;side=1 if i%2 else -1
     walk(page,street(t));walk(page,street(t,side*4.2));page.keyboard.press('KeyE');page.wait_for_timeout(100);walk(page,street(t))
    check(len(snap(page)['deliveries'])==8,'All eight neighborhood deliveries are reachable through ordinary movement')
-   page.screenshot(path=str(OUT/'desktop-route.png'));walk(page,street(-9));walk(page,street(-9,-4.2));page.keyboard.press('KeyE');page.wait_for_timeout(300);check(snap(page)['complete'],'Returning to the depot completes the round')
+   page.screenshot(path=str(OUT/'desktop-route.png'))
+   for t in [84,72,60,48,36,24,12,0,-9]:walk(page,street(t))
+   walk(page,street(-9,-4.2));page.keyboard.press('KeyE');page.wait_for_timeout(300);check(snap(page)['complete'],'Returning to the depot completes the round')
    old=snap(page)['steps'];page.wait_for_timeout(3000);check(snap(page)['steps']>old and not snap(page)['paused'],'Finishing never quits or stops the session')
    page.keyboard.press('KeyP');page.locator('#vehicle-pause').select_option('bicycle');page.locator('#resume').click();page.wait_for_timeout(500);page.screenshot(path=str(OUT/'desktop-bicycle.png'))
    page.reload();page.wait_for_function('window.SVGNPlanet&&SVGNPlanet.inspect().render');page.locator('#start').click();page.wait_for_timeout(500);check(len(snap(page)['deliveries'])==8 and snap(page)['started'],'Saved completion resumes into a playable scene')
@@ -60,5 +63,5 @@ with sync_playwright() as p:
    page.wait_for_timeout(max(0,60-(time.monotonic()-begin))*1000);check(snap(page)['started'] and snap(page)['steps']>600 and not snap(page)['failed'],'A sixty-second mobile-browser session stays running')
   check(not errors,'No uncaught JavaScript exceptions in this scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'checks':checks,'snapshot':snap(page),'errors':errors,'scope':'Chromium software WebGL; touch is emulated, not physical iPhone Safari certification.'},indent=2))
  except Exception as e:
-  (OUT/(MODE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors},indent=2));page.screenshot(path=str(OUT/(MODE+'-failure.png')));raise
+  (OUT/(MODE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'snapshot':snap(page)},indent=2));page.screenshot(path=str(OUT/(MODE+'-failure.png')));raise
  finally:b.close()
