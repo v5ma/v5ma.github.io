@@ -53,6 +53,10 @@ with sync_playwright() as p:
   check(read(page)['version']=='0.1.0','The isolated SVGN City application loads')
   check(read(page)['render']['triangles']>50000,'Native WebGL draws the actual city geometry')
   page.screenshot(path=str(OUT/'01-sunrise-title.png'))
+  # High-quality real scene smoke above; the complete long mission uses the
+  # same user-accessible low-power mode, without altering simulation timing.
+  page.goto(BASE+'/svgn-city/index.html?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.SVGNCity')
+  page.set_viewport_size({'width':1280,'height':800})
   page.locator('#start').click();page.locator('#world').focus()
   # An intentional paper round, not an automatic win or a twenty-paper spray.
   # The actual keyboard-driven rider stops at two addresses and throws to both
@@ -68,7 +72,7 @@ with sync_playwright() as p:
   page.screenshot(path=str(OUT/'02-neighborhood-ride.png'))
   page.locator('#map-button').click();snap=read(page);page.wait_for_timeout(250)
   check(read(page)['steps']==snap['steps'],'The map pauses simulation rather than moving the rider')
-  page.screenshot(path=str(OUT/'03-city-map.png'));page.locator('#map-close').click()
+  page.screenshot(path=str(OUT/'03-city-map.png'));page.locator('#map-close').click();page.wait_for_function('!SVGNCity.inspect().paused')
   check(not read(page)['paused'],'Closing the map restores ordinary play')
   drive(page,0,110);drive(page,0,170);drive(page,8.5,190,3)
   page.keyboard.press('KeyX');hold(page,['KeyH']);page.wait_for_function('SVGNCity.inspect().relay',timeout=30000);hold(page,[])
@@ -89,7 +93,7 @@ with sync_playwright() as p:
   page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(OUT/'06-narrow-layout.png'))
   check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The user interface fits a narrow viewport')
   check(not errors,'No uncaught script errors in the full native scenario')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'final':read(page),'scope':'Native HTTP/Chromium software WebGL2. Ordinary input feedback driver, no player-state assignments. Not a physical-phone, controller, hardware-frame-rate or commercial-content parity certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'final':read(page),'scope':'Native HTTP/Chromium software WebGL2: high-quality scene smoke and complete low-power gameplay. Ordinary input feedback driver, no player-state or clock assignments. Not a physical-phone, controller, hardware-frame-rate or commercial-content parity certification.'},indent=2))
  except Exception as e:
   try:last=read(page)
   except:last=None
