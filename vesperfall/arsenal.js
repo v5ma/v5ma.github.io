@@ -53,6 +53,7 @@
   const oldPause=g.setPaused.bind(g);g.setPaused=function(v){oldPause(v);state.padShield=false;audio();};
   const oldMenu=g.menuUI.bind(g);g.menuUI=function(){oldMenu();journal();};
   const oldType=g.setType.bind(g);g.setType=function(type){if(type==='volley'&&!g.game.volleyUnlocked){g.toast('Choirbreaker unlock: bank five warden kills across runs. Practice offers a trial quiver.');return;}oldType(type);if(type==='volley')g.toast('Volley · three physical arrows per charge. Practice quiver is separate from earned unlocks.');};
+  const oldPad=g.standardPad.bind(g);g.standardPad=function(dt){oldPad(dt);if(!g.xr)ward(g.keys.KeyH||state.padShield);};
   const oldVisual=g.visuals.bind(g);g.visuals=function(){oldVisual();render();};
   const oldRemove=g.remove.bind(g);g.remove=function(){if(choir){for(const o of choir.voices)o.stop();choir.gain.disconnect();}oldRemove();};
   for(const [id,fn]of[['weapon-toggle',equip],['reload-action',reload],['shard-action',()=>shard()]])$(id).onclick=()=>{fn();g.scene.canvas.focus();};
@@ -72,7 +73,11 @@
    dust.rotation.y=Math.sin(s.time*.015)*.12;
    const events=s.events.filter(e=>e.seq>state.lastEvent);for(const e of events){if(e.type==='block'){g.sound(580,.16,.04);g.toast('BLOCKED · Wardglass '+Math.ceil(s.guard));}if(e.type==='guard-broken')g.toast('GUARD BROKEN · lower the shield and recover');if(e.type==='reloaded')g.sound(420,.08,.025);if(e.type==='shard'){$('fade').style.opacity='.65';clearTimeout(g.fadeTimer);g.fadeTimer=setTimeout(()=>$('fade').style.opacity='0',85);}if(e.type==='hit'&&e.head)g.toast('PRECISION HIT · '+s.headshots+' this run');}state.lastEvent=s.eventSeq||0;
    if(s.time-(state.hudAt||-1)>.09||g.paused){state.hudAt=s.time;const weapon=s.weapon==='bow'?'LIVING BOW':s.crossbow.loaded?'CROSSBOW · READY':s.crossbow.reload>0?'RELOADING '+s.crossbow.reload.toFixed(1)+'s':'CROSSBOW · R TO RELOAD';$('weapon-state').textContent=weapon;$('guard-state').textContent='GUARD '+Math.ceil(s.guard)+' / '+s.maxGuard;$('shard-state').textContent='SHARDS '+s.shardCharges+' / '+s.maxShards;$('weapon-toggle').textContent=s.weapon==='bow'?'V · Crossbow':'V · Bow';$('shield-action').classList.toggle('raised',!!s.shield);$('volley-button').disabled=!s.volleyUnlocked;$('run-summary').textContent=`This run: ${s.kills} kills · ${s.headshots} precision hits · ${s.blocks} blocks · ${s.blinks} blinks · ${s.shardsUsed} shard steps`;
-    if(g.xr)g.xrNotice=weapon+' · guard '+Math.ceil(s.guard)+' · shards '+s.shardCharges+' · grip: shield / step';
+
+   }
+   if(g.xr&&active()&&!g.headBlocked&&g.hands.left&&g.hands.right){
+    if(s.shield)g.xrNotice='WARDGLASS · guard '+Math.ceil(s.guard)+' · lower grip before firing';
+    else if(s.weapon==='crossbow'&&!g.teleLine.visible)g.xrNotice=(s.crossbow.loaded?'CROSSBOW READY · trigger: fire':s.crossbow.reload>0?'WINDING THE CROSSBOW':'CROSSBOW EMPTY · draw-stick click: reload')+' · shards '+s.shardCharges;
    }
   }
   g.fireCrossbow=crossShot;

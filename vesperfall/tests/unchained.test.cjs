@@ -58,3 +58,7 @@ test('Enemy attacks lock an observed aim at windup so moving away is a meaningfu
 test('Nightfall changes enemies only when explicitly selected and survives sector transition',()=>{
  const base=C.create('N'),hard=C.create('N',1,{challenge:'nightfall'});assert.ok(hard.world.enemies[0].hp>base.world.enemies[0].hp);hard.phase='reward';const next=C.reward(hard,'supplies');assert.equal(next.challenge,true);
 });
+
+test('A green gallery cue remains valid with frame-quantized light draws at multiple angles',()=>{
+ for(const pitch of [.72,.735,.75,.765])for(const step of [.014,.023,.03636]){const s=fresh(),dir=[0,Math.sin(pitch),-Math.cos(pitch)],origin=C.add(s.head,C.mul(dir,.18));let cue;for(let charge=.08;charge<=.6;charge+=step){const p=C.predictBlink(s,origin,dir,charge);if(p.ok&&p.destination[1]>3.19){cue={charge,p};break;}}assert.ok(cue);assert.ok(C.fire(s,origin,dir,cue.charge,'blink'));tick(s,240);assert.equal(s.p[1],3.2);for(let k=0;k<3;k++)assert.ok(Math.abs(s.p[k]-cue.p.destination[k])<1e-7);}
+});

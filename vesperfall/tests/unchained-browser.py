@@ -47,13 +47,14 @@ with sync_playwright() as pw:
    check(state(page)['shots']==n+1 and state(page)['ammo']['volley']==ammo-1,'A trial volley consumes one finite charge through the ordinary draw/release')
    check(page.evaluate('Vesperfall.component.profile.stats.kills===0'),'Practice does not farm permanent kills')
    page.keyboard.press('KeyP');page.wait_for_function('Vesperfall.component.paused');page.locator('#practice').click();focus(page)
-   # Light draw from the real spawn to a visible upper-floor landing. Input is
+   # Release at the same green valid-landing cue a player sees, not a
+   # hardcoded charge that becomes invalid as the look angle changes. Input is
    # timed inside the browser to avoid renderer/IPC release latency.
-   page.keyboard.press('Digit4');key_until(page,'ArrowUp','Vesperfall.component.pitch>=Math.PI/6');key_until(page,'Space','Vesperfall.component.charge>=.45')
+   page.keyboard.press('Digit4');key_until(page,'ArrowUp','Vesperfall.component.pitch>=.72');key_until(page,'Space','Vesperfall.component.charge>.08&&Vesperfall.component.blinkTrace?.ok&&Vesperfall.component.blinkTrace.destination[1]>3.19')
    page.wait_for_function('Vesperfall.state.p[1]>3.19')
    check(True,'A real light-draw blink reaches the newly widened 3.2m gallery landing')
    page.wait_for_function('Vesperfall.state.blinkCD===0');page.screenshot(path=str(OUT/'blink-onto-gallery.png'))
-   key_until(page,'ArrowDown','Vesperfall.component.pitch<=-.8');key_until(page,'ArrowRight','Vesperfall.component.yaw<=-Math.PI+.03');key_until(page,'Space','Vesperfall.component.charge>=.32')
+   key_until(page,'ArrowDown','Vesperfall.component.pitch<=-.8');key_until(page,'ArrowRight','Vesperfall.component.yaw<=-Math.PI+.03');key_until(page,'Space','Vesperfall.component.charge>.08&&Vesperfall.component.blinkTrace?.ok&&Vesperfall.component.blinkTrace.destination[1]<.01')
    page.wait_for_function('Vesperfall.state.p[1]<.01&&Vesperfall.state.blinks===2')
    check(True,'The same ballistic landing rules return the player to the lower courtyard')
    page.keyboard.press('KeyP');page.wait_for_function('Vesperfall.component.paused');page.locator('#chronicle summary').click()
