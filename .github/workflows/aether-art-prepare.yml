@@ -1,0 +1,104 @@
+name: Prepare reviewed Aether artwork
+on:
+  push:
+    branches: [feat/aether-quay-art-pass]
+    paths: [.github/workflows/aether-art-prepare.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve the reviewed public asset intake
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 34170583965 --name aether-quay-art-intake --dir /tmp/quay-intake
+          mkdir -p /tmp/art-tools /tmp/art-ready
+          npm install --prefix /tmp/art-tools --no-audit --no-fund @gltf-transform/core@4.2.1 @gltf-transform/functions@4.2.1 @gltf-transform/extensions@4.2.1 meshoptimizer@0.22.0 sharp@0.33.5
+          python -m pip install Pillow==11.3.0 requests==2.32.5 beautifulsoup4==4.13.5
+      - name: Simplify selected props and resize material maps without executable content
+        run: |
+          cat > /tmp/art-tools/prepare.mjs <<'JS'
+          import fs from 'node:fs';
+          import {NodeIO} from '@gltf-transform/core';
+          import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
+          import {weld,simplify,dedup,prune,textureCompress,getBounds} from '@gltf-transform/functions';
+          import {MeshoptSimplifier} from 'meshoptimizer';
+          import sharp from 'sharp';
+          await MeshoptSimplifier.ready;
+          const io=new NodeIO().registerExtensions(ALL_EXTENSIONS);const result=[];
+          for(const id of ['street_lamp_01','potted_plant_01'])for(const level of ['desktop','mobile']){
+            const d=await io.read('/tmp/quay-intake/assets/'+id+'/model.gltf');
+            const triangles=()=>d.getRoot().listMeshes().reduce((n,m)=>n+m.listPrimitives().reduce((s,p)=>s+(p.getIndices()?.getCount()||p.getAttribute('POSITION').getCount())/3,0),0);
+            const before=triangles();
+            await d.transform(weld(),simplify({simplifier:MeshoptSimplifier,ratio:level==='desktop'?.45:.16,error:level==='desktop'?.001:.006}),dedup(),prune(),textureCompress({encoder:sharp,targetFormat:'webp',resize:level==='desktop'?[1024,1024]:[512,512],quality:85}));
+            const file=id+'-'+level+'.glb';await io.write('/tmp/art-ready/'+file,d);
+            result.push({file,source:id,trianglesBefore:before,triangles:triangles(),bounds:getBounds(d.getRoot().listScenes()[0]),bytes:fs.statSync('/tmp/art-ready/'+file).size});
+          }
+          fs.writeFileSync('/tmp/art-ready/model-report.json',JSON.stringify(result,null,2));
+          JS
+          node /tmp/art-tools/prepare.mjs
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import json,hashlib,shutil
+          root=Path('/tmp/art-ready');source=Path('/tmp/quay-intake')
+          for asset in ['pavement_03','red_brick_03','sandstone_blocks_04']:
+            for channel in ['diff','nor_gl','arm','rough']:
+              paths=list((source/'assets'/asset/'textures').glob('*_'+channel+'_1k.jpg'))
+              if not paths:continue
+              im=Image.open(paths[0]);im.thumbnail((1024,1024));im.save(root/(asset+'-'+channel+'.webp'),quality=88)
+          shutil.copy(source/'assets/kloofendal_48d_partly_cloudy/environment.hdr',root/'sky.hdr')
+          for p in source.glob('*metadata.json'):shutil.copy(p,root/p.name)
+          shutil.copy(source/'intake-manifest.json',root/'upstream-manifest.json')
+          shutil.copytree(source/'vendor',root/'vendor')
+          for p in (root/'vendor').rglob('*.js'):
+            s=p.read_text();s=s.replace("from 'three'", "from '../three.module.js'");p.write_text(s)
+          manifest={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+          (root/'prepared-hashes.json').write_text(json.dumps(manifest,indent=2))
+          PY
+      - name: Inspect the free Standard architecture kit through its public download path
+        run: |
+          python - <<'PY'
+          import requests,json,zipfile,io,hashlib
+          from bs4 import BeautifulSoup
+          from pathlib import Path
+          from PIL import Image
+          root=Path('/tmp/art-ready');session=requests.Session();base='https://quaternius.itch.io/downtown-city-megakit'
+          try:
+            p=session.get(base+'/purchase',timeout=40);p.raise_for_status();soup=BeautifulSoup(p.text,'html.parser');token=soup.select_one('meta[name="csrf_token"]')['value']
+            reply=session.post(base+'/download_url',data={'csrf_token':token},headers={'Referer':base+'/purchase'},timeout=40);reply.raise_for_status();url=reply.json()['url']
+            page=session.get(url,timeout=40);page.raise_for_status();soup=BeautifulSoup(page.text,'html.parser');token=soup.select_one('meta[name="csrf_token"]')['value']
+            item=next(e for e in soup.select('.upload') if '[Standard]' in e.get_text());button=item.select_one('[data-upload_id]');ident=button['data-upload_id']
+            reply=session.post(base+'/file/'+ident,data={'csrf_token':token},headers={'Referer':url},timeout=40);reply.raise_for_status();link=reply.json()['url']
+            archive=session.get(link,timeout=120);archive.raise_for_status();z=zipfile.ZipFile(io.BytesIO(archive.content));(root/'downtown-filelist.txt').write_text('\n'.join(z.namelist()))
+            (root/'downtown-source.json').write_text(json.dumps({'page':base,'edition':'Standard','license':'CC0-1.0','archiveSha256':hashlib.sha256(archive.content).hexdigest(),'archiveBytes':len(archive.content)},indent=2))
+            for name in z.namelist():
+              if name.endswith('/'):continue
+              p=Path(name)
+              if '..' in p.parts:raise ValueError('Unsafe archive path')
+              if p.suffix.lower() not in ['.gltf','.glb','.bin','.png','.jpg','.jpeg','.txt','.md']:continue
+              if any(x.lower() in ['fbx','obj','blender'] for x in p.parts):continue
+              target=root/'downtown'/p;target.parent.mkdir(parents=True,exist_ok=True);raw=z.read(name)
+              if p.suffix.lower() in ['.png','.jpg','.jpeg']:
+                im=Image.open(io.BytesIO(raw));im.thumbnail((1024,1024));im.save(target)
+              else:target.write_bytes(raw)
+            print('Free Standard kit retrieved, no payment or account used:',len(z.namelist()),'members')
+          except Exception as e:
+            (root/'downtown-intake-error.txt').write_text(str(e));print('Free kit unavailable through this path:',e)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-art-prepared
+          path: /tmp/art-ready/
+          retention-days: 7
