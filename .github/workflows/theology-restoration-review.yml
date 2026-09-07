@@ -1,0 +1,100 @@
+name: Review Theology restoration and bridge listening
+on:
+  push:
+    branches: [feat/theology-restoration-listening-20260907]
+    paths: ['theology-wiki/**', '.github/workflows/theology-restoration-review.yml']
+permissions:
+  contents: write
+concurrency:
+  group: theology-restoration-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize verified readable sources
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,json,lzma,subprocess
+          parts=sorted(Path('theology-wiki').glob('restoration-transfer-*.txt'))
+          assert len(parts)==3
+          packed=base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True)
+          sha=lambda b:hashlib.sha256(b).hexdigest()
+          assert len(packed)==36464 and sha(packed)=='45403fbf80e96aaf979b0c5e36011f331c5734edd94d3e42baba038b5d643033'
+          raw=lzma.decompress(packed);assert len(raw)==145039
+          pkg=json.loads(raw);assert pkg['schema']=='theology-restoration-source/v1'
+          paths=set(pkg['baseHashes']);assert len(paths)==19 and paths==set(pkg['finalHashes'])
+          for name in paths:
+            assert name.startswith('theology-wiki/') and '..' not in Path(name).parts
+            assert name=='theology-wiki/README.md' or name.startswith(('theology-wiki/editorial/','theology-wiki/tools/','theology-wiki/tests/','theology-wiki/assets/'))
+            assert not name.endswith(('.pyc','.ttf','.otf','.woff','.woff2'))
+            p=Path(name);old=pkg['baseHashes'][name]
+            if old:assert p.is_file() and sha(p.read_bytes())==old,name
+            else:assert not p.exists(),name
+          patch=Path('/tmp/theology-restoration.patch');patch.write_text(pkg['patch'])
+          changed={line.split('\t')[-1] for line in subprocess.check_output(['git','apply','--numstat',str(patch)],text=True).splitlines()}
+          assert changed=={p for p in paths if pkg['baseHashes'][p]}
+          subprocess.run(['git','apply','--check',str(patch)],check=True)
+          subprocess.run(['git','apply',str(patch)],check=True)
+          assert set(pkg['files'])==paths-changed
+          for name,text in pkg['files'].items():
+            p=Path(name);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          for name,expected in pkg['finalHashes'].items():assert sha(Path(name).read_bytes())==expected,name
+          for p in parts:p.unlink()
+          Path('.github/workflows/theology-restoration-review.yml').unlink()
+          print('Verified nineteen source files; removed one-time transport and workflow.')
+          PY
+      - name: Build and test full source fidelity
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output
+          node theology-wiki/tools/build.cjs | tee theology-test-output/build-report.txt
+          node --check theology-wiki/assets/js/connected-tools.js
+          node --check theology-wiki/assets/js/products-tools.js
+          node --test theology-wiki/tests/research.test.cjs | tee theology-test-output/node-tests.txt
+          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content/sources theology-wiki/products/media theology-wiki/products/episodes theology-wiki/planning theology-wiki/data/source-atlas.json theology-wiki/data/museum-manifest.json theology-wiki/data/roadmap.json theology-wiki/data/foundations.json theology-wiki/data/forecast-ledger.json
+      - name: Save readable implementation and complete generated edition
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki .github/workflows/theology-restoration-review.yml
+          git commit -m 'Compare rival restoration passages and make every bridge essay listenable'
+          git push origin HEAD:${GITHUB_REF_NAME}
+      - name: Install browser and verify retained museum images
+        run: |
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium >/tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+          python theology-wiki/tools/media.py
+      - name: Exercise the actual HTTP reader, passage cards and bridge listening
+        run: |
+          set -o pipefail
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py | tee theology-test-output/browser-tests.txt
+      - name: Preserve exact source and review evidence
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD >theology-test-output/tested-commit.txt
+          git diff --stat >theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('theology-test-output/reader-review.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in Path('theology-wiki').rglob('*'):
+              if p.is_file() and '__pycache__' not in p.parts and p.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'} and not p.name.startswith('restoration-transfer-'):z.write(p,p.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-restoration-review
+          path: theology-test-output/
+          retention-days: 14
