@@ -41,22 +41,19 @@ def walk(p,targets):
    keys(set())
  finally:keys(set())
 def aim(p,target,timeout=20):
- held=set();start=time.monotonic()
- try:
-  while time.monotonic()-start<timeout:
-   state=snap(p);pos=state['position'];q=next((b for b in state['enemies'] if b['id']==target and b['hp']>0),None) if isinstance(target,str) else {'x':target[0],'y':target[1],'z':target[2]}
-   if not q:return False
-   yaw=math.atan2(q['x']-pos['x'],-(q['z']-pos['z']));dy=math.atan2(math.sin(yaw-pos['yaw']),math.cos(yaw-pos['yaw']));pitch=math.atan2(q['y']-pos['y']-1.6,math.hypot(q['x']-pos['x'],q['z']-pos['z']));dp=pitch-pos['pitch']
-   if abs(dy)<.07 and abs(dp)<.05:return True
-   new=set()
-   if abs(dy)>.055:new.add('ArrowRight' if dy>0 else 'ArrowLeft')
-   if abs(dp)>.04:new.add('ArrowUp' if dp>0 else 'ArrowDown')
-   for k in held-new:p.keyboard.up(k)
-   for k in new-held:p.keyboard.down(k)
-   held=new;p.wait_for_timeout(30)
-  raise AssertionError('Aim did not settle '+str(target))
- finally:
-  for k in held:p.keyboard.up(k)
+ # Native drag-look gives fine aim even when a software-WebGL frame spans many
+ # fixed keyboard-look ticks. This uses actual mouse input, never camera writes.
+ start=time.monotonic();box=p.locator('#world').bounding_box()
+ while time.monotonic()-start<timeout:
+  state=snap(p);pos=state['position'];q=next((b for b in state['enemies'] if b['id']==target and b['hp']>0),None) if isinstance(target,str) else {'x':target[0],'y':target[1],'z':target[2]}
+  if not q:return False
+  yaw=math.atan2(q['x']-pos['x'],-(q['z']-pos['z']));dy=math.atan2(math.sin(yaw-pos['yaw']),math.cos(yaw-pos['yaw']));pitch=math.atan2(q['y']-pos['y']-1.6,math.hypot(q['x']-pos['x'],q['z']-pos['z']));dp=pitch-pos['pitch']
+  if abs(dy)<.035 and abs(dp)<.03:return True
+  x=box['x']+box['width']*.5;y=box['y']+box['height']*.5
+  dx=max(-240,min(240,dy/.004));dz=max(-180,min(180,-dp/.004))
+  p.mouse.move(x,y);p.mouse.down();p.mouse.move(x+dx,y+dz,steps=2);p.mouse.up()
+  p.wait_for_timeout(30)
+ raise AssertionError('Mouse aim did not settle '+str(target))
 with sync_playwright() as pw:
  args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
@@ -112,7 +109,7 @@ with sync_playwright() as pw:
    p.reload(wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');p.locator('#continue').click();p.wait_for_function('AetherReach.snapshot().playing');r=snap(p)
    check(r['tactics']['completed'] and r['credits']==end['credits'],'The completed recovery reward persists exactly once after reloading')
   check(not errors,'No uncaught JavaScript errors in the tactical scenario')
-  (OUT/(MODE+'-tactics-report.json')).write_text(json.dumps({'mode':MODE,'passed':len(checks),'checks':checks,'snapshot':snap(p),'errors':errors,'scope':'Native HTTP Chromium software WebGL. Normal keyboard and UI input with read-only observation. Not hardware Xbox or headset performance certification.'},indent=2))
+  (OUT/(MODE+'-tactics-report.json')).write_text(json.dumps({'mode':MODE,'passed':len(checks),'checks':checks,'snapshot':snap(p),'errors':errors,'scope':'Native HTTP Chromium software WebGL. Normal keyboard, mouse drag-look and UI input with read-only observation. Not hardware Xbox or headset performance certification.'},indent=2))
  except Exception as e:
   try:state=snap(p)
   except:state=None
