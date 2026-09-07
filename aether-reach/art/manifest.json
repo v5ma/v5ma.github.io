@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "revision": "quay-art-1",
+  "sources": [
+    {
+      "id": "quaternius-downtown-standard",
+      "creator": "Quaternius",
+      "url": "https://quaternius.itch.io/downtown-city-megakit",
+      "license": "CC0-1.0",
+      "edition": "Standard, free",
+      "archiveSha256": "5b1a945576d54cdbb4ccc9c3d52711e6d530da74c74c586407ecc28b165335da",
+      "modifications": "13 selected modules merged; textures resized and converted to WebP. No paid shaders or engine projects used."
+    },
+    {
+      "id": "street_lamp_01",
+      "creator": "Josh Dean",
+      "url": "https://polyhaven.com/a/street_lamp_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "modifications": "Selected 1K download; browser-size texture variants. Model simplification and removal of hidden pot pebbles where applicable."
+    },
+    {
+      "id": "potted_plant_01",
+      "creator": "Rico Cilliers",
+      "url": "https://polyhaven.com/a/potted_plant_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "modifications": "Selected 1K download; browser-size texture variants. Model simplification and removal of hidden pot pebbles where applicable."
+    },
+    {
+      "id": "pavement_03",
+      "creator": "Dario Barresi, Charlotte Baglioni",
+      "url": "https://polyhaven.com/a/pavement_03",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "modifications": "Selected 1K download; browser-size texture variants. Model simplification and removal of hidden pot pebbles where applicable."
+    },
+    {
+      "id": "sandstone_blocks_04",
+      "creator": "Rob Tuytel",
+      "url": "https://polyhaven.com/a/sandstone_blocks_04",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "modifications": "Selected 1K download; browser-size texture variants. Model simplification and removal of hidden pot pebbles where applicable."
+    },
+    {
+      "id": "kloofendal_48d_partly_cloudy",
+      "creator": "Greg Zaal",
+      "url": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "modifications": "Selected 1K download; browser-size texture variants. Model simplification and removal of hidden pot pebbles where applicable."
+    }
+  ],
+  "models": [
+    {
+      "file": "architecture-desktop.glb",
+      "source": "Quaternius Downtown City MegaKit Standard",
+      "templates": [
+        "Trim_FirstFloor_Window_001",
+        "Trim_Window",
+        "DoorFrame_Trim",
+        "Door_1",
+        "Brick_Window_CurvedDouble",
+        "Brick_Window_Square_Single",
+        "Brick_Plain_3",
+        "Cornice_Trim_Center",
+        "Roof_SlateCornice_Center",
+        "Roof_Slate_Window_1",
+        "Roof_Slate_Center",
+        "Roof_Slate_Corner",
+        "Prop_Bollard"
+      ],
+      "triangles": 4351,
+      "textures": 12
+    },
+    {
+      "file": "lamp-desktop.glb",
+      "source": "street_lamp_01",
+      "trianglesBefore": 13896,
+      "triangles": 13896,
+      "bounds": {
+        "min": [
+          -0.351848304271698,
+          0,
+          -0.19311150908470154
+        ],
+        "max": [
+          0.351848304271698,
+          3.8705554008483887,
+          0.19311152398586273
+        ]
+      }
+    },
+    {
+      "file": "planter-desktop.glb",
+      "source": "potted_plant_01",
+      "trianglesBefore": 101712,
+      "triangles": 27569,
+      "bounds": {
+        "min": [
+          -0.33836793899536133,
+          0.0011448035947978497,
+          -0.36367878317832947
+        ],
+        "max": [
+          0.24901919066905975,
+          1.336457371711731,
+          0.2698860168457031
+        ]
+      }
+    },
+    {
+      "file": "architecture-mobile.glb",
+      "source": "Quaternius Downtown City MegaKit Standard",
+      "templates": [
+        "Trim_FirstFloor_Window_001",
+        "Trim_Window",
+        "DoorFrame_Trim",
+        "Door_1",
+        "Brick_Window_CurvedDouble",
+        "Brick_Window_Square_Single",
+        "Brick_Plain_3",
+        "Cornice_Trim_Center",
+        "Roof_SlateCornice_Center",
+        "Roof_Slate_Window_1",
+        "Roof_Slate_Center",
+        "Roof_Slate_Corner",
+        "Prop_Bollard"
+      ],
+      "triangles": 4351,
+      "textures": 12
+    },
+    {
+      "file": "lamp-mobile.glb",
+      "source": "street_lamp_01",
+      "trianglesBefore": 5083,
+      "triangles": 5083,
+      "bounds": {
+        "min": [
+          -0.3515518605709076,
+          0,
+          -0.19311150908470154
+        ],
+        "max": [
+          0.35155189037323,
+          3.8699371814727783,
+          0.19311152398586273
+        ]
+      }
+    },
+    {
+      "file": "planter-mobile.glb",
+      "source": "potted_plant_01",
+      "trianglesBefore": 29668,
+      "triangles": 9375,
+      "bounds": {
+        "min": [
+          -0.33601412177085876,
+          0.0011448035947978497,
+          -0.36367878317832947
+        ],
+        "max": [
+          0.2485615760087967,
+          1.3360412120819092,
+          0.2698860168457031
+        ]
+      }
+    }
+  ],
+  "files": [
+    {
+      "file": "architecture-desktop.glb",
+      "bytes": 1106436,
+      "sha256": "5c361b558b9f5e7598ace5f9e6364b9575110fde3fe5e30eabccbe02aa5e661f"
+    },
+    {
+      "file": "architecture-mobile.glb",
+      "bytes": 560064,
+      "sha256": "f195d11d0d47415800eedefeec9a9a947a8837d673eb80379a89513328191bdd"
+    },
+    {
+      "file": "lamp-desktop.glb",
+      "bytes": 580992,
+      "sha256": "4e6ccf8dd00737c9d3f9cab440dbd2a78cd2f61a0060710a9439943ce287ca20"
+    },
+    {
+      "file": "lamp-mobile.glb",
+      "bytes": 209412,
+      "sha256": "919a0a9e909331e551c50d8d094471c6b3a697475fddfff7c1395653b6ab097f"
+    },
+    {
+      "file": "pavement_03-arm-desktop.webp",
+      "bytes": 257020,
+      "sha256": "a85966d0215f71d3d831deff78b5484f26533ad264752707107b02b5ab61be07"
+    },
+    {
+      "file": "pavement_03-arm-mobile.webp",
+      "bytes": 51636,
+      "sha256": "1ba3a176fa900abaab3fcefe49fe9b045143178b142a40b680770885b7326dbd"
+    },
+    {
+      "file": "pavement_03-diff-desktop.webp",
+      "bytes": 446670,
+      "sha256": "34f58440d0596d59a08606b6b5a029e06b71cae5818eee3987817c4c24b9622a"
+    },
+    {
+      "file": "pavement_03-diff-mobile.webp",
+      "bytes": 92450,
+      "sha256": "d193802dfc84918652f719997ef8c5ea4e6ce916718f71db6cc89b8145465b28"
+    },
+    {
+      "file": "pavement_03-nor_gl-desktop.webp",
+      "bytes": 428160,
+      "sha256": "a82653723eee8d3953c63d3ee7f3791a292171341552810be9e1f62eedbc3a51"
+    },
+    {
+      "file": "pavement_03-nor_gl-mobile.webp",
+      "bytes": 79308,
+      "sha256": "b1eec54a3dd4206f09cdaf34092cec3b6e8ebb80268e9ac0563694b4f75e84b5"
+    },
+    {
+      "file": "planter-desktop.glb",
+      "bytes": 1524980,
+      "sha256": "1db0c01c21a6462060927b50dcbebd7b090786e3d8dc9a7d5395048ba4f18ffa"
+    },
+    {
+      "file": "planter-mobile.glb",
+      "bytes": 522508,
+      "sha256": "8f819e02e66c6e29b54ea72e864f8d3fe13393973d46e318fcaf5997b3bfc363"
+    },
+    {
+      "file": "sandstone_blocks_04-diff-desktop.webp",
+      "bytes": 230206,
+      "sha256": "2a48ad3160bfb11e4c7dea27c602a259e28797093726c5b208313ca73a8dfa2b"
+    },
+    {
+      "file": "sandstone_blocks_04-diff-mobile.webp",
+      "bytes": 49148,
+      "sha256": "ec067500ba6f6fc6f2f395084fa1c2eed388b2936bc649fe3632ad96c589ef27"
+    },
+    {
+      "file": "sandstone_blocks_04-nor_gl-desktop.webp",
+      "bytes": 178462,
+      "sha256": "eefd88abe7cf8ff44daaea0a806b5d473f756dc0801c926773f2634adc098eea"
+    },
+    {
+      "file": "sandstone_blocks_04-nor_gl-mobile.webp",
+      "bytes": 41716,
+      "sha256": "dad8e06b2c2f1f1b75338fadd11738df25480543adb41f1ba8a6e6ddc48a9124"
+    },
+    {
+      "file": "sandstone_blocks_04-rough-desktop.webp",
+      "bytes": 208782,
+      "sha256": "382a88c30a594e70155f8aca7174755676428de72290d1f67947c1d162ddb7ea"
+    },
+    {
+      "file": "sandstone_blocks_04-rough-mobile.webp",
+      "bytes": 57430,
+      "sha256": "599e478809ccc96de16c85f57e74700919b19b6257893f1c10f65471f6f3bd77"
+    },
+    {
+      "file": "sky.hdr",
+      "bytes": 1637206,
+      "sha256": "5477b7dbb2aea4a6947cb36b96339c119f90bf36a03b039af3254b5e6a22896d"
+    }
+  ],
+  "totalBytes": 8262586,
+  "scope": "Only runtime art payload. Source-reference renders, creator logos, paid assets and private narrative are excluded."
+}
