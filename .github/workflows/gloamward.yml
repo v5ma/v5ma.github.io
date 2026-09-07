@@ -12,6 +12,10 @@ jobs:
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [browser_smoke, expedition]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,7 +36,7 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/gloamward-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 700 python -u gloamward/tests/browser_smoke.py
+          timeout 700 python -u gloamward/tests/${{ matrix.suite }}.py
       - name: Record exact source and results
         if: always()
         run: |
@@ -44,6 +48,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: gloamward-browser
+          name: gloamward-${{ matrix.suite }}
           path: test-output/
           retention-days: 14

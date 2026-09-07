@@ -22,9 +22,10 @@ with sync_playwright() as p:
         page.screenshot(path=str(out/'title.png'))
         page.locator('#menu-actions button').first.click()
         page.wait_for_function('GloamwardDemo.snapshot().state==="playing"')
-        page.keyboard.down('KeyF');page.wait_for_timeout(1250);page.keyboard.up('KeyF')
+        page.keyboard.down('KeyF');page.wait_for_function('GloamwardDemo.observe().pull>.98');page.keyboard.up('KeyF')
         page.wait_for_function('GloamwardDemo.snapshot().shots===1')
         check(True,'Deliberate held input releases a real arrow')
+        check(not page.evaluate('GloamwardDemo.snapshot().vr'),'F draws the bow without activating the framework fullscreen/VR shortcut')
         page.keyboard.press('KeyP');page.wait_for_function('GloamwardDemo.snapshot().paused')
         before=page.evaluate('GloamwardDemo.snapshot()');page.wait_for_timeout(350)
         check(page.evaluate('GloamwardDemo.snapshot().hp')==before['hp'],'Pause stops combat updates')
@@ -37,7 +38,7 @@ with sync_playwright() as p:
         check(not errors,'No uncaught browser errors in the exercised flow')
         (out/'browser-report.json').write_text(json.dumps({'checks':checks,'passed':len(checks),'errors':errors,'scope':'Native HTTP smoke test; no full mission or physical Quest pass.'},indent=2))
     except Exception as e:
-        (out/'browser-failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors},indent=2))
+        (out/'browser-failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':page.evaluate('window.GloamwardDemo?.snapshot()'),'observation':page.evaluate('window.GloamwardDemo?.observe()')},indent=2))
         try:page.screenshot(path=str(out/'failure.png'))
         except Exception:pass
         raise

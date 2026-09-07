@@ -1,4 +1,4 @@
-/* Pin one A-Frame version. Vendored file is preferred; official CDN is fallback. */
+/* Self-host the pinned A-Frame version; fail visibly without contacting a CDN. */
 (async()=>{'use strict';
  const status=document.getElementById('loading-status');
  function script(src){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=()=>{s.remove();reject(Error('Could not load '+src));};document.head.append(s);});}
