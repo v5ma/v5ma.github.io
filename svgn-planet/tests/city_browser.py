@@ -85,7 +85,7 @@ with sync_playwright() as pw:
   go(p,167,23);hack(p,'gate');check(read(p)['city']['gate'],'A real powered gate opens for the on-foot route')
   p.screenshot(path=str(OUT/'04-powered-checkpoint.png'))
   go(p,164,25);go(p,144,25);go(p,130,24);enter_car(p,'press')
-  go(p,151,25);go(p,165,25);go(p,175,25);go(p,181,26.5);go(p,190,25);go(p,206,25);go(p,206,55);p.keyboard.press('KeyF');p.wait_for_function('SVGNPlanet.inspect().city.car===null');go(p,206,57);p.keyboard.press('KeyE');check(read(p)['city']['stage']==4,'Crossing the physical harbor bridge reaches the quay report')
+  go(p,151,23.7);go(p,165,23.7);go(p,175,25);go(p,181,26.5);go(p,190,25);go(p,206,25);go(p,206,55);p.keyboard.press('KeyF');p.wait_for_function('SVGNPlanet.inspect().city.car===null');go(p,206,57);p.keyboard.press('KeyE');check(read(p)['city']['stage']==4,'Crossing the physical harbor bridge reaches the quay report')
   p.screenshot(path=str(OUT/'05-harbor-report.png'))
   go(p,206,25);go(p,197,25);go(p,195,13);go(p,158,13);go(p,158,25);go(p,116,25);go(p,116,0);go(p,0,0);go(p,-9,-4.2)
   p.wait_for_function('SVGNPlanet.inspect().city.trace<.08',timeout=20000);p.keyboard.press('KeyE');p.wait_for_function('SVGNPlanet.inspect().city.completed')
