@@ -1,0 +1,57 @@
+name: SVGN City little-planet verification
+on:
+  push:
+    branches: [feat/svgn-city-first-dispatch]
+    paths: ['svgn-city/**','.github/workflows/svgn-city.yml']
+  pull_request:
+    paths: ['svgn-city/**','.github/workflows/svgn-city.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: svgn-planet-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  planet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [visual,mission]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Sphere topology, movement, gravity, deliveries and preservation tests
+        run: |
+          node --test svgn-city/tests/model.test.mjs svgn-city/tests/planet.test.mjs
+          for f in svgn-city/planet/*.mjs; do node --check "$f"; done
+          test -f svgn-city/street-preview.html
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play and inspect the real three-dimensional planet
+        env:
+          PLANET_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/planet-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u svgn-city/tests/planet_browser.py
+      - name: Preserve exact committed source and native evidence
+        if: always()
+        run: |
+          mkdir -p planet-evidence
+          cp -r svgn-city/test-output planet-evidence/ 2>/dev/null || true
+          git rev-parse HEAD > planet-evidence/source-sha.txt
+          git diff --stat > planet-evidence/uncommitted-diff.txt
+          tar --exclude='test-output' --exclude='__pycache__' -czf planet-evidence/source.tgz svgn-city
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: svgn-planet-${{ matrix.suite }}
+          path: planet-evidence/
+          retention-days: 14

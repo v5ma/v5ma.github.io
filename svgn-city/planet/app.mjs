@@ -1,0 +1,37 @@
+import {makeWorld,RADIUS,district} from './world.mjs';
+import {newState,readSave,saveData,SAVE_KEY,VERSION,step,phase,target,throwPaper,interact,enterExit,recover,inspect} from './model.mjs';
+import {makeScene} from './scene.mjs';
+import {geo} from './math.mjs';
+const $=id=>document.getElementById(id),world=makeWorld(),keys=new Set();let s,view,running=false,paused=false,last=0,acc=0,jump=false,savedText='',storageOK=true,look=null,lastUI=-1;
+try{s=newState(readSave(localStorage.getItem(SAVE_KEY),world));}catch{s=newState();storageOK=false;}
+function save(){const text=JSON.stringify(saveData(s));if(text===savedText)return;try{localStorage.setItem(SAVE_KEY,text);savedText=text;}catch{storageOK=false;}if(!storageOK)$('storage').textContent='Storage is unavailable. Play works, but this session will not be saved.';}
+function resetInput(){keys.clear();jump=false;acc=0;look=null;document.querySelectorAll('.held').forEach(e=>e.classList.remove('held'));}
+function freeze(value){paused=value;resetInput();}
+function pauseGame(){if(!running||paused)return;freeze(true);$('pause').showModal();}
+function camera(mode){view.setMode(mode);document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));}
+function cycle(){const modes=['planet','neighborhood','street'];camera(modes[(modes.indexOf(view.mode)+1)%3]);}
+function action(id){if(!running||paused)return;if(id==='throw')throwPaper(s,world);if(id==='ride')enterExit(s,world);if(id==='interact')interact(s,world);if(id==='jump')jump=true;}
+$('start').onclick=()=>{running=true;paused=false;resetInput();$('title').hidden=true;$('hud').hidden=false;$('world').focus();};
+$('pause-button').onclick=pauseGame;$('resume').onclick=()=>$('pause').close();$('pause').addEventListener('close',()=>{freeze(false);$('world').focus();});
+$('help').onclick=()=>{freeze(true);$('instructions').showModal();};$('help-close').onclick=()=>$('instructions').close();$('instructions').addEventListener('close',()=>{freeze(false);$('world').focus();});
+$('recover').onclick=()=>{recover(s);save();$('pause').close();};$('reset').onclick=()=>{if(!confirm('Reset only this little planet’s delivery progress? Your other SVGN games are not changed.'))return;s=newState();save();$('pause').close();};
+for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>{camera(b.dataset.view);$('world').focus();};
+const handled=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowLeft','ArrowDown','ArrowRight','KeyQ','KeyE','KeyF','KeyC','Space','ShiftLeft','ShiftRight','KeyP','Escape']);
+window.addEventListener('keydown',e=>{if(!view||/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if((e.code==='KeyP'||e.code==='Escape')&&!e.repeat){if($('instructions').open)$('instructions').close();else if($('pause').open)$('pause').close();else pauseGame();e.preventDefault();return;}if(paused)return;if(e.code==='KeyC'&&!e.repeat){cycle();e.preventDefault();return;}if(!running)return;if(handled.has(e.code))e.preventDefault();keys.add(e.code);if(e.repeat)return;if(e.code==='Space')jump=true;if(e.code==='KeyQ')action('throw');if(e.code==='KeyF')action('ride');if(e.code==='KeyE')action('interact');});
+window.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{if(running&&!paused)pauseGame();else resetInput();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)pauseGame();});
+const touchKeys={up:'KeyW',down:'KeyS',left:'KeyA',right:'KeyD'};
+for(const b of document.querySelectorAll('[data-key]')){b.addEventListener('pointerdown',e=>{if(!running||paused)return;e.preventDefault();keys.add(touchKeys[b.dataset.key]);b.classList.add('held');b.setPointerCapture(e.pointerId);});for(const event of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(event,()=>{keys.delete(touchKeys[b.dataset.key]);b.classList.remove('held');});}
+for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>action(b.dataset.action);
+if(navigator.maxTouchPoints>0||matchMedia('(pointer:coarse)').matches)document.body.classList.add('touch');
+$('world').addEventListener('pointerdown',e=>{if(!view)return;look={id:e.pointerId,x:e.clientX,y:e.clientY};$('world').setPointerCapture(e.pointerId);});$('world').addEventListener('pointermove',e=>{if(look?.id===e.pointerId){view.drag(e.clientX-look.x,e.clientY-look.y);look.x=e.clientX;look.y=e.clientY;}});for(const event of['pointerup','pointercancel','lostpointercapture'])$('world').addEventListener(event,()=>look=null);
+$('world').addEventListener('wheel',e=>{if(!view)return;e.preventDefault();const mode=view.scroll(e.deltaY);document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));},{passive:false});
+function ui(){const p=phase(s),t=target(s,world),texts=[['THE FIRST WORLD EDITION','Meet the neighborhood.','Deliver to three mailboxes. Ride close, then press Q.'],['FOLLOW THE SIGNAL','A story through the pines.','Find the grove relay. Slow down and press E to reconnect it.'],['BRING THE STORY HOME','One small world, connected.','Return to the SVGN world desk and press E to publish.'],['FIRST EDITION PUBLISHED','The other side awaits.','Keep exploring. Roads wrap around the planet; there is no map edge.']][p];
+ ['mission-label','mission-title','mission-detail'].forEach((id,i)=>$(id).textContent=texts[i]);$('distance').textContent=Math.round(geo(s.n,t.n,RADIUS))+' m';$('target-name').textContent=t.name;$('district').textContent=district(s.n,world).toUpperCase();$('speed').textContent=String(Math.round(Math.abs(s.speed)*3.6)).padStart(2,'0');$('papers').textContent=s.papers;$('credits').textContent=s.credits;$('mode').textContent=s.mode==='bike'?'COURIER BICYCLE':s.mode==='car'?'SVGN PRESS CAR':'ON FOOT';$('toast').textContent=s.toast;$('toast').classList.toggle('visible',s.toastT>0);}
+function loop(time){requestAnimationFrame(loop);const dt=last?Math.min(.1,(time-last)/1000):1/60;last=time;
+ if(running&&!paused&&!document.hidden){acc=Math.min(.16,acc+dt);const has=(a,b)=>keys.has(a)||keys.has(b);while(acc>=1/60){step(s,world,{throttle:Number(has('KeyW','ArrowUp'))-Number(has('KeyS','ArrowDown')),steer:Number(has('KeyD','ArrowRight'))-Number(has('KeyA','ArrowLeft')),boost:has('ShiftLeft','ShiftRight'),brake:s.mode==='car'&&keys.has('Space'),jump},1/60);jump=false;acc-=1/60;}save();}else acc=0;
+ if(time-lastUI>100){ui();lastUI=time;}view.render(paused?0:dt,s,{menuVisible:!running});
+}
+try{view=makeScene($('world'),world,s,{low:new URLSearchParams(location.search).get('quality')==='low'});window.addEventListener('resize',view.resize);$('start').disabled=false;$('start').textContent=s.delivered.size?'Continue your little world →':'Step onto the planet →';
+ Object.defineProperty(window,'SVGNPlanet',{value:Object.freeze({version:VERSION,inspect:()=>({...inspect(s,world),running,paused,render:view.inspect(),world:{houses:world.homes.length,trees:world.trees.length,radius:RADIUS,topology:'sphere'},objective:target(s,world).name})})});
+ $('world').addEventListener('webglcontextlost',e=>{e.preventDefault();freeze(true);$('failure-detail').textContent='Graphics were interrupted. Reload to restore the 3D planet; completed progress is kept.';$('failure').hidden=false;});ui();requestAnimationFrame(loop);
+}catch(e){console.error(e);$('failure-detail').textContent=String(e.message||e);$('failure').hidden=false;$('start').textContent='3D unavailable';}

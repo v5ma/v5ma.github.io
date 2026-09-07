@@ -1,0 +1,1 @@
+{"version":"0.2.0","build":"little-planet-1","world":"true spherical 3D","status":"candidate","changes":["Radial ground movement and gravity instead of a flat city","Street, neighborhood and whole-planet camera","Village, pine grove, stream, bridges and harbor wrapped around the world","Separate planet progress; earlier flat preview preserved"]}
