@@ -1,0 +1,78 @@
+name: Integrate checked Vesperfall Hollow Hunt source
+on:
+  push:
+    branches: [feat/vesperfall-hollow-hunt]
+    paths: ['.hollow-hunt-incoming/**', '.github/workflows/hollow-hunt-stage.yml']
+permissions:
+  contents: write
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/vesperfall-hollow-hunt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify complete source delta before writing any file
+        run: |
+          python - <<'PY'
+          from pathlib import Path,PurePosixPath
+          import hashlib,json,zlib
+          raw=b''.join(Path(f'.hollow-hunt-incoming/part-{i}').read_bytes() for i in range(3))
+          assert hashlib.sha256(raw).hexdigest()=='902797a61e66584a50775d9cc3db47ea220d767733094f8799c1cb3a7a757945'
+          changes=json.loads(zlib.decompress(raw))
+          allowed={'scripts/check-vesperfall.py'}|{'vesperfall/'+n for n in ['README.md','app.js','architecture.js','core.js','index.html','release.json','roadmap.json','tests/unchained-browser.py','tests/unchained.test.cjs','encounters.js','hunt.css','hunt.js','tests/hunt-browser.py','tests/hunt.test.cjs']}
+          assert set(changes)==allowed
+          staged={}
+          for name,item in changes.items():
+            p=Path(name);q=PurePosixPath(name);assert not q.is_absolute() and '..' not in q.parts and not p.is_symlink()
+            if item['before'] is not None:
+              original=p.read_bytes();assert hashlib.sha1(b'blob '+str(len(original)).encode()+b'\0'+original).hexdigest()==item['before'],name
+              text=original.decode('utf-8');last=len(text)+1
+              for a,b,value in reversed(item['edits']):
+                assert 0<=a<=b<last and isinstance(value,str)
+                text=text[:a]+value+text[b:];last=a+1
+            else:
+              assert not p.exists(),name
+              text=item['text']
+            output=text.encode('utf-8');assert hashlib.sha256(output).hexdigest()==item['after'],name
+            staged[name]=output
+          p=Path('index.html');raw=p.read_bytes();assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()=='5e4624ce96896212a6fda227392fcc07faaa7586'
+          text=raw.decode('utf-8')
+          old='Vesperfall<br>The Bellward Trials';assert text.count(old)==1;text=text.replace(old,'Vesperfall<br>Arrows Unchained')
+          old='Draw a bow with two tracked hands, explore connected procedural cloisters, and face the stone wardens. An original roguelite prototype with desktop practice.'
+          assert text.count(old)==1;text=text.replace(old,'Blink through gothic cloisters, raise your shield, and counter cantors, charging hounds and armored sentinels. Explore elevated routes, master combat trials, and earn lasting upgrades.')
+          staged['index.html']=text.encode('utf-8')
+          for name,data in staged.items():
+            p=Path(name);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+          PY
+          node --check vesperfall/core.js
+          node --check vesperfall/hunt.js
+          node --check vesperfall/encounters.js
+          node --test vesperfall/tests/*.test.cjs
+          python -m py_compile vesperfall/tests/hunt-browser.py
+          python scripts/check-vesperfall.py
+      - name: Commit readable isolated game changes and remove transport
+        run: |
+          rm -rf .hollow-hunt-incoming
+          git config user.name 'Vesperfall source integration'
+          git config user.email 'vesperfall@users.noreply.github.com'
+          git add vesperfall scripts/check-vesperfall.py index.html
+          git add -u .hollow-hunt-incoming
+          git commit -m 'Implement Hollow Hunt enemy styles, spell impacts, combat trials and elevated reward loops'
+          git push origin HEAD:feat/vesperfall-hollow-hunt
+      - name: Preserve inspectable source and input checks
+        if: always()
+        run: |
+          mkdir -p output
+          git rev-parse HEAD > output/source-sha.txt
+          tar czf output/source.tgz vesperfall index.html scripts/check-vesperfall.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hollow-hunt-source
+          path: output/
+          retention-days: 7

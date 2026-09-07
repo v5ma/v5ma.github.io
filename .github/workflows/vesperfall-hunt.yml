@@ -1,0 +1,50 @@
+name: Vesperfall Hollow Hunt acceptance
+on:
+  pull_request:
+    paths: ['vesperfall/**', 'scripts/check-vesperfall.py', '.github/workflows/vesperfall-hunt.yml', 'index.html']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hollow-hunt-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  hunt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify committed models, physics and public build boundary
+        run: |
+          set -o pipefail
+          node --check vesperfall/hunt.js
+          node --check vesperfall/encounters.js
+          node --test vesperfall/tests/*.test.cjs | tee core-tests.tap
+          python scripts/check-vesperfall.py
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play enemy trials, spell effects and elevated routes with ordinary inputs
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/hollow-hunt-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 850 python -u vesperfall/tests/hunt-browser.py
+      - name: Preserve exact tested source and native evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          cp core-tests.tap test-output/ || true
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar czf test-output/source.tgz vesperfall index.html scripts/check-vesperfall.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hollow-hunt-browser
+          path: test-output/
+          retention-days: 14
