@@ -3,7 +3,11 @@ def run_pauline_checks(page, ctx, open_page, check, OUT, BASE):
     slug='james-and-contested-succession'
     def ready(extra=''):
         open_page(page,slug,extra)
-        page.wait_for_selector('#pauline-lab[data-ready="true"]')
+        try:page.wait_for_selector('#pauline-lab[data-ready="true"]')
+        except Exception:
+            page.screenshot(path=str(OUT/'pauline-not-ready.png'))
+            (OUT/'pauline-not-ready.html').write_text(page.content())
+            raise
     def result():return page.locator('#pc-results').inner_text()
     page.set_viewport_size({'width':1440,'height':1000})
     ready()
@@ -37,14 +41,19 @@ def run_pauline_checks(page, ctx, open_page, check, OUT, BASE):
         page.screenshot(path=str(OUT/('pauline-lab-'+label+'.png')))
     ready('&pc_transition=%3Cimg%3E')
     check('Malformed URL restores a coherent example without injecting markup','Invalid comparison inputs' in page.locator('#pc-url-note').inner_text() and '124 years' in result() and page.locator('#pauline-lab img').count()==0)
-    # Explicit transport failure: full article must survive a blocked optional asset.
-    isolated=ctx.browser.new_context();p=isolated.new_page()
-    try:
-        p.route('**/pauline-tools.js*',lambda route:route.abort())
-        p.goto(BASE+'?page='+slug,wait_until='domcontentloaded')
-        p.wait_for_function('document.querySelector("#article-body")?.textContent.includes("Three different clocks")')
-        check('Blocking the optional lab preserves the complete historical argument',p.locator('#pauline-lab').count()==0 and '137 years' in p.locator('#article-body').inner_text())
-    finally:isolated.close()
+    page.locator('#pc-earlier').click()
+    check('A valid new choice clears the earlier invalid-address notice',page.locator('#pc-url-note').inner_text()=='')
+    # Explicit transport failures: either missing optional script preserves reading.
+    for asset in ['pauline-tools.js','pauline-core.js']:
+        isolated=ctx.browser.new_context();p=isolated.new_page();failures=[]
+        p.on('pageerror',lambda error:failures.append(str(error)))
+        try:
+            p.route('**/'+asset+'*',lambda route:route.abort())
+            p.goto(BASE+'?page='+slug,wait_until='domcontentloaded')
+            p.wait_for_function('document.querySelector("#article-body")?.textContent.includes("Three different clocks")')
+            p.locator('a[href*="listen='+slug+'"]').wait_for()
+            check('Missing optional script preserves full text and listening: '+asset,p.locator('#pauline-lab').count()==0 and '137 years' in p.locator('#article-body').inner_text() and not failures)
+        finally:isolated.close()
     # Explicit browser-policy failure: useful results and a link remain available.
     ready()
     page.evaluate('window.__savedReplace=history.replaceState;history.replaceState=()=>{throw new Error("blocked history fixture")};')
