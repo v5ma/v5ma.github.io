@@ -7,7 +7,7 @@ import {mesh,anchor,road,batchStatic} from './art.mjs';
 import {faceSurface,groundShadow} from './neighborhood.mjs';
 import {createCourier,createCar} from './vehicles.mjs';
 const front=n=>tangent(add(street(Math.atan2(-n[2],n[1])*110+1,Math.asin(n[0])*110),mul(n,-1)),n);
-function sign(parent,text,p,width=4,color='#17495b'){const canvas=document.createElement('canvas');canvas.width=512;canvas.height=128;const g=canvas.getContext('2d');g.fillStyle=color;g.fillRect(0,0,512,128);g.fillStyle='#fff0d1';g.font='bold 39px system-ui';g.textAlign='center';g.fillText(text,256,79,485);const tex=new T.CanvasTexture(canvas);tex.colorSpace=T.SRGBColorSpace;const m=new T.Mesh(new T.PlaneGeometry(width,width/4),new T.MeshBasicMaterial({map:tex,side:T.DoubleSide}));m.position.set(...p);parent.add(m);return m;}
+function sign(parent,text,p,width=4,color='#17495b'){const canvas=document.createElement('canvas');canvas.width=512;canvas.height=128;const g=canvas.getContext('2d');g.fillStyle=color;g.fillRect(0,0,512,128);g.fillStyle='#fff0d1';g.font='bold 39px system-ui';g.textAlign='center';g.fillText(text,256,79,485);const tex=new T.CanvasTexture(canvas);tex.colorSpace=T.SRGBColorSpace;const m=new T.Mesh(new T.PlaneGeometry(width,width/4),new T.MeshBasicMaterial({map:tex,side:T.FrontSide,roughness:1}));m.position.set(...p);parent.add(m);return m;}
 function posed(parent,n){const g=new T.Group();parent.add(g);faceSurface(g,n,front(n));return g;}
 export function createCityVisual(root){
  const fixed=new T.Group();root.add(fixed);
@@ -28,7 +28,7 @@ export function createCityVisual(root){
  const bridge=posed(fixed,street(206,41));for(const side of [-1,1]){for(let x=-12;x<=12;x+=3)mesh(bridge,'box','#d6b475',[x,1,side*3.55],[.12,1.8,.12]);mesh(bridge,'box','#dec28e',[0,1.83,side*3.55],[25,.12,.12]);}
  const gate=posed(root,CITY.gate.n),arm=new T.Group();gate.add(arm);arm.position.set(-CITY.gate.w/2,.4,0);for(let i=0;i<10;i++)mesh(arm,'box',i%2?'#e8d9a5':'#b8754a',[(i+.5)*CITY.gate.w/10,.6,0],[CITY.gate.w/10,1.2,.19]);
  const entry=posed(fixed,street(116,4));mesh(entry,'cylinder','#687c7d',[0,2.4,0],[.07,4.8,.07]);sign(entry,'SIGNAL PLAZA  →',[0,4.1,0],4.6);
- const yardSign=posed(fixed,street(168,29));sign(yardSign,'CIVICGRID / RESTRICTED',[0,3.5,0],6);
+ const yardSign=posed(fixed,street(168,30.5));sign(yardSign,'CIVICGRID',[0,2.5,0],2.7);
  const contact=createCourier(root,'#d88465');contact.unicycle.visible=contact.bicycle.visible=false;faceSurface(contact.g,CITY.contact.n,front(CITY.contact.n));
  const desk=posed(fixed,CITY.desk.n);mesh(desk,'box','#496f72',[0,.6,0],[.9,1.2,.8]);sign(desk,'OPEN SIGNAL',[0,1.5,.41],1.8);
  const devices=CITY.devices.map(d=>{const g=posed(root,d.n);mesh(g,'box','#35525c',[0,.75,0],[.5,1.5,.4]);const lamp=mesh(g,'box','#73d3c8',[0,1.03,.22],[.31,.4,.03]);lamp.material=lamp.material.clone();
