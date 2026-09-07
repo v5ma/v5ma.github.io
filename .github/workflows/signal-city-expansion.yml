@@ -1,0 +1,54 @@
+name: Signal City open-world mission
+on:
+  push:
+    branches: [feat/signal-city-waterfront-20260907]
+    paths: ['svgn-planet/**','.github/workflows/signal-city-expansion.yml']
+  pull_request:
+    paths: ['svgn-planet/**','.github/workflows/signal-city-expansion.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: signal-city-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  city:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test simulation and syntax
+        run: |
+          mkdir -p evidence
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs | tee evidence/model-tests.txt
+          for f in svgn-planet/*.mjs; do node --check "$f"; done
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Play the real investigation with normal controls
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/city-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u svgn-planet/tests/city_browser.py
+      - name: Preserve exact source and actual rendered evidence
+        if: always()
+        run: |
+          mkdir -p evidence
+          cp -r svgn-planet/test-output evidence/ 2>/dev/null || true
+          git rev-parse HEAD > evidence/source-sha.txt
+          git diff --stat > evidence/uncommitted-diff.txt
+          tar --exclude='test-output' --exclude='__pycache__' -czf evidence/source.tgz svgn-planet index.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: signal-city-mission
+          path: evidence/
+          retention-days: 14

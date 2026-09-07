@@ -1,0 +1,38 @@
+import {CITY,STORY,coordinates,cityDistrict} from './city-world.mjs';
+import {mission,selectedDevice,focus} from './city-model.mjs';
+import {distance} from './world.mjs';
+export function createCityUI({get,act,pause,resume}){
+ const host=document.createElement('div');host.innerHTML=`
+ <div id="city-status"><b id="city-district">SUNRISE TERRACE</b><span id="city-cash"></span><span id="city-trace"></span></div>
+ <button id="jobs-button">Jobs · J</button><button id="mini-button" aria-label="Open city route map"><canvas id="city-mini" width="240" height="190"></canvas></button>
+ <div id="network-panel" hidden><b>OPEN SIGNAL / NETWORK VIEW</b><strong id="network-name"></strong><span id="network-distance"></span><div><i id="network-progress"></i></div><small>X scan · Z target · hold H link</small></div>
+ <div id="drone-status" hidden></div>
+ <div id="city-tools"><button data-city="scan">Scan</button><button data-city="drone">Drone</button><button id="touch-hack">Hold link</button><button data-city="crouch">Crouch ↓</button><button data-city="pulse">Pulse</button><button data-city="cycle">Target</button></div>
+ <dialog id="job-board"><p class="eyebrow">SVGN / SIGNAL CITY</p><h2>The Waterfront File</h2><p>You are <b>${STORY.hero}</b>, an adult reporter and self-taught hacker working with <b>${STORY.crew}</b>. A source says ${STORY.system} is selling the city's private movement records. Get the evidence, your way.</p><p id="job-current"></p><button id="begin-city" class="primary">Take the assignment</button><button id="delivery-mode">Return to the paper route</button><h3>Switchback Garage</h3><p>Visit the garage in person. Earn credits from papers, side dispatches, and the investigation. Your first 80 credits are a starter grant.</p><div class="garage-actions"><button data-buy="service">Repair + refuel · 20 cr</button><button data-buy="nitro">Fit nitro · 60 cr</button></div><p id="city-distance-stats"></p><details><summary>City controls and alternate approaches</summary><p>F enters a nearby stopped car or gets out. WASD drives; Space brakes. X scans, Z cycles nearby devices; hold H while stopped to link. The front gate needs power. The rear alley is open. A drone can fly over fences: R deploys/recalls, Space rises, C descends. C on foot crouches behind cover. T emits a short-range nonlethal electronic pulse; it attracts a trace. Red camera loops and patrols lose you behind solid cover. Escape until the trace clears.</p></details><a href="./development/roadmap.html" target="_blank" rel="noopener">Open the long-term development board ↗</a><button id="jobs-close">Back to the streets</button></dialog>`;
+ document.body.append(host);const $=id=>document.getElementById(id);$('jobs-button').onclick=()=>{pause();$('job-board').showModal();};$('jobs-close').onclick=()=>{$('job-board').close();resume();};
+ $('begin-city').onclick=()=>{act('begin');$('job-board').close();resume();};$('delivery-mode').onclick=()=>{act('delivery');$('job-board').close();resume();};
+ host.querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>{act(b.dataset.buy);});host.querySelectorAll('[data-city]').forEach(b=>b.onclick=()=>act(b.dataset.city));const down=host.querySelector('[data-city="crouch"]');down.addEventListener('pointerdown',e=>{if(get().c.drone.active){act('descend');down.setPointerCapture(e.pointerId);}});for(const type of ['pointerup','pointercancel','lostpointercapture'])down.addEventListener(type,()=>act('release-descend'));
+ const link=$('touch-hack');link.onpointerdown=e=>{e.preventDefault();act('hold-hack');link.setPointerCapture(e.pointerId);};for(const type of ['pointerup','pointercancel','lostpointercapture'])link.addEventListener(type,()=>act('release-hack'));
+ $('mini-button').onclick=()=>document.getElementById('atlas').click();
+ function map(canvas,full=false){const {s,c}=get(),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;const p=coordinates(focus(s,c).n),scale=full?Math.min((h-65)/250,(w-65)/105):1.4,ox=full?w*.32:w/2-p.x*scale,oy=full?30+220*scale:h/2+p.t*scale;
+  const X=x=>ox+x*scale,Y=t=>oy-t*scale;ctx.fillStyle='#193c49';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#aec4b4';ctx.lineWidth=full?7:6;ctx.beginPath();ctx.moveTo(X(0),Y(-15));ctx.lineTo(X(0),Y(225));ctx.stroke();
+  for(const road of CITY.roads){ctx.lineWidth=road.width*scale;ctx.strokeStyle=road.id.includes('alley')?'#b5a775':'#91aea6';ctx.beginPath();ctx.moveTo(X(road.a[1]),Y(road.a[0]));ctx.lineTo(X(road.b[1]),Y(road.b[0]));ctx.stroke();}
+  ctx.fillStyle='#57788a';for(const b of CITY.buildings)ctx.fillRect(X(b.x-b.w/2),Y(b.t+b.d/2),b.w*scale,b.d*scale);
+  for(const d of CITY.devices){ctx.fillStyle=d.id==='evidence'?'#f1c379':'#69d9c7';ctx.fillRect(X(d.x)-2,Y(d.t)-2,4,4);}
+  if(c.active){const g=mission(c).site;ctx.strokeStyle='#f2ca88';ctx.lineWidth=1;ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(X(p.x),Y(p.t));ctx.lineTo(X(g.x),Y(g.t));ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#f2ca88';ctx.beginPath();ctx.arc(X(g.x),Y(g.t),full?6:4,0,7);ctx.fill();}
+  for(const v of c.vehicles){const a=coordinates(v.n);ctx.fillStyle='#89cddd';ctx.fillRect(X(a.x)-3,Y(a.t)-4,6,8);}
+  if(c.scan>0)for(const g of c.guards){const a=coordinates(g.n);ctx.fillStyle='#ec9279';ctx.beginPath();ctx.arc(X(a.x),Y(a.t),3,0,7);ctx.fill();}
+  ctx.fillStyle='#fff1bf';ctx.beginPath();ctx.arc(X(p.x),Y(p.t),4,0,7);ctx.fill();
+  if(full){ctx.font='13px system-ui';ctx.fillStyle='#f1dfb5';ctx.textAlign='left';for(const [name,t,x]of [['NEWSROOM',-9,-7],['SUNRISE TERRACE',65,-20],['SIGNAL PLAZA',140,30],['REAR ALLEY',180,3],['BEACON QUAY',220,39]])ctx.fillText(name,X(x),Y(t));ctx.font='11px system-ui';ctx.fillText('Gold: objective  •  Cyan: device  •  Blue: vehicle  •  No map teleportation',15,h-13);}
+ }
+ function update(){const {s,c,started}=get(),dev=selectedDevice(s,c),f=focus(s,c);host.hidden=!started;$('city-district').textContent=cityDistrict(f.n);$('city-cash').textContent=Math.floor(c.credits)+' cr';$('city-trace').textContent=c.trace>.02?'TRACE '+('◆'.repeat(Math.ceil(c.trace*3)))+' '+Math.round(c.trace*100)+'%':'NO TRACE';$('city-trace').classList.toggle('danger',c.trace>.6);
+  $('network-panel').hidden=c.scan<=0;$('network-name').textContent=dev?dev.name:'No device nearby';$('network-distance').textContent=dev?Math.round(distance(f.n,dev.n))+' m / '+(c.drone.active?'remote scout':'body')+' • '+(dev.requires&&!c.power?'needs power':'hold H within linking range'):'';$('network-progress').style.width=c.progress*100+'%';
+  $('drone-status').hidden=!c.drone.active;$('drone-status').textContent='DRONE FEED • '+Math.ceil(c.drone.battery)+'% • '+c.drone.lift.toFixed(1)+' m • R returns to body';
+  $('job-current').textContent=mission(c).name+' — '+mission(c).detail;$('begin-city').textContent=c.active?'Continue assignment':'Take the assignment';$('city-distance-stats').textContent='On foot / riding: '+Math.round(c.walked)+' m · Driving: '+Math.round(c.driven)+' m'+(c.nitro?' · Nitro fitted':'');
+  host.querySelectorAll('[data-buy]').forEach(b=>{b.disabled=distance(s.n,CITY.garage.n)>6||c.drone.active||(b.dataset.buy==='nitro'&&c.nitro);});
+  if(c.active){$('objective-title').textContent=mission(c).name;$('objective-text').textContent=mission(c).detail;}
+  const v=c.vehicles.find(v=>v.id===c.car);if(v)$('ride-name').textContent='CAR / '+Math.ceil(v.fuel)+'% FUEL / '+Math.ceil(v.condition)+'% CONDITION';
+  if(c.drone.active)$('ride-name').textContent='REMOTE SCOUT';else if(c.crouch)$('ride-name').textContent='CROUCH / USE SOLID COVER';map($('city-mini'));
+ }
+ return {update,map,open:()=>$('jobs-button').click(),dialog:$('job-board')};
+}
