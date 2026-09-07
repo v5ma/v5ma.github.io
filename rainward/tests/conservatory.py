@@ -35,7 +35,7 @@ with sync_playwright() as p:
  host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=c.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None);page.on('dialog',lambda d:d.accept())
  try:
-  page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()==2,'Both the original district and new chapter are selectable')
+  page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()>=3,'Existing chapters and the new expedition are selectable')
   page.locator('#chapter-select').select_option('conservatory');page.locator('#start').click();wait(page,'Rainward.state.level==="conservatory"&&Rainward.mode==="play"');check(snap(page)['player']['y']==8,'The second expedition starts on a real elevated terrace')
   initial=page.evaluate('Rainward.state.enemies.find(e=>e.id==="rootback")');page.wait_for_function('(p)=>{const e=Rainward.state.enemies.find(e=>e.id==="rootback");return Math.hypot(e.x-p.x,e.z-p.z)>.8;}',arg=initial);check(True,'The Rootback patrol moves through its authored path instead of starting embedded in a pillar')
   if MODE=='visual':quality(page,False)

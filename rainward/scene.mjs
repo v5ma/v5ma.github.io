@@ -1,3 +1,4 @@
+import {buildTerminus} from './terminus-art.mjs';
 import {graphicsPreset} from './graphics.mjs';
 import {buildConservatory,skyEnvironment} from './landscape.mjs';
 import {creature,poseCreature} from './creature-art.mjs';
@@ -13,10 +14,10 @@ export function createScene(canvas){
  renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.6));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
  const scene=new T.Scene();scene.background=new T.Color(0x819995);scene.fog=new T.FogExp2(0x819995,.013);
  const camera=new T.PerspectiveCamera(55,1,.07,240);scene.add(camera);
- scene.add(new T.HemisphereLight(0xc0d9d1,0x2b3023,1.7));const sun=new T.DirectionalLight(0xe3e7c8,3.1);sun.position.set(-28,55,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-60,right:60,top:75,bottom:-75,near:.5,far:150});sun.shadow.bias=-.0006;sun.shadow.normalBias=.035;scene.add(sun);
+ scene.add(new T.HemisphereLight(0xc6d9e8,0x282d29,chapter.id==='terminus'?.85:1.15));const sun=new T.DirectionalLight(0xffead1,chapter.id==='terminus'?1.8:3.5);sun.position.set(-28,55,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-60,right:60,top:75,bottom:-75,near:.5,far:150});sun.shadow.bias=-.0006;sun.shadow.normalBias=.035;scene.add(sun);
  const rim=new T.DirectionalLight(0x9fbfd0,.8);rim.position.set(20,6,-30);scene.add(rim);
- const environment=skyEnvironment(scene,renderer);scene.fog=new T.FogExp2(chapter.id==='district'?0x9da99a:0x94a18a,chapter.id==='district'?.008:.006);
- const A=artkit(scene),{mesh,geos}=A;const scenery=chapter.id==='conservatory'?buildConservatory(scene,A):null;if(!scenery)buildDistrict(scene,A);
+ const environment=skyEnvironment(scene,renderer);scene.fog=new T.FogExp2(chapter.id==='terminus'?0x637985:0x9aadb3,chapter.id==='terminus'?.014:.007);
+ const A=artkit(scene),{mesh,geos}=A;const scenery=chapter.id==='terminus'?buildTerminus(scene,A):chapter.id==='conservatory'?buildConservatory(scene,A):null;if(!scenery)buildDistrict(scene,A);
  const itemMeshes=new Map();for(const item of ITEMS){const g=new T.Group();g.position.set(item.x,heightAt(item.x,item.z)+.4,item.z);const bag=mesh('box',[.55,.34,.4],item.type==='objective'?0xb5aa77:0x879877);g.add(bag);const band=mesh('box',[.12,.36,.43],0x414d46);g.add(band);const ring=new T.Mesh(new T.RingGeometry(.39,.43,28),new T.MeshBasicMaterial({color:0xd9d3a5,transparent:true,opacity:.65,side:T.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=-.34;g.add(ring);scene.add(g);itemMeshes.set(item.id,g);}
  const hero=actor(scene,mesh,0x886055),enemies=new Map();
  const drops=new Float32Array(900*6);for(let i=0;i<900;i++){const x=(rnd(i+68)-.5)*84,y=rnd(i+71)*20,z=-45+rnd(i+811)*86;drops.set([x,y,z,x-.1,y-.7,z+.1],i*6);}

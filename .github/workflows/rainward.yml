@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, mission, controller, improvements, expedition, visual, loot]
+        suite: [ui, mission, controller, improvements, expedition, visual, loot, guidance, station]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,6 +38,7 @@ jobs:
         env:
           RAINWARD_SUITE: ${{ matrix.suite }}
           RUINS_SUITE: ${{ matrix.suite }}
+          TERMINUS_SUITE: ${{ matrix.suite }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
@@ -47,6 +48,7 @@ jobs:
             improvements) FILE=improvements.py ;;
             expedition|visual) FILE=conservatory.py ;;
             loot) FILE=loot.py ;;
+            guidance|station) FILE=terminus.py ;;
             *) FILE=browser.py ;;
           esac
           timeout 1380 python -u "rainward/tests/$FILE"

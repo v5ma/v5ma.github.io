@@ -34,3 +34,15 @@ The new landscape includes real arched columns, terraced elevation, a broken gla
 The repository's native acceptance workflow retains the old UI, full district, controller and camera suites and adds full conservatory, visual/clue and physical loot/save tests. Pure model fixtures do not replace ordinary-input browser playthroughs. Only the final source manifest and successful publication receipt establish that a candidate is live.
 
 Technical rendering reference: https://threejs.org/manual/en/how-to-dispose-of-objects.html (chapter resource cleanup). No private narrative or sibling game code is imported.
+
+## v0.4 — Clue guidance and Bellweather Terminus
+
+The existing conservatory clue is at its western archive entrance. E / Y reads it. From the garden toward the north, set Garden to SUN, Archive to LEAF and Deep to WAVE. Map / Hints now identifies the inscription, numbers the controls, shows their current states and offers optional location, interpretation and solution hints. Reading hints never operates a control or grants progress.
+
+Chapter 03 is Bellweather Terminus, an independently authored railway hall and two service wings. Recover the Signal Prism and Traction Key and route power through three linked breakers. Signals and platform must be on; the flooded pump must remain off. The help system can derive a solution from the current switch state, not only the untouched starting arrangement.
+
+The rendering pass uses locally authored deterministic albedo, height and roughness textures, metre-scaled world projection, revised environmental color/light balance, irregular rock geometry, smaller head proportions and movement-linked gait. Reduced Graphics retains the same world-scaled color and live circuit lights while omitting expensive PBR microdetail. These are procedural assets, not photogrammetry or imported AAA art. The current models and animation are not production-quality characters; the roadmap calls for an original rigged asset pipeline rather than claiming that more effects alone will solve that gap.
+
+The previous chapters, fixed-input gameplay rules, single checkpoint namespace, and v1/v2 save compatibility are preserved. WebXR, swimming, climbing, multiplayer, paid accounts and private narrative are not added. A third chapter is a new environment and puzzle, not a representation of a finished long campaign.
+
+Native acceptance must cover the complete third chapter, both earlier chapters, puzzle guidance without mutation, full and reduced material shader compilation, controller and phone-width UI. Model checks and screenshots are not substitutes for a real playthrough or physical-device approval. Deployment status is recorded in the release PR and public hash-verification receipt.
