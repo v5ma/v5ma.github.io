@@ -28,7 +28,7 @@ with sync_playwright() as p:
  page=c.new_page();page.set_default_timeout(75000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('dialog',lambda d:d.accept())
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');page.wait_for_function('window.Rainward');page.locator('#start').click();page.wait_for_function('Rainward.mode==="play"')
-  check(page.evaluate('Rainward.snapshot().version==="0.2.0"'),'The loaded game identifies the v0.2 release')
+  check(page.evaluate('Rainward.snapshot().version==="0.3.0"'),'The loaded game identifies the v0.3 release')
   page.keyboard.press('KeyV');page.wait_for_function('Rainward.view.shoulder===-1&&Rainward.snapshot().camera.x<Rainward.state.player.x-.35');check(True,'V moves the actual camera to the left shoulder, not only a label')
   page.keyboard.press('KeyV');page.wait_for_function('Rainward.view.shoulder===1&&Rainward.snapshot().camera.x>Rainward.state.player.x+.35');check(True,'Shoulder switching works in both directions')
   check(page.locator('#noise-label').inner_text().endswith('STILL'),'The feedback recognizes standing still')
