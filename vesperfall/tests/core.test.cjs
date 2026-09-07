@@ -17,3 +17,19 @@ test('Tracking loss, pause and overextension cancel a pull instead of firing',()
 test('A trigger pressed away from the string cannot magically nock a distant arrow',()=>{const b=new I.BowLatch();b.update([0,0,0],[0,0,.5],false);assert.equal(b.update([0,0,0],[0,0,.5],true).drawing,false);assert.equal(b.update([0,0,0],[0,0,.6],false).shot,null);});
 test('Shorter calibrated draw reduces reach without changing the aiming vector',()=>{const short=C.drawState([0,1,-.5],[0,1,0],.4),long=C.drawState([0,1,-.5],[0,1,0],.7);assert.ok(short.charge>long.charge);assert.deepEqual(short.direction,long.direction);});
 test('Profile accepts only bounded local progression, not arbitrary fields',()=>{const p=I.cleanProfile({shards:Infinity,best:-5,depth:300,heart:'true',power:true,private:'ignored'});assert.equal(p.shards,100000);assert.equal(p.best,0);assert.equal(p.depth,99);assert.equal(p.heart,false);assert.equal(p.power,true);assert.equal(p.private,undefined);});
+
+test('Beacon interaction opens the reward menu immediately, without another playing tick',()=>{
+ const fs=require('node:fs'),vm=require('node:vm');let component;
+ const context={VesperCore:C,VesperInput:I,AFRAME:{registerComponent(n,d){component=d;}},document:{getElementById(){return null;}},window:{addEventListener(){}}};
+ vm.createContext(context);vm.runInContext(fs.readFileSync(__dirname+'/../app.js','utf8'),context);
+ const game=C.create('BEACON');game.kills=5;game.portalReady=true;game.score=700;const gate=game.world.rooms[game.world.exit];game.p=[gate.x,0,gate.z-3.8];
+ let saves=0,opened=0;
+ const owner={game,practice:false,banked:0,profile:I.cleanProfile({}),lastPhase:'playing',bank:component.bank,profileSave(){saves++;},setPaused(v){assert.equal(v,true);opened++;this.paused=true;},toast(){}};
+ component.interact.call(owner);assert.equal(game.phase,'reward');assert.equal(owner.lastPhase,'reward');assert.equal(owner.paused,true);assert.equal(owner.profile.shards,5);assert.equal(saves,1);assert.equal(opened,1);
+ component.interact.call(owner);assert.equal(saves,1);assert.equal(opened,1);assert.equal(owner.profile.shards,5);
+});
+test('Practice and unopened beacons cannot enter or bank a reward',()=>{
+ const fs=require('node:fs'),vm=require('node:vm');let component;
+ const context={VesperCore:C,VesperInput:I,AFRAME:{registerComponent(n,d){component=d;}},document:{getElementById(){return null;}},window:{addEventListener(){}}};vm.createContext(context);vm.runInContext(fs.readFileSync(__dirname+'/../app.js','utf8'),context);
+ for(const practice of [true,false]){const game=C.create('NO-REWARD'),o={game,practice,toast(){},bank(){throw Error('Unexpected bank');},setPaused(){throw Error('Unexpected reward menu');}};component.interact.call(o);assert.equal(game.phase,'playing');}
+});

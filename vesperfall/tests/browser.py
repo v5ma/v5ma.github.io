@@ -21,7 +21,7 @@ def walk(page,x,z,close=.7,combat=False):
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- browser=p.chromium.launch(**opts);context=browser.new_context(viewport={'width':1024,'height':720},service_workers='block',record_video_dir=str(OUT/'video'))
+ browser=p.chromium.launch(**opts);context=browser.new_context(viewport=({'width':800,'height':600} if MODE=='expedition' else {'width':1024,'height':720}),service_workers='block',**({} if MODE=='expedition' else {'record_video_dir':str(OUT/'video')}))
  host=urlparse(BASE).hostname;context.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
  if MODE=='xr':context.add_init_script((ROOT/'vesperfall/tests/fake-xr.js').read_text())
  page=context.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
@@ -63,7 +63,7 @@ with sync_playwright() as p:
    s=snap(page);page.screenshot(path=str(OUT/'beacon-open.png'))
    travel=page.evaluate('(()=>{const s=Vesperfall.state,w=s.world;return VesperCore.route(w,VesperCore.roomAt(w,s.p),w.exit).map(i=>w.rooms[i]);})()')
    for room in travel:walk(page,room['x'],room['z'],1)
-   room=snap(page)['rooms'][snap(page)['exit']];walk(page,room['x'],room['z']-3.8,1);page.keyboard.press('KeyE');page.wait_for_function('Vesperfall.state.phase==="reward"')
+   room=snap(page)['rooms'][snap(page)['exit']];walk(page,room['x'],room['z']-3.8,1);page.keyboard.press('KeyE');page.wait_for_function('Vesperfall.state.phase==="reward"');page.locator('#reward').wait_for(state='visible')
    check(page.locator('#reward').is_visible(),'The completed sector offers a real blessing choice')
    old=snap(page);page.locator('[data-reward="power"]').click();page.wait_for_function('Vesperfall.state.world.depth===2')
    check(snap(page)['phase']=='playing' and len([e for e in snap(page)['enemies'] if not e['dead']])==5,'A blessing leads to the next procedural sector with new enemies')
