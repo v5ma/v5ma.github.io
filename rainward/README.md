@@ -11,3 +11,13 @@ Keyboard, touch and standard gamepad controls are included. Physical-controller 
 Run a static server at the repository root and open `rainward/index.html`. No build step, package installation, external API or credentials are required. The Three.js renderer is vendored with its original license.
 
 Validation and publication status will be recorded with the release. Model fixtures and simulated inputs are not a certification of physical devices, performance, fun or production quality.
+
+## v0.2 — Read the district
+
+V (or standard-gamepad D-pad right) swaps camera shoulder. A conservative camera boom reserves clearance around its near plane and clips after smoothing; it cannot deliberately force a minimum distance through a wall. Movement accelerates and stops gradually, sprint exhaustion has a recovery threshold, and vaults check the whole ground corridor rather than only the destination. Crouched dodges are refused inside a prone-only gap.
+
+Enemy searches now sweep traversable locations around their last seen/heard clue and eventually return to patrol. They do not retarget to a hidden player. A new sightline starts a visible attack windup, so breaking sight or deploying smoke interrupts it. Nearby callout captions, noise and concealment readouts, and sightline-only threat arcs explain what is happening.
+
+Changes stay in this project. Version 1 shelter saves remain compatible. Keyboard, touch and emulated standard gamepad tests are separate from physical-device acceptance. WebXR and multiplayer remain unimplemented.
+
+Native regression covers the complete no-kill chapter, UI, controller input and the new camera/feedback. Read-only source manifests and publication verification are the release authority; see the scoped pull request and its Actions receipts.

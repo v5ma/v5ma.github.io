@@ -9,9 +9,18 @@ export function fire(s,direction){const p=s.player;if(s.status!=='playing'||p.re
  if(victim){victim.hp--;s.stats.hits++;victim.state=victim.hp<=0?'down':'chase';victim.target={x:p.x,z:p.z};victim.awareness=1;victim.repath=0;}
  emit(s,'shot',{from:o,to:{x:o.x+d.x*nearest,y:o.y+d.y*nearest,z:o.z+d.z*nearest},hit:victim?.id||null});return true;
 }
-export function dodgeOrVault(s,dx,dz){const p=s.player;if(s.status!=='playing'||p.dodge||p.vault||p.craft||p.stamina<28)return false;
+export function vaultCandidate(p,dx,dz){
+ const length=Math.hypot(dx,dz);if(length<.1){const f=forward(p.yaw);dx=f.x;dz=f.z;}else{dx/=length;dz/=length;}
+ const wall=OBSTACLES.find(o=>o.bottom===0&&o.h<=1.15&&inside({x:p.x+dx*.9,z:p.z+dz*.9},o,RAD));if(!wall)return null;
+ const span=Math.abs(dx)>Math.abs(dz)?wall.w:wall.d,range=span+1.25,end={x:p.x+dx*range,z:p.z+dz*range};
+ if(range>=6||solidAt(end.x,end.z,HEIGHT.stand))return null;
+ for(let d=0;d<=range;d+=.08)if(solidAt(p.x+dx*d,p.z+dz*d,HEIGHT.stand,RAD,wall.id))return null;
+ return {start:{x:p.x,z:p.z},end,t:0,duration:.62,ignore:wall.id};
+}
+export function dodgeOrVault(s,dx,dz){const p=s.player;if(s.status!=='playing'||p.dodge>0||p.vault||p.craft||p.stamina<28)return false;
+ const v=vaultCandidate(p,dx,dz);if(v){p.vault=v;p.stance='stand';p.stamina-=25;p.vx=p.vz=0;emit(s,'vault',{id:v.ignore});return true;}
  const l=Math.hypot(dx,dz);if(l<.1){const f=forward(p.yaw);dx=f.x;dz=f.z;}else{dx/=l;dz/=l;}
- const wall=OBSTACLES.find(o=>o.bottom===0&&o.h<=1.15&&inside({x:p.x+dx*.9,z:p.z+dz*.9},o,RAD));
- if(wall){const span=Math.abs(dx)>Math.abs(dz)?wall.w:wall.d,range=span+1.25,x=p.x+dx*range,z=p.z+dz*range;if(range<6&&!solidAt(x,z,HEIGHT.stand)){p.vault={start:{x:p.x,z:p.z},end:{x,z},t:0,duration:.62,ignore:wall.id};p.stance='stand';p.stamina-=25;emit(s,'vault',{id:wall.id});return true;}}
- p.stamina-=28;p.dodge=.38;p.invulnerable=.26;p.dodgeDir={x:dx,z:dz};p.stance='crouch';emit(s,'dodge');return true;
+ // A crawlspace cannot turn into a crouched dodge through its ceiling.
+ if(solidAt(p.x,p.z,HEIGHT.crouch)){hint(s,'Crawl into clear space before dodging.');return false;}
+ p.stamina-=28;p.dodge=.38;p.invulnerable=.26;p.dodgeDir={x:dx,z:dz};p.stance='crouch';p.vx=p.vz=0;emit(s,'dodge');return true;
 }

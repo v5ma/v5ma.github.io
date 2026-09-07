@@ -11,4 +11,4 @@ export function visible(s,e,p=s.player){
  return true;
 }
 export function move(p,dx,dz,height,ignore=null){const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.12));for(let i=0;i<n;i++){const x=p.x+dx/n,z=p.z+dz/n;if(!solidAt(x,p.z,height,RAD,ignore))p.x=x;if(!solidAt(p.x,z,height,RAD,ignore))p.z=z;}}
-export function stance(s,value){const p=s.player;if(!['stand','crouch','prone'].includes(value)||s.status!=='playing'||p.vault)return false;if(solidAt(p.x,p.z,HEIGHT[value])){hint(s,'Not enough headroom to stand here.');return false;}p.stance=value;return true;}
+export function stance(s,value){const p=s.player;if(!['stand','crouch','prone'].includes(value)||s.status!=='playing'||p.vault)return false;if(solidAt(p.x,p.z,HEIGHT[value])){hint(s,'Not enough headroom to stand here.');return false;}p.stance=value;p.vx=p.vz=0;return true;}

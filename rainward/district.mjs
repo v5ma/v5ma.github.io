@@ -32,9 +32,9 @@ export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,b
  for(const x of[-31,31]){add('box',x,7,-4,2.4,14,3,0x616e64);add('box',x,14,-4,8,1.5,6.6,0x77857a);}
  add('box',-19.5,14.1,-4,15,1.1,6.6,0x738177);add('box',24,14.1,-4,8,1.1,6.6,0x738177);
  for(let i=0;i<9;i++)add('cyl',-12+i*.4,13.95,-1.5,.04,3,.04,0x544c39,'metal',0,0,-.4-i*.1);
- for(let j=0;j<GRASS.length;j++){const patch=GRASS[j];for(let i=0;i<220;i++){const x=patch.x+(rnd(i+j*300)-.5)*patch.w,z=patch.z+(rnd(i+j*301+43)-.5)*patch.d,h=.35+rnd(i+74)*.65;add('plane',x,h/2,z,.10+rnd(i+31)*.18,h,1,[0x6c7b42,0x536d47,0x778344][i%3],'grass',0,rnd(i+33)*6.28,(rnd(i+23)-.5)*.4);}}
- for(let i=0;i<18;i++){const side=i%2?1:-1,x=side*(19+rnd(i+31)*13),z=-44+rnd(i+50)*73,h=5+rnd(i+16)*7;add('cyl',x,h*.46,z,.13,h,.19,0x504e3c,'wood',0,0,.04);for(let j=0;j<7;j++){const a=j*2.4,r=1.2+rnd(i+j)*1.9;add('ball',x+Math.sin(a)*r,h+j*.18,z+Math.cos(a)*r,r*.85,r*.65,r, [0x516847,0x5b7150,0x6d7950][j%3],'leaf');}}
+ for(let j=0;j<GRASS.length;j++){const patch=GRASS[j];for(let i=0;i<220;i++){const x=patch.x+(rnd(i+j*300)-.5)*patch.w,z=patch.z+(rnd(i+j*301+43)-.5)*patch.d,h=.35+rnd(i+74)*.65;add('blade',x,.02,z,.10+rnd(i+31)*.18,h,1,[0x6c7b42,0x536d47,0x778344][i%3],'grass',0,rnd(i+33)*6.28,(rnd(i+23)-.5)*.4);}}
+ for(let i=0;i<18;i++){const side=i%2?1:-1,x=side*(19+rnd(i+31)*13),z=-44+rnd(i+50)*73,h=5+rnd(i+16)*7;add('cyl',x,h*.46,z,.13,h,.19,0x504e3c,'wood',0,0,.04);for(let j=0;j<15;j++){const a=j*2.4,r=.9+rnd(i+j)*2.3;add('ball',x+Math.sin(a)*r,h+Math.sin(j*.8)*1.2,z+Math.cos(a)*r,.7+rnd(i+j)*.9,.8,.7+rnd(i+j)*.9, [0x516847,0x5b7150,0x6d7950][j%3],'leaf');}}
  for(let i=0;i<180;i++){const x=(rnd(i+79)-.5)*62,z=-47+rnd(i+15)*76,s=.1+rnd(i+97)*.22;add('box',x,.06,z,s,.08,s*.7,[0x909280,0x404d46,0x767660][i%3],'stone',0,rnd(i)*6,0);}
- for(const {geo,mat:m,items} of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=geo!==geos.plane;inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}
+ for(const {geo,mat:m,items} of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=geo!==geos.plane&&geo!==geos.blade;inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}
  for(const [key,m]of mats)if(key.endsWith(':grass')){m.side=T.DoubleSide;m.roughness=1;}
 }

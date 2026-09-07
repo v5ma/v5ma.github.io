@@ -1,0 +1,53 @@
+name: Little Planet native verification
+on:
+  push:
+    branches: [feat/little-planet-playable]
+    paths: ['little-planet/**','.github/workflows/little-planet.yml']
+  pull_request:
+    paths: ['little-planet/**','.github/workflows/little-planet.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: little-planet-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check spherical movement and source
+        run: |
+          set -o pipefail
+          mkdir -p planet-evidence
+          node --test little-planet/tests/*.test.mjs | tee planet-evidence/model-tests.txt
+          for file in little-planet/*.mjs; do node --check "$file"; done
+          find . -maxdepth 2 -iname AGENTS.md -not -path './.git/*' -print -exec cat {} \; > planet-evidence/agent-instructions.txt
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Walk, ride, circle the globe and deliver using real inputs
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/planet-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          python -u little-planet/tests/browser.py
+      - name: Preserve exact source and actual rendered evidence
+        if: always()
+        run: |
+          mkdir -p planet-evidence
+          cp -r little-planet/test-output planet-evidence/ 2>/dev/null || true
+          git rev-parse HEAD > planet-evidence/tested-commit.txt
+          git diff --stat > planet-evidence/uncommitted-diff.txt
+          tar --exclude=test-output --exclude=__pycache__ -czf planet-evidence/source.tgz little-planet index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: little-planet-native
+          path: planet-evidence/
+          retention-days: 14

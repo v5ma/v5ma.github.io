@@ -4,14 +4,14 @@ import hashlib,json,os,sys,time,urllib.request
 from concurrent.futures import ThreadPoolExecutor
 ROOT=Path(__file__).resolve().parents[2];GAME=ROOT/'rainward';OUT=ROOT/'test-output';OUT.mkdir(exist_ok=True)
 files=[ROOT/'index.html',*[p for p in GAME.iterdir() if p.is_file() and p.suffix in ['.mjs','.html','.css','.svg','.json']],GAME/'vendor/LICENSE',GAME/'vendor/three.core.js',GAME/'vendor/three.module.js']
-manifest={'source':os.getenv('GITHUB_SHA','local'),'version':'0.1.0','files':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
+manifest={'source':os.getenv('GITHUB_SHA','local'),'version':json.loads((GAME/'release.json').read_text())['version'],'files':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
 (OUT/'rainward-source-manifest.json').write_text(json.dumps(manifest,indent=2))
 if '--published' in sys.argv:
  result={};base='https://v5ma.github.io/'
  def fetch(item):
   name,expected=item
   try:
-   with urllib.request.urlopen(base+name+'?rainward=20260906',timeout=12) as r:
+   with urllib.request.urlopen(base+name+'?rainward='+manifest['source'][:12],timeout=12) as r:
     digest=hashlib.sha256(r.read()).hexdigest();return name,{'status':r.status,'sha256':digest,'match':digest==expected}
   except Exception as error:return name,{'match':False,'error':str(error)}
  for attempt in range(40):

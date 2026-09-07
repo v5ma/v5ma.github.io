@@ -1,8 +1,5 @@
 name: Verify Leonardo's Guild first commission
 on:
-  push:
-    branches: [feat/leonardos-guild-20260906]
-    paths: ['leonardos-guild/**','index.html','.github/workflows/leonardos-guild.yml']
   pull_request:
     paths: ['leonardos-guild/**','index.html','.github/workflows/leonardos-guild.yml']
   workflow_dispatch:
@@ -14,7 +11,7 @@ concurrency:
 jobs:
   chapter:
     runs-on: ubuntu-latest
-    timeout-minutes: 24
+    timeout-minutes: 26
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,7 +28,7 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Play the actual commission with keyboard and UI
+      - name: Play the actual commission from the homepage card
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/leonardo-http.log 2>&1 &
           SERVER=$!
@@ -40,14 +37,16 @@ jobs:
       - name: Capture exact source receipt
         if: always()
         run: |
+          mkdir -p leonardos-guild/test-output
           git rev-parse HEAD > leonardos-guild/test-output/tested-commit.txt
           git diff --stat > leonardos-guild/test-output/uncommitted-diff.txt
-          tar -czf leonardos-guild/test-output/source.tgz --exclude=test-output leonardos-guild
+          tar -czf leonardos-guild/test-output/source.tgz --exclude=test-output leonardos-guild index.html projects.css
           python - <<'PY'
           import hashlib,json
           from pathlib import Path
           p=Path('leonardos-guild')
-          files={str(f.relative_to(p)):hashlib.sha256(f.read_bytes()).hexdigest() for f in p.rglob('*') if f.is_file() and 'test-output' not in f.parts and f.suffix in ['.mjs','.js','.css','.html','.json','.webp']}
+          files={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in p.rglob('*') if f.is_file() and 'test-output' not in f.parts and f.suffix in ['.mjs','.js','.css','.html','.json','.webp']}
+          for name in ['index.html','projects.css']:files[name]=hashlib.sha256(Path(name).read_bytes()).hexdigest()
           (p/'test-output/source-hashes.json').write_text(json.dumps(files,indent=2))
           PY
       - uses: actions/upload-artifact@v4

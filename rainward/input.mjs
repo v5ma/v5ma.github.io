@@ -7,7 +7,7 @@ export class GamepadInput{
  if(this.id!==pad.index){this.id=pad.index;this.reset();}
  const held=i=>!!pad.buttons[i]?.pressed||pad.buttons[i]?.value>.55,down=pad.buttons.map((_,i)=>held(i));const move=deadzone(pad.axes[0]||0,pad.axes[1]||0),look=deadzone(pad.axes[2]||0,pad.axes[3]||0);
  if(!this.armed){this.previous=down;if(!down.some(Boolean)&&Math.hypot(...move)<.1&&Math.hypot(...look)<.1)this.armed=true;return {connected:true,actions:[],move:[0,0],look:[0,0]};}
- const bindings={0:'dodge',1:'crouch',2:'reload',3:'interact',5:'bottle',8:'map',9:'pause',11:'prone',12:'heal',13:'pack',14:'smoke'};const actions=Object.entries(bindings).filter(([i])=>down[i]&&!this.previous[i]).map(([,a])=>a);this.previous=down;
- return {connected:true,actions,move,look,aim:held(6),fire:held(7),listen:held(4),sprint:held(10),confirm:actions.includes('dodge'),back:actions.includes('crouch'),nav:move[1]};
+ const bindings={0:'dodge',1:'crouch',2:'reload',3:'interact',5:'bottle',8:'map',9:'pause',11:'prone',12:'heal',13:'pack',14:'smoke',15:'shoulder'};const actions=Object.entries(bindings).filter(([i])=>down[i]&&!this.previous[i]).map(([,a])=>a);this.previous=down;
+ return {connected:true,actions,move,look,aim:held(6),fire:held(7),listen:held(4),sprint:held(10),confirm:actions.includes('dodge'),back:actions.includes('crouch'),nav:held(12)?-1:held(13)?1:move[1]};
  }
 }

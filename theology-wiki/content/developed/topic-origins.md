@@ -37,6 +37,8 @@ Manuscripts, Temple history, divine names and the dating of ideas.
 
 [[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]: A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.
 
+[[james-and-contested-succession|James and contested succession]]: A Jamesian succession model joins transmitted knowledge, kinship, priestly imagery and contested authority while preserving the stronger earlier-founder reconstruction.
+
 ## Browse the source discussions
 
 These 43 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.
