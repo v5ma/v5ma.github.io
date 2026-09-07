@@ -1,0 +1,56 @@
+name: Finalize Unchained input and preview feedback
+on:
+  push:
+    branches: [feat/vesperfall-arrows-unchained]
+    paths: [.github/workflows/unchained-final-review.yml]
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/vesperfall-arrows-unchained
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply source-checked input and documentation corrections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          expected={
+          'vesperfall/tests/unchained-browser.py':('4c42cf622f0c783ac056b3dea986af6bf9ef179bd6a30be168289191cfb8a5c5','2f74e0b567ff966adc8ae28d16059b5bcda4fc07eb1ac50d3f6d7fa81b2d224c'),
+          'vesperfall/arsenal.js':('71e8e00cc6e4807f6bf1c7bb7a70ca419e4b17724369a40cad189ac972c21726','cd8d8913050394aa6a7228ef9dfd52967a562882a3f6e4c64ed149050b38eef3'),
+          'vesperfall/README.md':('00a10c4b40d3d04fc9f2f3c2524edc00d527dbdc420bf0183a6acde86dd7b920','744d67038c2e3629f8feb181478541040e98f6aca751f23792827605b247c4b4'),
+          'vesperfall/tests/unchained.test.cjs':('659f65f55fe5b3ebbbfc4d369c43fde5a198cbf39f48055ce621be3ec1323a59','85e647f7ebcf39a1696153effddc9ab318c3ce299776a491a73984b5da5a165a')}
+          for name,(before,after) in expected.items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==before,name
+          p=Path('vesperfall/tests/unchained-browser.py');s=p.read_text()
+          s=s.replace("key_until(page,'ArrowUp','Vesperfall.component.pitch>=Math.PI/6');key_until(page,'Space','Vesperfall.component.charge>=.45')", "key_until(page,'ArrowUp','Vesperfall.component.pitch>=.72');key_until(page,'Space','Vesperfall.component.charge>.08&&Vesperfall.component.blinkTrace?.ok&&Vesperfall.component.blinkTrace.destination[1]>3.19')")
+          s=s.replace("key_until(page,'Space','Vesperfall.component.charge>=.32')", "key_until(page,'Space','Vesperfall.component.charge>.08&&Vesperfall.component.blinkTrace?.ok&&Vesperfall.component.blinkTrace.destination[1]<.01')")
+          s=s.replace('# Light draw from the real spawn to a visible upper-floor landing. Input is', '# Release at the same green valid-landing cue a player sees, not a\n   # hardcoded charge that becomes invalid as the look angle changes. Input is')
+          p.write_text(s)
+          p=Path('vesperfall/arsenal.js');s=p.read_text();needle='  const oldVisual=g.visuals.bind(g);';s=s.replace(needle,'  const oldPad=g.standardPad.bind(g);g.standardPad=function(dt){oldPad(dt);if(!g.xr)ward(g.keys.KeyH||state.padShield);};\n'+needle)
+          s=s.replace("    if(g.xr)g.xrNotice=weapon+' · guard '+Math.ceil(s.guard)+' · shards '+s.shardCharges+' · grip: shield / step';",'')
+          needle='\n  }\n  g.fireCrossbow=crossShot;'
+          assert needle in s
+          s=s.replace(needle,"\n   if(g.xr&&active()&&!g.headBlocked&&g.hands.left&&g.hands.right){\n    if(s.shield)g.xrNotice='WARDGLASS · guard '+Math.ceil(s.guard)+' · lower grip before firing';\n    else if(s.weapon==='crossbow'&&!g.teleLine.visible)g.xrNotice=(s.crossbow.loaded?'CROSSBOW READY · trigger: fire':s.crossbow.reload>0?'WINDING THE CROSSBOW':'CROSSBOW EMPTY · draw-stick click: reload')+' · shards '+s.shardCharges;\n   }"+needle)
+          p.write_text(s)
+          p=Path('vesperfall/README.md');s=p.read_text().replace('Teleport preview is approximate;', 'Teleport preview shares the actual projectile stepping and first-hit tests;').replace('There is no crossbow, hand-tracking-only mode, full-body avatar, multiplayer, cloud save, commercial asset reuse or complete campaign in this first release.', 'There is no hand-tracking-only mode, full-body avatar, multiplayer, cloud save, commercial asset reuse or complete campaign. The v0.3 crossbow uses a deliberate button reload, not a physical wind/reload gesture.').replace('three practice targets','four practice targets');p.write_text(s)
+          p=Path('vesperfall/tests/unchained.test.cjs');s=p.read_text()+'''
+          test('A green gallery cue remains valid with frame-quantized light draws at multiple angles',()=>{
+           for(const pitch of [.72,.735,.75,.765])for(const step of [.014,.023,.03636]){const s=fresh(),dir=[0,Math.sin(pitch),-Math.cos(pitch)],origin=C.add(s.head,C.mul(dir,.18));let cue;for(let charge=.08;charge<=.6;charge+=step){const p=C.predictBlink(s,origin,dir,charge);if(p.ok&&p.destination[1]>3.19){cue={charge,p};break;}}assert.ok(cue);assert.ok(C.fire(s,origin,dir,cue.charge,'blink'));tick(s,240);assert.equal(s.p[1],3.2);for(let k=0;k<3;k++)assert.ok(Math.abs(s.p[k]-cue.p.destination[k])<1e-7);}
+          });
+          ''';p.write_text(s)
+          for name,(before,after) in expected.items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==after,name
+          PY
+          node --check vesperfall/arsenal.js
+          node --test vesperfall/tests/*.test.cjs
+          python -m py_compile vesperfall/tests/unchained-browser.py
+          git config user.name 'Vesperfall final verification'
+          git config user.email 'vesperfall@users.noreply.github.com'
+          git add vesperfall/arsenal.js vesperfall/README.md vesperfall/tests/unchained-browser.py vesperfall/tests/unchained.test.cjs
+          git commit -m 'Use visible green landing cues in playtests and prioritize immediate guard input'
+          git push origin HEAD:feat/vesperfall-arrows-unchained
