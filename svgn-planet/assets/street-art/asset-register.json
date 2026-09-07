@@ -1,0 +1,501 @@
+{
+  "licensePolicy": "CC0 only. Original licenses retained. No paid Source shaders or assets.",
+  "sources": [
+    {
+      "type": "pack",
+      "pack": "downtown-city-megakit",
+      "source": "https://quaternius.itch.io/downtown-city-megakit",
+      "author": "Quaternius",
+      "edition": "Standard",
+      "license": "CC0-1.0",
+      "archiveSha256": "5b1a945576d54cdbb4ccc9c3d52711e6d530da74c74c586407ecc28b165335da",
+      "selected": [
+        "Brick_Window_Trim",
+        "Brick_Window_CurvedDouble",
+        "Brick_Plain_3",
+        "Brick_Plain_1",
+        "Brick_BottomTrim",
+        "Cornice_Brick_Center",
+        "Cornice_Metal_Center",
+        "Metal_FirstFloor_Window",
+        "DoorFrame_Wooden",
+        "Door_1",
+        "Roof_Slate_Window_1",
+        "Roof_Slate_Corner",
+        "Roof_Slate_Center",
+        "Roof_4x4",
+        "Prop_Planter_Single",
+        "Prop_Drain",
+        "Prop_ManholeCover",
+        "Stairs_Rails_Metal_Straight_1"
+      ]
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_RedBrick_Normal.png",
+      "sourceSha256": "147f14d7f665d2598d0d796bd02a227f6b8b0fbc790c3e0737b1b90128101c93",
+      "output": "textures/T_RedBrick_Normal-147f14d7.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 403184,
+      "sha256": "e2f54b49fecfa186baae80b12491d17ccddd1ac9890ee2b7db46ba03532884da"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_RedBrick_BaseColor.png",
+      "sourceSha256": "ea85bfc02c4c807265a85f7ab50656f7eaa19f6567301d362d78c1d06da161ab",
+      "output": "textures/T_RedBrick_BaseColor-ea85bfc0.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 381149,
+      "sha256": "ca859b96c5d7354089d0fea028c0c190ce2bca5c21c8bc70a9d1b11bdb1544a8"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_RedBrick_ORM.png",
+      "sourceSha256": "dfba8a1da5ca7dcff1b707a051e82717e93013c2ad36c93b7a41b0f331414b70",
+      "output": "textures/T_RedBrick_ORM-dfba8a1d.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 214295,
+      "sha256": "a69307a20bfa2f670e9cb34f6ed0f87a690a04b11284cb1b42ec75e436ac9fc9"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Trim_Normal.png",
+      "sourceSha256": "95fa43093067956fa6e206408f3e2f2302c18c7453b75a02f6e29fe57e2cd041",
+      "output": "textures/T_Trim_Normal-95fa4309.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 163175,
+      "sha256": "640a50345c7d958c8ae883eeede3218ebb41bdaf8fedd94e39ea22bd3d2ebaa3"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Trim_BaseColor.png",
+      "sourceSha256": "c3334902f8315783477eec63e2d462f8cefedf9c55b41ef452d8374b5603f08e",
+      "output": "textures/T_Trim_BaseColor-c3334902.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 441129,
+      "sha256": "2919f9c0523effc6cd2d19f82186704b74583224ac3ff2c09a004585715c1575"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Trim_ORM.png",
+      "sourceSha256": "52449f201ad3cf606a2eb2972702b10051c369cdc67b6fadd109502b4735d7fb",
+      "output": "textures/T_Trim_ORM-52449f20.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 132827,
+      "sha256": "cd04c731cd9b91c25dc86282d0a35b1a2277de0d8053c1d4d9f9aa689e6d6617"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_MetalConcrete_Normal.png",
+      "sourceSha256": "93f95a96c32b27820c590301f00f5ba1d23d4054046d92bf6d58adbf23007419",
+      "output": "textures/T_MetalConcrete_Normal-93f95a96.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 239158,
+      "sha256": "f44fd3713987c191af762a2eca42b5180529dee8be6db8bdc1232a063d98159c"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_MetalConcrete_BaseColor.png",
+      "sourceSha256": "adae656323f15cd2c3f1a6453685cb1ca104b700dc114076137cb3a4c253d3d0",
+      "output": "textures/T_MetalConcrete_BaseColor-adae6563.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 240046,
+      "sha256": "6997dac16a5474eb6c860421b21814338650cb1701c0611feafb4de5a6e4c228"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_MetalConcrete_ORM.png",
+      "sourceSha256": "c4d35f684d20c47f199bea2fbe098d60a000fa7d1489df0f00a4c3c1ace4fcb7",
+      "output": "textures/T_MetalConcrete_ORM-c4d35f68.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 144773,
+      "sha256": "93eac5e92b4f0cdad6fd4fc0497901543f1ca0325e461c372f29666a12102fb0"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_RoofSlate_Normal.png",
+      "sourceSha256": "cd5cb711b2cc4f59a846604309cb0d312596b0e178b3aa2cd56e3a2f84d9471b",
+      "output": "textures/T_RoofSlate_Normal-cd5cb711.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 181147,
+      "sha256": "e014985146b74c27c8feead74149ad99cb901fc8cd3370dca4eec41dc9ad3985"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_RoofSlate_BaseColor.png",
+      "sourceSha256": "2057fecd5f405c56adfc94df056d3f0bcfe7cd3e444779bcabc85db389761503",
+      "output": "textures/T_RoofSlate_BaseColor-2057fecd.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 215355,
+      "sha256": "1b7f97e03d36477089685633e1041c954bb1ce21d778c19f78c83275885faabd"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_RoofSlate_ORM.png",
+      "sourceSha256": "7e8bafdd2a33af3d5ae9493305b48ed40c6ea8f7354808da6d6e40ec42a1e01b",
+      "output": "textures/T_RoofSlate_ORM-7e8bafdd.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 108162,
+      "sha256": "cf8b5cad4e802cbe765611d07ec8ac5f8cefbeee2af086353b9a0da2942c9700"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Concrete_Normal.png",
+      "sourceSha256": "e4de917d2506bff4b17d44380a136336cf16e5ea828edfdb8981f4f27e30a86a",
+      "output": "textures/T_Concrete_Normal-e4de917d.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 170793,
+      "sha256": "b926bf94bac0b1e11c941b62dc915acdfcf9ed7e527d0e61b93a6f9176d101a0"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Concrete_Asphalt_BaseColor.png",
+      "sourceSha256": "a37ca932c4287a67d9cf7f78997b5cc4b026ca7319a4c8454132d076307ca5cf",
+      "output": "textures/T_Concrete_Asphalt_BaseColor-a37ca932.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 104991,
+      "sha256": "0b7dd732c80783e498056cb73e3a009cf9b25cbdcfa3dfec21051ca0ed3092fc"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Concrete_ORM.png",
+      "sourceSha256": "be17636c061a7c6c4f4bf23c3887a3f894da0e88394e233926e816c735a49244",
+      "output": "textures/T_Concrete_ORM-be17636c.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 76402,
+      "sha256": "b982e832bf791ef1cfa2d95f6779e407c5171b8773856e27723d53fed9ec1889"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Dirt_Normal.png",
+      "sourceSha256": "88958149742c2ebf8447079edd80ac1133f7b72a5fce0c118206b2f742a350ea",
+      "output": "textures/T_Dirt_Normal-88958149.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 543005,
+      "sha256": "5296765e55f42de43e8c905ec34e5d92cc439b9eec1342f5e8644f61c7af2bab"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Dirt_BaseColor.png",
+      "sourceSha256": "bcb7b1d7bb9801aae25720f495af76306d11cce7654f52763e3cb6b273845302",
+      "output": "textures/T_Dirt_BaseColor-bcb7b1d7.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 122870,
+      "sha256": "27c032837e397ac9e73296f6184ae1783c6c8dcea00453994185021ac642ed79"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Dirt_ORM.png",
+      "sourceSha256": "a2803d1ce2d6ccfdd0896de05a96e3c6aec898000c5897e1669c000faf2b2060",
+      "output": "textures/T_Dirt_ORM-a2803d1c.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 63717,
+      "sha256": "77abe5d0e60ccf9aec08f15c217332e23b66ad2604772ead8affa8c0108f6b55"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Ornaments_Normal.png",
+      "sourceSha256": "c1aa6b307d47386b63e775ba88d82992dd0aaf34f1e4c2b7824002e3cc0a795a",
+      "output": "textures/T_Ornaments_Normal-c1aa6b30.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 380601,
+      "sha256": "dda6ff90f4e8b5a06fec2cdd60132ec612c04fbb3a3cfb4fd9c1ecdef3340e74"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Ornaments_BaseColor.png",
+      "sourceSha256": "528cbe672c62384aa3bac703f574b60509bd69b4d492291cb2915022a12a449c",
+      "output": "textures/T_Ornaments_BaseColor-528cbe67.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 547867,
+      "sha256": "a5fcd57ed0c884eff0ba47fb341c9521a9ba0427ce43129dd930b79a502378da"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "Exports/glTF (Godot)/T_Ornaments_ORM.png",
+      "sourceSha256": "c65b673f871e6b4b2fa61fd110286a096d05d9a311e71ca71804cea46811885d",
+      "output": "textures/T_Ornaments_ORM-c65b673f.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 319150,
+      "sha256": "7ffe2ce1801b1c78249f7c4bee26ccc81636af44998423e7c5e874ceb20d8b2d"
+    },
+    {
+      "type": "pack",
+      "pack": "stylized-nature-megakit",
+      "source": "https://quaternius.itch.io/stylized-nature-megakit",
+      "author": "Quaternius",
+      "edition": "Standard",
+      "license": "CC0-1.0",
+      "archiveSha256": "298f6732b872e4cf7b30e6e7abf9641c7f6dc6b326df37ac089533ed7e3d58c9",
+      "selected": [
+        "CommonTree_1",
+        "CommonTree_3",
+        "CommonTree_4",
+        "Bush_Common",
+        "Bush_Common_Flowers",
+        "Flower_3_Group",
+        "Flower_4_Group",
+        "Grass_Common_Short",
+        "Fern_1"
+      ]
+    },
+    {
+      "type": "texture",
+      "sourcePath": "glTF/Bark_NormalTree_Normal.png",
+      "sourceSha256": "852f6155404b8c39e100e41e26970e02a6a5c81b482d3726618dab28e3ad03a2",
+      "output": "textures/Bark_NormalTree_Normal-852f6155.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 155273,
+      "sha256": "b10aefbca2b0bfa9bcb655231971f43eb3c805bd0c9c25b680dfdadce899d9b9"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "glTF/Bark_NormalTree.png",
+      "sourceSha256": "f36e94fdd73255347325b998e02a0b2575fdf714b0315bfe5e8ff34bc8e13603",
+      "output": "textures/Bark_NormalTree-f36e94fd.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 119668,
+      "sha256": "542b0b5991e4ad35f96042aa7c3a595422545404a4672c53ee142668f48b079d"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "glTF/Leaves_NormalTree_C.png",
+      "sourceSha256": "998612bdf0b76a22f5f54d65cd7a457815d2842d89653fa4348a4ebb42933ad3",
+      "output": "textures/Leaves_NormalTree_C-998612bd.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 153610,
+      "sha256": "a34d9166e77e2410ee31b878c05084ce5ec55261392bc2357e97082665e90046"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "glTF/Leaves_TwistedTree_C.png",
+      "sourceSha256": "0e459b56b14c0e81b1b7cf3d1e8c6f0bb71790eb6c46bb02a76a922d8df646ea",
+      "output": "textures/Leaves_TwistedTree_C-0e459b56.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 67324,
+      "sha256": "3fe9036ba1ad7b950b10cdd88c852e19045ebb797a944b235468c362655a3abb"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "glTF/Flowers.png",
+      "sourceSha256": "5c531f2329c241c625aafd6cb769de29f33b480ef2a16491c2489f3c68e62a6a",
+      "output": "textures/Flowers-5c531f23.png",
+      "size": [
+        1008,
+        981
+      ],
+      "bytes": 429595,
+      "sha256": "4e73a5398eff2ec822470d8b88a1d3db972db424d80a1602bb63b2e196790554"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "glTF/Leaves.png",
+      "sourceSha256": "23248cebe28a24e78add32db3c2ee2f4d7b9219e9d2467279722f0197a7b6bd5",
+      "output": "textures/Leaves-23248ceb.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 744357,
+      "sha256": "5d778bbdf7b7ba4916cb9213f8f1f76de8810d33d3d48454c7bf5c9b3541232d"
+    },
+    {
+      "type": "texture",
+      "sourcePath": "glTF/Grass.png",
+      "sourceSha256": "5d69048193b246a73c996b892607fb36c75d0c60afcb2dab8aa12de3c0b2d9bd",
+      "output": "textures/Grass-5d690481.jpg",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 6764,
+      "sha256": "951209f578f0dcae9346141957300167ceb389c17a6c22a10096226c500e4558"
+    },
+    {
+      "type": "material",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/aerial_asphalt_01",
+      "license": "CC0-1.0",
+      "files": [
+        {
+          "file": "aerial_asphalt_01-color.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_asphalt_01/aerial_asphalt_01_diff_1k.jpg",
+          "sha256": "f7eeda87fdc884ac2987a545a8cca6ae9f0a37c68f52d4b769bd5f3bc1c87aa0",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "file": "aerial_asphalt_01-normal.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_asphalt_01/aerial_asphalt_01_nor_gl_1k.jpg",
+          "sha256": "ebacc7752bd82255180c9d7c8fd003dde7ad9032226057308cf9751dba55cf26",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "file": "aerial_asphalt_01-rough.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_asphalt_01/aerial_asphalt_01_rough_1k.jpg",
+          "sha256": "c963ec83844f1227221779279a749c6698cd3d00e2c8a7ac9e5ce80a39df25f1",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    },
+    {
+      "type": "material",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/concrete_pavement",
+      "license": "CC0-1.0",
+      "files": [
+        {
+          "file": "concrete_pavement-color.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_diff_1k.jpg",
+          "sha256": "43e99dcbf649fdb74b2669776b7d3e8817c18b1ce6650863d9bb4bbde8dd09dd",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "file": "concrete_pavement-normal.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_nor_gl_1k.jpg",
+          "sha256": "365f513422a212b347a38aa468bb01311e42cb79eb277dc7b8c1634e9a6d8a90",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "file": "concrete_pavement-rough.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_rough_1k.jpg",
+          "sha256": "a7992ba58d948c3ab82f8d469f34f29281b769778f653df9e749b31721721f16",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    },
+    {
+      "type": "material",
+      "author": "Poly Haven",
+      "source": "https://polyhaven.com/a/rocky_terrain_02",
+      "license": "CC0-1.0",
+      "files": [
+        {
+          "file": "rocky_terrain_02-color.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_terrain_02/rocky_terrain_02_diff_1k.jpg",
+          "sha256": "13146e82841bac9240da0e22a3697ea34ac58e6957971507f0be7c12d0fcb206",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "file": "rocky_terrain_02-normal.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_terrain_02/rocky_terrain_02_nor_gl_1k.jpg",
+          "sha256": "37fd08f338f3ad52d705571244e30ae4a276c31831e89ef0234a297b881e2263",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "file": "rocky_terrain_02-rough.jpg",
+          "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_terrain_02/rocky_terrain_02_rough_1k.jpg",
+          "sha256": "7cd9b4799440637025c968948615d6370017400a9419518f86058c313a4aa24f",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  ],
+  "library": {
+    "models": 27,
+    "bytes": 1732196,
+    "materials": 18,
+    "textures": 28
+  }
+}
