@@ -1,1 +1,1 @@
-{"version":"0.2.0","title":"SVGN.io Paper Delivery — 3D Neighborhood","route":"/svgn-planet/","camera":"street","storage":"svgn.paper-delivery-3d.v1"}
+{"version":"0.2.1","name":"SVGN.io Paper Delivery","folder":"svgn-planet","changes":["Daylight sky follows the actual 3D camera","Leaf-cutout street trees replace foreground canopy balls","Unobstructed street view with overview clouds kept optional","Retain close rider, capped phone graphics and context-loss recovery"]}
