@@ -13,7 +13,7 @@ export const distance=(a,b)=>Math.acos(clamp(dot(a,b),-1,1))*RADIUS;
 // A continuous street with constant-width verges, including across a pole.
 export const street=(t,lateral=0)=>{const a=t/RADIUS,b=lateral/RADIUS;return [Math.sin(b),Math.cos(b)*Math.cos(a),-Math.cos(b)*Math.sin(a)];};
 export const streetPosition=n=>Math.atan2(-n[2],n[1])*RADIUS;
-export function height(n){const a=Math.atan2(-n[2],n[1]),ground=.6*Math.sin(a*3)+.3*Math.cos(n[0]*9+a*2);return Math.abs(n[0]-(.32+.035*Math.sin(a*4)))<.023?-.7:ground;}
+export function height(n){const a=Math.atan2(-n[2],n[1]),ground=.6*Math.sin(a*3)+.3*Math.cos(n[0]*9+a*2);const t=a*RADIUS,x=Math.asin(n[0])*RADIUS;const bridge=Math.abs(t-206)<4.1&&x>26&&x<59;const urban=t>110&&t<232&&x>9&&x<76;return !bridge&&Math.abs(n[0]-(.32+.035*Math.sin(a*4)))<.023?-.7:urban?Math.max(.2,ground):ground;}
 export const point=(n,lift=0)=>mul(n,RADIUS+height(n)+lift);
 export const rand=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);};
 export function world(){
