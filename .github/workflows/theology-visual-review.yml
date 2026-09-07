@@ -1,0 +1,93 @@
+name: Review Theology visual chronology
+on:
+  push:
+    branches: [feat/theology-visual-chronology-20260906]
+    paths: ['theology-wiki/**', '.github/workflows/theology-visual-review.yml']
+permissions:
+  contents: write
+concurrency:
+  group: theology-visual-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize the exact reviewed visual changes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,lzma,subprocess
+          source=Path('theology-wiki/visual-timeline.patch.b64')
+          packed=base64.b64decode(source.read_text().strip(),validate=True)
+          assert len(packed)==7036
+          assert hashlib.sha256(packed).hexdigest()=='aca5208d3ae9a785a6ec19e9f6bacd06f33c2178549515ebd68d1688a6859c93'
+          patch=lzma.decompress(packed)
+          assert len(patch)==20340
+          assert hashlib.sha256(patch).hexdigest()=='2dd93d769ab2472f97dbcd1f292842cdd959a305dd7e6a6266ec7a859d4b3146'
+          target=Path('/tmp/theology-visual.patch');target.write_bytes(patch)
+          names={line.split('\t')[-1] for line in subprocess.check_output(['git','apply','--numstat',str(target)],text=True).splitlines()}
+          allowed={'theology-wiki/README.md','theology-wiki/assets/css/pauline.css','theology-wiki/assets/js/pauline-core.js','theology-wiki/assets/js/pauline-tools.js','theology-wiki/tests/pauline.test.cjs','theology-wiki/tests/pauline_checks.py','theology-wiki/tools/build.cjs'}
+          assert names==allowed,names
+          subprocess.run(['git','apply','--check',str(target)],check=True)
+          subprocess.run(['git','apply',str(target)],check=True)
+          source.unlink()
+          Path('.github/workflows/theology-visual-review.yml').unlink()
+          print('Verified and applied seven source changes; removed temporary transfer and workflow files.')
+          PY
+      - name: Build and verify preserved research, archive and media
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output
+          node theology-wiki/tools/build.cjs | tee theology-test-output/build-report.txt
+          node --test theology-wiki/tests/research.test.cjs | tee theology-test-output/node-tests.txt
+          git diff --exit-code -- theology-sources san-wiki-shell scripts theology-wiki/content theology-wiki/data theology-wiki/products theology-wiki/planning
+          python - <<'PY'
+          import subprocess
+          names=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          allowed={'theology-wiki/README.md','theology-wiki/assets/css/pauline.css','theology-wiki/assets/js/pauline-core.js','theology-wiki/assets/js/pauline-tools.js','theology-wiki/tests/pauline.test.cjs','theology-wiki/tests/pauline_checks.py','theology-wiki/tools/build.cjs','theology-wiki/index.html','theology-wiki/san-reader.html','theology-wiki/visual-timeline.patch.b64','.github/workflows/theology-visual-review.yml'}
+          assert names==allowed,names
+          PY
+      - name: Preserve the tested source edition on the review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- theology-wiki .github/workflows/theology-visual-review.yml
+          git commit -m 'Show chronological assumptions as a responsive four-event timeline'
+          git push origin HEAD:${GITHUB_REF_NAME}
+      - name: Install native browser and verify retained images
+        run: |
+          python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium >/tmp/theology-browser-install.log 2>&1 || { tail -100 /tmp/theology-browser-install.log; exit 1; }
+          python theology-wiki/tools/media.py
+      - name: Exercise the actual HTTP reader and visual chronology
+        run: |
+          set -o pipefail
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/browser.py | tee theology-test-output/browser-tests.txt
+      - name: Preserve review evidence
+        if: always()
+        run: |
+          mkdir -p theology-test-output
+          git rev-parse HEAD >theology-test-output/tested-commit.txt
+          git diff --stat >theology-test-output/uncommitted-diff.txt
+          cp /tmp/theology-http.log theology-test-output/ 2>/dev/null || true
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('theology-test-output/reader-review.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in Path('theology-wiki').rglob('*'):
+              if p.is_file() and '__pycache__' not in p.parts and p.suffix.lower() not in {'.ttf','.otf','.woff','.woff2'} and not p.name.endswith('.patch.b64'):z.write(p,p.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-visual-review
+          path: theology-test-output/
+          retention-days: 14
