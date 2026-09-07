@@ -1,0 +1,48 @@
+name: Refine Hollow Hunt guard recovery and flanking
+on:
+  push:
+    branches: [feat/vesperfall-hollow-hunt]
+    paths: ['.github/workflows/hunt-refine.yml']
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/vesperfall-hollow-hunt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact bounded corrections, preserving game difficulty and assertions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          expected={
+          'vesperfall/encounters.js':('7a650e70b590b85819ef5f8833ddb81406c9b6c364a026a42429815940a9248d','e5cd599742b93819156c27a12932af918cb03af399ca9ce79800c310b540a308'),
+          'vesperfall/tests/hunt.test.cjs':('44a43694fa889794267ae202e2b173a4a38e74fdf5b111eab434433e184e221c','3864c2e034f11491a81ec0f41d66d5317ececdd8dbf6e7dc47b3bb2339d685b5'),
+          'vesperfall/tests/hunt-browser.py':('641f994e11828eb357c6b063a4764f58718ee9ac6bb7db10be73ebe9e1b100f9','b9a05dee79c9e8f0cddde3c639593f6ca3787855e33fc1dcd669a3cc9d1997c0'),
+          'vesperfall/hunt.js':('ac34c4e8546a52d2eb6734703b9fc70bef99f0cf116d3ea82d0b2e182df120fa','fbc3fcede333189bfecc2fdd1fa8b4ab2a5180fa6187fde461bade8bbc8304e2')}
+          for n,(before,after) in expected.items():assert hashlib.sha256(Path(n).read_bytes()).hexdigest()==before,n
+          p=Path('vesperfall/encounters.js');s=p.read_text();old='  e.facing=unit([delta[0],0,delta[2]]);e.cd-=dt;'
+          new="""  const desired=unit([delta[0],0,delta[2]]);
+            // Armor has weight: a flanking player is not instantly faced on the next tick.
+            if(e.kind==='warden'&&e.facing){const from=Math.atan2(e.facing[0],e.facing[2]),to=Math.atan2(desired[0],desired[2]),angle=Math.atan2(Math.sin(to-from),Math.cos(to-from)),turn=Math.max(-1.8*dt,Math.min(1.8*dt,angle));e.facing=[Math.sin(from+turn),0,Math.cos(from+turn)];}else e.facing=desired;
+            e.cd-=dt;"""
+          new=new.replace('\n            ','\n  ')
+          assert old in s;p.write_text(s.replace(old,new))
+          p=Path('vesperfall/tests/hunt.test.cjs');s=p.read_text();s+="\ntest('Sentinel cannot snap its guard through a turn to erase a flank',()=>{const {s,e}=fresh('warden');s.world.targets=[];e.cd=10;e.facing=[0,0,1];s.head=[0,1.65,-4.8];C.step(s,1/90);A.ok(e.facing[2]>.999);A.ok(aim(s,e.p));ticks(s,25);A.ok(e.hp<118);A.equal(s.events.some(e=>e.type==='enemy-deflect'),false);});\n";p.write_text(s)
+          p=Path('vesperfall/tests/hunt-browser.py');s=p.read_text();old="def shoot(page,charge=1,height=.62):\n n=snap(page)['shots'];";new="def shoot(page,charge=1,height=.62):\n # A broken guard deliberately staggers firing; wait for the real recovery.\n page.wait_for_function('Vesperfall.state.guardLock===0')\n n=snap(page)['shots'];";assert old in s;p.write_text(s.replace(old,new))
+          p=Path('vesperfall/hunt.js');s=p.read_text();old='const text=target?VesperEncounters.names[target.kind]';new="const text=s.guardLock>0?'GUARD BROKEN · recover '+s.guardLock.toFixed(1)+'s':target?VesperEncounters.names[target.kind]";assert old in s;p.write_text(s.replace(old,new))
+          for n,(before,after) in expected.items():assert hashlib.sha256(Path(n).read_bytes()).hexdigest()==after,n
+          PY
+          node --test vesperfall/tests/*.test.cjs
+          python -m py_compile vesperfall/tests/hunt-browser.py
+          git config user.name 'Vesperfall encounter refinement'
+          git config user.email 'vesperfall@users.noreply.github.com'
+          git add vesperfall/encounters.js vesperfall/hunt.js vesperfall/tests/hunt.test.cjs vesperfall/tests/hunt-browser.py
+          git commit -m 'Give sentinel armor a limited turn rate and show real player guard recovery'
+          git push origin HEAD:feat/vesperfall-hollow-hunt
