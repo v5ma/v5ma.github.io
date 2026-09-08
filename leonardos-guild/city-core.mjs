@@ -109,7 +109,7 @@ export function cityTarget(s,w){
 export function guideEntries(s,w){
   const entries=QUESTS.map(q=>{const z=questStatus(s,q),p=cityTarget({...s,city:{...s.city,tracked:{kind:'quest',id:q.id}}},w);
     return {kind:'quest',id:q.id,name:q.name,detail:z.text,ready:z.available,complete:z.done,progress:z.n>0,location:p};});
-  for(const j of STREET_JOBS){const p=currentSite(s,j);entries.push({kind:'work',id:j.id,name:j.title,detail:p.name,ready:!!available(s,j),complete:s.street.done.includes(j.id),progress:(s.street.progress[j.id]||0)>0,location:p});
+  for(const j of STREET_JOBS){const p=currentSite(s,j);entries.push({kind:'work',id:j.id,name:j.title,detail:p.name,ready:!!available(s,j),complete:s.street.done.includes(j.id),progress:(s.street.progress[j.id]||0)>0,location:p});}
   for(const p of SERVICES)entries.push({kind:'service',id:p.id,name:p.name,detail:p.description,ready:!p.job||s.street.done.includes(p.job),complete:p.id==='lamplighter'&&s.city.circuit===3,progress:p.id==='lamplighter'&&s.city.circuit>0,location:p});
   return entries.map(x=>({...x,distance:x.location?distance(s,x.location):Infinity}));
 }
