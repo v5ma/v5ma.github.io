@@ -1,5 +1,6 @@
 /* CC0 source meshes, authored at the existing gameplay scale. No state writes. */
 import * as T from './vendor/three.module.js';
+import {batchStreetPatch} from './street-batch.mjs';
 import {WORLD,point,street,add,mul,norm,rand} from './world.mjs';
 import {mesh,batchStatic,anchor} from './art.mjs';
 import {faceSurface} from './neighborhood.mjs';
@@ -21,7 +22,7 @@ export function createStreetSet(library,renderer){
  function part(parent,name,p=[0,0,0],size=[1,1,1],yaw=0,tone=null){
   const source=prototypes.get(name);if(!source)throw Error('Missing licensed mesh: '+name);
   const g=source.clone(true);g.position.set(...p);g.scale.set(...size);g.rotation.y=yaw;parent.add(g);counts.parts++;used.add(name);
-  g.traverse(o=>{if(!o.isMesh)return;o.castShadow=o.receiveShadow=true;
+  g.traverse(o=>{if(!o.isMesh)return;o.castShadow=o.receiveShadow=true;o.userData.sharedNature=/^(CommonTree|Bush|Flower|Grass|Fern)/.test(name);
    if(tone&&o.material.name.includes('Brick')){const key=o.material.uuid+tone;if(!paints.has(key)){const m=o.material.clone();m.color.multiply(new T.Color(tone));paints.set(key,m);}o.material=paints.get(key);}
   });return g;
  }
@@ -79,8 +80,8 @@ export function createStreetSet(library,renderer){
  for(let i=0;i<10;i++){
   const n=street(8+i*12,i%2?2.85:-2.85),g=anchor(sector(n),n,.19);part(g,'Prop_Drain',[0,0,0],[.46,.46,.46],i);
  }
- const sectors=[...patches.values()];for(const g of sectors){g.userData.center.normalize().multiplyScalar(110);batchStatic(g);}
+ const sectors=[...patches.values()];for(const g of sectors){g.userData.center.normalize().multiplyScalar(110);batchStreetPatch(g);}
  root.updateMatrixWorld(true);
  return {root,inspect:()=>({...counts,uniqueModels:used.size,models:[...used]}),
- update(n,overview=false,low=false){const here=new T.Vector3(...n).multiplyScalar(110);for(const g of sectors)g.visible=overview||g.userData.center.distanceTo(here)<(low?96:135);}};
+ update(n,overview=false,low=false){const here=new T.Vector3(...n).multiplyScalar(110);for(const g of sectors)g.visible=overview||g.userData.center.distanceTo(here)<(low?64:92);}};
 }

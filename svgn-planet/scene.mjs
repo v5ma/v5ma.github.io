@@ -14,7 +14,7 @@ export function createScene(canvas){
  const recoveryExtension=renderer.getContext().getExtension('WEBGL_lose_context');
  renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.shadowMap.enabled=quality.shadows;renderer.shadowMap.type=T.PCFSoftShadowMap;
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(62,1,.1,RADIUS*8);scene.background=new T.Color('#87c9df');scene.fog=new T.Fog('#bddde3',105,240);
- scene.add(new T.HemisphereLight('#d8edff','#acac94',1.12));const sun=new T.DirectionalLight('#ffe4b5',2.75);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-27,right:27,top:27,bottom:-27,near:1,far:100});sun.shadow.normalBias=.055;sun.shadow.bias=-.0002;scene.add(sun,sun.target);
+ scene.add(new T.HemisphereLight('#d8edff','#acac94',1.12));const sun=new T.DirectionalLight('#ffe4b5',2.75);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-27,right:27,top:27,bottom:-27,near:1,far:100});sun.shadow.normalBias=.055;sun.shadow.bias=-.0002;scene.add(sun,sun.target);
  const streetFog=scene.fog,sky=createSky(scene,RADIUS);
  const root=new T.Group();scene.add(root);const landGeo=new T.SphereGeometry(RADIUS,96,64),p=landGeo.attributes.position,colors=[],color=new T.Color();
  for(let i=0;i<p.count;i++){const n=norm([p.getX(i),p.getY(i),p.getZ(i)]);p.setXYZ(i,...point(n));color.set('#809c61').multiplyScalar(.96+rand(i)*.09);colors.push(color.r,color.g,color.b);}landGeo.setAttribute('color',new T.Float32BufferAttribute(colors,3));landGeo.computeVertexNormals();const land=new T.Mesh(landGeo,new T.MeshStandardMaterial({vertexColors:true,roughness:1}));land.receiveShadow=true;root.add(land);
