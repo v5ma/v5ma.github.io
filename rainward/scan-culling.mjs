@@ -23,7 +23,7 @@ export function compactVisibleInstances(mesh,matrices,frustum,shadowsEnabled=tru
 }
 export function createStaticCulling(scene){
  const groups=[],frustum=new T.Frustum(),projection=new T.Matrix4();
- scene.traverse(mesh=>{if(!mesh.isInstancedMesh||mesh.userData.scannedVisual)return;
+ scene.traverse(mesh=>{if(!mesh.isInstancedMesh||mesh.userData.scannedVisual||mesh.userData.scanBackdrop)return;
   const matrices=[];for(let i=0;i<mesh.count;i++){const m=new T.Matrix4();mesh.getMatrixAt(i,m);matrices.push(m);}
   bounds(mesh,matrices);groups.push({mesh,matrices});
  });

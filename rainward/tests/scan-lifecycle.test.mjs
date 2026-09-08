@@ -32,3 +32,8 @@ test('Static visibility does not resurrect a procedural backdrop hidden by the s
  const scene=new T.Scene(),mesh=new T.InstancedMesh(new T.BoxGeometry(),new T.MeshBasicMaterial(),1);mesh.setMatrixAt(0,new T.Matrix4().makeTranslation(0,0,-5));scene.add(mesh);
  const c=createStaticCulling(scene),camera=new T.PerspectiveCamera(60,1,.1,100);camera.updateMatrixWorld();mesh.visible=false;c.update(camera,false);assert.equal(mesh.visible,false);assert.equal(c.stats().submitted,0);mesh.visible=true;c.update(camera,false);assert.equal(c.stats().submitted,1);
 });
+
+test('Async replacement keeps the complete original canyon instance source intact',()=>{
+ const scene=new T.Scene(),mesh=new T.InstancedMesh(new T.BoxGeometry(),new T.MeshBasicMaterial(),2);mesh.userData.scanBackdrop=true;mesh.setMatrixAt(0,new T.Matrix4().makeTranslation(0,0,-5));mesh.setMatrixAt(1,new T.Matrix4().makeTranslation(50,0,-5));scene.add(mesh);
+ const before=Array.from(mesh.instanceMatrix.array),c=createStaticCulling(scene),camera=new T.PerspectiveCamera(60,1,.1,100);camera.updateMatrixWorld();c.update(camera,false);assert.equal(mesh.count,2);assert.deepEqual(Array.from(mesh.instanceMatrix.array),before);assert.equal(c.stats().batches,0);
+});
