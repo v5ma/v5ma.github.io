@@ -3,6 +3,7 @@
 import * as T from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 import {createStreetSet} from './street-set.mjs';
+import {createArtQuality} from './street-quality.mjs';
 import {distance} from './world.mjs';
 export const ART_VERSION='0.2.2';
 const base=new URL('./assets/street-art/',import.meta.url);
@@ -13,7 +14,7 @@ export function ribbonUV(geometry,points,width,meters=3){
 }
 export function loadStreetArt({root,fallback,renderer,asphalt,sidewalks,land,roadPoints}){
  const scene=root.parent,low=!renderer.shadowMap.enabled;
- let status='loading',error=null,set=null,expired=false,redraw=true,rendered=0;
+ let status='loading',error=null,set=null,quality=null,expired=false,redraw=true,rendered=0;
  const loader=new T.TextureLoader();const texturePromises=[];
  function texture(name,color){const p=loader.loadAsync(new URL(name,base).href).then(t=>{t.colorSpace=color?T.SRGBColorSpace:T.NoColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());return t;});texturePromises.push(p);return p;}
  async function material(asset,roughness,relief){const [map,normalMap,roughnessMap]=await Promise.all([texture(asset+'-color.jpg',true),texture(asset+'-normal.jpg',false),texture(asset+'-rough.jpg',false)]);return new T.MeshStandardMaterial({map,normalMap,roughnessMap,normalScale:new T.Vector2(relief,relief),roughness,color:0xffffff,side:T.DoubleSide});}
@@ -35,11 +36,11 @@ export function loadStreetArt({root,fallback,renderer,asphalt,sidewalks,land,roa
   };lawn.customProgramCacheKey=()=> 'svgn-grass-triplanar-1';
   scene.getObjectByName('Procedural daylight sky').userData.setTexture(skyMap);
   const envCanvas=document.createElement('canvas');envCanvas.width=512;envCanvas.height=256;envCanvas.getContext('2d').drawImage(skyMap.image,0,0,512,256);
-  const environment=new T.CanvasTexture(envCanvas);environment.colorSpace=T.SRGBColorSpace;environment.mapping=T.EquirectangularReflectionMapping;scene.environment=environment;scene.environmentIntensity=.28;
-  land.material=lawn;set=next;root.add(next.root);fallback.visible=false;status='ready';redraw=true;
+  const environment=new T.CanvasTexture(envCanvas);environment.colorSpace=T.SRGBColorSpace;environment.mapping=T.EquirectangularReflectionMapping;next.root.traverse(o=>{if(o.isMesh&&o.material?.name==='MI_Glass'){o.material.envMap=environment;o.material.envMapIntensity=.45;o.material.needsUpdate=true;}});
+  land.material=lawn;set=next;quality=createArtQuality(next.root);root.add(next.root);fallback.visible=false;status='ready';redraw=true;
   next.root.traverse(o=>{if(o.isMesh)o.onAfterRender=()=>{rendered++;};});
  });
  const timeout=new Promise((_,reject)=>{setTimeout(()=>{if(status==='loading'){expired=true;reject(Error('Art loading timed out; original scenery retained.'));}},20000);});
  const ready=Promise.race([work,timeout]).catch(e=>{expired=true;status='fallback';error=String(e.message||e);redraw=true;console.warn('Street art fallback:',error);const hint=document.querySelector('#welcome .hint');if(hint)hint.textContent='Detailed artwork did not load. Original scenery is still playable; reload to retry the art download.';});
- return {ready,update(n,overview){set?.update(n,overview,!renderer.shadowMap.enabled);},consumeRedraw(){const r=redraw;redraw=false;return r;},inspect:()=>({version:ART_VERSION,status,error,rendered,assetsLocal:true,source:'Quaternius Standard + Poly Haven / CC0',...(set?.inspect()||{})})};
+ return {ready,update(n,overview){quality?.update(!renderer.shadowMap.enabled);set?.update(n,overview,!renderer.shadowMap.enabled);},consumeRedraw(){const r=redraw;redraw=false;return r;},inspect:()=>({version:ART_VERSION,status,error,rendered,assetsLocal:true,source:'Quaternius Standard + Poly Haven / CC0',...(set?.inspect()||{}),...(quality?.inspect()||{})})};
 }
