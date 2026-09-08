@@ -490,6 +490,35 @@
           ]
         }
       ]
+    },
+    {
+      "type": "sky",
+      "author": "Greg Zaal / Jarod Guest / Poly Haven",
+      "source": "https://polyhaven.com/a/kloppenheim_06_puresky",
+      "sourceUrl": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/kloppenheim_06_puresky.jpg",
+      "license": "CC0-1.0",
+      "sourceSha256": "4084ddd6c57d76e05ac7de9f563077aabd77d07f6b03593d0930a3fc515494b4",
+      "modification": "Resized official tonemapped JPEG; not an unclipped HDR lighting file.",
+      "files": [
+        {
+          "file": "sky-desktop.jpg",
+          "size": [
+            4096,
+            2048
+          ],
+          "bytes": 448866,
+          "sha256": "8d69cf1cdc1e3b6342a6f41d284a9c672e797fb1c860938fa9b07e9f9001343c"
+        },
+        {
+          "file": "sky-mobile.jpg",
+          "size": [
+            2048,
+            1024
+          ],
+          "bytes": 146459,
+          "sha256": "129a43640a30334e42eec0e69b72846ef952f507d4c068cb1704f9cd4deabe0c"
+        }
+      ]
     }
   ],
   "library": {
