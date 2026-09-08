@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   graphics:
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/art/paper-city-visual-first-20260907' || github.head_ref == 'art/paper-city-visual-first-20260907'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
