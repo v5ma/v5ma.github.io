@@ -1,37 +1,29 @@
 # Aether Reach — public mechanics demo
 
-## v0.4.1: Tactical Relay
+## v0.4.2: Arrival Quay graphics pass
 
-The focused tactical patch adds Current and Cinder while the gun remains equipped. Water conducts Current; oil burns under Cinder. Loan the field rig at the bench east of Quay Outfitters. N opens builds, T cycles powers, J surveys, Q casts. Each power has independent energy/cooldown accounting; existing gun ammunition, reload and scope remain.
+The same game now loads licensed CC0 artwork for the first city block: modular facades and roof details from Quaternius's free Downtown City MegaKit Standard edition; ornate lamps, modeled foliage, photographed paving/stone and HDR lighting from Poly Haven. Models and material maps are stored locally under `art/`, with lighter mobile variants. There is no runtime asset marketplace, CDN, account or API key.
 
-The optional Atrium collector links preparation to a full fight. Solve the nearby 3x3 conductor puzzle, turn the defender friendly, choose one passive, and defend the collector through three waves and a 48-second minimum. The turret has fourteen shots and cannot win unattended. First completion grants 180 credits once. The original three-relay expedition is still independent of this encounter. See [TACTICAL-PLAYBOOK.md](./TACTICAL-PLAYBOOK.md) for instructions and [TACTICAL-REVIEW.md](./TACTICAL-REVIEW.md) for review and release gates.
+See [ART-SOURCES.md](./ART-SOURCES.md) for creators, licenses and processing, [art/manifest.json](./art/manifest.json) for exact bytes/hashes, and [QUAY-ART-REVIEW.md](./QUAY-ART-REVIEW.md) for visual review and release gates. Artwork failures retain the old visual fallback rather than making the game unplayable. Two closed Quay buildings are reskinned; this is not a claim of new interiors, finished character/weapon art or a full-city replacement. Existing foreground equipment has only a bevel/reframing pass. Physical Quest 3 performance and comfort remain unverified.
 
-Survey each living visible machine class once to earn its 10% gun multiplier and unlock passive options. Insulator reduces self-hazard damage; Capacitor reduces elemental energy costs; Catalyst strengthens guns against afflicted targets; Engineer strengthens the friendly turret. One passive is active at a time. No free trap placement, telekinesis, reflected projectiles or deep photographic research is claimed yet. The unfinished living-city PR62 stays separate.
+## The existing expedition and combat remain
 
-## Retained expedition, arsenal and Foldwing
+Restore three district relays and return to Arrival Quay to broadcast. Seven bidirectional rails include Gale Market Loop and Prism Detour. Look independently while riding, release with momentum, catch another eligible line, or deploy the Foldwing. The accessible foot route and local checkpoints remain.
 
-This separate original sky-city prototype does not replace any sibling game or wiki. Restore three district relays and return to Arrival Quay to broadcast. Seven bidirectional rails include Gale Market Loop and Prism Detour. Rail sight is independent by default; aimed transfers require an eligible nearby line and a clear approach. The complete foot route and local checkpoints remain.
+Four original weapons retain distinct ammunition, cadence, spread, damage, reload and meshes. Longglass has a real 4x flat-screen optic. Outfitters sells weapons, per-weapon upgrades, ammunition and shield upgrades for earned local credits. World caches and defeated-machine salvage pay once; no real-money or multiplayer-authoritative economy is implied.
 
-Four original weapons retain distinct ammunition, cadence, spread, damage, range, reload and meshes. Arc Caster recharges; Tempest Carbine, Horizon Longglass and Foundry Scattergun use finite reserves. Longglass has an actual 4x flat-screen optic. A new expedition starts with 400 local credits; Outfitters sells the carbine for 180, sniper for 300 and scattergun for 220, plus damage/reload tiers and shield upgrades. World caches and defeated-enemy salvage pay once. No real-money or network-authoritative economy is implied.
+Field Engineering provides Current/Cinder while the gun remains ready. Water conducts electricity; oil burns; gun and power use separate resources. Survey a live visible class once, equip one passive and solve the Atrium conductor puzzle to gain friendly security. The optional six-enemy recovery has a capped fourteen-shot turret, a 48-second minimum and a once-only 180-credit reward. See [TACTICAL-PLAYBOOK.md](./TACTICAL-PLAYBOOK.md). The unmerged living-city PR62 stays separate.
 
-Release an elevated rail, then G opens/folds the Foldwing. Movement steers; looking alone does not. S/back brakes. Its bounded charge refills on ground or rail. The canopy closes on landing, attachment, depletion or rescue. See [FOLDWING.md](./FOLDWING.md). Scout, armored burst attacker, telegraphing sentry and passive range target remain. Art is an original procedural prototype, not imported franchise assets.
+## Controls and devices
 
-## Controls and device scope
+WASD moves, mouse/arrow keys look, E interacts/hooks, Space jumps/releases, G opens/folds Foldwing, C reverses rails, Shift sprints/boosts, F/click fires, R reloads, Q casts, M maps, P/Esc pauses. B opens nearby Outfitters, Z/right mouse aims, 1–4 selects owned guns. N opens the field kit, T cycles powers, J surveys. Touch and Xbox-standard adapters retain their bindings; see [DEVICE-SUPPORT.md](./DEVICE-SUPPORT.md).
 
-WASD moves; mouse/arrow keys look. E interacts/hooks, Space jumps/releases, G toggles Foldwing, C reverses, Shift sprints/boosts, F/click fires, R reloads, Q uses the selected power, M maps, Esc/P pauses, B opens nearby Outfitters, Z/right mouse aims, and 1–4 selects owned guns. N/T/J control field builds, power cycling and surveys. Touch has matching Field/Power/Survey buttons above the look-drag surface.
+The experimental WebXR preview has independent head/controller tracking, left-stick movement, snap turning, spatial menus, right-hand gun aim and left-hand power aim. It is not physical Quest 3 certification. Climbing, full embodied reload, a tracked magnified optic and multiplayer remain unfinished. No private narrative or private repository content is included.
 
-Xbox standard mapping retains sticks, A jump, B glide, Y interact, X reload, RT fire, LT aim, LB selected power, RB reverse, View map and Menu pause. D-pad up/down cycles guns, right opens Outfitters and left opens the field kit. Menu A/B retain activate/back. Physical pairing and hardware QA remain unverified.
+## Planning, backups and validation
 
-The experimental Quest 3 adapter keeps head orientation independent of rail steering. Right controller aims the gun; left controller aims Current/Cinder. Its field menu includes the local conductor diagram. The Longglass optic remains flat-screen only. Physical headset tracking, performance, comfort, richer inventory ergonomics, climbing, embodied reload and multiplayer remain separate gates. Private narrative is excluded from all public sources and artifacts.
+The [Kanban](./roadmap.html) and committed [roadmap.json](./roadmap.json) track mechanics and their evidence; this release prioritizes art rather than adding missions. Browser edits remain local. The [eight-sheet v0.3 workbook](./planning/Aether-Reach-Development-Roadmap-v0.3.xlsx) is retained as a historical snapshot, not relabeled as a freshly updated plan.
 
-## Roadmap and recoverable releases
+After successful publication, the versioned GitHub Release archives public source including licensed models/textures, checksums, the historical workbook, restore results and source-matching native flight, tactical and graphics evidence. These are same-provider source backups, not backups of browser-local progress or an independent off-site mirror. See [BACKUPS.md](./BACKUPS.md).
 
-The [Kanban](./roadmap.html) and committed [roadmap.json](./roadmap.json) track 44 tasks and 71 dependency links. The eight new T01–T08 entries distinguish implemented tactics from future debris handling, placed traps, boss encounters and deeper builds. Task status alone is not a publication receipt; check the current PR and native artifacts. Browser-local board edits do not commit GitHub.
-
-The committed [eight-sheet v0.3 workbook](./planning/Aether-Reach-Development-Roadmap-v0.3.xlsx) is a historical snapshot, not silently updated by this patch. After successful hosted-file verification, a tagged GitHub Release archives public source, checksums, workbook, restore tests, flight evidence and source-matching tactical screenshots/reports. These are GitHub-hosted snapshots, not an independent off-site mirror or a backup of browser-local player progress. See [BACKUPS.md](./BACKUPS.md).
-
-## Run and test
-
-Serve the repository root with `python -m http.server 4173`, then visit `/aether-reach/`. Three.js r177 is pinned locally. No account, runtime CDN, external security service or API key is required.
-
-Run `node --test aether-reach/tests/*.test.mjs` and `python aether-reach/tests/backup_test.py`. Native client, arsenal, Foldwing, tactical and device-emulated suites are distinct from seeded model tests. Tactical playthroughs use ordinary keys, native mouse drag-look and UI clicks with read-only observations; no actor, enemy, money, objective or clock injection. The final acceptance workflows are read-only. The post-publication job can create release assets but never rewrites game source.
+Serve the repository root with `python -m http.server 4173`, then open `/aether-reach/`. Three.js r177 and its local glTF/HDR loaders remain pinned. Run `node --test aether-reach/tests/*.test.mjs` and `python aether-reach/tests/backup_test.py`. Normal validation workflows are read-only; one-time asset intake and source-wiring workflows were removed after successful materialization. Fixed-camera comparison plates are labeled renderer fixtures; native game regressions use normal inputs and read-only observations, not actor/mission state assignments.
