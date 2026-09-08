@@ -1,0 +1,81 @@
+name: Validate Theology technology source study
+on:
+  pull_request:
+    paths: ['theology-wiki/technology-signs.html', 'theology-wiki/assets/js/depth-tools.js', 'theology-wiki/tests/technology_signs_test.py', '.github/workflows/theology-technology-signs.yml']
+  push:
+    branches: [master]
+    paths: ['theology-wiki/technology-signs.html', 'theology-wiki/assets/js/depth-tools.js', 'theology-wiki/tests/technology_signs_test.py', '.github/workflows/theology-technology-signs.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: theology-signs-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  source-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate HTML records, sources and script
+        run: SOURCE_ONLY=1 python theology-wiki/tests/technology_signs_test.py
+      - name: Install browser tooling
+        run: |
+          python -m pip install --quiet playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise native HTTP study and both existing readers
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-signs-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/technology_signs_test.py
+      - name: Verify public bytes and repeat the public-origin tests
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cp -r theology-signs-test-output /tmp/theology-signs-native
+          trap 'cp -r /tmp/theology-signs-native theology-signs-test-output/native' EXIT
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,time,urllib.request
+          files=['theology-wiki/technology-signs.html','theology-wiki/assets/js/depth-tools.js']
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
+          observed={}
+          for attempt in range(40):
+              for p,digest in expected.items():
+                  try:
+                      with urllib.request.urlopen('https://v5ma.github.io/'+p+'?source-review='+os.environ['GITHUB_SHA'],timeout=15) as r:
+                          actual=hashlib.sha256(r.read()).hexdigest()
+                          observed[p]={'status':r.status,'sha256':actual,'matches':digest==actual}
+                  except Exception as e:observed[p]={'error':str(e),'matches':False}
+              if all(r['matches'] for r in observed.values()):break
+              time.sleep(5)
+          Path('theology-signs-test-output/hosted-content.json').write_text(json.dumps(observed,indent=2))
+          assert all(r['matches'] for r in observed.values()),observed
+          PY
+          SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/technology_signs_test.py
+      - name: Record reviewed source and package
+        if: always()
+        run: |
+          mkdir -p theology-signs-test-output
+          git rev-parse HEAD > theology-signs-test-output/tested-commit.txt
+          git diff --exit-code
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,zipfile
+          files=['theology-wiki/technology-signs.html','theology-wiki/assets/js/depth-tools.js','theology-wiki/tests/technology_signs_test.py','.github/workflows/theology-technology-signs.yml']
+          out=Path('theology-signs-test-output')
+          (out/'source-manifest.json').write_text(json.dumps({p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files},indent=2))
+          with zipfile.ZipFile(out/'technology-source-study.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in files:z.write(p)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-technology-study-verification
+          path: theology-signs-test-output/
+          retention-days: 14
