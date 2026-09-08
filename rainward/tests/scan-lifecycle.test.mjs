@@ -1,5 +1,5 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import * as T from '../vendor/three.module.js';
-import {createScannedAssets} from '../scanned-assets.mjs';import {compactVisibleInstances} from '../scan-culling.mjs';import {LEVELS} from '../world.mjs';
+import {createScannedAssets} from '../scanned-assets.mjs';import {compactVisibleInstances,createStaticCulling} from '../scan-culling.mjs';import {LEVELS} from '../world.mjs';
 test('Disposing the scanned layer also releases the replaced procedural textures exactly once',()=>{
  const color=new T.Texture(),normal=new T.Texture(),packed=new T.Texture(),released=[];
  for(const t of [color,normal,packed])t.addEventListener('dispose',()=>released.push(t.uuid));
@@ -21,4 +21,14 @@ test('Conservative scan culling retains out-of-view shadow casters',()=>{
  const mesh=new T.InstancedMesh(new T.BoxGeometry(),new T.MeshBasicMaterial(),1);mesh.castShadow=true;
  const camera=new T.PerspectiveCamera(60,1,.1,100);camera.updateMatrixWorld();const frustum=new T.Frustum().setFromProjectionMatrix(new T.Matrix4().multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse));
  assert.equal(compactVisibleInstances(mesh,[new T.Matrix4().makeTranslation(30,0,-5)],frustum),1);
+});
+
+test('The reduced tier culls offscreen static shadow casters only when their shadow pass is disabled',()=>{
+ const scene=new T.Scene(),mesh=new T.InstancedMesh(new T.BoxGeometry(),new T.MeshBasicMaterial(),2);mesh.castShadow=true;
+ mesh.setMatrixAt(0,new T.Matrix4().makeTranslation(0,0,-5));mesh.setMatrixAt(1,new T.Matrix4().makeTranslation(30,0,-5));scene.add(mesh);
+ const camera=new T.PerspectiveCamera(60,1,.1,100);camera.updateMatrixWorld();const c=createStaticCulling(scene);c.update(camera,true);assert.equal(mesh.count,2);c.update(camera,false);assert.equal(mesh.count,1);assert.equal(c.stats().authored,2);c.update(camera,true);assert.equal(mesh.count,2);
+});
+test('Static visibility does not resurrect a procedural backdrop hidden by the scanned layer',()=>{
+ const scene=new T.Scene(),mesh=new T.InstancedMesh(new T.BoxGeometry(),new T.MeshBasicMaterial(),1);mesh.setMatrixAt(0,new T.Matrix4().makeTranslation(0,0,-5));scene.add(mesh);
+ const c=createStaticCulling(scene),camera=new T.PerspectiveCamera(60,1,.1,100);camera.updateMatrixWorld();mesh.visible=false;c.update(camera,false);assert.equal(mesh.visible,false);assert.equal(c.stats().submitted,0);mesh.visible=true;c.update(camera,false);assert.equal(c.stats().submitted,1);
 });
