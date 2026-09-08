@@ -25,8 +25,11 @@ export function createStreetSet(library,renderer){
    if(tone&&o.material.name.includes('Brick')){const key=o.material.uuid+tone;if(!paints.has(key)){const m=o.material.clone();m.color.multiply(new T.Color(tone));paints.set(key,m);}o.material=paints.get(key);}
   });return g;
  }
- const sectors=Array.from({length:12},(_,i)=>{const g=new T.Group();g.name='Street art sector '+i;root.add(g);return g;});
- const sector=n=>sectors[Math.floor((Math.atan2(-n[2],n[1])+Math.PI)/(Math.PI*2)*12)%12];
+ const patches=new Map();
+ const sector=n=>{const key=n.map(v=>Math.floor(v*110/28)).join('/');
+  if(!patches.has(key)){const g=new T.Group();g.name='Street art patch '+key;g.userData.center=new T.Vector3();g.userData.count=0;root.add(g);patches.set(key,g);}
+  const g=patches.get(key);g.userData.center.add(new T.Vector3(...n));g.userData.count++;return g;
+ };
  function sign(g,text){const c=document.createElement('canvas');c.width=256;c.height=96;const x=c.getContext('2d');x.fillStyle='#244d55';x.fillRect(0,0,256,96);x.strokeStyle='#e8c68c';x.lineWidth=5;x.strokeRect(6,6,244,84);x.fillStyle='#fff3d1';x.font='bold 43px serif';x.textAlign='center';x.fillText(text,128,64,235);const tx=new T.CanvasTexture(c);tx.colorSpace=T.SRGBColorSpace;const m=new T.Mesh(new T.PlaneGeometry(1.7,.64),new T.MeshStandardMaterial({map:tx,roughness:.8}));m.position.set(0,2.53,2.06);g.add(m);}
  for(const [i,s] of WORLD.buildings.entries()){
   if(s.type==='garden')continue;counts.buildings++;
@@ -76,8 +79,8 @@ export function createStreetSet(library,renderer){
  for(let i=0;i<10;i++){
   const n=street(8+i*12,i%2?2.85:-2.85),g=anchor(sector(n),n,.19);part(g,'Prop_Drain',[0,0,0],[.46,.46,.46],i);
  }
- for(const g of sectors)batchStatic(g);
+ const sectors=[...patches.values()];for(const g of sectors){g.userData.center.normalize().multiplyScalar(110);batchStatic(g);}
  root.updateMatrixWorld(true);
  return {root,inspect:()=>({...counts,uniqueModels:used.size,models:[...used]}),
- update(n,overview=false){const a=Math.atan2(-n[2],n[1]);sectors.forEach((g,i)=>{const center=-Math.PI+(i+.5)/12*Math.PI*2,d=Math.abs(Math.atan2(Math.sin(a-center),Math.cos(a-center)));g.visible=overview||d<1.22;});}};
+ update(n,overview=false,low=false){const here=new T.Vector3(...n).multiplyScalar(110);for(const g of sectors)g.visible=overview||g.userData.center.distanceTo(here)<(low?96:135);}};
 }
