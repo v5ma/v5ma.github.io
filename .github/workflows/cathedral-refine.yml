@@ -1,0 +1,63 @@
+name: Refine cathedral rendering and native route diagnostics
+on:
+  push:
+    branches: [feat/vesperfall-living-cathedral]
+    paths: [.github/workflows/cathedral-refine.yml]
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/vesperfall-living-cathedral
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact reviewed performance and test-observation refinements
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          g=Path('vesperfall')
+          expected={
+           'assets/cathedral/ASSET-REGISTER.json':['6a79c7e0820dd8f3b421e36a3633d35a4df725037ccb2852bc2d8859d28edca2','d40fa41e96b9702329c779e7def9b7f30e96033643ce7d5e0bbb31db4cc74832'],
+           'cathedral-art.js':['76580c16d02d74e5e599e53e4bc705a2e92a85c86559c54f1433a6988b0fcca0','74255e5cd1a2ed049d79df51948dbab35aaa321564955f7fee6c81b4994c1b84'],
+           'cathedral-ui.js':['51e3e66ed2e884984bc024d0bfad6cefbe5c257b77c91248fb5fd59108cd1a3c','affeac7b900d157ed28d5ed3532a3381a6f884109b28f1f7294ad0857ce93ad2'],
+           'tests/cathedral-browser.py':['d04010bbc2aae97de331d353a9082124fc5bc4767de8797c2f74c5e75aa3598f','e326ba0bcfbda2b705427ad29cd5f0c7b7119076c5ce78e846fa4e773379ea40']}
+          for n,(before,after) in expected.items():assert hashlib.sha256((g/n).read_bytes()).hexdigest()==before,n
+          p=g/'cathedral-ui.js';s=p.read_text().replace('r.shadowMap.type=g.T.PCFSoftShadowMap;', 'r.shadowMap.type=g.T.PCFSoftShadowMap;r.shadowMap.autoUpdate=false;r.shadowMap.needsUpdate=true;');p.write_text(s)
+          p=g/'cathedral-art.js';s=p.read_text()
+          s=s.replace('sharedGeometry.add(lathe);', 'sharedGeometry.add(lathe);const railLathe=new T.LatheGeometry(lathe.parameters.points,8);sharedGeometry.add(railLathe);')
+          s=s.replace('let group=this.parts.get(mat);if(!group){group={positions:[],normals:[],uvs:[],indices:[]};this.parts.set(mat,group);}', "let cells=this.parts.get(mat);if(!cells){cells=new Map();this.parts.set(mat,cells);}const cell=Math.floor(x/18)+':'+Math.floor(z/18);let group=cells.get(cell);if(!group){group={positions:[],normals:[],uvs:[],indices:[]};cells.set(cell,group);}")
+          s=s.replace('for(const [mat,p]of this.parts){const g=', 'for(const [mat,cells]of this.parts)for(const p of cells.values()){const g=')
+          s=s.replace('b.add(lathe,stone,x+(along?', 'b.add(railLathe,stone,x+(along?').replace('b.add(lathe,pale,p[0]+(along?', 'b.add(railLathe,pale,p[0]+(along?')
+          s=s.replace('parent.userData.loadedSculptures=(parent.userData.loadedSculptures||0)+1;', 'parent.userData.loadedSculptures=(parent.userData.loadedSculptures||0)+1;if(scene.renderer)scene.renderer.shadowMap.needsUpdate=true;');p.write_text(s)
+          p=g/'tests/cathedral-browser.py';s=p.read_text()
+          s=s.replace("viewport={'width':1120,'height':800}", "viewport=({'width':640,'height':480} if MODE=='routes' else {'width':1120,'height':800})")
+          s=s.replace('let n=0,started=performance.now();', 'let n=0,started=performance.now(),lastMovement=started,lastPosition=[...Vesperfall.state.p],startTime=Vesperfall.state.time;')
+          s=s.replace('  if(d<.10)', '  if(VesperCore.len(VesperCore.sub(lastPosition,s.p))>.1){lastMovement=performance.now();lastPosition=[...s.p];}\n  if(d<.10)')
+          s=s.replace('n++;started=performance.now();', 'n++;started=performance.now();lastMovement=started;startTime=s.time;')
+          s=s.replace('performance.now()-started>85000', 'performance.now()-lastMovement>35000||performance.now()-started>150000')
+          s=s.replace('phase:s.phase}', 'phase:s.phase,yaw:c.yaw,keys:c.keys,simSeconds:s.time-startTime,wallSeconds:(performance.now()-started)/1000,stationarySeconds:(performance.now()-lastMovement)/1000,calls:AFRAME.scenes[0].renderer.info.render.calls,triangles:AFRAME.scenes[0].renderer.info.render.triangles}')
+          s=s.replace('Blocked route ', 'Traversal incomplete ').replace('aim(p,-.72,.12)', 'aim(p,-1.87,0)')
+          s=s.replace('def walk(p,targets):', "def capture(p,name):\n if MODE=='routes':p.set_viewport_size({'width':1120,'height':800})\n p.screenshot(path=str(OUT/name))\n if MODE=='routes':p.set_viewport_size({'width':640,'height':480})\ndef walk(p,targets):")
+          s=s.replace("p.screenshot(path=str(OUT/'between-rooms-skywalk.png'))", "capture(p,'between-rooms-skywalk.png')").replace("p.screenshot(path=str(OUT/'belfry-crown.png'))", "capture(p,'belfry-crown.png')")
+          s=s.replace('Routes use half pixel ratio and disabled desktop sun shadows', 'Routes use 640x480 CSS / 320x240 drawing buffer; 1120x800 CSS captures. Half pixel ratio and disabled desktop sun shadows');p.write_text(s)
+          p=g/'assets/cathedral/ASSET-REGISTER.json';d=json.loads(p.read_text())
+          for a in d['assets']:a['creator']='Rico Cilliers' if a['asset']=='marble_bust_01' else 'Rob Tuytel'
+          p.write_text(json.dumps(d,indent=2)+'\n')
+          for n,(before,after) in expected.items():assert hashlib.sha256((g/n).read_bytes()).hexdigest()==after,n
+          PY
+          node --check vesperfall/cathedral-art.js
+          node --check vesperfall/cathedral-ui.js
+          node --test vesperfall/tests/*.test.cjs
+          python -m py_compile vesperfall/tests/cathedral-browser.py
+          python scripts/check-vesperfall.py
+          git config user.name 'Vesperfall visual refinement'
+          git config user.email 'cathedral@users.noreply.github.com'
+          git add vesperfall/cathedral-art.js vesperfall/cathedral-ui.js vesperfall/tests/cathedral-browser.py vesperfall/assets/cathedral/ASSET-REGISTER.json
+          git commit -m 'Spatially batch cathedral art, cache static sun shadows and diagnose route timeouts honestly'
+          git push origin HEAD:feat/vesperfall-living-cathedral
