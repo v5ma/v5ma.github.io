@@ -2,5 +2,5 @@ test-output/
 touch-output/
 __pycache__/
 *.pyc
-
 life-output/
+street-output/

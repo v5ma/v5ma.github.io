@@ -1,0 +1,64 @@
+name: Verify Guild Market Life and actual curated artwork
+on:
+  push:
+    branches: [feat/guild-market-life-20260907]
+    paths: ['leonardos-guild/**','.github/workflows/guild-market.yml']
+  pull_request:
+    paths: ['leonardos-guild/**','.github/workflows/guild-market.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: guild-market-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  journey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [art, neighbourhood, craft]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact source, old gameplay, new activity graph and redistributed assets
+        run: |
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          mkdir -p leonardos-guild/street-output/${{ matrix.mode }}
+          npm --prefix leonardos-guild test | tee leonardos-guild/street-output/${{ matrix.mode }}/model-tests.txt
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Render and play the actual existing town with ordinary keys and UI
+        env:
+          STREET_SUITE: ${{ matrix.mode }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/guild-market-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/street-browser.py
+      - name: Preserve exact source and all failure evidence without rewriting runtime
+        if: always()
+        env:
+          STREET_SUITE: ${{ matrix.mode }}
+        run: |
+          python - <<'PY'
+          import os,json,hashlib,subprocess,tarfile
+          from pathlib import Path
+          root=Path('leonardos-guild');out=root/'street-output'/os.environ['STREET_SUITE'];out.mkdir(parents=True,exist_ok=True)
+          (out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          (out/'uncommitted-diff.txt').write_text(subprocess.check_output(['git','diff','--stat'],text=True))
+          files={str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.rglob('*') if f.is_file() and not any(k in f.parts for k in ['street-output','life-output','test-output','touch-output','__pycache__'])}
+          (out/'source-hashes.json').write_text(json.dumps(files,indent=2))
+          with tarfile.open(out/'source.tgz','w:gz') as tar:
+            for name in files:tar.add(root/name,arcname='leonardos-guild/'+name)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-market-${{ matrix.mode }}
+          path: leonardos-guild/street-output/${{ matrix.mode }}/
+          retention-days: 7

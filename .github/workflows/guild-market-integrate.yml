@@ -1,0 +1,46 @@
+name: Commit the bounded Market Life integration
+on:
+  push:
+    branches: [feat/guild-market-life-20260907]
+    paths: ['leonardos-guild/scripts/integrate-market-life.py','.github/workflows/guild-market-integrate.yml']
+permissions:
+  contents: write
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/guild-market-life-20260907'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/guild-market-life-20260907
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply only the reviewed before/after-verified integration
+        run: |
+          python leonardos-guild/scripts/integrate-market-life.py
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          npm --prefix leonardos-guild test
+      - name: Commit ordinary source before separate read-only browser validation
+        run: |
+          git config user.name 'SVGN source integration'
+          git config user.email 'actions@users.noreply.github.com'
+          git add leonardos-guild/model.mjs leonardos-guild/app.mjs leonardos-guild/scene.mjs leonardos-guild/life-visuals.mjs leonardos-guild/index.html leonardos-guild/release.json leonardos-guild/package.json leonardos-guild/tests/life-browser.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Market Life into the existing game with verified source hashes and no save reset'
+            git push origin HEAD:feat/guild-market-life-20260907
+          fi
+      - name: Save reviewable source
+        if: always()
+        run: |
+          mkdir -p integrated-source
+          git rev-parse HEAD > integrated-source/source-sha.txt
+          git diff --stat > integrated-source/uncommitted-diff.txt
+          tar -czf integrated-source/source.tgz leonardos-guild .github/workflows
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-market-integrated-source
+          path: integrated-source/
+          retention-days: 7
