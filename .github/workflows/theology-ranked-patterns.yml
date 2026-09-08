@@ -1,0 +1,83 @@
+name: Validate Theology ranked patterns
+on:
+  push:
+    branches: [master, feat/theology-ranked-patterns-20260907]
+    paths: ['theology-wiki/**', '.github/workflows/theology-ranked-patterns.yml']
+  pull_request:
+    paths: ['theology-wiki/**', '.github/workflows/theology-ranked-patterns.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: theology-ranked-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  ranked:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test explicit scores, provenance and input validation
+        run: |
+          node --check theology-wiki/rankings/workbook.js
+          node --test theology-wiki/tests/role-workbook.test.cjs
+      - name: Install native Chromium
+        run: |
+          python -m pip install --quiet playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Verify native HTTP behavior and existing reader integration
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-ranked-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/role_workbook_browser.py
+      - name: Verify actual published bytes and public browser
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cp -r theology-rank-test-output /tmp/theology-ranked-native
+          python - <<'PY'
+          import hashlib,json,os,time,urllib.request
+          from pathlib import Path
+          files=['theology-wiki/role-workbook.html','theology-wiki/assets/js/depth-tools.js']+[p.as_posix() for p in Path('theology-wiki/rankings').iterdir() if p.is_file()]
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
+          observed={}
+          for attempt in range(40):
+              for p,digest in expected.items():
+                  try:
+                      with urllib.request.urlopen('https://v5ma.github.io/'+p+'?edition='+os.environ['GITHUB_SHA'],timeout=15) as r:
+                          actual=hashlib.sha256(r.read()).hexdigest()
+                          observed[p]={'status':r.status,'sha256':actual,'matches':actual==digest}
+                  except Exception as e:observed[p]={'error':str(e),'matches':False}
+              if all(v['matches'] for v in observed.values()):break
+              time.sleep(5)
+          Path('theology-rank-test-output/hosted-content.json').write_text(json.dumps(observed,indent=2))
+          assert all(v['matches'] for v in observed.values()),observed
+          PY
+          SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/role_workbook_browser.py
+          cp -r /tmp/theology-ranked-native theology-rank-test-output/native
+      - name: Record tested revision and package
+        if: always()
+        run: |
+          mkdir -p theology-rank-test-output
+          git rev-parse HEAD > theology-rank-test-output/tested-commit.txt
+          git diff --exit-code
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('theology-rank-test-output/ranked-workbook-release.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in Path('theology-wiki/rankings').rglob('*'):
+                  if p.is_file():z.write(p)
+              for p in ['theology-wiki/role-workbook.html','theology-wiki/assets/js/depth-tools.js','theology-wiki/tests/role-workbook.test.cjs','theology-wiki/tests/role_workbook_browser.py']:
+                  z.write(p)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-ranked-verification
+          path: theology-rank-test-output/
+          retention-days: 14
