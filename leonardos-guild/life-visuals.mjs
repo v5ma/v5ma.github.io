@@ -16,19 +16,19 @@ export function createTownLifeVisuals({scene,root,w,m,rider,bike,camera}){
  function lamp(parent,x,y,z){const b=new Batch();b.box(x,y,z,.12,.4,.12,gold);b.ball(x,y+.25,z,.075,.12,.075,'#ffe8a4');b.finish(parent,m.light,'Lamplight');}
  function furnishings(room,basement=false){
   const g=new T.Group(),depth=basement?-5:0,baseY=heightAt(room.x,room.z)+depth;g.position.set(room.x,baseY,room.z);g.name=room.name+(basement?' basement':' interior');(basement?cellars:world).add(g);
-  const b=new Batch(),trim=new Batch();b.box(0,.08,0,room.hx*2-.4,.16,room.hz*2-.4,basement?'#746c59':'#bc9565');
+  const b=new Batch(),trim=new Batch(),furniture=new Batch();b.box(0,.08,0,room.hx*2-.4,.16,room.hz*2-.4,basement?'#746c59':'#bc9565');
   for(let z=-room.hz+.5;z<room.hz;z+=.65)b.box(0,.17,z,room.hx*2-.5,.02,.022,basement?'#565648':'#816047');
   // Cutaway interior walls frame the room without hiding it from the player.
   for(const sign of[-1,1])b.box(0,.5,sign*(room.hz-.3),room.hx*2,.9,.3,basement?'#766e5c':'#dbcba4');b.box(room.side*(room.hx-.3),1.1,0,.3,2.2,room.hz*2,'#aa9578');
   b.box(0,.19,0,3.8,.025,5.5,room.kind==='hall'?'#797b96':room.kind==='inn'?'#ac6858':'#5c7d75');for(const x of[-1.76,1.76])b.box(x,.21,0,.08,.02,5.2,gold);
-  table(b,0,room.hz-1.2);bookcase(b,-room.hx+2,-room.hz+1);bookcase(b,room.hx-2,-room.hz+1);
+  table(furniture,0,room.hz-1.2);bookcase(furniture,-room.hx+2,-room.hz+1);bookcase(furniture,room.hx-2,-room.hz+1);
   if(room.kind==='apothecary')for(let i=0;i<12;i++){const x=-3+i%6*1.1,z=-room.hz+2+Math.floor(i/6)*.6;b.add(unit.cyl,x,.8,z,.17,.7,.17,['#638d79','#8b7d9c','#ae8952'][i%3]);}
-  if(room.kind==='inn'){for(const z of[-2,2]){table(b,room.hx-2,z);for(const dz of[-.9,.9])b.add(unit.cyl,room.hx-2,.36,z+dz,.3,.7,.3,wood);}for(const x of[-room.hx+1,room.hx-1])b.add(unit.cyl,x,.68,room.hz-2,.62,1.35,.62,oak);}
+  if(room.kind==='inn'){for(const z of[-2,2]){table(furniture,room.hx-2,z);for(const dz of[-.9,.9])b.add(unit.cyl,room.hx-2,.36,z+dz,.3,.7,.3,wood);}for(const x of[-room.hx+1,room.hx-1])b.add(unit.cyl,x,.68,room.hz-2,.62,1.35,.62,oak);}
   if(room.kind==='workshop'||room.kind==='smith'){for(let i=0;i<4;i++)b.add(unit.ring,-room.hx+1.2,.8+i*.06,i*1.7-2,.65,.65,.65,gold,0,Math.PI/2);b.box(room.hx-1.2,.7,1,1.3,1.4,1,'#666d65');}
   if(room.kind==='hall'){b.box(0,1.2,room.hz-2,3.4,.2,1.2,oak);b.box(0,1.55,room.hz-2.7,1,.95,.2,'#704e4a');label(g,'THE PEOPLE\nOF VINCI',room.side*(room.hx-.5),2.15,0,2.9,1.4,-room.side*Math.PI/2,'#68583f');}
   if(room.kind==='observatory'){b.rod([2,.2,0],[2,1.6,0],.08,wood);b.add(unit.cyl,2,1.6,0,.25,2.6,.25,gold,.6,0);b.add(unit.ring,-2,1.5,0,.9,.9,.9,'#80a9aa',.4,.2);}
   if(basement){b.add(unit.ring,0,2,room.hz-.5,1.2,1.2,1.2,gold);for(let k=0;k<3;k++)b.box(-2+k*2,.65,room.hz-1.5,.9,1.3,.9,'#8e7955');}
-  b.finish(g,m.trim,'Room furniture, shelves and floor');trim.finish(g,m.trim,'Small room details');for(const z of[-room.hz+1,room.hz-1])lamp(g,room.side*(room.hx-1),1.8,z);
+  b.finish(g,m.trim,'Room furniture, shelves and floor');furniture.finish(g,m.trim,'Replaceable workshop furniture');trim.finish(g,m.trim,'Small room details');for(const z of[-room.hz+1,room.hz-1])lamp(g,room.side*(room.hx-1),1.8,z);
   if(room.cellar){const sx=room.stairs.x-room.x,sz=room.stairs.z-room.z;const sb=new Batch();for(let k=0;k<5;k++)sb.box(sx,.25+k*.11,sz+k*.24,1.4,.15,.3,'#d3b78c');sb.finish(g,m.trim,'Marked basement stair');label(g,basement?'T / UPSTAIRS':'T / BASEMENT',sx,1.45,sz,1.5,.5,0,'#486563');}
   return g;
  }
