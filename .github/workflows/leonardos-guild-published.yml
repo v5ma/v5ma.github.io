@@ -12,31 +12,48 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Match browser files and homepage card to the merged source
+      - name: Match game, real model buffers and textures to the merged source
         run: |
           python - <<'PY'
           from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor
+          from urllib.parse import quote
           import hashlib,json,time,urllib.request,subprocess
           source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-          paths=[Path('index.html'),Path('projects.css')]+[p for p in Path('leonardos-guild').rglob('*') if p.is_file() and 'tests' not in p.parts and p.suffix in ('.html','.mjs','.js','.css','.webp','.json','.md')]
+          root=Path('leonardos-guild')
+          excluded={'tests','scripts','test-output','touch-output','life-output','street-output','__pycache__','node_modules'}
+          suffixes={'.html','.mjs','.js','.css','.webp','.json','.md','.gltf','.glb','.bin','.png','.jpg','.jpeg','.txt'}
+          paths=[p for p in root.rglob('*') if p.is_file() and not any(x in excluded for x in p.parts) and p.suffix in suffixes]
           expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+          register=json.loads((root/'ASSET-REGISTER.json').read_text())
+          for name,record in register['files'].items():
+            assert expected['leonardos-guild/'+name]==record['sha256'],name
           found={}
-          for attempt in range(60):
-            for name,digest in expected.items():
-              if found.get(name,{}).get('match'):continue
-              try:
-                req=urllib.request.Request('https://v5ma.github.io/'+name+'?leonardo='+source[:12],headers={'Cache-Control':'no-cache','User-Agent':'SVGN-publication-check'})
-                with urllib.request.urlopen(req,timeout=12) as response:
-                  raw=response.read();actual=hashlib.sha256(raw).hexdigest()
-                  found[name]={'status':response.status,'sha256':actual,'expected':digest,'match':actual==digest}
-              except Exception as e:found[name]={'match':False,'error':str(e)}
-            if len(found)==len(expected) and all(v['match'] for v in found.values()):break
-            time.sleep(5)
-          result={'source':source,'game':'https://v5ma.github.io/leonardos-guild/','homepage':'https://v5ma.github.io/','files':found,'all_match':len(found)==len(expected) and all(v['match'] for v in found.values())}
+          def inspect(item):
+            name,digest=item
+            try:
+              req=urllib.request.Request('https://v5ma.github.io/'+quote(name,safe='/')+'?guild='+source[:12],headers={'Cache-Control':'no-cache','User-Agent':'SVGN-publication-check'})
+              with urllib.request.urlopen(req,timeout=12) as response:
+                actual=hashlib.sha256(response.read()).hexdigest()
+                return name,{'status':response.status,'sha256':actual,'expected':digest,'match':actual==digest}
+            except Exception as e:return name,{'match':False,'error':str(e)}
+          with ThreadPoolExecutor(max_workers=6) as pool:
+            for attempt in range(36):
+              pending=[item for item in expected.items() if not found.get(item[0],{}).get('match')]
+              found.update(pool.map(inspect,pending))
+              if len(found)==len(expected) and all(v['match'] for v in found.values()):break
+              time.sleep(5)
+          # Other projects can legitimately update the homepage concurrently.
+          # Verify the existing live game card, without pinning unrelated edits.
+          homepage={'status':None,'game_link_present':False}
+          try:
+            with urllib.request.urlopen('https://v5ma.github.io/?guild='+source[:12],timeout=15) as response:
+              raw=response.read();homepage={'status':response.status,'sha256':hashlib.sha256(raw).hexdigest(),'game_link_present':b'./leonardos-guild/index.html' in raw or b'./leonardos-guild/' in raw}
+          except Exception as error:homepage['error']=str(error)
+          result={'source':source,'version':json.loads((root/'release.json').read_text())['version'],'game':'https://v5ma.github.io/leonardos-guild/','homepage':homepage,'registered_asset_models':len(register['models']),'files':found,'all_match':len(found)==len(expected) and all(v['match'] for v in found.values()) and homepage['game_link_present']}
           Path('leonardo-publication.json').write_text(json.dumps(result,indent=2))
           assert result['all_match'],result
-          assert './leonardos-guild/index.html' in Path('index.html').read_text()
-          print('Published game and homepage match',source)
+          print('Verified',len(found),'public files including model buffers, textures and checklist; homepage card remains accessible:',source)
           PY
       - uses: actions/upload-artifact@v4
         if: always()

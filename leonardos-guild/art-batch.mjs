@@ -2,7 +2,7 @@
  * normalized Uint16 RGBA, others have no vertex colors. Preserve all channels
  * as Float32 RGBA; never reinterpret integer values as linear floats. */
 import * as T from './vendor/three.module.js';
-import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
+import {mergeGeometries,mergeVertices} from './vendor/BufferGeometryUtils.js';
 export function compatibleGeometry(source,matrix){
  const g=source.index?source.toNonIndexed():source.clone();g.applyMatrix4(matrix);
  for(const k of Object.keys(g.attributes))if(!['position','normal','uv','color'].includes(k))g.deleteAttribute(k);
@@ -18,7 +18,7 @@ export function batchStatic(group){
   const matrix=new T.Matrix4().multiplyMatrices(inverse,obj.matrixWorld),geo=compatibleGeometry(obj.geometry,matrix),key=obj.material.uuid;
   if(!bins.has(key))bins.set(key,{material:obj.material,geometries:[]});bins.get(key).geometries.push(geo);
  });
- try{for(const bin of bins.values()){const geo=mergeGeometries(bin.geometries,false);if(!geo)throw Error('Incompatible static mesh attributes.');const mesh=new T.Mesh(geo,bin.material);mesh.castShadow=mesh.receiveShadow=true;meshes.push(mesh);}}
+ try{for(const bin of bins.values()){const flat=mergeGeometries(bin.geometries,false);if(!flat)throw Error('Incompatible static mesh attributes.');const geo=mergeVertices(flat,1e-5);flat.dispose();const mesh=new T.Mesh(geo,bin.material);mesh.castShadow=mesh.receiveShadow=true;meshes.push(mesh);}}
  catch(e){meshes.forEach(m=>m.geometry.dispose());throw e;}
  finally{for(const b of bins.values())b.geometries.forEach(g=>g.dispose());}
  // Commit after ALL material groups validate; never erase a valid source early.
