@@ -101,8 +101,9 @@ export function createStreetArt({scene,root,w,m,camera}){
  }
  function update(s,dt){
   detailPoint=s;if(built)updateDistance(s);
-  for(const {site,holder,ring,tag} of markers){const floor=(site.inside||null)===(s.life.inside||null);holder.visible=floor&&(!site.garden||s.life.flags.garden);const d=Math.hypot(site.x-s.x,site.z-s.z);ring.visible=d<20&&eligibleAt(s,site).some(j=>available(s,j));tag.visible=d<7&&ring.visible;tag.quaternion.copy(camera.quaternion);}
-  for(const {site,npc}of people){npc.visible=!s.life.inside;npc.rotation.y=Math.atan2(s.x-npc.position.x,s.z-npc.position.z);npc.rotation.z=Math.sin(s.time*.75+site.z)*.018;}
+  for(const {r,g} of rooms)g.visible=Math.hypot(r.x-s.x,r.z-s.z)<(currentQuality==='low'?42:105);
+  for(const {site,holder,ring,tag} of markers){const floor=(site.inside||null)===(s.life.inside||null);holder.visible=floor&&(!site.garden||s.life.flags.garden)&&Math.hypot(site.x-s.x,site.z-s.z)<(currentQuality==='low'?75:160);const d=Math.hypot(site.x-s.x,site.z-s.z);ring.visible=d<20&&eligibleAt(s,site).some(j=>available(s,j));tag.visible=d<7&&ring.visible;tag.quaternion.copy(camera.quaternion);}
+  for(const {site,npc}of people){npc.visible=!s.life.inside&&Math.hypot(site.x-s.x,site.z-s.z)<(currentQuality==='low'?75:160);npc.rotation.y=Math.atan2(s.x-npc.position.x,s.z-npc.position.z);npc.rotation.z=Math.sin(s.time*.75+site.z)*.018;}
   for(const {site,obj}of objects){if(site.id==='cart')obj.rotation.z=s.street.done.includes('cart')?0:.13;if(site.id==='barrels')obj.rotation.z=s.street.done.includes('cider')?0:.07;
    if(['apples','carrots','basket'].includes(site.id)){const n=s.street.progress.dinner||0;obj.visible=n<=['apples','carrots','basket'].indexOf(site.id)+1;}
   }
