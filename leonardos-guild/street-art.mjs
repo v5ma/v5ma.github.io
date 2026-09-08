@@ -2,6 +2,7 @@
  * shells remain a fallback until the complete selected art set is available.
  * No collisions, story state, camera controls or vehicle physics are replaced. */
 import * as T from './vendor/three.module.js';
+import {batchStatic} from './art-batch.mjs';
 import {heightAt} from './model.mjs';
 import {label,Batch} from './art.mjs';
 import {person} from './guild-art.mjs';
@@ -10,7 +11,7 @@ export function createStreetArt({scene,root,w,m,camera}){
  const group=new T.Group();group.name='Street-life objects';scene.add(group);const markers=[],people=[],objects=[],lamps=[],rooms=[],outcomes=[];
  const status={ready:false,failed:false,models:0,instances:0,facades:0,bytes:0,message:'Loading curated CC0 artwork...'};
  const badge=document.createElement('div');badge.id='art-status';badge.textContent=status.message;document.body.append(badge);
- const materialBank=new Map(),templates=new Map();let mergeGeometries=null;
+ const materialBank=new Map(),templates=new Map();let built=false;const replacements=[],added=[];
  const ringMat=new T.MeshBasicMaterial({color:'#e9b466',transparent:true,opacity:.72,depthWrite:false});
  for(const site of STREET_SITES){
   const holder=new T.Group();holder.position.set(site.x,heightAt(site.x,site.z)+(site.inside?-5:0),site.z);group.add(holder);
@@ -22,14 +23,7 @@ export function createStreetArt({scene,root,w,m,camera}){
   const original=templates.get(key);if(!original)throw Error('Missing curated model '+key);
   const g=original.clone(true);g.position.set(x,y,z);g.scale.set(...(Array.isArray(scale)?scale:[scale,scale,scale]));g.rotation.y=rotation;parent.add(g);status.instances++;return g;
  }
- function batch(g){
-  g.updateMatrixWorld(true);const inverse=g.matrixWorld.clone().invert(),bins=new Map();
-  g.traverse(obj=>{if(!obj.isMesh)return;const matrix=new T.Matrix4().multiplyMatrices(inverse,obj.matrixWorld);let geo=obj.geometry.index?obj.geometry.toNonIndexed():obj.geometry.clone();geo.applyMatrix4(matrix);
-   for(const k of Object.keys(geo.attributes))if(!['position','normal','uv','color'].includes(k))geo.deleteAttribute(k);
-   const count=geo.attributes.position.count;if(!geo.attributes.color)geo.setAttribute('color',new T.Float32BufferAttribute(new Float32Array(count*3).fill(1),3));if(!geo.attributes.uv)geo.setAttribute('uv',new T.Float32BufferAttribute(new Float32Array(count*2),2));
-   const key=obj.material.uuid;if(!bins.has(key))bins.set(key,{material:obj.material,geometries:[]});bins.get(key).geometries.push(geo);
-  });g.clear();for(const bin of bins.values()){const geo=mergeGeometries(bin.geometries,false);if(!geo)throw Error('Static material batch failed');bin.geometries.forEach(v=>v.dispose());const mesh=new T.Mesh(geo,bin.material);mesh.castShadow=mesh.receiveShadow=true;g.add(mesh);}return g;
- }
+ const batch=batchStatic;
  function facade(h,shell){
   const detail=new T.Group(),width=h.d,depth=h.w,ht=7.5+h.kind*.6,floor=ht/2;
   function panels(from,to,z,y,rotation=0,windows=true){const length=to-from,count=Math.max(1,Math.round(length/2)),span=length/count;
@@ -47,7 +41,7 @@ export function createStreetArt({scene,root,w,m,camera}){
   for(const sign of[-1,1])instance('village/Roof_Front_Brick6',detail,0,ht,sign*(depth/2-.1),[width/6,.55,1],sign<0?Math.PI:0);
   instance('village/Prop_Chimney',detail,width*.28,ht+1,-depth*.18,[.8,.8,.8]);
   if(h.kind%2===0)instance('village/Prop_Vine1',detail,-width/2+1,ht*.64,depth/2+.13,1.2);
-  batch(detail);detail.name='Curated textured Renaissance facade';for(const child of shell.children)child.visible=false;shell.add(detail);status.facades++;
+  batch(detail);detail.name='Curated textured Renaissance facade';for(const child of shell.children)replacements.push({object:child,visible:child.visible});shell.add(detail);added.push(detail);status.facades++;
  }
  function roomArt(r,g){
   const base=new T.Group();base.name='Curated room workspaces';g.add(base);
@@ -57,16 +51,16 @@ export function createStreetArt({scene,root,w,m,camera}){
   if(r.kind==='smith'){instance('props/Anvil_Log',base,r.hx-1.5,.2,1,.85);instance('props/Whetstone',base,-r.hx+1.5,.2,1,.8);}
   if(r.kind==='inn'){instance('props/Barrel',base,-r.hx+1,.2,r.hz-2,1.1);instance('props/Barrel_Apples',base,r.hx-1,.2,r.hz-2,1.1);}
   if(r.kind==='workshop')instance('props/Workbench',base,-r.hx+1.5,.2,1,[.7,.9,.75],Math.PI/2);
-  batch(base);g.getObjectByName('Replaceable workshop furniture')?.visible&&(g.getObjectByName('Replaceable workshop furniture').visible=false);rooms.push({r,g:base});
+  batch(base);if(g.getObjectByName('Replaceable workshop furniture')){const object=g.getObjectByName('Replaceable workshop furniture');replacements.push({object,visible:object.visible});}added.push(base);rooms.push({r,g:base});
  }
  async function load(){
   if(new URLSearchParams(location.search).get('art')==='baseline'){status.message='Baseline procedural art selected for comparison.';badge.textContent=status.message;return;}
-  const [loaderMod,utils,manifest]=await Promise.all([import('./vendor/GLTFLoader.js'),import('./vendor/BufferGeometryUtils.js'),fetch('./ASSET-REGISTER.json').then(r=>{if(!r.ok)throw Error('Missing asset register');return r.json();})]);
-  mergeGeometries=utils.mergeGeometries;T.Cache.enabled=true;const loader=new loaderMod.GLTFLoader();
+  const [loaderMod,manifest]=await Promise.all([import('./vendor/GLTFLoader.js'),fetch('./ASSET-REGISTER.json').then(r=>{if(!r.ok)throw Error('Missing asset register');return r.json();})]);
+  T.Cache.enabled=true;const loader=new loaderMod.GLTFLoader();
   const entries=Object.entries(manifest.models);
   // Four model requests at a time keep the first load bounded on mobile.
   let cursor=0;await Promise.all(Array.from({length:4},async()=>{while(cursor<entries.length){const [key,rec]=entries[cursor++],gltf=await loader.loadAsync('./'+rec.path);gltf.scene.traverse(o=>{if(!o.isMesh)return;const materialKey=key.split('/')[0]+':'+o.material.name;
-    if(materialBank.has(materialKey))o.material=materialBank.get(materialKey);else{if(o.material.map)o.material.map.anisotropy=4;o.material.roughness=Math.max(.5,o.material.roughness);materialBank.set(materialKey,o.material);}o.castShadow=o.receiveShadow=true;
+    if(materialBank.has(materialKey))o.material=materialBank.get(materialKey);else{o.material=o.material.clone();o.material.vertexColors=true;if(o.material.map)o.material.map.anisotropy=4;o.material.roughness=Math.max(.5,o.material.roughness);materialBank.set(materialKey,o.material);}o.castShadow=o.receiveShadow=true;
    });templates.set(key,gltf.scene);status.models++;badge.textContent=`Detailed town artwork ${status.models}/${entries.length}`;}}));
   status.bytes=manifest.totalBytes;
   for(const h of w.houses){const shell=root.children.find(g=>g.userData.room===h.room&&g.position.x===h.x&&g.position.z===h.z)||root.children.find(g=>g.position.x===h.x&&g.position.z===h.z&&g.children.some(c=>c.name==='Renaissance plaster and masonry'));if(shell)facade(h,shell);}
@@ -85,11 +79,12 @@ export function createStreetArt({scene,root,w,m,camera}){
   const painting=document.createElement('canvas');painting.width=256;painting.height=192;const paint=painting.getContext('2d'),texture=new T.CanvasTexture(painting);texture.colorSpace=T.SRGBColorSpace;
   const panel=new T.Mesh(new T.PlaneGeometry(1.2,.9),new T.MeshStandardMaterial({map:texture,roughness:.8,side:T.DoubleSide}));panel.position.set(0,1.05,.08);panel.rotation.x=-.2;siteHolder('painter').add(panel);
   outcomes.push({job:'exhibition',obj:panel,painting,paint,texture,last:null});
-  const ribbon=instance('props/Scroll_1',siteHolder('painter'),.55,.75,.1,.5);outcomes.push({job:'ribbon',obj:ribbon});
+  const ribbon=new T.Mesh(new T.TorusGeometry(.11,.025,5,18,5.5),new T.MeshStandardMaterial({color:'#cb8658',roughness:.8}));ribbon.position.set(.5,.9,.12);siteHolder('painter').add(ribbon);outcomes.push({job:'ribbon',obj:ribbon});
   for(const o of outcomes)o.obj.visible=false;
+  replacements.forEach(r=>r.object.visible=false);built=true;
   status.ready=true;status.message='Curated CC0 art loaded';badge.textContent=status.message;badge.classList.add('ready');
  }
- load().catch(error=>{status.failed=true;status.message='Detailed art unavailable; original town remains playable.';badge.textContent=status.message;console.warn('Curated art fallback:',error);});
+ load().catch(error=>{if(!built){for(const o of added)o.removeFromParent();replacements.forEach(r=>r.object.visible=r.visible);status.facades=0;}status.failed=true;status.error=String(error.message||error);status.message='Detailed art unavailable; original town remains playable.';badge.textContent=status.message;console.warn('Curated art fallback:',error);});
  function update(s,dt){
   for(const {site,holder,ring,tag} of markers){const floor=(site.inside||null)===(s.life.inside||null);holder.visible=floor&&(!site.garden||s.life.flags.garden);const d=Math.hypot(site.x-s.x,site.z-s.z);ring.visible=d<20&&eligibleAt(s,site).some(j=>available(s,j));tag.visible=d<7&&ring.visible;tag.quaternion.copy(camera.quaternion);}
   for(const {site,npc}of people){npc.visible=!s.life.inside;npc.rotation.y=Math.atan2(s.x-npc.position.x,s.z-npc.position.z);npc.rotation.z=Math.sin(s.time*.75+site.z)*.018;}
