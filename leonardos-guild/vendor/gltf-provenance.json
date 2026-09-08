@@ -1,0 +1,20 @@
+{
+  "GLTFLoader.js": {
+    "url": "https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/loaders/GLTFLoader.js",
+    "upstreamSHA256": "caba6c51cfd8c7d5313bd7705a54b76bc0a7199d9822ecc497c5311eaffe8e5e",
+    "modifiedSHA256": "aa9d5861dd98efadfaaee5b5403188caf9b9a70ce54bdc103bb2a0265a328ad6",
+    "modification": "Relative imports to existing local pinned Three.js; otherwise unchanged."
+  },
+  "BufferGeometryUtils.js": {
+    "url": "https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/utils/BufferGeometryUtils.js",
+    "upstreamSHA256": "cbcfe1864abedcc0122cb893373918fe14469491717a34ca6efcc38551805765",
+    "modifiedSHA256": "1f4966db241216835098623d854853a5990b18cf121cd136ea54f6da2d3d5e26",
+    "modification": "Relative imports to existing local pinned Three.js; otherwise unchanged."
+  },
+  "THREE-LICENSE.txt": {
+    "url": "https://raw.githubusercontent.com/mrdoob/three.js/r177/LICENSE",
+    "upstreamSHA256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "modifiedSHA256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "modification": "Relative imports to existing local pinned Three.js; otherwise unchanged."
+  }
+}

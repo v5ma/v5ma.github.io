@@ -1,0 +1,44 @@
+name: Inspect licensed Guild art and exact source
+on:
+  push:
+    branches: [feat/guild-market-life-20260907]
+    paths: ['.github/workflows/guild-art-intake.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            leonardos-guild
+            .github/workflows
+      - name: Record exact baseline and inspect official CC0 Standard archives
+        run: |
+          mkdir -p intake
+          git rev-parse HEAD > intake/source-sha.txt
+          git ls-tree -r --name-only HEAD | grep -i 'agents.md$' > intake/agent-paths.txt || true
+          while IFS= read -r file; do case "$file" in AGENTS.md|leonardos-guild/*|.github/*) echo "--- $file"; git show "HEAD:$file";; esac; done < intake/agent-paths.txt > intake/agent-instructions.txt
+          tar -czf intake/source.tgz leonardos-guild .github/workflows
+          python - <<'PY'
+          from pathlib import Path
+          import urllib.request,zipfile,hashlib,json
+          out=Path('intake');report={}
+          for name,url in [('props','https://opengameart.org/sites/default/files/fantasy_props_megakitstandard.zip'),('village','https://opengameart.org/sites/default/files/medieval_village_megakitstandard.zip')]:
+            path=out/(name+'.zip')
+            with urllib.request.urlopen(url,timeout=120) as response:path.write_bytes(response.read(220000000))
+            with zipfile.ZipFile(path) as z:
+              entries=[{'path':i.filename,'size':i.file_size} for i in z.infolist() if not i.is_dir()]
+              licenses={i.filename:z.read(i).decode('utf-8',errors='replace') for i in z.infolist() if not i.is_dir() and ('license' in i.filename.lower() or 'readme' in i.filename.lower()) and i.file_size<30000}
+            report[name]={'url':url,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'files':entries,'licenses':licenses}
+          (out/'catalog.json').write_text(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-licensed-art-intake
+          path: intake/
+          retention-days: 7
