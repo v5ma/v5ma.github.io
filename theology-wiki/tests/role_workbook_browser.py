@@ -3,7 +3,7 @@ Storage, downloads and navigation use Chromium, not a simulated document.
 """
 import json, os
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'theology-rank-test-output';OUT.mkdir(exist_ok=True)
 ORIGIN=os.environ.get('SITE_ORIGIN','http://127.0.0.1:4174').rstrip('/')
@@ -72,11 +72,15 @@ with sync_playwright() as pw:
         path=OUT/'scenario-export.json';dl.value.save_as(path);scenario=json.loads(path.read_text())
         check('scenario download retains full data and weights',scenario['type']=='theology-pattern-scenario' and len(scenario['data']['people'])==24)
         page.locator('#import').set_input_files(filepayload({'version':999}))
+        # File.text() resolves asynchronously; wait for the actual result, not a fixed delay.
+        expect(page.locator('#status')).to_contain_text('matching ranked-pattern scenario')
         check('invalid import keeps the current dataset','matching ranked-pattern scenario' in page.locator('#status').inner_text() and page.locator('#results tbody tr').count()==24)
         bad=json.loads(json.dumps(scenario));bad['data']['sources'][0]['url']='javascript:alert(1)'
         page.locator('#import').set_input_files(filepayload(bad))
+        expect(page.locator('#status')).to_contain_text('HTTPS')
         check('unsafe source URL import is rejected','HTTPS' in page.locator('#status').inner_text())
         page.locator('#import').set_input_files(filepayload(scenario))
+        expect(page.locator('#status')).to_contain_text('imported locally')
         check('valid export can be restored','imported locally' in page.locator('#status').inner_text())
         page.locator('#person-form').evaluate('(f)=>f.closest("details").open=true')
         page.locator('#person-form [name=name]').fill('Test Figure <img src=x onerror=alert(1)>')
