@@ -1,6 +1,7 @@
 /* Same-map dusk lighting. Reuses the already licensed local lantern mesh.
  * At most three non-shadow point lights; Battery uses emissive cues instead. */
 import * as T from './vendor/three.module.js';
+import {updateLightPool} from './light-pool.mjs';
 import {heightAt} from './model.mjs';
 import {clockInfo,lampMask,LAMPS,SERVICES} from './city-core.mjs';
 import {label} from './art.mjs';
@@ -53,8 +54,8 @@ export function createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,cam
     for(const g of glowSources){const d=Math.hypot(g.pos.x-s.x,g.pos.z-s.z);g.glow.visible=!below&&d<60&&(night>.07||g.room===room?.id);if(g.glow.visible&&(!g.room||g.room===room?.id))candidates.push({...g,d,inside:!!g.room});}
     // Interior sources do not get culled with the outdoor world during a cellar visit.
     if(room){const y=heightAt(room.x,room.z)+(below?-5:0)+2.2;candidates.unshift({pos:new T.Vector3(room.x, y,room.z-2),d:0,inside:true});}
-    candidates.sort((a,b)=>a.d-b.d);const budget=quality==='high'?3:quality==='balanced'?1:0;let lit=0;
-    points.forEach((light,i)=>{const p=candidates[i];light.intensity=i<budget&&p&&p.d<16?(p.inside?10:12*night):0;if(light.intensity){light.position.copy(p.pos);lit++;}});
+    candidates.sort((a,b)=>a.d-b.d);const budget=quality==='high'?3:quality==='balanced'?1:0;
+    const lit=updateLightPool(points,candidates,budget,night);
     last={phase:time.phase,time:time.text,daylight:day,pointLights:lit,pointLightBudget:budget,loadedLanterns:loaded,litCircuitLamps:[0,1,2].filter(i=>s.city.circuit>0&&(mask&(1<<i))).length,below};
   }
   return {update,inspect:()=>({...last})};
