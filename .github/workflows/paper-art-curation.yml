@@ -2,57 +2,49 @@ name: Curate Paper Delivery licensed art
 on:
   push:
     branches: [art/paper-city-visual-first-20260907]
-    paths: ['.github/workflows/paper-art-curation.yml','svgn-planet/tools/prepare-street-art.py']
+    paths: ['.github/workflows/paper-art-curation.yml']
   workflow_dispatch:
 permissions:
   contents: write
-  actions: read
 jobs:
   curate:
     if: github.ref == 'refs/heads/art/paper-city-visual-first-20260907'
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
           ref: art/paper-city-visual-first-20260907
-      - uses: actions/download-artifact@v4
-        with:
-          name: paper-licensed-art-intake
-          run-id: 34170720948
-          github-token: ${{ github.token }}
-          path: art-intake
-      - name: Curate static GLTF and shared images
+      - name: Derive desktop and phone sky images from the official CC0 asset
         run: |
           python -m pip install pillow==11.3.0
-          python svgn-planet/tools/prepare-street-art.py art-intake
-          mkdir -p svgn-planet/vendor/loaders svgn-planet/vendor/utils
           python - <<'PY'
-          import urllib.request,pathlib
-          # Same r177 as the committed renderer. Never replace the engine.
-          for part in ['loaders/GLTFLoader.js','utils/BufferGeometryUtils.js']:
-              url='https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/'+part
-              data=urllib.request.urlopen(url,timeout=30).read().decode().replace("from 'three'","from '../three.module.js'")
-              pathlib.Path('svgn-planet/vendor/'+part).write_text(data)
+          import urllib.request,pathlib,json,hashlib,io
+          from PIL import Image
+          root=pathlib.Path('svgn-planet/assets/street-art')
+          url='https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/kloppenheim_06_puresky.jpg'
+          with urllib.request.urlopen(url,timeout=60) as response:
+              data=response.read(30*1024*1024)
+          assert len(data)<30*1024*1024
+          source=Image.open(io.BytesIO(data));entry={'type':'sky','author':'Greg Zaal / Jarod Guest / Poly Haven','source':'https://polyhaven.com/a/kloppenheim_06_puresky','sourceUrl':url,'license':'CC0-1.0','sourceSha256':hashlib.sha256(data).hexdigest(),'modification':'Resized official tonemapped JPEG; not an unclipped HDR lighting file.','files':[]}
+          for size,name in [(4096,'sky-desktop.jpg'),(2048,'sky-mobile.jpg')]:
+              im=source.copy();im.thumbnail((size,size//2),Image.Resampling.LANCZOS);p=root/name;im.convert('RGB').save(p,quality=89,optimize=True)
+              entry['files'].append({'file':name,'size':list(im.size),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          p=root/'asset-register.json';registry=json.loads(p.read_text());registry['sources']=[s for s in registry['sources'] if s.get('type')!='sky']+[entry];p.write_text(json.dumps(registry,indent=2))
+          print(json.dumps(entry,indent=2))
           PY
-      - name: Commit only curated art and the matching loader to the art branch
+      - name: Commit only licensed art to the art branch
         run: |
           git config user.name 'SVGN Art Pipeline'
           git config user.email '60057241+v5ma@users.noreply.github.com'
-          git add -- svgn-planet/assets/street-art svgn-planet/vendor/loaders/GLTFLoader.js svgn-planet/vendor/utils/BufferGeometryUtils.js
+          git add -- svgn-planet/assets/street-art/sky-desktop.jpg svgn-planet/assets/street-art/sky-mobile.jpg svgn-planet/assets/street-art/asset-register.json
           if git diff --cached --quiet; then exit 0; fi
-          git diff --cached --name-only | python -c 'import sys; assert all(p.startswith(("svgn-planet/assets/street-art/","svgn-planet/vendor/loaders/","svgn-planet/vendor/utils/")) for p in sys.stdin.read().splitlines())'
-          git commit -m 'Import CC0 architectural modules, foliage and surface maps with source licenses and asset hashes'
+          git diff --cached --name-only | python -c 'import sys; assert all(p.startswith("svgn-planet/assets/street-art/") for p in sys.stdin.read().splitlines())'
+          git commit -m 'Import CC0 pure-sky photographs as bounded local desktop and mobile game textures'
           git push origin HEAD:refs/heads/art/paper-city-visual-first-20260907
-      - name: Preserve curated outputs for visual inspection
-        if: always()
-        run: |
-          mkdir -p art-result
-          cp -r svgn-planet/assets svgn-planet/vendor art-result/ 2>/dev/null || true
-          git rev-parse HEAD > art-result/source-sha.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: curated-street-art
-          path: art-result/
+          name: curated-sky-art
+          path: svgn-planet/assets/street-art/sky-*.jpg
           retention-days: 7
