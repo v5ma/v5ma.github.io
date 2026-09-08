@@ -23,9 +23,14 @@ WALK="""async targets=>{
  },2);});
 }"""
 def capture(p,name):
- if MODE=='routes':p.set_viewport_size({'width':1120,'height':800})
+ # Native high-detail capture using the public graphics setting and ordinary
+ # equipment/menu keys. Device emulation changes pixels, never actor state.
+ if MODE=='routes':
+  p.keyboard.press('KeyP');p.wait_for_function('Vesperfall.component.paused');p.locator('#cathedral-shadows').check();p.locator('#resume').click();p.locator('a-scene canvas').focus()
+  p.keyboard.press('KeyV');p.wait_for_function('Vesperfall.state.weapon==="crossbow"');p.set_viewport_size({'width':2240,'height':1600})
  p.screenshot(path=str(OUT/name))
- if MODE=='routes':p.set_viewport_size({'width':640,'height':480})
+ if MODE=='routes':
+  p.set_viewport_size({'width':640,'height':480});p.locator('a-scene canvas').focus();p.keyboard.press('KeyV');p.keyboard.press('KeyP');p.wait_for_function('Vesperfall.component.paused');p.locator('#cathedral-shadows').uncheck();p.locator('#resume').click();p.locator('a-scene canvas').focus()
 def walk(p,targets):p.evaluate(WALK,targets)
 def rooms_to(p,room):walk(p,p.evaluate('(r)=>VesperCore.route(Vesperfall.state.world,VesperCore.roomAt(Vesperfall.state.world,Vesperfall.state.p),r).map(i=>{const q=Vesperfall.state.world.rooms[i];return [q.x,0,q.z]})',room))
 def aim(p,yaw,pitch=0):
@@ -43,7 +48,7 @@ with sync_playwright() as pw:
   p.locator('#practice').click();p.wait_for_function('!Vesperfall.component.paused&&Vesperfall.component.running');p.wait_for_function('Vesperfall.component.worldArt.group.userData.loadedSculptures>0');profile=p.evaluate('JSON.stringify(Vesperfall.component.profile)');w=p.evaluate('JSON.parse(JSON.stringify(Vesperfall.state.world))')
   check(len({r['planFamily'] for r in w['rooms']})==6,'The actual scene contains six architecture families with real dimensions')
   if MODE=='visual':
-   p.screenshot(path=str(OUT/'after-choir.png'));p.locator('a-scene canvas').focus();aim(p,-1.87,0);p.screenshot(path=str(OUT/'masonry-and-sculpture.png'))
+   p.screenshot(path=str(OUT/'after-choir.png'));p.locator('a-scene canvas').focus();aim(p,-1.87,0);p.screenshot(path=str(OUT/'masonry-and-sculpture.png'));check(p.evaluate('(()=>{const g=Vesperfall.component,T=g.T,r=new T.Raycaster();r.setFromCamera(new T.Vector2(0,0),g.scene.camera);const hits=r.intersectObject(g.worldArt.group,true);const first=hits.find(h=>{let n=h.object;while(n){if(!n.visible)return false;n=n.parent;}return true;});let n=first?.object;while(n){if(n.name.startsWith("CC0 Marble Bust"))return true;n=n.parent;}return false;})()'),'The imported sculpture is visible at the aim point, not hidden inside a collision box')
    p.keyboard.press('KeyM');p.wait_for_function('!document.getElementById("map").hidden&&Vesperfall.component.cathedral.atlasBounds');bounds=p.evaluate('Vesperfall.component.cathedral.atlasBounds')
    check(bounds['maxX']-bounds['minX']>60 and bounds['maxZ']-bounds['minZ']>65,'The atlas scales to actual nonuniform room extents')
    check(p.evaluate('Vesperfall.component.worldArt.group.children.some(o=>o.name.includes("Marble Bust"))'),'The detailed sculpture is a loaded mesh inside the live game, not a preview image')
@@ -61,7 +66,7 @@ with sync_playwright() as pw:
    check(p.evaluate('JSON.stringify(Vesperfall.component.profile)')==profile,'Exploration practice never changes permanent Chronicle progression')
    p.keyboard.press('KeyP');p.wait_for_function('Vesperfall.component.paused');p.locator('#practice').click();p.wait_for_function('Vesperfall.component.worldArt.group.userData.loadedSculptures>0');check(p.evaluate('Vesperfall.component.art.cathedralStatus.textures===6&&Vesperfall.component.art.cathedralStatus.sculptures===1'),'Sector rebuild reuses the six decoded maps and one sculpture model')
   check(not errors,'No uncaught errors in the checked native A-Frame flow')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'world':w['architecture'],'state':snap(p),'assets':p.evaluate('Vesperfall.component.art.cathedralStatus'),'renderer':p.evaluate('({calls:AFRAME.scenes[0].renderer.info.render.calls,triangles:AFRAME.scenes[0].renderer.info.render.triangles,textures:AFRAME.scenes[0].renderer.info.memory.textures})'),'scope':'Actual HTTP A-Frame with ordinary inputs. Routes use 640x480 CSS / 320x240 drawing buffer; 1120x800 CSS captures. Half pixel ratio and disabled desktop sun shadows for CPU-only verification; visual frames use full ratio. Observations guide inputs but never assign actors or progression. Not physical Quest acceptance.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'world':w['architecture'],'state':snap(p),'assets':p.evaluate('Vesperfall.component.art.cathedralStatus'),'renderer':p.evaluate('({calls:AFRAME.scenes[0].renderer.info.render.calls,triangles:AFRAME.scenes[0].renderer.info.render.triangles,textures:AFRAME.scenes[0].renderer.info.memory.textures})'),'scope':'Actual HTTP A-Frame with ordinary inputs. Routes use 640x480 CSS / 320x240 drawing buffer; 2240x1600 CSS captures at half pixel ratio with the public sun-shadow option enabled. Traversal disables desktop sun shadows for CPU-only verification; visual frames use full ratio. Observations guide inputs but never assign actors or progression. Not physical Quest acceptance.'},indent=2))
  except Exception as e:
   try:debug=p.evaluate('({state:window.Vesperfall?.snapshot(),art:window.Vesperfall?.component.art.cathedralStatus,world:window.Vesperfall?.state.world.architecture})')
   except:debug=None

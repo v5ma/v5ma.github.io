@@ -47,14 +47,14 @@
     if(f.type==='bridge'){const along=f.w>f.d;for(const side of[-1,1]){const x=f.x+(along?0:side*(f.w/2-.16)),z=f.z+(along?side*(f.d/2-.16):0);b.box(pale,x,.64,z,along?f.w:.13,.15,along?.13:f.d);const n=Math.floor((along?f.w:f.d)/.65);for(let i=0;i<=n;i++)b.add(railLathe,stone,x+(along?(i/n-.5)*(f.w-.3):0),0,z+(along?0:(i/n-.5)*(f.d-.3)),.22,.63,.22);}}
    }
    for(const s of model.solids){const p=s.min.map((v,i)=>(v+s.max[i])/2),d=s.max.map((v,i)=>v-s.min[i]);
-    if(s.type==='roof-volume')continue;
+    if(s.type==='roof-volume'||s.type==='statue-plinth')continue;
     if(s.type==='column'){column(b,p[0],0,p[2],d[1]);continue;}
     if(s.type==='balustrade'){const along=d[0]>d[2],n=Math.max(1,Math.ceil((along?d[0]:d[2])/.52));b.box(pale,p[0],s.max[1]-.055,p[2],d[0]+.08,.13,d[2]+.08);b.box(dark,p[0],s.min[1]+.08,p[2],d[0],.16,d[2]);for(let j=0;j<=n;j++)b.add(railLathe,pale,p[0]+(along?(j/n-.5)*d[0]:0),s.min[1]+.12,p[2]+(along?0:(j/n-.5)*d[2]),.16,d[1]-.22,.16);continue;}
     b.box(s.type==='cover'?dark:s.type==='gallery-deck'?pale:stone,...p,...d);
     if(s.type==='wall'){b.box(pale,p[0],s.max[1]+.06,p[2],d[0]+.18,.16,d[2]+.18);if(s.min[1]<.1){b.box(dark,p[0],.18,p[2],d[0]+.16,.36,d[2]+.16);if(d[1]>6)b.box(pale,p[0],3.0,p[2],d[0]+.06,.12,d[2]+.06);}}
    }
    for(const r of model.rooms){const hw=r.w/2,hd=r.d/2,tall=r.planFamily==='nave',height=tall?10.4:r.planFamily==='court'?4.4:8.4;
-    for(const n of model.links[r.id]){const q=model.rooms[n],dx=Math.sign(q.x-r.x),dz=Math.sign(q.z-r.z);arch(b,r.x+dx*hw,0,r.z+dz*hd,2.25,6.2,dx?Math.PI/2:0);}
+    for(const n of model.links[r.id]){const q=model.rooms[n],dx=Math.sign(q.x-r.x),dz=Math.sign(q.z-r.z);arch(b,r.x+dx*hw,0,r.z+dz*hd,2.5,6.2,dx?Math.PI/2:0);}
     const solidSide=[[0,-1],[0,1],[-1,0],[1,0]].find(([dx,dz])=>!model.links[r.id].some(n=>Math.sign(model.rooms[n].x-r.x)===dx&&Math.sign(model.rooms[n].z-r.z)===dz));
     if(solidSide&&r.planFamily!=='court'){const [dx,dz]=solidSide;rose(parent,b,r.x+dx*(hw-.23),tall?6.5:5.65,r.z+dz*(hd-.23),tall?2.65:2.0,dx?Math.PI/2:0);}
     for(const side of[-1,1])for(let i=0;i<(tall?4:2);i++){const z=r.z+(i-(tall?1.5:.5))*(tall?4.3:4.8),x=r.x+side*(hw-.24);if(r.planFamily==='transept'&&Math.abs(z-r.z)>5.6)continue;arch(b,x,3.5,z,.69,3.2,Math.PI/2);b.box(copper,x-side*.03,4.9,z,.025,2.0,1.08);for(const dz of[-.3,0,.3])b.box(pale,x-side*.07,4.9,z+dz,.10,2.1,.044);}
@@ -76,7 +76,7 @@
    }
    for(const loft of [...model.architecture.lofts,...model.architecture.extraLofts]){const r=model.rooms[loft.room];kit.label(parent,'UPPER WALK / '+r.label.toUpperCase(),loft.entry[0],.85,loft.entry[2]-.5,2.4,.24,'#21383f','#e6d1a0');}
    kit.label(parent,'CHOIR GALLERY / ASCEND',-4.65,.9,4.4,2.35,.23,'#21383f','#e6d1a0');
-   for(const route of model.architecture.routes){for(const p of[route.a,route.b])arch(b,p[0],p[1],p[2],1.05,3.0,Math.PI/2,pale);kit.label(parent,'PROCESSIONAL SKYWALK / RELIQUARY',route.a[0]+3.5,4.45,route.a[2]-.98,3.0,.25,'#223039','#e8cf94');}
+   for(const route of model.architecture.routes){for(const p of[route.a,route.b])arch(b,p[0],p[1],p[2],1.4,3.0,Math.PI/2,pale);kit.label(parent,'PROCESSIONAL SKYWALK / RELIQUARY',route.a[0]+3.5,4.45,route.a[2]-.98,3.0,.25,'#223039','#e8cf94');}
    const tower=model.architecture.tower;if(tower)kit.label(parent,'BELFRY CROWN / 6.4 m',tower.entry[0],4.05,tower.entry[2]+.12,2.8,.25,'#263846','#e5cca0');
    for(const p of model.decorations||[]){b.add(lathe,dark,p.x,0,p.z,.75,1.0,.75);sculpture.then(asset=>{if(!asset||parent.userData.retired)return;const model=asset.clone(true),bounds=new T.Box3().setFromObject(model),size=bounds.getSize(new T.Vector3()),center=bounds.getCenter(new T.Vector3()),s=1.35/size.y;model.scale.setScalar(s);model.position.set(p.x-center.x*s,1-bounds.min.y*s,p.z-center.z*s);model.rotation.y=p.yaw||0;model.name='CC0 Marble Bust 01 / Poly Haven';model.traverse(o=>{if(o.isMesh)o.castShadow=o.receiveShadow=true;});parent.add(model);parent.userData.loadedSculptures=(parent.userData.loadedSculptures||0)+1;if(scene.renderer)scene.renderer.shadowMap.needsUpdate=true;});}
    for(const [i,p]of model.targets.entries()){b.add(cylinder,gold,p[0],p[1]/2,p[2],.05,p[1],.05);b.add(ringGeo,gold,...p,.48,.48,.3);b.add(sphere,copper,...p,.28,.28,.09);}
