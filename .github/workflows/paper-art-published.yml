@@ -1,0 +1,42 @@
+name: Verify published Paper Delivery artwork
+on:
+  push:
+    branches: [master]
+    paths: ['svgn-planet/**','.github/workflows/paper-art-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Match public meshes, images, source and homepage to the committed release
+        run: |
+          python - <<'PY'
+          import pathlib,urllib.request,hashlib,json,subprocess,time,concurrent.futures
+          source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          files=[p for p in pathlib.Path('svgn-planet').rglob('*') if p.is_file() and 'tests' not in p.parts and 'tools' not in p.parts and p.suffix in ['.html','.css','.mjs','.js','.json','.gltf','.bin','.png','.jpg','.webp','.txt']]+[pathlib.Path('index.html')]
+          expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files};results={}
+          def check(name):
+              try:
+                  with urllib.request.urlopen('https://v5ma.github.io/'+name+'?art='+source,timeout=20) as r:
+                      h=hashlib.sha256(r.read()).hexdigest();return name,{'status':r.status,'sha256':h,'match':h==expected[name]}
+              except Exception as e:return name,{'match':False,'error':str(e)}
+          for attempt in range(50):
+              pending=[name for name in expected if not results.get(name,{}).get('match')]
+              with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:results.update(pool.map(check,pending))
+              if len(results)==len(expected) and all(r['match'] for r in results.values()):break
+              time.sleep(5)
+          ok=len(results)==len(expected) and all(r['match'] for r in results.values())
+          pathlib.Path('art-publication.json').write_text(json.dumps({'source':source,'files':results,'all_match':ok},indent=2));assert ok,results
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: paper-art-publication
+          path: art-publication.json
+          retention-days: 14

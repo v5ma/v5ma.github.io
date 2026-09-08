@@ -1,0 +1,61 @@
+name: Paper Delivery graphics benchmark
+on:
+  push:
+    branches: [art/paper-city-visual-first-20260907]
+    paths: ['svgn-planet/**','.github/workflows/paper-graphics.yml']
+  pull_request:
+    paths: ['svgn-planet/**','.github/workflows/paper-graphics.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: paper-art-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  graphics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm unchanged gameplay and source assets
+        run: |
+          mkdir -p art-evidence
+          for f in model.mjs world.mjs presentation.mjs vehicles.mjs; do
+            git show 221844c60d56202bddadeba2bbec1cd204535e7f:svgn-planet/$f | cmp - svgn-planet/$f
+          done
+          node --test svgn-planet/tests/*.test.mjs >art-evidence/model-tests.txt
+          for f in svgn-planet/*.mjs; do node --check "$f"; done
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Compare the actual playable street before and after
+        run: |
+          mkdir -p /tmp/paper-before
+          git archive 221844c60d56202bddadeba2bbec1cd204535e7f svgn-planet | tar -x -C /tmp/paper-before
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/paper-art-http.log 2>&1 &
+          A=$!
+          python -m http.server 4174 --bind 127.0.0.1 --directory /tmp/paper-before >/tmp/paper-base-http.log 2>&1 &
+          B=$!
+          trap 'kill $A $B' EXIT
+          python -u svgn-planet/tests/graphics_browser.py
+      - name: Preserve source and actual browser captures
+        if: always()
+        run: |
+          mkdir -p art-evidence
+          cp -r svgn-planet/test-output art-evidence/ 2>/dev/null || true
+          git rev-parse HEAD > art-evidence/source-sha.txt
+          git diff --stat > art-evidence/uncommitted-diff.txt
+          tar --exclude=test-output --exclude=__pycache__ -czf art-evidence/source.tgz svgn-planet
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: paper-graphics-benchmark
+          path: art-evidence/
+          retention-days: 14
