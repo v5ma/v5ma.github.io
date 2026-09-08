@@ -3,6 +3,7 @@
  * Geometry and material assets are shared/instanced; low profile has separate
  * lower-detail model and texture files. Missing art leaves the old view usable. */
 import * as T from './vendor/three.module.js';
+import {recolorFacade} from './quay-detail.mjs';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 import {RGBELoader} from './vendor/loaders/RGBELoader.js';
 import {QUAY_BUILDINGS,QUAY_LAMPS,QUAY_PLANTERS,facadePlan} from './quay-layout.mjs';
@@ -10,7 +11,7 @@ export function installQuayArt({scene,renderer,quality,sky,hemi,sun,decks,fallba
  const profile=quality==='low'||/OculusBrowser|Quest/i.test(navigator.userAgent)?'mobile':'desktop',state={revision:'quay-art-1',profile,loaded:[],errors:[],settled:false,models:0,instances:0};
  const loader=new GLTFLoader(),textures=new T.TextureLoader(),root=new T.Group();root.name='Arrival Quay finished-art pass';scene.add(root);
  const materials=new Map();
- const url=file=>'./art/'+file;
+ const url=file=>new URL('./art/'+file,import.meta.url).href;
  const mat=(color,metalness=0,roughness=.85)=>{const key=[color,metalness,roughness].join('|');if(!materials.has(key))materials.set(key,new T.MeshStandardMaterial({color,metalness,roughness}));return materials.get(key);};
  const boxGeo=new T.BoxGeometry(1,1,1);
  function box(parent,x,y,z,w,h,d,material){const mesh=new T.Mesh(boxGeo,material);mesh.position.set(x,y,z);mesh.scale.set(w,h,d);mesh.castShadow=mesh.receiveShadow=true;parent.add(mesh);return mesh;}
@@ -21,17 +22,17 @@ export function installQuayArt({scene,renderer,quality,sky,hemi,sun,decks,fallba
    const m=new T.InstancedMesh(b.geometry,b.material,b.matrices.length);b.matrices.forEach((value,i)=>m.setMatrixAt(i,value));m.castShadow=b.shadow;m.receiveShadow=true;m.computeBoundingSphere();output.add(m);state.instances+=b.matrices.length;
   }root.add(output);return output;
  }
- function prepare(gltf,kind){gltf.scene.traverse(o=>{if(!o.isMesh)return;state.models++;o.castShadow=o.receiveShadow=true;const materials=Array.isArray(o.material)?o.material:[o.material];for(const m of materials){m.envMapIntensity=.6;if(/FakeInterior/i.test(m.name)){m.color.set('#29363a');m.emissive?.set('#a55f20');m.emissiveIntensity=.32;m.roughness=1;}if(/Glass/i.test(m.name)){m.color.set('#84aaac');m.metalness=.28;m.roughness=.15;m.opacity=.5;m.depthWrite=false;}
+ function prepare(gltf,kind){gltf.scene.traverse(o=>{if(!o.isMesh)return;state.models++;o.castShadow=o.receiveShadow=true;const materials=Array.isArray(o.material)?o.material:[o.material];for(const m of materials){m.envMapIntensity=.6;if(/FakeInterior/i.test(m.name)){m.color.set('#172e38');m.emissive?.set('#0a181e');m.emissiveIntensity=.1;m.roughness=.7;}if(/Glass/i.test(m.name)){m.color.set('#b1ccd0');m.metalness=.55;m.roughness=.13;m.opacity=.42;m.transparent=true;m.depthWrite=false;}
    for(const field of ['map','normalMap','roughnessMap','metalnessMap','aoMap'])if(m[field])m[field].anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
   }});return gltf.scene;
  }
  const jobs=[];
  jobs.push(attempt('modular architecture',async()=>{
   const library=prepare(await loader.loadAsync(url('architecture-'+profile+'.glb')),'architecture');
-  const templates=new Map(library.children.map(o=>[o.name,o]));
-  function piece(group,name,x,y,z,sx=1,sy=1,sz=1,yaw=0){const original=templates.get(name);if(!original)throw Error('Missing architecture module: '+name);const copy=original.clone(true);copy.position.set(x,y,z);copy.scale.set(sx,sy,sz);copy.rotation.y=yaw;group.add(copy);return copy;}
+  const templates=new Map(library.children.map(o=>[o.name,o]));let theme='brick';
+  function piece(group,name,x,y,z,sx=1,sy=1,sz=1,yaw=0){const original=templates.get(name);if(!original)throw Error('Missing architecture module: '+name);const copy=original.clone(true);copy.position.set(x,y,z);copy.scale.set(sx,sy,sz);copy.rotation.y=yaw;recolorFacade(copy,theme);group.add(copy);return copy;}
   const group=new T.Group();group.name='Licensed modular Quay facades';
-  for(const b of QUAY_BUILDINGS){
+  for(const b of QUAY_BUILDINGS){theme=b.theme;
    // The opaque core is behind the module faces; the existing game still owns
    // the unchanged solid footprint. These doors are closed, not fake new rooms.
    box(group,b.x,4.4,b.z,b.w-.58,8.8,b.d-.58,mat(b.theme==='brick'?'#815b44':'#d7ccb3'));

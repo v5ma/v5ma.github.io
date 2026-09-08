@@ -1,3 +1,4 @@
+import {polishEquipment} from './quay-detail.mjs';
 import {installQuayArt} from './quay-art.mjs';
 import {tacticsScene} from './tactics-scene.mjs';
 /* Existing public game with licensed CC0 Quay art; see art/manifest.json. */
@@ -20,7 +21,7 @@ export function makeView(canvas,quality='balanced'){
  }
  const box=(x,y,z,w,h,d,c,ry=0,kind)=>part('box',x,y,z,w,h,d,c,0,ry,kind);
  function beam(a,b,r,color){const mid=new T.Vector3().addVectors(a,b).multiplyScalar(.5),dir=new T.Vector3().subVectors(b,a),len=dir.length(),key='beam'+color;if(!buckets.has(key))buckets.set(key,{g:geometries.cylinder,m:material(color,'metal'),items:[]});quat.setFromUnitVectors(new T.Vector3(0,1,0),dir.normalize());matrix.compose(mid,quat,new T.Vector3(r,len,r));buckets.get(key).items.push(matrix.clone());}
- function label(text,x,y,z,w=8,h=3,bg='#244f5b',fg='#ffebbb',rotation=0){const c=document.createElement('canvas');c.width=768;c.height=Math.round(768*h/w);const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,c.width,c.height);g.strokeStyle=fg;g.lineWidth=4;g.strokeRect(10,10,c.width-20,c.height-20);g.textAlign='center';g.textBaseline='middle';const lines=text.split('\n'),fs=Math.min(85,c.height/(lines.length+1));g.font='600 '+fs+'px Georgia';g.fillStyle=fg;lines.forEach((line,i)=>g.fillText(line,384,c.height/2+(i-(lines.length-1)/2)*fs*1.16,695));const tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;tex.anisotropy=4;const mesh=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshStandardMaterial({map:tex,roughness:.8,side:T.DoubleSide}));mesh.position.set(x,y,z);mesh.rotation.y=rotation;scene.add(mesh);return mesh;}
+ function label(text,x,y,z,w=8,h=3,bg='#244f5b',fg='#ffebbb',rotation=0){const c=document.createElement('canvas');c.width=768;c.height=Math.round(768*h/w);const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,c.width,c.height);g.strokeStyle=fg;g.lineWidth=4;g.strokeRect(10,10,c.width-20,c.height-20);g.textAlign='center';g.textBaseline='middle';const lines=text.split('\n'),fs=Math.min(85,c.height/(lines.length+1));g.font='600 '+fs+'px Georgia';g.fillStyle=fg;lines.forEach((line,i)=>g.fillText(line,384,c.height/2+(i-(lines.length-1)/2)*fs*1.16,695));const tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;tex.anisotropy=4;const mesh=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshStandardMaterial({map:tex,roughness:.8,side:T.FrontSide}));mesh.position.set(x,y,z);mesh.rotation.y=rotation;scene.add(mesh);return mesh;}
  const rand=n=>{const v=Math.sin(n*127.1+311.7)*43758.5453;return v-Math.floor(v);};
  // Patterned stone plaza slabs are texture geometry, not a screenshot background.
  const texCanvas=document.createElement('canvas');texCanvas.width=texCanvas.height=256;const tc=texCanvas.getContext('2d');tc.fillStyle='#e5d8b9';tc.fillRect(0,0,256,256);for(let i=0;i<600;i++){tc.fillStyle=i%2?'#ffffff12':'#66523d0b';tc.fillRect(rand(i)*256,rand(i+8)*256,1+rand(i+3)*4,1);}tc.strokeStyle='#ad9e8255';tc.lineWidth=2;for(let i=0;i<=256;i+=64){tc.beginPath();tc.moveTo(i,0);tc.lineTo(i,256);tc.moveTo(0,i);tc.lineTo(256,i);tc.stroke();}const paving=new T.CanvasTexture(texCanvas);paving.wrapS=paving.wrapT=T.RepeatWrapping;paving.repeat.set(4,4);paving.colorSpace=T.SRGBColorSpace;
@@ -67,8 +68,8 @@ export function makeView(canvas,quality='balanced'){
   for(const s of[0,r.length]){const p=pointOnRail(r,s);part('cylinder',p.x,p.y-1.4,p.z,.12,2.8,.12,palette.gold);part('torus',p.x,p.y+.12,p.z,.58,.58,.58,palette.gold,0,0,'metal');label((s===0?r.to:r.from).toUpperCase()+'\nE  /  SKY CLAMP',p.x,p.y-1.15,p.z+.2,3.4,1.15);}
  }
  // Civic signage, original visual language, readable at street level.
- label('AETHER REACH\nPUBLIC FREIGHT AUTHORITY',-10,7.8,13.56,7,2.6);
- label('A CITY IS A PROMISE.\nKEEP IT.',11,6,-8.94,5.8,2.4,'#b5674e');
+ label('AETHER REACH\nPUBLIC FREIGHT AUTHORITY',-10,9.35,13.51,6.8,.65);
+ label('A CITY IS A PROMISE.\nKEEP IT.',11,9.35,-8.99,5.8,.65,'#b5674e');
  label('GLASSHOUSE\nGARDENS',74,13,-29.9,7,2.6);
  label('COPPERLIGHT\nWORKS',-35,20,-81.9,8,3,'#89654e');
  label('THE MERIDIAN\nLISTEN. THEN SPEAK.',44,33,-127.85,9,3.2);
@@ -99,6 +100,7 @@ export function makeView(canvas,quality='balanced'){
  for(let i=0;i<5;i++)movingPart('torus',material('#72bab5','metal'),[.39,-.26,-.84-i*.085],[.095,.095,.095],hand);
  movingPart('box',material('#eee1bb'),[.39,-.18,-.76],[.08,.08,.06],hand);movingPart('sphere',material('#90ffe2','glow'),[.39,-.26,-1.17],[.048,.048,.05],hand);
  movingPart('box',glove,[-.38,-.35,-.64],[.23,.19,.4],hook);movingPart('torus',handMetal,[-.37,-.22,-.86],[.18,.2,.18],hook);movingPart('box',handMetal,[-.37,-.05,-.88],[.09,.24,.07],hook);movingPart('sphere',material('#85d5cb','glow'),[-.36,-.19,-.76],[.04,.04,.04],hook);
+ polishEquipment(camera);
  const sparks=[];let lastShot=-1;const projectileGeo=new T.SphereGeometry(.1,6,4),enemyMat=new T.MeshBasicMaterial({color:'#ff7b5b'});const bulletMeshes=Array.from({length:32},()=>{const m=new T.Mesh(projectileGeo,enemyMat);m.visible=false;scene.add(m);return m;});
  function effect(e){combatArt.effect(e);tacticalArt.effect(e);if(e.type==='shot'){const geo=new T.BufferGeometry().setFromPoints([new T.Vector3(e.o.x,e.o.y,e.o.z),new T.Vector3(e.end.x,e.end.y,e.end.z)]),line=new T.Line(geo,new T.LineBasicMaterial({color:e.hit?'#fff3af':'#83e5d5',transparent:true,opacity:1}));scene.add(line);sparks.push({mesh:line,t:.10});lastShot=performance.now();}if(e.type==='pulse'){const mesh=new T.Mesh(new T.SphereGeometry(1,18,10),new T.MeshBasicMaterial({color:'#73e5d9',transparent:true,opacity:.25,wireframe:true}));camera.getWorldPosition(mesh.position);scene.add(mesh);sparks.push({mesh,t:.6,pulse:true});}}
  function update(state,dt,menu=false,reduced=false){tacticalArt.update(state,dt,menu,renderer.xr.isPresenting);const t=state.time;
@@ -108,7 +110,7 @@ export function makeView(canvas,quality='balanced'){
   for(let i=0;i<bulletMeshes.length;i++){const v=bulletMeshes[i],b=state.bullets[i];v.visible=!!b;if(b)v.position.set(b.x,b.y,b.z);}
   for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];s.t-=dt;if(s.t<=0){scene.remove(s.mesh);s.mesh.geometry.dispose();s.mesh.material.dispose();sparks.splice(i,1);continue;}if(s.pulse){s.mesh.scale.setScalar(1+(1-s.t/.6)*13);s.mesh.material.opacity=s.t*.35;}else s.mesh.material.opacity=s.t*10;}
   if(!reduced){turbines.forEach(g=>g.rotation.z+=dt*.2);flags.forEach((m,i)=>{const pos=m.geometry.attributes.position;for(let k=0;k<pos.count;k++){const x=pos.getX(k);pos.setZ(k,Math.sin(x*1.5+t*2.3+i)*.18*(x+1.5)/3);}pos.needsUpdate=true;m.geometry.computeVertexNormals();});}
-  hand.visible=false;hook.visible=!menu&&!renderer.xr.isPresenting&&(!state.tactics?.learned||state.tactics.power==='pulse'||!!state.p.rail)&&!(state.p.scoped&&state.p.weapon==='sniper');hook.scale.setScalar(.78);hook.position.x=-.055;hook.position.z=-.09;combatArt.update(state,dt,menu,reduced,renderer.xr.isPresenting);hook.position.y=state.p.rail?.24:0;hook.rotation.z=state.p.rail?-.18:0;
+  hand.visible=false;hook.visible=!menu&&!renderer.xr.isPresenting&&(!state.tactics?.learned||state.tactics.power==='pulse'||!!state.p.rail)&&!(state.p.scoped&&state.p.weapon==='sniper');hook.scale.setScalar(.78);hook.position.x=-.055;hook.position.z=-.24;combatArt.update(state,dt,menu,reduced,renderer.xr.isPresenting);hook.position.y=state.p.rail?.24:-.07;hook.rotation.z=state.p.rail?-.18:0;
   const recoil=Math.max(0,1-(performance.now()-lastShot)/140);hand.position.z=recoil*.075;hand.rotation.x=recoil*.06;
  }
  function resize(w,h){if(renderer.xr.isPresenting)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}

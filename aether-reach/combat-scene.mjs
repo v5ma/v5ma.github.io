@@ -39,13 +39,13 @@ export function combatScene(T,{scene,camera,part,box,label,material,movingPart})
   if(w.id==='sniper'){movingPart('box',dark,[.35,-.29,-.94],[.16,.18,1.13],g);movingPart('cylinder',brass,[.35,-.25,-1.6],[.037,.65,.037],g).rotation.x=Math.PI/2;movingPart('cylinder',color,[.35,-.1,-.99],[.085,.45,.085],g).rotation.x=Math.PI/2;movingPart('torus',brass,[.35,-.1,-.76],[.092,.092,.092],g);movingPart('box',color,[.35,-.48,-.93],[.13,.28,.19],g);}
   else if(w.id==='scatter'){movingPart('box',brass,[.35,-.3,-1.03],[.3,.19,.78],g);for(const x of[.26,.44])movingPart('cylinder',dark,[x,-.27,-1.4],[.073,.65,.073],g).rotation.x=Math.PI/2;movingPart('box',color,[.35,-.43,-1.22],[.35,.12,.3],g);}
   else if(w.id==='carbine'){movingPart('box',color,[.35,-.29,-1.0],[.2,.27,.65],g);movingPart('box',dark,[.35,-.5,-.95],[.15,.36,.2],g);movingPart('cylinder',dark,[.35,-.23,-1.45],[.045,.52,.045],g).rotation.x=Math.PI/2;movingPart('torus',brass,[.35,-.12,-.92],[.06,.06,.06],g);}
-  else{movingPart('box',brass,[.35,-.29,-.9],[.21,.22,.6],g);for(let i=0;i<5;i++)movingPart('torus',color,[.35,-.26,-.82-i*.085],[.085,.085,.085],g);}
+  else{movingPart('box',brass,[.35,-.29,-.9],[.21,.22,.6],g);for(let i=0;i<5;i++)movingPart('torus',color,[.35,-.26,-.82-i*.085],[.13,.13,.13],g);}
   guns.set(w.id,g);
  }
  const marker=new T.Mesh(new T.TorusGeometry(.4,.06,6,24),new T.MeshBasicMaterial({color:'#acfff0',depthTest:true}));scene.add(marker);let recoil=0;
  function effect(e){if(e.type==='shot')recoil=1;}
  function update(s,dt,menu=false,reduced=false,xr=false){
-  recoil=Math.max(0,recoil-dt*7);for(const [id,g] of guns){g.visible=!menu&&!xr&&s.p.weapon===id&&!(s.p.scoped&&id==='sniper');g.position.z=recoil*.08;g.rotation.x=recoil*.035;g.position.x=s.p.scoped?-.22:0;g.position.y=s.p.scoped?.12:0;}
+  recoil=Math.max(0,recoil-dt*7);for(const [id,g] of guns){g.visible=!menu&&!xr&&s.p.weapon===id&&!(s.p.scoped&&id==='sniper');g.position.z=-.2+recoil*.08;g.rotation.x=recoil*.035;g.position.x=.04+(s.p.scoped?-.22:0);g.position.y=-.09+(s.p.scoped?.12:0);}
   for(const b of s.drones){const v=bots.get(b.id);if(!v)continue;v.g.visible=b.hp>0;v.beam.visible=!menu&&b.hp>0&&b.telegraph>.03&&b.kind==='sentry';if(b.hp<=0)continue;v.g.position.set(b.x,b.y,b.z);v.g.lookAt(s.p.x,b.y,s.p.z);v.eye.material.color.set(b.stun>0?'#a1ffee':b.telegraph>.1?'#ff8063':'#c7b8ee');v.hp.scale.x=Math.max(0,b.hp/b.maxHp);if(v.beam.visible){const a=v.beam.geometry.attributes.position;a.setXYZ(0,b.x,b.y,b.z);a.setXYZ(1,s.p.x,s.p.y+1.1,s.p.z);a.needsUpdate=true;v.beam.geometry.computeBoundingSphere();}}
   for(const d of drops.values())d.g.visible=false;for(const item of loot(s)){const d=drops.get(item.id);if(!d)continue;d.g.visible=true;d.g.position.set(item.x,item.y,item.z);if(!reduced)d.halo.rotation.z=s.time*.8;}
   const target=menu?null:railTarget(s);marker.visible=!!target&&!s.p.grounded;if(target){marker.position.set(target.point.x,target.point.y,target.point.z);marker.quaternion.copy(camera.quaternion);}
