@@ -1,89 +1,75 @@
 # Vesperfall — Arrows Unchained
 
-An original A-Frame archery roguelite prototype, targeting Quest 3 through immersive WebXR and offering a keyboard/mouse practice mode. This is not a port, asset pack or endorsed version of any commercial game. The model, code, world layouts, UI and procedural artwork are original; A-Frame is vendored under its license.
+Original A-Frame browser archery roguelite, with a Quest 3-targeted immersive WebXR preview. The current development series is **v0.5.0 / Living Cathedral**. Check the publication workflow for the version actually served at https://v5ma.github.io/vesperfall/index.html . A branch or successful model test is not a deployment receipt.
 
-## Run
+The game remains in the existing `vesperfall/` folder. The earlier `gloamward/` address forwards here. Other public projects and unpublished story material are separate. No private narrative, privileged service key, account system or remote story import is part of this app or its workflows.
 
-Serve the repository root over HTTP for desktop development (`python -m http.server 4173`). Open `/vesperfall/index.html`. Immersive VR requires HTTPS (or a trusted localhost origin), an immersive-WebXR-capable browser and tracked controllers. The public app fetches no CDN assets, remote fonts, models, credentials or accounts.
+## Play and controls
 
-## Play
+Defeat five wardens, reach the open beacon, choose a blessing, then enter another generated sector. Enemy-free practice and single-opponent combat trials use the same movement/projectile rules without advancing permanent achievements.
 
-A seeded sector has nine connected cloisters, ten door/bridge links, five wardens, optional supplies, four practice targets and one locked beacon. Clear the wardens; reach the beacon and interact; choose a blessing to generate the next sector. Depth increases health/difficulty, cycles among three original palettes, and rerolls the layout. This is endless sector succession, not an unbounded continuously streamed world. Renown from kills is banked at death or sector completion, once per active run. Two permanent upgrades apply on the next run. Saves are local, editable client data, not a secure leaderboard.
+Desktop: WASD moves; mouse dragging or arrow keys look. Hold click or Space to draw; release to fire. Q/right-click cancels. 1/2/3/4/5 select Standard/Cinder/Frost/Blink/Volley. E uses the beacon. Ctrl crouches; M toggles the atlas; P/Escape pauses. V switches bow/crossbow; R manually reloads; hold H raises Wardglass; B spends a regenerating shard step. Clickable/touch equipment controls expose the same actions.
 
-Desktop: WASD moves, mouse (after clicking) or arrow keys looks, hold click or Space to draw, release to fire, Q/right-click cancels. 1/2/3/4 choose standard/cinder/frost/blink. E uses the beacon. Ctrl crouches, M toggles the map, P/Escape pauses. Standard gamepad: sticks move/look, RT draw/release, A interact, Y cycle arrow, B toggle blink, LB cancel, Menu pause. Touch has movement, drag looking, draw and interact buttons.
+Standard gamepad: sticks move/look, RT draws or fires, A interacts, Y cycles arrows, B toggles Blink, LB cancels, Menu pauses. LT holds the shield, X reloads, RB shard-steps, and right-stick click switches weapon. Unknown non-standard mappings are not promised. Physical Xbox/controller testing remains open.
 
-Quest preview: bow is held in the chosen bow hand. Bring the other hand close to its string, hold the draw-hand trigger, physically draw back and release the trigger. Both controller poses must be valid. Draw-hand A cycles arrows; B toggles blink arrows. Bow-hand X interacts; Y opens the spatial menu. Right/draw-hand stick snap-turns. Blink-arrow travel is the default; slow stick locomotion is opt-in. The menu supports controller rays or stick navigation and has Exit VR. Draw lengths of 40/56/70 cm are options, not calibrated anatomical claims. Camera head tracking remains independent of locomotion. Pose loss, pausing, overextension and session changes cancel a drawn arrow.
+Quest preview: select a bow hand in the menu. Bring the other controller to the string, hold that hand's trigger, pull back and release. Both poses must be valid. Draw-hand A cycles arrows; B toggles Blink. Bow-hand X interacts and Y opens the spatial menu. Draw-hand stick snap-turns. Bow-hand grip holds the shield; draw-hand grip performs a shard step. Bow-hand stick click changes weapon; draw-hand stick click reloads the crossbow. The crossbow aims with the bow controller and fires with the draw-hand trigger. Pose loss and session/menu transitions cancel held actions and require a fresh neutral trigger. Spatial menus provide Exit VR.
 
-Standard arrows are unlimited. Cinder bursts affect nearby unoccluded enemies. Frost slows enemies. Blink arrows move you only after a projectile reaches a clear floor with sufficient landing space. Teleport preview shares the actual projectile stepping and first-hit tests; it cannot bypass walls or place the player inside an enemy. Misses do not refund special arrows. Real head position is used for incoming bolts so ducking/dodging changes collision.
+Blink-first locomotion is the default; slow stick locomotion is opt-in. Draw-length options are 40/56/70 cm, not anatomical calibration guarantees. Head tracking remains independent of virtual movement. A clear real-world play space is still required: virtual collision is not a physical safety boundary. Stop if uncomfortable.
 
-## Honest scope
+## Living Cathedral: more than shuffled square rooms
 
-Physical Quest 3 testing is still required for hand alignment, bow feel, locomotion comfort, floor calibration, stereo performance, thermal behavior and battery use. API emulation is not that testing. There is no hand-tracking-only mode, full-body avatar, multiplayer, cloud save, commercial asset reuse or complete campaign. The v0.3 crossbow uses a deliberate button reload, not a physical wind/reload gesture. Continuous cliffs are prevented by the virtual footprint; do not rely on the game for real-world boundary safety. Play in a clear space and stop if uncomfortable.
+Each bounded sector still uses **nine logical room positions** and a connected spanning path with two extra graph links. It is not an unbounded, streamed or arbitrary freeform city. The same seed and depth recreate a layout; increasing depth rerolls it.
 
-The public prototype uses disposable original lore. No private repository, unpublished story, privileged service key or private narrative material is part of this app or its build. Existing public games are separate. Only the new folder and the root homepage link are intended changes.
+What changes in v0.5: seeded column/row spacing, true room width/depth, physical perimeter shapes, bridge lengths and the placement of a high inter-room route. Five new families accompany the preserved Choir Court: the 16×22 m Long Nave, 20×18 m Rain Court, actual cross-shaped 20×20 m transept, 16×18 m Archive and 18×20 m Belfry. Doorways are cut only where graph connections actually exist. Naves and archives have solid pitched roof volumes; courts remain open. Decorative skyline details are not all enterable spaces.
 
-## Architecture and tests
+**Processional Skywalk:** ascend a room's stair to the 3.2 m gallery, cross an elevated connection to another room, and descend its other staircase. Travel works in both directions and the ground route is still available. The route has physical floors, side rails, doorway clearances and stair-mouth slab notches.
 
-- `core.js`: deterministic generation, connected layout, collision, ballistic shots, enemies, rewards.
-- `input.js`: tracking-aware two-hand bow state machine and bounded local profile.
-- `art.js`: original batched geometry using A-Frame's THREE instance.
-- `app.js`: A-Frame component and VR/desktop lifecycle, rendering and controls.
-- `tests/core.test.cjs`: finite seed, physics, progression and input fixtures.
-- `tests/browser.py`: real HTTP/A-Frame desktop mission and emulated-XR acceptance. Input drivers send keys or device poses; they never assign player position, enemy health or progress.
+**Belfry Crown:** a second flight begins on an upper gallery and reaches a 6.4 m balcony. Climb, explore, and return through the same continuous geometry; no scripted teleport is used to make the stairs work.
 
-Run `node --test vesperfall/tests/core.test.cjs`. Browser suites require Playwright Chromium and a server at 4173. See the separate source/publication workflows for exact source hashes and reports. Do not equate a working renderer or a passing fixture with fun or hardware certification.
+Two optional reliquaries reward these routes: the skywalk cache and belfry cache each add 100 run score and restore up to 12 vitality. They are single-use within the sector and height-gated, so walking underneath cannot collect them. Practice can demonstrate the reward but never banks Chronicle progress or renown. Their gold diamonds and the dashed upper connection appear on the rescaled atlas. District names and current elevation help orient the player.
 
-### Primary technical references
+For a first look, use seed `BELL-01`, choose Practice, then press M. The gold upper link joins the High Belfry and Rain Court; a second stair in the Belfry reaches its crown. Other seeds preserve the circulation rules but change the arrangement.
 
-- A-Frame 1.8.0 release: https://github.com/aframevr/aframe/releases/tag/v1.8.0
-- A-Frame WebXR system: https://aframe.io/docs/1.8.0/components/webxr.html
-- A-Frame tracked controller concepts: https://aframe.io/docs/1.8.0/components/tracked-controls.html
-- A-Frame renderer settings: https://aframe.io/docs/1.8.0/components/renderer.html
-- WebXR input sources: https://immersive-web.github.io/webxr/#xrinputsource-interface
+## Graphics and real asset intake
 
+This is an art-production pass, not another concept-image promise. The app now uses local, optimized **Poly Haven CC0** assets: Castle Brick 01 and Cobblestone Floor 02 by **Rob Tuytel**, plus Marble Bust 01 by **Rico Cilliers**. Photographed color/OpenGL-normal/packed-occlusion-roughness-metalness maps are limited to 1024px. The sculpture retains its 17,456-triangle mesh and embeds 512px material images into a 586,700-byte GLB. The seven binary derivatives total about 2.15 MB. Exact bytes, authors, original URLs, transformations and checksums are recorded in `assets/cathedral/ASSET-REGISTER.json`. License: https://polyhaven.com/license . The website's example renders are not used.
 
-## Gothic gallery pass / v0.2.0
+The original structural artwork now uses continuous beveled pointed arches instead of rows of little blocks, lathed balustrades, clustered columns, distinct roof silhouettes, original leaded rose-glass patterns, contrasting trim and world-scaled UVs. Materials and the loaded sculpture are reused across generated sectors. Static geometry is batched by material and spatial cell so offscreen portions can be culled. Small balustrade posts have a lighter mesh than foreground columns.
 
-This continues the existing Vesperfall A-Frame implementation. The separately supplied Gloamward source candidate is not silently mixed into its mechanics. `/gloamward/` forwards to the maintained browser game to keep the previously suggested address useful.
+Optional desktop sun shadows are cached for static architecture and refreshed when the world/sculptures rebuild or the option changes. This is not animated character-shadow support. Shadows are disabled during immersive VR and start disabled on coarse-pointer devices. There is no promise of a particular frame rate without profiling physical hardware. Daylight/twilight settings remain available.
 
-New original assets: generated masonry/cobblestone textures, radial rose glass, vault ribs, window tracery, paired pillars, archive props, a bow wrist brace and enemy armor trim. References informed architectural scale, material contrast and first-person composition; no screenshot, ripped asset, franchise character, level, dialogue or sound is included.
+The old stylized bow, hands and combat characters remain a visual gap; this pass does not pretend a stone material makes them finished character art. Detailed imported character/weapon assets, animation and richer foliage need separate coherent art/rigging work. Do not scatter unrelated free packs into the scene.
 
-The starting room has a real 3.2 m choir gallery. Walk to the left-hand staircase near the starting courtyard's back edge, ascend, cross the upper walk, then return down the same stair. Walking, clearances, blink landings and arrow collisions account for height. This is one accessible upper gallery, not a claim that every visible tower is explorable. Other room doorways, five-enemy progression and blessing gates remain connected.
+## Preserved combat and progression
 
-A-Frame references: https://aframe.io/docs/1.8.0/introduction/best-practices.html and https://aframe.io/docs/1.8.0/introduction/developing-with-threejs.html . Runtime creation remains owned by the existing A-Frame component; static repeated geometry is batched and local textures are reused. No hardware FPS or headset comfort claim follows from this implementation.
+The Living Bow uses actual draw strength; Bellsteel has a separate loaded/empty state and timed manual reload. Switching weapons does not refill it. Standard arrows are unlimited; Cinder/Frost/Volley charges are finite. Cinder detonates on first impact including stone/floors and respects blast occlusion. Frost briefly freezes and interrupts attacks. Volley releases three independent projectiles for one charge, after its milestone is earned; practice has a separate trial supply.
 
-Release gates: core/vertical checks, desktop controls, actual full expedition, tracked-device emulation and normal-input gallery ascent/return, followed by served-file hash verification. Quest 3 physical play-space, tracking, draw calibration and sustained performance remain open.
+Wardglass is a directional disk, not omnidirectional invulnerability. It consumes guard, breaks and recovers; raised guard prevents firing. Short shard steps follow supported, unobstructed ground and stop at walls, enemies or gaps. They are button-triggered microdashes, not a physical throwing gesture. Crossbow winding is likewise a button action, not a tracked-hand reload gesture.
 
+Blink previews use the same fixed-step projectile and first-hit/landing rules as actual arrows. Green indicates a valid destination at the current draw strength; coral indicates a blocked/invalid trajectory. Changing draw before release changes the path, and an enemy can move into the destination. Neither previews nor blinks ignore the underside of floors or solid roofs. A light draw is useful for nearby upper landings.
 
-## Arrows Unchained / v0.3.0
+Ash Cantors telegraph committed three-bolt volleys. Rift Hounds charge a fixed line and recover. Bell Sentinels deflect frontal torso shots while exposing head/flank/recovery opportunities. Ground patrol routing remains room-graph based; this is not a claim that every enemy has advanced multistorey navigation.
 
-This continues the live browser game at https://v5ma.github.io/vesperfall/index.html . Existing renown, purchases and local best scores are migrated in place. The homepage route and earlier-name redirect are retained.
+The local Chronicle banks new run-counter deltas on death, sector completion or a deliberate restart: five kills unlock trial Volley charges for new runs; three precision hits improve reload; five blocks improve guard; five blinks add a shard charge; one cleared sector unlocks optional Nightfall. Practice never advances those totals. Existing renown, purchased health/power improvements and records migrate in place. These are editable local client records, not secure cloud accounts or full-run save/resume.
 
-**Combat tools:** V switches bow/crossbow; R manually reloads the crossbow; hold H raises the directional Wardglass shield; B spends a regenerating shard for a short supported-ground step; 5 selects three-arrow Volley. Clickable controls expose the same actions. Bow charge remains physical/held input; crossbow fires once per fresh press, with a real empty state and manual timed reload. Switching weapons cannot refill it.
+## Verification and release
 
-**Defend, then shoot:** the shield has a front-facing disk, not omnidirectional invulnerability. It drains guard while held and on a hit, breaks under pressure, and regenerates after recovery. You cannot shoot through your own raised guard. Wardens commit their projectile aim at windup so dodging is meaningful. Shard steps stop before walls, enemies or unsupported edges. They are directional microdashes, not simulated physical thrown-shard gestures.
+`node --test vesperfall/tests/*.test.cjs` exercises the deterministic source. The v0.5 model suite includes 100 seeds walked continuously through both directions of the skywalk and up/down the belfry, correct-height one-time rewards, and floor/projectile clearance checks. A finite seed sample is not a universal proof or a human enjoyment rating.
 
-**Blink:** the displayed arc now uses exactly the same fixed-step projectile and first-hit collision as the fired arrow. A green marker means a clear landing at the current draw; coral shows a blocked/invalid destination. This is not auto-aim: releasing at a different charge changes the trajectory, and moving enemies may occupy the destination before impact. The starting gallery has a widened marked central landing. A light pull, rather than maximum range, is useful for nearby upper floors. The underside still blocks arrows.
+Native Playwright checks use the actual HTTP A-Frame renderer and ordinary keys/buttons; observations guide navigation without assigning player positions, enemy health, game time or rewards. The `cathedral-browser.py` visual suite records matching views of the exact prior version and current scene at full pixel ratio. Long route checks reduce only the software GPU drawing buffer, disable the exposed desktop-shadow option, and record their resolution in the report. Model fixtures, native rendering, emulated XR and physical-device acceptance are different evidence categories. An earlier route timeout is retained; diagnostics distinguish time limits from actual movement stalls.
 
-**Chronicle:** banked totals unlock Choirbreaker (five kills, four Volley charges in new runs), Steady Hand (three precision hits, faster crossbow reload), Unbroken (five blocks, more guard), Wayfarer (five blinks, a third step charge), and Beyond the Bell (one sector, optional Nightfall). Practice offers trial arrows but never advances achievements. Scores are local editable client records, not a secure online leaderboard. This is not full-run save/resume.
+Existing equipment, full-sector, gallery, combat, launch and emulated-XR suites remain release gates. Physical Quest 3 controller alignment, bow feel, floor calibration, comfort, sustained stereo frame time, thermal behavior and battery use are still unverified. Passing API emulation is not hardware certification.
 
-**Quest preview additions:** bow-hand grip holds the shield; draw-hand grip performs one shard step; bow-hand stick click switches weapons; draw-hand stick click reloads. Crossbow aim follows the bow controller, fired by the draw-hand trigger. A fresh neutral trigger is required after tracking returns. Existing two-hand bow, face-button arrow selection, snap turning and spatial menus remain. For standard gamepads: LT shield, X reload, RB step, right-stick click weapon; RT fires/draws, A interacts and Y cycles arrows. Physical controller and Quest 3 calibration, frame time, comfort and thermal testing remain open.
+Read-only workflows preserve exact tested-source hashes, screenshots and failure reports. The separate publication workflow compares declared served bytes to the merged source and launches the actual homepage game card. Only that receipt establishes a public release; metadata and this README alone do not.
 
-Original shield/crossbow geometry, pooled embers, a twilight/daylight option and an opt-in quiet synthetic choir drone accompany the mechanics. There are no ripped sounds, recorded Gregorian chants, franchise characters, private narrative imports or remote credentials. Source existence and emulated tests do not establish commercial-quality graphics or physical-headset acceptance.
+## Source map
 
-New modules are `chronicle.js` (bounded local progression) and `arsenal.js` (equipment presentation and input integration). `tests/unchained.test.cjs` contains 17 new pure regression scenarios; `unchained-browser.py` and `unchained-combat.py` drive the actual A-Frame app through ordinary UI/keyboard events or emulated device poses. Native source manifests and failures are preserved by the read-only acceptance workflow. Publication is confirmed only by the separate served-file receipt.
+- `core.js`, `encounters.js`: movement, projectiles, guard, foes, rewards and deterministic combat.
+- `districts.js`, `architecture.js`: seeded plans and shared physical floors/solids.
+- `cathedral-art.js`, `cathedral-ui.js`: material-authored world, local glTF, scaled atlas and visual settings.
+- `art.js`, `gothic-art.js`, `hunt.js`, `arsenal.js`: retained equipment/foe rendering and input feedback inside the existing A-Frame scene.
+- `input.js`, `chronicle.js`, `app.js`: input, lifecycle, local records and the shared runtime.
+- `scripts/prepare-cathedral-assets.py`: optional named-asset production intake; never called by the game or read-only tests.
+- `roadmap.json` / `roadmap.html`: committed plan and browser-local planning board. Board edits do not mutate GitHub or saved runs.
 
-
-## Hollow Hunt / v0.4.0
-
-The existing shields, bow/crossbow, finite spell quivers, blink previews, shard steps and Chronicle remain. This update differentiates the opponents: Ash Cantors telegraph a committed three-bolt volley; Rift Hounds mark and charge a fixed line, then recover; Bell Sentinels deflect frontal torso shots with a physical shield but expose their heads and drop guard while attacking/recovering. Moving after windup, blocking, flanking and precise shots now serve different purposes.
-
-Cinder now detonates on its first physical impact, including floors and walls. Nearby enemies take falloff damage only with clear line of sight; cover blocks the burst. Frost briefly immobilizes and interrupts attacks/charges before slowing movement (shorter freezing for sentinels). Player guard and all projectile/teleport checks remain active.
-
-The menu adds three repeatable single-opponent combat trials and a field guide. They use real enemy AI and damage, but are always practice: no permanent unlocks, renown or records can be farmed. Use the browser menu to select a trial before entering VR. Existing headset weapon, grip, arrow and movement controls are unchanged.
-
-Two nearby non-beacon rooms now have an additional upper gallery with stairs on both sides. Each creates a continuous optional loop from the ground, across an upper firing route, and back down. Cinder/Frost caches are elevation-gated: walking under an upper supply no longer collects it. The original choir gallery and all ground-level graph links remain. This is three rooms with galleries, not a fully traversable city or a complete campaign.
-
-Original jointed enemy models, shield geometry, overhead vitality bars, windup rings, charge lines, impact colors and a context-sensitive threat readout make combat readable. Supported XR haptics provide brief bounded feedback; the game still works without haptics. Rendered geometry and shared collider positions agree at head and shield targets.
-
-New source modules: `encounters.js` is deterministic enemy behavior; `hunt.js` owns models and presentation inside the existing A-Frame component; `hunt.css` styles trials and feedback. `tests/hunt.test.cjs` checks combat/occlusion/vertical routes, and `tests/hunt-browser.py` drives the real game through ordinary UI and keyboard events. Release evidence must distinguish those tests from physical Quest 3 tracking, comfort and sustained frame-rate measurements, which remain open.
+A-Frame is vendored under its license. Technical references: https://aframe.io/docs/1.8.0/introduction/developing-with-threejs.html and https://aframe.io/docs/1.8.0/components/material.html . No external runtime CDN, account, tracking service or commercial-game asset is required.
