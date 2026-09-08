@@ -1,3 +1,4 @@
+import {reducedColorMap} from './texture-budget.mjs';
 import {reducedWorldTexturing} from './surface-work.mjs';
 /* Public rendering presets, not test-only shortcuts. Reduced mode replaces
  * costly per-pixel PBR/bump work with lit diffuse materials; geometry, AI,
@@ -9,9 +10,9 @@ export function graphicsPreset(scene,renderer){
   if(!original?.isMeshStandardMaterial)return original;
   if(variants.has(original)&&variants.get(original).userData.sourceVersion!==original.version){variants.get(original).dispose();variants.delete(original);}if(!variants.has(original)){
    const m=new T.MeshLambertMaterial({color:original.color,map:original.map,emissive:original.emissive,emissiveIntensity:original.emissiveIntensity,transparent:original.transparent,opacity:original.opacity,side:original.side,alphaTest:original.alphaTest,depthWrite:original.depthWrite,depthTest:original.depthTest,vertexColors:original.vertexColors,flatShading:original.flatShading});
-   if(original.userData.worldSurface){
-    reducedWorldTexturing(m,original.userData.worldSurface);
-    if(original.map){if(!lowMaps.has(original.map)){const texture=original.map.clone();texture.anisotropy=1;texture.needsUpdate=true;lowMaps.set(original.map,texture);}m.map=lowMaps.get(original.map);}
+   if(original.userData.worldSurface)reducedWorldTexturing(m,original.userData.worldSurface);
+   if(original.map&&(original.userData.worldSurface||original.map.image?.width>512||original.map.image?.height>512)){
+    if(!lowMaps.has(original.map))lowMaps.set(original.map,reducedColorMap(original.map));m.map=lowMaps.get(original.map);
    }
    m.userData.sourceVersion=original.version;m.name='Reduced / '+(original.name||'surface');variants.set(original,m);
   }
