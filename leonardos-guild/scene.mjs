@@ -81,7 +81,7 @@ export function createScene(canvas,w,s,quality='high'){
   townLife.update(p,dt,currentRoom);streetArt.update(p,dt);renderer.render(scene,camera);
  }
  function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
- function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.85:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
+ function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;streetArt.setQuality(value);renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.85:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
  function recenter(){orbit=pitch=0;}
  function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
  setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),art:streetArt.inspect()})};
