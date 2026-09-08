@@ -18,9 +18,18 @@ export function createScene(canvas){
  const trail=Array.from({length:361},(_,i)=>at(i/360*Math.PI*2*RADIUS,0));road(root,trail.slice(6,176),2.4,'#c6b98d',.13);road(root,trail.slice(186,356),2.4,'#c6b98d',.13);
  const network=createNeighborhoodNetwork(root),stat=new T.Group(),fallback=new T.Group();root.add(stat,fallback);
  for(let t=0;t<Math.PI*2*RADIUS;t+=4){const g=new T.Group();stat.add(g);faceSurface(g,street(t),add(street(t+1),mul(street(t),-1)));mesh(g,'box','#e9d29b',[0,.22,0],[.085,.018,1.65]);}
- const link=(a,b,count=17)=>Array.from({length:count},(_,i)=>norm(add(mul(a,1-i/(count-1)),mul(b,i/(count-1)))));
- for(const [i,s] of WORLD.buildings.entries()){if(s.type!=='garden')home(fallback,s,i);groundShadow(stat,s.n,3.2,3);road(root,link(s.mail,s.n),1.25,'#c9c1ad',.24);}
- for(const t of WORLD.trees){if(t.id.startsWith('avenue-')||t.id.startsWith('street-tree-'))leafyTree(fallback,t);else avenueTree(fallback,t);groundShadow(stat,t.n,1.55*t.size,1.3*t.size);}for(let i=0;i<8;i++)streetLamp(stat,9+i*15,i%2?1:-1);
+ // The detailed CC0 art is loaded asynchronously before Start is enabled. Keep
+ // this synchronous fallback deliberately small so the app and diagnostics are
+ // available immediately even in software WebGL and on phones.
+ const link=(a,b,count=7)=>Array.from({length:count},(_,i)=>norm(add(mul(a,1-i/(count-1)),mul(b,i/(count-1)))));
+ for(const [i,s] of WORLD.buildings.entries()){
+  const original=WORLD.sites.includes(s)||s.id.startsWith('scenery-main-');
+  if(original&&s.type!=='garden')home(fallback,s,i);
+  if(original)groundShadow(stat,s.n,3.2,3);
+  road(root,link(s.mail,s.n),1.25,'#c9c1ad',.24);
+ }
+ const fallbackTrees=WORLD.trees.filter((t,i)=>t.id.startsWith('avenue-')||t.id.startsWith('street-tree-')||i%7===0);
+ for(const t of fallbackTrees){if(t.id.startsWith('avenue-')||t.id.startsWith('street-tree-'))leafyTree(fallback,t);else avenueTree(fallback,t);groundShadow(stat,t.n,1.55*t.size,1.3*t.size);}for(let i=0;i<8;i++)streetLamp(stat,9+i*15,i%2?1:-1);
  for(const r of WORLD.rocks){const g=anchor(stat,r.n);mesh(g,'ball','#839182',[0,r.size*.35,0],[r.size*.43,r.size*.9,r.size*.42]);mesh(g,'cone','#c9ccb6',[0,r.size*1.05,0],[r.size*.29,r.size*.65,r.size*.28]);}
  const garden=anchor(stat,WORLD.sites.at(-1).n);for(let i=0;i<4;i++)for(let j=0;j<7;j++){mesh(garden,'box','#7c694c',[(j-3)*.45,.1,(i-1.5)*.65],[.43,.15,.5]);mesh(garden,'ball',i%2?'#dca14e':'#68a064',[(j-3)*.45,.3,(i-1.5)*.65],[.19,.25,.2]);}batchStatic(stat);batchStatic(fallback);
  const art=loadStreetArt({root,fallback,renderer,asphalt,sidewalks:[...sidewalks,...network.sidewalks],land,roadPoints:main,extraRoads:network.roads});
