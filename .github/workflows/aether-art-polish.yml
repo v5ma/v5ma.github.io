@@ -1,0 +1,30 @@
+name: Apply reviewed Quay visual corrections
+on:
+  push:
+    branches: [feat/aether-quay-art-pass]
+    paths: [.github/workflows/aether-art-polish.yml]
+permissions:
+  contents: write
+jobs:
+  polish:
+    if: github.ref == 'refs/heads/feat/aether-quay-art-pass'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact reviewed visual diff and validate original gameplay
+        run: |
+          python aether-reach/tools/polish-quay.py
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs
+      - name: Commit only corrected rendering and credit files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add aether-reach/scene.mjs aether-reach/quay-art.mjs aether-reach/combat-scene.mjs aether-reach/index.html
+          git diff --cached --stat
+          git commit -m 'Refine Quay glass and masonry, bevel foreground gear and clear mirrored signs from the view'
+          git push origin HEAD:feat/aether-quay-art-pass
