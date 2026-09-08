@@ -1,0 +1,4 @@
+#district-readout{position:absolute;left:18px;top:117px;max-width:46%;font:600 10px/1.5 system-ui;letter-spacing:.5px;color:#f0dfb8;background:#142b37dc;border:1px solid #85775799;border-radius:4px;padding:7px 10px;text-shadow:0 1px 3px #0b182a;pointer-events:none}
+#map{background:#152b35f5;border-color:#aa976e!important;box-shadow:0 8px 35px #0006;border-radius:8px}.title-copy .roadmap{display:block;margin-top:11px}.title-copy .chips{flex-wrap:wrap}
+body.immersive #district-readout{display:none}
+@media(max-width:700px){#district-readout{top:106px;left:9px;font-size:8px;max-width:64%;padding:5px 7px}#map{max-width:47vw;height:auto}#chronicle{font-size:11px}}
