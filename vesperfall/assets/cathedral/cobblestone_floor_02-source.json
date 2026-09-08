@@ -1,0 +1,986 @@
+{
+  "Bump": {
+    "8k": {
+      "jpg": {
+        "size": 29359806,
+        "md5": "b5b888a46b7c3467ebccc341a49460dc",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_bump_8k.jpg"
+      },
+      "png": {
+        "size": 121004180,
+        "md5": "3dcd3d1ae970ae8eaed51de6b28549dc",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_bump_8k.png"
+      },
+      "exr": {
+        "size": 54983129,
+        "md5": "f1e12afdecbc6a1a63ce69348c1f7414",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_bump_8k.exr"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "size": 9001229,
+        "md5": "36bf4964e6063d1cb5de03a2211c87c9",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_bump_4k.jpg"
+      },
+      "png": {
+        "size": 35557470,
+        "md5": "e4fccdde7d30d25be3551b4e3de8021d",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_bump_4k.png"
+      },
+      "exr": {
+        "size": 15419002,
+        "md5": "4b647b16d3e28ba906f296bf6fc1fd8b",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_bump_4k.exr"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "size": 2314263,
+        "md5": "ffe6b9b0974558d326088800e227fbf1",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_bump_2k.jpg"
+      },
+      "png": {
+        "size": 9231895,
+        "md5": "b5279601f93e80b9a6e04638a1ed4fbf",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_bump_2k.png"
+      },
+      "exr": {
+        "size": 4022893,
+        "md5": "30d58fc1727fdcc269368296484c0a28",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_bump_2k.exr"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "size": 571819,
+        "md5": "b0875a6e42274f473c0cff18d98633b8",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_bump_1k.jpg"
+      },
+      "png": {
+        "size": 2350081,
+        "md5": "93cb994d17e6f961cb73f25e1d52dd95",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_bump_1k.png"
+      },
+      "exr": {
+        "size": 1042866,
+        "md5": "2d49fa19b40bfc52e5bd2fc3fd88053a",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_bump_1k.exr"
+      }
+    }
+  },
+  "arm": {
+    "8k": {
+      "jpg": {
+        "size": 11640223,
+        "md5": "f3fd21b10a4506c971929309ec563115",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_arm_8k.jpg"
+      },
+      "png": {
+        "size": 249878835,
+        "md5": "b9fdcdcfb75d8d70b2bd464aec2687a0",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_arm_8k.png"
+      },
+      "exr": {
+        "size": 87201870,
+        "md5": "adaf330eaacc78396366ff6042706cd3",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_arm_8k.exr"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "size": 2950933,
+        "md5": "d899f584fd1679db4e67ba2ab0c0ac5f",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_arm_4k.jpg"
+      },
+      "png": {
+        "size": 68515982,
+        "md5": "039b85c68a29473015d72ae3f6731ae5",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_arm_4k.png"
+      },
+      "exr": {
+        "size": 23206547,
+        "md5": "145420ac7c27c73657f3ccf45b9243ec",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_arm_4k.exr"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "size": 721397,
+        "md5": "e54cae54411975aa4be6d5682e481f55",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_arm_2k.jpg"
+      },
+      "png": {
+        "size": 16864828,
+        "md5": "83fb2dd4079945f2f37301c7ced16c6d",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_arm_2k.png"
+      },
+      "exr": {
+        "size": 5633520,
+        "md5": "a116fbf73c2a5e6838619810766eff0d",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_arm_2k.exr"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "size": 189670,
+        "md5": "4ec414869058afd2fa33634ea23fa87a",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_arm_1k.jpg"
+      },
+      "png": {
+        "size": 4235687,
+        "md5": "6f88fbda749a3d0f5234c12fbadaea38",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_arm_1k.png"
+      },
+      "exr": {
+        "size": 1380667,
+        "md5": "c6b2103f2de0f6b251e63a129cd1abb5",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_arm_1k.exr"
+      }
+    }
+  },
+  "AO": {
+    "8k": {
+      "jpg": {
+        "size": 14710807,
+        "md5": "9a7499341a63136e15b5ce9a4a421ab4",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_ao_8k.jpg"
+      },
+      "png": {
+        "size": 188390225,
+        "md5": "e07a2de3e778a97c70e6c837e87bb035",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_ao_8k.png"
+      },
+      "exr": {
+        "size": 27828973,
+        "md5": "4cf8aa01b402c1b5c908a6abb26a1ffb",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_ao_8k.exr"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "size": 3806916,
+        "md5": "e58d39fba2293af21e391565e2f4e80f",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_ao_4k.jpg"
+      },
+      "png": {
+        "size": 33682980,
+        "md5": "4fe97a6fc53112960d8195acdf6735a4",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_ao_4k.png"
+      },
+      "exr": {
+        "size": 7387855,
+        "md5": "cdb960c11c595ae34952177d20042ee4",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_ao_4k.exr"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "size": 771278,
+        "md5": "7d1d0864c0346045f8a81b7796110b54",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_ao_2k.jpg"
+      },
+      "png": {
+        "size": 8093097,
+        "md5": "0119589022037aef3b1e47641bf22405",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_ao_2k.png"
+      },
+      "exr": {
+        "size": 1482739,
+        "md5": "b96b9f3a592d296e06e79d84a68d9626",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_ao_2k.exr"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "size": 223177,
+        "md5": "aca46c84d4aeb046eaebea9bf724419a",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_ao_1k.jpg"
+      },
+      "png": {
+        "size": 2030106,
+        "md5": "c487913266481ed42cb6cdc2d671917a",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_ao_1k.png"
+      },
+      "exr": {
+        "size": 418864,
+        "md5": "851a0994a0749fee163adf33ad5180f8",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_ao_1k.exr"
+      }
+    }
+  },
+  "Displacement": {
+    "8k": {
+      "jpg": {
+        "size": 3254683,
+        "md5": "8a1fd7d02c099f27c80512208666484e",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_disp_8k.jpg"
+      },
+      "png": {
+        "size": 49818629,
+        "md5": "f07219fdd69e1ad551fac6b7cdbafabf",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_disp_8k.png"
+      },
+      "exr": {
+        "size": 4795579,
+        "md5": "af9f3df909ad0dc0fee9121fbcc7321d",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_disp_8k.exr"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "size": 1140240,
+        "md5": "31d8bab3a67ba8a39e3fbfe0c4c3f323",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_disp_4k.jpg"
+      },
+      "png": {
+        "size": 24052896,
+        "md5": "ea0600c5f180166e5c1f2cd5c81fadc5",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_disp_4k.png"
+      },
+      "exr": {
+        "size": 1861920,
+        "md5": "ef06d2571841c08d814192f5f3b839c9",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_disp_4k.exr"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "size": 407783,
+        "md5": "a652d4a169f0f0f7e3e2ec03649d124f",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_disp_2k.jpg"
+      },
+      "png": {
+        "size": 6839391,
+        "md5": "4c73a934249bbce593595d75363533c6",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_disp_2k.png"
+      },
+      "exr": {
+        "size": 744984,
+        "md5": "03bd0b1f2e536efc8ea0d2074a636834",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_disp_2k.exr"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "size": 150239,
+        "md5": "ce56a77fd7a7c3f8d593c509e0022936",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_disp_1k.jpg"
+      },
+      "png": {
+        "size": 1864065,
+        "md5": "56f7a96fc1a88b32e8c568db68078ce6",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_disp_1k.png"
+      },
+      "exr": {
+        "size": 298550,
+        "md5": "9327cc8835c20725177135898cfc4cff",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_disp_1k.exr"
+      }
+    }
+  },
+  "spec": {
+    "8k": {
+      "jpg": {
+        "size": 22173700,
+        "md5": "21b35997cebb9d4bb3516c9f30cec7f7",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_spec_8k.jpg"
+      },
+      "png": {
+        "size": 89267759,
+        "md5": "4d524e1fbeade4d519a54886089ed67e",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_spec_8k.png"
+      },
+      "exr": {
+        "size": 52424642,
+        "md5": "fa0174695c6a3de8808bc63e47ff97b4",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_spec_8k.exr"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "size": 6578299,
+        "md5": "9989419ca8ca77d01dd1478391ce8eb2",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_spec_4k.jpg"
+      },
+      "png": {
+        "size": 29902276,
+        "md5": "0c6057d9d1d3fffe646d51a50494208e",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_spec_4k.png"
+      },
+      "exr": {
+        "size": 14665121,
+        "md5": "2a64ee6ec41411ff4a2792880d9acd25",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_spec_4k.exr"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "size": 1712249,
+        "md5": "e475587b21aa660c72cfc145fb8b5f58",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_spec_2k.jpg"
+      },
+      "png": {
+        "size": 8244277,
+        "md5": "040d85d4fbbbb779709d08f5793dd2b4",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_spec_2k.png"
+      },
+      "exr": {
+        "size": 3899667,
+        "md5": "ff921fbbe78c71005bed23bbc2a25a26",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_spec_2k.exr"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "size": 432446,
+        "md5": "aefd7ee88ef711cd988e48fb917c0c4b",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_spec_1k.jpg"
+      },
+      "png": {
+        "size": 2171517,
+        "md5": "e7bd75c6e81895a7fd0a3ecc25b63d36",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_spec_1k.png"
+      },
+      "exr": {
+        "size": 1025860,
+        "md5": "cab00041bdf12d21c7f0cbb5d693acb3",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_spec_1k.exr"
+      }
+    }
+  },
+  "Diffuse": {
+    "8k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_diff_8k.jpg",
+        "size": 11869460,
+        "md5": "d38adb752cd1f503b3c1a517bb1c652d"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_diff_8k.png",
+        "size": 338932758,
+        "md5": "d298fa760a6d2fc62046087d6c8e9e5c"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_diff_8k.exr",
+        "size": 53233487,
+        "md5": "730bcc9f5f16b58707f14c16440c8a24"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_diff_4k.jpg",
+        "size": 3559850,
+        "md5": "0473a1655c5ff6da25a40a11547124fe"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_diff_4k.png",
+        "size": 89198760,
+        "md5": "7a2e170c9b6aad12e0cd262f94133151"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_diff_4k.exr",
+        "size": 17884460,
+        "md5": "cb7f8a2e573f396410af91d3a63db16d"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_diff_2k.jpg",
+        "size": 915386,
+        "md5": "7d291e254066b9dc45778dd103714019"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_diff_2k.png",
+        "size": 22487695,
+        "md5": "74489fd30f5df9978640223c3276ac02"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_diff_2k.exr",
+        "size": 4755966,
+        "md5": "a6273159c1db00ed566d15f8b941f690"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_diff_1k.jpg",
+        "size": 221882,
+        "md5": "59e545f5aefa797ae8bf69fcee7c97c7"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_diff_1k.png",
+        "size": 5598931,
+        "md5": "314ab83e1e99bb75b2e82bdf329bc1aa"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_diff_1k.exr",
+        "size": 1189649,
+        "md5": "72e793b2b60115b192448bbca7e2f3ab"
+      }
+    }
+  },
+  "nor_dx": {
+    "8k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_8k.jpg",
+        "size": 6719027,
+        "md5": "db37b19f8d99345b14d08e36e9d474ab"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_8k.png",
+        "size": 259831484,
+        "md5": "bd1e11fe09f7e81ef8c447a61b5372eb"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_8k.exr",
+        "size": 58221618,
+        "md5": "857ffa259dfce66b53da3fea9c4dd17c"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_4k.jpg",
+        "size": 2095410,
+        "md5": "a8bf121c59cd0a389d70ae13b9346e1d"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_4k.png",
+        "size": 76795273,
+        "md5": "1800e1b0fb2d39e8f47b20ae54deb1bc"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_4k.exr",
+        "size": 18526949,
+        "md5": "b4d0ce1a46906fa15c99839e78139f2f"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_2k.jpg",
+        "size": 649113,
+        "md5": "115a0078cd1ce81864818fb98ad4b75c"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_2k.png",
+        "size": 20721769,
+        "md5": "72a761344e593023ff4b10d39b5f9ab6"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_2k.exr",
+        "size": 5426391,
+        "md5": "1f4332f030a40271958d1b59a9f77e17"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_1k.jpg",
+        "size": 209279,
+        "md5": "fc7d8a94aff986921ce138876c888890"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_1k.png",
+        "size": 5385787,
+        "md5": "4379911940540ebb604e50087bcec2e4"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_nor_dx_1k.exr",
+        "size": 1665388,
+        "md5": "9154300b7de7d474ceecddb9ece287d1"
+      }
+    }
+  },
+  "nor_gl": {
+    "8k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_8k.jpg",
+        "size": 6674766,
+        "md5": "5d3ea4d8cc40bc89788a1e36a20394ba"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_8k.png",
+        "size": 280464171,
+        "md5": "a1e5ba18e2cb148a3930469d79a809a7"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_8k.exr",
+        "size": 58279104,
+        "md5": "f86fd233215b9c8133b9555514512f47"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_4k.jpg",
+        "size": 2087618,
+        "md5": "51b4a1b792af8500d596c5e99ac36fac"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_4k.png",
+        "size": 76796889,
+        "md5": "0930134539004d4f198308fdc924a15f"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_4k.exr",
+        "size": 18548346,
+        "md5": "2c6f6dd461d4497dee163a2e0ad3c302"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_2k.jpg",
+        "size": 646806,
+        "md5": "abc678d96f6f136abfb865f4ff74542d"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_2k.png",
+        "size": 20721141,
+        "md5": "fdeed1ab4d5d69722b7774103f71004c"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_2k.exr",
+        "size": 5433676,
+        "md5": "b9044195d48eb949e8223a05857721db"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_1k.jpg",
+        "size": 208641,
+        "md5": "f77017e6de48e5e9d98a7bc08284126d"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_1k.png",
+        "size": 5385114,
+        "md5": "76779aac6d08db56ed4b6abb702313f1"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_1k.exr",
+        "size": 1668878,
+        "md5": "b1222420375a8364683fa0456cd2cb02"
+      }
+    }
+  },
+  "blend": {
+    "8k": {
+      "blend": {
+        "size": 275643,
+        "md5": "59d13b19432a4236077cc0c1f9cc9ed1",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/8k/cobblestone_floor_02/cobblestone_floor_02_8k.blend",
+        "include": {
+          "textures/cobblestone_floor_02_disp_8k.png": {
+            "size": 49818629,
+            "md5": "f07219fdd69e1ad551fac6b7cdbafabf",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_disp_8k.png"
+          },
+          "textures/cobblestone_floor_02_diff_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_diff_8k.jpg",
+            "size": 11869460,
+            "md5": "d38adb752cd1f503b3c1a517bb1c652d"
+          },
+          "textures/cobblestone_floor_02_nor_gl_8k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_8k.exr",
+            "size": 58279104,
+            "md5": "f86fd233215b9c8133b9555514512f47"
+          },
+          "textures/cobblestone_floor_02_rough_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_rough_8k.jpg",
+            "size": 9134267,
+            "md5": "b03fcf5fe562b5f7f1581117040752d9"
+          }
+        }
+      }
+    },
+    "4k": {
+      "blend": {
+        "size": 275566,
+        "md5": "d46ceff559bb3b9a86f6a088eb3865fd",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/4k/cobblestone_floor_02/cobblestone_floor_02_4k.blend",
+        "include": {
+          "textures/cobblestone_floor_02_disp_4k.png": {
+            "size": 24052896,
+            "md5": "ea0600c5f180166e5c1f2cd5c81fadc5",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_disp_4k.png"
+          },
+          "textures/cobblestone_floor_02_diff_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_diff_4k.jpg",
+            "size": 3559850,
+            "md5": "0473a1655c5ff6da25a40a11547124fe"
+          },
+          "textures/cobblestone_floor_02_nor_gl_4k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_4k.exr",
+            "size": 18548346,
+            "md5": "2c6f6dd461d4497dee163a2e0ad3c302"
+          },
+          "textures/cobblestone_floor_02_rough_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_rough_4k.jpg",
+            "size": 2636226,
+            "md5": "5c4644d91a8f8f21a8071f58ac443e72"
+          }
+        }
+      }
+    },
+    "2k": {
+      "blend": {
+        "size": 275549,
+        "md5": "30a2516892df259e42007057d300307e",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/2k/cobblestone_floor_02/cobblestone_floor_02_2k.blend",
+        "include": {
+          "textures/cobblestone_floor_02_disp_2k.png": {
+            "size": 6839391,
+            "md5": "4c73a934249bbce593595d75363533c6",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_disp_2k.png"
+          },
+          "textures/cobblestone_floor_02_rough_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_rough_2k.jpg",
+            "size": 662455,
+            "md5": "e7618176a3a6b44a66738b04aaa07d18"
+          },
+          "textures/cobblestone_floor_02_nor_gl_2k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_2k.exr",
+            "size": 5433676,
+            "md5": "b9044195d48eb949e8223a05857721db"
+          },
+          "textures/cobblestone_floor_02_diff_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_diff_2k.jpg",
+            "size": 915386,
+            "md5": "7d291e254066b9dc45778dd103714019"
+          }
+        }
+      }
+    },
+    "1k": {
+      "blend": {
+        "size": 275603,
+        "md5": "471342290e609f77ce93b68eb72228fa",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/1k/cobblestone_floor_02/cobblestone_floor_02_1k.blend",
+        "include": {
+          "textures/cobblestone_floor_02_disp_1k.png": {
+            "size": 1864065,
+            "md5": "56f7a96fc1a88b32e8c568db68078ce6",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_disp_1k.png"
+          },
+          "textures/cobblestone_floor_02_diff_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_diff_1k.jpg",
+            "size": 221882,
+            "md5": "59e545f5aefa797ae8bf69fcee7c97c7"
+          },
+          "textures/cobblestone_floor_02_rough_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_rough_1k.jpg",
+            "size": 163268,
+            "md5": "4acdc1ec3e095c2c45831fa640ba7e2e"
+          },
+          "textures/cobblestone_floor_02_nor_gl_1k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_1k.exr",
+            "size": 1668878,
+            "md5": "b1222420375a8364683fa0456cd2cb02"
+          }
+        }
+      }
+    }
+  },
+  "gltf": {
+    "8k": {
+      "gltf": {
+        "size": 3606,
+        "md5": "da10006639b886156e70799c2a892dbe",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/cobblestone_floor_02/cobblestone_floor_02_8k.gltf",
+        "include": {
+          "cobblestone_floor_02.bin": {
+            "size": 2368564,
+            "md5": "4804715baf933318c5f6681cc4baab7f",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/cobblestone_floor_02/cobblestone_floor_02.bin"
+          },
+          "textures/cobblestone_floor_02_diff_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_diff_8k.jpg",
+            "size": 11869460,
+            "md5": "d38adb752cd1f503b3c1a517bb1c652d"
+          },
+          "textures/cobblestone_floor_02_rough_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_rough_8k.jpg",
+            "size": 9134267,
+            "md5": "b03fcf5fe562b5f7f1581117040752d9"
+          },
+          "textures/cobblestone_floor_02_nor_gl_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_8k.jpg",
+            "size": 6674766,
+            "md5": "5d3ea4d8cc40bc89788a1e36a20394ba"
+          }
+        }
+      }
+    },
+    "4k": {
+      "gltf": {
+        "size": 3606,
+        "md5": "25775a0555c69ac9162b56660c12a92f",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/4k/cobblestone_floor_02/cobblestone_floor_02_4k.gltf",
+        "include": {
+          "cobblestone_floor_02.bin": {
+            "size": 2368564,
+            "md5": "4804715baf933318c5f6681cc4baab7f",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/cobblestone_floor_02/cobblestone_floor_02.bin"
+          },
+          "textures/cobblestone_floor_02_diff_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_diff_4k.jpg",
+            "size": 3559850,
+            "md5": "0473a1655c5ff6da25a40a11547124fe"
+          },
+          "textures/cobblestone_floor_02_rough_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_rough_4k.jpg",
+            "size": 2636226,
+            "md5": "5c4644d91a8f8f21a8071f58ac443e72"
+          },
+          "textures/cobblestone_floor_02_nor_gl_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_4k.jpg",
+            "size": 2087618,
+            "md5": "51b4a1b792af8500d596c5e99ac36fac"
+          }
+        }
+      }
+    },
+    "2k": {
+      "gltf": {
+        "size": 3606,
+        "md5": "c79bb884843078d5ee672e054c724a4a",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/2k/cobblestone_floor_02/cobblestone_floor_02_2k.gltf",
+        "include": {
+          "cobblestone_floor_02.bin": {
+            "size": 2368564,
+            "md5": "4804715baf933318c5f6681cc4baab7f",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/cobblestone_floor_02/cobblestone_floor_02.bin"
+          },
+          "textures/cobblestone_floor_02_nor_gl_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_2k.jpg",
+            "size": 646806,
+            "md5": "abc678d96f6f136abfb865f4ff74542d"
+          },
+          "textures/cobblestone_floor_02_rough_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_rough_2k.jpg",
+            "size": 662455,
+            "md5": "e7618176a3a6b44a66738b04aaa07d18"
+          },
+          "textures/cobblestone_floor_02_diff_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_diff_2k.jpg",
+            "size": 915386,
+            "md5": "7d291e254066b9dc45778dd103714019"
+          }
+        }
+      }
+    },
+    "1k": {
+      "gltf": {
+        "size": 3606,
+        "md5": "45d9965db1581e407a4c879add314fc8",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/1k/cobblestone_floor_02/cobblestone_floor_02_1k.gltf",
+        "include": {
+          "cobblestone_floor_02.bin": {
+            "size": 2368564,
+            "md5": "4804715baf933318c5f6681cc4baab7f",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/cobblestone_floor_02/cobblestone_floor_02.bin"
+          },
+          "textures/cobblestone_floor_02_diff_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_diff_1k.jpg",
+            "size": 221882,
+            "md5": "59e545f5aefa797ae8bf69fcee7c97c7"
+          },
+          "textures/cobblestone_floor_02_nor_gl_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_1k.jpg",
+            "size": 208641,
+            "md5": "f77017e6de48e5e9d98a7bc08284126d"
+          },
+          "textures/cobblestone_floor_02_rough_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_rough_1k.jpg",
+            "size": 163268,
+            "md5": "4acdc1ec3e095c2c45831fa640ba7e2e"
+          }
+        }
+      }
+    }
+  },
+  "Rough": {
+    "8k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_rough_8k.jpg",
+        "size": 9134267,
+        "md5": "b03fcf5fe562b5f7f1581117040752d9"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_rough_8k.png",
+        "size": 211167167,
+        "md5": "23647e1e7552d75f9b8ede2696f7f21d"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_rough_8k.exr",
+        "size": 26830009,
+        "md5": "f5fdba21da93137e03e7a73d228f34ed"
+      }
+    },
+    "4k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_rough_4k.jpg",
+        "size": 2636226,
+        "md5": "5c4644d91a8f8f21a8071f58ac443e72"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_rough_4k.png",
+        "size": 39286299,
+        "md5": "bff9972d318348aef594abd4ddefe752"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_rough_4k.exr",
+        "size": 9169418,
+        "md5": "6a54047e132752363ecb3a4fe4c37a9b"
+      }
+    },
+    "2k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_rough_2k.jpg",
+        "size": 662455,
+        "md5": "e7618176a3a6b44a66738b04aaa07d18"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_rough_2k.png",
+        "size": 9915074,
+        "md5": "3abc1355db38b61326d3fed8a33f2e4a"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_rough_2k.exr",
+        "size": 2481932,
+        "md5": "c82f3a9171ff0094a7af752bc8887368"
+      }
+    },
+    "1k": {
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_rough_1k.jpg",
+        "size": 163268,
+        "md5": "4acdc1ec3e095c2c45831fa640ba7e2e"
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_rough_1k.png",
+        "size": 2478999,
+        "md5": "0b3fa0a0974b488977cecfdd8830d271"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_rough_1k.exr",
+        "size": 633837,
+        "md5": "74973e6e9a0414e722da050c37ab4093"
+      }
+    }
+  },
+  "mtlx": {
+    "8k": {
+      "mtlx": {
+        "size": 4807,
+        "md5": "0118d2297aeaf69a5af9afc84dc2e987",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/8k/cobblestone_floor_02/cobblestone_floor_02_8k.mtlx",
+        "include": {
+          "textures/cobblestone_floor_02_disp_8k.png": {
+            "size": 49818629,
+            "md5": "f07219fdd69e1ad551fac6b7cdbafabf",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/cobblestone_floor_02/cobblestone_floor_02_disp_8k.png"
+          },
+          "textures/cobblestone_floor_02_diff_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_diff_8k.jpg",
+            "size": 11869460,
+            "md5": "d38adb752cd1f503b3c1a517bb1c652d"
+          },
+          "textures/cobblestone_floor_02_nor_gl_8k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_8k.exr",
+            "size": 58279104,
+            "md5": "f86fd233215b9c8133b9555514512f47"
+          },
+          "textures/cobblestone_floor_02_rough_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/cobblestone_floor_02/cobblestone_floor_02_rough_8k.jpg",
+            "size": 9134267,
+            "md5": "b03fcf5fe562b5f7f1581117040752d9"
+          }
+        }
+      }
+    },
+    "4k": {
+      "mtlx": {
+        "size": 4807,
+        "md5": "8e9d3f6fa10e9e3821e59c9de2ea22a6",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/4k/cobblestone_floor_02/cobblestone_floor_02_4k.mtlx",
+        "include": {
+          "textures/cobblestone_floor_02_disp_4k.png": {
+            "size": 24052896,
+            "md5": "ea0600c5f180166e5c1f2cd5c81fadc5",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/cobblestone_floor_02/cobblestone_floor_02_disp_4k.png"
+          },
+          "textures/cobblestone_floor_02_diff_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_diff_4k.jpg",
+            "size": 3559850,
+            "md5": "0473a1655c5ff6da25a40a11547124fe"
+          },
+          "textures/cobblestone_floor_02_nor_gl_4k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_4k.exr",
+            "size": 18548346,
+            "md5": "2c6f6dd461d4497dee163a2e0ad3c302"
+          },
+          "textures/cobblestone_floor_02_rough_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/cobblestone_floor_02/cobblestone_floor_02_rough_4k.jpg",
+            "size": 2636226,
+            "md5": "5c4644d91a8f8f21a8071f58ac443e72"
+          }
+        }
+      }
+    },
+    "2k": {
+      "mtlx": {
+        "size": 4807,
+        "md5": "06513f9a561f6a4792aebe4249a1e526",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/2k/cobblestone_floor_02/cobblestone_floor_02_2k.mtlx",
+        "include": {
+          "textures/cobblestone_floor_02_disp_2k.png": {
+            "size": 6839391,
+            "md5": "4c73a934249bbce593595d75363533c6",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/cobblestone_floor_02/cobblestone_floor_02_disp_2k.png"
+          },
+          "textures/cobblestone_floor_02_rough_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_rough_2k.jpg",
+            "size": 662455,
+            "md5": "e7618176a3a6b44a66738b04aaa07d18"
+          },
+          "textures/cobblestone_floor_02_nor_gl_2k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_2k.exr",
+            "size": 5433676,
+            "md5": "b9044195d48eb949e8223a05857721db"
+          },
+          "textures/cobblestone_floor_02_diff_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_02/cobblestone_floor_02_diff_2k.jpg",
+            "size": 915386,
+            "md5": "7d291e254066b9dc45778dd103714019"
+          }
+        }
+      }
+    },
+    "1k": {
+      "mtlx": {
+        "size": 4807,
+        "md5": "dc0edb58e7dde0b08529e28cd80a32bb",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/1k/cobblestone_floor_02/cobblestone_floor_02_1k.mtlx",
+        "include": {
+          "textures/cobblestone_floor_02_disp_1k.png": {
+            "size": 1864065,
+            "md5": "56f7a96fc1a88b32e8c568db68078ce6",
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cobblestone_floor_02/cobblestone_floor_02_disp_1k.png"
+          },
+          "textures/cobblestone_floor_02_diff_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_diff_1k.jpg",
+            "size": 221882,
+            "md5": "59e545f5aefa797ae8bf69fcee7c97c7"
+          },
+          "textures/cobblestone_floor_02_rough_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_rough_1k.jpg",
+            "size": 163268,
+            "md5": "4acdc1ec3e095c2c45831fa640ba7e2e"
+          },
+          "textures/cobblestone_floor_02_nor_gl_1k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_1k.exr",
+            "size": 1668878,
+            "md5": "b1222420375a8364683fa0456cd2cb02"
+          }
+        }
+      }
+    }
+  }
+}

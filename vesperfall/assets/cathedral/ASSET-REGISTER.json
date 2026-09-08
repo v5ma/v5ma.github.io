@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "scope": "Asset data only, not website renders. No runtime third-party requests.",
+  "assets": [
+    {
+      "file": "masonry-color.jpg",
+      "asset": "castle_brick_01",
+      "source": "https://polyhaven.com/a/castle_brick_01",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_01/castle_brick_01_diff_1k.jpg",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "45d3372330ce9997c69d34085fe23c1754c7549fd86fb233160271f73c07264c",
+      "bytes": 322421,
+      "modifications": "1024px maximum, RGB JPEG quality 88. OpenGL normal; ARM packs occlusion/roughness/metalness.",
+      "creator": "Rob Tuytel"
+    },
+    {
+      "file": "masonry-normal.jpg",
+      "asset": "castle_brick_01",
+      "source": "https://polyhaven.com/a/castle_brick_01",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_01/castle_brick_01_nor_gl_1k.jpg",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "3615ee2f170cc22b545eeda5bbbeb28a85b30c5e7ef64f011a8ce9d347f1b987",
+      "bytes": 387226,
+      "modifications": "1024px maximum, RGB JPEG quality 88. OpenGL normal; ARM packs occlusion/roughness/metalness.",
+      "creator": "Rob Tuytel"
+    },
+    {
+      "file": "masonry-arm.jpg",
+      "asset": "castle_brick_01",
+      "source": "https://polyhaven.com/a/castle_brick_01",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_01/castle_brick_01_arm_1k.jpg",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "3bbf878ebf2f1fbf9cd55d1fe51dc0b79945fd400e44a53b6195c7388d7c5988",
+      "bytes": 215277,
+      "modifications": "1024px maximum, RGB JPEG quality 88. OpenGL normal; ARM packs occlusion/roughness/metalness.",
+      "creator": "Rob Tuytel"
+    },
+    {
+      "file": "paving-color.jpg",
+      "asset": "cobblestone_floor_02",
+      "source": "https://polyhaven.com/a/cobblestone_floor_02",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_diff_1k.jpg",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "c32231ad03b522cdbbaa284f1810f772b0ec93e4574ba9c2d7c4c81f95f0cf75",
+      "bytes": 228858,
+      "modifications": "1024px maximum, RGB JPEG quality 88. OpenGL normal; ARM packs occlusion/roughness/metalness.",
+      "creator": "Rob Tuytel"
+    },
+    {
+      "file": "paving-normal.jpg",
+      "asset": "cobblestone_floor_02",
+      "source": "https://polyhaven.com/a/cobblestone_floor_02",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_nor_gl_1k.jpg",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "31f095f5ac70c7f8819a1705c59eb1de23de2cf69cd6e813fcfc71a0f118bee7",
+      "bytes": 216619,
+      "modifications": "1024px maximum, RGB JPEG quality 88. OpenGL normal; ARM packs occlusion/roughness/metalness.",
+      "creator": "Rob Tuytel"
+    },
+    {
+      "file": "paving-arm.jpg",
+      "asset": "cobblestone_floor_02",
+      "source": "https://polyhaven.com/a/cobblestone_floor_02",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_02/cobblestone_floor_02_arm_1k.jpg",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "7c8ee5c2bbfee25910bf92c58ee2dd94660924a28cadae471ab041c97fce389a",
+      "bytes": 195972,
+      "modifications": "1024px maximum, RGB JPEG quality 88. OpenGL normal; ARM packs occlusion/roughness/metalness.",
+      "creator": "Rob Tuytel"
+    },
+    {
+      "file": "marble-bust.glb",
+      "asset": "marble_bust_01",
+      "source": "https://polyhaven.com/a/marble_bust_01",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/marble_bust_01/marble_bust_01_1k.gltf",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "4280d488fa80f5990bc52da6119635875bd00ed3f8e0b54641d35efc136a9fb0",
+      "bytes": 586700,
+      "modifications": "Original mesh; images reduced to 512px JPEG, embedded into one local GLB. Triangles: 17456",
+      "creator": "Rico Cilliers"
+    }
+  ]
+}

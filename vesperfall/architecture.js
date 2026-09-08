@@ -7,7 +7,7 @@
  function augment(world){
   // Tall enclosure walls use the existing collision footprint. Ground graph
   // doors and low tactical cover retain their positions and their dimensions.
-  for(const b of world.solids){if(b.type==='wall')b.max[1]=7.8;if(b.type==='column')b.max[1]=7.6;}
+  for(const b of world.solids){if(b.type==='wall'&&b.room===undefined)b.max[1]=Math.max(b.max[1],7.8);if(b.type==='column')b.max[1]=7.6;}
   const floors=[
    {id:'choir-stair',type:'stair',x:-4.65,z:.2,w:1.8,d:8.8,y:0,slopeZ:-GALLERY_Y/8.8,anchorZ:4.6},
    {id:'choir-landing',type:'gallery',x:-4.65,z:-4.85,w:1.8,d:1.3,y:GALLERY_Y},
@@ -39,7 +39,7 @@
    world.pickups.push({id:'loft-'+r.id,p:[x+2.7,3.5,z-4.85],kind:i?'frost':'cinder',taken:false});
    world.architecture.lofts.push({room:r.id,label:r.family,entry:[x-4.85,0,z+4.75],otherEntry:[x+4.85,0,z+4.75],pad:[x,3.2,z-4.85]});
   }
-  return world;
+  return (root.CathedralDistricts||(typeof require!=='undefined'?require('./districts.js'):null)).elevate(world);
  }
  function elevation(f,p){return f.y+(f.slopeZ||0)*(p[2]-(f.anchorZ??f.z))+(f.slopeX||0)*(p[0]-(f.anchorX??f.x));}
  function floorAt(world,p,margin=0,maxRise=.42,maxDrop=Infinity){

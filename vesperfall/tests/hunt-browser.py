@@ -38,7 +38,7 @@ with sync_playwright() as pw:
  page=ctx.new_page();page.set_default_timeout(120000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto(BASE+'/vesperfall/',wait_until='domcontentloaded');page.wait_for_function('window.Vesperfall?.component.hunt&&Vesperfall.component.rendererReady&&AFRAME.scenes[0].renderer.info.render.calls>0')
-  check(snap(page)['version']=='0.4.0','The native A-Frame browser loads Hollow Hunt v0.4.0')
+  check(snap(page)['version']==json.loads((ROOT/'vesperfall/release.json').read_text())['version'],'The native A-Frame browser loads the current release with preserved Hollow Hunt mechanics')
   profile=snap(page)['profile'];trial(page,'cantor')
   check(page.evaluate('Vesperfall.component.enemyMeshes[0].name')=='Ash Cantor','The selected trial creates the distinct cantor actor and real AI')
   page.keyboard.down('KeyH');page.wait_for_function('Vesperfall.state.blocks>0');page.keyboard.up('KeyH');page.wait_for_function('!Vesperfall.state.shield')
