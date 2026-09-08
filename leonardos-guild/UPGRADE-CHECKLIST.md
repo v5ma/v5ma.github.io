@@ -1,67 +1,77 @@
 # Leonardo's Guild - persistent upgrade checklist
 
-Owner: Micah Blumberg / SVGN. Read this file at the beginning of every continuation.
+Owner: Micah Blumberg / SVGN. Read this file at the beginning of every continuation. This is the durable plan requested by the author, not a list to regenerate from memory.
 
-## Handoff and preservation
+## Current release and preservation
 
-Baseline: published v0.3.0, read from master 221844c60d56202bddadeba2bbec1cd204535e7f on 2026-09-07. Active next-pass branch: feat/guild-market-life-20260907. Work only in leonardos-guild/ and its scoped workflows. Preserve the same city, Stolen Folio, nine side commissions, joystick, six interiors, paired basement stairs, gate prerequisites, local saves and sibling projects. Never reset the user's progress to make a test pass. Distinguish pure model fixtures, seeded-save browser journeys, fresh ordinary-input journeys, and public-byte verification.
+**PUBLISHED: v0.4.0, Market Life.** PR76 merged as `0d31dc38dcb5252200b1af56ba04ef9394a80a6b` on 2026-09-08 UTC (2026-09-07 Pacific). The completed branch was `feat/guild-market-life-20260907`; do not mistake it for unfinished staging. Start the next feature branch from current master after checking concurrent updates. The previous v0.3 baseline was read at `221844c60d56202bddadeba2bbec1cd204535e7f`.
 
-The uploaded art note discussed Aether Reach. Its transferable direction is finished licensed artwork and reproducible optimization, not replacing Leonardo's map with that game's Arrival Quay or modern Boston buildings. First art target here: the workshop-to-market journey and existing indoor workspaces. Public GitHub needs permission to redistribute raw asset files. Preserve provenance, license, upstream hashes and modifications.
+Work only in `leonardos-guild/` and its scoped workflows. Preserve the same city, original Stolen Folio, nine RPG side commissions, joystick, six interiors, paired basement stairs, gate prerequisites, existing local saves, bicycles and sibling projects. Never reset progress to make a test pass. Distinguish pure model fixtures, seeded-save browser journeys, fresh ordinary-input journeys and public-byte verification.
 
-Status legend: PLANNED, IMPLEMENTING, MODEL-CHECKED, BROWSER-CHECKED, PUBLISHED. A checkbox means the stated acceptance has been met, not that a model calculated a plausible result. Dates, commits and evidence must be added before promotion. Never count a speculative suggestion as shipped.
+The author's attached art note discussed Aether Reach. Its transferable direction was finished licensed artwork and reproducible optimization, not replacing Leonardo's map with another game's Arrival Quay or modern buildings. Public GitHub redistribution requires appropriate rights to the raw assets. Keep license, source, upstream hashes and modifications in ASSET-REGISTER.json.
 
-## Current pass: market life and a genuine art intake
+Status legend: PLANNED, IMPLEMENTING, MODEL-CHECKED, BROWSER-CHECKED, PUBLISHED. A checked item means its stated slice met implementation and release acceptance. It does not imply a broader roadmap goal is finished. A model result alone is never a gameplay or deployment receipt.
 
-- [ ] ART-01 Import a curated free CC0 subset of Quaternius Fantasy Props/Medieval Village, not paid Source files. Record license, source, file hashes and exact redistribution scope. IMPLEMENTING.
-- [ ] ART-02 Optimize meshes and shared textures; vendor required glTF loader matching the existing pinned Three.js. No live third-party runtime dependency. PLANNED.
-- [ ] ART-03 Replace visible placeholder workspaces, street props and selected facade details with the imported assets. Preserve walkable thresholds and model/collision alignment. PLANNED.
-- [ ] ART-04 Capture matching before/after views in the actual 3D game and inspect them. Count bytes, draw calls and missing assets; test fallback. PLANNED.
-- [ ] PLAY-01 Add overlapping short street encounters on existing blocks: repair, retrieval, crafting, observation and courier work, not only another chain of talk markers. PLANNED.
-- [ ] PLAY-02 Add interactable workstations to existing interiors and visible persistent outcomes. PLANNED.
-- [ ] PLAY-03 Add character-specific follow-up conversations and optional relationship scenes without removing old dialogue or rewards. PLANNED.
-- [ ] PLAY-04 Add a discoverable local activity board and map hints; explain requirements and let the player leave any minigame safely. PLANNED.
-- [ ] SAFE-01 Load v0.2/v0.3 saves without erasing original or side-quest progress; version new transient fields separately. PLANNED.
-- [ ] SAFE-02 Prevent duplicate payouts, remote interactions, world/floor mismatch, stuck touch input and infinite repeat farming. PLANNED.
-- [ ] QA-01 Run original mechanics and touch suites plus new models, ordinary-input activity journeys and asset/render tests. PLANNED.
-- [ ] QA-02 Commit actual source, review scoped diff, merge only a verified candidate and compare public files to merged bytes. PLANNED.
+## Published Market Life slice
 
-## Density roadmap (long-term target: 30-50 distinct playable pieces, not a promise for one patch)
+Tested feature head: `b7ba43471b38af67f6e5203c8b35f8572d5a1ecf`. All nine native suites used clean merge preview `a992f9bce927c4243e28228117b44f2303c6d719`. Publication run `34177892339` passed: all 139 checked hosted files, including model buffers, textures, licenses and this checklist, returned HTTP 200 and matched the merge. The existing homepage card was verified separately. Documentation-only follow-ups can increase the file count without changing gameplay bytes.
 
-- [ ] D01 Recurring civic work from the mayor and watch; choices with visible outcomes.
-- [ ] D02 Residents initiating short requests when approached; optional, dismissible, bounded.
-- [ ] D03 Missing pets, lost possessions, broken wagons and merchant disputes with more than one solution.
-- [ ] D04 Artisan orders, recipe discovery and actual item crafting at indoor benches.
-- [ ] D05 Courier circuit variants and voluntary races; no forced clock on ordinary errands.
-- [ ] D06 Observation clues and connected mysteries using Lantern rather than generic fireball combat.
-- [ ] D07 Richer inn, apothecary, cycle shop and workshop furniture/inspection/interactions.
-- [ ] D08 Visit-able upstairs rooms, attics, courtyards and rooftops with collision/camera tests.
-- [ ] D09 A continuous underground route linking selected existing cellars; no misleading painted entrances.
-- [ ] D10 Day/night activity, readable schedules and safe waiting; do not permanently miss quests.
-- [ ] D11 Character routines and reactions to completed commissions.
-- [ ] D12 Distinct Isabella and Sofia stories, invitations and shared outings; adult, optional and not bought.
-- [ ] D13 Companion navigation with obstacle-aware routes and recovery, without teleporting through walls.
-- [ ] D14 Cats, dogs, horses, chickens and street musicians with controlled simulation budgets.
+- [x] ART-01 Curated 32 free CC0 Quaternius Standard models. Raw redistribution licenses, upstream archive/model hashes, packaged hashes and modifications are in ASSET-REGISTER.json. Paid Pro/Source models are not included.
+- [x] ART-02 Shared 512px textures, local glTF loader pinned to existing Three.js r177, material batching and indexed geometry. The 98 packaged art files total 8,990,341 bytes. No third-party runtime asset requests.
+- [x] ART-03 Detailed facades at the same 49 house positions, recessed window backing, textured workspaces and street props. Signed entrances and roof cutaways remain. Near-detail limits are 4/16/26 facades in Battery/Balanced/Quality; distant original shells remain.
+- [x] ART-04 Matching native before/after captures, successful actual model loading, live quality switching and explicit missing-art fallback passed. Battery keeps imported mesh/color textures with cheaper lighting and a 0.6 render-pixel ratio; HTML text and touch targets stay full resolution. Physical-phone frame rates are not certified.
+- [x] PLAY-01 22 complete named short activities: repairs, gathering, separate courier packets, recipe work, note-sequence music, evidence, Lantern inscriptions, painting choice and an optional partner outing. Intermediate markers are not counted as extra missions.
+- [x] PLAY-02 Indoor stations and persistent outcomes: repaired cart/cask, collected produce and community table, filled cat bowl, exhibition palette and field notes. Some outcomes remain narrative records rather than autonomous simulation.
+- [x] PLAY-03 Six additional named street workers and a small outing with an existing adult partner. Earlier character stories and rewards remain. Full schedules, relationship arcs and companion AI remain open below.
+- [x] PLAY-04 V / Neighbourhood work and Y / Work, plus touch interaction, map hints, written alternatives for music, free mistakes, cancellation and one-time rewards. N / Journal and T / Talk retain the earlier stories.
+- [x] SAFE-01 Additive validated `street` save record. Original save key, outer format, quests, attributes, vehicles and earned progress are preserved; do not migrate by clearing storage.
+- [x] SAFE-02 Location/floor/prerequisite checks, bounded sequence input, one-time payments and no map teleportation. Existing pause, touch and input-reset behavior passed regression checks.
+- [x] QA-01 76 unique model/geometry/asset/control checks and 153 browser checks passed. Nine flows: art/fallback 12, neighbourhood 18, crafting 12, original commission 27, prior interiors 18, watch 15, north 17, multitouch 21 and touch lifecycle 13. Passing runs: 34176605080, 34176605099, 34176605086, 34176605089 and 34176605039. Crafting/watch/north use documented progressed saves, not a claimed fresh continuous playthrough of every task.
+- [x] QA-02 Exact verified head merged through PR76. Publication run34177892339 checked all 139 public files plus the homepage card. All nine normalized native manifests agree on runtime bytes. The original-commission manifest also contains the root homepage; do not confuse it with the game index. The art suite deliberately ends with an injected missing-asset case; that final diagnostic is expected, not a default-load failure.
+
+Earlier material-normalization and performance failures remain in Actions. They were fixed by compatible color attributes, indexing, material/detail tiers and culling, not faster physics or relaxed route deadlines. Preserve the quality budgets even when a single detailed screenshot looks attractive.
+
+## Density roadmap
+
+Long-term target: 30-50 distinct playable pieces with overlapping purposes, not a promise to finish every system in one patch. Some items below have a first slice in v0.3/v0.4. Unchecked means the full criterion is still open, not that no related content exists. Prefer deeper interactions and unified discoverability over padding the count.
+
+- [ ] D01 Recurring civic work from mayor and watch; choices with durable world outcomes.
+- [ ] D02 Residents initiating optional, dismissible short requests near the player.
+- [ ] D03 Missing pets, lost possessions, broken wagons and merchant disputes with multiple meaningful solutions.
+- [ ] D04 Broader artisan orders, recipe discovery, inventory and crafting at indoor benches.
+- [ ] D05 Courier variants, repeatable jobs and voluntary races; no forced clock on ordinary errands.
+- [ ] D06 Connected observation/Lantern mysteries rather than generic fireball combat.
+- [ ] D07 Deeper inn, apothecary, cycle shop and workshop inspection/interactions.
+- [ ] D08 Upstairs rooms, attics, courtyards and rooftops with camera/collision tests.
+- [ ] D09 A continuous underground route linking selected existing cellars.
+- [ ] D10 Day/night activity, readable schedules and safe waiting; no permanently missed quests.
+- [ ] D11 Character routines and reactions to completed work.
+- [ ] D12 Distinct ongoing Isabella/Sofia stories, invitations and shared outings; adult, optional and not purchased.
+- [ ] D13 Obstacle-aware companion navigation and recovery without teleporting through walls.
+- [ ] D14 Dogs, horses, chickens and more animal/musician behavior within simulation budgets.
 - [ ] D15 Crime observation, evidence, peaceful resolution and proportional watch response.
-- [ ] D16 Named rival artisans and layered investigation outcomes rather than mandatory combat gates.
-- [ ] D17 Equipment components, paint and handling choices that preserve the bicycle's physical identity.
-- [ ] D18 Cargo tricycle, tandem, spring bicycle and new experimental vehicles with real controls.
-- [ ] D19 Flight research milestones followed by actual takeoff, steering, collision, landing and recovery. Blueprint is not flight.
-- [ ] D20 Skills that open alternative repairs, conversations, navigation and observation solutions.
-- [ ] D21 Seasonal/weather atmosphere and indoor refuge; avoid expensive unbounded effects.
-- [ ] D22 More authored nearby districts only after existing blocks have useful activity density.
+- [ ] D16 Rival artisans and layered investigations instead of mandatory combat gates.
+- [ ] D17 Equipment components, paint and handling choices that retain bicycle identity.
+- [ ] D18 Cargo tricycle, tandem, spring bicycle and further experimental vehicles with working controls.
+- [ ] D19 Flight-research milestones followed by real takeoff, steering, collision, landing and recovery. A blueprint is not flight.
+- [ ] D20 Skills that open genuinely different repairs, conversations and navigation solutions.
+- [ ] D21 Weather/seasonal atmosphere and indoor refuge without unbounded effects.
+- [ ] D22 Further nearby districts only after current blocks have worthwhile activity density.
 
-## Art and future systems
+## Art and future services
 
-- [ ] A01 Cohesive textured architecture, foliage and interior props; no random asset-pack collage.
-- [ ] A02 Finished character models and retargeted walk/ride/work/combat animations, with required clothing.
-- [ ] A03 Physically scaled plaster, stone, wood and metal material families; measured mobile variants.
-- [ ] A04 Warm interiors, readable shaded doorways and deliberate lighting, not exposure tricks hiding unfinished art.
-- [ ] A05 Independent glTF validation and source-to-game asset optimization recipe.
-- [ ] A06 Physical-phone/Safari/controller testing and accessibility/remappable input.
-- [ ] NET01 Small authoritative cooperative session, reconnect and validated inventories before MMO claims.
-- [ ] NET02 Secure identities, moderation, anti-abuse and trades before persistent shared economy.
-- [ ] NET03 Paid/coupon entitlements only in a separately authorized service project, never client flags.
+- [ ] A01 Continue cohesive architecture, foliage and interior direction; avoid an incoherent asset-pack collage.
+- [ ] A02 Finished clothed character models and retargeted walk/ride/work/combat animations.
+- [ ] A03 Physically scaled material families and device-measured mobile variants.
+- [ ] A04 More deliberate warm interiors and shaded entrances; do not hide incomplete art with exposure tricks.
+- [ ] A05 Independent glTF validation and a complete source-to-game optimization recipe.
+- [ ] A06 Physical-phone/Safari/controller testing, accessibility and remappable inputs.
+- [ ] NET01 Small authoritative cooperative sessions, reconnect and validated inventories before MMO claims.
+- [ ] NET02 Secure identities, moderation and abuse-resistant trades before a persistent shared economy.
+- [ ] NET03 Purchased/coupon entitlements only in a separately authorized service project, never client-side flags.
 
 ## Next-session procedure
 
-Read release.json, this checklist, README.md and the active PR; check current master before writes because other games develop concurrently. Inspect actual sources and pending branches. Record a checkpoint, implement the smallest coherent slice, retain failed evidence, run regressions, and update this checklist plus CHANGELOG.md and asset register. Published status requires a release commit and successful public-byte receipt. The local environment may lack networking; use scoped reproducible Actions rather than opaque transfer fragments. Do not remove the author's prior game mechanics in an art pass.
+Read release.json, this checklist, AGENTS.md, MARKET-LIFE.md, CHANGELOG.md and ASSET-REGISTER.json. Check master and pending PRs before writes because other games change concurrently. Checkpoint, choose a coherent slice, retain failed evidence, test old mechanics and the new ordinary-input journey, and record the exact commit/source and publication receipt. Update checked status only to the stage actually verified.
+
+Near-term priorities: unify Talk/Work discovery without breaking either control, improve character animation and readable art silhouettes, and deepen persistent consequences before adding more menu-only errands. Keep paths, thresholds, model/collision alignment, saves and original work intact. Do not rewrite the renderer or rebuild this as another disconnected prototype. Where local networking is unavailable, use scoped reproducible Actions, not opaque transfer fragments or invented local test claims.
