@@ -42,7 +42,7 @@ export function createScene(canvas){
   let desired=target.clone().addScaledVector(forward,-distance).addScaledVector(right,shoulder).add(new T.Vector3(0,aim?.05:.30,0));
   const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap);camera.position.set(safe.x,safe.y,safe.z);cameraSet=true;hero.root.visible=camera.position.distanceTo(target)>.7;
   camera.lookAt(target.clone().addScaledVector(forward,aim?14:5));camera.fov=T.MathUtils.lerp(camera.fov,aim?43:56,Math.min(1,dt*10));camera.updateProjectionMatrix();camera.updateMatrixWorld();
-  graphics.update();renderer.render(scene,camera);
+  scans.cull(camera);graphics.update();renderer.render(scene,camera);
  }
  function aimDirection(state){const p=state.player,origin=new T.Vector3(p.x,heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,p.z);const center=new T.Vector3(0,0,.5).unproject(camera),dir=center.sub(camera.position).normalize();raycaster.set(camera.position,dir);raycaster.far=60;const targetMeshes=state.enemies.filter(e=>e.hp>0).map(e=>enemies.get(e.id)?.root).filter(Boolean);const hits=raycaster.intersectObjects([...blockMeshes.filter(m=>!m.userData.obstacle.disabled),...targetMeshes],true);const target=hits.length?hits[0].point:camera.position.clone().addScaledVector(dir,60);const d=target.sub(origin).normalize();return {x:d.x,y:d.y,z:d.z};}
  function project(x,y,z){const p=new T.Vector3(x,y,z).project(camera);return {x:(p.x+1)/2,y:(1-p.y)/2,visible:p.z>-1&&p.z<1&&Math.abs(p.x)<1.3&&Math.abs(p.y)<1.3};}

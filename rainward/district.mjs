@@ -2,7 +2,7 @@ import * as T from './vendor/three.module.js';
 import {OBSTACLES,GRASS,SHELTERS} from './world.mjs';
 import {rnd,colors} from './artkit.mjs';
 export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,buckets}=A;
- add('box',0,-.2,-7,73,.4,87,0x5c6657,'ground');add('box',0,.01,-7,24,.04,87,colors.road,'road');
+ add('box',0,-.2,-7,73,.4,87,0x5c6657,'ground');add('box',0,.01,-7,24,.04,87,colors.road,'paving');
  for(let z=-46;z<33;z+=3){add('box',-12.5,.04,z,1,.08,2.9,0x738078);add('box',12.5,.04,z,1,.08,2.9,0x738078);if(z<10&&z>-35)add('box',.1,.039,z,.13,.014,1.5,0xaeb398,'paint');}
  for(let i=0;i<42;i++){const x=(rnd(i+11)-.5)*50,z=-46+rnd(i+97)*77;const p=new T.Mesh(new T.CircleGeometry(1,18),new T.MeshStandardMaterial({color:0x697e78,roughness:.13,metalness:.6,transparent:true,opacity:.4}));p.rotation.x=-Math.PI/2;p.scale.set(1+rnd(i+2)*3,.35+rnd(i+9)*1.2,1);p.position.set(x,.04,z);scene.add(p);}
  for(const o of OBSTACLES){
