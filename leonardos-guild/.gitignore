@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 life-output/
 street-output/
+
+city-output/

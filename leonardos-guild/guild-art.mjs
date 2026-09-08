@@ -1,5 +1,6 @@
 /* Original alternate-history Renaissance art. No commercial game assets.
  * Mesh footprints follow the retained city collision model. */
+import {animatePerson} from './character-motion.mjs';
 import * as T from './vendor/three.module.js';
 import {Batch,unit,label,rand,person as cityPerson} from './art.mjs';
 import {heightAt} from './model.mjs';
@@ -21,15 +22,16 @@ export function house(parent,h,m){
  group.userData.room=h.room||null;wall.finish(group,m.wall,'Renaissance plaster and masonry');roof.finish(group,m.roof,'Terracotta roof tiles');trim.finish(group,m.trim,'Stone arches, oak doors and shutters');windows.finish(group,m.glass,'Deep recessed windows');return group;
 }
 export function person(m,kind='apprentice'){
- const root=new T.Group(),body=new Batch(),legs=[];
+ const root=new T.Group(),body=new Batch(),legs=[],arms=[];const head=new T.Group();head.position.y=1.58;root.add(head);const face=new Batch();
  const tunic=kind==='bandit'?'#815344':kind==='master'?'#645944':'#477568';
  body.add(unit.cyl,0,1.28,0,.245,.52,.18,tunic);body.ball(0,1.47,0,.26,.16,.18,tunic);body.add(unit.cone,0,.98,0,.29,.25,.22,tunic,Math.PI,0);
- body.box(0,1.08,0,.48,.08,.38,'#675139');body.box(0,1.08,.201,.10,.095,.025,'#d5b677');body.rod([0,1.52,0],[0,1.65,0],.07,'#c58f6b');body.ball(0,1.76,.02,.155,.2,.145,'#d2a37e');body.ball(0,1.9,-.018,.17,.07,.15,'#6c513c');
- body.ball(0,1.91,-.015,.205,.06,.18,kind==='bandit'?'#4d4b3d':'#5e7250');body.box(0,1.9,.15,.26,.033,.11,'#798859');body.ball(0,1.76,.165,.035,.04,.04,'#c58e6c');for(const x of[-.068,.068])body.ball(x,1.81,.15,.019,.014,.008,'#343e35');
- for(const side of[-1,1]){body.rod([side*.23,1.45,0],[side*.29,1.27,.08],.074,tunic);body.rod([side*.29,1.27,.08],[side*.30,1.2,.29],.052,'#d2a37e');body.ball(side*.30,1.2,.3,.058,.065,.068,'#d2a37e');}
+ body.box(0,1.08,0,.48,.08,.38,'#675139');body.box(0,1.08,.201,.10,.095,.025,'#d5b677');body.rod([0,1.52,0],[0,1.65,0],.07,'#c58f6b');face.ball(0,.18,.02,.155,.2,.145,'#d2a37e');face.ball(0,.32,-.018,.17,.07,.15,'#6c513c');
+ face.ball(0,.33,-.015,.205,.06,.18,kind==='bandit'?'#4d4b3d':'#5e7250');face.box(0,.32,.15,.26,.033,.11,'#798859');face.ball(0,.18,.165,.035,.04,.04,'#c58e6c');for(const x of[-.068,.068])face.ball(x,.23,.15,.019,.014,.008,'#343e35');face.finish(head,m.trim,'Animated face and cap');
+ for(const side of[-1,1]){const arm=new T.Group(),limb=new Batch();arm.position.set(side*.23,1.45,0);root.add(arm);limb.rod([0,0,0],[side*.055,-.20,.015],.074,tunic);limb.rod([side*.055,-.20,.015],[side*.06,-.44,.05],.052,'#d2a37e');limb.ball(side*.06,-.45,.055,.058,.065,.068,'#d2a37e');limb.finish(arm,m.trim,'Animated sleeve and hand');arms.push(arm);}
+ root.guildRig={head,arms};
  body.box(0,1.28,-.225,.31,.34,.12,'#a78151');body.box(0,1.43,-.295,.32,.10,.055,'#ceb47d');body.rod([-.17,1.5,-.16],[.17,1.12,-.20],.022,'#70543c');body.finish(root,m.trim,'Doublet, cap, articulated arms and courier satchel');
  for(const side of[-1,1]){const g=new T.Group();g.position.set(side*.105,1.02,0);root.add(g);const b=new Batch();b.rod([0,0,0],[0,-.39,.055],.078,'#5c6350');b.rod([0,-.39,.055],[0,-.80,0],.053,'#756348');b.box(0,-.83,.08,.145,.13,.29,'#624c35');b.finish(g,m.trim,'Boots and animated leg');legs.push(g);}
- return {root,legs};
+ return {root,legs,head,arms};
 }
 export function car(m,tint='#976b43'){
  const root=new T.Group(),b=new Batch(),wheels=[];
@@ -68,5 +70,5 @@ export function dressGuild(root,w,m,rider){
  for(const [x,z,height]of [[-95,126,22],[115,265,30],[-105,360,26]]){const y=heightAt(x,z);stone.box(x,y+height/2,z,6,height,6,'#c1ac7f');stone.box(x,y+height-2,z,7.2,2,7.2,'#dccaa2');stone.add(unit.cone,x,y+height+2,z,5.3,5,5.3,'#93623f',0,Math.PI/4);for(const dx of[-1.3,1.3])stone.box(x+dx,y+height-4,z-3.03,1.1,2,.1,'#475341');}
  for(let z=10;z<400;z+=48){const x=-11.5,y=heightAt(x,z);b.rod([x,y,z],[x,y+3.8,z],.065,'#4d5c4c');b.box(x,y+3.75,z,.52,.72,.52,'#e3bb7d');b.add(unit.cone,x,y+4.25,z,.43,.35,.43,'#716044',0,Math.PI/4);}
  b.finish(root,m.trim,'Market awnings, lanterns and workshop machines');stone.finish(root,m.roof,'Belltowers and canvas experimental screw');
- return {update(s,dt){staff.visible=s.mode==='foot';staff.rotation.z=s.guarding?1.05:s.attackT>0?Math.sin(s.attackT*12)*1.5:0;staff.rotation.x=s.guarding?.25:0;wheel.rotation.x+=s.relay?dt*.8:0;guard.root.visible=true;guard.root.rotation.x=s.defeated?.55:0;guard.root.rotation.z=s.banditPhase==='windup'?-.2:0;if(!s.defeated)guard.root.rotation.y=Math.atan2(s.x-w.bandit.x,s.z-w.bandit.z);},figures};
+ return {update(s,dt){animatePerson(master,s.time,{motion:'work'});animatePerson(merchant,s.time,{motion:Math.hypot(s.x-17,s.z-170)<6?'wave':'idle'});animatePerson(guard,s.time,{motion:s.banditPhase==='windup'?'guard':'idle'});staff.visible=s.mode==='foot';staff.rotation.z=s.guarding?1.05:s.attackT>0?Math.sin(s.attackT*12)*1.5:0;staff.rotation.x=s.guarding?.25:0;wheel.rotation.x+=s.relay?dt*.8:0;guard.root.visible=true;guard.root.rotation.x=s.defeated?.55:0;guard.root.rotation.z=s.banditPhase==='windup'?-.2:0;if(!s.defeated)guard.root.rotation.y=Math.atan2(s.x-w.bandit.x,s.z-w.bandit.z);},figures};
 }
