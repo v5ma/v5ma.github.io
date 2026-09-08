@@ -1,5 +1,6 @@
 /* Walkable rooms and cellar instances belong to existing buildings. Exterior
  * shells cut away only on entry; markers are real interaction coordinates. */
+import {animatePerson} from './character-motion.mjs';
 import * as T from './vendor/three.module.js';
 import {Batch,unit,label,rand} from './art.mjs';
 import {person} from './guild-art.mjs';
@@ -65,7 +66,7 @@ export function createTownLifeVisuals({scene,root,w,m,rider,bike,camera}){
  let current=null;
  function update(s,dt,room){current=room?.id||null;const below=!!s.life.inside;cellars.visible=below;scene.background=below?belowBackground:baseBackground;scene.fog=below?belowFog:baseFog;
   for(const r of rooms){if(r.shell)r.shell.visible=below?false:!(room?.id===r.room.id);r.group.visible=true;}for(const r of cellarRooms)r.group.visible=s.life.inside===r.room.id;
-  for(const {p,model} of people){const point=personAt(p,s);model.root.visible=(point.inside||null)===(s.life.inside||null);model.root.position.set(point.x,heightAt(point.x,point.z)+(p.inside?-5:0),point.z);model.root.rotation.y=Math.hypot(s.x-point.x,s.z-point.z)<8?Math.atan2(s.x-point.x,s.z-point.z):Math.PI;model.root.rotation.x=p.id==='rocco'&&s.life.flags.rocco?.25:0;model.root.rotation.z=p.id==='rocco'&&s.life.attackPending?-.17:0;}
+  for(const {p,model} of people){const point=personAt(p,s);animatePerson(model,s.time,{motion:p.id==='rocco'&&s.life.attackPending?'guard':Math.hypot(s.x-point.x,s.z-point.z)<5?'listen':['ada','bartolo','neri','sofia'].includes(p.id)?'work':'idle'});model.root.visible=(point.inside||null)===(s.life.inside||null);model.root.position.set(point.x,heightAt(point.x,point.z)+(p.inside?-5:0),point.z);model.root.rotation.y=Math.hypot(s.x-point.x,s.z-point.z)<8?Math.atan2(s.x-point.x,s.z-point.z):Math.PI;model.root.rotation.x=p.id==='rocco'&&s.life.flags.rocco?.25:0;model.root.rotation.z=p.id==='rocco'&&s.life.attackPending?-.17:0;}
   for(const {p,model}of cats){const following=p.id==='pippa'&&s.life.cat;const x=following?s.life.petX:p.x+Math.sin(s.time*.45+p.z)*.5,z=following?s.life.petZ:p.z+Math.cos(s.time*.4)*.4;model.root.position.set(x,heightAt(x,z),z);model.root.rotation.y=Math.atan2(s.x-x,s.z-z);model.tail.rotation.z=Math.sin(s.time*2)*.2;model.legs.forEach((l,i)=>l.rotation.x=Math.sin(s.time*7+i*Math.PI)*.22);}
   for(const {o,g,tag}of objects){g.visible=(o.inside||null)===(s.life.inside||null);if(o.kind==='hidden')g.visible=g.visible&&(s.life.aura>0||s.life.flags.ledger);tag.visible=Math.hypot(s.x-o.x,s.z-o.z)<18;}
   // Labels need camera orientation relative to their rotated parent, not an

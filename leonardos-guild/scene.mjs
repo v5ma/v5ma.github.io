@@ -1,4 +1,6 @@
 import {createStreetArt} from './street-art.mjs';
+import {createCityArt} from './city-art.mjs';
+import {animatePerson} from './character-motion.mjs';
 import {createTownLifeVisuals} from './life-visuals.mjs';
 import {roomAt,stats} from './life-core.mjs';
 import * as T from './vendor/three.module.js';
@@ -55,6 +57,7 @@ export function createScene(canvas,w,s,quality='high'){
  const outdoors=scene.children.filter(o=>o!==rider.root&&!o.isLight);let wasBelow=false;const outdoorVisibility=new Map();
  const townLife=createTownLifeVisuals({scene,root,w,m,rider,bike,camera});
  const streetArt=createStreetArt({scene,root,w,m,camera});
+ const cityArt=createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,camera});
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality;
  function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
@@ -70,19 +73,19 @@ export function createScene(canvas,w,s,quality='high'){
   for(const [key,model]of[['bike',bike],['car',pressCar]]){const v=p.vehicle[key];model.root.position.set(v.x,heightAt(v.x,v.z)+(p.mode===key?p.lift:0),v.z);model.root.rotation.set(-Math.atan((heightAt(v.x,v.z+.5)-heightAt(v.x,v.z-.5)))*Math.cos(v.yaw),v.yaw,p.mode===key&&key==='bike'?-(input.steer||0)*Math.min(.17,Math.abs(p.speed)*.012):0);if(p.mode===key)for(const wheel of model.wheels)wheel.rotation.x+=p.speed*dt/(key==='bike'?.39:.37);}
   rider.root.visible=p.mode!=='car';rider.root.position.set(p.x,y+p.lift+(p.mode==='bike'?.03:0),p.z);rider.root.rotation.set(p.mode==='bike'?.14:0,p.yaw,0);if(p.mode==='bike'){for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.distance*3+i*Math.PI)*.6;rider.root.position.z-=f.z*.12;rider.root.position.x-=f.x*.12;}else for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.time*10+i*Math.PI)*Math.min(.5,Math.abs(p.speed)*.14);
   for(let i=0;i<p.traffic.length;i++){const t=p.traffic[i],c=traffic[i];c.root.position.set(t.x,heightAt(t.x,t.z),t.z);c.root.rotation.y=t.dir>0?0:Math.PI;for(const w of c.wheels)w.rotation.x+=t.dir*t.speed*dt/.37;}
-  for(let i=0;i<p.pedestrians.length;i++){const a=p.pedestrians[i],b=peds[i];b.root.position.set(a.x,heightAt(a.x,a.z),a.z);b.root.rotation.y=a.yaw;for(let j=0;j<2;j++)b.legs[j].rotation.x=Math.sin(a.phase+j*Math.PI)*.36;}
+  for(let i=0;i<p.pedestrians.length;i++){const a=p.pedestrians[i],b=peds[i];b.root.position.set(a.x,heightAt(a.x,a.z),a.z);b.root.rotation.y=a.yaw;for(let j=0;j<2;j++)b.legs[j].rotation.x=Math.sin(a.phase+j*Math.PI)*.36;animatePerson(b,p.time,{motion:'walk',speed:3,phase:a.phase});}
   const target=activeTarget(p,w);marker.position.set(target.x,heightAt(target.x,target.z)+.14,target.z);marker.scale.setScalar(1+Math.sin(p.time*2)*.045);
   for(const [id,{ring}]of boxes){ring.visible=!p.deliveries.has(id);ring.material.color.set(p.mission===0&&w.mailboxes.find(b=>b.id===id).route?'#ffd585':'#7eccc0');}
   arm.rotation.x=T.MathUtils.lerp(arm.rotation.x,p.relay?Math.PI/2:0,Math.min(1,dt*4));scanRings.forEach(r=>{r.visible=p.scan>0;r.lookAt(camera.position);r.rotation.z+=dt;});
   for(let i=0;i<papers.length;i++){const b=p.shots[i],mesh=papers[i];mesh.visible=!!b;if(b){mesh.position.set(b.x,b.y,b.z);mesh.rotation.set(p.time*13,p.time*7,p.time*9);}}
-  guild.update(p,dt);finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
+  guild.update(p,dt);animatePerson(rider,p.time,{motion:p.mode==='bike'?'ride':p.guarding?'guard':p.attackT>0?'strike':'walk',speed:p.speed,phase:p.time*10});finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
   goal.visible=p.mission===2&&p.defeated;
   if(!!p.life.inside!==wasBelow){if(p.life.inside)for(const object of outdoors){outdoorVisibility.set(object,object.visible);object.visible=false;}else for(const object of outdoors)object.visible=outdoorVisibility.get(object);wasBelow=!!p.life.inside;}if(p.life.inside)for(const object of outdoors)object.visible=false;
-  townLife.update(p,dt,currentRoom);streetArt.update(p,dt);renderer.render(scene,camera);
+  townLife.update(p,dt,currentRoom);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);renderer.render(scene,camera);
  }
  function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
  function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;streetArt.setQuality(value);renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.6:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
  function recenter(){orbit=pitch=0;}
  function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
- setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),art:streetArt.inspect()})};
+ setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
 }

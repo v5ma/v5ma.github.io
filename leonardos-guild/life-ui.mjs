@@ -1,4 +1,4 @@
-import {QUESTS,PEOPLE,ROOMS,ATTRIBUTES,nearest,actions,use,spend,cast,stats,points,questStatus,done,lifeDescription,mapTarget} from './life-core.mjs';
+import {QUESTS,PEOPLE,ROOMS,ATTRIBUTES,nearest,targets,actions,use,spend,cast,stats,points,questStatus,done,lifeDescription,mapTarget} from './life-core.mjs';
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function createLifeUI({getState,world,setPause,save,active,onTransition}){
  const dialog=document.createElement('dialog');dialog.id='life-dialog';dialog.setAttribute('aria-labelledby','life-title');dialog.innerHTML='<header class="life-heading"><div><p class="eyebrow">A LIFE IN LEONARDO’S TOWN</p><h2 id="life-title">Apprentice’s Notebook</h2></div><button id="life-close">Return to town</button></header><nav id="life-tabs"><button data-tab="quests">Commissions</button><button data-tab="people">People & places</button><button data-tab="character">Character</button></nav><main id="life-content"></main><p id="life-message" role="status"></p>';
@@ -6,7 +6,7 @@ export function createLifeUI({getState,world,setPause,save,active,onTransition})
  const $=id=>document.getElementById(id);$('life-close').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{if(wasActive)setPause(false);onTransition();});
  function open(kind='quests',subject=null){if(!active())return;wasActive=true;setPause(true);page=kind;target=subject;$('life-message').textContent='';render();dialog.showModal();}
  function note(){open('quests');}
- function talk(){const s=getState(),t=nearest(s,world);if(!t){s.toast='Walk close to a resident, cat, marked object or basement stairs. T / Talk interacts; N opens your notebook.';s.toastT=4;return false;}open('talk',t);return true;}
+ function talk(id=null){const s=getState(),t=id?targets(s,world).find(p=>p.id===id&&Math.hypot(s.x-p.x,s.z-p.z)<3.4):nearest(s,world);if(!t){s.toast='Walk close to a resident, cat, marked object or basement stairs. T / Talk interacts; N opens your notebook.';s.toastT=4;return false;}open('talk',t);return true;}
  function report(text){$('life-message').textContent=text;}
  function render(){const s=getState(),l=s.life,content=$('life-content');$('life-tabs').hidden=page==='talk';
   if(page==='quests'){
@@ -19,7 +19,7 @@ export function createLifeUI({getState,world,setPause,save,active,onTransition})
    $('life-title').textContent='Meet the people behind the doors';
    content.innerHTML='<p class="life-intro">Walk through the signed, open doors. The roof and front wall cut away when you step inside. Use T at marked stairs to descend; the same stair brings you back. Buildings without an open doorway remain scenery.</p><div class="life-cards">'+ROOMS.map(r=>`<article><p>${l.visits.includes(r.id)?'VISITED':'UNDISCOVERED'}</p><h3>${escape(r.name)}</h3><span>${r.cellar?'Walkable ground floor and basement':'Walkable ground floor'}${r.id==='observatory'?' · North garden charter required':''}</span></article>`).join('')+'</div><div class="life-cards">'+PEOPLE.map(p=>`<article><h3>${escape(p.name)}${p.age?' · '+p.age:''}</h3><p>${escape(p.role)} · ${l.friends[p.id]||0} friendship</p><span>${escape(p.text)}</span></article>`).join('')+'</div>';
   }else{
-   const t=nearest(s,world);if(!t||t.id!==target.id){dialog.close();return;}target=t;$('life-title').textContent=t.name;
+   const t=targets(s,world).find(p=>p.id===target.id&&Math.hypot(s.x-p.x,s.z-p.z)<3.6);if(!t){dialog.close();return;}target=t;$('life-title').textContent=t.name;
    const offered=actions(s,t,world),intro=t.text||({stairs:t.id==='down-inn'?'Beatrice keeps the cellar locked until you help find Pippa. The upstairs inn is always open.':'Stairs connect the two floors of this building. Your vehicle stays outside.',cat:'A town cat, not a collectible. You can stop and spend a moment together.',object:t.kind==='runes'?'The lock responds to LEAF, WATER and STAR. Neri knows the verse.':t.kind==='hidden'?'Only Lantern reveals the old ink. Use R outside this dialog, then read the ledger.':t.id==='pump'?'This pump needs the original repaired waterwheel, a bronze cog, and the mayor’s garden charter.':t.kind==='plant'?'Gather only the material needed for your current commission.':t.name}[t.type]||'');
    content.innerHTML=`<p class="life-intro">${escape(intro)}</p>`+(offered.length?offered.map(a=>`<button class="life-option" data-use="${escape(a.id)}" ${a.disabled?'disabled':''}>${escape(a.label)}</button>`).join(''):'<p>There is no active commission here yet. Your notebook lists who needs your help.</p>');
   }
