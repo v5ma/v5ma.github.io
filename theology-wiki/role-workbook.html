@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prophetic Patterns and Repair | Theology Wiki</title>
+<meta name="description" content="Source-linked rankings of public figures against explicit prophetic and repair criteria, with competing readings and an interfaith research plan.">
+<link rel="stylesheet" href="./rankings/workbook.css?v=1">
+<script defer src="./rankings/core.js?v=1"></script><script defer src="./rankings/workbook.js?v=1"></script>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to workbook</a>
+<header>
+<div class="mast"><a href="./san-reader.html">THEOLOGY WIKI</a><span>RESEARCH WORKBOOK / MICAH BLUMBERG</span></div>
+<h1>Prophetic Patterns<br>and Repair</h1>
+<p class="lead">Compare the works. Examine the pattern. Practice repair.</p>
+<p>Rank people against explicit passages, inspect the evidence, and build connections between spiritual traditions without erasing their differences.</p>
+<div id="edition" class="edition">Loading the selected research edition...</div>
+</header>
+<main id="workspace">
+<nav class="tabs" aria-label="Workbook sections">
+<button data-tab="ranked" aria-current="page">Ranked comparisons</button><button data-tab="matrix">Verse matrix</button><button data-tab="reception">Interpretation archive</button><button data-tab="bridges">Interfaith repair</button><button data-tab="plan">Work plan</button><button data-tab="method">Purpose and method</button>
+</nav>
+<p id="status" role="status" aria-live="polite">The rankings require JavaScript and the same-origin data files. <a href="./rankings/data.json">Read the complete scoring data</a> or <a href="./rankings/RESEARCH-CHARTER.md">read the research charter</a>.</p>
+<section id="controls" aria-label="Rank and matrix controls">
+<div class="filters">
+<label>Role profile<select id="profile"><option value="first">First Beast correspondence</option><option value="second">Second Beast correspondence</option><option value="repair">Christlike repair by works</option></select></label>
+<label>Reading lens<select id="lens"><option value="pattern">Recurring conduct pattern</option><option value="narrative">Narrative-specific correspondence</option></select></label>
+<label>Passage focus<select id="criterion"><option value="">Whole profile</option></select></label>
+<label>Period<select id="era"><option value="">All periods</option><option>Contemporary</option><option>Historical</option><option>Ancient</option></select></label>
+<label>Find a figure<input type="search" id="query" placeholder="Name or research note"></label>
+<label>Order<select id="sort"><option value="score">Match score</option><option value="coverage">Research coverage</option><option value="name">Name</option></select></label>
+</div>
+<label class="check"><input type="checkbox" id="leads"> Include low-weight interpretation-only leads in this scenario.</label>
+<p id="profile-note"></p>
+<details id="weights"><summary>Inspect or change criterion weights</summary><div id="weight-fields" class="weights"></div><button id="equal">Equal weights for this profile</button><p>Changing weights creates a personal scenario, not an update to the published baseline. Zero removes a criterion; an entirely zero-weight profile is rejected.</p></details>
+<div class="toolbar"><button id="compare" disabled>Compare two figures</button><button id="export-csv">Export ranked CSV</button><button id="export-json">Export full scenario</button><label class="filebutton">Import scenario<input id="import" type="file" accept="application/json,.json"></label><button id="reset">Reset personal scenario</button><button id="share">Copy view link</button></div>
+<p id="storage-note" class="small"></p>
+</section>
+<section id="results" tabindex="-1" aria-label="Workbook content"></section>
+<section id="edit-tools">
+<details><summary>Add a public figure to the research roster</summary>
+<form id="person-form" class="form-grid"><label>Public name<input name="name" required maxlength="160"></label><label>Period<select name="era"><option>Contemporary</option><option>Historical</option><option>Ancient</option></select></label><label>Category<input name="category" required maxlength="120" value="Public figure"></label><label>Research scope<textarea name="note" required maxlength="2000" placeholder="State why the public conduct or interpretation is being compared."></textarea></label><button>Add to my scenario</button></form>
+</details>
+<details><summary>Add or revise a sourced passage assessment</summary>
+<p>One dossier per person and criterion. Replacing a dossier changes only this personal scenario. Add all relevant source context to the explanation; do not count repeated reports as independent votes.</p>
+<form id="assessment-form" class="form-grid">
+<label>Figure<select name="person" required></select></label><label>Criterion<select name="criterion" required></select></label><label>Named counterpart, for promotion<select name="related"><option value="">Not applicable</option></select></label><label>Event date<input name="date" type="date"></label>
+<label class="wide">Documented words or acts<textarea name="event" required maxlength="5000"></textarea></label><label class="wide">Why the passage corresponds<textarea name="reason" required maxlength="5000"></textarea></label><label class="wide">Counterevidence, mismatch or unresolved gap<textarea name="counter" required maxlength="5000"></textarea></label>
+<label>Pattern fit, 0-4<input name="fit" type="number" min="0" max="4" step="0.25" value="0" required></label><label>Pattern counterweight, 0-4<input name="penalty" type="number" min="0" max="4" step="0.25" value="0" required></label><label>Narrative fit, 0-4<input name="literal" type="number" min="0" max="4" step="0.25" value="0" required></label><label>Narrative counterweight, 0-4<input name="literalPenalty" type="number" min="0" max="4" step="0.25" value="0" required></label>
+<label>Evidence weight<select name="quality"><option value="1">1.00: direct instrument or statement</option><option value="0.75">0.75: institutional or firsthand report</option><option value="0.5">0.50: mediated or limited record</option><option value="0.25">0.25: interpretation-only lead</option></select></label><label>Evidence basis<select name="basis"><option value="works">Documented words or acts</option><option value="attribution">Attributed interpretation only</option></select></label>
+<label>Public HTTPS source<input name="url" type="url" required placeholder="https://"></label><label>Source title<input name="title" required maxlength="500"></label><label>What was actually read<textarea name="access" required maxlength="2000"></textarea></label><label>Reviewer<input name="reviewer" required maxlength="200"></label>
+<button>Save assessment to my scenario</button></form>
+</details>
+</section>
+<dialog id="detail"><button id="close-detail" class="close">Close</button><div id="detail-body"></div></dialog>
+</main>
+<footer><p>This is a selected research edition, not an exhaustive ranking of every public figure. Scores are revisable editorial judgments about specified correspondences, not measurements of souls, religious worth or probabilities of supernatural identity. Personal edits remain in this browser until exported; the application cannot publish them to GitHub.</p><p><a href="./san-reader.html?page=apocalyptic-repair-theology">Apocalyptic Repair Theology</a> / <a href="./san-reader.html?page=connected-arguments">Book argument map</a> / <a href="./rankings/RESEARCH-CHARTER.md">Research charter</a> / <a href="./rankings/data.json">Canonical scores and sources</a></p></footer>
+</body></html>
