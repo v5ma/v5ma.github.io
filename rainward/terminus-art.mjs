@@ -5,7 +5,7 @@ import {rnd} from './artkit.mjs';
  * warm signs against a cool hall, real power-control lights and physical gate. */
 export function buildTerminus(scene,A){
  const {add,label,mesh,mat,geos,buckets}=A,bronze=0x8e7960,stone=0xb0aba0,steel=0x4d5a5d;
- const floorGeo=new T.PlaneGeometry(84,124,42,62);floorGeo.rotateX(-Math.PI/2);floorGeo.translate(0,.005,-14);const floor=new T.Mesh(floorGeo,mat(0xb5b5ad,'stone'));floor.receiveShadow=true;scene.add(floor);
+ const floorGeo=new T.PlaneGeometry(84,124,42,62);floorGeo.rotateX(-Math.PI/2);floorGeo.translate(0,.005,-14);const floor=new T.Mesh(floorGeo,mat(0xb5b5ad,'paving'));floor.receiveShadow=true;scene.add(floor);
  const gates=[],lights=[];
  for(const o of OBSTACLES){
   if(o.renderSeparately){add('cyl',o.x,o.h/2,o.z,.30,o.h,.30,steel,'metal');add('box',o.x,.28,o.z,1.1,.56,1.1,stone);add('box',o.x,o.h-.3,o.z,1.1,.6,1.1,bronze,'metal');continue;}

@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, mission, controller, improvements, expedition, visual, loot, guidance, station]
+        suite: [ui, mission, controller, improvements, expedition, visual, loot, guidance, station, scanned]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,6 +44,7 @@ jobs:
           PID=$!
           trap 'kill $PID' EXIT
           case "$RAINWARD_SUITE" in
+            scanned) FILE=scanned.py ;;
             controller) FILE=controller.py ;;
             improvements) FILE=improvements.py ;;
             expedition|visual) FILE=conservatory.py ;;

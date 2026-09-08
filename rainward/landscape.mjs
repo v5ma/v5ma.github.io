@@ -66,7 +66,7 @@ export function buildConservatory(scene,A){
   for(let j=0;j<4;j++){const a=j*Math.PI/2;add('ball',w.x+Math.sin(a)*.63,1.85+Math.cos(a)*.63,w.z+.89,.07,.07,.05,0xdebc7b,'metal');}
   label(['1 · GARDEN','2 · ARCHIVE','3 · DEEP'][i],w.x,2.9,w.z+.88,2.1,.6);}
  // Baked instancing; the renderer still uses real scene objects and collisions.
- for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=!['grass','glass','leafcard'].some(t=>[...A.mats].find(([k,v])=>v===m)?.[0].endsWith(':'+t));inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}
+ for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=!['grass','glass','leafcard'].some(t=>[...A.mats].find(([k,v])=>v===m)?.[0].endsWith(':'+t));inst.receiveShadow=true;inst.userData.scanBackdrop=geo===geos.rock;inst.computeBoundingSphere();scene.add(inst);}
  for(const [key,m]of A.mats)if(key.endsWith(':grass'))m.side=T.DoubleSide;
  return {update(s,dt){dynamic.gates.forEach(g=>g.position.y+=((s.puzzle?.solved?8:0)-g.position.y)*Math.min(1,dt*3));dynamic.wheels.forEach((w,i)=>w.rotation.z=-(s.puzzle?.wheels[i]||0)*Math.PI/2);for(const [i,w]of dynamic.water.entries())if(w.rotation.x)w.position.y=.16+Math.sin(s.t*.7+i)*.014;},dispose(){tex.dispose();waterMaterial.dispose();fallMat.dispose();glowMat.dispose();}};
 }

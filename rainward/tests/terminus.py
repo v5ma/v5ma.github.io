@@ -38,7 +38,7 @@ with sync_playwright() as pw:
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()==3,'Three separate authored chapters are present')
   chapter='conservatory' if MODE=='guidance' else 'terminus';page.locator('#chapter-select').select_option(chapter);page.locator('#start').click();wait(page,f'Rainward.state.level==="{chapter}"&&Rainward.mode==="play"')
-  check(snap(page)['version']=='0.4.0','The running game identifies the new build')
+  check(snap(page)['version']=='0.5.0','The running game identifies the new build')
   if MODE=='guidance':
    page.keyboard.press('KeyM');wait(page,'Rainward.mode==="map"');page.locator('#puzzle-assistance').wait_for(state='visible');before=snap(page)
    check('Western archive' in page.locator('#puzzle-journal').inner_text(),'The unread journal supplies an actionable physical clue location')
