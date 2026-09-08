@@ -1,0 +1,62 @@
+name: Aether licensed art verification
+on:
+  push:
+    branches: [feat/aether-quay-art-pass]
+    paths: ['aether-reach/**','.github/workflows/aether-art.yml']
+  pull_request:
+    paths: ['aether-reach/**','.github/workflows/aether-art.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: quay-art-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [plate, runtime]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate licensed assets and original mechanics
+        run: |
+          node --test aether-reach/tests/*.test.mjs
+          node aether-reach/tests/release-manifest.mjs
+          mkdir -p /tmp/quay-before
+          git archive 221844c60d56202bddadeba2bbec1cd204535e7f aether-reach index.html projects.css | tar -x -C /tmp/quay-before
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Render and exercise actual source
+        env:
+          SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/quay-after.log 2>&1 &
+          A=$!
+          python -m http.server 4174 --bind 127.0.0.1 --directory /tmp/quay-before >/tmp/quay-before.log 2>&1 &
+          B=$!
+          trap 'kill $A $B' EXIT
+          python -u "aether-reach/tests/quay_${SUITE}.py"
+      - name: Record exact source and review evidence
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+          tar --exclude='aether-reach/test-output' -czf aether-reach/test-output/art-source.tgz aether-reach index.html projects.css .github/workflows
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-quay-${{ matrix.suite }}
+          path: aether-reach/test-output
+          retention-days: 14
