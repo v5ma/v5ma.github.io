@@ -256,14 +256,14 @@
       "gate": "Quest 3 controller/floor calibration, sustained frame times, memory, comfort and whether players find the climbs worthwhile. API emulation cannot close this gate."
     },
     {
-      "id": "V30",
+      "id": "V37",
       "area": "Presentation",
       "title": "Jewelglass material profiles, carved recurve and bounded spell shaders",
       "status": "Implemented",
       "gate": "Native material, rebuild and emulated stereo tests plus actual served-file verification."
     },
     {
-      "id": "V31",
+      "id": "V38",
       "area": "Hardware",
       "title": "Measure physical Quest 3 stereo frame times for jewel reflections and shaders",
       "status": "Hardware QA",
