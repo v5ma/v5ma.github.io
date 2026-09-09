@@ -4,7 +4,7 @@
 (function(root){'use strict';
  function create(T,scene){
   const colors=[0x63eddd,0xff839d],group=new T.Group(),studio=new T.Group();group.name='Prism playfield';studio.name='Jewelbox studio / hidden in AR';scene.object3D.add(group,studio);
-  const geometry=PrismGeometry.build(T),fx=PrismMaterials.create(T),ownedGeometries=new Set(Object.values(geometry)),basic=new Map(),textures=[];let disposed=false,setup=false,lastProfile='',menuNow=false;
+  const geometry=PrismGeometry.build(T),fx=PrismMaterials.create(T),ownedGeometries=new Set(Object.values(geometry)),basic=new Map(),textures=[];let disposed=false,setup=false,lastProfile='',menuNow=false,warming=null;
   function own(g){ownedGeometries.add(g);return g;}
   const box=own(new T.BoxGeometry(1,1,1)),cylinder=own(new T.CylinderGeometry(1,1,1,24)),plane=own(new T.PlaneGeometry(1,1)),sphere=own(new T.SphereGeometry(1,16,12)),octa=own(new T.OctahedronGeometry(1));
   function mat(c,metal=0,rough=.3){const k=[c,metal,rough].join('/');if(!basic.has(k))basic.set(k,new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough}));return basic.get(k);}
@@ -30,7 +30,7 @@
   }
   const notes=Array.from({length:48},()=>{const o=jewel(group,0);o.g.visible=false;return o;});
   // Layered, slowly moving studio atmosphere. This entire subtree is hidden in AR.
-  const sky=mesh(studio,own(new T.SphereGeometry(42,24,16)),new T.ShaderMaterial({side:T.BackSide,depthWrite:false,vertexShader:`varying vec3 vLocal;void main(){vLocal=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,fragmentShader:`varying vec3 vLocal;void main(){vec3 d=normalize(vLocal);float h=smoothstep(-.1,.65,d.y);vec3 c=mix(vec3(.035,.075,.13),vec3(.009,.015,.044),h);c+=vec3(.035,.012,.065)*pow(max(0.,-d.z),5.);gl_FragColor=vec4(c,1.);\n#include <colorspace_fragment>}`}));basic.set('sky',sky.material);
+  const sky=mesh(studio,own(new T.SphereGeometry(42,24,16)),new T.ShaderMaterial({side:T.BackSide,depthWrite:false,vertexShader:`varying vec3 vLocal;void main(){vLocal=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,fragmentShader:`varying vec3 vLocal;void main(){vec3 d=normalize(vLocal);float h=smoothstep(-.1,.65,d.y);vec3 c=mix(vec3(.009,.018,.035),vec3(.003,.005,.014),h);c+=vec3(.009,.004,.021)*pow(max(0.,-d.z),5.);gl_FragColor=vec4(c,1.);\n#include <colorspace_fragment>}`}));basic.set('sky',sky.material);
   const floorGeo=own(new T.PlaneGeometry(34,40));floorGeo.rotateX(-Math.PI/2);const floor=mesh(studio,floorGeo,fx.floor,0,-.045,-9);floor.name='Obsidian runway / procedural caustic lace';
   mesh(studio,plane,fx.aurora,0,4,-20,30,11,1).name='Slow silk aurora';
   const orbit=new T.Group();studio.add(orbit);orbit.position.set(0,2.25,-15);
@@ -62,7 +62,7 @@
   const previewNotes=PrismCore.chart('first-light').notes;let quality='cinematic',intensity=.72,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const state={version:'0.2.0',profile:'cinematic',requested:'cinematic',ar:false,reflection:'generated linear-HDR studio / PMREM',effects:'object-space only',lastError:null,materialsReady:false,disposed:false};
   function settings(){const select=document.getElementById('graphics-quality'),slider=document.getElementById('effect-strength'),motion=document.getElementById('quiet-effects');if(select){quality=select.value;intensity=Number(slider.value)/100;reduced=motion.checked;}const immersive=scene.is('vr-mode')||scene.is('ar-mode'),ar=scene.is('ar-mode');const profile=ar?'AR translucent':immersive?'XR balanced':quality;state.profile=profile;state.requested=quality;state.ar=ar;fx.setQuality(quality,ar,immersive);return immersive;}
-  function update(s,time,dt,menu){if(disposed)return;menuNow=menu;const immersive=settings();const t=menu?(reduced?10:7+time%14):time;fx.update(time,((t*(s?.song.bpm||104)/60)%1)/1,intensity,reduced);sparkleMaterial.uniforms.uTime.value=reduced?0:time;sparkleMaterial.uniforms.uStrength.value=intensity*(state.ar?.45:1);
+  function update(s,time,dt,menu){if(disposed)return;menuNow=menu;if(warming){menu=false;s=warming;time=warming.song.notes[0].time-.8;}const immersive=settings();const t=menu?(reduced?10:7+time%14):time;fx.update(time,((t*(s?.song.bpm||104)/60)%1)/1,intensity,reduced);sparkleMaterial.uniforms.uTime.value=reduced?0:time;sparkleMaterial.uniforms.uStrength.value=intensity*(state.ar?.45:1);
    if(!setup&&scene.renderer){try{fx.environment(scene.renderer);setup=true;state.materialsReady=true;}catch(e){state.lastError=String(e);quality='balanced';setup=true;}scene.renderer.toneMapping=T.ACESFilmicToneMapping;scene.renderer.toneMappingExposure=1.04;}
    showroom.visible=menu&&!immersive;const rotate=reduced?0:Math.sin(time*.18)*.12;exhibitLeft.g.rotation.y=-.36+rotate;exhibitRight.g.rotation.y=.32-rotate;petals.rotation.z=reduced?0:Math.sin(time*.055)*.05;
    // Both shared variants are updated, including the menu presentation jewels.
@@ -75,11 +75,23 @@
    for(const r of rings)if(r.life>0){r.life-=dt;r.m.visible=r.life>0;r.m.scale.setScalar(1+(1-r.life/.4)*1.6);}
    const text=document.getElementById('graphics-status');if(text&&lastProfile!==state.profile){text.textContent=state.profile+(immersive?' · no screen-space transmission':' · reflected studio light');lastProfile=state.profile;}
   }
+  // Warm the actual playfield before the AudioBuffer starts. First-use shader
+  // compilation must not consume the music's count-in or trigger a false stall.
+  async function prepare(songState){
+   if(disposed||!scene.renderer)throw Error('The renderer is not ready.');
+   warming=songState;
+   try{
+    update(songState,0,0,false);
+    if(scene.renderer.compileAsync)await scene.renderer.compileAsync(scene.object3D,scene.camera);
+    // Let normal A-Frame frames allocate/compile the transmission render pass.
+    for(let i=0;i<3;i++)await new Promise(resolve=>requestAnimationFrame(resolve));
+   }finally{warming=null;}
+  }
   const tmpA=new T.Vector3(),tmpB=new T.Vector3();
   function blade(h,matrix,visible){const hand=hands[h];hand.g.visible=visible;hand.line.visible=visible&&quality!=='light'&&!reduced;if(!visible){hand.trail.length=0;hand.line.geometry.setDrawRange(0,0);return;}hand.g.matrixAutoUpdate=false;hand.g.matrix.copy(matrix);hand.g.matrix.decompose(hand.g.position,hand.g.quaternion,hand.g.scale);tmpA.set(0,0,-.12).applyMatrix4(matrix);tmpB.set(0,0,-.74).applyMatrix4(matrix);hand.trail.push([tmpA.x,tmpA.y,tmpA.z,tmpB.x,tmpB.y,tmpB.z]);if(hand.trail.length>20)hand.trail.shift();const a=hand.line.geometry.attributes.position;for(let i=0;i<hand.trail.length;i++){const p=hand.trail[i];a.setXYZ(i*2,p[0],p[1],p[2]);a.setXYZ(i*2+1,p[3],p[4],p[5]);}a.needsUpdate=true;hand.line.geometry.setDrawRange(0,Math.max(0,hand.trail.length-1)*6);}
   function textPanel(w,h){const c=document.createElement('canvas');c.width=1024;c.height=Math.round(1024*h/w);const context=c.getContext('2d'),texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;textures.push(texture);const material=new T.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false,side:T.DoubleSide});basic.set('panel'+basic.size,material);const m=mesh(group,own(new T.PlaneGeometry(w,h)),material);return {canvas:c,context,texture,mesh:m};}
   function dispose(){if(disposed)return;disposed=true;state.disposed=true;group.removeFromParent();studio.removeFromParent();for(const h of hands){h.g.removeFromParent();h.line.removeFromParent();}for(const g of ownedGeometries)g.dispose();for(const m of basic.values())m.dispose();for(const t of textures)t.dispose();fx.dispose();}
-  return {T,group,studio,lane,notes,hands,update,burst,blade,textPanel,colors,mesh,mat,neon,dispose,graphics:state,fx};
+  return {T,group,studio,lane,notes,hands,update,burst,blade,textPanel,colors,mesh,mat,neon,prepare,dispose,graphics:state,fx};
  }
  root.PrismArt=Object.freeze({create});
 })(globalThis);
