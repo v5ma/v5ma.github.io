@@ -4,7 +4,8 @@
 import * as T from './vendor/three.module.js';
 const waterDefs=`uniform float rwTime,rwMotion;uniform vec4 rwRipples[8];varying vec3 rwWaterPos;
 float wave(vec2 p){float t=rwTime*rwMotion;float h=sin(p.x*2.1+t*1.5)*.016+sin(p.y*3.3-t*1.1+p.x)*.012;
-for(int i=0;i<8;i++){float age=rwTime-rwRipples[i].z;float d=length(p-rwRipples[i].xy);if(age>0.&&age<3.&&rwRipples[i].w>0.){float ring=d-age*1.6;h+=sin(ring*15.)*exp(-ring*ring*7.)*exp(-age)*rwRipples[i].w*.035*rwMotion;}}return h;}`;
+for(int i=0;i<8;i++){float age=rwTime-rwRipples[i].z;float d=length(p-rwRipples[i].xy);if(age>0.&&age<3.&&rwRipples[i].w>0.){float ring=d-age*1.6;h+=sin(ring*15.)*exp(-ring*ring*7.)*exp(-age)*rwRipples[i].w*.035*rwMotion;}}return h;}
+`;
 export function animateWater(material,clock,ripples,kind='water'){
  if(material.userData.rwWater)return material;material.userData.rwWater=true;const previous=material.onBeforeCompile.bind(material),key=material.customProgramCacheKey();material.customProgramCacheKey=()=>key+'/rainward-water-6';
  material.onBeforeCompile=s=>{previous(s);s.uniforms.rwTime=clock.time;s.uniforms.rwMotion=clock.motion;s.uniforms.rwRipples={value:ripples};
@@ -12,7 +13,7 @@ export function animateWater(material,clock,ripples,kind='water'){
   s.fragmentShader=waterDefs+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>\nfloat sheen=abs(wave(rwWaterPos.xz));diffuseColor.rgb+=vec3(.12,.23,.18)*sheen*2.;`);
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>
-vec2 p=rwWaterPos.xz;float e=.035;float dx=(wave(p+vec2(e,0.))-wave(p-vec2(e,0.)))/(2.*e);float dz=(wave(p+vec2(0.,e))-wave(p-vec2(0.,e)))/(2.*e);normal=normalize(mat3(viewMatrix)*vec3(-dx,1.,-dz));`);
+vec2 rwP=rwWaterPos.xz;float rwE=.035;float rwDX=(wave(rwP+vec2(rwE,0.))-wave(rwP-vec2(rwE,0.)))/(2.*rwE);float rwDZ=(wave(rwP+vec2(0.,rwE))-wave(rwP-vec2(0.,rwE)))/(2.*rwE);normal=normalize(mat3(viewMatrix)*vec3(-rwDX,1.,-rwDZ));`);
   s.fragmentShader=s.fragmentShader.replace('#include <roughnessmap_fragment>',`#include <roughnessmap_fragment>\nroughnessFactor=clamp(.13+abs(wave(rwWaterPos.xz))*.65,.12,.27);`);
  };material.needsUpdate=true;return material;
 }
