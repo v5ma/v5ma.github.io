@@ -18,7 +18,7 @@ with zipfile.ZipFile(out/f'Aether-Reach-v{version}-native-art-evidence.zip','w',
   if mode=='runtime':
    report=json.loads((folder/'quay-runtime-report.json').read_text());assert report['passed']>=10 and not report['errors']
   else:
-   report=json.loads((folder/'plate-report.json').read_text());assert len(report['views'])==8;assert not report['views']['after-hero']['art']['errors']
+   report=json.loads((folder/'plate-report.json').read_text());assert len(report['views'])==12;assert not report['views']['after-hero']['art']['errors']
   for p in folder.iterdir():
    if p.suffix in ['.png','.json','.txt']:archive.write(p,mode+'/'+p.name)
  archive.writestr('scope.json',json.dumps({'source':source,'head':head,'workflow':run['id'],'scope':'Actual source renderer and HTTP gameplay. Matched plates use identical fixture cameras, not simulated progress. Runtime uses normal keys and UI. No physical GPU/headset performance or player art-approval claim.'},indent=2))

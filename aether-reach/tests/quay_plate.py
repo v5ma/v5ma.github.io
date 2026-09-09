@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
 OUT=Path(__file__).resolve().parents[1]/'test-output';OUT.mkdir(exist_ok=True)
-views={'hero':([24,16,27],[-3,5,2]),'facade':([0,1.67,5],[-10,4.2,9]),'street':([0,1.67,5],[4,3,-20]),'lamp':([12,2.3,12],[15.7,2.2,15.7])};results={};errors=[]
+views={'hero':([24,16,27],[-3,5,2]),'facade':([0,1.67,5],[-10,4.2,9]),'street':([0,1.67,5],[4,3,-20]),'lamp':([12,2.3,12],[15.7,2.2,15.7]),'jewel':([3,7.2,-4],[0,7.1,-9]),'glazing':([-6,3,-1],[-12,3.8,-5])};results={};errors=[]
 with sync_playwright() as pw:
  browser=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
  try:

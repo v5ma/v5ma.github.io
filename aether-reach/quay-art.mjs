@@ -19,7 +19,7 @@ export function installQuayArt({scene,renderer,quality,sky,hemi,sun,decks,fallba
  function batch(group){group.updateMatrixWorld(true);const batches=new Map();group.traverse(o=>{if(!o.isMesh)return;const key=o.geometry.uuid+':'+o.material.uuid;let entry=batches.get(key);if(!entry){entry={geometry:o.geometry,material:o.material,matrices:[],shadow:o.castShadow};batches.set(key,entry);}entry.matrices.push(o.matrixWorld.clone());});
   const output=new T.Group();output.name=group.name;for(const b of batches.values()){const m=new T.InstancedMesh(b.geometry,b.material,b.matrices.length);b.matrices.forEach((value,i)=>m.setMatrixAt(i,value));m.castShadow=b.shadow;m.receiveShadow=true;m.computeBoundingSphere();output.add(m);state.instances+=b.matrices.length;}root.add(output);return output;
  }
- function prepare(gltf){gltf.scene.traverse(o=>{if(!o.isMesh)return;state.models++;o.castShadow=o.receiveShadow=true;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.envMapIntensity=.6;
+ function prepare(gltf){gltf.scene.traverse(o=>{if(!o.isMesh)return;state.models++;o.castShadow=o.receiveShadow=true;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.envMapIntensity=1.0;
   if(/FakeInterior/i.test(m.name)){m.color.set('#172e38');m.emissive?.set('#0a181e');m.emissiveIntensity=.1;m.roughness=.7;}
   if(/Glass/i.test(m.name)){m.color.set('#b1ccd0');m.metalness=.55;m.roughness=.13;m.opacity=.42;m.transparent=true;m.depthWrite=false;}
   for(const field of ['map','normalMap','roughnessMap','metalnessMap','aoMap'])if(m[field])m[field].anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
@@ -65,7 +65,7 @@ export function installQuayArt({scene,renderer,quality,sky,hemi,sun,decks,fallba
  }));
  jobs.push(attempt('HDR lighting and sky',async()=>{
   const hdr=await new RGBELoader().loadAsync(url('sky.hdr'));hdr.mapping=T.EquirectangularReflectionMapping;
-  const pmrem=new T.PMREMGenerator(renderer);pmrem.compileEquirectangularShader();const env=pmrem.fromEquirectangular(hdr);scene.environment=env.texture;scene.environmentIntensity=.55;scene.background=null;scene.environmentRotation.set(0,1.5,0);sky.material.dispose();sky.material=cloudSky(hdr);sky.visible=true;pmrem.dispose();
+  const pmrem=new T.PMREMGenerator(renderer);pmrem.compileEquirectangularShader();const env=pmrem.fromEquirectangular(hdr);scene.environment=env.texture;scene.environmentIntensity=1.0;scene.background=null;scene.environmentRotation.set(0,1.5,0);sky.material.dispose();sky.material=cloudSky(hdr);sky.visible=true;pmrem.dispose();
   hemi.intensity=.85;sun.intensity=2.4;renderer.toneMappingExposure=1.04;scene.fog.color.set('#c6dbe4');
  }));
  const ready=Promise.all(jobs).then(()=>{state.settled=true;});
