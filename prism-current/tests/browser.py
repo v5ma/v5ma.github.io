@@ -12,11 +12,13 @@ def check(v,s):
  checks.append(s);print('PASS:',s,flush=True)
 def snapshot(page):return page.evaluate('Prism.snapshot()')
 def device_button(page,hand,index):
- page.evaluate('([h,i])=>TestXR.button(h,i,true)',[hand,index]);page.wait_for_timeout(90);page.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,index]);page.wait_for_timeout(70)
+ # Sample a controller edge across actual device frames; a fixed 90 ms pulse
+ # can disappear entirely on software-rendered stereo frames.
+ page.evaluate("""async ([h,i])=>{const scene=AFRAME.scenes[0];async function frames(){let prev=scene.frame,n=0;await new Promise((resolve,reject)=>{const began=performance.now(),timer=setInterval(()=>{if(scene.frame!==prev){prev=scene.frame;n++;}if(n>=3){clearInterval(timer);resolve();}else if(performance.now()-began>12000){clearInterval(timer);reject(Error('XR frames stalled'));}},4);});}TestXR.button(h,i,true);await frames();TestXR.button(h,i,false);await frames();}""",[hand,index])
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.5,service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.25,service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  if MODE=='xr':ctx.add_init_script(path=str(ROOT/'prism-current/tests/fake-xr.js'))
  page=ctx.new_page();page.set_default_timeout(40000);page.on('pageerror',lambda e:errors.append(str(e)))
@@ -25,7 +27,7 @@ with sync_playwright() as pw:
    page.goto(BASE+'/',wait_until='domcontentloaded');page.locator('a#prism-launch').click()
   else:page.goto(BASE+'/prism-current/',wait_until='domcontentloaded')
   page.wait_for_function('window.Prism?.snapshot().ready&&AFRAME.scenes[0].renderer.info.render.calls>0')
-  check(snapshot(page)['version']=='0.1.0','The actual A-Frame renderer loads the new isolated rhythm game')
+  check(snapshot(page)['version']=='0.2.0','The actual A-Frame renderer loads the new isolated rhythm game')
   page.screenshot(path=str(OUT/'title.png'))
   if MODE=='desktop':
    check(page.url.endswith('/prism-current/index.html'),'The homepage game card opens the playable page')
@@ -54,9 +56,10 @@ with sync_playwright() as pw:
    check(snapshot(page)['blend']=='alpha-blend' and not snapshot(page)['studio'],'Opaque sky and floor are hidden for the transparent AR composition')
    check(page.evaluate('AFRAME.scenes[0].renderer.getClearAlpha()')==0,'Clear alpha is transparent while the AR compositor supplies passthrough')
    page.screenshot(path=str(OUT/'emulated-ar-menu.png'))
+   check(page.evaluate('Prism.component.art.graphics.ar&&Prism.component.art.notes.filter(n=>n.g.visible).every(n=>n.body.material.isShaderMaterial)'), 'AR selects screen-buffer-free translucent jewels, not opaque glass capture')
    page.evaluate('TestXR.pose("left",[-.36,1.385,-.4])');page.wait_for_timeout(100);device_button(page,'left',0);page.wait_for_function('Prism.snapshot().phase==="playing"')
    check(snapshot(page)['input']=='slice','Tracked controller play uses real blade sweeps, not keyboard note matching')
-   page.evaluate("""async()=>{const first=Prism.snapshot().notes[0];await new Promise(resolve=>{const t=setInterval(()=>{if(Prism.snapshot().time>=first.time-.11){clearInterval(t);resolve();}},2);});TestXR.pose('left',[-.215,1.54,-.41]);await new Promise(r=>setTimeout(r,35));for(let i=0;i<=12;i++){TestXR.pose('left',[-.215,1.54-i*.028,-.41]);await new Promise(r=>setTimeout(r,7));}}""")
+   page.evaluate("""async()=>{const note=Prism.snapshot().notes[0],center=PrismCore.position(note,note.time);await new Promise((resolve,reject)=>{const began=performance.now(),timer=setInterval(()=>{const state=Prism.snapshot();if(state.phase!=='playing'||performance.now()-began>20000){clearInterval(timer);reject(Error('Saber input could not reach its audio cue'));return;}if(state.time<note.time-.18)return;const f=Math.max(0,Math.min(1,(state.time-note.time+.15)/.30));TestXR.pose('left',[center[0],center[1]+.28-.56*f,-.41]);if(f>=1){clearInterval(timer);resolve();}},4);});}""")
    page.wait_for_function('Prism.snapshot().state.hits>0');check(snapshot(page)['state']['hits']>0,'A swept tracked saber physically intersects and scores a note')
    page.screenshot(path=str(OUT/'emulated-ar-slice.png'));page.evaluate('TestXR.missing("right",true)');page.wait_for_function('Prism.snapshot().phase==="paused"')
    check('controllers' in snapshot(page)['message'],'Missing tracked controllers pause the song instead of creating phantom swings')
@@ -66,7 +69,7 @@ with sync_playwright() as pw:
    page.evaluate('TestXR.state.session.end()');page.wait_for_function('!Prism.snapshot().immersive');check(snapshot(page)['studio'],'Ending XR restores the desktop studio and does not record an aborted run')
    page.evaluate('TestXR.state.blend="opaque"');page.locator('#enter-ar').click();page.wait_for_function('TestXR.state.session.ended');check(not snapshot(page)['immersive'],'An opaque session is rejected rather than misrepresented as passthrough')
   check(not errors,'No uncaught browser errors in this suite')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP Chromium/software WebGL at half pixel ratio. Desktop uses ordinary UI and DOM keys. XR uses explicitly emulated input poses and alpha-blend sessions; not actual Quest passthrough, physical performance or comfort certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP Chromium/software WebGL at quarter pixel ratio. Desktop uses ordinary UI and DOM keys. XR uses explicitly emulated input poses and alpha-blend sessions; not actual Quest passthrough, physical performance or comfort certification.'},indent=2))
  except Exception as e:
   try:state=snapshot(page)
   except:state={}

@@ -66,3 +66,16 @@ Primary technical references: https://aframe.io/docs/;
 https://developer.mozilla.org/en-US/docs/Web/API/XRSession/environmentBlendMode;
 https://developer.mozilla.org/en-US/docs/Web/API/XRFrame/getPose;
 https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode/start .
+
+
+## v0.2 / Jewelbox graphics pass
+
+The old rounded blocks are replaced by original 64-triangle cushion-cut jewels: a table, crown, girdle and pavilion, with a reflective platinum/gold setting. The note center, cut directions, hand colors and collision code are preserved. Saber grips are modeled with lathed ceramic barrels, reflective collars, a spiral metal inlay and gemstone pommels; the visual blade still spans the original -0.08 to -0.74 metre points.
+
+Cinematic desktop uses Three.js MeshPhysicalMaterial transmission, high IOR, dispersion, clearcoat and iridescence. A generated linear-HDR studio environment is filtered once with PMREM and reused by crystals, metals and the obsidian runway. This is virtual studio lighting, not measured lighting or camera imagery from your room. The floor has an original procedural caustic-like lace shader, not ray-traced caustics or a planar reflection of the game. Highlights, bounded halo sprites, fading blade ribbons, cut-gem fragments and a slow studio-only aurora complete the treatment. No extra Three.js library, external shader CDN or paid asset is introduced.
+
+**AR/VR deliberately do not use screen-space transmission.** Those sessions use a per-eye translucent Fresnel/facet shader, with reduced AR effect strength. It allows passthrough to remain visible; it cannot refract furniture or the real camera image. The opaque studio and showcase remain in the existing AR-hidden subtree. No postprocessing replaces the XR compositor or changes the original session mode.
+
+Controls → Graphics selects Cinematic, Balanced or Light. Light removes note halos and saber ribbons. Quiet decorative motion disables showroom motion/twinkle without changing the song or notes. All graphics preferences have a separate `prism-current.graphics.v2` key; completed scores keep their existing namespace. Defaults favor Cinematic desktop and Balanced touch devices. Physical Quest frame rates, latency and comfort still require hardware.
+
+Development reference: Three.js MeshPhysicalMaterial, PMREMGenerator and ShaderMaterial documentation; A-Frame 1.8.0 material and renderer components. All meshes, GLSL and synthetic radiance in this pass are original project assets, with the existing A-Frame dependency license retained.

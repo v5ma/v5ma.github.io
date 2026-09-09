@@ -11,7 +11,7 @@ def check(ok,s):
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**opts);c=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.5,service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**opts);c=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.25,service_workers='block');host=urlparse(BASE).hostname
  c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  p=c.new_page();p.set_default_timeout(45000);p.on('pageerror',lambda e:errors.append(str(e)))
  try:
@@ -28,7 +28,7 @@ with sync_playwright() as pw:
   p.screenshot(path=str(OUT/'browser-slice.png'));p.keyboard.press('KeyP');p.wait_for_function('Prism.snapshot().phase==="paused"');p.locator('#back').click()
   check(p.evaluate('Object.keys(Prism.snapshot().scoreRecords).length')==0,'A partial pointer practice does not create a finished score')
   check(not errors,'No uncaught browser errors in the pointer flow')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'scope':'Native HTTP A-Frame; actual pointerdown plus timed DOM pointer moves through the real handler. No clock, note, score or player-state writes. Not a human accuracy benchmark.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'scope':'Native HTTP A-Frame at quarter pixel ratio; actual pointerdown plus timed DOM pointer moves through the real handler. No clock, note, score or player-state writes. Not a human accuracy benchmark.'},indent=2))
  except Exception as e:
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Prism?.snapshot()')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
  finally:c.close();b.close()
