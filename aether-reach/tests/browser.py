@@ -1,3 +1,4 @@
+from graphics_driver import balanced_graphics
 """Actual HTTP/WebGL expedition. Model tests seed states; these UI tests do not.
 A keyboard driver reads position and uses normal keydown/up for navigation.
 """
@@ -41,7 +42,7 @@ def use(page):
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':1280,'height':800},service_workers='block')
+ b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block')
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.add_init_script("window.testKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyE','KeyQ','KeyC'].includes(e.code)){testKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,state:window.AetherReach?.snapshot()});if(testKeyLog.length>16)testKeyLog.shift();}},true)")
@@ -49,7 +50,7 @@ with sync_playwright() as p:
   page.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach')
   check(page.locator('#start').is_enabled(),'A separately hosted first-person application loads its local renderer')
   page.screenshot(path=str(OUT/('title-'+MODE+'.png')))
-  page.locator('#start').click();page.wait_for_function('AetherReach.snapshot().playing&&!AetherReach.snapshot().paused')
+  balanced_graphics(page);page.locator('#start').click();page.wait_for_function('AetherReach.snapshot().playing&&!AetherReach.snapshot().paused')
   check(snap(page)['renderer']['triangles']>10000,'The world is rendered geometry, not a screenshot backdrop')
   page.screenshot(path=str(OUT/('first-person-'+MODE+'.png')))
   page.keyboard.press('KeyM');page.wait_for_selector('#map-dialog[open]');before=snap(page);page.wait_for_timeout(300)
@@ -102,8 +103,10 @@ with sync_playwright() as p:
    check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The HUD and menus do not overflow the phone-width viewport')
    page.screenshot(path=str(OUT/'touch-layout.png'))
    page.locator('#pause-button').click();page.locator('#return-title').click();check(page.locator('#menu').is_visible(),'The player can return to the title without leaving running input')
-   denied=ctx.new_page();denied.on('pageerror',lambda e:errors.append(str(e)));denied.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Denied','SecurityError')}})")
-   denied.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');denied.wait_for_function('!!window.AetherReach');denied.locator('#start').click();denied.wait_for_function('AetherReach.snapshot().playing');check(True,'A denied storage API does not prevent a new expedition');denied.close()
+   # Dispose the previous live software-WebGL scene before the independent
+   # restricted-storage boot, rather than competing with a second GPU context.
+   page.goto('about:blank');page.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Denied','SecurityError')}})")
+   page.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_function('AetherReach.snapshot().playing');check(True,'A denied storage API does not prevent a new expedition')
   check(not errors,'No uncaught JavaScript errors in the verified scenario')
   (OUT/(MODE+'-report.json')).write_text(json.dumps({'passed':len(checks),'checks':checks,'snapshot':snap(page),'errors':errors,'scope':'Actual HTTP Chromium software-WebGL, pointer/buttons and normal keyboard input. Read-only snapshots for assertions. No physical-device performance certification.'},indent=2))
  except Exception as e:

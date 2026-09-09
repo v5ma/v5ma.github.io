@@ -1,3 +1,4 @@
+from graphics_driver import balanced_graphics
 """Native HTTP/WebGL tactical acceptance. Only keyboard and UI clicks mutate
 play. Snapshot/aim observations never assign player, target or mission state.
 """
@@ -57,11 +58,11 @@ def aim(p,target,timeout=20):
 with sync_playwright() as pw:
  args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':1280,'height':850},service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());p=ctx.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)))
  p.add_init_script("window.tacticalKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyQ','KeyF','KeyE'].includes(e.code)){tacticalKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,paused:window.AetherReach?.snapshot().paused});if(tacticalKeyLog.length>20)tacticalKeyLog.shift();}},true);")
  try:
-  p.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');p.locator('#start').click();p.wait_for_function('AetherReach.snapshot().playing')
+  p.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');balanced_graphics(p,"low");p.locator('#start').click();p.wait_for_function('AetherReach.snapshot().playing')
   check(not snap(p)['tactics']['learned'],'The loan rig is acquired in the world, not silently awarded at spawn')
   walk(p,[(3,4),(7,4)]);use(p);p.wait_for_selector('#field-dialog[open]');check(snap(p)['tactics']['learned'],'Physical Quay bench interaction equips the field rig')
   p.locator('#power-current').click();close_field(p);walk(p,[(10,4),(15,2)]);aim(p,'range');p.keyboard.press('KeyJ',delay=70);p.wait_for_function('AetherReach.snapshot().tactics.research.includes("target")');check(True,'The survey lens records an actual living range machine')
@@ -89,9 +90,13 @@ with sync_playwright() as pw:
    # Defender navigates and aims through ordinary keyboard actions. The model
    # receives no special HP, damage, elapsed-time or mission-state assignments.
    walk(p,[(5,-48.7)]);use(p);p.wait_for_selector('#field-start');before=snap(p)['credits'];p.locator('#field-start').click();p.wait_for_function('AetherReach.snapshot().tactics.encounter.phase==="active"');p.locator('#world').focus();check(True,'The collector starts an opt-in three-wave defense through proximity and its UI')
-   start=time.monotonic();surveyed=False
-   while time.monotonic()-start<450:
-    s=snap(p)
+   start=time.monotonic();surveyed=False;last_progress=start;last_tick=-1
+   # The authored 48-second objective remains unchanged. CPU-only
+   # WebGL may advance more slowly than wall time; fail stalls separately.
+   while time.monotonic()-start<720:
+    s=snap(p);now=time.monotonic()
+    if s['time']>last_tick:last_tick=s['time'];last_progress=now
+    assert now-last_progress<60,'The game stopped advancing during recovery'
     if s['tactics']['encounter']['phase']!='active':break
     enemies=[x for x in s['enemies'] if x['id'].startswith('trial-') and x['hp']>0]
     if enemies:

@@ -1,5 +1,8 @@
+import {installLuminousArt} from './luminous-art.mjs';
+import {polishEquipment} from './quay-detail.mjs';
+import {installQuayArt} from './quay-art.mjs';
 import {tacticsScene} from './tactics-scene.mjs';
-/* Original procedural sky-city assets. No imported franchise models or art. */
+/* Existing public game with licensed CC0 Quay art; see art/manifest.json. */
 import * as T from './vendor/three.module.js';
 import {DISTRICTS,BRIDGES,RAILS,RELAYS,RECORDS,BUILDINGS,EXTRACTION,pointOnRail,forward} from './model.mjs';
 import {combatScene} from './combat-scene.mjs';
@@ -8,17 +11,18 @@ const palette={stone:'#efe2c2',pale:'#faf0d5',edge:'#ac9170',metal:'#284b53',gol
 export function makeView(canvas,quality='balanced'){
  const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,quality==='low'?1:1.5));renderer.shadowMap.enabled=quality!=='low';renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
  const scene=new T.Scene();scene.fog=new T.Fog('#bbdce1',140,530);const camera=new T.PerspectiveCamera(75,1,.06,1100);camera.rotation.order='YXZ';
- const hemi=new T.HemisphereLight('#e2f6ff','#819591',1.6);scene.add(hemi);const sun=new T.DirectionalLight('#fff0cb',3.2);sun.position.set(-60,120,50);sun.target.position.set(15,6,-60);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-145,right:145,top:125,bottom:-140,near:.5,far:360});sun.shadow.bias=-.00025;sun.shadow.normalBias=.14;scene.add(sun,sun.target);
+ const hemi=new T.HemisphereLight('#e2f6ff','#819591',1.6);scene.add(hemi);const sun=new T.DirectionalLight('#fff0cb',3.2);sun.position.set(-60,120,50);sun.target.position.set(15,6,-60);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-42,right:42,top:42,bottom:-42,near:.5,far:240});sun.shadow.bias=-.00012;sun.shadow.normalBias=.045;scene.add(sun,sun.target);
  const sky=new T.Mesh(new T.SphereGeometry(850,32,20),new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{top:{value:new T.Color('#598fae')},bottom:{value:new T.Color('#f4e6c6')}},vertexShader:'varying vec3 p;void main(){p=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'uniform vec3 top;uniform vec3 bottom;varying vec3 p;void main(){float t=clamp(normalize(p).y*.72+.24,0.,1.);gl_FragColor=vec4(mix(bottom,top,t),1.);}'}));scene.add(sky);
  const geometries={box:new T.BoxGeometry(1,1,1),sphere:new T.SphereGeometry(1,14,10),rock:new T.DodecahedronGeometry(1,0),cylinder:new T.CylinderGeometry(1,1,1,16),cone:new T.ConeGeometry(1,1,8),torus:new T.TorusGeometry(1,.1,6,24)};
- const buckets=new Map(),materials=new Map();const material=(color,kind='paint')=>{const k=color+kind;if(!materials.has(k))materials.set(k,new T.MeshStandardMaterial({color,roughness:kind==='metal'?.36:.83,metalness:kind==='metal'?.65:0,emissive:kind==='glow'?color:'#000000',emissiveIntensity:kind==='glow'?1:0}));return materials.get(k);};
+ const fallbacks={buildings:new T.Group(),lamps:new T.Group(),foliage:new T.Group()};for(const g of Object.values(fallbacks))scene.add(g);let artGroup=null;
+ const buckets=new Map(),materials=new Map();const material=(color,kind='paint')=>{const k=color+kind;if(!materials.has(k))materials.set(k,kind==='metal'?new T.MeshPhysicalMaterial({color,roughness:.23,metalness:.9,clearcoat:.6,clearcoatRoughness:.18,envMapIntensity:1.35}):new T.MeshStandardMaterial({color,roughness:.83,metalness:0,emissive:kind==='glow'?color:'#000000',emissiveIntensity:kind==='glow'?1:0}));return materials.get(k);};
  const matrix=new T.Matrix4(),quat=new T.Quaternion();
  function part(shape,x,y,z,sx,sy,sz,color,rz=0,ry=0,kind='paint'){
-  const k=shape+color+kind;if(!buckets.has(k))buckets.set(k,{g:geometries[shape],m:material(color,kind),items:[]});quat.setFromEuler(new T.Euler(0,ry,rz));matrix.compose(new T.Vector3(x,y,z),quat,new T.Vector3(sx,sy,sz));buckets.get(k).items.push(matrix.clone());
+  const k=(artGroup||'base')+shape+color+kind;if(!buckets.has(k))buckets.set(k,{g:geometries[shape],m:material(color,kind),items:[],group:artGroup});quat.setFromEuler(new T.Euler(0,ry,rz));matrix.compose(new T.Vector3(x,y,z),quat,new T.Vector3(sx,sy,sz));buckets.get(k).items.push(matrix.clone());
  }
  const box=(x,y,z,w,h,d,c,ry=0,kind)=>part('box',x,y,z,w,h,d,c,0,ry,kind);
  function beam(a,b,r,color){const mid=new T.Vector3().addVectors(a,b).multiplyScalar(.5),dir=new T.Vector3().subVectors(b,a),len=dir.length(),key='beam'+color;if(!buckets.has(key))buckets.set(key,{g:geometries.cylinder,m:material(color,'metal'),items:[]});quat.setFromUnitVectors(new T.Vector3(0,1,0),dir.normalize());matrix.compose(mid,quat,new T.Vector3(r,len,r));buckets.get(key).items.push(matrix.clone());}
- function label(text,x,y,z,w=8,h=3,bg='#244f5b',fg='#ffebbb',rotation=0){const c=document.createElement('canvas');c.width=768;c.height=Math.round(768*h/w);const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,c.width,c.height);g.strokeStyle=fg;g.lineWidth=4;g.strokeRect(10,10,c.width-20,c.height-20);g.textAlign='center';g.textBaseline='middle';const lines=text.split('\n'),fs=Math.min(85,c.height/(lines.length+1));g.font='600 '+fs+'px Georgia';g.fillStyle=fg;lines.forEach((line,i)=>g.fillText(line,384,c.height/2+(i-(lines.length-1)/2)*fs*1.16,695));const tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;tex.anisotropy=4;const mesh=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshStandardMaterial({map:tex,roughness:.8,side:T.DoubleSide}));mesh.position.set(x,y,z);mesh.rotation.y=rotation;scene.add(mesh);return mesh;}
+ function label(text,x,y,z,w=8,h=3,bg='#244f5b',fg='#ffebbb',rotation=0){const c=document.createElement('canvas');c.width=768;c.height=Math.round(768*h/w);const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,c.width,c.height);g.strokeStyle=fg;g.lineWidth=4;g.strokeRect(10,10,c.width-20,c.height-20);g.textAlign='center';g.textBaseline='middle';const lines=text.split('\n'),fs=Math.min(85,c.height/(lines.length+1));g.font='600 '+fs+'px Georgia';g.fillStyle=fg;lines.forEach((line,i)=>g.fillText(line,384,c.height/2+(i-(lines.length-1)/2)*fs*1.16,695));const tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;tex.anisotropy=4;const mesh=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshStandardMaterial({map:tex,roughness:.8,side:T.FrontSide}));mesh.position.set(x,y,z);mesh.rotation.y=rotation;scene.add(mesh);return mesh;}
  const rand=n=>{const v=Math.sin(n*127.1+311.7)*43758.5453;return v-Math.floor(v);};
  // Patterned stone plaza slabs are texture geometry, not a screenshot background.
  const texCanvas=document.createElement('canvas');texCanvas.width=texCanvas.height=256;const tc=texCanvas.getContext('2d');tc.fillStyle='#e5d8b9';tc.fillRect(0,0,256,256);for(let i=0;i<600;i++){tc.fillStyle=i%2?'#ffffff12':'#66523d0b';tc.fillRect(rand(i)*256,rand(i+8)*256,1+rand(i+3)*4,1);}tc.strokeStyle='#ad9e8255';tc.lineWidth=2;for(let i=0;i<=256;i+=64){tc.beginPath();tc.moveTo(i,0);tc.lineTo(i,256);tc.moveTo(0,i);tc.lineTo(256,i);tc.stroke();}const paving=new T.CanvasTexture(texCanvas);paving.wrapS=paving.wrapT=T.RepeatWrapping;paving.repeat.set(4,4);paving.colorSpace=T.SRGBColorSpace;
@@ -29,13 +33,18 @@ export function makeView(canvas,quality='balanced'){
   part('rock',d.x,d.y-9,d.z,d.w*.58,11,d.d*.52,'#789297',0,n*.7);part('rock',d.x+3,d.y-12,d.z-3,d.w*.36,13,d.d*.34,'#a0ac9c',.12,n*.4);
   for(let i=0;i<10;i++){const a=i/10*Math.PI*2,x=d.x+Math.cos(a)*d.w*.4,z=d.z+Math.sin(a)*d.d*.41;part('rock',x,d.y-5-rand(i+n)*5,z,3+rand(i)*4,7,4,i%2?'#9daba0':'#b4bda7',.2,n+i);}
   part('cylinder',d.x,d.y-6,d.z,6,3,6,palette.metal,0,0,'metal');part('torus',d.x,d.y-7.6,d.z,7,7,7,palette.gold,Math.PI/2,0,'metal');
+  artGroup=d.id==='harbor'?'lamps':null;
   for(const a of[-1,1])for(const b of[-1,1]){const x=d.x+a*(d.w/2-1.3),z=d.z+b*(d.d/2-1.3);box(x,d.y+.27,z,2.8,.5,2.8,palette.stone);part('cylinder',x,d.y+2,z,.16,3.8,.16,palette.metal);box(x,d.y+4,z,.9,1.1,.9,palette.gold);part('sphere',x,d.y+4,z,.32,.4,.32,'#fff0ae',0,0,'glow');}
+  artGroup=null;
   // Corner balustrades leave the central bridge/rail boarding approaches open.
   for(const side of[-1,1])for(const corner of[-1,1])for(let j=0;j<4;j++){const x=d.x+side*(d.w/2-.6),z=d.z+corner*(d.d/2-1-j*1.5);box(x,d.y+.6,z,.28,1.2,.28,palette.stone);box(x,d.y+1.15,z,.42,.18,1.6,palette.gold);}
+  artGroup=d.id==='harbor'?'foliage':null;
   for(let i=0;i<6;i++){const x=d.x+(i%2?1:-1)*(d.w*.4),z=d.z+(i/6-.5)*d.d*.65;box(x,d.y+.22,z,2.8,.5,2.8,palette.metal);box(x,d.y+.5,z,2.6,.15,2.6,'#718b49');part('cylinder',x,d.y+1.65,z,.16,2.4,.16,'#7c6850');for(let j=0;j<3;j++)part('sphere',x+(j-1)*.6,d.y+3.2+(.4*(j%2)),z,1.25,1.55,1.2,['#738f53','#8b9b58','#6b9c82'][n%3]);}
+  artGroup=null;
   if(d.theme==='park'){part('cylinder',d.x,d.y+.35,d.z,4,.7,4,palette.stone);part('cylinder',d.x,d.y+.75,d.z,3.5,.13,3.5,'#67babc');part('cylinder',d.x,d.y+1.4,d.z,.45,1.1,.45,palette.gold);part('sphere',d.x,d.y+2.1,d.z,.8,.8,.8,palette.gold,0,0,'metal');}
  }
  for(const d of BUILDINGS){
+  artGroup=['arrival','customs'].includes(d.id)?'buildings':null;
   box(d.x,d.y+d.h/2,d.z,d.w,d.h,d.d,d.id==='enginehall'?'#895f4f':d.id==='works-house'?'#b37559':d.id==='spire-tower'?'#939ebb':d.id==='observatory'?'#6e89a2':d.id==='greenhouse'?'#bedacf':palette.stone);box(d.x,d.y+.6,d.z,d.w+.4,1.2,d.d+.4,palette.edge);
   box(d.x,d.y+d.h+.35,d.z,d.w+1,.7,d.d+1,palette.pale);box(d.x,d.y+d.h-.7,d.z,d.w+.3,.35,d.d+.3,palette.gold);
   part('cone',d.x,d.y+d.h+2.2,d.z,d.w*.8,4,d.d*.8,d.id.includes('works')||d.id==='enginehall'?palette.red:palette.roof,0,Math.PI/4);
@@ -47,6 +56,7 @@ export function makeView(canvas,quality='balanced'){
   if(d.id==='spire-tower'){for(let i=0;i<4;i++){const y=d.y+d.h+4+i*1.4;part('torus',d.x,y,d.z,3-i*.55,3-i*.55,3-i*.55,palette.gold,Math.PI/2,0,'metal');}part('cylinder',d.x,d.y+d.h+11,d.z,.15,17,.15,palette.gold);part('sphere',d.x,d.y+d.h+18,d.z,.75,.75,.75,'#b9ffe3',0,0,'glow');}
   if(d.id==='enginehall')for(const offset of[-3,3]){part('cylinder',d.x+offset,d.y+d.h+5,d.z-2,.55,11,.55,palette.metal,0,0,'metal');part('torus',d.x+offset,d.y+d.h+9,d.z-2,.7,.7,.7,palette.gold,Math.PI/2);}
  }
+ artGroup=null;
  for(const b of BRIDGES){const a=new T.Vector3(...b.a),end=new T.Vector3(...b.b),len=a.distanceTo(end),dx=end.x-a.x,dz=end.z-a.z,horizontal=Math.hypot(dx,dz),side=new T.Vector3(-dz/horizontal,0,dx/horizontal);const up=new T.Vector3().crossVectors(new T.Vector3().subVectors(end,a).normalize(),side).normalize();
   const geo=new T.BufferGeometry(),verts=[],idx=[];for(const p of[a,end])for(const s of[-1,1]){const q=p.clone().addScaledVector(side,s*b.width/2);verts.push(q.x,q.y-.02,q.z);}geo.setAttribute('position',new T.Float32BufferAttribute(verts,3));geo.setIndex([0,2,1,1,2,3]);geo.computeVertexNormals();const m=new T.Mesh(geo,new T.MeshStandardMaterial({color:'#d9ccad',roughness:.9,side:T.DoubleSide}));m.receiveShadow=true;scene.add(m);
   for(const sign of[-1,1]){const aa=a.clone().addScaledVector(side,sign*(b.width/2+.1)),bb=end.clone().addScaledVector(side,sign*(b.width/2+.1));aa.y+=1.05;bb.y+=1.05;beam(aa,bb,.075,palette.gold);for(let i=0;i<=len;i+=3){const p=a.clone().lerp(end,i/len).addScaledVector(side,sign*(b.width/2+.1));beam(p,p.clone().add(new T.Vector3(0,1.05,0)),.055,palette.metal);}}
@@ -59,8 +69,8 @@ export function makeView(canvas,quality='balanced'){
   for(const s of[0,r.length]){const p=pointOnRail(r,s);part('cylinder',p.x,p.y-1.4,p.z,.12,2.8,.12,palette.gold);part('torus',p.x,p.y+.12,p.z,.58,.58,.58,palette.gold,0,0,'metal');label((s===0?r.to:r.from).toUpperCase()+'\nE  /  SKY CLAMP',p.x,p.y-1.15,p.z+.2,3.4,1.15);}
  }
  // Civic signage, original visual language, readable at street level.
- label('AETHER REACH\nPUBLIC FREIGHT AUTHORITY',-10,7.8,13.56,7,2.6);
- label('A CITY IS A PROMISE.\nKEEP IT.',11,6,-8.94,5.8,2.4,'#b5674e');
+ label('AETHER REACH\nPUBLIC FREIGHT AUTHORITY',-10,9.35,13.51,6.8,.65);
+ label('A CITY IS A PROMISE.\nKEEP IT.',11,9.35,-8.99,5.8,.65,'#b5674e');
  label('GLASSHOUSE\nGARDENS',74,13,-29.9,7,2.6);
  label('COPPERLIGHT\nWORKS',-35,20,-81.9,8,3,'#89654e');
  label('THE MERIDIAN\nLISTEN. THEN SPEAK.',44,33,-127.85,9,3.2);
@@ -83,25 +93,28 @@ export function makeView(canvas,quality='balanced'){
  }
  const tacticalArt=tacticsScene(T,{scene,camera,part,box,label,material,movingPart});
  const combatArt=combatScene(T,{scene,camera,part,box,label,material,movingPart});
- for(const bucket of buckets.values()){const mesh=new T.InstancedMesh(bucket.g,bucket.m,bucket.items.length);bucket.items.forEach((m,i)=>mesh.setMatrixAt(i,m));mesh.castShadow=true;mesh.receiveShadow=true;mesh.computeBoundingSphere();scene.add(mesh);}
+ for(const bucket of buckets.values()){const mesh=new T.InstancedMesh(bucket.g,bucket.m,bucket.items.length);bucket.items.forEach((m,i)=>mesh.setMatrixAt(i,m));mesh.castShadow=true;mesh.receiveShadow=true;mesh.computeBoundingSphere();(bucket.group?fallbacks[bucket.group]:scene).add(mesh);}
+ const quayArt=installQuayArt({scene,renderer,quality,sky,hemi,sun,decks,fallbacks});
  const hand=new T.Group(),hook=new T.Group();camera.add(hand,hook);scene.add(camera);
  const handMetal=material('#997441','metal'),glove=material('#2b4248'),skin=material('#dfb881');
  movingPart('box',glove,[.38,-.44,-.75],[.21,.22,.45],hand);movingPart('box',handMetal,[.39,-.33,-.95],[.21,.22,.65],hand);movingPart('cylinder',handMetal,[.39,-.23,-1.04],[.065,.45,.065],hand).rotation.x=Math.PI/2;
  for(let i=0;i<5;i++)movingPart('torus',material('#72bab5','metal'),[.39,-.26,-.84-i*.085],[.095,.095,.095],hand);
  movingPart('box',material('#eee1bb'),[.39,-.18,-.76],[.08,.08,.06],hand);movingPart('sphere',material('#90ffe2','glow'),[.39,-.26,-1.17],[.048,.048,.05],hand);
  movingPart('box',glove,[-.38,-.35,-.64],[.23,.19,.4],hook);movingPart('torus',handMetal,[-.37,-.22,-.86],[.18,.2,.18],hook);movingPart('box',handMetal,[-.37,-.05,-.88],[.09,.24,.07],hook);movingPart('sphere',material('#85d5cb','glow'),[-.36,-.19,-.76],[.04,.04,.04],hook);
+ polishEquipment(camera);
+ const luminous=installLuminousArt({scene,camera,renderer,quality,relays});
  const sparks=[];let lastShot=-1;const projectileGeo=new T.SphereGeometry(.1,6,4),enemyMat=new T.MeshBasicMaterial({color:'#ff7b5b'});const bulletMeshes=Array.from({length:32},()=>{const m=new T.Mesh(projectileGeo,enemyMat);m.visible=false;scene.add(m);return m;});
  function effect(e){combatArt.effect(e);tacticalArt.effect(e);if(e.type==='shot'){const geo=new T.BufferGeometry().setFromPoints([new T.Vector3(e.o.x,e.o.y,e.o.z),new T.Vector3(e.end.x,e.end.y,e.end.z)]),line=new T.Line(geo,new T.LineBasicMaterial({color:e.hit?'#fff3af':'#83e5d5',transparent:true,opacity:1}));scene.add(line);sparks.push({mesh:line,t:.10});lastShot=performance.now();}if(e.type==='pulse'){const mesh=new T.Mesh(new T.SphereGeometry(1,18,10),new T.MeshBasicMaterial({color:'#73e5d9',transparent:true,opacity:.25,wireframe:true}));camera.getWorldPosition(mesh.position);scene.add(mesh);sparks.push({mesh,t:.6,pulse:true});}}
- function update(state,dt,menu=false,reduced=false){tacticalArt.update(state,dt,menu,renderer.xr.isPresenting);const t=state.time;
+ function update(state,dt,menu=false,reduced=false){luminous.update(state,dt,reduced,renderer.xr.isPresenting);const c=renderer.xr.isPresenting?state.p:camera.position;const sx=Math.round(c.x/8)*8,sz=Math.round(c.z/8)*8;sun.position.set(sx-60,c.y+110,sz+50);sun.target.position.set(sx,c.y,sz);tacticalArt.update(state,dt,menu,renderer.xr.isPresenting);const t=state.time;
   for(const [id,v]of relays){const on=state.relays.has(id);v.orb.material.color.set(on?'#8deac0':'#ffd280');v.orb.material.emissive.set(on?'#52bfa0':'#d18c38');v.ring.rotation.y=t*.6;}
   for(const [id,v]of notes){v.group.visible=!state.records.has(id);v.tablet.rotation.y=Math.sin(t)*.15;}
   terminalLight.material.emissive.set(state.relays.size===3?'#72ffc9':'#335e6c');
   for(let i=0;i<bulletMeshes.length;i++){const v=bulletMeshes[i],b=state.bullets[i];v.visible=!!b;if(b)v.position.set(b.x,b.y,b.z);}
   for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];s.t-=dt;if(s.t<=0){scene.remove(s.mesh);s.mesh.geometry.dispose();s.mesh.material.dispose();sparks.splice(i,1);continue;}if(s.pulse){s.mesh.scale.setScalar(1+(1-s.t/.6)*13);s.mesh.material.opacity=s.t*.35;}else s.mesh.material.opacity=s.t*10;}
   if(!reduced){turbines.forEach(g=>g.rotation.z+=dt*.2);flags.forEach((m,i)=>{const pos=m.geometry.attributes.position;for(let k=0;k<pos.count;k++){const x=pos.getX(k);pos.setZ(k,Math.sin(x*1.5+t*2.3+i)*.18*(x+1.5)/3);}pos.needsUpdate=true;m.geometry.computeVertexNormals();});}
-  hand.visible=false;hook.visible=!menu&&!renderer.xr.isPresenting&&(!state.tactics?.learned||state.tactics.power==='pulse'||!!state.p.rail)&&!(state.p.scoped&&state.p.weapon==='sniper');hook.scale.setScalar(.78);hook.position.x=-.055;hook.position.z=-.09;combatArt.update(state,dt,menu,reduced,renderer.xr.isPresenting);hook.position.y=state.p.rail?.24:0;hook.rotation.z=state.p.rail?-.18:0;
+  hand.visible=false;hook.visible=!menu&&!renderer.xr.isPresenting&&(!state.tactics?.learned||state.tactics.power==='pulse'||!!state.p.rail)&&!(state.p.scoped&&state.p.weapon==='sniper');hook.scale.setScalar(.78);hook.position.x=-.055;hook.position.z=-.24;combatArt.update(state,dt,menu,reduced,renderer.xr.isPresenting);hook.position.y=state.p.rail?.24:-.07;hook.rotation.z=state.p.rail?-.18:0;
   const recoil=Math.max(0,1-(performance.now()-lastShot)/140);hand.position.z=recoil*.075;hand.rotation.x=recoil*.06;
  }
  function resize(w,h){if(renderer.xr.isPresenting)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
- return {renderer,scene,camera,resize,update,effect,render:()=>renderer.render(scene,camera),stats:()=>({drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries})};
+ return {renderer,scene,camera,resize,update,effect,setVisualMode:mode=>luminous.setMode(mode),render:()=>renderer.render(scene,camera),stats:()=>({drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,visual:luminous.stats(),art:quayArt.stats()})};
 }
