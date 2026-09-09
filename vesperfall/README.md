@@ -73,3 +73,8 @@ Read-only workflows preserve exact tested-source hashes, screenshots and failure
 - `roadmap.json` / `roadmap.html`: committed plan and browser-local planning board. Board edits do not mutate GitHub or saved runs.
 
 A-Frame is vendored under its license. Technical references: https://aframe.io/docs/1.8.0/introduction/developing-with-threejs.html and https://aframe.io/docs/1.8.0/components/material.html . No external runtime CDN, account, tracking service or commercial-game asset is required.
+
+
+## Jewelglass / v0.6.0
+
+The current material/foreground/effects update and its exact scope are documented in [JEWELGLASS.md](./JEWELGLASS.md). Choose Balanced, Jewel, or Classic in Pause / settings → Jewelglass. Jewel provides desktop optical refraction on two hero stones; WebXR falls back automatically to bounded reflective materials. All existing runs, seeds, combat and Chronicle records remain on the same engine.
