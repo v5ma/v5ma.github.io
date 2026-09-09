@@ -3,13 +3,12 @@
  * routes, scores, collectibles, campaign progression or authoring documents. */
 import * as T from './vendor/three.webgpu.js';
 import './prismatic-core.js';
-const C=globalThis.PrismCore,{color,mix,normalView,positionViewDirection,positionWorld,uniform,uv,sin}=T.TSL;
+const C=globalThis.PrismCore,{color,mix,normalView,positionViewDirection,uniform,uv,sin}=T.TSL;
 const KEY='svgn.prismatic.preferences.v1',motionQuery=matchMedia('(prefers-reduced-motion: reduce)');
 let prefs=C.preferences(),live=null,lastHero=null,disposed=0,installs=0,clock=uniform(0),fault=null;
 try{prefs=C.preferences(JSON.parse(localStorage.getItem(KEY)||'{}'));}catch{}
 const motion=()=>prefs.motion&&!motionQuery.matches;
-const report={version:'prismatic-1',backend:null,materials:0,stations:0,jewels:0,pegs:0,particles:0,draws:0,effects:{},errors:[]};
-const matrix=new T.Matrix4(),position=new T.Vector3(),scale=new T.Vector3(),quaternion=new T.Quaternion();
+const report={version:'prismatic-2',backend:null,materials:0,stations:0,jewels:0,pegs:0,particles:0,draws:0,effects:{},errors:[]};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch{}}
 function geometry(data){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(data.positions,3));if(data.normals)g.setAttribute('normal',new T.Float32BufferAttribute(data.normals,3));else g.computeVertexNormals();if(data.uv)g.setAttribute('uv',new T.Float32BufferAttribute(data.uv,2));g.computeBoundingSphere();return g;}
 function mesh(g,mat,parent,name){const m=new T.InstancedMesh(g,mat,1);m.setMatrixAt(0,new T.Matrix4());m.instanceMatrix.needsUpdate=true;m.frustumCulled=false;m.name=name;parent.add(m);return m;}
@@ -24,8 +23,8 @@ function material(s,options){const m=new T.MeshPhysicalNodeMaterial({envMap:s.en
 function own(s,g){s.geometries.add(g);return g;}
 function replace(s,o,mat){if(s.originals.has(o)||!o.material)return;s.originals.set(o,o.material);o.material=mat;report.materials++;}
 function enhanceExisting(s){
- const road=material(s,{name:'Deep sapphire enamel',vertexColors:true,color:'#b2c9ff',metalness:.58,roughness:.25,iridescence:.20,iridescenceThicknessRange:[160,320]});
- const gold=material(s,{name:'Polished gold and mint inlay',vertexColors:true,metalness:.92,roughness:.19});
+ const road=material(s,{name:'Deep sapphire enamel',vertexColors:true,color:'#b2c9ff',metalness:.42,roughness:.23,iridescence:.16,iridescenceThicknessRange:[160,320]});
+ const gold=material(s,{name:'Champagne gold rail edging',color:'#f7c360',metalness:.92,roughness:.20,emissive:'#623608',emissiveIntensity:.18});
  const enamel=material(s,{name:'Clear-coated courier enamel',vertexColors:true,metalness:.23,roughness:.24,iridescence:.16});
  s.actorMaterial=enamel;
  s.root.traverse(o=>{if(!o.material||!o.geometry)return;
@@ -34,20 +33,21 @@ function enhanceExisting(s){
   else if(o.parent?.name==='Red airmail target'&&o.material.isMeshStandardNodeMaterial)replace(s,o,enamel);
  });
 }
-function glass(s){const refract=prefs.look==='refraction';return material(s,{name:refract?'Optical glass / scene transmission':'Tinted reflective glass / light mode',color:'#a2efe6',metalness:0,roughness:.09,ior:1.46,transmission:refract?.87:0,thickness:1.2,attenuationColor:'#92cde8',attenuationDistance:200,dispersion:refract?.42:0,iridescence:.32,iridescenceThicknessRange:[120,370],transparent:!refract,opacity:refract?1:.23,depthWrite:refract,side:T.FrontSide});}
+function glass(s){const refract=prefs.look==='refraction';return material(s,{name:refract?'Optical glass / scene transmission':'Tinted reflective glass / light mode',color:'#a2efe6',metalness:0,roughness:.09,ior:1.46,transmission:refract?.87:0,thickness:.12,attenuationColor:'#92cde8',attenuationDistance:200,dispersion:refract?.42:0,iridescence:.32,iridescenceThicknessRange:[120,370],transparent:!refract,opacity:refract?1:.23,depthWrite:refract,side:T.FrontSide});}
 function buildStations(s,paths){
  const shell=glass(s),jewel=material(s,{name:'Faceted aquamarine',color:'#70ddd8',roughness:.085,metalness:.08,iridescence:.72,iridescenceIOR:1.32,envMapIntensity:2.35});
  const brass=material(s,{name:'Champagne polished metal',color:'#efc273',metalness:.94,roughness:.16});
  const inset=material(s,{name:'Glass-gallery footing',color:'#19394b',metalness:.5,roughness:.3});
- const gem=own(s,geometry(C.diamond(8))),ring=own(s,new T.TorusGeometry(1,.025,5,48)),base=own(s,new T.CylinderGeometry(1,1.1,1,16)),dome=own(s,new T.SphereGeometry(1,24,12,0,Math.PI*2,0,Math.PI/2));
- const stations=[];for(let i=0;i<paths.length&&stations.length<C.LIMITS.stations;i+=3){const p=paths[i].pts;if(p.length<2)continue;const q=p[Math.floor(p.length*.40)];stations.push({x:q[0]+100,y:-q[1]-120,z:-210,source:paths[i].sky?.id});}
+ const gem=own(s,geometry(C.diamond(8))),ring=own(s,new T.TorusGeometry(1,.025,5,48)),meridian=own(s,new T.TorusGeometry(1,.018,5,32,Math.PI)),base=own(s,new T.CylinderGeometry(1,1.1,1,16)),dome=own(s,new T.SphereGeometry(1,24,12,0,Math.PI*2,0,Math.PI/2));
+ const gy=globalThis.__sky?.active()?__sky.state.data.ground*36:2160;
+ const stations=[{x:355,y:-gy+12,z:-260,source:'post-office-background'}];for(let i=2;i<paths.length&&stations.length<C.LIMITS.stations;i+=3){const p=paths[i].pts;if(p.length<2)continue;const q=p[Math.floor(p.length*.40)];stations.push({x:q[0]+150,y:-q[1]+12,z:-310,source:paths[i].sky?.id});}
  if(!stations.length)stations.push({x:400,y:-2100,z:-210,source:'background'});
  for(let i=0;i<stations.length;i++){
   const loc=stations[i],g=new T.Group();g.name='Background crystal pavilion '+i;g.userData.decoration=true;g.position.set(loc.x,loc.y,loc.z);s.group.add(g);
   const foot=mesh(base,inset,g,'Pavilion base');foot.scale.set(91,13,61);
   const trim=mesh(ring,brass,g,'Metal canopy rim');trim.rotation.x=Math.PI/2;trim.position.y=9;trim.scale.set(90,60,90);
   const canopy=mesh(dome,shell,g,'Translucent conservatory glass');canopy.position.y=9;canopy.scale.set(84,100,55);canopy.renderOrder=20;
-  for(let j=0;j<3;j++){const hoop=mesh(ring,brass,g,'Canopy meridian');hoop.position.y=9;hoop.scale.set(83,100,55);hoop.rotation.y=j*Math.PI/3;}
+  for(let j=0;j<3;j++){const hoop=mesh(meridian,brass,g,'Canopy meridian');hoop.position.y=9;hoop.scale.set(83,100,55);hoop.rotation.y=j*Math.PI/3;}
   for(let j=0;j<3;j++){const d=mesh(gem,jewel,g,'Gallery jewel');d.position.set((j-1)*31,42+(j===1?10:0),j===1?13:0);d.scale.set(j===1?27:18,j===1?43:28,j===1?27:18);s.spin.push({mesh:d,angle:j+i*.3});}
   // Caustic-style light filigree is a procedural surface pattern, not a ray-traced simulation.
   const glowMat=new T.MeshBasicNodeMaterial({color:'#73ebdf',transparent:true,opacity:.28,blending:T.AdditiveBlending,depthWrite:false,side:T.DoubleSide,toneMapped:false});
@@ -63,7 +63,7 @@ function buildRailLight(s,paths){
  const mat=new T.MeshBasicNodeMaterial({transparent:true,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending,toneMapped:false});
  const rim=normalView.dot(positionViewDirection).abs().oneMinus().pow(3);
  const scan=sin(uv().x.mul(4).sub(clock.mul(1.5))).mul(.5).add(.5).pow(12);
- mat.colorNode=mix(color('#299bbb'),color('#e1b4ff'),sin(uv().x.mul(.13)).mul(.5).add(.5));mat.opacityNode=scan.mul(.16).add(rim.mul(.16)).add(.10);s.materials.add(mat);
+ mat.colorNode=mix(color('#35cad3'),color('#b9a0ff'),sin(uv().x.mul(.13)).mul(.5).add(.5));mat.opacityNode=scan.mul(.18).add(rim.mul(.13)).add(.16);s.materials.add(mat);
  for(const p of paths){const data=C.ribbon(p.pts);if(!data.positions.length)continue;const o=mesh(own(s,geometry(data)),mat,s.group,'Inset prismatic light channel');o.renderOrder=5;}
 }
 function buildLiveGems(s){
@@ -96,13 +96,14 @@ function cleanup(){
  const s=live;if(!s)return;
  for(const [obj,old]of s.originals)obj.material=old;
  if(!s.root.parent)for(const mat of new Set(s.originals.values()))mat.dispose();
- s.group.removeFromParent();for(const g of s.geometries)g.dispose();for(const m of s.materials)m.dispose();s.env.dispose();s.glow.dispose();s.particles.clear();live=null;lastHero=null;disposed++;
+ s.group.removeFromParent();for(const g of s.geometries)safeDispose(g);for(const m of s.materials)safeDispose(m);safeDispose(s.env);safeDispose(s.glow);s.particles.clear();live=null;lastHero=null;disposed++;
 }
+function safeDispose(resource){resource.dispose();}
 function gems(s,time){
  if(!s.liveGems)return;const data=s.liveGems,{geometry:g,source}=data,pos=g.attributes.position,norm=g.attributes.normal;let at=0,count=0;
  for(const item of s.pickups){if(count===C.LIMITS.jewels)break;if(pg(item.x,item.y)!==__gameRefs.T.GEAR||Math.abs(item.x*36-player.x)>760||Math.abs(item.y*36-player.y)>650)continue;
   const a=motion()?time*.6+item.x*.7:item.x*.7,ca=Math.cos(a),sa=Math.sin(a),x=item.x*36+18,y=-item.y*36-18;
-  for(let j=0;j<source.positions.length;j+=3){const px=source.positions[j]*14,py=source.positions[j+1]*17,pz=source.positions[j+2]*8,nx=source.normals[j],ny=source.normals[j+1],nz=source.normals[j+2];pos.setXYZ(at,x+ca*px+sa*pz,y+py,22-sa*px+ca*pz);norm.setXYZ(at,ca*nx+sa*nz,ny,-sa*nx+ca*nz);at++;}count++;
+  for(let j=0;j<source.positions.length;j+=3){const px=source.positions[j]*14,py=source.positions[j+1]*17,pz=source.positions[j+2]*8;let nx=source.normals[j]/14,ny=source.normals[j+1]/17,nz=source.normals[j+2]/8;const len=Math.hypot(nx,ny,nz)||1;nx/=len;ny/=len;nz/=len;pos.setXYZ(at,x+ca*px+sa*pz,y+py,22-sa*px+ca*pz);norm.setXYZ(at,ca*nx+sa*nz,ny,-sa*nx+ca*nz);at++;}count++;
  }
  if(at&&!data.mesh){data.mesh=mesh(g,s.pickupMaterial,s.group,'Faceted envelope seal batch');data.mesh.onAfterRender=()=>{report.draws++;};}
  if(data.mesh){data.mesh.visible=at>0;g.setDrawRange(0,at);pos.needsUpdate=norm.needsUpdate=true;}report.jewels=count;
@@ -147,7 +148,7 @@ function boot(){
  $('prism-look').onchange=e=>{prefs.look=e.target.value;save();rebuild();};$('prism-motion').onchange=e=>{prefs.motion=e.target.checked;save();if(live)live.particles.clear();};$('prism-glow').onchange=e=>{prefs.glow=e.target.checked;save();if(live)live.particles.clear();};motionQuery.addEventListener('change',()=>{if(live)live.particles.clear();});
  const build=SkyVisual.build;SkyVisual.build=function(...args){cleanup();return build.apply(this,args);};
  const update=SkyVisual.update;SkyVisual.update=function(...args){update.apply(this,args);try{frame();}catch(error){if(!fault){fault=String(error);report.errors.push(fault);console.error('Prismatic render pass:',error);}cleanup();prefs.look='classic';}};
- window.Prismatic=Object.freeze({version:'prismatic-1',get settings(){return {...prefs};},get stats(){return {...report,installs,disposed,active:!!live,clock:clock.value,resources:live?{materials:live.materials.size,geometries:live.geometries.size}:null};},get root(){return live?.group;}});
+ window.Prismatic=Object.freeze({version:'prismatic-2',get settings(){return {...prefs};},get stats(){return {...report,installs,disposed,active:!!live,clock:clock.value,resources:live?{materials:live.materials.size,geometries:live.geometries.size}:null};},get root(){return live?.group;}});
  window.PrismaticReady=true;
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();

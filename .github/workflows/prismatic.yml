@@ -9,13 +9,9 @@ concurrency:
   group: prismatic-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  visual:
-    strategy:
-      fail-fast: false
-      matrix:
-        suite: [materials, flight]
+  model:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,26 +19,55 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check actual committed modules and pure visual invariants
+      - name: Verify visual geometry and retained gameplay models
         run: |
           node --check mario-maker-clone/svgn-paper-route/prismatic-renderer.js
-          node --test tests/prismatic_core.test.cjs
+          node --test tests/prismatic_core.test.cjs tests/flow_routes.test.cjs tests/sky_relay.test.cjs tests/rail_repair.test.cjs tests/ride_lab.test.cjs tests/workshop_live.test.cjs tests/grapple_core.test.cjs tests/grapple_tolerance.test.cjs tests/adventure_score.test.cjs tests/depth_geometry.test.mjs
           python scripts/check-rail-release.py
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prismatic-model
+          path: test-output/
+          retention-days: 7
+  visual:
+    needs: model
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [materials, flight, relay, grip, road, loading, bezier, lab, expert, whip]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
       - name: Exercise actual materials and controls in the existing game
         env:
-          PRISM_SUITE: ${{ matrix.suite }}
+          SUITE: ${{ matrix.suite }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/prism-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 1320 python -u tests/prismatic_browser.py
+          case "$SUITE" in
+            materials|flight) PRISM_SUITE="$SUITE" timeout 1320 python -u tests/prismatic_browser.py ;;
+            relay|grip|road) PRISM_CONTACT="$SUITE" timeout 1320 python -u tests/prismatic_contacts_browser.py ;;
+            loading) timeout 1320 python -u tests/prismatic_loading_browser.py ;;
+            bezier) RAIL_SUITE=editor timeout 1320 python -u tests/rail_editor_browser.py ;;
+            lab) LAB_SUITE=editor timeout 1320 python -u tests/ride_lab_browser.py ;;
+            expert) SKY_REPLAY_ROUTE=0 timeout 1320 python -u tests/sky_browser.py ;;
+            whip) timeout 1320 python -u tests/grapple_browser.py ;;
+            *) exit 2 ;;
+          esac
       - if: always()
         run: |
           mkdir -p test-output
+          python scripts/check-rail-release.py
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff --stat > test-output/uncommitted-diff.txt
           cp /tmp/prism-http.log test-output/http.log || true
