@@ -21,6 +21,26 @@ def shot(page):
  # Wait for charge AND consumption of keyup by a real simulation frame.
  # The software renderer can take longer than a fixed 500ms delay.
  page.keyboard.down('Space');page.wait_for_function('Vesperfall.component.charge>.98',timeout=60000);page.keyboard.up('Space');page.wait_for_function('Vesperfall.component.desktopDraw===0&&Vesperfall.component.charge===0')
+def tracked_shot(page,enemy_id):
+ # The old driver aimed at one stale position before its entire draw, shooting
+ # behind moving enemies. Follow the observed target with normal arrow-key
+ # inputs while holding Space; never assign yaw, hit points or game clocks.
+ result=page.evaluate("""async id=>{
+  const c=Vesperfall.component,canvas=AFRAME.scenes[0].canvas,held=new Set();
+  function key(code,on){if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true,cancelable:true}));on?held.add(code):held.delete(code);}
+  return await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{
+   const s=Vesperfall.state,e=s.world.enemies.find(e=>e.id===id);
+   function finish(value,error){for(const k of [...held])key(k,false);clearInterval(timer);error?reject(Error(error)):resolve(value);}
+   if(s.phase!=='playing'||c.paused||performance.now()-start>100000){finish(null,'Tracked ordinary-input aim did not complete');return;}
+   if(!e||e.dead){finish({released:false});return;}
+   const p=c.head.object3D.getWorldPosition(new AFRAME.THREE.Vector3()),dx=e.p[0]-p.x,dz=e.p[2]-p.z,d=Math.hypot(dx,dz),dy=e.p[1]+.62-p.y,v2=36*36,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2),yaw=Math.atan2(-dx,-dz),pitch=disc>0?Math.atan((v2-Math.sqrt(disc))/(9.8*d)):Math.atan2(dy,d),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw)),b=pitch-c.pitch;
+   key('ArrowLeft',a>.012);key('ArrowRight',a<-.012);key('ArrowUp',b>.008);key('ArrowDown',b<-.008);key('Space',true);
+   if(c.charge>.985&&Math.abs(a)<.03&&Math.abs(b)<.023)finish({released:true,shots:s.shots});
+  },3);});
+ }""",enemy_id)
+ if result['released']:
+  page.wait_for_function('(n)=>Vesperfall.state.shots>n&&Vesperfall.component.desktopDraw===0',arg=result['shots'])
+  page.wait_for_function('Vesperfall.state.arrows.length===0')
 def walk(page,x,z,close=.7,combat=False):
  page.evaluate('''async ({x,z,close,combat})=>{const c=Vesperfall.component,held=new Set();function key(k,on){if(held.has(k)===on)return;document.querySelector('a-scene').canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code:k,key:k,bubbles:true,cancelable:true}));if(on)held.add(k);else held.delete(k);}await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const p=Vesperfall.state.p,dx=x-p[0],dz=z-p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw));key('ArrowLeft',a>.04);key('ArrowRight',a<-.04);key('KeyW',Math.abs(a)<.2&&d>close);key('ShiftLeft',Math.abs(a)<.2&&d>1);const enemy= combat && Vesperfall.state.world.enemies.some(e=>!e.dead&&VesperCore.len(VesperCore.sub(e.p,Vesperfall.state.head))<15&&!VesperCore.segmentBlocked(Vesperfall.state.world,Vesperfall.state.head,VesperCore.add(e.p,[0,.5,0])));if(d<close||enemy||Vesperfall.state.phase!=='playing'||performance.now()-start>240000){for(const k of [...held])key(k,false);clearInterval(timer);if(d<close||enemy)resolve();else reject(Error('Walking stopped at '+p+' instead of '+x+','+z));}},4);});}''',{'x':x,'z':z,'close':close,'combat':combat})
 with sync_playwright() as p:
@@ -86,7 +106,7 @@ with sync_playwright() as p:
     s=snap(page);assert s['phase']=='playing','The ordinary-input run died';enemies=[e for e in s['enemies'] if not e['dead']]
     visible=page.evaluate('Vesperfall.state.world.enemies.filter(e=>!e.dead&&VesperCore.len(VesperCore.sub(e.p,Vesperfall.state.head))<17&&!VesperCore.segmentBlocked(Vesperfall.state.world,Vesperfall.state.head,VesperCore.add(e.p,[0,.5,0]))).map(e=>e.id)')
     if visible:
-     enemy=next(e for e in enemies if e['id']==visible[0]);aim(page,[enemy['p'][0],enemy['p'][1]+.45,enemy['p'][2]]);shot(page)
+     tracked_shot(page,visible[0])
     else:
      travel=page.evaluate('(()=>{const s=Vesperfall.state,w=s.world,here=VesperCore.roomAt(w,s.p),e=w.enemies.filter(e=>!e.dead).sort((a,b)=>VesperCore.route(w,here,a.room).length-VesperCore.route(w,here,b.room).length)[0],path=VesperCore.route(w,here,e.room),target=w.rooms[path[1]??e.room];return {x:target.x,z:target.z}})()')
      walk(page,travel['x'],travel['z'],1,combat=True)
@@ -115,7 +135,7 @@ with sync_playwright() as p:
    page.evaluate('TestXR.hide(true)');page.wait_for_function('Vesperfall.component.paused');check(snap(page)['paused'],'Session visibility loss pauses safely')
    page.evaluate('TestXR.hide(false);TestXR.state.session.end()');page.wait_for_function('!Vesperfall.component.xr');check(page.locator('#menu.open').is_visible(),'Ending XR returns to a usable paused desktop menu')
   check(not errors,'No uncaught application errors in the tested flow')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snap(page),'scope':'Native HTTP A-Frame WebGL. Expedition uses ordinary keyboard events with observed navigation; XR substitutes device poses/buttons only. Long traversal suites use emulated pixel ratio .5 for the software GPU. No hardware/comfort or physical draw calibration certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snap(page),'scope':'Native HTTP A-Frame WebGL. Expedition uses ordinary keyboard events with observed navigation and target tracking during draw; XR substitutes device poses/buttons only. Long traversal suites use emulated pixel ratio .5 for the software GPU. No hardware/comfort or physical draw calibration certification.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None

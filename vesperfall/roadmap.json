@@ -1,1 +1,273 @@
-{"version":"0.5.0","project":"Vesperfall: Arrows Unchained","scope":"Original public mechanics prototype. No private story material.","tasks":[{"id":"V01","area":"Foundation","title":"Pinned A-Frame scene and same-origin assets","status":"Implemented","gate":"Renderer starts and all runtime requests stay same-origin."},{"id":"V02","area":"Archery","title":"Two-hand draw, nock and pose-loss cancellation","status":"Implemented","gate":"Real controller poses produce direction and power; losses never fire a stale arrow."},{"id":"V03","area":"Combat","title":"Swept arrows, cover and limited special ammunition","status":"Implemented","gate":"Hits stop at nearest geometry and ammo changes only on valid shots."},{"id":"V04","area":"Traversal","title":"Blink arrows and opt-in stick locomotion","status":"Implemented","gate":"Shared projectile/preview first-hit collision; a widened upper-gallery target. A clear preview is not automatic aiming or permission to pass through solids."},{"id":"V05","area":"World","title":"Connected seeded cloisters and branching paths","status":"Implemented","gate":"Seeded nonuniform extents and varying floorplans on a connected bounded nine-room graph. Same seed/depth reproduces a layout; not an unbounded streamed city."},{"id":"V06","area":"Progression","title":"Wardens, beacon, blessings and local renown","status":"Implemented","gate":"An ordinary-input mission reaches the next sector; completion cannot be banked twice."},{"id":"V07","area":"Comfort","title":"Spatial pause, handedness and shorter draw","status":"Implemented","gate":"All essential actions can be completed in-headset, with cancelled inputs on transitions."},{"id":"V08","area":"Hardware","title":"Quest 3 bow alignment and physical draw feel","status":"Hardware QA","gate":"Record actual headset/browser version and both handedness tests. No API fixture substitutes."},{"id":"V09","area":"Hardware","title":"Quest 3 sustained rendering and comfort","status":"Hardware QA","gate":"Measure frame-time distribution, draw calls, thermal behavior, floor and snap turning on hardware."},{"id":"V10","area":"Hardware","title":"Real Xbox and touch controllers","status":"Hardware QA","gate":"Pair, reconnect, suspend and resume real USB/Bluetooth controllers and a phone."},{"id":"V11","area":"World","title":"Six room families, reversible skywalk and two-level belfry","status":"Implemented","gate":"Nonuniform dimensions and cross-shaped plans; real stair/deck clearance. Model/native/public receipts are separate gates. Nine logical sector slots remain."},{"id":"V12","area":"Archery","title":"Crossbow, deliberate timed reload and independent weapon model","status":"Implemented","gate":"Real loaded/empty state and button/stick-click reload. A physical reload gesture remains future work; hardware comfort is unverified."},{"id":"V13","area":"Combat","title":"Shield weak points and coordinated enemy behavior","status":"Planned","gate":"Enemies communicate intent without unavoidable or offscreen damage."},{"id":"V14","area":"Presentation","title":"Refined original creatures, bow animation and spatial audio","status":"Planned","gate":"Finished foreground bow/hand and animated creature assets, consistent with the material-authored world. Environmental art improvement is not character-art completion."},{"id":"V15","area":"Progression","title":"Save/resume a full run and broader unlocks","status":"Planned","gate":"Versioned bounded storage restores a run without duplicating rewards."},{"id":"V16","area":"Testing","title":"Player evaluation of difficulty and enjoyment","status":"Planned","gate":"Record first-run usability, fatigue and repeat-play feedback; counts do not certify fun."},{"id":"V17","area":"Online","title":"Optional opt-in challenge sharing","status":"Deferred","gate":"No accounts or remote data until explicitly designed and authorized."},{"id":"V18","area":"Combat","title":"Directional Wardglass shield, break and recovery","status":"Implemented","gate":"Front-face swept blocking before body impact; side/rear exposure, guard cost, tracking cancellation and no simultaneous firing."},{"id":"V19","area":"Traversal","title":"Regenerating supported-ground shard steps","status":"Implemented","gate":"Short unobstructed microdashes, no cliff crossing or tunneling. Physical thrown-shard gestures are not implemented."},{"id":"V20","area":"Archery","title":"Limited three-arrow Volley and precision hits","status":"Implemented","gate":"Three independent projectiles consume one charge; actual weak-point hits earn counters."},{"id":"V21","area":"Progression","title":"Permanent Chronicle milestones and optional Nightfall","status":"Implemented","gate":"Idempotent run-counter banking, retained legacy purchases, no practice farming and new-run application."},{"id":"V22","area":"Presentation","title":"Twilight/daylight, original equipment and quiet synthetic ambience","status":"Implemented","gate":"Local reused geometry and opt-in sound. No borrowed audio or hardware performance claim."},{"id":"V23","area":"Testing","title":"Complete scored expedition and new-device acceptance","status":"Planned","gate":"Preserve exact native reports and full-beacon/blessing/reload progression evidence; passing models alone are insufficient."},{"id":"V24","area":"Traversal","title":"Physical thrown shard and richer vertical route families","status":"Planned","gate":"Readable trajectories, safe valid landings, comfortable two-handed controls and alternative routes; no forced headset motion."},{"id":"V25","area":"Archery","title":"Physical crossbow wind/reload gesture","status":"Planned","gate":"Separate comfortable interaction for both handedness settings, with an accessible button alternative."},{"id":"V26","area":"Combat","title":"Hollow Hunt: committed cantor volleys, hound charges and sentinel guard","status":"Implemented","gate":"Shared physical projectiles/collision, visible warning, dodge/block/counterplay, no homing charge."},{"id":"V27","area":"Traversal","title":"Two optional double-stair loft loops and elevation-gated caches","status":"Implemented","gate":"Preserve ground graph links; walk both stairways and collect upper supply only at its elevation."},{"id":"V28","area":"Practice","title":"Three repeatable adversary trials and field guide","status":"Implemented","gate":"Ordinary menus spawn real AI. Trial counters never change the Chronicle or prior purchases."},{"id":"V29","area":"Archery","title":"Surface-triggered Cinder bursts and interrupting Frost","status":"Implemented","gate":"Cover occludes area damage; freeze interrupts charges and has a shorter sentinel duration."},{"id":"V30","area":"Future","title":"Physical thrown-shard and crossbow winding gestures","status":"Planned","gate":"Retain accessible button alternatives; headset motion must be tested physically before release."},{"id":"V31","area":"Art","title":"CC0 castle masonry, cobbles and finished marble sculpture","status":"Implemented","gate":"Local 1K material maps and embedded 512px GLB textures; author/source/license/transform/hash register; no runtime CDN."},{"id":"V32","area":"Traversal","title":"Inter-room upper loop and 6.4m belfry reliquaries","status":"Implemented","gate":"One-time, elevation-gated score/heal rewards, reversible traversal and ground alternatives. Trial play cannot farm permanent rewards."},{"id":"V33","area":"Art","title":"Continuous arch profiles, roof silhouettes and spatial material batches","status":"Implemented","gate":"Matching actual before/after frames; static shadows refreshed on rebuild rather than each frame. Physical Quest performance remains unmeasured."},{"id":"V34","area":"Navigation","title":"Scaled floorplan atlas with upper route and reward cues","status":"Implemented","gate":"Use actual room outlines, gold skywalk and reliquary markers. No player steering or auto-completion."},{"id":"V35","area":"World","title":"Authored crypt/roof transitions and expanded graph vocabulary","status":"Planned","gate":"Move beyond nine logical slots while reserving doors, stair clearances, loot access and recovery routes."},{"id":"V36","area":"Testing","title":"Hardware and human review of the material-rich vertical world","status":"Hardware QA","gate":"Quest 3 controller/floor calibration, sustained frame times, memory, comfort and whether players find the climbs worthwhile. API emulation cannot close this gate."}]}
+{
+  "version": "0.6.0",
+  "project": "Vesperfall: Arrows Unchained",
+  "scope": "Original public mechanics prototype. No private story material.",
+  "tasks": [
+    {
+      "id": "V01",
+      "area": "Foundation",
+      "title": "Pinned A-Frame scene and same-origin assets",
+      "status": "Implemented",
+      "gate": "Renderer starts and all runtime requests stay same-origin."
+    },
+    {
+      "id": "V02",
+      "area": "Archery",
+      "title": "Two-hand draw, nock and pose-loss cancellation",
+      "status": "Implemented",
+      "gate": "Real controller poses produce direction and power; losses never fire a stale arrow."
+    },
+    {
+      "id": "V03",
+      "area": "Combat",
+      "title": "Swept arrows, cover and limited special ammunition",
+      "status": "Implemented",
+      "gate": "Hits stop at nearest geometry and ammo changes only on valid shots."
+    },
+    {
+      "id": "V04",
+      "area": "Traversal",
+      "title": "Blink arrows and opt-in stick locomotion",
+      "status": "Implemented",
+      "gate": "Shared projectile/preview first-hit collision; a widened upper-gallery target. A clear preview is not automatic aiming or permission to pass through solids."
+    },
+    {
+      "id": "V05",
+      "area": "World",
+      "title": "Connected seeded cloisters and branching paths",
+      "status": "Implemented",
+      "gate": "Seeded nonuniform extents and varying floorplans on a connected bounded nine-room graph. Same seed/depth reproduces a layout; not an unbounded streamed city."
+    },
+    {
+      "id": "V06",
+      "area": "Progression",
+      "title": "Wardens, beacon, blessings and local renown",
+      "status": "Implemented",
+      "gate": "An ordinary-input mission reaches the next sector; completion cannot be banked twice."
+    },
+    {
+      "id": "V07",
+      "area": "Comfort",
+      "title": "Spatial pause, handedness and shorter draw",
+      "status": "Implemented",
+      "gate": "All essential actions can be completed in-headset, with cancelled inputs on transitions."
+    },
+    {
+      "id": "V08",
+      "area": "Hardware",
+      "title": "Quest 3 bow alignment and physical draw feel",
+      "status": "Hardware QA",
+      "gate": "Record actual headset/browser version and both handedness tests. No API fixture substitutes."
+    },
+    {
+      "id": "V09",
+      "area": "Hardware",
+      "title": "Quest 3 sustained rendering and comfort",
+      "status": "Hardware QA",
+      "gate": "Measure frame-time distribution, draw calls, thermal behavior, floor and snap turning on hardware."
+    },
+    {
+      "id": "V10",
+      "area": "Hardware",
+      "title": "Real Xbox and touch controllers",
+      "status": "Hardware QA",
+      "gate": "Pair, reconnect, suspend and resume real USB/Bluetooth controllers and a phone."
+    },
+    {
+      "id": "V11",
+      "area": "World",
+      "title": "Six room families, reversible skywalk and two-level belfry",
+      "status": "Implemented",
+      "gate": "Nonuniform dimensions and cross-shaped plans; real stair/deck clearance. Model/native/public receipts are separate gates. Nine logical sector slots remain."
+    },
+    {
+      "id": "V12",
+      "area": "Archery",
+      "title": "Crossbow, deliberate timed reload and independent weapon model",
+      "status": "Implemented",
+      "gate": "Real loaded/empty state and button/stick-click reload. A physical reload gesture remains future work; hardware comfort is unverified."
+    },
+    {
+      "id": "V13",
+      "area": "Combat",
+      "title": "Shield weak points and coordinated enemy behavior",
+      "status": "Planned",
+      "gate": "Enemies communicate intent without unavoidable or offscreen damage."
+    },
+    {
+      "id": "V14",
+      "area": "Presentation",
+      "title": "Refined original creatures, bow animation and spatial audio",
+      "status": "Planned",
+      "gate": "Finished foreground bow/hand and animated creature assets, consistent with the material-authored world. Environmental art improvement is not character-art completion."
+    },
+    {
+      "id": "V15",
+      "area": "Progression",
+      "title": "Save/resume a full run and broader unlocks",
+      "status": "Planned",
+      "gate": "Versioned bounded storage restores a run without duplicating rewards."
+    },
+    {
+      "id": "V16",
+      "area": "Testing",
+      "title": "Player evaluation of difficulty and enjoyment",
+      "status": "Planned",
+      "gate": "Record first-run usability, fatigue and repeat-play feedback; counts do not certify fun."
+    },
+    {
+      "id": "V17",
+      "area": "Online",
+      "title": "Optional opt-in challenge sharing",
+      "status": "Deferred",
+      "gate": "No accounts or remote data until explicitly designed and authorized."
+    },
+    {
+      "id": "V18",
+      "area": "Combat",
+      "title": "Directional Wardglass shield, break and recovery",
+      "status": "Implemented",
+      "gate": "Front-face swept blocking before body impact; side/rear exposure, guard cost, tracking cancellation and no simultaneous firing."
+    },
+    {
+      "id": "V19",
+      "area": "Traversal",
+      "title": "Regenerating supported-ground shard steps",
+      "status": "Implemented",
+      "gate": "Short unobstructed microdashes, no cliff crossing or tunneling. Physical thrown-shard gestures are not implemented."
+    },
+    {
+      "id": "V20",
+      "area": "Archery",
+      "title": "Limited three-arrow Volley and precision hits",
+      "status": "Implemented",
+      "gate": "Three independent projectiles consume one charge; actual weak-point hits earn counters."
+    },
+    {
+      "id": "V21",
+      "area": "Progression",
+      "title": "Permanent Chronicle milestones and optional Nightfall",
+      "status": "Implemented",
+      "gate": "Idempotent run-counter banking, retained legacy purchases, no practice farming and new-run application."
+    },
+    {
+      "id": "V22",
+      "area": "Presentation",
+      "title": "Twilight/daylight, original equipment and quiet synthetic ambience",
+      "status": "Implemented",
+      "gate": "Local reused geometry and opt-in sound. No borrowed audio or hardware performance claim."
+    },
+    {
+      "id": "V23",
+      "area": "Testing",
+      "title": "Complete scored expedition and new-device acceptance",
+      "status": "Planned",
+      "gate": "Preserve exact native reports and full-beacon/blessing/reload progression evidence; passing models alone are insufficient."
+    },
+    {
+      "id": "V24",
+      "area": "Traversal",
+      "title": "Physical thrown shard and richer vertical route families",
+      "status": "Planned",
+      "gate": "Readable trajectories, safe valid landings, comfortable two-handed controls and alternative routes; no forced headset motion."
+    },
+    {
+      "id": "V25",
+      "area": "Archery",
+      "title": "Physical crossbow wind/reload gesture",
+      "status": "Planned",
+      "gate": "Separate comfortable interaction for both handedness settings, with an accessible button alternative."
+    },
+    {
+      "id": "V26",
+      "area": "Combat",
+      "title": "Hollow Hunt: committed cantor volleys, hound charges and sentinel guard",
+      "status": "Implemented",
+      "gate": "Shared physical projectiles/collision, visible warning, dodge/block/counterplay, no homing charge."
+    },
+    {
+      "id": "V27",
+      "area": "Traversal",
+      "title": "Two optional double-stair loft loops and elevation-gated caches",
+      "status": "Implemented",
+      "gate": "Preserve ground graph links; walk both stairways and collect upper supply only at its elevation."
+    },
+    {
+      "id": "V28",
+      "area": "Practice",
+      "title": "Three repeatable adversary trials and field guide",
+      "status": "Implemented",
+      "gate": "Ordinary menus spawn real AI. Trial counters never change the Chronicle or prior purchases."
+    },
+    {
+      "id": "V29",
+      "area": "Archery",
+      "title": "Surface-triggered Cinder bursts and interrupting Frost",
+      "status": "Implemented",
+      "gate": "Cover occludes area damage; freeze interrupts charges and has a shorter sentinel duration."
+    },
+    {
+      "id": "V30",
+      "area": "Future",
+      "title": "Physical thrown-shard and crossbow winding gestures",
+      "status": "Planned",
+      "gate": "Retain accessible button alternatives; headset motion must be tested physically before release."
+    },
+    {
+      "id": "V31",
+      "area": "Art",
+      "title": "CC0 castle masonry, cobbles and finished marble sculpture",
+      "status": "Implemented",
+      "gate": "Local 1K material maps and embedded 512px GLB textures; author/source/license/transform/hash register; no runtime CDN."
+    },
+    {
+      "id": "V32",
+      "area": "Traversal",
+      "title": "Inter-room upper loop and 6.4m belfry reliquaries",
+      "status": "Implemented",
+      "gate": "One-time, elevation-gated score/heal rewards, reversible traversal and ground alternatives. Trial play cannot farm permanent rewards."
+    },
+    {
+      "id": "V33",
+      "area": "Art",
+      "title": "Continuous arch profiles, roof silhouettes and spatial material batches",
+      "status": "Implemented",
+      "gate": "Matching actual before/after frames; static shadows refreshed on rebuild rather than each frame. Physical Quest performance remains unmeasured."
+    },
+    {
+      "id": "V34",
+      "area": "Navigation",
+      "title": "Scaled floorplan atlas with upper route and reward cues",
+      "status": "Implemented",
+      "gate": "Use actual room outlines, gold skywalk and reliquary markers. No player steering or auto-completion."
+    },
+    {
+      "id": "V35",
+      "area": "World",
+      "title": "Authored crypt/roof transitions and expanded graph vocabulary",
+      "status": "Planned",
+      "gate": "Move beyond nine logical slots while reserving doors, stair clearances, loot access and recovery routes."
+    },
+    {
+      "id": "V36",
+      "area": "Testing",
+      "title": "Hardware and human review of the material-rich vertical world",
+      "status": "Hardware QA",
+      "gate": "Quest 3 controller/floor calibration, sustained frame times, memory, comfort and whether players find the climbs worthwhile. API emulation cannot close this gate."
+    },
+    {
+      "id": "V37",
+      "area": "Presentation",
+      "title": "Jewelglass material profiles, carved recurve and bounded spell shaders",
+      "status": "Implemented",
+      "gate": "Native material, rebuild and emulated stereo tests plus actual served-file verification."
+    },
+    {
+      "id": "V38",
+      "area": "Hardware",
+      "title": "Measure physical Quest 3 stereo frame times for jewel reflections and shaders",
+      "status": "Hardware QA",
+      "gate": "Measure on device; never infer FPS, comfort or controller alignment from headless emulation."
+    }
+  ]
+}
