@@ -2,6 +2,7 @@
  * References and CC0 inputs: VISUAL-RELEASE.md / ART-SOURCES.md.
  * No gameplay imports, actor writes, external network or persistence here. */
 import * as T from './vendor/three.module.js';
+import {dressClamp} from './luminous-gear.mjs';
 export const VISUAL_MODES=Object.freeze(['balanced','prismatic','low']);
 export function visualBudget(mode='balanced',xr=false){
  const low=xr||mode==='low';return Object.freeze({mode:low?'low':mode,transmission:!low&&mode==='prismatic',sparkles:low?20:48,shadowSize:low?0:1024,refractionScale:.5});
@@ -34,7 +35,21 @@ const causticFragment=`varying vec2 q;uniform float time;uniform vec3 tint;
  #include <colorspace_fragment>
  }`;
 export function makeCaustic(){return new T.ShaderMaterial({transparent:true,depthWrite:false,blending:T.AdditiveBlending,polygonOffset:true,polygonOffsetFactor:-2,uniforms:{time:{value:0},tint:{value:new T.Color('#b5e7e5')}},vertexShader:'varying vec2 q;void main(){q=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:causticFragment});}
+// Legacy decorative rock bounds crossed the floor (up to 1.28m above it).
+// Lower only the authored island-support instances beneath the actual slab;
+// never move the playable deck, its collider, the player, or distant scenery.
+export function repairDeckUndersides(scene){
+ const decks=scene.children.filter(o=>o.isMesh&&!o.isInstancedMesh&&o.geometry?.type==='BoxGeometry'&&Math.abs(o.geometry.parameters.height-.9)<.001&&o.geometry.parameters.width>=20&&o.geometry.parameters.depth>=20);
+ const rockColors=new Set(['789297','a0ac9c','9daba0','b4bda7']),matrix=new T.Matrix4(),position=new T.Vector3(),bounds=new T.Box3();let repaired=0;
+ scene.traverse(o=>{if(!o.isInstancedMesh)return;const rock=o.geometry.type==='DodecahedronGeometry'&&rockColors.has(o.material.color?.getHexString()),engineRing=o.geometry.type==='TorusGeometry'&&o.material.color?.getHexString()==='c9984c';if(!rock&&!engineRing)return;o.geometry.computeBoundingBox();let changed=false;
+  for(let i=0;i<o.count;i++){o.getMatrixAt(i,matrix);position.setFromMatrixPosition(matrix);const deck=decks.filter(d=>Math.abs(position.x-d.position.x)<=d.geometry.parameters.width*.55&&Math.abs(position.z-d.position.z)<=d.geometry.parameters.depth*.55).sort((a,b)=>Math.hypot(position.x-a.position.x,position.z-a.position.z)-Math.hypot(position.x-b.position.x,position.z-b.position.z))[0];if(!deck)continue;const top=deck.position.y+.45,ceiling=top-.94;if(position.y>=ceiling)continue;if(engineRing&&(Math.hypot(position.x-deck.position.x,position.z-deck.position.z)>.1||Math.abs(position.y-(top-7.6))>.05))continue;
+   bounds.copy(o.geometry.boundingBox).applyMatrix4(matrix);const protrusion=bounds.max.y-ceiling;if(protrusion>1e-5){matrix.elements[13]-=protrusion;o.setMatrixAt(i,matrix);repaired++;changed=true;}
+  }
+  if(changed){o.instanceMatrix.needsUpdate=true;o.computeBoundingBox();o.computeBoundingSphere();}
+ });return repaired;
+}
 export function installLuminousArt({scene,camera,renderer,quality,relays}){
+ const deckRepairs=repairDeckUndersides(scene);const clamp=camera.children.find(g=>g.isGroup&&g.children.some(m=>m.geometry?.type==='TorusGeometry'&&m.position.x<-.3));if(clamp)dressClamp(clamp);
  const root=new T.Group();root.name='Prismatic freight / decorative optics';scene.add(root);let mode=quality==='low'?'low':'prismatic',active='',time=0;
  const pal=luminousPalette(mode),gemGeo=cutGemGeometry(),boxGeo=new T.BoxGeometry(1,1,1),rings=[],gems=[],twinkles=[];const caustics=[];
  const mount=(g,m,pos,scale=[1,1,1],parent=root)=>{const mesh=new T.Mesh(g,m);mesh.position.set(...pos);mesh.scale.set(...scale);mesh.castShadow=false;mesh.receiveShadow=true;parent.add(mesh);return mesh;};
@@ -76,5 +91,5 @@ export function installLuminousArt({scene,camera,renderer,quality,relays}){
  function update(s,dt,reduced,xr){apply(mode,xr);if(!reduced)time+=Math.max(0,Math.min(.1,dt));rings.forEach((r,i)=>{r.rotation.y=reduced?0:time*.12*(i%2?1:-1);});twinkles.forEach(p=>{p.material.uniforms.time.value=time;p.material.uniforms.motion.value=reduced?0:1;});caustics.forEach(m=>m.material.uniforms.time.value=reduced?0:time);
   // Do not globally zoom or rotate a headset to create an optical effect.
  }
- return {update,setMode(value){if(VISUAL_MODES.includes(value)){mode=value;apply(mode,renderer.xr.isPresenting);}},stats:()=>({mode:active,requested:mode,transmission:active==='prismatic',gems:gems.length,glassCanopies:1,causticPatches:active==='low'?0:caustics.length,sparklePoints:active==='low'?0:twinkles.length*48}),root};
+ return {update,setMode(value){if(VISUAL_MODES.includes(value)){mode=value;apply(mode,renderer.xr.isPresenting);}},stats:()=>({deckSupportRepairs:deckRepairs,mode:active,requested:mode,transmission:active==='prismatic',gems:gems.length,glassCanopies:1,causticPatches:active==='low'?0:caustics.length,sparklePoints:active==='low'?0:twinkles.length*48}),root};
 }

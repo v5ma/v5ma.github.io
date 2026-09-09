@@ -48,3 +48,23 @@ export function dressWeapon(group,id){
  }
  return group;
 }
+
+/* Separate art for the existing left-hand rail-clamp group. Its caller keeps
+ * the same attach animation, pose, collision and input behavior. */
+export function dressClamp(group){
+ group.clear();group.name='Articulated sky clamp';
+ const gold=new T.MeshPhysicalMaterial({color:'#c9a66b',metalness:.93,roughness:.22,clearcoat:.5,envMapIntensity:1.5});
+ const silver=new T.MeshPhysicalMaterial({color:'#b7cbd2',metalness:.97,roughness:.17,clearcoat:.6,envMapIntensity:1.5});
+ const black=new T.MeshStandardMaterial({color:'#233945',metalness:.3,roughness:.58});
+ const glass=new T.MeshPhysicalMaterial({color:'#b9f4ed',transparent:true,opacity:.48,roughness:.1,metalness:.15,depthWrite:false,clearcoat:1,envMapIntensity:1.6});
+ const add=(geo,mat,x,y,z)=>{const m=new T.Mesh(geo,mat);m.position.set(x,y,z);group.add(m);return m;};
+ const cylinder=(x,y,z,r,length,mat)=>{const m=add(new T.CylinderGeometry(r,r,length,20),mat,x,y,z);m.rotation.x=Math.PI/2;return m;};
+ cylinder(-.38,-.36,-.68,.084,.21,black);cylinder(-.38,-.32,-.87,.057,.24,gold);
+ for(let i=0;i<5;i++)add(new T.TorusGeometry(.086,.009,6,24),i%2?gold:silver,-.38,-.36,-.60-i*.038);
+ cylinder(-.38,-.24,-.98,.047,.13,silver);
+ // Two opposing open jaws and distinct end caps, not a circle on a box.
+ for(const side of [-1,1]){const curve=[];for(let i=0;i<=16;i++){const a=(-.25+i/16*Math.PI*.85);curve.push(new T.Vector3(-.38+side*Math.cos(a)*.146,-.155+Math.sin(a)*.15,-1.045));}add(new T.TubeGeometry(new T.CatmullRomCurve3(curve),20,.025,8,false),silver,0,0,0);for(const p of[curve[0],curve.at(-1)])add(new T.SphereGeometry(.033,12,8),gold,p.x,p.y,p.z);}
+ cylinder(-.38,-.245,-1.05,.036,.15,glass);const energy=add(new T.IcosahedronGeometry(.027,1),new T.MeshStandardMaterial({color:'#aefff0',emissive:'#3dc1b3',emissiveIntensity:.6,roughness:.16}),-.38,-.23,-1.08);energy.rotation.y=.3;
+ for(const side of [-1,1])cylinder(-.38+side*.07,-.29,-.96,.014,.20,gold);
+ return group;
+}

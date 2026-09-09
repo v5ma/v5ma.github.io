@@ -62,7 +62,7 @@ with sync_playwright() as pw:
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());p=ctx.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)))
  p.add_init_script("window.tacticalKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyQ','KeyF','KeyE'].includes(e.code)){tacticalKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,paused:window.AetherReach?.snapshot().paused});if(tacticalKeyLog.length>20)tacticalKeyLog.shift();}},true);")
  try:
-  p.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');balanced_graphics(p);p.locator('#start').click();p.wait_for_function('AetherReach.snapshot().playing')
+  p.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');balanced_graphics(p,"low");p.locator('#start').click();p.wait_for_function('AetherReach.snapshot().playing')
   check(not snap(p)['tactics']['learned'],'The loan rig is acquired in the world, not silently awarded at spawn')
   walk(p,[(3,4),(7,4)]);use(p);p.wait_for_selector('#field-dialog[open]');check(snap(p)['tactics']['learned'],'Physical Quay bench interaction equips the field rig')
   p.locator('#power-current').click();close_field(p);walk(p,[(10,4),(15,2)]);aim(p,'range');p.keyboard.press('KeyJ',delay=70);p.wait_for_function('AetherReach.snapshot().tactics.research.includes("target")');check(True,'The survey lens records an actual living range machine')
