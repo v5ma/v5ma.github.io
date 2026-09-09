@@ -1,0 +1,54 @@
+name: Verify Paper Delivery prismatic materials
+on:
+  push:
+    branches: [feat/prismatic-materials-20260909]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: prismatic-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  visual:
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [materials, flight]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check actual committed modules and pure visual invariants
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/prismatic-renderer.js
+          node --test tests/prismatic_core.test.cjs
+          python scripts/check-rail-release.py
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual materials and controls in the existing game
+        env:
+          PRISM_SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/prism-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1320 python -u tests/prismatic_browser.py
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          cp /tmp/prism-http.log test-output/http.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prismatic-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 7

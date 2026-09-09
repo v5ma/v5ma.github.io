@@ -1,7 +1,7 @@
 /* Explicit build and campaign readiness. Optional authoring tools must not decide
  * which campaign is loaded, and an unfinished download must not spawn old data. */
 (function(){'use strict';
- const VERSION='0.14.0',BUILD='cloudpost-relay-2026.09.07';
+ const VERSION='0.15.0',BUILD='prismatic-2026.09.09';
  function boot(){
   const host=document.querySelector('#delivery-header .actions');if(!host)return;
   const label=document.createElement('span');label.id='rail-build';label.textContent='v'+VERSION;label.title=BUILD;
@@ -44,6 +44,7 @@
    status='error';notice.textContent='The updated routes could not load.';retry.hidden=false;
    console.error('Campaign load failed:',error);
   }).finally(()=>{
+   import('./prismatic-renderer.js').catch(error=>console.error('Optional material pass could not load:',error));
    import('./ride-lab-loader.js').catch(error=>console.error('Ride Lab could not load:',error));
   });
  }
