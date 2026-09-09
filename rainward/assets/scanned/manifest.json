@@ -1,0 +1,331 @@
+{
+  "version": 1,
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "assets": {
+    "stone_wall_02": {
+      "title": "Stone Wall 02",
+      "authors": {
+        "Dario Barresi": "Processing",
+        "Charlotte Baglioni": "Photography"
+      },
+      "url": "https://polyhaven.com/a/stone_wall_02",
+      "license": "CC0-1.0"
+    },
+    "castle_brick_02_red": {
+      "title": "Castle Brick 02 Red",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "url": "https://polyhaven.com/a/castle_brick_02_red",
+      "license": "CC0-1.0"
+    },
+    "mossy_cobblestone": {
+      "title": "Mossy Cobblestone",
+      "authors": {
+        "Sơn Nguyễn": "All"
+      },
+      "url": "https://polyhaven.com/a/mossy_cobblestone",
+      "license": "CC0-1.0"
+    },
+    "forest_ground_04": {
+      "title": "Forest Ground 04",
+      "authors": {
+        "Rob Tuytel": "Photography, Processing",
+        "Rico Cilliers": "Minor adjustment"
+      },
+      "url": "https://polyhaven.com/a/forest_ground_04",
+      "license": "CC0-1.0"
+    },
+    "boulder_01": {
+      "title": "Boulder 01",
+      "authors": {
+        "Rico Cilliers": "All"
+      },
+      "url": "https://polyhaven.com/a/boulder_01",
+      "license": "CC0-1.0"
+    },
+    "rock_moss_set_01": {
+      "title": "Rock Moss Set 01",
+      "authors": {
+        "Kless Gyzen": "All"
+      },
+      "url": "https://polyhaven.com/a/rock_moss_set_01",
+      "license": "CC0-1.0"
+    },
+    "fern_02": {
+      "title": "Fern 02",
+      "authors": {
+        "Rob Tuytel": "scanning",
+        "Rico Cilliers": "modeling"
+      },
+      "url": "https://polyhaven.com/a/fern_02",
+      "license": "CC0-1.0"
+    },
+    "kloppenheim_06_puresky": {
+      "title": "Kloppenheim 06 (Pure Sky)",
+      "authors": {
+        "Greg Zaal": "Original",
+        "Jarod Guest": "Sky edits"
+      },
+      "url": "https://polyhaven.com/a/kloppenheim_06_puresky",
+      "license": "CC0-1.0"
+    }
+  },
+  "surfaces": {
+    "stone": {
+      "asset": "stone_wall_02",
+      "metres": 2,
+      "color": {
+        "path": "stone/color.webp",
+        "width": 2048,
+        "height": 2048
+      },
+      "normal": {
+        "path": "stone/normal.webp",
+        "width": 1024,
+        "height": 1024
+      },
+      "orm": {
+        "path": "stone/orm.webp",
+        "width": 512,
+        "height": 512
+      }
+    },
+    "brick": {
+      "asset": "castle_brick_02_red",
+      "metres": 1.5,
+      "color": {
+        "path": "brick/color.webp",
+        "width": 2048,
+        "height": 2048
+      },
+      "normal": {
+        "path": "brick/normal.webp",
+        "width": 1024,
+        "height": 1024
+      },
+      "orm": {
+        "path": "brick/orm.webp",
+        "width": 512,
+        "height": 512
+      }
+    },
+    "paving": {
+      "asset": "mossy_cobblestone",
+      "metres": 2,
+      "color": {
+        "path": "paving/color.webp",
+        "width": 2048,
+        "height": 2048
+      },
+      "normal": {
+        "path": "paving/normal.webp",
+        "width": 1024,
+        "height": 1024
+      },
+      "orm": {
+        "path": "paving/orm.webp",
+        "width": 512,
+        "height": 512
+      }
+    },
+    "ground": {
+      "asset": "forest_ground_04",
+      "metres": 3.1500000953674316,
+      "color": {
+        "path": "ground/color.webp",
+        "width": 2048,
+        "height": 2048
+      },
+      "normal": {
+        "path": "ground/normal.webp",
+        "width": 1024,
+        "height": 1024
+      },
+      "orm": {
+        "path": "ground/orm.webp",
+        "width": 512,
+        "height": 512
+      }
+    }
+  },
+  "models": {
+    "boulder_01": {
+      "asset": "boulder_01",
+      "path": "boulder_01.glb",
+      "source_triangles": 123976,
+      "source_dimensions_mm": [
+        1272.6830840110779,
+        1830.7338953018188,
+        1003.8918256759644
+      ],
+      "triangles": 56534,
+      "beforeTriangles": 66122,
+      "meshes": [
+        {
+          "name": "rock_PROXY_5m.002",
+          "triangles": 56534
+        }
+      ],
+      "textureCount": 3
+    },
+    "rock_moss_set_01": {
+      "asset": "rock_moss_set_01",
+      "path": "rock_moss_set_01.glb",
+      "source_triangles": 63127,
+      "source_dimensions_mm": [
+        8004.603862762451,
+        6948.764801025391,
+        1768.319845199585
+      ],
+      "triangles": 22081,
+      "beforeTriangles": 63127,
+      "meshes": [
+        {
+          "name": "modelShape.005",
+          "triangles": 3848
+        },
+        {
+          "name": "modelShape.002",
+          "triangles": 3842
+        },
+        {
+          "name": "modelShape",
+          "triangles": 1750
+        },
+        {
+          "name": "medium.001",
+          "triangles": 3705
+        },
+        {
+          "name": "modelShape.003",
+          "triangles": 5790
+        },
+        {
+          "name": "mesh1-geometry.003",
+          "triangles": 3146
+        }
+      ],
+      "textureCount": 3
+    },
+    "fern_02": {
+      "asset": "fern_02",
+      "path": "fern_02.glb",
+      "source_triangles": 6232,
+      "source_dimensions_mm": [
+        1972.5302457809448,
+        1724.0281701087952,
+        427.6947118341923
+      ],
+      "triangles": 6232,
+      "beforeTriangles": 6232,
+      "meshes": [
+        {
+          "name": "Plane.024",
+          "triangles": 2384
+        },
+        {
+          "name": "Plane.044",
+          "triangles": 2248
+        },
+        {
+          "name": "Plane.006",
+          "triangles": 784
+        },
+        {
+          "name": "Plane.059",
+          "triangles": 816
+        }
+      ],
+      "textureCount": 3
+    }
+  },
+  "environment": {
+    "asset": "kloppenheim_06_puresky",
+    "path": "daylight.hdr",
+    "resolution": "1k"
+  },
+  "tools": {
+    "gltf-transform": "4.2.1",
+    "meshoptimizer": "0.23.0",
+    "sharp": "0.34.3",
+    "Pillow": "11.3.0",
+    "Three.js": "r177"
+  },
+  "transformations": [
+    "Source glTF UVs, materials, normal textures and alpha cutouts retained.",
+    "Rock meshes simplified with meshoptimizer (bounded error); fern geometry retained.",
+    "Surface color 2048px WebP; normal 1024px quality95 WebP; packed AO/roughness/metalness 512px lossless WebP.",
+    "Fern and moss rock textures retained at 1024px; the distant boulder uses 512px. Model textures are WebP encoded.",
+    "Real 1k HDR capture retained as HDR; no screenshot backdrop."
+  ],
+  "files": {
+    "boulder_01.glb": {
+      "bytes": 2541920,
+      "sha256": "0ecebaf727cce874e0d9439ab33e34b48974336aea80845f90fbdb46ed92269e"
+    },
+    "brick/color.webp": {
+      "bytes": 1187386,
+      "sha256": "97e26cd73167b0f3da515bffdb5028b6fc1a966ee9b06d83b813c572f6c87fa3"
+    },
+    "brick/normal.webp": {
+      "bytes": 585400,
+      "sha256": "4939ffadd2d77b9ed368e7ac7404da17895fec423308ac5cacc77a3081dd9a39"
+    },
+    "brick/orm.webp": {
+      "bytes": 312366,
+      "sha256": "f71455af1f3f1001d66dd828e10126f16967d301eb319b7994c4a0fdeaba0911"
+    },
+    "daylight.hdr": {
+      "bytes": 1173154,
+      "sha256": "206c67e3a1b992282821cf06662bdd69bbb4915c1c4444a66338a40d6a7d4e34"
+    },
+    "fern_02.glb": {
+      "bytes": 471644,
+      "sha256": "a731f296919b94406390c0595d0bcfed4e5af9b31d2d2bd0f2ad70b577f96418"
+    },
+    "ground/color.webp": {
+      "bytes": 1596854,
+      "sha256": "fe50653af106b0e539f00ec538bafd3527f5bb062ea756540ef1bad8a3a0dfdc"
+    },
+    "ground/normal.webp": {
+      "bytes": 693468,
+      "sha256": "9411fc07e8d9e30b2f0036fff57d7c7d6973d57ac5b2efbe3b0652d009b888fa"
+    },
+    "ground/orm.webp": {
+      "bytes": 320920,
+      "sha256": "3ce1b6d71823b61c16e972d9769b25bfd0a6e349a49df2f3b3872fec052ccbe5"
+    },
+    "paving/color.webp": {
+      "bytes": 1696310,
+      "sha256": "986a505da777b1d539811b52d1a135ef834273ac4cae3d77bcd09f256c3aa89f"
+    },
+    "paving/normal.webp": {
+      "bytes": 474232,
+      "sha256": "a52c098e0a62e4ff462ce3b03c9bf24dd3ef20ceb554c79b7d92915a694100a2"
+    },
+    "paving/orm.webp": {
+      "bytes": 259772,
+      "sha256": "9bcddd8a1f47937f8ed367e51b9455dd22d261dfb62688c19bc3a53ad303a8e7"
+    },
+    "rock_moss_set_01.glb": {
+      "bytes": 1085936,
+      "sha256": "39a914d4118f58b0b7ca3901a41cfb4a88c087ae9976f48f72a0be53188cc647"
+    },
+    "stone/color.webp": {
+      "bytes": 526178,
+      "sha256": "f8d865ae6fb20d2fad3ccb3cbd92214d18c69a69b9039c0d246af4c221056d98"
+    },
+    "stone/normal.webp": {
+      "bytes": 481686,
+      "sha256": "8ef3892693a87cdb60bec3eddd65aed96f248ae7af8ef2b43dfd3b1c09caa42e"
+    },
+    "stone/orm.webp": {
+      "bytes": 221858,
+      "sha256": "1fe242d102e88d89fc51c32ab81cca5c4f278b4704f337056e3f662cee037dcf"
+    }
+  },
+  "totalBytes": 13629084
+}

@@ -5,7 +5,7 @@ import {rnd} from './artkit.mjs';
  * warm signs against a cool hall, real power-control lights and physical gate. */
 export function buildTerminus(scene,A){
  const {add,label,mesh,mat,geos,buckets}=A,bronze=0x8e7960,stone=0xb0aba0,steel=0x4d5a5d;
- const floorGeo=new T.PlaneGeometry(84,124,42,62);floorGeo.rotateX(-Math.PI/2);floorGeo.translate(0,.005,-14);const floor=new T.Mesh(floorGeo,mat(0xb5b5ad,'stone'));floor.receiveShadow=true;scene.add(floor);
+ const floorGeo=new T.PlaneGeometry(84,124,42,62);floorGeo.rotateX(-Math.PI/2);floorGeo.translate(0,.005,-14);const floor=new T.Mesh(floorGeo,mat(0xb5b5ad,'paving'));floor.receiveShadow=true;scene.add(floor);
  const gates=[],lights=[];
  for(const o of OBSTACLES){
   if(o.renderSeparately){add('cyl',o.x,o.h/2,o.z,.30,o.h,.30,steel,'metal');add('box',o.x,.28,o.z,1.1,.56,1.1,stone);add('box',o.x,o.h-.3,o.z,1.1,.6,1.1,bronze,'metal');continue;}
@@ -48,9 +48,9 @@ export function buildTerminus(scene,A){
   const x=side*18.5;add('box',x,4.3,z,.20,1,.22,0xffc780,'glow');const lamp=new T.PointLight(0xffbd70,18,14,2);lamp.position.set(x,4,z);scene.add(lamp);lights.push(lamp);
   const pool=new T.Mesh(new T.CircleGeometry(2.3,24),new T.MeshBasicMaterial({color:0xffc790,transparent:true,opacity:.06,depthWrite:false}));pool.rotation.x=-Math.PI/2;pool.position.set(x,.027,z);scene.add(pool);
  }
- for(const r of CURRENT.water){const m=new T.Mesh(new T.PlaneGeometry(r.w,r.d),new T.MeshStandardMaterial({color:0x396575,roughness:.16,metalness:.40,transparent:true,opacity:.65}));m.rotation.x=-Math.PI/2;m.position.set(r.x,.08,r.z);scene.add(m);}
+ for(const r of CURRENT.water){const m=new T.Mesh(new T.PlaneGeometry(r.w,r.d),new T.MeshStandardMaterial({color:0x396575,roughness:.16,metalness:.40,transparent:true,opacity:.65}));m.rotation.x=-Math.PI/2;m.position.set(r.x,.08,r.z);m.userData.waterSurface=true;scene.add(m);}
  for(const g of GRASS)for(let i=0;i<160;i++)add('blade',g.x+(rnd(i+g.x)-.5)*g.w,.015,g.z+(rnd(i+g.z)-.5)*g.d,.17,.32+rnd(i)*.6,1,[0x697052,0x78805b,0x56684c][i%3],'grass',0,rnd(i+9)*6.28,.08);
  for(let i=0;i<120;i++)add('box',(rnd(i+36)-.5)*79,.04,-73+rnd(i+9)*110,.10+rnd(i)*.2,.05,.2,0x9c9686,'stone',0,rnd(i)*6,0);
- for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((x,i)=>inst.setMatrixAt(i,x));inst.instanceMatrix.needsUpdate=true;inst.castShadow=geo!==geos.blade;inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}for(const [k,m]of A.mats)if(k.endsWith(':grass'))m.side=T.DoubleSide;
+ for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((x,i)=>inst.setMatrixAt(i,x));inst.instanceMatrix.needsUpdate=true;inst.castShadow=geo!==geos.blade;inst.userData.windFoliage=geo===geos.blade||[...A.mats].some(([k,v])=>v===m&&k.endsWith(':leafcard'));inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}for(const [k,m]of A.mats)if(k.endsWith(':grass'))m.side=T.DoubleSide;
  return {update(s,dt){gates.forEach(g=>g.position.y+=((s.puzzle.solved?7:0)-g.position.y)*Math.min(1,dt*4));circuitMats.forEach((m,i)=>{m.color.setHex(s.puzzle.wheels[i]?0xcfd899:0x354440);m.emissive.setHex(s.puzzle.wheels[i]?0xe9c270:0x000000);m.emissiveIntensity=s.puzzle.wheels[i]?1.8:0;});},dispose(){tx.dispose();glass.dispose();}};
 }

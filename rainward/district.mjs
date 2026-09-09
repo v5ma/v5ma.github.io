@@ -2,7 +2,7 @@ import * as T from './vendor/three.module.js';
 import {OBSTACLES,GRASS,SHELTERS} from './world.mjs';
 import {rnd,colors} from './artkit.mjs';
 export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,buckets}=A;
- add('box',0,-.2,-7,73,.4,87,0x5c6657);add('box',0,.01,-7,24,.04,87,colors.road,'road');
+ add('box',0,-.2,-7,73,.4,87,0x5c6657,'ground');add('box',0,.01,-7,24,.04,87,colors.road,'paving');
  for(let z=-46;z<33;z+=3){add('box',-12.5,.04,z,1,.08,2.9,0x738078);add('box',12.5,.04,z,1,.08,2.9,0x738078);if(z<10&&z>-35)add('box',.1,.039,z,.13,.014,1.5,0xaeb398,'paint');}
  for(let i=0;i<42;i++){const x=(rnd(i+11)-.5)*50,z=-46+rnd(i+97)*77;const p=new T.Mesh(new T.CircleGeometry(1,18),new T.MeshStandardMaterial({color:0x697e78,roughness:.13,metalness:.6,transparent:true,opacity:.4}));p.rotation.x=-Math.PI/2;p.scale.set(1+rnd(i+2)*3,.35+rnd(i+9)*1.2,1);p.position.set(x,.04,z);scene.add(p);}
  for(const o of OBSTACLES){
@@ -35,6 +35,6 @@ export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,b
  for(let j=0;j<GRASS.length;j++){const patch=GRASS[j];for(let i=0;i<220;i++){const x=patch.x+(rnd(i+j*300)-.5)*patch.w,z=patch.z+(rnd(i+j*301+43)-.5)*patch.d,h=.35+rnd(i+74)*.65;add('blade',x,.02,z,.10+rnd(i+31)*.18,h,1,[0x6c7b42,0x536d47,0x778344][i%3],'grass',0,rnd(i+33)*6.28,(rnd(i+23)-.5)*.4);}}
  for(let i=0;i<18;i++){const side=i%2?1:-1,x=side*(19+rnd(i+31)*13),z=-44+rnd(i+50)*73,h=5+rnd(i+16)*7;add('cyl',x,h*.46,z,.13,h,.19,0x504e3c,'wood',0,0,.04);for(let j=0;j<15;j++){const a=j*2.4,r=.9+rnd(i+j)*2.3;add('ball',x+Math.sin(a)*r,h+Math.sin(j*.8)*1.2,z+Math.cos(a)*r,.7+rnd(i+j)*.9,.8,.7+rnd(i+j)*.9, [0x516847,0x5b7150,0x6d7950][j%3],'leaf');}}
  for(let i=0;i<180;i++){const x=(rnd(i+79)-.5)*62,z=-47+rnd(i+15)*76,s=.1+rnd(i+97)*.22;add('box',x,.06,z,s,.08,s*.7,[0x909280,0x404d46,0x767660][i%3],'stone',0,rnd(i)*6,0);}
- for(const {geo,mat:m,items} of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=geo!==geos.plane&&geo!==geos.blade;inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}
+ for(const {geo,mat:m,items} of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=geo!==geos.plane&&geo!==geos.blade;inst.userData.windFoliage=geo===geos.blade||[...A.mats].some(([k,v])=>v===m&&k.endsWith(':leafcard'));inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}
  for(const [key,m]of mats)if(key.endsWith(':grass')){m.side=T.DoubleSide;m.roughness=1;}
 }

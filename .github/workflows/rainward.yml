@@ -1,9 +1,6 @@
 name: Rainward native survival acceptance
 on:
   workflow_dispatch:
-  push:
-    branches: [feat/rainward-first-survival]
-    paths: ['rainward/**','.github/workflows/rainward.yml','index.html']
   pull_request:
     paths: ['rainward/**','.github/workflows/rainward.yml']
 permissions:
@@ -18,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [ui, mission, controller, improvements, expedition, visual, loot, guidance, station]
+        suite: [ui, mission, controller, improvements, expedition, visual, loot, guidance, station, scanned, cinematic]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,6 +41,8 @@ jobs:
           PID=$!
           trap 'kill $PID' EXIT
           case "$RAINWARD_SUITE" in
+            cinematic) FILE=cinematic.py ;;
+            scanned) FILE=scanned.py ;;
             controller) FILE=controller.py ;;
             improvements) FILE=improvements.py ;;
             expedition|visual) FILE=conservatory.py ;;

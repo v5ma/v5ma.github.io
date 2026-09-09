@@ -1,0 +1,205 @@
+{
+  "user_agent": "Rainward-Scanned-Asset-Import/0.5 (v5ma.github.io/rainward; CC0 asset selection)",
+  "sources": {
+    "https://api.polyhaven.com/assets": {
+      "sha256": "dd7c4e7135e89df95b87d7d4ed19f0a0c5866e81fff2f9d800d0c2e8f1ab9761",
+      "bytes": 2349834,
+      "source_md5": null
+    },
+    "https://api.polyhaven.com/files/stone_wall_02": {
+      "sha256": "324656b947edfdc2d3b29d3346456383fd8885a7e8d76d1911dbeb3258221970",
+      "bytes": 26210,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/stone_wall_02/stone_wall_02_diff_2k.png": {
+      "sha256": "434337719b4006ece926d01452128125b2abdaeffa8457687aba9788d9e1a925",
+      "bytes": 21743626,
+      "source_md5": "6b9fed1a4745625b6323a397a6cbe40e"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/stone_wall_02/stone_wall_02_nor_gl_1k.png": {
+      "sha256": "e1041f14df31c43ca7f7183b7cce513b3beb853360a0050b53c8f7c5f8e72cfd",
+      "bytes": 5530826,
+      "source_md5": "cd989946b87d76fe35eac73015a9cda9"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/stone_wall_02/stone_wall_02_arm_1k.png": {
+      "sha256": "65c1ea536c6ac57101b00efaafe4e860f40b8338fd71ab8546eae2866622139e",
+      "bytes": 4099225,
+      "source_md5": "492f292eff617b4e0e2d9045609d303b"
+    },
+    "https://api.polyhaven.com/files/castle_brick_02_red": {
+      "sha256": "917d8b922293020d6adcddccae9afcdc043fdc862364d1a824aca418fa75e2b3",
+      "bytes": 30488,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/castle_brick_02_red/castle_brick_02_red_diff_2k.png": {
+      "sha256": "ea3182bd3a547f1b71b466e097002d13c3d28b8104d8b7073d19ec95a6487782",
+      "bytes": 25940282,
+      "source_md5": "969856eecf91869762d516fd133da5ce"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/castle_brick_02_red/castle_brick_02_red_nor_gl_1k.png": {
+      "sha256": "e391468fc9d4e6745da9b99f4aca5713dafa3c93fe16c9cb14711c2054f47fb8",
+      "bytes": 6546711,
+      "source_md5": "663595071a57ba7636040aeeb9a3fca9"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/castle_brick_02_red/castle_brick_02_red_arm_1k.png": {
+      "sha256": "40334548a3b95882f3c07504a5399a6e0e6aabe5436265dd3f27fcb0d88837d5",
+      "bytes": 4370695,
+      "source_md5": "4f143213d2baca54f38a431a5e6c495f"
+    },
+    "https://api.polyhaven.com/files/mossy_cobblestone": {
+      "sha256": "8fd25fc545d08d747f3cc309142517603f63346db48c76fd6389d5d668c48228",
+      "bytes": 27564,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/mossy_cobblestone/mossy_cobblestone_diff_2k.png": {
+      "sha256": "07db4f7a62499a6290a251de5cdbba8a5e692b27afe6fe359d5ba7a41b525cf6",
+      "bytes": 23862273,
+      "source_md5": "9bcc0a7c414cd8038dfd5c0397458639"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/mossy_cobblestone/mossy_cobblestone_nor_gl_1k.png": {
+      "sha256": "fefa3f1d39d4d18c03fe7c628c79ad5b8c8a6755ab942e99703555dd186dfdb8",
+      "bytes": 5687536,
+      "source_md5": "abfb716da36800307d70e669d6f458cf"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/mossy_cobblestone/mossy_cobblestone_arm_1k.png": {
+      "sha256": "e1ca90c8239b3ee2be6d2825266bda224197ea4d1bd506f5f7657e67bbd0deb0",
+      "bytes": 4324802,
+      "source_md5": "93b6e9edbeb22f00ef3c13d54a3db37f"
+    },
+    "https://api.polyhaven.com/files/forest_ground_04": {
+      "sha256": "2d591a0413dbbff2d2aa87d7a4fae00bd5c353edb4923aedd443efbc4c691156",
+      "bytes": 27232,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/forest_ground_04/forest_ground_04_diff_2k.png": {
+      "sha256": "e8c273851a153e751a3664891ba5cbb28713f0cf98aca442291ab7b27b79900e",
+      "bytes": 9338911,
+      "source_md5": "93972c83249ae015111c8da714e6162c"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/forest_ground_04/forest_ground_04_nor_gl_1k.png": {
+      "sha256": "dc30ffdf75d28b2f02831201b377cf8cce4594d86bbcf46ba711dfcd35a5fcf0",
+      "bytes": 2537954,
+      "source_md5": "77c2337c8c8c47357f69b598e73a72de"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/forest_ground_04/forest_ground_04_arm_1k.png": {
+      "sha256": "a0e81793c4bed7fcc05b6305eb2f43e7eeaceb8b1acb4e62bdf30562f7412022",
+      "bytes": 1729224,
+      "source_md5": "78205b87e70677c052f5538ca5f1e8ff"
+    },
+    "https://api.polyhaven.com/files/boulder_01": {
+      "sha256": "c2b21c87241cbe9a46c190c6cd231cd943c4ff5dbd28b634cf19613a21a75167",
+      "bytes": 24428,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/boulder_01/boulder_01_1k.gltf": {
+      "sha256": "51487934db898b4c24072780a451e34eca5c02e3ada24a62bbc600bbc4019e92",
+      "bytes": 2773,
+      "source_md5": "26e2eef4a1f68c9557c65cd375b21d6c"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_arm_1k.jpg": {
+      "sha256": "c57187c5746b6be913fa53846cb44ff78743e7ca5000f131c9627b99563c2b87",
+      "bytes": 659386,
+      "source_md5": "d632159982cc3121ed3d69b89a122146"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_diff_1k.jpg": {
+      "sha256": "c38f0e918f6dc16b8d386ba3cdd89805c78320c119a1ceec85856f82b09a65b8",
+      "bytes": 987467,
+      "source_md5": "25f8a843f13369d56d37f49db05ea8c3"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/boulder_01/boulder_01.bin": {
+      "sha256": "7f5b06503d62bd95bfe9c6b8a354a5cc8ff04a4d271a8cf87a3e3125db4232d7",
+      "bytes": 2938808,
+      "source_md5": "27a19fa031d8b4c3a09261f19c444dc5"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_nor_gl_1k.jpg": {
+      "sha256": "0810cf6e89d89bb6eb065b4d2e2855288f5dcbd2c15c6e40ab90d462021b50aa",
+      "bytes": 1183552,
+      "source_md5": "0c4da644d901144b53e4fe2446f3c389"
+    },
+    "https://api.polyhaven.com/files/rock_moss_set_01": {
+      "sha256": "07302bec237ba887a93ae977bdfd33d464553cbba75ef8393512cc3766d39506",
+      "bytes": 26375,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/rock_moss_set_01/rock_moss_set_01_1k.gltf": {
+      "sha256": "c36675aca9c6b2be7785c2534cf413b03ec82a5a2a5407a2b1c0cdb0346c9727",
+      "bytes": 9987,
+      "source_md5": "75113cc1c21806cca5d8badad4737af7"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_01/rock_moss_set_01_nor_gl_1k.jpg": {
+      "sha256": "eb4aad3f207f1dc5b624d74ae240372171626a66912bd71adf7bd3e518181d6e",
+      "bytes": 209975,
+      "source_md5": "eb7ebd31ad08e78d0497900652ff1568"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/rock_moss_set_01/rock_moss_set_01.bin": {
+      "sha256": "de8360e6175879aaf02c171911069cf5f1852547f9ca7f10e440085dbcc3315e",
+      "bytes": 1466380,
+      "source_md5": "207a51c9f56d34732e9814bbf9cc07b1"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_01/rock_moss_set_01_rough_1k.jpg": {
+      "sha256": "4d6ec46623abd8e2cdb855f59c7ce31873ad61b36b60e4de579e9e776a497c6b",
+      "bytes": 82624,
+      "source_md5": "ed9d8a2c863262f76f881346e8047c6a"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_01/rock_moss_set_01_diff_1k.jpg": {
+      "sha256": "40cea65d8aa4ee73a93b04af19963834d061eee9779c3fc2c1cba76eef812ccc",
+      "bytes": 168099,
+      "source_md5": "b8742301e6b4bc5683d2de712e83f772"
+    },
+    "https://api.polyhaven.com/files/fern_02": {
+      "sha256": "a3e43a1dad9a175defdc5816daed6ab1192d4dcd4c8f8a5becd44e63616ba0b3",
+      "bytes": 29294,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/fern_02/fern_02_1k.gltf": {
+      "sha256": "33974295ee19670af4877705fc7d91f33f42d6302f0d44a625e072271223031f",
+      "bytes": 6899,
+      "source_md5": "cf276874d37bfb73c299504a6b355b77"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fern_02/fern_02_arm_1k.jpg": {
+      "sha256": "ebfb5d76ce9cbdaec20bcd22dce9b755f0b1b8650ef29ca13555e3e6961025d7",
+      "bytes": 280359,
+      "source_md5": "1bbb2b22951f450720d28e17d93a2987"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fern_02/fern_02_diff_1k.jpg": {
+      "sha256": "a828a6e7b4c01c826911e2eac4b3afc7457dab7b3b392a31c681ed88b7d50029",
+      "bytes": 315705,
+      "source_md5": "82c18a6cfd5ae91c37c0e078f591181c"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fern_02/fern_02_nor_gl_1k.jpg": {
+      "sha256": "45bce132c6e96a0864bc89ab5da51361ab3f4afa83a6669ae499ab5ca811f621",
+      "bytes": 367222,
+      "source_md5": "43aed63dff79554f6064627515afd9d7"
+    },
+    "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/fern_02/fern_02.bin": {
+      "sha256": "fe1abb762bcbbc7ad9e86925c8080437a62add257d9280e9142fdc85c226e64c",
+      "bytes": 176176,
+      "source_md5": "c061e9255f7d36ae9ce0e92ef3e100b2"
+    },
+    "https://api.polyhaven.com/files/kloppenheim_06_puresky": {
+      "sha256": "26e2f3f27c2d1a610dcb6296639d3f7cfc994e37ae3c3105a9bd2d0a263cf6e6",
+      "bytes": 2126,
+      "source_md5": null
+    },
+    "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloppenheim_06_puresky_1k.hdr": {
+      "sha256": "206c67e3a1b992282821cf06662bdd69bbb4915c1c4444a66338a40d6a7d4e34",
+      "bytes": 1173154,
+      "source_md5": "995d68b1656f26452572645c0ffe898b"
+    },
+    "https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/loaders/GLTFLoader.js": {
+      "sha256": "caba6c51cfd8c7d5313bd7705a54b76bc0a7199d9822ecc497c5311eaffe8e5e",
+      "bytes": 114649,
+      "source_md5": null
+    },
+    "https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/loaders/RGBELoader.js": {
+      "sha256": "b2b970807021d4451e5a2644af03dfffad66973b0a2a95e58723a708a662bc67",
+      "bytes": 12273,
+      "source_md5": null
+    },
+    "https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/utils/BufferGeometryUtils.js": {
+      "sha256": "cbcfe1864abedcc0122cb893373918fe14469491717a34ca6efcc38551805765",
+      "bytes": 35538,
+      "source_md5": null
+    }
+  }
+}

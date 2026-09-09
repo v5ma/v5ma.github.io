@@ -28,7 +28,7 @@ with sync_playwright() as p:
  page=c.new_page();page.set_default_timeout(75000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('dialog',lambda d:d.accept())
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');page.wait_for_function('window.Rainward');page.locator('#start').click();page.wait_for_function('Rainward.mode==="play"')
-  check(page.evaluate('Rainward.snapshot().version==="0.4.0"'),'The loaded game identifies the v0.4 release')
+  check(page.evaluate('Rainward.snapshot().version==="0.6.0"'),'The loaded game identifies the v0.5 release')
   page.keyboard.press('KeyV');page.wait_for_function('Rainward.view.shoulder===-1&&Rainward.snapshot().camera.x<Rainward.state.player.x-.35');check(True,'V moves the actual camera to the left shoulder, not only a label')
   page.keyboard.press('KeyV');page.wait_for_function('Rainward.view.shoulder===1&&Rainward.snapshot().camera.x>Rainward.state.player.x+.35');check(True,'Shoulder switching works in both directions')
   check(page.locator('#noise-label').inner_text().endswith('STILL'),'The feedback recognizes standing still')
@@ -37,7 +37,6 @@ with sync_playwright() as p:
   page.keyboard.press('KeyZ');page.wait_for_function('document.getElementById("cover-label").textContent==="DEEP COVER"');check(True,'Prone cover is shown distinctly without promising invisibility')
   page.screenshot(path=str(OUT/'deep-cover.png'));page.keyboard.press('KeyZ')
   go(page,-19,7);go(page,-24,6);go(page,-24,-1)
-  # Look around a real small interior using arrows, checking every sampled camera.
   positions=[];page.keyboard.down('ArrowLeft')
   for _ in range(32):
    page.wait_for_timeout(75);positions.append(page.evaluate('Rainward.snapshot().camera'))

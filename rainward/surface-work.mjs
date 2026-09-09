@@ -24,7 +24,7 @@ function texture(data,size,color){const canvas=document.createElement('canvas');
 export function physicalSurface(kind){const d=authorSurface(kind);return {map:texture(d.albedo,d.size,true),bump:texture(d.height,d.size,false),rough:texture(d.roughness,d.size,false)};}
 export function worldTexturing(material,metres=2.6){
  material.userData.worldSurface=metres;
- material.customProgramCacheKey=()=>`rainward-surface-v4-${metres}`;
+ material.customProgramCacheKey=()=>`rainward-surface-v5-${metres}`;
  material.onBeforeCompile=shader=>{
   shader.vertexShader='varying vec3 vRWPosition; varying vec3 vRWNormal;\n'+shader.vertexShader;
   shader.vertexShader=shader.vertexShader.replace('#include <project_vertex>',`#include <project_vertex>
@@ -34,6 +34,8 @@ export function worldTexturing(material,metres=2.6){
    #endif
    vRWPosition=(modelMatrix*rwP).xyz;vRWNormal=normalize(mat3(modelMatrix)*rwN);`);
   shader.fragmentShader=`varying vec3 vRWPosition;varying vec3 vRWNormal;
+   mat3 rwFrame(vec3 eye,vec3 n,vec2 uv){vec3 q0=dFdx(eye),q1=dFdy(eye);vec2 st0=dFdx(uv),st1=dFdy(uv);vec3 p1=cross(q1,n),p0=cross(n,q0);vec3 t=p1*st0.x+p0*st1.x,b=p1*st0.y+p0*st1.y;float scale=inversesqrt(max(max(dot(t,t),dot(b,b)),1e-12));return mat3(t*scale,b*scale,n);}
+
    vec4 rwSample(sampler2D tex){vec3 p=vRWPosition/${Number(metres).toFixed(3)};vec3 a=pow(abs(normalize(vRWNormal)),vec3(8.0));a/=max(a.x+a.y+a.z,.0001);return texture2D(tex,p.zy)*a.x+texture2D(tex,p.xz)*a.y+texture2D(tex,p.xy)*a.z;}
   `+shader.fragmentShader;
   shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#ifdef USE_MAP
@@ -43,7 +45,17 @@ export function worldTexturing(material,metres=2.6){
   #ifdef USE_ROUGHNESSMAP
    roughnessFactor*=rwSample(roughnessMap).g;
   #endif`);
-  shader.fragmentShader=shader.fragmentShader.replace('#include <normal_fragment_maps>',`#ifdef USE_BUMPMAP
+  shader.fragmentShader=shader.fragmentShader.replace('#include <aomap_fragment>',T.ShaderChunk.aomap_fragment.replace('texture2D( aoMap, vAoMapUv ).r','rwSample(aoMap).r'));
+  shader.fragmentShader=shader.fragmentShader.replace('#include <metalnessmap_fragment>',T.ShaderChunk.metalnessmap_fragment.replace('texture2D( metalnessMap, vMetalnessMapUv )','rwSample(metalnessMap)'));
+  shader.fragmentShader=shader.fragmentShader.replace('#include <normal_fragment_maps>',`#ifdef USE_NORMALMAP_TANGENTSPACE
+   vec3 rwP5=vRWPosition/${Number(metres).toFixed(3)};
+   vec3 rwWeights=pow(abs(normalize(vRWNormal)),vec3(8.0));rwWeights/=max(dot(rwWeights,vec3(1.0)),.0001);
+   vec3 nx=texture2D(normalMap,rwP5.zy).xyz*2.0-1.0;
+   vec3 ny=texture2D(normalMap,rwP5.xz).xyz*2.0-1.0;
+   vec3 nz=texture2D(normalMap,rwP5.xy).xyz*2.0-1.0;
+   nx.xy*=normalScale;ny.xy*=normalScale;nz.xy*=normalScale;
+   normal=normalize(rwFrame(-vViewPosition,normal,rwP5.zy)*nx*rwWeights.x+rwFrame(-vViewPosition,normal,rwP5.xz)*ny*rwWeights.y+rwFrame(-vViewPosition,normal,rwP5.xy)*nz*rwWeights.z);
+  #elif defined(USE_BUMPMAP)
    float rwHeight=rwSample(bumpMap).r*bumpScale;
    normal=perturbNormalArb(-vViewPosition,normal,vec2(dFdx(rwHeight),dFdy(rwHeight)),faceDirection);
   #endif`);

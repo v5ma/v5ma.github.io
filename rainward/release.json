@@ -1,13 +1,14 @@
 {
-  "version": "0.4.0",
-  "build": "rainward-terminus-guidance-20260907",
+  "version": "0.6.0",
+  "build": "rainward-living-light-20260909",
   "stage": "mechanics prototype",
-  "xr": false,
+  "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Discoverable clues, numbered puzzle controls and optional progressive hints",
-    "Bellweather Terminus: third original chapter with linked power circuits",
-    "World-scaled albedo, height and roughness materials; varied rock silhouette and human proportions",
-    "Original chapters, controls and shelter checkpoint compatibility preserved"
+    "Recovered self-hosted scanned environments with preserved source materials",
+    "Linear HDR cinematic pipeline with contact AO, restrained bloom and chapter color grading",
+    "Animated normal-mapped water, movement-driven ripples, waterfall flow, wind foliage and contact shading",
+    "Bounded fixed-step simulation separates movement from render rate",
+    "Experimental stationary WebXR overlook; mission paused, no VR combat or locomotion"
   ]
 }
