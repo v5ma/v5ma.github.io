@@ -1,5 +1,8 @@
 name: Paper Delivery glass and chrome acceptance
 on:
+  push:
+    branches: [feat/paper-glass-chrome-20260909]
+    paths: ['svgn-planet/**','.github/workflows/paper-jewel.yml']
   pull_request:
     paths: ['svgn-planet/**','.github/workflows/paper-jewel.yml']
   workflow_dispatch:
@@ -10,6 +13,9 @@ concurrency:
   cancel-in-progress: true
 jobs:
   native:
+    # Push events cancel obsolete branch runs without duplicating PR coverage.
+    # Retained desktop/mobile and v0.4 acceptance also run on this same PR.
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 18
     strategy:
