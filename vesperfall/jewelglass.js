@@ -62,7 +62,7 @@
      this.add(group,this.gem,this.gems[(r.id+side+4)%4],[0,0,0],[.22,.38,.22]);for(const y of[-.36,.3]){const ring=this.ring(group,[0,y,0],.26);ring.rotation.x=Math.PI/2;}const wire=this.geo('hanger',()=>new T.CylinderGeometry(.014,.014,1.1,6));this.add(group,wire,this.gold,[0,.89,0]);this.jewels.push(group);
     }}
    this.batchLamps();
-   const center=new T.Group();center.name='Choir crown / refractive centerpiece';center.position.set(0,4.75,-4.9);this.worldFX.add(center);this.hero=this.add(center,this.gem,this.heroGlass,[0,0,0],[.47,.68,.47]);for(const tilt of[-.6,.6]){const ring=this.ring(center,[0,0,0],.77);ring.rotation.y=tilt;ring.rotation.x=.4;}this.center=center;
+   const center=new T.Group();center.name='Choir crown / refractive centerpiece';center.position.set(0,6.25,-4.9);this.worldFX.add(center);this.hero=this.add(center,this.gem,this.heroGlass,[0,0,0],[.47,.68,.47]);for(const tilt of[-.6,.6]){const ring=this.ring(center,[0,0,0],.77);ring.rotation.y=tilt;ring.rotation.x=.4;}this.center=center;
    // Additional optical layers sit on existing window and floor surfaces; no
    // opaque wall becomes a secret traversable door or false landing surface.
    g.worldArt.group.traverse(o=>{if(o.name==='Original leaded rose-glass window'){const old=o.material;let glass=this.cachedGlass.get(old);if(!glass){glass=this.mat('Leaded jewel glass '+old.uuid,{color:'#f2ead8',map:old.map,emissive:'#ffffff',emissiveMap:old.map,emissiveIntensity:.32,metalness:.06,roughness:.18,clearcoat:1,clearcoatRoughness:.13,iridescence:.25});this.cachedGlass.set(old,glass);}this.projections.push({window:o,material:glass});}});
