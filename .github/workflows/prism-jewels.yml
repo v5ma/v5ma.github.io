@@ -1,0 +1,51 @@
+name: Verify Prism Jewelbox art
+on:
+  pull_request:
+    paths: ['prism-current/**', '.github/workflows/prism-jewels.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: prism-jewels-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  art:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            prism-current
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify rules and reference graphics
+        run: |
+          python prism-current/tests/verify.py
+          node --test prism-current/tests/*.test.cjs > test-output/core.tap
+          git fetch --depth=1 origin dfffea05244b1fda75e06721d2931bf7cd6a56d5
+          mkdir -p test-baseline
+          git archive dfffea05244b1fda75e06721d2931bf7cd6a56d5 prism-current | tar xf - -C test-baseline
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Inspect actual before and after renderer, shaders and presets
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/jewel-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 360 python -u prism-current/tests/jewel-browser.py
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar czf test-output/source.tgz prism-current index.html projects.css project-shortcuts.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-jewelbox-visual
+          path: test-output/
+          retention-days: 14
