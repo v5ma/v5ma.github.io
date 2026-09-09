@@ -44,7 +44,9 @@ with sync_playwright() as pw:
    check(p.evaluate('Vesperfall.component.jewelglass.stats.probes===2'),'Environment generation is cached, not repeated every frame')
    check(p.evaluate('AFRAME.scenes[0].renderer.transmissionResolutionScale===.5'),'Optical transmission uses a half-resolution background pass')
    check(p.evaluate('Vesperfall.component.jewelglass.instanceBatches.length<=6'),'Suspended ornaments share at most six instanced draws')
-   check(p.evaluate('(()=>{const j=Vesperfall.component.jewelglass;j.center.updateWorldMatrix(true,true);return new AFRAME.THREE.Box3().setFromObject(j.center).min.y>5.4;})()'),'Suspended crystal stays above head clearance on the playable gallery')
+   # Precise vertex bounds, not the enlarged rotated local bounding-box corners.
+   clearance=p.evaluate('(()=>{const j=Vesperfall.component.jewelglass;j.center.updateWorldMatrix(true,true);return new AFRAME.THREE.Box3().setFromObject(j.center,true).min.y;})()')
+   check(clearance>5.4,f'Suspended crystal clears gallery headroom: lowest visible vertex {clearance:.3f}m')
    aim(p,0,.26);p.wait_for_timeout(400);p.screenshot(path=str(OUT/'cut-crystal-and-glass.png'))
    p.keyboard.down('KeyH');p.wait_for_function('Vesperfall.state.shield&&Vesperfall.component.arsenal.shield.visible');p.wait_for_timeout(300);p.screenshot(path=str(OUT/'interference-wardglass.png'));p.keyboard.up('KeyH');p.wait_for_function('!Vesperfall.state.shield')
    check(p.evaluate('Vesperfall.component.arsenal.shield.children[0].material.isShaderMaterial'),'The defensive shield uses the custom iridescent surface shader')
