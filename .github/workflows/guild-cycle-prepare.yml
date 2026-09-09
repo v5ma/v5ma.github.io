@@ -1,0 +1,31 @@
+name: Prepare reviewed Cycle Works source blobs
+on:
+  push:
+    branches: [feat/guild-cycle-works-20260909]
+    paths: ['.github/workflows/guild-cycle-prepare.yml']
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse changed baselines and output mismatches; upload blobs only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python leonardos-guild/scripts/prepare-cycle-works.py
+      - name: Record preparation source (not test acceptance)
+        if: always()
+        run: |
+          git rev-parse HEAD > cycle-preparation-source.txt
+          git diff --stat > cycle-preparation-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cycle-prepared-blobs
+          path: |
+            cycle-prepared.json
+            cycle-preparation-source.txt
+            cycle-preparation-diff.txt
+          retention-days: 7
