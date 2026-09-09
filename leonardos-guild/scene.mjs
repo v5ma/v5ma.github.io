@@ -1,6 +1,7 @@
 import {createStreetArt} from './street-art.mjs';
 import {createCityArt} from './city-art.mjs';
 import {animatePerson} from './character-motion.mjs';
+import {createCycleVisuals} from './cycle-art.mjs';
 import {createTownLifeVisuals} from './life-visuals.mjs';
 import {roomAt,stats} from './life-core.mjs';
 import * as T from './vendor/three.module.js';
@@ -57,6 +58,7 @@ export function createScene(canvas,w,s,quality='high'){
  const outdoors=scene.children.filter(o=>o!==rider.root&&!o.isLight);let wasBelow=false;const outdoorVisibility=new Map();
  const townLife=createTownLifeVisuals({scene,root,w,m,rider,bike,camera});
  const streetArt=createStreetArt({scene,root,w,m,camera});
+ const cycles=createCycleVisuals({scene,world:root,m,bike,streetArt});
  const cityArt=createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,camera});
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality;
  function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
@@ -81,11 +83,11 @@ export function createScene(canvas,w,s,quality='high'){
   guild.update(p,dt);animatePerson(rider,p.time,{motion:p.mode==='bike'?'ride':p.guarding?'guard':p.attackT>0?'strike':'walk',speed:p.speed,phase:p.time*10});finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
   goal.visible=p.mission===2&&p.defeated;
   if(!!p.life.inside!==wasBelow){if(p.life.inside)for(const object of outdoors){outdoorVisibility.set(object,object.visible);object.visible=false;}else for(const object of outdoors)object.visible=outdoorVisibility.get(object);wasBelow=!!p.life.inside;}if(p.life.inside)for(const object of outdoors)object.visible=false;
-  townLife.update(p,dt,currentRoom);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);renderer.render(scene,camera);
+  townLife.update(p,dt,currentRoom);cycles.update(p);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);renderer.render(scene,camera);
  }
  function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
  function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;streetArt.setQuality(value);renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.6:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
  function recenter(){orbit=pitch=0;}
  function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
- setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
+ setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),cycle:cycles.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
 }

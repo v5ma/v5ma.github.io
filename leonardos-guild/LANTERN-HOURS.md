@@ -1,6 +1,6 @@
-# Lantern Hours / v0.5 candidate
+# Lantern Hours / v0.5.0 (published)
 
-This continues the persistent UPGRADE-CHECKLIST.md priorities: easier discovery, useful consequences and character/lighting improvement before more errands. It stays inside the same city and retains all existing saves, missions, rooms, shops, vehicles, street work and licensed artwork. It is not a new map or another engine. Publication status is pending until exact source and public bytes are checked.
+This continues the persistent UPGRADE-CHECKLIST.md priorities: easier discovery, useful consequences and character/lighting improvement before more errands. It stays inside the same city and retains all existing saves, missions, rooms, shops, vehicles, street work and licensed artwork. It is not a new map or another engine. Publication run 34280935372 verified all 147 public files and the homepage against merge a4d5544226c1318377b85c8b82ffb1523101e912.
 
 ## One nearby chooser
 

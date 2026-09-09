@@ -1,5 +1,10 @@
 # Leonardo’s Guild — A Living Town
 
+Current published foundation: v0.5.0 Lantern Hours, verified by publication run 34280935372 (147 hosted files plus homepage). Nearby / I, Town guide, lamp circuit, restored services and a town clock are part of the same game.
+
+Next candidate: v0.6.0 Cycle Works. Complete A Better Fit at Bartolo's existing indoor fitting station, then select the tuning bench through Nearby. Fit owned parts free, brake the bicycle with Z or touch Brake, and optionally practice the marked road before returning to report. Space still hops; old progress remains. Read CYCLE-WORKS.md and UPGRADE-CHECKLIST.md for exact scope and verification. Earlier layers are described below.
+
+
 An original third-person Renaissance browser adventure for SVGN. Version 0.3 expands the same town: nine additional commissions, six walkable interiors, two basements, a locked northern garden, named residents, cats, character progression, Lantern magic and earned bicycle variants. **Single-player**, not yet an MMO. Leonardo’s bicycle, pedal carriage and magical research belong to an explicitly alternate-history story, not historical assertions.
 
 ## Play online

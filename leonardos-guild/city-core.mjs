@@ -1,5 +1,6 @@
 /* Lantern Hours: additive town clock, useful restored services and one spatial
  * lamp circuit. No Date.now(), remote reward calls, teleport or legacy rewrites. */
+import {CYCLE_BENCH,cycleAction} from './cycle-core.mjs';
 import {targets, roomAt, actions, questStatus, QUESTS, stats, notify} from './life-core.mjs';
 import {STREET_JOBS, STREET_SITES, currentSite, inSpace, available} from './street-core.mjs';
 
@@ -9,6 +10,7 @@ export const LAMPS = Object.freeze([
   {id:'market',name:'Market lamp / switch C',x:10,z:158,mask:6,affects:'Binders lane + Market'}
 ]);
 export const SERVICES = Object.freeze([
+  CYCLE_BENCH,
   {id:'hours',name:'Take a break at the Copper Cat',x:101,z:177,room:'inn',kind:'wait',description:'Wait until morning or evening. Nothing moves and no cooldown is skipped while you wait.'},
   {id:'meal',name:'Emilia\'s community supper',x:14,z:207,job:'dinner',kind:'meal',description:'After Enough for Everyone, share a meal: restore 40 vitality and 25 focus. Another serving needs 3 minutes of active play.'},
   {id:'brewing',name:'Ada\'s portable tonic recipe',x:23,z:57,room:'apothecary',job:'tonic',kind:'brew',description:'After discovering the recipe, pay 12 florins for ingredients and bottle a tonic. Carry up to 3. Each restores 35 vitality and 12 focus.'},
@@ -118,6 +120,7 @@ export function useCity(s,w,id,action){
   if(!p||!isSafe(s,w)||!canVisit(s,w,p)||distance(s,p)>3.1)return {ok:false,text:'Stop on foot beside this place, on the correct floor and away from combat.'};
   const c=s.city,st=stats(s),reply=text=>({ok:true,text});
   if(p.job&&!s.street.done.includes(p.job))return {ok:false,text:'First finish '+STREET_JOBS.find(j=>j.id===p.job).title+'. Your completed work unlocks this service.'};
+  if(p.kind==='cycle')return cycleAction(s,w,action);
   if(p.kind==='wait'){
     if(!['morning','evening'].includes(action))return {ok:false,text:'Choose morning or evening.'};
     c.minute=action==='morning'?480:1170;notify(s,'You take a quiet break. It is now '+clockInfo(c).text+'. All commissions remain available.','town-wait');

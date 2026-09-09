@@ -1,0 +1,60 @@
+name: Verify Guild Cycle Works and actual road test
+on:
+  push:
+    branches: [feat/guild-cycle-works-20260909]
+    paths: ['leonardos-guild/**','.github/workflows/guild-cycle-works.yml']
+  pull_request:
+    paths: ['leonardos-guild/**','.github/workflows/guild-cycle-works.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: guild-cycle-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  roadtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check committed mechanics, equipment, saves and bounded rewards
+        run: |
+          set -euo pipefail
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          mkdir -p leonardos-guild/cycle-output
+          npm --prefix leonardos-guild test | tee leonardos-guild/cycle-output/model-tests.txt
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Fresh deliveries, tuning, road-test return and reload using ordinary input
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/cycle-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/cycle-browser.py
+      - name: Preserve exact committed source and any failure evidence
+        if: always()
+        run: |
+          python - <<'PY'
+          import hashlib,json,subprocess,tarfile
+          from pathlib import Path
+          root=Path('leonardos-guild');out=root/'cycle-output';out.mkdir(exist_ok=True)
+          (out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          diff=subprocess.check_output(['git','diff','--stat'],text=True);(out/'uncommitted-diff.txt').write_text(diff)
+          excluded={'cycle-output','city-output','life-output','test-output','touch-output','street-output','__pycache__','node_modules'}
+          files={str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.rglob('*') if f.is_file() and not excluded.intersection(f.parts) and f.suffix in ['.js','.mjs','.css','.html','.json','.webp','.png','.bin','.gltf','.md','.txt','.py']}
+          (out/'source-hashes.json').write_text(json.dumps(files,indent=2))
+          with tarfile.open(out/'source.tgz','w:gz') as t:
+            for name in files:t.add(root/name,arcname='leonardos-guild/'+name)
+          assert not diff,'Acceptance must not rewrite committed source'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-cycle-roadtest
+          path: leonardos-guild/cycle-output/
+          retention-days: 10
