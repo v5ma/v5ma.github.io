@@ -32,9 +32,9 @@ with sync_playwright() as pw:
   p.reload(wait_until='domcontentloaded');ready(p);p.wait_for_function('Prism.component.art.graphics.materialsReady')
   check(p.locator('#graphics-quality').input_value()=='balanced' and p.locator('#quiet-effects').is_checked(),'Graphics preferences survive reload without changing the score namespace')
   p.locator('#settings').evaluate('(e)=>e.open=true');p.locator('#graphics-quality').select_option('cinematic');p.locator('#quiet-effects').uncheck();p.locator('#effect-strength').evaluate('(e)=>{e.value=72;e.dispatchEvent(new Event("input",{bubbles:true}));e.dispatchEvent(new Event("change",{bubbles:true}));}');p.locator('#settings').evaluate('(e)=>e.open=false')
-  p.locator('#input').select_option('keys');p.locator('#start').click();p.wait_for_function('Prism.snapshot().phase==="playing"');p.wait_for_function('Prism.snapshot().time>4')
+  p.set_viewport_size({'width':400,'height':300});p.locator('#input').select_option('keys');p.locator('#start').click();p.wait_for_function('Prism.snapshot().phase==="playing"');p.wait_for_function('Prism.snapshot().time>5')
   # Capture active notes via the actual audio clock. No cinematic-only scene.
-  p.screenshot(path=str(OUT/'jewels-in-play.png'));p.keyboard.press('KeyP');p.wait_for_function('Prism.snapshot().phase==="paused"');p.locator('#back').click()
+  p.screenshot(path=str(OUT/'jewels-in-play.png'));p.keyboard.press('KeyP');p.wait_for_function('Prism.snapshot().phase==="paused"');p.locator('#back').click();p.set_viewport_size({'width':1440,'height':1050})
   check(p.evaluate('Object.keys(Prism.snapshot().scoreRecords).length')==0,'Graphics review and aborted play do not create finished score records')
   count=p.evaluate('(()=>{const a=new Set();AFRAME.scenes[0].object3D.traverse(o=>{if(o.geometry)a.add(o.geometry)});return a.size})()')
   for mode in ['light','cinematic','balanced','cinematic']:
@@ -43,7 +43,7 @@ with sync_playwright() as pw:
   p.set_viewport_size({'width':390,'height':844});p.screenshot(path=str(OUT/'mobile-graphics.png'));check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'The graphics controls fit a phone-width screen')
   check(p.evaluate('AFRAME.scenes[0].renderer.info.programs.every(p=>!p.diagnostics||p.diagnostics.runnable!==false)'),'All compiled shader programs are runnable')
   check(not errors,'No uncaught JavaScript errors or reported WebGL shader failures')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'graphics':p.evaluate('Prism.component.art.graphics'),'renderer':p.evaluate('({three:AFRAME.THREE.REVISION,calls:AFRAME.scenes[0].renderer.info.render.calls,triangles:AFRAME.scenes[0].renderer.info.render.triangles,textures:AFRAME.scenes[0].renderer.info.memory.textures,geometries:AFRAME.scenes[0].renderer.info.memory.geometries})'),'scope':'Actual HTTP A-Frame / software WebGL; full-resolution before/after menu frames and ordinary play. No performance claim for a physical headset.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'graphics':p.evaluate('Prism.component.art.graphics'),'renderer':p.evaluate('({three:AFRAME.THREE.REVISION,calls:AFRAME.scenes[0].renderer.info.render.calls,triangles:AFRAME.scenes[0].renderer.info.render.triangles,textures:AFRAME.scenes[0].renderer.info.memory.textures,geometries:AFRAME.scenes[0].renderer.info.memory.geometries})'),'scope':'Actual HTTP A-Frame / software WebGL; full-resolution 1440x1050 before/after menus; 400x300 ordinary running-play observation. Lower drawing-buffer size makes CPU rendering tractable; materials stay Cinematic. No performance claim for a physical headset.'},indent=2))
  except Exception as e:
   try:state=p.evaluate('({state:window.Prism?.snapshot(),graphics:window.Prism?.component.art.graphics})')
   except:state={}
