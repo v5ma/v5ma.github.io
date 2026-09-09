@@ -1,0 +1,58 @@
+name: Materialize verified Jewelbox graphics source
+on:
+  push:
+    branches: [feat/prism-jewelbox-graphics]
+    paths: [.github/workflows/prism-jewel-intake.yml]
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/prism-jewelbox-graphics
+          sparse-checkout: |
+            prism-current
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate every input and output before applying isolated text changes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,zlib,shutil
+          payload=b''.join((Path('.github/prism-jewel-intake')/(str(i)+'.bin')).read_bytes() for i in range(7))
+          assert hashlib.sha256(payload).hexdigest()=='904dd3696971a00207f9dcca7b4c5e52574f48f4eae7c0ab7726bfbd64226a45'
+          files=json.loads(zlib.decompress(payload));prepared={}
+          for n,d in files.items():
+            p=Path(n)
+            assert not p.is_absolute() and '..' not in p.parts
+            assert n.startswith('prism-current/') or n=='.github/workflows/prism-jewels.yml'
+            if d['before'] is None:
+              assert not p.exists(),n
+              text=d['text']
+            else:
+              old=p.read_bytes();assert hashlib.sha256(old).hexdigest()==d['before'],n+' has changed; do not overwrite'
+              text=old.decode()
+              for start,end,replacement in reversed(d['edits']):
+                text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==d['after'],n+' output mismatch'
+            prepared[p]=text
+          for p,text in prepared.items():
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          shutil.rmtree('.github/prism-jewel-intake')
+          Path('.github/workflows/prism-jewel-intake.yml').unlink()
+          PY
+          node --test prism-current/tests/*.test.cjs
+          python prism-current/tests/verify.py
+      - name: Commit ordinary source and remove temporary intake
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add prism-current .github
+          git commit -m 'Build Jewelbox graphics from hash-verified source; remove intake files'
+          git push origin HEAD:feat/prism-jewelbox-graphics
+          git rev-parse HEAD >> "$GITHUB_STEP_SUMMARY"
