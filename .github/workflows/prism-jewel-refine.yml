@@ -1,0 +1,74 @@
+name: Refine verified Jewelbox startup
+on:
+  push:
+    branches: [feat/prism-jewelbox-graphics]
+    paths: [.github/workflows/prism-jewel-refine.yml]
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/prism-jewelbox-graphics
+          sparse-checkout: |
+            prism-current
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact reviewed refinements, not relaxed gameplay tests
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          guards={
+          'prism-current/art.js':('d7e206f6305c0a31423a0826a9cb99e28122479f964740641d0f2c8111c28ad9','f57045ffcc1def18440c4bb15d2f4cead99cea639d1d9afe68f1de02033f8b72'),
+          'prism-current/app.js':('6cee39b6e882b213fdd66b949b9bbc5d5a9ae73db3fe391e7702d6ccaf12842a','9d100d5f5f5be27750007c6b8ab4a21d3f640c2d294d4cabcb7459912596ddf9'),
+          'prism-current/graphics/materials.js':('5b9c142eabda8a7ccb8380ffdf408c724af69c4a0d08752ea3ceedb435358d3b','e2264c5718ccf5cf1b3e0b618c0e95da20e71c3ddcf6529b415e85f14c166b12'),
+          'prism-current/tests/lifecycle.test.cjs':('90213421078d329596cef2ffb57904690435ccfb87728af9726329ff772788c9','a4bd90d325985ad694a77175e497ec58f85a751899ad416471a957afea6e3614')}
+          data={}
+          for n,(before,after) in guards.items():
+            raw=Path(n).read_bytes();assert hashlib.sha256(raw).hexdigest()==before,n
+            s=raw.decode()
+            if n.endswith('art.js'):
+              s=s.replace('menuNow=false;','menuNow=false,warming=null;').replace('menuNow=menu;const immersive=settings();','menuNow=menu;if(warming){menu=false;s=warming;time=warming.song.notes[0].time-.8;}const immersive=settings();')
+              s=s.replace('vec3(.035,.075,.13),vec3(.009,.015,.044)','vec3(.009,.018,.035),vec3(.003,.005,.014)').replace('c+=vec3(.035,.012,.065)','c+=vec3(.009,.004,.021)')
+              pos=s.index('  const tmpA=new T.Vector3()')
+              code='''  // Warm the actual playfield before the AudioBuffer starts. First-use shader
+            // compilation must not consume the music's count-in or trigger a false stall.
+            async function prepare(songState){
+             if(disposed||!scene.renderer)throw Error('The renderer is not ready.');
+             warming=songState;
+             try{
+              update(songState,0,0,false);
+              if(scene.renderer.compileAsync)await scene.renderer.compileAsync(scene.object3D,scene.camera);
+              // Let normal A-Frame frames allocate/compile the transmission render pass.
+              for(let i=0;i<3;i++)await new Promise(resolve=>requestAnimationFrame(resolve));
+             }finally{warming=null;}
+            }
+          '''
+              s=s[:pos]+code+s[pos:]
+              s=s.replace('neon,dispose,graphics:state,fx','neon,prepare,dispose,graphics:state,fx')
+            elif n.endswith('app.js'):
+              s=s.replace('this.resetBlades();await this.audio.play(this.track,0);','this.resetBlades();await this.art.prepare?.(this.state);if(serial!==this.loadSerial)return;await this.audio.play(this.track,0);')
+            elif n.endswith('materials.js'):s=s.replace('envMapIntensity:.9}','envMapIntensity:.22}')
+            else:
+              s+='''
+          test('Graphics preparation completes before the original audio transport starts',async()=>{const {g}=fixture();let release,started=0;g.art.prepare=()=>new Promise(r=>release=r);g.audio.play=async()=>{started++;};const run=g.start();await new Promise(setImmediate);A.equal(g.phase,'loading');A.equal(started,0);release();await run;A.equal(started,1);A.equal(g.phase,'playing');});
+          test('Aborting during shader preparation cannot start an abandoned audio buffer',async()=>{const {g}=fixture();let release,started=0;g.art.prepare=()=>new Promise(r=>release=r);g.audio.play=async()=>{started++;};const run=g.start();await new Promise(setImmediate);g.abort();release();await run;A.equal(started,0);A.equal(g.phase,'menu');A.equal(g.state,null);});
+          '''
+            assert hashlib.sha256(s.encode()).hexdigest()==after,n+' output mismatch'
+            data[n]=s
+          for n,s in data.items():Path(n).write_text(s)
+          PY
+          node --test prism-current/tests/*.test.cjs
+          python prism-current/tests/verify.py
+      - name: Commit content refinement only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add prism-current
+          git commit -m 'Warm shader variants before audio starts and rebalance obsidian reflection'
+          git push origin HEAD:feat/prism-jewelbox-graphics
