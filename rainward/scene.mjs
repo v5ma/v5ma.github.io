@@ -1,3 +1,7 @@
+import {createCinematic} from './cinematic.mjs';
+import {createLivingMaterials} from './living-materials.mjs';
+import {createAtmosphere} from './atmosphere.mjs';
+import {createXRPreview} from './xr-preview.mjs';
 import {createStaticCulling} from './scan-culling.mjs';
 import {createScannedAssets} from './scanned-assets.mjs';
 import {buildTerminus} from './terminus-art.mjs';
@@ -10,14 +14,14 @@ import {artkit,rnd,colors} from './artkit.mjs';
 import {buildDistrict} from './district.mjs';
 import {actor,pose} from './actors.mjs';
 import {followCamera} from './camera-core.mjs';
-export function createScene(canvas){
+export function createScene(canvas,{onXRStart=()=>{},onXREnd=()=>{}}={}){
  const chapter=CURRENT;
  const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
- renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.6));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
+ renderer.info.autoReset=false;renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.6));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
  const scene=new T.Scene();scene.background=new T.Color(0x819995);scene.fog=new T.FogExp2(0x819995,.013);
  const camera=new T.PerspectiveCamera(55,1,.07,240);scene.add(camera);
- scene.add(new T.HemisphereLight(0xc6d9e8,0x282d29,chapter.id==='terminus'?.85:1.15));const sun=new T.DirectionalLight(0xffead1,chapter.id==='terminus'?1.8:3.5);sun.position.set(-28,55,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-60,right:60,top:75,bottom:-75,near:.5,far:150});sun.shadow.bias=-.0006;sun.shadow.normalBias=.035;scene.add(sun);
- const rim=new T.DirectionalLight(0x9fbfd0,.8);rim.position.set(20,6,-30);scene.add(rim);
+ scene.add(new T.HemisphereLight(0xc6d9e8,0x282d29,chapter.id==='terminus'?.48:.65));const sun=new T.DirectionalLight(0xffe1b8,chapter.id==='terminus'?1.7:2.6);sun.position.set(-28,55,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-28,right:28,top:28,bottom:-28,near:.5,far:110});sun.shadow.bias=-.0006;sun.shadow.normalBias=.035;scene.add(sun,sun.target);
+ const rim=new T.DirectionalLight(0x9fbfd0,.35);rim.position.set(20,6,-30);scene.add(rim);
  const environment=skyEnvironment(scene,renderer);scene.fog=new T.FogExp2(chapter.id==='terminus'?0x637985:0x9aadb3,chapter.id==='terminus'?.014:.007);
  let graphics;const scans=createScannedAssets(scene,renderer,chapter,{heightAt,onEnvironment:texture=>graphics?.setEnvironment(texture)});
  const A=artkit(scene,scans),{mesh,geos}=A;const scenery=chapter.id==='terminus'?buildTerminus(scene,A):chapter.id==='conservatory'?buildConservatory(scene,A):null;if(!scenery)buildDistrict(scene,A);
@@ -27,8 +31,10 @@ export function createScene(canvas){
  const rainGeo=new T.BufferGeometry();rainGeo.setAttribute('position',new T.BufferAttribute(drops,3));const rain=new T.LineSegments(rainGeo,new T.LineBasicMaterial({color:0xc1d6d0,transparent:true,opacity:.23,depthWrite:false}));scene.add(rain);
  const lootDrops=new Map(),clouds=new Map(),pulses=[],raycaster=new T.Raycaster();const blockMeshes=[];for(const o of OBSTACLES){const b=new T.Mesh(new T.BoxGeometry(o.w,o.h,o.d),new T.MeshBasicMaterial({visible:false}));b.position.set(o.x,o.bottom+o.h/2,o.z);b.userData.obstacle=o;b.updateMatrixWorld();blockMeshes.push(b);}
  const traceMat=new T.LineBasicMaterial({color:0xf2d4a0,transparent:true,opacity:.7});let lastEvent=0,cameraSet=false,lastState=null;const bottles=new Map();
- const staticCulling=createStaticCulling(scene);graphics=graphicsPreset(scene,renderer);scans.start();
- function render(state,view,dt){if(lastState!==state){lastState=state;lastEvent=0;cameraSet=false;}const t=state.t;pose(hero,state.player,t);hero.root.position.y+=heightAt(state.player.x,state.player.z);scenery?.update(state,dt);for(const e of state.enemies){const monster=e.type==='brute'||e.type==='prowler';if(!enemies.has(e.id))enemies.set(e.id,monster?creature(scene,mesh,e.type):actor(scene,mesh,e.type==='drifter'?0x5e7667:0x7e795c,true));const model=enemies.get(e.id);if(monster)poseCreature(model,e,t);else{pose(model,{...e,aim:e.state==='chase'&&(e.aimTime||0)>.1},t,true);model.root.position.y+=heightAt(e.x,e.z);}}
+ const living=createLivingMaterials(scene,chapter,heightAt),atmosphere=createAtmosphere(scene,chapter,heightAt);
+ const staticCulling=createStaticCulling(scene);graphics=graphicsPreset(scene,renderer);const cinema=createCinematic(renderer,scene,camera,chapter);
+ let requestedLow=false,cinemaEnabled=true,dead=false;const xr=createXRPreview(renderer,scene,chapter,{heightAt,onStart(){graphics.set(true);onXRStart();},onEnd(error){if(dead)return;graphics.set(requestedLow);onXREnd(error);}});scans.start();
+ function render(state,view,dt){renderer.info.reset();if(lastState!==state){lastState=state;lastEvent=0;cameraSet=false;}const t=state.t;pose(hero,state.player,t);hero.root.position.y+=heightAt(state.player.x,state.player.z);scenery?.update(state,dt);for(const e of state.enemies){const monster=e.type==='brute'||e.type==='prowler';if(!enemies.has(e.id))enemies.set(e.id,monster?creature(scene,mesh,e.type):actor(scene,mesh,e.type==='drifter'?0x5e7667:0x7e795c,true));const model=enemies.get(e.id);if(monster)poseCreature(model,e,t);else{pose(model,{...e,aim:e.state==='chase'&&(e.aimTime||0)>.1},t,true);model.root.position.y+=heightAt(e.x,e.z);}}
   for(const d of state.drops||[]){if(!lootDrops.has(d.id)){const g=new T.Group(),satchel=mesh('box',[.43,.3,.38],0xbca373);satchel.position.y=.2;g.add(satchel);const ring=new T.Mesh(new T.RingGeometry(.33,.38,24),new T.MeshBasicMaterial({color:0xffd88e,side:T.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.035;g.add(ring);scene.add(g);lootDrops.set(d.id,g);}const g=lootDrops.get(d.id);g.position.set(d.x,heightAt(d.x,d.z),d.z);g.visible=Object.values(d.items).some(v=>v>0);}
 
   for(const item of ITEMS){const mesh=itemMeshes.get(item.id);mesh.visible=!state.taken.has(item.id);mesh.position.y=heightAt(item.x,item.z)+.42+Math.sin(t*1.4+item.x)*.035;}
@@ -43,11 +49,13 @@ export function createScene(canvas){
   let desired=target.clone().addScaledVector(forward,-distance).addScaledVector(right,shoulder).add(new T.Vector3(0,aim?.05:.30,0));
   const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap);camera.position.set(safe.x,safe.y,safe.z);cameraSet=true;hero.root.visible=camera.position.distanceTo(target)>.7;
   camera.lookAt(target.clone().addScaledVector(forward,aim?14:5));camera.fov=T.MathUtils.lerp(camera.fov,aim?43:56,Math.min(1,dt*10));camera.updateProjectionMatrix();camera.updateMatrixWorld();
-  scans.cull(camera);staticCulling.update(camera,renderer.shadowMap.enabled);graphics.update();renderer.render(scene,camera);
+  sun.target.position.set(p.x,heightAt(p.x,p.z)+1,p.z);sun.position.set(p.x-28,heightAt(p.x,p.z)+48,p.z+20);sun.target.updateMatrixWorld();
+  graphics.update();living.update(state);atmosphere.update(state);
+  if(xr.isActive()){staticCulling.restore();scans.restoreInstances();renderer.render(scene,xr.camera);}else{scans.cull(camera);staticCulling.update(camera,renderer.shadowMap.enabled);cinema.render();}
  }
  function aimDirection(state){const p=state.player,origin=new T.Vector3(p.x,heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,p.z);const center=new T.Vector3(0,0,.5).unproject(camera),dir=center.sub(camera.position).normalize();raycaster.set(camera.position,dir);raycaster.far=60;const targetMeshes=state.enemies.filter(e=>e.hp>0).map(e=>enemies.get(e.id)?.root).filter(Boolean);const hits=raycaster.intersectObjects([...blockMeshes.filter(m=>!m.userData.obstacle.disabled),...targetMeshes],true);const target=hits.length?hits[0].point:camera.position.clone().addScaledVector(dir,60);const d=target.sub(origin).normalize();return {x:d.x,y:d.y,z:d.z};}
  function project(x,y,z){const p=new T.Vector3(x,y,z).project(camera);return {x:(p.x+1)/2,y:(1-p.y)/2,visible:p.z>-1&&p.z<1&&Math.abs(p.x)<1.3&&Math.abs(p.y)<1.3};}
- function resize(w,h){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
- function dispose(){scans.dispose();graphics.dispose();const gs=new Set(),ms=new Set(),ts=new Set();[scene,...blockMeshes].forEach(root=>root.traverse(o=>{if(o.geometry)gs.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[]){ms.add(m);for(const v of Object.values(m))if(v?.isTexture)ts.add(v);}}));Object.values(geos).forEach(g=>gs.add(g));for(const m of A.mats.values()){ms.add(m);for(const v of Object.values(m))if(v?.isTexture)ts.add(v);}gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());ts.forEach(t=>t.dispose());scenery?.dispose();environment.dispose();renderer.dispose();}
- return {setScanned:value=>scans.set(value),assetStatus:()=>scans.report(),dispose,renderer,scene,camera,hero,enemies,render,aimDirection,project,resize,stats:()=>({staticInstances:staticCulling.stats(),scannedMeshes:scans.report().texturedMeshes,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles}),cameraState:()=>({x:camera.position.x,y:camera.position.y,z:camera.position.z,near:camera.near,heroVisible:hero.root.visible}),setQuality(low){graphics.set(low);}};
+ function resize(w,h){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();cinema.resize(w,h);}
+ function dispose(){dead=true;renderer.setAnimationLoop(null);xr.dispose();cinema.dispose();living.dispose();atmosphere.dispose();scans.dispose();graphics.dispose();const gs=new Set(),ms=new Set(),ts=new Set();[scene,...blockMeshes].forEach(root=>root.traverse(o=>{if(o.geometry)gs.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[]){ms.add(m);for(const v of Object.values(m))if(v?.isTexture)ts.add(v);}}));Object.values(geos).forEach(g=>gs.add(g));for(const m of A.mats.values()){ms.add(m);for(const v of Object.values(m))if(v?.isTexture)ts.add(v);}gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());ts.forEach(t=>t.dispose());scenery?.dispose();environment.dispose();renderer.dispose();}
+ return {xrSupported:()=>xr.supported(),enterXR:()=>xr.enter(),exitXR:()=>xr.exit(),xrStatus:()=>xr.stats(),setCinematic(value){cinemaEnabled=!!value;cinema.set(cinemaEnabled,requestedLow);},setMotion:value=>{living.setMotion(value);atmosphere.setMotion(value);},visualStatus:()=>({cinema:cinema.stats(),living:living.stats(),atmosphere:atmosphere.stats()}),setScanned:value=>scans.set(value),assetStatus:()=>scans.report(),dispose,renderer,scene,camera,hero,enemies,render,aimDirection,project,resize,stats:()=>({staticInstances:staticCulling.stats(),scannedMeshes:scans.report().texturedMeshes,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles}),cameraState:()=>({x:camera.position.x,y:camera.position.y,z:camera.position.z,near:camera.near,heroVisible:hero.root.visible}),setQuality(low){requestedLow=!!low;graphics.set(xr.isActive()?true:low);cinema.set(cinemaEnabled,low);}};
 }

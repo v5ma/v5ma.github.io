@@ -55,5 +55,5 @@ export function createScannedAssets(scene,renderer,chapter,{heightAt,onEnvironme
  const frustum=new T.Frustum(),viewProjection=new T.Matrix4();
  function cull(camera){if(disposed)return;viewProjection.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(viewProjection);status.visibleInstances=0;for(const m of groups){if(!enabled){m.visible=false;continue;}const count=compactVisibleInstances(m,instanceMatrices.get(m),frustum);m.visible=count>0;status.visibleInstances+=count;}}
  function dispose(){if(disposed)return;disposed=true;const fallbackTextures=new Set();for(const b of bindings)for(const v of Object.values(b.old))if(v?.isTexture)fallbackTextures.add(v);fallbackTextures.forEach(t=>t.dispose());roots.forEach(disposeModel);for(const m of groups){scene.remove(m);m.geometry.dispose();}clonedGeometries.forEach(g=>g.dispose());textures.forEach(t=>t.dispose());bitmaps.forEach(b=>b.close());environment?.target.dispose();bindings.length=0;groups.length=0;instanceMatrices.clear();}
- return {bind,start,set,report,cull,dispose};
+ return {bind,start,set,report,cull,dispose,restoreInstances(){for(const mesh of groups){const source=instanceMatrices.get(mesh);source.forEach((m,i)=>mesh.setMatrixAt(i,m));mesh.count=source.length;mesh.instanceMatrix.needsUpdate=true;mesh.visible=enabled;}}};
 }

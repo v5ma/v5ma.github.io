@@ -31,5 +31,5 @@ export function createStaticCulling(scene){
  return {update(camera,shadowsEnabled){
   projection.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(projection);submitted=0;
   for(const {mesh,matrices}of groups){if(!mesh.visible)continue;submitted+=compactVisibleInstances(mesh,matrices,frustum,shadowsEnabled);}
- },stats(){return {batches:groups.length,submitted,authored:groups.reduce((n,g)=>n+g.matrices.length,0)};}};
+ },restore(){for(const {mesh,matrices}of groups){matrices.forEach((m,i)=>mesh.setMatrixAt(i,m));mesh.count=matrices.length;mesh.instanceMatrix.needsUpdate=true;}},stats(){return {batches:groups.length,submitted,authored:groups.reduce((n,g)=>n+g.matrices.length,0)};}};
 }

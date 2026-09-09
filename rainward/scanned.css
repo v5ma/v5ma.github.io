@@ -1,2 +1,4 @@
 /* Imported-art status and keyboard-accessible comparison setting. */
 .title{max-height:calc(100dvh - 90px);overflow-y:auto}#asset-status{font-size:9px;letter-spacing:.3px;color:#c8d9b9}.settings{line-height:1.6}
+
+.xr-settings{padding:10px 0;border-top:1px solid #92aa8855}.xr-settings button{font-size:10px}.xr-settings p{margin:8px 0}.settings{display:flex;flex-wrap:wrap;gap:14px}.settings label{font:11px/1.7 Arial}.film{opacity:.28}@media(max-width:700px){.settings{gap:8px}.xr-settings button{font-size:8px}}

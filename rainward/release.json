@@ -1,13 +1,14 @@
 {
-  "version": "0.5.0",
-  "build": "rainward-scanned-environments-20260907",
+  "version": "0.6.0",
+  "build": "rainward-living-light-20260909",
   "stage": "mechanics prototype",
-  "xr": false,
+  "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Self-hosted CC0 scanned 2K surfaces with actual normal and packed roughness/occlusion maps",
-    "Source-textured glTF rocks and fern clumps with preserved UVs and bounded mesh cost",
-    "Real HDR environment capture, async fallback and reversible asset comparison",
-    "All three playable chapters, puzzles, monsters, loot and single-slot saves preserved"
+    "Recovered self-hosted scanned environments with preserved source materials",
+    "Linear HDR cinematic pipeline with contact AO, restrained bloom and chapter color grading",
+    "Animated normal-mapped water, movement-driven ripples, waterfall flow, wind foliage and contact shading",
+    "Bounded fixed-step simulation separates movement from render rate",
+    "Experimental stationary WebXR overlook; mission paused, no VR combat or locomotion"
   ]
 }

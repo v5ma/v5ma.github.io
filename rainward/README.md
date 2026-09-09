@@ -46,3 +46,7 @@ The rendering pass uses locally authored deterministic albedo, height and roughn
 The previous chapters, fixed-input gameplay rules, single checkpoint namespace, and v1/v2 save compatibility are preserved. WebXR, swimming, climbing, multiplayer, paid accounts and private narrative are not added. A third chapter is a new environment and puzzle, not a representation of a finished long campaign.
 
 Native acceptance must cover the complete third chapter, both earlier chapters, puzzle guidance without mutation, full and reduced material shader compilation, controller and phone-width UI. Model checks and screenshots are not substitutes for a real playthrough or physical-device approval. Deployment status is recorded in the release PR and public hash-verification receipt.
+
+## v0.6 — Living Light
+
+Scanned-asset recovery, shader rendering and bounded simulation timing are documented in [VISUAL-UPGRADE.md](VISUAL-UPGRADE.md). Three existing chapters remain; this is not a new chapter. Full quality adds depth contact shading, bloom and animated materials; Reduced Graphics bypasses fullscreen effects. An experimental stationary WebXR overlook is included, not VR combat or locomotion. Physical headset performance and comfort are unverified. Earlier changelog limitations describe those earlier releases. Publication is established by the final PR receipt, not this candidate note.

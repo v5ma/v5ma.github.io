@@ -45,9 +45,9 @@ export function buildConservatory(scene,A){
  for(let i=0;i<7;i++){const x=-70+i*23,h=40+rnd(i+49)*30;add('rock',x,h*.46,-121,21,h*.65,22,0x7e9096,'rock');}
  // Visible side waterfalls, fine spray, layered water surface and lily mats.
  const waterMaterial=new T.MeshStandardMaterial({color:0x3a7c6c,transparent:true,opacity:.68,roughness:.18,metalness:.35,side:T.DoubleSide});
- for(const p of CURRENT.water){const m=new T.Mesh(new T.PlaneGeometry(p.w,p.d,12,16),waterMaterial);m.rotation.x=-Math.PI/2;m.position.set(p.x,.16,p.z);scene.add(m);dynamic.water.push(m);
+ for(const p of CURRENT.water){const m=new T.Mesh(new T.PlaneGeometry(p.w,p.d,12,16),waterMaterial);m.rotation.x=-Math.PI/2;m.position.set(p.x,.16,p.z);m.userData.waterSurface=true;scene.add(m);dynamic.water.push(m);
   for(let i=0;i<25;i++){const x=p.x+(rnd(i+3)-.5)*p.w,z=p.z+(rnd(i+99)-.5)*p.d;add('cyl',x,.19,z,.16+rnd(i)*.18,.018,.24,0x708246,'leaf');}}
- const fallMat=new T.MeshBasicMaterial({color:0xd5eee1,transparent:true,opacity:.19,depthWrite:false,side:T.DoubleSide});for(const [x,z]of[[-49,-8],[49,-19]])for(let i=0;i<4;i++){const m=new T.Mesh(new T.PlaneGeometry(2.8,30,1,8),fallMat);m.position.set(x+(i-.5)*.16,15,z+i*.18);scene.add(m);dynamic.water.push(m);}
+ const fallMat=new T.MeshBasicMaterial({color:0xd5eee1,transparent:true,opacity:.19,depthWrite:false,side:T.DoubleSide});for(const [x,z]of[[-49,-8],[49,-19]])for(let i=0;i<4;i++){const m=new T.Mesh(new T.PlaneGeometry(2.8,30,1,8),fallMat);m.position.set(x+(i-.5)*.16,15,z+i*.18);m.userData.waterfall=true;scene.add(m);dynamic.water.push(m);}
  // Warm niches counterbalance the cool fog: original light shafts, no images.
  const glowMat=new T.MeshBasicMaterial({color:0xffd58b,transparent:true,opacity:.085,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending});
  for(const [x,z]of[[-25,7],[-25,-10],[25,7],[25,-10],[-10,-58],[10,-58]]){const floor=heightAt(x,z);add('cyl',x,floor+1.2,z,.18,2.4,.18,bronze,'metal');add('ball',x,floor+2.6,z,.18,.32,.18,0xffd082,'glow');const lamp=new T.PointLight(0xffb55c,14,13,2);lamp.position.set(x,floor+2.6,z);scene.add(lamp);dynamic.lights.push(lamp);
@@ -66,7 +66,7 @@ export function buildConservatory(scene,A){
   for(let j=0;j<4;j++){const a=j*Math.PI/2;add('ball',w.x+Math.sin(a)*.63,1.85+Math.cos(a)*.63,w.z+.89,.07,.07,.05,0xdebc7b,'metal');}
   label(['1 · GARDEN','2 · ARCHIVE','3 · DEEP'][i],w.x,2.9,w.z+.88,2.1,.6);}
  // Baked instancing; the renderer still uses real scene objects and collisions.
- for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=!['grass','glass','leafcard'].some(t=>[...A.mats].find(([k,v])=>v===m)?.[0].endsWith(':'+t));inst.receiveShadow=true;inst.userData.scanBackdrop=geo===geos.rock;inst.computeBoundingSphere();scene.add(inst);}
+ for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=!['grass','glass','leafcard'].some(t=>[...A.mats].find(([k,v])=>v===m)?.[0].endsWith(':'+t));inst.userData.windFoliage=geo===geos.blade||[...A.mats].some(([k,v])=>v===m&&k.endsWith(':leafcard'));inst.receiveShadow=true;inst.userData.scanBackdrop=geo===geos.rock;inst.computeBoundingSphere();scene.add(inst);}
  for(const [key,m]of A.mats)if(key.endsWith(':grass'))m.side=T.DoubleSide;
  return {update(s,dt){dynamic.gates.forEach(g=>g.position.y+=((s.puzzle?.solved?8:0)-g.position.y)*Math.min(1,dt*3));dynamic.wheels.forEach((w,i)=>w.rotation.z=-(s.puzzle?.wheels[i]||0)*Math.PI/2);for(const [i,w]of dynamic.water.entries())if(w.rotation.x)w.position.y=.16+Math.sin(s.t*.7+i)*.014;},dispose(){tex.dispose();waterMaterial.dispose();fallMat.dispose();glowMat.dispose();}};
 }
