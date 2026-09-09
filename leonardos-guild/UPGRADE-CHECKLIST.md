@@ -1,5 +1,23 @@
 # Leonardo's Guild - persistent upgrade checklist
 
+## Continuation checkpoint - 2026-09-09
+
+PUBLISHED AND VERIFIED: v0.5.0 Lantern Hours. PR81 merged as a4d5544226c1318377b85c8b82ffb1523101e912. Pages deployment and publication run 34280935372 succeeded. Its downloaded receipt matched 147 hosted files and the homepage card. The last response's publication uncertainty was stale; the receipt was retrieved and checked on 2026-09-09.
+
+NEXT CANDIDATE: v0.6.0 Cycle Works, branch feat/guild-cycle-works-20260909, based on master dfffea05244b1fda75e06721d2931bf7cd6a56d5. This advances a defined slice of D17 and D05, not the whole roadmap. Preserve original/side/street missions, lamps, services, old saves and siblings.
+
+- [x] MODEL-CHECKED: Three gearing choices with real acceleration/speed tradeoffs, stronger dedicated brake, four frame finishes, one-time purchase and free refitting. Existing A Better Fit gates access. Stock motion and carriage behavior are preserved.
+- [x] MODEL-CHECKED: Optional five-stage road test on the same central street, ordered swept contacts and an actual stopped finish. No forced deadline or entry fee. A physical return/report pays 40 XP/25 florins once; repeats keep a personal best only.
+- [x] MODEL-CHECKED: Additive equipment save; completed pending results/best/owned parts persist. An unfinished run does not resume from a different spawn. Z matches touch Brake; Space retains its old behavior.
+- [ ] BROWSER-CHECKED: Fresh earned-delivery, original fitting, tuning, road test, return and reload journey. All retained mission/interior/art/clock/touch suites remain required.
+- [ ] ART-REVIEWED: Actual enamel frame, brass lugs, saddle, crank/pedals, workstand and opt-in pennants. Reuse licensed local art. This is not a professional character-animation pack or piloted flight.
+- [ ] PUBLISHED: Promote only after committed native acceptance and public byte verification, then record runs and receipts here and in PUBLICATION.md.
+
+Lantern Hours shipped Nearby / I, a searchable door-aware guide, the reversible lamp circuit, reusable restored services/tonics, a clock, safe inn waiting and morning/evening illumination. The whole NPC-schedule/animation roadmap is still open. Six final workflows passed for f9ddb0bd0428bc07bf3b96669b672d284200c257. Initial failures remain available; no earlier tasks disappeared.
+
+Historical v0.4 record below is preserved, not the current release status.
+
+
 Owner: Micah Blumberg / SVGN. Read this file at the beginning of every continuation. This is the durable plan requested by the author, not a list to regenerate from memory.
 
 ## Current release and preservation

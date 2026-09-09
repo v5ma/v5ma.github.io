@@ -1,10 +1,11 @@
 import {cityState,saveCity,cityStep} from './city-core.mjs';
+import {cycleState,saveCycle,cycleStep,cycleModifiers,cancelRoadTest} from './cycle-core.mjs';
 import {streetState,streetSave,stepStreet} from './street-core.mjs';
 import {enhanceWorld,initLife,saveLife,lifeStep,roomBlocked,roomAt,stats,hitRocco} from './life-core.mjs';
 /* Leonardo’s Guild / first Renaissance commission. Deterministic, renderer-independent simulation.
  * Coordinates are metres; fixed-step driver calls step() at 60 Hz. All mechanisms
  * is fictional world-state interaction; no network or account APIs are used. */
-export const VERSION='0.5.0';
+export const VERSION='0.6.0';
 export const SAVE_KEY='svgn.leonardos-guild.v1';
 export const LIMITS={x:148,zMin:-26,zMax:406};
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -38,12 +39,12 @@ export function newState(saved=null){
  for(let i=0;i<18;i++)s.pedestrians.push({id:i,x:(i%3-1)*80+(i%2?10.8:-10.8),z:30+i*19%340,yaw:i%2?0:Math.PI,phase:i*1.3});
  for(let i=0;i<7;i++)s.traffic.push({id:i,x:(i%3-1)*80+(i%2?3.1:-3.1),z:45+i*53%345,dir:i%2?1:-1,speed:0});
  if(saved){for(const k of ['credits','score','relay','completed','folio','defeated','upgraded'])s[k]=saved[k];s.deliveries=new Set(saved.deliveries);s.banditHP=s.defeated?0:100;s.mission=s.completed?4:s.folio?3:s.relay&&s.deliveries.size>=4?2:s.deliveries.size>=4?1:0;}
- initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);return s;
+ initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);s.cycle=cycleState(saved?.cycle);return s;
 }
 export function readSave(raw,world){
  try{if(!raw||raw.length>12000)return null;const v=JSON.parse(raw),ids=new Set(world.mailboxes.map(b=>b.id));if(v.version!==2||!Number.isInteger(v.credits)||v.credits<0||v.credits>10000000||!Number.isInteger(v.score)||v.score<0||v.score>10000000||!Array.isArray(v.deliveries)||v.deliveries.length>64||!v.deliveries.every(id=>ids.has(id))||typeof v.relay!=='boolean'||typeof v.completed!=='boolean'||!['folio','defeated','upgraded'].every(k=>typeof v[k]==='boolean')||v.folio&&!v.defeated||v.completed&&!v.folio)return null;return {...v,deliveries:[...new Set(v.deliveries)]};}catch{return null;}
 }
-export function saveData(s){return {version:2,city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
+export function saveData(s){return {version:2,cycle:saveCycle(s.cycle),city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
 export function tell(s,text){s.toast=text;s.toastT=4;}
 function event(s,type,data={}){s.events.push({type,step:s.steps,...data});if(s.events.length>160)s.events.shift();}
 export function activeTarget(s,w){
@@ -98,7 +99,7 @@ export function enterExit(s,w){
  tell(s,'Walk beside your bicycle or Leonardo’s pedal carriage to mount.');return false;
 }
 export function refill(s){s.papers=stats(s).maxPapers;s.health=stats(s).maxHealth;tell(s,'Fresh letters, restored health and a repaired invention.');event(s,'refill');}
-export function recover(s){if(s.life)s.life.inside=null;s.mode='bike';s.x=2;s.z=-6;s.yaw=0;s.speed=0;s.lift=s.vy=0;s.vehicle.bike={x:2,z:-6,yaw:0};refill(s);event(s,'recover');}
+export function recover(s){cancelRoadTest(s);if(s.life)s.life.inside=null;s.mode='bike';s.x=2;s.z=-6;s.yaw=0;s.speed=0;s.lift=s.vy=0;s.vehicle.bike={x:2,z:-6,yaw:0};refill(s);event(s,'recover');}
 function move(s,w,dx,dz){const r=s.mode==='car'?1.22:s.mode==='bike'?.5:.33,n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.4));let hit=false;
  for(let k=0;k<n;k++){if(!blocked(s.x+dx/n,s.z,r,w,s))s.x+=dx/n;else hit=true;if(!blocked(s.x,s.z+dz/n,r,w,s))s.z+=dz/n;else hit=true;}
  if(hit){if(s.inv<=0&&Math.abs(s.speed)>4){s.health=Math.max(0,s.health-12);s.inv=1.8;s.collisions++;s.trace=Math.min(1,s.trace+.12);event(s,'collision');tell(s,'Mind the corners. The workshop can repair your invention.');}s.speed*=.45;}
@@ -112,9 +113,9 @@ export function step(s,w,input,dt){
  if(s.mode==='foot'){
   s.yaw-=steer*2.6*dt;s.speed+=(throttle*(input.boost?7:4.6)-s.speed)*Math.min(1,dt*12);
  }else{
-  const car=s.mode==='car',bike=s.life?.bike||'standard',top=car?29:(bike==='courier'?(input.boost?22:17):bike==='cargo'?(input.boost?15:11):(input.boost?18:13))+stats(s).rideBonus,acc=car?9:bike==='courier'?7:bike==='cargo'?5:6;
+  const tuning=cycleModifiers(s);const car=s.mode==='car',bike=s.life?.bike||'standard',top=car?29:tuning.top*((bike==='courier'?(input.boost?22:17):bike==='cargo'?(input.boost?15:11):(input.boost?18:13))+stats(s).rideBonus),acc=car?9:tuning.accel*(bike==='courier'?7:bike==='cargo'?5:6);
   if(throttle){if(input.analog){const target=throttle*(throttle>0?top:car?9:4);s.speed+=clamp((target-s.speed)*2,-15,acc)*dt;}else s.speed+=throttle*(s.speed*throttle<0?15:acc)*dt;}else s.speed*=Math.exp(-dt*(car?.6:.8));
-  if(input.brake)s.speed*=Math.exp(-dt*(car?3.5:5));
+  if(input.brake)s.speed*=Math.exp(-dt*(car?3.5:5*tuning.brake));
   s.speed=clamp(s.speed,car?-9:-4,top);s.yaw-=steer*(car?1.2:1.7)*clamp(Math.abs(s.speed)/5,0,1.2)*Math.sign(s.speed||1)*dt;
  }
  const f=headingVector(s.yaw);move(s,w,f.x*s.speed*dt,f.z*s.speed*dt);s.distance+=distance(old,s);
@@ -139,7 +140,7 @@ export function step(s,w,input,dt){
   else if(s.mission===3&&distance(s,w.depot)<8){s.completed=true;s.mission=4;s.score+=500;s.credits+=200;event(s,'complete');tell(s,'COMMISSION COMPLETE / Leonardo welcomes you to the guild.');}
  }
  combatStep(s,w,input,dt);
- lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);
+ lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);cycleStep(s,old,dt);
  if(distance(s,w.depot)<8&&Math.abs(s.speed)<1&&input.hack&&s.toastT<1){refill(s);}
  traffic(s,dt);
  for(const p of s.pedestrians){const away=distance(p,s)<3&&Math.abs(s.speed)>2;const dir=p.id%2?1:-1;p.z+=dir*dt*(away?3.3:1.1);p.phase+=dt*(away?10:3);if(p.z>397)p.z=5;if(p.z<2)p.z=395;}
@@ -174,5 +175,5 @@ function stepBasement(s,w,input,dt){
  s.time+=dt;s.steps++;for(const k of ['inv','throwCD','scan','scanCD','toastT','attackCD','attackT'])s[k]=Math.max(0,s[k]-dt);
  const old={x:s.x,z:s.z};s.yaw-=clamp(input.steer||0,-1,1)*2.6*dt;s.speed+=(clamp(input.throttle||0,-1,1)*(input.boost?6:4.6)-s.speed)*Math.min(1,dt*12);s.guarding=!!input.guard;
  const f=headingVector(s.yaw);move(s,w,f.x*s.speed*dt,f.z*s.speed*dt);s.distance+=distance(old,s);s.lift=s.vy=0;
- lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);if(s.health<=0){recover(s);tell(s,'The watch brings you back to the workshop. Your commissions are kept.');}
+ lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);cycleStep(s,old,dt);if(s.health<=0){recover(s);tell(s,'The watch brings you back to the workshop. Your commissions are kept.');}
 }

@@ -1,5 +1,14 @@
 # Leonardo's Guild - development and release history
 
+## v0.6.0 - Cycle Works (candidate)
+
+Add an existing-station cycle workshop with gearing/brake/finish choices and an optional actual-road test. Same map, save namespace and earlier content. Fresh/native and regression acceptance pending; model checks pass. See CYCLE-WORKS.md and the persistent checklist.
+
+## v0.5.0 - Lantern Hours (published)
+
+PR81 merged as a4d5544226c1318377b85c8b82ffb1523101e912. The public check 34280935372 succeeded for all 147 hosted files plus the homepage card. The receipt was retrieved on 2026-09-09; previous uncertain release wording is superseded by that evidence.
+
+
 ## v0.4.0 / Market Life - published 2026-09-08 UTC
 
 Added 22 bounded named street/interior activities in the same city: repairs, retrieval, short evidence work, courier packets, music sequences, ingredient mixing, book sorting, Lantern discoveries and character follow-ups. Six additional named street workers provide local context. Repairing a cart changes its pose; community food, a filled bowl, selected paint colors and other persistent outcomes accompany completion. Some outcomes are narrative records, not autonomous simulation.

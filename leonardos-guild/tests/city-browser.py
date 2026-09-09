@@ -73,7 +73,7 @@ with sync_playwright() as p:
     try:
         page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
         page.wait_for_function('LeonardoGuild.inspect().render.art.ready||LeonardoGuild.inspect().render.art.failed',timeout=120000)
-        check(read()['version']=='0.5.0','Lantern Hours loads in the existing browser game')
+        check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Lantern Hours loads in the existing browser game')
         check(read()['render']['art']['ready'] and read()['render']['art']['models']==32,'The same 32 licensed art assets load successfully')
         page.locator('#start').click();page.wait_for_function('LeonardoGuild.inspect().render.atmosphere.loadedLanterns===3')
         check(read()['render']['articulatedPlayer'],'The existing player has actual articulated shoulder/head meshes')
@@ -81,7 +81,7 @@ with sync_playwright() as p:
             page.keyboard.press('KeyI');page.wait_for_selector('#city-dialog[open]');s=read();page.wait_for_timeout(250)
             check(read()['steps']==s['steps'] and read()['city']['minute']==s['city']['minute'],'The chooser pauses simulation and its town clock')
             page.locator('[data-city-tab="guide"]').click();page.locator('#city-filter').select_option('all')
-            check(page.locator('#city-results .city-options button').count()==36,'The unified guide reads 9 quests, 22 work items and 5 services without replacing their progress')
+            check(page.locator('#city-results .city-options button').count()==37,'The unified guide retains 9 quests, 22 work items and the 5 Lantern Hours services, plus the cycle bench')
             page.locator('#city-search').fill('Ada');check(page.locator('#city-results .city-options button').count()>=1,'Guide search finds existing Ada activities')
             before=read();page.locator('[data-city-route="work:tonic"]').click()
             check(read()['x']==before['x'] and read()['z']==before['z'] and read()['credits']==before['credits'],'Tracking only marks the destination; no movement or rewards are fabricated')
