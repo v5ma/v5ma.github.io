@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [desktop, xr]
+        suite: [desktop, xr, pointer]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,10 +24,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify manifests and pure rhythm/audio rules
+      - name: Verify manifests and pure rhythm/audio/lifecycle rules
         run: |
           python prism-current/tests/verify.py
-          node --test prism-current/tests/core.test.cjs > test-output/core.tap
+          node --test prism-current/tests/*.test.cjs > test-output/core.tap
       - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0
@@ -39,7 +39,11 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/prism-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 360 python -u prism-current/tests/browser.py
+          if [ "$PRISM_SUITE" = pointer ]; then
+            timeout 360 python -u prism-current/tests/pointer.py
+          else
+            timeout 360 python -u prism-current/tests/browser.py
+          fi
       - if: always()
         run: |
           mkdir -p test-output
