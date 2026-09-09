@@ -1,0 +1,42 @@
+name: Import authored Paper Delivery optics source
+on:
+  push:
+    branches: [feat/paper-glass-chrome-20260909]
+    paths: ['.source-upload/optics-*.txt','.github/workflows/paper-optics-intake.yml']
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/paper-glass-chrome-20260909
+      - name: Transfer exactly the authored source to the feature branch
+        run: |
+          python - <<'PY'
+          import base64,zlib,json,hashlib,subprocess
+          from pathlib import Path, PurePosixPath
+          data=''.join(Path(f'.source-upload/optics-{i}.txt').read_text().strip() for i in range(4))
+          assert hashlib.sha256(data.encode()).hexdigest()=='856b0dd90b5b2755a06f122a7d68abad688a6924e1bc190ad312851cdae577cc'
+          raw=zlib.decompress(base64.b64decode(data,validate=True));assert len(raw)<300000
+          source=json.loads(raw)
+          before=subprocess.check_output(['git','rev-parse','HEAD:svgn-planet'],text=True).strip()
+          assert before==source['base_game_tree'],(before,source['base_game_tree'])
+          assert len(source['sha256'])==17
+          for name in source['sha256']:
+            assert name.startswith('svgn-planet/') and '..' not in PurePosixPath(name).parts
+          patch=Path('/tmp/authored-optics.patch');patch.write_text(source['patch'])
+          names={line.split('\t')[-1] for line in subprocess.check_output(['git','apply','--numstat',str(patch)],text=True).splitlines()}
+          assert names==set(source['sha256'])
+          subprocess.run(['git','apply','--check',str(patch)],check=True)
+          subprocess.run(['git','apply',str(patch)],check=True)
+          for name,wanted in source['sha256'].items():
+            assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==wanted,name
+          subprocess.run(['git','add','--',*source['sha256']],check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Add authored glass, chrome, gemstone, water and restrained HDR effects to existing Paper Delivery'
+          git push origin HEAD:feat/paper-glass-chrome-20260909
