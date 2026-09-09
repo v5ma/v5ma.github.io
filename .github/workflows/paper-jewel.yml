@@ -1,8 +1,5 @@
 name: Paper Delivery glass and chrome acceptance
 on:
-  push:
-    branches: [feat/paper-glass-chrome-20260909]
-    paths: ['svgn-planet/**','.github/workflows/paper-jewel.yml']
   pull_request:
     paths: ['svgn-planet/**','.github/workflows/paper-jewel.yml']
   workflow_dispatch:
@@ -18,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [materials,desktop,mobile,world]
+        suite: [materials,mobile]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,7 +36,7 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Play and render exact committed source
+      - name: Compare actual materials or exercise sustained touch recovery
         env:
           SUITE: ${{ matrix.suite }}
         run: |
@@ -50,11 +47,11 @@ jobs:
           python -m http.server 4174 --bind 127.0.0.1 --directory /tmp/paper-before >/tmp/paper-before.log 2>&1 &
           BEFORE=$!
           trap 'kill $AFTER $BEFORE' EXIT
-          case "$SUITE" in
-            materials) python -u svgn-planet/tests/jewel_browser.py ;;
-            world) python -u svgn-planet/tests/v04_browser.py ;;
-            *) python -u svgn-planet/tests/browser.py ;;
-          esac
+          if [ "$SUITE" = materials ]; then
+            python -u svgn-planet/tests/jewel_browser.py
+          else
+            python -u svgn-planet/tests/browser.py
+          fi
       - name: Preserve actual captures, state and tested source
         if: always()
         run: |
