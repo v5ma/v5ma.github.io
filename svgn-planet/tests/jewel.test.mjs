@@ -1,0 +1,13 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import * as T from '../vendor/three.module.js';
+import {gemGeometry,bevelGeometry,reflectionPixels,resolveLook,LOOK_KEY} from '../jewel-materials.mjs';
+import {readLook} from '../jewel-scene.mjs';
+import {makeWater} from '../jewel-effects.mjs';
+import {batchStreetPatch} from '../street-batch.mjs';
+import {createArtQuality} from '../street-quality.mjs';
+test('Faceted crystals have finite outward normals and fit the original collectible radius',()=>{const g=gemGeometry(.42),p=g.attributes.position,n=g.attributes.normal;assert.equal(p.count,192);for(let i=0;i<p.count;i++){assert.ok(Math.hypot(p.getX(i),p.getY(i),p.getZ(i))<.6);assert.ok(p.getX(i)*n.getX(i)+p.getY(i)*n.getY(i)+p.getZ(i)*n.getZ(i)>0);}assert.ok([...p.array].every(Number.isFinite));});
+test('Beveled vehicle surfaces keep the original normalized bounding box',()=>{const g=bevelGeometry();g.computeBoundingBox();const size=g.boundingBox.getSize(new T.Vector3());assert.ok(size.distanceTo(new T.Vector3(1,1,1))<1e-6);});
+test('Reflection environment is deterministic linear HDR, not a fetched or photographed room',()=>{const a=reflectionPixels(128,64),b=reflectionPixels(128,64);assert.deepEqual(a,b);assert.equal(a.length,128*64*4);assert.ok([...a].every(Number.isFinite));assert.ok(a.some(v=>v>2));});
+test('Graphics preferences are isolated and blocked or malformed storage never breaks play',()=>{assert.equal(LOOK_KEY,'svgn.paper-delivery.look.v1');assert.equal(resolveLook('bogus',true),'light');assert.equal(resolveLook('cinematic'),'cinematic');assert.equal(readLook({getItem:()=>{throw Error('blocked');}},true).preset,'light');assert.equal(readLook({getItem:()=>'{bad'}).preset,'balanced');});
+test('Low-draw-call batching preserves the glass layer instead of baking it opaque',()=>{const g=new T.Group(),a=new T.MeshPhysicalMaterial({transmission:.8});a.userData.keepOptics=true;const b=new T.MeshStandardMaterial();g.add(new T.Mesh(new T.BoxGeometry(),a),new T.Mesh(new T.BoxGeometry(),b));const result=batchStreetPatch(g,{coarse:true});assert.equal(result.solidDraws,2);assert.ok(g.children.some(o=>o.material===a));const q=createArtQuality(g);q.update(true);assert.ok(g.children.some(o=>o.material===a));});
+test('Water uses a bounded two-wave artistic shader with no displacement to the playable ground',()=>{const m=makeWater();assert.equal(m.depthWrite,false);assert.ok(m.vertexShader.includes('modelMatrix*vec4(position,1.)'));assert.equal(m.uniforms.clock.value,0);m.dispose();});

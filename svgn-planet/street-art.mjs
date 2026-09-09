@@ -5,15 +5,15 @@ import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 import {createStreetSet} from './street-set.mjs';
 import {createArtQuality} from './street-quality.mjs';
 import {distance} from './world.mjs';
-export const ART_VERSION='0.4.0';
+export const ART_VERSION='0.5.0';
 const base=new URL('./assets/street-art/',import.meta.url);
 export function ribbonUV(geometry,points,width,meters=3){const uv=[];let d=0;for(let i=1;i<points.length;i++){const next=d+distance(points[i-1],points[i]);uv.push(0,d/meters,0,next/meters,width/meters,d/meters,0,next/meters,width/meters,next/meters,width/meters,d/meters);d=next;}if(uv.length/2!==geometry.attributes.position.count)throw Error('Road texture coordinates must match its rendered geometry');geometry.setAttribute('uv',new T.Float32BufferAttribute(uv,2));}
-export function loadStreetArt({root,fallback,renderer,asphalt,sidewalks,land,roadPoints,extraRoads=[]}){
+export function loadStreetArt({root,fallback,renderer,asphalt,sidewalks,land,roadPoints,extraRoads=[],optics=null}){
  const scene=root.parent,low=!renderer.shadowMap.enabled;let status='loading',error=null,set=null,quality=null,expired=false,redraw=true,rendered=0;const loader=new T.TextureLoader();const texturePromises=[];
  function texture(name,color){const p=loader.loadAsync(new URL(name,base).href).then(t=>{t.colorSpace=color?T.SRGBColorSpace:T.NoColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());return t;});texturePromises.push(p);return p;}
  async function material(asset,roughness,relief){const [map,normalMap,roughnessMap]=await Promise.all([texture(asset+'-color.jpg',true),texture(asset+'-normal.jpg',false),texture(asset+'-rough.jpg',false)]);return new T.MeshStandardMaterial({map,normalMap,roughnessMap,normalScale:new T.Vector2(relief,relief),roughness,color:0xffffff,side:T.DoubleSide});}
  const work=Promise.all([new GLTFLoader().loadAsync(new URL('street-art.gltf',base).href),material('aerial_asphalt_01',.91,.42),material('concrete_pavement',.95,.45),material('rocky_terrain_02',1,.30),texture(low?'sky-mobile.jpg':'sky-desktop.jpg',true)]).then(([gltf,road,paving,lawn,skyMap])=>{
-  if(expired)return;const next=createStreetSet(gltf.scene,renderer);
+  if(expired)return;optics?.(gltf.scene);const next=createStreetSet(gltf.scene,renderer);
   ribbonUV(asphalt.geometry,roadPoints,6.4,3);asphalt.material=road;
   for(const r of extraRoads){ribbonUV(r.mesh.geometry,r.points,r.width,3);r.mesh.material=road;}
   for(const [m,points] of sidewalks){ribbonUV(m.geometry,points,1.55,2.1);m.material=paving;}

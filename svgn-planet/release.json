@@ -1,1 +1,13 @@
-{"version":"0.4.0","name":"SVGN.io Paper Delivery","folder":"svgn-planet","changes":["Nine-road neighborhood network: Sunrise Boulevard, Oak Avenue, Market Street, Ridge Road and five cross streets","Ten bonus delivery addresses with visible shop awnings/signage plus three persistent boost-speed stunt gates","Six moving traffic vehicles across multiple streets, 20 crosswalks, traffic lights, benches and road signs","Shift high-speed boost targets 30 m/s / 108 km/h with camera FOV kick and speed streaks","Existing local CC0 architecture, foliage, sky and PBR asphalt/paving materials extended across the denser neighborhood","Low-power mode collapses static architecture draw calls while keeping modeled silhouettes and nearby foliage","Original eight-delivery route and save key remain compatible"]}
+{
+  "version": "0.5.0",
+  "name": "SVGN.io Paper Delivery",
+  "folder": "svgn-planet",
+  "changes": [
+    "Environment-lit glass, champagne gold, chrome and clearcoated vehicles",
+    "Faceted crystal postmarks with existing rewards and collision volumes",
+    "Glass verge shelters, transparent canopy panels and jewel exhibits",
+    "Original rippled-water shader, pooled collection sparkles and optional selective bloom",
+    "Balanced, Cinematic and Light optics presets with reduced-effects control",
+    "Preserve all nine roads, main/bonus deliveries, stunt gates and 30 m/s Shift boost"
+  ]
+}

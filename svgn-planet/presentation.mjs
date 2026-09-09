@@ -1,4 +1,4 @@
-export const PRESENTATION_VERSION = '0.2.1';
+export const PRESENTATION_VERSION = '0.5.0';
 // The default is a character-scale chase camera, never the globe overview.
 export const CAMERA_PRESETS = Object.freeze({
   street: {distance: 7.5, height: 2.5, targetHeight: 1.0, fov: 62},
