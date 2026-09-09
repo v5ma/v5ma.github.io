@@ -1,0 +1,12 @@
+/* Progressive enhancement only. No remote code, storage or account operations. */
+(()=>{'use strict';
+const $=s=>document.querySelector(s),cards=[...document.querySelectorAll('[data-study]')],notes=[...document.querySelectorAll('.passage')];
+const query=$('#study-query'),scene=$('#scene');
+function search(){const terms=query.value.trim().toLowerCase().split(/\s+/).filter(Boolean);let n=0;for(const c of cards){c.hidden=!terms.every(t=>c.textContent.toLowerCase().includes(t));if(!c.hidden)n++;}$('#study-status').textContent=n+' of '+cards.length+' studies shown.';}
+function filter(){let n=0;for(const note of notes){note.hidden=scene.value!=='all'&&note.dataset.scene!==scene.value;if(!note.hidden)n++;}$('#passage-status').textContent=n+' of '+notes.length+' passage notes shown. These are narrative comparisons, not fulfillment scores.';}
+function reveal(){let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}const n=notes.find(n=>n.id===id);if(!n)return;scene.value='all';filter();n.tabIndex=-1;n.focus({preventScroll:true});n.scrollIntoView({block:'start'});}
+if(!query||!scene)return;
+query.addEventListener('input',search);scene.addEventListener('change',filter);$('#reset').disabled=false;$('#reset').onclick=()=>{scene.value='all';filter();};
+$('#export').disabled=false;$('#export').onclick=()=>{const visible=notes.filter(n=>!n.hidden);const records=visible.map(n=>({id:n.id,reference:n.dataset.reference,scene:n.dataset.scene,text:n.querySelector('[data-field="text"]').textContent,comparison:n.querySelector('[data-field="comparison"]').textContent,sources:[...n.querySelectorAll('[data-source]')].map(a=>({title:a.textContent,url:a.href}))}));const payload={edition:'2026-09-09-unsealed-1',scope:'Paraphrased passage notes and explicitly proposed comparisons; not independent confirmations of a prophetic identity.',selection:scene.value,records};const link=document.createElement('a'),objectURL=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));link.href=objectURL;link.download='unsealed-passage-notes.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(objectURL),2000);};
+window.addEventListener('hashchange',reveal);document.addEventListener('click',e=>{const a=e.target.closest('.record-link');if(a&&a.hash===location.hash)reveal();});search();filter();reveal();document.body.dataset.unsealedReady='true';
+})();
