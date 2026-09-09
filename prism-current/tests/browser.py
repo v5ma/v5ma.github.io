@@ -12,7 +12,9 @@ def check(v,s):
  checks.append(s);print('PASS:',s,flush=True)
 def snapshot(page):return page.evaluate('Prism.snapshot()')
 def device_button(page,hand,index):
- page.evaluate('([h,i])=>TestXR.button(h,i,true)',[hand,index]);page.wait_for_timeout(90);page.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,index]);page.wait_for_timeout(70)
+ # Sample a controller edge across actual device frames; a fixed 90 ms pulse
+ # can disappear entirely on software-rendered stereo frames.
+ page.evaluate("""async ([h,i])=>{const scene=AFRAME.scenes[0];async function frames(){let prev=scene.frame,n=0;await new Promise((resolve,reject)=>{const began=performance.now(),timer=setInterval(()=>{if(scene.frame!==prev){prev=scene.frame;n++;}if(n>=3){clearInterval(timer);resolve();}else if(performance.now()-began>12000){clearInterval(timer);reject(Error('XR frames stalled'));}},4);});}TestXR.button(h,i,true);await frames();TestXR.button(h,i,false);await frames();}""",[hand,index])
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
