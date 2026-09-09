@@ -1,10 +1,12 @@
 # Aether Reach — public mechanics demo
 
-## v0.4.2: Arrival Quay graphics pass
+## v0.4.2: Prismatic Quay graphics pass
 
 The same game now loads licensed CC0 artwork for the first city block: modular facades and roof details from Quaternius's free Downtown City MegaKit Standard edition; ornate lamps, modeled foliage, photographed paving/stone and HDR lighting from Poly Haven. Models and material maps are stored locally under `art/`, with lighter mobile variants. There is no runtime asset marketplace, CDN, account or API key.
 
-See [ART-SOURCES.md](./ART-SOURCES.md) for creators, licenses and processing, [art/manifest.json](./art/manifest.json) for exact bytes/hashes, and [QUAY-ART-REVIEW.md](./QUAY-ART-REVIEW.md) for visual review and release gates. Artwork failures retain the old visual fallback rather than making the game unplayable. Two closed Quay buildings are reskinned; this is not a claim of new interiors, finished character/weapon art or a full-city replacement. Existing foreground equipment has only a bevel/reframing pass. Physical Quest 3 performance and comfort remain unverified.
+See [ART-SOURCES.md](./ART-SOURCES.md) for creators, licenses and processing, [art/manifest.json](./art/manifest.json) for exact bytes/hashes, and [QUAY-ART-REVIEW.md](./QUAY-ART-REVIEW.md) for visual review and release gates. Artwork failures retain the old visual fallback rather than making the game unplayable. Two closed Quay buildings are reskinned; this is not a claim of new interiors, finished character/weapon art or a full-city replacement. The four foreground firearms now have separate sculpted receivers, ribbed grips, barrel details, scope/energy lenses and polished metallic materials. A suspended faceted jewel, smaller gemstone accents and curved glass market canopy introduce optical detail without changing navigation. Physical Quest 3 performance and comfort remain unverified.
+
+Choose Prismatic, Balanced or Light in **Controls & settings → Materials & effects**. Desktop defaults to Prismatic; mobile and immersive XR use the lower-cost light path. The high-end setting uses physical refraction/attenuation and restrained chromatic dispersion. Light patterns/glints are stylized shaders, not ray-traced caustics. [VISUAL-RELEASE.md](./VISUAL-RELEASE.md) documents the rendering, references, performance tradeoffs and exact evidence boundaries.
 
 ## The existing expedition and combat remain
 

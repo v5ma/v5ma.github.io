@@ -10,7 +10,7 @@ export function installControllers(api){
  function currentMenu(){
   const modal=[...document.querySelectorAll('dialog[open]')].at(-1),root=modal||(!api.playing()?document.getElementById('menu'):null);if(!root)return null;
   const nodes=[...root.querySelectorAll('button,input,select,a[href]')].filter(e=>!e.disabled&&!e.hidden&&e.getClientRects().length&&e.id!=='enter-vr');
-  const items=nodes.map(e=>({element:e,label:(e.closest('label')?.textContent||e.getAttribute('aria-label')||e.textContent||'Control').trim()+(e.type==='checkbox'?' ['+(e.checked?'on':'off')+']':e.type==='range'?' '+e.value:''),focused:document.activeElement===e}));
+  const items=nodes.map(e=>({element:e,label:(e.closest('label')?.textContent||e.getAttribute('aria-label')||e.textContent||'Control').trim()+(e.type==='checkbox'?' ['+(e.checked?'on':'off')+']':e.type==='range'?' '+e.value:e.tagName==='SELECT'?' ['+(e.selectedOptions?.[0]?.textContent||e.value)+']':''),focused:document.activeElement===e}));
   return {root,title:root.querySelector('h1,h2')?.textContent||'Menu',description:root.querySelector('p:not(.eyebrow)')?.textContent||'',items};
  }
  const xr=createXR(api.view,{state:api.state,start:api.start,clear:reset,pause:api.pause,menu:()=>{
@@ -27,6 +27,7 @@ export function installControllers(api){
   const element=items[index].element,dx=pad?.buttons?.[15]?.pressed?1:pad?.buttons?.[14]?.pressed?-1:axis[0];
   if(Math.abs(dx)<.3)horizontalLatch=false;
   if(element.type==='range'&&Math.abs(dx)>.65&&!horizontalLatch){horizontalLatch=true;element.value=String(clamp(Number(element.value)+Math.sign(dx)*Number(element.step||1),Number(element.min),Number(element.max)));element.dispatchEvent(new Event('input',{bubbles:true}));}
+  if(element.tagName==='SELECT'&&Math.abs(dx)>.65&&!horizontalLatch){horizontalLatch=true;element.selectedIndex=clamp(element.selectedIndex+Math.sign(dx),0,element.options.length-1);element.dispatchEvent(new Event('change',{bubbles:true}));}
   if(data.edges.confirm||data.edges.jump)element.click();
   if(data.edges.back)back(m);else if(data.edges.pause&&m.root.id==='pause-dialog')back(m);
  }
