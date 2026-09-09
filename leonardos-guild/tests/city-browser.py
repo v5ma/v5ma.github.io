@@ -104,7 +104,9 @@ with sync_playwright() as p:
             check(read()['input']['pointer'] is None and read()['input']['buttons']==0,'Opening Nearby releases touch ownership instead of holding the accelerator')
             closecity();check(read()['city']['circuit']==0 and not read()['completed'],'Exploring the guide never auto-completes either adventure')
         elif MODE=='circuit':
-            drive(0,90,2);drive(-8,125,1.1);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-10,127,.7)
+            # Approach on the open centre line before turning to the bell; the
+            # direct diagonal from z90 crosses the existing cone at (-4.8,112).
+            drive(0,90,2);drive(0,118,1.5);drive(-8,125,1.1);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-10,127,.7)
             choose('service','lamplighter');check(page.locator('[data-city-work="bell"]').count()==1,'The civic circuit first asks for the actual bell repair')
             page.locator('[data-city-work="bell"]').click();page.wait_for_selector('#street-dialog[open]')
             for a in ['brake','gear','cord']:page.locator('[data-street-action="'+a+'"]').click()
