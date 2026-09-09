@@ -1,0 +1,74 @@
+name: Paper Delivery glass and chrome acceptance
+on:
+  push:
+    branches: [feat/paper-glass-chrome-20260909]
+    paths: ['svgn-planet/**','.github/workflows/paper-jewel.yml']
+  pull_request:
+    paths: ['svgn-planet/**','.github/workflows/paper-jewel.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: paper-optics-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native:
+    # Push events cancel obsolete branch runs without duplicating PR coverage.
+    # Retained desktop/mobile and v0.4 acceptance also run on this same PR.
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [materials,mobile]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and unchanged game contracts
+        run: |
+          mkdir -p optics-evidence
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs | tee optics-evidence/model-tests.txt
+          for file in svgn-planet/*.mjs; do node --check "$file"; done
+          test ! -f .github/workflows/paper-optics-intake.yml
+          test ! -d .source-upload
+      - name: Install real browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Compare actual materials or exercise sustained touch recovery
+        env:
+          SUITE: ${{ matrix.suite }}
+        run: |
+          mkdir -p /tmp/paper-before
+          git archive 9d14c68fd572d763ae06b66fb9363e7a43f3fcfd svgn-planet | tar -x -C /tmp/paper-before
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/paper-after.log 2>&1 &
+          AFTER=$!
+          python -m http.server 4174 --bind 127.0.0.1 --directory /tmp/paper-before >/tmp/paper-before.log 2>&1 &
+          BEFORE=$!
+          trap 'kill $AFTER $BEFORE' EXIT
+          if [ "$SUITE" = materials ]; then
+            python -u svgn-planet/tests/jewel_browser.py
+          else
+            python -u svgn-planet/tests/browser.py
+          fi
+      - name: Preserve actual captures, state and tested source
+        if: always()
+        run: |
+          mkdir -p optics-evidence
+          cp -r svgn-planet/test-output optics-evidence/ 2>/dev/null || true
+          git rev-parse HEAD > optics-evidence/source-sha.txt
+          git diff --stat > optics-evidence/uncommitted-diff.txt
+          tar --exclude=test-output --exclude=__pycache__ -czf optics-evidence/source.tgz svgn-planet index.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: paper-optics-${{ matrix.suite }}
+          path: optics-evidence/
+          retention-days: 14

@@ -3,7 +3,7 @@
 import * as T from './vendor/three.module.js';
 export function createArtQuality(root){
  const lowMaterials=new Map(),meshes=[];let previous=null;
- root.traverse(o=>{if(o.isMesh&&o.material.isMeshStandardMaterial)meshes.push({mesh:o,high:o.material});});
+ root.traverse(o=>{if(o.isMesh&&o.material.isMeshStandardMaterial&&!o.material.userData.keepOptics)meshes.push({mesh:o,high:o.material});});
  function low(m){
   if(lowMaterials.has(m))return lowMaterials.get(m);
   const lite=new T.MeshLambertMaterial({name:m.name+' / diffuse',color:m.color,map:m.map,
