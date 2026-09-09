@@ -10,7 +10,7 @@ const ready=Promise.all(['depth','relationships'].map(name=>fetch('./data/'+name
 function shell(){
  const strip=$('.wiki-family-strip');if(!strip)return;
  strip.setAttribute('aria-label','Theology library');
- strip.innerHTML=link('home','Library')+link('sources-index','Conversations')+link('reading-paths','Reading paths')+'<a class="wiki-family-link" href="./role-workbook.html" id="pattern-workbook-link">Verse rankings &amp; repair</a>'+'<a class="wiki-family-link" href="./technology-signs.html" id="technology-signs-link">Technology &amp; signs</a>'+`<details class="depth-site-menu"><summary>More</summary><div><a href="./authority/index.html" id="authority-studies-link">Authority, inheritance &amp; repair</a><a href="./reception-history.html" id="reception-history-link">Survival &amp; public allegiance</a>${link('connections','Connections')}${link('forecast-ledger','Forecast register')}${link('glossary','Glossary')}${link('image-collection','Image credits')}${link('research-method','Editorial method')}<a href="../index.html">All projects</a><a href="./index.html">Legacy reader</a></div></details>`;
+ strip.innerHTML=link('home','Library')+link('sources-index','Conversations')+link('reading-paths','Reading paths')+'<a class="wiki-family-link" href="./role-workbook.html" id="pattern-workbook-link">Verse rankings &amp; repair</a>'+'<a class="wiki-family-link" href="./technology-signs.html" id="technology-signs-link">Technology &amp; signs</a>'+`<details class="depth-site-menu"><summary>More</summary><div><a href="./unsealed/index.html" id="unsealed-studies-link">Unsealed inheritance</a><a href="./authority/index.html" id="authority-studies-link">Authority, inheritance &amp; repair</a><a href="./reception-history.html" id="reception-history-link">Survival &amp; public allegiance</a>${link('connections','Connections')}${link('forecast-ledger','Forecast register')}${link('glossary','Glossary')}${link('image-collection','Image credits')}${link('research-method','Editorial method')}<a href="../index.html">All projects</a><a href="./index.html">Legacy reader</a></div></details>`;
  const hero=$('.hero .hero-text');if(hero)hero.hidden=true;
  const name=$('.hero h1');if(name)name.innerHTML=link('home','Theology Wiki');
 }
@@ -74,7 +74,15 @@ async function enhance(p,info){
   'apocalyptic-repair-theology':['gaza-hunger-and-prophetic-accountability','Gaza, hunger and prophetic accountability']
  };
  if(authorityStudies[p.slug]){const [slug,title]=authorityStudies[p.slug],box=document.createElement('section');box.id='authority-study-handoff';box.className='depth-route-banner';box.innerHTML='<h2>Continue with the September 9 studies</h2><p><a href="./authority/'+slug+'.html">'+esc(title)+'</a></p><p>A new linked working essay. Earlier article text and source conversations are preserved.</p>';body.append(box);}
-
+ $('#unsealed-study-handoff')?.remove();
+ const unsealedStudies={
+  'sacred-inheritance-and-rival-continuations':['library-and-canon','A library larger than any one canon'],
+  'samaritan-texts-and-sacred-authority':['library-and-canon','A library larger than any one canon'],
+  'manuscripts-movements-and-survival':['recovered-scrolls','When the scrolls return'],
+  'christ-as-an-inner-model':['unsealing-the-reader','Unsealing the reader'],
+  'cognitive-gnosticism':['unsealing-the-reader','Unsealing the reader']
+ };
+ if(unsealedStudies[p.slug]){const [slug,title]=unsealedStudies[p.slug],box=document.createElement('section');box.id='unsealed-study-handoff';box.className='depth-route-banner';box.innerHTML='<h2>Unsealed inheritance</h2><p><a href="./unsealed/'+slug+'.html">'+esc(title)+'</a></p><p>A new study of recovered witnesses, different kinds of authority and the possibility of learning beyond familiar boundaries.</p>';body.append(box);}
  document.querySelectorAll('.wiki-family-strip a[aria-current]').forEach(a=>a.removeAttribute('aria-current'));
  document.querySelector(`.wiki-family-strip a[data-page="${p.slug}"]`)?.setAttribute('aria-current','page');
  body.dataset.depthReady=p.slug;
