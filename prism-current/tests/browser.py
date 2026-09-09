@@ -16,7 +16,7 @@ def device_button(page,hand,index):
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.8,service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.5,service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  if MODE=='xr':ctx.add_init_script(path=str(ROOT/'prism-current/tests/fake-xr.js'))
  page=ctx.new_page();page.set_default_timeout(40000);page.on('pageerror',lambda e:errors.append(str(e)))
@@ -31,13 +31,12 @@ with sync_playwright() as pw:
    check(page.url.endswith('/prism-current/index.html'),'The homepage game card opens the playable page')
    check(page.locator('#tracks button').count()==3,'Three original tracks are selectable')
    check(page.locator('#enter-ar').is_disabled(),'Unsupported AR is not presented as a working mode')
-   page.locator('#input').select_option('keys');page.locator('#start').click();page.wait_for_function('Prism.snapshot().phase==="playing"')
+   page.locator('#input').select_option('keys');check(snapshot(page)['input']=='keys','Selecting an input mode preserves the chosen value');page.locator('#start').click();page.wait_for_function('Prism.snapshot().phase==="playing"')
    check(snapshot(page)['audio']=='running','The worker-rendered score plays through a real AudioContext')
    page.wait_for_function('Prism.snapshot().time>2');page.keyboard.press('KeyP');page.wait_for_function('Prism.snapshot().phase==="paused"');before=snapshot(page)['time'];page.wait_for_timeout(450)
    check(abs(snapshot(page)['time']-before)<.001,'Pause freezes audio position and note progression together')
    page.locator('#resume').click();page.wait_for_function('Prism.snapshot().phase==="playing"');page.locator('#scene-wrap').focus()
-   # Browser-local normal key events avoid wall-clock IPC jitter. This is not a
-   # human accuracy benchmark and does not assign score or seek the song clock.
+   # Ordinary DOM keys at observed note times; not a human accuracy benchmark.
    page.evaluate("""()=>{const done=new Set(),map=['KeyD','KeyF','KeyJ','KeyK'];window.__testKeys=setInterval(()=>{const s=Prism.snapshot();if(s.phase==='complete'){clearInterval(__testKeys);return;}if(s.phase!=='playing')return;for(const n of s.notes){if(done.has(n.id)||Math.abs(n.time-s.time)>.03)continue;done.add(n.id);const target=document.getElementById('scene-wrap');for(const type of['keydown','keyup'])target.dispatchEvent(new KeyboardEvent(type,{code:map[n.lane],bubbles:true,cancelable:true}));}},3);} """)
    page.wait_for_function('Prism.snapshot().state.hits>=3');page.screenshot(path=str(OUT/'rhythm-session.png'))
    check(snapshot(page)['state']['score']>0,'Normal keyboard input scores the timing-only practice mode')
@@ -48,7 +47,7 @@ with sync_playwright() as pw:
    page.keyboard.press('KeyP');page.locator('#back').click();check(len(snapshot(page)['scoreRecords'])==1,'Aborting a run does not invent a completed record')
    page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(OUT/'mobile-menu.png'));check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The control and song menus fit a phone-width viewport')
   else:
-   page.wait_for_function('!document.getElementById("enter-ar").disabled');page.evaluate('TestXR.state.deny=true');page.locator('#enter-ar').click();page.wait_for_function('Prism.snapshot().message.includes("Test refusal")')
+   page.wait_for_function('!document.getElementById("enter-ar").disabled');page.evaluate('TestXR.state.deny=true');page.locator('#enter-ar').click();page.wait_for_function('Prism.snapshot().message.includes("Could not enter AR:")')
    check(not snapshot(page)['immersive'],'Session refusal leaves the normal browser game usable')
    page.evaluate('TestXR.state.deny=false');page.locator('#enter-ar').click();page.wait_for_function('Prism.snapshot().immersive&&Prism.snapshot().calibrated')
    check(page.evaluate('TestXR.state.requests.at(-1).mode')=='immersive-ar','The AR button requests immersive-ar, not a VR scene named AR')
@@ -57,8 +56,6 @@ with sync_playwright() as pw:
    page.screenshot(path=str(OUT/'emulated-ar-menu.png'))
    page.evaluate('TestXR.pose("left",[-.36,1.385,-.4])');page.wait_for_timeout(100);device_button(page,'left',0);page.wait_for_function('Prism.snapshot().phase==="playing"')
    check(snapshot(page)['input']=='slice','Tracked controller play uses real blade sweeps, not keyboard note matching')
-   # Smooth a device tip across the first target at its audio time; only test
-   # input poses change. The app performs spatial collision and score judgment.
    page.evaluate("""async()=>{const first=Prism.snapshot().notes[0];await new Promise(resolve=>{const t=setInterval(()=>{if(Prism.snapshot().time>=first.time-.11){clearInterval(t);resolve();}},2);});TestXR.pose('left',[-.215,1.54,-.41]);await new Promise(r=>setTimeout(r,35));for(let i=0;i<=12;i++){TestXR.pose('left',[-.215,1.54-i*.028,-.41]);await new Promise(r=>setTimeout(r,7));}}""")
    page.wait_for_function('Prism.snapshot().state.hits>0');check(snapshot(page)['state']['hits']>0,'A swept tracked saber physically intersects and scores a note')
    page.screenshot(path=str(OUT/'emulated-ar-slice.png'));page.evaluate('TestXR.missing("right",true)');page.wait_for_function('Prism.snapshot().phase==="paused"')
@@ -69,7 +66,7 @@ with sync_playwright() as pw:
    page.evaluate('TestXR.state.session.end()');page.wait_for_function('!Prism.snapshot().immersive');check(snapshot(page)['studio'],'Ending XR restores the desktop studio and does not record an aborted run')
    page.evaluate('TestXR.state.blend="opaque"');page.locator('#enter-ar').click();page.wait_for_function('TestXR.state.session.ended');check(not snapshot(page)['immersive'],'An opaque session is rejected rather than misrepresented as passthrough')
   check(not errors,'No uncaught browser errors in this suite')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP Chromium/software WebGL. Desktop uses ordinary UI and DOM keys. XR uses explicitly emulated input poses and alpha-blend sessions; not actual Quest passthrough, physical performance or comfort certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP Chromium/software WebGL at half pixel ratio. Desktop uses ordinary UI and DOM keys. XR uses explicitly emulated input poses and alpha-blend sessions; not actual Quest passthrough, physical performance or comfort certification.'},indent=2))
  except Exception as e:
   try:state=snapshot(page)
   except:state={}
