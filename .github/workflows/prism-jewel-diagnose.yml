@@ -1,0 +1,45 @@
+name: Observe Jewelbox graphical startup
+on:
+  push:
+    branches: [feat/prism-jewelbox-graphics]
+    paths: [.github/workflows/prism-jewel-diagnose.yml]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: prism-current
+      - run: python -m pip install playwright==1.57.0
+      - name: Observe unmodified native profiles
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/jewel-diagnostic.log 2>&1 &
+          python -u - <<'PY'
+          from pathlib import Path
+          import json,shutil,subprocess
+          from playwright.sync_api import sync_playwright
+          out=Path('diagnostics');out.mkdir(exist_ok=True)
+          with sync_playwright() as pw:
+            b=pw.chromium.launch(executable_path=shutil.which('google-chrome'),headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+            reports={}
+            for mode in ['cinematic','balanced','light']:
+              c=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.5);p=c.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
+              p.goto('http://127.0.0.1:4173/prism-current/');p.wait_for_function('window.Prism?.snapshot().ready&&Prism.component.art.graphics.materialsReady')
+              p.locator('#settings').evaluate('(e)=>e.open=true');p.locator('#graphics-quality').select_option(mode);p.locator('#settings').evaluate('(e)=>e.open=false');p.wait_for_timeout(600)
+              p.evaluate('window.DiagnosticFrames=[];{let last=performance.now();function frame(now){DiagnosticFrames.push(now-last);last=now;if(DiagnosticFrames.length<600)requestAnimationFrame(frame);}requestAnimationFrame(frame);}')
+              p.locator('#start').click();p.wait_for_function('Prism.snapshot().phase!=="loading"');p.wait_for_timeout(4500)
+              reports[mode]=p.evaluate('(()=>{const g=Prism.component,r=AFRAME.scenes[0].renderer;return {state:Prism.snapshot(),stall:g.lastStall,lastTime:g.lastTime,transport:{offset:g.audio.offset,time:g.audio.time(),startAt:g.audio.startAt,currentTime:g.audio.a.currentTime,playing:g.audio.playing},frames:DiagnosticFrames,render:{calls:r.info.render.calls,triangles:r.info.render.triangles,programs:r.info.programs.length},componentPlaying:g.isPlaying,scenePlaying:g.el.isPlaying}})()')
+              reports[mode]['errors']=errors;p.screenshot(path=str(out/(mode+'.png')));c.close()
+            b.close()
+          (out/'startup.json').write_text(json.dumps(reports,indent=2));(out/'source.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          for mode,r in reports.items():print(mode,r.get('stall'),r['state']['phase'],r['transport'],r['render'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-graphics-diagnostic
+          path: diagnostics/
+          retention-days: 7
