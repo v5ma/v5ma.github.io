@@ -10,7 +10,7 @@ const ready=Promise.all(['depth','relationships'].map(name=>fetch('./data/'+name
 function shell(){
  const strip=$('.wiki-family-strip');if(!strip)return;
  strip.setAttribute('aria-label','Theology library');
- strip.innerHTML=link('home','Library')+link('sources-index','Conversations')+link('reading-paths','Reading paths')+'<a class="wiki-family-link" href="./role-workbook.html" id="pattern-workbook-link">Verse rankings &amp; repair</a>'+'<a class="wiki-family-link" href="./technology-signs.html" id="technology-signs-link">Technology &amp; signs</a>'+`<details class="depth-site-menu"><summary>More</summary><div><a href="./reception-history.html" id="reception-history-link">Survival &amp; public allegiance</a>${link('connections','Connections')}${link('forecast-ledger','Forecast register')}${link('glossary','Glossary')}${link('image-collection','Image credits')}${link('research-method','Editorial method')}<a href="../index.html">All projects</a><a href="./index.html">Legacy reader</a></div></details>`;
+ strip.innerHTML=link('home','Library')+link('sources-index','Conversations')+link('reading-paths','Reading paths')+'<a class="wiki-family-link" href="./role-workbook.html" id="pattern-workbook-link">Verse rankings &amp; repair</a>'+'<a class="wiki-family-link" href="./technology-signs.html" id="technology-signs-link">Technology &amp; signs</a>'+`<details class="depth-site-menu"><summary>More</summary><div><a href="./authority/index.html" id="authority-studies-link">Authority, inheritance &amp; repair</a><a href="./reception-history.html" id="reception-history-link">Survival &amp; public allegiance</a>${link('connections','Connections')}${link('forecast-ledger','Forecast register')}${link('glossary','Glossary')}${link('image-collection','Image credits')}${link('research-method','Editorial method')}<a href="../index.html">All projects</a><a href="./index.html">Legacy reader</a></div></details>`;
  const hero=$('.hero .hero-text');if(hero)hero.hidden=true;
  const name=$('.hero h1');if(name)name.innerHTML=link('home','Theology Wiki');
 }
@@ -64,6 +64,17 @@ async function enhance(p,info){
  if(p.kind==='Developed article'){foldSources(body);explain(p,body);}
  if(p.slug==='jesus-teacher-of-righteousness-hypothesis')chronology(body);
  if(p.slug==='glossary')glossary(body);
+ $('#authority-study-handoff')?.remove();
+ const authorityStudies={
+  'computational-divine-immanence':['cosmic-thought-and-transcendence','The universe might think without being God'],
+  'god-and-our-models-of-god':['cosmic-thought-and-transcendence','The universe might think without being God'],
+  'samaritan-texts-and-sacred-authority':['samaritan-inheritance-and-ethical-continuity','Samaritan inheritance and ethical continuity'],
+  'tor-thomas-and-gnostic-transmission':['qumran-jesus-and-ways-of-life','Qumran, Jesus and the ways of life and death'],
+  'divine-will-and-self-authorizing-power':['deliverance-fasting-and-the-test-of-command','Deliverance, discipline and the test of command'],
+  'apocalyptic-repair-theology':['gaza-hunger-and-prophetic-accountability','Gaza, hunger and prophetic accountability']
+ };
+ if(authorityStudies[p.slug]){const [slug,title]=authorityStudies[p.slug],box=document.createElement('section');box.id='authority-study-handoff';box.className='depth-route-banner';box.innerHTML='<h2>Continue with the September 9 studies</h2><p><a href="./authority/'+slug+'.html">'+esc(title)+'</a></p><p>A new linked working essay. Earlier article text and source conversations are preserved.</p>';body.append(box);}
+
  document.querySelectorAll('.wiki-family-strip a[aria-current]').forEach(a=>a.removeAttribute('aria-current'));
  document.querySelector(`.wiki-family-strip a[data-page="${p.slug}"]`)?.setAttribute('aria-current','page');
  body.dataset.depthReady=p.slug;

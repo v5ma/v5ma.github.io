@@ -1,0 +1,85 @@
+name: Validate Theology authority studies
+on:
+  pull_request:
+    paths: ['theology-wiki/**', '.github/workflows/theology-authority.yml']
+  push:
+    branches: [master]
+    paths: ['theology-wiki/**', '.github/workflows/theology-authority.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: theology-authority-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  authority:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate new documents and unchanged ranking model
+        run: |
+          node --check theology-wiki/authority/index.js
+          node --check theology-wiki/assets/js/depth-tools.js
+          python theology-wiki/tests/authority_test.py
+          node --test theology-wiki/tests/role-workbook.test.cjs
+      - name: Install Chromium
+        run: |
+          python -m pip install --quiet playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual HTTP documents and existing readers
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/authority-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/authority_test.py --browser
+      - name: Verify published bytes and public browser
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cp -r theology-authority-proof /tmp/authority-native
+          trap 'cp -r /tmp/authority-native theology-authority-proof/native' EXIT
+          python - <<'PY'
+          import hashlib,json,os,time,urllib.request
+          from pathlib import Path
+          files=[p.as_posix() for p in Path('theology-wiki/authority').rglob('*') if p.is_file()]+['theology-wiki/assets/js/depth-tools.js']
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
+          observed={}
+          for attempt in range(40):
+              for p,digest in expected.items():
+                  if observed.get(p,{}).get('matches'):continue
+                  try:
+                      with urllib.request.urlopen('https://v5ma.github.io/'+p+'?authority='+os.environ['GITHUB_SHA'],timeout=15) as r:
+                          actual=hashlib.sha256(r.read()).hexdigest()
+                          observed[p]={'status':r.status,'sha256':actual,'matches':actual==digest}
+                  except Exception as e:observed[p]={'error':str(e),'matches':False}
+              if len(observed)==len(files) and all(v['matches'] for v in observed.values()):break
+              time.sleep(5)
+          Path('theology-authority-proof/hosted-content.json').write_text(json.dumps(observed,indent=2))
+          assert len(observed)==len(files) and all(v['matches'] for v in observed.values()),observed
+          PY
+          SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/authority_test.py --browser
+      - name: Preserve reviewed source and proof
+        if: always()
+        run: |
+          mkdir -p theology-authority-proof
+          git rev-parse HEAD > theology-authority-proof/tested-commit.txt
+          git diff --exit-code
+          python - <<'PY'
+          import hashlib,json,zipfile
+          from pathlib import Path
+          files=[p for p in Path('theology-wiki/authority').rglob('*') if p.is_file()]+[Path('theology-wiki/assets/js/depth-tools.js'),Path('theology-wiki/tests/authority_test.py'),Path('.github/workflows/theology-authority.yml')]
+          Path('theology-authority-proof/source-manifest.json').write_text(json.dumps({p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in files},indent=2))
+          with zipfile.ZipFile('theology-authority-proof/authority-release.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in files:z.write(p)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-authority-verification
+          path: theology-authority-proof/
+          retention-days: 14
