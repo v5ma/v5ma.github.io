@@ -1,0 +1,58 @@
+name: Refine reviewed Vesperfall materials
+on:
+  push:
+    branches: [feat/vesperfall-jewelglass]
+    paths: ['.jewelglass-refinement.json','.github/workflows/jewelglass-refine.yml']
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/vesperfall-jewelglass
+          sparse-checkout: |
+            /vesperfall/
+            /scripts/
+            /gloamward/
+            /index.html
+            /projects.css
+            /.jewelglass-refinement.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply five source-guarded refinements without touching simulation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          changes=json.loads(Path('.jewelglass-refinement.json').read_text())
+          assert set(changes)=={'vesperfall/'+n for n in ['jewelglass.js','JEWELGLASS.md','tests/jewelglass-browser.py','tests/jewelglass.test.cjs','roadmap.json']}
+          staged={}
+          for name,d in changes.items():
+            p=Path(name);assert not p.is_symlink()
+            raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==d['before'],name
+            s=raw.decode();last=len(s)+1
+            for a,b,text in reversed(d['edits']):
+              assert 0<=a<=b<last
+              s=s[:a]+text+s[b:];last=a+1
+            raw=s.encode();assert hashlib.sha256(raw).hexdigest()==d['after'],name
+            staged[name]=raw
+          for n,raw in staged.items():Path(n).write_bytes(raw)
+          Path('.jewelglass-refinement.json').unlink()
+          PY
+          node --check vesperfall/jewelglass.js
+          node --test vesperfall/tests/*.test.cjs
+          python -m py_compile vesperfall/tests/jewelglass-browser.py
+          python scripts/check-vesperfall.py
+      - name: Commit final visual source
+        run: |
+          git config user.name 'Vesperfall material refinement'
+          git config user.email 'vesperfall@users.noreply.github.com'
+          git add vesperfall
+          git add -u .jewelglass-refinement.json
+          git commit -m 'Instance jewel lamps, distinguish leather, bound refraction resolution and clear stale effects'
+          git push origin HEAD:feat/vesperfall-jewelglass
