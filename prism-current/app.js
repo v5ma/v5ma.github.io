@@ -9,6 +9,7 @@
    window.Prism={component:this,snapshot:()=>({version:PrismCore.VERSION,phase:this.phase,track:this.track,difficulty:this.difficulty,input:this.input,time:this.state?.time||0,state:this.state?PrismCore.result(this.state):null,notes:this.state?.song.notes||[],judged:this.state?{...this.state.judged}:{},immersive:this.immersive,calibrated:this.xr.calibrated,blend:this.xr.session?.environmentBlendMode,studio:this.art.studio.visible,ready:this.rendererReady,scoreRecords:{...this.records},audio:this.audio.a?.state,message:this.message})};
   },
   pause(){this.pauseRun('Scene suspended. Resume when ready.');},
+  remove(){this.audio?.stop();this.art?.dispose?.();},
   notice(text){this.message=text;$('status').textContent=text;},
   ui(){const cards=$('tracks');for(const s of PrismCore.TRACKS){const b=document.createElement('button');b.className='track';b.dataset.track=s.id;b.innerHTML=`<span class="track-orb"></span><span><strong>${s.name}</strong><small>${s.subtitle}</small></span><span class="bpm">${s.bpm}<small>BPM</small></span>`;b.onclick=()=>{this.abort();this.track=s.id;this.syncControls();};cards.append(b);}
    $('start').onclick=()=>this.phase==='paused'?this.resume():this.start();$('pause').onclick=()=>this.phase==='playing'?this.pauseRun('Paused'):this.resume();$('menu-button').onclick=()=>{this.pauseRun('Choose another track');this.abort();};$('resume').onclick=()=>this.resume();$('retry').onclick=()=>this.start();$('back').onclick=()=>this.abort();

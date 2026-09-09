@@ -1,1 +1,8 @@
-{"version":"0.1.0","name":"Prism Current","date":"2026-09-09","engine":"A-Frame 1.8.0","scope":"Original rhythm prototype; desktop practice and experimental passthrough AR. Physical Quest 3 testing remains open."}
+{
+  "version": "0.2.0",
+  "name": "Prism Current",
+  "date": "2026-09-09",
+  "engine": "A-Frame 1.8.0",
+  "scope": "Graphics-only crystal, metal and shader pass. Desktop cinematic transmission; XR/AR safe translucent materials. Physical Quest testing open.",
+  "edition": "Jewelbox"
+}

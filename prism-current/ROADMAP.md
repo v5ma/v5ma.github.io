@@ -30,3 +30,12 @@ returns to track selection: a mouse cannot finish and save an AR-scored run.
 
 The prototype is isolated from other hosted games. Existing saved progress and
 private projects are outside its source, build and deployment.
+
+
+## Jewelbox / graphics-first v0.2
+
+Implemented: cut-gem mesh assets and jewelry-styled saber hilts; PMREM studio reflections; desktop physical transmission/dispersion/clearcoat/iridescence; original GLSL caustic-like floor, blade energy, glow and fading ribbon effects; all effects share materials and bounded pools. Shader-based translucent XR replaces desktop transmission, never the real-world camera feed. New quality/quiet controls preserve score data.
+
+Acceptance gates: 22 pure tests, unchanged complete-song and pointer checks, emulated AR/VR with transparency checks, and native matching before/after renderer captures. Consult the current PR / served-file workflow for actual pass status rather than treating implementation as hardware certification.
+
+Open: physical Quest measurements and visual calibration; richer music/art direction; hand models; user-chart import and seated/one-hand charts. The floor has stylized shader lighting, not physically traced caustics. Real-room refraction/occlusion remains unsupported.

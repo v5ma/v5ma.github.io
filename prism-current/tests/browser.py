@@ -25,7 +25,7 @@ with sync_playwright() as pw:
    page.goto(BASE+'/',wait_until='domcontentloaded');page.locator('a#prism-launch').click()
   else:page.goto(BASE+'/prism-current/',wait_until='domcontentloaded')
   page.wait_for_function('window.Prism?.snapshot().ready&&AFRAME.scenes[0].renderer.info.render.calls>0')
-  check(snapshot(page)['version']=='0.1.0','The actual A-Frame renderer loads the new isolated rhythm game')
+  check(snapshot(page)['version']=='0.2.0','The actual A-Frame renderer loads the new isolated rhythm game')
   page.screenshot(path=str(OUT/'title.png'))
   if MODE=='desktop':
    check(page.url.endswith('/prism-current/index.html'),'The homepage game card opens the playable page')
@@ -54,6 +54,7 @@ with sync_playwright() as pw:
    check(snapshot(page)['blend']=='alpha-blend' and not snapshot(page)['studio'],'Opaque sky and floor are hidden for the transparent AR composition')
    check(page.evaluate('AFRAME.scenes[0].renderer.getClearAlpha()')==0,'Clear alpha is transparent while the AR compositor supplies passthrough')
    page.screenshot(path=str(OUT/'emulated-ar-menu.png'))
+   check(page.evaluate('Prism.component.art.graphics.ar&&Prism.component.art.notes.filter(n=>n.g.visible).every(n=>n.body.material.isShaderMaterial)'), 'AR selects screen-buffer-free translucent jewels, not opaque glass capture')
    page.evaluate('TestXR.pose("left",[-.36,1.385,-.4])');page.wait_for_timeout(100);device_button(page,'left',0);page.wait_for_function('Prism.snapshot().phase==="playing"')
    check(snapshot(page)['input']=='slice','Tracked controller play uses real blade sweeps, not keyboard note matching')
    page.evaluate("""async()=>{const first=Prism.snapshot().notes[0];await new Promise(resolve=>{const t=setInterval(()=>{if(Prism.snapshot().time>=first.time-.11){clearInterval(t);resolve();}},2);});TestXR.pose('left',[-.215,1.54,-.41]);await new Promise(r=>setTimeout(r,35));for(let i=0;i<=12;i++){TestXR.pose('left',[-.215,1.54-i*.028,-.41]);await new Promise(r=>setTimeout(r,7));}}""")

@@ -1,7 +1,7 @@
 /* Pure scoring and swept-blade geometry. No DOM, device APIs, saves or clock.
  * All times are seconds on the audio timeline. Pose discontinuities cannot hit. */
 (function(root){'use strict';
- const VERSION='0.1.0',WINDOW=.17,SPEED=3.4,PLANE=-1.05,SIZE=.17;
+ const VERSION='0.2.0',WINDOW=.17,SPEED=3.4,PLANE=-1.05,SIZE=.17;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),sub=(a,b)=>a.map((v,i)=>v-b[i]),len=a=>Math.hypot(...a),mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t),dot=(a,b)=>a.reduce((n,v,i)=>n+v*b[i],0);
  const dirs=[[0,-1],[0,1],[1,0],[-1,0],[.707,-.707],[-.707,-.707],[0,0]];
  const TRACKS=[{id:'first-light',name:'First Light',subtitle:'Find the downbeat',bpm:104,root:50,bars:24,style:'mallet',description:'Warm keys, soft bass and wide, unhurried strokes.'},{id:'afterglow',name:'Afterglow',subtitle:'Follow the syncopation',bpm:120,root:53,bars:32,style:'pluck',description:'Bright arpeggios, swung accents and answering hands.'},{id:'ion-drift',name:'Ion Drift',subtitle:'Ride the current',bpm:136,root:55,bars:32,style:'bell',description:'A faster synth line with alternating diagonal phrases.'}];
