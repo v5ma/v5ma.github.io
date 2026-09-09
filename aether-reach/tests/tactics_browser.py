@@ -90,9 +90,13 @@ with sync_playwright() as pw:
    # Defender navigates and aims through ordinary keyboard actions. The model
    # receives no special HP, damage, elapsed-time or mission-state assignments.
    walk(p,[(5,-48.7)]);use(p);p.wait_for_selector('#field-start');before=snap(p)['credits'];p.locator('#field-start').click();p.wait_for_function('AetherReach.snapshot().tactics.encounter.phase==="active"');p.locator('#world').focus();check(True,'The collector starts an opt-in three-wave defense through proximity and its UI')
-   start=time.monotonic();surveyed=False
-   while time.monotonic()-start<450:
-    s=snap(p)
+   start=time.monotonic();surveyed=False;last_progress=start;last_tick=-1
+   # The authored 48-second objective remains unchanged. CPU-only
+   # WebGL may advance more slowly than wall time; fail stalls separately.
+   while time.monotonic()-start<720:
+    s=snap(p);now=time.monotonic()
+    if s['time']>last_tick:last_tick=s['time'];last_progress=now
+    assert now-last_progress<60,'The game stopped advancing during recovery'
     if s['tactics']['encounter']['phase']!='active':break
     enemies=[x for x in s['enemies'] if x['id'].startswith('trial-') and x['hp']>0]
     if enemies:
