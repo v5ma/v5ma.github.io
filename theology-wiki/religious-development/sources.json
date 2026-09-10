@@ -1,0 +1,118 @@
+{
+  "edition": "2026-09-09-religious-development-1",
+  "scope": "Linked static supplement; principal reader index and original archive are unchanged.",
+  "pages": [
+    {
+      "path": "index.html",
+      "title": "Evil, Agency, and the Repair of the World",
+      "kind": "Research series and constructive bridge"
+    },
+    {
+      "path": "persian-influence-and-biblical-chronology.html",
+      "title": "Persian Influence and the Problem of Biblical Chronology",
+      "kind": "Historical comparison and method"
+    },
+    {
+      "path": "job-satan-and-moral-agency.html",
+      "title": "Job, Satan, and Moral Agency",
+      "kind": "Textual reading and comparative interpretation"
+    },
+    {
+      "path": "maimonides-messiah-and-resurrection.html",
+      "title": "Maimonides: Messiah, Resurrection, and the Work of Restoration",
+      "kind": "Primary-text comparison and constructive application"
+    },
+    {
+      "path": "thirteen-principles-and-kabbalah.html",
+      "title": "The Thirteen Principles and Kabbalah: Unity Without Flattening Difference",
+      "kind": "Doctrinal comparison and research questions"
+    },
+    {
+      "path": "minority-witnesses-and-living-traditions.html",
+      "title": "Minority Witnesses and Living Traditions",
+      "kind": "Source criticism and preservation ethics"
+    },
+    {
+      "path": "repair-without-erasure.html",
+      "title": "Repair Without Erasure: A Bridge Across the Wiki",
+      "kind": "Constructive theology; not a demonstrated transmission history"
+    },
+    {
+      "path": "claim-audit.html",
+      "title": "Claim Audit: What the Supplied Discussion Does and Does Not Establish",
+      "kind": "Editorial audit of the supplied AI discussion"
+    }
+  ],
+  "sources": {
+    "eschatology": {
+      "title": "Shaul Shaked, \"Eschatology i. In Zoroastrianism and Zoroastrian Influence,\" Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/eschatology-i/",
+      "scope": "Scholarly overview; distinguishes Avestan and later evidence and argues for Iranian influence while acknowledging disagreement. Not a collation of original manuscripts."
+    },
+    "scrolls": {
+      "title": "Jacques Duchesne-Guillemin, \"Dead Sea Scrolls,\" Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/dead-sea-scrolls/",
+      "scope": "Historical argument for Iranian parallels in the two-spirits teaching. Its particular transmission reconstruction is an argument, not an established consensus."
+    },
+    "ezekiel": {
+      "title": "Ezekiel 37:1-14, New American Bible Revised Edition, USCCB",
+      "url": "https://bible.usccb.org/bible/ezekiel/37",
+      "scope": "Primary passage in translation, with clearly separate editorial notes. The passage identifies the bones with Israel."
+    },
+    "daniel": {
+      "title": "Daniel 12:1-3, New American Bible Revised Edition, USCCB",
+      "url": "https://bible.usccb.org/bible/daniel/12",
+      "scope": "Primary passage in translation. The text speaks of many awakening; this does not establish universal agreement among ancient Jews."
+    },
+    "job": {
+      "title": "Job 2:1-10, New American Bible Revised Edition, USCCB",
+      "url": "https://bible.usccb.org/bible/job/2",
+      "scope": "Primary passage in translation; the accuser acts with permission and within a limit."
+    },
+    "guide": {
+      "title": "Maimonides, Guide for the Perplexed III.22, translated by M. Friedlander",
+      "url": "https://sacred-texts.com/jud/gfp/gfp158.htm",
+      "scope": "Primary philosophical text in an older English translation. Its interpretation of Job is not itself evidence about the ancient book's original composition."
+    },
+    "kings11": {
+      "title": "Maimonides, Mishneh Torah, Laws of Kings and Wars 11, translated by Eliyahu Touger",
+      "url": "https://www.chabad.org/library/article_cdo/aid/1188356/jewish/Melachim-uMilchamot-Chapter-11.htm",
+      "scope": "Primary legal text in translation; 11:3 addresses miracles, and 11:4 gives messianic criteria and its criticism of Christianity. Translator notes are not Maimonides' own words."
+    },
+    "kings12": {
+      "title": "Maimonides, Mishneh Torah, Laws of Kings and Wars 12, translated by Eliyahu Touger",
+      "url": "https://www.chabad.org/library/article_cdo/aid/1188357/jewish/Melachim-uMilchamot-Chapter-12.htm",
+      "scope": "Primary legal text in translation; 12:1 treats natural order, 12:2 uncertain scenarios, and 12:4-5 the purpose of the messianic age."
+    },
+    "principles": {
+      "title": "The Thirteen Principles of Jewish Faith, Chabad presentation of Maimonides' Perek Chelek introduction",
+      "url": "https://www.chabad.org/library/article_cdo/aid/332555/jewish/Maimonides-13-Principles-of-Faith.htm",
+      "scope": "A concise traditional presentation, not an independently collated translation of the complete Judeo-Arabic introduction."
+    },
+    "stanford": {
+      "title": "Kenneth Seeskin, \"Maimonides,\" Stanford Encyclopedia of Philosophy",
+      "url": "https://plato.stanford.edu/entries/maimonides/",
+      "scope": "Scholarly philosophical overview, including the resurrection controversy and Maimonides' intellectual context. It is not a survey ranking every modern Orthodox authority."
+    },
+    "patach": {
+      "title": "Patach Eliyahu, Tikkunei Zohar introduction 17a, translated and annotated by Avraham Sutton",
+      "url": "https://www.chabad.org/kabbalah/article_cdo/aid/380333/jewish/Patach-Eliyahu.htm",
+      "scope": "A Kabbalistic primary passage in annotated translation. Bracketed explanations belong to the translator; traditional authorship claims are not used here as independently verified dates."
+    },
+    "yazidis": {
+      "title": "Christine Allison, \"Yazidis i. General,\" Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/yazidis-i-general-1/",
+      "scope": "Historical discussion of oral tradition and the disputed printed sacred books. Its older demographic figures are not reused as current statistics."
+    },
+    "mandaeans": {
+      "title": "Edmondo Lupieri, \"Mandaeans i. History,\" Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/mandaeans-1/",
+      "scope": "Scholarly account that discusses contested origins and textual transmission. It does not settle every Mandaean community's self-understanding."
+    },
+    "mark": {
+      "title": "Mark 12:18-27, King James Version, Bible Gateway",
+      "url": "https://www.biblegateway.com/passage/?search=Mark+12%3A18-27&version=KJV",
+      "scope": "Primary Gospel passage in translation. It supports a claim about the narrative portrayal of Jesus, not automatic access to the exact words of the historical Jesus."
+    }
+  }
+}

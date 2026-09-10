@@ -1,0 +1,9 @@
+# Religious development supplement
+
+Eight static pages: a series entrance, six studies, and a selected audit of the September 9, 2026 pasted AI discussion. The HTML files are the canonical editorial source for this supplement, not outputs of the main Theology build. Edit them directly and run `python theology-wiki/religious-development/test_pages.py` from the repository root.
+
+The new root-entrance link is a navigation addition, not a replacement of the SAN reader. This edition does not modify the principal page index, global search or narration libraries, any original source-chat bytes, historical article bodies, the shared roadmap/workbook or sibling projects. Each study has direct links to existing wiki arguments and to the other new studies. Sources and access limits are available on each page and in sources.json. No external runtime, tracking, accounts, new dependencies or executable AI is included.
+
+Editorial scope: distinguish primary-text observations, historical hypotheses, comparative readings and constructive proposals. Counts of supposedly Iranian-influenced or zero-influence biblical books are not adopted. Maimonides' affirmation of resurrection is preserved, and the claim that he explicitly diagnosed Zoroastrian corruption in Jesus is not attributed without a textual citation. Minority communities are not treated as interchangeable evidence collections. The Death Star Robot fiction remains separate.
+
+The local test validates markup, source URLs, page identity, navigation, existing-wiki link syntax, and the absence of active content. It is not a full upstream build, a manuscript collation, proof of historical conclusions or a hosted-publication test. The existing wiki link destinations were inspected in the connected repository. Confirm HTTP responses for all eight pages after deployment before claiming they are live.
