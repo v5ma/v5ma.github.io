@@ -1,0 +1,48 @@
+{
+  "edition": "2026-09-09-nature-and-meaning-bridge-2",
+  "updated": "2026-09-09",
+  "scope": "Six new studies and one evidence record, integrated through the existing static supplement entrance. Principal reader search, narration, original source archives and sibling projects are unchanged.",
+  "input": {"kind": "Current author contribution containing original statements and pasted AI discussion", "date_basis": "September 9, 2026 editing conversation, America/Los_Angeles", "archive_status": "Not added to the historical 354-conversation archive", "new_prose": "Editorial development, not a verbatim author essay"},
+  "pages": [
+    {"path":"natural-causation-and-prayer.html","title":"Nature as Divine Action: Prayer Without a Break in Causation","kind":"Constructive theology and primary-text comparison"},
+    {"path":"angels-demons-and-embodied-meaning.html","title":"Angels, Demons, and Embodied Meaning","kind":"Author proposal and primary-text comparison"},
+    {"path":"resurrection-miracles-and-world-to-come.html","title":"Resurrection, Miracles, and the World to Come","kind":"Primary-text study and bounded historical comparison"},
+    {"path":"hasidism-intellect-and-devotion.html","title":"Intellect and Devotion: A Bridge Already Under Construction","kind":"Primary-text comparison and constructive interpretation"},
+    {"path":"ancient-mysticism-and-textual-evidence.html","title":"Fourteen Books, Ancient Mysticism, and Textual Evidence","kind":"Fourteen selected biblical units and bounded witness review"},
+    {"path":"mythic-literacy-and-political-judgment.html","title":"Mythic Literacy and Political Judgment","kind":"Author interpretation and proposed research method; not political biography"},
+    {"path":"bridge-evidence.html","title":"Bridge Edition: Author Positions and Evidence","kind":"Editorial provenance and evidence record"}
+  ],
+  "author_positions": [
+    {"id":"reconciliation","quote":"The Theology Wiki finds no conflict with Maimonides, nor conflict with Hasidic Judaism, it bridges the gap between both.","status":"Author's constructive aim"},
+    {"id":"prayer","quote":"We pray, natural events happen, and if we interpret those natural events as being the answer to our prayers then it's a theologically valid conclusion that God has answered our prayers.","status":"Author's theological interpretation, not an experimental causal result"},
+    {"id":"rational-spiritual","quote":"We can have a rational view that is simultaneously spiritual and Maimonides didn't see that.","status":"Positive proposal retained; historical attribution qualified openly by Guide II.6 and Repentance 10"},
+    {"id":"political-application","quote":"Netanyahu achieved an advanced worldview, post-rational, both rational and inclusive of mystics concepts as mythology.","status":"Author interpretation; private beliefs and named intellectual influences not verified"}
+  ],
+  "sources": {
+    "bridge-exodus14":{"title":"Exodus 14:21, NABRE, USCCB","url":"https://bible.usccb.org/bible/exodus/14","scope":"Primary passage in translation; narrative divine action and wind, not an archaeological verification."},
+    "bridge-guide26":{"title":"Maimonides, Guide II.6, M. Friedlander translation","url":"https://sacred-texts.com/jud/gfp/gfp093.htm","scope":"Primary chapter, older English translation; multiple meanings of angel, natural powers and incorporeal intelligences."},
+    "bridge-guide229":{"title":"Maimonides, Guide II.29, M. Friedlander translation","url":"https://sacred-texts.com/jud/gfp/gfp116.htm","scope":"Primary chapter on nature, exceptional miracles and a rabbinic account of miracles prepared in creation."},
+    "bridge-repentance8":{"title":"Mishneh Torah, Repentance 8, Mechon Mamre","url":"https://mechon-mamre.org/i/1508.htm","scope":"Primary Hebrew text; English paraphrases are editorial. World to Come is distinguished from embodied life and said already to exist."},
+    "bridge-repentance10":{"title":"Mishneh Torah, Repentance 10, Mechon Mamre","url":"https://mechon-mamre.org/i/1510.htm","scope":"Primary Hebrew text; editorial English paraphrase of love, knowledge and service without reward motive."},
+    "bridge-tanya12":{"title":"Tanya, Likutei Amarim 12, Lessons in Tanya edition","url":"https://www.chabad.org/library/tanya/tanya_cdo/aid/7891/jewish/Chapter-12.htm","scope":"Primary text by Schneur Zalman with translation and Yosef Wineberg's elucidation, Kehot. Primary text and later explanations distinguished."},
+    "bridge-integral":{"title":"Corey deVos, Pre/Trans Fallacy, Integral Life","url":"https://integrallife.com/glossary/pretrans-fallacy/","scope":"Presentation of Integral theory; not a personal essay by Wilber or an empirical developmental assessment."},
+    "bridge-dna":{"title":"Anava and colleagues, Illuminating Genetic Mysteries of the Dead Sea Scrolls, Cell 181, 2020","url":"https://cris.tau.ac.il/en/publications/illuminating-genetic-mysteries-of-the-dead-sea-scrolls/","scope":"Authors' institutional abstract and bibliographic record only. DOI 10.1016/j.cell.2020.04.046. No full-text, genetic data or supplement analysis claimed."},
+    "bridge-loc":{"title":"Library of Congress, Scrolls from the Dead Sea: The Qumran Library","url":"https://www.loc.gov/exhibits/scrolls/scr4.html","scope":"Institutional exhibition descriptions, especially the Damascus Document and its witnesses."},
+    "bridge-enoch14":{"title":"First Enoch 14, R. H. Charles translation","url":"https://sacred-texts.com/bib/boe/boe017.htm","scope":"Primary text in older translation; dream and vision frame. Not a collation of Qumran fragments."},
+    "bridge-genesis":{"title":"Genesis 28:12-17, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt0128.htm","scope":"Hebrew-English passage consulted for dream, angels and recognition of sacred place; no composition date inferred."},
+    "bridge-leviticus":{"title":"Leviticus 19:26-34, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt0319.htm","scope":"Hebrew-English passage on prohibited practices, reverence and care for the stranger; no composition date inferred."},
+    "bridge-numbers":{"title":"Numbers 11:25-29, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt0411.htm","scope":"Hebrew-English passage on the elders, Eldad and Medad; no composition date inferred."},
+    "bridge-deuteronomy":{"title":"Deuteronomy 13:2-6, Mechon Mamre numbering","url":"https://mechon-mamre.org/p/pt/pt0513.htm","scope":"Hebrew-English passage on signs and authority. Numbering differs in some Christian editions; ancient penalty is not endorsed."},
+    "bridge-joshua":{"title":"Joshua 3:13-17, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt0603.htm","scope":"Hebrew-English passage on Jordan crossing; no natural mechanism or composition date independently verified."},
+    "bridge-judges":{"title":"Judges 6:36-40, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt0706.htm","scope":"Hebrew-English passage on fleece and dew; not an experimentally verified sign-seeking method."},
+    "bridge-samuel":{"title":"First Samuel 10:5-6, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt08a10.htm","scope":"Hebrew-English passage on musical instruments and prophecy; not a measured brain-state account."},
+    "bridge-kings":{"title":"First Kings 19:11-13, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt09a19.htm","scope":"Hebrew-English passage distinguishing the encounter from wind, earthquake and fire."},
+    "bridge-jeremiah":{"title":"Jeremiah 23:23-28, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt1123.htm","scope":"Hebrew-English passage on presence and deceptive claims to dreams; no composition date inferred."},
+    "bridge-ezekiel":{"title":"Ezekiel 1:26-28, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt1201.htm","scope":"Hebrew-English passage on appearance, likeness and glory; no exclusive philosophical interpretation asserted."},
+    "bridge-song":{"title":"Song of Songs 8:6-7, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt3008.htm","scope":"Hebrew-English poetry of love; later spiritual application distinguished from original intention."},
+    "bridge-ruth":{"title":"Ruth 2:8-12, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt2902.htm","scope":"Hebrew-English passage on practical care and refuge under God's wings; proposed connection is interpretive."},
+    "bridge-lamentations":{"title":"Lamentations 3:21-26, Mechon Mamre","url":"https://mechon-mamre.org/p/pt/pt3203.htm","scope":"Hebrew-English passage on grief, remembered hope and compassion; no general victim-blaming inference."}
+  },
+  "consulted":"2026-09-09",
+  "unfinished_research":["Full primary-text collation of the Treatise on Resurrection","Historical transmission and dating for each selected biblical textual layer","Full DNA paper and supplementary-data analysis","Documented autobiographical evidence for proposed political intellectual influences","Community-specific study of rationalist and mystical practices"]
+}
