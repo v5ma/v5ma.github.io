@@ -1,0 +1,56 @@
+name: Validate Theology nature and meaning bridge
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/religious-development/**'
+      - '.github/workflows/theology-bridge.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/religious-development/**'
+      - '.github/workflows/theology-bridge.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            theology-wiki/religious-development
+            theology-wiki/index.html
+            theology-wiki/data/page-index.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate manifests, author statements and local destinations
+        run: python theology-wiki/religious-development/test_pages.py
+      - name: Install pinned browser tooling
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Desktop and mobile browser verification
+        if: github.event_name != 'push' || github.ref != 'refs/heads/master'
+        run: python theology-wiki/religious-development/test_pages.py --browser
+      - name: Verify actual public bytes and public browser after publication
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: python theology-wiki/religious-development/test_pages.py --browser --public-base https://v5ma.github.io/theology-wiki/religious-development/
+      - name: Record release identity
+        if: always()
+        run: |
+          mkdir -p theology-bridge-test-output
+          git rev-parse HEAD > theology-bridge-test-output/commit.txt
+          git status --short > theology-bridge-test-output/worktree.txt
+      - name: Preserve reports, screenshots and exact article sources
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: theology-nature-meaning-bridge-${{ github.run_id }}
+          path: |
+            theology-bridge-test-output/
+            theology-wiki/religious-development/
+          retention-days: 14
