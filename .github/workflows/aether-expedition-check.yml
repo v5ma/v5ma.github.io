@@ -1,0 +1,32 @@
+name: Aether Skyward expedition checks
+on:
+  push:
+    branches: [feat/aether-skyward-expedition-20260911]
+    paths: ['aether-reach/**', '.github/workflows/aether-expedition-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Preserve exact public source and unfinished public city candidate
+        run: |
+          mkdir -p /tmp/aether-expedition-source
+          git rev-parse HEAD > /tmp/aether-expedition-source/SOURCE-COMMIT.txt
+          git archive --format=zip -o /tmp/aether-expedition-source/current-public-source.zip HEAD aether-reach .github/workflows
+          git fetch --depth=1 origin ddf78e852a23077408e6162b7647bac43a9485f8
+          git archive --format=zip -o /tmp/aether-expedition-source/living-city-reference.zip FETCH_HEAD aether-reach
+          sha256sum /tmp/aether-expedition-source/*.zip > /tmp/aether-expedition-source/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aether-expedition-source
+          path: /tmp/aether-expedition-source/
+          retention-days: 14
+      - name: Existing model regression tests
+        run: node --test aether-reach/tests/*.test.mjs
