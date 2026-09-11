@@ -1,0 +1,32 @@
+name: Guild Open Doors
+on:
+  push:
+    branches: [guild/open-doors-20260911]
+  pull_request:
+    paths: ['leonardos-guild/**', '.github/workflows/guild-open-doors.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Existing and expansion unit tests
+        run: cd leonardos-guild && npm test
+      - name: Source snapshot for local browser acceptance
+        if: always()
+        run: |
+          mkdir -p /tmp/guild-source
+          cp -r leonardos-guild /tmp/guild-source/
+          cp index.html /tmp/guild-source/homepage.html
+          cp -r .github /tmp/guild-source/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-source-${{ github.sha }}
+          path: /tmp/guild-source
+          include-hidden-files: true
+          retention-days: 3
