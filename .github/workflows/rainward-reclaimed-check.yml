@@ -21,8 +21,8 @@ jobs:
           node-version: '22'
       - name: Restore tested Rainward v0.8 patch
         run: |
-          cat .rainward-v08-patch-* | base64 -d > /tmp/rainward-v08.patch.xz
-          echo '80963020ae2ce2b58ddb562ea1ce0e040d4f7e4549055e1e0f53a6af6782d887  /tmp/rainward-v08.patch.xz' | sha256sum -c -
+          cat .rainward-v08-patch-* | tr -d '\r\n ' | base64 -d > /tmp/rainward-v08.patch.xz
+          xz -t /tmp/rainward-v08.patch.xz
           xz -dc /tmp/rainward-v08.patch.xz > /tmp/rainward-v08.patch
           git apply --check /tmp/rainward-v08.patch
           git apply /tmp/rainward-v08.patch
