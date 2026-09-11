@@ -7,9 +7,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-concurrency:
-  group: rainward-reclaimed-${{ github.ref }}
-  cancel-in-progress: true
 jobs:
   integrate:
     runs-on: ubuntu-latest
@@ -19,13 +16,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Restore tested Rainward v0.8 patch
+      - name: Restore Rainward v0.8 source patch
         run: |
-          cat .rainward-v08-patch-* | tr -d '\r\n ' | base64 -d > /tmp/rainward-v08.patch.xz
-          xz -t /tmp/rainward-v08.patch.xz
-          xz -dc /tmp/rainward-v08.patch.xz > /tmp/rainward-v08.patch
-          git apply --check /tmp/rainward-v08.patch
-          git apply /tmp/rainward-v08.patch
+          python - <<'PY'
+          from pathlib import Path
+          import base64, lzma
+          data=''.join(p.read_text() for p in sorted(Path('.').glob('.rainward-v08-patch-*')))
+          Path('/tmp/rainward-v08.patch').write_bytes(lzma.decompress(base64.b64decode(data, validate=True)))
+          PY
+          git apply --verbose /tmp/rainward-v08.patch
       - name: Verify upgraded source
         run: |
           for file in rainward/*.mjs; do node --check "$file"; done
