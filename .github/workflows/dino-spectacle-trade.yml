@@ -4,12 +4,10 @@ on:
     branches: [master, dino-atlas-spectacle-trade-20260911]
     paths:
       - 'dino-atlas/**'
-      - '.github/workflows/dino-spectacle-trade.yml'
   pull_request:
     branches: [master]
     paths:
       - 'dino-atlas/**'
-      - '.github/workflows/dino-spectacle-trade.yml'
   workflow_dispatch:
 permissions:
   contents: read
