@@ -22,9 +22,10 @@ export function createMenuNavigation(E){
  function pulse(axis,value,dt,fn){const s=Math.abs(value)>.55?Math.sign(value):0,v=repeat[axis];if(!s){v.sign=0;v.time=0;return;}if(s!==v.sign){v.sign=s;v.time=.34;fn(s);}else{v.time-=dt;if(v.time<=0){v.time=.12;fn(s);}}}
  function update(pad,dt){const r=enter();const hint=document.getElementById('controller-menu-hint');if(hint)hint.hidden=!pad.connected||!r;
   if(!pad.connected||!r)return;
+  const menuOnly=r.id==='pause'&&document.getElementById('retry')?.disabled;
   if(pad.actions?.length||Math.abs(pad.nav||0)>.55||Math.abs(pad.navX||0)>.55||Math.abs(pad.scroll||0)>.2||pad.prevTab||pad.nextTab){usingPad=true;document.body.classList.add('using-controller');const all=items(r);focus(current(r,all),false);}
-  if(pad.back){E.closePanel();return;}if(pad.actions?.includes('pause')){E.menuButton();return;}if(pad.actions?.includes('map')){E.viewButton();return;}
-  if(pad.prevTab||pad.nextTab){E.tab(pad.nextTab?1:-1);return;}
+  if(pad.back){E.closePanel();return;}if(pad.actions?.includes('pause')){E.menuButton();return;}if(pad.actions?.includes('map')){if(!menuOnly)E.viewButton();return;}
+  if(pad.prevTab||pad.nextTab){if(!menuOnly)E.tab(pad.nextTab?1:-1);return;}
   pulse('y',pad.nav||0,dt,move);pulse('x',pad.navX||0,dt,adjust);
   if(Math.abs(pad.scroll||0)>.15)r.scrollTop+=pad.scroll*dt*600;
   if(pad.confirm)activate();
