@@ -39,7 +39,10 @@ export class RangerInput{
   if(this.neutral){if(!active)this.neutral=false;return;}if(active)this.setDevice('gamepad');
   if(root){
    if(edges[BUTTON.B]||edges[BUTTON.MENU])this.action('back');else if(edges[BUTTON.VIEW])this.action('map');else if(edges[BUTTON.A])this.activate();else if(edges[BUTTON.LB])this.action('tabPrev');else if(edges[BUTTON.RB])this.action('tabNext');
-   const y=deadzone(p.axes?.[1]),x=deadzone(p.axes?.[0]),dir=buttons[BUTTON.UP]||y<-.55?-1:buttons[BUTTON.DOWN]||y>.55?1:0,side=buttons[BUTTON.LEFT]||x<-.65?-1:buttons[BUTTON.RIGHT]||x>.65?1:0,token=dir||side*2;
+   // D-pad is intentionally edge-triggered: one press equals one focus/value step.
+   // The analog left stick keeps held-repeat for fast navigation through long menus.
+   if(edges[BUTTON.UP])this.navigate(-1);else if(edges[BUTTON.DOWN])this.navigate(1);else if(edges[BUTTON.LEFT])this.adjust(-1);else if(edges[BUTTON.RIGHT])this.adjust(1);
+   const y=deadzone(p.axes?.[1]),x=deadzone(p.axes?.[0]),dir=y<-.55?-1:y>.55?1:0,side=x<-.65?-1:x>.65?1:0,token=dir||side*2;
    if(token){this.repeatClock-=dt;if(token!==this.repeatDirection||this.repeatClock<=0){if(dir)this.navigate(dir);else this.adjust(side);this.repeatClock=token!==this.repeatDirection?.32:.12;}}else this.repeatClock=0;this.repeatDirection=token;
    const scroll=deadzone(p.axes?.[3]);if(Math.abs(scroll)>.1)root.scrollTop+=scroll*dt*500;return;
   }
