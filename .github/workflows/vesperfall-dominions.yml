@@ -2,72 +2,45 @@ name: Vesperfall Hollow Dominions
 on:
   push:
     branches: [vesperfall-hollow-dominions-20260911, master]
-    paths: ['vesperfall/**', '.github/workflows/vesperfall-dominions.yml', '.github/vesperfall-dominions-payload-*.txt']
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-dominions.yml']
   pull_request:
     paths: ['vesperfall/**', '.github/workflows/vesperfall-dominions.yml']
 permissions:
   contents: read
+defaults:
+  run:
+    shell: bash
 concurrency:
   group: vesperfall-dominions-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   acceptance:
     if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Apply checksummed source delta without touching other games
-        run: |
-          python - <<'PY'
-          import base64,hashlib,json,lzma
-          from pathlib import Path
-          parts=sorted(Path('.github').glob('vesperfall-dominions-payload-*.txt'))
-          if parts:
-            raw=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
-            assert hashlib.sha256(raw).hexdigest()=='3ea41a507f0aaad26ce51680de95b70b61e3dd586c630abb0bd954618b8c770b'
-            for change in json.loads(raw):
-              p=Path(change['path']);assert p.parts[0]=='vesperfall' and '..' not in p.parts
-              old=p.read_bytes() if p.exists() else b''
-              current=hashlib.sha256(old).hexdigest() if p.exists() else None
-              if current==change['sha256']:continue
-              assert current==change['before'],f'Source conflict: {p}'
-              text=old.decode('utf-8')
-              if 'content' in change:text=change['content']
-              else:
-                for a,b,value in reversed(change['ops']):text=text[:a]+value+text[b:]
-              data=text.encode('utf-8');assert hashlib.sha256(data).hexdigest()==change['sha256'],str(p)
-              p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);print('Applied',p)
-          PY
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Syntax and model regressions
         run: |
+          set -euo pipefail
           mkdir -p test-output
           for f in vesperfall/*.js; do node --check "$f"; done
           node --test vesperfall/tests/*.test.cjs | tee test-output/dominions-model.tap
-      - name: Commit integrated source to development branch only
-        if: github.event_name == 'push' && github.ref == 'refs/heads/vesperfall-hollow-dominions-20260911'
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add vesperfall
-          git rm --ignore-unmatch .github/vesperfall-dominions-payload-*.txt
-          if ! git diff --cached --quiet; then
-            git commit -m 'Integrate Vesperfall 0.7.0 Hollow Dominions with 78 passing model regressions'
-            git push origin HEAD:vesperfall-hollow-dominions-20260911
-          fi
+          python scripts/check-vesperfall.py
       - name: Install browser
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Exercise WebGL, Xbox, physical-draw emulation, spatial menus and AR restoration
+      - name: Exercise WebGL, Xbox, physical draw, spatial menus and AR restoration
         run: |
+          set -euo pipefail
           python -m http.server 4173 > test-output/server.log 2>&1 &
           timeout 780 python -u vesperfall/tests/dominions-browser.py | tee test-output/dominions-browser.log
+          test -s test-output/dominions/report.json
+          test ! -e test-output/dominions/failure.json
       - name: Bundle tested source and diagnostics
         if: always()
         run: |
@@ -95,7 +68,11 @@ jobs:
       - name: Exercise the actual public release with Xbox, VR and AR input emulation
         env:
           TEST_BASE_URL: https://v5ma.github.io
-        run: timeout 780 python -u vesperfall/tests/dominions-browser.py | tee test-output/dominions-public-browser.log
+        run: |
+          set -euo pipefail
+          timeout 780 python -u vesperfall/tests/dominions-browser.py | tee test-output/dominions-public-browser.log
+          test -s test-output/dominions/report.json
+          test ! -e test-output/dominions/failure.json
       - name: Open the real homepage game card and play
         env:
           TEST_BASE_URL: https://v5ma.github.io
