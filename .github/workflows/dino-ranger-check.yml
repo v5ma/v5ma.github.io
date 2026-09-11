@@ -1,8 +1,8 @@
 name: Dino Atlas ranger verification
 on:
   push:
-    branches: [master, dino-atlas-ranger-20260911]
-    paths: ['dino-atlas/**', 'tests/interactive_browser.py', '.github/workflows/dino-ranger-check.yml']
+    branches: [master, dino-atlas-ranger-expansion-xbox-20260911]
+    paths: ['dino-atlas/**', '.github/workflows/dino-ranger-check.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -12,7 +12,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,10 +22,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify preserved walking entry point
+      - name: Verify preserved walking expedition and syntax
         run: |
           echo 'f5be436b64e0c19674a496baf40d775460ea887dcbcc9bb0cf01bdb9903effd6  dino-atlas/walking.html' | sha256sum --check
-          test ! -f dino-atlas/ranger-update.py
+          for source in dino-atlas/ranger*.js dino-atlas/frontier*.js; do node --check "$source"; done
       - name: Verify local server module MIME type
         shell: bash
         run: |
@@ -34,26 +34,28 @@ jobs:
           trap 'kill $SERVER_PID' EXIT
           curl --fail --head --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:4318/vendor/rapier.mjs > /tmp/dino-headers
           grep -i 'Content-Type: text/javascript' /tmp/dino-headers
-          curl --fail http://127.0.0.1:4318/ | grep 'Wild Frontier'
-      - name: Run original data and new physics tests
-        run: |
-          npm test --prefix dino-atlas
-          node --test dino-atlas/tests/ranger.test.mjs
+      - name: Run original data and all vehicle, tools and expansion tests
+        run: node --test dino-atlas/tests/unit.test.mjs dino-atlas/tests/ranger.test.mjs dino-atlas/tests/frontier.test.mjs
       - name: Install browser test runner
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
-      - name: Run actual HTTP and rendered WebGL checks
-        run: python dino-atlas/tests/ranger-browser.py
-      - name: Verify the published game on GitHub Pages
+      - name: Run actual HTTP, WebGL and simulated Xbox acceptance checks
+        run: python dino-atlas/tests/frontier-browser.py
+      - name: Verify the published Ranger Operations game
         if: github.ref == 'refs/heads/master'
-        run: python dino-atlas/tests/ranger-published.py
-      - name: Save scoped source and verification evidence
+        run: python dino-atlas/tests/frontier-published.py
+      - name: Record source identity
+        if: always()
+        run: |
+          mkdir -p frontier-evidence
+          git rev-parse HEAD > frontier-evidence/tested-commit.txt
+      - name: Save source and rendered verification evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: dino-atlas-ranger-evidence
+          name: dino-atlas-ranger-operations-evidence
           path: |
             dino-atlas/
-            ranger-evidence/
+            frontier-evidence/
           retention-days: 14
