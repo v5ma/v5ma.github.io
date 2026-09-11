@@ -43,12 +43,12 @@ try:
         page.evaluate("localStorage.setItem('dino-atlas.progress.v1',JSON.stringify({version:1,observed:['coelophysis'],excavated:[],quizzes:[],notes:{coelophysis:'Preserve my original field note.'},digs:{}}))")
         page.click('#start-button');page.wait_for_timeout(600)
         start=state(page)['position']
-        page.keyboard.down('w');page.wait_for_function('window.__dinoRanger.state.position.z<40');page.keyboard.up('w');page.keyboard.down('Space');page.wait_for_timeout(900);page.keyboard.up('Space')
+        page.keyboard.down('w');page.wait_for_function('window.__dinoRanger.state.position.z<40');page.keyboard.up('w');page.keyboard.down('Space');page.wait_for_function('Math.abs(window.__dinoRanger.state.speed)<.6');page.keyboard.up('Space')
         check('Keyboard throttle physically moves the jeep',state(page)['position']['z']<start['z']-10)
         page.screenshot(path=str(OUT/'02-driving.png'))
         page.keyboard.press('r');page.wait_for_timeout(500)
         check('Recovery returns to the visitor center',abs(state(page)['position']['z']-51)<1)
-        page.keyboard.down('w');page.wait_for_timeout(850);page.keyboard.down('a');page.wait_for_timeout(750);page.keyboard.up('a');page.keyboard.up('w')
+        page.keyboard.down('w');page.wait_for_function('window.__dinoRanger.state.position.z<48');page.keyboard.down('a');page.wait_for_function('Math.abs(window.__dinoRanger.state.position.x)>.75');page.keyboard.up('a');page.keyboard.up('w')
         check('Keyboard steering changes the actual vehicle path',abs(state(page)['position']['x'])>.25)
         page.keyboard.press('Escape');paused=state(page)['position'];page.wait_for_timeout(500)
         check('Pause stops the simulation',abs(state(page)['position']['z']-paused['z'])<.01)
@@ -62,7 +62,7 @@ try:
         journal=page.evaluate("JSON.parse(localStorage.getItem('dino-atlas.progress.v1'))")
         check('Original journal notes survive new discoveries',journal['notes']['coelophysis']=='Preserve my original field note.' and 'diplodocus' in journal['observed'])
         warp(page,31,-20);interact(page);check('Relay restoration advances mission',state(page)['stage']==3)
-        warp(page,37,-31);page.keyboard.down('w');page.wait_for_function('window.__dinoRanger.state.position.z< -44');page.keyboard.up('w');page.keyboard.down('Space');page.wait_for_timeout(700);page.keyboard.up('Space')
+        warp(page,37,-31);page.keyboard.down('w');page.wait_for_function('window.__dinoRanger.state.position.z< -44');page.keyboard.up('w');page.keyboard.down('Space');page.wait_for_function('Math.abs(window.__dinoRanger.state.speed)<.6');page.keyboard.up('Space')
         check('The restored gate permits actual driving passage',state(page)['position']['z']< -44)
         page.screenshot(path=str(OUT/'05-northern-habitat.png'))
         warp(page,43,-51);interact(page);check('Recorder recovery advances mission',state(page)['stage']==4);page.locator('#info-dialog form button').click()
@@ -75,7 +75,7 @@ try:
         page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(500)
         check('Mobile page fits without horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
         check('Touch controls are visible',page.locator('[data-drive=forward]').is_visible())
-        warp(page,0,51);before=state(page)['position']['z'];b=page.locator('[data-drive=forward]').bounding_box();page.mouse.move(b['x']+b['width']/2,b['y']+b['height']/2);page.mouse.down();page.wait_for_timeout(1100);page.mouse.up()
+        warp(page,0,51);before=state(page)['position']['z'];b=page.locator('[data-drive=forward]').bounding_box();page.mouse.move(b['x']+b['width']/2,b['y']+b['height']/2);page.mouse.down();page.wait_for_function('(z)=>window.__dinoRanger.state.position.z<z-1',arg=before);page.mouse.up()
         check('Touch-style pointer controls move the real jeep',state(page)['position']['z']<before-.5)
         page.screenshot(path=str(OUT/'09-mobile.png'))
         check('No missing HTTP assets',not failed);check('No external runtime requests',not external);check('No application JavaScript errors',not report['errors'])
@@ -90,6 +90,10 @@ try:
         browser.close()
 except Exception as error:
     report['failure']=str(error)
+    try:
+        report['failure_state']=state(page)
+        page.screenshot(path=str(OUT/'failure.png'))
+    except Exception:pass
     raise
 finally:
     (OUT/'report.json').write_text(json.dumps(report,indent=2))
