@@ -1,10 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 import {ALL_ANIMALS,SPECIES,PENS,OUTPOSTS,TOOLS,WORLD_RADIUS,DOCK,FRONTIER_KEY,emptyFrontier,sanitizeFrontier,saveFrontier,readFrontier,isWater,penState,insidePen,createResident,stepResident,deterAnimal,operations} from '../frontier-data.js';
 import {initPhysics,ParkPhysics,rotateVector} from '../ranger-physics.js';
 import {Fleet} from '../frontier-vehicles.js';
 import {RangerTools} from '../ranger-tools.js';
-import {deadzone,padMotion} from '../ranger-input.js';
+import {BUTTON,deadzone,padMotion} from '../ranger-input.js';
+import {sanitizeAudioSettings} from '../ranger-audio.js';
 import {makeResident} from '../frontier-art.js';
 import * as T from '../vendor/three.module.js';
 await initPhysics();
@@ -21,8 +23,10 @@ test('both tools guide animals away from the ranger and suppress pursuit',()=>{f
 test('stocked feeder draws the outside resident through its real gate',()=>{const s=emptyFrontier(),p=PENS[0],ps=penState(s,p);ps.fed=true;const a=createResident(ALL_ANIMALS.find(a=>a.uid===p.id+'-3'),0);assert.equal(insidePen(a,p),false);for(let i=0;i<2200;i++)stepResident(a,{x:0,y:1,z:0},1/60,i/60,s);assert.equal(insidePen(a,p,1),true);});
 test('a closed pen blocks an animal from crossing its fence',()=>{const s=emptyFrontier(),p=PENS[0];penState(s,p).open=false;const a=createResident(ALL_ANIMALS.find(a=>a.uid===p.id+'-0'),0);a.x=p.x+p.hx-3;a.z=p.z;deterAnimal(a,{x:a.x-5,z:a.z},'water');for(let i=0;i<120;i++)stepResident(a,{x:0,y:1,z:0},1/60,i/60,s);assert.ok(insidePen(a,p));});
 test('all expanded species have finite, articulated, batched geometry',()=>{for(const s of SPECIES){const m=makeResident(s),b=new T.Box3().setFromObject(m);assert.ok(Number.isFinite(b.max.y));assert.ok(b.max.y>1);assert.ok(m.userData.legs.length>=2);let meshes=0;m.traverse(o=>{if(o.isMesh)meshes++;});assert.ok(meshes<30,'batched '+s.id);}});
-test('controller deadzones reject drift and nonfinite input',()=>{assert.equal(deadzone(.1),0);assert.equal(deadzone(NaN),0);assert.equal(deadzone(1),1);assert.equal(deadzone(-1),-1);});
+test('controller deadzones reject drift and Xbox face buttons reserve X for reload and Y for vehicles',()=>{assert.equal(deadzone(.1),0);assert.equal(deadzone(NaN),0);assert.equal(deadzone(1),1);assert.equal(deadzone(-1),-1);assert.equal(BUTTON.A,0);assert.equal(BUTTON.B,1);assert.equal(BUTTON.X,2);assert.equal(BUTTON.Y,3);});
 test('mounted aim/fire does not accelerate, and foot/flight triggers have distinct roles',()=>{const p={axes:[.5,0,0,0],buttons:Array.from({length:17},()=>({value:0}))};p.buttons[7].value=1;assert.equal(padMotion(p,'jeep').throttle,1);assert.equal(padMotion(p,'foot').fire,true);assert.equal(padMotion(p,'helicopter').climb,1);p.buttons[4].value=1;assert.equal(padMotion(p,'jeep').throttle,0);assert.equal(padMotion(p,'jeep').fire,true);assert.equal(padMotion(p,'helicopter').climb,0);});
+test('audio mix settings are bounded and safe across corrupt saves',()=>{assert.deepEqual(sanitizeAudioSettings(null),{version:1,enabled:true,master:.78,music:.62,sfx:.9,ambience:.62});assert.deepEqual(sanitizeAudioSettings({version:1,enabled:false,master:9,music:-4,sfx:.4,ambience:Infinity}),{version:1,enabled:false,master:1,music:0,sfx:.4,ambience:.62});});
+test('active game code does not use native alert, confirm or prompt dialogs',async()=>{const sources=await Promise.all(['../ranger.js','../ranger-input.js','../ranger-audio.js'].map(p=>readFile(new URL(p,import.meta.url),'utf8')));for(const text of sources){assert.doesNotMatch(text,/\bwindow\.(alert|confirm|prompt)\s*\(/);assert.doesNotMatch(text,/(^|[^\w.])(alert|confirm|prompt)\s*\(/m);}});
 test('player exits the jeep and boards the helicopter without replacing the vehicle',()=>{const {p,f}=setup();assert.ok(f.board());assert.equal(f.mode,'foot');f.person.setActive(true,{x:19,y:1,z:58});tick(p,f,5);assert.ok(f.board());assert.equal(f.mode,'helicopter');assert.equal(f.vehicles.length,4);p.world.free();});
 test('helicopter actually ascends and refuses an airborne exit',()=>{const {p,f}=setup();f.active='helicopter';tick(p,f,130,{climb:1});assert.ok(f.position.y>10);assert.equal(f.board(),false);assert.equal(f.mode,'helicopter');const start={...f.position};tick(p,f,90,{x:1});assert.ok(f.position.x>start.x+5);p.world.free();});
 test('patrol boat floats and moves within navigable water',()=>{const {p,f}=setup();f.active='boat';const start={...f.position};tick(p,f,140,{throttle:1});assert.ok(Math.abs(f.position.x-start.x)>8);assert.ok(isWater(f.position.x,f.position.z));assert.ok(f.position.y>.3&&f.position.y<1.4);p.world.free();});
