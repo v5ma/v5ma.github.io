@@ -1,0 +1,29 @@
+name: Vesperfall Resonant Hunt
+on:
+  push:
+    branches: [vesperfall-resonant-hunt-20260911]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-resonant.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            vesperfall
+            .github/workflows
+      - run: git rev-parse HEAD > source-revision.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vesperfall-resonant-source
+          include-hidden-files: true
+          path: |
+            vesperfall/
+            .github/workflows/
+            index.html
+            package.json
+            package-lock.json
+            source-revision.txt
+          retention-days: 7
