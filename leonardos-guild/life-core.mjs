@@ -55,9 +55,9 @@ export function done(l,id){const q=qmap.get(id);return !!q&&l.quests[id]===q.sta
 export function questStatus(s,q){const n=s.life.quests[q.id]||0;return {n,done:done(s.life,q.id),available:q.requires.every(id=>done(s.life,id)),target:n>0&&n<=q.stages.length?q.stages[n-1][0]:q.giver,text:done(s.life,q.id)?'Commission complete':n>0?q.stages[n-1][1]:'Speak with '+pmap.get(q.giver).name};}
 export function grant(s,id,xp,florins=0){if(s.life.paid.includes(id))return false;const was=level(s.life);s.life.paid.push(id);s.life.xp+=xp;s.credits+=florins;
  if(level(s.life)>was)notify(s,`Level ${level(s.life)}! Open your notebook to spend an attribute point.`,'level-up',{level:level(s.life)});return true;}
-export function roomAt(s,w){if(s.life.inside)return w.rooms.find(r=>r.id===s.life.inside);return w.rooms.find(r=>Math.abs(s.x-r.x)<r.hx-.25&&Math.abs(s.z-r.z)<r.hz-.25)||null;}
+export function roomAt(s,w){if(s.doors?.level)return w.rooms.find(r=>r.id===s.doors.room)||null;if(s.life.inside)return w.rooms.find(r=>r.id===s.life.inside);return w.rooms.find(r=>Math.abs(s.x-r.x)<r.hx-.25&&Math.abs(s.z-r.z)<r.hz-.25)||null;}
 export function roomBlocked(s,w,x,z,radius){const r=w.rooms.find(r=>r.id===s.life.inside);if(!r)return true;return Math.abs(x-r.x)>r.hx-radius-.4||Math.abs(z-r.z)>r.hz-radius-.4;}
-export function sameSpace(s,o){return (o.inside||null)===(s.life.inside||null);}
+export function sameSpace(s,o){return !s.doors?.level&&(o.inside||null)===(s.life.inside||null);}
 export function personAt(p,s){if(s.life.partner===p.id&&s.life.flags.garden)return {...p,x:18,z:464,room:null};return p;}
 export function targets(s,w){
  const list=PEOPLE.map(p=>({...personAt(p,s),type:'person'})).concat(OBJECTS.map(p=>({...p,type:'object'})),CATS.map(p=>({...p,type:'cat',...(p.id==='pippa'&&s.life.cat?{x:s.life.petX,z:s.life.petZ}:{})})));
@@ -136,7 +136,7 @@ export function use(s,w,id,action){
 export function spend(s,attribute){if(!Object.hasOwn(ATTRIBUTES,attribute)||points(s.life)<=0)return false;s.life.attrs[attribute]++;notify(s,ATTRIBUTES[attribute]+' improved.','attribute',{attribute});return true;}
 export function cast(s){const l=s.life;if(!l.flags.lantern){notify(s,'Ada can teach Lantern after A Light Below.');return false;}if(l.focus<18||l.spellCD>0){notify(s,'Lantern needs 18 focus and a short rest between casts.');return false;}l.focus-=18;l.spellCD=7;l.aura=7+1.5*l.attrs.ingenuity;notify(s,'LANTERN / hidden ink and old markings become visible.','magic');return true;}
 export function hitRocco(s,w){if(s.life.inside!=='inn'||s.life.flags.rocco||dist(s,PEOPLE.find(p=>p.id==='rocco'))>3.5)return false;s.life.enemies.rocco=Math.max(0,s.life.enemies.rocco-(s.upgraded?35:24));if(!s.life.enemies.rocco){s.life.flags.rocco=true;notify(s,'Rocco yields. Present your warrant and evidence to close the investigation.','town-duel');}return true;}
-export function lifeStep(s,w,input,dt){const l=s.life;l.focus=Math.min(stats(s).maxFocus,l.focus+dt*.9);l.aura=Math.max(0,l.aura-dt);l.spellCD=Math.max(0,l.spellCD-dt);
+export function lifeStep(s,w,input,dt){const l=s.life;l.focus=Math.min(stats(s).maxFocus,l.focus+dt*.9);l.aura=Math.max(0,l.aura-dt);l.spellCD=Math.max(0,l.spellCD-dt);if(s.doors?.level)return;
  for(const id of s.deliveries)grant(s,id,15);if(s.completed)grant(s,'first-folio',150);
  const room=roomAt(s,w);if(room&&!l.visits.includes(room.id)){l.visits.push(room.id);notify(s,'Discovered '+room.name,'interior',{id:room.id});}
  if(l.cat&&!l.inside){const d=Math.hypot(l.petX-s.x,l.petZ-s.z);if(d>2.5){const step=Math.min(d-2.5,dt*8),dx=(s.x-l.petX)/d*step,dz=(s.z-l.petZ)/d*step;const blocked=(x,z)=>w.colliders.some(b=>Math.abs(x-b.x)<b.hx+.17&&Math.abs(z-b.z)<b.hz+.17)||(!l.flags.garden&&Math.abs(x)<7.3&&Math.abs(z-407)<1.7);if(!blocked(l.petX+dx,l.petZ))l.petX+=dx;if(!blocked(l.petX,l.petZ+dz))l.petZ+=dz;}}

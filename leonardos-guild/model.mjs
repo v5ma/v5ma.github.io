@@ -1,3 +1,4 @@
+import {expandDoors,freshDoors,saveDoors,doorsBlocked,doorsStep,hitDoorEnemy} from './doors-core.mjs';
 import {cityState,saveCity,cityStep} from './city-core.mjs';
 import {cycleState,saveCycle,cycleStep,cycleModifiers,cancelRoadTest} from './cycle-core.mjs';
 import {streetState,streetSave,stepStreet} from './street-core.mjs';
@@ -5,7 +6,7 @@ import {enhanceWorld,initLife,saveLife,lifeStep,roomBlocked,roomAt,stats,hitRocc
 /* Leonardo’s Guild / first Renaissance commission. Deterministic, renderer-independent simulation.
  * Coordinates are metres; fixed-step driver calls step() at 60 Hz. All mechanisms
  * is fictional world-state interaction; no network or account APIs are used. */
-export const VERSION='0.6.0';
+export const VERSION='0.7.0';
 export const SAVE_KEY='svgn.leonardos-guild.v1';
 export const LIMITS={x:148,zMin:-26,zMax:406};
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -32,19 +33,19 @@ export function makeWorld(){
  const depot={x:-10,z:2},garage={x:4.3,z:228},newsroom={x:80,z:356};
  colliders.push({id:'kiosk',x:-15,z:1,hx:3.3,hz:3.3},{id:'newsroom',x:107,z:351,hx:12,hz:12});
  const shop={x:11,z:170},bandit={x:80,z:330};
- return enhanceWorld({shop,bandit,houses,colliders,mailboxes,trees,props,gates,nodes,depot,garage,newsroom,roads:[-80,0,80],crossings:[140,240,340]});
+ return expandDoors(enhanceWorld({shop,bandit,houses,colliders,mailboxes,trees,props,gates,nodes,depot,garage,newsroom,roads:[-80,0,80],crossings:[140,240,340]}));
 }
 export function newState(saved=null){
  const s={time:0,steps:0,mode:'bike',x:2,z:-6,yaw:0,speed:0,lift:0,vy:0,health:100,inv:0,papers:20,credits:0,score:0,deliveries:new Set(),mission:0,relay:false,scan:0,scanCD:0,signalHold:0,hackProgress:0,trace:0,completed:false,clock:0,throwCD:0,toast:'',toastT:0,events:[],shots:[],collisions:0,folio:false,defeated:false,upgraded:false,attackCD:0,attackT:0,guarding:false,banditHP:100,banditWindup:0,banditCooldown:1,banditPhase:'idle',vehicle:{bike:{x:2,z:-6,yaw:0},car:{x:4.3,z:228,yaw:0}},pedestrians:[],traffic:[],distance:0};
  for(let i=0;i<18;i++)s.pedestrians.push({id:i,x:(i%3-1)*80+(i%2?10.8:-10.8),z:30+i*19%340,yaw:i%2?0:Math.PI,phase:i*1.3});
  for(let i=0;i<7;i++)s.traffic.push({id:i,x:(i%3-1)*80+(i%2?3.1:-3.1),z:45+i*53%345,dir:i%2?1:-1,speed:0});
  if(saved){for(const k of ['credits','score','relay','completed','folio','defeated','upgraded'])s[k]=saved[k];s.deliveries=new Set(saved.deliveries);s.banditHP=s.defeated?0:100;s.mission=s.completed?4:s.folio?3:s.relay&&s.deliveries.size>=4?2:s.deliveries.size>=4?1:0;}
- initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);s.cycle=cycleState(saved?.cycle);return s;
+ initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);s.cycle=cycleState(saved?.cycle);s.doors=freshDoors(saved?.doors);return s;
 }
 export function readSave(raw,world){
- try{if(!raw||raw.length>12000)return null;const v=JSON.parse(raw),ids=new Set(world.mailboxes.map(b=>b.id));if(v.version!==2||!Number.isInteger(v.credits)||v.credits<0||v.credits>10000000||!Number.isInteger(v.score)||v.score<0||v.score>10000000||!Array.isArray(v.deliveries)||v.deliveries.length>64||!v.deliveries.every(id=>ids.has(id))||typeof v.relay!=='boolean'||typeof v.completed!=='boolean'||!['folio','defeated','upgraded'].every(k=>typeof v[k]==='boolean')||v.folio&&!v.defeated||v.completed&&!v.folio)return null;return {...v,deliveries:[...new Set(v.deliveries)]};}catch{return null;}
+ try{if(!raw||raw.length>32768)return null;const v=JSON.parse(raw),ids=new Set(world.mailboxes.map(b=>b.id));if(v.version!==2||!Number.isInteger(v.credits)||v.credits<0||v.credits>10000000||!Number.isInteger(v.score)||v.score<0||v.score>10000000||!Array.isArray(v.deliveries)||v.deliveries.length>64||!v.deliveries.every(id=>ids.has(id))||typeof v.relay!=='boolean'||typeof v.completed!=='boolean'||!['folio','defeated','upgraded'].every(k=>typeof v[k]==='boolean')||v.folio&&!v.defeated||v.completed&&!v.folio)return null;return {...v,deliveries:[...new Set(v.deliveries)]};}catch{return null;}
 }
-export function saveData(s){return {version:2,cycle:saveCycle(s.cycle),city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
+export function saveData(s){return {version:2,doors:saveDoors(s.doors),cycle:saveCycle(s.cycle),city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
 export function tell(s,text){s.toast=text;s.toastT=4;}
 function event(s,type,data={}){s.events.push({type,step:s.steps,...data});if(s.events.length>160)s.events.shift();}
 export function activeTarget(s,w){
@@ -60,6 +61,7 @@ export function missionText(s){return [
  ][s.mission];}
 function circleBox(x,z,r,b){return Math.hypot(x-clamp(x,b.x-b.hx,b.x+b.hx),z-clamp(z,b.z-b.hz,b.z+b.hz))<r;}
 export function blocked(x,z,r,w,s,ignoreTraffic=false){
+ if(s.doors?.level)return doorsBlocked(s,w,x,z,r);
  if(s.life?.inside)return roomBlocked(s,w,x,z,r);
  const bounds=w.limits||LIMITS;
  if(x<-bounds.x+r||x>bounds.x-r||z<bounds.zMin+r||z>bounds.zMax-r)return true;
@@ -85,7 +87,7 @@ export function throwPaper(s,w,side){
 export function scan(s){if(s.scanCD>0)return false;s.scan=7;s.scanCD=2;event(s,'scan');tell(s,'INGENIO / nearby mechanisms revealed. Stop and hold H to operate.');return true;}
 export function nearestNode(s,w){return w.nodes.filter(n=>distance(s,n)<=n.range).sort((a,b)=>distance(s,a)-distance(s,b))[0]||null;}
 export function enterExit(s,w){
- if(s.life?.inside||s.mode==='foot'&&roomAt(s,w)){tell(s,'Leave the room on foot before mounting a vehicle.');return false;}
+ if(s.doors?.level||s.life?.inside||s.mode==='foot'&&roomAt(s,w)){tell(s,'Leave the room on foot before mounting a vehicle.');return false;}
  if(Math.abs(s.speed)>2){tell(s,'Slow down before getting off.');return false;}
  if(s.mode!=='foot'){
   const v=s.vehicle[s.mode];Object.assign(v,{x:s.x,z:s.z,yaw:s.yaw});
@@ -99,7 +101,7 @@ export function enterExit(s,w){
  tell(s,'Walk beside your bicycle or Leonardo’s pedal carriage to mount.');return false;
 }
 export function refill(s){s.papers=stats(s).maxPapers;s.health=stats(s).maxHealth;tell(s,'Fresh letters, restored health and a repaired invention.');event(s,'refill');}
-export function recover(s){cancelRoadTest(s);if(s.life)s.life.inside=null;s.mode='bike';s.x=2;s.z=-6;s.yaw=0;s.speed=0;s.lift=s.vy=0;s.vehicle.bike={x:2,z:-6,yaw:0};refill(s);event(s,'recover');}
+export function recover(s){cancelRoadTest(s);if(s.life)s.life.inside=null;if(s.doors){s.doors.level=0;s.doors.room=null;s.doors.dodge=0;}s.mode='bike';s.x=2;s.z=-6;s.yaw=0;s.speed=0;s.lift=s.vy=0;s.vehicle.bike={x:2,z:-6,yaw:0};refill(s);event(s,'recover');}
 function move(s,w,dx,dz){const r=s.mode==='car'?1.22:s.mode==='bike'?.5:.33,n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.4));let hit=false;
  for(let k=0;k<n;k++){if(!blocked(s.x+dx/n,s.z,r,w,s))s.x+=dx/n;else hit=true;if(!blocked(s.x,s.z+dz/n,r,w,s))s.z+=dz/n;else hit=true;}
  if(hit){if(s.inv<=0&&Math.abs(s.speed)>4){s.health=Math.max(0,s.health-12);s.inv=1.8;s.collisions++;s.trace=Math.min(1,s.trace+.12);event(s,'collision');tell(s,'Mind the corners. The workshop can repair your invention.');}s.speed*=.45;}
@@ -107,7 +109,7 @@ function move(s,w,dx,dz){const r=s.mode==='car'?1.22:s.mode==='bike'?.5:.33,n=Ma
 }
 function traffic(s,dt){for(const car of s.traffic){const next=car.z+(car.dir>0?14:-14),nearSignal=Math.abs(next-140)<12||Math.abs(next-340)<12,red=Math.floor(s.time/8)%2===1&&s.signalHold<=0;const leader=s.traffic.some(other=>other!==car&&Math.abs(other.x-car.x)<1.5&&(other.z-car.z)*car.dir>0&&(other.z-car.z)*car.dir<11);car.speed+=( (nearSignal&&red||leader?0:5.5)-car.speed)*Math.min(1,dt*2.5);car.z+=car.dir*car.speed*dt;if(car.z>398)car.z=-18;if(car.z< -20)car.z=396;}}
 export function step(s,w,input,dt){
- if(!Number.isFinite(dt)||dt<=0||dt>.05)throw Error('step expects dt in (0, 0.05]');if(s.life?.inside){stepBasement(s,w,input,dt);return;}s.time+=dt;s.steps++;
+ if(!Number.isFinite(dt)||dt<=0||dt>.05)throw Error('step expects dt in (0, 0.05]');if(s.doors?.level||s.life?.inside){stepBasement(s,w,input,dt);return;}s.time+=dt;s.steps++;
  for(const k of['inv','throwCD','scan','scanCD','signalHold','toastT'])s[k]=Math.max(0,s[k]-dt);s.trace=Math.max(0,s.trace-dt*.013);
  const throttle=clamp(input.throttle||0,-1,1),steer=clamp(input.steer||0,-1,1),old={x:s.x,z:s.z};
  if(s.mode==='foot'){
@@ -118,7 +120,7 @@ export function step(s,w,input,dt){
   if(input.brake)s.speed*=Math.exp(-dt*(car?3.5:5*tuning.brake));
   s.speed=clamp(s.speed,car?-9:-4,top);s.yaw-=steer*(car?1.2:1.7)*clamp(Math.abs(s.speed)/5,0,1.2)*Math.sign(s.speed||1)*dt;
  }
- const f=headingVector(s.yaw);move(s,w,f.x*s.speed*dt,f.z*s.speed*dt);s.distance+=distance(old,s);
+ const f=headingVector(s.yaw);move(s,w,f.x*(s.doors.dodge>0?9:s.speed)*dt,f.z*(s.doors.dodge>0?9:s.speed)*dt);s.distance+=distance(old,s);
  if(input.jump&&s.mode!=='car'&&s.lift===0){s.vy=s.mode==='bike'?4.4:5;event(s,'jump');}
  if(s.lift>0||s.vy>0){s.vy-=12*dt;s.lift=Math.max(0,s.lift+s.vy*dt);if(s.lift===0)s.vy=0;}
  if(s.mode!=='foot')Object.assign(s.vehicle[s.mode],{x:s.x,z:s.z,yaw:s.yaw});
@@ -140,7 +142,7 @@ export function step(s,w,input,dt){
   else if(s.mission===3&&distance(s,w.depot)<8){s.completed=true;s.mission=4;s.score+=500;s.credits+=200;event(s,'complete');tell(s,'COMMISSION COMPLETE / Leonardo welcomes you to the guild.');}
  }
  combatStep(s,w,input,dt);
- lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);cycleStep(s,old,dt);
+ lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);cycleStep(s,old,dt);doorsStep(s,w,dt);
  if(distance(s,w.depot)<8&&Math.abs(s.speed)<1&&input.hack&&s.toastT<1){refill(s);}
  traffic(s,dt);
  for(const p of s.pedestrians){const away=distance(p,s)<3&&Math.abs(s.speed)>2;const dir=p.id%2?1:-1;p.z+=dir*dt*(away?3.3:1.1);p.phase+=dt*(away?10:3);if(p.z>397)p.z=5;if(p.z<2)p.z=395;}
@@ -157,6 +159,8 @@ export function trade(s,w,item){
 export function attack(s,w){
  if(s.mode!=='foot'){tell(s,'Dismount with F to use your staff.');return false;}
  if(s.attackCD>0)return false;s.attackCD=.6;s.attackT=.25;event(s,'swing');
+ if(hitDoorEnemy(s,w))return true;
+ if(s.doors?.level)return false;
  if(hitRocco(s,w))return true;
  if(!s.life?.inside&&!s.defeated&&distance(s,w.bandit)<3.5){s.banditHP=Math.max(0,s.banditHP-(s.upgraded?50:34));event(s,'hit');
   if(s.banditHP===0){s.defeated=true;s.banditPhase='yielded';s.banditWindup=0;s.score+=150;event(s,'duel-won');tell(s,'The guard yields. Retrieve the folio beyond the crossing.');}
@@ -174,6 +178,6 @@ function combatStep(s,w,input,dt){
 function stepBasement(s,w,input,dt){
  s.time+=dt;s.steps++;for(const k of ['inv','throwCD','scan','scanCD','toastT','attackCD','attackT'])s[k]=Math.max(0,s[k]-dt);
  const old={x:s.x,z:s.z};s.yaw-=clamp(input.steer||0,-1,1)*2.6*dt;s.speed+=(clamp(input.throttle||0,-1,1)*(input.boost?6:4.6)-s.speed)*Math.min(1,dt*12);s.guarding=!!input.guard;
- const f=headingVector(s.yaw);move(s,w,f.x*s.speed*dt,f.z*s.speed*dt);s.distance+=distance(old,s);s.lift=s.vy=0;
- lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);cycleStep(s,old,dt);if(s.health<=0){recover(s);tell(s,'The watch brings you back to the workshop. Your commissions are kept.');}
+ const f=headingVector(s.yaw);move(s,w,f.x*(s.doors.dodge>0?9:s.speed)*dt,f.z*(s.doors.dodge>0?9:s.speed)*dt);s.distance+=distance(old,s);if(input.jump&&s.lift<=.001){s.vy=3.5;s.lift=.002;}if(s.lift>0){s.vy-=12*dt;s.lift=Math.max(0,s.lift+s.vy*dt);}else s.vy=0;
+ lifeStep(s,w,input,dt);stepStreet(s,w,dt);cityStep(s,w,dt);cycleStep(s,old,dt);doorsStep(s,w,dt);if(s.health<=0){recover(s);tell(s,'The watch brings you back to the workshop. Your commissions are kept.');}
 }

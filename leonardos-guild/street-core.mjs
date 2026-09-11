@@ -19,7 +19,7 @@ export function streetState(raw){
 export function streetSave(s){return {version:1,progress:{...s.progress},done:[...s.done],discovered:[...s.discovered],choices:{...s.choices},clock:Math.floor(s.clock),tracked:s.tracked};}
 export function available(s,j){return !j.requires||(j.requires==='lantern'?s.life.flags.lantern:j.requires==='partner'?!!s.life.partner:done(s.life,j.requires));}
 export function currentSite(s,j){return STREET_MAP.get(j.sites[Math.min(s.street.progress[j.id]||0,j.sites.length-1)]);}
-export function inSpace(s,w,p){return (s.life.inside||null)===(p.inside||null)&&(!p.room||roomAt(s,w)?.id===p.room)&&(!p.garden||s.life.flags.garden);}
+export function inSpace(s,w,p){return !s.doors?.level&&(s.life.inside||null)===(p.inside||null)&&(!p.room||roomAt(s,w)?.id===p.room)&&(!p.garden||s.life.flags.garden);}
 export function nearby(s,w){if(Math.abs(s.speed)>1.7)return null;return STREET_SITES.filter(p=>inSpace(s,w,p)&&distance(p,s)<3).sort((a,b)=>distance(a,s)-distance(b,s))[0]||null;}
 export function eligibleAt(s,site){return STREET_JOBS.filter(j=>currentSite(s,j).id===site.id&&!s.street.done.includes(j.id));}
 export function streetTarget(s){const j=JOB_MAP.get(s.street.tracked);return j&&!s.street.done.includes(j.id)?{...currentSite(s,j),job:j.title}:null;}

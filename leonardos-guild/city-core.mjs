@@ -57,7 +57,7 @@ export function clockInfo(c){
     phase:night?'Night':minute<480?'Dawn':minute<1020?'Day':'Evening',daylight};
 }
 export function canVisit(s,w,p){
-  return (p.inside||null)===(s.life.inside||null)&&(!p.room||roomAt(s,w)?.id===p.room)&&(!p.garden||s.life.flags.garden);
+  return !s.doors?.level&&(p.inside||null)===(s.life.inside||null)&&(!p.room||roomAt(s,w)?.id===p.room)&&(!p.garden||s.life.flags.garden);
 }
 function isSafe(s,w){
   if(s.life.inside==='inn'&&!s.life.flags.rocco&&distance(s,{x:105,z:180})<5)return false;
@@ -163,7 +163,7 @@ export function cityStep(s,w,dt){
   const c=s.city;c.activeSeconds+=dt;c.minute=(c.minute+dt*(1440/2160))%1440;
   for(const key of ['mealCooldown','restCooldown','calloutT','calloutDelay'])c[key]=Math.max(0,c[key]-dt);
   if(c.calloutT===0)c.callout=null;
-  if(c.calloutDelay||s.life.inside||Math.abs(s.speed)>8)return;
+  if(c.calloutDelay||s.doors?.level||s.life.inside||Math.abs(s.speed)>8)return;
   const p=STREET_SITES.find(p=>p.person&&!c.invited.includes(p.id)&&distance(s,p)<8&&inSpace(s,w,p)&&STREET_JOBS.some(j=>currentSite(s,j).id===p.id&&available(s,j)&&!s.street.done.includes(j.id)));
   if(p){c.invited.push(p.id);c.callout={id:p.id,name:p.person,text:`${p.person}: A moment, neighbour? There is something here you could help with.`};c.calloutT=7;c.calloutDelay=40;}
 }
