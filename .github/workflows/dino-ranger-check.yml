@@ -12,7 +12,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 22
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,7 +34,7 @@ jobs:
           trap 'kill $SERVER_PID' EXIT
           curl --fail --head --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:4318/vendor/rapier.mjs > /tmp/dino-headers
           grep -i 'Content-Type: text/javascript' /tmp/dino-headers
-      - name: Run original data and all vehicle, tools and expansion tests
+      - name: Run original data and all vehicle, tools, controller and audio tests
         run: node --test dino-atlas/tests/unit.test.mjs dino-atlas/tests/ranger.test.mjs dino-atlas/tests/frontier.test.mjs
       - name: Install browser test runner
         run: |
@@ -42,6 +42,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Run actual HTTP, WebGL and simulated Xbox acceptance checks
         run: python dino-atlas/tests/frontier-browser.py
+      - name: Run focused audio mixer and controller-only modal checks
+        run: python dino-atlas/tests/audio-controller-browser.py
       - name: Verify the published Ranger Operations game
         if: github.ref == 'refs/heads/master'
         run: python dino-atlas/tests/frontier-published.py
