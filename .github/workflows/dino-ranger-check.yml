@@ -1,0 +1,59 @@
+name: Dino Atlas ranger verification
+on:
+  push:
+    branches: [master, dino-atlas-ranger-20260911]
+    paths: ['dino-atlas/**', 'tests/interactive_browser.py', '.github/workflows/dino-ranger-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dino-ranger-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify preserved walking entry point
+        run: |
+          echo 'f5be436b64e0c19674a496baf40d775460ea887dcbcc9bb0cf01bdb9903effd6  dino-atlas/walking.html' | sha256sum --check
+          test ! -f dino-atlas/ranger-update.py
+      - name: Verify local server module MIME type
+        shell: bash
+        run: |
+          PORT=4318 node dino-atlas/server.mjs &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          curl --fail --head --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:4318/vendor/rapier.mjs > /tmp/dino-headers
+          grep -i 'Content-Type: text/javascript' /tmp/dino-headers
+          curl --fail http://127.0.0.1:4318/ | grep 'Wild Frontier'
+      - name: Run original data and new physics tests
+        run: |
+          npm test --prefix dino-atlas
+          node --test dino-atlas/tests/ranger.test.mjs
+      - name: Install browser test runner
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Run actual HTTP and rendered WebGL checks
+        run: python dino-atlas/tests/ranger-browser.py
+      - name: Verify the published game on GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        run: python dino-atlas/tests/ranger-published.py
+      - name: Save scoped source and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dino-atlas-ranger-evidence
+          path: |
+            dino-atlas/
+            ranger-evidence/
+          retention-days: 14

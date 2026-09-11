@@ -44,7 +44,7 @@ with sync_playwright() as p:
         subprocess.run([sys.executable,str(ROOT/'tests/workshop_browser.py')],check=True,env={**os.environ,'WORKSHOP_SUITE':'authoring'})
         check((OUT/'workshop-authoring/report.json').exists(),'The current Workshop authoring, saves and imports pass')
 
-        page.goto(BASE+'/dino-atlas/index.html',wait_until='domcontentloaded')
+        page.goto(BASE+'/dino-atlas/walking.html',wait_until='domcontentloaded')
         page.wait_for_function('!!window.__dinoExpedition&&window.__dinoExpedition.ready',timeout=90000)
         check(page.evaluate('__dinoExpedition.state.mode==="3d"'),'Dino expedition initializes actual WebGL 3D')
         page.wait_for_timeout(400);visual(page,'#field-3d','dinosaur-3d-scene.png')
@@ -95,7 +95,7 @@ with sync_playwright() as p:
         mobile=phone.new_page();mobile.goto(BASE+'/index.html',wait_until='networkidle')
         check(not mobile.evaluate('document.documentElement.scrollWidth>innerWidth'),'Project homepage fits a phone viewport')
         mobile.screenshot(path=str(OUT/'homepage-mobile.png'),full_page=True)
-        mobile.goto(BASE+'/dino-atlas/index.html',wait_until='domcontentloaded');mobile.wait_for_function('!!window.__dinoExpedition')
+        mobile.goto(BASE+'/dino-atlas/walking.html',wait_until='domcontentloaded');mobile.wait_for_function('!!window.__dinoExpedition')
         mobile.locator('#mode-2d').tap();mobile.wait_for_timeout(200)
         check(not mobile.evaluate('document.documentElement.scrollWidth>innerWidth'),'Dinosaur UI fits a phone viewport')
         mobile.screenshot(path=str(OUT/'dinosaur-mobile.png'))
