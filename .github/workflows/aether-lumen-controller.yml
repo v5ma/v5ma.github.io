@@ -1,0 +1,48 @@
+name: Aether Lumen controller journey
+on:
+  pull_request:
+    paths: ['aether-reach/**', '.github/workflows/aether-lumen-controller.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aether-lumen-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  controller-journey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate the complete model, input and roof routes
+        run: |
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs
+          node aether-reach/tests/release-manifest.mjs
+      - name: Install real test browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Walk the game and every menu using the controller API
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/lumen-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/controller-journey.py
+      - name: Record exact tested source
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-lumen-controller-journey
+          path: aether-reach/test-output
+          retention-days: 30
