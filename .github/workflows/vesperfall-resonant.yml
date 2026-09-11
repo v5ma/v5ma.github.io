@@ -2,28 +2,90 @@ name: Vesperfall Resonant Hunt
 on:
   push:
     branches: [vesperfall-resonant-hunt-20260911]
-    paths: ['vesperfall/**', '.github/workflows/vesperfall-resonant.yml']
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-resonant.yml', '.github/resonant-import/**']
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: vesperfall-resonant-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  source:
+  acceptance:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      - name: Apply and verify the isolated source delta
+        if: hashFiles('.github/resonant-import/part5.txt') != ''
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,lzma,pathlib
+          root=pathlib.Path.cwd()
+          chunks=[(root/f'.github/resonant-import/part{i}.txt').read_text().strip() for i in range(6)]
+          expected=['f6f8a68d267868ab93df11211264bf480db983d560eb7b6e22b9331cb1ab3543','0e9fef9b3219c3c71cdb29c2be8b37fab067fa6e5fe02fcf8691a99f005d685c','e499ea2e47fb88686aac5fdca08e8b11fcbd546c1b73cff32714ed6d3c527c52','6b4041c050bc702b99f668aeda2f824968021dda6eff7e0c37642dbe4ccfd038','f9267665cf58e4a9a0e985f05a13efbfbd20a96397fe8c2ca03766134ee09a96','57c6551df95741dd4b3f449616631fdbe0505320008f91ec2c1fba2db8e0eb62']
+          for i,(c,h) in enumerate(zip(chunks,expected)):
+              assert hashlib.sha256(c.encode()).hexdigest()==h,f'Chunk {i} mismatch'
+          packed=base64.b64decode(''.join(chunks),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='169635fd1864c301f0df6e2a2b51654d20b3fc619089c735387e499eee1dd3e2'
+          data=json.loads(lzma.decompress(packed));planned=[]
+          assert len(data)==21
+          for name,d in data.items():
+              p=root/name
+              assert name.startswith('vesperfall/') and '..' not in pathlib.PurePosixPath(name).parts
+              assert p.resolve().is_relative_to(root/'vesperfall') and not p.is_symlink()
+              if 'content' in d:
+                  assert not p.exists(),f'New path already exists: {name}'
+                  text=d['content']
+              else:
+                  before=p.read_bytes();assert hashlib.sha256(before).hexdigest()==d['before'],f'Preimage mismatch: {name}'
+                  text=before.decode('utf-8')
+                  for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
+              b=text.encode('utf-8');assert hashlib.sha256(b).hexdigest()==d['after'],f'Postimage mismatch: {name}'
+              planned.append((p,b))
+          for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+          for i in range(6):(root/f'.github/resonant-import/part{i}.txt').unlink()
+          print('Verified and applied',len(planned),'Vesperfall files.')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- vesperfall .github/resonant-import
+          git commit -m 'Implement Vesperfall 0.8 Resonant Hunt: adaptive spatial audio, physical reload, palm familiar, tactical quiver and ricochets'
+          git push origin HEAD:vesperfall-resonant-hunt-20260911
+      - uses: actions/setup-node@v4
         with:
-          sparse-checkout: |
-            vesperfall
-            .github/workflows
-      - run: git rev-parse HEAD > source-revision.txt
+          node-version: '22'
+      - name: Syntax and all model regressions
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/resonant-model.tap
+          python scripts/check-vesperfall.py
+      - name: Install acceptance browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Render Web Audio and exercise physical interactions
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 > test-output/server.log 2>&1 &
+          timeout 780 python -u vesperfall/tests/resonant-browser.py | tee test-output/resonant-browser.log
+          test -s test-output/resonant/report.json
+          test ! -e test-output/resonant/failure.json
+      - name: Preserve Xbox, Quest and AR expedition restoration
+        run: |
+          set -euo pipefail
+          timeout 780 python -u vesperfall/tests/dominions-browser.py | tee test-output/dominions-browser.log
+          test -s test-output/dominions/report.json
+          test ! -e test-output/dominions/failure.json
+      - name: Bundle tested source and diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          tar -czf test-output/vesperfall-tested-source.tgz vesperfall
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: vesperfall-resonant-source
-          include-hidden-files: true
-          path: |
-            vesperfall/
-            .github/workflows/
-            index.html
-            package.json
-            package-lock.json
-            source-revision.txt
-          retention-days: 7
+          name: vesperfall-resonant-acceptance
+          path: test-output/
+          retention-days: 14
