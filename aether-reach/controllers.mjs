@@ -1,57 +1,56 @@
-/* Xbox-standard and XR inputs share actions, not synthetic keyboard events. */
+/* Controller-first input. Menus use fixed A/B/D-pad bindings even after remapping.
+ * A gamepad never needs pointer lock or an OS popup to play this game. */
 import {InputSampler,clamp} from './input-core.mjs';
+import {PAD_NAMES,PAD_ACTIONS,cleanControllerProfile,swapBinding} from './controller-profile.mjs';
+import {createMenuNavigator} from './ui-navigation.mjs';
 import {createXR} from './xr-session.mjs';
 export function installControllers(api){
- const sampler=new InputSampler();let lastDevice=null,frameInput=null,navLatch=false,horizontalLatch=false,lastActivity=0,lastMenu=null;
- const badge=document.createElement('span');badge.id='controller-status';badge.textContent='Xbox controller: press a button to connect';document.getElementById('masthead').append(badge);
- const controls=document.createElement('p');controls.className='fine';controls.textContent='Xbox: left stick moves; right stick looks; A jumps/releases; B deploys/folds glider in the air; Y interacts/hooks; X reloads; RT fires; LT aims; D-pad up/down swaps; D-pad right buys nearby; LB pulses; RB reverses; L-stick click boosts; View opens map; Menu pauses. D-pad / A / B navigates menus. VR: left stick moves; right stick snap-turns; right grip interacts; A jumps/releases then deploys/folds in the air; B reloads; right trigger fires; left trigger pulses; left grip reverses; X atlas; Y pauses.';document.getElementById('settings-dialog').insertBefore(controls,document.querySelector('#settings-dialog form'));
- const options=document.createElement('label');options.textContent='Controller look speed';const speed=document.createElement('input');speed.id='controller-look-speed';speed.type='range';speed.min='.5';speed.max='2.5';speed.step='.1';speed.value=api.settings.controllerSpeed??1;options.append(speed);document.querySelector('.settings-grid').append(options);speed.oninput=()=>{api.settings.controllerSpeed=Number(speed.value);api.saveSettings();};
- const invert=document.createElement('label');invert.innerHTML='<input id="controller-invert" type="checkbox"> Invert controller look';document.querySelector('.settings-grid').append(invert);invert.firstElementChild.checked=!!api.settings.invertY;invert.firstElementChild.onchange=()=>{api.settings.invertY=invert.firstElementChild.checked;api.saveSettings();};
- function currentMenu(){
-  const modal=[...document.querySelectorAll('dialog[open]')].at(-1),root=modal||(!api.playing()?document.getElementById('menu'):null);if(!root)return null;
-  const nodes=[...root.querySelectorAll('button,input,select,a[href]')].filter(e=>!e.disabled&&!e.hidden&&e.getClientRects().length&&e.id!=='enter-vr');
-  const items=nodes.map(e=>({element:e,label:(e.closest('label')?.textContent||e.getAttribute('aria-label')||e.textContent||'Control').trim()+(e.type==='checkbox'?' ['+(e.checked?'on':'off')+']':e.type==='range'?' '+e.value:e.tagName==='SELECT'?' ['+(e.selectedOptions?.[0]?.textContent||e.value)+']':''),focused:document.activeElement===e}));
-  return {root,title:root.querySelector('h1,h2')?.textContent||'Menu',description:root.querySelector('p:not(.eyebrow)')?.textContent||'',items};
- }
- const xr=createXR(api.view,{state:api.state,start:api.start,clear:reset,pause:api.pause,menu:()=>{
-  const m=currentMenu();if(m){const at=Math.max(0,m.items.findIndex(i=>i.focused)),start=Math.floor(at/5)*5; m.items=m.items.slice(start,start+5);m.items.push({element:document.getElementById('exit-vr'),label:'Exit VR',focused:document.activeElement?.id==='exit-vr'});}return m;
- },focus:e=>e.focus({preventScroll:true}),hint:api.hint});
- function reset(){sampler.reset();navLatch=false;horizontalLatch=false;frameInput=null;}
- function back(menu){if(menu?.root.id==='complete-dialog')document.getElementById('explore-more').click();else if(menu?.root.tagName==='DIALOG')menu.root.close();}
- function menuInput(m,data,pad){
-  const items=xr.active?[...m.items,{element:document.getElementById('exit-vr')}]:m.items;if(!items.length)return;
-  let index=items.findIndex(e=>e.element===document.activeElement);if(index<0){index=0;items[0].element.focus({preventScroll:true});}
-  const axis=data.menuAxis||data.move,up=pad?.buttons?.[12]?.pressed,down=pad?.buttons?.[13]?.pressed,dy=down?1:up?-1:axis[1];
-  if(Math.abs(dy)<.3)navLatch=false;
-  if(Math.abs(dy)>.65&&!navLatch){navLatch=true;index=(index+(dy>0?1:-1)+items.length)%items.length;items[index].element.focus({preventScroll:true});}
-  const element=items[index].element,dx=pad?.buttons?.[15]?.pressed?1:pad?.buttons?.[14]?.pressed?-1:axis[0];
-  if(Math.abs(dx)<.3)horizontalLatch=false;
-  if(element.type==='range'&&Math.abs(dx)>.65&&!horizontalLatch){horizontalLatch=true;element.value=String(clamp(Number(element.value)+Math.sign(dx)*Number(element.step||1),Number(element.min),Number(element.max)));element.dispatchEvent(new Event('input',{bubbles:true}));}
-  if(element.tagName==='SELECT'&&Math.abs(dx)>.65&&!horizontalLatch){horizontalLatch=true;element.selectedIndex=clamp(element.selectedIndex+Math.sign(dx),0,element.options.length-1);element.dispatchEvent(new Event('change',{bubbles:true}));}
-  if(data.edges.confirm||data.edges.jump)element.click();
-  if(data.edges.back)back(m);else if(data.edges.pause&&m.root.id==='pause-dialog')back(m);
- }
+ const $=id=>document.getElementById(id),sampler=new InputSampler();let lastDevice=null,lastPad=null,frameInput=null,lastActivity=0,lastMenu=null,sprint=false,aim=false,lastHaptic=0,used=false;
+ api.settings.controller=cleanControllerProfile(api.settings.controller);
+ const badge=document.createElement('span');badge.id='controller-status';badge.textContent='Xbox controller: press a button to connect';$('masthead').append(badge);
+ const guide=document.createElement('dialog');guide.id='controller-dialog';guide.setAttribute('aria-labelledby','controller-title');guide.innerHTML='<p class="eyebrow">CONTROLLER DECK</p><h2 id="controller-title">Every action, in your hands.</h2><p>Menu and View always open pause and the atlas. In menus A selects, B returns one level, and D-pad or left stick navigates. Left/right adjusts options without opening a system popup. Right stick and LT/RT scroll; LB/RB page through long menus.</p><div id="controller-binding-grid"></div><p id="controller-binding-note">Changing a binding swaps its previous action. No action is lost. Menu controls never change.</p><button id="controller-defaults">Restore controller defaults</button><form method="dialog"><button>Back</button></form>';
+ document.body.append(guide);
+ const label=action=>PAD_NAMES[api.settings.controller.bindings[action]]||action;
+ function rumble(strength=.08,duration=28){if(!api.settings.controller.vibration||!lastPad||performance.now()-lastHaptic<70||document.hidden)return;const actuator=lastPad.vibrationActuator||lastPad.hapticActuators?.[0];if(!actuator)return;lastHaptic=performance.now();try{const result=actuator.playEffect?actuator.playEffect('dual-rumble',{duration,startDelay:0,weakMagnitude:strength,strongMagnitude:strength*.5}):actuator.pulse?.(strength,duration);result?.catch?.(()=>{});}catch{}}
+ function reset(){sampler.reset();frameInput=null;sprint=false;aim=false;nav?.reset();}
+ function bindings(){const grid=$('controller-binding-grid');grid.replaceChildren();for(const [action,title]of Object.entries(PAD_ACTIONS)){const row=document.createElement('label'),select=document.createElement('select');row.textContent=title;select.id='bind-'+action;select.dataset.bind=action;select.setAttribute('aria-label',title);for(const index of Object.keys(PAD_ACTIONS).map(k=>api.settings.controller.bindings[k]).sort((a,b)=>a-b)){const option=document.createElement('option');option.value=index;option.textContent=PAD_NAMES[index];select.append(option);}select.value=api.settings.controller.bindings[action];select.onchange=()=>{api.settings.controller=swapBinding(api.settings.controller,action,Number(select.value));api.saveSettings();reset();for(const key of Object.keys(PAD_ACTIONS))$('bind-'+key).value=api.settings.controller.bindings[key];};row.append(select);grid.append(row);}}
+ const nav=createMenuNavigator({root:()=>api.topDialog()||(!api.playing()?$('menu'):null),back:m=>{if(m.root.id==='complete-dialog')$('explore-more').click();else if(m.root.tagName==='DIALOG')m.root.close();},onFocus:()=>{if(used)rumble(.035,12);}});
+ const xr=createXR(api.view,{state:api.state,start:api.start,clear:reset,pause:api.pause,menu:()=>{const m=nav.read();if(m){const at=Math.max(0,m.items.findIndex(i=>i.focused)),start=Math.floor(at/5)*5;m.items=m.items.slice(start,start+5);m.items.push({element:$('exit-vr'),label:'Exit VR',focused:document.activeElement?.id==='exit-vr'});}return m;},focus:e=>e.focus({preventScroll:true}),hint:api.hint});
+ const grid=document.querySelector('.settings-grid');
+ function slider(id,title,key,min,max,step,controller=true){const row=document.createElement('label'),e=document.createElement('input');row.textContent=title;e.id=id;e.type='range';Object.assign(e,{min,max,step,value:controller?api.settings.controller[key]:api.settings[key]});row.append(e);grid.append(row);e.oninput=()=>{if(controller)api.settings.controller[key]=Number(e.value);else api.settings[key]=Number(e.value);api.saveSettings();};return e;}
+ function checkbox(id,title,key,controller=true){const row=document.createElement('label'),e=document.createElement('input');e.id=id;e.type='checkbox';e.checked=controller?api.settings.controller[key]:!!api.settings[key];row.append(e,document.createTextNode(' '+title));grid.append(row);e.onchange=()=>{if(controller)api.settings.controller[key]=e.checked;else api.settings[key]=e.checked;api.saveSettings();reset();};return e;}
+ slider('controller-look-speed','Controller look speed','controllerSpeed',.5,2.5,.1,false);checkbox('controller-invert','Invert controller look','invertY',false);
+ slider('controller-move-deadzone','Movement deadzone','moveDeadzone',.08,.4,.02);slider('controller-look-deadzone','Look deadzone','lookDeadzone',.08,.4,.02);slider('controller-look-curve','Fine aiming response curve','lookCurve',1,2.4,.1);
+ checkbox('controller-toggle-sprint','Toggle sprint / rail boost','toggleSprint');checkbox('controller-toggle-aim','Toggle aiming','toggleAim');checkbox('controller-vibration','Controller vibration when supported','vibration');
+ function openGuide(){bindings();api.show('controller-dialog');}
+ for(const target of ['settings-dialog','pause-dialog']){const b=document.createElement('button');b.id=target==='pause-dialog'?'pause-controller':'settings-controller';b.textContent='Controller controls and remapping';b.onclick=openGuide;$(target).insertBefore(b,$(target).querySelector('form'));}
+ $('controller-defaults').onclick=()=>api.confirm('Restore controller defaults?','This only resets controller bindings and comfort options. Your expedition is not changed.','Restore controls',()=>{api.settings.controller=cleanControllerProfile(null);api.saveSettings();reset();bindings();for(const [id,k]of [['controller-move-deadzone','moveDeadzone'],['controller-look-deadzone','lookDeadzone'],['controller-look-curve','lookCurve']])$(id).value=api.settings.controller[k];for(const [id,k]of [['controller-toggle-sprint','toggleSprint'],['controller-toggle-aim','toggleAim'],['controller-vibration','vibration']])$(id).checked=api.settings.controller[k];});
  function frame(dt,xrFrame){
-  const menuRoot=currentMenu()?.root||null;if(menuRoot!==lastMenu){sampler.reset();xr.reset();lastMenu=menuRoot;frameInput=null;}
-  const now=performance.now();let data=null,pad=null;
-  if(xr.active){data=xr.frame(xrFrame,dt);badge.textContent='WebXR preview · headset QA pending';}
-  else{
-   const pads=(()=>{try{return [...navigator.getGamepads?.()||[]];}catch{return [];}})();pad=pads.find(p=>p?.connected&&p.mapping==='standard')||null;
-   if(!pad){if(lastDevice!==null){lastDevice=null;reset();if(api.playing())api.pause();}badge.textContent='Xbox controller: press a button to connect';frameInput=null;return;}
-   const identity=pad.index+':'+pad.id;if(identity!==lastDevice){reset();lastDevice=identity;}
-   data=sampler.read(pad,identity);badge.textContent='Xbox / standard controller connected';
+  const menuRoot=api.topDialog()||(!api.playing()?$('menu'):null);if(menuRoot!==lastMenu){reset();xr.reset();lastMenu=menuRoot;}
+  const now=performance.now();let data;
+  if(xr.active){data=xr.frame(xrFrame,dt);badge.textContent='WebXR preview - headset QA pending';}
+  else{const pads=(()=>{try{return [...navigator.getGamepads?.()||[]];}catch{return [];}})();const pad=pads.find(p=>p?.connected&&p.mapping==='standard'&&(p.index+':'+p.id===lastDevice))||pads.find(p=>p?.connected&&p.mapping==='standard');
+   if(!pad){if(lastDevice!==null){lastDevice=null;lastPad=null;used=false;reset();if(api.playing())api.pause();}badge.textContent='Xbox controller: press a button to connect';frameInput=null;return;}
+   const identity=pad.index+':'+pad.id;if(identity!==lastDevice){reset();lastDevice=identity;}lastPad=pad;
+   data=sampler.read(pad,identity,false,menuRoot?{}:api.settings.controller);badge.textContent='Xbox / standard controller connected';
   }
   if(!data){frameInput=null;return;}
-  const m=currentMenu();if(m){menuInput(m,data,pad);frameInput=null;return;}
+  if(data.move?.some(Boolean)||data.look?.some(Boolean)||Object.values(data.held).some(Boolean)||Object.values(data.edges).some(Boolean)){lastActivity=now;used=true;}
+  if(menuRoot){nav.tick(data,dt,now/1000,xr.active);frameInput=null;return;}
   if(!api.playing()||api.paused()||document.hidden){frameInput=null;return;}
   if(data.edges.pause){api.pause();frameInput=null;return;}if(data.edges.map){api.map();frameInput=null;return;}
-  if(!xr.active&&data.edges.back)api.action('glide');
-  if(!xr.active){api.state().p.yaw+=data.look[0]*dt*2.2*(api.settings.controllerSpeed||1)*(api.state().p.scoped?.35:1);api.state().p.pitch=clamp(api.state().p.pitch-data.look[1]*dt*1.6*(api.settings.controllerSpeed||1)*(api.settings.invertY?-1:1)*(api.state().p.scoped?.35:1),-1.35,1.35);}
-  for(const name of ['jump','interact','reload','pulse','reverse','next','previous','shop','field'])if(data.edges[name])api.action(name);
-  frameInput=data;if(data.move.some(x=>x)||data.look?.some(x=>x)||Object.values(data.held).some(Boolean))lastActivity=now;
+  if(!xr.active){if(data.edges.back)api.action('glide');const profile=api.settings.controller;if(profile.toggleSprint){if(data.edges.boost)sprint=!sprint;data.held.boost=sprint;}if(profile.toggleAim){if(data.edges.aim)aim=!aim;data.held.aim=aim;}
+   api.state().p.yaw+=data.look[0]*dt*2.2*(api.settings.controllerSpeed||1)*(api.state().p.scoped?.35:1);api.state().p.pitch=clamp(api.state().p.pitch-data.look[1]*dt*1.6*(api.settings.controllerSpeed||1)*(api.settings.invertY?-1:1)*(api.state().p.scoped?.35:1),-1.35,1.35);
+  }
+  for(const name of ['jump','interact','reload','pulse','reverse','next','previous','shop','field','survey'])if(data.edges[name]){api.action(name==='reverse'&&!api.state().p.rail?'power-next':name);if(api.paused()){frameInput=null;return;}}
+  frameInput=data;
  }
- function merge(base){if(!frameInput)return xr.active?{...base,railCamera:false}:base;const [x,y]=frameInput.move;return {...base,moveX:clamp((base.right?1:0)-(base.left?1:0)+x,-1,1),moveZ:clamp((base.forward?1:0)-(base.back?1:0)-y,-1,1),back:base.back||y>.25,boost:base.boost||frameInput.held.boost,railCamera:xr.active?false:base.railCamera};}
- window.addEventListener('blur',reset);document.addEventListener('visibilitychange',reset);
- const link=document.createElement('a');link.href='./roadmap.html';link.textContent='Development roadmap ↗';link.className='roadmap-link';document.querySelector('.start-actions').append(link);
- return {frame,merge,xr,reset,get aimHeld(){return !!frameInput?.held.aim},get firing(){return !!frameInput?.held.fire&&(!xr.active||!!xr.aim)},get powerAim(){return xr.active?xr.powerAim:null},get aim(){return xr.active?xr.aim:null},snapshot:()=>({gamepad:!!lastDevice,xr:xr.active,lastActivity,move:frameInput?.move||[0,0],xrPhysicalQA:false})};
+ function merge(base){if(!frameInput)return xr.active?{...base,railCamera:false}:base;const[x,y]=frameInput.move;return{...base,moveX:clamp((base.right?1:0)-(base.left?1:0)+x,-1,1),moveZ:clamp((base.forward?1:0)-(base.back?1:0)-y,-1,1),back:base.back||y>.25,boost:base.boost||frameInput.held.boost,railCamera:xr.active?false:base.railCamera};}
+ function updateHints(){const hints=$('controller-gameplay-hints');if(hints)hints.hidden=!used||xr.active||!api.playing()||api.paused();if(!used||xr.active||!api.playing())return;const s=api.state(),rewrite=id=>{const e=$(id);if(e)e.textContent=e.textContent.replace(/E \/ /g,label('interact')+' / ').replace(/^E[: ]/g,label('interact')+' ').replace(/\bSpace\b/g,label('jump'));};rewrite('interaction');rewrite('transfer-help');$('weapon-status').textContent=s.p.reload>0?'RELOADING':`${label('fire')}: fire / ${label('reload')}: reload / ${label('aim')}: aim`;
+  const p=$('field-power');if(p)p.textContent=p.textContent.replace(/^Q /,label('pulse')+' ');for(const[id,action,text]of [['field-open','field','Field rig'],['field-cycle','reverse','Power'],['field-scan','survey','Survey'],['buy-button','shop','Outfitters / loadout'],['scope-button','aim','Aim / scope'],['swap-button','next','Next weapon']]){const e=$(id);if(e)e.textContent=label(action)+' / '+text;}
+  $('skyward-hud').querySelector('.eyebrow').textContent='ADVENTURES / MENU > JOURNAL';$('expedition-button').textContent='Menu / Adventures';$('pause-button').textContent='Menu / Pause';$('map-button').textContent='View / Atlas';const h=$('controller-gameplay-hints');if(h){h.hidden=api.paused();h.textContent=s.p.climb?`Left stick up / down: climb  ${label('jump')}: jump clear  ${label('back')}: let go`:s.p.rail?`${label('jump')} release  ${label('reverse')} reverse  ${label('back')} foldwing after release`:s.p.gliding?`${label('back')} foldwing  Left stick steers / down brakes  ${label('interact')} catch nearby rail`:`${label('jump')} jump  ${label('interact')} interact / hook  ${label('reverse')} power  ${label('survey')} survey`;}}
+ const hints=document.createElement('div');hints.id='controller-gameplay-hints';hints.hidden=true;$('hud').append(hints);
+ window.addEventListener('blur',reset);document.addEventListener('visibilitychange',reset);window.addEventListener('pointerdown',()=>used=false);window.addEventListener('keydown',()=>used=false);
+ const link=document.createElement('a');link.href='./roadmap.html';link.textContent='Development roadmap';link.className='roadmap-link';document.querySelector('.start-actions').append(link);
+ return{frame,merge,xr,reset,label,updateHints,openGuide,effect:e=>{if(['shot','hit','hook','damage','expedition-complete'].includes(e.type))rumble(e.type==='damage'?.4:e.type==='expedition-complete'?.22:.1,e.type==='shot'?35:110);},get aimHeld(){return !!frameInput?.held.aim},get firing(){return !!frameInput?.held.fire&&(!xr.active||!!xr.aim)},get powerAim(){return xr.active?xr.powerAim:null},get aim(){return xr.active?xr.aim:null},snapshot:()=>({gamepad:!!lastDevice,xr:xr.active,lastActivity,move:frameInput?.move||[0,0],xrPhysicalQA:false,controllerPhysicalQA:false,menu:api.topDialog()?.id||(!api.playing()?'menu':null),focus:document.activeElement?.id||document.activeElement?.dataset?.track||'',sprint,aim,profile:JSON.parse(JSON.stringify(api.settings.controller))})};
 }

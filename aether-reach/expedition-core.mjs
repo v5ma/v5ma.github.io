@@ -1,3 +1,4 @@
+import {ROOFS,ROOF_THINGS,BEACON_TARGETS} from './rooftop-world.mjs';
 /* Original Skyward Dispatch campaign. No UI or renderer can award completion;
  * guarded world interactions, actual transit and simulation events do that. */
 import {EXP_DISTRICTS,EXP_ENEMIES,EXP_FLAGS,EXP_RAILS,TASKS,THINGS,POSTS,TRANSIT,ESCORT_PATH,transitPosition} from './expedition-world.mjs';
@@ -7,6 +8,7 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export function cleanExpedition(value){const v=value&&typeof value==='object'?value:{};return {
  flags:unique(v.flags,EXP_FLAGS),visited:unique(v.visited,new Set(EXP_DISTRICTS.map(d=>d.id))),
+ beaconDials:[0,1,2].map(i=>Number.isInteger(v.beaconDials?.[i])?clamp(v.beaconDials[i],0,3):0),
  routes:unique(v.routes,new Set(['rail','ferry','lift'])),
  valves:[0,1,2].map(i=>Number.isInteger(v.valves?.[i])?clamp(v.valves[i],0,3):0),
  tracked:TASKS.some(t=>t.id===v.tracked)?v.tracked:'dispatch'
@@ -16,6 +18,9 @@ export function expeditionSnapshot(s){const e=s.expedition;return {...saveExpedi
 function thing(s,id){if(id==='surveyor')return {id,...s.expedition.escort,name:'Surveyor Lio',kind:'person'};return THINGS.find(t=>t.id===id);}
 export function expeditionGoal(s,id=s.expedition.tracked){
  const e=s.expedition,find=key=>thing(s,key),first=ids=>find(ids.find(k=>!has(s,k))||ids.at(-1));
+ if(id==='roof-surveys')return first(ROOFS.map(r=>'survey-'+r.id));
+ if(id==='roof-courier')return ['roof-parcel-gannet','roof-parcel-academy','roof-parcel-dawn'].every(k=>has(s,k))?find('roof-desk'):first(['roof-parcel-gannet','roof-parcel-academy','roof-parcel-dawn']);
+ if(id==='roof-beacons'){const i=e.beaconDials.findIndex((n,i)=>n!==BEACON_TARGETS[i]);return find(i<0?'roof-desk':'roof-beacon-'+i);}
  if(id==='dispatch')return find(has(s,'dispatch-started')?'market-board':'dispatch-board');
  if(id==='ferry')return find(has(s,'regulator')?'ferry-engine':'regulator');
  if(id==='charter')return !['charter-market','charter-academy','charter-dawn'].every(k=>has(s,k))?first(['charter-market','charter-academy','charter-dawn']):find(has(s,'archive-open')?'charter-original':'archive-lock');
@@ -40,7 +45,7 @@ export function createExpedition(api){
   const reachable=t=>Math.abs(t.y-p.y)<1.35&&dist(p,t)<2.6&&clearLine({x:p.x,y:p.y+1.5,z:p.z},{x:t.x,y:t.y+1.3,z:t.z},s);
   const candidates=[];
   for(const base of THINGS){const t=thing(s,base.id);if((base.kind==='pickup'&&has(s,base.id))||(base.id==='charter-original'&&has(s,'charter'))||(base.kind==='telescope'&&has(s,base.id)))continue;if(!reachable(t))continue;
-   let label=t.name;if(t.id.startsWith('valve-'))label+=' ['+e.valves[Number(t.id.at(-1))]+'] · turn';
+   let label=t.name;if(t.id.startsWith('roof-beacon-'))label+=' / ring '+e.beaconDials[Number(t.id.at(-1))];if(t.id.startsWith('valve-'))label+=' ['+e.valves[Number(t.id.at(-1))]+'] · turn';
    if(t.id==='surveyor'&&has(s,'surveyor-safe'))label='Lio: Thank you. The route is open.';
    candidates.push({type:'exp-thing',id:t.id,distance:dist(p,t),label:'E · '+label});
   }
@@ -67,7 +72,10 @@ export function createExpedition(api){
   if(n.type==='exp-transit')return transit(s,n);
   if(n.type==='exp-rest'){s.checkpoint=n.id;s.p.health=100;s.p.shield=60+s.kit.shield*20;s.p.energy=100;s.p.glideCharge=100;s.p.invuln=3;s.damagedAt=s.time;say(s,'Checkpoint saved. Field suit, shield and Foldwing restored.');emit(s,'save');return true;}
   const id=n.id;
-  if(id==='dispatch-board'){
+  if(id.startsWith('roof-parcel-')){if(mark(s,id))say(s,'Undelivered parcel secured. Bring all three to the Clockmaker\'s Arcade courier desk.');}
+  else if(id.startsWith('roof-beacon-')){const i=Number(id.at(-1));s.expedition.beaconDials[i]=(s.expedition.beaconDials[i]+1)%4;say(s,'Beacon ring '+s.expedition.beaconDials[i]+' / target '+BEACON_TARGETS[i]+'. Return to the courier desk after aligning all three.');emit(s,'save');}
+  else if(id==='roof-desk'){const parcels=['roof-parcel-gannet','roof-parcel-academy','roof-parcel-dawn'].every(k=>has(s,k));if(parcels)reward(s,'roof-courier');if(s.expedition.beaconDials.every((n,i)=>n===BEACON_TARGETS[i]))reward(s,'roof-beacons');say(s,parcels?'The recovered letters are back in public hands. The beacon circuit needs Theatre 2, Stormglass 1, Solstice 3.':'Find the parcels on Gannet, Aurelian and Dawn rooftops. The beacon rings need Theatre 2, Stormglass 1, Solstice 3.');}
+  else if(id==='dispatch-board'){
    if(['charter','weather-open','surveyor-safe','beacon-secure'].every(k=>has(s,k))){reward(s,'open-sky');say(s,'IONA: Your dispatch is on every public frequency. The Archive, weather station, rescue pad and beacon are connected again. Keep exploring; the sky is open.');}
    else if(mark(s,'dispatch-started'))say(s,'IONA: The Registry has closed the northern routes. Take this dispatch to Bellwether Market, west across the long stair. Your journal lists the people and stations that need help.');
    else say(s,'IONA: Recover the charter, restore Stormglass, bring Lio home and secure Solstice. The west stair leads to Bellwether; the east route leads to Dawn.');
@@ -85,7 +93,7 @@ export function createExpedition(api){
   else if(id==='weather-console'){if(s.expedition.valves.every((v,i)=>v===[1,3,2][i])){reward(s,'weather');say(s,'Pressure balanced. The Weather Engine is open and running; a reserve chest is inside.');}else say(s,'Pressure mismatch. Turn the three nearby valve wheels to 1, 3, 2 from west to east, then test again.');}
   else if(id==='surveyor'){if(has(s,'surveyor-safe'))say(s,'LIO: We can see the beacon from here. Nobody has to cross alone now.');else{mark(s,'surveyor-found');s.expedition.escort.active=true;say(s,'LIO: I can walk, but not through Registry fire. Stay close and help me reach the marked evacuation pad.');}}
   else if(id==='beacon-control')startDefense(s);
-  else if(id.startsWith('survey-')){if(mark(s,id))say(s,'Upper-gallery survey recorded.');if(['survey-archive','survey-dawn','survey-solstice'].every(k=>has(s,k)))reward(s,'summits');}
+  else if(id.startsWith('survey-')){if(mark(s,id))say(s,'Upper-gallery survey recorded.');if(['survey-archive','survey-dawn','survey-solstice'].every(k=>has(s,k)))reward(s,'summits');if(ROOFS.every(r=>has(s,'survey-'+r.id)))reward(s,'roof-surveys');}
   return true;
  }
  function abort(s,reason){const e=s.expedition;s.p.ride=null;e.railTrip=null;e.escort.active=false;e.escort.walking=false;if(e.defense.active){e.defense.active=false;for(const b of s.drones)if(Number.isInteger(b.wave))b.hp=0;say(s,'Beacon attempt '+reason+'. Return to the Solstice console to retry.');}}
@@ -101,10 +109,10 @@ export function createExpedition(api){
     b.x=nx;b.z=nz;b.y=floor.y+(b.humanoid?1.05:0);b.walking=true;return false;
    }return false;
  }
- function enemies(s,dt){const p=s.p;for(const b of s.drones){if(!b.humanoid||b.hp<=0)continue;b.stun=Math.max(0,b.stun-dt);b.walking=false;if(b.stun>0){b.telegraph=0;continue;}b.attack-=dt;const home=EXP_DISTRICTS.find(d=>d.id===b.home),eye={x:p.x,y:p.y+1.35,z:p.z},seen=dist(b,eye)<(b.kind==='marshal'?37:28)&&clearLine(b,eye,s);b.awareness=seen?5:Math.max(0,(b.awareness||0)-dt);
-   if(seen){b.heading=Math.atan2(p.x-b.x,-(p.z-b.z));if(dist(b,eye)>9&&Math.abs(p.x-home.x)<home.w/2-2&&Math.abs(p.z-home.z)<home.d/2-2&&Math.abs(p.y-home.y)<2)walkPerson(s,b,p,b.kind==='breacher'?1.5:2.5,dt);
+ function enemies(s,dt){const p=s.p;for(const b of s.drones){if(!b.humanoid||b.hp<=0)continue;b.stun=Math.max(0,b.stun-dt);b.walking=false;if(b.stun>0){b.telegraph=0;continue;}b.attack-=dt;const home=EXP_DISTRICTS.find(d=>d.id===b.home),eye={x:p.x,y:p.y+1.35,z:p.z},seen=dist(b,eye)<(b.range??(b.kind==='marshal'?37:28))&&clearLine(b,eye,s);b.awareness=seen?5:Math.max(0,(b.awareness||0)-dt);
+   if(seen){b.heading=Math.atan2(p.x-b.x,-(p.z-b.z));if(dist(b,eye)>9&&Math.abs(p.x-home.x)<home.w/2-2&&Math.abs(p.z-home.z)<home.d/2-2&&Math.abs(p.y-(b.y-1.05))<2)walkPerson(s,b,p,b.chaseSpeed??(b.kind==='breacher'?1.5:2.5),dt);
     b.telegraph=b.attack<.9?Math.max(0,1-b.attack/.9):0;
-    if(b.attack<=0&&s.bullets.length<90){const speed=b.kind==='marshal'?21:15,n=b.kind==='breacher'?3:1,l=dist(b,eye)||1;for(let k=0;k<n;k++){const spread=(k-(n-1)/2)*.65;s.bullets.push({x:b.x,y:b.y+.35,z:b.z,vx:(eye.x-b.x+spread)/l*speed,vy:(eye.y-b.y-.35)/l*speed,vz:(eye.z-b.z-spread)/l*speed,life:3.2,damage:b.kind==='breacher'?15:12});}b.attack=b.kind==='marshal'?2.3:3;emit(s,'enemy-shot');}
+    if(b.attack<=0&&s.bullets.length<90){const speed=b.projectileSpeed??(b.kind==='marshal'?21:15),n=b.kind==='breacher'?3:1,l=dist(b,eye)||1;for(let k=0;k<n;k++){const spread=(k-(n-1)/2)*.65;s.bullets.push({x:b.x,y:b.y+.35,z:b.z,vx:(eye.x-b.x+spread)/l*speed,vy:(eye.y-b.y-.35)/l*speed,vz:(eye.z-b.z-spread)/l*speed,life:3.2,damage:b.shotDamage??(b.kind==='breacher'?15:12)});}b.attack=b.attackDelay??(b.kind==='marshal'?2.3:3);emit(s,'enemy-shot');}
    }else{b.telegraph=0;const route=b.patrol||[[b.origin.x,b.origin.z]],v=route[b.patrolIndex%route.length];if(walkPerson(s,b,{x:v[0],z:v[1]},1.2,dt))b.patrolIndex=(b.patrolIndex+1)%route.length;}
   }}
  function tick(s,dt){const e=s.expedition,p=s.p;

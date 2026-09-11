@@ -25,9 +25,9 @@ def drive(p,target):
 with sync_playwright() as pw:
  args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
- browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block',accept_downloads=True)
+ browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block',accept_downloads=True)
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
- ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
+ ctx.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))");ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach');frames(page)
   check(snapshot(page)['version'] if 'version' in snapshot(page) else page.evaluate('AetherReach.version')==json.loads((ROOT/'aether-reach/release.json').read_text())['version'],'Updated public app loads the separate input/XR modules')

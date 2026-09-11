@@ -1,8 +1,12 @@
+import {ROOFS,BEACON_TARGETS} from './rooftop-world.mjs';
 import {TASKS,EXP_DISTRICTS,TRANSIT} from './expedition-world.mjs';
 import {expeditionGoal} from './expedition-core.mjs';
 export function installExpeditionUI(api){
  const $=id=>document.getElementById(id),dialog=$('expedition-dialog'),body=$('expedition-tasks'),button=$('expedition-button'),hud=$('skyward-hud');
  function progress(s,t){const e=s.expedition,has=id=>e.flags.includes(id);if(has(t.flag))return 'Completed';
+  if(t.id==='roof-surveys')return ROOFS.filter(r=>has('survey-'+r.id)).length+' / 6 rooftop instruments';
+  if(t.id==='roof-courier')return ['roof-parcel-gannet','roof-parcel-academy','roof-parcel-dawn'].filter(has).length+' / 3 parcels';
+  if(t.id==='roof-beacons')return 'Theatre / Stormglass / Solstice: '+e.beaconDials.join(', ')+' / required '+BEACON_TARGETS.join(', ');
   if(t.id==='charter')return ['charter-market','charter-academy','charter-dawn'].filter(has).length+' / 3 leaves'+(has('archive-open')?' - archive open':'');
   if(t.id==='districts')return e.visited.length+' / 7 streets visited';
   if(t.id==='summits')return ['survey-archive','survey-dawn','survey-solstice'].filter(has).length+' / 3 upper galleries';
@@ -17,7 +21,7 @@ export function installExpeditionUI(api){
   $('expedition-summary').textContent=done+' / '+TASKS.length+' adventures complete. '+e.visited.length+' / '+EXP_DISTRICTS.length+' new districts explored. Rewards are earned once and saved on this device.';
   const goal=expeditionGoal(s);$('expedition-route').textContent=goal?'Next tracked destination: '+goal.name+'. The map marks it with a gold diamond.':'';
  }
- function open(){if(!api.playing()||api.paused())return;stock();api.show('expedition-dialog');}
+ function open(fromPause=false){if(!api.playing()||(api.paused()&&!fromPause))return;stock();api.show('expedition-dialog');}
  button.onclick=open;
  function action(name){if(name!=='journal')return false;open();return true;}
  function effect(e){if(e.type==='expedition-open'){stock();api.show('expedition-dialog');}if(e.type==='expedition-message')api.toast(e.text,7);if(e.type==='expedition-complete')api.toast('ADVENTURE COMPLETE: '+e.name+' - '+e.credits+' earned credits.',7);if(e.type==='expedition-arrive')api.toast(e.name+' has arrived. Your crossing is recorded in the traveler\'s passport.',5);if(e.type==='expedition-board')api.toast('Passenger transit underway. Look around freely. Space jumps clear; stay aboard for a complete journey.',5);}
@@ -28,5 +32,5 @@ export function installExpeditionUI(api){
   else if(e.escort.active){detail='Lio '+(e.escort.walking?'is following':'is waiting for a clear route')+' - '+Math.round(Math.hypot(s.p.x-e.escort.x,s.p.z-e.escort.z))+' m away';}
   const key=title+'|'+detail+'|'+completed;if(key===last)return;last=key;$('skyward-title').textContent=title;$('skyward-detail').textContent=detail;$('skyward-count').textContent=completed+' / '+TASKS.length+' adventures';
  }
- return {action,effect,update};
+ return {action,effect,update,open};
 }
