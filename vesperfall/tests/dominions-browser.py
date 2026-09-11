@@ -29,7 +29,10 @@ with sync_playwright() as p:
    press(direction)
   raise AssertionError('Controller focus could not reach '+id)
  def xr_set(name,i,on):
-  page.evaluate('([n,i,on])=>TestXR.button(n,i,on)',[name,i,on]);wait('([n,i,on])=>Vesperfall.component.prevButtons[n]?.[i]===on',[name,i,on])
+  page.evaluate('([n,i,on])=>TestXR.button(n,i,on)',[name,i,on])
+  # Session exit intentionally stops polling XR controllers. A release after
+  # a verified exit is not supposed to appear in the retired input snapshot.
+  wait('([n,i,on])=>Vesperfall.component.prevButtons[n]?.[i]===on||(!on&&!Vesperfall.component.xr)',[name,i,on])
  def xrpress(name,i):xr_set(name,i,True);xr_set(name,i,False)
  def xraction(text):
   wait('Vesperfall.component.paused&&Vesperfall.component.dominionControls.state.xrNeutral')
@@ -45,12 +48,10 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/vesperfall/index.html?acceptance=hollow-dominions',wait_until='domcontentloaded')
   wait('window.Vesperfall?.component.rendererReady&&Vesperfall.component.dominionControls&&AFRAME.scenes[0].renderer.info.render.calls>0')
-  wait('Vesperfall.component.art.cathedralStatus.loaded>=2') if False else None
   check(page.evaluate("VesperCore.VERSION==='0.7.0'&&Vesperfall.state.world.rooms.length===25&&Vesperfall.state.world.enemies.length===21"),'Correct release boots with 25 rooms and 21 enemies')
   check(page.evaluate('Vesperfall.component.enemyMeshes.filter(m=>m.userData.dominion).length===16'),'All outer opponents have actual distinct rendered models')
   check(page.locator('#sparring-kind option').count()==15,'All fifteen archetypes are available as combat trials')
   page.screenshot(path=str(OUT/'opening-menu.png'))
-  # Start practice from the controller, without a click on a gameplay control.
   page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed');nav_to('practice');press(0);wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   check(page.evaluate('Vesperfall.component.practice&&Vesperfall.state.world.enemies.length===0'),'Xbox alone starts unscored practice from the opening menu')
   start=page.evaluate('Vesperfall.state.p[2]');page.evaluate('TestPad.axes([0,-1,0,0])');wait('(z)=>Vesperfall.state.p[2]<z-.35',start);page.evaluate('TestPad.axes([0,0,0,0])')
@@ -62,27 +63,23 @@ with sync_playwright() as p:
   press(12);wait("!document.getElementById('dominion-dialog').hidden");check(page.locator('#dominion-dialog-title').inner_text()=='Expedition journal','Xbox opens the expedition journal and pauses gameplay');press(1);wait("document.getElementById('dominion-dialog').hidden");press(9);wait('!Vesperfall.component.paused');check(True,'Xbox B dismisses the journal and Menu resumes without a mouse')
   press(9);wait('Vesperfall.component.paused');nav_to('pad-sensitivity');old=page.locator('#pad-sensitivity').input_value();press(15);check(old!=page.locator('#pad-sensitivity').input_value(),'Xbox changes settings without opening a native select popup')
   nav_to('seed-keyboard');press(0);wait("document.getElementById('dominion-dialog').dataset.keyboard==='true'");old=page.locator('#seed').input_value();press(0);check(page.locator('#seed').input_value()!=old,'Xbox seed keyboard appends a character');press(1);check(page.locator('#dominion-dialog').is_hidden(),'Xbox closes the seed keyboard')
-  # Capture the upgraded renderer during ordinary practice.
   press(9);wait('!Vesperfall.component.paused');page.screenshot(path=str(OUT/'expedition-browser.png'));diagnostics['renderer']=page.evaluate('({...Vesperfall.component.stats})');press(9);wait('Vesperfall.component.paused')
   page.evaluate('TestPad.enabled=false');wait('Vesperfall.component.dominionControls.state.pad===null')
-  # WebXR is started through real UI; the shim supplies only device state.
   page.locator('#menu-vr').click();wait('Vesperfall.component.xr&&Vesperfall.component.hands.left&&Vesperfall.component.hands.right');wait('Vesperfall.component.dominionControls.state.xrNeutral')
   xraction('Settings');xraction('Bow hand');check(page.locator('#handedness').input_value()=='right','Quest spatial settings reverse bow and draw hands');xraction('Bow hand');check(page.locator('#handedness').input_value()=='left','Quest spatial settings restore left-bow handedness');xraction('Back');xraction('Controller manual');xraction('Physical archery');check(page.evaluate("Vesperfall.component.dominionControls.state.xrScreen==='notice'"),'Quest controller manual renders inside the headset');xraction('Back to menu');xraction('Resume')
   wait('!Vesperfall.component.paused');check(page.evaluate("TestXR.state.session.mode==='immersive-vr'"),'VR requests an actual immersive-vr session')
-  # Restore bow via the documented bow-stick click.
   if page.evaluate("Vesperfall.state.weapon==='crossbow'"):xrpress('left',3)
   shots=page.evaluate('Vesperfall.state.shots');page.evaluate("TestXR.pose('right',[-.23,1.35,-.31])");page.wait_for_timeout(250);xr_set('right',0,True);wait('Vesperfall.component.latch.drawing');page.evaluate("TestXR.pose('right',[-.23,1.35,.29])");wait('Vesperfall.component.charge>.8');xr_set('right',0,False);wait('(n)=>Vesperfall.state.shots===n+1',shots);check(True,'Two tracked controllers physically nock, draw and release a VR arrow')
   xr_set('left',1,True);wait('!!Vesperfall.state.shield');xr_set('left',1,False);wait('!Vesperfall.state.shield');check(True,'Quest bow-hand grip controls the physical shield')
-  # Tracking loss cancels a pull and cannot create a synthetic shot.
   shots=page.evaluate('Vesperfall.state.shots');page.evaluate("TestXR.pose('right',[-.23,1.35,-.31])");page.wait_for_timeout(200);xr_set('right',0,True);wait('Vesperfall.component.latch.drawing');page.evaluate("TestXR.pose('right',[-.23,1.35,.29])");wait('Vesperfall.component.charge>.8');page.evaluate("TestXR.missing('right',true)");wait('!Vesperfall.component.hands.right');page.evaluate("TestXR.button('right',0,false);TestXR.missing('right',false)");wait('!!Vesperfall.component.hands.right');check(page.evaluate('(n)=>Vesperfall.state.shots===n',shots),'Lost tracking cancels the VR draw without a stray arrow')
   xrpress('left',5);wait('Vesperfall.component.paused');xraction('Expedition / practice');xraction('Sparring');xraction('More / page');xraction('Thorn Duelist');wait("Vesperfall.component.training==='duelist'&&!Vesperfall.component.paused");check(page.evaluate("Vesperfall.component.enemyMeshes[0].userData.dominion!==undefined"),'Quest can start a new enemy trial using only spatial menus')
-  page.screenshot(path=str(OUT/'quest-stereo-trial.png'));xrpress('left',5);wait('Vesperfall.component.paused');xraction('Exit VR');wait('!Vesperfall.component.xr')
+  page.screenshot(path=str(OUT/'quest-stereo-trial.png'));xrpress('left',5);wait('Vesperfall.component.paused');xraction('Exit VR');wait('!Vesperfall.component.xr');check(True,'Quest spatial Exit VR actually ends the immersive session')
   before=page.evaluate('({seed:Vesperfall.state.world.seed,p:[...Vesperfall.state.p],health:Vesperfall.state.health,score:Vesperfall.state.score,profile:localStorage.getItem("vesperfall-profile-v1")})')
   page.locator('#menu-ar').click();wait('Vesperfall.component.xr&&Vesperfall.component.arMode');wait('Vesperfall.component.dominionControls.state.xrNeutral');xraction('Begin AR Sanctuary');wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   check(page.evaluate("TestXR.state.session.mode==='immersive-ar'&&TestXR.state.session.environmentBlendMode==='alpha-blend'"),'AR requests immersive-ar rather than relabeling a VR session')
   check(page.evaluate('AFRAME.scenes[0].object3D.background===null&&AFRAME.scenes[0].renderer.getClearAlpha()===0'),'AR leaves a transparent background for passthrough')
   check(page.evaluate('Vesperfall.component.practice&&Vesperfall.state.unscored&&Vesperfall.state.world.ar&&Vesperfall.state.world.enemies.length===2'),'AR Sanctuary starts a real unscored two-opponent wave')
-  old=page.evaluate('Vesperfall.state.type');xrpress('right',5);check(page.evaluate("Vesperfall.state.type!=='blink'"),'AR refuses artificial Blink locomotion')
+  xrpress('right',5);check(page.evaluate("Vesperfall.state.type!=='blink'"),'AR refuses artificial Blink locomotion')
   pos=page.evaluate('[...Vesperfall.state.p]');xrpress('right',1);check(page.evaluate('(p)=>JSON.stringify(Vesperfall.state.p)===JSON.stringify(p)',pos),'AR refuses artificial shard locomotion')
   page.screenshot(path=str(OUT/'ar-sanctuary-stereo.png'));xrpress('left',5);wait('Vesperfall.component.paused');xraction('Exit AR');wait('!Vesperfall.component.xr&&!Vesperfall.component.arMode')
   after=page.evaluate('({seed:Vesperfall.state.world.seed,p:[...Vesperfall.state.p],health:Vesperfall.state.health,score:Vesperfall.state.score,profile:localStorage.getItem("vesperfall-profile-v1")})')
