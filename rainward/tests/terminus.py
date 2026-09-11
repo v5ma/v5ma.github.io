@@ -36,7 +36,7 @@ with sync_playwright() as pw:
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(120000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None);page.on('dialog',lambda d:d.accept())
  try:
-  page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()==3,'Three separate authored chapters are present')
+  page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()==6,'Six separate authored chapters are present')
   chapter='conservatory' if MODE=='guidance' else 'terminus';page.locator('#chapter-select').select_option(chapter);page.locator('#start').click();wait(page,f'Rainward.state.level==="{chapter}"&&Rainward.mode==="play"')
   check(snap(page)['version']=='0.8.0','The running game identifies the v0.8 build')
   if MODE=='guidance':
