@@ -39,16 +39,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node aether-reach/tests/release-manifest.mjs /tmp/aether-release-contract.json
-          grep -q 'expedition-world.mjs' /tmp/aether-release-contract.json
-          grep -q 'expedition-core.mjs' /tmp/aether-release-contract.json
-          grep -q 'expedition-scene.mjs' /tmp/aether-release-contract.json
-          grep -q 'expedition-ui.mjs' /tmp/aether-release-contract.json
-          grep -q 'expedition.css' /tmp/aether-release-contract.json
+          node aether-reach/tests/release-manifest.mjs
+          manifest='aether-reach/test-output/runtime-manifest.json'
+          test -f "$manifest"
+          grep -q 'expedition-world.mjs' "$manifest"
+          grep -q 'expedition-core.mjs' "$manifest"
+          grep -q 'expedition-scene.mjs' "$manifest"
+          grep -q 'expedition-ui.mjs' "$manifest"
+          grep -q 'expedition.css' "$manifest"
       - name: Commit tested candidate and remove transport scaffolding
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf aether-reach/test-output
           rm -rf .aether-skyward-payload
           rm -f .github/workflows/aether-skyward-bootstrap.yml
           git add -A
