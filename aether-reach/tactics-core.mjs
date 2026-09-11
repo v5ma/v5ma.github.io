@@ -15,7 +15,7 @@ export const PATCHES=Object.freeze([
  {id:'works-oil',type:'oil',x:-24,y:12,z:-83,r:2.6}
 ]);
 export const CIRCUIT_INITIAL=Object.freeze([3,5,3,3,5,6,3,5,3]); // NESW bitmask
-export const KINDS=Object.freeze(['target','scout','heavy','sentry']);
+export const KINDS=Object.freeze(['target','scout','heavy','sentry','warden','marshal','breacher','longshot','skirmisher']);
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 const planar=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),inside=(b,p)=>planar(b,p)<=p.r&&b.y>=p.y-.3&&b.y<=p.y+5.5;
 export function rotateCircuit(mask){return ((mask<<1)&15)|(mask>>3);}

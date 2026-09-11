@@ -1,3 +1,4 @@
+import {ROOFS,UPPER_ROOMS,UPPER_FLOORS,UPPER_STAIRS,ROOF_RAILS,ROOF_TASKS,ROOF_THINGS,ROOF_CACHES,ROOF_FLAGS,ROOF_RECORDS,ROOF_ENEMIES} from './rooftop-world.mjs';
 /* Skyward Dispatch: original public side-adventures in the existing Aether Reach.
  * The same definitions drive visible streets, collision, AI, atlas and missions.
  * Southern space remains reserved for the separate living-city candidate. */
@@ -11,6 +12,7 @@ export const EXP_DISTRICTS = [
   {id:'aerodrome', name:'Dawn Aerodrome', x:143, y:12, z:-70, w:50, d:48, theme:'port'}
 ];
 export const EXP_BRIDGES = [
+  ...UPPER_STAIRS,
   {id:'market-stair', a:[-16,0,-6], b:[-70,7,-8], width:6.5, stairs:true},
   {id:'gannet-stair', a:[-116,7,-18], b:[-132,3,-18], width:6, stairs:true},
   {id:'academy-stair', a:[-92,7,-37], b:[-92,18,-79], width:6, stairs:true},
@@ -26,11 +28,13 @@ export const EXP_BRIDGES = [
   {id:'dawn-gallery-stair', a:[154,12,-56], b:[154,18,-72], width:3.2, stairs:true}
 ];
 export const TERRACES = [
+  ...ROOFS,...UPPER_FLOORS,
   {id:'archive-gallery', x:-95, y:36, z:-172, w:30, d:10},
   {id:'solstice-gallery', x:7, y:45, z:-221, w:36, d:14},
   {id:'dawn-gallery', x:154, y:18, z:-80, w:18, d:18}
 ];
 export const EXP_RAILS = [
+  ...ROOF_RAILS,
   {id:'bellline',name:'Bellwether Local',from:'harbor',to:'bellmarket',points:[[-9,3.1,0],[-31,13,9],[-61,19,10],[-82,16,2],[-81,10.1,-7]]},
   {id:'archiveline',name:'Scholar Skyway',from:'bellmarket',to:'archive',points:[[-93,10.1,-28],[-93,20,-53],[-127,39,-104],[-124,46,-139],[-98,33.1,-151]]},
   {id:'solsticeline',name:'Solstice Crown',from:'archive',to:'observatory',points:[[-81,33.1,-157],[-58,42,-155],[-33,55,-182],[6,52,-191],[12,41.1,-196]]},
@@ -51,6 +55,7 @@ export const EXP_BUILDINGS = [
   {id:'dawn-terminal',x:126,y:12,z:-79,w:11,d:15,h:20}
 ];
 export const EXP_ROOMS = [
+  ...UPPER_ROOMS,
   {id:'market-workshop',name:'The Clockmaker’s Arcade',x:-103,y:7,z:-29,w:13,d:12,h:4.6,gate:null},
   {id:'archive-room',name:'Hall of Common Memory',x:-95,y:30,z:-172,w:18,d:14,h:5.4,gate:'archive-open'},
   {id:'storm-room',name:'The Weather Engine',x:116,y:26,z:-166,w:17,d:14,h:6,gate:'weather-open'}
@@ -77,6 +82,7 @@ export const EXP_DEPOTS=[
   {id:'observatory-outfitters',x:22,y:38,z:-195,name:'Solstice Expedition Supplies'}
 ];
 export const EXP_CACHES=[
+  ...ROOF_CACHES,
   {id:'bell-cache',x:-111,y:7,z:-20,credits:80,label:'Theatre supply chest',weapon:null},
   {id:'gannet-cache',x:-162,y:3,z:-40,credits:90,label:'Gannet freight reserve',weapon:null},
   {id:'academy-cache',x:-114,y:18,z:-85,credits:100,label:'Academy field chest',weapon:'carbine'},
@@ -86,6 +92,7 @@ export const EXP_CACHES=[
   {id:'solstice-cache',x:20,y:45,z:-222,credits:150,label:'Solstice summit reserve',weapon:null}
 ];
 export const EXP_RECORDS=[
+  ...ROOF_RECORDS,
   {id:'bell-programme',x:-99,y:7,z:-3,title:'The price of an open road',text:'Every toll gate began as a temporary measure. The word temporary remained on the brass plate for forty-three years. Tonight the theatre is collecting those plates for a new curtain. - Bellwether playbill'},
   {id:'gannet-log',x:-145,y:3,z:-9,title:'The ferry that waited',text:'A timetable is a promise to someone you have never met. We kept the Gannet fueled after the Registry closed its route. Someone will need to cross. Someone always does. - Captain Orel'},
   {id:'academy-letter',x:-100,y:18,z:-110,title:'An unfinished lesson',text:'A good instrument reveals what its maker did not expect. A good city should do the same. We teach our students to repair the apparatus, not to erase the inconvenient measurement. - Aurelian workshop letter'},
@@ -102,6 +109,7 @@ export const POSTS=[
   {id:'aerodrome',name:'Dawn Courier Shelter',x:133,y:12,z:-64}
 ];
 export const TASKS=[
+  ...ROOF_TASKS,
   {id:'dispatch',name:'A Letter Through the Clouds',reward:60,flag:'dispatch-delivered',description:'Take Iona’s public dispatch from Arrival Quay to the Bellwether notice office.'},
   {id:'ferry',name:'A Ferry for Everyone',reward:100,flag:'ferry-online',description:'Recover the induction regulator in the Clockmaker’s Arcade and install it at Gannet Docks.'},
   {id:'charter',name:'The People’s Archive',reward:150,flag:'charter',description:'Recover three missing charter leaves, open the archive, and retrieve its original public-route charter.'},
@@ -114,6 +122,7 @@ export const TASKS=[
   {id:'open-sky',name:'The Skyward Dispatch',reward:300,flag:'open-sky',description:'Recover the charter, restore the weather engine, rescue Lio and secure the beacon. Return to Iona’s Quay noticeboard.'}
 ];
 export const THINGS=[
+  ...ROOF_THINGS,
   {id:'dispatch-board',name:'Iona’s expedition noticeboard',x:5,y:0,z:-1,kind:'board'},
   {id:'market-board',name:'Bellwether notice office',x:-92,y:7,z:-6,kind:'board'},
   {id:'regulator',name:'Induction regulator',x:-103,y:7,z:-30,kind:'pickup'},
@@ -144,6 +153,7 @@ export const TRANSIT=[
 ];
 const enemy=(id,kind,home,x,y,z,patrol)=>({id,kind,home,x,y:y+1.05,z,hp:kind==='breacher'?160:kind==='marshal'?100:75,reward:kind==='breacher'?80:50,humanoid:true,patrol:patrol||[[x,z],[x+2,z],[x+2,z+3],[x,z+3]]});
 export const EXP_ENEMIES=[
+  ...ROOF_ENEMIES,
   enemy('bell-warden-a','warden','bellmarket',-88,7,-30,[[-88,-30],[-88,-33],[-95,-33],[-95,-26]]),
   enemy('bell-marshal','marshal','bellmarket',-102,7,-20,[[-102,-20],[-100,-17],[-105,-17]]),
   enemy('gannet-warden','warden','canal',-156,3,-36,[[-156,-36],[-156,-28],[-160,-28]]),
@@ -164,7 +174,7 @@ export const EXP_ENEMIES=[
     {...enemy('solstice-wave-'+w+'-c','warden','observatory',8,38,-226,[[8,-226],[14,-226]]),wave:w}
   ])
 ];
-export const EXP_FLAGS=new Set(['dispatch-started','dispatch-delivered','regulator','ferry-online','charter-market','charter-academy','charter-dawn','archive-open','charter','weather-open','surveyor-found','surveyor-safe','beacon-secure','survey-archive','survey-dawn','survey-solstice','summits-surveyed','route-passport','all-districts','open-sky']);
+export const EXP_FLAGS=new Set([...ROOF_FLAGS,'dispatch-started','dispatch-delivered','regulator','ferry-online','charter-market','charter-academy','charter-dawn','archive-open','charter','weather-open','surveyor-found','surveyor-safe','beacon-secure','survey-archive','survey-dawn','survey-solstice','summits-surveyed','route-passport','all-districts','open-sky']);
 export function closedExpeditionGates(s){return GATES.filter(g=>!s?.expedition?.flags?.includes(g.flag));}
 export function transitPosition(route,t){
   const lengths=route.points.slice(1).map((p,i)=>Math.hypot(...p.map((v,j)=>v-route.points[i][j])));
@@ -183,7 +193,7 @@ export function bridgeBarrier(bridges,x,y,z,r=.38){
 // Openings line up with the physical stair landings. The same segments are
 // rendered as balustrades and used by capsule collision.
 export const BALCONY_RAILS=TERRACES.flatMap(t=>{
- const l=t.x-t.w/2,r=t.x+t.w/2,n=t.z-t.d/2,f=t.z+t.d/2,entry={'archive-gallery':-108,'solstice-gallery':-7,'dawn-gallery':154}[t.id];
- return [[[l,t.y,n],[r,t.y,n]],[[l,t.y,n],[l,t.y,f]],[[r,t.y,n],[r,t.y,f]],[[l,t.y,f],[entry-2.4,t.y,f]],[[entry+2.4,t.y,f],[r,t.y,f]]].filter(([a,b])=>Math.hypot(a[0]-b[0],a[2]-b[2])>.1).map(([a,b])=>({a,b}));
+ const gap=(t.rooftop||t.interior)?1.15:2.4;const l=t.x-t.w/2,r=t.x+t.w/2,n=t.z-t.d/2,f=t.z+t.d/2,entry=t.entry??{'archive-gallery':-108,'solstice-gallery':-7,'dawn-gallery':154}[t.id];
+ return [[[l,t.y,n],[r,t.y,n]],[[l,t.y,n],[l,t.y,f]],[[r,t.y,n],[r,t.y,f]],[[l,t.y,f],[Math.max(l,entry-gap),t.y,f]],[[Math.min(r,entry+gap),t.y,f],[r,t.y,f]]].filter(([a,b])=>Math.hypot(a[0]-b[0],a[2]-b[2])>.1).map(([a,b])=>({a,b}));
 });
 export function balconyBarrier(x,y,z,r=.38){for(const q of BALCONY_RAILS){const [ax,ay,az]=q.a,[bx,,bz]=q.b,dx=bx-ax,dz=bz-az,l2=dx*dx+dz*dz,t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/l2));if(y>=ay+1.18||y+1.8<=ay)continue;if(Math.hypot(x-ax-dx*t,z-az-dz*t)<r+.07)return true;}return false;}

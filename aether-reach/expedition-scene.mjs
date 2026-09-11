@@ -1,3 +1,4 @@
+import {LADDERS,ROOFS,BEACON_TARGETS} from './rooftop-world.mjs';
 /* Original floating-city art, built from authored geometry, not reference
  * screenshots. Repeated structure is instanced; dynamic actor pools are bounded. */
 import {EXP_DISTRICTS,EXP_BRIDGES,EXP_BUILDINGS,EXP_ROOMS,TERRACES,ROOM_SOLIDS,GATES,COVER,POSTS,THINGS,TRANSIT,BALCONY_RAILS,transitPosition} from './expedition-world.mjs';
@@ -20,6 +21,8 @@ export function expeditionScene(T,{scene,part,box,beam,label,material,movingPart
   for(const q of[a,end])for(const sign of[-1,1]){const pos=q.clone().addScaledVector(side,sign*(b.width/2+.32));box(pos.x,pos.y+.62,pos.z,.43,1.25,.43,P.ivory);part('sphere',pos.x,pos.y+1.31,pos.z,.26,.26,.26,P.bronze,0,0,'metal');}
  }
  for(const t of TERRACES){box(t.x,t.y-.18,t.z,t.w,.36,t.d,P.ivory);box(t.x,t.y-.45,t.z,t.w+.2,.18,t.d+.2,P.bronze);for(const sx of[-1,1])for(const sz of[-1,1]){const floor=EXP_DISTRICTS.find(d=>t.x>=d.x-d.w/2&&t.x<=d.x+d.w/2&&t.z>=d.z-d.d/2&&t.z<=d.z+d.d/2)?.y||0;const h=t.y-floor;part('cylinder',t.x+sx*(t.w/2-.6),floor+h/2,t.z+sz*(t.d/2-.6),.3,h,.3,P.ivory);part('cylinder',t.x+sx*(t.w/2-.6),t.y-.6,t.z+sz*(t.d/2-.6),.55,.6,.55,P.bronze,0,0,'metal');}}
+ for(const r of LADDERS){const [a,b]=r.points;for(const dx of[-.5,.5])beam(v([a[0]+dx,a[1],a[2]]),v([b[0]+dx,b[1]+1,b[2]]),.075,P.bronze);for(let y=a[1]+.3;y<b[1];y+=.32)beam(v([a[0]-.5,y,a[2]]),v([a[0]+.5,y,a[2]]),.055,P.iron);sign('SERVICE LADDER / '+r.name,a[0],a[1]+2.3,a[2]+.35,4.5,.6);}
+ for(const r of ROOFS){lamp(r.x+r.w/2-.9,r.y,r.z+2);sign(r.name.toUpperCase(),r.x,r.y+2,r.z-r.d/2+.3,r.w*.85,.8);}
  for(const q of BALCONY_RAILS)rail(q.a,q.b);
  // Room meshes exactly follow the wall and door-jamb collision definitions.
  for(const r of EXP_ROOMS){for(const q of ROOM_SOLIDS.filter(q=>q.id.startsWith(r.id))){box((q.x1+q.x2)/2,(q.y1+q.y2)/2,(q.z1+q.z2)/2,q.x2-q.x1,q.y2-q.y1,q.z2-q.z1,r.id==='storm-room'?P.slate:P.ivory);}
@@ -64,7 +67,8 @@ export function expeditionScene(T,{scene,part,box,beam,label,material,movingPart
  part('cylinder',7,47,-221,.7,4,.7,P.iron,0,0,'metal');part('cylinder',7,45.3,-221,2,.6,2,P.bronze,0,0,'metal');sign('SOLSTICE\nLEAVE THE LIGHT ON',7,43,-230,18,2,P.slate);
  // Actual mission props, small enough not to obstruct their own use volume.
  const props=new Map();for(const t of THINGS){if(t.kind==='person')continue;const g=new T.Group();g.position.set(t.x,t.y,t.z);dynamic.add(g);const m=material(P.bronze,'metal');
-  if(t.kind==='board'){movingPart('box',material(P.iron),[0,1.6,0],[2.6,2.1,.2],g);for(const x of[-1,1])movingPart('cylinder',m,[x,.7,0],[.07,1.4,.07],g);sign(t.id==='dispatch-board'?'SKYWARD DISPATCH\nL / JOURNAL    E / READ':'BELLWETHER NOTICE OFFICE\nE / DELIVER DISPATCH',t.x,t.y+1.65,t.z+.12,2.35,1.7);}
+  if(t.id.startsWith('roof-beacon-')){movingPart('cylinder',m,[0,.6,0],[.28,1.2,.28],g);const ring=movingPart('torus',m,[0,1.65,0],[.7,.7,.16],g);movingPart('box',material(P.light,'glow'),[0,.62,0],[.12,.28,.12],ring);g.userData.beacon=ring;g.userData.lens=movingPart('sphere',material(P.light,'glow'),[0,1.65,0],[.26,.26,.26],g);}
+  else if(t.kind==='board'){movingPart('box',material(P.iron),[0,1.6,0],[2.6,2.1,.2],g);for(const x of[-1,1])movingPart('cylinder',m,[x,.7,0],[.07,1.4,.07],g);sign(t.id==='dispatch-board'?'SKYWARD DISPATCH\nL / JOURNAL    E / READ':'BELLWETHER NOTICE OFFICE\nE / DELIVER DISPATCH',t.x,t.y+1.65,t.z+.12,2.35,1.7);}
   else if(t.kind==='telescope'){movingPart('cylinder',m,[0,.9,0],[.1,1.8,.1],g);const tube=movingPart('cylinder',material(P.iron,'metal'),[0,1.7,-.35],[.22,1.5,.22],g);tube.rotation.x=Math.PI/2-.25;movingPart('sphere',material(P.light,'glow'),[0,1.9,-1.02],[.16,.16,.04],g);}
   else if(t.kind==='pickup'){movingPart('box',material(P.iron),[0,.4,0],[.7,.8,.65],g);const gem=movingPart(t.id==='regulator'?'rock':'box',material(t.id==='regulator'?P.light:P.cream,'metal'),[0,1.05,0],t.id==='regulator'?[.3,.4,.3]:[.42,.5,.05],g);g.userData.gem=gem;movingPart('torus',material(P.light,'glow'),[0,1.05,0],[.52,.52,.1],g);}
   else if(t.kind==='valve'){movingPart('cylinder',material(P.iron,'metal'),[0,.7,0],[.25,1.4,.25],g);const wheel=movingPart('torus',m,[0,1.45,.15],[.55,.55,.18],g);g.userData.wheel=wheel;movingPart('box',m,[0,0,0],[.95,.08,.08],wheel);g.userData.dial=sign('0',t.x,t.y+2.2,t.z,.75,.65);}
@@ -93,18 +97,18 @@ export function expeditionScene(T,{scene,part,box,beam,label,material,movingPart
  function actorPart(key,shape,mat,max=128){const mesh=new T.InstancedMesh(geometry[shape],mat,max);mesh.instanceMatrix.setUsage(T.DynamicDrawUsage);mesh.frustumCulled=false;mesh.castShadow=true;dynamic.add(mesh);batches.set(key,{mesh,n:0,max});}
  actorPart('cloth','box',material(P.iron),count*5);actorPart('coat','cylinder',material(P.iron),count);actorPart('leather','box',material('#29353c'),count*7);actorPart('face','sphere',material('#d3aa83'),count);actorPart('helmet','sphere',material(P.iron,'metal'),count);actorPart('brass','box',material(P.bronze,'metal'),count*9);actorPart('eyes','sphere',material('#142e36'),count*2);actorPart('glow','box',material('#fba56b','glow'),count*3);
  function place(key,b,x,y,z,sx,sy,sz,rx=0,rz=0,tint=null){const pool=batches.get(key);if(pool.n>=pool.max)return;const heading=b.heading||0,cs=Math.cos(heading),sn=Math.sin(heading);pos.set(b.x+x*cs-z*sn,b.y-1.05+y,b.z+x*sn+z*cs);euler.set(rx,-heading,rz,'YXZ');q.setFromEuler(euler);scale.set(sx,sy,sz);matrix.compose(pos,q,scale);pool.mesh.setMatrixAt(pool.n,matrix);if(tint)pool.mesh.setColorAt(pool.n,color.set(tint));pool.n++;}
- function person(b,time,friendly=false){const size=b.kind==='breacher'?1.18:1,coat=friendly?'#c2b38c':b.kind==='marshal'?'#6e597a':b.kind==='breacher'?'#60554d':'#3e6670',walk=b.walking?Math.sin(time*8.5+(b.x+b.z)*.03)*.34:0;
+ function person(b,time,friendly=false){const size=b.kind==='breacher'?1.18:1,coat=friendly?'#c2b38c':b.kind==='longshot'?'#684f86':b.kind==='skirmisher'?'#3b8e87':b.kind==='marshal'?'#6e597a':b.kind==='breacher'?'#60554d':'#3e6670',walk=b.walking?Math.sin(time*8.5+(b.x+b.z)*.03)*.34:0;
   place('cloth',b,0,1.23,0,.63*size,.64,.37*size,0,0,coat);place('coat',b,0,.88,0,.39*size,.5,.26*size,0,0,coat);
   for(const side of[-1,1]){const k=side*walk;place('cloth',b,side*.19,.62,Math.sin(k)*.12,.19,.5,.21,k,0,coat);place('leather',b,side*.19,.26,-Math.sin(k)*.14,.17,.45,.19,-k);place('leather',b,side*.19,.075,-.12-Math.sin(k)*.16,.23,.14,.36);
    place('cloth',b,side*.4*size,1.26,-.045,.19,.49,.22,friendly?-k:-.62,side*-.08,coat);place('leather',b,side*.36*size,1.03,-.29,.16,.38,.19,1.1);place('brass',b,side*.35*size,1.5,0,.2,.08,.26);
    place('eyes',b,side*.075,1.79,-.212,.028,.035,.019);}
   place('face',b,0,1.72,0,.22,.27,.23);place('helmet',b,0,1.93,.035,.26,.17,.26,0,0,friendly?'#947452':P.iron);place('brass',b,0,1.88,-.21,.4,.055,.22);place('brass',b,0,1.09,-.202,.58,.065,.06);for(const y of[1.18,1.32,1.46])place('brass',b,.075,y,-.197,.035,.035,.024);
-  if(!friendly){place('leather',b,.23,1.13,-.58,.15,.2,.7);place('brass',b,.23,1.16,-1.04,.07,.075,.46);place('glow',b,.23,1.16,-1.29,.07,.075,.02,0,0,b.telegraph>.1?'#ff754d':'#829e9b');if(b.kind==='breacher')place('brass',b,0,1.27,-.25,.51,.42,.09);}
+  if(!friendly){place('leather',b,.23,1.13,-.58,.15,.2,.7);place('brass',b,.23,1.16,b.kind==='longshot'?-1.22:-1.04,.07,.075,b.kind==='longshot'?.82:.46);place('glow',b,.23,1.16,-1.29,.07,.075,.02,0,0,b.telegraph>.1?'#ff754d':'#829e9b');if(b.kind==='breacher')place('brass',b,0,1.27,-.25,.51,.42,.09);}
  }
  let visibleActors=0;
  function update(s,dt,reduced){const e=s.expedition;if(!e)return;const flags=e.flags;
   for(const [flag,o]of gateMeshes){const target=o.y+(flags.includes(flag)?3.5:0);o.g.position.y+=(target-o.g.position.y)*Math.min(1,dt*7);}
-  for(const [id,g]of props){g.visible=!(flags.includes(id)&&THINGS.find(t=>t.id===id)?.kind==='pickup')&&!(id==='charter-original'&&flags.includes('charter'));if(g.userData.gem&&!reduced)g.userData.gem.rotation.y=s.time*.7;if(g.userData.wheel){const i=Number(id.at(-1));g.userData.wheel.rotation.z=e.valves[i]*Math.PI/2;if(g.userData.lastDial!==e.valves[i]){g.userData.lastDial=e.valves[i];const tex=g.userData.dial.material.map,c=tex.image,ctx=c.getContext('2d');ctx.fillStyle=P.iron;ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle=P.cream;ctx.font='bold 400px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(e.valves[i]),c.width/2,c.height/2);tex.needsUpdate=true;}}}
+  for(const [id,g]of props){if(g.userData.beacon){const i=Number(id.at(-1));g.userData.beacon.rotation.z=e.beaconDials[i]*Math.PI/2;g.userData.lens.visible=e.beaconDials[i]===BEACON_TARGETS[i];}g.visible=!(flags.includes(id)&&THINGS.find(t=>t.id===id)?.kind==='pickup')&&!(id==='charter-original'&&flags.includes('charter'));if(g.userData.gem&&!reduced)g.userData.gem.rotation.y=s.time*.7;if(g.userData.wheel){const i=Number(id.at(-1));g.userData.wheel.rotation.z=e.valves[i]*Math.PI/2;if(g.userData.lastDial!==e.valves[i]){g.userData.lastDial=e.valves[i];const tex=g.userData.dial.material.map,c=tex.image,ctx=c.getContext('2d');ctx.fillStyle=P.iron;ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle=P.cream;ctx.font='bold 400px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(e.valves[i]),c.width/2,c.height/2);tex.needsUpdate=true;}}}
   for(const r of TRANSIT){const c=e.transits.find(t=>t.id===r.id),g=cabins.get(r.id),p=transitPosition(r,c.t);g.position.set(p.x,p.y,p.z);if(g.userData.prop&&!reduced)g.userData.prop.rotation.z+=dt*(c.moving?9:2);g.visible=!r.requires||flags.includes(r.requires);}
   if(!reduced){orrery.rotation.y+=dt*.09;engine.rotation.y+=dt*(flags.includes('weather-open')?.7:.14);}
   for(const b of batches.values())b.n=0;visibleActors=0;
@@ -112,5 +116,5 @@ export function expeditionScene(T,{scene,part,box,beam,label,material,movingPart
   if(Math.hypot(e.escort.x-s.p.x,e.escort.z-s.p.z)<125){person({...e.escort,y:e.escort.y+1.05},s.time,true);visibleActors++;}
   for(const b of batches.values()){b.mesh.count=b.n;b.mesh.instanceMatrix.needsUpdate=true;if(b.mesh.instanceColor)b.mesh.instanceColor.needsUpdate=true;b.mesh.visible=b.n>0;}
  }
- return {update,stats:()=>({districts:EXP_DISTRICTS.length,stairs:EXP_BRIDGES.length,rooms:EXP_ROOMS.length,visibleHumanoids:visibleActors,transports:TRANSIT.length})};
+ return {update,stats:()=>({districts:EXP_DISTRICTS.length,rooftops:ROOFS.length,ladders:LADDERS.length,stairs:EXP_BRIDGES.length,rooms:EXP_ROOMS.length,visibleHumanoids:visibleActors,transports:TRANSIT.length})};
 }

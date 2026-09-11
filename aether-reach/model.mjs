@@ -1,3 +1,4 @@
+import {createClimbing} from './climbing.mjs';
 import {EXP_DISTRICTS,EXP_BRIDGES,EXP_RAILS,EXP_BUILDINGS,EXP_RECORDS,TERRACES,ROOM_SOLIDS,COVER,POSTS,closedExpeditionGates,bridgeBarrier,balconyBarrier} from './expedition-world.mjs';
 import {createExpedition,cleanExpedition,saveExpedition,expeditionSnapshot,expeditionGoal} from './expedition-core.mjs';
 export {expeditionSnapshot,expeditionGoal};
@@ -8,7 +9,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.5.0';
+export const VERSION='0.6.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -72,6 +73,7 @@ export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b
 const deckSolids=[...DISTRICTS,...TERRACES].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
 const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids);
 const tactical=createTactics({solids:SOLIDS,clearLine,rayBox,raySphere,forward,emit,defeated,hurt});
+const climbing=createClimbing({occupied,clearLine,emit});
 const expedition=createExpedition({groundAt,occupied,clearLine,emit,hurt});
 export function pointOnRail(r,s){
  s=clamp(s,0,r.length);let lo=0,hi=r.cum.length-1;while(lo+1<hi){const m=(lo+hi)>>1;if(r.cum[m]<s)lo=m;else hi=m;}
@@ -121,7 +123,7 @@ export function railTarget(s){const p=s.p,head={x:p.x,y:p.y+1.6,z:p.z},view=forw
  for(const r of RAILS){if(r.id===p.rail?.id||!p.grounded&&s.time-p.airSince<.85&&r.id===p.lastRail)continue;const target=nearestRailOn(head,r,p.grounded?4.3:6.3);if(!target)continue;const v={x:target.point.x-head.x,y:target.point.y-head.y,z:target.point.z-head.z},dot=(v.x*view.x+v.y*view.y+v.z*view.z)/(target.distance||1);if(!p.grounded&&dot<-.12)continue;if(!clearLine(head,target.point))continue;const dest={x:target.point.x,y:target.point.y-2.65,z:target.point.z};if(occupied(dest.x,dest.y,dest.z,s)||!clearLine({...head,y:head.y-.6},{...dest,y:dest.y+1}))continue;const score=target.distance-(p.grounded?0:dot*2.8);if(!best||score<best.score)best={...target,score,dot};}return best;
 }
 function nearestRailOn(p,r,max){let best=null;for(let i=1;i<r.pts.length;i++){const a=r.pts[i-1],b=r.pts[i],dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len2=dx*dx+dy*dy+dz*dz,t=clamp(((p.x-a.x)*dx+(p.y-a.y)*dy+(p.z-a.z)*dz)/len2,0,1),q={x:a.x+dx*t,y:a.y+dy*t,z:a.z+dz*t},d=distance(p,q);if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};}return best;}
-export function nearby(s){const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
+export function nearby(s){const ladder=climbing.nearby(s);if(ladder)return ladder;const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
  if(p.ride)return expedition.nearby(s);
  const extra=expedition.nearby(s);if(extra)return extra;
  const field=tactical.nearby(s);if(field)return field;
@@ -135,6 +137,7 @@ export function interact(s){const n=nearby(s),p=s.p;
  // 0.30 simulation seconds. Never auto-grab without input or through a wall.
  if(!p.rail&&!p.grounded&&p.lastRail&&(!n||n.type==='hook')&&(!n||p.hookCooldown>0)){p.hookRequest=.30;return true;}
  if(!n)return false;
+ if(n.type==='ladder')return climbing.enter(s);
  if(n.type.startsWith('exp-'))return expedition.handle(s,n);
  if(n.type.startsWith('field-'))return tactical.handle(s,n.type);
  if(n.type==='loot')return collect(s,n.id);
@@ -164,7 +167,7 @@ export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.re
  }return true;
 }
 export function pulse(s){const p=s.p;if(p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b,s)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){defeated(s,b);}}emit(s,'pulse',{hits:n});return true;}
-export function rescue(s,death=false){tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];emit(s,'rescue',{death});}
+export function rescue(s,death=false){tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,climb:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];emit(s,'rescue',{death});}
 function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;let left=amount;if(p.shield>0){const k=Math.min(left,p.shield);p.shield-=k;left-=k;}p.health-=left;s.damagedAt=s.time;emit(s,'damage');if(p.health<=0)rescue(s,true);}
 export function occupied(x,y,z,state=null){return (state?stateSolids(state):SOLIDS).some(b=>(!b.deck||y<b.y2-.8)&&x+.38>b.x1&&x-.38<b.x2&&y+1.8>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2)||bridgeBarrier(BRIDGES,x,y,z)||balconyBarrier(x,y,z);}
 export function step(s,input,dt){
@@ -175,6 +178,7 @@ export function step(s,input,dt){
  if(input.reload&&p.ammo<weaponStats(s).mag&&p.reload<=0&&(p.weapon==='arc'||s.kit.reserve[p.weapon]>0))p.reload=weaponStats(s).reload;
  const riding=!!p.ride;expedition.moveTransits(s,dt);
  if(riding){/* Passenger movement is integrated by the actual cabin route. */}
+ else if(p.climb){climbing.step(s,input,dt);}
  else if(p.rail){const r=RAILS.find(r=>r.id===p.rail.id);p.speed=clamp(p.speed+(input.back?-16:input.boost?15:p.speed>19?-3:4)*dt,3,input.boost||p.speed>19?28:19);const old=p.rail.s;p.rail.s=clamp(old+p.speed*p.rail.dir*dt,0,r.length);s.stats.railDistance+=Math.abs(old-p.rail.s);const q=pointOnRail(r,p.rail.s);if(p.latch){p.latch.t+=dt;const f=Math.min(1,p.latch.t/.18);p.x=p.latch.x+(q.x-p.latch.x)*f;p.y=p.latch.y+(q.y-2.65-p.latch.y)*f;p.z=p.latch.z+(q.z-p.latch.z)*f;if(f===1)p.latch=null;}else{p.x=q.x;p.y=q.y-2.65;p.z=q.z;}
   if(input.railCamera===true&&!p.scoped){const yaw=Math.atan2(q.tangent.x*p.rail.dir,-q.tangent.z*p.rail.dir),delta=Math.atan2(Math.sin(yaw-p.yaw),Math.cos(yaw-p.yaw));p.yaw+=delta*Math.min(1,dt*2.5);}
   if(p.rail.s===0||p.rail.s===r.length){const end=p.rail.s===0?r.from:r.to;detach(s,false);p.vx=p.vz=0;const floor=groundAt(p.x,p.z,p.y+1);if(Number.isFinite(floor.y)){p.y=floor.y+.01;p.grounded=true;}expedition.railArrival(s,r.id);emit(s,'arrive',{district:end});}
@@ -205,13 +209,13 @@ export function step(s,input,dt){
  for(let i=s.bullets.length-1;i>=0;i--){const b=s.bullets[i];b.life-=dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;if(distance(b,{x:p.x,y:p.y+1,z:p.z})<.85){hurt(s,(b.damage||15)*(input.explorer?.53:1));b.life=0;}if(b.life<=0||stateSolids(s).some(q=>b.x>q.x1&&b.x<q.x2&&b.y>q.y1&&b.y<q.y2&&b.z>q.z1&&b.z<q.z2))s.bullets.splice(i,1);}
  tactical.step(s,input,dt);expedition.tick(s,dt);
 }
-export function jump(s){if(expedition.jumpOff(s))return true;if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
+export function jump(s){if(s.p.climb)return climbing.leave(s,true);if(expedition.jumpOff(s))return true;if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
 
 // Room-scale translation is collision checked independently of joystick motion.
-export function roomMove(s,dx,dz){if(!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>.5||s.p.rail||s.p.ride)return false;const p=s.p;if(!occupied(p.x+dx,p.y,p.z,s))p.x+=dx;if(!occupied(p.x,p.y,p.z+dz,s))p.z+=dz;return true;}
+export function roomMove(s,dx,dz){if(!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>.5||s.p.rail||s.p.ride||s.p.climb)return false;const p=s.p;if(!occupied(p.x+dx,p.y,p.z,s))p.x+=dx;if(!occupied(p.x,p.y,p.z+dz,s))p.z+=dz;return true;}
 
 export function foldGlide(s,reason='manual'){if(!s.p.gliding)return false;s.p.gliding=false;emit(s,'glide-fold',{reason});return true;}
-export function toggleGlide(s){const p=s.p;if(s.won)return false;if(p.gliding)return foldGlide(s);const floor=groundAt(p.x,p.z,p.y);if(p.grounded||p.rail||p.ride||p.glideCharge<8||occupied(p.x,p.y,p.z,s)||(Number.isFinite(floor.y)&&p.y-floor.y<1.2))return false;p.gliding=true;s.stats.glides++;emit(s,'glide-open');return true;}
+export function toggleGlide(s){const p=s.p;if(s.won)return false;if(p.climb)return climbing.leave(s);if(p.gliding)return foldGlide(s);const floor=groundAt(p.x,p.z,p.y);if(p.grounded||p.rail||p.ride||p.climb||p.glideCharge<8||occupied(p.x,p.y,p.z,s)||(Number.isFinite(floor.y)&&p.y-floor.y<1.2))return false;p.gliding=true;s.stats.glides++;emit(s,'glide-open');return true;}
 
 // Public actions: all UI adapters call these guarded model operations.
 export const fieldChoose=(s,id)=>tactical.choose(s,id);

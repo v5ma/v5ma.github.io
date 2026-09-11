@@ -12,7 +12,7 @@ def check(v,label):
 def travel(page,target,air=False):
  held=set();start=time.monotonic();last_progress=start;last_tick=-1
  try:
-  # Refraction is retained at the normal desktop setting. This deadline
+  # The supported light profile keeps software-GPU input replays bounded. This deadline
   # is a software-GPU watchdog, not an FPS or flight-duration requirement.
   while time.monotonic()-start<240:
    s=snap(page);now=time.monotonic()
@@ -34,8 +34,8 @@ def travel(page,target,air=False):
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- browser=p.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block')
- host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
+ browser=p.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block')
+ ctx.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))");host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(120000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach');page.locator('#start').click()
