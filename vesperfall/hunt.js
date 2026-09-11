@@ -100,7 +100,7 @@
    }
   }
   const oldVisual=g.visuals.bind(g);g.visuals=function(){oldVisual();update();};
-  const oldHud=g.hud.bind(g);g.hud=function(){oldHud();if(g.training&&g.running){$('objective').textContent='Sparring · '+VesperEncounters.names[g.training];$('tally').textContent=g.game.world.enemies.some(e=>!e.dead)?'Read the windup. Defend. Counterattack.':'Trial complete · P to repeat';}};
+  const oldHud=g.hud.bind(g);g.hud=function(){oldHud();if(g.training&&g.running){$('objective').textContent='Sparring · '+(VesperEncounters.names[g.training]||'AR Sanctuary');$('tally').textContent=g.game.world.enemies.some(e=>!e.dead)?'Read the windup. Defend. Counterattack.':'Trial complete · P to repeat';}};
   return {update};
  }
  root.VesperHunt=Object.freeze({install});

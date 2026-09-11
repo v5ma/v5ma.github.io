@@ -3,7 +3,7 @@ function moveTo(s,p){let count=0;while(Math.hypot(s.p[0]-p[0],s.p[2]-p[2])>.008&
 function route(s,id){for(const n of C.route(s.world,C.roomAt(s.world,s.p),id)){const r=s.world.rooms[n];moveTo(s,[r.x,0,r.z]);}}
 test('100 seeds have connected varying footprints, with reversible upper crossings and 6.4m belfries',()=>{
  const layouts=new Set();for(let i=0;i<100;i++){
-  const s=C.create('CATHEDRAL-'+i);s.world.enemies=[];const w=s.world;layouts.add(JSON.stringify(w.rooms.map(r=>[r.x,r.z,r.w,r.d,r.planFamily])));A.equal(new Set(w.rooms.map(r=>r.planFamily)).size,6);A.equal(w.edges.length,10);
+  const s=C.create('CATHEDRAL-'+i);s.world.enemies=[];const w=s.world;layouts.add(JSON.stringify(w.rooms.map(r=>[r.x,r.z,r.w,r.d,r.planFamily])));A.equal(new Set(w.rooms.map(r=>r.planFamily)).size,22);A.equal(w.edges.length,38);
   for(const r of w.rooms)A.ok(C.route(w,1,r.id).length);
   const br=w.architecture.routes[0];A.ok(br);route(s,br.from);moveTo(s,br.entry);moveTo(s,[br.entry[0],3.2,br.a[2]]);A.ok(Math.abs(s.p[1]-3.2)<.01);moveTo(s,br.a);moveTo(s,br.b);moveTo(s,[br.exit[0],3.2,br.b[2]]);moveTo(s,br.exit);A.ok(s.p[1]<.05);
   moveTo(s,[br.exit[0],3.2,br.b[2]]);moveTo(s,br.b);moveTo(s,br.a);moveTo(s,[br.entry[0],3.2,br.a[2]]);moveTo(s,br.entry);A.ok(s.p[1]<.05);

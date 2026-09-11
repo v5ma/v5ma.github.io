@@ -1,0 +1,19 @@
+# Vesperfall 0.7.0 — Hollow Dominions
+
+This is an in-place expansion of Arrows Unchained. The original equipment, seeded inner cloister, five-warden beacon progression, Chronicle, profile storage key and Jewelglass materials remain in use.
+
+Each sector contains 25 districts. Sixteen optional outer rooms connect through a perimeter and twelve radial approaches. They have two-stair galleries, eight additional high walks and two additional crowns at 6.4 metres. Together with the existing Processional Skywalk and Belfry Crown, this makes nine inter-room upper walks and three crowns. The original inner plans and links still change with seed and depth. The new outer ring deliberately retains a readable return loop.
+
+The twelve new opponents are Grave Lancer, Thorn Duelist, Penitent Archer, Lantern Hexer, Cinder Alchemist, Frost Abbess, Choir Leech, Chain Gaoler, Mirror Acolyte, Ash Gargoyle, Reliquary Colossus and Rift Widow. Their behavior includes committed charges, a double attack, fast arrows, fan volleys, delayed ground blasts, chill, healing, slowing chains, frontal armor and lateral repositioning. Every trial uses the same collision and combat model as expeditions. Fifteen archetypes are available in the trial selector.
+
+Exploration objectives track all sixteen outer districts, eight recovered reliquaries and all twelve new orders defeated. Each completed side objective grants score, healing and ammunition once per sector. Unscored practice and AR never bank permanent progress.
+
+Xbox: left stick moves and its click sprints. Right stick aims and its click changes weapon. RT draws/releases the bow or fires the crossbow. LT guards. A interacts, B toggles Blink, X reloads, Y cycles arrows, RB shard-steps and LB cancels the draw. D-pad left/right select arrows, down selects Standard and up opens the journal. View toggles the atlas. Menu pauses. In menus, stick/D-pad navigates, left/right adjusts settings, A selects and B backs out. The seed has an on-screen controller keyboard. Input must return to neutral after menu transitions and reconnection.
+
+Quest: bow and draw hands are configurable. Draw-hand trigger physically nocks, draws and releases. Bow-hand grip guards. Draw-hand grip shard-steps. Draw-hand lower face button cycles arrows and upper toggles Blink. Bow-hand lower face button interacts and upper opens the spatial menu. Draw-stick click reloads; bow-stick click changes weapon. Bow stick moves in Smooth mode; draw stick snap-turns. Either controller ray/trigger or stick/face buttons can operate the paginated menu, including settings, trials, seeds, Chronicle, equipment, manual and exit. Browser-owned permission dialogs remain under the browser's control.
+
+AR Sanctuary requests immersive-ar, leaves the scene background transparent, and supplies stationary unscored waves and target practice. Artificial movement, Blink and shard-step are disabled. It does not scan furniture or implement real-world occlusion. Leaving AR restores the suspended expedition and pauses it. Clear an unobstructed play space before entering.
+
+Architecture, models and ornaments added here are original procedural geometry, not copied game assets. The existing registered CC0 cathedral assets and licenses are retained. Desktop shadow and material preferences remain available; immersive rendering uses the existing lower-cost Jewelglass policy plus distance-based visibility.
+
+Acceptance covers deterministic model tests, reversible geometry traversal, native WebGL, controller-driven menus, physical-draw input emulation, tracking loss, actual immersive-vr/immersive-ar request paths, and AR restoration. Emulator results are not physical Quest 3 certification, measured headset performance or comfort testing. See the Hollow Dominions workflow artifacts for exact results and screenshots for a revision.

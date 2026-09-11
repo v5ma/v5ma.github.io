@@ -1,10 +1,12 @@
 /* Deterministic enemy decisions. Timers use simulation seconds; no DOM, RNG,
  * hidden player teleport, or damage that bypasses the shared collision tests. */
 (function(root){'use strict';
- const names={cantor:'Ash Cantor',stalker:'Rift Hound',warden:'Bell Sentinel'};
- const guardActive=e=>e.kind==='warden'&&!e.dead&&!(e.frozen>0)&&!(e.recovery>0)&&!(e.wind>0);
- function training(kind){kind=names[kind]?kind:'cantor';return {id:0,room:1,p:[0,1.05,-1.8],hp:kind==='warden'?118:70,maxHp:kind==='warden'?118:70,kind,speed:kind==='stalker'?.95:kind==='warden'?.65:.4,cd:1.8,wind:0,slow:0,frozen:0,recovery:0,dead:false,aware:true};}
+ const extra=root.VesperBestiary||(typeof require!=='undefined'?require('./bestiary.js'):null);
+ const names={cantor:'Ash Cantor',stalker:'Rift Hound',warden:'Bell Sentinel',...Object.fromEntries(Object.values(extra.catalog).map(d=>[d.id,d.name]))};
+ const guardActive=e=>extra.catalog[e.kind]?extra.guardActive(e):e.kind==='warden'&&!e.dead&&!(e.frozen>0)&&!(e.recovery>0)&&!(e.wind>0);
+ function training(kind){if(extra.catalog[kind])return {...extra.make(kind,0),required:true,aware:true,cd:1.8};kind=names[kind]?kind:'cantor';return {id:0,room:1,p:[0,1.05,-1.8],hp:kind==='warden'?118:70,maxHp:kind==='warden'?118:70,kind,speed:kind==='stalker'?.95:kind==='warden'?.65:.4,cd:1.8,wind:0,slow:0,frozen:0,recovery:0,dead:false,aware:true};}
  function update(s,e,dt,a){
+  if(extra.catalog[e.kind])return extra.update(s,e,dt,a);
   const {add,sub,mul,unit,len,walkable,route,roomAt,segmentBlocked,emit,shieldHit,block,hurt}=a;
   if(e.dead)return;
   e.slow=Math.max(0,(e.slow||0)-dt);e.frozen=Math.max(0,(e.frozen||0)-dt);e.recovery=Math.max(0,(e.recovery||0)-dt);

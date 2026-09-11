@@ -43,10 +43,10 @@ with sync_playwright() as pw:
   if MODE=='visual':
    p.goto(BASE+'/baseline/vesperfall/',wait_until='domcontentloaded');p.wait_for_function('window.Vesperfall?.component.rendererReady');p.locator('#practice').click();p.wait_for_function('!Vesperfall.component.paused&&Vesperfall.component.running');p.wait_for_timeout(400);p.screenshot(path=str(OUT/'before-choir.png'));p.goto('about:blank')
   p.goto(BASE+'/vesperfall/',wait_until='domcontentloaded');p.wait_for_function('window.Vesperfall?.component.cathedral&&Vesperfall.component.rendererReady&&Vesperfall.component.art.cathedralStatus.textures===6&&Vesperfall.component.worldArt.group.userData.loadedSculptures>0')
-  check(p.evaluate('VesperCore.VERSION==="0.6.0"'),'The current renderer identifies the Living Cathedral release')
+  check(p.evaluate('VesperCore.VERSION==="0.7.0"'),'The current renderer identifies Hollow Dominions with Living Cathedral assets')
   check(p.evaluate('Vesperfall.component.art.cathedralStatus.errors.length===0'),'All six local material maps and the modeled sculpture load without an external CDN')
   p.locator('#practice').click();p.wait_for_function('!Vesperfall.component.paused&&Vesperfall.component.running');p.wait_for_function('Vesperfall.component.worldArt.group.userData.loadedSculptures>0');profile=p.evaluate('JSON.stringify(Vesperfall.component.profile)');w=p.evaluate('JSON.parse(JSON.stringify(Vesperfall.state.world))')
-  check(len({r['planFamily'] for r in w['rooms']})==6,'The actual scene contains six architecture families with real dimensions')
+  check(len({r['planFamily'] for r in w['rooms']})==22,'The actual scene preserves six inner and sixteen outer architecture families')
   if MODE=='visual':
    p.screenshot(path=str(OUT/'after-choir.png'));p.locator('a-scene canvas').focus();aim(p,-1.87,0);p.screenshot(path=str(OUT/'masonry-and-sculpture.png'));check(p.evaluate('(()=>{const g=Vesperfall.component,T=g.T,r=new T.Raycaster();r.setFromCamera(new T.Vector2(0,0),g.scene.camera);const hits=r.intersectObject(g.worldArt.group,true);const first=hits.find(h=>{let n=h.object;while(n){if(!n.visible)return false;n=n.parent;}return true;});let n=first?.object;while(n){if(n.name.startsWith("CC0 Marble Bust"))return true;n=n.parent;}return false;})()'),'The imported sculpture is visible at the aim point, not hidden inside a collision box')
    p.keyboard.press('KeyM');p.wait_for_function('!document.getElementById("map").hidden&&Vesperfall.component.cathedral.atlasBounds');bounds=p.evaluate('Vesperfall.component.cathedral.atlasBounds')

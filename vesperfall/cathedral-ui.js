@@ -10,7 +10,7 @@
   function atlas(){const w=g.game.world,canvas=$('map');if(canvas.hidden)return;const ctx=canvas.getContext('2d');
    if(w!==cachedWorld){cachedWorld=w;bounds=worldBounds(w);baseCanvas=document.createElement('canvas');baseCanvas.width=240;baseCanvas.height=220;const c=baseCanvas.getContext('2d'),f=(x,z)=>[120+(x-bounds.cx)*bounds.scale,112+(z-bounds.cz)*bounds.scale];c.fillStyle='#152b35f5';c.fillRect(0,0,240,220);c.fillStyle='#e8d3aa';c.font='bold 11px system-ui';c.fillText('ATLAS / SECTOR '+w.depth,12,18);
     c.lineWidth=3;c.strokeStyle='#788b89';for(const [a,b]of w.edges){const r=w.rooms[a],s=w.rooms[b];c.beginPath();c.moveTo(...f(r.x,r.z));c.lineTo(...f(s.x,s.z));c.stroke();}
-    for(const r of w.rooms){c.beginPath();r.outline.forEach(([x,z],i)=>c[i?'lineTo':'moveTo'](...f(r.x+x,r.z+z)));c.closePath();c.fillStyle=colors[r.planFamily]+'88';c.strokeStyle=colors[r.planFamily];c.lineWidth=1;c.fill();c.stroke();}
+    for(const r of w.rooms){c.beginPath();r.outline.forEach(([x,z],i)=>c[i?'lineTo':'moveTo'](...f(r.x+x,r.z+z)));c.closePath();const color=colors[r.planFamily]||['#cfbd8f','#b98469','#84b2ae'][r.style||0];c.fillStyle=color+'88';c.strokeStyle=color;c.lineWidth=1;c.fill();c.stroke();}
     c.setLineDash([3,2]);c.strokeStyle='#f2cb7a';c.lineWidth=2;for(const r of w.architecture.routes){c.beginPath();c.moveTo(...f(r.a[0],r.a[2]));c.lineTo(...f(r.b[0],r.b[2]));c.stroke();}c.setLineDash([]);
     const tower=w.architecture.tower;if(tower){const r=w.rooms[tower.room],[x,y]=f(r.x,r.z);c.strokeStyle='#efd38c';c.strokeRect(x-5,y-5,10,10);}
     c.font='8px system-ui';c.fillStyle='#d3bc7d';c.fillText('GOLD: UPPER ROUTE / ◆ RELIQUARY',12,207);

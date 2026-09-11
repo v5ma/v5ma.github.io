@@ -5,7 +5,7 @@ test('Real movement ascends the stair, crosses the gallery and descends without 
  const s=C.create('BELL-01');walk(s,0,4.6);walk(s,-4.65,4.6);walk(s,-4.65,-4.85);assert.equal(s.p[1],3.2);walk(s,3.9,-4.85);assert.equal(s.p[1],3.2);walk(s,-4.65,-4.85);walk(s,-4.65,4.6);walk(s,0,3);assert.equal(s.p[1],0);
 });
 test('100 seeds retain every ground connection under the tall walls and optional balcony',()=>{
- for(let i=0;i<100;i++){const w=C.generate('GOTHIC-'+i);for(const [a,b]of w.edges){const r=w.rooms[a],q=w.rooms[b];for(let k=0;k<=60;k++)assert.ok(C.walkable(w,[r.x+(q.x-r.x)*k/60,0,r.z+(q.z-r.z)*k/60]));}assert.equal(w.architecture.floorIDs.length,3);assert.equal(w.enemies.length,5);assert.equal(w.edges.length,10);}
+ for(let i=0;i<100;i++){const w=C.generate('GOTHIC-'+i);for(const [a,b]of w.edges){const r=w.rooms[a],q=w.rooms[b];for(let k=0;k<=60;k++)assert.ok(C.walkable(w,[r.x+(q.x-r.x)*k/60,0,r.z+(q.z-r.z)*k/60]));}assert.equal(w.architecture.floorIDs.length,3);assert.equal(w.enemies.length,21);assert.equal(w.edges.length,38);}
 });
 test('Upper floors do not make the ground underneath nonwalkable or pull a passerby upward',()=>{
  const s=C.create('BELL-01');walk(s,0,-5);assert.equal(s.p[1],0);assert.ok(C.walkable(s.world,[0,0,-4.85]));assert.ok(C.walkable(s.world,[0,3.2,-4.85]));
