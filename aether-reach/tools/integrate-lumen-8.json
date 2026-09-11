@@ -2,24 +2,16 @@
   {
     "path": "aether-reach/tests/controller-profile.test.mjs",
     "before": null,
-    "after": "7db2130e2b308415ec65b02529f00ece14a8ed5c63fb2f78f40c0c5753410ce3",
-    "content": "import {test} from 'node:test';import assert from 'node:assert/strict';\nimport {PAD_DEFAULTS,PAD_ACTIONS,cleanControllerProfile,swapBinding,RepeatInput,curveStick} from '../controller-profile.mjs';\nimport {InputSampler} from '../input-core.mjs';\nconst pad=()=>({mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))});\ntest('Remapping swaps two gameplay actions and always preserves every action plus fixed Menu/View',()=>{let p=cleanControllerProfile(null);for(const key of Object.keys(PAD_ACTIONS))for(const button of Object.keys(PAD_ACTIONS).map(k=>PAD_DEFAULTS[k])){p=swapBinding(p,key,button);assert.equal(p.bindings[key],button);assert.equal(new Set(Object.values(p.bindings)).size,16);assert.equal(p.bindings.pause,9);assert.equal(p.bindings.map,8);}});\ntest('Invalid bindings cannot orphan an action; controller preferences are finite and bounded',()=>{for(const v of [null,[],{bindings:{jump:8}},{bindings:{...PAD_DEFAULTS,fire:0}},{moveDeadzone:Infinity,lookCurve:-50,lookDeadzone:8}]){const p=cleanControllerProfile(v);assert.equal(new Set(Object.values(p.bindings)).size,16);assert.ok(p.lookDeadzone<=.4);assert.ok(p.moveDeadzone>=.08);assert.ok(p.lookCurve>=1);}assert.deepEqual(cleanControllerProfile({bindings:{...PAD_DEFAULTS,fire:0}}).bindings,PAD_DEFAULTS);});\ntest('Custom triggers route to real actions, held inputs do not leak through a reset, menus can retain their fixed bindings',()=>{const p=pad(),r=new InputSampler(),profile=swapBinding(null,'fire',2);r.read(p,'p',false,profile);p.buttons[2].pressed=true;assert.equal(r.read(p,'p',false,profile).edges.fire,true);r.reset();assert.equal(r.read(p,'p',false,profile).held.fire,false);p.buttons[2].pressed=false;r.read(p,'p',false,profile);p.buttons[2].pressed=true;assert.equal(r.read(p,'p',false,profile).edges.fire,true);const m=new InputSampler();p.buttons[2].pressed=false;m.read(p);p.buttons[2].pressed=true;assert.equal(m.read(p).edges.reload,true);});\ntest('Navigation has deliberate initial action, bounded auto-repeat and neutral rearming',()=>{const r=new RepeatInput();assert.equal(r.update(1,0),1);assert.equal(r.update(1,.1),0);assert.equal(r.update(1,.35),1);assert.equal(r.update(1,.36),0);assert.equal(r.update(1,100),1);assert.equal(r.update(1,100),0);r.update(0,101);assert.equal(r.update(-1,101),-1);});\ntest('Fine aiming reduces small deflections without drift or exceeding full diagonal speed',()=>{const p=pad(),r=new InputSampler();p.axes=[.1,.1,.1,.1];assert.deepEqual(r.read(p,'p',false,cleanControllerProfile(null)).look,[0,0]);assert.ok(curveStick([.3,0],1.8)[0]<.3);assert.equal(Math.hypot(...curveStick([1,0],2)),1);});\n"
+    "after": "a4e1b035c61b92f987d31f767b7a3389bfcdb7730eac65d9271f5eefa5e990e2",
+    "content": "import {test} from 'node:test';import assert from 'node:assert/strict';\nimport {PAD_DEFAULTS,PAD_ACTIONS,cleanControllerProfile,swapBinding,RepeatInput,curveStick} from '../controller-profile.mjs';\nimport {InputSampler} from '../input-core.mjs';\nconst pad=()=>({mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))});\ntest('Remapping swaps two gameplay actions and always preserves every action plus fixed Menu/View',()=>{let p=cleanControllerProfile(null);for(const key of Object.keys(PAD_ACTIONS))for(const button of Object.keys(PAD_ACTIONS).map(k=>PAD_DEFAULTS[k])){p=swapBinding(p,key,button);assert.equal(p.bindings[key],button);assert.equal(new Set(Object.values(p.bindings)).size,16);assert.equal(p.bindings.pause,9);assert.equal(p.bindings.map,8);}});\ntest('Invalid bindings cannot orphan an action; controller preferences are finite and bounded',()=>{for(const v of [null,[],{bindings:{jump:8}},{bindings:{...PAD_DEFAULTS,fire:0}},{moveDeadzone:Infinity,lookCurve:-50,lookDeadzone:8}]){const p=cleanControllerProfile(v);assert.equal(new Set(Object.values(p.bindings)).size,16);assert.ok(p.lookDeadzone<=.4);assert.ok(p.moveDeadzone>=.08);assert.ok(p.lookCurve>=1);}assert.deepEqual(cleanControllerProfile({bindings:{...PAD_DEFAULTS,fire:0}}).bindings,PAD_DEFAULTS);});\ntest('Custom triggers route to real actions, held inputs do not leak through a reset, menus can retain their fixed bindings',()=>{const p=pad(),r=new InputSampler(),profile=swapBinding(null,'fire',2);r.read(p,'p',false,profile);p.buttons[2].pressed=true;assert.equal(r.read(p,'p',false,profile).edges.fire,true);r.reset();assert.equal(r.read(p,'p',false,profile).held.fire,false);p.buttons[2].pressed=false;r.read(p,'p',false,profile);p.buttons[2].pressed=true;assert.equal(r.read(p,'p',false,profile).edges.fire,true);const m=new InputSampler();p.buttons[2].pressed=false;m.read(p);p.buttons[2].pressed=true;assert.equal(m.read(p).edges.reload,true);});\ntest('Navigation has deliberate initial action, bounded auto-repeat and neutral rearming',()=>{const r=new RepeatInput();assert.equal(r.update(1,0),1);assert.equal(r.update(1,.1),0);assert.equal(r.update(1,.35),1);assert.equal(r.update(1,.36),0);assert.equal(r.update(1,100),1);assert.equal(r.update(1,100),0);r.update(0,101);assert.equal(r.update(-1,101),-1);});\ntest('Fine aiming reduces small deflections without drift or exceeding full diagonal speed',()=>{const p=pad(),r=new InputSampler();p.axes=[.1,.1,.1,.1];assert.deepEqual(r.read(p,'p',false,cleanControllerProfile(null)).look,[0,0]);assert.ok(curveStick([.3,0],1.8)[0]<.3);assert.equal(Math.hypot(...curveStick([1,0],2)),1);});\ntest('Toggle aim and sprint outputs cannot mutate the physical button history',()=>{const p=pad(),r=new InputSampler();r.read(p);for(const key of ['aim','boost']){const index=PAD_DEFAULTS[key];p.buttons[index].pressed=true;const first=r.read(p);assert.equal(first.edges[key],true);first.held[key]=true;p.buttons[index].pressed=false;const released=r.read(p);released.held[key]=true;p.buttons[index].pressed=true;assert.equal(r.read(p).edges[key],true);p.buttons[index].pressed=false;r.read(p);}});\n"
   },
   {
     "path": "aether-reach/tests/devices.py",
     "before": "c5a4f7485786ac8ce9b2eeb9678303df7eca894b6897e5dcc55f398abb40e46e",
     "after": "1875837649f1f80a65a138e5016175614de5b60a48d5321193225e0a69f22c98",
     "edits": [
-      [
-        27,
-        28,
-        " browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block',accept_downloads=True)\n"
-      ],
-      [
-        29,
-        30,
-        " ctx.add_init_script(\"localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))\");ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))\n"
-      ]
+      [27,28," browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block',accept_downloads=True)\n"],
+      [29,30," ctx.add_init_script(\"localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))\");ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))\n"]
     ]
   },
   {
@@ -27,16 +19,8 @@
     "before": "e66703c43dc7e707989ed69982d1aa80b8305ff456004a2154190290921253a2",
     "after": "18f2b6f2ca414aad4ebc5d0f2431907b41bec5c7c08427d2df899380f7d8cc4c",
     "edits": [
-      [
-        13,
-        14,
-        "test('Expansion uses unique original IDs and preserves the original five districts',()=>{assert.equal(EXP_DISTRICTS.length,7);assert.equal(TASKS.length,13);for(const a of[EXP_DISTRICTS,EXP_BRIDGES,EXP_RAILS,EXP_ENEMIES,TASKS,THINGS,TRANSIT])assert.equal(new Set(a.map(x=>x.id)).size,a.length);assert.equal(RAILS.length,15);});\n"
-      ],
-      [
-        16,
-        17,
-        "test('Upper-gallery railings have physical stair openings and upper floors',()=>{assert.equal(TERRACES.length,11);assert.ok(BALCONY_RAILS.length>=12);for(const t of TERRACES)assert.equal(groundAt(t.x,t.z,t.y+.1).y,t.y);for(const q of BALCONY_RAILS)assert.ok(occupied((q.a[0]+q.b[0])/2,q.a[1],(q.a[2]+q.b[2])/2));});\n"
-      ]
+      [13,14,"test('Expansion uses unique original IDs and preserves the original five districts',()=>{assert.equal(EXP_DISTRICTS.length,7);assert.equal(TASKS.length,13);for(const a of[EXP_DISTRICTS,EXP_BRIDGES,EXP_RAILS,EXP_ENEMIES,TASKS,THINGS,TRANSIT])assert.equal(new Set(a.map(x=>x.id)).size,a.length);assert.equal(RAILS.length,15);});\n"],
+      [16,17,"test('Upper-gallery railings have physical stair openings and upper floors',()=>{assert.equal(TERRACES.length,11);assert.ok(BALCONY_RAILS.length>=12);for(const t of TERRACES)assert.equal(groundAt(t.x,t.z,t.y+.1).y,t.y);for(const q of BALCONY_RAILS)assert.ok(occupied((q.a[0]+q.b[0])/2,q.a[1],(q.a[2]+q.b[2])/2));});\n"]
     ]
   },
   {
@@ -44,41 +28,21 @@
     "before": "9f5af4c0f57ae40efe2750f4ca8b98e3fd560f933b453bf3017b8bd041436b32",
     "after": "955176686ae7a5f5e1aea8544363bb5f91edba37cee37b463b57b9995e1e4b3a",
     "edits": [
-      [
-        14,
-        15,
-        "  # The supported light profile keeps software-GPU input replays bounded. This deadline\n"
-      ],
-      [
-        36,
-        38,
-        " browser=p.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block')\n ctx.add_init_script(\"localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))\");host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())\n"
-      ]
+      [14,15,"  # The supported light profile keeps software-GPU input replays bounded. This deadline\n"],
+      [36,38," browser=p.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block')\n ctx.add_init_script(\"localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))\");host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())\n"]
     ]
   },
   {
     "path": "aether-reach/tests/model.test.mjs",
     "before": "18e358b3e91f34c48261468766dc9e38e658398adb3659418df02628de879059",
     "after": "63d7f28e574066f7162088ddc7eef96eb8c50d051ee13b6b33091928dffc73c6",
-    "edits": [
-      [
-        18,
-        19,
-        "test('Every relay and archive has a reachable floor and is outside solid buildings',()=>{for(const p of [...RELAYS,...RECORDS]){assert.equal(groundAt(p.x,p.z,p.y+.1).y,p.y);assert.ok(!SOLIDS.some(b=>p.x>b.x1&&p.x<b.x2&&p.z>b.z1&&p.z<b.z2&&p.y+1.8>b.y1&&p.y<b.y2),p.id);}});\n"
-      ]
-    ]
+    "edits": [[18,19,"test('Every relay and archive has a reachable floor and is outside solid buildings',()=>{for(const p of [...RELAYS,...RECORDS]){assert.equal(groundAt(p.x,p.z,p.y+.1).y,p.y);assert.ok(!SOLIDS.some(b=>p.x>b.x1&&p.x<b.x2&&p.z>b.z1&&p.z<b.z2&&p.y+1.8>b.y1&&p.y<b.y2),p.id);}});\n"]]
   },
   {
     "path": "aether-reach/tests/release-manifest.mjs",
     "before": "f76de80c3197e145ddea5a78f61c42d9523c9a4862f310304ffca56fe39e8395",
     "after": "03350b45c5d6b3c6c343b3b692d2656bb2b710738abfd37a83047eaa1d0c27af",
-    "edits": [
-      [
-        5,
-        6,
-        "export const files=['index.html','projects.css',...['controller-profile.mjs','ui-navigation.mjs','controller.css','rooftop-world.mjs','climbing.mjs','index.html','style.css','expedition.css','app.mjs','model.mjs','expedition-world.mjs','expedition-core.mjs','expedition-ui.mjs','expedition-scene.mjs','glide.mjs','flight-ui.mjs','scene.mjs','input-core.mjs','controllers.mjs','xr-session.mjs','roadmap.html','roadmap.mjs','roadmap.json','cover.svg','release.json','arsenal.mjs','combat-ui.mjs','combat-scene.mjs','combat.css','tactics-core.mjs','tactics-ui.mjs','tactics-scene.mjs','tactics.css','quay-art.mjs','quay-layout.mjs','quay-detail.mjs','luminous-art.mjs','luminous-gear.mjs','visual-settings.mjs','vendor/three.module.js','vendor/three.core.js','vendor/loaders/GLTFLoader.js','vendor/loaders/RGBELoader.js','vendor/utils/BufferGeometryUtils.js','art/manifest.json','art/QUATERNIUS-LICENSE.txt','planning/Aether-Reach-Development-Roadmap-v0.3.xlsx','planning/WORKBOOK-MANIFEST.json',...art.files.map(f=>'art/'+f.file)].map(f=>'aether-reach/'+f)];\n"
-      ]
-    ]
+    "edits": [[5,6,"export const files=['index.html','projects.css',...['controller-profile.mjs','ui-navigation.mjs','controller.css','rooftop-world.mjs','climbing.mjs','index.html','style.css','expedition.css','app.mjs','model.mjs','expedition-world.mjs','expedition-core.mjs','expedition-ui.mjs','expedition-scene.mjs','glide.mjs','flight-ui.mjs','scene.mjs','input-core.mjs','controllers.mjs','xr-session.mjs','roadmap.html','roadmap.mjs','roadmap.json','cover.svg','release.json','arsenal.mjs','combat-ui.mjs','combat-scene.mjs','combat.css','tactics-core.mjs','tactics-ui.mjs','tactics-scene.mjs','tactics.css','quay-art.mjs','quay-layout.mjs','quay-detail.mjs','luminous-art.mjs','luminous-gear.mjs','visual-settings.mjs','vendor/three.module.js','vendor/three.core.js','vendor/loaders/GLTFLoader.js','vendor/loaders/RGBELoader.js','vendor/utils/BufferGeometryUtils.js','art/manifest.json','art/QUATERNIUS-LICENSE.txt','planning/Aether-Reach-Development-Roadmap-v0.3.xlsx','planning/WORKBOOK-MANIFEST.json',...art.files.map(f=>'art/'+f.file)].map(f=>'aether-reach/'+f)];\n"]]
   },
   {
     "path": "aether-reach/tests/rooftops.test.mjs",
