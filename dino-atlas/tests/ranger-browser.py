@@ -14,13 +14,27 @@ report={'checks':[],'errors':[],'note':'Mission station coverage uses test-only 
 def check(name,value):
     report['checks'].append({'name':name,'passed':bool(value)})
     print(('PASS ' if value else 'FAIL ')+name,flush=True)
-    if not value:raise AssertionError(name)
+    if not value:
+        diagnostic(page)
+        raise AssertionError(name)
 def state(page):return page.evaluate('window.__dinoRanger.state')
 def warp(page,x,z):
     page.evaluate('([x,z])=>window.__dinoRanger.teleport(x,z)',[x,z]);page.wait_for_timeout(700)
-def interact(page):
-    page.wait_for_function("!document.getElementById('interact-button').disabled")
-    page.keyboard.press('e');page.wait_for_timeout(300)
+def diagnostic(page):
+    try:
+        report['failure_state']=state(page)
+        report['failure_ui']=page.evaluate("({prompt:document.getElementById('interact-label')?.textContent,dialogs:[...document.querySelectorAll('dialog[open]')].map(d=>d.id),info:document.getElementById('info-title')?.textContent})")
+        page.screenshot(path=str(OUT/'failure.png'))
+    except Exception:pass
+def interact(page,expected):
+    try:
+        page.wait_for_function("(s)=>!document.getElementById('interact-button').disabled && document.getElementById('interact-label').textContent.includes(s)",arg=expected)
+        report.setdefault('interactions',[]).append({'expected':expected,'before':state(page)})
+        page.keyboard.press('e');page.wait_for_timeout(300)
+        report['interactions'][-1]['after']=state(page)
+    except Exception:
+        diagnostic(page)
+        raise
 try:
     with sync_playwright() as p:
         kwargs={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
@@ -55,18 +69,18 @@ try:
         page.locator('#menu-dialog form button').click()
         warp(page,0,24);page.wait_for_function('window.__dinoRanger.state.stage===1')
         d=next(a for a in state(page)['animals'] if a['id']=='diplodocus');warp(page,d['x']+9,d['z']+2)
-        page.screenshot(path=str(OUT/'03-giant-meadow.png'));interact(page)
+        page.screenshot(path=str(OUT/'03-giant-meadow.png'));interact(page,'Observe Diplodocus')
         check('Observation advances the survey mission',state(page)['stage']==2)
         check('Observation opens a species evidence card',page.locator('#info-title').inner_text()=='Diplodocus')
         page.screenshot(path=str(OUT/'04-field-notes.png'));page.locator('#info-dialog form button').click()
         journal=page.evaluate("JSON.parse(localStorage.getItem('dino-atlas.progress.v1'))")
         check('Original journal notes survive new discoveries',journal['notes']['coelophysis']=='Preserve my original field note.' and 'diplodocus' in journal['observed'])
-        warp(page,31,-20);interact(page);check('Relay restoration advances mission',state(page)['stage']==3)
+        warp(page,31,-20);interact(page,'Restore research relay');check('Relay restoration advances mission',state(page)['stage']==3)
         warp(page,37,-31);page.keyboard.down('w');page.wait_for_function('window.__dinoRanger.state.position.z< -44');page.keyboard.up('w');page.keyboard.down('Space');page.wait_for_function('Math.abs(window.__dinoRanger.state.speed)<.6');page.keyboard.up('Space')
         check('The restored gate permits actual driving passage',state(page)['position']['z']< -44)
         page.screenshot(path=str(OUT/'05-northern-habitat.png'))
-        warp(page,43,-51);interact(page);check('Recorder recovery advances mission',state(page)['stage']==4);page.locator('#info-dialog form button').click()
-        warp(page,0,51);interact(page);check('Delivery completes all five objectives',state(page)['stage']==5);page.screenshot(path=str(OUT/'06-complete.png'));page.locator('#info-dialog form button').click()
+        warp(page,43,-51);interact(page,'Recover field recorder');check('Recorder recovery advances mission',state(page)['stage']==4);page.locator('#info-dialog form button').click()
+        warp(page,0,51);interact(page,'Deliver recorder');check('Delivery completes all five objectives',state(page)['stage']==5);page.screenshot(path=str(OUT/'06-complete.png'));page.locator('#info-dialog form button').click()
         page.keyboard.press('m');check('Map opens from keyboard',page.locator('#map-dialog').evaluate('(d)=>d.open'));page.screenshot(path=str(OUT/'07-map.png'));page.keyboard.press('Escape')
         page.reload(wait_until='networkidle');page.wait_for_function('window.__dinoRanger?.state.ready');check('Mission and observations survive reload',state(page)['stage']==5 and 'diplodocus' in state(page)['observed'])
         page.click('#start-button');page.keyboard.press('Escape');page.select_option('#camera-select','chase');page.check('#night-toggle');page.check('#motion-toggle');page.locator('#menu-dialog form button').click();page.wait_for_timeout(700)

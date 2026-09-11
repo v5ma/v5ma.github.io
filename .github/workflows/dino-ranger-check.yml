@@ -26,6 +26,15 @@ jobs:
         run: |
           echo 'f5be436b64e0c19674a496baf40d775460ea887dcbcc9bb0cf01bdb9903effd6  dino-atlas/walking.html' | sha256sum --check
           test ! -f dino-atlas/ranger-update.py
+      - name: Verify local server module MIME type
+        shell: bash
+        run: |
+          PORT=4318 node dino-atlas/server.mjs &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          curl --fail --head --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:4318/vendor/rapier.mjs > /tmp/dino-headers
+          grep -i 'Content-Type: text/javascript' /tmp/dino-headers
+          curl --fail http://127.0.0.1:4318/ | grep 'Wild Frontier'
       - name: Run original data and new physics tests
         run: |
           npm test --prefix dino-atlas
