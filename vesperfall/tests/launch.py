@@ -13,7 +13,7 @@ def check(ok,label):
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block')
+ browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1280,'height':800},device_scale_factor=.5,service_workers='block')
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
@@ -35,9 +35,11 @@ with sync_playwright() as p:
   page.keyboard.press('KeyP');page.wait_for_function('Vesperfall.component.paused');check(page.locator('#menu.open').is_visible(),'Pause returns to usable browser menus')
   page.goto(BASE+'/gloamward/',wait_until='domcontentloaded');page.wait_for_url('**/vesperfall/**');page.wait_for_function('window.Vesperfall?.component.rendererReady');check(True,'The earlier Gloamward link redirects to the maintained archery game')
   check(not errors,'No uncaught browser errors in the verified public launch path')
-  (OUT/'report.json').write_text(json.dumps({'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'scope':'Actual HTTP/HTTPS A-Frame/WebGL with ordinary card clicks, keyboard movement and bow release. Not a physical-headset or performance certificate.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'scope':'Actual HTTP/HTTPS A-Frame/WebGL at 1280x800 CSS / 640x400 drawing buffer with ordinary card clicks, keyboard movement and bow release. Not a physical-headset or performance certificate.'},indent=2))
  except Exception as e:
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'url':page.url},indent=2))
+  try:debug=page.evaluate('({state:window.Vesperfall?.snapshot?.(),drawArmed:window.Vesperfall?.component.drawArmed,keys:window.Vesperfall?.component.keys,renderer:window.AFRAME?.scenes[0]?.renderer?.info?.render})')
+  except:debug=None
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'url':page.url,'debug':debug},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))
   except:pass
   raise

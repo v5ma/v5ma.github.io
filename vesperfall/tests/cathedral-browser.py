@@ -43,7 +43,7 @@ with sync_playwright() as pw:
   if MODE=='visual':
    p.goto(BASE+'/baseline/vesperfall/',wait_until='domcontentloaded');p.wait_for_function('window.Vesperfall?.component.rendererReady');p.locator('#practice').click();p.wait_for_function('!Vesperfall.component.paused&&Vesperfall.component.running');p.wait_for_timeout(400);p.screenshot(path=str(OUT/'before-choir.png'));p.goto('about:blank')
   p.goto(BASE+'/vesperfall/',wait_until='domcontentloaded');p.wait_for_function('window.Vesperfall?.component.cathedral&&Vesperfall.component.rendererReady&&Vesperfall.component.art.cathedralStatus.textures===6&&Vesperfall.component.worldArt.group.userData.loadedSculptures>0')
-  check(p.evaluate('VesperCore.VERSION==="0.7.0"'),'The current renderer identifies Hollow Dominions with Living Cathedral assets')
+  check(p.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'],'The live renderer matches release metadata and retains Living Cathedral assets')
   check(p.evaluate('Vesperfall.component.art.cathedralStatus.errors.length===0'),'All six local material maps and the modeled sculpture load without an external CDN')
   p.locator('#practice').click();p.wait_for_function('!Vesperfall.component.paused&&Vesperfall.component.running');p.wait_for_function('Vesperfall.component.worldArt.group.userData.loadedSculptures>0');profile=p.evaluate('JSON.stringify(Vesperfall.component.profile)');w=p.evaluate('JSON.parse(JSON.stringify(Vesperfall.state.world))')
   check(len({r['planFamily'] for r in w['rooms']})==22,'The actual scene preserves six inner and sixteen outer architecture families')
