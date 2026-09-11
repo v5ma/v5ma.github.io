@@ -90,8 +90,12 @@ with sync_playwright() as p:
    page.locator('#continue').click();page.wait_for_function('AetherReach.snapshot().playing');check(len(snap(page)['relays'])==3 and snap(page)['checkpoint']=='foundry','Continue restores the checkpoint and restored relays, not an arbitrary position')
   else:
    walk(page,[(0,-10)]);page.keyboard.press('KeyP');page.wait_for_selector('#pause-dialog[open]');old=snap(page);page.keyboard.down('KeyW');page.wait_for_timeout(300);page.keyboard.up('KeyW');check(snap(page)['position']==old['position'],'Movement inputs do not leak through the pause dialog')
-   page.locator('#pause-settings').click();page.locator('#fov').fill('85');page.locator('#sensitivity').fill('1.4');page.locator('#sound').check();page.locator('#reduced').check();page.locator('#settings-dialog button').click()
+   page.locator('#pause-settings').click();page.locator('#fov').fill('85');page.locator('#sensitivity').fill('1.4');page.locator('#sound').check();page.locator('#reduced').check();page.locator('#settings-dialog form button').click()
    check(page.evaluate('JSON.parse(localStorage.getItem("aether-reach.settings.v1")).fov')==85,'View and comfort settings persist on this device')
+   # Closing nested settings returns to pause; only explicit Resume restarts play.
+   page.wait_for_selector('#settings-dialog[open]',state='hidden')
+   check(snap(page)['paused'] and page.locator('#pause-dialog[open]').count()==1,'Closing nested settings preserves the parent pause dialog')
+   page.locator('#resume').click()
    # Dialog close is asynchronous; wait for resumed gameplay before firing.
    page.wait_for_function('!AetherReach.snapshot().paused&&!document.querySelector("dialog[open]")');page.locator('#world').focus()
    page.keyboard.down('KeyF');page.wait_for_function('AetherReach.snapshot().ammo<8');page.keyboard.up('KeyF');check(snap(page)['ammo']<8,'The first-person arc caster fires and consumes charges')
