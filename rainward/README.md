@@ -50,3 +50,13 @@ Native acceptance must cover the complete third chapter, both earlier chapters, 
 ## v0.6 — Living Light
 
 Scanned-asset recovery, shader rendering and bounded simulation timing are documented in [VISUAL-UPGRADE.md](VISUAL-UPGRADE.md). Three existing chapters remain; this is not a new chapter. Full quality adds depth contact shading, bloom and animated materials; Reduced Graphics bypasses fullscreen effects. An experimental stationary WebXR overlook is included, not VR combat or locomotion. Physical headset performance and comfort are unverified. Earlier changelog limitations describe those earlier releases. Publication is established by the final PR receipt, not this candidate note.
+
+## v0.8 — Reclaimed City and Whiteout
+
+Rainward now contains six expeditions. Meridian Ward, Breakwater Signal and Whiteout Market extend the original campaign with much larger street networks, multiple building entrances, alternate stealth routes, ten-enemy encounter sets, persistent field tasks and chapter-specific pressure/interlock puzzles. The Whiteout chapter adds a snowbound market and transit district with a separate weather treatment.
+
+The survivor and human enemies use a new articulated procedural humanoid rig with smaller anatomical proportions, layered clothing, hands, facial features, backpacks and carried equipment. New raider, marksman, sentinel and shrieker roles vary pursuit, attack range, durability and alert behavior. This remains original procedural browser art rather than imported commercial character assets.
+
+Field tasks are checkpoint-persistent and may be required or optional. They cover repairs, records, supply protection, route marking and signal work, with prerequisites and one-time rewards. The original three chapters receive optional field tasks without changing their original completion routes.
+
+The release retains keyboard, touch and standard gamepad controls, fixed-step simulation, scanned environment options, the cinematic render pipeline and the experimental stationary WebXR overlook.

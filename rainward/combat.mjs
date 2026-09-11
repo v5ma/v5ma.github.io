@@ -5,8 +5,8 @@ export function bottle(s,yaw){const p=s.player;if(s.status!=='playing'||!p.bottl
 export function fire(s,direction){const p=s.player;if(s.status!=='playing'||p.reload||p.shotCD||p.craft)return false;if(!p.mag){hint(s,'Empty. Reload or find ammunition.');return false;}
  const len=Math.hypot(direction.x,direction.y,direction.z);if(!Number.isFinite(len)||len<.001)return false;const d={x:direction.x/len,y:direction.y/len,z:direction.z/len},o={x:p.x,y:heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,z:p.z};p.mag--;p.shotCD=.38;s.stats.shots++;noise(s,p.x,p.z,26,'shot');let nearest=60,victim=null;
  for(const b of OBSTACLES){const hit=rayBox(o,d,b,nearest);if(hit!==null)nearest=Math.min(nearest,hit);}
- for(const e of s.enemies){if(e.hp<=0)continue;const hit=rayBox(o,d,{x:e.x,z:e.z,w:e.type==='brute'?1.7:e.type==='prowler'?.86:.68,d:e.type==='brute'?1.2:e.type==='prowler'?2.3:.68,bottom:heightAt(e.x,e.z),h:e.type==='brute'?2.5:e.type==='prowler'?1:1.8},nearest);if(hit!==null&&hit<nearest){nearest=hit;victim=e;}}
- if(victim){victim.hp--;s.stats.hits++;victim.state=victim.hp<=0?'down':'chase';victim.target={x:p.x,z:p.z};victim.awareness=1;victim.repath=0;}
+ for(const e of s.enemies){if(e.hp<=0)continue;const hit=rayBox(o,d,{x:e.x,z:e.z,w:e.type==='brute'?1.7:e.type==='prowler'?.86:.68,d:e.type==='brute'?1.2:e.type==='prowler'?2.3:.68,bottom:heightAt(e.x,e.z),h:e.type==='brute'?2.5:e.type==='prowler'?1:e.type==='shrieker'?2.15:1.8},nearest);if(hit!==null&&hit<nearest){nearest=hit;victim=e;}}
+ if(victim){victim.hp--;if(['raider','marksman','sentinel'].includes(victim.type))victim.stagger=.28;s.stats.hits++;victim.state=victim.hp<=0?'down':'chase';victim.target={x:p.x,z:p.z};victim.awareness=1;victim.repath=0;}
  emit(s,'shot',{from:o,to:{x:o.x+d.x*nearest,y:o.y+d.y*nearest,z:o.z+d.z*nearest},hit:victim?.id||null});return true;
 }
 export function vaultCandidate(p,dx,dz){

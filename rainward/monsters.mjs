@@ -3,8 +3,9 @@
 import {dist,solidAt,obstruction,findPath,heightAt} from './world.mjs';
 import {move} from './motion.mjs';
 import {emit} from './state.mjs';
-export const isMonster=e=>e.type==='prowler'||e.type==='brute';
+export const isMonster=e=>e.type==='prowler'||e.type==='brute'||e.type==='shrieker';
 export function updateMonster(s,e,dt){
+ if(e.type==='shrieker')return updateShrieker(s,e,dt);
  if(e.hp<=0){e.state='down';e.seen=false;return;}
  const p=s.player,d=dist(p,e),large=e.type==='brute',base=heightAt(e.x,e.z);
  const seeing=d<(large?13:16)&&!obstruction({x:e.x,y:base+(large?1.8:.75),z:e.z},{x:p.x,y:heightAt(p.x,p.z)+.5,z:p.z})&&!s.smokes.some(c=>dist(c,p)<c.radius&&d>2);
@@ -30,4 +31,28 @@ export function updateMonster(s,e,dt){
  const q=e.target||{x:e.points[e.index][0],z:e.points[e.index][1]};if(dist(e,q)<.7){if(e.state==='patrol')e.index=(e.index+1)%e.points.length;return;}
  e.repath-=dt;if(e.repath<=0){e.path=findPath(e,q);e.repath=.7;}while(e.path.length&&dist(e,e.path[0])<.3)e.path.shift();const next=e.path[0];if(!next)return;
  const dx=next.x-e.x,dz=next.z-e.z,l=Math.hypot(dx,dz)||1,speed=e.state==='chase'?(large?1.4:2.8):.8;const old={x:e.x,z:e.z};move(e,dx/l*speed*dt,dz/l*speed*dt,1.5);e.speed=dist(old,e)/(dt||1);e.yaw=Math.atan2(-dx,-dz);
+}
+
+/* A shrieker broadcasts only its observed position, never a hidden player's
+ * coordinates. Its planted call and committed swipe leave escape windows. */
+export function updateShrieker(s,e,dt){
+ if(e.hp<=0){e.state='down';e.seen=false;e.speed=0;return;}
+ const p=s.player,d=dist(e,p),saw=d<17&&!obstruction({x:e.x,y:heightAt(e.x,e.z)+1.7,z:e.z},{x:p.x,y:heightAt(p.x,p.z)+.5,z:p.z})&&!s.smokes.some(c=>dist(c,p)<c.radius&&d>2);
+ e.seen=saw;e.awareness=saw?1:Math.max(0,e.awareness-dt*.18);e.speed=0;e.cooldown=Math.max(0,(e.cooldown||0)-dt);e.callCooldown=Math.max(0,(e.callCooldown||0)-dt);
+ if(e.phase){e.phaseTime-=dt;
+  if(e.phase==='call'&&e.phaseTime<=0){const clue={...e.callPoint};for(const ally of s.enemies)if(ally!==e&&ally.hp>0&&dist(ally,e)<22&&ally.state!=='chase'){ally.state='investigate';ally.target={...clue};ally.lastKnown={...clue};ally.timer=7;ally.repath=0;ally.path=[];}
+   emit(s,'shriek',{id:e.id,x:e.x,z:e.z});e.phase='recover';e.phaseTime=1.3;e.callCooldown=12;
+  }else if(e.phase==='windup'&&e.phaseTime<=0){e.phase='swipe';e.phaseTime=.24;
+   if(dist(e,p)<2.15&&!obstruction({x:e.x,y:heightAt(e.x,e.z)+.8,z:e.z},{x:p.x,y:heightAt(p.x,p.z)+.5,z:p.z})&&p.invulnerable<=0){p.hp=Math.max(0,p.hp-22);p.invulnerable=.5;emit(s,'damage');if(!p.hp){s.status='dead';emit(s,'death');}}
+  }else if(e.phase==='swipe'&&e.phaseTime<=0){e.phase='recover';e.phaseTime=1.2;
+  }else if(e.phase==='recover'&&e.phaseTime<=0){e.phase=null;e.cooldown=.8;}return;
+ }
+ if(saw){e.target={x:p.x,z:p.z};e.timer=8;e.state='chase';if(!e.alerted){e.alerted=true;s.stats.alerts++;emit(s,'alert',{id:e.id});}}
+ else{e.timer=Math.max(0,(e.timer||0)-dt);for(const n of s.sounds)if(n.id>(e.lastNoise||0)&&dist(n,e)<n.radius){e.target={x:n.x,z:n.z};e.timer=5;e.state='investigate';}if(!e.timer){e.target=null;e.state='patrol';e.alerted=false;}}
+ for(const n of s.sounds)e.lastNoise=Math.max(e.lastNoise||0,n.id);
+ if(saw&&!e.cooldown&&d<2.25){e.phase='windup';e.phaseTime=.9;e.yaw=Math.atan2(-(p.x-e.x),-(p.z-e.z));emit(s,'callout',{id:e.id,x:e.x,z:e.z,text:'The long arm draws back. Move!'});return;}
+ if(saw&&d>3&&!e.callCooldown){e.phase='call';e.phaseTime=1.8;e.callPoint={x:p.x,z:p.z};emit(s,'callout',{id:e.id,x:e.x,z:e.z,text:'The shrieker inhales. Its call will attract nearby threats.'});return;}
+ const target=e.target||{x:e.points[e.index][0],z:e.points[e.index][1]};if(dist(e,target)<.7){if(e.state==='patrol')e.index=(e.index+1)%e.points.length;return;}
+ e.repath-=dt;if(e.repath<=0){e.path=findPath(e,target);e.repath=.85;}while(e.path.length&&dist(e,e.path[0])<.3)e.path.shift();const q=e.path[0];if(!q)return;
+ const dx=q.x-e.x,dz=q.z-e.z,l=Math.hypot(dx,dz)||1,speed=e.state==='chase'?2.5:.8,old={x:e.x,z:e.z};move(e,dx/l*speed*dt,dz/l*speed*dt,1.9);e.speed=dist(old,e)/(dt||1);e.yaw=Math.atan2(-dx,-dz);
 }

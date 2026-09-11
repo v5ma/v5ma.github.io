@@ -1,7 +1,8 @@
 /* Original fictional level and game collision geometry. */
+import {MERIDIAN,BREAKWATER,WHITEOUT,LEGACY_TASKS} from './expeditions.mjs';
 import {TERMINUS} from './terminus.mjs';
 import {CONSERVATORY} from './conservatory.mjs';
-export const VERSION='0.6.0';
+export const VERSION='0.8.0';
 export const BOUNDS={x0:-35,x1:35,z0:-49,z1:34};
 export const START={x:0,z:27};
 const box=(id,x,z,w,d,h,kind='wall',bottom=0)=>({id,x,z,w,d,h,kind,bottom});
@@ -44,8 +45,8 @@ export const PATROLS=[
  {id:'watch-4',name:'Quay lookout',type:'watcher',points:[[4,-38],[-3,-38],[-3,-31],[4,-31]],yaw:Math.PI/2},
  {id:'drifter',name:'Echo drifter',type:'drifter',points:[[-4,-23],[-4,-27],[6,-26],[6,-22]],yaw:0},
 ];
-const DISTRICT={id:'district',title:'The Floodgate',subtitle:'CHAPTER 01 / LARCH WARD',bounds:{...BOUNDS},start:{...START},obstacles:OBSTACLES.map(o=>({...o})),grass:GRASS.map(o=>({...o})),items:ITEMS.map(o=>({...o})),shelters:SHELTERS.map(o=>({...o})),exit:{...EXIT},patrols:PATROLS.map(o=>({...o})),water:[],zones:[],objectiveNames:{cell:'Signal battery',crank:'Gate spindle'}};
-export const LEVELS=Object.freeze({district:DISTRICT,conservatory:CONSERVATORY,terminus:TERMINUS});
+const DISTRICT={id:'district',tasks:LEGACY_TASKS.district,title:'The Floodgate',subtitle:'CHAPTER 01 / LARCH WARD',bounds:{...BOUNDS},start:{...START},obstacles:OBSTACLES.map(o=>({...o})),grass:GRASS.map(o=>({...o})),items:ITEMS.map(o=>({...o})),shelters:SHELTERS.map(o=>({...o})),exit:{...EXIT},patrols:PATROLS.map(o=>({...o})),water:[],zones:[],objectiveNames:{cell:'Signal battery',crank:'Gate spindle'}};
+export const LEVELS=Object.freeze({district:DISTRICT,conservatory:{...CONSERVATORY,tasks:LEGACY_TASKS.conservatory},terminus:{...TERMINUS,tasks:LEGACY_TASKS.terminus},meridian:MERIDIAN,breakwater:BREAKWATER,whiteout:WHITEOUT});
 export let CURRENT=DISTRICT;
 export function useLevel(id='district'){
  const data=LEVELS[id];if(!data)throw Error('Unknown chapter');CURRENT=data;
@@ -53,7 +54,7 @@ export function useLevel(id='district'){
  for(const [a,b]of [[OBSTACLES,data.obstacles],[GRASS,data.grass],[ITEMS,data.items],[SHELTERS,data.shelters],[PATROLS,data.patrols]])a.splice(0,a.length,...b.map(o=>({...o})));
  rebuildNav();return data;
 }
-export function levelHeight(id,x,z){if(id!=='conservatory')return 0;return z>26?Math.min(8,(z-26)*8/14):z< -44?Math.min(5,(-z-44)*5/18):0;}
+export function levelHeight(id,x,z){if(id==='breakwater')return z< -65?Math.min(5.4,(-z-65)*.15):0;if(id!=='conservatory')return 0;return z>26?Math.min(8,(z-26)*8/14):z< -44?Math.min(5,(-z-44)*5/18):0;}
 export const heightAt=(x,z)=>levelHeight(CURRENT.id,x,z);
 export function waterAt(p){return CURRENT.water?.find(r=>inside(p,r))||null;}
 export function syncGates(puzzle){let changed=false;for(const b of OBSTACLES)if(b.openWhen){const disabled=!!puzzle?.solved;if(b.disabled!==disabled){b.disabled=disabled;changed=true;}}if(changed)rebuildNav();}

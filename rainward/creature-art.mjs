@@ -1,6 +1,7 @@
+import {actor,pose} from './actors.mjs';
 import * as T from './vendor/three.module.js';
 import {heightAt} from './world.mjs';
-export function creature(scene,mesh,type){const root=new T.Group();scene.add(root);const body=new T.Group();root.add(body);const limbs=[],large=type==='brute';
+export function creature(scene,mesh,type){if(type==='shrieker')return shrieker(scene,mesh);const root=new T.Group();scene.add(root);const body=new T.Group();root.add(body);const limbs=[],large=type==='brute';
  const torso=mesh('ball',large?[.86,1.05,.58]:[.43,.45,.86],large?0x5b6751:0x435951);torso.position.y=large?1.3:.72;body.add(torso);
  const head=mesh('ball',large?[.46,.51,.43]:[.27,.3,.50],0x879080);head.position.set(0,large?2.18:.8,large?-.3:-.80);body.add(head);
  const jaw=mesh('box',large?[.45,.22,.22]:[.26,.12,.36],0x354538);jaw.position.set(0,large?1.98:.60,large?-.67:-1.14);body.add(jaw);
@@ -10,6 +11,8 @@ export function creature(scene,mesh,type){const root=new T.Group();scene.add(roo
  const ring=new T.Mesh(new T.RingGeometry(large?2.9:1.4,large?3.1:1.53,40),new T.MeshBasicMaterial({color:0xeab477,transparent:true,opacity:.6,side:T.DoubleSide,depthWrite:false}));ring.rotation.x=-Math.PI/2;ring.position.y=.035;root.add(ring);
  return {root,body,limbs,ring,type};
 }
-export function poseCreature(a,e,t){a.root.position.set(e.x,heightAt(e.x,e.z),e.z);a.root.rotation.y=e.yaw;a.ring.visible=e.phase==='windup';a.ring.material.opacity=.3+Math.sin(t*13)*.2;a.body.position.y=e.phase==='windup'?-.15:0;a.body.rotation.x=e.phase==='charge'?-.18:0;
+export function poseCreature(a,e,t){if(a.type==='shrieker'){pose(a,{...e,aim:e.phase==='windup'||e.phase==='call'},t,true);a.weapon.visible=false;a.root.position.y+=heightAt(e.x,e.z);a.bones[3].rotation.x=e.phase==='call'?-.4:.1;a.bones[2].scale.set(1,e.phase==='call'?1.03:1,1);a.ring.visible=e.hp>0&&(e.phase==='windup'||e.phase==='call');a.ring.material.opacity=.28+Math.sin(t*10)*.10;a.root.updateMatrixWorld(true);return;}a.root.position.set(e.x,heightAt(e.x,e.z),e.z);a.root.rotation.y=e.yaw;a.ring.visible=e.phase==='windup';a.ring.material.opacity=.3+Math.sin(t*13)*.2;a.body.position.y=e.phase==='windup'?-.15:0;a.body.rotation.x=e.phase==='charge'?-.18:0;
  for(const l of a.limbs)l.pivot.rotation.x=e.speed>.1?Math.sin(t*(e.phase==='charge'?16:7)+(l.side*l.front>0?0:Math.PI))*.55:0;
  if(e.hp<=0){a.body.rotation.z=1.6;a.body.position.y=-.28;a.ring.visible=false;}}
+
+function shrieker(scene,mesh){const a=actor(scene,mesh,0x697761,true,'shrieker');a.type='shrieker';a.root.scale.set(.90,1.17,.95);a.materials[1].color.setHex(0x949f7d);for(let i=0;i<9;i++){const plate=mesh('ball',[.09,.023,.14],[0x8c9b76,0xb2ad86,0x6f825f][i%3]);plate.position.set(Math.sin(i*2.4)*.105,.04+i*.016,Math.cos(i*2.4)*.09);plate.rotation.z=Math.sin(i*1.3)*.55;a.bones[4].add(plate);}const ring=new T.Mesh(new T.RingGeometry(1.95,2.02,40),new T.MeshBasicMaterial({color:0xdeb074,transparent:true,opacity:.4,side:T.DoubleSide,depthWrite:false}));ring.rotation.x=-Math.PI/2;ring.position.y=.035;a.root.add(ring);a.ring=ring;return a;}
