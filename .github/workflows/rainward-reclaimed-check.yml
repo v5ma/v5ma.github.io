@@ -24,7 +24,7 @@ jobs:
           data=''.join(p.read_text() for p in sorted(Path('.').glob('.rainward-v08-patch-*')))
           Path('/tmp/rainward-v08.patch').write_bytes(lzma.decompress(base64.b64decode(data, validate=True)))
           PY
-          git apply --verbose /tmp/rainward-v08.patch
+          git apply --unidiff-zero --verbose /tmp/rainward-v08.patch
       - name: Verify upgraded source
         run: |
           for file in rainward/*.mjs; do node --check "$file"; done
