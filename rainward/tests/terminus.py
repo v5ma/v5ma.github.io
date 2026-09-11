@@ -6,6 +6,7 @@ import os,json
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
+from ui_flow import EXPECTED_VERSION,finish_transition
 MODE=os.getenv('TERMINUS_SUITE','guidance');OUT=Path('test-output')/('terminus-'+MODE);OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];console=[]
 def check(v,label):
@@ -38,7 +39,7 @@ with sync_playwright() as pw:
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(page,'window.Rainward');check(page.locator('#chapter-select option').count()==6,'Six separate authored chapters are present')
   chapter='conservatory' if MODE=='guidance' else 'terminus';page.locator('#chapter-select').select_option(chapter);page.locator('#start').click();wait(page,f'Rainward.state.level==="{chapter}"&&Rainward.mode==="play"')
-  check(snap(page)['version']=='0.8.0','The running game identifies the v0.8 build')
+  check(snap(page)['version']==EXPECTED_VERSION,'The running game identifies the committed release version')
   if MODE=='guidance':
    page.keyboard.press('KeyM');wait(page,'Rainward.mode==="map"');page.locator('#puzzle-assistance').wait_for(state='visible');before=snap(page)
    check('Western archive' in page.locator('#puzzle-journal').inner_text(),'The unread journal supplies an actionable physical clue location')

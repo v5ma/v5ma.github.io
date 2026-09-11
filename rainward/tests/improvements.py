@@ -4,6 +4,7 @@ import json,os
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
+from ui_flow import EXPECTED_VERSION,finish_transition
 OUT=Path('test-output/rainward-improvements');OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[]
 def check(v,label):
@@ -28,7 +29,7 @@ with sync_playwright() as p:
  page=c.new_page();page.set_default_timeout(75000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('dialog',lambda d:d.accept())
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');page.wait_for_function('window.Rainward');page.locator('#start').click();page.wait_for_function('Rainward.mode==="play"')
-  check(page.evaluate('Rainward.snapshot().version==="0.8.0"'),'The loaded game identifies the v0.8 release')
+  check(page.evaluate('Rainward.snapshot().version')==EXPECTED_VERSION,'The loaded game identifies the committed release version')
   page.keyboard.press('KeyV');page.wait_for_function('Rainward.view.shoulder===-1&&Rainward.snapshot().camera.x<Rainward.state.player.x-.35');check(True,'V moves the actual camera to the left shoulder, not only a label')
   page.keyboard.press('KeyV');page.wait_for_function('Rainward.view.shoulder===1&&Rainward.snapshot().camera.x>Rainward.state.player.x+.35');check(True,'Shoulder switching works in both directions')
   check(page.locator('#noise-label').inner_text().endswith('STILL'),'The feedback recognizes standing still')

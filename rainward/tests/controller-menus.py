@@ -42,7 +42,7 @@ with sync_playwright() as p:
    q=page.evaluate('({x:Rainward.state.player.x,z:Rainward.state.player.z,yaw:Rainward.view.yaw})');dx=x-q['x'];dz=z-q['z']
    if (dx*dx+dz*dz)**.5<.25:break
    import math
-   a=math.cos(q['yaw'])*dx-math.sin(q['yaw'])*dz;v=math.sin(q['yaw'])*dx+math.cos(q['yaw'])*dz;l=max(1,(a*a+v*v)**.5)
+   a=math.cos(q['yaw'])*dx-math.sin(q['yaw'])*dz;v=math.sin(q['yaw'])*dx+math.cos(q['yaw'])*dz;l=max(.001,(a*a+v*v)**.5)
    page.evaluate('([a,v])=>{pad.axes[0]=a;pad.axes[1]=v;}',[a/l*.65,v/l*.65]);polls(2)
   else:raise AssertionError('Controller movement did not reach supply bag')
   page.evaluate('pad.axes[0]=pad.axes[1]=0');polls()
@@ -57,7 +57,7 @@ with sync_playwright() as p:
   nav('invertY');press(0);check(page.locator('#invertY').is_checked(),'A toggles a settings checkbox instead of dismissing the menu')
   nav('vibration');press(0);check(not page.locator('#vibration').is_checked(),'Vibration can be disabled with the controller')
   check(page.evaluate("JSON.parse(localStorage.getItem('svgn.rainward.v1.settings')).deadzone") ==19,'Controller settings persist in the existing namespaced store')
-  before=page.evaluate('document.getElementById("pause").scrollTop');page.evaluate('pad.axes[3]=-.9');polls(7);page.evaluate('pad.axes[3]=0');check(page.evaluate('document.getElementById("pause").scrollTop')<before,'Right stick scrolls the controls panel without a mouse')
+  before=page.evaluate('document.getElementById("pause").scrollTop');page.evaluate('pad.axes[3]=.9');page.wait_for_function('(n)=>document.getElementById("pause").scrollTop>n+20',arg=before);page.evaluate('pad.axes[3]=0');polls();down=page.evaluate('document.getElementById("pause").scrollTop');page.evaluate('pad.axes[3]=-.9');page.wait_for_function('(n)=>document.getElementById("pause").scrollTop<n-20',arg=down);page.evaluate('pad.axes[3]=0');polls();check(True,'Right stick scrolls the controls panel in both directions without a mouse')
   press(1,'Rainward.mode==="title"');press(5);check(page.locator('#chapter-select').input_value()=='conservatory','RB cycles expedition choice from the title');press(4);check(page.locator('#chapter-select').input_value()=='district','LB cycles backward through expeditions')
   nav('chapter-select');press(15);check(page.locator('#chapter-select').input_value()=='conservatory','D-pad left/right changes the focused chapter selector without an OS popup');press(14)
   nav('start');press(0,'Rainward.mode==="confirm"');check(focus_id()=='confirm-no','Starting over opens an in-game confirmation with Cancel selected')
