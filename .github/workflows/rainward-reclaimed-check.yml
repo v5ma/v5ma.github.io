@@ -1,0 +1,36 @@
+name: Rainward reclaimed-city verification
+on:
+  push:
+    branches: [feat/rainward-reclaimed-city-20260911]
+    paths:
+      - 'rainward/**'
+      - 'tests/rainward*'
+      - 'scripts/rainward*'
+      - '.github/workflows/rainward-reclaimed-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rainward-reclaimed-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Package Rainward working source
+        run: |
+          mkdir -p /tmp/rainward-transfer
+          tar -czf /tmp/rainward-transfer/rainward-source.tar.gz rainward tests scripts .github index.html projects.css
+          git rev-parse HEAD > /tmp/rainward-transfer/commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rainward-working-source
+          path: /tmp/rainward-transfer/
+          retention-days: 3
