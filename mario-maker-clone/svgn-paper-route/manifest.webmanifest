@@ -1,7 +1,7 @@
 {
-  "name": "Sprocket Works",
-  "short_name": "Sprocket",
-  "description": "Build. Play. Share. A momentum platformer maker.",
+  "name": "Sky Cycle",
+  "short_name": "Sky Cycle",
+  "description": "Ride looping sky routes, master momentum and build your own 2D/3D adventure.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "fullscreen",
@@ -9,7 +9,15 @@
   "background_color": "#0a1630",
   "theme_color": "#0a1630",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }

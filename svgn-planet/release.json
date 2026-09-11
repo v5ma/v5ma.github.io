@@ -1,13 +1,13 @@
 {
-  "version": "0.5.0",
-  "name": "SVGN.io Paper Delivery",
+  "version": "0.6.0",
+  "name": "Neighborhood Missions",
   "folder": "svgn-planet",
+  "date": "2026-09-11",
   "changes": [
-    "Environment-lit glass, champagne gold, chrome and clearcoated vehicles",
-    "Faceted crystal postmarks with existing rewards and collision volumes",
-    "Glass verge shelters, transparent canopy panels and jewel exhibits",
-    "Original rippled-water shader, pooled collection sparkles and optional selective bloom",
-    "Balanced, Cinematic and Light optics presets with reduced-effects control",
-    "Preserve all nine roads, main/bonus deliveries, stunt gates and 30 m/s Shift boost"
+    "Expand the spherical world to eight times the former radius with 24 connected districts",
+    "Add thousands of city buildings, palm-lined streets, shops, apartments and towers across the planet",
+    "Add district missions, postmarks, sprint gates, waypoints and transit while preserving existing route progress",
+    "Add full Xbox controller play and interface navigation, including menus, confirmations, help and recovery screens",
+    "Rename the experience to Neighborhood Missions while preserving the existing save keys and game URL"
   ]
 }

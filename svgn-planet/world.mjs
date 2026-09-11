@@ -1,5 +1,6 @@
+import {buildCity} from './city-data.mjs';
 /* Shared spherical world coordinates, plus an authored multi-street neighborhood. */
-export const RADIUS=110;
+export const RADIUS=880;
 export const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
 export const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 export const add=(a,b)=>a.map((v,i)=>v+b[i]);
@@ -13,7 +14,8 @@ export const distance=(a,b)=>Math.acos(clamp(dot(a,b),-1,1))*RADIUS;
 export const street=(t,lateral=0)=>{const a=t/RADIUS,b=lateral/RADIUS;return [Math.sin(b),Math.cos(b)*Math.cos(a),-Math.cos(b)*Math.sin(a)];};
 export const streetPosition=n=>Math.atan2(-n[2],n[1])*RADIUS;
 export const localPosition=n=>({t:streetPosition(n),x:Math.asin(clamp(n[0],-1,1))*RADIUS});
-export function height(n){const a=Math.atan2(-n[2],n[1]),ground=.6*Math.sin(a*3)+.3*Math.cos(n[0]*9+a*2),t=a*RADIUS,x=Math.asin(clamp(n[0],-1,1))*RADIUS;const protectedRoad=t>-15&&t<140&&(Math.abs(x)<4.5||Math.abs(x+20)<4.5||Math.abs(x-20)<4.5||Math.abs(x-36)<4.5||([18,42,66,90,114].some(c=>Math.abs(t-c)<4)&&x>-25&&x<42));if(protectedRoad)return Math.max(-.02,ground);return Math.abs(n[0]-(.32+.035*Math.sin(a*4)))<.023?-.7:ground;}
+// Keep streets above sea level everywhere, including the far side and poles.
+export function height(n){const a=Math.atan2(-n[2],n[1]);return Math.max(.04,.6*Math.sin(a*3)+.3*Math.cos(n[0]*9+a*2));}
 export const point=(n,lift=0)=>mul(n,RADIUS+height(n)+lift);
 export const rand=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);};
 const sample=(t0,x0,t1,x1,steps)=>Array.from({length:steps+1},(_,i)=>{const q=i/steps;return {t:t0+(t1-t0)*q,x:x0+(x1-x0)*q,n:street(t0+(t1-t0)*q,x0+(x1-x0)*q)};});
@@ -32,3 +34,10 @@ export function world(){const specs=[['post','SVGN delivery depot',-9,-1,'#efca8
  const rocks=[[65,-46,21],[100,54,27],[140,48,28],[35,51,18],[220,-30,15]].map(([t,x,size],i)=>({n:street(t,x),size,id:'rock-'+i}));const stars=Array.from({length:24},(_,i)=>({id:'stamp-'+i,n:street(7+i*7.5,[0,-20,20,36][i%4])}));const stuntGates=[{id:'stunt-1',name:'Oak sprint gate',n:street(42,-20),minSpeed:14},{id:'stunt-2',name:'Market speed gate',n:street(90,20),minSpeed:14},{id:'stunt-3',name:'Ridge boost gate',n:street(114,36),minSpeed:16}];
  const mirror=homes.map((h,i)=>({...h,id:'scenery-main-'+i,type:'cabin',side:-h.side,x:-h.x,n:street(h.t,-h.side*9.3),mail:street(h.t,-h.side*5.1),color:['#d5c9b8','#e2c8a1','#bdd0c2'][i%3]}));const branchScenery=bonusStops.map((h,i)=>({...h,id:'scenery-branch-'+i,bonus:false,sign:null,type:'cabin',x:h.roadX-h.side*8.4,n:street(h.t,h.roadX-h.side*8.4),mail:street(h.t,h.roadX-h.side*4.1),floors:i%3===0?3:i%2===0?2:1,color:['#d8c7a8','#aac2bd','#c8b3a8','#b7c3d0'][i%4]}));const buildings=[...sites,...mirror,...bonusStops,...branchScenery];return {sites,homes,bonusStops,buildings,trees,rocks,stars,stuntGates,roads:ROADS,roadLabels:ROAD_LABELS};}
 export const WORLD=world();
+
+export const CITY=buildCity(RADIUS);
+WORLD.bonusStops.push(...CITY.districts);
+WORLD.stars.push(...CITY.stars);
+WORLD.stuntGates.push(...CITY.gates);
+// The former mountain props must not obstruct the new street connections.
+WORLD.rocks=WORLD.rocks.filter(r=>CITY.roads.every(road=>road.points.every(n=>distance(n,r.n)>r.size*.43+4))&&CITY.nearby(r.n).every(b=>distance(r.n,b.n)>r.size*.43+Math.hypot(b.w,b.d)/2));

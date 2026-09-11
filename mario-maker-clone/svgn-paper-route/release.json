@@ -1,1 +1,13 @@
-{"version":"0.15.0","build":"prismatic-2026.09.09","date":"2026-09-09","changes":["Clear-coated sapphire rails, reflective gold inlays and faceted jewel accents","Glass conservatories with an optional scene-refraction and dispersion mode","Reactive rail, whip and nitro sparkles plus a glass shield","Prismatic, Crystal+ and Classic material settings with reduced-motion support","Render-only layer preserving all routes, gameplay, music, editor and saves"]}
+{
+  "version": "0.15.1",
+  "build": "sky-cycle-2026.09.11",
+  "date": "2026-09-11",
+  "changes": [
+    "Renamed to Sky Cycle; existing routes, editor and saved progress remain intact",
+    "Clear-coated sapphire rails, reflective gold inlays and faceted jewel accents",
+    "Glass conservatories with an optional scene-refraction and dispersion mode",
+    "Reactive rail, whip and nitro sparkles plus a glass shield",
+    "Prismatic, Crystal+ and Classic material settings with reduced-motion support",
+    "Render-only layer preserving all routes, gameplay, music, editor and saves"
+  ]
+}

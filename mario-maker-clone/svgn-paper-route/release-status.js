@@ -1,8 +1,10 @@
 /* Explicit build and campaign readiness. Optional authoring tools must not decide
  * which campaign is loaded, and an unfinished download must not spawn old data. */
 (function(){'use strict';
- const VERSION='0.15.0',BUILD='prismatic-2026.09.09';
+ const VERSION='0.15.1',BUILD='sky-cycle-2026.09.11';
  function boot(){
+  document.title='Sky Cycle | Ride, explore, create';
+  const brand=document.querySelector('#delivery-header .delivery-brand');if(brand)brand.innerHTML='Sky Cycle<span>A SVGN ORIGINAL</span>';
   const host=document.querySelector('#delivery-header .actions');if(!host)return;
   const label=document.createElement('span');label.id='rail-build';label.textContent='v'+VERSION;label.title=BUILD;
   const button=document.createElement('button');button.id='rail-update';button.textContent='Check update';host.append(label,button);

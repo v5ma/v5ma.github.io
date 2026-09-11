@@ -1,29 +1,25 @@
-# SVGN.io Paper Delivery — 3D Neighborhood
+# Neighborhood Missions - City Expansion 0.6.0
 
-The existing browser application at `/svgn-planet/`, corrected after the user reported an early exit, an unreadably small character, unwanted Little Planet branding and a mismatch with their visual references. The URL stays stable; this is not a new game folder.
+The existing third-person bicycle/electric-unicycle game now connects its original neighborhood to a much larger, fully spherical city. This is a fictional Long Beach-inspired setting, not a geographically accurate model of Long Beach.
 
-## Play
+The planet radius is 880 meters, up from 110: 8 times the radius and 64 times the surface area. Six stitched cube-sphere grids avoid converging streets at the poles. The expansion adds 24 districts, 146 road strips including two original-neighborhood connections, 6,761 buildings and 3,454 palms. All original eight main deliveries and ten bonus deliveries remain. The new districts add 24 deliveries, 48 postmarks and 24 sprint gates.
 
-The default view follows a full-size courier through a residential street, not the center of the globe. Choose an electric unicycle or bicycle, walk the sidewalks, throw the news toward raised mailbox flags, complete eight deliveries, and return to the depot. Completing a round leaves free exploration running; there is no time limit or automatic navigation away.
+Street-scale third-person riding remains the default. Instanced shells cover the globe; windows, doors, awnings and street furniture stream in nearby. The map supports compass waypoints and safe district transit. Returning to the depot never resets progress.
 
-WASD/arrows move, Q throws a paper within range, E delivers or interacts nearby, F mounts/dismounts, Space hops, Shift boosts, V changes the camera, M opens the route map, and P/Escape pauses. Drag to orbit the camera. Phones have a joystick and action buttons. Vehicle selection is also available in the pause menu.
+## Xbox controller
 
-## Reliability changes
+The left stick moves, the right stick turns and tilts the camera, and right-stick click recenters. RT or left-stick click boosts. LT or B brakes. A hops, X interacts, Y mounts/dismounts, LB throws and RB cycles cameras. View or D-pad up opens the map, D-pad down opens controls, and D-pad left/right changes the waypoint. Menu pauses/resumes.
 
-Phone automatic graphics disable shadow maps, cap the drawing-buffer pixel budget and render at 30 fps. The title and paused screen do not keep redrawing unnecessarily. Shared static geometry is instanced. A graphics interruption displays an in-game recovery message. The graphics recovery extension is retained before loss, and application recovery runs after Three.js has rebuilt its renderer state.
+In every panel, D-pad or left stick navigates, left/right changes selected settings, A activates, B backs out and the right stick scrolls. Reset requires an explicit confirmation, defaulting to keeping progress. The controller module runs independently of WebGL so recovery remains navigable. Disconnect pauses active play. Physical Xbox hardware and browser-specific behavior still need real-device playtesting; automated checks use injected standard-mapping input.
 
-Progress writes use `svgn.paper-delivery-3d.v1`. Compatible legacy progress can be read from `svgn.little-planet.v1`; that old key is never written or cleared. Invalid completed-save flags are rejected. Blocked storage does not stop a new session. The pause menu asks before resetting this route.
+Keyboard and touch controls remain available. The in-game Controls panel explains them. Browser focus is needed for controller input; press a controller button after opening the game.
 
-## Visual direction and limits
+## Save compatibility
 
-The neighborhood contains porch houses, windows and shutters, picket fences, sidewalks, street trees, mailbox flags, hills, a procedural daylight sky, a garden, two walking neighbors and visual traffic. These are original procedural meshes, not reference screenshots embedded as gameplay. The curved surface remains the world topology; the overview is optional.
+The original `svgn.paper-delivery-3d.v1` save key and all historical mission IDs remain intact. Legacy `svgn.little-planet.v1` saves are still read. Version 1 saves without position continue at the original depot. New saves also retain vehicle, normalized position and camera north. Invalid or blocked positions fall back safely. There are no accounts, purchases or external services.
 
-This remains a stylized first route, not the rendering quality or scope of the supplied commercial references. Cars currently provide scenery rather than a collision/damage system. Buildings have no interiors. There is no multiplayer, paid account system or world editor in this particular 3D application. The separately hosted side-scroller and its workshop are unchanged.
+## Verification and deployment
 
-## Verification
+Run `node --test svgn-planet/tests/*.test.mjs tests/neighborhood-missions/model.test.mjs` from the repository root. Vendored artwork and Three.js remain local. Original art licensing and credits are preserved in the existing asset documentation.
 
-`npm test` runs model, geometry and presentation tests. The read-only GitHub Actions workflow also plays the real HTTP application in Chromium through ordinary keyboard/touch controls and injects a WebGL context interruption to exercise recovery. Its desktop route completes all deliveries and returns to the depot; its touch scenario lasts at least sixty seconds.
-
-The exact two-second exit reported on the user's device has not yet been independently reproduced. Software-rendered Chromium and emulated touch do not certify physical iPhone/Safari performance or diagnose an operating-system tab termination. Test failures remain visible in Actions history; only final passing runs may be described as verified. The public-release workflow compares deployed bytes against the merged source.
-
-Three.js is bundled locally with its MIT license in `vendor/LICENSE`.
+The public URL remains `/svgn-planet/` so old bookmarks keep working. The Curved-world Prototype is removed only from the homepage catalog, not from its archived directory. The separate side-scroller is named Sky Cycle.
