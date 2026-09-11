@@ -30,12 +30,11 @@ jobs:
             cd /tmp/dino-rapier
             npm pack @dimforge/rapier3d-compat@0.17.3
             tar -xzf dimforge-rapier3d-compat-0.17.3.tgz
-            test -f package/rapier.mjs
-            cp package/rapier.mjs "$GITHUB_WORKSPACE/dino-atlas/vendor/rapier.mjs"
-            cp package/LICENSE "$GITHUB_WORKSPACE/dino-atlas/vendor/RAPIER-LICENSE"
+            cp package/rapier.es.js "$GITHUB_WORKSPACE/dino-atlas/vendor/rapier.mjs"
+            cp /usr/share/common-licenses/Apache-2.0 "$GITHUB_WORKSPACE/dino-atlas/vendor/RAPIER-LICENSE"
             cd "$GITHUB_WORKSPACE"
             git add dino-atlas/vendor/rapier.mjs dino-atlas/vendor/RAPIER-LICENSE
-            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Vendor Rapier 0.17.3 and preserve its Apache license for Dino Atlas'
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Vendor Rapier 0.17.3 with Apache license for Dino Atlas'
             git push origin HEAD:dino-atlas-ranger-20260911
           fi
       - name: Run data and physics tests
