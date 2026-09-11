@@ -31,7 +31,7 @@ export function createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,cam
   const sunDay=new T.Color('#ffe2af'),sunDusk=new T.Color('#ffc28b'),sunNight=new T.Color('#9dbce2');
   const fogDay=new T.Color('#b8cebd'),fogNight=new T.Color('#476278');let pane=null,loaded=0,last={};
   function update(s,dt,room,quality){
-    const time=clockInfo(s.city),day=time.daylight,night=1-day,below=!!s.life.inside,mask=lampMask(s.city);const dusk=time.phase==='Evening'||time.phase==='Dawn';
+    const time=clockInfo(s.city),day=time.daylight,night=1-day,below=!!s.life.inside||!!s.doors?.level,mask=lampMask(s.city);const dusk=time.phase==='Evening'||time.phase==='Dawn';
     sky.material.uniforms.top.value.copy(topNight).lerp(dusk?topDusk:topDay,day);
     sky.material.uniforms.bottom.value.copy(horizonNight).lerp(dusk?horizonDusk:horizonDay,day);
     ambient.intensity=below?1.0:.68+.17*day;ambient.color.set(below?'#e3cfa6':day>.7?'#bdd3de':'#a1b7d4');

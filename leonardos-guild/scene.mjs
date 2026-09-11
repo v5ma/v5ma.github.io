@@ -1,3 +1,6 @@
+import {createFrameGate} from './frame-gate.mjs';
+import {createDoorsArt} from './doors-art.mjs';
+import {doorElevation} from './doors-core.mjs';
 import {createStreetArt} from './street-art.mjs';
 import {createCityArt} from './city-art.mjs';
 import {animatePerson} from './character-motion.mjs';
@@ -60,10 +63,13 @@ export function createScene(canvas,w,s,quality='high'){
  const streetArt=createStreetArt({scene,root,w,m,camera});
  const cycles=createCycleVisuals({scene,world:root,m,bike,streetArt});
  const cityArt=createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,camera});
+ const doorsArt=createDoorsArt({scene,root,w,m,camera});
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality;
- function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
+ const shouldDraw=createFrameGate();let viewportRevision=0;
+ function resize(){viewportRevision++;const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
-  const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=p.life?.inside?-5:0,y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
+  const artStatus=streetArt.inspect();if(!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,artStatus.ready,artStatus.failed],input.snap))return;
+  const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=doorElevation(p),y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
   const angle=p.yaw+orbit,follow=(p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;
   const roomFollow=currentRoom?Math.min(3.1,follow):follow;
   carCam.set(p.x-Math.sin(angle)*roomFollow,y+camHeight+p.lift*.5,p.z-Math.cos(angle)*roomFollow);carCam.y=Math.max(carCam.y,heightAt(carCam.x,carCam.z)+depth+.65);
@@ -82,12 +88,12 @@ export function createScene(canvas,w,s,quality='high'){
   for(let i=0;i<papers.length;i++){const b=p.shots[i],mesh=papers[i];mesh.visible=!!b;if(b){mesh.position.set(b.x,b.y,b.z);mesh.rotation.set(p.time*13,p.time*7,p.time*9);}}
   guild.update(p,dt);animatePerson(rider,p.time,{motion:p.mode==='bike'?'ride':p.guarding?'guard':p.attackT>0?'strike':'walk',speed:p.speed,phase:p.time*10});finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
   goal.visible=p.mission===2&&p.defeated;
-  if(!!p.life.inside!==wasBelow){if(p.life.inside)for(const object of outdoors){outdoorVisibility.set(object,object.visible);object.visible=false;}else for(const object of outdoors)object.visible=outdoorVisibility.get(object);wasBelow=!!p.life.inside;}if(p.life.inside)for(const object of outdoors)object.visible=false;
-  townLife.update(p,dt,currentRoom);cycles.update(p);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);renderer.render(scene,camera);
+  const hideWorld=!!p.life.inside||!!p.doors.level&&p.doors.level!==3;if(hideWorld!==wasBelow){if(hideWorld)for(const object of outdoors){outdoorVisibility.set(object,object.visible);object.visible=false;}else for(const object of outdoors)object.visible=outdoorVisibility.get(object);wasBelow=hideWorld;}if(hideWorld)for(const object of outdoors)object.visible=false;
+  townLife.update(p,dt,currentRoom);cycles.update(p);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);doorsArt.update(p,dt);renderer.render(scene,camera);
  }
  function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
  function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;streetArt.setQuality(value);renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.6:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
  function recenter(){orbit=pitch=0;}
  function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
- setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),cycle:cycles.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
+ setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),doors:doorsArt.inspect(),cycle:cycles.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
 }

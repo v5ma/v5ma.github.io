@@ -14,9 +14,9 @@ test('Each resident, object, cat and stair has a walkable unambiguous approach i
  const s=newState();s.mode='foot';s.life.flags.garden=true;
  for(const inside of [null,'inn','workshop']){s.life.inside=inside;for(const t of targets(s,w))assert.ok(approach(s,t),`No reachable interaction approach for ${t.id} on ${inside||'ground'}`);}
 });
-test('Garden pigment is outside the sealed house instead of requiring a wall-crossing',()=>{
+test('Garden pigment retains its reachable outdoor location as neighboring houses open',()=>{
  const s=newState();s.mode='foot';s.life.flags.garden=true;const plant=targets(s,w).find(t=>t.id==='pigment-red');assert.equal(plant.x,-14);assert.ok(approach(s,plant));
- for(let i=0;i<24;i++){const x=-23+Math.cos(i*Math.PI/12)*3.1,z=460+Math.sin(i*Math.PI/12)*3.1;assert.ok(blocked(x,z,.33,w,s),'The rejected prior plant position has no walkable approach');}
+ assert.ok(w.rooms.some(r=>r.z===459),'The formerly sealed garden houses now have real interiors; the pigment remains outdoors.');
 });
 test('Cellar stairs, evidence and thief have distinct nearby interaction targets',()=>{
  const s=newState();s.life.inside='inn';s.mode='foot';

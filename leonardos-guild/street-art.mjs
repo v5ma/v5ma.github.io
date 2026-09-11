@@ -111,7 +111,7 @@ export function createStreetArt({scene,root,w,m,camera}){
   for(const o of outcomes){o.obj.visible=s.street.done.includes(o.job);
    if(o.painting&&o.obj.visible&&o.last!==s.street.choices.exhibition){o.last=s.street.choices.exhibition;const palette=({'warm terracotta':['#edc494','#b36f4b','#5f7556'],'cool river blue':['#cadad7','#698f9d','#4d665f'],'olive and gold':['#dfd4a1','#969463','#586653']})[o.last]||['#dfd4a1','#969463','#586653'];const c=o.paint;c.fillStyle=palette[0];c.fillRect(0,0,256,192);c.fillStyle=palette[2];c.beginPath();c.moveTo(0,135);c.lineTo(85,73);c.lineTo(146,116);c.lineTo(256,81);c.lineTo(256,192);c.lineTo(0,192);c.fill();c.fillStyle=palette[1];for(let i=0;i<7;i++){const x=i*40;c.fillRect(x,125-i%2*20,28,70);c.beginPath();c.moveTo(x-4,125-i%2*20);c.lineTo(x+14,103-i%2*20);c.lineTo(x+32,125-i%2*20);c.fill();}c.strokeStyle='#dec78f';c.lineWidth=12;c.strokeRect(6,6,244,180);o.texture.needsUpdate=true;}
   }
-  group.visible=true;
+  group.visible=!s.doors?.level;
  }
  return {update,setQuality,cloneAsset(key){const template=templates.get(key);if(!built||!template)return null;const model=template.clone(true);model.traverse(o=>{if(o.isMesh&&!Array.isArray(o.material)){const tiers=materialTiers.get(o.material.userData.guildArtKey);if(tiers)o.material=tiers[currentQuality];}});return model;},inspect:()=>({...status})};
 }

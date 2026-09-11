@@ -73,7 +73,7 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/leonardos-guild/index.html?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').click()
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'The same hosted game runs the living-town release')
-  check(read()['render']['interior']['rooms']==6 and read()['render']['interior']['basements']==2,'Actual renderer constructs six interiors and two basements')
+  check(read()['render']['interior']['rooms']==49 and read()['render']['interior']['basements']==2,'Actual renderer constructs 49 ground interiors and retains both original quest basements')
   check(read()['townSize']['zMax']==566,'The same map extends north rather than replacing the starting district')
   page.locator('#notebook-button').click();check(page.locator('.quest').count()==9,'The notebook exposes nine distinct side commissions')
   page.screenshot(path=str(OUT/'commission-notebook.png'));page.locator('#life-close').click();page.wait_for_function('!LeonardoGuild.inspect().paused')

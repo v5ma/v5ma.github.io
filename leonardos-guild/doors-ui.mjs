@@ -1,0 +1,47 @@
+import {FLOOR_NAMES,doorLevel,doorLocation,doorSites,nearbyDoors,doorOptions,useDoor,homeInstruction,trackDoor,doorTarget} from './doors-core.mjs';
+import {PAD_LAYOUT} from './gamepad.mjs';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function createDoorsUI({getState,world,setPause,save,active,onTransition,legacyNearby,journal,settings}){
+ const dialog=document.createElement('dialog');dialog.id='doors-dialog';dialog.setAttribute('aria-labelledby','doors-title');document.body.append(dialog);
+ let tab='nearby',page=0,message='',next=null;
+ const hud=document.createElement('div');hud.id='doors-objective';document.getElementById('hud').append(hud);
+ const combat=document.createElement('div');combat.id='doors-enemy';document.getElementById('hud').append(combat);
+ dialog.addEventListener('close',()=>{setPause(false);const fn=next;next=null;fn?.();});
+ function switchTo(fn){next=fn;dialog.close();}
+ function render(){const s=getState(),loc=doorLocation(s,world),home=world.doorHomes.find(h=>h.id===loc.room),done=Object.values(s.doors.homes).filter(n=>n===4).length;
+  dialog.innerHTML=`<div class="doors-heading"><div><p class="eyebrow">OPEN DOORS / v0.7.0</p><h2 id="doors-title">A life in every house.</h2></div><button id="doors-close" data-pad-default>Return to game / B</button></div><p>${esc(home?.name||'Vinci')} / ${esc(FLOOR_NAMES[loc.level])}. ${done} of ${world.doorHomes.length} households helped.</p><nav class="doors-tabs" role="tablist">${[['nearby','Nearby'],['houses','Houses'],['adventures','Adventures'],['controls','Controller']].map(([id,label])=>`<button role="tab" aria-selected="${tab===id}" data-door-tab="${id}">${label}</button>`).join('')}</nav><div id="doors-content" data-pad-scroll></div><p id="doors-message" role="status">${esc(message)}</p><div class="doors-footer"><button id="doors-legacy">Original people, work, shops and tuning</button><button id="doors-journal">Original commission notebook</button><button id="doors-settings">Settings</button></div>`;
+  const body=dialog.querySelector('#doors-content');
+  if(tab==='nearby'){
+   const sites=nearbyDoors(s,world);
+   body.innerHTML=sites.length?sites.map(p=>`<section class="doors-card"><h3>${esc(p.name)}</h3><p>${esc(p.detail)}</p>${doorOptions(s,world,p).map(a=>`<button data-door-site="${esc(p.id)}" data-door-action="${esc(a.id)}">${esc(a.text)}</button>`).join('')}</section>`).join(''):`<section class="doors-card"><h3>${s.mode==='foot'?'Walk beside a desk, stair or marked object.':'Dismount with Y / F first.'}</h3><p>Every house has a doorway facing its nearest street. Walk through the open arch. Ground-floor desks offer commissions, the staircase leads to an upper workshop, the next staircase to an attic, and the roof ladder reaches the bridges. Cellars connect to the undercity.</p><p>For Leonardo, the original stairs, shopkeepers, mechanisms and earlier work, use the original nearby menu below.</p></section>`;
+  }else if(tab==='houses'){
+   const pages=Math.ceil(world.doorHomes.length/10);page=Math.max(0,Math.min(page,pages-1));
+   body.innerHTML=`<p>These are the same ${world.doorHomes.length} city houses, not a replacement map. Each has a ground floor, upper workshop, attic and cellar. Upstairs and attic activities must be completed in person. The original northern garden gate remains in force on every route.</p><div class="doors-pages"><button id="houses-prev" ${page===0?'disabled':''}>Previous houses</button><span>Page ${page+1} of ${pages}</span><button id="houses-next" ${page===pages-1?'disabled':''}>Next houses</button></div>`+world.doorHomes.slice(page*10,page*10+10).map(h=>`<section class="doors-card"><h3>${esc(h.name)} ${s.doors.homes[h.id]===4?' / COMPLETE':''}</h3><p>${esc(h.trade.job)}. ${esc(homeInstruction(h,s.doors.homes[h.id]||0))}</p><p>${Math.round(Math.hypot(s.x-h.x,s.z-h.z))} m away${h.z>407&&!s.life.flags.garden?' / beyond the original locked garden gate':''}.</p><button data-door-track="home" data-door-id="${h.id}">Track this household</button></section>`).join('');
+  }else if(tab==='adventures'){
+   body.innerHTML='<p>Start at the commission board inside Leonardo\'s workshop. Each investigation requires physical travel through the city and a return to report. Map tracking never teleports you.</p>'+world.doorAdventures.map(q=>{const n=s.doors.adventures[q.id]||0;return `<section class="doors-card"><h3>${esc(q.name)} ${n>=q.stages.length?' / COMPLETE':''}</h3><p>${esc(q.intro)}</p><p>${esc(n>=q.stages.length?'Finished and rewarded.':q.stages[n].text)} Progress: ${n} / ${q.stages.length}. Reward: ${q.xp} XP / ${q.florins} florins.</p><button data-door-track="adventure" data-door-id="${q.id}">Track this adventure</button></section>`;}).join('');
+  }else{
+   body.innerHTML=`<section class="doors-card"><h3>Everything from the controller</h3><p>Press a controller button after opening the page. A standard Xbox-compatible browser mapping is required. Left stick steers your facing direction and moves forward or backward; right stick controls the camera.</p>${Object.entries(PAD_LAYOUT).map(([k,v])=>`<p><strong>${esc(k)}</strong>: ${esc(v)}</p>`).join('')}<p>In menus, use the D-pad or left stick to focus controls. A confirms; B closes the current window, including confirmations. LB/RB switch tabs; right stick scrolls. On a selected setting use left/right or A to change it. A on a search box opens controller text entry. Menu opens pause, including settings, recovery and return to title.</p><p>RT is a staff strike on foot and extra pedaling while riding. LT braces on foot and brakes a ride. B dodges on foot, with a brief recovery. Rivals telegraph their attacks, yield when beaten and never permanently block your save.</p><p>X also opens the original market stall when you stop beside it. Y remains available to mount or dismount.</p><p>Keyboard: G opens this guide. I opens the original nearby menu. J strikes, K braces, O dodges. The existing keyboard and touch controls remain.</p></section>`;
+  }
+  dialog.querySelector('#doors-close').onclick=()=>dialog.close();
+  dialog.querySelectorAll('[data-door-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.doorTab;message='';render();dialog.querySelector(`[data-door-tab="${tab}"]`).focus();});
+  dialog.querySelectorAll('[data-door-site]').forEach(b=>b.onclick=()=>{const result=useDoor(getState(),world,b.dataset.doorSite,b.dataset.doorAction);message=result.text;save();if(result.close){dialog.close();onTransition();}else render();});
+  dialog.querySelectorAll('[data-door-track]').forEach(b=>b.onclick=()=>{trackDoor(getState(),world,b.dataset.doorTrack,b.dataset.doorId);save();message='Route tracked. Return to the game; the teal objective shows the next doorway or stair. The map never moves you.';render();});
+  const prev=dialog.querySelector('#houses-prev'),nextPage=dialog.querySelector('#houses-next');if(prev)prev.onclick=()=>{page--;render();};if(nextPage)nextPage.onclick=()=>{page++;render();};
+  dialog.querySelector('#doors-legacy').onclick=()=>switchTo(legacyNearby);dialog.querySelector('#doors-journal').onclick=()=>switchTo(journal);dialog.querySelector('#doors-settings').onclick=()=>switchTo(settings);
+ }
+ function open(which='nearby'){if(!active())return;tab=which;message='';setPause(true);render();dialog.showModal();}
+ function interact(){
+  if(!active())return;const s=getState();
+  // Reuse the original purchase dialog and its handlers, at the actual stall.
+  if(!s.doors.level&&!s.life.inside&&Math.hypot(s.x-world.shop.x,s.z-world.shop.z)<7&&Math.abs(s.speed)<1.7){
+   setPause(true);document.getElementById('shop-florins').textContent=s.credits;document.getElementById('shop-staff').disabled=s.upgraded;document.getElementById('shop-dialog').showModal();return;
+  }
+  if(nearbyDoors(s,world).length)open('nearby');else legacyNearby();
+ }
+ function update(){const s=getState(),goal=doorTarget(s,world),loc=doorLocation(s,world);hud.hidden=!goal&&!loc.level;if(!hud.hidden)hud.textContent=(loc.level?FLOOR_NAMES[loc.level]+' / ':'')+(goal?goal.name+' / '+Math.round(Math.hypot(s.x-goal.x,s.z-goal.z))+' m / '+(goal.hint||'Follow the teal marker'):'X / G for stairs and nearby work');
+  const rivals=s.doors.enemies.filter(e=>e.hp>0&&e.level===loc.level&&(!e.room||e.room===loc.room)&&Math.hypot(s.x-e.x,s.z-e.z)<12).sort((a,b)=>Math.hypot(s.x-a.x,s.z-a.z)-Math.hypot(s.x-b.x,s.z-b.z)),e=rivals[0];combat.hidden=!e;if(e)combat.textContent=e.name+' / '+Math.ceil(e.hp)+' health / '+(e.phase==='windup'?'WINDING UP: LT brace or B dodge':'RT strike / LT brace / B dodge / Retreat is safe');
+  if(loc.level){const old=document.getElementById('duel');old.hidden=true;document.getElementById('life-status').textContent=(world.doorHomes.find(h=>h.id===loc.room)?.name||'Vinci')+' / '+FLOOR_NAMES[loc.level];}
+ }
+ function drawMap(g,X,Z,full){const s=getState();if(full){g.save();g.strokeStyle='#73c9bf';g.globalAlpha=.35;g.lineWidth=2;for(const p of world.doorPaths.filter(p=>!p.roof)){g.beginPath();if(p.hx>p.hz){g.moveTo(X(p.x-p.hx),Z(p.z));g.lineTo(X(p.x+p.hx),Z(p.z));}else{g.moveTo(X(p.x),Z(p.z-p.hz));g.lineTo(X(p.x),Z(p.z+p.hz));}g.stroke();}g.restore();}const t=doorTarget(s,world);if(t){g.strokeStyle='#7fffe0';g.lineWidth=3;g.beginPath();g.arc(X(t.x),Z(t.z),full?9:6,0,Math.PI*2);g.stroke();}}
+ return {open,interact,update,drawMap,close:()=>{if(!dialog.open)return false;dialog.close();return true;}};
+}
