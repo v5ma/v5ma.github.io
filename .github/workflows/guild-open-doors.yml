@@ -2,31 +2,58 @@ name: Guild Open Doors
 on:
   push:
     branches: [guild/open-doors-20260911]
+    paths: ['leonardos-guild/**','.github/workflows/guild-open-doors.yml']
   pull_request:
-    paths: ['leonardos-guild/**', '.github/workflows/guild-open-doors.yml']
+    paths: ['leonardos-guild/**','.github/workflows/guild-open-doors.yml']
 permissions:
   contents: read
+concurrency:
+  group: guild-open-doors-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  validate:
+  controller:
     runs-on: ubuntu-latest
+    timeout-minutes: 26
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Existing and expansion unit tests
-        run: cd leonardos-guild && npm test
-      - name: Source snapshot for local browser acceptance
+      - name: Check committed source, all house floors and old-save preservation
+        run: |
+          set -euo pipefail
+          mkdir -p leonardos-guild/doors-output
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          npm --prefix leonardos-guild test | tee leonardos-guild/doors-output/model-tests.txt
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Fresh controller-only city, household, rooftops, cellars and UI journey
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/doors-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/doors-browser.py
+      - name: Preserve exact committed source and failure evidence
         if: always()
         run: |
-          mkdir -p /tmp/guild-source
-          cp -r leonardos-guild /tmp/guild-source/
-          cp index.html /tmp/guild-source/homepage.html
-          cp -r .github /tmp/guild-source/
+          python - <<'PY'
+          import hashlib,json,subprocess,tarfile
+          from pathlib import Path
+          root=Path('leonardos-guild');out=root/'doors-output';out.mkdir(exist_ok=True)
+          (out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          diff=subprocess.check_output(['git','diff','--stat'],text=True);(out/'uncommitted-diff.txt').write_text(diff)
+          excluded={'doors-output','cycle-output','city-output','life-output','test-output','touch-output','street-output','__pycache__','node_modules'}
+          files={str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.rglob('*') if f.is_file() and not excluded.intersection(f.parts)}
+          (out/'source-hashes.json').write_text(json.dumps(files,indent=2))
+          with tarfile.open(out/'source.tgz','w:gz') as t:
+            for name in files:t.add(root/name,arcname='leonardos-guild/'+name)
+          assert not diff,'Read-only acceptance must not rewrite source'
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: guild-source-${{ github.sha }}
-          path: /tmp/guild-source
-          include-hidden-files: true
-          retention-days: 3
+          name: guild-open-doors-controller
+          path: leonardos-guild/doors-output/
+          retention-days: 10
