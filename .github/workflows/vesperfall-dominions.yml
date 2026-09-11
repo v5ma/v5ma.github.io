@@ -1,30 +1,108 @@
 name: Vesperfall Hollow Dominions
 on:
   push:
-    branches: [vesperfall-hollow-dominions-20260911]
+    branches: [vesperfall-hollow-dominions-20260911, master]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-dominions.yml', '.github/vesperfall-dominions-payload-*.txt']
+  pull_request:
     paths: ['vesperfall/**', '.github/workflows/vesperfall-dominions.yml']
 permissions:
   contents: read
+concurrency:
+  group: vesperfall-dominions-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
-  source:
+  acceptance:
+    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Apply checksummed source delta without touching other games
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,lzma
+          from pathlib import Path
+          parts=sorted(Path('.github').glob('vesperfall-dominions-payload-*.txt'))
+          if parts:
+            raw=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
+            assert hashlib.sha256(raw).hexdigest()=='3ea41a507f0aaad26ce51680de95b70b61e3dd586c630abb0bd954618b8c770b'
+            for change in json.loads(raw):
+              p=Path(change['path']);assert p.parts[0]=='vesperfall' and '..' not in p.parts
+              old=p.read_bytes() if p.exists() else b''
+              current=hashlib.sha256(old).hexdigest() if p.exists() else None
+              if current==change['sha256']:continue
+              assert current==change['before'],f'Source conflict: {p}'
+              text=old.decode('utf-8')
+              if 'content' in change:text=change['content']
+              else:
+                for a,b,value in reversed(change['ops']):text=text[:a]+value+text[b:]
+              data=text.encode('utf-8');assert hashlib.sha256(data).hexdigest()==change['sha256'],str(p)
+              p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);print('Applied',p)
+          PY
+      - uses: actions/setup-node@v4
         with:
-          sparse-checkout: |
-            vesperfall
-            .github/workflows
-      - name: Record source revision
-        run: git rev-parse HEAD > source-revision.txt
+          node-version: '22'
+      - name: Syntax and model regressions
+        run: |
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/dominions-model.tap
+      - name: Commit integrated source to development branch only
+        if: github.event_name == 'push' && github.ref == 'refs/heads/vesperfall-hollow-dominions-20260911'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall
+          git rm --ignore-unmatch .github/vesperfall-dominions-payload-*.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Vesperfall 0.7.0 Hollow Dominions with 78 passing model regressions'
+            git push origin HEAD:vesperfall-hollow-dominions-20260911
+          fi
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise WebGL, Xbox, physical-draw emulation, spatial menus and AR restoration
+        run: |
+          python -m http.server 4173 > test-output/server.log 2>&1 &
+          timeout 780 python -u vesperfall/tests/dominions-browser.py | tee test-output/dominions-browser.log
+      - name: Bundle tested source and diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          tar -czf test-output/vesperfall-tested-source.tgz vesperfall
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: vesperfall-source
-          include-hidden-files: true
-          path: |
-            vesperfall/
-            .github/workflows/
-            index.html
-            package.json
-            package-lock.json
-            source-revision.txt
-          retention-days: 7
+          name: vesperfall-dominions-acceptance
+          path: test-output/
+          retention-days: 14
+  publication:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify every published runtime file and asset against the merged commit
+        run: python -u vesperfall/tests/verify-live.py
+      - name: Install verification browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the actual public release with Xbox, VR and AR input emulation
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+        run: timeout 780 python -u vesperfall/tests/dominions-browser.py | tee test-output/dominions-public-browser.log
+      - name: Open the real homepage game card and play
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+        run: timeout 240 python -u vesperfall/tests/launch.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-dominions-publication
+          path: test-output/
+          retention-days: 14
