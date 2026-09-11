@@ -1,3 +1,15 @@
+# Leo's Guild - Resonance v0.8.0
+
+The existing game at /leonardos-guild/ now has a sound-led controller expansion. Read RESONANCE.md for the current mapping, audio options and explicitly retained limitations. Open the existing Leonardo's Guild card on the SVGN homepage. The served title and release.json identify the version; only a successful post-merge public-file receipt proves publication.
+
+On a controller, D-pad up opens Guild Dispatch. Its Audio / controls application opens the mixer, dynamic-range settings, aim assistance, vibration and Classic Open Doors profile. Audio settings also appear on the title and pause screens. Hold D-pad left for music. Hold LB for equipment; use the right stick to select and D-pad left/right for variants. Release to equip or press B to cancel. X interacts, or reloads while aiming the sling. Holding X preserves interaction access. The new default uses camera-relative foot movement and a separate right-stick camera.
+
+Five original 64-bar arrangements accompany the city, market, interiors/night, underground passages and nearby rivals. Fifty locally hosted music/effect/ambient files replace the old persistent oscillator. Master, music, effects and environment volumes are independent. Important sound captions remain available when muted. Some browsers require one trusted Enter key press before allowing audio; controller navigation never waits on that permission and no mouse is required.
+
+Your original save key, commissions, town, 49 multi-floor households, roof and underground networks, vehicles, licensed art, keyboard and touch controls remain. Sling ammunition, selected equipment and discipline are additive. The blue bar is a replenishing guard reserve, not a claim that body-armor equipment has been added. The discipline wheel changes the same apprentice's ability; it does not claim three separate protagonists. Full policing, property economics and additional playable characters remain on the roadmap.
+
+## Retained Open Doors guide (Classic controller profile)
+
 # Leo's Guild - Open Doors
 
 Leonardo's Guild version 0.7.0, build guild-open-doors-20260911. This is an expansion of the existing Renaissance browser adventure, not a replacement game. Open the existing Leonardo's Guild card at https://v5ma.github.io/ or go to /leonardos-guild/. The title screen and release.json identify the served version. PR95 and the post-merge public-file verification contain release evidence; a branch manifest alone is not publication proof.

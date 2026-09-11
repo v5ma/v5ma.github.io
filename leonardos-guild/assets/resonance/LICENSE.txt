@@ -1,0 +1,5 @@
+Leo's Guild - Resonance
+Original procedural compositions, arrangements and sound design created for Micah Blumberg / SVGN, 2026.
+No third-party recordings or commercial-game music are included.
+The repository owner may use, modify and redistribute these generated assets with this game.
+Reproducible source: scripts/render-resonance-audio.py.

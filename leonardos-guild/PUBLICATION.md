@@ -1,3 +1,7 @@
+# Current publication procedure - Resonance
+
+Version 0.8.0 is prepared on guild/sound-and-controller-20260911. Native acceptance must check ordinary committed runtime files, not rerun preparation over them. Merge only the tested source. The existing Pages/publication workflows must then confirm served hashes, version and homepage card. Record actual run IDs and source identity in the release PR. A release manifest or this procedure is not proof of deployment. Earlier verified receipts below remain historical.
+
 # Browser publication
 
 ## Verified Lantern Hours publication

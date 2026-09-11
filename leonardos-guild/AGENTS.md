@@ -1,6 +1,6 @@
 # Leonardo's Guild continuation guide
 
-Read release.json, README.md, OPEN-DOORS.md, OPEN-DOORS-CHECKLIST.md, UPGRADE-CHECKLIST.md and the current PR before changing this game. Open Doors is the v0.7.0 expansion in PR95. Older candidate labels in the historical checklist/notes are not the current release decision. ASSET-REGISTER.json and vendor/gltf-provenance.json document imported art and loader provenance.
+Read release.json, README.md, RESONANCE.md, OPEN-DOORS.md, OPEN-DOORS-CHECKLIST.md, UPGRADE-CHECKLIST.md and the current PR before changing this game. Open Doors is the v0.7.0 expansion in PR95. Older candidate labels in the historical checklist/notes are not the current release decision. ASSET-REGISTER.json and vendor/gltf-provenance.json document imported art and loader provenance.
 
 Preserve the same town, Stolen Folio, nine earlier side commissions, Market Life, Lantern Hours, Cycle Works, keyboard, touch joystick, Xbox controls, all 49 house interiors, both route networks, parked vehicles, old save namespace and sibling projects. Never reset user progress or replace the game to improve artwork. New encounters use additive bounded saves.
 
@@ -13,3 +13,5 @@ Open Doors: doors-core.mjs owns bounded household/adventure/rival state and vali
 The one-time source-preparation script refuses a changed baseline/output. Do not rerun it over subsequent edits. Maintain ordinary committed modules. Existing street data/actions/UI/art remain in street-data, street-core, street-ui and street-art. Cycle Works keeps equipment, UI and art in cycle-core, cycle-ui and cycle-art; stock motion and carriage behavior remain unchanged.
 
 Do not claim piloted flight, multiplayer, paid accounts, physical Xbox hardware or mobile performance, professional character animation or complete NPC schedules without implementation and appropriate evidence. Finish one coherent tested slice, then publish when the user requests publication. Preserve all sibling games, documents and their concurrent changes.
+
+Resonance v0.8: resonance-data owns validated audio/controller preferences; resonance-core owns bounded equipment and non-lethal projectile reducers; resonance-audio owns local buffers, streamed music and safe browser activation; resonance-ui owns controller-first dispatch and wheels. Never bypass autoplay policy or claim physical hardware testing from a virtual gamepad. scripts/render-resonance-audio.py is the original composition source. prepare-resonance.py is a one-time hash-checked source application step, not a test-time rewriter. Maintenance edits the committed runtime modules directly. Preserve full old browser regressions and actual decoded-audio checks, then verify all public bytes after merge.

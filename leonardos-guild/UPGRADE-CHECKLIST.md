@@ -1,3 +1,15 @@
+# Resonance continuation checkpoint - September 11, 2026
+
+Current slice: v0.8.0 Resonance. Read release.json and RESONANCE.md before interpreting historical candidate labels below. The feature branch alone is not proof of public deployment.
+
+Implemented: five original composed score arrangements, fifty local audio assets, bounded spatial mixer, material footsteps, activity and combat cues, environmental and vehicle layers, independent volumes, sound captions and optional haptics. A console profile adds camera-relative foot movement, aiming, equipment/music/discipline wheels, a finite-ammunition non-lethal sling, reloads, nearby cover, focus abilities and an eight-application guild dispatch. Classic controls remain selectable. Existing saves and story gates remain.
+
+Local model checks: all 154 tests passed, including 23 new equipment/audio-data checks. All fifty generated assets passed actual decoding, hash, duration, finite-sample, level and loop-boundary analysis. Local native browser navigation is blocked by environment policy; use read-only GitHub Actions for native acceptance. Final evidence belongs in the release PR and public-file verification receipt, not an unsupported status claim in this checklist.
+
+Retained next steps from the user's console reference: deeper crime observation and proportional watch pursuit; real armor/equipment progression; more named protagonists only with actual playable state and transitions; Renaissance property/vehicle economics; additional licensed or owner-supplied music; further individually authored house stories. Do not portray existing local commotion as a police-star system or disciplines as separate characters. No stocks, internet browser or real-money purchases are implemented here.
+
+Historical checklist follows unchanged.
+
 # Leonardo's Guild - persistent upgrade checklist
 
 ## Continuation checkpoint - 2026-09-09

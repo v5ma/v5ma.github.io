@@ -1,3 +1,7 @@
+# Resonance v0.8.0
+
+Sound-led continuation: five original 64-bar pieces and fifty local audio assets; adaptive score, spatial Foley and ambient/vehicle layers; independent mixer and dynamic range; sound captions and optional vibration. Contextual console mapping, original Classic mapping, equipment/music/discipline wheels, finite sling ammunition and timed reloads, aiming/lock-on, nearby cover, camera-relative movement, compact vital bars and Guild Dispatch. All earlier town/story/floor/route/vehicle/save systems retained. Native acceptance and public deployment are recorded separately in the release PR and publication receipt.
+
 # Leonardo's Guild - development and release history
 
 ## v0.6.0 - Cycle Works (candidate)

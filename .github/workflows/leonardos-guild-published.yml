@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Match game, real model buffers and textures to the merged source
+      - name: Match game, audio, model buffers and textures to the merged source
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -21,13 +21,17 @@ jobs:
           import hashlib,json,time,urllib.request,subprocess
           source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
           root=Path('leonardos-guild')
-          excluded={'tests','scripts','test-output','touch-output','life-output','street-output','__pycache__','node_modules'}
-          suffixes={'.html','.mjs','.js','.css','.webp','.json','.md','.gltf','.glb','.bin','.png','.jpg','.jpeg','.txt'}
+          excluded={'tests','scripts','test-output','touch-output','life-output','street-output','resonance-output','doors-output','__pycache__','node_modules'}
+          suffixes={'.html','.mjs','.js','.css','.webp','.json','.md','.gltf','.glb','.bin','.png','.jpg','.jpeg','.txt','.ogg','.wav','.mp3'}
           paths=[p for p in root.rglob('*') if p.is_file() and not any(x in excluded for x in p.parts) and p.suffix in suffixes]
           expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
           register=json.loads((root/'ASSET-REGISTER.json').read_text())
           for name,record in register['files'].items():
             assert expected['leonardos-guild/'+name]==record['sha256'],name
+          audio=json.loads((root/'assets/resonance/manifest.json').read_text())
+          for record in audio['files']:
+            name='leonardos-guild/assets/resonance/'+record['file']
+            assert expected[name]==record['sha256'],name
           found={}
           def inspect(item):
             name,digest=item
@@ -50,10 +54,10 @@ jobs:
             with urllib.request.urlopen('https://v5ma.github.io/?guild='+source[:12],timeout=15) as response:
               raw=response.read();homepage={'status':response.status,'sha256':hashlib.sha256(raw).hexdigest(),'game_link_present':b'./leonardos-guild/index.html' in raw or b'./leonardos-guild/' in raw}
           except Exception as error:homepage['error']=str(error)
-          result={'source':source,'version':json.loads((root/'release.json').read_text())['version'],'game':'https://v5ma.github.io/leonardos-guild/','homepage':homepage,'registered_asset_models':len(register['models']),'files':found,'all_match':len(found)==len(expected) and all(v['match'] for v in found.values()) and homepage['game_link_present']}
+          result={'source':source,'version':json.loads((root/'release.json').read_text())['version'],'game':'https://v5ma.github.io/leonardos-guild/','homepage':homepage,'registered_asset_models':len(register['models']),'audio_files':len(audio['files']),'music_tracks':sum(r['kind']=='music' for r in audio['files']),'files':found,'all_match':len(found)==len(expected) and all(v['match'] for v in found.values()) and homepage['game_link_present']}
           Path('leonardo-publication.json').write_text(json.dumps(result,indent=2))
           assert result['all_match'],result
-          print('Verified',len(found),'public files including model buffers, textures and checklist; homepage card remains accessible:',source)
+          print('Verified',len(found),'public files including all',len(audio['files']),'music, ambience and sound files; homepage card remains accessible:',source)
           PY
       - uses: actions/upload-artifact@v4
         if: always()

@@ -1,8 +1,8 @@
 {
   "id": "leonardos-guild",
-  "title": "Leo's Guild - Open Doors",
-  "version": "0.7.0",
-  "build": "guild-open-doors-20260911",
+  "title": "Leo's Guild - Resonance",
+  "version": "0.8.0",
+  "build": "guild-resonance-20260911",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -24,5 +24,28 @@
   "humanoidRivals": 18,
   "connectedRooftops": true,
   "connectedUndercity": true,
-  "xboxGameplayAndUI": true
+  "xboxGameplayAndUI": true,
+  "resonance": {
+    "musicTracks": 5,
+    "audioFiles": 50,
+    "controllerProfiles": [
+      "console",
+      "classic"
+    ],
+    "tools": [
+      "staff",
+      "sling",
+      "letters",
+      "lantern"
+    ],
+    "disciplines": [
+      "courier",
+      "warden",
+      "artificer"
+    ],
+    "dispatchApps": 8,
+    "save": "additive resonance field; existing key and version 2 retained",
+    "audioPolicy": "Trusted browser activation may require Enter once. No blocking browser dialog.",
+    "limits": "No physical Xbox, speaker, mobile-performance, full police pursuit, separate protagonists, stock market or property-purchase claim."
+  }
 }
