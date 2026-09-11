@@ -1,0 +1,10 @@
+import * as T from './vendor/three.module.js';
+/* Only noisy nearby actors appear while listening. */
+export function createListenArt(scene,models){const echoes=new Map();
+ function build(model){const group=new T.Group(),material=new T.MeshBasicMaterial({color:0xf4f6ef,transparent:true,opacity:.18,depthTest:false,depthWrite:false,side:T.DoubleSide}),parts=[];
+  model.root.traverse(o=>{if(!o.isMesh||o.userData.listenEcho)return;let copy;if(o.isSkinnedMesh){copy=new T.SkinnedMesh(o.geometry,material);copy.bindMode='detached';copy.bind(o.skeleton,o.bindMatrix);}else copy=new T.Mesh(o.geometry,material);copy.matrixAutoUpdate=false;copy.frustumCulled=false;copy.renderOrder=900;parts.push({source:o,copy});group.add(copy);});
+  const ripple=new T.Mesh(new T.RingGeometry(.9,1.02,32),material);ripple.rotation.x=-Math.PI/2;ripple.renderOrder=901;group.add(ripple);scene.add(group);return {group,parts,material,ripple};}
+ function update(s){for(const e of s.enemies){const model=models.get(e.id);if(!model)continue;const d=Math.hypot(e.x-s.player.x,e.z-s.player.z),audible=(e.speed||0)>.12||e.phase||e.state==='chase'||s.t<(e.calloutUntil||0);let echo=echoes.get(e.id);if(!echo&&s.player.listen&&e.hp>0&&d<16&&audible){echo=build(model);echoes.set(e.id,echo);}if(!echo)continue;echo.group.visible=!!(s.player.listen&&e.hp>0&&d<16&&audible);if(!echo.group.visible)continue;echo.material.color.set(e.state==='chase'?0xffa59a:0xf4f6ef);echo.material.opacity=.12+(1-d/16)*.16;
+  for(const {source,copy}of echo.parts){copy.matrix.copy(source.matrixWorld);let visible=true;for(let n=source;n&&n!==scene;n=n.parent)if(!n.visible)visible=false;copy.visible=visible;}echo.ripple.position.set(e.x,model.root.position.y+.08,e.z);echo.ripple.scale.setScalar(1+(s.t*1.2%1)*1.8);
+ }}return {update,dispose(){for(const e of echoes.values()){scene.remove(e.group);e.material.dispose();e.ripple.geometry.dispose();}echoes.clear();}};
+}
