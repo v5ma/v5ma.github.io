@@ -1,15 +1,14 @@
 {
-  "version": "0.8.0",
-  "build": "rainward-whiteout-reclaimed-20260911",
+  "version": "0.8.1",
+  "build": "rainward-controller-complete-20260911",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Rebuilt weighted humanoid survivor and human enemy models with articulated gait, aim, crouch and prone posing",
-    "Added Meridian Ward, Breakwater Signal and Whiteout Market as three large expeditions with alternate routes",
-    "Added raider, marksman, sentinel and shrieker human enemy roles plus expanded creature encounters",
-    "Added persistent field tasks, required and optional objectives, task rewards and journal tracking",
-    "Added snowbound streets, coastal beacon spaces, denser architecture, vehicles, trees, signage and weather variation",
-    "Preserved the original three chapters, saves, controller/touch support, scanned assets, cinematic renderer and experimental WebXR overlook"
+    "Controller-operable confirmations replace browser confirm dialogs; safe cancel focus and held-input suppression",
+    "Full button, checkbox, range, chapter selector and journal navigation with controller focus, scrolling and LB/RB tabs",
+    "Dedicated X reload with live reload feedback, finite ammunition, and satchel quick-use controls",
+    "Adjustable stick deadzone and sensitivity, invert vertical look, toggle sprint and optional vibration",
+    "Preserves all six Reclaimed City chapters, tasks, humanoid models, enemies, puzzles, saves and rendering"
   ]
 }

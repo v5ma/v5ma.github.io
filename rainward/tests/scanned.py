@@ -6,6 +6,7 @@ import os,json
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
+from ui_flow import EXPECTED_VERSION,finish_transition
 OUT=Path('test-output/scanned');OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];console=[];requests=[]
 def check(v,label):
@@ -14,7 +15,7 @@ def check(v,label):
 def settle(p):p.wait_for_function('window.Rainward&&!Rainward.snapshot().assets.pending',timeout=120000)
 def wait(p,q):p.wait_for_function(q,timeout=120000)
 def start(p,chapter):
- p.locator('#chapter-select').select_option(chapter);p.locator('#start').click();wait(p,'Rainward.mode==="play"');settle(p)
+ p.locator('#chapter-select').select_option(chapter);p.locator('#start').click();finish_transition(p,'play');settle(p)
 def compare_fields(p):return p.evaluate('({x:Rainward.state.player.x,z:Rainward.state.player.z,hp:Rainward.state.player.hp,mag:Rainward.state.player.mag,objectives:{...Rainward.state.objectives},puzzle:Rainward.state.puzzle,taken:[...Rainward.state.taken]})')
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
@@ -30,7 +31,7 @@ with sync_playwright() as pw:
    before=compare_fields(p);p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#low').uncheck();p.locator('#scanned').uncheck();check(compare_fields(p)==before,'Disabling enhanced '+chapter+' art preserves the actual game state');p.locator('#resume').click();n=p.evaluate('Rainward.renderer.info.render.frame');p.wait_for_function('(n)=>Rainward.renderer.info.render.frame>=n+3',arg=n);p.screenshot(path=str(OUT/(chapter+'-procedural.png')))
    p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#scanned').check();p.locator('#resume').click();n=p.evaluate('Rainward.renderer.info.render.frame');p.wait_for_function('(n)=>Rainward.renderer.info.render.frame>=n+3',arg=n);p.screenshot(path=str(OUT/(chapter+'-scanned.png')))
    check(p.evaluate('Rainward.snapshot().assets.enabled&&Rainward.snapshot().renderer.scannedMeshes>0'),'Enhanced '+chapter+' view uses real imported scene meshes')
-   p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#low').check();p.locator('#to-title').click();wait(p,'Rainward.mode==="title"')
+   p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#low').check();p.locator('#to-title').click();finish_transition(p,'title')
   for url in set(requests):
    if '/assets/scanned/' in url:check(requests.count(url)==1,'Tab byte cache fetched '+url.rsplit('/',1)[1]+' only once')
   check(not errors,'No uncaught exceptions after repeated chapter/resource disposal')

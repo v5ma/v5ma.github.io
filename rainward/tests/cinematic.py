@@ -5,6 +5,7 @@ import os,json
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
+from ui_flow import EXPECTED_VERSION,finish_transition
 OUT=Path('test-output/cinematic');OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];console=[]
 def check(v,label):
@@ -22,9 +23,9 @@ with sync_playwright() as pw:
  p=ctx.new_page();p.set_default_timeout(120000);p.on('dialog',lambda d:d.accept());p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
  try:
   p.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(p,'window.Rainward');wait(p,'!Rainward.snapshot().assets.pending');
-  check(p.evaluate('Rainward.snapshot().version')=='0.8.0','The actual game reports the v0.8 Reclaimed City build')
+  check(p.evaluate('Rainward.snapshot().version')==EXPECTED_VERSION,'The actual game reports the committed Reclaimed City build')
   for chapter in ['district','conservatory','terminus']:
-   p.locator('#chapter-select').select_option(chapter);p.locator('#start').click();wait(p,'Rainward.mode==="play"');wait(p,'!Rainward.snapshot().assets.pending');p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');before=preserved(p)
+   p.locator('#chapter-select').select_option(chapter);p.locator('#start').click();finish_transition(p,'play');wait(p,'!Rainward.snapshot().assets.pending');p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');before=preserved(p)
    p.locator('#low').uncheck();p.locator('#cinematic').uncheck();p.locator('#motion').uncheck();p.locator('#resume').click();frames(p);p.screenshot(path=str(OUT/(chapter+'-effects-off.png')))
    p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#cinematic').check();p.locator('#motion').check();p.locator('#resume').click();frames(p,12)
    check(p.evaluate('Rainward.snapshot().visuals.cinema.active'),chapter+' uses the actual HDR/depth post-processing targets')
@@ -34,9 +35,9 @@ with sync_playwright() as pw:
    p.screenshot(path=str(OUT/(chapter+'-cinematic.png')))
    p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#low').check();p.locator('#resume').click();frames(p)
    check(not p.evaluate('Rainward.snapshot().visuals.cinema.active'),chapter+' bypasses expensive fullscreen effects in Reduced Graphics')
-   p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#to-title').click();wait(p,'Rainward.mode==="title"')
+   p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#to-title').click();finish_transition(p,'title')
   # Reach real water in the terminus by holding a key; interaction/game state is not injected.
-  p.locator('#start').click();wait(p,'Rainward.mode==="play"');p.keyboard.down('KeyW');wait(p,'Rainward.state.player.z<20');p.keyboard.up('KeyW');p.keyboard.down('KeyA');wait(p,'Rainward.state.player.x<-6');p.keyboard.up('KeyA');frames(p,10)
+  p.locator('#start').click();finish_transition(p,'play');p.keyboard.down('KeyW');wait(p,'Rainward.state.player.z<20');p.keyboard.up('KeyW');p.keyboard.down('KeyA');wait(p,'Rainward.state.player.x<-6');p.keyboard.up('KeyA');frames(p,10)
   check(p.evaluate('Rainward.snapshot().visuals.living.rippleCount>0'),'Moving through an actual water footprint produces player-driven ripples')
   p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');p.locator('#low').uncheck();p.locator('#cinematic').check();p.locator('#resume').click();frames(p,10);p.screenshot(path=str(OUT/'water-ripples.png'))
   p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');t=p.evaluate('Rainward.state.t');frames(p,5);check(p.evaluate('Rainward.state.t')==t,'The new frame clock does not advance gameplay while paused')
