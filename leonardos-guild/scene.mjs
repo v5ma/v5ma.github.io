@@ -1,3 +1,4 @@
+import {createFrameGate} from './frame-gate.mjs';
 import {createDoorsArt} from './doors-art.mjs';
 import {doorElevation} from './doors-core.mjs';
 import {createStreetArt} from './street-art.mjs';
@@ -64,8 +65,10 @@ export function createScene(canvas,w,s,quality='high'){
  const cityArt=createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,camera});
  const doorsArt=createDoorsArt({scene,root,w,m,camera});
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality;
- function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
+ const shouldDraw=createFrameGate();let viewportRevision=0;
+ function resize(){viewportRevision++;const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
+  const artStatus=streetArt.inspect();if(!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,artStatus.ready,artStatus.failed],input.snap))return;
   const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=doorElevation(p),y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
   const angle=p.yaw+orbit,follow=(p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;
   const roomFollow=currentRoom?Math.min(3.1,follow):follow;

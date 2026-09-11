@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {createFrameGate} from '../frame-gate.mjs';
+import {newState} from '../model.mjs';
+test('Unchanged paused 3D frames are skipped without skipping input, real state, settings or loading changes',()=>{const gate=createFrameGate(),s=newState(),config={quality:'low',ready:false,viewport:1};assert.ok(gate(0,s,config));assert.equal(gate(0,s,config),false);const before=s.time;s.credits++;assert.ok(gate(0,s,config));assert.equal(s.time,before);assert.equal(gate(0,s,config),false);config.ready=true;assert.ok(gate(0,s,config));config.viewport++;assert.ok(gate(0,s,config));s.deliveries.add('mail-1');assert.ok(gate(0,s,config));assert.ok(gate(1/60,s,config));assert.ok(gate(1/60,s,config));assert.ok(gate(0,s,config,true));});
