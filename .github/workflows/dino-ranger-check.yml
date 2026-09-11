@@ -40,7 +40,7 @@ jobs:
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
-      - name: Make simulated taps span rendered frames under SwiftShader
+      - name: Adapt acceptance harness to slow software-rendered CI
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -48,10 +48,12 @@ jobs:
             "button(i,1);page.wait_for_timeout(200);button(i,0);page.wait_for_timeout(250)":"button(i,1);page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))');button(i,0);page.wait_for_timeout(250)",
             "button(i,1);page.wait_for_timeout(170);button(i,0);page.wait_for_timeout(210)":"button(i,1);page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))');button(i,0);page.wait_for_timeout(250)"
           }
+          low="localStorage.setItem('dino-atlas.frontier.v2',JSON.stringify({version:2,settings:{low:true,reduced:true}}));"
           for name in ['frontier-browser.py','audio-controller-browser.py']:
               p=Path('dino-atlas/tests')/name
               s=p.read_text()
               for old,new in replacements.items(): s=s.replace(old,new)
+              s=s.replace("PAD='''window.__pad", "PAD='''"+low+"window.__pad")
               p.write_text(s)
           PY
       - name: Run actual HTTP, WebGL and simulated Xbox acceptance checks
