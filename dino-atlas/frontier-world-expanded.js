@@ -2,7 +2,8 @@
 import * as T from './vendor/three.module.js';
 import {buildFrontier as buildBase} from './frontier-world.js?base=ops1';
 import {OUTPOSTS} from './frontier-data-expanded.js?v=spectacle1';
-import {makeBuggy,makeJeep} from './frontier-art.js?v=ops1';
+import {makeBuggy} from './frontier-art.js?v=ops1';
+import {makeJeep} from './ranger-art.js';
 
 const SONIC_GATES=[
  {x:0,z:98,color:0x7adfff,name:'Visitor Sonic Gate'},
