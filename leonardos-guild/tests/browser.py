@@ -51,8 +51,11 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/',wait_until='domcontentloaded');card=page.locator('article.leonardo')
   check(card.count()==1,'The homepage has one distinct Leonardo’s Guild game card')
-  for name in ['little-planet','rainward','aether','delivery','theology','dinosaur']:assert page.locator('article.'+name).count()==1,name
-  check(True,'The existing homepage cards remain, including Little Planet')
+  for name in ['rainward','aether','delivery','theology','dinosaur']:assert page.locator('article.'+name).count()==1,name
+  # The separate planet game was renamed by its own concurrent release.
+  # Preserve its single homepage card under either valid historical class.
+  assert page.locator('article.little-planet,article.planet').count()==1,'planet adventure card'
+  check(True,'The existing homepage cards remain, including the planet adventure')
   page.wait_for_function('document.querySelector("article.leonardo img")?.naturalWidth>0')
   check(card.locator('img').evaluate('(img)=>img.complete&&img.naturalWidth>0'),'The card shows an actual rendered game capture')
   page.screenshot(path=str(OUT/'00-homepage.png'));card.locator('a.primary-link').click();page.wait_for_function('window.LeonardoGuild')
