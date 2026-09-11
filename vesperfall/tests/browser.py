@@ -95,7 +95,7 @@ with sync_playwright() as p:
    metrics=page.evaluate('({calls:Vesperfall.component.stats.drawCalls,triangles:Vesperfall.component.stats.triangles})')
    check(metrics['calls']<300,'Instancing keeps this measured view below 300 draw calls; hardware FPS remains unmeasured')
    (OUT/'render-metrics.json').write_text(json.dumps(metrics,indent=2))
-   page.keyboard.press('KeyP');page.locator('#start').click();page.wait_for_function('Vesperfall.state.world.enemies.length===5');page.keyboard.press('KeyP');page.locator('#practice').click()
+   page.keyboard.press('KeyP');page.locator('#start').click();page.wait_for_function('Vesperfall.state.world.enemies.length===21');page.keyboard.press('KeyP');page.locator('#practice').click()
    check(page.evaluate('Vesperfall.state.world.targets.length===4'),'Rebuilding the scene keeps the intended targets without duplicating the architecture')
   elif MODE=='expedition':
    page.locator('#start').click();page.locator('a-scene canvas').focus()
@@ -118,7 +118,7 @@ with sync_playwright() as p:
    room=snap(page)['rooms'][snap(page)['exit']];walk(page,room['x'],room['z']-3.8,1);page.keyboard.press('KeyE');page.wait_for_function('Vesperfall.state.phase==="reward"');page.locator('#reward').wait_for(state='visible')
    check(page.locator('#reward').is_visible(),'The completed sector offers a real blessing choice')
    old=snap(page);page.locator('[data-reward="power"]').click();page.wait_for_function('Vesperfall.state.world.depth===2')
-   check(snap(page)['phase']=='playing' and len([e for e in snap(page)['enemies'] if not e['dead']])==5,'A blessing leads to the next procedural sector with new enemies')
+   check(snap(page)['phase']=='playing' and len([e for e in snap(page)['enemies'] if not e['dead']])==21,'A blessing leads to the next procedural sector with new enemies')
    check(page.evaluate('JSON.parse(localStorage.getItem("vesperfall-profile-v1")).shards>=5'),'Earned renown is banked locally once on completion')
    page.screenshot(path=str(OUT/'second-sector.png'))
   else:
