@@ -1,13 +1,99 @@
-// Opt-in, locally synthesized sound. No remote audio or copyrighted recordings.
+// Original procedural game audio. No remote files, film music, recordings, or copyrighted samples.
+// Everything is synthesized at runtime with the Web Audio API and can be fully disabled.
+const AUDIO_KEY='dino-atlas.audio.v1';
+const DEFAULTS={version:1,enabled:true,master:.78,music:.62,sfx:.9,ambience:.62};
+const clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,Number(n)||0));
+const midi=n=>440*Math.pow(2,(n-69)/12);
+const smooth=(param,value,now,time=.08)=>{try{param.cancelScheduledValues(now);param.setTargetAtTime(value,now,time);}catch{param.value=value;}};
+export function sanitizeAudioSettings(v){const s={...DEFAULTS};if(!v||v.version!==1)return s;if(typeof v.enabled==='boolean')s.enabled=v.enabled;for(const k of ['master','music','sfx','ambience'])if(Number.isFinite(v[k]))s[k]=clamp(v[k]);return s;}
 export class RangerAudio{
-  constructor(){this.enabled=false;this.context=null;}
-  async toggle(){
-    if(!this.context){const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)return false;this.context=new Audio();this.master=this.context.createGain();this.master.gain.value=0;this.master.connect(this.context.destination);
-      this.motor=this.context.createOscillator();this.motor.type='sawtooth';this.motor.frequency.value=34;
-      const filter=this.context.createBiquadFilter();filter.type='lowpass';filter.frequency.value=150;this.gain=this.context.createGain();this.gain.gain.value=.07;this.motor.connect(filter);filter.connect(this.gain);this.gain.connect(this.master);this.motor.start();}
-    await this.context.resume();this.enabled=!this.enabled;this.master.gain.setTargetAtTime(this.enabled?.32:0,this.context.currentTime,.1);return this.enabled;
-  }
-  update(speed,active){if(!this.context)return;const now=this.context.currentTime;this.motor.frequency.setTargetAtTime(30+Math.abs(speed)*5,now,.08);this.gain.gain.setTargetAtTime(active?.055+Math.min(Math.abs(speed),20)*.004:0,now,.08);}
-  tone(frequency=520,duration=.15){if(!this.context||!this.enabled)return;const c=this.context,o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=frequency;g.gain.setValueAtTime(.2,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+duration);o.connect(g);g.connect(this.master);o.start();o.stop(c.currentTime+duration);}
-  horn(){this.tone(196,.4);this.tone(247,.4);}
+ constructor(){
+  this.context=null;this.ready=false;this.enabled=false;this.settings=DEFAULTS;this.last={};this.nextBeat=0;this.beat=0;this.nextWildlife=0;this.footClock=0;this.lastUi=0;this.lastWater=0;this.lastImpact=0;this.unlocking=false;this.wasDanger=false;this.mode='jeep';this.active=false;
+  try{this.settings=sanitizeAudioSettings(JSON.parse(localStorage.getItem(AUDIO_KEY)||'null'));}catch{this.settings={...DEFAULTS};}
+  this.enabled=this.settings.enabled;this.bindUI();
+  // Pointer/keyboard activation is the browser-standard audio unlock path. Gamepad-only play remains functional even if a browser refuses audio activation.
+  const unlock=()=>this.ensure().catch(()=>{});window.addEventListener('pointerdown',unlock,{passive:true});window.addEventListener('keydown',unlock,{passive:true});window.addEventListener('touchstart',unlock,{passive:true});
+ }
+ save(){try{localStorage.setItem(AUDIO_KEY,JSON.stringify(this.settings));}catch{}this.refreshUI();}
+ bindUI(){
+  const bind=()=>{const map={master:'master-volume',music:'music-volume',sfx:'sfx-volume',ambience:'ambience-volume'};for(const [key,id] of Object.entries(map)){const el=document.getElementById(id);if(!el)continue;el.value=String(this.settings[key]);el.addEventListener('input',()=>{this.settings[key]=clamp(el.value);this.applyMix();this.save();});}
+   this.refreshUI();document.addEventListener('focusin',e=>{if(e.target?.closest?.('dialog[open]'))this.ui('focus');});document.addEventListener('click',e=>{const b=e.target?.closest?.('button,select,input');if(b&&b.id!=='sound-button'&&b.closest('dialog[open]'))this.ui('select');});};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else queueMicrotask(bind);
+ }
+ refreshUI(){const b=document.getElementById('sound-button');if(b)b.textContent=this.settings.enabled?'Audio: on':'Audio: off';for(const key of ['master','music','sfx','ambience']){const out=document.getElementById(key+'-value');if(out)out.textContent=Math.round(this.settings[key]*100)+'%';}}
+ async ensure(){
+  if(!this.settings.enabled)return false;if(this.unlocking)return this.ready;this.unlocking=true;
+  try{
+   if(!this.context){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){this.settings.enabled=false;this.enabled=false;this.save();return false;}this.context=new AC({latencyHint:'interactive'});this.build();}
+   if(this.context.state!=='running')await this.context.resume();this.ready=this.context.state==='running';this.enabled=this.settings.enabled&&this.ready;this.applyMix();return this.enabled;
+  }finally{this.unlocking=false;}
+ }
+ build(){const c=this.context;
+  this.master=c.createGain();this.master.gain.value=0;this.compressor=c.createDynamicsCompressor();this.compressor.threshold.value=-14;this.compressor.knee.value=18;this.compressor.ratio.value=4;this.compressor.attack.value=.006;this.compressor.release.value=.28;this.master.connect(this.compressor);this.compressor.connect(c.destination);
+  this.musicBus=c.createGain();this.sfxBus=c.createGain();this.ambBus=c.createGain();this.vehicleBus=c.createGain();this.musicBus.connect(this.master);this.sfxBus.connect(this.master);this.ambBus.connect(this.master);this.vehicleBus.connect(this.master);
+  // Vehicle layers. Separate sources make mode changes convincing while remaining cheap.
+  this.engines={};
+  this.engines.jeep=this.engineLayer('sawtooth',34,'lowpass',190,.10);this.engines.jeep2=this.engineLayer('square',68,'lowpass',145,.035);
+  this.engines.buggy=this.engineLayer('triangle',115,'bandpass',640,.055);this.engines.buggy2=this.engineLayer('sine',230,'bandpass',1100,.025);
+  this.engines.helicopter=this.engineLayer('sawtooth',19,'lowpass',105,.11);this.engines.helicopter2=this.engineLayer('square',38,'lowpass',145,.05);
+  this.engines.boat=this.engineLayer('sawtooth',28,'lowpass',130,.095);this.engines.boat2=this.engineLayer('triangle',56,'lowpass',185,.035);
+  // Persistent ambience uses generated noise buffers rather than recordings.
+  const noise=this.makeNoise(2.6);this.wind=c.createBufferSource();this.wind.buffer=noise;this.wind.loop=true;this.windFilter=c.createBiquadFilter();this.windFilter.type='bandpass';this.windFilter.frequency.value=580;this.windFilter.Q.value=.35;this.windGain=c.createGain();this.windGain.gain.value=0;this.wind.connect(this.windFilter);this.windFilter.connect(this.windGain);this.windGain.connect(this.ambBus);this.wind.start();
+  this.jungle=c.createBufferSource();this.jungle.buffer=noise;this.jungle.loop=true;this.jungleFilter=c.createBiquadFilter();this.jungleFilter.type='highpass';this.jungleFilter.frequency.value=2600;this.jungleGain=c.createGain();this.jungleGain.gain.value=.018;this.jungle.connect(this.jungleFilter);this.jungleFilter.connect(this.jungleGain);this.jungleGain.connect(this.ambBus);this.jungle.start();
+  this.water=c.createBufferSource();this.water.buffer=noise;this.water.loop=true;this.waterFilter=c.createBiquadFilter();this.waterFilter.type='bandpass';this.waterFilter.frequency.value=900;this.waterFilter.Q.value=.7;this.waterGain=c.createGain();this.waterGain.gain.value=0;this.water.connect(this.waterFilter);this.waterFilter.connect(this.waterGain);this.waterGain.connect(this.ambBus);this.water.start();
+  this.applyMix();this.ready=c.state==='running';
+ }
+ engineLayer(type,freq,filterType,cutoff,gain){const c=this.context,o=c.createOscillator(),f=c.createBiquadFilter(),g=c.createGain();o.type=type;o.frequency.value=freq;f.type=filterType;f.frequency.value=cutoff;g.gain.value=0;o.connect(f);f.connect(g);g.connect(this.vehicleBus);o.start();return {o,f,g,base:freq,level:gain};}
+ makeNoise(seconds=2){const c=this.context,b=c.createBuffer(1,Math.ceil(c.sampleRate*seconds),c.sampleRate),d=b.getChannelData(0);let last=0;for(let i=0;i<d.length;i++){const white=Math.random()*2-1;last=last*.94+white*.06;d[i]=white*.55+last*.45;}return b;}
+ applyMix(){if(!this.context)return;const now=this.context.currentTime,gate=this.settings.enabled?1:0;smooth(this.master.gain,this.settings.master*gate,now,.08);smooth(this.musicBus.gain,this.settings.music*.55,now,.12);smooth(this.sfxBus.gain,this.settings.sfx*.68,now,.06);smooth(this.ambBus.gain,this.settings.ambience*.45,now,.15);smooth(this.vehicleBus.gain,this.settings.sfx*.7,now,.08);}
+ async toggle(){this.settings.enabled=!this.settings.enabled;this.enabled=this.settings.enabled;this.save();if(this.settings.enabled){try{await this.ensure();}catch{} }else if(this.context){const n=this.context.currentTime;smooth(this.master.gain,0,n,.08);}return this.settings.enabled;}
+ // Backward-compatible call used by the game loop. It derives the richer state from the live HUD/debug object.
+ update(speed=0,active=false){
+  if(this.settings.enabled&&!this.context)this.ensure().catch(()=>{});if(!this.context)return;const c=this.context,now=c.currentTime,state=window.__dinoRanger?.state||{},mode=state.mode||document.body?.dataset?.mode||'jeep',paused=!!state.paused||!state.started,danger=document.body?.classList?.contains('danger')||false;
+  this.mode=mode;this.active=active&&!paused;const v=Math.min(Math.abs(Number(speed)||0),30),rpm=v/22;
+  const levels={jeep:['jeep','jeep2'],buggy:['buggy','buggy2'],helicopter:['helicopter','helicopter2'],boat:['boat','boat2']};for(const [name,e] of Object.entries(this.engines)){const on=(levels[mode]||[]).includes(name)&&this.active;let target=on?e.level:0;if(mode==='helicopter'&&on)target*=.9;if(mode==='boat'&&on)target*=.8;smooth(e.g.gain,target,now,.06);}
+  if(this.engines.jeep){smooth(this.engines.jeep.o.frequency,31+v*5.2,now,.07);smooth(this.engines.jeep2.o.frequency,62+v*10.4,now,.07);smooth(this.engines.buggy.o.frequency,95+v*16,now,.05);smooth(this.engines.buggy2.o.frequency,190+v*30,now,.05);smooth(this.engines.helicopter.o.frequency,18+(this.active&&mode==='helicopter'?6+v*.2:0),now,.09);smooth(this.engines.helicopter2.o.frequency,36+(this.active&&mode==='helicopter'?12+v*.4:0),now,.09);smooth(this.engines.boat.o.frequency,25+v*3.6,now,.1);smooth(this.engines.boat2.o.frequency,50+v*7.2,now,.1);}
+  const wind=(mode==='helicopter'?0.045+Math.min(v/28,.08):Math.min(v/22,.055))*(paused?.1:1);smooth(this.windGain.gain,wind,now,.15);smooth(this.windFilter.frequency,420+v*45,now,.18);
+  const region=(document.getElementById('region-label')?.textContent||'').toLowerCase(),wet=mode==='boat'||region.includes('wetland')||region.includes('coast');smooth(this.waterGain.gain,wet?.055:.006,now,.3);const night=!!document.getElementById('night-toggle')?.checked;smooth(this.jungleGain.gain,paused?.006:night?.034:.018,now,.4);
+  this.detectState(state,now,danger);this.scheduleScore(now,danger,paused,state);this.scheduleWildlife(now,state,danger,paused);this.stepFoot(now,state,paused);this.wasDanger=danger;this.last=state;
+ }
+ detectState(state,now,danger){if(!state||!state.ready)return;const old=this.last||{};
+  if(old.tool&&state.tool&&old.tool!==state.tool)this.ui('switch');
+  if(old.mode&&state.mode&&old.mode!==state.mode)this.vehicle(state.mode,state.mode==='foot'?'exit':'board');
+  if(Array.isArray(old.ammo)&&Array.isArray(state.ammo))for(let i=0;i<2;i++){if(state.ammo[i]<old.ammo[i]){const min=i===0?.045:.18;if(now-(i===0?this.lastWater:this.lastImpact)>min){this.tool(i===0?'water':'zapper');if(i===0)this.lastWater=now;else this.lastImpact=now;}}if(state.ammo[i]>old.ammo[i])this.reload(i===0?'water':'zapper','done');}
+  if((state.exploded?.length||0)>(old.exploded?.length||0))this.explosion();
+  if((state.species?.length||0)>(old.species?.length||0))this.discovery();
+  if((state.outposts?.length||0)>(old.outposts?.length||0))this.outpost();
+  if(Number.isFinite(old.stage)&&state.stage>old.stage)this.mission();
+  const rec=(state.vehicles||[]).reduce((a,v)=>a+(v.recoveries||0),0),prev=(old.vehicles||[]).reduce((a,v)=>a+(v.recoveries||0),0);if(rec>prev)this.recover();
+  if(danger&&!this.wasDanger)this.dangerSting();
+ }
+ scheduleScore(now,danger,paused,state){if(!this.settings.enabled||paused||!state?.started)return;if(now<this.nextBeat-.03)return;const bpm=danger?104:(state.mode==='helicopter'?82:72),beat=60/bpm;this.nextBeat=Math.max(now+.04,this.nextBeat||now)+beat*.5;const step=this.beat++%16,root=danger?38:50,scale=danger?[0,1,5,6,8]:[0,3,5,7,10];
+  if(step%8===0)this.pad(root,beat*3.7,danger?.08:.06);if(step%4===0)this.pad(root+7,beat*2.8,danger?.045:.035);
+  if((danger&&step%2===0)||(!danger&&[2,6,11,14].includes(step))){const degree=scale[(step*3)%scale.length],oct=!danger&&step>8?12:0;this.pluck(root+12+degree+oct,danger?.11:.08,danger?beat*.22:beat*.65);}
+  if(danger&&step%2===0)this.percussion(step%4===0?.13:.06,step%4===0?85:145);
+ }
+ scheduleWildlife(now,state,danger,paused){if(paused||danger||now<this.nextWildlife||!state?.animals?.length)return;const p=state.position||{x:0,z:0},near=state.animals.map(a=>({...a,gap:Math.hypot(a.x-p.x,a.z-p.z)})).filter(a=>a.gap<85).sort((a,b)=>a.gap-b.gap)[0];this.nextWildlife=now+8+Math.random()*12;if(near)this.animal(near.id,near.gap);}
+ stepFoot(now,state,paused){if(paused||state?.mode!=='foot'||Math.abs(state?.speed||0)<.4){this.footClock=now;return;}const interval=state.speed>6?.26:.43;if(now-this.footClock>interval){this.footClock=now;this.footstep(state.speed>6);}}
+ node(type='sine',frequency=440,bus=this.sfxBus,pan=0){const c=this.context,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.value=frequency;let tail=g;if(c.createStereoPanner){const p=c.createStereoPanner();p.pan.value=clamp(pan,-1,1);g.connect(p);p.connect(bus);}else g.connect(bus);o.connect(g);return {o,g};}
+ env(node,start,peak,duration,attack=.01){const g=node.g.gain;g.setValueAtTime(.0001,start);g.exponentialRampToValueAtTime(Math.max(.001,peak),start+attack);g.exponentialRampToValueAtTime(.0001,start+duration);node.o.start(start);node.o.stop(start+duration+.03);}
+ noiseHit(duration=.2,peak=.12,cutoff=900,type='lowpass'){const c=this.context,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=this.makeNoise(Math.max(.3,duration));f.type=type;f.frequency.value=cutoff;s.connect(f);f.connect(g);g.connect(this.sfxBus);g.gain.setValueAtTime(peak,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+duration);s.start();s.stop(c.currentTime+duration+.03);}
+ pad(note,duration,peak=.05){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime+.01;for(const n of [note,note+7,note+12]){const x=this.node('triangle',midi(n),this.musicBus);x.o.detune.value=(n%2?4:-4);this.env(x,now,peak/3,duration,.3);}}
+ pluck(note,peak=.08,duration=.4){const x=this.node('triangle',midi(note),this.musicBus);const now=this.context.currentTime+.01;this.env(x,now,peak,duration,.006);}
+ percussion(peak=.08,cutoff=120){if(!this.context)return;this.noiseHit(.14,peak,cutoff,'lowpass');}
+ ui(kind='select'){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;if(now-this.lastUi<.025)return;this.lastUi=now;const f={focus:720,select:910,switch:560,back:430}[kind]||680;const x=this.node('sine',f);this.env(x,now,kind==='focus'?.025:.055,kind==='focus'?.035:.075,.004);}
+ tone(frequency=520,duration=.15){if(!this.context||!this.settings.enabled)return;const x=this.node('sine',frequency);this.env(x,this.context.currentTime,.17,duration,.006);}
+ horn(){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;for(const [f,d] of [[174,.46],[218,.46],[349,.16]]){const x=this.node('square',f);this.env(x,now,.11,d,.015);}}
+ tool(kind){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;if(kind==='water'){this.noiseHit(.09,.045,1700,'bandpass');const x=this.node('sine',145);this.env(x,now,.025,.07,.003);}else{for(const [f,d] of [[1550,.08],[860,.11],[240,.13]]){const x=this.node('square',f);this.env(x,now,.075,d,.002);x.o.frequency.exponentialRampToValueAtTime(Math.max(90,f*.35),now+d);}}}
+ reload(kind,phase='done'){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;if(phase==='start'){for(const [i,f] of [420,520].entries()){const x=this.node('square',f);this.env(x,now+i*.07,.045,.06,.002);}}else{for(const [i,f] of [520,690,880].entries()){const x=this.node('triangle',f);this.env(x,now+i*.045,.04,.07,.004);}}}
+ vehicle(mode,event){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;if(event==='board'){const x=this.node(mode==='helicopter'?'triangle':'square',mode==='helicopter'?105:78);this.env(x,now,.08,.18,.01);this.noiseHit(.1,.045,420,'lowpass');}else{const x=this.node('triangle',110);this.env(x,now,.055,.12,.008);}}
+ impact(strength=.7){if(!this.context||!this.settings.enabled||this.context.currentTime-this.lastImpact<.12)return;this.lastImpact=this.context.currentTime;this.noiseHit(.28,.18*clamp(strength),160,'lowpass');const x=this.node('sine',68);this.env(x,this.context.currentTime,.12,.25,.003);}
+ explosion(){if(!this.context||!this.settings.enabled)return;this.noiseHit(.65,.32,190,'lowpass');this.noiseHit(.3,.12,1400,'bandpass');const x=this.node('sine',52);const now=this.context.currentTime;this.env(x,now,.22,.62,.003);x.o.frequency.exponentialRampToValueAtTime(28,now+.55);}
+ recover(){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;for(const [i,f] of [150,230,360].entries()){const x=this.node('triangle',f);this.env(x,now+i*.08,.05,.13,.006);}}
+ discovery(){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;for(const [i,n] of [62,67,72,74].entries()){const x=this.node('triangle',midi(n),this.sfxBus);this.env(x,now+i*.075,.07,.38,.01);}}
+ mission(){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;for(const [i,n] of [50,57,62].entries()){const x=this.node('sine',midi(n),this.sfxBus);this.env(x,now+i*.09,.08,.55,.01);}}
+ outpost(){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;for(const [i,n] of [57,64,69,76].entries()){const x=this.node('triangle',midi(n),this.sfxBus);this.env(x,now+i*.06,.06,.5,.01);}}
+ dangerSting(){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime;this.noiseHit(.35,.13,240,'lowpass');for(const [i,n] of [38,39,45].entries()){const x=this.node('sawtooth',midi(n),this.musicBus);this.env(x,now+i*.075,.06,.38,.006);}}
+ footstep(running=false){if(!this.context||!this.settings.enabled)return;this.noiseHit(running?.09:.07,running?.045:.032,230,'lowpass');}
+ animal(kind,gap=30){if(!this.context||!this.settings.enabled)return;const now=this.context.currentTime,vol=clamp(1-gap/100)*.12;let f=kind.includes('raptor')||kind.includes('coel')?620:kind.includes('brachio')||kind.includes('diplo')?72:kind.includes('parasaur')?210:kind.includes('rex')||kind.includes('allo')||kind.includes('spino')?92:160;const x=this.node(kind.includes('raptor')?'square':'sawtooth',f,this.sfxBus,0);this.env(x,now,Math.max(.025,vol),kind.includes('brachio')?1.6:.8,.04);x.o.frequency.exponentialRampToValueAtTime(Math.max(40,f*(kind.includes('raptor')?1.35:.55)),now+(kind.includes('brachio')?1.4:.7));if(f<120)this.noiseHit(.5,vol*.45,260,'lowpass');}
 }
