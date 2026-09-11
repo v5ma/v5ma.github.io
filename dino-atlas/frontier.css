@@ -1,0 +1,31 @@
+/* Expanded operations interface, layered over the original visual identity. */
+.assignment{position:absolute;left:32px;top:110px;width:286px;background:#173c30e8;padding:15px;border:1px solid #9edbc73a;border-radius:8px;backdrop-filter:blur(8px)}
+.assignment .eyebrow{display:flex;justify-content:space-between;font-size:8px;margin-bottom:8px;color:#a8ddc8;letter-spacing:.12em}
+.assignment button{width:100%;display:flex;align-items:center;justify-content:space-between;padding:0;border:0;background:none;text-align:left;gap:12px;font-size:14px;line-height:1.5}
+.toolbelt{position:absolute;right:32px;bottom:150px;width:252px;padding:14px;background:#173c30ec;border:1px solid #a2d0bc45;border-radius:9px;backdrop-filter:blur(10px)}
+.tool-heading{display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:.08em;color:#a8ddcf;margin-bottom:10px}.tool-heading small{font-size:7px;color:#c5ceb5}
+.tool-options{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.tool-options button{padding:7px 3px;color:#a6cbb9;font-size:9px}.tool-options button span{display:block;margin-top:4px;font-size:10px;color:#eee8d3}.tool-options button[aria-pressed=true]{border-color:#8ae0cf;background:#396153}
+.tool-resources{display:grid;gap:7px;margin-top:12px}.tool-resources label{display:flex;align-items:center;gap:8px;font-size:9px;color:#c8d9ca}.tool-resources progress{flex:1;height:4px}.tool-resources label:first-child progress::-webkit-progress-value{background:#8bdbea}.tool-resources label:last-child progress::-webkit-progress-value{background:#edcf81}.tool-resources span{width:30px;text-align:right;font-variant-numeric:tabular-nums}
+.vehicle-toggle{position:absolute;left:50%;bottom:157px;transform:translateX(-50%);font-size:11px;background:#193e33e8!important;color:#b5e3d5!important;border-color:#a5ddc34d!important;max-width:330px;white-space:nowrap}
+.vehicle-toggle:active{transform:translateX(-50%) translateY(1px)}
+.vehicle-status{width:140px}.vehicle-status>span{font-size:8px;letter-spacing:.025em}.vehicle-status small{font-size:8px}.telemetry{gap:12px}
+.air-controls{right:30px;bottom:315px;gap:7px}.air-controls button{width:65px;height:37px;font-size:10px}body:not([data-vehicle=helicopter]) .air-controls{display:none!important}
+#orders-dialog{width:min(780px,calc(100vw - 24px))}.order-card{display:flex;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #8ca79030}.order-card>div{flex:1}.order-card h3{margin:0;font-size:15px;font-weight:600;color:#f4d694}.order-card p{margin:7px 0 0;font-size:12px;line-height:1.65}.order-card button{font-size:11px;flex-shrink:0;min-width:70px}.order-card.done h3{color:#98d9b8}
+#species-list{display:flex;flex-wrap:wrap;gap:7px}.species-tag{font-size:10px;line-height:1.4;background:#294d3e;color:#bcc9b1;padding:7px;border-radius:5px}.species-tag.known{background:#346751;color:#ddf2cb}
+#toast{bottom:290px}.keys-guide{font-size:8px;gap:9px}.keys-guide kbd{font-size:8px}.interaction{bottom:83px}
+@media(max-width:1200px){.objective{width:260px;left:22px}.toolbelt{right:22px;width:228px}.assignment{left:22px;width:245px}.keys-guide{max-width:420px;flex-wrap:wrap;justify-content:center;white-space:normal}.vehicle-status{display:none}.tool-options button span{font-size:9px}}
+@media(pointer:coarse),(max-width:720px){
+ .topbar{padding:12px}.topbar nav{gap:4px}.topbar nav button{padding:8px 6px;font-size:9px}.brand{font-size:10px;letter-spacing:.07em}.brand-mark{width:27px;height:33px;font-size:21px}.brand small{font-size:6px}.brand{gap:6px}#sound-button{display:none}
+ .assignment{top:70px;left:12px;width:calc(100% - 134px);padding:9px 10px}.assignment .eyebrow{font-size:7px;letter-spacing:.06em;margin-bottom:3px}.assignment button{font-size:11px}.assignment kbd{font-size:8px}.assignment-count{display:none}
+ .map-corner{top:72px;right:12px;width:100px}.map-corner canvas{width:100px;height:100px}.map-corner>span{font-size:6px;line-height:1.5;margin-top:5px}
+ .objective{top:135px;bottom:auto;left:12px;width:calc(100% - 134px);max-width:260px;padding:9px 10px}.objective h2{font-size:14px;margin-bottom:5px}.objective p:not(.eyebrow){font-size:10px;line-height:1.45}.objective .eyebrow{font-size:7px;margin-bottom:6px}.objective-foot{margin-top:7px;font-size:8px}
+ .toolbelt{left:50%;right:auto;transform:translateX(-50%);bottom:127px;width:238px;padding:9px 11px}.tool-heading{font-size:8px;margin-bottom:5px}.tool-options button{padding:4px 1px}.tool-options button span{font-size:9px;margin-top:2px}.tool-resources{margin-top:7px;gap:4px}.tool-resources label{font-size:8px}
+ .vehicle-toggle{bottom:241px;font-size:10px;padding:8px 10px;max-width:calc(100vw - 30px)}
+ .interaction{bottom:279px;min-width:190px;max-width:calc(100vw - 24px);width:auto}.interaction button{padding:9px 11px;font-size:10px;max-width:100%}.interaction small{font-size:8px;max-width:270px;line-height:1.5}
+ .touch-right{grid-template-columns:repeat(2,47px);gap:4px;bottom:12px;right:12px}.touch-right button{width:47px;height:34px;font-size:9px}.touch-left{left:12px;bottom:18px}.telemetry{bottom:42px;left:50%;right:auto;transform:translateX(-50%)}.telemetry strong{font-size:30px}
+ .air-controls{bottom:365px;right:12px}.air-controls button{width:50px;font-size:9px}.touch{pointer-events:auto}
+ #radio{top:250px;width:calc(100% - 30px);max-width:380px;padding:8px 12px;pointer-events:none}#radio p{font-size:10px}#toast{bottom:350px;font-size:10px;padding:10px 13px;width:max-content;max-width:calc(100vw - 30px)}
+ .intro-meta{flex-wrap:wrap;font-size:8px;gap:8px}#intro{padding:80px 7vw 90px}.intro-copy h1{font-size:clamp(55px,13vw,83px)}.intro-links{font-size:9px;line-height:1.8}
+ .order-card{gap:8px}.order-card h3{font-size:13px}.order-card p{font-size:11px}.order-card button{min-width:59px;padding:8px}.dialog-head h2{font-size:28px}
+}
+@media(max-width:720px) and (max-height:650px){.objective{display:none}.assignment{top:62px;width:240px}.toolbelt{left:15px;bottom:111px;transform:none;width:230px}.vehicle-toggle{bottom:86px}.interaction{bottom:135px;left:65%}.air-controls{bottom:198px}.map-corner{top:62px}.tool-resources{display:none}#radio{display:none}.telemetry{left:55%;bottom:20px}}

@@ -39,13 +39,13 @@ export function buildPark(scene,physics){
     const size=.4+rand()*1.4;patches.push({p:[x,.023,z],s:[size*2,.04,size],r:[0,rand()*6,0],c:[0x809164,0x8d9a6a,0x7d8f63][i%3]});
     if(i%3===0)for(let j=0;j<5;j++){const a=j*Math.PI*2/5;ferns.push({p:[x+Math.sin(a)*.6,.38,z+Math.cos(a)*.6],s:[.2,.12,1.1],r:[-.38,a,0],c:i%2?0x607f4c:0x758c54});}
   }
-  for(let i=0;i<95;i++){
+  for(let i=0;i<0;i++){
     const a=rand()*Math.PI*2,r=73+rand()*11,x=Math.sin(a)*r,z=Math.cos(a)*r,s=1+rand()*2.5;
     rocks.push({p:[x,s*.34,z],s:[s,s*.7,s*.8],r:[rand(),rand()*6,rand()*.3]});if(i%2===0)physics.cylinder(x,z,s*.8,s*.35,s*.5);
   }
   batch(new T.CylinderGeometry(.65,.85,1,6),wood,trunks);batch(new T.IcosahedronGeometry(1,1),0x608059,crowns);
   batch(new T.IcosahedronGeometry(1,0),rock,rocks);batch(new T.IcosahedronGeometry(1,0),grass,patches);batch(new T.IcosahedronGeometry(1,0),0x729451,ferns);
-  for(let i=0;i<15;i++){const a=i/15*Math.PI*2;const m=ellipsoid(scene,0x66796a,Math.sin(a)*115,-4,Math.cos(a)*115,12+rand()*9,13+rand()*14,14+rand()*7);m.rotation.y=a;m.castShadow=false;}
+  for(let i=0;i<15;i++){const a=i/15*Math.PI*2;const m=ellipsoid(scene,0x66796a,Math.sin(a)*332,-4,Math.cos(a)*332,12+rand()*9,13+rand()*14,14+rand()*7);m.rotation.y=a;m.castShadow=false;}
   function sign(text,x,z,w=7){const g=new T.Group();g.position.set(x,0,z);box(g,wood,-w*.38,1.35,0,.12,2.7,.15);box(g,wood,w*.38,1.35,0,.12,2.7,.15);const s=label(text,w,1.25);s.position.set(0,2.1,.08);g.add(s);scene.add(g);return g;}
   function fence(ax,az,bx,bz){
     const length=Math.hypot(bx-ax,bz-az),angle=Math.atan2(bx-ax,bz-az),g=new T.Group();g.position.set((ax+bx)/2,0,(az+bz)/2);g.rotation.y=angle;scene.add(g);
@@ -81,7 +81,7 @@ export function buildPark(scene,physics){
   box(relay,0x505f4f,0,.2,0,4,.4,3);box(relay,0xba944f,0,1.35,0,2.5,2.3,1.8);box(relay,0x314c40,0,1.58,1.01,1.55,.8,.06);
   const relayLamp=ellipsoid(relay,new T.MeshStandardMaterial({color:0xffbf64,emissive:0xe3923e,emissiveIntensity:1}),.75,2.7,0,.13,.13,.13);
   bone(relay,0x7c8977,[-1.5,0,0],[-1.5,6,0],.08);const panel=box(relay,0x385966,-1,4.8,0,3,.12,2);panel.rotation.z=.3;physics.box(31,1.2,-26,1.4,1.2,1.1);
-  fence(20,-39,32,-39);fence(42,-39,70,-39);fence(20,-39,20,-76);fence(70,-39,70,-76);fence(20,-76,70,-76);
+  fence(20,-39,32,-39);fence(42,-39,70,-39);fence(20,-39,20,-76);fence(70,-39,70,-76);fence(20,-76,36,-76);fence(48,-76,70,-76);
   const north=new T.Group();north.position.set(37,0,-39);scene.add(north);
   const gateParts=[];for(const side of [-1,1]){const leaf=new T.Group();leaf.position.x=side*2.5;box(leaf,0x758570,0,1.5,0,4.9,3,.2);for(const y of [.45,1.55,2.65])box(leaf,0x333f32,0,y,.15,4.9,.16,.1);north.add(leaf);gateParts.push(leaf);}
   const northTitle=label('RESEARCH ACCESS / CAUTION',11,1.1,'#6a502c','#f7df99');northTitle.position.set(37,4,-39);scene.add(northTitle);

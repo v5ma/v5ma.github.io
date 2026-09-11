@@ -1,3 +1,7 @@
+# Dino Atlas: Wild Frontier II
+
+The main game is now the expanded reserve-operations release. See [FRONTIER-README.md](./FRONTIER-README.md) for the new vehicles, dinosaur tools, enclosure management, rest checkpoints, save behavior, controls and verification. The first-release notes below describe the preserved original expedition, not the full current feature set.
+
 # Dino Atlas: Wild Frontier
 
 The main index.html now opens the vehicle-driven dinosaur reserve. Drive the original cream-and-red Ranger 07 jeep through the gate, survey a plant-eater, restore the research relay, recover the northern field recorder, and bring it back to base. After delivery, free-roam the island and record all six dinosaurs.

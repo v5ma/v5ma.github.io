@@ -1,4 +1,5 @@
 import RAPIER from './vendor/rapier.mjs';
+export {RAPIER};
 import {HOME,clamp} from './ranger-data.js';
 export async function initPhysics(){await RAPIER.init();return RAPIER;}
 export function rotateVector(v,q){
@@ -8,7 +9,7 @@ export function rotateVector(v,q){
 export class ParkPhysics{
   constructor(){
     this.world=new RAPIER.World({x:0,y:-18,z:0});this.world.timestep=1/60;
-    this.world.createCollider(RAPIER.ColliderDesc.cuboid(95,.5,95).setTranslation(0,-.5,0).setFriction(.9));
+    this.world.createCollider(RAPIER.ColliderDesc.cuboid(340,.5,340).setTranslation(0,-.5,0).setFriction(.9));
     this.props=[];
   }
   box(x,y,z,hx,hy,hz,options={}){
