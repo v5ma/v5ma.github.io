@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "san-wiki",
+  "main": "./cloudflare/wiki-worker.js",
+  "compatibility_date": "2026-07-15",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./wiki",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "ENVIRONMENT": "production",
+    "SUPABASE_URL": "https://vppzuzswfispkavrgmpp.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_8SYf8SKihAYBMDJcQ8SaXQ_GBxax7bH"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  }
+}

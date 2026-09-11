@@ -1,0 +1,16 @@
+{
+  "name": "san-wiki-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cf:whoami": "wrangler whoami",
+    "cf:types": "wrangler types ./cloudflare/worker-configuration.d.ts",
+    "cf:check": "wrangler check",
+    "cf:dev": "wrangler dev",
+    "cf:dry-run": "wrangler deploy --dry-run",
+    "cf:deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
