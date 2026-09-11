@@ -1,0 +1,67 @@
+name: Build and test Dino Atlas operations
+on:
+  push:
+    branches: [dino-frontier-operations-20260911]
+    paths: ['.github/workflows/dino-frontier-build.yml']
+permissions:
+  contents: write
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/dino-frontier-operations-20260911'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate and apply only the authorized expansion files
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64, lzma, json, hashlib, shutil
+          folder=Path('.github/frontier-transfer')
+          parts=[folder/f'part{i:02d}.b64' for i in range(6)]
+          data=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts), validate=True))
+          assert hashlib.sha256(data).hexdigest()=='e4ba3650059e212e9acd358e3c3f6581ee4616e97a4ad9d59ca8bca37ff706f7', 'Source transfer checksum mismatch'
+          source=json.loads(data)
+          allowed={'dino-atlas/frontier-data.js','dino-atlas/frontier-actors.js','dino-atlas/frontier-art.js','dino-atlas/frontier-world.js','dino-atlas/frontier.css','dino-atlas/ranger.js','dino-atlas/ranger-physics.js','dino-atlas/ranger-world.js','dino-atlas/index.html','dino-atlas/README.md','dino-atlas/FRONTIER-README.md','dino-atlas/tests/frontier.test.mjs','dino-atlas/tests/frontier-browser.py','dino-atlas/tests/frontier-published.py','.github/workflows/dino-ranger-check.yml'}
+          assert set(source)==allowed
+          for name,content in source.items():
+              assert isinstance(content,str)
+              path=Path(name);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(content,encoding='utf-8')
+          shutil.rmtree(folder)
+          Path('.github/workflows/dino-frontier-build.yml').unlink()
+          print('Applied 15 checksum-verified files. Removed temporary source transfer and builder.')
+          PY
+          git add dino-atlas .github/frontier-transfer .github/workflows/dino-ranger-check.yml .github/workflows/dino-frontier-build.yml
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Expand Dino Atlas: reserve tools, 34 dinosaurs, seven enclosures, outposts and enterable land air water vehicles'
+          git push origin HEAD:dino-frontier-operations-20260911
+      - name: Run original and expanded unit and physics tests
+        run: node --test dino-atlas/tests/unit.test.mjs dino-atlas/tests/ranger.test.mjs dino-atlas/tests/frontier.test.mjs
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Test actual HTTP and rendered expansion gameplay
+        run: python dino-atlas/tests/frontier-browser.py
+      - name: Record exact tested source
+        if: always()
+        run: |
+          mkdir -p frontier-evidence
+          git rev-parse HEAD > frontier-evidence/tested-commit.txt
+          git diff --stat > frontier-evidence/uncommitted-diff.txt
+      - name: Save source and browser verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dino-frontier-operations-evidence
+          path: |
+            dino-atlas/
+            frontier-evidence/
+          retention-days: 14
