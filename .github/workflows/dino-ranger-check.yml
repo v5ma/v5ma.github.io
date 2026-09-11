@@ -21,20 +21,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Vendor pinned Rapier once on the development branch
+      - name: Apply the scoped ranger source transfer on the development branch
         if: github.ref == 'refs/heads/dino-atlas-ranger-20260911'
         shell: bash
         run: |
-          if [ ! -f dino-atlas/vendor/rapier.mjs ]; then
-            mkdir -p /tmp/dino-rapier
-            cd /tmp/dino-rapier
-            npm pack @dimforge/rapier3d-compat@0.17.3
-            tar -xzf dimforge-rapier3d-compat-0.17.3.tgz
-            cp package/rapier.es.js "$GITHUB_WORKSPACE/dino-atlas/vendor/rapier.mjs"
-            cp /usr/share/common-licenses/Apache-2.0 "$GITHUB_WORKSPACE/dino-atlas/vendor/RAPIER-LICENSE"
-            cd "$GITHUB_WORKSPACE"
-            git add dino-atlas/vendor/rapier.mjs dino-atlas/vendor/RAPIER-LICENSE
-            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Vendor Rapier 0.17.3 with Apache license for Dino Atlas'
+          if [ -f dino-atlas/ranger-update.py ]; then
+            python dino-atlas/ranger-update.py
+            git add -A -- dino-atlas
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Build Dino Atlas Wild Frontier: physics jeep, dinosaur reserve, campaign, preserved journal, and tests'
             git push origin HEAD:dino-atlas-ranger-20260911
           fi
       - name: Run data and physics tests
