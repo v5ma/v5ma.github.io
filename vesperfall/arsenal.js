@@ -81,7 +81,7 @@
    }
   }
   g.fireCrossbow=crossShot;
-  const api={prepare,xrControls,state,equip,reload,shard,loseTracking(){state.xrArmed=false;C.shield(g.game,null);},shield,crossbow,journal};journal();return api;
+  const api={prepare,xrControls,state,equip,reload,shard,ward,dust,loseTracking(){state.xrArmed=false;C.shield(g.game,null);},shield,crossbow,journal};journal();return api;
  }
  root.VesperArsenal=Object.freeze({install});
 })(globalThis);
