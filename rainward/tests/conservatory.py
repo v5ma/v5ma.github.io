@@ -31,7 +31,7 @@ with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1366,'height':860},service_workers='block',record_video_dir=str(OUT/'video'))
- c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:"+'true'+",sensitivity:85}))")
+ c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:"classic",mute:true,low:"+'true'+",sensitivity:85}))")
  host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=c.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None);page.on('dialog',lambda d:d.accept())
  try:

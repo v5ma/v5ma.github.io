@@ -18,7 +18,7 @@ with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1080,'height':760},service_workers='block')
- c.add_init_script("localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,scanned:false,cinematic:false,sensitivity:85}));window.pad={connected:true,mapping:'standard',index:0,id:'Xbox standard test',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};window.padPolls=0;Object.defineProperty(navigator,'getGamepads',{value:()=>{padPolls++;return [pad];}});")
+ c.add_init_script("localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:"classic",mute:true,low:true,scanned:false,cinematic:false,sensitivity:85}));window.pad={connected:true,mapping:'standard',index:0,id:'Xbox standard test',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};window.padPolls=0;Object.defineProperty(navigator,'getGamepads',{value:()=>{padPolls++;return [pad];}});")
  host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=c.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  def dialog(d):dialogs.append(d.type+': '+d.message);d.dismiss()
@@ -48,7 +48,7 @@ with sync_playwright() as p:
   page.evaluate('pad.axes[0]=pad.axes[1]=0');polls()
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.Rainward&&padPolls>2');polls()
-  check(page.evaluate('Rainward.snapshot().version')=='0.8.1','The upgraded HTTP application loads with all six chapter options')
+  check(page.evaluate('Rainward.snapshot().version')=='0.9.0','The upgraded HTTP application loads with all six chapter options')
   check(page.locator('#chapter-select option').count()==6,'All six existing expeditions remain selectable')
   press(9,'Rainward.mode==="pause"');t=page.evaluate('Rainward.state.t');press(1,'Rainward.mode==="title"');check(page.evaluate('Rainward.state.t')==t,'Menu opens title settings and B returns to title without starting a mission')
   press(9,'Rainward.mode==="pause"');nav('sensitivity');press(15);check(page.locator('#sensitivity').input_value()=='90','D-pad right adjusts the look-sensitivity slider')

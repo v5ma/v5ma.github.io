@@ -18,7 +18,7 @@ def preserved(p):return p.evaluate('({x:Rainward.state.player.x,z:Rainward.state
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**kw);ctx=b.new_context(viewport={'width':1280,'height':820},service_workers='block');ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({low:true,mute:true}))")
+ b=pw.chromium.launch(**kw);ctx=b.new_context(viewport={'width':1280,'height':820},service_workers='block');ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:"classic",low:true,mute:true}))")
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
  p=ctx.new_page();p.set_default_timeout(120000);p.on('dialog',lambda d:d.accept());p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
  try:

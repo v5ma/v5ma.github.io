@@ -1,14 +1,16 @@
 {
-  "version": "0.8.1",
-  "build": "rainward-controller-complete-20260911",
+  "version": "0.9.0",
+  "build": "rainward-survival-sound-20260911",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Controller-operable confirmations replace browser confirm dialogs; safe cancel focus and held-input suppression",
-    "Full button, checkbox, range, chapter selector and journal navigation with controller focus, scrolling and LB/RB tabs",
-    "Dedicated X reload with live reload feedback, finite ammunition, and satchel quick-use controls",
-    "Adjustable stick deadzone and sensitivity, invert vertical look, toggle sprint and optional vibration",
-    "Preserves all six Reclaimed City chapters, tasks, humanoid models, enemies, puzzles, saves and rendering"
+    "Original adaptive six-chapter music and layered spatial sound effects with finite audio voice budgets",
+    "Positional footsteps, occlusion, listening mix, directional captions and independent audio settings",
+    "Survival controller preset: hold B prone, X melee, LB dodge, RB listen, LT+X reload; Classic remains selectable",
+    "Rifle and sidearm selection, one-time survivor equipment caches and separate finite magazines",
+    "Hold-to-craft and hold-to-bandage actions cancel on release or damage while patrols continue",
+    "Circular fading health display, dynamic accuracy reticle and nearby noisy enemy silhouettes",
+    "Preserves six chapters, existing puzzles, field tasks, save migration and keyboard/touch support"
   ]
 }

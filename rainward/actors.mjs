@@ -95,7 +95,11 @@ export function actor(scene,mesh,color,enemy=false,role='watcher'){
  const weapon=new T.Group(),long=role==='marksman';const gunmat=new T.MeshStandardMaterial({color:0x343c3e,metalness:.65,roughness:.42});
  function part(size,at,material=gunmat){const m=new T.Mesh(new T.BoxGeometry(...size),material);m.position.set(...at);m.castShadow=true;weapon.add(m);return m;}
  if(role==='raider'){part([.048,.64,.048],[0,-.26,0]);part([.073,.32,.075],[0,-.41,0]);}else{part([.055,long?.59:.225,.08],[0,long?-.13:-.10,-.016]);part([.045,.095,.095],[0,.015,.024]);if(long){part([.049,.18,.07],[0,-.42,-.016]);part([.042,.085,.11],[0,-.08,.046]);part([.065,.13,.07],[0,.135,-.018]);}}bones[10].add(weapon);
- return {root,rig,skin,bones,weapon,role,enemy,gait:0,materials};
+ const tools=new T.Group(),club=new T.Mesh(new T.CylinderGeometry(.042,.025,.60,10),new T.MeshStandardMaterial({color:0x625445,roughness:.85})),blade=new T.Mesh(new T.BoxGeometry(.075,.38,.013),gunmat),longWeapon=new T.Group(),wrap=new T.Mesh(new T.BoxGeometry(.11,.06,.03),new T.MeshStandardMaterial({color:0xd3c9af,roughness:1}));
+ club.position.y=-.24;blade.position.y=-.17;tools.add(club,blade,wrap);bones[10].add(tools);bones[10].add(longWeapon);
+ for(const [size,at]of [[[.055,.65,.065],[0,-.16,0]],[[.033,.28,.033],[0,-.62,0]],[[.075,.24,.07],[0,.22,0]],[[.05,.1,.1],[0,-.1,.05]]]){const m=new T.Mesh(new T.BoxGeometry(...size),gunmat);m.position.set(...at);longWeapon.add(m);}
+ tools.visible=longWeapon.visible=false;
+ return {root,rig,skin,bones,weapon,tools,club,blade,wrap,longWeapon,role,enemy,gait:0,materials};
 }
 export function pose(a,p,time,enemy=false){
  const dt=a.lastTime===undefined?1/60:clamp(time-a.lastTime,0,.10);a.lastTime=time;const moving=Math.max(0,p.speed||0),stance=p.stance||'stand',crouch=stance==='crouch',prone=stance==='prone',aim=!!p.aim;
@@ -111,8 +115,11 @@ export function pose(a,p,time,enemy=false){
   if(prone){a.bones[leg].rotation.x=.025+s*swing*.045;a.bones[leg+1].rotation.x=-.04;a.bones[leg+2].rotation.x=-Math.PI/2;a.bones[arm].rotation.x=3.10+s*.025*swing;a.bones[arm+1].rotation.x=.08;}
  }
  if(p.phase==='windup'||(a.role==='raider'&&p.aimTime>.1)){a.bones[8].rotation.x=2.0;a.bones[9].rotation.x=.7;}
- a.weapon.visible=enemy?true:aim;
+ a.weapon.visible=enemy?true:aim&&['pistol','rifle',undefined].includes(p.equipped);a.longWeapon.visible=!enemy&&aim&&p.equipped==='rifle';if(a.longWeapon.visible)a.weapon.visible=false;a.tools.visible=!enemy&&!!(p.melee||p.healing||p.craft);a.club.visible=!!p.melee&&p.melee.weapon==='club';a.blade.visible=!!p.melee&&p.melee.weapon==='blade';a.wrap.visible=!!(p.healing||p.craft);
+ if(p.melee){const t=1-p.melee.left/p.melee.total;a.bones[2].rotation.y=Math.sin(t*Math.PI*2)*.4;a.bones[8].rotation.x=1.2+Math.sin(t*Math.PI)*1.0;a.bones[8].rotation.z=-.6*Math.sin(t*Math.PI);a.bones[9].rotation.x=.4;a.weapon.visible=false;}
+ if(p.healing||p.craft){const t=time*8;a.bones[8].rotation.x=1.0;a.bones[8].rotation.z=-.45;a.bones[9].rotation.x=.7+Math.sin(t)*.15;a.bones[5].rotation.x=.8;a.bones[5].rotation.z=.45;a.bones[6].rotation.x=.9;a.bones[4].rotation.x=.22;a.weapon.visible=false;}
+ if(p.reload){a.bones[5].rotation.x=1.1;a.bones[6].rotation.x=.8+Math.sin(time*9)*.18;a.weapon.visible=true;}
  if(p.vault){const f=Math.sin(Math.PI*clamp(p.vault.t/p.vault.duration,0,1));a.rig.position.y+=f*.95;a.bones[11].rotation.x+=f*.75;a.bones[14].rotation.x+=f*.5;}
- if(p.hp<=0){a.rig.rotation.set(0,0,-1.47);a.rig.position.set(0,.14,0);a.weapon.visible=false;}
+ if(p.hp<=0){a.rig.rotation.set(0,0,-1.47);a.rig.position.set(0,.14,0);a.weapon.visible=false;a.tools.visible=false;a.longWeapon.visible=false;}
  a.root.updateMatrixWorld(true);a.skin.skeleton.update();
 }
