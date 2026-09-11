@@ -1,0 +1,45 @@
+name: Dino Atlas Spectacle and Trade verification
+on:
+  push:
+    branches: [master, dino-atlas-spectacle-trade-20260911]
+    paths:
+      - 'dino-atlas/**'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'dino-atlas/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dino-spectacle-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check expansion module syntax
+        run: |
+          node --check dino-atlas/frontier-data-expanded.js
+          node --check dino-atlas/frontier-world-expanded.js
+          node --check dino-atlas/ranger-audio-expanded.js
+          node --check dino-atlas/frontier-economy-core.js
+          node --check dino-atlas/frontier-economy-ui.js
+          node --check dino-atlas/ranger.js
+      - name: Run Ranger Operations and Spectacle Trade model tests
+        run: node --test dino-atlas/tests/unit.test.mjs dino-atlas/tests/ranger.test.mjs dino-atlas/tests/frontier.test.mjs dino-atlas/tests/spectacle-trade.test.mjs
+      - name: Install rendered-browser test runner
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Run WebGL spectacle economy and Xbox market smoke test
+        run: python dino-atlas/tests/spectacle-browser.py
