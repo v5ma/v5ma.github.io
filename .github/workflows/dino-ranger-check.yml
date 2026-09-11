@@ -40,6 +40,17 @@ jobs:
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
+      - name: Extend simulated controller taps for software-rendered CI
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for name in ['frontier-browser.py','audio-controller-browser.py']:
+              p=Path('dino-atlas/tests')/name
+              s=p.read_text()
+              s=s.replace('page.wait_for_timeout(200);button(i,0);page.wait_for_timeout(250)','page.wait_for_timeout(800);button(i,0);page.wait_for_timeout(350)')
+              s=s.replace('page.wait_for_timeout(170);button(i,0);page.wait_for_timeout(210)','page.wait_for_timeout(800);button(i,0);page.wait_for_timeout(350)')
+              p.write_text(s)
+          PY
       - name: Run actual HTTP, WebGL and simulated Xbox acceptance checks
         run: python dino-atlas/tests/frontier-browser.py
       - name: Run focused audio mixer and controller-only modal checks
