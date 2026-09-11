@@ -1,3 +1,5 @@
+Current release: 0.8.0 Resonant Hunt. See RESONANT-HUNT.md for the current audio controls, reversed Quest grip roles, weapon-hand crossbow trigger, palm familiar, pickup pull and tactical quiver. Older release notes below describe their historical controls.
+
 # Vesperfall — Arrows Unchained
 
 Original A-Frame browser archery roguelite, with a Quest 3-targeted immersive WebXR preview. The current development series is **v0.5.0 / Living Cathedral**. Check the publication workflow for the version actually served at https://v5ma.github.io/vesperfall/index.html . A branch or successful model test is not a deployment receipt.

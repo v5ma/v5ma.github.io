@@ -21,6 +21,7 @@
   const dust=new T.Points(new T.BufferGeometry().setAttribute('position',new T.BufferAttribute(particlePositions,3)),new T.PointsMaterial({size:.045,color:'#ceb694',transparent:true,opacity:.32,depthWrite:false}));dust.name='Pooled quiet embers';g.scene.object3D.add(dust);
   let choir=null,ambienceEnabled=false;
   function audio(){
+   if(g.soundscape)return;
    const enabled=$('audio').checked&&g.running&&!g.paused&&!document.hidden;
    if(enabled&&!choir){try{g.audio??=new (window.AudioContext||window.webkitAudioContext)();const ctx=g.audio,gain=ctx.createGain();gain.gain.value=0;gain.connect(ctx.destination);const voices=[65.4,98.1,130.8].map((hz,i)=>{const o=ctx.createOscillator();o.type='sine';o.frequency.value=hz;o.detune.value=(i-1)*4;o.connect(gain);o.start();return o;});choir={gain,voices,ctx};}catch{return;}}
    if(choir&&enabled!==ambienceEnabled){choir.gain.gain.setTargetAtTime(enabled?.004:0,choir.ctx.currentTime,.35);ambienceEnabled=enabled;}
@@ -48,11 +49,11 @@
    $('nightfall').disabled=!p.nightfall;if(!p.nightfall)$('nightfall').checked=false;
   }
   const oldBank=g.bank.bind(g);g.bank=function(){oldBank();const result=P.bank(g.profile,g.game,state.receipt,g.practice);g.profile=result.profile;state.receipt=result.receipt;if(!g.practice)g.profileSave();journal();if(result.unlocked.length)g.toast('Chronicle unlocked: '+result.unlocked.join(', ')+'. Available on your next run.');};
-  const oldStart=g.start.bind(g);g.start=function(practice){if(g.running&&!g.practice)g.bank();state.receipt={};oldStart(practice);state.lastEvent=0;if(practice){g.game.volleyUnlocked=true;g.game.ammo.volley=8;}journal();};
+  const oldStart=g.start.bind(g);g.start=function(practice){if(g.running&&!g.practice)g.bank();state.receipt={};oldStart(practice);state.lastEvent=0;if(practice){g.game.volleyUnlocked=true;g.game.ammo.volley=8;g.game.ricochetUnlocked=true;g.game.ammo.ricochet=6;}journal();};
   const oldCancel=g.cancel.bind(g);g.cancel=function(){oldCancel();C.shield(g.game,null);state.xrArmed=false;state.desktopTrigger=false;g.crossHeld=false;};
   const oldPause=g.setPaused.bind(g);g.setPaused=function(v){oldPause(v);state.padShield=false;audio();};
   const oldMenu=g.menuUI.bind(g);g.menuUI=function(){oldMenu();journal();};
-  const oldType=g.setType.bind(g);g.setType=function(type){if(type==='volley'&&!g.game.volleyUnlocked){g.toast('Choirbreaker unlock: bank five warden kills across runs. Practice offers a trial quiver.');return;}oldType(type);if(type==='volley')g.toast('Volley · three physical arrows per charge. Practice quiver is separate from earned unlocks.');};
+  const oldType=g.setType.bind(g);g.setType=function(type){if(type==='ricochet'&&!g.game.ricochetUnlocked){g.toast('Mirror Thread: bank 20 arrow hits to unlock ricochet arrows in future runs.');return;}if(type==='volley'&&!g.game.volleyUnlocked){g.toast('Choirbreaker unlock: bank five warden kills across runs. Practice offers a trial quiver.');return;}oldType(type);if(type==='volley')g.toast('Volley · three physical arrows per charge. Practice quiver is separate from earned unlocks.');};
   const oldPad=g.standardPad.bind(g);g.standardPad=function(dt){oldPad(dt);if(!g.xr)ward(g.keys.KeyH||state.padShield);};
   const oldVisual=g.visuals.bind(g);g.visuals=function(){oldVisual();render();};
   const oldRemove=g.remove.bind(g);g.remove=function(){if(choir){for(const o of choir.voices)o.stop();choir.gain.disconnect();}oldRemove();};
@@ -61,14 +62,16 @@
   window.addEventListener('keydown',e=>{if(e.repeat||/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)||!active()||g.xr)return;if(e.code==='KeyV')equip();if(e.code==='KeyR')reload();if(e.code==='KeyB')shard();});
   $('lighting').onchange=()=>{const night=$('lighting').value==='twilight';g.scene.setAttribute('background','color',night?'#697583':'#bac9d1');g.scene.setAttribute('fog','color',night?'#697b89':'#abbcc8');const lights=g.scene.querySelectorAll('[light]');lights[0].setAttribute('light','intensity',night?.92:1.25);lights[1].setAttribute('light','intensity',night?1.65:2);};$('lighting').onchange();
   function prepare(){if(!g.xr)ward(g.keys.KeyH||state.padShield);if(!active())C.shield(g.game,null);audio();}
-  function xrControls(bow,draw,rise,bowName,drawName){
-   if(!draw.buttons[0])state.xrArmed=true;ward(bow.buttons[1],bow);
-   if(rise(drawName,1))shard(draw);if(rise(drawName,3))reload();if(rise(bowName,3))equip();
-   if(g.game.weapon==='crossbow'&&rise(drawName,0)&&state.xrArmed&&!g.game.shield&&!g.headBlocked){crossShot(bow);state.xrArmed=false;}
+  function xrControls(bow,draw,rise,bowName,drawName,dt=.016){
+   if(!draw.buttons[0]&&!bow.buttons[0])state.xrArmed=true;
+   const was=!!g.game.shield;ward(draw.buttons[1],draw);if(!was&&g.game.shield)C.emit(g.game,'ward');
+   if(rise(bowName,1))g.arsenal.shard(bow);if(rise(drawName,3))reload();if(rise(bowName,3))equip();
+   const busy=g.ritual?.interactXR(dt,bow,draw,rise,bowName,drawName);
+   if(g.game.weapon==='crossbow'&&rise(bowName,0)&&state.xrArmed&&!g.game.shield&&!g.headBlocked&&!busy){crossShot(bow);state.xrArmed=false;}
   }
   function render(){
    const s=g.game;if(state.game!==s){state.game=s;state.lastEvent=0;state.hudAt=-1;}g.visualBow.group.visible=s.weapon==='bow'&&!s.shield;g.visualArrow.visible=g.visualArrow.visible&&s.weapon==='bow'&&!s.shield;crossbow.visible=s.weapon==='crossbow'&&!s.shield;
-   bolt.visible=s.crossbow.loaded;const a=string.geometry.attributes.position;a.setXYZ(1,0,.03,s.crossbow.loaded?.06:-.43+(1-s.crossbow.reload/(s.quickwind?1.05:1.55))*.49);a.needsUpdate=true;
+   bolt.visible=s.crossbow.loaded;const a=string.geometry.attributes.position;a.setXYZ(1,0,.03,s.crossbow.loaded?.06:-.43+(1-s.crossbow.reload/(s.crossbow.reloadDuration||(s.quickwind?1.05:1.55)))*.49);a.needsUpdate=true;
    shield.visible=active()&&!!s.shield;if(shield.visible){shield.position.set(...s.shield.p);shield.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),new T.Vector3(...s.shield.normal));boss.scale.setScalar(.75+.25*s.guard/s.maxGuard);}
    dust.rotation.y=Math.sin(s.time*.015)*.12;
    const events=s.events.filter(e=>e.seq>state.lastEvent);for(const e of events){if(e.type==='block'){g.sound(580,.16,.04);g.toast('BLOCKED · Wardglass '+Math.ceil(s.guard));}if(e.type==='guard-broken')g.toast('GUARD BROKEN · lower the shield and recover');if(e.type==='reloaded')g.sound(420,.08,.025);if(e.type==='shard'){$('fade').style.opacity='.65';clearTimeout(g.fadeTimer);g.fadeTimer=setTimeout(()=>$('fade').style.opacity='0',85);}if(e.type==='hit'&&e.head)g.toast('PRECISION HIT · '+s.headshots+' this run');}state.lastEvent=s.eventSeq||0;
