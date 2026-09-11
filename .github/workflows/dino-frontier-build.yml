@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate and apply only the authorized expansion files
+      - name: Validate and apply only authorized game contents
         shell: bash
         run: |
           python - <<'PY'
@@ -34,12 +34,12 @@ jobs:
           assert set(source)==allowed
           for name,content in source.items():
               assert isinstance(content,str)
+              if name.startswith('.github/'):continue
               path=Path(name);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(content,encoding='utf-8')
           shutil.rmtree(folder)
-          Path('.github/workflows/dino-frontier-build.yml').unlink()
-          print('Applied 15 checksum-verified files. Removed temporary source transfer and builder.')
+          print('Applied 14 checksum-verified game files. Workflow changes are excluded from the build bot.')
           PY
-          git add dino-atlas .github/frontier-transfer .github/workflows/dino-ranger-check.yml .github/workflows/dino-frontier-build.yml
+          git add dino-atlas .github/frontier-transfer
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Expand Dino Atlas: reserve tools, 34 dinosaurs, seven enclosures, outposts and enterable land air water vehicles'
           git push origin HEAD:dino-frontier-operations-20260911
       - name: Run original and expanded unit and physics tests
