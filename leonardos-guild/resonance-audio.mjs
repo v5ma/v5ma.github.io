@@ -63,6 +63,13 @@ export function createResonanceAudio({getState,world,onStatus=()=>{}}){
  // Only browser-trusted user input can satisfy stricter autoplay policies.
  const gesture=e=>{if(e.isTrusted&&config.enabled&&!hidden){unlock();}};
  window.addEventListener('pointerdown',gesture,{passive:true});window.addEventListener('keydown',gesture);
+ // Handle visibility immediately: a hidden tab may stop requestAnimationFrame
+ // before the normal frame-level audio update can suspend its sound graph.
+ document.addEventListener('visibilitychange',()=>{
+  hidden=document.hidden;
+  if(hidden){for(const p of[slot,oldSlot])p?.element.pause();ctx?.suspend().catch(()=>{});}
+  else if(config.enabled)unlock();
+ });
  async function buffer(name,loop=false){const file=loop?'ambient-'+name+'.ogg':name+'.wav';if(!buffers.has(file))buffers.set(file,fetch(new URL(file,files)).then(r=>{if(!r.ok)throw Error(file+' '+r.status);return r.arrayBuffer();}).then(a=>ctx.decodeAudioData(a)).catch(()=>{loadFailures++;return null;}));return buffers.get(file);}
  function play(name,{source=null,volume=.55,rate=1,caption:words=null,ui=false}={}){
   requests++;lastCue=name;eventCounts[name]=(eventCounts[name]||0)+1;if(words)caption(words,source);
