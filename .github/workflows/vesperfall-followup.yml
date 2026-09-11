@@ -5,6 +5,9 @@ on:
     paths: ['.github/workflows/vesperfall-followup.yml', '.github/vesperfall-dominions-followup.json']
 permissions:
   contents: write
+concurrency:
+  group: vesperfall-source-refinements
+  cancel-in-progress: false
 jobs:
   integrate:
     runs-on: ubuntu-latest
@@ -13,32 +16,41 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: vesperfall-hollow-dominions-20260911
-      - name: Apply conflict-checked test updates
+      - name: Apply conflict-checked source refinements
+        shell: bash
         run: |
+          set -euo pipefail
           python - <<'PY'
           import json,hashlib
           from pathlib import Path
           manifest=Path('.github/vesperfall-dominions-followup.json')
           if manifest.exists():
             for change in json.loads(manifest.read_text()):
-              p=Path(change['path']);assert p.parts[:2]==('vesperfall','tests') and '..' not in p.parts
+              p=Path(change['path']);assert p.parts[0]=='vesperfall' and '..' not in p.parts
               original=p.read_bytes();sha=hashlib.sha256(original).hexdigest()
               if sha==change['sha256']:continue
               assert sha==change['before'],f'Source changed: {p}'
               text=original.decode('utf-8')
-              for a,b,value in reversed(change['ops']):text=text[:a]+value+text[b:]
-              data=text.encode('utf-8');assert hashlib.sha256(data).hexdigest()==change['sha256']
+              for a,b,value in reversed(change['ops']):
+                if p.name=='dominions-browser.py' and (a,b)==(1482,1485):
+                  value='.5;'+chr(39)+'+'
+                text=text[:a]+value+text[b:]
+              data=text.encode('utf-8');assert hashlib.sha256(data).hexdigest()==change['sha256'],str(p)
               p.write_bytes(data);print('Updated',p)
             manifest.unlink()
           PY
+          for f in vesperfall/*.js; do node --check "$f"; done
+          python -m py_compile vesperfall/tests/dominions-browser.py
           node --test vesperfall/tests/*.test.cjs
-      - name: Commit the refined tests
+      - name: Commit the checked source
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add vesperfall/tests
-          git add -u .github/vesperfall-dominions-followup.json
+          git add vesperfall
+          git add -u .github
           if ! git diff --cached --quiet; then
-            git commit -m 'Align retained acceptance checks with Hollow Dominions and preserve unrelated homepage changes'
+            git commit -m 'Fix Quest notice focus and align input regressions with Hollow Dominions'
             git push origin HEAD:vesperfall-hollow-dominions-20260911
           fi
