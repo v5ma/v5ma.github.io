@@ -1,0 +1,76 @@
+{
+  "preparationSource": "42e9da506a57b4c66751b839cb383da436912c9a",
+  "changedFiles": [
+    {
+      "path": "leonardos-guild/app.mjs",
+      "before": "c1ec8989d6e893f5fde253848bb2a86af948b0d7732421921b06a44668659eb7",
+      "after": "2b000b77fa86a1b6f835a2322f10e96c7dbb844c962986d95e999112c56fb2e5"
+    },
+    {
+      "path": "leonardos-guild/gamepad.mjs",
+      "before": "4b5568eec297b9c69d07e04cb8f7b146e7a7e68daf8862f5e8880aef2c4ed986",
+      "after": "7f10193134e227c4014170bc8894d2c0443c02553be917dd0eeca0cb3f43cc55"
+    },
+    {
+      "path": "leonardos-guild/.gitignore",
+      "before": "ca6f6a7a19e7f455ca02c642b5b5973d32e5227a07deea6f9151b9a194e368eb",
+      "after": "d9a1a295b7233f8f419f110ea25597e44d32bc84531a026301b3b0383665aefc"
+    },
+    {
+      "path": "leonardos-guild/AGENTS.md",
+      "before": "32dd21b5e7a5028c06c9a952c05d46af8efeeeaf70cbaa85a1cd778bc52b283c",
+      "after": "73eecafa21feb76a5becc89c9bfb88b1a285da56a439eede7bb749022f6d97ed"
+    },
+    {
+      "path": "leonardos-guild/CHANGELOG.md",
+      "before": "eaed744263ed3cb3ca417b1540f3ea5162b7aa057eed53138e6630c61986a41e",
+      "after": "adf720582073604f2ab781e5ebb54f07666caed435e672f2e9b26ab82be5f115"
+    },
+    {
+      "path": "leonardos-guild/PUBLICATION.md",
+      "before": "2fdd964cf9cdcf43ec91f34dd7f78f77e2b468527c3c14c9dc1e872b9dd88a24",
+      "after": "4f48b108873fb25b29c1482f9e0893694228ff71402940151097162c001702df"
+    },
+    {
+      "path": "leonardos-guild/README.md",
+      "before": "d3d5cbab5598528456e7b66dcaa8af5f867e5fbce30302a51c10937b81b1be6a",
+      "after": "c177d84012ff0010141c39a4ed3d78deb21468733b81a0004ee5e89c10b45a29"
+    },
+    {
+      "path": "leonardos-guild/UPGRADE-CHECKLIST.md",
+      "before": "79d3c4194b7617ff19e4335a81c9cd5048d44ba0bbfbb42491313d78937f2956",
+      "after": "d876dc184ebc54749d47816c1c9bd7eb00865b50f1e3910eb58c55d655d3ab78"
+    },
+    {
+      "path": "leonardos-guild/index.html",
+      "before": "44f1957413651cf18c9757485319356df58ffc1c1ab2df35e8a1ae32e220c1eb",
+      "after": "670fca80b8511a521271b388533cb546366ec9b866cd2189b2e3ea2a6a0b30fd"
+    },
+    {
+      "path": "leonardos-guild/model.mjs",
+      "before": "9a7e57e0ad13d7f8ad207bb2a29fd8b7fe24cac5b5f4e014fbca1d222ef13931",
+      "after": "7765f0eccd109fd29c327bf6091f6623df62028792900a8960dc98e4956d9481"
+    },
+    {
+      "path": "leonardos-guild/package.json",
+      "before": "ec7aacd0ecf557ea80f6822b85c8e6cf6ca34315eba3ab6920eeaccac0ec04c6",
+      "after": "4de8df0b13e9719a3ed41fc45211d6ca5d148d8d6e26678417fc6bb67f667bb4"
+    },
+    {
+      "path": "leonardos-guild/release.json",
+      "before": "e97c8b22de57b7b3b125b55930d2c36a6ce3479417744f3f767726a6eb66355e",
+      "after": "ad9656d1f2ef96a5c3e51238e01e00ec2f84dfcce782c120578379185fa5684d"
+    },
+    {
+      "path": "leonardos-guild/scene.mjs",
+      "before": "7047dc4b3c8c4ec970bb1085a4f079a6118462ee34defb8704c6ba23ec101f75",
+      "after": "2e10749c6fcde4b6ea915a949e7452d3340108476dd9dab608bd33e9941444ab"
+    },
+    {
+      "path": "leonardos-guild/tests/doors-browser.py",
+      "before": "c9247af9eb2669f67cae913a9bfd9e3883423bd51cee379dfb7f128257896181",
+      "after": "0e231b1360a92d98bf9d902c249b864a41f8fb0d27a5ff32476338821662a922"
+    }
+  ],
+  "method": "One-time whole-file-hash-checked source integration. Native acceptance must check the subsequently committed ordinary files without rewriting them."
+}

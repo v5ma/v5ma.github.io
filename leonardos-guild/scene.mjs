@@ -1,3 +1,4 @@
+import {createResonanceArt} from './resonance-art.mjs';
 import {createFrameGate} from './frame-gate.mjs';
 import {createDoorsArt} from './doors-art.mjs';
 import {doorElevation} from './doors-core.mjs';
@@ -64,22 +65,27 @@ export function createScene(canvas,w,s,quality='high'){
  const cycles=createCycleVisuals({scene,world:root,m,bike,streetArt});
  const cityArt=createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,camera});
  const doorsArt=createDoorsArt({scene,root,w,m,camera});
- const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality;
+ const resonanceArt=createResonanceArt({scene,rider});
+ const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality,consoleYaw=s.yaw,consoleMode=false,cameraHeading=s.yaw,lastYaw=s.yaw;
  const shouldDraw=createFrameGate();let viewportRevision=0;
  function resize(){viewportRevision++;const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
-  const artStatus=streetArt.inspect();if(!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,artStatus.ready,artStatus.failed],input.snap))return;
-  const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=doorElevation(p),y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
-  const angle=p.yaw+orbit,follow=(p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;
+  const artStatus=streetArt.inspect();if(!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,consoleYaw,!!input.consoleCamera,artStatus.ready,artStatus.failed],input.snap))return;
+  const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=doorElevation(p),y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;
+  lastYaw=p.yaw;const useConsole=!!input.consoleCamera&&p.mode==='foot';if(useConsole&&!consoleMode)consoleYaw=p.yaw+orbit;consoleMode=useConsole;
+  if(useConsole){consoleYaw+=input.look||0;orbit=0;}else{if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);}
+  pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
+  const aiming=useConsole&&p.resonance?.aim,angle=useConsole?consoleYaw:p.yaw+orbit;cameraHeading=angle;
+  const follow=(aiming?2.25:p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(aiming?2.05:p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;
   const roomFollow=currentRoom?Math.min(3.1,follow):follow;
-  carCam.set(p.x-Math.sin(angle)*roomFollow,y+camHeight+p.lift*.5,p.z-Math.cos(angle)*roomFollow);carCam.y=Math.max(carCam.y,heightAt(carCam.x,carCam.z)+depth+.65);
+  carCam.set(p.x-Math.sin(angle)*roomFollow,y+camHeight+p.lift*.5,p.z-Math.cos(angle)*roomFollow);carCam.y=Math.max(carCam.y,heightAt(carCam.x,carCam.z)+depth+.65);if(aiming){carCam.x-=Math.cos(angle)*.45;carCam.z+=Math.sin(angle)*.45;}
   // Keep the third-person camera in front of solid houses rather than inside them.
   for(let f=1;f>.13;f-=.08){const xx=p.x+(carCam.x-p.x)*f,zz=p.z+(carCam.z-p.z)*f;if(!w.colliders.some(b=>!b.low&&Math.abs(xx-b.x)<b.hx+.4&&Math.abs(zz-b.z)<b.hz+.4)){carCam.x=xx;carCam.z=zz;break;}}
-  look.set(p.x+f.x*(currentRoom?1.2:7),y+1.6+p.lift*.5,p.z+f.z*(currentRoom?1.2:7));
-  if(!initialized||input.snap){camera.position.copy(carCam);initialized=true;}else camera.position.lerp(carCam,1-Math.exp(-dt*5));camera.lookAt(look);camera.fov=T.MathUtils.lerp(camera.fov,58+Math.min(7,Math.abs(p.speed)*.2),Math.min(1,dt*3));camera.updateProjectionMatrix();
+  const gaze=useConsole?headingVector(aiming&&p.resonance.lock?p.resonance.aimYaw:angle):f;look.set(p.x+gaze.x*(aiming?12:currentRoom?1.2:7),y+(aiming?1.3:1.6)+p.lift*.5,p.z+gaze.z*(aiming?12:currentRoom?1.2:7));
+  if(!initialized||input.snap){camera.position.copy(carCam);initialized=true;}else camera.position.lerp(carCam,1-Math.exp(-dt*5));camera.lookAt(look);camera.fov=T.MathUtils.lerp(camera.fov,(aiming?49:58)+Math.min(7,Math.abs(p.speed)*.2),Math.min(1,dt*3));camera.updateProjectionMatrix();
   sky.position.copy(camera.position);sun.position.set(p.x-45,y+ 75,p.z-50);sun.target.position.set(p.x,y,p.z+20);sun.target.updateMatrixWorld();
   for(const [key,model]of[['bike',bike],['car',pressCar]]){const v=p.vehicle[key];model.root.position.set(v.x,heightAt(v.x,v.z)+(p.mode===key?p.lift:0),v.z);model.root.rotation.set(-Math.atan((heightAt(v.x,v.z+.5)-heightAt(v.x,v.z-.5)))*Math.cos(v.yaw),v.yaw,p.mode===key&&key==='bike'?-(input.steer||0)*Math.min(.17,Math.abs(p.speed)*.012):0);if(p.mode===key)for(const wheel of model.wheels)wheel.rotation.x+=p.speed*dt/(key==='bike'?.39:.37);}
-  rider.root.visible=p.mode!=='car';rider.root.position.set(p.x,y+p.lift+(p.mode==='bike'?.03:0),p.z);rider.root.rotation.set(p.mode==='bike'?.14:0,p.yaw,0);if(p.mode==='bike'){for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.distance*3+i*Math.PI)*.6;rider.root.position.z-=f.z*.12;rider.root.position.x-=f.x*.12;}else for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.time*10+i*Math.PI)*Math.min(.5,Math.abs(p.speed)*.14);
+  rider.root.visible=true;rider.root.position.set(p.x,y+p.lift+(p.mode==='car'?-.02:p.mode==='bike'?.03:0),p.z);rider.root.rotation.set(p.mode==='bike'?.14:0,p.yaw,0);if(p.mode==='bike'){for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.distance*3+i*Math.PI)*.6;rider.root.position.z-=f.z*.12;rider.root.position.x-=f.x*.12;}else for(let i=0;i<2;i++)rider.legs[i].rotation.x=Math.sin(p.time*10+i*Math.PI)*Math.min(.5,Math.abs(p.speed)*.14);
   for(let i=0;i<p.traffic.length;i++){const t=p.traffic[i],c=traffic[i];c.root.position.set(t.x,heightAt(t.x,t.z),t.z);c.root.rotation.y=t.dir>0?0:Math.PI;for(const w of c.wheels)w.rotation.x+=t.dir*t.speed*dt/.37;}
   for(let i=0;i<p.pedestrians.length;i++){const a=p.pedestrians[i],b=peds[i];b.root.position.set(a.x,heightAt(a.x,a.z),a.z);b.root.rotation.y=a.yaw;for(let j=0;j<2;j++)b.legs[j].rotation.x=Math.sin(a.phase+j*Math.PI)*.36;animatePerson(b,p.time,{motion:'walk',speed:3,phase:a.phase});}
   const target=activeTarget(p,w);marker.position.set(target.x,heightAt(target.x,target.z)+.14,target.z);marker.scale.setScalar(1+Math.sin(p.time*2)*.045);
@@ -89,11 +95,11 @@ export function createScene(canvas,w,s,quality='high'){
   guild.update(p,dt);animatePerson(rider,p.time,{motion:p.mode==='bike'?'ride':p.guarding?'guard':p.attackT>0?'strike':'walk',speed:p.speed,phase:p.time*10});finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
   goal.visible=p.mission===2&&p.defeated;
   const hideWorld=!!p.life.inside||!!p.doors.level&&p.doors.level!==3;if(hideWorld!==wasBelow){if(hideWorld)for(const object of outdoors){outdoorVisibility.set(object,object.visible);object.visible=false;}else for(const object of outdoors)object.visible=outdoorVisibility.get(object);wasBelow=hideWorld;}if(hideWorld)for(const object of outdoors)object.visible=false;
-  townLife.update(p,dt,currentRoom);cycles.update(p);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);doorsArt.update(p,dt);renderer.render(scene,camera);
+  townLife.update(p,dt,currentRoom);cycles.update(p);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);doorsArt.update(p,dt);resonanceArt.update(p);renderer.render(scene,camera);
  }
  function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
  function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;streetArt.setQuality(value);renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.6:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
- function recenter(){orbit=pitch=0;}
+ function recenter(){orbit=pitch=0;consoleYaw=lastYaw;cameraHeading=lastYaw;}
  function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
- setQuality(quality);return {renderer,scene,camera,update,resize,recenter,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),doors:doorsArt.inspect(),cycle:cycles.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
+ setQuality(quality);return {renderer,scene,camera,update,resize,recenter,heading:()=>cameraHeading,setQuality,setDistance,inspect:()=>({quality:renderQuality,shadows:renderer.shadowMap.enabled,cameraFov:camera.fov,consoleCamera:consoleMode,heading:cameraHeading,resonance:resonanceArt.inspect(),orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),doors:doorsArt.inspect(),cycle:cycles.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
 }
