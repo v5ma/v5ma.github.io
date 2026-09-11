@@ -1,3 +1,4 @@
+import {EXP_DEPOTS,EXP_CACHES,EXP_ENEMIES} from './expedition-world.mjs';
 /* Original prototype equipment; all prices are earned in-game credits, never
  * real currency. These tables also drive the shop, HUD, tests and roadmap. */
 export const WEAPONS=Object.freeze({
@@ -9,19 +10,22 @@ export const WEAPONS=Object.freeze({
 export const DEPOTS=Object.freeze([
  {id:'quay-depot',x:3,y:0,z:7,name:'Quay Outfitters'},
  {id:'garden-depot',x:61,y:6,z:-24,name:'Glasshouse Supply'},
- {id:'works-depot',x:-25,y:12,z:-75,name:'Copperlight Exchange'}
+ {id:'works-depot',x:-25,y:12,z:-75,name:'Copperlight Exchange'},
+ ...EXP_DEPOTS
 ]);
 export const CACHES=Object.freeze([
  {id:'quay-cache',x:-13,y:0,z:-5,credits:60,label:'Quay reserve',weapon:null},
  {id:'garden-cache',x:78,y:6,z:-25,credits:65,label:'Glasshouse field kit',weapon:'carbine'},
  {id:'foundry-cache',x:-39,y:12,z:-72,credits:80,label:'Foundry rare crate',weapon:'scatter'},
- {id:'spire-cache',x:33,y:20,z:-128,credits:100,label:'Surveyor reserve',weapon:'sniper'}
+ {id:'spire-cache',x:33,y:20,z:-128,credits:100,label:'Surveyor reserve',weapon:'sniper'},
+ ...EXP_CACHES
 ]);
 export const ENEMIES=Object.freeze([
  {id:'g1',kind:'scout',home:'garden',x:66,y:9,z:-22,hp:85,reward:65},
  {id:'f1',kind:'heavy',home:'foundry',x:-24,y:14,z:-83,hp:180,reward:120},
  {id:'s1',kind:'sentry',home:'spire',x:44,y:23,z:-119,hp:120,reward:95},
- {id:'range',kind:'target',home:'harbor',x:14,y:1.6,z:-4,hp:112,reward:30}
+ {id:'range',kind:'target',home:'harbor',x:14,y:1.6,z:-4,hp:112,reward:30},
+ ...EXP_ENEMIES
 ]);
 export const upgradePrice=(level)=>120+level*100;
 export function cleanKit(value){
@@ -30,7 +34,7 @@ export function cleanKit(value){
  const owns=['arc',...new Set(Array.isArray(v.owns)?v.owns.filter(k=>k!=='arc'&&Object.hasOwn(WEAPONS,k)):[])];
  const tune={};for(const id of owns)tune[id]={damage:count(v.tune?.[id]?.damage,2),reload:count(v.tune?.[id]?.reload,2)};
  const mags={},reserve={};for(const id of owns){const w=WEAPONS[id];mags[id]=count(v.mags?.[id],w.mag,w.mag);reserve[id]=count(v.reserve?.[id],w.reserve*3,w.reserve);}
- const dead=[...new Set(Array.isArray(v.dead)?v.dead.filter(id=>ENEMIES.some(e=>e.id===id)):[])];
+ const dead=[...new Set(Array.isArray(v.dead)?v.dead.filter(id=>ENEMIES.some(e=>e.id===id&&!Number.isInteger(e.wave))):[])];
  const taken=[...new Set(Array.isArray(v.taken)?v.taken.filter(id=>CACHES.some(c=>c.id===id)||dead.some(d=>'drop-'+d===id)):[])];
  return {credits:count(v.credits,99999,400),owns,selected:owns.includes(v.selected)?v.selected:'arc',mags,reserve,tune,shield:count(v.shield,2),dead,taken};
 }
