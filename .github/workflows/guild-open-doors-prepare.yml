@@ -1,0 +1,45 @@
+name: Prepare Guild Open Doors source
+on:
+  push:
+    branches: [guild/open-doors-20260911]
+    paths: ['leonardos-guild/scripts/prepare-open-doors.py','.github/workflows/guild-open-doors-prepare.yml']
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/guild/open-doors-20260911'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: guild/open-doors-20260911
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Hash-guarded source preparation, not browser acceptance
+        run: |
+          set -euo pipefail
+          python leonardos-guild/scripts/prepare-open-doors.py
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          npm --prefix leonardos-guild test
+      - name: Commit scoped ordinary source
+        run: |
+          git config user.name 'SVGN source integration'
+          git config user.email 'actions@users.noreply.github.com'
+          git add leonardos-guild/app.mjs leonardos-guild/model.mjs leonardos-guild/scene.mjs leonardos-guild/life-core.mjs leonardos-guild/life-visuals.mjs leonardos-guild/street-core.mjs leonardos-guild/street-art.mjs leonardos-guild/city-core.mjs leonardos-guild/city-art.mjs leonardos-guild/index.html leonardos-guild/package.json leonardos-guild/release.json leonardos-guild/tests/life.test.mjs leonardos-guild/tests/life-access.test.mjs leonardos-guild/tests/life-browser.py
+          git commit -m 'Integrate Open Doors v0.7.0 with 129 passing mechanics and save checks'
+          git push origin HEAD:guild/open-doors-20260911
+      - name: Preserve exact prepared source and outcome
+        if: always()
+        run: |
+          mkdir -p /tmp/guild-prepared
+          git rev-parse HEAD > /tmp/guild-prepared/source-sha.txt
+          git diff --stat > /tmp/guild-prepared/uncommitted-diff.txt
+          tar -czf /tmp/guild-prepared/source.tgz leonardos-guild .github/workflows
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-open-doors-prepared
+          path: /tmp/guild-prepared
+          retention-days: 7
