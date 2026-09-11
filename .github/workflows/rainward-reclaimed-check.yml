@@ -1,36 +1,43 @@
-name: Rainward reclaimed-city verification
+name: Rainward reclaimed-city integration
 on:
   push:
     branches: [feat/rainward-reclaimed-city-20260911]
     paths:
-      - 'rainward/**'
-      - 'tests/rainward*'
-      - 'scripts/rainward*'
       - '.github/workflows/rainward-reclaimed-check.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: rainward-reclaimed-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  check:
+  integrate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Package Rainward working source
+      - name: Restore tested Rainward v0.8 patch
         run: |
-          mkdir -p /tmp/rainward-transfer
-          tar -czf /tmp/rainward-transfer/rainward-source.tar.gz rainward tests scripts .github index.html projects.css
-          git rev-parse HEAD > /tmp/rainward-transfer/commit.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: rainward-working-source
-          path: /tmp/rainward-transfer/
-          retention-days: 3
+          cat .rainward-v08-patch-* | base64 -d > /tmp/rainward-v08.patch.xz
+          echo '80963020ae2ce2b58ddb562ea1ce0e040d4f7e4549055e1e0f53a6af6782d887  /tmp/rainward-v08.patch.xz' | sha256sum -c -
+          xz -dc /tmp/rainward-v08.patch.xz > /tmp/rainward-v08.patch
+          git apply --check /tmp/rainward-v08.patch
+          git apply /tmp/rainward-v08.patch
+      - name: Verify upgraded source
+        run: |
+          for file in rainward/*.mjs; do node --check "$file"; done
+          node --test rainward/tests/*.test.mjs
+          python rainward/tests/release.py
+          grep -q '"version": "0.8.0"' rainward/release.json
+          grep -q 'whiteout' rainward/expeditions.mjs
+      - name: Commit integrated game source
+        run: |
+          git config user.name 'Micah Blumberg'
+          git config user.email '60057241+v5ma@users.noreply.github.com'
+          git add index.html rainward
+          git rm .rainward-v08-patch-* .github/workflows/rainward-reclaimed-check.yml
+          git commit -m 'Upgrade Rainward to v0.8 Reclaimed City'
+          git push origin HEAD:feat/rainward-reclaimed-city-20260911
