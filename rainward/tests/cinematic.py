@@ -22,7 +22,7 @@ with sync_playwright() as pw:
  p=ctx.new_page();p.set_default_timeout(120000);p.on('dialog',lambda d:d.accept());p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
  try:
   p.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');wait(p,'window.Rainward');wait(p,'!Rainward.snapshot().assets.pending');
-  check(p.evaluate('Rainward.snapshot().version')=='0.6.0','The actual game reports the 0.6 shader build')
+  check(p.evaluate('Rainward.snapshot().version')=='0.8.0','The actual game reports the v0.8 Reclaimed City build')
   for chapter in ['district','conservatory','terminus']:
    p.locator('#chapter-select').select_option(chapter);p.locator('#start').click();wait(p,'Rainward.mode==="play"');wait(p,'!Rainward.snapshot().assets.pending');p.keyboard.press('KeyP');wait(p,'Rainward.mode==="pause"');before=preserved(p)
    p.locator('#low').uncheck();p.locator('#cinematic').uncheck();p.locator('#motion').uncheck();p.locator('#resume').click();frames(p);p.screenshot(path=str(OUT/(chapter+'-effects-off.png')))

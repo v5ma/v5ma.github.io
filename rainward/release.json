@@ -1,14 +1,15 @@
 {
-  "version": "0.6.0",
-  "build": "rainward-living-light-20260909",
-  "stage": "mechanics prototype",
+  "version": "0.8.0",
+  "build": "rainward-whiteout-reclaimed-20260911",
+  "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Recovered self-hosted scanned environments with preserved source materials",
-    "Linear HDR cinematic pipeline with contact AO, restrained bloom and chapter color grading",
-    "Animated normal-mapped water, movement-driven ripples, waterfall flow, wind foliage and contact shading",
-    "Bounded fixed-step simulation separates movement from render rate",
-    "Experimental stationary WebXR overlook; mission paused, no VR combat or locomotion"
+    "Rebuilt weighted humanoid survivor and human enemy models with articulated gait, aim, crouch and prone posing",
+    "Added Meridian Ward, Breakwater Signal and Whiteout Market as three large expeditions with alternate routes",
+    "Added raider, marksman, sentinel and shrieker human enemy roles plus expanded creature encounters",
+    "Added persistent field tasks, required and optional objectives, task rewards and journal tracking",
+    "Added snowbound streets, coastal beacon spaces, denser architecture, vehicles, trees, signage and weather variation",
+    "Preserved the original three chapters, saves, controller/touch support, scanned assets, cinematic renderer and experimental WebXR overlook"
   ]
 }

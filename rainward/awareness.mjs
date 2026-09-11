@@ -1,3 +1,4 @@
+import {enemyProfile} from './enemy-types.mjs';
 /* Rainward browser game: fictional NPC state machine. Targets come only from
  * simulated sight/sound/ally reports; no external input or real-world control. */
 import {heightAt,clamp,dist,findPath,solidAt,obstruction} from './world.mjs';
@@ -17,6 +18,7 @@ function searchPoints(e){const origin=e.lastKnown||e.target;const points=[copy(o
 }
 export function updatePatrol(s,e,dt){
  if(e.hp<=0){e.seen=false;e.aimTime=0;return;}
+ const profile=enemyProfile(e.type);if((e.stagger||0)>0){e.stagger=Math.max(0,e.stagger-dt);e.speed=0;e.aimTime=0;return;}
  const p=s.player,wasSeen=e.seen,saw=visible(s,e);e.seen=saw;e.aimTime=e.aimTime||0;e.speed=0;
  if(saw){
   e.awareness=clamp(e.awareness+dt*(dist(e,p)<4?1.7:.7),0,1);e.lastKnown=copy(p);e.target=copy(p);e.timer=11;
@@ -35,12 +37,12 @@ export function updatePatrol(s,e,dt){
  if(heard&&!saw){investigate(s,e,heard,'sound');emit(s,'investigate',{id:e.id,x:heard.x,z:heard.z});}
  if(!saw&&e.state!=='patrol'&&e.timer<=0){e.state='patrol';e.target=null;e.lastKnown=null;e.path=[];e.sweep=null;e.repath=0;e.alerted=false;e.awareness=0;s.stats.escapes=(s.stats.escapes||0)+1;say(s,e,'All clear. Returning to patrol.');}
  if(e.state==='patrol'&&e.awareness>.2&&saw){e.yaw=Math.atan2(-(p.x-e.x),-(p.z-e.z));if(!wasSeen)say(s,e,'Did I see something?');return;}
- if(e.state==='chase'&&saw&&dist(e,p)<(e.type==='drifter'?1.55:11)){
+ if(e.state==='chase'&&saw&&dist(e,p)<profile.range){
   e.yaw=Math.atan2(-(p.x-e.x),-(p.z-e.z));e.aimTime+=dt;e.attack=Math.max(0,e.attack-dt);
-  const windup=e.type==='drifter'?.55:.85;
-  if(e.aimTime>=windup&&e.attack<=0){e.attack=e.type==='drifter'?1.1:1.7;e.aimTime=0;
-   emit(s,'enemy-shot',{id:e.id,from:{x:e.x,y:heightAt(e.x,e.z)+1.35,z:e.z},to:{x:p.x,y:heightAt(p.x,p.z)+(p.stance==='prone'?.32:p.stance==='crouch'?.8:1.38),z:p.z}});
-   if(p.invulnerable<=0){p.hp=Math.max(0,p.hp-17);p.invulnerable=.35;emit(s,'damage');if(!p.hp){s.status='dead';emit(s,'death');}}
+  const windup=profile.windup;if(e.type==='marksman'&&e.aimTime<=dt*1.5)say(s,e,'Rifle sight glints. Break the sightline.');if(e.type==='raider'&&e.aimTime<=dt*1.5)say(s,e,'The raider winds up. Dodge or get clear.');
+  if(e.aimTime>=windup&&e.attack<=0){e.attack=profile.cooldown;e.aimTime=0;
+   emit(s,profile.attackKind==='melee'?'enemy-melee':'enemy-shot',{id:e.id,from:{x:e.x,y:heightAt(e.x,e.z)+1.35,z:e.z},to:{x:p.x,y:heightAt(p.x,p.z)+(p.stance==='prone'?.32:p.stance==='crouch'?.8:1.38),z:p.z}});
+   if(p.invulnerable<=0){p.hp=Math.max(0,p.hp-profile.damage);p.invulnerable=.35;emit(s,'damage');if(!p.hp){s.status='dead';emit(s,'death');}}
   }return;
  }
  if(e.state!=='chase')e.aimTime=0;
@@ -53,6 +55,6 @@ export function updatePatrol(s,e,dt){
  }
  e.repath-=dt;if(e.repath<=0){e.path=findPath(e,target);e.repath=.9;}
  while(e.path.length&&dist(e,e.path[0])<.25)e.path.shift();const next=e.path[0];if(!next){e.yaw+=dt*.6;return;}
- const dx=next.x-e.x,dz=next.z-e.z,l=Math.hypot(dx,dz),speed=e.state==='chase'?3:e.state==='patrol'?1.05:1.6;
+ const dx=next.x-e.x,dz=next.z-e.z,l=Math.hypot(dx,dz),speed=e.state==='chase'?profile.chaseSpeed:e.state==='patrol'?profile.patrolSpeed:1.6;
  if(l>.001){const old=copy(e);move(e,dx/l*speed*dt,dz/l*speed*dt,1.72);e.speed=dist(old,e)/(dt||1);e.yaw+=wrap(Math.atan2(-dx,-dz)-e.yaw)*Math.min(1,dt*7);}
 }
