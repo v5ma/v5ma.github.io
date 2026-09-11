@@ -1,0 +1,73 @@
+name: Neighborhood Missions verification
+on:
+  push:
+    branches: [neighborhood-missions-city-20260911]
+    paths:
+      - 'svgn-planet/**'
+      - 'tests/neighborhood-missions/**'
+      - '.github/workflows/neighborhood-missions-check.yml'
+      - 'index.html'
+      - 'mario-maker-clone/svgn-paper-route/index.html'
+permissions:
+  contents: read
+concurrency:
+  group: neighborhood-missions-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            svgn-planet
+            mario-maker-clone/svgn-paper-route
+            tests/neighborhood-missions
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript
+        run: |
+          for f in svgn-planet/*.mjs; do node --check "$f"; done
+          if [ -f tests/neighborhood-missions/model.test.mjs ]; then node --test tests/neighborhood-missions/model.test.mjs; fi
+      - name: Install isolated browser harness
+        run: |
+          npm install --prefix "$RUNNER_TEMP/nm-browser" --no-save playwright@1.55.0
+          node "$RUNNER_TEMP/nm-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Browser regression and screenshots
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/nm-browser/node_modules/playwright/index.mjs
+        run: |
+          mkdir -p test-results
+          python3 -m http.server 8000 > /tmp/nm-server.log 2>&1 &
+          if [ -f tests/neighborhood-missions/browser.mjs ]; then
+            node tests/neighborhood-missions/browser.mjs
+          else
+            node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const {chromium}=await import(process.env.PLAYWRIGHT_MODULE);
+          const browser=await chromium.launch({args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+          const page=await browser.newPage({viewport:{width:1440,height:900}});
+          const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+          await page.goto('http://127.0.0.1:8000/svgn-planet/',{waitUntil:'networkidle'});
+          await page.waitForFunction(()=>!document.querySelector('#start').disabled,{timeout:90000});
+          await page.click('#start'); await page.waitForTimeout(2500);
+          await page.screenshot({path:'test-results/baseline.png'});
+          fs.writeFileSync('test-results/baseline.json',JSON.stringify({errors,game:await page.evaluate(()=>window.SVGNPlanet.inspect())},null,2));
+          await browser.close(); if(errors.length) throw Error(errors.join('\n'));
+          JS
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-review
+          retention-days: 7
+          path: |
+            test-results
+            svgn-planet
+            mario-maker-clone/svgn-paper-route
+            index.html
+            projects.css
+            project-shortcuts.css
+            tests/neighborhood-missions
