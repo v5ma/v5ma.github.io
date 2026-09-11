@@ -93,7 +93,9 @@ export function createGamepad({getState,playing,active,actions,getPreferences=()
   if(press(3))actions.vehicle();if(press(5)&&s.mode==='foot')actions.cover?.();if(press(12))actions.dispatch?.();if(press(15))actions.scan();
  }
  function controls(dt){
-  const s=getState();if(!connected||root()||!active()||actions.wheelActive?.())return {throttle:0,steer:0,look:0,lookY:0};
+  const s=getState(),consoleCamera=connected&&getPreferences().profile!=='classic'&&s.mode==='foot';
+  // Modal input is neutral, but the independent camera must not snap to the actor.
+  if(!connected||root()||!active()||actions.wheelActive?.())return {throttle:0,steer:0,look:0,lookY:0,consoleCamera};
   const h=i=>held[i]&&!releaseLatch[i],lookX=stickLatch?0:axes[2],lookY=stickLatch?0:axes[3],classic=getPreferences().profile==='classic';
   if(classic)return {throttle:-axes[1],steer:axes[0],analog:!!axes[1],boost:sprint||(s.mode!=='foot'&&h(7)),brake:h(6)&&s.mode!=='foot',guard:h(6)&&s.mode==='foot',hack:h(15),look:-lookX*dt*2.8,lookY:lookY*dt*2.8};
   const cameraYaw=actions.heading?.()??s.yaw;

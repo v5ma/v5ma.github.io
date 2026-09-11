@@ -70,16 +70,18 @@ with sync_playwright() as p:
   heading=read()['render']['heading'];yaw=read()['yaw'];inputs([],[0,0,.65,0]);frames(18);neutral()
   check(abs(read()['render']['heading']-heading)>.15 and abs(read()['yaw']-yaw)<.08,'Right stick turns the foot camera independently of the stationary character')
   x,z=read()['x'],read()['z'];inputs([],[0,-.65,0,0]);frames(22);neutral();check(math.hypot(read()['x']-x,read()['z']-z)>.3,'Left stick walks relative to the camera')
+  inputs([],[0,0,.6,0]);frames(10);neutral();wheel_heading=read()['render']['heading']
   inputs([4],[0,0,0,0]);page.wait_for_function('LeonardoGuild.inspect().console.wheel==="tools"');before=read()['steps'];at=time.monotonic();frames(25);elapsed=time.monotonic()-at;delta=read()['steps']-before
   check(delta>=0 and delta/max(elapsed,.001)<23,'Equipment wheel slows actual simulation rather than merely drawing an overlay')
   inputs([4],[0,0,1,0]);frames(4);pulse(15,[4]);check(read()['console']['variant']==1,'D-pad cycles real variants inside the selected equipment slice');pulse(14,[4]);page.screenshot(path=str(OUT/'equipment-wheel.png'));inputs([],[0,0,1,0]);frames(4);neutral()
+  check(abs(read()['render']['heading']-wheel_heading)<.04,'Equipment wheel preserves the independent camera heading while inputs are neutral')
   check(read()['resonance']['tool']=='sling' and read()['resonance']['variants']['sling']==0,'Releasing LB equips the selected sling without unintended camera input')
   inputs([6]);frames(20);check(read()['resonance']['aim'] and read()['render']['cameraFov']<57,'LT enters a closer over-the-shoulder aiming view')
   n=read()['resonance']['ready'];pulse(7,[6]);frames(6);check(read()['resonance']['ready']==n-1,'RT releases one real travelling pellet and consumes ammunition')
   reserve=read()['resonance']['reserve'];pulse(2,[6]);page.wait_for_function('LeonardoGuild.inspect().resonance.reload>0');check(True,'X starts a timed reload while aiming the sling')
   page.wait_for_function('LeonardoGuild.inspect().resonance.reload===0');check(read()['resonance']['ready']==6 and read()['resonance']['reserve']==reserve-1,'Reload moves pellets from the finite reserve rather than creating ammunition')
   page.screenshot(path=str(OUT/'aiming.png'));inputs([6,2]);page.wait_for_function('LeonardoGuild.inspect().controller.modal!==null');neutral();check(True,'Holding X still reaches nearby interactions while the sling is equipped');close()
-  press(12);page.wait_for_selector('#dispatch-dialog[open]');check(page.locator('[data-dispatch]').count()==8,'D-pad up opens eight functioning guild dispatch applications');page.screenshot(path=str(OUT/'dispatch.png'))
+  press(12);page.wait_for_selector('#dispatch-dialog[open]');check(page.locator('[data-dispatch]').count()==8,'D-pad up opens eight functioning guild dispatch applications');check(page.evaluate('(()=>{const d=document.querySelector("#dispatch-dialog"),r=d.getBoundingClientRect();return d.scrollWidth<=d.clientWidth+1&&[...d.querySelectorAll("[data-dispatch]")].every(e=>{const q=e.getBoundingClientRect();return q.x>=r.x&&q.right<=r.right;});})()'),'All dispatch applications fit horizontally without clipped columns');page.screenshot(path=str(OUT/'dispatch.png'))
   ui_select('[data-dispatch="audio"]');check(read()['controller']['modal']=='audio-dialog','Controller enters audio and control settings from dispatch')
   ui_select('#audio-master',False)
   for _ in range(20):press(14)
@@ -88,8 +90,8 @@ with sync_playwright() as p:
   page.wait_for_function('LeonardoGuild.inspect().audio.rms>0.00001');check(True,'Controller restores the audible mix without native popups')
   ui_select('#audio-range',False);press(15);check(read()['audio']['preferences']['range']=='night','Controller selects a gentler dynamic-range preset')
   ui_select('#controller-lock');check(read()['console']['preferences']['lockOn']==False,'Lock-on assistance can be disabled with the controller');press(0)
-  ui_select('#audio-preview');page.wait_for_function('LeonardoGuild.inspect().audio.eventCounts.success>0');page.screenshot(path=str(OUT/'mixer.png'));close();check(read()['running'],'B closes the mixer and resumes without a pointer')
-  press(9);ui_select('#pause-sound');close();check(read()['controller']['modal']=='pause-dialog','B from nested audio settings returns to Pause, not gameplay');close()
+  ui_select('#audio-preview');page.wait_for_function('LeonardoGuild.inspect().audio.eventCounts.success>0');check(page.evaluate('(()=>{const d=document.querySelector("#audio-dialog");return d.scrollWidth<=d.clientWidth+1&&d.getBoundingClientRect().width>700;})()'),'Desktop mixer uses its intended width without horizontal clipping');page.screenshot(path=str(OUT/'mixer.png'));close();check(read()['running'],'B closes the mixer and resumes without a pointer')
+  paused_heading=read()['render']['heading'];press(9);ui_select('#pause-sound');close();check(read()['controller']['modal']=='pause-dialog','B from nested audio settings returns to Pause, not gameplay');close();check(abs(read()['render']['heading']-paused_heading)<.04,'Nested dialogs preserve the independent camera on resume')
   for index,name in [(2,'market'),(3,'lamplight'),(4,'underways'),(5,'pursuit')]:
    wheel('music',index);page.wait_for_function('(name)=>LeonardoGuild.inspect().audio.chosen===name',arg=name);check(read()['audio']['musicVoices']<=2,'Music selection '+name+' uses at most two crossfading streams')
   wheel('music',6);check(read()['audio']['station']=='off' and read()['audio']['musicVoices']==0,'Music-off stops score streams but leaves sound effects available');press(8);close();check(read()['audio']['musicVoices']==0,'Further controller gestures do not incorrectly restart disabled music')
@@ -106,5 +108,12 @@ with sync_playwright() as p:
   check(all(n['status'] in (200,206,304) for n in network),'Every requested original audio asset is served successfully')
   check(read()['audio']['voices']<=24 and read()['audio']['musicVoices']<=2,'Audio voice and streaming bounds remain enforced')
   page.screenshot(path=str(OUT/'end.png'))
+  for width,height,label in [(390,844,'portrait'),(844,390,'landscape')]:
+   page.set_viewport_size({'width':width,'height':height});frames(4);press(12);page.wait_for_selector('#dispatch-dialog[open]')
+   check(page.evaluate('(()=>{const d=document.querySelector("#dispatch-dialog"),r=d.getBoundingClientRect();return d.scrollWidth<=d.clientWidth+1&&r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight;})()'),label+' dispatch fits the viewport without horizontal overflow')
+   page.screenshot(path=str(OUT/('dispatch-'+label+'.png')));ui_select('[data-dispatch="audio"]')
+   check(page.evaluate('(()=>{const d=document.querySelector("#audio-dialog"),r=d.getBoundingClientRect();return d.scrollWidth<=d.clientWidth+1&&r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight;})()'),label+' sound mixer fits the viewport without horizontal overflow')
+   page.screenshot(path=str(OUT/('mixer-'+label+'.png')));close()
+  page.set_viewport_size({'width':1280,'height':800});frames(4)
  finally:
   (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'state':page.evaluate('window.LeonardoGuild?.inspect()'),'audioRequests':network,'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'input':'Fresh save. Virtual standard Xbox gamepad for gameplay and all UI. One explicitly declared trusted Enter press for browser audio activation. No mouse, programmatic focus, live-state or quest writes.'},indent=2));page.screenshot(path=str(OUT/'last-state.png'));browser.close()
