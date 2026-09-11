@@ -8,7 +8,7 @@ export function rotateVector(v,q){
 export class ParkPhysics{
   constructor(){
     this.world=new RAPIER.World({x:0,y:-18,z:0});this.world.timestep=1/60;
-    this.world.createCollider(RAPIER.ColliderDesc.cuboid(95,.5,95).setTranslation(0,-.5,0).setFriction(.9));
+    this.world.createCollider(RAPIER.ColliderDesc.cuboid(325,.5,325).setTranslation(0,-.5,0).setFriction(.9));
     this.props=[];
   }
   box(x,y,z,hx,hy,hz,options={}){
@@ -26,11 +26,11 @@ export class ParkPhysics{
   }
 }
 export class RangerJeep{
-  constructor(physics){
-    this.world=physics.world;this.body=this.world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(HOME.x,1.4,HOME.z).setRotation({x:0,y:1,z:0,w:0}).setLinearDamping(.12).setAngularDamping(1.5).setCcdEnabled(true));
+  constructor(physics,spawn=HOME){
+    this.world=physics.world;this.body=this.world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(spawn.x,1.4,spawn.z).setRotation({x:0,y:1,z:0,w:0}).setLinearDamping(.12).setAngularDamping(1.5).setCcdEnabled(true));
     this.collider=this.world.createCollider(RAPIER.ColliderDesc.cuboid(1.02,.36,1.72).setMass(280).setFriction(.5).setRestitution(.1),this.body);
     this.controller=this.world.createVehicleController(this.body);this.controller.indexUpAxis=1;this.controller.setIndexForwardAxis=2;
-    this.connections=[];this.steer=0;this.jumpCooldown=0;this.speed=0;this.grounded=0;
+    this.connections=[];this.steer=0;this.jumpCooldown=0;this.speed=0;this.grounded=0;this.impactTime=0;
     for(const z of [1.18,-1.18])for(const x of [-1.03,1.03]){
       const i=this.controller.numWheels(),p={x,y:0,z};this.connections.push(p);
       this.controller.addWheel(p,{x:0,y:-1,z:0},{x:-1,y:0,z:0},.42,.49);
@@ -45,7 +45,7 @@ export class RangerJeep{
   }
   drive(input,dt=1/60){
     const vc=this.controller,vel=this.body.linvel(),forward=rotateVector({x:0,y:0,z:1},this.body.rotation());
-    this.speed=vel.x*forward.x+vel.z*forward.z;this.jumpCooldown=Math.max(0,this.jumpCooldown-dt);
+    this.speed=vel.x*forward.x+vel.z*forward.z;this.jumpCooldown=Math.max(0,this.jumpCooldown-dt);this.impactTime=Math.max(0,this.impactTime-dt);
     const throttle=clamp(input.throttle||0,-1,1),boost=!!input.boost,limit=boost?22:15;
     this.steer+=((input.steer||0)*(.52/(1+Math.abs(this.speed)*.045))-this.steer)*Math.min(1,dt*8);
     const reversing=throttle<0&&this.speed>1.1,stopping=throttle>0&&this.speed< -1.1;
@@ -61,7 +61,7 @@ export class RangerJeep{
     if(this.grounded>=2){
       this.body.applyImpulse({x:0,y:-150*dt,z:0},true);
       const up=rotateVector({x:0,y:1,z:0},this.body.rotation());
-      if(up.y>.25)this.body.applyTorqueImpulse({x:-up.z*1200*dt,y:0,z:up.x*1200*dt},true);
+      if(up.y>.25&&this.impactTime===0)this.body.applyTorqueImpulse({x:-up.z*1200*dt,y:0,z:up.x*1200*dt},true);
       if(input.jump&&this.jumpCooldown===0){this.body.applyImpulse({x:0,y:1100,z:0},true);this.jumpCooldown=1.5;}
     }
   }

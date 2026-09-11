@@ -3,13 +3,13 @@ import {ROADS,ANIMALS,HOME,LAKE,seeded,roadDistance,distance} from './ranger-dat
 import {material,part,box,ellipsoid,bone,label} from './ranger-art.js';
 export function buildPark(scene,physics){
   const rand=seeded(),grass=0x849466,soil=0xbca779,rock=0x747d69,wood=0x665942;
-  scene.background=new T.Color(0xc4d0b8);scene.fog=new T.Fog(0xc4d0b8,80,190);
+  scene.background=new T.Color(0xc4d0b8);scene.fog=new T.Fog(0xc4d0b8,100,245);
   const hemi=new T.HemisphereLight(0xfff2d5,0x354d41,2.2);scene.add(hemi);
   const sun=new T.DirectionalLight(0xffe4b5,3.1);sun.position.set(-30,60,35);sun.castShadow=true;
   sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-48,right:48,top:48,bottom:-48,near:1,far:160});sun.shadow.normalBias=.045;sun.shadow.bias=-.00015;scene.add(sun,sun.target);
   const water=part(scene,new T.PlaneGeometry(1800,1800),new T.MeshStandardMaterial({color:0x517e7a,roughness:.43,metalness:.15}),0,-1.8,0);water.rotation.x=-Math.PI/2;water.castShadow=false;
-  part(scene,new T.CylinderGeometry(86,89,3,96),material(soil),0,-1.54,0);
-  const ground=part(scene,new T.CircleGeometry(85.4,96),grass,0,.005,0);ground.rotation.x=-Math.PI/2;ground.castShadow=false;
+  part(scene,new T.CylinderGeometry(310,314,3,128),material(soil),0,-1.54,0);
+  const ground=part(scene,new T.CircleGeometry(309.7,128),grass,0,.005,0);ground.rotation.x=-Math.PI/2;ground.castShadow=false;
   // Continuous spline ribbons keep every road drivable without loading map assets.
   function road(points,width,color,height){
     const curve=new T.CatmullRomCurve3(points.map(([x,z])=>new T.Vector3(x,height,z))),verts=[],uv=[],indices=[];
@@ -40,12 +40,12 @@ export function buildPark(scene,physics){
     if(i%3===0)for(let j=0;j<5;j++){const a=j*Math.PI*2/5;ferns.push({p:[x+Math.sin(a)*.6,.38,z+Math.cos(a)*.6],s:[.2,.12,1.1],r:[-.38,a,0],c:i%2?0x607f4c:0x758c54});}
   }
   for(let i=0;i<95;i++){
-    const a=rand()*Math.PI*2,r=73+rand()*11,x=Math.sin(a)*r,z=Math.cos(a)*r,s=1+rand()*2.5;
+    const a=rand()*Math.PI*2,r=298+rand()*10,x=Math.sin(a)*r,z=Math.cos(a)*r,s=1+rand()*2.5;
     rocks.push({p:[x,s*.34,z],s:[s,s*.7,s*.8],r:[rand(),rand()*6,rand()*.3]});if(i%2===0)physics.cylinder(x,z,s*.8,s*.35,s*.5);
   }
   batch(new T.CylinderGeometry(.65,.85,1,6),wood,trunks);batch(new T.IcosahedronGeometry(1,1),0x608059,crowns);
   batch(new T.IcosahedronGeometry(1,0),rock,rocks);batch(new T.IcosahedronGeometry(1,0),grass,patches);batch(new T.IcosahedronGeometry(1,0),0x729451,ferns);
-  for(let i=0;i<15;i++){const a=i/15*Math.PI*2;const m=ellipsoid(scene,0x66796a,Math.sin(a)*115,-4,Math.cos(a)*115,12+rand()*9,13+rand()*14,14+rand()*7);m.rotation.y=a;m.castShadow=false;}
+  for(let i=0;i<15;i++){const a=i/15*Math.PI*2;const m=ellipsoid(scene,0x66796a,Math.sin(a)*330,-4,Math.cos(a)*330,12+rand()*9,13+rand()*14,14+rand()*7);m.rotation.y=a;m.castShadow=false;}
   function sign(text,x,z,w=7){const g=new T.Group();g.position.set(x,0,z);box(g,wood,-w*.38,1.35,0,.12,2.7,.15);box(g,wood,w*.38,1.35,0,.12,2.7,.15);const s=label(text,w,1.25);s.position.set(0,2.1,.08);g.add(s);scene.add(g);return g;}
   function fence(ax,az,bx,bz){
     const length=Math.hypot(bx-ax,bz-az),angle=Math.atan2(bx-ax,bz-az),g=new T.Group();g.position.set((ax+bx)/2,0,(az+bz)/2);g.rotation.y=angle;scene.add(g);

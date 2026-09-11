@@ -1,175 +1,196 @@
 import * as T from './vendor/three.module.js';
-import {byId,readProgress,writeProgress,addDiscovery,escapeHTML} from './core.js';
-import {ANIMALS,HOME,LAKE,ROADS,STATIONS,MISSIONS,clamp,distance,emptyRanger,readRanger,saveRanger,advance,waypoint,makeAnimalState,stepAnimal} from './ranger-data.js';
-import {initPhysics,ParkPhysics,RangerJeep,rotateVector} from './ranger-physics.js';
-import {makeJeep,makeParkDinosaur} from './ranger-art.js';
-import {buildPark} from './ranger-world.js';
+import {byId,readProgress,writeProgress,addDiscovery,escapeHTML,brushPatch,digPercent} from './core.js';
+import {HOME,LAKE,ROADS,STATIONS,MISSIONS,clamp,distance,readRanger,saveRanger,advance,waypoint} from './ranger-data.js';
+import {initPhysics,ParkPhysics} from './ranger-physics.js?v=ops1';
+import {makeJeep} from './ranger-art.js';
+import {buildPark} from './ranger-world.js?v=ops1';
 import {RangerAudio} from './ranger-audio.js';
-const $=id=>document.getElementById(id);
+import {BUILD,WORLD_RADIUS,WATER,DOCK,OUTPOSTS,PENS,TRAILS,TOOLS,CHECKPOINTS,ALL_ANIMALS,SPECIES,PREDATORS,readFrontier,saveFrontier,operations,penState,penTerminal,insidePen,speciesById,createResident,stepResident,deterAnimal} from './frontier-data.js?v=ops1';
+import {Fleet} from './frontier-vehicles.js?v=ops1';
+import {makeResident,makeHelicopter,makeBoat,makeBuggy,makePerson,makeTool} from './frontier-art.js?v=ops1';
+import {buildFrontier} from './frontier-world.js?v=ops1';
+import {RangerInput,focusable} from './ranger-input.js?v=ops1';
+import {RangerTools} from './ranger-tools.js?v=ops1';
+const $=id=>document.getElementById(id),esc=escapeHTML;
 export async function boot(){
-  await initPhysics();
-  let storage;try{storage=localStorage;}catch{storage=null;}
-  let campaign=readRanger(storage),started=false,health=100,time=0,accumulator=0,last=performance.now(),hornAt=-100,attackAt=-100,saveClock=0,uiClock=0;
-  let reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,night=false,cameraMode='orbit',yaw=.65,pitch=.72,zoom=32,candidate=null,drag=null;
-  let radioTimer,toastTimer,lastPrompt='',lastStage=-1,lastPosition={...HOME},previousSpeed=0,lowFrames=0,qualityChosen=false;
-  const held=new Set(),touch=new Set(),padPrevious=[],audio=new RangerAudio(),canvas=$('park');
-  const dialogs=[$('info-dialog'),$('map-dialog'),$('menu-dialog')],isPaused=()=>!started||dialogs.some(d=>d.open)||document.hidden;
-  const renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
-  renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.6));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
-  renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.07;
-  const scene=new T.Scene(),camera=new T.PerspectiveCamera(44,1,.1,500),physics=new ParkPhysics(),jeep=new RangerJeep(physics),park=buildPark(scene,physics),model=makeJeep();scene.add(model);
-  const animals=ANIMALS.map((d,i)=>{const a=makeAnimalState(d,i);a.model=makeParkDinosaur(d);a.collider=physics.animal(d.radius,d.x,d.z);scene.add(a.model);return a;});
-  for(let i=0;i<120;i++){jeep.drive({},1/60);physics.world.step();}
-  const size=()=>{const w=window.innerWidth,h=window.innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};window.addEventListener('resize',size);size();
-  camera.position.set(32,24,77);camera.lookAt(-3,2,31);park.setPowered(campaign.stage>=3);
-  $('motion-toggle').checked=reduced;
-  function clearInput(){held.clear();touch.clear();document.querySelectorAll('.pressed').forEach(b=>b.classList.remove('pressed'));accumulator=0;}
-  function toast(text){$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3600);}
-  function radio(text){$('radio-text').textContent=text;$('radio').classList.add('show');clearTimeout(radioTimer);radioTimer=setTimeout(()=>$('radio').classList.remove('show'),7000);}
-  function save(){if(!saveRanger(storage,campaign))toast('Progress cannot be saved in this browser. Keep this tab open.');}
-  function mission(event){if(advance(campaign,event)){save();park.setPowered(campaign.stage>=3);radio(MISSIONS[campaign.stage].radio);audio.tone(660,.14);return true;}return false;}
-  function showDialog(id){clearInput();if(!$(id).open)$(id).showModal();}
-  function info(kicker,title,html){$('info-kicker').textContent=kicker;$('info-title').textContent=title;$('info-body').innerHTML=html;showDialog('info-dialog');}
-  dialogs.forEach(d=>{d.addEventListener('close',()=>{clearInput();if(started)canvas.focus({preventScroll:true});});});
-  function recover(){jeep.reset();lastPosition={...HOME};health=100;previousSpeed=0;clearInput();toast('Recovered at the visitor center. Your discoveries and mission are safe.');}
-  function interact(){
-    if(isPaused()||!candidate)return;
-    if(Math.abs(jeep.speed)>3){toast('Slow down before interacting.');return;}
-    const c=candidate;
-    if(c.kind==='animal'){
-      const d=byId(c.id);if(!campaign.observed.includes(d.id))campaign.observed.push(d.id);
-      const p=readProgress(storage).progress;addDiscovery(p,'observed',d.id);if(!writeProgress(storage,p))toast('The field journal could not be saved on this device.');
-      if(d.diet==='Plant-eater')mission('survey');save();
-      info('SPECIES RECORDED / '+d.period.toUpperCase(),d.name,`<p>${escapeHTML(d.detail)}</p><p class="fact"><b>THE EVIDENCE</b>${escapeHTML(d.evidence)}</p><p class="fact"><b>STILL UNKNOWN</b>${escapeHTML(d.unknown)}</p><p><a href="./field-guide.html#journal" target="_blank" rel="noopener">Open your saved field journal</a></p>`);
-    }else if(c.kind==='power'){mission('power');toast('Relay restored. The northern research gate is opening.');}
-    else if(c.kind==='recorder'){if(mission('recorder'))info('RECOVERY SUCCESSFUL','Now get it home.','<p>The field recorder is secured. Follow the amber marker back to the visitor center and stop in the ranger bay.</p><p>Keep moving while you are inside the northern habitat.</p>');}
-    else if(c.kind==='home'){if(mission('home'))info('ALL FIVE OBJECTIVES COMPLETE','Welcome home, Ranger 07.',`<p>You surveyed the reserve, restored the research relay, and brought the recorder back safely.</p><p>Your expedition covered ${Math.round(campaign.meters)} meters. ${campaign.observed.length} of the 6 park species are in your ranger journal.</p><p>Continue exploring, try the equipment-yard ramp, or visit the fossil field. The original fossil lab and journal remain available in the field guide.</p>`);}
-    else if(c.kind==='lab')info('FOSSIL FIELD','Read the evidence.','<p>Continue the original Dino Atlas excavation and identification activities in the fossil lab. They share your existing field journal.</p><p><a href="./field-guide.html#dig" target="_blank" rel="noopener">Enter the fossil lab</a></p>');
-    else info('VISITOR CENTER','Your field journal.','<p>Every species you record here is added to the original Dino Atlas journal. Your previous excavation, quiz, and note progress is preserved.</p><p><a href="./field-guide.html#journal" target="_blank" rel="noopener">Open the field journal</a></p>');
-  }
-  function action(key){
-    if(!started)return;
-    if(key==='map'){if($('map-dialog').open)$('map-dialog').close();else if(!dialogs.some(d=>d.open))showDialog('map-dialog');return;}
-    if(key==='menu'){if($('menu-dialog').open)$('menu-dialog').close();else if(!dialogs.some(d=>d.open))showDialog('menu-dialog');return;}
-    if(isPaused())return;
-    if(key==='interact')interact();
-    if(key==='reset')recover();
-    if(key==='horn'){hornAt=time;audio.horn();toast('Horn sounded. Nearby animals may react.');}
-    if(key==='camera'){cameraMode=cameraMode==='orbit'?'chase':'orbit';$('camera-select').value=cameraMode;toast(cameraMode==='orbit'?'Isometric orbit camera':'Chase camera');}
-  }
-  const actions={KeyE:'interact',KeyR:'reset',KeyH:'horn',KeyM:'map',KeyC:'camera',Escape:'menu'};
-  const drivingCodes=['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','ShiftLeft','ShiftRight','KeyJ'];
-  window.addEventListener('keydown',e=>{
-    if(!started||e.ctrlKey||e.metaKey||e.altKey)return;
-    if(dialogs.some(d=>d.open)){if(e.code==='KeyM'&&$('map-dialog').open){e.preventDefault();$('map-dialog').close();}return;}
-    if(drivingCodes.includes(e.code)||actions[e.code])e.preventDefault();
-    if(!e.repeat&&actions[e.code])action(actions[e.code]);if(drivingCodes.includes(e.code))held.add(e.code);
-  });
-  window.addEventListener('keyup',e=>held.delete(e.code));window.addEventListener('blur',clearInput);
-  document.addEventListener('visibilitychange',()=>{clearInput();if(document.hidden&&started&&!dialogs.some(d=>d.open))showDialog('menu-dialog');});
-  document.querySelectorAll('[data-drive]').forEach(b=>{
-    const end=()=>{touch.delete(b.dataset.drive);b.classList.remove('pressed');};
-    b.addEventListener('pointerdown',e=>{e.preventDefault();if(isPaused())return;b.setPointerCapture(e.pointerId);touch.add(b.dataset.drive);b.classList.add('pressed');});
-    for(const name of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(name,end);
-  });
-  canvas.addEventListener('pointerdown',e=>{if(e.button!==0)return;canvas.focus({preventScroll:true});canvas.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY};});
-  canvas.addEventListener('pointermove',e=>{if(!drag||isPaused())return;yaw-=(e.clientX-drag.x)*.007;pitch=clamp(pitch+(e.clientY-drag.y)*.004,.35,1.1);drag={x:e.clientX,y:e.clientY};cameraMode='orbit';$('camera-select').value='orbit';});
-  for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,()=>drag=null);
-  canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=clamp(zoom+e.deltaY*.022,18,48);},{passive:false});
-  $('start-button').addEventListener('click',()=>{started=true;$('intro').hidden=true;$('hud').hidden=false;canvas.focus({preventScroll:true});radio(MISSIONS[campaign.stage].radio);last=performance.now();});
-  $('interact-button').addEventListener('click',interact);$('touch-horn').addEventListener('click',()=>action('horn'));$('touch-reset').addEventListener('click',()=>action('reset'));
-  $('map-button').addEventListener('click',()=>action('map'));$('minimap-button').addEventListener('click',()=>action('map'));$('menu-button').addEventListener('click',()=>action('menu'));
-  $('sound-button').addEventListener('click',async()=>{try{const on=await audio.toggle();$('sound-button').textContent=on?'Sound on':'Sound off';$('sound-button').setAttribute('aria-pressed',String(on));}catch{toast('Audio is not available in this browser.');}});
-  $('camera-select').addEventListener('change',e=>cameraMode=e.target.value);$('night-toggle').addEventListener('change',e=>night=e.target.checked);$('motion-toggle').addEventListener('change',e=>reduced=e.target.checked);
-  function quality(value){renderer.setPixelRatio(value==='low'?1:Math.min(devicePixelRatio||1,1.6));renderer.shadowMap.enabled=value!=='low';scene.traverse(o=>{if(o.material){for(const m of Array.isArray(o.material)?o.material:[o.material])m.needsUpdate=true;}});$('quality-select').value=value;size();}
-  $('quality-select').addEventListener('change',e=>{qualityChosen=true;quality(e.target.value);});
-  $('restart-button').addEventListener('click',()=>{campaign=emptyRanger();health=100;lastStage=-1;park.setPowered(false);recover();save();$('menu-dialog').close();radio(MISSIONS[0].radio);});
-  let previousPad=[];
-  function input(){
-    const down=(...keys)=>keys.some(k=>held.has(k)),v={throttle:Number(down('KeyW','ArrowUp')||touch.has('forward'))-Number(down('KeyS','ArrowDown')||touch.has('back')),steer:Number(down('KeyA','ArrowLeft')||touch.has('left'))-Number(down('KeyD','ArrowRight')||touch.has('right')),brake:down('Space')||touch.has('brake'),boost:down('ShiftLeft','ShiftRight')||touch.has('boost'),jump:down('KeyJ')};
-    let pad;try{pad=Array.from(navigator.getGamepads?.()||[]).find(Boolean);}catch{}
-    if(pad){const b=pad.buttons,axis=pad.axes[0]||0;if(Math.abs(axis)>.16)v.steer=clamp(-axis,-1,1);const t=(b[7]?.value||0)-(b[6]?.value||0);if(Math.abs(t)>.08)v.throttle=t;v.brake||=!!b[1]?.pressed;v.boost||=!!b[5]?.pressed;v.jump||=!!b[4]?.pressed;
-      for(const [i,a] of [[0,'interact'],[2,'horn'],[3,'reset'],[9,'menu']])if(b[i]?.pressed&&!previousPad[i])action(a);previousPad=b.map(v=>v.pressed);
-    }else previousPad=[];
-    return v;
-  }
-  function updateCandidate(){
-    const p=jeep.position;candidate=null;
-    const key=MISSIONS[campaign.stage].key,station=STATIONS[key];
-    if(['power','recorder','home'].includes(key)&&station&&distance(p,station)<7)candidate={kind:key};
-    if(!candidate){let nearest=Infinity;for(const a of animals){const gap=distance(p,a);if(gap<a.radius+9&&gap<nearest){nearest=gap;candidate={kind:'animal',id:a.id,mood:a.mood};}}}
-    if(!candidate&&distance(p,{x:-48,z:-15})<8)candidate={kind:'lab'};
-    if(!candidate&&distance(p,HOME)<7)candidate={kind:'journal'};
-    const labels={power:'Restore research relay',recorder:'Recover field recorder',home:'Deliver recorder',lab:'Explore the fossil lab',journal:'Open field notes'};
-    const text=candidate?(Math.abs(jeep.speed)>3?'Slow down to investigate':candidate.kind==='animal'?'Observe '+byId(candidate.id).name:labels[candidate.kind]):campaign.stage===5?'Explore the reserve':'Follow the amber marker';
-    if(text!==lastPrompt){$('interact-label').textContent=text;lastPrompt=text;}$('interact-button').disabled=!candidate||Math.abs(jeep.speed)>3;
-    const rex=animals.find(a=>a.kind==='rex');const threat=campaign.stage>=3&&distance(rex,p)<22&&p.z<-37;
-    document.body.classList.toggle('danger',threat);
-    $('encounter-label').textContent=threat?(rex.mood==='pursuing'?'TYRANNOSAUR APPROACHING / KEEP MOVING':'NORTHERN HABITAT / STAY ALERT'):candidate?.kind==='animal'?candidate.mood==='startled'?'The animal is startled. Give it space.':'Stop quietly to record a discovery.':'Leave only tire tracks.';
-  }
-  function drawMap(canvas,full=false){
-    const c=canvas.getContext('2d'),s=canvas.width,k=s/180,pos=(x,z)=>[s/2+x*k,s/2+z*k];c.clearRect(0,0,s,s);c.save();
-    if(!full){c.beginPath();c.arc(s/2,s/2,s/2-1,0,7);c.clip();}
-    c.fillStyle='#244637';c.fillRect(0,0,s,s);c.strokeStyle='#91a37918';c.lineWidth=1;for(let i=0;i<=s;i+=s/9){c.beginPath();c.moveTo(i,0);c.lineTo(i,s);c.moveTo(0,i);c.lineTo(s,i);c.stroke();}
-    c.fillStyle='#446044';c.beginPath();c.arc(s/2,s/2,84*k,0,7);c.fill();
-    c.fillStyle='#467b72';c.beginPath();c.arc(...pos(LAKE.x,LAKE.z),LAKE.r*k,0,7);c.fill();
-    c.fillStyle='#ad795c35';const [rx,rz]=pos(20,-76);c.fillRect(rx,rz,50*k,37*k);
-    c.strokeStyle='#c1b484';c.lineWidth=(full?1.6:1.2)*k;c.lineJoin='round';for(const road of ROADS){c.beginPath();road.forEach(([x,z],i)=>i?c.lineTo(...pos(x,z)):c.moveTo(...pos(x,z)));c.stroke();}
-    c.fillStyle='#719b6a';for(const a of animals){c.beginPath();c.arc(...pos(a.x,a.z),full?4:2.8,0,7);c.fill();}
-    c.font=`600 ${full?13:9}px sans-serif`;c.textAlign='center';
-    for(const [id,name] of [['home','BASE'],['power','RELAY'],['recorder','RECORDER']]){const [x,z]=pos(STATIONS[id].x,STATIONS[id].z);c.fillStyle='#c6cdaf';c.fillRect(x-2,z-2,4,4);if(full)c.fillText(name,x,z+18);}
-    if(campaign.stage<5){const [x,z]=pos(waypoint(campaign).x,waypoint(campaign).z);c.strokeStyle='#f2c66f';c.lineWidth=2;c.beginPath();c.arc(x,z,full?9:6,0,7);c.stroke();c.fillStyle='#f2c66f';c.beginPath();c.arc(x,z,2.5,0,7);c.fill();}
-    const p=jeep.position,[x,z]=pos(p.x,p.z);c.save();c.translate(x,z);c.rotate(Math.PI+jeep.heading);c.fillStyle='#fff5dc';c.beginPath();c.moveTo(0,-7);c.lineTo(4.5,5);c.lineTo(0,3);c.lineTo(-4.5,5);c.closePath();c.fill();c.restore();
-    c.fillStyle='#e1d7ad';c.font=`600 ${full?14:10}px sans-serif`;c.fillText('N',s/2,full?21:19);c.restore();
-  }
-  function ui(){
-    if(lastStage!==campaign.stage){const m=MISSIONS[campaign.stage];$('mission-title').textContent=m.title;$('mission-copy').textContent=m.text;$('mission-index').textContent=campaign.stage<5?String(campaign.stage+1).padStart(2,'0')+' / 05':'COMPLETE';$('mission-progress').value=campaign.stage;lastStage=campaign.stage;}
-    const p=jeep.position,w=waypoint(campaign);$('waypoint-distance').textContent=campaign.stage<5?Math.round(distance(p,w))+' m':'6 species';
-    $('speed').textContent=String(Math.round(Math.abs(jeep.speed)*3.6)).padStart(2,'0');$('gear').textContent=Math.abs(jeep.speed)<.6?'N':jeep.speed<0?'R':'D';
-    $('integrity').value=health;$('integrity-label').textContent=health>70?'VEHICLE OK':health>35?'DAMAGE / R TO RECOVER':'RECOVER WITH R';
-    $('region-label').textContent=p.z>31?'VISITOR CENTER':p.z< -37&&p.x>19?'NORTHERN HABITAT':p.x< -37?'FOSSIL FIELD':p.x< -12?'GIANT MEADOW':'VALLEY TRAIL';
-    updateCandidate();drawMap($('minimap'));if($('map-dialog').open)drawMap($('fullmap'),true);
-    park.beacon.visible=campaign.stage<5;if(park.beacon.visible)park.beacon.position.set(w.x,0,w.z);
-  }
-  function drawVehicle(){
-    model.position.copy(jeep.position);model.quaternion.copy(jeep.body.rotation());
-    model.userData.tires.forEach(({pivot,roll},i)=>{const c=jeep.connections[i],len=jeep.controller.wheelSuspensionLength(i)??.42;pivot.position.set(c.x,c.y-len,c.z);pivot.rotation.y=i<2?jeep.steer:0;roll.rotation.x=jeep.controller.wheelRotation(i)||0;});
-    model.userData.light.intensity=night?95:0;
-    for(const a of animals){a.model.position.set(a.x,0,a.z);a.model.rotation.y=a.angle;a.model.userData.legs.forEach((l,i)=>l.rotation.x=reduced?0:Math.sin(time*(a.mood==='pursuing'?7:1.8)+i*Math.PI)*.16);}
-  }
-  function frame(now){
-    requestAnimationFrame(frame);const realDt=Math.min(Math.max((now-last)/1000,0),.1);last=now;const paused=isPaused(),dt=paused?0:realDt;
-    if(!paused){
-      const controls=input();accumulator+=dt;let steps=0;
-      while(accumulator>=1/60&&steps<6&&!isPaused()){
-        time+=1/60;
-        for(const a of animals){stepAnimal(a,jeep.position,1/60,time,campaign.stage>=3,time-hornAt);a.collider.setNextKinematicTranslation({x:a.x,y:1,z:a.z});}
-        jeep.drive(controls,1/60);physics.world.step();accumulator-=1/60;steps++;
-        const p=jeep.position;
-        if(Math.hypot(p.x,p.z)>86||p.y< -4||![p.x,p.y,p.z].every(Number.isFinite)){recover();break;}
-        if(campaign.stage===0&&distance(p,STATIONS.gate)<5)mission('gate');
-        const traveled=distance(p,lastPosition);if(traveled<4)campaign.meters+=traveled;lastPosition={x:p.x,z:p.z};
-        const rex=animals.find(a=>a.kind==='rex');if(campaign.stage>=3&&p.z< -37&&distance(rex,p)<rex.radius+1.8&&time-attackAt>2){attackAt=time;health=Math.max(0,health-25);audio.tone(105,.22);toast('The tyrannosaur struck the jeep. Move away or press R to recover.');}
-        const speed=Math.abs(jeep.speed);if(previousSpeed-speed>5&&previousSpeed>8)health=Math.max(0,health-(previousSpeed-speed)*1.4);previousSpeed=speed;
-        if(health<=0){recover();radio('Recovery team has returned you to base. Your recorder and discoveries were saved.');break;}
-      }
-      saveClock+=dt;if(saveClock>8){saveClock=0;save();}
-    }else accumulator=0;
-    drawVehicle();park.update(dt,time,jeep,night,reduced);audio.update(jeep.speed,!paused);
-    if(started){
-      const p=jeep.position,angle=cameraMode==='chase'?jeep.heading+Math.PI:yaw,dist=cameraMode==='chase'?17:zoom,vertical=cameraMode==='chase'?.37:pitch;
-      const target=new T.Vector3(p.x+Math.sin(angle)*dist*Math.cos(vertical),Math.max(0,p.y)+dist*Math.sin(vertical),p.z+Math.cos(angle)*dist*Math.cos(vertical));
-      camera.position.lerp(target,reduced?1:1-Math.exp(-realDt*4));camera.lookAt(p.x,1.5+Math.max(0,p.y)*.25,p.z);
-    }
-    uiClock+=realDt;if(uiClock>.09){uiClock=0;ui();}
-    renderer.render(scene,camera);
-    if(started&&!paused&&!qualityChosen&&$('quality-select').value==='high'){lowFrames=realDt>.046?lowFrames+realDt:Math.max(0,lowFrames-realDt);if(lowFrames>6){quality('low');qualityChosen=true;toast('Battery-saver graphics enabled for smoother driving. Change this in Menu.');}}
-  }
-  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();clearInput();if(started&&!dialogs.some(d=>d.open))showDialog('menu-dialog');toast('Graphics were interrupted. Reload the page, or use the original walking expedition.');});
-  window.addEventListener('pagehide',save);
-  ui();drawVehicle();park.update(0,time,jeep,night,reduced);renderer.render(scene,camera);
-  $('start-button').disabled=false;$('start-button').textContent=campaign.stage?'Continue expedition':'Start your engine';$('load-status').textContent='WASD / arrows to drive. Touch controls on mobile.';
-  const debug={get state(){return {ready:true,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],meters:campaign.meters,position:{...jeep.position},speed:jeep.speed,grounded:jeep.grounded,health,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night,animals:animals.map(({id,x,z,mood})=>({id,x,z,mood}))};}};
-  if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{jeep.reset({x,z},heading);lastPosition={x,z};},render:()=>{ui();renderer.render(scene,camera);},physics,jeep});
-  window.__dinoRanger=debug;requestAnimationFrame(frame);
+ const R=await initPhysics();let storage;try{storage=localStorage;}catch{storage=null;}
+ const campaign=readRanger(storage),state=readFrontier(storage),settings=state.settings;
+ for(const id of campaign.observed)if(!state.observed.includes(id))state.observed.push(id);
+ let started=false,time=0,accumulator=0,last=performance.now(),uiClock=0,saveClock=0,hornAt=-100,startedAt=0,candidate=null,aiming=false,drag=null,beamAge=10,toastTimer,radioTimer,backTarget=null;
+ let cameraMode=settings.camera,yaw=.65,pitch=.65,aimPitch=.04,zoom=34,campaignPinned=campaign.stage<5,lastPosition={...HOME},lastNotice='',noticeAt=-100,lastJournalSelection=null;
+ settings.reduced||=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const canvas=$('park'),audio=new RangerAudio(),renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
+ renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.07;renderer.shadowMap.type=T.PCFSoftShadowMap;
+ const scene=new T.Scene(),camera=new T.PerspectiveCamera(46,1,.1,750),physics=new ParkPhysics(),park=buildPark(scene,physics),fleet=new Fleet(physics,state),frontier=buildFrontier(scene,physics,state),tools=new RangerTools(state);
+ const models={jeep:makeJeep,helicopter:makeHelicopter,boat:makeBoat,buggy:makeBuggy};
+ for(const v of fleet.vehicles){v.model=models[v.type]();scene.add(v.model);}
+ const personModel=makePerson(),toolModel=makeTool();scene.add(personModel,toolModel);
+ const animals=ALL_ANIMALS.map((d,i)=>{const a=createResident(d,i),p=PENS.find(p=>p.id===a.pen);if(p&&penState(state,p).secured){a.x=p.x+(i%3-1)*8;a.z=p.z+(i%2?6:-6);a.origin={x:a.x,z:a.z};}a.model=makeResident(a);a.collider=physics.animal(a.radius,a.x,a.z);scene.add(a.model);return a;});
+ for(let i=0;i<120;i++){fleet.drive({},1/60,0,yaw);physics.world.step();}park.setPowered(campaign.stage>=3);
+ const lineGeo=new T.BufferGeometry();lineGeo.setAttribute('position',new T.Float32BufferAttribute(new Float32Array(39),3));const beam=new T.Line(lineGeo,new T.LineBasicMaterial({color:0x8bdcf2,transparent:true,opacity:.9}));beam.frustumCulled=false;beam.visible=false;scene.add(beam);
+ const flash=new T.Mesh(new T.IcosahedronGeometry(.3,1),new T.MeshBasicMaterial({color:0xabeaff,transparent:true,opacity:.7}));scene.add(flash);flash.visible=false;
+ const modals=()=>[...document.querySelectorAll('dialog[open]')],modal=()=>!started?$('intro'):modals().at(-1)||null,isPaused=()=>!!modal()||document.hidden;
+ const input=new RangerInput({action,modal,mode:()=>fleet.mode,onDevice:updateDevice,onDisconnect:()=>{if(started&&!modal())show('menu-dialog');toast('Controller disconnected. The game is paused; reconnect and press B to resume.');}});input.vibration=settings.vibration;
+ fleet.onNotice=toast;fleet.onRecover=v=>{if(v.id===fleet.active)toast('Vehicle auto-righted in place. No damage or progress lost.');input.pulse(.45,180);};
+ function quality(low){settings.low=!!low;renderer.setPixelRatio(Math.min(devicePixelRatio||1,low?1:1.6));renderer.shadowMap.enabled=!low;$('quality-select').value=low?'low':'high';}
+ quality(settings.low);const size=()=>{renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();};window.addEventListener('resize',size);size();
+ camera.position.set(32,24,77);camera.lookAt(-3,2,31);
+ function toast(text){if(text===lastNotice&&time-noticeAt<2)return;lastNotice=text;noticeAt=time;$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),4200);}
+ function radio(text){$('radio-text').textContent=text;$('radio').classList.add('show');clearTimeout(radioTimer);radioTimer=setTimeout(()=>$('radio').classList.remove('show'),6500);}
+ function save(){fleet.capture();settings.camera=cameraMode;const a=saveRanger(storage,campaign),b=saveFrontier(storage,state);if(!a||!b)toast('This browser cannot save progress. Keep the tab open or enable local storage.');}
+ function close(){const d=modals().at(-1);if(d)d.close();input.clear();if(backTarget){const target=backTarget;backTarget=null;if(target==='journal')openJournal();else if(target==='operations')openOperations();else if(target==='menu')show('menu-dialog');}else canvas.focus({preventScroll:true});}
+ function show(id){for(const d of modals())if(d.id!==id)d.close();input.clear();const d=$(id);if(!d.open)d.showModal();focusable(d)[0]?.focus({preventScroll:true});}
+ function info(kicker,title,html,back=null){backTarget=back;$('info-kicker').textContent=kicker;$('info-title').textContent=title;$('info-body').innerHTML=html;show('info-dialog');}
+ for(const d of document.querySelectorAll('dialog')){d.addEventListener('cancel',e=>{e.preventDefault();close();});d.addEventListener('close',()=>input.clear());}
+ document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',close));
+ function mission(event){if(advance(campaign,event)){park.setPowered(campaign.stage>=3);save();radio(MISSIONS[campaign.stage].radio);input.pulse(.22);audio.tone(660,.14);if(campaign.stage===5)campaignPinned=false;return true;}return false;}
+ function observe(id){const d=speciesById(id),old=byId(id);if(!d)return;if(!state.observed.includes(id))state.observed.push(id);
+  if(old){if(!campaign.observed.includes(id))campaign.observed.push(id);const p=readProgress(storage).progress;addDiscovery(p,'observed',id);writeProgress(storage,p);}
+  if(old?old.diet==='Plant-eater':!PREDATORS.has(d.kind))mission('survey');save();
+  info('SPECIES RECORDED / RANGER JOURNAL',d.name,`<p>${esc(d.role)}</p>${old?`<p class="fact"><b>THE FOSSIL EVIDENCE</b>${esc(old.evidence)}</p><p class="fact"><b>STILL UNKNOWN</b>${esc(old.unknown)}</p>`:'<p class="fact"><b>RESERVE NOTE</b>This animal model and its behavior are stylized for a fictional mixed-period reserve, not a validated reconstruction.</p>'}<p>${state.observed.length} of 14 species recorded. Your earlier field-guide notes and discoveries remain untouched.</p>`);
+ }
+ function openJournal(){backTarget=null;$('journal-list').innerHTML=SPECIES.map(d=>`<button class="entry" data-species="${d.id}"><span>${esc(d.name)}</span><small>${state.observed.includes(d.id)?'RECORDED':'NOT YET OBSERVED'}</small></button>`).join('');$('journal-summary').textContent=state.observed.length+' / 14 species recorded';show('journal-dialog');}
+ $('journal-list').addEventListener('click',e=>{const b=e.target.closest('[data-species]');if(!b)return;const d=speciesById(b.dataset.species);lastJournalSelection=d.id;info(state.observed.includes(d.id)?'RECORDED SPECIES':'RESERVE FIELD GUIDE',d.name,`<p>${esc(d.role)}</p><p>Approach this animal and press A to record a field observation. Use short tool bursts to guide it without injuring it.</p>`,'journal');});
+ function openOperations(){backTarget=null;const tasks=operations(state);$('operations-list').innerHTML=tasks.map(o=>`<button class="entry" data-track="${o.id}"><span>${esc(o.name)}<small>${esc(o.detail)}</small></span><b>${o.done} / ${o.total}</b></button>`).join('');show('operations-dialog');}
+ $('operations-list').addEventListener('click',e=>{const b=e.target.closest('[data-track]');if(b){state.tracked=b.dataset.track;campaignPinned=false;close();save();toast('Operation pinned to your HUD and map.');}});
+ function openMap(){backTarget=null;$('outpost-list').innerHTML=OUTPOSTS.map(o=>`<button class="entry" data-travel="${o.id}" ${state.outposts.includes(o.id)?'':'disabled'}><span>${esc(o.name)}</span><small>${state.outposts.includes(o.id)?'TRAVEL':'VISIT TO UNLOCK'}</small></button>`).join('');drawMap($('fullmap'),true);show('map-dialog');}
+ $('outpost-list').addEventListener('click',e=>{const b=e.target.closest('[data-travel]');if(b&&fleet.travel(b.dataset.travel)){tools.refill();close();save();toast('Arrived at '+OUTPOSTS.find(o=>o.id===b.dataset.travel).name+'. Equipment refilled.');}});
+ function openOutpost(o){if(!state.outposts.includes(o.id)){state.outposts.push(o.id);radio(o.name+' is on the ranger network. It is now a rest point and travel destination.');}state.checkpoint=o.id;tools.refill();save();backTarget=null;
+  $('outpost-title').textContent=o.name;$('outpost-summary').textContent='Checkpoint saved. Water tanks and zapper batteries are full. '+state.outposts.length+' of 6 outposts established.';show('outpost-dialog');}
+ let selectedPen=null;
+ function openPen(p){selectedPen=p;backTarget=null;updatePenPanel();show('pen-dialog');}
+ function updatePenPanel(){const p=selectedPen,ps=penState(state,p),count=animals.filter(a=>a.pen===p.id&&insidePen(a,p,1)).length;$('pen-title').textContent=p.name;$('pen-status').textContent=`${count} / 4 residents inside. Gate ${ps.open?'open':'closed'}. Feeder ${ps.fed?'stocked':'empty'}. ${ps.secured?'Containment recorded.':'Guide everyone inside, then close the gate.'}`;$('pen-gate').textContent=ps.open?'Close enclosure gate':'Open enclosure gate';$('pen-feed').textContent=ps.fed?'Replenish feeder':'Fill feeder and call residents';}
+ $('pen-gate').onclick=()=>{const ps=penState(state,selectedPen),t=selectedPen;if(ps.open&&distance(fleet.position,{x:t.x,z:t.z+t.hz})<7){toast('Move clear of the gateway before closing it.');return;}ps.open=!ps.open;updatePenPanel();save();};
+ $('pen-feed').onclick=()=>{penState(state,selectedPen).fed=true;updatePenPanel();save();toast('Feeder stocked. Residents can return through an open gate.');};
+ $('pen-track').onclick=()=>{state.tracked='pens';campaignPinned=false;close();};
+ function openLab(){const p=readProgress(storage).progress,id=lastJournalSelection&&byId(lastJournalSelection)?lastJournalSelection:'diplodocus',d=byId(id);backTarget=null;$('lab-species').value=id;updateLab();show('lab-dialog');}
+ function updateLab(){const p=readProgress(storage).progress,id=$('lab-species').value;$('dig-status').textContent=digPercent(p,id)+'% brushed. Each patch needs two careful passes.';$('dig-progress').value=digPercent(p,id);$('lab-brush').disabled=digPercent(p,id)===100;}
+ $('lab-species').onchange=updateLab;$('lab-brush').onclick=()=>{const p=readProgress(storage).progress,id=$('lab-species').value,index=(p.digs[id]||Array(48).fill(0)).findIndex(v=>v<2);if(index>=0){brushPatch(p,id,index);writeProgress(storage,p);updateLab();input.pulse(.07,35);}};
+ function interact(){if(isPaused()||!candidate)return;if(Math.abs(fleet.actor.speed)>3){toast('Slow down before interacting.');return;}const c=candidate;
+  if(c.kind==='animal')observe(c.id);
+  else if(c.kind==='pen')openPen(c.pen);
+  else if(c.kind==='outpost')openOutpost(c.outpost);
+  else if(c.kind==='power'){mission('power');toast('Relay restored. The original northern gate is opening.');}
+  else if(c.kind==='recorder'){if(mission('recorder'))info('FIELD RECORDER SECURED','Return the recorder to base.','<p>Follow the amber marker to the visitor center. Your vehicle takes no damage; a rollover automatically rights itself in place.</p>');}
+  else if(c.kind==='home'){if(mission('home'))info('ORIGINAL EXPEDITION COMPLETE','A bigger reserve awaits.',`<p>Your recorder is safe. Ranger Operations now offers eight new enclosures, six outposts, a wetland patrol, and 14 species to discover.</p><p>Press View for the map or Menu for the operations board.</p>`);}
+  else if(c.kind==='lab')openLab();else if(c.kind==='vehicle')fleet.board();
+ }
+ function action(key){
+  if(!started){if(key==='back')return;return;}
+  if(key==='back'){close();return;}
+  if(key==='tabPrev'||key==='tabNext'){if(!modal())return;const tabs=['operations-dialog','journal-dialog','map-dialog','menu-dialog'],i=tabs.indexOf(modal().id),idx=(i+(key==='tabNext'?1:-1)+tabs.length)%tabs.length;backTarget=null;[openOperations,openJournal,openMap,()=>show('menu-dialog')][idx]();return;}
+  if(key==='menu'){if(modal())close();else{backTarget=null;show('menu-dialog');}return;}
+  if(key==='map'){if(modal()?.id==='map-dialog')close();else openMap();return;}
+  if(key==='operations'){openOperations();return;}if(key==='journal'){openJournal();return;}
+  if(isPaused())return;
+  if(key==='interact')interact();
+  else if(key==='board'){if(fleet.board()){input.clear();save();}}
+  else if(key==='reload'){if(tools.reload()){audio.tone(360,.08);toast(TOOLS[state.tool].id==='water'?'Reloading water tank...':'Replacing zapper battery...');}else if(state.reserve[state.tool]===0)toast('No spare supplies. Rest at an outpost to replenish.');else if(tools.reloadLeft===0)toast('This tool is already full.');}
+  else if(key==='nextTool'||key==='prevTool'){tools.switch(key==='nextTool'?1:-1);toast(tools.tool.name+' selected. X reloads.');}
+  else if(key==='water'||key==='zapper'){state.tool=key==='water'?0:1;tools.reloadLeft=0;tools.reloadTool=null;}
+  else if(key==='recover'){if(fleet.current)fleet.recover();else toast('You are on foot. Vehicles right themselves automatically.');}
+  else if(key==='horn'){hornAt=time;audio.horn();input.pulse(.15,120);toast('Horn sounded. Give nearby animals room to move.');}
+  else if(key==='camera'){cameraMode=cameraMode==='orbit'?'chase':'orbit';$('camera-select').value=cameraMode;toast(cameraMode==='orbit'?'Orbit camera':'Chase camera');}
+  else if(key==='lights'){settings.night=!settings.night;$('night-toggle').checked=settings.night;}
+ }
+ function updateDevice(device){document.body.dataset.input=device;$('input-status').textContent=device==='gamepad'?'XBOX / STANDARD GAMEPAD':device==='touch'?'TOUCH CONTROLS':'KEYBOARD + MOUSE';$('interact-key').textContent=device==='gamepad'?'A':'E';$('board-key').textContent=device==='gamepad'?'Y':'F';$('reload-key').textContent=device==='gamepad'?'X':'R';}
+ $('start-button').onclick=()=>{started=true;startedAt=performance.now();$('intro').hidden=true;$('hud').hidden=false;input.clear();canvas.focus({preventScroll:true});radio('Ranger Operations is online. Y exits your vehicle. X reloads. View opens the map. Menu opens every setting.');last=performance.now();lastPosition={...fleet.position};if(!state.rides.includes(fleet.mode)&&fleet.mode!=='foot')state.rides.push(fleet.mode);};
+ $('interact-button').onclick=interact;$('board-button').onclick=()=>action('board');$('reload-button').onclick=()=>action('reload');$('tool-button').onclick=()=>action('nextTool');
+ for(const id of ['map-button','minimap-button','menu-map'])$(id).onclick=openMap;
+ $('menu-button').onclick=()=>action('menu');$('menu-operations').onclick=openOperations;$('menu-journal').onclick=openJournal;$('menu-lab').onclick=openLab;
+ $('menu-controls').onclick=()=>{backTarget='menu';show('controls-dialog');};$('outpost-operations').onclick=openOperations;$('outpost-map').onclick=openMap;
+ $('campaign-track').onclick=()=>{campaignPinned=campaign.stage<5;close();};
+ $('manual-recover').onclick=()=>{close();if(fleet.current)fleet.recover();};
+ $('resupply-button').onclick=()=>{tools.refill();save();toast('Water tanks and battery reserves replenished.');};
+ $('sound-button').onclick=async()=>{try{const on=await audio.toggle();$('sound-button').textContent=on?'Sound: on':'Sound: off';}catch{toast('This browser has not enabled audio playback.');}};
+ $('camera-select').value=cameraMode;$('camera-select').onchange=e=>cameraMode=e.target.value;
+ $('quality-select').onchange=e=>quality(e.target.value==='low');
+ for(const [id,key] of [['night-toggle','night'],['motion-toggle','reduced'],['vibration-toggle','vibration']]){$(id).checked=settings[key];$(id).onchange=e=>{settings[key]=e.target.checked;input.vibration=settings.vibration;};}
+ $('sensitivity').value=settings.sensitivity;$('sensitivity').oninput=e=>{settings.sensitivity=Number(e.target.value);$('sensitivity-value').textContent=settings.sensitivity.toFixed(1);};
+ // No native confirm/alert can trap a controller user.
+ $('reset-training').onclick=()=>{backTarget='menu';$('confirm-title').textContent='Reset training crates?';$('confirm-copy').textContent='Only the ten practice blast crates will return. All journals, missions, enclosures and checkpoints are preserved.';show('confirm-dialog');};
+ $('confirm-yes').onclick=()=>{state.exploded=[];for(const c of frontier.crates){c.exploded=false;c.body.setEnabled(true);}backTarget=null;close();save();toast('Practice blast crates restored.');};
+ for(const b of document.querySelectorAll('[data-drive]')){const end=()=>{input.touch.delete(b.dataset.drive);b.classList.remove('pressed');};b.onpointerdown=e=>{e.preventDefault();if(isPaused())return;input.setDevice('touch');b.setPointerCapture(e.pointerId);input.touch.add(b.dataset.drive);b.classList.add('pressed');};for(const name of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(name,end);}
+ for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>action(b.dataset.action);
+ canvas.oncontextmenu=e=>e.preventDefault();canvas.addEventListener('pointerdown',e=>{if(isPaused())return;input.setDevice(e.pointerType==='touch'?'touch':'keyboard');canvas.focus({preventScroll:true});canvas.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,button:e.button};if(e.button===2)input.mouseAim=true;else if(e.button===0&&(input.mouseAim||fleet.mode==='foot'))input.mouseFire=true;});
+ canvas.addEventListener('pointermove',e=>{if(!drag||isPaused())return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;yaw-=dx*.005*settings.sensitivity;if(input.mouseAim)aimPitch=clamp(aimPitch+dy*.004,-.6,.8);else pitch=clamp(pitch+dy*.004,.3,1.15);drag={...drag,x:e.clientX,y:e.clientY};});
+ for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,e=>{drag=null;input.mouseAim=false;input.mouseFire=false;});
+ canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=clamp(zoom+e.deltaY*.025,18,68);},{passive:false});
+ window.addEventListener('blur',()=>{input.clear();if(started&&!modal()){backTarget=null;show('menu-dialog');}});document.addEventListener('visibilitychange',()=>{input.clear();if(document.hidden&&started&&!modal()){backTarget=null;show('menu-dialog');}});window.addEventListener('pagehide',save);
+ function updateCandidate(){const p=fleet.position;candidate=null;const key=MISSIONS[campaign.stage].key;
+  if(p.y<5&&['power','recorder','home'].includes(key)&&distance(p,STATIONS[key])<7)candidate={kind:key};
+  if(!candidate&&p.y<4){const pen=PENS.find(p=>distance(fleet.position,penTerminal(p))<8);if(pen)candidate={kind:'pen',pen};}
+  if(!candidate&&p.y<4){const outpost=OUTPOSTS.find(o=>distance(p,o)<7);if(outpost)candidate={kind:'outpost',outpost};}
+  if(!candidate&&p.y<7){let gap=Infinity;for(const a of animals){const d=distance(p,a);if(d<a.radius+8&&d<gap){gap=d;candidate={kind:'animal',id:a.species,mood:a.mood};}}}
+  if(!candidate&&distance(p,{x:-48,z:-15})<8)candidate={kind:'lab'};
+  const nearVehicle=fleet.mode==='foot'?fleet.nearest():null;if(!candidate&&nearVehicle)candidate={kind:'vehicle'};
+  const labels={power:'Restore research relay',recorder:'Recover field recorder',home:'Deliver recorder',lab:'Explore the fossil lab',vehicle:'Board nearby vehicle'};
+  $('interact-label').textContent=candidate?(Math.abs(fleet.actor.speed)>3?'Slow down to interact':candidate.kind==='animal'?'Observe '+speciesById(candidate.id).name:candidate.kind==='pen'?'Manage '+candidate.pen.name:candidate.kind==='outpost'?'Rest at '+candidate.outpost.name:labels[candidate.kind]):'Explore the reserve';$('interact-button').disabled=!candidate||Math.abs(fleet.actor.speed)>3;
+  $('board-label').textContent=fleet.mode==='foot'?(nearVehicle?'Board '+nearVehicle.name:'Approach a vehicle'):'Exit '+fleet.current.name;$('board-button').disabled=fleet.mode==='foot'&&!nearVehicle;
+  const threat=animals.find(a=>a.mood==='pursuing'&&distance(a,p)<20);document.body.classList.toggle('danger',!!threat);$('encounter-label').textContent=threat?'CHARGE WARNING / USE YOUR RANGER TOOL':candidate?.kind==='animal'?candidate.mood:'No vehicle damage. Automatic in-place recovery.';
+ }
+ function activeTask(){if(campaignPinned&&campaign.stage<5){const m=MISSIONS[campaign.stage];return {name:m.title,detail:m.text.replaceAll('press E','press A / E'),target:waypoint(campaign),done:campaign.stage,total:5};}return operations(state).find(o=>o.id===state.tracked)||operations(state)[0];}
+ function drawMap(cv,full=false){const ctx=cv.getContext('2d'),s=cv.width,p=fleet.position,span=full?650:145,k=s/span,cx=full?0:p.x,cz=full?0:p.z,to=(x,z)=>[s/2+(x-cx)*k,s/2+(z-cz)*k];ctx.clearRect(0,0,s,s);ctx.save();if(!full){ctx.beginPath();ctx.arc(s/2,s/2,s/2-1,0,7);ctx.clip();}ctx.fillStyle='#24493e';ctx.fillRect(0,0,s,s);ctx.fillStyle='#516b4c';ctx.beginPath();ctx.arc(...to(0,0),WORLD_RADIUS*k,0,7);ctx.fill();
+  for(const w of WATER){ctx.fillStyle='#548e91';ctx.beginPath();ctx.ellipse(...to(w.x,w.z),w.rx*k,w.rz*k,0,0,7);ctx.fill();}ctx.beginPath();ctx.arc(...to(LAKE.x,LAKE.z),LAKE.r*k,0,7);ctx.fill();
+  ctx.strokeStyle='#c4af7e';ctx.lineWidth=full?2:3;for(const r of [...ROADS,...TRAILS]){ctx.beginPath();r.forEach(([x,z],i)=>i?ctx.lineTo(...to(x,z)):ctx.moveTo(...to(x,z)));ctx.stroke();}
+  for(const pen of PENS){const [x,z]=to(pen.x-pen.hx,pen.z-pen.hz);ctx.fillStyle=state.pens[pen.id]?.secured?'#7ca67455':'#b1945b55';ctx.fillRect(x,z,pen.hx*2*k,pen.hz*2*k);ctx.strokeStyle='#a5b286';ctx.strokeRect(x,z,pen.hx*2*k,pen.hz*2*k);if(full){ctx.fillStyle='#e3dac0';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText(pen.name,...to(pen.x,pen.z-pen.hz-5));}}
+  for(const a of animals){ctx.fillStyle=PREDATORS.has(a.kind)?'#e4a274':'#b3d9a6';ctx.beginPath();ctx.arc(...to(a.x,a.z),full?2:3,0,7);ctx.fill();}
+  for(const o of OUTPOSTS){const [x,z]=to(o.x,o.z);ctx.fillStyle=state.outposts.includes(o.id)?'#f4d591':'#a4b6b6';ctx.fillRect(x-4,z-4,8,8);if(full){ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText(o.name,x,z+17);}}
+  for(const v of fleet.vehicles){const [x,z]=to(v.drive.position.x,v.drive.position.z);ctx.fillStyle='#b6e6ed';ctx.beginPath();ctx.arc(x,z,full?4:4.5,0,7);ctx.fill();if(full){ctx.font='9px sans-serif';ctx.fillText(v.type,x,z-8);}}
+  const target=activeTask().target;if(target){ctx.strokeStyle='#ffdb84';ctx.lineWidth=2;ctx.beginPath();ctx.arc(...to(target.x,target.z),full?10:8,0,7);ctx.stroke();}
+  const [x,z]=to(p.x,p.z);ctx.save();ctx.translate(x,z);ctx.rotate(Math.PI+fleet.actor.heading);ctx.fillStyle='#fff5d9';ctx.beginPath();ctx.moveTo(0,-7);ctx.lineTo(5,5);ctx.lineTo(0,3);ctx.lineTo(-5,5);ctx.closePath();ctx.fill();ctx.restore();ctx.fillStyle='#eed9a8';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('N',s/2,16);ctx.restore();
+ }
+ function shoot(){const t=tools.fire();if(!t){if(state.ammo[state.tool]<1&&tools.reloadLeft===0)toast('Tool empty. Press X / R to reload.');return;}
+  const p=fleet.position,dir={x:-Math.sin(yaw)*Math.cos(aimPitch),y:-Math.sin(aimPitch),z:-Math.cos(yaw)*Math.cos(aimPitch)},origin={x:p.x+dir.x*.6,y:p.y+(fleet.mode==='foot'?.35:1.15),z:p.z+dir.z*.6};
+  const actor=fleet.actor,hit=physics.world.castRay(new R.Ray(origin,dir),t.range,true,undefined,undefined,actor.collider,actor.body);let length=hit?hit.timeOfImpact:t.range;
+  if(hit){const a=animals.find(a=>a.collider.collider(0).handle===hit.collider.handle);if(a){deterAnimal(a,origin,t.id);state.toolHits[t.id]++;input.pulse(t.id==='zapper'?.35:.08,t.id==='zapper'?130:45);}const c=frontier.crates.find(c=>!c.exploded&&c.body.collider(0).handle===hit.collider.handle);if(c)blast(c);}
+  const positions=lineGeo.attributes.position;for(let i=0;i<=12;i++){const f=i/12,shake=t.id==='zapper'&&i>0&&i<12?Math.sin(i*24+time*47)*.12:0;positions.setXYZ(i,origin.x+dir.x*length*f+shake,origin.y+dir.y*length*f+(t.id==='water'?.12*Math.sin(f*Math.PI):shake),origin.z+dir.z*length*f);}positions.needsUpdate=true;beam.material.color.setHex(t.color);beamAge=0;beam.visible=true;flash.visible=true;flash.material.color.setHex(t.color);flash.position.set(origin.x+dir.x*length,origin.y+dir.y*length,origin.z+dir.z*length);
+  if(t.id==='zapper')audio.tone(160,.08);
+ }
+ function blast(c){const origin=frontier.detonate(c);if(!origin)return;fleet.blast(origin);for(const a of animals)if(distance(a,origin)<22)deterAnimal(a,origin,'water');toast('Training crate detonated. Vehicles take no damage and auto-right.');audio.tone(80,.25);input.pulse(.8,250);save();}
+ function syncModels(dt){for(const v of fleet.vehicles){const d=v.drive;v.model.position.copy(d.position);v.model.quaternion.copy(d.body.rotation());if(v.model.userData.tires)v.model.userData.tires.forEach(({pivot,roll},i)=>{const c=d.connections[i];pivot.position.set(c.x,c.y-(d.controller.wheelSuspensionLength(i)??.42),c.z);pivot.rotation.y=i<2?d.steer:0;roll.rotation.x=d.controller.wheelRotation(i)||0;});if(v.model.userData.light)v.model.userData.light.intensity=settings.night?95:0;if(v.model.userData.rotor){v.model.userData.rotor.rotation.y+=dt*(v.id===fleet.active?38:3);v.model.userData.tailRotor.rotation.x+=dt*45;}}
+  personModel.visible=fleet.mode==='foot';personModel.position.set(fleet.person.position.x,fleet.person.position.y-.9,fleet.person.position.z);personModel.rotation.y=aiming?yaw+Math.PI:fleet.person.heading;for(const [i,l] of personModel.userData.legs.entries())l.rotation.x=settings.reduced?0:Math.sin(time*9+i*Math.PI)*Math.min(.45,fleet.person.speed*.08);
+  const p=fleet.position;for(const a of animals){a.model.visible=distance(a,p)<(settings.low?110:165);a.model.position.set(a.x,0,a.z);a.model.rotation.y=a.angle;if(a.model.visible)for(const [i,l] of a.model.userData.legs.entries())l.rotation.x=settings.reduced?0:Math.sin(time*(a.mood==='pursuing'?6:2)+i*Math.PI)*.17;}
+  toolModel.visible=aiming||fleet.mode==='foot';toolModel.position.set(p.x,p.y+(fleet.mode==='foot'?.38:1.2),p.z);toolModel.rotation.set(aimPitch,yaw+Math.PI,0,'YXZ');
+  beamAge+=dt;beam.visible=beamAge<.13;flash.visible=beamAge<.13;beam.material.opacity=Math.max(0,1-beamAge/.15);flash.material.opacity=Math.max(0,.6-beamAge*4);
+ }
+ function ui(){const task=activeTask(),p=fleet.position;$('mission-title').textContent=task.name;$('mission-copy').textContent=task.detail;$('mission-index').textContent=task.done+' / '+task.total;$('mission-progress').max=task.total;$('mission-progress').value=task.done;$('waypoint-distance').textContent=task.target?Math.round(distance(p,task.target))+' m':'RANGER OPERATIONS';
+  $('speed').textContent=String(Math.round(Math.abs(fleet.actor.speed)*3.6)).padStart(2,'0');$('mode-label').textContent=fleet.current?.name||'Ranger on foot';$('altitude').textContent=fleet.mode==='helicopter'?Math.round(Math.max(0,p.y-1))+' m ALT':state.outposts.length+' / 6 OUTPOSTS';
+  $('tool-name').textContent=tools.tool.name;$('ammo').textContent=Math.ceil(state.ammo[state.tool]);$('ammo-reserve').textContent=Math.floor(state.reserve[state.tool]);$('ammo-bar').value=state.ammo[state.tool];$('ammo-bar').max=tools.tool.capacity;$('reload-status').textContent=tools.reloadLeft>0?'Reloading '+tools.reloadLeft.toFixed(1)+' s':state.ammo[state.tool]<1?'EMPTY / X TO RELOAD':'X / R RELOAD';$('reload-bar').hidden=tools.reloadLeft===0;$('reload-bar').value=tools.tool.reload-tools.reloadLeft;$('reload-bar').max=tools.tool.reload;
+  $('vehicle-status').textContent=fleet.current?.recovery>.1?'AUTO-RIGHTING...':'NO VEHICLE DAMAGE';$('region-label').textContent=[...OUTPOSTS].sort((a,b)=>distance(a,p)-distance(b,p))[0].name.toUpperCase();$('reticle').hidden=!(aiming||fleet.mode==='foot');
+  $('mode-controls').textContent=input.device==='gamepad'?(fleet.mode==='foot'?'LS move / RT fire / LT aim / X reload / Y board':fleet.mode==='helicopter'?'LS fly / RT rise / LT land / LB+RT tool / Y exit':'RT drive / LT reverse / LB+RT tool / X reload / Y exit'):(fleet.mode==='foot'?'WASD move / Mouse fire / R reload / F board':fleet.mode==='helicopter'?'WASD fly / Z rise / X descend / F exit':'WASD drive / Space brake / Shift boost / F exit');
+  document.body.dataset.mode=fleet.mode;updateCandidate();drawMap($('minimap'));if($('map-dialog').open)drawMap($('fullmap'),true);park.beacon.visible=!!task.target;if(task.target)park.beacon.position.set(task.target.x,0,task.target.z);
+ }
+ let slowFrames=0,qualityAutoChanged=false;
+ function frame(now){requestAnimationFrame(frame);const realDt=Math.min(Math.max((now-last)/1000,0),.1);last=now;
+  // Always poll UI/controller first, even in intro screens, pause menus, and modals.
+  const controls=input.sample(realDt);const paused=isPaused(),dt=paused?0:realDt;aiming=!paused&&controls.aim;
+  if(!paused){yaw-=controls.lookX*realDt*2.15*settings.sensitivity;if(aiming||fleet.mode==='foot')aimPitch=clamp(aimPitch+controls.lookY*realDt*1.1*settings.sensitivity,-.65,.9);else pitch=clamp(pitch+controls.lookY*realDt*.85,.3,1.15);
+   if(cameraMode==='chase'&&!aiming&&Math.abs(controls.lookX)<.1&&fleet.mode!=='foot'&&fleet.mode!=='helicopter'){const wanted=fleet.actor.heading+Math.PI;yaw+=Math.atan2(Math.sin(wanted-yaw),Math.cos(wanted-yaw))*Math.min(1,realDt*2);}
+   accumulator+=dt;let steps=0;
+   while(accumulator>=1/60&&steps<6&&!isPaused()){const step=1/60;time+=step;tools.tick(step);
+    for(const a of animals){stepResident(a,fleet.position,step,time,state,time-hornAt);a.collider.setNextKinematicTranslation({x:a.x,y:1,z:a.z});}
+    fleet.drive(controls,step,time,yaw);physics.world.step();fleet.afterStep(step);frontier.update(step,time,fleet.position,settings.reduced);
+    if(controls.fire)shoot();
+    for(const a of animals)if(a.deter===0&&(a.mood==='pursuing'||['sauropod','brachio','trike','ankylosaur'].includes(a.kind)&&distance(a,fleet.position)<a.radius+1.4)){if(fleet.hitBy(a)){toast(speciesById(a.species).name+' shoved the vehicle. Auto-recovery is active.');input.pulse(.55,190);}}
+    for(const c of frontier.crates)if(!c.exploded&&fleet.current&&Math.abs(fleet.actor.speed)>4.5&&distance(c.body.translation(),fleet.position)<3&&fleet.position.y<4)blast(c);
+    const p=fleet.position;if(campaign.stage===0&&distance(p,STATIONS.gate)<5)mission('gate');const walked=distance(p,lastPosition);if(walked<4)campaign.meters+=walked;lastPosition={x:p.x,z:p.z};
+    for(const pen of PENS){const ps=penState(state,pen);if(!ps.secured&&!ps.open&&ps.fed&&animals.filter(a=>a.pen===pen.id).every(a=>insidePen(a,pen,1))){ps.secured=true;radio(pen.name+' secured. Containment recorded.');save();}}
+    if(!state.patrolDone&&distance(p,CHECKPOINTS[state.patrol])<8){state.patrol++;if(state.patrol>=CHECKPOINTS.length)state.patrolDone=true;toast(state.patrolDone?'Perimeter patrol completed.':'Patrol checkpoint '+state.patrol+' / '+CHECKPOINTS.length);save();}
+    if(fleet.mode!=='foot'&&!state.rides.includes(fleet.mode)&&Math.abs(fleet.actor.speed)>1)state.rides.push(fleet.mode);
+    accumulator-=step;steps++;
+   }
+   saveClock+=dt;if(saveClock>8){saveClock=0;save();}
+  }else accumulator=0;
+  syncModels(dt);park.update(dt,time,fleet.actor,settings.night,settings.reduced);audio.update(fleet.actor.speed,!paused&&fleet.mode!=='foot');
+  if(started){const p=fleet.position;if(aiming||fleet.mode==='foot'&&controls.fire){const dir=new T.Vector3(-Math.sin(yaw)*Math.cos(aimPitch),-Math.sin(aimPitch),-Math.cos(yaw)*Math.cos(aimPitch));const shoulder=new T.Vector3(p.x+Math.sin(yaw)*5.4+Math.cos(yaw)*.75,p.y+1.45,p.z+Math.cos(yaw)*5.4-Math.sin(yaw)*.75);camera.position.lerp(shoulder,1-Math.exp(-realDt*12));const target=new T.Vector3(p.x,p.y+(fleet.mode==='foot'?.35:1.15),p.z).addScaledVector(dir,35);camera.lookAt(target);}else{const dist=fleet.mode==='helicopter'?Math.max(zoom,40):fleet.mode==='foot'?Math.min(zoom,18):zoom;const target=new T.Vector3(p.x+Math.sin(yaw)*dist*Math.cos(pitch),Math.max(0,p.y)+dist*Math.sin(pitch),p.z+Math.cos(yaw)*dist*Math.cos(pitch));camera.position.lerp(target,settings.reduced?1:1-Math.exp(-realDt*4));camera.lookAt(p.x,p.y+1.2,p.z);}}
+  uiClock+=realDt;if(uiClock>.1){uiClock=0;ui();}renderer.render(scene,camera);
+  if(started&&!paused&&!settings.low&&!qualityAutoChanged){slowFrames=realDt>.05?slowFrames+realDt:Math.max(0,slowFrames-realDt);if(slowFrames>8){quality(true);qualityAutoChanged=true;toast('Low graphics enabled for smoother play. You can change this in Menu.');}}
+ }
+ canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();input.clear();if(started&&!modal())show('menu-dialog');toast('Graphics context interrupted. Reload the game to restore rendering; your saved progress is retained.');});
+ ui();syncModels(0);frontier.update(0,0,fleet.position,settings.reduced);park.update(0,0,fleet.actor,settings.night,settings.reduced);renderer.render(scene,camera);
+ $('start-button').disabled=false;$('start-button').textContent=campaign.stage||state.outposts.length>1?'Continue ranger operations':'Start your engine';$('load-status').textContent='Ready. Press A on your controller, or select Start.';updateDevice('keyboard');
+ const debug={get state(){return {ready:true,build:BUILD,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],species:[...state.observed],position:{...fleet.position},speed:fleet.actor.speed,grounded:fleet.actor.grounded,health:100,mode:fleet.mode,active:fleet.active,tool:tools.tool.id,ammo:[...state.ammo],reserve:[...state.reserve],reloading:tools.reloadLeft,toolHits:{...state.toolHits},outposts:[...state.outposts],checkpoint:state.checkpoint,patrol:state.patrol,pens:JSON.parse(JSON.stringify(state.pens)),exploded:[...state.exploded],drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night:settings.night,yaw,aimPitch,device:input.device,vehicles:fleet.vehicles.map(v=>({id:v.id,type:v.type,position:{...v.drive.position},recoveries:v.recoveries,rotation:{...v.drive.body.rotation()}})),animals:animals.map(({uid,species,x,z,mood,pen,deter})=>({uid,id:species,x,z,mood,pen,deter}))};}};
+ if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{if(fleet.current)fleet.current.drive.reset({x,z},heading);else fleet.person.setActive(true,{x,y:1,z});lastPosition={x,z};},setAim:(angle,elevation=.04)=>{yaw=angle;aimPitch=elevation;},render:ui,physics,fleet,animals,frontier,tools,progress:state,jeep:fleet.vehicles[0].drive});
+ window.__dinoRanger=debug;requestAnimationFrame(frame);
 }
