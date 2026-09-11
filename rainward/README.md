@@ -60,3 +60,5 @@ The survivor and human enemies use a new articulated procedural humanoid rig wit
 Field tasks are checkpoint-persistent and may be required or optional. They cover repairs, records, supply protection, route marking and signal work, with prerequisites and one-time rewards. The original three chapters receive optional field tasks without changing their original completion routes.
 
 The release retains keyboard, touch and standard gamepad controls, fixed-step simulation, scanned environment options, the cinematic render pipeline and the experimental stationary WebXR overlook.
+
+Critical mission pickups and optional field tasks use separate interaction points, so optional work cannot mask a required objective during a dangerous encounter.
