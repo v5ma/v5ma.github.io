@@ -17,7 +17,9 @@ def inputs(buttons=None,axes=None):
  page.evaluate('(v)=>{window.__testPad.axes=v.axes;window.__testPad.buttons=Array.from({length:17},(_,i)=>({pressed:v.buttons.includes(i),touched:v.buttons.includes(i),value:v.buttons.includes(i)?1:0}));}',{'axes':last_axes,'buttons':buttons or []})
 def frames(n=2):page.evaluate('(n)=>new Promise(resolve=>{let i=0;function next(){if(++i>=n)resolve();else requestAnimationFrame(next);}requestAnimationFrame(next);})',n)
 def press(button):
- inputs([button]);frames(3);inputs([]);frames(3)
+ # Pulse and release within one browser task/RAF chain, so slow WebGL
+ # cannot turn transport round trips into unintended long-held navigation.
+ page.evaluate('(button)=>new Promise(resolve=>{const p=window.__testPad;const buttons=v=>Array.from({length:17},(_,i)=>({pressed:i===v,touched:i===v,value:i===v?1:0}));p.buttons=buttons(button);requestAnimationFrame(()=>{p.buttons=buttons(-1);requestAnimationFrame(()=>requestAnimationFrame(resolve));});})',button)
 def neutral():inputs([], [0,0,0,0]);frames(6)
 def ui_select(selector,click=True):
  # Read actual on-screen focus graph, then send only D-pad presses.

@@ -3,11 +3,11 @@ import {PAD_LAYOUT} from './gamepad.mjs';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function createDoorsUI({getState,world,setPause,save,active,onTransition,legacyNearby,journal,settings}){
  const dialog=document.createElement('dialog');dialog.id='doors-dialog';dialog.setAttribute('aria-labelledby','doors-title');document.body.append(dialog);
- let tab='nearby',page=0,message='';
+ let tab='nearby',page=0,message='',next=null;
  const hud=document.createElement('div');hud.id='doors-objective';document.getElementById('hud').append(hud);
  const combat=document.createElement('div');combat.id='doors-enemy';document.getElementById('hud').append(combat);
- dialog.addEventListener('close',()=>setPause(false));
- function switchTo(fn){dialog.close();fn();}
+ dialog.addEventListener('close',()=>{setPause(false);const fn=next;next=null;fn?.();});
+ function switchTo(fn){next=fn;dialog.close();}
  function render(){const s=getState(),loc=doorLocation(s,world),home=world.doorHomes.find(h=>h.id===loc.room),done=Object.values(s.doors.homes).filter(n=>n===4).length;
   dialog.innerHTML=`<div class="doors-heading"><div><p class="eyebrow">OPEN DOORS / v0.7.0</p><h2 id="doors-title">A life in every house.</h2></div><button id="doors-close" data-pad-default>Return to game / B</button></div><p>${esc(home?.name||'Vinci')} / ${esc(FLOOR_NAMES[loc.level])}. ${done} of ${world.doorHomes.length} households helped.</p><nav class="doors-tabs" role="tablist">${[['nearby','Nearby'],['houses','Houses'],['adventures','Adventures'],['controls','Controller']].map(([id,label])=>`<button role="tab" aria-selected="${tab===id}" data-door-tab="${id}">${label}</button>`).join('')}</nav><div id="doors-content" data-pad-scroll></div><p id="doors-message" role="status">${esc(message)}</p><div class="doors-footer"><button id="doors-legacy">Original people, work, shops and tuning</button><button id="doors-journal">Original commission notebook</button><button id="doors-settings">Settings</button></div>`;
   const body=dialog.querySelector('#doors-content');
@@ -26,7 +26,7 @@ export function createDoorsUI({getState,world,setPause,save,active,onTransition,
   dialog.querySelectorAll('[data-door-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.doorTab;message='';render();dialog.querySelector(`[data-door-tab="${tab}"]`).focus();});
   dialog.querySelectorAll('[data-door-site]').forEach(b=>b.onclick=()=>{const result=useDoor(getState(),world,b.dataset.doorSite,b.dataset.doorAction);message=result.text;save();if(result.close){dialog.close();onTransition();}else render();});
   dialog.querySelectorAll('[data-door-track]').forEach(b=>b.onclick=()=>{trackDoor(getState(),world,b.dataset.doorTrack,b.dataset.doorId);save();message='Route tracked. Return to the game; the teal objective shows the next doorway or stair. The map never moves you.';render();});
-  const prev=dialog.querySelector('#houses-prev'),next=dialog.querySelector('#houses-next');if(prev)prev.onclick=()=>{page--;render();};if(next)next.onclick=()=>{page++;render();};
+  const prev=dialog.querySelector('#houses-prev'),nextPage=dialog.querySelector('#houses-next');if(prev)prev.onclick=()=>{page--;render();};if(nextPage)nextPage.onclick=()=>{page++;render();};
   dialog.querySelector('#doors-legacy').onclick=()=>switchTo(legacyNearby);dialog.querySelector('#doors-journal').onclick=()=>switchTo(journal);dialog.querySelector('#doors-settings').onclick=()=>switchTo(settings);
  }
  function open(which='nearby'){if(!active())return;tab=which;message='';setPause(true);render();dialog.showModal();}
