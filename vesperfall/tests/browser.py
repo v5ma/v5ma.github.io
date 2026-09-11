@@ -69,7 +69,7 @@ with sync_playwright() as p:
    page.keyboard.press('KeyM');check(page.locator('#map').is_visible(),'Map depicts the generated connected rooms')
    page.screenshot(path=str(OUT/'practice-world.png'))
    page.keyboard.down('Space');page.wait_for_function('Vesperfall.component.charge>.2');shots=snap(page)['shots'];page.keyboard.press('KeyP');page.keyboard.up('Space');page.locator('#resume').click();page.wait_for_timeout(500);check(snap(page)['shots']==shots,'Pausing a drawn bow cancels rather than releasing a stale arrow')
-   page.keyboard.press('KeyP');page.locator('#seed').fill('ANOTHER-SEED');page.locator('#start').click();check(snap(page)['seed']=='ANOTHER-SEED' and len(snap(page)['enemies'])==5,'A new seed starts a new combat run without contaminating practice')
+   page.keyboard.press('KeyP');page.locator('#seed').fill('ANOTHER-SEED');page.locator('#start').click();check(snap(page)['seed']=='ANOTHER-SEED' and len(snap(page)['enemies'])==21,'A new seed starts a new combat run without contaminating practice')
    page.set_viewport_size({'width':390,'height':844});page.keyboard.press('KeyP');page.screenshot(path=str(OUT/'mobile-menu.png'));check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'Narrow-screen settings fit the viewport')
   elif MODE=='gallery':
    page.locator('#practice').click();page.wait_for_function('Vesperfall.component.running&&!Vesperfall.component.paused');page.locator('a-scene canvas').focus()

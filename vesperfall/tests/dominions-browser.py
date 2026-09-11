@@ -14,8 +14,8 @@ PAD="""(()=>{const pad={id:'Test Xbox controller',index:0,connected:true,mapping
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block')
- ctx.add_init_script(PAD);ctx.add_init_script(path=str(ROOT/'vesperfall/tests/fake-xr.js'))
+ browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1024,'height':720},device_scale_factor=.5,service_workers='block')
+ ctx.add_init_script(PAD+'window.TEST_XR_PIXEL_SCALE=.5;'+(ROOT/'vesperfall/tests/fake-xr.js').read_text())
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda e:console_errors.append(e.text) if e.type=='error' else None)
  def wait(js,arg=None):return page.wait_for_function(js,arg=arg,timeout=90000)
  def pad_set(i,on):
@@ -25,7 +25,8 @@ with sync_playwright() as p:
  def nav_to(id):
   for _ in range(100):
    if page.evaluate('(id)=>document.activeElement.id===id',id):return
-   press(13)
+   direction=page.evaluate('id=>{const a=Vesperfall.component.dominionControls.focusables(),i=a.indexOf(document.activeElement),j=a.findIndex(e=>e.id===id),n=a.length;return j<0?13:((j-i+n)%n<=(i-j+n)%n?13:12)}',id)
+   press(direction)
   raise AssertionError('Controller focus could not reach '+id)
  def xr_set(name,i,on):
   page.evaluate('([n,i,on])=>TestXR.button(n,i,on)',[name,i,on]);wait('([n,i,on])=>Vesperfall.component.prevButtons[n]?.[i]===on',[name,i,on])
@@ -34,11 +35,11 @@ with sync_playwright() as p:
   wait('Vesperfall.component.paused&&Vesperfall.component.dominionControls.state.xrNeutral')
   rows=page.evaluate('Vesperfall.component.xrMenuRows.map(r=>r[0])');index=next((i for i,s in enumerate(rows) if text.lower() in s.lower()),None)
   if index is None:raise AssertionError('XR action missing: '+text+' in '+str(rows))
-  # Take stick ownership even when the initial ray happens to hover this row.
-  cur=page.evaluate('Vesperfall.component.menuSelection');count=(index-cur+len(rows))%len(rows)
-  if count==0:count=len(rows)
-  for _ in range(count):
-   wait('Vesperfall.component.dominionControls.state.xrAxesReady');page.evaluate("TestXR.axes('left',0,1)");wait('!Vesperfall.component.dominionControls.state.xrAxesReady');page.evaluate("TestXR.axes('left',0,0)");wait('Vesperfall.component.dominionControls.state.xrAxesReady')
+  # Navigate by real stick edges, using the observed shortest UI path.
+  cur=page.evaluate('Vesperfall.component.menuSelection');down=(index-cur+len(rows))%len(rows);up=(cur-index+len(rows))%len(rows)
+  steps=([1,-1] if down==0 else [1]*down if down<=up else [-1]*up)
+  for direction in steps:
+   wait('Vesperfall.component.dominionControls.state.xrAxesReady');page.evaluate("d=>TestXR.axes('left',0,d)",direction);wait('!Vesperfall.component.dominionControls.state.xrAxesReady');page.evaluate("TestXR.axes('left',0,0)");wait('Vesperfall.component.dominionControls.state.xrAxesReady')
   check(page.evaluate('(i)=>Vesperfall.component.menuSelection===i',index),'XR focus reaches '+text)
   xrpress('right',0)
  try:
@@ -91,9 +92,9 @@ with sync_playwright() as p:
   page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed');press(1);check(page.locator('#dominion-dialog').is_hidden(),'Xbox B dismisses the XR error without a mouse')
   check(not errors,'No uncaught JavaScript errors across browser, Xbox, VR and AR paths')
   check(not [e for e in console_errors if 'SHADER' in e.upper() or 'INVALID' in e.upper()],'No invalid shader/renderer operations during acceptance')
-  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':'0.7.0','passed':len(checks),'checks':checks,'errors':errors,'consoleErrors':console_errors,'diagnostics':diagnostics,'scope':'Real WebGL and ordinary UI/gameplay with emulated standard gamepad and WebXR device inputs. Not physical Quest 3, passthrough quality, comfort, or hardware performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':'0.7.0','passed':len(checks),'checks':checks,'errors':errors,'consoleErrors':console_errors,'diagnostics':diagnostics,'scope':'Real WebGL and ordinary UI/gameplay with emulated standard gamepad and WebXR device inputs. Software-GPU tests use pixel ratio 0.5 and a 480x320 stereo framebuffer; this is not a performance benchmark. Not physical Quest 3, passthrough quality, comfort, or hardware performance certification.'},indent=2))
  except Exception as e:
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'url':page.url,'diagnostics':diagnostics},indent=2))
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'url':page.url,'diagnostics':diagnostics,'ui':page.evaluate('({screen:Vesperfall.component.dominionControls.state.xrScreen,selection:Vesperfall.component.menuSelection,rows:Vesperfall.component.xrMenuRows.map(r=>r[0]),inputMode:Vesperfall.component.dominionControls.state.xrNav})')},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))
   except:pass
   raise
