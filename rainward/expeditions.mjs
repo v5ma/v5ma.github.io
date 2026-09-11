@@ -13,7 +13,7 @@ const supplies=(id,x,z,label,ammo=6)=>({id,x,z,label,type:'supplies',ammo,cloth:
 const task=(id,x,z,title,description,kind='record',extra={})=>({id,x,z,title,description,kind,reward:{ammo:3,cloth:1},...extra});
 export const LEGACY_TASKS={
  district:[task('ward-missing',-19,6,'The missing ward','Read the clinic register and leave a route marker for anyone following you.','record'),task('ward-radio',18,-11,'A voice in the rain','Repair the freight hall receiver after recovering the signal battery.','repair',{requires:['cell'],reward:{canister:2,ammo:4}})],
- conservatory:[task('archive-pages',-40,-3,'Pages above the water','Recover the rain-soaked catalogue from the western archive.','record'),task('garden-seeds',39,-19,'A garden for tomorrow','Seal the surviving seed collection before leaving the glasshouse.','supply',{reward:{cloth:2,canister:2}})],
+ conservatory:[task('archive-pages',-40,-3,'Pages above the water','Recover the rain-soaked catalogue from the western archive.','record'),task('garden-seeds',31,-3,'A garden for tomorrow','Seal the surviving seed collection before leaving the glasshouse.','supply',{reward:{cloth:2,canister:2}})],
  terminus:[task('last-dispatch',32,20,'The last dispatch','Record the abandoned dispatch desk message. It names a coastal evacuation route.','record'),task('station-radio',-31,-23,'The station answers','Restore the workshop radio once the railway power circuit is safe.','repair',{requires:['puzzle'],reward:{ammo:5,canister:2}})]
 };
 export const MERIDIAN={
