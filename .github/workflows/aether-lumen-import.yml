@@ -1,0 +1,61 @@
+name: Integrate Aether Lumen release
+on:
+  push:
+    branches: [feat/aether-lumen-controller-20260911]
+    paths: ['aether-reach/tools/integrate-lumen*', '.github/workflows/aether-lumen-import.yml']
+permissions:
+  contents: write
+concurrency:
+  group: aether-lumen-import
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/feat/aether-lumen-controller-20260911'
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/aether-lumen-controller-20260911
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify complete source transport before writing
+        run: python aether-reach/tools/integrate-lumen.py apply
+      - name: Validate syntax, all regressions and release manifest
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/lumen-node-tests.log
+          python aether-reach/tests/backup_test.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Install actual browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise menus and rooftops through the Gamepad API
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/lumen-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/controller-journey.py | tee aether-reach/test-output/lumen-browser-tests.log
+      - name: Commit the verified game files to the same feature branch
+        run: |
+          set -euo pipefail
+          python aether-reach/tools/integrate-lumen.py stage
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Implement Aether Reach 0.6.0 controller-first Lumen Circuit'
+            git push origin HEAD:feat/aether-lumen-controller-20260911
+          fi
+      - name: Preserve exact source and actual test outcomes
+        if: always()
+        run: python aether-reach/tools/integrate-lumen.py archive
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-lumen-import-${{ github.run_attempt }}
+          path: aether-reach/test-output
+          retention-days: 30
