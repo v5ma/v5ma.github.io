@@ -12,6 +12,6 @@ home=(ROOT/'index.html').read_text();assert home.count('id="prism-launch"')==1
 assert 'href="./prism-current/index.html"' in home
 manifest=json.loads((APP/'vendor/manifest.json').read_text());assert hashlib.sha256((APP/'vendor/aframe-1.8.0.min.js').read_bytes()).hexdigest()==manifest['sha256']
 for ref in re.findall(r'(?:src|href)="\.\/([^"?#]+)',(APP/'index.html').read_text()):assert (APP/ref).is_file(),ref
-info={'version':'0.2.0','source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'files':{n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in sorted(files)}}
+info={'version':json.loads((APP/'release.json').read_text())['version'],'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'files':{n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in sorted(files)}}
 (out/'prism-manifest.json').write_text(json.dumps(info,indent=2))
 print('Verified',len(files),'public files, dependency integrity and homepage card.')
