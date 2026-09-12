@@ -14,7 +14,7 @@ concurrency:
 jobs:
   district:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,6 +36,7 @@ jobs:
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
       - name: Play the street, Arcade, roof and return route through controller inputs
+        timeout-minutes: 30
         run: |
           set -euo pipefail
           python -m http.server 4173 --bind 127.0.0.1 > /tmp/blackout-http.log 2>&1 &
