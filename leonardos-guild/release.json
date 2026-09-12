@@ -1,8 +1,8 @@
 {
   "id": "leonardos-guild",
-  "title": "Leo's Guild - Resonance",
-  "version": "0.8.0",
-  "build": "guild-resonance-20260911",
+  "title": "Leo's Guild - Living Stories",
+  "version": "0.9.0",
+  "build": "guild-living-stories-20260911",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -47,5 +47,20 @@
     "save": "additive resonance field; existing key and version 2 retained",
     "audioPolicy": "Trusted browser activation may require Enter once. No blocking browser dialog.",
     "limits": "No physical Xbox, speaker, mobile-performance, full police pursuit, separate protagonists, stock market or property-purchase claim."
+  },
+  "livingStories": {
+    "authoredCases": 2,
+    "physicalStepsPerCase": 6,
+    "alternateRoutes": [
+      "roof",
+      "cellar"
+    ],
+    "persistentOutcomes": [
+      "reading lamp color",
+      "shared-work plaque or lending shelf"
+    ],
+    "automaticStorySounds": false,
+    "save": "additive doors.stories; existing progress retained",
+    "roadmap": "AAA-ROADMAP.md"
   }
 }

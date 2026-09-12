@@ -1,3 +1,7 @@
+# Living Stories v0.9.0
+
+Two authored household cases with alternate routes, reversible physical-location puzzles, evidence-based choices, one-time rewards and persistent lamp/plaque/lending-shelf outcomes. Added AAA-ROADMAP.md with ordered production gates. Preserved quiet audio, individual mixer levels, cue density, all old saves and earlier content. Ambient-loop initialization is now single-flight and stale music promises cannot replace current-track status. Publication evidence is recorded in the release PR.
+
 # Resonance v0.8.0
 
 Sound-led continuation: five original 64-bar pieces and fifty local audio assets; adaptive score, spatial Foley and ambient/vehicle layers; independent mixer and dynamic range; sound captions and optional vibration. Contextual console mapping, original Classic mapping, equipment/music/discipline wheels, finite sling ammunition and timed reloads, aiming/lock-on, nearby cover, camera-relative movement, compact vital bars and Guild Dispatch. All earlier town/story/floor/route/vehicle/save systems retained. Native acceptance and public deployment are recorded separately in the release PR and publication receipt.

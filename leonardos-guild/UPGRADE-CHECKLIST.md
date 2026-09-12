@@ -1,3 +1,15 @@
+# Living Stories checkpoint - September 11, 2026
+
+Read AAA-ROADMAP.md for the ordered AAA-quality production gates and next-upgrade sequence. This historical checklist remains the source of the original D01-D22/A01-A06 task IDs, not a new completion estimate.
+
+Living Stories v0.9.0 advances narrow slices of D03/D06/D16: two six-step authored cases, alternate roof/cellar evidence, a reversible shutter puzzle, a no-false-accusation ledger investigation, four possible saved visual outcomes across the two stories, and one-time return rewards. No new territory, autonomous NPC schedules, professional animation or AAA certification is claimed. Existing 49 houses, all earlier missions, vehicles, both Xbox profiles and quiet audio remain. Case updates add no automatic sound events.
+
+Model fixtures test all routes/endings and save stages. The dedicated native browser journey exercises the actual Console controller, floors, clues, choices, outcomes and reload from fresh storage. Final results, source hashes, merge identity and post-merge publication receipt belong in the Living Stories release PR. Do not substitute the historical v0.8 result for this release.
+
+Next: owner playtest, then camera/character sample C01-C03, then route planner W01-W02. Do not add more sound notifications in response to requests for more content.
+
+## Historical checkpoints (preserved)
+
 # Resonance continuation checkpoint - September 11, 2026
 
 Current slice: v0.8.0 Resonance. Read release.json and RESONANCE.md before interpreting historical candidate labels below. The feature branch alone is not proof of public deployment.

@@ -1,6 +1,7 @@
 /* Open Doors: additive house commissions, actual floors and walkable city networks.
  * Renderer-independent. All interactions validate floor, proximity and progression.
  * No map action moves the player. The original save and missions remain intact. */
+import {storyState,saveStories,makeStories,storySites,storyOptions,useStory,storyTarget,STORY_IDS} from './stories-core.mjs';
 import {notify,stats,roomAt,done} from './life-core.mjs';
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const FLOOR_NAMES={'-2':'Undercity passages','-1':'Cellar',0:'Ground floor',1:'Upper workshop',2:'Attic',3:'Rooftop walks'};
@@ -17,17 +18,17 @@ export const TRADES=[
 const NAMES=['Alessia','Pietro','Giulia','Matteo','Caterina','Tomaso','Renata','Lorenzo','Bianca','Silvio','Elena','Marco','Diana','Paolo','Rosa','Carlo'];
 const keepIds=(a,valid,max=256)=>Array.isArray(a)?[...new Set(a.filter(v=>typeof v==='string'&&valid(v)))].slice(0,max):[];
 export function freshDoors(raw=null){
- const d={version:1,level:0,room:null,homes:{},adventures:{},defeated:[],visits:[],tracked:null,enemies:[],rest:0,dodge:0,dodgeCD:0};
+ const d={version:1,stories:storyState(raw?.stories),level:0,room:null,homes:{},adventures:{},defeated:[],visits:[],tracked:null,enemies:[],rest:0,dodge:0,dodgeCD:0};
  if(!raw||raw.version!==1)return d;
  const home=id=>/^(workshop|apothecary|inn|hall|smith|observatory|residence-home-\d+|residence-garden-home-\d+)$/.test(id);
  for(const [id,n]of Object.entries(raw.homes||{}).slice(0,64))if(home(id)&&Number.isInteger(n)&&n>=0&&n<=4)d.homes[id]=n;
  for(const [id,n]of Object.entries(raw.adventures||{}).slice(0,8))if(ADVENTURE_IDS.includes(id)&&Number.isInteger(n)&&n>=0&&n<=6)d.adventures[id]=n;
  d.defeated=keepIds(raw.defeated,id=>/^guild-rival-\d+$/.test(id),32);
  d.visits=keepIds(raw.visits,id=>/^.+:(-2|-1|0|1|2|3)$/.test(id)&&id.length<70,256);
- if(raw.tracked&&((raw.tracked.kind==='home'&&home(raw.tracked.id))||(raw.tracked.kind==='adventure'&&ADVENTURE_IDS.includes(raw.tracked.id))))d.tracked={kind:raw.tracked.kind,id:raw.tracked.id};
+ if(raw.tracked&&((raw.tracked.kind==='home'&&home(raw.tracked.id))||(raw.tracked.kind==='adventure'&&ADVENTURE_IDS.includes(raw.tracked.id))||(raw.tracked.kind==='story'&&STORY_IDS.includes(raw.tracked.id))))d.tracked={kind:raw.tracked.kind,id:raw.tracked.id};
  return d;
 }
-export function saveDoors(d){return {version:1,homes:{...d.homes},adventures:{...d.adventures},defeated:[...d.defeated],visits:[...d.visits],tracked:d.tracked?{...d.tracked}:null};}
+export function saveDoors(d){return {version:1,stories:saveStories(d.stories),homes:{...d.homes},adventures:{...d.adventures},defeated:[...d.defeated],visits:[...d.visits],tracked:d.tracked?{...d.tracked}:null};}
 export function doorLevel(s){return s.doors?.level|| (s.life?.inside?-1:0);}
 export function doorElevation(s){const n=doorLevel(s);return n===3?15:n<0?n*5:n*3.8;}
 export function doorLocation(s,w){const level=doorLevel(s),room=s.doors?.room||s.life?.inside||roomAt(s,w)?.id||null;return {level,room};}
@@ -50,7 +51,7 @@ export function expandDoors(w){
  for(const z of rows)w.doorPaths.push({x:(cols[0]+cols.at(-1))/2,z,hx:(cols.at(-1)-cols[0])/2+2,hz:2});
  for(const x of cols)w.doorPaths.push({x,z:(rows[0]+rows.at(-1))/2,hx:2,hz:(rows.at(-1)-rows[0])/2+2});
  w.doorPaths.push(...w.rooms.map(r=>({x:r.x,z:r.z,hx:r.hx-.4,hz:r.hz-.4,roof:true})));
- w.doorAdventures=makeAdventures(w);
+ w.doorAdventures=makeAdventures(w);w.stories=makeStories(w);
  w.doorEnemies=[];
  const rowsCombat=[98,215,293];
  for(const layer of [-2,3])for(let i=0;i<6;i++){const home=w.doorHomes.filter(r=>r.z===rowsCombat[i%3])[i%2]||w.doorHomes[8+i];w.doorEnemies.push({id:'guild-rival-'+w.doorEnemies.length,name:['Brass Mask Scout','Canal Brigand','Rooftop Duelist'][i%3],role:i%3,level:layer,room:null,x:home.x,z:home.z+4,hp:[60,110,80][i%3]});}
@@ -104,10 +105,12 @@ export function doorSites(s,w){
   if(l.level===-2)out.push(site('cellexit:'+h.id,'Climb into '+h.name+' cellar',{level:-2,room:null,...h.hatch},'cellexit'));
  }
  for(const q of w.doorAdventures){const n=s.doors.adventures[q.id]||0;if(n>=q.stages.length)continue;const p=q.stages[n];out.push(site('adventure:'+q.id,q.name+' / '+p.name,p,'adventure',p.text));}
+ out.push(...storySites(s,w));
  return out.filter(p=>inDoorSpace(s,p,w));
 }
 export function nearbyDoors(s,w){if(s.mode!=='foot'||Math.abs(s.speed)>1.7)return [];return doorSites(s,w).filter(p=>dist(s,p)<3.2).sort((a,b)=>dist(s,a)-dist(s,b));}
 export function doorOptions(s,w,p){
+ if(p.action==='story')return storyOptions(s,w,p);
  if(p.action==='home'){
   const h=w.doorHomes.find(h=>h.id===p.room),n=s.doors.homes[h.id]||0,l=doorLevel(s);
   if(l===0&&n===0)return [{id:'accept',text:'Accept household commission'}];
@@ -130,6 +133,7 @@ function transition(s,w,h,level){
 }
 export function useDoor(s,w,id,action){
  const p=nearbyDoors(s,w).find(p=>p.id===id);if(!p||!doorOptions(s,w,p).some(a=>a.id===action))return {ok:false,text:'Stop on foot beside this interaction, on its correct floor.'};
+ if(p.action==='story')return useStory(s,w,id,action);
  const h=w.doorHomes.find(h=>h.id===(p.room||id.split(':')[1]));
  if(p.action==='up')return transition(s,w,h,doorLevel(s)+1);
  if(p.action==='down')return transition(s,w,h,doorLevel(s)-1);
@@ -166,10 +170,10 @@ export function useDoor(s,w,id,action){
  }
  return {ok:false,text:'That action is not available.'};
 }
-export function trackDoor(s,w,kind,id){if(kind==='home'&&!w.doorHomes.some(h=>h.id===id)||kind==='adventure'&&!w.doorAdventures.some(q=>q.id===id)||!['home','adventure'].includes(kind))return false;s.doors.tracked={kind,id};return true;}
+export function trackDoor(s,w,kind,id){if(kind==='story'){if(!STORY_IDS.includes(id))return false;s.doors.tracked={kind,id};return true;}if(kind==='home'&&!w.doorHomes.some(h=>h.id===id)||kind==='adventure'&&!w.doorAdventures.some(q=>q.id===id)||!['home','adventure'].includes(kind))return false;s.doors.tracked={kind,id};return true;}
 export function doorTarget(s,w){
  const t=s.doors.tracked;if(!t)return null;let p,name;
- if(t.kind==='home'){
+ if(t.kind==='story'){p=storyTarget(s,w,t.id);if(!p)return null;name=p.name;}else if(t.kind==='home'){
   const h=w.doorHomes.find(h=>h.id===t.id);if(!h)return null;const n=s.doors.homes[h.id]||0;if(n===4)return null;
   const l=n===1?1:n===2?2:0;p={...(l?h.station:h.desk),room:h.id,level:l};name=h.trade.job+' / '+h.name;
  }else{const q=w.doorAdventures.find(q=>q.id===t.id),n=s.doors.adventures[t.id]||0;if(!q||n>=q.stages.length)return null;p=q.stages[n];name=q.name;}

@@ -1,3 +1,11 @@
+# Leo's Guild - Living Stories v0.9.0
+
+Open Adventures, then Living stories (or D-pad up, Adventures, Living stories). Two authored cases add six physical steps apiece, alternate roof/cellar evidence routes, a reversible shutter puzzle and peaceful choices with saved, visible household outcomes. The Lamplighter's Promise begins at the workshop household desk; The Ledger With Two Names begins at Renata's western cartographer house, residence-home-0. All prior stories, households, floor networks, quiet audio preferences and saves remain. New story updates are silent by default.
+
+The current long-term production plan is AAA-ROADMAP.md. UPGRADE-CHECKLIST.md retains earlier task IDs and release history. Release identity is in release.json; actual publication is established by the merged release PR and live-byte receipt, not the files alone.
+
+## Earlier release notes
+
 # Leo's Guild - Resonance v0.8.0
 
 The existing game at /leonardos-guild/ now has a sound-led controller expansion. Read RESONANCE.md for the current mapping, audio options and explicitly retained limitations. Open the existing Leonardo's Guild card on the SVGN homepage. The served title and release.json identify the version; only a successful post-merge public-file receipt proves publication.

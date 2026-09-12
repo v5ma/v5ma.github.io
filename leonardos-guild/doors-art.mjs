@@ -1,5 +1,6 @@
 /* Original procedural extensions use the retained licensed renderer/materials.
  * Only the occupied upper room is built. Nearby labels/residents are culled. */
+import {createStoryArt} from './stories-art.mjs';
 import * as T from './vendor/three.module.js';
 import {Batch,unit,label} from './art.mjs';
 import {person} from './guild-art.mjs';
@@ -7,6 +8,7 @@ import {animatePerson} from './character-motion.mjs';
 import {heightAt} from './model.mjs';
 import {doorLevel,doorElevation,doorLocation,FLOOR_NAMES,doorSites,inDoorSpace} from './doors-core.mjs';
 export function createDoorsArt({scene,root,w,m,camera}){
+ const storyArt=createStoryArt({scene,w,m,camera});
  const outdoor=new T.Group();outdoor.name='Open Doors ground-floor life';root.add(outdoor);
  const floorRoot=new T.Group(),roof=new T.Group(),tunnels=new T.Group(),actors=new T.Group(),markers=new T.Group();
  floorRoot.name='Occupied upper floor';roof.name='Connected rooftop boardwalks';tunnels.name='Walkable undercity';actors.name='Humanoid guild rivals';
@@ -79,7 +81,7 @@ export function createDoorsArt({scene,root,w,m,camera}){
   if(mk!==currentMarkers){for(const g of liveMarkers)disposeGroup(g);liveMarkers=[];for(const p of sites){const g=new T.Group();g.position.set(p.x,heightAt(p.x,p.z)+doorElevation(s)+.25,p.z);markers.add(g);const b=new Batch();b.add(unit.ring,0,0,0,.48,.48,.05,p.action==='adventure'?'#7acbca':gold,Math.PI/2);b.finish(g,m.trim,'Interaction circle');const tag=label(g,p.name+'\nG / X NEARBY',0,1.9,0,2.6,.65,0,p.action==='adventure'?'#305e63':'#6e563c');tag.userData.doorsOwnMaterial=true;g.userData.tag=tag;liveMarkers.push(g);}currentMarkers=mk;}
   for(const g of liveMarkers){const tag=g.userData.tag;tag.quaternion.copy(camera.quaternion);tag.visible=Math.hypot(s.x-g.position.x,s.z-g.position.z)<7;}
   for(const tag of labels){tag.visible=Math.hypot(s.x-(tag.parent.position.x+tag.position.x),s.z-(tag.parent.position.z+tag.position.z))<12;tag.quaternion.copy(camera.quaternion);}
-  lastLevel=level;
+  storyArt.update(s);lastLevel=level;
  }
- return {update,inspect:()=>({houses:w.doorHomes.length,floorsPerHouse:4,roofSegments:w.doorPaths.length,undercitySegments:w.doorPaths.length,enemyModels:enemies.size,currentFloor:floorKey,level:lastLevel})};
+ return {update,inspect:()=>({stories:storyArt.inspect(),houses:w.doorHomes.length,floorsPerHouse:4,roofSegments:w.doorPaths.length,undercitySegments:w.doorPaths.length,enemyModels:enemies.size,currentFloor:floorKey,level:lastLevel})};
 }
