@@ -1,0 +1,134 @@
+name: Dino Atlas Northstar Canopy verification
+on:
+  push:
+    branches: [dino-northstar-signature-20260912, master]
+    paths: ['dino-atlas/**', '.github/workflows/dino-northstar-signature.yml', '.github/patches/northstar-integration.b64']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: dino-northstar-signature-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: ${{ github.ref == 'refs/heads/dino-northstar-signature-20260912' }}
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply reviewed source integration on candidate only
+        if: github.ref == 'refs/heads/dino-northstar-signature-20260912'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,lzma,hashlib,subprocess
+          source=Path('.github/patches/northstar-integration.b64')
+          if source.exists():
+              expected={
+                'dino-atlas/ranger.js':'08d5225c89253539b3352a8c83623eb5b1d31821',
+                'dino-atlas/index.html':'f0e96ac017a0ad2bb70f1bcc060f0bc52f60c32a',
+                'dino-atlas/frontier-economy-core.js':'0fa4dac5a9c1b6e2bee1e72d6637de96bc182f18',
+                'dino-atlas/AAA-ROADMAP.md':'a780385077c0583fb84f9b09b68291ca87a58fc8',
+                'dino-atlas/README.md':'4d014c5f37961643693b494ed22e53b9ddfad385'
+              }
+              for path,sha in expected.items():
+                  got=subprocess.check_output(['git','rev-parse','HEAD:'+path],text=True).strip()
+                  assert got==sha,(path,got,sha)
+              patch=lzma.decompress(base64.b64decode(source.read_text().strip(),validate=True))
+              assert hashlib.sha256(patch).hexdigest()=='f0a989cce1e639dfc2cb483eccc80e7be41bdc32b5f2b73c42252d3aa0039f77'
+              target=Path('/tmp/northstar.patch');target.write_bytes(patch)
+              paths=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
+              assert all(line.split('\t')[-1].startswith('dino-atlas/') for line in paths.splitlines())
+              subprocess.run(['git','apply','--check',str(target)],check=True)
+              subprocess.run(['git','apply','--index',str(target)],check=True)
+              subprocess.run(['git','rm',str(source)],check=True)
+              subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
+              subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
+              subprocess.run(['git','commit','-m','Implement Northstar Canopy signature facility and Canopy Circuit'],check=True)
+              subprocess.run(['git','push','origin','HEAD:dino-northstar-signature-20260912'],check=True)
+          else:
+              print('Testing committed direct source; integration transport already removed.')
+          PY
+      - name: Syntax and complete Dino model, physics and save regressions
+        shell: bash
+        run: |
+          mkdir -p northstar-evidence
+          find dino-atlas -maxdepth 1 -name '*.js' -exec node --check {} \;
+          set -o pipefail
+          node --test dino-atlas/tests/*.test.mjs | tee northstar-evidence/model-tests.tap
+      - name: Install native rendered acceptance runner
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Traverse Northstar Canopy with Xbox input
+        run: |
+          python dino-atlas/tests/northstar-browser.py
+          cp northstar-evidence/report.json northstar-evidence/local-northstar-report.json
+      - name: Retain Living Herds controller journey
+        run: python dino-atlas/tests/living-herds-browser.py
+      - name: Retain complete Storm Response controller journey
+        run: python dino-atlas/tests/aaa-browser.py
+      - name: Record reviewed runtime hashes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          root=Path('dino-atlas')
+          files=[p for p in root.iterdir() if p.suffix in ('.js','.html','.css')]
+          files += [root/'AAA-ROADMAP.md',root/'NORTHSTAR-CANOPY.md']
+          manifest={'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
+          Path('northstar-evidence/runtime-hashes.json').write_text(json.dumps(manifest,indent=2))
+          PY
+      - name: Verify public runtime and roadmap match reviewed bytes
+        if: github.ref == 'refs/heads/master'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlopen,Request
+          from concurrent.futures import ThreadPoolExecutor
+          import hashlib,json,time,os
+          manifest=json.loads(Path('northstar-evidence/runtime-hashes.json').read_text())
+          def check(item):
+              path,expected=item
+              try:
+                  url='https://v5ma.github.io/'+path+'?verify='+os.environ['GITHUB_SHA']
+                  data=urlopen(Request(url,headers={'Cache-Control':'no-cache'}),timeout=25).read()
+                  return path if hashlib.sha256(data).hexdigest()!=expected else None
+              except Exception:return path
+          for attempt in range(36):
+              with ThreadPoolExecutor(max_workers=8) as pool:bad=[p for p in pool.map(check,manifest['files'].items()) if p]
+              if not bad:break
+              print('Deployment not yet matching:',bad,flush=True);time.sleep(10)
+          assert not bad,bad
+          Path('northstar-evidence/public-bytes.json').write_text(json.dumps({'commit':manifest['commit'],'matched_files':len(manifest['files']),'url':'https://v5ma.github.io/dino-atlas/'},indent=2))
+          PY
+      - name: Exercise actual published Northstar Canopy build
+        if: github.ref == 'refs/heads/master'
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: |
+          python dino-atlas/tests/northstar-browser.py
+          cp northstar-evidence/report.json northstar-evidence/published-northstar-report.json
+      - name: Record exact tested source
+        if: always()
+        run: |
+          mkdir -p northstar-evidence
+          git rev-parse HEAD > northstar-evidence/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-northstar-canopy-source-and-evidence
+          path: |
+            dino-atlas
+            northstar-evidence
+            herds-evidence
+            aaa-evidence
+          retention-days: 14
