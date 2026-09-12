@@ -91,3 +91,7 @@ The current material/foreground/effects update and its exact scope are documente
 ## First Bell / v0.10.0
 
 The maintained opening menu now provides Learn physical archery and the optional scored Bellkeeper Oath. Ten outcome-based lessons, three connected staged encounters, an original three-phase boss, recovery beats and saved continuation reuse existing controls and architecture. Endless, sparring and stationary AR Sanctuary remain separate. See [FIRST-BELL.md](./FIRST-BELL.md) for controls, encounter design and testing boundaries. The canonical roadmap and six-sheet production workbook are updated alongside this release; human and physical-device gates remain open.
+
+## Rosefire / version 0.11.0
+
+The existing game now includes original wet-stone, stained-light, twilight-veil, shield and successful-teleport echo shaders. Pause / Rosefire settings offers Off, Balanced and Cinematic plus independent toggles; Xbox and Quest can operate the controls. See [ROSEFIRE.md](./ROSEFIRE.md) for scope and limitations. First Bell and saved expeditions remain intact.

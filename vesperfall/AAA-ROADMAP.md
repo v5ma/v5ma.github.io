@@ -1,6 +1,6 @@
 # Vesperfall: a quality-gated path toward a finished premium game
 
-Plan version 0.10.0. Updated 2026-09-12. The maintained playable project is this `vesperfall/` directory. This plan updates the existing 38-task board rather than creating a competing game or discarding historical IDs.
+Plan version 0.11.0. Updated 2026-09-12. The maintained playable project is this `vesperfall/` directory. This plan updates the existing 38-task board rather than creating a competing game or discarding historical IDs.
 
 The long-term aspiration is AAA-level finish. This document does not claim that the prototype has achieved that quality, that it has a particular production budget or staffing level, or that checking a certain number of boxes will certify it. The immediate target is one polished, reliable, distinctive vertical slice. The quality of the experience matters more than the number of systems or rooms.
 
@@ -41,3 +41,7 @@ Every upgrade should preserve the existing game and profile, run syntax/model an
 For long CPU-only regression runs, the existing functional-render fixture reduces desktop draw cadence but not simulation, input, geometry or damage; dedicated graphics, audio and XR checks run separately without it. Neither that fixture nor synthetic input is a hardware-performance or comfort certificate.
 
 Known major risks remain actual Quest performance, long-session sound fatigue, unfinished character/animation production, lifecycle coupling between modules, browser storage eviction and untested future generator migration. The workbook records owners, triggers and mitigations for these risks instead of hiding them inside a completion percentage.
+
+## Rosefire graphics pass / 0.11.0
+
+V37 now also includes wet-stone PBR roughness, anchored stained light, a twilight sky veil, woven Wardglass and pooled landing echoes. Profile controls, reduced effects and AR exclusions are in ROSEFIRE.md. V38 remains Hardware QA: this shader pass does not close the physical-device or human-art gates. First Bell encounter, onboarding and boss-production tasks retain their existing Partial status.
