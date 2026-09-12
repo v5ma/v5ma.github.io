@@ -1,0 +1,67 @@
+name: Sky Cycle Flight Deck
+on:
+  push:
+    branches: [master, 'sky-cycle-flight-deck-*']
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '.github/workflows/sky-cycle-flight-deck.yml'
+  pull_request:
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '.github/workflows/sky-cycle-flight-deck.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sky-cycle-flight-deck-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source identity and pure rules
+        run: |
+          git rev-parse HEAD
+          node --check mario-maker-clone/svgn-paper-route/flight-deck.js
+          node --check mario-maker-clone/svgn-paper-route/release-status.js
+          node --test mario-maker-clone/svgn-paper-route/tests/flight-deck-core.test.mjs
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Isolated integration fixture, not native gameplay evidence
+        run: python mario-maker-clone/svgn-paper-route/tests/flight-deck-browser.py --fixture
+      - name: Real-game controller smoke, no debug progression
+        run: python mario-maker-clone/svgn-paper-route/tests/flight-deck-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-cycle-flight-deck-${{ github.sha }}
+          path: /tmp/sky-cycle-flight-deck/
+          if-no-files-found: warn
+  published:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compare public bytes with exact merged source
+        run: python mario-maker-clone/svgn-paper-route/tests/flight-deck-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-cycle-flight-deck-public-${{ github.sha }}
+          path: /tmp/sky-cycle-flight-deck/publication.json

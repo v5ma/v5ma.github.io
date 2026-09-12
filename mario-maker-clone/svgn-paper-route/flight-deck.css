@@ -1,0 +1,24 @@
+/* Matches the existing prismatic palette without adding motion or sound. */
+#flight-deck,#flight-deck-guide{box-sizing:border-box;width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 32px);margin:auto;padding:24px;border:1px solid #8dcacc;border-radius:18px;background:#112b3a;color:#f0f3e5;box-shadow:0 20px 90px #0008;font:15px/1.55 system-ui,sans-serif;overflow:auto;overscroll-behavior:contain}
+#flight-deck::backdrop,#flight-deck-guide::backdrop{background:#061621c9}
+#flight-deck h2,#flight-deck-guide h2{font-size:28px;line-height:1.2;margin:5px 0 14px;color:#ffe0a3}
+#flight-deck h3{font-size:17px;margin:0 0 8px;color:#fff0c9}
+#flight-deck p,#flight-deck-guide p{margin:10px 0}
+.fd-heading{display:flex;gap:16px;justify-content:space-between;align-items:flex-start}
+.fd-heading small{letter-spacing:.14em;color:#a1dfe0;font-size:11px}
+#fd-total{font-weight:750;font-size:19px;color:#9ce7d6}
+#fd-save,.fd-help{color:#c0d0d3;font-size:13px}
+#fd-current{padding:16px 0;border-top:1px solid #51727c;border-bottom:1px solid #51727c;margin:18px 0}
+#fd-current .fd-objective{padding:8px 12px;background:#193d4b;border-radius:7px;font-size:14px}
+#fd-routes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#fd-routes article{padding:15px;background:#0d2230;border:1px solid #41616e;border-radius:10px;overflow-wrap:anywhere}
+#fd-routes p{font-size:13px}.fd-badges{color:#a7e4ca}
+.fd-actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
+.fd-actions a{display:inline-block;text-decoration:none}
+.fd-route-badges{display:block;font-size:12px;color:#9ce7d6;margin-top:10px}
+.fd-earned{flex-basis:100%;padding:12px;border:1px solid #76b4a7;border-radius:8px;color:#b7f3da;font:14px/1.4 system-ui,sans-serif}
+#delivery-pause .delivery-pause-card .delivery-btn{margin:5px}
+#flight-deck :focus-visible,#flight-deck-guide :focus-visible,.fd-controller button:focus,.fd-controller select:focus,.fd-controller input:focus,.fd-controller a:focus{outline:3px solid #ffe4a6;outline-offset:4px;scroll-margin:18px}
+#score-dialog input[type=range]{min-width:100px;max-width:100%}
+@media(max-width:600px){#flight-deck,#flight-deck-guide{padding:17px}#fd-routes{grid-template-columns:1fr}.fd-heading h2{font-size:24px}.fd-actions .delivery-btn{flex:1 1 150px;min-height:42px}.fd-earned{font-size:12px}}
+@media(prefers-reduced-motion:reduce){#flight-deck *,#flight-deck-guide *{scroll-behavior:auto!important;transition:none!important}}

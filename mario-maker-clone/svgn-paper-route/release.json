@@ -1,13 +1,13 @@
 {
-  "version": "0.15.1",
-  "build": "sky-cycle-2026.09.11",
+  "version": "0.16.0",
+  "build": "sky-cycle-flight-deck-2026.09.11",
   "date": "2026-09-11",
   "changes": [
-    "Renamed to Sky Cycle; existing routes, editor and saved progress remain intact",
-    "Clear-coated sapphire rails, reflective gold inlays and faceted jewel accents",
-    "Glass conservatories with an optional scene-refraction and dispersion mode",
-    "Reactive rail, whip and nitro sparkles plus a glass shield",
-    "Prismatic, Crystal+ and Classic material settings with reduced-motion support",
-    "Render-only layer preserving all routes, gameplay, music, editor and saves"
+    "Flight Deck career records with five optional route badge types",
+    "Badges require accepted authored-route finishes; existing medals and drafts are preserved",
+    "Start pauses gameplay, View opens Flight Deck, and standard-controller menus support focus, confirm and back",
+    "Controller adjustment of existing independent music and effects sliders",
+    "Neutral-input screen transitions, nested-dialog ownership and controller-disconnect cleanup",
+    "Living AAA-quality production checklist beside the game files"
   ]
 }

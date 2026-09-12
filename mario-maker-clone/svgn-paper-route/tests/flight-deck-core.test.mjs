@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {sanitizeLedger, objectives, settle, samplePad, repeatDirection, adjustValue, validID} from '../flight-deck-core.mjs';
+const run = (overrides={}) => ({id:'first-flight',total:4,par:60,frames:1800,incidents:0,delivered:4,airmail:1,finished:true,...overrides});
+test('all earned badges come from completed conditions',()=>assert.deepEqual(settle({},run()).earned,['finish','clean','mail','airmail','express']));
+test('an unfinished run never saves awards',()=>assert.deepEqual(settle({},run({finished:false})).earned,[]));
+test('a failed clean/time/mail attempt retains only earned badges',()=>assert.deepEqual(settle({},run({incidents:2,frames:4000,delivered:1,airmail:0})).earned,['finish']));
+test('earned awards persist across harder subsequent finishes',()=>{const first=settle({},run()).records;const next=settle(first,run({incidents:2,frames:4000,delivered:1,airmail:0}));assert.equal(next.fresh.length,0);assert.equal(next.records['first-flight'].badges.length,5);assert.equal(next.records['first-flight'].finishes,2);assert.equal(next.records['first-flight'].best,30);});
+test('separate routes cannot overwrite one another',()=>{const a=settle({},run()).records,b=settle(a,run({id:'cloudpost'})).records;assert.equal(Object.keys(b).length,2);});
+test('mail and par goals are omitted when absent',()=>assert.deepEqual(objectives(run({total:0,par:0})).map(o=>o.id),['finish','clean']));
+test('bad data cannot create prototype records',()=>{const data=JSON.parse('{"__proto__":{"badges":["finish"]},"ok":{"badges":["bogus","clean"],"finishes":-9,"best":-5}}');const r=sanitizeLedger(data);assert.equal(Object.getPrototypeOf(r),null);assert.equal(Object.hasOwn(r,'__proto__'),false);assert.deepEqual(r.ok,{badges:['clean'],finishes:0,best:null});assert.equal(validID('constructor'),false);});
+test('empty and invalid storage is bounded',()=>{assert.equal(Object.keys(sanitizeLedger(null)).length,0);assert.equal(Object.keys(sanitizeLedger([])).length,0);assert.equal(Object.keys(sanitizeLedger(Object.fromEntries(Array.from({length:150},(_,i)=>['r'+i,{}])))).length,128);});
+test('invalid route and timing cannot save a finish',()=>{for(const r of [run({id:'__proto__'}),run({frames:0}),run({frames:Infinity})])assert.equal(settle({},r).earned.length,0);});
+test('gamepad values tolerate missing and malformed controls',()=>{assert.equal(samplePad(null).neutral,true);const p=samplePad({axes:[NaN,Infinity],buttons:[]});assert.equal(p.x,0);assert.equal(p.y,0);assert.equal(p.neutral,true);assert.equal(samplePad({axes:[9,-9]}).x,1);assert.equal(samplePad({buttons:[{value:.9}]}).buttons[0],true);});
+test('menu repetition has initial delay and bounded cadence',()=>{let r=repeatDirection({direction:0,next:0},1,0);assert.equal(r.fire,true);r=repeatDirection(r,1,100);assert.equal(r.fire,false);r=repeatDirection(r,1,360);assert.equal(r.fire,true);assert.equal(r.next,500);r=repeatDirection(r,-1,370);assert.equal(r.fire,true);assert.equal(repeatDirection(r,0,400).direction,0);});
+test('slider adjustments clamp at both ends',()=>{assert.equal(adjustValue(99,0,100,5,1),100);assert.equal(adjustValue(1,0,100,5,-1),0);assert.equal(adjustValue(50,0,100,5,1),55);});
