@@ -24,6 +24,9 @@ with sync_playwright() as pw:
   before=p.evaluate('padPolls');p.wait_for_function('([x,n])=>padPolls>=x+n',arg=[before,n])
  def button(i,on):p.evaluate('([i,on])=>pad.buttons[i]={pressed:on,value:on?1:0}',[i,on])
  def press(i,condition=None):
+  # A mouse-triggered mode change resets the pad; observe neutral frames first.
+  # Keep held-input suppression in the real game rather than bypassing it.
+  frames()
   button(i,True)
   if condition:wait(condition)
   else:frames()
@@ -57,10 +60,15 @@ with sync_playwright() as pw:
   p.goto(BASE+'/rainward/roadmap.html',wait_until='domcontentloaded');p.wait_for_function('document.querySelectorAll("details.task").length===64');check(p.locator('section.gate').count()==8,'The production board contains 64 tasks across eight acceptance gates')
   p.locator('#phase-filter').select_option('G5');check(p.locator('details.task').count()==8,'Production gate filtering shows the eight sound and music tasks')
   p.locator('#phase-filter').select_option('');p.locator('#status-filter').select_option('Blocked');check(p.locator('details.task').count()==3,'Unfinished approval gates remain explicitly blocked rather than marked complete')
-  p.locator('#status-filter').select_option('');p.locator('#task-RW-001').click();p.locator('#review-RW-001').check();check(p.locator('#approved-count').inner_text()=='0','A local review checkmark cannot fabricate human acceptance sign-off')
+  p.locator('#status-filter').select_option('');p.locator('#task-RW-001').click();p.locator('#review-RW-001').check();check(p.locator('#approved-count').inner_text()=='0','A local review checkmark cannot fabricate human acceptance sign-off');check('1 local review marks' in p.locator('#filter-result').inner_text(),'Local review count updates without rebuilding the focused task')
   p.reload(wait_until='domcontentloaded');p.wait_for_function('document.querySelectorAll("details.task").length===64');p.locator('#task-RW-001').click();check(p.locator('#review-RW-001').is_checked(),'Local review marks persist separately from delivery status')
   p.set_viewport_size({'width':390,'height':844});check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'The production board fits a phone-width viewport');p.screenshot(path=str(OUT/'roadmap-phone.png'));p.set_viewport_size({'width':1180,'height':780});p.screenshot(path=str(OUT/'roadmap-desktop.png'))
   press(9,'document.activeElement?.id==="phase-filter"');press(15);check(p.locator('#phase-filter').input_value()=='G0','D-pad adjusts the production gate filter without a native popup')
+  c.route('**/rainward/production-plan.json',lambda route:route.fulfill(status=503,body='Temporary plan outage'))
+  p.goto(BASE+'/rainward/roadmap.html',wait_until='domcontentloaded');p.locator('#load-error').wait_for(state='visible');frames()
+  check(p.locator('#checklist-source').is_visible(),'A failed plan request keeps the text checklist link available')
+  press(1);wait('!!window.Rainward&&Rainward.mode==="title"')
+  check(True,'B returns from a failed roadmap load without needing the mouse')
   check(not errors and not dialogs,'No uncaught browser errors or native blocking dialogs during the journey')
   (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'dialogs':dialogs,'scope':'Native HTTP/WebGL, ordinary menu actions and emulated standard gamepad. Legacy save fixture only; no physical controller certification.'},indent=2))
  except Exception as e:
