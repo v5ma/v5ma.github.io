@@ -1,7 +1,7 @@
 import R from './vendor/rapier.mjs';
 import {HARBORS,surfaceAt} from './ranch-data.js';
-import {RangerJeep,rotateVector} from './ranger-physics.js?v=ranch1';
-import {FLEET_START,OUTPOSTS,WORLD_RADIUS,DOCK,isWater} from './frontier-data.js?v=ranch1';
+import {RangerJeep,rotateVector} from './ranger-physics.js?v=storm2';
+import {FLEET_START,OUTPOSTS,WORLD_RADIUS,DOCK,isWater} from './frontier-data.js?v=storm2';
 import {clamp,distance} from './ranger-data.js';
 const upright=h=>({x:0,y:Math.sin(h/2),z:0,w:Math.cos(h/2)});
 export class FlightBoat{

@@ -1,20 +1,20 @@
 import * as T from './vendor/three.module.js';
 import {byId,readProgress,writeProgress,addDiscovery,escapeHTML,brushPatch,digPercent} from './core.js';
 import {HOME,LAKE,ROADS,STATIONS,MISSIONS,clamp,distance,readRanger,saveRanger,advance,waypoint} from './ranger-data.js';
-import {initPhysics,ParkPhysics} from './ranger-physics.js?v=ranch1';
+import {initPhysics,ParkPhysics} from './ranger-physics.js?v=storm2';
 import {makeJeep} from './ranger-art.js';
-import {buildPark} from './ranger-world.js?v=ranch1';
+import {buildPark} from './ranger-world.js?v=storm2';
 import {RangerAudio} from './ranger-audio.js';
-import {BUILD,WORLD_RADIUS,WATER,DOCK,OUTPOSTS,PENS,TRAILS,TOOLS,CHECKPOINTS,ALL_ANIMALS,SPECIES,PREDATORS,readFrontier,saveFrontier,operations,penState,penTerminal,insidePen,speciesById,createResident,stepResident,deterAnimal} from './frontier-data.js?v=ranch1';
-import {Fleet} from './frontier-vehicles.js?v=ranch1';
-import {makeResident,makeHelicopter,makeBoat,makeBuggy,makePerson,makeTool} from './frontier-art.js?v=ranch1';
-import {buildFrontier} from './frontier-world.js?v=ranch1';
-import {RangerInput,focusable} from './ranger-input.js?v=ranch1';
-import {RangerTools} from './ranger-tools.js?v=ranch1';
-import {RanchGame,calibrateResident,scaleNote} from './ranch-game.js';
+import {BUILD,WORLD_RADIUS,WATER,DOCK,OUTPOSTS,PENS,TRAILS,TOOLS,CHECKPOINTS,ALL_ANIMALS,SPECIES,PREDATORS,readFrontier,saveFrontier,operations,penState,penTerminal,insidePen,speciesById,createResident,stepResident,deterAnimal} from './frontier-data.js?v=storm2';
+import {Fleet} from './frontier-vehicles.js?v=storm2';
+import {makeResident,makeHelicopter,makeBoat,makeBuggy,makePerson,makeTool} from './frontier-art.js?v=storm2';
+import {buildFrontier} from './frontier-world.js?v=storm2';
+import {RangerInput,focusable} from './ranger-input.js?v=storm2';
+import {RangerTools} from './ranger-tools.js?v=storm2';
+import {RanchGame,calibrateResident,scaleNote} from './ranch-game.js?v=storm2';
 import {buildRanchWorld} from './ranch-world.js';
 import {EXTRA_ROADS,LAND_RADIUS,RANCH_BUILD} from './ranch-data.js';
-import {AAADirector,AAA_BUILD} from './aaa-director.js';
+import {AAADirector,AAA_BUILD} from './aaa-director.js?v=storm2';
 const $=id=>document.getElementById(id),esc=escapeHTML;
 export async function boot(){
  const R=await initPhysics();let storage;try{storage=localStorage;}catch{storage=null;}
@@ -57,17 +57,17 @@ export async function boot(){
  function openJournal(){backTarget=null;$('journal-list').innerHTML=SPECIES.map(d=>`<button class="entry" data-species="${d.id}"><span>${esc(d.name)}</span><small>${state.observed.includes(d.id)?'RECORDED':'NOT YET OBSERVED'}</small></button>`).join('');$('journal-summary').textContent=state.observed.length+' / '+SPECIES.length+' species recorded';show('journal-dialog');}
  $('journal-list').addEventListener('click',e=>{const b=e.target.closest('[data-species]');if(!b)return;const d=speciesById(b.dataset.species);lastJournalSelection=d.id;info(state.observed.includes(d.id)?'RECORDED SPECIES':'RESERVE FIELD GUIDE',d.name,`<p>${esc(d.role)}</p><p class="fact">${esc(scaleNote(d.id))}</p><p>Approach this animal and press A to record a field observation. Use short tool bursts to guide it without injuring it.</p>`,'journal');});
  function openOperations(){backTarget=null;const tasks=operations(state);$('operations-list').innerHTML=tasks.map(o=>`<button class="entry" data-track="${o.id}"><span>${esc(o.name)}<small>${esc(o.detail)}</small></span><b>${o.done} / ${o.total}</b></button>`).join('');show('operations-dialog');}
- $('operations-list').addEventListener('click',e=>{const b=e.target.closest('[data-track]');if(b){state.tracked=b.dataset.track;campaignPinned=false;ranch?.pauseTracking();close();save();toast('Operation pinned to your HUD and map.');}});
+ $('operations-list').addEventListener('click',e=>{const b=e.target.closest('[data-track]');if(b){state.tracked=b.dataset.track;campaignPinned=false;director?.suspend();ranch?.pauseTracking();close();save();toast('Operation pinned to your HUD and map.');}});
  function openMap(){backTarget=null;$('outpost-list').innerHTML=OUTPOSTS.map(o=>`<button class="entry" data-travel="${o.id}" ${state.outposts.includes(o.id)?'':'disabled'}><span>${esc(o.name)}</span><small>${state.outposts.includes(o.id)?'TRAVEL':'VISIT TO UNLOCK'}</small></button>`).join('');drawMap($('fullmap'),true);show('map-dialog');}
  $('outpost-list').addEventListener('click',e=>{const b=e.target.closest('[data-travel]');if(b&&fleet.travel(b.dataset.travel)){tools.refill();close();save();toast('Arrived at '+OUTPOSTS.find(o=>o.id===b.dataset.travel).name+'. Equipment refilled.');}});
  function openOutpost(o){if(!state.outposts.includes(o.id)){state.outposts.push(o.id);radio(o.name+' is on the ranger network. It is now a rest point and travel destination.');}state.checkpoint=o.id;tools.refill();save();backTarget=null;
   $('outpost-title').textContent=o.name;$('outpost-summary').textContent='Checkpoint saved. Water tanks and zapper batteries are full. '+state.outposts.length+' of 6 outposts established.';show('outpost-dialog');}
  let selectedPen=null;
  function openPen(p){selectedPen=p;backTarget=null;updatePenPanel();show('pen-dialog');}
- function updatePenPanel(){const p=selectedPen,ps=penState(state,p),count=animals.filter(a=>a.pen===p.id&&insidePen(a,p,1)).length;$('pen-title').textContent=p.name;$('pen-status').textContent=`${count} / 4 residents inside. Gate ${ps.open?'open':'closed'}. Feeder ${ps.fed?'stocked':'empty'}. ${ps.secured?'Containment recorded.':'Guide everyone inside, then close the gate.'}`;$('pen-gate').textContent=ps.open?'Close enclosure gate':'Open enclosure gate';$('pen-feed').textContent=ps.fed?'Replenish feeder':'Fill feeder and call residents';}
+ function updatePenPanel(){const p=selectedPen,ps=penState(state,p),count=animals.filter(a=>a.pen===p.id&&insidePen(a,p,2)).length;$('pen-title').textContent=p.name;$('pen-status').textContent=`${count} / 4 residents inside. Gate ${ps.open?'open':'closed'}. Feeder ${ps.fed?'stocked':'empty'}. ${ps.secured?'Containment recorded.':'Guide everyone inside, then close the gate.'}`;$('pen-gate').textContent=ps.open?'Close enclosure gate':'Open enclosure gate';$('pen-feed').textContent=ps.fed?'Replenish feeder':'Fill feeder and call residents';}
  $('pen-gate').onclick=()=>{const ps=penState(state,selectedPen),t=selectedPen;if(ps.open&&distance(fleet.position,{x:t.x,z:t.z+t.hz})<7){toast('Move clear of the gateway before closing it.');return;}ps.open=!ps.open;updatePenPanel();save();};
  $('pen-feed').onclick=()=>{penState(state,selectedPen).fed=true;updatePenPanel();save();toast('Feeder stocked. Residents can return through an open gate.');};
- $('pen-track').onclick=()=>{state.tracked='pens';campaignPinned=false;close();};
+ $('pen-track').onclick=()=>{director?.suspend();ranch?.pauseTracking();state.tracked='pens';campaignPinned=false;close();};
  function openLab(){const p=readProgress(storage).progress,id=lastJournalSelection&&byId(lastJournalSelection)?lastJournalSelection:'diplodocus',d=byId(id);backTarget=null;$('lab-species').value=id;updateLab();show('lab-dialog');}
  function updateLab(){const p=readProgress(storage).progress,id=$('lab-species').value;$('dig-status').textContent=digPercent(p,id)+'% brushed. Each patch needs two careful passes.';$('dig-progress').value=digPercent(p,id);$('lab-brush').disabled=digPercent(p,id)===100;}
  $('lab-species').onchange=updateLab;$('lab-brush').onclick=()=>{const p=readProgress(storage).progress,id=$('lab-species').value,index=(p.digs[id]||Array(48).fill(0)).findIndex(v=>v<2);if(index>=0){brushPatch(p,id,index);writeProgress(storage,p);updateLab();input.pulse(.07,35);}};
@@ -77,7 +77,7 @@ export async function boot(){
   else if(c.kind==='outpost')openOutpost(c.outpost);
   else if(c.kind==='power'){mission('power');toast('Relay restored. The original northern gate is opening.');}
   else if(c.kind==='recorder'){if(mission('recorder'))info('FIELD RECORDER SECURED','Return the recorder to base.','<p>Follow the amber marker to the visitor center. Your vehicle takes no damage; a rollover automatically rights itself in place.</p>');}
-  else if(c.kind==='home'){if(mission('home'))info('ORIGINAL EXPEDITION COMPLETE','A bigger reserve awaits.',`<p>Your recorder is safe. Ranger Operations now offers eight new enclosures, six outposts, a wetland patrol, and 14 species to discover.</p><p>Press View for the map or Menu for the operations board.</p>`);}
+  else if(c.kind==='home'){if(mission('home'))info('ORIGINAL EXPEDITION COMPLETE','A bigger reserve awaits.',`<p>Your recorder is safe. Ranger Operations now offers eight new enclosures, six outposts, a wetland patrol, and 30 species to discover.</p><p>Press View for the map or Menu for the operations board.</p>`);}
   else if(c.kind==='lab')openLab();else if(c.kind==='vehicle')fleet.board();
  }
  function action(key){
@@ -104,7 +104,7 @@ export async function boot(){
  for(const id of ['map-button','minimap-button','menu-map'])$(id).onclick=openMap;
  $('menu-button').onclick=()=>action('menu');$('menu-operations').onclick=openOperations;$('menu-journal').onclick=openJournal;$('menu-lab').onclick=openLab;
  $('menu-controls').onclick=()=>{backTarget='menu';show('controls-dialog');};$('outpost-operations').onclick=openOperations;$('outpost-map').onclick=openMap;
- $('campaign-track').onclick=()=>{ranch?.pauseTracking();campaignPinned=campaign.stage<5;close();};
+ $('campaign-track').onclick=()=>{director?.suspend();ranch?.pauseTracking();campaignPinned=campaign.stage<5;close();};
  $('manual-recover').onclick=()=>{close();if(fleet.current)fleet.recover();};
  $('resupply-button').onclick=()=>{tools.refill();save();toast('Water tanks and battery reserves replenished.');};
  $('sound-button').onclick=async()=>{try{const on=await audio.toggle();$('sound-button').textContent=on?'Sound: on':'Sound: off';}catch{toast('This browser has not enabled audio playback.');}};
@@ -182,7 +182,7 @@ export async function boot(){
     for(const a of animals)if(a.deter===0&&(a.mood==='pursuing'||['sauropod','brachio','trike','ankylosaur'].includes(a.kind)&&distance(a,fleet.position)<a.radius+1.4)){if(fleet.hitBy(a)){toast(speciesById(a.species).name+' shoved the vehicle. Auto-recovery is active.');input.pulse(.55,190);}}
     for(const c of frontier.crates)if(!c.exploded&&fleet.current&&Math.abs(fleet.actor.speed)>4.5&&distance(c.body.translation(),fleet.position)<3&&fleet.position.y<4)blast(c);
     const p=fleet.position;if(campaign.stage===0&&distance(p,STATIONS.gate)<5)mission('gate');const walked=distance(p,lastPosition);if(walked<4)campaign.meters+=walked;lastPosition={x:p.x,z:p.z};
-    for(const pen of PENS){const ps=penState(state,pen);if(!ps.secured&&!ps.open&&ps.fed&&animals.filter(a=>a.pen===pen.id).every(a=>insidePen(a,pen,1))){ps.secured=true;radio(pen.name+' secured. Containment recorded.');save();}}
+    for(const pen of PENS){const ps=penState(state,pen);if(!ps.secured&&!ps.open&&ps.fed&&animals.filter(a=>a.pen===pen.id).every(a=>insidePen(a,pen,2))){ps.secured=true;radio(pen.name+' secured. Containment recorded.');save();}}
     if(!state.patrolDone&&distance(p,CHECKPOINTS[state.patrol])<8){state.patrol++;if(state.patrol>=CHECKPOINTS.length)state.patrolDone=true;toast(state.patrolDone?'Perimeter patrol completed.':'Patrol checkpoint '+state.patrol+' / '+CHECKPOINTS.length);save();}
     if(fleet.mode!=='foot'&&!state.rides.includes(fleet.mode)&&Math.abs(fleet.actor.speed)>1)state.rides.push(fleet.mode);
     accumulator-=step;steps++;
@@ -196,10 +196,10 @@ export async function boot(){
  }
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();input.clear();if(started&&!modal())show('menu-dialog');toast('Graphics context interrupted. Reload the game to restore rendering; your saved progress is retained.');});
  ranch=new RanchGame({scene,physics,R,fleet,animals,state,storage,audio,input,frontier,ranchWorld,started:()=>started,notify:toast,radio,save,close,show:id=>{backTarget=null;show(id);},info,ranchSnapshot:()=>ranch.snapshot()});
- director=new AAADirector({scene,physics,R,fleet,animals,state,storage,audio,input,frontier,ranch,settings,started:()=>started,notify:toast,radio,save,close,show:id=>{backTarget=null;show(id);},info});
+ director=new AAADirector({scene,physics,R,fleet,animals,state,storage,audio,input,frontier,ranch,settings,park,started:()=>started,notify:toast,radio,save,close,show:id=>{backTarget=null;show(id);},info});
  ui();syncModels(0);frontier.update(0,0,fleet.position,settings.reduced);park.update(0,0,fleet.actor,settings.night,settings.reduced);renderer.render(scene,camera);
  $('start-button').disabled=false;$('start-button').textContent=campaign.stage||state.outposts.length>1?'Continue ranger operations':'Start your engine';$('load-status').textContent='Ready. Press A on your controller, or select Start.';updateDevice('keyboard');
  const debug={get state(){return {ready:true,build:AAA_BUILD,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],species:[...state.observed],position:{...fleet.position},speed:fleet.actor.speed,grounded:fleet.actor.grounded,health:100,mode:fleet.mode,active:fleet.active,tool:tools.tool.id,ammo:[...state.ammo],reserve:[...state.reserve],reloading:tools.reloadLeft,toolHits:{...state.toolHits},outposts:[...state.outposts],checkpoint:state.checkpoint,patrol:state.patrol,pens:JSON.parse(JSON.stringify(state.pens)),exploded:[...state.exploded],drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night:settings.night,yaw,aimPitch,device:input.device,vehicles:fleet.vehicles.map(v=>({id:v.id,type:v.type,position:{...v.drive.position},recoveries:v.recoveries,rotation:{...v.drive.body.rotation()}})),animals:animals.map(({uid,species,x,z,mood,pen,deter})=>({uid,id:species,x,z,mood,pen,deter}))};}};
  if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{if(fleet.current)fleet.current.drive.reset({x,z},heading);else fleet.person.setActive(true,{x,y:1,z});lastPosition={x,z};},setAim:(angle,elevation=.04)=>{yaw=angle;aimPitch=elevation;},render:ui,ranch,director,physics,fleet,animals,frontier,tools,progress:state,jeep:fleet.vehicles[0].drive});
- window.__dinoRanger=debug;window.__dinoAAA={get state(){return director?.snapshot?.()||null;},open:()=>director?.open?.()};requestAnimationFrame(frame);
+ window.__dinoRanger=debug;window.__dinoAAA={get state(){return director?.snapshot?.()||null;},open:()=>director?.open?.(),suspend:()=>director?.suspend?.()};requestAnimationFrame(frame);
 }

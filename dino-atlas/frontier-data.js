@@ -109,14 +109,14 @@ export function stepResident(a,player,dt,time,state,hornAge=100){
  }else if(!PREDATORS.has(a.kind)&&(gap<4.5||hornAge<1.8&&gap<23)){
   tx=a.x+(a.x-player.x);tz=a.z+(a.z-player.z);speed=2.8;a.mood='startled';
  }else if(pen&&ps.fed){
-  const outside=!insidePen(a,pen,2),south=pen.z+pen.hz;tx=pen.x+Math.sin(a.phase)*7;tz=pen.z-4+Math.cos(a.phase)*7;
+  const outside=!insidePen(a,pen,0),south=pen.z+pen.hz;tx=pen.x+Math.sin(a.phase)*7;tz=pen.z-4+Math.cos(a.phase)*7;
   if(outside){if(a.z<south+3&&Math.abs(a.x-pen.x)>5){tx=pen.x+Math.sign(a.x-pen.x)*(pen.hx+4);tz=south+7;}else if(Math.abs(a.x-pen.x)>2.5){tx=pen.x;tz=south+7;}else{tx=pen.x;tz=ps.open?south-7:south+5;}}speed=2.5;a.mood='returning to feeder';
  }else{tx=a.origin.x+Math.sin(time*.16+a.phase)*7;tz=a.origin.z+Math.cos(time*.13+a.phase)*5;speed=a.kind==='sauropod'||a.kind==='brachio'?.65:1;a.mood='roaming';}
  const dx=tx-a.x,dz=tz-a.z,len=Math.hypot(dx,dz);if(len>.2&&speed){a.x+=dx/len*Math.min(speed*dt,len);a.z+=dz/len*Math.min(speed*dt,len);const want=Math.atan2(dx,dz);a.angle+=Math.atan2(Math.sin(want-a.angle),Math.cos(want-a.angle))*Math.min(1,dt*3);}
  if(pen){
   // Rectangular wall crossing is blocked except at the real southern gate.
-  const r=Math.min(a.radius*.6,1.5),was=insidePen(old,pen,r),now=insidePen(a,pen,r),gateX=Math.abs(a.x-pen.x)<5-r;
-  if(was&&!now&&!(ps.open&&gateX&&a.z>pen.z)){a.x=clamp(a.x,pen.x-pen.hx+r,pen.x+pen.hx-r);a.z=clamp(a.z,pen.z-pen.hz+r,pen.z+pen.hz-r);}
+  const r=Math.min(a.radius*.6,1.5),was=insidePen(old,pen,0),now=insidePen(a,pen,0),gateX=Math.abs(a.x-pen.x)<5-r;
+  if(was&&!insidePen(a,pen,r)&&!(ps.open&&gateX&&a.z>pen.z)){a.x=clamp(a.x,pen.x-pen.hx+r,pen.x+pen.hx-r);a.z=clamp(a.z,pen.z-pen.hz+r,pen.z+pen.hz-r);}
   if(!was&&now&&!(ps.open&&gateX&&old.z>pen.z+pen.hz-3)){a.x=old.x;a.z=old.z;}
   if(distance(a,pen)>70){a.x=old.x;a.z=old.z;}
  }else if(a.uid==='legacy-5'){a.x=clamp(a.x,24,68);a.z=clamp(a.z,-72,-40);}
