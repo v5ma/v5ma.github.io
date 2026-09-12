@@ -20,7 +20,8 @@ try:
   opts=dict(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
   if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
   browser=pw.chromium.launch(**opts);context=browser.new_context(viewport={'width':1280,'height':800})
-  context.add_init_script(PAD);page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+  context.add_init_script(PAD);context.add_init_script("try{if(!localStorage.getItem('dino-atlas.frontier.v2'))localStorage.setItem('dino-atlas.frontier.v2',JSON.stringify({version:2,settings:{low:true}}));}catch{}")
+  page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
   def button(i,down):page.evaluate('([i,down])=>{__pad.buttons[i]={pressed:down,touched:down,value:down?1:0};__pad.timestamp++;}',[i,down])
   def press(i):
    button(i,True);page.wait_for_timeout(210);button(i,False);page.wait_for_timeout(230)
@@ -61,7 +62,13 @@ try:
    # Dispatch is controller-native and stages a real repeatable herding exercise.
    choose('roundup');check(page.evaluate('__dinoRanch.state.activity')=='roundup','Xbox A accepts a ranching job from Dispatch')
    check(page.evaluate('__dinoRanch.state.task.done')<4,'Roundup stages actual strays outside the pen')
-   snap('05-roundup-assignment.png');choose('race')
+   snap('05-roundup-assignment.png')
+   before=page.evaluate('__dinoEconomy.state.credits');page.evaluate('__dinoRanger.teleport(-48,203)');wait('document.getElementById("interact-label").textContent.includes("Manage Crest")');press(0);wait('document.getElementById("pen-dialog").open')
+   page.evaluate('document.getElementById("pen-feed").focus()');press(0);press(1);press(13)
+   wait('__dinoRanch.state.task.done===4',90000);press(0);wait('document.getElementById("pen-dialog").open');page.evaluate('document.getElementById("pen-gate").focus()');press(0);press(1)
+   wait('__dinoRanch.state.activity===null',30000)
+   check(page.evaluate('__dinoEconomy.state.credits')==before+650,'A real horn-and-feeder roundup returns four strays through the gate and pays 650 credits')
+   choose('race')
    page.evaluate("""async()=>{const g=__dinoRanger,d=await import('./ranch-data.js');g.fleet.person.setActive(false);g.fleet.active='boat';g.fleet.current.drive.reset({...d.RACE_GATES[0],y:.78},Math.atan2(d.RACE_GATES[1].x-d.RACE_GATES[0].x,d.RACE_GATES[1].z-d.RACE_GATES[0].z));}""")
    button(7,True)
    try:wait('__dinoRanch.state.race.running',30000)

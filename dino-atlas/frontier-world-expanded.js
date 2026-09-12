@@ -3,7 +3,7 @@ import * as T from './vendor/three.module.js';
 import {buildFrontier as buildBase} from './frontier-world.js?base=ranch1';
 import {OUTPOSTS} from './frontier-data-expanded.js?v=ranch1';
 import {makeBuggy} from './frontier-art.js?v=ranch1';
-import {makeJeep} from './ranger-art.js';
+import {makeJeep,label,box} from './ranger-art.js';
 
 const SONIC_GATES=[
  {x:0,z:98,color:0x7adfff,name:'Visitor Sonic Gate'},
@@ -17,9 +17,9 @@ const GRAVITY_NODES=[
  {x:154,z:-92,color:0xff9fd5,name:'Gravity Ripple Gamma'}
 ];
 const RIVAL_DEFS=[
- {name:'Meridian Rangers',color:0x67d8ff,phase:.04,speed:.018,model:'buggy',points:[[-150,42],[-105,38],[-56,70],[-20,103],[45,114],[100,157],[155,150],[205,100]]},
- {name:'FossilWorks Operations',color:0xffb56f,phase:.37,speed:.014,model:'jeep',points:[[205,-138],[174,-86],[137,-32],[89,-38],[37,-24],[-5,-82],[-70,-108],[-89,-76]]},
- {name:'Greenline Logistics',color:0x8ff59c,phase:.71,speed:.016,model:'buggy',points:[[-55,-214],[-4,-206],[49,-216],[105,-203],[151,-170],[195,-145],[217,-89],[224,-24],[208,37]]}
+ {name:'Meridian Rangers',color:0x67d8ff,phase:.04,speed:.018,model:'buggy',points:[[-184,151],[-214,84],[-178,42],[-117,43],[-66,19],[-5,62],[-15,106],[-58,203],[-126,202]]},
+ {name:'FossilWorks Operations',color:0xffb56f,phase:.37,speed:.014,model:'jeep',points:[[224,-130],[176,-67],[135,-18],[88,-38],[31,-26],[60,-157],[70,-222],[110,-233],[196,-204]]},
+ {name:'Greenline Logistics',color:0x8ff59c,phase:.71,speed:.016,model:'buggy',points:[[214,108],[160,91],[93,53],[35,48],[57,113],[105,190],[157,160]]}
 ];
 
 function event(type,detail={}){if(typeof window!=='undefined')window.dispatchEvent(new CustomEvent('dino-spectacle',{detail:{type,...detail}}));}
@@ -59,8 +59,9 @@ export function buildFrontier(scene,physics,state){
   model.traverse(o=>{if(o.isMesh&&o.material){o.material=o.material.clone();if(o.material.color)o.material.color.lerp(new T.Color(r.color),.18);}});
   const lamp=new T.PointLight(r.color,18,18,2);lamp.position.set(0,2.4,0);model.add(lamp);
   const halo=new T.Mesh(new T.TorusGeometry(1.6,.04,6,32),new T.MeshBasicMaterial({color:r.color,transparent:true,opacity:.52}));halo.rotation.x=Math.PI/2;halo.position.y=.18;model.add(halo);
+  const sign=label(r.name.toUpperCase()+' / A CONTACT',11,1);const badge=new T.Sprite(new T.SpriteMaterial({map:sign.material.map,depthWrite:false}));badge.position.set(0,5,0);badge.scale.set(11,1,1);model.add(badge);const cargo=new T.Group();for(const x of [-.5,.5])box(cargo,0xb69b67,x,1.8,-1, .8,.65,.8);model.add(cargo);
   const curve=new T.CatmullRomCurve3(r.points.map(([x,z])=>new T.Vector3(x,.55,z)),true,'catmullrom',.28);
-  rivals.push({...r,model,curve,lamp,halo,near:false,index:i,deliveries:0,lastCycle:-1,status:'Beginning scheduled service run'});
+  rivals.push({...r,model,curve,lamp,halo,cargo,badge,near:false,index:i,deliveries:0,lastCycle:-1,status:'Beginning scheduled service run'});
  }
 
  for(let i=0;i<18;i++){
@@ -88,7 +89,7 @@ export function buildFrontier(scene,physics,state){
    for(const g of gateVisuals){g.cool=Math.max(0,g.cool-dt);g.ring.rotation.z=time*.35+g.phase;g.floor.material.opacity=.15+(reduced?0:Math.sin(time*3+g.phase)*.08)+Math.min(speed/80,.12);if(g.cool<=0&&speed>7&&Math.hypot(player.x-g.def.x,player.z-g.def.z)<7){g.cool=5;sonic(g);}}
    for(const g of gravityVisuals){g.cool=Math.max(0,g.cool-dt);g.core.rotation.y+=dt*.55;g.rings.forEach((r,i)=>{if(!reduced){r.rotation.x+=dt*(.2+i*.05);r.rotation.y-=dt*(.16+i*.06);}});g.light.intensity=18+Math.sin(time*2+g.phase)*7;if(g.cool<=0&&Math.hypot(player.x-g.def.x,player.z-g.def.z)<9){g.cool=12;gravity(g);}}
    rivalNotice=Math.max(0,rivalNotice-dt);
-   for(const r of rivals){const period=1/r.speed+10,elapsed=time+r.phase*period,cycle=Math.floor(elapsed/period),local=elapsed%period,unloading=local>period-10,u=unloading?.995:local/(period-10),p=r.curve.getPointAt(u),n=r.curve.getPointAt((u+.006)%1);r.model.position.copy(p);r.model.lookAt(n);r.halo.rotation.z=time*.6+r.index;const jobs=['Armored Valley feeder supplies','Amber Mesa fossil casting supplies','Coastal freight replenishment'];r.status=(unloading?'Unloading: ':'Transporting: ')+jobs[r.index];if(cycle!==r.lastCycle){if(r.lastCycle>=0){r.deliveries++;event('crew-delivery',{index:r.index,name:r.name});}r.lastCycle=cycle;}const near=Math.hypot(player.x-p.x,player.z-p.z)<13;if(near&&!r.near&&rivalNotice<=0){rivalNotice=10;event('rival',{name:r.name});}r.near=near;}
+   for(const r of rivals){const period=1/r.speed+10,elapsed=time+r.phase*period,cycle=Math.floor(elapsed/period),local=elapsed%period,unloading=local>period-10,u=unloading?0:local/(period-10),p=r.curve.getPointAt(u),n=r.curve.getPointAt((u+.006)%1);r.model.position.copy(p);r.model.lookAt(n);r.halo.rotation.z=time*.6+r.index;const jobs=['Armored Valley feeder supplies','Amber Mesa fossil casting supplies','Coastal freight replenishment'];r.cargo.visible=!unloading;r.badge.visible=Math.hypot(player.x-p.x,player.z-p.z)<55;r.status=(unloading?'Unloading: ':'Transporting: ')+jobs[r.index];if(cycle!==r.lastCycle){if(r.lastCycle>=0){r.deliveries++;event('crew-delivery',{index:r.index,name:r.name});}r.lastCycle=cycle;}const near=Math.hypot(player.x-p.x,player.z-p.z)<13;if(near&&!r.near&&rivalNotice<=0){rivalNotice=10;event('rival',{name:r.name});}r.near=near;}
    for(const p of pulses){p.age+=dt;if(p.age<0){p.ring.visible=false;continue;}if(p.age<p.life){p.ring.visible=true;const f=p.age/p.life;p.ring.scale.setScalar(.35+f*14);p.ring.material.opacity=(1-f)*(.72-(reduced?.22:0));p.ring.position.y=p.height+f*.08;}else p.ring.visible=false;}
   }
  };
