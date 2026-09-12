@@ -1,0 +1,64 @@
+name: Aether Skyglass character and shader review
+on:
+  push:
+    branches: [feat/aether-skyglass-cast-20260912]
+    paths: ['aether-reach/**', '.github/workflows/aether-skyglass.yml']
+  pull_request:
+    paths: ['aether-reach/**', '.github/workflows/aether-skyglass.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aether-skyglass-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [skyglass, foundry]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate exact source, independent rigs, asset licenses and canonical plan
+        run: |
+          set -euo pipefail
+          mkdir -p aether-reach/test-output
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/skyglass-node.log
+          python aether-reach/tools/render-production-plan.py
+          git diff --exit-code -- aether-reach/planning/AAA-ROADMAP.md
+          node aether-reach/tests/release-manifest.mjs
+      - name: Install the actual browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play the real WebGL game through controller inputs
+        timeout-minutes: 18
+        env:
+          SCENARIO: ${{ matrix.scenario }}
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/skyglass-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u "aether-reach/tests/${SCENARIO}-browser.py" | tee "aether-reach/test-output/${SCENARIO}-browser.log"
+      - name: Preserve reviewed source and actual reports
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+          git archive --format=zip HEAD aether-reach index.html projects.css .github/workflows > aether-reach/test-output/skyglass-source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-skyglass-${{ matrix.scenario }}
+          path: aether-reach/test-output
+          retention-days: 14
