@@ -20,7 +20,7 @@
    m.onBeforeCompile=function(shader,renderer){original.compile.call(this,shader,renderer);try{S.patch(shader,self.uniforms);self.stats.compiled++;}catch(e){self.errors.push(e.message);throw e;}};
    m.customProgramCacheKey=function(){return original.key.call(this)+'|rosefire-surface-v1';};m.needsUpdate=true;this.stats.patchedMaterials=this.patched.size;
   },
-  rebuild(){const g=this.g,j=this.j,w=g.game.world;this.world=w;this.lastEvent=g.game.eventSeq||0;this.lastSources=-1;this.sources=[];this.stats.builds++;for(const a of this.wakes)a.mesh.visible=false;
+  rebuild(){const g=this.g,j=this.j,w=g.game.world;this.world=w;this.lastEvent=g.game.eventSeq||0;this.lastSources=-1;this.sources=[];this.stats.builds++;for(const a of this.wakes){a.mesh.visible=false;a.born=-Infinity;}
    if(!g.arMode){g.worldArt.group.traverse(o=>{const list=Array.isArray(o.material)?o.material:[o.material];for(const m of list)if(m?.name==='CC0 photographed cobblestones'||m?.name==='Dark paving'||o.geometry===g.art.geos.dominionPlane)this.patchMaterial(m);});
     for(const projection of j.projections||[]){const room=w.rooms.reduce((best,r)=>Math.hypot(r.x-projection.window.position.x,r.z-projection.window.position.z)<Math.hypot(best.x-projection.window.position.x,best.z-projection.window.position.z)?r:best,w.rooms[0]);this.sources.push([room.x,room.z,Math.min(room.w,room.d)*.38,projection.window.rotation.y]);}}
    this.signature='';
