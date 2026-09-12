@@ -1,3 +1,9 @@
+# Dino Atlas: Northstar Canopy
+
+Open Menu > Northstar Canopy Circuit for the new signature-facility set piece at Northstar Canopy Institute. Northstar now has a stronger rooftop canopy/observation silhouette, illuminated environmental storytelling, the existing helicopter landing route, and a second on-foot route to the roof: a physically climbable exterior switchback service ascent ending at a controller-operated safety airlock. The repeatable five-stage Canopy Circuit uses the real front doorway, interior service corridor, seed-vault relay, roof wind sensor, canopy spine and return path. First completion pays 750 credits once; replays retain best time.
+
+The upgrade keeps the 64 residents, 30 species, Living Herds, Storm Response, Ranch & Coast, trading, vehicles, journal and earlier saves intact. The maintained production checklist remains [AAA-ROADMAP.md](AAA-ROADMAP.md); release scope and manual limitations are in [NORTHSTAR-CANOPY.md](NORTHSTAR-CANOPY.md).
+
 # Dino Atlas: Living Herds
 
 Open Menu > Living Herds: field study for the new grazer-and-predator assignment. Heads, tails and jointed legs now respond to actual travel and behavior states. Hunters warn before charging; short tool pulses interrupt and guide them. Balanced/Quiet/Off wildlife-call presets are in the same controller-accessible panel. The previous Storm Response campaign, 64 residents, 30-species library, all vehicles, economy and saves remain.

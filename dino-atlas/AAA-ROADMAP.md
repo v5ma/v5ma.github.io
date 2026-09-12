@@ -41,7 +41,7 @@ Exit criterion: no known progression blocker in the supported test paths, all pr
 - [x] VS-07: offer rain/fog/gust presentation, indoor rain exclusion, separate lightning-flash consent and existing sound-category controls.
 - [ ] VS-08: conduct first-time-player sessions and measure mission comprehension and time-to-first-success. Do not advertise an unmeasured 20-30 minute duration.
 - [ ] VS-09: give one important dinosaur encounter production-quality movement, anticipation, reactions, sound and visual identity.
-- [ ] VS-10: finish one signature interior with memorable environmental storytelling, alternate paths, lighting composition and a replayable set-piece.
+- [x] VS-10: finish one signature interior with memorable environmental storytelling, alternate paths, lighting composition and a replayable set-piece. Northstar Canopy now supplies the representative implementation; human art review and hardware acceptance remain open.
 - [ ] VS-11: add short, skippable opening/reveal/completion camera sequences; A/B/Menu must always skip or pause as appropriate.
 - [ ] VS-12: meet the declared hardware performance budget and complete a physical Xbox-only playthrough.
 
@@ -113,11 +113,21 @@ Owner: implementation plus art/animation review. Depends on G0 save/interaction 
 
 Acceptance: one representative herbivore and one predator pass an authored encounter and a physical-controller playtest before propagating the approach across all 30 species.
 
+### Northstar Canopy signature facility delivered in source
+
+Release entry: [NORTHSTAR-CANOPY.md](NORTHSTAR-CANOPY.md). Northstar Canopy Institute is the representative VS-10 / WORLD-01 facility: a stronger rooftop canopy silhouette, lit observation spine, environmental service details, the existing roof helipad and lift, a second exterior switchback ascent, and the repeatable five-stage Canopy Circuit. The new activity uses `dino-atlas.northstar-signature.v1`; it does not replace the journal, frontier, ranch, Living Herds, market or Storm Response saves.
+
+- [x] WORLD-01a: recognizable Northstar canopy crown and observation spine without occupying the existing helicopter landing zone.
+- [x] WORLD-01b: two controller-usable on-foot roof routes: maintenance lift and physically supported exterior service ascent with a deliberate A-operated roof airlock across the existing safety rail.
+- [x] WORLD-01c: five-stage Canopy Circuit uses the real front doorway, service corridor, ground relay, roof sensor, canopy console and return/report path. First completion rewards 750 credits once; replays retain best time.
+- [x] WORLD-01d: preserve all previous saves and retain one-time reward IDs for Storm Response, Living Herds and Northstar across economy sanitization.
+- [ ] WORLD-01e: complete human art-direction review at normal play distance, physical-controller route testing and measured consumer-GPU performance. Those manual gates are not inferred from browser automation.
+
 ### Following pass: a signature district and interior
 
 Owner: world design/art. Depends on DINO-01 and a performance profile. Effort class: large.
 
-- [ ] WORLD-01: finish one detailed, original facility with approach landmarks, exterior silhouette, roof landing route, believable rooms, service corridors and at least two on-foot paths.
+- [x] WORLD-01: finish one detailed, original facility with approach landmarks, exterior silhouette, roof landing route, believable rooms, service corridors and at least two on-foot paths. Northstar Canopy keeps the helipad clear and offers the maintenance lift plus a physically climbable exterior service ascent/airlock.
 - [ ] WORLD-02: add terrain relief, an overlook, a service crossing and a boneyard with multi-step visible excavation.
 - [ ] WORLD-03: make discovery pacing measurable through new-player sessions. The provisional design goal is a meaningful point of interest during each 30-60 seconds of purposeful travel, not uniformly scattered props.
 - [ ] WORLD-04: share a material, signage and lighting language across roads, tools, vehicles, foliage and architecture.
