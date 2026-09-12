@@ -33,8 +33,27 @@ with sync_playwright() as pw:
         assert page.evaluate("Prism.component.runMode")=='gamepad'
         assert page.evaluate("Prism.component.state.mode")=='keys'
         assert page.locator('#pad-lanes').is_visible()
-        page.wait_for_function("Prism.component.audio.time() >= Prism.component.state.song.notes[0].time - .035",timeout=20000)
-        lane=page.evaluate('Prism.component.state.song.notes[0].lane');press([6,4,5,7][lane])
+        # Schedule an ordinary pad edge inside the browser; Python round trips
+        # must not consume the 170 ms game timing window. No direct scoring call.
+        timing=page.evaluate("""async()=>{
+            const g=Prism.component,n=g.state.song.notes.find(n=>n.time>g.audio.time()+g.runOffset+.25);
+            if(!n)throw Error('No upcoming note for controller acceptance');
+            const b=[6,4,5,7][n.lane];let pressedAt=null;
+            return await new Promise((resolve,reject)=>{
+                const began=performance.now(),timer=setInterval(()=>{
+                    const time=g.audio.time()+g.runOffset;
+                    const stop=()=>{clearInterval(timer);testPad.buttons[b]={pressed:false,value:0};};
+                    if(g.phase!=='playing'||performance.now()-began>15000){stop();reject(Error('Controller cue interrupted'));return;}
+                    if(pressedAt===null&&time>=n.time-.055){pressedAt=time;testPad.buttons[b]={pressed:true,value:1};}
+                    if(g.state.judged[n.id]||time>n.time+.2){
+                        stop();
+                        if(g.state.judged[n.id]!=='hit'){reject(Error('Controller missed cue at '+time));return;}
+                        resolve({note:n.id,cue:n.time,pressedAt,judgment:g.state.judged[n.id]});
+                    }
+                },4);
+            });
+        }""")
+        assert timing['judgment']=='hit'
         assert page.evaluate('Prism.component.state.hits')>=1
         press(9);assert page.evaluate('Prism.snapshot().phase')=='paused'
         before=page.evaluate('Prism.component.audio.time()');page.wait_for_timeout(300)
@@ -57,9 +76,10 @@ with sync_playwright() as pw:
         assert page.evaluate('Prism.snapshot().mixer.effects')==0
         assert page.evaluate('Prism.snapshot().mixer.rate')=='off'
         assert not errors,errors
-        result={'passed':True,'scope':'Production renderer/music in Chromium at quarter pixel ratio; emulated standard controller','checks':['mixer navigation','independent volumes','music-only preset','pause transport','gamepad lane hit','focus trap','background input isolation','disconnect/reconnect','score isolation','preference reload'],'errors':errors}
+        result={'passed':True,'scope':'Production renderer/music in Chromium at quarter pixel ratio; emulated standard controller','checks':['mixer navigation','independent volumes','music-only preset','pause transport','gamepad lane hit','focus trap','background input isolation','disconnect/reconnect','score isolation','preference reload'],'errors':errors,'timed_pad_input':timing}
         (OUT/'control-room-browser.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
-    except Exception:
+    except Exception as e:
+        (OUT/'control-room-failure.json').write_text(json.dumps({'error':str(e),'errors':errors,'state':page.evaluate('window.Prism?.snapshot()')},indent=2))
         page.screenshot(path=str(OUT/'control-room-failure.png'),full_page=True)
         print('SNAPSHOT',page.evaluate('window.Prism?.snapshot()'))
         print('ERRORS',errors)
