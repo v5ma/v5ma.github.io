@@ -1,0 +1,40 @@
+name: Aether character source review
+on:
+  push:
+    branches: [feat/aether-aurora-cast-20260912]
+    paths: ['.github/workflows/aether-cast-sources.yml']
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Read official asset pages without executing downloaded code
+        run: |
+          mkdir -p sources
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          from pathlib import Path
+          import re,json
+          urls=['https://quaternius.com/packs/ultimatemodularcharacters.html','https://quaternius.com/packs/ultimatemodularwomen.html','https://www.kenney.nl/assets/animated-characters-survivors']
+          report=[]
+          for i,url in enumerate(urls):
+            try:
+              text=urlopen(Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=30).read().decode()
+              Path(f'sources/page-{i}.html').write_text(text)
+              links=sorted(set(re.findall(r'https?[^\s\"<>\x27]+',text)))
+              selected=[l for l in links if any(k in l.lower() for k in ['zip','drive.google','dropbox','itch.io','poly.pizza'])]
+              print(url,selected)
+              for line in text.splitlines():
+                if any(k in line.lower() for k in ['.zip','data-download','downloadurl','downloadlink','modal-body']):print(line.strip()[:1500])
+              report.append({'url':url,'links':selected})
+            except Exception as e:report.append({'url':url,'error':str(e)})
+          Path('sources/report.json').write_text(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-character-sources
+          path: sources
+          retention-days: 14
