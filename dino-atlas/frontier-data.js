@@ -1,11 +1,12 @@
 // Ranger Operations expansion. Fictional reserve behavior, not paleoecology.
 import {ANIMALS, HOME, clamp, distance, seeded} from './ranger-data.js';
-export const BUILD='ranger-operations-20260911.1';
+import {seaWater,WORLD_EDGE} from './ranch-data.js';
+export const BUILD='ranch-coast-20260911.1';
 export const FRONTIER_KEY='dino-atlas.frontier.v2';
-export const WORLD_RADIUS=310;
+export const WORLD_RADIUS=WORLD_EDGE;
 export const WATER=[{x:-164,z:-155,rx:76,rz:57},{x:-238,z:-152,rx:38,rz:25}];
 export const DOCK={x:-78,z:-151};
-export const isWater=(x,z,margin=0)=>WATER.some(w=>((x-w.x)/(w.rx+margin))**2+((z-w.z)/(w.rz+margin))**2<1);
+export const isWater=(x,z,margin=0)=>seaWater(x,z,margin)||WATER.some(w=>((x-w.x)/(w.rx+margin))**2+((z-w.z)/(w.rz+margin))**2<1);
 export const OUTPOSTS=[
  {id:'base',name:'Visitor Center',x:0,z:51,pad:{x:19,z:54},color:0xe3bf77},
  {id:'redwood',name:'Redwood Lookout',x:-178,z:42,pad:{x:-158,z:42},color:0xaac783},
@@ -63,8 +64,8 @@ export const FLEET_START=[
  {id:'buggy',type:'buggy',name:'Electric Field Buggy',x:-158,z:49,heading:Math.PI}
 ];
 export const TOOLS=[
- {id:'water',name:'Pressure hose',capacity:100,reserve:400,reload:2.0,rate:20,range:26,color:0x86d8f2},
- {id:'zapper',name:'Herding zapper',capacity:12,reserve:48,reload:1.5,rate:1,range:19,color:0xbedaff}
+ {id:'water',name:'Pressure hose',capacity:100,reserve:400,reload:2.0,rate:20,range:38,color:0x86d8f2},
+ {id:'zapper',name:'Herding zapper',capacity:12,reserve:48,reload:1.5,rate:1,range:32,color:0xbedaff}
 ];
 export const CHECKPOINTS=[{x:0,z:96},{x:-58,z:210},{x:-197,z:151},{x:-174,z:45},{x:-86,z:-83},{x:24,z:-115},{x:66,z:-220},{x:218,z:-140},{x:212,z:98},{x:103,z:188}];
 export function emptyFrontier(){return {version:2,outposts:['base'],checkpoint:'base',observed:[],pens:{},tool:0,ammo:[100,12],reserve:[400,48],toolHits:{water:0,zapper:0},exploded:[],rides:[],patrol:0,patrolDone:false,active:'jeep',poses:{},foot:{x:0,y:1,z:55},tracked:'outposts',settings:{camera:'orbit',night:false,low:false,reduced:false,sensitivity:1,vibration:true}};}
@@ -98,17 +99,18 @@ export function operations(s){return [
  ];}
 // Stateful arcade behavior. A tool pushes away from the ranger and suppresses charges.
 export function createResident(d,i){return {...d,origin:{x:d.x,z:d.z},angle:i*.83,phase:i*1.39,mood:'roaming',deter:0,stun:0,toolVector:{x:0,z:1},attackCooldown:0};}
-export function deterAnimal(a,origin,kind){const dx=a.x-origin.x,dz=a.z-origin.z,l=Math.hypot(dx,dz)||1;a.toolVector={x:dx/l,z:dz/l};a.deter=kind==='zapper'?5:3;a.stun=kind==='zapper'?.65:0;a.mood='being herded';}
+export function deterAnimal(a,origin,kind){const dx=a.x-origin.x,dz=a.z-origin.z,l=Math.hypot(dx,dz)||1;a.toolVector={x:dx/l,z:dz/l};a.deter=kind==='zapper'?7.5:kind==='horn'?4.5:6;a.stun=kind==='zapper'?1.1:0;a.effect=kind;a.herdSpeed=kind==='horn'?4.4:5.6;a.mood=kind==='zapper'?'stunned':'being herded';}
 export function stepResident(a,player,dt,time,state,hornAge=100){
  dt=clamp(dt,0,.05);a.attackCooldown=Math.max(0,a.attackCooldown-dt);a.deter=Math.max(0,a.deter-dt);a.stun=Math.max(0,a.stun-dt);
  const pen=PENS.find(p=>p.id===a.pen),ps=pen?penState(state,pen):null,old={x:a.x,z:a.z},gap=distance(a,player);let tx,tz,speed=.8;
- if(a.deter>0){tx=a.x+a.toolVector.x*12;tz=a.z+a.toolVector.z*12;speed=a.kind==='sauropod'||a.kind==='brachio'?2.8:4.8;a.mood=a.stun?'stunned':'being herded';if(a.stun)speed=0;}
+ if(a.deter>0){tx=a.x+a.toolVector.x*12;tz=a.z+a.toolVector.z*12;speed=(a.herdSpeed||5.6)*(a.kind==='sauropod'||a.kind==='brachio'?.68:1);a.mood=a.stun?'stunned':'being herded';if(a.stun)speed=0;}
  else if(PREDATORS.has(a.kind)&&gap<21&&player.y<5&&(!pen||!ps.open?(!pen||insidePen(player,pen)):true)&&!(a.uid==='legacy-5'&&player.z> -38)){
   tx=player.x;tz=player.z;speed=gap<14?5.5:2.2;a.mood='pursuing';
  }else if(!PREDATORS.has(a.kind)&&(gap<4.5||hornAge<1.8&&gap<23)){
   tx=a.x+(a.x-player.x);tz=a.z+(a.z-player.z);speed=2.8;a.mood='startled';
  }else if(pen&&ps.fed){
-  const outside=!insidePen(a,pen,2);tx=outside&&a.z>pen.z+pen.hz-3?pen.x:pen.x+Math.sin(a.phase)*7;tz=outside?pen.z+pen.hz-7:pen.z-4+Math.cos(a.phase)*7;speed=1.75;a.mood='returning to feeder';
+  const outside=!insidePen(a,pen,2),south=pen.z+pen.hz;tx=pen.x+Math.sin(a.phase)*7;tz=pen.z-4+Math.cos(a.phase)*7;
+  if(outside){if(a.z<south+3&&Math.abs(a.x-pen.x)>5){tx=pen.x+Math.sign(a.x-pen.x)*(pen.hx+4);tz=south+7;}else if(Math.abs(a.x-pen.x)>2.5){tx=pen.x;tz=south+7;}else{tx=pen.x;tz=ps.open?south-7:south+5;}}speed=2.5;a.mood='returning to feeder';
  }else{tx=a.origin.x+Math.sin(time*.16+a.phase)*7;tz=a.origin.z+Math.cos(time*.13+a.phase)*5;speed=a.kind==='sauropod'||a.kind==='brachio'?.65:1;a.mood='roaming';}
  const dx=tx-a.x,dz=tz-a.z,len=Math.hypot(dx,dz);if(len>.2&&speed){a.x+=dx/len*Math.min(speed*dt,len);a.z+=dz/len*Math.min(speed*dt,len);const want=Math.atan2(dx,dz);a.angle+=Math.atan2(Math.sin(want-a.angle),Math.cos(want-a.angle))*Math.min(1,dt*3);}
  if(pen){

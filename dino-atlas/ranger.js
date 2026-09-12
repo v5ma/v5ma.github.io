@@ -1,21 +1,24 @@
 import * as T from './vendor/three.module.js';
 import {byId,readProgress,writeProgress,addDiscovery,escapeHTML,brushPatch,digPercent} from './core.js';
 import {HOME,LAKE,ROADS,STATIONS,MISSIONS,clamp,distance,readRanger,saveRanger,advance,waypoint} from './ranger-data.js';
-import {initPhysics,ParkPhysics} from './ranger-physics.js?v=ops1';
+import {initPhysics,ParkPhysics} from './ranger-physics.js?v=ranch1';
 import {makeJeep} from './ranger-art.js';
-import {buildPark} from './ranger-world.js?v=ops1';
+import {buildPark} from './ranger-world.js?v=ranch1';
 import {RangerAudio} from './ranger-audio.js';
-import {BUILD,WORLD_RADIUS,WATER,DOCK,OUTPOSTS,PENS,TRAILS,TOOLS,CHECKPOINTS,ALL_ANIMALS,SPECIES,PREDATORS,readFrontier,saveFrontier,operations,penState,penTerminal,insidePen,speciesById,createResident,stepResident,deterAnimal} from './frontier-data.js?v=ops1';
-import {Fleet} from './frontier-vehicles.js?v=ops1';
-import {makeResident,makeHelicopter,makeBoat,makeBuggy,makePerson,makeTool} from './frontier-art.js?v=ops1';
-import {buildFrontier} from './frontier-world.js?v=ops1';
-import {RangerInput,focusable} from './ranger-input.js?v=ops1';
-import {RangerTools} from './ranger-tools.js?v=ops1';
+import {BUILD,WORLD_RADIUS,WATER,DOCK,OUTPOSTS,PENS,TRAILS,TOOLS,CHECKPOINTS,ALL_ANIMALS,SPECIES,PREDATORS,readFrontier,saveFrontier,operations,penState,penTerminal,insidePen,speciesById,createResident,stepResident,deterAnimal} from './frontier-data.js?v=ranch1';
+import {Fleet} from './frontier-vehicles.js?v=ranch1';
+import {makeResident,makeHelicopter,makeBoat,makeBuggy,makePerson,makeTool} from './frontier-art.js?v=ranch1';
+import {buildFrontier} from './frontier-world.js?v=ranch1';
+import {RangerInput,focusable} from './ranger-input.js?v=ranch1';
+import {RangerTools} from './ranger-tools.js?v=ranch1';
+import {RanchGame,calibrateResident,scaleNote} from './ranch-game.js';
+import {EXTRA_ROADS,LAND_RADIUS,RANCH_BUILD} from './ranch-data.js';
 const $=id=>document.getElementById(id),esc=escapeHTML;
 export async function boot(){
  const R=await initPhysics();let storage;try{storage=localStorage;}catch{storage=null;}
  const campaign=readRanger(storage),state=readFrontier(storage),settings=state.settings;
  for(const id of campaign.observed)if(!state.observed.includes(id))state.observed.push(id);
+ let ranch=null;
  let started=false,time=0,accumulator=0,last=performance.now(),uiClock=0,saveClock=0,hornAt=-100,startedAt=0,candidate=null,aiming=false,drag=null,beamAge=10,toastTimer,radioTimer,backTarget=null;
  let cameraMode=settings.camera,yaw=.65,pitch=.65,aimPitch=.04,zoom=34,campaignPinned=campaign.stage<5,lastPosition={...HOME},lastNotice='',noticeAt=-100,lastJournalSelection=null;
  settings.reduced||=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -25,7 +28,7 @@ export async function boot(){
  const models={jeep:makeJeep,helicopter:makeHelicopter,boat:makeBoat,buggy:makeBuggy};
  for(const v of fleet.vehicles){v.model=models[v.type]();scene.add(v.model);}
  const personModel=makePerson(),toolModel=makeTool();scene.add(personModel,toolModel);
- const animals=ALL_ANIMALS.map((d,i)=>{const a=createResident(d,i),p=PENS.find(p=>p.id===a.pen);if(p&&penState(state,p).secured){a.x=p.x+(i%3-1)*8;a.z=p.z+(i%2?6:-6);a.origin={x:a.x,z:a.z};}a.model=makeResident(a);a.collider=physics.animal(a.radius,a.x,a.z);scene.add(a.model);return a;});
+ const animals=ALL_ANIMALS.map((d,i)=>{const a=createResident(d,i),p=PENS.find(p=>p.id===a.pen);if(p&&penState(state,p).secured){a.x=p.x+(i%3-1)*8;a.z=p.z+(i%2?6:-6);a.origin={x:a.x,z:a.z};}a.model=makeResident(a);calibrateResident(a);a.collider=physics.animal(a.radius,a.x,a.z,a.collisionHeight);scene.add(a.model);return a;});
  for(let i=0;i<120;i++){fleet.drive({},1/60,0,yaw);physics.world.step();}park.setPowered(campaign.stage>=3);
  const lineGeo=new T.BufferGeometry();lineGeo.setAttribute('position',new T.Float32BufferAttribute(new Float32Array(39),3));const beam=new T.Line(lineGeo,new T.LineBasicMaterial({color:0x8bdcf2,transparent:true,opacity:.9}));beam.frustumCulled=false;beam.visible=false;scene.add(beam);
  const flash=new T.Mesh(new T.IcosahedronGeometry(.3,1),new T.MeshBasicMaterial({color:0xabeaff,transparent:true,opacity:.7}));scene.add(flash);flash.visible=false;
@@ -37,7 +40,7 @@ export async function boot(){
  camera.position.set(32,24,77);camera.lookAt(-3,2,31);
  function toast(text){if(text===lastNotice&&time-noticeAt<2)return;lastNotice=text;noticeAt=time;$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),4200);}
  function radio(text){$('radio-text').textContent=text;$('radio').classList.add('show');clearTimeout(radioTimer);radioTimer=setTimeout(()=>$('radio').classList.remove('show'),6500);}
- function save(){fleet.capture();settings.camera=cameraMode;const a=saveRanger(storage,campaign),b=saveFrontier(storage,state);if(!a||!b)toast('This browser cannot save progress. Keep the tab open or enable local storage.');}
+ function save(){ranch?.save();fleet.capture();settings.camera=cameraMode;const a=saveRanger(storage,campaign),b=saveFrontier(storage,state);if(!a||!b)toast('This browser cannot save progress. Keep the tab open or enable local storage.');}
  function close(){const d=modals().at(-1);if(d)d.close();input.clear();if(backTarget){const target=backTarget;backTarget=null;if(target==='journal')openJournal();else if(target==='operations')openOperations();else if(target==='menu')show('menu-dialog');}else canvas.focus({preventScroll:true});}
  function show(id){for(const d of modals())if(d.id!==id)d.close();input.clear();const d=$(id);if(!d.open)d.showModal();focusable(d)[0]?.focus({preventScroll:true});}
  function info(kicker,title,html,back=null){backTarget=back;$('info-kicker').textContent=kicker;$('info-title').textContent=title;$('info-body').innerHTML=html;show('info-dialog');}
@@ -47,12 +50,12 @@ export async function boot(){
  function observe(id){const d=speciesById(id),old=byId(id);if(!d)return;if(!state.observed.includes(id))state.observed.push(id);
   if(old){if(!campaign.observed.includes(id))campaign.observed.push(id);const p=readProgress(storage).progress;addDiscovery(p,'observed',id);writeProgress(storage,p);}
   if(old?old.diet==='Plant-eater':!PREDATORS.has(d.kind))mission('survey');save();
-  info('SPECIES RECORDED / RANGER JOURNAL',d.name,`<p>${esc(d.role)}</p>${old?`<p class="fact"><b>THE FOSSIL EVIDENCE</b>${esc(old.evidence)}</p><p class="fact"><b>STILL UNKNOWN</b>${esc(old.unknown)}</p>`:'<p class="fact"><b>RESERVE NOTE</b>This animal model and its behavior are stylized for a fictional mixed-period reserve, not a validated reconstruction.</p>'}<p>${state.observed.length} of 14 species recorded. Your earlier field-guide notes and discoveries remain untouched.</p>`);
+  info('SPECIES RECORDED / RANGER JOURNAL',d.name,`<p>${esc(d.role)}</p><p class="fact">${esc(scaleNote(d.id))}</p>${old?`<p class="fact"><b>THE FOSSIL EVIDENCE</b>${esc(old.evidence)}</p><p class="fact"><b>STILL UNKNOWN</b>${esc(old.unknown)}</p>`:'<p class="fact"><b>RESERVE NOTE</b>This animal model and its behavior are stylized for a fictional mixed-period reserve, not a validated reconstruction.</p>'}<p>${state.observed.length} of ${SPECIES.length} species recorded. Your earlier field-guide notes and discoveries remain untouched.</p>`);
  }
- function openJournal(){backTarget=null;$('journal-list').innerHTML=SPECIES.map(d=>`<button class="entry" data-species="${d.id}"><span>${esc(d.name)}</span><small>${state.observed.includes(d.id)?'RECORDED':'NOT YET OBSERVED'}</small></button>`).join('');$('journal-summary').textContent=state.observed.length+' / 14 species recorded';show('journal-dialog');}
- $('journal-list').addEventListener('click',e=>{const b=e.target.closest('[data-species]');if(!b)return;const d=speciesById(b.dataset.species);lastJournalSelection=d.id;info(state.observed.includes(d.id)?'RECORDED SPECIES':'RESERVE FIELD GUIDE',d.name,`<p>${esc(d.role)}</p><p>Approach this animal and press A to record a field observation. Use short tool bursts to guide it without injuring it.</p>`,'journal');});
+ function openJournal(){backTarget=null;$('journal-list').innerHTML=SPECIES.map(d=>`<button class="entry" data-species="${d.id}"><span>${esc(d.name)}</span><small>${state.observed.includes(d.id)?'RECORDED':'NOT YET OBSERVED'}</small></button>`).join('');$('journal-summary').textContent=state.observed.length+' / '+SPECIES.length+' species recorded';show('journal-dialog');}
+ $('journal-list').addEventListener('click',e=>{const b=e.target.closest('[data-species]');if(!b)return;const d=speciesById(b.dataset.species);lastJournalSelection=d.id;info(state.observed.includes(d.id)?'RECORDED SPECIES':'RESERVE FIELD GUIDE',d.name,`<p>${esc(d.role)}</p><p class="fact">${esc(scaleNote(d.id))}</p><p>Approach this animal and press A to record a field observation. Use short tool bursts to guide it without injuring it.</p>`,'journal');});
  function openOperations(){backTarget=null;const tasks=operations(state);$('operations-list').innerHTML=tasks.map(o=>`<button class="entry" data-track="${o.id}"><span>${esc(o.name)}<small>${esc(o.detail)}</small></span><b>${o.done} / ${o.total}</b></button>`).join('');show('operations-dialog');}
- $('operations-list').addEventListener('click',e=>{const b=e.target.closest('[data-track]');if(b){state.tracked=b.dataset.track;campaignPinned=false;close();save();toast('Operation pinned to your HUD and map.');}});
+ $('operations-list').addEventListener('click',e=>{const b=e.target.closest('[data-track]');if(b){state.tracked=b.dataset.track;campaignPinned=false;ranch?.pauseTracking();close();save();toast('Operation pinned to your HUD and map.');}});
  function openMap(){backTarget=null;$('outpost-list').innerHTML=OUTPOSTS.map(o=>`<button class="entry" data-travel="${o.id}" ${state.outposts.includes(o.id)?'':'disabled'}><span>${esc(o.name)}</span><small>${state.outposts.includes(o.id)?'TRAVEL':'VISIT TO UNLOCK'}</small></button>`).join('');drawMap($('fullmap'),true);show('map-dialog');}
  $('outpost-list').addEventListener('click',e=>{const b=e.target.closest('[data-travel]');if(b&&fleet.travel(b.dataset.travel)){tools.refill();close();save();toast('Arrived at '+OUTPOSTS.find(o=>o.id===b.dataset.travel).name+'. Equipment refilled.');}});
  function openOutpost(o){if(!state.outposts.includes(o.id)){state.outposts.push(o.id);radio(o.name+' is on the ranger network. It is now a rest point and travel destination.');}state.checkpoint=o.id;tools.refill();save();backTarget=null;
@@ -66,7 +69,7 @@ export async function boot(){
  function openLab(){const p=readProgress(storage).progress,id=lastJournalSelection&&byId(lastJournalSelection)?lastJournalSelection:'diplodocus',d=byId(id);backTarget=null;$('lab-species').value=id;updateLab();show('lab-dialog');}
  function updateLab(){const p=readProgress(storage).progress,id=$('lab-species').value;$('dig-status').textContent=digPercent(p,id)+'% brushed. Each patch needs two careful passes.';$('dig-progress').value=digPercent(p,id);$('lab-brush').disabled=digPercent(p,id)===100;}
  $('lab-species').onchange=updateLab;$('lab-brush').onclick=()=>{const p=readProgress(storage).progress,id=$('lab-species').value,index=(p.digs[id]||Array(48).fill(0)).findIndex(v=>v<2);if(index>=0){brushPatch(p,id,index);writeProgress(storage,p);updateLab();input.pulse(.07,35);}};
- function interact(){if(isPaused()||!candidate)return;if(Math.abs(fleet.actor.speed)>3){toast('Slow down before interacting.');return;}const c=candidate;
+ function interact(){if(isPaused()||!candidate)return;if(candidate.kind==='ranch'){ranch.interact(candidate);return;}if(Math.abs(fleet.actor.speed)>3){toast('Slow down before interacting.');return;}const c=candidate;
   if(c.kind==='animal')observe(c.id);
   else if(c.kind==='pen')openPen(c.pen);
   else if(c.kind==='outpost')openOutpost(c.outpost);
@@ -89,17 +92,17 @@ export async function boot(){
   else if(key==='nextTool'||key==='prevTool'){tools.switch(key==='nextTool'?1:-1);toast(tools.tool.name+' selected. X reloads.');}
   else if(key==='water'||key==='zapper'){state.tool=key==='water'?0:1;tools.reloadLeft=0;tools.reloadTool=null;}
   else if(key==='recover'){if(fleet.current)fleet.recover();else toast('You are on foot. Vehicles right themselves automatically.');}
-  else if(key==='horn'){hornAt=time;audio.horn();input.pulse(.15,120);toast('Horn sounded. Give nearby animals room to move.');}
+  else if(key==='horn'){hornAt=time;ranch?.horn();audio.horn();input.pulse(.15,120);if(!ranch)toast('Horn sounded. Give nearby animals room to move.');}
   else if(key==='camera'){cameraMode=cameraMode==='orbit'?'chase':'orbit';$('camera-select').value=cameraMode;toast(cameraMode==='orbit'?'Orbit camera':'Chase camera');}
   else if(key==='lights'){settings.night=!settings.night;$('night-toggle').checked=settings.night;}
  }
  function updateDevice(device){document.body.dataset.input=device;$('input-status').textContent=device==='gamepad'?'XBOX / STANDARD GAMEPAD':device==='touch'?'TOUCH CONTROLS':'KEYBOARD + MOUSE';$('interact-key').textContent=device==='gamepad'?'A':'E';$('board-key').textContent=device==='gamepad'?'Y':'F';$('reload-key').textContent=device==='gamepad'?'X':'R';}
- $('start-button').onclick=()=>{started=true;startedAt=performance.now();$('intro').hidden=true;$('hud').hidden=false;input.clear();canvas.focus({preventScroll:true});radio('Ranger Operations is online. Y exits your vehicle. X reloads. View opens the map. Menu opens every setting.');last=performance.now();lastPosition={...fleet.position};if(!state.rides.includes(fleet.mode)&&fleet.mode!=='foot')state.rides.push(fleet.mode);};
+ $('start-button').onclick=()=>{started=true;startedAt=performance.now();$('intro').hidden=true;$('hud').hidden=false;input.clear();canvas.focus({preventScroll:true});radio('Ranger Operations is online. Y exits your vehicle. X reloads. View opens the map. Menu opens every setting.');last=performance.now();lastPosition={...fleet.position};if(!state.rides.includes(fleet.mode)&&fleet.mode!=='foot')state.rides.push(fleet.mode);ranch?.start();};
  $('interact-button').onclick=interact;$('board-button').onclick=()=>action('board');$('reload-button').onclick=()=>action('reload');$('tool-button').onclick=()=>action('nextTool');
  for(const id of ['map-button','minimap-button','menu-map'])$(id).onclick=openMap;
  $('menu-button').onclick=()=>action('menu');$('menu-operations').onclick=openOperations;$('menu-journal').onclick=openJournal;$('menu-lab').onclick=openLab;
  $('menu-controls').onclick=()=>{backTarget='menu';show('controls-dialog');};$('outpost-operations').onclick=openOperations;$('outpost-map').onclick=openMap;
- $('campaign-track').onclick=()=>{campaignPinned=campaign.stage<5;close();};
+ $('campaign-track').onclick=()=>{ranch?.pauseTracking();campaignPinned=campaign.stage<5;close();};
  $('manual-recover').onclick=()=>{close();if(fleet.current)fleet.recover();};
  $('resupply-button').onclick=()=>{tools.refill();save();toast('Water tanks and battery reserves replenished.');};
  $('sound-button').onclick=async()=>{try{const on=await audio.toggle();$('sound-button').textContent=on?'Sound: on':'Sound: off';}catch{toast('This browser has not enabled audio playback.');}};
@@ -124,15 +127,16 @@ export async function boot(){
   if(!candidate&&p.y<7){let gap=Infinity;for(const a of animals){const d=distance(p,a);if(d<a.radius+8&&d<gap){gap=d;candidate={kind:'animal',id:a.species,mood:a.mood};}}}
   if(!candidate&&distance(p,{x:-48,z:-15})<8)candidate={kind:'lab'};
   const nearVehicle=fleet.mode==='foot'?fleet.nearest():null;if(!candidate&&nearVehicle)candidate={kind:'vehicle'};
+  candidate=ranch?.candidate()||candidate;
   const labels={power:'Restore research relay',recorder:'Recover field recorder',home:'Deliver recorder',lab:'Explore the fossil lab',vehicle:'Board nearby vehicle'};
-  $('interact-label').textContent=candidate?(Math.abs(fleet.actor.speed)>3?'Slow down to interact':candidate.kind==='animal'?'Observe '+speciesById(candidate.id).name:candidate.kind==='pen'?'Manage '+candidate.pen.name:candidate.kind==='outpost'?'Rest at '+candidate.outpost.name:labels[candidate.kind]):'Explore the reserve';$('interact-button').disabled=!candidate||Math.abs(fleet.actor.speed)>3;
+  $('interact-label').textContent=candidate?(Math.abs(fleet.actor.speed)>3?'Slow down to interact':candidate.kind==='ranch'?candidate.label:candidate.kind==='animal'?'Observe '+speciesById(candidate.id).name:candidate.kind==='pen'?'Manage '+candidate.pen.name:candidate.kind==='outpost'?'Rest at '+candidate.outpost.name:labels[candidate.kind]):'Explore the reserve';$('interact-button').disabled=!candidate||Math.abs(fleet.actor.speed)>3;
   $('board-label').textContent=fleet.mode==='foot'?(nearVehicle?'Board '+nearVehicle.name:'Approach a vehicle'):'Exit '+fleet.current.name;$('board-button').disabled=fleet.mode==='foot'&&!nearVehicle;
   const threat=animals.find(a=>a.mood==='pursuing'&&distance(a,p)<20);document.body.classList.toggle('danger',!!threat);$('encounter-label').textContent=threat?'CHARGE WARNING / USE YOUR RANGER TOOL':candidate?.kind==='animal'?candidate.mood:'No vehicle damage. Automatic in-place recovery.';
  }
- function activeTask(){if(campaignPinned&&campaign.stage<5){const m=MISSIONS[campaign.stage];return {name:m.title,detail:m.text.replaceAll('press E','press A / E'),target:waypoint(campaign),done:campaign.stage,total:5};}return operations(state).find(o=>o.id===state.tracked)||operations(state)[0];}
- function drawMap(cv,full=false){const ctx=cv.getContext('2d'),s=cv.width,p=fleet.position,span=full?650:145,k=s/span,cx=full?0:p.x,cz=full?0:p.z,to=(x,z)=>[s/2+(x-cx)*k,s/2+(z-cz)*k];ctx.clearRect(0,0,s,s);ctx.save();if(!full){ctx.beginPath();ctx.arc(s/2,s/2,s/2-1,0,7);ctx.clip();}ctx.fillStyle='#24493e';ctx.fillRect(0,0,s,s);ctx.fillStyle='#516b4c';ctx.beginPath();ctx.arc(...to(0,0),WORLD_RADIUS*k,0,7);ctx.fill();
+ function activeTask(){const guided=ranch?.task();if(guided)return guided;if(campaignPinned&&campaign.stage<5){const m=MISSIONS[campaign.stage];return {name:m.title,detail:m.text.replaceAll('press E','press A / E'),target:waypoint(campaign),done:campaign.stage,total:5};}return operations(state).find(o=>o.id===state.tracked)||operations(state)[0];}
+ function drawMap(cv,full=false){const ctx=cv.getContext('2d'),s=cv.width,p=fleet.position,span=full?1110:145,k=s/span,cx=full?0:p.x,cz=full?0:p.z,to=(x,z)=>[s/2+(x-cx)*k,s/2+(z-cz)*k];ctx.clearRect(0,0,s,s);ctx.save();if(!full){ctx.beginPath();ctx.arc(s/2,s/2,s/2-1,0,7);ctx.clip();}ctx.fillStyle='#24493e';ctx.fillRect(0,0,s,s);ctx.fillStyle='#516b4c';ctx.beginPath();ctx.arc(...to(0,0),LAND_RADIUS*k,0,7);ctx.fill();
   for(const w of WATER){ctx.fillStyle='#548e91';ctx.beginPath();ctx.ellipse(...to(w.x,w.z),w.rx*k,w.rz*k,0,0,7);ctx.fill();}ctx.beginPath();ctx.arc(...to(LAKE.x,LAKE.z),LAKE.r*k,0,7);ctx.fill();
-  ctx.strokeStyle='#c4af7e';ctx.lineWidth=full?2:3;for(const r of [...ROADS,...TRAILS]){ctx.beginPath();r.forEach(([x,z],i)=>i?ctx.lineTo(...to(x,z)):ctx.moveTo(...to(x,z)));ctx.stroke();}
+  ranch?.drawMap(ctx,to,k,full);ctx.strokeStyle='#c4af7e';ctx.lineWidth=full?2:3;for(const r of [...ROADS,...TRAILS,...EXTRA_ROADS]){ctx.beginPath();r.forEach(([x,z],i)=>i?ctx.lineTo(...to(x,z)):ctx.moveTo(...to(x,z)));ctx.stroke();}
   for(const pen of PENS){const [x,z]=to(pen.x-pen.hx,pen.z-pen.hz);ctx.fillStyle=state.pens[pen.id]?.secured?'#7ca67455':'#b1945b55';ctx.fillRect(x,z,pen.hx*2*k,pen.hz*2*k);ctx.strokeStyle='#a5b286';ctx.strokeRect(x,z,pen.hx*2*k,pen.hz*2*k);if(full){ctx.fillStyle='#e3dac0';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText(pen.name,...to(pen.x,pen.z-pen.hz-5));}}
   for(const a of animals){ctx.fillStyle=PREDATORS.has(a.kind)?'#e4a274':'#b3d9a6';ctx.beginPath();ctx.arc(...to(a.x,a.z),full?2:3,0,7);ctx.fill();}
   for(const o of OUTPOSTS){const [x,z]=to(o.x,o.z);ctx.fillStyle=state.outposts.includes(o.id)?'#f4d591':'#a4b6b6';ctx.fillRect(x-4,z-4,8,8);if(full){ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText(o.name,x,z+17);}}
@@ -143,7 +147,8 @@ export async function boot(){
  function shoot(){const t=tools.fire();if(!t){if(state.ammo[state.tool]<1&&tools.reloadLeft===0)toast('Tool empty. Press X / R to reload.');return;}
   const p=fleet.position,dir={x:-Math.sin(yaw)*Math.cos(aimPitch),y:-Math.sin(aimPitch),z:-Math.cos(yaw)*Math.cos(aimPitch)},origin={x:p.x+dir.x*.6,y:p.y+(fleet.mode==='foot'?.35:1.15),z:p.z+dir.z*.6};
   const actor=fleet.actor,hit=physics.world.castRay(new R.Ray(origin,dir),t.range,true,undefined,undefined,actor.collider,actor.body);let length=hit?hit.timeOfImpact:t.range;
-  if(hit){const a=animals.find(a=>a.collider.collider(0).handle===hit.collider.handle);if(a){deterAnimal(a,origin,t.id);state.toolHits[t.id]++;input.pulse(t.id==='zapper'?.35:.08,t.id==='zapper'?130:45);}const c=frontier.crates.find(c=>!c.exploded&&c.body.collider(0).handle===hit.collider.handle);if(c)blast(c);}
+  if(hit){const a=animals.find(a=>a.collider.collider(0).handle===hit.collider.handle);if(a&&!ranch){deterAnimal(a,origin,t.id);state.toolHits[t.id]++;}const c=frontier.crates.find(c=>!c.exploded&&c.body.collider(0).handle===hit.collider.handle);if(c)blast(c);}
+  if(ranch){const a=hit?animals.find(a=>a.collider.collider(0).handle===hit.collider.handle):null;ranch.shot(t,origin,dir,length,a);}
   const positions=lineGeo.attributes.position;for(let i=0;i<=12;i++){const f=i/12,shake=t.id==='zapper'&&i>0&&i<12?Math.sin(i*24+time*47)*.12:0;positions.setXYZ(i,origin.x+dir.x*length*f+shake,origin.y+dir.y*length*f+(t.id==='water'?.12*Math.sin(f*Math.PI):shake),origin.z+dir.z*length*f);}positions.needsUpdate=true;beam.material.color.setHex(t.color);beamAge=0;beam.visible=true;flash.visible=true;flash.material.color.setHex(t.color);flash.position.set(origin.x+dir.x*length,origin.y+dir.y*length,origin.z+dir.z*length);
   if(t.id==='zapper')audio.tone(160,.08);
  }
@@ -154,7 +159,7 @@ export async function boot(){
   toolModel.visible=aiming||fleet.mode==='foot';toolModel.position.set(p.x,p.y+(fleet.mode==='foot'?.38:1.2),p.z);toolModel.rotation.set(aimPitch,yaw+Math.PI,0,'YXZ');
   beamAge+=dt;beam.visible=beamAge<.13;flash.visible=beamAge<.13;beam.material.opacity=Math.max(0,1-beamAge/.15);flash.material.opacity=Math.max(0,.6-beamAge*4);
  }
- function ui(){const task=activeTask(),p=fleet.position;$('mission-title').textContent=task.name;$('mission-copy').textContent=task.detail;$('mission-index').textContent=task.done+' / '+task.total;$('mission-progress').max=task.total;$('mission-progress').value=task.done;$('waypoint-distance').textContent=task.target?Math.round(distance(p,task.target))+' m':'RANGER OPERATIONS';
+ function ui(){ranch?.hud();const task=activeTask(),p=fleet.position;$('mission-title').textContent=task.name;$('mission-copy').textContent=task.detail;$('mission-index').textContent=task.done+' / '+task.total;$('mission-progress').max=task.total;$('mission-progress').value=task.done;$('waypoint-distance').textContent=task.target?Math.round(distance(p,task.target))+' m':'RANGER OPERATIONS';
   $('speed').textContent=String(Math.round(Math.abs(fleet.actor.speed)*3.6)).padStart(2,'0');$('mode-label').textContent=fleet.current?.name||'Ranger on foot';$('altitude').textContent=fleet.mode==='helicopter'?Math.round(Math.max(0,p.y-1))+' m ALT':state.outposts.length+' / 6 OUTPOSTS';
   $('tool-name').textContent=tools.tool.name;$('ammo').textContent=Math.ceil(state.ammo[state.tool]);$('ammo-reserve').textContent=Math.floor(state.reserve[state.tool]);$('ammo-bar').value=state.ammo[state.tool];$('ammo-bar').max=tools.tool.capacity;$('reload-status').textContent=tools.reloadLeft>0?'Reloading '+tools.reloadLeft.toFixed(1)+' s':state.ammo[state.tool]<1?'EMPTY / X TO RELOAD':'X / R RELOAD';$('reload-bar').hidden=tools.reloadLeft===0;$('reload-bar').value=tools.tool.reload-tools.reloadLeft;$('reload-bar').max=tools.tool.reload;
   $('vehicle-status').textContent=fleet.current?.recovery>.1?'AUTO-RIGHTING...':'NO VEHICLE DAMAGE';$('region-label').textContent=[...OUTPOSTS].sort((a,b)=>distance(a,p)-distance(b,p))[0].name.toUpperCase();$('reticle').hidden=!(aiming||fleet.mode==='foot');
@@ -169,7 +174,7 @@ export async function boot(){
    if(cameraMode==='chase'&&!aiming&&Math.abs(controls.lookX)<.1&&fleet.mode!=='foot'&&fleet.mode!=='helicopter'){const wanted=fleet.actor.heading+Math.PI;yaw+=Math.atan2(Math.sin(wanted-yaw),Math.cos(wanted-yaw))*Math.min(1,realDt*2);}
    accumulator+=dt;let steps=0;
    while(accumulator>=1/60&&steps<6&&!isPaused()){const step=1/60;time+=step;tools.tick(step);
-    for(const a of animals){stepResident(a,fleet.position,step,time,state,time-hornAt);a.collider.setNextKinematicTranslation({x:a.x,y:1,z:a.z});}
+    for(const a of animals){stepResident(a,fleet.position,step,time,state,time-hornAt);a.collider.setNextKinematicTranslation({x:a.x,y:a.collisionHeight/2,z:a.z});}
     fleet.drive(controls,step,time,yaw);physics.world.step();fleet.afterStep(step);frontier.update(step,time,fleet.position,settings.reduced);
     if(controls.fire)shoot();
     for(const a of animals)if(a.deter===0&&(a.mood==='pursuing'||['sauropod','brachio','trike','ankylosaur'].includes(a.kind)&&distance(a,fleet.position)<a.radius+1.4)){if(fleet.hitBy(a)){toast(speciesById(a.species).name+' shoved the vehicle. Auto-recovery is active.');input.pulse(.55,190);}}
@@ -182,15 +187,16 @@ export async function boot(){
    }
    saveClock+=dt;if(saveClock>8){saveClock=0;save();}
   }else accumulator=0;
-  syncModels(dt);park.update(dt,time,fleet.actor,settings.night,settings.reduced);audio.update(fleet.actor.speed,!paused&&fleet.mode!=='foot');
+  syncModels(dt);ranch?.update(dt,time);park.update(dt,time,fleet.actor,settings.night,settings.reduced);audio.update(fleet.actor.speed,!paused&&fleet.mode!=='foot');
   if(started){const p=fleet.position;if(aiming||fleet.mode==='foot'&&controls.fire){const dir=new T.Vector3(-Math.sin(yaw)*Math.cos(aimPitch),-Math.sin(aimPitch),-Math.cos(yaw)*Math.cos(aimPitch));const shoulder=new T.Vector3(p.x+Math.sin(yaw)*5.4+Math.cos(yaw)*.75,p.y+1.45,p.z+Math.cos(yaw)*5.4-Math.sin(yaw)*.75);camera.position.lerp(shoulder,1-Math.exp(-realDt*12));const target=new T.Vector3(p.x,p.y+(fleet.mode==='foot'?.35:1.15),p.z).addScaledVector(dir,35);camera.lookAt(target);}else{const dist=fleet.mode==='helicopter'?Math.max(zoom,40):fleet.mode==='foot'?Math.min(zoom,18):zoom;const target=new T.Vector3(p.x+Math.sin(yaw)*dist*Math.cos(pitch),Math.max(0,p.y)+dist*Math.sin(pitch),p.z+Math.cos(yaw)*dist*Math.cos(pitch));camera.position.lerp(target,settings.reduced?1:1-Math.exp(-realDt*4));camera.lookAt(p.x,p.y+1.2,p.z);}}
   uiClock+=realDt;if(uiClock>.1){uiClock=0;ui();}renderer.render(scene,camera);
   if(started&&!paused&&!settings.low&&!qualityAutoChanged){slowFrames=realDt>.05?slowFrames+realDt:Math.max(0,slowFrames-realDt);if(slowFrames>8){quality(true);qualityAutoChanged=true;toast('Low graphics enabled for smoother play. You can change this in Menu.');}}
  }
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();input.clear();if(started&&!modal())show('menu-dialog');toast('Graphics context interrupted. Reload the game to restore rendering; your saved progress is retained.');});
+ ranch=new RanchGame({scene,physics,R,fleet,animals,state,storage,audio,input,frontier,started:()=>started,notify:toast,radio,save,close,show:id=>{backTarget=null;show(id);},info,ranchSnapshot:()=>ranch.snapshot()});
  ui();syncModels(0);frontier.update(0,0,fleet.position,settings.reduced);park.update(0,0,fleet.actor,settings.night,settings.reduced);renderer.render(scene,camera);
  $('start-button').disabled=false;$('start-button').textContent=campaign.stage||state.outposts.length>1?'Continue ranger operations':'Start your engine';$('load-status').textContent='Ready. Press A on your controller, or select Start.';updateDevice('keyboard');
- const debug={get state(){return {ready:true,build:BUILD,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],species:[...state.observed],position:{...fleet.position},speed:fleet.actor.speed,grounded:fleet.actor.grounded,health:100,mode:fleet.mode,active:fleet.active,tool:tools.tool.id,ammo:[...state.ammo],reserve:[...state.reserve],reloading:tools.reloadLeft,toolHits:{...state.toolHits},outposts:[...state.outposts],checkpoint:state.checkpoint,patrol:state.patrol,pens:JSON.parse(JSON.stringify(state.pens)),exploded:[...state.exploded],drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night:settings.night,yaw,aimPitch,device:input.device,vehicles:fleet.vehicles.map(v=>({id:v.id,type:v.type,position:{...v.drive.position},recoveries:v.recoveries,rotation:{...v.drive.body.rotation()}})),animals:animals.map(({uid,species,x,z,mood,pen,deter})=>({uid,id:species,x,z,mood,pen,deter}))};}};
- if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{if(fleet.current)fleet.current.drive.reset({x,z},heading);else fleet.person.setActive(true,{x,y:1,z});lastPosition={x,z};},setAim:(angle,elevation=.04)=>{yaw=angle;aimPitch=elevation;},render:ui,physics,fleet,animals,frontier,tools,progress:state,jeep:fleet.vehicles[0].drive});
+ const debug={get state(){return {ready:true,build:RANCH_BUILD,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],species:[...state.observed],position:{...fleet.position},speed:fleet.actor.speed,grounded:fleet.actor.grounded,health:100,mode:fleet.mode,active:fleet.active,tool:tools.tool.id,ammo:[...state.ammo],reserve:[...state.reserve],reloading:tools.reloadLeft,toolHits:{...state.toolHits},outposts:[...state.outposts],checkpoint:state.checkpoint,patrol:state.patrol,pens:JSON.parse(JSON.stringify(state.pens)),exploded:[...state.exploded],drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night:settings.night,yaw,aimPitch,device:input.device,vehicles:fleet.vehicles.map(v=>({id:v.id,type:v.type,position:{...v.drive.position},recoveries:v.recoveries,rotation:{...v.drive.body.rotation()}})),animals:animals.map(({uid,species,x,z,mood,pen,deter})=>({uid,id:species,x,z,mood,pen,deter}))};}};
+ if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{if(fleet.current)fleet.current.drive.reset({x,z},heading);else fleet.person.setActive(true,{x,y:1,z});lastPosition={x,z};},setAim:(angle,elevation=.04)=>{yaw=angle;aimPitch=elevation;},render:ui,ranch,physics,fleet,animals,frontier,tools,progress:state,jeep:fleet.vehicles[0].drive});
  window.__dinoRanger=debug;requestAnimationFrame(frame);
 }

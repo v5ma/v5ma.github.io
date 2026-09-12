@@ -8,8 +8,8 @@ export function buildPark(scene,physics){
   const sun=new T.DirectionalLight(0xffe4b5,3.1);sun.position.set(-30,60,35);sun.castShadow=true;
   sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-48,right:48,top:48,bottom:-48,near:1,far:160});sun.shadow.normalBias=.045;sun.shadow.bias=-.00015;scene.add(sun,sun.target);
   const water=part(scene,new T.PlaneGeometry(1800,1800),new T.MeshStandardMaterial({color:0x517e7a,roughness:.43,metalness:.15}),0,-1.8,0);water.rotation.x=-Math.PI/2;water.castShadow=false;
-  part(scene,new T.CylinderGeometry(310,314,3,128),material(soil),0,-1.54,0);
-  const ground=part(scene,new T.CircleGeometry(309.7,128),grass,0,.005,0);ground.rotation.x=-Math.PI/2;ground.castShadow=false;
+  part(scene,new T.CylinderGeometry(420,424,3,128),material(soil),0,-1.54,0);
+  const ground=part(scene,new T.CircleGeometry(419.7,128),grass,0,.005,0);ground.rotation.x=-Math.PI/2;ground.castShadow=false;
   // Continuous spline ribbons keep every road drivable without loading map assets.
   function road(points,width,color,height){
     const curve=new T.CatmullRomCurve3(points.map(([x,z])=>new T.Vector3(x,height,z))),verts=[],uv=[],indices=[];

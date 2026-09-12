@@ -1,8 +1,8 @@
 // Extra world spectacle layered over Ranger Operations. Effects are visual/audio only: no health or damage forces.
 import * as T from './vendor/three.module.js';
-import {buildFrontier as buildBase} from './frontier-world.js?base=ops1';
-import {OUTPOSTS} from './frontier-data-expanded.js?v=spectacle1';
-import {makeBuggy} from './frontier-art.js?v=ops1';
+import {buildFrontier as buildBase} from './frontier-world.js?base=ranch1';
+import {OUTPOSTS} from './frontier-data-expanded.js?v=ranch1';
+import {makeBuggy} from './frontier-art.js?v=ranch1';
 import {makeJeep} from './ranger-art.js';
 
 const SONIC_GATES=[
@@ -60,7 +60,7 @@ export function buildFrontier(scene,physics,state){
   const lamp=new T.PointLight(r.color,18,18,2);lamp.position.set(0,2.4,0);model.add(lamp);
   const halo=new T.Mesh(new T.TorusGeometry(1.6,.04,6,32),new T.MeshBasicMaterial({color:r.color,transparent:true,opacity:.52}));halo.rotation.x=Math.PI/2;halo.position.y=.18;model.add(halo);
   const curve=new T.CatmullRomCurve3(r.points.map(([x,z])=>new T.Vector3(x,.55,z)),true,'catmullrom',.28);
-  rivals.push({...r,model,curve,lamp,halo,near:false,index:i});
+  rivals.push({...r,model,curve,lamp,halo,near:false,index:i,deliveries:0,lastCycle:-1,status:'Beginning scheduled service run'});
  }
 
  for(let i=0;i<18;i++){
@@ -80,7 +80,7 @@ export function buildFrontier(scene,physics,state){
  function gravity(g){for(let i=0;i<6;i++)spawnPulse(g.def,g.def.color,1.65+i*.16,.14+i*.09,i*.07);event('gravity',{name:g.def.name,x:g.def.x,z:g.def.z});burstCount++;}
  if(typeof window!=='undefined')window.__dinoSpectacle={get bursts(){return burstCount;},rivals:RIVAL_DEFS.map(r=>r.name),sonicGates:SONIC_GATES.length,gravityNodes:GRAVITY_NODES.length};
 
- return {...base,
+ return {...base,rivals,
   detonate(c){const p=base.detonate(c);if(p)burst(p,'celebration',0xffc86f);return p;},
   update(dt,time,player,reduced){
    base.update(dt,time,player,reduced);const safeDt=Math.max(dt,1/120);let speed=0;if(last.ready)speed=Math.hypot(player.x-last.x,player.z-last.z)/safeDt;last={x:player.x,z:player.z,ready:true};
@@ -88,7 +88,7 @@ export function buildFrontier(scene,physics,state){
    for(const g of gateVisuals){g.cool=Math.max(0,g.cool-dt);g.ring.rotation.z=time*.35+g.phase;g.floor.material.opacity=.15+(reduced?0:Math.sin(time*3+g.phase)*.08)+Math.min(speed/80,.12);if(g.cool<=0&&speed>7&&Math.hypot(player.x-g.def.x,player.z-g.def.z)<7){g.cool=5;sonic(g);}}
    for(const g of gravityVisuals){g.cool=Math.max(0,g.cool-dt);g.core.rotation.y+=dt*.55;g.rings.forEach((r,i)=>{if(!reduced){r.rotation.x+=dt*(.2+i*.05);r.rotation.y-=dt*(.16+i*.06);}});g.light.intensity=18+Math.sin(time*2+g.phase)*7;if(g.cool<=0&&Math.hypot(player.x-g.def.x,player.z-g.def.z)<9){g.cool=12;gravity(g);}}
    rivalNotice=Math.max(0,rivalNotice-dt);
-   for(const r of rivals){const u=(time*r.speed+r.phase)%1,p=r.curve.getPointAt(u),n=r.curve.getPointAt((u+.006)%1);r.model.position.copy(p);r.model.lookAt(n);r.halo.rotation.z=time*.6+r.index;const near=Math.hypot(player.x-p.x,player.z-p.z)<13;if(near&&!r.near&&rivalNotice<=0){rivalNotice=10;event('rival',{name:r.name});}r.near=near;}
+   for(const r of rivals){const period=1/r.speed+10,elapsed=time+r.phase*period,cycle=Math.floor(elapsed/period),local=elapsed%period,unloading=local>period-10,u=unloading?.995:local/(period-10),p=r.curve.getPointAt(u),n=r.curve.getPointAt((u+.006)%1);r.model.position.copy(p);r.model.lookAt(n);r.halo.rotation.z=time*.6+r.index;const jobs=['Armored Valley feeder supplies','Amber Mesa fossil casting supplies','Coastal freight replenishment'];r.status=(unloading?'Unloading: ':'Transporting: ')+jobs[r.index];if(cycle!==r.lastCycle){if(r.lastCycle>=0){r.deliveries++;event('crew-delivery',{index:r.index,name:r.name});}r.lastCycle=cycle;}const near=Math.hypot(player.x-p.x,player.z-p.z)<13;if(near&&!r.near&&rivalNotice<=0){rivalNotice=10;event('rival',{name:r.name});}r.near=near;}
    for(const p of pulses){p.age+=dt;if(p.age<0){p.ring.visible=false;continue;}if(p.age<p.life){p.ring.visible=true;const f=p.age/p.life;p.ring.scale.setScalar(.35+f*14);p.ring.material.opacity=(1-f)*(.72-(reduced?.22:0));p.ring.position.y=p.height+f*.08;}else p.ring.visible=false;}
   }
  };

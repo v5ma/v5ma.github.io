@@ -8,7 +8,7 @@ export function rotateVector(v,q){
 export class ParkPhysics{
   constructor(){
     this.world=new RAPIER.World({x:0,y:-18,z:0});this.world.timestep=1/60;
-    this.world.createCollider(RAPIER.ColliderDesc.cuboid(325,.5,325).setTranslation(0,-.5,0).setFriction(.9));
+    this.world.createCollider(RAPIER.ColliderDesc.cuboid(545,.5,545).setTranslation(0,-.5,0).setFriction(.9));
     this.props=[];
   }
   box(x,y,z,hx,hy,hz,options={}){
@@ -19,7 +19,7 @@ export class ParkPhysics{
     return body;
   }
   cylinder(x,z,r,y=1,h=1){return this.world.createCollider(RAPIER.ColliderDesc.cylinder(h,r).setTranslation(x,y,z).setFriction(.5));}
-  animal(radius,x,z){const b=this.world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(x,1,z));this.world.createCollider(RAPIER.ColliderDesc.cylinder(.9,radius).setFriction(.4),b);return b;}
+  animal(radius,x,z,height=1.8){const b=this.world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(x,height/2,z));this.world.createCollider(RAPIER.ColliderDesc.cylinder(height/2,radius).setFriction(.4),b);return b;}
   ramp(x,z){
     const verts=new Float32Array([-3,0,-5,3,0,-5,-3,0,5,3,0,5,-3,1.5,-5,3,1.5,-5]);
     const d=RAPIER.ColliderDesc.convexHull(verts);if(d)this.world.createCollider(d.setTranslation(x,0,z).setFriction(.8));
