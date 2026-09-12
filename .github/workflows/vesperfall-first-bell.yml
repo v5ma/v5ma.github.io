@@ -1,0 +1,100 @@
+name: Vesperfall First Bell
+on:
+  push:
+    branches: [vesperfall-first-bell-20260912]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-first-bell.yml', '.github/first-bell-intake/**']
+permissions:
+  contents: read
+concurrency:
+  group: first-bell-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      revision: ${{ steps.revision.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply exact isolated source
+        if: hashFiles('.github/first-bell-intake/part3.txt') != ''
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,lzma,pathlib
+          root=pathlib.Path.cwd()
+          packed=base64.b64decode(''.join((root/f'.github/first-bell-intake/part{i}.txt').read_text().strip() for i in range(4)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='54a7347e8d53fd9b5cd564b907d289987d82d74612acdfbdaff19e8276306c35'
+          data=json.loads(lzma.decompress(packed));assert len(data)==16;planned=[]
+          for name,d in data.items():
+              p=root/name
+              assert name.startswith('vesperfall/') and '..' not in pathlib.PurePosixPath(name).parts and not p.is_symlink()
+              assert p.resolve().is_relative_to(root/'vesperfall')
+              if 'content' in d:
+                  assert not p.exists(),name
+                  text=d['content']
+              else:
+                  before=p.read_bytes();assert hashlib.sha256(before).hexdigest()==d['before'],name
+                  text=before.decode()
+                  for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
+              b=text.encode();assert hashlib.sha256(b).hexdigest()==d['after'],name;planned.append((p,b))
+          for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+          for i in range(4):(root/f'.github/first-bell-intake/part{i}.txt').unlink()
+          print('Applied',len(planned),'verified source files')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- vesperfall .github/first-bell-intake
+          git commit -m 'Implement First Bell guided archery, coordinated optional Oath route and three-phase Bellkeeper'
+          git push origin HEAD:vesperfall-first-bell-20260912
+      - id: revision
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  acceptance:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [lessons, combat]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.revision }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Model, syntax and original public boundary
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/models.tap
+          python scripts/check-vesperfall.py
+      - name: Install native renderer
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play actual tutorial or scored route without actor assignments
+        env:
+          BELL_SUITE: ${{ matrix.suite }}
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1250 python -u vesperfall/tests/functional-runner.py first-bell-browser.py | tee test-output/browser.log
+          test -s test-output/first-bell-${BELL_SUITE}/report.json
+          test ! -e test-output/first-bell-${BELL_SUITE}/failure.json
+      - name: Record tested source and diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          tar czf test-output/source.tgz vesperfall
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: first-bell-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
