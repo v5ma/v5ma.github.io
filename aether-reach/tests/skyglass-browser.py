@@ -12,7 +12,8 @@ with sync_playwright() as pw:
  c=b.new_context(viewport={'width':1280,'height':800},device_scale_factor=.5,service_workers='block')
  c.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'))
  c.add_init_script(path=str(ROOT/'aether-reach/tests/bellwether-input.js'))
- c.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'balanced'}))")
+ # Seed a rendering preference only on HTTP pages. Opaque about:blank has no storage origin.
+ c.add_init_script("if(location.protocol==='http:'||location.protocol==='https:')localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'balanced'}))")
  p=c.new_page();p.set_default_timeout(120000);p.on('pageerror',lambda e:errors.append(str(e)))
  p.on('console',lambda m:shader_errors.append(m.text) if 'Shader Error' in m.text or 'VALIDATE_STATUS' in m.text or 'WebGLProgram' in m.text and m.type=='error' else None)
  def popup(d):native.append(d.type);d.dismiss()
