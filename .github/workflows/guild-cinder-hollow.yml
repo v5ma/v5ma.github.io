@@ -1,0 +1,65 @@
+name: Guild Cinder Hollow
+on:
+  pull_request:
+    paths: ['leonardos-guild/**', '.github/workflows/guild-cinder-hollow.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: guild-cinder-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        journey: [frontier, steady]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate actual committed source and all old/new model checks
+        run: |
+          set -euo pipefail
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          npm --prefix leonardos-guild test | tee /tmp/hollow-model-tests.txt
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Native controller journey with ordinary committed runtime
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/hollow-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/${{ matrix.journey }}-browser.py
+      - name: Retain exact tested bytes and failure evidence
+        if: always()
+        env:
+          JOURNEY: ${{ matrix.journey }}
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,subprocess,tarfile,shutil
+          from pathlib import Path
+          out=Path('leonardos-guild')/(os.environ['JOURNEY']+'-output');out.mkdir(exist_ok=True)
+          files=subprocess.check_output(['git','ls-files','leonardos-guild','.github/workflows'],text=True).splitlines()
+          hashes={f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in files if Path(f).is_file()}
+          (out/'source-hashes.json').write_text(json.dumps(hashes,indent=2))
+          (out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          diff=subprocess.check_output(['git','diff','--stat'],text=True);(out/'uncommitted-diff.txt').write_text(diff)
+          if Path('/tmp/hollow-model-tests.txt').exists():shutil.copy('/tmp/hollow-model-tests.txt',out/'model-tests.txt')
+          with tarfile.open(out/'source.tgz','w:gz') as tar:
+            for f in hashes:tar.add(f,arcname=f)
+          assert not diff,'Native acceptance must not rewrite runtime source'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-hollow-${{ matrix.journey }}
+          path: leonardos-guild/${{ matrix.journey }}-output/
+          retention-days: 10
