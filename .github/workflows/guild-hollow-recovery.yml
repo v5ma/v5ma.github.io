@@ -1,0 +1,72 @@
+name: Guild Hollow Recovery
+on:
+  push:
+    branches: [guild/hollow-recovery-20260912]
+    paths: ['leonardos-guild/**', '.github/workflows/guild-hollow-recovery.yml']
+permissions:
+  contents: read
+concurrency:
+  group: guild-hollow-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: guild/hollow-recovery-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover scoped code, retaining every sibling project
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if test ! -f leonardos-guild/HOLLOW-RECOVERY.json; then
+            git fetch origin 479860d58aba490aeae8e715b04e670a4ceb53b6 6fb54cfd3364f0cdcab988a662b1e4e2b2df42da
+            test -z "$(git diff HEAD FETCH_HEAD -- leonardos-guild)"
+            git checkout 479860d58aba490aeae8e715b04e670a4ceb53b6 -- leonardos-guild
+            python - <<'PY'
+          import base64,hashlib,json,os,urllib.request
+          from pathlib import Path
+          blobs={'frontier-core.mjs':'9f83b03b623aedd675df1c4e525ca4a0c5d3ce6d','frontier-ui.mjs':'364b8071e5784d11296e9c843731589e7a81a89f'}
+          for name,sha in blobs.items():
+            req=urllib.request.Request('https://api.github.com/repos/v5ma/v5ma.github.io/git/blobs/'+sha,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+            with urllib.request.urlopen(req) as r: obj=json.load(r)
+            data=base64.b64decode(obj['content']);assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==sha
+            Path('leonardos-guild',name).write_bytes(data)
+          Path('leonardos-guild/HOLLOW-RECOVERY.json').write_text(json.dumps({'status':'Recovered drafts; not yet integrated or published','steadySource':'479860d58aba490aeae8e715b04e670a4ceb53b6','frontierDraftBlobs':blobs},indent=2)+'\n')
+          PY
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -- leonardos-guild
+            git commit -m 'Recover Steady Steps and frontier drafts without touching sibling games'
+            git push origin HEAD:refs/heads/guild/hollow-recovery-20260912
+          fi
+          if test -f leonardos-guild/scripts/integrate-hollow.py && test ! -f leonardos-guild/HOLLOW-INTEGRATED.json; then
+            python leonardos-guild/scripts/integrate-hollow.py
+            for f in leonardos-guild/*.mjs; do node --check "$f"; done
+            npm --prefix leonardos-guild test
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -- leonardos-guild
+            git commit -m 'Integrate Cinder Hollow and safe-town migration into ordinary runtime'
+            git push origin HEAD:refs/heads/guild/hollow-recovery-20260912
+          fi
+      - name: Snapshot ordinary committed source
+        if: always()
+        run: |
+          mkdir -p /tmp/hollow
+          git rev-parse HEAD > /tmp/hollow/source-commit.txt
+          git archive --format=tar.gz HEAD leonardos-guild .github/workflows > /tmp/hollow/source.tgz
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-hollow-source
+          path: /tmp/hollow
+          retention-days: 10
