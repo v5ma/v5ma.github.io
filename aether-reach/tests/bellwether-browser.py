@@ -33,7 +33,8 @@ with sync_playwright() as pw:
   if p.locator('#record-dialog[open]').count():tap(1)
  try:
   p.goto(os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach')
-  check(p.evaluate('AetherReach.version')=='0.9.0','The real application boots Bellwether Blackout')
+  expected=json.loads((ROOT/'aether-reach/release.json').read_text())['version']
+  check(p.evaluate('AetherReach.version')==expected,'The real application boots the current Aether release with Bellwether Blackout intact')
   p.evaluate('TestPad.connect()');p.evaluate('BlackoutDriver.neutral()');tap(0)
   tap(9);go('#pause-blackout');check(s()['expedition']['tracked']=='bellwether-blackout','Pause shortcut tracks the district adventure without teleporting or rewarding the player');tap(1);tap(1)
   walk(3,7);tap(15);go('[data-buy="sniper"][data-kind="weapon"]');tap(1)
