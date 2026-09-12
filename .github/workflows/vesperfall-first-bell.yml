@@ -1,96 +1,27 @@
 name: Vesperfall First Bell
 on:
   push:
-    branches: [vesperfall-first-bell-20260912]
-    paths: ['vesperfall/**', '.github/workflows/vesperfall-first-bell.yml', '.github/first-bell-plan/**']
+    branches: [master, vesperfall-first-bell-20260912]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-first-bell.yml']
+  pull_request:
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-first-bell.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: first-bell-${{ github.ref }}
-  cancel-in-progress: false
+  group: first-bell-refs/heads/${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 jobs:
-  source:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    outputs:
-      revision: ${{ steps.revision.outputs.sha }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Rehydrate exact authored workbook and plan; fix observed coach target mismatch
-        if: hashFiles('.github/first-bell-plan/part1.txt') != ''
-        run: |
-          python - <<'PY'
-          import base64,hashlib,json,lzma,pathlib,zipfile,zlib,io
-          root=pathlib.Path.cwd()
-          sha=lambda b:hashlib.sha256(b).hexdigest()
-          packed=base64.b64decode(''.join((root/f'.github/first-bell-plan/part{i}.txt').read_text().strip() for i in range(2)),validate=True)
-          assert sha(packed)=='2f52d3303d2544631c025ffbaaef1d8184734a65f993822149cdad1c031dd756'
-          data=json.loads(lzma.decompress(packed));assert len(data)==5;planned=[]
-          for name,d in data.items():
-              p=root/name
-              assert name.startswith('vesperfall/') and '..' not in pathlib.PurePosixPath(name).parts and not p.is_symlink()
-              assert p.resolve().is_relative_to(root/'vesperfall')
-              if 'zipTransport' in d:
-                  before=p.read_bytes();assert sha(before)==d['before'],name
-                  out=io.BytesIO()
-                  with zipfile.ZipFile(io.BytesIO(before)) as old,zipfile.ZipFile(out,'w',zipfile.ZIP_STORED) as new:
-                      for e in d['zipTransport']:
-                          a=old.read(e['name']) if e['name'] in old.namelist() else b''
-                          assert sha(a)==e['before'];pieces=[]
-                          for begin,c in e['chunks']:
-                              dz=zlib.decompressobj(-15,zdict=a[begin:begin+32768]);pieces.append(dz.decompress(base64.b64decode(c,validate=True))+dz.flush())
-                          b=b''.join(pieces);assert sha(b)==e['after']
-                          info=zipfile.ZipInfo(e['name'],(2026,9,12,0,0,0));info.compress_type=zipfile.ZIP_STORED;new.writestr(info,b)
-                  b=out.getvalue()
-              elif 'content' in d:
-                  assert not p.exists(),name
-                  b=d['content'].encode()
-              else:
-                  before=p.read_bytes();assert sha(before)==d['before'],name
-                  text=before.decode()
-                  for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
-                  b=text.encode()
-              assert sha(b)==d['after'],name;planned.append((p,b))
-          p=root/'vesperfall/first-bell.js';text=p.read_text();assert sha(text.encode())=='aad86aa117b91dce5cf14d958aa71885a81132bec3fd49981302e31fc8a51c46'
-          text=text.replace(' const lessons=[',' const PRACTICE_BELL=1;\n function practiceBellHit(s){return s.targets.has(PRACTICE_BELL);}\n const lessons=[').replace('g.game.targets.delete(0)','g.game.targets.delete(PRACTICE_BELL)').replace('c.index===1?s.targets.has(0):','c.index===1?practiceBellHit(s):').replace('Object.freeze({install,lessons})','Object.freeze({install,lessons,practiceBellHit,PRACTICE_BELL})')
-          assert sha(text.encode())=='cc40ab601f7d750826e38a27f0157f1af2a7d4048a622518257121da5c07251c';planned.append((p,text.encode()))
-          test="""const {test}=require('node:test'),assert=require('node:assert/strict');
-          const C=require('../core.js');require('../first-bell.js');const F=globalThis.FirstBell;
-          test('The coach recognizes a real swept hit on the bell directly ahead, not the neighboring target',()=>{
-           const s=C.create('BELL-01');s.world.enemies=[];s.unscored=true;
-           assert.equal(F.practiceBellHit(s),false);
-           assert.deepEqual(s.world.targets[F.PRACTICE_BELL],[0,1.5,-4]);
-           assert.ok(C.fire(s,[0,1.65,2.82],[0,0,-1],1));
-           for(let i=0;i<60;i++)C.step(s,1/90);
-           assert.equal(s.shots,1);assert.equal(F.practiceBellHit(s),true);
-           const other=C.create();other.targets.add(0);assert.equal(F.practiceBellHit(other),false);
-          });
-          """
-          planned.append((root/'vesperfall/tests/first-bell-coach.test.cjs',test.encode()))
-          for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
-          for i in range(2):(root/f'.github/first-bell-plan/part{i}.txt').unlink()
-          print('Applied',len(planned),'verified source and production files')
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- vesperfall .github/first-bell-plan
-          git commit -m 'Fix actual center-target coaching; update First Bell production plan, evidence gates and exact authored workbook'
-          git push origin HEAD:vesperfall-first-bell-20260912
-      - id: revision
-        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   acceptance:
-    needs: source
+    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
-        suite: [lessons, combat]
+        suite: [lessons, combat, production]
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.source.outputs.revision }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -102,11 +33,11 @@ jobs:
           node --test vesperfall/tests/*.test.cjs | tee test-output/models.tap
           python vesperfall/tests/production-workbook.py
           python scripts/check-vesperfall.py
-      - name: Install native renderer
+      - name: Install actual browser renderer
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Play actual tutorial or scored route without actor assignments
+      - name: Exercise the committed tutorial, boss journey or production board
         env:
           BELL_SUITE: ${{ matrix.suite }}
         run: |
@@ -114,18 +45,82 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 1250 python -u vesperfall/tests/functional-runner.py first-bell-browser.py | tee test-output/browser.log
-          test -s test-output/first-bell-${BELL_SUITE}/report.json
-          test ! -e test-output/first-bell-${BELL_SUITE}/failure.json
-      - name: Record tested source and diagnostics
+          if [ "$BELL_SUITE" = production ]; then
+            timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/browser.log
+            test -s test-output/production/report.json
+            timeout 240 python -u vesperfall/tests/launch.py
+          else
+            timeout 1250 python -u vesperfall/tests/functional-runner.py first-bell-browser.py | tee test-output/browser.log
+            test -s test-output/first-bell-${BELL_SUITE}/report.json
+          fi
+          test -z "$(find test-output -name failure.json -print -quit)"
+      - name: Record exact source and native diagnostics
         if: always()
         run: |
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
           tar czf test-output/source.tgz vesperfall
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: first-bell-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
+  public-files:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match every served runtime, asset and production file against the merge
+        run: python -u vesperfall/tests/verify-live.py
+      - name: Validate the versioned workbook against the canonical plan
+        run: python vesperfall/tests/production-workbook.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: first-bell-public-files
+          path: test-output/
+          retention-days: 14
+  public-play:
+    needs: public-files
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [lessons, combat, production]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install actual public verification browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual public gameplay or board and homepage card
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+          BELL_SUITE: ${{ matrix.suite }}
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          if [ "$BELL_SUITE" = production ]; then
+            timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/public-browser.log
+            test -s test-output/production/report.json
+            timeout 240 python -u vesperfall/tests/launch.py
+          else
+            timeout 1250 python -u vesperfall/tests/functional-runner.py first-bell-browser.py | tee test-output/public-browser.log
+            test -s test-output/first-bell-${BELL_SUITE}/report.json
+          fi
+          test -z "$(find test-output -name failure.json -print -quit)"
+      - name: Preserve publication revision
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: first-bell-public-${{ matrix.suite }}
           path: test-output/
           retention-days: 14
