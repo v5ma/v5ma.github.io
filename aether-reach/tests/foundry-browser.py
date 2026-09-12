@@ -28,6 +28,14 @@ with sync_playwright() as pw:
   raise AssertionError('Controller focus failed '+sel)
  def choose(sel):go(sel);tap(0)
  def axes(a):p.evaluate('(a)=>TestPad.axes(a)',a)
+ def look(yaw,pitch=0):
+  start=time.monotonic()
+  while time.monotonic()-start<90:
+   q=snap()['position'];dy=math.atan2(math.sin(yaw-q['yaw']),math.cos(yaw-q['yaw']));dp=pitch-q['pitch']
+   if abs(dy)<.04 and abs(dp)<.025:axes([0,0,0,0]);frames();return
+   def axis(v):return 0 if abs(v)<.02 else math.copysign(.18+.82*min(1,abs(v)*1.1)**(1/1.35),v)
+   axes([0,0,axis(dy),-axis(dp)]);frames(2)
+  raise AssertionError('Controller look did not converge')
  def drive(x,z):
   start=time.monotonic()
   while time.monotonic()-start<130:
@@ -46,6 +54,7 @@ with sync_playwright() as pw:
   tap(9);choose('#pause-settings');go('#audio-music');old=float(p.locator('#audio-music').input_value());tap(14);check(float(p.locator('#audio-music').input_value())<old,'Music volume is independently adjustable by controller')
   tap(1);check(snap()['devices']['menu']=='pause-dialog','B closes settings back to paused parent');tap(1)
   drive(3,7);tap(15);choose('[data-buy="sniper"][data-kind="weapon"]');check('sniper' in snap()['carried'],'The real outfitter sells a carried sniper for earned credits');tap(1)
+  look(1.06,.08)
   held(6,True);frames(25);f4=snap()['fov'];tap(10);frames(25);f8=snap()['fov'];check(f8<f4*.65 and snap()['combat']['zoom']==8,'L3 changes actual telescope magnification from 4x to 8x')
   check(p.locator('#scope-view').is_visible() and not p.locator('#crosswind-scope').is_visible(),'Exactly one telescope mask is visible')
   p.screenshot(path=str(OUT/'foundry-8x-optic.png'));held(6,False);frames(25);check(snap()['fov']>60,'Releasing aim restores the normal camera projection')
@@ -53,12 +62,15 @@ with sync_playwright() as pw:
   # It is not represented as gamepad-only autoplay or physical listening QA.
   p.keyboard.press('Shift');frames(20);tap(7);frames(6)
   check(snap()['audio']['state']=='running','The browser audio context runs after normal user activation')
+  check(any(abs(v)>1e-8 for v in p.evaluate('AetherReach.audioSample()')),'WebAudio produces nonzero mixed output after user activation')
+  look(2.35)
   held(4,True);frames(35);held(4,False);frames(10)
   check(len(snap()['combat']['traps'])==1 and snap()['renderer']['foundry']['dynamicVisible']>=1,'A real charged trap has a visible ground device')
   for x,z in [(3,20),(8,26)]:drive(x,z)
   check(snap()['interactionId']=='arena-customs-yard','The arena has an approachable labeled physical console')
   tap(2);frames(120);check(snap()['combat']['battle']['phase']=='active','X starts actual humanoid arena combat without a patrol crash')
   check(any(e['humanoid'] and e['id'].startswith('arena-') for e in snap()['enemies']),'Actual arena attackers are present')
+  look(.97)
   p.screenshot(path=str(OUT/'foundry-customs-combat.png'));tap(9);choose('#pause-journal');p.screenshot(path=str(OUT/'foundry-controller-journal.png'));tap(1);tap(1)
   check(not native,'No native alert/confirm interrupts the game menus');check(not errors,'No uncaught JavaScript errors in the rendered game journey')
   p.goto(os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/aether-reach/roadmap.html',wait_until='domcontentloaded');p.wait_for_selector('.card')
