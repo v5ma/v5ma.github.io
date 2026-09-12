@@ -1,0 +1,43 @@
+name: Inspect Rainward free character source
+on:
+  push:
+    branches: [feat/rainward-rainworn-20260912]
+    paths: ['.github/workflows/rainward-rainworn-assets.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download author-published CC0 standard library without executing it
+        run: |
+          mkdir -p test-output/character-source
+          curl --fail --location --retry 3 --max-time 120 'https://opengameart.org/sites/default/files/universal_animation_librarystandard.zip' -o test-output/character-source/quaternius-ual-standard.zip
+          curl --fail --location --retry 3 --max-time 45 'https://opengameart.org/content/universal-animation-library' -o test-output/character-source/source-page.html
+          sha256sum test-output/character-source/quaternius-ual-standard.zip > test-output/character-source/SHA256.txt
+          python - <<'PY'
+          import zipfile,json,struct
+          from pathlib import Path
+          root=Path('test-output/character-source')
+          archive=zipfile.ZipFile(root/'quaternius-ual-standard.zip')
+          results=[]
+          for name in archive.namelist():
+              entry={'path':name,'bytes':archive.getinfo(name).file_size}
+              if name.lower().endswith('.glb'):
+                  data=archive.read(name);length=struct.unpack_from('<I',data,12)[0];g=json.loads(data[20:20+length])
+                  entry.update(nodes=[n.get('name','') for n in g.get('nodes',[])],animations=[a.get('name','') for a in g.get('animations',[])],materials=g.get('materials',[]),asset=g.get('asset',{}),skins=len(g.get('skins',[])))
+              results.append(entry)
+          (root/'inspection.json').write_text(json.dumps(results,indent=2))
+          print(json.dumps(results,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-character-source
+          path: test-output/character-source/
+          retention-days: 7
