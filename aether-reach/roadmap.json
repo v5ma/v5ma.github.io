@@ -1,1 +1,842 @@
-{"version":1,"updated":"2026-09-07","project":"Aether Reach","release":"0.4.1 tactical relay; exact acceptance and publication status in PR69","notice":"Public mechanics only. Code, model tests, native browser checks, player approval and hardware QA are different states. Local board edits do not commit GitHub. No private story or fake multiplayer.","tasks":[{"id":"A01","phase":"Foundation","title":"Playable floating-city expedition","priority":"P0","status":"Released","depends":[],"acceptance":"Complete three relays and return via connected foot or rail routes.","evidence":"PR35: 23 model/boundary tests and 39 native browser checks; v0.1.0 published.","next":"Preserve the playable loop while adding devices."},{"id":"A02","phase":"Foundation","title":"Private narrative / public engine boundary","priority":"P0","status":"Released","depends":[],"acceptance":"No private repository, manuscript, privileged key or hidden narrative loader in the public build.","evidence":"PUBLIC_BUILD.md and local-import tests.","next":"Review the allowlisted release files at every publication."},{"id":"I01","phase":"Controllers","title":"Action-based gamepad input","priority":"P0","status":"Browser checked","depends":["A01"],"acceptance":"Analog sticks, radial deadzone, rising-edge actions, neutral reconnect and safe disconnected pause.","evidence":"PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.","next":"Physical Xbox QA in I03, then remapping and accessibility."},{"id":"I02","phase":"Controllers","title":"Xbox menus and gameplay bindings","priority":"P0","status":"Browser checked","depends":["I01"],"acceptance":"Start without mouse; navigate dialogs, move/look, hook/reverse/release, fire/reload/pulse; settings persist.","evidence":"PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.","next":"Physical Xbox QA in I03, then remapping and accessibility."},{"id":"I03","phase":"Controllers","title":"Physical Xbox USB and Bluetooth QA","priority":"P0","status":"Hardware QA","depends":["I02"],"acceptance":"Real Xbox pad on Windows Chrome/Edge: deadzone, reconnect, held buttons, save/resume and full mission.","evidence":"No physical-controller evidence yet.","next":"Record device, connection type, browser and findings."},{"id":"I04","phase":"Controllers","title":"Remapping and accessibility profiles","priority":"P1","status":"Planned","depends":["I02"],"acceptance":"Remappable actions, conflict detection, defaults reset and persisted profiles; keyboard remains usable.","evidence":"Not implemented.","next":"Design one binding schema across devices."},{"id":"X01","phase":"WebXR","title":"Immersive session and tracked rig","priority":"P0","status":"Browser checked","depends":["I01"],"acceptance":"Feature detect immersive-vr; enter on click; local-floor; stereo animation loop; safe denial and exit.","evidence":"PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.","next":"Physical Quest 3 verification and performance profiling in X04/X05."},{"id":"X02","phase":"WebXR","title":"Quest controller movement and aiming","priority":"P0","status":"Browser checked","depends":["X01"],"acceptance":"Handed input, independent right-hand aim, left-stick motion, 30-degree snap turn, rail camera never forces head yaw.","evidence":"PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.","next":"Physical Quest 3 verification and performance profiling in X04/X05."},{"id":"X03","phase":"WebXR","title":"In-headset HUD and menus","priority":"P0","status":"Browser checked","depends":["X02"],"acceptance":"Health/ammo/objective panel, pause/atlas/archive panels, controller selection and Exit VR without removing headset.","evidence":"PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.","next":"Physical Quest 3 verification and performance profiling in X04/X05."},{"id":"X04","phase":"WebXR","title":"Physical Quest 3 acceptance","priority":"P0","status":"Hardware QA","depends":["X01","X02","X03"],"acceptance":"Meta Quest Browser: two eyes, controller alignment, floor height, snap turn, menus, rails, suspension/re-entry; no sickness/comfort promise.","evidence":"No physical Quest 3 run yet.","next":"Collect headset browser version and full-session feedback."},{"id":"X05","phase":"WebXR","title":"Frame-time and rendering budget","priority":"P0","status":"Hardware QA","depends":["X04"],"acceptance":"Measure sustained CPU/GPU frame times and memory on Quest 3, choose target refresh budget from measurements.","evidence":"XR disables shadows and uses reduced framebuffer scale; no measured target yet.","next":"Profile before adding more scene detail."},{"id":"X06","phase":"WebXR","title":"Comfort and room-scale calibration","priority":"P1","status":"Planned","depends":["X04"],"acceptance":"Seated height, handed locomotion, snap/smooth choice, comfort vignette and robust recenter/reference-reset handling.","evidence":"Initial local-floor, snap turn and collision-limited room displacement implemented; full calibration is not.","next":"Tune with physical testing, not desktop assumptions."},{"id":"M01","phase":"Traversal","title":"Two-hand climb and ledge acquisition","priority":"P1","status":"Planned","depends":["X04","X05"],"acceptance":"Grip actual hand contacts, pull body with collision, transfer hands, release momentum and recover missed grabs.","evidence":"Not implemented.","next":"Build one climb wall in a mechanics yard."},{"id":"M02","phase":"Traversal","title":"Gliding from a rail or ledge","priority":"P1","status":"Implemented","depends":["X04"],"acceptance":"Explicit deploy/cancel, carried release momentum, controllable descent, safe landing and comfort controls.","evidence":"Optional foldwing candidate: carried launch velocity, movement-directed steering, explicit brake/fold, bounded charge and landing/rail recharge. Pure tests cover 12 landing recipes; native and hardware gates remain separate.","next":"Native rail release / glide / landing replay, then physical Quest comfort and balance review."},{"id":"M03","phase":"Traversal","title":"Climb / rail / glide state transitions","priority":"P1","status":"Planned","depends":["M01","M02"],"acceptance":"Continuous velocity between modes; no teleports or phantom grabs; recovery reachable after an intentional miss.","evidence":"Design goal, not a finished traversal system.","next":"Author and replay complete linked routes."},{"id":"M04","phase":"Traversal","title":"Readable branching rails and reward flow","priority":"P1","status":"Planned","depends":["A01","M02"],"acceptance":"Fast/high/rich alternatives, deliberate backward exploration, visible receiver, repeatable compatible arrival states.","evidence":"v0.3 adds Gale Market Loop and Prism Detour; 20 model jump/catch samples across four directions. Extensive branching worlds and player-rated route quality remain open.","next":"Playtest full rides and missed transfers, then add compatible entry/exit assemblies rather than disconnected decorative rails."},{"id":"C01","phase":"Combat","title":"Embodied reload and two-hand stabilization","priority":"P1","status":"Planned","depends":["X04"],"acceptance":"Tracked weapon alignment, magazine interaction, recoil, occlusion and left-handed options.","evidence":"Ray aiming/button reload prototype only.","next":"Keep current button reload as accessible fallback."},{"id":"C02","phase":"Combat","title":"Distinct enemies and rail combat","priority":"P1","status":"Planned","depends":["X05","C01"],"acceptance":"Readable threats, varied movement/attack patterns, fair cover and shooting while traversing.","evidence":"v0.3 implements scout, heavy burst attacker and charged sentry, plus a passive target. Rich combat encounters remain in development.","next":"Add one well-tested enemy behavior at a time."},{"id":"C03","phase":"Combat","title":"Temporary tactical cover","priority":"P2","status":"Planned","depends":["M03","C02"],"acceptance":"Constrained placement, costs, collision and no trapped player or unreachable route.","evidence":"Not implemented.","next":"Resolve locomotion before building dynamic obstacles."},{"id":"W01","phase":"World","title":"Interiors, puzzles and exploration rewards","priority":"P1","status":"Planned","depends":["A01","X05"],"acceptance":"Playable interior routes, puzzle state saves and rewards worth detouring for.","evidence":"Current architecture is mostly exterior.","next":"One building-sized exploration encounter."},{"id":"W02","phase":"World","title":"Original visual and audio production","priority":"P1","status":"Planned","depends":["X05"],"acceptance":"Coherent architecture, readable surfaces, original audio and performance-budgeted assets.","evidence":"v0.3 differentiates bazaar, greenhouse, foundry and spire silhouettes and four weapons. Original procedural art, not imported franchise assets.","next":"Improve fidelity only within measured headset budgets."},{"id":"E01","phase":"Authoring","title":"Shared 3D world and rail editor","priority":"P2","status":"Planned","depends":["M03"],"acceptance":"Editable curves, anchors and geometry; validate reachability/clearance; save/export and exact playtest return.","evidence":"Paper Delivery has a separate editor; not silently inherited by Aether Reach.","next":"Define a world format before UI expansion."},{"id":"E02","phase":"Authoring","title":"Cloud levels and accounts","priority":"P2","status":"Deferred","depends":["E01"],"acceptance":"Authenticated ownership, reviewed database policies, moderation and no client-only paid entitlements.","evidence":"Local checkpoints only; no new cloud integration.","next":"Separate security design and explicit service authorization."},{"id":"N01","phase":"Networking","title":"Multiplayer authority and replication","priority":"P1","status":"Planned","depends":["I02","B01","B03"],"acceptance":"Server-owned simulation, anti-cheat boundaries, interpolation, latency tests and stable room ownership.","evidence":"Single-player currently.","next":"Design authoritative rooms and two-client traversal before competitive game modes. No local bot will be labeled a remote player."},{"id":"R01","phase":"Release","title":"Public Kanban / workbook planning","priority":"P0","status":"Browser checked","depends":[],"acceptance":"Searchable tasks, explicit dependencies and gates, local editable statuses, portable export, matching workbook.","evidence":"PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.","next":"Update committed plan from verified work; browser edits remain local only."},{"id":"R02","phase":"Release","title":"Controller/XR preview publication","priority":"P0","status":"Browser checked","depends":["I01","I02","X01","X02","X03","R01"],"acceptance":"Pass model, keyboard/touch regression, browser pad and XR-lifecycle tests; byte-verify deployed public files.","evidence":"PR37 acceptance: 38 Node tests and 70 native/device-emulated browser checks, runs 34061735693 and 34061735714.","next":"Read the published-file hash receipt in PR37 for deployment status. Physical hardware gates remain separate."},{"id":"B01","phase":"Combat","title":"Four-weapon arsenal and sniper optic","priority":"P0","status":"Implemented","depends":["A01","I02"],"acceptance":"Mechanical differences in cadence, spread, magazine, range and recoil; actual 4x desktop field-of-view optic, not a crosshair picture.","evidence":"59 current Node checks include weapon definition, ray damage and transfer regressions. Native scope rendering has been inspected; full purchase/shot/save acceptance is tracked in PR39.","next":"Inspect sniper, carbine and scattergun in actual screenshots; test LT and UI compatibility."},{"id":"B02","phase":"Combat","title":"Earned-credit buy and upgrade economy","priority":"P0","status":"Implemented","depends":["B01"],"acceptance":"Three world kiosks, meaningful starter loadout choice, per-weapon damage/reload tiers, shield upgrade; insufficient funds rejected. No real-money purchases.","evidence":"Model purchases, caps, ammunition and save round trips pass. Native buy-upgrade-continue acceptance is tracked in PR39.","next":"Verify keyboard/controller shop navigation and prevent double rewards or free refill exploits."},{"id":"B03","phase":"World","title":"Exploration caches and enemy salvage","priority":"P0","status":"Implemented","depends":["B02"],"acceptance":"Physical once-only crates and defeated-enemy drops; pickups supply credits/ammunition and selected unlocks; saves cannot repay an already collected crate.","evidence":"Sanitized legacy-compatible kit extension and once-only reward tests pass. Native collection acceptance is tracked in PR39.","next":"Tune rewards so exploring a longer route competes with rushing the objectives."},{"id":"B04","phase":"Traversal","title":"Free-look aimed jump-and-catch transfers","priority":"P0","status":"Implemented","depends":["A01","I02"],"acceptance":"Default independent sight while riding; two new adjacent detours, visible eligible rail target, physical release and a second catch action in range.","evidence":"Four directions at five carried-state timings, plus 21 recorded-direction Gale release/delay fixtures and a bounded deliberate-input buffer. Native acceptance is tracked in PR39.","next":"Review the receiving line and tolerance while moving; never substitute an instant scene teleport."},{"id":"B05","phase":"World","title":"Distinct district and enemy silhouettes","priority":"P0","status":"Implemented","depends":["A01","B01"],"acceptance":"Original bazaar stalls, glass roof, industrial gantry/chimneys, solar arrays/beacon; scout rotors, armored heavy and sentry wind-up are visibly different.","evidence":"Native render review identified and corrected blank sign lettering, the stretched rail HUD and phone-control overlap. Final visual acceptance is recorded in PR39.","next":"Check visual readability, weapon framing, clutter and mobile HUD overlap."},{"id":"B06","phase":"Combat","title":"Encounter balance and player feedback","priority":"P1","status":"Planned","depends":["B01","B02","B03","B04","B05"],"acceptance":"Replay the whole objective loop with varied loadouts; compare risk, ammunition demand, reward rate and alternate paths; retain the accessible foot route.","evidence":"Not player-reviewed. Automated passage does not certify enjoyable combat.","next":"Record user feedback and one small repeatable encounter per iteration."},{"id":"N02","phase":"Networking","title":"Actual two-client rooms and replicated movement","priority":"P1","status":"Planned","depends":["N01"],"acceptance":"Two separate browser clients see distinct players, room join/leave, server-owned clock/state and tested latency recovery; no simulated lobby claims.","evidence":"Not implemented. Current public demo is single-player.","next":"Choose and authorize a backend explicitly; implement a minimal two-client movement slice."},{"id":"N03","phase":"Networking","title":"Shared loot, buy authority and combat rules","priority":"P1","status":"Planned","depends":["N02","B02","B03"],"acceptance":"Server validates pickup ownership, currency, shot cadence, ammo and damage; duplicate claims and reconnect replay are rejected.","evidence":"Not implemented. Local single-player saves are not secure multiplayer accounts.","next":"Add authority tests before drops or shops are shared between players."},{"id":"X07","phase":"WebXR","title":"Magnified tracked weapon optic","priority":"P1","status":"Planned","depends":["X04","X05","B01"],"acceptance":"Render a real weapon-mounted magnified view within headset frame budget; do not zoom the whole tracked head/eye projection.","evidence":"Desktop scope exists; the XR precision ray does not have a magnified optic.","next":"Measure a render-target optic on real Quest 3 with independent head motion and readable lens."},{"id":"R03","phase":"Release","title":"Durable source snapshots and restore verification","priority":"P0","status":"Implemented","depends":["A02"],"acceptance":"Every versioned release has a tagged public source archive, SHA-256 file manifest and a clean extraction test. Preserve prior releases; never include private source or browser player saves.","evidence":"tools/backup.py and release-backups workflow; publication still subject to runtime checks.","next":"Verify the release assets after deployment. An independent off-site mirror remains outside this GitHub-only backup."},{"id":"T01","phase":"Tactics","title":"Dual-hand elemental powers and surface tactics","priority":"P1","status":"Implemented","depends":["B01","B06"],"acceptance":"Current electrifies authored water; Cinder ignites oil; gun ammunition and power energy stay separate. Shared sight and collision rules prevent hits through buildings.","evidence":"PR69: model synergies plus ordinary-input Current/gun and Cinder/oil browser scenarios. See final workflow receipts, not this status alone.","next":"Inspect readable feedback and collect player balance feedback."},{"id":"T02","phase":"Tactics","title":"Local security routing and a friendly turret","priority":"P1","status":"Implemented","depends":["A01"],"acceptance":"A real 3x3 connected-port puzzle changes the Atrium defender. Fourteen shots help but cannot win unattended. All interactions remain entirely inside the game.","evidence":"PR69: connectivity, proximity and finite turret budget tests; native puzzle playthrough.","next":"Make later security choices affect routes and encounter preparation."},{"id":"T03","phase":"Tactics","title":"Optional Atrium recovery defense","priority":"P1","status":"Implemented","depends":["T01","T02"],"acceptance":"Defend 180 collector hull through three waves and a 48-second minimum. Failure, retreat and safe reload are real; first success grants 180 credits once.","evidence":"PR69: positive and negative model outcomes; native recovery and one-time-reward acceptance required before publication.","next":"Compare active builds and record player difficulty feedback; avoid a passive turret victory."},{"id":"T04","phase":"Tactics","title":"Enemy surveys and passive build choices","priority":"P1","status":"Implemented","depends":["T01"],"acceptance":"One recorded survey per living visible class grants a 10% gun bonus; unlock one equipped Insulator, Capacitor, Catalyst or Engineer. No repeated-scan farming.","evidence":"PR69: model numeric modifiers, persistence and ordinary-input survey/loadout checks.","next":"Keep passive choices legible and validate all new menus on physical controllers/headsets."},{"id":"T05","phase":"Tactics","title":"Telekinetic debris and projectile redirection","priority":"P1","status":"Planned","depends":["T01"],"acceptance":"Acquire visible debris or an eligible projectile, hold and redirect with bounded velocity and collision; independent hands and safe cancellation.","evidence":"Not implemented.","next":"Prototype one throwable prop and one redirectable projectile with deterministic collision tests."},{"id":"T06","phase":"Tactics","title":"Player-placed traps and constrained defenses","priority":"P1","status":"Planned","depends":["T03","C03"],"acceptance":"Place a limited trap or defender on valid surfaces with clear costs, ownership, collision, expiry and a readable trigger range.","evidence":"Current oil/water zones are authored; free trap placement is not implemented.","next":"First prove placement cannot block required passages or farm infinite resources."},{"id":"T07","phase":"Tactics","title":"A prepared boss-style confrontation","priority":"P1","status":"Planned","depends":["T03","T04"],"acceptance":"A new large enemy has telegraphed phases, discoverable weaknesses and resource choices. Win through learned tactics rather than only greater health.","evidence":"Not implemented; the current recovery ends with one heavier patrol.","next":"Build a single encounter with multiple viable weapon/power builds and recovery paths."},{"id":"T08","phase":"Tactics","title":"Deeper research and multiple build slots","priority":"P1","status":"Planned","depends":["T04"],"acceptance":"Distinct research objectives and mutually meaningful slots; explicit respec and progression costs; retain accessible defaults and versioned saves.","evidence":"Current survey records classes and one passive. No research photographs or expanded slot system yet.","next":"Review the first passive balance before expanding combinations."}]}
+{
+  "version": 1,
+  "updated": "2026-09-12",
+  "project": "Aether Reach",
+  "release": "0.8.0 Foundry Finish",
+  "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
+  "tasks": [
+    {
+      "id": "A01",
+      "phase": "Foundation",
+      "title": "Playable floating-city expedition",
+      "priority": "P0",
+      "status": "Released",
+      "depends": [],
+      "acceptance": "Complete three relays and return via connected foot or rail routes.",
+      "evidence": "PR35: 23 model/boundary tests and 39 native browser checks; v0.1.0 published.",
+      "next": "Preserve the playable loop while adding devices."
+    },
+    {
+      "id": "A02",
+      "phase": "Foundation",
+      "title": "Private narrative / public engine boundary",
+      "priority": "P0",
+      "status": "Released",
+      "depends": [],
+      "acceptance": "No private repository, manuscript, privileged key or hidden narrative loader in the public build.",
+      "evidence": "PUBLIC_BUILD.md and local-import tests.",
+      "next": "Review the allowlisted release files at every publication."
+    },
+    {
+      "id": "I01",
+      "phase": "Controllers",
+      "title": "Action-based gamepad input",
+      "priority": "P0",
+      "status": "Browser checked",
+      "depends": [
+        "A01"
+      ],
+      "acceptance": "Analog sticks, radial deadzone, rising-edge actions, neutral reconnect and safe disconnected pause.",
+      "evidence": "PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.",
+      "next": "Physical Xbox QA in I03, then remapping and accessibility."
+    },
+    {
+      "id": "I02",
+      "phase": "Controllers",
+      "title": "Xbox menus and gameplay bindings",
+      "priority": "P0",
+      "status": "Browser checked",
+      "depends": [
+        "I01"
+      ],
+      "acceptance": "Start without mouse; navigate dialogs, move/look, hook/reverse/release, fire/reload/pulse; settings persist.",
+      "evidence": "PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.",
+      "next": "Physical Xbox QA in I03, then remapping and accessibility."
+    },
+    {
+      "id": "I03",
+      "phase": "Controllers",
+      "title": "Physical Xbox USB and Bluetooth QA",
+      "priority": "P0",
+      "status": "Hardware QA",
+      "depends": [
+        "I02"
+      ],
+      "acceptance": "Real Xbox pad on Windows Chrome/Edge: deadzone, reconnect, held buttons, save/resume and full mission.",
+      "evidence": "No physical-controller evidence yet.",
+      "next": "Record device, connection type, browser and findings."
+    },
+    {
+      "id": "I04",
+      "phase": "Controllers",
+      "title": "Remapping and accessibility profiles",
+      "priority": "P1",
+      "status": "Implemented",
+      "depends": [
+        "I02"
+      ],
+      "acceptance": "Remappable actions, conflict detection, defaults reset and persisted profiles; keyboard remains usable.",
+      "evidence": "v0.6 introduced safe binding swaps and stored comfort settings. v0.8 labels match the revised combat layout.",
+      "next": "Run the physical Xbox USB and Bluetooth matrix; retain fixed A/B/Menu navigation."
+    },
+    {
+      "id": "X01",
+      "phase": "WebXR",
+      "title": "Immersive session and tracked rig",
+      "priority": "P0",
+      "status": "Browser checked",
+      "depends": [
+        "I01"
+      ],
+      "acceptance": "Feature detect immersive-vr; enter on click; local-floor; stereo animation loop; safe denial and exit.",
+      "evidence": "PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.",
+      "next": "Physical Quest 3 verification and performance profiling in X04/X05."
+    },
+    {
+      "id": "X02",
+      "phase": "WebXR",
+      "title": "Quest controller movement and aiming",
+      "priority": "P0",
+      "status": "Browser checked",
+      "depends": [
+        "X01"
+      ],
+      "acceptance": "Handed input, independent right-hand aim, left-stick motion, 30-degree snap turn, rail camera never forces head yaw.",
+      "evidence": "PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.",
+      "next": "Physical Quest 3 verification and performance profiling in X04/X05."
+    },
+    {
+      "id": "X03",
+      "phase": "WebXR",
+      "title": "In-headset HUD and menus",
+      "priority": "P0",
+      "status": "Browser checked",
+      "depends": [
+        "X02"
+      ],
+      "acceptance": "Health/ammo/objective panel, pause/atlas/archive panels, controller selection and Exit VR without removing headset.",
+      "evidence": "PR37, Actions 34061735693: real HTTP/WebGL application with explicitly emulated device APIs; no physical device certification.",
+      "next": "Physical Quest 3 verification and performance profiling in X04/X05."
+    },
+    {
+      "id": "X04",
+      "phase": "WebXR",
+      "title": "Physical Quest 3 acceptance",
+      "priority": "P0",
+      "status": "Hardware QA",
+      "depends": [
+        "X01",
+        "X02",
+        "X03"
+      ],
+      "acceptance": "Meta Quest Browser: two eyes, controller alignment, floor height, snap turn, menus, rails, suspension/re-entry; no sickness/comfort promise.",
+      "evidence": "No physical Quest 3 run yet.",
+      "next": "Collect headset browser version and full-session feedback."
+    },
+    {
+      "id": "X05",
+      "phase": "WebXR",
+      "title": "Frame-time and rendering budget",
+      "priority": "P0",
+      "status": "Hardware QA",
+      "depends": [
+        "X04"
+      ],
+      "acceptance": "Measure sustained CPU/GPU frame times and memory on Quest 3, choose target refresh budget from measurements.",
+      "evidence": "XR disables shadows and uses reduced framebuffer scale; no measured target yet.",
+      "next": "Profile before adding more scene detail."
+    },
+    {
+      "id": "X06",
+      "phase": "WebXR",
+      "title": "Comfort and room-scale calibration",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "X04"
+      ],
+      "acceptance": "Seated height, handed locomotion, snap/smooth choice, comfort vignette and robust recenter/reference-reset handling.",
+      "evidence": "Initial local-floor, snap turn and collision-limited room displacement implemented; full calibration is not.",
+      "next": "Tune with physical testing, not desktop assumptions."
+    },
+    {
+      "id": "M01",
+      "phase": "Traversal",
+      "title": "Two-hand climb and ledge acquisition",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "X04",
+        "X05"
+      ],
+      "acceptance": "Grip actual hand contacts, pull body with collision, transfer hands, release momentum and recover missed grabs.",
+      "evidence": "Not implemented.",
+      "next": "Build one climb wall in a mechanics yard."
+    },
+    {
+      "id": "M02",
+      "phase": "Traversal",
+      "title": "Gliding from a rail or ledge",
+      "priority": "P1",
+      "status": "Implemented",
+      "depends": [
+        "A01"
+      ],
+      "acceptance": "Explicit deploy/cancel, carried release momentum, controllable descent, safe landing and comfort controls.",
+      "evidence": "Foldwing steering and charge remain; v0.8 restores B as fold/drop while airborne or climbing.",
+      "next": "Physical headset comfort and player route quality remain unverified."
+    },
+    {
+      "id": "M03",
+      "phase": "Traversal",
+      "title": "Climb / rail / glide state transitions",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "M01",
+        "M02"
+      ],
+      "acceptance": "Continuous velocity between modes; no teleports or phantom grabs; recovery reachable after an intentional miss.",
+      "evidence": "Design goal, not a finished traversal system.",
+      "next": "Author and replay complete linked routes."
+    },
+    {
+      "id": "M04",
+      "phase": "Traversal",
+      "title": "Readable branching rails and reward flow",
+      "priority": "P1",
+      "status": "In review",
+      "depends": [
+        "A01",
+        "M02"
+      ],
+      "acceptance": "Fast/high/rich alternatives, deliberate backward exploration, visible receiver, repeatable compatible arrival states.",
+      "evidence": "15 actual rail routes are present. v0.7 tuning has 48 m/s cruise and 96 m/s boost with arrival slowdown.",
+      "next": "Test sightline readability and transfers at real speed on target hardware."
+    },
+    {
+      "id": "C01",
+      "phase": "Combat",
+      "title": "Embodied reload and two-hand stabilization",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "X04"
+      ],
+      "acceptance": "Tracked weapon alignment, magazine interaction, recoil, occlusion and left-handed options.",
+      "evidence": "Ray aiming/button reload prototype only.",
+      "next": "Keep current button reload as accessible fallback."
+    },
+    {
+      "id": "C02",
+      "phase": "Combat",
+      "title": "Distinct enemies and rail combat",
+      "priority": "P1",
+      "status": "In review",
+      "depends": [
+        "B01",
+        "B04"
+      ],
+      "acceptance": "Readable threats, varied movement/attack patterns, fair cover and shooting while traversing.",
+      "evidence": "v0.7 has humanoid arena encounters. v0.8 fixes missing arena home/patrol initialization and adds all-three-arena simulation checks.",
+      "next": "Review combat fairness, readable silhouettes, cover and ammunition balance with a player."
+    },
+    {
+      "id": "C03",
+      "phase": "Combat",
+      "title": "Temporary tactical cover",
+      "priority": "P2",
+      "status": "In review",
+      "depends": [
+        "C02"
+      ],
+      "acceptance": "Constrained placement, costs, collision and no trapped player or unreachable route.",
+      "evidence": "Authored cover rifts have timed collision and occupied-placement rejection; v0.8 visibly distinguishes dormant and active state.",
+      "next": "Test every rift beside doors, rail arrivals and player/enemy collision."
+    },
+    {
+      "id": "W01",
+      "phase": "World",
+      "title": "Interiors, puzzles and exploration rewards",
+      "priority": "P1",
+      "status": "Implemented",
+      "depends": [
+        "A01"
+      ],
+      "acceptance": "Playable interior routes, puzzle state saves and rewards worth detouring for.",
+      "evidence": "v0.5/v0.6 source contains 12 districts, five enterable rooms, rooftop ladders, puzzles and 13 side adventures. This is not a completed campaign.",
+      "next": "Finish and playtest one authored interior-to-rooftop exploration loop."
+    },
+    {
+      "id": "W02",
+      "phase": "World",
+      "title": "Original visual and audio production",
+      "priority": "P1",
+      "status": "In review",
+      "depends": [
+        "A01"
+      ],
+      "acceptance": "Coherent architecture, readable surfaces, original audio and performance-budgeted assets.",
+      "evidence": "Licensed Quay assets and original procedural audio are in the source. v0.8 adds textured combat cover, visible Tavi and tactical art. Full asset production remains unfinished.",
+      "next": "Use P01-P05 acceptance gates instead of treating a material pass as finished AAA art."
+    },
+    {
+      "id": "E01",
+      "phase": "Authoring",
+      "title": "Shared 3D world and rail editor",
+      "priority": "P2",
+      "status": "Planned",
+      "depends": [
+        "M03"
+      ],
+      "acceptance": "Editable curves, anchors and geometry; validate reachability/clearance; save/export and exact playtest return.",
+      "evidence": "Paper Delivery has a separate editor; not silently inherited by Aether Reach.",
+      "next": "Define a world format before UI expansion."
+    },
+    {
+      "id": "E02",
+      "phase": "Authoring",
+      "title": "Cloud levels and accounts",
+      "priority": "P2",
+      "status": "Deferred",
+      "depends": [
+        "E01"
+      ],
+      "acceptance": "Authenticated ownership, reviewed database policies, moderation and no client-only paid entitlements.",
+      "evidence": "Local checkpoints only; no new cloud integration.",
+      "next": "Separate security design and explicit service authorization."
+    },
+    {
+      "id": "N01",
+      "phase": "Networking",
+      "title": "Multiplayer authority and replication",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "I02",
+        "B01",
+        "B03"
+      ],
+      "acceptance": "Server-owned simulation, anti-cheat boundaries, interpolation, latency tests and stable room ownership.",
+      "evidence": "Single-player currently.",
+      "next": "Design authoritative rooms and two-client traversal before competitive game modes. No local bot will be labeled a remote player."
+    },
+    {
+      "id": "R01",
+      "phase": "Release",
+      "title": "Public Kanban / workbook planning",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [],
+      "acceptance": "Searchable tasks, explicit dependencies and gates, local editable statuses, portable export, matching workbook.",
+      "evidence": "roadmap.json and planning/AAA-ROADMAP.md are the current committed plan. The eight-sheet v0.3 XLSX remains an explicitly archived snapshot.",
+      "next": "Update evidence at each release and keep publication distinct from player acceptance."
+    },
+    {
+      "id": "R02",
+      "phase": "Release",
+      "title": "Controller/XR preview publication",
+      "priority": "P0",
+      "status": "Browser checked",
+      "depends": [
+        "I01",
+        "I02",
+        "X01",
+        "X02",
+        "X03",
+        "R01"
+      ],
+      "acceptance": "Pass model, keyboard/touch regression, browser pad and XR-lifecycle tests; byte-verify deployed public files.",
+      "evidence": "PR37 acceptance: 38 Node tests and 70 native/device-emulated browser checks, runs 34061735693 and 34061735714.",
+      "next": "Read the published-file hash receipt in PR37 for deployment status. Physical hardware gates remain separate."
+    },
+    {
+      "id": "B01",
+      "phase": "Combat",
+      "title": "Four-weapon arsenal and sniper optic",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "A01",
+        "I02"
+      ],
+      "acceptance": "Mechanical differences in cadence, spread, magazine, range and recoil; actual 4x desktop field-of-view optic, not a crosshair picture.",
+      "evidence": "v0.8 uses one desktop optic mask and correct tangent-based projection for 4x/8x; no tracked XR magnification claim.",
+      "next": "Verify scope framing, recoil and hit feedback with real Xbox and mouse input."
+    },
+    {
+      "id": "B02",
+      "phase": "Combat",
+      "title": "Earned-credit buy and upgrade economy",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "B01"
+      ],
+      "acceptance": "Three world kiosks, meaningful starter loadout choice, per-weapon damage/reload tiers, shield upgrade; insufficient funds rejected. No real-money purchases.",
+      "evidence": "Model purchases, caps, ammunition and save round trips pass. Native buy-upgrade-continue acceptance is tracked in PR39.",
+      "next": "Verify keyboard/controller shop navigation and prevent double rewards or free refill exploits."
+    },
+    {
+      "id": "B03",
+      "phase": "World",
+      "title": "Exploration caches and enemy salvage",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "B02"
+      ],
+      "acceptance": "Physical once-only crates and defeated-enemy drops; pickups supply credits/ammunition and selected unlocks; saves cannot repay an already collected crate.",
+      "evidence": "Sanitized legacy-compatible kit extension and once-only reward tests pass. Native collection acceptance is tracked in PR39.",
+      "next": "Tune rewards so exploring a longer route competes with rushing the objectives."
+    },
+    {
+      "id": "B04",
+      "phase": "Traversal",
+      "title": "Free-look aimed jump-and-catch transfers",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "A01",
+        "I02"
+      ],
+      "acceptance": "Default independent sight while riding; two new adjacent detours, visible eligible rail target, physical release and a second catch action in range.",
+      "evidence": "Four directions at five carried-state timings, plus 21 recorded-direction Gale release/delay fixtures and a bounded deliberate-input buffer. Native acceptance is tracked in PR39.",
+      "next": "Review the receiving line and tolerance while moving; never substitute an instant scene teleport."
+    },
+    {
+      "id": "B05",
+      "phase": "World",
+      "title": "Distinct district and enemy silhouettes",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "A01",
+        "B01"
+      ],
+      "acceptance": "Original bazaar stalls, glass roof, industrial gantry/chimneys, solar arrays/beacon; scout rotors, armored heavy and sentry wind-up are visibly different.",
+      "evidence": "Native render review identified and corrected blank sign lettering, the stretched rail HUD and phone-control overlap. Final visual acceptance is recorded in PR39.",
+      "next": "Check visual readability, weapon framing, clutter and mobile HUD overlap."
+    },
+    {
+      "id": "B06",
+      "phase": "Combat",
+      "title": "Encounter balance and player feedback",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "acceptance": "Replay the whole objective loop with varied loadouts; compare risk, ammunition demand, reward rate and alternate paths; retain the accessible foot route.",
+      "evidence": "Not player-reviewed. Automated passage does not certify enjoyable combat.",
+      "next": "Record user feedback and one small repeatable encounter per iteration."
+    },
+    {
+      "id": "N02",
+      "phase": "Networking",
+      "title": "Actual two-client rooms and replicated movement",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "N01"
+      ],
+      "acceptance": "Two separate browser clients see distinct players, room join/leave, server-owned clock/state and tested latency recovery; no simulated lobby claims.",
+      "evidence": "Not implemented. Current public demo is single-player.",
+      "next": "Choose and authorize a backend explicitly; implement a minimal two-client movement slice."
+    },
+    {
+      "id": "N03",
+      "phase": "Networking",
+      "title": "Shared loot, buy authority and combat rules",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "N02",
+        "B02",
+        "B03"
+      ],
+      "acceptance": "Server validates pickup ownership, currency, shot cadence, ammo and damage; duplicate claims and reconnect replay are rejected.",
+      "evidence": "Not implemented. Local single-player saves are not secure multiplayer accounts.",
+      "next": "Add authority tests before drops or shops are shared between players."
+    },
+    {
+      "id": "X07",
+      "phase": "WebXR",
+      "title": "Magnified tracked weapon optic",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "X04",
+        "X05",
+        "B01"
+      ],
+      "acceptance": "Render a real weapon-mounted magnified view within headset frame budget; do not zoom the whole tracked head/eye projection.",
+      "evidence": "Desktop scope exists; the XR precision ray does not have a magnified optic.",
+      "next": "Measure a render-target optic on real Quest 3 with independent head motion and readable lens."
+    },
+    {
+      "id": "R03",
+      "phase": "Release",
+      "title": "Durable source snapshots and restore verification",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "A02"
+      ],
+      "acceptance": "Every versioned release has a tagged public source archive, SHA-256 file manifest and a clean extraction test. Preserve prior releases; never include private source or browser player saves.",
+      "evidence": "tools/backup.py and release-backups workflow; publication still subject to runtime checks.",
+      "next": "Verify the release assets after deployment. An independent off-site mirror remains outside this GitHub-only backup."
+    },
+    {
+      "id": "T01",
+      "phase": "Tactics",
+      "title": "Dual-hand elemental powers and surface tactics",
+      "priority": "P1",
+      "status": "Implemented",
+      "depends": [
+        "B01",
+        "B06"
+      ],
+      "acceptance": "Current electrifies authored water; Cinder ignites oil; gun ammunition and power energy stay separate. Shared sight and collision rules prevent hits through buildings.",
+      "evidence": "PR69: model synergies plus ordinary-input Current/gun and Cinder/oil browser scenarios. See final workflow receipts, not this status alone.",
+      "next": "Inspect readable feedback and collect player balance feedback."
+    },
+    {
+      "id": "T02",
+      "phase": "Tactics",
+      "title": "Local security routing and a friendly turret",
+      "priority": "P1",
+      "status": "Implemented",
+      "depends": [
+        "A01"
+      ],
+      "acceptance": "A real 3x3 connected-port puzzle changes the Atrium defender. Fourteen shots help but cannot win unattended. All interactions remain entirely inside the game.",
+      "evidence": "PR69: connectivity, proximity and finite turret budget tests; native puzzle playthrough.",
+      "next": "Make later security choices affect routes and encounter preparation."
+    },
+    {
+      "id": "T03",
+      "phase": "Tactics",
+      "title": "Optional Atrium recovery defense",
+      "priority": "P1",
+      "status": "Implemented",
+      "depends": [
+        "T01",
+        "T02"
+      ],
+      "acceptance": "Defend 180 collector hull through three waves and a 48-second minimum. Failure, retreat and safe reload are real; first success grants 180 credits once.",
+      "evidence": "PR69: positive and negative model outcomes; native recovery and one-time-reward acceptance required before publication.",
+      "next": "Compare active builds and record player difficulty feedback; avoid a passive turret victory."
+    },
+    {
+      "id": "T04",
+      "phase": "Tactics",
+      "title": "Enemy surveys and passive build choices",
+      "priority": "P1",
+      "status": "Implemented",
+      "depends": [
+        "T01"
+      ],
+      "acceptance": "One recorded survey per living visible class grants a 10% gun bonus; unlock one equipped Insulator, Capacitor, Catalyst or Engineer. No repeated-scan farming.",
+      "evidence": "PR69: model numeric modifiers, persistence and ordinary-input survey/loadout checks.",
+      "next": "Keep passive choices legible and validate all new menus on physical controllers/headsets."
+    },
+    {
+      "id": "T05",
+      "phase": "Tactics",
+      "title": "Telekinetic debris and projectile redirection",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "T01"
+      ],
+      "acceptance": "Acquire visible debris or an eligible projectile, hold and redirect with bounded velocity and collision; independent hands and safe cancellation.",
+      "evidence": "Not implemented.",
+      "next": "Prototype one throwable prop and one redirectable projectile with deterministic collision tests."
+    },
+    {
+      "id": "T06",
+      "phase": "Tactics",
+      "title": "Player-placed traps and constrained defenses",
+      "priority": "P1",
+      "status": "In review",
+      "depends": [
+        "T03",
+        "C03"
+      ],
+      "acceptance": "Place a limited trap or defender on valid surfaces with clear costs, ownership, collision, expiry and a readable trigger range.",
+      "evidence": "v0.7 charged traps use energy and bounded placement; v0.8 renders active trap and dropped-weapon pools.",
+      "next": "Test legibility, costs, trigger range and accessibility in longer encounters."
+    },
+    {
+      "id": "T07",
+      "phase": "Tactics",
+      "title": "A prepared boss-style confrontation",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "T03",
+        "T04"
+      ],
+      "acceptance": "A new large enemy has telegraphed phases, discoverable weaknesses and resource choices. Win through learned tactics rather than only greater health.",
+      "evidence": "Not implemented; the current recovery ends with one heavier patrol.",
+      "next": "Build a single encounter with multiple viable weapon/power builds and recovery paths."
+    },
+    {
+      "id": "T08",
+      "phase": "Tactics",
+      "title": "Deeper research and multiple build slots",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "T04"
+      ],
+      "acceptance": "Distinct research objectives and mutually meaningful slots; explicit respec and progression costs; retain accessible defaults and versioned saves.",
+      "evidence": "Current survey records classes and one passive. No research photographs or expanded slot system yet.",
+      "next": "Review the first passive balance before expanding combinations."
+    },
+    {
+      "id": "F01",
+      "phase": "Presentation",
+      "title": "Foundry Finish tactical art",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "W02"
+      ],
+      "acceptance": "Cover meshes match collision bounds; Tavi, traps, drops, arena consoles and active rifts are visible without per-frame allocation.",
+      "evidence": "foundry-art.mjs; foundry-kit.mjs; tests/foundry.test.mjs.",
+      "next": "Inspect the rendered Customs fight and scope captures before publication."
+    },
+    {
+      "id": "F02",
+      "phase": "Combat",
+      "title": "Arena runtime integrity",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "C02"
+      ],
+      "acceptance": "Each of the three arenas runs patrol, target acquisition and shooting without undefined home or patrol state.",
+      "evidence": "tests/foundry.test.mjs replays all three for 12 simulated seconds.",
+      "next": "Extend to two-wave completion, interruptions and varied real loadouts."
+    },
+    {
+      "id": "P01",
+      "phase": "Production",
+      "title": "One finished district vertical slice",
+      "priority": "P0",
+      "status": "Planned",
+      "depends": [
+        "F01",
+        "W01",
+        "B06"
+      ],
+      "acceptance": "One coherent 20-30 minute route combines street combat, interior exploration, rooftop travel, rewards and a clear ending.",
+      "evidence": "Proposed production gate, not completed content.",
+      "next": "Choose a single district slice and record player completion and friction."
+    },
+    {
+      "id": "P02",
+      "phase": "Production",
+      "title": "Authored character and weapon animation",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "P01"
+      ],
+      "acceptance": "Original humanoid mesh, articulated hands, reload/aim/melee animation and locomotion transitions hold up at gameplay distance.",
+      "evidence": "Current companion and patrols are procedural articulated geometry, not final character assets.",
+      "next": "Produce one licensed or original rigged enemy and one complete weapon-hand set."
+    },
+    {
+      "id": "P03",
+      "phase": "Production",
+      "title": "Architectural materials and lighting",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "P01"
+      ],
+      "acceptance": "Consistent scale, trim/material library, wear, foliage, interior lighting and readable cover silhouettes across the slice.",
+      "evidence": "v0.8 only finishes a bounded combat kit; city-wide art is incomplete.",
+      "next": "Review screenshot comparisons at real play views, not only staged cameras."
+    },
+    {
+      "id": "P04",
+      "phase": "Production",
+      "title": "Music, effects and mix acceptance",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "W02"
+      ],
+      "acceptance": "One music transport, independent effects/music/ambience levels, bounded simultaneous cues and clear critical warnings at low volume.",
+      "evidence": "Procedural score and independent buses exist; subjective listening and long-session mix are not certified.",
+      "next": "Listen on speakers and headphones; log masking, fatigue and critical-cue audibility."
+    },
+    {
+      "id": "P05",
+      "phase": "Production",
+      "title": "Content expansion after slice approval",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "P01",
+        "P02",
+        "P03",
+        "P04"
+      ],
+      "acceptance": "Expand approved encounter/interior/route templates into a coherent campaign without repeated filler or unfinished placeholder districts.",
+      "evidence": "No campaign-completion claim. Private narrative stays outside this public repository.",
+      "next": "Define district-by-district content acceptance and asset ownership."
+    },
+    {
+      "id": "Q01",
+      "phase": "Quality",
+      "title": "Desktop frame-time and memory budget",
+      "priority": "P0",
+      "status": "Hardware QA",
+      "depends": [
+        "F01"
+      ],
+      "acceptance": "Proposed desktop target: sustained 60 fps at 1080p on an explicitly recorded baseline device; record p95/p99 frame time, memory and 30-minute soak results.",
+      "evidence": "No physical desktop GPU measurements yet. Software Chromium timing is not GPU certification.",
+      "next": "Select the baseline hardware and settings, then record measured budgets."
+    },
+    {
+      "id": "Q02",
+      "phase": "Quality",
+      "title": "Accessibility and long-session controller acceptance",
+      "priority": "P0",
+      "status": "Planned",
+      "depends": [
+        "I04",
+        "I03"
+      ],
+      "acceptance": "All gameplay dialogs close with B; remapping, text legibility, reduced motion, flash intensity and audio cues pass a real full-session review.",
+      "evidence": "Software tests are narrower than long-session physical-controller acceptance.",
+      "next": "Run a controller-only expedition with USB and Bluetooth; record every mouse dependency."
+    },
+    {
+      "id": "Q03",
+      "phase": "Quality",
+      "title": "Save migration and release recovery",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "R03"
+      ],
+      "acceptance": "Old checkpoints, purchased equipment and rewards survive updates; corrupt data recovers safely; rollback points are retained.",
+      "evidence": "Existing version-1 save validation remains; new visual code does not write saves.",
+      "next": "Keep explicit old-version save fixtures and a release restore drill."
+    },
+    {
+      "id": "Q04",
+      "phase": "Quality",
+      "title": "Campaign alpha, beta and release candidate gates",
+      "priority": "P1",
+      "status": "Planned",
+      "depends": [
+        "P05",
+        "Q01",
+        "Q02",
+        "Q03"
+      ],
+      "acceptance": "Alpha completes content; beta fixes blocking/major defects; a release candidate passes regression, soak, accessibility and public-file hash verification.",
+      "evidence": "No alpha, beta or AAA-quality acceptance yet.",
+      "next": "Maintain a defect severity register and require evidence before advancing."
+    },
+    {
+      "id": "R04",
+      "phase": "Release",
+      "title": "Verified publication of each upgrade",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "R01",
+        "Q03"
+      ],
+      "acceptance": "Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.",
+      "evidence": "v0.7 c942abeda531879a709ee606190ca0e4886f19e7 has a 75-file publication receipt. v0.8 uses the same verification pipeline.",
+      "next": "Attach the actual v0.8 deployment receipt; never infer live status from a branch commit."
+    }
+  ],
+  "milestones": [
+    {
+      "id": "G0",
+      "title": "Reliable playable foundation",
+      "tasks": [
+        "A01",
+        "I04",
+        "F02",
+        "Q03"
+      ],
+      "exit": "No launch or arena crashes; working saves and controller interfaces."
+    },
+    {
+      "id": "G1",
+      "title": "Approved polished vertical slice",
+      "tasks": [
+        "P01",
+        "B06",
+        "F01",
+        "P04"
+      ],
+      "exit": "A player-approved complete district loop, not just individually passing features."
+    },
+    {
+      "id": "G2",
+      "title": "Production-quality assets",
+      "tasks": [
+        "P02",
+        "P03"
+      ],
+      "exit": "Original/cleared assets and coherent characters, architecture, animation and lighting."
+    },
+    {
+      "id": "G3",
+      "title": "Campaign content complete",
+      "tasks": [
+        "P05"
+      ],
+      "exit": "Distinct districts, interiors, objectives and endings accepted as a complete campaign."
+    },
+    {
+      "id": "G4",
+      "title": "Performance and accessibility",
+      "tasks": [
+        "Q01",
+        "Q02",
+        "I03"
+      ],
+      "exit": "Recorded physical-device budgets and full controller/accessibility acceptance."
+    },
+    {
+      "id": "G5",
+      "title": "Release candidate and deployment",
+      "tasks": [
+        "Q04",
+        "R04"
+      ],
+      "exit": "No known blocking defects; tested restore and matching live-file hashes."
+    },
+    {
+      "id": "GX",
+      "title": "Separate optional platform gates",
+      "tasks": [
+        "X04",
+        "X05",
+        "X07",
+        "N01",
+        "N02",
+        "N03"
+      ],
+      "exit": "Quest and multiplayer require their own measured hardware/server work. Desktop release does not imply either."
+    }
+  ]
+}

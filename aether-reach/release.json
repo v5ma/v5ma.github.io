@@ -1,1 +1,6 @@
-{"version": "0.7.0", "focus": "Crosswind Arsenal: faster tactical rails, cover arenas, two-weapon combat, 4x/8x sniper optic, companion rifts, charged power traps and procedural soundscape", "questHardwareVerified": false, "xboxHardwareVerified": false}
+{
+  "version": "0.8.0",
+  "focus": "Foundry Finish: detailed combat cover and decks, visible companion and tactical objects, arena patrol fix, unified 4x/8x optic, current AAA-quality roadmap",
+  "questHardwareVerified": false,
+  "xboxHardwareVerified": false
+}

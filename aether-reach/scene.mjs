@@ -118,5 +118,5 @@ export function makeView(canvas,quality='balanced'){
   const recoil=Math.max(0,1-(performance.now()-lastShot)/140);hand.position.z=recoil*.075;hand.rotation.x=recoil*.06;
  }
  function resize(w,h){if(renderer.xr.isPresenting)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
- return {renderer,scene,camera,resize,update,effect,setVisualMode:mode=>luminous.setMode(mode),render:()=>renderer.render(scene,camera),stats:()=>({drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,visual:luminous.stats(),art:quayArt.stats(),expedition:expeditionArt.stats()})};
+ return {renderer,scene,camera,resize,update,effect,setVisualMode:mode=>luminous.setMode(mode),render:()=>renderer.render(scene,camera),stats:()=>({drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,visual:luminous.stats(),art:quayArt.stats(),expedition:expeditionArt.stats(),foundry:scene.userData.foundryStats?.()||null})};
 }

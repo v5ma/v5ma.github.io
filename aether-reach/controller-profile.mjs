@@ -2,7 +2,7 @@
  * layout can never take away A/confirm, B/back or Menu/pause. No device IDs saved. */
 export const PAD_NAMES = Object.freeze(['A','B','X','Y','LB','RB','LT','RT','View','Menu','L3','R3','D-pad Up','D-pad Down','D-pad Left','D-pad Right']);
 export const PAD_DEFAULTS = Object.freeze({jump:0,back:1,reload:2,interact:3,pulse:4,reverse:5,aim:6,fire:7,map:8,pause:9,boost:10,survey:11,next:12,previous:13,field:14,shop:15});
-export const PAD_ACTIONS = Object.freeze({jump:'Jump / leave rail',back:'Foldwing / leave ladder',reload:'Reload weapon',interact:'Interact / hook / climb',pulse:'Cast current power',reverse:'Reverse rail / next power',aim:'Aim / scope',fire:'Fire weapon',boost:'Sprint / rail boost',survey:'Survey target',next:'Next weapon',previous:'Previous weapon',field:'Field rig',shop:'Outfitters / loadout'});
+export const PAD_ACTIONS = Object.freeze({jump:'Jump / aimed hook / release',back:'Crouch / foldwing / leave ladder',reload:'Use / reload; hold for rift or drop',interact:'Swap carried weapon',pulse:'Cast; hold and release for trap',reverse:'Recent power; hold for power wheel',aim:'Aim / scope',fire:'Fire weapon',boost:'Sprint / rail boost',survey:'Wrist melee',next:'Objective reminder',previous:'Survey target',field:'Field rig',shop:'Outfitters / loadout'});
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const number=(v,def,a,b)=>Number.isFinite(v)?clamp(v,a,b):def;
 export function cleanControllerProfile(value){

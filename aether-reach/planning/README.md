@@ -1,5 +1,5 @@
-# Archived planning workbook
+# Aether Reach production planning
 
-`Aether-Reach-Development-Roadmap-v0.3.xlsx` preserves the eight-sheet workbook previously delivered as a chat attachment. All 29 original workbook XML parts (including sheets, formulas and styles) are identical. The enclosing ZIP container was recompressed; use WORKBOOK-MANIFEST.json for actual current byte and member hashes.
+The current committed plan is ../roadmap.json, presented by ../roadmap.html and mirrored in AAA-ROADMAP.md. The v0.8 plan retains stable IDs and separates implementation, browser review, real hardware and publication gates. Its AAA-quality goal requires a polished vertical slice, production assets, a complete campaign, performance and accessibility acceptance; it is not a present-quality claim.
 
-This file is now tracked in Git and included in versioned release source archives and as a separate release download. It is an archived v0.3 planning snapshot, not a falsely labeled current workbook. The current canonical plan is ../roadmap.json and ../roadmap.html. Player browser-local board edits are not synced to either committed file.
+The unchanged eight-sheet Aether-Reach-Development-Roadmap-v0.3.xlsx remains an archived snapshot. Its byte and member hashes are recorded in WORKBOOK-MANIFEST.json. It is not the current plan. Browser-local board edits change neither GitHub nor game checkpoints.
