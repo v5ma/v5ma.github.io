@@ -182,7 +182,13 @@ export function doorTarget(s,w){
   const current=w.doorHomes.find(h=>h.id===l.room),target=w.doorHomes.find(h=>h.id===p.room)||w.doorHomes.reduce((a,h)=>dist(h,p)<dist(a,p)?h:a,w.doorHomes[0]);
   if(l.level===0){const h=p.level===0?target:current||target;dest={...(current&&current.id===h.id?(p.level<0?h.stairs:h.upperStair):h.door)};}
   else if(l.level===3||l.level===-2)dest={...(l.level===3?target.upperStair:target.hatch)};
-  else if(current)dest={...(p.room===l.room&&p.level>l.level?current.upperStair:current.stairs)};
+  else if(current){
+   // Network destinations have no room ID. Choose the next real transition
+   // rather than sending the player downstairs and back up indefinitely.
+   if(p.level===-2)dest={...(l.level===-1?current.hatch:current.stairs)};
+   else if(p.level===3)dest={...(l.level<0?current.stairs:current.upperStair)};
+   else dest={...(p.room===l.room&&p.level>l.level&&l.level>=0?current.upperStair:current.stairs)};
+  }
  }
  return {...dest,name,level:p.level,room:p.room,hint:'Destination: '+FLOOR_NAMES[p.level]+(p.z>407&&!s.life.flags.garden?' / north garden charter and pump required':'')};
 }
