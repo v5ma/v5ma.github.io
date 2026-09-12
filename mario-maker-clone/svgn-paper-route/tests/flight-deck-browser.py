@@ -37,11 +37,16 @@ try:
     page.goto(base,wait_until='domcontentloaded');page.bring_to_front()
     page.wait_for_function('!!window.SkyCycleFlightDeck',timeout=90000)
     if not args.fixture: page.wait_for_function("window.PaperDeliveryCampaign?.status==='ready'",timeout=90000)
-    page.wait_for_timeout(500)
+    def frames():
+        page.evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+    frames()
     def down(i):
-        page.evaluate('(i)=>{testPad.buttons[i].pressed=true;testPad.buttons[i].value=1;}',i);page.evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+        # Let a prior keyboard/modal transition observe the released pad too.
+        # Wall-clock sleeps are not enough when software rendering is slow.
+        frames()
+        page.evaluate('(i)=>{testPad.buttons[i].pressed=true;testPad.buttons[i].value=1;}',i);frames()
     def up(i):
-        page.evaluate('(i)=>{testPad.buttons[i].pressed=false;testPad.buttons[i].value=0;}',i);page.evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+        page.evaluate('(i)=>{testPad.buttons[i].pressed=false;testPad.buttons[i].value=0;}',i);frames()
     def tap(i):down(i);up(i)
     def seek(predicate):
         for _ in range(40):
@@ -55,8 +60,8 @@ try:
     up(0);before=page.evaluate('player.x');down(15);page.evaluate('new Promise(resolve=>{let n=0;function step(){if(++n>=8)resolve();else requestAnimationFrame(step)}requestAnimationFrame(step)})');check(page.evaluate('keys.ArrowRight'),'Controller throttle reaches live input state');up(15)
     check(page.evaluate('player.x')!=before,'Controller input moves the actual active rider')
     tap(9);check(page.evaluate("mode==='play' && __delivery.paused"),'Start pauses without entering the editor')
-    frames=page.evaluate('SkyCycleFlightDeck.run.frames');page.wait_for_timeout(250)
-    check(page.evaluate('SkyCycleFlightDeck.run.frames')==frames,'Contract timer stops while paused')
+    frames_before=page.evaluate('SkyCycleFlightDeck.run.frames');frames()
+    check(page.evaluate('SkyCycleFlightDeck.run.frames')==frames_before,'Contract timer stops while paused')
     seek("document.activeElement.textContent.trim()==='Sound & music'")
     tap(0);check(page.evaluate("document.getElementById('score-dialog').open"),'Controller opens the existing audio dialog')
     seek("document.activeElement.id==='score-music'")
@@ -65,7 +70,7 @@ try:
     tap(13);check(page.evaluate("document.activeElement.id==='score-effects'"),'D-pad moves to the effects slider')
     effects=page.locator('#score-effects').input_value();tap(14)
     check(page.locator('#score-effects').input_value()!=effects,'Effects volume adjusts independently')
-    page.keyboard.press('Escape');page.wait_for_timeout(150)
+    page.keyboard.press('Escape');frames()
     check(page.evaluate("!document.getElementById('score-dialog').open && __delivery.paused"),'Escape closes the modal without unpausing its parent')
     tap(8);check(page.evaluate("document.getElementById('flight-deck').open"),'View opens Flight Deck from a paused menu')
     seek("document.activeElement.id==='fd-controls'");tap(0)
@@ -74,9 +79,9 @@ try:
     page.screenshot(path=str(out/('fixture-flight-deck.png' if args.fixture else 'native-flight-deck.png')))
     tap(1);check(page.evaluate("!document.getElementById('flight-deck').open && __delivery.paused"),'B returns from Flight Deck without resuming a previously paused game')
     tap(9);check(page.evaluate("mode==='play' && !__delivery.paused"),'Start resumes the same route')
-    down(15);page.evaluate('testPad.connected=false');page.evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+    down(15);page.evaluate('testPad.connected=false');frames()
     check(page.evaluate('!keys.ArrowRight && __delivery.paused'),'Controller disconnect releases throttle and pauses safely')
-    page.evaluate('testPad.buttons.forEach(b=>{b.pressed=false;b.value=0});testPad.connected=true;');page.wait_for_timeout(250)
+    page.evaluate('testPad.buttons.forEach(b=>{b.pressed=false;b.value=0});testPad.connected=true;');frames()
     check(page.evaluate('Object.keys(SkyCycleFlightDeck.records).length===0'),'No career badges are granted before a genuine finish')
     check(page.evaluate("localStorage.getItem('fd-preservation-sentinel')==='keep'"),'Unrelated saved data remains intact')
     if args.fixture:
@@ -87,7 +92,7 @@ try:
         page.evaluate("mode='edit';__delivery.state.code='different';startPlay();")
         check(page.evaluate('SkyCycleFlightDeck.run===null'),'Fixture: altered editor copies are excluded from career scoring')
     page.set_viewport_size({'width':390,'height':844})
-    page.evaluate('SkyCycleFlightDeck.show()');page.wait_for_timeout(150)
+    page.evaluate('SkyCycleFlightDeck.show()');frames()
     check(page.evaluate("(()=>{const r=document.getElementById('flight-deck').getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight;})()"),'Flight Deck fits a narrow viewport')
     check(not errors,'No uncaught JavaScript exceptions')
     browser.close()

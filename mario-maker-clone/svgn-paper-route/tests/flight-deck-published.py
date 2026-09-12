@@ -1,8 +1,10 @@
-"""Read-only proof that the public site serves this checkout's owned files."""
+"""Read-only proof that the public site serves this checkout's owned runtime files.
+Development Markdown is tracked on GitHub, not assumed to be served raw by Pages.
+"""
 import hashlib, json, os, time, urllib.request
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-files=['flight-deck.js','flight-deck-core.mjs','flight-deck.css','release-status.js','release.json','sw.js','development/AAA-ROADMAP.md','development/FLIGHT-DECK-0.16.md']
+files=['flight-deck.js','flight-deck-core.mjs','flight-deck.css','release-status.js','release.json','sw.js']
 base='https://v5ma.github.io/mario-maker-clone/svgn-paper-route/'
 sha=os.getenv('GITHUB_SHA','unknown');out=Path('/tmp/sky-cycle-flight-deck');out.mkdir(parents=True,exist_ok=True)
 expected={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in files}
