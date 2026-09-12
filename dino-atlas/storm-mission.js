@@ -49,9 +49,11 @@ export function automaticStage(s,p,mode,speed=0){if(s.active!==STORM_ID)return f
  if(s.stage===6)return mode==='boat'&&p.y<3&&distance(p,SOUTH_PIER)<36;
  return false;
 }
-export function actionAt(s,p,mode,speed=0){if(s.active!==STORM_ID||Math.abs(speed)>3)return null;
+export function actionAt(s,p,mode,speed=0){if(s.active!==STORM_ID)return null;
  const a=[null,{type:'generator',mode:'foot',p:{x:EAST.x+13,z:EAST.z-10},y:1},null,{type:'beacon',mode:'foot',p:{x:NORTH.x+10,z:NORTH.z+8},y:NORTH.h+1},null,{type:'telemetry',mode:'foot',p:{x:SOUTH.x+13,z:SOUTH.z-10},y:1},null,{type:'delivery',mode:'boat',p:EAST_PIER,y:1}][s.stage];
- return a&&mode===a.mode&&Math.abs(p.y-a.y)<2&&distance(p,a.p)<(a.type==='delivery'?34:4.5)?a.type:null;
+ if(!a)return null;
+ const maxSpeed=a.type==='delivery'?6:3;
+ return Math.abs(speed)<=maxSpeed&&mode===a.mode&&Math.abs(p.y-a.y)<2&&distance(p,a.p)<(a.type==='delivery'?34:4.5)?a.type:null;
 }
 export function advanceDirector(s){if(s.active!==STORM_ID)return null;if(s.stage<7){s.stage++;s.checkpoint=s.stage;return {complete:false,stage:s.stage};}
  const first=!s.completed.includes(STORM_ID);s.active=null;s.suspended=false;s.storm=false;s.checkpoint=7;s.finishedAt=s.elapsed;

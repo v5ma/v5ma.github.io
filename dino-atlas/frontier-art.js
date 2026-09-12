@@ -1,3 +1,4 @@
+import {articulateResident} from './herd-rig.js?v=herds1';
 import * as T from './vendor/three.module.js';
 import {makeParkDinosaur,makeJeep,part,box,bone,ellipsoid,material,label} from './ranger-art.js';
 // Merge static parts by material; articulated legs remain separate. This keeps a herd affordable.
@@ -34,7 +35,7 @@ export function makeResident(d){
   for(const x of [-1,1])for(let i=0;i<6;i++)bone(g,0x6c8183,[x*.74,3.2,1.2],[x*(1.35+i*.07),2.8,1.65-i*.24],.09,.015);
   for(let i=0;i<7;i++)bone(g,0x6c8183,[0,2.1,-4.3-i*.25],[.35,2.45,-5.1-i*.25],.09,.01);
  }
- g.userData.kind=d.kind;return bakeStatics(g,g.userData.legs);
+ g.userData.kind=d.kind;return articulateResident(g,d.kind,bakeStatics);
 }
 export function makeHelicopter(){
  const g=new T.Group(),olive=0x617568,cream=0xe0c9a0,red=0xae4b35,steel=0x394d48;
