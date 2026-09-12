@@ -1,3 +1,4 @@
+import {createPersonRig} from './character-rig.mjs';
 /* Original alternate-history Renaissance art. No commercial game assets.
  * Mesh footprints follow the retained city collision model. */
 import {animatePerson} from './character-motion.mjs';
@@ -21,18 +22,7 @@ export function house(parent,h,m){
  trim.box(w*.3,ht+1.8,-1,1.1,3,1,'#ac8060');trim.box(w*.3,ht+3.3,-1,1.4,.3,1.3,'#d3bda0');
  group.userData.room=h.room||null;wall.finish(group,m.wall,'Renaissance plaster and masonry');roof.finish(group,m.roof,'Terracotta roof tiles');trim.finish(group,m.trim,'Stone arches, oak doors and shutters');windows.finish(group,m.glass,'Deep recessed windows');return group;
 }
-export function person(m,kind='apprentice'){
- const root=new T.Group(),body=new Batch(),legs=[],arms=[];const head=new T.Group();head.position.y=1.58;root.add(head);const face=new Batch();
- const tunic=kind==='bandit'?'#815344':kind==='master'?'#645944':'#477568';
- body.add(unit.cyl,0,1.28,0,.245,.52,.18,tunic);body.ball(0,1.47,0,.26,.16,.18,tunic);body.add(unit.cone,0,.98,0,.29,.25,.22,tunic,Math.PI,0);
- body.box(0,1.08,0,.48,.08,.38,'#675139');body.box(0,1.08,.201,.10,.095,.025,'#d5b677');body.rod([0,1.52,0],[0,1.65,0],.07,'#c58f6b');face.ball(0,.18,.02,.155,.2,.145,'#d2a37e');face.ball(0,.32,-.018,.17,.07,.15,'#6c513c');
- face.ball(0,.33,-.015,.205,.06,.18,kind==='bandit'?'#4d4b3d':'#5e7250');face.box(0,.32,.15,.26,.033,.11,'#798859');face.ball(0,.18,.165,.035,.04,.04,'#c58e6c');for(const x of[-.068,.068])face.ball(x,.23,.15,.019,.014,.008,'#343e35');face.finish(head,m.trim,'Animated face and cap');
- for(const side of[-1,1]){const arm=new T.Group(),limb=new Batch();arm.position.set(side*.23,1.45,0);root.add(arm);limb.rod([0,0,0],[side*.055,-.20,.015],.074,tunic);limb.rod([side*.055,-.20,.015],[side*.06,-.44,.05],.052,'#d2a37e');limb.ball(side*.06,-.45,.055,.058,.065,.068,'#d2a37e');limb.finish(arm,m.trim,'Animated sleeve and hand');arms.push(arm);}
- root.guildRig={head,arms};
- body.box(0,1.28,-.225,.31,.34,.12,'#a78151');body.box(0,1.43,-.295,.32,.10,.055,'#ceb47d');body.rod([-.17,1.5,-.16],[.17,1.12,-.20],.022,'#70543c');body.finish(root,m.trim,'Doublet, cap, articulated arms and courier satchel');
- for(const side of[-1,1]){const g=new T.Group();g.position.set(side*.105,1.02,0);root.add(g);const b=new Batch();b.rod([0,0,0],[0,-.39,.055],.078,'#5c6350');b.rod([0,-.39,.055],[0,-.80,0],.053,'#756348');b.box(0,-.83,.08,.145,.13,.29,'#624c35');b.finish(g,m.trim,'Boots and animated leg');legs.push(g);}
- return {root,legs,head,arms};
-}
+export function person(m,kind='apprentice'){return createPersonRig(m,kind);}
 export function car(m,tint='#976b43'){
  const root=new T.Group(),b=new Batch(),wheels=[];
  b.box(0,.71,0,1.8,.22,3.8,'#7d5737');for(let z=-1.7;z<1.8;z+=.32)b.box(0,.86,z,1.7,.09,.27,'#bd925c');
@@ -52,7 +42,7 @@ export function dressGuild(root,w,m,rider){
   const tex=new T.CanvasTexture(canvas);tex.colorSpace=T.SRGBColorSpace;tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.anisotropy=4;road.material.map=tex;road.material.needsUpdate=true;
  }
  const fence=root.getObjectByName('Picket fences');if(fence){const col=new T.Color('#ad956f'),a=fence.geometry.attributes.color;for(let i=0;i<a.count;i++)a.setXYZ(i,col.r,col.g,col.b);a.needsUpdate=true;}
- const staff=new T.Group();staff.position.set(.33,1.18,.2);const sb=new Batch();sb.rod([0,-.62,0],[0,1.0,0],.04,'#967344');sb.add(unit.cyl,0,-.6,0,.047,.15,.047,'#c1a56c');sb.finish(staff,m.trim,'Apprentice staff');rider.root.add(staff);
+ const staff=new T.Group();staff.position.set(.33,1.18,.2);const sb=new Batch();sb.rod([0,-.62,0],[0,1.0,0],.04,'#967344');sb.add(unit.cyl,0,-.6,0,.047,.15,.047,'#c1a56c');sb.finish(staff,m.trim,'Apprentice staff');(rider.handSockets?.[1]||rider.root).add(staff);if(rider.handSockets)staff.position.set(0,0,.03);
 
  // The workshop and market are original places at the existing interaction coordinates.
  const master=person(m,'master');master.root.position.set(-10,heightAt(-10,2),2);master.root.rotation.y=Math.PI/2;root.add(master.root);const beard=new Batch();beard.ball(0,1.57,.14,.14,.22,.10,'#d9d3b6');beard.finish(master.root,m.trim,'Leonardo’s beard');figures.master=master;
@@ -65,10 +55,10 @@ export function dressGuild(root,w,m,rider){
  // Workshop experimental aerial screw: scenery, not an advertised usable vehicle.
  const yy=heightAt(-18,-8);b.add(unit.cyl,-18,yy+2.1,-8,.11,4.2,.11,'#785b38');for(let i=0;i<7;i++){const a=i/7*Math.PI*2;b.rod([-18,yy+2,-8],[-18+Math.cos(a)*2.7,yy+3+i*.12,-8+Math.sin(a)*2.7],.055,'#a48551');stone.tri([-18,yy+2.5,-8],[-18+Math.cos(a)*2.7,yy+3+i*.12,-8+Math.sin(a)*2.7],[-18+Math.cos(a+.8)*2.7,yy+3.1+i*.12,-8+Math.sin(a+.8)*2.7],'#ece0b7');}
  const wheel=new T.Group();wheel.position.set(14,heightAt(14,190)+2.7,190);root.add(wheel);const wb=new Batch();wb.add(unit.ring,0,0,0,2.4,2.4,2.4,'#967043',0,Math.PI/2);for(let i=0;i<12;i++){const a=i/6*Math.PI;wb.rod([0,0,0],[0,Math.cos(a)*2.4,Math.sin(a)*2.4],.085,'#765334');wb.box(0,Math.cos(a)*2.4,Math.sin(a)*2.4,1,.3,.7,'#b39257',a,0,0);}wb.finish(wheel,m.trim,'Operable waterwheel');figures.wheel=wheel;
- const guard=person(m,'bandit');guard.root.position.set(w.bandit.x,heightAt(w.bandit.x,w.bandit.z),w.bandit.z);guard.root.rotation.y=Math.PI;root.add(guard.root);const stick=new Batch();stick.rod([.34,.4,.2],[.34,2.1,.2],.045,'#9f7b4e');stick.finish(guard.root,m.trim,'Guard practice staff');figures.guard=guard;
+ const guard=person(m,'bandit');guard.root.position.set(w.bandit.x,heightAt(w.bandit.x,w.bandit.z),w.bandit.z);guard.root.rotation.y=Math.PI;root.add(guard.root);const stick=new Batch();stick.rod([0,-.6,.03],[0,1.1,.03],.045,'#9f7b4e');stick.finish(guard.handSockets[1],m.trim,'Guard practice staff');figures.guard=guard;
  // Readable silhouette landmarks, not modern office towers.
  for(const [x,z,height]of [[-95,126,22],[115,265,30],[-105,360,26]]){const y=heightAt(x,z);stone.box(x,y+height/2,z,6,height,6,'#c1ac7f');stone.box(x,y+height-2,z,7.2,2,7.2,'#dccaa2');stone.add(unit.cone,x,y+height+2,z,5.3,5,5.3,'#93623f',0,Math.PI/4);for(const dx of[-1.3,1.3])stone.box(x+dx,y+height-4,z-3.03,1.1,2,.1,'#475341');}
  for(let z=10;z<400;z+=48){const x=-11.5,y=heightAt(x,z);b.rod([x,y,z],[x,y+3.8,z],.065,'#4d5c4c');b.box(x,y+3.75,z,.52,.72,.52,'#e3bb7d');b.add(unit.cone,x,y+4.25,z,.43,.35,.43,'#716044',0,Math.PI/4);}
  b.finish(root,m.trim,'Market awnings, lanterns and workshop machines');stone.finish(root,m.roof,'Belltowers and canvas experimental screw');
- return {update(s,dt){animatePerson(master,s.time,{motion:'work'});animatePerson(merchant,s.time,{motion:Math.hypot(s.x-17,s.z-170)<6?'wave':'idle'});animatePerson(guard,s.time,{motion:s.banditPhase==='windup'?'guard':'idle'});staff.visible=s.mode==='foot';staff.rotation.z=s.guarding?1.05:s.attackT>0?Math.sin(s.attackT*12)*1.5:0;staff.rotation.x=s.guarding?.25:0;wheel.rotation.x+=s.relay?dt*.8:0;guard.root.visible=true;guard.root.rotation.x=s.defeated?.55:0;guard.root.rotation.z=s.banditPhase==='windup'?-.2:0;if(!s.defeated)guard.root.rotation.y=Math.atan2(s.x-w.bandit.x,s.z-w.bandit.z);},figures};
+ return {update(s,dt){animatePerson(master,s.time,{motion:'work'});animatePerson(merchant,s.time,{motion:Math.hypot(s.x-17,s.z-170)<6?'wave':'idle'});animatePerson(guard,s.time,{motion:s.defeated?'yield':s.banditPhase==='windup'?'guard':'idle'});staff.visible=s.mode==='foot'&&(s.resonance?.tool||'staff')==='staff';staff.rotation.z=s.guarding?1.05:s.attackT>0?Math.sin(s.attackT*12)*1.5:0;staff.rotation.x=s.guarding?.25:0;wheel.rotation.x+=s.relay?dt*.8:0;guard.root.visible=true;guard.root.rotation.x=s.defeated?.55:0;guard.root.rotation.z=s.banditPhase==='windup'?-.2:0;if(!s.defeated)guard.root.rotation.y=Math.atan2(s.x-w.bandit.x,s.z-w.bandit.z);},figures};
 }
