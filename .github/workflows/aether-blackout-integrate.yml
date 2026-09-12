@@ -5,6 +5,9 @@ on:
     paths: ['.github/workflows/aether-blackout-integrate.yml']
 permissions:
   contents: write
+concurrency:
+  group: aether-blackout-integration
+  cancel-in-progress: true
 jobs:
   integrate:
     if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/feat/aether-bellwether-blackout-20260912'
