@@ -4,7 +4,24 @@ This is the canonical, living production checklist for Sky Cycle, the existing s
 
 AAA is the quality ambition, not a status conferred by a version number, graphics setting, or this checklist. A checked implementation item does not certify its entire milestone. Each milestone needs recorded acceptance evidence before its release gate is complete. Do not invent a completion percentage from differently sized tasks.
 
-## Current continuation: Route Compass and exploration journal, v0.17.0
+## Current continuation: Sunrise Borough / Market Pocket Park, v0.18.0
+
+See `SUNRISE-0.18.md` and `verification/sunrise-0.18.json` for source-specific evidence. This content slice adds a low optional practice detour to the existing first chapter and improves controller reading; it does not replace the world or certify all of Milestone B.
+
+- [x] Preserve all original first-chapter rails, street tiles, mailboxes, checkpoints, music and finish conditions while adding one low practice balcony.
+- [x] Add world-space takeoff, receiving-deck, braking-choice and road-return cues in the 3D and supported 2D views.
+- [x] Add Penny's Market Pilot challenge: sustained riding, a safe road landing, then an accepted authored-route finish to bank the optional seal.
+- [x] Make challenge entries controller-focusable and put guidance controls before the long discovery list.
+- [x] Reuse the 3D scene under paused reading/audio dialogs and invalidate it on viewport/stage changes and return to play.
+- [x] Preserve independent saves and distinguish a session-only earned seal from a successfully banked one.
+- [x] Exercise carried-state geometry, three native first-attempt completions, controller menus and persistence; keep model evidence distinct from real-input runs.
+- [ ] Complete human readability/enjoyment reviews and adjust signs, encounter pacing and route difficulty from that feedback.
+- [ ] Validate physical Xbox hardware, mobile devices, long sessions and defined frame-time budgets.
+- [ ] Recheck every offered badge and every legacy expert route before closing the wider campaign gate.
+
+The accepted playthrough set includes the Pocket Park detour, a direct lower-road run and a coasting lower-road run. The detour and journal begin in the real 3D renderer; the remaining route completions use the supported 2D view on the CPU-only runner. This is not evidence of three complete 3D playthroughs or physical-console certification.
+
+## Previous continuation: Route Compass and exploration journal, v0.17.0
 
 See `ROUTE-COMPASS-0.17.md` for the scope, save boundaries, evidence and remaining acceptance gates. This is a navigation and discovery slice of Milestones B and E, not new level geometry or completed AAA qualification.
 
@@ -16,7 +33,7 @@ See `ROUTE-COMPASS-0.17.md` for the scope, save boundaries, evidence and remaini
 - [ ] Complete full native ground-route playthroughs and all optional-rail attainability checks.
 - [ ] Test physical Xbox hardware and actual mobile devices.
 
-Keep the broader route-production gate below open. The next content step is a reviewed beginner chapter with world-space movement cues and an optional reward branch, supported by recorded slower and faster real-input completions.
+The v0.18 first-chapter evidence advances this work; the broader route-production gate remains open until the other ground chapters and all optional rails have been reviewed.
 
 ## Product pillars and non-negotiables
 
@@ -43,16 +60,18 @@ Implementation scope for this upgrade:
 - [ ] Attach passing exact-commit browser reports and inspect their captures before release approval.
 - [ ] Confirm master publication by comparing public runtime bytes with the merged source.
 
-The two unchecked gates above are release evidence, not features. The companion release note records the tested commit and publication result when available. Physical Xbox-controller testing, all-route badge attainability, and a full native gameplay regression are not implied by the smoke suite.
+The two unchecked gates above concern the original v0.16 release record. Later regression and publication evidence is recorded in the versioned v0.17 and v0.18 notes, not retroactively relabeled as tests of an earlier SHA. Physical Xbox-controller testing, all-route badge attainability, and a full native gameplay regression are not implied by the smoke suite.
 
-## Milestone B: Authored-route playability and discovery, next content upgrade
+## Milestone B: Authored-route playability and discovery
 
 - [ ] Select one beginner-to-intermediate chapter as a reference-quality vertical slice, with a beginning, escalation, optional reward line, and satisfying finish.
 - [ ] Reconcile outstanding authored chapter geometry with two-sided grip; do not silently merge older one-sided layouts.
 - [ ] Convert useful Ride Lab traces into environmental cues for launch timing, speed choice, braking, and receiving rails, without steering or snapping the rider.
 - [ ] Add discoverable alternate routes, distinctive landmarks, and checkpoints that preserve earned deliveries.
 - [ ] Verify that every offered badge is attainable on its route; retune or remove inappropriate goals rather than leaving impossible objectives.
-- [ ] Record at least three clean real-input completions of the reference chapter, including a slower/new-player line and its optional branch.
+- [x] Record at least three clean real-input completions of the first chapter, including a slower coasting line and its optional practice branch. See the v0.18 mixed-renderer evidence and video; human new-player review remains open.
+
+The first chapter's new branch and cues are implemented and tested in v0.18. The broader combined items above stay open for campaign-wide reconciliation, checkpoint-delivery regression and human quality review.
 
 Gate: The chapter remains enjoyable and readable without developer knowledge, debug state changes, or a mouse during ordinary controller play. Preserve both failed attempts and successful evidence.
 
@@ -84,7 +103,7 @@ Gate: A long play session sounds pleasant, important cues stay audible, and no c
 - [ ] Add understandable objective failure/retry messaging and a route journal with controller navigation.
 - [ ] Evaluate races or ghosts as a separate, validated feature rather than treating an unverified legacy ghost path as production-ready.
 
-The route-journal portion is implemented in v0.17.0; the combined failure/retry messaging item remains open until that broader work is accepted.
+The route-journal portion is implemented in v0.17.0 and gains a concrete three-stage optional task in v0.18.0; the combined failure/retry messaging item remains open until that broader work is accepted.
 
 Gate: Players understand what they are doing, why it matters, what improved, and what opens next. No mandatory progress can become permanently blocked.
 
