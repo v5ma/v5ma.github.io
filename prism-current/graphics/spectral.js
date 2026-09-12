@@ -66,8 +66,8 @@
    vec4 hit=uImpacts[i];float age=uTime-hit.z;
    if(age>=0.&&age<1.25){
     float r=length(q-vec2(hit.x,hit.y)),radius=age*2.4;
-    float band=exp(-pow((r-radius)/.075,2.));
-    float echo=exp(-pow((r-radius*.68)/.045,2.))*.28;
+    float d=(r-radius)/.075;float band=exp(-d*d);
+    float e=(r-radius*.68)/.045;float echo=exp(-e*e)*.28;
     float fade=sin(min(1.,age/.08)*PI*.5)*pow(1.-age/1.25,2.);
     vec3 color=mix(vec3(.10,.90,.71),vec3(1.,.28,.50),hit.w);
     light+=color*(band+echo)*fade*.34*uReaction*edges(vUv);
@@ -79,7 +79,7 @@
  }`;
  const coreVertex=`varying vec3 vN,vEye,vLocal;void main(){vLocal=position;vec4 p=modelViewMatrix*vec4(position,1.);vEye=-p.xyz;vN=normalize(normalMatrix*normal);gl_Position=projectionMatrix*p;}`;
  const coreFragment=`varying vec3 vN,vEye,vLocal;uniform vec3 uHand;uniform float uTime,uPower;
- void main(){float nv=abs(dot(normalize(vN),normalize(vEye)));float rim=pow(1.-nv,2.);
+ void main(){float nv=clamp(abs(dot(normalize(vN),normalize(vEye))),0.,1.);float rim=pow(1.-nv,2.);
   float layers=dot(vLocal,vec3(9.,13.,7.))+nv*1.4+uTime*.035;
   vec3 opal=.5+.5*cos(6.283185*(layers+vec3(0.,.32,.64)));
   float vein=pow(.5+.5*sin(layers*9.),12.);
