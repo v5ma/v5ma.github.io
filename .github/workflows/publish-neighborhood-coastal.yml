@@ -1,0 +1,63 @@
+name: Publish Neighborhood Missions Coastal Pulse
+on:
+  push:
+    branches: [neighborhood-coastal-pulse-20260911]
+    paths: ['.github/workflows/publish-neighborhood-coastal.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 1
+      - name: Publish only Neighborhood Missions onto the newest master
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Micah Blumberg'
+          git config user.email '60057241+v5ma@users.noreply.github.com'
+          FEATURE='neighborhood-coastal-pulse-20260911'
+          for attempt in 1 2 3 4; do
+            git fetch origin master "$FEATURE"
+            git reset --hard origin/master
+            git checkout "origin/$FEATURE" -- svgn-planet .github/workflows/neighborhood-coastal-pulse.yml
+            python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text()
+          pattern=r'<article class="project planet">.*?</article>'
+          m=re.search(pattern,s,flags=re.S)
+          if not m:
+              raise SystemExit('Neighborhood Missions homepage card was not found')
+          card=m.group(0)
+          card=card.replace('index.html?v=0.6.0','index.html?v=0.7.0')
+          card=card.replace('v0.6.0 / WHOLE-PLANET CITY + XBOX CONTROLS','v0.7.0 / COASTAL PULSE / MUSIC + CITY CONTRACTS')
+          old='Ride a bicycle or electric unicycle through 24 sunlit districts on a much larger planet. Explore palm-lined streets, shops and towers, deliver neighborhood news, find postmarks and sprint gates, or take transit across the city. Xbox controls cover both riding and menus.'
+          new='Meet the neighbors, deliver cafe baskets, restore signals, capture postcards and race through 24 districts. Explore 102 replayable contracts, a cycle workshop, continuous traffic and an original adaptive soundtrack. Accelerate freely, coast without an energy limit, and control the whole game with Xbox.'
+          if old in card:
+              card=card.replace(old,new)
+          elif new not in card:
+              raise SystemExit('Neighborhood Missions homepage description changed unexpectedly')
+          p.write_text(s[:m.start()]+card+s[m.end():])
+          PY
+            git add svgn-planet index.html .github/workflows/neighborhood-coastal-pulse.yml
+            if git diff --cached --quiet; then
+              echo 'Latest master already contains Coastal Pulse.'
+              exit 0
+            fi
+            git commit -m 'Publish Neighborhood Missions v0.7 Coastal Pulse' -m 'Publish the accepted controller, movement, traffic, activities, audio and visual upgrade while preserving concurrent changes already on master.'
+            if git push origin HEAD:master; then
+              echo 'Coastal Pulse published to master.'
+              exit 0
+            fi
+            echo "Master moved during publish attempt $attempt; retrying from the newest master."
+            sleep 4
+          done
+          echo 'Could not publish after four conflict-safe retries.' >&2
+          exit 1
