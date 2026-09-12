@@ -29,6 +29,7 @@ jobs:
           python scripts/dino-ranch-polish.py
           python scripts/dino-ranch-stability.py
           python scripts/dino_roof_guard.py
+          python scripts/dino-ranch-boundaries.py
           git add dino-atlas
           if ! git diff --cached --quiet; then
             git config user.name 'Dino Atlas Build'
