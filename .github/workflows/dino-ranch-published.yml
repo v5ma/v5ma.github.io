@@ -1,0 +1,59 @@
+name: Verify published Dino Ranch and Coast
+on:
+  push:
+    branches: [master]
+    paths: ['dino-atlas/**', '.github/workflows/dino-ranch-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dino-ranch-live
+  cancel-in-progress: true
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            dino-atlas
+          persist-credentials: false
+      - name: Match public runtime bytes to the published commit
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlopen, Request
+          from concurrent.futures import ThreadPoolExecutor
+          import time,hashlib,os,json
+          root=Path('dino-atlas')
+          files=[p for p in root.iterdir() if p.suffix in ('.js','.html','.css','.svg')]
+          def check(p):
+              try:
+                  url='https://v5ma.github.io/'+p.as_posix()+'?verify='+os.environ['GITHUB_SHA']
+                  actual=urlopen(Request(url,headers={'Cache-Control':'no-cache'}),timeout=25).read()
+                  return p.as_posix() if actual!=p.read_bytes() else None
+              except Exception:return p.as_posix()
+          for attempt in range(36):
+              with ThreadPoolExecutor(max_workers=8) as pool:bad=[v for v in pool.map(check,files) if v]
+              if not bad:break
+              print('Waiting for deployment:',bad,flush=True);time.sleep(10)
+          assert not bad, 'Published runtime differs: '+str(bad)
+          Path('ranch-evidence').mkdir(exist_ok=True)
+          Path('ranch-evidence/live-bytes.json').write_text(json.dumps({'commit':os.environ['GITHUB_SHA'],'matched':len(files),'files':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}},indent=2))
+          print('MATCHED',len(files),'public runtime files')
+          PY
+      - name: Install native browser runner
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the live published game
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: python dino-atlas/tests/ranch-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-ranch-live-evidence
+          path: ranch-evidence
+          retention-days: 7
