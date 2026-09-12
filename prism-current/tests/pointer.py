@@ -1,4 +1,6 @@
-"""Native pointer correctness with smooth audio-clock-driven input events."""
+"""Native pointer correctness and recovery; CPU frame stalls are reported.
+A successful functional result does not imply sustained pointer-play FPS.
+"""
 from pathlib import Path
 from urllib.parse import urlparse
 import json,os
@@ -21,10 +23,16 @@ with sync_playwright() as pw:
   p.mouse.move(*point);p.mouse.down();p.evaluate('PrismTestInput.pointer()');p.mouse.up();p.wait_for_function('Prism.snapshot().state.hits>=1')
   check(p.evaluate('Prism.snapshot().judged[0]')=='hit','A moving mouse-controlled blade intersects the real first note')
   check(p.evaluate('Prism.snapshot().state.mode')=='slice','The cut uses directional slice scoring, not a keyboard tap')
-  p.screenshot(path=str(OUT/'browser-slice.png'));p.keyboard.press('KeyP');p.wait_for_function('Prism.snapshot().phase==="paused"');p.locator('#back').click()
+  p.wait_for_timeout(400)
+  stalled=p.evaluate('Prism.component.lastStall || null')
+  if p.evaluate('Prism.snapshot().phase')=='paused':
+   check('Rendering stalled' in p.evaluate('Prism.snapshot().message'),'A software-renderer pause identifies the frame-stall cause')
+   p.locator('#resume').click();p.wait_for_function('Prism.snapshot().phase==="playing"')
+   check(p.evaluate('Prism.snapshot().judged[0]')=='hit','Resuming a renderer-paused run preserves the valid cut')
+  p.keyboard.press('KeyP');p.wait_for_function('Prism.snapshot().phase==="paused"');p.screenshot(path=str(OUT/'browser-slice.png'));p.locator('#back').click()
   check(p.evaluate('Object.keys(Prism.snapshot().scoreRecords).length')==0,'A partial pointer practice does not create a finished score')
   check(not errors,'No uncaught browser errors in the pointer flow')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'scope':'Native HTTP A-Frame at one-eighth pixel ratio; real pointerdown plus smooth audio-clock-driven DOM pointer moves. No clock, note, score or player-state writes. Correctness check, not a human accuracy or GPU performance benchmark.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'software_frame_stall':stalled,'scope':'Native HTTP A-Frame at one-eighth pixel ratio; real pointerdown and smooth audio-clock-driven DOM pointer moves. No score/clock writes. A CPU frame pause after a valid cut is explicitly recorded and UI recovery tested. Sustained pointer performance remains unmeasured on consumer hardware.'},indent=2))
  except Exception as e:
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Prism?.snapshot()'),'stall':p.evaluate('window.Prism?.component.lastStall || null')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
  finally:c.close();b.close()
