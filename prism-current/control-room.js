@@ -11,6 +11,7 @@
  }
  function goals(record){const a=Number(record?.accuracy)||0;return {earned:[50,75,90].filter(v=>a>=v).length,next:[50,75,90].find(v=>a<v)||null};}
  function install(g){const $=id=>document.getElementById(id);let padIndex=null,padId='',old=[],direction=0,nextRepeat=0,seed=true,connected=false,phase='',returnFocus=null;let noticeTime=-Infinity;
+  root.PrismRenderReady?.install(g.art,g.el);
   const popup=$('mixer-panel'),help=$('pad-help');
   try{const p=JSON.parse(localStorage.getItem('prism-current.v1.controls')||'{}');if(['slice','keys','gamepad'].includes(p.input))g.input=p.input;g.feedbackText=['all','balanced','minimal','off'].includes(p.text)?p.text:'balanced';}catch{g.feedbackText='balanced';}
   function save(){try{localStorage.setItem('prism-current.v1.controls',JSON.stringify({input:g.input,text:g.feedbackText}));}catch{}}
