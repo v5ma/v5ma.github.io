@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "creator": "Quaternius",
+  "license": "CC0-1.0",
+  "sources": [
+    {
+      "id": "men",
+      "creator": "Quaternius",
+      "title": "Ultimate Modular Characters",
+      "url": "https://quaternius.com/packs/ultimatemodularcharacters.html",
+      "folder": "https://drive.google.com/drive/folders/1USAAquX2JJWuA2m6zol0KUkFe3UkZ8zX",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "women",
+      "creator": "Quaternius",
+      "title": "Ultimate Modular Women",
+      "url": "https://quaternius.com/packs/ultimatemodularwomen.html",
+      "folder": "https://drive.google.com/drive/folders/1720N9IGyQHXYvtvZJzazhxtTTlz-y2Vf",
+      "license": "CC0-1.0"
+    }
+  ],
+  "files": [
+    {
+      "file": "courier.glb",
+      "role": "courier",
+      "bytes": 1177832,
+      "sha256": "297a93136a4bc5dde0977ae4e1740093c869a59139b439f7434f95cef36cbedd",
+      "sourceId": "women",
+      "sourceFile": "Individual Characters/glTF/Adventurer.gltf",
+      "downloadId": "1uxAFnDp73NO1c16LvHHjAYh1-deMNk5I",
+      "sourceSha256": "65094211e53b49f6a834c617cc056834686fe794a0b515a6b97faa3e1130cc95",
+      "triangles": 6812,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Gun_Shoot",
+        "HitRecieve",
+        "Idle",
+        "Idle_Gun_Pointing",
+        "Idle_Neutral",
+        "Run",
+        "Run_Shoot",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "file": "guard.glb",
+      "role": "guard",
+      "bytes": 1300884,
+      "sha256": "9dc45ce6fb21c66952a34487a410fc5f4d3e28c0d2723f6dffa5045c720d8828",
+      "sourceId": "men",
+      "sourceFile": "Individual Characters/glTF/Swat.gltf",
+      "downloadId": "1VGmU5f8a43NBT22JWB507NDSLbmNxzF9",
+      "sourceSha256": "622b3f36fcac90539ef8f7121ec1f11b5e1ae603a085019b3fa96eba20dddfd3",
+      "triangles": 8794,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Gun_Shoot",
+        "HitRecieve",
+        "Idle",
+        "Idle_Gun_Pointing",
+        "Idle_Neutral",
+        "Run",
+        "Run_Shoot",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "file": "officer.glb",
+      "role": "officer",
+      "bytes": 1259660,
+      "sha256": "57a6741394c25161e44da24ff4f02c841091914c2b02a61d468043579d3956c3",
+      "sourceId": "men",
+      "sourceFile": "Individual Characters/glTF/Suit.gltf",
+      "downloadId": "1NhXHnGU0zK9hBrT5FoZp8nTz_EmvTPg5",
+      "sourceSha256": "6c89fbb31b96c1a63ad94e3dee0942bd7b34bc789a5d39fd6a6a1738a9214fb3",
+      "triangles": 7674,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Gun_Shoot",
+        "HitRecieve",
+        "Idle",
+        "Idle_Gun_Pointing",
+        "Idle_Neutral",
+        "Run",
+        "Run_Shoot",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "file": "men-license.txt",
+      "bytes": 372,
+      "sha256": "e8dbf915a2b82229913e301a0787696611241bdefec4832bc084f54161db1efe",
+      "sourceId": "men"
+    },
+    {
+      "file": "women-license.txt",
+      "bytes": 372,
+      "sha256": "e8dbf915a2b82229913e301a0787696611241bdefec4832bc084f54161db1efe",
+      "sourceId": "women"
+    }
+  ],
+  "totalBytes": 3739120,
+  "modifications": "Portable embedded GLB; retained 10 of 24 source animation clips; compacted referenced buffers; material roughness set to .76. Original meshes, skinning, animation keyframes and colors retained. Runtime scale, role accessories and clip blending are original game code. Publisher license text preserved verbatim, including the women download license header that says Males; both official pack pages separately specify CC0."
+}

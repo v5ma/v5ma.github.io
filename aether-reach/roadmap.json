@@ -2,7 +2,7 @@
   "version": 1,
   "updated": "2026-09-12",
   "project": "Aether Reach",
-  "release": "0.9.0 Bellwether Blackout",
+  "release": "0.10.0 Skyglass Cast",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -645,26 +645,26 @@
       "phase": "Production",
       "title": "Authored character and weapon animation",
       "priority": "P1",
-      "status": "Planned",
+      "status": "In review",
       "depends": [
         "P01"
       ],
       "acceptance": "Original humanoid mesh, articulated hands, reload/aim/melee animation and locomotion transitions hold up at gameplay distance.",
-      "evidence": "Current companion and patrols are procedural articulated geometry, not final character assets.",
-      "next": "Produce one licensed or original rigged enemy and one complete weapon-hand set."
+      "evidence": "v0.10 adds creator-published CC0 female adventurer, armored guard and suited officer with real skeletons and clip blending. Complete authored first-person hands, custom character art and weapon reload animation remain open.",
+      "next": "Inspect moving characters, hand/weapon alignment and role readability at game distances; continue original character production."
     },
     {
       "id": "P03",
       "phase": "Production",
       "title": "Architectural materials and lighting",
       "priority": "P1",
-      "status": "Planned",
+      "status": "In review",
       "depends": [
         "P01"
       ],
       "acceptance": "Consistent scale, trim/material library, wear, foliage, interior lighting and readable cover silhouettes across the slice.",
-      "evidence": "v0.8 only finishes a bounded combat kit; city-wide art is incomplete.",
-      "next": "Review screenshot comparisons at real play views, not only staged cameras."
+      "evidence": "v0.10 adds original spectral rift and cloud-light shaders without extra render passes. City-wide architectural polish remains incomplete.",
+      "next": "Review scene consistency and measure the Balanced, Light and immersive performance budgets on real hardware."
     },
     {
       "id": "P04",
@@ -762,8 +762,8 @@
         "Q03"
       ],
       "acceptance": "Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.",
-      "evidence": "v0.8 production source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06: Pages succeeded and publication run 34702682332 matched 78 files. v0.9 must pass the same post-merge verification.",
-      "next": "Record the actual v0.9 merge and live-file receipt before claiming publication."
+      "evidence": "v0.9 committed at cf1dc621dbc392be99380c7fbe51776b90ead068 after 201 tests and 28 full district browser checks. v0.10 must match the post-merge live runtime contract.",
+      "next": "Record the v0.10 merge, Pages status and matching live-file hashes."
     },
     {
       "id": "V01",
@@ -779,6 +779,20 @@
       "acceptance": "Complete both combat sites, operate independent Arcade dials, use a continuous roof route, hold the receiver, return for a once-only reward, and save/resume without lost progress or extra enemies.",
       "evidence": "BELLWETHER-BLACKOUT.md; bellwether model/scene modules; tests/bellwether.test.mjs and the full controller browser journey. Test execution and player acceptance remain separately recorded.",
       "next": "Inspect the release browser evidence, then obtain player feedback on this first connected district mission."
+    },
+    {
+      "id": "F03",
+      "phase": "Presentation",
+      "title": "Skyglass animated cast and bounded shaders",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "F01",
+        "P02"
+      ],
+      "acceptance": "License-pinned local character assets, independent animated skeletons, visible fallbacks on failed loads, reduced-motion and Light/XR budgets, controller-accessible graphics options and real WebGL compile validation.",
+      "evidence": "art/characters/manifest.json; cast-rig.mjs; cast-scene.mjs; skyglass-shaders.mjs; tests/cast.test.mjs; tests/skyglass-browser.py.",
+      "next": "Record browser and publication evidence; keep physical hardware and player art approval separate."
     }
   ],
   "milestones": [

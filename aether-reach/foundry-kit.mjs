@@ -1,5 +1,6 @@
 /* Original bounded material/geometry kit. No network assets or simulation writes. */
 import * as T from './vendor/three.module.js';
+import {makeRiftMaterial} from './skyglass-shaders.mjs';
 export function surfacePixels(kind,size=128){
  const out=new Uint8Array(size*size*4),base=kind==='stone'?[188,177,151]:kind==='timber'?[128,92,57]:[62,91,92];
  for(let y=0;y<size;y++)for(let x=0;x<size;x++){
@@ -15,7 +16,7 @@ export function createFoundryKit(scene){
  const textures=[],materials={};
  for(const kind of ['stone','timber','metal']){const tx=new T.DataTexture(surfacePixels(kind),128,128,T.RGBAFormat);tx.colorSpace=T.SRGBColorSpace;tx.wrapS=tx.wrapT=T.RepeatWrapping;tx.needsUpdate=true;textures.push(tx);materials[kind]=new T.MeshStandardMaterial({map:tx,roughness:kind==='metal'?.54:.92,metalness:kind==='metal'?.5:0});}
  for(const [key,color,metalness]of [['brass','#c4a367',.65],['dark','#253d44',.2],['cloth','#517e82',0],['skin','#c09370',0],['hair','#302e35',0],['paper','#eee0b8',0],['leather','#6c4736',0]])materials[key]=new T.MeshStandardMaterial({color,roughness:.75,metalness});
- materials.glow=new T.MeshBasicMaterial({color:'#a5efdb'});materials.ghost=new T.MeshBasicMaterial({color:'#8be1d5',wireframe:true,transparent:true,opacity:.22,depthWrite:false});
+ materials.glow=new T.MeshBasicMaterial({color:'#a5efdb'});materials.ghost=makeRiftMaterial();
  const batches=new Map(),dummy=new T.Object3D();
  function add(shape,mat,pos,scale,parent=root){const m=new T.Mesh(geometry[shape],materials[mat]);m.position.set(...pos);m.scale.set(...scale);m.castShadow=mat!=='glow'&&mat!=='ghost';m.receiveShadow=true;parent.add(m);return m;}
  function batch(shape,mat,pos,scale,rotation=[0,0,0]){const key=shape+':'+mat;if(!batches.has(key))batches.set(key,[]);dummy.position.set(...pos);dummy.scale.set(...scale);dummy.rotation.set(...rotation);dummy.updateMatrix();batches.get(key).push(dummy.matrix.clone());}

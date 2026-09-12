@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.9.0 Bellwether Blackout. Updated 2026-09-12.
+Current plan: 0.10.0 Skyglass Cast. Updated 2026-09-12.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -321,16 +321,16 @@ Evidence: v0.9 implements a connected Bellwether street-interior-rooftop-return 
 Next: Play the complete Blackout adventure and record timing, difficulty, wayfinding and repetitive sections. Gate G1 remains open until player review.
 
 ### P02 - Authored character and weapon animation
-State: Planned. Priority: P1. Dependencies: P01.
+State: In review. Priority: P1. Dependencies: P01.
 Acceptance: Original humanoid mesh, articulated hands, reload/aim/melee animation and locomotion transitions hold up at gameplay distance.
-Evidence: Current companion and patrols are procedural articulated geometry, not final character assets.
-Next: Produce one licensed or original rigged enemy and one complete weapon-hand set.
+Evidence: v0.10 adds creator-published CC0 female adventurer, armored guard and suited officer with real skeletons and clip blending. Complete authored first-person hands, custom character art and weapon reload animation remain open.
+Next: Inspect moving characters, hand/weapon alignment and role readability at game distances; continue original character production.
 
 ### P03 - Architectural materials and lighting
-State: Planned. Priority: P1. Dependencies: P01.
+State: In review. Priority: P1. Dependencies: P01.
 Acceptance: Consistent scale, trim/material library, wear, foliage, interior lighting and readable cover silhouettes across the slice.
-Evidence: v0.8 only finishes a bounded combat kit; city-wide art is incomplete.
-Next: Review screenshot comparisons at real play views, not only staged cameras.
+Evidence: v0.10 adds original spectral rift and cloud-light shaders without extra render passes. City-wide architectural polish remains incomplete.
+Next: Review scene consistency and measure the Balanced, Light and immersive performance budgets on real hardware.
 
 ### P04 - Music, effects and mix acceptance
 State: In review. Priority: P0. Dependencies: W02.
@@ -371,14 +371,20 @@ Next: Maintain a defect severity register and require evidence before advancing.
 ### R04 - Verified publication of each upgrade
 State: In review. Priority: P0. Dependencies: R01, Q03.
 Acceptance: Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.
-Evidence: v0.8 production source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06: Pages succeeded and publication run 34702682332 matched 78 files. v0.9 must pass the same post-merge verification.
-Next: Record the actual v0.9 merge and live-file receipt before claiming publication.
+Evidence: v0.9 committed at cf1dc621dbc392be99380c7fbe51776b90ead068 after 201 tests and 28 full district browser checks. v0.10 must match the post-merge live runtime contract.
+Next: Record the v0.10 merge, Pages status and matching live-file hashes.
 
 ### V01 - Bellwether street-interior-rooftop adventure
 State: In review. Priority: P0. Dependencies: W01, F02, I04.
 Acceptance: Complete both combat sites, operate independent Arcade dials, use a continuous roof route, hold the receiver, return for a once-only reward, and save/resume without lost progress or extra enemies.
 Evidence: BELLWETHER-BLACKOUT.md; bellwether model/scene modules; tests/bellwether.test.mjs and the full controller browser journey. Test execution and player acceptance remain separately recorded.
 Next: Inspect the release browser evidence, then obtain player feedback on this first connected district mission.
+
+### F03 - Skyglass animated cast and bounded shaders
+State: In review. Priority: P0. Dependencies: F01, P02.
+Acceptance: License-pinned local character assets, independent animated skeletons, visible fallbacks on failed loads, reduced-motion and Light/XR budgets, controller-accessible graphics options and real WebGL compile validation.
+Evidence: art/characters/manifest.json; cast-rig.mjs; cast-scene.mjs; skyglass-shaders.mjs; tests/cast.test.mjs; tests/skyglass-browser.py.
+Next: Record browser and publication evidence; keep physical hardware and player art approval separate.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.

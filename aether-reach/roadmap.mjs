@@ -15,4 +15,4 @@ $('search').oninput=draw;$('phase').onchange=draw;$('reset').onclick=()=>{if(con
 for(const [href,title]of [['./planning/Aether-Reach-Development-Roadmap-v0.3.xlsx','Workbook archive · v0.3'],['https://github.com/v5ma/v5ma.github.io/releases','Versioned source backups']]){const a=document.createElement('a');a.href=href;a.textContent=title;document.querySelector('.controls').append(a);}
 
 for(const g of data.milestones||[]){const card=document.createElement("article");card.className="card";card.style.maxWidth="300px";const h=document.createElement("h3"),p=document.createElement("p");h.textContent=g.id+" / "+g.title;p.textContent=g.exit+" Tasks: "+g.tasks.join(", ");card.append(h,p);document.getElementById("milestones").append(card);}
-const checklist=document.createElement("a");checklist.href="./planning/AAA-ROADMAP.md";checklist.textContent="Current production checklist / v0.9";document.querySelector(".controls").prepend(checklist);
+const checklist=document.createElement("a");checklist.href="./planning/AAA-ROADMAP.md";checklist.textContent="Current production checklist / v0.10";document.querySelector(".controls").prepend(checklist);
