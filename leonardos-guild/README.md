@@ -1,3 +1,11 @@
+# Leo's Guild - Steady Steps v0.10.0
+
+The next C01-C03 roadmap slice improves the existing character rig and follow camera. The camera checks the full wall-crossing path, uses the occupied floor's boundaries, and resets cleanly at stairs. The original clothed player and rivals now have jointed knees/elbows, distance-driven walking and blended action poses. Quiet audio, controls and old saves remain. Read STEADY-STEPS.md for scope and acceptance limits.
+
+The existing homepage card launches this game; check for Steady Steps v0.10.0. AAA-ROADMAP.md and UPGRADE-CHECKLIST.md remain the durable development plan.
+
+## Previous release notes
+
 # Leo's Guild - Living Stories v0.9.0
 
 Open Adventures, then Living stories (or D-pad up, Adventures, Living stories). Two authored cases add six physical steps apiece, alternate roof/cellar evidence routes, a reversible shutter puzzle and peaceful choices with saved, visible household outcomes. The Lamplighter's Promise begins at the workshop household desk; The Ledger With Two Names begins at Renata's western cartographer house, residence-home-0. All prior stories, households, floor networks, quiet audio preferences and saves remain. New story updates are silent by default.
