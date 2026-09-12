@@ -1,8 +1,9 @@
 /* Renderer-independent controller navigation, including recovery and new
- * contract dialogs. Standard Xbox mapping; no gameplay input leaks into UI. */
+ * contract dialogs. Standard Xbox mapping; held entry inputs must return to
+ * neutral before they can navigate or scroll a newly opened menu. */
 export const padState={connected:false,x:0,y:0,lookX:0,lookY:0,boost:false,brake:false,id:''};
 const $=id=>document.getElementById(id),dead=v=>Math.abs(v)<.16?0:Math.sign(v)*(Math.abs(v)-.16)/.84;
-let polls=0;let active=null,previous=[],lastScope=null,repeatDirection='',repeatAt=0,navigatedWelcome=false;
+let polls=0;let active=null,previous=[],lastScope=null,repeatDirection='',repeatAt=0,navigatedWelcome=false,menuNavigationReady=true,menuScrollReady=true;
 const emit=name=>window.dispatchEvent(new CustomEvent('nm-action',{detail:{name}}));
 function clear(){for(const key of['x','y','lookX','lookY'])padState[key]=0;padState.boost=padState.brake=false;}
 function visible(el){return !!el&&!el.disabled&&!el.closest('[hidden]')&&el.getClientRects().length>0&&getComputedStyle(el).visibility!=='hidden';}
@@ -26,13 +27,14 @@ function frame(now){
  if(!pad){if(active){emit('disconnect');previous=[];}active=null;padState.connected=false;padState.id='';clear();document.body.classList.remove('using-gamepad');status('Connect an Xbox controller and press a button.');return;}
  if(active?.index!==pad.index)previous=[];active=pad;padState.connected=true;padState.id=pad.id;const buttons=pad.buttons.map(b=>b.pressed||b.value>.55),edge=i=>buttons[i]&&!previous[i];
  if(document.hidden||!document.hasFocus()){clear();previous=buttons;return;}if(used)document.body.classList.add('using-gamepad');
- const root=scope();if(root!==lastScope){lastScope=root;repeatDirection='';if(root)focus(chooseFocus(root));}
+ const direction=buttons[12]||pad.axes[1]<-.6?'up':buttons[13]||pad.axes[1]>.6?'down':buttons[14]||pad.axes[0]<-.6?'left':buttons[15]||pad.axes[0]>.6?'right':'';
+ const root=scope();if(root!==lastScope){lastScope=root;repeatDirection='';menuNavigationReady=!direction;menuScrollReady=Math.abs(pad.axes[3]||0)<.2;if(root)focus(chooseFocus(root));}
  if(root){
   clear();if(root.id==='welcome'&&!navigatedWelcome&&visible($('start'))&&document.activeElement!==$('start'))focus($('start'));
-  const direction=buttons[12]||pad.axes[1]<-.6?'up':buttons[13]||pad.axes[1]>.6?'down':buttons[14]||pad.axes[0]<-.6?'left':buttons[15]||pad.axes[0]>.6?'right':'';
-  if(direction&&(direction!==repeatDirection||now>=repeatAt)){navigate(root,direction);repeatAt=now+(direction===repeatDirection?130:390);repeatDirection=direction;}if(!direction)repeatDirection='';
+  if(!direction){menuNavigationReady=true;repeatDirection='';}
+  if(menuNavigationReady&&direction&&(direction!==repeatDirection||now>=repeatAt)){navigate(root,direction);repeatAt=now+(direction===repeatDirection?130:390);repeatDirection=direction;}
   if(edge(0))accept(root);else if(edge(1))back(root);else if(edge(9)){if(root.id==='welcome')$('start')?.click();else back(root);}else if(edge(8)&&root.id==='map-dialog')back(root);
-  const scroll=dead(pad.axes[3]||0);if(Math.abs(scroll)>.1)root.scrollTop+=scroll*15;
+  const scroll=dead(pad.axes[3]||0);if(Math.abs(scroll)<.1)menuScrollReady=true;if(menuScrollReady&&Math.abs(scroll)>.1)root.scrollTop+=scroll*15;
  }else{
   padState.x=dead(pad.axes[0]||0);padState.y=-dead(pad.axes[1]||0);const len=Math.max(1,Math.hypot(padState.x,padState.y));padState.x/=len;padState.y/=len;
   padState.lookX=dead(pad.axes[2]||0);padState.lookY=dead(pad.axes[3]||0);padState.boost=(pad.buttons[7]?.value||0)>.2;padState.brake=(pad.buttons[6]?.value||0)>.2||buttons[1];
@@ -42,4 +44,4 @@ function frame(now){
  status(root?'Xbox: D-pad navigates | Left/right adjusts | A selects | B returns':'Xbox: RT accelerate | LT/B brake | L3 bell | D-pad down jobs');previous=buttons;
 }
 window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);
-Object.defineProperty(window,'NeighborhoodController',{value:Object.freeze({inspect:()=>({...padState,polls,scope:scope()?.id||null,focus:document.activeElement?.id||null})})});requestAnimationFrame(frame);
+Object.defineProperty(window,'NeighborhoodController',{value:Object.freeze({inspect:()=>({...padState,polls,menuNavigationReady,menuScrollReady,scope:scope()?.id||null,focus:document.activeElement?.id||null})})});requestAnimationFrame(frame);
