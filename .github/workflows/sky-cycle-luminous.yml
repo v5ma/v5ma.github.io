@@ -12,23 +12,12 @@ concurrency:
 jobs:
   source:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     outputs:
       sha: ${{ steps.identity.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
-      - name: Integrate into existing game on this feature branch only
-        if: startsWith(github.ref, 'refs/heads/sky-cycle-luminous-')
-        run: |
-          if ! grep -q 'installLuminous' mario-maker-clone/svgn-paper-route/prismatic-renderer.js; then
-            python mario-maker-clone/svgn-paper-route/tools/integrate-luminous.py
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add mario-maker-clone/svgn-paper-route/prismatic-renderer.js mario-maker-clone/svgn-paper-route/prismatic.css mario-maker-clone/svgn-paper-route/sunrise.js mario-maker-clone/svgn-paper-route/release-status.js mario-maker-clone/svgn-paper-route/release.json mario-maker-clone/svgn-paper-route/sw.js
-            git commit -m 'Integrate Luminous shaders into the existing Sky Cycle renderer'
-            git push origin HEAD:${GITHUB_REF_NAME}
-          fi
+        with:
+          persist-credentials: false
       - id: identity
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   shaders:

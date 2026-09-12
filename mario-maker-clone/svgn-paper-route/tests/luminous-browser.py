@@ -2,7 +2,7 @@
 No assignments to player state, geometry, physics, score, or route completion.
 A storage failure is injected only in the final explicitly labeled UI check.
 """
-import functools,http.server,json,os,threading,time
+import functools,http.server,json,os,threading,time,subprocess,sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[3]
@@ -44,6 +44,7 @@ with sync_playwright() as pw:
   check(page.evaluate('Prismatic.settings.luminous.finish==="subtle"'),'The default shader finish is Subtle')
   check(page.evaluate('Prismatic.stats.luminous.railMaterials===2 && Prismatic.stats.luminous.skyDraws>0'),'Physical thin-film materials and sky silk render in the real scene')
   page.locator('#cv').focus();page.keyboard.press('KeyP');page.wait_for_function('__delivery.paused')
+  page.locator('#flow-study-toggle').click()
   frozen=pose();code=page.evaluate('levelCode()');rails=page.evaluate('JSON.stringify(tracks.map(t=>t.pts))');saved=page.evaluate('localStorage.getItem("svgn_delivery_records_v1")')
   page.screenshot(path=str(OUT/'subtle-start.png'));samples['subtle']=stats()
   page.locator('#prism-options').click();choose('vivid');page.screenshot(path=str(OUT/'vivid-settings.png'))
@@ -65,11 +66,18 @@ with sync_playwright() as pw:
   page.locator('#delivery-header [data-delivery="view"]').click();page.locator('#delivery-pause [data-delivery="resume"]').click()
   page.locator('#cv').focus();page.keyboard.down('KeyD');page.wait_for_function('player.x>=5650 && player.onGround',timeout=180000);page.keyboard.up('KeyD')
   page.keyboard.press('KeyP');page.wait_for_function('__delivery.paused');page.locator('#delivery-header [data-delivery="view"]').click()
-  page.wait_for_function('Prismatic.stats.luminous.waterDraws>0');page.screenshot(path=str(OUT/'canal-subtle.png'));samples['canal']=stats()
+  page.wait_for_function('Prismatic.stats.luminous.waterDraws>0');page.locator('#flow-study-toggle').click()
+  page.locator('#prism-options').click();choose('off');page.locator('#prism-close').click();page.screenshot(path=str(OUT/'canal-off.png'))
+  page.locator('#prism-options').click();choose('subtle');page.locator('#prism-close').click();page.wait_for_function('Prismatic.stats.luminous.waterDraws>0')
+  page.screenshot(path=str(OUT/'canal-subtle.png'));samples['canal']=stats()
   check(page.evaluate('__delivery.state.view==="3d" && Prismatic.stats.luminous.waterDraws>0'),'Procedural water actually draws at the canal reached with native input')
   frozen=pose();tap(8);seek('document.activeElement.id==="prism-deck"');tap(0)
   check(page.evaluate('SkyCycleFlightDeck.topPanel().id==="prism-panel" && __delivery.paused'),'Controller opens Materials & FX as the top nested dialog')
-  seek('document.activeElement.id==="luminous-finish"');tap(15)
+  seek('document.activeElement.id==="luminous-finish"')
+  # Release the sampled input on its first real change event. A two-frame hold
+  # on CPU rendering lasts seconds and correctly triggers menu auto-repeat.
+  page.evaluate("(()=>{document.getElementById('luminous-finish').addEventListener('change',()=>{testPad.buttons[15]={pressed:false,value:0};},{once:true});testPad.buttons[15]={pressed:true,value:1};})()")
+  page.wait_for_function('Prismatic.settings.luminous.finish==="vivid"');frames()
   check(page.evaluate('Prismatic.settings.luminous.finish==="vivid"'),'Controller adjusts the shader finish using the D-pad')
   before=page.evaluate('Prismatic.stats.draws');frames();check(page.evaluate('Prismatic.stats.draws')>before,'Nested graphics preview keeps rendering beneath the paused parent dialog')
   seek('document.activeElement.id==="luminous-water"');tap(0)
@@ -98,5 +106,5 @@ with sync_playwright() as pw:
   if not passed:
    try:page.screenshot(path=str(OUT/'failure.png'));samples['failure']=stats()
    except Exception:pass
-  (OUT/'report.json').write_text(json.dumps({'commit':os.getenv('GITHUB_SHA'),'passed':passed,'checks':checks,'errors':errors,'consoleErrors':console,'samples':samples,'coverage':'Software WebGL shader rendering in native 3D; ordinary 2D movement for complete road coverage. Standard Gamepad samples, not physical Xbox hardware. No native WebGPU or performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'triggerCommit':os.getenv('GITHUB_SHA'),'failure':str(sys.exc_info()[1]) if not passed else None,'passed':passed,'checks':checks,'errors':errors,'consoleErrors':console,'samples':samples,'coverage':'Software WebGL shader rendering in native 3D; ordinary 2D movement for complete road coverage. Standard Gamepad samples, not physical Xbox hardware. No native WebGPU or performance certification.'},indent=2))
   context.close();browser.close();server.shutdown()
