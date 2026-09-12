@@ -3,10 +3,14 @@
  * routes, scores, collectibles, campaign progression or authoring documents. */
 import * as T from './vendor/three.webgpu.js';
 import './prismatic-core.js';
+import {KEY as LUMINOUS_KEY, preferences as luminousPreferences} from './luminous-core.mjs';
+import {installLuminous} from './luminous-materials.js';
 const C=globalThis.PrismCore,{color,mix,normalView,positionViewDirection,uniform,uv,sin}=T.TSL;
 const KEY='svgn.prismatic.preferences.v1',motionQuery=matchMedia('(prefers-reduced-motion: reduce)');
 let prefs=C.preferences(),live=null,lastHero=null,disposed=0,installs=0,clock=uniform(0),fault=null;
 try{prefs=C.preferences(JSON.parse(localStorage.getItem(KEY)||'{}'));}catch{}
+let luminousPrefs=luminousPreferences(),luminousSaveOK=true;
+try{luminousPrefs=luminousPreferences(JSON.parse(localStorage.getItem(LUMINOUS_KEY)||'{}'));}catch{luminousSaveOK=false;}
 const motion=()=>prefs.motion&&!motionQuery.matches;
 const report={version:'prismatic-2',backend:null,materials:0,stations:0,jewels:0,pegs:0,particles:0,draws:0,effects:{},errors:[]};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch{}}
@@ -26,7 +30,7 @@ function enhanceExisting(s){
  const road=material(s,{name:'Deep sapphire enamel',vertexColors:true,color:'#b2c9ff',metalness:.42,roughness:.23,iridescence:.16,iridescenceThicknessRange:[160,320]});
  const gold=material(s,{name:'Champagne gold rail edging',color:'#f7c360',metalness:.92,roughness:.20,emissive:'#623608',emissiveIntensity:.18});
  const enamel=material(s,{name:'Clear-coated courier enamel',vertexColors:true,metalness:.23,roughness:.24,iridescence:.16});
- s.actorMaterial=enamel;
+ s.actorMaterial=enamel;s.roadMaterial=road;
  s.root.traverse(o=>{if(!o.material||!o.geometry)return;
   if(o.name.startsWith('Network road ribbons'))replace(s,o,road);
   else if(o.name.startsWith('Double lane edging')||o.name.startsWith('Beveled enamel and gold'))replace(s,o,gold);
@@ -85,11 +89,11 @@ function attach(root){
  if(!root||prefs.look==='classic')return;const s={root,group:new T.Group(),materials:new Set(),geometries:new Set(),originals:new Map(),spin:[],stations:[],pegs:[],particles:new C.Particles(),lastStep:-1,last:null,gemIndices:[],env:environment(),glow:glowTexture()};
  s.group.name='Prismatic render-only layer';root.add(s.group);live=s;installs++;report.materials=0;report.draws=0;report.effects={};
  const active=globalThis.__sky?.active(),course=active?__sky.state.data:SkyRoutes.build(4,__gameRefs.T),paths=active?tracks.filter(t=>t.sky):course.ct.map(p=>({pts:p,sky:p.sky}));
- enhanceExisting(s);buildStations(s,paths);buildRailLight(s,paths);buildLiveGems(s);createShield(s);
+ enhanceExisting(s);s.luminous=installLuminous(T,s,clock,luminousPrefs,course,mesh);report.luminous=s.luminous.stats;buildStations(s,paths);buildRailLight(s,paths);buildLiveGems(s);createShield(s);
  report.backend=__merged.renderer.backend.constructor.name;
  s.sparkMaterial=new T.MeshBasicNodeMaterial({map:s.glow,vertexColors:true,transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false,side:T.DoubleSide});s.materials.add(s.sparkMaterial);
  s.sparkGeometry=new T.BufferGeometry();for(const [key,size]of[['position',3],['color',3],['uv',2]])s.sparkGeometry.setAttribute(key,new T.Float32BufferAttribute(new Float32Array(C.LIMITS.particles*6*size),size).setUsage(T.DynamicDrawUsage));s.sparkGeometry.setDrawRange(0,0);s.geometries.add(s.sparkGeometry);s.sparkMesh=null;
- s.group.traverse(o=>{if(o.geometry)o.onAfterRender=()=>{report.draws++;};});
+ s.group.traverse(o=>{if(o.geometry){const previous=o.onAfterRender;o.onAfterRender=function(...args){previous?.apply(this,args);report.draws++;};}});
  fault=null;
 }
 function cleanup(){
@@ -133,6 +137,7 @@ function frame(){
  if(prefs.look==='classic'||!visible){if(live)cleanup();return;}
  const root=globalThis.__cloudview?.root;if(!root)return;if(live?.root!==root){cleanup();attach(root);}const s=live;if(!s)return;
  s.group.visible=!!__merged.get3D();if(!s.group.visible)return;
+ s.luminous?.update(active?player.x:0,active?player.y:0,active);
  actor(s);const step=active?__sky.state.steps:0,time=active?step/60:0;clock.value=motion()?time:0;
  for(const a of s.spin)a.mesh.rotation.y=a.angle+(motion()?time*.2:0);
  for(const g of s.stations)g.visible=!active||Math.abs(g.position.x-player.x)<1700&&Math.abs(g.position.y+player.y)<1300;
@@ -142,13 +147,28 @@ function rebuild(){cleanup();try{frame();}catch(error){fault=String(error);repor
 function boot(){
  const css=document.createElement('link');css.rel='stylesheet';css.href='./prismatic.css';document.head.append(css);
  const button=document.createElement('button');button.id='prism-options';button.className='delivery-btn';button.textContent='Materials & FX';document.querySelector('#delivery-header .actions').append(button);
- const panel=document.createElement('dialog');panel.id='prism-panel';panel.setAttribute('aria-label','Material and effects settings');panel.innerHTML='<header><div><small>PRISMATIC / RENDER STUDIO</small><h2>Glass. Gold. Motion.</h2></div><button id="prism-close" aria-label="Close graphics settings">Close</button></header><p>A material upgrade for the same world. Routes, grip, rewards and your saved levels stay unchanged.</p><label>Material treatment<select id="prism-look"><option value="prismatic">Prismatic / reflective glass</option><option value="refraction">Crystal+ / refractive glass</option><option value="classic">Classic / original materials</option></select></label><div class="prism-samples" aria-hidden="true"><span class="prism-glass">GLASS</span><span class="prism-metal">GOLD</span><span class="prism-jewel">JEWEL</span></div><label class="prism-check"><input id="prism-motion" type="checkbox">Animate material shimmer and jewel rotation</label><label class="prism-check"><input id="prism-glow" type="checkbox">Contact sparkles and nitro trails</label><p id="prism-status" role="status">Crystal+ adds real scene transmission and color dispersion and costs more GPU time. The default uses lighter tinted reflective glass. Glass galleries are background decoration, not landing surfaces.</p><p class="prism-note">Reduced-motion preferences suppress animated accents. No camera shake, screen flashes or motion blur. Open the 2D view or select Classic for the previous presentation.</p>';
+ const panel=document.createElement('dialog');panel.id='prism-panel';panel.setAttribute('aria-label','Material and effects settings');panel.innerHTML='<header><div><small>PRISMATIC / RENDER STUDIO</small><h2>Glass. Gold. Light.</h2></div><button id="prism-close" aria-label="Close graphics settings">Close</button></header><p>A material upgrade for the same world. Routes, grip, rewards and your saved levels stay unchanged.</p><label>Material treatment<select id="prism-look"><option value="prismatic">Prismatic / reflective glass</option><option value="refraction">Crystal+ / refractive glass</option><option value="classic">Classic / original materials</option></select></label><fieldset id="luminous-settings"><legend>Luminous shader finish</legend><label for="luminous-finish">Pearlescent enamel and sky light</label><select id="luminous-finish"><option value="subtle">Subtle / soft opal highlights</option><option value="vivid">Vivid / richer spectral color</option><option value="off">Off / previous Prismatic finish</option></select><label class="prism-check"><input id="luminous-water" type="checkbox">Ripple-lit canal water</label><label class="prism-check"><input id="luminous-sky" type="checkbox">Soft sky-silk ribbons</label><p id="luminous-status" role="status"></p></fieldset><div class="prism-samples" aria-hidden="true"><span class="prism-glass">GLASS</span><span class="prism-metal">GOLD</span><span class="prism-jewel">JEWEL</span></div><label class="prism-check"><input id="prism-motion" type="checkbox">Animate material shimmer and jewel rotation</label><label class="prism-check"><input id="prism-glow" type="checkbox">Contact sparkles and nitro trails</label><p id="prism-status" role="status">Crystal+ adds real scene transmission and color dispersion and costs more GPU time. The default uses lighter tinted reflective glass. Glass galleries are background decoration, not landing surfaces.</p><p class="prism-note">Reduced-motion preferences suppress animated accents. No camera shake, screen flashes or motion blur. Open the 2D view or select Classic for the previous presentation.</p>';
  document.body.append(panel);const $=id=>document.getElementById(id);$('prism-look').value=prefs.look;$('prism-motion').checked=prefs.motion;$('prism-glow').checked=prefs.glow;
- let wasPaused=false;button.onclick=()=>{wasPaused=!!__delivery.paused;if(__sky.active()&&!wasPaused&&!__delivery.state.menu)__delivery.act('pause');panel.showModal();$('prism-close').focus();};$('prism-close').onclick=()=>panel.close();panel.addEventListener('close',()=>{if(!wasPaused&&__delivery.paused)__delivery.act('resume');cv.focus({preventScroll:true});});
+ let resumeOwned=false,returnFocus=null;
+ const invalidateResume=()=>{resumeOwned=false;};
+ window.addEventListener('blur',invalidateResume);window.addEventListener('gamepaddisconnected',invalidateResume);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)invalidateResume();});
+ function show(){if(panel.open)return;returnFocus=document.activeElement;resumeOwned=mode==='play'&&!won&&!__delivery.paused&&!__delivery.state.menu&&!document.hidden;if(resumeOwned)__delivery.act('pause');panel.showModal();$('prism-close').focus();}
+ button.onclick=show;$('prism-close').onclick=()=>panel.close();
+ panel.addEventListener('cancel',event=>{event.preventDefault();panel.close();});
+ panel.addEventListener('close',()=>{if(resumeOwned&&mode==='play'&&!won&&!document.hidden&&!document.querySelector('dialog[open]'))__delivery.act('resume');resumeOwned=false;if(returnFocus?.isConnected&&returnFocus.getClientRects().length)returnFocus.focus({preventScroll:true});});
+ function mountGraphics(){for(const [selector,id]of [['#flight-deck .fd-actions','prism-deck'],['#delivery-pause .delivery-pause-card','prism-pause']]){const host=document.querySelector(selector);if(host&&!$(id)){const b=document.createElement('button');b.id=id;b.className='delivery-btn';b.textContent='Materials & FX';b.setAttribute('aria-haspopup','dialog');b.onclick=show;host.append(b);}}return !!$('prism-deck')&&!!$('prism-pause');}
+ if(!mountGraphics()){const observer=new MutationObserver(()=>{if(mountGraphics())observer.disconnect();});observer.observe(document.body,{childList:true,subtree:true});}
+ function luminousUI(){
+  $('luminous-finish').value=luminousPrefs.finish;$('luminous-water').checked=luminousPrefs.water;$('luminous-sky').checked=luminousPrefs.sky;
+  $('luminous-status').textContent=luminousSaveOK?'Subtle is the default. Off restores the previous Prismatic finish; Classic removes both layers. Animation follows the motion setting below.':'Graphics preferences could not be saved; these choices apply to this session only.';
+ }
+ for(const id of ['luminous-finish','luminous-water','luminous-sky'])$(id).onchange=()=>{luminousPrefs=luminousPreferences({finish:$('luminous-finish').value,water:$('luminous-water').checked,sky:$('luminous-sky').checked});try{localStorage.setItem(LUMINOUS_KEY,JSON.stringify(luminousPrefs));luminousSaveOK=true;}catch{luminousSaveOK=false;}luminousUI();rebuild();};
+ luminousUI();
  $('prism-look').onchange=e=>{prefs.look=e.target.value;save();rebuild();};$('prism-motion').onchange=e=>{prefs.motion=e.target.checked;save();if(live)live.particles.clear();};$('prism-glow').onchange=e=>{prefs.glow=e.target.checked;save();if(live)live.particles.clear();};motionQuery.addEventListener('change',()=>{if(live)live.particles.clear();});
  const build=SkyVisual.build;SkyVisual.build=function(...args){cleanup();return build.apply(this,args);};
  const update=SkyVisual.update;SkyVisual.update=function(...args){update.apply(this,args);try{frame();}catch(error){if(!fault){fault=String(error);report.errors.push(fault);console.error('Prismatic render pass:',error);}cleanup();prefs.look='classic';}};
- window.Prismatic=Object.freeze({version:'prismatic-2',get settings(){return {...prefs};},get stats(){return {...report,installs,disposed,active:!!live,clock:clock.value,resources:live?{materials:live.materials.size,geometries:live.geometries.size}:null};},get root(){return live?.group;}});
+ window.Prismatic=Object.freeze({version:'prismatic-2',get settings(){return {...prefs,luminous:{...luminousPrefs}};},get stats(){return {...report,luminous:report.luminous?{...report.luminous}:null,luminousSaveOK,installs,disposed,active:!!live,clock:clock.value,resources:live?{materials:live.materials.size,geometries:live.geometries.size}:null};},get root(){return live?.group;}});
  window.PrismaticReady=true;
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
