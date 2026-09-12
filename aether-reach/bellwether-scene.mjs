@@ -6,9 +6,9 @@ export function installBellwetherScene({scene,groundAt,clearLine}){
  const kit=createFoundryKit(scene),{root,add,batch,sign}=kit;root.name='bellwether-blackout';
  const dials=[],lamps=[];let signalLight=null;
  for(const c of BELL_COVER){const m=add('box','timber',[c.x,c.y+c.h/2,c.z],[c.w,c.h,c.d]);m.name=c.id;for(const side of[-1,1])batch('box','metal',[c.x+side*(c.w/2-.05),c.y+c.h/2,c.z],[.1,c.h,c.d]);}
- for(const q of BELL_POINTS){const g=new T.Group();g.name=q.id;g.position.set(q.x,q.y,q.z);root.add(g);add('cylinder','metal',[0,.4,0],[.22,.8,.22],g);add('box','dark',[0,.94,0],[.72,.28,.48],g);
+ for(const q of BELL_POINTS){const g=new T.Group();g.name=q.id;g.position.set(q.x,q.y,q.z-(q.kind==='signal'?.7:0));root.add(g);add('cylinder','metal',[0,.4,0],[.22,.8,.22],g);add('box','dark',[0,.94,0],[.72,.28,.48],g);
   if(q.kind==='dial'){const ring=add('ring','brass',[0,1.25,.06],[.28,.28,.28],g);const needle=add('box','paper',[0,.12,0],[.035,.24,.035],ring);const lights=[];for(let i=0;i<4;i++){const a=i*Math.PI/2;lights.push(add('sphere','glow',[Math.sin(a)*.34,1.25+Math.cos(a)*.34,.065],[.04,.04,.04],g));}dials.push({ring,lights});sign(['SUPPLY','RETURN','BALANCE'][dials.length-1],q.x,q.y+2.9,q.z+.1,2.6);}
-  else if(q.kind==='signal'){add('cylinder','brass',[0,2,0],[.1,2.3,.1],g);const halo=add('ring','brass',[0,3,0],[.7,.7,.7],g);signalLight=add('sphere','glow',[0,3,0],[.19,.19,.19],g);sign('THEATRE RECEIVER',q.x,q.y+4.4,q.z+.1,3);}
+  else if(q.kind==='signal'){add('cylinder','brass',[-.65,2,0],[.1,2.3,.1],g);const halo=add('ring','brass',[-.65,3,0],[.7,.7,.7],g);signalLight=add('sphere','glow',[-.65,3,0],[.19,.19,.19],g);sign('THEATRE RECEIVER',q.x,q.y+4.4,q.z+.1,3);}
   else sign(q.kind==='desk'?'BELLWETHER BLACKOUT / X':'CIRCUIT TESTER / X',q.x,q.y+3.3,q.z+.12,q.kind==='desk'?4:2.8);
  }
  // The repaired public lights provide a persistent, visible ending.

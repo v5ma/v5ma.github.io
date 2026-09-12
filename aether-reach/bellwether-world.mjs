@@ -17,7 +17,7 @@ export const BELL_COVER=Object.freeze([
 export const BELL_WAVES=Object.freeze({
  street:[{x:-84,y:7,z:-22,kind:'warden',hp:75},{x:-90,y:7,z:-32,kind:'skirmisher',hp:85}],
  roof:[{x:-103,y:27.5,z:-15,kind:'warden',hp:80},{x:-110,y:27.5,z:-15,kind:'longshot',hp:65}],
- guardian:[{x:-103,y:27.5,z:-5,kind:'breacher',hp:160}]
+ guardian:[{x:-103,y:27.5,z:-8,kind:'breacher',hp:160}]
 });
 export const BELL_STAGES=Object.freeze(['Find the dispatch desk','Stop the street disruptors','Repair the Arcade circuits','Climb to the Theatre receiver','Defend and synchronize the receiver','Report to the dispatch desk','Bellwether restored']);
 export function bellGoal(s){const b=s.bellwether||{stage:0,dials:[0,0,0]};const find=id=>BELL_POINTS.find(p=>p.id===id);

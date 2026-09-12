@@ -182,7 +182,7 @@ function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;const shieldBefo
 export function occupied(x,y,z,state=null){return (state?stateSolids(state):SOLIDS).some(b=>(!b.deck||y<b.y2-.8)&&x+.38>b.x1&&x-.38<b.x2&&y+(state?.p?.crouched?1.04:1.8)>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2)||bridgeBarrier(BRIDGES,x,y,z)||balconyBarrier(x,y,z);}
 export function step(s,input,dt){
  if(s.won)return;dt=clamp(dt,0,.025);s.time+=dt;const p=s.p;
- for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload-=dt;if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;emit(s,'reload-end',{weapon:w.id});}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
+ for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload=Math.max(0,p.reload-dt);if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;emit(s,'reload-end',{weapon:w.id});}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
  if(p.gliding&&(p.grounded||p.rail||p.glideCharge<=0))foldGlide(s,p.glideCharge<=0?'empty':'landed');
  if(!p.gliding&&(p.grounded||p.rail))p.glideCharge=Math.min(GLIDE.capacity,p.glideCharge+GLIDE.recharge*dt);
  if(input.reload)reloadWeapon(s);
