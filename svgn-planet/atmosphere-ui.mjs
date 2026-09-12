@@ -1,0 +1,12 @@
+import {ATMOSPHERES,DEFAULT_ATMOSPHERE} from './atmosphere-core.mjs';
+export function mountAtmosphereUI({view}){
+ const section=document.createElement('section');section.className='pulse-settings';section.id='atmosphere-settings';
+ section.innerHTML=`<p class="eyebrow">COASTAL ATMOSPHERE / v0.9.0</p><h3>Give the ride a new light.</h3><p>Golden light, wet asphalt, rain ripples, leaf backlighting and blue-hour windows. These are visual presets: your speed and traction stay the same.</p><label><input id="atmosphere-enabled" type="checkbox"> Enable atmosphere shaders</label><label for="atmosphere-preset">Lighting and weather</label><select id="atmosphere-preset"></select><label for="atmosphere-strength">Atmosphere strength</label><input id="atmosphere-strength" type="range" min="0" max="100" step="5"><label><input id="atmosphere-wind" type="checkbox"> Foliage breeze</label><label><input id="atmosphere-rain" type="checkbox"> Visible rain</label><button id="atmosphere-reset">Restore sunny defaults</button><p id="atmosphere-status" role="status"></p><p class="hint">D-pad selects. Left/right changes settings. A toggles. B resumes. The existing Reduce motion setting freezes foliage/ripples and removes falling rain; Low graphics also simplifies foliage and ripples. Reflections use an environment map, not ray tracing.</p>`;
+ document.getElementById('pause-dialog').append(section);
+ const $=id=>document.getElementById('atmosphere-'+id);
+ for(const [key,value]of Object.entries(ATMOSPHERES)){const o=document.createElement('option');o.value=key;o.textContent=value.label;$('preset').append(o);}
+ function sync(){const a=view()?.atmosphere;if(!a)return;const p=a.prefs;for(const k of ['enabled','wind','rain'])$(k).checked=p[k];$('preset').value=p.preset;$('strength').value=Math.round(p.strength*100);$('status').textContent=p.enabled?ATMOSPHERES[p.preset].label+' / '+Math.round(p.strength*100)+' percent. Existing progress is unchanged.':'Original lighting. No rain, wind, ripples or window-glow additions.';}
+ for(const k of ['enabled','wind','rain'])$(k).onchange=e=>{view()?.atmosphere.set({[k]:e.target.checked});sync();};
+ $('preset').onchange=e=>{view()?.atmosphere.set({preset:e.target.value});sync();};$('strength').oninput=e=>{view()?.atmosphere.set({strength:Number(e.target.value)/100});sync();};$('reset').onclick=()=>{view()?.atmosphere.set(DEFAULT_ATMOSPHERE);sync();};
+ window.addEventListener('nm-atmosphere-change',sync);sync();return {sync};
+}
