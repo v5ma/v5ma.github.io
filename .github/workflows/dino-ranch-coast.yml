@@ -2,7 +2,7 @@ name: Dino Atlas Ranch and Coast
 on:
   push:
     branches: [dino-ranch-coast-20260911]
-    paths: ['dino-atlas/**', 'scripts/dino-ranch-*.py', '.github/workflows/dino-ranch-coast.yml']
+    paths: ['dino-atlas/**', 'scripts/dino-ranch-*.py', 'scripts/dino_roof_guard.py', '.github/workflows/dino-ranch-coast.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -28,6 +28,7 @@ jobs:
           python scripts/dino-ranch-coast.py
           python scripts/dino-ranch-polish.py
           python scripts/dino-ranch-stability.py
+          python scripts/dino_roof_guard.py
           git add dino-atlas
           if ! git diff --cached --quiet; then
             git config user.name 'Dino Atlas Build'
