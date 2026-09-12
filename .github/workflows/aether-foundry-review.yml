@@ -1,0 +1,38 @@
+name: Aether Foundry review
+on:
+  push:
+    branches: [feat/aether-foundry-finish-20260911]
+    paths: ['aether-reach/**', '.github/workflows/aether-foundry-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aether-foundry-review
+  cancel-in-progress: true
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test the actual source
+        run: |
+          mkdir -p aether-reach/test-output
+          node --test aether-reach/tests/*.test.mjs > aether-reach/test-output/foundry-node.log
+          node aether-reach/tests/release-manifest.mjs
+      - name: Record exact source
+        if: always()
+        run: |
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git archive --format=zip HEAD aether-reach index.html projects.css .github/workflows > aether-reach/test-output/foundry-source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-foundry-review
+          path: aether-reach/test-output
+          retention-days: 14
