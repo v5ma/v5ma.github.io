@@ -1,0 +1,63 @@
+name: Guild Borderlands
+on:
+  push:
+    branches: [guild/borderlands-20260912]
+    paths: ['leonardos-guild/**', '.github/workflows/guild-borderlands.yml']
+  pull_request:
+    paths: ['leonardos-guild/**', '.github/workflows/guild-borderlands.yml']
+permissions:
+  contents: read
+concurrency:
+  group: guild-borderlands-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  frontier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate ordinary committed source and all model regressions
+        run: |
+          set -euo pipefail
+          mkdir -p leonardos-guild/frontier-output
+          git rev-parse HEAD | tee leonardos-guild/frontier-output/tested-commit.txt
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          npm --prefix leonardos-guild test | tee leonardos-guild/frontier-output/model-tests.txt
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Fresh Xbox-input safe-town, gate, monster, salvage and reload journey
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/frontier-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/frontier-browser.py
+      - name: Preserve actual screenshots, reports and immutable source identity
+        if: always()
+        run: |
+          python - <<'PY'
+          import hashlib,json,subprocess,tarfile
+          from pathlib import Path
+          out=Path('leonardos-guild/frontier-output');out.mkdir(exist_ok=True)
+          names=subprocess.check_output(['git','ls-files','leonardos-guild','.github/workflows'],text=True).splitlines()
+          files={name:hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in names if Path(name).is_file()}
+          (out/'source-hashes.json').write_text(json.dumps(files,indent=2))
+          (out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          diff=subprocess.check_output(['git','diff','--stat'],text=True)
+          (out/'uncommitted-diff.txt').write_text(diff)
+          with tarfile.open(out/'source.tgz','w:gz') as t:
+            for name in files:t.add(name,arcname=name)
+          assert not diff,'Native acceptance must read ordinary committed source without rewriting it'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-borderlands-acceptance
+          path: leonardos-guild/frontier-output/
+          retention-days: 10

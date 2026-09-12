@@ -1,3 +1,15 @@
+# Borderlands checkpoint - September 12, 2026
+
+The next AAA slice establishes safe-town and dangerous-badlands region rules inside the same Leo's Guild character/save. Vinci disables hostile damage and routes older combat gates through peaceful interactions. Cinder Hollow adds three connected exploration routes, seven creatures, persistent salvage, a sanctuary camp and three optional return contracts. Farmlands are recorded as the next different play style, but are not claimed playable. See BORDERLANDS.md and AAA-ROADMAP.md.
+
+# Steady Steps checkpoint - September 12, 2026
+
+Current slice: v0.10.0. C01-C03 receive an original jointed character sample, displacement-driven blended poses, finite-height continuous camera-boom checks, room/corridor constraints, floor-transition resets and player-only close-camera fading. This is a partial production slice, not completion of professional animation, foot IK or every camera obstruction. Quiet audio and all old progression remain.
+
+Read STEADY-STEPS.md for implementation and evidence scope. Model fixtures are not physical-controller tests; native reports and actual screenshot review belong in the release PR, followed by exact public-byte verification. Next priorities remain owner playtest of camera/character quality and W01-W02 floor-aware route planning.
+
+## Previous checkpoints
+
 # Living Stories checkpoint - September 11, 2026
 
 Read AAA-ROADMAP.md for the ordered AAA-quality production gates and next-upgrade sequence. This historical checklist remains the source of the original D01-D22/A01-A06 task IDs, not a new completion estimate.

@@ -1,3 +1,11 @@
+# Borderlands v0.11.0
+
+Added the first region-mode loop: safe Vinci, explicit expedition gate, Cinder Hollow badlands, three connected trails, seven bounded creatures, three optional contracts, salvage, field dressings, a sanctuary camp and persistent return-to-town progression. Existing town combat damage is disabled; prior hostile requirements receive peaceful interaction paths. Quiet audio and all prior saves remain. Farmlands are documented as future work, not hidden or claimed playable.
+
+# Steady Steps v0.10.0
+
+Presentation-only camera/character continuation: continuous wall-aware follow boom, separate floor constraints, floor-history resets, gentle recovery, close-player fade, shared original jointed humanoids and displacement-driven blended action poses. Preserves missions, collision/physics, saves and quiet audio. Read STEADY-STEPS.md and the release PR for actual tests/publication.
+
 # Living Stories v0.9.0
 
 Two authored household cases with alternate routes, reversible physical-location puzzles, evidence-based choices, one-time rewards and persistent lamp/plaque/lending-shelf outcomes. Added AAA-ROADMAP.md with ordered production gates. Preserved quiet audio, individual mixer levels, cue density, all old saves and earlier content. Ambient-loop initialization is now single-flight and stale music promises cannot replace current-track status. Publication evidence is recorded in the release PR.

@@ -1,6 +1,6 @@
 # Leo's Guild - AAA-quality production roadmap
 
-Owner: Micah Blumberg / SVGN. Updated September 11, 2026.
+Owner: Micah Blumberg / SVGN. Updated September 12, 2026.
 
 This is the continuing production checklist for the EXISTING game in leonardos-guild/. It is not a new prototype, a claim that the current game is AAA, or a percentage-complete estimate. The goal is polished, coherent, ambitious play rather than a larger feature count. UPGRADE-CHECKLIST.md preserves the original density tasks D01-D22 and art/service tasks A01-A06/NET01-NET03. This document orders those goals by dependencies and acceptance evidence.
 
@@ -13,6 +13,8 @@ The verified baseline is Resonance v0.8.0, PR100, followed by the quieter-audio 
 Living Stories v0.9.0 advances D03, D06 and D16: two authored six-step cases, alternate roof/cellar evidence routes, a reversible shutter puzzle, evidence-based reasoning, peaceful settlement choices and persistent visible household outcomes. It does not close those entire roadmap items. No new automatic story audio or forced time limit is introduced. The release PR must contain the final test-source identities and post-merge public-file receipt; code or this register alone is not deployment proof.
 
 States: [x] means the narrowly worded implemented baseline exists, not that a whole AAA milestone is certified. [ ] means its full acceptance criterion remains open. A phase closes only when its evidence is retained and the user has playtested it. Model fixtures, browser journeys, physical hardware tests, subjective listening and publication verification are different evidence types.
+
+Steady Steps v0.10.0 advances parts of C01-C03: a shared original articulated character sample, displacement-driven poses, and continuous proxy-bound camera collision with floor-specific handling. These tasks remain open below because finished animation, foot planting and broad human camera review are not completed by this slice. See STEADY-STEPS.md and its release PR for exact acceptance. Quiet audio and every earlier adventure remain.
 
 ## Phase 0 - Stable, calm, controller-complete foundation
 
@@ -67,6 +69,17 @@ Dependencies: stable camera/character scale and an approved house-direction samp
 - [ ] W06 Extend the map only after existing sample districts meet the house/activity quality bar; new land alone is not progress.
 
 Exit: route connectivity tests plus human playtests establish multiple understandable ways to travel, with no dead-end mission state.
+
+
+## Region architecture - one world, different ways to play
+
+Borderlands v0.11.0 establishes the region contract for later production. Vinci is a safe social/crafting town. Cinder Hollow is an opt-in dangerous badlands reached through an explicit gate with persistent character/equipment/save state. A future Farmlands region is reserved for growing, animals, gathering, irrigation, deliveries and stewardship; it must not secretly become another mandatory combat zone. Region boundaries own their simulation rules, and enemies/projectiles may not cross the safe-town boundary.
+
+- [x] RGN01 Safe-town rule blocks damaging staff/sling and hostile AI in Vinci while preserving peaceful compatibility routes for older progression.
+- [x] RGN02 First badlands slice provides three connected physical routes, retreat, sanctuary camp, persistent monsters, resources and return-to-town contracts.
+- [ ] RGN03 Add a floor/region-aware route planner across town gate, badlands paths and later farms without teleporting.
+- [ ] RGN04 Build Farmlands as a genuinely noncombat-capable production/stewardship loop with no offline punishment.
+- [ ] RGN05 Human-playtest risk/reward, retreat readability and combat pacing before scaling monster count or adding another hostile region.
 
 ## Phase 4 - Deeper adventures and systems
 

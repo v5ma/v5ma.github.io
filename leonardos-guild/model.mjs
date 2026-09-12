@@ -1,3 +1,4 @@
+import {attachFrontier,saveFrontier,inBadlands,safeTown,stepFrontier,strikeFrontier,frontierTarget,useDressing,leaveBadlands} from './frontier-core.mjs';
 import {resonanceState,saveResonance,resonanceInput,resonanceStep,restockResonance} from './resonance-core.mjs';
 import {expandDoors,freshDoors,saveDoors,doorsBlocked,doorsStep,hitDoorEnemy} from './doors-core.mjs';
 import {cityState,saveCity,cityStep} from './city-core.mjs';
@@ -7,14 +8,14 @@ import {enhanceWorld,initLife,saveLife,lifeStep,roomBlocked,roomAt,stats,hitRocc
 /* Leonardo’s Guild / first Renaissance commission. Deterministic, renderer-independent simulation.
  * Coordinates are metres; fixed-step driver calls step() at 60 Hz. All mechanisms
  * is fictional world-state interaction; no network or account APIs are used. */
-export const VERSION='0.9.0';
+export const VERSION='0.11.0';
 export const SAVE_KEY='svgn.leonardos-guild.v1';
 export const LIMITS={x:148,zMin:-26,zMax:406};
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 export const heightAt=(x,z)=>20-z*.035+Math.cos(x*.014)*1.5+Math.sin(z*.018)*.6;
 export const headingVector=yaw=>({x:Math.sin(yaw),z:Math.cos(yaw)});
-export function district(p){return p.z<130?'Vinci Heights':p.z<270?'Artisans’ Market':'Arno Outskirts';}
+export function district(p){if(inBadlands(p))return 'Cinder Hollow';return p.z<130?'Vinci Heights':p.z<270?'Artisans’ Market':'Arno Outskirts';}
 export function makeWorld(){
  const houses=[],colliders=[],mailboxes=[],trees=[];let id=0;
  const rows=[24,61,98,178,215,293,331,374];
@@ -41,22 +42,23 @@ export function newState(saved=null){
  for(let i=0;i<18;i++)s.pedestrians.push({id:i,x:(i%3-1)*80+(i%2?10.8:-10.8),z:30+i*19%340,yaw:i%2?0:Math.PI,phase:i*1.3});
  for(let i=0;i<7;i++)s.traffic.push({id:i,x:(i%3-1)*80+(i%2?3.1:-3.1),z:45+i*53%345,dir:i%2?1:-1,speed:0});
  if(saved){for(const k of ['credits','score','relay','completed','folio','defeated','upgraded'])s[k]=saved[k];s.deliveries=new Set(saved.deliveries);s.banditHP=s.defeated?0:100;s.mission=s.completed?4:s.folio?3:s.relay&&s.deliveries.size>=4?2:s.deliveries.size>=4?1:0;}
- initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);s.cycle=cycleState(saved?.cycle);s.doors=freshDoors(saved?.doors);s.resonance=resonanceState(saved?.resonance);return s;
+ initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);s.cycle=cycleState(saved?.cycle);s.doors=freshDoors(saved?.doors);s.resonance=resonanceState(saved?.resonance);attachFrontier(s,saved?.frontier);return s;
 }
 export function readSave(raw,world){
  try{if(!raw||raw.length>32768)return null;const v=JSON.parse(raw),ids=new Set(world.mailboxes.map(b=>b.id));if(v.version!==2||!Number.isInteger(v.credits)||v.credits<0||v.credits>10000000||!Number.isInteger(v.score)||v.score<0||v.score>10000000||!Array.isArray(v.deliveries)||v.deliveries.length>64||!v.deliveries.every(id=>ids.has(id))||typeof v.relay!=='boolean'||typeof v.completed!=='boolean'||!['folio','defeated','upgraded'].every(k=>typeof v[k]==='boolean')||v.folio&&!v.defeated||v.completed&&!v.folio)return null;return {...v,deliveries:[...new Set(v.deliveries)]};}catch{return null;}
 }
-export function saveData(s){return {version:2,resonance:saveResonance(s.resonance),doors:saveDoors(s.doors),cycle:saveCycle(s.cycle),city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
+export function saveData(s){return {version:2,frontier:saveFrontier(s),resonance:saveResonance(s.resonance),doors:saveDoors(s.doors),cycle:saveCycle(s.cycle),city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
 export function tell(s,text){s.toast=text;s.toastT=4;}
 function event(s,type,data={}){s.events.push({type,step:s.steps,...data});if(s.events.length>160)s.events.shift();}
 export function activeTarget(s,w){
+ const frontier=frontierTarget(s);if(frontier)return frontier;
  if(s.mission===0){let targets=w.mailboxes.filter(b=>b.route&&!s.deliveries.has(b.id));if(!targets.length)targets=w.mailboxes.filter(b=>!s.deliveries.has(b.id));return targets.sort((a,b)=>distance(a,s)-distance(b,s))[0]||w.depot;}
  if(s.mission===1)return w.nodes[0];if(s.mission===2)return s.defeated?w.newsroom:w.bandit;return w.depot;
 }
-export function missionText(s){return [
+export function missionText(s){if(inBadlands(s))return {tag:'BADLANDS / CINDER HOLLOW',title:'Beyond Vinci’s protection.',text:'Explore three connected routes, survey landmarks, recover salvage or take on monsters. Gate Camp is safe and you can return to Vinci whenever you choose.'};return [
  {tag:'01 / THE MASTER’S LETTERS',title:'An apprentice’s first ride.',text:`Leonardo needs four sealed plans delivered. ${Math.min(s.deliveries.size,4)}/4 complete. Q throws left; C throws right. Follow the gold markers.`},
  {tag:'02 / THE WATERWORKS',title:'Ingenio opens the way.',text:'Ride to the market waterwheel. X inspects mechanisms. Stop and hold H to restore the bridge. A merchant nearby trades useful supplies.'},
- {tag:'03 / THE STOLEN FOLIO',title:'A sketch worth defending.',text:s.defeated?'The guard has yielded. Reach the gold marker by the archive and press H to recover Leonardo’s folio.':'A folio thief waits by the Arno road. Dismount with F. J swings your staff; hold K to brace. You can always retreat and recover at the workshop.'},
+ {tag:'03 / THE STOLEN FOLIO',title:'A sketch worth recovering.',text:s.defeated?'The watchman has released the claim. Reach the gold marker by the archive and press H to recover Leonardo’s folio.':'Vinci is protected ground. Dismount beside the folio watchman and press X to resolve the dispute through the town truce; combat waits beyond the expedition gate.'},
  {tag:'04 / RETURN TO LEONARDO',title:'Bring the discovery home.',text:'Ride back to Leonardo’s workshop on the hillside. Stop inside its gold marker and press H to return the recovered folio.'},
  {tag:'FIRST COMMISSION / COMPLETE',title:'Welcome to the guild.',text:'The first assignment is complete. Your progress is saved on this device. Explore, trade at the market, try the pedal carriage, or deliver more letters. Shared multiplayer is a future chapter.'}
  ][s.mission];}
@@ -86,8 +88,9 @@ export function throwPaper(s,w,side){
  s.shots.push({...start,vx,vy,vz,life:2.7});s.papers--;s.throwCD=.32;event(s,'throw',{side,target:target?.id||null});return true;
 }
 export function scan(s){if(s.scanCD>0)return false;s.scan=7;s.scanCD=2;event(s,'scan');tell(s,'INGENIO / nearby mechanisms revealed. Stop and hold H to operate.');return true;}
-export function nearestNode(s,w){return w.nodes.filter(n=>distance(s,n)<=n.range).sort((a,b)=>distance(s,a)-distance(s,b))[0]||null;}
+export function nearestNode(s,w){if(inBadlands(s))return null;return w.nodes.filter(n=>distance(s,n)<=n.range).sort((a,b)=>distance(s,a)-distance(s,b))[0]||null;}
 export function enterExit(s,w){
+ if(inBadlands(s)){const r=useDressing(s);return r.ok;}
  if(s.doors?.level||s.life?.inside||s.mode==='foot'&&roomAt(s,w)){tell(s,'Leave the room on foot before mounting a vehicle.');return false;}
  if(Math.abs(s.speed)>2){tell(s,'Slow down before getting off.');return false;}
  if(s.mode!=='foot'){
@@ -102,7 +105,7 @@ export function enterExit(s,w){
  tell(s,'Walk beside your bicycle or Leonardo’s pedal carriage to mount.');return false;
 }
 export function refill(s){restockResonance(s);s.papers=stats(s).maxPapers;s.health=stats(s).maxHealth;tell(s,'Fresh letters, restored health and a repaired invention.');event(s,'refill');}
-export function recover(s){cancelRoadTest(s);if(s.life)s.life.inside=null;if(s.doors){s.doors.level=0;s.doors.room=null;s.doors.dodge=0;}s.mode='bike';s.x=2;s.z=-6;s.yaw=0;s.speed=0;s.lift=s.vy=0;s.vehicle.bike={x:2,z:-6,yaw:0};refill(s);event(s,'recover');}
+export function recover(s){if(inBadlands(s)){leaveBadlands(s,true);return true;}cancelRoadTest(s);if(s.life)s.life.inside=null;if(s.doors){s.doors.level=0;s.doors.room=null;s.doors.dodge=0;}s.mode='bike';s.x=2;s.z=-6;s.yaw=0;s.speed=0;s.lift=s.vy=0;s.vehicle.bike={x:2,z:-6,yaw:0};refill(s);event(s,'recover');}
 function move(s,w,dx,dz){const r=s.mode==='car'?1.22:s.mode==='bike'?.5:.33,n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.4));let hit=false;
  for(let k=0;k<n;k++){if(!blocked(s.x+dx/n,s.z,r,w,s))s.x+=dx/n;else hit=true;if(!blocked(s.x,s.z+dz/n,r,w,s))s.z+=dz/n;else hit=true;}
  if(hit){if(s.inv<=0&&Math.abs(s.speed)>4){s.health=Math.max(0,s.health-12);s.inv=1.8;s.collisions++;s.trace=Math.min(1,s.trace+.12);event(s,'collision');tell(s,'Mind the corners. The workshop can repair your invention.');}s.speed*=.45;}
@@ -110,7 +113,7 @@ function move(s,w,dx,dz){const r=s.mode==='car'?1.22:s.mode==='bike'?.5:.33,n=Ma
 }
 function traffic(s,dt){for(const car of s.traffic){const next=car.z+(car.dir>0?14:-14),nearSignal=Math.abs(next-140)<12||Math.abs(next-340)<12,red=Math.floor(s.time/8)%2===1&&s.signalHold<=0;const leader=s.traffic.some(other=>other!==car&&Math.abs(other.x-car.x)<1.5&&(other.z-car.z)*car.dir>0&&(other.z-car.z)*car.dir<11);car.speed+=( (nearSignal&&red||leader?0:5.5)-car.speed)*Math.min(1,dt*2.5);car.z+=car.dir*car.speed*dt;if(car.z>398)car.z=-18;if(car.z< -20)car.z=396;}}
 export function step(s,w,input,dt){
- if(!Number.isFinite(dt)||dt<=0||dt>.05)throw Error('step expects dt in (0, 0.05]');input=resonanceInput(s,w,input,dt,input.consoleOptions||{});if(s.doors?.level||s.life?.inside){stepBasement(s,w,input,dt);resonanceStep(s,w,input,dt,{attack,throwPaper,cast});return;}s.time+=dt;s.steps++;
+ if(!Number.isFinite(dt)||dt<=0||dt>.05)throw Error('step expects dt in (0, 0.05]');input=resonanceInput(s,w,input,dt,input.consoleOptions||{});if(inBadlands(s)){stepFrontier(s,w,input,dt);resonanceStep(s,w,input,dt,{attack,throwPaper,cast});return;}if(s.doors?.level||s.life?.inside){stepBasement(s,w,input,dt);resonanceStep(s,w,input,dt,{attack,throwPaper,cast});return;}s.time+=dt;s.steps++;
  for(const k of['inv','throwCD','scan','scanCD','signalHold','toastT'])s[k]=Math.max(0,s[k]-dt);s.trace=Math.max(0,s.trace-dt*.013);
  const throttle=clamp(input.throttle||0,-1,1),steer=clamp(input.steer||0,-1,1),old={x:s.x,z:s.z};
  if(s.mode==='foot'){
@@ -159,6 +162,8 @@ export function trade(s,w,item){
  event(s,'trade',{item,cost});tell(s,item==='supplies'?'Supplies purchased: health and letters restored.':'The smith reinforces your staff.');return true;
 }
 export function attack(s,w){
+ if(inBadlands(s))return strikeFrontier(s);
+ if(safeTown(s)){tell(s,'Vinci is a safe town. Resolve disputes with X, or take your staff beyond the expedition gate.');return false;}
  if(s.mode!=='foot'){tell(s,'Dismount with F to use your staff.');return false;}
  if(s.attackCD>0)return false;s.attackCD=.6;s.attackT=.25;event(s,'swing');
  if(hitDoorEnemy(s,w))return true;
@@ -170,6 +175,7 @@ export function attack(s,w){
  }return false;
 }
 function combatStep(s,w,input,dt){
+ if(safeTown(s)){s.banditWindup=0;s.banditPhase=s.defeated?'yielded':'idle';return;}
  s.attackCD=Math.max(0,s.attackCD-dt);s.attackT=Math.max(0,s.attackT-dt);s.guarding=!!input.guard&&s.mode==='foot';
  if(s.defeated)return;const near=distance(s,w.bandit);s.banditCooldown=Math.max(0,s.banditCooldown-dt);
  if(near>5||s.mode!=='foot'){s.banditWindup=0;s.banditPhase='idle';return;}

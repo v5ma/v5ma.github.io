@@ -1,3 +1,4 @@
+import {safeTown} from './frontier-core.mjs';
 /* Open Doors: additive house commissions, actual floors and walkable city networks.
  * Renderer-independent. All interactions validate floor, proximity and progression.
  * No map action moves the player. The original save and missions remain intact. */
@@ -204,6 +205,7 @@ export function doorsStep(s,w,dt){
  const d=s.doors;for(const key of ['rest','dodge','dodgeCD'])d[key]=Math.max(0,d[key]-dt);
  if(!d.enemies.length)d.enemies=w.doorEnemies.map(e=>({...e,homeX:e.x,homeZ:e.z,hp:d.defeated.includes(e.id)?0:e.hp,phase:'patrol',timer:0,flash:0}));
  const l=doorLocation(s,w),visit=(l.room||'network')+':'+l.level;if((l.room||l.level)&&!d.visits.includes(visit))d.visits.push(visit);
+ if(safeTown(s)){for(const e of d.enemies){if(e.hp>0){e.phase='patrol';e.timer=0;e.x=e.homeX;e.z=e.homeZ;}}return;}
  for(const e of d.enemies){
   e.flash=Math.max(0,e.flash-dt);if(e.hp<=0||!inDoorSpace(s,e,w))continue;
   e.timer=Math.max(0,e.timer-dt);const near=dist(s,e);if(near>35)continue;
