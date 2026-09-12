@@ -9,7 +9,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
         with:
@@ -57,6 +57,10 @@ jobs:
         env:
           PRISM_URL: https://v5ma.github.io/prism-current/
         run: timeout 240 python -u prism-current/tests/practice-browser.py
+      - name: Verify public First Steps curriculum and independent completion
+        env:
+          PRISM_URL: https://v5ma.github.io/prism-current/
+        run: timeout 240 python -u prism-current/tests/lessons-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

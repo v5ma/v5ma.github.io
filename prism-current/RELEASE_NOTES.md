@@ -1,11 +1,9 @@
-# Prism Current v0.5.0 / Practice Lab
+# Prism Current v0.6.0 / First Steps
 
-Practice the existing sections of all four tracks at 60%, 75%, 90% or 100% speed. Each attempt starts with a four-beat count-in, with optional clicks following music volume. Slower playback lowers musical pitch. Full-song charts, score timing rules and original audio stay unchanged.
+Choose your Browser input and select Learn to play. Four short exercises teach matching hands or lanes, timing, direction and pausing. Keyboard and standard-controller lessons explicitly grade timing, not physical arrow direction; mouse/touch lessons use the existing directional blade collision rules.
 
-Results can repeat a section, return to the full song, or launch the weakest section of a completed full-song run. Optional automatic repeats include a 5-second results review and a fresh count-in. Input or loss of focus/controller cancels the pending repeat. Reconnection does not resume a paused run.
+Exercises advance only after the required connections from both hand groups. Missing the goal offers another attempt. The final exercise requires deliberate Pause and Resume rather than an accidental interruption. Completing all four records only an input-specific lesson-completion flag, never a song score or practice pass. Graduation offers the original First Light full song.
 
-Completed practice passes have separate best-score, best-quality and pass-count records keyed by section, speed, chart and input. Even 100% section runs cannot overwrite standard full-song scores. Partial attempts do not create records. All new settings/actions remain reachable through standard controller navigation.
+Lessons are optional and never start automatically. Standard controller focus, A, B, Menu and View retain their existing roles. Switching input during a curriculum restarts its steps rather than claiming mixed-device mastery. All four songs, existing charts, Practice Lab, mixer and Jewelbox assets are retained. AR/VR continue to play full songs; in-headset teaching is future work.
 
-See [PRACTICE_NOTES.md](PRACTICE_NOTES.md) for implementation and testing boundaries, [QA.md](QA.md) for receipts, and [AAA_CHECKLIST.md](AAA_CHECKLIST.md) for the next milestone. Browser section practice is not in-headset practice, pitch-preserving stretching, hardware certification or a completed first-run tutorial. The archived checklist preserves every previous detailed task specification.
-
-The previous release notes, including Tidal Bloom and Control Room, remain at [the immutable v0.4.0 release](https://github.com/v5ma/v5ma.github.io/blob/2381005b666a0db029f3714f07ef0a1f4208c83b/prism-current/RELEASE_NOTES.md). Original music and art credits remain in README.md and MUSIC_NOTES.md.
+See [FIRST_STEPS.md](FIRST_STEPS.md) for teaching goals and test boundaries. A-06 remains open for five human novice playtests even though its browser implementation is now delivered. The next implementation priority in [AAA_CHECKLIST.md](AAA_CHECKLIST.md) is save export/recovery. Previous release notes are preserved in [RELEASE_NOTES-v050.md](RELEASE_NOTES-v050.md).

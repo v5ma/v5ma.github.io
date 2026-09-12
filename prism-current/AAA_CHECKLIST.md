@@ -1,10 +1,22 @@
 # Prism Current: AAA-quality production checklist
 
-Updated for Practice Lab v0.5.0 on 2026-09-12. This is the active production checklist beside the game. The complete previous task specifications and release history are retained in [the v0.4 checklist](AAA_CHECKLIST-v040.md) and [ROADMAP.md](ROADMAP.md). Task identifiers remain stable. Current gameplay and verification details are in [PRACTICE_NOTES.md](PRACTICE_NOTES.md).
+Updated for First Steps v0.6.0 on 2026-09-12. This is the active production checklist beside the game. The complete previous task specifications and release history are retained in [the v0.4 checklist](AAA_CHECKLIST-v040.md) and [ROADMAP.md](ROADMAP.md). Task identifiers remain stable. Current gameplay and verification details are in [FIRST_STEPS.md](FIRST_STEPS.md).
 
 AAA-quality is the goal for craft, musical identity, accessibility and reliability, not a claim of a studio-scale budget or console certification. A checked implementation is not physical hardware acceptance. Development owns implementation and automation; Micah owns creative approval; a physical tester owns device measurements and comfort acceptance. No physical tester is assigned. P0 means release blocker for the declared scope, P1 means next production work, and P2 means later expansion. Relative effort S/M/L is not a delivery estimate.
 
-## Current milestone: Practice Lab
+## Current milestone: First Steps
+
+- [x] FS-01 / P1 / Development / M. Add four short browser exercises for hands/lanes, audio timing, directional slicing (or an explicit timing-only phrase) and deliberate pause/resume.
+- [x] FS-02 / P0 / Development / M. Grade actual hits through the existing scoring core. Require both hand groups and the lesson threshold; a finished soundtrack with no inputs cannot pass. Retry failed exercises and allow replay of passed ones.
+- [x] FS-03 / P0 / Development / M. Require deliberate Pause and Resume in the final exercise. A disconnect, background tab or renderer stall is not a substitute. Preserve all existing interruption safeguards.
+- [x] FS-04 / P0 / Development / M. Store only recognized completed input modes in a versioned lesson namespace. Never write full-song or Practice Lab records, and never force the lesson to start on page load.
+- [x] FS-05 / P1 / Development / M. Put lesson entry, retries, continuation, graduation and exit into the existing controller navigation. Adapt instructions for keyboard, standard gamepad and mouse/touch. Graduation returns to the original First Light song.
+- [ ] FS-HUMAN / P1 / Micah + new players / M. Observe five first-time players without coaching, including touch users. Record confusion, completion and revisions before closing A-06. Automated success is not this human acceptance.
+- [ ] FS-XR / P2 / Development + physical tester / M. Author an in-headset tutorial with spatial prompts and physical-device validation. This browser tutorial is not an immersive lesson.
+
+First Steps test and release boundaries are recorded in [FIRST_STEPS.md](FIRST_STEPS.md). All historical milestones below retain their original acceptance scope.
+
+## Previous milestone: Practice Lab
 
 - [x] PL-01 / P1 / Development / M. Rehearse the existing sections of all four songs, in both Flow and Pulse, without rewriting the authored source charts.
 - [x] PL-02 / P1 / Development / M. Offer 60%, 75%, 90% and 100% playback, a four-beat count-in, optional count-in clicks and explicit lower-pitch behavior. Keep real-time scoring windows unchanged.
@@ -22,7 +34,7 @@ Dependencies: current controls and audio transport. Exit: the published build wo
 - [ ] A-03 / P0 / Development / M. Versioned save export/import and recovery. Preserve old records under malformed data, denied storage and interrupted loads.
 - [ ] A-04 / P0 / Development + physical tester / M. Declare and test Chrome, Edge, Firefox, Safari and mobile support; publish unsupported cases.
 - [ ] A-05 / P0 / Development / M. Exercise WebGL context loss, audio interruptions, scene teardown, long-session memory and rapid input transitions.
-- [ ] A-06 / P1 / Development + Micah / M. Interactive first-run teaching for hands, lanes, hit plane, direction and pause. Exit: five new players finish without verbal coaching, with failures recorded and revised.
+- [ ] A-06 / P1 / Development + Micah / M. First Steps v0.6.0 implements interactive browser teaching for hands, lanes, timing, direction and pause. Exit still OPEN: five new players finish without verbal coaching, with failures recorded and revised. See FS-HUMAN; physical headset instruction remains separate.
 - [ ] A-07 / P1 / Development / M. Repeatable measured timing calibration, distinct from the current manual offset and post-run timing diagnostics.
 
 ## Gate B: music and authored rhythm identity
@@ -74,4 +86,4 @@ F-02 through F-04 are recurring gates. Their outcome for a particular release be
 
 ## Next upgrade selection
 
-Resolve any P0 regression first. The next product milestone is A-06, interactive first-run teaching, followed by C-01's authored accessible charts and A-03's save recovery. Continue human musical review and physical Xbox/Quest acceptance separately. Do not bulk-expand the song catalog or declare hardware readiness from emulated tests.
+Resolve any P0 regression first. First Steps now implements A-06 browser teaching; complete its human novice review separately. The next implementation priority is A-03 save export/recovery, followed by C-01 authored accessible charts. Continue human musical review and physical Xbox/Quest acceptance separately. Do not bulk-expand the song catalog or declare hardware readiness from emulated tests.
