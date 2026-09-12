@@ -2,7 +2,7 @@ name: Vesperfall Pilgrims Rest
 on:
   push:
     branches: [vesperfall-pilgrims-rest-20260912]
-    paths: ['vesperfall/**', '.github/workflows/vesperfall-pilgrim.yml', '.github/pilgrim-import/**']
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-pilgrim.yml', '.github/pilgrim-plan/**']
 permissions:
   contents: write
 concurrency:
@@ -11,48 +11,53 @@ concurrency:
 jobs:
   acceptance:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 22
     steps:
       - uses: actions/checkout@v4
-      - name: Apply verified isolated source delta
-        if: hashFiles('.github/pilgrim-import/part1.txt') != ''
+      - name: Apply checksummed production plan and workbook
+        if: hashFiles('.github/pilgrim-plan/part5.txt') != ''
         run: |
           python - <<'PY'
           import base64,hashlib,json,lzma,pathlib
           root=pathlib.Path.cwd()
-          packed=base64.b64decode(''.join((root/f'.github/pilgrim-import/part{i}.txt').read_text().strip() for i in range(2)),validate=True)
-          assert hashlib.sha256(packed).hexdigest()=='7f7eeb011fe60c0d087773cc40d109cda02fd2a6c9212e26a5b741e9e0eb1f86'
-          data=json.loads(lzma.decompress(packed));assert len(data)==11;planned=[]
+          packed=base64.b64decode(''.join((root/f'.github/pilgrim-plan/part{i}.txt').read_text().strip() for i in range(6)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='9c4266123542bea25c1736d53a344a450f3925427281a6edea65b98a05bba439'
+          data=json.loads(lzma.decompress(packed));assert len(data)==13;planned=[]
           for name,d in data.items():
               p=root/name
               assert name.startswith('vesperfall/') and '..' not in pathlib.PurePosixPath(name).parts and not p.is_symlink()
               assert p.resolve().is_relative_to(root/'vesperfall')
-              if 'content' in d:
+              if 'base64' in d:
                   assert not p.exists(),name
-                  text=d['content']
+                  b=base64.b64decode(d['base64'],validate=True)
+              elif 'content' in d:
+                  assert not p.exists(),name
+                  b=d['content'].encode('utf-8')
               else:
                   before=p.read_bytes();assert hashlib.sha256(before).hexdigest()==d['before'],name
-                  text=before.decode()
+                  text=before.decode('utf-8')
                   for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
-              b=text.encode();assert hashlib.sha256(b).hexdigest()==d['after'],name;planned.append((p,b))
+                  b=text.encode('utf-8')
+              assert hashlib.sha256(b).hexdigest()==d['after'],name;planned.append((p,b))
           for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
-          for i in range(2):(root/f'.github/pilgrim-import/part{i}.txt').unlink()
-          print('Applied',len(planned),'verified files')
+          for i in range(6):(root/f'.github/pilgrim-plan/part{i}.txt').unlink()
+          print('Applied',len(planned),'verified production files')
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- vesperfall .github/pilgrim-import
-          git commit -m 'Implement Pilgrims Rest: bounded local expeditions, atomic reward receipts, controller continuation and recovery'
+          git add -- vesperfall .github/pilgrim-plan
+          git commit -m 'Add canonical 76-task production plan, six-sheet workbook, quality gates and controller planning board'
           git push origin HEAD:vesperfall-pilgrims-rest-20260912
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Syntax, models and public boundary
+      - name: Syntax, models, workbook and public boundary
         run: |
           set -euo pipefail
           mkdir -p test-output
           for f in vesperfall/*.js; do node --check "$f"; done
           node --test vesperfall/tests/*.test.cjs | tee test-output/pilgrim-model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
           python scripts/check-vesperfall.py
       - name: Install native browser
         run: |
@@ -65,6 +70,13 @@ jobs:
           timeout 850 python -u vesperfall/tests/pilgrim-browser.py | tee test-output/pilgrim-browser.log
           test -s test-output/pilgrim/report.json
           test ! -e test-output/pilgrim/failure.json
+      - name: Exercise production board, local edits and workbook delivery
+        if: success() || failure()
+        run: |
+          set -euo pipefail
+          timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/production-browser.log
+          test -s test-output/production/report.json
+          test ! -e test-output/production/failure.json
       - name: Archive exact tested source and diagnostics
         if: always()
         run: |
