@@ -30,7 +30,7 @@ for(const [i,d]of CITY.districts.entries()){
  const p=cubePosition(d.mail),du=2/CITY.N,dv=du;
  for(let j=0;j<4;j++){
   const type=TYPES[(i+j)%TYPES.length];
-  const grid=[[p.u,p.v],[p.u,p.v-.075],[p.u+du,p.v-.075],[p.u+du,p.v+.075],[p.u,p.v+.075],[p.u,p.v]];
+  const grid=[[p.u,p.v],[p.u,p.v-dv/2],[p.u+du,p.v-dv/2],[p.u+du,p.v+dv/2],[p.u,p.v+dv/2],[p.u,p.v]];
   let points=grid.map(([u,v])=>cubePoint(p.face,u,v));
   if(type!=='sprint'&&type!=='stunt')points=points.slice(0,type==='cleanup'?5:4).map((n,k)=>{
    const next=points[Math.min(k+1,points.length-1)],f=tangent(add(next,mul(n,-1)),n);

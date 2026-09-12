@@ -1,7 +1,7 @@
 /* Deterministic cube-sphere city. Six stitched faces avoid empty poles and
    meridian convergence. No engine or browser dependency: simulation tests use
    the same road, building and mission data as the renderer. */
-export const CITY_VERSION='0.6.0';
+export const CITY_VERSION='0.7.0';
 const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
 const mul=(a,t)=>a.map(v=>v*t);
@@ -55,7 +55,7 @@ export function buildCity(radius){
     let du=0,dv=0;if(k<2)dv=-.03;else if(k<4)du=.03;else if(k<6)dv=.03;else du=-.03;
     const fn=cubePoint(f,grid(i+a)+du,grid(j+b)+dv),front=norm(add(fn,mul(bn,-dot(fn,bn)))),right=norm(cross(bn,front));
     const style=block.park?'kiosk':((i+j+f)%7===0?'tower':(i+j)%4===0?'apartment':k%3===0?'shop':'home');
-    const w=style==='kiosk'?7:10+random(seed)*2,d=style==='kiosk'?6:7+random(seed+1)*2,h=style==='tower'?18+random(seed+2)*22:style==='apartment'?8+random(seed+2)*7:style==='shop'?4.8:3.3+random(seed+2)*1.1;
+    const w=style==='kiosk'?7:13+random(seed)*2,d=style==='kiosk'?6:9+random(seed+1)*2,h=style==='tower'?25+random(seed+2)*23:style==='apartment'?12+random(seed+2)*7:style==='shop'?5.2:6.1+random(seed+2)*.5;
     const building={id:`building-${seed}`,n:bn,front,right,w,d,h,style,color:palette[(f+i+j+k)%6],seed,face:f,block:id};
     buildings.push(building);block.buildings.push(building);
     const hk=bn.map(v=>Math.floor(v*radius/32)).join(',');if(!hash.has(hk))hash.set(hk,[]);hash.get(hk).push(building);

@@ -1,0 +1,11 @@
+{
+  "version": "0.7.0",
+  "name": "Coastal Pulse",
+  "scope": "svgn-planet",
+  "camera": "standard right-stick yaw; independent inversion options",
+  "audio": "single transport; 4 mixer buses",
+  "contracts": 102,
+  "traffic": "arc-length continuous motion",
+  "boost": "unlimited 30 m/s; brake-controlled cruise",
+  "rendering": "fixed-step interpolation; spatially culled shells; one streaming chunk per update"
+}

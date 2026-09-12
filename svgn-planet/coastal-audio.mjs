@@ -62,7 +62,7 @@ export function createCoastalAudio(){
    case 'throw': hiss(.20,.15,2800,now,'effects',pan);hiss(.09,.035,700,now+.05,'effects',pan);break;
    case 'delivery': case 'bonus-delivery': hiss(.07,.13,1900,now);tone(hz(74),.24,.095,'bell',now+.04);tone(hz(81),.5,.055,'bell',now+.15);break;
    case 'jump':hiss(.13,.10,950,now);tone(155,.10,.06,'bass',now);break;
-   case 'land':hiss(.12,.17,210,now);tone(76,.12,.08,'bass',now);break;
+   case 'collision':case 'land':hiss(.12,.17,210,now);tone(76,.12,.08,'bass',now);break;
    case 'brake':hiss(.25,.075,2100,now);break;
    case 'foot':hiss(.075,.12,180+(counts[name]%3)*55,now,'ambience',pan);break;
    case 'chain':hiss(.03,.025,3800,now,'ambience');break;

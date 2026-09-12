@@ -3,14 +3,14 @@
 import {RADIUS,add,mul,norm,dot,cross,clamp,tangent} from './world.mjs';
 export const CRUISE_SPEED=30;
 export function driveSpeed(s,input,dt,direction){
- const brake=typeof input.brake==='number'?clamp(input.brake,0,1):input.brake?1:0;
+ const intentional=!!direction;const brake=typeof input.brake==='number'?clamp(input.brake,0,1):input.brake?1:0;
  const throttle=Number.isFinite(input.throttle)?clamp(input.throttle,0,1):1;
  const accelerate=!!input.boost&&brake<.05&&s.ride;
  if(s.ride&&!direction&&(s.speed>.005||accelerate))direction=tangent(s.facing,s.n);
  s.boosting=accelerate;s.energy=1; // Retained in old saves/HUD, never a throttle limiter.
  let wanted=0;
  if(brake>.05)wanted=0;
- else if(s.ride)wanted=accelerate?CRUISE_SPEED:Math.max(s.speed,direction?7.5*throttle:0);
+ else if(s.ride)wanted=accelerate?CRUISE_SPEED:Math.max(s.speed,intentional?7.5*throttle:0);
  else wanted=direction?(input.boost?6.2:4.1)*throttle:0;
  s.speed+=(wanted-s.speed)*(1-Math.exp(-dt*(brake>.05?6+brake*13:accelerate?3.8:8)));
  if(s.speed<.004)s.speed=0;

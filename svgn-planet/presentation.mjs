@@ -1,4 +1,4 @@
-export const PRESENTATION_VERSION = '0.5.0';
+export const PRESENTATION_VERSION = '0.7.0';
 // The default is a character-scale chase camera, never the globe overview.
 export const CAMERA_PRESETS = Object.freeze({
   street: {distance: 7.5, height: 2.5, targetHeight: 1.0, fov: 62},
@@ -7,7 +7,7 @@ export const CAMERA_PRESETS = Object.freeze({
 });
 export function chooseGraphics({touch=false, width=1280, height=720, dpr=1, requested='auto'}={}) {
   const low=requested==='low'||(requested==='auto'&&touch);
-  const pixelBudget=low?480000:1200000;
-  return {low, shadows:!low, shadowSize:1024, fps:low?30:60,
-    pixelRatio:Math.max(.1,Math.min(dpr,low?1:1.5,Math.sqrt(pixelBudget/Math.max(1,width*height))))};
+  const high=requested==='high';const pixelBudget=low?480000:high?3200000:1600000;
+  return {low, shadows:!low, shadowSize:high?2048:1024, fps:low?30:60,
+    pixelRatio:Math.max(.1,Math.min(dpr,low?1:high?2:1.5,Math.sqrt(pixelBudget/Math.max(1,width*height))))};
 }
