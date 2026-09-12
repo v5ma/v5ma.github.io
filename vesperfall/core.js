@@ -2,7 +2,7 @@
  * Static collision geometry also drives rendering. All projectile hits sweep
  * between positions so a fast arrow cannot tunnel through a thin wall. */
 (function(root){'use strict';
- const VERSION='0.8.0',G=9.8,R=.28;
+ const VERSION='0.9.0',G=9.8,R=.28;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0),len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
  function hash(text){let h=2166136261;for(const c of String(text).slice(0,64))h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
