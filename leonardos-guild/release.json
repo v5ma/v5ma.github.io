@@ -1,8 +1,8 @@
 {
   "id": "leonardos-guild",
-  "title": "Leo's Guild - Living Stories",
-  "version": "0.9.0",
-  "build": "guild-living-stories-20260911",
+  "title": "Leo's Guild - Steady Steps",
+  "version": "0.10.0",
+  "build": "guild-steady-steps-20260912",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -62,5 +62,17 @@
     "automaticStorySounds": false,
     "save": "additive doors.stories; existing progress retained",
     "roadmap": "AAA-ROADMAP.md"
+  },
+  "steadySteps": {
+    "roadmapItems": [
+      "C01",
+      "C02",
+      "C03"
+    ],
+    "camera": "continuous expanded-bound boom collision with floor-aware constraints and post-smoothing recheck",
+    "characters": "original shared-buffer jointed rig with distance-driven blended poses",
+    "progressionChanges": false,
+    "newAudioEvents": false,
+    "limits": "Procedural character sample, not mocap or complete foot IK; proxy camera bounds, not every decorative triangle; physical hardware review remains open."
   }
 }

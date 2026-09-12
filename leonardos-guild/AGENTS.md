@@ -1,3 +1,7 @@
+# Steady Steps continuation
+
+Read STEADY-STEPS.md and the latest release PR before extending camera/characters. camera-safety.mjs owns presentation-only continuous boom checks. character-rig.mjs owns shared original mesh templates and independent joints; character-motion.mjs owns transient displacement-driven pose memory. Do not count camera motion as player distance, alter movement to satisfy render tests, add new sound events, or dispose shared character buffers per instance. Physical hardware and art review remain open roadmap gates.
+
 # Current continuation priority
 
 Read AAA-ROADMAP.md first; UPGRADE-CHECKLIST.md retains earlier task IDs. Living Stories uses stories-core.mjs for authored cases inside doors.stories, and stories-art.mjs for bounded persistent props. Both are reached through the existing doors guide/nearby actions. Preserve silent story updates, quiet-audio preferences and old progression. Do not rerun scripts/integrate-living-stories.py after its one-time branch integration; maintain ordinary committed source.
