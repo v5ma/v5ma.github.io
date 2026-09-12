@@ -1,7 +1,7 @@
 /* Explicit build and campaign readiness. Optional authoring tools must not decide
  * which campaign is loaded, and an unfinished download must not spawn old data. */
 (function(){'use strict';
- const VERSION='0.17.0',BUILD='sky-cycle-route-compass-2026.09.12';
+ const VERSION='0.18.0',BUILD='sky-cycle-sunrise-2026.09.12';
  // Register before the legacy DOMContentLoaded pause listener. Native dialogs
  // consume their own keyboard events without unpausing the route underneath.
  window.addEventListener('keydown',event=>window.SkyCycleFlightDeck?.handleKey(event),true);
@@ -39,7 +39,7 @@
   function guard(event){if(status==='ready'||!event.target.closest?.(selector))return;event.preventDefault();event.stopImmediatePropagation();}
   document.addEventListener('click',guard,true);
   window.PaperDeliveryCampaign=Object.freeze({get status(){return status;}});
-  import('./sky-relay.js').then(()=>{
+  import('./sky-relay.js').then(()=>import('./sunrise.js')).then(()=>{
    if(!window.SkyRelayReady)throw Error('Campaign registration did not complete');
    status='ready';watch.disconnect();document.removeEventListener('click',guard,true);
    for(const [item,disabled]of blocked)item.disabled=disabled;blocked.clear();notice.hidden=true;

@@ -1,13 +1,13 @@
 {
-  "version": "0.17.0",
-  "build": "sky-cycle-route-compass-2026.09.12",
+  "version": "0.18.0",
+  "build": "sky-cycle-sunrise-2026.09.12",
   "date": "2026-09-12",
   "changes": [
-    "Route Compass with current district, next district, checkpoint distance and nearby optional gold-route clues",
-    "Controller-accessible Route Journal from pause, Flight Deck, header and completed-route results",
-    "Optional district and gold-rail exploration stamps banked only after accepted authored-route finishes",
-    "Detailed, compact and off guidance settings; responsive journal and district-change announcements",
-    "Independent exploration storage preserves existing medals, Flight Deck badges, editor drafts and remaps",
-    "Exact-source rule, fixture, native-controller and public-runtime publication checks"
+    "Market Pocket Park: optional low balcony with a physical return to the market road",
+    "Penny's Market Pilot challenge: ride, land safely, finish to bank a seal",
+    "In-world takeoff, receiving-deck, braking and recovery cues in 3D and 2D",
+    "Journal guidance controls moved ahead of the long discovery list",
+    "Paused 3D scene caching keeps controller journal and audio navigation responsive",
+    "Existing routes, ground tiles, checkpoints, music, remaps and saved progress preserved"
   ]
 }
