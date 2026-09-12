@@ -1,0 +1,79 @@
+name: Neighborhood Missions Coastal Pulse acceptance
+on:
+  push:
+    branches: [neighborhood-coastal-pulse-20260911, master]
+    paths:
+      - 'svgn-planet/**'
+      - '.github/workflows/neighborhood-coastal-pulse.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: coastal-pulse-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize the scoped integration
+        run: python svgn-planet/tools/materialize-coastal.py
+      - name: Commit integrated gameplay to the feature branch
+        if: github.ref == 'refs/heads/neighborhood-coastal-pulse-20260911'
+        run: |
+          git config user.name 'Micah Blumberg'
+          git config user.email '60057241+v5ma@users.noreply.github.com'
+          git add svgn-planet
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Coastal Pulse rendering, architecture, camera and continuous traffic'
+            git push origin HEAD:neighborhood-coastal-pulse-20260911
+          fi
+      - name: Install browser acceptance tools
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Syntax and model acceptance
+        run: |
+          mkdir -p coastal-results
+          git rev-parse HEAD > coastal-results/tested-commit.txt
+          for file in svgn-planet/*.mjs; do node --check "$file" || exit 1; done
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs 2>&1 | tee coastal-results/model-tests.log
+      - name: Controller, sound and visual acceptance
+        if: always()
+        run: |
+          python -m http.server 8765 > /tmp/coastal-server.log 2>&1 &
+          sleep 2
+          python svgn-planet/tests/coastal_browser.py 2>&1 | tee coastal-results/browser.log
+        shell: bash -eo pipefail {0}
+      - name: Assemble verification evidence
+        if: always()
+        run: |
+          mkdir -p coastal-results
+          python - <<'PY'
+          from pathlib import Path
+          import shutil,json
+          root=Path('coastal-results')
+          source=root/'source';source.mkdir(exist_ok=True)
+          for p in Path('svgn-planet').glob('*.mjs'):shutil.copy(p,source/p.name)
+          for name in ['index.html','style.css','coastal.css','coastal-integration.json']: 
+              p=Path('svgn-planet')/name
+              if p.exists():shutil.copy(p,source/p.name)
+          shutil.copytree('svgn-planet/tests',source/'tests',dirs_exist_ok=True)
+          from PIL import Image
+          for p in root.glob('*.png'):
+              im=Image.open(p).convert('RGB');im.thumbnail((800,520));im.save(p.with_suffix('.jpg'),quality=80)
+          PY
+      - name: Preserve test reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: neighborhood-coastal-pulse-evidence
+          path: coastal-results
+          retention-days: 30
