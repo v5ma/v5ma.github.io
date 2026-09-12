@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Isolated Route Compass fixture, not native gameplay</title><style>body{background:#123;color:white;font:16px system-ui;padding:24px}button{padding:12px;margin:5px}.open{display:block}</style><body><header id="delivery-header"><div class="actions"></div></header><div id="delivery-pause"><div class="delivery-pause-card"></div></div><div id="flight-deck"><div class="fd-actions"></div></div><div id="delivery-results"><div class="delivery-result-actions"></div></div><script>
+var mode='play',won=false,player={x:110,y:2100,dead:0,track:null},allowWin=false;
+window.DeliveryCampaign={routes:[{id:'first-neighborhood',name:'Sunrise Borough'}]};
+window.__delivery={paused:false,state:{route:0,code:'authored',menu:false},act(a){this.paused=a==='pause';}};
+var code='authored';function levelCode(){return code;}function loadCode(c){code=c;return true;}function startPlay(){won=false;return true;}function stepPlayer(){player.x+=4;}function win(){if(allowWin)won=true;}
+const rail=[[650,2075],[965,2080]];rail.sky={id:'loop-0',label:'Post office practice ramp',optional:true};
+const cells=new Uint8Array(100*70);cells[5943]=13;
+window.__sky={state:{data:{kind:'ground',width:100,goal:{x:95},gp:{sections:[{x:0,name:'Post Office Green',scene:'village'},{x:34,name:'Market Lanes',scene:'market'},{x:76,name:'Loopside Park',scene:'park'}]},ct:[rail],cells}}};
+</script><script type="module" src="../route-compass.js"></script></body></html>
