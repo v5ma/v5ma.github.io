@@ -9,3 +9,22 @@ test('The coach recognizes a real swept hit on the bell directly ahead, not the 
  assert.equal(s.shots,1);assert.equal(F.practiceBellHit(s),true);
  const other=C.create();other.targets.add(0);assert.equal(F.practiceBellHit(other),false);
 });
+
+// Core event receipts model the same facts emitted by the real quiver input
+// handlers. The native browser regression dispatches the whole input gesture
+// in one event turn and checks that no intermediate render frame is required.
+test('Rapid quiver open/select is credited between frames, but cancel and stale receipts are not',()=>{
+ const s=C.create(), c={base:{seq:s.eventSeq||0,type:s.type},open:false};
+ C.emit(s,'focus-open');s.type='cinder';C.emit(s,'focus-select',{arrow:s.type});
+ assert.equal(F.quiverLessonComplete(s,c,false),true);
+ assert.equal(F.quiverLessonComplete(s,{base:{seq:s.eventSeq,type:'plain'},open:false},false),false);
+ const cancelled=C.create(), cc={base:{seq:0,type:'plain'},open:false};
+ C.emit(cancelled,'focus-open');C.emit(cancelled,'focus-cancel');
+ assert.equal(F.quiverLessonComplete(cancelled,cc,false),false);
+ cancelled.type='cinder';
+ assert.equal(F.quiverLessonComplete(cancelled,cc,false),false);
+ const held=C.create(), hc={base:{seq:0,type:'plain'},open:false};
+ C.emit(held,'focus-open');held.type='cinder';C.emit(held,'focus-select',{arrow:held.type});
+ assert.equal(F.quiverLessonComplete(held,hc,true),false);
+ assert.equal(F.quiverLessonComplete(held,hc,false),true);
+});
