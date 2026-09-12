@@ -18,7 +18,7 @@ export const SOUND_DENSITIES = Object.freeze([
 export const TOOLS = Object.freeze([
   {id:'staff',name:'Guild staff',detail:'A close-range, non-lethal staff. LT braces. RT strikes.',variants:['Balanced grip','Heavy grip']},
   {id:'sling',name:'Artisan\'s sling',detail:'LT aims. RT releases a pellet. X fills the ready pouch. No civilian targets.',variants:['Firm pellets','Soft stun pellets']},
-  {id:'letters',name:'Sealed letters',detail:'Preserves the original deliveries. RT throws toward the selected side.',variants:['Left-side delivery','Right-side delivery']},
+  {id:'letters',name:'Sealed letters',detail:'Preserves the original deliveries. RT uses the selected delivery side.',variants:['Left-side delivery','Right-side delivery']},
   {id:'lantern',name:'Ingenio lantern',detail:'Uses the existing earned Lantern power and focus. Obtain it through the original story.',variants:['Lantern pulse']},
 ]);
 export const DISCIPLINES = Object.freeze([
@@ -26,7 +26,7 @@ export const DISCIPLINES = Object.freeze([
   {id:'warden',name:'Warden',detail:'Steadfast: 7 seconds of bracing and gradual recovery. Costs 40 focus.'},
   {id:'artificer',name:'Artificer',detail:'Ingenio: reveal mechanisms and reload faster for 7 seconds. Costs 40 focus.'},
 ]);
-export const AUDIO_DEFAULTS = Object.freeze({version:AUDIO_VERSION,enabled:true,master:.62,music:.34,effects:.42,ambience:.30,density:'quiet',mono:false,captions:true,range:'night',station:'auto'});
+export const AUDIO_DEFAULTS = Object.freeze({version:AUDIO_VERSION,enabled:true,master:.62,music:.34,effects:.42,ambience:.30,density:'quiet',mono:false,captions:true,range:'balanced',station:'auto'});
 const clamp = (v,a,b)=>Math.min(b,Math.max(a,v));
 export function audioPreferences(raw){
   const out={...AUDIO_DEFAULTS};if(!raw||typeof raw!=='object')return out;
