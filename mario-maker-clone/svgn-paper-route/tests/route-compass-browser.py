@@ -61,6 +61,8 @@ try:
             page.screenshot(path=str(out/'native-compass.png'))
             tap(9);seek('document.activeElement.id==="sc-journal-pause"');tap(0)
             check(page.evaluate('document.getElementById("sc-journal").open && __delivery.paused'),'Native: controller opens journal without resuming the route')
+            seek('document.activeElement.matches(".sc-stamps article")')
+            check(page.evaluate('document.activeElement.textContent.includes("Post Office Green")'),'Native: controller focuses discovery entries for reading')
             seek('document.activeElement.id==="sc-guidance"');tap(0)
             check(page.evaluate('SkyCycleCompass.preference==="compact"'),'Native: controller changes guidance density')
             tap(0);check(page.evaluate('SkyCycleCompass.preference==="off"'),'Native: controller disables guidance');tap(0)

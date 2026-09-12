@@ -73,7 +73,7 @@ function renderJournal(){
     const list=document.createElement('div');list.className='sc-stamps';host.append(list);
     const banked=new Set(records[p.id]?.stamps||[]);
     for(const s of [...p.sections,...p.rails]){
-      const row=document.createElement('article'),title=document.createElement('h4');title.textContent=s.name;row.append(title);
+      const row=document.createElement('article'),title=document.createElement('h4');row.tabIndex=0;title.textContent=s.name;row.append(title);
       const status=banked.has(s.id)?'BANKED':run.seen.has(s.id)?'FOUND THIS RUN':'NOT YET FOUND';
       row.dataset.state=status;paragraph(row,status,'sc-stamp-state');
       paragraph(row,s.id.startsWith('rail:')?'Optional discovery: ride this gold track. The lower road still leads to the finish.':'Ride into this district to discover it.');list.append(row);
