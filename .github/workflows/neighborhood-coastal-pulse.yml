@@ -23,15 +23,17 @@ jobs:
         with:
           node-version: '22'
       - name: Materialize the scoped integration
-        run: python svgn-planet/tools/materialize-coastal.py
+        run: |
+          python svgn-planet/tools/materialize-coastal.py
+          python svgn-planet/tools/verified-polish.py
       - name: Commit integrated gameplay to the feature branch
         if: github.ref == 'refs/heads/neighborhood-coastal-pulse-20260911'
         run: |
           git config user.name 'Micah Blumberg'
           git config user.email '60057241+v5ma@users.noreply.github.com'
-          git add svgn-planet
+          git add svgn-planet index.html
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate Coastal Pulse rendering, architecture, camera and continuous traffic'
+            git commit -m 'Polish Coastal Pulse visuals and verify controller, audio and regression behavior'
             git push origin HEAD:neighborhood-coastal-pulse-20260911
           fi
       - name: Install browser acceptance tools
@@ -62,7 +64,7 @@ jobs:
           root=Path('coastal-results')
           source=root/'source';source.mkdir(exist_ok=True)
           for p in Path('svgn-planet').glob('*.mjs'):shutil.copy(p,source/p.name)
-          for name in ['index.html','style.css','coastal.css','coastal-integration.json']: 
+          for name in ['index.html','style.css','coastal.css','coastal-integration.json','coastal-refinement.json']:
               p=Path('svgn-planet')/name
               if p.exists():shutil.copy(p,source/p.name)
           shutil.copytree('svgn-planet/tests',source/'tests',dirs_exist_ok=True)
