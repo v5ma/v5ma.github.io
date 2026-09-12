@@ -5,7 +5,7 @@ from pathlib import Path
 import os,json,math,time,subprocess,hashlib
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'steady-output';OUT.mkdir(exist_ok=True)
-BASE=os.environ.get('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];last_axes=[0,0,0,0]
+BASE=os.environ.get('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];captures={};last_axes=[0,0,0,0]
 def check(v,text):
  assert v,text
  checks.append(text);print('PASS:',text,flush=True)
@@ -51,6 +51,8 @@ def face(yaw,limit=50):
   if abs(delta)<.045:neutral();return
   inputs([],[0,0,-math.copysign(min(.65,.24+abs(delta)*.6),delta),0]);frames(3)
  raise AssertionError('Could not turn camera with right stick')
+def capture(name):
+ captures[name]=read();page.screenshot(path=str(OUT/(name+'.png')))
 def camera_ok(label):
  c=read()['render']['cameraSafety'];check(c['valid'] and all(math.isfinite(c['position'][k]) for k in ['x','y','z']),label)
 with sync_playwright() as p:
@@ -74,18 +76,19 @@ with sync_playwright() as p:
   drive(-9,8);drive(-9,24);drive(-17,24);drive(-24.5,24);drive(-30,24);face(math.pi/2);frames(15)
   c=read()['render']['cameraSafety'];check(c['occluded'] and c['position']['x']>-30.85,'Camera remains in front of the actual workshop back wall')
   check(c['distance']<2,'Obstructed camera shortens its boom instead of crossing a thin wall');camera_ok('Wall contact leaves a finite camera pose')
-  page.screenshot(path=str(OUT/'back-wall-camera.png'))
+  capture('back-wall-camera')
   drive(-27,24);frames(30);check(read()['render']['cameraSafety']['distance']>2.5,'Camera smoothly recovers its follow distance after moving away')
   drive(-30,24);drive(-30,18.2);face(0);frames(15);c=read()['render']['cameraSafety'];check(c['occluded'] and c['position']['z']>17.6,'A rotated camera respects the northern wall at an interior corner')
-  page.screenshot(path=str(OUT/'corner-camera.png'))
+  check(read()['render']['furnitureOcclusion']['faded']>0,'The actual foreground bookcase cuts away instead of filling the close camera')
+  capture('corner-camera')
   drive(-28.5,26);act('up:workshop');check(read()['doors']['level']==1,'The existing stairs remain usable with the controller')
   c=read()['render']['cameraSafety'];check(c['level']==1 and c['position']['y']>3.8,'Camera history resets onto the actual upper floor')
   drive(-30,18.2);face(0);frames(12);check(read()['render']['cameraSafety']['obstacle']=='room-boundary','Upper-floor camera uses its own room boundary, not street collision walls')
-  page.screenshot(path=str(OUT/'upper-room-camera.png'))
+  capture('upper-room-camera')
   drive(-24.5,24);inputs([4],[0,0,0,0]);page.wait_for_function('LeonardoGuild.inspect().console.wheel==="tools"');inputs([4],[0,0,1,0]);frames(5);inputs([],[0,0,1,0]);frames(5);neutral()
   check(read()['resonance']['tool']=='sling','The controller equipment wheel still equips the sling')
   inputs([6]);frames(25);check(read()['render']['character']['motion']=='aim' and read()['render']['cameraFov']<57,'LT blends into a distinct articulated aiming pose and shoulder view')
-  check(len(read()['render']['character']['elbows'])==2,'Both elbow pivots are active in the rendered aiming pose');camera_ok('Shoulder aiming retains safe finite camera placement');page.screenshot(path=str(OUT/'shoulder-aim.png'))
+  check(len(read()['render']['character']['elbows'])==2,'Both elbow pivots are active in the rendered aiming pose');camera_ok('Shoulder aiming retains safe finite camera placement');capture('shoulder-aim')
   # A single shot supplies a real reload opportunity without a save fixture.
   inputs([6,7]);frames(2);inputs([6]);frames(4);inputs([6,2]);frames(2);inputs([6]);frames(3)
   check(read()['resonance']['reload']>0,'X still starts a timed finite-ammunition reload');check(read()['render']['character']['motion']=='reload','Reloading uses a distinct two-arm pose');neutral()
@@ -97,7 +100,7 @@ with sync_playwright() as p:
   ui_select('#pause-sound');check(read()['controller']['modal']=='audio-dialog','Controller opens sound and control settings from Pause');close();check(read()['controller']['modal']=='pause-dialog','B returns from nested settings to Pause');close();check(read()['running'],'B resumes without a mouse or browser alert')
   drive(-28.5,26);act('up:workshop');drive(-28.5,26);act('up:workshop');drive(-24.5,24);face(math.pi/2);frames(30)
   c=read()['render']['cameraSafety'];check(c['level']==3 and not c['occluded'] and c['distance']>4,'Rooftop camera is not blocked by the street walls far below')
-  page.screenshot(path=str(OUT/'rooftop-camera.png'))
+  capture('rooftop-camera')
   check(read()['render']['doors']['jointedRivals']==18,'The retained humanoid rivals use the same articulated rig')
   press(12);ui_select('[data-dispatch="adventures"]');ui_select('#living-stories-open');check(page.locator('[data-door-track="story"]').count()==2,'Both Living Stories remain discoverable with the controller');close()
   check(read()['mission']==0 and read()['credits']==0,'Camera and animation work grant no quests or money')
@@ -107,4 +110,4 @@ with sync_playwright() as p:
   page.evaluate('window.__testPad.connected=false');frames(5);check(read()['paused'],'Controller disconnect still pauses and releases input');page.evaluate('window.__testPad.connected=true');frames(5);close();check(read()['running'],'Controller reconnection and B safely resume play')
   check(not errors,'No uncaught browser errors in the new camera and jointed-character journey');page.screenshot(path=str(OUT/'final.png'))
  finally:
-  (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'state':page.evaluate('window.LeonardoGuild?.inspect()'),'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'input':'Fresh save; only standard virtual Xbox input object is injected. Actual controller movement, aiming, reload, menus, stairs, roofs and reload. No live actor/progression/clock writes or keyboard/pointer/focus injections. Software WebGL, not physical Xbox/performance certification.'},indent=2));page.screenshot(path=str(OUT/'last-state.png'));browser.close()
+  (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'captures':captures,'state':page.evaluate('window.LeonardoGuild?.inspect()'),'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'input':'Fresh save; only standard virtual Xbox input object is injected. Actual controller movement, aiming, reload, menus, stairs, roofs and reload. No live actor/progression/clock writes or keyboard/pointer/focus injections. Software WebGL, not physical Xbox/performance certification.'},indent=2));page.screenshot(path=str(OUT/'last-state.png'));browser.close()

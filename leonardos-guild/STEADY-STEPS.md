@@ -10,6 +10,8 @@ Ground floors use the existing city's solid-wall footprints, finite-height obsta
 
 At very close range the player alone becomes partially transparent to keep the view usable. Other characters retain their opaque shared materials. Camera collision uses conservative proxy bounds rather than per-triangle checks of every ornamental mesh: foliage, tiny props, arbitrary external assets and every possible camera angle have not received pixel-perfect collision certification.
 
+The close-corner visual review also found a textured bookshelf filling the view despite a numerically clear wall trace. Original and curated bookcases are now individually tagged. Their cached bounds trigger a temporary, object-local cutaway when they lie between camera and player, including when the camera is inside the furniture. Unobstructed shelves and shared source materials remain unchanged, and the shelf fades back when the view clears. This changes no player collision or furniture placement. Rooftop room-name changes also no longer reset camera history.
+
 ## Character motion
 
 The original clothed Renaissance character sample now has separate hip, knee, ankle, shoulder, elbow and hand pivots, a moving torso and a head. Courier, master and rival palettes share mesh geometry between instances while keeping their transforms independent. This is original procedural geometry and authored animation, not imported motion capture, an external character pack or a claim of production-quality foot IK.

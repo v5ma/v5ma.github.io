@@ -63,7 +63,7 @@ export function createCameraSafety(world,heightAt){
   return result;
  }
  function update(anchor,desired,options={}){
-  const space=options.level+':'+(options.level===0?'street':options.roomId||'network');
+  const level=options.level||0,space=level+':'+([0,3,-2].includes(level)?'network':options.roomId||'network');
   const transition=lastSpace!==space;lastSpace=space;
   const target=solve(anchor,desired,options),dt=clamp(Number.isFinite(options.dt)?options.dt:0,0,.1);
   const snap=!!options.snap||!previous||transition||distance(previous,anchor)>35;
