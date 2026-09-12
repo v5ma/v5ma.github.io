@@ -8,28 +8,35 @@ permissions:
 jobs:
   sources:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
-      - name: Read official asset pages without executing downloaded code
+      - name: Read public author file indexes and one CC0 fallback archive
         run: |
+          python -m pip install gdown==5.2.0
           mkdir -p sources
           python - <<'PY'
           from urllib.request import Request,urlopen
           from pathlib import Path
-          import re,json
-          urls=['https://quaternius.com/packs/ultimatemodularcharacters.html','https://quaternius.com/packs/ultimatemodularwomen.html','https://www.kenney.nl/assets/animated-characters-survivors']
+          import gdown,json,zipfile,hashlib
           report=[]
-          for i,url in enumerate(urls):
+          for name,id in [('men','1USAAquX2JJWuA2m6zol0KUkFe3UkZ8zX'),('women','1720N9IGyQHXYvtvZJzazhxtTTlz-y2Vf')]:
             try:
-              text=urlopen(Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=30).read().decode()
-              Path(f'sources/page-{i}.html').write_text(text)
-              links=sorted(set(re.findall(r'https?[^\s\"<>\x27]+',text)))
-              selected=[l for l in links if any(k in l.lower() for k in ['zip','drive.google','dropbox','itch.io','poly.pizza'])]
-              print(url,selected)
-              for line in text.splitlines():
-                if any(k in line.lower() for k in ['.zip','data-download','downloadurl','downloadlink','modal-body']):print(line.strip()[:1500])
-              report.append({'url':url,'links':selected})
-            except Exception as e:report.append({'url':url,'error':str(e)})
+              files=gdown.download_folder(id=id,output='sources/'+name,skip_download=True,remaining_ok=True)
+              rows=[dict(id=f.id,path=f.path) for f in files]
+              print(name,rows)
+              report.append(dict(pack=name,files=rows))
+              for f in files:
+                if any(k in f.path.lower() for k in ['gltf.zip','glb.zip']):
+                  out='sources/'+name+'-'+Path(f.path).name
+                  gdown.download(id=f.id,output=out,quiet=False)
+                  with zipfile.ZipFile(out) as z:print(name,'ARCHIVE',z.namelist())
+            except Exception as e:report.append(dict(pack=name,error=str(e)));print(name,str(e))
+          url='https://kenney.nl/media/pages/assets/animated-characters-survivors/27b16052a7-1774772958/kenney_animated-characters-survivors.zip'
+          data=urlopen(Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=60).read(100_000_001)
+          assert len(data)<=100_000_000
+          Path('sources/kenney-survivors.zip').write_bytes(data)
+          with zipfile.ZipFile('sources/kenney-survivors.zip') as z:print('KENNEY',z.namelist())
+          report.append(dict(pack='kenney-survivors',url=url,sha256=hashlib.sha256(data).hexdigest()))
           Path('sources/report.json').write_text(json.dumps(report,indent=2))
           PY
       - uses: actions/upload-artifact@v4
