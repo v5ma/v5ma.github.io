@@ -1,6 +1,6 @@
 # Vesperfall: a quality-gated path toward a finished premium game
 
-Plan version 0.9.0. Updated 2026-09-12. The maintained playable project is this `vesperfall/` directory. This plan updates the existing 38-task board rather than creating a competing game or discarding historical IDs.
+Plan version 0.10.0. Updated 2026-09-12. The maintained playable project is this `vesperfall/` directory. This plan updates the existing 38-task board rather than creating a competing game or discarding historical IDs.
 
 The long-term aspiration is AAA-level finish. This document does not claim that the prototype has achieved that quality, that it has a particular production budget or staffing level, or that checking a certain number of boxes will certify it. The immediate target is one polished, reliable, distinctive vertical slice. The quality of the experience matters more than the number of systems or rooms.
 
@@ -16,7 +16,7 @@ The board's status edits are local to that browser. They do not commit to GitHub
 
 M0 preserves the shipped foundations: physical archery, collision-tested Blink, shields, crossbow, optional movement, seeded worlds, progression, expanded enemy orders, graphics, audio and browser/VR/AR input paths.
 
-M1 closes interruption and first-session gaps. Pilgrim's Rest supplies local saved expeditions and recovery; the next gap is a playable tutorial that teaches the physical controls, counterplay and spatial interface instead of only displaying instructions.
+M1 closes interruption and first-session gaps. Pilgrim's Rest supplies local saved expeditions and recovery; First Bell now teaches those controls through real gameplay outcomes. First-user confusion, fatigue and hardware ergonomics remain unmeasured.
 
 M2 concentrates on combat mastery. Add a coordinated encounter director with telegraphed threat budgets and recovery opportunities, then one original multi-phase boss. An authored route should link learning, exploration, tactical approaches and a meaningful payoff. The proposed 20-30 minute slice is a design target to measure later, not a current content-duration claim.
 
@@ -28,9 +28,9 @@ M5 is content-complete alpha and measured beta: finish the agreed scope, preserv
 
 M6 is release-candidate stability and supported launch: no known save-loss/crash/softlock/input-blocking defects in supported modes, build-specific physical-device evidence, public-byte verification, clear known issues, support guidance and save-safe rollback. Online accounts, telemetry, multiplayer, payments and remote services remain deferred pending explicit design and authorization.
 
-## This release: Pilgrim's Rest
+## This release: First Bell
 
-V15 and V47 close the local expedition save/continue software gap. V48 repairs the roadmap drift and makes the production plan inspectable next to the game. The next proposed feature release is the combat-mastery slice, starting with V49 onboarding and V50 encounter direction before V51 boss production and V52 route grammar.
+V15, V47 and V48 retain the saved expedition and planning foundation. First Bell adds ten guided lessons and a scored three-court Oath ending in an original three-phase Bellkeeper. V49-V52 and V76 now record the integrated software as Partial, not as completed human or hardware approval. The next work is real-player onboarding and counterplay review, stronger route variation, viable builds and production character animation. The proposed 20-30 minute duration has not been measured or certified.
 
 Implementation, automated/browser verification, public deployment, physical hardware acceptance and human review remain separate facts. A task labeled Implemented is not automatically hardware-certified or production-finished. Older umbrella tasks V13, V14, V23, V30 and V35 are explicitly Partial rather than falsely credited as complete. Existing physical-device tasks remain open.
 

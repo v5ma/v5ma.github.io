@@ -1,6 +1,8 @@
 /* First Bell: learning is verified by actual input and model outcomes. The
  * optional Oath uses the maintained world, controls, checkpoint and rewards. */
 (function(root){'use strict';
+ const PRACTICE_BELL=1;
+ function practiceBellHit(s){return s.targets.has(PRACTICE_BELL);}
  const lessons=[
   ['Find your stance','Open pause settings to choose your bow hand and a comfortable draw length. Clear your play space. Use Coach ready when comfortable.'],
   ['Ring the first bell','Aim at the bronze practice target straight ahead. Nock, draw and release an arrow into it.'],
@@ -40,7 +42,7 @@
   function rebuild(){const pos=g.rig.position.clone();g.build();g.rig.position.copy(pos);g.scene.object3D.updateMatrixWorld(true);}
   function nearSupply(){const s=g.game;for(const d of[[1.2,0],[0,-1.5],[-1.2,0],[0,1.5]]){const p=[s.p[0]+d[0],s.p[1]+.8,s.p[2]+d[1]];if(C.walkable(s.world,[p[0],s.p[1],p[2]],.25)&&!C.segmentBlocked(s.world,s.head,p)){s.world.pickups.push({id:'first-bell-crystal-'+s.world.pickups.length,p,kind:'frost',taken:false,label:'First Bell supply'});state.coach.pickup=s.world.pickups.at(-1).id;return;}}}
   function enter(index){const c=actualCoach();if(!c)return;c.index=index;c.base={shots:g.game.shots,blocks:g.game.blocks,blinks:g.game.blinks,shards:g.game.shardsUsed,seq:g.game.eventSeq||0,type:g.game.type};c.cancelled=false;c.wasDrawing=false;c.open=false;c.reloadShot=false;c.reloadDone=false;c.fitted=false;
-   if(index===1){g.game.targets.delete(0);C.setWeapon(g.game,'bow');g.setType('plain');}
+   if(index===1){g.game.targets.delete(PRACTICE_BELL);C.setWeapon(g.game,'bow');g.setType('plain');}
    if(index===3){g.game.world.enemies=[];}
    if(index===4){C.setWeapon(g.game,'bow');g.setType('plain');const e=VesperEncounters.training('cantor');let found=false;
     for(const r of g.game.world.rooms.slice().sort((a,b)=>Math.hypot(a.x-g.game.p[0],a.z-g.game.p[2])-Math.hypot(b.x-g.game.p[0],b.z-g.game.p[2]))){for(const z of[-2,2]){const p=[r.x,1.05,r.z+z];if(C.len(C.sub(p,g.game.head))>3&&C.len(C.sub(p,g.game.head))<12&&!C.segmentBlocked(g.game.world,C.add(p,[0,.45,0]),g.game.head)&&C.walkable(g.game.world,[p[0],0,p[2]],.42)){e.p=p;e.room=r.id;found=true;break;}}if(found)break;}
@@ -60,7 +62,7 @@
   function coachUpdate(){const c=actualCoach();if(!c||g.paused||!g.running||g.game.phase!=='playing')return;const s=g.game,b=c.base,events=s.events.filter(e=>e.seq>b.seq);if(c.index===2){if(g.charge>.15)c.wasDrawing=true;if(c.wasDrawing&&s.shield)c.cancelled=true;}
    if(c.index===3){if(events.some(e=>e.type==='shot'&&e.weapon==='crossbow'))c.reloadShot=true;if(c.reloadShot&&events.some(e=>e.type==='reloaded'))c.reloadDone=true;}
    if(c.index===8&&g.ritual.focus.open)c.open=true;
-   const ok=c.index===1?s.targets.has(0):c.index===2?c.cancelled&&s.shots===b.shots:c.index===3?c.reloadDone:c.index===4?s.blocks>b.blocks:c.index===5?s.blinks>b.blinks:c.index===6?s.shardsUsed>b.shards:c.index===7?s.world.pickups.some(p=>p.id===c.pickup&&p.taken):c.index===8?c.open&&!g.ritual.focus.open&&s.type!==b.type:c.index===9?g.xr?g.ritual.panel.mesh.visible:!$('map').hidden:false;
+   const ok=c.index===1?practiceBellHit(s):c.index===2?c.cancelled&&s.shots===b.shots:c.index===3?c.reloadDone:c.index===4?s.blocks>b.blocks:c.index===5?s.blinks>b.blinks:c.index===6?s.shardsUsed>b.shards:c.index===7?s.world.pickups.some(p=>p.id===c.pickup&&p.taken):c.index===8?c.open&&!g.ritual.focus.open&&s.type!==b.type:c.index===9?g.xr?g.ritual.panel.mesh.visible:!$('map').hidden:false;
    if(ok){c.done.push(c.index);C.emit(s,'lesson-complete',{lesson:c.index});enter(c.index+1);}
   }
   function makeBoss(){const m=new T.Group(),b=new g.art.Batch();m.name='The Bellkeeper / three-phase oath';const brass='#b79762',iron='#697c8c',cloth='#253443',glow='#abddd1';
@@ -98,5 +100,5 @@
   $('first-bell-start').onclick=start;$('oath-start').onclick=beginOath;$('coach-help').onclick=help;$('coach-ready').onclick=ready;$('coach-skip').onclick=skip;
   g.menuUI();return {state,start,beginOath,ready,skip,help,routeText,lessons};
  }
- root.FirstBell=Object.freeze({install,lessons});
+ root.FirstBell=Object.freeze({install,lessons,practiceBellHit,PRACTICE_BELL});
 })(globalThis);
