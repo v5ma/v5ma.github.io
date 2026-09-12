@@ -1,89 +1,47 @@
 # Prism Current: AAA-quality production checklist
 
-Updated for First Steps v0.6.0 on 2026-09-12. This is the active production checklist beside the game. The complete previous task specifications and release history are retained in [the v0.4 checklist](AAA_CHECKLIST-v040.md) and [ROADMAP.md](ROADMAP.md). Task identifiers remain stable. Current gameplay and verification details are in [FIRST_STEPS.md](FIRST_STEPS.md).
+Active release: Spectral Observatory v0.7.0, 2026-09-12. The user requested a shader-focused upgrade this round. The complete previous task specifications, priorities, ownership, effort, dependencies and acceptance criteria are retained in [AAA_CHECKLIST-v060.md](AAA_CHECKLIST-v060.md). Earlier archives and ROADMAP.md retain the full development history. Stable task IDs below refer to those specifications.
 
-AAA-quality is the goal for craft, musical identity, accessibility and reliability, not a claim of a studio-scale budget or console certification. A checked implementation is not physical hardware acceptance. Development owns implementation and automation; Micah owns creative approval; a physical tester owns device measurements and comfort acceptance. No physical tester is assigned. P0 means release blocker for the declared scope, P1 means next production work, and P2 means later expansion. Relative effort S/M/L is not a delivery estimate.
+AAA-quality remains the production goal, not a claim of console certification or completed physical-device qualification. Checked implementation is distinct from human acceptance. Development owns implementation/automation, Micah owns creative direction, and a physical tester owns measured device and comfort checks. No physical tester is assigned. P0 is a release blocker within its declared scope, P1 is next production work and P2 is later expansion.
 
-## Current milestone: First Steps
+## Current shader milestone
 
-- [x] FS-01 / P1 / Development / M. Add four short browser exercises for hands/lanes, audio timing, directional slicing (or an explicit timing-only phrase) and deliberate pause/resume.
-- [x] FS-02 / P0 / Development / M. Grade actual hits through the existing scoring core. Require both hand groups and the lesson threshold; a finished soundtrack with no inputs cannot pass. Retry failed exercises and allow replay of passed ones.
-- [x] FS-03 / P0 / Development / M. Require deliberate Pause and Resume in the final exercise. A disconnect, background tab or renderer stall is not a substitute. Preserve all existing interruption safeguards.
-- [x] FS-04 / P0 / Development / M. Store only recognized completed input modes in a versioned lesson namespace. Never write full-song or Practice Lab records, and never force the lesson to start on page load.
-- [x] FS-05 / P1 / Development / M. Put lesson entry, retries, continuation, graduation and exit into the existing controller navigation. Adapt instructions for keyboard, standard gamepad and mouse/touch. Graduation returns to the original First Light song.
-- [ ] FS-HUMAN / P1 / Micah + new players / M. Observe five first-time players without coaching, including touch users. Record confusion, completion and revisions before closing A-06. Automated success is not this human acceptance.
-- [ ] FS-XR / P2 / Development + physical tester / M. Author an in-headset tutorial with spatial prompts and physical-device validation. This browser tutorial is not an immersive lesson.
+- [x] SO-01 / P1 / Development / M. Add Opal Aurora, Solar Silk and Deep Current analytic shader atmospheres, keeping Classic Jewelbox selectable.
+- [x] SO-02 / P1 / Development / M. Add a diffraction halo and dichroic inner jewel seeds without moving notes, changing collision geometry or covering hand/direction glyphs.
+- [x] SO-03 / P1 / Development / M. Create floor interference from actual successful hits, with a six-slot uniform pool, short cooldown, bounded lifetime and shared resources. No per-hit lights or new render targets.
+- [x] SO-04 / P0 / Development / M. Respect Light graphics, zero intensity and quiet motion. Disable all new effects in immersive sessions and retain original transparent AR composition.
+- [x] SO-05 / P1 / Development / S. Persist theme/reaction choices independently of scores and include the controls in existing gamepad navigation.
+- [x] SO-06 / P0 / Development / M. Add pool/policy/material lifecycle fixtures, actual browser shader compilation checks, controller preference checks, real-hit validation, resource reuse checks and full-resolution captures. Actual pass results belong in the release receipt.
+- [ ] SO-HUMAN / P1 / Micah + physical tester / M. Compare readability, comfort, distraction and visual quality during full songs on real displays before declaring the creative/performance gate complete.
 
-First Steps test and release boundaries are recorded in [FIRST_STEPS.md](FIRST_STEPS.md). All historical milestones below retain their original acceptance scope.
+See [SPECTRAL_NOTES.md](SPECTRAL_NOTES.md) for the rendering design, controls, resource bounds and acceptance scope. [PR #127](https://github.com/v5ma/v5ma.github.io/pull/127) records candidate and publication receipts.
 
-## Previous milestone: Practice Lab
+## Reliability and teaching: Gate A
 
-- [x] PL-01 / P1 / Development / M. Rehearse the existing sections of all four songs, in both Flow and Pulse, without rewriting the authored source charts.
-- [x] PL-02 / P1 / Development / M. Offer 60%, 75%, 90% and 100% playback, a four-beat count-in, optional count-in clicks and explicit lower-pitch behavior. Keep real-time scoring windows unchanged.
-- [x] PL-03 / P0 / Development / M. Isolate completed practice records by song/chart/device/section/speed/version in their own storage namespace. Partial attempts and 100% section runs cannot replace full-song scores.
-- [x] PL-04 / P1 / Development / M. Add opt-in repeated passes with a results review and fresh count-in. Cancel pending repeats on input, focus/visibility loss, mixer use or controller loss. Never auto-resume a disconnected run.
-- [x] PL-05 / P1 / Development / M. Launch the weakest section directly from full-song results. Keep replay, return-to-song, settings and cancellation accessible through the standard controller UI.
-- [x] PL-06 / P0 / Development / M. Add pure plan/audio/save fixtures, application integration fixtures, and actual-renderer controller acceptance. Preserve golden legacy chart/audio tests and all existing suites. Passing receipts are a separate release gate.
-- [ ] PL-HW / P0 before hardware claims / Physical tester / M. Confirm count-in audibility, cut comfort and all new controls with actual devices. Numeric alignment and emulation do not complete this gate.
+A-01/A-02 remain implemented: rhythm/scoring invariants, swept collision, no-fail completion, separate input records and regression tests. A-03 save export/import and recovery remains P0 and is the next implementation priority. A-04's browser/device qualification and A-05's context-loss/long-session testing remain open. First Steps implements A-06 browser teaching, but its five-new-player review remains open. A-07 measured timing calibration remains open. The detailed exit criteria remain in the v0.6 checklist; none is waived by a visual release.
 
-## Gate A: reliable playable foundation
+## Music, practice and access: Gates B and C
 
-Dependencies: current controls and audio transport. Exit: the published build works on the explicitly supported browser/input matrix, with reproducible receipts.
+Tidal Bloom's composition and authored charts implement the content portions of B-01/B-02; human musical and physical-comfort approval remains open. B-03 diagnostics and B-04 browser Practice Lab are implemented. B-05 catalog expansion awaits creative approval, while B-06's subjective mixing review remains open despite its numeric audio audit. Existing songs are not changed by this release.
 
-- [x] A-01 and A-02. Original rhythm, swept cuts, no-fail completion, input-specific records and automated scoring/geometry/audio/lifecycle coverage remain implemented.
-- [ ] A-03 / P0 / Development / M. Versioned save export/import and recovery. Preserve old records under malformed data, denied storage and interrupted loads.
-- [ ] A-04 / P0 / Development + physical tester / M. Declare and test Chrome, Edge, Firefox, Safari and mobile support; publish unsupported cases.
-- [ ] A-05 / P0 / Development / M. Exercise WebGL context loss, audio interruptions, scene teardown, long-session memory and rapid input transitions.
-- [ ] A-06 / P1 / Development + Micah / M. First Steps v0.6.0 implements interactive browser teaching for hands, lanes, timing, direction and pause. Exit still OPEN: five new players finish without verbal coaching, with failures recorded and revised. See FS-HUMAN; physical headset instruction remains separate.
-- [ ] A-07 / P1 / Development / M. Repeatable measured timing calibration, distinct from the current manual offset and post-run timing diagnostics.
+C-01 authored seated/one-handed charts, C-02 remapping, C-03 accessible visual presets, C-04 complete browser/headset menu acceptance, C-05 physical comfort and C-06 screen-reader/reduced-motion review remain open. Quiet behavior for the new shaders is implemented, but is not a completed accessibility certification.
 
-## Gate B: music and authored rhythm identity
+## Visual production: Gate D
 
-Dependencies: stable transport and creative approval. Preserve old chart versions and records when music or movements change.
+D-01 Jewelbox art remains implemented. This release implements three shader-theme directions within D-02 and expands D-06's screenshot coverage. It does not complete all D-02 stage/art-direction and track-specific-lighting work, nor D-06's full desktop/VR/AR/accessibility matrix. D-03 original controller/hand assets remain open.
 
-- [ ] B-01 and B-02 / P1 / Development + Micah + physical tester / L. Tidal Bloom's original arrangement and authored Flow/Pulse patterns are implemented. Human listening, enjoyment, physical reach and self-collision/comfort approval remain open.
-- [x] B-03. Section guidance, measured timing bins, section quality and weakest-section feedback are implemented.
-- [x] B-04 / P1 / Development / L. Browser section rehearsal, four speeds, count-in and opt-in repeats are implemented in v0.5.0. Practice records are separate even at full tempo. Slower playback lowers pitch. Read PRACTICE_NOTES.md for exact scope; in-headset practice and pitch-preserving stretching are future extensions.
-- [ ] B-05 / P1 / Development + Micah / L. Expand to six distinct original songs only after the flagship receives creative approval. Maintain the asset rights register.
-- [ ] B-06 / P0 before new music claims / Development + Micah / M. Numeric sample peaks/RMS and conservative hit-envelope headroom passed for Tidal Bloom. Human review of masking and perceived loudness remains open; this is not a LUFS/true-peak certification.
+D-04 still requires named-hardware frame-time, dropped-frame, memory, latency and thermal measurements over 30 minutes. Desktop 60 fps and headset 72 fps or the selected session rate remain targets, not measured claims. D-05 adaptive budgets/fallback based on those measurements remains open. Explicit Classic/Light fallback is not automatic GPU qualification.
 
-## Gate C: accessibility, comfort and control completeness
+## Progression and creation: Gate E
 
-- [ ] C-01 / P1 / Development + physical tester / L. Author seated and one-handed patterns with separate scores and measured reachable envelopes. A reach slider is not an authored accessible chart.
-- [ ] C-02 / P1 / Development / M. Remappable keyboard/controller actions, conflict checks and reset defaults.
-- [ ] C-03 / P1 / Development + Micah / M. Color-independent hand symbols, high contrast, text scaling and readable HUD presets.
-- [ ] C-04 / P1 / Development / M. Complete the browser dialog audit and add in-headset sound/comfort controls. Browser Practice Lab does not complete the headset menu requirement.
-- [ ] C-05 / P0 before physical launch / Physical tester / L. Measure comfort, safe recenter, orientation, reach and tracking recovery on real headsets. Rendered floors are not safety boundaries.
-- [ ] C-06 / P1 / Development / M. Screen-reader and reduced-motion audit; optional per-hit announcements, mandatory important pause/error notices.
+E-01 progression/unlocks, E-02 validated local chart/audio import, E-03 beatmap editing, E-04 replays/score integrity and E-05 optional competition/localization/packaging retain their open status and original dependencies. No online score storage, camera access, external music or analytics is added.
 
-## Gate D: visuals and measured performance
+## Every release publishes: Gate F
 
-- [x] D-01. Jewelbox gems, hilts, shared materials, bounded effects, desktop optics and transparent XR materials remain implemented.
-- [ ] D-02 and D-03 / P1 / Development + Micah / L. Three coherent stage themes, readable music-driven lighting, original hand/controller models and alignment aids.
-- [ ] D-04 / P0 before performance claims / Physical tester / L. Measure frame-time percentiles, drops, memory, audio latency and thermal behavior over 30 minutes on named devices. Proposed targets remain desktop 60 fps and headset 72 fps or the selected session rate; these are not measured claims.
-- [ ] D-05 / P1 / Development / L. Derive rendering budgets and stable quality fallback from those measurements, without changing scoring timing.
-- [ ] D-06 / P1 / Development / M. Expand matched visual regression across desktop, VR, AR and accessible display presets. Current full-resolution artwork reviews do not complete the full matrix.
+- [x] F-01. Keep changes scoped to Prism Current and its own verification; preserve other games and private projects.
+- [ ] F-02 / recurring P0. Run applicable tests on the exact candidate and record actual conclusions.
+- [ ] F-03 / recurring P0. Commit, merge normally to master, confirm Pages deployment and compare committed files against public SHA-256 hashes.
+- [ ] F-04 / recurring P0. Smoke-test the public game, preserve saves and document limitations plus a scoped rollback.
+- [ ] F-05 / launch P0. External playtests, critical-defect closure, device matrix, accessibility, licenses, privacy and support remain open.
 
-## Gate E: progression and creation
-
-Dependencies: enjoyable authored content, stable records and privacy boundaries.
-
-- [ ] E-01 / P2 / Development + Micah / L. Permanent progression and unlocks. Current best-score goals and practice pass counters are not a completed progression system.
-- [ ] E-02 / P2 / Development / L. Strictly validated local chart/audio import, bounded files and no unapproved redistribution.
-- [ ] E-03 / P2 / Development / L. Beatmap editor with waveform/grid, preview, reach warnings, undo and versioned export.
-- [ ] E-04 / P2 / Development / L. Deterministic replay and score integrity before online competition.
-- [ ] E-05 / P2 / Micah + Development / L. Scope optional social competition, localization and platform packaging after single-player acceptance.
-
-## Gate F: every release must publish
-
-- [x] F-01. Scope changes to Prism Current and its own verification. Preserve other games and private projects.
-- [ ] F-02 / P0 per release / Development / S. Run applicable tests on the exact candidate and link the actual results. A written test is not a passing test.
-- [ ] F-03 / P0 per release / Development / S. Commit, merge to master, confirm Pages deployment and verify exact served-file hashes. Do not stop at a branch or unmerged PR.
-- [ ] F-04 / P0 per release / Development / S. Record limitations and scoped rollback, preserve saves and smoke-test the actual public game.
-- [ ] F-05 / P0 before launch / Micah + physical tester / L. External playtest review, critical-defect closure, device matrix, accessibility, licenses, privacy and support.
-
-F-02 through F-04 are recurring gates. Their outcome for a particular release belongs in its PR/publication receipt; the next release must perform them again. Prior Control Room and Tidal Bloom implementation and physical gates retain their status in the archived v0.4 checklist. CR-HW, CR-XR and TB-06 remain open.
-
-## Next upgrade selection
-
-Resolve any P0 regression first. First Steps now implements A-06 browser teaching; complete its human novice review separately. The next implementation priority is A-03 save export/recovery, followed by C-01 authored accessible charts. Continue human musical review and physical Xbox/Quest acceptance separately. Do not bulk-expand the song catalog or declare hardware readiness from emulated tests.
+The release PR records F-02/F-03/F-04 outcomes for this candidate; every future update must repeat them. Historical CR-HW, CR-XR, TB-06, PL-HW, FS-HUMAN and FS-XR remain open under their original definitions. Next: resolve any regression, then implement A-03 save recovery while human shader/lesson/music reviews continue separately.
