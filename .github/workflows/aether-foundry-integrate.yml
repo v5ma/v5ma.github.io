@@ -1,0 +1,50 @@
+name: Integrate Aether Foundry Finish
+on:
+  push:
+    branches: [feat/aether-foundry-finish-20260911]
+    paths: ['.github/workflows/aether-foundry-integrate.yml']
+permissions:
+  contents: write
+jobs:
+  integrate:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/feat/aether-foundry-finish-20260911'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/aether-foundry-finish-20260911
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Integrate exact tested source and regenerate the plan
+        run: |
+          python aether-reach/tools/apply-foundry.py
+          python aether-reach/tools/update-foundry-plan.py
+      - name: Run regressions before committing source
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/foundry-node.log
+          node aether-reach/tests/release-manifest.mjs
+      - name: Commit only the upgrade and remove temporary transport
+        run: |
+          set -euo pipefail
+          rm aether-reach/tools/apply-foundry.py aether-reach/tools/foundry-patch.json .github/workflows/aether-foundry-integrate.yml
+          git add -A -- aether-reach .github/workflows/aether-foundry-integrate.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Implement Aether Reach 0.8.0 Foundry Finish and current production roadmap'
+          git push origin HEAD:feat/aether-foundry-finish-20260911
+      - name: Preserve exact evidence
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-foundry-integration
+          path: aether-reach/test-output
+          retention-days: 14
