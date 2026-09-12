@@ -1,0 +1,95 @@
+name: Guild Living Stories
+on:
+  push:
+    branches: [guild/living-stories-20260911]
+    paths: ['leonardos-guild/**', '.github/workflows/guild-living-stories.yml']
+  pull_request:
+    paths: ['leonardos-guild/**', '.github/workflows/guild-living-stories.yml']
+permissions:
+  contents: read
+concurrency:
+  group: guild-living-stories-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: One-time baseline-checked integration on the feature branch only
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = 'guild/living-stories-20260911'
+          if test ! -f leonardos-guild/LIVING-STORIES-INTEGRATION.json; then
+            python leonardos-guild/scripts/integrate-living-stories.py
+            for f in leonardos-guild/*.mjs; do node --check "$f"; done
+            npm --prefix leonardos-guild test
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -- leonardos-guild
+            git commit -m 'Integrate Living Stories v0.9.0 and current AAA production checklist'
+            git push origin HEAD:refs/heads/guild/living-stories-20260911
+          fi
+      - id: source
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  native-stories:
+    needs: integrate
+    if: always() && !cancelled() && (needs.integrate.result == 'success' || needs.integrate.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 26
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.integrate.outputs.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate ordinary committed source and all old and new model checks
+        run: |
+          set -euo pipefail
+          mkdir -p leonardos-guild/stories-output
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          npm --prefix leonardos-guild test | tee leonardos-guild/stories-output/model-tests.txt
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Fresh default-Console journeys, roofs, cellars, puzzles, peaceful outcomes and saves
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/stories-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u leonardos-guild/tests/stories-browser.py
+      - name: Preserve tested source and failure evidence without runtime rewriting
+        if: always()
+        run: |
+          python - <<'PY'
+          import hashlib,json,subprocess,tarfile
+          from pathlib import Path
+          out=Path('leonardos-guild/stories-output');out.mkdir(exist_ok=True)
+          names=subprocess.check_output(['git','ls-files','leonardos-guild','.github/workflows'],text=True).splitlines()
+          files={name:hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in names if Path(name).is_file()}
+          (out/'source-hashes.json').write_text(json.dumps(files,indent=2))
+          (out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          diff=subprocess.check_output(['git','diff','--stat'],text=True);(out/'uncommitted-diff.txt').write_text(diff)
+          with tarfile.open(out/'source.tgz','w:gz') as t:
+            for name in files:t.add(name,arcname=name)
+          assert not diff,'Native acceptance must not rewrite runtime source'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-living-stories-acceptance
+          path: leonardos-guild/stories-output/
+          retention-days: 10
