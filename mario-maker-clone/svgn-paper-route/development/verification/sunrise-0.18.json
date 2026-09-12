@@ -1,0 +1,47 @@
+{
+  "version": "0.18.0",
+  "build": "sky-cycle-sunrise-2026.09.12",
+  "accepted_runtime_commit": "e12dbf9f873675ad2bbb9a5f64ff2bcbb1cf96d7",
+  "acceptance": {
+    "run": 34713373362,
+    "native_job": 103606067425,
+    "native_job_conclusion": "success",
+    "regression_job": 103606067481,
+    "regression_job_conclusion": "success",
+    "native_artifact": 10304271272,
+    "native_artifact_sha256": "2fef1b0e0fdb33aa60818695ecd0b7e8fdacf374b01fe490d7ede7af50bd520a",
+    "regression_artifact": 10303644920,
+    "regression_artifact_sha256": "60d2d05221240ffa830ca76864cef56091580a14522804517a686e536e4ae614",
+    "new_rule_and_geometry_tests_passed": 40,
+    "existing_compass_and_flight_deck_rule_tests_passed": 29,
+    "native_sunrise_checks_passed": 21,
+    "existing_compass_fixture_checks_passed": 13,
+    "existing_compass_native_checks_passed": 15,
+    "existing_flight_deck_fixture_checks_passed": 25,
+    "existing_flight_deck_native_checks_passed": 22,
+    "uncaught_javascript_errors": [],
+    "captures_reviewed": ["market-balcony-3d.png", "market-journal.png", "market-journal-mobile.png", "market-detour-finish.png"],
+    "video_artifact_path": "video/0456d49ccb3b8b7d1be3e3eaf3218a0f.webm",
+    "coverage": "Real 3D branch traversal and controller journal. Complete native-engine routes use the supported 2D view for their remainder. Keyboard and standard Gamepad input samples plus normal UI controls; no player-position assignments, score assignments or forced native wins. Isolated fixtures and carried-state model runs are separate evidence, not native completions.",
+    "native_runs": [
+      {"label":"market-detour","won":true,"tries":1,"incidents":0,"optional_rails_visited":["sunrise-market"],"forward_rail_travel":221.77815228351201,"challenge_landed":true,"ground_steps":1013},
+      {"label":"road-direct","won":true,"tries":1,"incidents":0,"optional_rails_visited":[],"challenge_landed":false,"ground_steps":1043},
+      {"label":"road-coasting","won":true,"tries":1,"incidents":0,"optional_rails_visited":[],"challenge_landed":false,"ground_steps":1107}
+    ],
+    "seal_persisted_after_reload": true,
+    "road_only_replays_did_not_duplicate_seal": true,
+    "other_route_progress_sentinel_preserved": true,
+    "paused_scene_test": "At most one actual 3D renderer call over twelve animation frames with the challenge journal open. This is an invocation check, not a device frame-time benchmark."
+  },
+  "publication": {
+    "verified": false,
+    "status": "Awaiting master merge and public-byte verification; branch acceptance alone is not a published release.",
+    "owned_runtime_files": ["sunrise.js","sunrise-core.mjs","route-compass.js","route-compass.css","release-status.js","release.json","sw.js"]
+  },
+  "remaining_gates": [
+    "Physical Xbox hardware and actual mobile devices",
+    "Human enjoyment, route-readability and new-player review",
+    "All original optional rails, legacy expert routes and badge attainability",
+    "Long sessions, reference-device performance budgets and full save/rollback rehearsal"
+  ]
+}

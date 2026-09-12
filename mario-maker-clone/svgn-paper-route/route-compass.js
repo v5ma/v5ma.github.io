@@ -13,7 +13,7 @@ const ribbon=document.createElement('aside');ribbon.id='sc-compass';ribbon.hidde
 ribbon.innerHTML='<small>SKY CYCLE / ROUTE COMPASS</small><strong id="sc-district"></strong><p id="sc-next"></p><p id="sc-clue" class="sc-detail"></p><p id="sc-tip" class="sc-detail"></p>';
 const announce=document.createElement('p');announce.className='sc-sr-only';announce.setAttribute('role','status');announce.setAttribute('aria-live','polite');
 const journal=document.createElement('dialog');journal.id='sc-journal';journal.setAttribute('aria-labelledby','sc-journal-title');
-journal.innerHTML='<div class="sc-heading"><div><small>SKY CYCLE / COURIER COMPASS</small><h2 id="sc-journal-title">Route journal</h2></div><form method="dialog"><button class="delivery-btn" id="sc-close">Back</button></form></div><p id="sc-journal-status" role="status"></p><div id="sc-journal-content"></div><div class="sc-actions"><button class="delivery-btn" id="sc-guidance"></button><a class="delivery-btn" href="https://github.com/v5ma/v5ma.github.io/blob/master/mario-maker-clone/svgn-paper-route/development/AAA-ROADMAP.md" target="_blank" rel="noopener">Development checklist</a></div><p class="sc-footnote">D-pad or left stick moves focus. A selects, B returns, and LB/RB steps through controls. Exploration never blocks the finish.</p>';
+journal.innerHTML='<div class="sc-heading"><div><small>SKY CYCLE / COURIER COMPASS</small><h2 id="sc-journal-title">Route journal</h2></div><form method="dialog"><button class="delivery-btn" id="sc-close">Back</button></form></div><p id="sc-journal-status" role="status"></p><div class="sc-actions"><button class="delivery-btn" id="sc-guidance"></button><a class="delivery-btn" href="https://github.com/v5ma/v5ma.github.io/blob/master/mario-maker-clone/svgn-paper-route/development/AAA-ROADMAP.md" target="_blank" rel="noopener">Development checklist</a></div><div id="sc-journal-content"></div><p class="sc-footnote">D-pad or left stick moves focus. A selects, B returns, and LB/RB steps through controls. Exploration never blocks the finish.</p>';
 document.body.append(ribbon,announce,journal);
 let resumeOwned=false,returnFocus=null,openedPad=null;
 function pads(){try{return [...(navigator.getGamepads?.()||[])].filter(p=>p?.connected);}catch{return [];}}
@@ -70,6 +70,13 @@ function renderJournal(){
   if(run){
     const p=run.profile,h=document.createElement('h3');h.textContent=p.name;host.append(h);
     paragraph(host,run.finished?'This route is complete. Banked stamps remain available on your next visit.':'This run is in progress. Visit districts and ride optional gold tracks, then cross the striped finish to bank your discoveries.');
+    if(p.id==='first-neighborhood'&&window.SkyCycleSunrise){
+      const m=SkyCycleSunrise.journal(),section=document.createElement('section');section.id='sunrise-mission';
+      const heading=document.createElement('h3');heading.textContent=m.title;section.append(heading);paragraph(section,m.intro);
+      for(const step of m.steps){const row=document.createElement('article');row.tabIndex=0;row.className='sc-mission-step';paragraph(row,(step.done?'DONE / ':'TO DO / ')+step.title);paragraph(row,step.detail);section.append(row);}
+      paragraph(section,m.banked?'Market Pilot seal banked on this device.':'The seal is optional. A normal road finish is always available.');
+      if(!m.saveOK)paragraph(section,'Saving unavailable. New seals remain in this session only.');host.append(section);
+    }
     const list=document.createElement('div');list.className='sc-stamps';host.append(list);
     const banked=new Set(records[p.id]?.stamps||[]);
     for(const s of [...p.sections,...p.rails]){
