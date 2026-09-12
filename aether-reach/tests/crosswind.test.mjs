@@ -1,0 +1,13 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {RAIL_TUNING,COMBAT_DECKS,buildCombatCover} from '../skirmish-world.mjs';
+import {cleanKit} from '../arsenal.mjs';
+import {createState,step,interact,combatZoom,RAILS,pointOnRail} from '../model.mjs';
+import {cleanAudio} from '../sound-design.mjs';
+import {CombatGestures} from '../combat-gestures.mjs';
+test('Crosswind rails are dramatically faster but retain explicit braking and arrival control',()=>{assert.ok(RAIL_TUNING.cruise>=45);assert.ok(RAIL_TUNING.boost>=90);assert.ok(RAIL_TUNING.braking>RAIL_TUNING.acceleration);assert.ok(RAIL_TUNING.arrival<RAIL_TUNING.cruise);});
+test('Three expanded combat annexes have original solid cover without modifying the old deck data',()=>{assert.equal(COMBAT_DECKS.length,3);const cover=buildCombatCover([],{});assert.ok(cover.length>=12);assert.ok(cover.some(c=>c.kind==='wall'));assert.ok(cover.every(c=>c.h>=1));});
+test('Existing saves migrate to a two-weapon carried loadout without deleting owned weapons',()=>{const k=cleanKit({owns:['sniper','carbine','scatter'],selected:'sniper',carried:['sniper','carbine','scatter']});assert.deepEqual(k.carried,['sniper','carbine']);assert.equal(k.owns.length,4);});
+test('Sniper optic toggles between 4x and 8x only while scoped',()=>{const s=createState({version:1,kit:{owns:['sniper'],selected:'sniper',carried:['sniper','arc']}});s.p.scoped=true;assert.equal(s.skirmish.scopeZoom,4);assert.ok(combatZoom(s));assert.equal(s.skirmish.scopeZoom,8);assert.ok(combatZoom(s));assert.equal(s.skirmish.scopeZoom,4);s.p.scoped=false;assert.equal(combatZoom(s),false);});
+test('Rail acceleration reaches new tactical travel speeds through ordinary simulation input',()=>{const s=createState(),r=RAILS.find(r=>r.id==='glassline'),q=pointOnRail(r,0);Object.assign(s.p,{x:q.x,y:q.y-3.1,z:q.z});assert.ok(interact(s));let peak=0;for(let i=0;i<180&&s.p.rail;i++){step(s,{forward:true,boost:true,explorer:true},1/120);peak=Math.max(peak,s.p.speed);}assert.ok(peak>35);});
+test('Combat gesture interpreter separates tap, hold and release without phantom repeats',()=>{const g=new CombatGestures();let out=[];out.push(...g.step({reload:true},.1));out.push(...g.step({reload:false},.05));assert.deepEqual(out,['use']);g.reset();out=[];for(let i=0;i<5;i++)out.push(...g.step({pulse:true},.1));out.push(...g.step({pulse:false},.01));assert.deepEqual(out,['power-charge','power-trap']);});
+test('Audio settings are bounded and night mode is explicit',()=>{assert.deepEqual(cleanAudio({master:99,effects:-3,music:.4,ambience:.6,night:true}),{master:1,effects:0,music:.4,ambience:.6,night:true});});

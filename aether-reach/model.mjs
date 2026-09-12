@@ -1,5 +1,8 @@
+import {COMBAT_DECKS,ARENA_CONSOLES,RIFTS,RAIL_TUNING,buildCombatCover,asBox} from './skirmish-world.mjs';
+import {createSkirmish,cleanSkirmish,riftSolid,eyeHeight} from './skirmish-core.mjs';
+import {LADDERS} from './rooftop-world.mjs';
 import {createClimbing} from './climbing.mjs';
-import {EXP_DISTRICTS,EXP_BRIDGES,EXP_RAILS,EXP_BUILDINGS,EXP_RECORDS,TERRACES,ROOM_SOLIDS,COVER,POSTS,closedExpeditionGates,bridgeBarrier,balconyBarrier} from './expedition-world.mjs';
+import {EXP_DISTRICTS,EXP_BRIDGES,EXP_RAILS,EXP_BUILDINGS,EXP_RECORDS,TERRACES,ROOM_SOLIDS,COVER,POSTS,closedExpeditionGates,bridgeBarrier,balconyBarrier,THINGS} from './expedition-world.mjs';
 import {createExpedition,cleanExpedition,saveExpedition,expeditionSnapshot,expeditionGoal} from './expedition-core.mjs';
 export {expeditionSnapshot,expeditionGoal};
 /* Aether Reach: original, deterministic first-person expedition simulation.
@@ -9,7 +12,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.6.0';
+export const VERSION='0.7.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -70,9 +73,12 @@ export const BUILDINGS=[
 // Relays and notes sit outside solid buildings, intentionally reachable on foot.
 RELAYS[0].x=64;RELAYS[1].x=-28;
 export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b.h+4,z1:b.z-b.d/2,z2:b.z+b.d/2})).concat(ROOM_SOLIDS,COVER);
-const deckSolids=[...DISTRICTS,...TERRACES].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
-const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids);
+export const COMBAT_COVER=buildCombatCover(DISTRICTS,{solids:SOLIDS,keepouts:[...RELAYS,...RECORDS,EXTRACTION,...DEPOTS,...CACHES,...THINGS,...POSTS,...RIFTS,...LADDERS.flatMap(r=>r.points.map(p=>({x:p[0],y:p[1],z:p[2]})))],bridges:BRIDGES,rails:RAILS});
+SOLIDS.push(...COMBAT_COVER.map(asBox));
+const deckSolids=[...DISTRICTS,...TERRACES,...COMBAT_DECKS].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
+const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids,riftSolid(s));
 const tactical=createTactics({solids:SOLIDS,clearLine,rayBox,raySphere,forward,emit,defeated,hurt});
+const skirmish=createSkirmish({groundAt,occupied,clearLine,forward,emit,defeated,equip,weaponStats,weapons:WEAPONS,nearby,interact,reload:reloadWeapon,detach,cover:COMBAT_COVER});
 const climbing=createClimbing({occupied,clearLine,emit});
 const expedition=createExpedition({groundAt,occupied,clearLine,emit,hurt});
 export function pointOnRail(r,s){
@@ -84,7 +90,7 @@ export function nearestRail(p,max=4.3,ignore=null){let best=null;for(const r of 
  if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};
  }return best;}
 export function groundAt(x,z,under=Infinity){let y=-Infinity,id=null;
- for(const p of [...DISTRICTS,...TERRACES])if(Math.abs(x-p.x)<=p.w/2&&Math.abs(z-p.z)<=p.d/2&&p.y<=under&&p.y>y){y=p.y;id=p.id;}
+ for(const p of [...DISTRICTS,...TERRACES,...COMBAT_DECKS])if(Math.abs(x-p.x)<=p.w/2&&Math.abs(z-p.z)<=p.d/2&&p.y<=under&&p.y>y){y=p.y;id=p.id;}
  for(const p of BRIDGES){const [ax,ay,az]=p.a,[bx,by,bz]=p.b,dx=bx-ax,dz=bz-az,l=Math.hypot(dx,dz),t=((x-ax)*dx+(z-az)*dz)/(l*l),side=Math.abs((x-ax)*dz-(z-az)*dx)/l,gy=ay+(by-ay)*t;if(t>=0&&t<=1&&side<p.width/2&&gy<=under&&gy>y){y=gy;id=p.id;}}
  return {y,id};
 }
@@ -94,13 +100,13 @@ export function clearLine(a,b,state=null){const solids=state?stateSolids(state):
 const pointFor=id=>{const post=POSTS.find(p=>p.id===id);if(post)return {x:post.x,y:post.y+.02,z:post.z};const d=DISTRICTS.find(p=>p.id===id)||DISTRICTS[0];return {x:d.x,y:d.y+.02,z:d.z+5};};
 export function createState(save=null){
  const safe=readSave(save),kit=cleanKit(safe.kit),p=pointFor(safe.checkpoint);
- const state={p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};tactical.init(state,safe.tactics);expedition.init(state,safe.expedition);return state;
+ const state={p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};tactical.init(state,safe.tactics);expedition.init(state,safe.expedition);skirmish.init(state,safe.skirmish);return state;
 }
-export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit),tactics:cleanTactics(s.tactics),expedition:cleanExpedition(s.expedition)};}
-export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit),tactics:saveTactics(s),expedition:saveExpedition(s)});}
+export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit),tactics:cleanTactics(s.tactics),skirmish:cleanSkirmish(s.skirmish),expedition:cleanExpedition(s.expedition)};}
+export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit),tactics:saveTactics(s),skirmish:cleanSkirmish(s.skirmish),expedition:saveExpedition(s)});}
 export function emit(s,type,data={}){s.events.push({type,...data});if(s.events.length>80)s.events.shift();}
 export function depotNear(s){return !s.p.rail&&s.p.grounded?DEPOTS.find(d=>distance(s.p,d)<4.5):null;}
-export function equip(s,id){if(!s.kit.owns.includes(id)||!Object.hasOwn(WEAPONS,id))return false;s.kit.mags[s.p.weapon]=s.p.ammo;s.p.weapon=id;s.kit.selected=id;s.p.ammo=s.kit.mags[id];s.p.reload=0;s.p.scoped=false;emit(s,'equip',{id});return true;}
+export function equip(s,id,acquire=false){if(!s.kit.owns.includes(id)||!Object.hasOwn(WEAPONS,id))return false;if(!s.kit.carried.includes(id)){if(!acquire&&!depotNear(s))return false;if(s.kit.carried.length===2)s.kit.carried[s.kit.carried.indexOf(s.p.weapon)]=id;else s.kit.carried.push(id);}s.kit.mags[s.p.weapon]=s.p.ammo;s.p.weapon=id;s.kit.selected=id;s.p.ammo=s.kit.mags[id];s.p.reload=0;s.p.scoped=false;emit(s,'equip',{id});return true;}
 export function buy(s,id,kind='weapon'){if(s.won)return false;
  if(!depotNear(s))return false;let price=0;
  if(kind==='weapon'){if(!Object.hasOwn(WEAPONS,id)||s.kit.owns.includes(id))return false;price=WEAPONS[id].cost;}
@@ -109,7 +115,7 @@ export function buy(s,id,kind='weapon'){if(s.won)return false;
  else if(kind==='ammo'){if(id==='arc'||!s.kit.owns.includes(id)||s.kit.reserve[id]>=WEAPONS[id].reserve*3)return false;price=35;}
  else return false;
  if(s.kit.credits<price)return false;s.kit.credits-=price;
- if(kind==='weapon'){s.kit.owns.push(id);s.kit.mags[id]=WEAPONS[id].mag;s.kit.reserve[id]=WEAPONS[id].reserve;s.kit.tune[id]={damage:0,reload:0};equip(s,id);}
+ if(kind==='weapon'){s.kit.owns.push(id);s.kit.mags[id]=WEAPONS[id].mag;s.kit.reserve[id]=WEAPONS[id].reserve;s.kit.tune[id]={damage:0,reload:0};equip(s,id,true);}
  else if(kind==='ammo')s.kit.reserve[id]=Math.min(WEAPONS[id].reserve*3,s.kit.reserve[id]+WEAPONS[id].reserve);
  else if(kind==='shield'){s.kit.shield++;s.p.shield=Math.min(60+s.kit.shield*20,s.p.shield+20);}
  else s.kit.tune[id][kind]++;
@@ -117,13 +123,13 @@ export function buy(s,id,kind='weapon'){if(s.won)return false;
 }
 export function loot(s){const boxes=CACHES.map(c=>({...c,kind:'cache'}));for(const id of s.kit.dead){const b=ENEMIES.find(e=>e.id===id);const floor=groundAt(b.x,b.z,b.y);boxes.push({id:'drop-'+id,x:b.x,y:Number.isFinite(floor.y)?floor.y:b.y-2,z:b.z,credits:b.reward,kind:'drop',label:b.kind+' salvage'});}return boxes.filter(b=>!s.kit.taken.includes(b.id));}
 export function collect(s,id){const b=loot(s).find(b=>b.id===id);if(!b||distance(s.p,b)>3||!clearLine({x:s.p.x,y:s.p.y+1,z:s.p.z},{...b,y:b.y+1},s))return false;s.kit.taken.push(b.id);s.kit.credits=Math.min(99999,s.kit.credits+b.credits);s.p.health=Math.min(100,s.p.health+15);for(const id of s.kit.owns)if(id!=='arc')s.kit.reserve[id]=Math.min(WEAPONS[id].reserve*3,s.kit.reserve[id]+WEAPONS[id].mag*2);if(b.weapon&&!s.kit.owns.includes(b.weapon)){const id=b.weapon;s.kit.owns.push(id);s.kit.mags[id]=WEAPONS[id].mag;s.kit.reserve[id]=WEAPONS[id].reserve;s.kit.tune[id]={damage:0,reload:0};}emit(s,'loot',{id:b.id,credits:b.credits,weapon:b.weapon});emit(s,'save');return true;}
-function defeated(s,b){if(tactical.killed(s,b)||expedition.killed(s,b))return;if(s.kit.dead.includes(b.id))return;s.kit.dead.push(b.id);s.stats.defeated++;emit(s,'defeat',{id:b.id});emit(s,'save');}
+function defeated(s,b){if(skirmish.killed(s,b))return;skirmish.drop(s,b);if(tactical.killed(s,b)||expedition.killed(s,b))return;if(s.kit.dead.includes(b.id))return;s.kit.dead.push(b.id);s.stats.defeated++;emit(s,'defeat',{id:b.id});emit(s,'save');}
 // Aim-weighted reachable candidates, not a global nearest-rail teleport.
 export function railTarget(s){const p=s.p,head={x:p.x,y:p.y+1.6,z:p.z},view=forward(p.yaw,p.pitch);let best=null;
- for(const r of RAILS){if(r.id===p.rail?.id||!p.grounded&&s.time-p.airSince<.85&&r.id===p.lastRail)continue;const target=nearestRailOn(head,r,p.grounded?4.3:6.3);if(!target)continue;const v={x:target.point.x-head.x,y:target.point.y-head.y,z:target.point.z-head.z},dot=(v.x*view.x+v.y*view.y+v.z*view.z)/(target.distance||1);if(!p.grounded&&dot<-.12)continue;if(!clearLine(head,target.point))continue;const dest={x:target.point.x,y:target.point.y-2.65,z:target.point.z};if(occupied(dest.x,dest.y,dest.z,s)||!clearLine({...head,y:head.y-.6},{...dest,y:dest.y+1}))continue;const score=target.distance-(p.grounded?0:dot*2.8);if(!best||score<best.score)best={...target,score,dot};}return best;
+ for(const r of RAILS){if(r.id===p.rail?.id||!p.grounded&&s.time-p.airSince<.85&&r.id===p.lastRail)continue;const target=nearestRailOn(head,r,p.grounded?4.3:Math.min(16,6.3+Math.hypot(p.vx,p.vz)*.14));if(!target)continue;const v={x:target.point.x-head.x,y:target.point.y-head.y,z:target.point.z-head.z},dot=(v.x*view.x+v.y*view.y+v.z*view.z)/(target.distance||1);if(!p.grounded&&dot<-.12)continue;if(!clearLine(head,target.point,s))continue;const dest={x:target.point.x,y:target.point.y-2.65,z:target.point.z};if(occupied(dest.x,dest.y,dest.z,s)||!clearLine({...head,y:head.y-.6},{...dest,y:dest.y+1}))continue;const score=target.distance-(p.grounded?0:dot*2.8);if(!best||score<best.score)best={...target,score,dot};}return best;
 }
 function nearestRailOn(p,r,max){let best=null;for(let i=1;i<r.pts.length;i++){const a=r.pts[i-1],b=r.pts[i],dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len2=dx*dx+dy*dy+dz*dz,t=clamp(((p.x-a.x)*dx+(p.y-a.y)*dy+(p.z-a.z)*dz)/len2,0,1),q={x:a.x+dx*t,y:a.y+dy*t,z:a.z+dz*t},d=distance(p,q);if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};}return best;}
-export function nearby(s){const ladder=climbing.nearby(s);if(ladder)return ladder;const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
+export function nearby(s){const arena=skirmish.nearConsole(s);if(arena)return {type:'arena-console',id:arena.id,label:'X / E - '+arena.name};const ladder=climbing.nearby(s);if(ladder)return ladder;const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
  if(p.ride)return expedition.nearby(s);
  const extra=expedition.nearby(s);if(extra)return extra;
  const field=tactical.nearby(s);if(field)return field;
@@ -137,8 +143,8 @@ export function interact(s){const n=nearby(s),p=s.p;
  // 0.30 simulation seconds. Never auto-grab without input or through a wall.
  if(!p.rail&&!p.grounded&&p.lastRail&&(!n||n.type==='hook')&&(!n||p.hookCooldown>0)){p.hookRequest=.30;return true;}
  if(!n)return false;
- if(n.type==='ladder')return climbing.enter(s);
- if(n.type.startsWith('exp-'))return expedition.handle(s,n);
+ if(n.type==='arena-console')return skirmish.start(s,n.id);if(n.type==='ladder')return climbing.enter(s);
+ if(n.type.startsWith('exp-')){const done=expedition.handle(s,n);if(done&&n.type==='exp-rest'){s.skirmish.aidUsed=0;emit(s,'save');}return done;}
  if(n.type.startsWith('field-'))return tactical.handle(s,n.type);
  if(n.type==='loot')return collect(s,n.id);
  if(n.type==='relay'){s.kit.credits=Math.min(99999,s.kit.credits+90);s.relays.add(n.id);s.checkpoint=n.id;p.health=100;p.shield=60+s.kit.shield*20;p.ammo=weaponStats(s).mag;emit(s,'relay',{id:n.id});emit(s,'save');return true;}
@@ -148,42 +154,41 @@ export function interact(s){const n=nearby(s),p=s.p;
   if(p.rail){detach(s,true);emit(s,'transfer-ready',{id:n.target.rail.id});return true;}
   const r=n.target.rail,q=pointOnRail(r,n.target.s),dir=forward(p.yaw,p.pitch),speed=Math.hypot(p.vx,p.vy,p.vz);let sign=dir.x*q.tangent.x+dir.z*q.tangent.z>=0?1:-1;if(n.target.s<4)sign=1;if(n.target.s>r.length-4)sign=-1;
   const transfer=p.lastRail&&p.lastRail!==r.id&&!p.grounded;
-  foldGlide(s,'rail');p.hookRequest=0;p.latch={x:p.x,y:p.y,z:p.z,t:0};p.rail={id:r.id,s:n.target.s,dir:sign};p.speed=clamp(speed||12,10,28);p.vy=0;p.grounded=false;s.stats.rails++;if(transfer)s.stats.transfers++;emit(s,'hook',{id:r.id,transfer:!!transfer});return true;
+  foldGlide(s,'rail');p.hookRequest=0;p.latch={x:p.x,y:p.y,z:p.z,t:0};p.rail={id:r.id,s:n.target.s,dir:sign};p.speed=clamp(speed||18,10,RAIL_TUNING.boost);p.crouched=false;p.vy=0;p.grounded=false;s.stats.rails++;if(transfer)s.stats.transfers++;emit(s,'hook',{id:r.id,transfer:!!transfer});return true;
  }return false;
 }
 export function detach(s,jump=true){const p=s.p;if(!p.rail)return;const r=RAILS.find(r=>r.id===p.rail.id),q=pointOnRail(r,p.rail.s),dir=p.rail.dir;p.vx=q.tangent.x*p.speed*dir;p.vz=q.tangent.z*p.speed*dir;p.vy=q.tangent.y*p.speed*dir+(jump?5:0);p.lastRail=p.rail.id;p.airSince=s.time;p.rail=null;p.latch=null;p.hookCooldown=.14;p.hookRequest=0;p.grounded=false;emit(s,'release');}
-export function reverseRail(s){if(!s.p.rail)return;s.p.rail.dir*=-1;s.p.speed=Math.max(7,s.p.speed*.72);s.stats.reversals++;emit(s,'reverse');}
-export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.reload>0||p.ammo<=0||s.won)return false;const head={x:p.x,y:p.y+1.6,z:p.z};let o=head,d=forward(p.yaw,p.pitch);
+export function reverseRail(s){if(!s.p.rail)return;s.p.rail.dir*=-1;s.p.speed=Math.max(7,s.p.speed*.35);s.stats.reversals++;emit(s,'reverse');}
+export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.reload>0||s.won)return false;if(p.ammo<=0){if(s.time-s.skirmish.dryAt>.2){s.skirmish.dryAt=s.time;emit(s,'dry-fire');}return false;}const head={x:p.x,y:p.y+eyeHeight(p),z:p.z},kick=s.skirmish.recoil;let o=head,d=forward(p.yaw+kick.x,p.pitch+kick.y);
  if(aim){if(!aim.origin||!aim.direction||!['x','y','z'].every(k=>Number.isFinite(aim.origin[k])&&Number.isFinite(aim.direction[k])))return false;const len=Math.hypot(aim.direction.x,aim.direction.y,aim.direction.z);if(len<.001||distance(head,aim.origin)>2.5||!clearLine(head,aim.origin))return false;o={...aim.origin};d={x:aim.direction.x/len,y:aim.direction.y/len,z:aim.direction.z/len};}
  p.shoot=w.delay;p.ammo--;s.kit.mags[p.weapon]=p.ammo;s.stats.shots++;
  const across={x:d.z,y:0,z:-d.x},al=Math.hypot(across.x,across.z)||1;across.x/=al;across.z/=al;const up={x:across.z*d.y,y:across.x*d.z-across.z*d.x,z:-across.x*d.y};
  for(let pellet=0;pellet<w.pellets;pellet++){
-  const a=(s.stats.shots*2.399+pellet*2.399),spread=w.spread*(p.scoped?(w.id==='sniper'?0:.28):1)*(p.grounded?1:1.45),rad=w.pellets>1?(pellet===0?0:spread):spread*.45,dx=Math.cos(a)*rad,dy=Math.sin(a)*rad;
+  const a=(s.stats.shots*2.399+pellet*2.399),spread=w.spread*(p.scoped?(w.id==='sniper'?(Math.hypot(p.vx,p.vz)>2?.45:0):.28):1)*(p.crouched?.65:1)*(1+Math.min(2,Math.hypot(p.vx,p.vz)/8))*(p.grounded?1:1.45),rad=w.pellets>1?(pellet===0?0:spread):spread*.45,dx=Math.cos(a)*rad,dy=Math.sin(a)*rad;
   const v={x:d.x+across.x*dx+up.x*dy,y:d.y+up.y*dy,z:d.z+across.z*dx+up.z*dy},len=Math.hypot(v.x,v.y,v.z);for(const k of['x','y','z'])v[k]/=len;
   let limit=w.range,hit=null,critical=false;for(const b of stateSolids(s)){const t=rayBox(o,v,b,limit);if(t!==null)limit=t;}
-  for(const bot of s.drones){if(bot.hp<=0)continue;const body=raySphere(o,v,bot,bot.humanoid?(bot.kind==='breacher'?.67:.49):bot.kind==='heavy'?1.5:1.15),headHit=raySphere(o,v,{x:bot.x,y:bot.y+(bot.humanoid?.67:.55),z:bot.z},bot.humanoid?.25:.31),t=bot.humanoid?Math.min(body??Infinity,headHit??Infinity):body;if(t!==null&&t<limit){limit=t;hit=bot;critical=headHit!==null;}}
+  for(const bot of s.drones){if(bot.hp<=0||bot.allyUntil>s.time)continue;const body=raySphere(o,v,bot,bot.humanoid?(bot.kind==='breacher'?.67:.49):bot.kind==='heavy'?1.5:1.15),headHit=raySphere(o,v,{x:bot.x,y:bot.y+(bot.humanoid?.67:.55),z:bot.z},bot.humanoid?.25:.31),t=bot.humanoid?Math.min(body??Infinity,headHit??Infinity):body;if(t!==null&&t<limit){limit=t;hit=bot;critical=headHit!==null;}}
   if(hit){const falloff=w.id==='scatter'?Math.max(.25,1-limit/40):1,damage=w.damage*falloff*(critical?1.6:1)*tactical.multiplier(s,hit);tactical.onHit(s,hit);hit.hp-=damage;hit.stun=Math.max(hit.stun,w.id==='sniper'?.5:.16);s.stats.hits++;if(critical)s.stats.critical++;if(hit.hp<=0)defeated(s,hit);else emit(s,'hit',{id:hit.id,damage,critical});}
-  emit(s,'shot',{weapon:w.id,o,end:{x:o.x+v.x*limit,y:o.y+v.y*limit,z:o.z+v.z*limit},hit:!!hit,critical});
- }return true;
+  emit(s,'shot',{weapon:w.id,o,end:{x:o.x+v.x*limit,y:o.y+v.y*limit,z:o.z+v.z*limit},hit:!!hit,critical}); }skirmish.recoil(s);return true;
 }
 export function pulse(s){const p=s.p;if(p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b,s)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){defeated(s,b);}}emit(s,'pulse',{hits:n});return true;}
-export function rescue(s,death=false){tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,climb:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];emit(s,'rescue',{death});}
-function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;let left=amount;if(p.shield>0){const k=Math.min(left,p.shield);p.shield-=k;left-=k;}p.health-=left;s.damagedAt=s.time;emit(s,'damage');if(p.health<=0)rescue(s,true);}
-export function occupied(x,y,z,state=null){return (state?stateSolids(state):SOLIDS).some(b=>(!b.deck||y<b.y2-.8)&&x+.38>b.x1&&x-.38<b.x2&&y+1.8>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2)||bridgeBarrier(BRIDGES,x,y,z)||balconyBarrier(x,y,z);}
+export function rescue(s,death=false){tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,climb:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];skirmish.abort(s);emit(s,'rescue',{death});}
+function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;const shieldBefore=p.shield;let left=amount;if(p.shield>0){const k=Math.min(left,p.shield);p.shield-=k;left-=k;}p.health-=left;s.damagedAt=s.time;if(shieldBefore>0&&p.shield===0)emit(s,'shield-break');emit(s,'damage');if(p.health<=0)rescue(s,true);}
+export function occupied(x,y,z,state=null){return (state?stateSolids(state):SOLIDS).some(b=>(!b.deck||y<b.y2-.8)&&x+.38>b.x1&&x-.38<b.x2&&y+(state?.p?.crouched?1.04:1.8)>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2)||bridgeBarrier(BRIDGES,x,y,z)||balconyBarrier(x,y,z);}
 export function step(s,input,dt){
  if(s.won)return;dt=clamp(dt,0,.025);s.time+=dt;const p=s.p;
- for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload-=dt;if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
+ for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload-=dt;if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;emit(s,'reload-end',{weapon:w.id});}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
  if(p.gliding&&(p.grounded||p.rail||p.glideCharge<=0))foldGlide(s,p.glideCharge<=0?'empty':'landed');
  if(!p.gliding&&(p.grounded||p.rail))p.glideCharge=Math.min(GLIDE.capacity,p.glideCharge+GLIDE.recharge*dt);
- if(input.reload&&p.ammo<weaponStats(s).mag&&p.reload<=0&&(p.weapon==='arc'||s.kit.reserve[p.weapon]>0))p.reload=weaponStats(s).reload;
+ if(input.reload)reloadWeapon(s);
  const riding=!!p.ride;expedition.moveTransits(s,dt);
  if(riding){/* Passenger movement is integrated by the actual cabin route. */}
  else if(p.climb){climbing.step(s,input,dt);}
- else if(p.rail){const r=RAILS.find(r=>r.id===p.rail.id);p.speed=clamp(p.speed+(input.back?-16:input.boost?15:p.speed>19?-3:4)*dt,3,input.boost||p.speed>19?28:19);const old=p.rail.s;p.rail.s=clamp(old+p.speed*p.rail.dir*dt,0,r.length);s.stats.railDistance+=Math.abs(old-p.rail.s);const q=pointOnRail(r,p.rail.s);if(p.latch){p.latch.t+=dt;const f=Math.min(1,p.latch.t/.18);p.x=p.latch.x+(q.x-p.latch.x)*f;p.y=p.latch.y+(q.y-2.65-p.latch.y)*f;p.z=p.latch.z+(q.z-p.latch.z)*f;if(f===1)p.latch=null;}else{p.x=q.x;p.y=q.y-2.65;p.z=q.z;}
+ else if(p.rail){const r=RAILS.find(r=>r.id===p.rail.id);const tune=RAIL_TUNING,back=input.back||input.moveZ<-.4,throttle=input.forward||input.moveZ>.3;let desired=back?tune.brake:input.boost?tune.boost:throttle?tune.accelerate:tune.cruise;const left=p.rail.dir>0?r.length-p.rail.s:p.rail.s;desired=Math.min(desired,Math.sqrt(tune.arrival*tune.arrival+2*tune.braking*Math.max(0,left-1)));const rate=p.speed>desired?tune.braking:input.boost?tune.boostAcceleration:tune.acceleration;p.speed+=clamp(desired-p.speed,-rate*dt,rate*dt);if(!back)p.rail.reverseLatched=false;if(back&&p.speed<=6&&!p.rail.reverseLatched){reverseRail(s);p.rail.reverseLatched=true;}const old=p.rail.s;p.rail.s=clamp(old+p.speed*p.rail.dir*dt,0,r.length);s.stats.railDistance+=Math.abs(old-p.rail.s);const q=pointOnRail(r,p.rail.s);if(p.latch){p.latch.t+=dt;const f=Math.min(1,p.latch.t/.18);p.x=p.latch.x+(q.x-p.latch.x)*f;p.y=p.latch.y+(q.y-2.65-p.latch.y)*f;p.z=p.latch.z+(q.z-p.latch.z)*f;if(f===1)p.latch=null;}else{p.x=q.x;p.y=q.y-2.65;p.z=q.z;}
   if(input.railCamera===true&&!p.scoped){const yaw=Math.atan2(q.tangent.x*p.rail.dir,-q.tangent.z*p.rail.dir),delta=Math.atan2(Math.sin(yaw-p.yaw),Math.cos(yaw-p.yaw));p.yaw+=delta*Math.min(1,dt*2.5);}
   if(p.rail.s===0||p.rail.s===r.length){const end=p.rail.s===0?r.from:r.to;detach(s,false);p.vx=p.vz=0;const floor=groundAt(p.x,p.z,p.y+1);if(Number.isFinite(floor.y)){p.y=floor.y+.01;p.grounded=true;}expedition.railArrival(s,r.id);emit(s,'arrive',{district:end});}
  }else{
-  const f=forward(p.yaw),rx=Math.cos(p.yaw),rz=Math.sin(p.yaw),ix=Number.isFinite(input.moveX)?clamp(input.moveX,-1,1):(input.right?1:0)-(input.left?1:0),iz=Number.isFinite(input.moveZ)?clamp(input.moveZ,-1,1):(input.forward?1:0)-(input.back?1:0),len=Math.max(1,Math.hypot(ix,iz)),speed=(input.boost?10.5:6.5)*(p.scoped?.55:1);
+  const f=forward(p.yaw),rx=Math.cos(p.yaw),rz=Math.sin(p.yaw),ix=Number.isFinite(input.moveX)?clamp(input.moveX,-1,1):(input.right?1:0)-(input.left?1:0),iz=Number.isFinite(input.moveZ)?clamp(input.moveZ,-1,1):(input.forward?1:0)-(input.back?1:0),len=Math.max(1,Math.hypot(ix,iz)),speed=(p.crouched?3.1:input.boost?10.5:6.5)*(p.scoped?.70:1);
   const targetX=(f.x*iz+rx*ix)/len*speed,targetZ=(f.z*iz+rz*ix)/len*speed,blend=1-Math.exp(-dt*(p.grounded?14:2.2));if(p.gliding)glideVelocity(p,input,dt);else{p.vx+=(targetX-p.vx)*blend;p.vz+=(targetZ-p.vz)*blend;}
   const oldY=p.y,oldX=p.x,oldZ=p.z,was=p.grounded;const nx=p.x+p.vx*dt,nz=p.z+p.vz*dt;if(!occupied(nx,p.y,p.z,s))p.x=nx;else p.vx=0;if(!occupied(p.x,p.y,nz,s))p.z=nz;else p.vz=0;
   const floor=groundAt(p.x,p.z,oldY+(was?.55:0));if(!p.gliding)p.vy-=18*dt;const nextY=p.y+p.vy*dt;if(p.vy>0&&occupied(p.x,nextY,p.z,s))p.vy=0;else p.y=nextY;p.grounded=false;
@@ -200,16 +205,16 @@ export function step(s,input,dt){
   const b=s.drones[i];if(b.hp<=0||b.kind==='target'||b.tactical||b.humanoid)continue;b.stun=Math.max(0,b.stun-dt);if(b.stun>0){b.telegraph=0;continue;}
   const t=s.time*(b.kind==='scout'?.75:.3)+i,amplitude=b.kind==='heavy'?.7:b.kind==='sentry'?0:2.4;
   b.x=b.origin.x+Math.sin(t)*amplitude;b.z=b.origin.z+Math.cos(t*.8)*amplitude;b.y=b.origin.y+Math.sin(t*2)*(b.kind==='heavy'?.07:.45);b.attack-=dt;
-  const range=b.kind==='sentry'?52:30,seen=distance(p,b)<range&&clearLine(b,{x:p.x,y:p.y+1.3,z:p.z});b.telegraph=seen&&b.attack<.8?Math.max(0,1-b.attack/.8):0;
-  if(b.attack<=0&&seen){const to={x:p.x,y:p.y+1.1,z:p.z},len=distance(to,b),n=b.kind==='heavy'?3:1,speed=b.kind==='sentry'?23:13;
+  const range=b.kind==='sentry'?52:30,seen=distance(p,b)<range&&clearLine(b,{x:p.x,y:p.y+(p.crouched?.8:1.3),z:p.z});b.telegraph=seen&&b.attack<.8?Math.max(0,1-b.attack/.8):0;
+  if(b.attack<=0&&seen){const to={x:p.x,y:p.y+(p.crouched?.7:1.1),z:p.z},len=distance(to,b),n=b.kind==='heavy'?3:1,speed=b.kind==='sentry'?23:13;
    for(let k=0;k<n;k++){const offset=(k-(n-1)/2)*.65;s.bullets.push({x:b.x,y:b.y,z:b.z,vx:(to.x-b.x+offset)/len*speed,vy:(to.y-b.y)/len*speed,vz:(to.z-b.z-offset)/len*speed,life:4,damage:b.kind==='heavy'?20:15});}
-   b.attack=b.kind==='sentry'?3.4:b.kind==='heavy'?3:2.4;emit(s,'enemy-shot');
+   b.attack=b.kind==='sentry'?3.4:b.kind==='heavy'?3:2.4;emit(s,'enemy-shot',{at:{x:b.x,y:b.y,z:b.z},kind:b.kind});
   }
  }
- for(let i=s.bullets.length-1;i>=0;i--){const b=s.bullets[i];b.life-=dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;if(distance(b,{x:p.x,y:p.y+1,z:p.z})<.85){hurt(s,(b.damage||15)*(input.explorer?.53:1));b.life=0;}if(b.life<=0||stateSolids(s).some(q=>b.x>q.x1&&b.x<q.x2&&b.y>q.y1&&b.y<q.y2&&b.z>q.z1&&b.z<q.z2))s.bullets.splice(i,1);}
- tactical.step(s,input,dt);expedition.tick(s,dt);
+ for(let i=s.bullets.length-1;i>=0;i--){const b=s.bullets[i],old={x:b.x,y:b.y,z:b.z};b.life-=dt;const speed=Math.hypot(b.vx,b.vy,b.vz)||1,d={x:b.vx/speed,y:b.vy/speed,z:b.vz/speed},travel=speed*dt;let wall=travel+.001;for(const box of stateSolids(s)){const t=rayBox(old,d,box,travel);if(t!==null)wall=Math.min(wall,t);}const height=p.crouched?.65:1.0,radius=p.crouched?.48:.7,hit=raySphere(old,d,{x:p.x,y:p.y+height,z:p.z},radius);if(hit!==null&&hit<=travel&&hit<wall){hurt(s,(b.damage||15)*(input.explorer?.53:1));b.life=0;}else if(wall<=travel){b.life=0;emit(s,'ricochet',{at:{x:old.x+d.x*wall,y:old.y+d.y*wall,z:old.z+d.z*wall}});}b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;if(b.life<=0)s.bullets.splice(i,1);}
+ tactical.step(s,input,dt);expedition.tick(s,dt);skirmish.step(s,dt);
 }
-export function jump(s){if(s.p.climb)return climbing.leave(s,true);if(expedition.jumpOff(s))return true;if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
+export function jump(s){if(s.p.climb)return climbing.leave(s,true);if(expedition.jumpOff(s))return true;if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){if(s.p.crouched&&!skirmish.crouch(s))return false;s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
 
 // Room-scale translation is collision checked independently of joystick motion.
 export function roomMove(s,dx,dz){if(!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>.5||s.p.rail||s.p.ride||s.p.climb)return false;const p=s.p;if(!occupied(p.x+dx,p.y,p.z,s))p.x+=dx;if(!occupied(p.x,p.y,p.z+dz,s))p.z+=dz;return true;}
@@ -218,12 +223,26 @@ export function foldGlide(s,reason='manual'){if(!s.p.gliding)return false;s.p.gl
 export function toggleGlide(s){const p=s.p;if(s.won)return false;if(p.climb)return climbing.leave(s);if(p.gliding)return foldGlide(s);const floor=groundAt(p.x,p.z,p.y);if(p.grounded||p.rail||p.ride||p.climb||p.glideCharge<8||occupied(p.x,p.y,p.z,s)||(Number.isFinite(floor.y)&&p.y-floor.y<1.2))return false;p.gliding=true;s.stats.glides++;emit(s,'glide-open');return true;}
 
 // Public actions: all UI adapters call these guarded model operations.
-export const fieldChoose=(s,id)=>tactical.choose(s,id);
+export const fieldChoose=(s,id)=>{const ok=tactical.choose(s,id);if(ok)skirmish.rememberPower(s,id);return ok;};
 export const fieldModule=(s,id)=>tactical.module(s,id);
-export const fieldCast=(s,aim=null)=>s.tactics.power==='pulse'?pulse(s):tactical.cast(s,aim);
+export const fieldCast=(s,aim=null)=>s.tactics.power==='pulse'?pulse(s):['updraft','override'].includes(s.tactics.power)?skirmish.specialPower(s,s.tactics.power):tactical.cast(s,aim);
 export const fieldScan=(s,aim=null)=>tactical.scan(s,aim);
 export const fieldRotate=(s,i)=>tactical.turn(s,i);
 export const fieldHack=s=>tactical.hack(s);
 export const fieldStart=s=>tactical.start(s);
 export const fieldUnlocked=(s,id)=>tactical.unlocked(s.tactics,id);
 export const fieldTarget=(s,aim=null)=>tactical.target(s,aim,45);
+
+// Controller, mouse and keyboard adapters all share these guarded operations.
+export function reloadWeapon(s){const p=s.p,w=weaponStats(s);if(s.won||p.reload>0||p.ammo>=w.mag||(p.weapon!=='arc'&&s.kit.reserve[p.weapon]<=0))return false;p.reload=w.reload;emit(s,'reload-start',{weapon:w.id,duration:w.reload});return true;}
+export const combatCrouch=s=>skirmish.crouch(s);
+export const combatMelee=s=>skirmish.melee(s);
+export const combatUse=(s,held=false)=>skirmish.use(s,held);
+export const combatTrap=s=>skirmish.trap(s);
+export const combatRiftTarget=s=>skirmish.riftTarget(s);
+export const combatGunNear=s=>skirmish.gunNear(s);
+export const combatPlungeTarget=s=>skirmish.plungeTarget(s);
+export function combatTraverse(s){if(s.p.rail)return skirmish.plunge(s)||jump(s);if(s.p.pitch>.18&&railTarget(s)){const n=nearby(s);if(n?.type==='hook')return interact(s);}return jump(s);}
+export function combatZoom(s){if(s.p.weapon!=='sniper'||!s.p.scoped)return false;s.skirmish.scopeZoom=s.skirmish.scopeZoom===4?8:4;emit(s,'optic',{zoom:s.skirmish.scopeZoom});return true;}
+export function combatRecentPower(s){const a=s.skirmish.recentPowers,id=a[1]||(s.tactics.learned?'current':'pulse');return fieldChoose(s,id);}
+export const combatSnapshot=s=>({crouched:s.p.crouched,carried:[...s.kit.carried],zoom:s.skirmish.scopeZoom,charging:s.skirmish.charging,traps:s.skirmish.traps.map(t=>({...t})),rift:s.skirmish.rift?{...s.skirmish.rift}:null,offer:s.skirmish.offer,aidUsed:s.skirmish.aidUsed,companion:{x:s.skirmish.companion.x,y:s.skirmish.companion.y,z:s.skirmish.companion.z},battle:{...s.skirmish.battle},metrics:{...s.skirmish.metrics},cover:COMBAT_COVER.length,annexes:COMBAT_DECKS.length,gunDrops:s.skirmish.gunDrops.map(g=>({...g})),plunge:s.skirmish.plunge});
