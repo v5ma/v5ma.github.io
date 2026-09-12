@@ -24,7 +24,12 @@ try:
   def wait(expr,timeout=90000):page.wait_for_function(expr,timeout=timeout)
   def state():return page.evaluate('__dinoOptics.state')
   def button(i,on):page.evaluate('([i,on])=>{__pad.buttons[i]={pressed:on,touched:on,value:on?1:0};__pad.timestamp++;}',[i,on])
-  def press(i):button(i,True);page.wait_for_timeout(300);button(i,False);page.wait_for_timeout(300)
+  def press(i):
+   button(i,True)
+   try:page.wait_for_function('(i)=>__dinoRanger.optics.ctx.input.previous[i]===true',arg=i,timeout=30000)
+   finally:button(i,False)
+   page.wait_for_function('(i)=>__dinoRanger.optics.ctx.input.previous[i]===false&&!__dinoRanger.optics.ctx.input.neutral',arg=i,timeout=30000)
+   page.wait_for_timeout(100)
   def focus(id):
    for _ in range(70):
     if page.evaluate('document.activeElement?.id')==id:return
@@ -67,7 +72,7 @@ try:
    menu();focus('night-toggle');press(15);press(1);page.wait_for_timeout(500);shot('04-dusk-lagoon.png')
    check(page.evaluate('__dinoRanger.optics.fx.uniforms.atlasNight.value')==1,'Dusk drives the water color and bioluminescent wake uniforms')
    menu();frozen=state()['clock'];page.wait_for_timeout(700);check(state()['clock']==frozen,'Opening a menu freezes shader time and visual age')
-   focus('motion-toggle');press(15);press(1);page.wait_for_timeout(500);frozen=state()['clock'];page.wait_for_timeout(600)
+   focus('motion-toggle');press(15);wait('__dinoOptics.state.reduced&&__dinoOptics.state.wakes===0&&__dinoOptics.state.shells===0',30000);press(1);wait('!__dinoRanger.state.paused');frozen=state()['clock'];page.wait_for_timeout(600)
    check(state()['clock']==frozen and state()['wakes']==0 and state()['shells']==0,'Reduced Motion freezes wind/time and clears dynamic wake/shell effects')
    menu();focus('motion-toggle');press(14);focus('night-toggle');press(14);focus('quality-select');press(15)
    if page.locator('#quality-select').input_value()!='low':press(14)
