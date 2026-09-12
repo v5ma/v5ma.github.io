@@ -1,0 +1,151 @@
+name: Dino Atlas Crew and Canopy
+on:
+  push:
+    branches: [dino-crew-canopy-20260912, master]
+    paths: ['dino-atlas/**', '.github/workflows/dino-crew-canopy.yml', '.github/patches/crew-canopy.*.b64']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dino-crew-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      revision: ${{ steps.identity.outputs.revision }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ github.ref != 'refs/heads/master' }}
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize checksummed source and licensed assets on the candidate
+        if: github.ref == 'refs/heads/dino-crew-canopy-20260912'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,lzma,hashlib,subprocess
+          parts=sorted(Path('.github/patches').glob('crew-canopy.*.b64'))
+          if parts:
+              assert len(parts)==4
+              assert hashlib.sha256(Path('dino-atlas/ranger.js').read_bytes()).hexdigest()=='fb5607a0ff51c840ff36c7d05dcf1549c21792535f68173fbea14ff7398e49a6','Baseline changed; review before applying'
+              patch=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
+              assert hashlib.sha256(patch).hexdigest()=='a3762cff05e66a69ddcfcfc64509d5def95cb5d7bfb1830adff35f517041feec','Transport checksum mismatch'
+              target=Path('/tmp/crew.patch');target.write_bytes(patch)
+              stats=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
+              assert all(line.split('\t')[-1].startswith('dino-atlas/') for line in stats.splitlines())
+              subprocess.run(['git','apply','--check',str(target)],check=True)
+              subprocess.run(['git','apply','--index',str(target)],check=True)
+              subprocess.run(['python','dino-atlas/tools/build-crew-assets.py'],check=True)
+              subprocess.run(['git','rm',*[str(p) for p in parts],'.github/workflows/dino-crew-assets.yml'],check=True)
+              subprocess.run(['git','add','dino-atlas'],check=True)
+              subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
+              subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
+              subprocess.run(['git','commit','-m','Implement CC0 animated staff, original Fieldlight shaders and Northstar Canopy Circuit'],check=True)
+              subprocess.run(['git','push','origin','HEAD:dino-crew-canopy-20260912'],check=True)
+          else:
+              print('Testing direct committed source and assets; no transport remains.')
+          PY
+      - name: Test source, physics, saves and asset provenance
+        run: |
+          set -euo pipefail
+          mkdir -p crew-evidence
+          find dino-atlas -maxdepth 1 -name '*.js' -exec node --check {} \;
+          python -m compileall -q dino-atlas/tests
+          node --test dino-atlas/tests/*.test.mjs | tee crew-evidence/model-tests.tap
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          root=Path('dino-atlas');files=[p for p in root.iterdir() if p.is_file() and p.suffix in ('.js','.html','.css','.md')]
+          files += [p for name in ('assets','vendor') for p in (root/name).rglob('*') if p.is_file()]
+          m={'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
+          Path('crew-evidence/runtime-hashes.json').write_text(json.dumps(m,indent=2))
+          PY
+      - name: Match public runtime and locally hosted assets
+        if: github.ref == 'refs/heads/master'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlopen,Request
+          from concurrent.futures import ThreadPoolExecutor
+          import json,hashlib,time
+          m=json.loads(Path('crew-evidence/runtime-hashes.json').read_text())
+          def check(item):
+              path,sha=item
+              try:
+                  data=urlopen(Request('https://v5ma.github.io/'+path+'?verify='+m['commit'],headers={'Cache-Control':'no-cache'}),timeout=25).read()
+                  return path if hashlib.sha256(data).hexdigest()!=sha else None
+              except Exception:return path
+          bad=list(m['files'])
+          for attempt in range(30):
+              with ThreadPoolExecutor(max_workers=8) as pool:bad=[v for v in pool.map(check,[(p,m['files'][p]) for p in bad]) if v]
+              if not bad:break
+              print('Awaiting matching deployment:',bad,flush=True);time.sleep(10)
+          assert not bad,bad
+          Path('crew-evidence/public-bytes.json').write_text(json.dumps({'commit':m['commit'],'matched_files':len(m['files']),'url':'https://v5ma.github.io/dino-atlas/'},indent=2))
+          PY
+      - name: Identify the exact tested source
+        id: identity
+        if: success()
+        run: echo "revision=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Preserve source and identity
+        if: always()
+        run: |
+          mkdir -p crew-evidence
+          git rev-parse HEAD > crew-evidence/tested-commit.txt
+          tar -czf crew-evidence/source.tgz dino-atlas
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: crew-canopy-models-and-source
+          path: crew-evidence
+          retention-days: 14
+  rendered:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [crew-browser.py, northstar-browser.py, aaa-browser.py, living-herds-browser.py]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.revision }}
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+      - name: Install native browser runner
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Play committed or published source with synthetic Xbox input
+        env:
+          SUITE: ${{ matrix.suite }}
+          DINO_TEST_BASE: ${{ github.ref == 'refs/heads/master' && 'https://v5ma.github.io/dino-atlas/' || '' }}
+        run: |
+          if [ -z "$DINO_TEST_BASE" ]; then unset DINO_TEST_BASE; fi
+          python -u "dino-atlas/tests/$SUITE"
+      - name: Record tested identity
+        if: always()
+        run: |
+          mkdir -p crew-evidence
+          git rev-parse HEAD > crew-evidence/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: crew-canopy-${{ matrix.suite }}
+          path: |
+            crew-evidence
+            northstar-evidence
+            aaa-evidence
+            herds-evidence
+          retention-days: 14
