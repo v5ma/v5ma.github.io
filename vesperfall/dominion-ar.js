@@ -21,9 +21,7 @@
   g.build=function(){build();if(g.arMode){g.rig.position.set(0,0,0);transparent();}};
   g.walkInput=function(...args){if(!g.arMode)return walk(...args);};g.turn=angle=>{if(!g.arMode)turn(angle);};
   g.arsenal.shard=function(...args){if(g.arMode){g.toast('AR Sanctuary is stationary. Use physical dodge or shield.');return false;}return shard(...args);};
-  // xrControls closes over its original shard function, so suppress only that
-  // button inside AR while keeping physical draw and the shield intact.
-  const xrTools=g.arsenal.xrControls;g.arsenal.xrControls=function(bow,draw,rise,bowName,drawName){if(!g.arMode)return xrTools(bow,draw,rise,bowName,drawName);const safe={...draw,buttons:draw.buttons.map((b,i)=>i===1?false:b)};return xrTools(bow,safe,(name,i)=>name===drawName&&i===1?false:rise(name,i),bowName,drawName);};
+
   g.setType=function(value){if(g.arMode&&value==='blink'){g.toast('Blink is disabled in stationary AR Sanctuary.');return;}type(value);};
   const visuals=g.visuals.bind(g);g.visuals=function(){visuals();if(g.arMode){transparent();$('expedition-progress').textContent='AR SANCTUARY / WAVE '+wave+' / UNSCORED / STATIONARY';g.teleLine.visible=g.teleRing.visible=false;if(g.game.phase==='playing'&&!g.game.world.enemies.some(e=>!e.dead)&&g.training)g.xrNotice='Wave cleared. Open the menu to begin another wave or choose a trial.';}};
   lighting.addEventListener('change',transparent);

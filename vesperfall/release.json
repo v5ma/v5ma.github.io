@@ -1,8 +1,8 @@
 {
-  "version": "0.7.0",
-  "name": "hollow-dominions",
+  "version": "0.8.0",
+  "name": "resonant-hunt",
   "date": "2026-09-11",
-  "scope": "25 districts; 12 new enemy archetypes; 8 additional high walks; 16 outer galleries; 2 additional crowns; Xbox and Quest spatial menus; immersive-ar Sanctuary with suspended expedition restoration.",
-  "saveCompatibility": "Existing vesperfall-profile-v1 is preserved.",
-  "hardwareStatus": "Desktop and emulated Xbox/WebXR acceptance; physical Quest 3 and real-controller comfort/performance require hardware playtesting."
+  "scope": "Five original adaptive score arrangements; spatial, occluded combat sound; independent audio buses and quiet mix; tracked palm familiar; physical crossbow reload and pickup pull; controller-operated bounded slow-time quiver; ricochet arrows and permanent Mirror Thread unlock. Preserves Hollow Dominions, Xbox, VR and stationary AR Sanctuary.",
+  "saveCompatibility": "Existing vesperfall-profile-v1, renown, purchases, Chronicle rewards and AR-suspended expeditions are preserved. New hit totals start at zero when absent.",
+  "hardwareStatus": "Software browser and emulated-controller acceptance are used for publication. Real Quest 3 controller ergonomics, comfort, audio localization and performance still require physical hardware playtesting."
 }

@@ -2,8 +2,9 @@
  * eligible. Existing v1 renown, heart/power purchases and records are retained.
  * Client records are editable and are not a secure leaderboard. */
 (function(root){'use strict';
- const FIELDS=['kills','headshots','blocks','blinks','sectors'];
+ const FIELDS=['kills','hits','headshots','blocks','blinks','sectors'];
  const TASKS=[
+  {id:'ricochet',field:'hits',goal:20,label:'Mirror Thread',reward:'Bank 20 arrow hits to add ricochet arrows to future quivers and supply drops.'},
   {id:'volley',field:'kills',goal:5,label:'Choirbreaker',reward:'Start future runs with four three-arrow volleys.'},
   {id:'quickwind',field:'headshots',goal:3,label:'Steady Hand',reward:'Crossbow reload becomes 1.05 s instead of 1.55 s.'},
   {id:'wardglass',field:'blocks',goal:5,label:'Unbroken',reward:'Start with 120 guard instead of 100.'},

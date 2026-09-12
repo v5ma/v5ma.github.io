@@ -39,7 +39,7 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/unchained-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          if [ "$UNCHAINED_SUITE" = launch ]; then timeout 1000 python -u vesperfall/tests/launch.py; elif [ "$UNCHAINED_SUITE" = combat ]; then timeout 1000 python -u vesperfall/tests/unchained-combat.py; else timeout 1000 python -u vesperfall/tests/unchained-browser.py; fi
+          if [ "$UNCHAINED_SUITE" = launch ]; then timeout 1000 python -u vesperfall/tests/launch.py; elif [ "$UNCHAINED_SUITE" = combat ]; then timeout 1000 python -u vesperfall/tests/functional-runner.py unchained-combat.py; else timeout 1000 python -u vesperfall/tests/unchained-browser.py; fi
       - name: Record tested source and failures honestly
         if: always()
         run: |

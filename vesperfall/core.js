@@ -2,7 +2,7 @@
  * Static collision geometry also drives rendering. All projectile hits sweep
  * between positions so a fast arrow cannot tunnel through a thin wall. */
 (function(root){'use strict';
- const VERSION='0.7.0',G=9.8,R=.28;
+ const VERSION='0.8.0',G=9.8,R=.28;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0),len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
  function hash(text){let h=2166136261;for(const c of String(text).slice(0,64))h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
@@ -23,23 +23,34 @@
  const dominions=root.HollowDominions||(typeof require!=='undefined'?require('./dominions-world.js'):null);
  function generate(seed,depth=1){return dominions.expand(architecture.augment(districts.generate(seed,depth,{hash,rng,shuffle,rect,route})),{hash,rng,shuffle,rect,route});}
  function drawState(bow,string,maxDraw=.56){if(!bow||!string||!bow.every(Number.isFinite)||!string.every(Number.isFinite))return null;const v=sub(bow,string),d=len(v);if(d<.045||d>1.05)return null;return {direction:unit(v),charge:clamp((d-.08)/clamp(maxDraw,.3,.75),0,1),distance:d};}
- function create(seed='BELL-01',depth=1,upgrades={}){const world=generate(seed,depth);if(upgrades.challenge==='nightfall')for(const e of world.enemies){e.hp=Math.round(e.hp*1.3);e.maxHp=e.hp;e.speed*=1.15;}return {world,p:[...world.start],head:[0,1.65,3],health:100+(upgrades.heart?15:0),maxHealth:100+(upgrades.heart?15:0),power:upgrades.power?1.08:1,phase:'playing',time:0,playerSlow:0,hazards:[],discovered:new Set([1]),orders:new Set(),sideRewards:new Set(),arrows:[],bolts:[],sparks:[],events:[],score:0,kills:0,shots:0,hits:0,blinkCD:0,invuln:0,ammo:{cinder:4,frost:6,volley:upgrades.volley?4:0},type:'plain',finished:false,portalReady:false,damageTaken:0,targets:new Set(),weapon:'bow',crossbow:{loaded:true,reload:0},guard:upgrades.wardglass?120:100,maxGuard:upgrades.wardglass?120:100,guardLock:0,shield:null,shardCharges:upgrades.wayfarer?3:2,maxShards:upgrades.wayfarer?3:2,shardRecharge:0,shardCD:0,volleyUnlocked:!!upgrades.volley,quickwind:!!upgrades.quickwind,headshots:0,blocks:0,blinks:0,shardsUsed:0,sectors:0,challenge:upgrades.challenge==='nightfall'};}
+ function addRicochetLoot(world){world.pickups.filter(p=>p.kind==='cinder').slice(0,3).forEach(p=>{p.kind='ricochet';p.label='Mirror-thread arrows';});}
+ function wallNormal(p,box,velocity){let best=Infinity,normal=[0,0,0];for(let k=0;k<3;k++)for(const sign of[-1,1]){const d=Math.abs(p[k]-(sign<0?box.min[k]-.02:box.max[k]+.02));if(d<best&&velocity[k]*sign<0){best=d;normal=[0,0,0];normal[k]=sign;}}if(best===Infinity)return mul(unit(velocity),-1);return normal;}
+ function collectPickup(s,index,origin,reach=1.2){const item=s.world.pickups[index];if(s.phase!=='playing'||!item||item.taken||!Array.isArray(origin)||origin.length!==3||!origin.every(Number.isFinite)||!Number.isFinite(reach))return false;
+  if(len(sub(origin,s.head))>1.6||len(sub(item.p,origin))>clamp(reach,.2,7.5)||segmentBlocked(s.world,s.head,origin,.01)||segmentBlocked(s.world,origin,item.p,.01))return false;
+  return grantPickup(s,item);
+ }
+ function grantPickup(s,item){if(item.taken)return false;if(item.kind==='health')s.health=Math.min(s.maxHealth,s.health+25);else if(item.kind==='relic'){s.score+=100;s.health=Math.min(s.maxHealth,s.health+12);}else if(Object.hasOwn(s.ammo,item.kind))s.ammo[item.kind]+=3;else return false;item.taken=true;emit(s,'pickup',{kind:item.kind,label:item.label||'',reward:item.kind==='relic'?100:0,p:[...item.p]});return true;}
+
+ function create(seed='BELL-01',depth=1,upgrades={}){const world=generate(seed,depth);if(upgrades.challenge==='nightfall')for(const e of world.enemies){e.hp=Math.round(e.hp*1.3);e.maxHp=e.hp;e.speed*=1.15;}if(upgrades.ricochet)addRicochetLoot(world);return {world,p:[...world.start],head:[0,1.65,3],health:100+(upgrades.heart?15:0),maxHealth:100+(upgrades.heart?15:0),power:upgrades.power?1.08:1,phase:'playing',time:0,playerSlow:0,hazards:[],discovered:new Set([1]),orders:new Set(),sideRewards:new Set(),arrows:[],bolts:[],sparks:[],events:[],score:0,kills:0,shots:0,hits:0,blinkCD:0,invuln:0,ammo:{cinder:4,frost:6,volley:upgrades.volley?4:0,ricochet:upgrades.ricochet?4:0},type:'plain',finished:false,portalReady:false,damageTaken:0,targets:new Set(),weapon:'bow',crossbow:{loaded:true,reload:0},guard:upgrades.wardglass?120:100,maxGuard:upgrades.wardglass?120:100,guardLock:0,shield:null,shardCharges:upgrades.wayfarer?3:2,maxShards:upgrades.wayfarer?3:2,shardRecharge:0,shardCD:0,volleyUnlocked:!!upgrades.volley,ricochetUnlocked:!!upgrades.ricochet,quickwind:!!upgrades.quickwind,headshots:0,blocks:0,blinks:0,shardsUsed:0,sectors:0,challenge:upgrades.challenge==='nightfall'};}
  function emit(s,type,data={}){s.eventSeq=(s.eventSeq||0)+1;s.events.push({seq:s.eventSeq,type,time:s.time,...data});if(s.events.length>160)s.events.shift();}
  function fire(s,origin,direction,charge,type=s.type){
   if(s.phase!=='playing'||!Number.isFinite(charge)||origin.length!==3||direction.length!==3||!origin.every(Number.isFinite)||!direction.every(Number.isFinite)||Math.abs(len(direction)-1)>.01||charge<.08)return false;
   if(s.shield||s.guardLock>0||s.crossbow?.reload>0)return false;
-  if(!['plain','cinder','frost','blink','volley'].includes(type))return false;if(type==='blink'&&s.blinkCD>0)return false;if(type in s.ammo&&s.ammo[type]<=0)return false;
+  if(!['plain','cinder','frost','blink','volley','ricochet'].includes(type))return false;if(type==='blink'&&s.blinkCD>0)return false;if(type in s.ammo&&s.ammo[type]<=0)return false;
   if(segmentBlocked(s.world,s.head,origin)||floorAt(s.world,s.p)===null)return false;
   if(type==='volley'&&(!s.volleyUnlocked||!(s.ammo.volley>0)))return false;
+  if(type==='ricochet'&&!s.ricochetUnlocked)return false;
   const crossbow=s.weapon==='crossbow';if(crossbow&&!s.crossbow.loaded)return false;if(crossbow)charge=.9;
   charge=clamp(charge,0,1);if(crossbow)s.crossbow.loaded=false;if(type in s.ammo)s.ammo[type]--;if(type==='blink')s.blinkCD=.85;else s.shots++;
-  const speed=type==='blink'?7+charge*10:crossbow?38:12+charge*24,arrow={p:[...origin],v:mul(direction,speed),type,damage:(crossbow?66:24+charge*48)*s.power,life:4,dead:false};if(type==='volley'){arrow.damage*=.55;for(const sign of[-1,1]){const a=sign*.075,c=Math.cos(a),sn=Math.sin(a),v=arrow.v;s.arrows.push({...arrow,p:[...origin],v:[v[0]*c-v[2]*sn,v[1],v[0]*sn+v[2]*c]});}}
-  s.arrows.push(arrow);while(s.arrows.length>48)s.arrows.shift();emit(s,'shot',{arrow:type,charge});return true;
+  const speed=type==='blink'?7+charge*10:crossbow?38:12+charge*24,arrow={p:[...origin],v:mul(direction,speed),type,damage:(crossbow?66:24+charge*48)*s.power,life:4,dead:false,bounces:type==='ricochet'?2:0};if(type==='volley'){arrow.damage*=.55;for(const sign of[-1,1]){const a=sign*.075,c=Math.cos(a),sn=Math.sin(a),v=arrow.v;s.arrows.push({...arrow,p:[...origin],v:[v[0]*c-v[2]*sn,v[1],v[0]*sn+v[2]*c]});}}
+  s.arrows.push(arrow);while(s.arrows.length>48)s.arrows.shift();emit(s,'shot',{arrow:type,charge,weapon:s.weapon,origin:[...origin],direction:[...direction]});return true;
  }
  function move(s,dx,dz){if(s.phase!=='playing'||!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>5)return;if(s.playerSlow>0){dx*=.55;dz*=.55;}const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.15));for(let i=0;i<n;i++){const x=s.p[0]+dx/n,z=s.p[2]+dz/n;if(walkable(s.world,[x,s.p[1],s.p[2]])){s.p[0]=x;s.p[1]=floorAt(s.world,s.p);}if(walkable(s.world,[s.p[0],s.p[1],z])){s.p[2]=z;s.p[1]=floorAt(s.world,s.p);}}}
  function blink(s,p){if(!landing(s,p).ok)return false;s.p=[p[0],floorAt(s.world,p),p[2]];s.invuln=Math.max(s.invuln,.25);s.blinks++;emit(s,'blink',{p:[...s.p]});return true;}
- function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;if(head)s.headshots++;e.hp-=amount;e.aware=true;if(type==='frost'){e.slow=4;e.frozen=e.kind==='warden'?.65:1.35;e.wind=0;e.charge=null;e.recovery=.4;}s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.orders?.add(e.kind);s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind,head});}else emit(s,'hit',{id:e.id,head});}
+ function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;if(head)s.headshots++;e.hp-=amount;e.aware=true;if(type==='frost'){e.slow=4;e.frozen=e.kind==='warden'?.65:1.35;e.wind=0;e.charge=null;e.recovery=.4;}s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.orders?.add(e.kind);s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}else emit(s,'hit',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}
  function strike(s,a,hit){
+  if(hit.kind==='wall'&&a.type==='ricochet'&&a.bounces>0){const normal=wallNormal(hit.p,hit.box,a.v);a.v=mul(sub(a.v,mul(normal,2*dot(a.v,normal))),.82);a.p=add(hit.p,mul(normal,.055));a.bounces--;a.damage*=.7;s.sparks.push({p:[...hit.p],life:.3,type:'ricochet'});emit(s,'ricochet',{p:[...hit.p],remaining:a.bounces});return;}
+  if(hit.kind==='wall'||hit.kind==='floor')emit(s,'impact',{p:[...hit.p],surface:hit.kind,arrow:a.type});
   if(hit.kind==='enemy'){s.hits++;damageEnemy(s,hit.enemy,a.damage*(hit.head?1.5:1),a.type,hit.head);}
   else if(hit.kind==='guard'){s.sparks.push({p:hit.p,life:.38,type:'guard'});emit(s,'enemy-deflect',{id:hit.enemy.id,p:hit.p});}
   else if(hit.kind==='target'){if(!s.targets.has(hit.id)){s.targets.add(hit.id);s.score+=10;emit(s,'target',{id:hit.id});}}
@@ -53,7 +64,7 @@
   s.sparks.push({p:hit.p,life:.3,type:a.type});a.dead=true;
  }
  function probe(s,a,next){const old=a.p;let best=null;const candidate=(t,h)=>{if(t!==null&&t>=0&&t<=1&&(!best||t<best.t))best={t,...h};};
-  for(const b of s.world.solids)candidate(boxHit(old,next,b,.02),{kind:'wall'});
+  for(const b of s.world.solids)candidate(boxHit(old,next,b,.02),{kind:'wall',box:b});
   if(a.type!=='blink'){
    for(const e of s.world.enemies)if(!e.dead){
     if(encounters.guardActive(e)){
@@ -83,7 +94,7 @@
   }return {points,ok:false,reason:'no landing in range'};
  }
  function setWeapon(s,type){if(!['bow','crossbow'].includes(type)||s.phase!=='playing')return false;s.weapon=type;emit(s,'equip',{weapon:type});return true;}
- function reload(s){if(s.phase!=='playing'||s.weapon!=='crossbow'||s.crossbow.loaded||s.crossbow.reload>0||s.shield)return false;s.crossbow.reload=s.quickwind?1.05:1.55;emit(s,'reload');return true;}
+ function reload(s,physical=false){if(s.phase!=='playing'||s.weapon!=='crossbow'||s.crossbow.loaded||s.crossbow.reload>0||s.shield)return false;s.crossbow.reload=physical?(s.quickwind?.35:.48):(s.quickwind?1.05:1.55);s.crossbow.reloadDuration=s.crossbow.reload;emit(s,'reload',{physical:!!physical});return true;}
  function shield(s,pose){if(!pose){s.shield=null;return false;}if(s.phase!=='playing'||s.guard<=0||s.guardLock>0||!pose.p||!pose.normal||pose.p.length!==3||pose.normal.length!==3||![...pose.p,...pose.normal].every(Number.isFinite)||len(sub(pose.p,s.head))>1.35||Math.abs(len(pose.normal)-1)>.01||segmentBlocked(s.world,s.head,pose.p)) {s.shield=null;return false;}
   s.shield={p:[...pose.p],normal:[...pose.normal],radius:.62};return true;
  }
@@ -104,7 +115,7 @@
   if(s.shardCharges<s.maxShards){s.shardRecharge-=dt;if(s.shardRecharge<=0){s.shardCharges++;s.shardRecharge=3.5;}}
 
   for(const a of s.arrows)arrowStep(s,a,dt);s.arrows=s.arrows.filter(a=>!a.dead);
-  for(const p of s.world.pickups)if(!p.taken&&Math.hypot(p.p[0]-s.p[0],p.p[2]-s.p[2])<1&&Math.abs(p.p[1]-(s.p[1]+.3))<.65){p.taken=true;if(p.kind==='health')s.health=Math.min(s.maxHealth,s.health+25);else if(p.kind==='relic'){s.score+=100;s.health=Math.min(s.maxHealth,s.health+12);}else s.ammo[p.kind]+=3;emit(s,'pickup',{kind:p.kind,label:p.label||'',reward:p.kind==='relic'?100:0});}
+  if(!s.manualPickups)s.world.pickups.forEach((p,i)=>{if(!p.taken&&Math.hypot(p.p[0]-s.p[0],p.p[2]-s.p[2])<1&&Math.abs(p.p[1]-(s.p[1]+.3))<.65){const origin=add(s.p,[0,.5,0]);if(!segmentBlocked(s.world,origin,p.p,.01))grantPickup(s,p);}});
   for(const e of s.world.enemies)encounters.update(s,e,dt,enemyAPI);
   dominions.bestiary.hazards(s,dt,enemyAPI);
   for(const b of s.bolts){const end=add(b.p,mul(b.v,dt));const wall=s.world.solids.reduce((v,w)=>{const t=boxHit(b.p,end,w,.06);return t!==null?Math.min(t,v):v;},2),body=sphereHit(b.p,end,s.head,.22),guard=shieldHit(s,b.p,end);if(guard&&guard.t<wall&&(body===null||guard.t<body)){block(s,guard.p);b.life=0;}else if(body!==null&&body<wall){const hp=s.health;hurt(s,b.damage||12);if(s.health<hp&&b.slow)s.playerSlow=Math.max(s.playerSlow||0,b.slow);b.life=0;}else if(wall<=1)b.life=0;b.p=end;b.life-=dt;}s.bolts=s.bolts.filter(b=>b.life>0);
@@ -117,7 +128,7 @@
   if(!s.portalReady&&s.world.enemies.filter(e=>e.required!==false).every(e=>e.dead)){s.portalReady=true;emit(s,'gate-open');}
  }
  function interact(s){const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.abs(s.p[1])<.5&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;s.sectors++;emit(s,'sector-complete');return true;}return false;}
- function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1,{challenge:s.challenge?'nightfall':'normal'});n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.weapon=s.weapon;n.quickwind=s.quickwind;n.volleyUnlocked=s.volleyUnlocked;n.ammo.volley=(s.ammo.volley||0)+(s.volleyUnlocked?3:0);n.maxGuard=s.maxGuard;n.guard=n.maxGuard;n.maxShards=s.maxShards;n.shardCharges=n.maxShards;for(const key of['headshots','blocks','blinks','shardsUsed','sectors'])n[key]=s[key];n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
+ function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1,{challenge:s.challenge?'nightfall':'normal'});n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.ricochetUnlocked=s.ricochetUnlocked;n.ammo.ricochet=(s.ammo.ricochet||0)+(s.ricochetUnlocked?3:0);if(s.ricochetUnlocked)addRicochetLoot(n.world);n.weapon=s.weapon;n.quickwind=s.quickwind;n.volleyUnlocked=s.volleyUnlocked;n.ammo.volley=(s.ammo.volley||0)+(s.volleyUnlocked?3:0);n.maxGuard=s.maxGuard;n.guard=n.maxGuard;n.maxShards=s.maxShards;n.shardCharges=n.maxShards;for(const key of['headshots','blocks','blinks','shardsUsed','sectors'])n[key]=s[key];n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
  const enemyAPI={add,sub,mul,unit,len,walkable,floorAt,route,roomAt,segmentBlocked,emit,shieldHit,block,hurt};
- const api={VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,landing,predictBlink,setWeapon,reload,shield,shieldHit,shard,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
+ const api={emit,collectPickup,wallNormal,VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,landing,predictBlink,setWeapon,reload,shield,shieldHit,shard,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
