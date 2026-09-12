@@ -9,17 +9,22 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Resolve only the creator's free Standard download
+      - name: Install browser for the public zero-price download flow
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Download only Standard, never the paid Source package
         run: |
           mkdir -p test-output/character-source
           python - <<'PY'
-          import urllib.request,urllib.parse,http.cookiejar,re,json
+          import urllib.request,urllib.parse,http.cookiejar,re,json,zipfile,hashlib
           from pathlib import Path
+          from playwright.sync_api import sync_playwright
           root=Path('test-output/character-source');url='https://quaternius.itch.io/universal-base-characters'
           opener=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
           page=opener.open(url,timeout=60).read().decode()
@@ -27,9 +32,23 @@ jobs:
           token=re.search(r'<meta name="csrf_token" value="([^"]+)"',page).group(1)
           request=urllib.request.Request(url+'/download_url',data=urllib.parse.urlencode({'csrf_token':token}).encode(),headers={'Referer':url,'X-Requested-With':'XMLHttpRequest'})
           result=json.load(opener.open(request,timeout=60));assert result['url'].startswith(url+'/download/')
-          download=opener.open(result['url'],timeout=60).read().decode()
-          (root/'free-download.html').write_text(download)
-          for match in re.finditer(r'.{0,100}(?:upload_id|file/|Standard|download_btn|download_url).{0,200}',download):print(match.group(0))
+          with sync_playwright() as pw:
+              browser=pw.chromium.launch(headless=True,args=['--no-sandbox']);p=browser.new_page(accept_downloads=True)
+              p.goto(result['url'],wait_until='domcontentloaded',timeout=60000)
+              upload=p.locator('.upload').filter(has_text='Universal Base Characters[Standard].zip')
+              assert upload.count()==1
+              with p.expect_download(timeout=180000) as event: upload.locator('.download_btn').click()
+              download=event.value;assert 'Standard' in download.suggested_filename
+              download.save_as('/tmp/quaternius-base-standard.zip');browser.close()
+          data=Path('/tmp/quaternius-base-standard.zip').read_bytes();archive=zipfile.ZipFile('/tmp/quaternius-base-standard.zip')
+          (root/'source.json').write_text(json.dumps({'source':url,'package':'Universal Base Characters[Standard].zip','sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'files':[{'path':x.filename,'bytes':x.file_size} for x in archive.infolist()]},indent=2))
+          for entry in archive.infolist():
+              print(entry.filename,entry.file_size)
+              name=entry.filename
+              if name.endswith('/') or '..' in Path(name).parts:continue
+              if name.lower().endswith(('.gltf','.glb','.bin','.png','.jpg','.txt')) and ('gltf' in name.lower() or 'license' in name.lower()):
+                  target=root/'models'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(archive.read(name))
+          print('Extracted model bytes',sum(p.stat().st_size for p in (root/'models').rglob('*') if p.is_file()))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
