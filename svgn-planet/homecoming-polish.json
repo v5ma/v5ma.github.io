@@ -1,0 +1,10 @@
+{
+  "version": "0.8.0",
+  "changes": [
+    "Batch only static plaza meshes; retain animated and state-switched groups",
+    "Measure browser braking by simulation response, not arbitrary wall time",
+    "Require at least eight simulated seconds of uninterrupted browser acceleration",
+    "Capture the real plaza in balanced quality"
+  ],
+  "physicalHardwareCertified": false
+}
