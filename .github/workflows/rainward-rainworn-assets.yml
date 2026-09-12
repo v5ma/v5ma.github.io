@@ -9,22 +9,27 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Inspect public author download pages without accounts or payment
+      - name: Resolve only the creator's free Standard download
         run: |
           mkdir -p test-output/character-source
-          curl --fail --location --retry 3 --max-time 60 'https://quaternius.com/packs/universalbasecharacters.html' -o test-output/character-source/base-site.html
-          curl --fail --location --retry 3 --max-time 60 'https://quaternius.itch.io/universal-base-characters' -o test-output/character-source/base-itch.html
           python - <<'PY'
-          import re
+          import urllib.request,urllib.parse,http.cookiejar,re,json
           from pathlib import Path
-          for p in Path('test-output/character-source').glob('*.html'):
-              print(p.name)
-              for match in re.finditer(r'.{0,80}(?:zip|download|csrf|game_id|upload_id|drive.google|dropbox).{0,200}',p.read_text(),re.I):print(match.group(0))
+          root=Path('test-output/character-source');url='https://quaternius.itch.io/universal-base-characters'
+          opener=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+          page=opener.open(url,timeout=60).read().decode()
+          assert '"min_price":0' in page and '"actual_price":0' in page
+          token=re.search(r'<meta name="csrf_token" value="([^"]+)"',page).group(1)
+          request=urllib.request.Request(url+'/download_url',data=urllib.parse.urlencode({'csrf_token':token}).encode(),headers={'Referer':url,'X-Requested-With':'XMLHttpRequest'})
+          result=json.load(opener.open(request,timeout=60));assert result['url'].startswith(url+'/download/')
+          download=opener.open(result['url'],timeout=60).read().decode()
+          (root/'free-download.html').write_text(download)
+          for match in re.finditer(r'.{0,100}(?:upload_id|file/|Standard|download_btn|download_url).{0,200}',download):print(match.group(0))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
