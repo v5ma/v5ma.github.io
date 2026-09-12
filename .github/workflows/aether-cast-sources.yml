@@ -10,33 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: Read public author file indexes and one CC0 fallback archive
+      - name: Download selected data files from the author's public folders
         run: |
           python -m pip install gdown==5.2.0
           mkdir -p sources
           python - <<'PY'
-          from urllib.request import Request,urlopen
           from pathlib import Path
-          import gdown,json,zipfile,hashlib
+          import gdown,json,hashlib
+          files=[('guard.gltf','1VGmU5f8a43NBT22JWB507NDSLbmNxzF9'),('worker.gltf','14d8n7IDnnlnGt_uiATnNg3uvi_4dyd9V'),('courier.gltf','1uxAFnDp73NO1c16LvHHjAYh1-deMNk5I'),('men-license.txt','1TTvylHa1CsiJuHFWWiv6PFGhLM-aAH5z'),('women-license.txt','1lIFL16xEpoPbr0j_HUATgmcEnAmYoIK2'),('how-to-use.txt','1FOD3BMs7o0VzdgRrDwBRBUiwyt7syauC')]
           report=[]
-          for name,id in [('men','1USAAquX2JJWuA2m6zol0KUkFe3UkZ8zX'),('women','1720N9IGyQHXYvtvZJzazhxtTTlz-y2Vf')]:
-            try:
-              files=gdown.download_folder(id=id,output='sources/'+name,skip_download=True,remaining_ok=True)
-              rows=[dict(id=f.id,path=f.path) for f in files]
-              print(name,rows)
-              report.append(dict(pack=name,files=rows))
-              for f in files:
-                if any(k in f.path.lower() for k in ['gltf.zip','glb.zip']):
-                  out='sources/'+name+'-'+Path(f.path).name
-                  gdown.download(id=f.id,output=out,quiet=False)
-                  with zipfile.ZipFile(out) as z:print(name,'ARCHIVE',z.namelist())
-            except Exception as e:report.append(dict(pack=name,error=str(e)));print(name,str(e))
-          url='https://kenney.nl/media/pages/assets/animated-characters-survivors/27b16052a7-1774772958/kenney_animated-characters-survivors.zip'
-          data=urlopen(Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=60).read(100_000_001)
-          assert len(data)<=100_000_000
-          Path('sources/kenney-survivors.zip').write_bytes(data)
-          with zipfile.ZipFile('sources/kenney-survivors.zip') as z:print('KENNEY',z.namelist())
-          report.append(dict(pack='kenney-survivors',url=url,sha256=hashlib.sha256(data).hexdigest()))
+          for name,id in files:
+            p=Path('sources')/name
+            gdown.download(id=id,output=str(p),quiet=False)
+            data=p.read_bytes();assert len(data)<35_000_000
+            row=dict(file=name,id=id,bytes=len(data),sha256=hashlib.sha256(data).hexdigest())
+            if name.endswith('.gltf'):
+              j=json.loads(data)
+              row.update(animations=[a.get('name') for a in j.get('animations',[])],skins=len(j.get('skins',[])),meshes=[m.get('name') for m in j.get('meshes',[])],buffers=[{'byteLength':b['byteLength'],'embedded':b.get('uri','').startswith('data:')} for b in j.get('buffers',[])])
+            else:row['text']=data.decode()
+            report.append(row);print(json.dumps(row))
           Path('sources/report.json').write_text(json.dumps(report,indent=2))
           PY
       - uses: actions/upload-artifact@v4
