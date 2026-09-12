@@ -1,0 +1,815 @@
+{
+  "checks": [
+    {
+      "name": "Controller starts the retained Coastal Pulse gameplay in Homecoming",
+      "data": null
+    },
+    {
+      "name": "Lively street population and continuous traffic",
+      "data": {
+        "activeResidents": 16,
+        "activeCars": 8,
+        "cyclists": 4,
+        "pooledResidents": 48,
+        "pooledCars": 24,
+        "drawBatches": 20,
+        "routeCache": 0,
+        "nearestResident": 12.995780372711826,
+        "continuousTraffic": true
+      }
+    },
+    {
+      "name": "Right stick right turns camera right",
+      "data": {
+        "orbit": -0.3581952380952384,
+        "rightComponent": 0.3505845895502694
+      }
+    },
+    {
+      "name": "High speed remains steady beyond old depletion cycle",
+      "data": {
+        "min": 29.999992947553302,
+        "seconds": 8.08333333333336
+      }
+    },
+    {
+      "name": "Releasing accelerator coasts without automatic braking",
+      "data": null
+    },
+    {
+      "name": "LT braking is explicit and effective",
+      "data": null
+    },
+    {
+      "name": "Held opening direction cannot move menu focus",
+      "data": null
+    },
+    {
+      "name": "D-pad jobs board and A contract acceptance work without mouse",
+      "data": null
+    },
+    {
+      "name": "Audio uses one bounded adaptive transport",
+      "data": {
+        "transportCount": 1,
+        "activeVoices": 11
+      }
+    },
+    {
+      "name": "Controller independently adjusts the music level",
+      "data": null
+    },
+    {
+      "name": "Controller mute and B-to-resume remain functional",
+      "data": null
+    },
+    {
+      "name": "B cancels destructive reset while retaining the active contract",
+      "data": null
+    },
+    {
+      "name": "Small-screen job UI remains controller navigable",
+      "data": null
+    },
+    {
+      "name": "Controller disconnect pauses the game",
+      "data": null
+    }
+  ],
+  "errors": [],
+  "physicalControllerTested": false,
+  "success": true,
+  "final": {
+    "version": "0.9.0",
+    "artVersion": "0.5.0",
+    "engineVersion": "0.9.0",
+    "started": true,
+    "paused": true,
+    "graphicsLost": false,
+    "failed": false,
+    "vehicle": "unicycle",
+    "waypoint": null,
+    "controller": {
+      "connected": false,
+      "x": 0,
+      "y": 0,
+      "lookX": 0,
+      "lookY": 0,
+      "boost": false,
+      "brake": false,
+      "id": ""
+    },
+    "coastal": {
+      "total": 102,
+      "completed": 0,
+      "wallet": 0,
+      "earned": 0,
+      "rank": "New neighbor",
+      "active": {
+        "id": "district-0-2-repair",
+        "index": 0,
+        "elapsed": 0.3,
+        "name": "Keep the signals moving / Seabreeze Quarter",
+        "total": 4
+      },
+      "paint": "ocean",
+      "repair": {
+        "open": false,
+        "phase": 0,
+        "locks": 0
+      },
+      "audio": {
+        "version": "0.7.0",
+        "ready": true,
+        "state": "running",
+        "playing": false,
+        "rainAmbience": 0,
+        "transportCount": 1,
+        "activeVoices": 0,
+        "scheduledSteps": 210,
+        "droppedVoices": 0,
+        "rms": 4.034683504728068e-06,
+        "counts": {
+          "bird": 5,
+          "passby": 4,
+          "brake": 1,
+          "job-start": 1
+        },
+        "recent": [
+          "bird",
+          "passby",
+          "passby",
+          "bird",
+          "passby",
+          "passby",
+          "bird",
+          "bird",
+          "brake",
+          "job-start",
+          "bird"
+        ],
+        "mix": {
+          "master": 0.65,
+          "music": 0.3,
+          "effects": 0.62,
+          "ambience": 0.34,
+          "muted": false,
+          "invertX": false,
+          "invertY": false,
+          "sensitivity": 1,
+          "density": "balanced",
+          "audioDensity": "balanced"
+        },
+        "status": "Coastal Pulse | original adaptive score and spatial street sound."
+      }
+    },
+    "homecoming": {
+      "chapter": {
+        "accepted": false,
+        "project": "garden",
+        "claimed": false,
+        "total": 5,
+        "finished": 0,
+        "next": {
+          "id": "welcome",
+          "job": "local-courier",
+          "name": "A warm welcome",
+          "speaker": "Maya",
+          "line": "The cafe has breakfast ready, but some of our neighbors cannot get out this morning. Take a basket around. A neighborhood begins when somebody shows up.",
+          "payoff": "Breakfast reached the neighbors. The cafe is open for the day."
+        },
+        "ready": false,
+        "complete": false,
+        "active": false,
+        "done": []
+      },
+      "performance": {
+        "samples": 82,
+        "windowSeconds": 66.06389999999999,
+        "meanFPS": 1.2412225133544947,
+        "p95ms": 1066.6000000000004,
+        "p99ms": 1900,
+        "cpuP95ms": 19.900000000023283,
+        "over50ms": 80,
+        "simulationRatio": 0.14632297921658777,
+        "capacity": 600,
+        "scope": "Local rendered-frame window; pauses excluded; CPU submission, not GPU time",
+        "target": "Desktop target 60 fps; real hardware sign-off not yet recorded"
+      }
+    },
+    "city": {
+      "buildings": 6761,
+      "roads": 146,
+      "districts": 24,
+      "blocks": 864
+    },
+    "time": 9.816666666666734,
+    "n": [
+      -0.0016414385230592288,
+      0.9629763342257079,
+      -0.26958094406094874
+    ],
+    "north": [
+      0.0004595127503139362,
+      -0.26958055243066903,
+      -0.9629777331793336
+    ],
+    "facing": [
+      0.0004595127503139362,
+      -0.26958055243066903,
+      -0.9629777331793336
+    ],
+    "basis": {
+      "forward": [
+        0.0004595127503139362,
+        -0.26958055243066903,
+        -0.9629777331793336
+      ],
+      "right": [
+        0.9999985472627484,
+        0.0017045446291264832,
+        -1.0299920638612292e-18
+      ]
+    },
+    "radius": 880,
+    "lift": 0,
+    "ride": true,
+    "boosting": false,
+    "speed": 0.02828370924863769,
+    "steps": 589,
+    "distance": 240.20289756621793,
+    "deliveries": [],
+    "bonusDeliveries": [],
+    "stunts": [],
+    "stamps": [],
+    "complete": false,
+    "nearest": null,
+    "sites": [
+      {
+        "id": "post",
+        "n": [
+          -0.005795422103237005,
+          0.9999309091807194,
+          0.01022692268795114
+        ]
+      },
+      {
+        "id": "cabin",
+        "n": [
+          -0.005795422103237005,
+          0.9998902341957854,
+          -0.013635712029182397
+        ]
+      },
+      {
+        "id": "fern",
+        "n": [
+          0.005795422103237005,
+          0.999611334870163,
+          -0.027268888531368937
+        ]
+      },
+      {
+        "id": "mill",
+        "n": [
+          -0.005795422103237005,
+          0.9991465602840842,
+          -0.04089699445103873
+        ]
+      },
+      {
+        "id": "terrace",
+        "n": [
+          0.005795422103237005,
+          0.998495996861236,
+          -0.054517495675533226
+        ]
+      },
+      {
+        "id": "beacon",
+        "n": [
+          -0.005795422103237005,
+          0.9976597655722814,
+          -0.06812785950626814
+        ]
+      },
+      {
+        "id": "market",
+        "n": [
+          0.005795422103237005,
+          0.9966380219123644,
+          -0.08172555512968253
+        ]
+      },
+      {
+        "id": "quay",
+        "n": [
+          -0.005795422103237005,
+          0.9954309558721967,
+          -0.0953080540878374
+        ]
+      },
+      {
+        "id": "harbor",
+        "n": [
+          0.005795422103237005,
+          0.9940387919027291,
+          -0.10887283074857604
+        ]
+      },
+      {
+        "id": "garden",
+        "n": [
+          -0.005795422103237005,
+          0.9920386906225719,
+          -0.12580003732312045
+        ]
+      },
+      {
+        "id": "bonus-oak-1",
+        "n": [
+          -0.027269346481857557,
+          0.9990472995351616,
+          -0.03407163092594002
+        ]
+      },
+      {
+        "id": "bonus-oak-2",
+        "n": [
+          -0.027269346481857557,
+          0.9974577116733157,
+          -0.0658368906152564
+        ]
+      },
+      {
+        "id": "bonus-oak-3",
+        "n": [
+          -0.027269346481857557,
+          0.992920676166376,
+          -0.11560671945764633
+        ]
+      },
+      {
+        "id": "bonus-market-1",
+        "n": [
+          0.027269346481857557,
+          0.9991918493327274,
+          -0.02953017049555501
+        ]
+      },
+      {
+        "id": "bonus-market-2",
+        "n": [
+          0.027269346481857557,
+          0.9977466649390558,
+          -0.06130232740641842
+        ]
+      },
+      {
+        "id": "bonus-market-3",
+        "n": [
+          0.027269346481857557,
+          0.9952914503370535,
+          -0.09301242727946124
+        ]
+      },
+      {
+        "id": "bonus-market-4",
+        "n": [
+          0.027269346481857557,
+          0.9900370518213454,
+          -0.13814129999153454
+        ]
+      },
+      {
+        "id": "bonus-ridge-1",
+        "n": [
+          0.04543889467976307,
+          0.9980358929997616,
+          -0.04312381168739214
+        ]
+      },
+      {
+        "id": "bonus-ridge-2",
+        "n": [
+          0.04543889467976307,
+          0.9952439481459667,
+          -0.08616722421611207
+        ]
+      },
+      {
+        "id": "bonus-ridge-3",
+        "n": [
+          0.04543889467976307,
+          0.9911728461073634,
+          -0.12454595934718204
+        ]
+      },
+      {
+        "id": "district-0-0",
+        "n": [
+          -0.4190581774617469,
+          0.8381163549234938,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-0-1",
+        "n": [
+          0.29408584883752303,
+          0.8822575465125693,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-0-2",
+        "n": [
+          -0.4190581774617469,
+          0.8381163549234938,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-0-3",
+        "n": [
+          0.29408584883752303,
+          0.8822575465125693,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-1-0",
+        "n": [
+          0.8381163549234938,
+          0.4190581774617469,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-1-1",
+        "n": [
+          0.8822575465125693,
+          -0.29408584883752303,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-1-2",
+        "n": [
+          0.8381163549234938,
+          0.4190581774617469,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-1-3",
+        "n": [
+          0.8822575465125693,
+          -0.29408584883752303,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-2-0",
+        "n": [
+          0.4190581774617469,
+          -0.8381163549234938,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-2-1",
+        "n": [
+          -0.29408584883752303,
+          -0.8822575465125693,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-2-2",
+        "n": [
+          0.4190581774617469,
+          -0.8381163549234938,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-2-3",
+        "n": [
+          -0.29408584883752303,
+          -0.8822575465125693,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-3-0",
+        "n": [
+          -0.8381163549234938,
+          -0.4190581774617469,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-3-1",
+        "n": [
+          -0.8822575465125693,
+          0.29408584883752303,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-3-2",
+        "n": [
+          -0.8381163549234938,
+          -0.4190581774617469,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-3-3",
+        "n": [
+          -0.8822575465125693,
+          0.29408584883752303,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-4-0",
+        "n": [
+          -0.4190581774617469,
+          0.349215147884789,
+          -0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-4-1",
+        "n": [
+          0.29408584883752303,
+          0.36760731104690386,
+          -0.8822575465125693
+        ]
+      },
+      {
+        "id": "district-4-2",
+        "n": [
+          -0.4190581774617469,
+          -0.34921514788478913,
+          -0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-4-3",
+        "n": [
+          0.29408584883752303,
+          -0.367607311046904,
+          -0.8822575465125693
+        ]
+      },
+      {
+        "id": "district-5-0",
+        "n": [
+          -0.4190581774617469,
+          -0.349215147884789,
+          0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-5-1",
+        "n": [
+          0.29408584883752303,
+          -0.36760731104690386,
+          0.8822575465125693
+        ]
+      },
+      {
+        "id": "district-5-2",
+        "n": [
+          -0.4190581774617469,
+          0.34921514788478913,
+          0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-5-3",
+        "n": [
+          0.29408584883752303,
+          0.367607311046904,
+          0.8822575465125693
+        ]
+      }
+    ],
+    "events": [
+      {
+        "type": "job-start",
+        "step": 571,
+        "id": "district-0-2-repair"
+      }
+    ],
+    "diagnostics": [
+      {
+        "type": "renderer-ready",
+        "message": "",
+        "time": 1789245794198
+      },
+      {
+        "type": "art-ready",
+        "message": "ready",
+        "time": 1789245795846
+      },
+      {
+        "type": "started",
+        "message": "",
+        "time": 1789245797008
+      }
+    ],
+    "render": {
+      "triangles": 519605,
+      "calls": 175,
+      "geometries": 285,
+      "textures": 43,
+      "low": true,
+      "shadows": false,
+      "pixelRatio": 1,
+      "cameraMode": "street",
+      "cameraOrbit": 0,
+      "cameraPitch": 0,
+      "life": {
+        "activeResidents": 10,
+        "activeCars": 8,
+        "cyclists": 4,
+        "pooledResidents": 48,
+        "pooledCars": 24,
+        "drawBatches": 20,
+        "routeCache": 9,
+        "nearestResident": 121.64694474758873,
+        "continuousTraffic": true
+      },
+      "homecoming": {
+        "name": "Common Ground",
+        "authoredPlaza": true,
+        "batchedArchitecture": true,
+        "flags": {
+          "welcome": false,
+          "clean": false,
+          "signals": false,
+          "photos": false,
+          "complete": false,
+          "project": "garden"
+        },
+        "host": [
+          0.0054545184072528575,
+          0.9999438025890699,
+          0.009090648637826926
+        ]
+      },
+      "playerScreenHeight": 0.1993321271921482,
+      "webgl": true,
+      "radius": 880,
+      "sky": {
+        "rendered": 90,
+        "visible": true,
+        "style": "cc0-photographed-sky"
+      },
+      "leafyAvenue": true,
+      "network": {
+        "roadSegments": 9,
+        "branchRoads": 8,
+        "bonusStops": 34,
+        "stuntGates": 27,
+        "shopfronts": 34,
+        "crosswalks": 20
+      },
+      "city": {
+        "version": "0.7.0",
+        "buildings": 6761,
+        "blocks": 864,
+        "roads": 146,
+        "districts": 24,
+        "palms": 3454,
+        "createdChunks": 12,
+        "streamBudget": 1,
+        "residentClusters": 216,
+        "detailChunks": 12,
+        "visibleDetailChunks": 4,
+        "radius": 880
+      },
+      "jewel": {
+        "version": "0.5.0",
+        "look": "light",
+        "environmentReady": true,
+        "generation": 1,
+        "materialCount": 17,
+        "lightweightMaterials": 16,
+        "lightweightReflection": true,
+        "transmissive": false,
+        "reflections": "generated HDR environment, not live scene ray tracing",
+        "quiet": false,
+        "bloom": false,
+        "glow": {
+          "frames": 0,
+          "renderTargets": 3,
+          "blurScale": 0.25
+        },
+        "sparks": {
+          "capacity": 96,
+          "bursts": 0
+        },
+        "glassMeshes": 25,
+        "crystalPostmarks": 72,
+        "glassShelters": 4,
+        "gemMinScale": 1,
+        "frames": 90,
+        "rebuilds": 0
+      },
+      "atmosphere": {
+        "version": "0.9.0",
+        "prefs": {
+          "enabled": true,
+          "preset": "day",
+          "strength": 0.8,
+          "wind": true,
+          "rain": true
+        },
+        "effective": {
+          "wet": 0,
+          "rain": 0,
+          "night": 0,
+          "warm": 0.08000000000000002,
+          "sky": 1,
+          "sun": 2.984,
+          "ambient": 1.036,
+          "elevation": 35,
+          "fogNear": 142,
+          "fogFar": 442,
+          "amount": 0.8,
+          "wind": 0,
+          "ripples": 0,
+          "rainCount": 0,
+          "label": "Coastal daylight",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "registeredMaterials": {
+          "road": 16,
+          "paving": 19,
+          "leaf": 4,
+          "window": 2
+        },
+        "leafShadowMeshes": 575,
+        "depthMaterials": 4,
+        "rainCapacity": 640,
+        "rainInstances": 0,
+        "extraScenePasses": 0,
+        "extraRainDraws": 0,
+        "scans": 2,
+        "rebuilds": 0,
+        "reflectionMethod": "Existing prefiltered environment; not ray tracing or live scene reflections",
+        "physics": "unchanged"
+      },
+      "boostFov": 69.98437524714562,
+      "art": {
+        "version": "0.5.0",
+        "status": "ready",
+        "error": null,
+        "rendered": 3241,
+        "assetsLocal": true,
+        "source": "Quaternius Standard + Poly Haven / CC0",
+        "texturedRoads": 9,
+        "buildings": 37,
+        "trees": 302,
+        "plants": 308,
+        "parts": 1608,
+        "uniqueModels": 20,
+        "models": [
+          "Brick_Window_Trim",
+          "DoorFrame_Wooden",
+          "Door_1",
+          "Brick_Plain_1",
+          "Brick_Plain_3",
+          "Brick_BottomTrim",
+          "Cornice_Brick_Center",
+          "Roof_Slate_Window_1",
+          "Roof_Slate_Center",
+          "Prop_Planter_Single",
+          "Bush_Common",
+          "Flower_3_Group",
+          "Brick_Window_CurvedDouble",
+          "Bush_Common_Flowers",
+          "CommonTree_1",
+          "CommonTree_3",
+          "CommonTree_4",
+          "Grass_Common_Short",
+          "Fern_1",
+          "Prop_Drain"
+        ],
+        "coarse": true,
+        "sectorCount": 280,
+        "solidDraws": 37,
+        "natureDraws": 706,
+        "diffuseLowPower": true,
+        "sharedMaterials": 6
+      }
+    }
+  },
+  "wallSeconds": 105.88
+}

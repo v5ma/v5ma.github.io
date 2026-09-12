@@ -14,7 +14,7 @@ const leafMat=new T.MeshStandardMaterial({color:'#5f945b',roughness:1,side:T.Dou
 const trimMat=new T.MeshStandardMaterial({color:'#f2e8d0',roughness:.84});
 const glassMat=new T.MeshStandardMaterial({color:'#557b88',roughness:.22,metalness:.45});
 const darkMat=new T.MeshStandardMaterial({color:'#35545b',roughness:.8});
-const woodMat=new T.MeshStandardMaterial({color:'#a97c52',roughness:.9});
+const woodMat=new T.MeshStandardMaterial({color:'#a97c52',roughness:.9});leafMat.userData.atmosphereRole='leaf';glassMat.userData.atmosphereRole='window';
 function palmGeometry(){const p=[];for(let i=0;i<8;i++){const a=i*Math.PI/4,f=[Math.cos(a),0,Math.sin(a)],r=[-f[2],0,f[0]],root=[0,0,0],tip=[f[0]*3,-.7,f[2]*3],left=[f[0]*1.3+r[0]*.55,.3,f[2]*1.3+r[2]*.55],right=[f[0]*1.3-r[0]*.55,.3,f[2]*1.3-r[2]*.55];p.push(...root,...left,...tip,...root,...tip,...right);}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(p,3));g.computeVertexNormals();return g;}
 const leaves=palmGeometry();
 function surface(n,front){const up=new T.Vector3(...n),f=new T.Vector3(...front).projectOnPlane(up).normalize(),r=new T.Vector3().crossVectors(up,f).normalize();return new T.Matrix4().makeBasis(r,up,f).setPosition(new T.Vector3(...point(n,.04)));}

@@ -1,0 +1,92 @@
+name: Record Coastal Atmosphere release evidence
+on:
+  push:
+    branches: [neighborhood-atmosphere-20260912]
+    paths: ['.github/workflows/neighborhood-atmosphere-record.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Require successful rendered acceptance before recording completion
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import os,json,time,re,io,zipfile,subprocess,urllib.request,urllib.error,hashlib
+          from pathlib import Path
+          repo=os.environ['GH_REPO'];run_id=34717568774
+          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+          base='https://api.github.com/repos/'+repo+'/'
+          def api(path):
+              with urllib.request.urlopen(urllib.request.Request(base+path,headers=headers),timeout=30) as r:return json.load(r)
+          for _ in range(100):
+              run=api('actions/runs/'+str(run_id))
+              if run['status']=='completed':break
+              time.sleep(10)
+          assert run['status']=='completed' and run['conclusion']=='success', 'A failed or unfinished run must not receive a passing receipt.'
+          assert run['head_branch']=='neighborhood-atmosphere-20260912'
+          artifacts=api('actions/runs/'+str(run_id)+'/artifacts')['artifacts']
+          artifact=next(a for a in artifacts if a['name']=='neighborhood-atmosphere-evidence' and not a['expired'])
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,hdrs,newurl):return None
+          opener=urllib.request.build_opener(NoRedirect)
+          try:
+              response=opener.open(urllib.request.Request(artifact['archive_download_url'],headers=headers),timeout=30);archive=response.read()
+          except urllib.error.HTTPError as e:
+              assert e.code in (301,302,303,307,308)
+              # Do not send the GitHub credential to the signed artifact-storage host.
+              with urllib.request.urlopen(e.headers['Location'],timeout=60) as r:archive=r.read()
+          z=zipfile.ZipFile(io.BytesIO(archive))
+          shader=json.loads(z.read('atmosphere-browser.json'));coastal=json.loads(z.read('browser-release-report.json'));home=json.loads(z.read('homecoming-browser.json'))
+          unit=z.read('model-tests.log').decode();tested=z.read('tested-commit.txt').decode().strip()
+          assert re.fullmatch('[0-9a-f]{40}',tested)
+          assert all(r.get('success') and not r.get('errors') for r in [shader,coastal,home])
+          assert not shader.get('shaderErrors') and '# fail 0' in unit and '# pass 111' in unit
+          if subprocess.run(['git','cat-file','-e',tested],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode:subprocess.run(['git','fetch','--depth=1','origin',tested],check=True)
+          changed=subprocess.check_output(['git','diff','--name-only',tested,'HEAD'],text=True).splitlines()
+          allowed=lambda p:p.startswith('.github/') or p.startswith('svgn-planet/production/') or p in ['svgn-planet/AAA_ROADMAP.md','svgn-planet/README.md','svgn-planet/release.json','svgn-planet/ATMOSPHERE.md']
+          assert all(allowed(p) for p in changed), 'Untested runtime changes cannot be assigned old evidence: '+str(changed)
+          P=Path('svgn-planet');E=P/'production/evidence';E.mkdir(parents=True,exist_ok=True)
+          for name in ['atmosphere-browser.json','browser-release-report.json','homecoming-browser.json','model-tests.log']:(E/('v0.9.0-'+name)).write_bytes(z.read(name))
+          photos=[]
+          for name in ['day.jpg','golden.jpg','after-rain.jpg','rain.jpg','blue-hour.jpg','controller-settings.jpg','disabled.jpg','mobile-settings.jpg']:
+              if name in z.namelist():
+                  (E/('v0.9.0-'+name)).write_bytes(z.read(name));photos.append('v0.9.0-'+name)
+          receipt={'version':'0.9.0','edition':'Coastal Atmosphere','testedCommit':tested,'acceptanceRun':run['html_url'],'automatedAcceptance':'passed','unitTestsPassed':111,'shaderBrowserChecksPassed':len(shader['checks']),'coastalBrowserChecksPassed':len(coastal['checks']),'homecomingBrowserChecksPassed':len(home['checks']),'uncaughtBrowserErrors':0,'shaderCompileErrors':0,'physicalControllerTested':False,'hardwareFrameTargetCertified':False,'publication':'Awaiting master and live-file verification','screenshots':photos,'scope':'Actual Chromium/WebGL shader rendering and synthetic standard Xbox UI; core save/physics tests; reduced motion, low graphics, six planetary faces and context recovery. This is not a physical controller, gaming GPU or human art-quality approval.','reflectionMethod':'Reused prefiltered environment, not live scene reflection or ray tracing','shaderFiles':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in P.glob('atmosphere-*.mjs')}}
+          (E/'v0.9.0.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          road=json.loads((P/'production/roadmap.json').read_text());road['edition']='Coastal Atmosphere';road['releaseEvidence']='evidence/v0.9.0.json'
+          for item in road['items']:
+              if item['id']=='SHADER-01':
+                  item['status']='verified';item['next']='Automated shader/UI/recovery criteria passed. Obtain real-device timing and human visual approval; do not treat this shader check as AAA certification.';item['evidence'].append('evidence/v0.9.0.json')
+              if item['id']=='ART-06':
+                  item['acceptance']='User-selected daylight, golden-hour, after-rain, rainy and blue-hour visual presets are implemented. A simulated clock, automatically changing weather and weather-driven gameplay remain future work. Preserve readability and real-device frame targets.'
+              if item['id'] in ['ART-05','ART-06','AUDIO-01','INPUT-01','QA-01']:
+                  item['evidence']=list(dict.fromkeys(item['evidence']+['evidence/v0.9.0.json']))
+              if item['id']=='QA-01':
+                  item['acceptance']='Coastal Atmosphere has 111 passing model/shader/save tests, '+str(len(shader['checks']))+' shader/UI checks, '+str(len(coastal['checks']))+' retained-game controller checks and '+str(len(home['checks']))+' Homecoming checks. Shader logs and actual screenshots are retained. Software WebGL does not certify physical hardware performance.'
+                  item['next']='Keep physical-controller/GPU sign-off and extended soak testing open.'
+          (P/'production/roadmap.json').write_text(json.dumps(road,indent=2)+'\n')
+          generator=P/'production/render-roadmap.py';s=generator.read_text();old="'Current release: Homecoming v0.8.0. Focus: M0 foundations and M1 vertical slice. Updated '+D['reviewed']+'.'"
+          if old in s:s=s.replace(old,"'Current release: '+D.get('edition','Neighborhood Missions')+' v'+D['version']+'. Focus: M0 foundations and M1 vertical slice. Updated '+D['reviewed']+'.'");generator.write_text(s)
+          subprocess.run(['python','svgn-planet/production/render-roadmap.py'],check=True)
+          release=json.loads((P/'release.json').read_text());release.update(testedCommit=tested,acceptanceRun=run['html_url'],evidence='production/evidence/v0.9.0.json',acceptance='passed',validation={'unitTestsPassed':111,'shaderBrowserChecksPassed':len(shader['checks']),'coastalBrowserChecksPassed':len(coastal['checks']),'homecomingBrowserChecksPassed':len(home['checks']),'physicalControllerTested':False,'hardwareFrameTargetCertified':False,'commercialAAAQualityClaimed':False});(P/'release.json').write_text(json.dumps(release,indent=2)+'\n')
+          print(json.dumps(receipt,indent=2))
+          PY
+      - name: Commit only evidence and generated release records
+        run: |
+          git config user.name 'Micah Blumberg'
+          git config user.email '60057241+v5ma@users.noreply.github.com'
+          git add svgn-planet/production svgn-planet/AAA_ROADMAP.md svgn-planet/release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record verified Coastal Atmosphere shaders, actual captures and remaining production gates'
+            git push origin HEAD:neighborhood-atmosphere-20260912
+          fi

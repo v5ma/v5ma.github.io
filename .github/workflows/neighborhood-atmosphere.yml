@@ -1,0 +1,73 @@
+name: Neighborhood Missions Coastal Atmosphere acceptance
+on:
+  push:
+    branches: [neighborhood-atmosphere-20260912]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-atmosphere.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: neighborhood-atmosphere-candidate
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Integrate only the existing Neighborhood Missions game
+        run: |
+          python svgn-planet/tools/integrate-atmosphere.py
+          python svgn-planet/production/render-roadmap.py
+          git config user.name 'Micah Blumberg'
+          git config user.email '60057241+v5ma@users.noreply.github.com'
+          git add svgn-planet
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Coastal Atmosphere shader controls, rain mixer and maintained production plan'
+            git push origin HEAD:neighborhood-atmosphere-20260912
+          fi
+      - name: Model, shader-hook and save regression tests
+        run: |
+          mkdir -p atmosphere-results
+          git rev-parse HEAD > atmosphere-results/tested-commit.txt
+          for file in svgn-planet/*.mjs; do node --check "$file"; done
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs | tee atmosphere-results/model-tests.log
+      - name: Install browser acceptance tools
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Shader and controller browser acceptance
+        run: |
+          python -m http.server 8765 > /tmp/atmosphere-server.log 2>&1 &
+          sleep 2
+          set -o pipefail
+          python svgn-planet/tests/atmosphere-browser.py | tee atmosphere-results/shader-browser.log
+          COASTAL_OUTPUT=atmosphere-results python svgn-planet/tests/coastal_browser_release.py | tee atmosphere-results/coastal-regression.log
+          HOMECOMING_OUTPUT=atmosphere-results python svgn-planet/tests/homecoming_browser.py | tee atmosphere-results/homecoming-regression.log
+      - name: Preserve exact tested source and screenshots
+        if: always()
+        run: |
+          mkdir -p atmosphere-results/source
+          cp svgn-planet/*.mjs atmosphere-results/source/
+          cp svgn-planet/index.html svgn-planet/ATMOSPHERE.md atmosphere-results/source/
+          cp -r svgn-planet/tests atmosphere-results/source/
+          python - <<'PY'
+          from pathlib import Path
+          try:
+              from PIL import Image
+              for p in Path('atmosphere-results').glob('*.png'):
+                  im=Image.open(p).convert('RGB');im.thumbnail((960,700));im.save(p.with_suffix('.jpg'),quality=86)
+          except ImportError:pass
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-atmosphere-evidence
+          path: atmosphere-results
+          retention-days: 30

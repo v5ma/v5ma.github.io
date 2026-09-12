@@ -1,0 +1,1078 @@
+{
+  "version": "0.9.0",
+  "checks": [
+    {
+      "name": "Starts the existing v0.9 game with real WebGL",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Wet-road, foliage and matching depth materials are attached",
+      "passed": true,
+      "data": {
+        "version": "0.9.0",
+        "prefs": {
+          "enabled": true,
+          "preset": "day",
+          "strength": 0.8,
+          "wind": true,
+          "rain": true
+        },
+        "effective": {
+          "wet": 0,
+          "rain": 0,
+          "night": 0,
+          "warm": 0.08000000000000002,
+          "sky": 1,
+          "sun": 2.984,
+          "ambient": 1.036,
+          "elevation": 35,
+          "fogNear": 142,
+          "fogFar": 442,
+          "amount": 0.8,
+          "wind": 0.5599999999999999,
+          "ripples": 0,
+          "rainCount": 0,
+          "label": "Coastal daylight",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "registeredMaterials": {
+          "road": 16,
+          "paving": 19,
+          "leaf": 4,
+          "window": 2
+        },
+        "leafShadowMeshes": 575,
+        "depthMaterials": 4,
+        "rainCapacity": 640,
+        "rainInstances": 0,
+        "extraScenePasses": 0,
+        "extraRainDraws": 0,
+        "scans": 2,
+        "rebuilds": 0,
+        "reflectionMethod": "Existing prefiltered environment; not ray tracing or live scene reflections",
+        "physics": "unchanged"
+      }
+    },
+    {
+      "name": "Controller selects and renders day",
+      "passed": true,
+      "data": {
+        "effective": {
+          "wet": 0,
+          "rain": 0,
+          "night": 0,
+          "warm": 0.1,
+          "sky": 1,
+          "sun": 3.05,
+          "ambient": 1.04,
+          "elevation": 35,
+          "fogNear": 140,
+          "fogFar": 445,
+          "amount": 1,
+          "wind": 0.7,
+          "ripples": 0,
+          "rainCount": 0,
+          "label": "Coastal daylight",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "calls": 1248,
+        "textures": 62
+      }
+    },
+    {
+      "name": "Controller selects and renders golden",
+      "passed": true,
+      "data": {
+        "effective": {
+          "wet": 0,
+          "rain": 0,
+          "night": 0.12,
+          "warm": 0.92,
+          "sky": 0.94,
+          "sun": 2.7,
+          "ambient": 0.9,
+          "elevation": 20,
+          "fogNear": 115,
+          "fogFar": 410,
+          "amount": 1,
+          "wind": 0.7,
+          "ripples": 0,
+          "rainCount": 0,
+          "label": "Golden hour",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "calls": 1319,
+        "textures": 62
+      }
+    },
+    {
+      "name": "Controller selects and renders after-rain",
+      "passed": true,
+      "data": {
+        "effective": {
+          "wet": 0.92,
+          "rain": 0,
+          "night": 0.22,
+          "warm": 0.82,
+          "sky": 0.85,
+          "sun": 2.45,
+          "ambient": 0.88,
+          "elevation": 22,
+          "fogNear": 100,
+          "fogFar": 390,
+          "amount": 1,
+          "wind": 0.7,
+          "ripples": 0,
+          "rainCount": 0,
+          "label": "After-rain sunset",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "calls": 1314,
+        "textures": 62
+      }
+    },
+    {
+      "name": "Controller selects and renders rain",
+      "passed": true,
+      "data": {
+        "effective": {
+          "wet": 1,
+          "rain": 1,
+          "night": 0.45,
+          "warm": 0.05,
+          "sky": 0.43999999999999995,
+          "sun": 0.8999999999999999,
+          "ambient": 1,
+          "elevation": 33,
+          "fogNear": 65,
+          "fogFar": 245,
+          "amount": 1,
+          "wind": 0.7,
+          "ripples": 1,
+          "rainCount": 640,
+          "label": "Coastal rain",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "calls": 1262,
+        "textures": 62
+      }
+    },
+    {
+      "name": "Controller selects and renders blue-hour",
+      "passed": true,
+      "data": {
+        "effective": {
+          "wet": 0.55,
+          "rain": 0,
+          "night": 0.82,
+          "warm": 0.15,
+          "sky": 0.26,
+          "sun": 0.6000000000000001,
+          "ambient": 0.83,
+          "elevation": 28,
+          "fogNear": 90,
+          "fogFar": 330,
+          "amount": 1,
+          "wind": 0.7,
+          "ripples": 0,
+          "rainCount": 0,
+          "label": "Blue hour",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "calls": 1279,
+        "textures": 62
+      }
+    },
+    {
+      "name": "All five profiles compile without WebGL shader errors",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Visible rain can be disabled separately from wet surfaces",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Reduced motion removes moving rain, wind and ripple animation",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Low quality bounds rain and simplifies shader detail",
+      "passed": true,
+      "data": {
+        "version": "0.9.0",
+        "prefs": {
+          "enabled": true,
+          "preset": "rain",
+          "strength": 1,
+          "wind": true,
+          "rain": true
+        },
+        "effective": {
+          "wet": 1,
+          "rain": 1,
+          "night": 0.45,
+          "warm": 0.05,
+          "sky": 0.43999999999999995,
+          "sun": 0.8999999999999999,
+          "ambient": 1,
+          "elevation": 33,
+          "fogNear": 65,
+          "fogFar": 245,
+          "amount": 1,
+          "wind": 0,
+          "ripples": 0,
+          "rainCount": 160,
+          "label": "Coastal rain",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "registeredMaterials": {
+          "road": 16,
+          "paving": 19,
+          "leaf": 7,
+          "window": 2
+        },
+        "leafShadowMeshes": 575,
+        "depthMaterials": 4,
+        "rainCapacity": 640,
+        "rainInstances": 160,
+        "extraScenePasses": 0,
+        "extraRainDraws": 1,
+        "scans": 7,
+        "rebuilds": 0,
+        "reflectionMethod": "Existing prefiltered environment; not ray tracing or live scene reflections",
+        "physics": "unchanged"
+      }
+    },
+    {
+      "name": "Shader pack can be switched off without resetting the game",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Visual controls leave the existing gameplay save unchanged while paused",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Repeated preset switches do not allocate more textures or depth materials",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Rain ambience uses the existing mixer and a single music transport",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Pause silences the soundtrack and rain ambience",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Atmosphere preferences persist after a normal reload",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Wet-city shaders render after transit to all six sphere faces",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Context loss and controller recovery retain shader preferences",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Restore sunny defaults works with the controller",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Small-screen shader controls remain navigable and dismissible",
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "Controller disconnect still pauses riding",
+      "passed": true,
+      "data": null
+    }
+  ],
+  "errors": [],
+  "shaderErrors": [],
+  "physicalHardwareTested": false,
+  "hardwareFPSCertified": false,
+  "base": "http://127.0.0.1:8765/svgn-planet/",
+  "success": true,
+  "final": {
+    "version": "0.9.0",
+    "artVersion": "0.5.0",
+    "engineVersion": "0.9.0",
+    "started": true,
+    "paused": true,
+    "graphicsLost": false,
+    "failed": false,
+    "vehicle": "unicycle",
+    "waypoint": "district-5-0",
+    "controller": {
+      "connected": false,
+      "x": 0,
+      "y": 0,
+      "lookX": 0,
+      "lookY": 0,
+      "boost": false,
+      "brake": false,
+      "id": ""
+    },
+    "coastal": {
+      "total": 102,
+      "completed": 0,
+      "wallet": 0,
+      "earned": 0,
+      "rank": "New neighbor",
+      "active": null,
+      "paint": "ocean",
+      "repair": {
+        "open": false,
+        "phase": 0,
+        "locks": 0
+      },
+      "audio": {
+        "version": "0.7.0",
+        "ready": true,
+        "state": "running",
+        "playing": false,
+        "rainAmbience": 0,
+        "transportCount": 1,
+        "activeVoices": 2,
+        "scheduledSteps": 30,
+        "droppedVoices": 0,
+        "rms": 0.001325642457367103,
+        "counts": {
+          "bird": 4,
+          "transit": 6
+        },
+        "recent": [
+          "bird",
+          "transit",
+          "bird",
+          "transit",
+          "transit",
+          "transit",
+          "transit",
+          "bird",
+          "transit",
+          "bird"
+        ],
+        "mix": {
+          "master": 0.65,
+          "music": 0.34,
+          "effects": 0.62,
+          "ambience": 0.34,
+          "muted": false,
+          "invertX": false,
+          "invertY": false,
+          "sensitivity": 1,
+          "density": "balanced",
+          "audioDensity": "balanced"
+        },
+        "status": "Coastal Pulse | original adaptive score and spatial street sound."
+      }
+    },
+    "homecoming": {
+      "chapter": {
+        "accepted": false,
+        "project": "garden",
+        "claimed": false,
+        "total": 5,
+        "finished": 0,
+        "next": {
+          "id": "welcome",
+          "job": "local-courier",
+          "name": "A warm welcome",
+          "speaker": "Maya",
+          "line": "The cafe has breakfast ready, but some of our neighbors cannot get out this morning. Take a basket around. A neighborhood begins when somebody shows up.",
+          "payoff": "Breakfast reached the neighbors. The cafe is open for the day."
+        },
+        "ready": false,
+        "complete": false,
+        "active": false,
+        "done": []
+      },
+      "performance": {
+        "samples": 23,
+        "windowSeconds": 2.8831999999999933,
+        "meanFPS": 7.977247502774713,
+        "p95ms": 200,
+        "p99ms": 200.09999999999854,
+        "cpuP95ms": 19.899999999965075,
+        "over50ms": 16,
+        "simulationRatio": 0.6474287828338892,
+        "capacity": 600,
+        "scope": "Local rendered-frame window; pauses excluded; CPU submission, not GPU time",
+        "target": "Desktop target 60 fps; real hardware sign-off not yet recorded"
+      }
+    },
+    "city": {
+      "buildings": 6761,
+      "roads": 146,
+      "districts": 24,
+      "blocks": 864
+    },
+    "time": 1.9833333333333312,
+    "n": [
+      -0.415935170926397,
+      -0.367409400984984,
+      0.831870341852794
+    ],
+    "north": [
+      -0.16431047923498043,
+      0.9300593164244176,
+      0.32862095846996087
+    ],
+    "facing": [
+      -0.16431047923498043,
+      0.9300593164244176,
+      0.32862095846996087
+    ],
+    "basis": {
+      "forward": [
+        -0.16431047923498043,
+        0.9300593164244176,
+        0.32862095846996087
+      ],
+      "right": [
+        0.8944271909999159,
+        0,
+        0.4472135954999579
+      ]
+    },
+    "radius": 880,
+    "lift": 0,
+    "ride": true,
+    "boosting": false,
+    "speed": 0,
+    "steps": 119,
+    "distance": 0,
+    "deliveries": [],
+    "bonusDeliveries": [],
+    "stunts": [],
+    "stamps": [],
+    "complete": false,
+    "nearest": null,
+    "sites": [
+      {
+        "id": "post",
+        "n": [
+          -0.005795422103237005,
+          0.9999309091807194,
+          0.01022692268795114
+        ]
+      },
+      {
+        "id": "cabin",
+        "n": [
+          -0.005795422103237005,
+          0.9998902341957854,
+          -0.013635712029182397
+        ]
+      },
+      {
+        "id": "fern",
+        "n": [
+          0.005795422103237005,
+          0.999611334870163,
+          -0.027268888531368937
+        ]
+      },
+      {
+        "id": "mill",
+        "n": [
+          -0.005795422103237005,
+          0.9991465602840842,
+          -0.04089699445103873
+        ]
+      },
+      {
+        "id": "terrace",
+        "n": [
+          0.005795422103237005,
+          0.998495996861236,
+          -0.054517495675533226
+        ]
+      },
+      {
+        "id": "beacon",
+        "n": [
+          -0.005795422103237005,
+          0.9976597655722814,
+          -0.06812785950626814
+        ]
+      },
+      {
+        "id": "market",
+        "n": [
+          0.005795422103237005,
+          0.9966380219123644,
+          -0.08172555512968253
+        ]
+      },
+      {
+        "id": "quay",
+        "n": [
+          -0.005795422103237005,
+          0.9954309558721967,
+          -0.0953080540878374
+        ]
+      },
+      {
+        "id": "harbor",
+        "n": [
+          0.005795422103237005,
+          0.9940387919027291,
+          -0.10887283074857604
+        ]
+      },
+      {
+        "id": "garden",
+        "n": [
+          -0.005795422103237005,
+          0.9920386906225719,
+          -0.12580003732312045
+        ]
+      },
+      {
+        "id": "bonus-oak-1",
+        "n": [
+          -0.027269346481857557,
+          0.9990472995351616,
+          -0.03407163092594002
+        ]
+      },
+      {
+        "id": "bonus-oak-2",
+        "n": [
+          -0.027269346481857557,
+          0.9974577116733157,
+          -0.0658368906152564
+        ]
+      },
+      {
+        "id": "bonus-oak-3",
+        "n": [
+          -0.027269346481857557,
+          0.992920676166376,
+          -0.11560671945764633
+        ]
+      },
+      {
+        "id": "bonus-market-1",
+        "n": [
+          0.027269346481857557,
+          0.9991918493327274,
+          -0.02953017049555501
+        ]
+      },
+      {
+        "id": "bonus-market-2",
+        "n": [
+          0.027269346481857557,
+          0.9977466649390558,
+          -0.06130232740641842
+        ]
+      },
+      {
+        "id": "bonus-market-3",
+        "n": [
+          0.027269346481857557,
+          0.9952914503370535,
+          -0.09301242727946124
+        ]
+      },
+      {
+        "id": "bonus-market-4",
+        "n": [
+          0.027269346481857557,
+          0.9900370518213454,
+          -0.13814129999153454
+        ]
+      },
+      {
+        "id": "bonus-ridge-1",
+        "n": [
+          0.04543889467976307,
+          0.9980358929997616,
+          -0.04312381168739214
+        ]
+      },
+      {
+        "id": "bonus-ridge-2",
+        "n": [
+          0.04543889467976307,
+          0.9952439481459667,
+          -0.08616722421611207
+        ]
+      },
+      {
+        "id": "bonus-ridge-3",
+        "n": [
+          0.04543889467976307,
+          0.9911728461073634,
+          -0.12454595934718204
+        ]
+      },
+      {
+        "id": "district-0-0",
+        "n": [
+          -0.4190581774617469,
+          0.8381163549234938,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-0-1",
+        "n": [
+          0.29408584883752303,
+          0.8822575465125693,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-0-2",
+        "n": [
+          -0.4190581774617469,
+          0.8381163549234938,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-0-3",
+        "n": [
+          0.29408584883752303,
+          0.8822575465125693,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-1-0",
+        "n": [
+          0.8381163549234938,
+          0.4190581774617469,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-1-1",
+        "n": [
+          0.8822575465125693,
+          -0.29408584883752303,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-1-2",
+        "n": [
+          0.8381163549234938,
+          0.4190581774617469,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-1-3",
+        "n": [
+          0.8822575465125693,
+          -0.29408584883752303,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-2-0",
+        "n": [
+          0.4190581774617469,
+          -0.8381163549234938,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-2-1",
+        "n": [
+          -0.29408584883752303,
+          -0.8822575465125693,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-2-2",
+        "n": [
+          0.4190581774617469,
+          -0.8381163549234938,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-2-3",
+        "n": [
+          -0.29408584883752303,
+          -0.8822575465125693,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-3-0",
+        "n": [
+          -0.8381163549234938,
+          -0.4190581774617469,
+          0.349215147884789
+        ]
+      },
+      {
+        "id": "district-3-1",
+        "n": [
+          -0.8822575465125693,
+          0.29408584883752303,
+          0.36760731104690386
+        ]
+      },
+      {
+        "id": "district-3-2",
+        "n": [
+          -0.8381163549234938,
+          -0.4190581774617469,
+          -0.34921514788478913
+        ]
+      },
+      {
+        "id": "district-3-3",
+        "n": [
+          -0.8822575465125693,
+          0.29408584883752303,
+          -0.367607311046904
+        ]
+      },
+      {
+        "id": "district-4-0",
+        "n": [
+          -0.4190581774617469,
+          0.349215147884789,
+          -0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-4-1",
+        "n": [
+          0.29408584883752303,
+          0.36760731104690386,
+          -0.8822575465125693
+        ]
+      },
+      {
+        "id": "district-4-2",
+        "n": [
+          -0.4190581774617469,
+          -0.34921514788478913,
+          -0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-4-3",
+        "n": [
+          0.29408584883752303,
+          -0.367607311046904,
+          -0.8822575465125693
+        ]
+      },
+      {
+        "id": "district-5-0",
+        "n": [
+          -0.4190581774617469,
+          -0.349215147884789,
+          0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-5-1",
+        "n": [
+          0.29408584883752303,
+          -0.36760731104690386,
+          0.8822575465125693
+        ]
+      },
+      {
+        "id": "district-5-2",
+        "n": [
+          -0.4190581774617469,
+          0.34921514788478913,
+          0.8381163549234938
+        ]
+      },
+      {
+        "id": "district-5-3",
+        "n": [
+          0.29408584883752303,
+          0.367607311046904,
+          0.8822575465125693
+        ]
+      }
+    ],
+    "events": [
+      {
+        "type": "transit",
+        "step": 12,
+        "id": "district-0-0"
+      },
+      {
+        "type": "transit",
+        "step": 27,
+        "id": "district-1-0"
+      },
+      {
+        "type": "transit",
+        "step": 42,
+        "id": "district-2-0"
+      },
+      {
+        "type": "transit",
+        "step": 52,
+        "id": "district-3-0"
+      },
+      {
+        "type": "transit",
+        "step": 67,
+        "id": "district-4-0"
+      },
+      {
+        "type": "transit",
+        "step": 88,
+        "id": "district-5-0"
+      }
+    ],
+    "diagnostics": [
+      {
+        "type": "renderer-ready",
+        "message": "",
+        "time": 1789245709346
+      },
+      {
+        "type": "art-ready",
+        "message": "ready",
+        "time": 1789245711349
+      },
+      {
+        "type": "started",
+        "message": "",
+        "time": 1789245716372
+      },
+      {
+        "type": "context-lost",
+        "message": "",
+        "time": 1789245771959
+      },
+      {
+        "type": "context-restored",
+        "message": "",
+        "time": 1789245772253
+      }
+    ],
+    "render": {
+      "triangles": 491096,
+      "calls": 198,
+      "geometries": 68,
+      "textures": 16,
+      "low": true,
+      "shadows": false,
+      "pixelRatio": 1,
+      "cameraMode": "street",
+      "cameraOrbit": 0,
+      "cameraPitch": 0,
+      "life": {
+        "activeResidents": 0,
+        "activeCars": 0,
+        "cyclists": 4,
+        "pooledResidents": 48,
+        "pooledCars": 24,
+        "drawBatches": 20,
+        "routeCache": 18,
+        "nearestResident": null,
+        "continuousTraffic": true
+      },
+      "homecoming": {
+        "name": "Common Ground",
+        "authoredPlaza": true,
+        "batchedArchitecture": true,
+        "flags": {
+          "welcome": false,
+          "clean": false,
+          "signals": false,
+          "photos": false,
+          "complete": false,
+          "project": "garden"
+        },
+        "host": [
+          0.0054545184072528575,
+          0.9999438025890699,
+          0.009090648637826926
+        ]
+      },
+      "playerScreenHeight": 0.1968986210927327,
+      "webgl": true,
+      "radius": 880,
+      "sky": {
+        "rendered": 37,
+        "visible": true,
+        "style": "cc0-photographed-sky"
+      },
+      "leafyAvenue": true,
+      "network": {
+        "roadSegments": 9,
+        "branchRoads": 8,
+        "bonusStops": 34,
+        "stuntGates": 27,
+        "shopfronts": 34,
+        "crosswalks": 20
+      },
+      "city": {
+        "version": "0.7.0",
+        "buildings": 6761,
+        "blocks": 864,
+        "roads": 146,
+        "districts": 24,
+        "palms": 3454,
+        "createdChunks": 28,
+        "streamBudget": 1,
+        "residentClusters": 216,
+        "detailChunks": 28,
+        "visibleDetailChunks": 8,
+        "radius": 880
+      },
+      "jewel": {
+        "version": "0.5.0",
+        "look": "light",
+        "environmentReady": true,
+        "generation": 2,
+        "materialCount": 17,
+        "lightweightMaterials": 16,
+        "lightweightReflection": true,
+        "transmissive": false,
+        "reflections": "generated HDR environment, not live scene ray tracing",
+        "quiet": false,
+        "bloom": false,
+        "glow": {
+          "frames": 0,
+          "renderTargets": 3,
+          "blurScale": 0.25
+        },
+        "sparks": {
+          "capacity": 96,
+          "bursts": 0
+        },
+        "glassMeshes": 25,
+        "crystalPostmarks": 72,
+        "glassShelters": 4,
+        "gemMinScale": 1,
+        "frames": 37,
+        "rebuilds": 1
+      },
+      "atmosphere": {
+        "version": "0.9.0",
+        "prefs": {
+          "enabled": true,
+          "preset": "golden",
+          "strength": 0.8,
+          "wind": true,
+          "rain": true
+        },
+        "effective": {
+          "wet": 0,
+          "rain": 0,
+          "night": 0.096,
+          "warm": 0.7360000000000001,
+          "sky": 0.952,
+          "sun": 2.704,
+          "ambient": 0.924,
+          "elevation": 23,
+          "fogNear": 122,
+          "fogFar": 414,
+          "amount": 0.8,
+          "wind": 0,
+          "ripples": 0,
+          "rainCount": 0,
+          "label": "Golden hour",
+          "motion": true,
+          "physics": "unchanged"
+        },
+        "registeredMaterials": {
+          "road": 16,
+          "paving": 19,
+          "leaf": 7,
+          "window": 2
+        },
+        "leafShadowMeshes": 575,
+        "depthMaterials": 4,
+        "rainCapacity": 640,
+        "rainInstances": 0,
+        "extraScenePasses": 0,
+        "extraRainDraws": 0,
+        "scans": 3,
+        "rebuilds": 1,
+        "reflectionMethod": "Existing prefiltered environment; not ray tracing or live scene reflections",
+        "physics": "unchanged"
+      },
+      "boostFov": 70.64772941694221,
+      "art": {
+        "version": "0.5.0",
+        "status": "ready",
+        "error": null,
+        "rendered": 2394,
+        "assetsLocal": true,
+        "source": "Quaternius Standard + Poly Haven / CC0",
+        "texturedRoads": 9,
+        "buildings": 37,
+        "trees": 302,
+        "plants": 308,
+        "parts": 1608,
+        "uniqueModels": 20,
+        "models": [
+          "Brick_Window_Trim",
+          "DoorFrame_Wooden",
+          "Door_1",
+          "Brick_Plain_1",
+          "Brick_Plain_3",
+          "Brick_BottomTrim",
+          "Cornice_Brick_Center",
+          "Roof_Slate_Window_1",
+          "Roof_Slate_Center",
+          "Prop_Planter_Single",
+          "Bush_Common",
+          "Flower_3_Group",
+          "Brick_Window_CurvedDouble",
+          "Bush_Common_Flowers",
+          "CommonTree_1",
+          "CommonTree_3",
+          "CommonTree_4",
+          "Grass_Common_Short",
+          "Fern_1",
+          "Prop_Drain"
+        ],
+        "coarse": false,
+        "sectorCount": 280,
+        "solidDraws": 475,
+        "natureDraws": 706,
+        "diffuseLowPower": true,
+        "sharedMaterials": 77
+      }
+    }
+  },
+  "wallSeconds": 370.44
+}

@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Homecoming v0.8.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-11.
+Current release: Coastal Atmosphere v0.9.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-12.
 
 ## How to use this workbook
 
@@ -46,7 +46,7 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
   Acceptance: Right looks right and up looks up. Axis inversion, sensitivity, audio sliders and B-to-return exist. Evidence uses standard-mapping emulation, not physical Xbox hardware.
   Next: Held directions now require neutral before navigating new menus. Complete Windows/browser plus physical Xbox USB and Bluetooth sessions.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: ../controller.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
+  Evidence: ../controller.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json ; evidence/v0.9.0.json
 
 - [x] PERF-01 / P0 / verified / Local frame-time report
   Acceptance: A bounded 600-frame window records p95/p99 interval, CPU submission p95, intervals over 50 ms and simulation/wall ratio. Pauses excluded; no automatic upload.
@@ -220,7 +220,7 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
   Acceptance: One music transport; independent master, music, effects and ambience; quiet mix and mute; bounded voices. This verifies behavior, not soundtrack production quality.
   Next: Audit every future cue against mixer levels and density limits.
   Owner role: Audio / engineering. Dependencies: None.
-  Evidence: ../coastal-audio.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481
+  Evidence: ../coastal-audio.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.9.0.json
 
 - [ ] AUDIO-02 / P1 / partial / A polished score with quiet space
   Acceptance: Original procedural music exists. It should develop across exploration, work and celebration without intrusive repetition or competing compositions.
@@ -248,15 +248,15 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ART-05 / P1 / partial / Stable lighting and reflections
   Acceptance: No camera-driven sun rotation, blown highlights, flickering depth or shimmering shadows. Tone mapping and quality presets retain intended appearance.
-  Next: Review contact shadows, distant visibility and temporal stability on target hardware.
+  Next: Coastal Atmosphere adds user-selected daylight, golden hour, rain, after-rain and blue-hour presets with wet-road ripples, leaf light/wind and facade glow. Validate actual shaders and real hardware; live scene reflections, dynamic day/night, interiors and art approval remain open.
   Owner role: Art / animation. Dependencies: PERF-02.
-  Evidence: Not recorded.
+  Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json
 
-- [ ] ART-06 / P2 / planned / Time of day and weather with purpose
-  Acceptance: Day/night and weather are optional future work, not shipped features. They must help mood or play without breaking readability or frame targets.
-  Next: Prototype a constrained sunset variant after daytime quality is stable.
+- [ ] ART-06 / P2 / partial / Time of day and weather with purpose
+  Acceptance: User-selected daylight, golden-hour, after-rain, rainy and blue-hour visual presets are implemented. A simulated clock, automatically changing weather and weather-driven gameplay remain future work. Preserve readability and real-device frame targets.
+  Next: Coastal Atmosphere adds user-selected daylight, golden hour, rain, after-rain and blue-hour presets with wet-road ripples, leaf light/wind and facade glow. Validate actual shaders and real hardware; live scene reflections, dynamic day/night, interiors and art approval remain open.
   Owner role: Art / animation. Dependencies: ART-05, PERF-02.
-  Evidence: Not recorded.
+  Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json
 
 - [ ] ACCESS-01 / P0 / partial / Controller-complete gameplay and menus
   Acceptance: Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.
@@ -276,6 +276,12 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
   Owner role: Engineering / QA. Dependencies: None.
   Evidence: Not recorded.
 
+- [x] SHADER-01 / P1 / verified / Coastal Atmosphere shader pack
+  Acceptance: All five visual presets compile on pinned r177; controller settings persist; off/reduced-motion/low modes work; wet shaders are stable around the planet; no physics changes or unbounded rain allocation. Record actual browser and shader results, not a concept mockup.
+  Next: Automated shader/UI/recovery criteria passed. Obtain real-device timing and human visual approval; do not treat this shader check as AAA certification.
+  Owner role: Rendering / QA. Dependencies: MOVE-01, PERF-01, AUDIO-01.
+  Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json
+
 ## M5 / Release readiness
 
 Reliable builds, recovery, licensing and sustained hardware testing.
@@ -283,10 +289,10 @@ Reliable builds, recovery, licensing and sustained hardware testing.
 Human exit gate: Pass the named device matrix, license audit, soak test and rollback drill.
 
 - [x] QA-01 / P0 / verified / Automated model and controller evidence
-  Acceptance: Homecoming has 91 passing model/regression tests, 12 Homecoming browser checks and 14 retained-game regression checks. These are emulated-controller software-WebGL results, not physical hardware approval.
-  Next: Retain these permanent reports and add real-device, failure-recovery and soak evidence.
+  Acceptance: Coastal Atmosphere has 111 passing model/shader/save tests, 22 shader/UI checks, 14 retained-game controller checks and 12 Homecoming checks. Shader logs and actual screenshots are retained. Software WebGL does not certify physical hardware performance.
+  Next: Keep physical-controller/GPU sign-off and extended soak testing open.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
+  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json ; evidence/v0.9.0.json
 
 - [ ] QA-02 / P0 / needs-playtest / Physical hardware matrix
   Acceptance: Record Windows Chrome/Edge with Xbox USB and Bluetooth plus low-power and touch devices. Include sustained speed, menus, saves and audio.

@@ -1,3 +1,4 @@
+import {mountAtmosphereUI} from './atmosphere-ui.mjs';
 import {mountHomecomingDOM,createHomecomingUI} from './homecoming-ui.mjs';
 import {storyTarget} from './homecoming.mjs';
 import {createFrameHealth} from './frame-health.mjs';
@@ -84,7 +85,7 @@ const pulseUI=createCoastalInterface({state:()=>s,view:()=>view,audio,open:openD
 function boot(){try{view=createScene(canvas);$('material-look').value=view.inspect().jewel.look;$('quiet-effects').checked=view.inspect().jewel.quiet;record('renderer-ready');view.artReady.then(()=>{$('start').disabled=false;$('start').textContent=saved?'Continue your neighborhood':'Start riding';renderDirty=true;record('art-ready',view.inspect().art.status);});}catch(e){showFailure(String(e.message||e));}}
 canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();wasPlaying=started&&!paused;graphicsLost=true;closeDialogs();clear();persist();audio.setPlaying(false);$('failure').hidden=false;$('failure-message').textContent='Graphics paused. Your route and contracts are saved. Retry requests recovery.';record('context-lost');});
 canvas.addEventListener('webglcontextrestored',()=>{queueMicrotask(()=>{graphicsLost=false;failed=false;view.restoreAppearance();view.setQuality('low');$('material-look').value='light';$('quality').value='low';$('failure').hidden=true;clear();last=0;lastRender=performance.now();renderDirty=true;if(wasPlaying)paused=false;else if(started){paused=false;pause();}record('context-restored');});});
-boot();window.addEventListener('resize',()=>{view?.resize();renderDirty=true;});
+boot();const atmosphereUI=mountAtmosphereUI({view:()=>view});window.addEventListener('nm-atmosphere-change',()=>{renderDirty=true;});window.addEventListener('resize',()=>{view?.resize();renderDirty=true;});
 Object.defineProperty(window,'SVGNPlanet',{value:Object.freeze({inspect:()=>({version:VERSION,artVersion:ART_VERSION,engineVersion:VERSION,started,paused,graphicsLost,failed,vehicle,waypoint,controller:{...padState},coastal:pulseUI.inspect(),homecoming:storyUI.inspect(),city:{buildings:CITY.buildings.length,roads:CITY.roads.length,districts:CITY.districts.length,blocks:CITY.blocks.length},time:s.time,n:[...s.n],north:[...s.north],facing:[...s.facing],basis:view?.movementBasis(s),radius:RADIUS,lift:s.lift,ride:s.ride,boosting:s.boosting,speed:s.speed,steps:s.steps,distance:s.distance,deliveries:[...s.delivered],bonusDeliveries:[...s.bonusDelivered],stunts:[...s.stunts],stamps:[...s.stamps],complete:s.complete,nearest:nearest(s)?.id||null,sites:[...WORLD.sites,...WORLD.bonusStops].map(p=>({id:p.id,n:[...p.mail]})),events:s.events.map(e=>({...e})),diagnostics:diagnostics.map(e=>({...e})),render:view?.inspect()})})});
 function frame(now){
  requestAnimationFrame(frame);
@@ -98,7 +99,7 @@ function frame(now){
   if((renderDirty||(started&&!paused))&&(view.fps>=60||now-lastRender>=1000/view.fps-.5)){
    const workStart=performance.now();view.update(paused?0:Math.min(.2,(now-lastRender)/1000),renderPose(previousPose,s,acc*60),{vehicle});if(started&&!paused)metrics.frame(now,s.time,performance.now()-workStart);else metrics.gap();lastRender=now;renderDirty=false;
   }
-  audio.update(s,{active:started&&!paused,vehicle,brake:padState.brake||touchBraking||keys.has('ControlLeft')||keys.has('ControlRight')||keys.has('KeyB'),traffic:view.life?.traffic()});
+  audio.update(s,{active:started&&!paused,vehicle,brake:padState.brake||touchBraking||keys.has('ControlLeft')||keys.has('ControlRight')||keys.has('KeyB'),traffic:view.life?.traffic(),rain:view.atmosphere?.rainLevel||0});
   if(now-lastUI>120){ui();lastUI=now;}if(now-lastSave>5000){idleSave();lastSave=now;}
  }catch(e){showFailure(String(e.message||e));}
 }

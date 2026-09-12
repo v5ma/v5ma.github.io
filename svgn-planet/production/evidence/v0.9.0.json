@@ -1,0 +1,34 @@
+{
+  "version": "0.9.0",
+  "edition": "Coastal Atmosphere",
+  "testedCommit": "e967b90c697fbb8fbdcbd7bbc7cb9398cf997624",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34717568774",
+  "automatedAcceptance": "passed",
+  "unitTestsPassed": 111,
+  "shaderBrowserChecksPassed": 22,
+  "coastalBrowserChecksPassed": 14,
+  "homecomingBrowserChecksPassed": 12,
+  "uncaughtBrowserErrors": 0,
+  "shaderCompileErrors": 0,
+  "physicalControllerTested": false,
+  "hardwareFrameTargetCertified": false,
+  "publication": "Awaiting master and live-file verification",
+  "screenshots": [
+    "v0.9.0-day.jpg",
+    "v0.9.0-golden.jpg",
+    "v0.9.0-after-rain.jpg",
+    "v0.9.0-rain.jpg",
+    "v0.9.0-blue-hour.jpg",
+    "v0.9.0-controller-settings.jpg",
+    "v0.9.0-disabled.jpg",
+    "v0.9.0-mobile-settings.jpg"
+  ],
+  "scope": "Actual Chromium/WebGL shader rendering and synthetic standard Xbox UI; core save/physics tests; reduced motion, low graphics, six planetary faces and context recovery. This is not a physical controller, gaming GPU or human art-quality approval.",
+  "reflectionMethod": "Reused prefiltered environment, not live scene reflection or ray tracing",
+  "shaderFiles": {
+    "atmosphere-shaders.mjs": "46a99b45bfa73eb9a21ae66a7801d60ed478ee6c55905f6d48887ea4d5ecb979",
+    "atmosphere-ui.mjs": "80f4700215973a1dd50e6471c408c6bf7f2bfd67c1b29be8a245bc745802bf8a",
+    "atmosphere-scene.mjs": "5ec9826a61f54d01d7118d8e6ab5bfe1f2f69a82595b1c9f6d25012137722188",
+    "atmosphere-core.mjs": "109be7330e7c372c171d025b51339a488fe338d7bbc30edeaaaa3b164b101250"
+  }
+}
