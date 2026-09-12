@@ -3,6 +3,14 @@
 (function(root){'use strict';
  const PRACTICE_BELL=1;
  function practiceBellHit(s){return s.targets.has(PRACTICE_BELL);}
+ // A complete quiver gesture can occur between rendered frames. Consume its
+ // actual event receipt as well as the currently open state, never require a
+ // particular display frame to have sampled the gesture.
+ function quiverLessonComplete(s,c,isOpen){
+  const events=s.events.filter(e=>e.seq>c.base.seq);
+  if(isOpen||events.some(e=>e.type==='focus-open'))c.open=true;
+  return !!c.open&&!isOpen&&s.type!==c.base.type&&events.some(e=>e.type==='focus-select'&&e.arrow===s.type);
+ }
  const lessons=[
   ['Find your stance','Open pause settings to choose your bow hand and a comfortable draw length. Clear your play space. Use Coach ready when comfortable.'],
   ['Ring the first bell','Aim at the bronze practice target straight ahead. Nock, draw and release an arrow into it.'],
@@ -62,7 +70,7 @@
   function coachUpdate(){const c=actualCoach();if(!c||g.paused||!g.running||g.game.phase!=='playing')return;const s=g.game,b=c.base,events=s.events.filter(e=>e.seq>b.seq);if(c.index===2){if(g.charge>.15)c.wasDrawing=true;if(c.wasDrawing&&s.shield)c.cancelled=true;}
    if(c.index===3){if(events.some(e=>e.type==='shot'&&e.weapon==='crossbow'))c.reloadShot=true;if(c.reloadShot&&events.some(e=>e.type==='reloaded'))c.reloadDone=true;}
    if(c.index===8&&g.ritual.focus.open)c.open=true;
-   const ok=c.index===1?practiceBellHit(s):c.index===2?c.cancelled&&s.shots===b.shots:c.index===3?c.reloadDone:c.index===4?s.blocks>b.blocks:c.index===5?s.blinks>b.blinks:c.index===6?s.shardsUsed>b.shards:c.index===7?s.world.pickups.some(p=>p.id===c.pickup&&p.taken):c.index===8?c.open&&!g.ritual.focus.open&&s.type!==b.type:c.index===9?g.xr?g.ritual.panel.mesh.visible:!$('map').hidden:false;
+   const ok=c.index===1?practiceBellHit(s):c.index===2?c.cancelled&&s.shots===b.shots:c.index===3?c.reloadDone:c.index===4?s.blocks>b.blocks:c.index===5?s.blinks>b.blinks:c.index===6?s.shardsUsed>b.shards:c.index===7?s.world.pickups.some(p=>p.id===c.pickup&&p.taken):c.index===8?quiverLessonComplete(s,c,!!g.ritual?.focus.open):c.index===9?g.xr?g.ritual.panel.mesh.visible:!$('map').hidden:false;
    if(ok){c.done.push(c.index);C.emit(s,'lesson-complete',{lesson:c.index});enter(c.index+1);}
   }
   function makeBoss(){const m=new T.Group(),b=new g.art.Batch();m.name='The Bellkeeper / three-phase oath';const brass='#b79762',iron='#697c8c',cloth='#253443',glow='#abddd1';
@@ -100,5 +108,5 @@
   $('first-bell-start').onclick=start;$('oath-start').onclick=beginOath;$('coach-help').onclick=help;$('coach-ready').onclick=ready;$('coach-skip').onclick=skip;
   g.menuUI();return {state,start,beginOath,ready,skip,help,routeText,lessons};
  }
- root.FirstBell=Object.freeze({install,lessons,practiceBellHit,PRACTICE_BELL});
+ root.FirstBell=Object.freeze({install,lessons,practiceBellHit,PRACTICE_BELL,quiverLessonComplete});
 })(globalThis);

@@ -60,7 +60,12 @@ with sync_playwright() as pw:
    page.evaluate("""async()=>{const c=Vesperfall.component,can=AFRAME.scenes[0].canvas,key=t=>can.dispatchEvent(new KeyboardEvent(t,{code:'Space',bubbles:true}));key('keydown');await new Promise((resolve,reject)=>{const st=performance.now(),t=setInterval(()=>{if(c.charge>.08&&c.blinkTrace?.ok){key('keyup');clearInterval(t);resolve();}else if(performance.now()-st>90000){key('keyup');clearInterval(t);reject(Error('No valid blink'));}},3);});}""");lesson(6);check(True,'Only a successful collision-checked Blink landing completes traversal training')
    page.keyboard.press('KeyB');lesson(7);check(True,'A real charge-limited Shard Step completes the short escape lesson')
    crystal=page.evaluate('Vesperfall.state.world.pickups.find(p=>p.id===Vesperfall.component.firstBell.state.coach.pickup).p');page.evaluate(WALK,[crystal[0],crystal[2]]);lesson(8);check(True,'Collecting the actual lesson crystal advances supply training')
-   page.keyboard.down('Tab');wait('Vesperfall.component.ritual.focus.open');page.keyboard.press('ArrowRight');page.keyboard.up('Tab');lesson(9);check(True,'The working slow-time quiver must change the equipped arrow')
+   # Complete the actual gesture in a single browser event turn. No render
+   # frame can sample the intermediate open state, so the coach must consume
+   # the real focus-open/focus-select receipts instead of missing the gesture.
+   old_type=page.evaluate('Vesperfall.state.type')
+   page.evaluate("""()=>{const can=AFRAME.scenes[0].canvas;for(const [type,code] of [['keydown','Tab'],['keydown','ArrowRight'],['keyup','ArrowRight'],['keyup','Tab']])can.dispatchEvent(new KeyboardEvent(type,{code,bubbles:true,cancelable:true}));}""")
+   lesson(9);check(page.evaluate('t=>Vesperfall.state.type!==t&&!Vesperfall.component.ritual.focus.open',old_type),'A complete quiver gesture between render frames advances from its actual input receipts')
    page.keyboard.press('KeyM');lesson(10);check(page.evaluate('Vesperfall.component.firstBell.state.coach.done.length===10'),'All ten lessons finish through real UI and gameplay outcomes, not skips')
    check(save_raw()==saved and page.evaluate('JSON.stringify(Vesperfall.component.profile)')==profile,'The whole tutorial preserves the scored checkpoint and permanent profile')
    page.screenshot(path=str(OUT/'lessons-complete.png'));pause();page.locator('#oath-start').click();wait('!document.getElementById("dominion-dialog").hidden');check(True,'Beginning the Oath asks before replacing an existing suspended run');page.locator('#dominion-dialog-close').click();check(save_raw()==saved,'Cancel leaves the prior expedition untouched')
