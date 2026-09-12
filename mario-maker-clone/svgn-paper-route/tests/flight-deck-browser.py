@@ -41,14 +41,15 @@ try:
         page.evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
     frames()
     def down(i):
-        # Let a prior keyboard/modal transition observe the released pad too.
-        # Wall-clock sleeps are not enough when software rendering is slow.
+        # Let prior keyboard/modal transitions observe the released pad too.
+        # A sample lasts actual rendered frames, not an unreliable 120 ms.
         frames()
         page.evaluate('(i)=>{testPad.buttons[i].pressed=true;testPad.buttons[i].value=1;}',i);frames()
     def up(i):
         page.evaluate('(i)=>{testPad.buttons[i].pressed=false;testPad.buttons[i].value=0;}',i);frames()
     def tap(i):down(i);up(i)
     def seek(predicate):
+        # Bumpers are edge-triggered, unlike a held D-pad's intentional repeat.
         for _ in range(40):
             if page.evaluate(predicate):return
             tap(5)
@@ -67,9 +68,15 @@ try:
     seek("document.activeElement.id==='score-music'")
     music=page.locator('#score-music').input_value();tap(15)
     check(page.locator('#score-music').input_value()!=music,'D-pad adjusts the music slider')
-    tap(13);check(page.evaluate("document.activeElement.id==='score-effects'"),'D-pad moves to the effects slider')
+    music_after=page.locator('#score-music').input_value()
+    tap(13);check(page.evaluate("document.activeElement.id!=='score-music' && document.getElementById('score-dialog').contains(document.activeElement)"),'Held D-pad advances focus within the audio dialog')
+    # Under software rendering, a two-frame hold can exceed the repeat delay.
+    # Do not falsely require that a held direction advances exactly one item.
+    seek("document.activeElement.id==='score-effects'")
+    check(page.evaluate("document.activeElement.id==='score-effects'"),'Controller focus reaches the effects slider')
     effects=page.locator('#score-effects').input_value();tap(14)
     check(page.locator('#score-effects').input_value()!=effects,'Effects volume adjusts independently')
+    check(page.locator('#score-music').input_value()==music_after,'Effects adjustment preserves the chosen music volume')
     page.keyboard.press('Escape');frames()
     check(page.evaluate("!document.getElementById('score-dialog').open && __delivery.paused"),'Escape closes the modal without unpausing its parent')
     tap(8);check(page.evaluate("document.getElementById('flight-deck').open"),'View opens Flight Deck from a paused menu')
