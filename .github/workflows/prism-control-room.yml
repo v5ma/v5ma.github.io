@@ -13,11 +13,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: prism-current
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Pure contracts and lifecycle regression
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p test-output
           python prism-current/tests/verify.py
           node --test prism-current/tests/*.test.cjs | tee test-output/core.tap

@@ -7,6 +7,7 @@ import json,os,time
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];MODE=os.getenv('PRISM_SUITE','desktop');OUT=ROOT/'test-output'/('prism-'+MODE);OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[]
+RELEASE=json.loads((ROOT/'prism-current/release.json').read_text())['version']
 def check(v,s):
  assert v,s
  checks.append(s);print('PASS:',s,flush=True)
@@ -27,7 +28,7 @@ with sync_playwright() as pw:
    page.goto(BASE+'/',wait_until='domcontentloaded');page.locator('a#prism-launch').click()
   else:page.goto(BASE+'/prism-current/',wait_until='domcontentloaded')
   page.wait_for_function('window.Prism?.snapshot().ready&&AFRAME.scenes[0].renderer.info.render.calls>0')
-  check(snapshot(page)['version']=='0.2.0','The actual A-Frame renderer loads the new isolated rhythm game')
+  check(snapshot(page)['version']==RELEASE,'The actual A-Frame renderer loads the declared isolated rhythm release')
   page.screenshot(path=str(OUT/'title.png'))
   if MODE=='desktop':
    check(page.url.endswith('/prism-current/index.html'),'The homepage game card opens the playable page')

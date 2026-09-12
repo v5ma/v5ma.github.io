@@ -1,18 +1,21 @@
-"""Real game/renderer/music in Chromium; emulated standard pad, not hardware QA."""
+"""Real game/renderer/music in Chromium at quarter pixel ratio.
+The standard pad is emulated; this is not physical-device or frame-rate QA.
+"""
 import json, os, pathlib
 from playwright.sync_api import sync_playwright
 OUT=pathlib.Path('test-output'); OUT.mkdir(exist_ok=True)
 URL=os.environ.get('PRISM_URL','http://127.0.0.1:4173/prism-current/')
 PAD="""window.testPad={id:'Acceptance standard pad',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))}; Object.defineProperty(navigator,'getGamepads',{configurable:true,value:()=>window.testPad?[window.testPad]:[]});"""
 with sync_playwright() as pw:
-    browser=pw.chromium.launch(executable_path=os.environ.get('PRISM_CHROMIUM') or None,headless=True,args=['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--autoplay-policy=no-user-gesture-required'])
-    page=browser.new_page(viewport={'width':1280,'height':900})
+    browser=pw.chromium.launch(executable_path=os.environ.get('PRISM_CHROMIUM') or None,headless=True,args=['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
+    page=browser.new_page(viewport={'width':1280,'height':900},device_scale_factor=.25)
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.add_init_script(PAD)
     page.goto(URL,wait_until='domcontentloaded');page.wait_for_function('window.Prism?.snapshot().ready',timeout=60000)
     page.bring_to_front();page.keyboard.press('Shift');page.wait_for_function('Prism.snapshot().controller',timeout=10000)
     def press(button):
-        page.evaluate('(b)=>{testPad.buttons[b]={pressed:true,value:1}}',button);page.wait_for_timeout(120)
-        page.evaluate('(b)=>{testPad.buttons[b]={pressed:false,value:0}}',button);page.wait_for_timeout(150)
+        # Present both edges across browser frames, not fixed wall-clock pulses
+        # that can disappear between CPU-rendered WebGL frames.
+        page.evaluate('''async b=>{const frames=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));testPad.buttons[b]={pressed:true,value:1};await frames();testPad.buttons[b]={pressed:false,value:0};await frames();}''',button)
     try:
         press(8);assert page.locator('#mixer-panel').is_visible()
         assert page.locator('#mix-music').evaluate('(e)=>document.activeElement===e')
@@ -37,7 +40,10 @@ with sync_playwright() as pw:
         before=page.evaluate('Prism.component.audio.time()');page.wait_for_timeout(300)
         assert abs(page.evaluate('Prism.component.audio.time()')-before)<.001
         press(8);page.keyboard.press('Shift+Tab');assert page.locator('#close-mixer').evaluate('(e)=>document.activeElement===e')
+        page.keyboard.press('KeyP');assert page.evaluate('Prism.snapshot().phase')=='paused'
+        assert page.locator('#hud').evaluate('(e)=>e.inert')
         press(1);assert page.evaluate('Prism.snapshot().phase')=='paused'
+        assert not page.locator('#hud').evaluate('(e)=>e.inert')
         press(9);page.wait_for_function("Prism.snapshot().phase==='playing'")
         page.evaluate('window.testPad=null');page.wait_for_function("Prism.snapshot().phase==='paused'")
         assert 'disconnected' in page.evaluate('Prism.snapshot().message')
@@ -51,7 +57,7 @@ with sync_playwright() as pw:
         assert page.evaluate('Prism.snapshot().mixer.effects')==0
         assert page.evaluate('Prism.snapshot().mixer.rate')=='off'
         assert not errors,errors
-        result={'passed':True,'scope':'Production renderer/music in Chromium; emulated standard controller','checks':['mixer navigation','independent volumes','music-only preset','pause transport','gamepad lane hit','focus trap','disconnect/reconnect','score isolation','preference reload'],'errors':errors}
+        result={'passed':True,'scope':'Production renderer/music in Chromium at quarter pixel ratio; emulated standard controller','checks':['mixer navigation','independent volumes','music-only preset','pause transport','gamepad lane hit','focus trap','background input isolation','disconnect/reconnect','score isolation','preference reload'],'errors':errors}
         (OUT/'control-room-browser.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
     except Exception:
         page.screenshot(path=str(OUT/'control-room-failure.png'),full_page=True)
