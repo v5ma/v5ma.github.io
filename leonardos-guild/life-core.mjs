@@ -1,3 +1,4 @@
+import {safeTown} from './frontier-core.mjs';
 /* Local RPG progression and authored interactions; no payment/account APIs.
  * All rewards are idempotent. Public read-only observations live in app.mjs. */
 import {LIFE_VERSION,ROOMS,PEOPLE,CATS,OBJECTS,QUESTS,GOODS,LEVELS,ATTRIBUTES} from './life-data.mjs';
@@ -140,6 +141,6 @@ export function lifeStep(s,w,input,dt){const l=s.life;l.focus=Math.min(stats(s).
  for(const id of s.deliveries)grant(s,id,15);if(s.completed)grant(s,'first-folio',150);
  const room=roomAt(s,w);if(room&&!l.visits.includes(room.id)){l.visits.push(room.id);notify(s,'Discovered '+room.name,'interior',{id:room.id});}
  if(l.cat&&!l.inside){const d=Math.hypot(l.petX-s.x,l.petZ-s.z);if(d>2.5){const step=Math.min(d-2.5,dt*8),dx=(s.x-l.petX)/d*step,dz=(s.z-l.petZ)/d*step;const blocked=(x,z)=>w.colliders.some(b=>Math.abs(x-b.x)<b.hx+.17&&Math.abs(z-b.z)<b.hz+.17)||(!l.flags.garden&&Math.abs(x)<7.3&&Math.abs(z-407)<1.7);if(!blocked(l.petX+dx,l.petZ))l.petX+=dx;if(!blocked(l.petX,l.petZ+dz))l.petZ+=dz;}}
- if(l.inside==='inn'&&!l.flags.rocco&&dist(s,PEOPLE.find(p=>p.id==='rocco'))<3.5){l.lastHit=Math.max(0,l.lastHit-dt);if(l.lastHit===0){l.lastHit=2.2;l.attackPending=true;notify(s,'Rocco raises his staff. Brace, retreat upstairs, or show the evidence.','town-windup');}else if(l.attackPending&&l.lastHit<1.4){l.attackPending=false;s.health=Math.max(0,s.health-(input.guard?2:9));notify(s,input.guard?'You brace against Rocco’s staff.':'Rocco’s staff catches you. Step away or brace.','town-hit');}}else{l.attackPending=false;l.lastHit=0;}
+ if(!safeTown(s)&&l.inside==='inn'&&!l.flags.rocco&&dist(s,PEOPLE.find(p=>p.id==='rocco'))<3.5){l.lastHit=Math.max(0,l.lastHit-dt);if(l.lastHit===0){l.lastHit=2.2;l.attackPending=true;notify(s,'Rocco raises his staff. Brace, retreat upstairs, or show the evidence.','town-windup');}else if(l.attackPending&&l.lastHit<1.4){l.attackPending=false;s.health=Math.max(0,s.health-(input.guard?2:9));notify(s,input.guard?'You brace against Rocco’s staff.':'Rocco’s staff catches you. Step away or brace.','town-hit');}}else{l.attackPending=false;l.lastHit=0;}
 }
 export function lifeDescription(s,w){const room=roomAt(s,w);if(s.life.inside)return room.name+' / Basement';if(room)return room.name;if(s.z>410)return 'North Garden & Observatory';return null;}

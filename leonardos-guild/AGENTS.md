@@ -1,3 +1,11 @@
+# Borderlands continuation
+
+Read BORDERLANDS.md and AAA-ROADMAP.md first. frontier-core.mjs is authoritative for region rules, monster state, safety, contracts and salvage. Town safety is simulation logic, not cosmetic UI: do not re-enable damaging town attacks to satisfy an old combat test. Preserve the peaceful compatibility paths for the folio watchman and Open Doors rivals. frontier-ui.mjs must never teleport or pay from the map. frontier-art.mjs is presentation only. Farmlands remain planned until a real noncombat farming loop exists. Preserve Quiet audio and one music stream.
+
+# Steady Steps continuation
+
+Read STEADY-STEPS.md and the latest release PR before extending camera/characters. camera-safety.mjs owns presentation-only continuous boom checks. character-rig.mjs owns shared original mesh templates and independent joints; character-motion.mjs owns transient displacement-driven pose memory. Do not count camera motion as player distance, alter movement to satisfy render tests, add new sound events, or dispose shared character buffers per instance. Physical hardware and art review remain open roadmap gates.
+
 # Current continuation priority
 
 Read AAA-ROADMAP.md first; UPGRADE-CHECKLIST.md retains earlier task IDs. Living Stories uses stories-core.mjs for authored cases inside doors.stories, and stories-art.mjs for bounded persistent props. Both are reached through the existing doors guide/nearby actions. Preserve silent story updates, quiet-audio preferences and old progression. Do not rerun scripts/integrate-living-stories.py after its one-time branch integration; maintain ordinary committed source.

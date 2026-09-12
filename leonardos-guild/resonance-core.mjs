@@ -1,3 +1,4 @@
+import {inBadlands,safeTown,frontierBlocked,frontierSight,hurtMonster,FRONTIER_SOLIDS} from './frontier-core.mjs';
 /* Bounded console equipment and non-lethal projectile simulation.
  * No DOM, networking, random rewards, civilian targeting or hidden save writes.
  * Original mission prerequisites and the existing staff reducers remain authoritative.
@@ -19,6 +20,8 @@ export function resonanceState(raw){
 }
 export function saveResonance(c){return {version:1,tool:c.tool,variants:{...c.variants},discipline:c.discipline,ready:Math.floor(clamp(c.ready,0,6)),reserve:Math.floor(clamp(c.reserve,0,72)),headlight:!!c.headlight};}
 export function validTargets(s,w){
+  if(inBadlands(s))return s.frontier.enemies.filter(e=>e.hp>0).map(e=>({id:e.id,x:e.x,z:e.z,hp:e.hp,name:e.name,kind:'frontier',actor:e}));
+  if(safeTown(s))return [];
   const list=s.doors.enemies.filter(e=>e.hp>0&&inDoorSpace(s,e,w)).map(e=>({id:e.id,x:e.x,z:e.z,hp:e.hp,name:e.name,kind:'rival',actor:e}));
   const l=doorLocation(s,w);
   if(l.level===0&&!l.room&&!s.defeated)list.push({id:'folio-guard',...w.bandit,hp:s.banditHP,name:'Folio guard',kind:'guard'});
@@ -26,12 +29,13 @@ export function validTargets(s,w){
   return list;
 }
 function solidPoint(s,w,x,z){
+  if(inBadlands(s))return frontierBlocked(x,z,.08);
   if(s.doors.level||s.life.inside)return doorsBlocked(s,w,x,z,.08);
   if(!s.life.flags.garden&&Math.abs(x-w.townGate.x)<w.townGate.hx&&Math.abs(z-w.townGate.z)<w.townGate.hz)return true;
   if(!s.relay&&w.gates.some(b=>Math.abs(x-b.x)<b.hx&&Math.abs(z-b.z)<b.hz))return true;
   return w.colliders.some(b=>Math.abs(x-b.x)<b.hx&&Math.abs(z-b.z)<b.hz);
 }
-export function clearShot(s,w,a,b){const length=dist(a,b),steps=Math.max(1,Math.ceil(length/.3));for(let i=1;i<steps;i++){const f=i/steps;if(solidPoint(s,w,a.x+(b.x-a.x)*f,a.z+(b.z-a.z)*f))return false;}return true;}
+export function clearShot(s,w,a,b){if(inBadlands(s))return frontierSight(a,b);const length=dist(a,b),steps=Math.max(1,Math.ceil(length/.3));for(let i=1;i<steps;i++){const f=i/steps;if(solidPoint(s,w,a.x+(b.x-a.x)*f,a.z+(b.z-a.z)*f))return false;}return true;}
 export function aimTarget(s,w,yaw,enabled=true){
   if(!enabled)return null;
   return validTargets(s,w).filter(e=>dist(e,s)<30&&Math.abs(angle(Math.atan2(e.x-s.x,e.z-s.z)-yaw))<.72&&clearShot(s,w,s,e)).sort((a,b)=>dist(a,s)-dist(b,s))[0]||null;
@@ -43,10 +47,12 @@ export function chooseDiscipline(s,w,id){if(!DISCIPLINES.some(t=>t.id===id))retu
 export function specialAbility(s){const c=s.resonance;if(c.specialCD>0||c.special>0)return false;if(s.life.focus<40){notify(s,'This ability needs 40 focus. Let it recover, or use an earned restorative service.','resonance-denied');return false;}s.life.focus-=40;c.special=7;c.specialCD=25;if(c.discipline==='artificer'){s.scan=8;s.scanCD=2;}notify(s,({courier:'Second Wind',warden:'Steadfast',artificer:'Ingenio Focus'})[c.discipline]+'!','resonance-special');return true;}
 export function coverObject(s,w){
   if(s.mode!=='foot'||s.doors.level||s.life.inside)return null;
-  return w.colliders.map(b=>{const x=clamp(s.x,b.x-b.hx,b.x+b.hx),z=clamp(s.z,b.z-b.hz,b.z+b.hz);return {id:b.id,x,z,d:dist(s,{x,z})};}).filter(b=>b.d>.2&&b.d<1.9).sort((a,b)=>a.d-b.d)[0]||null;
+  const solids=inBadlands(s)?FRONTIER_SOLIDS:w.colliders;
+  return solids.map(b=>{const x=clamp(s.x,b.x-b.hx,b.x+b.hx),z=clamp(s.z,b.z-b.hz,b.z+b.hz);return {id:b.id,x,z,d:dist(s,{x,z})};}).filter(b=>b.d>.2&&b.d<1.9).sort((a,b)=>a.d-b.d)[0]||null;
 }
 export function toggleCover(s,w){const c=s.resonance;if(c.cover){c.cover=null;return false;}const cover=coverObject(s,w);if(!cover){notify(s,'Stand beside a wall, counter or street obstacle to take cover. LT with the staff also braces.','resonance-denied');return false;}c.cover=cover;notify(s,'In cover. Move away, press RB again, or dodge with B to leave.','resonance-cover');return true;}
 function damageTarget(s,w,t,damage,stun){
+  if(t.kind==='frontier'){const before=t.actor.hp;if(hurtMonster(s,t.id,damage,stun)&&t.actor.hp>0)notify(s,t.name+' / '+t.actor.hp+' vitality.','resonance-impact',{id:t.id,x:t.x,z:t.z});return before!==t.actor.hp;}
   if(t.kind==='rival'){
     const e=t.actor;if(e.hp<=0)return;e.hp=Math.max(0,e.hp-damage);e.phase='stagger';e.timer=stun;e.flash=.2;
     if(!e.hp&&!s.doors.defeated.includes(e.id)){s.doors.defeated.push(e.id);s.credits+=12;s.life.xp=Math.min(50000,s.life.xp+25);notify(s,e.name+' yields. +25 XP / +12 florins.','doors-rival-yields',{id:e.id,x:e.x,z:e.z});}
@@ -61,8 +67,9 @@ function damageTarget(s,w,t,damage,stun){
 }
 export function fireTool(s,w,{attack,throwPaper,cast}={}){
   const c=s.resonance;if(s.mode!=='foot'||c.fireCD>0||c.reload>0)return false;
+  if(safeTown(s)&&['staff','sling'].includes(c.tool)){c.fireCD=.35;notify(s,'Vinci is a safe town. Combat tools are readied beyond the expedition gate.','resonance-denied');return false;}
   if(c.tool==='staff'){const heavy=c.variants.staff===1,before=new Map(validTargets(s,w).map(t=>[t.id,t.hp]));c.fireCD=heavy?.85:.6;const result=attack?.(s,w);if(heavy&&result){s.attackCD=.85;const hit=validTargets(s,w).find(t=>t.hp<before.get(t.id));if(hit)damageTarget(s,w,hit,10,.7);}return !!result;}
-  if(c.tool==='letters'){c.fireCD=.34;if(s.doors.level||s.life.inside){notify(s,'Sealed letters are for outdoor deliveries.','resonance-denied');return false;}return !!throwPaper?.(s,w,c.variants.letters===0?1:-1);}
+  if(c.tool==='letters'){c.fireCD=.34;if(inBadlands(s)){notify(s,'Sealed letters stay in Vinci. Equip the staff or sling for an expedition.','resonance-denied');return false;}if(s.doors.level||s.life.inside){notify(s,'Sealed letters are for outdoor deliveries.','resonance-denied');return false;}return !!throwPaper?.(s,w,c.variants.letters===0?1:-1);}
   if(c.tool==='lantern'){c.fireCD=.5;return !!cast?.(s);}
   if(c.tool!=='sling')return false;
   if(!c.ready){c.fireCD=.5;notify(s,'Ready pouch empty. X reloads from your reserve.','resonance-empty');return false;}

@@ -53,7 +53,7 @@ with sync_playwright() as p:
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Blocking browser dialog: '+d.message)))
  try:
   page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(4)
-  check(read()['version']=='0.9.0','Living Stories release starts the actual renderer')
+  check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Living Stories release starts the actual renderer')
   check(read()['console']['preferences']['profile']=='console','Fresh journey uses default Console, not legacy steering')
   check(read()['audio']['preferences']['density']=='quiet','Quiet cue density is retained')
   press(0);page.wait_for_function('LeonardoGuild.inspect().running');press(12);ui_select('[data-dispatch="adventures"]');ui_select('#living-stories-open')

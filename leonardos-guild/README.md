@@ -1,3 +1,21 @@
+# Leo's Guild - Borderlands v0.11.0
+
+Vinci is now an explicit safe-town region and Cinder Hollow is the first playable badlands. Walk to the new south expedition gate, dismount, press X and choose Enter Cinder Hollow. The same apprentice, equipment, save and controller continue across the region transition. Seven creatures, three connected survey routes, field salvage, a guarded case and three optional return-to-town contracts are playable. Gate Camp is a sanctuary and returning costs nothing. Reloading never strands an old save in the badlands; it resumes safely in Vinci while preserving field progress and cargo.
+
+Town hostility has been migrated rather than deleted. Old folio and Open Doors rival requirements can be resolved peacefully through X while preserving their one-time progression. Rocco's existing warrant/evidence resolution remains. Cinder Hollow is where staff and sling combat now belongs. Quiet audio remains: one existing score stream, independent levels and cue density, with no new soundtrack or notification barrage.
+
+Farmlands are deliberately planned rather than faked in this release. AAA-ROADMAP.md now treats safe towns, dangerous badlands and future productive farmlands as one character/world architecture. See BORDERLANDS.md for scope and controls.
+
+## Earlier releases
+
+# Leo's Guild - Steady Steps v0.10.0
+
+The next C01-C03 roadmap slice improves the existing character rig and follow camera. The camera checks the full wall-crossing path, uses the occupied floor's boundaries, and resets cleanly at stairs. The original clothed player and rivals now have jointed knees/elbows, distance-driven walking and blended action poses. Quiet audio, controls and old saves remain. Read STEADY-STEPS.md for scope and acceptance limits.
+
+The existing homepage card launches this game; check for Steady Steps v0.10.0. AAA-ROADMAP.md and UPGRADE-CHECKLIST.md remain the durable development plan.
+
+## Previous release notes
+
 # Leo's Guild - Living Stories v0.9.0
 
 Open Adventures, then Living stories (or D-pad up, Adventures, Living stories). Two authored cases add six physical steps apiece, alternate roof/cellar evidence routes, a reversible shutter puzzle and peaceful choices with saved, visible household outcomes. The Lamplighter's Promise begins at the workshop household desk; The Ledger With Two Names begins at Renata's western cartographer house, residence-home-0. All prior stories, households, floor networks, quiet audio preferences and saves remain. New story updates are silent by default.

@@ -1,0 +1,49 @@
+# Leo's Guild - Borderlands v0.11.0
+
+Borderlands makes the different ways of playing Leo's Guild explicit without splitting the character or save into a second game. Vinci is the protected town. Cinder Hollow is the first dangerous badlands. Farmlands are reserved as a future production/stewardship region and are not claimed playable in this release.
+
+## Safe Vinci
+
+Town safety is enforced by simulation rules. The staff and sling do not damage people in Vinci, the folio watchman does not attack, Rocco no longer damages the player inside the inn, and Open Doors rivals do not chase or strike on town floors. This applies to streets, houses, attics, rooftops and the undercity while the region is Vinci.
+
+Older progression remains completable. The folio watchman can be spoken to beside his original location after reaching that chapter; he yields the folio encounter and the same one-time reputation result. Open Doors rivals can accept the town truce through the nearby X interaction; this records the same defeated/yielded identity required by old adventure stages and gives the original one-time rival reward. Rocco's existing warrant-and-evidence interaction remains authoritative. No completed save is rolled back.
+
+The south expedition gate is near the original starting area. Dismount and stop beside it, then press X. The region notebook can also mark the gate but cannot teleport you there.
+
+## Cinder Hollow
+
+Cinder Hollow is a separate bounded region using the same apprentice, tools, controller profile, attributes and save. The gate transition is deliberate: the release does not claim a huge seamless streaming world. Your bicycle remains parked in Vinci; the first slice is on foot so combat, camera and trail readability can be evaluated before vehicles are introduced into hostile regions.
+
+Three physical routes form connected loops. Cairn Ridge follows the west trail. The old orchard forms the east trail. A central causeway reaches the Forgotten Court, with several cross-connections so surveying does not require fighting every patrol. Seven creatures persist as defeated identities across returns and reloads. The Gate Camp is a sanctuary; enemies cannot cross its safety radius or a region gate.
+
+The creatures are intentionally few and differentiated before scaling content. Sentinels teach spacing and bracing, wisps move faster with lower vitality, thornbound guards trade speed for heavier hits, and the Hollow Warden has slower, more readable attacks and guards the field case. All attacks use visible windup states. Monsters leash to their home area and cannot pass through ruin collision.
+
+## Expeditions, salvage and retreat
+
+Three optional contracts are available: survey the three routes, defeat any three creatures, and recover the Warden's field case. Contract selection is not a remote reward. Rewards require returning on foot to the town expedition gate, and each report pays once.
+
+Iron and resin are bounded field resources. Some sources are gathered at fixed world locations and monsters can carry small amounts. Field cargo survives voluntary return, rescue and reload. It can be banked only at the town gate. One banked iron plus two resin prepares a field dressing, with a carry limit of three. A dressing restores up to 35 vitality and is not consumed at full health. Nothing is sold for real money and this is not an online economy.
+
+Defeat in Cinder Hollow returns the apprentice to safe Vinci with field progress and cargo retained. Retreat through Gate Camp is free. The design goal is to make leaving danger a valid player decision, not a punishment.
+
+## Controller and interface
+
+The established Console profile remains. Left stick moves, right stick looks, LT aims with the sling or braces with the staff, RT uses the selected tool, LB opens equipment, X interacts or reloads while aiming, B dodges and Y uses a field dressing in the badlands. D-pad Up opens Guild Dispatch; its Regions application opens the region notebook. The full map switches to the Cinder Hollow trail map while there. Keyboard and touch keep their existing alternatives.
+
+Vinci's interface emphasizes residents and work. Cinder Hollow adds threat bars only when creatures are close, a region badge, visible survey markers and a trail map. It does not copy the permanent backpack/action-bar layout in the user's visual reference.
+
+## Audio and presentation
+
+No second music stream or new notification barrage is introduced. Cinder Hollow reuses the existing locally hosted Water Beneath arrangement while exploring and Across the Copper Roofs when an actual nearby threat is visible. The one-stream music invariant, separate levels and Quiet/Balanced/Full cue density remain.
+
+The badlands visual language adapts the reference at a high level rather than copying assets: cool blue-violet fog, warm caged braziers, overgrown paths, old stone courts, tomb markers and readable humanoid silhouettes. All new badlands geometry is original procedural geometry generated by the game.
+
+## Farmlands direction
+
+Farmlands should become a genuinely different pace: crops, orchards, animals, irrigation, gathering, workshops, deliveries and stewardship. It should be possible to spend an entire farm session without combat. Future farming must not punish players for being offline or turn every valuable upgrade into a monster-kill requirement. The same town/badlands/farmlands character and inventory should support multiple preferred play styles.
+
+## Evidence and limits
+
+The model tests cover safety, gate rules, old-save migration, peaceful compatibility paths, connected route graph, monster leashing/windups, staff/sling damage, one-time contracts, salvage, dressings, rescue and reload behavior. The native controller journey must use the actual gate and Cinder Hollow renderer from fresh storage without moving the actor or awarding progression through test code.
+
+This remains single-player. It does not claim The Realm Online's multiplayer or turn-based combat. It also does not claim Farmlands, hostile-region vehicles, dungeons, co-op, a seamless open continent or final AAA monster art. Those remain roadmap work.
