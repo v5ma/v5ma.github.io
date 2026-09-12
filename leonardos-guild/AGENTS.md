@@ -1,3 +1,7 @@
+# Cinder Hollow continuation
+
+The real app always constructs sessionState via attachFrontier, including old saves and reset. Never remove that adapter or claim legacy reducer fixtures alone test town safety. frontier-core.mjs owns bounded region state/actions; frontier-ui.mjs owns validated in-person interactions; frontier-art.mjs owns a reversible scene layer in the existing renderer. Direct old model fixtures intentionally lack the adapter to preserve campaign reducer regressions; new region tests and native runs exercise actual safe-town behavior. Keep original save keys, independent audio levels, Quiet density and one music stream. CINDER-HOLLOW.md records migration, routes, tests and limitations. Farmlands are not implemented.
+
 # Steady Steps continuation
 
 Read STEADY-STEPS.md and the latest release PR before extending camera/characters. camera-safety.mjs owns presentation-only continuous boom checks. character-rig.mjs owns shared original mesh templates and independent joints; character-motion.mjs owns transient displacement-driven pose memory. Do not count camera motion as player distance, alter movement to satisfy render tests, add new sound events, or dispose shared character buffers per instance. Physical hardware and art review remain open roadmap gates.

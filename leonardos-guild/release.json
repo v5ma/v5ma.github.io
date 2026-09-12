@@ -1,8 +1,8 @@
 {
   "id": "leonardos-guild",
-  "title": "Leo's Guild - Steady Steps",
-  "version": "0.10.0",
-  "build": "guild-steady-steps-20260912",
+  "title": "Leo's Guild - Cinder Hollow",
+  "version": "0.11.0",
+  "build": "guild-cinder-hollow-20260912",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -43,7 +43,7 @@
       "warden",
       "artificer"
     ],
-    "dispatchApps": 8,
+    "dispatchApps": 9,
     "save": "additive resonance field; existing key and version 2 retained",
     "audioPolicy": "Trusted browser activation may require Enter once. No blocking browser dialog.",
     "limits": "No physical Xbox, speaker, mobile-performance, full police pursuit, separate protagonists, stock market or property-purchase claim."
@@ -74,5 +74,18 @@
     "progressionChanges": false,
     "newAudioEvents": false,
     "limits": "Procedural character sample, not mocap or complete foot IK; proxy camera bounds, not every decorative triangle; physical hardware review remains open."
+  },
+  "frontier": {
+    "regions": [
+      "safe town",
+      "Cinder Hollow badlands"
+    ],
+    "farmlands": "planned; not implemented",
+    "monsterCount": 7,
+    "trailSegments": 19,
+    "contracts": 3,
+    "save": "additive frontier record; old namespace unchanged",
+    "combatMigration": "in-person peaceful restitution for old town rivals; Rocco evidence prerequisites retained",
+    "quietAudio": true
   }
 }

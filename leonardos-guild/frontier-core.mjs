@@ -68,13 +68,13 @@ export function enterBadlands(s){
  if(s.cycle?.active)return fail('Finish or cancel the bicycle road test before leaving town.');
  s.frontier.zone='badlands';s.frontier.gateTracked=false;s.frontier.lastArea=null;
  s.x=CAMP.x;s.z=CAMP.z;s.yaw=0;s.speed=s.lift=s.vy=0;s.inv=2;s.shots=[];
- Object.assign(s.resonance,{projectiles:[],cover:null,lock:null,aim:false,fireCD:0,reload:0});s.doors.dodge=0;s.life.attackPending=false;refreshMonsters(s);
+ Object.assign(s.resonance,{projectiles:[],cover:null,lock:null,aim:false,fireCD:0,reload:0});s.doors.dodge=0;s.guarding=false;s.life.attackPending=false;s.attackCD=s.attackT=0;refreshMonsters(s);
  return message(s,'Cinder Hollow: monsters stay outside town. Explore the three trails; return through this camp at any time.');
 }
 export function leaveBadlands(s,rescued=false){
  if(!inBadlands(s)||!rescued&&(dist(s,CAMP)>7||Math.abs(s.speed)>1.7))return fail('Return to the Gate Camp to travel safely to Vinci.');
  s.frontier.zone='town';s.frontier.enemies=[];s.frontier.lastArea=null;
- s.x=TOWN_GATE.x;s.z=TOWN_GATE.z+1;s.yaw=0;s.mode='foot';s.speed=s.lift=s.vy=0;s.inv=2;s.shots=[];s.doors.level=0;s.doors.room=null;s.life.inside=null;
+ s.x=TOWN_GATE.x;s.z=TOWN_GATE.z+1;s.yaw=0;s.mode='foot';s.speed=s.lift=s.vy=0;s.inv=2;s.shots=[];s.attackCD=s.attackT=0;s.guarding=false;s.doors.dodge=0;s.doors.level=0;s.doors.room=null;s.life.inside=null;
  Object.assign(s.resonance,{projectiles:[],cover:null,lock:null,aim:false,reload:0,fireCD:0,special:0});
  if(rescued)s.health=capacity(s);
  return message(s,rescued?'The gate watch brings you back to safe Vinci. Your progress, cargo, money and equipment were kept.':'Vinci is safe. Bank your cargo and report completed contracts at the expedition gate.');
@@ -135,7 +135,7 @@ export function frontierAction(s,w,action){
  return fail('That region action is not available here.');
 }
 export function hurtMonster(s,id,damage,stun=.4){
- if(!inBadlands(s)||!Number.isFinite(damage)||damage<=0)return false;const f=s.frontier,m=f.enemies.find(e=>e.id===id);if(!m||m.hp<=0)return false;
+ if(!inBadlands(s)||dist(s,CAMP)<18||!Number.isFinite(damage)||damage<=0)return false;const f=s.frontier,m=f.enemies.find(e=>e.id===id);if(!m||m.hp<=0||dist(m,CAMP)<18)return false;
  m.hp=Math.max(0,m.hp-Math.min(100,damage));m.flash=.18;m.phase='stagger';m.timer=stun;
  if(m.hp===0&&!f.defeated.includes(id)){f.defeated.push(id);f.cargo.ore=Math.min(99,f.cargo.ore+m.ore);f.cargo.resin=Math.min(99,f.cargo.resin+m.resin);message(s,m.name+' defeated. Field cargo collected; report contracts in town.');}
  return true;
@@ -149,9 +149,9 @@ export function stepFrontier(s,w,input,dt){
  s.time+=dt;s.steps++;const f=s.frontier;f.notice=Math.max(0,f.notice-dt);
  for(const k of ['inv','toastT','attackCD','attackT','scan','scanCD','throwCD'])s[k]=Math.max(0,s[k]-dt);
  for(const k of ['dodge','dodgeCD'])s.doors[k]=Math.max(0,s.doors[k]-dt);
- const yaw=Number.isFinite(input.moveYaw)?input.moveYaw:s.yaw-(input.steer||0)*2.6*dt;
+ const yaw=Number.isFinite(input.moveYaw)?input.moveYaw:s.yaw-clamp(input.steer||0,-1,1)*2.6*dt;
  if(!s.resonance.aim)s.yaw=yaw;
- s.speed+=((input.throttle||0)*(input.boost?7:4.6)-s.speed)*Math.min(1,dt*12);
+ s.speed+=(clamp(input.throttle||0,-1,1)*(input.boost?7:4.6)-s.speed)*Math.min(1,dt*12);
  const d=(s.doors.dodge>0?9:s.speed)*dt,dx=Math.sin(yaw)*d,dz=Math.cos(yaw)*d,before={x:s.x,z:s.z};
  if(!frontierBlocked(s.x+dx,s.z))s.x+=dx;if(!frontierBlocked(s.x,s.z+dz))s.z+=dz;s.distance+=dist(before,s);
  if(input.jump&&s.lift===0)s.vy=5;if(s.vy>0||s.lift>0){s.vy-=12*dt;s.lift=Math.max(0,s.lift+s.vy*dt);if(s.lift===0)s.vy=0;}

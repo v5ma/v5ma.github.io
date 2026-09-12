@@ -28,7 +28,7 @@ export function createFrontierUI({getState,world,setPause,save,active,onTransiti
  }
  function open(which='journey'){if(!active())return;tab=which;message='';setPause(true);render();dialog.showModal();}
  function interact(){if(inBadlands(getState())||nearbyFrontier(getState(),world).length){open();return true;}return false;}
- function update(){const s=getState(),f=s.frontier;if(!f)return;badge.hidden=!document.getElementById('menu').hidden;const bad=inBadlands(s);if(rideButton)rideButton.innerHTML=bad?'<b>Y</b>Dressing':rideLabel;const camp=bad&&Math.hypot(s.x-CAMP.x,s.z-CAMP.z)<18,target=frontierTarget(s);badge.className=bad&&!camp?'hostile':'safe';badge.textContent=(bad?(camp?'GATE CAMP / SANCTUARY':'CINDER HOLLOW / BADLANDS'):'VINCI / SAFE TOWN')+(target?' | '+target.name+' / '+Math.round(Math.hypot(s.x-target.x,s.z-target.z))+' m':'');
+ function update(){const s=getState(),f=s.frontier;if(!f)return;badge.hidden=!document.getElementById('menu').hidden;const bad=inBadlands(s);if(rideButton)rideButton.innerHTML=bad?'<b>Y</b>Dressing':rideLabel;const camp=bad&&Math.hypot(s.x-CAMP.x,s.z-CAMP.z)<18,target=frontierTarget(s);document.body.classList.toggle('in-badlands',bad);badge.className=bad&&!camp?'hostile':'safe';badge.textContent=(bad?(camp?'GATE CAMP / SANCTUARY':'CINDER HOLLOW / BADLANDS'):'VINCI / SAFE TOWN')+(target?' | '+target.name+' / '+Math.round(Math.hypot(s.x-target.x,s.z-target.z))+' m':'');
   if(safeTown(s)){document.getElementById('duel').hidden=true;document.getElementById('doors-enemy').hidden=true;}
  }
  function drawMap(canvas,full=false){

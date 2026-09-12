@@ -1,3 +1,7 @@
+# Current regional checkpoint - Cinder Hollow v0.11.0
+
+This release continues the same game, not a spinoff. Steady Steps camera/rig work is recovered. The first badlands region and an enforced town truce advance the regional plan: safe homes/streets/roofs/cellars, a deliberate gateway, three traversable loops, seven persistent creatures, survey/salvage contracts and saved cargo. Future farm play is peaceful stewardship; no farmland map exists yet. Next: owner playtest of the gate/controller/combat loop, then floor-aware town route planning and a richer second expedition. Prior phase gates below remain open unless explicitly satisfied.
+
 # Leo's Guild - AAA-quality production roadmap
 
 Owner: Micah Blumberg / SVGN. Updated September 12, 2026.

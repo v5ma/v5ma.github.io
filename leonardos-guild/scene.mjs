@@ -1,3 +1,5 @@
+import {inBadlands} from './frontier-core.mjs';
+import {createFrontierArt} from './frontier-art.mjs';
 import {createCameraOcclusion} from './camera-occlusion.mjs';
 import {createActorFade} from './character-rig.mjs';
 import {createCameraSafety} from './camera-safety.mjs';
@@ -69,16 +71,19 @@ export function createScene(canvas,w,s,quality='high'){
  const cityArt=createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,camera});
  const doorsArt=createDoorsArt({scene,root,w,m,camera});
  const resonanceArt=createResonanceArt({scene,rider});
+ const frontierArt=createFrontierArt({scene,camera,renderer,m,heightAt});let frontierWas=false;
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality,consoleYaw=s.yaw,consoleMode=false,cameraHeading=s.yaw,lastYaw=s.yaw;
  const cameraSafety=createCameraSafety(w,heightAt),actorFade=createActorFade(rider),furnitureOcclusion=createCameraOcclusion(scene);
  const shouldDraw=createFrameGate();let viewportRevision=0;
  function resize(){viewportRevision++;const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
-  const artStatus=streetArt.inspect();if(!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,consoleYaw,!!input.consoleCamera,artStatus.ready,artStatus.failed],input.snap))return;
+  const artStatus=streetArt.inspect();if(!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,consoleYaw,!!input.consoleCamera,artStatus.ready,artStatus.failed,state.frontier?.zone],input.snap))return;
   const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=doorElevation(p),y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;
   lastYaw=p.yaw;const useConsole=!!input.consoleCamera&&p.mode==='foot';if(useConsole&&!consoleMode)consoleYaw=p.yaw+orbit;consoleMode=useConsole;
   if(useConsole){consoleYaw+=input.look||0;orbit=0;}else{if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);}
   pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
+  if(inBadlands(p)){const yaw=useConsole?consoleYaw:p.yaw+orbit;cameraHeading=yaw;frontierArt.update(p,dt,{yaw,pitch,distance:distanceScale,snap:!!input.snap||!frontierWas,quality:renderQuality});frontierWas=true;return;}
+  frontierArt.deactivate(p);if(frontierWas){initialized=false;cameraSafety.reset();frontierWas=false;}
   const aiming=useConsole&&p.resonance?.aim,angle=useConsole?consoleYaw:p.yaw+orbit;cameraHeading=angle;
   const follow=(aiming?2.25:p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(aiming?2.05:p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;
   const enclosed=currentRoom&&![3,-2].includes(doorLevel(p)),roomFollow=enclosed?Math.min(3.1,follow):follow;
@@ -105,5 +110,5 @@ export function createScene(canvas,w,s,quality='high'){
  function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;streetArt.setQuality(value);renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.6:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}
  function recenter(){orbit=pitch=0;consoleYaw=lastYaw;cameraHeading=lastYaw;}
  function setDistance(v){if([.8,1,1.4].includes(v))distanceScale=v;}
- setQuality(quality);return {renderer,scene,camera,update,resize,recenter,heading:()=>cameraHeading,setQuality,setDistance,inspect:()=>({quality:renderQuality,cameraSafety:cameraSafety.inspect(),playerFade:actorFade.inspect(),furnitureOcclusion:furnitureOcclusion.inspect(),character:inspectMotion(rider),shadows:renderer.shadowMap.enabled,cameraFov:camera.fov,consoleCamera:consoleMode,heading:cameraHeading,resonance:resonanceArt.inspect(),orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),doors:doorsArt.inspect(),cycle:cycles.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
+ setQuality(quality);return {renderer,scene,camera,update,resize,recenter,heading:()=>cameraHeading,setQuality,setDistance,inspect:()=>({frontier:frontierArt.inspect(),quality:renderQuality,cameraSafety:cameraSafety.inspect(),playerFade:actorFade.inspect(),furnitureOcclusion:furnitureOcclusion.inspect(),character:inspectMotion(rider),shadows:renderer.shadowMap.enabled,cameraFov:camera.fov,consoleCamera:consoleMode,heading:cameraHeading,resonance:resonanceArt.inspect(),orbit,pitch,distanceScale,visuals:finish.inspect(),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,webgl:renderer.capabilities.isWebGL2!==false,interior:townLife.inspect(),doors:doorsArt.inspect(),cycle:cycles.inspect(),art:streetArt.inspect(),atmosphere:cityArt.inspect(),articulatedPlayer:!!rider.root.guildRig})};
 }

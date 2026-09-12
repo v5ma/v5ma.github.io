@@ -38,7 +38,7 @@ export function corridorFraction(anchor,desired,paths,radius=.22){
 export function createCameraSafety(world,heightAt){
  const radius=.22;
  const fromRect=(b,h)=>({id:b.id,min:{x:b.x-b.hx,y:heightAt(b.x,b.z)-.3,z:b.z-b.hz},max:{x:b.x+b.hx,y:heightAt(b.x,b.z)+h,z:b.z+b.hz}});
- const street=world.colliders.map(b=>fromRect(b,b.low?1.18:b.id.includes('counter')?1.35:b.id==='kiosk'?4.6:b.id==='newsroom'?12.6:b.id.includes('north-wall')?5.3:10.8));
+ const street=world.colliders.map(b=>fromRect(b,Number.isFinite(b.cameraHeight)?b.cameraHeight:b.low?1.18:b.id.includes('counter')?1.35:b.id==='kiosk'?4.6:b.id==='newsroom'?12.6:b.id.includes('north-wall')?5.3:10.8));
  // Headroom above the real entrance opening matters when looking upward.
  for(const r of world.rooms){const x=r.x-r.side*(r.hx-.2),y=heightAt(r.x,r.z);street.push({id:r.id+'-lintel',min:{x:x-.25,y:y+3.3,z:r.z-1.6},max:{x:x+.25,y:y+10.8,z:r.z+1.6}});}
  const gates=(world.gates||[]).map(b=>fromRect(b,1.5)),north=world.townGate?fromRect(world.townGate,4.4):null;

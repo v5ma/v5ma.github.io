@@ -91,14 +91,12 @@ with sync_playwright() as p:
   drive(page,0,235,3);drive(page,40,240,3);drive(page,80,240,3);drive(page,80,323,2)
   page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(page,80,329,1.2);hold(page,['KeyK'])
   page.wait_for_function('LeonardoGuild.inspect().events.some(e=>e.type==="blocked-hit")',timeout=45000)
-  check(read(page)['guarding'],'Bracing blocks an actual telegraphed guard attack')
-  for i in range(3):
-   if read(page)['defeated']:break
-   page.keyboard.press('KeyJ');tick=read(page)['steps']
-   # Wait for the live cooldown, not an assumption about CI wall-clock speed.
-   page.wait_for_function('(tick)=>LeonardoGuild.inspect().steps>=tick+40',arg=tick,timeout=20000)
-  hold(page,[]);page.wait_for_function('LeonardoGuild.inspect().defeated',timeout=15000)
-  check(any(e['type']=='duel-won' for e in read(page)['events']),'Real staff strikes make the folio guard yield');page.screenshot(path=str(OUT/'05-guard-yields.png'))
+  check(read(page)['guarding'],'Staff bracing remains available without hostile town combat')
+  hold(page,[]);hp=read(page)['health'];page.keyboard.press('KeyJ')
+  check(not read(page)['defeated'] and read(page)['health']==hp,'Town attacks neither damage the player nor skip restitution')
+  page.keyboard.press('KeyI');page.wait_for_selector('#frontier-dialog[open]');page.locator('[data-frontier-action="parley-folio"]').click();page.locator('#frontier-close').click()
+  page.wait_for_function('LeonardoGuild.inspect().defeated',timeout=15000)
+  check(read(page)['banditHP']==0,'Physical peaceful restitution resolves the folio watchman');page.screenshot(path=str(OUT/'05-guard-yields.png'))
   drive(page,80,352,3);hold(page,['KeyH']);page.wait_for_function('LeonardoGuild.inspect().folio');hold(page,[])
   check(read(page)['mission']==3 and not read(page)['completed'],'Recovering the folio creates a return mission rather than an automatic win')
   # Walk to the side of the actual parked carriage, within its entry radius.
