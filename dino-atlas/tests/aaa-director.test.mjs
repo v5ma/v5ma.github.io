@@ -1,45 +1,30 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {AAA_BUILD,sanitizeDirector,readDirector,saveDirector} from '../aaa-director.js';
+import * as T from '../vendor/three.module.js';
+import {STORM_ID,STORM_KEY,STORM_BUILD,STORM_STAGES,STORM_COAST,EAST,NORTH,SOUTH,SOUTH_PIER,MERIDIAN_APPROACH,AIR_PAD,BOAT_DESK,emptyDirector,sanitizeDirector,readDirector,saveDirector,startDirector,suspendDirector,canResume,advanceDirector,automaticStage,actionAt,checkpointSpawn} from '../storm-mission.js';
+import {emptyEconomy,sanitizeEconomy} from '../frontier-economy-core.js';
+import {emptyFrontier,ALL_ANIMALS,PENS,penState,insidePen,createResident,deterAnimal,stepResident,isWater} from '../frontier-data.js';
+import {initPhysics,ParkPhysics} from '../ranger-physics.js';
+import {Fleet} from '../frontier-vehicles.js';
+import {buildRanchWorld} from '../ranch-world.js';
+await initPhysics();
+const storage=()=>{const data=new Map();return {data,getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};};
+const tick=(p,f,n,v={},yaw=0)=>{for(let i=0;i<n;i++){f.drive(v,1/60,i/60,yaw);p.world.step();f.afterStep(1/60);}};
+function withScene(fn){const old=globalThis.document;globalThis.document={createElement:()=>({width:1024,height:100,getContext:()=>({fillRect(){},strokeRect(){},fillText(){}})})};const p=new ParkPhysics(),f=new Fleet(p,emptyFrontier());try{buildRanchWorld(new T.Scene(),p);fn(p,f);}finally{p.world.free();globalThis.document=old;}}
 
-test('AAA director build identifier is explicit',()=>{
- assert.equal(AAA_BUILD,'aaa-vslice-storm-20260911.1');
-});
-
-test('corrupt or future mission state becomes a safe bounded save',()=>{
- const v=sanitizeDirector({version:1,active:'storm-response',stage:999,checkpoint:-5,completed:['storm-response','bad','storm-response'],storm:'yes',finishedAt:Infinity});
- assert.equal(v.active,'storm-response');
- assert.equal(v.stage,7);
- assert.equal(v.checkpoint,0);
- assert.deepEqual(v.completed,['storm-response']);
- assert.equal(v.storm,true);
- assert.equal(v.finishedAt,0);
- assert.deepEqual(sanitizeDirector(null),{version:1,active:null,stage:0,completed:[],checkpoint:0,storm:false,finishedAt:0});
-});
-
-test('AAA mission save never overwrites journal, ranger, frontier, ranch or economy keys',()=>{
- const data=new Map([
-  ['dino-atlas.progress.v1','journal'],
-  ['dino-atlas.ranger.v1','campaign'],
-  ['dino-atlas.frontier.v2','frontier'],
-  ['dino-atlas.ranch.v1','ranch'],
-  ['dino-atlas.economy.v1','economy']
- ]);
- const storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};
- const s={version:1,active:'storm-response',stage:4,checkpoint:4,completed:[],storm:true,finishedAt:0};
- assert.equal(saveDirector(storage,s),true);
- assert.equal(readDirector(storage).stage,4);
- assert.equal(data.get('dino-atlas.progress.v1'),'journal');
- assert.equal(data.get('dino-atlas.ranger.v1'),'campaign');
- assert.equal(data.get('dino-atlas.frontier.v2'),'frontier');
- assert.equal(data.get('dino-atlas.ranch.v1'),'ranch');
- assert.equal(data.get('dino-atlas.economy.v1'),'economy');
- assert.equal(saveDirector(null,s),false);
-});
-
-test('unknown missions cannot be activated from persisted data',()=>{
- const v=sanitizeDirector({version:1,active:'future-mission',stage:5,checkpoint:5,completed:['future-mission'],storm:true,finishedAt:22});
- assert.equal(v.active,null);
- assert.deepEqual(v.completed,[]);
- assert.equal(v.stage,5);
-});
+test('build and eight authored stages are explicit',()=>{assert.equal(STORM_BUILD,'aaa-vslice-storm-20260911.2');assert.equal(STORM_STAGES.length,8);});
+test('corrupt/future saves become bounded and unknown missions cannot activate weather',()=>{assert.deepEqual(sanitizeDirector(null),emptyDirector());const s=sanitizeDirector({version:1,active:'other',stage:999,checkpoint:-5,coastIndex:999,finishedAt:Infinity,elapsed:NaN,storm:true,flashes:'yes',completed:[STORM_ID,STORM_ID,'other']});assert.equal(s.stage,7);assert.equal(s.checkpoint,0);assert.equal(s.coastIndex,5);assert.equal(s.active,null);assert.equal(s.storm,false);assert.equal(s.flashes,false);assert.deepEqual(s.completed,[STORM_ID]);});
+test('mission storage never overwrites the real old save namespaces',()=>{const st=storage(),keys=['dino-atlas.progress.v1','dino-atlas.ranger.v1','dino-atlas.frontier.v2','dino-atlas.ranch.v1','dino-atlas.market.v1','dino-atlas.audio.v1'];keys.forEach(k=>st.setItem(k,'prior:'+k));const s=startDirector(emptyDirector());s.stage=4;s.checkpoint=4;assert.ok(saveDirector(st,s));assert.equal(readDirector(st).stage,4);keys.forEach(k=>assert.equal(st.getItem(k),'prior:'+k));assert.ok(st.getItem(STORM_KEY));assert.equal(saveDirector(null,s),false);});
+test('suspend survives reload and resumes the same stage rather than restarting',()=>{let s=startDirector(emptyDirector());for(let i=0;i<4;i++)advanceDirector(s);s.elapsed=85;suspendDirector(s);assert.ok(canResume(s));assert.equal(s.active,null);const st=storage();saveDirector(st,s);s=startDirector(readDirector(st));assert.equal(s.stage,4);assert.equal(s.elapsed,85);assert.equal(s.storm,true);});
+test('old abandoned saves migrate to resumable suspended missions',()=>{const s=sanitizeDirector({version:1,active:null,stage:5,checkpoint:5,completed:[]});assert.ok(canResume(s));assert.equal(startDirector(s).stage,5);});
+test('first completion grants once even after fresh replay and save/load',()=>{let s=startDirector(emptyDirector());let result;for(let i=0;i<8;i++)result=advanceDirector(s);assert.equal(result.reward,1800);assert.equal(s.active,null);assert.equal(advanceDirector(s),null);s=startDirector(sanitizeDirector(s),true);for(let i=0;i<8;i++)result=advanceDirector(s);assert.equal(result.reward,0);assert.deepEqual(s.completed,[STORM_ID]);});
+test('economic reward ledger preserves the exact story ID and all prior ranch rewards',()=>{const e=emptyEconomy();e.rewardLedger=['ranch:school','aaa:storm-response','other:untrusted'];e.cargo.rations=3;e.credits=3600;const v=sanitizeEconomy(JSON.parse(JSON.stringify(e)));assert.deepEqual(v.rewardLedger,['ranch:school','aaa:storm-response']);assert.equal(v.cargo.rations,3);assert.equal(v.credits,3600);});
+test('only the correct mode, floor, stage and speed can complete an interaction',()=>{const s=startDirector(emptyDirector());s.stage=1;const p={x:EAST.x+13,y:1,z:EAST.z-10};assert.equal(actionAt(s,p,'jeep'),null);assert.equal(actionAt(s,{...p,y:EAST.h+1},'foot'),null);assert.equal(actionAt(s,p,'foot',8),null);assert.equal(actionAt(s,p,'foot'), 'generator');s.stage=3;assert.equal(actionAt(s,p,'foot'),null);});
+test('Meridian arrival is outside the building and physically reachable with the jeep',()=>withScene((p,f)=>{const s=startDirector(emptyDirector());f.current.drive.reset({x:MERIDIAN_APPROACH.x,z:MERIDIAN_APPROACH.z+13},Math.PI);let reached=false;for(let i=0;i<400;i++){const gap=Math.hypot(f.position.x-MERIDIAN_APPROACH.x,f.position.z-MERIDIAN_APPROACH.z);tick(p,f,1,gap<8?{brake:true}:{throttle:.35});if(automaticStage(s,f.position,f.mode,f.actor.speed)){reached=true;break;}}assert.ok(reached);assert.ok(f.position.z>EAST.z+EAST.hz+2);tick(p,f,120,{brake:true});assert.ok(f.board());}));
+test('the emergency panel is reachable by walking through the real Meridian doorway',()=>withScene((p,f)=>{f.active='foot';f.person.setActive(true,{x:EAST.x,y:1.1,z:EAST.z+EAST.hz+6});const goals=[[{z:1},q=>q.z<EAST.z+10],[{x:1},q=>q.x>EAST.x+13],[{z:1},q=>q.z<EAST.z-9.5]];for(const [v,goal]of goals){let ok=false;for(let i=0;i<1200;i++){tick(p,f,1,v);if(goal(f.position)){ok=true;break;}}assert.ok(ok,'corridor leg');}const s=startDirector(emptyDirector());s.stage=1;assert.equal(actionAt(s,f.position,'foot'), 'generator');}));
+test('Meridian transfer pad is dry, clear and actually boardable',()=>withScene((p,f)=>{const air=f.vehicles.find(v=>v.type==='helicopter');assert.equal(isWater(AIR_PAD.x,AIR_PAD.z,4),false);air.drive.reset(AIR_PAD,Math.PI);f.active='foot';f.person.setActive(true,{x:AIR_PAD.x-5,y:1.1,z:AIR_PAD.z});tick(p,f,90);assert.ok(f.board());assert.equal(f.mode,'helicopter');}));
+test('the South pier transfer berth supports ordinary Y boarding without moving the ranger',()=>withScene((p,f)=>{const boat=f.vehicles.find(v=>v.type==='boat');boat.drive.reset({...SOUTH_PIER.boat,y:.78});f.active='foot';f.person.setActive(true,{...BOAT_DESK,y:1.1});tick(p,f,100);assert.ok(f.board());assert.equal(f.mode,'boat');}));
+test('both story rooftop exits and all checkpoint positions are physically supported',()=>withScene((p,f)=>{for(const b of [NORTH,SOUTH]){f.person.setActive(false);f.active='helicopter';f.current.drive.reset({x:b.x+2,y:b.h+4,z:b.z+1},Math.PI);tick(p,f,250,{climb:-1});assert.ok(f.board());assert.ok(f.position.y>b.h);}
+ for(let stage=0;stage<8;stage++){const sp=checkpointSpawn(stage);f.person.setActive(false);f.active=sp.mode;if(sp.mode==='foot'){f.person.setActive(true,sp.p);}else f.current.drive.reset(sp.p);tick(p,f,90);assert.ok(Number.isFinite(f.position.y)&&f.position.y>.4, 'supported checkpoint '+stage);if(sp.p.y>10)assert.ok(f.position.y>sp.p.y-2);}}));
+test('the lit story sea route is fully driveable using the actual boat physics',()=>{const p=new ParkPhysics(),f=new Fleet(p,emptyFrontier());try{f.active='boat';f.current.drive.reset({...SOUTH_PIER.boat,y:.78},Math.PI/2);const route=[...STORM_COAST,{x:437,z:40}];let i=0;for(let n=0;n<15000&&i<route.length;n++){const goal=route[i],pos=f.position,want=Math.atan2(goal.x-pos.x,goal.z-pos.z),delta=Math.atan2(Math.sin(want-f.actor.heading),Math.cos(want-f.actor.heading));tick(p,f,1,{throttle:1,boost:true,steer:Math.max(-1,Math.min(1,delta*2))});assert.ok(isWater(f.position.x,f.position.z),'stays in ocean');if(Math.hypot(f.position.x-goal.x,f.position.z-goal.z)<18)i++;}assert.equal(i,route.length);}finally{p.world.free();}});
+test('roundup safe counts agree and closing a complete pen cannot lose a resident at the fence margin',()=>{const s=emptyFrontier(),pen=PENS.find(p=>p.id==='crest-meadow'),ps=penState(s,pen),player={x:-44,y:1,z:203};ps.open=true;ps.fed=true;const animals=ALL_ANIMALS.filter(a=>a.pen===pen.id).map(createResident);animals.forEach((a,i)=>{a.x=pen.x+(i%2?3:-3);a.z=pen.z+pen.hz+7+i*4;a.origin={x:a.x,z:a.z};deterAnimal(a,player,'horn');});let closed=false;for(let i=0;i<3600;i++){animals.forEach(a=>stepResident(a,player,1/60,i/60,s));if(!closed&&animals.every(a=>insidePen(a,pen,2))){closed=true;ps.open=false;}if(closed)assert.ok(animals.every(a=>insidePen(a,pen,2)));}assert.ok(closed);});
