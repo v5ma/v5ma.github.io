@@ -1,6 +1,6 @@
 # Prism Current: AAA-quality production checklist
 
-Updated for Control Room v0.3.0, 2026-09-11. This is the working production checklist, stored with the game. The original history remains in [ROADMAP.md](ROADMAP.md). Release evidence belongs in [QA.md](QA.md) and the pull request / GitHub Actions receipts, not in unchecked marketing claims.
+Updated for Tidal Bloom v0.4.0, 2026-09-12. This is the working production checklist, stored with the game. The original history remains in [ROADMAP.md](ROADMAP.md). Release evidence belongs in [QA.md](QA.md) and the pull request / GitHub Actions receipts, not in unchecked marketing claims.
 
 ## Target and status rules
 
@@ -10,7 +10,16 @@ Checked means the specified implementation exists. It does NOT mean every device
 
 Owners: Development owns implementation and automation. Micah owns creative acceptance and prioritization. A physical tester owns hardware measurements and comfort acceptance. No physical tester is assigned yet. Priorities P0, P1 and P2 mean release blocker, next production work and later expansion. Effort S, M and L are relative scope, not delivery dates.
 
-## Current upgrade: Control Room
+## Current upgrade: Tidal Bloom v0.4.0
+
+- [x] TB-01 / P1 / Development / M. Implement the fourth original track with eight named sections, new oscillator voices, a returning melody, a percussion-free passage and a final fade. See MUSIC_NOTES.md. Creative listening approval remains open under B-01.
+- [x] TB-02 / P1 / Development / M. Author 92-note Flow and 170-note Pulse charts, phrase-end gaps and a target-free breathing passage. Automated geometry/spacing checks exist; physical comfort acceptance remains open under B-02.
+- [x] TB-03 / P1 / Development / M. Add the song journey, live section cues, per-section quality, measured timing bins and a weakest-section practice target. These diagnostics are not hardware latency calibration.
+- [x] TB-04 / P0 / Development / M. Preserve legacy chart hashes, synthesized-audio hashes, scoring results and saved-record keys. New content uses separate tidal-bloom record categories.
+- [x] TB-05 / P0 / Development / S. Store a repeatable sample-peak/RMS and conservative full-mix amplitude audit beside the game. Perceptual mixing approval is still open under B-06.
+- [ ] TB-06 / P1 / Micah + physical tester / M. Review the music by listening and playing both charts on real controls before using this arrangement as the catalog-wide creative bar.
+
+## Previous upgrade: Control Room
 
 - [x] CR-01 / P0 / Development / M. Add explicit standard-gamepad timing practice with LT, LB, RB and RT mapped to the four lanes. Save under the separate gamepad record category; do not relabel timing taps as tracked saber cuts.
 - [x] CR-02 / P0 / Development / M. Support controller focus, track and chart selection, settings adjustment, play, pause, resume, retry, results and back navigation. Use D-pad or left stick, A, B, Menu and View. Preserve keyboard, mouse, touch and XR controls.
@@ -33,16 +42,16 @@ Dependencies: CR-01 through CR-06. Exit when the public release works across the
 - [ ] A-06 / P1 / Development / M. Add an interactive first-run lesson for hand colors, hit plane, cut direction, timing and pause. Exit: five first-time players can finish the lesson without verbal coaching; record failures and revisions.
 - [ ] A-07 / P1 / Development / M. Expose latency calibration with a measurable repeatability report rather than only a manual offset field. Separate visual/audio offsets if measurements justify it.
 
-## Gate B: music and authored rhythm identity -- next content upgrade
+## Gate B: music and authored rhythm identity
 
 Dependencies: stable transport and CR-03. Micah approves the musical direction before expanding the catalog. Preserve existing tracks and best scores; version any changed chart instead of invalidating old records silently.
 
-- [ ] B-01 / P1 / Development + Micah / M. Produce one flagship original arrangement with a recognizable motif, distinct intro, verse, build, drop, rest and outro. Judge it by uninterrupted listening and playtests, not the number of simultaneous sounds.
-- [ ] B-02 / P1 / Development + Micah / L. Author Flow and Pulse movement phrases for the flagship track. Add breathers, hand alternation and intentional musical accents. Verify no unintended unreachable or self-colliding sequences.
-- [ ] B-03 / P1 / Development / M. Add phrase/section labels and richer end-of-song analysis: timing error distribution, miss locations and section improvement targets.
+- [ ] B-01 / P1 / Development + Micah / M. Produce one flagship original arrangement with a recognizable motif, distinct intro, verse, build, drop, rest and outro. Implementation delivered in v0.4.0 as Tidal Bloom. Uninterrupted human listening/playtest approval remains OPEN; judge it by enjoyment, not the number of simultaneous sounds.
+- [ ] B-02 / P1 / Development + Micah / L. Author Flow and Pulse movement phrases for the flagship track. Add breathers, hand alternation and intentional musical accents. The v0.4.0 authored charts pass numeric lane/row and recovery-spacing checks. Physical reach, self-collision and comfort review remain OPEN.
+- [x] B-03 / P1 / Development / M. Add phrase/section labels and richer end-of-song analysis: timing error distribution, miss counts by section and section improvement targets. Implemented in v0.4.0; diagnostics do not change scoring.
 - [ ] B-04 / P1 / Development / L. Build a loopable practice section with speed control and a count-in. Keep slowed practice records separate from full-speed records; pitch behavior must be explicit.
 - [ ] B-05 / P1 / Development + Micah / L. Expand to six distinct original tracks only after the flagship passes musical and movement review. Maintain a rights/provenance register for every new sound or outside asset.
-- [ ] B-06 / P0 before new audio release / Development / M. Measure peaks, clipping, output level consistency and effect masking. Compare music-only and full-mix listening. Acceptance: clean output and no overlapping soundtrack instances on rapid restart.
+- [ ] B-06 / P0 before new audio release / Development / M. Measure peaks, clipping, output level consistency and effect masking. Compare music-only and full-mix listening. Numeric sample-peak/RMS and worst-case hit-envelope headroom passed in v0.4.0; single-source transport regression remains covered. Human listening for masking and perceived level consistency is OPEN.
 
 ## Gate C: access, comfort and control completeness
 
@@ -88,4 +97,4 @@ Dependencies: all P0 items for the explicitly announced platforms. Every upgrade
 
 ## How the next round is chosen
 
-First resolve any P0 regression found in Control Room. Then implement B-01 and B-02 as the next substantial content release, with B-06 as its audio acceptance gate. Continue physical CR-HW and CR-XR acceptance separately; never mark those complete based on emulation. After the flagship song is enjoyable, prioritize A-06 and C-01 before bulk catalog expansion.
+First resolve any P0 regression. Tidal Bloom now implements the B-01/B-02 content and B-03 feedback; complete its human creative review and the remaining B-06 listening checks. The next implementation priorities are A-06, an interactive first-run lesson, and B-04, section practice with separate practice records. Continue physical CR-HW and CR-XR acceptance separately; never mark those complete based on emulation. After the flagship song is enjoyable, prioritize A-06 and C-01 before bulk catalog expansion.

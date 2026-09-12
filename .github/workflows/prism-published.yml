@@ -9,7 +9,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,8 +22,6 @@ jobs:
           import json,urllib.request,time,hashlib
           from pathlib import Path
           m=json.loads(Path('test-output/prism-manifest.json').read_text());result={}
-          # Other game releases may legitimately update shared homepage assets.
-          # Their integration is checked by the actual homepage-to-game test.
           files={p:h for p,h in m['files'].items() if p.startswith('prism-current/')}
           for attempt in range(36):
             for path,expected in files.items():
@@ -51,6 +49,10 @@ jobs:
         env:
           PRISM_URL: https://v5ma.github.io/prism-current/
         run: timeout 150 python -u prism-current/tests/control-browser.py
+      - name: Verify full public Tidal Bloom song and section results
+        env:
+          PRISM_URL: https://v5ma.github.io/prism-current/
+        run: timeout 240 python -u prism-current/tests/tidal-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

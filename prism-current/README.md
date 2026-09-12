@@ -1,3 +1,9 @@
+# Current release: Tidal Bloom v0.4.0
+
+Four original tracks are available. Tidal Bloom is an approximately two-minute, eight-section arrangement with 92-note Flow and 170-note Pulse charts, live phrase guidance and measured section/timing results. Existing songs, scoring, controller menus, mixer preferences and score categories remain intact.
+
+The working production path is [AAA_CHECKLIST.md](AAA_CHECKLIST.md). [MUSIC_NOTES.md](MUSIC_NOTES.md) documents composition and numeric mix checks. [QA.md](QA.md) distinguishes automated acceptance from physical-device and human listening approval. Previous release documentation follows for history.
+
 # Prism Current — rhythm in your room
 
 A separate A-Frame game for SVGN Interactive. Two luminous blades cut timed,

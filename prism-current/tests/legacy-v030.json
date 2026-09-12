@@ -1,0 +1,16 @@
+{
+  "source":"f98fac01d1adfe9ba5323abefc97733292b961d0",
+  "charts":{
+    "first-light/flow":{"notes":"a4228bd8e7da7bf8873e34cc8a04f155708297d08a93f73ad70c92b310ec151f","duration":57.69230769230769,"result":{"track":"first-light","difficulty":"flow","mode":"keys","score":22300,"hits":44,"misses":0,"bad":0,"best":44,"accuracy":100,"complete":true}},
+    "first-light/pulse":{"notes":"b522680e7df132e3a5fae8b3b31e17d0b8e64edf318039cae78e9f8386f19d58","duration":57.69230769230769,"result":{"track":"first-light","difficulty":"pulse","mode":"keys","score":62300,"hits":94,"misses":0,"bad":0,"best":94,"accuracy":100,"complete":true}},
+    "afterglow/flow":{"notes":"ebcc35505d3243df7708b5fed986b5c84345f207c749e3af4b1299454483d76c","duration":66,"result":{"track":"afterglow","difficulty":"flow","mode":"keys","score":35100,"hits":60,"misses":0,"bad":0,"best":60,"accuracy":100,"complete":true}},
+    "afterglow/pulse":{"notes":"8d987efe6c05bd8b882e49a7f59e3357b2ba151fffc7334685739057f0905ab5","duration":66,"result":{"track":"afterglow","difficulty":"pulse","mode":"keys","score":89500,"hits":128,"misses":0,"bad":0,"best":128,"accuracy":100,"complete":true}},
+    "ion-drift/flow":{"notes":"a11d9b0e67ddd99c61821b2da7f45a574948d4aca4a1c395dfd43e4a5a83d8f2","duration":58.23529411764706,"result":{"track":"ion-drift","difficulty":"flow","mode":"keys","score":35100,"hits":60,"misses":0,"bad":0,"best":60,"accuracy":100,"complete":true}},
+    "ion-drift/pulse":{"notes":"a3a4fd6fc053f5e24b2f5b50d6a038147af5c10cc3303459c63d7c5cf2ade1f5","duration":58.23529411764706,"result":{"track":"ion-drift","difficulty":"pulse","mode":"keys","score":89500,"hits":128,"misses":0,"bad":0,"best":128,"accuracy":100,"complete":true}}
+  },
+  "audio":{
+    "first-light":{"left":"c59e37d8a56735bfdb162c21305b6acde935ef403d9d0282798bd3b8e38ade70","right":"c72eeab6fc2aee3fecd61a2265dd7939ca791e99a54483aa8d02e5c1f9f6bed1","rate":12000},
+    "afterglow":{"left":"3ff62677592a8f76b373db98a6a11e2154f7031bcf9ce62e0a87f8002ad1188c","right":"feaa46445b83c4420960bdcc1be1540076e3f8cea2069301253529079eaa0d90","rate":12000},
+    "ion-drift":{"left":"aa3a3ee827387e62fe6942eb9d3188fdc2a35ee4fa7b27f2fab7dc171f33cbfd","right":"cbcd588d71a294f25616ef3af508b0c183a6c92b7fa79dec0f3a28fc7e194be9","rate":12000}
+  }
+}

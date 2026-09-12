@@ -29,7 +29,7 @@ with sync_playwright() as pw:
   page.screenshot(path=str(OUT/'title.png'))
   if MODE=='desktop':
    check(page.url.endswith('/prism-current/index.html'),'The homepage game card opens the playable page')
-   check(page.locator('#tracks button').count()==3,'Three original tracks are selectable')
+   check(page.locator('#tracks button').count()==4,'Four original tracks are selectable')
    check(page.locator('#enter-ar').is_disabled(),'Unsupported AR is not presented as a working mode')
    page.locator('#input').select_option('keys');check(snapshot(page)['input']=='keys','Selecting an input mode preserves the chosen value');page.locator('#start').click();page.wait_for_function('Prism.snapshot().phase==="playing"')
    check(snapshot(page)['audio']=='running','The worker-rendered score plays through a real AudioContext')

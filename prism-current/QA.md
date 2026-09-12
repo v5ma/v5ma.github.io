@@ -1,3 +1,15 @@
+# Tidal Bloom v0.4.0 verification
+
+The new content adds a fourth original track, authored phrases, section guidance and read-only timing feedback. Golden chart/scoring and 12 kHz synthesized-audio fixtures come from published v0.3.0. Core version 0.4.0 adds content and diagnostics without changing legacy scoring equations or timing windows.
+
+Run `node --test prism-current/tests/*.test.cjs` and `node prism-current/tests/audio-audit.cjs` from repository root. The new tidal-browser.py plays a full unaccelerated song through emulated controller input, checks phrase changes and results, and verifies old and new records across reload. Existing desktop, pointer, XR, controller/mixer and full-resolution art suites remain. A written test is not itself a passing receipt; exact source/public outcomes belong in the release PR and workflow artifacts.
+
+Local Node tests are available, but local Chromium HTTP navigation is blocked by the development environment. Native production-renderer tests run in GitHub Actions rather than a substituted renderer or silent worker. Functional software-rendered tests use reduced pixel ratios; visual review captures full-resolution menus separately. None establishes physical-device frame rate, latency or comfort.
+
+The checked-in qa/tidal-v040-audio.json covers sample peaks, RMS and conservative four-hit-envelope headroom at full gains. It is not a LUFS, inter-sample true-peak or subjective listening approval. Musical direction and physical chart comfort remain open in the checklist.
+
+Rollback must revert only this release on current master, retaining other game upgrades. New-track score entries can remain during rollback; original categories are not migrated or deleted. The v0.3.0 record follows for history.
+
 # Control Room v0.3.0 verification record
 
 Release discussion and actual source/publication receipts: [PR #112](https://github.com/v5ma/v5ma.github.io/pull/112). Read the final receipt together with its matching workflow conclusion; an implementation checkbox alone is not proof of test or deployment success.

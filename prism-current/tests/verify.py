@@ -4,6 +4,7 @@ import hashlib,json,subprocess,re
 ROOT=Path(__file__).resolve().parents[2];APP=ROOT/'prism-current';out=ROOT/'test-output';out.mkdir(exist_ok=True)
 files=['index.html','projects.css','project-shortcuts.css']+['prism-current/'+p.name for p in APP.iterdir() if p.is_file() and p.suffix in ['.html','.js','.css','.svg','.json','.md']]+['prism-current/vendor/'+p.name for p in (APP/'vendor').iterdir() if p.is_file()]
 files += [str(p.relative_to(ROOT)) for p in (APP/'graphics').glob('*') if p.is_file()]
+files += [str(p.relative_to(ROOT)) for p in (APP/'qa').glob('*.json') if p.is_file()]
 for n in files:
  p=ROOT/n;assert p.is_file(),n
  if p.suffix in ['.js','.html','.css','.md'] and 'vendor' not in p.parts:
