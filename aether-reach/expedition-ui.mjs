@@ -1,9 +1,10 @@
+import {BELL_TASK,bellProgress} from './bellwether-world.mjs';
 import {ROOFS,BEACON_TARGETS} from './rooftop-world.mjs';
 import {TASKS,EXP_DISTRICTS,TRANSIT} from './expedition-world.mjs';
 import {expeditionGoal} from './expedition-core.mjs';
 export function installExpeditionUI(api){
  const $=id=>document.getElementById(id),dialog=$('expedition-dialog'),body=$('expedition-tasks'),button=$('expedition-button'),hud=$('skyward-hud');
- function progress(s,t){const e=s.expedition,has=id=>e.flags.includes(id);if(has(t.flag))return 'Completed';
+ function progress(s,t){const e=s.expedition,has=id=>e.flags.includes(id);if(has(t.flag))return 'Completed';if(t.id===BELL_TASK.id)return bellProgress(s);
   if(t.id==='roof-surveys')return ROOFS.filter(r=>has('survey-'+r.id)).length+' / 6 rooftop instruments';
   if(t.id==='roof-courier')return ['roof-parcel-gannet','roof-parcel-academy','roof-parcel-dawn'].filter(has).length+' / 3 parcels';
   if(t.id==='roof-beacons')return 'Theatre / Stormglass / Solstice: '+e.beaconDials.join(', ')+' / required '+BEACON_TARGETS.join(', ');
@@ -30,6 +31,7 @@ export function installExpeditionUI(api){
   if(s.p.ride){const r=TRANSIT.find(r=>r.id===s.p.ride.id),c=e.transits.find(c=>c.id===r.id);title=r.name;detail='In transit - '+Math.ceil(Math.abs(c.target-c.t)*r.seconds)+' seconds to landing';}
   else if(e.defense.active){title='SOLSTICE WAVE '+Math.max(1,e.defense.wave+1)+' / 3';detail=s.drones.filter(b=>b.wave===e.defense.wave&&b.hp>0).length+' boarding troops remain - hold the observatory';}
   else if(e.escort.active){detail='Lio '+(e.escort.walking?'is following':'is waiting for a clear route')+' - '+Math.round(Math.hypot(s.p.x-e.escort.x,s.p.z-e.escort.z))+' m away';}
+  if(e.tracked===BELL_TASK.id&&!s.p.ride)detail=bellProgress(s)+' / '+detail;
   const key=title+'|'+detail+'|'+completed;if(key===last)return;last=key;$('skyward-title').textContent=title;$('skyward-detail').textContent=detail;$('skyward-count').textContent=completed+' / '+TASKS.length+' adventures';
  }
  return {action,effect,update,open};

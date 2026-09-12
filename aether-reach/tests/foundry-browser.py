@@ -47,7 +47,7 @@ with sync_playwright() as pw:
   raise AssertionError('Blocked route to '+str((x,z))+' at '+str(snap()['position']))
  try:
   p.goto(os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/aether-reach/index.html',wait_until='domcontentloaded')
-  p.wait_for_function('!!window.AetherReach');check(p.evaluate('AetherReach.version')=='0.8.0','The actual game boots the new release')
+  p.wait_for_function('!!window.AetherReach');check(p.evaluate('AetherReach.version')==json.loads((ROOT/'aether-reach/release.json').read_text())['version'],'The actual game boots the new release')
   p.evaluate('TestPad.connect()');frames();tap(0);check(snap()['playing'],'Gamepad A starts without mouse capture')
   check(snap()['renderer']['foundry']['companionVisible'],'The original companion now has a rendered body')
   tap(1);check(snap()['crouched'],'B crouches');tap(1)

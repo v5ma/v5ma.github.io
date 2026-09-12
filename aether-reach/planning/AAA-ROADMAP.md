@@ -1,10 +1,10 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: v0.8.0 Foundry Finish. Updated 2026-09-12.
+Current plan: 0.9.0 Bellwether Blackout. Updated 2026-09-12.
 
-This is a production target, not a claim that the game is AAA-quality now. A completed task is not a percentage of commercial quality. Keep software checks, player approval, hardware acceptance and publication evidence separate.
+AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
-Canonical machine-readable plan: ../roadmap.json. Searchable board: ../roadmap.html. The eight-sheet Aether-Reach-Development-Roadmap-v0.3.xlsx is retained unchanged as a historical snapshot, not the current plan.
+Canonical machine-readable plan: ../roadmap.json. Searchable board: ../roadmap.html. The eight-sheet v0.3 Excel workbook remains an archived snapshot; it is not the current plan.
 
 ## Release gates
 
@@ -14,7 +14,7 @@ Tasks: A01, I04, F02, Q03.
 
 ### G1 - Approved polished vertical slice
 A player-approved complete district loop, not just individually passing features.
-Tasks: P01, B06, F01, P04.
+Tasks: P01, B06, F01, P04, V01.
 
 ### G2 - Production-quality assets
 Original/cleared assets and coherent characters, architecture, animation and lighting.
@@ -303,10 +303,10 @@ Evidence: Current survey records classes and one passive. No research photograph
 Next: Review the first passive balance before expanding combinations.
 
 ### F01 - Foundry Finish tactical art
-State: In review. Priority: P0. Dependencies: W02.
+State: Browser checked. Priority: P0. Dependencies: W02.
 Acceptance: Cover meshes match collision bounds; Tavi, traps, drops, arena consoles and active rifts are visible without per-frame allocation.
-Evidence: foundry-art.mjs; foundry-kit.mjs; tests/foundry.test.mjs.
-Next: Inspect the rendered Customs fight and scope captures before publication.
+Evidence: v0.8 source ffa9665 passed the Foundry HTTP/WebGL review with visible Tavi, traps, cover and real sniper optics. PR #116 publication matched 78 files.
+Next: Continue visual and performance review across the entire district, including new Blackout props.
 
 ### F02 - Arena runtime integrity
 State: Implemented. Priority: P0. Dependencies: C02.
@@ -315,10 +315,10 @@ Evidence: tests/foundry.test.mjs replays all three for 12 simulated seconds.
 Next: Extend to two-wave completion, interruptions and varied real loadouts.
 
 ### P01 - One finished district vertical slice
-State: Planned. Priority: P0. Dependencies: F01, W01, B06.
+State: In review. Priority: P0. Dependencies: F01, W01, B06.
 Acceptance: One coherent 20-30 minute route combines street combat, interior exploration, rooftop travel, rewards and a clear ending.
-Evidence: Proposed production gate, not completed content.
-Next: Choose a single district slice and record player completion and friction.
+Evidence: v0.9 implements a connected Bellwether street-interior-rooftop-return adventure with saved stages. Mission duration, pacing and player approval are not certified.
+Next: Play the complete Blackout adventure and record timing, difficulty, wayfinding and repetitive sections. Gate G1 remains open until player review.
 
 ### P02 - Authored character and weapon animation
 State: Planned. Priority: P1. Dependencies: P01.
@@ -371,10 +371,15 @@ Next: Maintain a defect severity register and require evidence before advancing.
 ### R04 - Verified publication of each upgrade
 State: In review. Priority: P0. Dependencies: R01, Q03.
 Acceptance: Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.
-Evidence: v0.7 c942abeda531879a709ee606190ca0e4886f19e7 has a 75-file publication receipt. v0.8 uses the same verification pipeline.
-Next: Attach the actual v0.8 deployment receipt; never infer live status from a branch commit.
+Evidence: v0.8 production source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06: Pages succeeded and publication run 34702682332 matched 78 files. v0.9 must pass the same post-merge verification.
+Next: Record the actual v0.9 merge and live-file receipt before claiming publication.
 
-## Sources and verification
-Repository source: https://github.com/v5ma/v5ma.github.io/tree/master/aether-reach
-Published v0.7 receipt workflow: https://github.com/v5ma/v5ma.github.io/actions/runs/34672870930
-Current upgrade tests and evidence: ../tests/foundry.test.mjs and ../tests/foundry-browser.py. GitHub Actions artifacts are test evidence; a passing simulation is not a physical-controller or listening test.
+### V01 - Bellwether street-interior-rooftop adventure
+State: In review. Priority: P0. Dependencies: W01, F02, I04.
+Acceptance: Complete both combat sites, operate independent Arcade dials, use a continuous roof route, hold the receiver, return for a once-only reward, and save/resume without lost progress or extra enemies.
+Evidence: BELLWETHER-BLACKOUT.md; bellwether model/scene modules; tests/bellwether.test.mjs and the full controller browser journey. Test execution and player acceptance remain separately recorded.
+Next: Inspect the release browser evidence, then obtain player feedback on this first connected district mission.
+
+## Release evidence
+v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.
+v0.9.0 Bellwether Blackout: see BELLWETHER-BLACKOUT.md, the Bellwether browser review, and the post-merge public-file verification workflow. Implementation and publication are not substitutes for player or physical-hardware acceptance.

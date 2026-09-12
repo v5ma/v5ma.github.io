@@ -1,3 +1,6 @@
+import {createBellwether,cleanBellwether,bellSnapshot} from './bellwether-core.mjs';
+import {BELL_NOTE,BELL_COVER} from './bellwether-world.mjs';
+export {bellSnapshot};
 import {COMBAT_DECKS,ARENA_CONSOLES,RIFTS,RAIL_TUNING,buildCombatCover,asBox} from './skirmish-world.mjs';
 import {createSkirmish,cleanSkirmish,riftSolid,eyeHeight} from './skirmish-core.mjs';
 import {LADDERS} from './rooftop-world.mjs';
@@ -12,7 +15,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.8.0';
+export const VERSION='0.9.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -42,7 +45,7 @@ export const RECORDS=[
  {id:'glass-seed',x:74,y:6,z:-21,title:'What we choose to grow',text:'Every district sends one seed to the glasshouse. When a district goes silent, we keep watering its bed. The empty beds are not empty. They are promises. — Gardener Sen'},
  {id:'copper-book',x:-37,y:12,z:-78,title:'Freight is a public road',text:'A motor can pull a thousand kilos uphill. It can certainly carry one stubborn engineer. Clip in, read the junction, and never confuse a rail direction with a rule. — Maintenance notebook'},
  {id:'spire-log',x:54,y:20,z:-122,title:'The missing frequency',text:'There is no voice above the clouds. There are only people, trying to be heard through machinery. Fix the machinery. Let them speak. — Iona’s transmission log'},
- ...EXP_RECORDS
+ BELL_NOTE, ...EXP_RECORDS
 ];
 export const EXTRACTION={x:0,y:0,z:8};
 const V=a=>({x:a[0],y:a[1],z:a[2]});
@@ -74,11 +77,12 @@ export const BUILDINGS=[
 RELAYS[0].x=64;RELAYS[1].x=-28;
 export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b.h+4,z1:b.z-b.d/2,z2:b.z+b.d/2})).concat(ROOM_SOLIDS,COVER);
 export const COMBAT_COVER=buildCombatCover(DISTRICTS,{solids:SOLIDS,keepouts:[...RELAYS,...RECORDS,EXTRACTION,...DEPOTS,...CACHES,...THINGS,...POSTS,...RIFTS,...LADDERS.flatMap(r=>r.points.map(p=>({x:p[0],y:p[1],z:p[2]})))],bridges:BRIDGES,rails:RAILS});
-SOLIDS.push(...COMBAT_COVER.map(asBox));
+SOLIDS.push(...COMBAT_COVER.map(asBox),...BELL_COVER.map(asBox));
 const deckSolids=[...DISTRICTS,...TERRACES,...COMBAT_DECKS].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
 const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids,riftSolid(s));
 const tactical=createTactics({solids:SOLIDS,clearLine,rayBox,raySphere,forward,emit,defeated,hurt});
 const skirmish=createSkirmish({groundAt,occupied,clearLine,forward,emit,defeated,equip,weaponStats,weapons:WEAPONS,nearby,interact,reload:reloadWeapon,detach,cover:COMBAT_COVER});
+const bellwether=createBellwether({emit,clearLine,groundAt,occupied,drop:(s,b)=>skirmish.drop(s,b)});
 const climbing=createClimbing({occupied,clearLine,emit});
 const expedition=createExpedition({groundAt,occupied,clearLine,emit,hurt});
 export function pointOnRail(r,s){
@@ -100,10 +104,10 @@ export function clearLine(a,b,state=null){const solids=state?stateSolids(state):
 const pointFor=id=>{const post=POSTS.find(p=>p.id===id);if(post)return {x:post.x,y:post.y+.02,z:post.z};const d=DISTRICTS.find(p=>p.id===id)||DISTRICTS[0];return {x:d.x,y:d.y+.02,z:d.z+5};};
 export function createState(save=null){
  const safe=readSave(save),kit=cleanKit(safe.kit),p=pointFor(safe.checkpoint);
- const state={p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};tactical.init(state,safe.tactics);expedition.init(state,safe.expedition);skirmish.init(state,safe.skirmish);return state;
+ const state={p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};tactical.init(state,safe.tactics);expedition.init(state,safe.expedition);skirmish.init(state,safe.skirmish);bellwether.init(state,safe.bellwether);return state;
 }
-export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit),tactics:cleanTactics(s.tactics),skirmish:cleanSkirmish(s.skirmish),expedition:cleanExpedition(s.expedition)};}
-export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit),tactics:saveTactics(s),skirmish:cleanSkirmish(s.skirmish),expedition:saveExpedition(s)});}
+export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit),tactics:cleanTactics(s.tactics),skirmish:cleanSkirmish(s.skirmish),expedition:cleanExpedition(s.expedition),bellwether:cleanBellwether(s.bellwether)};}
+export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit),tactics:saveTactics(s),skirmish:cleanSkirmish(s.skirmish),expedition:saveExpedition(s),bellwether:cleanBellwether(s.bellwether)});}
 export function emit(s,type,data={}){s.events.push({type,...data});if(s.events.length>80)s.events.shift();}
 export function depotNear(s){return !s.p.rail&&s.p.grounded?DEPOTS.find(d=>distance(s.p,d)<4.5):null;}
 export function equip(s,id,acquire=false){if(!s.kit.owns.includes(id)||!Object.hasOwn(WEAPONS,id))return false;if(!s.kit.carried.includes(id)){if(!acquire&&!depotNear(s))return false;if(s.kit.carried.length===2)s.kit.carried[s.kit.carried.indexOf(s.p.weapon)]=id;else s.kit.carried.push(id);}s.kit.mags[s.p.weapon]=s.p.ammo;s.p.weapon=id;s.kit.selected=id;s.p.ammo=s.kit.mags[id];s.p.reload=0;s.p.scoped=false;emit(s,'equip',{id});return true;}
@@ -123,13 +127,13 @@ export function buy(s,id,kind='weapon'){if(s.won)return false;
 }
 export function loot(s){const boxes=CACHES.map(c=>({...c,kind:'cache'}));for(const id of s.kit.dead){const b=ENEMIES.find(e=>e.id===id);const floor=groundAt(b.x,b.z,b.y);boxes.push({id:'drop-'+id,x:b.x,y:Number.isFinite(floor.y)?floor.y:b.y-2,z:b.z,credits:b.reward,kind:'drop',label:b.kind+' salvage'});}return boxes.filter(b=>!s.kit.taken.includes(b.id));}
 export function collect(s,id){const b=loot(s).find(b=>b.id===id);if(!b||distance(s.p,b)>3||!clearLine({x:s.p.x,y:s.p.y+1,z:s.p.z},{...b,y:b.y+1},s))return false;s.kit.taken.push(b.id);s.kit.credits=Math.min(99999,s.kit.credits+b.credits);s.p.health=Math.min(100,s.p.health+15);for(const id of s.kit.owns)if(id!=='arc')s.kit.reserve[id]=Math.min(WEAPONS[id].reserve*3,s.kit.reserve[id]+WEAPONS[id].mag*2);if(b.weapon&&!s.kit.owns.includes(b.weapon)){const id=b.weapon;s.kit.owns.push(id);s.kit.mags[id]=WEAPONS[id].mag;s.kit.reserve[id]=WEAPONS[id].reserve;s.kit.tune[id]={damage:0,reload:0};}emit(s,'loot',{id:b.id,credits:b.credits,weapon:b.weapon});emit(s,'save');return true;}
-function defeated(s,b){if(skirmish.killed(s,b))return;skirmish.drop(s,b);if(tactical.killed(s,b)||expedition.killed(s,b))return;if(s.kit.dead.includes(b.id))return;s.kit.dead.push(b.id);s.stats.defeated++;emit(s,'defeat',{id:b.id});emit(s,'save');}
+function defeated(s,b){if(bellwether.killed(s,b))return;if(skirmish.killed(s,b))return;skirmish.drop(s,b);if(tactical.killed(s,b)||expedition.killed(s,b))return;if(s.kit.dead.includes(b.id))return;s.kit.dead.push(b.id);s.stats.defeated++;emit(s,'defeat',{id:b.id});emit(s,'save');}
 // Aim-weighted reachable candidates, not a global nearest-rail teleport.
 export function railTarget(s){const p=s.p,head={x:p.x,y:p.y+1.6,z:p.z},view=forward(p.yaw,p.pitch);let best=null;
  for(const r of RAILS){if(r.id===p.rail?.id||!p.grounded&&s.time-p.airSince<.85&&r.id===p.lastRail)continue;const target=nearestRailOn(head,r,p.grounded?4.3:Math.min(16,6.3+Math.hypot(p.vx,p.vz)*.14));if(!target)continue;const v={x:target.point.x-head.x,y:target.point.y-head.y,z:target.point.z-head.z},dot=(v.x*view.x+v.y*view.y+v.z*view.z)/(target.distance||1);if(!p.grounded&&dot<-.12)continue;if(!clearLine(head,target.point,s))continue;const dest={x:target.point.x,y:target.point.y-2.65,z:target.point.z};if(occupied(dest.x,dest.y,dest.z,s)||!clearLine({...head,y:head.y-.6},{...dest,y:dest.y+1}))continue;const score=target.distance-(p.grounded?0:dot*2.8);if(!best||score<best.score)best={...target,score,dot};}return best;
 }
 function nearestRailOn(p,r,max){let best=null;for(let i=1;i<r.pts.length;i++){const a=r.pts[i-1],b=r.pts[i],dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len2=dx*dx+dy*dy+dz*dz,t=clamp(((p.x-a.x)*dx+(p.y-a.y)*dy+(p.z-a.z)*dz)/len2,0,1),q={x:a.x+dx*t,y:a.y+dy*t,z:a.z+dz*t},d=distance(p,q);if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};}return best;}
-export function nearby(s){const arena=skirmish.nearConsole(s);if(arena)return {type:'arena-console',id:arena.id,label:'X / E - '+arena.name};const ladder=climbing.nearby(s);if(ladder)return ladder;const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
+export function nearby(s){const quest=bellwether.nearby(s);if(quest)return quest;const arena=skirmish.nearConsole(s);if(arena)return {type:'arena-console',id:arena.id,label:'X / E - '+arena.name};const ladder=climbing.nearby(s);if(ladder)return ladder;const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
  if(p.ride)return expedition.nearby(s);
  const extra=expedition.nearby(s);if(extra)return extra;
  const field=tactical.nearby(s);if(field)return field;
@@ -143,6 +147,7 @@ export function interact(s){const n=nearby(s),p=s.p;
  // 0.30 simulation seconds. Never auto-grab without input or through a wall.
  if(!p.rail&&!p.grounded&&p.lastRail&&(!n||n.type==='hook')&&(!n||p.hookCooldown>0)){p.hookRequest=.30;return true;}
  if(!n)return false;
+ if(n.type==='bellwether')return bellwether.handle(s,n.id);
  if(n.type==='arena-console')return skirmish.start(s,n.id);if(n.type==='ladder')return climbing.enter(s);
  if(n.type.startsWith('exp-')){const done=expedition.handle(s,n);if(done&&n.type==='exp-rest'){s.skirmish.aidUsed=0;emit(s,'save');}return done;}
  if(n.type.startsWith('field-'))return tactical.handle(s,n.type);
@@ -172,12 +177,12 @@ export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.re
   emit(s,'shot',{weapon:w.id,o,end:{x:o.x+v.x*limit,y:o.y+v.y*limit,z:o.z+v.z*limit},hit:!!hit,critical}); }skirmish.recoil(s);return true;
 }
 export function pulse(s){const p=s.p;if(p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b,s)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){defeated(s,b);}}emit(s,'pulse',{hits:n});return true;}
-export function rescue(s,death=false){tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,climb:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];skirmish.abort(s);emit(s,'rescue',{death});}
+export function rescue(s,death=false){bellwether.abort(s,death?'failed':'interrupted');tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,climb:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];skirmish.abort(s);emit(s,'rescue',{death});}
 function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;const shieldBefore=p.shield;let left=amount;if(p.shield>0){const k=Math.min(left,p.shield);p.shield-=k;left-=k;}p.health-=left;s.damagedAt=s.time;if(shieldBefore>0&&p.shield===0)emit(s,'shield-break');emit(s,'damage');if(p.health<=0)rescue(s,true);}
 export function occupied(x,y,z,state=null){return (state?stateSolids(state):SOLIDS).some(b=>(!b.deck||y<b.y2-.8)&&x+.38>b.x1&&x-.38<b.x2&&y+(state?.p?.crouched?1.04:1.8)>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2)||bridgeBarrier(BRIDGES,x,y,z)||balconyBarrier(x,y,z);}
 export function step(s,input,dt){
  if(s.won)return;dt=clamp(dt,0,.025);s.time+=dt;const p=s.p;
- for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload-=dt;if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;emit(s,'reload-end',{weapon:w.id});}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
+ for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload=Math.max(0,p.reload-dt);if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;emit(s,'reload-end',{weapon:w.id});}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
  if(p.gliding&&(p.grounded||p.rail||p.glideCharge<=0))foldGlide(s,p.glideCharge<=0?'empty':'landed');
  if(!p.gliding&&(p.grounded||p.rail))p.glideCharge=Math.min(GLIDE.capacity,p.glideCharge+GLIDE.recharge*dt);
  if(input.reload)reloadWeapon(s);
@@ -212,7 +217,7 @@ export function step(s,input,dt){
   }
  }
  for(let i=s.bullets.length-1;i>=0;i--){const b=s.bullets[i],old={x:b.x,y:b.y,z:b.z};b.life-=dt;const speed=Math.hypot(b.vx,b.vy,b.vz)||1,d={x:b.vx/speed,y:b.vy/speed,z:b.vz/speed},travel=speed*dt;let wall=travel+.001;for(const box of stateSolids(s)){const t=rayBox(old,d,box,travel);if(t!==null)wall=Math.min(wall,t);}const height=p.crouched?.65:1.0,radius=p.crouched?.48:.7,hit=raySphere(old,d,{x:p.x,y:p.y+height,z:p.z},radius);if(hit!==null&&hit<=travel&&hit<wall){hurt(s,(b.damage||15)*(input.explorer?.53:1));b.life=0;}else if(wall<=travel){b.life=0;emit(s,'ricochet',{at:{x:old.x+d.x*wall,y:old.y+d.y*wall,z:old.z+d.z*wall}});}b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;if(b.life<=0)s.bullets.splice(i,1);}
- tactical.step(s,input,dt);expedition.tick(s,dt);skirmish.step(s,dt);
+ tactical.step(s,input,dt);expedition.tick(s,dt);bellwether.tick(s,dt);skirmish.step(s,dt);
 }
 export function jump(s){if(s.p.climb)return climbing.leave(s,true);if(expedition.jumpOff(s))return true;if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){if(s.p.crouched&&!skirmish.crouch(s))return false;s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
 

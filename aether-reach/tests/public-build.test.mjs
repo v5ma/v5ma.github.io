@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const dir=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>fs.readFileSync(path.join(dir,p),'utf8');
-const runtime=['controller-profile.mjs','ui-navigation.mjs','rooftop-world.mjs','climbing.mjs','expedition-world.mjs','expedition-core.mjs','expedition-ui.mjs','expedition-scene.mjs','app.mjs','glide.mjs','flight-ui.mjs','model.mjs','scene.mjs','input-core.mjs','controllers.mjs','xr-session.mjs','tactics-core.mjs','tactics-ui.mjs','tactics-scene.mjs','luminous-art.mjs','luminous-gear.mjs','visual-settings.mjs'];
+const runtime=['bellwether-world.mjs','bellwether-core.mjs','bellwether-scene.mjs','controller-profile.mjs','ui-navigation.mjs','rooftop-world.mjs','climbing.mjs','expedition-world.mjs','expedition-core.mjs','expedition-ui.mjs','expedition-scene.mjs','app.mjs','glide.mjs','flight-ui.mjs','model.mjs','scene.mjs','input-core.mjs','controllers.mjs','xr-session.mjs','tactics-core.mjs','tactics-ui.mjs','tactics-scene.mjs','luminous-art.mjs','luminous-gear.mjs','visual-settings.mjs'];
 test('Runtime imports stay in the public project without private/network/test loaders',()=>{
  for(const file of runtime){const s=read(file);for(const m of s.matchAll(/(?:from\s*|import\s*)['"]([^'"]+)['"]/g)){assert.ok(m[1].startsWith('./'),file+': '+m[1]);assert.ok(!m[1].includes('..'));assert.ok(!m[1].includes('tests/'));assert.ok(fs.existsSync(path.join(dir,m[1])));}assert.doesNotMatch(s,/\b(?:fetch|XMLHttpRequest|WebSocket|EventSource)\s*\(/);assert.doesNotMatch(s,/document\.cookie|\.sendBeacon\(/);}
 });
