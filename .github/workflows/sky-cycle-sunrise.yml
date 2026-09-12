@@ -22,7 +22,7 @@ jobs:
         run: |
           mkdir -p /tmp/sky-cycle-source
           git rev-parse HEAD > /tmp/sky-cycle-source/commit.txt
-          tar -czf /tmp/sky-cycle-source/source.tar.gz mario-maker-clone/svgn-paper-route tests vendor
+          tar -czf /tmp/sky-cycle-source/source.tar.gz mario-maker-clone/svgn-paper-route tests
       - uses: actions/upload-artifact@v4
         with:
           name: sky-cycle-source-${{ github.sha }}
