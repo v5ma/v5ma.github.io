@@ -1,0 +1,90 @@
+name: Vesperfall Rosefire
+on:
+  push:
+    branches: [vesperfall-rosefire-20260912]
+    paths: ['vesperfall/**', '.github/rosefire-intake/**', '.github/workflows/vesperfall-rosefire.yml']
+permissions:
+  contents: write
+concurrency:
+  group: rosefire-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply exact preimage-checked source and workbook bytes
+        if: hashFiles('.github/rosefire-intake/part4.txt') != ''
+        run: |
+          python - <<'PY'
+          import pathlib,base64,lzma,json,hashlib
+          root=pathlib.Path.cwd();workflow='.github/workflows/vesperfall-rosefire.yml'
+          packed=base64.b64decode(''.join((root/f'.github/rosefire-intake/part{i}.txt').read_text().strip() for i in range(5)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='864363165ec5c439cf413bf649b3997c092f14f8a8b7272469467789bb90eba5','Transfer checksum mismatch'
+          data=json.loads(lzma.decompress(packed));assert len(data)==15;planned=[]
+          for name,d in data.items():
+              p=root/name
+              assert (name.startswith('vesperfall/') or name==workflow) and '..' not in pathlib.PurePosixPath(name).parts
+              assert not p.is_symlink() and p.resolve().is_relative_to(root)
+              if 'content' in d:
+                  assert not p.exists() or name==workflow,name
+                  b=d['content'].encode('utf-8')
+              else:
+                  b=p.read_bytes();assert hashlib.sha256(b).hexdigest()==d['before'],'Preimage mismatch: '+name
+                  if 'binaryEdits' in d:
+                      for start,end,replacement in reversed(d['binaryEdits']):b=b[:start]+base64.b64decode(replacement,validate=True)+b[end:]
+                  else:
+                      text=b.decode('utf-8')
+                      for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
+                      b=text.encode('utf-8')
+              assert hashlib.sha256(b).hexdigest()==d['after'],'Postimage mismatch: '+name
+              planned.append((p,b))
+          for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+          for i in range(5):(root/f'.github/rosefire-intake/part{i}.txt').unlink()
+          print('Verified and applied',len(planned),'files; original workbook content was authored with artifact_tool, this step only transfers verified bytes.')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- vesperfall .github/rosefire-intake .github/workflows/vesperfall-rosefire.yml
+          git commit -m 'Implement Vesperfall 0.11 Rosefire: original bounded PBR, stained-light, sky, ward and landing shaders; controller settings and production workbook'
+          git push origin HEAD:vesperfall-rosefire-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax, full model regression and canonical workbook
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/models.tap
+          python vesperfall/tests/production-workbook.py
+          python scripts/check-vesperfall.py
+      - name: Install native test browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual shaders, matching frames and Xbox/VR/AR interfaces
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 900 python -u vesperfall/tests/rosefire-browser.py | tee test-output/rosefire-browser.log
+          test -s test-output/rosefire/report.json
+          test ! -e test-output/rosefire/failure.json
+          timeout 180 python -u vesperfall/tests/production-browser.py | tee test-output/production-browser.log
+          timeout 240 python -u vesperfall/tests/launch.py | tee test-output/launch.log
+      - name: Archive source and diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar czf test-output/source.tgz vesperfall .github/workflows/vesperfall-rosefire.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rosefire-acceptance
+          path: test-output/
+          retention-days: 14
