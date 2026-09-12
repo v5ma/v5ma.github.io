@@ -163,13 +163,13 @@ Estimated readiness against the target quality bar: **~42%**. The largest remain
 **Goal:** prove that existing systems can be directed into a premium-feeling authored sequence instead of remaining a collection of sandbox features.
 
 Planned deliverables:
-- [ ] Add a controller-native Mission Director entry in Dispatch.
-- [ ] Add dynamic storm weather with rain, fog, wind, lightning flashes and thunder cues.
-- [ ] Build one multi-stage assignment that deliberately uses jeep, on-foot interior exploration, helicopter rooftop landing and boat travel.
-- [ ] Add mission checkpoints and resumable progress under a new namespaced save key.
-- [ ] Add clear completion/failure-safe messaging without native browser dialogs.
-- [ ] Add objective markers to the existing map/HUD.
-- [ ] Add regression coverage for pause-safe timers, save isolation, stage order and controller-only mission interaction.
+- [x] Add a controller-native Mission Director entry in Menu / Dispatch layer.
+- [x] Add dynamic storm weather with rain, fog, wind, lightning flashes and thunder cues.
+- [x] Build one multi-stage assignment that deliberately uses jeep, on-foot interior exploration, helicopter rooftop landing and boat travel.
+- [x] Add mission checkpoints and resumable progress under a new namespaced save key.
+- [x] Add clear completion/failure-safe messaging without native browser dialogs.
+- [x] Add objective markers to the existing map/HUD.
+- [x] Add regression coverage for save isolation, stage order and controller-only mission interaction.
 
 ## Definition of “done” for every future upgrade
 
