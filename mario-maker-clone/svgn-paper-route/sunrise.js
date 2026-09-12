@@ -48,7 +48,7 @@ const pen=overlay.getContext('2d');let sizeKey='',readingScene=null;
 hook('render',old=>function(...args){
  // Reading a paused native dialog does not need another expensive scene draw.
  // Input polling, audio and dialog DOM keep their independent event loops.
- const reading=mode==='play'&&!won&&__delivery.state.view==='3d'&&__delivery.paused&&!!document.querySelector('#sc-journal[open],#flight-deck[open],#flight-deck-guide[open],#score-dialog[open]');
+ const reading=!document.getElementById('prism-panel')?.open&&mode==='play'&&!won&&__delivery.state.view==='3d'&&__delivery.paused&&!!document.querySelector('#sc-journal[open],#flight-deck[open],#flight-deck-guide[open],#score-dialog[open]');
  const sceneKey=[__delivery.state.route,innerWidth,innerHeight,overlay.parentElement.clientWidth,overlay.parentElement.clientHeight,devicePixelRatio].join(':');
  if(reading&&readingScene===sceneKey)return;
  readingScene=reading?sceneKey:null;

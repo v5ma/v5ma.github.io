@@ -1,13 +1,13 @@
 {
-  "version": "0.18.0",
-  "build": "sky-cycle-sunrise-2026.09.12",
+  "version": "0.19.0",
+  "build": "sky-cycle-luminous-2026.09.12",
   "date": "2026-09-12",
   "changes": [
-    "Market Pocket Park: optional low balcony with a physical return to the market road",
-    "Penny's Market Pilot challenge: ride, land safely, finish to bank a seal",
-    "In-world takeoff, receiving-deck, braking and recovery cues in 3D and 2D",
-    "Journal guidance controls moved ahead of the long discovery list",
-    "Paused 3D scene caching keeps controller journal and audio navigation responsive",
-    "Existing routes, ground tiles, checkpoints, music, remaps and saved progress preserved"
+    "Luminous thin-film enamel on existing rails and courier materials",
+    "Ripple-lit canal water with procedural highlights and surface normals",
+    "Soft procedural sky-silk ribbons behind the playable world",
+    "Subtle, Vivid and Off finishes plus independent water and sky controls",
+    "Controller-accessible Materials & FX from pause and Flight Deck with safe nested return",
+    "No level, collision, movement, music or progression changes; existing saves preserved"
   ]
 }

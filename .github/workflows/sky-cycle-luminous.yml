@@ -1,0 +1,90 @@
+name: Sky Cycle Luminous
+on:
+  push:
+    branches: [master, 'sky-cycle-luminous-*']
+    paths: ['mario-maker-clone/svgn-paper-route/**', '.github/workflows/sky-cycle-luminous.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sky-cycle-luminous-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.identity.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: identity
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  shaders:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact-source shader and existing rules
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/prismatic-renderer.js
+          node --check mario-maker-clone/svgn-paper-route/luminous-materials.js
+          node --test mario-maker-clone/svgn-paper-route/tests/luminous.test.mjs
+          node --test mario-maker-clone/svgn-paper-route/tests/sunrise*.test.mjs mario-maker-clone/svgn-paper-route/tests/route-compass-core.test.mjs mario-maker-clone/svgn-paper-route/tests/flight-deck-core.test.mjs
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Native shaders, controller settings, and road completion
+        env:
+          GITHUB_SHA: ${{ needs.source.outputs.sha }}
+        run: python mario-maker-clone/svgn-paper-route/tests/luminous-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: luminous-shaders-${{ needs.source.outputs.sha }}
+          path: /tmp/sky-cycle-luminous/
+          retention-days: 30
+  gameplay:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.sha }}
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Existing Market Pilot and controller regression
+        env:
+          GITHUB_SHA: ${{ needs.source.outputs.sha }}
+        run: python mario-maker-clone/svgn-paper-route/tests/sunrise-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: luminous-gameplay-${{ needs.source.outputs.sha }}
+          path: /tmp/sky-cycle-sunrise/
+          retention-days: 30
+  published:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python mario-maker-clone/svgn-paper-route/tests/luminous-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: luminous-public-${{ github.sha }}
+          path: /tmp/sky-cycle-luminous/publication.json
+          retention-days: 30

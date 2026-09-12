@@ -1,0 +1,26 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import * as T from '../vendor/three.webgpu.js';
+import {preferences,strength,waterPatches,skyBounds,LIMITS} from '../luminous-core.mjs';
+import {installLuminous} from '../luminous-materials.js';
+const course={kind:'ground',width:224,ground:60,gp:{sections:[{x:0,scene:'village'},{x:151,scene:'canal'},{x:188,scene:'festival'}]}};
+function setup(prefs){const owner={materials:new Set(),geometries:new Set(),group:new T.Group(),env:new T.Texture(),roadMaterial:new T.MeshPhysicalNodeMaterial({iridescence:.16}),actorMaterial:new T.MeshPhysicalNodeMaterial({iridescence:.16})};const before=JSON.stringify(course);const layer=installLuminous(T,owner,T.TSL.uniform(0),prefs,course,(g,m,p,n)=>{const o=new T.InstancedMesh(g,m,1);o.name=n;p.add(o);return o;});assert.equal(JSON.stringify(course),before);return {owner,layer};}
+test('existing users get a bounded subtle default',()=>assert.deepEqual(preferences(),{finish:'subtle',water:true,sky:true}));
+test('malformed values do not enable an unbounded profile',()=>{for(const v of [null,[],2,'vivid',{finish:'unsafe'}])assert.equal(preferences(v).finish,'subtle');});
+test('off, subtle and vivid are explicit intensity levels',()=>{assert.equal(strength({finish:'off'}),0);assert.equal(strength({finish:'subtle'}),.42);assert.equal(strength({finish:'vivid'}),1);});
+test('water and sky can be disabled independently',()=>assert.deepEqual(preferences({water:false,sky:false}),{finish:'subtle',water:false,sky:false}));
+test('canal patches follow actual district boundaries',()=>{const p=waterPatches(course);assert.equal(p.length,2);assert.equal(p[0].x-p[0].width/2,151*36);assert.equal(p.at(-1).x+p.at(-1).width/2,188*36);});
+test('water stays behind the collision plane',()=>assert(waterPatches(course).every(p=>p.z+p.depth/2<-170)));
+test('water placements do not change district data',()=>{const s=JSON.stringify(course);waterPatches(course);assert.equal(JSON.stringify(course),s);});
+test('sky/expert routes get no invented canal surfaces',()=>assert.deepEqual(waterPatches({...course,kind:'sky'}),[]));
+test('bad course dimensions are rejected',()=>{for(const width of [NaN,1,4097,20.5])assert.equal(waterPatches({...course,width}).length,0);});
+test('large valid levels stay within fixed water budget',()=>assert.equal(waterPatches({...course,width:4096,gp:{sections:[{x:0,scene:'canal'}]}}).length,LIMITS.water));
+test('panoramic sky geometry has finite bounded dimensions',()=>{for(const c of [null,{width:Infinity},{width:-8},{width:1e12}])assert(Object.values(skyBounds(c)).every(Number.isFinite));assert(skyBounds({width:1e12}).width<160000);});
+test('off makes no shader patches or scene objects',()=>{const {owner,layer}=setup({finish:'off'});assert.equal(layer.stats.extraDraws,0);assert.equal(owner.group.children.length,0);assert.equal(owner.roadMaterial.iridescenceNode,null);});
+test('thin-film uses physical shader nodes, not a color-only overlay',()=>{const {owner}=setup({});assert(owner.roadMaterial.iridescenceNode.isNode);assert(owner.roadMaterial.iridescenceThicknessNode.isNode);assert(owner.actorMaterial.roughnessNode.isNode);});
+test('no rail or rider vertex displacement is installed',()=>{const {owner}=setup({finish:'vivid'});assert.equal(owner.roadMaterial.positionNode,null);assert.equal(owner.actorMaterial.positionNode,null);});
+test('new material and geometry resources are tracked for cleanup',()=>{const {owner,layer}=setup({});assert.equal(layer.stats.extraDraws,3);assert.equal(owner.materials.size,2);assert.equal(owner.geometries.size,2);for(const o of owner.group.children){assert(owner.materials.has(o.material));assert(owner.geometries.has(o.geometry));}});
+test('water shader has procedural normal and highlight graphs',()=>{const {owner}=setup({sky:false});const mat=owner.group.children[0].material;assert(mat.normalNode.isNode);assert(mat.emissiveNode.isNode);assert.equal(mat.positionNode,null);});
+test('sky silk is behind play and does not write depth',()=>{const {owner}=setup({water:false});const o=owner.group.children[0];assert(o.position.z<-1000);assert.equal(o.material.depthWrite,false);assert(o.material.opacityNode.isNode);});
+test('distant water is culled without allocating new resources',()=>{const {owner,layer}=setup({});const m=owner.materials.size,g=owner.geometries.size;layer.update(110,2130,true);assert(owner.group.children.filter(o=>o.name.includes('canal')).every(o=>!o.visible));layer.update(5800,2130,true);assert(owner.group.children.some(o=>o.name.includes('canal')&&o.visible));assert.equal(m,owner.materials.size);assert.equal(g,owner.geometries.size);});
+test('draw counters distinguish compiled scenery types',()=>{const {owner,layer}=setup({});for(const o of owner.group.children)o.onAfterRender();assert.equal(layer.stats.waterDraws,2);assert.equal(layer.stats.skyDraws,1);});
