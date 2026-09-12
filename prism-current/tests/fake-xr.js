@@ -1,5 +1,5 @@
-/* TEST-ONLY WebXR device emulator. Derived from the public repository's test
- * harness, extended with immersive-ar. No game state or clock is modified. */
+/* TEST-ONLY WebXR emulator, deliberately small software framebuffer.
+ * Pose, projection and input semantics retained; no game-clock/state writes. */
 (()=>{
  const pad=()=>({id:'Emulated Quest Touch',connected:true,mapping:'xr-standard',axes:[0,0,0,0],buttons:Array.from({length:6},()=>({pressed:false,touched:false,value:0}))});
  const state={deny:false,session:null,head:[0,1.65,0],hands:{left:[-.23,1.35,-.4],right:[.23,1.35,-.4]},missing:new Set(),yaw:0,blend:null,requests:[]};
@@ -12,6 +12,6 @@
  }
  const xr=new EventTarget();xr.isSessionSupported=async mode=>['immersive-vr','immersive-ar'].includes(mode);xr.requestSession=async(mode,options)=>{state.requests.push({mode,options});if(state.deny)throw new DOMException('Test refusal','NotAllowedError');state.session=new Session(mode);return state.session;};Object.defineProperty(navigator,'xr',{value:xr,configurable:true});window.XRSession=Session;
  for(const type of[window.WebGLRenderingContext,window.WebGL2RenderingContext])if(type)type.prototype.makeXRCompatible=async()=>{};
- window.XRWebGLBinding=undefined;window.XRWebGLLayer=class{constructor(){this.framebuffer=null;this.framebufferWidth=960;this.framebufferHeight=640;this.ignoreDepthValues=false;this.fixedFoveation=1;}getViewport(v){return {x:v.eye==='left'?0:480,y:0,width:480,height:640};}};
+ window.XRWebGLBinding=undefined;window.XRWebGLLayer=class{constructor(){this.framebuffer=null;this.framebufferWidth=240;this.framebufferHeight=160;this.ignoreDepthValues=false;this.fixedFoveation=1;}getViewport(v){return {x:v.eye==='left'?0:120,y:0,width:120,height:160};}};
  window.TestXR={state,pose(hand,p){state.hands[hand]=p;},button(hand,i,on){const p=state.session.inputSources.find(s=>s.handedness===hand).gamepad;p.buttons[i]={pressed:on,touched:on,value:on?1:0};},missing(hand,value){if(value)state.missing.add(hand);else state.missing.delete(hand);},hide(v){state.session.visibilityState=v?'hidden':'visible';state.session.dispatchEvent(new Event('visibilitychange'));},reset(){state.session.space.dispatchEvent(new Event('reset'));}};
 })();
