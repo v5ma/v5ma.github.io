@@ -8,6 +8,15 @@ def entries():
     values=[]
     for i in range(7):values.extend(json.loads((ROOT/f'aether-reach/tools/afterlight-package-{i}.json').read_text()))
     assert len(values)==24 and len({v['path'] for v in values})==24
+    fixes=ROOT/'aether-reach/tools/afterlight-package-fixes.json'
+    if fixes.exists():
+        for fix in json.loads(fixes.read_text()):
+            v=next(v for v in values if v['path']==fix['path'])
+            assert 'content' in v and sha(v['content'].encode())==fix['before'],fix['path']
+            assert v['content'].count(fix['old'])==1,fix['path']
+            v['content']=v['content'].replace(fix['old'],fix['new'])
+            assert sha(v['content'].encode())==fix['after'],fix['path']
+            v['after']=fix['after']
     return values
 def target(name):
     p=PurePosixPath(name)
