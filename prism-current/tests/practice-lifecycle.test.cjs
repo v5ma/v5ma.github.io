@@ -1,0 +1,12 @@
+const {test}=require('node:test'),A=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),C=require('../core');
+function fixture(){const nodes=new Map(),listeners=new Map(),saved=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,{id,value:id==='reach'?'1':'',dataset:{},textContent:'',append(){},setAttribute(){},focus(){},addEventListener(){}});return nodes.get(id);};let definition;
+const c={window:null,document:{hidden:false,body:{dataset:{}},getElementById:node,querySelectorAll:()=>[],createElement:()=>({dataset:{},setAttribute(){}})},AFRAME:{registerComponent:(name,d)=>definition=d},PrismCore:C,localStorage:{getItem:()=>null,setItem:(k,v)=>saved.set(k,v)},console};c.window=c;c.addEventListener=(name,fn)=>listeners.set(name,fn);vm.createContext(c);vm.runInContext(fs.readFileSync(__dirname+'/../app.js','utf8'),c);
+let time=0;const audio={a:{state:'running'},offset:2,context(){return {resume:async()=>{}};},prepare:async()=>{},play:async()=>{},stop(){},pause(){this.offset=time;},time:()=>time,level(){}};
+const g={...definition,audio,phase:'menu',track:'first-light',difficulty:'flow',input:'slice',busy:false,offset:0,loadSerial:0,records:{},immersive:false,el:{is:()=>false},art:{blade(){},update(){}},T:{Matrix4:class{}},xr:{calibrated:true,tick(){}},lastTime:0};g.ui();return {g,node,listeners,saved,context:c};}
+
+test('Completing rehearsal never reaches the standard record writer',async()=>{const {g,saved}=fixture();g.input='gamepad';const P=require('../practice');let result;
+g.practice={selection:s=>P.chart(s,'phrase-0',.75),prepare:()=>P.BUFFER,result:r=>result=r,sync(){},cancelRun(){}};
+g.records={'first-light/flow/gamepad':{score:800,accuracy:50,best:8}};await g.start();A.equal(g.runAudio,P.BUFFER);g.state.state='complete';g.state.score=1234;g.complete();A.equal(result.score,1234);A.equal(g.records['first-light/flow/gamepad'].score,800);A.equal(saved.has('prism-current.v1.records'),false);
+});
+test('Resume uses the cropped practice soundtrack rather than the full song',async()=>{const {g}=fixture();g.phase='paused';g.state=C.create(C.chart());g.state.state='paused';g.runAudio='__prism-practice__';let id;g.audio.play=async value=>{id=value;return true};await g.resume();A.equal(id,'__prism-practice__');A.equal(g.phase,'playing');});
+test('Aborting a practice run clears pending repetition and its audio id',()=>{const {g}=fixture();let cancelled=0;g.practice={cancelRun(){cancelled++},sync(){}};g.runAudio='__prism-practice__';g.abort();A.equal(cancelled,1);A.equal(g.runAudio,null);A.equal(g.phase,'menu');});

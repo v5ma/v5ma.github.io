@@ -1,100 +1,77 @@
 # Prism Current: AAA-quality production checklist
 
-Updated for Tidal Bloom v0.4.0, 2026-09-12. This is the working production checklist, stored with the game. The original history remains in [ROADMAP.md](ROADMAP.md). Release evidence belongs in [QA.md](QA.md) and the pull request / GitHub Actions receipts, not in unchecked marketing claims.
+Updated for Practice Lab v0.5.0 on 2026-09-12. This is the active production checklist beside the game. The complete previous task specifications and release history are retained in [the v0.4 checklist](AAA_CHECKLIST-v040.md) and [ROADMAP.md](ROADMAP.md). Task identifiers remain stable. Current gameplay and verification details are in [PRACTICE_NOTES.md](PRACTICE_NOTES.md).
 
-## Target and status rules
+AAA-quality is the goal for craft, musical identity, accessibility and reliability, not a claim of a studio-scale budget or console certification. A checked implementation is not physical hardware acceptance. Development owns implementation and automation; Micah owns creative approval; a physical tester owns device measurements and comfort acceptance. No physical tester is assigned. P0 means release blocker for the declared scope, P1 means next production work, and P2 means later expansion. Relative effort S/M/L is not a delivery estimate.
 
-Build an exceptional original rhythm game: responsive cuts, memorable music, authored movement, comfortable spatial presentation, accessible controls and reliable releases. AAA-quality is an aspiration for craft and completeness, not a claim that this prototype has a large studio budget or console certification.
+## Current milestone: Practice Lab
 
-Checked means the specified implementation exists. It does NOT mean every device passed physical acceptance. Hardware gates remain unchecked until someone records the device, browser, build, method and result. Each new upgrade must update this file, preserve records, run relevant tests, merge to the published branch and verify the public game. Do not leave the only deliverable on a development branch.
-
-Owners: Development owns implementation and automation. Micah owns creative acceptance and prioritization. A physical tester owns hardware measurements and comfort acceptance. No physical tester is assigned yet. Priorities P0, P1 and P2 mean release blocker, next production work and later expansion. Effort S, M and L are relative scope, not delivery dates.
-
-## Current upgrade: Tidal Bloom v0.4.0
-
-- [x] TB-01 / P1 / Development / M. Implement the fourth original track with eight named sections, new oscillator voices, a returning melody, a percussion-free passage and a final fade. See MUSIC_NOTES.md. Creative listening approval remains open under B-01.
-- [x] TB-02 / P1 / Development / M. Author 92-note Flow and 170-note Pulse charts, phrase-end gaps and a target-free breathing passage. Automated geometry/spacing checks exist; physical comfort acceptance remains open under B-02.
-- [x] TB-03 / P1 / Development / M. Add the song journey, live section cues, per-section quality, measured timing bins and a weakest-section practice target. These diagnostics are not hardware latency calibration.
-- [x] TB-04 / P0 / Development / M. Preserve legacy chart hashes, synthesized-audio hashes, scoring results and saved-record keys. New content uses separate tidal-bloom record categories.
-- [x] TB-05 / P0 / Development / S. Store a repeatable sample-peak/RMS and conservative full-mix amplitude audit beside the game. Perceptual mixing approval is still open under B-06.
-- [ ] TB-06 / P1 / Micah + physical tester / M. Review the music by listening and playing both charts on real controls before using this arrangement as the catalog-wide creative bar.
-
-## Previous upgrade: Control Room
-
-- [x] CR-01 / P0 / Development / M. Add explicit standard-gamepad timing practice with LT, LB, RB and RT mapped to the four lanes. Save under the separate gamepad record category; do not relabel timing taps as tracked saber cuts.
-- [x] CR-02 / P0 / Development / M. Support controller focus, track and chart selection, settings adjustment, play, pause, resume, retry, results and back navigation. Use D-pad or left stick, A, B, Menu and View. Preserve keyboard, mouse, touch and XR controls.
-- [x] CR-03 / P0 / Development / M. Separate music and sound-effect volume, persist both, provide mute, effect-rate limiting and hit-text-rate limiting. Include Calm mix and Music only presets. Opening the mixer pauses the song and closing it does not silently resume it.
-- [x] CR-04 / P0 / Development / M. Keep only one soundtrack source, cancel obsolete async resume operations, cap simultaneous hit sounds and pause controller practice on disconnect. Do not auto-resume when a controller returns.
-- [x] CR-05 / P1 / Development / S. Show local-best quality goals at 50%, 75% and 90% without rewriting existing records. Goals describe the current best-score record, not permanent achievement unlocks.
-- [x] CR-06 / P0 / Development / S. Store the production checklist, test procedures and release evidence beside the game. Expose the checklist from the game menu.
-- [ ] CR-HW / P0 before hardware claims / Physical tester / M. Test a real Xbox-style controller by USB and Bluetooth, including trigger thresholds, disconnect, reconnect and full menu navigation. Browser or OS permission dialogs may still require a real click or keypress; record this separately from in-game controls.
-- [ ] CR-XR / P0 before headset claims / Physical tester / M. Confirm that standard pads cannot interfere with tracked controllers, that existing AR transparency survives and that both hands, pause, recenter and tracking recovery work on a physical Quest.
+- [x] PL-01 / P1 / Development / M. Rehearse the existing sections of all four songs, in both Flow and Pulse, without rewriting the authored source charts.
+- [x] PL-02 / P1 / Development / M. Offer 60%, 75%, 90% and 100% playback, a four-beat count-in, optional count-in clicks and explicit lower-pitch behavior. Keep real-time scoring windows unchanged.
+- [x] PL-03 / P0 / Development / M. Isolate completed practice records by song/chart/device/section/speed/version in their own storage namespace. Partial attempts and 100% section runs cannot replace full-song scores.
+- [x] PL-04 / P1 / Development / M. Add opt-in repeated passes with a results review and fresh count-in. Cancel pending repeats on input, focus/visibility loss, mixer use or controller loss. Never auto-resume a disconnected run.
+- [x] PL-05 / P1 / Development / M. Launch the weakest section directly from full-song results. Keep replay, return-to-song, settings and cancellation accessible through the standard controller UI.
+- [x] PL-06 / P0 / Development / M. Add pure plan/audio/save fixtures, application integration fixtures, and actual-renderer controller acceptance. Preserve golden legacy chart/audio tests and all existing suites. Passing receipts are a separate release gate.
+- [ ] PL-HW / P0 before hardware claims / Physical tester / M. Confirm count-in audibility, cut comfort and all new controls with actual devices. Numeric alignment and emulation do not complete this gate.
 
 ## Gate A: reliable playable foundation
 
-Dependencies: CR-01 through CR-06. Exit when the public release works across the declared browser/input matrix and its exact build is documented.
+Dependencies: current controls and audio transport. Exit: the published build works on the explicitly supported browser/input matrix, with reproducible receipts.
 
-- [x] A-01 / P0 / Development / M. Retain original three-track charts, audio-clock timing, two-handed swept collision, no-fail completion and separate local input-mode records.
-- [x] A-02 / P0 / Development / M. Keep automated scoring, geometry, lifecycle and audio invariants, plus native-browser controller acceptance. A mock or simulated controller is not a physical device test.
-- [ ] A-03 / P0 / Development / M. Add versioned save export/import and recovery; prove old records survive malformed preferences, storage quota failures and interrupted loads.
-- [ ] A-04 / P0 / Development + physical tester / M. Run desktop Chrome, Edge, Firefox, Android touch and Safari acceptance on declared supported versions. Publish unsupported cases clearly instead of silently failing.
-- [ ] A-05 / P0 / Development / M. Test WebGL context loss/recovery, AudioContext interruption, repeated scene teardown, long-session memory growth and rapid input-mode transitions.
-- [ ] A-06 / P1 / Development / M. Add an interactive first-run lesson for hand colors, hit plane, cut direction, timing and pause. Exit: five first-time players can finish the lesson without verbal coaching; record failures and revisions.
-- [ ] A-07 / P1 / Development / M. Expose latency calibration with a measurable repeatability report rather than only a manual offset field. Separate visual/audio offsets if measurements justify it.
+- [x] A-01 and A-02. Original rhythm, swept cuts, no-fail completion, input-specific records and automated scoring/geometry/audio/lifecycle coverage remain implemented.
+- [ ] A-03 / P0 / Development / M. Versioned save export/import and recovery. Preserve old records under malformed data, denied storage and interrupted loads.
+- [ ] A-04 / P0 / Development + physical tester / M. Declare and test Chrome, Edge, Firefox, Safari and mobile support; publish unsupported cases.
+- [ ] A-05 / P0 / Development / M. Exercise WebGL context loss, audio interruptions, scene teardown, long-session memory and rapid input transitions.
+- [ ] A-06 / P1 / Development + Micah / M. Interactive first-run teaching for hands, lanes, hit plane, direction and pause. Exit: five new players finish without verbal coaching, with failures recorded and revised.
+- [ ] A-07 / P1 / Development / M. Repeatable measured timing calibration, distinct from the current manual offset and post-run timing diagnostics.
 
 ## Gate B: music and authored rhythm identity
 
-Dependencies: stable transport and CR-03. Micah approves the musical direction before expanding the catalog. Preserve existing tracks and best scores; version any changed chart instead of invalidating old records silently.
+Dependencies: stable transport and creative approval. Preserve old chart versions and records when music or movements change.
 
-- [ ] B-01 / P1 / Development + Micah / M. Produce one flagship original arrangement with a recognizable motif, distinct intro, verse, build, drop, rest and outro. Implementation delivered in v0.4.0 as Tidal Bloom. Uninterrupted human listening/playtest approval remains OPEN; judge it by enjoyment, not the number of simultaneous sounds.
-- [ ] B-02 / P1 / Development + Micah / L. Author Flow and Pulse movement phrases for the flagship track. Add breathers, hand alternation and intentional musical accents. The v0.4.0 authored charts pass numeric lane/row and recovery-spacing checks. Physical reach, self-collision and comfort review remain OPEN.
-- [x] B-03 / P1 / Development / M. Add phrase/section labels and richer end-of-song analysis: timing error distribution, miss counts by section and section improvement targets. Implemented in v0.4.0; diagnostics do not change scoring.
-- [ ] B-04 / P1 / Development / L. Build a loopable practice section with speed control and a count-in. Keep slowed practice records separate from full-speed records; pitch behavior must be explicit.
-- [ ] B-05 / P1 / Development + Micah / L. Expand to six distinct original tracks only after the flagship passes musical and movement review. Maintain a rights/provenance register for every new sound or outside asset.
-- [ ] B-06 / P0 before new audio release / Development / M. Measure peaks, clipping, output level consistency and effect masking. Compare music-only and full-mix listening. Numeric sample-peak/RMS and worst-case hit-envelope headroom passed in v0.4.0; single-source transport regression remains covered. Human listening for masking and perceived level consistency is OPEN.
+- [ ] B-01 and B-02 / P1 / Development + Micah + physical tester / L. Tidal Bloom's original arrangement and authored Flow/Pulse patterns are implemented. Human listening, enjoyment, physical reach and self-collision/comfort approval remain open.
+- [x] B-03. Section guidance, measured timing bins, section quality and weakest-section feedback are implemented.
+- [x] B-04 / P1 / Development / L. Browser section rehearsal, four speeds, count-in and opt-in repeats are implemented in v0.5.0. Practice records are separate even at full tempo. Slower playback lowers pitch. Read PRACTICE_NOTES.md for exact scope; in-headset practice and pitch-preserving stretching are future extensions.
+- [ ] B-05 / P1 / Development + Micah / L. Expand to six distinct original songs only after the flagship receives creative approval. Maintain the asset rights register.
+- [ ] B-06 / P0 before new music claims / Development + Micah / M. Numeric sample peaks/RMS and conservative hit-envelope headroom passed for Tidal Bloom. Human review of masking and perceived loudness remains open; this is not a LUFS/true-peak certification.
 
-## Gate C: access, comfort and control completeness
+## Gate C: accessibility, comfort and control completeness
 
-Dependencies: Gate A and authored chart tooling. These are distinct production features, not fulfilled by a compact reach slider alone.
+- [ ] C-01 / P1 / Development + physical tester / L. Author seated and one-handed patterns with separate scores and measured reachable envelopes. A reach slider is not an authored accessible chart.
+- [ ] C-02 / P1 / Development / M. Remappable keyboard/controller actions, conflict checks and reset defaults.
+- [ ] C-03 / P1 / Development + Micah / M. Color-independent hand symbols, high contrast, text scaling and readable HUD presets.
+- [ ] C-04 / P1 / Development / M. Complete the browser dialog audit and add in-headset sound/comfort controls. Browser Practice Lab does not complete the headset menu requirement.
+- [ ] C-05 / P0 before physical launch / Physical tester / L. Measure comfort, safe recenter, orientation, reach and tracking recovery on real headsets. Rendered floors are not safety boundaries.
+- [ ] C-06 / P1 / Development / M. Screen-reader and reduced-motion audit; optional per-hit announcements, mandatory important pause/error notices.
 
-- [ ] C-01 / P1 / Development + physical tester / L. Author seated and one-handed charts with separate score categories and measured reachable envelopes. Do not auto-mirror two-handed charts and call them accessible.
-- [ ] C-02 / P1 / Development / M. Add remappable keyboard and standard-controller actions, duplicate-binding validation, reset defaults and clear active-device prompts.
-- [ ] C-03 / P1 / Development + Micah / M. Provide color-independent hand identification, high-contrast symbols, text scaling and readable HUD presets. Verify symbols rather than relying on hue alone.
-- [ ] C-04 / P1 / Development / M. Ensure every in-game dialog and settings field can be reached and dismissed with keyboard and standard controller. Add a dedicated in-headset sound/comfort menu rather than requiring desktop settings during XR.
-- [ ] C-05 / P0 before physical launch / Physical tester / L. Record comfort sessions, safe recenter behavior, reach, controller orientation and tracking loss/recovery on real headsets. The rendered floor and any future room mesh are not safety boundaries.
-- [ ] C-06 / P1 / Development / M. Audit screen-reader announcements and reduced-motion behavior. Keep per-hit announcements optional and never suppress important pause or error messages.
+## Gate D: visuals and measured performance
 
-## Gate D: visual production and performance
+- [x] D-01. Jewelbox gems, hilts, shared materials, bounded effects, desktop optics and transparent XR materials remain implemented.
+- [ ] D-02 and D-03 / P1 / Development + Micah / L. Three coherent stage themes, readable music-driven lighting, original hand/controller models and alignment aids.
+- [ ] D-04 / P0 before performance claims / Physical tester / L. Measure frame-time percentiles, drops, memory, audio latency and thermal behavior over 30 minutes on named devices. Proposed targets remain desktop 60 fps and headset 72 fps or the selected session rate; these are not measured claims.
+- [ ] D-05 / P1 / Development / L. Derive rendering budgets and stable quality fallback from those measurements, without changing scoring timing.
+- [ ] D-06 / P1 / Development / M. Expand matched visual regression across desktop, VR, AR and accessible display presets. Current full-resolution artwork reviews do not complete the full matrix.
 
-Dependencies: Gates A and B. Preserve Jewelbox's crystal, metal and light identity. No environment effect should hide an approaching note or the real AR surroundings.
+## Gate E: progression and creation
 
-- [x] D-01 / P1 / Development / L. Preserve faceted gems, jewelry-styled hilts, shared materials, bounded effects, desktop physical transmission and lightweight transparent XR materials.
-- [ ] D-02 / P1 / Development + Micah / L. Design three coherent stage themes and track-specific lighting cues with readability comparisons. Include an effects-off baseline.
-- [ ] D-03 / P1 / Development / M. Replace generic hands/controllers with original readable models and alignment aids without changing collision endpoints silently.
-- [ ] D-04 / P0 before performance claims / Physical tester / L. Measure CPU/GPU frame time percentiles, dropped frames, memory, audio latency and thermal behavior over 30-minute sessions on named hardware. Proposed targets: desktop 60 fps; headset 72 fps or the chosen session rate. These are targets, not current measured results.
-- [ ] D-05 / P1 / Development / L. Define per-tier draw-call, triangle, texture and effect budgets from the measurements. Implement quality fallback with hysteresis and no gameplay-timing changes.
-- [ ] D-06 / P1 / Development / M. Capture matched visual regressions for desktop, VR and transparent AR, including high contrast, reduced motion and each quality tier.
+Dependencies: enjoyable authored content, stable records and privacy boundaries.
 
-## Gate E: progression, creation and replay value
+- [ ] E-01 / P2 / Development + Micah / L. Permanent progression and unlocks. Current best-score goals and practice pass counters are not a completed progression system.
+- [ ] E-02 / P2 / Development / L. Strictly validated local chart/audio import, bounded files and no unapproved redistribution.
+- [ ] E-03 / P2 / Development / L. Beatmap editor with waveform/grid, preview, reach warnings, undo and versioned export.
+- [ ] E-04 / P2 / Development / L. Deterministic replay and score integrity before online competition.
+- [ ] E-05 / P2 / Micah + Development / L. Scope optional social competition, localization and platform packaging after single-player acceptance.
 
-Dependencies: authored content and stable records. Keep local/private play the default.
+## Gate F: every release must publish
 
-- [ ] E-01 / P2 / Development + Micah / L. Build an intentional progression path with permanent goals, unlock previews and meaningful practice recommendations. Migrate the current local-best goals explicitly.
-- [ ] E-02 / P2 / Development / L. Add validated local chart/audio import with size, duration, timing, schema and reach checks. Never upload or redistribute the user's audio without permission.
-- [ ] E-03 / P2 / Development / L. Build a beatmap editor with waveform, beat grid, phrase preview, reach warnings, undo/redo and versioned export.
-- [ ] E-04 / P2 / Development / L. Support deterministic replays and score verification before considering competitive leaderboards. Define integrity and privacy boundaries first.
-- [ ] E-05 / P2 / Micah + Development / L. Research optional social competition, localization and platform packaging after the single-player experience passes. Each is a separate scoped project, not implied by this browser release.
+- [x] F-01. Scope changes to Prism Current and its own verification. Preserve other games and private projects.
+- [ ] F-02 / P0 per release / Development / S. Run applicable tests on the exact candidate and link the actual results. A written test is not a passing test.
+- [ ] F-03 / P0 per release / Development / S. Commit, merge to master, confirm Pages deployment and verify exact served-file hashes. Do not stop at a branch or unmerged PR.
+- [ ] F-04 / P0 per release / Development / S. Record limitations and scoped rollback, preserve saves and smoke-test the actual public game.
+- [ ] F-05 / P0 before launch / Micah + physical tester / L. External playtest review, critical-defect closure, device matrix, accessibility, licenses, privacy and support.
 
-## Gate F: release discipline and launch readiness
+F-02 through F-04 are recurring gates. Their outcome for a particular release belongs in its PR/publication receipt; the next release must perform them again. Prior Control Room and Tidal Bloom implementation and physical gates retain their status in the archived v0.4 checklist. CR-HW, CR-XR and TB-06 remain open.
 
-Dependencies: all P0 items for the explicitly announced platforms. Every upgrade, including small fixes, follows this gate.
+## Next upgrade selection
 
-- [x] F-01 / P0 / Development / S. Keep changes scoped to Prism Current and its own tests/workflows. Do not reset other games or private projects while merging a release.
-- [ ] F-02 / P0 per release / Development / S. Run all applicable automated tests on the exact candidate commit and link results in QA.md or the release PR. Resolve code failures before calling the candidate validated.
-- [ ] F-03 / P0 per release / Development / S. Commit, merge to master, confirm GitHub Pages deployment and compare the public runtime files against the committed release. A merge alone is not proof of public deployment.
-- [ ] F-04 / P0 per release / Development / S. Record limitations and rollback reference, verify old saves and smoke-test the public game without injected scores or accelerated clocks.
-- [ ] F-05 / P0 before launch / Micah + physical tester / L. Obtain structured external playtest feedback, fix critical defects and review the supported-device matrix, accessibility notes, licenses, privacy and support process.
-
-## How the next round is chosen
-
-First resolve any P0 regression. Tidal Bloom now implements the B-01/B-02 content and B-03 feedback; complete its human creative review and the remaining B-06 listening checks. The next implementation priorities are A-06, an interactive first-run lesson, and B-04, section practice with separate practice records. Continue physical CR-HW and CR-XR acceptance separately; never mark those complete based on emulation. After the flagship song is enjoyable, prioritize A-06 and C-01 before bulk catalog expansion.
+Resolve any P0 regression first. The next product milestone is A-06, interactive first-run teaching, followed by C-01's authored accessible charts and A-03's save recovery. Continue human musical review and physical Xbox/Quest acceptance separately. Do not bulk-expand the song catalog or declare hardware readiness from emulated tests.

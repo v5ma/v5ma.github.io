@@ -42,7 +42,7 @@ with sync_playwright() as pw:
   check(p.locator('#practice-ribbon').is_visible(),'Gameplay labels practice, section and speed')
   press(9);before=p.evaluate('Prism.component.audio.time()');p.wait_for_timeout(300);check(abs(p.evaluate('Prism.component.audio.time()')-before)<.001,'Pause freezes the cropped soundtrack and count-in')
   press(8);check(p.locator('#mixer-panel').is_visible(),'The existing mixer remains controller-accessible in practice');press(1);check(p.evaluate('Prism.snapshot().phase')=='paused','Closing the mixer leaves practice paused');press(9)
-  p.evaluate('''()=>{const runs=new WeakMap(),until={},map=[6,4,5,7];window.practiceDriver=setInterval(()=>{const g=Prism.component;if(g.phase!=='playing'){for(const b of map)testPad&&(testPad.buttons[b]={pressed:false,value:0});return;}if(!g.state.song.practice)return;let done=runs.get(g.state);if(!done){done=new Set();runs.set(g.state,done);}const t=g.audio.time()+g.runOffset;for(const b of map)if(t>=(until[b]||0))testPad.buttons[b]={pressed:false,value:0};for(const n of g.state.song.notes){if(done.has(n.id)||t<n.time-.055||t>n.time+.1)continue;done.add(n.id);const b=map[n.lane];testPad.buttons[b]={pressed:true,value:1};until[b]=t+.09;}},4)}''')
+  p.evaluate('''()=>{const runs=new WeakMap(),until={},map=[6,4,5,7];window.practiceDriver=setInterval(()=>{const g=Prism.component;if(!window.testPad)return;if(g.phase!=='playing'){for(const b of map)testPad&&(testPad.buttons[b]={pressed:false,value:0});return;}if(!g.state.song.practice)return;let done=runs.get(g.state);if(!done){done=new Set();runs.set(g.state,done);}const t=g.audio.time()+g.runOffset;for(const b of map)if(t>=(until[b]||0))testPad.buttons[b]={pressed:false,value:0};for(const n of g.state.song.notes){if(done.has(n.id)||t<n.time-.055||t>n.time+.1)continue;done.add(n.id);const b=map[n.lane];testPad.buttons[b]={pressed:true,value:1};until[b]=t+.09;}},4)}''')
   p.wait_for_function("Prism.snapshot().phase==='complete'",timeout=30000)
   check(p.evaluate('Prism.snapshot().state.hits')==2,'An unaccelerated practice pass scores both notes through controller input')
   check(p.evaluate('Prism.snapshot().scoreRecords')==LEGACY,'Practice completion leaves all standard records unchanged')
@@ -65,6 +65,13 @@ with sync_playwright() as pw:
   check(p.evaluate('Prism.snapshot().scoreRecords')==LEGACY,'Standard saves remain byte-equivalent after practice and reload')
   check(p.evaluate('Object.values(Prism.snapshot().practice.records)[0].passes')==2,'Practice history survives reload')
   check(p.evaluate('Prism.snapshot().practice.mode')=='full','A fresh page defaults to full-song mode, not an accidental rehearsal')
+  # A separate full-resolution menu capture is visual evidence, not a FPS test.
+  visual=b.new_context(viewport={'width':1440,'height':1050},device_scale_factor=1,service_workers='block')
+  v=visual.new_page();v.set_default_timeout(60000);v.on('pageerror',lambda e:errors.append(str(e)))
+  v.goto(URL,wait_until='domcontentloaded');v.wait_for_function('window.Prism?.snapshot().ready')
+  v.locator('[data-track="tidal-bloom"]').click();v.locator('#session-mode').select_option('practice')
+  v.locator('#practice-settings').scroll_into_view_if_needed();v.screenshot(path=str(OUT/'practice-menu-full-resolution.png'))
+  visual.close()
   check(not errors,'No uncaught browser errors')
   (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'practice':p.evaluate('Prism.snapshot().practice'),'scope':'Native Chromium with production WebGL and audible derived stereo soundtrack. Emulated gamepad; one-eighth rendering ratio. Two real-time 75% practice passes, no clock or score writes. Not physical Xbox/Quest testing.'},indent=2))
  except Exception as e:
