@@ -1,0 +1,43 @@
+{
+  "version": "0.9.0",
+  "source": "eaf4bc973b5fb01de169e883dd57ec94e89ce57b",
+  "before": {
+    "leonardos-guild/doors-core.mjs": "bd52b5bcbbd43fce183c8172e9dd5e7375837ae5e18dbd96cc7d0d6a4a1efcc0",
+    "leonardos-guild/doors-ui.mjs": "45a217d6d0d9ab47aa021be2f3aba65fffd434ed17aba2cf2e4a0a06a0ef8957",
+    "leonardos-guild/doors-art.mjs": "6aaaa4c050e48996345fe48ace23fba92c60fda59a5648d5ac6b7c2db601758e",
+    "leonardos-guild/model.mjs": "7765f0eccd109fd29c327bf6091f6623df62028792900a8960dc98e4956d9481",
+    "leonardos-guild/package.json": "4de8df0b13e9719a3ed41fc45211d6ca5d148d8d6e26678417fc6bb67f667bb4",
+    "leonardos-guild/index.html": "670fca80b8511a521271b388533cb546366ec9b866cd2189b2e3ea2a6a0b30fd",
+    "leonardos-guild/release.json": "ad9656d1f2ef96a5c3e51238e01e00ec2f84dfcce782c120578379185fa5684d",
+    "leonardos-guild/tests/doors-browser.py": "0e231b1360a92d98bf9d902c249b864a41f8fb0d27a5ff32476338821662a922",
+    "leonardos-guild/tests/resonance-browser.py": "a9415ce6c05cd08fc6917e48189e3a061660d2031d9a7b74c230b2a82590c819",
+    "leonardos-guild/app.mjs": "2b000b77fa86a1b6f835a2322f10e96c7dbb844c962986d95e999112c56fb2e5",
+    "leonardos-guild/resonance-audio.mjs": "802c6ed2f4751d28a849e52022f019293dfea7cf56f6c87a96680c93723bd5bd",
+    "leonardos-guild/README.md": "c177d84012ff0010141c39a4ed3d78deb21468733b81a0004ee5e89c10b45a29",
+    "leonardos-guild/UPGRADE-CHECKLIST.md": "d876dc184ebc54749d47816c1c9bd7eb00865b50f1e3910eb58c55d655d3ab78",
+    "leonardos-guild/CHANGELOG.md": "adf720582073604f2ab781e5ebb54f07666caed435e672f2e9b26ab82be5f115",
+    "leonardos-guild/AGENTS.md": "73eecafa21feb76a5becc89c9bfb88b1a285da56a439eede7bb749022f6d97ed",
+    "leonardos-guild/.gitignore": "d9a1a295b7233f8f419f110ea25597e44d32bc84531a026301b3b0383665aefc",
+    "leonardos-guild/resonance.css": "9b57b3ef867a503b649682d0fca30746a675a261626a66b207f5b5db12e19306"
+  },
+  "after": {
+    "leonardos-guild/doors-core.mjs": "a699ad769616e838beae15db5a643b941e0f0bf6be5c5e4772ff9a61c4e493ba",
+    "leonardos-guild/doors-ui.mjs": "ab49cba6f66513d29f03f8d7ff2dc5ae226893d46b046fc116e8549ebec5e4e6",
+    "leonardos-guild/doors-art.mjs": "3c808490e92cc7d330943bc907c6fde2e93041db97fccbb7558b8520782890f3",
+    "leonardos-guild/model.mjs": "a76334aa5241b7db910e3c0076ac0fb55d68c3c3ec62d4abaf24b79890149d99",
+    "leonardos-guild/package.json": "1a6fd629febc588b619d0040331edbb0a3d220b64aede68d6f051e147344ae60",
+    "leonardos-guild/index.html": "f8fd378bfe5b4fc38989a2f5a93b4c0a39cc2885fb43a3e29dc6f881fb7f161f",
+    "leonardos-guild/release.json": "825679299075ac4c04d649f6fdbd7b20556e793ca6c3a59674831f00cd1110cb",
+    "leonardos-guild/tests/doors-browser.py": "e99b1b012adcc4e919950d629c840635faa42bde8ef08fb60c9991abebaa6b76",
+    "leonardos-guild/tests/resonance-browser.py": "8c721f1e6f6273093c8d08eaeb791d0e18ed50dc5d31e928cde233e12f33f678",
+    "leonardos-guild/app.mjs": "035310cecfc274fc04b278dee97cd26110407a91d3611aeb11631234578179e2",
+    "leonardos-guild/resonance-audio.mjs": "5b4ceb03adf7afcb8ffd3f6eb6f03c4ad537e0de62749460b1db666b58ddb282",
+    "leonardos-guild/README.md": "8f170991887f6017d6e40e1014675ae21d7b875186fa9d234170ab9b7731bd08",
+    "leonardos-guild/UPGRADE-CHECKLIST.md": "83a03ebaced4a202fd84b4ea2ae303772d07e3eb349386db3851058751d1671f",
+    "leonardos-guild/CHANGELOG.md": "76393a1da9d38ddfeafee45f8b27087d5b58eaa0910321816ad189898ada0dd8",
+    "leonardos-guild/AGENTS.md": "d816eaec704a7289222b07f41a860a2c346dd9d15eb6823fa29a0e1a235e3593",
+    "leonardos-guild/.gitignore": "f72b0df822ce4ef1b26b79a533ab909d218dc8b1834ba8074eb0f478632752da",
+    "leonardos-guild/resonance.css": "0ae4059b62067f112aa069aaaabe516548c8b9c085fa0b1afbf22ff538b01e8c"
+  },
+  "method": "One-time explicit source edits with whole-file preconditions. Native tests run on the committed result without rerunning integration."
+}

@@ -1,3 +1,7 @@
+# Current continuation priority
+
+Read AAA-ROADMAP.md first; UPGRADE-CHECKLIST.md retains earlier task IDs. Living Stories uses stories-core.mjs for authored cases inside doors.stories, and stories-art.mjs for bounded persistent props. Both are reached through the existing doors guide/nearby actions. Preserve silent story updates, quiet-audio preferences and old progression. Do not rerun scripts/integrate-living-stories.py after its one-time branch integration; maintain ordinary committed source.
+
 # Leonardo's Guild continuation guide
 
 Read release.json, README.md, RESONANCE.md, OPEN-DOORS.md, OPEN-DOORS-CHECKLIST.md, UPGRADE-CHECKLIST.md and the current PR before changing this game. Open Doors is the v0.7.0 expansion in PR95. Older candidate labels in the historical checklist/notes are not the current release decision. ASSET-REGISTER.json and vendor/gltf-provenance.json document imported art and loader provenance.

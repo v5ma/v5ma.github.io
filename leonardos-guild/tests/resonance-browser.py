@@ -51,7 +51,7 @@ with sync_playwright() as p:
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Blocking browser dialog: '+d.message)))
  try:
   page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
-  check(read()['version']=='0.8.0','Committed Resonance v0.8.0 starts the actual WebGL game')
+  check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Committed Resonance v0.8.0 starts the actual WebGL game')
   check(read()['console']['preferences']['profile']=='console','New controller profile defaults to contextual console controls')
   check(read()['controller']['focus']=='start','Controller focuses Start without a pointer')
   page.screenshot(path=str(OUT/'title.png'));press(0);page.wait_for_function('LeonardoGuild.inspect().running')

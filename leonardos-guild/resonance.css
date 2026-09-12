@@ -13,3 +13,5 @@
 /* Override the small legacy-dialog maximum for multi-column controller screens. */
 #doors-dialog,#pad-keyboard{max-width:94vw}.doors-heading>div{min-width:0}.doors-heading button{width:auto;flex-shrink:0;margin:0}.pad-key-grid{grid-template-columns:repeat(9,minmax(0,1fr))}.pad-key-grid button{min-width:0;margin:0}.pad-key-controls button{width:auto;flex:1;min-width:76px;margin:0}
 @media(max-width:760px){.pad-key-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.dispatch-heading{gap:10px}.dispatch-heading button{padding:10px;font-size:11px}.dispatch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.story-clue{padding:10px 12px;border-left:3px solid #56827d;background:#edf0dc;color:#253d3d}.doors-tabs button{width:auto;margin:0;flex:1;min-width:110px}

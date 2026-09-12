@@ -117,7 +117,9 @@ with sync_playwright() as p:
             page.screenshot(path=str(OUT/'circuit-diagrams.png'));closecity()
             drive(-10,93,.7);choose('lamp','lane');page.locator('[data-city-action="toggle"]').click()
             check(read()['city']['switches']==2 and page.locator('.city-lamps .on').count()==1,'The B switch toggles its two declared lamp connections');closecity()
-            drive(0,140);drive(10,157,.7);choose('lamp','market');money=read()['credits'];page.locator('[data-city-action="toggle"]').click()
+            # Return from B along the open centre line as on the outward leg.
+            # The direct (-10,93) -> (0,140) diagonal intersects the same cone.
+            drive(-10,102,.9);drive(0,102,.9);drive(0,140);drive(10,157,.7);choose('lamp','market');money=read()['credits'];page.locator('[data-city-action="toggle"]').click()
             check(read()['city']['circuit']==2 and page.locator('.city-lamps .on').count()==3,'The C switch completes the actual spatial circuit')
             check(read()['credits']==money,'Solving the lights does not prematurely award the return-to-bell payment');closecity()
             page.wait_for_function('LeonardoGuild.inspect().render.atmosphere.litCircuitLamps===3');page.screenshot(path=str(OUT/'restored-market-lamp.png'))
