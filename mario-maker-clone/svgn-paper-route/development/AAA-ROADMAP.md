@@ -4,7 +4,22 @@ This is the canonical, living production checklist for Sky Cycle, the existing s
 
 AAA is the quality ambition, not a status conferred by a version number, graphics setting, or this checklist. A checked implementation item does not certify its entire milestone. Each milestone needs recorded acceptance evidence before its release gate is complete. Do not invent a completion percentage from differently sized tasks.
 
-## Current continuation: Sunrise Borough / Market Pocket Park, v0.18.0
+## Current continuation: Luminous shaders, v0.19.0
+
+See `LUMINOUS-0.19.md` and `verification/luminous-0.19.json` for exact acceptance and publication evidence. This is a presentation-only slice of Milestones C, F and G, not a claim of completed AAA production.
+
+- [x] Add subtle/vivid thin-film enamel to existing rail and courier materials without moving their vertices or changing gold edge geometry.
+- [x] Add procedural canal ripples/highlights and feathered sky-silk ribbons behind the collision plane.
+- [x] Provide Subtle, Vivid and Off choices, independent water/sky switches, and the existing motion/reduced-motion controls.
+- [x] Add controller-accessible Materials & FX buttons to pause and Flight Deck with nested-dialog return safety.
+- [x] Keep shader animation on the simulation clock and all resources inside the existing Prismatic cleanup owner.
+- [x] Add exact-source shader graph, placement, resource-budget and native-browser acceptance tests.
+- [ ] Qualify native WebGPU, physical Xbox controllers, actual mobile hardware and reference-device frame-time budgets.
+- [ ] Complete independent human art/readability review before declaring the visual milestone accepted.
+
+New shader objects are limited to six canal patches and one sky sheet; actual GPU time remains device-dependent. Off retains the prior Prismatic look, while Classic restores the earlier original materials. The campaign, music, geometry, gameplay, saves and editor documents remain separate from the shader preferences.
+
+## Previous continuation: Sunrise Borough / Market Pocket Park, v0.18.0
 
 See `SUNRISE-0.18.md` and `verification/sunrise-0.18.json` for source-specific evidence. This content slice adds a low optional practice detour to the existing first chapter and improves controller reading; it does not replace the world or certify all of Milestone B.
 
