@@ -1,3 +1,11 @@
+# Prism Current v0.4.0 / Tidal Bloom
+
+Select Tidal Bloom from the four-track catalog. Eight musical sections move from a quiet arrival through answering melodies and a fuller rhythm, into a percussion-free breathing passage, a return, a final bloom and a gentle release. Flow has 92 targets; Pulse has 170. All music is synthesized locally from original composition code.
+
+The song menu previews the section journey and note count. The phrase HUD names the current and next sections. Results show quality per section, early/centered/late hit counts, average absolute timing error and a weakest-section practice suggestion. These are measured run diagnostics, not hardware latency calibration or permanent progression unlocks.
+
+Existing music, charts, scoring, records, Xbox controls and the independent mixer remain. New scores use separate track keys. Headset track cycling now covers the full catalog, with compact section names during play. Human musical and physical-device acceptance remain open. See MUSIC_NOTES.md and AAA_CHECKLIST.md.
+
 # Prism Current v0.3.0 / Control Room
 
 This upgrade continues the existing Jewelbox game. It does not replace the three original tracks, the scoring rules, the blade-collision system or the stored local records.

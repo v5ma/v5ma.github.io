@@ -1,7 +1,7 @@
 /* Three original instrumental scores composed for Prism Current. Synthesized
  * locally, not copied or streamed songs. Shared beat grid with the note charts. */
 (function(root){'use strict';const TAU=Math.PI*2,hz=n=>440*2**((n-69)/12);
- function events(song){const notes=[],add=(part,pitch,beat,duration,velocity=.4,pan=0)=>notes.push({part,pitch,beat,duration,velocity,pan});
+ function events(song){if(song.id==='tidal-bloom')return (root.PrismTidal||(typeof require==='function'?require('./tidal-bloom.js'):null)).events();const notes=[],add=(part,pitch,beat,duration,velocity=.4,pan=0)=>notes.push({part,pitch,beat,duration,velocity,pan});
   const chords=[[0,4,7,11],[9,12,16,19],[5,9,12,16],[7,11,14,17]],melodies=[[7,9,11,14,11,9,7,4],[12,11,9,7,4,7,9,11],[14,16,14,11,9,7,4,2]];
   for(let bar=0;bar<song.bars;bar++){
    const b=bar*4,ch=chords[Math.floor(bar/2)%4],breakdown=bar>=12&&bar<16,thin=bar<2||breakdown;
@@ -18,6 +18,9 @@
  function sample(part,midi,duration,rate){const a=new Float32Array(Math.ceil((duration+.6)*rate)),f=hz(midi||48);let seed=1234567,phase=0,prev=0;const noise=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/2147483648-1;};
   for(let i=0;i<a.length;i++){const t=i/rate;let v=0;if(part==='kick'){phase+=TAU*(46+90*Math.exp(-t*38))/rate;v=Math.sin(phase)*Math.exp(-t*13);}else if(part==='snare'){const n=noise();v=.45*(n-prev)*Math.exp(-t*28)+.18*Math.sin(TAU*174*t)*Math.exp(-t*33);prev=n;}
    else if(part==='hat'){const n=noise();v=.22*(n-prev)*Math.exp(-t*85);prev=n;}else if(part==='click')v=Math.sin(TAU*1100*t)*Math.exp(-t*95)*.5;
+   else if(part==='felt')v=(Math.sin(TAU*f*t)*Math.exp(-t*1.6)+.16*Math.sin(TAU*f*2*t)*Math.exp(-t*5)+.07*Math.sin(TAU*f*3*t)*Math.exp(-t*9))*.72;
+   else if(part==='glass')v=(Math.sin(TAU*f*t)*Math.exp(-t*3)+.18*Math.sin(TAU*f*2.006*t)*Math.exp(-t*7))*.5;
+   else if(part==='string')v=(Math.sin(TAU*f*.998*t)+Math.sin(TAU*f*1.002*t)+.18*Math.sin(TAU*f*2*t))*.24*Math.min(1,t/.22);
    else if(part==='pad')v=(Math.sin(TAU*f*t)+.2*Math.sin(TAU*f*2.003*t))*.45*Math.min(1,t/.10);
    else if(part==='bass')v=(Math.sin(TAU*f*t)+.23*Math.sin(TAU*f*2*t))*.6;
    else if(part==='mallet')v=(Math.sin(TAU*f*t)*Math.exp(-t*2)+.2*Math.sin(TAU*f*4*t)*Math.exp(-t*12))*.6;
@@ -28,7 +31,8 @@
  }
  function render(song,rate=24000){if(!Number.isInteger(rate)||rate<8000||rate>48000)throw Error('Bad sample rate');const length=Math.ceil(song.duration*rate),left=new Float32Array(length),right=new Float32Array(length),cache=new Map(),beat=60/song.bpm;
   for(const e of events(song)){const dur=Math.round(e.duration*beat*1000)/1000,k=[e.part,e.pitch,dur].join('/');let a=cache.get(k);if(!a){a=sample(e.part,e.pitch,dur,rate);cache.set(k,a);}const at=Math.round(e.beat*beat*rate),l=e.velocity*Math.cos((e.pan+1)*Math.PI/4)*.46,r=e.velocity*Math.sin((e.pan+1)*Math.PI/4)*.46;for(let j=0;j<a.length&&at+j<length;j++){left[at+j]+=a[j]*l;right[at+j]+=a[j]*r;}}
-  for(const [d,g]of[[.087,.09],[.167,.06]]){const delay=Math.round(d*rate);for(let i=length-1;i>=delay;i--){left[i]+=right[i-delay]*g;right[i]+=left[i-delay]*g;}}
+  for(const [d,g]of(song.id==='tidal-bloom'?[[beat*.75,.075],[beat,.05]]:[[.087,.09],[.167,.06]])){const delay=Math.round(d*rate);for(let i=length-1;i>=delay;i--){left[i]+=right[i-delay]*g;right[i]+=left[i-delay]*g;}}
+  if(song.id==='tidal-bloom')for(let i=Math.max(0,length-Math.ceil(rate*1.3));i<length;i++){const f=(length-1-i)/(rate*1.3);left[i]*=f;right[i]*=f;}
   let peak=0,sum=0;for(let i=0;i<length;i++){peak=Math.max(peak,Math.abs(left[i]),Math.abs(right[i]));sum+=left[i]**2+right[i]**2;}const gain=.78/Math.max(.78,peak);for(let i=0;i<length;i++){left[i]*=gain;right[i]*=gain;}return {left,right,rate,peak:peak*gain,rms:Math.sqrt(sum/(2*length))*gain};
  }
  root.PrismMusic=Object.freeze({events,render});if(typeof module!=='undefined')module.exports=root.PrismMusic;

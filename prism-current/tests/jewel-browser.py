@@ -20,7 +20,7 @@ with sync_playwright() as pw:
  try:
   p.goto(BASE+'/test-baseline/prism-current/',wait_until='domcontentloaded');ready(p);p.screenshot(path=str(OUT/'before-studio.png'))
   p.goto(BASE+'/prism-current/',wait_until='domcontentloaded');ready(p);p.wait_for_function('Prism.component.art.graphics.materialsReady')
-  check(p.evaluate('PrismCore.VERSION')=='0.2.0','The unchanged scoring core loads with the Jewelbox renderer')
+  check(p.evaluate('PrismCore.VERSION')==json.loads((ROOT/'prism-current/release.json').read_text())['version'],'The declared scoring release loads with the Jewelbox renderer')
   check(p.evaluate('Prism.component.art.fx.physical.every(m=>m.envMap&&m.transmission>0&&m.clearcoat===1)'),'Cinematic crystal uses real PMREM reflection, transmission and clearcoat')
   p.wait_for_timeout(500);p.screenshot(path=str(OUT/'after-studio.png'))
   check(p.evaluate('Prism.component.art.fx.physical.every(m=>m.dispersion>0&&m.iridescence>0)'),'Spectral dispersion and thin-film iridescence are enabled on the optical materials')

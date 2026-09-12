@@ -46,3 +46,7 @@ Open: physical Quest measurements and visual calibration; richer music/art direc
 Implemented: standard-controller timing practice, controller-accessible browser menus and mixer, separate music/effects volume and mute, Calm mix and Music only presets, limited hit sounds and text, disconnect pause, cancel-safe single-source soundtrack transport, and local-best quality targets. Existing charts, scoring rules, graphics and score keys are retained. Gamepad records have their own mode suffix. Controller permission/audio-unlock behavior depends on the browser; physical Xbox/Quest acceptance is still open.
 
 Next content work is an authored flagship original song and movement charts, not overlapping background music or indiscriminate extra effects. See checklist B-01, B-02 and B-06.
+
+## Tidal Bloom / authored music and feedback v0.4
+
+A fourth original track shares eight musical sections across its soundtrack, authored Flow/Pulse charts and phrase HUD. Results add per-section quality, measured hit timing and a weakest-section practice target. XR cycling uses the full catalog. Legacy chart/audio hashes, scoring results and record categories are preserved. See MUSIC_NOTES.md, qa/tidal-v040-audio.json and AAA_CHECKLIST.md. Human creative and physical-device acceptance remain open. Next implementation priorities are the first-run lesson and section practice.

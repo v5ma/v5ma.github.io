@@ -1,0 +1,104 @@
+{
+  "scope": "Numeric sample-peak, RMS and conservative hit-envelope sum at maximum music/effects gains. Not inter-sample true-peak, LUFS or a human listening review.",
+  "songs": [
+    {
+      "id": "first-light",
+      "seconds": 57.69230769230769,
+      "rate": 24000,
+      "peak": 0.38661453127861023,
+      "rms": 0.06353216834053725,
+      "peakDbFS": -8.254436532506574,
+      "fullMusicPlusFourHitVoicesUpperBound": 0.7066145312786103,
+      "sections": [
+        {
+          "name": "Whole track",
+          "peak": 0.38661453127861023,
+          "rms": 0.06353219128271138
+        }
+      ]
+    },
+    {
+      "id": "afterglow",
+      "seconds": 66,
+      "rate": 24000,
+      "peak": 0.4350081980228424,
+      "rms": 0.06440730351418822,
+      "peakDbFS": -7.23005116791718,
+      "fullMusicPlusFourHitVoicesUpperBound": 0.7550081980228425,
+      "sections": [
+        {
+          "name": "Whole track",
+          "peak": 0.4350081980228424,
+          "rms": 0.06440730351418822
+        }
+      ]
+    },
+    {
+      "id": "ion-drift",
+      "seconds": 58.23529411764706,
+      "rate": 24000,
+      "peak": 0.42205390334129333,
+      "rms": 0.06732521483662948,
+      "peakDbFS": -7.492641576562882,
+      "fullMusicPlusFourHitVoicesUpperBound": 0.7420539033412934,
+      "sections": [
+        {
+          "name": "Whole track",
+          "peak": 0.42205390334129333,
+          "rms": 0.0673252389218251
+        }
+      ]
+    },
+    {
+      "id": "tidal-bloom",
+      "seconds": 117.93103448275862,
+      "rate": 24000,
+      "peak": 0.5241088271141052,
+      "rms": 0.06762428165564813,
+      "peakDbFS": -5.6115705157491576,
+      "fullMusicPlusFourHitVoicesUpperBound": 0.8441088271141053,
+      "sections": [
+        {
+          "name": "Arrival",
+          "peak": 0.19192230701446533,
+          "rms": 0.036843163583687596
+        },
+        {
+          "name": "Glasswater",
+          "peak": 0.3582650423049927,
+          "rms": 0.06500596025970044
+        },
+        {
+          "name": "Gathering",
+          "peak": 0.35521841049194336,
+          "rms": 0.06641573166016818
+        },
+        {
+          "name": "Full Current",
+          "peak": 0.5241088271141052,
+          "rms": 0.08992062885407731
+        },
+        {
+          "name": "Stillwater",
+          "peak": 0.2463933676481247,
+          "rms": 0.04079457594875596
+        },
+        {
+          "name": "Return",
+          "peak": 0.36020514369010925,
+          "rms": 0.06643059085948232
+        },
+        {
+          "name": "Bloom",
+          "peak": 0.5112544298171997,
+          "rms": 0.09024719912578953
+        },
+        {
+          "name": "Release",
+          "peak": 0.20692819356918335,
+          "rms": 0.03919025069121983
+        }
+      ]
+    }
+  ]
+}

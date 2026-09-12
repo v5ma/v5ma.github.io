@@ -1,9 +1,9 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "name": "Prism Current",
-  "date": "2026-09-11",
+  "date": "2026-09-12",
   "engine": "A-Frame 1.8.0",
-  "scope": "Xbox-style timing practice, controller menus, independent persisted music/effects mixer, restrained feedback, audio lifecycle hardening and a production checklist. Original tracks, scoring core and Jewelbox rendering retained. Physical Xbox and Quest testing open.",
-  "edition": "Control Room",
+  "edition": "Tidal Bloom",
+  "scope": "Fourth original soundtrack with eight musical sections, authored Flow/Pulse charts, phrase guidance and section/timing feedback. Existing charts and score keys preserved. Physical hardware and creative playtest acceptance remain open.",
   "checklist": "AAA_CHECKLIST.md"
 }
