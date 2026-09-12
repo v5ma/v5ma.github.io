@@ -55,7 +55,7 @@ export function buildFrontier(scene,physics,state){
  }
 
  for(const [i,r] of RIVAL_DEFS.entries()){
-  const model=r.model==='jeep'?makeJeep():makeBuggy();scene.add(model);
+  const model=r.model==='jeep'?makeJeep():makeBuggy();scene.add(model);if(model.userData.light)model.userData.light.visible=false;
   model.traverse(o=>{if(o.isMesh&&o.material){o.material=o.material.clone();if(o.material.color)o.material.color.lerp(new T.Color(r.color),.18);}});
   const lamp=new T.PointLight(r.color,18,18,2);lamp.position.set(0,2.4,0);model.add(lamp);
   const halo=new T.Mesh(new T.TorusGeometry(1.6,.04,6,32),new T.MeshBasicMaterial({color:r.color,transparent:true,opacity:.52}));halo.rotation.x=Math.PI/2;halo.position.y=.18;model.add(halo);

@@ -25,3 +25,20 @@ test('the full coastal lap is physically driveable by the real boat model',()=>{
  assert.ok(result,'all 24 buoys and finish reached');assert.ok(result.time>100&&result.time<300,result.time);console.log('Physical coastal lap:',result.time.toFixed(2),'seconds');p.world.free();});
 test('earned-credit ledger persists without replacing cargo or old market data',()=>{const s=emptyEconomy();s.rewardLedger=['ranch:school'];s.cargo={'rations':3};const v=sanitizeEconomy(s);assert.deepEqual(v.rewardLedger,['ranch:school']);assert.equal(v.cargo.rations,3);});
 test('reference scale targets are explicit and not a claim that every procedural species is calibrated',()=>{assert.equal(SCALE_REFERENCE.diplodocus,26);assert.equal(SCALE_REFERENCE.tyrannosaurus,12);assert.equal(SCALE_REFERENCE.triceratops,9);assert.equal(Object.keys(SCALE_REFERENCE).length,3);});
+
+test('every building has a real walkable archive corridor and blocks a jeep at its doorway',async()=>{
+ const T=await import('../vendor/three.module.js'),{buildRanchWorld}=await import('../ranch-world.js');
+ const previous=globalThis.document;
+ globalThis.document={createElement:()=>({width:1024,height:100,getContext:()=>({fillRect(){},strokeRect(){},fillText(){}})})};
+ const p=new ParkPhysics(),f=new Fleet(p,emptyFrontier());buildRanchWorld(new T.Scene(),p);
+ for(const b of BUILDINGS){
+  f.active='foot';f.person.setActive(true,{x:b.x-12,y:1.1,z:b.z-9});
+  for(const [v,goal] of [[{z:1},q=>q.z<b.z-b.hz+3.5],[{x:1},q=>q.x>b.x+12.7],[{z:-1},q=>q.z>b.z-10.5]]){
+   let pass=false;for(let i=0;i<1500;i++){f.drive(v,1/60,0,0);p.world.step();f.afterStep(1/60);if(goal(f.position)){pass=true;break;}}
+   assert.ok(pass,b.id+' accessible archive corridor');
+  }
+  f.person.setActive(true,{x:b.x-12,y:b.h+1.1,z:b.z-9});tick(p,f,120);assert.ok(f.position.y>b.h,b.id+' roof saved position remains supported');
+  f.person.setActive(false);f.active='jeep';f.current.drive.reset({x:b.x,y:1,z:b.z+b.hz+12},Math.PI);tick(p,f,300,{throttle:1});assert.ok(f.position.z>b.z+b.hz-2,b.id+' narrow doorway excludes a jeep');
+ }
+ p.world.free();globalThis.document=previous;
+});

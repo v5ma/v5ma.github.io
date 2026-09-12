@@ -11,7 +11,7 @@ export function calibrateResident(a){
 }
 export function scaleNote(id){const n=SCALE_REFERENCE[id];return n?`Nominal adult model length: ${n} m, calibrated against the Natural History Museum Dino Directory. Nursery residents are smaller. Shape, gait and collision body remain stylized.`:'This species uses a gameplay-scale procedural model. Its proportions have not yet been calibrated against a fossil reconstruction.';}
 export class RanchGame{
- constructor(ctx){this.ctx=ctx;this.s=readRanch(ctx.storage);this.world=buildRanchWorld(ctx.scene,ctx.physics);this.race=new CoastRace();this.activity=this.s.guided&&this.s.tutorial<LESSONS.length?'school':null;this.roundup=null;this.clock=0;this.notice=0;this.hornCool=0;this.feedbackUntil=0;this.baseline={...ctx.fleet.position};this.lastHit='Aim at a dinosaur: the colored halo confirms its response.';this.currentLesson=-1;
+ constructor(ctx){this.ctx=ctx;this.s=readRanch(ctx.storage);this.world=ctx.ranchWorld||buildRanchWorld(ctx.scene,ctx.physics);this.race=new CoastRace();this.activity=this.s.guided&&this.s.tutorial<LESSONS.length?'school':null;this.roundup=null;this.clock=0;this.notice=0;this.hornCool=0;this.feedbackUntil=0;this.baseline={...ctx.fleet.position};this.lastHit='Aim at a dinosaur: the colored halo confirms its response.';this.currentLesson=-1;
   this.installUI();window.addEventListener('dino-spectacle',e=>{const d=e.detail||{};if(d.type==='trade-buy')this.mark('trade');if(d.type==='crew-delivery'){this.s.crewDeliveries++;if(d.index===0){const p=PENS.find(p=>p.id==='armored-valley');penState(ctx.state,p).fed=true;}window.__dinoEconomy?.crewDelivery?.(d.index);this.save();}});
   window.__dinoRanch={get state(){return ctx.ranchSnapshot();},open:()=>this.open()};
  }
