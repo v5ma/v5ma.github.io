@@ -8,30 +8,35 @@ permissions:
 jobs:
   assets:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Capture current game and public publisher download metadata
+      - name: Retrieve publisher-provided CC0 assets without executing downloaded content
         run: |
+          python -m pip install gdown==5.2.0
           mkdir -p /tmp/cast-review
-          git archive --format=zip HEAD aether-reach index.html projects.css .github/workflows > /tmp/cast-review/source.zip
           python - <<'PY'
-          import urllib.request,re,json
+          import gdown,json,zipfile,hashlib,urllib.request
           from pathlib import Path
           out=Path('/tmp/cast-review');report={}
-          for pack in ['ultimatemodularcharacters','ultimatemodularwomen','piratekit']:
-            url='https://quaternius.com/packs/'+pack+'.html'
+          for name,id in [('men','1USAAquX2JJWuA2m6zol0KUkFe3UkZ8zX'),('women','1720N9IGyQHXYvtvZJzazhxtTTlz-y2Vf')]:
             try:
-              text=urllib.request.urlopen(url,timeout=30).read().decode()
-              (out/(pack+'.html')).write_text(text)
-              report[pack]=re.findall(r'(?:href|src|data-url)=[\"\']([^\"\']+)',text)
-            except Exception as e:report[pack]={'error':str(e)}
-          (out/'links.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
+              files=gdown.download_folder(id=id,output='/tmp/unused',skip_download=True,quiet=True)
+              listing=[{'id':f.id,'path':str(f.path)} for f in files];report[name]={'files':listing};print(name,listing)
+              selected=[f for f in files if str(f.path).lower().endswith('.zip') and ('gltf' in str(f.path).lower() or len(files)<4)]
+              if not selected:selected=[f for f in files if str(f.path).lower().endswith('.zip')][:1]
+              for i,f in enumerate(selected[:2]):
+                path=out/(name+'-'+str(i)+'.zip');gdown.download(id=f.id,output=str(path),quiet=False)
+                assert zipfile.is_zipfile(path),'Not a valid publisher ZIP'
+                report[name].setdefault('downloads',[]).append({'name':path.name,'id':f.id,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'members':zipfile.ZipFile(path).namelist()})
+            except Exception as e:report[name]={'error':str(e)}
+          (out/'character-packs.json').write_text(json.dumps(report,indent=2))
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: aether-cast-source
+          name: aether-character-packs
           path: /tmp/cast-review
           retention-days: 14
