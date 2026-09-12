@@ -1,0 +1,82 @@
+name: Integrate Rainward Rainworn
+on:
+  push:
+    branches: [feat/rainward-rainworn-20260912]
+    paths: ['rainward/tools/integrate-rainworn.py','rainward/tools/build-rainworn-models.py','.github/workflows/rainward-rainworn-prepare.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: rainward-rainworn-integration
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/rainward-rainworn-20260912'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/rainward-rainworn-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve the previously verified creator Standard source
+        uses: actions/download-artifact@v4
+        with:
+          name: rainward-character-source
+          run-id: 34717387448
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: /tmp/rainward-author-source
+      - name: Install conversion and native test tools
+        run: |
+          python -m pip install numpy==2.2.6 Pillow==11.3.0 playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Convert the free human meshes and integrate exact source changes
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          source=json.loads(Path('/tmp/rainward-author-source/source.json').read_text())
+          assert source['sha256']=='fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40'
+          PY
+          python rainward/tools/build-rainworn-models.py /tmp/rainward-author-source
+          python rainward/tools/integrate-rainworn.py
+      - name: Validate source, geometry, licenses and legacy saves
+        run: |
+          set -o pipefail
+          mkdir -p test-output
+          python -m compileall -q rainward/tests rainward/tools
+          for f in rainward/*.mjs; do node --check "$f"; done
+          node --test rainward/tests/*.test.mjs | tee test-output/rainward-model-tests.txt
+      - name: Render real models and exercise the visual settings
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          timeout 780 python -u rainward/tests/rainworn.py
+      - name: Commit accepted integration to the feature branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rainward
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Rainward v0.12 Rainworn human models and wet materials'
+            git push origin HEAD:feat/rainward-rainworn-20260912
+          fi
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - name: Preserve exact source and visual evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-rainworn-integration
+          path: test-output/
+          retention-days: 7
