@@ -1,5 +1,5 @@
-import {OUTPOSTS,LIBRARY_TOTAL} from './frontier-data-expanded.js?v=ranch1';
-import {ECONOMY_KEY,GOODS,RIVALS,emptyEconomy,sanitizeEconomy,cargoUsed,quote,buy,sell,advanceMarket,contractOffer,acceptContract,completeContract,goodById} from './frontier-economy-core.js?v=ranch1';
+import {OUTPOSTS,LIBRARY_TOTAL} from './frontier-data-expanded.js?v=storm2';
+import {ECONOMY_KEY,GOODS,RIVALS,emptyEconomy,sanitizeEconomy,cargoUsed,quote,buy,sell,advanceMarket,contractOffer,acceptContract,completeContract,goodById} from './frontier-economy-core.js?v=storm2';
 
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const outpostById=id=>OUTPOSTS.find(o=>o.id===id)||OUTPOSTS[0];

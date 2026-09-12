@@ -1,8 +1,8 @@
 // Extra world spectacle layered over Ranger Operations. Effects are visual/audio only: no health or damage forces.
 import * as T from './vendor/three.module.js';
-import {buildFrontier as buildBase} from './frontier-world.js?base=ranch1';
-import {OUTPOSTS} from './frontier-data-expanded.js?v=ranch1';
-import {makeBuggy} from './frontier-art.js?v=ranch1';
+import {buildFrontier as buildBase} from './frontier-world.js?base=storm2';
+import {OUTPOSTS} from './frontier-data-expanded.js?v=storm2';
+import {makeBuggy} from './frontier-art.js?v=storm2';
 import {makeJeep,label,box} from './ranger-art.js';
 
 const SONIC_GATES=[

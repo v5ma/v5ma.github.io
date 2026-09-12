@@ -1,4 +1,4 @@
-import {TOOLS} from './frontier-data.js?v=ranch1';
+import {TOOLS} from './frontier-data.js?v=storm2';
 import {clamp} from './ranger-data.js';
 // Ammo/reload is simulation-time based and therefore pauses with the game.
 export class RangerTools{

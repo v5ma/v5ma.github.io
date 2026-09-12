@@ -1,8 +1,8 @@
 import * as T from './vendor/three.module.js';
-import {PENS,OUTPOSTS,TRAILS,WATER,DOCK,CHECKPOINTS,penState,penTerminal,isWater} from './frontier-data.js?v=ranch1';
+import {PENS,OUTPOSTS,TRAILS,WATER,DOCK,CHECKPOINTS,penState,penTerminal,isWater} from './frontier-data.js?v=storm2';
 import {seeded,distance,clamp} from './ranger-data.js';
 import {material,part,box,ellipsoid,bone,label} from './ranger-art.js';
-import {bakeStatics} from './frontier-art.js?v=ranch1';
+import {bakeStatics} from './frontier-art.js?v=storm2';
 const unit=new T.BoxGeometry(1,1,1);
 export function buildFrontier(scene,physics,state){
  const rng=seeded(265911),batches=new Map(),matrix=new T.Object3D(),gates=[],crates=[],flags=[],water=[],rings=[];

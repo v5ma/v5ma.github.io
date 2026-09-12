@@ -1,5 +1,5 @@
 // Extra procedural sound design for the Spectacle & Trade pass. No remote recordings or copyrighted samples.
-import {RangerAudio as BaseRangerAudio,sanitizeAudioSettings} from './ranger-audio.js?base=ranch1';
+import {RangerAudio as BaseRangerAudio,sanitizeAudioSettings} from './ranger-audio.js?base=storm2';
 export {sanitizeAudioSettings};
 
 export class RangerAudio extends BaseRangerAudio{

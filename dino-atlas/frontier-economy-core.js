@@ -37,7 +37,7 @@ export const cargoCount=s=>GOODS.reduce((n,g)=>n+(Number(s.cargo?.[g.id])||0),0)
 export function emptyEconomy(){return {version:1,credits:1800,capacity:32,rewardLedger:[],cargo:{},tick:0,trades:0,completed:0,lastOutpost:'base',activeContract:null,rivalPressure:{base:.18,redwood:.35,wetland:.22,north:.28,mesa:.31,coast:.24}};}
 export function sanitizeEconomy(v){
  const s=emptyEconomy();if(!v||v.version!==1)return s;
- if(Array.isArray(v.rewardLedger))s.rewardLedger=[...new Set(v.rewardLedger.filter(x=>typeof x==='string'&&x.startsWith('ranch:')))].slice(0,64);
+ if(Array.isArray(v.rewardLedger))s.rewardLedger=[...new Set(v.rewardLedger.filter(x=>typeof x==='string'&&(x.startsWith('ranch:')||x==='aaa:storm-response')))].slice(0,64);
  if(Number.isFinite(v.credits))s.credits=clamp(Math.round(v.credits),0,9999999);if(Number.isFinite(v.capacity))s.capacity=clamp(Math.round(v.capacity),16,80);if(Number.isFinite(v.tick))s.tick=clamp(Math.floor(v.tick),0,999999);if(Number.isFinite(v.trades))s.trades=clamp(Math.floor(v.trades),0,999999);if(Number.isFinite(v.completed))s.completed=clamp(Math.floor(v.completed),0,999999);
  if(MARKET_IDS.includes(v.lastOutpost))s.lastOutpost=v.lastOutpost;
  for(const g of GOODS){const q=Number(v.cargo?.[g.id]);if(Number.isFinite(q)&&q>0)s.cargo[g.id]=clamp(Math.floor(q),0,99);}
@@ -58,7 +58,7 @@ export function sell(s,goodId,outpostId,qty=1){
  const g=goodById(goodId);qty=clamp(Math.floor(qty)||1,1,8);if(!g)return {ok:false,reason:'Unknown supply item.'};if((s.cargo[goodId]||0)<qty)return {ok:false,reason:'You do not have that cargo.'};const q=quote(s,goodId,outpostId),value=q.sell*qty;s.cargo[goodId]-=qty;if(s.cargo[goodId]<=0)delete s.cargo[goodId];s.credits+=value;s.trades++;return {ok:true,value,price:q.sell};
 }
 export function advanceMarket(s,steps=1){
- steps=clamp(Math.floor(steps)||1,1,12);for(let k=0;k<steps;k++){s.tick++;for(const [i,id] of MARKET_IDS.entries()){const rival=.3+.26*Math.sin(s.tick*.31+i*1.17)+.12*Math.sin(s.tick*.11+i*2.9);s.rivalPressure[id]=clamp(rival,.04,.92);}}return s;
+ steps=clamp(Math.floor(steps)||1,1,12);for(let k=0;k<steps;k++){s.tick++;for(const [i,id] of MARKET_IDS.entries()){const rival=.3+.26*Math.sin(s.tick*.31+i*1.17)+.12*Math.sin(s.tick*.11+i*2.9);s.rivalPressure[id]=clamp((s.rivalPressure[id]??rival)*.7+rival*.3,.04,.92);}}return s;
 }
 export function contractOffer(s,from='base'){
  if(!MARKET_IDS.includes(from))from='base';const options=MARKET_IDS.filter(id=>id!==from),to=options[(s.tick+s.completed*3)%options.length],g=GOODS[(s.tick*5+s.completed*7+2)%GOODS.length],qty=2+((s.tick+s.completed)%4),buyPrice=priceFor(g.id,from,s.tick,s.rivalPressure[from]),sellPrice=priceFor(g.id,to,s.tick,s.rivalPressure[to]);return {from,to,good:g.id,qty,reward:Math.max(180,Math.round(qty*(Math.max(buyPrice,sellPrice)*.55+65)))};

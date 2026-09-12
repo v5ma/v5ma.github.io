@@ -1,13 +1,13 @@
-name: Dino Atlas AAA Vertical Slice 01
+name: Dino Atlas Storm Response verification
 on:
   push:
-    branches: [dino-aaa-roadmap-vslice-20260911]
-    paths: ['dino-atlas/**', 'scripts/dino-aaa-vslice.py', '.github/workflows/dino-aaa-vslice.yml']
+    branches: [dino-aaa-roadmap-vslice-20260911, master]
+    paths: ['dino-atlas/**', 'scripts/dino-storm-release.py', '.github/workflows/dino-aaa-vslice.yml']
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: dino-aaa-vslice-${{ github.ref }}
+  group: dino-storm-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   verify:
@@ -16,45 +16,87 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: dino-aaa-roadmap-vslice-20260911
           sparse-checkout: |
             dino-atlas
             scripts
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Integrate Vertical Slice 01 into the branch
+      - name: Commit the scoped integration on the candidate branch only
+        if: github.ref == 'refs/heads/dino-aaa-roadmap-vslice-20260911'
         run: |
-          python scripts/dino-aaa-vslice.py
+          python scripts/dino-storm-release.py
           git add dino-atlas
           if ! git diff --cached --quiet; then
             git config user.name 'Dino Atlas Build'
             git config user.email '60057241+v5ma@users.noreply.github.com'
-            git commit -m 'Integrate AAA Vertical Slice 01 Storm Response'
-            git pull --rebase origin dino-aaa-roadmap-vslice-20260911
+            git commit -m 'Integrate tested Storm Response handoffs and save guards'
             git push origin HEAD:dino-aaa-roadmap-vslice-20260911
           fi
-      - name: Syntax and model regression suite
+      - name: Syntax and all model regressions
+        shell: bash
         run: |
+          set -eo pipefail
+          mkdir -p aaa-evidence
           find dino-atlas -maxdepth 1 -name '*.js' -exec node --check {} \;
-          node --test dino-atlas/tests/*.test.mjs
-      - name: Install native browser runner
+          node --test dino-atlas/tests/*.test.mjs | tee aaa-evidence/model-tests.tap
+      - name: Install the native browser runner
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
-      - name: Exercise Storm Response through WebGL and Xbox input
-        run: python dino-atlas/tests/aaa-browser.py
-      - name: Record tested source
+      - name: Exercise the local story with Xbox input and real WebGL
+        run: |
+          python dino-atlas/tests/aaa-browser.py
+          cp aaa-evidence/report.json aaa-evidence/local-report.json
+      - name: Record exact runtime identities
         if: always()
         run: |
           mkdir -p aaa-evidence
           git rev-parse HEAD > aaa-evidence/tested-commit.txt
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          root=Path('dino-atlas')
+          files=[p for p in root.iterdir() if p.suffix in ('.js','.html','.css','.svg')]
+          record={'tested_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
+          Path('aaa-evidence/runtime-manifest.json').write_text(json.dumps(record,indent=2))
+          PY
+      - name: Verify live Pages bytes match the reviewed runtime
+        if: github.ref == 'refs/heads/master'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlopen,Request
+          from concurrent.futures import ThreadPoolExecutor
+          import json,hashlib,time,os
+          record=json.loads(Path('aaa-evidence/runtime-manifest.json').read_text())
+          def check(item):
+              path,sha=item
+              try:
+                  actual=urlopen(Request('https://v5ma.github.io/'+path+'?verify='+os.environ['GITHUB_SHA'],headers={'Cache-Control':'no-cache'}),timeout=25).read()
+                  return None if hashlib.sha256(actual).hexdigest()==sha else path
+              except Exception:return path
+          for attempt in range(36):
+              with ThreadPoolExecutor(max_workers=8) as pool:bad=[x for x in pool.map(check,record['files'].items()) if x]
+              if not bad:break
+              print('Waiting for public files:',bad,flush=True);time.sleep(10)
+          assert not bad,str(bad)
+          record['public_runtime_matches']=True
+          Path('aaa-evidence/live-byte-verification.json').write_text(json.dumps(record,indent=2))
+          print('Matched',len(record['files']),'published runtime files')
+          PY
+      - name: Exercise the actual published game
+        if: github.ref == 'refs/heads/master'
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: |
+          python dino-atlas/tests/aaa-browser.py
+          cp aaa-evidence/report.json aaa-evidence/published-report.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dino-aaa-vslice-source-and-evidence
+          name: dino-storm-source-and-evidence
           path: |
             dino-atlas
             aaa-evidence
-          retention-days: 7
+          retention-days: 14

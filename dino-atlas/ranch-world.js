@@ -1,6 +1,6 @@
 import * as T from './vendor/three.module.js';
 import {box,part,bone,ellipsoid,label,material} from './ranger-art.js';
-import {bakeStatics} from './frontier-art.js?v=ranch1';
+import {bakeStatics} from './frontier-art.js?v=storm2';
 import {seeded} from './ranger-data.js';
 import {BUILDINGS,BONEYARDS,HARBORS,SALVAGE,RACE_GATES,EXTRA_ROADS,LAND_RADIUS,distance,seaWater,segmentDistance} from './ranch-data.js';
 const WHITE=0xf0ddaf;

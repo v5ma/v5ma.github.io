@@ -1,3 +1,9 @@
+# Dino Atlas: Storm Response
+
+Play the existing game at index.html. Open Menu and select Story mission: Storm Response for the connected ground, air, interior and coastal operation. The new Development roadmap menu panel summarizes the production plan without leaving the game.
+
+The maintained checklist is [AAA-ROADMAP.md](AAA-ROADMAP.md). Release scope and known limitations are in [STORM-RESPONSE.md](STORM-RESPONSE.md); verification receipts live in verification/. The earlier Ranch & Coast world, 30 species, 64 residents, trading, vehicles, tools and journal remain intact.
+
 # Dino Atlas: Wild Frontier / Ranger Operations
 
 The existing Dino Atlas now has a 620-unit-wide fictional reserve, 14 species, 40 residents, eight new managed enclosures, six outposts, and four vehicle types. Play at index.html over HTTP(S). The original recorder mission, field journal, fossil lab, quizzes and walking expedition remain preserved. This is a further upgrade of Wild Frontier, not a separate replacement game.
