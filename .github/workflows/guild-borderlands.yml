@@ -11,72 +11,12 @@ concurrency:
   group: guild-borderlands-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  prepare:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    timeout-minutes: 12
-    permissions:
-      contents: write
-    outputs:
-      sha: ${{ steps.source.outputs.sha }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-          fetch-depth: 2
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: One-time audited Borderlands integration on the isolated branch
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$GITHUB_REF_NAME" = 'guild/borderlands-20260912'
-          if test ! -f leonardos-guild/frontier-core.mjs; then
-            BEFORE=$(git rev-parse HEAD)
-            cat \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.a00 \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.a01 \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.01 \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.04 \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.03 \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.04full \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.05 \
-              leonardos-guild/scripts/borderlands.patch.gz.b64.06 \
-              | base64 -d | gzip -d > /tmp/borderlands.patch
-            git apply --check /tmp/borderlands.patch
-            git apply /tmp/borderlands.patch
-            for f in leonardos-guild/*.mjs; do node --check "$f"; done
-            npm --prefix leonardos-guild test
-            python - <<'PY'
-          import json,subprocess
-          from pathlib import Path
-          before=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-          value={
-            'version':'0.11.0',
-            'preparationSource':before,
-            'method':'One-time concatenated base64+gzip unified patch in an explicit verified chunk order. git apply --check ran before application. Native acceptance reads the subsequently committed ordinary files and never reapplies this patch.',
-            'scope':'Steady Steps retained; adds safe Vinci, Cinder Hollow badlands, peaceful migration of prior town combat, and future Farmlands roadmap only.'
-          }
-          Path('leonardos-guild/BORDERLANDS-INTEGRATION.json').write_text(json.dumps(value,indent=2)+'\n')
-          PY
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add -- leonardos-guild
-            git commit -m 'Integrate Leo’s Guild Borderlands v0.11.0 safe-town and badlands source'
-            git push origin HEAD:refs/heads/guild/borderlands-20260912
-          fi
-      - id: source
-        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   frontier:
-    needs: prepare
-    if: always() && !cancelled() && (needs.prepare.result == 'success' || needs.prepare.result == 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.prepare.outputs.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
