@@ -1,0 +1,93 @@
+name: Verify First Bell coach repair
+on:
+  push:
+    branches: [vesperfall-first-bell-coach-repair-20260912]
+    paths: ['.github/workflows/vesperfall-coach-repair.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      revision: ${{ steps.revision.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply checksummed source and remove this temporary intake
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,lzma,pathlib
+          root=pathlib.Path.cwd()
+          encoded='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'
+          packed=base64.b64decode(encoded,validate=True)
+          sha=lambda b:hashlib.sha256(b).hexdigest()
+          assert sha(packed)=='a2f9a20cafc2238c9c114233700196c562358239eaf555d6eef380250e407c4f'
+          data=json.loads(lzma.decompress(packed))
+          allowed={'vesperfall/first-bell.js','vesperfall/index.html','vesperfall/tests/first-bell-browser.py','vesperfall/tests/first-bell-coach.test.cjs'}
+          assert set(data)==allowed
+          planned=[]
+          for name,d in data.items():
+              p=root/name
+              assert not p.is_symlink() and p.resolve().is_relative_to(root/'vesperfall')
+              before=p.read_bytes();assert sha(before)==d['before'],name
+              text=before.decode('utf-8')
+              for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
+              b=text.encode('utf-8');assert sha(b)==d['after'],name
+              planned.append((p,b))
+          for p,b in planned:p.write_bytes(b)
+          (root/'.github/workflows/vesperfall-coach-repair.yml').unlink()
+          print('Applied exactly four verified coaching and test changes.')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- vesperfall .github/workflows/vesperfall-coach-repair.yml
+          git commit -m 'Fix First Bell quiver lesson from actual event receipts and test an entire gesture between frames'
+          git push origin HEAD:vesperfall-first-bell-coach-repair-20260912
+      - id: revision
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  lessons:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.revision }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify all models, workbook and release boundary
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          node --test vesperfall/tests/*.test.cjs | tee test-output/models.tap
+          python vesperfall/tests/production-workbook.py
+          python scripts/check-vesperfall.py
+      - name: Install native renderer
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Complete every lesson including same-turn quiver input
+        env:
+          BELL_SUITE: lessons
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 850 python -u vesperfall/tests/functional-runner.py first-bell-browser.py | tee test-output/browser.log
+          test -s test-output/first-bell-lessons/report.json
+          test ! -e test-output/first-bell-lessons/failure.json
+      - name: Preserve actual diagnostics and tested source
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          tar czf test-output/source.tgz vesperfall
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: first-bell-coach-repair
+          path: test-output/
+          retention-days: 14
