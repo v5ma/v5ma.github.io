@@ -3,16 +3,18 @@ on:
   push:
     branches: [feat/aether-foundry-finish-20260911]
     paths: ['aether-reach/**', '.github/workflows/aether-foundry-review.yml']
+  pull_request:
+    paths: ['aether-reach/**', '.github/workflows/aether-foundry-review.yml']
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: aether-foundry-review
+  group: aether-foundry-review-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
   review:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,12 +24,26 @@ jobs:
           node-version: '22'
       - name: Test the actual source
         run: |
+          set -euo pipefail
           mkdir -p aether-reach/test-output
-          node --test aether-reach/tests/*.test.mjs > aether-reach/test-output/foundry-node.log
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/foundry-node.log
           node aether-reach/tests/release-manifest.mjs
+      - name: Install Chromium
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play through the actual controller, optic and arena interfaces
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/foundry-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/foundry-browser.py | tee aether-reach/test-output/foundry-browser.log
       - name: Record exact source
         if: always()
         run: |
+          mkdir -p aether-reach/test-output
           git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
           git archive --format=zip HEAD aether-reach index.html projects.css .github/workflows > aether-reach/test-output/foundry-source.zip
       - uses: actions/upload-artifact@v4
