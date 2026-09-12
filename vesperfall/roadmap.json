@@ -1,5 +1,5 @@
 {
-  "version": "0.9.0",
+  "version": "0.10.0",
   "project": "Vesperfall: Arrows Unchained",
   "scope": "Quality-gated path toward a polished original premium archery roguelite. AAA is an aspiration, not a certified rating, budget or delivery promise. Public-only content.",
   "tasks": [
@@ -856,7 +856,7 @@
       "id": "V49",
       "area": "Practice",
       "title": "First ten minutes: playable physical onboarding",
-      "status": "Planned",
+      "status": "Partial",
       "priority": "P0",
       "milestone": "M1",
       "depends": [
@@ -867,15 +867,18 @@
       "owner": "Gameplay / UX",
       "gate": "A new player can learn nock/draw, cancel, reload, shield, Blink, shard step, pickups and quiver in either handedness, then enter a short scored encounter. Record completion, confusion and fatigue.",
       "why": "A feature-rich control scheme is not yet an intuitive first session.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "first-bell.js",
+        "tests/first-bell-browser.py"
+      ],
+      "verification": "Ten playable lessons now verify actual outcomes, with device-specific hints and a spatial Quest coach. Skips are recorded separately. Software-only: first-user confusion, reversed-hand ergonomics and fatigue remain to be measured.",
+      "release": "0.10.0 First Bell"
     },
     {
       "id": "V50",
       "area": "Combat",
       "title": "Encounter director with fair threat and recovery budgets",
-      "status": "Planned",
+      "status": "Partial",
       "priority": "P0",
       "milestone": "M2",
       "depends": [
@@ -886,15 +889,19 @@
       "owner": "Gameplay",
       "gate": "Coordinate telegraphed melee/ranged attacks, limit unavoidable overlap and offscreen attacks, preserve escape routes and add recovery beats. Replay fixed-seed stress encounters.",
       "why": "Fifteen archetypes need readable group pacing, not simultaneous noise.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "oath-model.js",
+        "tests/oath.test.cjs",
+        "tests/first-bell-browser.py"
+      ],
+      "verification": "The optional Oath coordinates three staged encounters with front-hemisphere initiation, bolt/windup budgets and recovery supplies. The original Endless mode is unchanged. Broad seed/human difficulty evaluation remains open.",
+      "release": "0.10.0 First Bell"
     },
     {
       "id": "V51",
       "area": "Combat",
       "title": "First signature boss: readable multi-phase duel",
-      "status": "Planned",
+      "status": "Partial",
       "priority": "P1",
       "milestone": "M2",
       "depends": [
@@ -905,15 +912,20 @@
       "owner": "Gameplay",
       "gate": "An original boss changes tactics across three tested phases, uses cover/height, offers weak-point windows and has no unavoidable transition damage or restart softlock.",
       "why": "Create a memorable mastery test rather than another enlarged standard enemy.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "oath-model.js",
+        "first-bell.js",
+        "tests/oath.test.cjs",
+        "tests/first-bell-browser.py"
+      ],
+      "verification": "The Bellkeeper has three committed attack phases, armor/recovery weak points and protected transitions. Original procedural character art is implemented; production rigging, animation and human difficulty approval are not complete.",
+      "release": "0.10.0 First Bell"
     },
     {
       "id": "V52",
       "area": "World",
       "title": "Authored vertical-slice route grammar and route contracts",
-      "status": "Planned",
+      "status": "Partial",
       "priority": "P0",
       "milestone": "M2",
       "depends": [
@@ -923,9 +935,13 @@
       "owner": "Level design",
       "gate": "One polished 20-30 minute target route mixes safe introduction, alternate approach, escalating encounter, discovery and boss payoff. Validate every traversal connector and recovery path. Duration is a design target, not measured content.",
       "why": "Replace sheer room count with deliberately paced exploration.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "oath-model.js",
+        "first-bell.js",
+        "tests/oath.test.cjs"
+      ],
+      "verification": "A connected Roseglass/Ivory Crown/Ember Crown progression reuses the collision-tested 25-room world, existing stairs and alternate approaches. Three staged courts are implemented; the proposed 20-30 minute polished duration and authored connector variety are not yet measured or complete.",
+      "release": "0.10.0 First Bell"
     },
     {
       "id": "V53",
@@ -1356,7 +1372,7 @@
       "id": "V76",
       "area": "Combat",
       "title": "First boss and encounter slice end-to-end release",
-      "status": "Planned",
+      "status": "Partial",
       "priority": "P1",
       "milestone": "M2",
       "depends": [
@@ -1368,9 +1384,13 @@
       "owner": "Gameplay",
       "gate": "Publish one complete integrated slice, including onboarding, traversal, encounter pacing, boss payoff and saved continuation; collect human feedback before producing additional bosses.",
       "why": "Concentrate production effort on one excellent experience instead of many unfinished systems.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "FIRST-BELL.md",
+        "tests/first-bell-browser.py",
+        "tests/pilgrim.test.cjs"
+      ],
+      "verification": "First Bell integrates teaching, a scored staged route, three-phase boss and checkpoint continuation in the maintained game. Source/model and native-input checks are distinct from physical hardware and human approval.",
+      "release": "0.10.0 First Bell"
     }
   ],
   "updated": "2026-09-12",
@@ -1407,7 +1427,7 @@
     {
       "id": "M2",
       "name": "Combat mastery slice",
-      "status": "Planned",
+      "status": "In progress",
       "depends": [
         "M1"
       ],
@@ -1744,14 +1764,17 @@
     ]
   ],
   "nextRelease": {
-    "theme": "Combat mastery slice",
+    "theme": "Refine the mastery slice on real players and devices",
     "focus": [
       "V49",
       "V50",
       "V51",
       "V52",
+      "V53",
+      "V54",
+      "V75",
       "V76"
     ],
-    "note": "Proposed sequence; finish onboarding and coordinated encounters before expanding boss/content count."
+    "note": "First Bell implements the linked software slice. Next close confusion/comfort, encounter fairness and route variation before multiplying bosses; production character art and viable build choices remain open."
   }
 }

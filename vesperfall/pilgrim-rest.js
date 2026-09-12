@@ -57,7 +57,7 @@
    state.busy=true;
    try{g.setPaused(true);const {game,meta}=restored;g.game=game;g.practice=false;g.training=null;g.running=true;state.activeId=meta.id;g.banked=meta.banked;g.arsenal.state.receipt={...meta.receipt};g.lastEvent=0;g.lastPhase=game.phase;g.accumulator=0;g.lastHud=-1;g.cancel();g.ritual.focus.remaining=meta.focus;g.ritual.state.seenGame=game;
     if(!g.xr){g.rig.rotation.set(0,0,0);g.yaw=meta.yaw;g.pitch=meta.pitch;g.head.object3D.position.set(0,1.65,0);g.head.components['look-controls'].yawObject.rotation.y=g.yaw;g.head.components['look-controls'].pitchObject.rotation.x=g.pitch;}
-    g.build();const local=g.head.object3D.position.clone().applyQuaternion(g.rig.quaternion);g.rig.position.set(game.p[0]-local.x,game.p[1],game.p[2]-local.z);g.scene.object3D.updateMatrixWorld(true);game.head=g.head.object3D.getWorldPosition(new T.Vector3()).toArray();$('seed').value=game.world.seed;
+    g.build();const local=g.head.object3D.position.clone().applyQuaternion(g.rig.quaternion);g.rig.position.set(game.p[0]-local.x,game.p[1],game.p[2]-local.z);g.scene.object3D.updateMatrixWorld(true);game.head=g.head.object3D.getWorldPosition(new T.Vector3()).toArray();$('seed').value=game.world.seed;if($('expedition-mode'))$('expedition-mode').value=game.oath?'oath':'endless';
     g.setPaused(true);g.ritual.focus.remaining=meta.focus;g.ritual.state.seenGame=game;ui.state.armed=false;ui.state.xrNeutral=false;g.arsenal.state.xrArmed=false;g.toast('Expedition restored. Resume when ready; no time passed while away.');if(g.xr)g.placePanel();return true;
    }finally{state.busy=false;refresh();}
   }

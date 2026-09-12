@@ -11,11 +11,12 @@ import json, os, runpy, sys
 from urllib.parse import urlparse
 from playwright.sync_api import Page, BrowserContext
 ROOT=Path(__file__).resolve().parents[2]
-ALLOWED={'browser.py','unchained-combat.py','hunt-browser.py','cathedral-browser.py'}
+ALLOWED={'browser.py','unchained-combat.py','hunt-browser.py','cathedral-browser.py','first-bell-browser.py'}
 name=sys.argv[1] if len(sys.argv)==2 else ''
 if name not in ALLOWED:
     raise SystemExit('Provide one approved native regression filename.')
 active=(name in {'unchained-combat.py','hunt-browser.py'} or
+        name=='first-bell-browser.py' or
         name=='browser.py' and os.getenv('VESPER_SUITE') in {'gallery','expedition'} or
         name=='cathedral-browser.py' and os.getenv('CATHEDRAL_SUITE')=='routes')
 if not active:

@@ -1,0 +1,126 @@
+name: Vesperfall First Bell
+on:
+  push:
+    branches: [master, vesperfall-first-bell-20260912]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-first-bell.yml']
+  pull_request:
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-first-bell.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: first-bell-refs/heads/${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    if: github.ref != 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [lessons, combat, production]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Model, workbook, syntax and public boundary
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/models.tap
+          python vesperfall/tests/production-workbook.py
+          python scripts/check-vesperfall.py
+      - name: Install actual browser renderer
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the committed tutorial, boss journey or production board
+        env:
+          BELL_SUITE: ${{ matrix.suite }}
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if [ "$BELL_SUITE" = production ]; then
+            timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/browser.log
+            test -s test-output/production/report.json
+            timeout 240 python -u vesperfall/tests/launch.py
+          else
+            timeout 1250 python -u vesperfall/tests/functional-runner.py first-bell-browser.py | tee test-output/browser.log
+            test -s test-output/first-bell-${BELL_SUITE}/report.json
+          fi
+          test -z "$(find test-output -name failure.json -print -quit)"
+      - name: Record exact source and native diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar czf test-output/source.tgz vesperfall
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: first-bell-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
+  public-files:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match every served runtime, asset and production file against the merge
+        run: python -u vesperfall/tests/verify-live.py
+      - name: Validate the versioned workbook against the canonical plan
+        run: python vesperfall/tests/production-workbook.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: first-bell-public-files
+          path: test-output/
+          retention-days: 14
+  public-play:
+    needs: public-files
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [lessons, combat, production]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install actual public verification browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual public gameplay or board and homepage card
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+          BELL_SUITE: ${{ matrix.suite }}
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          if [ "$BELL_SUITE" = production ]; then
+            timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/public-browser.log
+            test -s test-output/production/report.json
+            timeout 240 python -u vesperfall/tests/launch.py
+          else
+            timeout 1250 python -u vesperfall/tests/functional-runner.py first-bell-browser.py | tee test-output/public-browser.log
+            test -s test-output/first-bell-${BELL_SUITE}/report.json
+          fi
+          test -z "$(find test-output -name failure.json -print -quit)"
+      - name: Preserve publication revision
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: first-bell-public-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14

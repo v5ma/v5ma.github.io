@@ -2,7 +2,7 @@
  * Static collision geometry also drives rendering. All projectile hits sweep
  * between positions so a fast arrow cannot tunnel through a thin wall. */
 (function(root){'use strict';
- const VERSION='0.9.0',G=9.8,R=.28;
+ const VERSION='0.10.0',G=9.8,R=.28;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0),len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
  function hash(text){let h=2166136261;for(const c of String(text).slice(0,64))h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
@@ -12,6 +12,7 @@
  function sphereHit(a,b,c,r){const d=sub(b,a),o=sub(a,c),A=dot(d,d),B=2*dot(o,d),C=dot(o,o)-r*r;if(C<=0)return 0;const D=B*B-4*A*C;if(D<0||A<1e-10)return null;const t=(-B-Math.sqrt(D))/(2*A);return t>=0&&t<=1?t:null;}
  function rect(x,z,w,d,y=0,type='stone'){return {x,z,w,d,y,type};}
  function inside(p,s,margin=0){return p[0]>=s.x-s.w/2+margin&&p[0]<=s.x+s.w/2-margin&&p[2]>=s.z-s.d/2+margin&&p[2]<=s.z+s.d/2-margin;}
+ const oath=root.BellOath||(typeof require!=='undefined'?require('./oath-model.js'):null);
  const encounters=root.VesperEncounters||(typeof require!=='undefined'?require('./encounters.js'):null);
  const architecture=root.CloisterLayout||(typeof require!=='undefined'?require('./architecture.js'):null);
  function floorAt(world,p,margin=0){return architecture.floorAt(world,p,margin);}
@@ -31,7 +32,7 @@
  }
  function grantPickup(s,item){if(item.taken)return false;if(item.kind==='health')s.health=Math.min(s.maxHealth,s.health+25);else if(item.kind==='relic'){s.score+=100;s.health=Math.min(s.maxHealth,s.health+12);}else if(Object.hasOwn(s.ammo,item.kind))s.ammo[item.kind]+=3;else return false;item.taken=true;emit(s,'pickup',{kind:item.kind,label:item.label||'',reward:item.kind==='relic'?100:0,p:[...item.p]});return true;}
 
- function create(seed='BELL-01',depth=1,upgrades={}){const world=generate(seed,depth);if(upgrades.challenge==='nightfall')for(const e of world.enemies){e.hp=Math.round(e.hp*1.3);e.maxHp=e.hp;e.speed*=1.15;}if(upgrades.ricochet)addRicochetLoot(world);return {world,p:[...world.start],head:[0,1.65,3],health:100+(upgrades.heart?15:0),maxHealth:100+(upgrades.heart?15:0),power:upgrades.power?1.08:1,phase:'playing',time:0,playerSlow:0,hazards:[],discovered:new Set([1]),orders:new Set(),sideRewards:new Set(),arrows:[],bolts:[],sparks:[],events:[],score:0,kills:0,shots:0,hits:0,blinkCD:0,invuln:0,ammo:{cinder:4,frost:6,volley:upgrades.volley?4:0,ricochet:upgrades.ricochet?4:0},type:'plain',finished:false,portalReady:false,damageTaken:0,targets:new Set(),weapon:'bow',crossbow:{loaded:true,reload:0},guard:upgrades.wardglass?120:100,maxGuard:upgrades.wardglass?120:100,guardLock:0,shield:null,shardCharges:upgrades.wayfarer?3:2,maxShards:upgrades.wayfarer?3:2,shardRecharge:0,shardCD:0,volleyUnlocked:!!upgrades.volley,ricochetUnlocked:!!upgrades.ricochet,quickwind:!!upgrades.quickwind,headshots:0,blocks:0,blinks:0,shardsUsed:0,sectors:0,challenge:upgrades.challenge==='nightfall'};}
+ function create(seed='BELL-01',depth=1,upgrades={}){const world=generate(seed,depth);if(upgrades.challenge==='nightfall')for(const e of world.enemies){e.hp=Math.round(e.hp*1.3);e.maxHp=e.hp;e.speed*=1.15;}if(upgrades.ricochet)addRicochetLoot(world);const s={world,p:[...world.start],head:[0,1.65,3],health:100+(upgrades.heart?15:0),maxHealth:100+(upgrades.heart?15:0),power:upgrades.power?1.08:1,phase:'playing',time:0,playerSlow:0,hazards:[],discovered:new Set([1]),orders:new Set(),sideRewards:new Set(),arrows:[],bolts:[],sparks:[],events:[],score:0,kills:0,shots:0,hits:0,blinkCD:0,invuln:0,ammo:{cinder:4,frost:6,volley:upgrades.volley?4:0,ricochet:upgrades.ricochet?4:0},type:'plain',finished:false,portalReady:false,damageTaken:0,targets:new Set(),weapon:'bow',crossbow:{loaded:true,reload:0},guard:upgrades.wardglass?120:100,maxGuard:upgrades.wardglass?120:100,guardLock:0,shield:null,shardCharges:upgrades.wayfarer?3:2,maxShards:upgrades.wayfarer?3:2,shardRecharge:0,shardCD:0,volleyUnlocked:!!upgrades.volley,ricochetUnlocked:!!upgrades.ricochet,quickwind:!!upgrades.quickwind,headshots:0,blocks:0,blinks:0,shardsUsed:0,sectors:0,challenge:upgrades.challenge==='nightfall'};if(upgrades.oath)oath.configure(s,enemyAPI,kind=>encounters.training(kind));return s;}
  function emit(s,type,data={}){s.eventSeq=(s.eventSeq||0)+1;s.events.push({seq:s.eventSeq,type,time:s.time,...data});if(s.events.length>160)s.events.shift();}
  function fire(s,origin,direction,charge,type=s.type){
   if(s.phase!=='playing'||!Number.isFinite(charge)||origin.length!==3||direction.length!==3||!origin.every(Number.isFinite)||!direction.every(Number.isFinite)||Math.abs(len(direction)-1)>.01||charge<.08)return false;
@@ -47,7 +48,7 @@
  }
  function move(s,dx,dz){if(s.phase!=='playing'||!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>5)return;if(s.playerSlow>0){dx*=.55;dz*=.55;}const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.15));for(let i=0;i<n;i++){const x=s.p[0]+dx/n,z=s.p[2]+dz/n;if(walkable(s.world,[x,s.p[1],s.p[2]])){s.p[0]=x;s.p[1]=floorAt(s.world,s.p);}if(walkable(s.world,[s.p[0],s.p[1],z])){s.p[2]=z;s.p[1]=floorAt(s.world,s.p);}}}
  function blink(s,p){if(!landing(s,p).ok)return false;s.p=[p[0],floorAt(s.world,p),p[2]];s.invuln=Math.max(s.invuln,.25);s.blinks++;emit(s,'blink',{p:[...s.p]});return true;}
- function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;if(head)s.headshots++;e.hp-=amount;e.aware=true;if(type==='frost'){e.slow=4;e.frozen=e.kind==='warden'?.65:1.35;e.wind=0;e.charge=null;e.recovery=.4;}s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.orders?.add(e.kind);s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}else emit(s,'hit',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}
+ function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;amount=oath.damage(s,e,amount,head,enemyAPI);if(amount<=0)return;if(head)s.headshots++;e.hp-=amount;e.aware=true;if(type==='frost'){e.slow=4;e.frozen=e.kind==='warden'?.65:1.35;e.wind=0;e.charge=null;e.recovery=.4;}s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.orders?.add(e.kind);s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}else emit(s,'hit',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}
  function strike(s,a,hit){
   if(hit.kind==='wall'&&a.type==='ricochet'&&a.bounces>0){const normal=wallNormal(hit.p,hit.box,a.v);a.v=mul(sub(a.v,mul(normal,2*dot(a.v,normal))),.82);a.p=add(hit.p,mul(normal,.055));a.bounces--;a.damage*=.7;s.sparks.push({p:[...hit.p],life:.3,type:'ricochet'});emit(s,'ricochet',{p:[...hit.p],remaining:a.bounces});return;}
   if(hit.kind==='wall'||hit.kind==='floor')emit(s,'impact',{p:[...hit.p],surface:hit.kind,arrow:a.type});
@@ -66,7 +67,7 @@
  function probe(s,a,next){const old=a.p;let best=null;const candidate=(t,h)=>{if(t!==null&&t>=0&&t<=1&&(!best||t<best.t))best={t,...h};};
   for(const b of s.world.solids)candidate(boxHit(old,next,b,.02),{kind:'wall',box:b});
   if(a.type!=='blink'){
-   for(const e of s.world.enemies)if(!e.dead){
+   for(const e of s.world.enemies)if(!e.dead&&oath.canTarget(s,e)){
     if(encounters.guardActive(e)){
      const normal=e.facing||unit([s.head[0]-e.p[0],0,s.head[2]-e.p[2]]),center=add(e.p,mul(normal,.78)),da=dot(sub(old,center),normal),db=dot(sub(next,center),normal);
      if(da>=0&&db<=0&&da-db>1e-8){const t=da/(da-db),p=add(old,mul(sub(next,old),t));if(len(sub(p,center))<=.53)candidate(t,{kind:'guard',enemy:e});}
@@ -114,9 +115,10 @@
   if(s.crossbow.reload>0){s.crossbow.reload=Math.max(0,s.crossbow.reload-dt);if(s.crossbow.reload===0){s.crossbow.loaded=true;emit(s,'reloaded');}}
   if(s.shardCharges<s.maxShards){s.shardRecharge-=dt;if(s.shardRecharge<=0){s.shardCharges++;s.shardRecharge=3.5;}}
 
+  oath.prepare(s,dt,enemyAPI);
   for(const a of s.arrows)arrowStep(s,a,dt);s.arrows=s.arrows.filter(a=>!a.dead);
   if(!s.manualPickups)s.world.pickups.forEach((p,i)=>{if(!p.taken&&Math.hypot(p.p[0]-s.p[0],p.p[2]-s.p[2])<1&&Math.abs(p.p[1]-(s.p[1]+.3))<.65){const origin=add(s.p,[0,.5,0]);if(!segmentBlocked(s.world,origin,p.p,.01))grantPickup(s,p);}});
-  for(const e of s.world.enemies)encounters.update(s,e,dt,enemyAPI);
+  for(const e of s.world.enemies)if(oath.canTarget(s,e)){if(e.oathBoss)oath.boss(s,e,dt,enemyAPI);else encounters.update(s,e,dt,enemyAPI);}
   dominions.bestiary.hazards(s,dt,enemyAPI);
   for(const b of s.bolts){const end=add(b.p,mul(b.v,dt));const wall=s.world.solids.reduce((v,w)=>{const t=boxHit(b.p,end,w,.06);return t!==null?Math.min(t,v):v;},2),body=sphereHit(b.p,end,s.head,.22),guard=shieldHit(s,b.p,end);if(guard&&guard.t<wall&&(body===null||guard.t<body)){block(s,guard.p);b.life=0;}else if(body!==null&&body<wall){const hp=s.health;hurt(s,b.damage||12);if(s.health<hp&&b.slow)s.playerSlow=Math.max(s.playerSlow||0,b.slow);b.life=0;}else if(wall<=1)b.life=0;b.p=end;b.life-=dt;}s.bolts=s.bolts.filter(b=>b.life>0);
   if(s.world.dominions){
@@ -125,10 +127,11 @@
    if(!s.unscored)for(const [key,ready]of[['survey',outer===16],['reliquary',relics>=8],['orders',orders===12]])if(ready&&!s.sideRewards.has(key)){s.sideRewards.add(key);s.score+=200;s.health=Math.min(s.maxHealth,s.health+15);s.ammo.cinder+=2;s.ammo.frost+=2;emit(s,'side-expedition',{key});}
   }
   for(const f of s.sparks)f.life-=dt;s.sparks=s.sparks.filter(f=>f.life>0).slice(-32);
+  oath.after(s,enemyAPI);
   if(!s.portalReady&&s.world.enemies.filter(e=>e.required!==false).every(e=>e.dead)){s.portalReady=true;emit(s,'gate-open');}
  }
  function interact(s){const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.abs(s.p[1])<.5&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;s.sectors++;emit(s,'sector-complete');return true;}return false;}
- function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1,{challenge:s.challenge?'nightfall':'normal'});n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.ricochetUnlocked=s.ricochetUnlocked;n.ammo.ricochet=(s.ammo.ricochet||0)+(s.ricochetUnlocked?3:0);if(s.ricochetUnlocked)addRicochetLoot(n.world);n.weapon=s.weapon;n.quickwind=s.quickwind;n.volleyUnlocked=s.volleyUnlocked;n.ammo.volley=(s.ammo.volley||0)+(s.volleyUnlocked?3:0);n.maxGuard=s.maxGuard;n.guard=n.maxGuard;n.maxShards=s.maxShards;n.shardCharges=n.maxShards;for(const key of['headshots','blocks','blinks','shardsUsed','sectors'])n[key]=s[key];n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
- const enemyAPI={add,sub,mul,unit,len,walkable,floorAt,route,roomAt,segmentBlocked,emit,shieldHit,block,hurt};
+ function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1,{challenge:s.challenge?'nightfall':'normal',oath:!!s.oath});n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.ricochetUnlocked=s.ricochetUnlocked;n.ammo.ricochet=(s.ammo.ricochet||0)+(s.ricochetUnlocked?3:0);if(s.ricochetUnlocked)addRicochetLoot(n.world);n.weapon=s.weapon;n.quickwind=s.quickwind;n.volleyUnlocked=s.volleyUnlocked;n.ammo.volley=(s.ammo.volley||0)+(s.volleyUnlocked?3:0);n.maxGuard=s.maxGuard;n.guard=n.maxGuard;n.maxShards=s.maxShards;n.shardCharges=n.maxShards;for(const key of['headshots','blocks','blinks','shardsUsed','sectors'])n[key]=s[key];n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
+ const enemyAPI={dot,add,sub,mul,unit,len,canAttack:(s,e)=>oath.canAttack(s,e,enemyAPI),walkable,floorAt,route,roomAt,segmentBlocked,emit,shieldHit,block,hurt};
  const api={emit,collectPickup,wallNormal,VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,landing,predictBlink,setWeapon,reload,shield,shieldHit,shard,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
