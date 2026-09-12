@@ -48,7 +48,7 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/vesperfall/index.html?acceptance=hollow-dominions',wait_until='domcontentloaded')
   wait('window.Vesperfall?.component.rendererReady&&Vesperfall.component.dominionControls&&AFRAME.scenes[0].renderer.info.render.calls>0')
-  check(page.evaluate("VesperCore.VERSION==='0.8.0'&&Vesperfall.state.world.rooms.length===25&&Vesperfall.state.world.enemies.length===21"),'Correct release boots with 25 rooms and 21 enemies')
+  check(page.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'] and page.evaluate('Vesperfall.state.world.rooms.length===25&&Vesperfall.state.world.enemies.length===21'),'Correct release boots with 25 rooms and 21 enemies')
   check(page.evaluate('Vesperfall.component.enemyMeshes.filter(m=>m.userData.dominion).length===16'),'All outer opponents have actual distinct rendered models')
   check(page.locator('#sparring-kind option').count()==15,'All fifteen archetypes are available as combat trials')
   page.screenshot(path=str(OUT/'opening-menu.png'))
@@ -89,7 +89,7 @@ with sync_playwright() as p:
   page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed');press(1);check(page.locator('#dominion-dialog').is_hidden(),'Xbox B dismisses the XR error without a mouse')
   check(not errors,'No uncaught JavaScript errors across browser, Xbox, VR and AR paths')
   check(not [e for e in console_errors if 'SHADER' in e.upper() or 'INVALID' in e.upper()],'No invalid shader/renderer operations during acceptance')
-  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':'0.8.0','passed':len(checks),'checks':checks,'errors':errors,'consoleErrors':console_errors,'diagnostics':diagnostics,'scope':'Real WebGL and ordinary UI/gameplay with emulated standard gamepad and WebXR device inputs. Software-GPU tests use pixel ratio 0.5 and a 480x320 stereo framebuffer; this is not a performance benchmark. Not physical Quest 3, passthrough quality, comfort, or hardware performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':page.evaluate('VesperCore.VERSION'),'passed':len(checks),'checks':checks,'errors':errors,'consoleErrors':console_errors,'diagnostics':diagnostics,'scope':'Real WebGL and ordinary UI/gameplay with emulated standard gamepad and WebXR device inputs. Software-GPU tests use pixel ratio 0.5 and a 480x320 stereo framebuffer; this is not a performance benchmark. Not physical Quest 3, passthrough quality, comfort, or hardware performance certification.'},indent=2))
  except Exception as e:
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'url':page.url,'diagnostics':diagnostics,'ui':page.evaluate('({screen:Vesperfall.component.dominionControls.state.xrScreen,selection:Vesperfall.component.menuSelection,rows:Vesperfall.component.xrMenuRows.map(r=>r[0]),inputMode:Vesperfall.component.dominionControls.state.xrNav})')},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))

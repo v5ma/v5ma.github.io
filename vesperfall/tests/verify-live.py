@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,json,subprocess,time,urllib.request
 root=Path(__file__).resolve().parents[2];app=root/'vesperfall';out=root/'test-output';out.mkdir(exist_ok=True)
-paths=[p for p in app.iterdir() if p.suffix in ('.js','.css','.html') or p.name=='release.json']
+paths=[p for p in app.iterdir() if p.suffix in ('.js','.css','.html','.json','.xlsx','.md')]
 paths += [p for folder in ['assets','vendor'] for p in (app/folder).rglob('*') if p.is_file()]
 manifest={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
 sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();results={}

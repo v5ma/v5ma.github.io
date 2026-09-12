@@ -1,273 +1,1757 @@
 {
-  "version": "0.6.0",
+  "version": "0.9.0",
   "project": "Vesperfall: Arrows Unchained",
-  "scope": "Original public mechanics prototype. No private story material.",
+  "scope": "Quality-gated path toward a polished original premium archery roguelite. AAA is an aspiration, not a certified rating, budget or delivery promise. Public-only content.",
   "tasks": [
     {
       "id": "V01",
       "area": "Foundation",
       "title": "Pinned A-Frame scene and same-origin assets",
       "status": "Implemented",
-      "gate": "Renderer starts and all runtime requests stay same-origin."
+      "gate": "Renderer starts and all runtime requests stay same-origin.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Engineering",
+      "evidence": [
+        "index.html",
+        "vendor/",
+        "tests/launch.py"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Start reliably without depending on remote runtime assets.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V02",
       "area": "Archery",
       "title": "Two-hand draw, nock and pose-loss cancellation",
       "status": "Implemented",
-      "gate": "Real controller poses produce direction and power; losses never fire a stale arrow."
+      "gate": "Real controller poses produce direction and power; losses never fire a stale arrow.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay",
+      "evidence": [
+        "input.js",
+        "tests/core.test.cjs",
+        "tests/browser.py"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "The shot must follow the real draw, including cancellation under tracking loss.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V03",
       "area": "Combat",
       "title": "Swept arrows, cover and limited special ammunition",
       "status": "Implemented",
-      "gate": "Hits stop at nearest geometry and ammo changes only on valid shots."
+      "gate": "Hits stop at nearest geometry and ammo changes only on valid shots.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay",
+      "evidence": [
+        "core.js",
+        "tests/core.test.cjs"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Precision is meaningful only when hits and cover are consistent.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V04",
       "area": "Traversal",
       "title": "Blink arrows and opt-in stick locomotion",
       "status": "Implemented",
-      "gate": "Shared projectile/preview first-hit collision; a widened upper-gallery target. A clear preview is not automatic aiming or permission to pass through solids."
+      "gate": "Shared projectile/preview first-hit collision; a widened upper-gallery target. A clear preview is not automatic aiming or permission to pass through solids.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V05",
       "area": "World",
       "title": "Connected seeded cloisters and branching paths",
       "status": "Implemented",
-      "gate": "Seeded nonuniform extents and varying floorplans on a connected bounded nine-room graph. Same seed/depth reproduces a layout; not an unbounded streamed city."
+      "gate": "25 seeded districts with nonuniform plans, connected ground approaches and reversible elevated loops. Same seed/depth reproduces the layout. No streaming-world claim.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [
+        "dominions-world.js",
+        "tests/dominions.test.cjs"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "0.7.0"
     },
     {
       "id": "V06",
       "area": "Progression",
       "title": "Wardens, beacon, blessings and local renown",
       "status": "Implemented",
-      "gate": "An ordinary-input mission reaches the next sector; completion cannot be banked twice."
+      "gate": "An ordinary-input mission reaches the next sector; completion cannot be banked twice.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Engineering",
+      "evidence": [
+        "chronicle.js",
+        "tests/unchained-combat.py",
+        "tests/pilgrim.test.cjs"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V07",
       "area": "Comfort",
       "title": "Spatial pause, handedness and shorter draw",
       "status": "Implemented",
-      "gate": "All essential actions can be completed in-headset, with cancelled inputs on transitions."
+      "gate": "All essential actions can be completed in-headset, with cancelled inputs on transitions.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "UX / accessibility",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V08",
       "area": "Hardware",
       "title": "Quest 3 bow alignment and physical draw feel",
       "status": "Hardware QA",
-      "gate": "Record actual headset/browser version and both handedness tests. No API fixture substitutes."
+      "gate": "Record actual headset/browser version and both handedness tests. No API fixture substitutes.",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [],
+      "owner": "Device QA",
+      "evidence": [],
+      "verification": "No physical device receipt yet.",
+      "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
+      "release": ""
     },
     {
       "id": "V09",
       "area": "Hardware",
       "title": "Quest 3 sustained rendering and comfort",
       "status": "Hardware QA",
-      "gate": "Measure frame-time distribution, draw calls, thermal behavior, floor and snap turning on hardware."
+      "gate": "Measure frame-time distribution, draw calls, thermal behavior, floor and snap turning on hardware.",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [],
+      "owner": "Device QA",
+      "evidence": [],
+      "verification": "No physical device receipt yet.",
+      "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
+      "release": ""
     },
     {
       "id": "V10",
       "area": "Hardware",
       "title": "Real Xbox and touch controllers",
       "status": "Hardware QA",
-      "gate": "Pair, reconnect, suspend and resume real USB/Bluetooth controllers and a phone."
+      "gate": "Pair, reconnect, suspend and resume real USB/Bluetooth controllers and a phone.",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [],
+      "owner": "Device QA",
+      "evidence": [],
+      "verification": "No physical device receipt yet.",
+      "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
+      "release": ""
     },
     {
       "id": "V11",
       "area": "World",
       "title": "Six room families, reversible skywalk and two-level belfry",
       "status": "Implemented",
-      "gate": "Nonuniform dimensions and cross-shaped plans; real stair/deck clearance. Model/native/public receipts are separate gates. Nine logical sector slots remain."
+      "gate": "Six inner architecture families and sixteen outer district families, reversible skywalks and playable 6.4m belfries. Geometry and routes are tested separately from human enjoyment.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [
+        "districts.js",
+        "dominions-world.js",
+        "tests/cathedral-browser.py"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V12",
       "area": "Archery",
       "title": "Crossbow, deliberate timed reload and independent weapon model",
       "status": "Implemented",
-      "gate": "Real loaded/empty state and button/stick-click reload. A physical reload gesture remains future work; hardware comfort is unverified."
+      "gate": "Loaded/empty state and timed button reload are preserved alongside the physical winding interaction. No weapon-swap refill.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay",
+      "evidence": [
+        "arsenal.js",
+        "ritual-model.js",
+        "tests/resonant.test.cjs"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "0.3.0 / 0.8.0"
     },
     {
       "id": "V13",
       "area": "Combat",
       "title": "Shield weak points and coordinated enemy behavior",
-      "status": "Planned",
-      "gate": "Enemies communicate intent without unavoidable or offscreen damage."
+      "status": "Partial",
+      "gate": "Directional guard and weak-point counterplay exist. Group attack coordination, fair ranged/melee overlap and offscreen threat budgets still need an encounter director.",
+      "priority": "P1",
+      "milestone": "M2",
+      "depends": [
+        "V26"
+      ],
+      "owner": "Gameplay",
+      "evidence": [
+        "encounters.js",
+        "bestiary.js"
+      ],
+      "verification": "Individual enemies tested; encounter-direction gate remains open.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": ""
     },
     {
       "id": "V14",
       "area": "Presentation",
       "title": "Refined original creatures, bow animation and spatial audio",
-      "status": "Planned",
-      "gate": "Finished foreground bow/hand and animated creature assets, consistent with the material-authored world. Environmental art improvement is not character-art completion."
+      "status": "Partial",
+      "gate": "Spatial sound, reflective equipment and readable procedural creatures exist. Authored rigged enemy/hand assets, animation blending and polished reactions remain open.",
+      "priority": "P1",
+      "milestone": "M3",
+      "depends": [],
+      "owner": "Art / audio",
+      "evidence": [
+        "resonance-audio.js",
+        "dominion-art.js"
+      ],
+      "verification": "Audio and procedural art implemented; character-production and human-review gates open.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": ""
     },
     {
       "id": "V15",
       "area": "Progression",
-      "title": "Save/resume a full run and broader unlocks",
-      "status": "Planned",
-      "gate": "Versioned bounded storage restores a run without duplicating rewards."
+      "title": "Pilgrim's Rest: save and continue a complete scored expedition",
+      "status": "Implemented",
+      "gate": "Regenerate the exact world; restore enemies, supplies, projectiles, equipment and timers; preserve banked receipts in one bounded envelope. Continue waits paused. Practice/AR cannot overwrite scored saves.",
+      "priority": "P0",
+      "milestone": "M1",
+      "depends": [
+        "V06",
+        "V21"
+      ],
+      "owner": "Engineering",
+      "evidence": [
+        "pilgrim-save.js",
+        "pilgrim-rest.js",
+        "tests/pilgrim.test.cjs",
+        "tests/pilgrim-browser.py"
+      ],
+      "verification": "Model and native browser/controller release gates; physical lifecycle QA remains open.",
+      "why": "Long exploration needs interruption-safe continuity, not just permanent unlocks.",
+      "release": "0.9.0"
     },
     {
       "id": "V16",
       "area": "Testing",
       "title": "Player evaluation of difficulty and enjoyment",
       "status": "Planned",
-      "gate": "Record first-run usability, fatigue and repeat-play feedback; counts do not certify fun."
+      "gate": "Record first-run usability, fatigue and repeat-play feedback; counts do not certify fun.",
+      "priority": "P1",
+      "milestone": "M5",
+      "depends": [],
+      "owner": "QA / play research",
+      "evidence": [],
+      "verification": "Not closed.",
+      "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
+      "release": ""
     },
     {
       "id": "V17",
       "area": "Online",
       "title": "Optional opt-in challenge sharing",
       "status": "Deferred",
-      "gate": "No accounts or remote data until explicitly designed and authorized."
+      "gate": "No accounts or remote data until explicitly designed and authorized.",
+      "priority": "P1",
+      "milestone": "M6",
+      "depends": [],
+      "owner": "Online engineering",
+      "evidence": [],
+      "verification": "Not closed.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": ""
     },
     {
       "id": "V18",
       "area": "Combat",
       "title": "Directional Wardglass shield, break and recovery",
       "status": "Implemented",
-      "gate": "Front-face swept blocking before body impact; side/rear exposure, guard cost, tracking cancellation and no simultaneous firing."
+      "gate": "Front-face swept blocking before body impact; side/rear exposure, guard cost, tracking cancellation and no simultaneous firing.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V19",
       "area": "Traversal",
       "title": "Regenerating supported-ground shard steps",
       "status": "Implemented",
-      "gate": "Short unobstructed microdashes, no cliff crossing or tunneling. Physical thrown-shard gestures are not implemented."
+      "gate": "Short unobstructed microdashes, no cliff crossing or tunneling. Physical thrown-shard gestures are not implemented.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V20",
       "area": "Archery",
       "title": "Limited three-arrow Volley and precision hits",
       "status": "Implemented",
-      "gate": "Three independent projectiles consume one charge; actual weak-point hits earn counters."
+      "gate": "Three independent projectiles consume one charge; actual weak-point hits earn counters.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V21",
       "area": "Progression",
       "title": "Permanent Chronicle milestones and optional Nightfall",
       "status": "Implemented",
-      "gate": "Idempotent run-counter banking, retained legacy purchases, no practice farming and new-run application."
+      "gate": "Idempotent run-counter banking, retained legacy purchases, no practice farming and new-run application.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Engineering",
+      "evidence": [
+        "chronicle.js",
+        "tests/unchained-combat.py",
+        "tests/pilgrim.test.cjs"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V22",
       "area": "Presentation",
       "title": "Twilight/daylight, original equipment and quiet synthetic ambience",
       "status": "Implemented",
-      "gate": "Local reused geometry and opt-in sound. No borrowed audio or hardware performance claim."
+      "gate": "Twilight/daylight and original equipment remain. Five synthesized score arrangements and bounded spatial sound now replace the minimal ambience; independent mix controls and explicit mute are preserved.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Art / audio",
+      "evidence": [
+        "resonance-score.js",
+        "resonance-audio.js",
+        "tests/resonant-browser.py"
+      ],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "0.8.0"
     },
     {
       "id": "V23",
       "area": "Testing",
       "title": "Complete scored expedition and new-device acceptance",
-      "status": "Planned",
-      "gate": "Preserve exact native reports and full-beacon/blessing/reload progression evidence; passing models alone are insufficient."
+      "status": "Partial",
+      "gate": "Ordinary-input scored expeditions, beacon blessings and persistent rewards have software coverage. Real-device reconnection, comfort, endurance and broad seed/device matrices remain open.",
+      "priority": "P1",
+      "milestone": "M5",
+      "depends": [],
+      "owner": "QA / play research",
+      "evidence": [
+        "tests/unchained-combat.py",
+        "tests/browser.py"
+      ],
+      "verification": "Software coverage exists; physical/new-device acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": ""
     },
     {
       "id": "V24",
       "area": "Traversal",
       "title": "Physical thrown shard and richer vertical route families",
       "status": "Planned",
-      "gate": "Readable trajectories, safe valid landings, comfortable two-handed controls and alternative routes; no forced headset motion."
+      "gate": "Readable trajectories, safe valid landings, comfortable two-handed controls and alternative routes; no forced headset motion.",
+      "priority": "P1",
+      "milestone": "M1",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [],
+      "verification": "Not closed.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": ""
     },
     {
       "id": "V25",
       "area": "Archery",
       "title": "Physical crossbow wind/reload gesture",
-      "status": "Planned",
-      "gate": "Separate comfortable interaction for both handedness settings, with an accessible button alternative."
+      "status": "Implemented",
+      "gate": "Tracked near-handle grab, backward pull and release latch the crossbow. Short-draw and stick-click alternatives remain; tracking loss cancels.",
+      "priority": "P1",
+      "milestone": "M0",
+      "depends": [
+        "V02",
+        "V12"
+      ],
+      "owner": "Gameplay",
+      "evidence": [
+        "ritual-model.js",
+        "resonance-ritual.js",
+        "tests/resonant-browser.py"
+      ],
+      "verification": "Model and emulated-controller tests; ergonomic gate V08 remains open.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "0.8.0"
     },
     {
       "id": "V26",
       "area": "Combat",
       "title": "Hollow Hunt: committed cantor volleys, hound charges and sentinel guard",
       "status": "Implemented",
-      "gate": "Shared physical projectiles/collision, visible warning, dodge/block/counterplay, no homing charge."
+      "gate": "Shared physical projectiles/collision, visible warning, dodge/block/counterplay, no homing charge.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V27",
       "area": "Traversal",
       "title": "Two optional double-stair loft loops and elevation-gated caches",
       "status": "Implemented",
-      "gate": "Preserve ground graph links; walk both stairways and collect upper supply only at its elevation."
+      "gate": "Preserve ground graph links; walk both stairways and collect upper supply only at its elevation.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V28",
       "area": "Practice",
       "title": "Three repeatable adversary trials and field guide",
       "status": "Implemented",
-      "gate": "Ordinary menus spawn real AI. Trial counters never change the Chronicle or prior purchases."
+      "gate": "Ordinary menus spawn real AI. Trial counters never change the Chronicle or prior purchases.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay / UX",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V29",
       "area": "Archery",
       "title": "Surface-triggered Cinder bursts and interrupting Frost",
       "status": "Implemented",
-      "gate": "Cover occludes area damage; freeze interrupts charges and has a shorter sentinel duration."
+      "gate": "Cover occludes area damage; freeze interrupts charges and has a shorter sentinel duration.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Gameplay",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V30",
       "area": "Future",
-      "title": "Physical thrown-shard and crossbow winding gestures",
-      "status": "Planned",
-      "gate": "Retain accessible button alternatives; headset motion must be tested physically before release."
+      "title": "Physical interaction follow-through: winding complete; shard throwing open",
+      "status": "Partial",
+      "gate": "V25 covers shipped crossbow winding. V24 still owns a physical thrown-shard implementation and real-hardware evaluation. Do not count this umbrella twice.",
+      "priority": "P1",
+      "milestone": "M2",
+      "depends": [
+        "V25"
+      ],
+      "owner": "Gameplay",
+      "evidence": [
+        "RESONANT-HUNT.md"
+      ],
+      "verification": "Split scope; thrown shard not implemented.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": ""
     },
     {
       "id": "V31",
       "area": "Art",
       "title": "CC0 castle masonry, cobbles and finished marble sculpture",
       "status": "Implemented",
-      "gate": "Local 1K material maps and embedded 512px GLB textures; author/source/license/transform/hash register; no runtime CDN."
+      "gate": "Local 1K material maps and embedded 512px GLB textures; author/source/license/transform/hash register; no runtime CDN.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Technical art",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V32",
       "area": "Traversal",
       "title": "Inter-room upper loop and 6.4m belfry reliquaries",
       "status": "Implemented",
-      "gate": "One-time, elevation-gated score/heal rewards, reversible traversal and ground alternatives. Trial play cannot farm permanent rewards."
+      "gate": "One-time, elevation-gated score/heal rewards, reversible traversal and ground alternatives. Trial play cannot farm permanent rewards.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V33",
       "area": "Art",
       "title": "Continuous arch profiles, roof silhouettes and spatial material batches",
       "status": "Implemented",
-      "gate": "Matching actual before/after frames; static shadows refreshed on rebuild rather than each frame. Physical Quest performance remains unmeasured."
+      "gate": "Matching actual before/after frames; static shadows refreshed on rebuild rather than each frame. Physical Quest performance remains unmeasured.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Technical art",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V34",
       "area": "Navigation",
       "title": "Scaled floorplan atlas with upper route and reward cues",
       "status": "Implemented",
-      "gate": "Use actual room outlines, gold skywalk and reliquary markers. No player steering or auto-completion."
+      "gate": "Use actual room outlines, gold skywalk and reliquary markers. No player steering or auto-completion.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "UX / level design",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V35",
       "area": "World",
       "title": "Authored crypt/roof transitions and expanded graph vocabulary",
-      "status": "Planned",
-      "gate": "Move beyond nine logical slots while reserving doors, stair clearances, loot access and recovery routes."
+      "status": "Partial",
+      "gate": "25-district graph expansion shipped. Distinct authored crypt-to-roof transitions and stronger route grammar still need design and native traversal evidence.",
+      "priority": "P1",
+      "milestone": "M3",
+      "depends": [],
+      "owner": "Level design",
+      "evidence": [
+        "dominions-world.js",
+        "HOLLOW-DOMINIONS.md"
+      ],
+      "verification": "Expanded graph implemented; authored transition production remains open.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": ""
     },
     {
       "id": "V36",
       "area": "Testing",
       "title": "Hardware and human review of the material-rich vertical world",
       "status": "Hardware QA",
-      "gate": "Quest 3 controller/floor calibration, sustained frame times, memory, comfort and whether players find the climbs worthwhile. API emulation cannot close this gate."
+      "gate": "Quest 3 controller/floor calibration, sustained frame times, memory, comfort and whether players find the climbs worthwhile. API emulation cannot close this gate.",
+      "priority": "P0",
+      "milestone": "M5",
+      "depends": [],
+      "owner": "QA / play research",
+      "evidence": [],
+      "verification": "No physical device receipt yet.",
+      "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
+      "release": ""
     },
     {
       "id": "V37",
       "area": "Presentation",
       "title": "Jewelglass material profiles, carved recurve and bounded spell shaders",
       "status": "Implemented",
-      "gate": "Native material, rebuild and emulated stereo tests plus actual served-file verification."
+      "gate": "Native material, rebuild and emulated stereo tests plus actual served-file verification.",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [],
+      "owner": "Art / audio",
+      "evidence": [],
+      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "why": "Preserve the established game while closing the stated acceptance gate.",
+      "release": "Baseline through 0.6.0"
     },
     {
       "id": "V38",
       "area": "Hardware",
       "title": "Measure physical Quest 3 stereo frame times for jewel reflections and shaders",
       "status": "Hardware QA",
-      "gate": "Measure on device; never infer FPS, comfort or controller alignment from headless emulation."
+      "gate": "Measure on device; never infer FPS, comfort or controller alignment from headless emulation.",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [],
+      "owner": "Device QA",
+      "evidence": [],
+      "verification": "No physical device receipt yet.",
+      "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
+      "release": ""
+    },
+    {
+      "id": "V39",
+      "area": "World",
+      "title": "Hollow Dominions: outer districts, high walks and optional crowns",
+      "status": "Implemented",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [
+        "V05"
+      ],
+      "owner": "Level design",
+      "gate": "Retain 25 districts, 16 outer galleries, additional reversible upper connections and optional exploration rewards. Core five wardens still unlock the exit.",
+      "why": "Offer alternate approaches and worthwhile vertical exploration.",
+      "evidence": [
+        "dominions-world.js",
+        "tests/dominions.test.cjs"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.7.0"
+    },
+    {
+      "id": "V40",
+      "area": "Combat",
+      "title": "Twelve additional enemy orders and repeatable trials",
+      "status": "Implemented",
+      "priority": "P2",
+      "milestone": "M0",
+      "depends": [
+        "V26"
+      ],
+      "owner": "Gameplay",
+      "gate": "Fifteen total archetypes with distinct windups, committed attacks, damage and counterplay; each added order can be practiced.",
+      "why": "Variety must change decisions rather than only appearance.",
+      "evidence": [
+        "bestiary.js",
+        "dominion-art.js",
+        "tests/dominions.test.cjs"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.7.0"
+    },
+    {
+      "id": "V41",
+      "area": "Comfort",
+      "title": "Xbox focus navigation and paginated Quest spatial menus",
+      "status": "Implemented",
+      "priority": "P0",
+      "milestone": "M0",
+      "depends": [
+        "V07"
+      ],
+      "owner": "UX / accessibility",
+      "gate": "Gameplay, settings, seeds, equipment, journal and in-game dialogs can be operated with controller input. System permission prompts are not game-owned.",
+      "why": "Avoid forced mouse use or headset removal.",
+      "evidence": [
+        "dominion-controls.js",
+        "tests/dominions-browser.py"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.7.0"
+    },
+    {
+      "id": "V42",
+      "area": "Comfort",
+      "title": "Stationary passthrough AR Sanctuary and expedition restoration",
+      "status": "Implemented",
+      "priority": "P1",
+      "milestone": "M0",
+      "depends": [
+        "V41"
+      ],
+      "owner": "UX / accessibility",
+      "gate": "An immersive-ar session creates an unscored stationary arena, disables artificial travel and restores the paused VR/browser expedition on exit. No furniture scanning or real-world occlusion.",
+      "why": "Make AR an explicit supported alternative without silently pretending it is the full VR world.",
+      "evidence": [
+        "dominion-ar.js",
+        "tests/dominions-browser.py"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.7.0"
+    },
+    {
+      "id": "V43",
+      "area": "Presentation",
+      "title": "Resonant Hunt: adaptive score and spatial combat vocabulary",
+      "status": "Implemented",
+      "priority": "P1",
+      "milestone": "M0",
+      "depends": [
+        "V22"
+      ],
+      "owner": "Art / audio",
+      "gate": "Five original synthesized arrangements; positioned and distance/obstruction-aware effects; warning-driven music ducking; bounded voices and no hidden-tab backlog.",
+      "why": "Atmosphere and directional warnings should support precision instead of masking it.",
+      "evidence": [
+        "resonance-score.js",
+        "resonance-audio.js",
+        "tests/resonant-browser.py"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.8.0"
+    },
+    {
+      "id": "V44",
+      "area": "Comfort",
+      "title": "Independent sound mix, quiet option and captions",
+      "status": "Implemented",
+      "priority": "P0",
+      "milestone": "M0",
+      "depends": [
+        "V43",
+        "V41"
+      ],
+      "owner": "UX / accessibility",
+      "gate": "Separate music/effects/ambience/master controls are available on Xbox and Quest; explicit mute persists. Captions remain available.",
+      "why": "Let players control sensory intensity rather than forcing an overwhelming mix.",
+      "evidence": [
+        "resonance-audio.js",
+        "tests/resonant-browser.py"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.8.0"
+    },
+    {
+      "id": "V45",
+      "area": "Archery",
+      "title": "Palm familiar, physical pickups and tactical quiver",
+      "status": "Implemented",
+      "priority": "P1",
+      "milestone": "M0",
+      "depends": [
+        "V02",
+        "V41"
+      ],
+      "owner": "Gameplay",
+      "gate": "Palm-up status, near-hand trigger pulls, six-arrow selection and a three-second slow-time reserve work without slowing headset tracking.",
+      "why": "Move information and decisions into the physical archery loop.",
+      "evidence": [
+        "ritual-model.js",
+        "resonance-ritual.js",
+        "tests/resonant-browser.py"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.8.0"
+    },
+    {
+      "id": "V46",
+      "area": "Progression",
+      "title": "Finite Ricochet arrows and Mirror Thread unlock",
+      "status": "Implemented",
+      "priority": "P1",
+      "milestone": "M0",
+      "depends": [
+        "V20",
+        "V21"
+      ],
+      "owner": "Engineering",
+      "gate": "At most two swept wall reflections; finite ammunition; 20 banked real hits unlock future loot. Practice never grants the unlock.",
+      "why": "Add another tactical option with an earned long-term goal.",
+      "evidence": [
+        "core.js",
+        "chronicle.js",
+        "tests/resonant.test.cjs"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.8.0"
+    },
+    {
+      "id": "V47",
+      "area": "Progression",
+      "title": "Atomic profile/checkpoint receipt and damaged-save recovery",
+      "status": "Implemented",
+      "priority": "P0",
+      "milestone": "M1",
+      "depends": [
+        "V15"
+      ],
+      "owner": "Engineering",
+      "gate": "An integrity-checked envelope stores progression and banking receipts together. Quota failures are visible, stale tabs yield, and explicit discard retains permanent progress.",
+      "why": "Avoid reward duplication, silent data loss and accidental overwrites.",
+      "evidence": [
+        "pilgrim-save.js",
+        "pilgrim-rest.js",
+        "tests/pilgrim.test.cjs",
+        "tests/pilgrim-browser.py"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.9.0"
+    },
+    {
+      "id": "V48",
+      "area": "Foundation",
+      "title": "Versioned production board and six-sheet workbook",
+      "status": "Implemented",
+      "priority": "P0",
+      "milestone": "M1",
+      "depends": [
+        "V15"
+      ],
+      "owner": "Engineering",
+      "gate": "roadmap.json is canonical; board and workbook show priority, dependencies, owner role, evidence and exit gates. Local edits are clearly separate from committed status.",
+      "why": "Make each release close a measurable gap and keep the long-term path inspectable.",
+      "evidence": [
+        "roadmap.json",
+        "roadmap.html",
+        "AAA-PRODUCTION.xlsx",
+        "tests/production.test.cjs",
+        "tests/production-browser.py"
+      ],
+      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "release": "0.9.0"
+    },
+    {
+      "id": "V49",
+      "area": "Practice",
+      "title": "First ten minutes: playable physical onboarding",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M1",
+      "depends": [
+        "V25",
+        "V41",
+        "V45"
+      ],
+      "owner": "Gameplay / UX",
+      "gate": "A new player can learn nock/draw, cancel, reload, shield, Blink, shard step, pickups and quiver in either handedness, then enter a short scored encounter. Record completion, confusion and fatigue.",
+      "why": "A feature-rich control scheme is not yet an intuitive first session.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V50",
+      "area": "Combat",
+      "title": "Encounter director with fair threat and recovery budgets",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M2",
+      "depends": [
+        "V13",
+        "V40",
+        "V43"
+      ],
+      "owner": "Gameplay",
+      "gate": "Coordinate telegraphed melee/ranged attacks, limit unavoidable overlap and offscreen attacks, preserve escape routes and add recovery beats. Replay fixed-seed stress encounters.",
+      "why": "Fifteen archetypes need readable group pacing, not simultaneous noise.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V51",
+      "area": "Combat",
+      "title": "First signature boss: readable multi-phase duel",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M2",
+      "depends": [
+        "V50",
+        "V18",
+        "V04"
+      ],
+      "owner": "Gameplay",
+      "gate": "An original boss changes tactics across three tested phases, uses cover/height, offers weak-point windows and has no unavoidable transition damage or restart softlock.",
+      "why": "Create a memorable mastery test rather than another enlarged standard enemy.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V52",
+      "area": "World",
+      "title": "Authored vertical-slice route grammar and route contracts",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M2",
+      "depends": [
+        "V39",
+        "V34"
+      ],
+      "owner": "Level design",
+      "gate": "One polished 20-30 minute target route mixes safe introduction, alternate approach, escalating encounter, discovery and boss payoff. Validate every traversal connector and recovery path. Duration is a design target, not measured content.",
+      "why": "Replace sheer room count with deliberately paced exploration.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V53",
+      "area": "Progression",
+      "title": "Meaningful run builds and loot-choice balance",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M2",
+      "depends": [
+        "V46",
+        "V51"
+      ],
+      "owner": "Engineering",
+      "gate": "At least three viable archery build identities create distinct trade-offs; costs, loot odds and special-arrow counters are documented and tested. No mandatory grind to access basic controls.",
+      "why": "Give repeated runs a changing strategy and satisfying decisions.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V54",
+      "area": "Art",
+      "title": "Original rigged enemy, bow-hand and shield production assets",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M3",
+      "depends": [
+        "V14",
+        "V50"
+      ],
+      "owner": "Technical art",
+      "gate": "Produce consistent original/licensed meshes, LODs, rigs and materials for one complete vertical slice; registered provenance; review both eye views and close-range silhouette.",
+      "why": "Foreground and character quality must catch up with the architecture.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V55",
+      "area": "Art",
+      "title": "Animation transitions, reactions and archery weight",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M3",
+      "depends": [
+        "V54"
+      ],
+      "owner": "Technical art",
+      "gate": "Blend idle/locomotion/windup/recovery/hit/death clips; grounded contact and readable hands; reactions never hide the true hitbox or cancel a valid counter.",
+      "why": "Make enemies and weapons feel physical instead of procedural placeholders.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V56",
+      "area": "World",
+      "title": "Three strongly differentiated biome packages",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M3",
+      "depends": [
+        "V52",
+        "V54"
+      ],
+      "owner": "Level design",
+      "gate": "Complete coherent crypt, storm roof and luminous sanctuary kits with different navigation, encounter opportunities, materials and sonic palettes. Validate seed combinations and repeated transitions.",
+      "why": "Different sectors should feel like places, not palette swaps.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V57",
+      "area": "Presentation",
+      "title": "Original environmental narrative and reward presentation",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M3",
+      "depends": [
+        "V52",
+        "V56"
+      ],
+      "owner": "Art / audio",
+      "gate": "Public-only lore, landmarks and discoveries connect the world; skippable/accessible presentation; no private story content enters this repository without permission.",
+      "why": "Give exploration emotional meaning and recognizable destinations.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V58",
+      "area": "Presentation",
+      "title": "Long-session headphone mix and notification-rate controls",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M3",
+      "depends": [
+        "V43",
+        "V44",
+        "V50"
+      ],
+      "owner": "Art / audio",
+      "gate": "Add independent notification density/rate controls; test 30-minute sessions with music transitions, simultaneous threats and repeated UI actions. Record human mix feedback and remove tiring repetition.",
+      "why": "Bounded voices alone do not guarantee pleasant sound.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V59",
+      "area": "Hardware",
+      "title": "Quest 3 measured frame-time and thermal budget",
+      "status": "Hardware QA",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [
+        "V38",
+        "V54"
+      ],
+      "owner": "Device QA",
+      "gate": "Capture 30-minute native Quest traces with scene, headset/browser version, frame-time percentiles, dropped frames and thermal observations. Proposed minimum 72 Hz target: p95 CPU and GPU each under 13.89 ms; 90 Hz mode targets 11.11 ms. Targets are not current measurements.",
+      "why": "Only measured device performance can close the performance gate.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V60",
+      "area": "Foundation",
+      "title": "World batching, distance detail and memory stability",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [
+        "V59"
+      ],
+      "owner": "Engineering",
+      "gate": "Profile first, then budget visibility/batching/LODs and allocation. Ten rebuilds and VR/AR cycles show bounded memory and no steadily growing resources; visual quality remains readable.",
+      "why": "Optimize the bottleneck actually observed on the target headset.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V61",
+      "area": "Comfort",
+      "title": "Full remapping, seated/reach calibration and comfort presets",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [
+        "V49",
+        "V41"
+      ],
+      "owner": "UX / accessibility",
+      "gate": "Configurable action mapping with conflict checks, seated/standing height and reach calibration, turn/motion presets and readable UI. Each can be reset without a mouse.",
+      "why": "Different bodies and play spaces need more than a handedness toggle.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V62",
+      "area": "Hardware",
+      "title": "Physical Xbox/Quest/phone lifecycle matrix",
+      "status": "Hardware QA",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [
+        "V15",
+        "V41",
+        "V61"
+      ],
+      "owner": "Device QA",
+      "gate": "Real USB/Bluetooth Xbox and both Quest hands pass pairing, disconnect during draw, visibility loss, denied permission, tracking interruption, save/continue and AR round trips. Record device/build/results.",
+      "why": "Emulated button events cannot certify actual hardware integration.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V63",
+      "area": "Comfort",
+      "title": "Accessible subtitles, contrast and non-color threat cues",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M4",
+      "depends": [
+        "V44",
+        "V55"
+      ],
+      "owner": "UX / accessibility",
+      "gate": "Text size/contrast, sound direction captions, color-independent ammunition/enemy signals and reduced-flash mode survive desktop, stereo and passthrough contexts. Human accessibility review required.",
+      "why": "Threats and menus must remain readable beyond one ideal user.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V64",
+      "area": "Testing",
+      "title": "Human difficulty, discovery and repeat-play study",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M5",
+      "depends": [
+        "V49",
+        "V51",
+        "V52"
+      ],
+      "owner": "QA / play research",
+      "gate": "Record at least 8 external playtest sessions as a proposed first research batch, including new/experienced players. Track task success, deaths, confusion, route discovery, fatigue and whether they choose another run. No automated score substitutes.",
+      "why": "Test whether the experience is enjoyable and understandable.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V65",
+      "area": "Progression",
+      "title": "Save migration, backup/export and upgrade compatibility",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M5",
+      "depends": [
+        "V47"
+      ],
+      "owner": "Engineering",
+      "gate": "Keep fixtures for old supported generator/schema versions, offer explicit local backup/restore and verify interrupted writes, browser quota and update migration. Never silently reset incompatible saves.",
+      "why": "A published game needs durable progress across later upgrades.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V66",
+      "area": "Testing",
+      "title": "Broad seeded soak and repeated-session fault injection",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M5",
+      "depends": [
+        "V50",
+        "V60",
+        "V65"
+      ],
+      "owner": "QA / play research",
+      "gate": "Run at least 1000 proposed seed/depth fixtures and 50 lifecycle transitions, tracking unreachable rewards, spawning collisions, NaNs, leaks and progress duplication. Publish failures and seed repros.",
+      "why": "Finite smoke tests are not a complete campaign quality gate.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V67",
+      "area": "Testing",
+      "title": "Cross-browser visuals and controller release matrix",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M5",
+      "depends": [
+        "V62",
+        "V63",
+        "V66"
+      ],
+      "owner": "QA / play research",
+      "gate": "Maintain tested desktop Chrome/Edge/Firefox/Safari and target XR-browser configurations where APIs are supported. Unsupported modes explain themselves; all supported essential UI actions pass.",
+      "why": "A browser release must be clear about what actually works where.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V68",
+      "area": "Foundation",
+      "title": "Release discipline, reproducible builds and rollback",
+      "status": "Partial",
+      "priority": "P0",
+      "milestone": "M5",
+      "depends": [
+        "V48",
+        "V65"
+      ],
+      "owner": "Engineering",
+      "gate": "Byte-verified deployment already exists. Add explicit stable/candidate policy, save-safe rollback drill, reproducible asset pipeline and release-note/device-evidence review.",
+      "why": "Do not confuse a merged commit with a complete verified release.",
+      "evidence": [
+        "tests/verify-live.py",
+        "tests/launch.py"
+      ],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V69",
+      "area": "Art",
+      "title": "Complete asset-rights, attribution and content audit",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M5",
+      "depends": [
+        "V54",
+        "V56",
+        "V57"
+      ],
+      "owner": "Technical art",
+      "gate": "Every shipped mesh, texture, sound, font usage and narrative element has clear provenance/license and accessible attribution. Do not publish borrowed commercial game assets or private writing.",
+      "why": "A production release needs a traceable asset pipeline.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V70",
+      "area": "World",
+      "title": "Content-complete campaign and replay challenge tuning",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M5",
+      "depends": [
+        "V53",
+        "V56",
+        "V64"
+      ],
+      "owner": "Level design",
+      "gate": "Complete the agreed campaign scope, enemy/loot combinations and endgame variations with no placeholder gates. Measure real play length and review progression fatigue before promising duration.",
+      "why": "Finish and balance the agreed experience before expanding scope again.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V71",
+      "area": "Testing",
+      "title": "Beta blocking-bug and regression exit gate",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M6",
+      "depends": [
+        "V66",
+        "V67",
+        "V68",
+        "V70"
+      ],
+      "owner": "QA / play research",
+      "gate": "No unresolved save-loss, crash, softlock or input-blocking defects in supported modes. Regressions are replayed on the final build; remaining nonblocking issues are documented.",
+      "why": "A release candidate should be stable, not just feature complete.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V72",
+      "area": "Online",
+      "title": "Optional shareable challenges or online services",
+      "status": "Deferred",
+      "priority": "P3",
+      "milestone": "M6",
+      "depends": [
+        "V17",
+        "V71"
+      ],
+      "owner": "Online engineering",
+      "gate": "Start only after explicit design/authorization. Define moderation, consent, accounts, persistence, cost and fair-score limits; never quietly add telemetry or payments.",
+      "why": "Protect the local single-player loop from uncontrolled service scope.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V73",
+      "area": "Testing",
+      "title": "Final public launch, support and rollback evidence",
+      "status": "Planned",
+      "priority": "P0",
+      "milestone": "M6",
+      "depends": [
+        "V59",
+        "V62",
+        "V64",
+        "V69",
+        "V71"
+      ],
+      "owner": "QA / play research",
+      "gate": "Fresh browser and real headset users can discover/start/continue the game. All public assets match release hashes; QA reports, known issues, controls and support/rollback instructions are published.",
+      "why": "A player-facing release is a tested service experience, not a repository label.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V74",
+      "area": "Foundation",
+      "title": "Technical debt: separate model, input, presentation and lifecycle",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M4",
+      "depends": [
+        "V15",
+        "V48"
+      ],
+      "owner": "Engineering",
+      "gate": "Reduce wrapper-order coupling with explicit lifecycle interfaces and dependency tests; preserve current save fixtures, deterministic physics and controller mappings.",
+      "why": "Repeated additive patches increase the risk of hidden lifecycle regressions.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V75",
+      "area": "Testing",
+      "title": "Checkpoint user lifecycle on physical devices",
+      "status": "Hardware QA",
+      "priority": "P0",
+      "milestone": "M4",
+      "depends": [
+        "V47"
+      ],
+      "owner": "QA / play research",
+      "gate": "Test headset sleep, browser eviction, offline launch where supported, simultaneous tabs, blocked storage and continued 6.4m-floor saves using real devices. Confirm the paused return is comfortable.",
+      "why": "Native automation covers behavior, not headset suspension and comfort.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
+    },
+    {
+      "id": "V76",
+      "area": "Combat",
+      "title": "First boss and encounter slice end-to-end release",
+      "status": "Planned",
+      "priority": "P1",
+      "milestone": "M2",
+      "depends": [
+        "V49",
+        "V50",
+        "V51",
+        "V52"
+      ],
+      "owner": "Gameplay",
+      "gate": "Publish one complete integrated slice, including onboarding, traversal, encounter pacing, boss payoff and saved continuation; collect human feedback before producing additional bosses.",
+      "why": "Concentrate production effort on one excellent experience instead of many unfinished systems.",
+      "evidence": [],
+      "verification": "Not closed; no completion credit without gate evidence.",
+      "release": ""
     }
-  ]
+  ],
+  "updated": "2026-09-12",
+  "canonical": "roadmap.json",
+  "workbook": "AAA-PRODUCTION.xlsx",
+  "guide": "AAA-ROADMAP.md",
+  "statuses": [
+    "Implemented",
+    "Partial",
+    "In progress",
+    "Planned",
+    "Hardware QA",
+    "Deferred"
+  ],
+  "milestones": [
+    {
+      "id": "M0",
+      "name": "Playable foundations",
+      "status": "Implemented",
+      "depends": [],
+      "goal": "Retain the shipped original browser/VR/AR foundation.",
+      "exit": "Current foundation and input/model/public deployment tests pass; hardware acceptance is not implied."
+    },
+    {
+      "id": "M1",
+      "name": "Reliable first-session slice",
+      "status": "In progress",
+      "depends": [
+        "M0"
+      ],
+      "goal": "Continue safely and teach the physical loop.",
+      "exit": "Saved expeditions, recovery, controller-first menus and tested first-ten-minute onboarding are complete."
+    },
+    {
+      "id": "M2",
+      "name": "Combat mastery slice",
+      "status": "Planned",
+      "depends": [
+        "M1"
+      ],
+      "goal": "Turn mechanics into a deliberately paced signature adventure.",
+      "exit": "Coordinated encounters, authored route grammar, first boss and viable run choices survive native and human playtests."
+    },
+    {
+      "id": "M3",
+      "name": "Production art and content identity",
+      "status": "Planned",
+      "depends": [
+        "M2"
+      ],
+      "goal": "Replace unfinished assets and establish distinct places and sound.",
+      "exit": "Original rigged foreground/enemy art, animation, three coherent biome kits, public narrative and long-session audio review."
+    },
+    {
+      "id": "M4",
+      "name": "Target-device performance and access",
+      "status": "Hardware QA",
+      "depends": [
+        "M1"
+      ],
+      "goal": "Measure and tune the real Quest/Xbox/browser experience.",
+      "exit": "Recorded device matrix, sustained frame-time traces, lifecycle tests, accessibility and stable resource use. Work may run alongside M2/M3."
+    },
+    {
+      "id": "M5",
+      "name": "Content-complete alpha and measured beta",
+      "status": "Planned",
+      "depends": [
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "goal": "Finish the agreed scope and test its reliability and appeal.",
+      "exit": "Campaign/content completion, save migration, seeded soaks, external playtests, asset audit and cross-browser QA."
+    },
+    {
+      "id": "M6",
+      "name": "Release candidate and supported launch",
+      "status": "Planned",
+      "depends": [
+        "M5"
+      ],
+      "goal": "Ship a stable and supportable finished game.",
+      "exit": "No blocking defects, final physical acceptance, byte-verified launch, known-issues documentation and rehearsed save-safe rollback."
+    }
+  ],
+  "deviceQA": [
+    [
+      "Q01",
+      "Quest 3 / VR",
+      "Both handedness settings",
+      "Draw, cancel, physical/button reload, shield, quiver and pickup pull",
+      "V08,V25,V61",
+      "Not run",
+      "Record headset OS, browser, build hash, reach setting and session notes."
+    ],
+    [
+      "Q02",
+      "Quest 3 / VR",
+      "72 Hz baseline target",
+      "30-minute worst-case combat/route trace; p95 CPU/GPU under 13.89 ms proposed target",
+      "V59,V60",
+      "Not run",
+      "Record actual refresh mode, percentiles, missed frames, memory and heat."
+    ],
+    [
+      "Q03",
+      "Quest 3 / VR",
+      "90 Hz optional target",
+      "Only enable after measured p95 CPU/GPU under 11.11 ms at agreed visual quality",
+      "V59",
+      "Not run",
+      "A software GPU or frame counter is not proof of native refresh."
+    ],
+    [
+      "Q04",
+      "Quest 3 / AR",
+      "Stationary Sanctuary",
+      "Clear space, permission denial, safe stationary controls and expedition restoration",
+      "V42,V62",
+      "Not run",
+      "Record real passthrough visibility; no real-world occlusion claim."
+    ],
+    [
+      "Q05",
+      "Quest 3 / lifecycle",
+      "Sleep / visibility / tracking",
+      "Suspend while drawing, hide/unhide, end session, continue checkpoint and floor alignment",
+      "V75",
+      "Not run",
+      "No stale release, accidental movement or loss of progress."
+    ],
+    [
+      "Q06",
+      "Xbox / desktop",
+      "USB and Bluetooth",
+      "All actions, menus, dialogs, seed entry, save/continue and reconnect during draw",
+      "V10,V41,V62",
+      "Not run",
+      "Record OS, browser and physical controller model/connection."
+    ],
+    [
+      "Q07",
+      "Desktop browsers",
+      "Chrome / Edge / Firefox / Safari",
+      "Supported browser launch, input, audio gesture, save recovery and explicit unsupported XR messages",
+      "V67",
+      "Not run",
+      "Specify actual tested versions; do not assume every browser offers XR."
+    ],
+    [
+      "Q08",
+      "Phone / touch",
+      "Narrow display and orientation",
+      "Launch, touch aim/shoot, UI scrolling, quiver and save continuation",
+      "V10,V67",
+      "Not run",
+      "Record phone/browser, viewport, touch conflicts and readability."
+    ],
+    [
+      "Q09",
+      "Accessibility",
+      "Seated / shorter reach / captions",
+      "Comfort presets, remapping, contrast, reduced effects and non-color warnings",
+      "V61,V63",
+      "Not run",
+      "Recruit users with varied needs; emulation cannot close human review."
+    ],
+    [
+      "Q10",
+      "Persistence",
+      "Quota / corrupt / multi-tab",
+      "Failures are visible, no silent overwrite, explicit recovery and profile retention",
+      "V47,V65,V75",
+      "Software only",
+      "Native software plus unit fault injection; repeat on devices."
+    ]
+  ],
+  "releaseGates": [
+    [
+      "G01",
+      "Scope and source",
+      "Engineering",
+      "Only reviewed game paths change; exact source/build is identified; private story excluded.",
+      "tests and repository diff",
+      "Every release",
+      "Software gate"
+    ],
+    [
+      "G02",
+      "Deterministic simulation",
+      "Gameplay / QA",
+      "Syntax and all current model suites pass; no tunneling, duplicated rewards or nonfinite state.",
+      "tests/*.test.cjs",
+      "Every release",
+      "Software gate"
+    ],
+    [
+      "G03",
+      "Controller and UI",
+      "UX / QA",
+      "Native Xbox and stereo-XR fixtures pass; essential actions have no mouse-only dead end.",
+      "tests/dominions-browser.py",
+      "Every release",
+      "Software gate"
+    ],
+    [
+      "G04",
+      "Save continuity",
+      "Engineering / QA",
+      "Checkpoint reload, partial projectiles/timers, practice/AR isolation, conflict and corrupt-storage recovery pass.",
+      "tests/pilgrim.test.cjs; tests/pilgrim-browser.py",
+      "Every release",
+      "Software gate"
+    ],
+    [
+      "G05",
+      "Audio and visuals",
+      "Technical art / audio",
+      "Native WebGL and stereo audio checks pass; no script errors, broken asset loads or repeating hidden-tab backlog.",
+      "tests/resonant-browser.py; tests/jewelglass-browser.py",
+      "Every release",
+      "Software gate"
+    ],
+    [
+      "G06",
+      "Actual publication",
+      "Release engineering",
+      "All public runtime/asset/roadmap/workbook bytes match; public homepage launch and relevant live browser checks pass.",
+      "tests/verify-live.py; tests/launch.py",
+      "Every release",
+      "Software gate"
+    ],
+    [
+      "G07",
+      "Physical hardware",
+      "Device QA",
+      "Supported device scenarios have dated build-specific receipts, including sustained Quest frame-time traces.",
+      "Device QA sheet; V59,V62,V75",
+      "Before production release",
+      "Open hardware gate"
+    ],
+    [
+      "G08",
+      "Human experience",
+      "Play research",
+      "Onboarding, challenge, fatigue, sound balance and repeat-play feedback are recorded and blocking concerns resolved.",
+      "V16,V58,V64",
+      "Before production release",
+      "Open human gate"
+    ],
+    [
+      "G09",
+      "Content and rights",
+      "Production",
+      "Agreed scope complete, rights/provenance checked, public-only narrative and no placeholder blocking flow.",
+      "V69,V70",
+      "Before production release",
+      "Open production gate"
+    ],
+    [
+      "G10",
+      "Release stability",
+      "Release engineering / QA",
+      "No blocking defects; tested rollback preserves supported saves; known issues and support instructions are published.",
+      "V68,V71,V73",
+      "Before production release",
+      "Open production gate"
+    ]
+  ],
+  "risks": [
+    [
+      "R01",
+      "Device performance is unmeasured",
+      "High",
+      "Physical Quest QA",
+      "Actual native GPU/CPU traces absent",
+      "V59,V60",
+      "Run the device trace before adding more expensive visual effects.",
+      "Open"
+    ],
+    [
+      "R02",
+      "Large feature count without a polished signature slice",
+      "High",
+      "Production / level design",
+      "Many procedural rooms do not establish quality",
+      "V49,V50,V51,V52,V76",
+      "Finish one cohesive onboarding-to-boss route before expanding content.",
+      "Open"
+    ],
+    [
+      "R03",
+      "Input and lifecycle wrapper coupling",
+      "High",
+      "Engineering",
+      "Several modules wrap the same component methods",
+      "V74",
+      "Refactor explicit lifecycle contracts with preserved regression fixtures.",
+      "Open"
+    ],
+    [
+      "R04",
+      "Browser storage eviction and future generator changes",
+      "High",
+      "Engineering / QA",
+      "Local saves are not cloud backup; only current generator supported",
+      "V65,V75",
+      "Publish limitations; add migration/backup fixtures before incompatible changes.",
+      "Open"
+    ],
+    [
+      "R05",
+      "Sound fatigue and simultaneous warning overload",
+      "High",
+      "Audio / play research",
+      "Algorithmic limits cannot replace listening sessions",
+      "V58",
+      "Notification density settings plus 30-minute listening feedback.",
+      "Open"
+    ],
+    [
+      "R06",
+      "Character asset and animation production capacity",
+      "High",
+      "Art production",
+      "Finished consistent rigged assets are incomplete",
+      "V54,V55",
+      "Define one vertical-slice asset budget and provenance pipeline.",
+      "Open"
+    ],
+    [
+      "R07",
+      "Roadmap drift after releases",
+      "Medium",
+      "Production",
+      "Previous board remained at 0.6 after 0.8 shipped",
+      "V48",
+      "Check version consistency and preserve one canonical JSON plus generated workbook snapshot.",
+      "Mitigated by checks"
+    ],
+    [
+      "R08",
+      "Simultaneous-tab races or manual local tampering",
+      "Medium",
+      "Engineering",
+      "Local optimistic checks are not server locks or anti-cheat",
+      "V47,V65",
+      "Pause stale tabs and document local-only integrity; do not claim secure competitive scores.",
+      "Open"
+    ],
+    [
+      "R09",
+      "External services create unplanned data and cost obligations",
+      "Medium",
+      "Production",
+      "Accounts/telemetry are outside current scope",
+      "V17,V72",
+      "Keep deferred pending explicit product design and authorization.",
+      "Deferred"
+    ],
+    [
+      "R10",
+      "Unsupported claim of AAA completion",
+      "High",
+      "Production",
+      "No budget, staffing or hardware/human finish criteria have been certified",
+      "V48,V73",
+      "Track concrete quality gates; never turn completed task count into an AAA rating.",
+      "Open"
+    ]
+  ],
+  "nextRelease": {
+    "theme": "Combat mastery slice",
+    "focus": [
+      "V49",
+      "V50",
+      "V51",
+      "V52",
+      "V76"
+    ],
+    "note": "Proposed sequence; finish onboarding and coordinated encounters before expanding boss/content count."
+  }
 }

@@ -1,3 +1,9 @@
+## Pilgrim's Rest v0.9.0 and the production path
+
+The current release adds bounded local saved expeditions with paused continuation, combined progression receipts, Xbox/Quest save menus and damaged/stale-save recovery. See [Pilgrim's Rest](./PILGRIMS-REST.md) for behavior and limitations.
+
+The long-term plan is stored here: [Production board](./roadmap.html), [Excel workbook](./AAA-PRODUCTION.xlsx), [quality-gated roadmap](./AAA-ROADMAP.md), and [canonical task data](./roadmap.json). The board preserves the original task IDs and now maps 76 tasks through 7 milestones. Device and human acceptance remain separate from software implementation. The workbook is a versioned six-sheet snapshot, not automatic GitHub synchronization.
+
 Current release: 0.8.0 Resonant Hunt. See RESONANT-HUNT.md for the current audio controls, reversed Quest grip roles, weapon-hand crossbow trigger, palm familiar, pickup pull and tactical quiver. Older release notes below describe their historical controls.
 
 # Vesperfall — Arrows Unchained

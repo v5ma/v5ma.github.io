@@ -48,7 +48,7 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/vesperfall/index.html?acceptance=resonant-hunt',wait_until='domcontentloaded')
   wait('window.Vesperfall?.component.ritual&&Vesperfall.component.soundscape&&Vesperfall.component.rendererReady')
-  check(page.evaluate("VesperCore.VERSION==='0.8.0'"),'Resonant Hunt is the actual loaded release')
+  check(page.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'],'Resonant Hunt is the actual loaded release')
   page.locator('#sound-preview').click();wait("Vesperfall.component.soundscape.engine?.ctx.state==='running'");wait('Vesperfall.component.soundscape.engine.metrics.played>=6')
   check(True,'A real user gesture unlocks the spatial Web Audio graph and sound check')
   diagnostics['offlineAudio']=page.evaluate("""async()=>{const ctx=new OfflineAudioContext(2,48000*3,48000),e=new ResonanceAudio.Engine(ctx);e.listener([0,1.65,0],[0,0,0,1]);e.note('choir',50,0,2,.12);e.note('pluck',69,.4,1.2,.12);e.play('bow',{at:.8});e.play('stone',{at:1.2,position:[-2,1.65,-2]});e.play('shield',{at:1.8,position:[2,1.65,-2]});const b=await ctx.startRendering(),l=b.getChannelData(0),r=b.getChannelData(1);let sum=0,peak=0,diff=0,finite=true;for(let i=0;i<l.length;i++){finite=finite&&Number.isFinite(l[i])&&Number.isFinite(r[i]);sum+=l[i]*l[i]+r[i]*r[i];peak=Math.max(peak,Math.abs(l[i]),Math.abs(r[i]));diff+=Math.abs(l[i]-r[i]);}const result={rms:Math.sqrt(sum/(l.length*2)),peak,stereoDifference:diff/l.length,finite,samples:l.length,spatial:e.metrics.spatial};e.dispose();return result;}""")
@@ -84,10 +84,10 @@ with sync_playwright() as p:
   check(not errors,'No uncaught JavaScript errors during audio, quiver, physical reload and pickup acceptance')
   diagnostics['liveAudio']=page.evaluate('({...Vesperfall.component.soundscape.engine.metrics,liveVoices:Vesperfall.component.soundscape.engine.voices.size,limit:Vesperfall.component.soundscape.engine.limit})')
   check(diagnostics['liveAudio']['peakVoices']<=34,'Audio polyphony stays inside its hard voice budget')
-  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':'0.8.0','passed':len(checks),'checks':checks,'errors':errors,'diagnostics':diagnostics,'scope':'Actual Chromium WebGL and Web Audio PCM, real UI actions and emulated controller poses/buttons. Not physical Quest hardware, subjective audio quality, passthrough safety, comfort or performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':page.evaluate('VesperCore.VERSION'),'passed':len(checks),'checks':checks,'errors':errors,'diagnostics':diagnostics,'scope':'Actual Chromium WebGL and Web Audio PCM, real UI actions and emulated controller poses/buttons. Not physical Quest hardware, subjective audio quality, passthrough safety, comfort or performance certification.'},indent=2))
  except Exception as e:
   info=page.evaluate("({state:window.Vesperfall?.snapshot?.(),ritual:window.Vesperfall?.component?.ritual?.state,errors:[]})")
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'diagnostics':diagnostics,'info':info},indent=2))
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'info':info},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))
   except:pass
   raise
