@@ -30,7 +30,11 @@ jobs:
           root=Path.cwd().resolve()
           names=['aether-reach/tools/cw64safe-00a.txt',
                  'aether-reach/tools/cw64safe-00b.txt',
-                 *[f'aether-reach/tools/cw64safe-{i:02d}.txt' for i in range(1,6)],
+                 'aether-reach/tools/cw64safe-01.txt',
+                 'aether-reach/tools/cw64safe-02.txt',
+                 'aether-reach/tools/cw64safe-03-fixed.txt',
+                 'aether-reach/tools/cw64safe-04.txt',
+                 'aether-reach/tools/cw64safe-05.txt',
                  'aether-reach/tools/cw64safe-06a.txt',
                  'aether-reach/tools/cw64safe-06b.txt',
                  'aether-reach/tools/cw64safe-06c.txt']
