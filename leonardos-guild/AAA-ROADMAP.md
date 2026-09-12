@@ -1,6 +1,10 @@
+# Current regional checkpoint - Cinder Hollow v0.11.0
+
+This release continues the same game, not a spinoff. Steady Steps camera/rig work is recovered. The first badlands region and an enforced town truce advance the regional plan: safe homes/streets/roofs/cellars, a deliberate gateway, three traversable loops, seven persistent creatures, survey/salvage contracts and saved cargo. Future farm play is peaceful stewardship; no farmland map exists yet. Next: owner playtest of the gate/controller/combat loop, then floor-aware town route planning and a richer second expedition. Prior phase gates below remain open unless explicitly satisfied.
+
 # Leo's Guild - AAA-quality production roadmap
 
-Owner: Micah Blumberg / SVGN. Updated September 11, 2026.
+Owner: Micah Blumberg / SVGN. Updated September 12, 2026.
 
 This is the continuing production checklist for the EXISTING game in leonardos-guild/. It is not a new prototype, a claim that the current game is AAA, or a percentage-complete estimate. The goal is polished, coherent, ambitious play rather than a larger feature count. UPGRADE-CHECKLIST.md preserves the original density tasks D01-D22 and art/service tasks A01-A06/NET01-NET03. This document orders those goals by dependencies and acceptance evidence.
 
@@ -13,6 +17,8 @@ The verified baseline is Resonance v0.8.0, PR100, followed by the quieter-audio 
 Living Stories v0.9.0 advances D03, D06 and D16: two authored six-step cases, alternate roof/cellar evidence routes, a reversible shutter puzzle, evidence-based reasoning, peaceful settlement choices and persistent visible household outcomes. It does not close those entire roadmap items. No new automatic story audio or forced time limit is introduced. The release PR must contain the final test-source identities and post-merge public-file receipt; code or this register alone is not deployment proof.
 
 States: [x] means the narrowly worded implemented baseline exists, not that a whole AAA milestone is certified. [ ] means its full acceptance criterion remains open. A phase closes only when its evidence is retained and the user has playtested it. Model fixtures, browser journeys, physical hardware tests, subjective listening and publication verification are different evidence types.
+
+Steady Steps v0.10.0 advances parts of C01-C03: a shared original articulated character sample, displacement-driven poses, and continuous proxy-bound camera collision with floor-specific handling. These tasks remain open below because finished animation, foot planting and broad human camera review are not completed by this slice. See STEADY-STEPS.md and its release PR for exact acceptance. Quiet audio and every earlier adventure remain.
 
 ## Phase 0 - Stable, calm, controller-complete foundation
 

@@ -22,7 +22,8 @@ export function createTownLifeVisuals({scene,root,w,m,rider,bike,camera}){
   // Cutaway interior walls frame the room without hiding it from the player.
   for(const sign of[-1,1])b.box(0,.5,sign*(room.hz-.3),room.hx*2,.9,.3,basement?'#766e5c':'#dbcba4');b.box(room.side*(room.hx-.3),1.1,0,.3,2.2,room.hz*2,'#aa9578');
   b.box(0,.19,0,3.8,.025,5.5,room.kind==='hall'?'#797b96':room.kind==='inn'?'#ac6858':'#5c7d75');for(const x of[-1.76,1.76])b.box(x,.21,0,.08,.02,5.2,gold);
-  table(furniture,0,room.hz-1.2);bookcase(furniture,-room.hx+2,-room.hz+1);bookcase(furniture,room.hx-2,-room.hz+1);
+  table(furniture,0,room.hz-1.2);
+  for(const x of[-room.hx+2,room.hx-2]){const holder=new T.Group(),shelf=new Batch();holder.name=room.id+' original bookcase '+x;holder.userData.cameraOccluder=true;holder.userData.replaceableBookcase=true;bookcase(shelf,x,-room.hz+1);shelf.finish(holder,m.trim,'Bookcase and books');g.add(holder);}
   if(room.kind==='apothecary')for(let i=0;i<12;i++){const x=-3+i%6*1.1,z=-room.hz+2+Math.floor(i/6)*.6;b.add(unit.cyl,x,.8,z,.17,.7,.17,['#638d79','#8b7d9c','#ae8952'][i%3]);}
   if(room.kind==='inn'){for(const z of[-2,2]){table(furniture,room.hx-2,z);for(const dz of[-.9,.9])b.add(unit.cyl,room.hx-2,.36,z+dz,.3,.7,.3,wood);}for(const x of[-room.hx+1,room.hx-1])b.add(unit.cyl,x,.68,room.hz-2,.62,1.35,.62,oak);}
   if(room.kind==='workshop'||room.kind==='smith'){for(let i=0;i<4;i++)b.add(unit.ring,-room.hx+1.2,.8+i*.06,i*1.7-2,.65,.65,.65,gold,0,Math.PI/2);b.box(room.hx-1.2,.7,1,1.3,1.4,1,'#666d65');}
