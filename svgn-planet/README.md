@@ -1,4 +1,24 @@
-# Neighborhood Missions - City Expansion 0.6.0
+# Neighborhood Missions: Coastal Pulse (v0.7.0)
+
+Coastal Pulse adds 102 replayable contracts across the original neighborhood and 24 city districts. The six activity types are cafe courier runs, cleanup rounds, signal-cabinet timing repairs, viewpoint postcards, checkpoint circuits, and hop-through stunt rings. Contracts earn credits for five cosmetic vehicle finishes. These are variations on six activity systems, not 102 separate story campaigns.
+
+The original delivery route, city deliveries, postmarks, transit, save slot and game URL are retained. Contract state, credits, best times and owned finishes extend the existing version-1 save rather than replacing it. Returning to the depot keeps progress; clearing progress requires an explicit confirmation.
+
+RT or Shift accelerates to the existing 30 meters/second top speed (108 km/h). Boost no longer drains or cycles. Releasing acceleration coasts at the attained speed; LT, B or Ctrl brakes. A real collision, walking/dismounting, or explicitly taking transit can still stop the rider. Fixed-step collision simulation now has interpolated visual poses, and traffic follows continuous arc-length paths instead of jumping between road vertices.
+
+The right stick uses standard look direction, with independently saved horizontal/vertical inversion and sensitivity in Menu. Left-stick click rings the bell. D-pad down or J opens City jobs. View or M opens the map, Menu pauses, and B returns from every new dialog. D-pad up/down selects controls, left/right adjusts sliders and choices, and A activates them. Repair dialogs offer a slower timing assist. All new interfaces retain keyboard and touch alternatives.
+
+The original Coastal Pulse score uses one adaptive 92-BPM transport with electric-key, plucked, bass and percussion parts. The sound system adds delivery chimes, paper swishes, tires, electric drive, bicycle chain and bell, footsteps, jump/landing, braking, pass-bys, birds, wordless neighbor chatter, camera shutter, signal feedback and contract rewards. Music, effects and ambience have independent levels under a master control. Voice counts and cue rates are bounded; pause, backgrounding, mute and the quiet preset reduce sound. No microphone or remote audio service is used.
+
+Browser autoplay policy can require a real click or Enter once before audio will play; a polled gamepad press is not guaranteed to unlock audio. The Enable sound button and audio status explain this without stopping gameplay. After audio is unlocked, its mixer is controller-operable.
+
+The city now has a pooled population of walking neighbors, joggers, cyclists and cars, with bell reactions and contextual conversation. Population density is adjustable. These residents and cars are scenic and do not secretly brake or damage the rider. Original houses are widened by 60 percent with more two-story variants. City homes are larger two-story forms, with textured surfaces, porches, balconies, storefront signs, warmer lighting and bounded, spatially culled detail streaming. Existing licensed art remains available. This is a stylized browser-game upgrade, not a claim of commercial AAA production fidelity.
+
+Release acceptance includes model/regression tests, sustained-speed and traffic-continuity checks, every contract target's collision clearance, save migration, currency, and simulated standard-mapping Xbox UI tests in Chromium. Physical Xbox hardware and the user's own GPU still require real-device testing.
+
+## Original city edition notes
+
+### Neighborhood Missions - City Expansion 0.6.0
 
 The existing third-person bicycle/electric-unicycle game now connects its original neighborhood to a much larger, fully spherical city. This is a fictional Long Beach-inspired setting, not a geographically accurate model of Long Beach.
 

@@ -2,7 +2,7 @@
  * contract dialogs. Standard Xbox mapping; no gameplay input leaks into UI. */
 export const padState={connected:false,x:0,y:0,lookX:0,lookY:0,boost:false,brake:false,id:''};
 const $=id=>document.getElementById(id),dead=v=>Math.abs(v)<.16?0:Math.sign(v)*(Math.abs(v)-.16)/.84;
-let active=null,previous=[],lastScope=null,repeatDirection='',repeatAt=0,navigatedWelcome=false;
+let polls=0;let active=null,previous=[],lastScope=null,repeatDirection='',repeatAt=0,navigatedWelcome=false;
 const emit=name=>window.dispatchEvent(new CustomEvent('nm-action',{detail:{name}}));
 function clear(){for(const key of['x','y','lookX','lookY'])padState[key]=0;padState.boost=padState.brake=false;}
 function visible(el){return !!el&&!el.disabled&&!el.closest('[hidden]')&&el.getClientRects().length>0&&getComputedStyle(el).visibility!=='hidden';}
@@ -21,7 +21,7 @@ function back(root){if(root.id==='failure'){if(visible($('diagnostics')))$('diag
 export function rumble(strength=.25,duration=95){try{active?.vibrationActuator?.playEffect('dual-rumble',{startDelay:0,duration,weakMagnitude:strength,strongMagnitude:strength*.45})?.catch(()=>{});}catch{}}
 function status(text){const el=$('controller-status');if(el&&el.textContent!==text)el.textContent=text;}
 function frame(now){
- requestAnimationFrame(frame);let pads=[];try{pads=[...(navigator.getGamepads?.()||[])].filter(p=>p?.connected&&(p.mapping==='standard'||/xbox/i.test(p.id)));}catch{}
+ requestAnimationFrame(frame);polls++;let pads=[];try{pads=[...(navigator.getGamepads?.()||[])].filter(p=>p?.connected&&(p.mapping==='standard'||/xbox/i.test(p.id)));}catch{}
  const used=pads.find(p=>p.buttons.some(b=>b.pressed)||p.axes.some(a=>Math.abs(a)>.3)),pad=used||pads.find(p=>p.index===active?.index)||pads[0];
  if(!pad){if(active){emit('disconnect');previous=[];}active=null;padState.connected=false;padState.id='';clear();document.body.classList.remove('using-gamepad');status('Connect an Xbox controller and press a button.');return;}
  if(active?.index!==pad.index)previous=[];active=pad;padState.connected=true;padState.id=pad.id;const buttons=pad.buttons.map(b=>b.pressed||b.value>.55),edge=i=>buttons[i]&&!previous[i];
@@ -42,4 +42,4 @@ function frame(now){
  status(root?'Xbox: D-pad navigates | Left/right adjusts | A selects | B returns':'Xbox: RT accelerate | LT/B brake | L3 bell | D-pad down jobs');previous=buttons;
 }
 window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);
-Object.defineProperty(window,'NeighborhoodController',{value:Object.freeze({inspect:()=>({...padState,scope:scope()?.id||null,focus:document.activeElement?.id||null})})});requestAnimationFrame(frame);
+Object.defineProperty(window,'NeighborhoodController',{value:Object.freeze({inspect:()=>({...padState,polls,scope:scope()?.id||null,focus:document.activeElement?.id||null})})});requestAnimationFrame(frame);
