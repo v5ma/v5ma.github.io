@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'test-output/prism-tidal';OUT.mkdir(parents=True,exist_ok=True)
 URL=os.environ.get('PRISM_URL','http://127.0.0.1:4173/prism-current/')
 LEGACY={'first-light/flow/keys':{'score':2500,'accuracy':75,'best':16},'first-light/flow/ar':{'score':900,'accuracy':60,'best':8}}
-PAD="""window.testPad={id:'Acceptance standard pad',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{configurable:true,value:()=>[testPad]});"""
+PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text()
 checks=[]
 def check(ok,text):
  assert ok,text
@@ -20,7 +20,7 @@ with sync_playwright() as pw:
  ctx.add_init_script("if(!localStorage.getItem('prism-current.v1.records'))localStorage.setItem('prism-current.v1.records',"+json.dumps(json.dumps(LEGACY))+");")
  p=ctx.new_page();p.set_default_timeout(45000);errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
  def press(button):
-  p.evaluate('''async b=>{const frames=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));testPad.buttons[b]={pressed:true,value:1};await frames();testPad.buttons[b]={pressed:false,value:0};await frames();}''',button)
+  p.evaluate('(b)=>PrismTestPad.press(b)',button)
  try:
   p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready&&Prism.snapshot().controller')
   p.bring_to_front();p.keyboard.press('Shift')
@@ -36,7 +36,17 @@ with sync_playwright() as pw:
   check(p.evaluate('Prism.component.runMode')=='gamepad','The new song starts in the isolated gamepad score category')
   p.wait_for_function("document.getElementById('phrase-name').textContent==='Arrival'")
   check(p.locator('#phrase-name').inner_text()=='Arrival','The opening phrase is shown before the first notes')
-  p.wait_for_function('Prism.snapshot().time>2');press(9)
+  startup_stall=None
+  p.wait_for_function("Prism.snapshot().time>2 || Prism.snapshot().phase==='paused'")
+  if p.evaluate('Prism.snapshot().phase')=='paused':
+   startup_stall=p.evaluate('Prism.component.lastStall || null')
+   check(startup_stall is not None and 'Rendering stalled' in p.evaluate('Prism.snapshot().message'),'Any startup pause identifies an actual software-renderer frame gap')
+   check(p.evaluate('Object.keys(Prism.component.state.judged).length')==0,'The startup pause occurs before any target judgment')
+   p.wait_for_timeout(200)
+   check(p.evaluate('Prism.snapshot().phase')=='paused','A startup frame pause does not auto-resume')
+   press(9)
+   p.wait_for_function("Prism.snapshot().phase==='playing'&&Prism.snapshot().time>2")
+  press(9)
   before=p.evaluate('Prism.component.audio.time()');p.wait_for_timeout(350)
   check(abs(p.evaluate('Prism.component.audio.time()')-before)<.001,'Pausing freezes the new soundtrack')
   press(8);check(p.locator('#mixer-panel').is_visible(),'The existing controller mixer remains available')
@@ -61,7 +71,7 @@ with sync_playwright() as pw:
   p.reload(wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready')
   check(p.evaluate('Prism.snapshot().scoreRecords["tidal-bloom/flow/gamepad"].score')==r['score'],'The completed new record survives reload')
   check(not errors,'No uncaught JavaScript errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'result':r,'errors':errors,'scope':'Native Chromium production renderer and 24 kHz synthesized stereo music. Emulated standard pad, one-eighth pixel ratio. Full song at real audio speed. Not a human playtest or physical-device performance claim.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'result':r,'errors':errors,'startup_software_frame_stall':startup_stall,'scope':'Native Chromium production renderer and 24 kHz synthesized stereo music. Emulated standard pad, one-eighth pixel ratio. Full song at real audio speed. Startup software-renderer pause recovery is tested via Menu if observed and recorded separately. Not a human playtest or physical-device performance claim.'},indent=2))
  except Exception as e:
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Prism?.snapshot()')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Prism?.snapshot()'),'focus':p.evaluate('document.activeElement?.outerHTML'),'polls':p.evaluate('window.PrismTestPad?.polls'),'stall':p.evaluate('window.Prism?.component.lastStall || null')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
  finally:b.close()

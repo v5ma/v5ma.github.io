@@ -1,0 +1,9 @@
+# Tidal Bloom native test scope
+
+The full-song suite plays the actual approximately 118-second soundtrack at normal audio speed, using the production renderer and standard-pad polling. No clock, judgment, completion or score is assigned by the test. Preexisting records are seeded only before the run to verify backward compatibility.
+
+Menu button presses wait for neutral, pressed and released samples through navigator.getGamepads. A pulse bounded only by arbitrary RAF callbacks could previously be missed or repeated while software rendering delayed frames. The timed single-hit mixer test similarly schedules its ordinary pad button state inside the browser rather than spending the note window on Python/browser round trips. These changes affect the test driver only, not the game's input or scoring rules.
+
+The new-song test requires at least 83 of 92 Flow targets to be hit through the normal handler and checks the timing sample count, all eight section results and saved records after reload. An initial source run completed with all 92 targets hit and no misses. A later software-rendered run paused before any target judgment because of a slow startup frame. The test now explicitly recognizes at most one such startup pause, checks that it cannot auto-resume, records the frame-gap diagnostic and resumes through the ordinary Menu button. It must then complete the song at normal audio speed. Repeated or mid-song pauses still fail this full-song acceptance.
+
+Gameplay tests use a reduced drawing buffer on CPU/software WebGL. Full-resolution artwork is reviewed separately. No successful test here establishes physical Xbox/Quest performance, human chart comfort, perceived musical quality or hardware latency. Those gates remain open in AAA_CHECKLIST.md. Exact candidate/public workflow outcomes and any recorded startup pause belong in the release PR receipt.

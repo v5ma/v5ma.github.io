@@ -5,7 +5,7 @@ import json, os, pathlib
 from playwright.sync_api import sync_playwright
 OUT=pathlib.Path('test-output'); OUT.mkdir(exist_ok=True)
 URL=os.environ.get('PRISM_URL','http://127.0.0.1:4173/prism-current/')
-PAD="""window.testPad={id:'Acceptance standard pad',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))}; Object.defineProperty(navigator,'getGamepads',{configurable:true,value:()=>window.testPad?[window.testPad]:[]});"""
+PAD=(pathlib.Path(__file__).resolve().parent/'standard-pad.js').read_text()
 with sync_playwright() as pw:
     browser=pw.chromium.launch(executable_path=os.environ.get('PRISM_CHROMIUM') or None,headless=True,args=['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
     page=browser.new_page(viewport={'width':1280,'height':900},device_scale_factor=.25)
@@ -13,9 +13,7 @@ with sync_playwright() as pw:
     page.goto(URL,wait_until='domcontentloaded');page.wait_for_function('window.Prism?.snapshot().ready',timeout=60000)
     page.bring_to_front();page.keyboard.press('Shift');page.wait_for_function('Prism.snapshot().controller',timeout=10000)
     def press(button):
-        # Present both edges across browser frames, not fixed wall-clock pulses
-        # that can disappear between CPU-rendered WebGL frames.
-        page.evaluate('''async b=>{const frames=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));testPad.buttons[b]={pressed:true,value:1};await frames();testPad.buttons[b]={pressed:false,value:0};await frames();}''',button)
+        page.evaluate('(b)=>PrismTestPad.press(b)',button)
     try:
         press(8);assert page.locator('#mixer-panel').is_visible()
         assert page.locator('#mix-music').evaluate('(e)=>document.activeElement===e')
