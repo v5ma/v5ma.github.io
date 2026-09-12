@@ -70,7 +70,7 @@ export function createCoastalAudio(){
    case 'stamp':case 'pickup':tone(hz(86),.32,.07,'bell',now);hiss(.10,.055,1600,now);break;
    case 'job-stage':case 'handoff':tone(hz(69),.20,.06,'keys',now);tone(hz(74),.32,.06,'keys',now+.08);break;
    case 'job-start':for(const [i,n]of[62,66,69,74].entries())tone(hz(n),.35,.075,'keys',now+i*.09);break;
-   case 'job-complete':case 'complete':case 'stunt':for(const [i,n]of[62,66,69,73,81].entries())tone(hz(n),.70,.085,'bell',now+i*.12);ramp(buses.music.gain,preferences.music*.55,.02);setTimeout(mixer,1000);break;
+   case 'chapter-complete':case 'job-complete':case 'complete':case 'stunt':for(const [i,n]of[62,66,69,73,81].entries())tone(hz(n),.70,.085,'bell',now+i*.12);ramp(buses.music.gain,preferences.music*.55,.02);setTimeout(mixer,1000);break;
    case 'photo':hiss(.035,.18,3200,now);hiss(.03,.15,1500,now+.085);break;
    case 'repair':case 'signal-good':tone(hz(78),.2,.085,'keys',now);tone(hz(85),.35,.07,'bell',now+.08);break;
    case 'signal-miss':tone(146,.18,.045,'bass',now);break;

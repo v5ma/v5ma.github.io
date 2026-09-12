@@ -1,19 +1,20 @@
 import {RADIUS,WORLD,CITY,street,at,add,mul,norm,cross,dot,clamp,tangent,rotate,distance,height} from './world.mjs';
+import {readHomecoming} from './homecoming.mjs';
 import {driveSpeed} from './coastal-motion.mjs';
 import {readJobs,createJobs,writeJobs,tickJobs} from './activities.mjs';
 export * from './world.mjs';
-export const VERSION='0.7.0',SAVE_KEY='svgn.paper-delivery-3d.v1',LEGACY_SAVE_KEY='svgn.little-planet.v1';
+export const VERSION='0.8.0',SAVE_KEY='svgn.paper-delivery-3d.v1',LEGACY_SAVE_KEY='svgn.little-planet.v1';
 export function readSave(raw){try{
  if(!raw||raw.length>64000)return null;const s=JSON.parse(raw);if(s?.v!==1)return null;
  const known=(a,list)=>Array.isArray(a)?[...new Set(a.filter(id=>list.some(h=>h.id===id)))]:[];
  const delivered=known(s.delivered,WORLD.homes);
- return {delivered,bonusDelivered:known(s.bonusDelivered,WORLD.bonusStops),stamps:known(s.stamps,WORLD.stars),stunts:known(s.stunts,WORLD.stuntGates),complete:s.complete===true&&delivered.length===WORLD.homes.length,ride:s.ride===true,position:s.radius===RADIUS&&Array.isArray(s.position)&&s.position.length===3&&s.position.every(Number.isFinite)&&Math.abs(Math.hypot(...s.position)-1)<.01?norm(s.position):null,north:Array.isArray(s.north)&&s.north.length===3&&s.north.every(Number.isFinite)?norm(s.north):null,vehicle:s.vehicle==='bicycle'?'bicycle':'unicycle',jobs:readJobs(s.jobs)};
+ return {delivered,bonusDelivered:known(s.bonusDelivered,WORLD.bonusStops),stamps:known(s.stamps,WORLD.stars),stunts:known(s.stunts,WORLD.stuntGates),complete:s.complete===true&&delivered.length===WORLD.homes.length,ride:s.ride===true,position:s.radius===RADIUS&&Array.isArray(s.position)&&s.position.length===3&&s.position.every(Number.isFinite)&&Math.abs(Math.hypot(...s.position)-1)<.01?norm(s.position):null,north:Array.isArray(s.north)&&s.north.length===3&&s.north.every(Number.isFinite)?norm(s.north):null,vehicle:s.vehicle==='bicycle'?'bicycle':'unicycle',jobs:readJobs(s.jobs),homecoming:readHomecoming(s.homecoming)};
  }catch{return null;}}
 export function initial(saved=null){
  const n=saved?.position&&!blocked(saved.position)?saved.position:street(0,-1.5),reference=saved?.north||[0,0,-1],north=tangent(Math.abs(dot(reference,n))>.95?(Math.abs(n[1])<.9?[0,1,0]:[1,0,0]):reference,n);
- return {n,north,facing:[...north],speed:0,lift:0,vy:0,energy:1,ride:saved?.ride??false,vehicle:saved?.vehicle||'unicycle',boosting:false,delivered:new Set(saved?.delivered||[]),bonusDelivered:new Set(saved?.bonusDelivered||[]),stamps:new Set(saved?.stamps||[]),stunts:new Set(saved?.stunts||[]),complete:!!saved?.complete,time:0,steps:0,distance:0,toast:'',toastT:0,lastSite:null,events:[],paper:null,paperCooldown:0,collisionCooldown:0,jobs:createJobs(saved?.jobs)};
+ return {n,north,facing:[...north],speed:0,lift:0,vy:0,energy:1,ride:saved?.ride??false,vehicle:saved?.vehicle||'unicycle',boosting:false,delivered:new Set(saved?.delivered||[]),bonusDelivered:new Set(saved?.bonusDelivered||[]),stamps:new Set(saved?.stamps||[]),stunts:new Set(saved?.stunts||[]),complete:!!saved?.complete,time:0,steps:0,distance:0,toast:'',toastT:0,lastSite:null,events:[],paper:null,paperCooldown:0,collisionCooldown:0,jobs:createJobs(saved?.jobs),homecoming:readHomecoming(saved?.homecoming)};
 }
-export const saveData=s=>({v:1,delivered:[...s.delivered],bonusDelivered:[...s.bonusDelivered],stamps:[...s.stamps],stunts:[...s.stunts],complete:s.complete,ride:s.ride,radius:RADIUS,position:[...s.n],north:[...s.north],vehicle:s.vehicle||'unicycle',jobs:writeJobs(s)});
+export const saveData=s=>({v:1,delivered:[...s.delivered],bonusDelivered:[...s.bonusDelivered],stamps:[...s.stamps],stunts:[...s.stunts],complete:s.complete,ride:s.ride,radius:RADIUS,position:[...s.n],north:[...s.north],vehicle:s.vehicle||'unicycle',jobs:writeJobs(s),homecoming:readHomecoming(s.homecoming)});
 export function event(s,type,data={}){s.events.push({type,step:s.steps,...data});if(s.events.length>180)s.events.shift();}
 // Local broad phase: do not scan every tree and evaluate acos hundreds of times
 // in each simulation tick. House footprints match the enlarged rendered bodies.

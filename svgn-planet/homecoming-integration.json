@@ -1,0 +1,7 @@
+{
+  "version": "0.8.0",
+  "chapter": "Homecoming",
+  "scope": "Existing svgn-planet game and its homepage card",
+  "save": "Additive v1 fields; original key retained",
+  "qualityClaim": "Vertical-slice upgrade; real-device and art approval gates remain open"
+}

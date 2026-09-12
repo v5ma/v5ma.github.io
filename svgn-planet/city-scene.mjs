@@ -112,7 +112,7 @@ export function createPlanetCity(parent){
  function update(n,overview,low){
   const now=performance.now();if(now-last<70)return;last=now;
   const limit=low?175:290,preload=low?220:365;
-  for(const c of clusters){const d=Math.sqrt(Math.max(0,2-2*dot(n,c.n)))*RADIUS;c.g.visible=overview||d<650;c.g.traverse(m=>{if(m.isMesh)m.castShadow=!low&&!overview&&d<225&&!!m.userData.coastalShadow;});}
+  for(const c of clusters){const d=Math.sqrt(Math.max(0,2-2*dot(n,c.n)))*RADIUS;c.g.visible=overview||d<650;const shadows=!low&&!overview&&d<225;if(c.shadows!==shadows){c.shadows=shadows;c.g.traverse(m=>{if(m.isMesh)m.castShadow=shadows&&!!m.userData.coastalShadow;});}}
   const close=CITY.blocks.map(b=>({b,d:Math.sqrt(Math.max(0,2-2*dot(n,b.n)))*RADIUS})).filter(x=>x.d<preload).sort((a,b)=>a.d-b.d);
   let budget=1;for(const {b}of close)if(!cache.has(b.id)&&budget-->0)detail(b);
   visible=0;for(const [id,c]of cache){const d=Math.sqrt(Math.max(0,2-2*dot(n,c.block.n)))*RADIUS;c.g.visible=!overview&&d<limit;if(c.g.visible){visible++;c.used=now;}if(cache.size>48&&d>550){c.g.traverse(o=>{if(o.isInstancedMesh)o.dispose?.();else if(o.isMesh)o.geometry.dispose();});detailRoot.remove(c.g);cache.delete(id);}}

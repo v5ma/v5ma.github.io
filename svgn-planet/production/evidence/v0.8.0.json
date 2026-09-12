@@ -1,0 +1,27 @@
+{
+  "version": "0.8.0",
+  "name": "Homecoming",
+  "testedCommit": "091694514fff9e3fb309f1c86167b70521aa0ce6",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34674273108",
+  "automatedAcceptance": "passed",
+  "unitTests": 91,
+  "homecomingBrowserChecks": 12,
+  "coastalRegressionChecks": 14,
+  "standaloneChecklist": true,
+  "uncaughtBrowserErrors": 0,
+  "physicalHardwareTested": false,
+  "fpsTargetCertified": false,
+  "publication": "Awaiting separate master/Pages deployment confirmation",
+  "testScope": "Pure model tests execute chapter progression. Browser tests use explicit local save fixtures for the finale and visual states, then verify real rendered UI, controller interactions and reloads. Gameplay checks run in Chromium with software WebGL, not a physical Xbox or gaming GPU.",
+  "priorFailedRuns": [
+    {
+      "run": 34673687717,
+      "reason": "Fixed-wall-time brake assertion did not allow the slow software simulation to stop."
+    },
+    {
+      "run": 34673990286,
+      "reason": "Holding D-pad down to open jobs leaked navigation into the menu. Added release-to-neutral entry handling and atomic test input edges."
+    }
+  ],
+  "qualityBoundary": "Incremental stylized vertical slice. Hero models, fully playable interiors, art/fun approval and real-device frame targets remain open."
+}

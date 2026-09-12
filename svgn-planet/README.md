@@ -1,3 +1,15 @@
+# Neighborhood Missions: Homecoming (v0.8.0)
+
+Production roadmap: [AAA_ROADMAP.md](AAA_ROADMAP.md). The canonical editable records are in [production/roadmap.json](production/roadmap.json); the [browser checklist](roadmap.html) and the in-game Menu / AAA production checklist read the same source. Real hardware sign-off belongs in [production/hardware-matrix.md](production/hardware-matrix.md). No checklist percentage or feature counter is treated as AAA certification.
+
+This round adds an optional connected Homecoming chapter. Meet Maya across from the original depot, or open Menu / Homecoming story journal. Five existing local contracts become a community story with named speakers and debriefs. Previously completed local projects count. Accepting a chapter never silently replaces an unrelated active contract. A garden/workshop choice changes the authored Common Ground plaza. Cleanup removes litter, repairs restore visible bulbs, and the photography stage displays decorative postcard panels. The final return to Maya awards 500 credits and a mint finish unlock exactly once. The plaza cafe and workshop furniture are scenery, not a fully simulated enterable business; the art and interior-production gates remain open.
+
+Menu / Ride performance report displays the last 600 rendered frames with average fps, p95/p99 frame intervals, CPU submission time, hitch counts and simulation/wall ratio. It excludes pauses and sends nothing automatically. It is not GPU timer data or certification. Speed camera FOV and distance now follow actual velocity instead of throttle state; coasting should no longer visually contract the camera as though braking. Reduce motion disables the speed effects. The existing unlimited-cruise, explicit-brake controls, all 102 contracts, controller mixer, saves and game URL remain intact.
+
+The Common Ground art is authored from existing original primitives and materials. Courier face and backpack details are an incremental polish pass, not a finished skinned hero model. Homecoming is a first vertical-slice step, not a claim that the game now looks like a commercial AAA production.
+
+## Previous Coastal Pulse release notes
+
 # Neighborhood Missions: Coastal Pulse (v0.7.0)
 
 Coastal Pulse adds 102 replayable contracts across the original neighborhood and 24 city districts. The six activity types are cafe courier runs, cleanup rounds, signal-cabinet timing repairs, viewpoint postcards, checkpoint circuits, and hop-through stunt rings. Contracts earn credits for five cosmetic vehicle finishes. These are variations on six activity systems, not 102 separate story campaigns.
