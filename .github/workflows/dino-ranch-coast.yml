@@ -2,7 +2,7 @@ name: Dino Atlas Ranch and Coast
 on:
   push:
     branches: [dino-ranch-coast-20260911]
-    paths: ['dino-atlas/**', 'scripts/dino-ranch-coast.py', '.github/workflows/dino-ranch-coast.yml']
+    paths: ['dino-atlas/**', 'scripts/dino-ranch-*.py', '.github/workflows/dino-ranch-coast.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -25,7 +25,8 @@ jobs:
           node-version: '22'
       - name: Apply isolated source integration
         run: |
-          if [ -f scripts/dino-ranch-coast.py ]; then python scripts/dino-ranch-coast.py; fi
+          python scripts/dino-ranch-coast.py
+          python scripts/dino-ranch-polish.py
           git add dino-atlas
           if ! git diff --cached --quiet; then
             git config user.name 'Dino Atlas Build'
@@ -38,12 +39,10 @@ jobs:
           find dino-atlas -maxdepth 1 -name '*.js' -exec node --check {} \;
           node --test dino-atlas/tests/*.test.mjs
       - name: Install rendered test runner
-        if: ${{ hashFiles('dino-atlas/tests/ranch-browser.py') != '' }}
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
       - name: Render and exercise Ranch and Coast
-        if: ${{ hashFiles('dino-atlas/tests/ranch-browser.py') != '' }}
         run: python dino-atlas/tests/ranch-browser.py
       - name: Record tested source
         if: always()
