@@ -1,8 +1,8 @@
 {
-  "version": "0.10.0",
-  "name": "first-bell",
+  "version": "0.11.0",
+  "name": "rosefire",
   "date": "2026-09-12",
-  "scope": "Ten guided archery lessons; optional scored three-court Bellkeeper Oath with coordinated threat budgets, a three-phase boss, recovery supplies and connected seed-derived routes. Existing expedition, audio, controller interfaces and AR Sanctuary remain available.",
+  "scope": "Original rain-polished PBR stone shaders, world-anchored stained-light caustics, twilight veil sky, woven Wardglass and pooled actual-teleport landing echoes. Reversible controller-accessible visual profiles, reduced-motion and AR-safe policy; preserves First Bell, Oath, saved expeditions, audio and all modes.",
   "saveCompatibility": "Existing permanent profiles and v0.9 Pilgrims Rest checkpoints retain their keys and generator. Optional Oath state restores through the same validated envelope. Hand latches are not restored; continued runs wait paused for explicit input. Practice and AR do not replace scored checkpoints.",
   "hardwareStatus": "Browser and emulated-controller acceptance are used for publication. Physical Quest 3 ergonomics, comfort, audio balance and performance still require hardware playtesting. The authored route reuses the existing architecture; a measured 20-30 minute production slice is not claimed."
 }

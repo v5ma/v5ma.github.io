@@ -1,0 +1,64 @@
+name: Vesperfall Rosefire
+on:
+  pull_request:
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-rosefire.yml']
+  push:
+    branches: [master]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-rosefire.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rosefire-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax, full model regression and canonical workbook
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/models.tap
+          python vesperfall/tests/production-workbook.py
+          python scripts/check-vesperfall.py
+      - name: Verify every served runtime, asset, plan and workbook byte
+        if: github.ref == 'refs/heads/master'
+        run: python -u vesperfall/tests/verify-live.py
+      - name: Install native test browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual shaders, matching frames and Xbox/VR/AR interfaces
+        env:
+          TEST_BASE_URL: ${{ github.ref == 'refs/heads/master' && 'https://v5ma.github.io' || 'http://127.0.0.1:4173' }}
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 900 python -u vesperfall/tests/rosefire-browser.py | tee test-output/rosefire-browser.log
+          test -s test-output/rosefire/report.json
+          test ! -e test-output/rosefire/failure.json
+          python vesperfall/tests/rosefire-pixels.py
+          timeout 180 python -u vesperfall/tests/production-browser.py | tee test-output/production-browser.log
+          timeout 240 python -u vesperfall/tests/launch.py | tee test-output/launch.log
+      - name: Archive source and diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar czf test-output/source.tgz vesperfall .github/workflows/vesperfall-rosefire.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rosefire-${{ github.ref == 'refs/heads/master' && 'publication' || 'acceptance' }}
+          path: test-output/
+          retention-days: 14

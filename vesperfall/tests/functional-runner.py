@@ -17,7 +17,7 @@ if name not in ALLOWED:
     raise SystemExit('Provide one approved native regression filename.')
 active=(name in {'unchained-combat.py','hunt-browser.py'} or
         name=='first-bell-browser.py' or
-        name=='browser.py' and os.getenv('VESPER_SUITE') in {'gallery','expedition'} or
+        name=='browser.py' and os.getenv('VESPER_SUITE') in {'ui','gallery','expedition'} or
         name=='cathedral-browser.py' and os.getenv('CATHEDRAL_SUITE')=='routes')
 if not active:
     runpy.run_path(str(Path(__file__).parent/name),run_name='__main__')

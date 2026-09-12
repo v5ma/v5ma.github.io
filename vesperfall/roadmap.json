@@ -1,5 +1,5 @@
 {
-  "version": "0.10.0",
+  "version": "0.11.0",
   "project": "Vesperfall: Arrows Unchained",
   "scope": "Quality-gated path toward a polished original premium archery roguelite. AAA is an aspiration, not a certified rating, budget or delivery promise. Public-only content.",
   "tasks": [
@@ -613,29 +613,38 @@
     {
       "id": "V37",
       "area": "Presentation",
-      "title": "Jewelglass material profiles, carved recurve and bounded spell shaders",
+      "title": "Jewelglass and Rosefire: reflective materials, stained light and bounded shaders",
       "status": "Implemented",
-      "gate": "Native material, rebuild and emulated stereo tests plus actual served-file verification.",
+      "gate": "Publish reversible original material and shader profiles with normal/AO maps preserved, visible native-frame comparisons, controller-accessible settings, reduced-motion and passthrough-safe policies; no new gameplay or save-state writes.",
       "priority": "P2",
       "milestone": "M0",
       "depends": [],
       "owner": "Art / audio",
-      "evidence": [],
-      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
-      "why": "Preserve the established game while closing the stated acceptance gate.",
-      "release": "Baseline through 0.6.0"
+      "evidence": [
+        "JEWELGLASS.md",
+        "ROSEFIRE.md",
+        "rosefire-shaders.js",
+        "rosefire.js",
+        "tests/rosefire.test.cjs",
+        "tests/rosefire-browser.py"
+      ],
+      "verification": "Original shader extension and automated/native rendering checks are separate from physical Quest frame-time, comfort and human art acceptance.",
+      "why": "Use coherent gothic light, wet stone and readable magical equipment to deepen the atmosphere without hiding combat information.",
+      "release": "0.11.0 Rosefire"
     },
     {
       "id": "V38",
       "area": "Hardware",
-      "title": "Measure physical Quest 3 stereo frame times for jewel reflections and shaders",
+      "title": "Measure physical Quest 3 stereo frame times for Jewelglass and Rosefire",
       "status": "Hardware QA",
       "gate": "Measure on device; never infer FPS, comfort or controller alignment from headless emulation.",
       "priority": "P0",
       "milestone": "M4",
       "depends": [],
       "owner": "Device QA",
-      "evidence": [],
+      "evidence": [
+        "ROSEFIRE.md"
+      ],
       "verification": "No physical device receipt yet.",
       "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
       "release": ""
