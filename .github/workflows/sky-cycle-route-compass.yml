@@ -40,15 +40,13 @@ jobs:
         run: python mario-maker-clone/svgn-paper-route/tests/route-compass-browser.py --fixture
       - name: Native Compass controller and journal checks
         run: python mario-maker-clone/svgn-paper-route/tests/route-compass-browser.py
-      - name: Existing Flight Deck controller regression
-        run: python mario-maker-clone/svgn-paper-route/tests/flight-deck-browser.py
+      # The unchanged Sky Cycle Flight Deck workflow runs its native 3D
+      # controller regression on the same commit in parallel, not twice.
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: sky-cycle-compass-${{ github.sha }}
-          path: |
-            /tmp/sky-cycle-compass/
-            /tmp/sky-cycle-flight-deck/
+          path: /tmp/sky-cycle-compass/
           if-no-files-found: warn
   published:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'

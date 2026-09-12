@@ -92,6 +92,9 @@ function paint(now){
   ribbon.hidden=!run||!active()||preference==='off'||!!document.querySelector('dialog[open]');
   if(ribbon.hidden)return;
   const g=guidance(run.profile,player.x);if(!g){ribbon.hidden=true;return;}
+  const headerBottom=document.getElementById('delivery-header')?.getBoundingClientRect().bottom||0;
+  const meterBottom=document.querySelector('#cloud-hud .cloud-loop')?.getBoundingClientRect().bottom||0;
+  ribbon.style.top=Math.ceil(Math.max(headerBottom,meterBottom)+12)+'px';
   ribbon.dataset.density=preference;
   $('sc-district').textContent=g.district.name+' / '+g.percent+'%';
   $('sc-next').textContent=g.next?'Next district: '+g.next.name+'.':'Next stop: the striped finish.';

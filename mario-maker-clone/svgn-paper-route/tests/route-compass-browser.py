@@ -1,5 +1,7 @@
 """Read-only integration checks. --fixture uses a deliberately stubbed engine.
 The default suite exercises native menus and rider motion; it never sets a win.
+Default 3D rendering is captured before switching through the real 2D view button
+for lengthy DOM/controller checks on the CPU-only runner. Not a GPU benchmark.
 """
 import argparse,functools,http.server,json,os,threading
 from pathlib import Path
@@ -58,7 +60,10 @@ try:
             check(page.evaluate('player.x')!=before,'Native: controller moves the real rider')
             check(page.evaluate('SkyCycleCompass.run.seen.includes("district:0")'),'Native: real simulation records the first district')
             page.wait_for_function('!document.getElementById("sc-compass").hidden')
+            check(page.evaluate('(()=>{const a=document.getElementById("sc-compass").getBoundingClientRect(),b=document.querySelector("#cloud-hud .cloud-loop").getBoundingClientRect();return a.top>=b.bottom+4;})()'),'Native: compass clears existing route and speed instruments')
             page.screenshot(path=str(out/'native-compass.png'))
+            # Change only the supported renderer through its normal UI, not physics or progression.
+            page.get_by_text('2D view',exact=True).click()
             tap(9);seek('document.activeElement.id==="sc-journal-pause"');tap(0)
             check(page.evaluate('document.getElementById("sc-journal").open && __delivery.paused'),'Native: controller opens journal without resuming the route')
             seek('document.activeElement.matches(".sc-stamps article")')
@@ -83,4 +88,4 @@ try:
             except Exception:pass
         browser.close()
 finally:
- server.shutdown();(out/(label+'-report.json')).write_text(json.dumps({'commit':os.getenv('GITHUB_SHA'),'mode':label,'passed':success,'checks':checks,'pageErrors':errors},indent=2))
+ server.shutdown();(out/(label+'-report.json')).write_text(json.dumps({'commit':os.getenv('GITHUB_SHA'),'mode':label,'passed':success,'checks':checks,'pageErrors':errors,'rendererNotes':'Default 3D gameplay capture; supported 2D renderer for extended journal navigation.' if not args.fixture else 'Isolated fixture, not a game renderer.'},indent=2))
