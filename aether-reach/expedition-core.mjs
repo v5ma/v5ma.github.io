@@ -1,3 +1,4 @@
+import {BELL_TASK,bellGoal} from './bellwether-world.mjs';
 import {ROOFS,ROOF_THINGS,BEACON_TARGETS} from './rooftop-world.mjs';
 /* Original Skyward Dispatch campaign. No UI or renderer can award completion;
  * guarded world interactions, actual transit and simulation events do that. */
@@ -17,6 +18,7 @@ export const saveExpedition=s=>cleanExpedition(s.expedition);
 export function expeditionSnapshot(s){const e=s.expedition;return {...saveExpedition(s),defense:{...e.defense},escort:{...e.escort},transits:e.transits.map(t=>({...t,position:transitPosition(TRANSIT.find(d=>d.id===t.id),t.t)})),completed:TASKS.filter(t=>has(s,t.flag)).map(t=>t.id)};}
 function thing(s,id){if(id==='surveyor')return {id,...s.expedition.escort,name:'Surveyor Lio',kind:'person'};return THINGS.find(t=>t.id===id);}
 export function expeditionGoal(s,id=s.expedition.tracked){
+ if(id===BELL_TASK.id)return bellGoal(s);
  const e=s.expedition,find=key=>thing(s,key),first=ids=>find(ids.find(k=>!has(s,k))||ids.at(-1));
  if(id==='roof-surveys')return first(ROOFS.map(r=>'survey-'+r.id));
  if(id==='roof-courier')return ['roof-parcel-gannet','roof-parcel-academy','roof-parcel-dawn'].every(k=>has(s,k))?find('roof-desk'):first(['roof-parcel-gannet','roof-parcel-academy','roof-parcel-dawn']);

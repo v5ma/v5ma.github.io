@@ -2,7 +2,7 @@
   "version": 1,
   "updated": "2026-09-12",
   "project": "Aether Reach",
-  "release": "0.8.0 Foundry Finish",
+  "release": "0.9.0 Bellwether Blackout",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -604,13 +604,13 @@
       "phase": "Presentation",
       "title": "Foundry Finish tactical art",
       "priority": "P0",
-      "status": "In review",
+      "status": "Browser checked",
       "depends": [
         "W02"
       ],
       "acceptance": "Cover meshes match collision bounds; Tavi, traps, drops, arena consoles and active rifts are visible without per-frame allocation.",
-      "evidence": "foundry-art.mjs; foundry-kit.mjs; tests/foundry.test.mjs.",
-      "next": "Inspect the rendered Customs fight and scope captures before publication."
+      "evidence": "v0.8 source ffa9665 passed the Foundry HTTP/WebGL review with visible Tavi, traps, cover and real sniper optics. PR #116 publication matched 78 files.",
+      "next": "Continue visual and performance review across the entire district, including new Blackout props."
     },
     {
       "id": "F02",
@@ -630,15 +630,15 @@
       "phase": "Production",
       "title": "One finished district vertical slice",
       "priority": "P0",
-      "status": "Planned",
+      "status": "In review",
       "depends": [
         "F01",
         "W01",
         "B06"
       ],
       "acceptance": "One coherent 20-30 minute route combines street combat, interior exploration, rooftop travel, rewards and a clear ending.",
-      "evidence": "Proposed production gate, not completed content.",
-      "next": "Choose a single district slice and record player completion and friction."
+      "evidence": "v0.9 implements a connected Bellwether street-interior-rooftop-return adventure with saved stages. Mission duration, pacing and player approval are not certified.",
+      "next": "Play the complete Blackout adventure and record timing, difficulty, wayfinding and repetitive sections. Gate G1 remains open until player review."
     },
     {
       "id": "P02",
@@ -762,8 +762,23 @@
         "Q03"
       ],
       "acceptance": "Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.",
-      "evidence": "v0.7 c942abeda531879a709ee606190ca0e4886f19e7 has a 75-file publication receipt. v0.8 uses the same verification pipeline.",
-      "next": "Attach the actual v0.8 deployment receipt; never infer live status from a branch commit."
+      "evidence": "v0.8 production source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06: Pages succeeded and publication run 34702682332 matched 78 files. v0.9 must pass the same post-merge verification.",
+      "next": "Record the actual v0.9 merge and live-file receipt before claiming publication."
+    },
+    {
+      "id": "V01",
+      "phase": "Production",
+      "title": "Bellwether street-interior-rooftop adventure",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "W01",
+        "F02",
+        "I04"
+      ],
+      "acceptance": "Complete both combat sites, operate independent Arcade dials, use a continuous roof route, hold the receiver, return for a once-only reward, and save/resume without lost progress or extra enemies.",
+      "evidence": "BELLWETHER-BLACKOUT.md; bellwether model/scene modules; tests/bellwether.test.mjs and the full controller browser journey. Test execution and player acceptance remain separately recorded.",
+      "next": "Inspect the release browser evidence, then obtain player feedback on this first connected district mission."
     }
   ],
   "milestones": [
@@ -785,7 +800,8 @@
         "P01",
         "B06",
         "F01",
-        "P04"
+        "P04",
+        "V01"
       ],
       "exit": "A player-approved complete district loop, not just individually passing features."
     },
