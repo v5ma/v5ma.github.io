@@ -1,0 +1,31 @@
+<!doctype html><meta charset="utf-8"><title>Flight Deck integration fixture, not the game</title>
+<style>body{font:16px system-ui;background:#182a36;color:#fff}section{display:none}section.open{display:block}button,input,a{margin:8px;padding:8px}#stagewrap{height:200px}dialog{color:#111}canvas{width:500px;height:150px}.delivery-result-actions{display:flex;flex-wrap:wrap}</style>
+<header id="delivery-header"><div class="actions"><button id="score-settings">Audio mix</button><button id="sky-retry">Retry checkpoint</button></div></header>
+<canvas id="game" tabindex="0"></canvas><div id="stagewrap"></div>
+<section id="delivery-menu" class="open" role="dialog" aria-modal="true"><div class="delivery-hero"></div><button data-course="0">First Flight</button><button data-course="1">Second Flight</button></section>
+<section id="delivery-pause" role="dialog" aria-modal="true"><div class="delivery-pause-card"><button data-action="resume">Resume</button><button data-action="routes">Routes</button></div></section>
+<section id="delivery-results" role="dialog" aria-modal="true"><div class="delivery-result-actions"><button data-action="routes">Routes</button></div></section>
+<dialog id="score-dialog"><label>Music <input id="score-music" type="range" value="48"></label><label>Effects <input id="score-effects" type="range" value="36"></label><form method="dialog"><button>Done</button></form></dialog>
+<script>
+var keys={}, mode='edit',won=false,deliveries=0,routeTotal=4,player={x:0,onGround:true,track:null,peg:null,dead:0,nitro:3},cv=document.getElementById('game');
+var DeliveryCampaign={routes:[{id:'flight',name:'First Flight',par:60},{id:'flight-2',name:'Second Flight',par:70}]},__adventure={state:{transition:null}},code='original';
+function levelCode(){return code;} function pollGamepad(){} function pollGamepadEdit(){} var edits=0,jumps=0,allowWin=false;
+function startPlay(){mode='play';won=false;deliveries=0;player.x=0;document.querySelector('#delivery-results').classList.remove('open');}
+function stepPlayer(){if(keys.ArrowRight)player.x+=3;if(keys.Space)jumps++;}
+function respawn(){player.x=0;}function fireNitro(p){if(keys.KeyX&&p.nitro>0)p.nitro--;}
+function stepPackets(){if(window.fixtureMail){deliveries++;window.fixtureMail=false;}}
+function win(){if(allowWin){won=true;document.getElementById('delivery-results').classList.add('open');}}
+function keyActions(c){return ['ArrowLeft','ArrowRight','Space','KeyX','KeyC','KeyZ','KeyV'].includes(c)?[c]:[];}
+function padHeld(p,a){return ( {left:[14],right:[15],jump:[0],nitro:[2,7],fire:[1,5],whip:[3,4],watch:[10]}[a]||[]).some(i=>p.buttons[i].pressed);}
+var __delivery={state:{route:0,code:'original',paused:true,menu:true},get paused(){return this.state.paused},act(a){if(a==='pause'){this.state.paused=!this.state.paused;document.getElementById('delivery-pause').classList.toggle('open',this.state.paused);if(this.state.paused)document.querySelector('[data-action=resume]').focus();}if(a==='resume'){this.state.menu=false;this.state.paused=false;for(const x of document.querySelectorAll('section'))x.classList.remove('open');cv.focus();}if(a==='routes'){this.state.paused=true;this.state.menu=true;document.getElementById('delivery-menu').classList.add('open');}}};
+// Match the production loader's event priority over the legacy pause listener.
+window.addEventListener('keydown',e=>window.SkyCycleFlightDeck?.handleKey(e),true);
+window.addEventListener('keydown',e=>{if(e.code==='Escape'||e.code==='KeyP'){e.preventDefault();e.stopImmediatePropagation();__delivery.act('pause');}else for(const c of keyActions(e.code))keys[c]=true;},true);
+window.addEventListener('keyup',e=>{for(const c of keyActions(e.code))keys[c]=false;});
+document.addEventListener('click',e=>{if(e.target.dataset.course){__delivery.state.route=Number(e.target.dataset.course);__delivery.act('resume');startPlay();}if(e.target.dataset.action)__delivery.act(e.target.dataset.action);});
+document.getElementById('sky-retry').onclick=()=>respawn();
+let scoreResume=false;document.getElementById('score-settings').onclick=()=>{scoreResume=mode==='play'&&!__delivery.paused&&!won;if(scoreResume)__delivery.act('pause');document.getElementById('score-dialog').showModal();};
+document.getElementById('score-dialog').addEventListener('close',()=>{if(scoreResume)__delivery.act('resume');scoreResume=false;});
+function loop(){if(mode==='play'&&!won&&!__delivery.paused&&!__delivery.state.menu){stepPlayer();fireNitro(player);stepPackets();}requestAnimationFrame(loop);}requestAnimationFrame(loop);
+document.querySelector('[data-course]').focus();
+</script><script type="module" src="../flight-deck.js"></script>

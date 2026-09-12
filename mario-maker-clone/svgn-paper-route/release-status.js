@@ -1,7 +1,10 @@
 /* Explicit build and campaign readiness. Optional authoring tools must not decide
  * which campaign is loaded, and an unfinished download must not spawn old data. */
 (function(){'use strict';
- const VERSION='0.15.1',BUILD='sky-cycle-2026.09.11';
+ const VERSION='0.16.0',BUILD='sky-cycle-flight-deck-2026.09.11';
+ // Register before the legacy DOMContentLoaded pause listener. Native dialogs
+ // consume their own keyboard events without unpausing the route underneath.
+ window.addEventListener('keydown',event=>window.SkyCycleFlightDeck?.handleKey(event),true);
  function boot(){
   document.title='Sky Cycle | Ride, explore, create';
   const brand=document.querySelector('#delivery-header .delivery-brand');if(brand)brand.innerHTML='Sky Cycle<span>A SVGN ORIGINAL</span>';
@@ -48,6 +51,7 @@
   }).finally(()=>{
    import('./prismatic-renderer.js').catch(error=>console.error('Optional material pass could not load:',error));
    import('./ride-lab-loader.js').catch(error=>console.error('Ride Lab could not load:',error));
+   import('./flight-deck.js').catch(error=>console.error('Flight Deck could not load:',error));
   });
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
