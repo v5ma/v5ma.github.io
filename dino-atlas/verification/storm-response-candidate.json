@@ -1,0 +1,53 @@
+{
+  "build": "aaa-vslice-storm-20260911.2",
+  "phase": "pre-publication candidate",
+  "tested_source_commit": "20feef1c18edf8524179a95140ac8a95a4fe1f4c",
+  "workflow_run": "https://github.com/v5ma/v5ma.github.io/actions/runs/34674279580",
+  "workflow_job": 103501206155,
+  "artifact_id": 10291424475,
+  "artifact_sha256": "dd2980cf44b36971d0804471bc35a56ae045b3ebb018aed76ab98434f371ae9e",
+  "models": {"passed": 85, "failed": 0, "skipped": 0, "report_sha256": "4898eca207b38077b220fc7af097f8719dba2bd4a683d3c84587dca166da41c6"},
+  "browser": {
+    "passed": 28,
+    "uncaught_errors": [],
+    "report_sha256": "c0592a5281f146866afc26fd3455de3bd97da5f3b0810475892907d9a8970dc5",
+    "checks": [
+      "Correct Storm Response release boots over HTTP/WebGL",
+      "All 64 existing residents retained",
+      "D-pad and A reach the in-game roadmap without scripted DOM focus",
+      "Xbox launches the directed mission and storm weather",
+      "Storm flashes are off by default",
+      "Actual RT driving reaches the parking bay OUTSIDE the building",
+      "Real doorway/corridor walking and A restore Meridian power",
+      "Rain is hidden inside the building",
+      "A requests the original helicopter at Meridian",
+      "Transfer does not teleport or board the ranger",
+      "Y boards and RT takes off; the objective switches to Northstar",
+      "LT landing, Y exit, rooftop walking and A calibrate Northstar",
+      "Suspend preserves the mission checkpoint",
+      "Suspended story remains resumable after reload",
+      "Continue resumes rather than restarting",
+      "Checkpoint recovery safely restores the rooftop without skipping a stage",
+      "A and D-pad operate the South Coast roof-to-ground lift",
+      "Real interior walking recovers marine telemetry",
+      "A transfers the original boat to South Rescue Pier",
+      "Boat transfer keeps the ranger ashore until Y is pressed",
+      "Y and RT launch the actual boat for the coastal leg",
+      "Story clock freezes while the menu is open",
+      "Completion pays exactly 1,800 credits into the existing economy",
+      "Completion uses a controller-closeable in-game panel",
+      "Completion survives reload",
+      "Earned credits survive reload",
+      "Saved ledger rejects a duplicate reward after reload",
+      "No uncaught JavaScript errors in the tested story journey"
+    ]
+  },
+  "runtime_manifest_entries": 37,
+  "selected_runtime_sha256": {
+    "dino-atlas/aaa-director.js": "e2a08cedc4ffe937b04013c8cebbaa6d03cf7c0c76f21009d29dded2159a626c",
+    "dino-atlas/storm-mission.js": "54f8bfd1b892f265f5ed2abdad6d2bcf915a53a0bd75ed3d59544f95dd2954c6",
+    "dino-atlas/ranger.js": "d563887b7167f4fbf301f8351cb0700835143917511ac94489f21bcb70575bcb"
+  },
+  "limitations": "Native Chromium HTTP and software WebGL; synthetic Xbox. Distant travel uses explicit position fixtures. No scripted DOM focus. Doorways, corridors, transfers, boarding, landing, lifts, UI, completion and reload use production behavior. Full sea route also passes a real Rapier test. Physical controller/audio hardware and consumer-GPU performance are untested.",
+  "publication": "This receipt does not by itself assert deployment. The master-branch Storm Response workflow must separately match public runtime bytes and rerun the browser journey against GitHub Pages."
+}
