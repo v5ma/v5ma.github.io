@@ -1,0 +1,37 @@
+name: Aether cast asset review
+on:
+  push:
+    branches: [feat/aether-skyglass-cast-20260912]
+    paths: ['.github/workflows/aether-cast-source.yml']
+permissions:
+  contents: read
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Capture current game and public publisher download metadata
+        run: |
+          mkdir -p /tmp/cast-review
+          git archive --format=zip HEAD aether-reach index.html projects.css .github/workflows > /tmp/cast-review/source.zip
+          python - <<'PY'
+          import urllib.request,re,json
+          from pathlib import Path
+          out=Path('/tmp/cast-review');report={}
+          for pack in ['ultimatemodularcharacters','ultimatemodularwomen','piratekit']:
+            url='https://quaternius.com/packs/'+pack+'.html'
+            try:
+              text=urllib.request.urlopen(url,timeout=30).read().decode()
+              (out/(pack+'.html')).write_text(text)
+              report[pack]=re.findall(r'(?:href|src|data-url)=[\"\']([^\"\']+)',text)
+            except Exception as e:report[pack]={'error':str(e)}
+          (out/'links.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aether-cast-source
+          path: /tmp/cast-review
+          retention-days: 14
