@@ -1,5 +1,5 @@
-"""Native HTTP rhythm/AR acceptance. Keyboard input and emulated device poses
-are distinguished. No game position, progress, hit count or audio-clock writes.
+"""Native HTTP rhythm/AR correctness at a small software drawing buffer.
+No game position, progress, hit count or audio-clock writes. Not a FPS benchmark.
 """
 from pathlib import Path
 from urllib.parse import urlparse
@@ -13,13 +13,11 @@ def check(v,s):
  checks.append(s);print('PASS:',s,flush=True)
 def snapshot(page):return page.evaluate('Prism.snapshot()')
 def device_button(page,hand,index):
- # Sample a controller edge across actual device frames; a fixed 90 ms pulse
- # can disappear entirely on software-rendered stereo frames.
  page.evaluate("""async ([h,i])=>{const scene=AFRAME.scenes[0];async function frames(){let prev=scene.frame,n=0;await new Promise((resolve,reject)=>{const began=performance.now(),timer=setInterval(()=>{if(scene.frame!==prev){prev=scene.frame;n++;}if(n>=3){clearInterval(timer);resolve();}else if(performance.now()-began>12000){clearInterval(timer);reject(Error('XR frames stalled'));}},4);});}TestXR.button(h,i,true);await frames();TestXR.button(h,i,false);await frames();}""",[hand,index])
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.25,service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.125,service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  if MODE=='xr':ctx.add_init_script(path=str(ROOT/'prism-current/tests/fake-xr.js'))
  page=ctx.new_page();page.set_default_timeout(40000);page.on('pageerror',lambda e:errors.append(str(e)))
@@ -39,7 +37,6 @@ with sync_playwright() as pw:
    page.wait_for_function('Prism.snapshot().time>2');page.keyboard.press('KeyP');page.wait_for_function('Prism.snapshot().phase==="paused"');before=snapshot(page)['time'];page.wait_for_timeout(450)
    check(abs(snapshot(page)['time']-before)<.001,'Pause freezes audio position and note progression together')
    page.locator('#resume').click();page.wait_for_function('Prism.snapshot().phase==="playing"');page.locator('#scene-wrap').focus()
-   # Ordinary DOM keys at observed note times; not a human accuracy benchmark.
    page.evaluate("""()=>{const done=new Set(),map=['KeyD','KeyF','KeyJ','KeyK'];window.__testKeys=setInterval(()=>{const s=Prism.snapshot();if(s.phase==='complete'){clearInterval(__testKeys);return;}if(s.phase!=='playing')return;for(const n of s.notes){if(done.has(n.id)||Math.abs(n.time-s.time)>.03)continue;done.add(n.id);const target=document.getElementById('scene-wrap');for(const type of['keydown','keyup'])target.dispatchEvent(new KeyboardEvent(type,{code:map[n.lane],bubbles:true,cancelable:true}));}},3);} """)
    page.wait_for_function('Prism.snapshot().state.hits>=3');page.screenshot(path=str(OUT/'rhythm-session.png'))
    check(snapshot(page)['state']['score']>0,'Normal keyboard input scores the timing-only practice mode')
@@ -70,9 +67,10 @@ with sync_playwright() as pw:
    page.evaluate('TestXR.state.session.end()');page.wait_for_function('!Prism.snapshot().immersive');check(snapshot(page)['studio'],'Ending XR restores the desktop studio and does not record an aborted run')
    page.evaluate('TestXR.state.blend="opaque"');page.locator('#enter-ar').click();page.wait_for_function('TestXR.state.session.ended');check(not snapshot(page)['immersive'],'An opaque session is rejected rather than misrepresented as passthrough')
   check(not errors,'No uncaught browser errors in this suite')
-  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP Chromium/software WebGL at quarter pixel ratio. Desktop uses ordinary UI and DOM keys. XR uses explicitly emulated input poses and alpha-blend sessions; not actual Quest passthrough, physical performance or comfort certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'state':snapshot(page),'scope':'Native HTTP Chromium/software WebGL at one-eighth pixel ratio for correctness, not performance. Desktop uses UI and DOM keys; XR uses explicitly emulated poses and alpha-blend sessions. Full-resolution artwork is checked separately. No physical Quest or consumer-GPU certification.'},indent=2))
  except Exception as e:
-  try:state=snapshot(page)
+  try:
+   state=snapshot(page);state['stall']=page.evaluate('Prism.component.lastStall || null');state['renderer']=page.evaluate('({pixels:AFRAME.scenes[0].renderer.domElement.width*AFRAME.scenes[0].renderer.domElement.height,ratio:AFRAME.scenes[0].renderer.getPixelRatio()})')
   except:state={}
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2));page.screenshot(path=str(OUT/'failure.png'));raise
  finally:ctx.close();b.close()
