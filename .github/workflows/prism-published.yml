@@ -13,35 +13,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            prism-current
-      - name: Compare exact public files to this commit
+          sparse-checkout: prism-current
+          persist-credentials: false
+      - name: Compare exact public Prism files to this commit
         run: |
           python prism-current/tests/verify.py
           python - <<'PY'
           import json,urllib.request,time,hashlib
           from pathlib import Path
           m=json.loads(Path('test-output/prism-manifest.json').read_text());result={}
+          # Other game releases may legitimately update shared homepage assets.
+          # Their integration is checked by the actual homepage-to-game test.
+          files={p:h for p,h in m['files'].items() if p.startswith('prism-current/')}
           for attempt in range(36):
-            for path,expected in m['files'].items():
+            for path,expected in files.items():
               if result.get(path,{}).get('match'):continue
               try:
                 with urllib.request.urlopen('https://v5ma.github.io/'+path+'?prism='+m['source'][:12],timeout=12) as r:
                   h=hashlib.sha256(r.read()).hexdigest();result[path]={'status':r.status,'sha256':h,'match':h==expected}
               except Exception as e:result[path]={'match':False,'error':str(e)}
-            if all(v['match'] for v in result.values()):break
+            if len(result)==len(files) and all(v['match'] for v in result.values()):break
             time.sleep(6)
-          receipt={'source':m['source'],'version':m['version'],'files':result,'all_match':all(v['match'] for v in result.values())}
-          Path('test-output/publication.json').write_text(json.dumps(receipt,indent=2));assert receipt['all_match'],receipt
+          receipt={'source':m['source'],'version':m['version'],'files':result,'all_match':len(result)==len(files) and all(v['match'] for v in result.values())}
+          Path('test-output/publication.json').write_text(json.dumps(receipt,indent=2))
+          print(json.dumps(receipt,indent=2));assert receipt['all_match'],receipt
           PY
-      - name: Verify the public homepage-to-game flow
-        env:
-          TEST_BASE_URL: https://v5ma.github.io
-          PRISM_SUITE: desktop
+      - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-          timeout 360 python -u prism-current/tests/browser.py
+      - name: Verify public homepage and a full original song
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+          PRISM_SUITE: desktop
+        run: timeout 360 python -u prism-current/tests/browser.py
+      - name: Verify public controller and mixer flow
+        env:
+          PRISM_URL: https://v5ma.github.io/prism-current/
+        run: timeout 150 python -u prism-current/tests/control-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
