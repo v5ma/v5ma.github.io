@@ -109,11 +109,11 @@ export function createExpedition(api){
     b.x=nx;b.z=nz;b.y=floor.y+(b.humanoid?1.05:0);b.walking=true;return false;
    }return false;
  }
- function enemies(s,dt){const p=s.p;for(const b of s.drones){if(!b.humanoid||b.hp<=0)continue;b.stun=Math.max(0,b.stun-dt);b.walking=false;if(b.stun>0){b.telegraph=0;continue;}b.attack-=dt;const home=EXP_DISTRICTS.find(d=>d.id===b.home),eye={x:p.x,y:p.y+1.35,z:p.z},seen=dist(b,eye)<(b.range??(b.kind==='marshal'?37:28))&&clearLine(b,eye,s);b.awareness=seen?5:Math.max(0,(b.awareness||0)-dt);
-   if(seen){b.heading=Math.atan2(p.x-b.x,-(p.z-b.z));if(dist(b,eye)>9&&Math.abs(p.x-home.x)<home.w/2-2&&Math.abs(p.z-home.z)<home.d/2-2&&Math.abs(p.y-(b.y-1.05))<2)walkPerson(s,b,p,b.chaseSpeed??(b.kind==='breacher'?1.5:2.5),dt);
+ function enemies(s,dt){const p=s.p;for(const b of s.drones){if(!b.humanoid||b.hp<=0)continue;b.stun=Math.max(0,b.stun-dt);b.walking=false;if(b.stun>0){b.telegraph=0;continue;}b.attack-=dt;const home=b.arenaHome||EXP_DISTRICTS.find(d=>d.id===b.home),eye={x:p.x,y:p.y+(p.crouched?.9:1.35),z:p.z},seen=dist(b,eye)<(b.range??(b.kind==='marshal'?37:28))&&clearLine(b,eye,s);b.awareness=seen?5:Math.max(0,(b.awareness||0)-dt);
+   if(seen){b.heading=Math.atan2(p.x-b.x,-(p.z-b.z));if(home&&dist(b,eye)>9&&Math.abs(p.x-home.x)<home.w/2-2&&Math.abs(p.z-home.z)<home.d/2-2&&Math.abs(p.y-(b.y-1.05))<2)walkPerson(s,b,p,b.chaseSpeed??(b.kind==='breacher'?1.5:2.5),dt);
     b.telegraph=b.attack<.9?Math.max(0,1-b.attack/.9):0;
-    if(b.attack<=0&&s.bullets.length<90){const speed=b.projectileSpeed??(b.kind==='marshal'?21:15),n=b.kind==='breacher'?3:1,l=dist(b,eye)||1;for(let k=0;k<n;k++){const spread=(k-(n-1)/2)*.65;s.bullets.push({x:b.x,y:b.y+.35,z:b.z,vx:(eye.x-b.x+spread)/l*speed,vy:(eye.y-b.y-.35)/l*speed,vz:(eye.z-b.z-spread)/l*speed,life:3.2,damage:b.shotDamage??(b.kind==='breacher'?15:12)});}b.attack=b.attackDelay??(b.kind==='marshal'?2.3:3);emit(s,'enemy-shot');}
-   }else{b.telegraph=0;const route=b.patrol||[[b.origin.x,b.origin.z]],v=route[b.patrolIndex%route.length];if(walkPerson(s,b,{x:v[0],z:v[1]},1.2,dt))b.patrolIndex=(b.patrolIndex+1)%route.length;}
+    if(b.attack<=0&&s.bullets.length<90){const speed=b.projectileSpeed??(b.kind==='marshal'?21:15),n=b.kind==='breacher'?3:1,l=dist(b,eye)||1;for(let k=0;k<n;k++){const spread=(k-(n-1)/2)*.65;s.bullets.push({x:b.x,y:b.y+.35,z:b.z,vx:(eye.x-b.x+spread)/l*speed,vy:(eye.y-b.y-.35)/l*speed,vz:(eye.z-b.z-spread)/l*speed,life:3.2,damage:b.shotDamage??(b.kind==='breacher'?15:12)});}b.attack=b.attackDelay??(b.kind==='marshal'?2.3:3);emit(s,'enemy-shot',{at:{x:b.x,y:b.y,z:b.z},kind:b.kind,weapon:b.gun||'carbine'});}
+   }else{b.telegraph=0;const route=b.patrol||[[b.origin.x,b.origin.z]],v=route[(b.patrolIndex||0)%route.length];if(walkPerson(s,b,{x:v[0],z:v[1]},1.2,dt))b.patrolIndex=((b.patrolIndex||0)+1)%route.length;}
   }}
  function tick(s,dt){const e=s.expedition,p=s.p;
   if(p.rail){if(!e.railTrip&&EXP_RAILS.some(r=>r.id===p.rail.id))e.railTrip={id:p.rail.id,start:p.rail.s,distance:0,last:p.rail.s};if(e.railTrip?.id===p.rail.id){e.railTrip.distance+=Math.abs(p.rail.s-e.railTrip.last);e.railTrip.last=p.rail.s;}}

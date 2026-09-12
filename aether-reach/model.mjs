@@ -12,7 +12,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.7.0';
+export const VERSION='0.8.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});

@@ -28,9 +28,9 @@ export function installCombatUI(api){
   $('scope-view').hidden=!(s.p.scoped&&w.id==='sniper'&&!xr);$('hit-confirm').hidden=performance.now()>lastHit||api.paused();
   $('credits-value').textContent=s.kit.credits;const depot=depotNear(s);$('buy-button').textContent=depot?'B · '+depot.name:'B · Find outfitters';
   $('equipment-name').textContent=w.name.toUpperCase();$('ammo').innerHTML=String(s.p.ammo).padStart(2,'0')+` <i>/ ${w.id==='arc'?'∞':s.kit.reserve[w.id]}</i>`;$('weapon-status').textContent=s.p.reload>0?'RELOADING…':`${w.role} · R reload`;
-  if(!xr){const base=api.settings.fov,zoom=s.p.scoped?w.zoom:1,fov=Math.atan(Math.tan(base*Math.PI/360)/zoom)*360/Math.PI;api.view.camera.fov+=(fov-api.view.camera.fov)*Math.min(1,dt*16);api.view.camera.updateProjectionMatrix();}
+  if(!xr){const base=api.settings.fov,zoom=s.p.scoped?(w.id==='sniper'?(s.skirmish?.scopeZoom||4):w.zoom):1,fov=Math.atan(Math.tan(base*Math.PI/360)/zoom)*360/Math.PI;api.view.camera.fov+=(fov-api.view.camera.fov)*Math.min(1,dt*16);api.view.camera.updateProjectionMatrix();}
   for(const b of weapons.children){const owned=s.kit.owns.includes(b.dataset.weapon);b.disabled=!owned;b.classList.toggle('selected',b.dataset.weapon===s.p.weapon);}
-  if(s.p.weapon!==previousWeapon){previousWeapon=s.p.weapon;$('scope-label').textContent=w.name.toUpperCase()+' / 4×';}
+  previousWeapon=s.p.weapon;$('scope-label').textContent=w.name.toUpperCase()+' / '+(s.skirmish?.scopeZoom||4)+'x';
   const target=railTarget(s);$('transfer-help').hidden=!(s.p.rail||!s.p.grounded&&s.p.lastRail);$('transfer-help').textContent=target?(s.p.rail?'JUMP → LOOK → E: ':'E: CATCH ')+target.rail.name+' · '+target.distance.toFixed(1)+' m':'FREE LOOK · SPACE releases with momentum · aim toward a highlighted line';
   if(dialog.open&&lastShop!==s.p.weapon+':'+s.kit.credits)stock();
  }
