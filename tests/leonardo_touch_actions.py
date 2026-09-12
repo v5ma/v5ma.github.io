@@ -1,4 +1,10 @@
-"""Independent ordinary-touch action and lifecycle acceptance, without state writes."""
+"""Independent ordinary-touch action and lifecycle acceptance, without state writes.
+
+Borderlands intentionally makes Vinci a safe town. This regression therefore
+checks that touch combat input cannot attack or brace there, while preserving
+jump, analogue walking, riding, scanning, rotation cleanup and mobile UI.
+Badlands combat itself has a separate fresh Xbox-input acceptance journey.
+"""
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
@@ -21,16 +27,15 @@ with sync_playwright() as p:
  def fingers(kind,*pts):cdp.send('Input.dispatchTouchEvent',{'type':kind,'touchPoints':list(pts)})
  try:
   page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').tap();ticks()
+  check(read()['frontier']['zone']=='town','A fresh touch session begins in authoritative safe Vinci')
   page.locator('#touch-ride').tap();page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');ticks()
-  check(page.locator('[data-action="attack"]').is_visible() and page.locator('[data-hold="guard"]').is_visible(),'Dismounting with touch reveals the staff and brace controls')
+  check(page.locator('[data-action="attack"]').is_visible() and page.locator('[data-hold="guard"]').is_visible(),'Dismounting retains the familiar staff and brace touch layout')
   check(len([e for e in read()['events'] if e['type']=='exit'])==1,'One tap dismounts once without a duplicate click remount')
-  guard=center('[data-hold="guard"]');staff=center('[data-action="attack"]')
+  guard=center('[data-hold="guard"]');staff=center('[data-action="attack"]');swings=len([e for e in read()['events'] if e['type']=='swing')
   fingers('touchStart',point(1,guard));ticks();fingers('touchStart',point(1,guard),point(2,staff));ticks()
-  check(read()['guarding'] and any(e['type']=='swing' for e in read()['events']),'Two actual fingers can brace and swing the staff together')
-  # Chromium's per-point end identifies the finger being lifted, not the one
-  # remaining. Verified against emitted pointerup events on an isolated page.
-  fingers('touchEnd',point(2,staff));ticks();check(read()['guarding'],'Releasing the staff finger does not cancel the brace finger')
-  fingers('touchEnd');ticks();check(not read()['guarding'] and read()['input']['buttons']==0,'Lifting the brace finger releases defense')
+  check(not read()['guarding'] and len([e for e in read()['events'] if e['type']=='swing')==swings,'Two-finger combat input cannot create a staff attack or combat brace inside safe Vinci')
+  check('safe town' in read()['frontier']['zone'] or 'safe town' in page.locator('#toast').inner_text().lower(),'Touch staff input explains that Vinci is safe instead of silently attacking')
+  fingers('touchEnd',point(2,staff));ticks();fingers('touchEnd');ticks();check(read()['input']['buttons']==0,'Lifting both combat fingers releases all held touch input')
   page.locator('[data-action="jump"]').tap();ticks();check(read()['lift']>0,'The touch Hop button jumps in the real world')
   page.wait_for_function('LeonardoGuild.inspect().lift===0')
   stick=center('#move-stick');r=page.locator('#move-stick').bounding_box()['width']*.31
@@ -47,7 +52,7 @@ with sync_playwright() as p:
   page.locator('#mission-toggle').tap();check(page.locator('#mission-description').is_visible(),'Mobile mission details remain accessible behind the collapse control')
   page.locator('#mission-toggle').tap();check(page.locator('#mission-description').is_hidden(),'Mission details collapse again to recover play space')
   check(not errors,'No uncaught errors in touch action and orientation checks')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'scope':'Native Chromium touch input on HTTP/software WebGL. No player, save, quest or clock assignment. Not a hardware-phone benchmark.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'scope':'Native Chromium touch input on HTTP/software WebGL. Safe-town combat prohibition plus retained touch movement/UI. No player, save, quest or clock assignment. Badlands combat is covered separately by the region controller journey. Not a hardware-phone benchmark.'},indent=2))
  except Exception as e:
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors},indent=2));page.screenshot(path=str(OUT/'failure.png'));raise
  finally:ctx.close();b.close()
