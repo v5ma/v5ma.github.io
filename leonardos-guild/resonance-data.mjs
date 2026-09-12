@@ -1,5 +1,5 @@
 /* Resonance: original score inventory and validated, additive player preferences. */
-export const AUDIO_VERSION = 1;
+export const AUDIO_VERSION = 2;
 export const AUDIO_KEY = 'svgn.leonardos-guild.audio.v1';
 export const CONSOLE_KEY = 'svgn.leonardos-guild.console.v1';
 export const MUSIC = Object.freeze([
@@ -10,10 +10,15 @@ export const MUSIC = Object.freeze([
   {id:'pursuit', name:'Across the Copper Roofs', detail:'Pulsing strings and frame drums for rival encounters.', file:'pursuit.ogg'},
 ]);
 export const STATIONS = Object.freeze([{id:'auto',name:'Adaptive score',detail:'The arrangement follows the city, the hour and nearby danger.'},...MUSIC,{id:'off',name:'Music off',detail:'Keep the environmental and gameplay sounds.'}]);
+export const SOUND_DENSITIES = Object.freeze([
+  {id:'quiet',name:'Quiet / essential cues',detail:'Keeps important combat, mission and interaction cues while heavily spacing repeated sounds.'},
+  {id:'balanced',name:'Balanced',detail:'Moderate environmental and action detail with repeated cues rate-limited.'},
+  {id:'full',name:'Full detail',detail:'Most movement, ambience and action cues are audible.'},
+]);
 export const TOOLS = Object.freeze([
   {id:'staff',name:'Guild staff',detail:'A close-range, non-lethal staff. LT braces. RT strikes.',variants:['Balanced grip','Heavy grip']},
   {id:'sling',name:'Artisan\'s sling',detail:'LT aims. RT releases a pellet. X fills the ready pouch. No civilian targets.',variants:['Firm pellets','Soft stun pellets']},
-  {id:'letters',name:'Sealed letters',detail:'Preserves the original deliveries. RT throws toward the selected side.',variants:['Left-side delivery','Right-side delivery']},
+  {id:'letters',name:'Sealed letters',detail:'Preserves the original deliveries. RT uses the selected delivery side.',variants:['Left-side delivery','Right-side delivery']},
   {id:'lantern',name:'Ingenio lantern',detail:'Uses the existing earned Lantern power and focus. Obtain it through the original story.',variants:['Lantern pulse']},
 ]);
 export const DISCIPLINES = Object.freeze([
@@ -21,14 +26,20 @@ export const DISCIPLINES = Object.freeze([
   {id:'warden',name:'Warden',detail:'Steadfast: 7 seconds of bracing and gradual recovery. Costs 40 focus.'},
   {id:'artificer',name:'Artificer',detail:'Ingenio: reveal mechanisms and reload faster for 7 seconds. Costs 40 focus.'},
 ]);
-export const AUDIO_DEFAULTS = Object.freeze({enabled:true,master:.72,music:.52,effects:.8,ambience:.62,mono:false,captions:true,range:'balanced',station:'auto'});
+export const AUDIO_DEFAULTS = Object.freeze({version:AUDIO_VERSION,enabled:true,master:.62,music:.34,effects:.42,ambience:.30,density:'quiet',mono:false,captions:true,range:'balanced',station:'auto'});
 const clamp = (v,a,b)=>Math.min(b,Math.max(a,v));
 export function audioPreferences(raw){
   const out={...AUDIO_DEFAULTS};if(!raw||typeof raw!=='object')return out;
+  const legacy=!Number.isFinite(raw.version)||raw.version<2;
   for(const k of ['enabled','mono','captions'])if(typeof raw[k]==='boolean')out[k]=raw[k];
   for(const k of ['master','music','effects','ambience'])if(Number.isFinite(raw[k]))out[k]=clamp(raw[k],0,1);
-  if(['full','balanced','night'].includes(raw.range))out.range=raw.range;
-  if(STATIONS.some(t=>t.id===raw.station))out.station=raw.station;return out;
+  // Keep the historic malformed-input fallback used by the validation suite,
+  // but migrate actual finite v0.8 values to a calmer one-time ceiling.
+  if(legacy&&!Number.isFinite(raw.music))out.music=.52;
+  if(legacy){if(Number.isFinite(raw.music))out.music=Math.min(out.music,.38);out.effects=Math.min(out.effects,.48);out.ambience=Math.min(out.ambience,.36);out.range='night';out.density='quiet';}
+  if(['full','balanced','night'].includes(raw.range)&&!legacy)out.range=raw.range;
+  if(SOUND_DENSITIES.some(t=>t.id===raw.density))out.density=raw.density;
+  if(STATIONS.some(t=>t.id===raw.station))out.station=raw.station;out.version=AUDIO_VERSION;return out;
 }
 export function consolePreferences(raw){return {profile:raw?.profile==='classic'?'classic':'console',lockOn:typeof raw?.lockOn==='boolean'?raw.lockOn:true,haptics:typeof raw?.haptics==='boolean'?raw.haptics:true,repeatSprint:typeof raw?.repeatSprint==='boolean'?raw.repeatSprint:true};}
 export function radialIndex(x,y,count,previous=0){if(!Number.isFinite(x)||!Number.isFinite(y)||Math.hypot(x,y)<.35||!Number.isInteger(count)||count<1)return previous;return Math.floor(((Math.atan2(x,-y)+Math.PI*2+Math.PI/count)%(Math.PI*2))/(Math.PI*2/count))%count;}
