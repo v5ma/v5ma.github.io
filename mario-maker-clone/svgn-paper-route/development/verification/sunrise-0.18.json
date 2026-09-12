@@ -2,6 +2,8 @@
   "version": "0.18.0",
   "build": "sky-cycle-sunrise-2026.09.12",
   "accepted_runtime_commit": "e12dbf9f873675ad2bbb9a5f64ff2bcbb1cf96d7",
+  "published_merge_commit": "cc8f25850c28fbcce02054aebe002061d663029c",
+  "pull_request": 125,
   "acceptance": {
     "run": 34713373362,
     "native_job": 103606067425,
@@ -34,9 +36,23 @@
     "paused_scene_test": "At most one actual 3D renderer call over twelve animation frames with the challenge journal open. This is an invocation check, not a device frame-time benchmark."
   },
   "publication": {
-    "verified": false,
-    "status": "Awaiting master merge and public-byte verification; branch acceptance alone is not a published release.",
-    "owned_runtime_files": ["sunrise.js","sunrise-core.mjs","route-compass.js","route-compass.css","release-status.js","release.json","sw.js"]
+    "verified": true,
+    "status": "All seven public runtime files match the exact merged source. The accepted runtime was not changed by the final documentation commit.",
+    "run": 34713830079,
+    "job": 103607271939,
+    "artifact": 10303758992,
+    "artifact_sha256": "8388143d3b5c0618facee368550a5e787b5dfcf6448e6888fe98dca4463aae4e",
+    "report_uploaded_at": "2026-09-12T19:21:30Z",
+    "attempt_count": 10,
+    "expected_and_public_sha256": {
+      "sunrise.js": "8b7c79d9e16dccde70054fab3b81940aa322dbfc32c0e855b62059aadcb6fede",
+      "sunrise-core.mjs": "761b4e504e05a90e40ce3a69bb265c4a0c6eef58d2f67a0797cdd9d42d82e662",
+      "route-compass.js": "4dcb7a7c9e2763a912fc916a598e0a7c4172fe72b96759e8597b597c7cb0568f",
+      "route-compass.css": "b82a6fabece9f18757cdf1a435b5a19e5579d264be99cf9a7cac10da9db43b53",
+      "release-status.js": "ad52bc24f7103a6eee15eae5d8bffaecaba3bd033467745fdf11d9dece59719e",
+      "release.json": "6d1a6a46dc48b2a0fa6dc8b093610e64f21ffc498ff57b4a7609574271348dfb",
+      "sw.js": "89f6b4e23db3a3c39c1ae91b4a7a413707397fea24da691e9edf333365192e88"
+    }
   },
   "remaining_gates": [
     "Physical Xbox hardware and actual mobile devices",
