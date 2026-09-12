@@ -1,0 +1,140 @@
+name: Dino Atlas Coastal Light
+on:
+  push:
+    branches: [dino-coastal-light-20260912, master]
+    paths: ['dino-atlas/**', '.github/workflows/dino-coastal-light.yml', '.github/patches/coastal-light.patch']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dino-coastal-light-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/dino-coastal-light-20260912'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      source: ${{ steps.apply.outputs.source }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dino-coastal-light-20260912
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - id: apply
+        name: Commit the exact reviewed entrypoint diff once
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,subprocess,os
+          src=Path('.github/patches/coastal-light.patch')
+          if src.exists():
+              # Normalize accidental diff-header transport prefixes, then require
+              # the exact locally reviewed patch digest and every resulting blob.
+              patch=src.read_bytes().replace(b'\n+diff --git ',b'\ndiff --git ')
+              assert hashlib.sha256(patch).hexdigest()=='b76ea5fd5dd11ea4f70f74568a050f26a9e78f9e20148eb0b3b1bf84be94fd26'
+              old={'ranger.js':'08d5225c89253539b3352a8c83623eb5b1d31821','index.html':'f0e96ac017a0ad2bb70f1bcc060f0bc52f60c32a','README.md':'4d014c5f37961643693b494ed22e53b9ddfad385','AAA-ROADMAP.md':'a780385077c0583fb84f9b09b68291ca87a58fc8'}
+              new={'ranger.js':'d286ee3f9c02dd8d687c019556805f441414a1cd','index.html':'82be8e8e8d9768640000242ee7ec5bc77d101377','README.md':'0f5cff0f3ecdd4041a97957d45819618aa04dec9','AAA-ROADMAP.md':'7d121ab0bc43935ac8dedd0bc9098bb9f2bd5eac'}
+              for name,sha in old.items():assert subprocess.check_output(['git','hash-object','dino-atlas/'+name],text=True).strip()==sha,name
+              target=Path('/tmp/coastal-light.patch');target.write_bytes(patch)
+              subprocess.run(['git','apply','--unidiff-zero','--check',str(target)],check=True)
+              subprocess.run(['git','apply','--unidiff-zero','--index',str(target)],check=True)
+              for name,sha in new.items():assert subprocess.check_output(['git','hash-object','dino-atlas/'+name],text=True).strip()==sha,name
+              subprocess.run(['git','rm',str(src)],check=True)
+              subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
+              subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
+              subprocess.run(['git','commit','-m','Integrate Coastal Light with exact entrypoint and roadmap source'],check=True)
+              subprocess.run(['git','push','origin','HEAD:dino-coastal-light-20260912'],check=True)
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('source='+sha+'\n')
+          PY
+  verify:
+    needs: [integrate]
+    if: always() && (needs.integrate.result == 'success' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.integrate.outputs.source || github.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate all existing and new models, saves and physics
+        run: |
+          mkdir -p coastal-evidence
+          find dino-atlas -maxdepth 1 -name '*.js' -exec node --check {} \;
+          set -o pipefail
+          node --test dino-atlas/tests/*.test.mjs | tee coastal-evidence/model-tests.tap
+      - name: Install real browser renderer
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Compile shaders and exercise Xbox settings and gameplay
+        run: |
+          python dino-atlas/tests/coastal-light-browser.py
+          cp coastal-evidence/report.json coastal-evidence/candidate-report.json
+      - name: Keep the Living Herds controller field study working
+        run: python dino-atlas/tests/living-herds-browser.py
+      - name: Keep the complete Storm Response controller mission working
+        run: python dino-atlas/tests/aaa-browser.py
+      - name: Record exact runtime and production-checklist identity
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          root=Path('dino-atlas');files=[p for p in root.iterdir() if p.suffix in ('.js','.html','.css')]+[root/'AAA-ROADMAP.md',root/'COASTAL-LIGHT.md']
+          Path('coastal-evidence/runtime-hashes.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}},indent=2))
+          PY
+      - name: Compare the actual public runtime to this publication
+        if: github.ref == 'refs/heads/master'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlopen,Request
+          from concurrent.futures import ThreadPoolExecutor
+          import hashlib,json,time
+          manifest=json.loads(Path('coastal-evidence/runtime-hashes.json').read_text())
+          def check(item):
+              path,sha=item
+              try:
+                  u='https://v5ma.github.io/'+path+'?verify='+manifest['commit']
+                  data=urlopen(Request(u,headers={'Cache-Control':'no-cache'}),timeout=25).read()
+                  return path if hashlib.sha256(data).hexdigest()!=sha else None
+              except Exception:return path
+          for attempt in range(30):
+              with ThreadPoolExecutor(max_workers=8) as pool:bad=[p for p in pool.map(check,manifest['files'].items()) if p]
+              if not bad:break
+              print('Waiting for matching deployment:',bad,flush=True);time.sleep(10)
+          assert not bad,bad
+          Path('coastal-evidence/public-bytes.json').write_text(json.dumps({'commit':manifest['commit'],'matched':len(manifest['files'])},indent=2))
+          PY
+      - name: Exercise shaders and controller flow on the real published site
+        if: github.ref == 'refs/heads/master'
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: |
+          python dino-atlas/tests/coastal-light-browser.py
+          cp coastal-evidence/report.json coastal-evidence/published-report.json
+      - name: Record source and failures honestly
+        if: always()
+        run: |
+          mkdir -p coastal-evidence
+          git rev-parse HEAD > coastal-evidence/tested-commit.txt
+          git status --short > coastal-evidence/worktree-status.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-coastal-light-source-and-evidence
+          path: |
+            dino-atlas/
+            coastal-evidence/
+            herds-evidence/
+            aaa-evidence/
+          retention-days: 14
