@@ -48,7 +48,7 @@
     bolts(angles,d.attack==='sniper'?14:d.attack==='chain'?9:6,d.attack==='frost'?2.4:d.attack==='chain'?1.8:0);e.recovery=d.attack==='mirror'?2:1;
    }return;
   }
-  if(visible&&distance<d.range&&e.cd<=0){e.wind=d.wind;e.windTotal=d.wind;e.aim=[...s.head];e.cd=d.cooldown;e.phase='winding';if(d.attack==='duelist'){const u=unit([delta[2],0,-delta[0]]);advance(u,.65);}emit(s,'enemy-windup',{id:e.id,kind:e.kind,p:[...e.p],aim:[...e.aim]});return;}
+  if(visible&&distance<d.range&&e.cd<=0&&(!a.canAttack||a.canAttack(s,e))){e.wind=d.wind;e.windTotal=d.wind;e.aim=[...s.head];e.cd=d.cooldown;e.phase='winding';if(d.attack==='duelist'){const u=unit([delta[2],0,-delta[0]]);advance(u,.65);}emit(s,'enemy-windup',{id:e.id,kind:e.kind,p:[...e.p],aim:[...e.aim]});return;}
   e.phase=guardActive(e)?'guarding':'hunting';
   const stop=['sniper','fan','frost','bomb','heal','chain','mirror','blink'].includes(d.attack)?8:2;
   if(distance>stop||!visible){const er=roomAt(s.world,e.p),pr=roomAt(s.world,s.p),path=route(s.world,er,pr),goal=path.length>1?s.world.rooms[path[1]]:{x:s.p[0],z:s.p[2]};advance(unit([goal.x-e.p[0],0,goal.z-e.p[2]]),e.speed*dt*(e.slow>0?.35:1));}

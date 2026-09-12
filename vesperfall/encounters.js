@@ -43,7 +43,7 @@
    }return;
   }
   const attackRange=e.kind==='stalker'?6.5:17;
-  if(visible&&distance<attackRange&&e.cd<=0){e.wind=e.kind==='stalker'?.9:1.0;e.windTotal=e.wind;e.aim=[...s.head];e.cd=e.kind==='warden'?3.5:e.kind==='stalker'?3.8:4.2;e.phase='winding';emit(s,'enemy-windup',{id:e.id,kind:e.kind,p:[...e.p],aim:[...e.aim]});return;}
+  if(visible&&distance<attackRange&&e.cd<=0&&(!a.canAttack||a.canAttack(s,e))){e.wind=e.kind==='stalker'?.9:1.0;e.windTotal=e.wind;e.aim=[...s.head];e.cd=e.kind==='warden'?3.5:e.kind==='stalker'?3.8:4.2;e.phase='winding';emit(s,'enemy-windup',{id:e.id,kind:e.kind,p:[...e.p],aim:[...e.aim]});return;}
   e.phase=guardActive(e)?'guarding':'hunting';
   const stop=e.kind==='cantor'&&visible?8:2.2;
   if(distance>stop){const er=roomAt(s.world,e.p),pr=roomAt(s.world,s.p),path=route(s.world,er,pr),goal=path.length>1?s.world.rooms[path[1]]:{x:s.p[0],z:s.p[2]},dx=goal.x-e.p[0],dz=goal.z-e.p[2],d=Math.hypot(dx,dz)||1,v=e.speed*(e.slow>0?.3:1)*dt;

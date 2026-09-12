@@ -1,8 +1,8 @@
 {
-  "version": "0.9.0",
-  "name": "pilgrims-rest",
+  "version": "0.10.0",
+  "name": "first-bell",
   "date": "2026-09-12",
-  "scope": "Versioned local expedition checkpoints, autosave and controller-operated suspension/continuation; atomic Chronicle and run-receipt persistence; damaged-save and multi-tab conflict handling; updated AAA quality roadmap and Excel production workbook. Preserves the existing archery, world, audio, Xbox, VR and AR Sanctuary.",
+  "scope": "Guided physical onboarding; optional scored three-court Bellkeeper Oath with coordinated threat budgets, three-phase boss, recovery supplies and seed-derived routes; checkpoint compatibility and controller menus preserved.",
   "saveCompatibility": "Existing vesperfall-profile-v1 is preserved as a legacy mirror. The new vesperfall-expedition-v1 envelope atomically stores profile plus a current-generator checkpoint. Older releases had no persistent full-run checkpoint.",
   "hardwareStatus": "Software browser and emulated-controller acceptance are used for publication. Real Quest 3 controller ergonomics, comfort, audio localization and performance still require physical hardware playtesting."
 }

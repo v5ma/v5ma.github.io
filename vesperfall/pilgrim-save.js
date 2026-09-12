@@ -22,10 +22,10 @@
  const flags=['finished','portalReady','volleyUnlocked','ricochetUnlocked','quickwind','challenge'];
  const sets=['discovered','orders','sideRewards','targets'];
  const counters=['score','kills','shots','hits','shardCharges','maxShards','headshots','blocks','blinks','shardsUsed','sectors'];
- const enemyFields=['id','room','kind','p','hp','maxHp','speed','cd','wind','slow','frozen','recovery','dead','aware','required','bodyRadius','headRadius','facing','aim','windTotal','phase','charge','combo','comboTime'];
- const stateFields=[...Object.keys(numberFields),...flags,...sets,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards','enemies','pickups'];
+ const enemyFields=['id','room','kind','p','hp','maxHp','speed','cd','wind','slow','frozen','recovery','dead','aware','required','bodyRadius','headRadius','facing','aim','windTotal','phase','charge','combo','comboTime','oathWave','oathBoss','bossPhase','bossTransition','bossPattern','bossMove','aimFloor'];
+ const stateFields=[...Object.keys(numberFields),...flags,...sets,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards','enemies','pickups','oath'];
  function enemy(raw,base){keys(raw,enemyFields);const out={...base};
-  for(const k of['id','room','kind','maxHp','speed','required','bodyRadius','headRadius'])if(raw[k]!==base[k])fail('Enemy identity or stats do not match this world.');
+  for(const k of['id','room','kind','maxHp','speed','required','bodyRadius','headRadius','oathWave','oathBoss'])if(raw[k]!==base[k])fail('Enemy identity or stats do not match this world.');
   out.p=vector(raw.p);out.hp=num(raw.hp,-100000,base.maxHp);out.dead=bool(raw.dead);out.aware=bool(raw.aware);if(out.dead!==(out.hp<=0))fail('Enemy life state is inconsistent.');
   for(const k of['cd','wind','slow','frozen','recovery','windTotal','comboTime'])if(own(raw,k))out[k]=num(raw[k],-10000000,60);
   for(const k of['facing','aim'])if(own(raw,k))out[k]=vector(raw[k]);
@@ -34,16 +34,19 @@
   if(raw.charge){keys(raw.charge,['dir','left','speed']);out.charge={dir:vector(raw.charge.dir,1),left:num(raw.charge.left,-1,30)};if(own(raw.charge,'speed'))out.charge.speed=num(raw.charge.speed,0,40);}
   else if(own(raw,'charge'))out.charge=null;
   if(out.wind>0&&!out.aim)fail('The saved windup has no committed aim.');
+  if(base.oathBoss){out.bossPhase=num(raw.bossPhase,1,3,true);out.bossTransition=num(raw.bossTransition,0,2);out.bossPattern=num(raw.bossPattern,0,1000000,true);if(own(raw,'aimFloor'))out.aimFloor=num(raw.aimFloor,0,6.5);out.bossMove=null;if(raw.bossMove){keys(raw.bossMove,['dir','left']);out.bossMove={dir:vector(raw.bossMove.dir,1),left:num(raw.bossMove.left,-1,8)};}}
+  else if(['bossPhase','bossTransition','bossPattern','bossMove','aimFloor'].some(k=>own(raw,k)))fail('Boss state on a regular enemy.');
   return out;
  }
- function projectile(raw,kind){const arrow=kind==='arrow';keys(raw,arrow?['p','v','type','damage','life','dead','bounces']:['p','v','life','kind','slow','damage']);
+ function projectile(raw,kind){const arrow=kind==='arrow';keys(raw,arrow?['p','v','type','damage','life','dead','bounces']:['p','v','life','kind','slow','damage','owner']);
   const out={p:vector(raw.p),v:vector(raw.v,200),life:num(raw.life,0,8)};
   if(arrow){out.type=choice(raw.type,['plain','cinder','frost','blink','volley','ricochet']);out.damage=num(raw.damage,0,1000000);out.dead=bool(raw.dead);out.bounces=num(raw.bounces??0,0,2,true);}
-  else {out.kind=choice(raw.kind,Object.keys(E.names));if(own(raw,'slow'))out.slow=num(raw.slow,0,10);if(own(raw,'damage'))out.damage=num(raw.damage,0,200);}
+  else {out.kind=choice(raw.kind,Object.keys(E.names));if(own(raw,'owner'))out.owner=num(raw.owner,0,20,true);if(own(raw,'slow'))out.slow=num(raw.slow,0,10);if(own(raw,'damage'))out.damage=num(raw.damage,0,200);}
   return out;
  }
  function capture(s,meta){if(s.unscored||s.world.ar||!['playing','reward'].includes(s.phase)||s.health<=0)fail('Only a living scored expedition can be suspended.');
   const state={};for(const k of[...Object.keys(numberFields),...flags,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards'])state[k]=copy(s[k]??(k==='playerSlow'?0:undefined));
+  if(s.oath)state.oath=copy(s.oath);
   for(const k of sets)state[k]=[...(s[k]||[])];
   state.enemies=s.world.enemies.map(e=>{const o={};for(const k of enemyFields)if(own(e,k))o[k]=copy(e[k]);return o;});
   state.pickups=s.world.pickups.map(p=>({id:p.id,taken:p.taken}));
@@ -53,7 +56,8 @@
   if(checkpoint.generator!==GENERATOR)fail('This expedition needs its original world-generator version.');
   if(typeof checkpoint.seed!=='string'||!/^[-\w]{1,24}$/.test(checkpoint.seed))fail('Saved seed is invalid.');
   const depth=num(checkpoint.depth,1,99,true),d=keys(checkpoint.state,stateFields);
-  const s=C.create(checkpoint.seed,depth,{challenge:bool(d.challenge)?'nightfall':'normal',ricochet:bool(d.ricochetUnlocked)});
+  const s=C.create(checkpoint.seed,depth,{challenge:bool(d.challenge)?'nightfall':'normal',ricochet:bool(d.ricochetUnlocked),oath:own(d,'oath')});
+  if(own(d,'oath')){const o=keys(d.oath,['version','stage','active','rest','gap','grants','cleared']);if(o.version!==1)fail('Unsupported Oath route version.');s.oath={version:1,stage:num(o.stage,0,3,true),active:bool(o.active),rest:num(o.rest,0,5),gap:num(o.gap,0,2),grants:num(o.grants,0,1000000,true),cleared:num(o.cleared,0,3,true)};if(o.cleared!==o.stage||o.stage===3&&o.active)fail('Inconsistent Oath route progress.');}
   for(const[k,[min,max]]of Object.entries(numberFields))s[k]=num(d[k],min,max,counters.includes(k));
   for(const k of flags)s[k]=bool(d[k]);
   s.p=vector(d.p);s.head=vector(d.head);s.phase=choice(d.phase,['playing','reward']);
@@ -66,6 +70,7 @@
   s.discovered=unique(d.discovered,25,v=>num(v,0,24,true));s.targets=unique(d.targets,4,v=>num(v,0,3,true));s.orders=unique(d.orders,15,v=>choice(v,Object.keys(E.names)));s.sideRewards=unique(d.sideRewards,3,v=>choice(v,['survey','reliquary','orders']));
   if(array(d.enemies,21).length!==s.world.enemies.length)fail('Enemy roster does not match the seed.');
   s.world.enemies=d.enemies.map((e,i)=>enemy(e,s.world.enemies[i]));
+  if(s.oath){for(const e of s.world.enemies)if(e.oathWave<s.oath.stage&&!e.dead||e.oathWave>s.oath.stage&&e.dead)fail('Oath wave history is inconsistent.');}
   if(array(d.pickups,100).length!==s.world.pickups.length)fail('Supply roster does not match the seed.');
   d.pickups.forEach((p,i)=>{keys(p,['id','taken']);if(p.id!==s.world.pickups[i].id)fail('Saved pickup identity is invalid.');s.world.pickups[i].taken=bool(p.taken);});
   s.arrows=array(d.arrows,48).map(a=>projectile(a,'arrow'));s.bolts=array(d.bolts,24).map(b=>projectile(b,'bolt'));
