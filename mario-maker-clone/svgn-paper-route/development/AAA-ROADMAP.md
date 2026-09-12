@@ -1,8 +1,22 @@
 # Sky Cycle: AAA-quality development roadmap
 
-This is the canonical, living production checklist for Sky Cycle, the existing side-scrolling game in `mario-maker-clone/svgn-paper-route/`. It is not the roadmap for Neighborhood Missions, Prism Current, or Dino Atlas. Updated September 11, 2026.
+This is the canonical, living production checklist for Sky Cycle, the existing side-scrolling game in `mario-maker-clone/svgn-paper-route/`. It is not the roadmap for Neighborhood Missions, Prism Current, or Dino Atlas. Updated September 12, 2026.
 
 AAA is the quality ambition, not a status conferred by a version number, graphics setting, or this checklist. A checked implementation item does not certify its entire milestone. Each milestone needs recorded acceptance evidence before its release gate is complete. Do not invent a completion percentage from differently sized tasks.
+
+## Current continuation: Route Compass and exploration journal, v0.17.0
+
+See `ROUTE-COMPASS-0.17.md` for the scope, save boundaries, evidence and remaining acceptance gates. This is a navigation and discovery slice of Milestones B and E, not new level geometry or completed AAA qualification.
+
+- [x] Implement current/next district guidance, real checkpoint distances and nearby optional gold-track clues for existing ground adventures.
+- [x] Add an exploration journal accessible through pause, Flight Deck, the header and accepted-finish results.
+- [x] Bank observed district and optional-rail stamps only after an accepted authored-route finish, in an independent storage key.
+- [x] Provide detailed, compact and off guidance, narrow-layout support and district-change announcements.
+- [x] Commit pure-rule, isolated-fixture, native-controller and exact-publication checks; label the evidence honestly.
+- [ ] Complete full native ground-route playthroughs and all optional-rail attainability checks.
+- [ ] Test physical Xbox hardware and actual mobile devices.
+
+Keep the broader route-production gate below open. The next content step is a reviewed beginner chapter with world-space movement cues and an optional reward branch, supported by recorded slower and faster real-input completions.
 
 ## Product pillars and non-negotiables
 
@@ -69,6 +83,8 @@ Gate: A long play session sounds pleasant, important cues stay audible, and no c
 - [ ] Design a transparent progression and cosmetic economy; keep paid-account and entitlement changes outside gameplay patches.
 - [ ] Add understandable objective failure/retry messaging and a route journal with controller navigation.
 - [ ] Evaluate races or ghosts as a separate, validated feature rather than treating an unverified legacy ghost path as production-ready.
+
+The route-journal portion is implemented in v0.17.0; the combined failure/retry messaging item remains open until that broader work is accepted.
 
 Gate: Players understand what they are doing, why it matters, what improved, and what opens next. No mandatory progress can become permanently blocked.
 

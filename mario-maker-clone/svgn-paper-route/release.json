@@ -1,13 +1,13 @@
 {
-  "version": "0.16.0",
-  "build": "sky-cycle-flight-deck-2026.09.11",
-  "date": "2026-09-11",
+  "version": "0.17.0",
+  "build": "sky-cycle-route-compass-2026.09.12",
+  "date": "2026-09-12",
   "changes": [
-    "Flight Deck career records with five optional route badge types",
-    "Badges require accepted authored-route finishes; existing medals and drafts are preserved",
-    "Start pauses gameplay, View opens Flight Deck, and standard-controller menus support focus, confirm and back",
-    "Controller adjustment of existing independent music and effects sliders",
-    "Neutral-input screen transitions, nested-dialog ownership and controller-disconnect cleanup",
-    "Living AAA-quality production checklist beside the game files"
+    "Route Compass with current district, next district, checkpoint distance and nearby optional gold-route clues",
+    "Controller-accessible Route Journal from pause, Flight Deck, header and completed-route results",
+    "Optional district and gold-rail exploration stamps banked only after accepted authored-route finishes",
+    "Detailed, compact and off guidance settings; responsive journal and district-change announcements",
+    "Independent exploration storage preserves existing medals, Flight Deck badges, editor drafts and remaps",
+    "Exact-source rule, fixture, native-controller and public-runtime publication checks"
   ]
 }
