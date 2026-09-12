@@ -29,7 +29,7 @@ jobs:
           set -euo pipefail
           if test ! -f leonardos-guild/HOLLOW-RECOVERY.json; then
             git fetch origin 479860d58aba490aeae8e715b04e670a4ceb53b6 6fb54cfd3364f0cdcab988a662b1e4e2b2df42da
-            test -z "$(git diff HEAD FETCH_HEAD -- leonardos-guild)"
+            test -z "$(git diff HEAD 6fb54cfd3364f0cdcab988a662b1e4e2b2df42da -- leonardos-guild)"
             git checkout 479860d58aba490aeae8e715b04e670a4ceb53b6 -- leonardos-guild
             python - <<'PY'
           import base64,hashlib,json,os,urllib.request
