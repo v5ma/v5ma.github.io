@@ -43,8 +43,10 @@
  for(int i=0;i<4;i++){vec4 source=uRFSources[i];if(source.z>.1){vec2 q=(vRFWorld.xz-source.xy)/source.z;
  float sn=sin(source.w),cs=cos(source.w);q=mat2(cs,-sn,sn,cs)*q;q.y*=1.20;
  q+=sin(q.yx*7.+uRFTime*.17*uRFAnimated)*.007;
- glass+=rfGlass(q)*.70;}}
- totalEmissiveRadiance+=glass*uRFRose*rfNear;}
+ glass+=rfGlass(q)*.09;}}
+ // Modulate the light by the original stone albedo so grout and weathering
+ // remain visible; do not turn the courtyard into a self-lit color wheel.
+ totalEmissiveRadiance+=glass*uRFRose*rfNear*mix(vec3(.15),diffuseColor.rgb,.85);}
  `;
  const skyVertex=`varying vec3 vRFDir;void main(){vRFDir=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`;
  const skyFragment=`uniform float uTime,uNight,uCalm,uDetail;varying vec3 vRFDir;${noise}
