@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - name: Apply exact preimage-checked source and workbook bytes
+      - name: Apply exact preimage-checked game and workbook bytes
         if: hashFiles('.github/rosefire-intake/part4.txt') != ''
         run: |
           python - <<'PY'
@@ -24,11 +24,12 @@ jobs:
           assert hashlib.sha256(packed).hexdigest()=='864363165ec5c439cf413bf649b3997c092f14f8a8b7272469467789bb90eba5','Transfer checksum mismatch'
           data=json.loads(lzma.decompress(packed));assert len(data)==15;planned=[]
           for name,d in data.items():
+              if name==workflow:continue
               p=root/name
-              assert (name.startswith('vesperfall/') or name==workflow) and '..' not in pathlib.PurePosixPath(name).parts
-              assert not p.is_symlink() and p.resolve().is_relative_to(root)
+              assert name.startswith('vesperfall/') and '..' not in pathlib.PurePosixPath(name).parts
+              assert not p.is_symlink() and p.resolve().is_relative_to(root/'vesperfall')
               if 'content' in d:
-                  assert not p.exists() or name==workflow,name
+                  assert not p.exists(),name
                   b=d['content'].encode('utf-8')
               else:
                   b=p.read_bytes();assert hashlib.sha256(b).hexdigest()==d['before'],'Preimage mismatch: '+name
@@ -40,13 +41,14 @@ jobs:
                       b=text.encode('utf-8')
               assert hashlib.sha256(b).hexdigest()==d['after'],'Postimage mismatch: '+name
               planned.append((p,b))
+          assert len(planned)==14
           for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
           for i in range(5):(root/f'.github/rosefire-intake/part{i}.txt').unlink()
-          print('Verified and applied',len(planned),'files; original workbook content was authored with artifact_tool, this step only transfers verified bytes.')
+          print('Verified and applied',len(planned),'game files; workflow remains unchanged by the source bot.')
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- vesperfall .github/rosefire-intake .github/workflows/vesperfall-rosefire.yml
+          git add -- vesperfall .github/rosefire-intake
           git commit -m 'Implement Vesperfall 0.11 Rosefire: original bounded PBR, stained-light, sky, ward and landing shaders; controller settings and production workbook'
           git push origin HEAD:vesperfall-rosefire-20260912
       - uses: actions/setup-node@v4
