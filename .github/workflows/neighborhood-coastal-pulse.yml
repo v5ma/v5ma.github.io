@@ -79,3 +79,4 @@ jobs:
           name: neighborhood-coastal-pulse-evidence
           path: coastal-results
           retention-days: 30
+# final acceptance trigger for the fully materialized branch
