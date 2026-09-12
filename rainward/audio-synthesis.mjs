@@ -32,4 +32,4 @@ export function synthesize(kind,seconds=1,rate=24000,seed=1,midi=57){
  return out;
 }
 export function makeBuffer(context,kind,seconds=1,seed=1,midi=57){const rate=24000,data=synthesize(kind,seconds,rate,seed,midi),buffer=context.createBuffer(1,data.length,rate);buffer.copyToChannel(data,0);return buffer;}
-export function impulse(context,seconds=1.6){const rate=24000,b=context.createBuffer(2,rate*seconds,rate);for(let c=0;c<2;c++){const r=seeded(341+c),a=b.getChannelData(c);for(let i=0;i<a.length;i++){const t=i/rate;a[i]=(r()*2-1)*Math.exp(-t*5.5)*(t<.019?0:.20);}}return b;}
+export function impulse(context,seconds=1.6){const rate=context.sampleRate,b=context.createBuffer(2,rate*seconds,rate);for(let c=0;c<2;c++){const r=seeded(341+c),a=b.getChannelData(c);for(let i=0;i<a.length;i++){const t=i/rate;a[i]=(r()*2-1)*Math.exp(-t*5.5)*(t<.019?0:.20);}}return b;}

@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,os,sys,time,urllib.request
 from concurrent.futures import ThreadPoolExecutor
 ROOT=Path(__file__).resolve().parents[2];GAME=ROOT/'rainward';OUT=ROOT/'test-output';OUT.mkdir(exist_ok=True)
-files=[ROOT/'index.html',*[p for p in GAME.iterdir() if p.is_file() and p.suffix in ['.mjs','.html','.css','.svg','.json']],*[p for p in (GAME/'vendor').rglob('*') if p.is_file()],*[p for p in (GAME/'assets').rglob('*') if p.is_file()]]
+files=[ROOT/'index.html',*[p for p in GAME.iterdir() if p.is_file() and p.suffix in ['.mjs','.html','.css','.svg','.json','.md']],*[p for p in (GAME/'vendor').rglob('*') if p.is_file()],*[p for p in (GAME/'assets').rglob('*') if p.is_file()]]
 manifest={'source':os.getenv('GITHUB_SHA','local'),'version':json.loads((GAME/'release.json').read_text())['version'],'files':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
 (OUT/'rainward-source-manifest.json').write_text(json.dumps(manifest,indent=2))
 if '--published' in sys.argv:

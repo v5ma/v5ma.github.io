@@ -1,0 +1,1044 @@
+{
+  "schema": 1,
+  "game": "Rainward",
+  "release": "0.10.0",
+  "edition": "Field Ready",
+  "baseline": "c942abeda531879a709ee606190ca0e4886f19e7",
+  "updated": "2026-09-12",
+  "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
+  "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all six chapters, saves, sibling applications and asset credits.",
+  "statusDefinitions": {
+    "Planned": "Not implemented to the stated criterion.",
+    "Implemented": "A working foundation exists; the full criterion still needs review.",
+    "Automated": "The specifically scoped automated criterion has evidence; physical devices and player enjoyment are not certified.",
+    "Blocked": "The approval gate depends on unfinished work.",
+    "Approved": "The criterion has a named reviewer and recorded sign-off."
+  },
+  "phases": [
+    {
+      "id": "G0",
+      "name": "Release foundation",
+      "goal": "Close regressions before adding more content.",
+      "gate": "All supported input paths start, save, reload and produce audio without uncaught errors."
+    },
+    {
+      "id": "G1",
+      "name": "Flagship vertical slice",
+      "goal": "Make one complete segment worth playing repeatedly.",
+      "gate": "A 15-20 minute Floodgate slice passes an art review and a recorded, independent player test."
+    },
+    {
+      "id": "G2",
+      "name": "Combat and stealth",
+      "goal": "Make each encounter readable, fair and expressive.",
+      "gate": "Melee, ranged, evasion, detection and resource economies hold up across repeat encounters."
+    },
+    {
+      "id": "G3",
+      "name": "Campaign and world",
+      "goal": "Expand authored variety rather than duplicating rooms.",
+      "gate": "Every chapter has a distinct route, pacing plan, task arc and verified beginning-to-end playthrough."
+    },
+    {
+      "id": "G4",
+      "name": "Art and animation",
+      "goal": "Bring characters and places to a consistent production standard.",
+      "gate": "Camera-matched art reviews approve the hero, enemies, animation, architecture, effects and lighting."
+    },
+    {
+      "id": "G5",
+      "name": "Sound and music",
+      "goal": "Make sound useful, emotional and dependable.",
+      "gate": "Every audible action has an appropriate cue; music transitions and mixes pass measured and listening reviews."
+    },
+    {
+      "id": "G6",
+      "name": "Accessibility and performance",
+      "goal": "Measure the actual target devices and input methods.",
+      "gate": "The agreed hardware matrix meets its frame-time, memory, readability and accessibility targets."
+    },
+    {
+      "id": "G7",
+      "name": "Release and production",
+      "goal": "Ship a supported game with repeatable evidence.",
+      "gate": "Release blockers are closed, rights are documented, saves migrate, and a rollback has been rehearsed."
+    }
+  ],
+  "references": [
+    {
+      "title": "Existing roadmap baseline",
+      "url": "roadmap-legacy-v06.html"
+    },
+    {
+      "title": "Web Audio API best practices",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices"
+    }
+  ],
+  "nextRelease": [
+    "RW-009",
+    "RW-010",
+    "RW-014",
+    "RW-034",
+    "RW-035"
+  ],
+  "items": [
+    {
+      "id": "RW-001",
+      "phase": "G0",
+      "priority": "P0",
+      "title": "Audio context rate compatibility",
+      "status": "Automated",
+      "owner": "Audio engineering",
+      "acceptance": "Audio graph renders at 24, 44.1, 48 and 96 kHz; live playback starts after a permitted user action.",
+      "evidence": "tests/soundscape.py",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-002",
+      "phase": "G0",
+      "priority": "P0",
+      "title": "Independent chapter shelter saves",
+      "status": "Automated",
+      "owner": "Gameplay engineering",
+      "acceptance": "Six chapter checkpoints coexist; restarting one changes no other slot; current legacy saves migrate without loss.",
+      "evidence": "tests/field-ready.test.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-003",
+      "phase": "G0",
+      "priority": "P0",
+      "title": "Controller-reachable equipment",
+      "status": "Implemented",
+      "owner": "UI engineering",
+      "acceptance": "Select each gun and tool in the satchel, then return using B; keyboard and touch have the same equipment access.",
+      "evidence": "field-ready-ui.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-004",
+      "phase": "G0",
+      "priority": "P0",
+      "title": "Finite inventory and save validation",
+      "status": "Automated",
+      "owner": "Gameplay engineering",
+      "acceptance": "Reloading, switching, pickup, restore and cancellation cannot duplicate ammunition, supplies or completed tasks.",
+      "evidence": "tests/survival-sound.test.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-005",
+      "phase": "G0",
+      "priority": "P0",
+      "title": "Current native acceptance suite",
+      "status": "Implemented",
+      "owner": "QA engineering",
+      "acceptance": "All native journeys run on the exact release source; failures remain visible and no required assertions are skipped.",
+      "evidence": "tests/",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-006",
+      "phase": "G0",
+      "priority": "P0",
+      "title": "Controller and audio device acceptance",
+      "status": "Planned",
+      "owner": "Hardware QA",
+      "acceptance": "Record wired and Bluetooth Xbox playthroughs with menus, disconnect, audio activation, crafting and healing on real hardware.",
+      "evidence": "",
+      "depends": [
+        "RW-003",
+        "RW-005"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-007",
+      "phase": "G0",
+      "priority": "P1",
+      "title": "Save recovery and write-failure handling",
+      "status": "Automated",
+      "owner": "Gameplay engineering",
+      "acceptance": "Corrupt primary data recovers a valid backup; storage failure never overwrites the last valid primary or legacy mirror.",
+      "evidence": "tests/field-ready.test.mjs",
+      "depends": [
+        "RW-002"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-008",
+      "phase": "G0",
+      "priority": "P1",
+      "title": "Versioned production checklist",
+      "status": "Implemented",
+      "owner": "Production",
+      "acceptance": "Each task has an owner role, priority, acceptance criterion, status, dependencies and evidence; every release updates the board.",
+      "evidence": "production-plan.json",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-009",
+      "phase": "G1",
+      "priority": "P0",
+      "title": "Vertical-slice design lock",
+      "status": "Planned",
+      "owner": "Game direction",
+      "acceptance": "Approve one 15-20 minute Floodgate slice: approach, stealth, discovery, escalation, recovery and extraction, with no filler.",
+      "evidence": "",
+      "depends": [
+        "RW-005"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-010",
+      "phase": "G1",
+      "priority": "P0",
+      "title": "Readable first encounter",
+      "status": "Planned",
+      "owner": "Encounter design",
+      "acceptance": "First-time players identify cover, patrol direction and their objective without needing an outside explanation.",
+      "evidence": "",
+      "depends": [
+        "RW-009"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-011",
+      "phase": "G1",
+      "priority": "P1",
+      "title": "Playable alternate approach",
+      "status": "Planned",
+      "owner": "Level design",
+      "acceptance": "The slice supports at least two meaningfully different routes; both are collision-tested and have different risk/reward.",
+      "evidence": "",
+      "depends": [
+        "RW-009"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-012",
+      "phase": "G1",
+      "priority": "P1",
+      "title": "Stealth-to-combat-to-recovery pacing",
+      "status": "Planned",
+      "owner": "Systems design",
+      "acceptance": "A recorded playthrough moves through all three states without unavoidable damage, empty downtime or an inventory dead end.",
+      "evidence": "",
+      "depends": [
+        "RW-010"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-013",
+      "phase": "G1",
+      "priority": "P1",
+      "title": "Environmental story beat",
+      "status": "Planned",
+      "owner": "Narrative design",
+      "acceptance": "An original scene communicates who lived here and why the player should care, using space and interaction rather than a text dump.",
+      "evidence": "",
+      "depends": [
+        "RW-009"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-014",
+      "phase": "G1",
+      "priority": "P0",
+      "title": "Hero scene art benchmark",
+      "status": "Planned",
+      "owner": "Art direction",
+      "acceptance": "Approve fixed-camera images and motion captures of the slice in daylight, rain and interior lighting.",
+      "evidence": "",
+      "depends": [
+        "RW-033"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-015",
+      "phase": "G1",
+      "priority": "P0",
+      "title": "Independent player study",
+      "status": "Planned",
+      "owner": "User research",
+      "acceptance": "Record five unfamiliar players; proposed gate: at least four complete the slice and explain core controls without intervention.",
+      "evidence": "",
+      "depends": [
+        "RW-010",
+        "RW-011",
+        "RW-012"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-016",
+      "phase": "G1",
+      "priority": "P0",
+      "title": "Slice approval gate",
+      "status": "Blocked",
+      "owner": "Game direction",
+      "acceptance": "Game owner approves the complete slice after playtest, art review and hardware/performance review; record rejected points too.",
+      "evidence": "",
+      "depends": [
+        "RW-006",
+        "RW-014",
+        "RW-015",
+        "RW-054"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-017",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Survival controller action mapping",
+      "status": "Automated",
+      "owner": "Gameplay engineering",
+      "acceptance": "Tap/hold B, X melee, LB dodge, RB listen, LT+X reload and menu controls remain distinct and neutral-arm after mode changes.",
+      "evidence": "tests/survival-sound.test.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-018",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Telegraphed enemy attack windows",
+      "status": "Implemented",
+      "owner": "Combat design",
+      "acceptance": "Windup, impact, recovery and counter windows are visually and audibly legible for every enemy role.",
+      "evidence": "monsters.mjs",
+      "depends": [
+        "RW-017"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-019",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Melee hit reaction and tools",
+      "status": "Implemented",
+      "owner": "Combat engineering",
+      "acceptance": "Contacts respect range, facing, walls, stamina and durability; animation and feedback must be reviewed at game speed.",
+      "evidence": "survival.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-020",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Ranged weapon handling polish",
+      "status": "Planned",
+      "owner": "Combat design",
+      "acceptance": "Tune aim speed, recoil, spread, reticle and reload poses on controller; validate sidearm and rifle as distinct choices.",
+      "evidence": "",
+      "depends": [
+        "RW-006",
+        "RW-019"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-021",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Patrol communication and search variety",
+      "status": "Planned",
+      "owner": "AI design",
+      "acceptance": "Enemies share only plausible information, search a remembered location, flank through navigable routes and eventually stand down.",
+      "evidence": "",
+      "depends": [
+        "RW-018"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-022",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Human-shield grab prototype",
+      "status": "Planned",
+      "owner": "Combat engineering",
+      "acceptance": "Prototype the requested grab with animation, escape/release, enemy response, controller prompts and non-blocking state transitions.",
+      "evidence": "",
+      "depends": [
+        "RW-019",
+        "RW-035"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-023",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Deployable distraction/trap tool",
+      "status": "Planned",
+      "owner": "Systems design",
+      "acceptance": "Add a finite, craftable deployable with clear placement preview, enemy interaction, counters, cleanup and checkpoint rules.",
+      "evidence": "",
+      "depends": [
+        "RW-004",
+        "RW-020"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-024",
+      "phase": "G2",
+      "priority": "P1",
+      "title": "Resource economy playtest",
+      "status": "Planned",
+      "owner": "Systems design",
+      "acceptance": "Record stealth, mixed and combat-heavy runs; demonstrate recovery paths without infinite resource farming or mandatory grinding.",
+      "evidence": "",
+      "depends": [
+        "RW-020",
+        "RW-023"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-025",
+      "phase": "G3",
+      "priority": "P1",
+      "title": "Six authored expedition foundations",
+      "status": "Implemented",
+      "owner": "Level design",
+      "acceptance": "Floodgate, Conservatory, Terminus, Meridian, Breakwater and Whiteout retain distinct footprints, objectives and physical puzzle gates.",
+      "evidence": "world.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-026",
+      "phase": "G3",
+      "priority": "P1",
+      "title": "Chapter task and dependency graph",
+      "status": "Implemented",
+      "owner": "Mission design",
+      "acceptance": "Required work blocks extraction correctly; optional work remains optional; rewards and journal state survive checkpoints.",
+      "evidence": "field-tasks.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-027",
+      "phase": "G3",
+      "priority": "P1",
+      "title": "Campaign progression and chapter saves",
+      "status": "Implemented",
+      "owner": "Gameplay engineering",
+      "acceptance": "Continue the chosen chapter or latest shelter without erasing other expeditions; distinguish unsaved progress clearly.",
+      "evidence": "checkpoint-store.mjs",
+      "depends": [
+        "RW-002"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-028",
+      "phase": "G3",
+      "priority": "P1",
+      "title": "Chapter route and pacing audit",
+      "status": "Planned",
+      "owner": "Level design",
+      "acceptance": "Review all six chapters for landmarks, shortcuts, sightlines, supply spacing, backtracking and encounter rhythm.",
+      "evidence": "",
+      "depends": [
+        "RW-016",
+        "RW-025"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-029",
+      "phase": "G3",
+      "priority": "P1",
+      "title": "New puzzle interaction families",
+      "status": "Planned",
+      "owner": "Puzzle design",
+      "acceptance": "Build a prototype unlike the existing wheels or linked breakers, with in-world clues, reset safety and optional layered hints.",
+      "evidence": "",
+      "depends": [
+        "RW-028"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-030",
+      "phase": "G3",
+      "priority": "P1",
+      "title": "Collision-authored window and ledge traversal",
+      "status": "Planned",
+      "owner": "Traversal engineering",
+      "acceptance": "Build supported windows, ledges and gaps with valid starts/landings, camera clearance and enemy navigation; do not promise arbitrary traversal.",
+      "evidence": "",
+      "depends": [
+        "RW-035"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-031",
+      "phase": "G3",
+      "priority": "P2",
+      "title": "Swimming and water encounter design",
+      "status": "Planned",
+      "owner": "Traversal design",
+      "acceptance": "Prototype buoyancy, boundaries, exit points, camera, input and enemy interactions together before introducing swim-required routes.",
+      "evidence": "",
+      "depends": [
+        "RW-030"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-032",
+      "phase": "G3",
+      "priority": "P1",
+      "title": "Complete campaign playthrough evidence",
+      "status": "Planned",
+      "owner": "QA",
+      "acceptance": "Record each chapter from start through all required work to extraction with ordinary inputs, preserving exact build and save evidence.",
+      "evidence": "",
+      "depends": [
+        "RW-024",
+        "RW-028",
+        "RW-029"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-033",
+      "phase": "G4",
+      "priority": "P0",
+      "title": "Original visual direction bible",
+      "status": "Planned",
+      "owner": "Art direction",
+      "acceptance": "Approve proportions, silhouettes, architecture, materials, palette and visual hierarchy; use references for direction, not copied assets.",
+      "evidence": "",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-034",
+      "phase": "G4",
+      "priority": "P1",
+      "title": "Production hero character",
+      "status": "Planned",
+      "owner": "Character art",
+      "acceptance": "Build an original coherent hero mesh with clothing layers, facial detail, UVs and LODs; compare against the current procedural rig.",
+      "evidence": "actors.mjs",
+      "depends": [
+        "RW-033"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-035",
+      "phase": "G4",
+      "priority": "P1",
+      "title": "Authored locomotion and action clips",
+      "status": "Planned",
+      "owner": "Animation",
+      "acceptance": "Approve walk, run, crouch, crawl, turn, aim, reload, strike, stagger, vault, heal and craft transitions without visible snapping.",
+      "evidence": "",
+      "depends": [
+        "RW-034"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-036",
+      "phase": "G4",
+      "priority": "P1",
+      "title": "Foot placement and hand contacts",
+      "status": "Planned",
+      "owner": "Technical animation",
+      "acceptance": "Feet follow slopes and stairs; hands align to weapons and traversal contacts; solve IK failures without destabilizing gameplay.",
+      "evidence": "",
+      "depends": [
+        "RW-035"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-037",
+      "phase": "G4",
+      "priority": "P1",
+      "title": "Enemy silhouettes and reactions",
+      "status": "Planned",
+      "owner": "Character art",
+      "acceptance": "Every enemy role is recognizable in silhouette and motion, with distinct clothing/body treatment and readable damage states.",
+      "evidence": "",
+      "depends": [
+        "RW-033",
+        "RW-035"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-038",
+      "phase": "G4",
+      "priority": "P1",
+      "title": "Architecture and prop production kit",
+      "status": "Planned",
+      "owner": "Environment art",
+      "acceptance": "Replace conspicuous repeated blocks with an original modular kit, trim details, usable interiors and authored wear at consistent scale.",
+      "evidence": "ASSET-PIPELINE.md",
+      "depends": [
+        "RW-033"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-039",
+      "phase": "G4",
+      "priority": "P1",
+      "title": "Lighting and VFX scene continuity",
+      "status": "Planned",
+      "owner": "Lighting art",
+      "acceptance": "Review interior/exterior transitions, shadows, rain, puddles, smoke, muzzle flashes and restrained effects on both graphics tiers.",
+      "evidence": "VISUAL-UPGRADE.md",
+      "depends": [
+        "RW-038"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-040",
+      "phase": "G4",
+      "priority": "P1",
+      "title": "Asset optimization and provenance",
+      "status": "Implemented",
+      "owner": "Technical art",
+      "acceptance": "Every imported asset retains source/license/hash records; final hero and environment assets also need LOD, memory and streaming review.",
+      "evidence": "assets/",
+      "depends": [
+        "RW-034",
+        "RW-038"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-041",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Original six-chapter adaptive score",
+      "status": "Implemented",
+      "owner": "Music",
+      "acceptance": "Six distinct arrangements respond to danger and listening; composition quality and emotional pacing still require listening review.",
+      "evidence": "audio-design.mjs",
+      "depends": [
+        "RW-001"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-042",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Stereo direction and obstacle muffling",
+      "status": "Automated",
+      "owner": "Audio engineering",
+      "acceptance": "Source distance and camera orientation affect output; walls muffle sounds; mono does not remove caption direction.",
+      "evidence": "tests/field-ready.test.mjs",
+      "depends": [
+        "RW-001"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-043",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Layered Foley and action cues",
+      "status": "Implemented",
+      "owner": "Sound design",
+      "acceptance": "Movement surfaces, shots, reload stages, impacts, cloth, crafting, healing, creatures, mechanisms and supplies have distinct cues.",
+      "evidence": "audio.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-044",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Authored Foley listening pass",
+      "status": "Planned",
+      "owner": "Sound design",
+      "acceptance": "Review loudness, texture, timing, repetition and material realism for every cue on headphones and speakers; replace weak placeholders.",
+      "evidence": "",
+      "depends": [
+        "RW-043"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-045",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Room-aware reverb and sound portals",
+      "status": "Planned",
+      "owner": "Audio engineering",
+      "acceptance": "Interiors, streets, tunnels and courtyards use coherent acoustic transitions without leaking high-cost node allocation.",
+      "evidence": "",
+      "depends": [
+        "RW-042"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-046",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Musical transitions and dramatic silence",
+      "status": "Planned",
+      "owner": "Music",
+      "acceptance": "Author bar-aligned transitions, exploration variation, combat exit and silence so the score does not loop mechanically or mask cues.",
+      "evidence": "",
+      "depends": [
+        "RW-041"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-047",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Mixer accessibility and output budgets",
+      "status": "Implemented",
+      "owner": "Audio engineering",
+      "acceptance": "Independent sliders, mono, night mix and captions remain controller reachable; voice and sample-cache budgets stay bounded.",
+      "evidence": "audio-mixer.mjs",
+      "depends": [
+        "RW-001"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-048",
+      "phase": "G5",
+      "priority": "P1",
+      "title": "Final mix and device listening approval",
+      "status": "Planned",
+      "owner": "Audio QA",
+      "acceptance": "Measure peaks and dynamic range, then record subjective approval on headphones, laptop speakers and a TV with real controller play.",
+      "evidence": "",
+      "depends": [
+        "RW-044",
+        "RW-045",
+        "RW-046",
+        "RW-047"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-049",
+      "phase": "G6",
+      "priority": "P1",
+      "title": "Full remapping and hold alternatives",
+      "status": "Planned",
+      "owner": "Accessibility engineering",
+      "acceptance": "Offer remapping, conflict resolution, hold/toggle alternatives and readable per-device prompts; test every resulting action path.",
+      "evidence": "",
+      "depends": [
+        "RW-017"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-050",
+      "phase": "G6",
+      "priority": "P1",
+      "title": "Caption and interface readability",
+      "status": "Planned",
+      "owner": "UI accessibility",
+      "acceptance": "Review text size, contrast, safe areas, caption direction, speaker identification and color-independent signals across target displays.",
+      "evidence": "",
+      "depends": [
+        "RW-047"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-051",
+      "phase": "G6",
+      "priority": "P1",
+      "title": "Reduced motion and adjustable HUD",
+      "status": "Implemented",
+      "owner": "UI engineering",
+      "acceptance": "Players can reduce environmental motion and disable quiet-HUD fading without removing necessary gameplay information.",
+      "evidence": "survival-ui.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-052",
+      "phase": "G6",
+      "priority": "P0",
+      "title": "Target hardware matrix",
+      "status": "Planned",
+      "owner": "Technical direction",
+      "acceptance": "Name the actual CPU/GPU/RAM, browser, display resolution, controller and audio device for each supported tier before claiming performance.",
+      "evidence": "",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-053",
+      "phase": "G6",
+      "priority": "P1",
+      "title": "Repeatable performance capture",
+      "status": "Planned",
+      "owner": "Performance engineering",
+      "acceptance": "Record p50/p95/p99 frame time, long frames, draw calls, memory and load time on a fixed route and exact build.",
+      "evidence": "",
+      "depends": [
+        "RW-052"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-054",
+      "phase": "G6",
+      "priority": "P0",
+      "title": "Frame-time acceptance",
+      "status": "Blocked",
+      "owner": "Performance QA",
+      "acceptance": "Proposed targets, not current claims: desktop 1080p/60 fps and reduced tier 30 fps; agree hardware and pass sustained representative scenes.",
+      "evidence": "",
+      "depends": [
+        "RW-039",
+        "RW-053"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-055",
+      "phase": "G6",
+      "priority": "P1",
+      "title": "Memory, streaming and graphics recovery",
+      "status": "Planned",
+      "owner": "Engine engineering",
+      "acceptance": "Bound assets and caches, test repeated chapter swaps, slow downloads and WebGL context loss; preserve checkpoint data on recovery.",
+      "evidence": "",
+      "depends": [
+        "RW-040",
+        "RW-053"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-056",
+      "phase": "G6",
+      "priority": "P1",
+      "title": "Browser and device regression matrix",
+      "status": "Planned",
+      "owner": "Compatibility QA",
+      "acceptance": "Run agreed browser/OS/controller combinations, phones and focus-loss scenarios; scope VR separately from desktop certification.",
+      "evidence": "",
+      "depends": [
+        "RW-006",
+        "RW-052"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-057",
+      "phase": "G7",
+      "priority": "P0",
+      "title": "Staffing, budget and ownership plan",
+      "status": "Planned",
+      "owner": "Production",
+      "acceptance": "Assign real owners and review capacity; estimate content and asset costs before setting a release date. Roles here are not staffing claims.",
+      "evidence": "",
+      "depends": [
+        "RW-016"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-058",
+      "phase": "G7",
+      "priority": "P1",
+      "title": "Deterministic builds and evidence",
+      "status": "Implemented",
+      "owner": "Build engineering",
+      "acceptance": "Link every release to exact source, test reports, asset manifest and published file hashes; keep failed evidence.",
+      "evidence": "tests/release.py",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-059",
+      "phase": "G7",
+      "priority": "P1",
+      "title": "Asset rights and public-source boundary",
+      "status": "Automated",
+      "owner": "Release engineering",
+      "acceptance": "Check licensed assets, vendored notices, local runtime imports and absence of confidential material or service credentials.",
+      "evidence": "tests/public.test.mjs",
+      "depends": [],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-060",
+      "phase": "G7",
+      "priority": "P1",
+      "title": "Long-session and save migration QA",
+      "status": "Planned",
+      "owner": "QA",
+      "acceptance": "Run proposed two-hour sessions with repeated deaths, restarts, chapter changes and old saves; log every regression and reproduction.",
+      "evidence": "",
+      "depends": [
+        "RW-032",
+        "RW-055"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-061",
+      "phase": "G7",
+      "priority": "P1",
+      "title": "Player-facing known issues and support",
+      "status": "Planned",
+      "owner": "Production",
+      "acceptance": "Publish supported devices, known limitations, save recovery instructions and a clear issue-reporting path before release.",
+      "evidence": "",
+      "depends": [
+        "RW-056",
+        "RW-060"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-062",
+      "phase": "G7",
+      "priority": "P1",
+      "title": "Rollback rehearsal",
+      "status": "Planned",
+      "owner": "Release engineering",
+      "acceptance": "Rehearse reverting a release without deleting saves or changing sibling games, then verify public hashes again.",
+      "evidence": "",
+      "depends": [
+        "RW-058"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-063",
+      "phase": "G7",
+      "priority": "P2",
+      "title": "Optional platform expansion decision",
+      "status": "Planned",
+      "owner": "Game direction",
+      "acceptance": "Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.",
+      "evidence": "",
+      "depends": [
+        "RW-057"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    },
+    {
+      "id": "RW-064",
+      "phase": "G7",
+      "priority": "P0",
+      "title": "Release candidate approval",
+      "status": "Blocked",
+      "owner": "Game direction",
+      "acceptance": "Close critical defects and obtain player, art, audio, accessibility and hardware sign-off. A green checklist alone is not AAA quality.",
+      "evidence": "",
+      "depends": [
+        "RW-016",
+        "RW-032",
+        "RW-048",
+        "RW-054",
+        "RW-056",
+        "RW-060",
+        "RW-061",
+        "RW-062"
+      ],
+      "estimate": "Unestimated",
+      "reviewer": "Unassigned"
+    }
+  ]
+}

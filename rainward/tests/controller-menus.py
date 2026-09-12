@@ -10,6 +10,8 @@ from playwright.sync_api import sync_playwright
 OUT=Path('test-output/rainward-controller-menus');OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/')
 fixture=subprocess.check_output(['node','--input-type=module','-e',"import {createGame,checkpoint} from './rainward/model.mjs';const s=createGame('meridian');for(const e of s.enemies)e.hp=0;s.player.hp=45;s.player.medkit=1;s.player.smoke=1;s.player.cloth=2;s.player.canister=2;console.log(checkpoint(s));"],text=True).strip()
+district_fixture=subprocess.check_output(['node','--input-type=module','-e',"import {createGame,checkpoint} from './rainward/model.mjs';console.log(checkpoint(createGame()));"],text=True).strip()
+bank=json.dumps({'version':1,'active':'meridian','slots':{'district':{'checkpoint':district_fixture,'savedAt':0},'meridian':{'checkpoint':fixture,'savedAt':0}}})
 checks=[];errors=[];dialogs=[]
 def check(v,s):
  assert v,s
@@ -18,7 +20,7 @@ with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1080,'height':760},service_workers='block')
- c.add_init_script("localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:'classic',mute:true,low:true,scanned:false,cinematic:false,sensitivity:85}));window.pad={connected:true,mapping:'standard',index:0,id:'Xbox standard test',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};window.padPolls=0;Object.defineProperty(navigator,'getGamepads',{value:()=>{padPolls++;return [pad];}});")
+ c.add_init_script("localStorage.setItem('svgn.rainward.v2.chapter-checkpoints',"+json.dumps(bank)+");localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:'classic',mute:true,low:true,scanned:false,cinematic:false,sensitivity:85}));window.pad={connected:true,mapping:'standard',index:0,id:'Xbox standard test',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};window.padPolls=0;Object.defineProperty(navigator,'getGamepads',{value:()=>{padPolls++;return [pad];}});")
  host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=c.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  def dialog(d):dialogs.append(d.type+': '+d.message);d.dismiss()
@@ -48,7 +50,7 @@ with sync_playwright() as p:
   page.evaluate('pad.axes[0]=pad.axes[1]=0');polls()
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.Rainward&&padPolls>2');polls()
-  check(page.evaluate('Rainward.snapshot().version')=='0.9.0','The upgraded HTTP application loads with all six chapter options')
+  check(page.evaluate('Rainward.snapshot().version')=='0.10.0','The upgraded HTTP application loads with all six chapter options')
   check(page.locator('#chapter-select option').count()==6,'All six existing expeditions remain selectable')
   press(9,'Rainward.mode==="pause"');t=page.evaluate('Rainward.state.t');press(1,'Rainward.mode==="title"');check(page.evaluate('Rainward.state.t')==t,'Menu opens title settings and B returns to title without starting a mission')
   press(9,'Rainward.mode==="pause"');nav('sensitivity');press(15);check(page.locator('#sensitivity').input_value()=='90','D-pad right adjusts the look-sensitivity slider')
@@ -81,7 +83,7 @@ with sync_playwright() as p:
   press(1,'Rainward.mode==="play"');page.evaluate('pad.buttons[7]={pressed:true,value:1}');page.wait_for_function('Rainward.state.player.mag<6');page.evaluate('pad.connected=false');page.wait_for_function('Rainward.mode==="pause"');mag=page.evaluate('Rainward.state.player.mag');page.evaluate('pad.connected=true');polls(5);check(page.evaluate('Rainward.state.player.mag')==mag,'Disconnect pauses and held fire stays suppressed on reconnect');page.evaluate('pad.buttons[7]={pressed:false,value:0}');polls();press(0,'Rainward.mode==="play"')
   press(9,'Rainward.mode==="pause"');nav('to-title');press(0,'Rainward.mode==="confirm"');press(15);check(focus_id()=='confirm-yes','D-pad selects the confirmation action explicitly');press(0,'Rainward.mode==="title"');check(True,'The controller can confirm return to title')
   press(9,'Rainward.mode==="pause"');press(1,'Rainward.mode==="title"');check(True,'Title settings still return to title after a prior expedition')
-  nav('chapter-select');press(15);nav('start');press(0,'Rainward.mode==="confirm"');press(15);press(0,'Rainward.mode==="play"&&Rainward.state.level==="conservatory"');check(True,'A new chapter can be selected, confirmed and started entirely by controller')
+  nav('chapter-select');press(15);nav('start');press(0,'Rainward.mode==="play"&&Rainward.state.level==="conservatory"');check(True,'A new chapter can be selected, confirmed and started entirely by controller')
   press(9,'Rainward.mode==="pause"');page.set_viewport_size({'width':390,'height':844});nav('deadzone');check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'Controller settings fit a phone-width viewport and scroll focused controls into view')
   page.screenshot(path=str(OUT/'controller-settings-phone.png'));page.set_viewport_size({'width':1080,'height':760});page.screenshot(path=str(OUT/'controller-settings.png'))
   check(not dialogs,'No native browser alert, confirm or prompt appeared');check(not errors,'No uncaught errors during the controller-only journey')
