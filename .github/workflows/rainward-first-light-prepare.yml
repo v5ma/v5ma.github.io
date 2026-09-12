@@ -1,0 +1,53 @@
+name: Integrate Rainward First Light
+on:
+  push:
+    branches: [feat/rainward-first-light-20260912]
+    paths: ['rainward/tools/integrate-first-light.py','.github/workflows/rainward-first-light-prepare.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rainward-first-light-integration
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/rainward-first-light-20260912'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/rainward-first-light-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Integrate reviewed game and checklist changes
+        run: python rainward/tools/integrate-first-light.py
+      - name: Validate game modules and legacy saves
+        run: |
+          set -o pipefail
+          mkdir -p test-output
+          python -m compileall -q rainward/tests
+          for f in rainward/*.mjs; do node --check "$f"; done
+          node --test rainward/tests/*.test.mjs | tee test-output/rainward-model-tests.txt
+      - name: Commit Rainward only to the feature branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rainward
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Rainward v0.11 First Light field records and Floodgate approaches'
+            git push origin HEAD:feat/rainward-first-light-20260912
+          fi
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - name: Preserve source and checks
+        if: always()
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-first-light-integration
+          path: test-output/
+          retention-days: 7
