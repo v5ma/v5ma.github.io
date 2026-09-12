@@ -1,0 +1,43 @@
+name: Verify Prism Control Room
+on:
+  pull_request:
+    paths: ['prism-current/**', '.github/workflows/prism-control-room.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: prism-current
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pure contracts and lifecycle regression
+        run: |
+          mkdir -p test-output
+          python prism-current/tests/verify.py
+          node --test prism-current/tests/*.test.cjs | tee test-output/core.tap
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Actual game with emulated standard controller
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/prism-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u prism-current/tests/control-browser.py
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-control-room
+          path: test-output/
+          retention-days: 14
