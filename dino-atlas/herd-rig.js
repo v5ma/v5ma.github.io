@@ -22,7 +22,7 @@ export function articulateResident(root,kind,bake){
   function mesh(mat){const m=new T.Mesh(limbGeometry,mat);m.castShadow=true;m.receiveShadow=true;leg.add(m);return m;}
   const thigh=mesh(skin),shin=mesh(skin),foot=mesh(footMat);foot.scale.set(thick*.92,.16,thick*1.4);
   const hip=leg.position.clone();
-  const phase=(root.userData.legs.length===2?index:(hip.x<0?0:.5)+(hip.z<0?.5:0))%1;
+  const phase=(root.userData.legs.length===2?index*.5:(hip.x<0?0:.5)+(hip.z<0?.5:0))%1;
   return {leg,hip,h,thick,thigh,shin,foot,phase,anchor:null,wasStance:false,lastPhase:0,base:hip.clone()};
  });
  root.userData.rig={head,tail,limbs,kind,giant,quad,phase:0,lastDistance:0,breath:0};

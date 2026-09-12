@@ -2,10 +2,10 @@ name: Dino Atlas Living Herds verification
 on:
   push:
     branches: [dino-living-herds-20260912, master]
-    paths: ['dino-atlas/**', '.github/workflows/dino-living-herds.yml', '.github/patches/living-herds.*.b64']
+    paths: ['dino-atlas/**', '.github/workflows/dino-living-herds.yml']
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: dino-living-herds-${{ github.ref }}
   cancel-in-progress: true
@@ -16,40 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
-          fetch-depth: 0
-          persist-credentials: ${{ github.ref != 'refs/heads/master' }}
+          persist-credentials: false
           sparse-checkout: |
             dino-atlas
-            .github
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply the reviewed Git patch on the candidate only
-        if: github.ref == 'refs/heads/dino-living-herds-20260912'
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import base64,lzma,hashlib,subprocess
-          parts=sorted(Path('.github/patches').glob('living-herds.*.b64'))
-          if parts:
-              assert len(parts)==4
-              assert subprocess.check_output(['git','rev-parse','HEAD:dino-atlas'],text=True).strip()=='3cc0bdab5c52ddcf2db7a89bde0c8640cf9eeffc','Dino baseline changed; review before applying'
-              patch=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
-              assert hashlib.sha256(patch).hexdigest()=='3aff4611ff2a31b20cf28194aaea2ee79cdd6c7776b4b15aedae769a7f343fd0','Patch transport checksum mismatch'
-              target=Path('/tmp/living-herds.patch');target.write_bytes(patch)
-              paths=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
-              assert all(line.split('\t')[-1].startswith('dino-atlas/') for line in paths.splitlines())
-              subprocess.run(['git','apply','--check',str(target)],check=True)
-              subprocess.run(['git','apply','--index',str(target)],check=True)
-              subprocess.run(['git','rm',*[str(p) for p in parts]],check=True)
-              subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
-              subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
-              subprocess.run(['git','commit','-m','Implement Living Herds behavior, articulated motion, field study and production checklist'],check=True)
-              subprocess.run(['git','push','origin','HEAD:dino-living-herds-20260912'],check=True)
-          else:
-              print('Testing committed direct source; no integration patch remains.')
-          PY
       - name: Syntax and all model, physics and save regressions
         shell: bash
         run: |
