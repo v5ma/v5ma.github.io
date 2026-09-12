@@ -72,7 +72,7 @@ with sync_playwright() as pw:
   # Return to main using the actual controller upper face button, then exit.
   xrpress('left',5);wait("Vesperfall.component.dominionControls.state.xrScreen==='main'");xraction('Exit VR');wait('!Vesperfall.component.xr')
   page.locator('#continue-expedition').click();wait('Vesperfall.component.checkpoint.eligible&&Vesperfall.component.paused');page.locator('#save-expedition').click();pre_ar=saved()['checkpoint']
-  page.locator('#menu-ar').click();wait('Vesperfall.component.arMode&&Vesperfall.component.xr');xraction('Resume');wait('!Vesperfall.component.paused');page.wait_for_timeout(250);page.evaluate('TestXR.state.session.end()');wait('!Vesperfall.component.xr&&!Vesperfall.component.arMode')
+  page.locator('#menu-ar').click();wait('Vesperfall.component.arMode&&Vesperfall.component.xr');xraction('Begin AR Sanctuary');wait('!Vesperfall.component.paused');page.wait_for_timeout(250);page.evaluate('TestXR.state.session.end()');wait('!Vesperfall.component.xr&&!Vesperfall.component.arMode')
   check(saved()['checkpoint']['seed']==pre_ar['seed'] and page.evaluate('Vesperfall.state.world.seed')==pre_ar['seed'],'Stationary AR Sanctuary never replaces the persistent scored expedition')
   check(page.evaluate('Vesperfall.state.shots')==pre_ar['state']['shots'],'Leaving AR restores expedition counters without granting free ammunition or kills')
   # A second tab writes normally. The first must yield rather than overwrite it.
