@@ -1,0 +1,48 @@
+name: Dino Atlas crew asset intake
+on:
+  push:
+    branches: [dino-crew-canopy-20260912]
+    paths: ['.github/workflows/dino-crew-assets.yml']
+permissions:
+  contents: read
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+      - name: Preserve existing Northstar source and inspect original licensed assets
+        run: |
+          mkdir -p intake/northstar intake/downloads intake/vendor
+          cp -a dino-atlas intake/
+          python - <<'PY'
+          from urllib.request import urlopen,Request
+          from pathlib import Path
+          import hashlib,json,zipfile,io
+          def get(url):
+              return urlopen(Request(url,headers={'User-Agent':'DinoAtlasAssetReview/1.0'}),timeout=60).read()
+          base='https://raw.githubusercontent.com/v5ma/v5ma.github.io/dino-northstar-signature-20260912/dino-atlas/'
+          for name in ['northstar-signature.js','NORTHSTAR-CANOPY.md','tests/northstar-browser.py','tests/northstar-signature.test.mjs']:
+              p=Path('intake/northstar')/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(get(base+name))
+          url='https://kenney.nl/media/pages/assets/animated-characters-survivors/27b16052a7-1774772958/kenney_animated-characters-survivors.zip'
+          data=get(url);Path('intake/downloads/kenney-survivors.zip').write_bytes(data)
+          with zipfile.ZipFile(io.BytesIO(data)) as z:
+              entries=[{'name':i.filename,'size':i.file_size} for i in z.infolist()]
+              print(json.dumps(entries,indent=2))
+          receipt={'source':url,'license_page':'https://kenney.nl/assets/animated-characters-survivors','sha256':hashlib.sha256(data).hexdigest(),'entries':entries}
+          Path('intake/downloads/receipt.json').write_text(json.dumps(receipt,indent=2))
+          base='https://raw.githubusercontent.com/mrdoob/three.js/r177/examples/jsm/'
+          for path in ['loaders/GLTFLoader.js','utils/BufferGeometryUtils.js','utils/SkeletonUtils.js']:
+              p=Path('intake/vendor')/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(get(base+path))
+          Path('intake/vendor/LICENSE').write_bytes(get('https://raw.githubusercontent.com/mrdoob/three.js/r177/LICENSE'))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-crew-asset-intake
+          path: intake
+          retention-days: 7
