@@ -1,4 +1,5 @@
 name: Integrate Aether Afterlight
+# Review iteration 2: reload countdown completion uses the model's <= 0 condition.
 on:
   push:
     branches: [feat/aether-afterlight-20260912]
