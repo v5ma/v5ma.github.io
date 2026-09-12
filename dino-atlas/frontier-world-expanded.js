@@ -74,7 +74,7 @@ export function buildFrontier(scene,physics,state){
  }
  function burst(p,type='celebration',color=0xffc66f){
   burstCount++;for(let i=0;i<4;i++)spawnPulse(p,color,1.05+i*.14,.16+i*.06,i*.055);
-  const light=new T.PointLight(color,120,38,2);light.position.set(p.x,2.4,p.z);scene.add(light);setTimeout(()=>scene.remove(light),380);
+  // Bright pooled rings carry the flash without changing the shader light count.
   event(type,{x:p.x,z:p.z,count:burstCount});
  }
  function sonic(g){for(let i=0;i<5;i++)spawnPulse(g.def,g.def.color,1.25+i*.12,.18+i*.03,i*.045);event('sonic',{name:g.def.name,x:g.def.x,z:g.def.z});burstCount++;}

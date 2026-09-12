@@ -19,7 +19,7 @@ try:
  with sync_playwright() as pw:
   opts=dict(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
   if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
-  browser=pw.chromium.launch(**opts);context=browser.new_context(viewport={'width':1280,'height':800})
+  browser=pw.chromium.launch(**opts);context=browser.new_context(viewport={'width':1024,'height':768})
   context.add_init_script(PAD);context.add_init_script("try{if(!localStorage.getItem('dino-atlas.frontier.v2'))localStorage.setItem('dino-atlas.frontier.v2',JSON.stringify({version:2,settings:{low:true}}));}catch{}")
   page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
   def button(i,down):page.evaluate('([i,down])=>{__pad.buttons[i]={pressed:down,touched:down,value:down?1:0};__pad.timestamp++;}',[i,down])
@@ -28,7 +28,7 @@ try:
   def wait(expr,timeout=30000):page.wait_for_function(expr,timeout=timeout)
   def choose(job):
    page.evaluate('__dinoRanch.open()');page.wait_for_timeout(230);page.evaluate('(job)=>document.querySelector(`[data-job="${job}"]`).focus()',job);press(0)
-  def snap(name):page.screenshot(path=str(OUT/name))
+  def snap(name):page.screenshot(path=str(OUT/name),timeout=45000,animations='disabled')
   try:
    page.goto(BASE+'?test=1',wait_until='domcontentloaded',timeout=90000);wait('window.__dinoRanger?.state.ready',120000)
    check(page.evaluate('__dinoRanch.state.build')=='ranch-coast-20260911.1','Current Ranch and Coast entry point boots')
@@ -42,6 +42,7 @@ try:
    try:wait('__dinoRanch.state.progress.done.includes("drive")',60000)
    finally:button(7,False)
    check(page.evaluate('__dinoRanch.state.progress.tutorial')>=1,'Actual RT driving completes the first lesson')
+   check(page.evaluate('(()=>{const a=document.getElementById("ranch-status").getBoundingClientRect(),b=document.querySelector(".map-corner").getBoundingClientRect();return a.top>=b.bottom||a.right<=b.left||a.left>=b.right;})()'),'Herding feedback leaves the minimap unobstructed')
    # Place one resident at a clear training-lane fixture, then use genuine gamepad input.
    page.evaluate("""()=>{const g=__dinoRanger,a=g.animals.find(a=>a.uid==='crest-meadow-3');a.x=-58;a.z=209;a.origin={x:-58,z:209};a.deter=0;a.stun=0;a.collider.setTranslation({x:a.x,y:a.collisionHeight/2,z:a.z},true);g.teleport(-58,219);g.setAim(0,.04);g.progress.tool=0;}""")
    page.wait_for_timeout(350);press(13)
@@ -98,7 +99,9 @@ try:
    # Walk an actual corridor route: behind the partition, across the atrium, then to the archive.
    def walk(x,z,condition):
     page.evaluate('([x,z])=>{__pad.axes[0]=x;__pad.axes[1]=z;}',[x,z])
-    try:wait(condition,45000)
+    try:
+     wait(condition,90000)
+     print('CORRIDOR:',json.dumps(page.evaluate('__dinoRanger.state.position')),flush=True)
     finally:page.evaluate('__pad.axes[0]=0;__pad.axes[1]=0')
    walk(0,-1,'__dinoRanger.state.position.z<-366.5');walk(1,0,'__dinoRanger.state.position.x>-17.3');walk(0,1,'__dinoRanger.state.position.z>-363.5')
    wait('document.getElementById("interact-label").textContent.includes("Recover Canopy")');snap('08-explorable-interior.png');press(0)
@@ -116,7 +119,10 @@ try:
    check(not errors,'No uncaught JavaScript exceptions in the tested flows')
    result={'passed':len(checks),'checks':checks,'errors':errors,'limitations':'Native HTTP Chromium and software WebGL; synthetic standard-layout Xbox; positioning fixtures for distant activities; real controller walking through interior; full coastal lap independently tested with Rapier boat physics. No physical controller, real GPU or speaker/headset testing.'};(OUT/'report.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
   except Exception as exc:
-   (OUT/'failure.json').write_text(json.dumps({'error':str(exc),'errors':errors,'passed':checks},indent=2))
+   diagnostic=None
+   try:diagnostic=page.evaluate('({game:window.__dinoRanger?.state,ranch:window.__dinoRanch?.state,focus:document.activeElement?.outerHTML,dialogs:[...document.querySelectorAll("dialog[open]")].map(d=>d.id)})')
+   except Exception:pass
+   (OUT/'failure.json').write_text(json.dumps({'error':str(exc),'errors':errors,'passed':checks,'diagnostic':diagnostic},indent=2));print('FAILURE STATE:',json.dumps(diagnostic),flush=True)
    try:snap('failure.png');print('DIAGNOSTIC',json.dumps(page.evaluate('({game:window.__dinoRanger?.state,ranch:window.__dinoRanch?.state,focus:document.activeElement?.outerHTML,dialogs:[...document.querySelectorAll("dialog[open]")].map(d=>d.id)})')))
    except Exception:pass
    raise

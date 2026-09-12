@@ -79,6 +79,8 @@ export function buildRanchWorld(scene,physics){
  for(let i=0;i<28;i++){const m=part(scene,new T.RingGeometry(.92,1,48),new T.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,side:T.DoubleSide,depthWrite:false}),0,-10,0);m.rotation.x=-Math.PI/2;m.visible=false;wavePool.push({m,t:9,life:1,radius:1});}
  for(let i=0;i<30;i++){const m=part(scene,new T.CylinderGeometry(1,1,1,5),new T.MeshBasicMaterial({color:0x96eaff,transparent:true,opacity:0,depthWrite:false}),0,-10,0);m.visible=false;rays.push({m,t:9,life:.2});}
  for(let i=0;i<48;i++){const m=part(scene,new T.IcosahedronGeometry(.13,0),new T.MeshBasicMaterial({color:0xc1f4ff,transparent:true,opacity:0}),0,-10,0);m.visible=false;splashes.push({m,t:9,life:.5,v:new T.Vector3()});}
+ const lightSources=[];scene.traverse(o=>{if(o.isPointLight){o.visible=false;lightSources.push({light:o,p:new T.Vector3()});}});
+ const lightPool=Array.from({length:4},()=>{const l=new T.PointLight(0xffffff,0,35,2);scene.add(l);return l;});
  let wi=0,ri=0,si=0,hornCount=0,shotCount=0,wake=0;const up=new T.Vector3(0,1,0);
  function wave(p,color,radius=10,life=1.1,y=.22){const o=wavePool[wi++%wavePool.length];o.m.position.set(p.x,y,p.z);o.m.material.color.setHex(color);o.radius=radius;o.life=life;o.t=0;o.m.visible=true;return o;}
  function ray(a,b,color,width,life){const o=rays[ri++%rays.length],v=new T.Vector3(b.x-a.x,b.y-a.y,b.z-a.z);o.m.position.set((a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2);o.m.quaternion.setFromUnitVectors(up,v.clone().normalize());o.m.scale.set(width,Math.max(.01,v.length()),width);o.m.material.color.setHex(color);o.life=life;o.t=0;o.m.visible=true;}
@@ -88,7 +90,9 @@ export function buildRanchWorld(scene,physics){
  }
  function horn(p,reduced=false){hornCount++;for(let i=0;i<(reduced?1:5);i++){const w=wave(p,0xffd38a,42,1.55+i*.1,.18+i*.09);w.t=-i*.09;}}
  function update(dt,time,p,mode,state,race,animals,reduced){
-  for(const s of sites){const within=Math.abs(p.x-s.b.x)<s.b.hx&&Math.abs(p.z-s.b.z)<s.b.hz&&p.y<s.b.h-2;s.roof.visible=!within;s.shell.visible=!within;}
+  const nearest=lightSources.map(s=>{s.light.getWorldPosition(s.p);s.d=Math.hypot(s.p.x-p.x,s.p.y-p.y,s.p.z-p.z);return s;}).sort((a,b)=>a.d-b.d);
+  lightPool.forEach((l,i)=>{const s=nearest[i];if(s&&s.d<75){l.position.copy(s.p);l.color.copy(s.light.color);l.distance=s.light.distance;l.decay=s.light.decay;l.intensity=s.light.intensity;}else l.intensity=0;});
+  for(const s of sites){s.inside.visible=distance(p,s.b)<240;const within=Math.abs(p.x-s.b.x)<s.b.hx&&Math.abs(p.z-s.b.z)<s.b.hz&&p.y<s.b.h-2;s.roof.visible=!within&&distance(p,s.b)<260;s.shell.visible=!within&&distance(p,s.b)<260;}
   for(const m of markers){const near=distance(p,m.p)<190;m.group.visible=near;m.ring.visible=near&&race.active&&(race.index%24===m.p.id);m.tag.visible=near&&(m.p.id===0||m.ring.visible);}
   for(const c of cargo){c.g.visible=!state.salvage.includes(c.p.id)&&distance(p,c.p)<210;if(!reduced)c.g.position.y=.8+Math.sin(time*1.6+c.p.x)*.12;}
   for(const w of wavePool){w.t+=dt;const f=w.t/w.life;w.m.visible=f>=0&&f<1;if(w.m.visible){w.m.scale.setScalar(reduced?w.radius:Math.max(.3,w.radius*f));w.m.material.opacity=(1-f)*(reduced?.28:.8);}}
