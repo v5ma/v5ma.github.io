@@ -36,6 +36,6 @@ export function cleanKit(value){
  const mags={},reserve={};for(const id of owns){const w=WEAPONS[id];mags[id]=count(v.mags?.[id],w.mag,w.mag);reserve[id]=count(v.reserve?.[id],w.reserve*3,w.reserve);}
  const dead=[...new Set(Array.isArray(v.dead)?v.dead.filter(id=>ENEMIES.some(e=>e.id===id&&!Number.isInteger(e.wave))):[])];
  const taken=[...new Set(Array.isArray(v.taken)?v.taken.filter(id=>CACHES.some(c=>c.id===id)||dead.some(d=>'drop-'+d===id)):[])];
- return {credits:count(v.credits,99999,400),owns,selected:owns.includes(v.selected)?v.selected:'arc',mags,reserve,tune,shield:count(v.shield,2),dead,taken};
+ const selected=owns.includes(v.selected)?v.selected:'arc';const requested=Array.isArray(v.carried)?v.carried.filter(id=>owns.includes(id)):[];const carried=[...new Set([selected,...requested,'arc'].filter(id=>owns.includes(id)))].slice(0,2);return {credits:count(v.credits,99999,400),owns,selected,carried,mags,reserve,tune,shield:count(v.shield,2),dead,taken};
 }
 export function weaponStats(s){const w=WEAPONS[s.p.weapon]||WEAPONS.arc,t=s.kit.tune[w.id]||{damage:0,reload:0};return {...w,damage:Math.round(w.damage*(1+t.damage*.18)),reload:w.reload*(1-t.reload*.18)};}
