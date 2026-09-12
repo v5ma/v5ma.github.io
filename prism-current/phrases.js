@@ -21,7 +21,7 @@
   }
   function results(){if(!g.state)return;const r=summary(g.state),box=$('section-results');box.replaceChildren();
    const weakest=r.sections.find(p=>p.id===r.weakest);
-   $('practice-tip').textContent=weakest&&weakest.accuracy<95?`Next target: ${weakest.name} at ${stamp(weakest.start)}. ${weakest.misses+weakest.bad} missed or wrong cuts. Replay the track and focus on this phrase.`:'Every section connected. Try the other chart for a different movement pattern.';
+   $('practice-tip').textContent=weakest&&weakest.accuracy<95?`Next target: ${weakest.name} at ${stamp(weakest.start)}. ${weakest.misses+weakest.bad} missed or wrong cuts. Use the practice shortcut below to work on this phrase.`:'Every section connected. Try the other chart for a different movement pattern.';
    $('timing-detail').textContent=r.samples?`${r.early} early / ${r.centered} within 35 ms / ${r.late} late. Average absolute timing error: ${r.meanAbsolute.toFixed(0)} ms. Timing is measured at ${g.state.mode==='keys'?'the button press':'the closest sampled blade contact'}, not an audio-device calibration.`:'No hit timing samples yet. Finish a few connections to see your timing feedback.';
    for(const p of r.sections){const row=document.createElement('div');row.className='section-result';const label=document.createElement('p');label.textContent=`${p.name} / ${stamp(p.start)} / ${p.notes?p.accuracy+'% quality':'listening break'}`;const bar=document.createElement('progress');bar.max=100;bar.value=p.accuracy||0;bar.setAttribute('aria-label',p.name+' quality');row.append(label,bar);box.append(row);}
   }

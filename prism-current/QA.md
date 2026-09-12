@@ -1,66 +1,11 @@
-# Tidal Bloom v0.4.0 verification
+# Practice Lab v0.5.0 verification
 
-The new content adds a fourth original track, authored phrases, section guidance and read-only timing feedback. Golden chart/scoring and 12 kHz synthesized-audio fixtures come from published v0.3.0. Core version 0.4.0 adds content and diagnostics without changing legacy scoring equations or timing windows.
+The release discussion and source/publication receipts are in [PR #120](https://github.com/v5ma/v5ma.github.io/pull/120). Read the actual final workflow outcomes. A written test procedure or an implementation checkbox is not proof of test or publication success.
 
-Run `node --test prism-current/tests/*.test.cjs` and `node prism-current/tests/audio-audit.cjs` from repository root. The new tidal-browser.py plays a full unaccelerated song through emulated controller input, checks phrase changes and results, and verifies old and new records across reload. Existing desktop, pointer, XR, controller/mixer and full-resolution art suites remain. A written test is not itself a passing receipt; exact source/public outcomes belong in the release PR and workflow artifacts.
+Current implementation boundaries are described in [PRACTICE_NOTES.md](PRACTICE_NOTES.md). The active production path is [AAA_CHECKLIST.md](AAA_CHECKLIST.md). Previous Tidal Bloom and Control Room verification records are preserved verbatim in [QA-v040.md](QA-v040.md).
 
-Local Node tests are available, but local Chromium HTTP navigation is blocked by the development environment. Native production-renderer tests run in GitHub Actions rather than a substituted renderer or silent worker. Functional software-rendered tests use reduced pixel ratios; visual review captures full-resolution menus separately. None establishes physical-device frame rate, latency or comfort.
+The source gate runs all Node tests, including golden original chart/audio buffers and Practice Lab plan, PCM, record and application lifecycle fixtures. The new native browser suite uses real stereo audio and production WebGL for two unaccelerated 75% section passes, automatic repetition, cancellation, controller pause/mixer/disconnect, a return to full-song mode and save reload. The full Tidal suite also exercises the weakest-section shortcut after a complete song. Existing desktop, pointer, emulated XR and full-resolution art acceptance remains.
 
-The checked-in qa/tidal-v040-audio.json covers sample peaks, RMS and conservative four-hit-envelope headroom at full gains. It is not a LUFS, inter-sample true-peak or subjective listening approval. Musical direction and physical chart comfort remain open in the checklist.
+Native HTTP navigation is blocked locally by the development environment; source/public browser acceptance runs in GitHub Actions. Reduced software-rendered gameplay buffers are functional tests, not consumer-hardware performance measurements. Physical Xbox/Quest, sound-output latency, comfort and creative listening approval remain open. Practice Lab currently runs in the browser; AR/VR retain full-song play. Slowing playback lowers pitch.
 
-Rollback must revert only this release on current master, retaining other game upgrades. New-track score entries can remain during rollback; original categories are not migrated or deleted. The v0.3.0 record follows for history.
-
-# Control Room v0.3.0 verification record
-
-Release discussion and actual source/publication receipts: [PR #112](https://github.com/v5ma/v5ma.github.io/pull/112). Read the final receipt together with its matching workflow conclusion; an implementation checkbox alone is not proof of test or deployment success.
-
-## Scope
-
-The upgrade adds controller timing practice, controller UI navigation, independent persisted music/effects controls, sound/text density controls and transport cancellation. Existing songs, scoring equations, blade geometry, Jewelbox graphics and the record storage key are preserved. Gamepad timing records use a new input-mode suffix. The unchanged scoring core reports 0.2.0; the application/release version is 0.3.0.
-
-A separate `render-ready.js` helper prepares first-use materials offscreen before the soundtrack starts, restores renderer/XR state, waits for steady render frames and disposes its temporary resources. It never changes the audio clock, timing window, scores or controller poses. A device that remains too slow receives a request to choose Light graphics instead of starting an already-stalled song. The in-play 0.3-second stall guard remains unchanged.
-
-`AAA_CHECKLIST.md` tracks implemented work and open physical acceptance. F-02, F-03 and F-04 are recurring release gates, not permanently completed project features. Their result belongs in the release PR receipt; the next release must run them again.
-
-## Automated source acceptance
-
-The source workflow runs the release manifest, dependency integrity checks and all Node fixtures. The suite covers transport cancellation, a single soundtrack voice, independent volumes, effect cooldown/voice cap, standard-pad edges, XR-pad exclusion, separate score categories, legacy records, async resume/abort and warm-up resource/state restoration.
-
-The native controller suite uses the production renderer and locally synthesized soundtrack in Chromium with an emulated standard controller. It exercises mixer navigation, independent gains, Music only, an audio-timed lane hit, pause/resume, modal focus/background isolation, disconnect/reconnect, aborted-run score isolation and preference reload.
-
-Existing native suites check full-song keyboard completion, pointer slicing, emulated AR transparency/tracking recovery and Jewelbox materials/presets. Tests do not inject scores or accelerate the application clock.
-
-### Software rasterization boundary
-
-These GitHub runners use CPU software WebGL, not a consumer graphics card. Larger Cinematic drawing buffers triggered the game's existing frame-stall protection; the new readiness gate also correctly refused to begin when preparation could not become steady. This is not a passed performance measurement, and no consumer/headset frame-rate claim follows from these tests.
-
-Functional desktop/pointer tests therefore use a one-eighth device pixel ratio with a normal 1280x1000 CSS viewport. Controller tests use a quarter ratio at 1280x900. The visual suite separately captures real 1440x1050 before/after menus, checks all materials and quality presets, and observes active Cinematic play in a 200x150 viewport. Graphics materials and game timing rules are unchanged by these test settings. Physical performance targets remain open checklist items.
-
-An earlier controller test used fixed-duration input pulses that could disappear between slow rendered frames. Input edges are now presented across actual browser frames instead. That does not change gameplay timing windows or award synthetic points.
-
-## Public acceptance
-
-After merge, `Verify published Prism Current` compares committed Prism runtime/documentation hashes with GitHub Pages files. It then exercises the public homepage-to-game path, full original-song keyboard completion and public controller/mixer flow. Shared homepage file hashes are not pinned, allowing concurrent upgrades to other games; the actual homepage card is still tested.
-
-A successful source run is not a successful public run. The final PR receipt records the merge SHA, public workflow and outcome. Workflow artifacts contain manifests, JSON reports and screenshots, subject to their retention period.
-
-## Reproduction
-
-Run from repository root:
-
-```sh
-python prism-current/tests/verify.py
-node --test prism-current/tests/*.test.cjs
-python -m http.server 4173 --bind 127.0.0.1
-# In another terminal, with Playwright Chromium installed:
-python prism-current/tests/control-browser.py
-PRISM_SUITE=desktop python prism-current/tests/browser.py
-PRISM_SUITE=xr python prism-current/tests/browser.py
-python prism-current/tests/pointer.py
-```
-
-## Open hardware and platform gates
-
-Real standard controllers over USB/Bluetooth, physical Quest tracking and comfort, sound-output latency, sustained thermal/performance measurements, and the Safari/Firefox/mobile-browser matrix remain OPEN. Browser security may require an initial click or keypress to unlock sound. The current mixer is a browser control; an in-headset sound menu is a future item.
-
-No new commercial music, camera access, room scans, analytics, cloud accounts or remote score storage are added. To roll back this release, revert PR #112 on the current master branch and redeploy; do not reset the entire repository and discard unrelated game upgrades.
+After merge, Verify published Prism Current must match the exact committed game/documentation hashes and pass public legacy-song, controller/mixer, Tidal and practice flows. Revert only this release on current master to roll back, retaining unrelated game upgrades. The new practice save namespace may remain on the device during rollback. Full-song records are not migrated or deleted.

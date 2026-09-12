@@ -53,6 +53,10 @@ jobs:
         env:
           PRISM_URL: https://v5ma.github.io/prism-current/
         run: timeout 240 python -u prism-current/tests/tidal-browser.py
+      - name: Verify public Practice Lab passes, repeat and save isolation
+        env:
+          PRISM_URL: https://v5ma.github.io/prism-current/
+        run: timeout 240 python -u prism-current/tests/practice-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

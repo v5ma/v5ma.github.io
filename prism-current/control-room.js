@@ -43,7 +43,7 @@
    if(!pad&&connected){lost();return;}if(!pad)pad=pads.find(p=>p&&p.connected!==false&&p.mapping==='standard');if(!pad)return;
    if(!connected){connected=true;padIndex=pad.index;padId=pad.id;seed=true;sync();}
    const s=sample(pad,old,direction);if(seed){old=s.down;direction=s.direction;seed=false;return;}old=s.down;const repeat=s.direction&&(s.directionChanged||now>=nextRepeat);direction=s.direction;if(repeat)nextRepeat=now+(s.directionChanged?380:160);
-   const p=s.pressed;
+   const p=s.pressed;if(p.some(Boolean)||s.directionChanged&&s.direction)g.practice?.interact();
    if(p[8]){popup.hidden?openMixer():closeMixer();return;}
    if(p[9]){if(!popup.hidden){closeMixer();return;}if(g.phase==='playing')g.pauseRun('Paused by controller');else if(g.phase==='paused')g.resume();else if(g.phase==='menu'||g.phase==='complete'){if(g.input!=='gamepad'){g.input='gamepad';g.syncControls();}g.start();}return;}
    if(p[1]){back();return;}
