@@ -3,7 +3,9 @@
   "build": "sky-cycle-luminous-2026.09.12",
   "tested_commit": "d1dc549413bd7ea60a47c82ffeacaca2eb91d2d3",
   "runtime_origin_commit": "cddc889d8e43335f592a05d36bb0868b30100bd5",
-  "runtime_identity": "The tested commit changes only the test harness and read-only workflow relative to the runtime origin. The following documentation commit does not modify the runtime.",
+  "published_merge_commit": "c65e60cbbfa83853e066729649666c47e9e4a2da",
+  "pull_request": 130,
+  "runtime_identity": "The tested commit changes only the test harness and read-only workflow relative to the runtime origin. The documentation commits do not modify the runtime. All eight public runtime hashes also match the tested local source.",
   "acceptance": {
     "run": 34717825625,
     "shader_job": 103618157478,
@@ -59,6 +61,16 @@
     "release.json":"7b6a135325f2ec59454406bbf1807f63731d1da144982062324b8c4803e00e48",
     "sw.js":"20d7e982412195d3afbdac8b9c65e71257132574b414586dbd7a30a7fe2063be"
   },
-  "publication": {"verified":false,"status":"Awaiting master merge and independent public-byte verification. Passing branch tests alone do not establish publication."},
+  "publication": {
+    "verified":true,
+    "status":"All eight public runtime files match the exact merged source and the tested runtime hashes listed above.",
+    "run":34718388497,
+    "job":103619620453,
+    "artifact":10306021983,
+    "artifact_sha256":"2c61627de8a67ca21b16211816f448fbc2a4f68d0c1393a5514c91f3bee6fe56",
+    "report_uploaded_at":"2026-09-12T21:00:06Z",
+    "attempt_count":19,
+    "verified_file_count":8
+  },
   "remaining_gates": ["Native WebGPU execution on physical graphics hardware","Physical Xbox controller and actual mobile devices","Device frame-time and long-session memory budgets","Independent human art/readability review and campaign-wide qualification"]
 }
