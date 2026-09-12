@@ -12,6 +12,7 @@ def check(ok,label):
  checks.append(label);print('PASS:',label,flush=True)
 AIM="""async target=>{const c=Vesperfall.component,canvas=AFRAME.scenes[0].canvas,held=new Set(),key=(code,on)=>{if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true}));on?held.add(code):held.delete(code);};await new Promise((resolve,reject)=>{const start=performance.now(),t=setInterval(()=>{const s=Vesperfall.state,p=s.head,dx=target[0]-p[0],dz=target[2]-p[2],d=Math.hypot(dx,dz),dy=target[1]-p[1],v=target[3]||36,v2=v*v,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2),pitch=disc>0?Math.atan((v2-Math.sqrt(disc))/(9.8*d)):0,yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw)),b=pitch-c.pitch;key('ArrowLeft',a>.01);key('ArrowRight',a<-.01);key('ArrowUp',b>.006);key('ArrowDown',b<-.006);if(Math.abs(a)<.02&&Math.abs(b)<.012||performance.now()-start>90000){for(const k of [...held])key(k,false);clearInterval(t);Math.abs(a)<.02?resolve():reject(Error('Aim timeout'));}},3);});}"""
 WALK="""async target=>{const c=Vesperfall.component,canvas=AFRAME.scenes[0].canvas,held=new Set(),key=(code,on)=>{if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true}));on?held.add(code):held.delete(code);};await new Promise((resolve,reject)=>{const start=performance.now(),t=setInterval(()=>{const s=Vesperfall.state,dx=target[0]-s.p[0],dz=target[1]-s.p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw));key('ArrowLeft',a>.018);key('ArrowRight',a<-.018);key('KeyW',Math.abs(a)<.09&&d>.15);key('ShiftLeft',true);const encounter=target[2]&&s.oath?.active;if(d<.17||encounter||s.phase!=='playing'||performance.now()-start>180000){for(const k of [...held])key(k,false);clearInterval(t);d<.17||encounter?resolve():reject(Error('Walk stalled '+JSON.stringify({p:s.p,target,phase:s.phase})));}},3);});}"""
+ENCOUNTER=(ROOT/'vesperfall/tests/first-bell-driver.js').read_text()
 PAD="""(()=>{const pad={id:'Test Xbox',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};window.TestPad={enabled:false,pad,button(i,on){pad.buttons[i]={pressed:on,touched:on,value:on?1:0}}};Object.defineProperty(navigator,'getGamepads',{value:()=>TestPad.enabled?[pad]:[]});})();"""
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
@@ -53,7 +54,7 @@ with sync_playwright() as pw:
    if page.evaluate('Vesperfall.component.paused'):page.locator('#resume').click()
    page.locator('a-scene canvas').focus();page.evaluate(AIM,[0,1.5,-4]);shoot();lesson(2);check(True,'A real charged arrow hits the first practice bell and advances the lesson')
    page.keyboard.down('Space');wait('Vesperfall.component.charge>.3');n=page.evaluate('Vesperfall.state.shots');page.keyboard.press('KeyQ');page.keyboard.up('Space');lesson(3);check(page.evaluate('Vesperfall.state.shots')==n,'Canceling a drawn string advances without an unintended shot')
-   page.keyboard.press('KeyV');wait('Vesperfall.state.weapon==="crossbow"');page.keyboard.press('Space');wait('!Vesperfall.state.crossbow.loaded');page.keyboard.press('KeyR');lesson(4);check(True,'Crossbow fire and actual completed reload teach a different weapon rhythm')
+   page.keyboard.press('KeyV');wait('Vesperfall.state.weapon==="crossbow"');page.keyboard.down('Space');wait('!Vesperfall.state.crossbow.loaded');page.keyboard.up('Space');page.keyboard.press('KeyR');lesson(4);check(True,'Crossbow fire and actual completed reload teach a different weapon rhythm')
    enemy=page.evaluate('Vesperfall.state.world.enemies[0].p.map((v,i)=>i===1?v+.45:v)');page.evaluate(AIM,enemy+[1000]);page.keyboard.down('KeyH');lesson(5);page.keyboard.up('KeyH');wait('!Vesperfall.state.shield');check(True,'The shield lesson requires blocking a real enemy volley')
    page.keyboard.press('Digit4');point=page.evaluate('Vesperfall.state.p');page.evaluate(AIM,[point[0],point[1],point[2]-2,11]);
    page.evaluate("""async()=>{const c=Vesperfall.component,can=AFRAME.scenes[0].canvas,key=t=>can.dispatchEvent(new KeyboardEvent(t,{code:'Space',bubbles:true}));key('keydown');await new Promise((resolve,reject)=>{const st=performance.now(),t=setInterval(()=>{if(c.charge>.08&&c.blinkTrace?.ok){key('keyup');clearInterval(t);resolve();}else if(performance.now()-st>90000){key('keyup');clearInterval(t);reject(Error('No valid blink'));}},3);});}""");lesson(6);check(True,'Only a successful collision-checked Blink landing completes traversal training')
@@ -68,7 +69,7 @@ with sync_playwright() as pw:
    xrpress('left',5);wait('Vesperfall.component.paused');xract('Exit VR');wait('!Vesperfall.component.xr');page.set_viewport_size({'width':390,'height':844});check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'New coach and route controls fit a narrow screen');page.screenshot(path=str(OUT/'first-bell-menu-phone.png'))
   else:
    page.locator('#oath-start').click();wait('Vesperfall.state.oath&&!Vesperfall.component.paused');check(page.evaluate('Vesperfall.component.checkpoint.eligible&&!Vesperfall.state.unscored'),'The Oath begins as a real scored, checkpointed expedition')
-   page.locator('a-scene canvas').focus();deadline=time.monotonic()+950;phases=set();shots=0
+   page.locator('a-scene canvas').focus();deadline=time.monotonic()+950;phases=set();shots=0;captured=set()
    while page.evaluate('Vesperfall.state.oath.stage<3') and time.monotonic()<deadline:
     state=page.evaluate('({o:Vesperfall.state.oath,phase:Vesperfall.state.phase,p:Vesperfall.state.p})');assert state['phase']=='playing',state
     if not state['o']['active']:
@@ -79,21 +80,13 @@ with sync_playwright() as pw:
      continue
     e=page.evaluate('(()=>{const s=Vesperfall.state;return s.world.enemies.filter(e=>!e.dead&&BellOath.canTarget(s,e)).sort((a,b)=>VesperCore.len(VesperCore.sub(a.p,s.p))-VesperCore.len(VesperCore.sub(b.p,s.p)))[0];})()')
     if e.get('oathBoss'):
-     phases.add(e['bossPhase'])
      if page.evaluate('Vesperfall.state.weapon')!='crossbow':page.keyboard.press('KeyV')
-     target=[e['p'][0],e['p'][1]+.88,e['p'][2],38];page.evaluate(AIM,target)
-     if e['bossPhase']==3 and page.evaluate('Vesperfall.state.hazards.length>0'):
-      pos=page.evaluate('Vesperfall.state.p');page.keyboard.down('KeyD');page.wait_for_timeout(180);page.keyboard.up('KeyD')
-     if page.evaluate('Vesperfall.state.crossbow.loaded&&Vesperfall.state.world.enemies[4].recovery>1&&!Vesperfall.state.world.enemies[4].bossTransition'):
-      page.keyboard.up('KeyH');wait('!Vesperfall.state.shield');page.keyboard.press('Space');shots+=1
-     elif page.evaluate('!Vesperfall.state.crossbow.loaded'):
-      page.keyboard.up('KeyH');wait('!Vesperfall.state.shield');page.keyboard.press('KeyR');wait('Vesperfall.state.crossbow.loaded')
-     else:
-      page.keyboard.down('KeyH');page.wait_for_timeout(160);page.keyboard.up('KeyH')
-     if shots%3==0:print('BOSS',e['bossPhase'],e['hp'],flush=True)
+     result=page.evaluate(ENCOUNTER,e['id']);phases.update(result['phases'])
+     if e['bossPhase'] not in captured:
+      captured.add(e['bossPhase']);page.screenshot(path=str(OUT/('bellkeeper-phase-'+str(e['bossPhase'])+'.png')))
     else:
      if page.evaluate('Vesperfall.state.weapon')!='bow':page.keyboard.press('KeyV')
-     page.evaluate(AIM,[e['p'][0],e['p'][1]+.82,e['p'][2],36]);shoot()
+     page.evaluate(ENCOUNTER,e['id'])
     print('RUN',page.evaluate('({stage:Vesperfall.state.oath.stage,hp:Vesperfall.state.health,kills:Vesperfall.state.kills,shots:Vesperfall.state.shots})'),flush=True)
    check(page.evaluate('Vesperfall.state.oath.stage===3&&Vesperfall.state.kills===5&&Vesperfall.state.portalReady'),'Actual arrows defeat both paired encounters and the Bellkeeper, opening the beacon')
    check(phases=={1,2,3},'Native combat observes all three distinct boss phases without skipping transitions')
