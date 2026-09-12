@@ -82,7 +82,7 @@ export function createScene(canvas,w,s,quality='high'){
   lastYaw=p.yaw;const useConsole=!!input.consoleCamera&&p.mode==='foot';if(useConsole&&!consoleMode)consoleYaw=p.yaw+orbit;consoleMode=useConsole;
   if(useConsole){consoleYaw+=input.look||0;orbit=0;}else{if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);}
   pitch=T.MathUtils.clamp(pitch+(input.lookY||0),-1.8,4);
-  if(inBadlands(p)){const yaw=useConsole?consoleYaw:p.yaw+orbit;cameraHeading=yaw;frontierArt.update(p,dt,{yaw,pitch,distance:distanceScale,snap:!!input.snap||!frontierWas,quality:renderQuality});frontierWas=true;return;}
+  if(inBadlands(p)){if(!frontierWas){consoleYaw=p.yaw;orbit=0;}const yaw=useConsole?consoleYaw:p.yaw+orbit;cameraHeading=yaw;frontierArt.update(p,dt,{yaw,pitch,distance:distanceScale,snap:!!input.snap||!frontierWas,quality:renderQuality});frontierWas=true;return;}
   frontierArt.deactivate(p);if(frontierWas){initialized=false;cameraSafety.reset();frontierWas=false;}
   const aiming=useConsole&&p.resonance?.aim,angle=useConsole?consoleYaw:p.yaw+orbit;cameraHeading=angle;
   const follow=(aiming?2.25:p.mode==='car'?9:p.mode==='foot'?5:6.6)*distanceScale,camHeight=(aiming?2.05:p.mode==='car'?4:p.mode==='foot'?2.9:3.4)+pitch;

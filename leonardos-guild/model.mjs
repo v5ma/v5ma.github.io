@@ -164,7 +164,7 @@ export function trade(s,w,item){
  event(s,'trade',{item,cost});tell(s,item==='supplies'?'Supplies purchased: health and letters restored.':'The smith reinforces your staff.');return true;
 }
 export function attack(s,w){
- if(safeTown(s))return false;if(inBadlands(s))return strikeFrontier(s);
+ if(safeTown(s)){if(s.mode==='foot'&&s.attackCD<=0){s.attackCD=.6;s.attackT=.25;event(s,'swing');}return false;}if(inBadlands(s))return strikeFrontier(s);
  if(s.mode!=='foot'){tell(s,'Dismount with F to use your staff.');return false;}
  if(s.attackCD>0)return false;s.attackCD=.6;s.attackT=.25;event(s,'swing');
  if(hitDoorEnemy(s,w))return true;
