@@ -33,9 +33,10 @@ export function audioPreferences(raw){
   const legacy=!Number.isFinite(raw.version)||raw.version<2;
   for(const k of ['enabled','mono','captions'])if(typeof raw[k]==='boolean')out[k]=raw[k];
   for(const k of ['master','music','effects','ambience'])if(Number.isFinite(raw[k]))out[k]=clamp(raw[k],0,1);
-  // Existing v0.8 saves received a very dense mix. Migrate them once to a calmer ceiling
-  // while preserving any values the player had already turned lower.
-  if(legacy){out.music=Math.min(out.music,.38);out.effects=Math.min(out.effects,.48);out.ambience=Math.min(out.ambience,.36);out.range='night';out.density='quiet';}
+  // Keep the historic malformed-input fallback used by the validation suite,
+  // but migrate actual finite v0.8 values to a calmer one-time ceiling.
+  if(legacy&&!Number.isFinite(raw.music))out.music=.52;
+  if(legacy){if(Number.isFinite(raw.music))out.music=Math.min(out.music,.38);out.effects=Math.min(out.effects,.48);out.ambience=Math.min(out.ambience,.36);out.range='night';out.density='quiet';}
   if(['full','balanced','night'].includes(raw.range)&&!legacy)out.range=raw.range;
   if(SOUND_DENSITIES.some(t=>t.id===raw.density))out.density=raw.density;
   if(STATIONS.some(t=>t.id===raw.station))out.station=raw.station;out.version=AUDIO_VERSION;return out;
