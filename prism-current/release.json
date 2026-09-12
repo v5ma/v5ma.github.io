@@ -1,9 +1,9 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "name": "Prism Current",
   "date": "2026-09-12",
   "engine": "A-Frame 1.8.0",
-  "edition": "First Steps",
-  "scope": "Four input-graded browser lessons for hands/lanes, timing, direction and deliberate pause/resume. Per-input lesson completion is isolated from full-song and practice scores. Existing songs, controls, art and XR full-song play retained; human onboarding and hardware testing remain open.",
+  "edition": "Spectral Observatory",
+  "scope": "Three spectral studio themes, dichroic inner jewel seeds, diffraction halo and bounded hit-triggered floor interference. Classic/Light/headset fallback, quiet motion and saved controller-accessible settings. Existing songs, lessons, practice and scores retained; physical performance/comfort review open.",
   "checklist": "AAA_CHECKLIST.md"
 }
