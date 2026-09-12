@@ -43,7 +43,8 @@
      const n=36,ascending=(f.slopeZ||0)>0;for(let i=0;i<n;i++){const z=f.z-f.d/2+(i+.5)*f.d/n,y=CloisterLayout.elevation(f,[f.x,0,z]);b.box(paving,f.x,y-.035,z,f.w,.07,f.d/n+.01);b.box(gold,f.x,y+.004,z+(ascending?-1:1)*f.d/n*.35,f.w,.013,.035);}continue;
     }
     if(f.y===0)b.box(dark,f.x,-.35,f.z,f.w,.7,f.d);
-    b.box(f.y?pale:paving,f.x,f.y-.011,f.z,f.w,.02,f.d);
+    // Keep the visible paving cap 5 mm above its supporting block, below the 18 mm outer inlay. Collision floors are unchanged.
+    b.box(f.y?pale:paving,f.x,f.y-.005,f.z,f.w,.02,f.d);
     if(f.type==='bridge'){const along=f.w>f.d;for(const side of[-1,1]){const x=f.x+(along?0:side*(f.w/2-.16)),z=f.z+(along?side*(f.d/2-.16):0);b.box(pale,x,.64,z,along?f.w:.13,.15,along?.13:f.d);const n=Math.floor((along?f.w:f.d)/.65);for(let i=0;i<=n;i++)b.add(railLathe,stone,x+(along?(i/n-.5)*(f.w-.3):0),0,z+(along?0:(i/n-.5)*(f.d-.3)),.22,.63,.22);}}
    }
    for(const s of model.solids){const p=s.min.map((v,i)=>(v+s.max[i])/2),d=s.max.map((v,i)=>v-s.min[i]);

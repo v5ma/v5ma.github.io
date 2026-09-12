@@ -46,6 +46,7 @@ jobs:
           timeout 900 python -u vesperfall/tests/rosefire-browser.py | tee test-output/rosefire-browser.log
           test -s test-output/rosefire/report.json
           test ! -e test-output/rosefire/failure.json
+          python vesperfall/tests/rosefire-pixels.py
           timeout 180 python -u vesperfall/tests/production-browser.py | tee test-output/production-browser.log
           timeout 240 python -u vesperfall/tests/launch.py | tee test-output/launch.log
       - name: Archive source and diagnostics
