@@ -1,10 +1,13 @@
 name: Vesperfall Rosefire
 on:
+  pull_request:
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-rosefire.yml']
   push:
-    branches: [vesperfall-rosefire-20260912]
-    paths: ['vesperfall/**', '.github/rosefire-intake/**', '.github/workflows/vesperfall-rosefire.yml']
+    branches: [master]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-rosefire.yml']
+  workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: rosefire-${{ github.ref }}
   cancel-in-progress: true
@@ -14,43 +17,6 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - name: Apply exact preimage-checked game and workbook bytes
-        if: hashFiles('.github/rosefire-intake/part4.txt') != ''
-        run: |
-          python - <<'PY'
-          import pathlib,base64,lzma,json,hashlib
-          root=pathlib.Path.cwd();workflow='.github/workflows/vesperfall-rosefire.yml'
-          packed=base64.b64decode(''.join((root/f'.github/rosefire-intake/part{i}.txt').read_text().strip() for i in range(5)),validate=True)
-          assert hashlib.sha256(packed).hexdigest()=='864363165ec5c439cf413bf649b3997c092f14f8a8b7272469467789bb90eba5','Transfer checksum mismatch'
-          data=json.loads(lzma.decompress(packed));assert len(data)==15;planned=[]
-          for name,d in data.items():
-              if name==workflow:continue
-              p=root/name
-              assert name.startswith('vesperfall/') and '..' not in pathlib.PurePosixPath(name).parts
-              assert not p.is_symlink() and p.resolve().is_relative_to(root/'vesperfall')
-              if 'content' in d:
-                  assert not p.exists(),name
-                  b=d['content'].encode('utf-8')
-              else:
-                  b=p.read_bytes();assert hashlib.sha256(b).hexdigest()==d['before'],'Preimage mismatch: '+name
-                  if 'binaryEdits' in d:
-                      for start,end,replacement in reversed(d['binaryEdits']):b=b[:start]+base64.b64decode(replacement,validate=True)+b[end:]
-                  else:
-                      text=b.decode('utf-8')
-                      for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
-                      b=text.encode('utf-8')
-              assert hashlib.sha256(b).hexdigest()==d['after'],'Postimage mismatch: '+name
-              planned.append((p,b))
-          assert len(planned)==14
-          for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
-          for i in range(5):(root/f'.github/rosefire-intake/part{i}.txt').unlink()
-          print('Verified and applied',len(planned),'game files; workflow remains unchanged by the source bot.')
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- vesperfall .github/rosefire-intake
-          git commit -m 'Implement Vesperfall 0.11 Rosefire: original bounded PBR, stained-light, sky, ward and landing shaders; controller settings and production workbook'
-          git push origin HEAD:vesperfall-rosefire-20260912
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -62,11 +28,16 @@ jobs:
           node --test vesperfall/tests/*.test.cjs | tee test-output/models.tap
           python vesperfall/tests/production-workbook.py
           python scripts/check-vesperfall.py
+      - name: Verify every served runtime, asset, plan and workbook byte
+        if: github.ref == 'refs/heads/master'
+        run: python -u vesperfall/tests/verify-live.py
       - name: Install native test browser
         run: |
           python -m pip install playwright==1.57.0 pillow
           python -m playwright install --with-deps chromium
       - name: Exercise actual shaders, matching frames and Xbox/VR/AR interfaces
+        env:
+          TEST_BASE_URL: ${{ github.ref == 'refs/heads/master' && 'https://v5ma.github.io' || 'http://127.0.0.1:4173' }}
         run: |
           set -euo pipefail
           python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
@@ -87,6 +58,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rosefire-acceptance
+          name: rosefire-${{ github.ref == 'refs/heads/master' && 'publication' || 'acceptance' }}
           path: test-output/
           retention-days: 14
