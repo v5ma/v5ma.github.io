@@ -1,0 +1,52 @@
+name: Integrate reviewed Rainward survival source
+on:
+  push:
+    branches: [feat/rainward-survival-sound-20260911]
+    paths: ['scripts/rainward-survival/**','.github/workflows/rainward-survival-prepare.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rainward-survival-integration
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/rainward-survival-sound-20260911'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/rainward-survival-sound-20260911
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and apply exact Rainward source delta
+        run: python scripts/rainward-survival/apply.py
+      - name: Check integrated modules and existing save compatibility
+        run: |
+          set -o pipefail
+          mkdir -p test-output
+          for f in rainward/*.mjs; do node --check "$f"; done
+          node --test rainward/tests/*.test.mjs | tee test-output/rainward-model-tests.txt
+      - name: Commit verified integration to feature branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rainward
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Rainward v0.9 survival controls and original adaptive soundscape'
+            git push origin HEAD:feat/rainward-survival-sound-20260911
+          fi
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - name: Preserve the exact working source
+        if: always()
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-survival-integration
+          path: test-output/
+          retention-days: 7

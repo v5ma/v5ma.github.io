@@ -7,6 +7,7 @@ export const isMonster=e=>e.type==='prowler'||e.type==='brute'||e.type==='shriek
 export function updateMonster(s,e,dt){
  if(e.type==='shrieker')return updateShrieker(s,e,dt);
  if(e.hp<=0){e.state='down';e.seen=false;return;}
+ if((e.stagger||0)>0){e.stagger=Math.max(0,e.stagger-dt);e.speed=0;return;}
  const p=s.player,d=dist(p,e),large=e.type==='brute',base=heightAt(e.x,e.z);
  const seeing=d<(large?13:16)&&!obstruction({x:e.x,y:base+(large?1.8:.75),z:e.z},{x:p.x,y:heightAt(p.x,p.z)+.5,z:p.z})&&!s.smokes.some(c=>dist(c,p)<c.radius&&d>2);
  e.seen=seeing;e.awareness=seeing?1:Math.max(0,e.awareness-dt*.15);e.cooldown=Math.max(0,(e.cooldown||0)-dt);e.speed=0;
@@ -37,6 +38,7 @@ export function updateMonster(s,e,dt){
  * coordinates. Its planted call and committed swipe leave escape windows. */
 export function updateShrieker(s,e,dt){
  if(e.hp<=0){e.state='down';e.seen=false;e.speed=0;return;}
+ if((e.stagger||0)>0){e.stagger=Math.max(0,e.stagger-dt);e.speed=0;return;}
  const p=s.player,d=dist(e,p),saw=d<17&&!obstruction({x:e.x,y:heightAt(e.x,e.z)+1.7,z:e.z},{x:p.x,y:heightAt(p.x,p.z)+.5,z:p.z})&&!s.smokes.some(c=>dist(c,p)<c.radius&&d>2);
  e.seen=saw;e.awareness=saw?1:Math.max(0,e.awareness-dt*.18);e.speed=0;e.cooldown=Math.max(0,(e.cooldown||0)-dt);e.callCooldown=Math.max(0,(e.callCooldown||0)-dt);
  if(e.phase){e.phaseTime-=dt;

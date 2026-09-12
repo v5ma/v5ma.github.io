@@ -14,7 +14,7 @@ with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1080,'height':720},service_workers='block')
- c.add_init_script('''localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,sensitivity:85}));window.pad={connected:true,mapping:'standard',index:0,id:'Test Standard Device',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};window.padPolls=0;Object.defineProperty(navigator,'getGamepads',{value:()=>{window.padPolls++;return [window.pad]}});''')
+ c.add_init_script('''localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:'classic',mute:true,low:true,sensitivity:85}));window.pad={connected:true,mapping:'standard',index:0,id:'Test Standard Device',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};window.padPolls=0;Object.defineProperty(navigator,'getGamepads',{value:()=>{window.padPolls++;return [window.pad]}});''')
  host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.set_default_timeout(60000)
  def neutral_frames():

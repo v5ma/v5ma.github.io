@@ -21,7 +21,7 @@ with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
  browser=pw.chromium.launch(**kw)
- ctx=browser.new_context(viewport={'width':1280,'height':820},service_workers='block');ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,scanned:true,sensitivity:85}))")
+ ctx=browser.new_context(viewport={'width':1280,'height':820},service_workers='block');ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:'classic',mute:true,low:true,scanned:true,sensitivity:85}))")
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  p=ctx.new_page();p.set_default_timeout(120000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:console.append(m.text) if m.type=='error' else None);p.on('dialog',lambda d:d.accept());p.on('request',lambda r:requests.append(r.url))
  try:
@@ -38,7 +38,7 @@ with sync_playwright() as pw:
   check(not any('Shader Error' in x or 'VALIDATE_STATUS' in x or 'GL_INVALID' in x for x in console),'Full and reduced materials plus glTF models compile without renderer errors')
   p.set_viewport_size({'width':390,'height':844});check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'Asset status and controls fit a phone-width screen');p.screenshot(path=str(OUT/'phone-title.png'))
   # Explicit missing-resource test in a NEW browser context, not a warmed cache.
-  c=browser.new_context(viewport={'width':900,'height':650});c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true}))")
+  c=browser.new_context(viewport={'width':900,'height':650});c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:'classic',mute:true,low:true}))")
   def intercept(r):
    if r.request.url.endswith('/stone/color.webp'):r.fulfill(status=404,body='missing test texture')
    elif urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')):r.continue_()
