@@ -1,7 +1,6 @@
 """Read-only integration checks. --fixture uses a deliberately stubbed engine.
-The default suite exercises native menus and rider motion; it never sets a win.
-Default 3D rendering is captured before switching through the real 2D view button
-for lengthy DOM/controller checks on the CPU-only runner. Not a GPU benchmark.
+The default suite exercises the native 3D scene with standard controller input.
+It never sets a win, teleports the rider, or changes physics or rendering mode.
 """
 import argparse,functools,http.server,json,os,threading
 from pathlib import Path
@@ -49,10 +48,14 @@ try:
             def tap(i):
                 frames();page.evaluate('(i)=>{testPad.buttons[i]={pressed:true,value:1};}',i);frames();page.evaluate('(i)=>{testPad.buttons[i]={pressed:false,value:0};}',i);frames()
             def seek(predicate):
-                for _ in range(60):
-                    if page.evaluate(predicate):return
-                    tap(5)
-                raise AssertionError('Controller cannot reach '+predicate)
+                if page.evaluate(predicate):return
+                # Exercise the real held-stick repeat. Stop in the matching browser
+                # frame, rather than spending six rendered frames per bumper tap.
+                frames();page.evaluate('testPad.axes[1]=0.9')
+                try:
+                    page.wait_for_function('()=>{if('+predicate+'){testPad.axes[1]=0;return true;}return false;}',timeout=90000)
+                finally:
+                    page.evaluate('testPad.axes[1]=0');frames()
             seek('document.activeElement.matches(\'[data-course="4"]\')');tap(0)
             page.wait_for_function('!!SkyCycleCompass.run && SkyCycleCompass.run.steps>0')
             check(page.evaluate('SkyCycleCompass.run.id==="first-neighborhood"'),'Native: Sunrise Borough starts with an observed exploration run')
@@ -62,8 +65,6 @@ try:
             page.wait_for_function('!document.getElementById("sc-compass").hidden')
             check(page.evaluate('(()=>{const a=document.getElementById("sc-compass").getBoundingClientRect(),b=document.querySelector("#cloud-hud .cloud-loop").getBoundingClientRect();return a.top>=b.bottom+4;})()'),'Native: compass clears existing route and speed instruments')
             page.screenshot(path=str(out/'native-compass.png'))
-            # Change only the supported renderer through its normal UI, not physics or progression.
-            page.get_by_text('2D view',exact=True).click()
             tap(9);seek('document.activeElement.id==="sc-journal-pause"');tap(0)
             check(page.evaluate('document.getElementById("sc-journal").open && __delivery.paused'),'Native: controller opens journal without resuming the route')
             seek('document.activeElement.matches(".sc-stamps article")')
@@ -84,8 +85,10 @@ try:
         check(not errors,'No uncaught JavaScript exceptions');success=True
     finally:
         if not success:
-            try:page.screenshot(path=str(out/(label+'-failure.png')))
+            try:
+                page.screenshot(path=str(out/(label+'-failure.png')))
+                (out/(label+'-state.json')).write_text(json.dumps(page.evaluate('({focus:document.activeElement?.outerHTML,panel:window.SkyCycleFlightDeck?.topPanel()?.id,paused:window.__delivery?.paused,visible:!document.hidden,focused:document.hasFocus(),run:window.SkyCycleCompass?.run})'),indent=2))
             except Exception:pass
         browser.close()
 finally:
- server.shutdown();(out/(label+'-report.json')).write_text(json.dumps({'commit':os.getenv('GITHUB_SHA'),'mode':label,'passed':success,'checks':checks,'pageErrors':errors,'rendererNotes':'Default 3D gameplay capture; supported 2D renderer for extended journal navigation.' if not args.fixture else 'Isolated fixture, not a game renderer.'},indent=2))
+ server.shutdown();(out/(label+'-report.json')).write_text(json.dumps({'commit':os.getenv('GITHUB_SHA'),'mode':label,'passed':success,'checks':checks,'pageErrors':errors,'rendererNotes':'Default native 3D renderer; CPU-only smoke test, not a performance certification.' if not args.fixture else 'Isolated fixture; not native gameplay evidence.'},indent=2))
