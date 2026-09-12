@@ -1,0 +1,73 @@
+name: Integrate Aether Skyglass Cast
+on:
+  push:
+    branches: [feat/aether-skyglass-cast-20260912]
+    paths: ['.github/workflows/aether-skyglass-integrate.yml']
+permissions:
+  contents: write
+concurrency:
+  group: aether-skyglass-integrate
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/feat/aether-skyglass-cast-20260912'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/aether-skyglass-cast-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download pinned creator files without executing downloaded content
+        run: |
+          python -m pip install gdown==5.2.0
+          python - <<'PY'
+          import gdown,hashlib,json,time
+          from pathlib import Path
+          out=Path('/tmp/skyglass-models');out.mkdir(exist_ok=True)
+          pins=json.loads(Path('aether-reach/tools/cast-source-pins.json').read_text())
+          files=[('courier.gltf','1uxAFnDp73NO1c16LvHHjAYh1-deMNk5I'),('guard.gltf','1VGmU5f8a43NBT22JWB507NDSLbmNxzF9'),('officer.gltf','1NhXHnGU0zK9hBrT5FoZp8nTz_EmvTPg5'),('men-license.txt','1TTvylHa1CsiJuHFWWiv6PFGhLM-aAH5z'),('women-license.txt','1lIFL16xEpoPbr0j_HUATgmcEnAmYoIK2')]
+          for name,id in files:
+            for attempt in range(3):
+              try:
+                gdown.download(id=id,output=str(out/name),quiet=True)
+                assert hashlib.sha256((out/name).read_bytes()).hexdigest()==pins[name],name+' digest mismatch'
+                break
+              except Exception:
+                if attempt==2:raise
+                time.sleep(4)
+          PY
+      - name: Package local licensed assets and integrate exact reviewed source
+        run: |
+          python aether-reach/tools/build-cast-assets.py /tmp/skyglass-models
+          python aether-reach/tools/integrate-skyglass.py
+      - name: Check syntax, complete model regressions and public runtime manifest
+        run: |
+          set -euo pipefail
+          mkdir -p aether-reach/test-output
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/skyglass-node.log
+          node aether-reach/tests/release-manifest.mjs
+      - name: Commit the tested files and remove temporary integration tooling
+        run: |
+          set -euo pipefail
+          rm aether-reach/tools/integrate-skyglass.py aether-reach/tools/skyglass-baselines.json .github/workflows/aether-skyglass-integrate.yml .github/workflows/aether-cast-source.yml
+          git add -A -- aether-reach .github/workflows/aether-skyglass-integrate.yml .github/workflows/aether-cast-source.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Implement Aether Reach 0.10.0 Skyglass Cast with licensed animated humans'
+          git push origin HEAD:feat/aether-skyglass-cast-20260912
+      - name: Preserve integration evidence
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-skyglass-integration
+          path: aether-reach/test-output
+          retention-days: 14
