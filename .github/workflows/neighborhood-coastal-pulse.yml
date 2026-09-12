@@ -10,7 +10,7 @@ permissions:
   contents: write
 concurrency:
   group: coastal-pulse-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   acceptance:
     runs-on: ubuntu-latest
@@ -48,11 +48,10 @@ jobs:
           set -o pipefail
           node --test svgn-planet/tests/*.test.mjs 2>&1 | tee coastal-results/model-tests.log
       - name: Controller, sound and visual acceptance
-        if: always()
         run: |
           python -m http.server 8765 > /tmp/coastal-server.log 2>&1 &
           sleep 2
-          python svgn-planet/tests/coastal_browser.py 2>&1 | tee coastal-results/browser.log
+          python svgn-planet/tests/coastal_browser_release.py 2>&1 | tee coastal-results/browser.log
         shell: bash -eo pipefail {0}
       - name: Assemble verification evidence
         if: always()
@@ -60,7 +59,7 @@ jobs:
           mkdir -p coastal-results
           python - <<'PY'
           from pathlib import Path
-          import shutil,json
+          import shutil
           root=Path('coastal-results')
           source=root/'source';source.mkdir(exist_ok=True)
           for p in Path('svgn-planet').glob('*.mjs'):shutil.copy(p,source/p.name)
@@ -79,4 +78,3 @@ jobs:
           name: neighborhood-coastal-pulse-evidence
           path: coastal-results
           retention-days: 30
-# final acceptance trigger for the fully materialized branch
