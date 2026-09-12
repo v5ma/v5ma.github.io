@@ -28,7 +28,9 @@ jobs:
           from pathlib import Path
           import base64,zlib,json
           root=Path.cwd().resolve()
-          names=[*[f'aether-reach/tools/cw64safe-{i:02d}.txt' for i in range(6)],
+          names=['aether-reach/tools/cw64safe-00a.txt',
+                 'aether-reach/tools/cw64safe-00b.txt',
+                 *[f'aether-reach/tools/cw64safe-{i:02d}.txt' for i in range(1,6)],
                  'aether-reach/tools/cw64safe-06a.txt',
                  'aether-reach/tools/cw64safe-06b.txt',
                  'aether-reach/tools/cw64safe-06c.txt']
