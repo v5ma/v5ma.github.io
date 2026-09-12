@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'test-output/prism-lessons';OU
 URL=os.getenv('PRISM_URL','http://127.0.0.1:4173/prism-current/')
 PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text()
 LEGACY={'first-light/flow/keys':{'score':2500,'accuracy':75,'best':16}}
-checks=[];errors=[]
+checks=[];errors=[];startup_stall=None
 def check(ok,text):
  assert ok,text
  checks.append(text);print('PASS:',text,flush=True)
@@ -33,6 +33,15 @@ with sync_playwright() as pw:
   focus('lesson-start');press(0);p.wait_for_function("Prism.snapshot().phase==='playing'")
   check(p.evaluate('Prism.component.runAudio')=='__prism-lesson__','A lesson uses its own bounded educational soundtrack')
   check(p.locator('#lesson-guide').is_visible(),'Current lesson and input-specific guidance appear during gameplay')
+  # Functional recovery only: never suppress or relax the runtime stall guard.
+  p.wait_for_function("Prism.snapshot().time>1 || Prism.snapshot().phase==='paused'")
+  if p.evaluate('Prism.snapshot().phase')=='paused':
+   startup_stall=p.evaluate('Prism.component.lastStall || null')
+   check(startup_stall is not None and 'Rendering stalled' in p.evaluate('Prism.snapshot().message'),'Any startup pause reports the actual software-renderer stall')
+   check(p.evaluate('Object.keys(Prism.snapshot().judged).length')==0,'Startup recovery happens before note judgments')
+   check(not p.evaluate('Prism.snapshot().lessons.proof.paused'),'A renderer interruption grants no manual-pause credit')
+   p.wait_for_timeout(250);check(p.evaluate('Prism.snapshot().phase')=='paused','The interrupted lesson never resumes on its own')
+   press(9);p.wait_for_function("Prism.snapshot().phase==='playing'&&Prism.snapshot().time>1")
   # Deliberately provide no note inputs: a finished soundtrack is NOT a pass.
   finished();check(not p.evaluate('Prism.snapshot().lessons.verdict.passed'),'Missing every note cannot advance the curriculum')
   check(p.evaluate("localStorage.getItem('prism-current.v1.lessons')") is None,'An unfinished curriculum creates no completion flag')
@@ -90,7 +99,7 @@ with sync_playwright() as pw:
   v=vctx.new_page();v.on('pageerror',lambda e:errors.append(str(e)));v.goto(URL,wait_until='domcontentloaded');v.wait_for_function('window.Prism?.snapshot().ready')
   v.locator('#lesson-card').scroll_into_view_if_needed();v.screenshot(path=str(OUT/'first-steps-menu.png'));vctx.close()
   check(not errors,'No uncaught browser errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'scope':'Production renderer/audio in Chromium; emulated controller full curriculum plus native keyboard/pointer handlers. Input drivers read audio time; no score or clock writes. One-eighth gameplay pixel ratio; separate full-resolution menu. Not five human novice playtests or physical Xbox/Quest acceptance.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'startup_software_frame_stall':startup_stall,'scope':'Production renderer/audio in Chromium; emulated controller full curriculum plus native keyboard/pointer handlers. Input drivers read audio time; no score or clock writes. One-eighth gameplay pixel ratio; separate full-resolution menu. A startup CPU frame pause is recorded and recovered through Menu if observed. Not five human novice playtests or physical Xbox/Quest acceptance.'},indent=2))
  except Exception as e:
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Prism?.snapshot()'),'focus':p.evaluate('document.activeElement?.outerHTML'),'stall':p.evaluate('window.Prism?.component.lastStall||null')},indent=2))
   p.screenshot(path=str(OUT/'failure.png'));raise
