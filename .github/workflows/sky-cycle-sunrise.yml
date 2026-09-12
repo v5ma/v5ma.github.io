@@ -28,7 +28,7 @@ jobs:
           node --check mario-maker-clone/svgn-paper-route/sunrise.js
           node --check mario-maker-clone/svgn-paper-route/release-status.js
           node --check mario-maker-clone/svgn-paper-route/route-compass.js
-          node --test mario-maker-clone/svgn-paper-route/tests/sunrise.test.mjs
+          node --test mario-maker-clone/svgn-paper-route/tests/sunrise*.test.mjs
           node --test mario-maker-clone/svgn-paper-route/tests/route-compass-core.test.mjs mario-maker-clone/svgn-paper-route/tests/flight-deck-core.test.mjs
       - name: Install browser dependencies
         run: |

@@ -40,11 +40,11 @@ export function settle(records,run,accepted){
   return {records:next,fresh,banked:earned};
 }
 export function mission(run,record,saveOK=true){
-  const banked=sanitize(record).marketPilot;
+  const earned=sanitize(record).marketPilot,banked=earned&&saveOK;
   return {title:"Penny's Market Pilot",intro:'Try the low Pocket Park balcony in Market Lanes, return to the road, then finish Sunrise Borough. It is an optional detour, not a gate.',banked,saveOK,steps:[
-    {title:'Ride the pocket park',detail:'Jump toward the marked low balcony and keep moving across it.',done:banked||!!run&&(run.riding>=150||run.landed)},
-    {title:'Return wheels down',detail:'Leave its far end and land on the market road without a crash.',done:banked||!!run?.landed},
-    {title:'Finish your delivery route',detail:'Cross the existing striped finish to bank the Market Pilot seal.',done:banked}
+    {title:'Ride the pocket park',detail:'Jump toward the marked low balcony and keep moving across it.',done:earned||!!run&&(run.riding>=150||run.landed)},
+    {title:'Return wheels down',detail:'Leave its far end and land on the market road without a crash.',done:earned||!!run?.landed},
+    {title:'Finish your delivery route',detail:'Cross the existing striped finish to bank the Market Pilot seal.',done:earned}
   ]};
 }
 export function cues(d,K){
