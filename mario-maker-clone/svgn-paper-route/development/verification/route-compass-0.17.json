@@ -1,0 +1,51 @@
+{
+  "version": "0.17.0",
+  "build": "sky-cycle-route-compass-2026.09.12",
+  "accepted_runtime_commit": "46596db423cb38b5e5e8db34ef51e93673241782",
+  "published_merge_commit": "5073c98730c4a0746db51ca423cd5f441d083d23",
+  "pull_request": 121,
+  "acceptance": {
+    "compass_run": 34710312598,
+    "compass_artifact": 10303630169,
+    "compass_rules_passed": 17,
+    "flight_deck_rules_passed": 12,
+    "compass_fixture_checks_passed": 13,
+    "compass_native_checks_passed": 15,
+    "renderer_coverage": "Default 3D gameplay and HUD capture; supported 2D view selected through normal UI for extended journal controller navigation.",
+    "flight_deck_regression_run": 34710312576,
+    "flight_deck_regression_passed": true,
+    "captures_reviewed": ["native-compass.png", "native-journal.png", "native-journal-mobile.png", "fixture-journal-mobile.png"],
+    "restored_acceptance_script_blob": "68a03b5840c7b39376e8448a861515702e279800"
+  },
+  "additional_full_3d_diagnostic": {
+    "commit": "17432cb849668c7da28cb334280a70fb6887e50e",
+    "run": 34710705883,
+    "artifact": 10303331912,
+    "passed": false,
+    "checks_passed_before_timeout": 6,
+    "reason": "90-second held-stick wait expired while traversing the long journal toward guidance settings on the CPU-only runner.",
+    "uncaught_javascript_errors": [],
+    "disposition": "Retain failed evidence and open performance gate; restore the earlier passing renderer-explicit acceptance script. No game runtime changed."
+  },
+  "publication": {
+    "run": 34710822503,
+    "artifact": 10303481151,
+    "report_uploaded_at": "2026-09-12T18:26:36Z",
+    "verified": true,
+    "attempt_count": 29,
+    "expected_and_public_sha256": {
+      "route-compass.js": "4644c9f3451a4e05ace448a2a7e2720e1c0bd9c52477437aece92060b4ba6bab",
+      "route-compass-core.mjs": "c9bd650b14b0523145148ef4e198ea7afa7002057c58227daf917350b8e3944d",
+      "route-compass.css": "a5b2e03805743ad0025ea121e0de676ff117aaa999b2c79a735a3edc37a337ad",
+      "release-status.js": "fe801354ce4d66fd34244b5d6b9a95751a94fcf98e5ec5ce30a34fe784fa6224",
+      "release.json": "391ca16873b3e0729f5a776fdec23b62baa86ef0abaf3c5f1fb37ff0cc79db99",
+      "sw.js": "c4fad4bdd0691a9e5114be2aee050a796d3ac529d565153d296d57f55bd64ae2"
+    }
+  },
+  "remaining_gates": [
+    "Default-3D long-journal stress and device performance budgets",
+    "Physical Xbox controller and actual mobile hardware",
+    "Full native route completions and optional-rail attainability",
+    "Representative saved-progress migration and rollback rehearsal"
+  ]
+}
