@@ -3,7 +3,7 @@ on:
   push:
     branches: [dino-northstar-signature-20260912]
     paths:
-      - '.github/patches/northstar-ranger-restore.xz.b64'
+      - '.github/patches/northstar-ranger-restore.*.b64'
       - '.github/workflows/dino-northstar-ranger-restore.yml'
 permissions:
   contents: write
@@ -20,13 +20,19 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import base64,lzma,hashlib,subprocess
-          src=Path('.github/patches/northstar-ranger-restore.xz.b64')
-          raw=lzma.decompress(base64.b64decode(src.read_text().strip(),validate=True))
+          parts=sorted(Path('.github/patches').glob('northstar-ranger-restore.[1-5].b64'))
+          assert len(parts)==5,parts
+          encoded=''.join(p.read_text().strip() for p in parts)
+          raw=lzma.decompress(base64.b64decode(encoded,validate=True))
           expected='91f1fe30af2d14338aa337dd411613c7fda52a8bad119793af77169c907be4c7'
           assert hashlib.sha256(raw).hexdigest()==expected
           Path('dino-atlas/ranger.js').write_bytes(raw)
           subprocess.run(['node','--check','dino-atlas/ranger.js'],check=True)
-          subprocess.run(['git','rm',str(src),'.github/workflows/dino-northstar-ranger-restore.yml'],check=True)
+          remove=[str(p) for p in parts]
+          legacy=Path('.github/patches/northstar-ranger-restore.xz.b64')
+          if legacy.exists(): remove.append(str(legacy))
+          remove.append('.github/workflows/dino-northstar-ranger-restore.yml')
+          subprocess.run(['git','rm',*remove],check=True)
           subprocess.run(['git','add','dino-atlas/ranger.js'],check=True)
           subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
           subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
