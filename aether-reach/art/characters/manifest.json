@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "revision": "aurora-cast-1",
+  "sources": [
+    "https://quaternius.com/packs/ultimatemodularcharacters.html",
+    "https://quaternius.com/packs/ultimatemodularwomen.html"
+  ],
+  "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "licenseNote": "Both public folders ship the same original License.txt headed Ultimate Modular Males; both official pack pages independently designate their assets CC0. Original license files retained unchanged.",
+  "modifications": "Repacked embedded glTF as GLB, retained ten relevant authored clips and only referenced binary views. No mesh simplification, third-party texture, engine shader or retargeted animation. Costume color treatment is runtime code.",
+  "files": [
+    {
+      "file": "guard.glb",
+      "role": "guard",
+      "creator": "Quaternius",
+      "pack": "Ultimate Modular Characters",
+      "original": "Swat.gltf",
+      "license": "CC0-1.0",
+      "source": "https://drive.google.com/uc?id=1VGmU5f8a43NBT22JWB507NDSLbmNxzF9",
+      "sourceSha256": "622b3f36fcac90539ef8f7121ec1f11b5e1ae603a085019b3fa96eba20dddfd3",
+      "sha256": "1f9c992175ede2a167790e4d7764e9285b32f9838953390027bdabffabcae3e8",
+      "bytes": 1304484,
+      "triangles": 8794,
+      "animations": [
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Idle_Gun_Pointing",
+        "Idle_Gun_Shoot",
+        "Interact",
+        "Run",
+        "Run_Shoot",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "file": "worker.glb",
+      "role": "worker",
+      "creator": "Quaternius",
+      "pack": "Ultimate Modular Characters",
+      "original": "Worker.gltf",
+      "license": "CC0-1.0",
+      "source": "https://drive.google.com/uc?id=14d8n7IDnnlnGt_uiATnNg3uvi_4dyd9V",
+      "sourceSha256": "e49f8ec0f8a7de72dd26b1c01e6413c9a87a9116eeee21f9364ccd36bc286335",
+      "sha256": "4ff94deb9dd625373188f36ec7bb9fd907f6b5fcb70fd82da0bd4b5efd5adc00",
+      "bytes": 1002852,
+      "triangles": 5240,
+      "animations": [
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Idle_Gun_Pointing",
+        "Idle_Gun_Shoot",
+        "Interact",
+        "Run",
+        "Run_Shoot",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "file": "courier.glb",
+      "role": "courier",
+      "creator": "Quaternius",
+      "pack": "Ultimate Modular Women",
+      "original": "Adventurer.gltf",
+      "license": "CC0-1.0",
+      "source": "https://drive.google.com/uc?id=1uxAFnDp73NO1c16LvHHjAYh1-deMNk5I",
+      "sourceSha256": "65094211e53b49f6a834c617cc056834686fe794a0b515a6b97faa3e1130cc95",
+      "sha256": "272c2b9eef60ae8dbc2d949c4ca9681d283c44ecf5f71a0e31ac7952d30f9109",
+      "bytes": 1181400,
+      "triangles": 6812,
+      "animations": [
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Idle_Gun_Pointing",
+        "Idle_Gun_Shoot",
+        "Interact",
+        "Run",
+        "Run_Shoot",
+        "Walk",
+        "Wave"
+      ]
+    }
+  ]
+}

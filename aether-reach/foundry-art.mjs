@@ -1,3 +1,4 @@
+import {makeRiftVeil,castBudget} from './aurora-shaders.mjs';
 /* Foundry Finish: art for the actual collision and tactical state, not mock props. */
 import * as T from './vendor/three.module.js';
 import {createFoundryKit,exposedDeck} from './foundry-kit.mjs';
@@ -21,6 +22,7 @@ export function installFoundryArt({scene,cover,districts}){
  }
  const consoleLights=[];
  for(const c of ARENA_CONSOLES){const g=new T.Group();g.name=c.id;g.position.set(c.x,c.y,c.z);root.add(g);add('cylinder','metal',[0,.43,0],[.35,.86,.35],g);const panel=add('box','dark',[0,1,0],[1.1,.45,.55],g);panel.rotation.x=-.18;const lamp=add('sphere','glow',[0,1.2,0],[.11,.11,.11],g);consoleLights.push({id:c.id,mesh:lamp});sign(c.name.replace(' combat trial','').toUpperCase(),c.x,c.y+3.6,c.z+.12,4.6);}
+ const veil=makeRiftVeil();
  const rifts=RIFTS.map(r=>{const g=new T.Group();g.name=r.id;g.position.set(r.x,r.y,r.z);root.add(g);const ghost=add('box','ghost',[0,r.h/2,0],[r.w,r.h,r.d],g);const solid=new T.Group();g.add(solid);solid.visible=false;
   if(r.type==='cover'){add('box','metal',[0,r.h/2,0],[r.w,r.h,r.d],solid);for(const x of[-1,0,1])add('box','brass',[x*(r.w/2-.13),r.h/2,0],[.16,r.h,r.d],solid);add('box','glow',[0,r.h-.17,-r.d/2-.006],[r.w-.3,.07,.015],solid);}
   else{add('cylinder','metal',[0,.45,0],[.52,.9,.52],solid);add('sphere','glow',[0,1.25,0],[.32,.32,.32],solid);if(r.type==='turret'){add('box','dark',[0,1.6,-.2],[.8,.3,1.3],solid);add('cylinder','brass',[0,1.6,-.92],[.09,.6,.09],solid).rotation.x=Math.PI/2;}else{add('box','paper',[0,1.2,-.36],[.5,.65,.035],solid);add('box','cloth',[0,1.2,-.39],[.31,.10,.025],solid);add('box','cloth',[0,1.2,-.39],[.10,.35,.025],solid);}}
@@ -33,10 +35,11 @@ export function installFoundryArt({scene,cover,districts}){
  const drops=Array.from({length:24},()=>{const g=new T.Group();root.add(g);add('box','dark',[0,.12,0],[.16,.16,.85],g);add('box','timber',[0,.12,.37],[.19,.18,.28],g);add('box','brass',[0,.12,-.6],[.06,.06,.4],g);const ring=add('ring','glow',[0,.025,0],[.55,.55,.55],g);ring.rotation.x=Math.PI/2;g.visible=false;return g;});
  kit.flush();let last=null;const stats={decks:COMBAT_DECKS.length,cover:cover.length,consoles:ARENA_CONSOLES.length,rifts:RIFTS.length,trapCapacity:traps.length,dropCapacity:drops.length,companionVisible:false};
  function update(s,{menu=false,reduced=false}={}){const k=s.skirmish;if(!k)return;dynamicCount=0;const c=k.companion;tavi.visible=!menu&&Math.hypot(c.x-s.p.x,c.y-s.p.y,c.z-s.p.z)<100;tavi.position.set(c.x,c.y,c.z);tavi.rotation.y=c.heading||0;flightRing.visible=!!c.flying;const moving=last&&Math.hypot(c.x-last.x,c.z-last.z)>.005,phase=reduced?0:Math.sin(s.time*9)*(moving?.38:.025);for(const{leg,arm,side}of limbs){leg.rotation.x=side*phase;arm.rotation.x=k.offer?-.95:-side*phase*.65;}last={x:c.x,z:c.z};stats.companionVisible=tavi.visible;
-  for(const v of rifts){const active=k.rift?.id===v.r.id&&k.rift.life>0;v.solid.visible=active;v.ghost.visible=!active;if(active)dynamicCount++;}
+  veil.uniforms.time.value=reduced?0:s.time;
+  for(const v of rifts){v.ghost.material=scene.userData.auroraEffects!==false&&scene.userData.auroraRich?veil:kit.materials.ghost;const active=k.rift?.id===v.r.id&&k.rift.life>0;v.solid.visible=active;v.ghost.visible=!active;if(active)dynamicCount++;}
   traps.forEach((g,i)=>{const t=k.traps[i];g.visible=!!t&&!menu;if(t){g.position.set(t.x,t.y,t.z);g.rotation.y=reduced?0:s.time*.5;dynamicCount++;}});
   drops.forEach((g,i)=>{const d=k.gunDrops[i];g.visible=!!d&&!menu;if(d){g.position.set(d.x,d.y,d.z);dynamicCount++;}});
   for(const v of consoleLights)v.mesh.visible=!menu;
  }
- return{update,dispose:kit.dispose,stats:()=>({...stats,dynamicVisible:dynamicCount})};
+ return{update,dispose(){rifts.forEach(v=>v.ghost.material=kit.materials.ghost);veil.dispose();kit.dispose();},stats:()=>({...stats,dynamicVisible:dynamicCount})};
 }

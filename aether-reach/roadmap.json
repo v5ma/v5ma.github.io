@@ -2,7 +2,7 @@
   "version": 1,
   "updated": "2026-09-12",
   "project": "Aether Reach",
-  "release": "0.9.0 Bellwether Blackout",
+  "release": "0.10.0 Aurora Cast",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -645,13 +645,13 @@
       "phase": "Production",
       "title": "Authored character and weapon animation",
       "priority": "P1",
-      "status": "Planned",
+      "status": "In review",
       "depends": [
         "P01"
       ],
       "acceptance": "Original humanoid mesh, articulated hands, reload/aim/melee animation and locomotion transitions hold up at gameplay distance.",
-      "evidence": "Current companion and patrols are procedural articulated geometry, not final character assets.",
-      "next": "Produce one licensed or original rigged enemy and one complete weapon-hand set."
+      "evidence": "v0.10 imports three Quaternius CC0 rigged humans with ten retained authored clips each, independent skeletons and costume materials. Original weapon-hand animation and full enemy cast are not final.",
+      "next": "Review character scale, pose, silhouettes and performance in longer player sessions; continue the first-person weapon/hand animation set."
     },
     {
       "id": "P03",
@@ -762,8 +762,8 @@
         "Q03"
       ],
       "acceptance": "Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.",
-      "evidence": "v0.8 production source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06: Pages succeeded and publication run 34702682332 matched 78 files. v0.9 must pass the same post-merge verification.",
-      "next": "Record the actual v0.9 merge and live-file receipt before claiming publication."
+      "evidence": "v0.9 cf1dc621dbc392be99380c7fbe51776b90ead068 is published; run 34716842597 succeeded. Require the v0.10 post-merge receipt before claiming this new version is live.",
+      "next": "Attach the v0.10 source commit and hosted-file verification receipt."
     },
     {
       "id": "V01",
@@ -779,6 +779,20 @@
       "acceptance": "Complete both combat sites, operate independent Arcade dials, use a continuous roof route, hold the receiver, return for a once-only reward, and save/resume without lost progress or extra enemies.",
       "evidence": "BELLWETHER-BLACKOUT.md; bellwether model/scene modules; tests/bellwether.test.mjs and the full controller browser journey. Test execution and player acceptance remain separately recorded.",
       "next": "Inspect the release browser evidence, then obtain player feedback on this first connected district mission."
+    },
+    {
+      "id": "AUR01",
+      "phase": "Presentation",
+      "title": "Freely licensed animated humans and bounded shader layer",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "P02",
+        "F01"
+      ],
+      "acceptance": "Imported human geometry, skinning and clips load locally with recorded author license and hashes; no invisible fallback targets, lost saves, controller-only UI regressions or unbounded actor pools.",
+      "evidence": "art/characters/manifest.json; AURORA-CAST.md; tests/aurora.test.mjs; tests/aurora-browser.py. Physical frame-time, Xbox/Quest and player visual approval remain separate.",
+      "next": "Inspect real WebGL gallery and actual arena captures, verify live hashes, then collect player feedback on style and clarity."
     }
   ],
   "milestones": [

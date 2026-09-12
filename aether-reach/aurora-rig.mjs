@@ -38,7 +38,7 @@ export function makeActor(template,role='guard',variant='warden'){
   action.reset().setLoop(once?T.LoopOnce:T.LoopRepeat,once?1:Infinity);action.clampWhenFinished=once;action.enabled=true;action.setEffectiveWeight(1);action.play();if(old){old.fadeOut(.16);action.fadeIn(.16);}current=name;
  }
  play(role==='guard'?'Idle_Gun_Pointing':'Idle');mixer.update(0);
- function effect(type){if(disposed||deadAt!==null)return;if(type==='hit'){override='HitRecieve';until=clock+.32;current='';}if(type==='shot'){override='Idle_Gun_Shoot';until=clock+.28;}if(type==='offer'){override='Wave';until=clock+.8;}}
+ function effect(type){if(disposed||deadAt!==null)return;if(type==='hit'){override='HitRecieve';until=clock+.32;}if(type==='shot'){override='Idle_Gun_Shoot';until=clock+.28;}if(type==='offer'){override='Wave';until=clock+.8;}}
  function update(actor,dt,{time=0,reduced=false,rich=true,animate=true,shadow=true}={}){
   if(disposed)return;clock+=Math.max(0,Math.min(dt,.15));
   const isDead=role==='guard'&&actor.hp<=0;

@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.9.0 Bellwether Blackout. Updated 2026-09-12.
+Current plan: 0.10.0 Aurora Cast. Updated 2026-09-12.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -321,10 +321,10 @@ Evidence: v0.9 implements a connected Bellwether street-interior-rooftop-return 
 Next: Play the complete Blackout adventure and record timing, difficulty, wayfinding and repetitive sections. Gate G1 remains open until player review.
 
 ### P02 - Authored character and weapon animation
-State: Planned. Priority: P1. Dependencies: P01.
+State: In review. Priority: P1. Dependencies: P01.
 Acceptance: Original humanoid mesh, articulated hands, reload/aim/melee animation and locomotion transitions hold up at gameplay distance.
-Evidence: Current companion and patrols are procedural articulated geometry, not final character assets.
-Next: Produce one licensed or original rigged enemy and one complete weapon-hand set.
+Evidence: v0.10 imports three Quaternius CC0 rigged humans with ten retained authored clips each, independent skeletons and costume materials. Original weapon-hand animation and full enemy cast are not final.
+Next: Review character scale, pose, silhouettes and performance in longer player sessions; continue the first-person weapon/hand animation set.
 
 ### P03 - Architectural materials and lighting
 State: Planned. Priority: P1. Dependencies: P01.
@@ -371,8 +371,8 @@ Next: Maintain a defect severity register and require evidence before advancing.
 ### R04 - Verified publication of each upgrade
 State: In review. Priority: P0. Dependencies: R01, Q03.
 Acceptance: Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.
-Evidence: v0.8 production source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06: Pages succeeded and publication run 34702682332 matched 78 files. v0.9 must pass the same post-merge verification.
-Next: Record the actual v0.9 merge and live-file receipt before claiming publication.
+Evidence: v0.9 cf1dc621dbc392be99380c7fbe51776b90ead068 is published; run 34716842597 succeeded. Require the v0.10 post-merge receipt before claiming this new version is live.
+Next: Attach the v0.10 source commit and hosted-file verification receipt.
 
 ### V01 - Bellwether street-interior-rooftop adventure
 State: In review. Priority: P0. Dependencies: W01, F02, I04.
@@ -380,6 +380,13 @@ Acceptance: Complete both combat sites, operate independent Arcade dials, use a 
 Evidence: BELLWETHER-BLACKOUT.md; bellwether model/scene modules; tests/bellwether.test.mjs and the full controller browser journey. Test execution and player acceptance remain separately recorded.
 Next: Inspect the release browser evidence, then obtain player feedback on this first connected district mission.
 
+### AUR01 - Freely licensed animated humans and bounded shader layer
+State: In review. Priority: P0. Dependencies: P02, F01.
+Acceptance: Imported human geometry, skinning and clips load locally with recorded author license and hashes; no invisible fallback targets, lost saves, controller-only UI regressions or unbounded actor pools.
+Evidence: art/characters/manifest.json; AURORA-CAST.md; tests/aurora.test.mjs; tests/aurora-browser.py. Physical frame-time, Xbox/Quest and player visual approval remain separate.
+Next: Inspect real WebGL gallery and actual arena captures, verify live hashes, then collect player feedback on style and clarity.
+
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.
-v0.9.0 Bellwether Blackout: see BELLWETHER-BLACKOUT.md, the Bellwether browser review, and the post-merge public-file verification workflow. Implementation and publication are not substitutes for player or physical-hardware acceptance.
+v0.9.0 Bellwether Blackout: PR #126; source cf1dc621dbc392be99380c7fbe51776b90ead068; publication run 34716842597 succeeded. The full controller journey passed 28 checks.
+v0.10.0 Aurora Cast: see AURORA-CAST.md, art/characters/manifest.json and Aurora browser review. Require the actual post-merge publication receipt; emulation is not physical hardware or player approval.

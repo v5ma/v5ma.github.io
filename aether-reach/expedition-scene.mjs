@@ -112,8 +112,8 @@ export function expeditionScene(T,{scene,part,box,beam,label,material,movingPart
   for(const r of TRANSIT){const c=e.transits.find(t=>t.id===r.id),g=cabins.get(r.id),p=transitPosition(r,c.t);g.position.set(p.x,p.y,p.z);if(g.userData.prop&&!reduced)g.userData.prop.rotation.z+=dt*(c.moving?9:2);g.visible=!r.requires||flags.includes(r.requires);}
   if(!reduced){orrery.rotation.y+=dt*.09;engine.rotation.y+=dt*(flags.includes('weather-open')?.7:.14);}
   for(const b of batches.values())b.n=0;visibleActors=0;
-  for(const b of s.drones){if(!b.humanoid||b.hp<=0||Math.hypot(b.x-s.p.x,b.z-s.p.z)>125)continue;person(b,s.time);visibleActors++;}
-  if(Math.hypot(e.escort.x-s.p.x,e.escort.z-s.p.z)<125){person({...e.escort,y:e.escort.y+1.05},s.time,true);visibleActors++;}
+  for(const b of s.drones){if(!b.humanoid||b.hp<=0||scene.userData.auroraCovered?.has(b.id)||Math.hypot(b.x-s.p.x,b.z-s.p.z)>125)continue;person(b,s.time);visibleActors++;}
+  if(!scene.userData.auroraCovered?.has('surveyor')&&Math.hypot(e.escort.x-s.p.x,e.escort.z-s.p.z)<125){person({...e.escort,y:e.escort.y+1.05},s.time,true);visibleActors++;}
   for(const b of batches.values()){b.mesh.count=b.n;b.mesh.instanceMatrix.needsUpdate=true;if(b.mesh.instanceColor)b.mesh.instanceColor.needsUpdate=true;b.mesh.visible=b.n>0;}
  }
  return {update,stats:()=>({districts:EXP_DISTRICTS.length,rooftops:ROOFS.length,ladders:LADDERS.length,stairs:EXP_BRIDGES.length,rooms:EXP_ROOMS.length,visibleHumanoids:visibleActors,transports:TRANSIT.length})};
