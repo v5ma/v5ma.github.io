@@ -8,7 +8,7 @@ permissions:
   contents: write
 concurrency:
   group: neighborhood-homecoming-candidate
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   acceptance:
     runs-on: ubuntu-latest
@@ -25,11 +25,12 @@ jobs:
           python svgn-planet/production/seed-roadmap.py
           python svgn-planet/production/render-roadmap.py
           python svgn-planet/tools/integrate-homecoming.py
+          python svgn-planet/tools/polish-homecoming.py
           git config user.name 'Micah Blumberg'
           git config user.email '60057241+v5ma@users.noreply.github.com'
           git add svgn-planet index.html
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate Homecoming chapter, Common Ground plaza and AAA production checklist'
+            git commit -m 'Polish Homecoming batching and simulation-aware controller acceptance'
             git push origin HEAD:neighborhood-homecoming-20260911
           fi
       - name: Unit, regression and checklist integrity tests
