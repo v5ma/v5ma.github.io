@@ -99,7 +99,7 @@ def adapt(source,gender,dest):
     point[active]+=(pos[active]@m.T)[:,:3]*influence[active,None];nrm[active]+=(normal[active]@np.linalg.inv(m[:3,:3]))*influence[active,None];weights[active,targetIndex]+=influence[active]
    nrm/=np.maximum(1e-9,np.linalg.norm(nrm,axis=1))[:,None]
    joints17=np.argsort(-weights,axis=1,kind='stable')[:,:4];weights17=np.take_along_axis(weights,joints17,axis=1);weights17/=np.maximum(weights17.sum(axis=1)[:,None],1e-9)
-   dominant=weights.argmax(axis=1);skin=(point[:,1]>1.49)|np.isin(dominant,[7,10]);category=np.where(skin,0,np.where(point[:,1]<.19,5,np.where(point[:,1]<.91,4,3)))
+   dominant=weights.argmax(axis=1);skin=np.isin(dominant,[3,4,7,10]);category=np.where(skin,0,np.where(point[:,1]<.19,5,np.where(point[:,1]<.91,4,3)))
    if forced is not None:category[:]=forced
    if forced is None:
     thickness=np.where(category==3,.023,np.where(category==4,.012,np.where(category==5,.014,0)))
