@@ -41,12 +41,12 @@ jobs:
               download=event.value;assert 'Standard' in download.suggested_filename
               download.save_as('/tmp/quaternius-base-standard.zip');browser.close()
           data=Path('/tmp/quaternius-base-standard.zip').read_bytes();archive=zipfile.ZipFile('/tmp/quaternius-base-standard.zip')
+          assert hashlib.sha256(data).hexdigest()=='fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40','Author package changed: review before importing'
           (root/'source.json').write_text(json.dumps({'source':url,'package':'Universal Base Characters[Standard].zip','sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'files':[{'path':x.filename,'bytes':x.file_size} for x in archive.infolist()]},indent=2))
           for entry in archive.infolist():
-              print(entry.filename,entry.file_size)
               name=entry.filename
               if name.endswith('/') or '..' in Path(name).parts:continue
-              if name.lower().endswith(('.gltf','.glb','.bin','.png','.jpg','.txt')) and ('gltf' in name.lower() or 'license' in name.lower()):
+              if name.lower().endswith(('.gltf','.glb','.bin','.png','.jpg','.txt')) and ('Godot - UE/' in name or 'Base Characters/Textures/' in name or 'glTF (Godot -Unreal)' in name or 'Hairstyles/Textures/' in name or 'license' in name.lower()):
                   target=root/'models'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(archive.read(name))
           print('Extracted model bytes',sum(p.stat().st_size for p in (root/'models').rglob('*') if p.is_file()))
           PY
