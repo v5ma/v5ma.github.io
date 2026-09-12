@@ -50,7 +50,7 @@ with sync_playwright() as p:
   page.evaluate('pad.axes[0]=pad.axes[1]=0');polls()
  try:
   page.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.Rainward&&padPolls>2');polls()
-  check(page.evaluate('Rainward.snapshot().version')=='0.11.0','The upgraded HTTP application loads with all six chapter options')
+  check(page.evaluate('Rainward.snapshot().version')=='0.12.0','The upgraded HTTP application loads with all six chapter options')
   check(page.locator('#chapter-select option').count()==6,'All six existing expeditions remain selectable')
   press(9,'Rainward.mode==="pause"');t=page.evaluate('Rainward.state.t');press(1,'Rainward.mode==="title"');check(page.evaluate('Rainward.state.t')==t,'Menu opens title settings and B returns to title without starting a mission')
   press(9,'Rainward.mode==="pause"');nav('sensitivity');press(15);check(page.locator('#sensitivity').input_value()=='90','D-pad right adjusts the look-sensitivity slider')

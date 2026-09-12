@@ -1,3 +1,7 @@
+# Rainward v0.12.0 / Rainworn
+
+Current release: [RAINWORN.md](RAINWORN.md). Free human-model provenance: [assets/humans/manifest.json](assets/humans/manifest.json).
+
 # Rainward v0.11.0 / First Light
 
 Current release: [FIRST-LIGHT.md](FIRST-LIGHT.md). The Floodgate now has optional field records, two readable approach plans, contextual guidance and an improved rain garden.

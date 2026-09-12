@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.11.0 / First Light.
+Release baseline: v0.12.0 / Rainworn.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -245,11 +245,11 @@ Gate: Camera-matched art reviews approve the hero, enemies, animation, architect
   Dependencies: None.
   Evidence: Not recorded yet.
 
-- [ ] RW-034 / P1 / Production hero character / Planned
+- [ ] RW-034 / P1 / Production hero character / Implemented
   Owner role: Character art. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Build an original coherent hero mesh with clothing layers, facial detail, UVs and LODs; compare against the current procedural rig.
   Dependencies: RW-033.
-  Evidence: actors.mjs.
+  Evidence: RAINWORN.md.
 
 - [ ] RW-035 / P1 / Authored locomotion and action clips / Planned
   Owner role: Animation. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -275,17 +275,17 @@ Gate: Camera-matched art reviews approve the hero, enemies, animation, architect
   Dependencies: RW-033.
   Evidence: ASSET-PIPELINE.md.
 
-- [ ] RW-039 / P1 / Lighting and VFX scene continuity / Planned
+- [ ] RW-039 / P1 / Lighting and VFX scene continuity / Implemented
   Owner role: Lighting art. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Review interior/exterior transitions, shadows, rain, puddles, smoke, muzzle flashes and restrained effects on both graphics tiers.
   Dependencies: RW-038.
-  Evidence: VISUAL-UPGRADE.md.
+  Evidence: rainworn-materials.mjs.
 
 - [ ] RW-040 / P1 / Asset optimization and provenance / Implemented
   Owner role: Technical art. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Every imported asset retains source/license/hash records; final hero and environment assets also need LOD, memory and streaming review.
   Dependencies: RW-034, RW-038.
-  Evidence: assets/.
+  Evidence: assets/humans/manifest.json.
 
 ## G5 / Sound and music
 

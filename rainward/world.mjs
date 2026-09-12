@@ -3,7 +3,7 @@ import {FLOODGATE_COVER} from './floodgate-content.mjs';
 import {MERIDIAN,BREAKWATER,WHITEOUT,LEGACY_TASKS} from './expeditions.mjs';
 import {TERMINUS} from './terminus.mjs';
 import {CONSERVATORY} from './conservatory.mjs';
-export const VERSION='0.11.0';
+export const VERSION='0.12.0';
 export const BOUNDS={x0:-35,x1:35,z0:-49,z1:34};
 export const START={x:0,z:27};
 const box=(id,x,z,w,d,h,kind='wall',bottom=0)=>({id,x,z,w,d,h,kind,bottom});

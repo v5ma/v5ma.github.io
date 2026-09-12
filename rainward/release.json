@@ -1,14 +1,14 @@
 {
-  "version": "0.11.0",
-  "build": "rainward-first-light-20260912",
+  "version": "0.12.0",
+  "build": "rainward-rainworn-20260912",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Add six optional original field records to the Floodgate, saved independently from resources and required tasks",
-    "Introduce Garden and Freight approach selection, collision-aware route markers and optional first-expedition guidance",
-    "Build actual garden low-cover walls, a weathered pergola, wayfinding signs and readable field-record props",
-    "Keep both controller presets, full map-journal navigation, all six chapters and earlier shelter saves compatible",
-    "Advance the 64-task production checklist with scoped Floodgate slice work and retain unapproved human acceptance gates"
+    "Add locally hosted Quaternius CC0 female and male face, hand and hair meshes fitted to the existing rig and original tailored outfits",
+    "Retain all crouch, crawl, aim, reload, melee, healing, crafting and death poses with the real existing weapons and unchanged collision",
+    "Add composed wet-surface film, patchy roughness and a clear-coat rain response, plus fabric sheen on adapted clothing",
+    "Provide controller-operable detailed-human and rain-film switches, recoverable asset-loading fallback and bounded distance detail",
+    "Preserve six expeditions, both controller layouts, chapter saves, field records, required objectives and original licensed assets"
   ]
 }

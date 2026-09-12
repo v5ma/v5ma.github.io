@@ -15,7 +15,8 @@ export function artkit(scene,scans=null){
  const rock=new T.IcosahedronGeometry(1,3),rp=rock.attributes.position;for(let i=0;i<rp.count;i++){const x=rp.getX(i),y=rp.getY(i),z=rp.getZ(i),r=1+.09*Math.sin(x*11+y*7+z*9)+.065*Math.cos(y*17-z*8);rp.setXYZ(i,x*r,y*r,z*r);}rock.computeVertexNormals();geos.rock=rock;
  const mats=new Map(),buckets=new Map(),dynamic=[];
  function mat(color,type='stone',extra={}){const key=color+':'+type;if(!mats.has(key)){
- const material=new T.MeshStandardMaterial({color,roughness:type==='metal'?.36:type==='road'?.40:.82,metalness:type==='metal'?.55:0,map:['stone','brick','road','rock','ground','paving'].includes(type)?texture(type==='rock'?'stone':type):null,...extra});
+ const wetSurface=['stone','brick','road','rock','ground','paving'].includes(type),Material=wetSurface?T.MeshPhysicalMaterial:T.MeshStandardMaterial;
+ const material=new Material({color,...(wetSurface?{clearcoat:.42,clearcoatRoughness:.18}:{}),roughness:type==='metal'?.36:type==='road'?.40:.82,metalness:type==='metal'?.55:0,map:['stone','brick','road','rock','ground','paving'].includes(type)?texture(type==='rock'?'stone':type):null,...extra});
  if(type==='glow'){material.emissive=new T.Color(color);material.emissiveIntensity=1.5;}
  if(['stone','brick','road','rock','ground','paving'].includes(type)){const maps=surfaces[type]||(surfaces[type]=physicalSurface(type));material.map=maps.map;material.bumpMap=maps.bump;material.roughnessMap=maps.rough;material.bumpScale=type==='rock'?.24:.10;worldTexturing(material,type==='brick'?2.4:type==='road'?3.5:2.8);}
  if(scans&&['stone','brick','ground','paving'].includes(type))scans.bind(material,type);mats.set(key,material);}return mats.get(key);}

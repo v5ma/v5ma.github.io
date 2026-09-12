@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.11.0",
-  "edition": "First Light",
-  "baseline": "2381005b666a0db029f3714f07ef0a1f4208c83b",
+  "release": "0.12.0",
+  "edition": "Rainworn",
+  "baseline": "ffe0b6b83fadb0ded6a9964156a4fd2d8c97719f",
   "updated": "2026-09-12",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
   "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all six chapters, saves, sibling applications and asset credits.",
@@ -76,9 +76,9 @@
   ],
   "nextRelease": [
     "RW-014",
-    "RW-034",
     "RW-035",
-    "RW-015"
+    "RW-036",
+    "RW-044"
   ],
   "items": [
     {
@@ -572,10 +572,10 @@
       "phase": "G4",
       "priority": "P1",
       "title": "Production hero character",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Character art",
       "acceptance": "Build an original coherent hero mesh with clothing layers, facial detail, UVs and LODs; compare against the current procedural rig.",
-      "evidence": "actors.mjs",
+      "evidence": "RAINWORN.md",
       "depends": [
         "RW-033"
       ],
@@ -648,10 +648,10 @@
       "phase": "G4",
       "priority": "P1",
       "title": "Lighting and VFX scene continuity",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Lighting art",
       "acceptance": "Review interior/exterior transitions, shadows, rain, puddles, smoke, muzzle flashes and restrained effects on both graphics tiers.",
-      "evidence": "VISUAL-UPGRADE.md",
+      "evidence": "rainworn-materials.mjs",
       "depends": [
         "RW-038"
       ],
@@ -666,7 +666,7 @@
       "status": "Implemented",
       "owner": "Technical art",
       "acceptance": "Every imported asset retains source/license/hash records; final hero and environment assets also need LOD, memory and streaming review.",
-      "evidence": "assets/",
+      "evidence": "assets/humans/manifest.json",
       "depends": [
         "RW-034",
         "RW-038"

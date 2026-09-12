@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "source_url": "https://quaternius.itch.io/universal-base-characters",
+  "source_archive": "Universal Base Characters[Standard].zip",
+  "source_sha256": "fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40",
+  "adaptation": "Clothed surfaces, compact textures, 17-bone rest-pose retarget; original gameplay animation and collision retained. No paid Source assets.",
+  "models": [
+    {
+      "path": "survivor-female.glb",
+      "sha256": "97a2f61fc341094cc43c92d2e494b6661b6a94c89ecf388b5c1a1203a32c61e9",
+      "bytes": 1812712,
+      "triangles": 18344,
+      "materialTriangles": {
+        "2": 4764,
+        "1": 768,
+        "0": 6246,
+        "3": 3062,
+        "4": 1904,
+        "5": 1600
+      },
+      "bounds": {
+        "min": [
+          -0.32661142782302804,
+          0.022986435367137074,
+          -0.19172755760171023
+        ],
+        "max": [
+          0.3266115425381732,
+          1.8028233046206175,
+          0.14112381788242662
+        ]
+      },
+      "bones": 17,
+      "source": "Superhero_Female_FullBody.gltf",
+      "hair": "Hair_Buns"
+    },
+    {
+      "path": "survivor-male.glb",
+      "sha256": "3380f76e66b84d1cf5813d1082b2a4092dbc68496e05959f6ac2aef374386141",
+      "bytes": 1692976,
+      "triangles": 15619,
+      "materialTriangles": {
+        "2": 2285,
+        "1": 768,
+        "0": 6490,
+        "3": 2676,
+        "4": 1812,
+        "5": 1588
+      },
+      "bounds": {
+        "min": [
+          -0.33540473022972794,
+          0.008805585528301664,
+          -0.19924597285811552
+        ],
+        "max": [
+          0.33540475573801204,
+          1.81153423731907,
+          0.17878445121129607
+        ]
+      },
+      "bones": 17,
+      "source": "Superhero_Male_FullBody.gltf",
+      "hair": "Hair_SimpleParted"
+    }
+  ]
+}
