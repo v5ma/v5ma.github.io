@@ -1,0 +1,5 @@
+{
+  "version": "0.7.0",
+  "refinement": 1,
+  "purpose": "Verified cruise and contract regression fixes; bounded duplicate population; frame-synchronized browser acceptance"
+}
