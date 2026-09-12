@@ -1,0 +1,765 @@
+{
+  "schema": 1,
+  "version": "0.8.0",
+  "title": "Neighborhood Missions: path to a production-quality title",
+  "reviewed": "2026-09-11",
+  "currentMilestone": "M1",
+  "qualityClaim": "Stylized browser-game vertical slice. AAA-quality ambition, not AAA certification.",
+  "statusDefinitions": {
+    "verified": "A narrow acceptance criterion has recorded automated evidence; not human art approval or physical hardware certification.",
+    "implemented": "Code is integrated; specific acceptance or release evidence remains to be recorded.",
+    "partial": "A baseline exists, but the full production criterion is not met.",
+    "planned": "No complete implementation yet.",
+    "needs-playtest": "Requires real hardware or human evaluation; automated tests cannot substitute.",
+    "blocked": "Cannot pass until prerequisites and approvals are complete."
+  },
+  "milestones": [
+    {
+      "id": "M0",
+      "title": "Stop fighting the game",
+      "exitCriterion": "Measured control, save and performance baseline.",
+      "humanGate": "Approve a 10-minute high-speed route on a named desktop and physical Xbox controller."
+    },
+    {
+      "id": "M1",
+      "title": "One exceptional neighborhood",
+      "exitCriterion": "A coherent Homecoming vertical slice before more map expansion.",
+      "humanGate": "Approve one street, hero character, vehicle, interior and a compelling 15-minute play experience."
+    },
+    {
+      "id": "M2",
+      "title": "A city with a reason to exist",
+      "exitCriterion": "Distinct districts, useful buildings and believable activity.",
+      "humanGate": "Explore without relying on repeated delivery templates or empty distance."
+    },
+    {
+      "id": "M3",
+      "title": "A campaign worth finishing",
+      "exitCriterion": "Authored missions, progression, consequences and replay depth.",
+      "humanGate": "Fresh players can describe the story and choose a next activity without coaching."
+    },
+    {
+      "id": "M4",
+      "title": "Production-grade presentation",
+      "exitCriterion": "Consistent art, animation, acoustics and accessibility.",
+      "humanGate": "Approve actual gameplay reference shots, controller sessions and listening tests."
+    },
+    {
+      "id": "M5",
+      "title": "Release readiness",
+      "exitCriterion": "Reliable builds, recovery, licensing and sustained hardware testing.",
+      "humanGate": "Pass the named device matrix, license audit, soak test and rollback drill."
+    }
+  ],
+  "items": [
+    {
+      "id": "MOVE-01",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "verified",
+      "title": "Continuous acceleration and explicit braking",
+      "acceptance": "90 simulated seconds at full acceleration without energy-induced drops; coasting preserves speed; LT/B/Ctrl stops. This does not certify physical input latency.",
+      "next": "Retest after every physics change.",
+      "dependencies": [],
+      "evidence": [
+        "../tests/coastal.test.mjs",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "MOVE-02",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "Speed-consistent camera and reduced motion",
+      "acceptance": "Camera FOV and chase distance follow actual speed rather than whether RT is held. Reduced motion removes speed effects.",
+      "next": "Run Homecoming acceptance, then request real-device feel approval.",
+      "dependencies": [
+        "MOVE-01"
+      ],
+      "evidence": [
+        "../frame-health.mjs"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "INPUT-01",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "verified",
+      "title": "Correct camera axes and persistent options",
+      "acceptance": "Right looks right and up looks up. Axis inversion, sensitivity, audio sliders and B-to-return exist. Evidence uses standard-mapping emulation, not physical Xbox hardware.",
+      "next": "Complete a Windows/browser plus real Xbox controller session.",
+      "dependencies": [],
+      "evidence": [
+        "../controller.mjs",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "PERF-01",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "Local frame-time report",
+      "acceptance": "A bounded 600-frame window records p95/p99 interval, CPU submission p95, intervals over 50 ms and simulation/wall ratio. Pauses excluded; no automatic upload.",
+      "next": "Capture results on actual target hardware.",
+      "dependencies": [],
+      "evidence": [
+        "../frame-health.mjs"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "PERF-02",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "needs-playtest",
+      "title": "Named desktop 60 fps gate",
+      "acceptance": "Proposed target: 1920x1080 on RTX 2060-class hardware, warmed 10-minute route, mean >=59 fps, p95 <=18 ms, p99 <=25 ms, fewer than 1 percent of intervals over 50 ms. Record CPU, GPU, browser, quality and power mode. These are project targets, not external certification requirements.",
+      "next": "Run a real-machine benchmark and explicitly review the targets; software-rendered results cannot pass this gate.",
+      "dependencies": [
+        "PERF-01"
+      ],
+      "evidence": [],
+      "owner": "Real-device QA / user",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "PERF-03",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "partial",
+      "title": "Streaming and stable frame pacing",
+      "acceptance": "No uncapped per-frame world construction. A 30-minute multi-district session must reach stable memory and geometry counts. Rendering must not silently run simulation in slow motion.",
+      "next": "Profile chunk creation, GPU uploads, garbage collection and low-power 30 fps pacing.",
+      "dependencies": [
+        "PERF-01"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SAVE-01",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "verified",
+      "title": "Preserve the existing game and save identities",
+      "acceptance": "Original v1 slot and mission IDs remain. Old saves load; contracts, times and finishes round-trip; sibling game storage is not touched.",
+      "next": "Test additive Homecoming fields and interrupted-write recovery.",
+      "dependencies": [],
+      "evidence": [
+        "../tests/coastal.test.mjs",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SAVE-02",
+      "milestone": "M0",
+      "priority": "P0",
+      "status": "planned",
+      "title": "Recoverable save transactions",
+      "acceptance": "Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.",
+      "next": "Implement transactional backup and import/export with controller-friendly errors.",
+      "dependencies": [
+        "SAVE-01"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SLICE-01",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "Homecoming story journal and named neighbors",
+      "acceptance": "Five local contracts gain authored introductions and debriefs. Old completed contracts count; an unrelated active contract is not replaced without explicit consent.",
+      "next": "Validate the chapter and measure actual duration. Fifteen minutes is a target, not a measured claim.",
+      "dependencies": [
+        "SAVE-01"
+      ],
+      "evidence": [
+        "../homecoming.mjs"
+      ],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SLICE-02",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "Common Ground changes with your work",
+      "acceptance": "An authored plaza includes Maya, cafe furniture and a pergola. Cleanup removes litter; repairs restore bulbs; photos fill decorative postcard panels; garden/workshop choice changes props. Changes survive reload.",
+      "next": "Check all visual states in actual game captures and obtain art approval.",
+      "dependencies": [
+        "SLICE-01"
+      ],
+      "evidence": [
+        "../homecoming-view.mjs"
+      ],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SLICE-03",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "A physical homecoming finale",
+      "acceptance": "Return to Maya after all five projects. The 500-credit reward and finish unlock are awarded once; remote or repeated claims cannot duplicate rewards.",
+      "next": "Test completion, reload and repeated claims.",
+      "dependencies": [
+        "SLICE-01",
+        "SLICE-02"
+      ],
+      "evidence": [
+        "../homecoming.mjs"
+      ],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ART-01",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "partial",
+      "title": "Foreground courier quality",
+      "acceptance": "Approve consistent human scale, face, eyes, hands, clothing, backpack straps and grounded shoes. No visible intersections in standing, running, riding and jumping.",
+      "next": "Replace primitive rig with an original or licensed skinned hero and authored animations.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Art / animation",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ART-02",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "partial",
+      "title": "Bicycle and unicycle hero assets",
+      "acceptance": "Correct axles, pedals, grips and foot contacts; believable steering, suspension and braking. Approve turntables and riding captures at normal camera distance.",
+      "next": "Build hero meshes, LODs and contact-aware animation.",
+      "dependencies": [
+        "ART-01"
+      ],
+      "evidence": [],
+      "owner": "Art / animation",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ART-03",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "partial",
+      "title": "Human-scale architecture and materials",
+      "acceptance": "Approve one two-story house, cafe and apartment with believable doors, windows and floor heights. Materials, trim and shadows retain quality across presets.",
+      "next": "Replace enlarged placeholders with measured authored building kits.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Art / animation",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "PLAY-01",
+      "milestone": "M1",
+      "priority": "P1",
+      "status": "planned",
+      "title": "One fully playable interior",
+      "acceptance": "A cafe/workshop needs an accessible entrance, usable counter, collision, a meaningful activity, and a reliable exit with controller, keyboard and touch.",
+      "next": "Validate one interior before repeating it across the city.",
+      "dependencies": [
+        "ART-03",
+        "INPUT-01"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SLICE-04",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "needs-playtest",
+      "title": "Vertical-slice fun and presentation approval",
+      "acceptance": "At least three fresh-player sessions record confusion, time to first action, exploration and abandonment. The user explicitly approves or rejects the reference-quality street and character.",
+      "next": "Record observations and actual captures rather than self-awarded quality grades.",
+      "dependencies": [
+        "SLICE-03",
+        "ART-01",
+        "ART-02",
+        "ART-03",
+        "PLAY-01"
+      ],
+      "evidence": [],
+      "owner": "Real-device QA / user",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "WORLD-01",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Road topology and readable navigation",
+      "acceptance": "All six sphere faces connect. Centerlines, sidewalks, signs and collisions agree. Seams, intersections and mission approaches work at speed.",
+      "next": "Drive every seam and add road-following routes instead of compass-only navigation.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "WORLD-02",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Distinct coastal districts",
+      "acceptance": "Twenty-four names are not twenty-four distinct experiences. Each district needs a landmark, architecture, terrain or lighting identity, and activity mix.",
+      "next": "Author a downtown, marina, neighborhood and industrial district before scaling further.",
+      "dependencies": [
+        "SLICE-04"
+      ],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "WORLD-03",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "planned",
+      "title": "Useful houses and public buildings",
+      "acceptance": "Every building family needs an appropriate encounter or activity; important buildings need interiors. Empty shells remain labeled scenery rather than advertised as interactive homes.",
+      "next": "Create an activity registry, schedules, entrances and usable world markers.",
+      "dependencies": [
+        "PLAY-01",
+        "WORLD-02"
+      ],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "WORLD-04",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Traffic that understands streets",
+      "acceptance": "Cars move continuously, but must eventually follow lanes, stop at signals, avoid one another and yield visibly without secretly braking the player.",
+      "next": "Implement intersections, queueing, right of way and safe player interaction.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "WORLD-05",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Residents with purpose",
+      "acceptance": "Residents, joggers and cyclists exist; add destinations, idles, conversation and crossing behavior rather than only looping around scenery.",
+      "next": "Author bounded schedules, contextual interactions and crowd reactions.",
+      "dependencies": [
+        "PERF-03"
+      ],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "WORLD-06",
+      "milestone": "M2",
+      "priority": "P2",
+      "status": "planned",
+      "title": "Parks, rooftops and alternate routes",
+      "acceptance": "Provide street-speed, low-risk sidewalk and stunt/rooftop routes through the slice, each with tested entrances, exits and recovery.",
+      "next": "Prototype short interconnected routes, not isolated scenery.",
+      "dependencies": [
+        "SLICE-04",
+        "WORLD-01"
+      ],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "DESIGN-01",
+      "milestone": "M3",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Depth rather than mission-count inflation",
+      "acceptance": "The 102 contracts are variants of six systems, not 102 authored stories. New content must add decisions, encounter variation and consequences.",
+      "next": "Deepen one family, playtest it, then expand.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "DESIGN-02",
+      "milestone": "M3",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Connected authored campaign",
+      "acceptance": "Homecoming is the first optional arc. Later chapters need distinct characters, purposeful objectives, debriefs and world consequences.",
+      "next": "Use first-arc feedback to outline two genuinely different follow-up arcs.",
+      "dependencies": [
+        "SLICE-04"
+      ],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "DESIGN-03",
+      "milestone": "M3",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Fair progression and replay",
+      "acceptance": "Credits and cosmetics persist. Duplicate events cannot create repeated rewards. Speed and basic access never require a purchase.",
+      "next": "Balance rewards, add milestone goals and test replay results.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "DESIGN-04",
+      "milestone": "M3",
+      "priority": "P1",
+      "status": "planned",
+      "title": "Navigation that teaches without overwhelming",
+      "acceptance": "A fresh player finds a first task within 60 seconds, follows a road-safe route and distinguishes story, side jobs and free exploration.",
+      "next": "Add local minimap, compact journal and optional route guidance; test with fresh players.",
+      "dependencies": [
+        "WORLD-01",
+        "SLICE-04"
+      ],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "DESIGN-05",
+      "milestone": "M3",
+      "priority": "P2",
+      "status": "planned",
+      "title": "Difficulty and assistance",
+      "acceptance": "Timing assistance, race recovery, readable scoring and no mandatory repeated-button strain. Assists preserve story access.",
+      "next": "Add persistent steering, timing, objective and retry assists.",
+      "dependencies": [
+        "INPUT-01"
+      ],
+      "evidence": [],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "AUDIO-01",
+      "milestone": "M4",
+      "priority": "P0",
+      "status": "verified",
+      "title": "Independent levels and bounded score",
+      "acceptance": "One music transport; independent master, music, effects and ambience; quiet mix and mute; bounded voices. This verifies behavior, not soundtrack production quality.",
+      "next": "Audit every future cue against mixer levels and density limits.",
+      "dependencies": [],
+      "evidence": [
+        "../coastal-audio.mjs",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+      ],
+      "owner": "Audio / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "AUDIO-02",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "partial",
+      "title": "A polished score with quiet space",
+      "acceptance": "Original procedural music exists. It should develop across exploration, work and celebration without intrusive repetition or competing compositions.",
+      "next": "Compose longer arrangements, improve instruments and review 20 minutes of listening.",
+      "dependencies": [
+        "AUDIO-01"
+      ],
+      "evidence": [],
+      "owner": "Audio / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "AUDIO-03",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Spatial Foley and ambience",
+      "acceptance": "Distance and direction should match sources. Tires, motors and crowds must not mask essential cues; repetitive notification bursts must stay bounded.",
+      "next": "Add source-based emitters, useful occlusion and measured mix headroom.",
+      "dependencies": [
+        "AUDIO-01",
+        "WORLD-05"
+      ],
+      "evidence": [],
+      "owner": "Audio / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "AUDIO-04",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "planned",
+      "title": "Dialogue and captions",
+      "acceptance": "Written dialogue is not voice acting. Any recorded speech needs captions, a separate voice level and no audio-only essential information.",
+      "next": "Decide licensed voice production or text-only presentation; add captions and voice bus before speech.",
+      "dependencies": [
+        "DESIGN-02"
+      ],
+      "evidence": [],
+      "owner": "Audio / engineering",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ART-04",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "planned",
+      "title": "Unified art bible and approved reference shots",
+      "acceptance": "Agree on palette, material response, scale and identity across buildings, hero, vehicles and nature. Compare actual gameplay, never concept images passed off as builds.",
+      "next": "Create measured reference sheets and approved before/after captures.",
+      "dependencies": [
+        "SLICE-04"
+      ],
+      "evidence": [],
+      "owner": "Art / animation",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ART-05",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Stable lighting and reflections",
+      "acceptance": "No camera-driven sun rotation, blown highlights, flickering depth or shimmering shadows. Tone mapping and quality presets retain intended appearance.",
+      "next": "Review contact shadows, distant visibility and temporal stability on target hardware.",
+      "dependencies": [
+        "PERF-02"
+      ],
+      "evidence": [],
+      "owner": "Art / animation",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ART-06",
+      "milestone": "M4",
+      "priority": "P2",
+      "status": "planned",
+      "title": "Time of day and weather with purpose",
+      "acceptance": "Day/night and weather are optional future work, not shipped features. They must help mood or play without breaking readability or frame targets.",
+      "next": "Prototype a constrained sunset variant after daytime quality is stable.",
+      "dependencies": [
+        "ART-05",
+        "PERF-02"
+      ],
+      "evidence": [],
+      "owner": "Art / animation",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ACCESS-01",
+      "milestone": "M4",
+      "priority": "P0",
+      "status": "partial",
+      "title": "Controller-complete gameplay and menus",
+      "acceptance": "Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.",
+      "next": "Run physical Xbox tests including disconnect, reconnect and multiple pads.",
+      "dependencies": [
+        "INPUT-01"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ACCESS-02",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "planned",
+      "title": "Remapping and input alternatives",
+      "acceptance": "Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.",
+      "next": "Build an input-action layer rather than more hard-coded mappings.",
+      "dependencies": [
+        "ACCESS-01"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "ACCESS-03",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "partial",
+      "title": "Readable and comfortable presentation",
+      "acceptance": "Text scales without clipping; objectives are not color-only; speed effects can be reduced; long panels scroll by controller. Screen narration is not implemented.",
+      "next": "Audit contrast, captions, text scaling, reduced motion and screen-reader access.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "QA-01",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "verified",
+      "title": "Automated model and controller evidence",
+      "acceptance": "The previous release has 77 passing model tests and an emulated-controller browser journey. Retain actual results; failed or skipped tests are never reported as passed.",
+      "next": "Run new Homecoming acceptance and retain evidence before publishing.",
+      "dependencies": [],
+      "evidence": [
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "QA-02",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "needs-playtest",
+      "title": "Physical hardware matrix",
+      "acceptance": "Record Windows Chrome/Edge with Xbox USB and Bluetooth plus low-power and touch devices. Include sustained speed, menus, saves and audio.",
+      "next": "Fill production/hardware-matrix.md with actual measured sessions.",
+      "dependencies": [
+        "PERF-02",
+        "ACCESS-01"
+      ],
+      "evidence": [],
+      "owner": "Real-device QA / user",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "QA-03",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "partial",
+      "title": "Context loss and asset-failure recovery",
+      "acceptance": "Graphics loss pauses safely and recovers with saves retained. Missing art falls back explicitly. New plaza and audio must survive the same path.",
+      "next": "Add injected context loss, storage failures and missing-texture tests.",
+      "dependencies": [],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "QA-04",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "planned",
+      "title": "Extended soak and memory gate",
+      "acceptance": "A 30-minute multi-district session has no uncaught exceptions, runaway voices, increasing geometry counts or stuck inputs. Compare a second lap.",
+      "next": "Automate route-driven soak and record a real-device review.",
+      "dependencies": [
+        "PERF-03",
+        "AUDIO-01"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "BUILD-01",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "verified",
+      "title": "Publish real source, not an unmerged candidate",
+      "acceptance": "v0.7 is on master with a successful Pages deployment. Every next release preserves concurrent games, records a commit and checks live modules.",
+      "next": "Apply this definition to v0.8 with a fresh release receipt.",
+      "dependencies": [],
+      "evidence": [
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "BUILD-02",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "planned",
+      "title": "A repeatable release gate",
+      "acceptance": "Run model, browser, asset, visual and live checks before completion. Archive evidence, support reversible rollback and never force-push over sibling games.",
+      "next": "Consolidate one-off workflows into a scoped release pipeline.",
+      "dependencies": [
+        "QA-01",
+        "QA-03"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "LEGAL-01",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "partial",
+      "title": "Licensed and reproducible assets",
+      "acceptance": "The existing CC0 register retains sources and hashes. Every new model, texture, sound and voice needs provenance and redistribution rights.",
+      "next": "Audit new assets, credits and reproduction for every milestone.",
+      "dependencies": [],
+      "evidence": [
+        "../assets/street-art/asset-register.json"
+      ],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SHIP-01",
+      "milestone": "M5",
+      "priority": "P0",
+      "status": "blocked",
+      "title": "Evidence-based quality approval",
+      "acceptance": "Do not call the game AAA because a checklist exists or a counter is large. All P0 gates, critical defects, approved art/play and actual hardware results must be resolved.",
+      "next": "Close prerequisite gates and obtain explicit user quality approval.",
+      "dependencies": [
+        "SLICE-04",
+        "PERF-02",
+        "SAVE-02",
+        "ACCESS-01",
+        "QA-02",
+        "QA-04",
+        "LEGAL-01",
+        "BUILD-02"
+      ],
+      "evidence": [],
+      "owner": "Engineering / QA",
+      "lastReviewed": "2026-09-11"
+    }
+  ],
+  "sources": [
+    {
+      "title": "WebGL best practices / Mozilla MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices",
+      "use": "Batching, bounded resources, avoiding synchronous stalls and cleanup. Numerical frame targets here are our project targets, not MDN requirements."
+    },
+    {
+      "title": "Xbox Accessibility Guideline 105 / Microsoft",
+      "url": "https://learn.microsoft.com/en-us/gaming/accessibility/xbox-accessibility-guidelines/105",
+      "use": "Independent audio controls and essential cue audibility."
+    },
+    {
+      "title": "Making games accessible / Microsoft",
+      "url": "https://learn.microsoft.com/en-us/windows/uwp/gaming/accessibility-for-games",
+      "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
+    }
+  ]
+}

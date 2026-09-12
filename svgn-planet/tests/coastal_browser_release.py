@@ -7,7 +7,7 @@ PAD="""window.__pad={id:'Xbox Controller / release acceptance',mapping:'standard
 async def main():
  report={'checks':[],'errors':[],'physicalControllerTested':False};start=time.time()
  async with async_playwright() as p:
-  browser=await p.chromium.launch(headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
+  browser=await p.chromium.launch(executable_path=os.environ.get('CHROMIUM_EXECUTABLE'),headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   context=await browser.new_context(viewport={'width':960,'height':600});await context.add_init_script(PAD)
   page=await context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
   async def wait_poll(before):await page.wait_for_function('(b)=>NeighborhoodController.inspect().polls>b',arg=before,timeout=45000)
@@ -21,7 +21,7 @@ async def main():
    await page.wait_for_function("(window.SVGNPlanet&&!document.getElementById('start').disabled)||!document.getElementById('failure').hidden",timeout=150000)
    assert await page.locator('#failure').is_hidden(),await page.locator('#failure-message').inner_text()
    await page.bring_to_front();await press(0);await page.wait_for_function('SVGNPlanet.inspect().started',timeout=15000);await page.wait_for_timeout(1200)
-   s=await state();assert s['version']=='0.7.0' and not s['failed'];ok('Controller starts Coastal Pulse')
+   s=await state();assert s['version']=='0.8.0' and not s['failed'];ok('Controller starts Coastal Pulse')
    assert s['render']['life']['activeResidents']>=5 and s['render']['life']['activeCars']>=2;s0=s['render']['life'];ok('Lively street population and continuous traffic',s0)
    old=s['basis'];await page.evaluate('__pad.axes[2]=.9');await page.wait_for_timeout(1000);await page.evaluate('__pad.axes[2]=0');s=await state();turn=sum(a*b for a,b in zip(old['right'],s['basis']['forward']));assert s['render']['cameraOrbit']<-.10 and turn>0,(s['render']['cameraOrbit'],turn);ok('Right stick right turns camera right',{'orbit':s['render']['cameraOrbit'],'rightComponent':turn})
    await press(11);await page.evaluate("__pad.axes[1]=-1;__pad.buttons[7]={pressed:true,touched:true,value:1}");t0=(await state())['time'];samples=[]
