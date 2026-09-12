@@ -1,0 +1,26 @@
+name: Neighborhood browser workbench package
+on:
+  push:
+    branches: [neighborhood-coastal-pulse-20260911]
+    paths: ['.github/workflows/neighborhood-workbench.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Package game, its existing licensed assets, and homepage
+        run: |
+          mkdir -p workbench
+          tar -czf workbench/neighborhood-browser-workbench.tar.gz svgn-planet index.html projects.css project-shortcuts.css little-planet/index.html
+          git rev-parse HEAD > workbench/source-commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: neighborhood-browser-workbench
+          path: workbench
+          retention-days: 7
