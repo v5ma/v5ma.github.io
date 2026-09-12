@@ -1,0 +1,71 @@
+name: Neighborhood Missions Homecoming acceptance
+on:
+  push:
+    branches: [neighborhood-homecoming-20260911]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-homecoming.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: neighborhood-homecoming-candidate
+  cancel-in-progress: false
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize the scoped upgrade and production record
+        run: |
+          python svgn-planet/production/seed-roadmap.py
+          python svgn-planet/production/render-roadmap.py
+          python svgn-planet/tools/integrate-homecoming.py
+          git config user.name 'Micah Blumberg'
+          git config user.email '60057241+v5ma@users.noreply.github.com'
+          git add svgn-planet index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Homecoming chapter, Common Ground plaza and AAA production checklist'
+            git push origin HEAD:neighborhood-homecoming-20260911
+          fi
+      - name: Unit, regression and checklist integrity tests
+        run: |
+          mkdir -p homecoming-results
+          git rev-parse HEAD > homecoming-results/tested-commit.txt
+          for file in svgn-planet/*.mjs; do node --check "$file"; done
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs | tee homecoming-results/model-tests.log
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Real WebGL and emulated Xbox acceptance
+        run: |
+          python -m http.server 8765 >/tmp/homecoming-server.log 2>&1 &
+          sleep 2
+          set -o pipefail
+          python svgn-planet/tests/homecoming_browser.py | tee homecoming-results/browser.log
+          COASTAL_OUTPUT=homecoming-results python svgn-planet/tests/coastal_browser_release.py | tee homecoming-results/coastal-regression.log
+      - name: Archive exact source and evidence
+        if: always()
+        run: |
+          mkdir -p homecoming-results/source
+          cp svgn-planet/*.mjs homecoming-results/source/
+          cp svgn-planet/index.html svgn-planet/AAA_ROADMAP.md svgn-planet/roadmap.html homecoming-results/source/
+          cp -r svgn-planet/production svgn-planet/tests homecoming-results/source/
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          for p in Path('homecoming-results').glob('*.png'):
+              im=Image.open(p).convert('RGB');im.thumbnail((1024,768));im.save(p.with_suffix('.jpg'),quality=83)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-homecoming-evidence
+          path: homecoming-results
+          retention-days: 30
