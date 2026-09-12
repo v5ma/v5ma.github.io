@@ -84,10 +84,10 @@ with sync_playwright() as p:
   check(not errors,'No uncaught JavaScript errors during audio, quiver, physical reload and pickup acceptance')
   diagnostics['liveAudio']=page.evaluate('({...Vesperfall.component.soundscape.engine.metrics,liveVoices:Vesperfall.component.soundscape.engine.voices.size,limit:Vesperfall.component.soundscape.engine.limit})')
   check(diagnostics['liveAudio']['peakVoices']<=34,'Audio polyphony stays inside its hard voice budget')
-  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':'0.8.0','passed':len(checks),'checks':checks,'errors':errors,'diagnostics':diagnostics,'scope':'Actual Chromium WebGL and Web Audio PCM, real UI actions and emulated controller poses/buttons. Not physical Quest hardware, subjective audio quality, passthrough safety, comfort or performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':page.evaluate('VesperCore.VERSION'),'passed':len(checks),'checks':checks,'errors':errors,'diagnostics':diagnostics,'scope':'Actual Chromium WebGL and Web Audio PCM, real UI actions and emulated controller poses/buttons. Not physical Quest hardware, subjective audio quality, passthrough safety, comfort or performance certification.'},indent=2))
  except Exception as e:
   info=page.evaluate("({state:window.Vesperfall?.snapshot?.(),ritual:window.Vesperfall?.component?.ritual?.state,errors:[]})")
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'diagnostics':diagnostics,'info':info},indent=2))
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'info':info},indent=2))
   try:page.screenshot(path=str(OUT/'failure.png'))
   except:pass
   raise
