@@ -1,3 +1,7 @@
+# Dino Atlas: Crew and Canopy
+
+Talk to Chief Ranger Mara outside the visitor center, or open Menu > Reserve crew and Fieldlight. Named, animated staff introduce the reserve activities. Northstar Canopy Circuit adds a rooftop research facility and alternate service ascent. Fieldlight improves water and research glass; Classic restores the original materials. The existing game and saves are retained. See [CREW-CANOPY.md](CREW-CANOPY.md), [NORTHSTAR-CANOPY.md](NORTHSTAR-CANOPY.md), and [AAA-ROADMAP.md](AAA-ROADMAP.md).
+
 # Dino Atlas: Living Herds
 
 Open Menu > Living Herds: field study for the new grazer-and-predator assignment. Heads, tails and jointed legs now respond to actual travel and behavior states. Hunters warn before charging; short tool pulses interrupt and guide them. Balanced/Quiet/Off wildlife-call presets are in the same controller-accessible panel. The previous Storm Response campaign, 64 residents, 30-species library, all vehicles, economy and saves remain.

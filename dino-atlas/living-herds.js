@@ -22,7 +22,7 @@ export class LivingHerds{
   $('herds-cue-density').value=this.s.cues;$('herds-cue-density').onchange=e=>{this.s.cues=e.target.value;this.save();};
   $('living-herds-dialog').addEventListener('cancel',e=>{e.preventDefault();this.ctx.close();});
   $('living-herds-dialog').addEventListener('close',()=>this.ctx.input.clear());
-  document.addEventListener('click',e=>{if(e.target.closest?.('[data-job],[data-track],#campaign-track,#pen-track,#aaa-director-start,#aaa-director-resume'))this.pause();},true);
+  document.addEventListener('click',e=>{if(e.target.closest?.('[data-job],[data-track],#campaign-track,#pen-track,#aaa-director-start,#aaa-director-resume,#northstar-start,#northstar-restart'))this.pause();},true);
  }
  open(){const step=STUDY_STEPS[this.s.stage];$('herds-study-status').textContent=this.s.complete&&!this.s.active?'Report completed. Replay the study to practice; the reward is paid once.':`Stage ${this.s.stage+1} / 5: ${step.title}`;this.ctx.show('living-herds-dialog');}
  task(){if(!this.s.active)return null;const s=STUDY_STEPS[this.s.stage],a=this.ctx.animals.find(a=>a.uid===s.uid);return {name:'Living Herds / '+s.title,detail:s.detail,target:a||s.target,done:this.s.stage,total:5};}

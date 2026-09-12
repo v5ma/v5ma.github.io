@@ -99,6 +99,22 @@ Release entry: [LIVING-HERDS.md](LIVING-HERDS.md). The runtime adds grouped anim
 
 Acceptance evidence belongs in verification/ and the release workflow receipts. A passing fixture-driven browser journey does not mark the unperformed human/hardware items above complete.
 
+## Crew and Canopy: implementation update / 2026-09-12
+
+Release notes: [CREW-CANOPY.md](CREW-CANOPY.md). This continues the unfinished signature-facility work, not a new game. Manual acceptance stays separate.
+
+- [x] WORLD-01a: integrate Northstar's research canopy, service ascent, roof airlock, interior route and five-stage repeatable Canopy Circuit. Arrival/report share a console; first payout is idempotent.
+- [x] WORLD-04a: add reversible Fieldlight water, research glass and holographic-map materials; Reduced Motion freezes decorative shader time.
+- [x] LIFE-01a: locally host licensed rigged male/female human skins, seven named staff contacts and purpose-specific briefings. These are scripted service roles, not autonomous rivalry.
+- [x] INPUT-01b: staff roster, contact panels, avatar/shader selectors and Northstar terminals use shared controller navigation without a mouse.
+- [x] TECH-01a: recover the valid unfinished Northstar module while integrating against the current maintained runtime. Direct shipped source, deterministic licensed-asset conversion and explicit source hashes replace broken one-use restoration attempts.
+- [x] RC-02a: retain original CC0 license, model/texture hashes and version-matched Three.js MIT license beside locally hosted assets.
+- [ ] WORLD-01b: human art review of Northstar, roof approach, alternate route and television readability.
+- [ ] LIFE-01b: meaningful collision-aware crew schedules across districts, unobstructed handoffs and live convoy integration.
+- [ ] TECH-02b: physical Xbox and measured consumer-GPU performance profile for the new models and shaders.
+
+A software checkbox is not hardware certification. Tests and publication receipts are tracked in verification/; remaining parent quality gates are open.
+
 ## Ordered work packages after Storm Response
 
 ### Next pass: animal readability and motion

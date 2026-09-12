@@ -1,0 +1,26 @@
+{
+  "pack": "Animated Characters Survivors 1.1",
+  "author": "Kenney",
+  "license": "CC0",
+  "source": "https://kenney.nl/media/pages/assets/animated-characters-survivors/27b16052a7-1774772958/kenney_animated-characters-survivors.zip",
+  "source_sha256": "fdadced07a0454c9b7f0b46507be6144a072b4d03b4ffa37f225893c76c62845",
+  "three_revision": "177",
+  "upstream_libraries": {
+    "LICENSE": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "libs/fflate.module.js": "209a4412eb48ce609edb4391992a792ffcc3983d30ee7e2b0b89a8c470f3cd8a",
+    "curves/NURBSCurve.js": "bef2607618a7778455e71a1f0bd206951c382d313e2e245808cc7d3533d60fb6",
+    "curves/NURBSUtils.js": "c6bd7c4137d585098923f189687898ea3e8762ea3ecbe255d749a56353894379",
+    "exporters/GLTFExporter.js": "3d91af558632f8ced2ac9bb4230f108c4004ef82966338ae001b9fa84be59550",
+    "loaders/FBXLoader.js": "f04736fa73501298a45253adc287d712a9e2f2ac9ee9d00ccb92214620407ce6",
+    "loaders/GLTFLoader.js": "caba6c51cfd8c7d5313bd7705a54b76bc0a7199d9822ecc497c5311eaffe8e5e",
+    "utils/SkeletonUtils.js": "0761b1e003917b215d25dd81439d854b36034b5a57ce84c2cfe3b02428d7b253",
+    "utils/BufferGeometryUtils.js": "cbcfe1864abedcc0122cb893373918fe14469491717a34ca6efcc38551805765"
+  },
+  "conversion": "Original mesh and two clips; materials replaced with separately hosted original living-human skins. Conversion-only utilities excluded from runtime.",
+  "files": {
+    "female.png": "bb7123c98f0d85029447fed30794108657ec30c788e4a6039a14766a435a88d0",
+    "male.png": "fe64a677e96dee1e63a6df554fb5ebad4abddf3348cb2f40f32e2ba09660a762",
+    "ranger.glb": "042f655423ee399c428c59c01e6c65be7e970c36db0c49f595e6542e1b99c370",
+    "LICENSE.txt": "8eab20a1fa97308ae50443f6b8a0fabc4dd1fc37062988cd635fc74c8f1be21c"
+  }
+}
