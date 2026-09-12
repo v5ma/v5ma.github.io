@@ -1,0 +1,49 @@
+name: Verify published Dino AAA Vertical Slice
+on:
+  push:
+    branches: [master]
+    paths: ['dino-atlas/**', '.github/workflows/dino-aaa-published.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dino-aaa-live
+  cancel-in-progress: true
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            dino-atlas
+          persist-credentials: false
+      - name: Wait for the deployed AAA runtime marker
+        run: |
+          python - <<'PY'
+          import time,urllib.request,os
+          url='https://v5ma.github.io/dino-atlas/aaa-director.js?verify='+os.environ['GITHUB_SHA']
+          for _ in range(42):
+              try:
+                  text=urllib.request.urlopen(url,timeout=25).read().decode()
+                  if 'aaa-vslice-storm-20260911.1' in text:
+                      print('Published AAA marker found');break
+              except Exception:pass
+              time.sleep(8)
+          else:raise SystemExit('AAA runtime marker did not reach GitHub Pages')
+          PY
+      - name: Install native browser runner
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise live published Storm Response
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: python dino-atlas/tests/aaa-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-aaa-live-evidence
+          path: aaa-evidence
+          retention-days: 7
