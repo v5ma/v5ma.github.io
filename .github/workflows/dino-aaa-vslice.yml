@@ -20,6 +20,7 @@ jobs:
           sparse-checkout: |
             dino-atlas
             scripts
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -31,6 +32,7 @@ jobs:
             git config user.name 'Dino Atlas Build'
             git config user.email '60057241+v5ma@users.noreply.github.com'
             git commit -m 'Integrate AAA Vertical Slice 01 Storm Response'
+            git pull --rebase origin dino-aaa-roadmap-vslice-20260911
             git push origin HEAD:dino-aaa-roadmap-vslice-20260911
           fi
       - name: Syntax and model regression suite
