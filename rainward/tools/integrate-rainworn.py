@@ -1,5 +1,6 @@
 """Integrate Rainward-only changes with exact, unique source anchors.
 All edits are checked in memory before any source file is written.
+Rainworn preserves original garment geometry around the detailed imported skin.
 """
 from pathlib import Path
 import json,subprocess
@@ -30,7 +31,7 @@ for file in ['tests/first-light.py','tests/controller-menus.py','tests/reclaimed
 replace('listen-art.mjs','if(!o.isMesh||o.userData.listenEcho)return;','if(!o.isMesh||o.userData.listenEcho||o.userData.replacedBody)return;')
 replace('listen-art.mjs','return {group,parts,material,ripple};','return {group,parts,material,ripple,revision:model.visualRevision||0};')
 replace('listen-art.mjs','let echo=echoes.get(e.id);if(!echo',"let echo=echoes.get(e.id);if(echo&&echo.revision!==(model.visualRevision||0)){scene.remove(echo.group);echo.material.dispose();echo.ripple.geometry.dispose();echoes.delete(e.id);echo=null;}if(!echo")
-d=json.loads((R/'release.json').read_text());d.update(version='0.12.0',build='rainward-rainworn-20260912',changes=['Add locally hosted Quaternius CC0 female and male human meshes, fitted to the existing gameplay rig and fully clothed for Rainward','Retain all crouch, crawl, aim, reload, melee, healing, crafting and death poses with the real existing weapons and unchanged collision','Add composed wet-surface film, patchy roughness and a clear-coat rain response, plus fabric sheen on adapted clothing','Provide controller-operable detailed-human and rain-film switches, recoverable asset-loading fallback and bounded distance detail','Preserve six expeditions, both controller layouts, chapter saves, field records, required objectives and original licensed assets']);updates['release.json']=json.dumps(d,indent=2)+'\n'
+d=json.loads((R/'release.json').read_text());d.update(version='0.12.0',build='rainward-rainworn-20260912',changes=['Add locally hosted Quaternius CC0 female and male face, hand and hair meshes fitted to the existing rig and original tailored outfits','Retain all crouch, crawl, aim, reload, melee, healing, crafting and death poses with the real existing weapons and unchanged collision','Add composed wet-surface film, patchy roughness and a clear-coat rain response, plus fabric sheen on adapted clothing','Provide controller-operable detailed-human and rain-film switches, recoverable asset-loading fallback and bounded distance detail','Preserve six expeditions, both controller layouts, chapter saves, field records, required objectives and original licensed assets']);updates['release.json']=json.dumps(d,indent=2)+'\n'
 d=json.loads((R/'production-plan.json').read_text());d.update(release='0.12.0',edition='Rainworn',baseline='ffe0b6b83fadb0ded6a9964156a4fd2d8c97719f')
 for task in d['items']:
  if task['id']=='RW-034':task['status']='Implemented';task['evidence']='RAINWORN.md'
