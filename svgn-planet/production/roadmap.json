@@ -63,7 +63,8 @@
       "dependencies": [],
       "evidence": [
         "../tests/coastal.test.mjs",
-        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
@@ -72,7 +73,7 @@
       "id": "MOVE-02",
       "milestone": "M0",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "title": "Speed-consistent camera and reduced motion",
       "acceptance": "Camera FOV and chase distance follow actual speed rather than whether RT is held. Reduced motion removes speed effects.",
       "next": "Run Homecoming acceptance, then request real-device feel approval.",
@@ -80,7 +81,8 @@
         "MOVE-01"
       ],
       "evidence": [
-        "../frame-health.mjs"
+        "../frame-health.mjs",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
@@ -92,11 +94,12 @@
       "status": "verified",
       "title": "Correct camera axes and persistent options",
       "acceptance": "Right looks right and up looks up. Axis inversion, sensitivity, audio sliders and B-to-return exist. Evidence uses standard-mapping emulation, not physical Xbox hardware.",
-      "next": "Complete a Windows/browser plus real Xbox controller session.",
+      "next": "Held directions now require neutral before navigating new menus. Complete Windows/browser plus physical Xbox USB and Bluetooth sessions.",
       "dependencies": [],
       "evidence": [
         "../controller.mjs",
-        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
@@ -105,13 +108,14 @@
       "id": "PERF-01",
       "milestone": "M0",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "title": "Local frame-time report",
       "acceptance": "A bounded 600-frame window records p95/p99 interval, CPU submission p95, intervals over 50 ms and simulation/wall ratio. Pauses excluded; no automatic upload.",
       "next": "Capture results on actual target hardware.",
       "dependencies": [],
       "evidence": [
-        "../frame-health.mjs"
+        "../frame-health.mjs",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
@@ -157,7 +161,8 @@
       "dependencies": [],
       "evidence": [
         "../tests/coastal.test.mjs",
-        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
@@ -181,15 +186,16 @@
       "id": "SLICE-01",
       "milestone": "M1",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "title": "Homecoming story journal and named neighbors",
       "acceptance": "Five local contracts gain authored introductions and debriefs. Old completed contracts count; an unrelated active contract is not replaced without explicit consent.",
-      "next": "Validate the chapter and measure actual duration. Fifteen minutes is a target, not a measured claim.",
+      "next": "Measure actual duration with fresh players and improve the authored flow; 15 minutes remains a target, not a measured result.",
       "dependencies": [
         "SAVE-01"
       ],
       "evidence": [
-        "../homecoming.mjs"
+        "../homecoming.mjs",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Design / engineering",
       "lastReviewed": "2026-09-11"
@@ -198,15 +204,16 @@
       "id": "SLICE-02",
       "milestone": "M1",
       "priority": "P0",
-      "status": "implemented",
+      "status": "partial",
       "title": "Common Ground changes with your work",
       "acceptance": "An authored plaza includes Maya, cafe furniture and a pergola. Cleanup removes litter; repairs restore bulbs; photos fill decorative postcard panels; garden/workshop choice changes props. Changes survive reload.",
-      "next": "Check all visual states in actual game captures and obtain art approval.",
+      "next": "Automated state transitions passed and actual plaza captures are retained. Human art approval, useful interiors and richer authored assets remain open.",
       "dependencies": [
         "SLICE-01"
       ],
       "evidence": [
-        "../homecoming-view.mjs"
+        "../homecoming-view.mjs",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Design / engineering",
       "lastReviewed": "2026-09-11"
@@ -215,16 +222,17 @@
       "id": "SLICE-03",
       "milestone": "M1",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "title": "A physical homecoming finale",
       "acceptance": "Return to Maya after all five projects. The 500-credit reward and finish unlock are awarded once; remote or repeated claims cannot duplicate rewards.",
-      "next": "Test completion, reload and repeated claims.",
+      "next": "Retain exactly-once reward and reload checks in every future release.",
       "dependencies": [
         "SLICE-01",
         "SLICE-02"
       ],
       "evidence": [
-        "../homecoming.mjs"
+        "../homecoming.mjs",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Design / engineering",
       "lastReviewed": "2026-09-11"
@@ -584,7 +592,9 @@
       "dependencies": [
         "INPUT-01"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/v0.8.0.json"
+      ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
     },
@@ -622,11 +632,12 @@
       "priority": "P0",
       "status": "verified",
       "title": "Automated model and controller evidence",
-      "acceptance": "The previous release has 77 passing model tests and an emulated-controller browser journey. Retain actual results; failed or skipped tests are never reported as passed.",
-      "next": "Run new Homecoming acceptance and retain evidence before publishing.",
+      "acceptance": "Homecoming has 91 passing model/regression tests, 12 Homecoming browser checks and 14 retained-game regression checks. These are emulated-controller software-WebGL results, not physical hardware approval.",
+      "next": "Retain these permanent reports and add real-device, failure-recovery and soak evidence.",
       "dependencies": [],
       "evidence": [
-        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481"
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481",
+        "evidence/v0.8.0.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
@@ -761,5 +772,6 @@
       "url": "https://learn.microsoft.com/en-us/windows/uwp/gaming/accessibility-for-games",
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
-  ]
+  ],
+  "releaseEvidence": "evidence/v0.8.0.json"
 }

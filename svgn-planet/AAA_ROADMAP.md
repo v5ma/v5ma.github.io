@@ -34,25 +34,25 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
   Acceptance: 90 simulated seconds at full acceleration without energy-induced drops; coasting preserves speed; LT/B/Ctrl stops. This does not certify physical input latency.
   Next: Retest after every physics change.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481
+  Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
 
-- [ ] MOVE-02 / P0 / implemented / Speed-consistent camera and reduced motion
+- [x] MOVE-02 / P0 / verified / Speed-consistent camera and reduced motion
   Acceptance: Camera FOV and chase distance follow actual speed rather than whether RT is held. Reduced motion removes speed effects.
   Next: Run Homecoming acceptance, then request real-device feel approval.
   Owner role: Engineering / QA. Dependencies: MOVE-01.
-  Evidence: ../frame-health.mjs
+  Evidence: ../frame-health.mjs ; evidence/v0.8.0.json
 
 - [x] INPUT-01 / P0 / verified / Correct camera axes and persistent options
   Acceptance: Right looks right and up looks up. Axis inversion, sensitivity, audio sliders and B-to-return exist. Evidence uses standard-mapping emulation, not physical Xbox hardware.
-  Next: Complete a Windows/browser plus real Xbox controller session.
+  Next: Held directions now require neutral before navigating new menus. Complete Windows/browser plus physical Xbox USB and Bluetooth sessions.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: ../controller.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481
+  Evidence: ../controller.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
 
-- [ ] PERF-01 / P0 / implemented / Local frame-time report
+- [x] PERF-01 / P0 / verified / Local frame-time report
   Acceptance: A bounded 600-frame window records p95/p99 interval, CPU submission p95, intervals over 50 ms and simulation/wall ratio. Pauses excluded; no automatic upload.
   Next: Capture results on actual target hardware.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: ../frame-health.mjs
+  Evidence: ../frame-health.mjs ; evidence/v0.8.0.json
 
 - [ ] PERF-02 / P0 / needs-playtest / Named desktop 60 fps gate
   Acceptance: Proposed target: 1920x1080 on RTX 2060-class hardware, warmed 10-minute route, mean >=59 fps, p95 <=18 ms, p99 <=25 ms, fewer than 1 percent of intervals over 50 ms. Record CPU, GPU, browser, quality and power mode. These are project targets, not external certification requirements.
@@ -70,7 +70,7 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
   Acceptance: Original v1 slot and mission IDs remain. Old saves load; contracts, times and finishes round-trip; sibling game storage is not touched.
   Next: Test additive Homecoming fields and interrupted-write recovery.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481
+  Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
 
 - [ ] SAVE-02 / P0 / planned / Recoverable save transactions
   Acceptance: Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.
@@ -84,23 +84,23 @@ A coherent Homecoming vertical slice before more map expansion.
 
 Human exit gate: Approve one street, hero character, vehicle, interior and a compelling 15-minute play experience.
 
-- [ ] SLICE-01 / P0 / implemented / Homecoming story journal and named neighbors
+- [x] SLICE-01 / P0 / verified / Homecoming story journal and named neighbors
   Acceptance: Five local contracts gain authored introductions and debriefs. Old completed contracts count; an unrelated active contract is not replaced without explicit consent.
-  Next: Validate the chapter and measure actual duration. Fifteen minutes is a target, not a measured claim.
+  Next: Measure actual duration with fresh players and improve the authored flow; 15 minutes remains a target, not a measured result.
   Owner role: Design / engineering. Dependencies: SAVE-01.
-  Evidence: ../homecoming.mjs
+  Evidence: ../homecoming.mjs ; evidence/v0.8.0.json
 
-- [ ] SLICE-02 / P0 / implemented / Common Ground changes with your work
+- [ ] SLICE-02 / P0 / partial / Common Ground changes with your work
   Acceptance: An authored plaza includes Maya, cafe furniture and a pergola. Cleanup removes litter; repairs restore bulbs; photos fill decorative postcard panels; garden/workshop choice changes props. Changes survive reload.
-  Next: Check all visual states in actual game captures and obtain art approval.
+  Next: Automated state transitions passed and actual plaza captures are retained. Human art approval, useful interiors and richer authored assets remain open.
   Owner role: Design / engineering. Dependencies: SLICE-01.
-  Evidence: ../homecoming-view.mjs
+  Evidence: ../homecoming-view.mjs ; evidence/v0.8.0.json
 
-- [ ] SLICE-03 / P0 / implemented / A physical homecoming finale
+- [x] SLICE-03 / P0 / verified / A physical homecoming finale
   Acceptance: Return to Maya after all five projects. The 500-credit reward and finish unlock are awarded once; remote or repeated claims cannot duplicate rewards.
-  Next: Test completion, reload and repeated claims.
+  Next: Retain exactly-once reward and reload checks in every future release.
   Owner role: Design / engineering. Dependencies: SLICE-01, SLICE-02.
-  Evidence: ../homecoming.mjs
+  Evidence: ../homecoming.mjs ; evidence/v0.8.0.json
 
 - [ ] ART-01 / P0 / partial / Foreground courier quality
   Acceptance: Approve consistent human scale, face, eyes, hands, clothing, backpack straps and grounded shoes. No visible intersections in standing, running, riding and jumping.
@@ -262,7 +262,7 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
   Acceptance: Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.
   Next: Run physical Xbox tests including disconnect, reconnect and multiple pads.
   Owner role: Engineering / QA. Dependencies: INPUT-01.
-  Evidence: Not recorded.
+  Evidence: evidence/v0.8.0.json
 
 - [ ] ACCESS-02 / P1 / planned / Remapping and input alternatives
   Acceptance: Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.
@@ -283,10 +283,10 @@ Reliable builds, recovery, licensing and sustained hardware testing.
 Human exit gate: Pass the named device matrix, license audit, soak test and rollback drill.
 
 - [x] QA-01 / P0 / verified / Automated model and controller evidence
-  Acceptance: The previous release has 77 passing model tests and an emulated-controller browser journey. Retain actual results; failed or skipped tests are never reported as passed.
-  Next: Run new Homecoming acceptance and retain evidence before publishing.
+  Acceptance: Homecoming has 91 passing model/regression tests, 12 Homecoming browser checks and 14 retained-game regression checks. These are emulated-controller software-WebGL results, not physical hardware approval.
+  Next: Retain these permanent reports and add real-device, failure-recovery and soak evidence.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481
+  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
 
 - [ ] QA-02 / P0 / needs-playtest / Physical hardware matrix
   Acceptance: Record Windows Chrome/Edge with Xbox USB and Bluetooth plus low-power and touch devices. Include sustained speed, menus, saves and audio.
