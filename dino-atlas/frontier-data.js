@@ -1,3 +1,4 @@
+import {tickLife,herdEffect,shapeIntent,resolveMove,finishMove} from './herd-behavior.js?v=herds1';
 // Ranger Operations expansion. Fictional reserve behavior, not paleoecology.
 import {ANIMALS, HOME, clamp, distance, seeded} from './ranger-data.js';
 import {seaWater,WORLD_EDGE} from './ranch-data.js';
@@ -99,9 +100,9 @@ export function operations(s){return [
  ];}
 // Stateful arcade behavior. A tool pushes away from the ranger and suppresses charges.
 export function createResident(d,i){return {...d,origin:{x:d.x,z:d.z},angle:i*.83,phase:i*1.39,mood:'roaming',deter:0,stun:0,toolVector:{x:0,z:1},attackCooldown:0};}
-export function deterAnimal(a,origin,kind){const dx=a.x-origin.x,dz=a.z-origin.z,l=Math.hypot(dx,dz)||1;a.toolVector={x:dx/l,z:dz/l};a.deter=kind==='zapper'?7.5:kind==='horn'?4.5:6;a.stun=kind==='zapper'?1.1:0;a.effect=kind;a.herdSpeed=kind==='horn'?4.4:5.6;a.mood=kind==='zapper'?'stunned':'being herded';}
-export function stepResident(a,player,dt,time,state,hornAge=100){
- dt=clamp(dt,0,.05);a.attackCooldown=Math.max(0,a.attackCooldown-dt);a.deter=Math.max(0,a.deter-dt);a.stun=Math.max(0,a.stun-dt);
+export function deterAnimal(a,origin,kind){return herdEffect(a,origin,kind);}
+export function stepResident(a,player,dt,time,state,hornAge=100,context=null){
+ dt=clamp(dt,0,.05);tickLife(a,dt);a.attackCooldown=Math.max(0,a.attackCooldown-dt);a.deter=Math.max(0,a.deter-dt);a.stun=Math.max(0,a.stun-dt);
  const pen=PENS.find(p=>p.id===a.pen),ps=pen?penState(state,pen):null,old={x:a.x,z:a.z},gap=distance(a,player);let tx,tz,speed=.8;
  if(a.deter>0){tx=a.x+a.toolVector.x*12;tz=a.z+a.toolVector.z*12;speed=(a.herdSpeed||5.6)*(a.kind==='sauropod'||a.kind==='brachio'?.68:1);a.mood=a.stun?'stunned':'being herded';if(a.stun)speed=0;}
  else if(PREDATORS.has(a.kind)&&gap<21&&player.y<5&&(!pen||!ps.open?(!pen||insidePen(player,pen)):true)&&!(a.uid==='legacy-5'&&player.z> -38)){
@@ -112,7 +113,9 @@ export function stepResident(a,player,dt,time,state,hornAge=100){
   const outside=!insidePen(a,pen,0),south=pen.z+pen.hz;tx=pen.x+Math.sin(a.phase)*7;tz=pen.z-4+Math.cos(a.phase)*7;
   if(outside){if(a.z<south+3&&Math.abs(a.x-pen.x)>5){tx=pen.x+Math.sign(a.x-pen.x)*(pen.hx+4);tz=south+7;}else if(Math.abs(a.x-pen.x)>2.5){tx=pen.x;tz=south+7;}else{tx=pen.x;tz=ps.open?south-7:south+5;}}speed=2.5;a.mood='returning to feeder';
  }else{tx=a.origin.x+Math.sin(time*.16+a.phase)*7;tz=a.origin.z+Math.cos(time*.13+a.phase)*5;speed=a.kind==='sauropod'||a.kind==='brachio'?.65:1;a.mood='roaming';}
- const dx=tx-a.x,dz=tz-a.z,len=Math.hypot(dx,dz);if(len>.2&&speed){a.x+=dx/len*Math.min(speed*dt,len);a.z+=dz/len*Math.min(speed*dt,len);const want=Math.atan2(dx,dz);a.angle+=Math.atan2(Math.sin(want-a.angle),Math.cos(want-a.angle))*Math.min(1,dt*3);}
+ const intent=shapeIntent(a,player,dt,time,{tx,tz,speed,canFeed:pen&&insidePen(a,pen,4)},context);({tx,tz,speed}=intent);
+ const dx=tx-a.x,dz=tz-a.z,len=Math.hypot(dx,dz);if(len>.2&&speed){a.x+=dx/len*Math.min(speed*dt,len);a.z+=dz/len*Math.min(speed*dt,len);const want=Math.atan2(dx,dz);const delta=Math.atan2(Math.sin(want-a.angle),Math.cos(want-a.angle));a.life.turn=delta;a.angle+=clamp(delta,-intent.turn*dt,intent.turn*dt);}
+ const n=resolveMove(a,old,{x:a.x,z:a.z},context);a.x=n.x;a.z=n.z;
  if(pen){
   // Rectangular wall crossing is blocked except at the real southern gate.
   const r=Math.min(a.radius*.6,1.5),was=insidePen(old,pen,0),now=insidePen(a,pen,0),gateX=Math.abs(a.x-pen.x)<5-r;
@@ -122,5 +125,5 @@ export function stepResident(a,player,dt,time,state,hornAge=100){
  }else if(a.uid==='legacy-5'){a.x=clamp(a.x,24,68);a.z=clamp(a.z,-72,-40);}
  else if(distance(a,a.origin)>20){const l=distance(a,a.origin);a.x=a.origin.x+(a.x-a.origin.x)*20/l;a.z=a.origin.z+(a.z-a.origin.z)*20/l;}
  if(isWater(a.x,a.z,2)){a.x=old.x;a.z=old.z;}
- return a;
+ return finishMove(a,old,dt);
 }

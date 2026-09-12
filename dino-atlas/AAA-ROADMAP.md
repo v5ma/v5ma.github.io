@@ -82,6 +82,23 @@ Exit criterion: release is reproducible and supportable. GitHub Pages deployment
 - [ ] RL-02: collect opt-in playtest feedback without adding undisclosed telemetry.
 - [ ] RL-03: maintain a save-compatible hotfix procedure and prioritize real player blockers before more content.
 
+## Living Herds: next work package delivered in source
+
+Release entry: [LIVING-HERDS.md](LIVING-HERDS.md). The runtime adds grouped animal behavior and a five-stage field study under Menu > Living Herds: field study. Existing story, vehicle and journal namespaces are retained. The parent DINO and VS quality gates remain open for art review, human playtests and physical-controller evidence.
+
+- [x] DINO-01a: implement travel-driven gait phase and two-segment legs with stance anchors for the existing procedural residents. Automated checks cover finite poses, stopped feet and retained neutral reference lengths.
+- [x] DINO-01b: articulate the head/neck and tail, with watching, feeding, resting, warning, interrupted-charge and retreat poses. Reduced Motion suppresses decorative sway while retaining locomotion.
+- [x] DINO-02a: require a visible warning before a predator charge, bound the charge burst, and add recovery. Losing line of sight cancels the pending warning.
+- [x] DINO-02b: add local herd spacing and static-obstacle steering, keeping existing pen and water boundaries authoritative. This is local avoidance, not whole-island navigation.
+- [x] DINO-03a: define six explicit gameplay response families; retain useful first hits and limit repeated stun refreshes. Fictional responses are not paleobiological claims.
+- [x] DINO-04a: one wildlife-call director with distance falloff, priority warnings, bounded overlap and Balanced/Quiet/Off options. There is no additional music scheduler.
+- [x] INPUT-01a: add a controller-navigable field study with five readable objectives, a persistent report and a one-time 450-credit reward. Existing X reload and B close remain unchanged.
+- [ ] DINO-01c: animation/art review at normal viewing distances, including sharp turns, all body sizes, foot penetration and collision silhouettes.
+- [ ] DINO-02c: no-fixture, first-time-player route through the grazer and predator encounter using a physical Xbox controller.
+- [ ] AUDIO-02b: listen to the wildlife mix and existing effects together on real headphones, speakers and television; global non-wildlife voice budgeting remains open.
+
+Acceptance evidence belongs in verification/ and the release workflow receipts. A passing fixture-driven browser journey does not mark the unperformed human/hardware items above complete.
+
 ## Ordered work packages after Storm Response
 
 ### Next pass: animal readability and motion

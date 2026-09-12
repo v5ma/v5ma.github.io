@@ -42,7 +42,7 @@ try:
    wait('!__dinoRanger.state.paused')
   try:
    page.goto(BASE+'?test=1',wait_until='domcontentloaded',timeout=90000);wait('window.__dinoRanger?.state.ready&&window.__dinoAAA?.state',120000)
-   check(page.evaluate('__dinoRanger.state.build')=='aaa-vslice-storm-20260911.2','Correct Storm Response release boots over HTTP/WebGL')
+   check(page.evaluate('__dinoRanger.state.storyBuild||__dinoRanger.state.build')=='aaa-vslice-storm-20260911.2','Correct Storm Response release boots over HTTP/WebGL')
    check(page.evaluate('__dinoRanger.state.animals.length')==64,'All 64 existing residents retained')
    snap('01-storm-intro.png');intro()
    press(9);wait('document.getElementById("menu-dialog").open');choose('menu-aaa-roadmap');wait('document.getElementById("aaa-roadmap-dialog").open')

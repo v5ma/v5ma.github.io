@@ -1,3 +1,9 @@
+# Dino Atlas: Living Herds
+
+Open Menu > Living Herds: field study for the new grazer-and-predator assignment. Heads, tails and jointed legs now respond to actual travel and behavior states. Hunters warn before charging; short tool pulses interrupt and guide them. Balanced/Quiet/Off wildlife-call presets are in the same controller-accessible panel. The previous Storm Response campaign, 64 residents, 30-species library, all vehicles, economy and saves remain.
+
+The maintained production checklist remains [AAA-ROADMAP.md](AAA-ROADMAP.md), beside the game. Release scope and open manual checks: [LIVING-HERDS.md](LIVING-HERDS.md). Test and publication receipts belong in verification/.
+
 # Dino Atlas: Storm Response
 
 Play the existing game at index.html. Open Menu and select Story mission: Storm Response for the connected ground, air, interior and coastal operation. The new Development roadmap menu panel summarizes the production plan without leaving the game.
