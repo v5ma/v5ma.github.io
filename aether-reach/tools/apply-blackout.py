@@ -27,5 +27,7 @@ for p,data in pending:p.write_bytes(data)
 subprocess.run(['python','aether-reach/tools/render-production-plan.py'],cwd=root,check=True)
 assert sha(target('aether-reach/planning/AAA-ROADMAP.md').read_bytes())==a['checklist'],'Checklist differs from canonical plan'
 out=root/'aether-reach/test-output';out.mkdir(exist_ok=True)
-(out/'blackout-integration.json').write_text(json.dumps({'files':{**a['new'],**{e['path']:e['after'] for e in a['edits']+b['edits']},'checklist':a['checklist']},indent=2))
+hashes=dict(a['new'])
+hashes.update({e['path']:e['after'] for e in a['edits']+b['edits']})
+(out/'blackout-integration.json').write_text(json.dumps({'files':hashes,'checklist':a['checklist']},indent=2))
 print('All new sources and',len(pending),'integrations match the locally tested candidate.')
