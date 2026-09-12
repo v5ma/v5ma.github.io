@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.10.0",
-  "edition": "Field Ready",
-  "baseline": "c942abeda531879a709ee606190ca0e4886f19e7",
+  "release": "0.11.0",
+  "edition": "First Light",
+  "baseline": "2381005b666a0db029f3714f07ef0a1f4208c83b",
   "updated": "2026-09-12",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
   "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all six chapters, saves, sibling applications and asset credits.",
@@ -75,11 +75,10 @@
     }
   ],
   "nextRelease": [
-    "RW-009",
-    "RW-010",
     "RW-014",
     "RW-034",
-    "RW-035"
+    "RW-035",
+    "RW-015"
   ],
   "items": [
     {
@@ -196,10 +195,10 @@
       "phase": "G1",
       "priority": "P0",
       "title": "Vertical-slice design lock",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Game direction",
       "acceptance": "Approve one 15-20 minute Floodgate slice: approach, stealth, discovery, escalation, recovery and extraction, with no filler.",
-      "evidence": "",
+      "evidence": "FIRST-LIGHT.md",
       "depends": [
         "RW-005"
       ],
@@ -211,10 +210,10 @@
       "phase": "G1",
       "priority": "P0",
       "title": "Readable first encounter",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Encounter design",
       "acceptance": "First-time players identify cover, patrol direction and their objective without needing an outside explanation.",
-      "evidence": "",
+      "evidence": "FIRST-LIGHT.md",
       "depends": [
         "RW-009"
       ],
@@ -226,10 +225,10 @@
       "phase": "G1",
       "priority": "P1",
       "title": "Playable alternate approach",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Level design",
       "acceptance": "The slice supports at least two meaningfully different routes; both are collision-tested and have different risk/reward.",
-      "evidence": "",
+      "evidence": "FIRST-LIGHT.md",
       "depends": [
         "RW-009"
       ],
@@ -256,10 +255,10 @@
       "phase": "G1",
       "priority": "P1",
       "title": "Environmental story beat",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Narrative design",
       "acceptance": "An original scene communicates who lived here and why the player should care, using space and interaction rather than a text dump.",
-      "evidence": "",
+      "evidence": "FIRST-LIGHT.md",
       "depends": [
         "RW-009"
       ],

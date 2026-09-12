@@ -1,3 +1,4 @@
+import {noteTarget,readFieldNote} from './first-light.mjs';
 import {weapon,addRifleAmmo} from './armory.mjs';
 import {taskTarget,taskReady,taskBlockReason,completeTask,requiredTasksDone} from './field-tasks.mjs';
 import {isMonster} from './monsters.mjs';
@@ -8,9 +9,11 @@ import {forward,emit,hint,noise,RECIPES} from './state.mjs';
 export function interactable(s){const p=s.player;const puzzle=puzzleTarget(s);if(puzzle)return puzzle;const task=taskTarget(s);if(task)return {kind:'task',id:task.id,label:taskReady(s,task)?task.title:'First: '+taskBlockReason(s,task)};const drop=lootTarget(s);if(drop)return {kind:'loot',id:drop.id,label:'Scavenge dropped supplies'};const nearestShelter=SHELTERS.find(c=>dist(c,p)<1.7);const item=ITEMS.find(i=>!s.taken.has(i.id)&&(!nearestShelter||dist(i,p)<dist(nearestShelter,p))&&dist(i,p)<1.8&&!obstruction({x:p.x,y:heightAt(p.x,p.z)+.4,z:p.z},{x:i.x,y:heightAt(i.x,i.z)+.4,z:i.z}));if(item)return {kind:'item',id:item.id,label:item.label};
  if(dist(EXIT,p)<2.7)return {kind:'exit',label:s.objectives.cell&&s.objectives.crank?CURRENT.exitPrompt||(CURRENT.id==='district'?'Open the floodgate / extract':'Activate the archive lift / finish'):'Required: '+CURRENT.objectiveNames.cell+' + '+CURRENT.objectiveNames.crank};
  const save=SHELTERS.find(c=>dist(c,p)<1.7);if(save)return {kind:'shelter',id:save.id,label:'Save at '+save.name};
+ const note=noteTarget(s);if(note)return {kind:'field-note',id:note.id,label:'Record / '+note.title};
  const enemy=s.enemies.find(e=>e.hp>0&&!isMonster(e)&&e.state!=='chase'&&dist(e,p)<1.75&&((p.x-e.x)*forward(e.yaw).x+(p.z-e.z)*forward(e.yaw).z)<-.15&&!obstruction({x:p.x,y:heightAt(p.x,p.z)+1,z:p.z},{x:e.x,y:heightAt(e.x,e.z)+1,z:e.z}));if(enemy)return {kind:'takedown',id:enemy.id,label:'Silent takedown'};return null;
 }
 export function interact(s){if(s.status!=='playing'||(s.player.craft||s.player.healing||s.player.melee))return false;const target=interactable(s);if(!target){hint(s,'Move closer to a supply, shelter or unaware lookout.');return false;}
+ if(target.kind==='field-note')return readFieldNote(s,target.id);
  if(target.kind==='task'){if(!completeTask(s,target.id)){const task=taskTarget(s);hint(s,task?'First: '+taskBlockReason(s,task):'Move closer to the field task.');return false;}emit(s,'task-complete',{id:target.id});hint(s,'Field task complete: '+target.label);s.hintTime=6;return true;}
  if(target.kind==='clue'){s.puzzle.clueRead=true;hint(s,CURRENT.puzzle.clue.text);s.hintTime=12;emit(s,'clue');return true;}
  if(target.kind==='wheel'){if(s.puzzle.solved){hint(s,CURRENT.puzzle.gateText||'The sluice is open. Follow the north causeway.');return true;}const i=target.index;s.puzzle.wheels=turnPuzzle(CURRENT.puzzle,s.puzzle.wheels,i);s.puzzle.solved=puzzleSolved(CURRENT.puzzle,s.puzzle.wheels);syncGates(s.puzzle);emit(s,s.puzzle.solved?'puzzle-solved':'wheel',{index:i});hint(s,s.puzzle.solved?(CURRENT.puzzle.gateText||'The waterway gate rises. The north sanctuary is reachable.'):(CURRENT.puzzle.mode==='linked'?'Circuits: '+s.puzzle.wheels.map(v=>CURRENT.puzzle.symbols[v]).join(' / '):CURRENT.puzzle.wheels[i].label+': '+CURRENT.puzzle.symbols[s.puzzle.wheels[i]]));return true;}

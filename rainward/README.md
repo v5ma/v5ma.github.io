@@ -1,3 +1,7 @@
+# Rainward v0.11.0 / First Light
+
+Current release: [FIRST-LIGHT.md](FIRST-LIGHT.md). The Floodgate now has optional field records, two readable approach plans, contextual guidance and an improved rain garden.
+
 # Rainward v0.10.0 / Field Ready
 
 Current release notes: [FIELD-READY.md](FIELD-READY.md).
