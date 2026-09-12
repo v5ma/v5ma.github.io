@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.10.0 / Field Ready.
+Release baseline: v0.11.0 / First Light.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -77,23 +77,23 @@ Make one complete segment worth playing repeatedly.
 
 Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, independent player test.
 
-- [ ] RW-009 / P0 / Vertical-slice design lock / Planned
+- [ ] RW-009 / P0 / Vertical-slice design lock / Implemented
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Approve one 15-20 minute Floodgate slice: approach, stealth, discovery, escalation, recovery and extraction, with no filler.
   Dependencies: RW-005.
-  Evidence: Not recorded yet.
+  Evidence: FIRST-LIGHT.md.
 
-- [ ] RW-010 / P0 / Readable first encounter / Planned
+- [ ] RW-010 / P0 / Readable first encounter / Implemented
   Owner role: Encounter design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: First-time players identify cover, patrol direction and their objective without needing an outside explanation.
   Dependencies: RW-009.
-  Evidence: Not recorded yet.
+  Evidence: FIRST-LIGHT.md.
 
-- [ ] RW-011 / P1 / Playable alternate approach / Planned
+- [ ] RW-011 / P1 / Playable alternate approach / Implemented
   Owner role: Level design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: The slice supports at least two meaningfully different routes; both are collision-tested and have different risk/reward.
   Dependencies: RW-009.
-  Evidence: Not recorded yet.
+  Evidence: FIRST-LIGHT.md.
 
 - [ ] RW-012 / P1 / Stealth-to-combat-to-recovery pacing / Planned
   Owner role: Systems design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -101,11 +101,11 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Dependencies: RW-010.
   Evidence: Not recorded yet.
 
-- [ ] RW-013 / P1 / Environmental story beat / Planned
+- [ ] RW-013 / P1 / Environmental story beat / Implemented
   Owner role: Narrative design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: An original scene communicates who lived here and why the player should care, using space and interaction rather than a text dump.
   Dependencies: RW-009.
-  Evidence: Not recorded yet.
+  Evidence: FIRST-LIGHT.md.
 
 - [ ] RW-014 / P0 / Hero scene art benchmark / Planned
   Owner role: Art direction. Assigned reviewer: Unassigned. Effort: Unestimated.

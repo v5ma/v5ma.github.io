@@ -33,7 +33,7 @@ export function createAudio(settings,getMode){
   else if(type==='damage'){at('impact',0,{duration:.28,gain:.7,priority:true});at('breath',.08,{duration:.6,gain:.5});}
   else if(type==='smoke'){at('metal',0,{duration:.15,gain:.38});at('smoke',.05,{duration:1.5,gain:.63});}
   else if(type==='wheel'||type==='puzzle-solved')at('mechanism',0,{duration:type==='wheel'?.65:1.8,gain:.66,send:.20});
-  else if(type==='pickup'||type==='loot'||type==='clue'){at('cloth',0,{duration:.25,gain:.48});at('pluck',.07,{duration:.8,midi:76,gain:.22});}
+  else if(type==='field-note'||type==='pickup'||type==='loot'||type==='clue'){at('cloth',0,{duration:.25,gain:.48});at('pluck',.07,{duration:.8,midi:76,gain:.22});}
   else if(type==='checkpoint'||type==='task-complete'||type==='complete'){for(const [i,midi]of [57,64,67,74].entries())at('felt',i*.16,{duration:1.8,midi,gain:.24,send:.25});}
   else if(type==='death')at('bow',0,{duration:3,midi:38,gain:.50});
   else if(type==='land')at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});

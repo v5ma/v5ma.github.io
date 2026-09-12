@@ -87,7 +87,7 @@ if not file.exists():
   plan['items'].append(dict(id=f'RW-{i+1:03}',phase=f'G{i//8}',priority=priority,title=title,status=status,owner=owner,acceptance=acceptance,evidence=evidence,depends=depends.split(',') if depends else [],estimate='Unestimated',reviewer='Unassigned'))
  file.write_text(json.dumps(plan,indent=2)+'\n')
 plan=json.loads(file.read_text())
-lines=['# Rainward: AAA-quality production checklist','','Release baseline: v'+plan['release']+' / Field Ready.','',plan['purpose'],'',plan['policy'],'','## Status legend','']
+lines=['# Rainward: AAA-quality production checklist','','Release baseline: v'+plan['release']+' / '+plan.get('edition','Production')+'.','',plan['purpose'],'',plan['policy'],'','## Status legend','']
 for k,v in plan['statusDefinitions'].items():lines.append(k+': '+v)
 lines+=['','Canonical data: [production-plan.json](production-plan.json). Interactive board: [roadmap.html](roadmap.html).','Each checkbox remains open until human acceptance is recorded. Automated status is narrower than final approval.','']
 for phase in plan['phases']:

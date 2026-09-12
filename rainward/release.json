@@ -1,15 +1,14 @@
 {
-  "version": "0.10.0",
-  "build": "rainward-field-ready-20260912",
+  "version": "0.11.0",
+  "build": "rainward-first-light-20260912",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Fix live audio initialization by matching reverb impulse rate to the actual browser AudioContext",
-    "Preserve separate chapter shelter saves with legacy migration, backup recovery and atomic primary writes",
-    "Add controller-reachable satchel equipment selection and accurate tool/reload prompts",
-    "Add a source-controlled 64-task AAA-quality production checklist with eight gates and evidence links",
-    "Keep local roadmap review marks separate from delivery status and human acceptance",
-    "Preserve all six expeditions, Survival and Classic input layouts, original music, tasks, puzzles and assets"
+    "Add six optional original field records to the Floodgate, saved independently from resources and required tasks",
+    "Introduce Garden and Freight approach selection, collision-aware route markers and optional first-expedition guidance",
+    "Build actual garden low-cover walls, a weathered pergola, wayfinding signs and readable field-record props",
+    "Keep both controller presets, full map-journal navigation, all six chapters and earlier shelter saves compatible",
+    "Advance the 64-task production checklist with scoped Floodgate slice work and retain unapproved human acceptance gates"
   ]
 }
