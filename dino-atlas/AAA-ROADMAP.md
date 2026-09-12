@@ -99,6 +99,21 @@ Release entry: [LIVING-HERDS.md](LIVING-HERDS.md). The runtime adds grouped anim
 
 Acceptance evidence belongs in verification/ and the release workflow receipts. A passing fixture-driven browser journey does not mark the unperformed human/hardware items above complete.
 
+## Coastal Light: shader quality pass
+
+Release entry: [COASTAL-LIGHT.md](COASTAL-LIGHT.md). Menu > Coastal Light / shaders controls the new material pass. Balanced is the default; Classic restores the earlier materials. Cinematic adds bounded bloom with an automatic Low-graphics/capability fallback. This does not close the signature-interior, human-art-review or physical-hardware gates.
+
+- [x] FX-01a: apply shared world-space water normals, shore coloring/foam, procedural surface caustic patterns, finite boat-wake samples and dusk bioluminescence to the existing six water surfaces without changing water collision.
+- [x] FX-02a: animate the five existing canopy instance batches with a matching depth/distance-shadow displacement, leaving trunks, animal rigs, roads and collision stationary.
+- [x] FX-03a: make the 39 existing road ribbons darker and selectively glossier with the saved Storm Response weather state.
+- [x] FX-04a: add feathered luminous bands to the existing 46 pooled pulse rings and five pooled sonic/gravity/celebration shells. No additional damage, physics forces, lights or music schedulers.
+- [x] FX-05a: provide Classic/Balanced/Cinematic, individual shader-family controls, bounded bloom strength and Reduced Motion behavior through the shared Xbox UI. Settings use a separate validated local-save namespace.
+- [x] TECH-03a: bound this pass to 12 wake samples, six impact samples, five shells, three optional render targets, and no extra full-screen passes in Balanced. Switching away from Cinematic disposes its targets.
+- [ ] FX-06: review shoreline transitions, foliage attachment and pulse readability on consumer GPUs, televisions and real mobile devices. Procedural sky highlights are not scene reflections or ray tracing.
+- [ ] FX-07: profile normal and storm play with representative hardware before making frame-rate, memory-efficiency or AAA-quality claims.
+
+This release is a material/lighting pass on the published Living Herds game. The earlier unpublished Northstar candidate branch is retained unchanged; no unfinished facility is silently promoted or represented as shipped by this shader release. The signature district/interior remains the next world-design work package.
+
 ## Ordered work packages after Storm Response
 
 ### Next pass: animal readability and motion

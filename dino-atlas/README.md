@@ -1,3 +1,7 @@
+# Dino Atlas: Coastal Light
+
+The maintained game now includes water and canopy shaders, wet storm roads, luminous research pulses and optional soft bloom. Open Menu > Coastal Light / shaders. Balanced is on by default; Classic restores the original materials, and Cinematic adds bloom on supported High graphics. Existing Living Herds, Storm Response, Ranch & Coast, all 64 residents and saved progress remain. Scope and limits: [COASTAL-LIGHT.md](COASTAL-LIGHT.md). The canonical production checklist remains [AAA-ROADMAP.md](AAA-ROADMAP.md).
+
 # Dino Atlas: Living Herds
 
 Open Menu > Living Herds: field study for the new grazer-and-predator assignment. Heads, tails and jointed legs now respond to actual travel and behavior states. Hunters warn before charging; short tool pulses interrupt and guide them. Balanced/Quiet/Off wildlife-call presets are in the same controller-accessible panel. The previous Storm Response campaign, 64 residents, 30-species library, all vehicles, economy and saves remain.
