@@ -1,0 +1,50 @@
+name: Aether Afterlight episode
+on:
+  pull_request:
+    paths: ['aether-reach/**', '.github/workflows/aether-afterlight.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aether-afterlight-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  episode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate all episode, movement, combat and persistence regressions
+        run: |
+          set -euo pipefail
+          mkdir -p aether-reach/test-output
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/afterlight-node.log
+          node aether-reach/tests/release-manifest.mjs
+      - name: Install Chromium
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Complete a district episode using the normal controller inputs
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/afterlight-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/afterlight-browser.py | tee aether-reach/test-output/afterlight-browser.log
+      - name: Record exact tested commit
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-afterlight-episode
+          path: aether-reach/test-output
+          retention-days: 30
