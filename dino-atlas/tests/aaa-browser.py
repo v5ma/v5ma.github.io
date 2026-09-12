@@ -23,7 +23,15 @@ try:
   page=ctx.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
   def wait(expr,timeout=60000):page.wait_for_function(expr,timeout=timeout)
   def button(i,on):page.evaluate('([i,on])=>{__pad.buttons[i]={pressed:on,touched:on,value:on?1:0};__pad.timestamp++;}',[i,on])
-  def press(i):button(i,True);page.wait_for_timeout(220);button(i,False);page.wait_for_timeout(260)
+  def press(i):
+   # Observe the actual independent Gamepad API poller instead of assuming a
+   # software-rendered frame plus a button edge will complete within 220 ms.
+   page.wait_for_function('!__dinoRanger.director.ctx.input.neutral',timeout=30000)
+   button(i,True)
+   try:page.wait_for_function('(i)=>__dinoRanger.director.ctx.input.previous[i]===true',arg=i,timeout=30000)
+   finally:button(i,False)
+   page.wait_for_function('(i)=>__dinoRanger.director.ctx.input.previous[i]===false&&!__dinoRanger.director.ctx.input.neutral',arg=i,timeout=30000)
+
   def choose(id):
    for _ in range(65):
     if page.evaluate('document.activeElement?.id')==id:press(0);return
@@ -112,7 +120,8 @@ try:
    button(1,True)
    try:wait('Math.abs(__dinoRanger.state.speed)<.5')
    finally:button(1,False)
-   wait('document.getElementById("interact-label").textContent.includes("Deliver storm telemetry")');before=page.evaluate('__dinoEconomy.state.credits');press(0);wait('__dinoAAA.state.state.completed.includes("storm-response")')
+   wait('Math.abs(__dinoRanger.state.speed)<.5&&!document.getElementById("interact-button").disabled&&document.getElementById("interact-label").textContent.includes("Deliver storm telemetry")')
+   before=page.evaluate('__dinoEconomy.state.credits');press(0);wait('__dinoAAA.state.state.completed.includes("storm-response")')
    check(page.evaluate('__dinoEconomy.state.credits')==before+1800,'Completion pays exactly 1,800 credits into the existing economy')
    check(page.locator('#info-dialog[open]').count()==1,'Completion uses a controller-closeable in-game panel');snap('07-story-complete.png');press(1);wait('!__dinoRanger.state.paused')
    page.reload(wait_until='domcontentloaded');wait('window.__dinoAAA?.state&&window.__dinoRanger?.state.ready',120000)
@@ -122,7 +131,7 @@ try:
    (OUT/'report.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2),flush=True)
   except Exception as exc:
    result={'error':str(exc),'checks':checks,'errors':errors}
-   try:result['state']=page.evaluate('({story:__dinoAAA.state,game:__dinoRanger.state,focus:document.activeElement?.id,dialogs:[...document.querySelectorAll("dialog[open]")].map(d=>d.id)})');snap('failure.png')
+   try:result['state']=page.evaluate('({story:__dinoAAA.state,game:__dinoRanger.state,focus:document.activeElement?.id,dialogs:[...document.querySelectorAll("dialog[open]")].map(d=>d.id),prompt:document.getElementById("interact-label").textContent,input:{previous:__dinoRanger.director.ctx.input.previous,neutral:__dinoRanger.director.ctx.input.neutral}})');snap('failure.png')
    except Exception:pass
    (OUT/'failure.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2),flush=True);raise
   finally:browser.close()
