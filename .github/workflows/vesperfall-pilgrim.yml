@@ -1,0 +1,79 @@
+name: Vesperfall Pilgrims Rest
+on:
+  push:
+    branches: [vesperfall-pilgrims-rest-20260912]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-pilgrim.yml', '.github/pilgrim-import/**']
+permissions:
+  contents: write
+concurrency:
+  group: pilgrim-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply verified isolated source delta
+        if: hashFiles('.github/pilgrim-import/part1.txt') != ''
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,lzma,pathlib
+          root=pathlib.Path.cwd()
+          packed=base64.b64decode(''.join((root/f'.github/pilgrim-import/part{i}.txt').read_text().strip() for i in range(2)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='7f7eeb011fe60c0d087773cc40d109cda02fd2a6c9212e26a5b741e9e0eb1f86'
+          data=json.loads(lzma.decompress(packed));assert len(data)==11;planned=[]
+          for name,d in data.items():
+              p=root/name
+              assert name.startswith('vesperfall/') and '..' not in pathlib.PurePosixPath(name).parts and not p.is_symlink()
+              assert p.resolve().is_relative_to(root/'vesperfall')
+              if 'content' in d:
+                  assert not p.exists(),name
+                  text=d['content']
+              else:
+                  before=p.read_bytes();assert hashlib.sha256(before).hexdigest()==d['before'],name
+                  text=before.decode()
+                  for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
+              b=text.encode();assert hashlib.sha256(b).hexdigest()==d['after'],name;planned.append((p,b))
+          for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+          for i in range(2):(root/f'.github/pilgrim-import/part{i}.txt').unlink()
+          print('Applied',len(planned),'verified files')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- vesperfall .github/pilgrim-import
+          git commit -m 'Implement Pilgrims Rest: bounded local expeditions, atomic reward receipts, controller continuation and recovery'
+          git push origin HEAD:vesperfall-pilgrims-rest-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax, models and public boundary
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/pilgrim-model.tap
+          python scripts/check-vesperfall.py
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual browser and controller saves
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          timeout 850 python -u vesperfall/tests/pilgrim-browser.py | tee test-output/pilgrim-browser.log
+          test -s test-output/pilgrim/report.json
+          test ! -e test-output/pilgrim/failure.json
+      - name: Archive exact tested source and diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          tar czf test-output/vesperfall-source.tgz vesperfall
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-pilgrim-acceptance
+          path: test-output/
+          retention-days: 14
