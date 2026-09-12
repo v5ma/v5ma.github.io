@@ -11,7 +11,8 @@ export function createResonanceAudio({getState,world,onStatus=()=>{}}){
  let ctx=null,master=null,musicBus=null,effectsBus=null,ambienceBus=null,worldGain=null,compressor=null,analyser=null,wet=null;
  let available=true,initialized=false,unlocked=false,blocked=false,hidden=false,paused=false,session=false,listener={x:0,z:0,yaw:0},lastState=null,snapshot=null,stepDistance=0,stepIndex=0,ambientClock=0,birdAt=15,bellHour=-1;
  let requests=0,played=0,loadFailures=0,dropped=0,desired='vinci',desiredAge=0,chosen=null,nowPlaying='',slot=null,worldRoom=0,captionUntil=0,nowUntil=0,haptic=()=>{},lastCue='',motion=0;
- const buffers=new Map(),voices=new Set(),loops=new Map(),eventCounts={},lastPlayed=new Map(),seenEvents=new WeakSet(),windups=new Set();
+ const buffers=new Map(),voices=new Set(),loops=new Map(),eventCounts={},lastPlayed=new Map();
+ let seenEvents=new WeakSet(),windups=new Set();
  const status=document.createElement('div');status.id='audio-status';status.setAttribute('role','status');status.hidden=true;document.body.append(status);
  const captions=document.createElement('div');captions.id='sound-caption';captions.setAttribute('role','status');captions.setAttribute('aria-live','polite');captions.hidden=true;document.body.append(captions);
  const now=document.createElement('div');now.id='now-playing';now.hidden=true;document.body.append(now);
