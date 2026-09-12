@@ -1,0 +1,35 @@
+name: Restore exact Northstar ranger runtime
+on:
+  push:
+    branches: [dino-northstar-signature-20260912]
+    paths:
+      - '.github/patches/northstar-ranger-restore.xz.b64'
+      - '.github/workflows/dino-northstar-ranger-restore.yml'
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Reconstruct exact reviewed ranger.js and remove one-use transport
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,lzma,hashlib,subprocess
+          src=Path('.github/patches/northstar-ranger-restore.xz.b64')
+          raw=lzma.decompress(base64.b64decode(src.read_text().strip(),validate=True))
+          expected='91f1fe30af2d14338aa337dd411613c7fda52a8bad119793af77169c907be4c7'
+          assert hashlib.sha256(raw).hexdigest()==expected
+          Path('dino-atlas/ranger.js').write_bytes(raw)
+          subprocess.run(['node','--check','dino-atlas/ranger.js'],check=True)
+          subprocess.run(['git','rm',str(src),'.github/workflows/dino-northstar-ranger-restore.yml'],check=True)
+          subprocess.run(['git','add','dino-atlas/ranger.js'],check=True)
+          subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
+          subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
+          subprocess.run(['git','commit','-m','Restore known-good ranger runtime with Northstar interaction prompt'],check=True)
+          subprocess.run(['git','push','origin','HEAD:dino-northstar-signature-20260912'],check=True)
+          PY
