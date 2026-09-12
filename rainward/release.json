@@ -1,16 +1,15 @@
 {
-  "version": "0.9.0",
-  "build": "rainward-survival-sound-20260911",
+  "version": "0.10.0",
+  "build": "rainward-field-ready-20260912",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Original adaptive six-chapter music and layered spatial sound effects with finite audio voice budgets",
-    "Positional footsteps, occlusion, listening mix, directional captions and independent audio settings",
-    "Survival controller preset: hold B prone, X melee, LB dodge, RB listen, LT+X reload; Classic remains selectable",
-    "Rifle and sidearm selection, one-time survivor equipment caches and separate finite magazines",
-    "Hold-to-craft and hold-to-bandage actions cancel on release or damage while patrols continue",
-    "Circular fading health display, dynamic accuracy reticle and nearby noisy enemy silhouettes",
-    "Preserves six chapters, existing puzzles, field tasks, save migration and keyboard/touch support"
+    "Fix live audio initialization by matching reverb impulse rate to the actual browser AudioContext",
+    "Preserve separate chapter shelter saves with legacy migration, backup recovery and atomic primary writes",
+    "Add controller-reachable satchel equipment selection and accurate tool/reload prompts",
+    "Add a source-controlled 64-task AAA-quality production checklist with eight gates and evidence links",
+    "Keep local roadmap review marks separate from delivery status and human acceptance",
+    "Preserve all six expeditions, Survival and Classic input layouts, original music, tasks, puzzles and assets"
   ]
 }

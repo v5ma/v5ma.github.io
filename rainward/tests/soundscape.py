@@ -15,6 +15,8 @@ with sync_playwright() as pw:
  p=b.new_page();p.set_default_timeout(120000);p.on('pageerror',lambda e:errors.append(str(e)))
  try:
   p.goto(BASE+'/rainward/tests/audio-harness.html')
+  rates=p.evaluate("""async()=>{const {createSoundGraph}=await import('../audio-mixer.mjs');const results={};for(const rate of [24000,44100,48000,96000]){const ctx=new OfflineAudioContext(2,rate,rate),g=createSoundGraph(ctx);g.play('pluck',{duration:.5,gain:.6,send:.2});const out=await ctx.startRendering();results[rate]=out.getChannelData(0).reduce((a,x)=>a+x*x,0);g.dispose();}return results;}""")
+  check(all(v>0 for v in rates.values()),'Real reverb graphs render at 24, 44.1, 48 and 96 kHz without rate mismatch')
   stereo=p.evaluate('''async()=>{const {createSoundGraph}=await import('../audio-mixer.mjs');
    const render=async(mono,pan)=>{const c=new OfflineAudioContext(2,24000*2,24000),g=createSoundGraph(c,{masterVolume:75,musicVolume:50,effectsVolume:85,monoAudio:mono});g.play('pluck',{duration:1,midi:69,gain:.55,pan,send:0});const out=await c.startRendering(),l=out.getChannelData(0),r=out.getChannelData(1);const energy=a=>a.reduce((s,x)=>s+x*x,0);return {l:energy(l),r:energy(r),diff:l.reduce((s,x,i)=>s+Math.abs(x-r[i]),0),peak:Math.max(l.reduce((s,x)=>Math.max(s,Math.abs(x)),0),r.reduce((s,x)=>Math.max(s,Math.abs(x)),0))};};return {left:await render(false,-.9),right:await render(false,.9),mono:await render(true,-.9)};}''')
   check(stereo['left']['l']>stereo['left']['r']*4,'The actual audio graph pans a source to the left')
@@ -28,20 +30,14 @@ with sync_playwright() as pw:
   budget=p.evaluate('''async()=>{const {createSoundGraph}=await import('../audio-mixer.mjs');const c=new OfflineAudioContext(2,48000,24000),g=createSoundGraph(c);for(let i=0;i<200;i++)g.play('gun',{duration:1,priority:i>170});const before=g.snapshot();await c.startRendering();const after=g.snapshot();g.clear();return {before,after,clear:g.snapshot()};}''')
   check(budget['before']['activeVoices']<=48 and budget['before']['culled']>100,'A burst of requests is bounded instead of allocating unlimited voices')
   check(budget['clear']['activeVoices']==0 and budget['clear']['loopCount']==0,'Chapter reset releases voices and loops')
-  p.close();c=b.new_context(viewport={'width':1050,'height':740});c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({low:true,scanned:false,cinematic:false,masterVolume:60,musicVolume:40}))");p=c.new_page();p.on('pageerror',lambda e:errors.append(str(e)));p.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');p.wait_for_function('window.Rainward');p.locator('#start').click();p.wait_for_function('Rainward.snapshot().audio.enabled');audio_state=p.evaluate('Rainward.snapshot().audio.context');check(audio_state in ['running','suspended'],'The live game constructs its Web Audio graph after user activation');
-  if audio_state=='running':
-   p.wait_for_function('Rainward.snapshot().audio.level>.0001');check(True,'The browser exposes audible live Web Audio output')
-  else: check('waiting' in p.evaluate('Rainward.snapshot().audio.status').lower(),'Headless autoplay suspension is reported instead of treated as game failure')
-  p.keyboard.down('KeyW');p.wait_for_timeout(600);p.keyboard.up('KeyW');
-  if audio_state=='running': p.wait_for_function('Rainward.snapshot().audio.byKind?.[\"step-stone\"]>0');check(True,'Physical movement events generate layered footstep audio')
+  p.close();c=b.new_context(viewport={'width':1050,'height':740});c.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({low:true,scanned:false,cinematic:false,masterVolume:60,musicVolume:40}))");p=c.new_page();p.set_default_timeout(120000);p.on('pageerror',lambda e:errors.append(str(e)));p.goto(BASE+'/rainward/index.html',wait_until='domcontentloaded');p.wait_for_function('window.Rainward');p.locator('#start').click();p.wait_for_function('Rainward.snapshot().audio.context===\"running\"');p.wait_for_function('Rainward.snapshot().audio.level>.0001');check(True,'User activation produces real audible live output, not just an allocated audio context')
+  p.keyboard.down('KeyW');p.wait_for_function('Rainward.snapshot().audio.byKind?.[\"step-stone\"]>0');p.keyboard.up('KeyW');check(True,'Physical movement events generate layered footstep audio')
   p.keyboard.press('KeyP');p.locator('#musicVolume').press('Home');p.locator('#effectsVolume').press('Home');p.locator('#ambienceVolume').press('Home');p.wait_for_timeout(800);check(p.evaluate('JSON.parse(localStorage.getItem(\"svgn.rainward.v1.settings\")).musicVolume')==0,'Independent mixer controls persist locally');p.wait_for_timeout(1800);check(p.evaluate('Rainward.snapshot().audio.level')<.0001,'Setting all category buses to zero also silences their reverb tails')
   p.locator('#muted').check();p.wait_for_function('Rainward.snapshot().audio.context===\"suspended\"');check(True,'Mute suspends the live audio context')
-  p.locator('#muted').uncheck();
-  if audio_state=='running': p.wait_for_function('Rainward.snapshot().audio.context===\"running\"');check(True,'Unmute resumes without constructing duplicate contexts')
-  else: check(p.evaluate('Rainward.snapshot().audio.enabled'),'A suspended headless context remains recoverable after unmute')
+  p.locator('#muted').uncheck();p.wait_for_function('Rainward.snapshot().audio.context===\"running\"');check(True,'Unmute resumes the same real-time graph')
   p.screenshot(path=str(OUT/'sound-settings.png'))
   check(not errors,'No uncaught browser errors in audio rendering and live playback')
-  (OUT/'report.json').write_text(json.dumps({'checks':checks,'passed':len(checks),'rendered':measures,'stereo':stereo,'budget':budget,'errors':errors,'scope':'Real OfflineAudioContext output and live Web Audio analyser. No subjective listening test or physical Xbox/audio-device certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'sample_rates':rates,'checks':checks,'passed':len(checks),'rendered':measures,'stereo':stereo,'budget':budget,'errors':errors,'scope':'Real OfflineAudioContext output and live Web Audio analyser. No subjective listening test or physical Xbox/audio-device certification.'},indent=2))
  except Exception as e:
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors},indent=2));p.screenshot(path=str(OUT/'failure.png'));print(p.evaluate('window.Rainward?.snapshot().audio'),flush=True);raise
  finally:b.close()

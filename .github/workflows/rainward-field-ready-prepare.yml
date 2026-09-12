@@ -1,0 +1,56 @@
+name: Integrate Rainward Field Ready
+on:
+  push:
+    branches: [feat/rainward-field-ready-roadmap-20260912]
+    paths: ['rainward/tools/**','.github/workflows/rainward-field-ready-prepare.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rainward-field-ready-integration
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/rainward-field-ready-roadmap-20260912'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/rainward-field-ready-roadmap-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact source and build the canonical production checklist
+        run: |
+          python rainward/tools/apply-field-ready.py
+          python rainward/tools/build-production-plan.py
+      - name: Verify source and save compatibility
+        run: |
+          set -o pipefail
+          mkdir -p test-output
+          python -m compileall -q rainward/tests rainward/tools
+          for f in rainward/*.mjs; do node --check "$f"; done
+          node --test rainward/tests/*.test.mjs | tee test-output/rainward-model-tests.txt
+      - name: Commit verified Rainward integration only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          find rainward -type d -name __pycache__ -prune -exec rm -rf {} +
+          git add rainward
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate Rainward v0.10 Field Ready and its 64-task production checklist'
+            git push origin HEAD:feat/rainward-field-ready-roadmap-20260912
+          fi
+          git rev-parse HEAD > test-output/tested-commit.txt
+      - name: Preserve exact evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-field-ready-integration
+          path: test-output/
+          retention-days: 7

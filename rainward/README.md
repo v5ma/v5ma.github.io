@@ -1,3 +1,11 @@
+# Rainward v0.10.0 / Field Ready
+
+Current release notes: [FIELD-READY.md](FIELD-READY.md).
+
+Production checklist: [AAA_CHECKLIST.md](AAA_CHECKLIST.md). Interactive board: [roadmap.html](roadmap.html). Canonical task data: [production-plan.json](production-plan.json).
+
+The sections below retain earlier implementation history; the current release notes and evidence take precedence for changed behavior.
+
 # Rainward — The Floodgate
 
 An original third-person survival-stealth browser prototype, developed as a separate project in `rainward/`.
