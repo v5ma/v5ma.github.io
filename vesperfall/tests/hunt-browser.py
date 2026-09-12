@@ -18,7 +18,7 @@ INPUT="""async o=>{
   const s=Vesperfall.state;let done=false;
   if(o.walk){const dx=o.walk[0]-s.p[0],dz=o.walk[1]-s.p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw));key('ArrowLeft',a>.018);key('ArrowRight',a<-.018);key('KeyW',Math.abs(a)<.09&&d>.10);key('ShiftLeft',true);done=d<=.10;}
   else{const e=s.world.enemies[0],dx=e.p[0]-s.head[0],dz=e.p[2]-s.head[2],d=Math.hypot(dx,dz),v=12+24*o.charge,v2=v*v,dy=e.p[1]+o.height-s.head[1],disc=v2*v2-9.8*(9.8*d*d+2*dy*v2),pitch=Math.atan((v2-Math.sqrt(Math.max(0,disc)))/(9.8*d)),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw)),b=pitch-c.pitch;
-   key('ArrowLeft',a>.01);key('ArrowRight',a<-.01);key('ArrowUp',b>.006);key('ArrowDown',b<-.006);if(Math.abs(a)<.025&&Math.abs(b)<.016)key('Space',true);done=c.charge>=o.charge;
+   key('ArrowLeft',a>.01);key('ArrowRight',a<-.01);key('ArrowUp',b>.006);key('ArrowDown',b<-.006);if(Math.abs(a)<.025&&Math.abs(b)<.016)key('Space',true);done=c.charge>=o.charge&&Math.abs(a)<.025&&Math.abs(b)<.016;
   }
   if(done||s.phase!=='playing'||performance.now()-start>240000){for(const k of [...held])key(k,false);clearInterval(timer);done?resolve():reject(Error('Input did not finish '+JSON.stringify(o)));}
  },3);});
@@ -26,7 +26,9 @@ INPUT="""async o=>{
 def trial(page,kind):
  if page.evaluate('Vesperfall.component.running&&!Vesperfall.component.paused'):page.keyboard.press('KeyP')
  page.locator('#sparring-kind').select_option(kind);page.locator('#sparring').click();page.wait_for_function('(k)=>Vesperfall.component.training===k&&!Vesperfall.component.paused',arg=kind);page.locator('a-scene canvas').focus()
-def shoot(page,charge=1,height=.62):
+def shoot(page,charge=1,height=.78):
+ # Aim at the exposed forehead, above the overlapping shoulder hit sphere.
+ # Hold the drawn string until alignment converges; charge alone is not aim.
  page.wait_for_function('Vesperfall.state.guardLock===0')
  n=snap(page)['shots'];page.evaluate(INPUT,{'charge':charge,'height':height});page.wait_for_function('(n)=>Vesperfall.state.shots>n',arg=n);page.wait_for_function('Vesperfall.state.arrows.length===0')
 with sync_playwright() as pw:

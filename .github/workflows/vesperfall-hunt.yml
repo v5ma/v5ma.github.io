@@ -33,7 +33,7 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/hollow-hunt-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 850 python -u vesperfall/tests/hunt-browser.py
+          timeout 850 python -u vesperfall/tests/functional-runner.py hunt-browser.py
       - name: Preserve exact tested source and native evidence
         if: always()
         run: |

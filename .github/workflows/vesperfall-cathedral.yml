@@ -43,7 +43,7 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/cathedral-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          timeout 1100 python -u vesperfall/tests/cathedral-browser.py
+          timeout 1100 python -u vesperfall/tests/functional-runner.py cathedral-browser.py
       - if: always()
         run: |
           mkdir -p test-output

@@ -39,7 +39,7 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/vesper-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          if [ "$VESPER_SUITE" = launch ]; then timeout 240 python -u vesperfall/tests/launch.py; else timeout 1020 python -u vesperfall/tests/browser.py; fi
+          if [ "$VESPER_SUITE" = launch ]; then timeout 240 python -u vesperfall/tests/launch.py; else timeout 1020 python -u vesperfall/tests/functional-runner.py browser.py; fi
       - name: Record tested source without rewriting it
         if: always()
         run: |
