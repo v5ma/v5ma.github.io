@@ -14,5 +14,17 @@
     "Add rain ambience to the existing mixer without a second music transport",
     "Retain Homecoming, all contracts, save identifiers and unlimited cruise physics"
   ],
-  "acceptance": "Pending v0.9.0 shader and retained-game checks"
+  "acceptance": "passed",
+  "testedCommit": "e967b90c697fbb8fbdcbd7bbc7cb9398cf997624",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34717568774",
+  "evidence": "production/evidence/v0.9.0.json",
+  "validation": {
+    "unitTestsPassed": 111,
+    "shaderBrowserChecksPassed": 22,
+    "coastalBrowserChecksPassed": 14,
+    "homecomingBrowserChecksPassed": 12,
+    "physicalControllerTested": false,
+    "hardwareFrameTargetCertified": false,
+    "commercialAAAQualityClaimed": false
+  }
 }
