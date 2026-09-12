@@ -3,7 +3,7 @@ import {readHomecoming} from './homecoming.mjs';
 import {driveSpeed} from './coastal-motion.mjs';
 import {readJobs,createJobs,writeJobs,tickJobs} from './activities.mjs';
 export * from './world.mjs';
-export const VERSION='0.8.0',SAVE_KEY='svgn.paper-delivery-3d.v1',LEGACY_SAVE_KEY='svgn.little-planet.v1';
+export const VERSION='0.9.0',SAVE_KEY='svgn.paper-delivery-3d.v1',LEGACY_SAVE_KEY='svgn.little-planet.v1';
 export function readSave(raw){try{
  if(!raw||raw.length>64000)return null;const s=JSON.parse(raw);if(s?.v!==1)return null;
  const known=(a,list)=>Array.isArray(a)?[...new Set(a.filter(id=>list.some(h=>h.id===id)))]:[];

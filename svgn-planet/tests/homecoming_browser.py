@@ -6,7 +6,7 @@ OUT=Path(os.environ.get('HOMECOMING_OUTPUT','homecoming-results'));OUT.mkdir(exi
 BASE=os.environ.get('HOMECOMING_BASE','http://127.0.0.1:8765/svgn-planet/')
 PAD="""window.__pad={id:'Xbox / Homecoming acceptance',mapping:'standard',connected:true,index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad]});"""
 async def main():
- report={'version':'0.8.0','checks':[],'errors':[],'physicalHardwareTested':False,'performanceCertification':False,'base':BASE};start=time.time()
+ report={'version':'0.9.0','checks':[],'errors':[],'physicalHardwareTested':False,'performanceCertification':False,'base':BASE};start=time.time()
  async with async_playwright() as p:
   browser=await p.chromium.launch(executable_path=os.environ.get('CHROMIUM_EXECUTABLE'),headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   context=await browser.new_context(viewport={'width':960,'height':640});await context.add_init_script(PAD);page=await context.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:report['errors'].append(str(e)))
@@ -25,7 +25,7 @@ async def main():
    await wait("(window.SVGNPlanet&&!document.getElementById('start').disabled)||!document.getElementById('failure').hidden")
    assert await page.locator('#failure').is_hidden(),await page.locator('#failure-message').inner_text();await page.bring_to_front();await press(0);await wait('SVGNPlanet.inspect().started');await wait('SVGNPlanet.inspect().homecoming.performance.samples>2');assert not (await state())['failed']
   async def seed(complete=False):
-   await page.evaluate("""async complete=>{const m=await import('./model.mjs?v=0.8.0'),h=await import('./homecoming.mjs?v=0.8.0');const s=m.initial();s.ride=true;s.n=m.street(-8,1.5);s.jobs.wallet=77;s.homecoming.project='workshop';s.homecoming.accepted=complete;if(complete)s.jobs.completed=h.CHAPTER.map(c=>c.job);window.__seed=JSON.stringify(m.saveData(s));localStorage.setItem(m.SAVE_KEY,__seed);} """,complete)
+   await page.evaluate("""async complete=>{const m=await import('./model.mjs?v=0.9.0'),h=await import('./homecoming.mjs?v=0.9.0');const s=m.initial();s.ride=true;s.n=m.street(-8,1.5);s.jobs.wallet=77;s.homecoming.project='workshop';s.homecoming.accepted=complete;if(complete)s.jobs.completed=h.CHAPTER.map(c=>c.job);window.__seed=JSON.stringify(m.saveData(s));localStorage.setItem(m.SAVE_KEY,__seed);} """,complete)
    fixture=await page.evaluate('__seed');token=str(time.time());await page.add_init_script('if(!sessionStorage.getItem('+json.dumps(token)+')){localStorage.setItem("svgn.paper-delivery-3d.v1",'+json.dumps(fixture)+');sessionStorage.setItem('+json.dumps(token)+',"1");}');await page.reload(wait_until='domcontentloaded');await boot()
   try:
    await page.goto(BASE+'?quality=low',wait_until='domcontentloaded');await boot();ok('Controller starts v0.8 without errors')

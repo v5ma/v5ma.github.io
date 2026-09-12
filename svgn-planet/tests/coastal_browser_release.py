@@ -26,7 +26,7 @@ async def main():
    await page.wait_for_function("(window.SVGNPlanet&&!document.getElementById('start').disabled)||!document.getElementById('failure').hidden",timeout=150000)
    assert await page.locator('#failure').is_hidden(),await page.locator('#failure-message').inner_text()
    await page.bring_to_front();await press(0);await wait('SVGNPlanet.inspect().started');await wait('SVGNPlanet.inspect().homecoming.performance.samples>2')
-   s=await state();assert s['version']=='0.8.0' and not s['failed'];ok('Controller starts the retained Coastal Pulse gameplay in Homecoming')
+   s=await state();assert s['version']=='0.9.0' and not s['failed'];ok('Controller starts the retained Coastal Pulse gameplay in Homecoming')
    assert s['render']['life']['activeResidents']>=5 and s['render']['life']['activeCars']>=2;ok('Lively street population and continuous traffic',s['render']['life'])
    old=s['basis'];await page.evaluate('__pad.axes[2]=.9');await wait('SVGNPlanet.inspect().render.cameraOrbit<-.35');await page.evaluate('__pad.axes[2]=0');s=await state();turn=sum(a*b for a,b in zip(old['right'],s['basis']['forward']));assert s['render']['cameraOrbit']<-.10 and turn>0;ok('Right stick right turns camera right',{'orbit':s['render']['cameraOrbit'],'rightComponent':turn})
    await press(11);await page.evaluate("__pad.axes[1]=-1;__pad.buttons[7]={pressed:true,touched:true,value:1}");t0=(await state())['time'];samples=[]

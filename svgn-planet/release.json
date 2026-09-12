@@ -1,29 +1,18 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0",
   "name": "Neighborhood Missions",
-  "edition": "Homecoming",
+  "edition": "Coastal Atmosphere",
   "folder": "svgn-planet",
-  "date": "2026-09-11",
-  "testedCommit": "091694514fff9e3fb309f1c86167b70521aa0ce6",
-  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34674273108",
+  "date": "2026-09-12",
   "roadmap": "AAA_ROADMAP.md",
   "roadmapData": "production/roadmap.json",
-  "evidence": "production/evidence/v0.8.0.json",
   "changes": [
-    "Add an optional five-project Homecoming chapter, Maya's journal and an exactly-once return-to-plaza finale",
-    "Add the Common Ground plaza with persisted garden or workshop choice and project-dependent visual changes",
-    "Add a 45-item production checklist with six milestones, acceptance criteria, dependencies and explicit human/device approval gates",
-    "Add a local 600-rendered-frame health report without automatic telemetry uploads",
-    "Drive speed camera effects from actual velocity and support reduced-motion speed presentation",
-    "Require held menu-entry directions to return to neutral before moving focus",
-    "Retain original save keys, all 102 contracts, unlimited cruising, explicit braking and independent audio controls"
+    "Add five adjustable coastal lighting/weather presets",
+    "Add world-space wet-road shading and rain ripples using existing environment reflections",
+    "Add foliage backlighting and subtle vertex breeze with matching shadow depth deformation",
+    "Add blue-hour facade glow and one bounded rain batch",
+    "Add rain ambience to the existing mixer without a second music transport",
+    "Retain Homecoming, all contracts, save identifiers and unlimited cruise physics"
   ],
-  "validation": {
-    "modelTestsPassed": 91,
-    "homecomingBrowserChecksPassed": 12,
-    "retainedGameBrowserChecksPassed": 14,
-    "physicalControllerTested": false,
-    "desktopFrameTargetCertified": false,
-    "commercialAAAQualityClaimed": false
-  }
+  "acceptance": "Pending v0.9.0 shader and retained-game checks"
 }

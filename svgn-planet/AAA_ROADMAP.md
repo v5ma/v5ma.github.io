@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Homecoming v0.8.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-11.
+Current release: Homecoming v0.8.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-12.
 
 ## How to use this workbook
 
@@ -248,15 +248,15 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ART-05 / P1 / partial / Stable lighting and reflections
   Acceptance: No camera-driven sun rotation, blown highlights, flickering depth or shimmering shadows. Tone mapping and quality presets retain intended appearance.
-  Next: Review contact shadows, distant visibility and temporal stability on target hardware.
+  Next: Coastal Atmosphere adds user-selected daylight, golden hour, rain, after-rain and blue-hour presets with wet-road ripples, leaf light/wind and facade glow. Validate actual shaders and real hardware; live scene reflections, dynamic day/night, interiors and art approval remain open.
   Owner role: Art / animation. Dependencies: PERF-02.
-  Evidence: Not recorded.
+  Evidence: ../ATMOSPHERE.md
 
-- [ ] ART-06 / P2 / planned / Time of day and weather with purpose
+- [ ] ART-06 / P2 / partial / Time of day and weather with purpose
   Acceptance: Day/night and weather are optional future work, not shipped features. They must help mood or play without breaking readability or frame targets.
-  Next: Prototype a constrained sunset variant after daytime quality is stable.
+  Next: Coastal Atmosphere adds user-selected daylight, golden hour, rain, after-rain and blue-hour presets with wet-road ripples, leaf light/wind and facade glow. Validate actual shaders and real hardware; live scene reflections, dynamic day/night, interiors and art approval remain open.
   Owner role: Art / animation. Dependencies: ART-05, PERF-02.
-  Evidence: Not recorded.
+  Evidence: ../ATMOSPHERE.md
 
 - [ ] ACCESS-01 / P0 / partial / Controller-complete gameplay and menus
   Acceptance: Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.
@@ -275,6 +275,12 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
   Next: Audit contrast, captions, text scaling, reduced motion and screen-reader access.
   Owner role: Engineering / QA. Dependencies: None.
   Evidence: Not recorded.
+
+- [ ] SHADER-01 / P1 / implemented / Coastal Atmosphere shader pack
+  Acceptance: All five visual presets compile on pinned r177; controller settings persist; off/reduced-motion/low modes work; wet shaders are stable around the planet; no physics changes or unbounded rain allocation. Record actual browser and shader results, not a concept mockup.
+  Next: Run shader, regression and WebGL acceptance; publish verified source and retain actual captures. Then obtain physical-device and art-quality approval.
+  Owner role: Rendering / QA. Dependencies: MOVE-01, PERF-01, AUDIO-01.
+  Evidence: ../ATMOSPHERE.md
 
 ## M5 / Release readiness
 

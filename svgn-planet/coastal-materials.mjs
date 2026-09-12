@@ -16,7 +16,7 @@ export function coastalMaterial(kind,color='#ffffff'){
  mat.bumpMap=mat.map;mat.bumpScale=kind==='asphalt'?.012:.023;return mat;
 }
 export function worldRoadMaterial(){
- const m=coastalMaterial('asphalt','#536169');m.side=T.DoubleSide;m.bumpMap=null;
+ const m=coastalMaterial('asphalt','#536169');m.side=T.DoubleSide;m.bumpMap=null;m.userData.atmosphereRole='road';
  m.onBeforeCompile=s=>{s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 roadWorld; varying vec3 roadNormal;').replace('#include <begin_vertex>','#include <begin_vertex>\nroadWorld=position;roadNormal=normal;');s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 roadWorld; varying vec3 roadNormal;').replace('#include <map_fragment>',`#ifdef USE_MAP
  vec3 w=pow(abs(normalize(roadNormal)),vec3(8.));w/=w.x+w.y+w.z;vec3 q=roadWorld*.32;vec4 texel=texture2D(map,q.yz)*w.x+texture2D(map,q.xz)*w.y+texture2D(map,q.xy)*w.z;diffuseColor*=texel;
  #endif`);};m.customProgramCacheKey=()=> 'coastal-asphalt-07';return m;

@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "version": "0.8.0",
+  "version": "0.9.0",
   "title": "Neighborhood Missions: path to a production-quality title",
-  "reviewed": "2026-09-11",
+  "reviewed": "2026-09-12",
   "currentMilestone": "M1",
   "qualityClaim": "Stylized browser-game vertical slice. AAA-quality ambition, not AAA certification.",
   "statusDefinitions": {
@@ -557,29 +557,33 @@
       "status": "partial",
       "title": "Stable lighting and reflections",
       "acceptance": "No camera-driven sun rotation, blown highlights, flickering depth or shimmering shadows. Tone mapping and quality presets retain intended appearance.",
-      "next": "Review contact shadows, distant visibility and temporal stability on target hardware.",
+      "next": "Coastal Atmosphere adds user-selected daylight, golden hour, rain, after-rain and blue-hour presets with wet-road ripples, leaf light/wind and facade glow. Validate actual shaders and real hardware; live scene reflections, dynamic day/night, interiors and art approval remain open.",
       "dependencies": [
         "PERF-02"
       ],
-      "evidence": [],
+      "evidence": [
+        "../ATMOSPHERE.md"
+      ],
       "owner": "Art / animation",
-      "lastReviewed": "2026-09-11"
+      "lastReviewed": "2026-09-12"
     },
     {
       "id": "ART-06",
       "milestone": "M4",
       "priority": "P2",
-      "status": "planned",
+      "status": "partial",
       "title": "Time of day and weather with purpose",
       "acceptance": "Day/night and weather are optional future work, not shipped features. They must help mood or play without breaking readability or frame targets.",
-      "next": "Prototype a constrained sunset variant after daytime quality is stable.",
+      "next": "Coastal Atmosphere adds user-selected daylight, golden hour, rain, after-rain and blue-hour presets with wet-road ripples, leaf light/wind and facade glow. Validate actual shaders and real hardware; live scene reflections, dynamic day/night, interiors and art approval remain open.",
       "dependencies": [
         "ART-05",
         "PERF-02"
       ],
-      "evidence": [],
+      "evidence": [
+        "../ATMOSPHERE.md"
+      ],
       "owner": "Art / animation",
-      "lastReviewed": "2026-09-11"
+      "lastReviewed": "2026-09-12"
     },
     {
       "id": "ACCESS-01",
@@ -754,6 +758,25 @@
       "evidence": [],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-11"
+    },
+    {
+      "id": "SHADER-01",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "implemented",
+      "title": "Coastal Atmosphere shader pack",
+      "acceptance": "All five visual presets compile on pinned r177; controller settings persist; off/reduced-motion/low modes work; wet shaders are stable around the planet; no physics changes or unbounded rain allocation. Record actual browser and shader results, not a concept mockup.",
+      "next": "Run shader, regression and WebGL acceptance; publish verified source and retain actual captures. Then obtain physical-device and art-quality approval.",
+      "dependencies": [
+        "MOVE-01",
+        "PERF-01",
+        "AUDIO-01"
+      ],
+      "owner": "Rendering / QA",
+      "evidence": [
+        "../ATMOSPHERE.md"
+      ],
+      "lastReviewed": "2026-09-12"
     }
   ],
   "sources": [

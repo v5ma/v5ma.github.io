@@ -1,3 +1,13 @@
+# Neighborhood Missions: Coastal Atmosphere (v0.9.0)
+
+Open Menu, scroll to Coastal Atmosphere, and choose daylight, golden hour, after-rain sunset, coastal rain or blue hour. D-pad moves focus; left/right selects a preset or adjusts strength; A toggles; B resumes. Each preference is saved separately from gameplay progress. Restore sunny defaults and Disable atmosphere are available without resetting your game.
+
+[Shader implementation and limits](ATMOSPHERE.md). The pack adds wet-road shading and ripple normals, foliage backlighting and subtle wind with matching depth shadows, warm facade glazing, atmospheric sky/fog/light presets, and one bounded rain batch. Rain ambience uses the existing ambience slider and mute/pause handling. No automatic weather cycle, traction penalty, time limit or new acceleration gate was added.
+
+[Production checklist](AAA_ROADMAP.md). Human art approval, foreground asset quality and physical GPU/controller testing remain open. Existing Homecoming progression, 102 contracts, old save slots and sibling games are preserved.
+
+## Earlier Homecoming release notes
+
 # Neighborhood Missions: Homecoming (v0.8.0)
 
 Production roadmap: [AAA_ROADMAP.md](AAA_ROADMAP.md). The canonical editable records are in [production/roadmap.json](production/roadmap.json); the [browser checklist](roadmap.html) and the in-game Menu / AAA production checklist read the same source. Real hardware sign-off belongs in [production/hardware-matrix.md](production/hardware-matrix.md). No checklist percentage or feature counter is treated as AAA certification.

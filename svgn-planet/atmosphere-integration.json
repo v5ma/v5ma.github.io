@@ -1,0 +1,9 @@
+{
+  "version": "0.9.0",
+  "edition": "Coastal Atmosphere",
+  "scope": "svgn-planet only; no sibling game changes",
+  "maxRainInstances": 640,
+  "extraScenePasses": 0,
+  "physics": "unchanged apart from the exported version string",
+  "save": "old keys retained; separate visual-preference slot"
+}
