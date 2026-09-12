@@ -2,7 +2,7 @@ name: Integrate Rainward Rainworn
 on:
   push:
     branches: [feat/rainward-rainworn-20260912]
-    paths: ['rainward/tools/integrate-rainworn.py','rainward/tools/build-rainworn-models.py','.github/workflows/rainward-rainworn-prepare.yml']
+    paths: ['rainward/tools/integrate-rainworn.py','rainward/tools/build-rainworn-models.py','rainward/tools/refine-rainworn-fit.py','.github/workflows/rainward-rainworn-prepare.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -43,6 +43,7 @@ jobs:
           source=json.loads(Path('/tmp/rainward-author-source/source.json').read_text())
           assert source['sha256']=='fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40'
           PY
+          python rainward/tools/refine-rainworn-fit.py
           python rainward/tools/build-rainworn-models.py /tmp/rainward-author-source
           python rainward/tools/integrate-rainworn.py
       - name: Validate source, geometry, licenses and legacy saves
