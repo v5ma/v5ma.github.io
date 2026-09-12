@@ -1,184 +1,180 @@
-# Dino Atlas — AAA-Quality Roadmap
+# Dino Atlas: production roadmap and acceptance checklist
 
-This is the living production checklist for moving Dino Atlas from a large browser prototype toward a polished premium-game vertical slice and, eventually, AAA-quality presentation. “AAA-quality” here describes the quality bar we are targeting; it does not imply a AAA studio budget, team size, certification, or content volume.
+This is the maintained checklist beside the game source. The goal is an original dinosaur-reserve adventure with premium production quality: enjoyable driving, believable animals, purposeful land/air/water travel, authored spaces, understandable missions, readable effects and complete controller navigation. "AAA" is the target quality bar, not a claim about the project's budget, certification, staffing or present polish.
 
-**Rule:** every major Dino Atlas upgrade should close items in this file, add regression coverage, preserve existing saves, and update the Current Build scorecard below.
+Do not turn feature counts into a percentage of AAA readiness. There is no validated readiness percentage. Automated checks, human playtest findings, release status and hardware verification are separate facts.
 
-## Current position — Ranch & Coast / September 2026
+## Start here
 
-The game is past prototype and entering **Vertical Slice development**. It already has a large drivable reserve, 30 species / 64 residents, jeep / buggy / helicopter / boat / on-foot traversal, managed enclosures, ranger tools, trading, outposts, ranching, boat racing, boneyards, explorable buildings, procedural sound/music, controller-first UI, and persistent saves.
+Play `index.html`. Use Menu > Story mission: Storm Response for the connected ground/interior/helicopter/coastal mission. Menu > Dispatch and guided lessons opens the original field school, ranching, boat race, salvage and boneyards. Menu > Development roadmap opens an in-game summary that can be dismissed with Xbox B.
 
-Estimated readiness against the target quality bar: **~42%**. The largest remaining gap is not feature count; it is production depth: animation fidelity, art consistency, mission direction, cinematics, world reactivity, authored interiors, AI sophistication, performance, polish, accessibility, and systematic QA.
+Release scope: [STORM-RESPONSE.md](STORM-RESPONSE.md). Supporting release records: [RANCH-COAST.md](RANCH-COAST.md), [SPECTACLE-TRADE.md](SPECTACLE-TRADE.md). Saved test evidence: [verification/](verification/). The full prior journal and walking expedition are retained; no upgrade may silently erase them.
+
+## Current baseline and open quality gaps
+
+The existing game contains 30 species and 64 residents; jeep, buggy, helicopter, boat and on-foot modes; eight managed outer enclosures; six outposts; a regional supply economy; guided lessons; a repeatable roundup; a 24-buoy coastal race; salvage; three rooftop/interior complexes; three boneyards; and procedural audio. Those are systems, not proof of finished production quality.
+
+Storm Response adds an eight-stage authored mission, actual service handoffs, checkpoint continuation/recovery, rain/fog/wind presentation, optional lightning flashes, and a first-completion reward. The game retains stylized procedural models and mostly flat terrain. Most animal anatomy and scale remain uncalibrated. Crews still run scripted services. There are no shipped cinematics, fully remappable controls, streamed terrain sectors or physical-controller certification.
+
+The present milestone is an **integrated mission foundation**. The vertical-slice quality gate below remains open until visual, human-playtest, performance and hardware criteria are met. Do not call an automated fixture-driven journey a human playthrough of the whole island.
 
 ## Milestone gates
 
-- [x] **Prototype** — core movement, interaction, journal, save data, initial dinosaur encounters.
-- [x] **Systems Sandbox** — vehicles, tools, pens, outposts, economy, multiple activity types.
-- [ ] **Vertical Slice** — one 20–30 minute sequence that looks, sounds, teaches, directs, and resolves like a premium shipped game.
-- [ ] **Alpha** — complete intended systems and representative content breadth; ugly/incomplete assets still allowed.
-- [ ] **Beta** — content complete; focus moves to bugs, balance, performance, accessibility, and platform behavior.
-- [ ] **Release Candidate** — no known progression blockers; settings/save/recovery hardened; performance targets met.
-- [ ] **Gold-quality browser release** — polished public build with release notes, compatibility matrix, and rollback evidence.
+### G0: preserve and stabilize the existing sandbox
 
-## Pillar scorecard
+- [x] Retain the original dinosaur journal, recorder campaign, Ranch & Coast progress, market cargo/credits and audio settings as separate save namespaces.
+- [x] Exercise old/new state models, real vehicle physics, boarding, rooftop support and mission order in automated tests.
+- [x] Provide named activities, clear current objectives, map targets and controller-closeable panels.
+- [x] Preserve no-damage vehicle handling and in-place automatic rollover recovery.
+- [ ] Complete a human regression playthrough of every legacy activity with physical input hardware.
 
-| Pillar | Current | Vertical Slice target | Gold target |
-| --- | ---: | ---: | ---: |
-| Core driving / movement feel | 6/10 | 8/10 | 9/10 |
-| Dinosaur behavior / animation | 4/10 | 7/10 | 9/10 |
-| Mission design / onboarding | 6/10 | 9/10 | 9/10 |
-| World art / lighting / atmosphere | 5/10 | 8/10 | 9/10 |
-| Buildings / interiors | 5/10 | 8/10 | 9/10 |
-| Vehicle breadth / purpose | 7/10 | 8/10 | 9/10 |
-| Audio / music / mix | 7/10 | 8/10 | 9/10 |
-| UI / controller usability | 8/10 | 9/10 | 9/10 |
-| Economy / progression | 5/10 | 7/10 | 8/10 |
-| NPC / rival-crew life | 4/10 | 7/10 | 8/10 |
-| Performance / streaming | 5/10 | 7/10 | 9/10 |
-| Accessibility / settings | 6/10 | 8/10 | 9/10 |
-| QA / recovery / saves | 8/10 | 9/10 | 10/10 |
-| Content authoring pipeline | 3/10 | 6/10 | 8/10 |
+Exit criterion: no known progression blocker in the supported test paths, all preserved data validated, and any remaining manual coverage explicitly recorded rather than assumed.
 
-## P0 — Vertical Slice blockers
+### G1: demonstrate a polished vertical slice
 
-### Direction, pacing and cinematic presentation
-- [x] Guided first ranger shift with explicit controller prompts.
-- [x] Persistent assignment panel and map waypoint.
-- [ ] Premium **mission director** with authored multi-stage sequences, radio beats, fail-safe recovery, and clear completion screens.
-- [ ] Short in-engine opening and mission-complete cinematics; always skippable from Xbox.
-- [ ] Contextual camera framing for discoveries, major dinosaur reveals, building arrivals, and helicopter landings.
-- [ ] Objective-area visual language: authored lights, silhouettes, smoke/flares, signage, and landmark composition.
-- [ ] Mission replay / restart-from-checkpoint without touching journal or world progression.
+- [x] VS-01: connect ground response, an interior panel, two helicopter rooftops and a coastal delivery into one ordered story.
+- [x] VS-02: put the first vehicle destination outside the building; never require a jeep to fit through a pedestrian-only doorway.
+- [x] VS-03: provide explicit helicopter/boat transfer requests at reachable departure points. Move only the unoccupied vehicle; do not silently teleport the player.
+- [x] VS-04: suspend, save, reload, resume and recover a story checkpoint without resetting other progression.
+- [x] VS-05: award the story completion payout once, including across reload and replay.
+- [x] VS-06: guide the boat around the coastline with offshore markers instead of pointing straight through dry land.
+- [x] VS-07: offer rain/fog/gust presentation, indoor rain exclusion, separate lightning-flash consent and existing sound-category controls.
+- [ ] VS-08: conduct first-time-player sessions and measure mission comprehension and time-to-first-success. Do not advertise an unmeasured 20-30 minute duration.
+- [ ] VS-09: give one important dinosaur encounter production-quality movement, anticipation, reactions, sound and visual identity.
+- [ ] VS-10: finish one signature interior with memorable environmental storytelling, alternate paths, lighting composition and a replayable set-piece.
+- [ ] VS-11: add short, skippable opening/reveal/completion camera sequences; A/B/Menu must always skip or pause as appropriate.
+- [ ] VS-12: meet the declared hardware performance budget and complete a physical Xbox-only playthrough.
 
-### Atmosphere and rendering
-- [x] Dusk mode, headlights, beacon lighting, shockwave spectacles.
-- [ ] Dynamic weather director: clear, rain, storm, fog banks, wetland mist.
-- [ ] Wet-surface response, rain splashes, wind-reactive vegetation approximation, lightning and thunder timing.
-- [ ] Stronger day/night lighting grades and exposure transitions.
-- [ ] Pooled particles and distance LOD rules for all spectacle effects.
-- [ ] Art-direction pass so roads, props, architecture, foliage and vehicles share one material/detail language.
+Exit criterion: one representative sequence is understandable, visually coherent, mechanically reliable and enjoyable to new players. This gate is not satisfied merely by shipping more features.
 
-### Dinosaur quality
-- [x] 30-species playable library and 64 live residents.
-- [x] Three explicitly calibrated reference lengths; other models labeled stylized.
-- [ ] Calibrate the entire species library against documented adult ranges; keep juvenile/nursery variants separate.
-- [ ] Replace simple leg oscillation with gait state machines: idle, walk, trot, charge, startled, drink/feed, sleep.
-- [ ] Head-look / interest targets, herd spacing, predator stalking, warning displays and social reactions.
-- [ ] Foot placement / terrain compensation approximation.
-- [ ] Species-specific vocal identity and distance attenuation.
-- [ ] Physical interaction rules by body mass without vehicle health damage unless design later changes.
+### G2: alpha, complete the intended game systems
 
-### World and authored spaces
-- [x] 840 m land diameter plus navigable coast.
-- [x] Three rooftop-landable building complexes and three boneyards.
-- [ ] At least one **hero interior** with a memorable authored route, environmental storytelling, alternate paths and a gameplay set-piece.
-- [ ] Streaming / sector activation so the island can grow substantially without paying full simulation/render cost.
-- [ ] More terrain height variation: ridges, ravines, river crossings, cliffs, overlooks and service tunnels.
-- [ ] Building exterior silhouettes readable from helicopter altitude.
-- [ ] More true dismount-only spaces: doors, narrow stairs, crawl routes, labs, storage cages and observation galleries.
+- [ ] AL-01: agree the launch content scope: story arcs, districts, activities, animal roster and expected play time. Record scope changes here.
+- [ ] AL-02: all required systems work across representative content; no placeholder door, vehicle or terminal is the only route forward.
+- [ ] AL-03: each vehicle has multiple useful missions and an explicit role in the progression economy.
+- [ ] AL-04: content data can be validated and placed without adding another fragile layer of source-replacement scripts.
+- [ ] AL-05: produce a complete first-to-last campaign playthrough with state recovery at every stage.
 
-### Vehicle purpose
-- [x] Jeep, buggy, helicopter and boat with distinct movement models.
-- [x] Full coastal boat race and salvage loop.
-- [x] Rooftop helicopter landing and exit/reboarding.
-- [ ] Dedicated mission arcs for every vehicle rather than one-off novelty use.
-- [ ] Vehicle upgrade/progression choices that affect handling, cargo, lighting, tools or navigation—not damage health.
-- [ ] Better cockpit/hood visual feedback and speed/terrain camera response.
-- [ ] Boat wake, spray and rough-water handling pass.
-- [ ] Helicopter rotor wash, landing dust/mist and stronger altitude cues.
+Exit criterion: the planned game is playable end to end. Unfinished art is tracked, not hidden behind an "alpha" label.
 
-## P1 — Alpha blockers
+### G3: beta, finish content and harden behavior
 
-### NPCs and reserve life
-- [x] Rival/service crews have vehicles, routes, cargo, deliveries and market effects.
-- [ ] Named crew members with simple schedules, radio identities and recurring relationships.
-- [ ] Rangers physically appear at outposts/buildings and react to emergencies.
-- [ ] Convoys stop, unload, refuel and reroute around events instead of following a pure loop.
-- [ ] Dynamic incidents: blocked road, escaped animal, downed fence, missing survey team, stranded boat, supply shortage.
-- [ ] Reputation / contract consequences across Meridian, FossilWorks and Greenline without locking core progression.
+- [ ] BE-01: lock launch content and replace remaining required placeholder assets.
+- [ ] BE-02: finish economy balance, animal tuning, mission pacing and checkpoint placement.
+- [ ] BE-03: pass accessibility, controller/keyboard, performance, soak and save-migration matrices.
+- [ ] BE-04: keep a reproducible bug register with severity, reproduction, expected behavior and fix evidence.
 
-### Economy and progression
-- [x] Credits, cargo, regional prices and delivery contracts.
-- [ ] Clearly useful sinks for credits: vehicle equipment, cosmetic liveries, outpost services, field-tool improvements, map intel.
-- [ ] Contract difficulty tiers and visible risk/reward.
-- [ ] Prevent dominant infinite-profit routes; maintain multiple viable trade loops.
-- [ ] Reward exploration with information, access and utility—not only currency.
+Exit criterion: content is complete; work is focused on defects, balancing, readability, performance and compatibility rather than unchecked scope growth.
 
-### Combat-adjacent / ranger-tool gameplay
-- [x] Water, zapper and horn are visible, nonlethal herding tools.
-- [x] Reload/ammo/resupply loops and Xbox-native controls.
-- [ ] Species-specific tool response curves and habituation so repeated spam is less effective.
-- [ ] Environmental interactions: water activates switches / clears mud; zapper powers emergency contacts; horn triggers gates or crew attention where appropriate.
-- [ ] More ranch games: sorting mixed herds, moving juveniles, predator exclusion, timed transfer, night roundup.
+### G4: release candidate
 
-### Exploration
-- [x] Boneyards, archives, outposts, pens and field journal.
-- [ ] Discoverable micro-locations every 30–60 seconds of purposeful travel.
-- [ ] Environmental stories told through spaces rather than text windows.
-- [ ] Multi-step paleontology sites with visible specimen progression.
-- [ ] Secret routes and physics toys in the spirit of playful vehicle-world exploration, without copying another game's map/assets.
+- [ ] RC-01: no unresolved critical save-loss, crash or progression blockers on the declared support matrix.
+- [ ] RC-02: have release notes, known issues, credits/licenses, scientific labeling and network/privacy audit.
+- [ ] RC-03: verify a clean install, upgrade from each prior supported save, and a tested rollback.
+- [ ] RC-04: match public runtime bytes to the reviewed source and exercise the actual deployed build.
+- [ ] RC-05: archive persistent test receipts in the repository, not only temporary Actions artifacts.
 
-## P2 — Beta blockers
+Exit criterion: release is reproducible and supportable. GitHub Pages deployment success alone does not establish gameplay quality.
 
-### UI, accessibility and controller
-- [x] Gamepad can play, navigate dialogs, reload, map, settings, vehicles and tools without a mouse.
-- [x] Custom dialogs instead of native alert/confirm traps.
-- [ ] Full remapping / alternate controller layouts.
-- [ ] Hold/toggle options for aim, acceleration and tool fire.
-- [ ] Subtitle size, high-contrast objective mode, color-independent indicators and reduced-flash setting.
-- [ ] Camera shake slider, separate motion effects slider and field-of-view option.
-- [ ] UI scale option for television-distance play.
+### G5: supported public release
 
-### Performance and technical quality
-- [x] Automatic low-graphics fallback and pooled effects in several systems.
-- [ ] Formal frame budgets for simulation, draw calls, triangles, particles and audio nodes.
-- [ ] Distance LOD for dinosaurs / buildings / vegetation.
-- [ ] Sectorized AI updates and sleeping physics bodies outside relevance range.
-- [ ] Asset/content manifest with cache-busting build identifier.
-- [ ] Save schema migration tests for every released version.
-- [ ] Long-session soak test, repeated vehicle swapping, tab suspend/resume and context-loss recovery.
+- [ ] RL-01: publish only the declared supported platforms and known limitations.
+- [ ] RL-02: collect opt-in playtest feedback without adding undisclosed telemetry.
+- [ ] RL-03: maintain a save-compatible hotfix procedure and prioritize real player blockers before more content.
 
-### Audio
-- [x] Separate master/music/effects/ambience mix controls.
-- [x] Vehicle layers, procedural score, tools, wildlife and UI cues.
-- [ ] Environmental acoustic zones for interiors, forest, coast and open plains.
-- [ ] Mission score states and authored transitions.
-- [ ] Species-specific calls and threat language.
-- [ ] Loudness/dynamic-range pass for laptop, headphones and television.
+## Ordered work packages after Storm Response
 
-## P3 — Release-candidate work
+### Next pass: animal readability and motion
 
-- [ ] Compatibility matrix: Chrome, Edge, Firefox, Safari where technically viable; desktop and representative mobile/tablet classes.
-- [ ] Physical Xbox-controller test matrix across Windows/macOS and at least one TV/console-browser-like environment if available.
-- [ ] Real-device audio QA and loudness review.
-- [ ] Performance profiles on integrated graphics and midrange discrete GPU.
-- [ ] Accessibility review and keyboard-only audit.
-- [ ] Save backup/export option.
-- [ ] Credits / third-party licenses / inspiration / scientific-source audit.
-- [ ] Privacy/network-request audit: no accidental analytics or unexpected external runtime dependencies.
-- [ ] Release rollback instructions and known-issues document.
+Owner: implementation plus art/animation review. Depends on G0 save/interaction stability. Effort class: large; no calendar commitment yet.
 
-## Next upgrade — Vertical Slice 01: Storm Response
+- [ ] DINO-01: gait state machine with idle, walk, turn, alert, retreat, interrupted charge and feed states. Feet must not slide noticeably at normal viewing distance.
+- [ ] DINO-02: head-look targets, anticipation before a charge, herd spacing and blocked-path recovery. Player must be able to understand what an animal is about to do without reading a debug label.
+- [ ] DINO-03: per-species or clearly grouped tool-response rules, including spam limits and recovery. Closed walls remain authoritative.
+- [ ] DINO-04: species-specific calls with distance falloff and bounded concurrent voices. Important cues must be readable at a quiet mix.
+- [ ] DINO-05: record published adult size ranges and measurement conventions for the remaining models. Keep nursery/juvenile variants separate. Current length calibration covers only three reference adults.
 
-**Goal:** prove that existing systems can be directed into a premium-feeling authored sequence instead of remaining a collection of sandbox features.
+Acceptance: one representative herbivore and one predator pass an authored encounter and a physical-controller playtest before propagating the approach across all 30 species.
 
-Planned deliverables:
-- [x] Add a controller-native Mission Director entry in Menu / Dispatch layer.
-- [x] Add dynamic storm weather with rain, fog, wind, lightning flashes and thunder cues.
-- [x] Build one multi-stage assignment that deliberately uses jeep, on-foot interior exploration, helicopter rooftop landing and boat travel.
-- [x] Add mission checkpoints and resumable progress under a new namespaced save key.
-- [x] Add clear completion/failure-safe messaging without native browser dialogs.
-- [x] Add objective markers to the existing map/HUD.
-- [x] Add regression coverage for save isolation, stage order and controller-only mission interaction.
+### Following pass: a signature district and interior
 
-## Definition of “done” for every future upgrade
+Owner: world design/art. Depends on DINO-01 and a performance profile. Effort class: large.
 
-An item is not checked merely because code exists. It is checked when:
-1. it is reachable in the live game,
-2. the player is told that it exists and how to use it,
-3. it has controller-native interaction,
-4. it has a persistence/recovery story where relevant,
-5. it has automated coverage for its state model,
-6. rendered-browser verification covers the critical path where practical,
-7. it is published to GitHub Pages,
-8. this roadmap and the relevant release note are updated.
+- [ ] WORLD-01: finish one detailed, original facility with approach landmarks, exterior silhouette, roof landing route, believable rooms, service corridors and at least two on-foot paths.
+- [ ] WORLD-02: add terrain relief, an overlook, a service crossing and a boneyard with multi-step visible excavation.
+- [ ] WORLD-03: make discovery pacing measurable through new-player sessions. The provisional design goal is a meaningful point of interest during each 30-60 seconds of purposeful travel, not uniformly scattered props.
+- [ ] WORLD-04: share a material, signage and lighting language across roads, tools, vehicles, foliage and architecture.
+- [ ] WORLD-05: create streaming/sector activation before another large island expansion.
+
+Acceptance: the district works on foot and from the air, never strands vehicles behind an interface-only door, and remains within the recorded frame and memory budgets.
+
+### Mission and reserve life
+
+Owner: game design/implementation. Depends on G1 checkpoint rules. Effort class: medium to large.
+
+- [ ] LIFE-01: named crew members physically present at stations with repeatable schedules and recognizable radio identities.
+- [ ] LIFE-02: convoys react to roadblocks, unload at actual destinations, and reroute rather than clipping through events.
+- [ ] LIFE-03: escaped-animal, missing-team, stranded-boat and fence-fault incidents with clear opt-in dispatch tasks and recovery.
+- [ ] LIFE-04: more ranching games: mixed-herd sorting, juvenile transfer, predator exclusion, night roundup and careful cargo escort.
+- [ ] LIFE-05: reputation consequences reward cooperation without permanently locking essential vehicles or story access.
+
+Acceptance: each visible crew activity has a readable purpose and an observable world or market consequence. Scripted movement must not be described as autonomous combat AI.
+
+### Vehicle purpose and credit sinks
+
+Owner: systems/balance. Depends on stable transfers and single-award rewards. Effort class: medium.
+
+- [ ] VEH-01: meaningful upgrades for cargo, illumination, navigation, tool reserves and handling. Do not introduce vehicle damage contrary to the game's current design.
+- [ ] VEH-02: improve boat wake/spray/rough-water feedback and helicopter rotor wash, landing dust and altitude cues.
+- [ ] VEH-03: give the buggy a distinct useful mission and economic role.
+- [ ] ECON-01: test contracts, alternate trade routes, buy/sell spreads, maximum cargo and reward ledgers against exploit scenarios.
+- [ ] ECON-02: reward exploration with knowledge, utility and routes in addition to currency.
+
+Acceptance: spending decisions have observable benefits, several viable routes exist, and no mandatory activity depends on acquiring an unbounded amount of currency.
+
+### Controller, UI and accessibility
+
+Owner: interface/accessibility review. Depends on G0. Effort class: medium.
+
+- [x] INPUT-01: the current story, service terminals, lifts, roadmap and completion panels use the shared A-select/B-back/D-pad-focus loop; X remains reload.
+- [ ] INPUT-02: remapping, alternate presets and hold/toggle aim options with conflict checks.
+- [ ] INPUT-03: text/interface scale for television viewing, subtitle-size controls and high-contrast/color-independent objective cues.
+- [ ] INPUT-04: camera shake, FOV and motion-effect controls independent of audio volume.
+- [ ] INPUT-05: unplug/reconnect a physical controller in every modal, during reload and on each vehicle; no mouse rescue should be necessary.
+- [ ] INPUT-06: audit all nested scroll areas, focus return and keyboard behavior, not only the story flow.
+
+Acceptance: a first-time player can start, play, save, change settings and close every panel with only the declared controller, including recovery from disconnection.
+
+### Sound and music
+
+Owner: sound design and listening review. Depends on scene/mission event definitions. Effort class: medium.
+
+- [x] AUDIO-01: retain separate master, music, effects and ambience controls.
+- [ ] AUDIO-02: bounded voice budget and cue-density presets; repetitive notifications may not overwhelm the scene.
+- [ ] AUDIO-03: purposeful score transitions with a single musical director, not competing independent playlists.
+- [ ] AUDIO-04: interior, forest and coast acoustic treatments; meaningful distance/spatial cues.
+- [ ] AUDIO-05: listen on speakers, headphones and television, including muted and quiet mixes. A generated audio graph is not proof of pleasant sound.
+
+Acceptance: understandable threats and feedback, no clipping in the accepted scenarios, and a mix that remains comfortable during long play sessions.
+
+### Engineering, performance and release discipline
+
+Owner: implementation/QA. Depends on representative content. Effort class: ongoing.
+
+- [ ] TECH-01: replace historical one-off integration scripts with direct source changes and tests against the exact reviewed commit.
+- [ ] TECH-02: record hardware/OS/browser/resolution/quality for each profile. Provisional targets: 60 fps desktop preset and 30 fps fallback; these are targets, not measured achievements.
+- [ ] TECH-03: allocate CPU, GPU, draw-call, particle, physics, texture and audio-node budgets from those measurements.
+- [ ] TECH-04: distance LOD, sleeping physics and sectorized AI with stress tests.
+- [ ] TECH-05: long-session soak, rapid vehicle swapping, pause/resume, hidden-tab behavior and graphics-context recovery.
+- [ ] TECH-06: save export/backup and migration tests using snapshots of every supported prior release.
+- [ ] TECH-07: complete Chrome/Edge/Firefox/Safari and representative phone/tablet checks where viable; publish actual support, not assumptions.
+
+Acceptance: tested frame-time and memory budgets, no sustained growth during soak, and actionable reports linked to a source revision.
+
+## Verification rules
+
+Each release must record the source identity, model-test result, rendered-browser result, assumptions/fixtures, screenshots, known issues, Pages deployment result and public-byte comparison. These records are complementary, not interchangeable.
+
+Current automatic coverage includes the actual Rapier coast route, reachable exterior arrival, real narrow-doorway walking, safe rooftop support, supply handoffs, stage order, suspend/resume, reward-ledger preservation and the ranch gate-margin repair. The browser journey uses synthetic standard Xbox input. Distant travel is repositioned through explicit test fixtures; it is not a complete human or physical-controller certification run.
+
+An implementation checkbox means that scoped code path exists and has supporting automated evidence. A milestone remains open until all of its acceptance criteria, including manual ones, are satisfied. Each future upgrade should close a small, named group of items, add the matching regressions, preserve saves, update this file and actually publish.
