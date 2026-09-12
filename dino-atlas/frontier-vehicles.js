@@ -1,6 +1,7 @@
 import R from './vendor/rapier.mjs';
-import {RangerJeep,rotateVector} from './ranger-physics.js?v=ops1';
-import {FLEET_START,OUTPOSTS,WORLD_RADIUS,DOCK,isWater} from './frontier-data.js?v=ops1';
+import {HARBORS,surfaceAt} from './ranch-data.js';
+import {RangerJeep,rotateVector} from './ranger-physics.js?v=ranch1';
+import {FLEET_START,OUTPOSTS,WORLD_RADIUS,DOCK,isWater} from './frontier-data.js?v=ranch1';
 import {clamp,distance} from './ranger-data.js';
 const upright=h=>({x:0,y:Math.sin(h/2),z:0,w:Math.cos(h/2)});
 export class FlightBoat{
@@ -13,10 +14,10 @@ export class FlightBoat{
  reset(p,heading=this.heading){this.body.setTranslation({x:p.x,y:p.y??(this.type==='boat'?.77:1),z:p.z},true);this.body.setRotation(upright(heading),true);this.body.setLinvel({x:0,y:0,z:0},true);this.body.setAngvel({x:0,y:0,z:0},true);this.targetY=p.y??(this.type==='boat'?.77:1);this.speed=0;}
  drive(v,dt,time=0){
   this.impactTime=Math.max(0,this.impactTime-dt);const b=this.body,p=b.translation(),vel=b.linvel(),mass=b.mass(),up=rotateVector({x:0,y:1,z:0},b.rotation()),h=this.heading;
-  this.speed=Math.hypot(vel.x,vel.z);this.grounded=p.y<1.5?4:0;
+  this.speed=Math.hypot(vel.x,vel.z);this.grounded=p.y<surfaceAt(p)+1.5?4:0;
   let tx=0,tz=0;
   if(this.type==='helicopter'){
-   this.targetY=clamp(this.targetY+(v.climb||0)*dt*14,.88,80);
+   this.targetY=clamp(this.targetY+(v.climb||0)*dt*14,surfaceAt(p)+.88,80);
    const flying=this.targetY>1.5||p.y>2;if(flying&&!v.aim&&!v.brake){const speed=v.boost?28:19,angle=v.cameraYaw??Math.PI;tx=((v.x||0)*Math.cos(angle)-(v.z||0)*Math.sin(angle))*speed;tz=(-(v.x||0)*Math.sin(angle)-(v.z||0)*Math.cos(angle))*speed;}
    if(this.impactTime===0){let desiredYaw=(Math.abs(tx)+Math.abs(tz)>.2)?Math.atan2(tx,tz):h;let dy=Math.atan2(Math.sin(desiredYaw-h),Math.cos(desiredYaw-h));const av=b.angvel();b.setAngvel({x:av.x,y:dy*2,z:av.z},true);}
   }else{
@@ -49,17 +50,17 @@ export class Fleet{
  get actor(){return this.current?.drive||this.person;}
  get mode(){return this.current?.type||'foot';}
  get position(){return this.actor.position;}
- nearest(){return [...this.vehicles].filter(v=>distance(v.drive.position,this.position)<6.7||(v.type==='boat'&&distance(this.position,DOCK)<10&&distance(v.drive.position,DOCK)<22)).sort((a,b)=>distance(a.drive.position,this.position)-distance(b.drive.position,this.position))[0]||null;}
- canStand(p){if(Math.hypot(p.x,p.z)>WORLD_RADIUS-4||isWater(p.x,p.z,1))return false;const shape=new R.Capsule(.48,.32);const hit=this.physics.world.intersectionWithShape({x:p.x,y:1.05,z:p.z},{x:0,y:0,z:0,w:1},shape,undefined,undefined,this.person.collider);return !hit;}
+ nearest(){return [...this.vehicles].filter(v=>Math.abs(v.drive.position.y-this.position.y)<3&&(distance(v.drive.position,this.position)<6.7||(v.type==='boat'&&HARBORS.some(d=>distance(this.position,d.land)<12&&distance(v.drive.position,d)<35)))).sort((a,b)=>distance(a.drive.position,this.position)-distance(b.drive.position,this.position))[0]||null;}
+ canStand(p){if(Math.hypot(p.x,p.z)>WORLD_RADIUS-4||isWater(p.x,p.z,1))return false;const shape=new R.Capsule(.48,.32);const hit=this.physics.world.intersectionWithShape({x:p.x,y:p.y??1.05,z:p.z},{x:0,y:0,z:0,w:1},shape,undefined,undefined,this.person.collider);return !hit;}
  board(){
-  if(this.current){const v=this.current,p=v.drive.position;if(Math.abs(v.drive.speed)>2.6){this.onNotice('Stop before leaving the vehicle.');return false;}if(v.type==='helicopter'&&p.y>2.3){this.onNotice('Land before exiting. Use LT to descend.');return false;}
+  if(this.current){const v=this.current,p=v.drive.position;if(Math.abs(v.drive.speed)>2.6){this.onNotice('Stop before leaving the vehicle.');return false;}if(v.type==='helicopter'&&p.y>surfaceAt(p)+2.3){this.onNotice('Land before exiting. Use LT to descend.');return false;}
    let exit;
-   if(v.type==='boat'){if(distance(p,DOCK)>22){this.onNotice('Return to the marked wetland dock to disembark.');return false;}exit={x:DOCK.x+5,y:1.6,z:DOCK.z};}
-   else{const h=v.drive.heading;for(const a of [Math.PI/2,-Math.PI/2,Math.PI,0]){const q={x:p.x+Math.sin(h+a)*4.4,y:1.1,z:p.z+Math.cos(h+a)*4.4};if(this.canStand(q)){exit=q;break;}}}
+   if(v.type==='boat'){const dock=HARBORS.find(d=>distance(p,d)<35);if(!dock){this.onNotice('Return to any marked harbor to disembark.');return false;}exit={...dock.land,y:1.6};}
+   else{const h=v.drive.heading;for(const a of [Math.PI/2,-Math.PI/2,Math.PI,0]){const q={x:p.x+Math.sin(h+a)*4.4,y:surfaceAt(p)+1.1,z:p.z+Math.cos(h+a)*4.4};if(this.canStand(q)){exit=q;break;}}}
    if(!exit){this.onNotice('The exits are obstructed. Move to an open space.');return false;}
    this.active='foot';this.person.setActive(true,exit);this.person.heading=v.drive.heading;this.onNotice('On foot. RT fires; X reloads; Y boards a nearby vehicle.');return true;
   }
-  const v=this.nearest();if(!v){this.onNotice('Approach a parked vehicle to board it.');return false;}if(v.type==='helicopter'&&v.drive.position.y>2.6){this.onNotice('The helicopter must be on the ground.');return false;}
+  const v=this.nearest();if(!v){this.onNotice('Approach a parked vehicle to board it.');return false;}if(v.type==='helicopter'&&v.drive.position.y>surfaceAt(v.drive.position)+2.6){this.onNotice('The helicopter must be on the ground.');return false;}
   this.person.setActive(false);this.active=v.id;if(!this.state.rides.includes(v.type))this.state.rides.push(v.type);this.onNotice(v.name+' ready. Hold LB and RT to use your tool.');return true;
  }
  drive(v,dt,time,yaw){for(const item of this.vehicles){const selected=item.id===this.active;item.drive.drive(selected?{...v,cameraYaw:yaw}:{brake:true},dt,time);}if(this.active==='foot')this.person.move(v,dt,yaw);}

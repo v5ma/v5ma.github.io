@@ -34,9 +34,10 @@ export const goodById=id=>GOODS.find(g=>g.id===id);
 export const rivalById=id=>RIVALS.find(r=>r.id===id);
 export const cargoUsed=s=>GOODS.reduce((n,g)=>n+(Number(s.cargo?.[g.id])||0)*g.slots,0);
 export const cargoCount=s=>GOODS.reduce((n,g)=>n+(Number(s.cargo?.[g.id])||0),0);
-export function emptyEconomy(){return {version:1,credits:1800,capacity:32,cargo:{},tick:0,trades:0,completed:0,lastOutpost:'base',activeContract:null,rivalPressure:{base:.18,redwood:.35,wetland:.22,north:.28,mesa:.31,coast:.24}};}
+export function emptyEconomy(){return {version:1,credits:1800,capacity:32,rewardLedger:[],cargo:{},tick:0,trades:0,completed:0,lastOutpost:'base',activeContract:null,rivalPressure:{base:.18,redwood:.35,wetland:.22,north:.28,mesa:.31,coast:.24}};}
 export function sanitizeEconomy(v){
  const s=emptyEconomy();if(!v||v.version!==1)return s;
+ if(Array.isArray(v.rewardLedger))s.rewardLedger=[...new Set(v.rewardLedger.filter(x=>typeof x==='string'&&x.startsWith('ranch:')))].slice(0,64);
  if(Number.isFinite(v.credits))s.credits=clamp(Math.round(v.credits),0,9999999);if(Number.isFinite(v.capacity))s.capacity=clamp(Math.round(v.capacity),16,80);if(Number.isFinite(v.tick))s.tick=clamp(Math.floor(v.tick),0,999999);if(Number.isFinite(v.trades))s.trades=clamp(Math.floor(v.trades),0,999999);if(Number.isFinite(v.completed))s.completed=clamp(Math.floor(v.completed),0,999999);
  if(MARKET_IDS.includes(v.lastOutpost))s.lastOutpost=v.lastOutpost;
  for(const g of GOODS){const q=Number(v.cargo?.[g.id]);if(Number.isFinite(q)&&q>0)s.cargo[g.id]=clamp(Math.floor(q),0,99);}

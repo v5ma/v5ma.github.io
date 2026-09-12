@@ -1,6 +1,6 @@
 // Spectacle & Trade expansion. Keeps the original Ranger Operations IDs/save format intact.
-import * as base from './frontier-data.js?base=ops1';
-export * from './frontier-data.js?base=ops1';
+import * as base from './frontier-data.js?base=ranch1';
+export * from './frontier-data.js?base=ranch1';
 
 export const BONUS_SPECIES=[
  {id:'corythosaurus',species:'corythosaurus',name:'Corythosaurus',kind:'crested',color:0xb88f63,scale:.96,radius:1.9,role:'A social crested herbivore assigned to the northern meadow research herd.'},
