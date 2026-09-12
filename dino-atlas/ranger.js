@@ -1,3 +1,4 @@
+import {CoastalLight} from './coastal-light.js?v=coastal1';
 import * as T from './vendor/three.module.js';
 import {LivingHerds} from './living-herds.js?v=herds1';
 import {HERDS_BUILD} from './herd-behavior.js?v=herds1';
@@ -23,7 +24,7 @@ export async function boot(){
  const R=await initPhysics();let storage;try{storage=localStorage;}catch{storage=null;}
  const campaign=readRanger(storage),state=readFrontier(storage),settings=state.settings;
  for(const id of campaign.observed)if(!state.observed.includes(id))state.observed.push(id);
- let ranch=null,director=null,herds=null;
+ let ranch=null,director=null,herds=null,optics=null;
  let started=false,time=0,accumulator=0,last=performance.now(),uiClock=0,saveClock=0,hornAt=-100,startedAt=0,candidate=null,aiming=false,drag=null,beamAge=10,toastTimer,radioTimer,backTarget=null;
  let cameraMode=settings.camera,yaw=.65,pitch=.65,aimPitch=.04,zoom=34,campaignPinned=campaign.stage<5,lastPosition={...HOME},lastNotice='',noticeAt=-100,lastJournalSelection=null;
  settings.reduced||=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -192,9 +193,9 @@ export async function boot(){
    }
    saveClock+=dt;if(saveClock>8){saveClock=0;save();}
   }else accumulator=0;
-  syncModels(dt);herds?.update(dt,time);ranch?.update(dt,time);park.update(dt,time,fleet.actor,settings.night,settings.reduced);director?.update(dt,time);audio.update(fleet.actor.speed,!paused&&fleet.mode!=='foot');
+  syncModels(dt);herds?.update(dt,time);ranch?.update(dt,time);park.update(dt,time,fleet.actor,settings.night,settings.reduced);director?.update(dt,time);optics?.update(dt);audio.update(fleet.actor.speed,!paused&&fleet.mode!=='foot');
   if(started){const p=fleet.position;if(aiming||fleet.mode==='foot'&&controls.fire){const dir=new T.Vector3(-Math.sin(yaw)*Math.cos(aimPitch),-Math.sin(aimPitch),-Math.cos(yaw)*Math.cos(aimPitch));const back=fleet.mode==='foot'?5.4:8,side=fleet.mode==='foot'?.75:2.2,height=fleet.mode==='foot'?1.45:3.8;const shoulder=new T.Vector3(p.x+Math.sin(yaw)*back+Math.cos(yaw)*side,p.y+height,p.z+Math.cos(yaw)*back-Math.sin(yaw)*side);camera.position.lerp(shoulder,1-Math.exp(-realDt*12));const toolReach=fleet.mode==='foot'?1.2:3.5,toolSide=fleet.mode==='foot'?.35:.85;const target=new T.Vector3(p.x+Math.cos(yaw)*toolSide,p.y+(fleet.mode==='foot'?.35:1.65),p.z-Math.sin(yaw)*toolSide).addScaledVector(dir,35+toolReach);camera.lookAt(target);}else{const dist=fleet.mode==='helicopter'?Math.max(zoom,40):fleet.mode==='foot'?Math.min(zoom,18):zoom;const target=new T.Vector3(p.x+Math.sin(yaw)*dist*Math.cos(pitch),Math.max(0,p.y)+dist*Math.sin(pitch),p.z+Math.cos(yaw)*dist*Math.cos(pitch));camera.position.lerp(target,settings.reduced?1:1-Math.exp(-realDt*4));camera.lookAt(p.x,p.y+1.2,p.z);}}
-  uiClock+=realDt;if(uiClock>.1){uiClock=0;ui();}renderer.render(scene,camera);
+  uiClock+=realDt;if(uiClock>.1){uiClock=0;ui();}if(optics)optics.render(scene,camera);else renderer.render(scene,camera);
   if(started&&!paused&&!settings.low&&!qualityAutoChanged){slowFrames=realDt>.05?slowFrames+realDt:Math.max(0,slowFrames-realDt);if(slowFrames>8){quality(true);qualityAutoChanged=true;toast('Low graphics enabled for smoother play. You can change this in Menu.');}}
  }
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();input.clear();if(started&&!modal())show('menu-dialog');toast('Graphics context interrupted. Reload the game to restore rendering; your saved progress is retained.');});
@@ -202,9 +203,11 @@ export async function boot(){
  director=new AAADirector({scene,physics,R,fleet,animals,state,storage,audio,input,frontier,ranch,settings,park,started:()=>started,notify:toast,radio,save,close,show:id=>{backTarget=null;show(id);},info});
  herds=new LivingHerds({scene,physics,R,fleet,animals,state,storage,audio,input,frontier,ranch,director,settings,notify:toast,radio,save,close,show:id=>{backTarget=null;show(id);},info});
  window.__dinoHerds={get state(){return herds.snapshot();}};
- ui();syncModels(0);frontier.update(0,0,fleet.position,settings.reduced);park.update(0,0,fleet.actor,settings.night,settings.reduced);renderer.render(scene,camera);
+ optics=new CoastalLight({scene,renderer,settings,fleet,ranchWorld,director,storage,input,notify:toast,close,show:id=>{backTarget=null;show(id);}});
+ window.__dinoOptics={get state(){return optics.snapshot();}};
+ ui();syncModels(0);frontier.update(0,0,fleet.position,settings.reduced);park.update(0,0,fleet.actor,settings.night,settings.reduced);if(optics)optics.render(scene,camera);else renderer.render(scene,camera);
  $('start-button').disabled=false;$('start-button').textContent=campaign.stage||state.outposts.length>1?'Continue ranger operations':'Start your engine';$('load-status').textContent='Ready. Press A on your controller, or select Start.';updateDevice('keyboard');
  const debug={get state(){return {ready:true,build:HERDS_BUILD,storyBuild:AAA_BUILD,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],species:[...state.observed],position:{...fleet.position},speed:fleet.actor.speed,grounded:fleet.actor.grounded,health:100,mode:fleet.mode,active:fleet.active,tool:tools.tool.id,ammo:[...state.ammo],reserve:[...state.reserve],reloading:tools.reloadLeft,toolHits:{...state.toolHits},outposts:[...state.outposts],checkpoint:state.checkpoint,patrol:state.patrol,pens:JSON.parse(JSON.stringify(state.pens)),exploded:[...state.exploded],drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night:settings.night,yaw,aimPitch,device:input.device,vehicles:fleet.vehicles.map(v=>({id:v.id,type:v.type,position:{...v.drive.position},recoveries:v.recoveries,rotation:{...v.drive.body.rotation()}})),animals:animals.map(({uid,species,x,z,mood,pen,deter})=>({uid,id:species,x,z,mood,pen,deter}))};}};
- if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{if(fleet.current)fleet.current.drive.reset({x,z},heading);else fleet.person.setActive(true,{x,y:1,z});lastPosition={x,z};},setAim:(angle,elevation=.04)=>{yaw=angle;aimPitch=elevation;},render:ui,ranch,director,herds,physics,fleet,animals,frontier,tools,progress:state,jeep:fleet.vehicles[0].drive});
+ if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{if(fleet.current)fleet.current.drive.reset({x,z},heading);else fleet.person.setActive(true,{x,y:1,z});lastPosition={x,z};},setAim:(angle,elevation=.04)=>{yaw=angle;aimPitch=elevation;},render:ui,optics,ranch,director,herds,physics,fleet,animals,frontier,tools,progress:state,jeep:fleet.vehicles[0].drive});
  window.__dinoRanger=debug;window.__dinoAAA={get state(){return director?.snapshot?.()||null;},open:()=>director?.open?.(),suspend:()=>director?.suspend?.()};requestAnimationFrame(frame);
 }
