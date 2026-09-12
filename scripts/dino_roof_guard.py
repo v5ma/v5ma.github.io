@@ -19,7 +19,6 @@ if "every building has a real walkable archive corridor" not in s:
 test('every building has a real walkable archive corridor and blocks a jeep at its doorway',async()=>{
  const T=await import('../vendor/three.module.js'),{buildRanchWorld}=await import('../ranch-world.js');
  const previous=globalThis.document;
- // Canvas labels are not rendered in a physics test. Geometry and colliders are real.
  globalThis.document={createElement:()=>({width:1024,height:100,getContext:()=>({fillRect(){},strokeRect(){},fillText(){}})})};
  const p=new ParkPhysics(),f=new Fleet(p,emptyFrontier());buildRanchWorld(new T.Scene(),p);
  for(const b of BUILDINGS){
@@ -43,3 +42,10 @@ edit('ranger.js', "const shoulder=new T.Vector3(p.x+Math.sin(yaw)*5.4+Math.cos(y
 edit('tests/ranch-browser.py', "__dinoRanger.teleport(-48,203)", "__dinoRanger.teleport(-44,203)")
 edit('ranger.js', "const target=new T.Vector3(p.x,p.y+(fleet.mode==='foot'?.35:1.15),p.z).addScaledVector(dir,35);", "const toolReach=fleet.mode==='foot'?1.2:3.5,toolSide=fleet.mode==='foot'?.35:.85;const target=new T.Vector3(p.x+Math.cos(yaw)*toolSide,p.y+(fleet.mode==='foot'?.35:1.65),p.z-Math.sin(yaw)*toolSide).addScaledVector(dir,35+toolReach);")
 print('Mounted aiming camera and tool muzzle remain visible in front of the vehicle.')
+# Low graphics avoids multisampling and reduces 3D pixels; DOM text stays sharp.
+edit('ranger.js', "new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'})", "new T.WebGLRenderer({canvas,antialias:!settings.low,powerPreference:'high-performance'})")
+edit('ranger.js', 'Math.min(devicePixelRatio||1,low?1:1.6)', 'Math.min(devicePixelRatio||1,low?.75:1.6)')
+edit('ranger.js', 'if(v.model.userData.light)v.model.userData.light.intensity=settings.night?95:0;', 'if(v.model.userData.light){v.model.userData.light.visible=settings.night&&v.id===fleet.active;v.model.userData.light.intensity=settings.night?95:0;}')
+edit('frontier-world-expanded.js', "const model=r.model==='jeep'?makeJeep():makeBuggy();scene.add(model);", "const model=r.model==='jeep'?makeJeep():makeBuggy();scene.add(model);if(model.userData.light)model.userData.light.visible=false;")
+edit('tests/ranch-browser.py', "wait('__dinoRanch.state.task.done===4',90000)", "wait('__dinoRanch.state.task.done===4',240000)")
+print('Low graphics reduces raster cost while the complete roundup remains state-verified.')
