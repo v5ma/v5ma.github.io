@@ -1,13 +1,29 @@
 {
-  "version": "0.6.0",
+  "version": "0.8.0",
   "name": "Neighborhood Missions",
+  "edition": "Homecoming",
   "folder": "svgn-planet",
   "date": "2026-09-11",
+  "testedCommit": "091694514fff9e3fb309f1c86167b70521aa0ce6",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34674273108",
+  "roadmap": "AAA_ROADMAP.md",
+  "roadmapData": "production/roadmap.json",
+  "evidence": "production/evidence/v0.8.0.json",
   "changes": [
-    "Expand the spherical world to eight times the former radius with 24 connected districts",
-    "Add thousands of city buildings, palm-lined streets, shops, apartments and towers across the planet",
-    "Add district missions, postmarks, sprint gates, waypoints and transit while preserving existing route progress",
-    "Add full Xbox controller play and interface navigation, including menus, confirmations, help and recovery screens",
-    "Rename the experience to Neighborhood Missions while preserving the existing save keys and game URL"
-  ]
+    "Add an optional five-project Homecoming chapter, Maya's journal and an exactly-once return-to-plaza finale",
+    "Add the Common Ground plaza with persisted garden or workshop choice and project-dependent visual changes",
+    "Add a 45-item production checklist with six milestones, acceptance criteria, dependencies and explicit human/device approval gates",
+    "Add a local 600-rendered-frame health report without automatic telemetry uploads",
+    "Drive speed camera effects from actual velocity and support reduced-motion speed presentation",
+    "Require held menu-entry directions to return to neutral before moving focus",
+    "Retain original save keys, all 102 contracts, unlimited cruising, explicit braking and independent audio controls"
+  ],
+  "validation": {
+    "modelTestsPassed": 91,
+    "homecomingBrowserChecksPassed": 12,
+    "retainedGameBrowserChecksPassed": 14,
+    "physicalControllerTested": false,
+    "desktopFrameTargetCertified": false,
+    "commercialAAAQualityClaimed": false
+  }
 }
