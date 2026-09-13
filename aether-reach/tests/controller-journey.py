@@ -22,7 +22,9 @@ with sync_playwright() as pw:
  def snap():return p.evaluate('AetherReach.snapshot()')
  def frames(n=3):p.evaluate('(n)=>new Promise(resolve=>{function f(){if(--n<=0)resolve();else requestAnimationFrame(f);}requestAnimationFrame(f)})',n)
  def button(i,on):p.evaluate('([i,on])=>TestPad.button(i,on)',[i,on]);frames(1)
- def tap(i):p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>resolve());});})',i)
+ # X activates on release; allow the new dialog one neutral sample before another press.
+ # This changes only the test driver, not the game's input or any menu assertions.
+ def tap(i):p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()));});})',i)
  def axes(a):p.evaluate('(a)=>TestPad.axes(a)',a)
  def go(selector):
   # Inspect DOM ordering, then operate ONLY normal gamepad events.
