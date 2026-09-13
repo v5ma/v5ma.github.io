@@ -7,7 +7,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: rainward-undertow-integration
+  group: rainward-undertow-integration-v2
   cancel-in-progress: true
 jobs:
   integrate:
