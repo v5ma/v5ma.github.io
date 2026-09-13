@@ -10,7 +10,7 @@ def check(ok,label):
 with sync_playwright() as pw:
  kw=dict(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**kw);c=b.new_context(viewport={'width':1280,'height':800},device_scale_factor=.5,service_workers='block')
+ b=pw.chromium.launch(**kw);c=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')
  c.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'))
  c.add_init_script(path=str(ROOT/'aether-reach/tests/bellwether-input.js'))
  c.add_init_script("if(location.protocol==='http:'||location.protocol==='https:')localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))")
@@ -21,7 +21,8 @@ with sync_playwright() as pw:
  def s():return p.evaluate('AetherReach.snapshot()')
  def tap(i):p.evaluate('(i)=>BlackoutDriver.tap(i)',i)
  def frames(n=4):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f);}requestAnimationFrame(f)})',n)
- def walk(x,z):p.evaluate('([x,z])=>BlackoutDriver.walk(x,z)',[x,z])
+ def walk(x,z):
+  print('ROUTE',x,z,flush=True);p.evaluate('([x,z])=>BlackoutDriver.walk(x,z)',[x,z]);(OUT/'tideglass-last-progress.json').write_text(json.dumps({'checks':checks,'snapshot':s()},indent=2))
  def go(sel):
   for _ in range(120):
    v=p.evaluate('''sel=>{const r=document.getElementById(AetherReach.snapshot().devices.menu),a=[...r.querySelectorAll('button,input:not([type="hidden"]),select,a[href]')].filter(e=>!e.disabled&&!e.hidden&&!e.closest('[hidden]')&&e.getClientRects().length);return[a.indexOf(document.activeElement),a.indexOf(r.querySelector(sel))]}''',sel)
@@ -53,7 +54,10 @@ with sync_playwright() as pw:
   for x,z in [(153,-18),(153,3),(143,3),(143,10),(138.4,9.2)]:walk(x,z)
   tap(9);choose('#pause-settings');go('#visual-quality');tap(14);tap(1);tap(1);frames(8)
   check(s()['waterArt']['detail']==1,'Balanced mode renders detailed water at the real basin')
-  look(-.53,-.45);p.screenshot(path=str(OUT/'tideglass-pool.png'))
+  look(-.53,-.45);p.set_viewport_size({'width':1280,'height':800});frames(3);p.screenshot(path=str(OUT/'tideglass-pool.png'));p.set_viewport_size({'width':960,'height':640})
+  # Keep the full path/progression checks, but do not render thousands of Balanced
+  # frames on software rasterization. Switch only through normal controller UI.
+  tap(9);choose('#pause-settings');go('#visual-quality');tap(15);tap(1);tap(1)
   use('tide-pool-ladder');p.evaluate('TestPad.axes([0,1,0,0])');p.wait_for_function('!AetherReach.snapshot().climb&&AetherReach.snapshot().tideglass.wet.swimming');p.evaluate('BlackoutDriver.neutral()')
   p.wait_for_function('!AetherReach.snapshot().tideglass.wet.submerged')
   check(s()['tideglass']['wet']['swimming'],'Descending the physical ladder transitions into surface swimming')
@@ -68,7 +72,10 @@ with sync_playwright() as pw:
   tap(9);choose('#pause-settings');go('#reduced');tap(0);tap(1);tap(1)
   for x,z in [(134,-7)]:walk(x,z)
   use('tide-regulator');check(s()['tideglass']['stage']==2,'Ordinary swimming and X recover the actual submerged regulator')
-  walk(130,-9);use('tide-plate-0');walk(137,3);use('tide-plate-1');look(-.4,.08);p.screenshot(path=str(OUT/'tideglass-underwater.png'))
+  walk(130,-9);use('tide-plate-0');walk(137,3);use('tide-plate-1');look(-.4,.08)
+  tap(9);choose('#pause-settings');go('#visual-quality');tap(14);tap(1);tap(1);frames(3)
+  p.set_viewport_size({'width':1280,'height':800});frames(3);p.screenshot(path=str(OUT/'tideglass-underwater.png'));p.set_viewport_size({'width':960,'height':640})
+  tap(9);choose('#pause-settings');go('#visual-quality');tap(15);tap(1);tap(1)
   tap(0);p.wait_for_function('!AetherReach.snapshot().tideglass.wet.submerged')
   check(s()['tideglass']['wet']['swimming'],'A surfaces without exiting swimming or teleporting')
   walk(138.4,7);use('tide-pool-ladder');p.evaluate('TestPad.axes([0,-1,0,0])');p.wait_for_function('!AetherReach.snapshot().climb&&AetherReach.snapshot().grounded&&AetherReach.snapshot().position.y>5.9');p.evaluate('BlackoutDriver.neutral()')
@@ -80,7 +87,10 @@ with sync_playwright() as pw:
   walk(144,-10);use('tide-install');p.wait_for_function('AetherReach.snapshot().tideglass.level>5.44')
   check(s()['waterArt']['fountains'],'Installing the regulator refills the basin and starts the return jets')
   for x,z in [(147,-3),(147,3),(147,18),(126,18)]:walk(x,z)
-  look(.25,-.4);p.screenshot(path=str(OUT/'tideglass-restored.png'))
+  look(.25,-.4)
+  tap(9);choose('#pause-settings');go('#visual-quality');tap(14);tap(1);tap(1);frames(3)
+  p.set_viewport_size({'width':1280,'height':800});frames(3);p.screenshot(path=str(OUT/'tideglass-restored.png'));p.set_viewport_size({'width':960,'height':640})
+  tap(9);choose('#pause-settings');go('#visual-quality');tap(15);tap(1);tap(1)
   walk(116,18);walk(116,12);before=s()['credits'];use('tide-desk');check(s()['credits']==before+240 and s()['tideglass']['stage']==4,'Returning to dispatch earns exactly the repair reward')
   tap(2);check(s()['credits']==before+240,'Repeated reporting cannot duplicate the repair payment')
   check(s()['stats']['rescues']==0,'The complete reservoir route needed no rescue shortcut')
@@ -89,7 +99,7 @@ with sync_playwright() as pw:
   check(s()['tideglass']['stage']==4 and s()['waterArt']['fountains'] and s()['checkpoint']=='tideglass','Completed water objectives and restored supply survive save/continue')
   check(not errors and not shaders,'No uncaught errors or shader compiler errors in the actual water adventure')
   check(not native,'No native popup interrupts the controller-driven journey')
-  (OUT/'tideglass-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shaders,'nativeDialogs':native,'snapshot':s(),'scope':'Actual HTTP/WebGL application; emulated standard Gamepad API; ordinary controls only. No player, health, inventory, water-level or objective injection. Light travel and Balanced pool rendering at 1280x800 CSS, half pixel density. Separate trusted keyboard audio activation. Not physical controller/headset, listening, player-art or consumer-GPU certification.'},indent=2))
+  (OUT/'tideglass-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shaders,'nativeDialogs':native,'snapshot':s(),'scope':'Actual HTTP/WebGL application; emulated standard Gamepad API; ordinary controls only. No player, health, inventory, water-level or objective injection. Light gameplay at 960x640 CSS and Balanced pool captures at 1280x800 CSS, both at half pixel density. Graphics profiles changed through normal controller menus; simulation and route assertions unchanged. Separate trusted keyboard audio activation. Not physical controller/headset, listening, player-art or consumer-GPU certification.'},indent=2))
  except Exception as e:
   try:state=s()
   except:state=None
