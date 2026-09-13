@@ -39,6 +39,9 @@ jobs:
           PID=$!
           trap 'kill $PID' EXIT
           timeout 960 python -u rainward/tests/natatorium-journey.py
+          if [ "$RAINWARD_PRESET" = survival ]; then
+            timeout 120 python -u rainward/tests/handoff-board.py
+          fi
       - name: Record exact-source evidence
         if: always()
         run: |
