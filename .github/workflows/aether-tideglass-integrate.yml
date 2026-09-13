@@ -1,0 +1,51 @@
+name: Integrate Aether Tideglass Reservoir
+on:
+  push:
+    branches: [feat/aether-tideglass-reservoir-20260912]
+    paths: ['.github/workflows/aether-tideglass-integrate.yml']
+permissions:
+  contents: write
+concurrency:
+  group: aether-tideglass-integrate
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/feat/aether-tideglass-reservoir-20260912'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/aether-tideglass-reservoir-20260912
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Integrate exact source
+        run: python aether-reach/tools/integrate-tideglass.py
+      - name: Validate all game regressions and the public contract
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/tideglass-node.log
+          node aether-reach/tests/release-manifest.mjs
+      - name: Commit only verified game changes and remove temporary transport
+        run: |
+          set -euo pipefail
+          rm aether-reach/tools/tideglass-patch-{0,1}.json aether-reach/tools/integrate-tideglass.py .github/workflows/aether-tideglass-integrate.yml
+          git add -A -- aether-reach .github/workflows/aether-tideglass-integrate.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Implement Aether Reach 0.11.0 Tideglass Reservoir water missions'
+          git push origin HEAD:feat/aether-tideglass-reservoir-20260912
+      - name: Record exact source status
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-tideglass-integration
+          path: aether-reach/test-output
+          retention-days: 14
