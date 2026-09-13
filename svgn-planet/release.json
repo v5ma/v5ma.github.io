@@ -6,12 +6,27 @@
   "date": "2026-09-13",
   "roadmap": "AAA_ROADMAP.md",
   "roadmapData": "production/roadmap.json",
+  "evidence": "production/evidence/v0.10.0.json",
+  "testedCommit": "2ab785f77c6ac10aad71fa4e67340f28402e3c38",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34738493022",
   "changes": [
     "Add Seaglass Pool with playable skimming and filter routing",
     "Add a boatable Lantern Canal, pedal skiff and harbor courier excursion",
     "Add a connected ten-checkpoint boardwalk relay, local map and results screen",
     "Add two bounded analytical-refraction water shaders, ripple impulses and water ambience",
+    "Add a title-screen Play the water missions now button and controller-complete water menus",
     "Retain existing saves, 102 city contracts, Homecoming, weather presets and unlimited riding cruise"
   ],
-  "acceptance": "Awaiting final water acceptance"
+  "acceptance": "passed",
+  "validation": {
+    "unitTestsPassed": 134,
+    "waterBrowserChecksPassed": 18,
+    "coastalRegressionChecksPassed": 14,
+    "homecomingRegressionChecksPassed": 12,
+    "uncaughtBrowserErrors": 0,
+    "shaderCompileErrors": 0,
+    "physicalControllerTested": false,
+    "hardwareFrameTargetCertified": false,
+    "commercialAAAQualityClaimed": false
+  }
 }
