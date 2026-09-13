@@ -61,10 +61,13 @@ jobs:
           python -u rainward/tests/handoff-board.py
       - name: Prove game runtime and sibling applications are untouched
         run: |
+          git fetch --no-tags --depth=1 origin a43d01ddd75ac7c07280e660f7dcba2282214c8f
           python - <<'PY'
           import subprocess
           base='a43d01ddd75ac7c07280e660f7dcba2282214c8f'
           changed=set(subprocess.check_output(['git','diff','--name-only',base],text=True).splitlines())
+          changed.update(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
+          changed={n for n in changed if not n.startswith('test-output/')}
           allowed={'rainward/AGENTS.md','rainward/DEVELOPMENT-HANDOFF.md','rainward/CONTROLLER.md','rainward/README.md','rainward/AAA_CHECKLIST.md','rainward/production-plan.json','rainward/roadmap.html','rainward/roadmap.mjs','rainward/tools/roadmap.html.template','rainward/tools/build-production-plan.py','rainward/tools/update-resume-handoff.py','rainward/tests/handoff.test.mjs','rainward/tests/handoff-board.py','.github/workflows/rainward-resume-handoff.yml'}
           assert all(n in allowed or n.startswith('rainward/evidence/undertow-v0.13.0/') for n in changed),sorted(changed-allowed)
           print('Scoped documentation-only changes:',len(changed))
