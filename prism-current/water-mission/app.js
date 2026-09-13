@@ -3,7 +3,7 @@
  const $=id=>document.getElementById(id),C=PrismWaterCore,T=AFRAME.THREE;
  let saved=null;try{saved=localStorage.getItem(C.KEY);}catch{}
  const state=C.create(saved),keys=new Set(),touch={forward:0,side:0,up:0,down:0};let quality='balanced',quiet=matchMedia('(prefers-reduced-motion: reduce)').matches;
- let renderer,art,started=false,clock=0,last=0,toastUntil=0,padId=null,padOld=[],padDirection=0,nextRepeat=0,drag=null,stickId=null,stopped=false;
+ let renderer,art,started=false,clock=0,last=0,toastUntil=0,padId=null,padSeed=true,padOld=[],padDirection=0,nextRepeat=0,drag=null,stickId=null,stopped=false;
  const PREF='prism-current.water-settings.v1';let audio=null;
  try{const p=JSON.parse(localStorage.getItem(PREF)||'{}');if(['light','balanced','cinematic'].includes(p.quality))quality=p.quality;if(typeof p.quiet==='boolean')quiet=p.quiet;if(Number.isFinite(p.volume))$('volume').value=Math.max(0,Math.min(100,p.volume));}catch{}
  $('quality').value=quality;$('quiet').checked=quiet;
@@ -29,10 +29,11 @@
  function menuMove(dir){const list=items(),n=list.indexOf(document.activeElement);focus(list[(n+dir+list.length)%list.length]);}
  function adjust(dir){const el=document.activeElement;if(el?.tagName==='SELECT'){el.selectedIndex=Math.max(0,Math.min(el.options.length-1,el.selectedIndex+dir));el.dispatchEvent(new Event('change'));}else if(el?.type==='range'){el.value=Math.max(0,Math.min(100,+el.value+dir*5));el.dispatchEvent(new Event('input'));}else menuMove(dir);}
  function back(){if(state.mode==='playing')panel('paused');else if(started&&state.mode!=='complete')begin();else focus($('return'));}
- function poll(dt){let pad;try{const pads=Array.from(navigator.getGamepads?.()||[]);pad=pads.find(p=>p?.connected&&p.mapping==='standard'&&(padId===null||p.index===padId));}catch{}
+ function poll(dt){if(document.hidden||!document.hasFocus()){padSeed=true;return {};}let pad;try{const pads=Array.from(navigator.getGamepads?.()||[]);pad=pads.find(p=>p?.connected&&p.mapping==='standard'&&(padId===null||p.index===padId));}catch{}
   if(!pad){if(padId!==null){padId=null;padOld=[];if(state.mode==='playing'){panel('paused');message('Controller disconnected. Reconnect, then press Menu to resume.');}}return {};}
   const down=Array.from({length:17},(_,i)=>!!pad.buttons[i]?.pressed||pad.buttons[i]?.value>.55);
   if(padId===null){padId=pad.index;padOld=down;return {};}
+  if(padSeed){padSeed=false;padOld=down;return {};}
   const edge=down.map((v,i)=>v&&!padOld[i]);padOld=down;
   if(edge[9]||edge[8]){if(state.mode==='playing')panel('paused');else begin();return {};}
   const axis=i=>{const a=pad.axes[i]||0;return Math.abs(a)<.16?0:Math.sign(a)*(Math.abs(a)-.16)/.84;};
@@ -53,7 +54,7 @@
   $('objective').textContent=state.stage<4?(state.stage+1)+'/4 / '+C.objectives[state.stage].name:'4/4 / Mission complete';const target=C.near(state);$('interaction').hidden=state.mode!=='playing'||!target;if(target)$('interact').textContent='E / X: '+target.label;
   if(clock>toastUntil)$('toast').textContent='';
   if(audio){audio.gain.gain.setTargetAtTime(state.mode==='playing'?+$('volume').value/100:0,audio.a.currentTime,.1);audio.filter.frequency.setTargetAtTime(underwater?240:650,audio.a.currentTime,.15);}
-  art.update(state,state.mode==='playing'?state.elapsed:state.elapsed,quality,quiet);
+  art.update(state,state.elapsed,quality,quiet);
  }
  $('start').onclick=begin;$('pause').onclick=()=>panel('paused');$('interact').onclick=interact;$('touch-action').onclick=interact;$('touch-torch').onclick=()=>state.torch=!state.torch;
  $('checkpoint').onclick=()=>{C.rescue(state);begin();message('Returned to a safe checkpoint. Recovered objectives kept.');};

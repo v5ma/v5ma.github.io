@@ -37,6 +37,7 @@
   box(poolTile,0,-1.64,-17,3.2,.28,4);box(trim,-1.85,1,-17,.4,5,4);box(trim,1.85,1,-17,.4,5,4);box(pale,0,3.5,-17,4,.25,4);
   props.gate=box(metal,0,-.2,-15.15,3.15,2.65,.13);
   for(let i=-6;i<=6;i+=3){box(trim,i,4.9,-6,.18,.3,23);box(pale,i,5.95,-6,2.7,.15,23);box(amber,i,5.82,-7,1.9,.05,6);}
+  box(pale,-3.9,1,-18.65,4.5,10,.3);box(pale,3.9,1,-18.65,4.5,10,.3);
   box(poolTile,0,-4.15,-25,12,.3,12);box(pale,-6.2,1,-25,.35,10,12);box(pale,6.2,1,-25,.35,10,12);
   box(pale,-4,1,-31,4.4,10,.4);box(pale,4,1,-31,4.4,10,.4);box(pale,0,2,-31,3.7,8,.45);
   box(poolTile,0,-4.15,-33.4,3.6,.3,5);box(trim,0,-1.75,-33.25,3.6,.5,4.5);box(poolTile,-2,-2.9,-33.25,.4,2.6,4.5);box(poolTile,2,-2.9,-33.25,.4,2.6,4.5);
@@ -92,7 +93,7 @@
    update.px=s.player.x;update.pz=s.player.z;
    wu.uReflected.value=quality==='light'?0:1;
    if(quality!=='light'&&!submerged&&frame++%(quality==='cinematic'?3:5)===0){
-    mirror.copy(camera);mirror.position.y=2*s.water-camera.position.y;camera.getWorldDirection(look);look.y=-look.y;mirror.up.set(0,-1,0);mirror.lookAt(mirror.position.clone().add(look));mirror.updateMatrixWorld();
+    mirror.copy(camera,false);mirror.position.y=2*s.water-camera.position.y;camera.getWorldDirection(look);look.y=-look.y;mirror.up.set(0,-1,0);mirror.lookAt(mirror.position.clone().add(look));mirror.updateMatrixWorld();
     textureMatrix.copy(bias).multiply(mirror.projectionMatrix).multiply(mirror.matrixWorldInverse);
     const target=renderer.getRenderTarget(),clips=renderer.clippingPlanes;for(const m of waterMeshes)m.visible=false;torch.visible=false;
     try{renderer.clippingPlanes=[new T.Plane(normal,-s.water+.01)];renderer.setRenderTarget(reflection);renderer.render(scene,mirror);reflectionPasses++;}finally{renderer.setRenderTarget(target);renderer.clippingPlanes=clips;for(const m of waterMeshes)m.visible=true;torch.visible=s.torch;}
