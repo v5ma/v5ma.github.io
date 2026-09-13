@@ -1,5 +1,15 @@
 # Leo's Guild - Stillwater Works v0.12.0
 
+## Resume development from another chat
+
+Read [NEXT-SESSION.md](./NEXT-SESSION.md) first. It records the owner's priorities, verified current release, code/save map, controller controls, water-mission walkthrough, recovery lessons and unfinished work. [AAA-ROADMAP.md](./AAA-ROADMAP.md) contains the original 51 production tasks and the current NEXT01-NEXT08 queue. [UPGRADE-CHECKLIST.md](./UPGRADE-CHECKLIST.md) preserves historical task IDs and checkpoints. [CONTINUATION-STATE.json](./CONTINUATION-STATE.json) supplies machine-readable release/evidence metadata, while [PUBLICATION.md](./PUBLICATION.md) records the verified deployment.
+
+Stillwater Works is already published through PR140, merge edd3f3c42c417b154a7f3d65e29def23ed633288. The recovered Steady Steps work is included through Cinder Hollow, not still waiting on PR118. This handoff updates documentation only; the playable build remains v0.12.0. Read the current release.json before the next change and preserve all saves and sibling projects.
+
+The owner's continuing direction is one game with safe Vinci, optional badlands expeditions and later farmlands, with complete Xbox gameplay/UI and calm individually adjustable audio. Pool images were references for actual in-game missions, not an image-generation request. Older notes below preserve their original release-stage descriptions: hostile town rivals, eight Dispatch apps, crossfades and old candidate/version labels must not override the current safe-town, nine-app and one-music-stream rules.
+
+## Play the current water mission
+
 Playable water mission: record The Drowned Workshop in Expeditions / Contracts, enter Cinder Hollow and go west to Stillwater Cistern. Drain the pool, wade down its south ramp, recover the survey lens, refill and return to Vinci. Actual scene refraction, tiled caustics and changing water levels accompany the mission. No generated-image texture is used. Read STILLWATER-WORKS.md for exact scope and controls. Cinder Hollow, safe town, recovered camera/characters, quiet sound and all previous progress remain.
 
 ## Previous release notes

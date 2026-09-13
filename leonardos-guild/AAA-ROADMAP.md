@@ -1,28 +1,37 @@
-# Stillwater Works v0.12.0 checkpoint
-
-The first playable hydraulic water mission is implemented: sluices, time-varying water level, shallow wading, recovered instrument, restored basin and one-time return reward. Scene-colour refraction and procedural caustics are live renderer effects. This is not swimming/diving yet. Owner playtest of the pool/controls follows; then a second connected basin or pressure route can extend it. Existing Cinder Hollow, Steady Steps and all production gates below remain.
-
-# Current regional checkpoint - Cinder Hollow v0.11.0
-
-This release continues the same game, not a spinoff. Steady Steps camera/rig work is recovered. The first badlands region and an enforced town truce advance the regional plan: safe homes/streets/roofs/cellars, a deliberate gateway, three traversable loops, seven persistent creatures, survey/salvage contracts and saved cargo. Future farm play is peaceful stewardship; no farmland map exists yet. Next: owner playtest of the gate/controller/combat loop, then floor-aware town route planning and a richer second expedition. Prior phase gates below remain open unless explicitly satisfied.
-
 # Leo's Guild - AAA-quality production roadmap
 
-Owner: Micah Blumberg / SVGN. Updated September 12, 2026.
+Owner: Micah Blumberg / SVGN. Updated September 13, 2026.
 
-This is the continuing production checklist for the EXISTING game in leonardos-guild/. It is not a new prototype, a claim that the current game is AAA, or a percentage-complete estimate. The goal is polished, coherent, ambitious play rather than a larger feature count. UPGRADE-CHECKLIST.md preserves the original density tasks D01-D22 and art/service tasks A01-A06/NET01-NET03. This document orders those goals by dependencies and acceptance evidence.
+Start a new chat with [NEXT-SESSION.md](./NEXT-SESSION.md). [CONTINUATION-STATE.json](./CONTINUATION-STATE.json) records the machine-readable release/evidence checkpoint. This file is the ordered production checklist for the EXISTING game in leonardos-guild/, not a new prototype, a claim of AAA quality, or a percentage-complete estimate. UPGRADE-CHECKLIST.md preserves the historical D01-D22, A01-A06 and NET01-NET03 tasks. The 51 original F/V/C/W/S/P/Q/R tasks below retain their identifiers; the eight NEXT items are a focused continuation queue, not eight newly shipped systems.
 
-Read this file, AGENTS.md, release.json, the latest merged release PR and the latest player feedback before each continuation. Never overwrite another game's concurrent updates. Preserve this city, all previous missions, 49 multilevel houses, rooftop/undercity paths, old saves, vehicles and both controller profiles.
+Read current master, release.json, AGENTS.md, this file, the latest merged release PR and player feedback before each continuation. Preserve all sibling projects, the same city, previous missions, 49 multilevel houses, rooftop/undercity paths, old saves, vehicles and both controller profiles. Do not substitute an image or unmerged branch for a requested playable upgrade.
 
-## Release register and current slice
+## Current release, decisions and evidence
 
-The verified baseline is Resonance v0.8.0, PR100, followed by the quieter-audio correction in PR104 (merge 04f97c95). The correction retained separate music/effects/environment controls and introduced Quiet/Balanced/Full cue density and strictly single-stream music. Quiet audio is a product requirement, not a temporary test setting.
+PUBLISHED AND VERIFIED: Stillwater Works v0.12.0, PR140, merge edd3f3c42c417b154a7f3d65e29def23ed633288. Pages run 34739992522 and independent verification run 34739992812 succeeded. The original receipt verified 241 files, all 50 audio assets and the existing homepage entry. Those hashes match completed native water acceptance. See PUBLICATION.md for source identities and historical-count interpretation.
 
-Living Stories v0.9.0 advances D03, D06 and D16: two authored six-step cases, alternate roof/cellar evidence routes, a reversible shutter puzzle, evidence-based reasoning, peaceful settlement choices and persistent visible household outcomes. It does not close those entire roadmap items. No new automatic story audio or forced time limit is introduced. The release PR must contain the final test-source identities and post-merge public-file receipt; code or this register alone is not deployment proof.
+Stillwater adds the peaceful Drowned Workshop contract: validated sluices, water draining/refilling over simulation time, a physical ramp, shallow wading, recovered lens, restored basin and a one-time return reward. Refraction and moving tile caustics are live renderer effects. Free swimming/diving/boats are NOT included. Cinder Hollow v0.11.0 supplies safe-town migration, a deliberate expedition gate, nineteen trail segments, seven persistent creatures, salvage and the three earlier contracts. The fourth contract is Stillwater. Farmlands remain planned.
 
-States: [x] means the narrowly worded implemented baseline exists, not that a whole AAA milestone is certified. [ ] means its full acceptance criterion remains open. A phase closes only when its evidence is retained and the user has playtested it. Model fixtures, browser journeys, physical hardware tests, subjective listening and publication verification are different evidence types.
+Steady Steps v0.10.0 was recovered into Cinder Hollow rather than published by independently merging PR118; that old PR is closed without merge. Its shared original jointed characters, displacement-driven poses, continuous camera-boom checks and bookcase cutaways advance parts of C01-C03. Finished animation, full foot planting and broad physical-device camera review remain open. Living Stories v0.9.0, PR109, supplies two six-step cases with alternate roof/cellar evidence and persistent outcomes; D03/D06/D16 remain broader goals. Resonance PR100 was followed by the quiet-audio correction PR104. Old release notes describing overlapping score crossfades are historical, not the desired current behavior.
 
-Steady Steps v0.10.0 advances parts of C01-C03: a shared original articulated character sample, displacement-driven poses, and continuous proxy-bound camera collision with floor-specific handling. These tasks remain open below because finished animation, foot planting and broad human camera review are not completed by this slice. See STEADY-STEPS.md and its release PR for exact acceptance. Quiet audio and every earlier adventure remain.
+The owner's continuing direction is ONE game with safe town life, optional dangerous badlands and later farmland play, sharing character/inventory/progression. All town floors are protected; existing rival requirements use in-person peaceful resolution without losing old prerequisites or rewards. Do not resurrect mandatory town attacks while implementing old watch/crime goals. Farmland mechanics such as irrigation, livestock and a peaceful artisan economy are proposed details, not implemented commitments. The pool/fantasy screenshots are visual references for original in-game content, not an image-generation request or license to copy another game's art.
+
+Quiet audio is mandatory: independent music/effects/environment controls, Quiet/Balanced/Full density, a quiet preset and strictly one music stream. Preserve controller-only navigation, confirmations, text entry, nested back actions, reload access and reconnect behavior. Physical Xbox USB/Bluetooth, subjective listening and device performance remain separate evidence requirements.
+
+States: [x] means the narrowly worded implemented baseline exists, not that an entire AAA phase is certified. [ ] means its full acceptance criterion remains open. A phase closes only after retained evidence and owner playtesting. Automated fixtures, fresh/resumed browser journeys, visual review, real hardware and publication verification are different evidence types.
+
+## Focused next-session queue
+
+This sequence records the current continuation plan; it does not claim that the owner has playtested or approved the latest release. Address actual feedback and release-blocking defects before choosing more content. The proposed next content slice is NEXT03, without losing the town/routing and bespoke-house priorities.
+
+- [ ] NEXT01 Record the owner's v0.12.0 playtest: entering via the homepage, finding Expeditions, reaching the cistern, controller-only drain/wade/recover/refill/report, actual reload and calm audio. Record device/browser/controller and defects. No owner sign-off is recorded yet. Maps to F05/F07, V05 and Q03/Q07.
+- [ ] NEXT02 Harden the existing water/camera slice where tests or play reveal gaps: low/balanced/high quality, pool corners/rims and near-water camera, paused and interrupted drain/refill, viewport changes, repeated region returns and resource bounds. Confirm no silent unplayable depth state and no notification spam. These are validation tasks, not a list of confirmed defects. Maps to C03, P02-P06 and Q02/Q05.
+- [ ] NEXT03 Build one second sluice-linked basin or pressure-controlled route with an alternate physical approach and a worthwhile saved consequence. Use explicit prerequisites, reversible mistakes, controller UI, one-time rewards and no new compulsory sound stream. Proposed next feature, not already implemented. Maps to D06/D09, S01-S03 and W03.
+- [ ] NEXT04 Build the town-wide floor-aware route graph and route-line planner. Existing field trails and next-stair markers are partial foundations, not completion. Audit real doors, locked north/inn prerequisites, roofs, cellars and alternate streets. Maps to W01-W03 and D08/D09.
+- [ ] NEXT05 Develop genuinely distinct frontier enemy roles and more varied optional adventures: fair telegraphs, obstacle-aware pursuit/retreat, difficulty/accessibility and peaceful alternatives where appropriate. Current wisps are not a finished ranged/support class. Keep enemies and projectiles out of safe zones. Maps to C04-C06 and S01/S02.
+- [ ] NEXT06 Improve an authored sample of existing houses, then scale worthwhile interior work and consequences across districts. Preserve every house's four-floor access; distinguish eight reused craft patterns from bespoke stories. Do not replace the town with a new map. Maps to V04/V05, D03/D07/D16 and S01/S02.
+- [ ] NEXT07 Design the later farmland region in the same game, with a peaceful session loop. Gathering, irrigation, crops/animals, deliveries and artisan trade are candidates; exact scope is undecided. No current map, farm purchase or offline penalty system is implied. Build after the current region loop and quality gates are satisfactory. Maps to W06, D04/D14 and S03/S07.
+- [ ] NEXT08 Consider free swimming/diving or boats only after actual movement, depth transitions, controller bindings, camera, animation, accessibility, recovery and saves are implemented/tested. Do not advertise the current drain-and-wade mission as those systems. Maps to C02/C03, W03, S05 and Q02/Q03.
 
 ## Phase 0 - Stable, calm, controller-complete foundation
 
@@ -63,7 +72,7 @@ Dependencies: Phase 1 direction approved; source/redistribution rights establish
 - [ ] C05 Make rivals use obstacle-aware pursuit, investigation, retreat and return-to-duty without crossing walls or floors.
 - [ ] C06 Add difficulty/accessibility options that alter threats predictably, not undocumented physics or reward multipliers.
 
-Exit: frame-by-frame and controller play review confirms consistent motion, readable threats, fair defense and no camera failures through the reference slice.
+Exit: frame-by-frame and controller play review confirms consistent motion, readable threats, fair defense and no camera failures through the reference slice. Hostile encounter work applies to dangerous regions, not ordinary safe-town floors.
 
 ## Phase 3 - Deliberate traversal and living districts
 
@@ -85,7 +94,7 @@ Dependencies: Phases 1-3 gameplay foundations; keep earlier D01-D22 goals.
 - [ ] S01 Add authored civic work, merchant disputes, missing possessions and investigations with at least two meaningfully different solutions where the story warrants them.
 - [ ] S02 Build persistent consequences that affect residents, services, repaired objects or access rather than only a completion counter.
 - [ ] S03 Add inventory/crafting recipe discovery and distinct skill solutions with explicit resource costs and no duplicated rewards.
-- [ ] S04 Develop evidence-aware, proportional watch behavior with observation, lost sight, de-escalation and peaceful resolution; do not label local commotion a finished police system.
+- [ ] S04 Develop evidence-aware, proportional watch behavior with observation, lost sight, de-escalation and peaceful resolution. Preserve nonviolent safe-town rules; any hostile pursuit belongs in explicitly dangerous regions. Do not label local commotion a finished police system.
 - [ ] S05 Expand bicycle/cargo/tandem prototypes while retaining stock handling; validate stopping, slopes, turning, parking and recovery for each.
 - [ ] S06 Introduce flight only after takeoff, steering, collision, landing and recovery are implemented and tested. Existing blueprints are not flight.
 - [ ] S07 Explore property/vehicle economics and real armor progression only with useful gameplay and bounded save rules, not decorative shop screens.
@@ -129,8 +138,8 @@ Dependencies: beta sign-off and final rights/security review.
 - [ ] R03 Record owner acceptance and next priorities from real play, not test-count marketing.
 - [ ] R04 Authoritative co-op, accounts, moderation, trades and entitlements require separate security design and explicit service authorization. No MMO claims from client-only state.
 
-## Next-upgrade order
+## Release discipline and history
 
-After Living Stories: first playtest the two cases and quiet audio, then improve camera collision and a coherent animated character sample (C01-C03), then create the floor-aware route planner (W01-W02). Add more bespoke houses only after that sample is approved. Preserve both peaceful endings and all earlier content.
+Each new release must name the task IDs it advances, the exact narrow scope, tests actually run, remaining human/hardware checks, merge commit and successful public verification. Never mark an entire phase complete because one slice or one automated test passed. The pending phase-7 targets are product-release gates, not a claim that the current browser build has never been deployed.
 
-Each new release must name the task IDs it advances, the exact narrow scope, the tests actually run, the remaining human/hardware checks, the merge commit and the successful public verification. Never mark an entire phase complete because one slice or one automated test passed.
+The previous next-upgrade sequence was Living Stories playtest, C01-C03 sample, then W01-W02. The sample and first water/region slices have since shipped; the current NEXT queue above supersedes that stale ordering without declaring the unfinished animation, routing or bespoke-house goals complete. Historical task text and release-stage counts remain in UPGRADE-CHECKLIST.md. Do not rerun old integration scripts or re-merge recovered branches over current master.

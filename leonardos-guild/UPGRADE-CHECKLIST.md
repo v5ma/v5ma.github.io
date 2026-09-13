@@ -1,3 +1,17 @@
+# Cross-chat handoff checkpoint - September 13, 2026
+
+Start with [NEXT-SESSION.md](./NEXT-SESSION.md). The active 51-task production plan and new NEXT01-NEXT08 continuation queue are in [AAA-ROADMAP.md](./AAA-ROADMAP.md). [CONTINUATION-STATE.json](./CONTINUATION-STATE.json) records release identities, evidence metadata, save rules and pending tasks. [PUBLICATION.md](./PUBLICATION.md) now records the verified Stillwater Works v0.12.0 publication instead of leaving the reader at an old candidate label.
+
+- [x] HANDOFF01 Record published v0.12.0, PR140 merge edd3f3c42c417b154a7f3d65e29def23ed633288, Pages run 34739992522 and verification run 34739992812. The original receipt matched 241 files and the homepage card. Historical file counts do not freeze future documentation updates.
+- [x] HANDOFF02 Preserve the owner's safe-town / optional-badlands / later-farmland direction, multilevel-house and route-density goals, complete Xbox operation, quiet audio and actual water-gameplay request. Pool references are not an image-generation task.
+- [x] HANDOFF03 Record recovery completion: Steady Steps from PR118 shipped through Cinder Hollow PR135; PR118 is closed. Do not replay old branches or one-time preparation scripts over current master.
+- [x] HANDOFF04 Store the code map, save keys, controller context changes, actual water mission route and reversible valve solution, acceptance scope and deployment/retry procedure in the restart guide.
+- [ ] HANDOFF05 Record the owner's actual v0.12.0 playtest, physical Xbox/USB/Bluetooth behavior, subjective listening and target-device performance. No new human approval is inferred from this documentation task.
+
+This edit is documentation-only: no new gameplay release, changed runtime/test/asset bytes or cleared saves. The original checkpoint text and task identifiers follow unchanged. Any old statement labeled "current", "candidate", "next", overlapping crossfade, eight Dispatch apps, hostile town rivals or six interiors is a historical release-stage statement, not the current state. The live game has safe town, nine Dispatch apps and 49 multilevel households. Current safe-town requirements constrain D15/D16; they do not authorize reinstating mandatory town combat. Follow the NEXT queue for current priorities without marking the broader unfinished D/A/NET goals complete.
+
+## Original checklist and historical checkpoints - preserved
+
 # Stillwater Works v0.12.0
 
 Added one actual waterworks contract with reversible valves, physical ramp/wading, depth-gated access and persisted restoration. The flooded pool is rendered in-engine, not image generated. Read STILLWATER-WORKS.md and the release PR for native tests/publication. Preserve Quiet density and one music stream. Future swimming and farmland remain open tasks.

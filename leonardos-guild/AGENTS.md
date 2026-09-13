@@ -1,3 +1,11 @@
+# Cross-chat continuation entry point - September 13, 2026
+
+Read NEXT-SESSION.md first, then AAA-ROADMAP.md, CONTINUATION-STATE.json, release.json and PUBLICATION.md. Stillwater Works v0.12.0 is the verified published baseline at this checkpoint (PR140); Cinder Hollow includes the recovered Steady Steps work. PR118 is closed and must not be replayed as an unfinished release. Current owner decisions and the NEXT01-NEXT08 queue supersede historical candidate labels and old next-step ordering below.
+
+The owner's requirements include one game with safe towns, optional badlands and later farmlands; worthwhile multilevel houses and multiple routes; complete Xbox gameplay/UI without a mouse; preserved saves; independent audio volumes, notification-density controls and one music stream; actual playable water missions rather than generated images; and commit/publish/live verification after requested feature work. Physical controller testing, listening, performance and owner playtest approval are not implied by software tests. This handoff changes documentation only.
+
+## Historical continuation notes and still-applicable subsystem rules
+
 # Stillwater Works continuation
 
 cistern-core.mjs owns the bounded hydraulic checkpoint, exact south ramp, depth-limited walking and validated in-person actions. cistern-art.mjs owns a reused scene-colour refraction target and procedural tile/caustic shaders. Do not add auto-playing sound, remote valve operation, real-time drowning or advertised swimming without implementing/testing it. Old quests, safe towns and badlands remain. Test actual native shader compilation and scene captures, not a concept image.

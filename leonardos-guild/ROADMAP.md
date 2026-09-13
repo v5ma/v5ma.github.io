@@ -1,3 +1,13 @@
+# Current roadmap entry point - September 13, 2026
+
+Read [NEXT-SESSION.md](./NEXT-SESSION.md) to resume the existing Leo's Guild. The active ordered production checklist and NEXT01-NEXT08 queue are in [AAA-ROADMAP.md](./AAA-ROADMAP.md). [UPGRADE-CHECKLIST.md](./UPGRADE-CHECKLIST.md) preserves earlier task IDs and release history. [PUBLICATION.md](./PUBLICATION.md) and [CONTINUATION-STATE.json](./CONTINUATION-STATE.json) record the verified Stillwater Works v0.12.0 release and recovery evidence.
+
+The current game includes safe Vinci, Cinder Hollow badlands, recovered Steady Steps camera/characters and the playable Drowned Workshop water mission. One shared game with later farmlands is the accepted direction, not a spinoff. Water pictures are references for game code, not image generation. Preserve complete Xbox gameplay/UI, all prior progress, individually adjustable calm audio and one music track at a time. Farmland, swimming/diving, piloted flight and multiplayer are not implemented by this checkpoint.
+
+The material below is the early roadmap, retained for history. Its version counts, staff encounter and "Next" heading are not current release status or permission to restore hostile town combat. Current safe-town and publication requirements take precedence.
+
+## Early roadmap - preserved
+
 # Leonardo’s Guild: growing the same world
 
 ## Implemented foundation
