@@ -1,8 +1,9 @@
 /* Original tiled bathhouse art using the game's existing Three r177 renderer. */
+import * as T from './vendor/three.webgpu.js';
 import {POOLS,VALVE,RAIL,DRAIN_TICKS} from './bathhouse-core.mjs';
 let live=null;
 export function populate({course,m,root,kit,metal,sign}){
- const T=m.THREE,{uniform,positionWorld,vec2,vec3,sin,cos,fract,step,mix,color,normalMap,normalView,positionViewDirection,uv,smoothstep}=T.TSL;
+ const {uniform,positionWorld,vec2,vec3,sin,cos,fract,step,mix,color,normalMap,normalView,positionViewDirection,uv,smoothstep}=T.TSL;
  const gy=-2160,length=course.width*36,clock=uniform(0),waterObjects=[],portals=[];
  const stats={waterDraws:0,tileDraws:0,portalDraws:0,pools:POOLS.length,railVisible:false,waterDrop:0};
  const add=(g,mat,name,x,y,z)=>{const o=m.makeSingle(g,mat);o.name=name;o.position.set(x,y,z);o.frustumCulled=true;root.add(o);return o;};
@@ -35,6 +36,16 @@ export function populate({course,m,root,kit,metal,sign}){
   plane(p.width,180,deep,'Pool submerged wall',p.x,gy-70,-550);
   for(const x of [p.x-p.width/2,p.x+p.width/2]){const o=plane(430,170,deep,'Pool end wall',x,gy-70,-335);o.rotation.y=Math.PI/2;metal.box(x,gy+12,-332,24,25,460,'#d3ccb6');}
   const water=plane(p.width-16,412,waterMat,'Tideglass refractive-style water',p.x,gy+(p.sluice?94:-8),-332,-Math.PI/2);water.renderOrder=12;water.onAfterRender=()=>stats.waterDraws++;waterObjects.push({mesh:water,sluice:p.sluice});
+  if(p.sluice){
+   // Mirror Pool is a raised pressure basin: contain its high initial water
+   // behind a glazed retaining wall, rather than a floating unbounded sheet.
+   const glass=new T.MeshPhysicalNodeMaterial({name:'Mirror Pool retaining glass',color:'#7abfb5',transparent:true,opacity:.2,depthWrite:false,side:T.DoubleSide,roughness:.16,metalness:.08,clearcoat:.7});
+   const front=plane(p.width-20,108,glass,'Raised pool retaining glass',p.x,gy+52,-114);front.renderOrder=15;
+   plane(p.width,112,deep,'Raised pool rear retaining wall',p.x,gy+50,-552);
+   for(const x of[p.x-p.width/2,p.x+p.width/2]){const wall=plane(430,112,deep,'Raised pool side retaining wall',x,gy+50,-332);wall.rotation.y=Math.PI/2;metal.box(x,gy+110,-332,26,12,460,'#d4d3bb');}
+   metal.box(p.x,gy+110,-111,p.width,12,14,'#e2d5b7');metal.box(p.x,gy+110,-556,p.width,12,16,'#d8d2b7');
+   for(let x=p.x-p.width/2+20;x<=p.x+p.width/2-20;x+=160)metal.box(x,gy+54,-109,8,108,10,'#bdbead');
+  }
   // Chrome ladders, below-water rungs and broad stone pool lips.
   const lx=p.x-p.width*.35;
   for(const dx of[-22,22]){metal.rod([lx+dx,gy-120,-125],[lx+dx,gy+58,-125],3.2,'#cedbd5');metal.rod([lx+dx,gy+58,-125],[lx+dx,gy+58,-66],3.2,'#cedbd5');metal.rod([lx+dx,gy+58,-66],[lx+dx,gy+5,-66],3.2,'#cedbd5');}

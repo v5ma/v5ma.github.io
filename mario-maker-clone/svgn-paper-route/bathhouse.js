@@ -1,6 +1,7 @@
 /* A playable destination in the existing campaign and a controller-safe portal atlas. */
 import {BUILD,ID,RAIL,STORE,SPEC,VALVE,DRAIN_TICKS,make,fresh,operate,canOperate,observe,sanitize,settle,status} from './bathhouse-core.mjs';
 import * as Art from './bathhouse-art.js';
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 const prior=GroundCampaign,catalog=DeliveryCampaign,index=catalog.routes.length,groundIndex=prior.specs.length;
 const build=(i,T)=>i===index?make(T):catalog.build(i,T),makeGround=(n,T)=>n===groundIndex?make(T):prior.make(n,T);
 const data=make(__gameRefs.T),{cells,ct,...info}=data;
@@ -45,7 +46,7 @@ const sceneBuild=SkyVisual.build;SkyVisual.build=function(m){const root=sceneBui
  for(const o of root.children){if(o.renderOrder===-100||o.count===80)o.visible=false;if(o.isDirectionalLight)o.intensity*=.57;if(o.isAmbientLight)o.intensity=.65;}
  }return root;
 };
-const sceneUpdate=SkyVisual.update;SkyVisual.update=function(...args){const r=sceneUpdate.apply(this,args);if(here()){Art.update(run,__ground.state.steps,!matchMedia('(prefers-reduced-motion: reduce)').matches&&window.Prismatic?.settings.motion!==false);const b=__cloudview.root.children.find(o=>o.children?.some(c=>c.material?.map)&&o.position.z===-700);if(b)b.visible=false;}return r;};
+const sceneUpdate=SkyVisual.update;SkyVisual.update=function(...args){const r=sceneUpdate.apply(this,args);if(here()){Art.update(run,__ground.state.steps,!reducedMotion.matches&&window.Prismatic?.settings.motion!==false);const b=__cloudview.root.children.find(o=>o.children?.some(c=>c.material?.map)&&o.position.z===-700);if(b)b.visible=false;}return r;};
 const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('./bathhouse.css',import.meta.url);document.head.append(style);
 const atlas=document.createElement('dialog');atlas.id='bathhouse-atlas';atlas.setAttribute('aria-labelledby','bathhouse-atlas-title');atlas.innerHTML='<header><div><small>SKY CYCLE / PORTAL DESTINATIONS</small><h2 id="bathhouse-atlas-title">Tideglass Baths</h2></div><button id="bathhouse-close" class="delivery-btn">Back</button></header><div class="bathhouse-poster" aria-hidden="true"><span>TIDEGLASS</span><i>THE WATER DESTINATION</i></div><p>Ride the dry promenade through a vaulted, tiled bathhouse. Open the brass sluice wheel to lower Mirror Pool and reveal an optional waterline rail.</p><p id="bathhouse-record" role="status"></p><p id="bathhouse-departure">Entering starts a new route run. Banked medals, discoveries and saved Workshop drafts stay intact. Unfinished route progress is not banked by traveling.</p><div class="bathhouse-actions"><button id="bathhouse-enter" class="delivery-btn">Enter Tideglass Baths</button><button id="bathhouse-return" class="delivery-btn">Start Sunrise Borough</button></div><p>E or D-pad Down operates the nearby sluice. Space or A jumps. The dry road always reaches the exit portal. B closes this window.</p>';
 document.body.append(atlas);let resumeOwned=false,focusReturn=null;
@@ -70,6 +71,6 @@ if(__delivery.state.menu)__delivery.showMenu();
 window.SkyCycleBathhouse=Object.freeze({build:BUILD,id:ID,index,show:showAtlas,get state(){return run?{...run}:null;},get records(){return {...record};},get saveOK(){return saveOK;},get art(){return Art.stats();}});
 // Direct playable destination link, resolved only after campaign and input are ready.
 if(new URLSearchParams(location.search).get('destination')===ID){let n=0;const timer=setInterval(()=>{if(++n>1200){clearInterval(timer);return;}if(window.PaperDeliveryCampaign?.status==='ready'&&window.SkyCycleFlightDeck&&window.SkyCycleCompass){clearInterval(timer);travel(index);}},50);}
-window.Bathhouse2D={draw(g,cx,cy,w,h){Art.draw2D(g,cx,cy,w,h,run,matchMedia('(prefers-reduced-motion: reduce)').matches?0:__ground.state.steps);}};
+window.Bathhouse2D={draw(g,cx,cy,w,h){Art.draw2D(g,cx,cy,w,h,run,reducedMotion.matches?0:__ground.state.steps);}};
 // A slightly elevated scenic camera reveals the pools without changing the physics plane.
-const oldCamera=CloudDepthCamera.forFrame;CloudDepthCamera.forFrame=function(o,v){const camera=oldCamera(o,v);if(here()&&camera.isPerspectiveCamera){const x=player.x+110,y=-player.y+90;camera.position.set(x+180,y+280,850);camera.lookAt(x,y,0);camera.fov=Math.atan(640/2/914)*360/Math.PI;camera.updateProjectionMatrix();camera.updateMatrixWorld();}return camera;};
+const oldCamera=CloudDepthCamera.forFrame;CloudDepthCamera.forFrame=function(o,v){const camera=oldCamera(o,v);if(here()&&camera.isPerspectiveCamera){const x=player.x+110,y=-player.y+90;camera.position.set(x+180,y+280,850);camera.lookAt(x,y,0);camera.fov=Math.atan((window.__network?.wide?1050:640)/2/914)*360/Math.PI;camera.updateProjectionMatrix();camera.updateMatrixWorld();}return camera;};
