@@ -66,7 +66,7 @@ function act(action){if(action==='quickcraft'){if(mode==='play')setMode('pack');
  if(action==='dodge'){if(p.waterMode==='swim')surfaceWater(state);else{const v=motion();dodgeOrVault(state,v.x,v.z);}}
 }
 function motion(){let x=(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0)+touch.x+(pad.move?.[0]||0),y=(keys.has('KeyW')?1:0)-(keys.has('KeyS')?1:0)-touch.z-(pad.move?.[1]||0),l=Math.max(1,Math.hypot(x,y));x/=l;y/=l;const f=forward(view.yaw);return {x:Math.cos(view.yaw)*x+f.x*y,z:-Math.sin(view.yaw)*x+f.z*y};}
-const aquaticUI=createAquaticUI({get state(){return state;},get mode(){return mode;},get pad(){return pad;}});
+const aquaticUI=createAquaticUI({settings,get state(){return state;},get mode(){return mode;},get pad(){return pad;}});
 const firstLightUI=createFirstLightUI({settings,get state(){return state;},get mode(){return mode;},get scene(){return scene;},get pad(){return pad;},persist(){write(SETTINGS,JSON.stringify(settings));}});
 const fieldReady=createFieldReadyUI({saves,settings,get state(){return state;},get mode(){return mode;},equip:id=>selectEquipment(state,id),continueChapter:id=>start(false,false,id)});
 const stealth=createStealthUI($('hud'));
