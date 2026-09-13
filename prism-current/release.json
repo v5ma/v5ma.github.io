@@ -1,9 +1,10 @@
 {
-  "version": "0.7.0",
+  "version": "0.8.0",
   "name": "Prism Current",
   "date": "2026-09-12",
   "engine": "A-Frame 1.8.0",
-  "edition": "Spectral Observatory",
-  "scope": "Three spectral studio themes, dichroic inner jewel seeds, diffraction halo and bounded hit-triggered floor interference. Classic/Light/headset fallback, quiet motion and saved controller-accessible settings. Existing songs, lessons, practice and scores retained; physical performance/comfort review open.",
-  "checklist": "AAA_CHECKLIST.md"
+  "edition": "Floodgate Recovery",
+  "scope": "Playable optional water expedition: power, drainage, diving, prism retrieval and return, planar reflections, checkpoints and controller/keyboard/touch controls. All rhythm modes and scores retained.",
+  "checklist": "AAA_CHECKLIST.md",
+  "mission": "water-mission/index.html"
 }
