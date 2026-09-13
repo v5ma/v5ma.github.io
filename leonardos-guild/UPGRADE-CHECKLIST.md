@@ -1,3 +1,7 @@
+# Stillwater Works v0.12.0
+
+Added one actual waterworks contract with reversible valves, physical ramp/wading, depth-gated access and persisted restoration. The flooded pool is rendered in-engine, not image generated. Read STILLWATER-WORKS.md and the release PR for native tests/publication. Preserve Quiet density and one music stream. Future swimming and farmland remain open tasks.
+
 # Cinder Hollow v0.11.0 recovery checkpoint
 
 Recovered the interrupted Steady Steps camera/characters and implemented the first safe-town/badlands region integration. Read CINDER-HOLLOW.md. New region rules have their own tests; legacy raw reducer fixtures are not proof of live town safety. Preserve quiet sound, both controller profiles and old progression. Actual acceptance/merge/publication receipts belong in the release PR. Farmlands stay on the roadmap.

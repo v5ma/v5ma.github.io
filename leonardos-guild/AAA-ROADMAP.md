@@ -1,3 +1,7 @@
+# Stillwater Works v0.12.0 checkpoint
+
+The first playable hydraulic water mission is implemented: sluices, time-varying water level, shallow wading, recovered instrument, restored basin and one-time return reward. Scene-colour refraction and procedural caustics are live renderer effects. This is not swimming/diving yet. Owner playtest of the pool/controls follows; then a second connected basin or pressure route can extend it. Existing Cinder Hollow, Steady Steps and all production gates below remain.
+
 # Current regional checkpoint - Cinder Hollow v0.11.0
 
 This release continues the same game, not a spinoff. Steady Steps camera/rig work is recovered. The first badlands region and an enforced town truce advance the regional plan: safe homes/streets/roofs/cellars, a deliberate gateway, three traversable loops, seven persistent creatures, survey/salvage contracts and saved cargo. Future farm play is peaceful stewardship; no farmland map exists yet. Next: owner playtest of the gate/controller/combat loop, then floor-aware town route planning and a richer second expedition. Prior phase gates below remain open unless explicitly satisfied.

@@ -1,3 +1,9 @@
+# Leo's Guild - Stillwater Works v0.12.0
+
+Playable water mission: record The Drowned Workshop in Expeditions / Contracts, enter Cinder Hollow and go west to Stillwater Cistern. Drain the pool, wade down its south ramp, recover the survey lens, refill and return to Vinci. Actual scene refraction, tiled caustics and changing water levels accompany the mission. No generated-image texture is used. Read STILLWATER-WORKS.md for exact scope and controls. Cinder Hollow, safe town, recovered camera/characters, quiet sound and all previous progress remain.
+
+## Previous release notes
+
 # Leo's Guild - Cinder Hollow v0.11.0
 
 Recovered Steady Steps plus the first playable badlands region. D-pad Up -> Expeditions opens the new notebook. Mark the expedition gate at Vinci's south entrance, dismount, and press X there to depart. Vinci is safe from combat, including its rooftops/cellars. Original rival requirements use X and a peaceful truce at their actual positions; Rocco still needs the warrant and evidence. All earlier saves and quiet audio preferences are retained.
