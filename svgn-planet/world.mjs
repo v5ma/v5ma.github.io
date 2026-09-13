@@ -1,3 +1,4 @@
+import {tidalReserve} from './tidewater-layout.mjs';
 import {buildCity} from './city-data.mjs';
 /* Shared spherical world coordinates, plus an authored multi-street neighborhood. */
 export const RADIUS=880;
@@ -34,6 +35,7 @@ export function world(){const specs=[['post','SVGN delivery depot',-9,-1,'#efca8
  const rocks=[[65,-46,21],[100,54,27],[140,48,28],[35,51,18],[220,-30,15]].map(([t,x,size],i)=>({n:street(t,x),size,id:'rock-'+i}));const stars=Array.from({length:24},(_,i)=>({id:'stamp-'+i,n:street(7+i*7.5,[0,-20,20,36][i%4])}));const stuntGates=[{id:'stunt-1',name:'Oak sprint gate',n:street(42,-20),minSpeed:14},{id:'stunt-2',name:'Market speed gate',n:street(90,20),minSpeed:14},{id:'stunt-3',name:'Ridge boost gate',n:street(114,36),minSpeed:16}];
  const mirror=homes.map((h,i)=>({...h,id:'scenery-main-'+i,type:'cabin',side:-h.side,x:-h.x,n:street(h.t,-h.side*9.3),mail:street(h.t,-h.side*5.1),color:['#d5c9b8','#e2c8a1','#bdd0c2'][i%3]}));const branchScenery=bonusStops.map((h,i)=>({...h,id:'scenery-branch-'+i,bonus:false,sign:null,type:'cabin',x:h.roadX-h.side*8.4,n:street(h.t,h.roadX-h.side*8.4),mail:street(h.t,h.roadX-h.side*4.1),floors:i%3===0?3:i%2===0?2:1,color:['#d8c7a8','#aac2bd','#c8b3a8','#b7c3d0'][i%4]}));const buildings=[...sites,...mirror,...bonusStops,...branchScenery];return {sites,homes,bonusStops,buildings,trees,rocks,stars,stuntGates,roads:ROADS,roadLabels:ROAD_LABELS};}
 export const WORLD=world();
+WORLD.trees=WORLD.trees.filter(t=>!tidalReserve(t.n));
 
 export const CITY=buildCity(RADIUS);
 WORLD.bonusStops.push(...CITY.districts);

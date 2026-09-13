@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "version": "0.9.0",
+  "version": "0.10.0",
   "title": "Neighborhood Missions: path to a production-quality title",
-  "reviewed": "2026-09-12",
+  "reviewed": "2026-09-13",
   "currentMilestone": "M1",
   "qualityClaim": "Stylized browser-game vertical slice. AAA-quality ambition, not AAA certification.",
   "statusDefinitions": {
@@ -783,6 +783,60 @@
         "evidence/v0.9.0.json"
       ],
       "lastReviewed": "2026-09-12"
+    },
+    {
+      "id": "WATER-01",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "implemented",
+      "title": "Three playable waterfront excursions",
+      "acceptance": "Pool service requires proximity, braking, three skims and a valve-routing puzzle. Canal courier uses a controllable skiff, ordered buoys, collection, docking and shore handoff. Boardwalk relay has ten swept checkpoints. Rewards and times persist without replacing the old city job.",
+      "next": "Run full model and controller acceptance; retain exact results.",
+      "dependencies": [
+        "SAVE-01",
+        "INPUT-01"
+      ],
+      "evidence": [
+        "../tests/tidewater.test.mjs"
+      ],
+      "owner": "Design / engineering / QA",
+      "lastReviewed": "2026-09-13"
+    },
+    {
+      "id": "WATER-02",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "implemented",
+      "title": "Refractive Seaglass Pool and Lantern Canal",
+      "acceptance": "Two bounded PBR water surfaces show analytical tiled-basin refraction, depth tint, animated caustic-style light and boat/skim ripple impulses. Existing environment reflections are not live-scene mirrors. No swimming is implemented.",
+      "next": "Review actual shader captures in daylight, rain and blue hour; physical GPU/art approval stays open.",
+      "dependencies": [
+        "SAVE-01",
+        "INPUT-01"
+      ],
+      "evidence": [
+        "../tests/tidewater.test.mjs"
+      ],
+      "owner": "Design / engineering / QA",
+      "lastReviewed": "2026-09-13"
+    },
+    {
+      "id": "WATER-03",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "implemented",
+      "title": "Controller-first dock, recovery and water menus",
+      "acceptance": "X works and Y explicitly boards/docks at low speed. Every water dialog supports B. Saves made in the skiff resume safely at the pier. Original riding speed and controls remain.",
+      "next": "Test entry, all activities, safe exit, reload, context recovery and physical Xbox input.",
+      "dependencies": [
+        "SAVE-01",
+        "INPUT-01"
+      ],
+      "evidence": [
+        "../tests/tidewater.test.mjs"
+      ],
+      "owner": "Design / engineering / QA",
+      "lastReviewed": "2026-09-13"
     }
   ],
   "sources": [

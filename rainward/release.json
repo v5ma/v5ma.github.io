@@ -1,14 +1,14 @@
 {
-  "version": "0.12.0",
-  "build": "rainward-rainworn-20260912",
+  "version": "0.13.0",
+  "build": "rainward-undertow-20260912",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Add locally hosted Quaternius CC0 female and male face, hand and hair meshes fitted to the existing rig and original tailored outfits",
-    "Retain all crouch, crawl, aim, reload, melee, healing, crafting and death poses with the real existing weapons and unchanged collision",
-    "Add composed wet-surface film, patchy roughness and a clear-coat rain response, plus fabric sheen on adapted clothing",
-    "Provide controller-operable detailed-human and rain-film switches, recoverable asset-loading fallback and bounded distance detail",
-    "Preserve six expeditions, both controller layouts, chapter saves, field records, required objectives and original licensed assets"
+    "Add Northlight Natatorium as a seventh expedition centered on shallow wading, deep swimming and diving",
+    "Add oxygen, dive/surface controls, underwater objective interaction, surface/submerged noise differences and dry-only combat actions",
+    "Add a procedural indoor-pool water shader with animated waves, Fresnel highlights, tiled basins, caustics, lane markings and underwater fog",
+    "Add six Natatorium field tasks, a circulation puzzle, dry shelters and a north service-lift extraction route",
+    "Preserve previous six-chapter save banks, all earlier expeditions, controller presets, finite resources, human models and original soundtrack"
   ]
 }

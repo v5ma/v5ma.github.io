@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Coastal Atmosphere v0.9.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-12.
+Current release: Coastal Atmosphere v0.10.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-13.
 
 ## How to use this workbook
 
@@ -173,6 +173,24 @@ Human exit gate: Explore without relying on repeated delivery templates or empty
   Next: Prototype short interconnected routes, not isolated scenery.
   Owner role: Design / engineering. Dependencies: SLICE-04, WORLD-01.
   Evidence: Not recorded.
+
+- [ ] WATER-01 / P1 / implemented / Three playable waterfront excursions
+  Acceptance: Pool service requires proximity, braking, three skims and a valve-routing puzzle. Canal courier uses a controllable skiff, ordered buoys, collection, docking and shore handoff. Boardwalk relay has ten swept checkpoints. Rewards and times persist without replacing the old city job.
+  Next: Run full model and controller acceptance; retain exact results.
+  Owner role: Design / engineering / QA. Dependencies: SAVE-01, INPUT-01.
+  Evidence: ../tests/tidewater.test.mjs
+
+- [ ] WATER-02 / P1 / implemented / Refractive Seaglass Pool and Lantern Canal
+  Acceptance: Two bounded PBR water surfaces show analytical tiled-basin refraction, depth tint, animated caustic-style light and boat/skim ripple impulses. Existing environment reflections are not live-scene mirrors. No swimming is implemented.
+  Next: Review actual shader captures in daylight, rain and blue hour; physical GPU/art approval stays open.
+  Owner role: Design / engineering / QA. Dependencies: SAVE-01, INPUT-01.
+  Evidence: ../tests/tidewater.test.mjs
+
+- [ ] WATER-03 / P1 / implemented / Controller-first dock, recovery and water menus
+  Acceptance: X works and Y explicitly boards/docks at low speed. Every water dialog supports B. Saves made in the skiff resume safely at the pier. Original riding speed and controls remain.
+  Next: Test entry, all activities, safe exit, reload, context recovery and physical Xbox input.
+  Owner role: Design / engineering / QA. Dependencies: SAVE-01, INPUT-01.
+  Evidence: ../tests/tidewater.test.mjs
 
 ## M3 / A campaign worth finishing
 

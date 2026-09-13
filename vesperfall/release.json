@@ -1,8 +1,8 @@
 {
-  "version": "0.11.0",
-  "name": "rosefire",
+  "version": "0.12.0",
+  "name": "tidelight",
   "date": "2026-09-12",
-  "scope": "Original rain-polished PBR stone shaders, world-anchored stained-light caustics, twilight veil sky, woven Wardglass and pooled actual-teleport landing echoes. Reversible controller-accessible visual profiles, reduced-motion and AR-safe policy; preserves First Bell, Oath, saved expeditions, audio and all modes.",
-  "saveCompatibility": "Existing permanent profiles and v0.9 Pilgrims Rest checkpoints retain their keys and generator. Optional Oath state restores through the same validated envelope. Hand latches are not restored; continued runs wait paused for explicit input. Practice and AR do not replace scored checkpoints.",
-  "hardwareStatus": "Browser and emulated-controller acceptance are used for publication. Physical Quest 3 ergonomics, comfort, audio balance and performance still require hardware playtesting. The authored route reuses the existing architecture; a measured 20-30 minute production slice is not claimed."
+  "scope": "Flooded cloisters and chapel-like water spaces using original bounded translucent water shaders, submerged existing stone, moving caustic highlights and pooled arrow/footstep/teleport ripples. Quest caps visible water surfaces and avoids reflection render passes; AR disables fictional world water. Rosefire, First Bell, Oath, saves, combat and existing routes remain intact.",
+  "saveCompatibility": "No save keys, generator state, collision floors or scored progression are changed. Existing v0.9+ checkpoints and permanent profiles continue through their existing validated envelopes.",
+  "hardwareStatus": "Desktop/browser and automated WebXR policy checks are used for publication. Physical Quest 3 comfort, thermal behavior and sustained frame rate still require hardware playtesting."
 }

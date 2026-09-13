@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.12.0",
-  "edition": "Rainworn",
-  "baseline": "ffe0b6b83fadb0ded6a9964156a4fd2d8c97719f",
+  "release": "0.13.0",
+  "edition": "Undertow",
+  "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
   "updated": "2026-09-12",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
-  "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all six chapters, saves, sibling applications and asset credits.",
+  "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all seven chapters, saves, sibling applications and asset credits.",
   "statusDefinitions": {
     "Planned": "Not implemented to the stated criterion.",
     "Implemented": "A working foundation exists; the full criterion still needs review.",
@@ -101,7 +101,7 @@
       "title": "Independent chapter shelter saves",
       "status": "Automated",
       "owner": "Gameplay engineering",
-      "acceptance": "Six chapter checkpoints coexist; restarting one changes no other slot; current legacy saves migrate without loss.",
+      "acceptance": "Seven chapter checkpoints coexist; restarting one changes no other slot; current legacy saves migrate without loss.",
       "evidence": "tests/field-ready.test.mjs",
       "depends": [],
       "estimate": "Unestimated",
@@ -527,10 +527,10 @@
       "phase": "G3",
       "priority": "P2",
       "title": "Swimming and water encounter design",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Traversal design",
       "acceptance": "Prototype buoyancy, boundaries, exit points, camera, input and enemy interactions together before introducing swim-required routes.",
-      "evidence": "",
+      "evidence": "UNDERTOW.md",
       "depends": [
         "RW-030"
       ],

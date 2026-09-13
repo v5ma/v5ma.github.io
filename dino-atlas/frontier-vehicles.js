@@ -37,6 +37,7 @@ export class RangerPerson{
  get position(){return this.body.translation();}
  setActive(on,p){this.active=on;this.body.setEnabled(on);if(p){this.body.setTranslation({x:p.x,y:p.y??1,z:p.z},true);this.vy=0;}}
  move(v,dt,yaw){if(!this.active)return;let x=v.x||0,z=v.z||0;const n=Math.hypot(x,z);if(n>1){x/=n;z/=n;}const speed=v.boost?9:5.1;let dx=(x*Math.cos(yaw)-z*Math.sin(yaw))*speed*dt,dz=(-x*Math.sin(yaw)-z*Math.cos(yaw))*speed*dt;const p=this.position;
+  const terrain=this.terrain?.(p);if(terrain){dx*=terrain.scale??1;dz*=terrain.scale??1;}
   if(isWater(p.x+dx,p.z+dz,1.4)||Math.hypot(p.x+dx,p.z+dz)>WORLD_RADIUS-4){dx=0;dz=0;}
   if(v.jump&&!this.jumpHeld&&this.grounded)this.vy=7;this.jumpHeld=!!v.jump;this.vy=Math.max(-25,this.vy-18*dt);
   this.controller.computeColliderMovement(this.collider,{x:dx,y:this.vy*dt,z:dz});const m=this.controller.computedMovement();this.grounded=this.controller.computedGrounded()?4:0;if(this.grounded&&this.vy<0)this.vy=-.1;
@@ -50,12 +51,12 @@ export class Fleet{
  get actor(){return this.current?.drive||this.person;}
  get mode(){return this.current?.type||'foot';}
  get position(){return this.actor.position;}
- nearest(){return [...this.vehicles].filter(v=>Math.abs(v.drive.position.y-this.position.y)<3&&(distance(v.drive.position,this.position)<6.7||(v.type==='boat'&&HARBORS.some(d=>distance(this.position,d.land)<12&&distance(v.drive.position,d)<35)))).sort((a,b)=>distance(a.drive.position,this.position)-distance(b.drive.position,this.position))[0]||null;}
+ nearest(){return [...this.vehicles].filter(v=>Math.abs(v.drive.position.y-this.position.y)<3&&(distance(v.drive.position,this.position)<6.7||(v.type==='boat'&&[...HARBORS,...(this.extraHarbors||[])].some(d=>distance(this.position,d.land)<12&&distance(v.drive.position,d)<35)))).sort((a,b)=>distance(a.drive.position,this.position)-distance(b.drive.position,this.position))[0]||null;}
  canStand(p){if(Math.hypot(p.x,p.z)>WORLD_RADIUS-4||isWater(p.x,p.z,1))return false;const shape=new R.Capsule(.48,.32);const hit=this.physics.world.intersectionWithShape({x:p.x,y:p.y??1.05,z:p.z},{x:0,y:0,z:0,w:1},shape,undefined,undefined,this.person.collider);return !hit;}
  board(){
   if(this.current){const v=this.current,p=v.drive.position;if(Math.abs(v.drive.speed)>2.6){this.onNotice('Stop before leaving the vehicle.');return false;}if(v.type==='helicopter'&&p.y>surfaceAt(p)+2.3){this.onNotice('Land before exiting. Use LT to descend.');return false;}
    let exit;
-   if(v.type==='boat'){const dock=HARBORS.find(d=>distance(p,d)<35);if(!dock){this.onNotice('Return to any marked harbor to disembark.');return false;}exit={...dock.land,y:1.6};}
+   if(v.type==='boat'){const dock=[...HARBORS,...(this.extraHarbors||[])].find(d=>distance(p,d)<35);if(!dock){this.onNotice('Return to any marked harbor to disembark.');return false;}exit={...dock.land,y:1.6};}
    else{const h=v.drive.heading;for(const a of [Math.PI/2,-Math.PI/2,Math.PI,0]){const q={x:p.x+Math.sin(h+a)*4.4,y:surfaceAt(p)+1.1,z:p.z+Math.cos(h+a)*4.4};if(this.canStand(q)){exit=q;break;}}}
    if(!exit){this.onNotice('The exits are obstructed. Move to an open space.');return false;}
    this.active='foot';this.person.setActive(true,exit);this.person.heading=v.drive.heading;this.onNotice('On foot. RT fires; X reloads; Y boards a nearby vehicle.');return true;

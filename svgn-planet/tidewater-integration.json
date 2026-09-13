@@ -1,0 +1,10 @@
+{
+  "version": "0.10.0",
+  "edition": "Tidewater Commons",
+  "scope": "svgn-planet only; no sibling games or homepage edits",
+  "surface": "Two bounded analytical-refraction basins, no live-scene reflection pass",
+  "activities": 3,
+  "save": "Original v1 key, additive tide field; saved boating resumes safely at dock",
+  "controls": "X work, Y board/dock, existing A hop/RT accelerate/LT or B brake preserved",
+  "limits": "No swimming, open-ocean navigation or live scene reflection claimed"
+}
