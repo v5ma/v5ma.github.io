@@ -58,9 +58,9 @@ with sync_playwright() as p:
   check(snap(page)['time']==before['time'],'The field map freezes gameplay rather than letting enemies run behind it')
   page.screenshot(path=str(OUT/('map-'+MODE+'.png')));page.locator('#map-dialog form button').click()
   if MODE=='expedition':
-   # Approach objects with margin for the driver's stopping tolerance and
-   # deceleration, rather than pressing E just outside their real use radius.
-   walk(page,[(-6,3.5)]);page.wait_for_function('AetherReach.snapshot().interaction==="record"');use(page);check('quay-letter' in snap(page)['records'],'An archive is discovered through proximity and E interaction')
+   # The first archive deliberately opens an in-game modal. Wait for that modal
+   # before continuing so software-renderer latency cannot leave gameplay paused.
+   walk(page,[(-6,3.5)]);page.wait_for_function('AetherReach.snapshot().interaction==="record"');page.locator('#world').focus();page.keyboard.press('KeyE',delay=120);page.wait_for_selector('#record-dialog[open]',timeout=10000);check('quay-letter' in snap(page)['records'],'An archive is discovered through proximity and E interaction');page.keyboard.press('Escape');page.wait_for_selector('#record-dialog[open]',state='hidden');page.wait_for_function('!AetherReach.snapshot().paused')
    walk(page,[(3,0),(9,-5)]);use(page);page.wait_for_function('!!AetherReach.snapshot().rail')
    check(snap(page)['rail']['id']=='glassline','The sky clamp boards the physical Glasshouse freight line')
    page.keyboard.down('KeyW');page.wait_for_function('AetherReach.snapshot().rail?.s>10')
