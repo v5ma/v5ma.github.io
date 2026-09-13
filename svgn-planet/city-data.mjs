@@ -1,3 +1,4 @@
+import {tidalReserve} from './tidewater-layout.mjs';
 /* Deterministic cube-sphere city. Six stitched faces avoid empty poles and
    meridian convergence. No engine or browser dependency: simulation tests use
    the same road, building and mission data as the renderer. */
@@ -31,7 +32,7 @@ export function buildCity(radius){
  if(!Number.isFinite(radius)||radius<400)throw Error('The city requires a planet radius of at least 400 metres.');
  const N=12,blocks=[],buildings=[],roads=[],districts=[],trees=[],seen=new Set(),hash=new Map();
  const grid=i=>-1+2*i/N;
- const original=n=>n[1]>.94&&Math.atan2(-n[2],n[1])*radius>-32&&Math.atan2(-n[2],n[1])*radius<150&&Math.asin(n[0])*radius>-44&&Math.asin(n[0])*radius<63;
+ const original=n=>tidalReserve(n,radius)||n[1]>.94&&Math.atan2(-n[2],n[1])*radius>-32&&Math.atan2(-n[2],n[1])*radius<150&&Math.asin(n[0])*radius>-44&&Math.asin(n[0])*radius<63;
  const key=n=>n.map(v=>v.toFixed(5)).join(',');
  function road(points,id,width=8){const k=[key(points[0]),key(points.at(-1))].sort().join('|');if(seen.has(k))return;seen.add(k);roads.push({id,points,width});}
  for(let f=0;f<6;f++){

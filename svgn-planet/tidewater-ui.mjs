@@ -31,5 +31,5 @@ export function createWaterUI({state,view,audio,open,resume,persist,resetView}){
   if(s.tide.boat)$('ride-name').textContent='PEDAL SKIFF';miniMap(s,t);
   for(const e of s.events){if(seen.has(e))continue;seen.add(e);if(e.type==='water-complete'){lastResult=e;$('water-result-name').textContent=WATER_JOBS.find(j=>j.id===e.id)?.name||'Water excursion';$('water-result-score').textContent='+'+e.reward+' credits';$('water-result-detail').textContent='Completed in '+(e.elapsed||s.tide.best[e.id]).toFixed(1)+' seconds. Your credits, best time and completed excursion are saved.';persist();open('water-results-dialog');}}
  }
- return {menu,interaction,update,visit(){visitWaterfront(state());moved();},craft(){const handled=toggleWatercraft(s=state());if(handled){resetView();persist();}return handled;},inspect:()=>waterSummary(state())};
+ return {menu,interaction,update,visit(){visitWaterfront(state());moved();},craft(){const handled=toggleWatercraft(state());if(handled){resetView();persist();}return handled;},inspect:()=>waterSummary(state())};
 }
