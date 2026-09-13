@@ -13,10 +13,10 @@ with sync_playwright() as p:
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1280,'height':800},service_workers='block');host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());page=c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.set_default_timeout(60000)
  try:
   page.goto(BASE+'/index.html',wait_until='domcontentloaded')
-  required=['little-planet/','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']
+  required=['prism-current/index.html','vesperfall/index.html','leonardos-guild/index.html','svgn-planet/index.html','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']
   # The collection grows: preserve each actual route instead of freezing the
   # gallery at the four cards present when Aether Reach was first introduced.
-  check(page.locator('.project').count()>=len(required),'The public project page includes the little planet alongside every existing project')
+  check(page.locator('.project').count()>=len(required),'The public project page retains every current playable project card')
   links=page.locator('.projects .project a.primary-link');paths=links.evaluate_all('(els)=>els.map(e=>new URL(e.href).pathname)')
   for route in required:
    # Cache-busting query/hash values are allowed; the playable destination is not.
