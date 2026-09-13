@@ -90,7 +90,11 @@ with sync_playwright() as p:
   check(read(page)['mode']=='car','The fictional pedal carriage retains vehicle-entering mechanics')
   drive(page,0,235,3);drive(page,40,240,3);drive(page,80,240,3);drive(page,80,323,2)
   page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(page,80,329,1.2);hold(page,['KeyK'])
-  page.wait_for_function('LeonardoGuild.inspect().events.some(e=>e.type==="blocked-hit")',timeout=45000)
+  # Safe Vinci deliberately has no hostile hit to wait for. Let the real
+  # simulation run while bracing, then verify the truce before restitution.
+  tick=read(page)['steps'];hp=read(page)['health']
+  page.wait_for_function('(tick)=>LeonardoGuild.inspect().steps>=tick+90',arg=tick,timeout=45000)
+  check(read(page)['health']==hp and not any(e['type'] in ['blocked-hit','duel-hit','duel-won'] for e in read(page)['events']),'The watchman remains peaceful during ordinary braced simulation')
   check(read(page)['guarding'],'Staff bracing remains available without hostile town combat')
   hold(page,[]);hp=read(page)['health'];page.keyboard.press('KeyJ')
   check(not read(page)['defeated'] and read(page)['health']==hp,'Town attacks neither damage the player nor skip restitution')

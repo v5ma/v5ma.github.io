@@ -97,7 +97,8 @@ with sync_playwright() as p:
    before=read()['credits'];page.keyboard.press('KeyT');page.wait_for_selector('#life-dialog[open]');check(page.locator('[data-use="progress:ink"]').count()==0,'The finished quest cannot be clicked again for repeat rewards');page.locator('#life-close').click();page.wait_for_function('!LeonardoGuild.inspect().paused')
    page.reload(wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');check(read()['life']['quests']['ink']==3 and read()['credits']==before,'The added quest and rewards survive an actual page reload');page.locator('#start').click()
   elif MODE=='watch':
-   drive(0,136,2);drive(80,140,2);drive(90,178,1.3);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(97,178,.7);drive(102,178,.7)
+   # Break the long approach at a real street point; no movement or assertion bypass.
+   drive(0,70,2);drive(0,136,2);drive(80,140,2);drive(90,178,1.3);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(97,178,.7);drive(102,178,.7)
    check(read()['render']['interior']['room']=='inn','The Copper Cat is a walkable inn with a resident innkeeper')
    page.screenshot(path=str(OUT/'copper-cat-inn.png'));drive(108,174.5,.8);interact('stairs');drive(101,175,.6)
    page.keyboard.press('KeyT');page.wait_for_selector('#life-dialog[open]');check(page.locator('[data-use="progress:receipts"]').is_disabled(),'Hidden evidence cannot be read without Lantern')
@@ -106,12 +107,12 @@ with sync_playwright() as p:
    page.screenshot(path=str(OUT/'lantern-in-cellar.png'));interact('progress:receipts','ledger');drive(105,179,.8);interact('progress:receipts','Rocco')
    check(read()['life']['flags']['rocco'] and read()['life']['enemies']['rocco']==0,'A warrant and actual discovered evidence permit a peaceful surrender')
    drive(108,174.5,.8);interact('stairs');drive(102,178);drive(97,178);mount()
-   drive(80,240,2.5);drive(-80,240,2.5);drive(-90,178,1.3);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-96,178,.8);drive(-102.5,178.5,.8)
+   drive(80,240,2.5);drive(0,240,2.5);drive(-80,240,2.5);drive(-90,178,1.3);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-96,178,.8);drive(-102.5,178.5,.8)
    check(read()['render']['interior']['room']=='hall','The mayor is inside an accessible town hall')
    page.screenshot(path=str(OUT/'mayors-hall.png'));interact('progress:receipts','Mayor')
    check(read()['life']['flags']['charter'] and read()['life']['quests']['receipts']==5,'Returning the investigation awards the actual garden charter')
   else:
-   drive(0,140,2.5);drive(0,240,2.5);drive(0,340,2.5);drive(0,390,2.5);stop();page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(0,400,.8)
+   drive(0,70,2.5);drive(0,140,2.5);drive(0,240,2.5);drive(0,340,2.5);drive(0,390,2.5);stop();page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(0,400,.8)
    check(not read()['life']['flags'].get('garden'),'The extension begins locked in this resumed repair-stage save')
    interact('progress:orchard','pump');check(read()['life']['flags']['garden'],'The actual pump action opens the northern gate')
    drive(0,414,1);page.screenshot(path=str(OUT/'north-gate-open.png'));check(read()['z']>410,'Ordinary movement can now cross the former map boundary')
@@ -121,7 +122,7 @@ with sync_playwright() as p:
    # Use real junctions on the return instead of a 170m one-shot waypoint.
    # Software WebGL reached z221 at its 160s wall deadline (target z218),
    # still moving with no collision: that was a driver budget, not a game gate.
-   drive(17,496);drive(0,496);drive(0,415);mount();drive(0,340,2.5);drive(0,240,2.5);drive(0,218,2);drive(-12,215,1);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-18,215,.7);drive(-23,216,.8)
+   drive(17,496);drive(0,496);drive(0,459);drive(0,415);mount();drive(0,340,2.5);drive(0,240,2.5);drive(0,218,2);drive(-12,215,1);page.keyboard.press('KeyF');page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');drive(-18,215,.7);drive(-23,216,.8)
    check(read()['render']['interior']['room']=='smith','Bartolo’s cycle shop is a real furnished interior')
    interact('progress:orchard','Bartolo');check(read()['life']['quests']['orchard']==4,'Returning to the smith completes the garden-opening quest')
    page.keyboard.press('KeyT');page.wait_for_selector('#life-dialog[open]');money=read()['credits'];page.locator('[data-use="buy:cargo"]').click();check(read()['life']['bike']=='cargo' and read()['credits']<money,'The expanded shop sells and equips an actual cargo bicycle')
