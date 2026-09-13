@@ -1,4 +1,4 @@
-# Rainward v0.13.0 / controller and interface contract
+# Rainward v0.13.1 / controller and interface contract
 
 This is the current control guide. The earlier v0.8.1 X-reload mapping survives as the Classic preset; it is not the default Survival layout. These mappings are implemented using the browser standard gamepad layout. Physical wired/Bluetooth Xbox acceptance remains open.
 
@@ -20,7 +20,7 @@ Left/right sticks move/look. Left-stick click sprints using the configured toggl
 
 Water depth is a separate state, not just a land posture. Entering a deep authored water volume switches to swimming. Left stick still moves horizontally and right stick looks. Sprint input becomes a faster stroke. In Survival, hold B to toggle diving; release after the toggle to keep both sticks available. In Classic, B or prone input toggles diving. A surfaces. Y can recover a reachable underwater objective only while submerged. The air meter appears while swimming and replenishes on surfacing.
 
-All deep-water swimming, including surface swimming, stows weapons and disables melee, reload, healing, crafting and dry-world interactions. A nearby shelter cannot be saved from the pool. Unfinished dry actions cancel safely on entry. Reach dry ground to use those actions again. This is not free vertical 3D swimming or underwater combat. The HUD's generic B DIVE label is shorter than the Survival hold gesture; a clearer preset-aware water prompt is recorded as an open polish item, not claimed fixed by this documentation update.
+All deep-water swimming, including surface swimming, stows weapons and disables melee, reload, healing, crafting and dry-world interactions. A nearby shelter cannot be saved from the pool. Unfinished dry actions cancel safely on entry. Reach dry ground to use those actions again. This is not free vertical 3D swimming or underwater combat. The water HUD now says HOLD B DIVE in Survival, B DIVE in Classic, and A SURFACE while submerged. Keyboard-only play shows Z DIVE and SPACE SURFACE. At 25 percent air or less while submerged, a textual low-air warning identifies the surface control. Its live region changes only on warning transitions, not on every frame. No automatic surfacing or oxygen-rule change is introduced.
 
 ## Menus and dialogs / both presets
 

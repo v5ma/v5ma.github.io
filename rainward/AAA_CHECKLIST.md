@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.13.0 / Undertow.
+Release baseline: v0.13.1 / Clear Water.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -20,21 +20,21 @@ Each checkbox remains open until human acceptance is recorded. Automated status 
 ## Resume from another chat
 
 Start with [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md) and [CONTROLLER.md](CONTROLLER.md).
-Historical gameplay evidence: [Undertow receipt](evidence/undertow-v0.13.0/summary.json). This handoff is not a new gameplay release.
+Historical baseline: [Undertow receipt](evidence/undertow-v0.13.0/summary.json). Current upgrade: [Clear Water](CLEAR-WATER.md).
 
-- [ ] H-01 / RW-032, RW-031, RW-028 / Record a living-enemy Natatorium browser mission from normal start to extraction. Preserve oxygen, enemy, task, puzzle and resource rules.
+- [ ] H-01 / Automated / RW-032, RW-031, RW-028 / Record a living-enemy Natatorium browser mission from normal start to extraction. Preserve oxygen, enemy, task, puzzle and resource rules.
   Acceptance: Both components, puzzle and required tasks complete using ordinary inputs; no safe fixture or model teleport substitutes for this run.
 
-- [ ] H-02 / RW-035, RW-036, RW-014 / Author swimming and land-action blends, then hand/foot contacts for the fitted seventeen-bone humans.
+- [ ] H-02 / Open / RW-035, RW-036, RW-014 / Author swimming and land-action blends, then hand/foot contacts for the fitted seventeen-bone humans.
   Acceptance: Before/after motion review, no collar/cuff gaps, no animation authority over collision, and no broken reload/craft/heal or dive/surface transitions.
 
-- [ ] H-03 / RW-044, RW-045, RW-046, RW-048 / Review and improve water/combat Foley, room acoustics, score transitions and dramatic silence.
+- [ ] H-03 / Open / RW-044, RW-045, RW-046, RW-048 / Review and improve water/combat Foley, room acoustics, score transitions and dramatic silence.
   Acceptance: Measured output and recorded real-device listening review; non-silent synthesis alone is insufficient.
 
-- [ ] H-04 / RW-006, RW-049, RW-050, RW-052, RW-054 / Run real wired/Bluetooth Xbox and named hardware checks; retain complete controller navigation.
+- [ ] H-04 / Open / RW-006, RW-049, RW-050, RW-052, RW-054 / Run real wired/Bluetooth Xbox and named hardware checks; retain complete controller navigation.
   Acceptance: Both presets, menus, held actions, reconnect, water entry, oxygen and browser audio activation are documented on actual devices.
 
-- [ ] H-05 / RW-031, RW-050 / Make water prompts explicit about the Survival hold-B gesture rather than the generic B DIVE label.
+- [ ] H-05 / Implemented / RW-031, RW-050 / Make water prompts explicit about the Survival hold-B gesture rather than the generic B DIVE label.
   Acceptance: Preset-aware prompts match actual dive/surface behavior on controller and keyboard; text changes do not alter the input mapping.
 
 ## G0 / Release foundation
@@ -265,17 +265,17 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Dependencies: RW-030.
   Evidence: UNDERTOW.md.
 
-  Continuation: Undertow is published. Camera basin depth, pool-edge clipping, slab/lane/caustic layering, dry interactions and cancellation/refunds are covered. Swimming uses the horizontal crawl rig and toggle depth, not free vertical motion.
-  Next action: Close the living-enemy water playthrough and physical-controller gaps, then improve swim animation and preset-aware dive prompts.
+  Continuation: Clear Water adds preset-aware dive/surface instructions, accessible oxygen labels and a textual low-air warning without changing water physics or save state.
+  Next action: Review optional stations, all pool-edge approaches, authored swim motion and water audio on real devices.
 
-- [ ] RW-032 / P1 / Complete campaign playthrough evidence / Planned
+- [ ] RW-032 / P1 / Complete campaign playthrough evidence / Implemented
   Owner role: QA. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Record each chapter from start through all required work to extraction with ordinary inputs, preserving exact build and save evidence.
   Dependencies: RW-024, RW-028, RW-029.
-  Evidence: Not recorded yet.
+  Evidence: CLEAR-WATER.md.
 
-  Continuation: All 18 browser suites passed, but the aquatic browser fixture defeats enemies at a real shelter. Model interactions cover the complete water mission separately.
-  Next action: Record the Natatorium from a normal start through submerged fuse, dry spindle, puzzle, required tasks and extraction with living enemies.
+  Continuation: The historical aquatic browser fixture isolated water with enemies defeated. A new normal-start living-enemy Survival mission has reached extraction; both presets now have an executable combat/reload journey. All-seven chapter, independent-player and hardware approval remain open.
+  Next action: Retain exact-source normal-start mission results and add the remaining per-chapter, optional-station and independent-player reviews.
 
 ## G4 / Art and animation
 

@@ -91,9 +91,9 @@ lines=['# Rainward: AAA-quality production checklist','','Release baseline: v'+p
 for k,v in plan['statusDefinitions'].items():lines.append(k+': '+v)
 lines+=['','Canonical data: [production-plan.json](production-plan.json). Interactive board: [roadmap.html](roadmap.html).','Each checkbox remains open until human acceptance is recorded. Automated status is narrower than final approval.','']
 if plan.get('continuation'):
- lines += ['## Resume from another chat','','Start with [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md) and [CONTROLLER.md](CONTROLLER.md).','Historical gameplay evidence: [Undertow receipt](evidence/undertow-v0.13.0/summary.json). This handoff is not a new gameplay release.','']
+ lines += ['## Resume from another chat','','Start with [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md) and [CONTROLLER.md](CONTROLLER.md).','Historical baseline: [Undertow receipt](evidence/undertow-v0.13.0/summary.json). Current upgrade: [Clear Water](CLEAR-WATER.md).','']
  for item in plan['continuation'].get('openChecks',[]):
-  lines += ['- [ ] '+item['id']+' / '+', '.join(item['tasks'])+' / '+item['action'],'  Acceptance: '+item['acceptance'],'']
+  lines += ['- [ ] '+item['id']+' / '+item['status']+' / '+', '.join(item['tasks'])+' / '+item['action'],'  Acceptance: '+item['acceptance'],'']
 for phase in plan['phases']:
  lines+=['## '+phase['id']+' / '+phase['name'],'',phase['goal'],'','Gate: '+phase['gate'],'']
  for t in plan['items']:

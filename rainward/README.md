@@ -1,3 +1,11 @@
+# Rainward v0.13.1 / Clear Water
+
+Current upgrade: [CLEAR-WATER.md](CLEAR-WATER.md). Survival/Classic/keyboard water instructions are now preset-aware, with an accessible low-air recovery warning. The normal-start Natatorium controller journey and isolated exhaustion/retry checks are retained beside the existing test matrix. All seven chapters and existing saves remain supported.
+
+Continue with [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md), [CONTROLLER.md](CONTROLLER.md), and the [canonical production plan](production-plan.json). The next feature work is authored swim/land animation and contact review. Physical Xbox/Bluetooth, audio-device and hardware approval remain open. The release PR and exact-source publication receipt distinguish candidate checks from the live build.
+
+The sections below are retained historical release notes.
+
 # Rainward v0.13.0 / Undertow
 
 ## Continue development / 2026-09-13

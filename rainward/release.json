@@ -1,14 +1,14 @@
 {
-  "version": "0.13.0",
-  "build": "rainward-undertow-20260912",
+  "version": "0.13.1",
+  "build": "rainward-clear-water-20260913",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Add Northlight Natatorium as a seventh expedition centered on shallow wading, deep swimming and diving",
-    "Add oxygen, dive/surface controls, underwater objective interaction, surface/submerged noise differences and dry-only combat actions",
-    "Add a procedural indoor-pool water shader with animated waves, Fresnel highlights, tiled basins, caustics, lane markings and underwater fog",
-    "Add six Natatorium field tasks, a circulation puzzle, dry shelters and a north service-lift extraction route",
-    "Preserve previous six-chapter save banks, all earlier expeditions, controller presets, finite resources, human models and original soundtrack"
+    "Show Survival HOLD B DIVE, Classic B DIVE and keyboard Z DIVE with the correct surface control",
+    "Add a textual low-air warning, bounded accessible oxygen meter and a non-flashing low-air border",
+    "Add normal-start living-enemy Xbox-standard Natatorium journeys with finite-ammo combat, reload, physical puzzle and extraction",
+    "Extend isolated water acceptance for preset changes, keyboard fallback, reconnect, natural exhaustion, recovery and shelter retry",
+    "Preserve all seven chapters, save keys and formats, water physics, enemy difficulty, finite inventory, art and soundtrack"
   ]
 }

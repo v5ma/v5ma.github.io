@@ -34,7 +34,7 @@ with sync_playwright() as pw:
   raise AssertionError('Unreachable controller control '+id)
  try:
   p.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');nav('continue');press(0,'Rainward.mode==="play"')
-  check(p.evaluate('Rainward.snapshot().version')=='0.13.0','The actual browser loads First Light inside Undertow v0.13.0')
+  check(p.evaluate('Rainward.snapshot().version')==json.loads(Path('rainward/release.json').read_text())['version'],'The actual browser loads First Light inside the declared gameplay release')
   check(p.evaluate('Rainward.state.fieldNotes.length===0&&Rainward.state.guideRoute===null'),'Legacy saves without field-record data still load without invented discoveries')
   check(p.evaluate('Rainward.snapshot().visuals.firstLight.notes')==6,'The actual scene builds six readable field-record props')
   p.screenshot(path=str(OUT/'opening.png'));go(p,-1.8,28);before=p.evaluate('Rainward.state.player.mag');press(3,'Rainward.state.fieldNotes.includes("south-letter")')
