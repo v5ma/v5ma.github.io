@@ -1,0 +1,37 @@
+name: Vesperfall Tidelight
+on:
+  push:
+    branches: [vesperfall-tidelight-20260912]
+    paths: ['.github/tidelight-quick/**', '.github/workflows/vesperfall-tidelight.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply checksummed playable bundle
+        run: |
+          python - <<'PY'
+          import base64,lzma,json,hashlib,pathlib
+          root=pathlib.Path.cwd(); packed=base64.b64decode((root/'.github/tidelight-quick/part0.txt').read_text().strip(),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='cd7187d845c49fae4e55ff6cf401d3144c2d35ac63e05d88ae5a0b691e63943'
+          data=json.loads(lzma.decompress(packed))
+          assert set(data)=={'vesperfall/tidelight-shaders.js','vesperfall/tidelight.js','vesperfall/tidelight.css','vesperfall/TIDELIGHT.md','vesperfall/index.html','vesperfall/release.json'}
+          for name,text in data.items():
+            p=root/name; p.parent.mkdir(parents=True,exist_ok=True); p.write_text(text)
+          PY
+          node --check vesperfall/tidelight-shaders.js
+          node --check vesperfall/tidelight.js
+          grep -q 'vesper-game jewelglass rosefire tidelight' vesperfall/index.html
+          grep -q 'v0.12.0' vesperfall/index.html
+          python - <<'PY'
+          import json
+          r=json.load(open('vesperfall/release.json')); assert r['version']=='0.12.0' and r['name']=='tidelight'
+          PY
+          rm -rf .github/tidelight-quick .github/tidelight-intake
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall .github/tidelight-quick .github/tidelight-intake
+          git commit -m 'Publish Vesperfall 0.12 Tidelight flooded cloisters and water shaders'
+          git push origin HEAD:vesperfall-tidelight-20260912
