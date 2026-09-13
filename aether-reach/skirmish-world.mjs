@@ -1,5 +1,5 @@
 /* Crosswind Arsenal combat spaces. Geometry is original and data-driven. */
-export const RAIL_TUNING=Object.freeze({cruise:48,accelerate:64,boost:96,brake:8,arrival:10,acceleration:58,boostAcceleration:82,braking:92});
+export const RAIL_TUNING=Object.freeze({cruise:48,accelerate:64,boost:96,brake:5,arrival:10,acceleration:58,boostAcceleration:82,braking:92});
 export const COMBAT_DECKS=Object.freeze([
  {id:'customs-yard',name:'Customs Freight Yard',home:'harbor',x:24,y:0,z:15,w:44,d:34},
  {id:'pump-court',name:'Glasshouse Pump Court',home:'garden',x:88,y:6,z:-37,w:42,d:34},
