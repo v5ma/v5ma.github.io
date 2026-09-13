@@ -32,7 +32,7 @@ Underwater distance fog, softened audio, water ambience, splash/stroke sounds, p
 
 `tests/tideglass-browser.py` operates the real HTTP/WebGL application using an emulated standard Gamepad API, without assigning player position, health, ammo, currency or objective progress. It must reach the reservoir from the existing city, swim/dive, collect objectives, use the pump and return for the reward. Browser reports and screenshots are retained by the Tideglass review workflow. Publication must separately match the live-file hashes.
 
-The final candidate is reconciled with the current master before browser validation. Legacy browser checks now wait for real dialog/rail conditions instead of relying on fixed software-renderer timing; those changes preserve the same gameplay assertions and do not write game state. The reconciled source passes all 226 deterministic model/save/controller regressions and the 98-file public-runtime manifest before the final browser matrix.
+The final candidate is reconciled with the current master before browser validation. Legacy browser checks now wait for real dialog/rail conditions instead of relying on fixed software-renderer timing; those changes preserve the same gameplay assertions and do not write game state. The reconciled source passes all 226 deterministic model/save/controller regressions and the 98-file public-runtime manifest before the final browser matrix. The last compatibility pass also uses conservative native mouse aim under slow software WebGL and follows the actual foot bridges when a rail transfer ends at the quay.
 
 Physical Xbox USB/Bluetooth, physical Quest comfort, real GPU frame times, long-session performance and player approval remain open roadmap gates.
 
