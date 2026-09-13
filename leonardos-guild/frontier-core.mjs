@@ -1,3 +1,4 @@
+import {cisternState,saveCistern,cisternStep,cisternAction,poolBlocked,waterDepth} from './cistern-core.mjs';
 /* Region session above the retained campaign model. No networking or payments.
  * Old model-only fixtures remain usable without installing a region session;
  * every real app session installs this adapter, including reset and old saves.
@@ -6,11 +7,14 @@ export const TOWN_GATE={x:0,z:-17};
 export const CAMP={x:300,z:20};
 export const BADLANDS={minX:208,maxX:392,minZ:6,maxZ:192};
 export const CONTRACTS=Object.freeze([
+ {id:'cistern',name:'The Drowned Workshop',text:'Read the cistern slate, drain the pool, recover the survey lens and restore the flow. Peaceful hydraulic work; no creature victories required.',reward:80,xp:180},
  {id:'survey',name:'Three Ways Through the Hollow',text:'Survey the ridge, old orchard and ruined court. Combat is optional; paths go around the patrols.',reward:45,xp:100},
  {id:'wardens',name:'Watch Beyond the Walls',text:'Defeat three creatures outside Vinci, then report at the town gate.',reward:65,xp:140},
  {id:'folio',name:'The Lost Field Case',text:'Defeat the Hollow Warden and recover the surveyor\'s case from the court. Return it at the town gate.',reward:90,xp:200},
 ]);
 export const FRONTIER_SITES=Object.freeze([
+ {id:'cistern',name:'Stillwater Cistern / Sluices',x:236.3,z:16,kind:'water',detail:'A flooded tiled workshop basin. Its southern ramp is usable only after draining. Inspect the slate here with X.'},
+ {id:'water-lens',name:'Submerged Survey Lens',x:236.3,z:33,kind:'water',detail:'A waterproof instrument lies on the pool floor. Drain the basin before walking down the southern ramp.'},
  {id:'return',name:'Gate Camp',x:300,z:20,kind:'exit',detail:'Return to safe Vinci. Field cargo and completed objectives are retained.'},
  {id:'ridge',name:'Cairn Ridge',x:238,z:77,kind:'beacon',detail:'Read the ridge survey stone. The west trail joins the court approach.'},
  {id:'orchard',name:'The Overgrown Orchard',x:363,z:105,kind:'beacon',detail:'Record the old irrigation channels. The east path loops behind the patrols.'},
@@ -52,12 +56,13 @@ export const safeTown=s=>s.frontier?.zone==='town';
 export const frontierHeight=(x,z)=>Math.sin((x-300)/23)*.18+Math.cos(z/18)*.15;
 export function frontierState(raw){
  const r=raw?.version===1?raw:{};
- return {version:1,zone:'town',accepted:ids(r.accepted,CONTRACTS.map(c=>c.id)),reported:ids(r.reported,CONTRACTS.map(c=>c.id)),visited:ids(r.visited,['ridge','orchard','court']),defeated:ids(r.defeated,MONSTERS.map(m=>m.id)),harvested:ids(r.harvested,FRONTIER_SITES.filter(p=>['resin','ore'].includes(p.kind)).map(p=>p.id)),relic:r.relic===true,cargo:{ore:integer(r.cargo?.ore,99),resin:integer(r.cargo?.resin,99)},store:{ore:integer(r.store?.ore,999),resin:integer(r.store?.resin,999)},dressings:integer(r.dressings,3,2),selected:FRONTIER_SITES.some(p=>p.id===r.selected)?r.selected:'ridge',gateTracked:false,enemies:[],lastArea:null,notice:0};
+ return {version:1,cistern:cisternState(r.cistern),zone:'town',accepted:ids(r.accepted,CONTRACTS.map(c=>c.id)),reported:ids(r.reported,CONTRACTS.map(c=>c.id)),visited:ids(r.visited,['ridge','orchard','court']),defeated:ids(r.defeated,MONSTERS.map(m=>m.id)),harvested:ids(r.harvested,FRONTIER_SITES.filter(p=>['resin','ore'].includes(p.kind)).map(p=>p.id)),relic:r.relic===true,cargo:{ore:integer(r.cargo?.ore,99),resin:integer(r.cargo?.resin,99)},store:{ore:integer(r.store?.ore,999),resin:integer(r.store?.resin,999)},dressings:integer(r.dressings,3,2),selected:FRONTIER_SITES.some(p=>p.id===r.selected)?r.selected:'ridge',gateTracked:false,enemies:[],lastArea:null,notice:0};
 }
 export function attachFrontier(s,raw){s.frontier=frontierState(raw);return s;}
-export function saveFrontier(s){if(!s.frontier)return undefined;const {zone,enemies,lastArea,notice,gateTracked,...data}=s.frontier;return JSON.parse(JSON.stringify(data));}
-export function frontierBlocked(x,z,r=.33){
+export function saveFrontier(s){if(!s.frontier)return undefined;const {zone,enemies,lastArea,notice,gateTracked,cistern,...data}=s.frontier;return JSON.parse(JSON.stringify({...data,cistern:saveCistern(cistern)}));}
+export function frontierBlocked(x,z,r=.33,s=null){
  if(!Number.isFinite(x)||!Number.isFinite(z))return true;
+ if(poolBlocked(x,z,r,s))return true;
  const b=BADLANDS;if(x<b.minX+r||x>b.maxX-r||z<b.minZ+r||z>b.maxZ-r)return true;
  return FRONTIER_SOLIDS.some(b=>Math.hypot(x-clamp(x,b.x-b.hx,b.x+b.hx),z-clamp(z,b.z-b.hz,b.z+b.hz))<r);
 }
@@ -80,7 +85,7 @@ export function leaveBadlands(s,rescued=false){
  return message(s,rescued?'The gate watch brings you back to safe Vinci. Your progress, cargo, money and equipment were kept.':'Vinci is safe. Bank your cargo and report completed contracts at the expedition gate.');
 }
 export function useDressing(s){const f=s.frontier;if(!f||s.health>=capacity(s))return fail('Your vitality is already full.');if(f.dressings<=0)return fail('No field dressings remain. Prepare more at the town expedition gate.');f.dressings--;s.health=Math.min(capacity(s),s.health+35);return message(s,'Field dressing used. +35 vitality.');}
-export function contractComplete(s,id){const f=s.frontier;return id==='survey'?f.visited.length===3:id==='wardens'?f.defeated.length>=3:id==='folio'?f.relic:false;}
+export function contractComplete(s,id){const f=s.frontier;return id==='survey'?f.visited.length===3:id==='wardens'?f.defeated.length>=3:id==='folio'?f.relic:id==='cistern'?f.cistern.phase===5:false;}
 export function frontierTarget(s){const f=s.frontier;if(!f)return null;if(safeTown(s)&&f.gateTracked)return {...TOWN_GATE,name:'Expedition Gate / on foot',level:0};if(inBadlands(s)){const p=FRONTIER_SITES.find(p=>p.id===f.selected)||FRONTIER_SITES[0];return {...p,level:0};}return null;}
 export function targetFrontier(s,id){if(!s.frontier)return false;if(safeTown(s)){s.frontier.gateTracked=true;return true;}if(!FRONTIER_SITES.some(p=>p.id===id))return false;s.frontier.selected=id;return true;}
 export function nearbyFrontier(s,w){
@@ -95,6 +100,7 @@ export function nearbyFrontier(s,w){
 }
 export function frontierAction(s,w,action){
  if(!s.frontier)return fail('The region session is not active.');
+ if(action.startsWith('water:'))return cisternAction(s,action);
  const f=s.frontier,near=nearbyFrontier(s,w),gate=near.some(p=>p.id==='gate')&&s.mode==='foot';
  if(action==='enter')return enterBadlands(s);
  if(action==='return')return leaveBadlands(s);
@@ -146,14 +152,14 @@ export function strikeFrontier(s){
  if(!targets.length)return false;const m=targets[0];s.yaw=Math.atan2(m.x-s.x,m.z-s.z);return hurtMonster(s,m.id,s.upgraded?40:28,.4);
 }
 export function stepFrontier(s,w,input,dt){
- s.time+=dt;s.steps++;const f=s.frontier;f.notice=Math.max(0,f.notice-dt);
+ s.time+=dt;s.steps++;cisternStep(s,dt);const f=s.frontier;f.notice=Math.max(0,f.notice-dt);
  for(const k of ['inv','toastT','attackCD','attackT','scan','scanCD','throwCD'])s[k]=Math.max(0,s[k]-dt);
  for(const k of ['dodge','dodgeCD'])s.doors[k]=Math.max(0,s.doors[k]-dt);
  const yaw=Number.isFinite(input.moveYaw)?input.moveYaw:s.yaw-clamp(input.steer||0,-1,1)*2.6*dt;
  if(!s.resonance.aim)s.yaw=yaw;
- s.speed+=(clamp(input.throttle||0,-1,1)*(input.boost?7:4.6)-s.speed)*Math.min(1,dt*12);
+ s.speed+=(clamp(input.throttle||0,-1,1)*(input.boost?7:4.6)*(waterDepth(s)>.05?.6:1)-s.speed)*Math.min(1,dt*12);
  const d=(s.doors.dodge>0?9:s.speed)*dt,dx=Math.sin(yaw)*d,dz=Math.cos(yaw)*d,before={x:s.x,z:s.z};
- if(!frontierBlocked(s.x+dx,s.z))s.x+=dx;if(!frontierBlocked(s.x,s.z+dz))s.z+=dz;s.distance+=dist(before,s);
+ if(!frontierBlocked(s.x+dx,s.z,.33,s))s.x+=dx;if(!frontierBlocked(s.x,s.z+dz,.33,s))s.z+=dz;s.distance+=dist(before,s);
  if(input.jump&&s.lift===0)s.vy=5;if(s.vy>0||s.lift>0){s.vy-=12*dt;s.lift=Math.max(0,s.lift+s.vy*dt);if(s.lift===0)s.vy=0;}
  s.guarding=!!input.guard;s.life.focus=Math.min(60+15*s.life.attrs.ingenuity,s.life.focus+dt*2);s.life.spellCD=Math.max(0,s.life.spellCD-dt);s.life.aura=Math.max(0,s.life.aura-dt);
  // Camp is a sanctuary inside the hostile region. Threats also leash home;

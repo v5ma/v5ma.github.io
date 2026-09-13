@@ -1,3 +1,7 @@
+# Stillwater Works v0.12.0
+
+The Drowned Workshop adds real hydraulic puzzle progression, draining/refilling water, shallow wading, instrument recovery and a one-time return report. Pool refraction, caustics, ripples and Fresnel shading use original GLSL and a bounded reusable scene target. Quiet audio, the safe-town/badlands rules, prior missions and saves remain.
+
 # Cinder Hollow v0.11.0
 
 Safe-town migration plus a playable badlands expedition through three connected trails. Seven creatures, survey/salvage objectives, one guarded field case, three return contracts and field supplies. Old rival encounters resolve by in-person truce instead of mandatory town combat. Recovered Steady Steps camera and articulated characters. No new music/effect streams, old save reset, network service or sibling-game replacement.

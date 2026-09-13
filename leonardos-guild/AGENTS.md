@@ -1,3 +1,7 @@
+# Stillwater Works continuation
+
+cistern-core.mjs owns the bounded hydraulic checkpoint, exact south ramp, depth-limited walking and validated in-person actions. cistern-art.mjs owns a reused scene-colour refraction target and procedural tile/caustic shaders. Do not add auto-playing sound, remote valve operation, real-time drowning or advertised swimming without implementing/testing it. Old quests, safe towns and badlands remain. Test actual native shader compilation and scene captures, not a concept image.
+
 # Cinder Hollow continuation
 
 The real app always constructs sessionState via attachFrontier, including old saves and reset. Never remove that adapter or claim legacy reducer fixtures alone test town safety. frontier-core.mjs owns bounded region state/actions; frontier-ui.mjs owns validated in-person interactions; frontier-art.mjs owns a reversible scene layer in the existing renderer. Direct old model fixtures intentionally lack the adapter to preserve campaign reducer regressions; new region tests and native runs exercise actual safe-town behavior. Keep original save keys, independent audio levels, Quiet density and one music stream. CINDER-HOLLOW.md records migration, routes, tests and limitations. Farmlands are not implemented.

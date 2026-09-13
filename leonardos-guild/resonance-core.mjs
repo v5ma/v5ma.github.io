@@ -28,7 +28,7 @@ export function validTargets(s,w){
   return list;
 }
 function solidPoint(s,w,x,z){
-  if(inBadlands(s))return frontierBlocked(x,z,.08);
+  if(inBadlands(s))return frontierBlocked(x,z,.08,s);
   if(s.doors.level||s.life.inside)return doorsBlocked(s,w,x,z,.08);
   if(!s.life.flags.garden&&Math.abs(x-w.townGate.x)<w.townGate.hx&&Math.abs(z-w.townGate.z)<w.townGate.hz)return true;
   if(!s.relay&&w.gates.some(b=>Math.abs(x-b.x)<b.hx&&Math.abs(z-b.z)<b.hz))return true;

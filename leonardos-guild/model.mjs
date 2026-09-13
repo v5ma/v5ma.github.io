@@ -8,7 +8,7 @@ import {enhanceWorld,initLife,saveLife,lifeStep,roomBlocked,roomAt,stats,hitRocc
 /* Leonardo’s Guild / first Renaissance commission. Deterministic, renderer-independent simulation.
  * Coordinates are metres; fixed-step driver calls step() at 60 Hz. All mechanisms
  * is fictional world-state interaction; no network or account APIs are used. */
-export const VERSION='0.11.0';
+export const VERSION='0.12.0';
 export const SAVE_KEY='svgn.leonardos-guild.v1';
 export const LIMITS={x:148,zMin:-26,zMax:406};
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -64,7 +64,7 @@ export function missionText(s){if(inBadlands(s))return {tag:'EXPEDITION / CINDER
  ][s.mission];}
 function circleBox(x,z,r,b){return Math.hypot(x-clamp(x,b.x-b.hx,b.x+b.hx),z-clamp(z,b.z-b.hz,b.z+b.hz))<r;}
 export function blocked(x,z,r,w,s,ignoreTraffic=false){
- if(inBadlands(s))return frontierBlocked(x,z,r);
+ if(inBadlands(s))return frontierBlocked(x,z,r,s);
  if(s.doors?.level)return doorsBlocked(s,w,x,z,r);
  if(s.life?.inside)return roomBlocked(s,w,x,z,r);
  const bounds=w.limits||LIMITS;
