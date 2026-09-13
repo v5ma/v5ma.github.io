@@ -42,7 +42,7 @@ export function createMenuNavigator({root,back,onFocus}){
   if(group){const cols=Number(group.dataset.navGrid)||3,members=m.items.map((v,i)=>({e:v.element,i})).filter(v=>group.contains(v.e)),at=members.findIndex(v=>v.i===index),candidate=at+dir*(axis==='y'?cols:1);if(candidate>=0&&candidate<members.length)next=members[candidate].i;else next=dir>0?members.at(-1).i+1:members[0].i-1;}
   next=Math.max(0,Math.min(m.items.length-1,next));if(next!==index)focus(m.items[next],next);
  }
- function activate(e){if(e.tagName==='SELECT'){adjust(e,1);return;}if(e.type==='range')return;const form=e.form,submitter=e.tagName==='BUTTON'||(e.tagName==='INPUT'&&['submit','image'].includes(e.type));if(submitter&&form?.getAttribute('method')?.toLowerCase()==='dialog'&&typeof form.requestSubmit==='function'){form.requestSubmit(e);return;}e.click();}
+ function activate(e){if(e.tagName==='SELECT'){adjust(e,1);return;}if(e.type==='range')return;e.click();}
  function tick(data,dt,now,xr=false){let m=read();if(!m)return;footer.hidden=xr;footer.textContent='D-pad / left stick: navigate   A: select   B: back   Left / right: adjust   Right stick / LT / RT: scroll   LB / RB: page';
   if(data.edges.back||data.edges.pause||(data.edges.map&&m.root.id==='map-dialog')){back(m);return;}
   const axis=data.menuAxis||data.move||[0,0],dy=data.held.next?-1:data.held.previous?1:axis[1],dx=data.held.field?-1:data.held.shop?1:axis[0];
