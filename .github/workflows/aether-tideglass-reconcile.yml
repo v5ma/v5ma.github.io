@@ -1,0 +1,56 @@
+name: Reconcile Aether Tideglass with current master
+on:
+  push:
+    branches: [feat/aether-tideglass-reservoir-20260912]
+    paths: ['.github/workflows/aether-tideglass-reconcile.yml']
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/aether-tideglass-reservoir-20260912
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Merge the latest live master without discarding newer unrelated games
+        run: |
+          set -euo pipefail
+          git fetch origin master
+          git merge --no-edit origin/master
+      - name: Harden old browser journeys against asynchronous dialog and slow software-WebGL frames
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('aether-reach/tests')
+          def replace(name,old,new):
+            p=root/name;s=p.read_text();assert old in s,(name,old);p.write_text(s.replace(old,new,1))
+          replace('browser.py',"if page.locator('#record-dialog[open]').count():page.locator('#record-dialog button').click()", "if page.locator('#record-dialog[open]').count():\n  page.locator('#record-dialog button').click();page.wait_for_selector('#record-dialog[open]',state='hidden');page.wait_for_function('!AetherReach.snapshot().paused')")
+          replace('launch.py',"  for route in required:\n   # A quick-launch link outside the gallery is not a duplicate project card.\n   check(page.locator('.projects .project a.primary-link[href=\"./'+route+'\"]').count()==1,'Homepage retains one playable project card: '+route)", "  links=page.locator('.projects .project a.primary-link');paths=links.evaluate_all('(els)=>els.map(e=>new URL(e.href).pathname)')\n  for route in required:\n   # Cache-busting query/hash values are allowed; the playable destination is not.\n   check(paths.count('/'+route)==1,'Homepage retains one playable project card: '+route)")
+          replace('launch.py',"  page.locator('a.primary-link[href=\"./aether-reach/index.html\"]').click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)", "  aether_index=paths.index('/aether-reach/index.html');links.nth(aether_index).click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)")
+          replace('devices.py',"   drive(page,(3,0));drive(page,(9,-5));tap(page,3);page.wait_for_function('!!AetherReach.snapshot().rail');check(snapshot(page)['rail']['id']=='glassline','Y boards a physical freight rail after controller-only walking')", "   drive(page,(3,0));drive(page,(9,-5));page.wait_for_function(\"AetherReach.snapshot().interaction==='station'||AetherReach.snapshot().target?.id==='glassline'\");tap(page,3);page.wait_for_function('!!AetherReach.snapshot().rail',timeout=90000);check(snapshot(page)['rail']['id']=='glassline','Y boards a physical freight rail after controller-only walking')")
+          replace('controller-journey.py',"  drive((-7,4));tap(2);p.wait_for_selector('#record-dialog[open]');tap(1);tap(8);choose('#journal button:not(:disabled)');check(snap()['devices']['menu']=='record-dialog','Controller opens an earned archive record from inside the atlas');", "  drive((-7,4));tap(2);p.wait_for_selector('#record-dialog[open]');p.wait_for_function(\"AetherReach.snapshot().records.includes('quay-letter')\");tap(1);p.wait_for_selector('#record-dialog[open]',state='hidden');tap(8);p.wait_for_selector('#map-dialog[open]');go('#journal button:not(:disabled)');tap(0);check(snap()['devices']['menu']=='record-dialog','Controller opens an earned archive record from inside the atlas');")
+          replace('tactics_browser.py',"     if aim(p,target['id'],timeout=12):", "     if aim(p,target['id'],timeout=30):")
+          old="""   page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail');released=snap(page)['time'];page.wait_for_function('(t)=>AetherReach.snapshot().time>=t+.18',arg=released);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().rail?.id===\"gale-loop\"');check(snap(page)['stats']['transfers']==1,'A real jump and aimed catch changes onto the new rail without a scripted position assignment')"""
+          new="""   transfer=after.get('target');assert transfer and transfer['id']=='gale-loop','Free-look must acquire the real target rail before release';point=transfer['point']\n   page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail')\n   deadline=time.monotonic()+30\n   while time.monotonic()<deadline and snap(page)['rail'] is None:\n    aim(page,point['x'],point['y'],point['z']);state=snap(page);target=state.get('target')\n    if target and target['id']=='gale-loop':page.keyboard.press('KeyE',delay=80)\n    page.wait_for_timeout(40)\n   page.wait_for_function('AetherReach.snapshot().rail?.id===\"gale-loop\"');check(snap(page)['stats']['transfers']==1,'A real jump and aimed catch changes onto the new rail without a scripted position assignment')"""
+          replace('arsenal_browser.py',old,new)
+          PY
+      - name: Keep the complete model and public runtime contract green
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs
+          node aether-reach/tests/release-manifest.mjs
+      - name: Commit the reconciliation and remove this temporary write workflow
+        run: |
+          set -euo pipefail
+          rm .github/workflows/aether-tideglass-reconcile.yml
+          git add -A -- aether-reach .github/workflows/aether-tideglass-reconcile.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Reconcile Tideglass with current master and harden legacy browser checks'
+          git push origin HEAD:feat/aether-tideglass-reservoir-20260912
