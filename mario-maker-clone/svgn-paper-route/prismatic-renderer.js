@@ -134,7 +134,7 @@ function sparks(s){
 }
 function frame(){
  const active=!!globalThis.__sky?.active(),visible=active||globalThis.__delivery?.state.menu;
- if(prefs.look==='classic'||!visible){if(live)cleanup();return;}
+ if(prefs.look==='classic'||!visible||active&&__sky.state.data?.gp?.bathhouse){if(live)cleanup();return;}
  const root=globalThis.__cloudview?.root;if(!root)return;if(live?.root!==root){cleanup();attach(root);}const s=live;if(!s)return;
  s.group.visible=!!__merged.get3D();if(!s.group.visible)return;
  s.luminous?.update(active?player.x:0,active?player.y:0,active);

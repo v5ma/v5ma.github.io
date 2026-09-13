@@ -1,13 +1,14 @@
 {
-  "version": "0.19.0",
-  "build": "sky-cycle-luminous-2026.09.12",
-  "date": "2026-09-12",
+  "version": "0.20.0",
+  "build": "sky-cycle-tideglass-2026.09.13",
+  "date": "2026-09-13",
   "changes": [
-    "Luminous thin-film enamel on existing rails and courier materials",
-    "Ripple-lit canal water with procedural highlights and surface normals",
-    "Soft procedural sky-silk ribbons behind the playable world",
-    "Subtle, Vivid and Off finishes plus independent water and sky controls",
-    "Controller-accessible Materials & FX from pause and Flight Deck with safe nested return",
-    "No level, collision, movement, music or progression changes; existing saves preserved"
+    "Tideglass Baths: a new playable tiled indoor water destination",
+    "Three luminous pools, chrome ladders, glazed tiles and animated caustic-style lighting",
+    "Operate the brass sluice to drain Mirror Pool and reveal a physical optional waterline rail",
+    "Dry promenade, four checkpoints, five bonus deliveries and a return portal",
+    "Controller-safe Water Portal atlas and E / D-pad Down world interactions",
+    "Bathhouse Keeper seal banked after an accepted authored finish; existing saves and routes preserved",
+    "Direct entry via ?destination=tideglass-baths"
   ]
 }
