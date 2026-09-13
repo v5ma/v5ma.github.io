@@ -1,10 +1,26 @@
 # Sky Cycle: AAA-quality development roadmap
 
-This is the canonical, living production checklist for Sky Cycle, the existing side-scrolling game in `mario-maker-clone/svgn-paper-route/`. It is not the roadmap for Neighborhood Missions, Prism Current, or Dino Atlas. Updated September 12, 2026.
+This is the canonical, living production checklist for Sky Cycle, the existing side-scrolling game in `mario-maker-clone/svgn-paper-route/`. It is not the roadmap for Neighborhood Missions, Prism Current, or Dino Atlas. Updated September 13, 2026.
 
 AAA is the quality ambition, not a status conferred by a version number, graphics setting, or this checklist. A checked implementation item does not certify its entire milestone. Each milestone needs recorded acceptance evidence before its release gate is complete. Do not invent a completion percentage from differently sized tasks.
 
-## Current continuation: Luminous shaders, v0.19.0
+## Current continuation: Tideglass Baths, v0.20.0
+
+See `TIDEGLASS-0.20.md` and `verification/tideglass-0.20.json` for scope and exact evidence. This is a playable new destination in the existing game, not a replacement prototype or a claim that the AAA roadmap is complete.
+
+- [x] Append Tideglass Baths without renumbering or replacing the seven existing routes.
+- [x] Build three tiled pools, original water/ceramic/portal shaders, ladders, vaulted bays and a continuous dry promenade.
+- [x] Add a nearby E / D-pad Down sluice interaction that lowers Mirror Pool and enables a physical optional waterline rail.
+- [x] Keep the main road finish independent of the sluice, with four checkpoints and five bonus deliveries.
+- [x] Add controller-safe Water Portal travel, direct destination entry and an independently saved finish-gated Keeper seal.
+- [x] Add source-preservation, real node-material, carried-state physics, native destination and prior-chapter regression tests.
+- [x] Review real 3D captures and correct the objective/HUD overlap before final release acceptance.
+- [ ] Qualify physical Xbox hardware, mobile devices, native WebGPU, full 3D route frame-time budgets and long-session resources.
+- [ ] Complete external human playtests and expand future water destinations only after their own playability checks.
+
+Exact candidate identities, accepted real finishes, controller coverage and independent live-file verification are recorded in the versioned receipt. The complete native-engine routes use the supported 2D view on CPU CI; real 3D pools, portals, sluice animation and rail appearance are tested separately. Water is scenic behind the cycling road; this release does not add swimming or seamless rendered portal views.
+
+## Previous continuation: Luminous shaders, v0.19.0
 
 See `LUMINOUS-0.19.md` and `verification/luminous-0.19.json` for exact acceptance and publication evidence. This is a presentation-only slice of Milestones C, F and G, not a claim of completed AAA production.
 
