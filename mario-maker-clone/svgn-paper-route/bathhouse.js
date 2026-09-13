@@ -69,7 +69,7 @@ let lastPaint=0,lastText='';function ui(t){requestAnimationFrame(ui);if(t-lastPa
 if(__delivery.state.menu)__delivery.showMenu();
 window.SkyCycleBathhouse=Object.freeze({build:BUILD,id:ID,index,show:showAtlas,get state(){return run?{...run}:null;},get records(){return {...record};},get saveOK(){return saveOK;},get art(){return Art.stats();}});
 // Direct playable destination link, resolved only after campaign and input are ready.
-if(new URLSearchParams(location.search).get('destination')===ID){let n=0;const timer=setInterval(()=>{if(++n>1200){clearInterval(timer);return;}if(window.PaperDeliveryCampaign?.status==='ready'&&window.SkyCycleFlightDeck&&window.__gpuReady){clearInterval(timer);travel(index);}},50);}
+if(new URLSearchParams(location.search).get('destination')===ID){let n=0;const timer=setInterval(()=>{if(++n>1200){clearInterval(timer);return;}if(window.PaperDeliveryCampaign?.status==='ready'&&window.SkyCycleFlightDeck&&window.SkyCycleCompass){clearInterval(timer);travel(index);}},50);}
 window.Bathhouse2D={draw(g,cx,cy,w,h){Art.draw2D(g,cx,cy,w,h,run,matchMedia('(prefers-reduced-motion: reduce)').matches?0:__ground.state.steps);}};
 // A slightly elevated scenic camera reveals the pools without changing the physics plane.
 const oldCamera=CloudDepthCamera.forFrame;CloudDepthCamera.forFrame=function(o,v){const camera=oldCamera(o,v);if(here()&&camera.isPerspectiveCamera){const x=player.x+110,y=-player.y+90;camera.position.set(x+180,y+280,850);camera.lookAt(x,y,0);camera.fov=Math.atan(640/2/914)*360/Math.PI;camera.updateProjectionMatrix();camera.updateMatrixWorld();}return camera;};
