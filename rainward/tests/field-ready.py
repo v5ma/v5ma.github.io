@@ -47,16 +47,16 @@ with sync_playwright() as pw:
   press(13,'Rainward.mode==="pack"');nav('equip-rifle');press(0,'Rainward.state.player.gun==="rifle"');check(p.evaluate('Rainward.state.player.mag+Rainward.state.player.reserve')==0,'The controller equips an empty rifle without inventing ammunition')
   nav('equip-pistol');press(0,'Rainward.state.player.gun==="pistol"');check(p.evaluate('Rainward.state.player.mag')==6,'The controller restores the separate sidearm magazine')
   nav('equip-medkit');press(0,'Rainward.state.player.equipped==="medkit"');p.screenshot(path=str(OUT/'equipment-controller.png'));press(1,'Rainward.mode==="play"');button(7,True);wait('Rainward.state.player.hp===100');button(7,False);frames();check(p.evaluate('Rainward.state.player.medkit')==0,'An item selected in the satchel works with the same hold-RT healing action')
-  title();chapters=['conservatory','terminus','meridian','breakwater','whiteout']
+  title();chapters=['conservatory','terminus','meridian','breakwater','whiteout','natatorium']
   for chapter in chapters:
    p.locator('#chapter-select').select_option(chapter);p.locator('#start').click();wait('Rainward.mode==="play"');check(p.evaluate('Rainward.state.level')==chapter,chapter+' starts without replacing a different chapter shelter');title()
   saved=p.evaluate("JSON.parse(localStorage.getItem('svgn.rainward.v2.chapter-checkpoints'))")
-  check(len(saved['slots'])==6,'All six chapter save slots coexist in persistent storage')
-  check(saved['slots']['district']['checkpoint']==fixture,'Starting five other chapters preserves the original district save byte-for-byte')
+  check(len(saved['slots'])==7,'All seven chapter save slots coexist in persistent storage')
+  check(saved['slots']['district']['checkpoint']==fixture,'Starting six other chapters preserves the original district save byte-for-byte')
   p.locator('#chapter-select').select_option('district');p.locator('#chapter-continue').click();wait('Rainward.mode==="play"');check(p.evaluate('Rainward.state.player.hp')==47,'Continuing an older chapter restores its own previous shelter state');title()
   p.locator('#start').click();wait('Rainward.mode==="confirm"');check(p.evaluate('document.activeElement.id')=='confirm-no','Restarting an occupied chapter defaults to Cancel');press(1,'Rainward.mode==="title"');check(p.evaluate("JSON.parse(localStorage.getItem('svgn.rainward.v2.chapter-checkpoints')).slots.district.checkpoint")==fixture,'Cancel leaves the selected checkpoint unchanged')
-  p.locator('#start').click();wait('Rainward.mode==="confirm"');press(15);press(0,'Rainward.mode==="play"');after=p.evaluate("JSON.parse(localStorage.getItem('svgn.rainward.v2.chapter-checkpoints'))");check(all(after['slots'][x]==saved['slots'][x] for x in chapters),'Confirming a district restart leaves the other five slots unchanged')
-  p.reload(wait_until='domcontentloaded');wait('window.Rainward');check(p.evaluate('Rainward.snapshot().saves.filter(x=>x.occupied).length')==6,'All six slots remain available after a full page reload')
+  p.locator('#start').click();wait('Rainward.mode==="confirm"');press(15);press(0,'Rainward.mode==="play"');after=p.evaluate("JSON.parse(localStorage.getItem('svgn.rainward.v2.chapter-checkpoints'))");check(all(after['slots'][x]==saved['slots'][x] for x in chapters),'Confirming a district restart leaves the other six slots unchanged')
+  p.reload(wait_until='domcontentloaded');wait('window.Rainward');check(p.evaluate('Rainward.snapshot().saves.filter(x=>x.occupied).length')==7,'All seven slots remain available after a full page reload')
   p.goto(BASE+'/rainward/roadmap.html',wait_until='domcontentloaded');p.wait_for_function('document.querySelectorAll("details.task").length===64');check(p.locator('section.gate').count()==8,'The production board contains 64 tasks across eight acceptance gates')
   p.locator('#phase-filter').select_option('G5');check(p.locator('details.task').count()==8,'Production gate filtering shows the eight sound and music tasks')
   p.locator('#phase-filter').select_option('');p.locator('#status-filter').select_option('Blocked');check(p.locator('details.task').count()==3,'Unfinished approval gates remain explicitly blocked rather than marked complete')

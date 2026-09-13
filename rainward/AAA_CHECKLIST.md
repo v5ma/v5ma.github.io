@@ -1,10 +1,10 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.12.0 / Rainworn.
+Release baseline: v0.13.0 / Undertow.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
-Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all six chapters, saves, sibling applications and asset credits.
+Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all seven chapters, saves, sibling applications and asset credits.
 
 ## Status legend
 
@@ -31,7 +31,7 @@ Gate: All supported input paths start, save, reload and produce audio without un
 
 - [ ] RW-002 / P0 / Independent chapter shelter saves / Automated
   Owner role: Gameplay engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
-  Acceptance: Six chapter checkpoints coexist; restarting one changes no other slot; current legacy saves migrate without loss.
+  Acceptance: Seven chapter checkpoints coexist; restarting one changes no other slot; current legacy saves migrate without loss.
   Dependencies: None.
   Evidence: tests/field-ready.test.mjs.
 
@@ -221,11 +221,11 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Dependencies: RW-035.
   Evidence: Not recorded yet.
 
-- [ ] RW-031 / P2 / Swimming and water encounter design / Planned
+- [ ] RW-031 / P2 / Swimming and water encounter design / Implemented
   Owner role: Traversal design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Prototype buoyancy, boundaries, exit points, camera, input and enemy interactions together before introducing swim-required routes.
   Dependencies: RW-030.
-  Evidence: Not recorded yet.
+  Evidence: UNDERTOW.md.
 
 - [ ] RW-032 / P1 / Complete campaign playthrough evidence / Planned
   Owner role: QA. Assigned reviewer: Unassigned. Effort: Unestimated.

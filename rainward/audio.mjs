@@ -36,7 +36,7 @@ export function createAudio(settings,getMode){
   else if(type==='field-note'||type==='pickup'||type==='loot'||type==='clue'){at('cloth',0,{duration:.25,gain:.48});at('pluck',.07,{duration:.8,midi:76,gain:.22});}
   else if(type==='checkpoint'||type==='task-complete'||type==='complete'){for(const [i,midi]of [57,64,67,74].entries())at('felt',i*.16,{duration:1.8,midi,gain:.24,send:.25});}
   else if(type==='death')at('bow',0,{duration:3,midi:38,gain:.50});
-  else if(type==='land')at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});
+  else if(type==='water-enter'||type==='surface'){at('step-water',0,{duration:.55,gain:.62});}else if(type==='submerge'){at('water',0,{duration:.8,gain:.48});}else if(type==='swim-stroke'){at('step-water',0,{duration:.42,gain:state?.player.submerged?.20:.44});}else if(type==='land')at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});
   else if(type==='weapon-break'||type==='action-cancel')at('metal',0,{duration:.22,gain:.38});
  }
  function surfaceAt(p){if(waterAt(p))return 'water';if(coverAt(p))return 'grass';if(CURRENT.id==='whiteout')return 'snow';if(CURRENT.id==='terminus')return 'metal';if(CURRENT.id==='breakwater'&&p.z>20)return 'wood';return 'stone';}

@@ -6,9 +6,8 @@ import os,json,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 OUT=Path('test-output/rainward-first-light');OUT.mkdir(parents=True,exist_ok=True)
-BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/')
+BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];dialogs=[]
 fixture=subprocess.check_output(['node','--input-type=module','-e',"import {createGame,checkpoint} from './rainward/model.mjs';const s=createGame();s.enemies.forEach(e=>e.hp=0);const d=JSON.parse(checkpoint(s));delete d.fieldNotes;delete d.guideRoute;console.log(JSON.stringify(d));"],text=True).strip()
-checks=[];errors=[];dialogs=[]
 def check(ok,text):
  assert ok,text
  checks.append(text);print('PASS:',text,flush=True)
@@ -35,7 +34,7 @@ with sync_playwright() as pw:
   raise AssertionError('Unreachable controller control '+id)
  try:
   p.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');nav('continue');press(0,'Rainward.mode==="play"')
-  check(p.evaluate('Rainward.snapshot().version')=='0.12.0','The actual browser loads First Light v0.12.0')
+  check(p.evaluate('Rainward.snapshot().version')=='0.13.0','The actual browser loads First Light inside Undertow v0.13.0')
   check(p.evaluate('Rainward.state.fieldNotes.length===0&&Rainward.state.guideRoute===null'),'Legacy saves without field-record data still load without invented discoveries')
   check(p.evaluate('Rainward.snapshot().visuals.firstLight.notes')==6,'The actual scene builds six readable field-record props')
   p.screenshot(path=str(OUT/'opening.png'));go(p,-1.8,28);before=p.evaluate('Rainward.state.player.mag');press(3,'Rainward.state.fieldNotes.includes("south-letter")')
