@@ -7,7 +7,7 @@ R=Path(__file__).resolve().parents[1]
 updates={}
 def edit(name,old,new):
  p=R/name;s=updates.get(name,p.read_text())
- if old not in s and new in s:return
+ if new in s:return
  assert s.count(old)==1,(name,s.count(old),old[:100])
  updates[name]=s.replace(old,new)
 edit('camera-core.mjs','radius=.20,boxes=OBSTACLES){','radius=.20,boxes=OBSTACLES,floorAt=heightAt){')
@@ -16,9 +16,9 @@ edit('camera-core.mjs','y<heightAt(x,z)+radius','y<floorAt(x,z)+radius')
 edit('camera-core.mjs','dt,snap=false){','dt,snap=false,floorAt=heightAt){')
 for end in ['desired','previous','blend']:
  edit('camera-core.mjs',f'clipBoom(target,{end})',f'clipBoom(target,{end},.20,OBSTACLES,floorAt)')
-edit('scene.mjs',"import {followCamera} from './camera-core.mjs';","import {followCamera} from './camera-core.mjs';\nimport {poolCameraFloor} from './pool-layout.mjs';")
+edit('scene.mjs',"import {followCamera} from './camera-core.mjs';","import {followCamera} from './camera-core.mjs';\nimport {poolCameraFloor,underwaterBoom} from './pool-layout.mjs';")
 edit('scene.mjs',"const p=state.player,aim=view.aim,lookY=heightAt(p.x,p.z)-(p.swimDepth||0)+(p.stance==='prone'?.38:p.stance==='crouch'?1.05:1.5)","const p=state.player,swimming=p.waterMode==='swim',aim=view.aim&&!swimming,lookY=heightAt(p.x,p.z)+(swimming?(p.submerged?-(p.swimDepth||0)+.35:.50):(p.stance==='prone'?.38:p.stance==='crouch'?1.05:1.5))")
-edit('scene.mjs',"const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap);","const cameraFloor=swimming?(x,z)=>poolCameraFloor(chapter.water||[],x,z,heightAt(x,z)):heightAt;if(swimming){const water=chapter.water.find(w=>Math.abs(p.x-w.x)<w.w/2&&Math.abs(p.z-w.z)<w.d/2);if(water)desired.y=p.submerged?Math.min(desired.y,(water.surface??-.08)-.22):Math.max(desired.y,(water.surface??-.08)+.25);}\n  const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap,cameraFloor);")
+edit('scene.mjs',"const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap);","const cameraFloor=swimming?(x,z)=>poolCameraFloor(chapter.water||[],x,z,heightAt(x,z)):heightAt;if(swimming){const water=chapter.water.find(w=>Math.abs(p.x-w.x)<w.w/2&&Math.abs(p.z-w.z)<w.d/2);if(water){desired.y=p.submerged?Math.min(desired.y,(water.surface??-.08)-.22):Math.max(desired.y,(water.surface??-.08)+.25);if(p.submerged)desired.copy(underwaterBoom(water,target,desired));}}\n  const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap,cameraFloor);")
 for depth in ['.48','2.55','3.15','1.65']:
  edit('natatorium.mjs','depth:'+depth+',surface:.28','depth:'+depth+',surface:-.08')
 edit('natatorium.mjs',"task('nat-dive-marker',-12,-35","task('nat-dive-marker',-7.5,-34")
@@ -48,6 +48,31 @@ edit('tests/aquatic.py',"  oxygen=p.evaluate('Rainward.state.player.oxygen');",'
   oxygen=p.evaluate('Rainward.state.player.oxygen');''')
 edit('tests/aquatic.py',"  mag=p.evaluate('Rainward.state.player.mag');",'''  check(p.evaluate('Rainward.snapshot().camera.y<-.2&&Rainward.snapshot().camera.heroVisible'),'The camera follows the submerged body above the basin instead of collapsing at the land floor')
   mag=p.evaluate('Rainward.state.player.mag');''')
+boom='''
+/* Shorten the submerged boom before land-floor correction can lift its endpoint
+ * out of the water. A positive inset reserves room for the near plane. */
+export function underwaterBoom(pool,target,desired,inset=.30){
+ let t=1;
+ for(const [axis,half] of [['x',pool.w/2-inset],['z',pool.d/2-inset]]){
+  const delta=desired[axis]-target[axis];
+  if(Math.abs(delta)>1e-9){const edge=pool[axis]+(delta>0?half:-half);t=Math.min(t,Math.max(0,(edge-target[axis])/delta));}
+ }
+ return {x:target.x+(desired.x-target.x)*t,y:target.y+(desired.y-target.y)*t,z:target.z+(desired.z-target.z)*t};
+}
+'''
+p=R/'pool-layout.mjs'
+if boom not in p.read_text():updates['pool-layout.mjs']=p.read_text()+boom
+edit('tests/water-hardening.test.mjs','poolContains} from','poolContains,underwaterBoom} from')
+test='''
+test('Diving beside the far edge shortens the boom rather than raising it through the surface',()=>{
+ game();const p=W.CURRENT.water.find(w=>w.id==='competition'),target={x:15,y:-1.35,z:17.82};
+ const intended=underwaterBoom(p,target,{x:15.72,y:-.30,z:22.62}),floor=(x,z)=>poolCameraFloor(W.CURRENT.water,x,z);
+ const safe=clipBoom(target,intended,.20,[],floor);
+ assert.ok(safe.y<-.2);assert.ok(poolContains(p,safe.x,safe.z,.28));assert.ok(Math.hypot(safe.x-target.x,safe.z-target.z)>3.8);
+});
+'''
+name='tests/water-hardening.test.mjs';s=updates.get(name,(R/name).read_text())
+if test not in s:updates[name]=s+test
 notes='\nRecovery hardening: the pool camera now samples recessed basin floors instead of collapsing against the land floor; pool decks have real openings; metre-scaled tiles, lane paint and caustic planes are layered above the basin slabs. Swimming interaction cannot operate dry shelters, valves, supplies or takedowns. Unfinished dry actions cancel safely on water entry. Both optional depth/chemical stations are on clear dry ground, and the lane-light task changes the actual underwater light intensity. The complete mission, including all optional tasks, is covered by interaction tests.\n'
 p=R/'UNDERTOW.md'
 if notes not in p.read_text():updates['UNDERTOW.md']=p.read_text()+notes
