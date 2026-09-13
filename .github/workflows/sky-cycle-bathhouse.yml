@@ -1,23 +1,101 @@
 name: Sky Cycle Bathhouse
 on:
   push:
-    branches: ['sky-cycle-bathhouse-*']
-    paths: ['.github/workflows/sky-cycle-bathhouse.yml']
+    branches: [master, 'sky-cycle-bathhouse-*']
+    paths: ['mario-maker-clone/svgn-paper-route/**', '.github/workflows/sky-cycle-bathhouse.yml']
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: sky-cycle-bathhouse-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   source:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.identity.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Integrate the existing game on the feature branch only
+        if: startsWith(github.ref, 'refs/heads/sky-cycle-bathhouse-')
+        run: |
+          if ! grep -q "import('./bathhouse.js')" mario-maker-clone/svgn-paper-route/release-status.js; then
+            python mario-maker-clone/svgn-paper-route/tools/integrate-bathhouse.py
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add mario-maker-clone/svgn-paper-route/release-status.js mario-maker-clone/svgn-paper-route/release.json mario-maker-clone/svgn-paper-route/sw.js mario-maker-clone/svgn-paper-route/prismatic-renderer.js mario-maker-clone/svgn-paper-route/delivery-upgrade.js mario-maker-clone/svgn-paper-route/sunrise.js
+            git commit -m 'Integrate playable Tideglass Baths into Sky Cycle'
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+      - id: identity
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  destination:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rules and preservation
+        run: |
+          node --check mario-maker-clone/svgn-paper-route/bathhouse.js
+          node --check mario-maker-clone/svgn-paper-route/bathhouse-art.js
+          node --test mario-maker-clone/svgn-paper-route/tests/bathhouse.test.mjs
+          node --test mario-maker-clone/svgn-paper-route/tests/sunrise*.test.mjs mario-maker-clone/svgn-paper-route/tests/route-compass-core.test.mjs mario-maker-clone/svgn-paper-route/tests/flight-deck-core.test.mjs mario-maker-clone/svgn-paper-route/tests/luminous.test.mjs
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Native destination, pools, sluice, portals and controller
+        env:
+          GITHUB_SHA: ${{ needs.source.outputs.sha }}
+        run: python mario-maker-clone/svgn-paper-route/tests/bathhouse-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tideglass-native-${{ needs.source.outputs.sha }}
+          path: /tmp/sky-cycle-bathhouse/
+          retention-days: 30
+  regression:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.sha }}
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Existing Sunrise route and controller regression
+        env:
+          GITHUB_SHA: ${{ needs.source.outputs.sha }}
+        run: python mario-maker-clone/svgn-paper-route/tests/sunrise-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tideglass-regression-${{ needs.source.outputs.sha }}
+          path: /tmp/sky-cycle-sunrise/
+          retention-days: 30
+  published:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - run: |
-          mkdir -p /tmp/sky-bathhouse-source
-          git rev-parse HEAD > /tmp/sky-bathhouse-source/commit.txt
-          tar -czf /tmp/sky-bathhouse-source/source.tar.gz mario-maker-clone/svgn-paper-route tests
+      - run: python mario-maker-clone/svgn-paper-route/tests/bathhouse-published.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: sky-bathhouse-source
-          path: /tmp/sky-bathhouse-source/
-          retention-days: 7
+          name: tideglass-public-${{ github.sha }}
+          path: /tmp/sky-cycle-bathhouse/publication.json
+          retention-days: 30
