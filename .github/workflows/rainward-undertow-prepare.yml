@@ -8,7 +8,7 @@ permissions:
   contents: write
 concurrency:
   group: rainward-undertow-integration
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   integrate:
     if: github.ref == 'refs/heads/feat/rainward-undertow-20260912'
