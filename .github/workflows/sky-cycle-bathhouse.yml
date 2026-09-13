@@ -1,0 +1,23 @@
+name: Sky Cycle Bathhouse
+on:
+  push:
+    branches: ['sky-cycle-bathhouse-*']
+    paths: ['.github/workflows/sky-cycle-bathhouse.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          mkdir -p /tmp/sky-bathhouse-source
+          git rev-parse HEAD > /tmp/sky-bathhouse-source/commit.txt
+          tar -czf /tmp/sky-bathhouse-source/source.tar.gz mario-maker-clone/svgn-paper-route tests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sky-bathhouse-source
+          path: /tmp/sky-bathhouse-source/
+          retention-days: 7
