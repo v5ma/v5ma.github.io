@@ -1,3 +1,11 @@
+# Neighborhood Missions: Tideglass (v0.10.0)
+
+Visit the new aquatic center from Menu / Visit Tideglass Aquatic Center, or ride to the civic entrance just behind the original depot. [TIDEGLASS.md](TIDEGLASS.md) explains its three water missions, swimming controls, shaders and limits. This is an indoor zone in the existing game, not a new project or save slot.
+
+The original city route, all 102 city contracts, Homecoming, cosmetics and road cruising remain. Pool progress is additive. Reloading returns safely outside and retains the active water mission, best times and records. There is no oxygen or swim-stamina countdown. Low graphics or Lightweight pool water disables the two extra local reflection/refraction captures.
+
+## Previous release notes
+
 # Neighborhood Missions: Coastal Atmosphere (v0.9.0)
 
 Open Menu, scroll to Coastal Atmosphere, and choose daylight, golden hour, after-rain sunset, coastal rain or blue hour. D-pad moves focus; left/right selects a preset or adjusts strength; A toggles; B resumes. Each preference is saved separately from gameplay progress. Restore sunny defaults and Disable atmosphere are available without resetting your game.

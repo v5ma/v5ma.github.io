@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.9.0",
+  "version": "0.10.0",
   "title": "Neighborhood Missions: path to a production-quality title",
   "reviewed": "2026-09-12",
   "currentMilestone": "M1",
@@ -782,6 +782,59 @@
         "../ATMOSPHERE.md",
         "evidence/v0.9.0.json"
       ],
+      "lastReviewed": "2026-09-12"
+    },
+    {
+      "id": "WATER-01",
+      "milestone": "M2",
+      "priority": "P1",
+      "status": "implemented",
+      "title": "Playable aquatic-center zone",
+      "acceptance": "Three controller-operable swimming missions with real depth, clear deck/city exits, additive save fields and no city-contract side effects.",
+      "next": "Run Tideglass automated acceptance and review actual pool captures; record physical-device results separately.",
+      "dependencies": [
+        "SAVE-01",
+        "INPUT-01"
+      ],
+      "evidence": [
+        "../aquatics-core.mjs"
+      ],
+      "owner": "Design / engineering",
+      "lastReviewed": "2026-09-12"
+    },
+    {
+      "id": "WATER-02",
+      "milestone": "M4",
+      "priority": "P1",
+      "status": "implemented",
+      "title": "Bounded pool reflection and refraction",
+      "acceptance": "Local pool captures have fixed upper resolution; Low/lightweight uses no extra render targets. Reduce motion freezes procedural animation. Context recovery and repeated entry must not leak resources.",
+      "next": "Run Tideglass automated acceptance and review actual pool captures; record physical-device results separately.",
+      "dependencies": [
+        "PERF-01"
+      ],
+      "evidence": [
+        "../aquatics-scene.mjs"
+      ],
+      "owner": "Rendering / QA",
+      "lastReviewed": "2026-09-12"
+    },
+    {
+      "id": "WATER-03",
+      "milestone": "M5",
+      "priority": "P1",
+      "status": "needs-playtest",
+      "title": "Aquatics acceptance and physical-device review",
+      "acceptance": "Complete all three missions through actual inputs; retain shader logs, game captures and save/reload results. A physical Xbox and real-GPU frame target require separate approval.",
+      "next": "Run Tideglass automated acceptance and review actual pool captures; record physical-device results separately.",
+      "dependencies": [
+        "WATER-01",
+        "WATER-02"
+      ],
+      "evidence": [
+        "../tests/aquatics-browser.py"
+      ],
+      "owner": "Engineering / QA",
       "lastReviewed": "2026-09-12"
     }
   ],

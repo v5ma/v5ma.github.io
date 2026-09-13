@@ -1,11 +1,11 @@
 /* Renderer-independent controller navigation, including recovery and new
  * contract dialogs. Standard Xbox mapping; held entry inputs must return to
  * neutral before they can navigate or scroll a newly opened menu. */
-export const padState={connected:false,x:0,y:0,lookX:0,lookY:0,boost:false,brake:false,id:''};
+export const padState={connected:false,x:0,y:0,lookX:0,lookY:0,boost:false,brake:false,ascend:false,dive:false,poolBrake:false,id:''};
 const $=id=>document.getElementById(id),dead=v=>Math.abs(v)<.16?0:Math.sign(v)*(Math.abs(v)-.16)/.84;
 let polls=0;let active=null,previous=[],lastScope=null,repeatDirection='',repeatAt=0,navigatedWelcome=false,menuNavigationReady=true,menuScrollReady=true;
 const emit=name=>window.dispatchEvent(new CustomEvent('nm-action',{detail:{name}}));
-function clear(){for(const key of['x','y','lookX','lookY'])padState[key]=0;padState.boost=padState.brake=false;}
+function clear(){for(const key of['x','y','lookX','lookY'])padState[key]=0;padState.boost=padState.brake=padState.ascend=padState.dive=padState.poolBrake=false;}
 function visible(el){return !!el&&!el.disabled&&!el.closest('[hidden]')&&el.getClientRects().length>0&&getComputedStyle(el).visibility!=='hidden';}
 function scope(){if(visible($('failure')))return $('failure');const dialogs=[...document.querySelectorAll('dialog[open]')];if(dialogs.length)return dialogs.at(-1);if(visible($('welcome')))return $('welcome');return null;}
 function items(root){return [...root.querySelectorAll('button,select,input,a[href],textarea')].filter(visible);}
@@ -37,7 +37,7 @@ function frame(now){
   const scroll=dead(pad.axes[3]||0);if(Math.abs(scroll)<.1)menuScrollReady=true;if(menuScrollReady&&Math.abs(scroll)>.1)root.scrollTop+=scroll*15;
  }else{
   padState.x=dead(pad.axes[0]||0);padState.y=-dead(pad.axes[1]||0);const len=Math.max(1,Math.hypot(padState.x,padState.y));padState.x/=len;padState.y/=len;
-  padState.lookX=dead(pad.axes[2]||0);padState.lookY=dead(pad.axes[3]||0);padState.boost=(pad.buttons[7]?.value||0)>.2;padState.brake=(pad.buttons[6]?.value||0)>.2||buttons[1];
+  padState.lookX=dead(pad.axes[2]||0);padState.lookY=dead(pad.axes[3]||0);padState.boost=(pad.buttons[7]?.value||0)>.2;padState.brake=(pad.buttons[6]?.value||0)>.2||buttons[1];padState.ascend=buttons[0];padState.dive=buttons[1];padState.poolBrake=(pad.buttons[6]?.value||0)>.2;
   const actions={0:'hop',2:'interact',3:'ride',4:'throw',5:'camera',8:'map',9:'pause',10:'bell',11:'recenter',12:'map',13:'jobs',14:'previous-district',15:'next-district'};
   for(const [i,name]of Object.entries(actions))if(edge(Number(i)))emit(name);
  }

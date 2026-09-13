@@ -19,7 +19,7 @@ export function scoreStep(step,energy=0){
  return notes;
 }
 export function createCoastalAudio(){
- let ctx=null,master,compressor,analyser,buses={},wet,delay,feedback,noiseBuffer,motor,tire,wind,rainBed,playing=false,ready=false,next=0,step=0,energy=0,lastFoot=0,lastBird=-100,lastPass=-100,lastBrake=false,lastLift=0,lastSpeed=0,mutedByVisibility=false;
+ let ctx=null,master,compressor,analyser,buses={},wet,delay,feedback,noiseBuffer,motor,tire,wind,rainBed,poolBed,muffle,playing=false,ready=false,next=0,step=0,energy=0,lastFoot=0,lastBird=-100,lastPass=-100,lastBrake=false,lastLift=0,lastSpeed=0,mutedByVisibility=false;
  const nodes=new Set(),seen=new WeakSet(),gates=new Map(),counts={},recent=[];let dropped=0,scheduled=0,lastStatus='Sound starts with play. Music, effects and ambience have separate controls.';
  const ramp=(param,value,time=.06)=>{if(ctx)param.setTargetAtTime(value,ctx.currentTime,time);};
  function mixer(){if(!ctx)return;ramp(master.gain,preferences.muted?0:preferences.master);ramp(buses.music.gain,playing?preferences.music:0,.12);ramp(buses.effects.gain,preferences.effects);ramp(buses.ambience.gain,playing?preferences.ambience:0,.14);}
@@ -43,15 +43,15 @@ export function createCoastalAudio(){
  function sustained(type,frequency,bus){const source=type==='noise'?ctx.createBufferSource():ctx.createOscillator(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();gain.gain.value=0;filter.type='lowpass';filter.frequency.value=frequency;if(type==='noise'){source.buffer=noiseBuffer;source.loop=true;}else{source.type='sine';source.frequency.value=frequency;}source.connect(filter);filter.connect(gain);gain.connect(buses[bus]);source.start();return {source,filter,gain};}
  function init(){
   if(ctx)return;const Constructor=globalThis.AudioContext||globalThis.webkitAudioContext;if(!Constructor){lastStatus='This browser does not expose Web Audio. The game remains playable.';return;}
-  ctx=new Constructor({latencyHint:'interactive'});master=ctx.createGain();master.gain.value=0;compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-12;compressor.knee.value=14;compressor.ratio.value=4;compressor.attack.value=.004;compressor.release.value=.18;analyser=ctx.createAnalyser();analyser.fftSize=256;master.connect(compressor);compressor.connect(analyser);analyser.connect(ctx.destination);
+  ctx=new Constructor({latencyHint:'interactive'});master=ctx.createGain();master.gain.value=0;compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-12;compressor.knee.value=14;compressor.ratio.value=4;compressor.attack.value=.004;compressor.release.value=.18;analyser=ctx.createAnalyser();analyser.fftSize=256;muffle=ctx.createBiquadFilter();muffle.type='lowpass';muffle.frequency.value=20000;master.connect(muffle);muffle.connect(compressor);compressor.connect(analyser);analyser.connect(ctx.destination);
   for(const name of['music','effects','ambience']){buses[name]=ctx.createGain();buses[name].gain.value=0;buses[name].connect(master);}
   delay=ctx.createDelay(1);delay.delayTime.value=60/92*.75;feedback=ctx.createGain();feedback.gain.value=.12;wet=ctx.createGain();wet.gain.value=.095;buses.music.connect(delay);delay.connect(feedback);feedback.connect(delay);delay.connect(wet);wet.connect(master);
   noiseBuffer=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);const data=noiseBuffer.getChannelData(0);let seed=104729,low=0;for(let i=0;i<data.length;i++){seed=(seed*1664525+1013904223)>>>0;const white=seed/2147483648-1;low=low*.65+white*.35;data[i]=low;}
-  motor=sustained('sine',100,'ambience');tire=sustained('noise',1300,'ambience');wind=sustained('noise',650,'ambience');rainBed=sustained('noise',4600,'ambience');ready=true;ctx.onstatechange=()=>{lastStatus=ctx.state==='running'?'Coastal Pulse | original adaptive score and spatial street sound.':'Browser audio is suspended. Press Enter or select Enable sound.';};mixer();
+  motor=sustained('sine',100,'ambience');tire=sustained('noise',1300,'ambience');wind=sustained('noise',650,'ambience');rainBed=sustained('noise',4600,'ambience');poolBed=sustained('noise',550,'ambience');ready=true;ctx.onstatechange=()=>{lastStatus=ctx.state==='running'?'Coastal Pulse | original adaptive score and spatial street sound.':'Browser audio is suspended. Press Enter or select Enable sound.';};mixer();
  }
  async function unlock(){try{init();if(ctx?.state==='suspended')await ctx.resume();if(ctx?.state==='running'){next=Math.max(next,ctx.currentTime+.035);mixer();}}catch(e){lastStatus='Audio is unavailable: '+e.message;}}
  function stopMusic(){for(const node of nodes)if(node.bus==='music')try{node.source.stop();}catch{}next=ctx?ctx.currentTime+.08:0;}
- function setPlaying(value){value=!!value&&!document.hidden;if(value===playing)return;playing=value;if(!value){stopMusic();if(motor){ramp(motor.gain.gain,0);ramp(tire.gain.gain,0);ramp(wind.gain.gain,0);ramp(rainBed.gain.gain,0);}}else{next=ctx?ctx.currentTime+.08:0;}mixer();}
+ function setPlaying(value){value=!!value&&!document.hidden;if(value===playing)return;playing=value;if(!value){stopMusic();if(motor){ramp(motor.gain.gain,0);ramp(tire.gain.gain,0);ramp(wind.gain.gain,0);ramp(rainBed.gain.gain,0);ramp(poolBed.gain.gain,0);}}else{next=ctx?ctx.currentTime+.08:0;}mixer();}
  function allowed(name,spacing){const now=ctx?.currentTime||0;if(now-(gates.get(name)??-100)<spacing)return false;gates.set(name,now);return true;}
  function cue(name,pan=0){
   if(!ctx||ctx.state!=='running'||preferences.muted||!allowed(name,name==='ui'?.12:name==='foot'?.22:name==='pickup'?.15:name==='bird'?6:name==='talk'?8:.10))return;
@@ -59,6 +59,9 @@ export function createCoastalAudio(){
   if(quiet&&['foot','talk','bird','chain'].includes(name))return;
   counts[name]=(counts[name]||0)+1;recent.push(name);if(recent.length>20)recent.shift();
   switch(name){
+   case 'pool-splash':hiss(.6,.16,1450,now);tone(92,.25,.04,'bass',now);break;
+   case 'pool-stage':case 'pool-pickup':case 'pool-valve':tone(hz(76),.32,.07,'bell',now);hiss(.16,.025,750,now);break;
+   case 'pool-enter':case 'pool-job':tone(hz(62),.8,.045,'keys',now);tone(hz(69),.8,.045,'keys',now+.1);break;
    case 'throw': hiss(.20,.15,2800,now,'effects',pan);hiss(.09,.035,700,now+.05,'effects',pan);break;
    case 'delivery': case 'bonus-delivery': hiss(.07,.13,1900,now);tone(hz(74),.24,.095,'bell',now+.04);tone(hz(81),.5,.055,'bell',now+.15);break;
    case 'jump':hiss(.13,.10,950,now);tone(155,.10,.06,'bass',now);break;
@@ -70,7 +73,7 @@ export function createCoastalAudio(){
    case 'stamp':case 'pickup':tone(hz(86),.32,.07,'bell',now);hiss(.10,.055,1600,now);break;
    case 'job-stage':case 'handoff':tone(hz(69),.20,.06,'keys',now);tone(hz(74),.32,.06,'keys',now+.08);break;
    case 'job-start':for(const [i,n]of[62,66,69,74].entries())tone(hz(n),.35,.075,'keys',now+i*.09);break;
-   case 'chapter-complete':case 'job-complete':case 'complete':case 'stunt':for(const [i,n]of[62,66,69,73,81].entries())tone(hz(n),.70,.085,'bell',now+i*.12);ramp(buses.music.gain,preferences.music*.55,.02);setTimeout(mixer,1000);break;
+   case 'pool-complete':case 'chapter-complete':case 'job-complete':case 'complete':case 'stunt':for(const [i,n]of[62,66,69,73,81].entries())tone(hz(n),.70,.085,'bell',now+i*.12);ramp(buses.music.gain,preferences.music*.55,.02);setTimeout(mixer,1000);break;
    case 'photo':hiss(.035,.18,3200,now);hiss(.03,.15,1500,now+.085);break;
    case 'repair':case 'signal-good':tone(hz(78),.2,.085,'keys',now);tone(hz(85),.35,.07,'bell',now+.08);break;
    case 'signal-miss':tone(146,.18,.045,'bass',now);break;
@@ -94,10 +97,12 @@ export function createCoastalAudio(){
    next+=60/92/2;step=(step+1)%256;scheduled++;
   }
  },25);
- function update(s,{active,vehicle,brake=false,traffic=null,rain=0}={}){
+ function update(s,{active,vehicle,brake=false,traffic=null,rain=0,pool=null}={}){
   setPlaying(active);if(!ctx||ctx.state!=='running')return;
   for(const e of s.events){if(seen.has(e))continue;seen.add(e);cue(e.type);}
   if(!playing)return;
+  ramp(muffle.frequency,pool?.inside&&pool.swimming&&pool.p[1]<-1?1800:20000,.16);ramp(poolBed.gain.gain,pool?.inside?.075:0,.2);
+  if(pool?.inside){energy=.15;ramp(motor.gain.gain,0);ramp(tire.gain.gain,0);ramp(wind.gain.gain,0);ramp(rainBed.gain.gain,0);ramp(poolBed.filter.frequency,380+pool.speed*80,.15);return;}
   ramp(rainBed.gain.gain,.16*clamp(rain),.22);
   energy=clamp(s.speed/30);ramp(motor.source.frequency,vehicle==='bicycle'?70+s.speed*2:88+s.speed*8,.12);ramp(motor.gain.gain,s.ride&&vehicle!=='bicycle'?.018*energy:0,.1);ramp(tire.filter.frequency,700+s.speed*48,.1);ramp(tire.gain.gain,s.ride?.11*energy:0,.1);ramp(wind.gain.gain,.018+.07*energy*energy,.18);
   if(!s.ride&&s.distance-lastFoot>.8&&s.lift<.01){cue('foot',(Math.floor(s.distance)%2?.15:-.15));lastFoot=s.distance;}
@@ -111,5 +116,5 @@ export function createCoastalAudio(){
  const gesture=()=>unlock();window.addEventListener('pointerdown',gesture,{passive:true});window.addEventListener('keydown',gesture);window.addEventListener('nm-action',gesture);
  document.addEventListener('visibilitychange',()=>{if(document.hidden){mutedByVisibility=true;setPlaying(false);ctx?.suspend().catch(()=>{});}else if(mutedByVisibility){mutedByVisibility=false;unlock();}});
  window.addEventListener('pagehide',()=>setPlaying(false));
- return {unlock,update,setPlaying,cue,toggleMute(){setPreference('muted',!preferences.muted);},inspect(){const data=new Float32Array(256);if(analyser)analyser.getFloatTimeDomainData(data);return {version:'0.7.0',ready,state:ctx?.state||'not-started',playing,rainAmbience:rainBed?.gain.gain.value||0,transportCount:ctx?1:0,activeVoices:nodes.size,scheduledSteps:scheduled,droppedVoices:dropped,rms:Math.sqrt(data.reduce((a,v)=>a+v*v,0)/data.length),counts:{...counts},recent:[...recent],mix:{...preferences},status:lastStatus};},dispose(){clearInterval(interval);stopMusic();for(const n of nodes)try{n.source.stop();}catch{}for(const v of[motor,tire,wind,rainBed])try{v?.source.stop();}catch{}ctx?.close();}};
+ return {unlock,update,setPlaying,cue,toggleMute(){setPreference('muted',!preferences.muted);},inspect(){const data=new Float32Array(256);if(analyser)analyser.getFloatTimeDomainData(data);return {version:'0.7.0',ready,state:ctx?.state||'not-started',playing,poolAmbience:poolBed?.gain.gain.value||0,underwaterCutoff:muffle?.frequency.value||20000,rainAmbience:rainBed?.gain.gain.value||0,transportCount:ctx?1:0,activeVoices:nodes.size,scheduledSteps:scheduled,droppedVoices:dropped,rms:Math.sqrt(data.reduce((a,v)=>a+v*v,0)/data.length),counts:{...counts},recent:[...recent],mix:{...preferences},status:lastStatus};},dispose(){clearInterval(interval);stopMusic();for(const n of nodes)try{n.source.stop();}catch{}for(const v of[motor,tire,wind,rainBed,poolBed])try{v?.source.stop();}catch{}ctx?.close();}};
 }

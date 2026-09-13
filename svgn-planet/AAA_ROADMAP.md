@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Coastal Atmosphere v0.9.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-12.
+Current release: Coastal Atmosphere v0.10.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-12.
 
 ## How to use this workbook
 
@@ -174,6 +174,12 @@ Human exit gate: Explore without relying on repeated delivery templates or empty
   Owner role: Design / engineering. Dependencies: SLICE-04, WORLD-01.
   Evidence: Not recorded.
 
+- [ ] WATER-01 / P1 / implemented / Playable aquatic-center zone
+  Acceptance: Three controller-operable swimming missions with real depth, clear deck/city exits, additive save fields and no city-contract side effects.
+  Next: Run Tideglass automated acceptance and review actual pool captures; record physical-device results separately.
+  Owner role: Design / engineering. Dependencies: SAVE-01, INPUT-01.
+  Evidence: ../aquatics-core.mjs
+
 ## M3 / A campaign worth finishing
 
 Authored missions, progression, consequences and replay depth.
@@ -282,6 +288,12 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
   Owner role: Rendering / QA. Dependencies: MOVE-01, PERF-01, AUDIO-01.
   Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json
 
+- [ ] WATER-02 / P1 / implemented / Bounded pool reflection and refraction
+  Acceptance: Local pool captures have fixed upper resolution; Low/lightweight uses no extra render targets. Reduce motion freezes procedural animation. Context recovery and repeated entry must not leak resources.
+  Next: Run Tideglass automated acceptance and review actual pool captures; record physical-device results separately.
+  Owner role: Rendering / QA. Dependencies: PERF-01.
+  Evidence: ../aquatics-scene.mjs
+
 ## M5 / Release readiness
 
 Reliable builds, recovery, licensing and sustained hardware testing.
@@ -335,6 +347,12 @@ Human exit gate: Pass the named device matrix, license audit, soak test and roll
   Next: Close prerequisite gates and obtain explicit user quality approval.
   Owner role: Engineering / QA. Dependencies: SLICE-04, PERF-02, SAVE-02, ACCESS-01, QA-02, QA-04, LEGAL-01, BUILD-02.
   Evidence: Not recorded.
+
+- [ ] WATER-03 / P1 / needs-playtest / Aquatics acceptance and physical-device review
+  Acceptance: Complete all three missions through actual inputs; retain shader logs, game captures and save/reload results. A physical Xbox and real-GPU frame target require separate approval.
+  Next: Run Tideglass automated acceptance and review actual pool captures; record physical-device results separately.
+  Owner role: Engineering / QA. Dependencies: WATER-01, WATER-02.
+  Evidence: ../tests/aquatics-browser.py
 
 ## Evidence and scope
 

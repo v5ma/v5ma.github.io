@@ -1,0 +1,8 @@
+{
+  "version": "0.10.0",
+  "edition": "Tideglass",
+  "scope": "Existing svgn-planet game only; no sibling-game or homepage replacement",
+  "save": "Additive fields under original v1 key",
+  "missions": 3,
+  "hardwareApproval": false
+}

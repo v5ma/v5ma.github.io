@@ -1,30 +1,23 @@
 {
-  "version": "0.9.0",
+  "version": "0.10.0",
   "name": "Neighborhood Missions",
-  "edition": "Coastal Atmosphere",
+  "edition": "Tideglass",
   "folder": "svgn-planet",
   "date": "2026-09-12",
   "roadmap": "AAA_ROADMAP.md",
   "roadmapData": "production/roadmap.json",
   "changes": [
-    "Add five adjustable coastal lighting/weather presets",
-    "Add world-space wet-road shading and rain ripples using existing environment reflections",
-    "Add foliage backlighting and subtle vertex breeze with matching shadow depth deformation",
-    "Add blue-hour facade glow and one bounded rain batch",
-    "Add rain ambience to the existing mixer without a second music transport",
-    "Retain Homecoming, all contracts, save identifiers and unlimited cruise physics"
+    "Add optional Tideglass Aquatic Center inside the existing game with three repeatable water missions",
+    "Add real swim depth, pool walls and floor, ladder/deck recovery and safe city return",
+    "Add local reflection/refraction, procedural tile caustics, water ripples and underwater fog",
+    "Use the existing soundtrack/mixer for pool ambience and underwater filtering",
+    "Preserve original saves, Homecoming, all city contracts and road cruise behavior"
   ],
   "acceptance": "passed",
-  "testedCommit": "e967b90c697fbb8fbdcbd7bbc7cb9398cf997624",
-  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34717568774",
   "evidence": "production/evidence/v0.9.0.json",
   "validation": {
-    "unitTestsPassed": 111,
-    "shaderBrowserChecksPassed": 22,
-    "coastalBrowserChecksPassed": 14,
-    "homecomingBrowserChecksPassed": 12,
+    "status": "Awaiting Tideglass acceptance",
     "physicalControllerTested": false,
-    "hardwareFrameTargetCertified": false,
-    "commercialAAAQualityClaimed": false
+    "hardwareFPSCertified": false
   }
 }
