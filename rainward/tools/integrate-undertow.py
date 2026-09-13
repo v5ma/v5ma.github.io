@@ -68,7 +68,7 @@ change('scene.mjs',"sun.target.position.set(p.x,heightAt(p.x,p.z)+1,p.z);", "if(
 change('scene.mjs',"visualStatus:()=>({rainworn:", "visualStatus:()=>({aquatic:chapter.id==='natatorium'?scenery?.stats?.()||null:null,rainworn:")
 # Audio cues reuse existing synthesized water sounds.
 change('audio-design.mjs',"complete:'A way through'", "complete:'A way through','water-enter':'Entering water','water-exit':'Leaving water','submerge':'Diving underwater','surface':'Surface reached','swim-stroke':'Swimming'")
-change('audio.mjs',"else if(type==='land'){at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});}", "else if(type==='water-enter'||type==='surface'){at('step-water',0,{duration:.55,gain:.62});}else if(type==='submerge'){at('water',0,{duration:.8,gain:.48});}else if(type==='swim-stroke'){at('step-water',0,{duration:.42,gain:state?.player.submerged?.20:.44});}else if(type==='land'){at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});}")
+change('audio.mjs',"else if(type==='land')at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});", "else if(type==='water-enter'||type==='surface'){at('step-water',0,{duration:.55,gain:.62});}else if(type==='submerge'){at('water',0,{duration:.8,gain:.48});}else if(type==='swim-stroke'){at('step-water',0,{duration:.42,gain:state?.player.submerged?.20:.44});}else if(type==='land')at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});")
 # UI and chapter picker.
 change('index.html','href="./rainworn.css">','href="./rainworn.css"><link rel="stylesheet" href="./aquatic.css">')
 change('index.html','<span>v0.12.0</span>','<span>v0.13.0</span>')

@@ -37,7 +37,7 @@ export const NATATORIUM={
  items:[
   {id:'natatorium-kit',x:2,z:47,type:'supplies',label:'Aquatics emergency bag',ammo:10,cloth:3,canister:3,bottles:2},
   {id:'natatorium-fuse',x:15,z:-13,type:'objective',objective:'cell',label:'Submerged filtration fuse',underwater:true},
-  {id:'natatorium-spindle',x:-38,z:-57,type:'objective',objective:'crank',label:'Pressure spindle'},
+  {id:'natatorium-spindle',x:-35,z:-63,type:'objective',objective:'crank',label:'Pressure spindle'},
   {id:'natatorium-locker-cache',x:-38,z:21,type:'supplies',label:'Locker-room first aid case',cloth:2,canister:1},
   {id:'natatorium-office-cache',x:36,z:31,type:'supplies',label:'Coach office supply case',ammo:6,bottles:2},
   {id:'natatorium-filter-cache',x:21,z:-57,type:'supplies',label:'Filter gallery maintenance bag',ammo:6,cloth:1,canister:2},
@@ -60,7 +60,7 @@ export const NATATORIUM={
   task('nat-lane-lights',31,-14,'Lights under the lanes','Restore the competition-pool lane lights after recovering the filtration fuse.','repair',{requires:['cell'],reward:{ammo:4,canister:2}}),
   task('nat-dive-marker',-12,-35,'Mark the deep well','Leave a visible depth marker at the diving well for anyone following.','rescue',{reward:{cloth:2}}),
   task('nat-chemical-lock',-43,-61,'Seal the chlorine room','Secure the chemical cabinet before opening the north route.','supply',{reward:{canister:2,cloth:1}}),
-  task('nat-circulation',-32,-62,'Wake the circulation loop','Install the pressure spindle after balancing the three circulation valves.','repair',{required:true,requires:['crank','puzzle'],reward:{health:20,canister:2}}),
-  task('nat-lift-signal',0,-74,'Call the service lift','Send the clearance signal after recovering the submerged fuse and restoring circulation.','signal',{required:true,requires:['cell','crank','puzzle','task:nat-circulation'],reward:{ammo:5}}),
+  task('nat-circulation',-33,-56,'Wake the circulation loop','Install the pressure spindle after balancing the three circulation valves.','repair',{required:true,requires:['crank','puzzle'],reward:{health:20,canister:2}}),
+  task('nat-lift-signal',0,-64,'Call the service lift','Send the clearance signal after recovering the submerged fuse and restoring circulation.','signal',{required:true,requires:['cell','crank','puzzle','task:nat-circulation'],reward:{ammo:5}}),
  ]
 };

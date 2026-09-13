@@ -1,9 +1,10 @@
 /* Original fictional level and game collision geometry. */
+import {NATATORIUM} from './natatorium.mjs';
 import {FLOODGATE_COVER} from './floodgate-content.mjs';
 import {MERIDIAN,BREAKWATER,WHITEOUT,LEGACY_TASKS} from './expeditions.mjs';
 import {TERMINUS} from './terminus.mjs';
 import {CONSERVATORY} from './conservatory.mjs';
-export const VERSION='0.12.0';
+export const VERSION='0.13.0';
 export const BOUNDS={x0:-35,x1:35,z0:-49,z1:34};
 export const START={x:0,z:27};
 const box=(id,x,z,w,d,h,kind='wall',bottom=0)=>({id,x,z,w,d,h,kind,bottom});
@@ -48,7 +49,7 @@ export const PATROLS=[
  {id:'drifter',name:'Echo drifter',type:'drifter',points:[[-4,-23],[-4,-27],[6,-26],[6,-22]],yaw:0},
 ];
 const DISTRICT={id:'district',tasks:LEGACY_TASKS.district,title:'The Floodgate',subtitle:'CHAPTER 01 / LARCH WARD',bounds:{...BOUNDS},start:{...START},obstacles:OBSTACLES.map(o=>({...o})),grass:GRASS.map(o=>({...o})),items:ITEMS.map(o=>({...o})),shelters:SHELTERS.map(o=>({...o})),exit:{...EXIT},patrols:PATROLS.map(o=>({...o})),water:[],zones:[],objectiveNames:{cell:'Signal battery',crank:'Gate spindle'}};
-export const LEVELS=Object.freeze({district:DISTRICT,conservatory:{...CONSERVATORY,tasks:LEGACY_TASKS.conservatory},terminus:{...TERMINUS,tasks:LEGACY_TASKS.terminus},meridian:MERIDIAN,breakwater:BREAKWATER,whiteout:WHITEOUT});
+export const LEVELS=Object.freeze({district:DISTRICT,conservatory:{...CONSERVATORY,tasks:LEGACY_TASKS.conservatory},terminus:{...TERMINUS,tasks:LEGACY_TASKS.terminus},meridian:MERIDIAN,breakwater:BREAKWATER,whiteout:WHITEOUT,natatorium:NATATORIUM});
 // Each expedition has a small, one-time survivor cache in the open start area.
 for(const d of Object.values(LEVELS)){d.items.push({id:d.id+'-survival-cache',x:d.start.x+3,z:d.start.z-4,type:'supplies',label:'Survivor cache / rifle cartridges and '+(d.id==='whiteout'?'blade':'club'),rifleRounds:8,meleeWeapon:d.id==='whiteout'?'blade':'club'});}
 export let CURRENT=DISTRICT;

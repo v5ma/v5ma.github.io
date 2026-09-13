@@ -102,7 +102,7 @@ export function actor(scene,mesh,color,enemy=false,role='watcher'){
  return {root,rig,skin,bones,weapon,tools,club,blade,wrap,longWeapon,role,enemy,gait:0,materials};
 }
 export function pose(a,p,time,enemy=false){
- const dt=a.lastTime===undefined?1/60:clamp(time-a.lastTime,0,.10);a.lastTime=time;const moving=Math.max(0,p.speed||0),stance=p.stance||'stand',crouch=stance==='crouch',prone=stance==='prone',aim=!!p.aim;
+ const dt=a.lastTime===undefined?1/60:clamp(time-a.lastTime,0,.10);a.lastTime=time;const moving=Math.max(0,p.speed||0),stance=p.stance||'stand',crouch=stance==='crouch',prone=stance==='prone'||p.waterMode==='swim',aim=!!p.aim;
  a.gait+=moving*dt*(crouch?5.1:3.9);const step=Math.sin(a.gait),swing=Math.min(1,moving/2.2),breath=Math.sin(time*1.8)*.012;
  a.root.position.set(p.x,prone?.13:0,p.z);const delta=Math.atan2(Math.sin(p.yaw-a.root.rotation.y),Math.cos(p.yaw-a.root.rotation.y));a.root.rotation.y+=delta*(1-Math.exp(-dt*18));
  a.rig.rotation.set(prone?-Math.PI/2:0,0,0);a.rig.position.set(0,crouch?-.55:0,prone?.79:0);a.bones.forEach(b=>b.rotation.set(0,0,0));
