@@ -66,6 +66,9 @@ const objective=document.createElement('p');objective.id='bathhouse-objective';o
 let lastPaint=0,lastText='';function ui(t){requestAnimationFrame(ui);if(t-lastPaint<160)return;lastPaint=t;mounts();const visible=mode==='play'&&!won&&!__delivery.state.menu&&!__delivery.paused&&!document.querySelector('dialog[open]');
  const valve=visible&&here()&&canOperate(run,player),entry=visible&&__delivery.state.route===4&&Math.abs(player.x-250)<145;
  prompt.hidden=!valve&&!entry;prompt.textContent=valve?'E / D-pad Down: Open sluice':'E / D-pad Down: Water portal';objective.hidden=!visible||!here();if(here()){const text=status(run);if(text!==lastText){lastText=text;objective.textContent=text;}}
+ // Keep the objective and interaction above the measured legacy flight HUD,
+ // including its raised mobile layout, rather than covering either control.
+ if(visible&&(here()||entry)){const host=objective.parentElement.getBoundingClientRect(),hud=document.querySelector('#cloud-hud .cloud-flight-status');const r=hud?.getBoundingClientRect();const bottom=Math.ceil(Math.max(80,r?.height?host.bottom-r.top+12:80));objective.style.bottom=bottom+'px';prompt.style.bottom=(bottom+(objective.hidden?0:objective.getBoundingClientRect().height+12))+'px';}
 }requestAnimationFrame(ui);
 if(__delivery.state.menu)__delivery.showMenu();
 window.SkyCycleBathhouse=Object.freeze({build:BUILD,id:ID,index,show:showAtlas,get state(){return run?{...run}:null;},get records(){return {...record};},get saveOK(){return saveOK;},get art(){return Art.stats();}});
