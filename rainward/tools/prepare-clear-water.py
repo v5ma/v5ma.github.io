@@ -1,6 +1,4 @@
-"""Idempotent, scoped integration of the Clear Water UI into the v0.13 baseline.
-This is not an Undertow recovery script. No sibling paths or saves are touched.
-"""
+"""Temporary scoped integration. Removed before release; no sibling paths or saves."""
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 def replace(name,old,new):
@@ -14,3 +12,8 @@ replace('aquatic.mjs','Underwater. Watch your air. A surfaces.','Underwater. Wat
 replace('aquatic.mjs','Deep water. B dives. A surfaces.','Deep water. Gear is stowed. Check the water controls to dive or surface.')
 p=root/'aquatic.css';s=p.read_text()
 if '#aquatic-hud.low-air' not in s:p.write_text(s+'\n#aquatic-hud.low-air{border-style:double;border-width:3px;padding:8px 11px}#water-warning:empty{display:none}#aquatic-hud #water-warning{font-weight:bold;letter-spacing:.3px;margin-top:5px}@media(max-width:700px){#aquatic-hud.low-air{padding:6px}}\n')
+p=root/'tests/aquatic.py';s=p.read_text()
+old="  check(p.locator('#oxygen-meter').get_attribute('aria-label')=='Oxygen remaining: 100 percent'"
+new="  wait('document.querySelector(\"#oxygen-meter\").getAttribute(\"aria-label\")===\"Oxygen remaining: 100 percent\"');check(p.locator('#oxygen-meter').get_attribute('aria-label')=='Oxygen remaining: 100 percent'"
+if old in s:s=s.replace(old,new)
+p.write_text(s)
