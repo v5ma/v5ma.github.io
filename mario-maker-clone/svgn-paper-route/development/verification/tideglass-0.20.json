@@ -5,6 +5,8 @@
   "route_index": 7,
   "baseline_commit": "fb49af11f286f47a17f00d77f846498ec2ef698e",
   "tested_commit": "9cb7afe8e82854be5681f29dabd41d59185dc41d",
+  "published_merge_commit": "ccbec6ec6cd3dd0eb85d789482da75882e51af1b",
+  "pull_request": 143,
   "acceptance": {
     "run": 34739539558,
     "destination_job": 103676769890,
@@ -67,6 +69,40 @@
     "release.json":"1588e11ed0be0ed4a29f288ee79e37a23119309d4abe64b54acb57961b6f7d86",
     "sw.js":"3de2a1624b8f98e7fb99bd3c41709df0c37706e00a9df531d96dc24f7aae9209"
   },
-  "publication": {"verified":false,"status":"Awaiting master merge and exact public-file verification; branch acceptance alone is not a live release."},
+  "publication": {
+    "verified": true,
+    "status": "All ten public runtime files match both the exact merge source and the accepted local runtime hashes above.",
+    "run": 34739921009,
+    "run_attempt": 2,
+    "job": 103679170430,
+    "artifact": 10312228687,
+    "artifact_sha256": "3b47f8c7b190f4ce23cf264db97ce500920dd3ddd6ec6d6253c91e15186f1766",
+    "report_uploaded_at": "2026-09-13T05:30:37Z",
+    "attempt_count_in_successful_report": 1,
+    "verified_file_count": 10,
+    "pages_rollup_run": 34739992522,
+    "pages_rollup_commit": "edd3f3c42c417b154a7f3d65e29def23ed633288",
+    "pages_deploy_job": 103678773740,
+    "pages_deploy_conclusion": "success",
+    "deployment_note": "The initial Pages deployment for the Tideglass merge was superseded by the next combined master deployment. The later deployment includes the unchanged Tideglass runtime and concurrent sibling-game work. No stale repository deployment was forced.",
+    "earlier_publication_check": {
+      "job": 103677777824,
+      "artifact": 10312343351,
+      "artifact_sha256": "106f5fd49602d7b54fbe9796e5c06ff6c3975bdaaed43e20668e28dc56bd1268",
+      "verified": false,
+      "attempt_count": 50,
+      "reason": "The first polling window ended while the newer Pages deployment was still queued. Its report retained four missing new files and the older runtime hashes. Only the read-only publication job was retried after deployment progressed."
+    }
+  },
+  "post_merge_regression": {
+    "commit": "ccbec6ec6cd3dd0eb85d789482da75882e51af1b",
+    "run": 34739921009,
+    "destination_job": 103677777668,
+    "destination_conclusion": "success",
+    "regression_job": 103677777735,
+    "regression_conclusion": "success",
+    "native_artifact": 10311314615,
+    "regression_artifact": 10312033751
+  },
   "remaining_gates": ["Physical Xbox and actual mobile hardware","Native WebGPU and full 3D route performance qualification","Long-session resources and full save/rollback rehearsal","Independent human playtesting and all legacy expert-route regression"]
 }
