@@ -17,11 +17,12 @@ with sync_playwright() as p:
   # The collection grows: preserve each actual route instead of freezing the
   # gallery at the four cards present when Aether Reach was first introduced.
   check(page.locator('.project').count()>=len(required),'The public project page includes the little planet alongside every existing project')
+  links=page.locator('.projects .project a.primary-link');paths=links.evaluate_all('(els)=>els.map(e=>new URL(e.href).pathname)')
   for route in required:
-   # A quick-launch link outside the gallery is not a duplicate project card.
-   check(page.locator('.projects .project a.primary-link[href="./'+route+'"]').count()==1,'Homepage retains one playable project card: '+route)
+   # Cache-busting query/hash values are allowed; the playable destination is not.
+   check(paths.count('/'+route)==1,'Homepage retains one playable project card: '+route)
   page.screenshot(path=str(OUT/'public-projects.png'),full_page=True)
-  page.locator('a.primary-link[href="./aether-reach/index.html"]').click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)
+  aether_index=paths.index('/aether-reach/index.html');links.nth(aether_index).click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.05,'Starting the expedition looks along the street instead of jumping toward the sky')
   page.locator('#world').click(position={'x':640,'y':400});page.wait_for_timeout(500)
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.08,'Clicking to capture the mouse does not apply a cursor-warp rotation')

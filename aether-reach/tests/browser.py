@@ -38,7 +38,8 @@ def walk(page,targets):
 def use(page):
  page.wait_for_function('!AetherReach.snapshot().paused')
  page.locator('#world').focus();page.keyboard.press('KeyE',delay=120);page.wait_for_timeout(150)
- if page.locator('#record-dialog[open]').count():page.locator('#record-dialog button').click()
+ if page.locator('#record-dialog[open]').count():
+  page.locator('#record-dialog button').click();page.wait_for_selector('#record-dialog[open]',state='hidden');page.wait_for_function('!AetherReach.snapshot().paused')
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']

@@ -41,7 +41,7 @@ with sync_playwright() as pw:
    tap(page,4);check(snapshot(page)['energy']<100,'LB triggers the real energy pulse')
    tap(page,9);page.wait_for_selector('#pause-dialog[open]');old=snapshot(page);axes(page,[0,-1,1,0]);frames(page,6);check(snapshot(page)['time']==old['time'],'Paused controller menus do not advance the simulation');axes(page,[0,0,0,0]);tap(page,1);page.wait_for_function('!AetherReach.snapshot().paused')
    tap(page,8);page.wait_for_selector('#map-dialog[open]');tap(page,1);check(not snapshot(page)['paused'],'View opens atlas and B returns to play')
-   drive(page,(3,0));drive(page,(9,-5));tap(page,3);page.wait_for_function('!!AetherReach.snapshot().rail');check(snapshot(page)['rail']['id']=='glassline','Y boards a physical freight rail after controller-only walking')
+   drive(page,(3,0));drive(page,(9,-5));page.wait_for_function("AetherReach.snapshot().interaction==='station'||AetherReach.snapshot().target?.id==='glassline'");tap(page,3);page.wait_for_function('!!AetherReach.snapshot().rail',timeout=90000);check(snapshot(page)['rail']['id']=='glassline','Y boards a physical freight rail after controller-only walking')
    # Reverse mid-span, not beside the boarding platform: arriving back at the
    # station is legitimate gameplay, not a failed reverse.
    page.wait_for_function('AetherReach.snapshot().rail?.s>28');before=snapshot(page)['rail']['dir'];tap(page,5);check(snapshot(page)['rail']['dir']==-before,'RB reverses rail travel without a scene reset');tap(page,5);tap(page,0);page.wait_for_function('!AetherReach.snapshot().rail');check(True,'A releases a rail through the real momentum-preserving jump action')

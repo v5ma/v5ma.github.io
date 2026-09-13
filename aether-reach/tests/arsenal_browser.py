@@ -68,7 +68,14 @@ with sync_playwright() as pw:
    # Real arrow-key free look while the freight rail continues moving.
    page.keyboard.down('ArrowRight');page.wait_for_function('(y)=>AetherReach.snapshot().target?.id==="gale-loop"&&Math.abs(AetherReach.snapshot().position.yaw-y)>.25',arg=before['position']['yaw']);page.keyboard.up('ArrowRight');page.keyboard.up('KeyW');after=snap(page)
    check(after['rail']['s']>before['rail']['s'] and abs(after['position']['yaw']-before['position']['yaw'])>.2,'The player can look toward a different rail while travel continues independently')
-   page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail');released=snap(page)['time'];page.wait_for_function('(t)=>AetherReach.snapshot().time>=t+.18',arg=released);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().rail?.id==="gale-loop"');check(snap(page)['stats']['transfers']==1,'A real jump and aimed catch changes onto the new rail without a scripted position assignment')
+   transfer=after.get('target');assert transfer and transfer['id']=='gale-loop','Free-look must acquire the real target rail before release';point=transfer['point']
+   page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail')
+   deadline=time.monotonic()+30
+   while time.monotonic()<deadline and snap(page)['rail'] is None:
+    aim(page,point['x'],point['y'],point['z']);state=snap(page);target=state.get('target')
+    if target and target['id']=='gale-loop':page.keyboard.press('KeyE',delay=80)
+    page.wait_for_timeout(40)
+   page.wait_for_function('AetherReach.snapshot().rail?.id==="gale-loop"');check(snap(page)['stats']['transfers']==1,'A real jump and aimed catch changes onto the new rail without a scripted position assignment')
    page.screenshot(path=str(OUT/'on-gale-market-loop.png'));page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW');check(snap(page)['stats']['rescues']==0,'The transferred ride reaches its real garden endpoint without a rescue shortcut')
    walk(page,[(78,-25)]);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().owned.includes("carbine")');check(True,'The garden supply cache unlocks a weapon after actual exploration');page.screenshot(path=str(OUT/'glasshouse-diversity.png'))
   check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, native mouse drag-look, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))

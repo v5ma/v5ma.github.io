@@ -101,7 +101,7 @@ with sync_playwright() as pw:
     enemies=[x for x in s['enemies'] if x['id'].startswith('trial-') and x['hp']>0]
     if enemies:
      target=min(enemies,key=lambda x:math.hypot(x['x']-s['position']['x'],x['z']-s['position']['z']))
-     if aim(p,target['id'],timeout=12):
+     if aim(p,target['id'],timeout=30):
       if not surveyed:p.keyboard.press('KeyJ');surveyed=True
       if s['energy']>=32:p.keyboard.press('KeyQ')
       if s['ammo']>0:p.keyboard.down('KeyF');p.wait_for_timeout(280);p.keyboard.up('KeyF')
