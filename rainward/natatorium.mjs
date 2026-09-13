@@ -8,7 +8,7 @@ export const NATATORIUM={
  intro:'The municipal baths are still half full. Recover the filtration fuse from the deep competition pool, find the pressure spindle, balance the circulation valves, and reopen the north service route.',
  objectiveNames:{cell:'Filtration fuse',crank:'Pressure spindle'},objectivePrompt:'Recover the filtration fuse and pressure spindle.',
  exit:{x:0,z:-78,name:'North service lift'},exitPrompt:'Ride the north service lift / finish',
- shelters:[{id:'natatorium-lobby',x:0,z:48,name:'Dry lobby shelter'},{id:'natatorium-lockers',x:-36,z:18,name:'Locker-room refuge'},{id:'natatorium-pump',x:-36,z:-54,name:'Pump-room shelter'}],
+ shelters:[{id:'natatorium-lobby',x:0,z:48,name:'Dry lobby shelter'},{id:'natatorium-deck',x:15,z:23.5,name:'Competition-deck refuge'},{id:'natatorium-lockers',x:-36,z:18,name:'Locker-room refuge'},{id:'natatorium-pump',x:-36,z:-54,name:'Pump-room shelter'}],
  zones:[{name:'Ticket lobby',x:0,z:46},{name:'Warm-up pool',x:-18,z:15},{name:'Competition pool',x:15,z:2},{name:'Diving well',x:-18,z:-27},{name:'Filter gallery',x:13,z:-50},{name:'Pump room',x:-35,z:-54},{name:'North service lift',x:0,z:-78}],
  grass:[],
  water:[
