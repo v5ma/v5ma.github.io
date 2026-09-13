@@ -32,19 +32,23 @@ def walk(page,points):
    keys(set())
  finally:keys(set())
 def aim(page,x,y,z):
- # Precision aiming uses normal mouse drag-look rather than holding a key
- # whose fixed-step motion can overshoot on slow software-renderer frames.
- start=time.monotonic();box=page.locator('#world').bounding_box()
- while time.monotonic()-start<35:
+ # Scoped precision aim is driven by ordinary arrow-key look, one rendered frame
+ # at a time. This converges on slow software WebGL without depending on drag
+ # distance, pointer-lock timing, or writing camera state from the test.
+ start=time.monotonic();last=None
+ while time.monotonic()-start<45:
   state=snap(page);s=state['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch']
-  if abs(dy)<.03 and abs(dp)<.03:return
-  # Scoped drag-look is deliberately conservative on software WebGL: a larger
-  # scale yields smaller native mouse corrections and avoids crossing the aim
-  # point back and forth as individual frames take longer.
-  scale=.004*(.65 if state['scoped'] else 1)
-  dx=max(-180,min(180,dy/scale));dv=max(-130,min(130,-dp/scale));cx=box['x']+box['width']*.5;cy=box['y']+box['height']*.5
-  page.mouse.move(cx,cy);page.mouse.down();page.mouse.move(cx+dx,cy+dv,steps=4);page.mouse.up();page.wait_for_timeout(35)
- raise AssertionError('Native mouse aim did not settle')
+  if abs(dy)<.035 and abs(dp)<.08:return
+  if abs(dy)>=.035:
+   key='ArrowRight' if dy>0 else 'ArrowLeft';page.keyboard.down(key);page.evaluate('new Promise(r=>requestAnimationFrame(()=>r()))');page.keyboard.up(key)
+  else:
+   # The fixed test target is nearly level with the eye. Give any residual
+   # vertical convergence one short native mouse correction, then re-read state.
+   box=page.locator('#world').bounding_box();cx=box['x']+box['width']*.5;cy=box['y']+box['height']*.5;page.mouse.move(cx,cy);page.mouse.down();page.mouse.move(cx,cy-max(-40,min(40,dp/.004)),steps=2);page.mouse.up()
+  current=snap(page)['position']['yaw']
+  if last is not None and abs(current-last)<1e-7:page.wait_for_timeout(20)
+  last=current
+ raise AssertionError('Native scoped aim did not settle: '+json.dumps({'position':snap(page)['position'],'target':[x,y,z]}))
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
