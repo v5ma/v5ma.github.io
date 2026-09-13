@@ -1,3 +1,5 @@
+import {mountWaterDOM,createWaterUI} from './tidewater-ui.mjs';
+import {waterTarget} from './tidewater-core.mjs';
 import {mountAtmosphereUI} from './atmosphere-ui.mjs';
 import {mountHomecomingDOM,createHomecomingUI} from './homecoming-ui.mjs';
 import {storyTarget} from './homecoming.mjs';
@@ -11,9 +13,9 @@ import {jobTarget} from './activities.mjs';
 import {ART_VERSION} from './street-art.mjs';
 import {VERSION,RADIUS,WORLD,CITY,travelTo,cross,dot,tangent,at,add,mul,norm,distance,localPosition,initial,step,nearest,interact,throwPaper,switchRide,readSave,saveData,SAVE_KEY,LEGACY_SAVE_KEY,target} from './model.mjs';
 import {createScene} from './scene.mjs';
-buildCoastalDOM();mountHomecomingDOM();
+buildCoastalDOM();mountHomecomingDOM();mountWaterDOM();
 const $=id=>document.getElementById(id),canvas=$('world'),audio=createCoastalAudio(),metrics=createFrameHealth();
-const dialogs=['pause-dialog','map-dialog','help-dialog','jobs-dialog','repair-dialog','photo-dialog','homecoming-dialog','health-dialog','production-dialog'];
+const dialogs=['pause-dialog','map-dialog','help-dialog','jobs-dialog','repair-dialog','photo-dialog','homecoming-dialog','health-dialog','production-dialog','water-dialog','water-pump-dialog','water-results-dialog'];
 let touchBraking=false;let saved=null,storage=true;try{saved=readSave(localStorage.getItem(SAVE_KEY));if(!saved)saved=readSave(localStorage.getItem(LEGACY_SAVE_KEY));}catch{storage=false;}
 let s=initial(saved),started=false,paused=false,graphicsLost=false,failed=false,view,keys=new Set(),stick=[0,0],jump=false,boost=false,orbitDrag=null,last=0,lastRender=0,lastUI=0,lastSave=0,acc=0,mode=0,vehicle=saved?.vehicle||'unicycle',saveStamp='',wasPlaying=false,renderDirty=true,previousPose=null,saveQueued=false;
 const diagnostics=[];let waypoint=null,lastReward=0;
@@ -39,8 +41,8 @@ function changeView(){if(!view)return;renderDirty=true;mode=(mode+1)%3;view.setC
 $('view').onclick=()=>{changeView();canvas.focus({preventScroll:true});};
 function action(code){
  if(!started||paused||failed||graphicsLost)return;
- if(code==='KeyE'){if(!storyUI.interact()&&!pulseUI.interact(!nearest(s))){if(nearest(s))interact(s);else throwPaper(s);}persist();}
- if(code==='KeyQ')throwPaper(s);if(code==='KeyF'){switchRide(s);persist();}if(code==='Space')jump=true;
+ if(code==='KeyE'){if(!waterUI.interaction()&&!storyUI.interact()&&!pulseUI.interact(!nearest(s))){if(nearest(s))interact(s);else throwPaper(s);}persist();}
+ if(code==='KeyQ')throwPaper(s);if(code==='KeyF'){if(!waterUI.craft())switchRide(s);persist();}if(code==='Space')jump=true;
  if(code==='KeyV')changeView();if(code==='KeyM')openMap();if(code==='KeyH')openHelp();if(code==='KeyJ')pulseUI.jobs();
  if(code==='KeyC'){view.recenter();renderDirty=true;}if(code==='KeyG'){audio.cue('bell');view.life?.bell(s.time);}if(code==='KeyK')audio.toggleMute();
 }
@@ -69,24 +71,25 @@ function transit(id){if(!travelTo(s,id))return false;waypoint=id==='post'?null:i
 $('transit').onclick=()=>{if(!transit($('district-select').value))$('district-detail').textContent='That landing is blocked. Select another district.';};$('return-home').onclick=()=>transit('post');
 function ui(){
  const reward=s.delivered.size+s.bonusDelivered.size+s.stamps.size+s.stunts.size+s.jobs.completed.length;if(reward>lastReward&&started)rumble(.28,95);lastReward=reward;
- const t=storyTarget(s)||jobTarget(s)||(waypoint?cityStops.find(d=>d.id===waypoint)||target(s):target(s)),near=nearest(s);
+ const t=waterTarget(s)||storyTarget(s)||jobTarget(s)||(waypoint?cityStops.find(d=>d.id===waypoint)||target(s):target(s)),near=nearest(s);
  $('mail-count').textContent=s.delivered.size+' / '+WORLD.homes.length;$('bonus-count').textContent=s.bonusDelivered.size+' / '+WORLD.bonusStops.length;$('stunt-count').textContent=s.stunts.size+' / '+WORLD.stuntGates.length;$('stamp-count').textContent=s.stamps.size+' / '+WORLD.stars.length;
  $('score').textContent=String(s.delivered.size*100+s.bonusDelivered.size*150+s.stamps.size*25+s.stunts.size*200+s.jobs.earned).padStart(5,'0');$('speed').textContent=Math.round(s.speed*3.6)+' km/h';$('energy').style.width='100%';$('ride-name').textContent=s.ride?(vehicle==='bicycle'?'BICYCLE':'ELECTRIC UNICYCLE'):'ON FOOT';document.body.classList.toggle('boosting',s.boosting);$('district-name').textContent=CITY.districtAt(s.n).name;
  $('objective-title').textContent=t.name;$('objective-text').textContent=Math.round(distance(s.n,t.mail))+' m | '+(padState.connected?'X delivers. LB throws. D-pad down opens jobs.':'E delivers. Q throws. J opens city jobs.');
  const b=view?.movementBasis(s);if(b){const toward=tangent(add(t.mail,mul(s.n,-1)),s.n);$('waypoint-arrow').style.transform='rotate('+Math.atan2(dot(toward,b.right),dot(toward,b.forward))+'rad)';}
- $('save-status').textContent=storage?'Progress saved on this device':'Storage unavailable - play continues';$('toast').textContent=s.toast;$('toast').classList.toggle('visible',s.toastT>0);$('context').textContent=started&&near?(padState.connected?'X | ':'E | ')+near.name:'';pulseUI.update();storyUI.update();
+ $('save-status').textContent=storage?'Progress saved on this device':'Storage unavailable - play continues';$('toast').textContent=s.toast;$('toast').classList.toggle('visible',s.toastT>0);$('context').textContent=started&&near?(padState.connected?'X | ':'E | ')+near.name:'';pulseUI.update();storyUI.update();waterUI.update();
 }
 window.addEventListener('nm-action',e=>{const name=e.detail.name;if(name==='disconnect'){clear();pause();return;}if(name==='pause'){paused?resume():pause();return;}if(name==='help'){openHelp();return;}if(!started||paused||failed||graphicsLost)return;const codes={hop:'Space',interact:'KeyE',ride:'KeyF',throw:'KeyQ',camera:'KeyV',map:'KeyM',recenter:'KeyC',jobs:'KeyJ',bell:'KeyG'};if(codes[name])action(codes[name]);if(name==='next-district'||name==='previous-district'){const i=cityStops.findIndex(d=>d.id===waypoint),next=(Math.max(0,i)+(name==='next-district'?1:-1)+cityStops.length)%cityStops.length;waypoint=cityStops[next].id;$('district-select').value=waypoint;s.toast='Waypoint: '+cityStops[next].name;s.toastT=3;}});
 $('material-look').onchange=e=>{view.setLook(e.target.value);renderDirty=true;};$('quiet-effects').onchange=e=>{view.setQuiet(e.target.checked);renderDirty=true;};$('quality').onchange=e=>{view?.setQuality(e.target.value);renderDirty=true;record('quality',e.target.value);};
 $('retry').onclick=()=>{if(graphicsLost){view?.restoreGraphics();return;}try{if(!view)view=createScene(canvas);$('material-look').value=view.inspect().jewel.look;$('quiet-effects').checked=view.inspect().jewel.quiet;$('start').disabled=false;view.setQuality('low');renderDirty=true;failed=false;$('failure').hidden=true;last=0;resume();}catch(e){showFailure(String(e.message||e));}};
-$('copy-diagnostics').onclick=async()=>{const text=JSON.stringify({version:VERSION,artVersion:ART_VERSION,started,paused,graphicsLost,events:diagnostics,render:view?.inspect(),coastal:pulseUI.inspect(),homecoming:storyUI.inspect(),viewport:[innerWidth,innerHeight,devicePixelRatio]},null,2);$('diagnostics').hidden=false;$('diagnostics').value=text;try{await navigator.clipboard.writeText(text);}catch{}};
+$('copy-diagnostics').onclick=async()=>{const text=JSON.stringify({version:VERSION,artVersion:ART_VERSION,started,paused,graphicsLost,events:diagnostics,render:view?.inspect(),coastal:pulseUI.inspect(),homecoming:storyUI.inspect(),tidewater:waterUI.inspect(),viewport:[innerWidth,innerHeight,devicePixelRatio]},null,2);$('diagnostics').hidden=false;$('diagnostics').value=text;try{await navigator.clipboard.writeText(text);}catch{}};
+const waterUI=createWaterUI({state:()=>s,view:()=>view,audio,open:openDialog,resume,persist,resetView(){clear();view?.recenter();view?.setCamera('street');mode=0;renderDirty=true;}});
 const storyUI=createHomecomingUI({state:()=>s,view:()=>view,metrics,open:openDialog,resume,persist});
 const pulseUI=createCoastalInterface({state:()=>s,view:()=>view,audio,open:openDialog,resume,persist});
 function boot(){try{view=createScene(canvas);$('material-look').value=view.inspect().jewel.look;$('quiet-effects').checked=view.inspect().jewel.quiet;record('renderer-ready');view.artReady.then(()=>{$('start').disabled=false;$('start').textContent=saved?'Continue your neighborhood':'Start riding';renderDirty=true;record('art-ready',view.inspect().art.status);});}catch(e){showFailure(String(e.message||e));}}
 canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();wasPlaying=started&&!paused;graphicsLost=true;closeDialogs();clear();persist();audio.setPlaying(false);$('failure').hidden=false;$('failure-message').textContent='Graphics paused. Your route and contracts are saved. Retry requests recovery.';record('context-lost');});
 canvas.addEventListener('webglcontextrestored',()=>{queueMicrotask(()=>{graphicsLost=false;failed=false;view.restoreAppearance();view.setQuality('low');$('material-look').value='light';$('quality').value='low';$('failure').hidden=true;clear();last=0;lastRender=performance.now();renderDirty=true;if(wasPlaying)paused=false;else if(started){paused=false;pause();}record('context-restored');});});
 boot();const atmosphereUI=mountAtmosphereUI({view:()=>view});window.addEventListener('nm-atmosphere-change',()=>{renderDirty=true;});window.addEventListener('resize',()=>{view?.resize();renderDirty=true;});
-Object.defineProperty(window,'SVGNPlanet',{value:Object.freeze({inspect:()=>({version:VERSION,artVersion:ART_VERSION,engineVersion:VERSION,started,paused,graphicsLost,failed,vehicle,waypoint,controller:{...padState},coastal:pulseUI.inspect(),homecoming:storyUI.inspect(),city:{buildings:CITY.buildings.length,roads:CITY.roads.length,districts:CITY.districts.length,blocks:CITY.blocks.length},time:s.time,n:[...s.n],north:[...s.north],facing:[...s.facing],basis:view?.movementBasis(s),radius:RADIUS,lift:s.lift,ride:s.ride,boosting:s.boosting,speed:s.speed,steps:s.steps,distance:s.distance,deliveries:[...s.delivered],bonusDeliveries:[...s.bonusDelivered],stunts:[...s.stunts],stamps:[...s.stamps],complete:s.complete,nearest:nearest(s)?.id||null,sites:[...WORLD.sites,...WORLD.bonusStops].map(p=>({id:p.id,n:[...p.mail]})),events:s.events.map(e=>({...e})),diagnostics:diagnostics.map(e=>({...e})),render:view?.inspect()})})});
+Object.defineProperty(window,'SVGNPlanet',{value:Object.freeze({inspect:()=>({version:VERSION,artVersion:ART_VERSION,engineVersion:VERSION,started,paused,graphicsLost,failed,vehicle,waypoint,controller:{...padState},coastal:pulseUI.inspect(),homecoming:storyUI.inspect(),tidewater:waterUI.inspect(),city:{buildings:CITY.buildings.length,roads:CITY.roads.length,districts:CITY.districts.length,blocks:CITY.blocks.length},time:s.time,n:[...s.n],north:[...s.north],facing:[...s.facing],basis:view?.movementBasis(s),radius:RADIUS,lift:s.lift,ride:s.ride,boosting:s.boosting,speed:s.speed,steps:s.steps,distance:s.distance,deliveries:[...s.delivered],bonusDeliveries:[...s.bonusDelivered],stunts:[...s.stunts],stamps:[...s.stamps],complete:s.complete,nearest:nearest(s)?.id||null,sites:[...WORLD.sites,...WORLD.bonusStops].map(p=>({id:p.id,n:[...p.mail]})),events:s.events.map(e=>({...e})),diagnostics:diagnostics.map(e=>({...e})),render:view?.inspect()})})});
 function frame(now){
  requestAnimationFrame(frame);
  if(!view||failed||graphicsLost||document.hidden){audio.setPlaying(false);last=0;return;}

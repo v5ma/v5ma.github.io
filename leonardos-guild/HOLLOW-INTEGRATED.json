@@ -1,0 +1,128 @@
+{
+  "version": "0.11.0",
+  "source": "7c1c2122fcee1aa513c1eb04b3b12c87df25d18f",
+  "method": "One-time exact-context/whole-file-hash checked source edits; tests read the subsequently committed ordinary modules.",
+  "files": [
+    {
+      "path": "frontier-core.mjs",
+      "before": "9981ef050a398088b1266d2699eaf23bdedb9f138ae2f0a04535219650f89624",
+      "after": "b69cdb181c60d3258010d9a3d116f6bf2d01c97654118b2a459318db28b2a60b"
+    },
+    {
+      "path": "model.mjs",
+      "before": "35670c5e633527109063af6f8c90e598da2c994b5ce94944a5620213ab19f16f",
+      "after": "100259806706d9ec98f0b135e005ea4da5452756b531f97238527d6dee0d5ef9"
+    },
+    {
+      "path": "life-core.mjs",
+      "before": "e2e6d0cdb9a4451a6206e09d13f1a7a74fa990a15e0e59e18e4668d1a8fa28e1",
+      "after": "a1b2ba7eb484ead5b09d3a0e25239a33614646b30097a11f460911d2e6f9a26e"
+    },
+    {
+      "path": "doors-core.mjs",
+      "before": "e3eec92b579205fc02204ff13f87240c79992106f54d780414a869deeeb5293e",
+      "after": "f574a9ccc656aa5851d6e6533dccc43aa96ed0b971efb60f0bc80f7638889213"
+    },
+    {
+      "path": "resonance-core.mjs",
+      "before": "2f515d3b26d5ec8a64fbcabffe1ea3fbed0e55781b1b0bd783fd5a1ac0429759",
+      "after": "d6e974890256762ff64957f8db4e11c62fff8a2734191d72ddc92c4031638a08"
+    },
+    {
+      "path": "app.mjs",
+      "before": "f3d0f09f8c74c8e6da4182a814c91c2bd7fa5af736ce3954e9d4af750c7d2d4e",
+      "after": "3f3a30a18c02cb01e11be7676ff912f8e0f114268de70875ad7d4a6bb5e2f2ee"
+    },
+    {
+      "path": "resonance-ui.mjs",
+      "before": "68a30c5df2fc6fc2e12864a574d69370b897d1fd832f10a1768979b5357a981d",
+      "after": "3556d492d6c006129fc6300f1b0816c3bdd799a76b924becf7566da399cbee2d"
+    },
+    {
+      "path": "scene.mjs",
+      "before": "8c602cb3cc5810f49ae7df51d569d4ae8d35079a16a74ea45ce0e32d124d1bf6",
+      "after": "d67a49be4673a993f2a9191b24ebb491c73f84e7cc55d710175013211c362866"
+    },
+    {
+      "path": "camera-safety.mjs",
+      "before": "00b9396b3706f7b91236dc0c5d4e6c4c3d5fd74dcb41e9da15ae76b06944b85d",
+      "after": "cdcaa8ec9e8b0f29e5548c1e54706cf13c7e777d9417e96c9fcc877f287e1d9f"
+    },
+    {
+      "path": "resonance-audio.mjs",
+      "before": "5b4ceb03adf7afcb8ffd3f6eb6f03c4ad537e0de62749460b1db666b58ddb282",
+      "after": "191ea3cb28b98a6c41cb61b5a6013114f4f8f400f8721bc76f47ed12bab8cee2"
+    },
+    {
+      "path": "package.json",
+      "before": "40beecd23afb46587da67f5b1d62e6e0be5cf1d2a6cef712f79f37752bc9f13d",
+      "after": "8acb0835676b7e383240c0caaca6b13796e17e2e7a9b0b8095c100c12a3ffbd0"
+    },
+    {
+      "path": "index.html",
+      "before": "f861ed57f4f7b1df880a431067fe2d1fa04318c473ea9caf14cbd449a8469db2",
+      "after": "272129395977da005a3e41b00e08ef01813cb7b293022ee2e489ce0d242e119c"
+    },
+    {
+      "path": "doors-ui.mjs",
+      "before": "557ba005fc8335b2962dcbd5cfa56bc56a5c616f500261ffaa20dcda3ec66418",
+      "after": "52e5c58d895c963d9ab8759eff13d12c8367d20237bdfe1541632cf07821da62"
+    },
+    {
+      "path": "frontier-ui.mjs",
+      "before": "e8e4ba4864f7bf66cc5c5e0db5f110350a46fe337bba927e4530937b1fc4360c",
+      "after": "f1ab2e7964cbd7a70937e4773dc3e9234e1c907e657aa12ecc7b3e7710b59213"
+    },
+    {
+      "path": "gamepad.mjs",
+      "before": "7fd202b3b124f0699b0f7fe7f83256a892007d80c2db011a95785605b1c5d146",
+      "after": "7eccbaa5fec4c904047741c8bbadfafb3dc525ce786d16278140f3cb0d5e41b7"
+    },
+    {
+      "path": "tests/resonance-browser.py",
+      "before": "8c721f1e6f6273093c8d08eaeb791d0e18ed50dc5d31e928cde233e12f33f678",
+      "after": "decf69bc96b52241aa64b310d441e07fe902756f1adab213fdd3b276d3198b95"
+    },
+    {
+      "path": "tests/browser.py",
+      "before": "25915e522326ca029cb94842d722dec81840b0941b70f65a5454c2062c07f15d",
+      "after": "416d2a0c037e8d705b771e4e752356e3867a0f0f38189996276c78a022abb117"
+    },
+    {
+      "path": "README.md",
+      "before": "ef4b5b7f0c5540d5e2e418d8bf36b574b7f549e21aab3b3a45e46c69a9188fa2",
+      "after": "abc91fe938a8ed12f5472ef003d312a2e47773089a9f3ebd758e8e7befa12b5e"
+    },
+    {
+      "path": "AGENTS.md",
+      "before": "13f67dae7b5b16c2d6d8ff2397a3bbe5e66edeef39322d9ae023c798223a0788",
+      "after": "0ad18bd597774bbfb4d171b7a3cb6eae148aa0d56d31921fc5d50e627f6d4345"
+    },
+    {
+      "path": "AAA-ROADMAP.md",
+      "before": "47542f6e8a05f532fb1512bf0a54ec3a169aa4bb213f651b863dbb31902428bb",
+      "after": "ea3bfc8c9bd38af1da7b7a2ac6c8b0280ccf27b7dd5edba95f863e1adcd1d974"
+    },
+    {
+      "path": "UPGRADE-CHECKLIST.md",
+      "before": "f26611acb1d09e44894ab42f5bd52af003c4fdcb5132087e3f15343a931466d8",
+      "after": "e7eb1a5afc3a2616c8443a93e9ea73b0c6a1c67dfb86a508cee33a8754804032"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "before": "c835eafe283e5e799a0394ee96cc4be3e0aed4295ba914b07e0c545feb630915",
+      "after": "204aa3efcb683b929482b3b660ea36d707f07626e80939ea1ff34ffc29612f19"
+    },
+    {
+      "path": "release.json",
+      "before": "5aa6f8205bbebb1b157a0e1c255b1afe9fb615fc1780fe5af5b40bd21cb5eb9d",
+      "after": "5ce40ce293d6ec1fd33a99b4cf0936344c875c3a7399c7b68446b3e8fb380cac"
+    }
+  ],
+  "newFiles": {
+    "frontier-art.mjs": "47c3bd794d43e1c8bfe58299c7c8957c523cd65e2aa616b5a8e559a93db99345",
+    "frontier.css": "e6dbd66594ab0af3aad2dbcd0ce28af1385d8bc14a6e19a852e5ec632e3dfd72",
+    "tests/frontier.test.mjs": "75822cc1759fe34021e1fff26638dd3ff8a2b0bad138b844867fbf3dfb2733bd",
+    "tests/frontier-browser.py": "94d06bec438fad01db928ee2a2bf46a89ff8a4cf131bc4adeb2440e5e384e101"
+  }
+}

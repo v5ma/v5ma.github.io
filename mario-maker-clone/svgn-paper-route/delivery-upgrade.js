@@ -170,6 +170,7 @@
       const z=mode==='play'?Math.min(1.6,Math.max(1.1,W/800)):1;
       if(mode==='play'&&player){cam.x=Math.max(0,Math.min(LW*TILE-W/z,player.x-W/z*.36));cam.y=Math.min(LH*TILE-H/z,player.y-H/z*.58);}
       g2.save();g2.scale(z,z);g2.translate(-cam.x,-cam.y);
+      if(mode==='play'&&window.__ground?.meta?.bathhouse)window.Bathhouse2D?.draw(g2,cam.x,cam.y,W/z,H/z);
       const data=mode==='play'?playGrid:grid,time=now/1000;
       for(let y=Math.max(0,Math.floor(cam.y/TILE)-1);y<Math.min(LH,Math.ceil((cam.y+H/z)/TILE)+2);y++)for(let x=Math.max(0,Math.floor(cam.x/TILE)-1);x<Math.min(LW,Math.ceil((cam.x+W/z)/TILE)+2);x++){const id=data[y*LW+x];if(id)tile2D(g2,id,x*TILE,y*TILE,time);}
       if(mode==='edit'&&editTracksDirty){editTracks=buildTracks(grid);editTracksDirty=false;}

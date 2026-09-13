@@ -210,3 +210,19 @@ Each release must record the source identity, model-test result, rendered-browse
 Current automatic coverage includes the actual Rapier coast route, reachable exterior arrival, real narrow-doorway walking, safe rooftop support, supply handoffs, stage order, suspend/resume, reward-ledger preservation and the ranch gate-margin repair. The browser journey uses synthetic standard Xbox input. Distant travel is repositioned through explicit test fixtures; it is not a complete human or physical-controller certification run.
 
 An implementation checkbox means that scoped code path exists and has supporting automated evidence. A milestone remains open until all of its acceptance criteria, including manual ones, are satisfied. Each future upgrade should close a small, named group of items, add the matching regressions, preserve saves, update this file and actually publish.
+
+## Pelagic Recovery: playable aquatics wing
+
+Release scope: [PELAGIC-RECOVERY.md](PELAGIC-RECOVERY.md). This source implements a six-stage boat/interior/water-recovery assignment with its own validated save namespace. It is an original pool facility inspired by the user's supplied tiled-water screenshots; no screenshot, film asset, VHS filter or copied game environment is included.
+
+- [x] WATER-01a: provide a new coastal mooring, real entry/pool stairs, dry engineering deck and shallow on-foot archive route. The original four harbors, vehicles and old terrain behavior remain unchanged.
+- [x] WATER-02a: enforce breaker -> intake isolation -> actual timed drainage -> two recoveries -> boat delivery. The pool water level and physical access gate agree; pause freezes drainage and interrupted drainage survives reload.
+- [x] FX-08a: add tiled submerged floors/walls with moving caustic-like illumination, real scene-color refraction with depth rejection, and eight bounded local wading ripples. This is an artistic approximation, not a physically traced fluid/caustics solver.
+- [x] INPUT-07a: provide controller-native mission/pump panels, automatic local first-person inspection, and independent inspection/refraction switches. Xbox X reload, Y boarding and B dismissal remain unchanged.
+- [x] TECH-08a: allocate at most one local refraction target with depth texture, capped at 512 pixels wide on Low and 1024 otherwise; release it outside the facility or when disabled. No extra pool rendering pass is added at distant locations.
+- [x] SAVE-08a: preserve the partially drained level and recovered cases; reconcile the one-time 1,200-credit reward with the existing persistent ledger. Explicit recovery moves only the ranger, not parked vehicles.
+- [ ] WATER-03: human first-time-player, physical Xbox and reduced-vision pool-depth readability review.
+- [ ] FX-08b: inspect caustics, water edges, refracted foreground silhouettes and overall mood on consumer GPUs and televisions.
+- [ ] AUDIO-08: listen to the bounded pump and wading cues together with the existing audio mix on real speakers/headphones.
+
+The full signature Northstar district remains a separate unfinished work package. Pelagic adds a compact authored facility and purposeful water mission, not a claim that WORLD-01 or the AAA vertical-slice quality gate is complete. Swimming, diving, underwater life and drowning are not implemented by this release.

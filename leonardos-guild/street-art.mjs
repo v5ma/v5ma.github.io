@@ -48,14 +48,14 @@ export function createStreetArt({scene,root,w,m,camera}){
   batch(detail);detail.name='Curated textured Renaissance facade';const originals=shell.children.map(object=>({object,visible:object.visible}));replacements.push(...originals);shell.add(detail);added.push(detail);facadeLevels.push({h,detail,originals});status.facades++;
  }
  function roomArt(r,g){
-  const base=new T.Group();base.name='Curated room workspaces';g.add(base);
-  for(const x of[-r.hx+2,r.hx-2]){instance('props/Bookcase_2',base,x,.19,-r.hz+1,.85);instance('props/BookGroup_Medium_1',base,x,.95,-r.hz+1.22,.9);}
-  instance('props/Table_Large',base,0,.2,r.hz-1.2,[.8,.85,.65]);instance('props/Scroll_1',base,.15,1.0,r.hz-1.2,.8);instance('props/CandleStick_Triple',base,.7,1.02,r.hz-1.3,.5);
-  if(r.kind==='apothecary')instance('props/Shelf_Small_Bottles',base,2,1.2,-r.hz+.7,1.5);
-  if(r.kind==='smith'){instance('props/Anvil_Log',base,r.hx-1.5,.2,1,.85);instance('props/Whetstone',base,-r.hx+1.5,.2,1,.8);}
-  if(r.kind==='inn'){instance('props/Barrel',base,-r.hx+1,.2,r.hz-2,1.1);instance('props/Barrel_Apples',base,r.hx-1,.2,r.hz-2,1.1);}
-  if(r.kind==='workshop')instance('props/Workbench',base,-r.hx+1.5,.2,1,[.7,.9,.75],Math.PI/2);
-  batch(base);if(g.getObjectByName('Replaceable workshop furniture')){const object=g.getObjectByName('Replaceable workshop furniture');replacements.push({object,visible:object.visible});}added.push(base);rooms.push({r,g:base});
+  const base=new T.Group();base.name='Curated room workspaces';g.add(base);const details=new T.Group();base.add(details);
+  for(const x of[-r.hx+2,r.hx-2]){const book=new T.Group();book.name=r.id+' textured bookcase '+x;book.userData.cameraOccluder=true;base.add(book);instance('props/Bookcase_2',book,x,.19,-r.hz+1,.85);instance('props/BookGroup_Medium_1',book,x,.95,-r.hz+1.22,.9);batch(book);} 
+  instance('props/Table_Large',details,0,.2,r.hz-1.2,[.8,.85,.65]);instance('props/Scroll_1',details,.15,1.0,r.hz-1.2,.8);instance('props/CandleStick_Triple',details,.7,1.02,r.hz-1.3,.5);
+  if(r.kind==='apothecary')instance('props/Shelf_Small_Bottles',details,2,1.2,-r.hz+.7,1.5);
+  if(r.kind==='smith'){instance('props/Anvil_Log',details,r.hx-1.5,.2,1,.85);instance('props/Whetstone',details,-r.hx+1.5,.2,1,.8);}
+  if(r.kind==='inn'){instance('props/Barrel',details,-r.hx+1,.2,r.hz-2,1.1);instance('props/Barrel_Apples',details,r.hx-1,.2,r.hz-2,1.1);}
+  if(r.kind==='workshop')instance('props/Workbench',details,-r.hx+1.5,.2,1,[.7,.9,.75],Math.PI/2);
+  batch(details);if(g.getObjectByName('Replaceable workshop furniture')){const object=g.getObjectByName('Replaceable workshop furniture');replacements.push({object,visible:object.visible});}for(const object of g.children)if(object.userData.replaceableBookcase)replacements.push({object,visible:object.visible});added.push(base);rooms.push({r,g:base});
  }
  async function load(){
   if(new URLSearchParams(location.search).get('art')==='baseline'){status.message='Baseline procedural art selected for comparison.';badge.textContent=status.message;return;}

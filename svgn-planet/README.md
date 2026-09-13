@@ -1,3 +1,7 @@
+# Neighborhood Missions: Tidewater Commons (v0.10.0)
+
+Choose **Play the water missions now** on the title screen, or **Menu / Water missions / pool & marina** while playing. The authored waterfront is connected to Sunrise Boulevard near the original depot; optional transit gets you there immediately. See [TIDEWATER.md](TIDEWATER.md) for activities, controls, shader scope and save behavior.
+
 # Neighborhood Missions: Coastal Atmosphere (v0.9.0)
 
 Open Menu, scroll to Coastal Atmosphere, and choose daylight, golden hour, after-rain sunset, coastal rain or blue hour. D-pad moves focus; left/right selects a preset or adjusts strength; A toggles; B resumes. Each preference is saved separately from gameplay progress. Restore sunny defaults and Disable atmosphere are available without resetting your game.

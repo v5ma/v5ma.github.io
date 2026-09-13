@@ -1,4 +1,5 @@
 import * as T from './vendor/three.module.js';
+import {clearLabSite} from './aquatics-data.js';
 import {box,part,bone,ellipsoid,label,material} from './ranger-art.js';
 import {bakeStatics} from './frontier-art.js?v=storm2';
 import {seeded} from './ranger-data.js';
@@ -73,7 +74,7 @@ export function buildRanchWorld(scene,physics){
  }
  const cargo=[];for(const p of SALVAGE){const g=new T.Group();g.position.set(p.x,.7,p.z);box(g,0xe4b15e,0,0,0,2.4,1.5,2.4);for(const x of [-1.25,1.25])box(g,0x71919b,x,-.6,0,.45,.6,3.2);const t=label('SALVAGE / A',8,1);t.position.set(0,3,0);g.add(t);scene.add(bakeStatics(g));cargo.push({p,g});}
  // Affordable outer forest: instances, with every road and discovery site kept clear.
- const forest=[];for(let i=0;i<360;i++){const a=rng()*Math.PI*2,r=310+rng()*99,x=Math.cos(a)*r,z=Math.sin(a)*r,p={x,z};if(seaWater(x,z,7)||BUILDINGS.some(b=>distance(b,p)<45)||BONEYARDS.some(b=>distance(b,p)<27)||HARBORS.some(b=>distance(b,p)<25)||EXTRA_ROADS.some(road=>road.some((v,j)=>j&&segmentDistance(p,{x:road[j-1][0],z:road[j-1][1]},{x:v[0],z:v[1]})<8)))continue;forest.push({x,z,h:6+rng()*10});}
+ const forest=[];for(let i=0;i<360;i++){const a=rng()*Math.PI*2,r=310+rng()*99,x=Math.cos(a)*r,z=Math.sin(a)*r,p={x,z};if(clearLabSite(x,z)||seaWater(x,z,7)||BUILDINGS.some(b=>distance(b,p)<45)||BONEYARDS.some(b=>distance(b,p)<27)||HARBORS.some(b=>distance(b,p)<25)||EXTRA_ROADS.some(road=>road.some((v,j)=>j&&segmentDistance(p,{x:road[j-1][0],z:road[j-1][1]},{x:v[0],z:v[1]})<8)))continue;forest.push({x,z,h:6+rng()*10});}
  const mat=new T.Object3D();for(const [geo,c,leaf] of [[new T.CylinderGeometry(.3,.48,1,6),0x6c674e,false],[new T.IcosahedronGeometry(1,1),0x567b63,true]]){const m=new T.InstancedMesh(geo,material(c),forest.length);forest.forEach((v,i)=>{mat.position.set(v.x,leaf?v.h:v.h/2,v.z);mat.scale.set(leaf?3.2:1,leaf?2.8:v.h,leaf?3:1);mat.updateMatrix();m.setMatrixAt(i,mat.matrix);});m.castShadow=true;scene.add(m);}
  // Pooled effects: thick streams, droplets, electrical arcs and expanding horn waves.
  for(let i=0;i<28;i++){const m=part(scene,new T.RingGeometry(.92,1,48),new T.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,side:T.DoubleSide,depthWrite:false}),0,-10,0);m.rotation.x=-Math.PI/2;m.visible=false;wavePool.push({m,t:9,life:1,radius:1});}
