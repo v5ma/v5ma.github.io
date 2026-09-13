@@ -1,3 +1,4 @@
+import {safeTown} from './frontier-core.mjs';
 /* Open Doors: additive house commissions, actual floors and walkable city networks.
  * Renderer-independent. All interactions validate floor, proximity and progression.
  * No map action moves the player. The original save and missions remain intact. */
@@ -162,7 +163,7 @@ export function useDoor(s,w,id,action){
    s.health=stats(s).maxHealth;s.life.focus=stats(s).maxFocus;s.doors.rest=60;return {ok:true,text:'Your neighbor shares a meal. Health and focus restored.'};
   }
   if(action.startsWith('choice:')&&Number(action.slice(7))!==(h.index%8)%3)return {ok:false,text:'Read the workshop note: '+h.trade.clue+' No ingredients or money were lost.'};
-  if(action==='finish'&&w.doorEnemies.some(e=>e.room===h.id&&e.level===2&&!s.doors.defeated.includes(e.id)))return {ok:false,text:'An intruder is guarding this attic. Brace with LT, strike with RT, or retreat downstairs.'};
+  if(action==='finish'&&w.doorEnemies.some(e=>e.room===h.id&&e.level===2&&!s.doors.defeated.includes(e.id)))return {ok:false,text:'Speak to the visitor with X and accept the town truce before finishing this attic job.'};
   s.doors.homes[h.id]=n+1;s.doors.tracked={kind:'home',id:h.id};
   if(n===3){s.life.xp=Math.min(50000,s.life.xp+60);s.credits+=25;notify(s,h.trade.job+' complete at '+h.name+' / +60 XP / +25 florins','doors-home-complete',{id:h.id});}
   else notify(s,homeInstruction(h,n+1),'doors-home-stage',{id:h.id,stage:n+1});
@@ -194,6 +195,7 @@ export function doorTarget(s,w){
 }
 export function dodgeDoor(s){if(s.mode!=='foot'||s.doors.dodgeCD>0)return false;s.doors.dodge=.22;s.doors.dodgeCD=1.2;s.inv=Math.max(s.inv,.3);return true;}
 export function hitDoorEnemy(s,w){
+ if(safeTown(s))return false;
  const targets=s.doors.enemies.filter(e=>e.hp>0&&inDoorSpace(s,e,w)&&dist(s,e)<3.5).sort((a,b)=>dist(s,a)-dist(s,b));
  const e=targets[0];if(!e)return false;s.yaw=Math.atan2(e.x-s.x,e.z-s.z);e.hp=Math.max(0,e.hp-(s.upgraded?40:28));e.flash=.2;e.phase='stagger';e.timer=.45;
  if(!e.hp){if(!s.doors.defeated.includes(e.id)){s.doors.defeated.push(e.id);s.credits+=12;s.life.xp=Math.min(50000,s.life.xp+25);}notify(s,e.name+' yields. +25 XP / +12 florins.','doors-rival-yields',{id:e.id});}
@@ -204,6 +206,7 @@ export function doorsStep(s,w,dt){
  const d=s.doors;for(const key of ['rest','dodge','dodgeCD'])d[key]=Math.max(0,d[key]-dt);
  if(!d.enemies.length)d.enemies=w.doorEnemies.map(e=>({...e,homeX:e.x,homeZ:e.z,hp:d.defeated.includes(e.id)?0:e.hp,phase:'patrol',timer:0,flash:0}));
  const l=doorLocation(s,w),visit=(l.room||'network')+':'+l.level;if((l.room||l.level)&&!d.visits.includes(visit))d.visits.push(visit);
+ if(safeTown(s)){for(const e of d.enemies){e.phase=e.hp>0?'patrol':'yielded';e.timer=0;e.flash=0;}return;}
  for(const e of d.enemies){
   e.flash=Math.max(0,e.flash-dt);if(e.hp<=0||!inDoorSpace(s,e,w))continue;
   e.timer=Math.max(0,e.timer-dt);const near=dist(s,e);if(near>35)continue;

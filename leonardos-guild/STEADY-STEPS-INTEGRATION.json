@@ -1,0 +1,97 @@
+{
+  "version": "0.10.0",
+  "preparationSource": "d69c69df3665e46df28f219491c61b24715d2f6b",
+  "files": [
+    {
+      "path": "leonardos-guild/.gitignore",
+      "before": "f72b0df822ce4ef1b26b79a533ab909d218dc8b1834ba8074eb0f478632752da",
+      "after": "679c51fd78cac9cc0c8ca478f138102dbc205652ea67d423e1acb11c93468a44"
+    },
+    {
+      "path": "leonardos-guild/AAA-ROADMAP.md",
+      "before": "9ac48a14f2ec7fa6f7f8c2e82e1a4161e646a1bd808ac0b0e0145109a8daeb8c",
+      "after": "47542f6e8a05f532fb1512bf0a54ec3a169aa4bb213f651b863dbb31902428bb"
+    },
+    {
+      "path": "leonardos-guild/AGENTS.md",
+      "before": "d816eaec704a7289222b07f41a860a2c346dd9d15eb6823fa29a0e1a235e3593",
+      "after": "13f67dae7b5b16c2d6d8ff2397a3bbe5e66edeef39322d9ae023c798223a0788"
+    },
+    {
+      "path": "leonardos-guild/CHANGELOG.md",
+      "before": "76393a1da9d38ddfeafee45f8b27087d5b58eaa0910321816ad189898ada0dd8",
+      "after": "c835eafe283e5e799a0394ee96cc4be3e0aed4295ba914b07e0c545feb630915"
+    },
+    {
+      "path": "leonardos-guild/README.md",
+      "before": "8f170991887f6017d6e40e1014675ae21d7b875186fa9d234170ab9b7731bd08",
+      "after": "ef4b5b7f0c5540d5e2e418d8bf36b574b7f549e21aab3b3a45e46c69a9188fa2"
+    },
+    {
+      "path": "leonardos-guild/UPGRADE-CHECKLIST.md",
+      "before": "83a03ebaced4a202fd84b4ea2ae303772d07e3eb349386db3851058751d1671f",
+      "after": "f26611acb1d09e44894ab42f5bd52af003c4fdcb5132087e3f15343a931466d8"
+    },
+    {
+      "path": "leonardos-guild/app.mjs",
+      "before": "035310cecfc274fc04b278dee97cd26110407a91d3611aeb11631234578179e2",
+      "after": "f3d0f09f8c74c8e6da4182a814c91c2bd7fa5af736ce3954e9d4af750c7d2d4e"
+    },
+    {
+      "path": "leonardos-guild/character-motion.mjs",
+      "before": "156be8f2c3892b15c6e1ac209e6dbbd62a276b4a6d2cd8472cec6f7770016df5",
+      "after": "6ff18ac1e93c1153c0993db013d9955003e6026d1021b72b502f8e9410660dc9"
+    },
+    {
+      "path": "leonardos-guild/doors-art.mjs",
+      "before": "3c808490e92cc7d330943bc907c6fde2e93041db97fccbb7558b8520782890f3",
+      "after": "76e296f304bcc67a1353f9415a9d4d0b64f922288e4984185fe19e3752a8070a"
+    },
+    {
+      "path": "leonardos-guild/doors-ui.mjs",
+      "before": "ab49cba6f66513d29f03f8d7ff2dc5ae226893d46b046fc116e8549ebec5e4e6",
+      "after": "557ba005fc8335b2962dcbd5cfa56bc56a5c616f500261ffaa20dcda3ec66418"
+    },
+    {
+      "path": "leonardos-guild/guild-art.mjs",
+      "before": "b18eaf813f000a32b3b36e01526226eb671f3577564c13233e867bd3c34e28b0",
+      "after": "53ba18d02cc8d8b0e821db64976a7973f4a49b869fc3bbb42dc13b61c62d914c"
+    },
+    {
+      "path": "leonardos-guild/index.html",
+      "before": "f8fd378bfe5b4fc38989a2f5a93b4c0a39cc2885fb43a3e29dc6f881fb7f161f",
+      "after": "f861ed57f4f7b1df880a431067fe2d1fa04318c473ea9caf14cbd449a8469db2"
+    },
+    {
+      "path": "leonardos-guild/model.mjs",
+      "before": "a76334aa5241b7db910e3c0076ac0fb55d68c3c3ec62d4abaf24b79890149d99",
+      "after": "35670c5e633527109063af6f8c90e598da2c994b5ce94944a5620213ab19f16f"
+    },
+    {
+      "path": "leonardos-guild/package.json",
+      "before": "1a6fd629febc588b619d0040331edbb0a3d220b64aede68d6f051e147344ae60",
+      "after": "40beecd23afb46587da67f5b1d62e6e0be5cf1d2a6cef712f79f37752bc9f13d"
+    },
+    {
+      "path": "leonardos-guild/release.json",
+      "before": "825679299075ac4c04d649f6fdbd7b20556e793ca6c3a59674831f00cd1110cb",
+      "after": "5aa6f8205bbebb1b157a0e1c255b1afe9fb615fc1780fe5af5b40bd21cb5eb9d"
+    },
+    {
+      "path": "leonardos-guild/resonance-art.mjs",
+      "before": "575932e4defda2ddd1126d1ff9ccb51877b32aebb0f462e069074f225d5ff42b",
+      "after": "0d66c848b987762fd96d6678a9990d9d8b680bf4f782e7669d9fa07ecbefbd9e"
+    },
+    {
+      "path": "leonardos-guild/scene.mjs",
+      "before": "2e10749c6fcde4b6ea915a949e7452d3340108476dd9dab608bd33e9941444ab",
+      "after": "eeb78eb575238ac6ef95bd9392859d068bed3d53e14a8fdfa200fab8d0164a60"
+    },
+    {
+      "path": "leonardos-guild/tests/stories-browser.py",
+      "before": "4c4e5cfeb7fefe74b3b7c965fcb2a8530a694bb7655f8a6ec590c4a29baefb36",
+      "after": "a11ca1e83021e3c43de58691af68554fc956a1019f8abb56deceea317e52064d"
+    }
+  ],
+  "method": "One-time explicit source edits in an isolated temporary copy. Native acceptance checks ordinary committed output without any rewrite."
+}

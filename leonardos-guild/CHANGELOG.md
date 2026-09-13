@@ -1,3 +1,11 @@
+# Cinder Hollow v0.11.0
+
+Safe-town migration plus a playable badlands expedition through three connected trails. Seven creatures, survey/salvage objectives, one guarded field case, three return contracts and field supplies. Old rival encounters resolve by in-person truce instead of mandatory town combat. Recovered Steady Steps camera and articulated characters. No new music/effect streams, old save reset, network service or sibling-game replacement.
+
+# Steady Steps v0.10.0
+
+Presentation-only camera/character continuation: continuous wall-aware follow boom, separate floor constraints, floor-history resets, gentle recovery, close-player fade, shared original jointed humanoids and displacement-driven blended action poses. Preserves missions, collision/physics, saves and quiet audio. Read STEADY-STEPS.md and the release PR for actual tests/publication.
+
 # Living Stories v0.9.0
 
 Two authored household cases with alternate routes, reversible physical-location puzzles, evidence-based choices, one-time rewards and persistent lamp/plaque/lending-shelf outcomes. Added AAA-ROADMAP.md with ordered production gates. Preserved quiet audio, individual mixer levels, cue density, all old saves and earlier content. Ambient-loop initialization is now single-flight and stale music promises cannot replace current-track status. Publication evidence is recorded in the release PR.

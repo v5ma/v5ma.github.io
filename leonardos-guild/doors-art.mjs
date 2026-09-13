@@ -4,7 +4,7 @@ import {createStoryArt} from './stories-art.mjs';
 import * as T from './vendor/three.module.js';
 import {Batch,unit,label} from './art.mjs';
 import {person} from './guild-art.mjs';
-import {animatePerson} from './character-motion.mjs';
+import {animatePerson,inspectMotion} from './character-motion.mjs';
 import {heightAt} from './model.mjs';
 import {doorLevel,doorElevation,doorLocation,FLOOR_NAMES,doorSites,inDoorSpace} from './doors-core.mjs';
 export function createDoorsArt({scene,root,w,m,camera}){
@@ -73,9 +73,9 @@ export function createDoorsArt({scene,root,w,m,camera}){
   if(key!==floorKey){disposeGroup(roomMeshes);roomMeshes=key&&h?room(h,level):null;floorKey=key;}
   if(extra){scene.background=new T.Color(level<0?'#383e3c':level===3?'#aecbca':'#a89a7a');scene.fog=new T.Fog(level<0?'#383e3c':level===3?'#b8cebd':'#a89a7a',level<0?28:75,level<0?125:350);}
   else if(lastLevel!==0&&level===0){scene.background=baseBackground;scene.fog=baseFog;}
-  for(const e of s.doors.enemies){let model=enemies.get(e.id);if(!model){model=person(m,'bandit');const weapon=new Batch();weapon.rod([.3,.3,.15],[.3,2.1,.15],e.role===1?.07:.04,e.role===1?'#b4aba0':dark);weapon.finish(model.root,m.trim,e.name+' staff');const tag=label(model.root,e.name,0,2.4,0,2.4,.55,0,'#794f3d');model.tag=tag;actors.add(model.root);enemies.set(e.id,model);}
+  for(const e of s.doors.enemies){let model=enemies.get(e.id);if(!model){model=person(m,'bandit');const weapon=new Batch();weapon.rod([0,-.65,.03],[0,1.15,.03],e.role===1?.07:.04,e.role===1?'#b4aba0':dark);weapon.finish(model.handSockets[1],m.trim,e.name+' staff');const tag=label(model.root,e.name,0,2.4,0,2.4,.55,0,'#794f3d');model.tag=tag;actors.add(model.root);enemies.set(e.id,model);}
    model.root.visible=inDoorSpace(s,e,w)&&Math.hypot(s.x-e.x,s.z-e.z)<60;
-   if(model.root.visible){model.root.position.set(e.x,heightAt(e.x,e.z)+(e.level===3?15:e.level<0?e.level*5:e.level*3.8)+.18,e.z);model.root.rotation.set(0,e.yaw||0,e.hp===0?.45:0);animatePerson(model,s.time,{motion:e.hp===0?'idle':e.phase==='windup'?'guard':e.phase==='chase'?'walk':'idle',speed:e.phase==='chase'?3:0});model.tag.visible=Math.hypot(s.x-e.x,s.z-e.z)<13;model.tag.quaternion.copy(model.root.quaternion.clone().invert().multiply(camera.quaternion));}
+   if(model.root.visible){model.root.position.set(e.x,heightAt(e.x,e.z)+(e.level===3?15:e.level<0?e.level*5:e.level*3.8)+.18,e.z);model.root.rotation.set(0,e.yaw||0,e.hp===0?.45:0);animatePerson(model,s.time,{motion:e.hp===0?'yield':e.phase==='windup'?'guard':e.phase==='recover'?'strike':e.phase==='stagger'?'dodge':'walk',speed:e.phase==='chase'?3:0,level:e.level,action:e.timer});model.tag.visible=Math.hypot(s.x-e.x,s.z-e.z)<13;model.tag.quaternion.copy(model.root.quaternion.clone().invert().multiply(camera.quaternion));}
   }
   const sites=doorSites(s,w).filter(p=>Math.hypot(s.x-p.x,s.z-p.z)<20),mk=sites.map(p=>p.id).join('|')+':'+level;
   if(mk!==currentMarkers){for(const g of liveMarkers)disposeGroup(g);liveMarkers=[];for(const p of sites){const g=new T.Group();g.position.set(p.x,heightAt(p.x,p.z)+doorElevation(s)+.25,p.z);markers.add(g);const b=new Batch();b.add(unit.ring,0,0,0,.48,.48,.05,p.action==='adventure'?'#7acbca':gold,Math.PI/2);b.finish(g,m.trim,'Interaction circle');const tag=label(g,p.name+'\nG / X NEARBY',0,1.9,0,2.6,.65,0,p.action==='adventure'?'#305e63':'#6e563c');tag.userData.doorsOwnMaterial=true;g.userData.tag=tag;liveMarkers.push(g);}currentMarkers=mk;}
@@ -83,5 +83,5 @@ export function createDoorsArt({scene,root,w,m,camera}){
   for(const tag of labels){tag.visible=Math.hypot(s.x-(tag.parent.position.x+tag.position.x),s.z-(tag.parent.position.z+tag.position.z))<12;tag.quaternion.copy(camera.quaternion);}
   storyArt.update(s);lastLevel=level;
  }
- return {update,inspect:()=>({stories:storyArt.inspect(),houses:w.doorHomes.length,floorsPerHouse:4,roofSegments:w.doorPaths.length,undercitySegments:w.doorPaths.length,enemyModels:enemies.size,currentFloor:floorKey,level:lastLevel})};
+ return {update,inspect:()=>({stories:storyArt.inspect(),houses:w.doorHomes.length,floorsPerHouse:4,roofSegments:w.doorPaths.length,undercitySegments:w.doorPaths.length,enemyModels:enemies.size,jointedRivals:[...enemies.values()].filter(e=>e.root.guildRig?.version===2).length,currentFloor:floorKey,level:lastLevel})};
 }

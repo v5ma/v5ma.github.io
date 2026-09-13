@@ -1,3 +1,19 @@
+# Leo's Guild - Cinder Hollow v0.11.0
+
+Recovered Steady Steps plus the first playable badlands region. D-pad Up -> Expeditions opens the new notebook. Mark the expedition gate at Vinci's south entrance, dismount, and press X there to depart. Vinci is safe from combat, including its rooftops/cellars. Original rival requirements use X and a peaceful truce at their actual positions; Rocco still needs the warrant and evidence. All earlier saves and quiet audio preferences are retained.
+
+Cinder Hollow offers three connected routes, seven persistent creatures, survey sites, salvage, dressings and three one-time return-to-town contracts. Gate Camp is safe in both directions: you cannot attack out from it. Farmlands remain planned, not playable. Read CINDER-HOLLOW.md and the release PR for exact acceptance and public verification.
+
+## Preserved earlier release notes
+
+# Leo's Guild - Steady Steps v0.10.0
+
+The next C01-C03 roadmap slice improves the existing character rig and follow camera. The camera checks the full wall-crossing path, uses the occupied floor's boundaries, and resets cleanly at stairs. The original clothed player and rivals now have jointed knees/elbows, distance-driven walking and blended action poses. Quiet audio, controls and old saves remain. Read STEADY-STEPS.md for scope and acceptance limits.
+
+The existing homepage card launches this game; check for Steady Steps v0.10.0. AAA-ROADMAP.md and UPGRADE-CHECKLIST.md remain the durable development plan.
+
+## Previous release notes
+
 # Leo's Guild - Living Stories v0.9.0
 
 Open Adventures, then Living stories (or D-pad up, Adventures, Living stories). Two authored cases add six physical steps apiece, alternate roof/cellar evidence routes, a reversible shutter puzzle and peaceful choices with saved, visible household outcomes. The Lamplighter's Promise begins at the workshop household desk; The Ledger With Two Names begins at Renata's western cartographer house, residence-home-0. All prior stories, households, floor networks, quiet audio preferences and saves remain. New story updates are silent by default.
