@@ -21,6 +21,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Normalize current audio event syntax
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('rainward/tools/integrate-undertow.py')
+          s=p.read_text()
+          old="else if(type==='land'){at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});}"
+          new="else if(type==='land')at('step-'+surfaceAt(state.player),0,{duration:.4,gain:.65});"
+          if old in s:
+              s=s.replace(old,new)
+              p.write_text(s)
+          PY
       - name: Integrate the seventh expedition and aquatic systems
         run: |
           python rainward/tools/integrate-undertow.py
