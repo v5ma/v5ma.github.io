@@ -39,13 +39,12 @@ for old,new in [
 change('combat.mjs',"if(s.status!=='playing'||!p.bottles||", "if(s.status!=='playing'||p.submerged||!p.bottles||")
 change('combat.mjs',"if(s.status!=='playing'||p.reload||p.shotCD", "if(s.status!=='playing'||p.submerged||p.reload||p.shotCD")
 change('combat.mjs',"if(s.status!=='playing'||p.dodge>0||p.vault", "if(s.status!=='playing'||p.waterMode==='swim'||p.dodge>0||p.vault")
-for before,after in [
- ("if(s.status!=='playing'||p.hp>=100", "if(s.status!=='playing'||p.submerged||p.hp>=100"),
- ("if(s.player.healing||s.player.melee||s.player.reload)", "if(s.player.submerged||s.player.healing||s.player.melee||s.player.reload)"),
- ("if(s.status!=='playing'||p.melee||p.reload", "if(s.status!=='playing'||p.waterMode==='swim'||p.melee||p.reload"),
- ("if(s.status!=='playing'||p.melee||p.reload||p.dodge>0", "if(s.status!=='playing'||p.waterMode==='swim'||p.melee||p.reload||p.dodge>0"),
- ("if(s.status!=='playing'||p.vault||p.dodge", "if(s.status!=='playing'||p.waterMode==='swim'||p.vault||p.dodge"),
- ("if(s.status!=='playing'||!p.smoke||", "if(s.status!=='playing'||p.submerged||!p.smoke||")]:change('survival.mjs',before,after)
+change('survival.mjs',"export function beginHealing(s){const p=s.player;if(s.status!=='playing'||p.hp>=100", "export function beginHealing(s){const p=s.player;if(s.status!=='playing'||p.submerged||p.hp>=100")
+change('survival.mjs',"export function beginCrafting(s,item){if(s.player.healing||s.player.melee||s.player.reload)", "export function beginCrafting(s,item){if(s.player.submerged||s.player.healing||s.player.melee||s.player.reload)")
+change('survival.mjs',"export function melee(s){const p=s.player;if(s.status!=='playing'||p.melee||p.reload||p.craft||p.healing||p.vault||p.dodge||p.stamina<16", "export function melee(s){const p=s.player;if(s.status!=='playing'||p.waterMode==='swim'||p.melee||p.reload||p.craft||p.healing||p.vault||p.dodge||p.stamina<16")
+change('survival.mjs',"export function dodge(s,dx,dz){cancelAction(s);const p=s.player;if(s.status!=='playing'||p.melee||p.reload||p.dodge>0||p.vault||p.stamina<28", "export function dodge(s,dx,dz){cancelAction(s);const p=s.player;if(s.status!=='playing'||p.waterMode==='swim'||p.melee||p.reload||p.dodge>0||p.vault||p.stamina<28")
+change('survival.mjs',"export function traverse(s,dx,dz){const p=s.player;if(s.status!=='playing'||p.vault||p.dodge||p.craft||p.healing||p.melee||p.stamina<25", "export function traverse(s,dx,dz){const p=s.player;if(s.status!=='playing'||p.waterMode==='swim'||p.vault||p.dodge||p.craft||p.healing||p.melee||p.stamina<25")
+change('survival.mjs',"export function throwSmoke(s,yaw){const p=s.player;if(s.status!=='playing'||!p.smoke||", "export function throwSmoke(s,yaw){const p=s.player;if(s.status!=='playing'||p.submerged||!p.smoke||")
 # App turns existing posture/traversal controls into dive/surface while swimming.
 change('app.mjs',"import {createRainwornUI} from './rainworn-ui.mjs';", "import {createAquaticUI} from './aquatic-ui.mjs';\nimport {toggleSubmerge,surfaceWater} from './aquatic.mjs';\nimport {createRainwornUI} from './rainworn-ui.mjs';")
 change('app.mjs'," if(action==='crouch')stance(state,p.stance==='crouch'?'stand':'crouch');if(action==='prone')stance(state,p.stance==='prone'?'stand':'prone');",
@@ -85,7 +84,7 @@ s=(R/'tests/first-light.test.mjs').read_text().replace('occupied).length,6)','oc
 s=(R/'tests/field-ready.py').read_text().replace("chapters=['conservatory','terminus','meridian','breakwater','whiteout']","chapters=['conservatory','terminus','meridian','breakwater','whiteout','natatorium']").replace("==6,'All six slots remain available", "==7,'All seven slots remain available").replace("len(saved['slots'])==6", "len(saved['slots'])==7").replace('All six chapter save slots coexist','All seven chapter save slots coexist').replace('the other five slots','the other six slots').replace('Starting five other chapters','Starting six other chapters');updates['tests/field-ready.py']=s
 # Release and production records.
 release=json.loads((R/'release.json').read_text());release.update(version='0.13.0',build='rainward-undertow-20260912',changes=['Add Northlight Natatorium as a seventh expedition centered on shallow wading, deep swimming and diving','Add oxygen, dive/surface controls, underwater objective interaction, surface/submerged noise differences and dry-only combat actions','Add a procedural indoor-pool water shader with animated waves, Fresnel highlights, tiled basins, caustics, lane markings and underwater fog','Add six Natatorium field tasks, a circulation puzzle, dry shelters and a north service-lift extraction route','Preserve previous six-chapter save banks, all earlier expeditions, controller presets, finite resources, human models and original soundtrack']);updates['release.json']=json.dumps(release,indent=2)+'\n'
-plan=json.loads((R/'production-plan.json').read_text());plan.update(release='0.13.0',edition='Undertow',baseline='ef91e3b057755b1564393430e8c5a6c64176e79c');plan['policy']=plan['policy'].replace('Preserve all six chapters','Preserve all seven chapters');
+plan=json.loads((R/'production-plan.json').read_text());plan.update(release='0.13.0',edition='Undertow',baseline='ef91e3b057755b1564393430e8c5a6c64176e79c');plan['policy']=plan['policy'].replace('Preserve all six chapters','Preserve all seven chapters')
 for task in plan['items']:
  if task['id']=='RW-002':task['acceptance']=task['acceptance'].replace('Six chapter','Seven chapter')
  if task['id']=='RW-031':task['status']='Implemented';task['evidence']='UNDERTOW.md'
