@@ -3,7 +3,7 @@ must match the generated v0.13 source exactly; rerunning is idempotent."""
 from pathlib import Path
 R=Path(__file__).resolve().parents[1]
 changes={
- 'natatorium.mjs':[("task('nat-circulation',-32,-62","task('nat-circulation',-33,-56"),("task('nat-lift-signal',0,-74","task('nat-lift-signal',0,-64")],
+ 'natatorium.mjs':[("{id:'natatorium-spindle',x:-38,z:-57","{id:'natatorium-spindle',x:-35,z:-63"),("task('nat-circulation',-32,-62","task('nat-circulation',-33,-56"),("task('nat-lift-signal',0,-74","task('nat-lift-signal',0,-64")],
  'tests/reclaimed.test.mjs':[("Twenty-nine additional enemies and twenty-four authored tasks","Twenty-nine large-map enemies and thirty authored tasks"),("Object.values(W.LEVELS).reduce((n,d)=>n+d.tasks.length,0),24","Object.values(W.LEVELS).reduce((n,d)=>n+d.tasks.length,0),30")],
  'tests/field-ready.test.mjs':[("assert.equal(restore(second.latest(),false).level,'whiteout')","assert.equal(restore(second.latest(),false).level,'natatorium')"),("preserves the other five byte-for-byte","preserves the other six byte-for-byte")],
  'tests/aquatic.test.mjs':[("bank.active='whiteout';disk.set('svgn.rainward.v2.chapter-checkpoints',JSON.stringify(bank));const old=createCheckpointStore(read,write);","bank.active='whiteout';disk.set('svgn.rainward.v2.chapter-checkpoints',JSON.stringify(bank));disk.delete('svgn.rainward.v1.checkpoint');const old=createCheckpointStore(read,write);")],
