@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "record_kind": "historical_gameplay_release_receipt",
+  "game": "Rainward",
+  "version": "0.13.0",
+  "edition": "Undertow",
+  "recorded": "2026-09-13",
+  "repository": "v5ma/v5ma.github.io",
+  "pull_request": 137,
+  "merged_commit": "531a4a8e8c1a2be32437a44b81208572ad36ad04",
+  "accepted_feature_head": "d673fa6acb4262fc8f6a9b25cff7f4acb0aceb8b",
+  "publication": {
+    "run_id": 34738570590,
+    "artifact_id": 10311278558,
+    "conclusion": "success",
+    "all_match": true,
+    "checked_public_files": 128,
+    "http_status": 200,
+    "receipt_file": "rainward-publication.json",
+    "receipt_sha256": "6568f530906b0219c8a1b4b460e7b640f1e0082a57261562c1ccde84a502d2cc",
+    "manifest_file": "rainward-source-manifest.json",
+    "manifest_sha256": "b2d36bb4447699fe70e4c21375d567c1a6e7b0edaa5d8d5a5d9ff9743e2b5e4b",
+    "note": "These original documents describe the historic Undertow release. They do not certify newer documentation or runtime changes."
+  },
+  "validation": {
+    "model_source_tests": 271,
+    "model_source_passed": 271,
+    "model_source_failed": 0,
+    "native_browser_suites": 18,
+    "water_checks": 21,
+    "recovery_run_id": 34738012164,
+    "recovery_artifact_id": 10311866479,
+    "workflows": [
+      {"id": 34738298142, "conclusion": "success", "suites": ["ui", "controller", "mission", "scanned", "cinematic", "expedition", "improvements", "controller-menus", "loot", "station", "guidance", "visual"]},
+      {"id": 34738298132, "conclusion": "success", "suites": ["soundscape", "survival-controller"]},
+      {"id": 34738298123, "conclusion": "success", "suites": ["field-ready"]},
+      {"id": 34738298145, "conclusion": "success", "suites": ["first-light"]},
+      {"id": 34738298156, "conclusion": "success", "suites": ["rainworn"]},
+      {"id": 34738298164, "conclusion": "success", "suites": ["aquatic"]}
+    ]
+  },
+  "evidence_scope": {
+    "aquatic_browser": "Real HTTP/WebGL and simulated Xbox-standard input at an authored dry shelter with enemies defeated to isolate water traversal and rendering. Reduced Graphics for interaction; a stationary full-quality underwater capture.",
+    "mission_model": "Reachability, submerged fuse, dry spindle, physical puzzle, all six tasks and extraction are checked through model interactions.",
+    "open_acceptance": ["Living-enemy Natatorium end-to-end browser playthrough", "Physical wired and Bluetooth Xbox verification", "Subjective character/environment and music approval", "Target-hardware frame-rate and memory measurements", "Measured 15-20 minute flagship slice", "AAA acceptance"],
+    "separate_pages_run": {"id": 34738570128, "deploy_conclusion": "cancelled", "note": "Not called successful. Publication is supported by actual public URL/hash verification."},
+    "conversation_probe": "A direct HTTP probe failed DNS resolution and was not publication evidence."
+  },
+  "retained_failed_evidence": [
+    {"run_id": 34737825893, "artifact_id": 10312030398, "finding": "Submerged pool-edge camera assertion failed; repaired and covered by another model regression."}
+  ],
+  "stable_discussion": "https://github.com/v5ma/v5ma.github.io/pull/137#issuecomment-5651344968",
+  "retention_note": "Actions source/screenshot artifacts are time-limited. Original publication and source manifests are copied beside this summary; other raw artifacts may need retrieval before expiry. Do not use sandbox paths or signed temporary download URLs as a future-session dependency."
+}
