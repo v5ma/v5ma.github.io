@@ -1,14 +1,14 @@
 """Native HTTP/WebGL acceptance for Northlight Natatorium. The validated fixture
-starts on the competition-pool deck with patrols defeated so the browser suite
-can isolate actual water entry, diving, oxygen, controls and shader output in a
-bounded time. Model tests separately prove full-map and submerged-object routes.
+starts at the authored competition-deck shelter with patrols defeated so the
+browser suite can isolate real water entry, diving, oxygen, controls and shader
+output. Model tests separately prove full-map and submerged-object routes.
 """
 import json,os,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 OUT=Path('test-output/rainward-undertow');OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];console=[];dialogs=[]
-fixture=subprocess.check_output(['node','--input-type=module','-e',"import {createGame,checkpoint} from './rainward/model.mjs';const s=createGame('natatorium');s.enemies.forEach(e=>e.hp=0);s.player.x=15;s.player.z=23.5;s.player.y=0;console.log(checkpoint(s));"],text=True).strip()
+fixture=subprocess.check_output(['node','--input-type=module','-e',"import {createGame,checkpoint} from './rainward/model.mjs';const s=createGame('natatorium');s.enemies.forEach(e=>e.hp=0);s.checkpoint='natatorium-deck';console.log(checkpoint(s));"],text=True).strip()
 def check(v,label):
  assert v,label
  checks.append(label);print('PASS:',label,flush=True)
@@ -35,15 +35,15 @@ with sync_playwright() as pw:
   raise AssertionError('Controller could not reach '+target)
  try:
   p.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');check(p.locator('#chapter-select option').count()==7,'Seven expeditions are visible on the real title screen');nav('continue');press(0,'Rainward.mode==="play"&&Rainward.state.level==="natatorium"')
-  check(p.evaluate('Rainward.snapshot().version')=='0.13.0','The actual browser loads Undertow v0.13.0');wait('Rainward.snapshot().visuals.aquatic?.waterSurfaces===4');check(p.evaluate('Rainward.snapshot().visuals.aquatic.causticProjectors')==4,'Four actual pool shaders and four floor-caustic passes render in WebGL');check(p.evaluate('Rainward.snapshot().visuals.aquatic.activeLights')<=6,'The pool hall uses a bounded local-light budget')
+  check(p.evaluate('Rainward.snapshot().version')=='0.13.0','The actual browser loads Undertow v0.13.0');check(abs(p.evaluate('Rainward.state.player.x')-15)<.6 and abs(p.evaluate('Rainward.state.player.z')-23.5)<.6,'Continue restores the authored competition-deck shelter instead of a synthetic position')
+  wait('Rainward.snapshot().visuals.aquatic?.waterSurfaces===4');check(p.evaluate('Rainward.snapshot().visuals.aquatic.causticProjectors')==4,'Four actual pool shaders and four floor-caustic passes render in WebGL');check(p.evaluate('Rainward.snapshot().visuals.aquatic.activeLights')<=6,'The pool hall uses a bounded local-light budget')
   p.screenshot(path=str(OUT/'pool-deck.png'));p.keyboard.down('KeyW');wait('Rainward.state.player.waterMode==="swim"');p.keyboard.up('KeyW');check(True,'Ordinary forward movement off the deck transitions into competition-pool swimming')
   oxygen=p.evaluate('Rainward.state.player.oxygen');hold(1,'Rainward.state.player.submerged');p.wait_for_timeout(650);check(p.evaluate('Rainward.state.player.oxygen')<oxygen,'Holding B in the Survival layout dives and consumes air');check(p.locator('body').evaluate("e=>e.classList.contains('underwater')"),'Underwater visual treatment follows the real swim state');check(p.evaluate('Rainward.state.player.stance==="stand"&&Rainward.state.player.swimDepth>1'),'The swimming system controls depth independently from land stance')
   mag=p.evaluate('Rainward.state.player.mag');press(7);check(p.evaluate('Rainward.state.player.mag')==mag,'RT cannot fire a firearm while swimming');p.set_viewport_size({'width':390,'height':844});frames(3);check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'The oxygen HUD and water controls fit a phone-width viewport');p.screenshot(path=str(OUT/'competition-underwater-phone.png'));p.set_viewport_size({'width':1180,'height':780})
-  # Inspect full-quality water at a stationary point, then restore Reduced Graphics.
   press(9,'Rainward.mode==="pause"');nav('low');press(0);press(1,'Rainward.mode==="play"');frames(3);p.screenshot(path=str(OUT/'competition-underwater-full.png'));check(p.evaluate('Rainward.snapshot().visuals.aquatic.waterSurfaces')==4,'Full graphics preserves all pool surfaces');press(9,'Rainward.mode==="pause"');nav('low');press(0);press(1,'Rainward.mode==="play"')
   press(0,'!Rainward.state.player.submerged');check(True,'A surfaces through the Survival traversal button');p.wait_for_function('Rainward.state.player.oxygen>99');check(True,'Air refills at the surface without leaving the pool');check(p.evaluate('Rainward.snapshot().visuals.aquatic.extraRenderTargets')==0,'Pool and caustic shaders add no full-screen render target')
   check(not errors and not dialogs,'No uncaught errors or native blocking dialogs occur during the water journey');check(not any('Shader Error' in x or 'VALIDATE_STATUS' in x or 'GL_INVALID' in x for x in console),'Pool surface and caustic shaders compile without WebGL validation errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'dialogs':dialogs,'console':console,'scope':'Native HTTP/WebGL, ordinary movement and simulated Xbox-standard face buttons. A validated pool-edge checkpoint and defeated-enemy fixture isolate water traversal/rendering; model tests cover full-map reachability and submerged-object recovery. Reduced Graphics is used for interactive checks, with a stationary full-quality underwater capture. Not physical-controller, artistic-quality or performance-tier certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'dialogs':dialogs,'console':console,'scope':'Native HTTP/WebGL, ordinary movement and simulated Xbox-standard face buttons. The validated fixture uses a real authored dry shelter and defeats enemies only to isolate water traversal/rendering; model tests cover full-map reachability and submerged-object recovery. Reduced Graphics is used for interactive checks, with a stationary full-quality underwater capture. Not physical-controller, artistic-quality or performance-tier certification.'},indent=2))
  except Exception as e:
   data={'error':str(e),'checks':checks,'errors':errors,'dialogs':dialogs,'console':console}
   try:data['snapshot']=p.evaluate('window.Rainward?.snapshot()');data['focus']=p.evaluate('document.activeElement?.id');p.screenshot(path=str(OUT/'failure.png'))
