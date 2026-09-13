@@ -43,7 +43,7 @@ def use(page):
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block')
+ b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5 if MODE=='expedition' else 1,service_workers='block')
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.add_init_script("window.testKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyE','KeyQ','KeyC'].includes(e.code)){testKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,state:window.AetherReach?.snapshot()});if(testKeyLog.length>16)testKeyLog.shift();}},true)")
@@ -71,6 +71,9 @@ with sync_playwright() as p:
    walk(page,[(65,-22),(64,-31)]);page.wait_for_function('AetherReach.snapshot().interaction==="relay"')
    page.keyboard.press('KeyQ');page.wait_for_timeout(200);check(snap(page)['energy']<100,'Pulse spends actual suit energy')
    use(page);page.wait_for_function('AetherReach.snapshot().relays.includes("garden")')
+   # The action mutates the model before the animation loop drains its save
+   # event. Await the actual persisted checkpoint, not merely the relay flag.
+   page.wait_for_function('JSON.parse(localStorage.getItem("aether-reach.expedition.v1"))?.checkpoint==="garden"')
    check(page.evaluate('JSON.parse(localStorage.getItem("aether-reach.expedition.v1")).checkpoint')=='garden','Restoring a relay creates a validated local checkpoint')
    walk(page,[(62,-33)]);use(page);page.wait_for_function('AetherReach.snapshot().rail?.id==="sunline"')
    page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW')

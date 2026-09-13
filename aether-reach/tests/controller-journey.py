@@ -22,7 +22,12 @@ with sync_playwright() as pw:
  def snap():return p.evaluate('AetherReach.snapshot()')
  def frames(n=3):p.evaluate('(n)=>new Promise(resolve=>{function f(){if(--n<=0)resolve();else requestAnimationFrame(f);}requestAnimationFrame(f)})',n)
  def button(i,on):p.evaluate('([i,on])=>TestPad.button(i,on)',[i,on]);frames(1)
- def tap(i):p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>resolve());});})',i)
+ def tap(i):
+  # Let a newly opened modal sample neutral input before a fresh press. A hold
+  # across a context change must still be blocked by the production adapter.
+  frames(2)
+  p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>resolve());});})',i)
+  frames(2)
  def axes(a):p.evaluate('(a)=>TestPad.axes(a)',a)
  def go(selector):
   # Inspect DOM ordering, then operate ONLY normal gamepad events.

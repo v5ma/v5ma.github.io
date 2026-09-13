@@ -41,7 +41,7 @@ def walk(p,targets):
    else:raise AssertionError('Could not walk to '+str((x,z))+' '+json.dumps(s))
    keys(set())
  finally:keys(set())
-def aim(p,target,timeout=20):
+def aim(p,target,timeout=90):
  # Native drag-look gives fine aim even when a software-WebGL frame spans many
  # fixed keyboard-look ticks. This uses actual mouse input, never camera writes.
  start=time.monotonic();box=p.locator('#world').bounding_box()
@@ -54,11 +54,17 @@ def aim(p,target,timeout=20):
   dx=max(-240,min(240,dy/.004));dz=max(-180,min(180,-dp/.004))
   p.mouse.move(x,y);p.mouse.down();p.mouse.move(x+dx,y+dz,steps=2);p.mouse.up()
   p.wait_for_timeout(30)
- raise AssertionError('Mouse aim did not settle '+str(target))
+ # The last native pointer event can finish at the watchdog boundary. Verify
+ # its observed result before reporting a timeout; never assign camera state.
+ state=snap(p);pos=state['position'];q=next((b for b in state['enemies'] if b['id']==target and b['hp']>0),None) if isinstance(target,str) else {'x':target[0],'y':target[1],'z':target[2]}
+ if not q:return False
+ yaw=math.atan2(q['x']-pos['x'],-(q['z']-pos['z']));dy=math.atan2(math.sin(yaw-pos['yaw']),math.cos(yaw-pos['yaw']));pitch=math.atan2(q['y']-pos['y']-1.6,math.hypot(q['x']-pos['x'],q['z']-pos['z']))
+ if abs(dy)<.035 and abs(pitch-pos['pitch'])<.03:return True
+ raise AssertionError('Mouse aim did not settle '+str(target)+' yawError='+str(dy)+' pitchError='+str(pitch-pos['pitch']))
 with sync_playwright() as pw:
  args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());p=ctx.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)))
  p.add_init_script("window.tacticalKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyQ','KeyF','KeyE'].includes(e.code)){tacticalKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,paused:window.AetherReach?.snapshot().paused});if(tacticalKeyLog.length>20)tacticalKeyLog.shift();}},true);")
  try:
