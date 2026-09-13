@@ -14,7 +14,7 @@ jobs:
         run: |
           python - <<'PY'
           import base64,lzma,json,pathlib
-          root=pathlib.Path.cwd(); packed=base64.b64decode((root/'.github/tidelight-quick/part0.txt').read_text().strip(),validate=True)
+          root=pathlib.Path.cwd(); text=''.join((root/f'.github/tidelight-quick/part{i}.txt').read_text().strip() for i in range(4)); packed=base64.b64decode(text,validate=True)
           data=json.loads(lzma.decompress(packed))
           expected={'vesperfall/tidelight-shaders.js','vesperfall/tidelight.js','vesperfall/tidelight.css','vesperfall/TIDELIGHT.md','vesperfall/index.html','vesperfall/release.json'}
           assert set(data)==expected
