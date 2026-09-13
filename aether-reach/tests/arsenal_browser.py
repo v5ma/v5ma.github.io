@@ -32,23 +32,22 @@ def walk(page,points):
    keys(set())
  finally:keys(set())
 def aim(page,x,y,z):
- # Scoped precision aim is driven by ordinary arrow-key look, one rendered frame
- # at a time. This converges on slow software WebGL without depending on drag
- # distance, pointer-lock timing, or writing camera state from the test.
- start=time.monotonic();last=None
- while time.monotonic()-start<45:
-  state=snap(page);s=state['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch']
-  if abs(dy)<.035 and abs(dp)<.08:return
-  if abs(dy)>=.035:
-   key='ArrowRight' if dy>0 else 'ArrowLeft';page.keyboard.down(key);page.evaluate('new Promise(r=>requestAnimationFrame(()=>r()))');page.keyboard.up(key)
-  else:
-   # The fixed test target is nearly level with the eye. Give any residual
-   # vertical convergence one short native mouse correction, then re-read state.
-   box=page.locator('#world').bounding_box();cx=box['x']+box['width']*.5;cy=box['y']+box['height']*.5;page.mouse.move(cx,cy);page.mouse.down();page.mouse.move(cx,cy-max(-40,min(40,dp/.004)),steps=2);page.mouse.up()
-  current=snap(page)['position']['yaw']
-  if last is not None and abs(current-last)<1e-7:page.wait_for_timeout(20)
-  last=current
- raise AssertionError('Native scoped aim did not settle: '+json.dumps({'position':snap(page)['position'],'target':[x,y,z]}))
+ # Hold ordinary keyboard look until the actual simulation reaches the target.
+ # This avoids hundreds of Python/browser round trips on slow software WebGL,
+ # while still changing yaw/pitch only through the game's native input path.
+ state=snap(page);s=state['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']))
+ if abs(dy)>=.035:
+  key='ArrowRight' if dy>0 else 'ArrowLeft';page.keyboard.down(key)
+  try:
+   page.wait_for_function('''([target,tol])=>{const y=AetherReach.snapshot().position.yaw;return Math.abs(Math.atan2(Math.sin(target-y),Math.cos(target-y)))<tol;}''',arg=[yaw,.035],timeout=120000)
+  finally:page.keyboard.up(key)
+ s=snap(page)['position'];dp=pitch-s['pitch']
+ if abs(dp)>=.06:
+  key='ArrowUp' if dp>0 else 'ArrowDown';page.keyboard.down(key)
+  try:page.wait_for_function('''([target,tol])=>Math.abs(target-AetherReach.snapshot().position.pitch)<tol''',arg=[pitch,.06],timeout=60000)
+  finally:page.keyboard.up(key)
+ s=snap(page)['position'];dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch']
+ if abs(dy)>=.04 or abs(dp)>=.08:raise AssertionError('Native scoped aim did not settle: '+json.dumps({'position':s,'target':[x,y,z],'yawError':dy,'pitchError':dp}))
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
@@ -92,7 +91,7 @@ with sync_playwright() as pw:
    if end['x']<40:
     walk(page,[(0,-15),(0,-36),(8,-42),(49,-28),(65,-26)])
    walk(page,[(78,-25)]);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().owned.includes("carbine")');check(True,'The garden supply cache unlocks a weapon after actual exploration');page.screenshot(path=str(OUT/'glasshouse-diversity.png'))
-  check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, native mouse drag-look, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))
+  check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None
