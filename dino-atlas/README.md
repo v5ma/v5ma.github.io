@@ -1,3 +1,7 @@
+# Dino Atlas: Pelagic Recovery
+
+Menu > Water mission: Pelagic Recovery starts the new six-stage aquatics assignment. Sail from Wetland Dock to Pelagic Station, restore its safety breaker, isolate the seawater intake, drain the tiled pool, explore the shallow archive wing on foot and return two sealed cases by boat. All prior Dino Atlas activities and saves remain. See [PELAGIC-RECOVERY.md](PELAGIC-RECOVERY.md) for controls, rendering budgets and limitations. The maintained checklist is [AAA-ROADMAP.md](AAA-ROADMAP.md).
+
 # Dino Atlas: Coastal Light
 
 The maintained game now includes water and canopy shaders, wet storm roads, luminous research pulses and optional soft bloom. Open Menu > Coastal Light / shaders. Balanced is on by default; Classic restores the original materials, and Cinematic adds bloom on supported High graphics. Existing Living Herds, Storm Response, Ranch & Coast, all 64 residents and saved progress remain. Scope and limits: [COASTAL-LIGHT.md](COASTAL-LIGHT.md). The canonical production checklist remains [AAA-ROADMAP.md](AAA-ROADMAP.md).
