@@ -12,10 +12,10 @@ export const NATATORIUM={
  zones:[{name:'Ticket lobby',x:0,z:46},{name:'Warm-up pool',x:-18,z:15},{name:'Competition pool',x:15,z:2},{name:'Diving well',x:-18,z:-27},{name:'Filter gallery',x:13,z:-50},{name:'Pump room',x:-35,z:-54},{name:'North service lift',x:0,z:-78}],
  grass:[],
  water:[
-  {id:'warmup',x:-18,z:14,w:20,d:26,depth:.48,surface:.28,swimmable:false,pool:true},
-  {id:'competition',x:15,z:1,w:18,d:42,depth:2.55,surface:.28,swimmable:true,pool:true},
-  {id:'divewell',x:-18,z:-27,w:18,d:20,depth:3.15,surface:.28,swimmable:true,pool:true},
-  {id:'filter-channel',x:13,z:-50,w:14,d:18,depth:1.65,surface:.28,swimmable:true,pool:true}
+  {id:'warmup',x:-18,z:14,w:20,d:26,depth:.48,surface:-.08,swimmable:false,pool:true},
+  {id:'competition',x:15,z:1,w:18,d:42,depth:2.55,surface:-.08,swimmable:true,pool:true},
+  {id:'divewell',x:-18,z:-27,w:18,d:20,depth:3.15,surface:-.08,swimmable:true,pool:true},
+  {id:'filter-channel',x:13,z:-50,w:14,d:18,depth:1.65,surface:-.08,swimmable:true,pool:true}
  ],
  obstacles:[
   box('nat-edge-w',-49,-15,2,144,12,'tile'),box('nat-edge-e',49,-15,2,144,12,'tile'),box('nat-edge-s',0,57,100,2,8,'tile'),box('nat-edge-n',0,-87,100,2,10,'tile'),
@@ -58,8 +58,8 @@ export const NATATORIUM={
  tasks:[
   task('nat-locker-log',-40,25,'The last swim class','Record the coach board left behind in the locker corridor.','record'),
   task('nat-lane-lights',31,-14,'Lights under the lanes','Restore the competition-pool lane lights after recovering the filtration fuse.','repair',{requires:['cell'],reward:{ammo:4,canister:2}}),
-  task('nat-dive-marker',-12,-35,'Mark the deep well','Leave a visible depth marker at the diving well for anyone following.','rescue',{reward:{cloth:2}}),
-  task('nat-chemical-lock',-43,-61,'Seal the chlorine room','Secure the chemical cabinet before opening the north route.','supply',{reward:{canister:2,cloth:1}}),
+  task('nat-dive-marker',-7.5,-34,'Mark the deep well','Leave a visible depth marker at the diving well for anyone following.','rescue',{reward:{cloth:2}}),
+  task('nat-chemical-lock',-40.2,-61,'Seal the chlorine room','Secure the chemical cabinet before opening the north route.','supply',{reward:{canister:2,cloth:1}}),
   task('nat-circulation',-33,-56,'Wake the circulation loop','Install the pressure spindle after balancing the three circulation valves.','repair',{required:true,requires:['crank','puzzle'],reward:{health:20,canister:2}}),
   task('nat-lift-signal',0,-64,'Call the service lift','Send the clearance signal after recovering the submerged fuse and restoring circulation.','signal',{required:true,requires:['cell','crank','puzzle','task:nat-circulation'],reward:{ammo:5}}),
  ]

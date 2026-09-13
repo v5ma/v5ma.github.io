@@ -24,3 +24,14 @@ export function dryDeckRectangles(bounds,pools){
  }
  return result;
 }
+
+/* Shorten the submerged boom before land-floor correction can lift its endpoint
+ * out of the water. A positive inset reserves room for the near plane. */
+export function underwaterBoom(pool,target,desired,inset=.30){
+ let t=1;
+ for(const [axis,half] of [['x',pool.w/2-inset],['z',pool.d/2-inset]]){
+  const delta=desired[axis]-target[axis];
+  if(Math.abs(delta)>1e-9){const edge=pool[axis]+(delta>0?half:-half);t=Math.min(t,Math.max(0,(edge-target[axis])/delta));}
+ }
+ return {x:target.x+(desired.x-target.x)*t,y:target.y+(desired.y-target.y)*t,z:target.z+(desired.z-target.z)*t};
+}

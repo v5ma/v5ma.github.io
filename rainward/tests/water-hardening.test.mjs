@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as W from '../world.mjs';
 import * as M from '../model.mjs';
 import {deepWater,updateAquatic,toggleSubmerge,surfaceWater} from '../aquatic.mjs';
-import {basinLayout,poolCameraFloor,dryDeckRectangles,poolContains} from '../pool-layout.mjs';
+import {basinLayout,poolCameraFloor,dryDeckRectangles,poolContains,underwaterBoom} from '../pool-layout.mjs';
 import {clipBoom,followCamera} from '../camera-core.mjs';
 import {beginHealing,beginCrafting} from '../survival.mjs';
 import {taskTarget} from '../field-tasks.mjs';
@@ -62,4 +62,11 @@ test('All six Natatorium tasks have clear dry interaction points and each can be
  for(const [i,q] of d.puzzle.wheels.entries()){at(s,q);let n=0;while(s.puzzle.wheels[i]!==d.puzzle.targets[i]&&n++<4)assert.ok(M.interact(s));}
  for(const t of d.tasks){at(s,t);assert.ok(!deepWater(s.player));assert.equal(W.solidAt(t.x,t.z),false,t.id+' embedded in geometry');assert.equal(taskTarget(s)?.id,t.id);assert.ok(M.interact(s),t.id);}
  assert.equal(s.completedTasks.length,6);at(s,d.exit);assert.ok(M.interact(s));assert.equal(s.status,'won');
+});
+
+test('Diving beside the far edge shortens the boom rather than raising it through the surface',()=>{
+ game();const p=W.CURRENT.water.find(w=>w.id==='competition'),target={x:15,y:-1.35,z:17.82};
+ const intended=underwaterBoom(p,target,{x:15.72,y:-.30,z:22.62}),floor=(x,z)=>poolCameraFloor(W.CURRENT.water,x,z);
+ const safe=clipBoom(target,intended,.20,[],floor);
+ assert.ok(safe.y<-.2);assert.ok(poolContains(p,safe.x,safe.z,.28));assert.ok(Math.hypot(safe.x-target.x,safe.z-target.z)>3.8);
 });

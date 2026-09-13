@@ -22,6 +22,7 @@ import {artkit,rnd,colors} from './artkit.mjs';
 import {buildDistrict} from './district.mjs';
 import {actor,pose} from './actors.mjs';
 import {followCamera} from './camera-core.mjs';
+import {poolCameraFloor,underwaterBoom} from './pool-layout.mjs';
 export function createScene(canvas,{onXRStart=()=>{},onXREnd=()=>{}}={}){
  const chapter=CURRENT;
  const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
@@ -54,10 +55,11 @@ export function createScene(canvas,{onXRStart=()=>{},onXREnd=()=>{}}={}){
   for(const [p,m]of bottles)if(!state.projectiles.includes(p)){scene.remove(m);bottles.delete(p);}
   for(const ev of state.events)if(ev.seq>lastEvent){lastEvent=ev.seq;if(ev.type==='shot'||ev.type==='enemy-shot'){const geo=new T.BufferGeometry().setFromPoints([new T.Vector3(ev.from.x,ev.from.y,ev.from.z),new T.Vector3(ev.to.x,ev.to.y,ev.to.z)]);const line=new T.Line(geo,traceMat);scene.add(line);pulses.push({mesh:line,life:.08});}}
   for(let i=pulses.length-1;i>=0;i--){pulses[i].life-=dt;if(pulses[i].life<=0){scene.remove(pulses[i].mesh);pulses[i].mesh.geometry.dispose();pulses.splice(i,1);}}
-  rain.visible=['district','meridian','breakwater','whiteout'].includes(chapter.id);const fall=chapter.id==='whiteout'?3.2:9;rain.position.set(state.player.x,-(t*fall%16),state.player.z+10);const p=state.player,aim=view.aim,lookY=heightAt(p.x,p.z)-(p.swimDepth||0)+(p.stance==='prone'?.38:p.stance==='crouch'?1.05:1.5)+(p.vault?Math.sin(Math.PI*Math.min(1,p.vault.t/p.vault.duration))*.95:0);
+  rain.visible=['district','meridian','breakwater','whiteout'].includes(chapter.id);const fall=chapter.id==='whiteout'?3.2:9;rain.position.set(state.player.x,-(t*fall%16),state.player.z+10);const p=state.player,swimming=p.waterMode==='swim',aim=view.aim&&!swimming,lookY=heightAt(p.x,p.z)+(swimming?(p.submerged?-(p.swimDepth||0)+.35:.50):(p.stance==='prone'?.38:p.stance==='crouch'?1.05:1.5))+(p.vault?Math.sin(Math.PI*Math.min(1,p.vault.t/p.vault.duration))*.95:0);
   const yaw=view.yaw,pitch=view.pitch,forward=new T.Vector3(-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)),right=new T.Vector3(Math.cos(yaw),0,-Math.sin(yaw)),target=new T.Vector3(p.x,lookY,p.z),distance=aim?2.05:4.8,shoulder=(aim?.52:.72)*(view.shoulder||1);
   let desired=target.clone().addScaledVector(forward,-distance).addScaledVector(right,shoulder).add(new T.Vector3(0,aim?.05:.30,0));
-  const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap);camera.position.set(safe.x,safe.y,safe.z);cameraSet=true;hero.root.visible=camera.position.distanceTo(target)>.7;
+  const cameraFloor=swimming?(x,z)=>poolCameraFloor(chapter.water||[],x,z,heightAt(x,z)):heightAt;if(swimming){const water=chapter.water.find(w=>Math.abs(p.x-w.x)<w.w/2&&Math.abs(p.z-w.z)<w.d/2);if(water){desired.y=p.submerged?Math.min(desired.y,(water.surface??-.08)-.22):Math.max(desired.y,(water.surface??-.08)+.25);if(p.submerged)desired.copy(underwaterBoom(water,target,desired));}}
+  const safe=followCamera(target,desired,cameraSet?camera.position:null,dt,!cameraSet||view.snap,cameraFloor);camera.position.set(safe.x,safe.y,safe.z);cameraSet=true;hero.root.visible=camera.position.distanceTo(target)>.7;
   camera.lookAt(target.clone().addScaledVector(forward,aim?14:5));camera.fov=T.MathUtils.lerp(camera.fov,aim?43:56,Math.min(1,dt*10));camera.updateProjectionMatrix();camera.updateMatrixWorld();
   if(chapter.id==='natatorium'&&p.submerged){scene.fog.color.setHex(0x24545b);scene.fog.density=.052;renderer.toneMappingExposure=.78;}else{scene.fog.color.copy(baseFogColor);scene.fog.density=baseFogDensity;renderer.toneMappingExposure=baseExposure;}sun.target.position.set(p.x,heightAt(p.x,p.z)+1,p.z);sun.position.set(p.x-28,heightAt(p.x,p.z)+48,p.z+20);sun.target.updateMatrixWorld();
   humans.update(state);rainFilm.update();listenArt.update(state);graphics.update();living.update(state);atmosphere.update(state);
