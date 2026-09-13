@@ -21,19 +21,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Integrate bounded UI patch and retain model regressions
+      - name: Integrate scoped patch and keep model regressions
         run: |
           python rainward/tools/prepare-clear-water.py
+          python rainward/tools/finalize-clear-water.py
           python -m compileall -q rainward/tests
           node --test rainward/tests/*.test.mjs
-      - name: Commit only the three integrated Rainward paths
+      - name: Commit only declared Rainward candidate paths
         id: source
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/app.mjs rainward/aquatic.mjs rainward/aquatic.css
+          git add rainward/app.mjs rainward/aquatic.mjs rainward/aquatic.css rainward/world.mjs rainward/index.html rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/CLEAR-WATER.md rainward/DEVELOPMENT-HANDOFF.md rainward/README.md rainward/CONTROLLER.md rainward/tests/aquatic.py rainward/tests/first-light.py rainward/tests/controller-menus.py rainward/tests/aquatic.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/handoff.test.mjs rainward/tools/build-production-plan.py
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate Rainward preset-aware water controls and low-air guidance'
+            git commit -m 'Assemble Rainward Clear Water v0.13.1 with preserved saves and scoped acceptance'
             git push origin HEAD:feat/rainward-clear-water-20260913
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -46,7 +47,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        preset: [survival, classic]
+        preset: [survival, classic, recovery]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -59,14 +60,18 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Normal-start living-enemy controller mission
+      - name: Native mission or explicitly isolated recovery suite
         env:
           RAINWARD_PRESET: ${{ matrix.preset }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          timeout 960 python -u rainward/tests/natatorium-journey.py
+          if [ "$RAINWARD_PRESET" = recovery ]; then
+            timeout 960 python -u rainward/tests/aquatic.py
+          else
+            timeout 960 python -u rainward/tests/natatorium-journey.py
+          fi
       - name: Preserve exact source, failures, video and snapshots
         if: always()
         run: |
