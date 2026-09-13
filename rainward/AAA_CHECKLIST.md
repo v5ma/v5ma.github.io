@@ -17,6 +17,26 @@ Approved: The criterion has a named reviewer and recorded sign-off.
 Canonical data: [production-plan.json](production-plan.json). Interactive board: [roadmap.html](roadmap.html).
 Each checkbox remains open until human acceptance is recorded. Automated status is narrower than final approval.
 
+## Resume from another chat
+
+Start with [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md) and [CONTROLLER.md](CONTROLLER.md).
+Historical gameplay evidence: [Undertow receipt](evidence/undertow-v0.13.0/summary.json). This handoff is not a new gameplay release.
+
+- [ ] H-01 / RW-032, RW-031, RW-028 / Record a living-enemy Natatorium browser mission from normal start to extraction. Preserve oxygen, enemy, task, puzzle and resource rules.
+  Acceptance: Both components, puzzle and required tasks complete using ordinary inputs; no safe fixture or model teleport substitutes for this run.
+
+- [ ] H-02 / RW-035, RW-036, RW-014 / Author swimming and land-action blends, then hand/foot contacts for the fitted seventeen-bone humans.
+  Acceptance: Before/after motion review, no collar/cuff gaps, no animation authority over collision, and no broken reload/craft/heal or dive/surface transitions.
+
+- [ ] H-03 / RW-044, RW-045, RW-046, RW-048 / Review and improve water/combat Foley, room acoustics, score transitions and dramatic silence.
+  Acceptance: Measured output and recorded real-device listening review; non-silent synthesis alone is insufficient.
+
+- [ ] H-04 / RW-006, RW-049, RW-050, RW-052, RW-054 / Run real wired/Bluetooth Xbox and named hardware checks; retain complete controller navigation.
+  Acceptance: Both presets, menus, held actions, reconnect, water entry, oxygen and browser audio activation are documented on actual devices.
+
+- [ ] H-05 / RW-031, RW-050 / Make water prompts explicit about the Survival hold-B gesture rather than the generic B DIVE label.
+  Acceptance: Preset-aware prompts match actual dive/surface behavior on controller and keyboard; text changes do not alter the input mapping.
+
 ## G0 / Release foundation
 
 Close regressions before adding more content.
@@ -41,6 +61,9 @@ Gate: All supported input paths start, save, reload and produce audio without un
   Dependencies: None.
   Evidence: field-ready-ui.mjs.
 
+  Continuation: Satchel equipment buttons and full menu navigation are implemented. CONTROLLER.md now distinguishes Survival, Classic and water overrides.
+  Next action: Record the physical controller journey without using a mouse to close any in-game panel.
+
 - [ ] RW-004 / P0 / Finite inventory and save validation / Automated
   Owner role: Gameplay engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Reloading, switching, pickup, restore and cancellation cannot duplicate ammunition, supplies or completed tasks.
@@ -53,11 +76,17 @@ Gate: All supported input paths start, save, reload and produce audio without un
   Dependencies: None.
   Evidence: tests/.
 
+  Continuation: Historical Undertow evidence: 271 model/source tests and 18 native suites passed at d673fa6. Evidence is archived, not a certification of a later candidate.
+  Next action: Keep the full regression matrix and record exact candidate/merge hashes and any failed attempt.
+
 - [ ] RW-006 / P0 / Controller and audio device acceptance / Planned
   Owner role: Hardware QA. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Record wired and Bluetooth Xbox playthroughs with menus, disconnect, audio activation, crafting and healing on real hardware.
   Dependencies: RW-003, RW-005.
   Evidence: Not recorded yet.
+
+  Continuation: Physical wired/Bluetooth Xbox, speaker/headphone and device-signoff evidence is still absent. Browser-standard simulated input is a separate scope.
+  Next action: Test both presets, reload, menus, held crafting/healing, water controls, focus loss and reconnect on physical hardware.
 
 - [ ] RW-007 / P1 / Save recovery and write-failure handling / Automated
   Owner role: Gameplay engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -70,6 +99,9 @@ Gate: All supported input paths start, save, reload and produce audio without un
   Acceptance: Each task has an owner role, priority, acceptance criterion, status, dependencies and evidence; every release updates the board.
   Dependencies: None.
   Evidence: production-plan.json.
+
+  Continuation: The cross-chat handoff, current controller contract and durable Undertow receipt are now linked beside the canonical plan.
+  Next action: Update continuation metadata and regenerate the Markdown checklist after each release; never edit generated status alone.
 
 ## G1 / Flagship vertical slice
 
@@ -185,11 +217,14 @@ Expand authored variety rather than duplicating rooms.
 
 Gate: Every chapter has a distinct route, pacing plan, task arc and verified beginning-to-end playthrough.
 
-- [ ] RW-025 / P1 / Six authored expedition foundations / Implemented
+- [ ] RW-025 / P1 / Seven authored expedition foundations / Implemented
   Owner role: Level design. Assigned reviewer: Unassigned. Effort: Unestimated.
-  Acceptance: Floodgate, Conservatory, Terminus, Meridian, Breakwater and Whiteout retain distinct footprints, objectives and physical puzzle gates.
+  Acceptance: Floodgate, Conservatory, Terminus, Meridian, Breakwater, Whiteout and Natatorium retain distinct footprints, objectives and physical puzzle gates.
   Dependencies: None.
   Evidence: world.mjs.
+
+  Continuation: Natatorium is the seventh chapter; the previous six still exist. This corrects an outdated six-chapter label, not a new gameplay addition.
+  Next action: Retain all seven IDs and avoid fixed chapter counts in navigation, saves and tests.
 
 - [ ] RW-026 / P1 / Chapter task and dependency graph / Implemented
   Owner role: Mission design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -205,9 +240,12 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
 
 - [ ] RW-028 / P1 / Chapter route and pacing audit / Planned
   Owner role: Level design. Assigned reviewer: Unassigned. Effort: Unestimated.
-  Acceptance: Review all six chapters for landmarks, shortcuts, sightlines, supply spacing, backtracking and encounter rhythm.
+  Acceptance: Review all seven chapters for landmarks, shortcuts, sightlines, supply spacing, backtracking and encounter rhythm.
   Dependencies: RW-016, RW-025.
   Evidence: Not recorded yet.
+
+  Continuation: The route/pacing audit now includes Northlight Natatorium. The exposed-quay no-kill failures remain useful evidence for the older Floodgate route.
+  Next action: Review risk/reward and recovery routes without silently nerfing encounters merely to make tests pass.
 
 - [ ] RW-029 / P1 / New puzzle interaction families / Planned
   Owner role: Puzzle design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -227,11 +265,17 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Dependencies: RW-030.
   Evidence: UNDERTOW.md.
 
+  Continuation: Undertow is published. Camera basin depth, pool-edge clipping, slab/lane/caustic layering, dry interactions and cancellation/refunds are covered. Swimming uses the horizontal crawl rig and toggle depth, not free vertical motion.
+  Next action: Close the living-enemy water playthrough and physical-controller gaps, then improve swim animation and preset-aware dive prompts.
+
 - [ ] RW-032 / P1 / Complete campaign playthrough evidence / Planned
   Owner role: QA. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Record each chapter from start through all required work to extraction with ordinary inputs, preserving exact build and save evidence.
   Dependencies: RW-024, RW-028, RW-029.
   Evidence: Not recorded yet.
+
+  Continuation: All 18 browser suites passed, but the aquatic browser fixture defeats enemies at a real shelter. Model interactions cover the complete water mission separately.
+  Next action: Record the Natatorium from a normal start through submerged fuse, dry spindle, puzzle, required tasks and extraction with living enemies.
 
 ## G4 / Art and animation
 
@@ -251,17 +295,26 @@ Gate: Camera-matched art reviews approve the hero, enemies, animation, architect
   Dependencies: RW-033.
   Evidence: RAINWORN.md.
 
+  Continuation: Imported CC0 Quaternius Standard face/hands/hair are fitted to the existing seventeen-bone rig and original clothing. The paid Source edition was not used; this is not a fully original final hero sculpt.
+  Next action: Keep license/hash provenance, collars/cuffs, independent skeletons, attachment fit, fallback and distance-detail tests during character upgrades.
+
 - [ ] RW-035 / P1 / Authored locomotion and action clips / Planned
   Owner role: Animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Approve walk, run, crouch, crawl, turn, aim, reload, strike, stagger, vault, heal and craft transitions without visible snapping.
   Dependencies: RW-034.
   Evidence: Not recorded yet.
 
+  Continuation: The original procedural animation still drives the imported detail. The free animation library was inspected but its clips were not integrated; swimming currently reuses the horizontal crawl pose.
+  Next action: Prototype authored swim/tread/dive/surface and land-action transitions with before/after motion capture and preserved gameplay timing.
+
 - [ ] RW-036 / P1 / Foot placement and hand contacts / Planned
   Owner role: Technical animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Feet follow slopes and stairs; hands align to weapons and traversal contacts; solve IK failures without destabilizing gameplay.
   Dependencies: RW-035.
   Evidence: Not recorded yet.
+
+  Continuation: Hand/foot contact IK is not implemented or approved. The collar/wrist seam fixes are geometry compatibility, not contact animation.
+  Next action: After action blending, validate slopes/stairs, weapon grips and authored traversal contacts without changing collision authority.
 
 - [ ] RW-037 / P1 / Enemy silhouettes and reactions / Planned
   Owner role: Character art. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -281,11 +334,17 @@ Gate: Camera-matched art reviews approve the hero, enemies, animation, architect
   Dependencies: RW-038.
   Evidence: rainworn-materials.mjs.
 
+  Continuation: Rain-film and pool/caustic shaders are implemented; the pool additions add no new fullscreen target. The existing cinematic pipeline still has its own render targets.
+  Next action: Review daylight, interior, wet/dry and submerged transitions on both quality tiers, preserving shader composition and fallbacks.
+
 - [ ] RW-040 / P1 / Asset optimization and provenance / Implemented
   Owner role: Technical art. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Every imported asset retains source/license/hash records; final hero and environment assets also need LOD, memory and streaming review.
   Dependencies: RW-034, RW-038.
   Evidence: assets/humans/manifest.json.
+
+  Continuation: Source rights are in assets/humans/manifest.json and original notices. Historical source downloads/tests may expire as Actions artifacts.
+  Next action: Retain reproducible author downloads and exact hashes; never rely on signed temporary URLs or claim paid Source assets were used.
 
 ## G5 / Sound and music
 
@@ -293,11 +352,14 @@ Make sound useful, emotional and dependable.
 
 Gate: Every audible action has an appropriate cue; music transitions and mixes pass measured and listening reviews.
 
-- [ ] RW-041 / P1 / Original six-chapter adaptive score / Implemented
+- [ ] RW-041 / P1 / Original seven-chapter adaptive score / Implemented
   Owner role: Music. Assigned reviewer: Unassigned. Effort: Unestimated.
-  Acceptance: Six distinct arrangements respond to danger and listening; composition quality and emotional pacing still require listening review.
+  Acceptance: Seven distinct arrangements respond to danger and listening; composition quality and emotional pacing still require listening review.
   Dependencies: RW-001.
   Evidence: audio-design.mjs.
+
+  Continuation: Seven chapter arrangements now include Tiles Below the Surface. This corrects the old six-chapter score label without claiming a final subjective mix.
+  Next action: Preserve existing music preferences and composition provenance while reviewing transitions and repetition.
 
 - [ ] RW-042 / P1 / Stereo direction and obstacle muffling / Automated
   Owner role: Audio engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -316,6 +378,9 @@ Gate: Every audible action has an appropriate cue; music transitions and mixes p
   Acceptance: Review loudness, texture, timing, repetition and material realism for every cue on headphones and speakers; replace weak placeholders.
   Dependencies: RW-043.
   Evidence: Not recorded yet.
+
+  Continuation: The owner explicitly prioritizes in-game sound effects and music. Rendered samples and live analyser checks establish output, not a good mix.
+  Next action: Review Foley timing, material variation and water/combat cues on headphones and speakers, then record what was improved.
 
 - [ ] RW-045 / P1 / Room-aware reverb and sound portals / Planned
   Owner role: Audio engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -341,6 +406,9 @@ Gate: Every audible action has an appropriate cue; music transitions and mixes p
   Dependencies: RW-044, RW-045, RW-046, RW-047.
   Evidence: Not recorded yet.
 
+  Continuation: Final human/device listening approval remains open despite passing synthesis, stereo and sample-rate tests.
+  Next action: Record actual listening judgments separately from numerical levels and simulated input.
+
 ## G6 / Accessibility and performance
 
 Measure the actual target devices and input methods.
@@ -358,6 +426,9 @@ Gate: The agreed hardware matrix meets its frame-time, memory, readability and a
   Acceptance: Review text size, contrast, safe areas, caption direction, speaker identification and color-independent signals across target displays.
   Dependencies: RW-047.
   Evidence: Not recorded yet.
+
+  Continuation: Water HUD currently says B DIVE, while the documented Survival gesture is hold B. The desired wording fix is not included in this documentation change.
+  Next action: Make prompts preset-aware, test readability while oxygen is low, and keep color-independent cues.
 
 - [ ] RW-051 / P1 / Reduced motion and adjustable HUD / Implemented
   Owner role: UI engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -382,6 +453,9 @@ Gate: The agreed hardware matrix meets its frame-time, memory, readability and a
   Acceptance: Proposed targets, not current claims: desktop 1080p/60 fps and reduced tier 30 fps; agree hardware and pass sustained representative scenes.
   Dependencies: RW-039, RW-053.
   Evidence: Not recorded yet.
+
+  Continuation: Desktop 1080p/60 fps and reduced-tier 30 fps remain proposed targets, not measurements. Slow software-rendered CI is not a real GPU benchmark.
+  Next action: Name hardware and measure frame-time percentiles, memory and representative water/urban routes before approval.
 
 - [ ] RW-055 / P1 / Memory, streaming and graphics recovery / Planned
   Owner role: Engine engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -413,6 +487,9 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Dependencies: None.
   Evidence: tests/release.py.
 
+  Continuation: Original Undertow source manifest and public-hash receipt are archived under evidence/undertow-v0.13.0. 128 is a historical file count, not a fixed future gate.
+  Next action: Save exact test/publication evidence for each new commit and keep failed evidence and fixture limits.
+
 - [ ] RW-059 / P1 / Asset rights and public-source boundary / Automated
   Owner role: Release engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Check licensed assets, vendored notices, local runtime imports and absence of confidential material or service credentials.
@@ -425,6 +502,9 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Dependencies: RW-032, RW-055.
   Evidence: Not recorded yet.
 
+  Continuation: No two-hour, seven-chapter save-migration/long-session acceptance is claimed. Six-slot banks and v1-v4 checkpoints must remain compatible.
+  Next action: Test repeated deaths, retries, swaps, field-record persistence and storage failure without clearing player storage.
+
 - [ ] RW-061 / P1 / Player-facing known issues and support / Planned
   Owner role: Production. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Publish supported devices, known limitations, save recovery instructions and a clear issue-reporting path before release.
@@ -436,6 +516,9 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Acceptance: Rehearse reverting a release without deleting saves or changing sibling games, then verify public hashes again.
   Dependencies: RW-058.
   Evidence: Not recorded yet.
+
+  Continuation: The Undertow Pages deploy job was cancelled, but a public fetch/hash verifier confirmed delivery. Concurrent sibling deployments can supersede jobs.
+  Next action: Rehearse a scoped rollback and verify actual live bytes instead of inferring success from a scheduled or cancelled build.
 
 - [ ] RW-063 / P2 / Optional platform expansion decision / Planned
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.

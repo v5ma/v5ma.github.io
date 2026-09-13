@@ -1,5 +1,13 @@
 # Rainward v0.13.0 / Undertow
 
+## Continue development / 2026-09-13
+
+Start with [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md), the current [controller contract](CONTROLLER.md), and the canonical [production plan](production-plan.json). The [generated checklist](AAA_CHECKLIST.md) and [interactive board](roadmap.html) use the same task IDs. Historical Undertow release evidence is preserved in [evidence/undertow-v0.13.0/summary.json](evidence/undertow-v0.13.0/summary.json).
+
+Undertow is already merged and publicly verified: PR 137, merge 531a4a8e8c1a2be32437a44b81208572ad36ad04. Seven chapters are available. Do not resume by rebuilding the interrupted candidate. The next recommended work closes the living-enemy Natatorium playthrough gap, improves character motion/contacts and continues audio polish with full controller operation.
+
+The sections below are historical release notes, not current control or feature-limit specifications. In particular, earlier single-slot saves, no-swimming statements and X-only reload descriptions are superseded by the current handoff and controller contract. This documentation refresh does not change the gameplay version.
+
 Current release: [UNDERTOW.md](UNDERTOW.md). Northlight Natatorium adds the first deep-water expedition, oxygen and a procedural pool/caustic renderer.
 
 # Rainward v0.12.0 / Rainworn
