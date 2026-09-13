@@ -1,5 +1,5 @@
 {
-  "version": "0.11.0",
+  "version": "0.12.0",
   "project": "Vesperfall: Arrows Unchained",
   "scope": "Quality-gated path toward a polished original premium archery roguelite. AAA is an aspiration, not a certified rating, budget or delivery promise. Public-only content.",
   "tasks": [
@@ -580,20 +580,23 @@
     {
       "id": "V35",
       "area": "World",
-      "title": "Authored crypt/roof transitions and expanded graph vocabulary",
+      "title": "Authored crypt, roof and water destinations with expanded route grammar",
       "status": "Partial",
-      "gate": "25-district graph expansion shipped. Distinct authored crypt-to-roof transitions and stronger route grammar still need design and native traversal evidence.",
+      "gate": "Keep the existing 25-district game and reversible upper/lower routes. Add distinctive, collision-tested destinations, escape paths and discoveries. Tidelight water remains decorative until a separately designed, save-compatible traversal feature is approved.",
       "priority": "P1",
       "milestone": "M3",
       "depends": [],
       "owner": "Level design",
       "evidence": [
         "dominions-world.js",
-        "HOLLOW-DOMINIONS.md"
+        "HOLLOW-DOMINIONS.md",
+        "TIDELIGHT.md",
+        "tidelight.js",
+        "CONTINUATION-AUDIT.md"
       ],
-      "verification": "Expanded graph implemented; authored transition production remains open.",
-      "why": "Preserve the established game while closing the stated acceptance gate.",
-      "release": ""
+      "verification": "Partial. Tidelight 0.12.0 water exists in current source. The earlier seven-surface/four-named-district draft, recessed fonts, refracting tile basins and architecture reflections are not established by the shipped implementation.",
+      "why": "More areas should create memorable choices and reasons to explore, not repeat one room or flood every courtyard.",
+      "release": "0.12.0 Tidelight presentation baseline; authored expansion open"
     },
     {
       "id": "V36",
@@ -635,15 +638,17 @@
     {
       "id": "V38",
       "area": "Hardware",
-      "title": "Measure physical Quest 3 stereo frame times for Jewelglass and Rosefire",
+      "title": "Measure physical Quest 3 stereo frame times for Jewelglass, Rosefire and Tidelight",
       "status": "Hardware QA",
-      "gate": "Measure on device; never infer FPS, comfort or controller alignment from headless emulation.",
+      "gate": "Measure both eyes, bow/ward visibility, water/caustic legibility and sustained frame times on Quest 3 in both handedness modes. Check reduced effects and AR exclusions. Do not infer hardware FPS, comfort or alignment from emulation.",
       "priority": "P0",
       "milestone": "M4",
       "depends": [],
       "owner": "Device QA",
       "evidence": [
-        "ROSEFIRE.md"
+        "ROSEFIRE.md",
+        "TIDELIGHT.md",
+        "CONTINUATION-AUDIT.md"
       ],
       "verification": "No physical device receipt yet.",
       "why": "A software fixture cannot tell us how a person feels or how a real device sustains the experience.",
@@ -694,20 +699,22 @@
       "id": "V41",
       "area": "Comfort",
       "title": "Xbox focus navigation and paginated Quest spatial menus",
-      "status": "Implemented",
+      "status": "Partial",
       "priority": "P0",
       "milestone": "M0",
       "depends": [
         "V07"
       ],
       "owner": "UX / accessibility",
-      "gate": "Gameplay, settings, seeds, equipment, journal and in-game dialogs can be operated with controller input. System permission prompts are not game-owned.",
+      "gate": "Every gameplay and game-owned UI path, including water settings, confirmations, recovery, seed entry, audio and accessibility settings, is reachable and dismissible with Xbox and Quest controls without a mouse. Test both handedness modes, neutral-input transitions and return focus. Browser/system permission prompts remain platform-owned.",
       "why": "Avoid forced mouse use or headset removal.",
       "evidence": [
         "dominion-controls.js",
-        "tests/dominions-browser.py"
+        "tests/dominions-browser.py",
+        "tidelight.js",
+        "CONTINUATION-AUDIT.md"
       ],
-      "verification": "Software release evidence; hardware and human gates remain separate.",
+      "verification": "Existing Xbox focus and Quest spatial menus are implemented. Current Tidelight adds browser DOM controls but its IDs are absent from the Quest settings list in dominion-controls.js. Full water-settings and close/back parity remains open; historical controller tests do not cover those new controls.",
       "release": "0.7.0"
     },
     {
@@ -841,7 +848,7 @@
     {
       "id": "V48",
       "area": "Foundation",
-      "title": "Versioned production board and six-sheet workbook",
+      "title": "Synchronized canonical production board, six-sheet workbook and cross-chat handoff",
       "status": "Implemented",
       "priority": "P0",
       "milestone": "M1",
@@ -849,17 +856,19 @@
         "V15"
       ],
       "owner": "Engineering",
-      "gate": "roadmap.json is canonical; board and workbook show priority, dependencies, owner role, evidence and exit gates. Local edits are clearly separate from committed status.",
+      "gate": "Keep roadmap.json version aligned with release.json and core.js. Preserve V01-V76; export the six-sheet workbook with matching source digest and live summary formulas. Keep DEVELOPMENT-HANDOFF.md and CONTINUATION-AUDIT.md linked from the board and README. Verify committed files, not browser-local edits.",
       "why": "Make each release close a measurable gap and keep the long-term path inspectable.",
       "evidence": [
         "roadmap.json",
         "roadmap.html",
         "AAA-PRODUCTION.xlsx",
         "tests/production.test.cjs",
-        "tests/production-browser.py"
+        "tests/production-browser.py",
+        "DEVELOPMENT-HANDOFF.md",
+        "CONTINUATION-AUDIT.md"
       ],
-      "verification": "Software release evidence; hardware and human gates remain separate.",
-      "release": "0.9.0"
+      "verification": "September 13 repairs both the stale plan/workbook and the core diagnostic version label, without changing mechanics or save formats. Historical acceptance had 148 model passes and one plan-version failure; fresh checks are recorded separately. Physical/human gates remain open.",
+      "release": "0.9.0 foundation; 0.12.0 planning synchronization"
     },
     {
       "id": "V49",
@@ -942,12 +951,13 @@
         "V34"
       ],
       "owner": "Level design",
-      "gate": "One polished 20-30 minute target route mixes safe introduction, alternate approach, escalating encounter, discovery and boss payoff. Validate every traversal connector and recovery path. Duration is a design target, not measured content.",
+      "gate": "One polished 20-30 minute target route mixes safe introduction, alternate approach, escalating encounter, discovery and boss payoff. Validate every traversal connector and recovery path. Duration is a design target, not measured content. Preserve multi-level gothic sightlines and multiple approaches. Plan selective water-adjacent discoveries with purpose; the present water layer does not create new navigable rooms.",
       "why": "Replace sheer room count with deliberately paced exploration.",
       "evidence": [
         "oath-model.js",
         "first-bell.js",
-        "tests/oath.test.cjs"
+        "tests/oath.test.cjs",
+        "CONTINUATION-AUDIT.md"
       ],
       "verification": "A connected Roseglass/Ivory Crown/Ember Crown progression reuses the collision-tested 25-room world, existing stairs and alternate approaches. Three staged courts are implemented; the proposed 20-30 minute polished duration and authored connector variety are not yet measured or complete.",
       "release": "0.10.0 First Bell"
@@ -982,9 +992,11 @@
         "V50"
       ],
       "owner": "Technical art",
-      "gate": "Produce consistent original/licensed meshes, LODs, rigs and materials for one complete vertical slice; registered provenance; review both eye views and close-range silhouette.",
+      "gate": "Produce consistent original/licensed meshes, LODs, rigs and materials for one complete vertical slice; registered provenance; review both eye views and close-range silhouette. Retain the 15 existing archetypes, including the 12 added outer enemy orders. Improve humanoid/knight silhouettes and counterplay; do not restart the already delivered numerical expansion or copy commercial reference assets.",
       "why": "Foreground and character quality must catch up with the architecture.",
-      "evidence": [],
+      "evidence": [
+        "CONTINUATION-AUDIT.md"
+      ],
       "verification": "Not closed; no completion credit without gate evidence.",
       "release": ""
     },
@@ -1044,7 +1056,7 @@
     {
       "id": "V58",
       "area": "Presentation",
-      "title": "Long-session headphone mix and notification-rate controls",
+      "title": "Production sound/music pass, water acoustics and long-session clarity",
       "status": "Planned",
       "priority": "P0",
       "milestone": "M3",
@@ -1054,10 +1066,14 @@
         "V50"
       ],
       "owner": "Art / audio",
-      "gate": "Add independent notification density/rate controls; test 30-minute sessions with music transitions, simultaneous threats and repeated UI actions. Record human mix feedback and remove tiring repetition.",
-      "why": "Bounded voices alone do not guarantee pleasant sound.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
+      "gate": "Improve bow tension/release, crossbow winding/reload, arrow material impacts, shield impact/break, distinct enemy warnings, bells/wind, footsteps, water entries/splashes/drips and room ambience. Add restrained exploration/pressure/recovery/boss transitions; preserve independent buses, mute, captions, quiet mix, controller access and voice budgets. Pass PCM/lifecycle tests and a dated 30-minute human headphone review.",
+      "why": "The user explicitly prioritizes much stronger in-game sound and music; precise archery also needs audible material identity and readable threat direction.",
+      "evidence": [
+        "RESONANT-HUNT.md",
+        "tidelight.js",
+        "CONTINUATION-AUDIT.md"
+      ],
+      "verification": "Planned production pass. Resonant Hunt audio exists; current tidelight.js does not wire water-specific sounds. Earlier draft descriptions of positional water splashes/footsteps are not shipped evidence.",
       "release": ""
     },
     {
@@ -1107,9 +1123,11 @@
         "V41"
       ],
       "owner": "UX / accessibility",
-      "gate": "Configurable action mapping with conflict checks, seated/standing height and reach calibration, turn/motion presets and readable UI. Each can be reset without a mouse.",
+      "gate": "Configurable action mapping with conflict checks, seated/standing height and reach calibration, turn/motion presets and readable UI. Each can be reset without a mouse. Resolve grip-role conflicts by documenting the current bow-hand shard/free-hand shield mapping; implement physical thrown shards under V24, not an undocumented remap. Cover every new water/audio panel in controller-only tests.",
       "why": "Different bodies and play spaces need more than a handedness toggle.",
-      "evidence": [],
+      "evidence": [
+        "CONTINUATION-AUDIT.md"
+      ],
       "verification": "Not closed; no completion credit without gate evidence.",
       "release": ""
     },
@@ -1144,9 +1162,11 @@
         "V55"
       ],
       "owner": "UX / accessibility",
-      "gate": "Text size/contrast, sound direction captions, color-independent ammunition/enemy signals and reduced-flash mode survive desktop, stereo and passthrough contexts. Human accessibility review required.",
+      "gate": "Text size/contrast, sound direction captions, color-independent ammunition/enemy signals and reduced-flash mode survive desktop, stereo and passthrough contexts. Human accessibility review required. Preserve the palm-familiar, diegetic status design for VR and supported accessibility fallbacks. The user requested discrete hit points rather than a bar; the existing numerical health model and desktop HUD are a recorded design gap, not authorization to silently change save semantics.",
       "why": "Threats and menus must remain readable beyond one ideal user.",
-      "evidence": [],
+      "evidence": [
+        "CONTINUATION-AUDIT.md"
+      ],
       "verification": "Not closed; no completion credit without gate evidence.",
       "release": ""
     },
@@ -1180,7 +1200,7 @@
         "V47"
       ],
       "owner": "Engineering",
-      "gate": "Keep fixtures for old supported generator/schema versions, offer explicit local backup/restore and verify interrupted writes, browser quota and update migration. Never silently reset incompatible saves.",
+      "gate": "Keep fixtures for old supported generator/schema versions, offer explicit local backup/restore and verify interrupted writes, browser quota and update migration. Never silently reset incompatible saves. Any future discrete-hit-point conversion must specify health/healing balance and tested checkpoint migration; retain current health and profiles in presentation-only releases.",
       "why": "A published game needs durable progress across later upgrades.",
       "evidence": [],
       "verification": "Not closed; no completion credit without gate evidence.",
@@ -1199,9 +1219,11 @@
         "V65"
       ],
       "owner": "QA / play research",
-      "gate": "Run at least 1000 proposed seed/depth fixtures and 50 lifecycle transitions, tracking unreachable rewards, spawning collisions, NaNs, leaks and progress duplication. Publish failures and seed repros.",
+      "gate": "Run at least 1000 proposed seed/depth fixtures and 50 lifecycle transitions, tracking unreachable rewards, spawning collisions, NaNs, leaks and progress duplication. Publish failures and seed repros. Add dedicated Tidelight tests for pool placement across depth/seed, standing on high walks above water, actual arrow-water crossings, paused/reduced-effects motion, sector clock resets, AR return and old-save continuation.",
       "why": "Finite smoke tests are not a complete campaign quality gate.",
-      "evidence": [],
+      "evidence": [
+        "CONTINUATION-AUDIT.md"
+      ],
       "verification": "Not closed; no completion credit without gate evidence.",
       "release": ""
     },
@@ -1236,13 +1258,14 @@
         "V65"
       ],
       "owner": "Engineering",
-      "gate": "Byte-verified deployment already exists. Add explicit stable/candidate policy, save-safe rollback drill, reproducible asset pipeline and release-note/device-evidence review.",
+      "gate": "For every finished upgrade, test the actual scoped source, commit and merge without overwriting sibling games, verify GitHub Pages deployment plus public runtime/asset/plan/workbook bytes, then launch the public game. Separate source, test, deployment, hardware and human evidence. Retry transient GitHub faults with backoff; inspect failed jobs instead of polling an unchanged failure list. Preserve explicit rollback and save-compatibility notes.",
       "why": "Do not confuse a merged commit with a complete verified release.",
       "evidence": [
         "tests/verify-live.py",
-        "tests/launch.py"
+        "tests/launch.py",
+        "CONTINUATION-AUDIT.md"
       ],
-      "verification": "Not closed; no completion credit without gate evidence.",
+      "verification": "Partial. Tidelight was published, but archived run 34737842771 stopped before browser checks because roadmap 0.11.0 disagreed with release 0.12.0. This planning repair fixes that mismatch; it does not retrospectively turn skipped gameplay acceptance green.",
       "release": ""
     },
     {
@@ -1354,9 +1377,13 @@
         "V48"
       ],
       "owner": "Engineering",
-      "gate": "Reduce wrapper-order coupling with explicit lifecycle interfaces and dependency tests; preserve current save fixtures, deterministic physics and controller mappings.",
+      "gate": "Reduce wrapper-order coupling with explicit lifecycle interfaces and dependency tests; preserve current save fixtures, deterministic physics and controller mappings. Audit current Tidelight: maxRipples is declared by policy but tick uploads all 10 slots; rebuild does not clear ripple timestamps/lastStep; inside() does not match the rendered inset; impact and footstep splash checks omit height. Treat these as source-review findings needing reproductions and tests, not fixes already shipped.",
       "why": "Repeated additive patches increase the risk of hidden lifecycle regressions.",
-      "evidence": [],
+      "evidence": [
+        "tidelight.js",
+        "tidelight-shaders.js",
+        "CONTINUATION-AUDIT.md"
+      ],
       "verification": "Not closed; no completion credit without gate evidence.",
       "release": ""
     },
@@ -1402,7 +1429,7 @@
       "release": "0.10.0 First Bell"
     }
   ],
-  "updated": "2026-09-12",
+  "updated": "2026-09-13",
   "canonical": "roadmap.json",
   "workbook": "AAA-PRODUCTION.xlsx",
   "guide": "AAA-ROADMAP.md",
@@ -1418,9 +1445,9 @@
     {
       "id": "M0",
       "name": "Playable foundations",
-      "status": "Implemented",
+      "status": "Partial",
       "depends": [],
-      "goal": "Retain the shipped original browser/VR/AR foundation.",
+      "goal": "Retain shipped browser/VR/AR foundations and close the newest water-interface and release-evidence gaps.",
       "exit": "Current foundation and input/model/public deployment tests pass; hardware acceptance is not implied."
     },
     {
@@ -1576,6 +1603,24 @@
       "V47,V65,V75",
       "Software only",
       "Native software plus unit fault injection; repeat on devices."
+    ],
+    [
+      "Q11",
+      "Quest 3 / Tidelight",
+      "Water and complete spatial settings",
+      "Reach/change/close all water controls; enforce actual ripple/pool budget; verify both eyes, AR exclusion and repeated XR entry/exit",
+      "V38,V41,V62,V74",
+      "Not run",
+      "Record source/build hash and real headset/browser versions. Policy fields alone are not proof that runtime honors the caps."
+    ],
+    [
+      "Q12",
+      "Desktop / water and audio",
+      "Source-to-screen/sound parity",
+      "Seed/depth-specific pools, visible stone, caustics, actual impact/footstep positions and music/water mix; no false claim of reflection/refraction",
+      "V35,V58,V66",
+      "Not run",
+      "Archive actual gameplay screenshots and audio receipts. Recovering a draft does not make its features part of the release."
     ]
   ],
   "releaseGates": [
@@ -1583,7 +1628,7 @@
       "G01",
       "Scope and source",
       "Engineering",
-      "Only reviewed game paths change; exact source/build is identified; private story excluded.",
+      "Only reviewed game paths change; exact source/build is identified; private story excluded. Canonical roadmap version, release version and core version must agree; the workbook must match every task field and the JSON digest.",
       "tests and repository diff",
       "Every release",
       "Software gate"
@@ -1601,7 +1646,7 @@
       "G03",
       "Controller and UI",
       "UX / QA",
-      "Native Xbox and stereo-XR fixtures pass; essential actions have no mouse-only dead end.",
+      "Native Xbox and stereo-XR fixtures pass; essential actions have no mouse-only dead end. Include Tidelight water controls and both Quest handedness settings; historical menus alone do not close the expanded UI gate.",
       "tests/dominions-browser.py",
       "Every release",
       "Software gate"
@@ -1619,7 +1664,7 @@
       "G05",
       "Audio and visuals",
       "Technical art / audio",
-      "Native WebGL and stereo audio checks pass; no script errors, broken asset loads or repeating hidden-tab backlog.",
+      "Native WebGL and stereo audio checks pass; no script errors, broken asset loads or repeating hidden-tab backlog. Dedicated water render/lifecycle and future water-sound evidence are required; do not substitute release text or a successful Pages build.",
       "tests/resonant-browser.py; tests/jewelglass-browser.py",
       "Every release",
       "Software gate"
@@ -1736,10 +1781,10 @@
       "Roadmap drift after releases",
       "Medium",
       "Production",
-      "Previous board remained at 0.6 after 0.8 shipped",
+      "At audit: Tidelight 0.12.0 shipped while roadmap/workbook remained 0.11.0; archived full-model run had one version failure.",
       "V48",
-      "Check version consistency and preserve one canonical JSON plus generated workbook snapshot.",
-      "Mitigated by checks"
+      "Synchronize canonical plan, workbook and resume docs together; run version/digest tests before publication and preserve the historical failure.",
+      "Open / repair requires release discipline"
     ],
     [
       "R08",
@@ -1770,11 +1815,37 @@
       "V48,V73",
       "Track concrete quality gates; never turn completed task count into an AAA rating.",
       "Open"
+    ],
+    [
+      "R11",
+      "Interrupted draft mistaken for published features",
+      "High",
+      "Production / engineering",
+      "The larger water draft described seven surfaces, named extra areas, basin refraction, reflections and sounds absent from current Tidelight source.",
+      "V35,V58,V68",
+      "Inspect current source first; preserve draft intent as future work and do not replay opaque transfer chunks over master.",
+      "Open"
+    ],
+    [
+      "R12",
+      "Water policy/lifecycle implementation differs from its intent",
+      "High",
+      "Engineering / technical art",
+      "Ripple-cap, world-clock reset, footprint and height checks need dedicated tests; water controls missing from XR list.",
+      "V38,V41,V66,V74",
+      "Reproduce each finding and add small save-safe fixes with real-frame and controller evidence.",
+      "Open"
     ]
   ],
   "nextRelease": {
-    "theme": "Refine the mastery slice on real players and devices",
+    "theme": "Tidelight acceptance and controller parity, then the requested sound/music production pass",
     "focus": [
+      "V41",
+      "V58",
+      "V66",
+      "V68",
+      "V74",
+      "V38",
       "V49",
       "V50",
       "V51",
@@ -1784,6 +1855,83 @@
       "V75",
       "V76"
     ],
-    "note": "First Bell implements the linked software slice. Next close confusion/comfort, encounter fairness and route variation before multiplying bosses; production character art and viable build choices remain open."
+    "note": "First repair and verify the current 0.12 water baseline without changing saves. Then prioritize audio/music, authored exploration and humanoid animation. First Bell/Oath already exist; refine their human-tested feel rather than rebuilding them. Consult DEVELOPMENT-HANDOFF.md and CONTINUATION-AUDIT.md."
+  },
+  "continuation": {
+    "updated": "2026-09-13",
+    "entrypoint": "DEVELOPMENT-HANDOFF.md",
+    "audit": "CONTINUATION-AUDIT.md",
+    "gameVersion": "0.12.0",
+    "auditedBase": "f02dffa47a79ff83efab6396cb6aea3040960b29",
+    "publicationRule": "Finish, test, commit, merge and verify the public game; do not stop at a local candidate or unmerged branch.",
+    "scopeRule": "Only Vesperfall; preserve siblings, saves, existing modes and public-only narrative.",
+    "requirements": [
+      "Xbox gameplay and every game-owned UI without a mouse",
+      "Quest 3 two-hand physical archery and controller-only spatial UI",
+      "Separate VR and stationary AR with clear passthrough",
+      "Much stronger sound effects and adaptive music",
+      "Meaningful new routes, discoveries, humanoid enemies and selective water",
+      "Use gothic/pool references as visual inspiration, not copied commercial assets"
+    ],
+    "firstActions": [
+      {
+        "tasks": [
+          "V68",
+          "V66"
+        ],
+        "action": "Run the synchronized model/workbook checks; establish actual Tidelight browser/render/controller/save evidence."
+      },
+      {
+        "tasks": [
+          "V41",
+          "V74",
+          "V38"
+        ],
+        "action": "Close Tidelight spatial-settings, runtime-budget, rebuild and water-contact gaps without altering collision or saves."
+      },
+      {
+        "tasks": [
+          "V58",
+          "V44"
+        ],
+        "action": "Deliver the requested sound/music pass, including newly implemented water acoustics and controlled warning density."
+      },
+      {
+        "tasks": [
+          "V49",
+          "V50",
+          "V51",
+          "V52",
+          "V53",
+          "V54",
+          "V76"
+        ],
+        "action": "Refine existing First Bell/Oath, purposeful route variety, builds and humanoid animation with human playtest evidence."
+      }
+    ],
+    "historicalEvidence": {
+      "run": 34737842771,
+      "artifact": 10311179713,
+      "branchHead": "931a0dbb4e683257311130c721b6f5335d33e06b",
+      "archivedTestRevision": "d833ae7fe48c6410dde6961ea721d886f8cdf0c7",
+      "modelsPassed": 148,
+      "modelsFailed": 1,
+      "failure": "Production plan version 0.11.0 != release.json 0.12.0; subsequent local checking also found the stale core.js diagnostic VERSION.",
+      "browserSteps": "Skipped after model failure; not a water acceptance pass."
+    },
+    "notEstablishedAsShipped": [
+      "Seven fixed surfaces in Rain Court, Sable Cloister, Drowned Choir and Tide Chapel",
+      "Recessed modeled/tiled basin fonts and refractive basin optics",
+      "Live reflected architecture / desktop reflection-camera pass",
+      "Positional water splashes, water footsteps and drips",
+      "Quest spatial water controls or a water route guide",
+      "A 165-test passing suite for the published minimal Tidelight"
+    ],
+    "designGaps": [
+      "Current shard is a supported-ground step, not a physical throw (V24).",
+      "Requested discrete hit points are not the current numerical-health model; any conversion needs design and migration (V63,V65)."
+    ],
+    "evidenceRule": "Separate source inspection, model tests, native browser fixtures, public deployment, physical hardware and human review.",
+    "versionLabelCorrection": "Both roadmap.version and core.js diagnostic VERSION were still 0.11.0 despite release.json/index.html 0.12.0. This update synchronizes those labels only; save envelope/generator IDs and mechanics are unchanged."
   }
 }

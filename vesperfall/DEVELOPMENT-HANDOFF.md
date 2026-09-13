@@ -1,3 +1,9 @@
+## September 13 source audit and synchronized workbook
+
+Read [CONTINUATION-AUDIT.md](./CONTINUATION-AUDIT.md) before the next upgrade. It records the actual minimal Tidelight scope versus the interrupted larger draft, the missing Quest water controls, water lifecycle/budget findings, exact controller contracts, historical failed acceptance, and the ordered next actions mapped to V01-V76. The canonical roadmap and six-sheet workbook are now aligned to 0.12.0; the stale core diagnostic VERSION label is synchronized without changing mechanics or save formats. [PLANNING-VERIFICATION.json](./PLANNING-VERIFICATION.json) records this repair separately from gameplay and physical-device acceptance.
+
+The established handoff below is retained, including concurrent September 13 prose updates. Where broad feature descriptions conflict with the source audit, the inspected current implementation and explicit remaining gates take precedence.
+
 # Vesperfall: Arrows Unchained / development handoff
 
 Current public release: 0.12.0 Tidelight.

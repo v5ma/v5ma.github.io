@@ -1,3 +1,11 @@
+# Current release and cross-chat continuation
+
+The gameplay baseline is **v0.12.0 Tidelight**. Start with [DEVELOPMENT-HANDOFF.md](./DEVELOPMENT-HANDOFF.md) and [CONTINUATION-AUDIT.md](./CONTINUATION-AUDIT.md), then the [canonical roadmap](./roadmap.json), [production board](./roadmap.html) and [six-sheet workbook](./AAA-PRODUCTION.xlsx). The September 13 update synchronizes planning only; it does not add a new gameplay release.
+
+The audit distinguishes actual shipped water from the larger interrupted draft, records the stale-plan test failure, and maps controller, water lifecycle, audio/music and hardware gaps to existing task IDs. Preserve saves and modes, and publish completed upgrades.
+
+The sections below retain historical release notes and controls. Where an older paragraph says "current," its context is that historical release. Current controller roles are in dominion-controls.js and the continuation audit; release.json is authoritative for the gameplay version.
+
 ## Pilgrim's Rest v0.9.0 and the production path
 
 The current release adds bounded local saved expeditions with paused continuation, combined progression receipts, Xbox/Quest save menus and damaged/stale-save recovery. See [Pilgrim's Rest](./PILGRIMS-REST.md) for behavior and limitations.
