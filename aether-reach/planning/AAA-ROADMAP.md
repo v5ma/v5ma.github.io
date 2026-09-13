@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.10.0 Skyglass Cast. Updated 2026-09-12.
+Current plan: 0.11.0 Tideglass Reservoir. Updated 2026-09-12.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -371,8 +371,8 @@ Next: Maintain a defect severity register and require evidence before advancing.
 ### R04 - Verified publication of each upgrade
 State: In review. Priority: P0. Dependencies: R01, Q03.
 Acceptance: Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.
-Evidence: v0.9 committed at cf1dc621dbc392be99380c7fbe51776b90ead068 after 201 tests and 28 full district browser checks. v0.10 must match the post-merge live runtime contract.
-Next: Record the v0.10 merge, Pages status and matching live-file hashes.
+Evidence: v0.10.0 Skyglass Cast published through PR #133. Final ef91e3b publication run 34722404332 matched 92 public files. v0.11 must pass the live-file contract after merge.
+Next: Record the Tideglass merge and public-byte verification; do not equate source commits with live publication.
 
 ### V01 - Bellwether street-interior-rooftop adventure
 State: In review. Priority: P0. Dependencies: W01, F02, I04.
@@ -385,6 +385,12 @@ State: In review. Priority: P0. Dependencies: F01, P02.
 Acceptance: License-pinned local character assets, independent animated skeletons, visible fallbacks on failed loads, reduced-motion and Light/XR budgets, controller-accessible graphics options and real WebGL compile validation.
 Evidence: art/characters/manifest.json; cast-rig.mjs; cast-scene.mjs; skyglass-shaders.mjs; tests/cast.test.mjs; tests/skyglass-browser.py.
 Next: Record browser and publication evidence; keep physical hardware and player art approval separate.
+
+### W03 - Tideglass aquatic exploration and pump adventure
+State: In review. Priority: P0. Dependencies: W01, I04, F03.
+Acceptance: Reach the reservoir by two real bridges; swim, dive and exit by stairs or ladder; complete both saved water objectives with once-only payment. Check real WebGL water, graphics controls, old saves and frame budgets.
+Evidence: tideglass-world/core/scene/shaders/ui.mjs; tests/tideglass.test.mjs; tests/tideglass-browser.py; TIDEGLASS-RESERVOIR.md. Browser, publication and player acceptance remain separate.
+Next: Run the real controller journey and inspect pool screenshots, then verify publication. Physical Xbox, Quest and subjective aquatic feel remain unverified.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.

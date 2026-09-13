@@ -1,3 +1,4 @@
+import {TIDE_TASKS,TIDE_FLAGS} from './tideglass-world.mjs';
 import {BELL_TASK} from './bellwether-world.mjs';
 import {ROOFS,UPPER_ROOMS,UPPER_FLOORS,UPPER_STAIRS,ROOF_RAILS,ROOF_TASKS,ROOF_THINGS,ROOF_CACHES,ROOF_FLAGS,ROOF_RECORDS,ROOF_ENEMIES} from './rooftop-world.mjs';
 /* Skyward Dispatch: original public side-adventures in the existing Aether Reach.
@@ -110,7 +111,7 @@ export const POSTS=[
   {id:'aerodrome',name:'Dawn Courier Shelter',x:133,y:12,z:-64}
 ];
 export const TASKS=[
-  BELL_TASK,
+  BELL_TASK, ...TIDE_TASKS,
   ...ROOF_TASKS,
   {id:'dispatch',name:'A Letter Through the Clouds',reward:60,flag:'dispatch-delivered',description:'Take Iona’s public dispatch from Arrival Quay to the Bellwether notice office.'},
   {id:'ferry',name:'A Ferry for Everyone',reward:100,flag:'ferry-online',description:'Recover the induction regulator in the Clockmaker’s Arcade and install it at Gannet Docks.'},
@@ -176,7 +177,7 @@ export const EXP_ENEMIES=[
     {...enemy('solstice-wave-'+w+'-c','warden','observatory',8,38,-226,[[8,-226],[14,-226]]),wave:w}
   ])
 ];
-export const EXP_FLAGS=new Set([BELL_TASK.flag,...ROOF_FLAGS,'dispatch-started','dispatch-delivered','regulator','ferry-online','charter-market','charter-academy','charter-dawn','archive-open','charter','weather-open','surveyor-found','surveyor-safe','beacon-secure','survey-archive','survey-dawn','survey-solstice','summits-surveyed','route-passport','all-districts','open-sky']);
+export const EXP_FLAGS=new Set([...TIDE_FLAGS,BELL_TASK.flag,...ROOF_FLAGS,'dispatch-started','dispatch-delivered','regulator','ferry-online','charter-market','charter-academy','charter-dawn','archive-open','charter','weather-open','surveyor-found','surveyor-safe','beacon-secure','survey-archive','survey-dawn','survey-solstice','summits-surveyed','route-passport','all-districts','open-sky']);
 export function closedExpeditionGates(s){return GATES.filter(g=>!s?.expedition?.flags?.includes(g.flag));}
 export function transitPosition(route,t){
   const lengths=route.points.slice(1).map((p,i)=>Math.hypot(...p.map((v,j)=>v-route.points[i][j])));

@@ -1,3 +1,6 @@
+import {createTideglass,cleanTideglass,tideSnapshot} from './tideglass-core.mjs';
+import {TIDE_FLOORS,TIDE_BRIDGES,TIDE_SOLIDS,TIDEGLASS} from './tideglass-world.mjs';
+export {tideSnapshot};
 import {createBellwether,cleanBellwether,bellSnapshot} from './bellwether-core.mjs';
 import {BELL_NOTE,BELL_COVER} from './bellwether-world.mjs';
 export {bellSnapshot};
@@ -15,7 +18,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.10.0';
+export const VERSION='0.11.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -33,7 +36,7 @@ export const BRIDGES=[
  {id:'works-walk',a:[-7,3,-51],b:[-20,12,-71],width:5},
  {id:'spire-walk',a:[61,6,-40],b:[52,20,-103],width:5},
  {id:'north-walk',a:[-13,12,-90],b:[29,20,-116],width:5},
- ...EXP_BRIDGES
+ ...EXP_BRIDGES, ...TIDE_BRIDGES
 ];
 export const RELAYS=[
  {id:'garden',x:69,y:6,z:-32,title:'The greenhouse relay',message:'IONA: The gardens have power again. Their irrigation pumps can breathe. Two more relays, and the city can speak for itself.'},
@@ -77,12 +80,13 @@ export const BUILDINGS=[
 RELAYS[0].x=64;RELAYS[1].x=-28;
 export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b.h+4,z1:b.z-b.d/2,z2:b.z+b.d/2})).concat(ROOM_SOLIDS,COVER);
 export const COMBAT_COVER=buildCombatCover(DISTRICTS,{solids:SOLIDS,keepouts:[...RELAYS,...RECORDS,EXTRACTION,...DEPOTS,...CACHES,...THINGS,...POSTS,...RIFTS,...LADDERS.flatMap(r=>r.points.map(p=>({x:p[0],y:p[1],z:p[2]})))],bridges:BRIDGES,rails:RAILS});
-SOLIDS.push(...COMBAT_COVER.map(asBox),...BELL_COVER.map(asBox));
-const deckSolids=[...DISTRICTS,...TERRACES,...COMBAT_DECKS].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
+SOLIDS.push(...COMBAT_COVER.map(asBox),...BELL_COVER.map(asBox),...TIDE_SOLIDS);
+const deckSolids=[...DISTRICTS,...TERRACES,...COMBAT_DECKS,...TIDE_FLOORS].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
 const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids,riftSolid(s));
 const tactical=createTactics({solids:SOLIDS,clearLine,rayBox,raySphere,forward,emit,defeated,hurt});
 const skirmish=createSkirmish({groundAt,occupied,clearLine,forward,emit,defeated,equip,weaponStats,weapons:WEAPONS,nearby,interact,reload:reloadWeapon,detach,cover:COMBAT_COVER});
 const bellwether=createBellwether({emit,clearLine,groundAt,occupied,drop:(s,b)=>skirmish.drop(s,b)});
+const tideglass=createTideglass({occupied,groundAt,clearLine,emit});
 const climbing=createClimbing({occupied,clearLine,emit});
 const expedition=createExpedition({groundAt,occupied,clearLine,emit,hurt});
 export function pointOnRail(r,s){
@@ -94,20 +98,20 @@ export function nearestRail(p,max=4.3,ignore=null){let best=null;for(const r of 
  if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};
  }return best;}
 export function groundAt(x,z,under=Infinity){let y=-Infinity,id=null;
- for(const p of [...DISTRICTS,...TERRACES,...COMBAT_DECKS])if(Math.abs(x-p.x)<=p.w/2&&Math.abs(z-p.z)<=p.d/2&&p.y<=under&&p.y>y){y=p.y;id=p.id;}
+ for(const p of [...DISTRICTS,...TERRACES,...COMBAT_DECKS,...TIDE_FLOORS])if(Math.abs(x-p.x)<=p.w/2&&Math.abs(z-p.z)<=p.d/2&&p.y<=under&&p.y>y){y=p.y;id=p.id;}
  for(const p of BRIDGES){const [ax,ay,az]=p.a,[bx,by,bz]=p.b,dx=bx-ax,dz=bz-az,l=Math.hypot(dx,dz),t=((x-ax)*dx+(z-az)*dz)/(l*l),side=Math.abs((x-ax)*dz-(z-az)*dx)/l,gy=ay+(by-ay)*t;if(t>=0&&t<=1&&side<p.width/2&&gy<=under&&gy>y){y=gy;id=p.id;}}
  return {y,id};
 }
 export function rayBox(o,d,b,max=Infinity){let near=0,far=max;for(const axis of ['x','y','z']){if(Math.abs(d[axis])<1e-9){if(o[axis]<b[axis+'1']||o[axis]>b[axis+'2'])return null;}else{let a=(b[axis+'1']-o[axis])/d[axis],c=(b[axis+'2']-o[axis])/d[axis];if(a>c)[a,c]=[c,a];near=Math.max(near,a);far=Math.min(far,c);if(near>far)return null;}}return near;}
 export function raySphere(o,d,c,r){const x=o.x-c.x,y=o.y-c.y,z=o.z-c.z,b=x*d.x+y*d.y+z*d.z,h=b*b-(x*x+y*y+z*z-r*r);if(h<0)return null;const t=-b-Math.sqrt(h);return t>0?t:null;}
 export function clearLine(a,b,state=null){const solids=state?stateSolids(state):SOLIDS;const l=distance(a,b);if(l<1e-8)return !solids.some(s=>a.x>s.x1&&a.x<s.x2&&a.y>s.y1&&a.y<s.y2&&a.z>s.z1&&a.z<s.z2);const d={x:(b.x-a.x)/l,y:(b.y-a.y)/l,z:(b.z-a.z)/l};return !solids.some(s=>rayBox(a,d,s,l)!==null);}
-const pointFor=id=>{const post=POSTS.find(p=>p.id===id);if(post)return {x:post.x,y:post.y+.02,z:post.z};const d=DISTRICTS.find(p=>p.id===id)||DISTRICTS[0];return {x:d.x,y:d.y+.02,z:d.z+5};};
+const pointFor=id=>{if(id===TIDEGLASS.id)return {...TIDEGLASS.checkpoint};const post=POSTS.find(p=>p.id===id);if(post)return {x:post.x,y:post.y+.02,z:post.z};const d=DISTRICTS.find(p=>p.id===id)||DISTRICTS[0];return {x:d.x,y:d.y+.02,z:d.z+5};};
 export function createState(save=null){
  const safe=readSave(save),kit=cleanKit(safe.kit),p=pointFor(safe.checkpoint);
- const state={p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};tactical.init(state,safe.tactics);expedition.init(state,safe.expedition);skirmish.init(state,safe.skirmish);bellwether.init(state,safe.bellwether);return state;
+ const state={p:{...p,vx:0,vy:0,vz:0,yaw:0,pitch:0,grounded:true,gliding:false,glideCharge:100,rail:null,speed:0,health:100,shield:60+kit.shield*20,energy:100,weapon:kit.selected,ammo:kit.mags[kit.selected],scoped:false,reload:0,shoot:0,pulse:0,hookCooldown:0,hookRequest:0,invuln:2,latch:null,lastRail:null,airSince:0},kit,time:0,relays:new Set(safe.relays),records:new Set(safe.records),checkpoint:safe.checkpoint,won:false,bullets:[],events:[],drones:ENEMIES.map((d,i)=>({...d,hp:kit.dead.includes(d.id)||safe.relays.includes(d.home)?0:d.hp,maxHp:d.hp,stun:0,attack:2.2+i,telegraph:0,origin:{x:d.x,y:d.y,z:d.z}})),stats:{glides:0,glideDistance:0,glideSeconds:0,rails:0,railDistance:0,reversals:0,transfers:0,shots:0,hits:0,critical:0,defeated:0,rescues:0},damagedAt:-100};tactical.init(state,safe.tactics);expedition.init(state,safe.expedition);skirmish.init(state,safe.skirmish);bellwether.init(state,safe.bellwether);tideglass.init(state,safe.tideglass);return state;
 }
-export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:DISTRICTS.some(d=>d.id===s.checkpoint)?s.checkpoint:'harbor',kit:cleanKit(s.kit),tactics:cleanTactics(s.tactics),skirmish:cleanSkirmish(s.skirmish),expedition:cleanExpedition(s.expedition),bellwether:cleanBellwether(s.bellwether)};}
-export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit),tactics:saveTactics(s),skirmish:cleanSkirmish(s.skirmish),expedition:saveExpedition(s),bellwether:cleanBellwether(s.bellwether)});}
+export function readSave(value){let s=value;try{if(typeof s==='string')s=JSON.parse(s);}catch{s=null;}if(!s||s.version!==1)return {relays:[],records:[],checkpoint:'harbor'};return {relays:[...new Set(Array.isArray(s.relays)?s.relays.filter(x=>RELAYS.some(r=>r.id===x)):[])],records:[...new Set(Array.isArray(s.records)?s.records.filter(x=>RECORDS.some(r=>r.id===x)):[])],checkpoint:(s.checkpoint===TIDEGLASS.id||DISTRICTS.some(d=>d.id===s.checkpoint))?s.checkpoint:'harbor',kit:cleanKit(s.kit),tactics:cleanTactics(s.tactics),skirmish:cleanSkirmish(s.skirmish),expedition:cleanExpedition(s.expedition),bellwether:cleanBellwether(s.bellwether),tideglass:cleanTideglass(s.tideglass)};}
+export function saveState(s){s.kit.mags[s.p.weapon]=s.p.ammo;s.kit.selected=s.p.weapon;return JSON.stringify({version:1,relays:[...s.relays],records:[...s.records],checkpoint:s.checkpoint,kit:cleanKit(s.kit),tactics:saveTactics(s),skirmish:cleanSkirmish(s.skirmish),expedition:saveExpedition(s),bellwether:cleanBellwether(s.bellwether),tideglass:cleanTideglass(s.tideglass)});}
 export function emit(s,type,data={}){s.events.push({type,...data});if(s.events.length>80)s.events.shift();}
 export function depotNear(s){return !s.p.rail&&s.p.grounded?DEPOTS.find(d=>distance(s.p,d)<4.5):null;}
 export function equip(s,id,acquire=false){if(!s.kit.owns.includes(id)||!Object.hasOwn(WEAPONS,id))return false;if(!s.kit.carried.includes(id)){if(!acquire&&!depotNear(s))return false;if(s.kit.carried.length===2)s.kit.carried[s.kit.carried.indexOf(s.p.weapon)]=id;else s.kit.carried.push(id);}s.kit.mags[s.p.weapon]=s.p.ammo;s.p.weapon=id;s.kit.selected=id;s.p.ammo=s.kit.mags[id];s.p.reload=0;s.p.scoped=false;emit(s,'equip',{id});return true;}
@@ -133,7 +137,7 @@ export function railTarget(s){const p=s.p,head={x:p.x,y:p.y+1.6,z:p.z},view=forw
  for(const r of RAILS){if(r.id===p.rail?.id||!p.grounded&&s.time-p.airSince<.85&&r.id===p.lastRail)continue;const target=nearestRailOn(head,r,p.grounded?4.3:Math.min(16,6.3+Math.hypot(p.vx,p.vz)*.14));if(!target)continue;const v={x:target.point.x-head.x,y:target.point.y-head.y,z:target.point.z-head.z},dot=(v.x*view.x+v.y*view.y+v.z*view.z)/(target.distance||1);if(!p.grounded&&dot<-.12)continue;if(!clearLine(head,target.point,s))continue;const dest={x:target.point.x,y:target.point.y-2.65,z:target.point.z};if(occupied(dest.x,dest.y,dest.z,s)||!clearLine({...head,y:head.y-.6},{...dest,y:dest.y+1}))continue;const score=target.distance-(p.grounded?0:dot*2.8);if(!best||score<best.score)best={...target,score,dot};}return best;
 }
 function nearestRailOn(p,r,max){let best=null;for(let i=1;i<r.pts.length;i++){const a=r.pts[i-1],b=r.pts[i],dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len2=dx*dx+dy*dy+dz*dz,t=clamp(((p.x-a.x)*dx+(p.y-a.y)*dy+(p.z-a.z)*dz)/len2,0,1),q={x:a.x+dx*t,y:a.y+dy*t,z:a.z+dz*t},d=distance(p,q);if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};}return best;}
-export function nearby(s){const quest=bellwether.nearby(s);if(quest)return quest;const arena=skirmish.nearConsole(s);if(arena)return {type:'arena-console',id:arena.id,label:'X / E - '+arena.name};const ladder=climbing.nearby(s);if(ladder)return ladder;const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
+export function nearby(s){const water=tideglass.nearby(s);if(water)return water;const quest=bellwether.nearby(s);if(quest)return quest;const arena=skirmish.nearConsole(s);if(arena)return {type:'arena-console',id:arena.id,label:'X / E - '+arena.name};const ladder=climbing.nearby(s);if(ladder)return ladder;const p=s.p;const head={x:p.x,y:p.y+1.6,z:p.z};if(p.rail){const target=railTarget(s);if(target&&clearLine(head,target.point))return {type:'hook',target,label:'SPACE then E · Transfer to '+target.rail.name};return {type:'rail',label:'SPACE release · C reverse · S brake'};}
  if(p.ride)return expedition.nearby(s);
  const extra=expedition.nearby(s);if(extra)return extra;
  const field=tactical.nearby(s);if(field)return field;
@@ -145,8 +149,9 @@ export function nearby(s){const quest=bellwether.nearby(s);if(quest)return quest
 export function interact(s){const n=nearby(s),p=s.p;
  // A deliberate catch pressed during the release cooldown is remembered for
  // 0.30 simulation seconds. Never auto-grab without input or through a wall.
- if(!p.rail&&!p.grounded&&p.lastRail&&(!n||n.type==='hook')&&(!n||p.hookCooldown>0)){p.hookRequest=.30;return true;}
+ if(!p.water.swimming&&!p.rail&&!p.grounded&&p.lastRail&&(!n||n.type==='hook')&&(!n||p.hookCooldown>0)){p.hookRequest=.30;return true;}
  if(!n)return false;
+ if(n.type==='tideglass')return tideglass.use(s,n.id);
  if(n.type==='bellwether')return bellwether.handle(s,n.id);
  if(n.type==='arena-console')return skirmish.start(s,n.id);if(n.type==='ladder')return climbing.enter(s);
  if(n.type.startsWith('exp-')){const done=expedition.handle(s,n);if(done&&n.type==='exp-rest'){s.skirmish.aidUsed=0;emit(s,'save');}return done;}
@@ -164,7 +169,7 @@ export function interact(s){const n=nearby(s),p=s.p;
 }
 export function detach(s,jump=true){const p=s.p;if(!p.rail)return;const r=RAILS.find(r=>r.id===p.rail.id),q=pointOnRail(r,p.rail.s),dir=p.rail.dir;p.vx=q.tangent.x*p.speed*dir;p.vz=q.tangent.z*p.speed*dir;p.vy=q.tangent.y*p.speed*dir+(jump?5:0);p.lastRail=p.rail.id;p.airSince=s.time;p.rail=null;p.latch=null;p.hookCooldown=.14;p.hookRequest=0;p.grounded=false;emit(s,'release');}
 export function reverseRail(s){if(!s.p.rail)return;s.p.rail.dir*=-1;s.p.speed=Math.max(7,s.p.speed*.35);s.stats.reversals++;emit(s,'reverse');}
-export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.reload>0||s.won)return false;if(p.ammo<=0){if(s.time-s.skirmish.dryAt>.2){s.skirmish.dryAt=s.time;emit(s,'dry-fire');}return false;}const head={x:p.x,y:p.y+eyeHeight(p),z:p.z},kick=s.skirmish.recoil;let o=head,d=forward(p.yaw+kick.x,p.pitch+kick.y);
+export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.water.submerged||p.shoot>0||p.reload>0||s.won)return false;if(p.ammo<=0){if(s.time-s.skirmish.dryAt>.2){s.skirmish.dryAt=s.time;emit(s,'dry-fire');}return false;}const head={x:p.x,y:p.y+eyeHeight(p),z:p.z},kick=s.skirmish.recoil;let o=head,d=forward(p.yaw+kick.x,p.pitch+kick.y);
  if(aim){if(!aim.origin||!aim.direction||!['x','y','z'].every(k=>Number.isFinite(aim.origin[k])&&Number.isFinite(aim.direction[k])))return false;const len=Math.hypot(aim.direction.x,aim.direction.y,aim.direction.z);if(len<.001||distance(head,aim.origin)>2.5||!clearLine(head,aim.origin))return false;o={...aim.origin};d={x:aim.direction.x/len,y:aim.direction.y/len,z:aim.direction.z/len};}
  p.shoot=w.delay;p.ammo--;s.kit.mags[p.weapon]=p.ammo;s.stats.shots++;
  const across={x:d.z,y:0,z:-d.x},al=Math.hypot(across.x,across.z)||1;across.x/=al;across.z/=al;const up={x:across.z*d.y,y:across.x*d.z-across.z*d.x,z:-across.x*d.y};
@@ -174,14 +179,15 @@ export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.re
   let limit=w.range,hit=null,critical=false;for(const b of stateSolids(s)){const t=rayBox(o,v,b,limit);if(t!==null)limit=t;}
   for(const bot of s.drones){if(bot.hp<=0||bot.allyUntil>s.time)continue;const body=raySphere(o,v,bot,bot.humanoid?(bot.kind==='breacher'?.67:.49):bot.kind==='heavy'?1.5:1.15),headHit=raySphere(o,v,{x:bot.x,y:bot.y+(bot.humanoid?.67:.55),z:bot.z},bot.humanoid?.25:.31),t=bot.humanoid?Math.min(body??Infinity,headHit??Infinity):body;if(t!==null&&t<limit){limit=t;hit=bot;critical=headHit!==null;}}
   if(hit){const falloff=w.id==='scatter'?Math.max(.25,1-limit/40):1,damage=w.damage*falloff*(critical?1.6:1)*tactical.multiplier(s,hit);tactical.onHit(s,hit);hit.hp-=damage;hit.stun=Math.max(hit.stun,w.id==='sniper'?.5:.16);s.stats.hits++;if(critical)s.stats.critical++;if(hit.hp<=0)defeated(s,hit);else emit(s,'hit',{id:hit.id,damage,critical});}
+  tideglass.impact(s,o,{x:o.x+v.x*limit,y:o.y+v.y*limit,z:o.z+v.z*limit});
   emit(s,'shot',{weapon:w.id,o,end:{x:o.x+v.x*limit,y:o.y+v.y*limit,z:o.z+v.z*limit},hit:!!hit,critical}); }skirmish.recoil(s);return true;
 }
-export function pulse(s){const p=s.p;if(p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b,s)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){defeated(s,b);}}emit(s,'pulse',{hits:n});return true;}
-export function rescue(s,death=false){bellwether.abort(s,death?'failed':'interrupted');tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,climb:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];skirmish.abort(s);emit(s,'rescue',{death});}
+export function pulse(s){const p=s.p;if(p.water.submerged||p.energy<45||p.pulse>0||s.won)return false;p.energy-=45;p.pulse=1.2;let n=0;for(const b of s.drones)if(b.hp>0&&distance(p,b)<13&&clearLine({x:p.x,y:p.y+1.5,z:p.z},b,s)){b.stun=5;b.hp-=20;n++;if(b.hp<=0){defeated(s,b);}}emit(s,'pulse',{hits:n});return true;}
+export function rescue(s,death=false){tideglass.reset(s);bellwether.abort(s,death?'failed':'interrupted');tactical.end(s,death?'failed':'retreated');expedition.abort(s,death?'failed':'interrupted');const p=s.p,q=pointFor(s.checkpoint);Object.assign(p,q,{vx:0,vy:0,vz:0,rail:null,climb:null,grounded:true,gliding:false,glideCharge:100,health:death?100:Math.max(35,p.health-12),shield:60+s.kit.shield*20,energy:100,ammo:p.weapon==='arc'?8:p.ammo,scoped:false,latch:null,hookRequest:0,lastRail:null,invuln:3,hookCooldown:1});s.stats.rescues++;s.bullets=[];skirmish.abort(s);emit(s,'rescue',{death});}
 function hurt(s,amount){const p=s.p;if(p.invuln>0||s.won)return;const shieldBefore=p.shield;let left=amount;if(p.shield>0){const k=Math.min(left,p.shield);p.shield-=k;left-=k;}p.health-=left;s.damagedAt=s.time;if(shieldBefore>0&&p.shield===0)emit(s,'shield-break');emit(s,'damage');if(p.health<=0)rescue(s,true);}
 export function occupied(x,y,z,state=null){return (state?stateSolids(state):SOLIDS).some(b=>(!b.deck||y<b.y2-.8)&&x+.38>b.x1&&x-.38<b.x2&&y+(state?.p?.crouched?1.04:1.8)>b.y1&&y<b.y2&&z+.38>b.z1&&z-.38<b.z2)||bridgeBarrier(BRIDGES,x,y,z)||balconyBarrier(x,y,z);}
 export function step(s,input,dt){
- if(s.won)return;dt=clamp(dt,0,.025);s.time+=dt;const p=s.p;
+ if(s.won)return;dt=clamp(dt,0,.025);s.time+=dt;tideglass.tick(s,dt);const p=s.p;
  for(const k of ['shoot','pulse','hookCooldown','invuln'])p[k]=Math.max(0,p[k]-dt);if(p.reload>0){p.reload=Math.max(0,p.reload-dt);if(p.reload<=0){const w=weaponStats(s),take=w.id==='arc'?w.mag:Math.min(w.mag-p.ammo,s.kit.reserve[w.id]);p.ammo=w.id==='arc'?w.mag:p.ammo+take;if(w.id!=='arc')s.kit.reserve[w.id]-=take;s.kit.mags[w.id]=p.ammo;emit(s,'reload-end',{weapon:w.id});}}if(s.time-s.damagedAt>4)p.shield=Math.min(60+s.kit.shield*20,p.shield+9*dt);p.energy=Math.min(100,p.energy+12*dt);
  if(p.gliding&&(p.grounded||p.rail||p.glideCharge<=0))foldGlide(s,p.glideCharge<=0?'empty':'landed');
  if(!p.gliding&&(p.grounded||p.rail))p.glideCharge=Math.min(GLIDE.capacity,p.glideCharge+GLIDE.recharge*dt);
@@ -192,7 +198,8 @@ export function step(s,input,dt){
  else if(p.rail){const r=RAILS.find(r=>r.id===p.rail.id);const tune=RAIL_TUNING,back=input.back||input.moveZ<-.4,throttle=input.forward||input.moveZ>.3;let desired=back?tune.brake:input.boost?tune.boost:throttle?tune.accelerate:tune.cruise;const left=p.rail.dir>0?r.length-p.rail.s:p.rail.s;desired=Math.min(desired,Math.sqrt(tune.arrival*tune.arrival+2*tune.braking*Math.max(0,left-1)));const rate=p.speed>desired?tune.braking:input.boost?tune.boostAcceleration:tune.acceleration;p.speed+=clamp(desired-p.speed,-rate*dt,rate*dt);if(!back)p.rail.reverseLatched=false;if(back&&p.speed<=6&&!p.rail.reverseLatched){reverseRail(s);p.rail.reverseLatched=true;}const old=p.rail.s;p.rail.s=clamp(old+p.speed*p.rail.dir*dt,0,r.length);s.stats.railDistance+=Math.abs(old-p.rail.s);const q=pointOnRail(r,p.rail.s);if(p.latch){p.latch.t+=dt;const f=Math.min(1,p.latch.t/.18);p.x=p.latch.x+(q.x-p.latch.x)*f;p.y=p.latch.y+(q.y-2.65-p.latch.y)*f;p.z=p.latch.z+(q.z-p.latch.z)*f;if(f===1)p.latch=null;}else{p.x=q.x;p.y=q.y-2.65;p.z=q.z;}
   if(input.railCamera===true&&!p.scoped){const yaw=Math.atan2(q.tangent.x*p.rail.dir,-q.tangent.z*p.rail.dir),delta=Math.atan2(Math.sin(yaw-p.yaw),Math.cos(yaw-p.yaw));p.yaw+=delta*Math.min(1,dt*2.5);}
   if(p.rail.s===0||p.rail.s===r.length){const end=p.rail.s===0?r.from:r.to;detach(s,false);p.vx=p.vz=0;const floor=groundAt(p.x,p.z,p.y+1);if(Number.isFinite(floor.y)){p.y=floor.y+.01;p.grounded=true;}expedition.railArrival(s,r.id);emit(s,'arrive',{district:end});}
- }else{
+ }else if(tideglass.swim(s,input,dt)){/* Continuous buoyant movement replaces gravity inside deep water. */}
+ else{
   const f=forward(p.yaw),rx=Math.cos(p.yaw),rz=Math.sin(p.yaw),ix=Number.isFinite(input.moveX)?clamp(input.moveX,-1,1):(input.right?1:0)-(input.left?1:0),iz=Number.isFinite(input.moveZ)?clamp(input.moveZ,-1,1):(input.forward?1:0)-(input.back?1:0),len=Math.max(1,Math.hypot(ix,iz)),speed=(p.crouched?3.1:input.boost?10.5:6.5)*(p.scoped?.70:1);
   const targetX=(f.x*iz+rx*ix)/len*speed,targetZ=(f.z*iz+rz*ix)/len*speed,blend=1-Math.exp(-dt*(p.grounded?14:2.2));if(p.gliding)glideVelocity(p,input,dt);else{p.vx+=(targetX-p.vx)*blend;p.vz+=(targetZ-p.vz)*blend;}
   const oldY=p.y,oldX=p.x,oldZ=p.z,was=p.grounded;const nx=p.x+p.vx*dt,nz=p.z+p.vz*dt;if(!occupied(nx,p.y,p.z,s))p.x=nx;else p.vx=0;if(!occupied(p.x,p.y,nz,s))p.z=nz;else p.vz=0;
@@ -219,18 +226,18 @@ export function step(s,input,dt){
  for(let i=s.bullets.length-1;i>=0;i--){const b=s.bullets[i],old={x:b.x,y:b.y,z:b.z};b.life-=dt;const speed=Math.hypot(b.vx,b.vy,b.vz)||1,d={x:b.vx/speed,y:b.vy/speed,z:b.vz/speed},travel=speed*dt;let wall=travel+.001;for(const box of stateSolids(s)){const t=rayBox(old,d,box,travel);if(t!==null)wall=Math.min(wall,t);}const height=p.crouched?.65:1.0,radius=p.crouched?.48:.7,hit=raySphere(old,d,{x:p.x,y:p.y+height,z:p.z},radius);if(hit!==null&&hit<=travel&&hit<wall){hurt(s,(b.damage||15)*(input.explorer?.53:1));b.life=0;}else if(wall<=travel){b.life=0;emit(s,'ricochet',{at:{x:old.x+d.x*wall,y:old.y+d.y*wall,z:old.z+d.z*wall}});}b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;if(b.life<=0)s.bullets.splice(i,1);}
  tactical.step(s,input,dt);expedition.tick(s,dt);bellwether.tick(s,dt);skirmish.step(s,dt);
 }
-export function jump(s){if(s.p.climb)return climbing.leave(s,true);if(expedition.jumpOff(s))return true;if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){if(s.p.crouched&&!skirmish.crouch(s))return false;s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
+export function jump(s){if(tideglass.action(s,'jump'))return true;if(s.p.climb)return climbing.leave(s,true);if(expedition.jumpOff(s))return true;if(s.p.rail){detach(s,true);return true;}if(s.p.grounded){if(s.p.crouched&&!skirmish.crouch(s))return false;s.p.vy=7;s.p.grounded=false;s.p.y+=.05;return true;}return false;}
 
 // Room-scale translation is collision checked independently of joystick motion.
-export function roomMove(s,dx,dz){if(!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>.5||s.p.rail||s.p.ride||s.p.climb)return false;const p=s.p;if(!occupied(p.x+dx,p.y,p.z,s))p.x+=dx;if(!occupied(p.x,p.y,p.z+dz,s))p.z+=dz;return true;}
+export function roomMove(s,dx,dz){if(!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>.5||s.p.rail||s.p.ride||s.p.climb||s.p.water.swimming)return false;const p=s.p;if(!occupied(p.x+dx,p.y,p.z,s))p.x+=dx;if(!occupied(p.x,p.y,p.z+dz,s))p.z+=dz;return true;}
 
 export function foldGlide(s,reason='manual'){if(!s.p.gliding)return false;s.p.gliding=false;emit(s,'glide-fold',{reason});return true;}
-export function toggleGlide(s){const p=s.p;if(s.won)return false;if(p.climb)return climbing.leave(s);if(p.gliding)return foldGlide(s);const floor=groundAt(p.x,p.z,p.y);if(p.grounded||p.rail||p.ride||p.climb||p.glideCharge<8||occupied(p.x,p.y,p.z,s)||(Number.isFinite(floor.y)&&p.y-floor.y<1.2))return false;p.gliding=true;s.stats.glides++;emit(s,'glide-open');return true;}
+export function toggleGlide(s){if(tideglass.action(s,'glide'))return true;const p=s.p;if(s.won)return false;if(p.climb)return climbing.leave(s);if(p.gliding)return foldGlide(s);const floor=groundAt(p.x,p.z,p.y);if(p.grounded||p.rail||p.ride||p.climb||p.glideCharge<8||occupied(p.x,p.y,p.z,s)||(Number.isFinite(floor.y)&&p.y-floor.y<1.2))return false;p.gliding=true;s.stats.glides++;emit(s,'glide-open');return true;}
 
 // Public actions: all UI adapters call these guarded model operations.
 export const fieldChoose=(s,id)=>{const ok=tactical.choose(s,id);if(ok)skirmish.rememberPower(s,id);return ok;};
 export const fieldModule=(s,id)=>tactical.module(s,id);
-export const fieldCast=(s,aim=null)=>s.tactics.power==='pulse'?pulse(s):['updraft','override'].includes(s.tactics.power)?skirmish.specialPower(s,s.tactics.power):tactical.cast(s,aim);
+export const fieldCast=(s,aim=null)=>s.p.water.submerged?false:s.tactics.power==='pulse'?pulse(s):['updraft','override'].includes(s.tactics.power)?skirmish.specialPower(s,s.tactics.power):tactical.cast(s,aim);
 export const fieldScan=(s,aim=null)=>tactical.scan(s,aim);
 export const fieldRotate=(s,i)=>tactical.turn(s,i);
 export const fieldHack=s=>tactical.hack(s);
@@ -240,10 +247,11 @@ export const fieldTarget=(s,aim=null)=>tactical.target(s,aim,45);
 
 // Controller, mouse and keyboard adapters all share these guarded operations.
 export function reloadWeapon(s){const p=s.p,w=weaponStats(s);if(s.won||p.reload>0||p.ammo>=w.mag||(p.weapon!=='arc'&&s.kit.reserve[p.weapon]<=0))return false;p.reload=w.reload;emit(s,'reload-start',{weapon:w.id,duration:w.reload});return true;}
-export const combatCrouch=s=>skirmish.crouch(s);
+export const combatCrouch=s=>tideglass.action(s,'stance')||skirmish.crouch(s);
+export const tideAction=(s,name)=>tideglass.action(s,name);
 export const combatMelee=s=>skirmish.melee(s);
 export const combatUse=(s,held=false)=>skirmish.use(s,held);
-export const combatTrap=s=>skirmish.trap(s);
+export const combatTrap=s=>!s.p.water.submerged&&skirmish.trap(s);
 export const combatRiftTarget=s=>skirmish.riftTarget(s);
 export const combatGunNear=s=>skirmish.gunNear(s);
 export const combatPlungeTarget=s=>skirmish.plungeTarget(s);
