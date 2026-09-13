@@ -82,7 +82,12 @@ known={i['id'] for i in d['items']}
 for ident,title,accept,owner in new:
  if ident not in known:d['items'].append(dict(id=ident,milestone='M2' if ident=='WATER-01' else 'M4' if ident=='WATER-02' else 'M5',priority='P1',status='implemented' if ident!='WATER-03' else 'needs-playtest',title=title,acceptance=accept,next='Run Tideglass automated acceptance and review actual pool captures; record physical-device results separately.',dependencies=['SAVE-01','INPUT-01'] if ident=='WATER-01' else ['PERF-01'] if ident=='WATER-02' else ['WATER-01','WATER-02'],evidence=['../aquatics-core.mjs' if ident=='WATER-01' else '../aquatics-scene.mjs' if ident=='WATER-02' else '../tests/aquatics-browser.py'],owner=owner,lastReviewed='2026-09-12'))
 p.write_text(json.dumps(d,indent=2)+'\n')
-p=P/'release.json';d=json.loads(p.read_text());d.update(version='0.10.0',edition='Tideglass',date='2026-09-12',changes=['Add optional Tideglass Aquatic Center inside the existing game with three repeatable water missions','Add real swim depth, pool walls and floor, ladder/deck recovery and safe city return','Add local reflection/refraction, procedural tile caustics, water ripples and underwater fog','Use the existing soundtrack/mixer for pool ambience and underwater filtering','Preserve original saves, Homecoming, all city contracts and road cruise behavior'],validation={'status':'Awaiting Tideglass acceptance','physicalControllerTested':False,'hardwareFPSCertified':False}));d.pop('testedCommit',None);d.pop('acceptanceRun',None);p.write_text(json.dumps(d,indent=2)+'\n')
+p=P/'release.json'
+d=json.loads(p.read_text())
+d.update(version='0.10.0',edition='Tideglass',date='2026-09-12',changes=['Add optional Tideglass Aquatic Center inside the existing game with three repeatable water missions','Add real swim depth, pool walls and floor, ladder/deck recovery and safe city return','Add local reflection/refraction, procedural tile caustics, water ripples and underwater fog','Use the existing soundtrack/mixer for pool ambience and underwater filtering','Preserve original saves, Homecoming, all city contracts and road cruise behavior'],validation={'status':'Awaiting Tideglass acceptance','physicalControllerTested':False,'hardwareFPSCertified':False})
+d.pop('testedCommit',None)
+d.pop('acceptanceRun',None)
+p.write_text(json.dumps(d,indent=2)+'\n')
 p=P/'README.md';p.write_text('''# Neighborhood Missions: Tideglass (v0.10.0)
 
 Visit the new aquatic center from Menu / Visit Tideglass Aquatic Center, or ride to the civic entrance just behind the original depot. [TIDEGLASS.md](TIDEGLASS.md) explains its three water missions, swimming controls, shaders and limits. This is an indoor zone in the existing game, not a new project or save slot.
