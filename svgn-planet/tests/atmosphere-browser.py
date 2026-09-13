@@ -8,7 +8,7 @@ OUT=Path(os.environ.get('ATMOSPHERE_OUTPUT','atmosphere-results'));OUT.mkdir(exi
 BASE=os.environ.get('ATMOSPHERE_BASE','http://127.0.0.1:8765/svgn-planet/')
 PAD="""window.__pad={id:'Xbox / Atmosphere acceptance',mapping:'standard',connected:true,index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad]});"""
 async def main():
- report={'version':'0.9.0','checks':[],'errors':[],'shaderErrors':[],'physicalHardwareTested':False,'hardwareFPSCertified':False,'base':BASE};start=time.time()
+ report={'version':'0.10.0','checks':[],'errors':[],'shaderErrors':[],'physicalHardwareTested':False,'hardwareFPSCertified':False,'base':BASE};start=time.time()
  async with async_playwright() as p:
   browser=await p.chromium.launch(executable_path=os.environ.get('CHROMIUM_EXECUTABLE'),headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   context=await browser.new_context(viewport={'width':960,'height':640});await context.add_init_script(PAD);page=await context.new_page();page.set_default_timeout(90000)
@@ -39,7 +39,7 @@ async def main():
    assert await page.locator('#failure').is_hidden(),await page.locator('#failure-message').inner_text()
    await page.bring_to_front();await press(0);await wait('SVGNPlanet.inspect().started');await wait('SVGNPlanet.inspect().homecoming.performance.samples>2');assert not (await state())['failed']
   try:
-   await page.goto(BASE+'?quality=balanced',wait_until='domcontentloaded');await boot();s=await state();assert s['version']=='0.9.0';ok('Starts the existing v0.9 game with real WebGL')
+   await page.goto(BASE+'?quality=balanced',wait_until='domcontentloaded');await boot();s=await state();assert s['version']=='0.10.0';ok('Starts the existing v0.9 game with real WebGL')
    a=s['render']['atmosphere'];assert a['registeredMaterials']['road']>=2 and a['registeredMaterials']['leaf']>=1;assert a['leafShadowMeshes']>5;ok('Wet-road, foliage and matching depth materials are attached',a)
    await press(9);await focus('atmosphere-strength')
    for _ in range(4):await press(15)
