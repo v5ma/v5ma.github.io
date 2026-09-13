@@ -37,10 +37,13 @@ def aim(page,x,y,z):
  start=time.monotonic();box=page.locator('#world').bounding_box()
  while time.monotonic()-start<35:
   state=snap(page);s=state['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch']
-  if abs(dy)<.02 and abs(dp)<.02:return
-  scale=.004*(.35 if state['scoped'] else 1)
-  dx=max(-260,min(260,dy/scale));dv=max(-180,min(180,-dp/scale));cx=box['x']+box['width']*.5;cy=box['y']+box['height']*.5
-  page.mouse.move(cx,cy);page.mouse.down();page.mouse.move(cx+dx,cy+dv,steps=2);page.mouse.up();page.wait_for_timeout(30)
+  if abs(dy)<.03 and abs(dp)<.03:return
+  # Scoped drag-look is deliberately conservative on software WebGL: a larger
+  # scale yields smaller native mouse corrections and avoids crossing the aim
+  # point back and forth as individual frames take longer.
+  scale=.004*(.65 if state['scoped'] else 1)
+  dx=max(-180,min(180,dy/scale));dv=max(-130,min(130,-dp/scale));cx=box['x']+box['width']*.5;cy=box['y']+box['height']*.5
+  page.mouse.move(cx,cy);page.mouse.down();page.mouse.move(cx+dx,cy+dv,steps=4);page.mouse.up();page.wait_for_timeout(35)
  raise AssertionError('Native mouse aim did not settle')
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
@@ -78,6 +81,12 @@ with sync_playwright() as pw:
     page.keyboard.press('KeyE',delay=45);page.wait_for_timeout(35)
    page.wait_for_function('AetherReach.snapshot().rail?.id==="gale-loop"',timeout=30000);check(snap(page)['stats']['transfers']==1,'A real jump and aimed catch changes onto the new rail without a scripted position assignment')
    page.screenshot(path=str(OUT/'on-gale-market-loop.png'));page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW');check(snap(page)['stats']['rescues']==0,'The transferred ride reaches its real garden endpoint without a rescue shortcut')
+   # Depending on which end of Gale was caught, the physical ride can finish
+   # at the quay or garden. Use the real foot/bridge route when it finishes at
+   # the quay instead of assuming a straight unobstructed line through buildings.
+   end=snap(page)['position']
+   if end['x']<40:
+    walk(page,[(0,-15),(0,-36),(8,-42),(49,-28),(65,-26)])
    walk(page,[(78,-25)]);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().owned.includes("carbine")');check(True,'The garden supply cache unlocks a weapon after actual exploration');page.screenshot(path=str(OUT/'glasshouse-diversity.png'))
   check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, native mouse drag-look, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))
  except Exception as e:
