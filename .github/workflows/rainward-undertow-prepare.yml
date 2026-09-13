@@ -2,7 +2,7 @@ name: Integrate Rainward Undertow
 on:
   push:
     branches: [feat/rainward-undertow-20260912]
-    paths: ['rainward/tools/integrate-undertow.py','rainward/tools/refine-undertow.py','.github/workflows/rainward-undertow-prepare.yml']
+    paths: ['rainward/tools/integrate-undertow.py','rainward/tools/refine-undertow.py','rainward/natatorium-art.mjs','rainward/tests/aquatic.py','.github/workflows/rainward-undertow-prepare.yml']
   workflow_dispatch:
 permissions:
   contents: write
