@@ -1,0 +1,107 @@
+name: Vesperfall planning evidence synchronization
+on:
+  push:
+    branches: [vesperfall-planning-evidence-sync-20260913]
+    paths: ['.github/vesperfall-plan-intake/**', '.github/workflows/vesperfall-planning-intake.yml']
+permissions:
+  contents: write
+concurrency:
+  group: vesperfall-planning-evidence-sync
+  cancel-in-progress: true
+jobs:
+  planning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply exact validated planning delta and artifact-authored workbook
+        run: |
+          python - <<'PY'
+          import pathlib,base64,lzma,json,hashlib
+          root=pathlib.Path.cwd()
+          packed=base64.b64decode(''.join((root/f'.github/vesperfall-plan-intake/part{i}.txt').read_text().strip() for i in range(4)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='f68ca2458952dc6bb08b6d594c756e2e3ec3614bd526e7f3e632553d977794c1','Transfer checksum mismatch'
+          data=json.loads(lzma.decompress(packed));assert len(data)==9
+          allowed={'vesperfall/roadmap.json','vesperfall/AAA-PRODUCTION.xlsx','vesperfall/README.md','vesperfall/roadmap.html','vesperfall/core.js','vesperfall/tests/handoff.test.cjs','vesperfall/CONTINUATION-AUDIT.md','vesperfall/PLANNING-VERIFICATION.json','vesperfall/DEVELOPMENT-HANDOFF.md'}
+          assert set(data)==allowed;planned=[]
+          for name,d in data.items():
+              p=root/name
+              assert not p.is_symlink() and p.resolve().is_relative_to(root/'vesperfall')
+              if 'beforeGit' in d:
+                  before=p.read_bytes()
+                  actual=hashlib.sha1(b'blob '+str(len(before)).encode()+b'\0'+before).hexdigest()
+                  assert actual==d['beforeGit'],'Preimage changed: '+name
+              else:
+                  assert not p.exists(),'Unexpected existing file: '+name
+                  before=b''
+              if 'base64' in d:b=base64.b64decode(d['base64'],validate=True)
+              elif 'content' in d:b=d['content'].encode('utf-8')
+              elif 'prepend' in d:b=d['prepend'].encode('utf-8')+before
+              else:
+                  text=before.decode('utf-8')
+                  for start,end,replacement in reversed(d['edits']):text=text[:start]+replacement+text[end:]
+                  b=text.encode('utf-8')
+              if 'after' in d:assert hashlib.sha256(b).hexdigest()==d['after'],'Postimage mismatch: '+name
+              if name=='vesperfall/core.js':
+                  assert b==before.replace(b"const VERSION='0.11.0'",b"const VERSION='0.12.0'",1),'Core change exceeds diagnostic version correction'
+              planned.append((p,b))
+          for p,b in planned:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+          for i in range(4):(root/f'.github/vesperfall-plan-intake/part{i}.txt').unlink()
+          print('Applied nine checksummed planning/metadata files; preserved existing full handoff by prepending only. No workbook generation occurs in this transfer.')
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all model tests and workbook consistency checks
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          node --check vesperfall/core.js
+          node --test vesperfall/tests/*.test.cjs | tee test-output/planning-models.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+      - name: Install planning-board browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Verify actual board, controller navigation and served workbook
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 240 python -u vesperfall/tests/production-browser.py | tee test-output/planning-browser.log
+          test -s test-output/production/report.json
+          test ! -e test-output/production/failure.json
+      - name: Record actual acceptance and commit only the intended files
+        run: |
+          python - <<'PY'
+          import pathlib,json,os,hashlib,re
+          root=pathlib.Path.cwd();p=root/'vesperfall/PLANNING-VERIFICATION.json';d=json.loads(p.read_text())
+          report=json.loads((root/'test-output/production/report.json').read_text())
+          assert report['passed']==16 and not report['errors']
+          tap=(root/'test-output/planning-models.tap').read_text()
+          def metric(key):return int(re.search(r'^# '+key+r' (\d+)$',tap,re.M).group(1))
+          assert metric('fail')==0 and metric('pass')==153 and metric('tests')==153
+          d['remoteModelTests']={'result':'pass','tests':153,'pass':153,'fail':0,'workflowRun':os.environ['GITHUB_RUN_ID']}
+          d['remotePlanningBrowser']={'result':'pass','checks':report['passed'],'errors':report['errors'],'workflowRun':os.environ['GITHUB_RUN_ID'],'url':os.environ['GITHUB_SERVER_URL']+'/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],'scope':'Actual Chromium planning board and served workbook with emulated Xbox navigation. Not gameplay, physical-controller or Quest acceptance.'}
+          d['preservedHandoffSha256']=hashlib.sha256((root/'vesperfall/DEVELOPMENT-HANDOFF.md').read_bytes()).hexdigest()
+          p.write_text(json.dumps(d,indent=2)+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- vesperfall .github/vesperfall-plan-intake
+          git commit -m 'Synchronize Vesperfall 0.12 planning workbook and 76-task roadmap; preserve cross-chat requirements, shipped-vs-draft audit and actual test evidence'
+          git push origin HEAD:vesperfall-planning-evidence-sync-20260913
+      - name: Archive exact source and acceptance
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar czf test-output/planning-source.tgz vesperfall/roadmap.json vesperfall/AAA-PRODUCTION.xlsx vesperfall/README.md vesperfall/roadmap.html vesperfall/core.js vesperfall/tests/handoff.test.cjs vesperfall/CONTINUATION-AUDIT.md vesperfall/PLANNING-VERIFICATION.json vesperfall/DEVELOPMENT-HANDOFF.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-planning-evidence
+          path: test-output/
+          retention-days: 14
