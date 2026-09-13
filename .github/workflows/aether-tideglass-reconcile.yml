@@ -20,6 +20,8 @@ jobs:
       - name: Merge the latest live master without discarding newer unrelated games
         run: |
           set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch origin master
           git merge --no-edit origin/master
       - name: Harden old browser journeys against asynchronous dialog and slow software-WebGL frames
