@@ -1,0 +1,40 @@
+{
+  "release": "0.13.1",
+  "scope": "Candidate history, not a publication receipt. Final merge and actual public byte verification are recorded in PR 146.",
+  "release_pr": "https://github.com/v5ma/v5ma.github.io/pull/146",
+  "baseline_master": "25f0a46bc5a082d4d99089a3e708441dd0039b14",
+  "initial_living_journey": {
+    "tested_checkout": "9c651ffd47b2cfa1ade59945a7bf56d40c87a5ad",
+    "run": 34789910532,
+    "survival": {"result": "passed", "checks": 11, "artifact": 10328335760, "archive_sha256": "0b45d72f0eeb67f0bad544a3fa0c77096df852ac19c5773fec229b9be0d7cb58"},
+    "classic": {"result": "failed", "reason": "Player died to the living pump sentinel on the unarmed escape route.", "artifact": 10327414974, "archive_sha256": "b147161cca19fceed3f214dd2e8117f7559119a6da9a133d05e4aee56e0881f7"},
+    "correction": "The driver subsequently uses real LT/right-stick/RT combat and finite-ammo reload. Enemy stats, damage and game rules were not changed."
+  },
+  "combat_journeys": {
+    "tested_checkout": "beedbff70e5efdc335c8aa02511095fe37fe65b9",
+    "run": 34790194100,
+    "survival": {"result": "passed", "artifact": 10327631993},
+    "classic": {"result": "passed", "checks": 15, "artifact": 10327732392, "shots": 6, "hits": 4, "final_health": 100, "errors": [], "dialogs": [], "console_errors": []}
+  },
+  "versioned_candidate": {
+    "tested_checkout": "b0f50ae58a0b0357481f064fba47df98ceb70744",
+    "run": 34790432249,
+    "survival": {"result": "passed", "artifact": 10328730318},
+    "classic": {"result": "passed", "artifact": 10327816593},
+    "isolated_recovery": {"result": "passed", "checks": 33, "artifact": 10328006460, "archive_sha256": "997c2cde196954553aedb6d0bd0ee40da4f335b4ee80b5255d191a47231c3304", "errors": [], "dialogs": [], "console_errors": [], "includes": ["Both controller presets", "Keyboard fallback", "Neutral-input reconnect", "Phone-width low-air warning", "Natural oxygen exhaustion and drowning damage", "Surfacing and recovery", "Natural death and controller shelter retry"]},
+    "source_label_correction": "The temporary preparation run was triggered by 42bf00dcaa556b6cef7650c42f2eb880335d0826, but checked out b0f50ae58a0b0357481f064fba47df98ceb70744. tested-commit.txt is authoritative. The former release.py used the event SHA; the final verifier now derives actual git HEAD."
+  },
+  "retained_hud_race": {
+    "run": 34790474347,
+    "artifact": 10328725413,
+    "tested_merge_preview": "720886a72ee723c2e26e9d33e6a5939f5586bcea",
+    "result": "failed",
+    "reason": "New accessibility assertion inspected the oxygen label before the three-frame HUD refresh. The same candidate separately passed all 33 checks.",
+    "correction": "Wait for the exact rendered 100-percent aria-label before asserting it. Do not remove or relax the assertion.",
+    "archive_sha256": "0872f8e8ded568312f5996a684207d9af1ac2f6b40f16ca37585133bae12dcaa"
+  },
+  "local_acceptance": {"model_source_tests": 283, "browser": "blocked", "reason": "net::ERR_BLOCKED_BY_ADMINISTRATOR for localhost; no browser-policy bypass attempted. Native HTTP/WebGL acceptance runs on GitHub Actions."},
+  "preservation": "All seven chapters, authored patrols, weapons, finite resources, pool volumes, art/audio and v1-v4 checkpoint support remain. Runtime changes are presentation and version metadata only.",
+  "limitations": ["The living mission uses virtual Xbox-standard input with read-only route and projection guidance, not physical hardware.", "The isolated aquatic suite deliberately uses an authored shelter fixture with enemies defeated; it is not living-enemy evidence.", "Optional-station and every-pool-edge native tours remain additional work.", "Human art/audio, physical wired/Bluetooth Xbox and target-hardware performance gates remain unapproved."],
+  "next_feature": "H-02: authored swim/land blends and hand/foot contact review."
+}

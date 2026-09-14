@@ -1,3 +1,13 @@
+# Current continuation / Clear Water v0.13.1
+
+Read CLEAR-WATER.md first, then this retained handoff and CONTROLLER.md. The active runtime is now the Clear Water patch candidate/release, not a request to rebuild Undertow. Its release PR and evidence directory are authoritative for final candidate, merge and publication verification. The historical verifiedGameplay record in production-plan.json deliberately retains the immutable Undertow receipt.
+
+H-01 now has a normal-start living-enemy Survival extraction at source 9c651ffd47b2cfa1ade59945a7bf56d40c87a5ad (run 34789910532). Both-preset journeys additionally exercise finite-ammo sentinel combat and reload. H-05 is implemented by aquatic-prompts.mjs and aquatic-ui.mjs; the expanded native aquatic suite gates keyboard/preset/reconnect and oxygen recovery. Keep the Classic death from the first attempt as failed evidence, and require current-source green checks before publication. The current 64-item canonical board and regenerated checklist retain unapproved human gates.
+
+Do not re-open completed prompt work merely because the historical section below calls it open. Continue H-02 motion and contact authoring next; water audio, optional-station/pool-edge browser coverage and physical Xbox/hardware review remain unfinished. Saves, patrols, geometry, water physics, weapons and content are not changed by this patch.
+
+The following handoff is preserved as historical context. Its v0.13.0 build, counts, priorities and test-gap statements describe that baseline, not the latest patch.
+
 # Rainward development handoff
 
 Updated 2026-09-13 from the Rainward development conversation and the repository. This is a continuation record, not a new gameplay release. Gameplay remains v0.13.0, Undertow. Read this before choosing another upgrade.

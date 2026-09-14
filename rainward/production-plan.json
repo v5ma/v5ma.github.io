@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.13.0",
-  "edition": "Undertow",
+  "release": "0.13.1",
+  "edition": "Clear Water",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
   "updated": "2026-09-13",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
@@ -66,6 +66,10 @@
   ],
   "references": [
     {
+      "title": "Clear Water upgrade and acceptance scope",
+      "url": "CLEAR-WATER.md"
+    },
+    {
       "title": "Resume development in another chat",
       "url": "DEVELOPMENT-HANDOFF.md"
     },
@@ -87,10 +91,9 @@
     }
   ],
   "nextRelease": [
-    "RW-032",
-    "RW-014",
     "RW-035",
     "RW-036",
+    "RW-014",
     "RW-044"
   ],
   "items": [
@@ -561,18 +564,18 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Undertow is published. Camera basin depth, pool-edge clipping, slab/lane/caustic layering, dry interactions and cancellation/refunds are covered. Swimming uses the horizontal crawl rig and toggle depth, not free vertical motion.",
-      "nextAction": "Close the living-enemy water playthrough and physical-controller gaps, then improve swim animation and preset-aware dive prompts."
+      "resumeNote": "Clear Water adds preset-aware dive/surface instructions, accessible oxygen labels and a textual low-air warning without changing water physics or save state.",
+      "nextAction": "Review optional stations, all pool-edge approaches, authored swim motion and water audio on real devices."
     },
     {
       "id": "RW-032",
       "phase": "G3",
       "priority": "P1",
       "title": "Complete campaign playthrough evidence",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "QA",
       "acceptance": "Record each chapter from start through all required work to extraction with ordinary inputs, preserving exact build and save evidence.",
-      "evidence": "",
+      "evidence": "CLEAR-WATER.md",
       "depends": [
         "RW-024",
         "RW-028",
@@ -580,8 +583,8 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "All 18 browser suites passed, but the aquatic browser fixture defeats enemies at a real shelter. Model interactions cover the complete water mission separately.",
-      "nextAction": "Record the Natatorium from a normal start through submerged fuse, dry spindle, puzzle, required tasks and extraction with living enemies."
+      "resumeNote": "The historical aquatic browser fixture isolated water with enemies defeated. A new normal-start living-enemy Survival mission has reached extraction; both presets now have an executable combat/reload journey. All-seven chapter, independent-player and hardware approval remain open.",
+      "nextAction": "Retain exact-source normal-start mission results and add the remaining per-chapter, optional-station and independent-player reviews."
     },
     {
       "id": "RW-033",
@@ -1097,10 +1100,10 @@
   ],
   "continuation": {
     "schema": 1,
-    "recordId": "rainward-handoff-20260913",
+    "recordId": "rainward-clear-water-20260913",
     "startHere": "DEVELOPMENT-HANDOFF.md",
     "controls": "CONTROLLER.md",
-    "recordedAgainstMaster": "a43d01ddd75ac7c07280e660f7dcba2282214c8f",
+    "recordedAgainstMaster": "25f0a46bc5a082d4d99089a3e708441dd0039b14",
     "verifiedGameplay": {
       "version": "0.13.0",
       "edition": "Undertow",
@@ -1111,7 +1114,7 @@
       "publicationRun": 34738570590,
       "historicalPublicFiles": 128
     },
-    "scope": "Documentation continuation record; no gameplay bump, new feature completion or human acceptance is implied.",
+    "scope": "Clear Water v0.13.1 adds water guidance and executable acceptance. The verifiedGameplay object retains the immutable Undertow baseline; CLEAR-WATER.md and the release PR record this upgrade and exact validation.",
     "ownerRequirements": [
       "Continue the existing Rainward game; preserve all seven chapters and saves.",
       "Complete gameplay AND UI with an Xbox controller, including reload and dialog cancellation.",
@@ -1128,9 +1131,11 @@
           "RW-031",
           "RW-028"
         ],
-        "status": "Open",
+        "status": "Automated",
         "action": "Record a living-enemy Natatorium browser mission from normal start to extraction. Preserve oxygen, enemy, task, puzzle and resource rules.",
-        "acceptance": "Both components, puzzle and required tasks complete using ordinary inputs; no safe fixture or model teleport substitutes for this run."
+        "acceptance": "Both components, puzzle and required tasks complete using ordinary inputs; no safe fixture or model teleport substitutes for this run.",
+        "evidence": "CLEAR-WATER.md",
+        "result": "Normal-start Survival extraction passed at 9c651ffd47b2cfa1ade59945a7bf56d40c87a5ad in run 34789910532. Both-preset combat journeys and exact-release regression are additional release gates. No human or hardware sign-off."
       },
       {
         "id": "H-02",
@@ -1174,9 +1179,11 @@
           "RW-031",
           "RW-050"
         ],
-        "status": "Open",
+        "status": "Implemented",
         "action": "Make water prompts explicit about the Survival hold-B gesture rather than the generic B DIVE label.",
-        "acceptance": "Preset-aware prompts match actual dive/surface behavior on controller and keyboard; text changes do not alter the input mapping."
+        "acceptance": "Preset-aware prompts match actual dive/surface behavior on controller and keyboard; text changes do not alter the input mapping.",
+        "evidence": "tests/aquatic-prompts.test.mjs",
+        "result": "Preset-aware live HUD and low-air warning are implemented. The native aquatic suite is the release gate for keyboard fallback, preset switching and recovery."
       }
     ],
     "notImplemented": [
