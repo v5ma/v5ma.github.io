@@ -13,15 +13,16 @@ with sync_playwright() as p:
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1280,'height':800},service_workers='block');host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());page=c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.set_default_timeout(60000)
  try:
   page.goto(BASE+'/index.html',wait_until='domcontentloaded')
-  required=['little-planet/','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']
+  required=['prism-current/index.html','vesperfall/index.html','leonardos-guild/index.html','svgn-planet/index.html','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']
   # The collection grows: preserve each actual route instead of freezing the
   # gallery at the four cards present when Aether Reach was first introduced.
-  check(page.locator('.project').count()>=len(required),'The public project page includes the little planet alongside every existing project')
+  check(page.locator('.project').count()>=len(required),'The public project page retains every current playable project card')
+  links=page.locator('.projects .project a.primary-link');paths=links.evaluate_all('(els)=>els.map(e=>new URL(e.href).pathname)')
   for route in required:
-   # A quick-launch link outside the gallery is not a duplicate project card.
-   check(page.locator('.projects .project a.primary-link[href="./'+route+'"]').count()==1,'Homepage retains one playable project card: '+route)
+   # Cache-busting query/hash values are allowed; the playable destination is not.
+   check(paths.count('/'+route)==1,'Homepage retains one playable project card: '+route)
   page.screenshot(path=str(OUT/'public-projects.png'),full_page=True)
-  page.locator('a.primary-link[href="./aether-reach/index.html"]').click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)
+  aether_index=paths.index('/aether-reach/index.html');links.nth(aether_index).click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.05,'Starting the expedition looks along the street instead of jumping toward the sky')
   page.locator('#world').click(position={'x':640,'y':400});page.wait_for_timeout(500)
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.08,'Clicking to capture the mouse does not apply a cursor-warp rotation')

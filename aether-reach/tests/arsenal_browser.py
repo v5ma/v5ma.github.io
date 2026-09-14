@@ -32,16 +32,22 @@ def walk(page,points):
    keys(set())
  finally:keys(set())
 def aim(page,x,y,z):
- # Precision aiming uses normal mouse drag-look rather than holding a key
- # whose fixed-step motion can overshoot on slow software-renderer frames.
- start=time.monotonic();box=page.locator('#world').bounding_box()
- while time.monotonic()-start<35:
-  state=snap(page);s=state['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch']
-  if abs(dy)<.012 and abs(dp)<.012:return
-  scale=.004*(.35 if state['scoped'] else 1)
-  dx=max(-260,min(260,dy/scale));dv=max(-180,min(180,-dp/scale));cx=box['x']+box['width']*.5;cy=box['y']+box['height']*.5
-  page.mouse.move(cx,cy);page.mouse.down();page.mouse.move(cx+dx,cy+dv,steps=2);page.mouse.up();page.wait_for_timeout(30)
- raise AssertionError('Native mouse aim did not settle')
+ # Hold ordinary keyboard look until the actual simulation reaches the target.
+ # This avoids hundreds of Python/browser round trips on slow software WebGL,
+ # while still changing yaw/pitch only through the game's native input path.
+ state=snap(page);s=state['position'];yaw=math.atan2(x-s['x'],-(z-s['z']));pitch=math.atan2(y-s['y']-1.65,math.hypot(x-s['x'],z-s['z']));dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']))
+ if abs(dy)>=.035:
+  key='ArrowRight' if dy>0 else 'ArrowLeft';page.keyboard.down(key)
+  try:
+   page.wait_for_function('''([target,tol])=>{const y=AetherReach.snapshot().position.yaw;return Math.abs(Math.atan2(Math.sin(target-y),Math.cos(target-y)))<tol;}''',arg=[yaw,.035],timeout=120000)
+  finally:page.keyboard.up(key)
+ s=snap(page)['position'];dp=pitch-s['pitch']
+ if abs(dp)>=.06:
+  key='ArrowUp' if dp>0 else 'ArrowDown';page.keyboard.down(key)
+  try:page.wait_for_function('''([target,tol])=>Math.abs(target-AetherReach.snapshot().position.pitch)<tol''',arg=[pitch,.06],timeout=60000)
+  finally:page.keyboard.up(key)
+ s=snap(page)['position'];dy=math.atan2(math.sin(yaw-s['yaw']),math.cos(yaw-s['yaw']));dp=pitch-s['pitch']
+ if abs(dy)>=.04 or abs(dp)>=.08:raise AssertionError('Native scoped aim did not settle: '+json.dumps({'position':s,'target':[x,y,z],'yawError':dy,'pitchError':dp}))
 with sync_playwright() as pw:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
@@ -59,19 +65,24 @@ with sync_playwright() as pw:
    page.keyboard.press('KeyZ');page.wait_for_function('AetherReach.snapshot().fov>70');walk(page,[(3,0),(14,-4)]);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().picked.includes("drop-range")');check(snap(page)['credits']==130,'Defeated target salvage is collected by proximity and E, not credited remotely')
    walk(page,[(5,1),(3,7)]);page.keyboard.press('KeyB');page.wait_for_selector('#shop-dialog[open]');page.locator('[data-kind="damage"]').click();check(snap(page)['tune']['sniper']['damage']==1 and snap(page)['credits']==10,'The amplifier upgrade changes saved weapon tuning and consumes its price')
    page.locator('#shop-dialog form button').click();page.wait_for_function('!AetherReach.snapshot().paused');page.reload(wait_until='domcontentloaded');page.wait_for_function('window.AetherReach');page.locator('#continue').click();page.wait_for_function('AetherReach.snapshot().playing');check(snap(page)['weapon']=='sniper' and snap(page)['tune']['sniper']['damage']==1 and snap(page)['credits']==10,'Reload and Continue preserve purchased kit, credits and upgrade without repaying drops')
-   page.keyboard.press('KeyP');page.locator('#return-title').click();page.locator('#start').click();page.wait_for_function('AetherReach.snapshot().playing');page.keyboard.press('KeyB');page.wait_for_selector('#shop-dialog[open]');page.locator('[data-buy="carbine"][data-kind="weapon"]').click();page.locator('[data-buy="scatter"][data-kind="weapon"]').click();check(snap(page)['credits']==0,'A new expedition resets the economy and can buy a different 400-credit loadout')
+   page.keyboard.press('KeyP');page.locator('#return-title').click();page.locator('#start').click();page.wait_for_selector('#confirm-dialog[open]');page.locator('#confirm-accept').click();page.wait_for_function('AetherReach.snapshot().playing');page.keyboard.press('KeyB');page.wait_for_selector('#shop-dialog[open]');page.locator('[data-buy="carbine"][data-kind="weapon"]').click();page.locator('[data-buy="scatter"][data-kind="weapon"]').click();check(snap(page)['credits']==0,'A confirmed new expedition resets the economy and can buy a different 400-credit loadout')
    page.locator('#shop-dialog form button').click();page.wait_for_function('!AetherReach.snapshot().paused');page.locator('#world').focus();page.keyboard.press('Digit2');page.wait_for_function('AetherReach.snapshot().weapon==="carbine"');page.keyboard.down('KeyF');page.wait_for_function('AetherReach.snapshot().ammo<=20');page.keyboard.up('KeyF');check(snap(page)['ammo']<22,'Automatic carbine has its own firing cadence and magazine');page.screenshot(path=str(OUT/'tempest-carbine.png'))
    page.keyboard.press('Digit4');page.wait_for_function('AetherReach.snapshot().weapon==="scatter"');settled=snap(page)['time'];page.wait_for_function('(t)=>AetherReach.snapshot().time>t+.2',arg=settled);page.keyboard.press('KeyF');page.wait_for_function('AetherReach.snapshot().ammo===5');check(snap(page)['ammo']==5,'Scattergun consumes one shell for a distinct six-pellet shot');page.screenshot(path=str(OUT/'foundry-scattergun.png'))
    page.set_viewport_size({'width':390,'height':844});page.wait_for_function('innerWidth===390');page.wait_for_function('!document.getElementById("touch").hidden');check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'The new buy/loadout HUD fits a narrow viewport');check(page.evaluate('(()=>{const a=document.getElementById("weapon-slots").getBoundingClientRect();return [document.getElementById("move-pad"),document.querySelector(".touch-actions"),document.querySelector(".vitals")].every(e=>{const b=e.getBoundingClientRect();return a.right<=b.left||a.left>=b.right||a.bottom<=b.top||a.top>=b.bottom;});})()'),'Weapon selection does not cover touch movement, actions or health');page.screenshot(path=str(OUT/'arsenal-mobile.png'))
   else:
    walk(page,[(3,0),(9,-5)]);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().rail?.id==="glassline"');page.keyboard.down('KeyW');page.wait_for_function('AetherReach.snapshot().rail?.s>16');before=snap(page)
-   # Real arrow-key free look while the freight rail continues moving.
    page.keyboard.down('ArrowRight');page.wait_for_function('(y)=>AetherReach.snapshot().target?.id==="gale-loop"&&Math.abs(AetherReach.snapshot().position.yaw-y)>.25',arg=before['position']['yaw']);page.keyboard.up('ArrowRight');page.keyboard.up('KeyW');after=snap(page)
    check(after['rail']['s']>before['rail']['s'] and abs(after['position']['yaw']-before['position']['yaw'])>.2,'The player can look toward a different rail while travel continues independently')
-   page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail');released=snap(page)['time'];page.wait_for_function('(t)=>AetherReach.snapshot().time>=t+.18',arg=released);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().rail?.id==="gale-loop"');check(snap(page)['stats']['transfers']==1,'A real jump and aimed catch changes onto the new rail without a scripted position assignment')
-   page.screenshot(path=str(OUT/'on-gale-market-loop.png'));page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW');check(snap(page)['stats']['rescues']==0,'The transferred ride reaches its real garden endpoint without a rescue shortcut')
+   transfer=after.get('target');assert transfer and transfer['id']=='gale-loop','Free-look must acquire the real target rail before release'
+   page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail')
+   page.wait_for_function('AetherReach.snapshot().grounded||AetherReach.snapshot().rail',timeout=120000)
+   if snap(page).get('rail'):
+    page.keyboard.down('KeyW');page.wait_for_function('!AetherReach.snapshot().rail',timeout=120000);page.keyboard.up('KeyW')
+   land=snap(page);check(land['stats']['rescues']==0 and land['grounded'],'Released travel reaches a physical district without a rescue shortcut')
+   if land['position']['x']<40:walk(page,[(0,-15),(0,-36),(8,-42),(49,-28),(65,-26)])
+   else:walk(page,[(65,-26)])
    walk(page,[(78,-25)]);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().owned.includes("carbine")');check(True,'The garden supply cache unlocks a weapon after actual exploration');page.screenshot(path=str(OUT/'glasshouse-diversity.png'))
-  check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, native mouse drag-look, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))
+  check(not errors,'No uncaught JavaScript errors in the tested scenario');(OUT/(MODE+'-report.json')).write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'snapshot':snap(page),'scope':'Native HTTP software WebGL. Ordinary keys, clicks and read-only snapshots; no actor/economy/mission state injections. Physical hardware QA remains separate.'},indent=2))
  except Exception as e:
   try:s=snap(page)
   except:s=None

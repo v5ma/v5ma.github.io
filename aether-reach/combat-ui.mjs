@@ -4,7 +4,7 @@ export function installCombatUI(api){
  const $=id=>document.getElementById(id),aimSources=new Set();let previousWeapon='',lastHit=0,lastShop='';
  const dialog=$('shop-dialog'),grid=$('shop-grid'),weapons=$('weapon-slots');
  for(const w of Object.values(WEAPONS)){const b=document.createElement('button');b.className='weapon-slot';b.dataset.weapon=w.id;b.title=w.role;b.innerHTML=`<small>${w.slot}</small><b>${w.name}</b><span>${w.id==='sniper'?'LONG RANGE':w.id==='scatter'?'CLOSE RANGE':w.id==='carbine'?'AUTOMATIC':'RECHARGE'}</span>`;b.onclick=()=>{action('equip',w.id);api.focus();};weapons.append(b);}
- function scope(source,on){if(on)aimSources.add(source);else aimSources.delete(source);api.state().p.scoped=api.playing()&&!api.paused()&&aimSources.size>0;}
+ function scope(source,on){if(on)aimSources.add(source);else aimSources.delete(source);api.state().p.scoped=api.playing()&&!api.paused()&&!api.state().p.water?.submerged&&aimSources.size>0;}
  function reset(){aimSources.clear();api.state().p.scoped=false;}
  const exit=document.createElement('button');exit.id='optic-exit';exit.textContent='Leave optic · Z / release aim';exit.onclick=()=>{reset();api.focus();};$('scope-view').append(exit);
  function stock(){const s=api.state(),depot=depotNear(s);$('shop-title').textContent=depot?.name||'Equipment catalogue - visit a kiosk to buy';$('shop-credits').textContent=s.kit.credits+' CREDITS';grid.replaceChildren();
@@ -24,7 +24,7 @@ export function installCombatUI(api){
  }
  $('buy-button').onclick=()=>action('shop');$('scope-button').onclick=()=>action('scope');$('swap-button').onclick=()=>action('next');
  function effect(e){if(e.type==='shot'&&e.hit){lastHit=performance.now()+180;$('hit-confirm').classList.toggle('critical',!!e.critical);}if(e.type==='loot')api.toast(`Recovered ${e.credits} credits${e.weapon?' and '+WEAPONS[e.weapon].name:''}.`);if(e.type==='purchase')api.toast('Equipment updated. Saved for this expedition.');}
- function update(dt){const s=api.state(),w=weaponStats(s),xr=api.xr();s.p.scoped=api.playing()&&!api.paused()&&aimSources.size>0;
+ function update(dt){const s=api.state(),w=weaponStats(s),xr=api.xr();s.p.scoped=api.playing()&&!api.paused()&&!api.state().p.water?.submerged&&aimSources.size>0;
   $('scope-view').hidden=!(s.p.scoped&&w.id==='sniper'&&!xr);$('hit-confirm').hidden=performance.now()>lastHit||api.paused();
   $('credits-value').textContent=s.kit.credits;const depot=depotNear(s);$('buy-button').textContent=depot?'B · '+depot.name:'B · Find outfitters';
   $('equipment-name').textContent=w.name.toUpperCase();$('ammo').innerHTML=String(s.p.ammo).padStart(2,'0')+` <i>/ ${w.id==='arc'?'∞':s.kit.reserve[w.id]}</i>`;$('weapon-status').textContent=s.p.reload>0?'RELOADING…':`${w.role} · R reload`;

@@ -2,7 +2,7 @@
   "version": 1,
   "updated": "2026-09-12",
   "project": "Aether Reach",
-  "release": "0.10.0 Skyglass Cast",
+  "release": "0.11.0 Tideglass Reservoir",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -762,8 +762,8 @@
         "Q03"
       ],
       "acceptance": "Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.",
-      "evidence": "v0.9 committed at cf1dc621dbc392be99380c7fbe51776b90ead068 after 201 tests and 28 full district browser checks. v0.10 must match the post-merge live runtime contract.",
-      "next": "Record the v0.10 merge, Pages status and matching live-file hashes."
+      "evidence": "v0.10.0 Skyglass Cast published through PR #133. Final ef91e3b publication run 34722404332 matched 92 public files. v0.11 must pass the live-file contract after merge.",
+      "next": "Record the Tideglass merge and public-byte verification; do not equate source commits with live publication."
     },
     {
       "id": "V01",
@@ -793,6 +793,21 @@
       "acceptance": "License-pinned local character assets, independent animated skeletons, visible fallbacks on failed loads, reduced-motion and Light/XR budgets, controller-accessible graphics options and real WebGL compile validation.",
       "evidence": "art/characters/manifest.json; cast-rig.mjs; cast-scene.mjs; skyglass-shaders.mjs; tests/cast.test.mjs; tests/skyglass-browser.py.",
       "next": "Record browser and publication evidence; keep physical hardware and player art approval separate."
+    },
+    {
+      "id": "W03",
+      "phase": "World",
+      "title": "Tideglass aquatic exploration and pump adventure",
+      "priority": "P0",
+      "status": "In review",
+      "depends": [
+        "W01",
+        "I04",
+        "F03"
+      ],
+      "acceptance": "Reach the reservoir by two real bridges; swim, dive and exit by stairs or ladder; complete both saved water objectives with once-only payment. Check real WebGL water, graphics controls, old saves and frame budgets.",
+      "evidence": "tideglass-world/core/scene/shaders/ui.mjs; tests/tideglass.test.mjs; tests/tideglass-browser.py; TIDEGLASS-RESERVOIR.md. Browser, publication and player acceptance remain separate.",
+      "next": "Run the real controller journey and inspect pool screenshots, then verify publication. Physical Xbox, Quest and subjective aquatic feel remain unverified."
     }
   ],
   "milestones": [

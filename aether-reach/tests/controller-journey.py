@@ -22,7 +22,12 @@ with sync_playwright() as pw:
  def snap():return p.evaluate('AetherReach.snapshot()')
  def frames(n=3):p.evaluate('(n)=>new Promise(resolve=>{function f(){if(--n<=0)resolve();else requestAnimationFrame(f);}requestAnimationFrame(f)})',n)
  def button(i,on):p.evaluate('([i,on])=>TestPad.button(i,on)',[i,on]);frames(1)
- def tap(i):p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>resolve());});})',i)
+ def tap(i):
+  # Let a newly opened modal sample neutral input before a fresh press. A hold
+  # across a context change must still be blocked by the production adapter.
+  frames(2)
+  p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>resolve());});})',i)
+  frames(2)
  def axes(a):p.evaluate('(a)=>TestPad.axes(a)',a)
  def go(selector):
   # Inspect DOM ordering, then operate ONLY normal gamepad events.
@@ -56,7 +61,7 @@ with sync_playwright() as pw:
   tap(9);choose('#pause-journal');go('[data-track="roof-beacons"]');tap(0);check(snap()['expedition']['tracked']=='roof-beacons','Adventure tracking works without mouse clicks');go('[data-track="open-sky"]');check(p.locator('[data-track="open-sky"]').evaluate('(e)=>{const r=e.getBoundingClientRect(),d=e.closest("dialog").getBoundingClientRect();return r.top>=d.top&&r.bottom<=d.bottom;}'),'Focus scrolls the last journal task into view');p.screenshot(path=str(OUT/'lumen-controller-journal.png'));tap(1);tap(1)
   tap(8);tap(1);check(not snap()['paused'],'View opens the atlas; B dismisses it and resumes')
   # Visit a real archive to populate the atlas, then inspect nested record UI.
-  drive((-7,4));tap(2);p.wait_for_selector('#record-dialog[open]');tap(1);tap(8);choose('#journal button:not(:disabled)');check(snap()['devices']['menu']=='record-dialog','Controller opens an earned archive record from inside the atlas');tap(1);check(snap()['devices']['menu']=='map-dialog' and snap()['paused'],'Closing a record returns to its atlas parent without advancing combat');tap(1)
+  drive((-7,4));tap(2);p.wait_for_selector('#record-dialog[open]');p.wait_for_function("AetherReach.snapshot().records.includes('quay-letter')");go('#record-dialog form button');tap(0);p.wait_for_selector('#record-dialog[open]',state='hidden');tap(8);p.wait_for_selector('#map-dialog[open]');go('#journal button:not(:disabled)');tap(0);check(snap()['devices']['menu']=='record-dialog','Controller opens an earned archive record from inside the atlas');tap(1);check(snap()['devices']['menu']=='map-dialog' and snap()['paused'],'Closing a record returns to its atlas parent without advancing combat');tap(1)
   # Reach the theatre ladder by existing streets, without changing avatar state.
   for target in [(-10,0),(-16,-6),(-70,-8),(-92,-8),(-92,0),(-107,0.1)]:drive(target)
   tap(2);p.wait_for_function('!!AetherReach.snapshot().climb');axes([0,-1,0,0]);p.wait_for_function('!AetherReach.snapshot().climb&&AetherReach.snapshot().grounded',timeout=90000);axes([0,0,0,0]);frames();check(abs(snap()['position']['y']-27.5)<.05,'X and left stick climb continuously from the actual theatre street to the rooftop');check(snap()['stats']['rescues']==0,'The controller rooftop journey needs no rescue or teleport');p.screenshot(path=str(OUT/'lumen-theatre-rooftop.png'))

@@ -42,13 +42,14 @@ export function createMenuNavigator({root,back,onFocus}){
   if(group){const cols=Number(group.dataset.navGrid)||3,members=m.items.map((v,i)=>({e:v.element,i})).filter(v=>group.contains(v.e)),at=members.findIndex(v=>v.i===index),candidate=at+dir*(axis==='y'?cols:1);if(candidate>=0&&candidate<members.length)next=members[candidate].i;else next=dir>0?members.at(-1).i+1:members[0].i-1;}
   next=Math.max(0,Math.min(m.items.length-1,next));if(next!==index)focus(m.items[next],next);
  }
+ function activate(e){if(e.tagName==='SELECT'){adjust(e,1);return;}if(e.type==='range')return;e.click();}
  function tick(data,dt,now,xr=false){let m=read();if(!m)return;footer.hidden=xr;footer.textContent='D-pad / left stick: navigate   A: select   B: back   Left / right: adjust   Right stick / LT / RT: scroll   LB / RB: page';
   if(data.edges.back||data.edges.pause||(data.edges.map&&m.root.id==='map-dialog')){back(m);return;}
   const axis=data.menuAxis||data.move||[0,0],dy=data.held.next?-1:data.held.previous?1:axis[1],dx=data.held.field?-1:data.held.shop?1:axis[0];
   const y=vertical.update(dy,now),x=horizontal.update(dx,now);if(y)move(m,y,'y');if(x&&!adjust(m.items[index]?.element||{},x))move(m,x,'x');
   if(data.edges.pulse||data.edges.reverse){const next=Math.max(0,Math.min(m.items.length-1,index+(data.edges.reverse?5:-5)));focus(m.items[next],next);}
   const scroll=(data.look?.[1]||data.scroll||0)+(xr?0:(data.held.fire?1:0)-(data.held.aim?1:0));if(scroll){const scrollRoot=m.root.tagName==='DIALOG'?m.root:document.querySelector('.title-copy');scrollRoot?.scrollBy({top:scroll*Math.min(dt,.1)*650,behavior:'instant'});}
-  if(data.edges.confirm||data.edges.jump){const e=m.items[index]?.element;if(e){memory.set(current,{index,key:focusKey(e,index)});if(e.tagName==='SELECT')adjust(e,1);else if(e.type!=='range')e.click();}}
+  if(data.edges.confirm||data.edges.jump){const e=m.items[index]?.element;if(e){memory.set(current,{index,key:focusKey(e,index)});activate(e);}}
  }
  return {read,tick,reset(){vertical.reset();horizontal.reset();},get current(){return current;}};
 }

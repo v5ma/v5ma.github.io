@@ -41,10 +41,11 @@ with sync_playwright() as pw:
    tap(page,4);check(snapshot(page)['energy']<100,'LB triggers the real energy pulse')
    tap(page,9);page.wait_for_selector('#pause-dialog[open]');old=snapshot(page);axes(page,[0,-1,1,0]);frames(page,6);check(snapshot(page)['time']==old['time'],'Paused controller menus do not advance the simulation');axes(page,[0,0,0,0]);tap(page,1);page.wait_for_function('!AetherReach.snapshot().paused')
    tap(page,8);page.wait_for_selector('#map-dialog[open]');tap(page,1);check(not snapshot(page)['paused'],'View opens atlas and B returns to play')
-   drive(page,(3,0));drive(page,(9,-5));tap(page,3);page.wait_for_function('!!AetherReach.snapshot().rail');check(snapshot(page)['rail']['id']=='glassline','Y boards a physical freight rail after controller-only walking')
-   # Reverse mid-span, not beside the boarding platform: arriving back at the
-   # station is legitimate gameplay, not a failed reverse.
-   page.wait_for_function('AetherReach.snapshot().rail?.s>28');before=snapshot(page)['rail']['dir'];tap(page,5);check(snapshot(page)['rail']['dir']==-before,'RB reverses rail travel without a scene reset');tap(page,5);tap(page,0);page.wait_for_function('!AetherReach.snapshot().rail');check(True,'A releases a rail through the real momentum-preserving jump action')
+   drive(page,(3,0));drive(page,(9,-5));page.wait_for_function("AetherReach.snapshot().interaction==='station'||AetherReach.snapshot().target?.id==='glassline'")
+   axes(page,[0,0,0,-1]);page.wait_for_function('AetherReach.snapshot().position.pitch>.22');axes(page,[0,0,0,0]);frames(page);tap(page,0);page.wait_for_function('!!AetherReach.snapshot().rail',timeout=90000);check(snapshot(page)['rail']['id']=='glassline','Looking toward the line and A boards a physical freight rail after controller-only walking')
+   # Pulling the left stick back brakes and reverses the current rail. This is
+   # intentionally independent of RB, which now owns recent-power controls.
+   page.wait_for_function('AetherReach.snapshot().rail?.s>28');before=snapshot(page)['rail']['dir'];axes(page,[0,1,0,0]);page.wait_for_function('(d)=>AetherReach.snapshot().rail?.dir===-d',arg=before,timeout=30000);axes(page,[0,0,0,0]);frames(page);check(snapshot(page)['rail']['dir']==-before,'Pulling back on the left stick brakes and reverses rail travel without a scene reset');tap(page,0);page.wait_for_function('!AetherReach.snapshot().rail');check(True,'A releases a rail through the real momentum-preserving jump action')
    page.evaluate('TestPad.disconnect()');page.wait_for_selector('#pause-dialog[open]');check(True,'An unplugged active gamepad pauses rather than leaving stuck input')
    page.screenshot(path=str(OUT/'controller-controls.png'))
   elif MODE=='xr':
