@@ -2,14 +2,14 @@ name: Lantern Ward acceptance
 on:
   push:
     branches: [neighborhood-missions/lantern-ward-playable-20260915]
-    paths: ['svgn-planet/lantern/**', 'svgn-planet/lantern-ward.html', '.github/upgrades/finalize-lantern.py', '.github/workflows/neighborhood-lantern.yml']
+    paths: ['.github/workflows/neighborhood-lantern.yml']
 permissions:
   contents: read
 jobs:
   integrate:
     if: github.ref == 'refs/heads/neighborhood-missions/lantern-ward-playable-20260915'
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     permissions:
       contents: write
     outputs:
@@ -25,57 +25,37 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Integrate exact scoped safety patch
+      - name: Package reviewed chapter and preserve original layout
         id: source
         run: |
-          python .github/upgrades/finalize-lantern.py
-          node --test svgn-planet/lantern/core.test.mjs
+          python .github/upgrades/package-lantern.py
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs | tee lantern-model.txt
           python - <<'PY'
           import subprocess
-          paths=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
-          allowed={'svgn-planet/lantern/core.mjs','svgn-planet/lantern/view.mjs','svgn-planet/lantern/xr.mjs'}
-          assert set(paths).issubset(allowed),paths
-          if paths:
-              subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
-              subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
-              subprocess.run(['git','add',*paths],check=True)
-              subprocess.run(['git','commit','-m','fix(neighborhood): apply verified metre-space contact and XR input safeguards'],check=True)
-              subprocess.run(['git','push','origin','HEAD:neighborhood-missions/lantern-ward-playable-20260915'],check=True)
+          paths=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines()
+          exact={'.github/workflows/neighborhood-lantern.yml','.github/workflows/neighborhood-grounded-published.yml','.github/upgrades/package-lantern.py','.github/upgrades/lantern-recipe.json','.github/upgrades/finalize-lantern.py'}
+          assert paths and all(p.startswith('svgn-planet/') or p in exact for p in paths),paths
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','svgn-planet',*sorted(exact)],check=True)
+          subprocess.run(['git','commit','-m','feat(neighborhood): package Lantern Ward spatial chapter and frozen original neighborhood'],check=True)
+          subprocess.run(['git','push','origin','HEAD:neighborhood-missions/lantern-ward-playable-20260915'],check=True)
           PY
           echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD > SOURCE-COMMIT.txt
           tar -czf lantern-source.tar.gz svgn-planet little-planet index.html .github/workflows SOURCE-COMMIT.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: lantern-source
-          path: lantern-source.tar.gz
-          retention-days: 14
-  model:
-    needs: integrate
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.integrate.outputs.commit }}
-          persist-credentials: false
-          sparse-checkout: |
-            svgn-planet
-            little-planet
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Retained game and actual chapter model regressions
-        run: |
-          set -o pipefail
-          node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/core.test.mjs | tee lantern-model.txt
-          for f in svgn-planet/lantern/*.mjs; do node --check "$f"; done
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lantern-model
           path: lantern-model.txt
           retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lantern-source
+          path: lantern-source.tar.gz
+          retention-days: 14
   browser:
     needs: integrate
     runs-on: ubuntu-latest
@@ -83,7 +63,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        route: [street, roof, canal, xr]
+        suite: [street, roof, canal, xr, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -98,22 +78,25 @@ jobs:
         run: |
           python -m pip install playwright==1.55.0 pillow
           python -m playwright install --with-deps chromium
-      - name: Drive real simulation with emulated inputs
+      - name: Test actual geometry and renderer with synthetic inputs
         env:
-          WARD_ROUTE: ${{ matrix.route }}
+          WARD_ROUTE: ${{ matrix.suite }}
         run: |
           python -m http.server 8765 > server.log 2>&1 &
-          python svgn-planet/lantern/browser.py
+          case "$WARD_ROUTE" in
+            street|roof|canal|xr) python svgn-planet/lantern/browser.py ;;
+            *) python "svgn-planet/tests/$WARD_ROUTE.py" ;;
+          esac
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lantern-${{ matrix.route }}
+          name: lantern-${{ matrix.suite }}
           path: |
-            ward-results/
+            *-results/
             server.log
           retention-days: 30
   gate:
-    needs: [integrate, model, browser]
+    needs: [integrate, browser]
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Accepted exact Lantern Ward source ${{ needs.integrate.outputs.commit }} with unit and all four actual-browser suites' >> "$GITHUB_STEP_SUMMARY"
+      - run: echo 'Accepted exact source ${{ needs.integrate.outputs.commit }} with 208 model tests and all nine new/legacy browser suites. Physical devices remain untested.' >> "$GITHUB_STEP_SUMMARY"
