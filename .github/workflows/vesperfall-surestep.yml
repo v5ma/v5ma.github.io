@@ -2,32 +2,63 @@ name: Vesperfall Surestep acceptance
 on:
   push:
     branches: [vesperfall-surestep-20260914]
-    paths: ['vesperfall/**', '.github/workflows/vesperfall-surestep.yml']
+    paths: ['vesperfall/**', '.github/vesperfall-surestep*', '.github/workflows/vesperfall-surestep.yml']
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: vesperfall-surestep-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  baseline:
+  acceptance:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Baseline source and model regressions
+      - name: Materialize reviewed source on the isolated feature branch
         run: |
-          set -o pipefail
+          set -euo pipefail
+          python .github/vesperfall-surestep-apply.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall .github/vesperfall-surestep.part* || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Implement Surestep shortcuts, planted humanoid gait and tracked-hand spatial UI'
+            git push origin HEAD:vesperfall-surestep-20260914
+          fi
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
-          node --test vesperfall/tests/*.test.cjs | tee test-output/surestep-baseline.tap
-      - name: Retain exact source for scoped development and review
+      - name: Syntax, mechanics and production workbook regressions
+        run: |
+          set -euo pipefail
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/surestep-model.tap
+          python vesperfall/tests/production-workbook.py
+          python scripts/check-vesperfall.py
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise new Xbox shortcuts, tracked hands and rendered rigs
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 > test-output/server.log 2>&1 &
+          timeout 780 python -u vesperfall/tests/surestep-browser.py | tee test-output/surestep-browser.log
+      - name: Preserve established Xbox, two-controller VR and AR restoration
+        run: |
+          set -euo pipefail
+          timeout 780 python -u vesperfall/tests/dominions-browser.py | tee test-output/dominions-browser.log
+      - name: Retain exact tested source and diagnostics
         if: always()
         run: |
           mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
           tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/workflows/vesperfall-*.yml
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: vesperfall-surestep-baseline
+          name: vesperfall-surestep-acceptance
           path: test-output/
           retention-days: 14
