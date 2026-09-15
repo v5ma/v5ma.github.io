@@ -1,6 +1,6 @@
 {
-  "version": "0.10.0",
-  "focus": "Skyglass Cast: three licensed CC0 animated human models, bounded nearby cast with safe fallbacks, spectral rift surfaces and moving cloud light",
+  "version": "0.11.0",
+  "focus": "Grounded Cast: human-scale sizing, distance-paced clips, bounded two-bone foot locking, controller-preserving spatial menus and tracked hand UI",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false
 }

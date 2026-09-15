@@ -15,3 +15,10 @@ Enter VR is enabled only for a capable secure browser. The local-floor session u
 The 4x Longglass optic changes only the flat-screen camera projection. The XR eye projection is never globally zoomed. A true tracked magnified lens, climbing, hand tracking, full embodied reload and multiplayer remain future work. Foldwing gliding exists; its physical headset comfort is not certified.
 
 Pure model tests, native ordinary-input browser tests and device-API emulation are separate evidence categories. Emulated poses and buttons exercise the real model/renderer but cannot prove real pairing, tracking, stereo quality or sustained performance. Public files contain no private narrative, privileged credentials or telemetry.
+
+
+## Grounded Cast v0.11 hand UI
+
+Immersive sessions request local-floor and optional hand-tracking. Tracked controller movement and independent aiming remain available. Both tracked hands can point and pinch to select menu rows. Previous/Next page, Decrease/Increase value, Back and Exit VR are visible spatial controls. A hand must first be observed open; held, missing or reacquired poses do not activate controls. Hands never synthesize gunfire, powers or locomotion. Switching to hands without tracked controllers opens pause. During hand-only gameplay, point at the HUD Pause Menu control and pinch to reopen it. Use controllers for expedition movement/combat.
+
+Controller tracking loss clears actions; hidden sessions and reference-space resets pause safely. These are software implementation claims, not a physical Quest 3 test receipt. X04/X05/I03 remain open.
