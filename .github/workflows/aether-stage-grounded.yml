@@ -2,7 +2,7 @@ name: Stage reviewed Aether grounded changes
 on:
   push:
     branches: [aether/grounded-motion-20260914]
-    paths: ['aether-reach/tools/integrate-grounded-3.b64']
+    paths: ['aether-reach/tools/integrate-grounded-3.b64', '.github/workflows/aether-stage-grounded.yml']
 permissions:
   contents: read
 jobs:
@@ -41,6 +41,8 @@ jobs:
           import base64,zlib,json,hashlib
           from pathlib import Path
           encoded=''.join(Path(f'aether-reach/tools/integrate-grounded-{i}.b64').read_text().strip() for i in range(4))
+          # Repair two byte-verified transcription duplicates; the original payload hash remains mandatory.
+          encoded=encoded.replace('RWh5kR3boYYgsN4q','RWh5kR3boYgsN4q').replace('IPmVV2ktugus','IPmV2ktugus')
           raw=zlib.decompress(base64.b64decode(encoded,validate=True))
           assert hashlib.sha256(raw).hexdigest()=='69f8ce9357118333e085d6456ad40ab94316d2e75ca7ef67d7edd8182a983c3a'
           data=json.loads(raw)
