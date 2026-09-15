@@ -60,7 +60,6 @@
    const basin=w.solids.find(s=>s.type==='basin'),bp=basin.min.map((v,i)=>(v+basin.max[i])/2);
    b.add(K.cylinder,K.dark,bp[0],.18,bp[2],.83,.36,.83);b.add(K.cylinder,K.pale,bp[0],.49,bp[2],.78,.3,.78);
    b.add(K.cylinder,K.copper,bp[0],.65,bp[2],.62,.025,.62);b.box(K.dark,bp[0]+.35,.665,bp[2],.028,.022,1.13,.3);
-   b.add(K.cylinder,K.gold,bp[0],.12,bp[2],.1,.24,.1);
    const statue=w.solids.find(s=>s.type==='statue'),sp=statue.min.map((v,i)=>(v+statue.max[i])/2);
    b.box(K.pale,sp[0],.28,sp[2],.95,.56,.95);b.add(K.cylinder,K.ivory,sp[0],1.08,sp[2],.25,1.05,.31);b.add(K.sphere,K.ivory,sp[0],1.89,sp[2],.21,.27,.23);
    for(const side of[-1,1])b.add(K.cylinder,K.ivory,sp[0]+side*.29,1.35,sp[2]-.05,.08,.72,.09,0,0,side*.35);
