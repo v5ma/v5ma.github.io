@@ -1,0 +1,80 @@
+name: Sky Cycle Portal Network
+on:
+  push:
+    branches: [master, 'sky-cycle/portal-network-0.21']
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '!mario-maker-clone/svgn-paper-route/development/**'
+      - '.github/workflows/sky-cycle-portals.yml'
+  pull_request:
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '.github/workflows/sky-cycle-portals.yml'
+permissions:
+  contents: read
+concurrency:
+  group: sky-cycle-portals-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rules:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          git rev-parse HEAD
+          for f in portal-network.js rider-motion.js xr-play.js; do node --check mario-maker-clone/svgn-paper-route/$f; done
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
+  native:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - script: portal-network-browser.py
+            name: xr-portals
+          - script: bathhouse-browser.py
+            name: tideglass
+          - script: sunrise-browser.py
+            name: sunrise
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exact source native acceptance
+        env:
+          ARTIFACT_DIR: /tmp/sky-cycle-evidence
+        run: |
+          git rev-parse HEAD
+          python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-cycle-${{ matrix.name }}-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/sky-cycle-evidence/
+          retention-days: 30
+  published:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python mario-maker-clone/svgn-paper-route/tests/portal-network-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sky-cycle-portals-public-${{ github.sha }}
+          path: /tmp/sky-cycle-portals-public.json
+          retention-days: 30
