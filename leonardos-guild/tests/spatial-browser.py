@@ -76,6 +76,7 @@ with sync_playwright() as p:
   start=read();page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,-.65]');frames(18);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]');frames(35)
   check(math.hypot(read()['x']-start['x'],read()['z']-start['z'])>.2,'Tracked stick moves the same collision-checked player in first person')
   before=read();page.evaluate('__xr.sources[1].gamepad.axes=[0,0,1,0]');frames(6);page.evaluate('__xr.sources[1].gamepad.axes=[0,0,0,0]');frames(4)
+  check(math.atan2(math.sin(read()['xr']['spatial']['firstPersonHeading']-before['xr']['spatial']['firstPersonHeading']),math.cos(read()['xr']['spatial']['firstPersonHeading']-before['xr']['spatial']['firstPersonHeading']))<-.5,'Right tracked stick produces a rightward snap in the actual first-person view basis')
   check(abs(read()['x']-before['x'])<.04 and abs(read()['z']-before['z'])<.04,'Snap turning changes the view without translating the apprentice')
   before=read();page.evaluate('__xr.head.x=1.2');frames(5);check(read()['xr']['spatial']['headBlocked'],'Excessive physical leaning activates the head-clipping guard');check(read()['x']==before['x'] and read()['z']==before['z'],'Head-clipping recovery cannot teleport the player');page.evaluate('__xr.head.x=0');frames(6)
   page.evaluate('__xr.replace(1,true)');frames(6);check(read()['xr']['handCount']==1,'Hand tracking can replace a controller inside true spatial XR')

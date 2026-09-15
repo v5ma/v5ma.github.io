@@ -51,9 +51,19 @@ with sync_playwright() as p:
   check(read()['render']['quarter']['physicalScene'] and read()['render']['quarter']['floorCount']==24,'Actual renderer uses the authored metric floors')
   press(9);page.wait_for_selector('#pause-dialog[open]');choose('#menu-return');page.wait_for_function('!LeonardoGuild.inspect().running');press(0);page.wait_for_function('LeonardoGuild.inspect().running');frames(8)
   act('brief');check(read()['quarter']['briefed'],'Xbox X opens the real workshop brief and B returns')
+  before=read();press(8);page.wait_for_selector('#map-dialog[open]')
+  for _ in range(3):press(5)
+  check(read()['quarterUI']['layer']=='upper','Xbox bumpers switch the actual map to the upper work floors')
+  check(read()['x']==before['x'] and read()['z']==before['z'] and not read()['quarter']['observations'],'Inspecting other map floors cannot move the player or invent observations')
+  capture('upper-floor-map');press(1);page.wait_for_function('LeonardoGuild.inspect().running')
+  press(13);page.wait_for_selector('#quarter-dialog[open]');check(read()['quarterUI']['notebookOpen'],'The retained direct Xbox notebook shortcut opens the Quarter observations');press(1)
   press(4);check(read()['resonance']['tool']=='sling','Tap LB retains direct tool selection in the new opening');press(4)
   for i,(x,z) in enumerate(paths[ROUTE]):
    drive(x,z)
+   note='precision' if ROUTE=='social' and x==17.5 else 'dye' if ROUTE=='upper' and x==-23.2 else 'cellar' if ROUTE=='hydraulic' and x==1 and z==14.1 else None
+   if note:
+    act('read');check(note in read()['quarter']['observations'],'Inspecting '+note+' records its own route-specific clue without granting a reward')
+    press(13);page.wait_for_selector('#quarter-dialog[open]');check(page.locator('[data-observation="'+note+'"]').count()==1,'The notebook shows the actual observation once');capture('learned-observation');press(1)
    if ROUTE=='social' and x==17.5:
     act('ratio-1');check(not read()['quarter']['goodsAccess'] and read()['credits']==0,'A mistaken drive ratio is recoverable and costs nothing');act('ratio-2');check(read()['quarter']['goodsAccess'],'The actual cooperative repair opens the physical goods stairs')
    if ROUTE=='hydraulic' and x==1.7:
@@ -76,6 +86,7 @@ with sync_playwright() as p:
   expected=read();raw=json.loads(page.evaluate("localStorage.getItem('svgn.leonardos-guild.v1')"));check(raw['version']==2,'The original save namespace and outer version remain intact')
   page.reload(wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5);press(0);page.wait_for_function('LeonardoGuild.inspect().running');actual=read()
   check(actual['quarter']['archOpen'] and actual['quarter']['reported'] and actual['credits']==expected['credits'] and actual['quarter']['delivery']==expected['quarter']['delivery'],'Actual reload preserves the shortcut, both cases and earned rewards')
+  check(actual['quarter']['observations']==expected['quarter']['observations'] and len(actual['quarter']['observations'])>0,'Actual reload retains optional learned observations in the original save')
   check(abs(actual['x']+20)<.1 and abs(actual['z']+13)<.1,'Resumed Quarter saves arrive safely at the workshop rather than on a removed floor')
   capture('resumed');drive(-24,-14);act('leave');check(not read()['quarter']['active'] and read()['credits']==expected['credits'],'The older town remains accessible with the same earned progression')
   check(read()['audio']['preferences']['density']=='quiet' and read()['audio']['musicVoices']<=1,'Quiet audio and the single-score-stream policy remain intact')
