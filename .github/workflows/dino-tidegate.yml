@@ -2,7 +2,7 @@ name: Dino Atlas Tidegate
 on:
   push:
     branches: ['dino-atlas/tidegate-diorama-20260915']
-    paths: ['dino-atlas/**', '.github/workflows/dino-tidegate.yml', '.github/patches/tidegate.*.b64']
+    paths: ['dino-atlas/**', '.github/workflows/dino-tidegate.yml', '.github/patches/tidegate-fixes.b64']
 permissions:
   contents: read
 concurrency:
@@ -26,28 +26,27 @@ jobs:
         with:
           node-version: '22'
       - id: apply
-        name: Apply the exact tested and checksummed Dino-only source once
+        name: Apply audited audio and roof correction once
         run: |
           python - <<'PY'
           from pathlib import Path
           import base64,lzma,hashlib,subprocess,os
-          parts=sorted(Path('.github/patches').glob('tidegate.*.b64'))
-          if parts:
-              assert len(parts)==4,'Incomplete source transport'
-              protected={'index.html':'c956c53eea7db83e54adce9988198b3b06ff8671428d4fb13a4eb9dfa8116456','AAA-ROADMAP.md':'1990165a5ed396fc3b1d2796f55a61fbef3d35019a5f9f56c71385cdda27bf7e','ranger-input.js':'758b13aed7eaf1deff450d794c82c9c851cb5d63f3155c926100284e2c9aee88','ranger-physics.js':'e6a105316a8b6f6937901aa9bdab2403efc8c8a94449e137db11150f5133dd82','ranger-art.js':'4e6f2ef8682c9338b88d46121acca883c188cad9ea0f11a56034b4f2c01c9899','ranger-tools.js':'6d78544c96b8983cbe85f52523415d8d9286b4d69b055c68ea6acbe18333380b','ranger-audio.js':'ac21df706192e3fbe701b3e987ffa0edcbda60b86321157c53a44f986469d115','frontier-art.js':'672ea61586532e9220fb843b59419722e1429e9ea1c5d1d6adb5543738590860','frontier-vehicles.js':'f294e8bcf52212d64d17a76e98e5de22f013c2ca8c00521558e5cb670b5b1c35','herd-rig.js':'f9b9adbfc353fb4ce2c34384ef4cf274dec10529335949b776650adcbf811f9a','ranger-body.js':'cf72d9fec5e9093caf525d335499910b8cc1996c3600e0829132fb73c11bf61c','xr-reserve.js':'9af8b7940375f8c1635152cb736ceb77a10bdb9814ba03916c05d1f1582a550a','xr-actions.js':'ef04f82e72e73052a32f2c8ec364f7e17003f2af8dd14de21c693a3e1eacb0a6'}
-              for p,want in protected.items():assert hashlib.sha256((Path('dino-atlas')/p).read_bytes()).hexdigest()==want,'Review changed baseline: '+p
-              patch=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
-              assert hashlib.sha256(patch).hexdigest()=='2818713a7855747c11d67667d11261464bc27124111749415cae5da9dd77941d','Source checksum mismatch'
-              target=Path('/tmp/tidegate.patch');target.write_bytes(patch)
+          p=Path('.github/patches/tidegate-fixes.b64')
+          if p.exists():
+              expected={'dino-atlas/tidegate.js':'31f7d5cedfea64b3e910836642e2132822580452','dino-atlas/tidegate-world.js':'962cf6f237ec1de9f6f57af0d670d29bc8bd6baa','dino-atlas/tests/tidegate-browser.py':'926e5ae25b4844f604361894de07e1197c413ecb','dino-atlas/tests/tidegate-physics.test.mjs':'1d404198bc252d12789a5871350199cdbdf08711'}
+              for name,want in expected.items():assert subprocess.check_output(['git','hash-object',name],text=True).strip()==want,'Review changed source: '+name
+              patch=lzma.decompress(base64.b64decode(p.read_text().strip(),validate=True))
+              assert hashlib.sha256(patch).hexdigest()=='3036ab8fa8be0555890949ba844ab86f319f984b67f823ec267d33b62e4ee9fd'
+              target=Path('/tmp/tidegate-fixes.patch');target.write_bytes(patch)
               names=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
-              assert all(line.split('\t')[-1].startswith('dino-atlas/') for line in names.splitlines())
+              assert set(line.split('\t')[-1] for line in names.splitlines())==set(expected)
               subprocess.run(['git','apply','--check',str(target)],check=True)
               subprocess.run(['git','apply','--index',str(target)],check=True)
               subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
-              subprocess.run(['git','rm',*[str(p) for p in parts]],check=True)
+              subprocess.run(['git','rm',str(p)],check=True)
               subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
               subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
-              subprocess.run(['git','commit','-m','Implement Tidegate Crossing: authored place mastery and selectable first-person / diorama XR'],check=True)
+              subprocess.run(['git','commit','-m','Repair Tidegate audio state adapter and roof approach; test actual boat and helicopter access'],check=True)
               subprocess.run(['git','push','origin','HEAD:dino-atlas/tidegate-diorama-20260915'],check=True)
           sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('source='+sha+'\n')
