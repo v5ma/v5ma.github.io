@@ -40,7 +40,7 @@ retaining('terrace-south-west',{x:-32,z:-8.32},{x:-24.3,z:-8.32},{z:-.3});
 retaining('terrace-south-east',{x:-19.7,z:-8.32},{x:-8,z:-8.32},{z:-.3});
 retaining('clinic-ramp-west',{x:-24.18,z:-8.5},{x:-24.18,z:-3.5},{x:.3});
 retaining('clinic-ramp-east',{x:-19.82,z:-8.5},{x:-19.82,z:-3.5},{x:-.3});
-export const RECUT_TASK={id:RETURN_TASK,x:-26.1,z:5.8,title:'Open the clinic return gate',description:'Release the yard shutter from inside the clinic. The return to the rain garden becomes a short, readable recovery loop. Its open state is recorded at shelters.',kind:'repair',reward:{},required:false};
+export const RECUT_TASK={id:RETURN_TASK,customArt:true,x:-26.1,z:5.8,title:'Open the clinic return gate',description:'Release the yard shutter from inside the clinic. The return to the rain garden becomes a short, readable recovery loop. Its open state is recorded at shelters.',kind:'repair',reward:{},required:false};
 export const RECUT_ROUTES=Object.freeze({
  garden:{purpose:'Concealment and recovery, not a second exposed street.',points:[[0,27],[-13,23],[-19,16],[-19,7],[-24,6],[-24,-1],[-22,-3.5]]},
  marketTerrace:{purpose:'Observe the market from 2.4 metres up, trade concealment for information, then descend into the battery room.',points:[[-7,-10],[-10,-10],[-15,-10],[-22,-10],[-22,-7],[-22,-3.5]]},

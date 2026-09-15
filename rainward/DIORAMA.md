@@ -29,3 +29,9 @@ The world is clipped against the display volume before a depth-preserving shell/
 The browser suites use real Chromium/WebGL and the real game with an explicitly mocked XR session, poses, buttons and joints. The mock tests AR compositor selection but cannot show or validate a physical passthrough camera. The recut geometry suite uses an explicitly enemy-defeated dry-shelter fixture; existing living-enemy mission suites remain separate. Physical Quest 3 and Xbox testing, subjective art/audio, player enjoyment, comfort and full-campaign XR completion remain unapproved.
 
 Publication requires exact-source regression, merge and live-byte verification. A candidate document is not a publication receipt; use the release PR and permanent evidence summary for delivered status.
+
+## Native image-review correction
+
+An open display face also cuts away the world presentation in that direction. Top-open views remove roofs and upper walls above the local survivor clearance; front-open views remove foreground facade sections that would otherwise hide the character. Visible targeting ignores those removed presentation fragments, but firearm traces still start at the survivor and obey the real level walls. These views deliberately provide different information from first-person play; they do not make barriers traversable. The vertical window adjusts to zoom and the focused diver so the survivor is not clipped at the top of a high-zoom display.
+
+The first all-green candidate still had poor camera-matched images: roofs hid the miniature, and large new clinic signs occluded the over-shoulder view. The subsequent visual pass adds these cutaways, lowers the terrace signs, replaces the duplicate generic gate marker with its authored latch, and folds the raised shutter into its lintel. Passing model/browser checks alone was not treated as final art approval.

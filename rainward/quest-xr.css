@@ -1,3 +1,5 @@
 /* Native layout stays measurable for spatial mirroring; XR provides its own UI. */
 .immersive-rainward .sheet,.immersive-rainward #hud,.immersive-rainward #touch,.immersive-rainward #controller-menu-hint{opacity:0!important;pointer-events:none!important}
 #xr-entry-status{font-size:.9rem;line-height:1.4;max-width:100%}
+
+#xr-view-title,#xr-view-pause{max-width:100%;box-sizing:border-box}

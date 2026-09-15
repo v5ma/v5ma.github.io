@@ -9,7 +9,7 @@ import {normalizeDiorama,readDioramaPreferences,writeDioramaPreferences,sessionT
 import {heightAt,HEIGHT,solidAt} from './world.mjs';
 import {move} from './motion.mjs';
 const Y=new T.Vector3(0,1,0),V=()=>new T.Vector3(),Q=()=>new T.Quaternion();
-const instructions='Controllers: left stick moves, click sprints. Right stick snaps 30 degrees; up swaps guns, down cycles tools; click melees. Right trigger fires; right grip interacts. Left trigger aims; left grip listens. A vaults or surfaces; left grip + A dodges. Tap B crouches; hold B goes prone or dives. X reloads. Tap Y opens satchel; hold Y pauses. A or trigger selects in menus, B returns. System buttons stay reserved. Hands: point and pinch to use menus. Left pinch away from a panel anchors a virtual movement stick: shift that hand horizontally, release to stop. Right pinch interacts by default; select FIRE mode to aim and hold pinch to shoot, throw or bandage. Field controls include turning, weapons, posture and every other action. Raise an open left palm facing you to pause and recenter. Menus and hand switching require released inputs. Locomotion follows your head, not the gun. This is immersive VR, not passthrough AR.';
+const instructions='Controllers: left stick moves, click sprints. Right stick snaps 30 degrees; up swaps guns, down cycles tools; click melees. Right trigger fires; right grip interacts. Left trigger aims; left grip listens. A vaults or surfaces; left grip + A dodges. Tap B crouches; hold B goes prone or dives. X reloads. Tap Y opens satchel; hold Y pauses. A or trigger selects in menus, B returns. System buttons stay reserved. Hands: point and pinch to use menus. Left pinch away from a panel anchors a virtual movement stick: shift that hand horizontally, release to stop. Right pinch interacts by default; select FIRE mode to aim and hold pinch to shoot, throw or bandage. Field controls include turning, weapons, posture and every other action. Raise an open left palm facing you to pause and recenter. Menus and hand switching require released inputs. Locomotion follows your head, not the gun. Choose FIRST PERSON / VR, VR DIORAMA or AR DIORAMA before entering. Diorama controls choose top/front openings, scale, follow and recenter. AR requires a transparent compositor; changing between AR and VR requires leaving the current session.';
 export function createQuestXR(E){
  const diorama=createDioramaView();let storage=null;try{storage=globalThis.localStorage;}catch{}let preferences=readDioramaPreferences(storage),viewMode=preferences.view;
  const isDiorama=()=>viewMode!=='first-person';
@@ -141,7 +141,7 @@ export function createQuestXR(E){
   }
   const anySelect=list.some(s=>s.hand?s.pinch:s.buttons[0]?.pressed||s.buttons[0]?.value>.65);if(panel.held()&&!anySelect)panel.release();
   if(E.mode()!=='play')sample.fire=false;
-  if(sample.turn){const angle=sample.turn;turn+=angle;previousHead=null;align(E.state(),dt);view.yaw+=angle;recenter(false);sample.move=[0,0];}
+  if(sample.turn){const angle=sample.turn;turn+=angle;previousHead=null;align(E.state(),dt);view.yaw+=angle;recenter(false);sample.move=[0,0];sample.fire=false;}
   if(slow)sample.move=sample.move.map(x=>x*.62);
   if(list.some(s=>s.side==='left'&&s.hand)){sample.sprint=handSprint;sample.sprintDirect=true;sample.listen=handListen;}
   if(safe){currentRay=rays.right||{origin:camera.getWorldPosition(V()),direction:hd};}else sample.fire=false;
