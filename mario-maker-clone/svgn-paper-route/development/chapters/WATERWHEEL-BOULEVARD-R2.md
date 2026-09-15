@@ -1,6 +1,6 @@
 # Waterwheel Boulevard: revision 2 chapter specification
 
-Approved reference-chapter direction, September 15, 2026. Runtime baseline: Quiet Water, merged through PR 159 as `a215ecfe7bbd8da5f36932b94a885f156523f92e`. Canonical method: `../LEVEL-DESIGN-METHODOLOGY.md`. The preview's exact-source and publication status belongs in `../verification/waterwheel-lab-0.23.json`.
+Approved reference-chapter direction, September 15, 2026. Runtime baseline: Quiet Water, merged through PR 159 as `a215ecfe7bbd8da5f36932b94a885f156523f92e`. Canonical method: `../LEVEL-DESIGN-METHODOLOGY.md`. The preview's exact-source and publication status belongs in `../verification/waterwheel-lab-0.23.json`. Current release scope and retained failures: `../WATERWHEEL-LAB-0.23.md`.
 
 ## Experience and boundaries
 
@@ -22,15 +22,21 @@ The wheelhouse landmark stands behind the physical riding plane near x=7930. Nin
 
 ## Transfer ledger
 
-The geometry module contains five explicit transfer intentions: road-to-porch, road-to-runway, runway-to-crescent, crescent-to-gallery and gallery-to-finish. Each names its intended receiver, recovery interval and onward state; road entries also name an approach interval. Status remains `candidate`, since a bounded model or one native run is not a universal proof. The metadata survives the existing document codec and remains available to the authoring tools. There is no new dedicated visual transfer-annotation editor yet.
+The geometry module contains five explicit transfer intentions: road-to-porch, road-to-runway, runway-to-crescent, crescent-to-gallery and gallery-to-finish. Each names its intended receiver, recovery interval and onward state; road entries also name an approach interval. Metadata status remains `candidate`: bounded model and native cases do not prove every control sequence. The metadata survives the existing document codec and remains available to the authoring tools. There is no new dedicated visual transfer-annotation editor yet.
 
-The initial model matrix varies entry speed 5, 7.5 and 10, takeoff offset 90, 120 and 150, and both Forgiving and Precision grip for the porch and express entries. Its 36 cases carry real isolated rail state after one explicitly seeded road jump. It omits full terrain/enemy/delivery simulation, human input variability and a comprehensive swept body/deck audit. Native browser runs must begin through the real UI and use ordinary movement, not seeded rider positions.
+The initial model matrix varies entry speed 5, 7.5 and 10, takeoff offset 90, 120 and 150, and both Forgiving and Precision grip for the porch and express entries. Its 36 cases carry real isolated rail state after one explicitly seeded road jump. It omits full terrain/enemy/delivery simulation, human input variability and a comprehensive swept body/deck audit. Native browser runs begin through the real UI and use ordinary movement, not seeded rider positions.
 
 ## Play and authoring entry
 
 Routes contains `Waterwheel r2 design preview`. The same command appears under the Workshop's Worlds and drafts. The dialog offers the complete layout, the ground-only build with sky removed, the editable blueprint and explicit restoration of the previous blueprint. Dirty drafts and failed backup writes block entry. The previous blueprint is stored only in `svgn.skycycle.waterwheel-preview-backup.v1`; existing libraries and recovery documents are not cleared. A preview playtest uses the original Workshop and returns to that editor.
 
 Xbox dialog focus, confirm/back and gameplay use the established bindings. The same native controls are available to the existing XR UI. Preserve the pointer-required advanced Bezier exception. Do not claim actual hand/controller usability from software tests alone.
+
+## Accepted preview evidence
+
+Exact candidate `53c9a7bc945b031c642f48fb30a80e76ea1d3fbd` passed all nine scoped jobs in run `35034203866`: 223 game rules, 12 original instrumental-score rules and 144 browser checks. All eight native artifact digests and report source identities were verified; 46 PNGs were reviewed. Four first-attempt preview finishes cover ground beneath sky, the ground-only build, the returning porch and all four express sections in sequence. Five additional first-attempt finishes retain the prior Tideglass and Sunrise regression evidence on this exact source.
+
+The preview runs intentionally delivered zero mail, so they establish traversal and award isolation, not complete delivery attainability. They inspect real 3D scenery before using the supported 2D view for full CPU-runner rides. The stereo suites use the real renderer and emulated tracking hardware, not a physical Quest. The new test confirms menu text contrast, backgrounds unaffected by scenery, controller movement, tracked-hand actions, comfort settings, safe exit and return to the editable blueprint. No complete XR chapter finish is claimed.
 
 ## Acceptance and promotion workbook
 
@@ -39,9 +45,9 @@ Xbox dialog focus, confirm/back and gameplay use the established bindings. The s
 - [x] Preserve the existing campaign builders, route indices and award owners.
 - [x] Define the short porch and four-section continuous express intention.
 - [x] Add explicit transfer metadata and reserved revision record-key policy.
-- [ ] Attach exact-source native ground-only, ground-under-sky, porch and continuous express finishes.
-- [ ] Review actual 3D/2D images, controller entry/back and preview restore/save isolation.
-- [ ] Verify the new geometry and menu flow in the real stereo renderer with tracked input emulation.
+- [x] Attach exact-source native ground-only, ground-under-sky, porch and continuous express finishes.
+- [x] Review actual 3D/2D images, controller entry/back and preview restore/save isolation.
+- [x] Verify the new geometry and menu flow in the real stereo renderer with tracked input emulation.
 - [ ] Extend delivery placement into purposeful optional discoveries and verify each intended delivery.
 - [ ] Author and qualify the speed/brake-selected fork with genuinely useful lower and upper outcomes.
 - [ ] Author the optional high-to-high whip link while preserving a non-whip alternative.
@@ -53,4 +59,4 @@ Xbox dialog focus, confirm/back and gameplay use the established bindings. The s
 - [ ] Qualify physical Xbox and Quest controllers/hands, readability, tracking loss, comfort and performance.
 - [ ] Promote the revised default chapter only after its declared gates pass; preserve earlier records and edited documents.
 
-A published preview closes only its own software/publication scope. It does not close the whole reference-chapter quality gate. Continue this workbook before expanding Copperleaf or adding another water destination. Human and physical-device observations must be recorded as actual observations, never fabricated.
+A published preview closes only its own software/publication scope, controlled by the versioned receipt. It does not close the whole reference-chapter quality gate. Continue this workbook before expanding Copperleaf or adding another water destination. Human and physical-device observations must be recorded as actual observations, never fabricated.
