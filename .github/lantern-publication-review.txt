@@ -1,0 +1,1 @@
+Publication archive changes require review before merge. Runtime is unchanged. This work-branch checkpoint prevents an older archive job from pushing over a newer review.
