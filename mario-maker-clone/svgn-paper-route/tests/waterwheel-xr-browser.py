@@ -1,4 +1,6 @@
-"""Real game + deterministic XR hardware emulation. Never mutates player/win/score."""
+"""Real game and deterministic XR hardware; render-only occlusion fixture is labeled.
+Never mutates player, velocity, wins or score. Original scene visibility is restored.
+"""
 from pathlib import Path
 import os,json,subprocess,threading,functools,base64
 from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
@@ -10,6 +12,24 @@ class Quiet(SimpleHTTPRequestHandler):
 server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(ROOT)));threading.Thread(target=server.serve_forever,daemon=True).start()
 origin=os.getenv('TEST_ORIGIN',f'http://127.0.0.1:{server.server_port}').rstrip('/')+'/';BASE=origin+'mario-maker-clone/svgn-paper-route/'
 checks=[];errors=[];logs=[];passed=False;diagnostics={};failure=None
+MEASURE="""async()=>{
+ const T=await import('./vendor/three.webgpu.js'),d=SkyCycleXR.diagnostics;
+ const expected=['Back to the route','Choose a route','Materials & FX','Flight Deck','Sound & music','Controller guide'];
+ const rows=d.buttons.filter(b=>expected.includes(b.label));
+ if(rows.length!==6||expected.some((name,i)=>rows[i].label!==name))throw Error('Actual Workshop pause menu differs from the six required controls');
+ const img=new Image();img.src=await xrEmulator.image();await img.decode();
+ const c=document.createElement('canvas');c.width=img.width;c.height=img.height;const cx=c.getContext('2d');cx.drawImage(img,0,0);
+ const eyes=__merged.renderer.xr.getCamera().cameras,samples=[],text=[];
+ function pixel(eye,x,y){const v=new T.Vector3((x/1200-.5)*1.5,(.5-y/900)*1.125,0).applyMatrix4(new T.Matrix4().fromArray(d.uiMatrix)).project(eyes[eye]);const px=Math.round(eye*550+(v.x+1)*275),py=Math.round((1-v.y)*400);if(px<eye*550||px>=(eye+1)*550||py<0||py>=800)throw Error('Menu sample outside eye viewport');return {px,py,rgb:[...cx.getImageData(px,py,1,1).data].slice(0,3)};}
+ function luminance(rgb){return rgb.map(v=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4);}).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0);}
+ for(let eye=0;eye<2;eye++)for(const b of rows){
+  const background=pixel(eye,b.x+b.w*.7,b.y+b.h-12);for(const t of [.7,.85])samples.push({eye,label:b.label,...pixel(eye,b.x+b.w*t,b.y+b.h-12)});
+  const a=pixel(eye,b.x+12,b.y+10),z=pixel(eye,b.x+380,b.y+43);let highContrast=0;
+  for(let y=a.py;y<=z.py;y++)for(let x=a.px;x<=z.px;x++){const rgb=[...cx.getImageData(x,y,1,1).data].slice(0,3);if((luminance(rgb)+.05)/(luminance(background.rgb)+.05)>=4.5)highContrast++;}
+  text.push({eye,label:b.label,highContrast});
+ }
+ return {samples,text,toneMapping:__merged.renderer.toneMapping,exposure:__merged.renderer.toneMappingExposure};
+}"""
 def check(value,label):
  assert value,label
  checks.append(label);print('PASS:',label,flush=True)
@@ -42,9 +62,18 @@ with sync_playwright() as pw:
   page.locator('#sky-xr-open').click();page.locator('#sky-xr-enter').click();page.wait_for_function('SkyCycleXR.presenting && SkyCycleXR.diagnostics.frames>5')
   check(page.evaluate('SkyCycleXR.diagnostics.eyes===2 && SkyCycleXR.diagnostics.ownedScene && __cloudview.root.userData.waterwheelPreview.revision===2'),'Both stereo eyes render the actual Waterwheel preview scene')
   capture('waterwheel-xr-controller')
-  contrast=page.evaluate("""async()=>{const T=await import('./vendor/three.webgpu.js');const d=SkyCycleXR.diagnostics;const rows=d.buttons.filter(b=>['Back to the route','Choose a route','Portal atlas','Flight Deck','Sound & music','Controller guide'].includes(b.label));const img=new Image();img.src=await xrEmulator.image();await img.decode();const c=document.createElement('canvas');c.width=img.width;c.height=img.height;const cx=c.getContext('2d');cx.drawImage(img,0,0);const samples=[];const eyes=__merged.renderer.xr.getCamera().cameras;for(let eye=0;eye<2;eye++)for(const b of rows)for(const t of [.7,.85]){const x=b.x+b.w*t,y=b.y+b.h-12;const v=new T.Vector3((x/1200-.5)*1.5,(.5-y/900)*1.125,0).applyMatrix4(new T.Matrix4().fromArray(d.uiMatrix)).project(eyes[eye]);const px=Math.round(eye*550+(v.x+1)*275),py=Math.round((1-v.y)*400);if(px<eye*550||px>=(eye+1)*550||py<0||py>=800)throw Error('Menu sample outside eye viewport');const rgb=[...cx.getImageData(px,py,1,1).data].slice(0,3);samples.push({eye,label:b.label,px,py,rgb});}return samples;}""")
-  diagnostics['menu_pixels']=contrast
-  check(len(contrast)==24 and all(max(abs(v-e) for v,e in zip(s['rgb'],[35,66,92]))<=18 for s in contrast),'Both eye views retain opaque readable button backgrounds instead of scenery bleed-through')
+  contrast=page.evaluate(MEASURE);diagnostics['menu_readback']=contrast
+  pixels=contrast['samples'];reference=pixels[0]['rgb']
+  check(len(pixels)==24 and all(max(abs(v-e) for v,e in zip(s['rgb'],reference))<=6 for s in pixels),'All six pause controls in both eyes retain uniform backgrounds without scenery bands')
+  check(len(contrast['text'])==12 and all(s['highContrast']>=20 for s in contrast['text']),'Every first-page control has visible text with at least 4.5 to 1 measured contrast')
+  # Explicitly isolated render-only occlusion test. No movement or award data changes.
+  visible=page.evaluate('__merged.scene.visible')
+  try:
+   page.evaluate('(()=>{__merged.scene.visible=false;})()');frames(3);isolated=page.evaluate(MEASURE)
+  finally:
+   page.evaluate('(value)=>{__merged.scene.visible=value;}',visible);frames(3)
+  diagnostics['isolated_overlay_readback']=isolated
+  check(all(max(abs(v-e) for v,e in zip(a['rgb'],b['rgb']))<=2 for a,b in zip(pixels,isolated['samples'])),'Render-only isolation confirms scenery cannot overwrite the 24 sampled menu pixels')
   choose('Back to the route');page.wait_for_function('!__delivery.paused');frames()
   x=page.evaluate('player.x');page.evaluate('xrEmulator.axis(.8)');page.wait_for_function('(x)=>player.x>x+100',arg=x);page.evaluate('xrEmulator.axis(0)');frames()
   check(page.evaluate('RouteWorkshop.testing && __delivery.state.route===-1'),'Tracked controller rides while the existing Workshop retains award isolation')
@@ -71,4 +100,4 @@ with sync_playwright() as pw:
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'failure':failure,'checks':checks,'errors':errors,'console':logs,'diagnostics':diagnostics,'coverage':'Real Waterwheel game scene and Three XRManager with deterministic controller/hand hardware emulation. Ordinary movement and actual nonblank stereo captures; not a full XR chapter finish or physical Quest qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'failure':failure,'checks':checks,'errors':errors,'console':logs,'diagnostics':diagnostics,'coverage':'Real Waterwheel game scene and Three XRManager with deterministic controller/hand hardware. Normal controls, stereo pixel/contrast measurement and explicitly isolated render-only scenery occlusion fixture. No full XR finish or physical Quest qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
