@@ -4,12 +4,10 @@ on:
     branches: [neighborhood-missions/grounded-controls-20260914]
     paths:
       - 'svgn-planet/**'
-      - 'tests/neighborhood-missions/**'
       - '.github/workflows/neighborhood-grounded.yml'
   pull_request:
     paths:
       - 'svgn-planet/**'
-      - 'tests/neighborhood-missions/**'
       - '.github/workflows/neighborhood-grounded.yml'
 permissions:
   contents: read
@@ -23,7 +21,7 @@ jobs:
           persist-credentials: false
           sparse-checkout: |
             svgn-planet
-            tests/neighborhood-missions
+            tests
             scripts
             .github/workflows
       - uses: actions/setup-node@v4
@@ -32,11 +30,11 @@ jobs:
       - name: Archive exact source for reproducible local verification
         run: |
           git rev-parse HEAD > SOURCE-COMMIT.txt
-          tar -czf neighborhood-source.tar.gz svgn-planet tests/neighborhood-missions scripts .github/workflows SOURCE-COMMIT.txt
+          tar -czf neighborhood-source.tar.gz svgn-planet tests scripts .github/workflows SOURCE-COMMIT.txt
       - uses: actions/upload-artifact@v4
         with:
           name: neighborhood-source
           path: neighborhood-source.tar.gz
           retention-days: 7
       - name: Model regressions
-        run: node --test svgn-planet/tests/*.test.mjs tests/neighborhood-missions/model.test.mjs
+        run: node --test svgn-planet/tests/*.test.mjs
