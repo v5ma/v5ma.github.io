@@ -1,0 +1,15 @@
+{
+  "release": "0.14.1",
+  "record_kind": "Retained failed candidate evidence, not a publication receipt",
+  "source": "d2ae295a9facf105dedc1851ffc79939d06f6579",
+  "workflow_run": 35036411947,
+  "artifact": 10423482683,
+  "archive_sha256": "39fba39a20c669d98281c5250bfdd087fd2c38f35688d861f86aae84bd89163d",
+  "result": "failed",
+  "case": "survival-keyboard",
+  "observed": "The native screenshot showed the new keyboard-aware action overlay and recipe percent, but the old Field Ready interface overwrote the satchel status with HOLD A TO ASSEMBLE / RELEASE TO CANCEL.",
+  "correction": "Remove the competing craft-status write in field-ready-ui.mjs. The input-aware HUD remains the single text owner. Keep the active native test and strengthen it to require the actual input method as well as hold/cancel semantics.",
+  "preserved": "All input handlers, recipe durations, resources, cancellation/refund rules, saves, enemies, chapters and XR modes remain unchanged.",
+  "local_corrected_model_checks": {"passed": 341, "failed": 0, "skipped": 0},
+  "release_gate": "Require corrected-source native readability plus the complete existing PR matrix, safe merge, Pages and public-byte verification before declaring publication."
+}

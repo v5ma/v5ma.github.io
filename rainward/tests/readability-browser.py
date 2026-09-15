@@ -47,7 +47,8 @@ with sync_playwright() as pw:
    hold(True);wait('!!Rainward.state.player.craft');wait('Number(document.getElementById("craft-progress").value)>0')
    check(page.locator('#craft-progress').get_attribute('aria-label')=='Crafting medkit','Native progress exposes the correct accessible recipe name')
    check('percent' in page.locator('#craft-progress').get_attribute('aria-valuetext') and '%' in page.locator('#craft-percent').inner_text(),'Visible and accessible percentage feedback accompanies the native progress bar')
-   check(('release to cancel' in page.locator('#craft-status').inner_text())==(profile=='survival'),'Only a genuinely held recipe advertises release-to-cancel')
+   status=page.locator('#craft-status').text_content()
+   check(('release to cancel' in status)==(profile=='survival') and (token in status if profile=='survival' else 'Assembling medkit.' in status),'Active instructions match both the real hold mode and the actual input method')
    page.screenshot(path=str(OUT/(name+'-craft.png')))
    hold(False)
    if profile=='survival':
