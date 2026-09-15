@@ -1,0 +1,95 @@
+name: Stage Aether Rewired recovery corrections
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-rewired-final-recovery.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 8cee7bc0a1d37037c48d2790a6e8089d0dfe88e4
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply exact-source test corrections
+        run: |
+          mkdir -p /tmp/rewired-recovery
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          name='aether-reach/tests/diorama-browser.py';p=Path(name);s=p.read_text()
+          assert hashlib.sha256(s.encode()).hexdigest()=='dc39163dc019d9d161350757fdba15633ba464f03cc7651b15fc53e24f02c7b8'
+          a="p.evaluate('TestXR.hidden(false)');frames();p.locator('#exit-vr').click();"
+          b="p.evaluate('TestXR.hidden(false)');frames();pin('right',830,691);"
+          assert s.count(a)==1;s=s.replace(a,b)
+          a="p.evaluate('TestPad.connect()');frames(10);before=snap()['position']['yaw'];"
+          b="p.evaluate('TestPad.connect()');frames(10);\n  if snap()['paused']:choose('#resume')\n  frames();before=snap()['position']['yaw'];"
+          assert s.count(a)==1;s=s.replace(a,b)
+          assert hashlib.sha256(s.encode()).hexdigest()=='d483db79437d9c32517868d828dce1ff6f73fd4871bada0bb0e7675b9976fa9f';p.write_text(s)
+          p=Path('aether-reach/tests/bellwether-input.js');s=p.read_text()
+          assert hashlib.sha256(s.encode()).hexdigest()=='782a8b7d09dd941806a5e85e0dc1da1ef5eea2723cb74d37998e9dd96dbd44c6'
+          s=s.replace(' async function neutral()', ' // Encode fine movement above the real .18 radial deadzone, including stair landings.\n function approachAxes(distance,turn,pitch){const [rx,ry]=stick(turn*.9,pitch*.9);return [0,Math.abs(turn)<.15?-(.18+.82*Math.min(1,Math.max(0,distance))):0,rx,ry];}\n async function neutral()')
+          a='const [rx,ry]=stick(turn*.9,p.pitch*.9);TestPad.axes([0,Math.abs(turn)<.15?-Math.min(1,d):0,rx,ry]);'
+          assert s.count(a)==1;s=s.replace(a,'TestPad.axes(approachAxes(d,turn,p.pitch));')
+          s=s.replace('return {walk,clear,tap,hold,neutral};','return {walk,clear,tap,hold,neutral,approachAxes};')
+          assert hashlib.sha256(s.encode()).hexdigest()=='37f8423a64a266ead5d3eeb6e6f2461e70068624b408f1cbfc664ed7fc57bcd7';p.write_text(s)
+          PY
+          cat >aether-reach/tests/bellwether-driver.test.mjs <<'JS'
+          import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import vm from 'node:vm';
+          import {readFileSync} from 'node:fs';
+          import {InputSampler} from '../input-core.mjs';
+          const context={window:{}};
+          vm.runInNewContext(readFileSync(new URL('./bellwether-input.js',import.meta.url),'utf8'),context);
+          const axes=context.window.BlackoutDriver.approachAxes;
+          test('The physical Bellwether driver encodes slow movement above the actual deadzone',()=>{
+           const sampler=new InputSampler();
+           for(const distance of [.14,.17,.25,.7,2]){
+            const input=sampler.read({connected:true,mapping:'standard',axes:axes(distance,0,0),buttons:[]});
+            assert(input.move[1]<0);
+            assert(Math.abs(input.move[1]+Math.min(1,distance))<1e-9);
+           }
+          });
+          test('The driver stops translation while facing away from the next landing',()=>{
+           assert.equal(axes(.14,.4,0)[1],0);
+          });
+          JS
+          git diff --check
+          node --test aether-reach/tests/*.test.mjs > /tmp/rewired-recovery/tests.log
+          python aether-reach/tests/backup_test.py
+          python -m compileall -q aether-reach/tests
+      - name: Preserve the reviewed content-only candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          names=['aether-reach/tests/diorama-browser.py','aether-reach/tests/bellwether-input.js','aether-reach/tests/bellwether-driver.test.mjs']
+          def post(endpoint,data):
+            p=Path('/tmp/rewired-recovery/request.json');p.write_text(json.dumps(data))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in names]})
+          c=post('git/commits',{'message':'test(aether): encode precision landings through the real deadzone and exit paused AR through hand UI','tree':t['sha'],'parents':['8cee7bc0a1d37037c48d2790a6e8089d0dfe88e4']})
+          Path('/tmp/rewired-recovery/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':t['sha'],'files':names},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-rewired-recovery-candidate
+          path: |
+            /tmp/rewired-recovery/candidate.json
+            /tmp/rewired-recovery/tests.log
+          retention-days: 14
