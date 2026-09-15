@@ -1,0 +1,26 @@
+name: Sky Cycle recovery source
+on:
+  push:
+    branches: ['sky-cycle/waterwheel-chapter-0.23']
+    paths: ['.github/workflows/sky-cycle-recovery-source.yml']
+permissions:
+  contents: read
+jobs:
+  archive:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: '53ba3fbbf587f857f02b776cd7c19b76b31c6143'
+          persist-credentials: false
+      - name: Preserve exact reviewed source only
+        run: |
+          mkdir -p /tmp/sky-source
+          git rev-parse HEAD > /tmp/sky-source/commit.txt
+          git ls-tree -r --name-only HEAD | grep -E '(^|/)AGENTS.md$' > /tmp/sky-source/agent-paths.txt || true
+          tar -czf /tmp/sky-source/source.tar.gz .github mario-maker-clone/svgn-paper-route tests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sky-cycle-waterwheel-exact-source
+          path: /tmp/sky-source/
+          retention-days: 30

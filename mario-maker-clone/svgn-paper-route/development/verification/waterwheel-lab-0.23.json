@@ -1,0 +1,59 @@
+{
+  "version": "0.23.0",
+  "build": "sky-cycle-waterwheel-lab-2026.09.15",
+  "baseline_merge": "a215ecfe7bbd8da5f36932b94a885f156523f92e",
+  "status": "software-accepted-awaiting-publication",
+  "scope": "Editable non-awarding Waterwheel revision-2 preview plus canonical merged chapter method; not default campaign replacement",
+  "runtime_change_sha": "25d1377bc3c17cba3141b4d270566178af8289de",
+  "candidate_sha": "53c9a7bc945b031c642f48fb30a80e76ea1d3fbd",
+  "candidate_note": "Only native XR oracle corrections and documentation follow the last runtime change. Later documentation does not change the accepted runtime or tests.",
+  "software_acceptance": {
+    "passed": true,
+    "run_id": 35034203866,
+    "rules_job": 104599496521,
+    "game_rules": 223,
+    "instrumental_score_rules": 12,
+    "failed_rules": 0,
+    "passed_scoped_jobs": 9,
+    "native_browser_checks": 144,
+    "reviewed_pngs": 46,
+    "video_review": "Videos retained in artifacts; no end-to-end video review is claimed.",
+    "source_identity": "Every downloaded native report identifies exact candidate 53c9a7bc945b031c642f48fb30a80e76ea1d3fbd. All eight downloaded archive SHA-256 digests match GitHub metadata.",
+    "scope": "Actual game and normal movement/menu inputs. Sampled Xbox Gamepad, real Three stereo renderer with deterministic tracked-controller/hand hardware, explicit render-only scenery-isolation fixture. Real 3D scene inspection followed by supported 2D complete routes on CPU CI. Save seeds are labeled fixtures; no player-position, velocity, score, progression or win assignments."
+  },
+  "native": [
+    {"suite":"road beneath sky","job_id":104599496536,"checks":18,"passed":true,"first_attempt_finishes":1,"visited_rails":[],"deliveries":0,"artifact_id":10422489327,"sha256":"c3580478011e89b02d7e2d6c8c222681bebd822f38e9fe91af2e81b573cd5189","reviewed_pngs":4},
+    {"suite":"ground-only build","job_id":104599496408,"checks":15,"passed":true,"first_attempt_finishes":1,"visited_rails":[],"deliveries":0,"artifact_id":10422397933,"sha256":"433fe585eb1d753bdd0c8ea23b5dae373846e371c152be8f4b386f069064f9f7","reviewed_pngs":4},
+    {"suite":"returning porch","job_id":104599496442,"checks":16,"passed":true,"first_attempt_finishes":1,"visited_rails":["ww-porch"],"deliveries":0,"artifact_id":10422937381,"sha256":"c55bda780e06773f2cf47720774841f8aa3105182b26c1567a4abe81de89bc1c","reviewed_pngs":5},
+    {"suite":"continuous express","job_id":104599496591,"checks":16,"passed":true,"first_attempt_finishes":1,"visited_rails":["ww-runway","ww-crescent","ww-gallery","ww-finish"],"deliveries":0,"artifact_id":10422763298,"sha256":"d562204b388b2fde32cd2647d432e45adb65c4463d43abd46008bd2b4f0586a6","reviewed_pngs":6},
+    {"suite":"Waterwheel tracked stereo","job_id":104599496572,"checks":13,"passed":true,"artifact_id":10422753022,"sha256":"bce12eb3225b4fec10079d06e4a757fcee4a9aeda16d0bc5bd691f626070d106","reviewed_pngs":4,"menu_background_samples":24,"background_rgb":[8,49,81],"text_regions":12,"minimum_high_contrast_pixels_per_region":143,"contrast_threshold":4.5,"uncaught_errors":0,"console_errors":0},
+    {"suite":"existing portal/controller/hand regression","job_id":104599496414,"checks":20,"passed":true,"artifact_id":10423176753,"sha256":"0ed274a103ee2e809a68bc2bd8e91bd5a1e9c6ccf70b795f0517cb70926c19c8","reviewed_pngs":9},
+    {"suite":"Tideglass regression","job_id":104599496271,"checks":25,"passed":true,"first_attempt_finishes":2,"artifact_id":10423077030,"sha256":"673c0f7f4056f37118ee8d49e4797fa170d08aee8707c6eca7c58f74ff8c1788","reviewed_pngs":8},
+    {"suite":"Sunrise regression","job_id":104599496461,"checks":21,"passed":true,"first_attempt_finishes":3,"artifact_id":10422583562,"sha256":"efff48f7a7b9c9a6688ddb29fe9ea903c37c6e010327bf5813af2e22821fbf2b","reviewed_pngs":6}
+  ],
+  "publication": null,
+  "preservation": {
+    "campaign_route_count": 8,
+    "campaign_builder_encodings_unchanged": true,
+    "preview_awards_campaign_progress": false,
+    "automatic_layout_or_save_migration": false,
+    "physics_changes": false,
+    "old_medals_career_and_other_records": "Unchanged in native preview/finish samples.",
+    "previous_blueprint": "Validated and backed up before entry; explicit restoration passed in road suite.",
+    "dirty_draft": "Replacement blocked and exact document retained in native road suite.",
+    "new_backup_namespace": "svgn.skycycle.waterwheel-preview-backup.v1",
+    "reserved_not_active_record_id": "canal-choices-r2"
+  },
+  "source_recovery": {"source_sha":"53ba3fbbf587f857f02b776cd7c19b76b31c6143","archive_run":35033083885,"artifact_id":10421783131,"sha256":"bc5a77ff9efdcef636efd44887341b51f7a26ae32ad89116d56324705850f12d","downloaded_digest_verified":true},
+  "source_provenance": "Both supplied design-file hashes independently matched chapters/design-source-provenance.json during recovery.",
+  "retained_failures": [
+    {"scope":"initial model receiver","details":"The first receiver ended at x=8710 and landed past the goal; endpoint moved to x=8550, then all 18 declared express model cases landed before x=9036."},
+    {"scope":"initial stereo menu rendering","details":"Scenery painted over menu controls. Runtime 53ba3fbbf587f857f02b776cd7c19b76b31c6143 introduced explicit late overlay and pointer groups. Final candidate passes normal stereo and render-only scenery-isolation checks; earlier failed captures remain evidence."},
+    {"scope":"preview dialogue overlap","source_sha":"53ba3fbbf587f857f02b776cd7c19b76b31c6143","artifact_id":10422137816,"artifact_sha256":"c8236f3b387f2b8b18f83f66985180112493e0f8bb232fc97de0bab416078814","details":"The passing porch report's South Quay image showed dialogue covering riding instruments. Preview-only measured positioning corrected the actual visible problem without filtering messages. Final candidate captures show clearance; earlier passing route evidence is not final capture acceptance."},
+    {"scope":"raw RGB and row oracle","run_id":35033434378,"job_id":104597072306,"artifact_id":10422039636,"sha256":"5574bf0a36c50360c69f71f7e3a14838198b738574ec63a9d7e24ef4b76dc75e","details":"Expected untransformed canvas colors and a fixed optional control. Actual opaque backgrounds were uniformly [8,49,81] rather than [35,66,92]; the image contained Materials & FX in the optional slot. Kept failed evidence, replaced invalid oracle with text/background contrast and render-only scenery isolation."},
+    {"scope":"second fixed row oracle","run_id":35033815372,"job_id":104598291335,"artifact_id":10422278403,"sha256":"386eb87a8fe801e8ed8cd83bab20ed4d70b3cc1419b26f96e8d418bc82d84f5d","details":"A later run rendered Portal atlas in the third slot rather than Materials & FX. Final test requires all five invariant actions plus six real DOM-backed controls, preserving 24 background samples, 12 text regions and scene-isolation checks. No runtime change was made to satisfy the assertion."}
+  ],
+  "branch_selection": "Continue sky-cycle/waterwheel-chapter-0.23. The earlier unaccepted sky-cycle/waterwheel-reference-0.23 replacement experiment is not this release and must not overwrite Quiet Water or this preview.",
+  "open_gates": ["publication and live normal-input preview","speed/brake-selected fork","optional high-to-high whip link","all intended deliveries","comprehensive recovery and swept collision audit","checkpoint/retry and slower/reverse approaches","legacy full optional canal sequence","revision-aware default promotion and rollback","unfamiliar-player enjoyment/readability","physical Xbox and Quest controllers/hands","reference-device performance and comfort","advanced Bezier controller authoring"],
+  "limits": "The four preview completions intentionally deliver zero mail and prove traversal/save isolation, not all twelve delivery targets. Full-route CPU evidence uses 2D after real 3D inspection. No full XR finish, human listening/playtest, physical-device certification, all-optional-route qualification or whole-repository green CI claim."
+}

@@ -1,0 +1,125 @@
+name: Sky Cycle Waterwheel chapter lab
+on:
+  push:
+    branches: [master, 'sky-cycle/waterwheel-chapter-0.23']
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '!mario-maker-clone/svgn-paper-route/development/**'
+      - '.github/workflows/sky-cycle-waterwheel.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sky-cycle-waterwheel-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+jobs:
+  rules:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          git rev-parse HEAD
+          node --check mario-maker-clone/svgn-paper-route/waterwheel-preview.js
+          node --check mario-maker-clone/svgn-paper-route/waterwheel-preview-art.mjs
+          node --check mario-maker-clone/svgn-paper-route/xr-play.js
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
+          node --test tests/adventure_score.test.cjs
+  rides:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        route: [road, ground-only, porch, express]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Real preview entry, riding, finish and save isolation
+        env:
+          WATERWHEEL_SUITE: ${{ matrix.route }}
+          ARTIFACT_DIR: /tmp/waterwheel-native
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-preview-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-${{ matrix.route }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-native/
+          retention-days: 30
+          if-no-files-found: error
+  regression:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [waterwheel-xr-browser.py, portal-network-browser.py, bathhouse-browser.py, sunrise-browser.py]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Preserve tracked inputs and previous authored chapters
+        env:
+          ARTIFACT_DIR: /tmp/waterwheel-regression
+        run: python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-${{ matrix.script }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-regression/
+          retention-days: 30
+          if-no-files-found: error
+  published:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compare all release-owned public runtime files
+        env:
+          ARTIFACT_DIR: /tmp/waterwheel-public
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-public-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-public/
+          retention-days: 30
+          if-no-files-found: error
+  live:
+    needs: published
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play and recover the published preview through ordinary controls
+        env:
+          TEST_ORIGIN: https://v5ma.github.io
+          WATERWHEEL_SUITE: road
+          ARTIFACT_DIR: /tmp/waterwheel-live
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-preview-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-live-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-live/
+          retention-days: 30
+          if-no-files-found: error

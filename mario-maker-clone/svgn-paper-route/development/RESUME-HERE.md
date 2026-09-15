@@ -1,3 +1,13 @@
+# Current chapter-design continuation: Waterwheel Lab
+
+The approved merged design is now canonical in `LEVEL-DESIGN-METHODOLOGY.md`; its concrete reference-chapter specification and promotion workbook are in `chapters/WATERWHEEL-BOULEVARD-R2.md`. Continue that chapter before another destination or cosmetic feature series. Source provenance is in `chapters/design-source-provenance.json`.
+
+Quiet Water was merged through PR 159 as `a215ecfe7bbd8da5f36932b94a885f156523f92e`. Its receipt remains authoritative for publication evidence. Waterwheel Lab v0.23 is a separate, non-awarding editable preview. Read `verification/waterwheel-lab-0.23.json` before making test or live claims. The eight original campaign routes remain unchanged; no new timed records are silently compared with old geometry.
+
+The immediate implementation is ground-only/full preview selection, a short returning porch, a four-part express line, a wheelhouse landmark, transfer intentions and protected previous-blueprint restoration. The full braking fork, whip alternative, comprehensive recovery, revision-aware default promotion, human review and physical-device gates remain open. Do not equate a released preview with the completed chapter redesign. Older queues below are history; this paragraph establishes the current production priority.
+
+---
+
 # Current continuation: Quiet Water v0.22.0
 
 Read `QUIET-WATER-0.22.md` and `verification/quiet-water-0.22.json` first. The receipt, not a version label or branch commit, determines acceptance and publication. This slice adds bounded water ambience, transient-intensity and optional-notice controls on the existing audio owner, Xbox/hand-XR settings coverage, measured HUD readiness and explicit shipped-rail identity checks. Gameplay, saves, rider IK and XR rendering stay intact. Older material below is retained as history.
