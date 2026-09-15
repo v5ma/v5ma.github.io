@@ -1,14 +1,12 @@
 {
-  "version": "0.22.0",
-  "build": "sky-cycle-quiet-water-2026.09.15",
+  "version": "0.23.0",
+  "build": "sky-cycle-waterwheel-2026.09.15",
   "date": "2026-09-15",
   "changes": [
-    "Quiet Water: independently adjustable bathhouse ambience on the original effects mixer",
-    "Gentle / Soft / Full transient intensity with eight-voice and duplicate-burst bounds",
-    "Balanced / Quiet / Essential only optional water notices; critical warnings and riding guidance preserved",
-    "Xbox and tracked-hand XR adjustments in the existing Sound & music panel",
-    "Sluice, draining completion and arrival cues driven by observed simulation transitions",
-    "No route, physics, progression, music composition or legacy save migration; existing rider IK and tracked XR preserved",
-    "Deterministic HUD-clearance readiness and explicit shipped rail-identity checks in legacy browser acceptance"
+    "Waterwheel reference slice: six connected express surfaces, a short quay practice return, brake-selected canal balcony and east-bank receiver",
+    "Authored road journey with broad stepped promenades, deliveries, visible encounters and a shared depot finish",
+    "Original working waterwheel landmark, route-specific world cues and measured road-map geometry",
+    "Separate layout-revision records; earlier medals, career badges, exploration and editable classic layout preserved",
+    "Original physics, direct Xbox controls, Quest tracked-controller and hand UI, Quiet Water and all other routes retained"
   ]
 }

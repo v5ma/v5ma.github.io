@@ -1,0 +1,16 @@
+{
+  "approved_on": "2026-09-15",
+  "sources": [
+    {
+      "original_name": "Pasted markdown(20260915-183634).md",
+      "retained_file": "sources/side-scroller-synthesis-20260915.md",
+      "sha256": "83cd099d8d49fb03d0b47f38f67d15b7f8456ade8e225d3b9e1a0ce3be28038c"
+    },
+    {
+      "original_name": "Pasted markdown (2).md",
+      "retained_file": "sources/sky-cycle-integration-20260915.md",
+      "sha256": "62ab3c7500bd4de69e06d83f9a38dcc11b76e20145c9b991ab2d754584da102f"
+    }
+  ],
+  "interpretation": "The second source narrows the first to the existing Sky Cycle. Historical game-design claims in those supplied essays are references, not independent release-verification evidence."
+}

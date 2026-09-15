@@ -56,7 +56,7 @@ globalThis.GroundArt={
   }
   for(const area of course.gp.sections||[]){if(area.x>0)sign(area.name.toUpperCase(),area.x*36+70,gy+170,-170,220,40);}
   sign(String(course.name||'Your route').toUpperCase(),180,gy+170,-130,240,57);
-  for(const [x,caption] of [[510,'GOLD RAMP: OPTIONAL\nSTREET: KEEP RIDING'],[1250,'BOTH ROUTES REJOIN\nNO NEED TO RUSH']]){
+  for(const [x,caption] of (course.gp.waterwheel?[]:[[510,'GOLD RAMP: OPTIONAL\nSTREET: KEEP RIDING'],[1250,'BOTH ROUTES REJOIN\nNO NEED TO RUSH']])){
    if(x>length-400)continue;metal.rod([x,gy,-68],[x,gy+100,-68],2.8,'#697f78');sign(caption,x,gy+102,-64,185,52);
   }
   if(style==='garden')sign('Z: TRY THE WHIP\nROAD REMAINS OPEN',1620,gy+370,-50,215,64);

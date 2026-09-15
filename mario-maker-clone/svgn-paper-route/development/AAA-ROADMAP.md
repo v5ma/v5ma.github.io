@@ -1,3 +1,13 @@
+# Waterwheel reference continuation, v0.23
+
+The user-approved chapter-quality method is now canonical in `LEVEL-DESIGN-METHODOLOGY.md`. The concrete Waterwheel situations, transfer contracts and incomplete chapter gates are in `WATERWHEEL-REFERENCE.md`. Preserve the enormous connected-world ambition, but expand through authored, tested districts, not another batch of cosmetic surfaces.
+
+The current candidate replaces only authored Waterwheel index 5 (`canal-choices`) with `waterwheel-r2`. Existing records remain earlier-layout history; new times/achievements use `canal-choices-waterwheel-r2`. Flight Deck exports the original editable chapter non-destructively. All eight route identities, original physics, direct controls, Quiet Water and seated tracked XR remain. Read `verification/waterwheel-0.23.json` for exact acceptance and publication; this paragraph is not a claim of live deployment.
+
+Next major work is to qualify this chapter, prove its optional deliveries, extend the open-curl and advanced whip sequence, and review it with unfamiliar players before further destinations or cosmetic layers. Hardware, human enjoyment and full AAA gates remain open. The prior Quiet Water and Portal Network records below are historical context, not a newer-release authority.
+
+---
+
 # Current continuation: Quiet Water v0.22.0
 
 Read `QUIET-WATER-0.22.md` and `verification/quiet-water-0.22.json` first. The receipt, not a version label or branch commit, determines acceptance and publication. This slice adds bounded water ambience, transient-intensity and optional-notice controls on the existing audio owner, Xbox/hand-XR settings coverage, measured HUD readiness and explicit shipped-rail identity checks. Gameplay, saves, rider IK and XR rendering stay intact. Older material below is retained as history.

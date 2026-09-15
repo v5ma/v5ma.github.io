@@ -1,3 +1,4 @@
+import {recordKey,recordRoute} from './waterwheel-core.mjs';
 /* Sky Cycle Flight Deck. Additive telemetry and controller UI, not new physics. */
 import {BADGES, validID, sanitizeLedger, objectives, settle, samplePad, repeatDirection, adjustValue} from './flight-deck-core.mjs';
 const STORE = 'svgn.skycycle.mastery.v1';
@@ -7,7 +8,7 @@ const controls = root => [...root.querySelectorAll('button,a[href],input:not([ty
 const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = new URL('./flight-deck.css', import.meta.url).href; document.head.append(css);
 let ledger = Object.create(null), saveOK = true, run = null, latest = null;
 try { ledger = sanitizeLedger(JSON.parse(localStorage.getItem(STORE) || '{}')); } catch { saveOK = false; }
-const current = () => window.DeliveryCampaign?.routes[window.__delivery?.state.route];
+const current = () => recordRoute(window.DeliveryCampaign?.routes[window.__delivery?.state.route]);
 const active = () => typeof mode !== 'undefined' && mode === 'play' && !won && !document.hidden && !__delivery.paused && !__delivery.state.menu;
 function authored() { try { return !!current() && __delivery.state.code === levelCode(); } catch { return false; } }
 function startRun() {
@@ -68,10 +69,11 @@ function renderDeck() {
   } else { const p = document.createElement('p'); p.textContent = 'Start an authored route to track its objectives. Editor playtests never write career badges.'; now.append(p); }
   const list = $('fd-routes'); list.replaceChildren();
   for (const r of window.DeliveryCampaign?.routes || []) {
-    const rec = ledger[r.id], row = document.createElement('article'), title = document.createElement('h3'), text = document.createElement('p');
+    const rec = ledger[recordKey(r)], row = document.createElement('article'), title = document.createElement('h3'), text = document.createElement('p');
     title.textContent = r.name;
     text.textContent = rec ? `${rec.badges.length} badges / ${rec.finishes} finishes / best active time ${rec.best === null ? '--' : rec.best.toFixed(1) + 's'}` : 'No career badges yet.';
     row.append(title,text);
+    if(r.recordId&&ledger[r.id]){const old=document.createElement('p');old.className='fd-legacy';old.textContent=`Earlier layout: ${ledger[r.id].badges.length} earned badges preserved; best active time ${ledger[r.id].best===null?'--':ledger[r.id].best.toFixed(1)+'s'} (not compared with ${r.layoutRevision}).`;row.append(old);}
     if (rec?.badges.length) { const names = document.createElement('p'); names.className = 'fd-badges'; names.textContent = rec.badges.map(id => ({finish:'Route cleared',clean:'Clean wheels',mail:'Every doorstep',airmail:'Air courier',express:'Express delivery'}[id])).join(' / '); row.append(names); }
     list.append(row);
   }
@@ -136,7 +138,7 @@ function decorateMenu() {
     if (card.querySelector('.fd-route-badges')) continue;
     const route = DeliveryCampaign.routes[Number(card.dataset.course)]; if (!route) continue;
     const label = document.createElement('span'); label.className = 'fd-route-badges';
-    label.textContent = `${ledger[route.id]?.badges.length || 0} career badges`; card.append(label);
+    label.textContent = `${ledger[recordKey(route)]?.badges.length || 0} career badges`; card.append(label);
   }
   const hero = menu.querySelector('.delivery-hero');
   if (hero && !hero.querySelector('[data-fd-menu]')) {

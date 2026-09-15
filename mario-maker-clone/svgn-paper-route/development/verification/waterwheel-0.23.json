@@ -1,0 +1,40 @@
+{
+  "version": "0.23.0",
+  "build": "sky-cycle-waterwheel-2026.09.15",
+  "status": "candidate-awaiting-native-acceptance",
+  "base_quiet_water": "e19552fcd3c30d8b206c46920033ff7561e83728",
+  "layout": "waterwheel-r2",
+  "route_id": "canal-choices",
+  "route_index": 5,
+  "route_count": 8,
+  "record_id": "canal-choices-waterwheel-r2",
+  "local_rules": {
+    "passed": 208,
+    "new_waterwheel": 39,
+    "failed": 0,
+    "class": "deterministic rule and carried-state model; not native playthrough"
+  },
+  "native": null,
+  "publication": null,
+  "preservation": {
+    "old_namespaces_retained": true,
+    "automatic_draft_migration": false,
+    "physics_changed": false
+  },
+  "open_gates": [
+    "native acceptance and capture review",
+    "full open-curl and optional whip extension",
+    "all mailbox and badge attainability",
+    "slower/new-player and aerial-hidden human review",
+    "boosted/reverse transfer coverage",
+    "physical Xbox",
+    "physical Quest 3 controllers and hands",
+    "native GPU frame times and comfort",
+    "advanced Bezier controller authoring",
+    "historical Sunrise optional canal sequence"
+  ],
+  "retained_model_failures": [
+    "An initial fast/late practice entry triggered a swept-deck warning; the entry lip was lowered and all nine declared cases passed.",
+    "Large open-curl experiments triggered either swept-body warnings or premature receiving contacts. They were rejected; no open-curl completion claim is made."
+  ]
+}

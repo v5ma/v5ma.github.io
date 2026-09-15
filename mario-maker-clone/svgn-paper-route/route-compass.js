@@ -1,7 +1,8 @@
+import {recordKey,recordRoute} from './waterwheel-core.mjs';
 /* Read-only navigation over the real course. Only accepted authored finishes bank stamps. */
 import {BUILD,STORE,PREFS,sanitize,profile,newRun,observe,settle,guidance} from './route-compass-core.mjs';
 const $=id=>document.getElementById(id);
-const current=()=>window.DeliveryCampaign?.routes[window.__delivery?.state.route];
+const current=()=>recordRoute(window.DeliveryCampaign?.routes[window.__delivery?.state.route]);
 const playing=()=>typeof mode!=='undefined'&&mode==='play'&&!won;
 const active=()=>playing()&&!document.hidden&&!window.__delivery?.paused&&!window.__delivery?.state.menu;
 const authored=()=>{try{return !!current()&&__delivery.state.code===levelCode();}catch{return false;}};
@@ -89,7 +90,7 @@ function renderJournal(){
   }else paragraph(host,'Start Sunrise Borough, Waterwheel Boulevard or Copperleaf Gardens to open its district guide. Expert sky trials and edited courses keep their existing controls and progression; this journal does not award exploration stamps there.');
   const heading=document.createElement('h3');heading.textContent='Banked explorations';host.append(heading);
   let count=0;
-  for(const route of window.DeliveryCampaign?.routes||[]){const r=records[route.id];if(!r)continue;count++;paragraph(host,`${route.name}: ${r.stamps.length} stamps across ${r.finishes} accepted finishes.`);}
+  for(const route of window.DeliveryCampaign?.routes||[]){const r=records[recordKey(route)];if(r){count++;paragraph(host,`${route.name}: ${r.stamps.length} stamps across ${r.finishes} accepted finishes.`);}if(route.recordId&&records[route.id]){count++;const old=records[route.id];paragraph(host,`${route.name}, earlier layout: ${old.stamps.length} stamps preserved across ${old.finishes} finishes.`);}}
   if(!count)paragraph(host,'No stamps have been banked yet. A finish is never locked behind these optional discoveries.');
   if(!prefOK)paragraph(host,'Guidance settings could not be saved and apply only to this session.');
 }

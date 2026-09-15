@@ -59,7 +59,7 @@
     g.beginPath();t.pts.forEach((p,i)=>i?g.lineTo(...map(p)):g.moveTo(...map(p)));g.stroke();
     if(t.sky.entry){const [x,y]=map(t.pts[0]);g.fillStyle='#93f5be';g.beginPath();g.moveTo(x,y-9);g.lineTo(x-5,y+2);g.lineTo(x+5,y+2);g.fill();}
    }
-   g.strokeStyle='#fff2d0';g.lineWidth=3;g.beginPath();g.moveTo(...map([0,ground]));g.lineTo(...map([w,ground]));g.stroke();
+   g.strokeStyle='#fff2d0';g.lineWidth=3;g.beginPath();g.moveTo(...map([0,ground]));if(Array.isArray(__ground.meta.waterwheel?.groundHeights)&&__ground.meta.waterwheel.groundHeights.length===LW&&__ground.meta.waterwheel.groundHeights.every(y=>Number.isInteger(y)&&y>2&&y<LH)){__ground.meta.waterwheel.groundHeights.forEach((y,x)=>{g.lineTo(...map([x*36,y*36]));g.lineTo(...map([(x+1)*36,y*36]));});}else g.lineTo(...map([w,ground]));g.stroke();
    g.fillStyle='#82f6df';for(let y=0;y<LH;y++)for(let x=0;x<LW;x++)if(pg(x,y)===T.PEG){const [a,b]=map([x*36+18,y*36+18]);g.beginPath();g.arc(a,b,mapLocal?3:2,0,7);g.fill();}
    const [x,y]=map([player.x+13,player.y+15]);g.fillStyle='#ff8e6e';g.strokeStyle='#fff0d5';g.lineWidth=1.5;g.beginPath();g.arc(x,y,6,0,7);g.fill();g.stroke();g.restore();
    const id=player.track?.sky.sector,sec=__ground.meta.skyNetwork.sectors[id];
