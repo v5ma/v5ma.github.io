@@ -16,6 +16,10 @@ def frames(n=4):
   target=read()['xr']['frames']+n;page.wait_for_function('(n)=>!LeonardoGuild.inspect().xr.presenting||LeonardoGuild.inspect().xr.frames>=n',arg=target)
  else:page.evaluate('(n)=>new Promise(resolve=>{let i=0;function f(){if(++i>=n)resolve();else requestAnimationFrame(f);}requestAnimationFrame(f);})',n)
 def button(index,number,down):page.evaluate('(v)=>{const s=__xr.sources[v.index];s.gamepad.buttons[v.number]={pressed:v.down,value:v.down?1:0};}',{'index':index,'number':number,'down':down})
+def sampled_pulse(index,number):
+ # Supply one pressed hardware snapshot, then release before the next poll.
+ # Three software-rendered frames can exceed the deliberate 450 ms hold.
+ return page.evaluate('''({index,number})=>new Promise(resolve=>{const p=__xr.sources[index].gamepad,buttons=p.buttons.map(v=>({...v}));buttons[number]={pressed:true,value:1};let seen=false;Object.defineProperty(p,'buttons',{configurable:true,get(){if(!seen){seen=true;queueMicrotask(()=>{buttons[number]={pressed:false,value:0};Object.defineProperty(p,'buttons',{configurable:true,writable:true,value:buttons});resolve(LeonardoGuild.inspect());});}return buttons;}});})''',{'index':index,'number':number})
 def trigger(down):
  page.evaluate('(down)=>{const s=__xr.sources[1];if(s.hand)s.pinch=down?.014:.06;else s.gamepad.buttons[0]={pressed:down,value:down?1:0};}',down)
 def point(u,v,kind='panel'):
@@ -75,8 +79,9 @@ with sync_playwright() as p:
   page.evaluate('__xr.sources[1].orientation={x:0,y:0,z:0,w:1}');frames(4)
   button(0,0,True);frames(5);button(1,0,True);frames(6);button(1,0,False);frames(3)
   check(read()['resonance']['ready']<6,'Tracked trigger spends real sling ammunition before reload acceptance')
-  button(1,5,True);frames(3);button(1,5,False);frames(2)
-  check(read()['resonance']['reload']>0 and not read()['controller']['modal'],'Aimed right B reloads directly without opening Nearby')
+  first=sampled_pulse(1,5)
+  check(first['resonance']['reload']>0 and not first['controller']['modal'],'Aimed right B reloads directly without opening Nearby')
+  frames(2)
   page.wait_for_function('LeonardoGuild.inspect().resonance.reload===0');button(0,0,False);frames(4)
   button(0,4,True);frames(3);button(0,4,False);frames(3)
   panel_key('pause');beforeFocus=read()['controller']['focus'];frames(3);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,1]');frames(3)
