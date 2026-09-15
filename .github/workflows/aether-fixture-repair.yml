@@ -1,0 +1,78 @@
+name: Stage reviewed Aether fixture corrections
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-fixture-repair.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ced4ddec4e6c8a479fbc958507291f9b9f81afa1
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply bounded hash-verified fixture and documentation changes
+        run: |
+          mkdir -p /tmp/aether-fixtures
+          cat > /tmp/aether-fixtures/edits.json <<'JSON'
+          {"base":"ced4ddec4e6c8a479fbc958507291f9b9f81afa1","changes":{"aether-reach/tests/devices.py":{"before":"ea5cf0b24c3bb6dba3b1af8c224ed9c1c5d6b8811dca04b46c1843cf866436b2","after":"c7d9d6e44211f2e0bc224aa998db2c7c3b9e94bfad9889c4b161d19cf03d16b3","edits":[[812,889,"def button(p,i,v):p.evaluate('([i,v])=>TestPad.button(i,v)',[i,v]);frames(p,1)\n"],[1764,1907," browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':960,'height':640},device_scale_factor=1 if MODE=='xr' else .5,service_workers='block',accept_downloads=True)\n"],[4408,4774,"   page.wait_for_function('AetherReach.snapshot().rail?.s>28');before=snapshot(page)['rail']['dir'];axes(page,[0,1,0,0]);page.wait_for_function('(dir)=>AetherReach.snapshot().rail?.dir===-dir',arg=before);axes(page,[0,0,0,0]);check(snapshot(page)['rail']['dir']==-before,'Left stick brakes and reverses rail travel without a scene reset');tap(page,0);page.wait_for_function('!AetherReach.snapshot().rail');check(True,'A releases a rail through the real momentum-preserving jump action')\n"]]},"aether-reach/tests/launch.py":{"before":"ba3205da27ac2c60983cd2aa514047b8a21300421bd08d61f31119580ed6ff04","after":"3662633941fb0d0db53ab52c264c2b37e7adf2a51b87bed2ab31741b8a3adc73","edits":[[1715,1859,"   check(page.locator('.projects .project a.primary-link').evaluate_all('(links,route)=>links.filter(a=>new URL(a.href).origin===location.origin && new URL(a.href).pathname===new URL(route,location.href).pathname).length',route)==1,'Homepage retains one playable project card: '+route)\n"],[1929,2109,"  page.locator('.projects .project a.primary-link[href^=\"./aether-reach/index.html\"]').click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)\n"]]},"aether-reach/tests/glide_browser.py":{"before":"955176686ae7a5f5e1aea8544363bb5f91edba37cee37b463b57b9995e1e4b3a","after":"2f87438e49cc1f8eb7141b784b2153916bce09f5c337270ab1ec381c67c5619b","edits":[[1104,1177,"   if (not air and d<.7) or (air and s['grounded'] and not s['glider']['active']):return s\n"],[1361,1408,"   if air and s['glider']['active']:keys.add('KeyS' if d<18 else 'KeyW')\n"],[1918,2036," browser=p.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')\n"]]},"aether-reach/tests/browser.py":{"before":"8d594ddf1cb0f57fdb1c451ac93f430fd9d14529444a952045aa4e3bae2e5497","after":"9e8465d446384563bacead35e178c95b6d06485dc023795a68d746ac89d1ad8a","edits":[[1595,1787," page.locator('#world').focus();page.keyboard.press('KeyE',delay=120);page.evaluate('new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')\n if page.locator('#record-dialog[open]').count():\n  page.locator('#record-dialog button').click();page.wait_for_function('!AetherReach.snapshot().paused&&!document.querySelector(\"dialog[open]\")')\n"],[2016,2122," b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')\n"]]},"aether-reach/tests/tactics_browser.py":{"before":"51e29a3d6bb21a54e18f763ed4bbf40129afac5ab866773c0dabdaee3f9403e9","after":"3f4f8d9fb78edbc3e858157ca634682d4c79f15bd322d546caf18b3e4bae743b","edits":[[1884,1914,"def aim(p,target,timeout=60):\n"],[3179,3317," b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block');host=urlparse(BASE).hostname\n"],[9087,9127,"     if aim(p,target['id'],timeout=60):\n"],[10373,10707,"  (OUT/(MODE+'-tactics-report.json')).write_text(json.dumps({'mode':MODE,'passed':len(checks),'checks':checks,'snapshot':snap(p),'errors':errors,'scope':'Native HTTP Chromium software WebGL. Normal keyboard, mouse drag-look and UI input with read-only observation at 960x640 CSS and half pixel density. Not hardware Xbox or headset performance certification.'},indent=2))\n"]]},"aether-reach/tests/grounded-browser.py":{"before":"eb35c2efc6ffc1db3bfff904ae7af53f38e6c5942492fac70128e543c6146564","after":"ea474ce89700454f533e692e6c299850dce7cae0e467eab345e52b8fa53496cc","edits":[[1344,1482," def frames(n=2):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f)}requestAnimationFrame(f)})',n)\n"],[3274,3414,"  actors=snap()['renderer']['cast']['actors'];check(bool(actors) and all(a['grounding']['legs']==2 for a in actors),'Rendered humanoids expose two grounded leg adapters')\n"]]},"aether-reach/DEVICE-SUPPORT.md":{"before":"c2a0af4b780dcd5e40345abae6336e10caea2c5e97c3ba04635172bf9f345020","after":"ef31942b5a7a3441df6fd638b7dc1ee909e1d654cbc556ed5744e46632784013","edits":[[0,3361,"# Devices and current boundaries\n\n## Grounded Cast v0.11.0\n\nThe current controller map keeps frequent actions on the face buttons, triggers and bumpers. Left stick moves and right stick looks. A jumps, performs aimed traversal, and releases a rail. X uses a nearby interaction or reloads; holding X retains the contextual secondary action. Y swaps carried weapons. B crouches on the ground or folds the airborne glider. LT aims and RT fires. LB taps the selected power, or charges its secondary action when held. RB quickly recalls the recent power; holding it opens the power wheel. Left-stick click sprints or boosts; right-stick click performs melee. View opens the atlas and Menu pauses. Rail braking and reversal use the left stick. Player remaps remain supported. The in-game Controller Deck displays the active bindings.\n\nIn menus, A selects, B returns one level, D-pad or left stick moves focus, and left/right adjusts options without an operating-system popup. Right stick and triggers scroll; bumpers page through longer menus. A fresh Back press is retained across dialog boundaries while a button held across that boundary must be released before it can activate another action. Disconnects pause the game; reconnecting controllers must be neutral.\n\nKeyboard and touch remain available. WASD moves, arrows or mouse drag look, Space traverses, E uses nearby interactions, R reloads, F fires, Q casts, M opens the atlas and P/Escape pauses. The on-screen touch controls use the same gameplay actions and dialogs. No new menu is required for ordinary movement, shooting or interaction.\n\n## Quest 3 target and immersive preview\n\nImmersive sessions require local-floor and request optional hand-tracking. Head movement and both tracked controllers have independent poses. Left stick moves, right stick snap-turns, the right tracked controller aims the gun, and the left tracked controller supplies the power ray. Existing tracked-controller gameplay remains available without hand tracking.\n\nBoth measured hands can point and pinch to operate the spatial menu. The panel exposes Previous/Next page, Decrease/Increase value, Back and Exit VR. Sliders, selects, remapping and later journal entries are reachable inside the headset. A hand must first be observed open. Held pinches, missing joints and reacquisition cannot replay an activation. The rendered joint markers represent tracking samples, not authored hand meshes.\n\nHands operate UI only. They do not synthesize gunfire, powers or locomotion. Switching to hands without tracked controllers opens pause. The HUD Pause Menu target can reopen the menu during a hand-only session. Use tracked controllers for expedition movement and combat.\n\nController tracking loss clears actions. Hidden sessions and reference-space resets pause safely. The flat-screen Longglass optic does not change immersive eye projections. Authored first-person hands/reloads, a tracked magnified lens, physical comfort acceptance and multiplayer remain open work.\n\n## What has and has not been tested\n\nPure model tests, native HTTP/WebGL browser journeys and synthetic device-pose tests are separate evidence categories. Input journeys may use reduced pixel density on the software GPU; appearance tests retain their own rendering contracts. Reports and screenshots are archived with the exact tested public-file hashes.\n\nPhysical Xbox USB/Bluetooth pairing and Quest 3 tracking, hand interaction quality, readability, comfort and sustained frame time remain unverified. Synthetic device input does not certify those properties. Hardware acceptance flags remain false, and roadmap items X04, X05 and I03 remain open. No browser save reset or migration is required.\n"]]}}}
+          JSON
+          python - <<'PY'
+          import json,hashlib,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-fixtures/edits.json').read_text())
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==data['base']
+          for name,item in data['changes'].items():
+            p=Path(name)
+            assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==item['before'],name
+            text=p.read_text()
+            for start,end,replacement in reversed(item['edits']):
+              assert 0<=start<=end<=len(text)
+              text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.write_text(text)
+          PY
+      - name: Validate candidate without modifying any refs
+        run: |
+          set -euo pipefail
+          git diff --check
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs > /tmp/aether-fixtures/node-tests.log
+          python aether-reach/tests/backup_test.py
+      - name: Create content-only commit object for review
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-fixtures/edits.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/aether-fixtures/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          tree=[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()} for name in data['changes']]
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
+          c=post('git/commits',{'message':'test(aether): observe real input frames and completed landings; refresh device contract','tree':t['sha'],'parents':[data['base']]})
+          Path('/tmp/aether-fixtures/candidate.json').write_text(json.dumps({'parent':data['base'],'commit':c['sha'],'tree':t['sha'],'files':list(data['changes']),'tests':'227 Node and 6 backup-input tests pass; native browser verification pending'},indent=2))
+          print('Created commit object without updating any branch:',c['sha'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-fixture-candidate
+          path: |
+            /tmp/aether-fixtures/candidate.json
+            /tmp/aether-fixtures/node-tests.log
+          retention-days: 7
