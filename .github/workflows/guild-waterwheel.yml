@@ -25,33 +25,39 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install hash-checked scoped source once and commit before acceptance
+      - name: Commit hash-checked source before native acceptance
         run: |
           set -euo pipefail
           test "$GITHUB_REF_NAME" = 'guild/waterwheel-spatial-20260915'
           if test -f leonardos-guild/scripts/waterwheel-polish.json; then
-            python - <<'PYCODE'
+            python - <<'PY'
           from pathlib import Path
           import hashlib,json
           manifest=Path('leonardos-guild/scripts/waterwheel-polish.json')
+          hashes=Path('leonardos-guild/scripts/waterwheel-new-hashes.json')
+          for name,expected in json.loads(hashes.read_text()).items():
+            p=Path(name)
+            assert name.startswith('leonardos-guild/') and '..' not in p.parts and not p.is_symlink(),name
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==expected,('New source mismatch',name)
           records=json.loads(manifest.read_text());ready={}
           for name,record in records.items():
             p=Path(name)
-            assert (name.startswith('leonardos-guild/') or name=='tests/leonardo_touch_actions.py') and '..' not in p.parts and p.is_file() and not p.is_symlink(),name
+            assert name.startswith('leonardos-guild/') and '..' not in p.parts and p.is_file() and not p.is_symlink(),name
             original=p.read_bytes();assert hashlib.sha256(original).hexdigest()==record['before'],('Changed source',name)
             text=original.decode()
             for start,end,value in reversed(record['edits']):text=text[:start]+value+text[end:]
             data=text.encode();assert hashlib.sha256(data).hexdigest()==record['after'],('Output hash mismatch',name)
             ready[p]=data
           for p,data in ready.items():p.write_bytes(data)
-          manifest.unlink()
-          print('Verified and installed',len(ready),'scoped refinements; native tests run the following ordinary commit.')
-          PYCODE
+          manifest.unlink();hashes.unlink()
+          print('Verified',len(ready),'source edits and all three new/replaced modules. Acceptance checks out the following ordinary commit.')
+          PY
+            for f in leonardos-guild/*.mjs; do node --check "$f"; done
             npm --prefix leonardos-guild test
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add -- leonardos-guild tests/leonardo_touch_actions.py
-            git commit -m 'Refine native Quarter acceptance, readable architecture and legacy campaign entry'
+            git add -- leonardos-guild
+            git commit -m 'Improve Quarter observations, floor maps, continuous stance and spatial turn direction'
             git push origin HEAD:refs/heads/guild/waterwheel-spatial-20260915
           fi
       - id: source
@@ -83,7 +89,7 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Exercise real movement, interactions, saved rewards and native renderer
+      - name: Exercise actual inputs, observations, saved rewards and native rendering
         env:
           QUARTER_ROUTE: ${{ matrix.journey }}
         run: |
