@@ -14,7 +14,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 24
+    timeout-minutes: ${{ matrix.suite == 'blackout' && 45 || 30 }}
     strategy:
       fail-fast: false
       matrix:
@@ -47,7 +47,7 @@ jobs:
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
       - name: Play actual HTTP WebGL application through device inputs
-        timeout-minutes: 19
+        timeout-minutes: ${{ matrix.suite == 'blackout' && 40 || 25 }}
         env:
           SUITE: ${{ matrix.suite }}
         run: |
@@ -56,14 +56,14 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           case "$SUITE" in
-            grounded) python -u aether-reach/tests/grounded-browser.py ;;
+            grounded) python -u aether-reach/tests/grounded-browser.py && python -u aether-reach/tests/launch.py ;;
             xr) DEVICE_SUITE=xr python -u aether-reach/tests/devices.py ;;
-            controller) python -u aether-reach/tests/controller-journey.py ;;
+            controller) python -u aether-reach/tests/controller-journey.py && DEVICE_SUITE=pad python -u aether-reach/tests/devices.py ;;
             blackout) python -u aether-reach/tests/bellwether-browser.py ;;
             skyglass) python -u aether-reach/tests/skyglass-browser.py ;;
-            foundry) python -u aether-reach/tests/foundry-browser.py ;;
-            glide) python -u aether-reach/tests/glide_browser.py ;;
-            tactics-tools) TACTIC_SUITE=tools python -u aether-reach/tests/tactics_browser.py ;;
+            foundry) python -u aether-reach/tests/foundry-browser.py && COMBAT_SUITE=arsenal python -u aether-reach/tests/arsenal_browser.py ;;
+            glide) python -u aether-reach/tests/glide_browser.py && AETHER_SUITE=expedition python -u aether-reach/tests/browser.py ;;
+            tactics-tools) TACTIC_SUITE=tools python -u aether-reach/tests/tactics_browser.py && COMBAT_SUITE=rails python -u aether-reach/tests/arsenal_browser.py ;;
             tactics-recovery) TACTIC_SUITE=recovery python -u aether-reach/tests/tactics_browser.py ;;
             *) exit 1 ;;
           esac
