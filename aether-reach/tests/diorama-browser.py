@@ -28,6 +28,7 @@ with sync_playwright() as pw:
    tap(13 if a<t else 12)
   raise AssertionError('Controller cannot reach '+sel)
  def pin(side,x,y):
+  assert p.evaluate('(side)=>TestXR.devices.session.inputSources.some(s=>s.handedness===side&&!!s.hand)',side),'Pinch requires measured hand sources in this session'
   p.evaluate('([s,x,y])=>{TestXR.point(s,x,y);TestXR.pinch(s,false)}',[side,x,y]);frames()
   p.evaluate('(s)=>TestXR.pinch(s,true)',side);frames();p.evaluate('(s)=>TestXR.pinch(s,false)',side);frames()
  def hand_choose(sel):
@@ -74,12 +75,14 @@ with sync_playwright() as pw:
   p.locator('#pause-presentation').click();p.locator('#xr-presentation').select_option('diorama-ar');p.locator('#presentation-back').click();p.locator('#return-title').click();p.locator('#enter-vr').click();p.wait_for_function('AetherReach.snapshot().devices.xr');frames(12)
   check(p.evaluate('TestXR.devices.requestedMode')=='immersive-ar' and snap()['devices']['presentation']['mode']=='diorama-ar','Passthrough diorama explicitly requests immersive AR')
   check(snap()['devices']['presentation']['topOpen'] or snap()['devices']['presentation']['frontOpen'],'AR uses the same non-sealed enclosure contract');p.screenshot(path=str(OUT/'diorama-ar.png'))
-  p.evaluate('TestXR.hidden(true)');frames();check(snap()['paused'],'A hidden AR session pauses safely');p.evaluate('TestXR.hidden(false)');frames();pin('right',830,691);p.wait_for_function('!AetherReach.snapshot().devices.xr')
+  p.evaluate('TestXR.hidden(true)');frames();check(snap()['paused'],'A hidden AR session pauses safely')
+  # Every new synthetic session starts with controllers. Acquire actual hand sources again.
+  p.evaluate('TestXR.hidden(false);TestXR.useHands()');frames();pin('right',830,691);p.wait_for_function('!AetherReach.snapshot().devices.xr')
   # Re-entry to the original first-person path remains independent of the table.
   if snap()['devices']['menu']!='pause-dialog':p.keyboard.press('Escape')
   p.locator('#pause-presentation').click();p.locator('#xr-presentation').select_option('first-person-vr');p.locator('#presentation-back').click();p.locator('#return-title').click();p.locator('#enter-vr').click();p.wait_for_function('AetherReach.snapshot().devices.xr');frames(8)
   check(not snap()['devices']['presentation']['active'],'Original first-person XR remains selectable after AR and third-person sessions')
-  p.evaluate('TestPad.connect()');frames(10);
+  p.evaluate('TestPad.connect()');frames(10)
   if snap()['paused']:choose('#resume')
   frames();before=snap()['position']['yaw'];p.evaluate('TestPad.axes([0,0,1,0])');frames(10);after=snap()['position']['yaw'];p.evaluate('TestPad.axes([0,0,0,0])');frames();check(abs(abs(after-before)-.5235987756)<.01,'Holding Xbox snap turn produces one comfortable turn, not one turn per XR frame')
   p.locator('#exit-vr').click();p.wait_for_function('!AetherReach.snapshot().devices.xr');check(not errors and not shader,'No application or shader errors across desktop, stereo VR, hand UI, AR and first-person restoration')
