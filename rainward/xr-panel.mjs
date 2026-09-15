@@ -5,7 +5,7 @@ export function wrap(text,width=65){const lines=[];for(const para of String(text
 export function nativeLabel(el){let label=el.labels?.[0]?.textContent||el.getAttribute?.('aria-label')||el.textContent||el.id||'';label=label.replace(/\s+/g,' ').trim();if(el.tagName==='SELECT')label=label.split('  ')[0].slice(0,45)+' : '+(el.selectedOptions[0]?.textContent||'');else if(el.type==='range')label+=' : '+el.value;else if(el.type==='checkbox')label=(el.checked?'[ON] ':'[OFF] ')+label;return label||el.id;}
 export function createXRPanel(E){
  const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=1024;const c=canvas.getContext('2d'),texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
- const mesh=new T.Mesh(new T.PlaneGeometry(1.45,1.45),new T.MeshBasicMaterial({map:texture,transparent:false,toneMapped:false,depthTest:false,depthWrite:false}));mesh.renderOrder=10000;
+ const mesh=new T.Mesh(new T.PlaneGeometry(1.45,1.45),new T.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthTest:false,depthWrite:false}));mesh.renderOrder=10000;
  let page=0,textPage=0,reading=false,lastMode='',lastSignature='',lastFocus=null,rows=[],all=[],caption='',hold=null;
  const root=()=>document.querySelector('.sheet:not([hidden])');
  function change(fn){release();fn();lastSignature='';E.reset();}

@@ -9,7 +9,7 @@ import {move} from './motion.mjs';
 const Y=new T.Vector3(0,1,0),V=()=>new T.Vector3(),Q=()=>new T.Quaternion();
 const instructions='Controllers: left stick moves, click sprints. Right stick snaps 30 degrees; up swaps guns, down cycles tools; click melees. Right trigger fires; right grip interacts. Left trigger aims; left grip listens. A vaults or surfaces; left grip + A dodges. Tap B crouches; hold B goes prone or dives. X reloads. Tap Y opens satchel; hold Y pauses. A or trigger selects in menus, B returns. System buttons stay reserved. Hands: point and pinch to use menus. Left pinch away from a panel anchors a virtual movement stick: shift that hand horizontally, release to stop. Right pinch interacts by default; select FIRE mode to aim and hold pinch to shoot, throw or bandage. Field controls include turning, weapons, posture and every other action. Raise an open left palm facing you to pause and recenter. Menus and hand switching require released inputs. Locomotion follows your head, not the gun. This is immersive VR, not passthrough AR.';
 export function createQuestXR(E){
- const rig=new T.Group(),camera=new T.PerspectiveCamera(65,1,.06,220);rig.name='Rainward XR locomotion rig';rig.add(camera);
+ const rig=new T.Group(),camera=new T.PerspectiveCamera(65,1,.06,220);rig.name='Rainward XR locomotion rig';rig.visible=false;rig.add(camera);
  let scene=null,renderer=null,session=null,pending=false,disposed=false,active=false,preference='controllers',lastMode='',layout=0,calibration=null,previousHead=null,headPose=null,eye=null,turn=0,slow=true,handFire=false,handSprint=false,handListen=false,tracking='Awaiting tracking',safe=false,lastSources='',missing=false,palmTime=0,palmLatch=false;
  let currentRay={origin:V(),direction:new T.Vector3(0,0,-1)},sourceSeq=0,cycle=0,stamp=0;const identities=new WeakMap(),pinches=new WeakMap(),anchors=new WeakMap();
  const input=createXRInput(),rays={};let sample=emptyXR();
@@ -25,10 +25,10 @@ export function createQuestXR(E){
    action(handSprint?'HAND SPRINT: ON':'HAND SPRINT: OFF','hand-sprint',()=>{handSprint=!handSprint;}),action(handListen?'HAND LISTEN: ON':'HAND LISTEN: OFF','hand-listen',()=>{handListen=!handListen;}),action(slow?'MOVE SPEED: COMFORT':'MOVE SPEED: NORMAL','comfort-speed',()=>{slow=!slow;}),command('SELECT MEDKIT','heal')],
   back(){if(E.mode()==='play')E.act('pause');else E.back();},recenter(){recenter();},exit(){void exit();},isHeld:el=>E.isHeld(el),hold:(row,on)=>E.hold(row.element,on)});
  const badgeCanvas=document.createElement('canvas');badgeCanvas.width=1024;badgeCanvas.height=192;const bc=badgeCanvas.getContext('2d'),badgeTexture=new T.CanvasTexture(badgeCanvas);badgeTexture.colorSpace=T.SRGBColorSpace;
- const badge=new T.Mesh(new T.PlaneGeometry(1.20,.225),new T.MeshBasicMaterial({map:badgeTexture,toneMapped:false,depthTest:false,depthWrite:false}));badge.renderOrder=10001;badge.name='XR vitals and pause target';rig.add(panel.mesh,badge);
- const veil=new T.Mesh(new T.SphereGeometry(.12,12,8),new T.MeshBasicMaterial({color:0x000000,side:T.BackSide,transparent:true,opacity:0,depthTest:false,depthWrite:false}));veil.renderOrder=20000;camera.add(veil);
+ const badge=new T.Mesh(new T.PlaneGeometry(1.20,.225),new T.MeshBasicMaterial({map:badgeTexture,transparent:true,toneMapped:false,depthTest:false,depthWrite:false}));badge.renderOrder=10001;badge.name='XR vitals and pause target';rig.add(panel.mesh,badge);
+ const veil=new T.Mesh(new T.SphereGeometry(.12,12,8),new T.MeshBasicMaterial({color:0x000000,side:T.BackSide,transparent:true,opacity:0,depthTest:false,depthWrite:false}));veil.renderOrder=9900;camera.add(veil);
  const visuals={};for(const side of ['left','right']){
-  const group=new T.Group(),laser=new T.Line(new T.BufferGeometry().setFromPoints([V(),new T.Vector3(0,0,-4)]),new T.LineBasicMaterial({color:side==='left'?0x8bdbc7:0xefdcad,depthTest:false}));laser.renderOrder=9999;group.add(laser);rig.add(group);
+  const group=new T.Group(),laser=new T.Line(new T.BufferGeometry().setFromPoints([V(),new T.Vector3(0,0,-4)]),new T.LineBasicMaterial({color:side==='left'?0x8bdbc7:0xefdcad,transparent:true,depthTest:false}));laser.renderOrder=9999;group.add(laser);rig.add(group);
   const grip=new T.Group(),body=new T.Mesh(new T.CylinderGeometry(.018,.024,.11,8),new T.MeshBasicMaterial({color:0x818b8c}));body.rotation.x=-.3;grip.add(body);rig.add(grip);
   const joints=new T.InstancedMesh(new T.SphereGeometry(1,6,4),new T.MeshBasicMaterial({color:side==='left'?0x8bdbc7:0xefdcad}),25);joints.frustumCulled=false;rig.add(joints);
   const jointLines=new T.LineSegments(new T.BufferGeometry().setAttribute('position',new T.BufferAttribute(new Float32Array(48*3),3)),new T.LineBasicMaterial({color:0xd8ece5}));jointLines.frustumCulled=false;rig.add(jointLines);
@@ -38,7 +38,7 @@ export function createQuestXR(E){
  function detach(){rig.removeFromParent();scene=null;}
  function snap(angle){turn+=angle;previousHead=null;reset();recenter();}
  function recenter(){if(headPose)calibration={x:headPose.position.x,y:headPose.position.y,z:headPose.position.z};previousHead=null;stamp=-1;layout++;}
- function end(error){if(!active&&!session&&!pending)return;session=null;active=false;safe=false;input.reset();sample=emptyXR();tracking=error?'XR failed: '+error.message:'XR ended';document.body.classList.remove('immersive-rainward');E.hold(null,false);queueMicrotask(()=>E.end(error));}
+ function end(error){if(!active&&!session&&!pending)return;session=null;active=false;rig.visible=false;safe=false;input.reset();sample=emptyXR();tracking=error?'XR failed: '+error.message:'XR ended';document.body.classList.remove('immersive-rainward');E.hold(null,false);queueMicrotask(()=>E.end(error));}
  async function enter(kind='controllers'){
   if(disposed||pending||active)return false;pending=true;preference=kind;E.audio();let candidate;
   try{
@@ -49,7 +49,7 @@ export function createQuestXR(E){
    candidate.addEventListener('visibilitychange',()=>{if(candidate.visibilityState!=='visible'){reset();E.pause();}});
    renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');renderer.xr.setFramebufferScaleFactor(.75);await renderer.xr.setSession(candidate);renderer.xr.setFoveation(.8);
    if(disposed||session!==candidate){await candidate.end();return false;}
-   active=true;calibration=null;previousHead=null;eye=null;lastSources='';missing=false;turn=E.view().yaw;handFire=false;handListen=false;handSprint=false;reset();recenter();document.body.classList.add('immersive-rainward');E.start();return true;
+   active=true;rig.visible=true;calibration=null;previousHead=null;eye=null;lastSources='';missing=false;turn=E.view().yaw;handFire=false;handListen=false;handSprint=false;reset();recenter();document.body.classList.add('immersive-rainward');E.start();return true;
   }catch(error){if(session===candidate)session=null;try{await candidate?.end();}catch{}end(error);return false;}finally{pending=false;}
  }
  async function exit(){try{await session?.end();}catch(error){end(error);}}
@@ -70,7 +70,7 @@ export function createQuestXR(E){
   if(!active)return null;sample=emptyXR();cycle++;
   if(!frame||session?.visibilityState!=='visible'){reset();return sample;}
   const v=viewer(frame);if(!v){if(!missing){missing=true;E.pause();}tracking='Head tracking lost';reset();veil.material.opacity=1;return sample;}
-  missing=false;headPose=v.transform;const h=headPose.position;
+  const recovered=missing;missing=false;headPose=v.transform;const h=headPose.position;if(recovered){previousHead=null;reset();recenter();}
   if(!calibration){calibration={x:h.x,y:h.y,z:h.z};previousHead={x:h.x,z:h.z};}
   // Room-scale displacement uses the same swept movement as ordinary gameplay.
   if(previousHead&&E.mode()==='play'){let dx=h.x-previousHead.x,dz=h.z-previousHead.z;
