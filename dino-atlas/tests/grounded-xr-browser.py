@@ -58,11 +58,11 @@ try:
    }""")
    wait('__dinoGrounded.state.active&&__dinoGrounded.state.controllers===2');page.wait_for_timeout(500)
    check(True,'Production XR lifecycle accepts two mocked tracked controllers')
-   # Point a production ray at a tile, then dispatch the WebXR select events.
-   page.evaluate("""window.__rayTile=(predicate,source=__right,release=true)=>{
+   # Define the helper inside a function body so Playwright does not invoke it on assignment.
+   page.evaluate("""()=>{window.__rayTile=(predicate,source=__right,release=true)=>{
     const T=__THREE,x=__dinoRanger.xr,e=x.controllers[1];x.draw(x.ctx.modal());const t=x.tiles.find(predicate);if(!t)throw Error('XR tile not found');
     const point=new T.Vector3(((t.x+t.w/2)/1024-.5)*1.45,(.5-(t.y+t.h/2)/1024)*1.45,0);x.panel.localToWorld(point);x.rig.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateWorldMatrix(true,false);e.ray.dispatchEvent({type:'selectstart',data:source});if(release)e.ray.dispatchEvent({type:'selectend',data:source});
-   };""")
+   };}""")
    # Use the actual DOM element's corresponding mirrored row, including pagination.
    page.evaluate("""()=>{const x=__dinoRanger.xr;x.draw(x.ctx.modal());const i=x.rows.findIndex(r=>r.element?.id==='quick-tools-toggle');x.page=Math.floor(i/12);x.draw(x.ctx.modal());}""")
    page.wait_for_timeout(250)
