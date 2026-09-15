@@ -1,12 +1,14 @@
 {
-  "version": "0.21.0",
-  "build": "sky-cycle-portals-2026.09.14",
-  "date": "2026-09-14",
+  "version": "0.22.0",
+  "build": "sky-cycle-quiet-water-2026.09.15",
+  "date": "2026-09-15",
   "changes": [
-    "Data-driven Portal Network with Tideglass and Sunrise signatures, bounded effects cues and safe explicit travel",
-    "Articulated courier with proportioned limbs, pedal contact IK, grip locking, rolling wheels and damped braking/landing poses",
-    "Opt-in Quest/WebXR stereoscopic diorama with tracked controllers and hand-ray/pinch UI",
-    "Xbox controls and saved remaps preserved; controller and XR menu focus, neutral-input and draft safeguards",
-    "Existing route IDs, indices, physics, optional challenges and save namespaces preserved"
+    "Quiet Water: independently adjustable bathhouse ambience on the original effects mixer",
+    "Gentle / Soft / Full transient intensity with eight-voice and duplicate-burst bounds",
+    "Balanced / Quiet / Essential only optional water notices; critical warnings and riding guidance preserved",
+    "Xbox and tracked-hand XR adjustments in the existing Sound & music panel",
+    "Sluice, draining completion and arrival cues driven by observed simulation transitions",
+    "No route, physics, progression, music composition or legacy save migration; existing rider IK and tracked XR preserved",
+    "Deterministic HUD-clearance readiness and explicit shipped rail-identity checks in legacy browser acceptance"
   ]
 }

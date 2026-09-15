@@ -1,0 +1,11 @@
+/* Respect the existing dialog and controller focus; no extra HUD overlay. */
+#score-dialog{margin:auto;inset:0;scroll-padding-block:18px;box-sizing:border-box;max-height:calc(100dvh - 32px);overflow:auto;width:min(540px,calc(100vw - 28px));}
+#sensory-settings{border-top:1px solid #547482;margin-top:18px;padding-top:6px;}
+#sensory-settings h3{font-size:1.05rem;margin:12px 0;}
+#sensory-settings p{font-size:.9rem;line-height:1.5;}
+#sensory-settings label{display:block;margin:14px 0 5px;}
+#sensory-settings select,#sensory-settings input{box-sizing:border-box;width:100%;min-height:38px;font:inherit;}
+#sensory-settings select{color:#f0f8fa;background:#17323e;border:1px solid #88b3ba;border-radius:5px;padding:8px;}
+#sensory-settings :focus-visible{outline:3px solid #bce9db;outline-offset:3px;}
+#toast[data-sensory-optional]{bottom:var(--sensory-notice-bottom,220px);max-width:calc(100% - 40px);box-sizing:border-box;transition:none;text-align:center;}
+#score-dialog h2{position:sticky;top:0;z-index:1;background:#16384a;}

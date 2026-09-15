@@ -251,7 +251,7 @@
       if(panel||/^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(e.target.tagName)){e.stopImmediatePropagation();return;}
       if(e.code==='KeyC'&&!e.repeat&&mode==='play'&&!state.paused)throwBufferedUntil=1;
     },true);
-    window.addEventListener('blur',clearKeys);document.addEventListener('visibilitychange',()=>{clearKeys();if(document.hidden&&mode==='play'&&!won&&!state.menu)act('pause');});
+    window.addEventListener('blur',clearKeys);document.addEventListener('visibilitychange',()=>{clearKeys();if(document.hidden&&mode==='play'&&!won&&!state.menu&&!state.paused)act('pause');});
     // Expose deterministic state and controls for development, not a remote API.
     window.__delivery={state,startRoute,showMenu,openEditor,act,get paused(){return state.paused},get environment(){return env},version:'2026.09.04'};
     document.getElementById('tFire').textContent='THROW';cv.tabIndex=0;cv.setAttribute('aria-label','Paper delivery game. Arrows move, Space jumps, C throws, P pauses.');

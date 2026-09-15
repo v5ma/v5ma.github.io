@@ -1,0 +1,141 @@
+name: Sky Cycle Quiet Water
+on:
+  push:
+    branches: [master, 'sky-cycle/quiet-water-0.22']
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '!mario-maker-clone/svgn-paper-route/development/**'
+      - 'tests/campaign_loading_browser.py'
+      - 'tests/flow_routes_browser.py'
+      - 'tests/paper_delivery_entry_browser.py'
+      - 'tests/prismatic_loading_browser.py'
+      - 'tests/sky_relay_browser.py'
+      - '.github/workflows/sky-cycle-quiet-water.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sky-cycle-quiet-water-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rules:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          git rev-parse HEAD
+          node --check mario-maker-clone/svgn-paper-route/soundtrack.js
+          node --check mario-maker-clone/svgn-paper-route/sensory.js
+          node --check mario-maker-clone/svgn-paper-route/water-audio.mjs
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
+          node --test tests/adventure_score.test.cjs
+  native:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [sensory-browser.py, portal-network-browser.py, bathhouse-browser.py, sunrise-browser.py]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exact source normal-input acceptance
+        env:
+          ARTIFACT_DIR: /tmp/quiet-water-evidence
+          HEADED: '1'
+        run: |
+          git rev-parse HEAD
+          if [ "${{ matrix.script }}" = "sensory-browser.py" ]; then
+            xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/real-visibility.py mario-maker-clone/svgn-paper-route/tests/sensory-browser.py
+          else
+            python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quiet-water-${{ matrix.script }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/quiet-water-evidence/
+          retention-days: 30
+          if-no-files-found: error
+  legacy:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [campaign_loading_browser.py, sky_relay_browser.py]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Retain exact authored geometry and editor contracts
+        env:
+          RELAY_SUITE: editor
+        run: |
+          git rev-parse HEAD
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/quiet-water-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python tests/${{ matrix.script }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quiet-water-legacy-${{ matrix.script }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: test-output/
+          retention-days: 30
+          if-no-files-found: error
+  published:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read-only published runtime identity
+        env:
+          ARTIFACT_DIR: /tmp/quiet-water-public
+        run: python mario-maker-clone/svgn-paper-route/tests/quiet-water-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quiet-water-public-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/quiet-water-public/
+          retention-days: 30
+          if-no-files-found: error
+  live-browser:
+    needs: published
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Native audio and controller flows on public site
+        env:
+          ARTIFACT_DIR: /tmp/quiet-water-live
+          TEST_ORIGIN: https://v5ma.github.io
+          HEADED: '1'
+        run: xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/real-visibility.py mario-maker-clone/svgn-paper-route/tests/sensory-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quiet-water-live-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/quiet-water-live/
+          retention-days: 30
+          if-no-files-found: error

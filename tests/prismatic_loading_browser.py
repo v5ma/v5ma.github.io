@@ -19,7 +19,7 @@ with sync_playwright() as p:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded');page.wait_for_function('window.__gpuReady&&window.SkyRelayReady&&window.RideLabReady')
   check(not page.evaluate('!!window.PrismaticReady'),'The optional material import really failed')
   page.locator('[data-course="4"]').click();page.wait_for_function('player.onGround');page.locator('#cv').focus();page.keyboard.down('KeyD');page.wait_for_function('player.x>220');page.keyboard.up('KeyD')
-  check(page.evaluate('tries===1&&tracks.length===16'),'Campaign movement and current Cloudpost data still work with no material add-on')
+  check(page.evaluate('tries===1&&tracks.map(t=>t.sky?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"'),'Campaign movement and current Cloudpost data still work with no material add-on')
   page.locator('#delivery-header [data-delivery="editor"]').click();page.wait_for_function('RouteWorkshop.active');check(page.locator('#curve-pen').count()==1,'The Bezier Workshop is independent of the optional graphics module')
   c.unroute('**/prismatic-renderer.js',fail);page.reload(wait_until='domcontentloaded');page.wait_for_function('window.PrismaticReady&&window.SkyRelayReady&&window.__gpuReady')
   page.locator('#prism-options').click();page.locator('#prism-look').select_option('classic');page.locator('#prism-motion').uncheck();page.locator('#prism-close').click();page.reload(wait_until='domcontentloaded')

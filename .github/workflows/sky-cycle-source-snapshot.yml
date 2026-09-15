@@ -1,0 +1,29 @@
+name: Sky Cycle scoped source snapshot
+on:
+  push:
+    branches: ['sky-cycle/quiet-water-0.22']
+    paths: ['.github/workflows/sky-cycle-source-snapshot.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Retain scoped source and repository instructions
+        run: |
+          mkdir -p /tmp/sky-cycle-source
+          git rev-parse HEAD > /tmp/sky-cycle-source/source-sha.txt
+          git ls-tree -r --name-only HEAD | grep -E '(^|/)AGENTS.md$' > /tmp/sky-cycle-source/instruction-paths.txt || true
+          tar -czf /tmp/sky-cycle-source/runtime.tgz mario-maker-clone/svgn-paper-route tests .github/workflows
+          for p in AGENTS.md mario-maker-clone/AGENTS.md mario-maker-clone/svgn-paper-route/AGENTS.md; do
+            if [ -f "$p" ]; then printf '\n--- %s ---\n' "$p" >> /tmp/sky-cycle-source/instructions.txt; cat "$p" >> /tmp/sky-cycle-source/instructions.txt; fi
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sky-cycle-source-${{ github.sha }}
+          path: /tmp/sky-cycle-source/
+          retention-days: 14

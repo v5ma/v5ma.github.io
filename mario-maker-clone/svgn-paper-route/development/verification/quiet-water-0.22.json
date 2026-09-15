@@ -1,0 +1,28 @@
+{
+  "version": "0.22.0",
+  "build": "sky-cycle-quiet-water-2026.09.15",
+  "baseline_master": "bebbcf1ab228f545befe6b5a192f7cc272c1372b",
+  "status": "candidate-awaiting-native-acceptance",
+  "runtime_sha": null,
+  "software_acceptance": {
+    "local_rule_tests_passed": 168,
+    "local_rule_tests_failed": 0,
+    "native": null
+  },
+  "publication": null,
+  "retained_local_failures": [
+    "Native local Chromium navigation rejected by managed browser policy; moved acceptance to Actions.",
+    "Two new float-representation assertions corrected: tolerance for 0.35*0.12, signed zero treated as silence. No signal thresholds relaxed."
+  ],
+  "open_gates": [
+    "full optional canal sequence",
+    "physical Xbox controller",
+    "physical Quest 3 controllers and hands",
+    "real listening and comfort",
+    "native XR layers/multiview",
+    "native WebGPU",
+    "reference-device frame-time budgets",
+    "long-session resource qualification",
+    "advanced Bezier controller authoring"
+  ]
+}
