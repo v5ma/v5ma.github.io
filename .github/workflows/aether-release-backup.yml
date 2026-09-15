@@ -4,11 +4,19 @@ on:
     workflows: ['Verify published Aether Reach']
     types: [completed]
     branches: [master]
+  workflow_call:
+    inputs:
+      source:
+        required: true
+        type: string
+      publication_run:
+        required: true
+        type: string
 permissions:
   contents: read
 jobs:
   scope:
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository
+    if: (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository) || (inputs.source != '' && inputs.publication_run != '')
     runs-on: ubuntu-latest
     timeout-minutes: 3
     outputs:
@@ -16,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+          ref: ${{ inputs.source || github.event.workflow_run.head_sha }}
           fetch-depth: 2
           persist-credentials: false
       - id: diff
@@ -39,30 +47,55 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
-      SOURCE: ${{ github.event.workflow_run.head_sha }}
-      PUBLICATION_RUN: ${{ github.event.workflow_run.id }}
+      SOURCE: ${{ inputs.source || github.event.workflow_run.head_sha }}
+      PUBLICATION_RUN: ${{ inputs.publication_run || github.event.workflow_run.id }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+          ref: ${{ inputs.source || github.event.workflow_run.head_sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate trusted published revision and receipt
+      - name: Validate trusted published revision and latest receipt
         run: |
           git merge-base --is-ancestor "$SOURCE" origin/master
-          gh run download "$PUBLICATION_RUN" --name aether-publication --dir /tmp/aether-publication
+          node aether-reach/tests/release-manifest.mjs
           python - <<'PY'
           from pathlib import Path
-          import json,hashlib,os
-          p=Path('/tmp/aether-publication/aether-publication.json');r=json.loads(p.read_text())
-          assert r['all_match'] and r['source']==os.environ['SOURCE']
+          import json,hashlib,os,subprocess,io,zipfile,re
+          repo=os.environ['GH_REPO'];source=os.environ['SOURCE'];run_id=os.environ['PUBLICATION_RUN']
+          assert re.fullmatch('[0-9a-f]{40}',source) and run_id.isdecimal()
+          def api(path):return json.loads(subprocess.check_output(['gh','api',path],text=True))
+          run=api(f'repos/{repo}/actions/runs/{run_id}')
+          assert run['status']=='completed' and run['conclusion']=='success'
+          assert run['event']=='push' and run['head_branch']=='master' and run['head_sha']==source
+          assert run['path']=='.github/workflows/aether-published.yml'
+          assert run['repository']['full_name']==repo and run['head_repository']['full_name']==repo
+          pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/{repo}/actions/runs/{run_id}/artifacts?per_page=100'],text=True))
+          choices=[a for page in pages for a in page['artifacts'] if a['name']=='aether-publication' and not a['expired']]
+          assert choices,'No publication receipt exists for the successful run.'
+          # Artifact IDs and API ordering do not identify the newest retry.
+          chosen=max(choices,key=lambda a:(a['created_at'],a['updated_at'],a['id']))
+          assert chosen['workflow_run']['head_sha']==source
+          assert chosen['size_in_bytes']<1048576
+          raw=subprocess.check_output(['gh','api',f"repos/{repo}/actions/artifacts/{chosen['id']}/zip"])
+          if chosen.get('digest'):assert chosen['digest']=='sha256:'+hashlib.sha256(raw).hexdigest()
+          with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            info=archive.getinfo('aether-publication.json');assert info.file_size<1048576
+            receipt=archive.read(info)
+          r=json.loads(receipt)
+          assert r['all_match'] and r['source']==source,'The newest receipt does not certify this source.'
+          expected=json.loads(Path('aether-reach/test-output/runtime-manifest.json').read_text())['files']
+          assert set(r['files'])==set(expected),'The receipt must cover the complete runtime contract.'
           for name,item in r['files'].items():
             assert item['status']==200 and item['match']
-            assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==item['sha256'],name
-          print('All published runtime bytes match the exact source to archive.')
+            assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==item['sha256']==expected[name],name
+          folder=Path('/tmp/aether-publication');folder.mkdir(exist_ok=True)
+          (folder/'aether-publication.json').write_bytes(receipt)
+          (folder/'receipt-selection.json').write_text(json.dumps({'source':source,'publicationRun':int(run_id),'runAttempt':run['run_attempt'],'artifact':chosen['id'],'createdAt':chosen['created_at'],'runtimeFiles':len(expected)},indent=2)+'\n')
+          print('All published runtime bytes match; selected artifact',chosen['id'],'from',chosen['created_at'])
           PY
       - name: Build public backup and verify its clean restoration
         run: |
@@ -72,7 +105,7 @@ jobs:
           (cd /tmp/aether-release-restore && node --test aether-reach/tests/*.test.mjs) > /tmp/aether-release/restore-check.txt
           python aether-reach/tools/collect_release_evidence.py
           cp aether-reach/planning/*.xlsx /tmp/aether-release/
-          cp /tmp/aether-publication/aether-publication.json /tmp/aether-release/
+          cp /tmp/aether-publication/*.json /tmp/aether-release/
           python - <<'PY'
           from pathlib import Path
           import hashlib,json
@@ -94,8 +127,8 @@ jobs:
           assert m['source']==os.environ['SOURCE'],'This version already belongs to a different commit; refusing replacement.'
           PY
           else
-            printf 'Verified public Aether Reach %s. Source: %s.\n\nIncludes committed public game source, the archived v0.3 workbook, checksums, a clean-restore model test, native flight evidence and the deployment receipt. No private narrative or player browser saves. This is a game snapshot, not a full Git mirror or independent off-site backup. See aether-reach/BACKUPS.md.\n' "$VERSION" "$SOURCE" >/tmp/aether-release-notes.md
-            gh release create "$TAG" /tmp/aether-release/* --target "$SOURCE" --title "Aether Reach $VERSION — verified source backup" --notes-file /tmp/aether-release-notes.md --latest=false
+            printf 'Verified public Aether Reach %s. Source: %s.\n\nIncludes the public game source, archived v0.3 workbook, checksums, clean-restore model tests, exact-source native browser evidence and verified deployment receipt. Physical Xbox/Quest acceptance and unfamiliar-player design approval remain open. No private narrative or player browser saves. This is a game snapshot, not a full Git mirror or independent off-site backup. See aether-reach/BACKUPS.md.\n' "$VERSION" "$SOURCE" >/tmp/aether-release-notes.md
+            gh release create "$TAG" /tmp/aether-release/* --target "$SOURCE" --title "Aether Reach $VERSION - verified source backup" --notes-file /tmp/aether-release-notes.md --latest=false
           fi
           echo "$TAG" > /tmp/aether-release-tag.txt
       - name: Download the published assets and verify the backup actually exists
@@ -118,4 +151,5 @@ jobs:
           path: |
             /tmp/aether-backup-receipt.json
             /tmp/aether-release/restore-check.txt
+            /tmp/aether-publication/receipt-selection.json
           retention-days: 30
