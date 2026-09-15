@@ -1,0 +1,72 @@
+name: Stage Aether Rewired input polish
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-rewired-input-polish.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fa39741b2fb3ad8c956d03875deb31aacdb97c13
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply independently reviewed exact-hash corrections
+        run: |
+          mkdir -p /tmp/rewired-polish
+          cat >/tmp/rewired-polish/edits.json <<'JSON'
+          {"aether-reach/xr-session.mjs":{"before":"2fd22dead174ffa66abcfd6699ae49b263ec6e9b15d9bbc3639da10763ed3666","after":"12bdef86c3d00af56568209b426f934126346bd2212a9b8228df3303e9b5df84","replacements":[["turn=new SnapTurn(),pinches=","turn=new SnapTurn(),padTurner=new SnapTurn(),pinches="],["pinches.reset();turn.reset();hover=null;","pinches.reset();turn.reset();padTurner.reset();hover=null;"],["}else if(!menu){p.yaw+=controls.turn*dt*1.8;}","}else if(!menu&&!api.standardInput?.()){p.yaw+=controls.turn*dt*1.8;}"],["if(diorama.active&&aim&&!menu){p.yaw=","if(diorama.active&&aim&&!menu&&!api.standardInput?.()){p.yaw="],["offsetYaw+=turn.update(axis);syncRig();","offsetYaw+=padTurner.update(axis);syncRig();"],["reset(){inputs.reset();pinches.reset();turn.reset();}","reset(){inputs.reset();pinches.reset();turn.reset();padTurner.reset();}"]]},"aether-reach/controllers.mjs":{"before":"231a1f54eb09c3a72ccb15dffcbad2d56512a4fa5ce143321dbfeaa0de8877f4","after":"2800c7c9721d8571a98f8e1854c5c74150a923c811f670c2070f44c0ea28a214","replacements":[["const xr=createXR(api.view,{state:api.state,","const xr=createXR(api.view,{standardInput:()=>standardXR&&performance.now()<standardXRUntil,state:api.state,"]]},"aether-reach/diorama-view.mjs":{"before":"2f2633f3d9d7bc1015ce2c24992fa08f26092e00d1faad6d8fd2e559e9a23c7a","after":"f42ae8108ca00f111b550c082342b621c84132fa4f3a9052371b0a87a4e5c4ac","replacements":[["camera.position.set(x-Math.sin(q)*46,y+43,z+Math.cos(q)*46);","camera.position.set(x-Math.sin(q)*46,y+(config.opening==='front'?12:43),z+Math.cos(q)*46);"]]},"aether-reach/tests/diorama-browser.py":{"before":"ee54e226d313fc6adb888e150a130fa098d9b8efe8b1759f56b81673c6c34770","after":"45b4135e778037f12ead5cfd82ae1aae4a5c6274fca49f807a484eee00b67080","replacements":[["check(not snap()['devices']['presentation']['active'],'Original first-person XR remains selectable after AR and third-person sessions')","check(not snap()['devices']['presentation']['active'],'Original first-person XR remains selectable after AR and third-person sessions')\n  p.evaluate('TestPad.connect()');frames(10);before=snap()['position']['yaw'];p.evaluate('TestPad.axes([0,0,1,0])');frames(10);after=snap()['position']['yaw'];p.evaluate('TestPad.axes([0,0,0,0])');frames();check(abs(abs(after-before)-.5235987756)<.01,'Holding Xbox snap turn produces one comfortable turn, not one turn per XR frame')"]]}}
+          JSON
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          data=json.loads(Path('/tmp/rewired-polish/edits.json').read_text())
+          for name,item in data.items():
+            p=Path(name);assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            text=p.read_text();assert hashlib.sha256(text.encode()).hexdigest()==item['before'],name
+            for old,new in item['replacements']:
+              assert text.count(old)==1,(name,old)
+              text=text.replace(old,new)
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.write_text(text)
+          PY
+          git diff --check
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs > /tmp/rewired-polish/tests.log
+      - name: Create reviewed commit without updating any refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/rewired-polish/edits.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/rewired-polish/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in data]})
+          c=post('git/commits',{'message':'fix(aether): isolate Xbox XR snap latch and adapt the front-only preview camera','tree':t['sha'],'parents':['fa39741b2fb3ad8c956d03875deb31aacdb97c13']})
+          Path('/tmp/rewired-polish/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':t['sha'],'files':list(data)},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-rewired-polished-candidate
+          path: |
+            /tmp/rewired-polish/candidate.json
+            /tmp/rewired-polish/tests.log
+          retention-days: 14
