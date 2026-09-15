@@ -1,5 +1,7 @@
 """First Bell native UI/archery acceptance. Player state is observed, never assigned.
 The optional long combat suite uses the documented render-only CPU fixture.
+Lesson waits allow up to 240 seconds on a software GPU; outcomes and game
+time are unchanged. Each lesson records wall/simulation observations.
 """
 from pathlib import Path
 from urllib.parse import urlparse
@@ -18,14 +20,22 @@ with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
  browser=pw.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1120,'height':800},device_scale_factor=.5,service_workers='block')
- ctx.add_init_script(PAD+'window.TEST_XR_PIXEL_SCALE=.5;'+(ROOT/'vesperfall/tests/fake-xr.js').read_text());page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
+ ctx.add_init_script(PAD+'window.TEST_XR_PIXEL_SCALE=.5;'+(ROOT/'vesperfall/tests/fake-xr.js').read_text());page=ctx.new_page();page.set_default_timeout(240000);page.on('pageerror',lambda e:errors.append(str(e)))
  def wait(s,arg=None):return page.wait_for_function(s,arg=arg)
  def pause():
   if not page.evaluate('Vesperfall.component.paused'):page.keyboard.press('KeyP');wait('Vesperfall.component.paused')
  def shoot():
   n=page.evaluate('Vesperfall.state.shots');page.keyboard.down('Space');wait('Vesperfall.component.charge>.985');page.keyboard.up('Space');wait('n=>Vesperfall.state.shots>n',n);wait('Vesperfall.state.arrows.length===0')
  def save_raw():return page.evaluate('localStorage.getItem(PilgrimSave.KEY)')
- def lesson(i):wait('(i)=>Vesperfall.component.firstBell.state.coach?.index===i',i)
+ def lesson(i):
+  started=time.monotonic()
+  observe=lambda:page.evaluate('({time:Vesperfall.state.time,lesson:Vesperfall.component.firstBell.state.coach?.index,blocks:Vesperfall.state.blocks,health:Vesperfall.state.health,paused:Vesperfall.component.paused})')
+  before=observe()
+  try:wait('(i)=>Vesperfall.component.firstBell.state.coach?.index===i',i)
+  finally:
+   row={'target':i,'wallSeconds':round(time.monotonic()-started,3),'before':before,'after':observe()}
+   with (OUT/'lesson-timings.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
+   print('LESSON TIMING:',json.dumps(row),flush=True)
  def padpress(i):
   wait('Vesperfall.component.dominionControls.state.armed')
   for v in (True,False):page.evaluate('([i,v])=>TestPad.button(i,v)',[i,v]);wait('([i,v])=>Vesperfall.component.dominionControls.state.prev[i]===v',[i,v])

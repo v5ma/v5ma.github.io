@@ -82,6 +82,9 @@ with sync_playwright() as p:
     try:
         page.goto(BASE+'/vesperfall/index.html?acceptance=surestep', wait_until='domcontentloaded')
         wait('window.Vesperfall?.component.questHands&&AFRAME.scenes[0].renderer.info.render.calls>0')
+        # Inspect preserved legacy art, not the new chapter's smaller cast.
+        page.locator('#expedition-mode').select_option('endless');page.locator('#start').click()
+        wait('Vesperfall.component.running&&!Vesperfall.component.paused');page.keyboard.press('KeyP');wait('Vesperfall.component.paused')
         check(page.evaluate('Vesperfall.component.enemyMeshes.filter(m=>m.userData.surestep).length===16'), 'All 16 outer humanoid instances receive the new articulated rig')
         check(page.evaluate('Vesperfall.component.enemyMeshes.filter(m=>m.visible&&m.userData.surestep).every(m=>m.userData.surestep.pose.legs.every(l=>l.knee.every(Number.isFinite)&&l.ankle.every(Number.isFinite)))'), 'Rendered humanoid poses have finite knees and feet')
         # Isolated review canvas clones actual posed meshes; game state is untouched.

@@ -1,5 +1,5 @@
 {
-  "version": "0.13.0",
+  "version": "0.14.0",
   "project": "Vesperfall: Arrows Unchained",
   "scope": "Quality-gated path toward a polished original premium archery roguelite. AAA is an aspiration, not a certified rating, budget or delivery promise. Public-only content.",
   "tasks": [
@@ -717,9 +717,11 @@
         "quest-hands.js",
         "tests/surestep-browser.py",
         "tests/dominions-browser.py",
-        "SURESTEP.md"
+        "SURESTEP.md",
+        "returning-bell.js",
+        "tests/returning-bell-browser.py"
       ],
-      "verification": "Surestep implements the missing paginated Quest water settings and adds optional tracked-hand ray/pinch menu input. Xbox down selects Blink and left cycles stocked, unlocked damage arrows outside menus/quiver. Tracking loss, held-pinch acquisition and controller handover are explicit software gates in tests/surestep-browser.py. Full accessibility/remapping and physical-device approval remain open.",
+      "verification": "Surestep implements the missing paginated Quest water settings and adds optional tracked-hand ray/pinch menu input. Xbox down selects Blink and left cycles stocked, unlocked damage arrows outside menus/quiver. Tracking loss, held-pinch acquisition and controller handover are explicit software gates in tests/surestep-browser.py. Full accessibility/remapping and physical-device approval remain open. Returning Bell interactions retain direct Xbox controls; the AR Architect's Table shares controller-ray/stick and joint-pinch menus. Game-owned confirmations still use the existing save guard.",
       "release": "0.13.0"
     },
     {
@@ -892,9 +894,10 @@
       "why": "A feature-rich control scheme is not yet an intuitive first session.",
       "evidence": [
         "first-bell.js",
-        "tests/first-bell-browser.py"
+        "tests/first-bell-browser.py",
+        "returning-bell.js"
       ],
-      "verification": "Ten playable lessons now verify actual outcomes, with device-specific hints and a spatial Quest coach. Skips are recorded separately. Software-only: first-user confusion, reversed-hand ergonomics and fatigue remain to be measured.",
+      "verification": "Ten playable lessons now verify actual outcomes, with device-specific hints and a spatial Quest coach. Skips are recorded separately. Software-only: first-user confusion, reversed-hand ergonomics and fatigue remain to be measured. Returning Bell replaces the default fresh opening; all guided First Bell lessons remain explicitly available. Physical onboarding and newcomer study remain open.",
       "release": "0.10.0 First Bell"
     },
     {
@@ -917,7 +920,7 @@
         "tests/oath.test.cjs",
         "tests/first-bell-browser.py"
       ],
-      "verification": "The optional Oath coordinates three staged encounters with front-hemisphere initiation, bolt/windup budgets and recovery supplies. The original Endless mode is unchanged. Broad seed/human difficulty evaluation remains open.",
+      "verification": "The optional Oath coordinates three staged encounters with front-hemisphere initiation, bolt/windup budgets and recovery supplies. The original Endless mode is unchanged. Broad seed/human difficulty evaluation remains open. Returning Bell deliberately places five retained defenders along different approaches; it does not claim a new global director or patrol system.",
       "release": "0.10.0 First Bell"
     },
     {
@@ -962,10 +965,16 @@
         "oath-model.js",
         "first-bell.js",
         "tests/oath.test.cjs",
-        "CONTINUATION-AUDIT.md"
+        "CONTINUATION-AUDIT.md",
+        "returning-bell-model.js",
+        "returning-bell-art.js",
+        "returning-bell.js",
+        "tests/returning-bell.test.cjs",
+        "tests/returning-bell-browser.py",
+        "RETURNING-BELL.md"
       ],
-      "verification": "A connected Roseglass/Ivory Crown/Ember Crown progression reuses the collision-tested 25-room world, existing stairs and alternate approaches. Three staged courts are implemented; the proposed 20-30 minute polished duration and authored connector variety are not yet measured or complete.",
-      "release": "0.10.0 First Bell"
+      "verification": "The Returning Bell is a separate authored opening with seven connected places, two actual stair approaches, real Blink connectors, reversible collision-backed screens, a persistent return gate, and a ring-and-return objective. Development slice, not a measured 20-30 minute finished campaign. Software route/save/native-input checks are separate from unfamiliar-player and physical-device review.",
+      "release": "0.14.0 Returning Bell"
     },
     {
       "id": "V53",
@@ -1048,8 +1057,8 @@
       "id": "V57",
       "area": "Presentation",
       "title": "Original environmental narrative and reward presentation",
-      "status": "Planned",
-      "priority": "P1",
+      "status": "Partial",
+      "priority": "P0",
       "milestone": "M3",
       "depends": [
         "V52",
@@ -1058,9 +1067,13 @@
       "owner": "Art / audio",
       "gate": "Public-only lore, landmarks and discoveries connect the world; skippable/accessible presentation; no private story content enters this repository without permission.",
       "why": "Give exploration emotional meaning and recognizable destinations.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "returning-bell-model.js",
+        "returning-bell-art.js",
+        "RETURNING-BELL.md"
+      ],
+      "verification": "The authored refuge, basin/statue landmarks, silent tower signal, screen winch and service-side return connection express one original environmental objective. Newcomer recognition, discovery, audio and finished-art review remain open.",
+      "release": "0.14.0 Returning Bell"
     },
     {
       "id": "V58",
@@ -1194,7 +1207,7 @@
         "V52"
       ],
       "owner": "QA / play research",
-      "gate": "Record at least 8 external playtest sessions as a proposed first research batch, including new/experienced players. Track task success, deaths, confusion, route discovery, fatigue and whether they choose another run. No automated score substitutes.",
+      "gate": "Record at least 8 external playtest sessions as a proposed first research batch, including new/experienced players. Track task success, deaths, confusion, route discovery, fatigue and whether they choose another run. No automated score substitutes. For Returning Bell, record whether players form a plan, recognize the screen tradeoff and return gate, and exploit learning on replay without coaching.",
       "why": "Test whether the experience is enjoyable and understandable.",
       "evidence": [],
       "verification": "Not closed; no completion credit without gate evidence.",
@@ -1438,11 +1451,11 @@
         "tests/first-bell-browser.py",
         "tests/pilgrim.test.cjs"
       ],
-      "verification": "First Bell integrates teaching, a scored staged route, three-phase boss and checkpoint continuation in the maintained game. Source/model and native-input checks are distinct from physical hardware and human approval.",
+      "verification": "First Bell integrates teaching, a scored staged route, three-phase boss and checkpoint continuation in the maintained game. Source/model and native-input checks are distinct from physical hardware and human approval. The authored opening is a ring-and-return chapter, not an additional boss fight. Its completion offers an explicit blessing continuation into retained Endless content; the next authored chapter remains open.",
       "release": "0.10.0 First Bell"
     }
   ],
-  "updated": "2026-09-14",
+  "updated": "2026-09-15",
   "canonical": "roadmap.json",
   "workbook": "AAA-PRODUCTION.xlsx",
   "guide": "AAA-ROADMAP.md",
@@ -1480,7 +1493,7 @@
       "depends": [
         "M1"
       ],
-      "goal": "Turn mechanics into a deliberately paced signature adventure.",
+      "goal": "Make the authored Returning Bell opening legible and replayable, then extend its route grammar from observed evidence.",
       "exit": "Coordinated encounters, authored route grammar, first boss and viable run choices survive native and human playtests."
     },
     {
@@ -1557,11 +1570,11 @@
     [
       "Q04",
       "Quest 3 / AR",
-      "Stationary Sanctuary",
-      "Clear space, permission denial, safe stationary controls and expedition restoration",
+      "Sanctuary and Architect's Table",
+      "Passthrough, virtual-table placement/recenter/layers, tracked controllers and pinch UI, and exact paused-expedition restoration",
       "V42,V62",
       "Not run",
-      "Record real passthrough visibility; no real-world occlusion claim."
+      "Record physical visibility, reach and legibility. Table has no detected physical anchor or real-world occlusion."
     ],
     [
       "Q05",
@@ -1744,9 +1757,9 @@
       "Large feature count without a polished signature slice",
       "High",
       "Production / level design",
-      "Many procedural rooms do not establish quality",
+      "Authored opening exists, but newcomer understanding and replay enjoyment are unmeasured",
       "V49,V50,V51,V52,V76",
-      "Finish one cohesive onboarding-to-boss route before expanding content.",
+      "Observe recognition, route choice and replay before producing another chapter.",
       "Open"
     ],
     [
@@ -1764,9 +1777,9 @@
       "Browser storage eviction and future generator changes",
       "High",
       "Engineering / QA",
-      "Local saves are not cloud backup; only current generator supported",
+      "Local storage is not cloud backup; two immutable layout identities now require ongoing fixtures",
       "V65,V75",
-      "Publish limitations; add migration/backup fixtures before incompatible changes.",
+      "Retain the original Surestep checkpoint fixture; reconstruct chapter mechanisms before validating restored positions.",
       "Open"
     ],
     [
@@ -1851,31 +1864,29 @@
     ]
   ],
   "nextRelease": {
-    "theme": "Water lifecycle hardening and the requested sound/music pass, with physical input and humanoid art review",
+    "theme": "Refine Returning Bell through unfamiliar-player observation, first-person/AR hardware review and targeted art/audio/performance work before another chapter",
     "focus": [
-      "V41",
-      "V58",
-      "V66",
-      "V68",
-      "V74",
-      "V38",
+      "V52",
+      "V57",
       "V49",
       "V50",
-      "V51",
-      "V52",
-      "V53",
-      "V54",
-      "V75",
-      "V76"
+      "V64",
+      "V76",
+      "V41",
+      "V58",
+      "V74",
+      "V59",
+      "V62",
+      "V75"
     ],
-    "note": "Surestep closes the bounded V41 water-menu gap and adds Xbox quick arrows, tracked-hand menu UI and procedural foot planting. Next address the remaining V74 water lifecycle/budget findings, V58/V44 sound/music, and physical Quest/Xbox review. Preserve every save envelope and existing game mode."
+    "note": "The first authored chapter replaces the default new-player content while legacy saves reconstruct their original geometry. Do not inflate room count or treat graph/model tests as enjoyment evidence. Preserve returning-bell-1 and hollow-dominions-1 identities. The AR table is discovery-limited inspection, not hand-only combat, room scanning or a full-scale AR campaign."
   },
   "continuation": {
-    "updated": "2026-09-14",
+    "updated": "2026-09-15",
     "entrypoint": "DEVELOPMENT-HANDOFF.md",
     "audit": "CONTINUATION-AUDIT.md",
-    "gameVersion": "0.13.0",
-    "auditedBase": "f02dffa47a79ff83efab6396cb6aea3040960b29",
+    "gameVersion": "0.14.0",
+    "auditedBase": "8620f52f7906ef66c0c5bdc0edb73f8e1de423cd",
     "publicationRule": "Finish, test, commit, merge and verify the public game; do not stop at a local candidate or unmerged branch.",
     "scopeRule": "Only Vesperfall; preserve siblings, saves, existing modes and public-only narrative.",
     "requirements": [
@@ -1889,37 +1900,37 @@
     "firstActions": [
       {
         "tasks": [
-          "V68",
-          "V66"
+          "V52",
+          "V57",
+          "V64",
+          "V76"
         ],
-        "action": "Read SURESTEP.md and the exact source/publication receipts. Review the new Xbox shortcuts, tracked-hand menu transitions and original procedural humanoid motion on physical devices."
+        "action": "Read RETURNING-BELL.md, LEVEL-DESIGN-RESET.md and the exact release receipt. Observe unfamiliar and returning players traversing both approaches, the screen tradeoff and the recognizable return gate; do not call software completion a player study."
       },
       {
         "tasks": [
           "V41",
-          "V74",
-          "V38"
+          "V59",
+          "V62",
+          "V75"
         ],
-        "action": "Keep Surestep water-menu parity; close the remaining Tidelight runtime-budget, rebuild and water-contact gaps without altering collision or saves."
+        "action": "Test physical first-person Quest archery, both handedness settings, AR table placement and hand/controller transitions. Preserve full save restoration and the separate unscored Sanctuary."
       },
       {
         "tasks": [
           "V58",
-          "V44"
+          "V74"
         ],
-        "action": "Deliver the requested sound/music pass, including newly implemented water acoustics and controlled warning density."
+        "action": "Tune chapter-specific spatial sound, visibility, water/effect lifecycle and sustained rendering budgets in support of place mastery, not as unrelated feature accumulation."
       },
       {
         "tasks": [
           "V49",
           "V50",
-          "V51",
           "V52",
-          "V53",
-          "V54",
           "V76"
         ],
-        "action": "Refine existing First Bell/Oath, purposeful route variety, builds and humanoid animation with human playtest evidence."
+        "action": "Iterate the complete opening and its default entry before designing the next authored chapter. Keep legacy modes, both immutable layout IDs, tested save envelopes and direct arrow shortcuts."
       }
     ],
     "historicalEvidence": {

@@ -1,3 +1,7 @@
+Implementation note for version 0.14.0.
+
+The Returning Bell and a discovery-limited AR inspection table are now integrated in source. Read RETURNING-BELL.md for the exact implemented scope and a publication receipt for live status. The original brief below is retained as the design basis. Its future patrol systems, completed campaign, physical-device approval and unfamiliar-player findings must not be inferred from the first playable chapter. The canonical roadmap and workbook are now synchronized to the implementation milestone.
+
 Vesperfall level-design reset, September 15, 2026.
 
 This is the replacement-level design brief and production directive, not a playable release or a claim that replacement levels have shipped. The user has explicitly identified level design as the central weakness and requested a new approach rather than continued expansion of the original gameplay-demonstration layouts. The proposed first replacement is The Returning Bell. Preserve the existing archery, direct Xbox arrow shortcuts, physical first-person VR, optional hand-tracking menus and player progression. Keep AR available as a distinct presentation, not a substitute for first-person VR.

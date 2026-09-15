@@ -85,6 +85,6 @@
    const instances=b.finish(parent);parent.userData.materials=status;parent.userData.architecture={floorCount:model.floors.length,solidCount:model.solids.length,roseWindows:parent.children.filter(c=>c.name==='Original leaded rose-glass window').length,gallery:true,roomFamilies:[...new Set(model.rooms.map(r=>r.planFamily))]};return {group:parent,gate,instances};
   }
   function dispose(group){if(!group.userData.cathedral)return kit.dispose(group);group.userData.retired=true;group.traverse(o=>{if(o.geometry&&!sharedGeometry.has(o.geometry)&&!Object.values(kit.geos).includes(o.geometry))o.geometry.dispose();if(o.material)for(const m of Array.isArray(o.material)?o.material:[o.material])if(!sharedMaterials.has(m)&&m.map?.isCanvasTexture){m.map.dispose();m.dispose();}});group.removeFromParent();}
-  return {...kit,world,dispose,cathedralStatus:status};
+  return {...kit,world,dispose,cathedralStatus:status,architectureKit:{Batch,arch,column,rose,candle,stone,pale,dark,paving,slate,gold,copper,wood,ivory,ember,unitBox,cylinder,sphere}};
  };
 })(globalThis);
