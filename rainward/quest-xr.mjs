@@ -4,20 +4,44 @@
 import * as T from './vendor/three.module.js';
 import {createXRInput,emptyXR,pinchDown,handStick} from './xr-input.mjs';
 import {createXRPanel} from './xr-panel.mjs';
+import {createDioramaView} from './diorama-view.mjs';
+import {normalizeDiorama,readDioramaPreferences,writeDioramaPreferences,sessionType,setOpening,shellOpenings} from './diorama-core.mjs';
 import {heightAt,HEIGHT,solidAt} from './world.mjs';
 import {move} from './motion.mjs';
 const Y=new T.Vector3(0,1,0),V=()=>new T.Vector3(),Q=()=>new T.Quaternion();
 const instructions='Controllers: left stick moves, click sprints. Right stick snaps 30 degrees; up swaps guns, down cycles tools; click melees. Right trigger fires; right grip interacts. Left trigger aims; left grip listens. A vaults or surfaces; left grip + A dodges. Tap B crouches; hold B goes prone or dives. X reloads. Tap Y opens satchel; hold Y pauses. A or trigger selects in menus, B returns. System buttons stay reserved. Hands: point and pinch to use menus. Left pinch away from a panel anchors a virtual movement stick: shift that hand horizontally, release to stop. Right pinch interacts by default; select FIRE mode to aim and hold pinch to shoot, throw or bandage. Field controls include turning, weapons, posture and every other action. Raise an open left palm facing you to pause and recenter. Menus and hand switching require released inputs. Locomotion follows your head, not the gun. This is immersive VR, not passthrough AR.';
 export function createQuestXR(E){
+ const diorama=createDioramaView();let storage=null;try{storage=globalThis.localStorage;}catch{}let preferences=readDioramaPreferences(storage),viewMode=preferences.view;
+ const isDiorama=()=>viewMode!=='first-person';
  const rig=new T.Group(),camera=new T.PerspectiveCamera(65,1,.06,220);rig.name='Rainward XR locomotion rig';rig.visible=false;rig.add(camera);
  let scene=null,renderer=null,session=null,pending=false,disposed=false,active=false,preference='controllers',lastMode='',layout=0,calibration=null,previousHead=null,headPose=null,eye=null,turn=0,slow=true,handFire=false,handSprint=false,handListen=false,tracking='Awaiting tracking',safe=false,lastSources='',missing=false,palmTime=0,palmLatch=false;
  let currentRay={origin:V(),direction:new T.Vector3(0,0,-1)},sourceSeq=0,cycle=0,stamp=0;const identities=new WeakMap(),pinches=new WeakMap(),anchors=new WeakMap();
  const input=createXRInput(),rays={};let sample=emptyXR();
- const status=()=>{const p=E.state().player;return (safe?'':'RELEASE INPUTS / ')+tracking+' | HP '+Math.ceil(p.hp)+' | '+(p.waterMode==='swim'?'AIR '+Math.ceil(p.oxygen):p.equipped+' '+p.mag+'/'+p.reserve)+(handFire?' | HAND FIRE ARMED':'');};
+ const status=()=>{const p=E.state().player;return (isDiorama()?(viewMode==='diorama-ar'?'AR DIORAMA':'VR DIORAMA')+' | ':'FIRST PERSON | ')+(safe?'':'RELEASE INPUTS / ')+tracking+' | HP '+Math.ceil(p.hp)+' | '+(p.waterMode==='swim'?'AIR '+Math.ceil(p.oxygen):p.equipped+' '+p.mag+'/'+p.reserve)+(handFire?' | HAND FIRE ARMED':'');};
  const reset=()=>{input.reset();sample=emptyXR();safe=false;layout++;};
  const action=(label,id,fn)=>({label,id,run:fn});
  const command=(label,id)=>action(label,id,()=>E.act(id));
- const panel=createXRPanel({mode:E.mode,hint:()=>E.state().hint||'Right grip: interact / Point and select field controls',status,instructions:()=>instructions,reset,
+ function remember(next){preferences=normalizeDiorama({...preferences,...next});writeDioramaPreferences(storage,preferences);E.preferences?.(preferences);}
+ function changeView(next){
+  if(!['first-person','diorama-vr','diorama-ar'].includes(next))return false;
+  if(active&&sessionType(next)!==sessionType(viewMode))return false;
+  viewMode=next;remember({view:next});diorama.reset();calibration=null;previousHead=null;eye=null;E.pause();reset();recenter();return true;
+ }
+ function presentationActions(){
+  const opening=shellOpenings(preferences.shell),list=[];
+  if(viewMode!=='diorama-ar')list.push(action(isDiorama()?'VIEW: SWITCH TO FIRST PERSON':'VIEW: SWITCH TO VR DIORAMA','view-toggle',()=>changeView(isDiorama()?'first-person':'diorama-vr')));
+  if(isDiorama())list.push(
+   action('DIORAMA: TOP + FRONT OPEN','shell-both',()=>remember({shell:'both-open'})),
+   action('DIORAMA: TOP OPEN / FRONT CLOSED','shell-top',()=>remember({shell:'top-open'})),
+   action('DIORAMA: FRONT OPEN / TOP CLOSED','shell-front',()=>remember({shell:'front-open'})),
+   action('LARGER CHARACTERS / ZOOM IN','display-larger',()=>{remember({scale:preferences.scale+.01});}),
+   action('SMALLER CHARACTERS / ZOOM OUT','display-smaller',()=>{remember({scale:preferences.scale-.01});}),
+   action(preferences.follow?'CONTENT FOLLOW: ON':'CONTENT FOLLOW: OFF','display-follow',()=>remember({follow:!preferences.follow})),
+   action('RECENTER DIORAMA ON SURVIVOR','display-recenter',()=>recenter()));
+  return list;
+ }
+
+ const panel=createXRPanel({mode:E.mode,extraActions:presentationActions,hint:()=>E.state().hint||'Right grip: interact / Point and select field controls',status,instructions:()=>instructions,reset,
   actions:()=>[
    command('INTERACT / PICK UP / SAVE','interact'),action(handFire?'HAND MODE: FIRE (select for USE)':'HAND MODE: USE (select for FIRE)','hand-fire',()=>{handFire=!handFire;}),
    command('RELOAD','reload'),command('JUMP / VAULT / SURFACE','traverse'),command('CROUCH / STAND','crouch'),command('PRONE / DIVE / SURFACE','prone'),command('SATCHEL / CRAFT','pack'),command('PAUSE / SETTINGS','pause'),
@@ -34,28 +58,29 @@ export function createQuestXR(E){
   const jointLines=new T.LineSegments(new T.BufferGeometry().setAttribute('position',new T.BufferAttribute(new Float32Array(48*3),3)),new T.LineBasicMaterial({color:0xd8ece5}));jointLines.frustumCulled=false;rig.add(jointLines);
   group.visible=grip.visible=joints.visible=jointLines.visible=false;visuals[side]={group,laser,grip,joints,jointLines};
  }
- function bind(next){scene=next.scene;renderer=next.renderer;scene.add(rig);next.bindXR(api);calibration=null;previousHead=null;eye=null;reset();}
+ function bind(next){scene=next.scene;renderer=next.renderer;scene.add(rig);next.bindXR(api);diorama.reset();calibration=null;previousHead=null;eye=null;reset();}
  function detach(){rig.removeFromParent();scene=null;}
- function snap(angle){turn+=angle;previousHead=null;reset();recenter();}
- function recenter(){if(headPose)calibration={x:headPose.position.x,y:headPose.position.y,z:headPose.position.z};previousHead=null;stamp=-1;layout++;}
+ function snap(angle){turn+=angle;previousHead=null;reset();recenter(false);}
+ function recenter(replaceTable=true){if(replaceTable)diorama.reset();if(headPose)calibration={x:headPose.position.x,y:headPose.position.y,z:headPose.position.z};previousHead=null;stamp=-1;layout++;}
  function end(error){if(!active&&!session&&!pending)return;session=null;active=false;rig.visible=false;safe=false;input.reset();sample=emptyXR();tracking=error?'XR failed: '+error.message:'XR ended';document.body.classList.remove('immersive-rainward');E.hold(null,false);queueMicrotask(()=>E.end(error));}
- async function enter(kind='controllers'){
-  if(disposed||pending||active)return false;pending=true;preference=kind;E.audio();let candidate;
+ async function enter(kind='controllers',requestedView=preferences.view){
+  if(disposed||pending||active)return false;pending=true;preference=kind;viewMode=normalizeDiorama({view:requestedView}).view;remember({view:viewMode});E.audio();let candidate;
   try{
    if(!globalThis.navigator?.xr)throw Error('WebXR is unavailable. Use Meta Quest Browser over HTTPS.');
-   candidate=await navigator.xr.requestSession('immersive-vr',kind==='hands'?{requiredFeatures:['hand-tracking'],optionalFeatures:['local-floor']}:{optionalFeatures:['local-floor','hand-tracking']});
-   if(disposed){await candidate.end();return false;}session=candidate;
+   candidate=await navigator.xr.requestSession(sessionType(viewMode),kind==='hands'?{requiredFeatures:['hand-tracking'],optionalFeatures:['local-floor']}:{optionalFeatures:['local-floor','hand-tracking']});
+   if(disposed){await candidate.end();return false;}if(viewMode==='diorama-ar'&&candidate.environmentBlendMode==='opaque')throw Error('This browser did not provide transparent AR. Choose VR Diorama instead.');session=candidate;
    candidate.addEventListener('end',()=>{if(session===candidate)end();},{once:true});
    candidate.addEventListener('visibilitychange',()=>{if(candidate.visibilityState!=='visible'){reset();E.pause();}});
    renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');renderer.xr.setFramebufferScaleFactor(.75);await renderer.xr.setSession(candidate);renderer.xr.setFoveation(.8);
    if(disposed||session!==candidate){await candidate.end();return false;}
-   active=true;rig.visible=true;calibration=null;previousHead=null;eye=null;lastSources='';missing=false;turn=E.view().yaw;handFire=false;handListen=false;handSprint=false;reset();recenter();document.body.classList.add('immersive-rainward');E.start();return true;
+   active=true;rig.visible=true;diorama.reset();calibration=null;previousHead=null;eye=null;lastSources='';missing=false;turn=E.view().yaw;handFire=false;handListen=false;handSprint=false;reset();recenter();document.body.classList.add('immersive-rainward');E.start();return true;
   }catch(error){if(session===candidate)session=null;try{await candidate?.end();}catch{}end(error);return false;}finally{pending=false;}
  }
  async function exit(){try{await session?.end();}catch(error){end(error);}}
  function viewer(frame){try{return frame?.getViewerPose(renderer.xr.getReferenceSpace());}catch{return null;}}
  function pose(frame,space,joint=false){try{return space?(joint?frame.getJointPose(space,renderer.xr.getReferenceSpace()):frame.getPose(space,renderer.xr.getReferenceSpace())):null;}catch{return null;}}
  function align(state,dt){if(!headPose)return;const p=state.player,h=headPose.position;
+  if(isDiorama()){diorama.update(rig,headPose,p,turn,heightAt(p.x,p.z),dt,{...preferences,view:viewMode});return;}rig.scale.setScalar(1);
   if(!calibration)calibration={x:h.x,y:h.y,z:h.z};
   const target=heightAt(p.x,p.z)+(p.waterMode==='swim'?(p.submerged?-(p.swimDepth||0)+.35:.5):p.stance==='prone'?.40:p.stance==='crouch'?1.06:1.62);
   eye=eye===null?target:eye+(target-eye)*(1-Math.exp(-dt*14));
@@ -64,7 +89,7 @@ export function createQuestXR(E){
  function drawBadge(){bc.fillStyle='#10232a';bc.fillRect(0,0,1024,192);bc.fillStyle='#efdcad';bc.font='bold 29px sans-serif';bc.fillText('PAUSE / RECENTER MENU',22,42);bc.fillStyle='#ffffff';bc.font='24px sans-serif';const s=status();bc.fillText(s.slice(0,77),22,82);bc.fillText(s.slice(77,154),22,111);const p=E.state().player;bc.fillStyle=p.submerged&&p.oxygen<=25?'#ffd0ba':'#c3ded4';bc.fillText(p.submerged&&p.oxygen<=25?'LOW AIR: A OR FIELD SURFACE BUTTON':p.healing?'HOLD FIRE / BANDAGING':p.craft?'HOLD SELECT / ASSEMBLING':E.state().hint?.slice(0,77)||'Point and select. Raise left open palm to pause.',22,161);badgeTexture.needsUpdate=true;}
  function placePanels(){if(!headPose)return;const q=new T.Quaternion().copy(headPose.orientation),f=new T.Vector3(0,0,-1).applyQuaternion(q);const yaw=Math.atan2(-f.x,-f.z),h=headPose.position;
   const put=(mesh,x,y,z)=>{const v=new T.Vector3(x,y,z).applyAxisAngle(Y,yaw);mesh.position.set(h.x+v.x,h.y+v.y,h.z+v.z);mesh.rotation.set(0,yaw,0);};
-  const playing=E.mode()==='play';panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?-.85:0,playing?-.56:-.06,playing?-1.55:-1.55);put(badge,0,playing?-.62:.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
+  const playing=E.mode()==='play';panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?(isDiorama()?-1.22:-.85):0,playing?(isDiorama()?-.25:-.56):-.06,playing?-1.55:-1.55);put(badge,0,playing?(isDiorama()?.10:-.62):.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
  }
  function poll(state,view,dt,frame){
   if(!active)return null;sample=emptyXR();cycle++;
@@ -73,7 +98,7 @@ export function createQuestXR(E){
   const recovered=missing;missing=false;headPose=v.transform;const h=headPose.position;if(recovered){previousHead=null;reset();recenter();}
   if(!calibration){calibration={x:h.x,y:h.y,z:h.z};previousHead={x:h.x,z:h.z};}
   // Room-scale displacement uses the same swept movement as ordinary gameplay.
-  if(previousHead&&E.mode()==='play'){let dx=h.x-previousHead.x,dz=h.z-previousHead.z;
+  if(!isDiorama()&&previousHead&&E.mode()==='play'){let dx=h.x-previousHead.x,dz=h.z-previousHead.z;
    if(Math.hypot(dx,dz)<.35){const c=Math.cos(turn),s=Math.sin(turn);move(state.player,c*dx+s*dz,-s*dx+c*dz,HEIGHT[state.player.stance]);}
    else {reset();E.pause();tracking='Tracking reset. Recenter and release inputs.';}
   }
@@ -100,9 +125,9 @@ export function createQuestXR(E){
     }
    }else if(src.gamepad?.mapping==='xr-standard'){data.buttons=src.gamepad.buttons;data.axes=src.gamepad.axes;if(gripPose){visual.grip.position.copy(gripPose.transform.position);visual.grip.quaternion.copy(gripPose.transform.orientation);visual.grip.visible=true;}}
    visual.group.position.copy(rayPose.transform.position);visual.group.quaternion.copy(rayPose.transform.orientation);visual.group.visible=true;rig.updateMatrixWorld(true);
-   const origin=visual.group.getWorldPosition(V()),direction=new T.Vector3(0,0,-1).applyQuaternion(visual.group.getWorldQuaternion(Q())).normalize(),caster=new T.Raycaster(origin,direction,0,8);
+   const origin=visual.group.getWorldPosition(V()),direction=new T.Vector3(0,0,-1).applyQuaternion(visual.group.getWorldQuaternion(Q())).normalize(),caster=new T.Raycaster(origin,direction,0,8*(isDiorama()?1/preferences.scale:1));
    const hits=caster.intersectObjects([panel.mesh,badge],false);const hit=hits[0];data.overUI=!!hit;data.row=hit?.object===panel.mesh?panel.hit(hit.uv):hit?{id:'badge',run:()=>{E.pause();recenter();}}:null;
-   if(data.overUI)anchors.delete(src);visual.laser.scale.z=hit?hit.distance/4:1;
+   if(data.overUI)anchors.delete(src);visual.laser.scale.z=hit?hit.distance/(4*(isDiorama()?1/preferences.scale:1)):1;
    rays[side]={origin,direction};list.push(data);
   }
   const signature=list.map(s=>s.id).sort().join('|');if(lastSources&&signature!==lastSources){E.pause();reset();handFire=false;handListen=false;handSprint=false;}lastSources=signature;
@@ -116,17 +141,21 @@ export function createQuestXR(E){
   }
   const anySelect=list.some(s=>s.hand?s.pinch:s.buttons[0]?.pressed||s.buttons[0]?.value>.65);if(panel.held()&&!anySelect)panel.release();
   if(E.mode()!=='play')sample.fire=false;
-  if(sample.turn){const angle=sample.turn;turn+=angle;previousHead=null;align(E.state(),dt);view.yaw+=angle;recenter();sample.move=[0,0];}
+  if(sample.turn){const angle=sample.turn;turn+=angle;previousHead=null;align(E.state(),dt);view.yaw+=angle;recenter(false);sample.move=[0,0];}
   if(slow)sample.move=sample.move.map(x=>x*.62);
   if(list.some(s=>s.side==='left'&&s.hand)){sample.sprint=handSprint;sample.sprintDirect=true;sample.listen=handListen;}
   if(safe){currentRay=rays.right||{origin:camera.getWorldPosition(V()),direction:hd};}else sample.fire=false;
-  const p=E.state().player;const localHeadY=h.y-calibration.y;veil.material.opacity=Math.abs(localHeadY)>.65||solidAt(p.x,p.z,Math.max(.2,eye-heightAt(p.x,p.z)))?.92:0;
+  const p=E.state().player;const localHeadY=h.y-calibration.y;veil.material.opacity=!isDiorama()&&(Math.abs(localHeadY)>.65||solidAt(p.x,p.z,Math.max(.2,eye-heightAt(p.x,p.z))))?.92:0;
   if(cycle%8===0)drawBadge();return sample;
  }
  function update(state,view,dt){if(active){align(state,dt);if(stamp!==layout){stamp=layout;placePanels();}panel.collect();}}
- const api={camera,rig,bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,supported:async()=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported('immersive-vr');}catch{return false;}},ray:()=>currentRay,aimYaw:()=>Math.atan2(-currentRay.direction.x,-currentRay.direction.z),
-  stats:()=>({active,pending,mode:'immersive-first-person',preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
-  dispose(){disposed=true;void exit();panel.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
+ const api={camera,rig,bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,
+  preferences:()=>({...preferences}),setViewPreference(value){if(active)return changeView(value);viewMode=normalizeDiorama({view:value}).view;remember({view:viewMode});return true;},
+  supported:async(view=preferences.view)=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported(sessionType(view));}catch{return false;}},
+  render(){if(isDiorama())diorama.render(renderer,scene,camera,rig);else renderer.render(scene,camera);},
+  ray:()=>currentRay,aimYaw:()=>{const d=isDiorama()&&E.aimDirection?E.aimDirection():currentRay.direction;return Math.atan2(-d.x,-d.z);},
+  stats:()=>({active,pending,mode:isDiorama()?viewMode:'immersive-first-person',sessionMode:sessionType(viewMode),diorama:diorama.stats(),preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
+  dispose(){disposed=true;void exit();panel.dispose();diorama.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
  };
  return api;
 }

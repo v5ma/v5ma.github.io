@@ -19,6 +19,7 @@ export function createXRPanel(E){
    if(el.type==='range'||el.tagName==='SELECT')return [-1,1].map(sign=>action((sign<0?'- ':'+ ')+nativeLabel(el),el.id+(sign<0?'-minus':'-plus'),()=>{if(el.tagName==='SELECT')el.selectedIndex=(el.selectedIndex+sign+el.options.length)%el.options.length;else el.value=String(Math.max(Number(el.min)||0,Math.min(Number(el.max)||100,Number(el.value)+sign*(Number(el.step)||1))));el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));},{element:el}));
    return [action(nativeLabel(el),el.id||el.textContent.trim(),()=>el.click(),{element:el,held:E.isHeld(el)})];
   }):[];
+  all.push(...(E.extraActions?.()||[]).map(a=>action(a.label,a.id,a.run)));
   const focus=document.activeElement;if(mode!=='play'&&focus!==lastFocus){lastFocus=focus;const index=all.findIndex(row=>row.element===focus);if(index>=0&&!reading)page=Math.floor(index/8);}const pages=Math.max(1,Math.ceil(all.length/8));page=Math.min(page,pages-1);
   rows=all.slice(page*8,page*8+8).map((r,i)=>({...r,x:28,y:214+i*78,w:968,h:68}));
   const mapCanvas=r?.querySelector('canvas#map');const toolbar=[action('BACK','back',()=>E.back()),action(mapView?'CONTROLS':reading&&mapCanvas?'VIEW MAP':reading?'CONTROLS':'READ TEXT','read',()=>{if(mapView){mapView=false;reading=false;}else if(reading&&mapCanvas){reading=false;mapView=true;}else reading=!reading;textPage=0;}),action('RECENTER','recenter',()=>E.recenter()),action('EXIT XR','exit',()=>E.exit())];
