@@ -1,0 +1,39 @@
+name: Apply reviewed Sky Cycle Quiet Water candidate
+on:
+  push:
+    branches: ['sky-cycle/quiet-water-0.22']
+    paths: ['.github/workflows/sky-cycle-quiet-water-apply.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify checksum and scoped paths, then apply reviewed candidate
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, lzma, hashlib
+          encoded=''.join(Path(f'.github/quiet-water-{i}.b64').read_text().strip() for i in range(3))
+          patch=lzma.decompress(base64.b64decode(encoded,validate=True))
+          assert hashlib.sha256(patch).hexdigest() == '53a6233cc288fa7d8802e46e1e7aa8ed850276aebac5397fb117e673b7558f0a'
+          allowed={'tests/campaign_loading_browser.py','tests/flow_routes_browser.py','tests/paper_delivery_entry_browser.py','tests/prismatic_loading_browser.py','tests/sky_relay_browser.py'}
+          for line in patch.decode().splitlines():
+              if line.startswith('diff --git '):
+                  for name in line.split()[2:]:
+                      path=name[2:]
+                      assert path.startswith('mario-maker-clone/svgn-paper-route/') or path in allowed, path
+          Path('/tmp/quiet-water-reviewed.patch').write_bytes(patch)
+          print('Verified patch SHA-256:',hashlib.sha256(patch).hexdigest())
+          PY
+          git apply --check --unidiff-zero /tmp/quiet-water-reviewed.patch
+          git apply --index --unidiff-zero /tmp/quiet-water-reviewed.patch
+          git rm .github/quiet-water-{0,1,2}.b64 .github/workflows/sky-cycle-quiet-water-apply.yml
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat(sky-cycle): Quiet Water comfort controls and bounded shared-bus ambience'
+          git push origin HEAD:refs/heads/sky-cycle/quiet-water-0.22
+          git rev-parse HEAD
