@@ -1,0 +1,97 @@
+name: Verify live Grounded Cast gameplay
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-live-grounded-verify.yml']
+permissions:
+  contents: read
+jobs:
+  public-smoke:
+    if: github.repository == 'v5ma/v5ma.github.io'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 2c82b69a3fa75e052fb3f9f0626c7edbcb9eb785
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Record exact released file contract
+        run: node aether-reach/tests/release-manifest.mjs
+      - name: Install native test browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play the actual public HTTPS application
+        run: |
+          python -u - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          base='https://v5ma.github.io/aether-reach/'
+          source='2c82b69a3fa75e052fb3f9f0626c7edbcb9eb785'
+          out=Path('aether-reach/test-output');out.mkdir(exist_ok=True)
+          checks=[];errors=[];bad=[]
+          report={'source':source,'url':base,'checks':checks,'errors':errors,'badResponses':bad,'scope':'Actual public HTTPS game in a clean native Chromium software-WebGL context. Ordinary mouse/keyboard input, no saved-player data or runtime-state injection. Not physical Xbox or Quest 3 certification.'}
+          def check(ok,label):
+            assert ok,label
+            checks.append(label);print('PASS',label,flush=True)
+          for attempt in range(40):
+            try:
+              with urllib.request.urlopen(base+'release.json?verify='+source,timeout=15) as r:release=json.load(r)
+              if release['version']=='0.11.0':break
+            except Exception:pass
+            time.sleep(6)
+          else:raise AssertionError('Published 0.11.0 did not arrive')
+          check(not release['questHardwareVerified'] and not release['xboxHardwareVerified'],'Public release retains honest physical-device acceptance flags')
+          hashes={}
+          for name in ['release.json','app.mjs','model.mjs','controllers.mjs','grounded-motion.mjs','hand-input.mjs','spatial-menu.mjs','xr-session.mjs']:
+            with urllib.request.urlopen(base+name+'?verify='+source,timeout=25) as r:raw=r.read();assert r.status==200
+            digest=hashlib.sha256(raw).hexdigest();assert digest==hashlib.sha256((Path('aether-reach')/name).read_bytes()).hexdigest(),name
+            hashes[name]=digest
+          report['publicFileHashes']=hashes
+          check(True,'All eight critical published runtime files match the merged source')
+          with sync_playwright() as pw:
+            browser=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+            context=browser.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')
+            page=context.new_page();page.set_default_timeout(120000)
+            page.on('pageerror',lambda e:errors.append(str(e)))
+            page.on('response',lambda r:bad.append({'url':r.url,'status':r.status}) if r.status>=400 and '/aether-reach/' in r.url else None)
+            def snap():return page.evaluate('AetherReach.snapshot()')
+            try:
+              page.goto(base+'?verify='+source,wait_until='domcontentloaded')
+              page.wait_for_function('window.AetherReach?.version==="0.11.0"')
+              page.locator('#start').click();page.wait_for_function('AetherReach.snapshot().playing&&!AetherReach.snapshot().paused')
+              page.wait_for_function('Object.values(AetherReach.snapshot().renderer.cast.status).every(v=>v==="ready")')
+              check(True,'The actual HTTPS site boots 0.11.0 and loads all three licensed character rigs')
+              page.locator('#world').focus();before=snap()['position'];page.keyboard.down('KeyW')
+              try:page.wait_for_function('(p)=>Math.hypot(AetherReach.snapshot().position.x-p.x,AetherReach.snapshot().position.z-p.z)>.3',arg=before)
+              finally:page.keyboard.up('KeyW')
+              check(True,'Ordinary keyboard movement advances the real published expedition')
+              ammo=snap()['ammo'];page.keyboard.press('KeyF',delay=100);page.wait_for_function('(n)=>AetherReach.snapshot().ammo<n',arg=ammo)
+              check(True,'A normal fire input spends real ammunition on the published game')
+              page.keyboard.press('KeyP',delay=100);page.wait_for_function('AetherReach.snapshot().paused')
+              check(page.locator('#pause-dialog[open]').count()==1,'The published pause action opens its real accessible dialog')
+              page.screenshot(path=str(out/'published-grounded-pause.png'))
+              page.keyboard.press('Escape',delay=100);page.wait_for_function('!AetherReach.snapshot().paused')
+              page.screenshot(path=str(out/'published-grounded-gameplay.png'))
+              check(snap()['playing'],'Closing the real pause dialog returns to the same playable expedition')
+              check(not errors and not bad,'No application exceptions or failed game-resource responses on the public HTTPS journey')
+              report['passed']=len(checks);report['snapshot']=snap()
+            except Exception as e:
+              report['error']=str(e);report['passed']=len(checks)
+              try:page.screenshot(path=str(out/'published-grounded-failure.png'))
+              except Exception:pass
+              raise
+            finally:
+              (out/'published-grounded-smoke.json').write_text(json.dumps(report,indent=2))
+              context.close();browser.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-live-grounded-verification
+          path: aether-reach/test-output/
+          retention-days: 30
