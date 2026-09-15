@@ -1,5 +1,5 @@
 {
-  "version": "0.12.0",
+  "version": "0.13.0",
   "project": "Vesperfall: Arrows Unchained",
   "scope": "Quality-gated path toward a polished original premium archery roguelite. AAA is an aspiration, not a certified rating, budget or delivery promise. Public-only content.",
   "tasks": [
@@ -241,9 +241,13 @@
       "owner": "Art / audio",
       "evidence": [
         "resonance-audio.js",
-        "dominion-art.js"
+        "dominion-art.js",
+        "surestep-art.js",
+        "surestep-model.js",
+        "tests/surestep.test.cjs",
+        "SURESTEP.md"
       ],
-      "verification": "Audio and procedural art implemented; character-production and human-review gates open.",
+      "verification": "Surestep adds articulated procedural knees/elbows, distance-driven steps and world-space foot planting for the 12 outer humanoid archetypes. Fixed-length IK and reset/freeze cases have model coverage. Authored production meshes, mocap/blending, hit reactions and human art review remain open.",
       "why": "Preserve the established game while closing the stated acceptance gate.",
       "release": ""
     },
@@ -710,12 +714,13 @@
       "why": "Avoid forced mouse use or headset removal.",
       "evidence": [
         "dominion-controls.js",
+        "quest-hands.js",
+        "tests/surestep-browser.py",
         "tests/dominions-browser.py",
-        "tidelight.js",
-        "CONTINUATION-AUDIT.md"
+        "SURESTEP.md"
       ],
-      "verification": "Existing Xbox focus and Quest spatial menus are implemented. Current Tidelight adds browser DOM controls but its IDs are absent from the Quest settings list in dominion-controls.js. Full water-settings and close/back parity remains open; historical controller tests do not cover those new controls.",
-      "release": "0.7.0"
+      "verification": "Surestep implements the missing paginated Quest water settings and adds optional tracked-hand ray/pinch menu input. Xbox down selects Blink and left cycles stocked, unlocked damage arrows outside menus/quiver. Tracking loss, held-pinch acquisition and controller handover are explicit software gates in tests/surestep-browser.py. Full accessibility/remapping and physical-device approval remain open.",
+      "release": "0.13.0"
     },
     {
       "id": "V42",
@@ -984,7 +989,7 @@
       "id": "V54",
       "area": "Art",
       "title": "Original rigged enemy, bow-hand and shield production assets",
-      "status": "Planned",
+      "status": "Partial",
       "priority": "P0",
       "milestone": "M3",
       "depends": [
@@ -995,10 +1000,14 @@
       "gate": "Produce consistent original/licensed meshes, LODs, rigs and materials for one complete vertical slice; registered provenance; review both eye views and close-range silhouette. Retain the 15 existing archetypes, including the 12 added outer enemy orders. Improve humanoid/knight silhouettes and counterplay; do not restart the already delivered numerical expansion or copy commercial reference assets.",
       "why": "Foreground and character quality must catch up with the architecture.",
       "evidence": [
-        "CONTINUATION-AUDIT.md"
+        "dominion-art.js",
+        "surestep-art.js",
+        "surestep-model.js",
+        "tests/surestep.test.cjs",
+        "SURESTEP.md"
       ],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "verification": "Original procedural humanoids now have two-bone legs, articulated arms, smaller helmets and less oversized torsos. Movement drives foot contact and terrain sampling; no hitbox changes. This is a procedural animation foundation, not a completed production mesh/LOD/retargeting pipeline.",
+      "release": "0.13.0"
     },
     {
       "id": "V55",
@@ -1126,9 +1135,11 @@
       "gate": "Configurable action mapping with conflict checks, seated/standing height and reach calibration, turn/motion presets and readable UI. Each can be reset without a mouse. Resolve grip-role conflicts by documenting the current bow-hand shard/free-hand shield mapping; implement physical thrown shards under V24, not an undocumented remap. Cover every new water/audio panel in controller-only tests.",
       "why": "Different bodies and play spaces need more than a handedness toggle.",
       "evidence": [
-        "CONTINUATION-AUDIT.md"
+        "dominion-controls.js",
+        "quest-hands.js",
+        "SURESTEP.md"
       ],
-      "verification": "Not closed; no completion credit without gate evidence.",
+      "verification": "Water controls and both handedness choices are exposed to tracked controllers and tracked-hand UI. Full rebinding/conflict checking, seated/reach calibration and hardware comfort presets remain unimplemented.",
       "release": ""
     },
     {
@@ -1262,10 +1273,12 @@
       "why": "Do not confuse a merged commit with a complete verified release.",
       "evidence": [
         "tests/verify-live.py",
+        "tests/surestep-browser.py",
         "tests/launch.py",
+        "SURESTEP.md",
         "CONTINUATION-AUDIT.md"
       ],
-      "verification": "Partial. Tidelight was published, but archived run 34737842771 stopped before browser checks because roadmap 0.11.0 disagreed with release 0.12.0. This planning repair fixes that mismatch; it does not retrospectively turn skipped gameplay acceptance green.",
+      "verification": "Surestep has a dedicated source/browser acceptance workflow and public byte verification. Final per-run receipts distinguish tested source, merged publication and hardware review. The older failed Tidelight run remains historical evidence and is not retroactively credited.",
       "release": ""
     },
     {
@@ -1429,7 +1442,7 @@
       "release": "0.10.0 First Bell"
     }
   ],
-  "updated": "2026-09-13",
+  "updated": "2026-09-14",
   "canonical": "roadmap.json",
   "workbook": "AAA-PRODUCTION.xlsx",
   "guide": "AAA-ROADMAP.md",
@@ -1838,7 +1851,7 @@
     ]
   ],
   "nextRelease": {
-    "theme": "Tidelight acceptance and controller parity, then the requested sound/music production pass",
+    "theme": "Water lifecycle hardening and the requested sound/music pass, with physical input and humanoid art review",
     "focus": [
       "V41",
       "V58",
@@ -1855,19 +1868,19 @@
       "V75",
       "V76"
     ],
-    "note": "First repair and verify the current 0.12 water baseline without changing saves. Then prioritize audio/music, authored exploration and humanoid animation. First Bell/Oath already exist; refine their human-tested feel rather than rebuilding them. Consult DEVELOPMENT-HANDOFF.md and CONTINUATION-AUDIT.md."
+    "note": "Surestep closes the bounded V41 water-menu gap and adds Xbox quick arrows, tracked-hand menu UI and procedural foot planting. Next address the remaining V74 water lifecycle/budget findings, V58/V44 sound/music, and physical Quest/Xbox review. Preserve every save envelope and existing game mode."
   },
   "continuation": {
-    "updated": "2026-09-13",
+    "updated": "2026-09-14",
     "entrypoint": "DEVELOPMENT-HANDOFF.md",
     "audit": "CONTINUATION-AUDIT.md",
-    "gameVersion": "0.12.0",
+    "gameVersion": "0.13.0",
     "auditedBase": "f02dffa47a79ff83efab6396cb6aea3040960b29",
     "publicationRule": "Finish, test, commit, merge and verify the public game; do not stop at a local candidate or unmerged branch.",
     "scopeRule": "Only Vesperfall; preserve siblings, saves, existing modes and public-only narrative.",
     "requirements": [
       "Xbox gameplay and every game-owned UI without a mouse",
-      "Quest 3 two-hand physical archery and controller-only spatial UI",
+      "Quest 3 two-controller physical archery plus optional tracked-hand spatial menus; hands do not impersonate bow controllers",
       "Separate VR and stationary AR with clear passthrough",
       "Much stronger sound effects and adaptive music",
       "Meaningful new routes, discoveries, humanoid enemies and selective water",
@@ -1879,7 +1892,7 @@
           "V68",
           "V66"
         ],
-        "action": "Run the synchronized model/workbook checks; establish actual Tidelight browser/render/controller/save evidence."
+        "action": "Read SURESTEP.md and the exact source/publication receipts. Review the new Xbox shortcuts, tracked-hand menu transitions and original procedural humanoid motion on physical devices."
       },
       {
         "tasks": [
@@ -1887,7 +1900,7 @@
           "V74",
           "V38"
         ],
-        "action": "Close Tidelight spatial-settings, runtime-budget, rebuild and water-contact gaps without altering collision or saves."
+        "action": "Keep Surestep water-menu parity; close the remaining Tidelight runtime-budget, rebuild and water-contact gaps without altering collision or saves."
       },
       {
         "tasks": [
@@ -1932,6 +1945,17 @@
       "Requested discrete hit points are not the current numerical-health model; any conversion needs design and migration (V63,V65)."
     ],
     "evidenceRule": "Separate source inspection, model tests, native browser fixtures, public deployment, physical hardware and human review.",
-    "versionLabelCorrection": "Both roadmap.version and core.js diagnostic VERSION were still 0.11.0 despite release.json/index.html 0.12.0. This update synchronizes those labels only; save envelope/generator IDs and mechanics are unchanged."
+    "versionLabelCorrection": "Both roadmap.version and core.js diagnostic VERSION were still 0.11.0 despite release.json/index.html 0.12.0. This update synchronizes those labels only; save envelope/generator IDs and mechanics are unchanged.",
+    "surestep": {
+      "base": "b87aeacb71d00b73992945daaba2fccdc66ab409",
+      "scope": "V41 water-menu parity, requested Xbox arrow shortcuts, safe optional hand-tracking UI and V14/V54 procedural humanoid animation.",
+      "softwareEvidence": [
+        "tests/surestep.test.cjs",
+        "tests/surestep-browser.py",
+        "tests/dominions-browser.py"
+      ],
+      "hardware": "Not certified. Physical tracking, gestures, performance, comfort and long-session review remain open.",
+      "historicalNote": "notEstablishedAsShipped describes the older interrupted Tidelight draft. Surestep now implements water-settings parity, not its other unshipped features."
+    }
   }
 }

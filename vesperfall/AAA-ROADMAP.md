@@ -1,3 +1,7 @@
+# Surestep roadmap update / v0.13.0
+
+The canonical plan and workbook now record progress on V14/V54 humanoid articulation and V41/V61 controller and hand-menu access. The bounded missing Quest water-menu item is implemented. V41 remains Partial for the broader UI/accessibility gate, and V54 is Partial rather than a claim of finished production assets. SURESTEP.md records the new input contract, verification commands, limitations and rollback policy. Continue with water lifecycle hardening, the requested sound/music pass and physical input/art review.
+
 # Vesperfall: a quality-gated path toward a finished premium game
 
 Plan context version 0.12.0. Updated 2026-09-13. The maintained playable project is this `vesperfall/` directory. The canonical structured backlog remains the existing 76-task `roadmap.json`; this document adds current release context and continuation guidance without inventing completion credit.

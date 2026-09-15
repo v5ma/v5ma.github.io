@@ -1,3 +1,11 @@
+# Surestep continuation / 2026-09-14
+
+Read SURESTEP.md first for the v0.13.0 contract and acceptance commands. Xbox D-pad down directly equips Blink; left cycles only usable damage arrows. Preserve menu and held-Y quiver priority. Quest water controls now share the paginated spatial settings list. Optional hand tracking drives spatial menus through real joint poses and a target ray, never fabricated gamepad input. Hands pause combat; both tracked controllers are required for physical archery.
+
+Outer humanoids retain their simulation, hitboxes and attack timing. Rendering now uses distance-driven world-space foot contacts, two-bone legs, articulated elbows and refined proportions. Do not serialize visual gait state into saves. Original spectral enemies are unchanged.
+
+The historical audit below remains valuable but its statement that Quest water controls are absent is superseded by Surestep. Water lifecycle/budget findings, audio/music, full remapping/calibration, production character art, and physical/human review remain open. The canonical 76 tasks and six-sheet workbook are synchronized to v0.13.0; broad V41 remains Partial rather than claiming that one menu fix completes all accessibility work.
+
 ## September 13 source audit and synchronized workbook
 
 Read [CONTINUATION-AUDIT.md](./CONTINUATION-AUDIT.md) before the next upgrade. It records the actual minimal Tidelight scope versus the interrupted larger draft, the missing Quest water controls, water lifecycle/budget findings, exact controller contracts, historical failed acceptance, and the ordered next actions mapped to V01-V76. The canonical roadmap and six-sheet workbook are now aligned to 0.12.0; the stale core diagnostic VERSION label is synchronized without changing mechanics or save formats. [PLANNING-VERIFICATION.json](./PLANNING-VERIFICATION.json) records this repair separately from gameplay and physical-device acceptance.
@@ -6,7 +14,7 @@ The established handoff below is retained, including concurrent September 13 pro
 
 # Vesperfall: Arrows Unchained / development handoff
 
-Current public release: 0.12.0 Tidelight.
+Current release target: 0.13.0 Surestep. Check its publication receipt before calling a particular commit live.
 Maintained project: `vesperfall/` in `v5ma/v5ma.github.io`.
 Public game: `https://v5ma.github.io/vesperfall/`.
 

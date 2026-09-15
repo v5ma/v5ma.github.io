@@ -1,10 +1,12 @@
-# Current release and cross-chat continuation
+# Current release and continuation
 
-The gameplay baseline is **v0.12.0 Tidelight**. Start with [DEVELOPMENT-HANDOFF.md](./DEVELOPMENT-HANDOFF.md) and [CONTINUATION-AUDIT.md](./CONTINUATION-AUDIT.md), then the [canonical roadmap](./roadmap.json), [production board](./roadmap.html) and [six-sheet workbook](./AAA-PRODUCTION.xlsx). The September 13 update synchronizes planning only; it does not add a new gameplay release.
+Vesperfall v0.13.0 Surestep adds the requested Xbox quick arrows, the missing Quest water-settings pages, optional tracked-hand menus and original procedural humanoid foot planting. Read [SURESTEP.md](./SURESTEP.md), [DEVELOPMENT-HANDOFF.md](./DEVELOPMENT-HANDOFF.md), the [canonical roadmap](./roadmap.json) and [six-sheet workbook](./AAA-PRODUCTION.xlsx). Existing saves and game modes are preserved.
 
-The audit distinguishes actual shipped water from the larger interrupted draft, records the stale-plan test failure, and maps controller, water lifecycle, audio/music and hardware gaps to existing task IDs. Preserve saves and modes, and publish completed upgrades.
+During Xbox gameplay, D-pad down selects Blink immediately. D-pad left advances through Standard, Cinder, Frost, Volley and Ricochet only when their ammo/unlock rules allow use. Blink is excluded from that cycle. B retains its Blink toggle, and Y/right retain the full quiver cycle. Menus and the held-Y tactical quiver consume directional input before these shortcuts.
 
-The sections below retain historical release notes and controls. Where an older paragraph says "current," its context is that historical release. Current controller roles are in dominion-controls.js and the continuation audit; release.json is authoritative for the gameplay version.
+Quest controllers retain physical archery and all existing roles. Optional hand tracking provides point-and-pinch spatial menu selection, including water settings and Exit VR/AR. Switching to bare hands cancels drawing and pauses combat. Open the pinch before selecting; missing joints or session focus loss disarm it. Pick up both tracked controllers to resume archery. Hand-only archery is not implemented.
+
+Source, automated browser, publication and physical-device evidence are separate. Physical Quest 3 and Xbox certification is still open. The sections below are historical release notes; their older controller descriptions do not override SURESTEP.md and current source.
 
 ## Pilgrim's Rest v0.9.0 and the production path
 
