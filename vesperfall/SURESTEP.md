@@ -1,5 +1,7 @@
 # Vesperfall v0.13.0 / Surestep
 
+Publication recovered and verified on 2026-09-15. Release commit f1d911011244c08025b6727866ee14f4f2a725e9 is on master. [SURESTEP-PUBLICATION-20260915.json](./SURESTEP-PUBLICATION-20260915.json) records the successful public workflow, exact artifact/report hashes, 82 matching public files, 170 model tests, 60 live Surestep browser checks and 8 homepage-launch checks. The recovery changes only documentation; it does not replace or restart the game. Physical-device acceptance remains open.
+
 Surestep continues the existing game in place. The starting master was b87aeacb71d00b73992945daaba2fccdc66ab409, with v0.12.0 Tidelight and the September 13 continuation audit. Runtime, release labels and the canonical production workbook advance together. No sibling game is part of this upgrade.
 
 ## Fast arrows
