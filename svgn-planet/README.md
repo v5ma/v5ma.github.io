@@ -1,3 +1,11 @@
+# Neighborhood Missions: Lantern Ward (v0.12.0)
+
+The default entry opens the first authored place-mastery chapter, The Broken Delivery Loop. [Play Lantern Ward](lantern-ward.html), or [continue the original neighborhood](legacy.html) with existing saves. Read [controls and spatial XR](lantern/README.md), [published verification](production/evidence/lantern-0.12.0/published.json), and [development handoff](DEVELOPMENT-HANDOFF.md).
+
+Deliver by market, print-shop roof route or canal, restore a useful connection, and return to the depot. Choose first-person stereo VR or actual 3D dioramas in VR/AR with top-only, front-only or both openings. This is a playable graybox, not finished production art. Physical device, comfort, performance and unfamiliar-player approval remain open.
+
+The historical notes below describe legacy.html. Old progress is not silently migrated into the new chapter.
+
 # Neighborhood Missions: Grounded Neighborhood (v0.11.0)
 
 See [GROUNDED-NEIGHBORHOOD.md](GROUNDED-NEIGHBORHOOD.md) for direct controls, recoverable saves, measured courier proportions and Quest XR comfort theater. This release retains the original game, Homecoming and Tidewater. Hardware and human art approval remain open.

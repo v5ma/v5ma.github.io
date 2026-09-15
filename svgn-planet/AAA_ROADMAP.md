@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Grounded Neighborhood v0.12.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
+Current release: Lantern Ward: The Broken Delivery Loop v0.12.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
 
 ## How to use this workbook
 
@@ -134,15 +134,15 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.
-  Next: Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.
+  Next: Published graybox and all three approach tours passed. Test unfamiliar-player orientation, choices, shortcut recognition and replay agency before expanding; then replace graybox art deliberately.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json
 
 - [ ] XR-02 / P0 / needs-playtest / Native first-person and actual-geometry VR/AR dioramas
   Acceptance: Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.
-  Next: Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.
+  Next: Live native first-person VR and diorama VR/AR synthetic checks passed. Obtain real Quest 3, Touch Plus, hand-tracking, comfort and frame-time approval. Placement is manual; room anchors are not implemented.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json
 
 - [x] LEGACY-01 / P0 / verified / Versioned original-world preservation
   Acceptance: Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.
@@ -320,9 +320,9 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] XR-01 / P1 / needs-playtest / Quest comfort theater with tracked controllers and hand UI
   Acceptance: Native WebXR session presents a world-anchored flat game screen, tracked controller/grip rays and joint-pinch menu input. Paginated DOM-derived 3D menus, hands-only hold controls, tracking loss and session recovery work without relying on DOM overlays. This is not room-scale stereo gameplay.
-  Next: Synthetic session/render/input and controller/hand lifecycle checks passed. Obtain physical Quest 3 comfort, Touch Plus, hand-tracking and performance approval. Stereo game-world rendering is not implemented.
+  Next: The historical v0.11 flat theater remains in legacy.html. Native chapter views are tracked by XR-02. Physical device approval remains open for both.
   Owner role: Engineering / real-device QA. Dependencies: INPUT-01, ACCESS-01, SAVE-01.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded-browser.py ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded-browser.py ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; evidence/lantern-0.12.0/published.json
 
 ## M5 / Release readiness
 
@@ -355,16 +355,16 @@ Human exit gate: Pass the named device matrix, license audit, soak test and roll
   Evidence: Not recorded.
 
 - [x] BUILD-01 / P0 / verified / Publish real source, not an unmerged candidate
-  Acceptance: Grounded Neighborhood v0.11.0 is merged normally on master without replacing sibling-game source. Public game assets match the stated source bytes and live browser/controller/synthetic XR checks pass.
-  Next: Retain the same merge, full regression and exact-live-publication gate for the next upgrade. Scope any rollback only to Neighborhood Missions.
+  Acceptance: Lantern Ward is normally merged and deployed. All 186 source/asset/evidence bytes match and the live street/hoist and native synthetic XR tours pass. Legacy layout hashes remain pinned. This is not physical or AAA approval.
+  Next: Retain exact-source publication checks and normal merges. Scope rollback only to this game.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978 ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json
+  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978 ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; evidence/lantern-0.12.0/published.json
 
 - [ ] BUILD-02 / P0 / partial / A repeatable release gate
   Acceptance: Run model, browser, asset, visual and live checks before completion. Archive evidence, support reversible rollback and never force-push over sibling games.
-  Next: Scoped model/browser CI and exact live asset, license and evidence verification are passing. Keep physical quality sign-off and the scoped rollback drill open.
+  Next: Public checks wait for successful exact-commit Pages deployment before testing file propagation. A scoped rollback drill and real-device approval remain open.
   Owner role: Engineering / QA. Dependencies: QA-01, QA-03.
-  Evidence: evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json
+  Evidence: evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; evidence/lantern-0.12.0/published.json
 
 - [ ] LEGAL-01 / P0 / partial / Licensed and reproducible assets
   Acceptance: The existing CC0 register retains sources and hashes. Every new model, texture, sound and voice needs provenance and redistribution rights.

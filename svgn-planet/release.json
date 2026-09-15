@@ -17,8 +17,8 @@
     "Direct Xbox actions and tracked-controller/joint-pinch XR panels",
     "Separate chapter/layout save, guarded backups and original game retained byte-for-byte"
   ],
-  "acceptance": "All 208 model tests and nine browser suites passed; live publication pending.",
-  "evidence": "production/evidence/lantern-0.12.0/candidate.json",
+  "acceptance": "Published runtime passed exact-file verification and live street/hoist plus native synthetic XR tours; physical-device and human quality gates remain open.",
+  "evidence": "production/evidence/lantern-0.12.0/published.json",
   "validation": {
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
@@ -26,8 +26,14 @@
     "humanLevelApproval": false,
     "unitTestsPassed": 208,
     "browserSuitesPassed": 9,
-    "browserChecksPassed": 132
+    "browserChecksPassed": 132,
+    "liveBrowserChecksPassed": 27,
+    "publishedFilesVerified": 186,
+    "legacyFilesPinned": 102
   },
-  "testedCommit": "c7635260af059b991ae8454a94304fba6adceadf",
-  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35015525054"
+  "testedCommit": "e7dbca0282ffbd8f1bc3506ecedc25e8e8923a85",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35017262121",
+  "candidateEvidence": "production/evidence/lantern-0.12.0/candidate.json",
+  "publicationRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35017262097",
+  "pagesDeploymentRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35017260230"
 }
