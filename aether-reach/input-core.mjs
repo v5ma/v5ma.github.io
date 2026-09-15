@@ -5,6 +5,12 @@ const finite=n=>Number.isFinite(n)?n:0;
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function stick(x,y,dead=.18){x=finite(x);y=finite(y);const len=Math.hypot(x,y);if(len<=dead)return [0,0];const scale=(Math.min(1,len)-dead)/(1-dead)/len;return [x*scale,y*scale];}
 export function pressed(pad,index){const b=pad?.buttons?.[index];return !!b&&(b.pressed===true||finite(b.value)>.55);}
+/* Copy physical buttons before UI callbacks mutate input context. The next menu
+ * can block keys held across its boundary without discarding a newly pressed B. */
+export function snapshotPad(pad){
+ if(!pad||pad.connected===false)return null;
+ return {id:pad.id,index:pad.index,connected:true,mapping:pad.mapping,axes:Array.from(pad.axes||[],finite).slice(0,4),buttons:Array.from(pad.buttons||[]).slice(0,32).map(b=>({pressed:b?.pressed===true,value:finite(b?.value)}))};
+}
 export class InputSampler{
  constructor(){this.previous=new Map();this.blocked=new Map();}
  reset(){this.previous.clear();this.blocked.clear();}
@@ -23,7 +29,7 @@ export class InputSampler{
 }
 export function xrControls(sampler,sources){
  let left=null,right=null;const present=new Set();
- for(const s of sources||[]){if(!['left','right'].includes(s.handedness)||s.gamepad?.mapping!=='xr-standard')continue;present.add(s.handedness);const p=sampler.read(s.gamepad,s.handedness,true);if(s.handedness==='left')left=p;else right=p;}
+ for(const s of sources||[]){if(s.hand||!['left','right'].includes(s.handedness)||s.gamepad?.mapping!=='xr-standard')continue;present.add(s.handedness);const p=sampler.read(s.gamepad,s.handedness,true);if(s.handedness==='left')left=p;else right=p;}
  for(const hand of ['left','right'])if(!present.has(hand))sampler.previous.delete(hand);
  return {move:left?.move||[0,0],turn:right?.move?.[0]||0,menuAxis:left?.move||[0,0],scroll:right?.move?.[1]||0,held:{aim:right?.held.boost||false,fire:right?.held.fire||false,boost:left?.held.boost||false},edges:{jump:right?.edges.jump||false,reload:right?.edges.reload||false,interact:right?.edges.interact||false,pulse:left?.edges.fire||false,reverse:left?.edges.interact||false,map:left?.edges.jump||false,pause:left?.edges.reload||false,confirm:right?.edges.fire||false,back:right?.edges.reload||false}};
 }

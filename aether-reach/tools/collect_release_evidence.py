@@ -2,6 +2,9 @@
 from pathlib import Path
 import hashlib,json,os,re,subprocess,zipfile
 source=os.environ['SOURCE'];repo=os.environ['GH_REPO'];assert re.fullmatch('[0-9a-f]{40}',source)
+if tuple(map(int,json.loads(Path('aether-reach/release.json').read_text())['version'].split('.'))) >= (0,11,0):
+ subprocess.run(['python','aether-reach/tools/collect_grounded_evidence.py'],check=True)
+ raise SystemExit(0)
 def get(path):return json.loads(subprocess.check_output(['gh','api',path],text=True))
 prs=get(f'repos/{repo}/commits/{source}/pulls');pr=next(p for p in prs if p.get('merged_at') and p.get('merge_commit_sha')==source and p['base']['ref']=='master')
 head=pr['head']['sha'];assert re.fullmatch('[0-9a-f]{40}',head)

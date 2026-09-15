@@ -1,0 +1,16 @@
+/* TEST ONLY: layered articulated poses over the normal synthetic XR session.
+ * Supplies device data, never writes simulation, save, health or mission state. */
+(()=>{
+ const oldRequest=navigator.xr.requestSession.bind(navigator.xr),d=TestXR.devices;
+ d.rays={};d.pinch={left:.05,right:.05};d.tracked={left:true,right:true};d.poseLost={left:false,right:false};
+ const names=['wrist','thumb-metacarpal','thumb-phalanx-proximal','thumb-phalanx-distal','thumb-tip','index-finger-metacarpal','index-finger-phalanx-proximal','index-finger-phalanx-intermediate','index-finger-phalanx-distal','index-finger-tip','middle-finger-metacarpal','middle-finger-phalanx-proximal','middle-finger-phalanx-intermediate','middle-finger-phalanx-distal','middle-finger-tip','ring-finger-metacarpal','ring-finger-phalanx-proximal','ring-finger-phalanx-intermediate','ring-finger-phalanx-distal','ring-finger-tip','pinky-finger-metacarpal','pinky-finger-phalanx-proximal','pinky-finger-phalanx-intermediate','pinky-finger-phalanx-distal','pinky-finger-tip'];
+ function transform(p,q={x:0,y:0,z:0,w:1}){const {x,y,z,w}=q,xx=x*x,yy=y*y,zz=z*z;return {position:p,orientation:q,matrix:new Float32Array([1-2*(yy+zz),2*(x*y+z*w),2*(x*z-y*w),0,2*(x*y-z*w),1-2*(xx+zz),2*(y*z+x*w),0,2*(x*z+y*w),2*(y*z-x*w),1-2*(xx+yy),0,p.x,p.y,p.z,1])};}
+ navigator.xr.requestSession=async(mode,options)=>{d.requested=options;const s=await oldRequest(mode,options);s.enabledFeatures=['local-floor','hand-tracking'];d.physicalControllers=s.inputSources.slice();
+  const original=s.requestAnimationFrame.bind(s);s.requestAnimationFrame=fn=>original((t,f)=>{const get=f.getPose;f.getPose=space=>{if(d.poseLost[space.hand])return null;return d.rays[space.hand]?{transform:d.rays[space.hand],emulatedPosition:false}:get(space);};f.getJointPose=space=>{if(!d.tracked[space.hand])return null;const x=space.hand==='right'?.23:-.23,delta=space.jointName==='index-finger-tip'?d.pinch[space.hand]:0;return {transform:transform({x:x+delta,y:1.35,z:-.35}),radius:.006,emulatedPosition:false};};fn(t,f);});return s;
+ };
+ TestXR.useHands=()=>{const s=d.session,removed=s.inputSources.slice();s.inputSources=['left','right'].map(hand=>({handedness:hand,hand:new Map(names.map(jointName=>[jointName,{hand,jointName}])),targetRaySpace:{hand},targetRayMode:'tracked-pointer',profiles:['generic-hand-select'],gamepad:{mapping:'xr-standard',connected:true,buttons:[{pressed:true,value:1}],axes:[1,1,1,1]}}));const e=new Event('inputsourceschange');e.removed=removed;e.added=s.inputSources;s.dispatchEvent(e);};
+ TestXR.useControllers=()=>{const s=d.session,e=new Event('inputsourceschange');e.removed=s.inputSources.slice();s.inputSources=d.physicalControllers;e.added=s.inputSources;s.dispatchEvent(e);};
+ TestXR.point=(side,px,py)=>{const pos={x:side==='right'?.23:-.23,y:1.35,z:-.35},target={x:(px/1024-.5)*1.36,y:1.65+(.5-py/768)*1.02,z:-1.4},v={x:target.x-pos.x,y:target.y-pos.y,z:target.z-pos.z},n=Math.hypot(v.x,v.y,v.z);v.x/=n;v.y/=n;v.z/=n;const q={x:v.y,y:-v.x,z:0,w:1-v.z},qn=Math.hypot(q.x,q.y,q.z,q.w);for(const k of Object.keys(q))q[k]/=qn;d.rays[side]=transform(pos,q);};
+ TestXR.pinch=(side,close)=>d.pinch[side]=close?.015:.055;
+ TestXR.track=(side,value)=>{d.tracked[side]=value;d.poseLost[side]=!value;};
+})();

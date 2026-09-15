@@ -19,11 +19,11 @@ def travel(page,target,air=False):
    if s['time']>last_tick:last_tick=s['time'];last_progress=now
    assert now-last_progress<60,'The game stopped advancing during navigation'
    p=s['position'];dx=target[0]-p['x'];dz=target[1]-p['z'];d=math.hypot(dx,dz)
-   if (not air and d<.7) or (air and not s['glider']['active']):return s
+   if (not air and d<.7) or (air and s['grounded'] and not s['glider']['active']):return s
    delta=math.atan2(math.sin(math.atan2(dx,-dz)-p['yaw']),math.cos(math.atan2(dx,-dz)-p['yaw']))
    keys=set()
    if abs(delta)>.055:keys.add('ArrowRight' if delta>0 else 'ArrowLeft')
-   if air:keys.add('KeyS' if d<18 else 'KeyW')
+   if air and s['glider']['active']:keys.add('KeyS' if d<18 else 'KeyW')
    elif abs(delta)<.3:keys.add('KeyW')
    for k in held-keys:page.keyboard.up(k)
    for k in keys-held:page.keyboard.down(k)
@@ -34,7 +34,7 @@ def travel(page,target,air=False):
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- browser=p.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block')
+ browser=p.chromium.launch(**kw);ctx=browser.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')
  ctx.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))");host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(120000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:

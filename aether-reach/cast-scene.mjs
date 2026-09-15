@@ -2,11 +2,12 @@
 import * as T from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 import {cloneRig,prepareRig,disposeInstance,disposeRig} from './cast-rig.mjs';
+import {createGrounding,CAST_HEIGHTS,strideRate} from './grounded-motion.mjs';
 import {skyglassBudget} from './skyglass-shaders.mjs';
 export const CAST_FILES=Object.freeze({courier:'courier.glb',guard:'guard.glb',officer:'officer.glb'});
 export function actorRole(actor){return actor.id==='tavi'?'courier':actor.id==='surveyor'||['marshal','longshot'].includes(actor.kind)?'officer':'guard';}
 export function actorPose(actor,dead=false){if(dead)return 'Death';if(actor.stun>0)return 'HitRecieve';const friendly=actor.id==='tavi'||actor.id==='surveyor';if(actor.walking)return !friendly&&actor.awareness>0?'Run_Shoot':'Walk';if(friendly&&actor.offer)return 'Wave';return friendly?'Idle_Neutral':'Idle_Gun_Pointing';}
-export function installCast({scene,load,autoLoad=true}){
+export function installCast({scene,load,autoLoad=true,groundAt=(x,z)=>({y:0,id:"fixture-floor"})}){
  const root=new T.Group();root.name='Skyglass animated cast';scene.add(root);
  const rigs=new Map(),slots=[],visible=new Set(),errors=[],loader=new GLTFLoader();let enabled=true,disposed=false,mode='balanced',xr=false,frames=0;
  const loadModel=load||((role)=>loader.loadAsync(new URL('./art/characters/'+CAST_FILES[role],import.meta.url).href));
@@ -22,10 +23,10 @@ export function installCast({scene,load,autoLoad=true}){
   // A gun extension follows the animated wrist, not the camera or gameplay ray.
   let extension=null;const hand=model.getObjectByName('WristR');
   if(role!=='courier'&&hand){extension=new T.Group();extension.name='Original longglass attachment';extension.position.set(-.14,1.39,.79);const barrel=new T.Mesh(tube,steel);barrel.rotation.x=Math.PI/2;barrel.scale.set(.035,.5,.035);barrel.position.z=.20;extension.add(barrel);const optic=new T.Mesh(tube,gold);optic.rotation.x=Math.PI/2;optic.scale.set(.067,.26,.067);optic.position.set(0,.12,-.1);extension.add(optic);model.add(extension);model.updateMatrixWorld(true);hand.attach(extension);}
-  mixer.stopAllAction();const slot={role,model,wrapper,mixer,actions,action:null,id:null,lastHp:100,hitUntil:0,deadUntil:0,shotUntil:0,lastAttack:Infinity,lastX:0,lastZ:0,extension};slots.push(slot);return slot;
+  mixer.stopAllAction();const slot={role,model,wrapper,mixer,actions,action:null,id:null,lastHp:100,hitUntil:0,deadUntil:0,shotUntil:0,lastAttack:Infinity,lastX:0,lastZ:0,extension,grounding:createGrounding(model,groundAt),fresh:true,speed:0,rate:1};slots.push(slot);return slot;
  }
  function select(slot,name,force=false){const next=slot.actions[name]||slot.actions.Idle_Neutral;if(slot.action===next&&!force)return;const old=slot.action;next.reset().setEffectiveTimeScale(1).setEffectiveWeight(1).play();if(old&&old!==next){old.fadeOut(.16);next.fadeIn(.16);}slot.action=next;slot.pose=name;}
- function free(slot){slot.mixer.stopAllAction();slot.id=null;slot.wrapper.visible=false;slot.action=null;slot.pose=null;slot.deadUntil=slot.hitUntil=slot.shotUntil=0;}
+ function free(slot){slot.grounding.reset();slot.fresh=true;slot.speed=0;slot.rate=1;slot.mixer.stopAllAction();slot.id=null;slot.wrapper.visible=false;slot.action=null;slot.pose=null;slot.deadUntil=slot.hitUntil=slot.shotUntil=0;}
  function update(s,dt,{menu=false,reduced=false,mode:quality='balanced',xr:immersive=false}={}){
   mode=quality;xr=immersive;visible.clear();frames++;const budget=skyglassBudget(mode,xr),now=s.time;
   if(!enabled||menu){slots.forEach(free);return;}
@@ -37,16 +38,21 @@ export function installCast({scene,load,autoLoad=true}){
   for(const slot of slots)if(slot.id&&!ids.has(slot.id))free(slot);
   for(const {actor:a,feet}of selected){const role=actorRole(a);let slot=slots.find(v=>v.id===a.id);
    if(!slot){slot=slots.find(v=>!v.id&&v.role===role);if(!slot&&slots.length<12)slot=makeSlot(role);if(!slot){const replace=slots.find(v=>!v.id);if(replace){replace.mixer.uncacheRoot(replace.model);disposeInstance(replace.wrapper);slots.splice(slots.indexOf(replace),1);slot=makeSlot(role);}}
-    if(!slot)continue;slot.id=a.id;slot.lastHp=a.hp;slot.lastAttack=a.attack??Infinity;slot.wrapper.name='Cast / '+a.id;select(slot,actorPose(a));
+    if(!slot)continue;slot.fresh=true;slot.id=a.id;slot.lastHp=a.hp;slot.lastAttack=a.attack??Infinity;slot.wrapper.name='Cast / '+a.id;select(slot,actorPose(a));
    }
    if(a.hp<=0&&slot.lastHp>0){slot.deadUntil=now+1.6;select(slot,'Death',true);}else if(a.hp>0&&a.hp<slot.lastHp){slot.hitUntil=now+.30;select(slot,'HitRecieve',true);}
    if(a.hp>0&&Number.isFinite(a.attack)&&a.attack>slot.lastAttack+.8){slot.shotUntil=now+.22;if(slot.hitUntil<=now)select(slot,'Gun_Shoot',true);}slot.lastAttack=a.attack??Infinity;
    let pose=a.hp<=0?'Death':slot.hitUntil>now?'HitRecieve':slot.shotUntil>now?'Gun_Shoot':actorPose(a);select(slot,pose);
-   const rig=rigs.get(role),height=a.kind==='breacher'?2.14:role==='courier'?1.88:1.99,k=height/rig.height;slot.model.scale.setScalar(k);slot.model.position.set(-rig.centerX*k,-rig.feet*k,0);slot.wrapper.position.set(a.x,feet,a.z);slot.wrapper.rotation.y=Math.PI-(a.heading||0);slot.wrapper.visible=true;
+   const rig=rigs.get(role),height=CAST_HEIGHTS[a.kind==='breacher'?'breacher':role],k=height/rig.height;slot.height=height;slot.grounding.restore();slot.model.scale.setScalar(k);slot.model.position.set(-rig.centerX*k,-rig.feet*k,0);slot.wrapper.position.set(a.x,feet,a.z);slot.wrapper.rotation.y=Math.PI-(a.heading||0);slot.wrapper.visible=true;
    if(slot.extension)slot.extension.visible=a.kind==='longshot';const gun=slot.model.getObjectByName('Pistol');if(gun)gun.visible=a.id!=='surveyor';
-   slot.mixer.update(Math.min(.08,Math.max(0,Number.isFinite(dt)?dt:0)));slot.wrapper.updateMatrixWorld(true);slot.lastHp=a.hp;slot.lastX=a.x;slot.lastZ=a.z;visible.add(a.id);
+   const step=Math.min(.08,Math.max(0,Number.isFinite(dt)?dt:0)),distance=Math.hypot(a.x-slot.lastX,a.z-slot.lastZ),teleport=!slot.fresh&&distance>1;
+   const speed=slot.fresh?(/Run/.test(pose)?3.5:pose==='Walk'?1.55:0):step>0&&!teleport?distance/step:0;
+   slot.speed+=(speed-slot.speed)*(1-Math.exp(-12*step));if(slot.fresh)slot.speed=speed;
+   slot.rate+=(strideRate(slot.speed,pose)-slot.rate)*(1-Math.exp(-12*step));if(!/^(Walk|Run)/.test(pose))slot.rate=1;slot.action?.setEffectiveTimeScale(slot.rate);
+   slot.mixer.update(step);slot.wrapper.updateMatrixWorld(true);
+   slot.grounding.update(dt,{x:a.x,y:feet,z:a.z,heading:a.heading||0,grounded:a.hp>0&&!a.flying&&pose!=='Death'&&pose!=='HitRecieve',reset:slot.fresh||teleport});slot.fresh=false;slot.lastHp=a.hp;slot.lastX=a.x;slot.lastZ=a.z;visible.add(a.id);
   }
  }
  const ready=autoLoad?loadAll():Promise.resolve();
- return {ready,loadAll,update,setEnabled(value){enabled=!!value;if(!enabled){visible.clear();slots.forEach(free);}},stats:()=>({enabled,status:{...status},errors:errors.slice(),active:visible.size,allocated:slots.length,limit:skyglassBudget(mode,xr).castLimit,mode,xr,frames,actors:slots.filter(v=>v.id&&v.wrapper.visible).map(v=>({id:v.id,model:v.role,pose:v.pose,animationTime:v.action?.time||0}))}),dispose(){disposed=true;visible.clear();delete scene.userData.castHas;for(const v of slots){v.mixer.uncacheRoot(v.model);disposeInstance(v.wrapper);}for(const rig of rigs.values())disposeRig(rig);box.dispose();tube.dispose();gold.dispose();steel.dispose();root.removeFromParent();}};
+ return {ready,loadAll,update,setEnabled(value){enabled=!!value;if(!enabled){visible.clear();slots.forEach(free);}},stats:()=>({enabled,status:{...status},errors:errors.slice(),active:visible.size,allocated:slots.length,limit:skyglassBudget(mode,xr).castLimit,mode,xr,frames,actors:slots.filter(v=>v.id&&v.wrapper.visible).map(v=>({id:v.id,model:v.role,pose:v.pose,animationTime:v.action?.time||0,height:v.height,strideRate:v.rate,grounding:v.grounding.stats()}))}),dispose(){disposed=true;visible.clear();delete scene.userData.castHas;for(const v of slots){v.mixer.uncacheRoot(v.model);disposeInstance(v.wrapper);}for(const rig of rigs.values())disposeRig(rig);box.dispose();tube.dispose();gold.dispose();steel.dispose();root.removeFromParent();}};
 }

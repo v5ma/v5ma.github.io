@@ -1,17 +1,25 @@
 # Devices and current boundaries
 
-The tactical v0.4.1 patch retains Xbox-standard controls and the experimental WebXR adapter. Physical Xbox USB/Bluetooth and Quest 3 tracking, frame time and comfort remain unverified.
+## Grounded Cast v0.11.0
 
-Keyboard: WASD moves, mouse/arrow keys look, Space jumps/releases, E interacts/hooks, C reverses, Shift sprints/boosts, F/click fires, R reloads, Q casts the selected power, M maps, P/Esc pauses. B opens a nearby kiosk, Z toggles aim, right mouse holds aim and 1–4 chooses an owned gun. G opens/folds the airborne Foldwing. N opens field builds, T cycles learned powers and J surveys an aimed live unrecorded class. Rail free-look stays the default.
+The current controller map keeps frequent actions on the face buttons, triggers and bumpers. Left stick moves and right stick looks. A jumps, performs aimed traversal, and releases a rail. X uses a nearby interaction or reloads; holding X retains the contextual secondary action. Y swaps carried weapons. B crouches on the ground or folds the airborne glider. LT aims and RT fires. LB taps the selected power, or charges its secondary action when held. RB quickly recalls the recent power; holding it opens the power wheel. Left-stick click sprints or boosts; right-stick click performs melee. View opens the atlas and Menu pauses. Rail braking and reversal use the left stick. Player remaps remain supported. The in-game Controller Deck displays the active bindings.
 
-Standard gamepad: left stick moves, right stick looks, A jumps/releases, B glides, Y interacts/hooks, X reloads, RT fires, LT aims, LB casts, RB reverses, L-stick click boosts, View maps and Menu pauses. D-pad up/down cycles weapons, right opens nearby Outfitters and left opens the field kit. In menus A activates and B closes. Held-button neutralization and disconnect pause remain.
+In menus, A selects, B returns one level, D-pad or left stick moves focus, and left/right adjusts options without an operating-system popup. Right stick and triggers scroll; bumpers page through longer menus. A fresh Back press is retained across dialog boundaries while a button held across that boundary must be released before it can activate another action. Disconnects pause the game; reconnecting controllers must be neutral.
 
-Touch keeps movement and look pads plus action buttons, with dedicated Field/Power/Survey controls above the look surface. Menus pause the simulation. Frame/UI settling is verified by observing actual state, not assuming a fixed render delay.
+Keyboard and touch remain available. WASD moves, arrows or mouse drag look, Space traverses, E uses nearby interactions, R reloads, F fires, Q casts, M opens the atlas and P/Escape pauses. The on-screen touch controls use the same gameplay actions and dialogs. No new menu is required for ordinary movement, shooting or interaction.
 
-## Quest 3 target / immersive preview
+## Quest 3 target and immersive preview
 
-Enter VR is enabled only for a capable secure browser. The local-floor session uses independently tracked head/controllers, joystick movement, 30-degree snap turning, spatial status/menu panels and safe refusal/exit handling. Right controller aims the gun. Left trigger casts the selected power; Current/Cinder use the left target-ray pose. The local conductor diagram is rendered in the spatial field menu with its button controls. Hardware readability and comfort remain to be checked on the actual headset.
+Immersive sessions require local-floor and request optional hand-tracking. Head movement and both tracked controllers have independent poses. Left stick moves, right stick snap-turns, the right tracked controller aims the gun, and the left tracked controller supplies the power ray. Existing tracked-controller gameplay remains available without hand tracking.
 
-The 4x Longglass optic changes only the flat-screen camera projection. The XR eye projection is never globally zoomed. A true tracked magnified lens, climbing, hand tracking, full embodied reload and multiplayer remain future work. Foldwing gliding exists; its physical headset comfort is not certified.
+Both measured hands can point and pinch to operate the spatial menu. The panel exposes Previous/Next page, Decrease/Increase value, Back and Exit VR. Sliders, selects, remapping and later journal entries are reachable inside the headset. A hand must first be observed open. Held pinches, missing joints and reacquisition cannot replay an activation. The rendered joint markers represent tracking samples, not authored hand meshes.
 
-Pure model tests, native ordinary-input browser tests and device-API emulation are separate evidence categories. Emulated poses and buttons exercise the real model/renderer but cannot prove real pairing, tracking, stereo quality or sustained performance. Public files contain no private narrative, privileged credentials or telemetry.
+Hands operate UI only. They do not synthesize gunfire, powers or locomotion. Switching to hands without tracked controllers opens pause. The HUD Pause Menu target can reopen the menu during a hand-only session. Use tracked controllers for expedition movement and combat.
+
+Controller tracking loss clears actions. Hidden sessions and reference-space resets pause safely. The flat-screen Longglass optic does not change immersive eye projections. Authored first-person hands/reloads, a tracked magnified lens, physical comfort acceptance and multiplayer remain open work.
+
+## What has and has not been tested
+
+Pure model tests, native HTTP/WebGL browser journeys and synthetic device-pose tests are separate evidence categories. Input journeys may use reduced pixel density on the software GPU; appearance tests retain their own rendering contracts. Reports and screenshots are archived with the exact tested public-file hashes.
+
+Physical Xbox USB/Bluetooth pairing and Quest 3 tracking, hand interaction quality, readability, comfort and sustained frame time remain unverified. Synthetic device input does not certify those properties. Hardware acceptance flags remain false, and roadmap items X04, X05 and I03 remain open. No browser save reset or migration is required.

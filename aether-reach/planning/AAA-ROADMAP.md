@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.10.0 Skyglass Cast. Updated 2026-09-12.
+Current plan: 0.11.0 Grounded Cast. Updated 2026-09-14.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -323,8 +323,8 @@ Next: Play the complete Blackout adventure and record timing, difficulty, wayfin
 ### P02 - Authored character and weapon animation
 State: In review. Priority: P1. Dependencies: P01.
 Acceptance: Original humanoid mesh, articulated hands, reload/aim/melee animation and locomotion transitions hold up at gameplay distance.
-Evidence: v0.10 adds creator-published CC0 female adventurer, armored guard and suited officer with real skeletons and clip blending. Complete authored first-person hands, custom character art and weapon reload animation remain open.
-Next: Inspect moving characters, hand/weapon alignment and role readability at game distances; continue original character production.
+Evidence: v0.10 adds creator-published CC0 female adventurer, armored guard and suited officer with real skeletons and clip blending. Complete authored first-person hands, custom character art and weapon reload animation remain open. v0.11 adds uniform human-scale sizing, speed-paced clip playback and render-only, reach-limited two-bone foot locking. It does not supply new photorealistic meshes or complete first-person reload/hand animation.
+Next: Inspect grounded gait, starts/stops, feet on bridge edges and weapon alignment on physical displays; continue authored hands/reload animation. P02 remains in review.
 
 ### P03 - Architectural materials and lighting
 State: In review. Priority: P1. Dependencies: P01.
@@ -371,8 +371,8 @@ Next: Maintain a defect severity register and require evidence before advancing.
 ### R04 - Verified publication of each upgrade
 State: In review. Priority: P0. Dependencies: R01, Q03.
 Acceptance: Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.
-Evidence: v0.9 committed at cf1dc621dbc392be99380c7fbe51776b90ead068 after 201 tests and 28 full district browser checks. v0.10 must match the post-merge live runtime contract.
-Next: Record the v0.10 merge, Pages status and matching live-file hashes.
+Evidence: v0.11 candidate is based on master b87aeacb71d00b73992945daaba2fccdc66ab409. Current results and exact source hashes are recorded in the Grounded Cast workflow; publication must separately match the merged runtime manifest.
+Next: Read the post-merge aether-publication receipt and immutable source backup. Never equate a passing branch with live publication.
 
 ### V01 - Bellwether street-interior-rooftop adventure
 State: In review. Priority: P0. Dependencies: W01, F02, I04.
@@ -383,8 +383,20 @@ Next: Inspect the release browser evidence, then obtain player feedback on this 
 ### F03 - Skyglass animated cast and bounded shaders
 State: In review. Priority: P0. Dependencies: F01, P02.
 Acceptance: License-pinned local character assets, independent animated skeletons, visible fallbacks on failed loads, reduced-motion and Light/XR budgets, controller-accessible graphics options and real WebGL compile validation.
-Evidence: art/characters/manifest.json; cast-rig.mjs; cast-scene.mjs; skyglass-shaders.mjs; tests/cast.test.mjs; tests/skyglass-browser.py.
+Evidence: art/characters/manifest.json; cast-rig.mjs; cast-scene.mjs; skyglass-shaders.mjs; tests/cast.test.mjs; tests/skyglass-browser.py. v0.11 preserves the local licensed assets, four-actor immersive budget and original fallback ownership while extending locomotion.
 Next: Record browser and publication evidence; keep physical hardware and player art approval separate.
+
+### F04 - Grounded Cast contact and scale refinement
+State: Implemented. Priority: P1. Dependencies: F03.
+Acceptance: Independent leg IK preserves segment lengths, feet lock only on supported contacts, stale locks release on falls/teleports, source clips restore before each mixer update, and visuals never write saves.
+Evidence: grounded-motion.mjs and tests/grounded.test.mjs include 2000 target trials, shipped sibling-foot rig tests, contact drift, 180-frame no-accumulation checks and 30/60/90 Hz ramp fixtures. Browser and hardware acceptance are separate.
+Next: Read the Grounded Cast browser and publication receipts; inspect normal movement on real hardware before claiming animation quality approval.
+
+### X08 - Tracked hand spatial menus with controller continuity
+State: Implemented. Priority: P0. Dependencies: X03.
+Acceptance: Request optional hand tracking; use actual joint poses and target rays for both hands; expose all menu pages, settings adjustment, Back and Exit VR; suppress held/reacquired pinches and hand-generated combat actions.
+Evidence: hand-input.mjs, spatial-menu.mjs, the XR adapter, hand unit tests and grounded-browser.py. Hands control menus only; locomotion/combat remain controller driven. No physical Quest 3 acceptance is claimed.
+Next: Validate tracking loss, source switching, menu legibility and sustained frame times on a physical Quest 3. X04 and X05 remain open.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.

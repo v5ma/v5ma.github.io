@@ -41,7 +41,7 @@ def walk(p,targets):
    else:raise AssertionError('Could not walk to '+str((x,z))+' '+json.dumps(s))
    keys(set())
  finally:keys(set())
-def aim(p,target,timeout=20):
+def aim(p,target,timeout=60):
  # Native drag-look gives fine aim even when a software-WebGL frame spans many
  # fixed keyboard-look ticks. This uses actual mouse input, never camera writes.
  start=time.monotonic();box=p.locator('#world').bounding_box()
@@ -58,7 +58,7 @@ def aim(p,target,timeout=20):
 with sync_playwright() as pw:
  args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
- b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block');host=urlparse(BASE).hostname
+ b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block');host=urlparse(BASE).hostname
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());p=ctx.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)))
  p.add_init_script("window.tacticalKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyQ','KeyF','KeyE'].includes(e.code)){tacticalKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,paused:window.AetherReach?.snapshot().paused});if(tacticalKeyLog.length>20)tacticalKeyLog.shift();}},true);")
  try:
@@ -101,7 +101,7 @@ with sync_playwright() as pw:
     enemies=[x for x in s['enemies'] if x['id'].startswith('trial-') and x['hp']>0]
     if enemies:
      target=min(enemies,key=lambda x:math.hypot(x['x']-s['position']['x'],x['z']-s['position']['z']))
-     if aim(p,target['id'],timeout=12):
+     if aim(p,target['id'],timeout=60):
       if not surveyed:p.keyboard.press('KeyJ');surveyed=True
       if s['energy']>=32:p.keyboard.press('KeyQ')
       if s['ammo']>0:p.keyboard.down('KeyF');p.wait_for_timeout(280);p.keyboard.up('KeyF')
@@ -114,7 +114,7 @@ with sync_playwright() as pw:
    p.reload(wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');p.locator('#continue').click();p.wait_for_function('AetherReach.snapshot().playing');r=snap(p)
    check(r['tactics']['completed'] and r['credits']==end['credits'],'The completed recovery reward persists exactly once after reloading')
   check(not errors,'No uncaught JavaScript errors in the tactical scenario')
-  (OUT/(MODE+'-tactics-report.json')).write_text(json.dumps({'mode':MODE,'passed':len(checks),'checks':checks,'snapshot':snap(p),'errors':errors,'scope':'Native HTTP Chromium software WebGL. Normal keyboard, mouse drag-look and UI input with read-only observation. Not hardware Xbox or headset performance certification.'},indent=2))
+  (OUT/(MODE+'-tactics-report.json')).write_text(json.dumps({'mode':MODE,'passed':len(checks),'checks':checks,'snapshot':snap(p),'errors':errors,'scope':'Native HTTP Chromium software WebGL. Normal keyboard, mouse drag-look and UI input with read-only observation at 960x640 CSS and half pixel density. Not hardware Xbox or headset performance certification.'},indent=2))
  except Exception as e:
   try:state=snap(p)
   except:state=None

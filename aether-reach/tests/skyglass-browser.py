@@ -37,7 +37,7 @@ with sync_playwright() as pw:
   p.goto(base+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach')
   p.wait_for_function('Object.values(AetherReach.snapshot().renderer.cast.status).every(v=>v==="ready")')
   p.evaluate('TestPad.connect()');frames();tap(0);frames(8)
-  check(p.evaluate('AetherReach.version')=='0.10.0','The actual application boots Skyglass Cast')
+  check(p.evaluate('AetherReach.version')==json.loads((ROOT/'aether-reach/release.json').read_text())['version'],'The actual application boots Skyglass Cast')
   check(snap()['renderer']['cast']['errors']==[],'All three locally served CC0 skinned models load')
   tavi=lambda:next(a for a in snap()['renderer']['cast']['actors'] if a['id']=='tavi')
   check(tavi()['model']=='courier','Tavi is the licensed female adventurer rather than the primitive fallback')

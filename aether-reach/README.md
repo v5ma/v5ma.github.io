@@ -1,3 +1,9 @@
+# Aether Reach
+
+Current source release: 0.11.0 Grounded Cast. See [GROUNDED-CAST.md](GROUNDED-CAST.md) and [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md) for scope, tests and remaining device acceptance. The canonical current plan is [roadmap.json](roadmap.json) and [planning/AAA-ROADMAP.md](planning/AAA-ROADMAP.md).
+
+The older release description below is historical, not the current version. Existing missions, saves, licensed local assets and controller bindings remain in place.
+
 # Aether Reach — public mechanics demo
 
 ## v0.4.2: Prismatic Quay graphics pass

@@ -7,7 +7,7 @@ import {installQuayArt} from './quay-art.mjs';
 import {tacticsScene} from './tactics-scene.mjs';
 /* Existing public game with licensed CC0 Quay art; see art/manifest.json. */
 import * as T from './vendor/three.module.js';
-import {DISTRICTS,BRIDGES,RAILS,RELAYS,RECORDS,BUILDINGS,EXTRACTION,pointOnRail,forward} from './model.mjs';
+import {DISTRICTS,BRIDGES,RAILS,RELAYS,RECORDS,BUILDINGS,EXTRACTION,pointOnRail,forward,groundAt} from './model.mjs';
 import {combatScene} from './combat-scene.mjs';
 export {T};
 const palette={stone:'#efe2c2',pale:'#faf0d5',edge:'#ac9170',metal:'#284b53',gold:'#c9984c',teal:'#417b80',roof:'#578d90',red:'#b8674e',dark:'#213b49',grass:'#839e57',glass:'#75bbbc'};
@@ -107,7 +107,7 @@ export function makeView(canvas,quality='balanced'){
  movingPart('box',glove,[-.38,-.35,-.64],[.23,.19,.4],hook);movingPart('torus',handMetal,[-.37,-.22,-.86],[.18,.2,.18],hook);movingPart('box',handMetal,[-.37,-.05,-.88],[.09,.24,.07],hook);movingPart('sphere',material('#85d5cb','glow'),[-.36,-.19,-.76],[.04,.04,.04],hook);
  polishEquipment(camera);
  const luminous=installLuminousArt({scene,camera,renderer,quality,relays});
- const cast=installCast({scene}),shade=installCloudShade(decks);let skyglassEnabled=true;
+ const cast=installCast({scene,groundAt}),shade=installCloudShade(decks);let skyglassEnabled=true;
  scene.userData.skyglass={enabled:true,mode:quality,clock:0,motion:1};quayArt.ready.then(()=>shade.attach());
  const sparks=[];let lastShot=-1;const projectileGeo=new T.SphereGeometry(.1,6,4),enemyMat=new T.MeshBasicMaterial({color:'#ff7b5b'});const bulletMeshes=Array.from({length:96},()=>{const m=new T.Mesh(projectileGeo,enemyMat);m.visible=false;scene.add(m);return m;});
  function effect(e){combatArt.effect(e);tacticalArt.effect(e);if(e.type==='shot'){const geo=new T.BufferGeometry().setFromPoints([new T.Vector3(e.o.x,e.o.y,e.o.z),new T.Vector3(e.end.x,e.end.y,e.end.z)]),line=new T.Line(geo,new T.LineBasicMaterial({color:e.hit?'#fff3af':'#83e5d5',transparent:true,opacity:1}));scene.add(line);sparks.push({mesh:line,t:.10});lastShot=performance.now();}if(e.type==='pulse'){const mesh=new T.Mesh(new T.SphereGeometry(1,18,10),new T.MeshBasicMaterial({color:'#73e5d9',transparent:true,opacity:.25,wireframe:true}));camera.getWorldPosition(mesh.position);scene.add(mesh);sparks.push({mesh,t:.6,pulse:true});}}

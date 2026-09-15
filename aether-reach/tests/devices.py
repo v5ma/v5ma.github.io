@@ -12,7 +12,7 @@ def check(ok,label):
  checks.append(label);print('PASS',label,flush=True)
 def snapshot(p):return p.evaluate('AetherReach.snapshot()')
 def frames(p,n=3):p.evaluate('(n)=>new Promise(resolve=>{const f=()=>--n<=0?resolve():requestAnimationFrame(f);requestAnimationFrame(f);})',n)
-def button(p,i,v):p.evaluate('([i,v])=>TestPad.button(i,v)',[i,v]);frames(p)
+def button(p,i,v):p.evaluate('([i,v])=>TestPad.button(i,v)',[i,v]);frames(p,1)
 def tap(p,i):button(p,i,True);button(p,i,False)
 def axes(p,a):p.evaluate('(a)=>TestPad.axes(a)',a)
 def drive(p,target):
@@ -25,7 +25,7 @@ def drive(p,target):
 with sync_playwright() as pw:
  args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
- browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block',accept_downloads=True)
+ browser=pw.chromium.launch(**args);ctx=browser.new_context(viewport={'width':960,'height':640},device_scale_factor=1 if MODE=='xr' else .5,service_workers='block',accept_downloads=True)
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
  ctx.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))");ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
@@ -41,10 +41,10 @@ with sync_playwright() as pw:
    tap(page,4);check(snapshot(page)['energy']<100,'LB triggers the real energy pulse')
    tap(page,9);page.wait_for_selector('#pause-dialog[open]');old=snapshot(page);axes(page,[0,-1,1,0]);frames(page,6);check(snapshot(page)['time']==old['time'],'Paused controller menus do not advance the simulation');axes(page,[0,0,0,0]);tap(page,1);page.wait_for_function('!AetherReach.snapshot().paused')
    tap(page,8);page.wait_for_selector('#map-dialog[open]');tap(page,1);check(not snapshot(page)['paused'],'View opens atlas and B returns to play')
-   drive(page,(3,0));drive(page,(9,-5));tap(page,3);page.wait_for_function('!!AetherReach.snapshot().rail');check(snapshot(page)['rail']['id']=='glassline','Y boards a physical freight rail after controller-only walking')
+   drive(page,(3,0));drive(page,(9,-5));tap(page,2);page.wait_for_function('!!AetherReach.snapshot().rail');check(snapshot(page)['rail']['id']=='glassline','X uses the physical freight rail after controller-only walking')
    # Reverse mid-span, not beside the boarding platform: arriving back at the
    # station is legitimate gameplay, not a failed reverse.
-   page.wait_for_function('AetherReach.snapshot().rail?.s>28');before=snapshot(page)['rail']['dir'];tap(page,5);check(snapshot(page)['rail']['dir']==-before,'RB reverses rail travel without a scene reset');tap(page,5);tap(page,0);page.wait_for_function('!AetherReach.snapshot().rail');check(True,'A releases a rail through the real momentum-preserving jump action')
+   page.wait_for_function('AetherReach.snapshot().rail?.s>28');before=snapshot(page)['rail']['dir'];axes(page,[0,1,0,0]);page.wait_for_function('(dir)=>AetherReach.snapshot().rail?.dir===-dir',arg=before);axes(page,[0,0,0,0]);check(snapshot(page)['rail']['dir']==-before,'Left stick brakes and reverses rail travel without a scene reset');tap(page,0);page.wait_for_function('!AetherReach.snapshot().rail');check(True,'A releases a rail through the real momentum-preserving jump action')
    page.evaluate('TestPad.disconnect()');page.wait_for_selector('#pause-dialog[open]');check(True,'An unplugged active gamepad pauses rather than leaving stuck input')
    page.screenshot(path=str(OUT/'controller-controls.png'))
   elif MODE=='xr':
