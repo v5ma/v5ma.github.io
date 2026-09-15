@@ -3,7 +3,7 @@
   "name": "Neighborhood Missions",
   "edition": "Grounded Neighborhood",
   "folder": "svgn-planet",
-  "date": "2026-09-14",
+  "date": "2026-09-15",
   "roadmap": "AAA_ROADMAP.md",
   "roadmapData": "production/roadmap.json",
   "evidence": "production/evidence/v0.11.0.json",
@@ -15,5 +15,15 @@
     "Quest WebXR comfort theater with tracked controller rays, hand joints, pinch menus and hand-only hold controls",
     "Retain Homecoming, Tidewater, original delivery routes, existing credits and unlimited cruise"
   ],
-  "acceptance": "Candidate: automated browser and published-source verification pending"
+  "acceptance": "Automated acceptance passed; live publication verification pending",
+  "testedCommit": "86d0346c93b95b8ea9dae65b2815a717dd9375b0",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
+  "validation": {
+    "unitTestsPassed": 157,
+    "browserSuitesPassed": 5,
+    "physicalControllerTested": false,
+    "physicalQuest3Tested": false,
+    "hardwareFrameTargetCertified": false,
+    "commercialAAAQualityClaimed": false
+  }
 }

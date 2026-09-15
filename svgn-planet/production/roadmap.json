@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.11.0",
   "title": "Neighborhood Missions: path to a production-quality title",
-  "reviewed": "2026-09-14",
+  "reviewed": "2026-09-15",
   "currentMilestone": "M1",
   "qualityClaim": "Stylized browser-game vertical slice. AAA-quality ambition, not AAA certification.",
   "statusDefinitions": {
@@ -172,19 +172,21 @@
       "id": "SAVE-02",
       "milestone": "M0",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "title": "Recoverable save transactions",
       "acceptance": "Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.",
-      "next": "Run corrupt, quota, interrupted-write, import/export and controller acceptance. Multi-tab conflict resolution and cloud backup are outside this release.",
+      "next": "Automated corruption, quota, interruption, migration, original export and controller recovery checks passed. Keep multi-tab conflict resolution and cloud backup outside this release.",
       "dependencies": [
         "SAVE-01"
       ],
       "evidence": [
         "../GROUNDED-NEIGHBORHOOD.md",
-        "../tests/grounded.test.mjs"
+        "../tests/grounded.test.mjs",
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-14"
+      "lastReviewed": "2026-09-15"
     },
     {
       "id": "SLICE-01",
@@ -248,14 +250,16 @@
       "status": "partial",
       "title": "Foreground courier quality",
       "acceptance": "Approve consistent human scale, face, eyes, hands, clothing, backpack straps and grounded shoes. No visible intersections in standing, running, riding and jumping.",
-      "next": "Measured procedural hero, two-link limbs and world-contact gait implemented. Review captured stand/run/ride/jump poses on hardware; a production skinned mesh and authored animation remain open.",
+      "next": "Measured procedural hero, two-link limbs and world-contact gait passed narrow automated checks. Review standing/running/riding captures and airborne transitions on hardware; skinned production art and authored animation remain open.",
       "dependencies": [],
       "evidence": [
         "../GROUNDED-NEIGHBORHOOD.md",
-        "../tests/grounded.test.mjs"
+        "../tests/grounded.test.mjs",
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
       ],
       "owner": "Art / animation",
-      "lastReviewed": "2026-09-14"
+      "lastReviewed": "2026-09-15"
     },
     {
       "id": "ART-02",
@@ -264,16 +268,18 @@
       "status": "partial",
       "title": "Bicycle and unicycle hero assets",
       "acceptance": "Correct axles, pedals, grips and foot contacts; believable steering, suspension and braking. Approve turntables and riding captures at normal camera distance.",
-      "next": "Pedal and grip target IK implemented for the courier. Review vehicle proportions, steering and all transitions with actual gameplay captures; suspension and authored hero meshes remain open.",
+      "next": "Pedal/grip target IK and finite riding poses passed automated checks. Human review of vehicle proportions, steering, contact accuracy and transitions remains open, as do suspension and authored hero meshes.",
       "dependencies": [
         "ART-01"
       ],
       "evidence": [
         "../GROUNDED-NEIGHBORHOOD.md",
-        "../tests/grounded.test.mjs"
+        "../tests/grounded.test.mjs",
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
       ],
       "owner": "Art / animation",
-      "lastReviewed": "2026-09-14"
+      "lastReviewed": "2026-09-15"
     },
     {
       "id": "ART-03",
@@ -605,17 +611,19 @@
       "status": "partial",
       "title": "Controller-complete gameplay and menus",
       "acceptance": "Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.",
-      "next": "Neutral rearm now blocks held gameplay inputs after menus. Complete physical Xbox USB/Bluetooth and new XR hardware matrix.",
+      "next": "Standard Xbox emulation, direct action mappings, neutral rearm and recovery dialogs passed. Complete physical Xbox USB/Bluetooth and Quest 3 device tests; OS text entry and downloads remain outside the in-game UI.",
       "dependencies": [
         "INPUT-01"
       ],
       "evidence": [
         "evidence/v0.8.0.json",
         "../GROUNDED-NEIGHBORHOOD.md",
-        "../tests/grounded.test.mjs"
+        "../tests/grounded.test.mjs",
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-14"
+      "lastReviewed": "2026-09-15"
     },
     {
       "id": "ACCESS-02",
@@ -651,16 +659,18 @@
       "priority": "P0",
       "status": "verified",
       "title": "Automated model and controller evidence",
-      "acceptance": "Coastal Atmosphere has 111 passing model/shader/save tests, 22 shader/UI checks, 14 retained-game controller checks and 12 Homecoming checks. Shader logs and actual screenshots are retained. Software WebGL does not certify physical hardware performance.",
-      "next": "Keep physical-controller/GPU sign-off and extended soak testing open.",
+      "acceptance": "Grounded Neighborhood has 157 passing model/save/motion/input tests and five successful browser suites covering the retained game, Homecoming, atmosphere, Tidewater and synthetic XR. Logs and real desktop screenshots are retained. Software WebGL and synthetic devices do not certify physical hardware.",
+      "next": "Retain these exact-source checks, obtain physical controller/GPU/headset sign-off and run the extended soak gate.",
       "dependencies": [],
       "evidence": [
         "https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481",
         "evidence/v0.8.0.json",
-        "evidence/v0.9.0.json"
+        "evidence/v0.9.0.json",
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-11"
+      "lastReviewed": "2026-09-15"
     },
     {
       "id": "QA-02",
@@ -713,30 +723,35 @@
       "priority": "P0",
       "status": "verified",
       "title": "Publish real source, not an unmerged candidate",
-      "acceptance": "v0.7 is on master with a successful Pages deployment. Every next release preserves concurrent games, records a commit and checks live modules.",
-      "next": "Apply this definition to v0.8 with a fresh release receipt.",
+      "acceptance": "Each release must be merged without overwriting sibling games, deployed by Pages and checked against its source bytes. A passing candidate alone is not a published release.",
+      "next": "Merge the accepted v0.11.0 candidate normally and retain v0.11.0-published.json after the live byte and browser gate succeeds.",
       "dependencies": [],
       "evidence": [
-        "https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978"
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978",
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-11"
+      "lastReviewed": "2026-09-15"
     },
     {
       "id": "BUILD-02",
       "milestone": "M5",
       "priority": "P0",
-      "status": "planned",
+      "status": "partial",
       "title": "A repeatable release gate",
       "acceptance": "Run model, browser, asset, visual and live checks before completion. Archive evidence, support reversible rollback and never force-push over sibling games.",
-      "next": "Consolidate one-off workflows into a scoped release pipeline.",
+      "next": "Scoped read-only model/browser and publication workflows are integrated. Live verification includes modules, all assets, licenses and evidence with bounded cache-propagation retries. Complete publication verification and a scoped rollback drill; do not force-push.",
       "dependencies": [
         "QA-01",
         "QA-03"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
+      ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-11"
+      "lastReviewed": "2026-09-15"
     },
     {
       "id": "LEGAL-01",
@@ -853,10 +868,10 @@
       "id": "XR-01",
       "milestone": "M4",
       "priority": "P1",
-      "status": "implemented",
+      "status": "needs-playtest",
       "title": "Quest comfort theater with tracked controllers and hand UI",
       "acceptance": "Native WebXR session presents a world-anchored flat game screen, tracked controller/grip rays and joint-pinch menu input. Paginated DOM-derived 3D menus, hands-only hold controls, tracking loss and session recovery work without relying on DOM overlays. This is not room-scale stereo gameplay.",
-      "next": "Run synthetic session/render/input acceptance, then obtain physical Quest 3 comfort, controller, hand tracking and performance approval.",
+      "next": "Synthetic session/render/input and controller/hand lifecycle checks passed. Obtain physical Quest 3 comfort, Touch Plus, hand-tracking and performance approval. Stereo game-world rendering is not implemented.",
       "dependencies": [
         "INPUT-01",
         "ACCESS-01",
@@ -864,10 +879,12 @@
       ],
       "evidence": [
         "../GROUNDED-NEIGHBORHOOD.md",
-        "../tests/grounded-browser.py"
+        "../tests/grounded-browser.py",
+        "evidence/v0.11.0.json",
+        "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468"
       ],
       "owner": "Engineering / real-device QA",
-      "lastReviewed": "2026-09-14"
+      "lastReviewed": "2026-09-15"
     }
   ],
   "sources": [
@@ -887,6 +904,6 @@
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
   ],
-  "releaseEvidence": "evidence/v0.9.0.json",
+  "releaseEvidence": "evidence/v0.11.0.json",
   "edition": "Grounded Neighborhood"
 }

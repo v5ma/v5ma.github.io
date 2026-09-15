@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Grounded Neighborhood v0.11.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-14.
+Current release: Grounded Neighborhood v0.11.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
 
 ## How to use this workbook
 
@@ -72,11 +72,11 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
   Owner role: Engineering / QA. Dependencies: None.
   Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
 
-- [ ] SAVE-02 / P0 / implemented / Recoverable save transactions
+- [x] SAVE-02 / P0 / verified / Recoverable save transactions
   Acceptance: Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.
-  Next: Run corrupt, quota, interrupted-write, import/export and controller acceptance. Multi-tab conflict resolution and cloud backup are outside this release.
+  Next: Automated corruption, quota, interruption, migration, original export and controller recovery checks passed. Keep multi-tab conflict resolution and cloud backup outside this release.
   Owner role: Engineering / QA. Dependencies: SAVE-01.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
 ## M1 / One exceptional neighborhood
 
@@ -104,15 +104,15 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] ART-01 / P0 / partial / Foreground courier quality
   Acceptance: Approve consistent human scale, face, eyes, hands, clothing, backpack straps and grounded shoes. No visible intersections in standing, running, riding and jumping.
-  Next: Measured procedural hero, two-link limbs and world-contact gait implemented. Review captured stand/run/ride/jump poses on hardware; a production skinned mesh and authored animation remain open.
+  Next: Measured procedural hero, two-link limbs and world-contact gait passed narrow automated checks. Review standing/running/riding captures and airborne transitions on hardware; skinned production art and authored animation remain open.
   Owner role: Art / animation. Dependencies: None.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
 - [ ] ART-02 / P0 / partial / Bicycle and unicycle hero assets
   Acceptance: Correct axles, pedals, grips and foot contacts; believable steering, suspension and braking. Approve turntables and riding captures at normal camera distance.
-  Next: Pedal and grip target IK implemented for the courier. Review vehicle proportions, steering and all transitions with actual gameplay captures; suspension and authored hero meshes remain open.
+  Next: Pedal/grip target IK and finite riding poses passed automated checks. Human review of vehicle proportions, steering, contact accuracy and transitions remains open, as do suspension and authored hero meshes.
   Owner role: Art / animation. Dependencies: ART-01.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
 - [ ] ART-03 / P0 / partial / Human-scale architecture and materials
   Acceptance: Approve one two-story house, cafe and apartment with believable doors, windows and floor heights. Materials, trim and shadows retain quality across presets.
@@ -278,9 +278,9 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ACCESS-01 / P0 / partial / Controller-complete gameplay and menus
   Acceptance: Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.
-  Next: Neutral rearm now blocks held gameplay inputs after menus. Complete physical Xbox USB/Bluetooth and new XR hardware matrix.
+  Next: Standard Xbox emulation, direct action mappings, neutral rearm and recovery dialogs passed. Complete physical Xbox USB/Bluetooth and Quest 3 device tests; OS text entry and downloads remain outside the in-game UI.
   Owner role: Engineering / QA. Dependencies: INPUT-01.
-  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs
+  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
 - [ ] ACCESS-02 / P1 / planned / Remapping and input alternatives
   Acceptance: Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.
@@ -300,11 +300,11 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
   Owner role: Rendering / QA. Dependencies: MOVE-01, PERF-01, AUDIO-01.
   Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json
 
-- [ ] XR-01 / P1 / implemented / Quest comfort theater with tracked controllers and hand UI
+- [ ] XR-01 / P1 / needs-playtest / Quest comfort theater with tracked controllers and hand UI
   Acceptance: Native WebXR session presents a world-anchored flat game screen, tracked controller/grip rays and joint-pinch menu input. Paginated DOM-derived 3D menus, hands-only hold controls, tracking loss and session recovery work without relying on DOM overlays. This is not room-scale stereo gameplay.
-  Next: Run synthetic session/render/input acceptance, then obtain physical Quest 3 comfort, controller, hand tracking and performance approval.
+  Next: Synthetic session/render/input and controller/hand lifecycle checks passed. Obtain physical Quest 3 comfort, Touch Plus, hand-tracking and performance approval. Stereo game-world rendering is not implemented.
   Owner role: Engineering / real-device QA. Dependencies: INPUT-01, ACCESS-01, SAVE-01.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded-browser.py
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded-browser.py ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
 ## M5 / Release readiness
 
@@ -313,10 +313,10 @@ Reliable builds, recovery, licensing and sustained hardware testing.
 Human exit gate: Pass the named device matrix, license audit, soak test and rollback drill.
 
 - [x] QA-01 / P0 / verified / Automated model and controller evidence
-  Acceptance: Coastal Atmosphere has 111 passing model/shader/save tests, 22 shader/UI checks, 14 retained-game controller checks and 12 Homecoming checks. Shader logs and actual screenshots are retained. Software WebGL does not certify physical hardware performance.
-  Next: Keep physical-controller/GPU sign-off and extended soak testing open.
+  Acceptance: Grounded Neighborhood has 157 passing model/save/motion/input tests and five successful browser suites covering the retained game, Homecoming, atmosphere, Tidewater and synthetic XR. Logs and real desktop screenshots are retained. Software WebGL and synthetic devices do not certify physical hardware.
+  Next: Retain these exact-source checks, obtain physical controller/GPU/headset sign-off and run the extended soak gate.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json ; evidence/v0.9.0.json
+  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json ; evidence/v0.9.0.json ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
 - [ ] QA-02 / P0 / needs-playtest / Physical hardware matrix
   Acceptance: Record Windows Chrome/Edge with Xbox USB and Bluetooth plus low-power and touch devices. Include sustained speed, menus, saves and audio.
@@ -337,16 +337,16 @@ Human exit gate: Pass the named device matrix, license audit, soak test and roll
   Evidence: Not recorded.
 
 - [x] BUILD-01 / P0 / verified / Publish real source, not an unmerged candidate
-  Acceptance: v0.7 is on master with a successful Pages deployment. Every next release preserves concurrent games, records a commit and checks live modules.
-  Next: Apply this definition to v0.8 with a fresh release receipt.
+  Acceptance: Each release must be merged without overwriting sibling games, deployed by Pages and checked against its source bytes. A passing candidate alone is not a published release.
+  Next: Merge the accepted v0.11.0 candidate normally and retain v0.11.0-published.json after the live byte and browser gate succeeds.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978
+  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978 ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
-- [ ] BUILD-02 / P0 / planned / A repeatable release gate
+- [ ] BUILD-02 / P0 / partial / A repeatable release gate
   Acceptance: Run model, browser, asset, visual and live checks before completion. Archive evidence, support reversible rollback and never force-push over sibling games.
-  Next: Consolidate one-off workflows into a scoped release pipeline.
+  Next: Scoped read-only model/browser and publication workflows are integrated. Live verification includes modules, all assets, licenses and evidence with bounded cache-propagation retries. Complete publication verification and a scoped rollback drill; do not force-push.
   Owner role: Engineering / QA. Dependencies: QA-01, QA-03.
-  Evidence: Not recorded.
+  Evidence: evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468
 
 - [ ] LEGAL-01 / P0 / partial / Licensed and reproducible assets
   Acceptance: The existing CC0 register retains sources and hashes. Every new model, texture, sound and voice needs provenance and redistribution rights.
