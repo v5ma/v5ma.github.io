@@ -2,7 +2,7 @@ name: Dino Atlas grounded XR
 on:
   push:
     branches: [master, 'dino-atlas/grounded-xr-20260914']
-    paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml', '.github/patches/dino-grounded.*.b64']
+    paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml']
   pull_request:
     paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml']
 permissions:
@@ -11,59 +11,13 @@ concurrency:
   group: dino-grounded-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  integrate:
-    if: github.ref == 'refs/heads/dino-atlas/grounded-xr-20260914'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    outputs:
-      source: ${{ steps.apply.outputs.source }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: dino-atlas/grounded-xr-20260914
-          sparse-checkout: |
-            dino-atlas
-            .github
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - id: apply
-        name: Apply the exact checksummed Dino-only source once
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import base64,lzma,hashlib,subprocess,os
-          parts=sorted(Path('.github/patches').glob('dino-grounded.*.b64'))
-          if parts:
-              assert len(parts)==4
-              baseline=subprocess.check_output(['git','rev-parse','HEAD:dino-atlas'],text=True).strip()
-              assert baseline=='d0f8c9cacdf6e30754bc8817fccb34e73078f3bc','Dino baseline changed; review before applying'
-              patch=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
-              assert hashlib.sha256(patch).hexdigest()=='5692d3e8fae2b905130fa081f585e27e44a74d98bee95ea39207f2cd48ef11bb','Transport checksum mismatch'
-              target=Path('/tmp/dino-grounded.patch');target.write_bytes(patch)
-              names=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
-              assert all(line.split('\t')[-1].startswith('dino-atlas/') for line in names.splitlines())
-              subprocess.run(['git','apply','--check',str(target)],check=True)
-              subprocess.run(['git','apply','--index',str(target)],check=True)
-              subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
-              subprocess.run(['git','rm',*[str(p) for p in parts]],check=True)
-              subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
-              subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
-              subprocess.run(['git','commit','-m','Implement Grounded Reserve: planted gait, ranger proportions, direct tools and tracked XR UI'],check=True)
-              subprocess.run(['git','push','origin','HEAD:dino-atlas/grounded-xr-20260914'],check=True)
-          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('source='+sha+'\n')
-          PY
   verify:
-    needs: [integrate]
-    if: always() && (needs.integrate.result == 'success' || needs.integrate.result == 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.integrate.outputs.source || github.sha }}
+          ref: ${{ github.sha }}
           persist-credentials: false
           sparse-checkout: |
             dino-atlas
@@ -85,16 +39,12 @@ jobs:
       - name: Render direct controls, ranger and explicitly mocked XR UI
         run: python dino-atlas/tests/grounded-xr-browser.py
       - name: Preserve Living Herds controller journey
-        if: success() || failure()
         run: python dino-atlas/tests/living-herds-browser.py
       - name: Preserve Storm Response controller journey
-        if: success() || failure()
         run: python dino-atlas/tests/aaa-browser.py
       - name: Preserve Pelagic Recovery controller journey
-        if: success() || failure()
         run: python dino-atlas/tests/aquatics-browser.py
       - name: Exact runtime manifest
-        if: success()
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -104,7 +54,7 @@ jobs:
           Path('dino-atlas/verification/grounded-xr/runtime-hashes.json').write_text(json.dumps(manifest,indent=2))
           PY
       - name: Verify published Pages bytes
-        if: github.ref == 'refs/heads/master' && success()
+        if: github.ref == 'refs/heads/master'
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -128,7 +78,7 @@ jobs:
           (out/'public-verification.json').write_text(json.dumps({'build':manifest['build'],'commit':manifest['commit'],'url':'https://v5ma.github.io/dino-atlas/','verifiedFiles':verified,'allMatched':True,'physicalHardwareVerified':False},indent=2))
           PY
       - name: Exercise the published Grounded build
-        if: github.ref == 'refs/heads/master' && success()
+        if: github.ref == 'refs/heads/master'
         env:
           DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
         run: |
