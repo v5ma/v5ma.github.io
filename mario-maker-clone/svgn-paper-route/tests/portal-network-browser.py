@@ -34,7 +34,7 @@ with sync_playwright() as pw:
  def capture(name):
   image=page.evaluate('xrEmulator.image()');(OUT/(name+'.png')).write_bytes(base64.b64decode(image.split(',',1)[1]))
  try:
-  page.goto(BASE+'?destination=tideglass-baths&xr=1',wait_until='domcontentloaded');page.bring_to_front();page.wait_for_function('window.SkyCycleXR && window.SkyCyclePortals && __cloudview?.hero?.pose && player.onGround && SkyCycleBathhouse.art?.waterDraws>0')
+  page.goto(BASE+'?destination=tideglass-baths&xr=1',wait_until='domcontentloaded');page.bring_to_front();page.wait_for_function('window.SkyCycleXR && window.SkyCyclePortals && window.__cloudview?.hero?.pose && player.onGround && SkyCycleBathhouse.art?.waterDraws>0')
   check(page.evaluate('DeliveryCampaign.routes.length===8 && DeliveryCampaign.routes[7].id==="tideglass-baths" && DeliveryCampaign.routes[4].id==="first-neighborhood"'),'All legacy route indices and Tideglass direct entry survive')
   before=page.evaluate('levelCode()');records=page.evaluate('JSON.stringify(SkyCycleFlightDeck.records)')
   page.locator('#bathhouse-open').click();page.locator('#bathhouse-return').focus();page.wait_for_function('document.getElementById("bathhouse-atlas").dataset.pattern==="sunrise"');page.screenshot(path=str(OUT/'atlas-sunrise.png'))
@@ -44,7 +44,7 @@ with sync_playwright() as pw:
   page.locator('#sky-xr-open').click();page.locator('#sky-xr-enter').click();page.wait_for_function('SkyCycleXR.presenting && SkyCycleXR.diagnostics.frames>5')
   check(page.evaluate('xrEmulator.request.options.optionalFeatures.includes("hand-tracking") && SkyCycleXR.diagnostics.eyes===2 && SkyCycleXR.diagnostics.ownedScene'),'XR requests hand tracking and renders both eyes of the existing game scene')
   frames();capture('xr-controller-pause')
-  choose('Resume');page.wait_for_function('!__delivery.paused');frames()
+  choose('Back to the route');page.wait_for_function('!__delivery.paused');frames()
   x=page.evaluate('player.x');page.evaluate('xrEmulator.axis(.8)');page.wait_for_function('(x)=>player.x>x+100',arg=x);page.evaluate('xrEmulator.axis(0)');frames()
   check(page.evaluate('__cloudview.hero.motion.phase>0'),'Tracked left stick rides through real physics and advances pedal motion')
   check(page.evaluate('(()=>{const p=__cloudview.hero.pose;return [...p.legs,...p.arms].every(l=>Math.hypot(l.end[0]-l.target[0],l.end[1]-l.target[1])<1e-6);})()'),'Observed rider hands and feet stay on their grip and pedal targets')
@@ -52,7 +52,7 @@ with sync_playwright() as pw:
   press(5);page.wait_for_function('__delivery.paused');choose('Portal atlas');page.wait_for_function('document.getElementById("bathhouse-atlas").open');capture('xr-portal-atlas')
   press(5);check(page.evaluate('__delivery.paused && !document.getElementById("bathhouse-atlas").open'),'Tracked B closes only the nested portal and retains pause')
   page.evaluate('xrEmulator.hands()');frames();check(page.evaluate('SkyCycleXR.diagnostics.handJoints===50'),'Both tracked hands expose all 25 joints to the in-world UI')
-  capture('xr-hand-pause');choose('Resume');page.wait_for_function('!__delivery.paused');frames()
+  capture('xr-hand-pause');choose('Back to the route');page.wait_for_function('!__delivery.paused');frames()
   x=page.evaluate('player.x');point('Ride right');page.evaluate("xrEmulator.select('start')");page.wait_for_function('(x)=>player.x>x+80',arg=x);page.evaluate("xrEmulator.select('end')");frames()
   check(True,'Native hand pinch-and-hold drives the ordinary riding input')
   point('Jump');page.evaluate("xrEmulator.select('start')");page.wait_for_function('!player.onGround');page.evaluate("xrEmulator.select('end')");frames();capture('xr-hand-jump')
