@@ -115,6 +115,8 @@ with sync_playwright() as p:
         press(9); wait('Vesperfall.component.paused')
         before_type = page.evaluate('Vesperfall.state.type')
         press(13); check(page.evaluate('t=>Vesperfall.state.type===t',before_type), 'D-pad down in menus remains focus navigation')
+        nav_to('tidelight-toggle'); press(0)
+        check(page.locator('#tidelight-settings').evaluate('(e)=>e.open'), 'Xbox opens the water settings disclosure')
         nav_to('tidelight-quality'); old=page.locator('#tidelight-quality').input_value(); press(15)
         check(page.locator('#tidelight-quality').input_value()!=old, 'Xbox changes the water profile without a mouse')
         nav_to('tidelight-caustics'); old=page.locator('#tidelight-caustics').is_checked(); press(0)
