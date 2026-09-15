@@ -1,3 +1,13 @@
+# Presentation update v0.12.0
+
+XR / diorama views is reachable from the title, pause and settings with fixed Xbox A/B/directional navigation and the existing tracked-hand spatial panel. Choose First-person VR, Third-person diorama VR, or Third-person diorama AR before entering XR. AR explicitly requests immersive-ar and remains unavailable when the browser does not support that session type; it never silently starts VR instead. Native browser or operating-system permission prompts still require user consent.
+
+The enclosure offers exactly three configurations: open top and front, open top with closed front, or open front with closed top. No configuration closes both. The room ceilings/front shells are cut away visually where requested; collision remains real. Scale, table height, rotation and recenter controls are accessible in the same menus, including the hand-tracked panel. AR uses adjustable local-floor placement, not room scanning, scene understanding or detected furniture. A desktop preview provides a headset-free view of the same live scene.
+
+The courier remains in the normal simulation while the view rig transforms the city into a miniature. Moving one's head around a diorama does not move or turn the courier. Left stick walks relative to the table. Rail braking/reversal and ladders retain ordinary up/down control. Tracked controller rays choose an aim point, but shooting still originates at the courier and obeys the game's range/occlusion checks. The right stick can turn the courier. Xbox-compatible Gamepad input also remains usable inside XR; its existing action/remap path is retained. In first-person XR, a pad's right stick requests deliberate snap turns and pitch remains head tracked.
+
+Hands operate UI only. They do not shoot or walk. The diorama adds one animated 1.76-meter courier render instance, not a new simulated actor or a saved character position. Physical Xbox/Quest acceptance, passthrough appearance, comfort and sustained frame-time measurements remain open.
+
 # Devices and current boundaries
 
 ## Grounded Cast v0.11.0

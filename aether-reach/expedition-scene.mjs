@@ -25,9 +25,9 @@ export function expeditionScene(T,{scene,part,box,beam,label,material,movingPart
  for(const r of ROOFS){lamp(r.x+r.w/2-.9,r.y,r.z+2);sign(r.name.toUpperCase(),r.x,r.y+2,r.z-r.d/2+.3,r.w*.85,.8);}
  for(const q of BALCONY_RAILS)rail(q.a,q.b);
  // Room meshes exactly follow the wall and door-jamb collision definitions.
- for(const r of EXP_ROOMS){for(const q of ROOM_SOLIDS.filter(q=>q.id.startsWith(r.id))){box((q.x1+q.x2)/2,(q.y1+q.y2)/2,(q.z1+q.z2)/2,q.x2-q.x1,q.y2-q.y1,q.z2-q.z1,r.id==='storm-room'?P.slate:P.ivory);}
+ for(const r of EXP_ROOMS){for(const q of ROOM_SOLIDS.filter(q=>q.id.startsWith(r.id))){const m=movingPart('box',material(r.id==='storm-room'?P.slate:P.ivory),[(q.x1+q.x2)/2,(q.y1+q.y2)/2,(q.z1+q.z2)/2],[q.x2-q.x1,q.y2-q.y1,q.z2-q.z1],scene);m.name=q.id;m.userData.roomShell=q.id.endsWith('-ceiling')?'top':/-(jamb-a|jamb-b|lintel)$/.test(q.id)?'front':null;}
   const front=r.z+r.d/2;for(const dx of[-2.15,2.15]){part('cylinder',r.x+dx,r.y+1.9,front+.25,.25,3.8,.25,P.cream);part('cylinder',r.x+dx,r.y+3.75,front+.25,.37,.22,.37,P.bronze,0,0,'metal');}box(r.x,r.y+3.9,front+.3,5.3,.3,.8,P.bronze);sign(r.name.toUpperCase(),r.x,r.y+4.25,front+.55,r.w*.9,.65);
-  for(const side of[-1,1]){lamp(r.x+side*(r.w/2-1.1),r.y,front-1);for(let j=-1;j<=1;j++){const z=r.z+j*r.d*.23;box(r.x+side*(r.w/2-.35),r.y+2,z,.16,2.6,2.2,P.iron);box(r.x+side*(r.w/2-.46),r.y+2,z,.05,2.2,1.9,'#8ab8b1');}}
+  for(const side of[-1,1]){lamp(r.x+side*(r.w/2-1.1),r.y,front-1);for(let j=-1;j<=1;j++){if(r.id==='market-workshop'&&side===-1&&j===0)continue;const z=r.z+j*r.d*.23;box(r.x+side*(r.w/2-.35),r.y+2,z,.16,2.6,2.2,P.iron);box(r.x+side*(r.w/2-.46),r.y+2,z,.05,2.2,1.9,'#8ab8b1');}}
   for(let j=-1;j<=1;j++){box(r.x+j*3.4,r.y+.72,r.z-r.d/2+.8,2.8,1.4,.85,P.wood);box(r.x+j*3.4,r.y+1.47,r.z-r.d/2+.8,3,.1,1.05,P.bronze);for(let k=0;k<5;k++)box(r.x+j*3.4+(k-2)*.4,r.y+1.68,r.z-r.d/2+.8,.22,.35,.35,k%2?P.teal:P.red);}
  }
  const gateMeshes=new Map();for(const q of GATES){const g=new T.Group();dynamic.add(g);g.position.set((q.x1+q.x2)/2,q.y1,(q.z1+q.z2)/2);movingPart('box',material(P.iron,'metal'),[0,1.6,0],[3.35,3.2,.21],g);for(const x of[-1.1,0,1.1])movingPart('box',material(P.bronze,'metal'),[x,1.6,.13],[.08,3.1,.04],g);movingPart('torus',material(P.bronze,'metal'),[0,1.7,.16],[.43,.43,.12],g);gateMeshes.set(q.flag,{g,y:q.y1});}

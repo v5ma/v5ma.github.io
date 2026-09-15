@@ -1,3 +1,4 @@
+import {BELL_STAIRS} from './bellwether-layout.mjs';
 import {BELL_TASK} from './bellwether-world.mjs';
 import {ROOFS,UPPER_ROOMS,UPPER_FLOORS,UPPER_STAIRS,ROOF_RAILS,ROOF_TASKS,ROOF_THINGS,ROOF_CACHES,ROOF_FLAGS,ROOF_RECORDS,ROOF_ENEMIES} from './rooftop-world.mjs';
 /* Skyward Dispatch: original public side-adventures in the existing Aether Reach.
@@ -13,7 +14,7 @@ export const EXP_DISTRICTS = [
   {id:'aerodrome', name:'Dawn Aerodrome', x:143, y:12, z:-70, w:50, d:48, theme:'port'}
 ];
 export const EXP_BRIDGES = [
-  ...UPPER_STAIRS,
+  ...UPPER_STAIRS,...BELL_STAIRS,
   {id:'market-stair', a:[-16,0,-6], b:[-70,7,-8], width:6.5, stairs:true},
   {id:'gannet-stair', a:[-116,7,-18], b:[-132,3,-18], width:6, stairs:true},
   {id:'academy-stair', a:[-92,7,-37], b:[-92,18,-79], width:6, stairs:true},
@@ -64,7 +65,7 @@ export const EXP_ROOMS = [
 const box=(id,x1,x2,y1,y2,z1,z2)=>({id,x1,x2,y1,y2,z1,z2});
 export const ROOM_SOLIDS=EXP_ROOMS.flatMap(r=>{
   const x1=r.x-r.w/2,x2=r.x+r.w/2,z1=r.z-r.d/2,z2=r.z+r.d/2,t=.25,door=3.4;
-  return [box(r.id+'-west',x1,x1+t,r.y,r.y+r.h,z1,z2),box(r.id+'-east',x2-t,x2,r.y,r.y+r.h,z1,z2),
+  return [...(r.id==='market-workshop'?[box(r.id+'-west-a',x1,x1+t,r.y,r.y+r.h,z1,-29.7),box(r.id+'-west-b',x1,x1+t,r.y,r.y+r.h,-26.3,z2),box(r.id+'-west-lintel',x1,x1+t,r.y+3.2,r.y+r.h,-29.7,-26.3)]:[box(r.id+'-west',x1,x1+t,r.y,r.y+r.h,z1,z2)]),box(r.id+'-east',x2-t,x2,r.y,r.y+r.h,z1,z2),
     box(r.id+'-north',x1,x2,r.y,r.y+r.h,z1,z1+t),box(r.id+'-jamb-a',x1,r.x-door/2,r.y,r.y+r.h,z2-t,z2),
     box(r.id+'-jamb-b',r.x+door/2,x2,r.y,r.y+r.h,z2-t,z2),box(r.id+'-lintel',r.x-door/2,r.x+door/2,r.y+3.2,r.y+r.h,z2-t,z2),
     box(r.id+'-ceiling',x1,x2,r.y+r.h,r.y+r.h+.25,z1,z2)];
@@ -196,6 +197,6 @@ export function bridgeBarrier(bridges,x,y,z,r=.38){
 // rendered as balustrades and used by capsule collision.
 export const BALCONY_RAILS=TERRACES.flatMap(t=>{
  const gap=(t.rooftop||t.interior)?1.15:2.4;const l=t.x-t.w/2,r=t.x+t.w/2,n=t.z-t.d/2,f=t.z+t.d/2,entry=t.entry??{'archive-gallery':-108,'solstice-gallery':-7,'dawn-gallery':154}[t.id];
- return [[[l,t.y,n],[r,t.y,n]],[[l,t.y,n],[l,t.y,f]],[[r,t.y,n],[r,t.y,f]],[[l,t.y,f],[Math.max(l,entry-gap),t.y,f]],[[Math.min(r,entry+gap),t.y,f],[r,t.y,f]]].filter(([a,b])=>Math.hypot(a[0]-b[0],a[2]-b[2])>.1).map(([a,b])=>({a,b}));
+ return [[[l,t.y,n],[r,t.y,n]],[[l,t.y,n],[l,t.y,f]],...(t.id==='roof-bell'?[[[r,t.y,n],[r,t.y,-8]],[[r,t.y,-4],[r,t.y,f]]]:[[[r,t.y,n],[r,t.y,f]]]),[[l,t.y,f],[Math.max(l,entry-gap),t.y,f]],[[Math.min(r,entry+gap),t.y,f],[r,t.y,f]]].filter(([a,b])=>Math.hypot(a[0]-b[0],a[2]-b[2])>.1).map(([a,b])=>({a,b}));
 });
 export function balconyBarrier(x,y,z,r=.38){for(const q of BALCONY_RAILS){const [ax,ay,az]=q.a,[bx,,bz]=q.b,dx=bx-ax,dz=bz-az,l2=dx*dx+dz*dz,t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/l2));if(y>=ay+1.18||y+1.8<=ay)continue;if(Math.hypot(x-ax-dx*t,z-az-dz*t)<r+.07)return true;}return false;}

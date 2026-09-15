@@ -1,9 +1,10 @@
+import {installBellwetherRefit} from './bellwether-refit-scene.mjs';
 /* Original mission props; rendered state never awards progression. Fixed pools. */
 import * as T from './vendor/three.module.js';
 import {createFoundryKit} from './foundry-kit.mjs';
 import {BELL_POINTS,BELL_TARGETS,BELL_TASK,BELL_COVER,bellGoal} from './bellwether-world.mjs';
 export function installBellwetherScene({scene,groundAt,clearLine}){
- const kit=createFoundryKit(scene),{root,add,batch,sign}=kit;root.name='bellwether-blackout';
+ const refit=installBellwetherRefit(scene),kit=createFoundryKit(scene),{root,add,batch,sign}=kit;root.name='bellwether-blackout';
  const dials=[],lamps=[];let signalLight=null;
  for(const c of BELL_COVER){const m=add('box','timber',[c.x,c.y+c.h/2,c.z],[c.w,c.h,c.d]);m.name=c.id;for(const side of[-1,1])batch('box','metal',[c.x+side*(c.w/2-.05),c.y+c.h/2,c.z],[.1,c.h,c.d]);}
  for(const q of BELL_POINTS){const g=new T.Group();g.name=q.id;g.position.set(q.x,q.y,q.z-(q.kind==='signal'?.7:0));root.add(g);add('cylinder','metal',[0,.4,0],[.22,.8,.22],g);add('box','dark',[0,.94,0],[.72,.28,.48],g);
@@ -16,12 +17,12 @@ export function installBellwetherScene({scene,groundAt,clearLine}){
  const marker=add('ring','glow',[0,0,0],[.85,.85,.85]);marker.rotation.x=Math.PI/2;marker.visible=false;
  const arrow=new T.Group();arrow.name='blackout-ground-arrow';root.add(arrow);for(const side of[-1,1]){const m=add('box','glow',[side*.14,0,0],[.07,.025,.52],arrow);m.rotation.y=side*.65;}arrow.visible=false;
  kit.flush();let restored=false;
- function update(s,{playing=true,reduced=false}={}){const b=s.bellwether;if(!b)return;restored=b.stage>=5;
+ function update(s,{playing=true,reduced=false,dt=0}={}){const b=s.bellwether;if(!b)return;refit.update(s,dt,reduced);restored=b.stage>=5;
   lamps.forEach(m=>m.visible=restored);signalLight.visible=restored||b.encounter==='roof';
   dials.forEach((d,i)=>{d.ring.rotation.z=-b.dials[i]*Math.PI/2;d.lights.forEach((l,j)=>l.visible=j===b.dials[i]);});
   const tracked=playing&&s.expedition.tracked===BELL_TASK.id&&b.stage<6,goal=bellGoal(s);marker.visible=tracked;
   if(tracked){marker.position.set(goal.x,goal.y+.055,goal.z);const pulse=reduced?1:1+Math.sin(s.time*3)*.06;marker.scale.set(.85*pulse,.85*pulse,.85);}
   arrow.visible=false;if(tracked&&s.skirmish.navigateUntil>s.time&&s.p.grounded){const dx=goal.x-s.p.x,dz=goal.z-s.p.z,l=Math.hypot(dx,dz)||1,x=s.p.x+dx/l*1.4,z=s.p.z+dz/l*1.4,y=groundAt(x,z,s.p.y+.4).y;if(Number.isFinite(y)&&Math.abs(y-s.p.y)<.5&&clearLine({...s.p,y:s.p.y+.2},{x,y:y+.2,z},s)){arrow.visible=true;arrow.position.set(x,y+.065,z);arrow.rotation.y=Math.atan2(dx,-dz);}}
  }
- return {update,dispose:kit.dispose,stats:()=>({restored,lamps:lamps.length,dials:dials.length,markerVisible:marker.visible})};
+ return {update,dispose(){refit.dispose();kit.dispose();},stats:()=>({refit:refit.stats(),restored,lamps:lamps.length,dials:dials.length,markerVisible:marker.visible})};
 }

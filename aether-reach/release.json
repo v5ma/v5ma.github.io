@@ -1,6 +1,7 @@
 {
-  "version": "0.11.0",
-  "focus": "Grounded Cast: human-scale sizing, distance-paced clips, bounded two-bone foot locking, controller-preserving spatial menus and tracked hand UI",
+  "version": "0.12.0",
+  "focus": "Bellwether Rewired: connected maintenance galleries, a circuit-unlocked service loop, physical feedback and optional first-person VR / third-person diorama VR and AR",
   "questHardwareVerified": false,
-  "xboxHardwareVerified": false
+  "xboxHardwareVerified": false,
+  "scope": "First authored level-design replacement slice; not a complete campaign rebuild. AR uses local-floor placement; no detected-room mesh or furniture anchoring. Hand tracking operates UI."
 }

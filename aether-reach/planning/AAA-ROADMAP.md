@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.11.0 Grounded Cast. Updated 2026-09-14.
+Current plan: 0.12.0 Bellwether Rewired. Updated 2026-09-15.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -314,17 +314,17 @@ Acceptance: Each of the three arenas runs patrol, target acquisition and shootin
 Evidence: tests/foundry.test.mjs replays all three for 12 simulated seconds.
 Next: Extend to two-wave completion, interruptions and varied real loadouts.
 
-### P01 - One finished district vertical slice
+### P01 - Bellwether authored district quality gate
 State: In review. Priority: P0. Dependencies: F01, W01, B06.
 Acceptance: One coherent 20-30 minute route combines street combat, interior exploration, rooftop travel, rewards and a clear ending.
-Evidence: v0.9 implements a connected Bellwether street-interior-rooftop-return adventure with saved stages. Mission duration, pacing and player approval are not certified.
-Next: Play the complete Blackout adventure and record timing, difficulty, wayfinding and repetitive sections. Gate G1 remains open until player review.
+Evidence: v0.12 replaces simple Bellwether route connections with shared collision/render geometry, practice, circuit feedback and a service shortcut. First slice only; unfamiliar-player approval and physical XR remain open.
+Next: Playtest the connected streets, service loop and maintenance galleries without coaching before rebuilding another district.
 
 ### P02 - Authored character and weapon animation
 State: In review. Priority: P1. Dependencies: P01.
 Acceptance: Original humanoid mesh, articulated hands, reload/aim/melee animation and locomotion transitions hold up at gameplay distance.
 Evidence: v0.10 adds creator-published CC0 female adventurer, armored guard and suited officer with real skeletons and clip blending. Complete authored first-person hands, custom character art and weapon reload animation remain open. v0.11 adds uniform human-scale sizing, speed-paced clip playback and render-only, reach-limited two-bone foot locking. It does not supply new photorealistic meshes or complete first-person reload/hand animation.
-Next: Inspect grounded gait, starts/stops, feet on bridge edges and weapon alignment on physical displays; continue authored hands/reload animation. P02 remains in review.
+Next: Retain Grounded Cast and the courier diorama instance. Authored first-person hands and weapon alignment follow the user-prioritized level-design work.
 
 ### P03 - Architectural materials and lighting
 State: In review. Priority: P1. Dependencies: P01.
@@ -342,7 +342,7 @@ Next: Listen on speakers and headphones; log masking, fatigue and critical-cue a
 State: Planned. Priority: P1. Dependencies: P01, P02, P03, P04.
 Acceptance: Expand approved encounter/interior/route templates into a coherent campaign without repeated filler or unfinished placeholder districts.
 Evidence: No campaign-completion claim. Private narrative stays outside this public repository.
-Next: Define district-by-district content acceptance and asset ownership.
+Next: Do not add another independent prototype island. Apply the authored chapter contract after Bellwether observation and revision.
 
 ### Q01 - Desktop frame-time and memory budget
 State: Hardware QA. Priority: P0. Dependencies: F01.
@@ -374,11 +374,11 @@ Acceptance: Commit intended game files, run regression/browser checks, merge wit
 Evidence: v0.11 candidate is based on master b87aeacb71d00b73992945daaba2fccdc66ab409. Current results and exact source hashes are recorded in the Grounded Cast workflow; publication must separately match the merged runtime manifest.
 Next: Read the post-merge aether-publication receipt and immutable source backup. Never equate a passing branch with live publication.
 
-### V01 - Bellwether street-interior-rooftop adventure
+### V01 - Bellwether place-mastery chapter replacement
 State: In review. Priority: P0. Dependencies: W01, F02, I04.
 Acceptance: Complete both combat sites, operate independent Arcade dials, use a continuous roof route, hold the receiver, return for a once-only reward, and save/resume without lost progress or extra enemies.
-Evidence: BELLWETHER-BLACKOUT.md; bellwether model/scene modules; tests/bellwether.test.mjs and the full controller browser journey. Test execution and player acceptance remain separately recorded.
-Next: Inspect the release browser evidence, then obtain player feedback on this first connected district mission.
+Evidence: v0.12 retains mission IDs, dials, street/roof threats and one-time rewards while changing connections, feedback and return routes.
+Next: Observe whether players understand the power network, find alternative routes, and notice the persistent repaired warning wheel; revise geometry rather than adding more markers.
 
 ### F03 - Skyglass animated cast and bounded shaders
 State: In review. Priority: P0. Dependencies: F01, P02.
@@ -397,6 +397,18 @@ State: Implemented. Priority: P0. Dependencies: X03.
 Acceptance: Request optional hand tracking; use actual joint poses and target rays for both hands; expose all menu pages, settings adjustment, Back and Exit VR; suppress held/reacquired pinches and hand-generated combat actions.
 Evidence: hand-input.mjs, spatial-menu.mjs, the XR adapter, hand unit tests and grounded-browser.py. Hands control menus only; locomotion/combat remain controller driven. No physical Quest 3 acceptance is claimed.
 Next: Validate tracking loss, source switching, menu legibility and sustained frame times on a physical Quest 3. X04 and X05 remain open.
+
+### V02 - Bellwether Rewired physical route and circuit consequences
+State: Implemented. Priority: P0. Dependencies: V01.
+Acceptance: Three meaningfully different approaches; continuous gallery ascent and descent; circuit-controlled collision shortcut; repeated demonstrator; correct old-save and one-time reward behavior.
+Evidence: bellwether-layout.mjs, refit scene and route/feedback tests. Native acceptance receipts establish browser completion, not this status.
+Next: Capture the full controller mission through the new ascent and review actual screenshots.
+
+### X09 - First-person and third-person AR/VR diorama presentations
+State: Implemented. Priority: P0. Dependencies: X08.
+Acceptance: Explicit session selection; stereo 3D courier/world; table-relative input; never-sealed opening state; controller/hand menus; no head-driven avatar movement in diorama; safe return/denial and save preservation.
+Evidence: diorama-core, diorama-view, presentation-ui and synthetic device acceptance. No physical-device certification.
+Next: Check physical Quest 3 scale, table placement, hand reach/readability, passthrough and frame times.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.

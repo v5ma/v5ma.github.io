@@ -1,3 +1,4 @@
+import {BELL_WATER} from './bellwether-layout.mjs';
 /* Original tactical systems, independent of renderer and browser input.
  * Services use the SAME occlusion, damage and save rules as the main game.
  * This is a deterministic single-player scenario, not network authority. */
@@ -8,6 +9,7 @@ export const TURRET=Object.freeze({x:8,y:4.5,z:-46});
 export const POWERS=Object.freeze({pulse:{name:'Pulse',cost:45,color:'#82e9d4',description:'Original close-range stun. Q / LB / left trigger.'},current:{name:'Current',cost:28,color:'#88dfff',description:'Aimed electrical discharge. Water conducts it to nearby machines.'},cinder:{name:'Cinder',cost:32,color:'#ffb075',description:'Aimed heat charge. Oil burns as an area-denial trap.'}});
 export const MODULES=Object.freeze({insulator:{name:'Insulator',description:'Take 65% less damage from your own charged water and burning oil.'},capacitor:{name:'Capacitor',description:'Scan one enemy class: Current/Cinder cost 25% less energy.'},catalyst:{name:'Catalyst',description:'Scan two classes: guns deal 20% more damage to shocked or burning machines.'},engineer:{name:'Engineer',description:'Hack security: your friendly turret deals 40% more damage.'}});
 export const PATCHES=Object.freeze([
+ ...BELL_WATER,
  {id:'quay-water',type:'water',x:14,y:0,z:-4,r:2.2},
  {id:'atrium-water',type:'water',x:0,y:3,z:-44,r:3.5},
  {id:'atrium-oil',type:'oil',x:-5,y:3,z:-49,r:2.5},
