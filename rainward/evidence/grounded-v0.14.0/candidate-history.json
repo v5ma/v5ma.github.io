@@ -1,0 +1,47 @@
+{
+  "release": "0.14.0",
+  "edition": "Grounded",
+  "baseline_master": "b87aeacb71d00b73992945daaba2fccdc66ab409",
+  "scope": "Candidate history, not a publication receipt. The final release must pass the current-source native motion fixture, existing gameplay/controller matrix and actual public-byte verification.",
+  "research": [
+    "https://theorangeduck.com/page/inverse-kinematics-foot-locking",
+    "https://theorangeduck.com/page/publications",
+    "https://theorangeduck.com/page/learned-motion-matching",
+    "https://arxiv.org/abs/2409.03944"
+  ],
+  "implementation_boundary": "Original analytic leg solve, world-space contact state, cubic target offsets, authored procedural swim/tread curves and coherent rest-space body fitting. No third-party code, clips, models or training are claimed as newly imported. Existing licensed Quaternius derivatives stay unchanged on disk.",
+  "first_native_attempt": {
+    "run": 34937539480,
+    "tested_checkout": "b9fbea3c0ba21393913f43085da2d9316feaea8c",
+    "artifact": 10384186743,
+    "archive_sha256": "340d8c65af8da80cffd9a9f45c4f3b43b378a0126a54b8aa3a146d8f155467ed",
+    "model_tests": 300,
+    "model_result": "passed",
+    "native_result": "failed",
+    "native_checks_completed": 29,
+    "reason": "After warm-up, downhill grade 0.3 repeatedly exceeded comfortable leg reach and released contacts; the test correctly rejected zero mature contact samples.",
+    "correction": "Add a bounded visual pelvis adjustment based on lower neighboring support heights. Strengthen the model slope test to ignore warm-up and cover grades -0.57, -0.3, 0.3 and 0.57. Do not relax contact error tolerances.",
+    "additional_review_finding": "Several decoded glTF material primitives share position/normal attributes. Clone all part geometries before applying one coherent fit, so shared attributes are not distorted once per material.",
+    "visual_review": "The camera-matched source showed an overly long visible neck. Shorten that region and modestly enlarge the head while retaining the crown landmark, together with the existing shoulder/knee/boot refinements. The first swim fixture's land plane hid submerged limbs; move only its diagnostic basin floor and camera, not gameplay water."
+  },
+  "refined_checkout": "03f031b6e8a021890c691b900482f9b0b62f8840",
+  "refinement_run": 34938124732,
+  "local_refined_tests": {"passed": 301, "failed": 0, "skipped": 0},
+  "retained_local_failures": [
+    "The initial runtime research URL comment violated the public-boundary test; move URLs to GROUNDED.md rather than exempting runtime external endpoints.",
+    "An idempotent preparation edit originally duplicated imports on repeat integration. Check already-integrated new text first; restore known source and rerun all tests. These temporary scripts are removed before merge.",
+    "The original neck-connector test used the old uncalibrated height. Preserve its vertex count and coverage criterion against the same landmarks passed through the common proportion map, rather than deleting seam assertions."
+  ],
+  "evidence_classes": {
+    "model": "Deterministic time steps, solver degeneracies, mature plant residuals, terrain, state immutability, fitting and all earlier source/save rules.",
+    "native_motion": "Synthetic HTTP/WebGL fixture using real fitted meshes, camera-matched before/after poses and exact-time image sequences. Not a mission or hardware frame-rate test.",
+    "native_gameplay": "Separate existing normal-start living-enemy Natatorium and controller/save/material/audio/cinematic suites remain mandatory release gates.",
+    "physical_devices_and_human_art_review": "Not performed or approved."
+  },
+  "remaining": [
+    "Weapon support-hand and arbitrary ledge/stair contacts",
+    "Further authored action, stagger and transition review",
+    "Independent artistic approval, real-device audio review and physical wired/Bluetooth Xbox testing",
+    "Target-hardware performance validation"
+  ]
+}
