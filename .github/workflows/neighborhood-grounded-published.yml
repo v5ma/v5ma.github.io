@@ -5,10 +5,11 @@ on:
     paths: ['svgn-planet/**', '.github/workflows/neighborhood-grounded-published.yml']
 permissions:
   contents: read
+  actions: read
 jobs:
   published:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,6 +19,31 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Wait for this commit to finish Pages deployment
+        env:
+          DEPLOY_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PYWAIT'
+          import json,os,time,urllib.request,urllib.error
+          commit=os.environ['GITHUB_SHA'];repo=os.environ['GITHUB_REPOSITORY']
+          deadline=time.monotonic()+1200
+          while time.monotonic()<deadline:
+              req=urllib.request.Request('https://api.github.com/repos/'+repo+'/actions/runs?event=dynamic&head_sha='+commit+'&per_page=20',headers={'Authorization':'Bearer '+os.environ['DEPLOY_TOKEN'],'Accept':'application/vnd.github+json'})
+              try:
+                  with urllib.request.urlopen(req,timeout=25) as response:data=json.load(response)
+              except (urllib.error.URLError,TimeoutError):
+                  print('Deployment status temporarily unavailable',flush=True);time.sleep(10);continue
+              candidates=[r for r in data['workflow_runs'] if r['head_sha']==commit and r['path']=='dynamic/pages/pages-build-deployment']
+              if candidates:
+                  run=max(candidates,key=lambda r:r['id'])
+                  if run['status']=='completed':
+                      assert run['conclusion']=='success','Pages did not deploy this commit: '+str(run['conclusion'])
+                      print('Pages deployment succeeded:',run['id'],flush=True);break
+                  print('Pages deployment:',run['status'],flush=True)
+              else:print('Pages has not scheduled this commit yet',flush=True)
+              time.sleep(10)
+          else:raise SystemExit('No successful exact-commit Pages deployment within 20 minutes')
+          PYWAIT
       - name: Verify the frozen original runtime and assets
         run: |
           mkdir -p published-results

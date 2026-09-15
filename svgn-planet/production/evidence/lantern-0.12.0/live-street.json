@@ -1,0 +1,126 @@
+{
+  "route": "street",
+  "checks": [
+    "Xbox starts the new authored chapter",
+    "Normal reach-based collection",
+    "Approach-independent delivery recognized",
+    "Far-side blue door opens a permanent return connection",
+    "Returning through the shortcut awards credits exactly once",
+    "Route outcome and shortcut persist on ordinary reload",
+    "Original neighborhood save remains byte-for-byte unchanged",
+    "Repaired open-shaft hoist carries the courier and exits onto the real loft",
+    "Partial held trigger is blocked until real neutral",
+    "Controller disconnect pauses",
+    "Paused chapter menu remains readable at phone width"
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "physicalHardwareTested": false,
+  "input": "synthetic; gameplay state is never written by the tour",
+  "success": true,
+  "final": {
+    "version": "0.12.0",
+    "state": {
+      "v": 1,
+      "chapter": "lantern-ward-01",
+      "layout": 1,
+      "x": 9.92620007187468,
+      "y": 4.4,
+      "z": 0.5,
+      "yaw": -1.5707963267948966,
+      "vx": 3.0907382504809855e-08,
+      "vz": 0,
+      "vy": 0,
+      "speed": 3.090733002863999e-08,
+      "distance": 55.30710994431814,
+      "time": 20.949900000000127,
+      "steps": 1272,
+      "ride": "foot",
+      "parcel": true,
+      "delivered": true,
+      "gate": true,
+      "hoist": true,
+      "claimed": true,
+      "credits": 600,
+      "water": "high",
+      "transition": null,
+      "lift": null,
+      "hoistY": 4.4,
+      "visited": [
+        "depot",
+        "arcade",
+        "pump",
+        "court",
+        "workshop"
+      ],
+      "safe": [
+        9.92620007187468,
+        4.4,
+        0.5
+      ],
+      "porterYield": 0,
+      "message": "Goods hoist moving beside the loft, through an open shaft.",
+      "messageTime": 2.316699999999999
+    },
+    "started": true,
+    "paused": true,
+    "failed": false,
+    "blockedSave": false,
+    "controllerReady": false,
+    "gamepadConnected": false,
+    "yaw": 0,
+    "mode": "third",
+    "frames": 457,
+    "view": {
+      "clearAlpha": 0,
+      "drawCalls": 92,
+      "triangles": 11102,
+      "aperture": "both",
+      "topOpen": true,
+      "frontOpen": true,
+      "stereoGameWorld": false,
+      "eyes": 0,
+      "sceneMeshes": 4,
+      "contactError": 0.021761283248144525
+    },
+    "xr": {
+      "active": false,
+      "kind": "diorama-vr",
+      "stereoGameWorld": false,
+      "pending": false,
+      "frames": 0,
+      "selections": 0,
+      "trackedSources": 0,
+      "jointPool": 50,
+      "environmentBlendMode": null,
+      "scale": 1,
+      "settings": {
+        "scale": 0.04,
+        "height": -0.9,
+        "distance": 1.55,
+        "rotation": 0
+      },
+      "error": "",
+      "input": {
+        "x": 0,
+        "y": 0,
+        "boost": false,
+        "brake": false
+      },
+      "actionPanelVisible": true,
+      "headBoundary": false
+    },
+    "basis": {
+      "right": [
+        1,
+        -0.0
+      ],
+      "forward": [
+        -0.0,
+        -1
+      ]
+    },
+    "nearby": null,
+    "goal": "The ward is yours. Revisit a route or return to the original neighborhood."
+  }
+}

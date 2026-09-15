@@ -728,14 +728,15 @@
       "priority": "P0",
       "status": "verified",
       "title": "Publish real source, not an unmerged candidate",
-      "acceptance": "Grounded Neighborhood v0.11.0 is merged normally on master without replacing sibling-game source. Public game assets match the stated source bytes and live browser/controller/synthetic XR checks pass.",
-      "next": "Retain the same merge, full regression and exact-live-publication gate for the next upgrade. Scope any rollback only to Neighborhood Missions.",
+      "acceptance": "Lantern Ward is normally merged and deployed. All 186 source/asset/evidence bytes match and the live street/hoist and native synthetic XR tours pass. Legacy layout hashes remain pinned. This is not physical or AAA approval.",
+      "next": "Retain exact-source publication checks and normal merges. Scope rollback only to this game.",
       "dependencies": [],
       "evidence": [
         "https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978",
         "evidence/v0.11.0.json",
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
-        "evidence/v0.11.0-published.json"
+        "evidence/v0.11.0-published.json",
+        "evidence/lantern-0.12.0/published.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-15"
@@ -747,7 +748,7 @@
       "status": "partial",
       "title": "A repeatable release gate",
       "acceptance": "Run model, browser, asset, visual and live checks before completion. Archive evidence, support reversible rollback and never force-push over sibling games.",
-      "next": "Scoped model/browser CI and exact live asset, license and evidence verification are passing. Keep physical quality sign-off and the scoped rollback drill open.",
+      "next": "Public checks wait for successful exact-commit Pages deployment before testing file propagation. A scoped rollback drill and real-device approval remain open.",
       "dependencies": [
         "QA-01",
         "QA-03"
@@ -755,7 +756,8 @@
       "evidence": [
         "evidence/v0.11.0.json",
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
-        "evidence/v0.11.0-published.json"
+        "evidence/v0.11.0-published.json",
+        "evidence/lantern-0.12.0/published.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-15"
@@ -878,7 +880,7 @@
       "status": "needs-playtest",
       "title": "Quest comfort theater with tracked controllers and hand UI",
       "acceptance": "Native WebXR session presents a world-anchored flat game screen, tracked controller/grip rays and joint-pinch menu input. Paginated DOM-derived 3D menus, hands-only hold controls, tracking loss and session recovery work without relying on DOM overlays. This is not room-scale stereo gameplay.",
-      "next": "Synthetic session/render/input and controller/hand lifecycle checks passed. Obtain physical Quest 3 comfort, Touch Plus, hand-tracking and performance approval. Stereo game-world rendering is not implemented.",
+      "next": "The historical v0.11 flat theater remains in legacy.html. Native chapter views are tracked by XR-02. Physical device approval remains open for both.",
       "dependencies": [
         "INPUT-01",
         "ACCESS-01",
@@ -889,7 +891,8 @@
         "../tests/grounded-browser.py",
         "evidence/v0.11.0.json",
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
-        "evidence/v0.11.0-published.json"
+        "evidence/v0.11.0-published.json",
+        "evidence/lantern-0.12.0/published.json"
       ],
       "owner": "Engineering / real-device QA",
       "lastReviewed": "2026-09-15"
@@ -901,12 +904,13 @@
       "status": "needs-playtest",
       "title": "Authored Lantern Ward replacement chapter",
       "acceptance": "Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.",
-      "next": "Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.",
+      "next": "Published graybox and all three approach tours passed. Test unfamiliar-player orientation, choices, shortcut recognition and replay agency before expanding; then replace graybox art deliberately.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
         "../lantern/acceptance.json",
-        "evidence/lantern-0.12.0/candidate.json"
+        "evidence/lantern-0.12.0/candidate.json",
+        "evidence/lantern-0.12.0/published.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-15"
@@ -918,12 +922,13 @@
       "status": "needs-playtest",
       "title": "Native first-person and actual-geometry VR/AR dioramas",
       "acceptance": "Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.",
-      "next": "Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.",
+      "next": "Live native first-person VR and diorama VR/AR synthetic checks passed. Obtain real Quest 3, Touch Plus, hand-tracking, comfort and frame-time approval. Placement is manual; room anchors are not implemented.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
         "../lantern/acceptance.json",
-        "evidence/lantern-0.12.0/candidate.json"
+        "evidence/lantern-0.12.0/candidate.json",
+        "evidence/lantern-0.12.0/published.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-15"
@@ -963,6 +968,6 @@
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
   ],
-  "releaseEvidence": "../lantern/acceptance.json",
-  "edition": "Grounded Neighborhood"
+  "releaseEvidence": "evidence/lantern-0.12.0/published.json",
+  "edition": "Lantern Ward: The Broken Delivery Loop"
 }
