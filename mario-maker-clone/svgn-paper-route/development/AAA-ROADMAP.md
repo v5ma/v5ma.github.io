@@ -1,184 +1,196 @@
-# Portal Network, articulated rider and XR implementation
-
-The v0.21.0 candidate is described in `PORTAL-NETWORK-0.21.md` and `verification/portal-network-0.21.json`. Its publication status is controlled by that receipt, not inferred from a branch commit. The previous v0.20 state and production history remain below.
-
-The Portal Network implementation now resolves catalog destinations by stable IDs, preserves Tideglass 01, provides destination signatures, protects drafts and explicit new-run travel, and retains nested controller focus. The courier adds analytic pedal/grip contacts without modifying physics. A seated stereo XR layer provides tracked-controller and native hand-select UI. Physical Quest 3/Xbox, comfort, performance and full editor qualification remain open.
-
-After accepted publication, continue the bounded water/audio sensory pass, then chapter quality. Before increasing scene detail, prioritize physical Quest 3 validation of both input modes and XR readability/performance. Do not claim the overall AAA milestones are complete.
-
----
-
 # Sky Cycle: AAA-quality development roadmap
 
-This is the canonical, living production checklist for Sky Cycle, the existing side-scrolling game in `mario-maker-clone/svgn-paper-route/`. It is not the roadmap for Neighborhood Missions, Prism Current, or Dino Atlas. Updated September 13, 2026.
+Updated September 15, 2026. This is the canonical production checklist for the existing Sky Cycle in `mario-maker-clone/svgn-paper-route/`, not the roadmap for sibling games.
 
-AAA is the quality ambition, not a status conferred by a version number, graphics setting, or this checklist. A checked implementation item does not certify its entire milestone. Each milestone needs recorded acceptance evidence before its release gate is complete. Do not invent a completion percentage from differently sized tasks.
+AAA is the quality ambition, not a status conferred by a version number or graphics setting. A checked implementation item does not certify its entire milestone. Each gate needs recorded acceptance evidence. Do not invent completion percentages from differently sized tasks.
 
-## Current continuation: Tideglass Baths, v0.20.0
+## Current accepted continuation: Portal Network, v0.21.0
 
-See `TIDEGLASS-0.20.md` and `verification/tideglass-0.20.json` for scope and exact evidence. This is a playable new destination in the existing game, not a replacement prototype or a claim that the AAA roadmap is complete.
+See `PORTAL-NETWORK-0.21.md`, `RESUME-HERE.md` and `verification/portal-network-0.21.json`. Candidate `89897e4d2379464bd37be9e54ca384925c4da84e` passed scoped software acceptance and merged through PR 148 as `3383257313b74255cb61402d4ca7e21c84fbca20`. The receipt separately controls live publication status; a merge alone is not public-byte evidence.
 
-- [x] Append Tideglass Baths without renumbering or replacing the seven existing routes.
-- [x] Build three tiled pools, original water/ceramic/portal shaders, ladders, vaulted bays and a continuous dry promenade.
-- [x] Add a nearby E / D-pad Down sluice interaction that lowers Mirror Pool and enables a physical optional waterline rail.
-- [x] Keep the main road finish independent of the sluice, with four checkpoints and five bonus deliveries.
-- [x] Add controller-safe Water Portal travel, direct destination entry and an independently saved finish-gated Keeper seal.
-- [x] Add source-preservation, real node-material, carried-state physics, native destination and prior-chapter regression tests.
-- [x] Review real 3D captures and correct the objective/HUD overlap before final release acceptance.
-- [ ] Qualify physical Xbox hardware, mobile devices, native WebGPU, full 3D route frame-time budgets and long-session resources.
-- [ ] Complete external human playtests and expand future water destinations only after their own playability checks.
+- [x] Generalize the portal atlas into an immutable, stable-ID destination catalog without renumbering the eight existing routes.
+- [x] Retain Tideglass as Destination 01 at index 7 and Sunrise as home at index 4; keep the existing direct Tideglass URL.
+- [x] Preview destination label, color/reflection signature, description and a bounded cue on the existing effects bus.
+- [x] Keep explicit new-run travel, unsaved Workshop protection, source-document preservation, nested controller focus and B/back ownership.
+- [x] Add original articulated rider proportions, analytic two-bone pedal/grip contacts, distance-driven pedaling/wheels, lean and landing compression without changing collision or physics.
+- [x] Preserve direct Xbox gameplay controls and saved remaps; do not bury common actions in the atlas.
+- [x] Implement opt-in seated WebGL stereo XR, tracked-controller rays/actions, native hand-select UI, a hand-only action bar, recenter and exit.
+- [x] Release held inputs on source/visibility loss and restore normal scene/render ownership after XR.
+- [x] Correct the pinned r177 opaque-framebuffer integration and verify actual visible rendering in both eyes.
+- [x] Pass 146 exact-source rule tests and dedicated XR, Tideglass and Sunrise acceptance; review 23 PNG captures.
+- [ ] Qualify physical Xbox and Quest 3 hardware, controllers and hand tracking, real lighting, permissions, native XR layers/multiview, comfort and measured performance.
+- [ ] Qualify full editor controller support, long-session resources and external human usability.
 
-Exact candidate identities, accepted real finishes, controller coverage and independent live-file verification are recorded in the versioned receipt. The complete native-engine routes use the supported 2D view on CPU CI; real 3D pools, portals, sluice animation and rail appearance are tested separately. Water is scenic behind the cycling road; this release does not add swimming or seamless rendered portal views.
+This is a slice of Milestones C, E, F and G, not completed AAA production. The five recorded native finishes use real 3D local traversal and supported 2D full-route completion on CPU CI. XR uses the real Three XRManager/rendering with emulated hardware. It is not physical-device evidence. v0.21 does not add a new destination, walking, swimming, first-person cycling, full-body tracking or motion-capture assets.
 
-## Previous continuation: Luminous shaders, v0.19.0
+## Immediate verification maintenance
 
-See `LUMINOUS-0.19.md` and `verification/luminous-0.19.json` for exact acceptance and publication evidence. This is a presentation-only slice of Milestones C, F and G, not a claim of completed AAA production.
+- [ ] Reconcile legacy Cloudpost startup/ride/coast/editor assertions that hard-code 16 total tracks, predating Sunrise's shipped practice rail. Preserve explicit authored IDs and save/editor contracts rather than removing content or weakening assertions.
+- [ ] Repeat the complete optional canal sequence with normal inputs. Legacy run `34942370272` finished the ordinary route on its first attempt but failed the complete-sequence assertion after m0, m1, m2, m3, m4, b0. Keep that trace and determine input-timing versus geometry causes before changing gameplay.
+- [ ] Replace the old site-wide homepage assumption of exactly three projects without deleting sibling games. That failure occurs before entering Sky Cycle and is separate from its exact-source acceptance.
+- [ ] Keep all broader CI failures visible beside the scoped successes; do not describe the whole repository test matrix as green.
 
-- [x] Add subtle/vivid thin-film enamel to existing rail and courier materials without moving their vertices or changing gold edge geometry.
+The relevant Sunrise, ground, route-layout, rail and grapple modules are unchanged from the v0.20 baseline. This comparison does not by itself certify every optional route. Physical Quest 3 review should precede further XR scene-detail increases. The next feature slice remains the bounded water/audio sensory pass.
+
+## Prior accepted continuations
+
+Detailed historical checklists, source SHAs, failures and evidence remain in each version note and receipt. Later evidence must not be relabeled as testing an earlier source.
+
+### Tideglass Baths, v0.20.0
+
+See `TIDEGLASS-0.20.md` and `verification/tideglass-0.20.json`.
+
+- [x] Append Tideglass without replacing or renumbering the seven earlier routes.
+- [x] Build three tiled pools, water/ceramic/portal shaders, ladders, vaulted bays and a continuous dry promenade.
+- [x] Add nearby E / D-pad Down sluice interaction, lowering Mirror Pool and enabling an optional physical waterline rail.
+- [x] Keep the main finish independent of the sluice, with four checkpoints and five optional deliveries.
+- [x] Add controller-safe travel/direct entry and an independently saved, accepted-finish-gated Keeper seal.
+- [x] Test source preservation, node materials, carried-state physics, native destination and prior chapter behavior; review captures and fix HUD overlap.
+- [ ] Qualify physical Xbox, mobile devices, native WebGPU, full 3D route frame times and long-session resources.
+- [ ] Complete external human playtests and qualify each future water destination separately.
+
+Water is scenic behind the cycling road; no swimming or seamless rendered portal views are implied. Historical publication checked ten owned runtime files.
+
+### Luminous, v0.19.0
+
+See `LUMINOUS-0.19.md` and its receipt.
+
+- [x] Add thin-film rail/courier enamel without changing vertices or gold edge geometry.
 - [x] Add procedural canal ripples/highlights and feathered sky-silk ribbons behind the collision plane.
-- [x] Provide Subtle, Vivid and Off choices, independent water/sky switches, and the existing motion/reduced-motion controls.
-- [x] Add controller-accessible Materials & FX buttons to pause and Flight Deck with nested-dialog return safety.
-- [x] Keep shader animation on the simulation clock and all resources inside the existing Prismatic cleanup owner.
-- [x] Add exact-source shader graph, placement, resource-budget and native-browser acceptance tests.
-- [ ] Qualify native WebGPU, physical Xbox controllers, actual mobile hardware and reference-device frame-time budgets.
-- [ ] Complete independent human art/readability review before declaring the visual milestone accepted.
+- [x] Provide Subtle, Vivid and Off, independent water/sky controls and existing motion/reduced-motion behavior.
+- [x] Provide controller-accessible Materials & FX with nested-dialog safety.
+- [x] Keep animation on simulation time and resource cleanup under the existing Prismatic owner.
+- [x] Test shader graphs, placement, resource budgets and native browser behavior.
+- [ ] Qualify native WebGPU, physical Xbox/mobile hardware and reference-device frame times.
+- [ ] Complete independent human art/readability review.
 
-New shader objects are limited to six canal patches and one sky sheet; actual GPU time remains device-dependent. Off retains the prior Prismatic look, while Classic restores the earlier original materials. The campaign, music, geometry, gameplay, saves and editor documents remain separate from the shader preferences.
+New shader objects remain limited to six canal patches and one sky sheet; object counts are not GPU-time measurements. Off retains prior Prismatic, and Classic restores original materials. Campaign, music, geometry, gameplay, saves and editor documents remain separate from shader preferences.
 
-## Previous continuation: Sunrise Borough / Market Pocket Park, v0.18.0
+### Sunrise Borough, v0.18.0
 
-See `SUNRISE-0.18.md` and `verification/sunrise-0.18.json` for source-specific evidence. This content slice adds a low optional practice detour to the existing first chapter and improves controller reading; it does not replace the world or certify all of Milestone B.
+See `SUNRISE-0.18.md` and its receipt.
 
-- [x] Preserve all original first-chapter rails, street tiles, mailboxes, checkpoints, music and finish conditions while adding one low practice balcony.
-- [x] Add world-space takeoff, receiving-deck, braking-choice and road-return cues in the 3D and supported 2D views.
-- [x] Add Penny's Market Pilot challenge: sustained riding, a safe road landing, then an accepted authored-route finish to bank the optional seal.
-- [x] Make challenge entries controller-focusable and put guidance controls before the long discovery list.
-- [x] Reuse the 3D scene under paused reading/audio dialogs and invalidate it on viewport/stage changes and return to play.
-- [x] Preserve independent saves and distinguish a session-only earned seal from a successfully banked one.
-- [x] Exercise carried-state geometry, three native first-attempt completions, controller menus and persistence; keep model evidence distinct from real-input runs.
-- [ ] Complete human readability/enjoyment reviews and adjust signs, encounter pacing and route difficulty from that feedback.
-- [ ] Validate physical Xbox hardware, mobile devices, long sessions and defined frame-time budgets.
-- [ ] Recheck every offered badge and every legacy expert route before closing the wider campaign gate.
+- [x] Preserve original chapter rails, tiles, mailboxes, checkpoints, music and finish conditions while adding the low practice balcony.
+- [x] Provide 3D/2D takeoff, receiving-deck, braking-choice and road-return cues without steering the player.
+- [x] Add Market Pilot: sustained optional riding, safe road return, then accepted authored finish.
+- [x] Make challenge entries controller-focusable and keep guidance controls before long discovery lists.
+- [x] Reuse paused 3D scenes for reading/audio, invalidating on viewport/stage changes and return to play.
+- [x] Preserve independent saves and distinguish session-only seals from durable records.
+- [x] Record carried-state geometry, three first-attempt native finishes, controller menus and persistence.
+- [ ] Complete human readability/enjoyment reviews and pacing adjustments.
+- [ ] Validate physical hardware, long sessions and frame-time budgets.
+- [ ] Recheck every offered badge and legacy expert route before closing the wider campaign gate.
 
-The accepted playthrough set includes the Pocket Park detour, a direct lower-road run and a coasting lower-road run. The detour and journal begin in the real 3D renderer; the remaining route completions use the supported 2D view on the CPU-only runner. This is not evidence of three complete 3D playthroughs or physical-console certification.
+The native set includes the detour, direct road and coasting road. It is mixed-renderer CPU CI evidence, not three full 3D hardware playthroughs.
 
-## Previous continuation: Route Compass and exploration journal, v0.17.0
+### Route Compass, v0.17.0
 
-See `ROUTE-COMPASS-0.17.md` for the scope, save boundaries, evidence and remaining acceptance gates. This is a navigation and discovery slice of Milestones B and E, not new level geometry or completed AAA qualification.
+See `ROUTE-COMPASS-0.17.md` and its receipt.
 
-- [x] Implement current/next district guidance, real checkpoint distances and nearby optional gold-track clues for existing ground adventures.
-- [x] Add an exploration journal accessible through pause, Flight Deck, the header and accepted-finish results.
-- [x] Bank observed district and optional-rail stamps only after an accepted authored-route finish, in an independent storage key.
-- [x] Provide detailed, compact and off guidance, narrow-layout support and district-change announcements.
-- [x] Commit pure-rule, isolated-fixture, native-controller and exact-publication checks; label the evidence honestly.
-- [ ] Complete full native ground-route playthroughs and all optional-rail attainability checks.
-- [ ] Test physical Xbox hardware and actual mobile devices.
-
-The v0.18 first-chapter evidence advances this work; the broader route-production gate remains open until the other ground chapters and all optional rails have been reviewed.
+- [x] Implement district guidance, actual checkpoint distance and optional gold-track clues.
+- [x] Add exploration journal access from pause, Flight Deck, header and accepted results.
+- [x] Bank observed district/rail stamps only after accepted authored finish in an independent key.
+- [x] Support detailed/compact/off guidance, narrow layouts and district announcements.
+- [x] Add rule, isolated-fixture, native-controller and exact-publication checks with honest evidence labels.
+- [ ] Complete the wider ground-route/optional-rail qualification.
+- [ ] Test physical Xbox/mobile devices.
 
 ## Product pillars and non-negotiables
 
-Preserve the momentum-driven bicycle/unicycle identity: read the route, commit to a line, launch, catch, deliver, and discover an alternate path. Ground adventures and optional expert sky routes remain part of the same game. The editor, independent Bezier controls, authored-route progression, original instrumental score, and existing saves must survive every upgrade. Do not replace this game with a new prototype.
+Preserve the momentum-driven bicycle/unicycle identity: read the route, commit to a line, launch, catch, deliver and discover an alternate path. Ground adventures and optional expert sky routes are one game. The editor, independent Bezier controls, authored progression, original instrumental score and existing saves survive every upgrade.
 
-A console controller should operate the normal play loop, routes, pause, results, settings, and confirmation dialogs. An attractive screenshot is not acceptance evidence for an unrideable level. Reachability fixtures supplement, rather than replace, recorded real-input playthroughs. Never grant progression from an editor simulation or a partially loaded route.
+Ordinary play, routes, pause, results, settings and confirmations must be controller-operable. Put frequently used actions on readily accessible buttons, not repeated menu paths. Optional lines must not block the safe finish. A good screenshot is not acceptance for an unrideable level. Models supplement normal-input native playthroughs; they do not replace them. Never award progression from editor simulations, altered route copies, rejected finishes or partially loaded observations.
 
-## Current source baseline
-
-Existing development notes document ground adventures, launch loops, the two-face rail implementation, Hookline Run, the Workshop, Ride Lab, optional flight prediction, Cloudpost relay routes, and Prismatic/Crystal+/Classic rendering. See `RIDE-LAB.md`, `CLOUDPOST-RELAY.md`, `ARRIVAL-WINDOWS.md`, and `PRISMATIC-MATERIALS.md`. These notes are historical evidence, not a new claim that all outstanding branches, devices, or expert routes have passed this release.
+Current architecture and earlier systems remain documented in `RIDE-LAB.md`, `CLOUDPOST-RELAY.md`, `ARRIVAL-WINDOWS.md` and `PRISMATIC-MATERIALS.md`. Their existence does not imply every old branch, device or expert route is qualified.
 
 ## Milestone A: Flight Deck and controller-safe replay, v0.16.0
 
-Implementation scope for this upgrade:
+- [x] Add route-by-route career records and visible local-save status.
+- [x] Provide Route cleared, Clean wheels, Every doorstep, Air courier and Express delivery where applicable.
+- [x] Settle badges only after the real engine accepts an unmodified authored finish, preserving legacy medals and independent career storage.
+- [x] Count active simulation time across retries, excluding pause; retries do not erase clean-run failure.
+- [x] Make Start pause/resume, View open Flight Deck and preserve gameplay remaps.
+- [x] Add controller focus, confirm/back, nested ownership, independent audio slider adjustment, neutral transitions and disconnect cleanup.
+- [x] Preserve tile-editor controller use while disclosing pointer-required advanced Bezier editing.
+- [x] Add rule tests, isolated fixture and native controller smoke reports with distinct labels.
+- [ ] Attach passing exact-commit reports/capture review to the original v0.16 release record.
+- [ ] Establish original v0.16 master publication in that historical record.
 
-- [x] Add a Flight Deck with route-by-route career records and a visible local-save status.
-- [x] Add five optional badge types: Route cleared, Clean wheels, Every doorstep, Air courier, and Express delivery. Only applicable goals appear on each route.
-- [x] Settle badges only after the real engine accepts the finish of an unmodified authored route. Retain existing medals and keep career data in its own storage key.
-- [x] Count active simulation time across checkpoint retries, excluding pauses. Prevent retrying from erasing a clean-run failure.
-- [x] Make Start pause/resume gameplay instead of unexpectedly entering the editor. Use View for the Flight Deck and retain saved gameplay remaps.
-- [x] Add controller focus, confirm/back, nested-dialog ownership, separate audio-slider adjustment, neutral-input transition protection, and disconnect cleanup.
-- [x] Preserve the original tile-editor controller path. Explicitly disclose that advanced Bezier handle editing still requires a pointer.
-- [x] Add pure-rule tests, an isolated browser fixture, and real-game controller smoke tests with separately labeled reports.
-- [ ] Attach passing exact-commit browser reports and inspect their captures before release approval.
-- [ ] Confirm master publication by comparing public runtime bytes with the merged source.
-
-The two unchecked gates above concern the original v0.16 release record. Later regression and publication evidence is recorded in the versioned v0.17 and v0.18 notes, not retroactively relabeled as tests of an earlier SHA. Physical Xbox-controller testing, all-route badge attainability, and a full native gameplay regression are not implied by the smoke suite.
+The last two historical gates are not retroactively closed by v0.17-v0.21 regression evidence. Physical hardware and all-route badge attainability are not implied by smoke tests.
 
 ## Milestone B: Authored-route playability and discovery
 
-- [ ] Select one beginner-to-intermediate chapter as a reference-quality vertical slice, with a beginning, escalation, optional reward line, and satisfying finish.
-- [ ] Reconcile outstanding authored chapter geometry with two-sided grip; do not silently merge older one-sided layouts.
-- [ ] Convert useful Ride Lab traces into environmental cues for launch timing, speed choice, braking, and receiving rails, without steering or snapping the rider.
-- [ ] Add discoverable alternate routes, distinctive landmarks, and checkpoints that preserve earned deliveries.
-- [ ] Verify that every offered badge is attainable on its route; retune or remove inappropriate goals rather than leaving impossible objectives.
-- [x] Record at least three clean real-input completions of the first chapter, including a slower coasting line and its optional practice branch. See the v0.18 mixed-renderer evidence and video; human new-player review remains open.
+- [ ] Establish a beginner/intermediate reference-quality chapter with beginning, escalation, optional reward and satisfying finish, including human review.
+- [ ] Reconcile authored chapter geometry with two-sided grip; do not silently merge obsolete one-sided layouts.
+- [ ] Turn useful Ride Lab traces into launch/speed/braking/receiving cues without steering or snapping the rider.
+- [ ] Add discoverable alternate lines, distinctive landmarks and checkpoints that preserve deliveries.
+- [ ] Verify every offered badge is attainable; retune or remove inappropriate goals.
+- [x] Record at least three clean normal-input first-chapter completions, including slower coasting and the practice branch. See v0.18 mixed-renderer evidence; human new-player review stays open.
 
-The first chapter's new branch and cues are implemented and tested in v0.18. The broader combined items above stay open for campaign-wide reconciliation, checkpoint-delivery regression and human quality review.
+Gate: The chapter is enjoyable and readable without developer knowledge, debug state changes or mouse use during ordinary controller play. Preserve unsuccessful attempts as well as successes. Campaign-wide and full optional-route acceptance remain open.
 
-Gate: The chapter remains enjoyable and readable without developer knowledge, debug state changes, or a mouse during ordinary controller play. Preserve both failed attempts and successful evidence.
+## Milestone C: Rider, world and encounter production
 
-## Milestone C: Rider, world, and encounter production
+- [ ] Establish an original art bible for riders, cycles, districts, materials, silhouettes and lighting.
+- [ ] Replace placeholder-looking models with authored optimized assets and maintain the license ledger.
+- [ ] Complete coherent pedaling/throttle, lean, braking, jump, catch, whip, impact and recovery animation.
+- [ ] Build distinct neighborhood characters, readable enemies and environmental interaction tied to delivery objectives.
+- [ ] Add encounter variety and memorable set pieces without hiding collision or safe landing surfaces.
 
-- [ ] Establish an original art bible for riders, bikes, unicycles, districts, materials, silhouettes, and lighting.
-- [ ] Replace placeholder-looking models with authored, optimized assets and maintain an asset-license ledger.
-- [ ] Add coherent rider animation for pedal/throttle, lean, braking, jumps, catches, whip use, impact, and recovery.
-- [ ] Build distinct neighborhood characters, readable enemy behaviors, and environmental interaction tied to delivery objectives.
-- [ ] Add encounter variety and memorable set pieces without obscuring collision geometry or safe landing surfaces.
-
-Gate: Art and animation reinforce movement and threat readability. Review close-up and moving captures in both preferred and fallback rendering modes.
+v0.21 implements original jointed rider proportions and pedal/grip contacts, but does not close the full animation/asset milestone. Gate: Art reinforces movement/threat readability in close-up and moving captures in preferred and fallback views.
 
 ## Milestone D: Audio and sensory comfort
 
-- [ ] Audit all effects for overlapping notifications, repeated attacks, clipping, and unintentional simultaneous music sources.
-- [ ] Add notification-density and transient-intensity options beside the existing separate effects/music controls.
-- [ ] Author material-specific riding, braking, impacts, catches, wind, and district ambience with voice-count limits and cooldowns.
-- [ ] Add musically coherent transitions, restrained ducking, and a testable single-owner soundtrack lifecycle.
-- [ ] Test quiet, headphones, low-volume, muted-music, muted-effects, pause/resume, and background-tab cases.
+- [ ] Audit overlapping notifications, repeated attacks, clipping and unintended simultaneous music sources.
+- [ ] Add notification-density and transient-intensity options beside independent effects/music controls.
+- [ ] Author material-specific riding/braking/impact/catch/wind and district ambience with bounded voices and cooldowns.
+- [ ] Add coherent transitions, restrained ducking and a tested single-owner soundtrack lifecycle.
+- [ ] Test quiet/headphones/low-volume/muted-music/muted-effects/pause/background-tab conditions.
 
-Gate: A long play session sounds pleasant, important cues stay audible, and no continuous effect or music track survives the state that owns it.
+Next feature slice: restrained Tideglass pumps, lapping, ventilation, sluice/gate/drain/rail cues and portal transitions, without a second uncontrolled soundtrack. Gate: Long sessions sound pleasant, important cues remain audible and no effect survives its owning state.
 
 ## Milestone E: Campaign and progression depth
 
-- [ ] Develop a coherent delivery campaign with character motivation, chapter arcs, discoveries, and optional tasks.
-- [ ] Add meaningful replay incentives without invalidating existing medals or requiring a new account.
-- [ ] Design a transparent progression and cosmetic economy; keep paid-account and entitlement changes outside gameplay patches.
-- [ ] Add understandable objective failure/retry messaging and a route journal with controller navigation.
-- [ ] Evaluate races or ghosts as a separate, validated feature rather than treating an unverified legacy ghost path as production-ready.
+- [ ] Develop coherent delivery motivation, chapter arcs, discoveries and optional tasks.
+- [ ] Add replay incentives without invalidating medals or requiring an account.
+- [ ] Design transparent progression/cosmetics; keep paid accounts and entitlements outside gameplay patches.
+- [ ] Complete understandable failure/retry messaging alongside the controller journal.
+- [ ] Evaluate races/ghosts separately with real evidence rather than treating legacy unverified paths as ready.
 
-The route-journal portion is implemented in v0.17.0 and gains a concrete three-stage optional task in v0.18.0; the combined failure/retry messaging item remains open until that broader work is accepted.
+The journal arrived in v0.17, a concrete optional challenge in v0.18 and stable-ID destination travel in v0.21. Their combined wider progression gates remain open. Gate: Players understand goals, meaning, improvement and unlocked options; mandatory progress cannot become permanently blocked.
 
-Gate: Players understand what they are doing, why it matters, what improved, and what opens next. No mandatory progress can become permanently blocked.
+## Milestone F: Accessibility, input and editor completion
 
-## Milestone F: Accessibility, input, and editor completion
+- [ ] Test physical Xbox on Windows and another desktop platform, including reconnect and mixed keyboard input.
+- [ ] Complete all editor panels, Bezier authoring, save/export warnings and destructive confirmations without a pointer.
+- [ ] Add adjustable deadzones, remap-conflict reporting, scalable text, color-independent cues and reduced-camera-motion settings.
+- [ ] Validate touch targets/layouts on actual phones/tablets in portrait and landscape.
+- [ ] Audit keyboard focus, screen-reader announcements, contrast and motion sensitivity across the player journey.
+- [ ] Qualify physical Quest 3 tracked controllers and hand-select UI, real tracking/lighting loss, permissions and seated comfort.
 
-- [ ] Test physical Xbox controllers on Windows and a second desktop platform, including disconnect/reconnect and mixed keyboard input.
-- [ ] Complete controller support for all editor panels, Bezier authoring, save/export warnings, and destructive confirmations.
-- [ ] Add adjustable deadzones, input-remap conflict reporting, scalable text, color-independent cues, and reduced-camera-motion settings.
-- [ ] Validate touch targets and layouts on actual phones and tablets in portrait and landscape.
-- [ ] Audit keyboard focus, screen-reader announcements, contrast, and motion sensitivity through the full player journey.
+v0.21 implements software XR/controller paths, not physical qualification. Gate: A player can start, finish, replay, adjust settings, recover and leave safely with the chosen supported input.
 
-Gate: A player can start, finish, replay, adjust settings, recover from failure, and leave safely with their chosen supported input method.
+## Milestone G: Performance, resilience and technical debt
 
-## Milestone G: Performance, resilience, and technical debt
+- [ ] Name reference devices and scene/memory/draw-call/startup/frame-time budgets before making performance claims.
+- [ ] Target stable 60 fps on the chosen desktop reference and document a realistic mobile fallback target.
+- [ ] Profile worst-case geometry, workers, particles, audio, startup and long-session growth.
+- [ ] Exercise WebGPU/WebGL/2D fallback, actual XR layers/multiview, lost context, offline revisit, stale caches and interrupted downloads.
+- [ ] Gradually extract the legacy index into tested modules while preserving integration contracts.
 
-- [ ] Define named reference devices and explicit scene, memory, draw-call, startup, and frame-time budgets before promising performance.
-- [ ] Target a stable 60 fps on the selected desktop reference and choose/document a realistic mobile fallback target.
-- [ ] Profile worst-case route geometry, workers, particles, audio buffers, asset loading, and long-session memory growth.
-- [ ] Exercise WebGPU/WebGL/2D fallback behavior, lost context, offline revisits, stale caches, and interrupted downloads.
-- [ ] Gradually extract the large legacy index into tested modules without breaking its global integration contracts.
-
-Gate: Published traces and long-session runs support the stated device targets. A failure must produce a recoverable state, not an invisible character or frozen input.
+Gate: Published traces and long sessions support declared device targets. Failures leave a recoverable state, not an invisible character, blank headset or stuck input. The scoped r177 XR adapter must be reviewed on dependency upgrades.
 
 ## Milestone H: Release qualification and operation
 
-- [ ] Maintain exact-source unit, geometry, carried-state physics, native route, editor, controller, and accessibility suites.
-- [ ] Preserve test failures, videos, screenshots, browser versions, source SHAs, and unsupported-device limitations.
-- [ ] Run save migration and rollback rehearsals with representative old progress and Workshop drafts.
-- [ ] Maintain asset licenses, dependency inventory, privacy/security review, and deployment/runbook documentation.
-- [ ] Conduct external playtests and address critical usability defects before calling the game release-ready.
-- [ ] Complete any platform-specific packaging, certification, ratings, and distribution work only after the target platforms are chosen.
+- [ ] Maintain exact-source rule, geometry, carried-state, native-route, editor, controller and accessibility suites.
+- [ ] Preserve failures, videos, screenshots, browser versions, source SHAs and unsupported-device limitations.
+- [ ] Rehearse save migration/rollback with representative old progress and Workshop drafts.
+- [ ] Maintain asset licenses, dependency inventory, privacy/security review and deployment runbooks.
+- [ ] Conduct external playtests and resolve critical usability defects before broad release-ready claims.
+- [ ] Complete packaging, certification, ratings and distribution work only after selecting target platforms.
 
-Gate: No known progress-loss or release-blocking defect remains on the declared support matrix. Publish every accepted upgrade, verify the public bytes, and keep a scoped rollback available.
+Gate: No known progress-loss or release-blocking defect remains on the declared support matrix. Publish every accepted upgrade, independently verify public bytes and keep a scoped rollback. Never clear user saves as a generic rollback.
 
-## How to continue this roadmap
+## How to continue
 
-For each upgrade, choose a small coherent slice, record the problem and acceptance conditions, implement it in the existing game, add exact-source tests, review captures, merge safely, and verify publication. Update this file and a dated release note beside it. Keep implementation, automated evidence, physical-device checks, and public-release verification separate. Never check an item merely because code exists or a workflow was scheduled.
+Choose a coherent slice from `RESUME-HERE.md`, record its problem/acceptance conditions, implement in the existing game, test the exact candidate, review captures, normally merge the expected head and verify public bytes. Update this roadmap, the version note, receipt and handoff together. Keep implementation, automated evidence, physical-device checks and publication separate. Never check a gate merely because code exists or a workflow was scheduled.
