@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.13.1 / Clear Water.
+Release baseline: v0.14.0 / Quest Fieldwork.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -520,11 +520,14 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Continuation: The Undertow Pages deploy job was cancelled, but a public fetch/hash verifier confirmed delivery. Concurrent sibling deployments can supersede jobs.
   Next action: Rehearse a scoped rollback and verify actual live bytes instead of inferring success from a scheduled or cancelled build.
 
-- [ ] RW-063 / P2 / Optional platform expansion decision / Planned
+- [ ] RW-063 / P2 / Optional platform expansion decision / Implemented
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.
   Dependencies: RW-057.
-  Evidence: Not recorded yet.
+  Evidence: QUEST-FIELDWORK.md.
+
+  Continuation: The owner explicitly selected full Quest 3 XR gameplay as the next upgrade. Tracked-controller and hand adapters, immersive menus and source/fixture acceptance are implemented; physical Quest review remains open.
+  Next action: Run physical Quest 3 controller and hand journeys, including all chapters, save/retry, tracking loss, comfort and performance. Native packaging and multiplayer are not approved.
 
 - [ ] RW-064 / P0 / Release candidate approval / Blocked
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.

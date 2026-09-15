@@ -1,3 +1,9 @@
+# Current release / Quest Fieldwork v0.14.0
+
+The owner selected playable Quest 3 XR as the next upgrade. Read [QUEST-FIELDWORK.md](QUEST-FIELDWORK.md) for entry, every tracked-controller button, hand pinch locomotion, immersive menus, and exact evidence boundaries. This replaces the paused overlook; it does not claim that unfinished character-motion work shipped. Existing desktop/Xbox play and all seven chapter saves are retained. Physical Quest 3 comfort, tracking and performance review remain open.
+
+The following earlier notes are retained historical context; their stationary-XR scope does not describe this release.
+
 # Rainward v0.13.1 / controller and interface contract
 
 This is the current control guide. The earlier v0.8.1 X-reload mapping survives as the Classic preset; it is not the default Survival layout. These mappings are implemented using the browser standard gamepad layout. Physical wired/Bluetooth Xbox acceptance remains open.

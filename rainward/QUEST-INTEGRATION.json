@@ -1,0 +1,5 @@
+{
+  "baseline": "9a55d133dc7737de04a2601c100c5f8ec263a5fd",
+  "release": "0.14.0",
+  "scope": "Rainward-only reviewed patch; remove temporary integration tooling before merge"
+}

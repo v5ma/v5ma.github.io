@@ -19,7 +19,7 @@ export function graphicsPreset(scene,renderer){
   const m=variants.get(original);m.color.copy(original.color);m.emissive.copy(original.emissive);m.emissiveIntensity=original.emissiveIntensity;m.opacity=original.opacity;return m;
  }
  function update(){scene.traverse(o=>{if(o.isPointLight||o.isSpotLight){if(!localLights.has(o))localLights.set(o,o.visible);o.visible=reduced?false:localLights.get(o);}if(!o.material)return;let original=originals.get(o);if(!original){original=o.material;originals.set(o,original);}o.material=reduced?(Array.isArray(original)?original.map(material):material(original)):original;});}
- function set(low){reduced=!!low;scene.environment=reduced?null:environment;renderer.setPixelRatio(reduced?.6:Math.min(globalThis.devicePixelRatio||1,1.6));renderer.shadowMap.enabled=!reduced;update();}
+ function set(low){reduced=!!low;scene.environment=reduced?null:environment;if(!renderer.xr?.isPresenting)renderer.setPixelRatio(reduced?.6:Math.min(globalThis.devicePixelRatio||1,1.6));renderer.shadowMap.enabled=!reduced;update();}
  function dispose(){reduced=false;update();for(const m of variants.values())m.dispose();variants.clear();for(const t of lowMaps.values())t.dispose();lowMaps.clear();localLights.clear();}
  return {set,update,dispose,setEnvironment(value){environment=value;scene.environment=reduced?null:environment;},get reduced(){return reduced}};
 }

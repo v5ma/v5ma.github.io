@@ -110,7 +110,7 @@ export function createQuestXR(E){
   tracking=list.map(s=>s.side+' '+(s.hand?'hand':'controller')).join(' + ');
   sample=input.sample(list,dt,{mode:E.mode(),key:E.mode()+':'+layout,handFire});safe=input.isArmed();
   for(const side of ['right','left']){const data=list.find(s=>s.side===side);if(!data)continue;
-   if(sample.select[side]&&data.row){if(data.row.id==='badge'){data.row.run();reset();}else panel.select(data.row);sample=emptyXR();break;}
+   if(sample.select[side]&&data.row){if(data.row.id==='badge'){data.row.run();reset();}else panel.select(data.row);sample=emptyXR();return sample;}
    if(data.overUI&&side==='right')sample.fire=false;
    if(data.overUI&&side==='left'){sample.move=[0,0];sample.aim=false;}
   }

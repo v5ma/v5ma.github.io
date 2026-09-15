@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.13.1",
-  "edition": "Clear Water",
+  "release": "0.14.0",
+  "edition": "Quest Fieldwork",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
-  "updated": "2026-09-13",
+  "updated": "2026-09-15",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
   "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all seven chapters, saves, sibling applications and asset credits.",
   "statusDefinitions": {
@@ -66,6 +66,10 @@
   ],
   "references": [
     {
+      "title": "Quest Fieldwork XR controls and acceptance",
+      "url": "QUEST-FIELDWORK.md"
+    },
+    {
       "title": "Clear Water upgrade and acceptance scope",
       "url": "CLEAR-WATER.md"
     },
@@ -91,10 +95,10 @@
     }
   ],
   "nextRelease": [
+    "RW-063",
+    "RW-056",
     "RW-035",
-    "RW-036",
-    "RW-014",
-    "RW-044"
+    "RW-036"
   ],
   "items": [
     {
@@ -1065,15 +1069,17 @@
       "phase": "G7",
       "priority": "P2",
       "title": "Optional platform expansion decision",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Game direction",
       "acceptance": "Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.",
-      "evidence": "",
+      "evidence": "QUEST-FIELDWORK.md",
       "depends": [
         "RW-057"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "The owner explicitly selected full Quest 3 XR gameplay as the next upgrade. Tracked-controller and hand adapters, immersive menus and source/fixture acceptance are implemented; physical Quest review remains open.",
+      "nextAction": "Run physical Quest 3 controller and hand journeys, including all chapters, save/retry, tracking loss, comfort and performance. Native packaging and multiplayer are not approved."
     },
     {
       "id": "RW-064",
@@ -1114,7 +1120,7 @@
       "publicationRun": 34738570590,
       "historicalPublicFiles": 128
     },
-    "scope": "Clear Water v0.13.1 adds water guidance and executable acceptance. The verifiedGameplay object retains the immutable Undertow baseline; CLEAR-WATER.md and the release PR record this upgrade and exact validation.",
+    "scope": "Quest Fieldwork adds playable immersive VR. Read QUEST-FIELDWORK.md and current release evidence; older Clear Water/Undertow records are retained historical baselines.",
     "ownerRequirements": [
       "Continue the existing Rainward game; preserve all seven chapters and saves.",
       "Complete gameplay AND UI with an Xbox controller, including reload and dialog cancellation.",
@@ -1194,6 +1200,13 @@
       "Free vertical swimming, underwater firearms/enemies, current physics and drowning cinematics",
       "Full VR gameplay, multiplayer and native packaging"
     ],
-    "keepHistoricalFailures": true
+    "keepHistoricalFailures": true,
+    "xr": {
+      "ownerRequest": "Quest 3 playable XR with tracked controllers, each button considered, and a hand-tracking version.",
+      "implementation": "QUEST-FIELDWORK.md",
+      "status": "Implemented",
+      "physicalHardware": "Not tested",
+      "deferred": "Native packaging and multiplayer remain separate; the unfinished motion upgrade is not claimed shipped."
+    }
   }
 }

@@ -1,3 +1,9 @@
+# Current release / Quest Fieldwork v0.14.0
+
+The owner selected playable Quest 3 XR as the next upgrade. Read [QUEST-FIELDWORK.md](QUEST-FIELDWORK.md) for entry, every tracked-controller button, hand pinch locomotion, immersive menus, and exact evidence boundaries. This replaces the paused overlook; it does not claim that unfinished character-motion work shipped. Existing desktop/Xbox play and all seven chapter saves are retained. Physical Quest 3 comfort, tracking and performance review remain open.
+
+The following earlier notes are retained historical context; their stationary-XR scope does not describe this release.
+
 # Current continuation / Clear Water v0.13.1
 
 Read CLEAR-WATER.md first, then this retained handoff and CONTROLLER.md. The active runtime is now the Clear Water patch candidate/release, not a request to rebuild Undertow. Its release PR and evidence directory are authoritative for final candidate, merge and publication verification. The historical verifiedGameplay record in production-plan.json deliberately retains the immutable Undertow receipt.
