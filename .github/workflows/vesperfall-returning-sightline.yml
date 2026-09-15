@@ -1,0 +1,106 @@
+name: Vesperfall Returning Bell sightline
+on:
+  push:
+    branches: [vesperfall-returning-bell-20260915]
+    paths: ['.github/workflows/vesperfall-returning-sightline.yml']
+permissions:
+  contents: write
+jobs:
+  sightline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Keep the art correction scoped and add actual gate acceptance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          p=Path('vesperfall/returning-bell-art.js');b=p.read_bytes()
+          assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()=='8296f9ac2f361248b858012fbaf668a19c3f5aa8'
+          s=b.decode();extra='   b.add(K.cylinder,K.gold,bp[0],.12,bp[2],.1,.24,.1);\n';assert s.count(extra)==1
+          p.write_text(s.replace(extra,''))
+          p=Path('vesperfall/tests/returning-bell-browser.py');s=p.read_text()
+          old="  page.evaluate(AIM,[0,1.4,8,1000]);page.screenshot(path=str(OUT/'return-gate-revelation.png'))"
+          new="""  page.evaluate(AIM,[0,1.4,8,1000])
+            check(page.evaluate("(()=>{const g=Vesperfall.component,p=g.worldArt.group.getObjectByName('Return gate glazed sightline');return !!p&&p.material.transparent&&p.material.opacity<=.3&&Vesperfall.state.world.solids.some(b=>b.id==='return-gate')})()"),'The closed return gate reveals its surroundings through glazing while retaining its physical barrier')
+            page.screenshot(path=str(OUT/'return-gate-revelation.png'))"""
+          assert s.count(old)==1;s=s.replace(old,new);compile(s,str(p),'exec');p.write_text(s)
+          p=Path('vesperfall/tests/returning-sightline.py')
+          assert not p.exists()
+          p.write_text('''"""Isolated art review of actual chapter geometry; not a gameplay traversal.
+          The review camera never changes the player's pose, resources or save state.
+          """
+          from pathlib import Path
+          import json
+          from playwright.sync_api import sync_playwright
+          ROOT=Path(__file__).resolve().parents[2]
+          OUT=ROOT/'test-output'/'sightline';OUT.mkdir(parents=True,exist_ok=True)
+          errors=[]
+          with sync_playwright() as p:
+           browser=p.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+           page=browser.new_page(viewport={'width':1000,'height':700},device_scale_factor=1)
+           page.on('pageerror',lambda e:errors.append(str(e)))
+           page.goto('http://127.0.0.1:4173/vesperfall/',wait_until='domcontentloaded')
+           page.wait_for_function('window.Vesperfall?.component.returningBell&&AFRAME.scenes[0].renderer.info.render.calls>0',timeout=120000)
+           result=page.evaluate("""()=>{const g=Vesperfall.component,T=g.T,pane=g.worldArt.group.getObjectByName('Return gate glazed sightline');
+            const before=JSON.stringify({p:g.game.p,chapter:g.game.chapter,storage:Object.fromEntries(Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)]))});
+            if(!pane||!pane.material.transparent||pane.material.opacity>.3)throw Error('Missing actual glazing');
+            const blocker=g.game.world.solids.find(s=>s.id==='return-gate');if(!blocker)throw Error('Gate collision removed');
+            pane.updateWorldMatrix(true,false);const bounds=new T.Box3().setFromObject(pane);
+            if(Math.abs(bounds.min.x-blocker.min[0])>.001||Math.abs(bounds.max.x-blocker.max[0])>.001||Math.abs(bounds.min.y-.9)>.001)throw Error('Glazing/solid mismatch');
+            const scene=new T.Scene();scene.background=new T.Color('#718d96');scene.add(g.worldArt.group.clone(true));
+            scene.add(new T.HemisphereLight('#ffffff','#354042',2.2));const light=new T.DirectionalLight('#fff2db',2.4);light.position.set(-4,9,7);scene.add(light);
+            const camera=new T.PerspectiveCamera(64,1000/700,.05,100);camera.position.set(9.5,1.65,8);camera.lookAt(-2,1.2,8);
+            const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(1000,700);renderer.render(scene,camera);
+            renderer.domElement.id='sightline-review';Object.assign(renderer.domElement.style,{position:'fixed',inset:'0',zIndex:999999});document.body.append(renderer.domElement);
+            const after=JSON.stringify({p:g.game.p,chapter:g.game.chapter,storage:Object.fromEntries(Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)]))});
+            if(before!==after)throw Error('Art review mutated game or storage');
+            return {version:VesperCore.VERSION,opacity:pane.material.opacity,collision:blocker,playerUnchanged:true,renderCalls:renderer.info.render.calls,scope:'Isolated camera viewing the actual closed chapter gate from its service side. No gameplay path or hardware claim.'};}""")
+           page.screenshot(path=str(OUT/'closed-gate-service-view.png'))
+           assert result['renderCalls']>0 and not errors
+           result['errors']=errors;(OUT/'report.json').write_text(json.dumps(result,indent=2))
+           browser.close()
+          ''')
+          compile(p.read_text(),str(p),'exec')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall/returning-bell-art.js vesperfall/tests/returning-bell-browser.py vesperfall/tests/returning-sightline.py
+          git commit -m 'test(vesperfall): verify the closed gate sightline without changing collision or expedition state'
+          git push origin HEAD:vesperfall-returning-bell-20260915
+      - name: Model and workbook acceptance
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          node --check vesperfall/returning-bell-art.js
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py
+          python scripts/check-vesperfall.py
+      - name: Install review browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Render the closed gate from the service-side review camera
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 240 python -u vesperfall/tests/returning-sightline.py
+      - name: Retain exact source and art evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/workflows/vesperfall-returning-bell.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-returning-sightline
+          path: test-output/
+          retention-days: 14
