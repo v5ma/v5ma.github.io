@@ -66,10 +66,10 @@ export function applyGroundedMotion(a,p,time,dt,heightAt=()=>0){
  if(mode==='swim'){
   const stroke=time*(p.submerged?3.8:3.3),travel=clamp(m.speed/1.2,p.submerged?.70:0,1),pitch=-(.25+travel*(p.submerged?1.18:1.10));
   a.rig.rotation.set(pitch,0,Math.sin(stroke)*.045*travel);a.rig.position.set(0,(p.submerged?.20:.56)-1.35*Math.cos(pitch),-.94*Math.sin(pitch));
-  for(const side of[-1,1]){const arm=side<0?5:8,leg=side<0?11:14,t=stroke+(side<0?0:Math.PI);
+  for(const side of[-1,1]){const arm=side<0?5:8,leg=side<0?11:14,t=stroke+(side<0?0:Math.PI),kick=Math.sin(stroke*2+(side<0?0:Math.PI));
    a.bones[arm].rotation.set((.68+Math.sin(t)*.17)*(1-travel)+(1.46+1.4*Math.cos(t))*travel,0,side*(.65*(1-travel)+(.20+.18*Math.max(0,Math.sin(t)))*travel));
    a.bones[arm+1].rotation.set((1.0+.15*Math.sin(t))*(1-travel)+(.18+.90*Math.max(0,-Math.sin(t)))*travel,0,0);
-   a.bones[leg].rotation.x=.18*(1-travel)+Math.sin(t*2)*(.16+.10*travel);a.bones[leg+1].rotation.x=-.4*(1-travel)-.16-.14*Math.max(0,-Math.sin(t*2));a.bones[leg+2].rotation.x=-.35;
+   a.bones[leg].rotation.x=.18*(1-travel)+kick*(.16+.10*travel);a.bones[leg+1].rotation.x=-.4*(1-travel)-.16-.14*Math.max(0,-kick);a.bones[leg+2].rotation.x=.12*(1-travel)-1.25*travel;
   }
   a.bones[2].rotation.y=Math.sin(stroke)*.045*travel;a.bones[4].rotation.x=-.18*travel;
   a.weapon.visible=a.longWeapon.visible=a.tools.visible=false;

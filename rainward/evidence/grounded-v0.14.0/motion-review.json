@@ -1,0 +1,25 @@
+{
+  "scope": "Automated capture inspection and measured synthetic motion, not named human artistic approval.",
+  "reviewed_checkout": "03f031b6e8a021890c691b900482f9b0b62f8840",
+  "run": 34938124732,
+  "artifact": 10384431418,
+  "archive_sha256": "d7ff36a3c8fdbdaa78b5284f15c8e3d5a120f610ac08f8c0fd686c9238734354",
+  "native_checks": 37,
+  "native_result": "passed",
+  "browser_errors": [],
+  "console_errors": [],
+  "uncommitted_diff_bytes": 0,
+  "near_ground_walk_metric": {
+    "definition": "RMS horizontal world-space ankle speed while near the supporting surface and with low vertical velocity; measured using the same selection rule before and after. It is not a percentage improvement in whole-animation realism.",
+    "requested_root_speed_m_per_s": 2,
+    "before_rms_m_per_s": 3.616721688272083,
+    "after_rms_m_per_s": 0.1985100239523195,
+    "before_samples": 22,
+    "after_samples": 216
+  },
+  "mature_plant_scope": "Actual skeleton transforms, more than 10 mature contacts in every test condition: flat travel at 0, 0.8, 2, 3.6 and 6 game meters per second, and grades +/-0.3 at 0.8. Flat tolerance remains 0.002 game meters; slope tolerance remains 0.012. No tolerance was relaxed to repair the first failed downhill run.",
+  "inspected_images": ["before-hero-walk-side-0.png", "after-hero-walk-side-0.png", "after-hero-stand-front-0.png", "after-hero-swim-side-0.png", "after-swim-frame sequences"],
+  "final_visual_correction": "The accepted capture exposed symmetric leg kicks and insufficient ankle extension in the authored swimming curves. Offset each leg by pi AFTER doubling the stroke phase, and blend ankles toward an extended trailing posture during swimming. Add two explicit regression tests for opposing kicks and toe direction. The current release must rerun the fixture and the full gameplay/controller matrix after this correction.",
+  "local_tests_after_final_correction": {"passed": 303, "failed": 0, "skipped": 0},
+  "publication": "Not established by this intermediate review; use the final publication receipt."
+}
