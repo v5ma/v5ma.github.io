@@ -54,7 +54,11 @@ jobs:
           HEADED: '1'
         run: |
           git rev-parse HEAD
-          xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+          if [ "${{ matrix.script }}" = "sensory-browser.py" ]; then
+            xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/real-visibility.py mario-maker-clone/svgn-paper-route/tests/sensory-browser.py
+          else
+            python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -127,7 +131,7 @@ jobs:
           ARTIFACT_DIR: /tmp/quiet-water-live
           TEST_ORIGIN: https://v5ma.github.io
           HEADED: '1'
-        run: xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/sensory-browser.py
+        run: xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/real-visibility.py mario-maker-clone/svgn-paper-route/tests/sensory-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
