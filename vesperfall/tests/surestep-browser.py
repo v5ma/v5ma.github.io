@@ -1,6 +1,5 @@
-"""Surestep release acceptance using real WebGL and emulated device input.
-The emulators supply only poses, buttons and joints. Game actions use the shipped
-UI. No health, inventory, coordinates, progression or save state is assigned.
+"""Surestep acceptance: actual WebGL and shipped UI with emulated device input.
+Emulators supply only poses, buttons and joints; no game/save state is assigned.
 """
 from pathlib import Path
 import json, os
@@ -85,9 +84,9 @@ with sync_playwright() as p:
         wait('window.Vesperfall?.component.questHands&&AFRAME.scenes[0].renderer.info.render.calls>0')
         check(page.evaluate('Vesperfall.component.enemyMeshes.filter(m=>m.userData.surestep).length===16'), 'All 16 outer humanoid instances receive the new articulated rig')
         check(page.evaluate('Vesperfall.component.enemyMeshes.filter(m=>m.visible&&m.userData.surestep).every(m=>m.userData.surestep.pose.legs.every(l=>l.knee.every(Number.isFinite)&&l.ankle.every(Number.isFinite)))'), 'Rendered humanoid poses have finite knees and feet')
-        # Isolated review canvas clones actual posed source meshes; game state is untouched.
+        # Isolated review canvas clones actual posed meshes; game state is untouched.
         page.evaluate("""()=>{const g=Vesperfall.component,T=g.T,s=new T.Scene();s.background=new T.Color('#bac8cb');s.add(new T.HemisphereLight('#ffffff','#465358',2.4));const sun=new T.DirectionalLight('#fff4dc',3);sun.position.set(-3,6,4);s.add(sun);
-          const models=g.enemyMeshes.filter(m=>m.visible&&m.userData.surestep?.pose).slice(0,3);models.forEach((source,i)=>{const m=source.clone(true);m.position.set((i-1)*1.65,1.05,0);m.rotation.set(0,.12,0);m.visible=true;const p=m.userData.dominion; m.traverse(o=>{if(o.name.includes('warning'))o.visible=false;});s.add(m);});
+          const models=g.enemyMeshes.filter(m=>m.visible&&m.userData.surestep?.pose).slice(0,3);models.forEach((source,i)=>{const m=source.clone(true);m.position.set((i-1)*1.65,1.05,0);m.rotation.set(0,.12,0);m.visible=true;m.traverse(o=>{if(o.name.includes('warning'))o.visible=false;});s.add(m);});
           const floor=new T.Mesh(new T.PlaneGeometry(14,12),new T.MeshStandardMaterial({color:'#899899',roughness:.85}));floor.rotation.x=-Math.PI/2;s.add(floor);
           const camera=new T.PerspectiveCamera(37,1100/700,.05,50);camera.position.set(1,2.15,7.9);camera.lookAt(0,1,0);
           const r=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});r.setSize(1100,700);r.render(s,camera);r.domElement.id='surestep-art-review';Object.assign(r.domElement.style,{position:'fixed',inset:'0',zIndex:'999999'});document.body.append(r.domElement);window.SurestepReviewRenderer=r;
@@ -121,7 +120,12 @@ with sync_playwright() as p:
         check(page.locator('#tidelight-quality').input_value()!=old, 'Xbox changes the water profile without a mouse')
         nav_to('tidelight-caustics'); old=page.locator('#tidelight-caustics').is_checked(); press(0)
         check(page.locator('#tidelight-caustics').is_checked()!=old, 'Xbox changes water caustics without a mouse')
-        nav_to('menu-vr'); press(0); wait('Vesperfall.component.xr&&Vesperfall.component.dominionControls.state.xrNeutral')
+        # XR entry hands polling to Quest; do not wait on the now inactive Xbox loop.
+        nav_to('menu-vr'); page.evaluate('TestPad.button(0,true)')
+        wait('Vesperfall.component.xr')
+        page.evaluate('TestPad.button(0,false);TestPad.enabled=false')
+        wait('Vesperfall.component.dominionControls.state.xrNeutral')
+        check(True, 'Xbox opens the real immersive session before handing input to Quest controllers')
         check(page.evaluate('TestHands.state.options.optionalFeatures.includes("hand-tracking")'), 'Immersive session requests optional hand tracking while retaining local-floor')
         xraction('Settings')
         for _ in range(12):
@@ -160,8 +164,9 @@ with sync_playwright() as p:
         wait("[...Vesperfall.component.questHands.state.sources].some(([s,p])=>s.handedness==='right'&&p.pinch.armed)")
         before=page.evaluate('Vesperfall.component.questHands.state.selections')
         page.evaluate("TestHands.missing('right','index-finger-tip',true);TestHands.pinch('right',.015)")
-        page.wait_for_timeout(250)
-        page.evaluate("TestHands.missing('right','index-finger-tip',false)"); page.wait_for_timeout(250)
+        wait("[...Vesperfall.component.questHands.state.sources].some(([s,p])=>s.handedness==='right'&&p.last?.valid===false)")
+        page.evaluate("TestHands.missing('right','index-finger-tip',false)")
+        wait("[...Vesperfall.component.questHands.state.sources].some(([s,p])=>s.handedness==='right'&&p.last?.valid===true&&p.pinch.closed)")
         check(page.evaluate('n=>Vesperfall.component.questHands.state.selections===n',before),'Lost finger tracking followed by a held pinch cannot make a ghost selection')
         old=page.locator('#tidelight-quality').input_value(); handaction('Water profile')
         check(page.locator('#tidelight-quality').input_value()!=old,'A fresh pinch after tracking recovery changes the real water setting')

@@ -1,7 +1,7 @@
 name: Vesperfall Surestep acceptance
 on:
   push:
-    branches: [master]
+    branches: [master, vesperfall-surestep-20260914]
     paths: ['vesperfall/**', '.github/workflows/vesperfall-surestep.yml']
   pull_request:
     paths: ['vesperfall/**', '.github/workflows/vesperfall-surestep.yml']
