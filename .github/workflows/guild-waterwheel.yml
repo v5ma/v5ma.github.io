@@ -1,0 +1,138 @@
+name: Guild Waterwheel Quarter and Spatial XR
+on:
+  push:
+    branches: [guild/waterwheel-spatial-20260915]
+    paths: ['leonardos-guild/**', '.github/workflows/guild-waterwheel.yml']
+  pull_request:
+    paths: ['leonardos-guild/**', '.github/workflows/guild-waterwheel.yml']
+permissions:
+  contents: read
+concurrency:
+  group: guild-waterwheel-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install hash-checked scoped source once and commit before acceptance
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = 'guild/waterwheel-spatial-20260915'
+          if test -f leonardos-guild/scripts/waterwheel-edit-0.json; then
+            python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          paths=sorted(Path('leonardos-guild/scripts').glob('waterwheel-edit-*.json'))
+          assert len(paths)==6,'Expected exactly six scoped source manifests'
+          spec={}
+          for path in paths:
+            records=json.loads(path.read_text())
+            assert not set(spec).intersection(records),'Duplicate source path'
+            spec.update(records)
+          newpath=Path('leonardos-guild/scripts/waterwheel-new-hashes.json')
+          for name,expected in json.loads(newpath.read_text()).items():
+            p=Path(name)
+            assert name.startswith('leonardos-guild/') and '..' not in p.parts and not p.is_symlink(),name
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==expected,('New source transfer mismatch',name)
+          prepared={}
+          for name,record in spec.items():
+            p=Path(name)
+            assert name.startswith('leonardos-guild/') and '..' not in p.parts and p.is_file() and not p.is_symlink(),name
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==record['before'],('Changed baseline',name)
+            text=p.read_text()
+            if 'jsonSet' in record:
+              value=json.loads(text);value.update(record['jsonSet']);text=json.dumps(value,indent=2)+'\n'
+            else:
+              for start,end,replacement in reversed(record['edits']):text=text[:start]+replacement+text[end:]
+            data=text.encode('utf-8')
+            assert hashlib.sha256(data).hexdigest()==record['after'],('Transfer hash mismatch',name)
+            prepared[p]=data
+          for p,data in prepared.items():p.write_bytes(data)
+          for path in paths+[newpath]:path.unlink()
+          print('Installed',len(prepared),'verified existing project files; all new module hashes matched. Native acceptance checks out the ordinary commit.')
+          PY
+            npm --prefix leonardos-guild test
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -- leonardos-guild
+            git commit -m 'Install authored Waterwheel Quarter and true spatial XR as ordinary source'
+            git push origin HEAD:refs/heads/guild/waterwheel-spatial-20260915
+          fi
+      - id: source
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  native:
+    needs: source
+    if: always() && !cancelled() && (needs.source.result == 'success' || needs.source.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        journey: [social, upper, hydraulic, spatial]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check ordinary modules, complete model suite and design contracts
+        run: |
+          set -euo pipefail
+          for f in leonardos-guild/*.mjs; do node --check "$f"; done
+          npm --prefix leonardos-guild test | tee /tmp/waterwheel-model-tests.txt
+          node --test leonardos-guild/design/validate-design.mjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise real movement, interactions, saved rewards and native renderer
+        env:
+          QUARTER_ROUTE: ${{ matrix.journey }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/waterwheel-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          if test "$QUARTER_ROUTE" = spatial; then
+            python -u leonardos-guild/tests/spatial-browser.py
+          else
+            python -u leonardos-guild/tests/quarter-browser.py
+          fi
+      - name: Archive exact source and retain failure evidence
+        if: always()
+        env:
+          JOURNEY: ${{ matrix.journey }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os,hashlib,json,tarfile,subprocess,shutil
+          name=os.environ['JOURNEY'];out=Path('leonardos-guild')/('spatial-output' if name=='spatial' else 'quarter-'+name+'-output');out.mkdir(exist_ok=True)
+          names=subprocess.check_output(['git','ls-files','leonardos-guild','.github/workflows'],text=True).splitlines()
+          files={n:hashlib.sha256(Path(n).read_bytes()).hexdigest() for n in names if Path(n).is_file()}
+          (out/'source-hashes.json').write_text(json.dumps(files,indent=2));(out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          diff=subprocess.check_output(['git','diff','--stat'],text=True);(out/'uncommitted-diff.txt').write_text(diff)
+          with tarfile.open(out/'source.tgz','w:gz') as tar:
+            for n in files:tar.add(n,arcname=n)
+          if Path('/tmp/waterwheel-model-tests.txt').exists():shutil.copy('/tmp/waterwheel-model-tests.txt',out/'model-tests.txt')
+          assert not diff,'Acceptance must not rewrite committed source'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-waterwheel-${{ matrix.journey }}
+          path: |
+            leonardos-guild/quarter-${{ matrix.journey }}-output/
+            leonardos-guild/spatial-output/
+          retention-days: 14
