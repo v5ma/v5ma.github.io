@@ -38,7 +38,7 @@ with sync_playwright() as pw:
  def slider(id,key):page.locator('#'+id).focus();page.keyboard.press(key)
  try:
   page.goto(BASE+'?destination=tideglass-baths&xr=1',wait_until='domcontentloaded');page.bring_to_front()
-  page.wait_for_function('window.SkyCycleSensory && window.SkyCycleFlightDeck && player.onGround && SkyCycleBathhouse.art?.waterDraws>0')
+  page.wait_for_function('window.SkyCycleSensory && window.SkyCycleFlightDeck && typeof player!=="undefined" && player?.onGround && SkyCycleBathhouse.art?.waterDraws>0')
   page.locator('#cv').click();page.wait_for_function('__score.context?.state==="running" && SkyCycleSensory.diagnostics.audio.sources===2')
   check(page.evaluate('audioContextCount===1'),'Bathhouse sound uses exactly the original AudioContext')
   page.wait_for_function('!!__score.source');page.evaluate('window.originalMusic=__score.source')
