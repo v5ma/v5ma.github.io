@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.14.0 / Open Diorama.
+Release baseline: v0.14.1 / Wayfinder.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -253,7 +253,7 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Dependencies: RW-016, RW-025.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented.
+  Continuation: The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.
   Next action: Apply the seven chapter briefs incrementally, preserving stable objectives and shelters; verify route choice, observation, retreat, pacing and spatial reveals with players.
 
 - [ ] RW-029 / P1 / New puzzle interaction families / Planned
@@ -536,7 +536,7 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Dependencies: RW-057.
   Evidence: DIORAMA.md.
 
-  Continuation: First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent.
+  Continuation: First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.
   Next action: Test all three views with real Quest controllers and hands, including placement, body-scale clarity, targeting, saves, tracking loss, comfort and measured device performance.
 
 - [ ] RW-064 / P0 / Release candidate approval / Blocked

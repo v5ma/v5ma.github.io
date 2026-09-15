@@ -21,7 +21,8 @@ export function createXRInput(){
   const edge=k=>data[k]&&!previous[k],release=k=>!data[k]&&previous[k];
   for(const k of Object.keys(data)){if(data[k])held[k]=(held[k]||0)+dt;}
   out.select.left=edge('lefttrigger');out.select.right=edge('righttrigger');
-  out.confirmHeld=!!(data.righttrigger||data.lefttrigger||data.rightprimary);
+  // Native A crafting has its own owner; ray holds are owned by the spatial panel.
+  out.confirmHeld=!!data.rightprimary;
   const axes=(src)=>src?.hand?(src.move||[0,0]):[deadAxis(src?.axes?.[2]),deadAxis(src?.axes?.[3])];
   const lm=axes(L),rm=axes(R);out.nav=lm[1];out.navX=lm[0];out.scroll=rm[1];
   if(mode!=='play'){
