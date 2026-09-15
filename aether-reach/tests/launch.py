@@ -13,10 +13,10 @@ with sync_playwright() as p:
  b=p.chromium.launch(**kw);c=b.new_context(viewport={'width':1280,'height':800},service_workers='block');host=urlparse(BASE).hostname;c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort());page=c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.set_default_timeout(60000)
  try:
   page.goto(BASE+'/index.html',wait_until='domcontentloaded')
-  required=['little-planet/','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']
+  required=['svgn-planet/index.html','rainward/index.html','aether-reach/index.html','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']
   # The collection grows: preserve each actual route instead of freezing the
   # gallery at the four cards present when Aether Reach was first introduced.
-  check(page.locator('.project').count()>=len(required),'The public project page includes the little planet alongside every existing project')
+  check(page.locator('.project').count()>=len(required),'The public project page includes Neighborhood Missions alongside the existing routes')
   for route in required:
    # A quick-launch link outside the gallery is not a duplicate project card.
    check(page.locator('.projects .project a.primary-link').evaluate_all('(links,route)=>links.filter(a=>new URL(a.href).origin===location.origin && new URL(a.href).pathname===new URL(route,location.href).pathname).length',route)==1,'Homepage retains one playable project card: '+route)

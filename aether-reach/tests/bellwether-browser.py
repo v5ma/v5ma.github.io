@@ -8,7 +8,9 @@ def check(ok,label):
  assert ok,label
  checks.append(label);print('PASS',label,flush=True)
 with sync_playwright() as pw:
- b=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+ args={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
+ if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
+ b=pw.chromium.launch(**args)
  c=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')
  c.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'))
  c.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))")

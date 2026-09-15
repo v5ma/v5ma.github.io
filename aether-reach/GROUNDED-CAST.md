@@ -14,7 +14,7 @@ The existing cast limits remain 12 Balanced, 6 Light and 4 immersive. No additio
 
 ## Direct controller and spatial interaction
 
-Existing Xbox defaults and user remaps are retained: A traversal, X contextual use/reload, Y carried weapon, LT aim, RT fire, LB power, RB quick power/reverse, Menu pause. Existing hold gestures remain optional secondary actions, not new menu gates. Fixed A/B/D-pad menu navigation still works after remapping.
+Existing Xbox defaults and user remaps are retained: A traversal, X contextual use/reload, Y carried weapon, LT aim, RT fire, LB power, RB quick power recall, left-stick rail brake/reverse, Menu pause. Existing hold gestures remain optional secondary actions, not new menu gates. Fixed A/B/D-pad menu navigation still works after remapping.
 
 XR requests optional hand-tracking and reads XRHand joint poses plus the source's tracked target ray. Both hands have visible joint markers and rays. Open the hand once, point, and pinch to select. Each menu has visible paging, value adjustment, Back and Exit VR controls; nested dialogs use the same focus and confirmation model as Xbox. A pinch is immediate after its threshold, without a dwell timer.
 
