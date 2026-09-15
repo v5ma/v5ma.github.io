@@ -3,6 +3,8 @@
  * Three r177's XRManager requires its WebGL backend: entry is explicit.
  */
 import * as T from './vendor/three.webgpu.js';
+import {protectOpaqueXRFramebuffer} from './xr-webgl-compat.mjs';
+let restoreFramebuffer=()=>{};
 import {mappedPad,sourcesNeutral,pointInRects} from './xr-input-core.mjs';
 const $=id=>document.getElementById(id),panel=()=>window.SkyCycleFlightDeck?.topPanel(),fd=()=>window.SkyCycleFlightDeck;
 let session=null,starting=false,presenting=false,neutral=true,renderer=null,originalRender=null,originalScene=null,oldView=null;
@@ -66,14 +68,14 @@ function frame(now,f){if(!presenting||!f)return;try{lastFrame=f;reference=render
   if(typeof player!=='undefined'&&player){world.position.set(-(player.x+13)*.0025,-.05+(player.y+15)*.0025,-2.4);}
   makeMenu(now);updateTracking(f);originalRender.call(renderer,xrScene,camera);frameCount++;eyeCount=viewer.views.length;
  }catch(e){status('XR stopped safely: '+e.message);pause();session?.end().catch(()=>{});}}
-async function finish(){if(!presenting&&!starting)return;presenting=false;starting=false;release();if(renderer){await renderer.setAnimationLoop(null);renderer.xr.enabled=false;if(originalRender)renderer.render=originalRender;}
+async function finish(){if(!presenting&&!starting)return;presenting=false;starting=false;release();restoreFramebuffer();restoreFramebuffer=()=>{};if(renderer){await renderer.setAnimationLoop(null);renderer.xr.enabled=false;if(originalRender)renderer.render=originalRender;}
  if(originalScene){world?.remove(originalScene);originalScene.updateMatrixWorld(true);}if(xrScene)disposeObject(xrScene);texture?.dispose();visuals.clear();if(oldView&&window.__delivery?.state.view!==oldView)__delivery.act('view');
  session=null;reference=null;lastFrame=null;world=null;xrScene=null;ui=null;rects=[];pause();status('XR ended. Resume from the normal pause screen.');}
 async function enter(){if(starting||presenting)return;if(window.RouteWorkshop?.state.dirty){status('Save or discard the Workshop draft before entering XR. Nothing was reloaded.');return;}
  renderer=window.__merged?.renderer;if(!renderer||!window.__gpuReady){status('The 3D renderer is not ready. Ordinary play is still available.');return;}
  if(!renderer.backend.isWebGLBackend){const url=new URL(location.href);url.searchParams.set('xr','1');const route=window.DeliveryCampaign?.routes[window.__delivery?.state.route];if(route&&window.SkyCyclePortals?.destinations.some(d=>d.id===route.id))url.searchParams.set('destination',route.id);location.assign(url.href);return;}
  starting=true;$('sky-xr-enter').disabled=true;let acquired=null;
- try{acquired=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['hand-tracking','local-floor']});session=acquired;originalScene=__merged.scene;originalRender=renderer.render;oldView=__delivery.state.view;if(oldView!=='3d')__delivery.act('view');guide.close();makeStage();release();renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');await renderer.setAnimationLoop(frame);await renderer.xr.setSession(session);presenting=true;starting=false;renderer.render=function(scene,cam){if(!presenting)return originalRender.call(this,scene,cam);};session.addEventListener('selectstart',selectStart);session.addEventListener('selectend',selectEnd);session.addEventListener('inputsourceschange',e=>{release();if(e.removed?.length)pause();});session.addEventListener('visibilitychange',()=>{if(session.visibilityState!=='visible')pause();});session.addEventListener('end',finish,{once:true});status('XR active.');
+ try{acquired=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['hand-tracking','local-floor']});session=acquired;originalScene=__merged.scene;originalRender=renderer.render;restoreFramebuffer=protectOpaqueXRFramebuffer(renderer);oldView=__delivery.state.view;if(oldView!=='3d')__delivery.act('view');guide.close();makeStage();release();renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');await renderer.setAnimationLoop(frame);await renderer.xr.setSession(session);presenting=true;starting=false;renderer.render=function(scene,cam){if(!presenting)return originalRender.call(this,scene,cam);};session.addEventListener('selectstart',selectStart);session.addEventListener('selectend',selectEnd);session.addEventListener('inputsourceschange',e=>{release();if(e.removed?.length)pause();});session.addEventListener('visibilitychange',()=>{if(session.visibilityState!=='visible')pause();});session.addEventListener('end',finish,{once:true});status('XR active.');
  }catch(e){const reason='XR could not start: '+e.message;try{await acquired?.end();}catch{}await finish();status(reason);}finally{$('sky-xr-enter').disabled=false;}
 }
 $('sky-xr-enter').onclick=enter;window.addEventListener('pagehide',()=>{pause();session?.end().catch(()=>{});});

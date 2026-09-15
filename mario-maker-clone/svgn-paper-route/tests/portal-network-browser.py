@@ -9,7 +9,7 @@ class Quiet(SimpleHTTPRequestHandler):
  def log_message(self,*args):pass
 server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(ROOT)));threading.Thread(target=server.serve_forever,daemon=True).start()
 origin=f'http://127.0.0.1:{server.server_port}/';BASE=origin+'mario-maker-clone/svgn-paper-route/'
-checks=[];errors=[];logs=[];passed=False;diagnostics={}
+checks=[];errors=[];logs=[];passed=False;diagnostics={};failure=None
 def check(value,label):
  assert value,label
  checks.append(label);print('PASS:',label,flush=True)
@@ -69,9 +69,9 @@ with sync_playwright() as pw:
   shader=[x for x in logs if any(v in x.lower() for v in ['tsl:','shader error','validation error','gl_invalid'])];check(not shader,'No detected shader or GPU validation errors in the emulated stereo path')
   passed=True
  except Exception as exc:
-  print('FAIL:',str(exc),flush=True)
-  try:page.screenshot(path=str(OUT/'failure.png'));diagnostics=page.evaluate('({xr:window.SkyCycleXR?.diagnostics,release:window.PaperDeliveryRelease,route:window.__delivery?.state.route})')
+  failure=str(exc);print('FAIL:',str(exc),flush=True)
+  try:page.screenshot(path=str(OUT/'failure.png'));diagnostics=page.evaluate('({xr:window.SkyCycleXR?.diagnostics,release:window.PaperDeliveryRelease,route:window.__delivery?.state.route,capture:window.xrEmulator?.lastCapture})')
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'checks':checks,'errors':errors,'console':logs,'diagnostics':diagnostics,'coverage':'Native game with deterministic WebXR hardware emulation and real Three XRManager stereo rendering. Native tracked controller and hand select events. No player position, score or win assignments. Not physical Quest 3 or Xbox certification.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'failure':failure,'checks':checks,'errors':errors,'console':logs,'diagnostics':diagnostics,'coverage':'Native game with deterministic WebXR hardware emulation and real Three XRManager stereo rendering. Native tracked controller and hand select events. No player position, score or win assignments. Not physical Quest 3 or Xbox certification.'},indent=2));ctx.close();browser.close();server.shutdown()

@@ -3,7 +3,7 @@ import hashlib,json,time,urllib.request,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 GAME=ROOT/'mario-maker-clone/svgn-paper-route'
-FILES=['index.html','release.json','release-status.js','sw.js','bathhouse.js','bathhouse.css','portal-network-core.mjs','portal-network.js','cloudview-assets.js','cloudview-world.js','rider-motion-core.mjs','rider-motion.js','flight-deck.js','xr-input-core.mjs','xr-play.js']
+FILES=['index.html','release.json','release-status.js','sw.js','bathhouse.js','bathhouse.css','portal-network-core.mjs','portal-network.js','cloudview-assets.js','cloudview-world.js','rider-motion-core.mjs','rider-motion.js','flight-deck.js','xr-input-core.mjs','xr-play.js','xr-webgl-compat.mjs']
 expected={name:hashlib.sha256((GAME/name).read_bytes()).hexdigest() for name in FILES}
 url='https://v5ma.github.io/mario-maker-clone/svgn-paper-route/'
 report={'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'expected':expected,'attempts':[],'passed':False}
