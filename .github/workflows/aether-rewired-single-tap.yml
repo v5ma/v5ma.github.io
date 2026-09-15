@@ -1,0 +1,64 @@
+name: Stage frame-accurate Aether menu tests
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-rewired-single-tap.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 8f1f5f7b81d66cd68df9187f5596dcb84d4e5cc1
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Correct only the synthetic tap duration
+        run: |
+          mkdir -p /tmp/aether-tap
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          p=Path('aether-reach/tests/diorama-browser.py');s=p.read_text()
+          assert hashlib.sha256(s.encode()).hexdigest()=='19834328eccbb3cc10493327fe7fa75afefd0d6d79865b0ad9dd08d01e08672c'
+          old=" def tap(i):p.evaluate('(i)=>TestPad.button(i,true)',i);frames();p.evaluate('(i)=>TestPad.button(i,false)',i);frames()"
+          new=" # One sampled physical press; multi-frame holds correctly auto-repeat on a slow software GPU.\n def tap(i):p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>resolve());});})',i)"
+          assert s.count(old)==1
+          s=s.replace(old,new).replace('for _ in range(70):','for _ in range(24):')
+          assert hashlib.sha256(s.encode()).hexdigest()=='dc39163dc019d9d161350757fdba15633ba464f03cc7651b15fc53e24f02c7b8'
+          p.write_text(s)
+          PY
+          python -m py_compile aether-reach/tests/diorama-browser.py
+          node --test aether-reach/tests/*.test.mjs > /tmp/aether-tap/tests.log
+          git diff --check
+      - name: Create content-only candidate without updating a ref
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          def post(endpoint,payload):
+            p=Path('/tmp/aether-tap/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          name='aether-reach/tests/diorama-browser.py'
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()}]})
+          c=post('git/commits',{'message':'test(aether): use single sampled presses for exact diorama menu navigation','tree':t['sha'],'parents':['8f1f5f7b81d66cd68df9187f5596dcb84d4e5cc1']})
+          Path('/tmp/aether-tap/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':t['sha'],'runtimeChanged':False},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-rewired-single-tap-candidate
+          path: /tmp/aether-tap/candidate.json
+          retention-days: 14
