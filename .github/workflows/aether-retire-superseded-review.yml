@@ -1,0 +1,23 @@
+name: Retire superseded Aether recovery review
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-retire-superseded-review.yml']
+permissions:
+  contents: read
+# The superseded 8cee7bc recovery workflow used github.ref in this group.
+# Current 8073286 acceptance uses github.ref_name and is not cancelled here.
+concurrency:
+  group: aether-rewired-refs/heads/aether/bellwether-diorama-20260915
+  cancel-in-progress: true
+jobs:
+  record:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Preserve the active acceptance run
+        run: |
+          echo 'Retired only the obsolete ref-form recovery concurrency group.'
+          echo 'Keep current source 80732867394a2c0b1c8a19b8c02fb618c49042b1 and acceptance run 35026566788.'
+          echo 'No source, release, branch reference, save or sibling-game run is modified.'
