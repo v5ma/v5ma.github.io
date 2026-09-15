@@ -1,3 +1,13 @@
+# Current continuation / Grounded v0.14.0
+
+Read GROUNDED.md, current release.json, production-plan.json and CONTROLLER.md. Resume from current master, not an old preparation branch. The bounded H-02 motion/proportion upgrade implements foot plants, terrain leg solving, land-pose interpolation, separate swim/tread/stroke curves and coherent rest-space fitting for original/imported surfaces. Gameplay, seven chapters, saves and input bindings remain authoritative and unchanged.
+
+The synthetic before/after benchmark is tests/grounded.py; it must not replace the living-enemy Natatorium or complete controller regression suites. Release evidence and the PR must identify exact candidate/merge source and public file hashes. Keep source/model checks, native fixture checks, physical-device evidence and named artistic review distinct. Do not mark full hand contacts, arbitrary stairs, mocap, learned motion matching or HUMOS as implemented.
+
+Next: review the captured motion, improve authored action/stagger transitions and supporting weapon-hand contacts, then ledge/step contacts and actual wired/Bluetooth Xbox/performance review. H-02 and RW-035/RW-036 remain Implemented, not Approved. No store migration or new controller gesture is required.
+
+The text below is retained history for Clear Water and Undertow, not an instruction to resurrect or republish those builds.
+
 # Current continuation / Clear Water v0.13.1
 
 Read CLEAR-WATER.md first, then this retained handoff and CONTROLLER.md. The active runtime is now the Clear Water patch candidate/release, not a request to rebuild Undertow. Its release PR and evidence directory are authoritative for final candidate, merge and publication verification. The historical verifiedGameplay record in production-plan.json deliberately retains the immutable Undertow receipt.

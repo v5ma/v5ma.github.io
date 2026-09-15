@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.13.1 / Clear Water.
+Release baseline: v0.14.0 / Grounded.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -25,7 +25,7 @@ Historical baseline: [Undertow receipt](evidence/undertow-v0.13.0/summary.json).
 - [ ] H-01 / Automated / RW-032, RW-031, RW-028 / Record a living-enemy Natatorium browser mission from normal start to extraction. Preserve oxygen, enemy, task, puzzle and resource rules.
   Acceptance: Both components, puzzle and required tasks complete using ordinary inputs; no safe fixture or model teleport substitutes for this run.
 
-- [ ] H-02 / Open / RW-035, RW-036, RW-014 / Author swimming and land-action blends, then hand/foot contacts for the fitted seventeen-bone humans.
+- [ ] H-02 / Implemented / RW-035, RW-036, RW-014 / Author swimming and land-action blends, then hand/foot contacts for the fitted seventeen-bone humans.
   Acceptance: Before/after motion review, no collar/cuff gaps, no animation authority over collision, and no broken reload/craft/heal or dive/surface transitions.
 
 - [ ] H-03 / Open / RW-044, RW-045, RW-046, RW-048 / Review and improve water/combat Foley, room acoustics, score transitions and dramatic silence.
@@ -143,8 +143,9 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Owner role: Art direction. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Approve fixed-camera images and motion captures of the slice in daylight, rain and interior lighting.
   Dependencies: RW-033.
-  Evidence: Not recorded yet.
+  Evidence: tests/grounded.py.
 
+  Continuation: Camera-matched baseline/current humanoid captures and measured foot-contact fixtures are available through the Grounded workflow. They are not a named art review or full flagship lighting approval.
 - [ ] RW-015 / P0 / Independent player study / Planned
   Owner role: User research. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Record five unfamiliar players; proposed gate: at least four complete the slice and explain core controls without intervention.
@@ -295,26 +296,26 @@ Gate: Camera-matched art reviews approve the hero, enemies, animation, architect
   Dependencies: RW-033.
   Evidence: RAINWORN.md.
 
-  Continuation: Imported CC0 Quaternius Standard face/hands/hair are fitted to the existing seventeen-bone rig and original clothing. The paid Source edition was not used; this is not a fully original final hero sculpt.
+  Continuation: Imported CC0 Quaternius Standard face/hands/hair are fitted to the existing seventeen-bone rig and original clothing. The paid Source edition was not used; this is not a fully original final hero sculpt. Grounded applies a coherent in-memory rest-space proportion map to details, garments and bind landmarks; original GLB files and licenses stay unchanged.
   Next action: Keep license/hash provenance, collars/cuffs, independent skeletons, attachment fit, fallback and distance-detail tests during character upgrades.
 
-- [ ] RW-035 / P1 / Authored locomotion and action clips / Planned
+- [ ] RW-035 / P1 / Authored locomotion and action clips / Implemented
   Owner role: Animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Approve walk, run, crouch, crawl, turn, aim, reload, strike, stagger, vault, heal and craft transitions without visible snapping.
   Dependencies: RW-034.
-  Evidence: Not recorded yet.
+  Evidence: GROUNDED.md.
 
-  Continuation: The original procedural animation still drives the imported detail. The free animation library was inspected but its clips were not integrated; swimming currently reuses the horizontal crawl pose.
-  Next action: Prototype authored swim/tread/dive/surface and land-action transitions with before/after motion capture and preserved gameplay timing.
+  Continuation: Grounded adds actual-distance stride, visual land-pose blending and distinct original swim/tread/stroke motion to the fitted seventeen-bone humans. These are procedural authored curves, not imported motion-capture clips or a learned animation model.
+  Next action: Review transitions at game speed and expand authored action/stagger clips; preserve all gameplay action clocks and cancellation rules.
 
-- [ ] RW-036 / P1 / Foot placement and hand contacts / Planned
+- [ ] RW-036 / P1 / Foot placement and hand contacts / Implemented
   Owner role: Technical animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Feet follow slopes and stairs; hands align to weapons and traversal contacts; solve IK failures without destabilizing gameplay.
   Dependencies: RW-035.
-  Evidence: Not recorded yet.
+  Evidence: GROUNDED.md.
 
-  Continuation: Hand/foot contact IK is not implemented or approved. The collar/wrist seam fixes are geometry compatibility, not contact animation.
-  Next action: After action blending, validate slopes/stairs, weapon grips and authored traversal contacts without changing collision authority.
+  Continuation: World-space foot contacts, bounded two-bone leg solving, terrain normals and safe release are implemented. Weapon-hand, ledge and arbitrary-stair contacts remain unimplemented; no collision authority is delegated to IK.
+  Next action: Add weapon support-hand and authored traversal contacts, review step boundaries and test real hardware; keep motion failure and seam evidence.
 
 - [ ] RW-037 / P1 / Enemy silhouettes and reactions / Planned
   Owner role: Character art. Assigned reviewer: Unassigned. Effort: Unestimated.

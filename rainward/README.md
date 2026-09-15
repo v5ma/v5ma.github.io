@@ -1,3 +1,9 @@
+# Rainward v0.14.0 / Grounded
+
+Current upgrade: [GROUNDED.md](GROUNDED.md). The existing hero and humanoid patrols gain planted feet, terrain-aware leg IK, motion blending, separate swim/tread motion and coherent proportion refinements. All seven chapters, saves and Xbox controls remain. Physical-device and artistic approval remain open. Read the current handoff and release evidence before continuing.
+
+The following sections retain earlier release history.
+
 # Rainward v0.13.1 / Clear Water
 
 Current upgrade: [CLEAR-WATER.md](CLEAR-WATER.md). Survival/Classic/keyboard water instructions are now preset-aware, with an accessible low-air recovery warning. The normal-start Natatorium controller journey and isolated exhaustion/retry checks are retained beside the existing test matrix. All seven chapters and existing saves remain supported.

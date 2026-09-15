@@ -1,6 +1,8 @@
 /* Rainward original survivor rig. The body is a real weighted SkinnedMesh,
  * not a chain of capsules. No commercial character or animation is embedded. */
 import * as T from './vendor/three.module.js';
+import {fitProportions,proportionPoint} from './character-proportions.mjs';
+import {applyGroundedMotion} from './grounded-motion.mjs';
 const caches=new WeakMap();
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 function textile(){
@@ -82,7 +84,7 @@ function bodyGeometry(enemy,role){
  const position=[],normal=[],uv=[],si=[],sw=[],groups=[];
  for(let mat=0;mat<pieces.length;mat++){const start=position.length/3;for(const {g,weight}of pieces[mat]){const p=g.attributes.position,n=g.attributes.normal,u=g.attributes.uv;for(let i=0;i<p.count;i++){position.push(p.getX(i),p.getY(i),p.getZ(i));normal.push(n.getX(i),n.getY(i),n.getZ(i));uv.push(u?.getX(i)||0,u?.getY(i)||0);const weights=weight(p.getX(i),p.getY(i),p.getZ(i));for(let j=0;j<4;j++){si.push(weights[j]?.[0]||0);sw.push(weights[j]?.[1]||0);}}g.dispose();}groups.push([start,position.length/3-start,mat]);}
  const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(position,3));geometry.setAttribute('normal',new T.Float32BufferAttribute(normal,3));geometry.setAttribute('uv',new T.Float32BufferAttribute(uv,2));geometry.setAttribute('skinIndex',new T.Uint16BufferAttribute(si,4));geometry.setAttribute('skinWeight',new T.Float32BufferAttribute(sw,4));groups.forEach(g=>geometry.addGroup(...g));geometry.computeBoundingSphere();
- return {geometry,bind,parent,names};
+ fitProportions(geometry);return {geometry,bind:bind.map(v=>proportionPoint(...v)),parent,names};
 }
 export function actor(scene,mesh,color,enemy=false,role='watcher'){
  let cache=caches.get(scene);if(!cache){cache={geometries:new Map(),fabric:textile()};caches.set(scene,cache);}const key=enemy?role:'survivor';if(!cache.geometries.has(key))cache.geometries.set(key,bodyGeometry(enemy,role));const data=cache.geometries.get(key);
@@ -101,10 +103,10 @@ export function actor(scene,mesh,color,enemy=false,role='watcher'){
  tools.visible=longWeapon.visible=false;
  return {root,rig,skin,bones,weapon,tools,club,blade,wrap,longWeapon,role,enemy,gait:0,materials};
 }
-export function pose(a,p,time,enemy=false){
+export function pose(a,p,time,enemy=false,heightAt=()=>0){
  const dt=a.lastTime===undefined?1/60:clamp(time-a.lastTime,0,.10);a.lastTime=time;const moving=Math.max(0,p.speed||0),stance=p.stance||'stand',crouch=stance==='crouch',prone=stance==='prone'||p.waterMode==='swim',aim=!!p.aim;
  a.gait+=moving*dt*(crouch?5.1:3.9);const step=Math.sin(a.gait),swing=Math.min(1,moving/2.2),breath=Math.sin(time*1.8)*.012;
- a.root.position.set(p.x,prone?.13:0,p.z);const delta=Math.atan2(Math.sin(p.yaw-a.root.rotation.y),Math.cos(p.yaw-a.root.rotation.y));a.root.rotation.y+=delta*(1-Math.exp(-dt*18));
+ a.root.position.set(p.x,(prone?.13:0)+heightAt(p.x,p.z)-(p.swimDepth||0),p.z);const delta=Math.atan2(Math.sin(p.yaw-a.root.rotation.y),Math.cos(p.yaw-a.root.rotation.y));a.root.rotation.y+=delta*(1-Math.exp(-dt*18));
  a.rig.rotation.set(prone?-Math.PI/2:0,0,0);a.rig.position.set(0,crouch?-.55:0,prone?.79:0);a.bones.forEach(b=>b.rotation.set(0,0,0));
  a.bones[0].position.y=.94+(prone?0:Math.cos(a.gait*2)*.014*swing);a.bones[1].rotation.x=crouch?.85:breath;a.bones[2].rotation.x=crouch?.15:breath*.6;
  a.bones[2].rotation.y=aim?-.09:step*.035*swing;a.bones[4].rotation.x=aim?-.055:-breath*.5;
@@ -121,5 +123,6 @@ export function pose(a,p,time,enemy=false){
  if(p.reload){a.bones[5].rotation.x=1.1;a.bones[6].rotation.x=.8+Math.sin(time*9)*.18;a.weapon.visible=true;}
  if(p.vault){const f=Math.sin(Math.PI*clamp(p.vault.t/p.vault.duration,0,1));a.rig.position.y+=f*.95;a.bones[11].rotation.x+=f*.75;a.bones[14].rotation.x+=f*.5;}
  if(p.hp<=0){a.rig.rotation.set(0,0,-1.47);a.rig.position.set(0,.14,0);a.weapon.visible=false;a.tools.visible=false;a.longWeapon.visible=false;}
+ applyGroundedMotion(a,p,time,dt,heightAt);
  a.root.updateMatrixWorld(true);a.skin.skeleton.update();
 }
