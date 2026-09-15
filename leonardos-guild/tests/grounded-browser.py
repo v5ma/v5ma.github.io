@@ -1,5 +1,7 @@
 """Fresh native controller-only quick actions, rendered contacts and real reload.
 Only the standard Xbox hardware fixture is injected; no actor/progression writes.
+A 640x400 viewport bounds software-renderer latency for the 220 ms tap test;
+large-viewport art and camera journeys remain separate retained checks.
 """
 from pathlib import Path
 import os,json
@@ -22,7 +24,7 @@ def capture(name):captures[name]=read();page.screenshot(path=str(OUT/(name+'.png
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.environ.get('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block')
+ browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':640,'height':400},service_workers='block')
  ctx.add_init_script("window.__testPad={id:'Xbox 360 Controller (STANDARD GAMEPAD)',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[window.__testPad]});")
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)

@@ -70,6 +70,9 @@ with sync_playwright() as p:
   check(not read()['console']['wheel'] and read()['resonance']['tool']=='sling','Right A confirms a tracked wheel selection')
   check(abs(math.atan2(math.sin(read()['render']['heading']-heading),math.cos(read()['render']['heading']-heading)))<.01,'Held wheel-selection stick cannot kick the game camera after confirmation')
   page.evaluate('__xr.sources[1].gamepad.axes=[0,0,0,0]');frames(4)
+  # Move the real controller ray off the menu before firing. A UI-directed
+  # trigger must remain an interaction, not leak into a shot.
+  page.evaluate('__xr.sources[1].orientation={x:0,y:0,z:0,w:1}');frames(4)
   button(0,0,True);frames(5);button(1,0,True);frames(6);button(1,0,False);frames(3)
   check(read()['resonance']['ready']<6,'Tracked trigger spends real sling ammunition before reload acceptance')
   button(1,5,True);frames(3);button(1,5,False);frames(2)
