@@ -1,0 +1,96 @@
+name: Repair Aether completion candidate
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-completion-repair.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Recover the reviewed exact-base edit manifest
+        run: |
+          mkdir -p /tmp/aether-completion
+          python - <<'PY'
+          from pathlib import Path
+          text=Path('.github/workflows/aether-completion-guard.yml').read_text()
+          start="cat > /tmp/aether-completion/edits.json <<'JSON'\n"
+          a=text.index(start)+len(start)
+          b=text.index('\n          JSON',a)
+          manifest='\n'.join(line[10:] if line.startswith('          ') else line for line in text[a:b].splitlines())+'\n'
+          Path('/tmp/aether-completion/edits.json').write_text(manifest)
+          PY
+      - uses: actions/checkout@v4
+        with:
+          ref: d6891658eeb7c6075efa4dc9a6285ed78bf9d42e
+          path: source
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply bounded reviewed edits and remove transfer-only trailing whitespace
+        working-directory: source
+        run: |
+          python - <<'PY'
+          import json,hashlib,subprocess,re
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-completion/edits.json').read_text())
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==data['base']
+          for name,item in data['changes'].items():
+            p=Path(name)
+            assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==item['before'],name
+            text=p.read_text() if p.exists() else ''
+            for start,end,replacement in reversed(item['edits']):
+              assert 0<=start<=end<=len(text),name
+              text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            if name=='aether-reach/tests/arsenal_browser.py':
+              text='\n'.join(line.rstrip() for line in text.splitlines())+'\n'
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          PY
+          git diff --check
+      - name: Validate corrected candidate
+        working-directory: source
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs | tee /tmp/aether-completion/node-tests.log
+          python aether-reach/tests/backup_test.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Create validated content-only commit object without moving refs
+        working-directory: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-completion/edits.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/aether-completion/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          tree=[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()} for name in data['changes']]
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
+          c=post('git/commits',{'message':'fix(aether): flush completion events and restore configured-speed rail reversal','tree':t['sha'],'parents':[data['base']]})
+          Path('/tmp/aether-completion/candidate.json').write_text(json.dumps({'parent':data['base'],'commit':c['sha'],'tree':t['sha'],'files':list(data['changes']),'validation':'all Node tests, backup-input tests, syntax and release manifest passed; native browser verification pending'},indent=2))
+          print('Validated commit object:',c['sha'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-completion-repaired
+          path: |
+            /tmp/aether-completion/candidate.json
+            /tmp/aether-completion/node-tests.log
+          retention-days: 7
