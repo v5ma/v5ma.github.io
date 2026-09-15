@@ -2,19 +2,26 @@
  * imported from reference games. Every walking floor uses quarter-data.mjs. */
 import * as T from './vendor/three.module.js';
 import {clipBoom} from './camera-safety.mjs';
+import {readoutScale} from './label-sizing.mjs';
 import {QUARTER_BOUNDS,QUARTER_FLOORS,QUARTER_WALLS,QUARTER_SITES,surfaceY} from './quarter-data.mjs';
 import {inQuarter,quarterGround,quarterSurface} from './quarter-core.mjs';
 import {createPersonRig} from './character-rig.mjs';
 import {animatePerson,inspectMotion} from './character-motion.mjs';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+export function quarterSignObstructs(eye,anchor,sign){
+ const dz=anchor.z-eye.z;if(Math.abs(dz)<1e-7)return false;
+ const t=(sign.z-eye.z)/dz;if(t<=0||t>=1)return false;
+ return Math.abs(eye.x+(anchor.x-eye.x)*t-sign.x)<sign.width/2+.25&&Math.abs(eye.y+(anchor.y-eye.y)*t-sign.y)<sign.height/2+.25;
+}
 export function createQuarterArt({scene,renderer,camera,rider,m}){
  const root=new T.Group();root.name='Waterwheel Quarter / authored production district';root.visible=false;scene.add(root);
  const materials={brick:new T.MeshStandardMaterial({color:'#c3a989',roughness:.92}),stone:new T.MeshStandardMaterial({color:'#8d9990',roughness:.92}),wood:new T.MeshStandardMaterial({color:'#93704d',roughness:.82}),tile:new T.MeshStandardMaterial({color:'#b76845',roughness:.85}),wet:new T.MeshStandardMaterial({color:'#6c8a7e',roughness:.7}),plaster:new T.MeshStandardMaterial({color:'#e0cfa4',roughness:.95}),dark:new T.MeshStandardMaterial({color:'#544937',roughness:.8}),metal:new T.MeshStandardMaterial({color:'#b09858',metalness:.5,roughness:.45}),dye:new T.MeshStandardMaterial({color:'#657b9c',roughness:.8}),cream:new T.MeshStandardMaterial({color:'#f2dfad',roughness:.9})};
+ const signs=[];
  const unitBox=new T.BoxGeometry(1,1,1),unitCylinder=new T.CylinderGeometry(1,1,1,12);
  function box(x,y,z,w,h,d,mat='wood'){const o=new T.Mesh(unitBox,materials[mat]||mat);o.position.set(x,y,z);o.scale.set(w,h,d);o.castShadow=true;o.receiveShadow=true;root.add(o);return o;}
  function cylinder(x,y,z,r,h,mat='wood'){const o=new T.Mesh(unitCylinder,materials[mat]||mat);o.position.set(x,y,z);o.scale.set(r,h,r);o.castShadow=true;root.add(o);return o;}
  function rod(a,b,width=.09,mat='wood'){const A=new T.Vector3(...a),B=new T.Vector3(...b),v=B.clone().sub(A),o=new T.Mesh(unitCylinder,materials[mat]);o.position.copy(A.add(B).multiplyScalar(.5));o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.clone().normalize());o.scale.set(width,v.length(),width);root.add(o);return o;}
- function label(text,x,y,z,size=3){const c=document.createElement('canvas');c.width=768;c.height=128;const g=c.getContext('2d');g.fillStyle='#253c38';g.fillRect(0,0,768,128);g.strokeStyle='#d3b47b';g.lineWidth=5;g.strokeRect(5,5,758,118);g.fillStyle='#fff0c8';g.font='bold 32px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(text,384,64,720);const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;const o=new T.Mesh(new T.PlaneGeometry(size,size/6),new T.MeshBasicMaterial({map:texture,side:T.FrontSide,toneMapped:false}));o.position.set(x,y,z);const reverse=new T.Mesh(o.geometry,o.material);reverse.rotation.y=Math.PI;reverse.position.z=-.012;o.add(reverse);root.add(o);return o;}
+ function label(text,x,y,z,size=3){const c=document.createElement('canvas');c.width=768;c.height=128;const g=c.getContext('2d');g.fillStyle='#253c38';g.fillRect(0,0,768,128);g.strokeStyle='#d3b47b';g.lineWidth=5;g.strokeRect(5,5,758,118);g.fillStyle='#fff0c8';g.font='bold 32px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(text,384,64,720);const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;const o=new T.Mesh(new T.PlaneGeometry(size,size/6),new T.MeshBasicMaterial({map:texture,side:T.FrontSide,toneMapped:false}));o.position.set(x,y,z);const reverse=new T.Mesh(o.geometry,o.material);reverse.rotation.y=Math.PI;reverse.position.z=-.012;o.add(reverse);root.add(o);signs.push({mesh:o,width:size,height:size/6,desktopScale:1,desktopVisible:true});return o;}
  const floorMeshes=new Map(),wallMeshes=new Map(),water=[];
  // A masonry bed joins the district into one place rather than floating decks.
  // Its surface stays below all authorized floors; it creates no walkable route.
@@ -60,7 +67,7 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
  box(-20,4.42,-17.1,13,.24,3,'tile');box(-20,1.65,-16.13,2.3,3.3,.1,'dark');
  label("LEONARDO / SHARED INVENTIONS",-20,3.55,-16.03,8);
  label('MARTA / PRECISION WORK',16,2.8,-12.19,7);label('ILARIA / DYE AND FINISH',-23,2.3,-4.2,5);
- label('GOODS GALLERY / ROOF AND CELLAR CONNECTIONS',2,5.6,12,12);
+ label('GOODS GALLERY / ROOF AND CELLAR CONNECTIONS',2,5.8,15.9,6);
  for(const x of[-17.95,-14.05])box(x,1.9,-3.8,.22,3.8,.6,'stone');box(-16,3.6,-3.8,4.2,.32,.65,'stone');rod([-16.8,3.8,-4.1],[-16.8,4.45,-4.1],.08,'metal');rod([-16.8,4.4,-4.1],[-16.25,4.4,-4.1],.06,'metal');cylinder(-16.3,4.2,-4.1,.17,.25,'metal');label('THE BELL-BRACKET ARCH',-16,2.9,-4.1,3.3);
  for(const [x,z]of [[-25,-1],[-25,-3]]){cylinder(x,.47,z,.57,.95,'wood');cylinder(x,.99,z,.52,.04,'dye');}
  for(const z of[20,22]){rod([-21,3.2,z],[-21,5.4,z],.06);rod([-15.8,3.2,z],[-15.8,5.4,z],.06);rod([-21,5.25,z],[-15.8,5.25,z],.04);for(let i=0;i<4;i++)box(-20.3+i*1.2,4.6,z,.95,1.2,.025,i%2?'cream':'dye');}
@@ -79,7 +86,7 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
  for(const list of groups.values()){const instanced=new T.InstancedMesh(list[0].geometry,list[0].material,list.length);list.forEach((o,i)=>{o.updateMatrix();instanced.setMatrixAt(i,o.matrix);root.remove(o);});instanced.instanceMatrix.needsUpdate=true;instanced.castShadow=true;instanced.receiveShadow=true;instanced.name='Batched authored architecture';root.add(instanced);}
  const cameraBoxes=QUARTER_WALLS.map(b=>({id:b.id,gate:b.gate,min:{x:b.x-b.hx,y:b.y,z:b.z-b.hz},max:{x:b.x+b.hx,y:b.y+b.h,z:b.z+b.hz}}));let cameraSafety={valid:false};
  let active=false,prior=new Map(),originalParent=null,background=null,fog=null,presentation='desktop',skipRender=false,lastState=null;
- function setPresentation(value){presentation=value;if(!lastState)return;const s=lastState,first=value==='first-person',diorama=value==='diorama';rider.root.visible=!first;marker.visible=!first;
+ function setPresentation(value){presentation=value;if(!lastState)return;const s=lastState,first=value==='first-person',diorama=value==='diorama';rider.root.visible=!first;marker.visible=!first;for(const sign of signs){sign.mesh.scale.setScalar(first||diorama?1:sign.desktopScale);sign.mesh.visible=first||diorama||sign.desktopVisible;}
   precisionRoof.visible=first||!(s.x>8&&s.x<23&&s.z>-13&&s.z<2);dyeRoof.visible=first||!(s.x<-20&&s.z<2);galleryCanopy.visible=first;
   for(const id of ['precision-front-left','precision-front-right'])wallMeshes.get(id).visible=!(diorama&&s.x>8&&s.z<1);
   floorMeshes.get('hoist-gallery').visible=first||s.quarter.groundY>-.4;
@@ -96,7 +103,12 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
   const trace=clipBoom(anchor,eye,cameraBoxes.filter(b=>!b.gate||!q[b.gate]));
   const xyz=v=>({x:v.x,y:v.y,z:v.z});cameraSafety={anchor:xyz(anchor),desired:xyz(eye),position:xyz(trace.position),obstacle:trace.obstacle,fraction:trace.fraction,valid:[trace.position.x,trace.position.y,trace.position.z].every(Number.isFinite)};
   eye.copy(trace.position);
-  camera.position.copy(eye);camera.lookAt(anchor);camera.updateMatrixWorld(true);setPresentation(presentation);if(!skipRender)renderer.render(scene,camera);return true;
+  camera.position.copy(eye);camera.lookAt(anchor);camera.updateMatrixWorld(true);
+  // Readouts are not opaque walls between the player and the camera. Keep
+  // ordinary text screen-bounded; miniature/first-person retain authored size.
+  const screenHeight=renderer.domElement?.clientHeight||800;
+  for(const sign of signs){const p=sign.mesh.position;sign.desktopScale=readoutScale({depth:p.distanceTo(camera.position),width:sign.width,height:sign.height,viewportHeight:screenHeight,fov:camera.fov});sign.desktopVisible=!quarterSignObstructs(camera.position,anchor,{x:p.x,y:p.y,z:p.z,width:sign.width,height:sign.height});}
+  setPresentation(presentation);if(!skipRender)renderer.render(scene,camera);return true;
  }
- return {root,update,deactivate,setPresentation,setSkipRender:value=>skipRender=!!value,available:()=>active,bounds:QUARTER_BOUNDS,inspect:()=>({active,revision:'waterwheel-1',floorCount:QUARTER_FLOORS.length,cameraSafety,actors:npcs.size,character:inspectMotion(rider),water:lastState?.quarter.waterY,physicalScene:true,presentation,skipRender})};
+ return {root,update,deactivate,setPresentation,setSkipRender:value=>skipRender=!!value,available:()=>active,bounds:QUARTER_BOUNDS,inspect:()=>({active,revision:'waterwheel-1',floorCount:QUARTER_FLOORS.length,cameraSafety,readouts:{count:signs.length,hidden:signs.filter(s=>!s.desktopVisible).length},actors:npcs.size,character:inspectMotion(rider),water:lastState?.quarter.waterY,physicalScene:true,presentation,skipRender})};
 }

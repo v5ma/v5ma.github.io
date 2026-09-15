@@ -34,3 +34,23 @@ test('The authored arrival camera stops in front of the workshop facade instead 
 test('Adding the workshop camera wall preserves the porch, exit and both logical sides of the shortcut',()=>{
  const s=fresh();for(const [x,z]of[[-20,-13],[-24,-14],[-16,-11],[-16,-6]]){s.quarter.groundY=0;assert.equal(quarterBlocked(s,x,z,.35),false);}
 });
+
+import {quarterSignObstructs} from '../quarter-art.mjs';
+test('A large gallery readout cannot hide the apprentice from the actual game camera',()=>{
+ const eye={x:1.8,y:7.8,z:7.5},anchor={x:1.8,y:4.4,z:14};
+ assert.equal(quarterSignObstructs(eye,anchor,{x:2,y:5.6,z:12,width:12,height:2}),true);
+ assert.equal(quarterSignObstructs(eye,anchor,{x:2,y:5.8,z:15.9,width:6,height:1}),false);
+ assert.equal(quarterSignObstructs(eye,anchor,{x:14,y:5.6,z:12,width:3,height:.5}),false);
+});
+
+import {readFileSync,existsSync} from 'node:fs';
+test('The authored opening retains all required established DOM bindings and unique identifiers',()=>{
+ const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+ const ids=[...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
+ for(const id of ['adventures-button','dispatch-button','notebook-button','settings-button','pause-button','city-map','show-joystick','graphics-quality','settings-close','map-close','reset','resume-info','game-title','move-stick','touch-ride','start','resume','sound'])assert.ok(ids.includes(id),'Missing live DOM binding: '+id);
+});
+test('The new opening keeps the nine local stylesheets required by the existing game and modal UI',()=>{
+ const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+ const styles=[...html.matchAll(/rel="stylesheet" href="([^"]+)"/g)].map(m=>m[1]);
+ assert.equal(styles.length,9);for(const name of styles){assert.ok(name.startsWith('./'));assert.ok(existsSync(new URL('../'+name,import.meta.url)),name);}
+});

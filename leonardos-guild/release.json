@@ -146,7 +146,6 @@
     "placement": "Optional AR hit test with explicit manual fallback",
     "firstPerson": "Metric stereo view, snap turning, stable head origin and clipping guard"
   },
-  "publicationStatus": "candidate-native-acceptance-in-progress",
   "refinement": {
     "roadmapItems": [
       "NEXT02",
@@ -154,7 +153,7 @@
       "F03"
     ],
     "sourceBaseline": "9a55d133dc7737de04a2601c100c5f8ec263a5fd",
-    "localValidation": "288 passing Node model/adapter tests; no native browser acceptance in this session",
+    "localValidation": "Recovered 288-test baseline; current 325-test CPU suite plus separate native release gates",
     "saveMigration": false,
     "newAudioEvents": false,
     "changes": [
@@ -168,7 +167,7 @@
       "focus-following XR menu pages"
     ],
     "handoff": "WATERWHEEL-QUARTER.md",
-    "status": "Recovered into this candidate; native acceptance pending"
+    "status": "Recovered into this release; see exact-source acceptance record"
   },
   "quarter": {
     "revision": "waterwheel-1",
@@ -199,5 +198,6 @@
     "save": "Validated additive quarter inside original version-2 namespace",
     "oldCampaign": "Retained and accessible at the Quarter departure station",
     "limits": "First authored opening district; the remaining city is not yet reauthored."
-  }
+  },
+  "verificationRecord": "PR157 and PUBLICATION.md record exact-source acceptance and deployment; a version label alone does not establish publication."
 }
