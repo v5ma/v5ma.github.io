@@ -11,7 +11,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
@@ -24,10 +24,14 @@ jobs:
         with:
           node-version: '22'
       - name: Source and controller regression
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p test-output
           node --test rainward/tests/*.test.mjs | tee test-output/node-models.txt
           python -m compileall -q rainward/tests
+          python rainward/tools/build-production-plan.py
+          git diff --exit-code -- rainward/AAA_CHECKLIST.md
       - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
@@ -39,7 +43,7 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          timeout 780 python -u rainward/tests/quest-browser.py
+          timeout 1080 python -u rainward/tests/quest-browser.py
       - name: Retain exact source and failures
         if: always()
         run: |
