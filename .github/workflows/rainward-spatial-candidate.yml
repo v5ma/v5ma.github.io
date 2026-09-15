@@ -9,11 +9,9 @@ concurrency:
   group: rainward-spatial-candidate
   cancel-in-progress: true
 jobs:
-  integrate:
+  integrated-native-review:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
-    outputs:
-      sha: ${{ steps.commit.outputs.sha }}
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,77 +19,44 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Assemble only scoped source and keep all model assertions
+      - name: Apply scoped corrections and production metadata
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p test-output
           python rainward/tools/apply-spatial.py
+          python rainward/tools/refine-spatial.py
           node --test rainward/tests/*.test.mjs | tee test-output/node-models.txt
           python -m compileall -q rainward/tests
-      - name: Commit the exact candidate before native acceptance
-        id: commit
+      - name: Commit exact source before browser acceptance
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/app.mjs rainward/quest-xr.mjs rainward/xr-panel.mjs rainward/scene.mjs rainward/world.mjs rainward/state.mjs rainward/district.mjs rainward/field-tasks.mjs rainward/tests/reclaimed.test.mjs rainward/tests/quest-device-mock.js rainward/SPATIAL-INTEGRATION.json
+          git add rainward/app.mjs rainward/quest-xr.mjs rainward/xr-panel.mjs rainward/scene.mjs rainward/world.mjs rainward/state.mjs rainward/district.mjs rainward/field-tasks.mjs rainward/diorama-view.mjs rainward/tests/reclaimed.test.mjs rainward/tests/quest-device-mock.js rainward/tests/terminus.py rainward/tests/diorama.test.mjs rainward/tests/diorama-browser.py rainward/SPATIAL-INTEGRATION.json rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/AGENTS.md rainward/index.html
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate selectable AR VR dioramas and the clinic-market replacement slice'
+            git commit -m 'Harden spatial view entry and preserve the authored replacement production contract'
             git push origin HEAD:feat/rainward-quest-fieldwork-20260915
           fi
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: rainward-spatial-models
-          path: test-output/
-          retention-days: 14
-  browser:
-    needs: integrate
-    runs-on: ubuntu-latest
-    timeout-minutes: 22
-    permissions:
-      contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - view: diorama-vr
-            kind: controllers
-          - view: diorama-vr
-            kind: hands
-          - view: diorama-ar
-            kind: controllers
-          - view: diorama-ar
-            kind: hands
-          - view: recut
-            kind: xbox
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.integrate.outputs.sha }}
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Install native browser
+      - name: Install native WebGL browser
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Real HTTP and WebGL acceptance
-        env:
-          XR_VIEW: ${{ matrix.view }}
-          QUEST_KIND: ${{ matrix.kind }}
+      - name: All four diorama combinations and physical graybox routes
+        shell: bash
         run: |
+          set -euo pipefail
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          if [ "$XR_VIEW" = recut ]; then
-            timeout 1100 python -u rainward/tests/recut-browser.py
-          else
-            timeout 1100 python -u rainward/tests/diorama-browser.py
-          fi
-      - name: Preserve exact source, images and failed evidence
+          RESULT=0
+          for VIEW in diorama-vr diorama-ar; do
+            for KIND in controllers hands; do
+              XR_VIEW="$VIEW" QUEST_KIND="$KIND" timeout 390 python -u rainward/tests/diorama-browser.py || RESULT=1
+            done
+          done
+          timeout 800 python -u rainward/tests/recut-browser.py || RESULT=1
+          exit "$RESULT"
+      - name: Preserve exact source and all failures
         if: always()
         run: |
           mkdir -p test-output
@@ -102,6 +67,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rainward-spatial-${{ matrix.view }}-${{ matrix.kind }}
+          name: rainward-spatial-integrated
           path: test-output/
           retention-days: 14
