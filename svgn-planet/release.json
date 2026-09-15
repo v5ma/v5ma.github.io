@@ -17,12 +17,17 @@
     "Direct Xbox actions and tracked-controller/joint-pinch XR panels",
     "Separate chapter/layout save, guarded backups and original game retained byte-for-byte"
   ],
-  "acceptance": "Candidate; awaiting exact-source and published browser verification",
-  "evidence": "lantern/acceptance.json",
+  "acceptance": "All 208 model tests and nine browser suites passed; live publication pending.",
+  "evidence": "production/evidence/lantern-0.12.0/candidate.json",
   "validation": {
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwareFrameTargetCertified": false,
-    "humanLevelApproval": false
-  }
+    "humanLevelApproval": false,
+    "unitTestsPassed": 208,
+    "browserSuitesPassed": 9,
+    "browserChecksPassed": 132
+  },
+  "testedCommit": "c7635260af059b991ae8454a94304fba6adceadf",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35015525054"
 }

@@ -898,14 +898,15 @@
       "id": "LEVEL-01",
       "milestone": "M1",
       "priority": "P0",
-      "status": "implemented",
+      "status": "needs-playtest",
       "title": "Authored Lantern Ward replacement chapter",
       "acceptance": "Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.",
-      "next": "Pass exact-source browser tours, then test unfamiliar-player understanding and replay agency.",
+      "next": "Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
-        "../lantern/acceptance.json"
+        "../lantern/acceptance.json",
+        "evidence/lantern-0.12.0/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-15"
@@ -914,14 +915,15 @@
       "id": "XR-02",
       "milestone": "M1",
       "priority": "P0",
-      "status": "implemented",
+      "status": "needs-playtest",
       "title": "Native first-person and actual-geometry VR/AR dioramas",
       "acceptance": "Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.",
-      "next": "Pass native synthetic session tests; then measure actual Quest 3 comfort, Touch Plus, hand tracking and performance.",
+      "next": "Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
-        "../lantern/acceptance.json"
+        "../lantern/acceptance.json",
+        "evidence/lantern-0.12.0/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-15"
@@ -930,14 +932,15 @@
       "id": "LEGACY-01",
       "milestone": "M1",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "title": "Versioned original-world preservation",
       "acceptance": "Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.",
-      "next": "Keep legacy hash checks and all five legacy browser regressions passing.",
+      "next": "Keep the 102 frozen legacy file hashes and all five retained browser suites passing in future upgrades.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
-        "../lantern/acceptance.json"
+        "../lantern/acceptance.json",
+        "evidence/lantern-0.12.0/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-15"

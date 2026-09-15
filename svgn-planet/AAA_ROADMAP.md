@@ -132,23 +132,23 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
   Owner role: Real-device QA / user. Dependencies: SLICE-03, ART-01, ART-02, ART-03, PLAY-01.
   Evidence: Not recorded.
 
-- [ ] LEVEL-01 / P0 / implemented / Authored Lantern Ward replacement chapter
+- [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.
-  Next: Pass exact-source browser tours, then test unfamiliar-player understanding and replay agency.
+  Next: Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
 
-- [ ] XR-02 / P0 / implemented / Native first-person and actual-geometry VR/AR dioramas
+- [ ] XR-02 / P0 / needs-playtest / Native first-person and actual-geometry VR/AR dioramas
   Acceptance: Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.
-  Next: Pass native synthetic session tests; then measure actual Quest 3 comfort, Touch Plus, hand tracking and performance.
+  Next: Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
 
-- [ ] LEGACY-01 / P0 / implemented / Versioned original-world preservation
+- [x] LEGACY-01 / P0 / verified / Versioned original-world preservation
   Acceptance: Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.
-  Next: Keep legacy hash checks and all five legacy browser regressions passing.
+  Next: Keep the 102 frozen legacy file hashes and all five retained browser suites passing in future upgrades.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
 
 ## M2 / A city with a reason to exist
 
