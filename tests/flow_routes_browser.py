@@ -30,7 +30,7 @@ with sync_playwright() as p:
   if MODE=='editor':
    page.locator('#delivery-header [data-delivery="editor"]').click();page.wait_for_function('RouteWorkshop.active')
    page.locator('#maker-route').select_option('4');page.locator('#route-workshop [data-mk="route"]').click()
-   check(page.evaluate('RouteWorkshop.state.doc.paths.length===16&&RouteWorkshop.state.doc.extra.gp.flowRoutes.version===3'),'The real Workshop loads the full authored first chapter with its optional relay')
+   check(page.evaluate('RouteWorkshop.state.doc.paths.map(p=>p.meta?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"&&RouteWorkshop.state.doc.extra.gp.flowRoutes.version===3'),'The real Workshop loads the full authored first chapter with its optional relay')
    code=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')
    page.locator('#maker-sector').select_option('1');page.screenshot(path=str(OUT/'clocktower-editor.png'))
    page.locator('#maker-outline [data-track="0"]').click();page.locator('#maker-x').fill('518');page.locator('#maker-x').press('Tab')

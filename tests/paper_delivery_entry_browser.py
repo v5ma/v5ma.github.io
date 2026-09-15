@@ -44,7 +44,7 @@ with sync_playwright() as p:
         check(page.evaluate('PaperDeliveryRelease.build')==manifest['build'],'The running build matches the source manifest')
         page.locator('[data-course="4"]').click()
         page.wait_for_function('SkyRelay.active()&&player.onGround')
-        check(page.evaluate('tracks.length===16&&tracks.some(t=>t.sky.id===SkyRelay.ID)&&__grapple.pegs().some(p=>p.id===SkyRelay.PEG.id)'),'The actual campaign contains the new receiving rail and relay peg')
+        check(page.evaluate('tracks.map(t=>t.sky?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"&&tracks.some(t=>t.sky.id===SkyRelay.ID)&&__grapple.pegs().some(p=>p.id===SkyRelay.PEG.id)'),'The actual campaign contains the new receiving rail and relay peg')
         check(page.evaluate('__merged.camera.isPerspectiveCamera&&__delivery.state.view==="3d"'),'The route starts in the real 3D renderer')
         page.screenshot(path=str(OUT/'online-game.png'))
         if MODE=='desktop':
@@ -52,7 +52,7 @@ with sync_playwright() as p:
             check(page.evaluate('tries===1&&!won'),'Ordinary movement advances the live player without retry or forced completion')
             page.locator('#delivery-header [data-delivery="editor"]').click();page.wait_for_function('RouteWorkshop.active')
             page.locator('#maker-route').select_option('4');page.locator('#route-workshop [data-mk="route"]').click()
-            check(page.evaluate('RouteWorkshop.state.doc.paths.length===16'),'Create loads the same expanded sixteen-surface level')
+            check(page.evaluate('RouteWorkshop.state.doc.paths.map(p=>p.meta?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"'),'Create loads the same expanded seventeen-surface level')
             original=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')
             page.locator('#maker-outline [data-track="15"]').click();page.locator('#route-workshop [data-mk="focus"]').click()
             page.locator('#maker-x').fill('5268');page.locator('#maker-x').press('Tab')

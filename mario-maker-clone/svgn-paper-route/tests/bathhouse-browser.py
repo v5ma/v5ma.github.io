@@ -41,12 +41,14 @@ with sync_playwright() as pw:
   page.wait_for_function('won && __delivery.state.route===SkyCycleBathhouse.index',timeout=180000);page.keyboard.up('KeyD');runs.append({'label':label,**sample()});check(runs[-1]['tries']==1,label+' reaches the genuine finish without retries');page.screenshot(path=str(OUT/(label+'-finish.png')))
  try:
   page.goto(BASE+'?destination=tideglass-baths',wait_until='domcontentloaded');page.bring_to_front();page.wait_for_function('window.SkyCycleBathhouse?.state && player.onGround && SkyCycleBathhouse.art?.waterDraws>0')
-  check(page.evaluate('PaperDeliveryRelease.version==="0.21.0" && __delivery.state.route===7'),'Direct destination link starts the appended Tideglass level')
+  check(page.evaluate('PaperDeliveryRelease.version==="0.22.0" && __delivery.state.route===7'),'Direct destination link starts the appended Tideglass level')
   check(page.evaluate('DeliveryCampaign.routes.length===8 && DeliveryCampaign.routes[4].id==="first-neighborhood"'),'All seven old route indices remain intact')
   check(page.evaluate('SkyCycleBathhouse.art.pools===3 && SkyCycleBathhouse.art.tileDraws>0 && SkyCycleBathhouse.art.portalDraws>0'),'Three pools, tiled surfaces and animated portal materials draw in the real 3D scene')
   check(page.evaluate('!tracks.some(t=>t.sky?.id==="bathhouse-waterline")'),'Closed sluice does not expose the optional collision rail')
   page.wait_for_function('!document.getElementById("bathhouse-objective").hidden')
-  check(page.evaluate('(()=>{const a=document.getElementById("bathhouse-objective").getBoundingClientRect(),b=document.querySelector("#cloud-hud .cloud-flight-status").getBoundingClientRect();return a.bottom+5<=b.top;})()'),'Destination objective does not cover existing riding instruments')
+  # Wait for measured layout, not just visibility; keep the original 5-pixel clearance gate.
+  page.wait_for_function('(()=>{const a=document.getElementById("bathhouse-objective").getBoundingClientRect(),b=document.querySelector("#cloud-hud .cloud-flight-status").getBoundingClientRect();return a.height>0&&b.height>0&&a.bottom+5<=b.top;})()',timeout=15000)
+  check(True,'Destination objective does not cover existing riding instruments')
   page.screenshot(path=str(OUT/'tideglass-arrival-3d.png'))
   page.set_viewport_size({'width':390,'height':844})
   page.wait_for_function('(()=>{const a=document.getElementById("bathhouse-objective").getBoundingClientRect(),b=document.querySelector("#cloud-hud .cloud-flight-status").getBoundingClientRect();return a.height>0&&a.bottom+5<=b.top;})()')

@@ -54,7 +54,7 @@ with sync_playwright() as p:
     check(page.locator('[data-course="4"]').is_enabled(),scenario+': the current campaign becomes selectable')
     page.locator('[data-course="4"]').click()
     page.wait_for_function('SkyRelay.active()&&player.onGround')
-    check(page.evaluate('tracks.length===16&&tracks.some(t=>t.sky.id===SkyRelay.ID)'),scenario+': the menu starts the same expanded level as the editor')
+    check(page.evaluate('tracks.map(t=>t.sky?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"&&tracks.some(t=>t.sky.id===SkyRelay.ID)'),scenario+': the menu starts the same expanded level as the editor')
     check(page.evaluate('__ground.state.events.filter(e=>e.type==="start").length===1'),scenario+': one click spawns exactly one run')
     if scenario=='optional-tools-fail':
      page.locator('#cv').focus();page.keyboard.down('KeyD')

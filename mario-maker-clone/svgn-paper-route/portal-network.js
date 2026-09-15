@@ -10,7 +10,7 @@ export function createAtlas({recordText}){
  function preview(d,audible=false){selected=d.id;atlas.style.setProperty('--portal-color',d.color);atlas.dataset.pattern=d.pattern;$('portal-name').textContent=d.name;$('portal-subtitle').textContent=d.slot+' / '+d.subtitle;$('portal-description').textContent=d.description;$('bathhouse-record').textContent=d.id==='tideglass-baths'?recordText():'All banked Sunrise progress remains in its existing save namespace.';
   for(const b of $('portal-destinations').children)b.setAttribute('aria-current',String(b.dataset.destination===selected));
   // A bounded cue reuses the existing effects bus and its mute/gain ownership.
-  if(audible&&performance.now()-lastCue>900){lastCue=performance.now();window.beep?.(d.tone,.16,'sine',.025,12);}
+  if(audible&&performance.now()-lastCue>900){lastCue=performance.now();if(window.SkyCycleSensory)window.SkyCycleSensory.portalCue(d.tone);else window.beep?.(d.tone,.16,'sine',.025,12);}
  }
  function refresh(){for(const b of $('portal-destinations').children){const g=gate(b.dataset.destination);b.disabled=!g.ok;b.title=g.ok?'Starts a new run':g.reason;}$('bathhouse-departure').textContent=gate(selected).ok?DEPARTURE:gate(selected).reason;}
  function travel(id){const g=gate(id);if(!g.ok){$('bathhouse-departure').textContent=g.reason;refresh();return false;}

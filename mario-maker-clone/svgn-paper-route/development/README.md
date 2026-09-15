@@ -1,3 +1,11 @@
+# Current continuation: Quiet Water v0.22.0
+
+Read `QUIET-WATER-0.22.md` and `verification/quiet-water-0.22.json` first. The receipt, not a version label or branch commit, determines acceptance and publication. This slice adds bounded water ambience, transient-intensity and optional-notice controls on the existing audio owner, Xbox/hand-XR settings coverage, measured HUD readiness and explicit shipped-rail identity checks. Gameplay, saves, rider IK and XR rendering stay intact. Older material below is retained as history.
+
+Next: full optional canal-sequence replay and physical Quest 3/Xbox/listening/comfort qualification. No new destination or completed AAA milestone is claimed.
+
+---
+
 # Sky Cycle development: start here
 
 Updated September 15, 2026. Continue the existing game in `mario-maker-clone/svgn-paper-route/`; do not build a replacement prototype. Read `RESUME-HERE.md` and the current versioned receipt before coding.

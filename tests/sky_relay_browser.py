@@ -23,7 +23,7 @@ with sync_playwright() as p:
   page.goto(BASE+'/mario-maker-clone/svgn-paper-route/index.html',wait_until='domcontentloaded');page.wait_for_function('window.SkyRelayReady&&window.__gpuReady===true')
   if MODE=='editor':
    page.locator('#delivery-header [data-delivery="editor"]').click();page.wait_for_function('RouteWorkshop.active');page.locator('#maker-route').select_option('4');page.locator('[data-mk="route"]').click()
-   records=page.evaluate('localStorage.getItem("svgn_delivery_records_v1")');original=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)');check(page.evaluate('RouteWorkshop.state.doc.paths.length===16&&RouteWorkshop.state.doc.extra.gp.skyRelay.version===1'),'The complete sixteen-surface world and relay metadata load in the real Workshop')
+   records=page.evaluate('localStorage.getItem("svgn_delivery_records_v1")');original=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)');check(page.evaluate('RouteWorkshop.state.doc.paths.map(p=>p.meta?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"&&RouteWorkshop.state.doc.extra.gp.skyRelay.version===1'),'The complete seventeen-surface world and relay metadata load in the real Workshop')
    page.locator('#maker-outline [data-track="15"]').click();page.locator('[data-mk="focus"]').click();page.screenshot(path=str(OUT/'editable-relay.png'))
    page.locator('#maker-x').fill('5268');page.locator('#maker-x').press('Tab');check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')!=original,'The new receiving surface is editable, not locked artwork')
    page.locator('[data-mk="undo"]').click();check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==original,'Undo restores the receiving geometry and metadata exactly')
@@ -33,7 +33,7 @@ with sync_playwright() as p:
    page.locator('#maker-return').click();check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==original,'Returning from 3D playtest preserves the entire draft');check(page.evaluate('localStorage.getItem("svgn_delivery_records_v1")')==records,'Editor and preview do not write campaign medals')
   else:
    page.locator('[data-course="4"]').click();page.wait_for_function('SkyRelay.active()&&player.onGround');page.locator('#cv').focus()
-   check(page.evaluate('tracks.length===16&&__grapple.pegs().length===2'),'One real receiving road and peg supplement the existing authored chapter')
+   check(page.evaluate('tracks.map(t=>t.sky?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"&&__grapple.pegs().length===2'),'One real receiving road and peg supplement the existing authored chapter')
    check(page.evaluate('__merged.camera.isPerspectiveCamera&&__delivery.state.view==="3d"'),'The test uses the actual perspective renderer')
    page.keyboard.down('KeyD');page.wait_for_function('player.x>=320',timeout=120000);page.keyboard.down('Space');page.wait_for_function('player.track?.sky.id==="m0"',timeout=45000);page.keyboard.up('Space')
    page.wait_for_function('player.track?.sky.id==="m5"',timeout=360000)
@@ -65,7 +65,7 @@ with sync_playwright() as p:
     check(sum(e['type']=='relay' for e in result['relay']['events'])==1,'The bonus is not awarded repeatedly while riding the balcony')
    (OUT/'run.json').write_text(json.dumps(result,indent=2));page.screenshot(path=str(OUT/'route-finish.png'))
    page.locator('#delivery-results [data-delivery="retry"]').click();page.wait_for_function('SkyRelay.active()&&player.onGround&&!won')
-   check(page.evaluate('tracks.length===16&&!SkyRelay.state.awarded&&!SkyRelay.state.release'),'Run it again uses the current level builder and resets the new-run award')
+   check(page.evaluate('tracks.map(t=>t.sky?.id).join(",")==="m0,m1,m2,m3,m4,m5,m6,m8,b0,b1,b2,m7,m9,e4,e2,cloudpost-relay,sunrise-market"&&!SkyRelay.state.awarded&&!SkyRelay.state.release'),'Run it again uses the current level builder and resets the new-run award')
   check(not errors,'No uncaught errors in the tested game and editor flow')
   (OUT/'report.json').write_text(json.dumps({'suite':MODE,'passed':len(checks),'checks':checks,'errors':errors,'scope':'Real HTTP/software WebGL; ordinary pointer, keyboard and file actions. No live position, velocity, score or progress assignments; not a physical-device performance certification.'},indent=2))
  except Exception as e:
