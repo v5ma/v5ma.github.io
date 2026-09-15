@@ -1,3 +1,4 @@
+import {BELL_DECKS,BELL_STREET_SOLIDS,BELL_SHORTCUT,bellShortcutOpen} from './bellwether-layout.mjs';
 import {createBellwether,cleanBellwether,bellSnapshot} from './bellwether-core.mjs';
 import {BELL_NOTE,BELL_COVER} from './bellwether-world.mjs';
 export {bellSnapshot};
@@ -15,7 +16,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.11.0';
+export const VERSION='0.12.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -75,11 +76,11 @@ export const BUILDINGS=[
 ];
 // Relays and notes sit outside solid buildings, intentionally reachable on foot.
 RELAYS[0].x=64;RELAYS[1].x=-28;
-export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b.h+4,z1:b.z-b.d/2,z2:b.z+b.d/2})).concat(ROOM_SOLIDS,COVER);
+export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b.h+4,z1:b.z-b.d/2,z2:b.z+b.d/2})).concat(ROOM_SOLIDS,COVER,BELL_STREET_SOLIDS);
 export const COMBAT_COVER=buildCombatCover(DISTRICTS,{solids:SOLIDS,keepouts:[...RELAYS,...RECORDS,EXTRACTION,...DEPOTS,...CACHES,...THINGS,...POSTS,...RIFTS,...LADDERS.flatMap(r=>r.points.map(p=>({x:p[0],y:p[1],z:p[2]})))],bridges:BRIDGES,rails:RAILS});
 SOLIDS.push(...COMBAT_COVER.map(asBox),...BELL_COVER.map(asBox));
-const deckSolids=[...DISTRICTS,...TERRACES,...COMBAT_DECKS].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
-const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids,riftSolid(s));
+const deckSolids=[...DISTRICTS,...TERRACES,...COMBAT_DECKS,...BELL_DECKS].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
+const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids,riftSolid(s),bellShortcutOpen(s)?[]:[BELL_SHORTCUT]);
 const tactical=createTactics({solids:SOLIDS,clearLine,rayBox,raySphere,forward,emit,defeated,hurt});
 const skirmish=createSkirmish({groundAt,occupied,clearLine,forward,emit,defeated,equip,weaponStats,weapons:WEAPONS,nearby,interact,reload:reloadWeapon,detach,cover:COMBAT_COVER});
 const bellwether=createBellwether({emit,clearLine,groundAt,occupied,drop:(s,b)=>skirmish.drop(s,b)});
@@ -94,7 +95,7 @@ export function nearestRail(p,max=4.3,ignore=null){let best=null;for(const r of 
  if(d<max&&(!best||d<best.distance))best={rail:r,s:r.cum[i-1]+Math.sqrt(len2)*t,distance:d,point:q};
  }return best;}
 export function groundAt(x,z,under=Infinity){let y=-Infinity,id=null;
- for(const p of [...DISTRICTS,...TERRACES,...COMBAT_DECKS])if(Math.abs(x-p.x)<=p.w/2&&Math.abs(z-p.z)<=p.d/2&&p.y<=under&&p.y>y){y=p.y;id=p.id;}
+ for(const p of [...DISTRICTS,...TERRACES,...COMBAT_DECKS,...BELL_DECKS])if(Math.abs(x-p.x)<=p.w/2&&Math.abs(z-p.z)<=p.d/2&&p.y<=under&&p.y>y){y=p.y;id=p.id;}
  for(const p of BRIDGES){const [ax,ay,az]=p.a,[bx,by,bz]=p.b,dx=bx-ax,dz=bz-az,l=Math.hypot(dx,dz),t=((x-ax)*dx+(z-az)*dz)/(l*l),side=Math.abs((x-ax)*dz-(z-az)*dx)/l,gy=ay+(by-ay)*t;if(t>=0&&t<=1&&side<p.width/2&&gy<=under&&gy>y){y=gy;id=p.id;}}
  return {y,id};
 }

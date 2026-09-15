@@ -1,6 +1,6 @@
 # Aether Reach
 
-Read DEVELOPMENT-HANDOFF.md, GROUNDED-CAST.md, DEVICE-SUPPORT.md and roadmap.json before editing. Continue the existing game, not the separate living-city experiment. Preserve version-1 expedition saves, user controller remaps, existing gameplay and other games in this repository.
+Read DEVELOPMENT-HANDOFF.md, BELLWETHER-REWIRED.md, DIORAMA.md, DEVICE-SUPPORT.md and roadmap.json before editing. The September 15 level-design replacement brief takes priority over adding unrelated features or more prototype islands. Finish Bellwether as a connected player experience before expanding other districts. Continue the existing game, not the separate living-city experiment. Preserve version-1 expedition saves, user controller remaps, existing gameplay and other games in this repository.
 
 Keep common actions on direct controller inputs. Support fixed A/B/directional menu navigation and the same actions in tracked-controller and hand spatial UI. Hands currently operate menus only, not combat or locomotion. Maintain neutral input re-arming after disconnects or tracking loss.
 

@@ -7,3 +7,4 @@ dialog :is(button,input,select,a,summary):focus,#menu :is(button,input,select,a)
 #controller-binding-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;}#controller-binding-grid label{display:flex;flex-direction:column;gap:8px;font:14px/1.5 system-ui;}#controller-binding-grid select,.settings-grid select{max-width:100%;min-height:38px;}
 #pause-dialog>button{margin:8px;display:inline-block;}#confirm-dialog{max-width:540px;}#confirm-message{line-height:1.7;}.confirmation-actions{display:flex;flex-wrap:wrap;gap:14px;margin:22px 0;}
 @media(max-width:680px){#controller-binding-grid{grid-template-columns:1fr;}#controller-gameplay-hints{bottom:4px;max-width:88vw;}#controller-menu-hints{font-size:11px;}}
+#presentation-dialog{width:min(780px,90vw)}#presentation-dialog>button{margin:6px;min-height:44px}#presentation-dialog select{max-width:100%;min-height:44px}body.diorama-preview #crosshair{display:none}

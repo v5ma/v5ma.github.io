@@ -1,6 +1,6 @@
 # Aether Reach
 
-Current source release: 0.11.0 Grounded Cast. See [GROUNDED-CAST.md](GROUNDED-CAST.md) and [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md) for scope, tests and remaining device acceptance. The canonical current plan is [roadmap.json](roadmap.json) and [planning/AAA-ROADMAP.md](planning/AAA-ROADMAP.md).
+Current source: 0.12.0 Bellwether Rewired. The first authored level-design replacement adds a connected maintenance ascent, circuit-unlocked service passage, induction practice and visible machine feedback. Optional first-person VR, third-person diorama VR and passthrough AR use the same expedition and version-1 saves. See [BELLWETHER-REWIRED.md](BELLWETHER-REWIRED.md), [DIORAMA.md](DIORAMA.md) and [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md). The canonical plan remains [roadmap.json](roadmap.json) and [planning/AAA-ROADMAP.md](planning/AAA-ROADMAP.md).
 
 The older release description below is historical, not the current version. Existing missions, saves, licensed local assets and controller bindings remain in place.
 

@@ -3,6 +3,7 @@ import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'aether-reach/test-output';OUT.mkdir(exist_ok=True)
+REWIRED=os.getenv('BELL_ROUTE')=='rewired'
 checks=[];errors=[];native=[]
 def check(ok,label):
  assert ok,label
@@ -43,7 +44,8 @@ with sync_playwright() as pw:
   check('sniper' in s()['carried'] and s()['credits']==100,'A real kiosk purchase equips the Longglass for the encounter')
   for x,z in [(-10,0),(-16,-6),(-70,-8),(-84,-4)]:walk(x,z)
   use('bell-dispatch');check(s()['bellwether']['stage']==1,'X starts the street encounter')
-  clear(['bell-blackout-street','bell-warden','bell-marshal'])
+  # Mission completion, not an impossible stationary shot at every optional guard behind the new cover.
+  clear(['bell-blackout-street'])
   p.wait_for_function('AetherReach.snapshot().bellwether.stage===2')
   check(s()['stats']['shots']>0,'Actual scoped fire clears the street; no enemy health or mission progress was assigned')
   p.screenshot(path=str(OUT/'blackout-street.png'))
@@ -59,8 +61,16 @@ with sync_playwright() as pw:
   for _ in range(3):use('bell-dial-2')
   for x,z in [(-99.5,-30),(-99,-26)]:walk(x,z)
   p.screenshot(path=str(OUT/'blackout-arcade.png'));use('bell-test');check(s()['bellwether']['stage']==3,'Three independently operated circuits open the rooftop objective')
-  for x,z in [(-103,-25),(-103,-21),(-95,-18),(-95,0),(-107,.1)]:walk(x,z)
-  use('roof-bell-ladder');p.evaluate('TestPad.axes([0,-1,0,0])');p.wait_for_function('!AetherReach.snapshot().climb&&AetherReach.snapshot().grounded&&AetherReach.snapshot().position.y>27');p.evaluate('BlackoutDriver.neutral()')
+  if REWIRED:
+   check(s()['bellwetherArt']['refit']['shortcutOpen'],'Circuit success visibly opens the collision-backed service shutter')
+   for x,z in [(-103,-25),(-107.5,-28),(-111.5,-28),(-114.5,-28),(-114.5,-18),(-95,-18),(-95.8,-21)]:walk(x,z)
+   for x,z in [(-95.8,-34),(-99,-35.5),(-103,-30),(-103,-24),(-115.2,-22),(-115.2,-18.5),(-114.5,-18.5),(-102,-18.5),(-99,-18.5),(-99,-6),(-101.5,-6),(-104,-4)]:
+    p.evaluate('([x,z])=>BlackoutDriver.walk(x,z,160000,.13)',[x,z])
+   check(s()['position']['y']>27 and s()['grounded'],'Ordinary controller movement completes the continuous maintenance ascent')
+   p.screenshot(path=str(OUT/'rewired-gallery-arrival.png'))
+  else:
+   for x,z in [(-103,-25),(-103,-21),(-95,-18),(-95,0),(-107,.1)]:walk(x,z)
+   use('roof-bell-ladder');p.evaluate('TestPad.axes([0,-1,0,0])');p.wait_for_function('!AetherReach.snapshot().climb&&AetherReach.snapshot().grounded&&AetherReach.snapshot().position.y>27');p.evaluate('BlackoutDriver.neutral()')
   walk(-111,-3);walk(-111,-6);use('bell-signal');clear(['bell-blackout-roof'])
   p.wait_for_function('AetherReach.snapshot().enemies.some(e=>e.id.includes("bell-blackout-guardian")&&e.hp>0)')
   clear(['bell-blackout-guardian']);p.wait_for_function('AetherReach.snapshot().bellwether.stage===5')
@@ -73,11 +83,11 @@ with sync_playwright() as pw:
   p.screenshot(path=str(OUT/'blackout-completed-journal.png'));tap(1);go('#return-title');go('#continue')
   check(s()['bellwether']['stage']==6 and s()['bellwetherArt']['restored'],'The completed mission and repaired lights survive save/continue')
   check(not native,'No native alert or confirm blocks the controller-only journey');check(not errors,'No uncaught application errors through the full street-interior-rooftop loop')
-  (OUT/'bellwether-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'nativeDialogs':native,'snapshot':s(),'scope':'Real HTTP Chromium software WebGL with emulated Gamepad API. Light profile at 960x640 CSS, half pixel density. All progression via ordinary controller play. No physical hardware, listening or frame-rate certification.'},indent=2))
+  (OUT/('rewired-browser.json' if REWIRED else 'bellwether-browser.json')).write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'nativeDialogs':native,'snapshot':s(),'scope':'Real HTTP Chromium software WebGL with emulated Gamepad API. Light profile at 960x640 CSS, half pixel density. All progression via ordinary controller play. No physical hardware, listening or frame-rate certification.'},indent=2))
  except Exception as e:
   try:state=s()
   except:state=None
-  (OUT/'bellwether-failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2))
+  (OUT/('rewired-failure.json' if REWIRED else 'bellwether-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2))
   try:p.screenshot(path=str(OUT/'bellwether-failure.png'))
   except:pass
   raise
