@@ -18,9 +18,10 @@ with sync_playwright() as pw:
  p=c.new_page();p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:shader.append(m.text) if m.type=='error' and any(s in m.text for s in ['Shader Error','WebGLProgram','VALIDATE_STATUS']) else None)
  def snap():return p.evaluate('AetherReach.snapshot()')
  def frames(n=3):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f)}requestAnimationFrame(f)})',n)
- def tap(i):p.evaluate('(i)=>TestPad.button(i,true)',i);frames();p.evaluate('(i)=>TestPad.button(i,false)',i);frames()
+ # One sampled physical press; multi-frame holds correctly auto-repeat on a slow software GPU.
+ def tap(i):p.evaluate('(i)=>new Promise(resolve=>{TestPad.button(i,true);requestAnimationFrame(()=>{TestPad.button(i,false);requestAnimationFrame(()=>resolve());});})',i)
  def choose(sel):
-  for _ in range(70):
+  for _ in range(24):
    a,t=p.evaluate('''sel=>{const r=document.getElementById(AetherReach.snapshot().devices.menu),items=[...r.querySelectorAll('button,input:not([type="hidden"]),select,a[href]')].filter(e=>!e.disabled&&!e.hidden&&!e.closest('[hidden]')&&e.getClientRects().length);return[items.indexOf(document.activeElement),items.indexOf(r.querySelector(sel))]}''',sel)
    assert t>=0,sel
    if a==t:tap(0);return
