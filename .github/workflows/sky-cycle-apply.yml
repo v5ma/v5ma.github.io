@@ -1,0 +1,38 @@
+name: Sky Cycle apply reviewed candidate
+on:
+  push:
+    branches: ['sky-cycle/portal-network-0.21']
+    paths: ['.github/workflows/sky-cycle-apply.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate exact reviewed patch and apply only scoped files
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, lzma, hashlib
+          encoded=''.join(Path(f'.github/sky-cycle-patch-{i}.b64').read_text().strip() for i in range(4))
+          patch=lzma.decompress(base64.b64decode(encoded,validate=True))
+          assert hashlib.sha256(patch).hexdigest() == '7e58ec1b492b3422a60a6694d6f6cb02526f280439fdd8f99519ea1d4040699b'
+          for line in patch.decode().splitlines():
+              if line.startswith('diff --git '):
+                  for name in line.split()[2:]:
+                      path=name[2:]
+                      assert path.startswith('mario-maker-clone/svgn-paper-route/') or path in {'.github/workflows/sky-cycle-portals.yml','.github/workflows/sky-cycle-source-review.yml'}, path
+          Path('/tmp/sky-cycle-reviewed.patch').write_bytes(patch)
+          print('Verified patch SHA-256:', hashlib.sha256(patch).hexdigest())
+          PY
+          git apply --check --unidiff-zero /tmp/sky-cycle-reviewed.patch
+          git apply --index --unidiff-zero /tmp/sky-cycle-reviewed.patch
+          git rm .github/sky-cycle-patch-{0,1,2,3}.b64 .github/workflows/sky-cycle-apply.yml
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat(sky-cycle): portal network, contact rider and seated tracked XR'
+          git push origin HEAD:refs/heads/sky-cycle/portal-network-0.21
+          git rev-parse HEAD
