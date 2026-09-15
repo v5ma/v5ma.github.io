@@ -37,12 +37,13 @@ def walk(page,targets):
  finally:controls(set())
 def use(page):
  page.wait_for_function('!AetherReach.snapshot().paused')
- page.locator('#world').focus();page.keyboard.press('KeyE',delay=120);page.wait_for_timeout(150)
- if page.locator('#record-dialog[open]').count():page.locator('#record-dialog button').click()
+ page.locator('#world').focus();page.keyboard.press('KeyE',delay=120);page.evaluate('new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+ if page.locator('#record-dialog[open]').count():
+  page.locator('#record-dialog button').click();page.wait_for_function('!AetherReach.snapshot().paused&&!document.querySelector("dialog[open]")')
 with sync_playwright() as p:
  kw={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):kw['executable_path']=os.environ['CHROMIUM_PATH']
- b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block')
+ b=p.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.add_init_script("window.testKeyLog=[];window.addEventListener('keydown',e=>{if(['KeyE','KeyQ','KeyC'].includes(e.code)){testKeyLog.push({code:e.code,repeat:e.repeat,focus:e.target.tagName,state:window.AetherReach?.snapshot()});if(testKeyLog.length>16)testKeyLog.shift();}},true)")

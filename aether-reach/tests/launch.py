@@ -19,9 +19,9 @@ with sync_playwright() as p:
   check(page.locator('.project').count()>=len(required),'The public project page includes the little planet alongside every existing project')
   for route in required:
    # A quick-launch link outside the gallery is not a duplicate project card.
-   check(page.locator('.projects .project a.primary-link[href="./'+route+'"]').count()==1,'Homepage retains one playable project card: '+route)
+   check(page.locator('.projects .project a.primary-link').evaluate_all('(links,route)=>links.filter(a=>new URL(a.href).origin===location.origin && new URL(a.href).pathname===new URL(route,location.href).pathname).length',route)==1,'Homepage retains one playable project card: '+route)
   page.screenshot(path=str(OUT/'public-projects.png'),full_page=True)
-  page.locator('a.primary-link[href="./aether-reach/index.html"]').click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)
+  page.locator('.projects .project a.primary-link[href^="./aether-reach/index.html"]').click();page.wait_for_function('!!window.AetherReach');page.locator('#start').click();page.wait_for_timeout(400)
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.05,'Starting the expedition looks along the street instead of jumping toward the sky')
   page.locator('#world').click(position={'x':640,'y':400});page.wait_for_timeout(500)
   check(abs(page.evaluate('AetherReach.snapshot().position.pitch'))<.08,'Clicking to capture the mouse does not apply a cursor-warp rotation')

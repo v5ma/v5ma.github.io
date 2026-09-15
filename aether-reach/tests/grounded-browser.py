@@ -16,7 +16,7 @@ with sync_playwright() as pw:
  p=c.new_page();p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)))
  p.on('console',lambda m:shader.append(m.text) if m.type=='error' and any(k in m.text for k in ['Shader Error','WebGLProgram','VALIDATE_STATUS']) else None)
  def snap():return p.evaluate('AetherReach.snapshot()')
- def frames(n=6):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f)}requestAnimationFrame(f)})',n)
+ def frames(n=2):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f)}requestAnimationFrame(f)})',n)
  def pin(side,x,y):
   p.evaluate('([s,x,y])=>{TestXR.point(s,x,y);TestXR.pinch(s,false)}',[side,x,y]);frames()
   p.evaluate('(s)=>TestXR.pinch(s,true)',side);frames()
@@ -34,7 +34,7 @@ with sync_playwright() as pw:
   check('hand-tracking' in p.evaluate('TestXR.devices.requested.optionalFeatures'),'XR requests optional articulated hand tracking without requiring it for controller users')
   check(snap()['devices']['xrTracking']['trackedControllers']==2,'Both tracked controller poses are accepted independently')
   check(snap()['renderer']['cast']['limit']==4,'Immersive rendering retains the four-character budget')
-  check(all(a['grounding']['legs']==2 for a in snap()['renderer']['cast']['actors']),'Rendered humanoids expose two grounded leg adapters')
+  actors=snap()['renderer']['cast']['actors'];check(bool(actors) and all(a['grounding']['legs']==2 for a in actors),'Rendered humanoids expose two grounded leg adapters')
   p.evaluate('TestXR.pinch("right",true);TestXR.useHands()');frames(16)
   check(snap()['paused'],'Switching to hands without controllers safely opens the real pause menu')
   check(snap()['devices']['xrTracking']['trackedHands']==2 and snap()['devices']['xrTracking']['jointCount']==50,'Both hands render measured joints; no controller pose is substituted for joints')
