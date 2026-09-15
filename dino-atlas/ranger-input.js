@@ -11,7 +11,7 @@ const zero=()=>({x:0,z:0,steer:0,throttle:0,climb:0,aim:false,fire:false,brake:f
 export function focusable(root){return root?[...root.querySelectorAll('button,a[href],input,select,[tabindex="0"]')].filter(e=>!e.disabled&&!e.closest('[hidden]')&&e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden'):[];}
 export class RangerInput{
  constructor({action,modal,mode,onDevice,onDisconnect}){
-  Object.assign(this,{action,modal,mode,onDevice,onDisconnect});this.keys=new Set();this.touch=new Set();this.previous=[];this.pad=null;this.device='keyboard';this.context=modal();this.neutral=false;this.repeatDirection=0;this.repeatClock=0;this.mouseAim=false;this.mouseFire=false;this.sensitivity=1;this.fireLatch=false;this.jumpLatch=false;this.lastPoll=performance.now();this.disconnected=false;
+  Object.assign(this,{action,modal,mode,onDevice,onDisconnect});this.keys=new Set();this.touch=new Set();this.previous=[];this.pad=null;this.device='keyboard';this.context=modal();this.neutral=false;this.repeatDirection=0;this.repeatClock=0;this.mouseAim=false;this.mouseFire=false;this.sensitivity=1;this.fireLatch=false;this.jumpLatch=false;this.lastPoll=performance.now();this.disconnected=false;this.quickTools=true;
   const keyboardActions={KeyE:'interact',KeyF:'board',KeyR:'reload',KeyQ:'nextTool',Digit1:'water',Digit2:'zapper',KeyH:'horn',KeyG:'recover',KeyM:'map',KeyC:'camera',KeyO:'operations',KeyI:'journal',Escape:'menu',KeyL:'lights'};
   this.keydown=e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;const root=this.modal();if(root){
     if(e.code==='Escape'){e.preventDefault();if(!e.repeat)this.action('back');return;}
@@ -25,7 +25,7 @@ export class RangerInput{
  }
  setDevice(d){if(this.device!==d){this.device=d;this.onDevice?.(d);}}
  clear(){this.keys.clear();this.touch.clear();this.mouseAim=false;this.mouseFire=false;this.fireLatch=false;this.jumpLatch=false;this.neutral=true;}
- readPad(){let pads=[];try{pads=Array.from(navigator.getGamepads?.()||[]).filter(p=>p?.connected!==false&&p);}catch{}return pads.find(p=>p.index===this.pad?.index)||pads[0]||null;}
+ readPad(){let pads=[];try{pads=Array.from(navigator.getGamepads?.()||[]).filter(p=>p&&p.connected!==false&&p.mapping!=='xr-standard');}catch{}return pads.find(p=>p.index===this.pad?.index)||pads[0]||null;}
  navigate(dir){const root=this.modal(),els=focusable(root);if(!els.length)return;let i=els.indexOf(document.activeElement);i=i<0?(dir>0?0:els.length-1):(i+dir+els.length)%els.length;els[i].focus({preventScroll:true});els[i].scrollIntoView({block:'nearest',inline:'nearest'});}
  adjust(dir){const e=document.activeElement;if(!this.modal()?.contains(e))return this.navigate(dir);if(e.tagName==='SELECT'){e.selectedIndex=(e.selectedIndex+dir+e.options.length)%e.options.length;e.dispatchEvent(new Event('change',{bubbles:true}));}else if(e.type==='range'){dir>0?e.stepUp():e.stepDown();e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}else if(e.type==='checkbox'){e.checked=dir>0;e.dispatchEvent(new Event('change',{bubbles:true}));}else this.navigate(dir);}
  activate(){const root=this.modal(),els=focusable(root);let e=document.activeElement;if(!els.includes(e)){e=els[0];if(!e)return;e.focus({preventScroll:true});}if(e.tagName==='SELECT')this.adjust(1);else if(e.type==='range')this.adjust(1);else e.click();}
@@ -46,7 +46,7 @@ export class RangerInput{
    if(token){this.repeatClock-=dt;if(token!==this.repeatDirection||this.repeatClock<=0){if(dir)this.navigate(dir);else this.adjust(side);this.repeatClock=token!==this.repeatDirection?.32:.12;}}else this.repeatClock=0;this.repeatDirection=token;
    const scroll=deadzone(p.axes?.[3]);if(Math.abs(scroll)>.1)root.scrollTop+=scroll*dt*500;return;
   }
-  const actions=[[BUTTON.A,'interact'],[BUTTON.X,'reload'],[BUTTON.Y,'board'],[BUTTON.RB,'nextTool'],[BUTTON.VIEW,'map'],[BUTTON.MENU,'menu'],[BUTTON.RS,'camera'],[BUTTON.DOWN,'horn'],[BUTTON.LEFT,'prevTool'],[BUTTON.RIGHT,'nextTool']];
+  const actions=[[BUTTON.A,'interact'],[BUTTON.X,'reload'],[BUTTON.Y,'board'],[BUTTON.RB,'nextTool'],[BUTTON.VIEW,'map'],[BUTTON.MENU,'menu'],[BUTTON.RS,'camera'],[BUTTON.DOWN,'horn'],[BUTTON.LEFT,this.quickTools?'water':'prevTool'],[BUTTON.RIGHT,this.quickTools?'zapper':'nextTool']];
   for(const [i,a] of actions)if(edges[i]){this.action(a);if(this.modal())return;}
   if(edges[BUTTON.UP])this.jumpLatch=true;const mode=this.mode(),aim=value(p,BUTTON.LB)>.35||(mode==='foot'&&value(p,BUTTON.LT)>.3);if(edges[BUTTON.RT]&&(mode==='foot'||aim))this.fireLatch=true;
  }
@@ -56,6 +56,6 @@ export class RangerInput{
   const live=this.readPad();if(live)this.pad=live;const p=live||this.pad,mode=this.mode(),v=p?padMotion(p,mode):zero(),has=(...codes)=>codes.some(k=>this.keys.has(k)),t=this.touch;
   const x=Number(has('KeyD','ArrowRight')||t.has('right'))-Number(has('KeyA','ArrowLeft')||t.has('left')),z=Number(has('KeyW','ArrowUp')||t.has('forward'))-Number(has('KeyS','ArrowDown')||t.has('back'));
   if(x)v.x=x;if(z)v.z=z;if(x)v.steer=-x;if(z&&mode!=='foot'&&mode!=='helicopter')v.throttle=z;
-  v.climb=mode==='helicopter'?(Number(has('KeyZ','Space')||t.has('rise'))-Number(has('KeyX')||t.has('lower'))||v.climb):0;v.aim||=this.mouseAim||has('ControlLeft')||t.has('aim');v.fire||=this.mouseFire||t.has('fire')||this.fireLatch;v.brake||=(mode!=='helicopter'&&has('Space'))||t.has('brake');v.boost||=has('ShiftLeft','ShiftRight')||t.has('boost');v.jump||=has('KeyJ')||(mode==='foot'&&has('Space'))||t.has('jump')||this.jumpLatch;if(v.aim){v.throttle=0;v.climb=0;}this.fireLatch=false;this.jumpLatch=false;return v;
+  v.climb=mode==='helicopter'?(Number(has('KeyZ','Space')||t.has('rise'))-Number(has('KeyX')||t.has('lower'))||v.climb):0;v.aim||=this.mouseAim||has('ControlLeft')||t.has('aim');v.fire||=this.mouseFire||t.has('fire')||this.fireLatch;v.brake||=(mode!=='helicopter'&&has('Space'))||t.has('brake');v.boost||=has('ShiftLeft','ShiftRight')||t.has('boost');v.jump||=has('KeyJ')||(mode==='foot'&&has('Space'))||t.has('jump')||this.jumpLatch;if(v.aim){v.throttle=0;v.climb=0;}this.fireLatch=false;this.jumpLatch=false;if(this.modal()||this.neutral&&p)return zero();return v;
  }
 }

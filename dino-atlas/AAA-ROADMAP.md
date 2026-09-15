@@ -226,3 +226,19 @@ Release scope: [PELAGIC-RECOVERY.md](PELAGIC-RECOVERY.md). This source implement
 - [ ] AUDIO-08: listen to the bounded pump and wading cues together with the existing audio mix on real speakers/headphones.
 
 The full signature Northstar district remains a separate unfinished work package. Pelagic adds a compact authored facility and purposeful water mission, not a claim that WORLD-01 or the AAA vertical-slice quality gate is complete. Swimming, diving, underwater life and drowning are not implemented by this release.
+
+
+## Grounded Reserve: technical motion and XR continuation
+
+Release entry: [GROUNDED-RESERVE.md](GROUNDED-RESERVE.md). This continues the open DINO-01 motion work and INPUT controller quality package, while retaining Pelagic Recovery and all prior activities. It does not mark the human review or hardware gates complete.
+
+- [x] DINO-01d: scale-correct world contacts, soft-reach two-bone solves, smooth lifted steps and turn-in-place foot release for procedural residents.
+- [x] DINO-01e: adult-like ranger proportions, articulated legs, planted boots, distance-driven arm/leg movement and bounded ground probes.
+- [x] INPUT-07a: immediate water/zapper D-pad shortcuts with a separately saved legacy-cycle option; preserve core A/X/Y/trigger actions.
+- [x] XR-01a: single XR-aware renderer loop, user-gesture session entry and exit, tracked-controller actions, optional hand-ray select UI and neutral/release gating.
+- [x] XR-01b: paginated in-world modal text, maps, settings and controls; hand hold-to-move/fire actions; clear held input on tracking loss, visibility change and session end.
+- [ ] XR-02: physical Quest 3 controller and hand-tracking acceptance, stereo shader inspection, room-scale geometry, latency, comfort and performance measurements.
+- [ ] INPUT-07b: physical Xbox regression across every activity and modal, including reconnect and the new preset.
+- [ ] DINO-01f: human art review of gait transitions, sharp turns, stairs and all model scales at ordinary playing distance.
+
+Next implementation work must follow observed findings from these tests, then the existing signature-district/interior package. Do not add another island expansion as a substitute for these quality gates.
