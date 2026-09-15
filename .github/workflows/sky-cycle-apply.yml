@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate exact reviewed patch and apply only scoped files
+      - name: Validate exact reviewed patch and apply runtime only
         shell: bash
         run: |
           python3 - <<'PY'
@@ -27,9 +27,10 @@ jobs:
           Path('/tmp/sky-cycle-reviewed.patch').write_bytes(patch)
           print('Verified patch SHA-256:', hashlib.sha256(patch).hexdigest())
           PY
-          git apply --check --unidiff-zero /tmp/sky-cycle-reviewed.patch
-          git apply --index --unidiff-zero /tmp/sky-cycle-reviewed.patch
-          git rm .github/sky-cycle-patch-{0,1,2,3}.b64 .github/workflows/sky-cycle-apply.yml
+          # Workflow files are managed separately through the authorized connector.
+          git apply --check --unidiff-zero --exclude='.github/workflows/*' /tmp/sky-cycle-reviewed.patch
+          git apply --index --unidiff-zero --exclude='.github/workflows/*' /tmp/sky-cycle-reviewed.patch
+          git rm .github/sky-cycle-patch-{0,1,2,3}.b64
           git diff --cached --stat
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
