@@ -1,0 +1,46 @@
+name: Apply hidden-tab pause correction
+on:
+  push:
+    branches: ['sky-cycle/quiet-water-0.22']
+    paths: ['.github/workflows/sky-cycle-visibility-fix.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply exact guarded visibility correction
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('mario-maker-clone/svgn-paper-route')
+          p=root/'delivery-upgrade.js';s=p.read_text()
+          old="if(document.hidden&&mode==='play'&&!won&&!state.menu)act('pause');"
+          new="if(document.hidden&&mode==='play'&&!won&&!state.menu&&!state.paused)act('pause');"
+          assert s.count(old)==1
+          p.write_text(s.replace(old,new))
+          p=root/'tests/quiet-water-published.py';s=p.read_text()
+          assert s.count("'water-audio.mjs']")==1
+          p.write_text(s.replace("'water-audio.mjs']","'water-audio.mjs','delivery-upgrade.js']"))
+          p=root/'tests/delivery-visibility.test.mjs'
+          p.write_text('''import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import vm from 'node:vm';
+          const source=fs.readFileSync(new URL('../delivery-upgrade.js',import.meta.url),'utf8');
+          const handler=source.match(/document.addEventListener\\('visibilitychange',\\(\\)=>\\{clearKeys\\(\\);([^\\n]+?)\\}\\);/)[1];
+          function run(paused,menu=false,won=false,mode='play',hidden=true){const state={paused,menu};let toggles=0;vm.runInNewContext(handler,{document:{hidden},state,mode,won,act(){state.paused=!state.paused;toggles++;}});return{paused:state.paused,toggles};}
+          test('Hidden active route pauses once',()=>assert.deepEqual(run(false),{paused:true,toggles:1}));
+          test('Blur pause followed by hidden event never unpauses',()=>assert.deepEqual(run(true),{paused:true,toggles:0}));
+          test('Visible return and inactive screens never toggle pause',()=>{for(const args of [[true,false,false,'play',false],[false,true],[false,false,true],[false,false,false,'edit']])assert.equal(run(...args).toggles,0);});
+          ''')
+          PY
+          node --test mario-maker-clone/svgn-paper-route/tests/delivery-visibility.test.mjs
+          git add mario-maker-clone/svgn-paper-route/delivery-upgrade.js mario-maker-clone/svgn-paper-route/tests/quiet-water-published.py mario-maker-clone/svgn-paper-route/tests/delivery-visibility.test.mjs
+          git rm .github/workflows/sky-cycle-visibility-fix.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(sky-cycle): never unpause a hidden route after blur'
+          git push origin HEAD:refs/heads/sky-cycle/quiet-water-0.22
+          git rev-parse HEAD
