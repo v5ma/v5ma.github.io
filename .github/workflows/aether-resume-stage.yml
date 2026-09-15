@@ -1,0 +1,79 @@
+name: Recover Aether reviewed fixes
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-resume-stage.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: d6891658eeb7c6075efa4dc9a6285ed78bf9d42e
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply exact-base reviewed edits
+        run: |
+          mkdir -p /tmp/aether-resume
+          cat > /tmp/aether-resume/edits.json <<'JSON'
+          {"base":"d6891658eeb7c6075efa4dc9a6285ed78bf9d42e","changes":{"aether-reach/DEVELOPMENT-HANDOFF.md":{"before":"974a51022fb0264ae354f03ae48e7f5b48fda28f8f2c16911faf4f3cff42d23e","after":"d82bf5db936c74e9722fb602b8f73063a60083395c464e23d2ac04376344135e","edits":[[1895,1895,"\n## Recovery on September 15, 2026\n\nRecovered PR 149 at d6891658eeb7c6075efa4dc9a6285ed78bf9d42e. The interrupted review run 34942230529 passed eight of nine suites, including all 21 hand-menu checks; Bellwether reached its interior before the workflow deadline and was not counted as passed. The completion/reversal staging run 34945058149 stopped on a trailing-whitespace guard and never produced its candidate commit.\n\nThe pending runtime fixes are a flush of contextual win/save events before a won state stops the simulation loop, and use of the configured rail brake speed for deliberate left-stick reversal. Neutral re-arming remains required. The controller boundary fix already retains a fresh Back press without leaking a held button. The legacy launch test follows the existing Neighborhood Missions URL, and the arsenal replay uses the actual New Expedition confirmation and issues its rail catch before taking a screenshot. No save reset or schema change is made.\n\nRelease gates require the final-source tests, nine native review reports, live-file hash verification and a separately downloaded/restored tagged backup. The release metadata deliberately retains false hardware-verification flags. Exact completed-run receipts, not this handoff, establish verification. The next animation work remains authored first-person hands, weapon alignment and player review of edge contacts.\n"]]},"aether-reach/GROUNDED-CAST.md":{"before":"9ffa4b53cf4027490f7259e4ae62d2a362904cb53e0d5cdbcb528395268e4597","after":"f9f716905df3cb224801a96ac2cdd391607bec871589af48a4509728329b9b91","edits":[[2226,2226," recall, left-stick rail brake"]]},"aether-reach/app.mjs":{"before":"535b0821c1a3f3da1ff43d6a5edbbb50c25a9d4b5ef37badc9f9c537e2bb9061","after":"5df47eb1e2b333d9063e0a605742f3ca38103f6c313759d7337b9c1f99b278d3","edits":[[6049,6049,"{events();"],[6056,6056,"}"]]},"aether-reach/model.mjs":{"before":"8c4572d277aa93474b4eced39d37c4d70533f26f8d0f9cddf22309098427d64b","after":"cd8342fac1199a3decfdccf84994ea65f3ffac9ef99117b37d5556f37a592b0a","edits":[[25596,25596,"tune.brake+1e-"]]},"aether-reach/tests/arsenal_browser.py":{"before":"26af8400dbe5dfb43dc7da4a5ac6f33bf454a1fd0bdc79c5a8ac17067c540c1b","after":"48ac4a782044920a47452b8cd56c066904cc35b7dc216666715ccd7ecb67f07c","edits":[[2630,2630,"device_scale_factor=.5,"],[3431,3431,",\"low\""],[6376,6376,"selector('#confirm-dialog[open]');check(not snap(page)['playing'],'Replacing an earned expedition requires the real in-game confirmation');page.locator('#confirm-accept').click();page.wait_for_"],[9212,9212,"# Issue the intended jum"],[9213,9213,"/c"],[9214,9214,"tch durin"],[9215,9215," th"],[9216,9217," moving window, before a slow "],[9227,9260,""],[9261,9268,"\n   "],[9350,9457,""],[10537,10537," at 960x640 CSS, half pixel density, supported low graphics"]]},"aether-reach/tests/bellwether-browser.py":{"before":"759403b7f05fa2a066d586d36c2ce781156de09c8834f95bc57581e1e80fc203","after":"1860e0df0d474a6eb250fcc0f58a96962bd534ee076c14c3406c480849852a5a","edits":[[428,429,"args"],[430,449,"{'"],[457,458,"':"],[463,463,"'"],[467,468,"':"],[557,557,"}\n if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']\n b=pw.chromium.launch(**args"]]},"aether-reach/tests/launch.py":{"before":"3662633941fb0d0db53ab52c264c2b37e7adf2a51b87bed2ab31741b8a3adc73","after":"d3bfa6b5cc62a63ae135bdaec2f92477e52506fb0f03fe7a3512d0a8c3d1e2b2","edits":[[1145,1151,"svgn"],[1159,1159,"index.html"],[1559,1560,"Neig"],[1561,1562,"borhood"],[1563,1564,"M"],[1565,1573,"ssio"],[1574,1576,"s"],[1587,1587,"th"],[1588,1592,""],[1602,1603,""],[1605,1606,"ut"],[1607,1609,"s"]]},"aether-reach/AGENTS.md":{"before":null,"after":"ebdec0ea36c3bd11538816d860dadb0ca76a95ab4d837193577d70d436e54f4d","edits":[[0,0,"# Aether Reach\n\nRead DEVELOPMENT-HANDOFF.md, GROUNDED-CAST.md, DEVICE-SUPPORT.md and roadmap.json before editing. Continue the existing game, not the separate living-city experiment. Preserve version-1 expedition saves, user controller remaps, existing gameplay and other games in this repository.\n\nKeep common actions on direct controller inputs. Support fixed A/B/directional menu navigation and the same actions in tracked-controller and hand spatial UI. Hands currently operate menus only, not combat or locomotion. Maintain neutral input re-arming after disconnects or tracking loss.\n\nRun Node tests, Python backup tests, the canonical roadmap renderer and relevant native HTTP browser journeys. Test code must not grant gameplay progress or write actors in browser acceptance. Synthetic XR/Gamepad tests are not physical Xbox or Quest 3 certification. Keep hardware verification false until documented physical acceptance.\n\nUse reviewed commits, preserve unrelated master changes and verify both Pages bytes and release backup roundtrip. Do not overwrite an existing release tag or publish staging tools as game assets.\n"]]},"aether-reach/tests/rail-brake.test.mjs":{"before":null,"after":"9e9bfaa66fa2fcb2a29d858c3f94aaf93f245bccd2f4e52801ae8cef379ff271","edits":[[0,0,"import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport {createState,interact,step,RAILS,pointOnRail} from '../model.mjs';\nimport {RAIL_TUNING} from '../skirmish-world.mjs';\nconst run=(s,seconds,input)=>{for(let i=0;i<seconds*120;i++)step(s,{explorer:true,...input},1/120);};\nfunction rider(){const s=createState();Object.assign(s.p,{x:9,y:0,z:-5});interact(s);assert.equal(s.p.rail.id,'glassline');s.p.rail.s=50;s.p.speed=RAIL_TUNING.cruise;const p=pointOnRail(RAILS.find(r=>r.id==='glassline'),50);Object.assign(s.p,{x:p.x,y:p.y-2.65,z:p.z});return s;}\ntest('Holding the ordinary movement-stick brake reaches one latched reverse at the configured brake speed',()=>{\n const s=rider();run(s,1,{moveZ:-1,back:true});assert.equal(s.p.rail.dir,-1);assert.equal(s.stats.reversals,1);assert.equal(s.p.rail.reverseLatched,true);assert.equal(s.stats.rescues,0);\n run(s,.4,{moveZ:-1,back:true});assert.equal(s.stats.reversals,1);\n});\ntest('Neutral stick re-arms the next deliberate rail reversal without rebinding a gameplay button',()=>{\n const s=rider();run(s,.7,{moveZ:-1,back:true});assert.equal(s.stats.reversals,1);\n run(s,.1,{moveZ:0,back:false});assert.equal(s.p.rail.reverseLatched,false);\n run(s,.5,{moveZ:-1,back:true});assert.equal(s.p.rail.dir,1);assert.equal(s.stats.reversals,2);assert.equal(s.stats.rescues,0);\n});\n"]]},"aether-reach/tests/completion-dispatch.test.mjs":{"before":null,"after":"aac460cb5252263378e5cf621fe43ea447fc188b12c1d03c679b2b8f5cd7d534","edits":[[0,0,"import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport {readFileSync} from 'node:fs';\nimport {createState,combatUse,EXTRACTION,nearby,saveState,readSave} from '../model.mjs';\ntest('The contextual use route wins and emits completion/save at the real extraction console',()=>{\n const s=createState();Object.assign(s.p,EXTRACTION);s.relays=new Set(['garden','spire','foundry']);\n assert.equal(nearby(s).type,'exit');assert.equal(combatUse(s),true);assert.equal(s.won,true);\n assert.deepEqual(s.events.slice(-2).map(e=>e.type),['win','save']);\n assert.equal(readSave(saveState(s)).relays.length,3);\n});\ntest('Handled contextual actions flush their events before won state stops the simulation loop',()=>{\n const source=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');\n assert.ok(source.includes('if(skirmishUI?.action(name)){events();return;}'));\n});\n"]]}}}
+          JSON
+          python - <<'PY'
+          import json,hashlib,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-resume/edits.json').read_text())
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==data['base']
+          for name,item in data['changes'].items():
+            p=Path(name)
+            assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==item['before'],name
+            text=p.read_text() if p.exists() else ''
+            for start,end,replacement in reversed(item['edits']):
+              assert 0<=start<=end<=len(text)
+              text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          PY
+      - name: Validate corrected candidate
+        run: |
+          set -euo pipefail
+          git diff --check
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs | tee /tmp/aether-resume/node-tests.log
+          python aether-reach/tests/backup_test.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Create reviewed content-only commit without moving refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-resume/edits.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/aether-resume/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          tree=[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()} for name in data['changes']]
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
+          c=post('git/commits',{'message':'fix(aether): recover completion dispatch and configured-speed rail reversal','tree':t['sha'],'parents':[data['base']]})
+          Path('/tmp/aether-resume/candidate.json').write_text(json.dumps({'parent':data['base'],'commit':c['sha'],'tree':t['sha'],'files':list(data['changes']),'tests':'231 Node and 6 backup tests passed. Final-source browser verification still required.'},indent=2))
+          print('Created commit object without updating any branch:',c['sha'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-resume-candidate
+          path: |
+            /tmp/aether-resume/candidate.json
+            /tmp/aether-resume/node-tests.log
+          retention-days: 14
