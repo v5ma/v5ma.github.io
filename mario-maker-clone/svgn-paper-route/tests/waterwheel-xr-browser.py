@@ -22,11 +22,13 @@ with sync_playwright() as pw:
  page=ctx.new_page();page.set_default_timeout(120000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:logs.append(m.text) if m.type=='error' else None)
  def frames(n=4):
   start=page.evaluate('SkyCycleXR.diagnostics.frames');page.wait_for_function('(s)=>SkyCycleXR.diagnostics.frames>=s',arg=start+n)
- def choose(label):
+ def choose(label,ending=False):
   for _ in range(20):
    if page.evaluate('(s)=>SkyCycleXR.diagnostics.buttons.some(b=>b.label.toLowerCase().includes(s.toLowerCase()))',label):break
    point('Next');page.evaluate("xrEmulator.select('start')");page.evaluate("xrEmulator.select('end')");frames(3)
-  point(label);page.evaluate("xrEmulator.select('start')");page.evaluate("xrEmulator.select('end')");frames(4)
+  point(label);page.evaluate("xrEmulator.select('start')");page.evaluate("xrEmulator.select('end')")
+  if ending:page.wait_for_function('!SkyCycleXR.presenting')
+  else:frames(4)
  def point(label):
   page.evaluate('(s)=>xrEmulator.point(s)',label);frames(3)
  def press(index,hand='right'):
@@ -51,7 +53,7 @@ with sync_playwright() as pw:
   point('Jump');page.evaluate("xrEmulator.select('start')");page.wait_for_function('!player.onGround');page.evaluate("xrEmulator.select('end')");frames();capture('waterwheel-xr-hand-jump')
   check(True,'Hand selection drives real Waterwheel movement and jumping without changing physics state directly')
   choose('Pause');page.wait_for_function('__delivery.paused');capture('waterwheel-xr-hand-pause')
-  choose('Exit XR');page.wait_for_function('!SkyCycleXR.presenting && !__merged.scene.parent')
+  choose('Exit XR',ending=True);page.wait_for_function('!SkyCycleXR.presenting && !__merged.scene.parent')
   check(page.evaluate('__delivery.paused && !keys.ArrowRight && !keys.Space'),'Hand-operated XR exit restores the safely paused original game and clears held input')
   check(page.evaluate('JSON.stringify(SkyCycleFlightDeck.records)')==records,'Partial XR preview awards no campaign career progress')
   page.locator('#maker-return').click();page.wait_for_function('RouteWorkshop.active && !RouteWorkshop.testing')

@@ -39,7 +39,15 @@ function restore(){
 $('ww-preview-ride').onclick=()=>begin();$('ww-preview-ground').onclick=()=>begin(true);$('ww-preview-edit').onclick=()=>begin(false,true);$('ww-preview-restore').onclick=restore;$('ww-preview-back').onclick=()=>panel.close();
 panel.addEventListener('cancel',e=>{e.preventDefault();panel.close();});panel.addEventListener('close',()=>{if(resume&&!document.hidden&&mode==='play'&&!won&&!__delivery.state.menu&&!document.querySelector('dialog[open]'))__delivery.act('resume');resume=false;if(focus?.isConnected&&focus.getClientRects().length)focus.focus({preventScroll:true});window.SkyCycleFlightDeck?.resetInput();});
 window.addEventListener('blur',()=>{resume=false;});document.addEventListener('visibilitychange',()=>{if(document.hidden)resume=false;});
-function mount(){for(const [host,id] of [[document.querySelector('#delivery-menu .delivery-hero'),'ww-preview-open'],[document.querySelector('#route-workshop .maker-library details'),'ww-preview-workshop']]){if(!host||$(id))continue;const b=document.createElement('button');b.id=id;b.className='delivery-btn';b.textContent='Waterwheel r2 design preview';b.setAttribute('aria-haspopup','dialog');b.onclick=show;host.append(b);}}
+function labelPreviewResult(){
+ const result=document.querySelector('#delivery-results.open');
+ if(!result||!window.RouteWorkshop?.testing||!RouteWorkshop.state.doc?.extra?.gp?.waterwheel?.preview||result.querySelector('#ww-preview-result-note'))return;
+ const stats=result.querySelector('.delivery-result-stats');if(!stats)return;
+ const note=document.createElement('p');note.id='ww-preview-result-note';note.setAttribute('role','status');note.style.gridColumn='1 / -1';note.textContent='Waterwheel design preview complete. These are playtest results only; no campaign medals, career records or layout records were awarded. Return to Workshop to keep editing.';stats.prepend(note);
+ const medal=result.querySelector('.medal');if(medal)medal.hidden=true;
+ const kicker=result.querySelector('.delivery-kicker');if(kicker)kicker.textContent='DESIGN PREVIEW COMPLETE / NO CAMPAIGN AWARD';
+}
+function mount(){labelPreviewResult();for(const [host,id] of [[document.querySelector('#delivery-menu .delivery-hero'),'ww-preview-open'],[document.querySelector('#route-workshop .maker-library details'),'ww-preview-workshop']]){if(!host||$(id))continue;const b=document.createElement('button');b.id=id;b.className='delivery-btn';b.textContent='Waterwheel r2 design preview';b.setAttribute('aria-haspopup','dialog');b.onclick=show;host.append(b);}}
 const watcher=new MutationObserver(mount);watcher.observe(document.body,{subtree:true,childList:true});mount();
 const prior=GroundArt.populate;window.GroundArt={...GroundArt,populate(args){prior(args);if(args.course.gp?.waterwheel?.preview)populate(args);}};
 window.Waterwheel2D=Object.freeze({draw:draw2D});
