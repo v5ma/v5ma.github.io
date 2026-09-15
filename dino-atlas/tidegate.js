@@ -2,6 +2,7 @@ import * as T from './vendor/three.module.js';import R from './vendor/rapier.mjs
 import {initPhysics,ParkPhysics} from './ranger-physics.js';import {RangerInput,focusable} from './ranger-input.js?v=grounded1';
 import {RangerTools} from './ranger-tools.js';import {RangerAudio} from './ranger-audio.js';
 import {makeResident,makeTool} from './frontier-art.js';import {animateResident} from './herd-rig.js';import {animateRangerBody} from './ranger-body.js';
+import {resolveCamera} from './tidegate-camera.js';
 import {DioramaXR} from './diorama-xr.js';import {mergeMotion} from './xr-actions.js';import {buildTidegate} from './tidegate-world.js';import {TidegateFleet} from './tidegate-actors.js';
 import {TIDEGATE_BUILD,POINTS,ROUTES,BOUNDS,clamp,gap,canWalk,readDistrict,saveDistrict,applyDistrict,nextTask,stepHerd} from './tidegate-core.js';
 const $=id=>document.getElementById(id);
@@ -68,7 +69,7 @@ export async function bootTidegate(){
   for(const a of animals){a.model.position.set(a.x,0,a.z);a.model.rotation.y=a.angle;animateResident(a,live,time,reduced);}
   const p=fleet.position;toolModel.visible=fleet.mode==='foot'&&(!xr.active||xr.diorama);toolModel.position.set(p.x-.5*Math.sin(yaw)+.3*Math.cos(yaw),p.y+.35,p.z-.5*Math.cos(yaw)-.3*Math.sin(yaw));toolModel.rotation.y=yaw+Math.PI;
   beamAge+=live;beam.visible=beamAge<.12;beam.material.opacity=Math.max(0,1-beamAge/.12);world.update(live,time,state,p,xr.diorama);audio.update(fleet.actor.speed,!!live&&fleet.mode!=='foot');
-  if(started&&!xr.active){const focus=new T.Vector3(p.x,p.y+.8,p.z),desired=new T.Vector3(p.x+Math.sin(yaw)*zoom*Math.cos(pitch),p.y+zoom*Math.sin(pitch),p.z+Math.cos(yaw)*zoom*Math.cos(pitch));const dir=desired.clone().sub(focus),length=dir.length();dir.normalize();const hit=physics.world.castRay(new R.Ray(focus,dir),length,true,undefined,undefined,fleet.actor.collider,fleet.actor.body);if(hit)desired.copy(focus).addScaledVector(dir,Math.max(1.2,hit.timeOfImpact-.3));camera.position.lerp(desired,reduced?1:1-Math.exp(-dt*8));camera.lookAt(focus);}
+  if(started&&!xr.active){const focus=new T.Vector3(p.x,p.y+.8,p.z),desired=new T.Vector3(p.x+Math.sin(yaw)*zoom*Math.cos(pitch),p.y+zoom*Math.sin(pitch),p.z+Math.cos(yaw)*zoom*Math.cos(pitch));camera.position.copy(resolveCamera(focus,desired,camera.position,dt,(origin,direction,length)=>{const hit=physics.world.castRay(new R.Ray(origin,direction),length,true,undefined,undefined,fleet.actor.collider,fleet.actor.body);return hit?.timeOfImpact??Infinity;},{reduced}));camera.lookAt(focus);}
   uiClock+=dt;if(uiClock>.12){uiClock=0;ui();}if(xr.active){xr.position();xr.render();}else renderer.render(scene,camera);
  }
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();show('menu-dialog');notify('Graphics context interrupted. Your last Tidegate checkpoint is preserved; reload to restore rendering.');});
