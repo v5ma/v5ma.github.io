@@ -44,20 +44,27 @@ with sync_playwright() as pw:
    token='Hold A' if controller else 'Hold Enter, Space'
    wait('document.getElementById("craft-status").textContent.includes('+json.dumps(token if profile=='survival' else 'Select a recipe')+')')
    check(True,'Idle instructions match the input method and selected crafting preset')
-   hold(True);wait('!!Rainward.state.player.craft');wait('Number(document.getElementById("craft-progress").value)>0')
-   check(page.locator('#craft-progress').get_attribute('aria-label')=='Crafting medkit','Native progress exposes the correct accessible recipe name')
-   check('percent' in page.locator('#craft-progress').get_attribute('aria-valuetext') and '%' in page.locator('#craft-percent').inner_text(),'Visible and accessible percentage feedback accompanies the native progress bar')
-   status=page.locator('#craft-status').text_content()
-   check(('release to cancel' in status)==(profile=='survival') and (token in status if profile=='survival' else 'Assembling medkit.' in status),'Active instructions match both the real hold mode and the actual input method')
-   page.screenshot(path=str(OUT/(name+'-craft.png')))
+   hold(True);wait('!!Rainward.state.player.craft&&Number(document.getElementById("craft-progress").value)>0')
+   # Read all feedback in one browser turn, then RELEASE before any screenshot.
+   # A screenshot may legitimately take longer than a complete 2.1-second recipe.
+   feedback=page.evaluate('({label:document.getElementById("craft-progress").getAttribute("aria-label"),value:document.getElementById("craft-progress").getAttribute("aria-valuetext"),percent:document.getElementById("craft-percent").textContent,status:document.getElementById("craft-status").textContent})')
    hold(False)
+   check(feedback['label']=='Crafting medkit','Native progress exposes the correct accessible recipe name')
+   check('percent' in feedback['value'] and '%' in feedback['percent'],'Visible and accessible percentage feedback accompanies the native progress bar')
+   status=feedback['status']
+   check(('release to cancel' in status)==(profile=='survival') and (token in status if profile=='survival' else 'Assembling medkit.' in status),'Active instructions match both the real hold mode and the actual input method')
    if profile=='survival':
     wait('!Rainward.state.player.craft');check(page.evaluate('Rainward.state.player.cloth===3&&Rainward.state.player.canister===3&&Rainward.state.player.medkit===0'),'Releasing the advertised input cancels without losing or duplicating authored resources')
     if controller:frames(5)
-    nav('craft-smoke');hold(True,'Space');wait('Rainward.state.player.smoke===1&&!Rainward.state.player.craft');hold(False,'Space')
+    wait('!document.getElementById("craft-smoke").disabled');nav('craft-smoke');hold(True,'Space');wait('!!Rainward.state.player.craft&&Number(document.getElementById("craft-progress").value)>0')
+    # This separate hold is intentionally completed; capturing it cannot spoil
+    # the earlier cancellation assertion or justify a timing/resource change.
+    page.screenshot(path=str(OUT/(name+'-craft.png')))
+    wait('Rainward.state.player.smoke===1&&!Rainward.state.player.craft');hold(False,'Space')
     check(page.evaluate('Rainward.state.player.cloth===2&&Rainward.state.player.canister===2'),'A deliberate full hold crafts one smoke with the unchanged finite recipe cost')
    else:
     wait('Rainward.state.player.medkit===1&&!Rainward.state.player.craft');check(page.evaluate('Rainward.state.player.cloth===2&&Rainward.state.player.canister===2'),'Classic crafting finishes after input release with its original cost')
+    page.screenshot(path=str(OUT/(name+'-craft.png')))
    page.set_viewport_size({'width':390,'height':844});wait('document.getElementById("craft-percent").textContent===""')
    check(page.evaluate('document.documentElement.scrollWidth<=innerWidth'),'Feedback fits a phone-width native satchel without horizontal overflow')
    page.screenshot(path=str(OUT/(name+'-phone.png')))
