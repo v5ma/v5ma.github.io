@@ -40,7 +40,7 @@ with sync_playwright() as pw:
   xrpress('right',0)
  def ready():wait('window.Vesperfall?.component.checkpoint&&Vesperfall.component.rendererReady&&AFRAME.scenes[0].renderer.info.render.calls>0')
  try:
-  page.goto(BASE+'/vesperfall/?acceptance=pilgrim',wait_until='domcontentloaded');ready()
+  page.goto(BASE+'/vesperfall/?acceptance=pilgrim',wait_until='domcontentloaded');ready();page.locator('#expedition-mode').select_option('endless')
   check(page.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'],'The actual renderer loads the current Pilgrim release')
   check(not page.evaluate('Vesperfall.component.checkpoint.available'),'A fresh browser has no invented suspended run')
   page.locator('#jewel-settings summary').click();page.locator('#jewel-quality').select_option('classic');page.locator('#cathedral-shadows').uncheck();page.locator('#audio').uncheck();page.locator('#seed').fill('REST-ACCEPT')

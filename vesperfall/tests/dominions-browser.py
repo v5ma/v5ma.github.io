@@ -48,6 +48,9 @@ with sync_playwright() as p:
  try:
   page.goto(BASE+'/vesperfall/index.html?acceptance=hollow-dominions',wait_until='domcontentloaded')
   wait('window.Vesperfall?.component.rendererReady&&Vesperfall.component.dominionControls&&AFRAME.scenes[0].renderer.info.render.calls>0')
+  # Inspect preserved legacy art, not the new chapter's smaller cast.
+  page.locator('#expedition-mode').select_option('endless');page.locator('#start').click()
+  wait('Vesperfall.component.running&&!Vesperfall.component.paused');page.keyboard.press('KeyP');wait('Vesperfall.component.paused')
   check(page.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'] and page.evaluate('Vesperfall.state.world.rooms.length===25&&Vesperfall.state.world.enemies.length===21'),'Correct release boots with 25 rooms and 21 enemies')
   check(page.evaluate('Vesperfall.component.enemyMeshes.filter(m=>m.userData.dominion).length===16'),'All outer opponents have actual distinct rendered models')
   check(page.locator('#sparring-kind option').count()==15,'All fifteen archetypes are available as combat trials')

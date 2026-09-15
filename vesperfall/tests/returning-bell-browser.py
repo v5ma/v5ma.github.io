@@ -11,7 +11,7 @@ checks=[];errors=[];console=[]
 def check(ok,label):
  assert ok,label
  checks.append(label);print('PASS:',label,flush=True)
-AIM="async target=>{const c=Vesperfall.component,canvas=AFRAME.scenes[0].canvas,held=new Set(),key=(code,on)=>{if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true}));on?held.add(code):held.delete(code);};await new Promise((resolve,reject)=>{const start=performance.now(),t=setInterval(()=>{const s=Vesperfall.state,p=s.head,dx=target[0]-p[0],dz=target[2]-p[2],d=Math.hypot(dx,dz),dy=target[1]-p[1],v=target[3]||36,v2=v*v,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2),pitch=disc>0?Math.atan((v2-Math.sqrt(disc))/(9.8*d)):0,yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw)),b=pitch-c.pitch;key('ArrowLeft',a>.01);key('ArrowRight',a<-.01);key('ArrowUp',b>.006);key('ArrowDown',b<-.006);if(Math.abs(a)<.02&&Math.abs(b)<.012||performance.now()-start>90000){for(const k of [...held])key(k,false);clearInterval(t);Math.abs(a)<.02?resolve():reject(Error('Aim timeout'));}},3);});}"
+AIM="async target=>{const c=Vesperfall.component,canvas=AFRAME.scenes[0].canvas,held=new Set(),key=(code,on)=>{if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true}));on?held.add(code):held.delete(code);};await new Promise((resolve,reject)=>{const start=performance.now(),t=setInterval(()=>{const s=Vesperfall.state,p=s.head,dx=target[0]-p[0],dz=target[2]-p[2],d=Math.hypot(dx,dz),dy=target[1]-p[1],v=target[3]||36,v2=v*v,disc=v2*v2-9.8*(9.8*d*d+2*dy*v2),pitch=disc>0?Math.atan((v2-Math.sqrt(disc))/(9.8*d)):0,yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw)),b=pitch-c.pitch;key('ArrowLeft',a>.026);key('ArrowRight',a<-.026);key('ArrowUp',b>.021);key('ArrowDown',b<-.021);if(Math.abs(a)<.04&&Math.abs(b)<.035||performance.now()-start>30000){for(const k of [...held])key(k,false);clearInterval(t);Math.abs(a)<.04&&Math.abs(b)<.035?resolve():reject(Error('Aim timeout '+JSON.stringify({a,b,yaw:c.yaw,pitch:c.pitch})));}},3);});}"
 WALK="async target=>{const c=Vesperfall.component,canvas=AFRAME.scenes[0].canvas,held=new Set(),key=(code,on)=>{if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true}));on?held.add(code):held.delete(code);};await new Promise((resolve,reject)=>{const start=performance.now(),t=setInterval(()=>{const s=Vesperfall.state,dx=target[0]-s.p[0],dz=target[1]-s.p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-c.yaw),Math.cos(yaw-c.yaw));key('ArrowLeft',a>.018);key('ArrowRight',a<-.018);key('KeyW',Math.abs(a)<.09&&d>.15);key('ShiftLeft',true);const encounter=target[2]&&s.oath?.active;if(d<.17||encounter||s.phase!=='playing'||performance.now()-start>180000){for(const k of [...held])key(k,false);clearInterval(t);d<.17||encounter?resolve():reject(Error('Walk stalled '+JSON.stringify({p:s.p,target,phase:s.phase})));}},3);});}"
 PAD="(()=>{const pad={id:'Test Xbox',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};window.TestPad={enabled:false,pad,button(i,on){pad.buttons[i]={pressed:on,touched:on,value:on?1:0}}};Object.defineProperty(navigator,'getGamepads',{value:()=>TestPad.enabled?[pad]:[]});})();"
 with sync_playwright() as pw:
@@ -71,7 +71,18 @@ with sync_playwright() as pw:
   check(page.evaluate('Vesperfall.component.worldArt.returningBell.dynamic.screen.position.y===4.8'),'The winch moves the visible screen to the authoritative collision height')
   press(0);wait('!Vesperfall.state.chapter.screensRaised');press(0);wait('Vesperfall.state.chapter.screensRaised')
   check(True,'Xbox can reverse the screen mechanism without a menu')
-  pause();nav('save-expedition');press(0)
+  pause();nav('menu-vr');page.evaluate('TestPad.button(0,true)');wait('Vesperfall.component.xr&&!Vesperfall.component.arMode');page.evaluate('TestPad.button(0,false);TestPad.enabled=false')
+  wait('Vesperfall.component.dominionControls.state.xrNeutral')
+  check(page.evaluate('Vesperfall.state.chapter&&Math.abs(Vesperfall.component.rig.position.y-3.2)<.05&&AFRAME.scenes[0].renderer.xr.getCamera().isArrayCamera'),'First-person VR renders the authored upper route through a tracked stereo camera')
+  xraction('Resume');wait('!Vesperfall.component.paused')
+  shots=page.evaluate('Vesperfall.state.shots')
+  page.evaluate("TestXR.pose('right',[-.23,1.35,-.31]);TestXR.orientation('right',[0,0,0,1])");page.wait_for_timeout(350)
+  page.evaluate("TestXR.button('right',0,true)");wait('Vesperfall.component.latch.drawing')
+  page.evaluate("TestXR.pose('right',[-.23,1.35,.15])");wait('Vesperfall.component.charge>.35')
+  xrpress('left',5);wait('Vesperfall.component.paused&&!Vesperfall.component.latch.drawing');page.evaluate("TestXR.button('right',0,false)")
+  check(page.evaluate('n=>Vesperfall.state.shots===n',shots),'Pausing the authored VR chapter cancels a real two-controller draw without a stray arrow')
+  xraction('Exit VR');wait('!Vesperfall.component.xr&&Vesperfall.component.paused')
+  page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed');nav('save-expedition');press(0)
   saved=page.evaluate('JSON.parse(JSON.parse(localStorage.getItem(PilgrimSave.KEY)).payload).checkpoint')
   check(saved['generator']=='returning-bell-1' and saved['state']['chapter']['screensRaised'],'Actual save captures the new identity and mechanism state')
   nav('architect-table');page.evaluate('TestPad.button(0,true)');wait('Vesperfall.component.xr&&Vesperfall.component.returningBell.state.table');page.evaluate('TestPad.button(0,false);TestPad.enabled=false')

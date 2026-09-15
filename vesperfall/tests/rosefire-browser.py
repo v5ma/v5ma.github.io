@@ -45,6 +45,7 @@ with sync_playwright() as pw:
  try:
   page.goto(BASE+'/vesperfall/?acceptance=rosefire',wait_until='domcontentloaded');wait('window.Vesperfall?.component.rosefire?.started&&Vesperfall.component.rosefire.stats.compiled>0')
   check(page.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'],'The current release compiles the original floor shader in the real renderer')
+  page.locator('#expedition-mode').select_option('endless');page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused');pause()
   check(page.evaluate('Vesperfall.component.rosefire.patched.size>=4'),'Both instanced cobblestones and outer decorative floors receive the PBR shader')
   page.locator('#practice').click();wait('Vesperfall.component.practice&&!Vesperfall.component.paused');page.locator('a-scene canvas').focus();page.keyboard.down('ArrowDown');wait('Vesperfall.component.pitch<-.30');page.keyboard.up('ArrowDown');pause()
   original=page.evaluate(STATE);mode('off');capture('choir-before.png');mode('balanced');capture('choir-rosefire.png')

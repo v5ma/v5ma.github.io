@@ -47,7 +47,7 @@
    K.rose(parent,b,0,10.6,-18.35,1.7,0);
    // A high silhouette is visible before the bell chamber itself is accessible.
    for(const x of[-4.6,4.6]){b.box(K.dark,x,9.7,-24.5,.65,13,.65);b.add(K.cylinder,K.pale,x,16.4,-24.5,.8,.2,.8);b.add(kit.geos.cone||K.cylinder,K.copper,x,18,-24.5,.82,3.2,.82);}
-   for(const x of[-9.2,9.2])for(const z of[-16,-8,1]){b.box(K.pale,x,7.8,z,.38,2,.38);b.add(K.sphere,K.gold,x,8.9,z,.2,.2,.2);}
+   for(const x of[-9.2,9.2])for(const z of[-16,-8,1]){const wall=w.solids.find(s=>s.type==='wall'&&x>=s.min[0]&&x<=s.max[0]&&z>=s.min[2]&&z<=s.max[2]&&s.max[1]>3);if(!wall)continue;const y=wall.max[1];b.box(K.pale,x,y+.7,z,.38,1.4,.38);b.add(K.sphere,K.gold,x,y+1.5,z,.2,.2,.2);}
    // The sheltered landmark pair has real collision, not invisible decoration.
    const basin=w.solids.find(s=>s.type==='basin'),bp=basin.min.map((v,i)=>(v+basin.max[i])/2);
    b.add(K.cylinder,K.dark,bp[0],.18,bp[2],.83,.36,.83);b.add(K.cylinder,K.pale,bp[0],.49,bp[2],.78,.3,.78);

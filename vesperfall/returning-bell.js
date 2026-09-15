@@ -43,7 +43,6 @@
     ['Back to AR Sanctuary',()=>{closeTable();g.setPaused(true);ui.setScreen('main');}],
     ['Exit AR and restore expedition',()=>g.scene.exitVR()]
    ];
-   if(g.arMode&&screen==='equipment')return [['Architects Table / discovered places',openTable],['Controller manual',()=>ui.setScreen('manual')],['Settings',()=>ui.setScreen('settings')],['Back',()=>ui.setScreen('main')]];
    if(g.game.chapter&&screen==='objectives')return [[M.objective(g.game),()=>{}],['Observe the court before committing',()=>{}],['Ground, gallery and Blink approaches reconnect',()=>{}],['The winch reverses; the return gate stays open',()=>{}],['No kill-all or special-ammo requirement',()=>{}],['Back',()=>ui.setScreen('expedition')]];
    if(g.game.chapter&&screen==='atlas')return pages(g.game.world.rooms.filter(r=>g.game.discovered.has(r.id)).map(r=>[r.label,()=>{ui.state.notice=r.label+'. Known connections: '+g.game.world.links[r.id].filter(id=>g.game.discovered.has(id)).map(id=>g.game.world.rooms[id].label).join(', ');ui.setScreen('notice');}]));
    return null;
