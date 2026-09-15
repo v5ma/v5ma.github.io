@@ -1,0 +1,187 @@
+name: Recover Lantern Ward publication record
+on:
+  push:
+    branches: [neighborhood-missions/lantern-publication-recovery-20260915]
+    paths: ['.github/workflows/neighborhood-lantern-record.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  record:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/lantern-publication-recovery-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          sparse-checkout: |
+            svgn-planet
+            little-planet
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify completed exact-source runs and retain their raw reports
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import hashlib,io,json,os,pathlib,re,subprocess,time,urllib.request,urllib.error,urllib.parse,zipfile,textwrap
+          root=pathlib.Path('svgn-planet');out=root/'production/evidence/lantern-0.12.0'
+          repo='v5ma/v5ma.github.io';tested='e7dbca0282ffbd8f1bc3506ecedc25e8e8923a85'
+          acceptance=35017262121;published=35017262097;pages=35017260230
+          def api(path):
+              req=urllib.request.Request('https://api.github.com/repos/'+repo+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(req,timeout=30) as r:return json.load(r)
+          runs={}
+          for attempt in range(120):
+              runs={i:api(f'/actions/runs/{i}') for i in [acceptance,published,pages,35017262145,35017262086]}
+              assert all(r['head_sha']==tested for r in runs.values()),'Wrong source commit'
+              for r in runs.values():
+                  if r['status']=='completed':assert r['conclusion']=='success',f"Run {r['id']} failed; no accepted records will be written"
+              if all(r['status']=='completed' for r in runs.values()):break
+              print('Verification still running:',[(i,r['status']) for i,r in runs.items()],flush=True);time.sleep(10)
+          else:raise SystemExit('Verification not complete; leave records unchanged')
+          subprocess.run(['git','diff','--exit-code',tested,'HEAD','--','svgn-planet'],check=True)
+          candidate=json.loads((out/'candidate.json').read_text())
+          for row in candidate['runtimeFiles']:
+              assert hashlib.sha256((root/row['path']).read_bytes()).hexdigest()==row['sha256'],row['path']
+          legacy=json.loads((root/'legacy-layout.json').read_text())
+          for row in legacy['files']:
+              assert hashlib.sha256((root/row['path']).read_bytes()).hexdigest()==row['sha256'],row['path']
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,headers,newurl):return None
+          def artifact(run,name):
+              items=api(f'/actions/runs/{run}/artifacts?per_page=100')['artifacts']
+              a=max((a for a in items if a['name']==name and not a['expired']),key=lambda a:(a['created_at'],a['id']))
+              req=urllib.request.Request(a['archive_download_url'],headers={'Authorization':'Bearer '+os.environ['GH_TOKEN']})
+              try:
+                  with urllib.request.build_opener(NoRedirect).open(req,timeout=60) as r:data=r.read()
+              except urllib.error.HTTPError as e:
+                  if e.code not in [301,302,303,307,308]:raise
+                  url=e.headers['Location'];assert urllib.parse.urlparse(url).scheme=='https'
+                  # Never forward the GitHub credential to signed blob storage.
+                  with urllib.request.urlopen(url,timeout=60) as r:data=r.read()
+              if a.get('digest'):assert a['digest']=='sha256:'+hashlib.sha256(data).hexdigest()
+              return zipfile.ZipFile(io.BytesIO(data)),a['id']
+          def member(z,suffix):
+              names=[n for n in z.namelist() if n.endswith(suffix)];assert len(names)==1,(suffix,names)
+              return z.read(names[0])
+          def write(path,data):
+              path.parent.mkdir(parents=True,exist_ok=True)
+              if isinstance(data,dict):data=(json.dumps(data,indent=2)+'\n').encode()
+              path.write_bytes(data);return hashlib.sha256(data).hexdigest()
+          z,byte_id=artifact(published,'lantern-public-bytes');raw=member(z,'bytes.json');manifest=json.loads(raw)
+          assert manifest['commit']==tested and manifest['success'] and all(r['matches'] for r in manifest['files'])
+          assert len(manifest['files'])==186
+          for row in manifest['files']:assert hashlib.sha256(pathlib.Path(row['path']).read_bytes()).hexdigest()==row['sha256']
+          byte_sha=write(out/'public-bytes.json',raw)
+          live=[]
+          for route,count in [('street',11),('xr',16)]:
+              z,aid=artifact(published,'lantern-live-'+route);raw=member(z,route+'/report.json');r=json.loads(raw)
+              assert r['success'] and len(r['checks'])==count and not r['errors'] and not r['consoleErrors']
+              digest=write(out/('live-'+route+'.json'),raw)
+              live.append({'route':route,'checksPassed':count,'artifact':aid,'sha256':digest,'report':'live-'+route+'.json'})
+          specs=[('street','street/report.json',11),('roof','roof/report.json',11),('canal','canal/report.json',13),('xr','xr/report.json',16),('coastal_browser_release','browser-release-report.json',14),('homecoming_browser','homecoming-browser.json',12),('atmosphere-browser','atmosphere-browser.json',22),('tidewater-browser','tidewater-browser.json',18),('grounded-browser','grounded-report.json',15)]
+          jobs=api(f'/actions/runs/{acceptance}/jobs?per_page=100')['jobs'];byname={j['name']:j for j in jobs}
+          required={'model','gate'}|{'browser ('+name+')' for name,_,_ in specs}
+          assert required.issubset(byname) and all(byname[n]['conclusion']=='success' for n in required)
+          suites=[]
+          for name,suffix,count in specs:
+              z,aid=artifact(acceptance,'lantern-'+name);raw=member(z,suffix);r=json.loads(raw)
+              assert r['success'] and len(r['checks'])==count and not r.get('errors') and not r.get('consoleErrors') and not r.get('shaderErrors'),name
+              filename='master/'+name+'.json';digest=write(out/filename,raw)
+              suites.append({'suite':name,'checksPassed':count,'artifact':aid,'report':filename,'sha256':digest})
+          z,mid=artifact(acceptance,'lantern-model');raw=member(z,'lantern-model.txt')
+          assert re.search(rb'^# tests 208\r?$',raw,re.M) and re.search(rb'^# pass 208\r?$',raw,re.M) and re.search(rb'^# fail 0\r?$',raw,re.M)
+          model_sha=write(out/'master/model.txt',raw)
+          receipt={'version':'0.12.0','edition':'Lantern Ward: The Broken Delivery Loop','date':'2026-09-15','published':True,'runtimeCommit':tested,'candidateCommit':candidate['testedCommit'],'gameURL':'https://v5ma.github.io/svgn-planet/','directEntry':'https://v5ma.github.io/svgn-planet/lantern-ward.html','legacyEntry':'https://v5ma.github.io/svgn-planet/legacy.html','acceptanceRun':runs[acceptance]['html_url'],'publicationRun':runs[published]['html_url'],'publicationAttempt':runs[published]['run_attempt'],'pagesRun':runs[pages]['html_url'],'unitTestsPassed':208,'unitTestsFailed':0,'browserSuitesPassed':len(suites),'browserChecksPassed':sum(s['checksPassed'] for s in suites),'liveBrowserChecksPassed':sum(s['checksPassed'] for s in live),'publicFilesVerified':len(manifest['files']),'publicManifest':'public-bytes.json','publicManifestSHA256':byte_sha,'publicArtifact':byte_id,'modelArtifact':mid,'modelReport':'master/model.txt','modelSHA256':model_sha,'suites':suites,'liveSuites':live,'legacyFilesPinned':len(legacy['files']),'legacySaveWrites':False,'sourceIdentity':'New chapter uses svgn.lantern-ward.v1, chapter lantern-ward-01, layout 1; no automatic migration of old coordinates or rewards.','xrScope':'Actual scene geometry is rendered per eye in first-person VR and third-person diorama VR/AR. Top/front/both aperture enum, manual placement, tracked-controller and joint-pinch UI. No room scanning, persistent spatial anchors or physical occlusion.','quality':'First authored playable graybox chapter, not a whole-world replacement or finished production art.','physicalQuest3Tested':False,'physicalXboxTested':False,'hardwareFrameTargetCertified':False,'humanLevelComprehensionTested':False,'recovery':'Attempt 1 exhausted its publication window before Pages completed. Attempt 2 checked the same committed bytes and live tours after deployment, without any gameplay change.','recordScope':'This receipt describes the stated runtime commit. The documentation-only recovery commit must receive its own public verification; it does not change accepted game code.'}
+          write(out/'published.json',receipt)
+          release=json.loads((root/'release.json').read_text());release.update(acceptance='Published runtime passed exact-file verification and live street/hoist plus native synthetic XR tours; physical-device and human quality gates remain open.',evidence='production/evidence/lantern-0.12.0/published.json',candidateEvidence='production/evidence/lantern-0.12.0/candidate.json',testedCommit=tested,acceptanceRun=receipt['acceptanceRun'],publicationRun=receipt['publicationRun'],pagesDeploymentRun=receipt['pagesRun'])
+          release['validation'].update(liveBrowserChecksPassed=27,publishedFilesVerified=186,legacyFilesPinned=102)
+          write(root/'release.json',release)
+          roadmap=json.loads((root/'production/roadmap.json').read_text());roadmap.update(edition=receipt['edition'],reviewed='2026-09-15',releaseEvidence='evidence/lantern-0.12.0/published.json')
+          updates={
+              'LEVEL-01':{'status':'needs-playtest','next':'Published authored graybox and three approach tours passed. Test unfamiliar-player orientation, route choice, shortcut recognition and replay agency before expanding the map; then replace graybox art deliberately.'},
+              'XR-02':{'status':'needs-playtest','next':'Native first-person VR and diorama VR/AR passed synthetic per-eye and controller/hand lifecycle checks on the live site. Obtain real Quest 3, Touch Plus, hand-tracking, comfort and frame-time sign-off. Manual placement only; room anchors are not implemented.'},
+              'XR-01':{'status':'needs-playtest','next':'Historical v0.11 comfort theater remains in legacy.html. Native spatial chapter views are tracked separately by XR-02. Both still require physical device approval.'},
+              'BUILD-01':{'status':'verified','acceptance':'Lantern Ward runtime is normally merged, deployed and verified against all 186 publication files. Live street/hoist and native synthetic XR tours pass; legacy layout remains pinned. This is a narrow publication criterion, not AAA or physical-device approval.','next':'Retain exact-source publication checks and normal merges; scope rollback only to this game.'},
+              'BUILD-02':{'status':'partial','next':'Public checks now wait for successful exact-commit Pages deployment before their byte-propagation window. A documented scoped rollback drill and real-device sign-off remain open.'}
+          }
+          for item in roadmap['items']:
+              if item['id'] in updates:
+                  item.update(updates[item['id']]);item['lastReviewed']='2026-09-15'
+                  ref='evidence/lantern-0.12.0/published.json'
+                  if ref not in item['evidence']:item['evidence'].append(ref)
+          write(root/'production/roadmap.json',roadmap);subprocess.run(['python','svgn-planet/production/render-roadmap.py'],check=True)
+          (root/'DEVELOPMENT-HANDOFF.md').write_text('# Lantern Ward / v0.12.0 published handoff\n\nLantern Ward is implemented, normally merged and published. Runtime: '+tested+'. Master acceptance: '+receipt['acceptanceRun']+'. Publication: '+receipt['publicationRun']+' (attempt 2). Pages: '+receipt['pagesRun']+'. Read production/evidence/lantern-0.12.0/published.json and the raw master/live reports beside it. Candidate records are historical, not current publication status.\n\nThe runtime passed 208 model tests, 132 checks across nine browser suites, all 186 deployed file hashes, and 27 live default-entry street/hoist and native synthetic XR checks. The initial publication check raced the Pages queue; retrying after deployment passed without modifying game code.\n\nRead lantern/README.md and design/PLACE-MASTERY-REBUILD.md. The new default chapter is an authored graybox with actual street, roof and canal routes, a far-side blue-door shortcut, reversible water, a repairable moving hoist and one-time approach-independent rewards. This is the first replacement chapter, not replacement of the entire old world or approval of finished level quality.\n\nFirst-person VR and diorama VR/AR render actual per-eye geometry. The top/front/both enum never closes both apertures; display scaling/cutaways do not change collision or progress. Tracked-controller play keeps the action panel hidden; hand-only controls use a small side panel. Placement is manual, not room-scanned anchoring. Physical Quest 3, Touch Plus, hand tracking, Xbox, comfort and hardware performance remain untested.\n\nThe original neighborhood remains at legacy.html with its 102 runtime/layout file hashes pinned by legacy-layout.json. Its v1 keys, rewards, Homecoming, Tidewater and old flat theater remain unchanged. Lantern Ward uses its own layout and save key; never copy or reinterpret old coordinates or credits silently.\n\nNext work: observe unfamiliar first-visit and replay comprehension, review camera/character intersections and raised-floor contacts, measure named devices, then improve the authored place and production art. Do not add another unstructured map expansion. Richer conversations/audio, broader chapter replacement and the extended soak remain open.\n\nRun node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs and all nine browser suites in neighborhood-lantern.yml. Preserve familiar direct actions, neutral rearm, backup/confirmation behavior and all sibling games. Regenerate AAA_ROADMAP.md with production/render-roadmap.py after JSON edits. Merge normally, verify deployed bytes, and never force-push shared master.\n')
+          old=(root/'README.md').read_text()
+          assert not any(r['path']=='README.md' for r in legacy['files'])
+          (root/'README.md').write_text('# Neighborhood Missions: Lantern Ward (v0.12.0)\n\nThe default entry now opens the first authored place-mastery chapter: The Broken Delivery Loop. [Play Lantern Ward](lantern-ward.html), or [continue the original neighborhood](legacy.html) with its existing saves. [Controls and spatial XR](lantern/README.md), [published verification](production/evidence/lantern-0.12.0/published.json), and [development handoff](DEVELOPMENT-HANDOFF.md).\n\nDeliver the parcel through the market, print-shop roof route or canal; restore a useful connection and return to the depot. The new level offers first-person stereo VR and actual 3D dioramas in VR/AR, with top-only, front-only or both openings. It is an integrated playable graybox, not finished production art. Physical headset/controller, comfort, performance and unfamiliar-player approval remain open.\n\nThe notes below describe the retained original neighborhood, now reached through legacy.html. Its progress is not silently migrated into the new chapter.\n\n'+old)
+          # Do not weaken hash checks. Wait for deployment before starting them.
+          wait_step=textwrap.dedent('''\
+                - name: Wait for this commit to finish Pages deployment
+                  env:
+                    DEPLOY_TOKEN: ${{ github.token }}
+                  run: |
+                    python - <<'PYWAIT'
+                    import json,os,time,urllib.request,urllib.error
+                    commit=os.environ['GITHUB_SHA'];repo=os.environ['GITHUB_REPOSITORY']
+                    deadline=time.monotonic()+1200
+                    while time.monotonic()<deadline:
+                        req=urllib.request.Request('https://api.github.com/repos/'+repo+'/actions/runs?event=dynamic&head_sha='+commit+'&per_page=20',headers={'Authorization':'Bearer '+os.environ['DEPLOY_TOKEN'],'Accept':'application/vnd.github+json'})
+                        try:
+                            with urllib.request.urlopen(req,timeout=25) as response:data=json.load(response)
+                        except (urllib.error.URLError,TimeoutError):
+                            print('Deployment status temporarily unavailable',flush=True);time.sleep(10);continue
+                        candidates=[r for r in data['workflow_runs'] if r['head_sha']==commit and r['path']=='dynamic/pages/pages-build-deployment']
+                        if candidates:
+                            run=max(candidates,key=lambda r:r['id'])
+                            if run['status']=='completed':
+                                assert run['conclusion']=='success','Pages did not deploy this commit: '+str(run['conclusion'])
+                                print('Pages deployment succeeded:',run['id'],flush=True);break
+                            print('Pages deployment:',run['status'],flush=True)
+                        else:print('Pages has not scheduled this commit yet',flush=True)
+                        time.sleep(10)
+                    else:raise SystemExit('No successful exact-commit Pages deployment within 20 minutes')
+                    PYWAIT
+          ''')
+          wait_step=textwrap.indent(wait_step,'      ')
+          workflows={'neighborhood-lantern-published.yml':('16','38'),'svgn-planet-published.yml':('10','32'),'paper-art-published.yml':('10','32'),'neighborhood-grounded-published.yml':('25','45')}
+          for name,(before,after) in workflows.items():
+              path=pathlib.Path('.github/workflows')/name;text=path.read_text()
+              assert 'Wait for this commit' not in text
+              assert text.count('permissions:\n  contents: read')==1
+              text=text.replace('permissions:\n  contents: read','permissions:\n  contents: read\n  actions: read',1)
+              text=text.replace('timeout-minutes: '+before,'timeout-minutes: '+after,1)
+              position=text.index('      - name:');text=text[:position]+wait_step+text[position:]
+              path.write_text(text)
+          # The only script permissions used are for this work-branch archive;
+          # all recurring publication workflows remain read-only.
+          PY
+          node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs > recovered-model.txt
+      - name: Commit only the scoped records and read-only deployment safeguards
+        run: |
+          python - <<'PY'
+          import subprocess
+          docs={'svgn-planet/release.json','svgn-planet/README.md','svgn-planet/DEVELOPMENT-HANDOFF.md','svgn-planet/AAA_ROADMAP.md','svgn-planet/production/roadmap.json'}
+          workflows={'.github/workflows/'+n for n in ['neighborhood-lantern-published.yml','svgn-planet-published.yml','paper-art-published.yml','neighborhood-grounded-published.yml']}
+          files=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines()
+          assert files and all(p in docs|workflows or p.startswith('svgn-planet/production/evidence/lantern-0.12.0/') for p in files),files
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True);subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','svgn-planet',*sorted(workflows)],check=True)
+          subprocess.run(['git','rm','.github/workflows/neighborhood-lantern-record.yml'],check=True)
+          subprocess.run(['git','commit','-m','docs(neighborhood): archive verified Lantern Ward and wait for Pages before public checks'],check=True)
+          subprocess.run(['git','push','origin','HEAD:neighborhood-missions/lantern-publication-recovery-20260915'],check=True)
+          PY
+          git rev-parse HEAD > SOURCE-COMMIT.txt
+          tar -czf lantern-recovered-source.tar.gz svgn-planet little-planet .github/workflows index.html SOURCE-COMMIT.txt recovered-model.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lantern-publication-recovery
+          path: |
+            lantern-recovered-source.tar.gz
+            recovered-model.txt
+          retention-days: 30
