@@ -11,7 +11,7 @@ export class ReserveXR{
  constructor(ctx){
   this.ctx=ctx;this.active=false;this.pending=false;this.session=null;this.gate=new EdgeGate();this.sources=new Map();this.holds=new Map();this.consumed=new Set();this.page=0;this.rows=[];this.tiles=[];this.context=null;this.paintClock=0;this.snapHeld=false;this.invisible=false;this.aimRay=null;
   this.preferences=readControls(ctx.storage);ctx.input.quickTools=this.preferences.quickTools;
-  this.rig=new T.Group();ctx.scene.add(this.rig);this.rig.add(ctx.camera);
+  this.originOffset=new T.Vector3();this.rig=new T.Group();ctx.scene.add(this.rig);this.rig.add(ctx.camera);
   ctx.renderer.xr.enabled=true;ctx.renderer.xr.setReferenceSpaceType('local-floor');
   this.raycaster=new T.Raycaster();this.rotation=new T.Matrix4();this.vector=new T.Vector3();this.quaternion=new T.Quaternion();
   this.canvas=document.createElement('canvas');this.canvas.width=1024;this.canvas.height=1024;this.paint=this.canvas.getContext('2d');
@@ -48,16 +48,16 @@ export class ReserveXR{
    session.addEventListener('end',()=>this.end(),{once:true});
    session.addEventListener('visibilitychange',()=>{this.invisible=session.visibilityState!=='visible';this.clear();if(this.invisible&&!this.ctx.modal())this.ctx.action('menu');});
    session.addEventListener('inputsourceschange',e=>{for(const source of e.removed||[]){this.holds.delete(source);this.consumed.delete(source);this.gate.remove(source);}this.clear();if(e.removed?.length&&!this.ctx.modal())this.ctx.action('menu');});
-   this.rig.rotation.y=this.ctx.yaw();this.ctx.camera.position.set(0,0,0);this.ctx.camera.quaternion.identity();
+   this.originOffset.set(0,0,0);this.rig.rotation.y=this.ctx.yaw();this.ctx.camera.position.set(0,0,0);this.ctx.camera.quaternion.identity();
    await this.ctx.renderer.xr.setSession(session);if(this.session!==session)return;this.active=true;this.invisible=false;this.clear();this.context=null;this.position();
    this.button.textContent='Leave VR';this.status.textContent='VR active. Point and trigger or pinch to select. Right B opens menus. Release all inputs after closing a panel.';
   }catch(error){if(session)try{await session.end();}catch{}this.end();this.ctx.notify('VR could not start: '+(error?.message||'permission or device unavailable')+'. Desktop play is unchanged.');}
   finally{this.pending=false;}
  }
- end(){this.active=false;this.session=null;this.invisible=false;this.clear();this.panel.visible=false;this.rig.position.set(0,0,0);this.rig.rotation.set(0,0,0);if(this.saved){this.ctx.camera.position.copy(this.saved.position);this.ctx.camera.quaternion.copy(this.saved.quaternion);this.saved=null;}this.button.textContent='Enter VR / Quest controllers and hands';this.ctx.restoreSize();}
+ end(){this.active=false;this.session=null;this.invisible=false;this.clear();this.panel.visible=false;this.originOffset.set(0,0,0);this.rig.position.set(0,0,0);this.rig.rotation.set(0,0,0);if(this.saved){this.ctx.camera.position.copy(this.saved.position);this.ctx.camera.quaternion.copy(this.saved.quaternion);this.saved=null;}this.button.textContent='Enter VR / Quest controllers and hands';this.ctx.restoreSize();}
  clear(){this.holds.clear();this.consumed.clear();this.gate.reset(this.session?.inputSources||[]);this.aimRay=null;this.ctx.input.clear();}
- position(){const p=this.ctx.fleet.position;this.rig.position.set(p.x,p.y+(this.ctx.fleet.mode==='foot'?-.9:.5),p.z);this.rig.updateMatrixWorld(true);}
- snap(amount){const camera=this.ctx.renderer.xr.getCamera(),before=camera.getWorldPosition(new T.Vector3());this.rig.rotation.y+=amount;this.rig.updateMatrixWorld(true);const after=camera.getWorldPosition(new T.Vector3());this.rig.position.add(before.sub(after));this.paintClock=1;}
+ position(){const p=this.ctx.fleet.position;this.rig.position.set(p.x,p.y+(this.ctx.fleet.mode==='foot'?-.9:.5),p.z).add(this.originOffset);this.rig.updateMatrixWorld(true);}
+ snap(amount){const camera=this.ctx.renderer.xr.getCamera(),before=camera.getWorldPosition(new T.Vector3());this.rig.rotation.y+=amount;this.rig.updateMatrixWorld(true);const after=camera.getWorldPosition(new T.Vector3());this.originOffset.add(before.sub(after));this.position();this.paintClock=1;}
  rayFor(entry){if(!entry.ray.visible)return null;entry.ray.updateWorldMatrix(true,false);this.rotation.extractRotation(entry.ray.matrixWorld);return {origin:new T.Vector3().setFromMatrixPosition(entry.ray.matrixWorld),direction:new T.Vector3(0,0,-1).applyMatrix4(this.rotation).normalize()};}
  hit(entry){const ray=this.rayFor(entry);if(!ray||!this.panel.visible)return null;this.raycaster.set(ray.origin,ray.direction);const hit=this.raycaster.intersectObject(this.panel,false)[0];if(!hit?.uv)return null;const x=hit.uv.x*1024,y=(1-hit.uv.y)*1024;return this.tiles.find(t=>x>=t.x&&x<=t.x+t.w&&y>=t.y&&y<=t.y+t.h)||null;}
  selectStart(source,entry){
