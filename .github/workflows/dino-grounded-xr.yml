@@ -2,43 +2,170 @@ name: Dino Atlas grounded XR
 on:
   push:
     branches: [master, 'dino-atlas/grounded-xr-20260914']
-    paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml']
+    paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml', '.github/patches/dino-grounded.*.b64']
   pull_request:
     paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml']
 permissions:
   contents: read
+concurrency:
+  group: dino-grounded-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  verify:
+  integrate:
+    if: github.ref == 'refs/heads/dino-atlas/grounded-xr-20260914'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    permissions:
+      contents: write
+    outputs:
+      source: ${{ steps.apply.outputs.source }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: dino-atlas/grounded-xr-20260914
+          sparse-checkout: |
+            dino-atlas
+            .github
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Source snapshot
-        run: tar -czf dino-source.tgz dino-atlas .github
-      - uses: actions/upload-artifact@v4
+      - id: apply
+        name: Apply the exact checksummed Dino-only source once
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,lzma,hashlib,subprocess,os
+          parts=sorted(Path('.github/patches').glob('dino-grounded.*.b64'))
+          if parts:
+              assert len(parts)==4
+              baseline=subprocess.check_output(['git','rev-parse','HEAD:dino-atlas'],text=True).strip()
+              assert baseline=='d0f8c9cacdf6e30754bc8817fccb34e73078f3bc','Dino baseline changed; review before applying'
+              patch=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
+              assert hashlib.sha256(patch).hexdigest()=='5692d3e8fae2b905130fa081f585e27e44a74d98bee95ea39207f2cd48ef11bb','Transport checksum mismatch'
+              target=Path('/tmp/dino-grounded.patch');target.write_bytes(patch)
+              names=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
+              assert all(line.split('\t')[-1].startswith('dino-atlas/') for line in names.splitlines())
+              subprocess.run(['git','apply','--check',str(target)],check=True)
+              subprocess.run(['git','apply','--index',str(target)],check=True)
+              subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
+              subprocess.run(['git','rm',*[str(p) for p in parts]],check=True)
+              subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
+              subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
+              subprocess.run(['git','commit','-m','Implement Grounded Reserve: planted gait, ranger proportions, direct tools and tracked XR UI'],check=True)
+              subprocess.run(['git','push','origin','HEAD:dino-atlas/grounded-xr-20260914'],check=True)
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('source='+sha+'\n')
+          PY
+  verify:
+    needs: [integrate]
+    if: always() && (needs.integrate.result == 'success' || needs.integrate.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
         with:
-          name: dino-source-${{ github.sha }}
-          path: dino-source.tgz
-          retention-days: 7
-      - name: Syntax and unit regressions
+          ref: ${{ needs.integrate.outputs.source || github.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source snapshot and unit regressions
         run: |
+          mkdir -p dino-atlas/verification/grounded-xr
+          tar -czf dino-grounded-source.tgz dino-atlas .github
           find dino-atlas -maxdepth 1 -name '*.js' -print0 | xargs -0 -n1 node --check
-          node --test dino-atlas/tests/*.test.mjs
-      - name: Browser regression when present
+          set -o pipefail
+          node --test dino-atlas/tests/*.test.mjs | tee dino-atlas/verification/grounded-xr/unit-tests.tap
+      - name: Install native browser
         run: |
-          if test -f dino-atlas/tests/grounded-xr.browser.mjs; then
-            npm install --no-save --prefix /tmp/dino-browser playwright@1.55.0
-            /tmp/dino-browser/node_modules/.bin/playwright install --with-deps chromium
-            ln -s /tmp/dino-browser/node_modules dino-atlas/tests/node_modules
-            node dino-atlas/tests/grounded-xr.browser.mjs
-          fi
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Render direct controls, ranger and explicitly mocked XR UI
+        run: python dino-atlas/tests/grounded-xr-browser.py
+      - name: Preserve Living Herds controller journey
+        if: success() || failure()
+        run: python dino-atlas/tests/living-herds-browser.py
+      - name: Preserve Storm Response controller journey
+        if: success() || failure()
+        run: python dino-atlas/tests/aaa-browser.py
+      - name: Preserve Pelagic Recovery controller journey
+        if: success() || failure()
+        run: python dino-atlas/tests/aquatics-browser.py
+      - name: Exact runtime manifest
+        if: success()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          root=Path('dino-atlas');files=[p for p in root.iterdir() if p.suffix in ('.js','.html','.css')]+[root/'GROUNDED-RESERVE.md',root/'AAA-ROADMAP.md']
+          manifest={'build':'grounded-xr-20260914.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
+          Path('dino-atlas/verification/grounded-xr/runtime-hashes.json').write_text(json.dumps(manifest,indent=2))
+          PY
+      - name: Verify published Pages bytes
+        if: github.ref == 'refs/heads/master' && success()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request,concurrent.futures
+          out=Path('dino-atlas/verification/grounded-xr');manifest=json.loads((out/'runtime-hashes.json').read_text());pending=dict(manifest['files']);verified={}
+          def fetch(item):
+              path,want=item
+              try:
+                  req=urllib.request.Request('https://v5ma.github.io/'+path+'?grounded='+manifest['commit']+'&attempt='+str(attempt),headers={'Cache-Control':'no-cache'})
+                  data=urllib.request.urlopen(req,timeout=30).read();actual=hashlib.sha256(data).hexdigest()
+                  return path,actual if actual==want else None
+              except Exception:return path,None
+          for attempt in range(20):
+              with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+                  for path,actual in pool.map(fetch,list(pending.items())):
+                      if actual:verified[path]=actual;pending.pop(path,None)
+              print('Verified',len(verified),'Pending',len(pending),flush=True)
+              if not pending:break
+              time.sleep(20)
+          assert not pending,'Public runtime does not match: '+str(list(pending))
+          (out/'public-verification.json').write_text(json.dumps({'build':manifest['build'],'commit':manifest['commit'],'url':'https://v5ma.github.io/dino-atlas/','verifiedFiles':verified,'allMatched':True,'physicalHardwareVerified':False},indent=2))
+          PY
+      - name: Exercise the published Grounded build
+        if: github.ref == 'refs/heads/master' && success()
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: |
+          cp dino-atlas/verification/grounded-xr/report.json dino-atlas/verification/grounded-xr/candidate-report.json
+          python dino-atlas/tests/grounded-xr-browser.py
+          cp dino-atlas/verification/grounded-xr/report.json dino-atlas/verification/grounded-xr/published-report.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dino-grounded-evidence-${{ github.sha }}
-          path: dino-atlas/verification/grounded-xr/
-          if-no-files-found: ignore
-          retention-days: 14
+          name: dino-grounded-evidence-${{ github.run_id }}
+          path: |
+            dino-atlas/verification/grounded-xr/
+            herds-evidence/
+            aaa-evidence/
+            aquatics-evidence/
+            dino-grounded-source.tgz
+          retention-days: 30
+  release:
+    needs: [verify]
+    if: github.ref == 'refs/heads/master' && needs.verify.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - uses: actions/download-artifact@v4
+        with:
+          name: dino-grounded-evidence-${{ github.run_id }}
+          path: release-evidence
+      - name: Publish verified backup release without replacing existing tags
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view dino-grounded-20260914.1 >/dev/null 2>&1; then
+            tar -czf dino-grounded-evidence.tgz -C release-evidence .
+            gh release create dino-grounded-20260914.1 --target '${{ github.sha }}' --title 'Dino Atlas: Grounded Reserve' --notes-file dino-atlas/GROUNDED-RESERVE.md dino-grounded-evidence.tgz
+          fi
