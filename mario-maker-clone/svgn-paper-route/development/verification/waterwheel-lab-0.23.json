@@ -4,21 +4,22 @@
   "baseline_merge": "a215ecfe7bbd8da5f36932b94a885f156523f92e",
   "status": "candidate-awaiting-native-acceptance",
   "scope": "Editable non-awarding Waterwheel revision-2 preview plus canonical merged chapter method; not default campaign replacement",
-  "local_model_tests": 46,
+  "runtime_change_sha": "25d1377bc3c17cba3141b4d270566178af8289de",
+  "candidate_sha": "53c9a7bc945b031c642f48fb30a80e76ea1d3fbd",
+  "candidate_note": "Only native XR oracle corrections and documentation follow the last runtime change.",
+  "acceptance_run": 35034203866,
   "native": null,
   "publication": null,
+  "local_rules": {"game_passed":223,"score_passed":12,"failed":0,"scope":"Recovered runtime with final preview dialogue changes; native browser evidence remains separate."},
+  "source_recovery": {"source_sha":"53ba3fbbf587f857f02b776cd7c19b76b31c6143","archive_run":35033083885,"artifact_id":10421783131,"sha256":"bc5a77ff9efdcef636efd44887341b51f7a26ae32ad89116d56324705850f12d","downloaded_digest_verified":true},
+  "source_provenance": "Both supplied design-file hashes independently matched chapters/design-source-provenance.json during recovery.",
   "retained_failures": [
-    "The first model finish receiver ended at x=8710 and landed past the goal; endpoint moved to x=8550, then all 18 express model cases land before x=9036."
+    {"scope":"initial model receiver","details":"The first receiver ended at x=8710 and landed past the goal; endpoint moved to x=8550, then all 18 declared express model cases landed before x=9036."},
+    {"scope":"initial stereo menu rendering","details":"Scenery painted over menu controls. The 53ba3fbbf587f857f02b776cd7c19b76b31c6143 runtime introduced explicit late overlay and pointer groups; visual and native readback review remains required."},
+    {"scope":"preview dialogue overlap","source_sha":"53ba3fbbf587f857f02b776cd7c19b76b31c6143","artifact_id":10422137816,"artifact_sha256":"c8236f3b387f2b8b18f83f66985180112493e0f8bb232fc97de0bab416078814","details":"The passing porch report's South Quay image showed dialogue covering riding instruments. Preview-only measured positioning corrected the actual visible problem without filtering messages. Earlier passing route evidence is not final capture acceptance."},
+    {"scope":"raw RGB and row oracle","run_id":35033434378,"job_id":104597072306,"artifact_id":10422039636,"sha256":"5574bf0a36c50360c69f71f7e3a14838198b738574ec63a9d7e24ef4b76dc75e","details":"Expected untransformed canvas colors and a fixed optional control. Actual opaque backgrounds were uniformly [8,49,81] rather than [35,66,92]; the image contained Materials & FX in the optional slot. Kept failed evidence, replaced invalid oracle with text/background contrast and render-only scenery isolation."},
+    {"scope":"second fixed row oracle","run_id":35033815372,"job_id":104598291335,"artifact_id":10422278403,"sha256":"386eb87a8fe801e8ed8cd83bab20ed4d70b3cc1419b26f96e8d418bc82d84f5d","details":"A later run rendered Portal atlas in the third slot rather than Materials & FX. Final test requires all five invariant actions plus six real DOM-backed controls, preserving 24 background samples, 12 text regions and scene-isolation checks. No runtime change was made to satisfy the assertion."}
   ],
-  "open_gates": [
-    "Native preview acceptance",
-    "Speed/brake selected fork",
-    "Optional high-to-high whip link",
-    "Comprehensive recovery and swept collision audit",
-    "Legacy full optional canal sequence",
-    "Revision-aware default promotion and rollback",
-    "Unfamiliar-player enjoyment/readability",
-    "Physical Xbox and Quest controllers/hands",
-    "Reference-device performance and comfort"
-  ]
+  "branch_selection": "Continue sky-cycle/waterwheel-chapter-0.23. The earlier unaccepted sky-cycle/waterwheel-reference-0.23 replacement experiment is not this release and must not overwrite Quiet Water or this preview.",
+  "open_gates": ["native acceptance and capture review","publication and live normal-input preview","speed/brake-selected fork","optional high-to-high whip link","all intended deliveries","comprehensive recovery and swept collision audit","legacy full optional canal sequence","revision-aware default promotion and rollback","unfamiliar-player enjoyment/readability","physical Xbox and Quest controllers/hands","reference-device performance and comfort","advanced Bezier controller authoring"]
 }
