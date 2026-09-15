@@ -42,6 +42,9 @@ with sync_playwright() as pw:
   page.locator('#sky-xr-open').click();page.locator('#sky-xr-enter').click();page.wait_for_function('SkyCycleXR.presenting && SkyCycleXR.diagnostics.frames>5')
   check(page.evaluate('SkyCycleXR.diagnostics.eyes===2 && SkyCycleXR.diagnostics.ownedScene && __cloudview.root.userData.waterwheelPreview.revision===2'),'Both stereo eyes render the actual Waterwheel preview scene')
   capture('waterwheel-xr-controller')
+  contrast=page.evaluate("""async()=>{const T=await import('./vendor/three.webgpu.js');const d=SkyCycleXR.diagnostics;const rows=d.buttons.filter(b=>['Back to the route','Choose a route','Portal atlas','Flight Deck','Sound & music','Controller guide'].includes(b.label));const img=new Image();img.src=await xrEmulator.image();await img.decode();const c=document.createElement('canvas');c.width=img.width;c.height=img.height;const cx=c.getContext('2d');cx.drawImage(img,0,0);const samples=[];const eyes=__merged.renderer.xr.getCamera().cameras;for(let eye=0;eye<2;eye++)for(const b of rows)for(const t of [.7,.85]){const x=b.x+b.w*t,y=b.y+b.h-12;const v=new T.Vector3((x/1200-.5)*1.5,(.5-y/900)*1.125,0).applyMatrix4(new T.Matrix4().fromArray(d.uiMatrix)).project(eyes[eye]);const px=Math.round(eye*550+(v.x+1)*275),py=Math.round((1-v.y)*400);if(px<eye*550||px>=(eye+1)*550||py<0||py>=800)throw Error('Menu sample outside eye viewport');const rgb=[...cx.getImageData(px,py,1,1).data].slice(0,3);samples.push({eye,label:b.label,px,py,rgb});}return samples;}""")
+  diagnostics['menu_pixels']=contrast
+  check(len(contrast)==24 and all(max(abs(v-e) for v,e in zip(s['rgb'],[35,66,92]))<=18 for s in contrast),'Both eye views retain opaque readable button backgrounds instead of scenery bleed-through')
   choose('Back to the route');page.wait_for_function('!__delivery.paused');frames()
   x=page.evaluate('player.x');page.evaluate('xrEmulator.axis(.8)');page.wait_for_function('(x)=>player.x>x+100',arg=x);page.evaluate('xrEmulator.axis(0)');frames()
   check(page.evaluate('RouteWorkshop.testing && __delivery.state.route===-1'),'Tracked controller rides while the existing Workshop retains award isolation')
@@ -61,10 +64,10 @@ with sync_playwright() as pw:
   page.screenshot(path=str(OUT/'waterwheel-editor-after-xr.png'))
   check(not errors,'No uncaught exceptions in the Waterwheel tracked-input flow')
   shader=[x for x in logs if any(v in x.lower() for v in ['tsl:','shader error','validation error','gl_invalid'])];check(not shader,'No detected shader errors in the Waterwheel stereo target')
-  diagnostics=page.evaluate('SkyCycleXR.diagnostics');passed=True
+  diagnostics['final']=page.evaluate('SkyCycleXR.diagnostics');passed=True
  except Exception as exc:
   failure=str(exc)
-  try:page.screenshot(path=str(OUT/'failure.png'));diagnostics=page.evaluate('({xr:window.SkyCycleXR?.diagnostics,route:window.__delivery?.state.route,testing:window.RouteWorkshop?.testing,capture:window.xrEmulator?.lastCapture})')
+  try:page.screenshot(path=str(OUT/'failure.png'));diagnostics['failure_state']=page.evaluate('({xr:window.SkyCycleXR?.diagnostics,route:window.__delivery?.state.route,testing:window.RouteWorkshop?.testing,capture:window.xrEmulator?.lastCapture})')
   except Exception:pass
   raise
  finally:

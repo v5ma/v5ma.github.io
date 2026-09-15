@@ -11,7 +11,7 @@ permissions:
   contents: read
 concurrency:
   group: sky-cycle-waterwheel-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 jobs:
   rules:
     runs-on: ubuntu-22.04
@@ -26,6 +26,7 @@ jobs:
           git rev-parse HEAD
           node --check mario-maker-clone/svgn-paper-route/waterwheel-preview.js
           node --check mario-maker-clone/svgn-paper-route/waterwheel-preview-art.mjs
+          node --check mario-maker-clone/svgn-paper-route/xr-play.js
           node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
           node --test tests/adventure_score.test.cjs
   rides:
@@ -60,7 +61,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        script: [waterwheel-xr-browser.py, bathhouse-browser.py, sunrise-browser.py]
+        script: [waterwheel-xr-browser.py, portal-network-browser.py, bathhouse-browser.py, sunrise-browser.py]
     steps:
       - uses: actions/checkout@v4
         with:
