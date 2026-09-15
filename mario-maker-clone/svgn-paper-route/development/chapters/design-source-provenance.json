@@ -1,0 +1,74 @@
+{
+  "approved": "2026-09-15",
+  "sources": [
+    {
+      "filename": "Pasted markdown(20260915-183634).md",
+      "sha256": "83cd099d8d49fb03d0b47f38f67d15b7f8456ade8e225d3b9e1a0ce3be28038c",
+      "role": "Side-scroller synthesis: teaching, discovery, encounters and movement",
+      "line_ranges_in_conversation": [
+        [
+          3,
+          23
+        ],
+        [
+          35,
+          45
+        ],
+        [
+          51,
+          85
+        ],
+        [
+          93,
+          123
+        ],
+        [
+          149,
+          171
+        ]
+      ]
+    },
+    {
+      "filename": "Pasted markdown (2).md",
+      "sha256": "62ab3c7500bd4de69e06d83f9a38dcc11b76e20145c9b991ab2d754584da102f",
+      "role": "Sky Cycle-specific identity and Waterwheel reference-chapter direction",
+      "line_ranges_in_conversation": [
+        [
+          1,
+          39
+        ],
+        [
+          41,
+          69
+        ],
+        [
+          71,
+          145
+        ],
+        [
+          147,
+          203
+        ]
+      ]
+    }
+  ],
+  "implementation_decisions": [
+    "Revision-aware future records",
+    "Non-awarding Workshop preview before default replacement",
+    "Seven concrete Waterwheel district names"
+  ],
+  "not_assumed": [
+    "Stormglass as a committed destination",
+    "Moving-machinery grapple upgrade",
+    "Swimming",
+    "Seamless portal progression"
+  ],
+  "repository_references": [
+    "FLOW-ROUTES.md",
+    "CLOUDPOST-RELAY.md",
+    "RIDE-LAB.md",
+    "SUNRISE-0.18.md",
+    "AAA-ROADMAP.md",
+    "RESUME-HERE.md"
+  ]
+}

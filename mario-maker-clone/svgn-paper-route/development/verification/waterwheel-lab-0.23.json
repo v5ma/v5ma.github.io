@@ -1,0 +1,24 @@
+{
+  "version": "0.23.0",
+  "build": "sky-cycle-waterwheel-lab-2026.09.15",
+  "baseline_merge": "a215ecfe7bbd8da5f36932b94a885f156523f92e",
+  "status": "candidate-awaiting-native-acceptance",
+  "scope": "Editable non-awarding Waterwheel revision-2 preview plus canonical merged chapter method; not default campaign replacement",
+  "local_model_tests": 46,
+  "native": null,
+  "publication": null,
+  "retained_failures": [
+    "The first model finish receiver ended at x=8710 and landed past the goal; endpoint moved to x=8550, then all 18 express model cases land before x=9036."
+  ],
+  "open_gates": [
+    "Native preview acceptance",
+    "Speed/brake selected fork",
+    "Optional high-to-high whip link",
+    "Comprehensive recovery and swept collision audit",
+    "Legacy full optional canal sequence",
+    "Revision-aware default promotion and rollback",
+    "Unfamiliar-player enjoyment/readability",
+    "Physical Xbox and Quest controllers/hands",
+    "Reference-device performance and comfort"
+  ]
+}
