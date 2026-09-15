@@ -1,0 +1,982 @@
+TAP version 13
+# Subtest: Static batching preserves transformed tree positions, shapes and materials
+ok 1 - Static batching preserves transformed tree positions, shapes and materials
+  ---
+  duration_ms: 6.301978
+  type: 'test'
+  ...
+# Subtest: Curved road fronts face away from the planet rather than lighting their underside
+ok 2 - Curved road fronts face away from the planet rather than lighting their underside
+  ---
+  duration_ms: 0.981409
+  type: 'test'
+  ...
+# Subtest: Mailbox delivery flags have independent materials
+ok 3 - Mailbox delivery flags have independent materials
+  ---
+  duration_ms: 1.538252
+  type: 'test'
+  ...
+# Subtest: five intentional profiles have bounded coherent lighting
+ok 4 - five intentional profiles have bounded coherent lighting
+  ---
+  duration_ms: 2.351005
+  type: 'test'
+  ...
+# Subtest: atmosphere off removes weather, extra light and foliage motion
+ok 5 - atmosphere off removes weather, extra light and foliage motion
+  ---
+  duration_ms: 0.313718
+  type: 'test'
+  ...
+# Subtest: zero strength is neutral with no allocated rain instances
+ok 6 - zero strength is neutral with no allocated rain instances
+  ---
+  duration_ms: 0.280546
+  type: 'test'
+  ...
+# Subtest: quiet mode freezes animation but keeps the selected lighting and wetness
+ok 7 - quiet mode freezes animation but keeps the selected lighting and wetness
+  ---
+  duration_ms: 0.219721
+  type: 'test'
+  ...
+# Subtest: low mode caps particles and excludes high-detail animation
+ok 8 - low mode caps particles and excludes high-detail animation
+  ---
+  duration_ms: 0.216506
+  type: 'test'
+  ...
+# Subtest: disabling visible rain does not unexpectedly change atmosphere or progress
+ok 9 - disabling visible rain does not unexpectedly change atmosphere or progress
+  ---
+  duration_ms: 0.286727
+  type: 'test'
+  ...
+# Subtest: wet after-rain is not a second ongoing storm
+ok 10 - wet after-rain is not a second ongoing storm
+  ---
+  duration_ms: 0.214091
+  type: 'test'
+  ...
+# Subtest: untrusted preference data is sanitized
+ok 11 - untrusted preference data is sanitized
+  ---
+  duration_ms: 0.248476
+  type: 'test'
+  ...
+# Subtest: preference storage failures never stop gameplay or touch the save key
+ok 12 - preference storage failures never stop gameplay or touch the save key
+  ---
+  duration_ms: 1.679878
+  type: 'test'
+  ...
+# Subtest: road shader retains texture, normal, tone and original color-space chunks
+ok 13 - road shader retains texture, normal, tone and original color-space chunks
+  ---
+  duration_ms: 0.874609
+  type: 'test'
+  ...
+# Subtest: custom prior road mapping survives atmosphere injection
+ok 14 - custom prior road mapping survives atmosphere injection
+  ---
+  duration_ms: 0.444923
+  type: 'test'
+  ...
+# Subtest: leaf deformation is shared by surface and depth shaders
+ok 15 - leaf deformation is shared by surface and depth shaders
+  ---
+  duration_ms: 0.264907
+  type: 'test'
+  ...
+# Subtest: low-power leaf shader also supports backlighting without PBR normal dependencies
+ok 16 - low-power leaf shader also supports backlighting without PBR normal dependencies
+  ---
+  duration_ms: 0.179276
+  type: 'test'
+  ...
+# Subtest: facade glow is a distinct shader, not a global change to skin and gems
+ok 17 - facade glow is a distinct shader, not a global change to skin and gems
+  ---
+  duration_ms: 0.545592
+  type: 'test'
+  ...
+# Subtest: sky customization retains the photograph and output conversion
+ok 18 - sky customization retains the photograph and output conversion
+  ---
+  duration_ms: 0.285385
+  type: 'test'
+  ...
+# Subtest: unexpected renderer chunks fail clearly instead of silently deleting code
+ok 19 - unexpected renderer chunks fail clearly instead of silently deleting code
+  ---
+  duration_ms: 0.732843
+  type: 'test'
+  ...
+# Subtest: all profiles leave deterministic cruising and saved progress unchanged
+ok 20 - all profiles leave deterministic cruising and saved progress unchanged
+  ---
+  duration_ms: 151.424645
+  type: 'test'
+  ...
+# Subtest: rain uses one static bounded allocation and no hidden scene capture
+ok 21 - rain uses one static bounded allocation and no hidden scene capture
+  ---
+  duration_ms: 0.358853
+  type: 'test'
+  ...
+# Subtest: atmosphere controls use normal semantic elements and no blocking alerts
+ok 22 - atmosphere controls use normal semantic elements and no blocking alerts
+  ---
+  duration_ms: 0.282029
+  type: 'test'
+  ...
+# Subtest: rain ambience lives on the existing mixer and is stopped with the other loops
+ok 23 - rain ambience lives on the existing mixer and is stopped with the other loops
+  ---
+  duration_ms: 0.292829
+  type: 'test'
+  ...
+# Subtest: ninety seconds of acceleration never pulses at the old depletion threshold
+ok 24 - ninety seconds of acceleration never pulses at the old depletion threshold
+  ---
+  duration_ms: 521.589514
+  type: 'test'
+  ...
+# Subtest: coasting retains speed without a direction or held accelerator
+ok 25 - coasting retains speed without a direction or held accelerator
+  ---
+  duration_ms: 95.481619
+  type: 'test'
+  ...
+# Subtest: explicit braking stops promptly and never automatically reaccelerates
+ok 26 - explicit braking stops promptly and never automatically reaccelerates
+  ---
+  duration_ms: 26.473264
+  type: 'test'
+  ...
+# Subtest: brake overrides RT; an exhausted legacy battery cannot govern acceleration
+ok 27 - brake overrides RT; an exhausted legacy battery cannot govern acceleration
+  ---
+  duration_ms: 0.344746
+  type: 'test'
+  ...
+# Subtest: walking remains controlled and not cruise-locked
+ok 28 - walking remains controlled and not cruise-locked
+  ---
+  duration_ms: 13.575707
+  type: 'test'
+  ...
+# Subtest: riding remains on a unit sphere at sustained high speed
+ok 29 - riding remains on a unit sphere at sustained high speed
+  ---
+  duration_ms: 143.302171
+  type: 'test'
+  ...
+# Subtest: fixed steps reject pathological durations
+ok 30 - fixed steps reject pathological durations
+  ---
+  duration_ms: 1.098929
+  type: 'test'
+  ...
+# Subtest: all original delivery addresses stay collision-free
+ok 31 - all original delivery addresses stay collision-free
+  ---
+  duration_ms: 2.025776
+  type: 'test'
+  ...
+# Subtest: all district transit landings remain safe and preserve completed work
+ok 32 - all district transit landings remain safe and preserve completed work
+  ---
+  duration_ms: 2.380861
+  type: 'test'
+  ...
+# Subtest: the whole-planet city keeps its districts and increases house scale
+ok 33 - the whole-planet city keeps its districts and increases house scale
+  ---
+  duration_ms: 2.318184
+  type: 'test'
+  ...
+# Subtest: every generated contract target is outside physical building volumes
+ok 34 - every generated contract target is outside physical building volumes
+  ---
+  duration_ms: 10.265395
+  type: 'test'
+  ...
+# Subtest: six starter contracts and four jobs per city district yield 102 jobs
+ok 35 - six starter contracts and four jobs per city district yield 102 jobs
+  ---
+  duration_ms: 0.342863
+  type: 'test'
+  ...
+# Subtest: courier, cleanup and photo contracts reward completion and can be replayed
+ok 36 - courier, cleanup and photo contracts reward completion and can be replayed
+  ---
+  duration_ms: 0.749234
+  type: 'test'
+  ...
+# Subtest: repair interactions open timing without automatically awarding progress
+ok 37 - repair interactions open timing without automatically awarding progress
+  ---
+  duration_ms: 0.18693
+  type: 'test'
+  ...
+# Subtest: repair completion cannot happen remotely or in the wrong contract
+ok 38 - repair completion cannot happen remotely or in the wrong contract
+  ---
+  duration_ms: 0.125355
+  type: 'test'
+  ...
+# Subtest: photo contracts require the rider to brake
+ok 39 - photo contracts require the rider to brake
+  ---
+  duration_ms: 0.126727
+  type: 'test'
+  ...
+# Subtest: sprint checkpoints and stunt rings advance in order, stunts need air
+ok 40 - sprint checkpoints and stunt rings advance in order, stunts need air
+  ---
+  duration_ms: 0.339195
+  type: 'test'
+  ...
+# Subtest: the timing band distinguishes good and missed pulses
+ok 41 - the timing band distinguishes good and missed pulses
+  ---
+  duration_ms: 0.19236
+  type: 'test'
+  ...
+# Subtest: abandoning a contract keeps earned credits and old newspaper progress
+ok 42 - abandoning a contract keeps earned credits and old newspaper progress
+  ---
+  duration_ms: 0.198872
+  type: 'test'
+  ...
+# Subtest: cosmetics deduct once, reject unaffordable purchases and never change speed
+ok 43 - cosmetics deduct once, reject unaffordable purchases and never change speed
+  ---
+  duration_ms: 0.240119
+  type: 'test'
+  ...
+# Subtest: v1 saves round-trip original progress and new contracts together
+ok 44 - v1 saves round-trip original progress and new contracts together
+  ---
+  duration_ms: 0.564799
+  type: 'test'
+  ...
+# Subtest: unmodified old saves load without losing their route
+ok 45 - unmodified old saves load without losing their route
+  ---
+  duration_ms: 0.178865
+  type: 'test'
+  ...
+# Subtest: invalid contract and mixer data are bounded and filtered
+ok 46 - invalid contract and mixer data are bounded and filtered
+  ---
+  duration_ms: 0.207068
+  type: 'test'
+  ...
+# Subtest: traffic moves between samples rather than rounding to vertices
+ok 47 - traffic moves between samples rather than rounding to vertices
+  ---
+  duration_ms: 0.340899
+  type: 'test'
+  ...
+# Subtest: rounded traffic loop is continuous at the last-to-first seam
+ok 48 - rounded traffic loop is continuous at the last-to-first seam
+  ---
+  duration_ms: 0.365745
+  type: 'test'
+  ...
+# Subtest: render interpolation places the visual pose between simulation ticks
+ok 49 - render interpolation places the visual pose between simulation ticks
+  ---
+  duration_ms: 0.322114
+  type: 'test'
+  ...
+# Subtest: score has arrangement, bass, melody and percussion with bounded levels
+ok 50 - score has arrangement, bass, melody and percussion with bounded levels
+  ---
+  duration_ms: 0.645409
+  type: 'test'
+  ...
+# Subtest: camera right-stick yaw uses the corrected sign with optional inversions
+ok 51 - camera right-stick yaw uses the corrected sign with optional inversions
+  ---
+  duration_ms: 0.574687
+  type: 'test'
+  ...
+# Subtest: UI ranges emit input events and all new dialogs expose a controller back action
+ok 52 - UI ranges emit input events and all new dialogs expose a controller back action
+  ---
+  duration_ms: 0.263925
+  type: 'test'
+  ...
+# Subtest: one audio scheduler and bounded voices prevent overlapping soundtracks
+ok 53 - one audio scheduler and bounded voices prevent overlapping soundtracks
+  ---
+  duration_ms: 0.206657
+  type: 'test'
+  ...
+# Subtest: rendering retains original artwork, bounded streaming and fixed-step interpolation
+ok 54 - rendering retains original artwork, bounded streaming and fixed-step interpolation
+  ---
+  duration_ms: 0.375493
+  type: 'test'
+  ...
+# Subtest: Neutral gamepad is ready but a missing source is not
+ok 55 - Neutral gamepad is ready but a missing source is not
+  ---
+  duration_ms: 1.395425
+  type: 'test'
+  ...
+# Subtest: Partially held LT and RT cannot rearm before the gameplay threshold releases
+ok 56 - Partially held LT and RT cannot rearm before the gameplay threshold releases
+  ---
+  duration_ms: 0.492233
+  type: 'test'
+  ...
+# Subtest: All four sticks must be within the actual gameplay dead zone
+ok 57 - All four sticks must be within the actual gameplay dead zone
+  ---
+  duration_ms: 4.562926
+  type: 'test'
+  ...
+# Subtest: Digital actions and invalid analog samples cannot rearm gameplay
+ok 58 - Digital actions and invalid analog samples cannot rearm gameplay
+  ---
+  duration_ms: 0.510647
+  type: 'test'
+  ...
+# Subtest: Real controller menu rearm uses the independently tested neutral guard
+ok 59 - Real controller menu rearm uses the independently tested neutral guard
+  ---
+  duration_ms: 0.646782
+  type: 'test'
+  ...
+# Subtest: Daylight is a background draw through the actual inverse camera, not a close sphere or reference image
+ok 60 - Daylight is a background draw through the actual inverse camera, not a close sphere or reference image
+  ---
+  duration_ms: 5.002915
+  type: 'test'
+  ...
+# Subtest: Radial horizon tracks a reversed hemisphere without altering the camera or live normal
+ok 61 - Radial horizon tracks a reversed hemisphere without altering the camera or live normal
+  ---
+  duration_ms: 0.879599
+  type: 'test'
+  ...
+# Subtest: Leafy canopies have deterministic bounded, finite geometry rather than a balloon per cluster
+ok 62 - Leafy canopies have deterministic bounded, finite geometry rather than a balloon per cluster
+  ---
+  duration_ms: 26.432011
+  type: 'test'
+  ...
+# Subtest: The visual pass retains both the close camera and bounded touch graphics
+ok 63 - The visual pass retains both the close camera and bounded touch graphics
+  ---
+  duration_ms: 0.354695
+  type: 'test'
+  ...
+# Subtest: Completed saves still enter a playable simulation, not a terminal title or finish state
+ok 64 - Completed saves still enter a playable simulation, not a terminal title or finish state
+  ---
+  duration_ms: 18.683027
+  type: 'test'
+  ...
+# Subtest: Vault keeps the historical v1 keys and does not touch sibling storage
+ok 65 - Vault keeps the historical v1 keys and does not touch sibling storage
+  ---
+  duration_ms: 3.385413
+  type: 'test'
+  ...
+# Subtest: Vault round trips old saves, contracts, finish state and rewards
+ok 66 - Vault round trips old saves, contracts, finish state and rewards
+  ---
+  duration_ms: 1.813028
+  type: 'test'
+  ...
+# Subtest: Last known good backup is written before primary changes
+ok 67 - Last known good backup is written before primary changes
+  ---
+  duration_ms: 0.636092
+  type: 'test'
+  ...
+# Subtest: Corrupt primary recovers backup and retains unreadable original
+ok 68 - Corrupt primary recovers backup and retains unreadable original
+  ---
+  duration_ms: 0.474589
+  type: 'test'
+  ...
+# Subtest: Interrupted primary write leaves committed progress intact
+ok 69 - Interrupted primary write leaves committed progress intact
+  ---
+  duration_ms: 0.699762
+  type: 'test'
+  ...
+# Subtest: Interrupted transaction can recover staging when primary is invalid
+ok 70 - Interrupted transaction can recover staging when primary is invalid
+  ---
+  duration_ms: 2.090266
+  type: 'test'
+  ...
+# Subtest: Quota failure while making backup cannot overwrite primary
+ok 71 - Quota failure while making backup cannot overwrite primary
+  ---
+  duration_ms: 0.68297
+  type: 'test'
+  ...
+# Subtest: Failed read blocks autosave instead of replacing an unseen existing save
+ok 72 - Failed read blocks autosave instead of replacing an unseen existing save
+  ---
+  duration_ms: 0.353042
+  type: 'test'
+  ...
+# Subtest: All unreadable slots are retained until an explicit recovery decision
+ok 73 - All unreadable slots are retained until an explicit recovery decision
+  ---
+  duration_ms: 0.743262
+  type: 'test'
+  ...
+# Subtest: Future saves are read-only even when a legacy backup exists
+ok 74 - Future saves are read-only even when a legacy backup exists
+  ---
+  duration_ms: 0.811641
+  type: 'test'
+  ...
+# Subtest: Legacy migration is additive and original slot remains unchanged
+ok 75 - Legacy migration is additive and original slot remains unchanged
+  ---
+  duration_ms: 0.412653
+  type: 'test'
+  ...
+# Subtest: Import validation rejects oversized, corrupt and future data
+ok 76 - Import validation rejects oversized, corrupt and future data
+  ---
+  duration_ms: 0.258464
+  type: 'test'
+  ...
+# Subtest: Failed verification of primary write is never reported as saved
+ok 77 - Failed verification of primary write is never reported as saved
+  ---
+  duration_ms: 0.28285
+  type: 'test'
+  ...
+# Subtest: Two-bone IK preserves both segment lengths and stable bend direction
+ok 78 - Two-bone IK preserves both segment lengths and stable bend direction
+  ---
+  duration_ms: 1.322708
+  type: 'test'
+  ...
+# Subtest: IK handles coincident and unreachable targets without NaN or hyperextension
+ok 79 - IK handles coincident and unreachable targets without NaN or hyperextension
+  ---
+  duration_ms: 0.267502
+  type: 'test'
+  ...
+# Subtest: Courier has a measured head and articulated arm/leg chains
+ok 80 - Courier has a measured head and articulated arm/leg chains
+  ---
+  duration_ms: 7.675222
+  type: 'test'
+  ...
+# Subtest: A stopped courier does not keep cycling its legs
+ok 81 - A stopped courier does not keep cycling its legs
+  ---
+  duration_ms: 35.518152
+  type: 'test'
+  ...
+# Subtest: Planted targets remain fixed in world coordinates under root translation
+ok 82 - Planted targets remain fixed in world coordinates under root translation
+  ---
+  duration_ms: 4.091316
+  type: 'test'
+  ...
+# Subtest: Teleport and airborne transitions release stale foot locks
+ok 83 - Teleport and airborne transitions release stale foot locks
+  ---
+  duration_ms: 3.343766
+  type: 'test'
+  ...
+# Subtest: Bicycle pedals stop with distance and knees remain finite in all travel modes
+ok 84 - Bicycle pedals stop with distance and knees remain finite in all travel modes
+  ---
+  duration_ms: 60.509005
+  type: 'test'
+  ...
+# Subtest: Pinch uses hysteresis and releases on missing pose
+ok 85 - Pinch uses hysteresis and releases on missing pose
+  ---
+  duration_ms: 0.263244
+  type: 'test'
+  ...
+# Subtest: XR sticks handle both two- and four-axis devices with dead zones
+ok 86 - XR sticks handle both two- and four-axis devices with dead zones
+  ---
+  duration_ms: 0.327394
+  type: 'test'
+  ...
+# Subtest: old saves acquire optional Homecoming without deleting existing progress
+ok 87 - old saves acquire optional Homecoming without deleting existing progress
+  ---
+  duration_ms: 3.053592
+  type: 'test'
+  ...
+# Subtest: Maya and the plaza approach do not introduce a blocked objective
+ok 88 - Maya and the plaza approach do not introduce a blocked objective
+  ---
+  duration_ms: 1.132722
+  type: 'test'
+  ...
+# Subtest: chapter does not replace an unrelated contract without explicit consent
+ok 89 - chapter does not replace an unrelated contract without explicit consent
+  ---
+  duration_ms: 0.645519
+  type: 'test'
+  ...
+# Subtest: a returning player gets credit for completed local projects without duplicate payments
+ok 90 - a returning player gets credit for completed local projects without duplicate payments
+  ---
+  duration_ms: 0.61876
+  type: 'test'
+  ...
+# Subtest: Homecoming plays through real contract progression and awards the final reward once
+ok 91 - Homecoming plays through real contract progression and awards the final reward once
+  ---
+  duration_ms: 1.543051
+  type: 'test'
+  ...
+# Subtest: final reward and project survive reload without allowing a second claim
+ok 92 - final reward and project survive reload without allowing a second claim
+  ---
+  duration_ms: 0.894256
+  type: 'test'
+  ...
+# Subtest: chapter targets Maya only after all community jobs are complete
+ok 93 - chapter targets Maya only after all community jobs are complete
+  ---
+  duration_ms: 0.411671
+  type: 'test'
+  ...
+# Subtest: project validation does not accept arbitrary object keys
+ok 94 - project validation does not accept arbitrary object keys
+  ---
+  duration_ms: 0.216535
+  type: 'test'
+  ...
+# Subtest: render health uses a bounded frame window and excludes pause gaps
+ok 95 - render health uses a bounded frame window and excludes pause gaps
+  ---
+  duration_ms: 1.088189
+  type: 'test'
+  ...
+# Subtest: frame percentiles and hitches reflect actual submitted intervals, not clamped dt
+ok 96 - frame percentiles and hitches reflect actual submitted intervals, not clamped dt
+  ---
+  duration_ms: 0.622977
+  type: 'test'
+  ...
+# Subtest: speed presentation is independent of the accelerator and optional with reduced motion
+ok 97 - speed presentation is independent of the accelerator and optional with reduced motion
+  ---
+  duration_ms: 0.322595
+  type: 'test'
+  ...
+# Subtest: every roadmap ID, dependency, status and evidence reference is deliberate
+ok 98 - every roadmap ID, dependency, status and evidence reference is deliberate
+  ---
+  duration_ms: 0.462697
+  type: 'test'
+  ...
+# Subtest: roadmap dependencies contain no cycles
+ok 99 - roadmap dependencies contain no cycles
+  ---
+  duration_ms: 0.721141
+  type: 'test'
+  ...
+# Subtest: new UI has safe controller back buttons and no blocking browser alerts
+ok 100 - new UI has safe controller back buttons and no blocking browser alerts
+  ---
+  duration_ms: 0.49099
+  type: 'test'
+  ...
+# Subtest: Homepage preserves playable routes, requested names and the archived prototype source
+ok 101 - Homepage preserves playable routes, requested names and the archived prototype source
+  ---
+  duration_ms: 1.076127
+  type: 'test'
+  ...
+# Subtest: Light glass retains transparency with a single environment sample and no physical-light or transmission pass
+ok 102 - Light glass retains transparency with a single environment sample and no physical-light or transmission pass
+  ---
+  duration_ms: 2.835462
+  type: 'test'
+  ...
+# Subtest: Shiny low-power materials share the source environment and do not change its color inputs
+ok 103 - Shiny low-power materials share the source environment and do not change its color inputs
+  ---
+  duration_ms: 0.525044
+  type: 'test'
+  ...
+# Subtest: Replacing the small rectangular postmark clears its old flattened scale so the gemstone has visible volume
+ok 104 - Replacing the small rectangular postmark clears its old flattened scale so the gemstone has visible volume
+  ---
+  duration_ms: 6.049684
+  type: 'test'
+  ...
+# Subtest: Faceted crystals have finite outward normals and fit the original collectible radius
+ok 105 - Faceted crystals have finite outward normals and fit the original collectible radius
+  ---
+  duration_ms: 3.36263
+  type: 'test'
+  ...
+# Subtest: Beveled vehicle surfaces keep the original normalized bounding box
+ok 106 - Beveled vehicle surfaces keep the original normalized bounding box
+  ---
+  duration_ms: 3.32011
+  type: 'test'
+  ...
+# Subtest: Reflection environment is deterministic linear HDR, not a fetched or photographed room
+ok 107 - Reflection environment is deterministic linear HDR, not a fetched or photographed room
+  ---
+  duration_ms: 49.392823
+  type: 'test'
+  ...
+# Subtest: Graphics preferences are isolated and blocked or malformed storage never breaks play
+ok 108 - Graphics preferences are isolated and blocked or malformed storage never breaks play
+  ---
+  duration_ms: 0.37931
+  type: 'test'
+  ...
+# Subtest: Low-draw-call batching preserves the glass layer instead of baking it opaque
+ok 109 - Low-draw-call batching preserves the glass layer instead of baking it opaque
+  ---
+  duration_ms: 4.468182
+  type: 'test'
+  ...
+# Subtest: Water uses a bounded two-wave artistic shader with no displacement to the playable ground
+ok 110 - Water uses a bounded two-wave artistic shader with no displacement to the playable ground
+  ---
+  duration_ms: 0.538509
+  type: 'test'
+  ...
+# Subtest: Sphere coordinates are closed and every landmark is on the same radial world
+ok 111 - Sphere coordinates are closed and every landmark is on the same radial world
+  ---
+  duration_ms: 1.537842
+  type: 'test'
+  ...
+# Subtest: Movement parallel-transports gravity and camera north without a flat-plane boundary
+ok 112 - Movement parallel-transports gravity and camera north without a flat-plane boundary
+  ---
+  duration_ms: 243.527535
+  type: 'test'
+  ...
+# Subtest: Jump changes radial lift, then lands on the sphere
+ok 113 - Jump changes radial lift, then lands on the sphere
+  ---
+  duration_ms: 5.402171
+  type: 'test'
+  ...
+# Subtest: A main delivery requires proximity and is awarded only once
+ok 114 - A main delivery requires proximity and is awarded only once
+  ---
+  duration_ms: 0.744685
+  type: 'test'
+  ...
+# Subtest: Finishing requires every main delivery and a return to the real post office
+ok 115 - Finishing requires every main delivery and a return to the real post office
+  ---
+  duration_ms: 0.733815
+  type: 'test'
+  ...
+# Subtest: The vehicle switch never moves the player or alters radial gravity
+ok 116 - The vehicle switch never moves the player or alters radial gravity
+  ---
+  duration_ms: 1.214465
+  type: 'test'
+  ...
+# Subtest: Boost is bounded and replenishes without a purchase or external service
+ok 117 - Boost is bounded and replenishes without a purchase or external service
+  ---
+  duration_ms: 119.777785
+  type: 'test'
+  ...
+# Subtest: Saved progress validates main, bonus, stunt and collectible identities
+ok 118 - Saved progress validates main, bonus, stunt and collectible identities
+  ---
+  duration_ms: 1.384094
+  type: 'test'
+  ...
+# Subtest: Invalid input does not inject nonfinite coordinates or unlimited time
+ok 119 - Invalid input does not inject nonfinite coordinates or unlimited time
+  ---
+  duration_ms: 0.904194
+  type: 'test'
+  ...
+# Subtest: Street camera targets the rider at playable scale, not the world origin
+ok 120 - Street camera targets the rider at playable scale, not the world origin
+  ---
+  duration_ms: 1.223943
+  type: 'test'
+  ...
+# Subtest: Phone defaults disable shadow maps and bound the framebuffer
+ok 121 - Phone defaults disable shadow maps and bound the framebuffer
+  ---
+  duration_ms: 0.490529
+  type: 'test'
+  ...
+# Subtest: Sibling game progress cannot be overwritten by this game
+ok 122 - Sibling game progress cannot be overwritten by this game
+  ---
+  duration_ms: 0.80053
+  type: 'test'
+  ...
+# Subtest: Every delivery has a clear approach from the street
+ok 123 - Every delivery has a clear approach from the street
+  ---
+  duration_ms: 41.506956
+  type: 'test'
+  ...
+# Subtest: Throwing requires range and flight time, never instant remote progression
+ok 124 - Throwing requires range and flight time, never instant remote progression
+  ---
+  duration_ms: 7.116002
+  type: 'test'
+  ...
+# Subtest: The session keeps stepping after a completed route
+ok 125 - The session keeps stepping after a completed route
+  ---
+  duration_ms: 33.720668
+  type: 'test'
+  ...
+# Subtest: The cheaper photographed sky uses the real radial camera frame, not a fixed screen image
+ok 126 - The cheaper photographed sky uses the real radial camera frame, not a fixed screen image
+  ---
+  duration_ms: 4.436152
+  type: 'test'
+  ...
+# Subtest: Desktop and phone sky assets retain hashes, provenance and explicit tonemapped scope
+ok 127 - Desktop and phone sky assets retain hashes, provenance and explicit tonemapped scope
+  ---
+  duration_ms: 2.185124
+  type: 'test'
+  ...
+# Subtest: The curated glTF library has 27 original Standard model roots, one valid buffer and only local files
+ok 128 - The curated glTF library has 27 original Standard model roots, one valid buffer and only local files
+  ---
+  duration_ms: 12.045288
+  type: 'test'
+  ...
+# Subtest: The asset register retains source CC0 licenses and the exact curated material files
+ok 129 - The asset register retains source CC0 licenses and the exact curated material files
+  ---
+  duration_ms: 28.997429
+  type: 'test'
+  ...
+# Subtest: Road UVs use meter-scaled coordinates without changing a single collision or geometry position
+ok 130 - Road UVs use meter-scaled coordinates without changing a single collision or geometry position
+  ---
+  duration_ms: 2.904762
+  type: 'test'
+  ...
+# Subtest: Static art merging removes draw calls without removing vertices or changing world-space placement
+ok 131 - Static art merging removes draw calls without removing vertices or changing world-space placement
+  ---
+  duration_ms: 16.767596
+  type: 'test'
+  ...
+# Subtest: Nature keeps a shared instance buffer instead of copying each high-detail tree into RAM
+ok 132 - Nature keeps a shared instance buffer instead of copying each high-detail tree into RAM
+  ---
+  duration_ms: 1.446611
+  type: 'test'
+  ...
+# Subtest: Low-power art changes shading rather than removing textured geometry or cloning textures
+ok 133 - Low-power art changes shading rather than removing textured geometry or cloning textures
+  ---
+  duration_ms: 4.25907
+  type: 'test'
+  ...
+# Subtest: Tidewater is an additive v1 save field and cannot wipe original progress
+ok 134 - Tidewater is an additive v1 save field and cannot wipe original progress
+  ---
+  duration_ms: 3.357671
+  type: 'test'
+  ...
+# Subtest: old missions and city identities remain, new water missions live separately
+ok 135 - old missions and city identities remain, new water missions live separately
+  ---
+  duration_ms: 0.331752
+  type: 'test'
+  ...
+# Subtest: shore targets and all dock endpoints stay physically reachable
+ok 136 - shore targets and all dock endpoints stay physically reachable
+  ---
+  duration_ms: 1.298102
+  type: 'test'
+  ...
+# Subtest: the reserved waterfront does not remove any historical building or mission
+ok 137 - the reserved waterfront does not remove any historical building or mission
+  ---
+  duration_ms: 0.425367
+  type: 'test'
+  ...
+# Subtest: pool and canal edges stop bicycles but the dock is open land
+ok 138 - pool and canal edges stop bicycles but the dock is open land
+  ---
+  duration_ms: 0.29886
+  type: 'test'
+  ...
+# Subtest: boating is explicit and cannot be started in the street or fast at the dock
+ok 139 - boating is explicit and cannot be started in the street or fast at the dock
+  ---
+  duration_ms: 0.569477
+  type: 'test'
+  ...
+# Subtest: boating saves safely at the pier and preserves the active excursion
+ok 140 - boating saves safely at the pier and preserves the active excursion
+  ---
+  duration_ms: 0.623799
+  type: 'test'
+  ...
+# Subtest: canal walls are physical boundaries, not random braking zones
+ok 141 - canal walls are physical boundaries, not random braking zones
+  ---
+  duration_ms: 0.659355
+  type: 'test'
+  ...
+# Subtest: pedal skiff speed is stable while accelerating, coasts and obeys LT
+ok 142 - pedal skiff speed is stable while accelerating, coasts and obeys LT
+  ---
+  duration_ms: 11.719528
+  type: 'test'
+  ...
+# Subtest: water missions pause but do not erase the old city-job timer
+ok 143 - water missions pause but do not erase the old city-job timer
+  ---
+  duration_ms: 3.694421
+  type: 'test'
+  ...
+# Subtest: pool service requires each actual location and deliberate braking
+ok 144 - pool service requires each actual location and deliberate braking
+  ---
+  duration_ms: 0.536255
+  type: 'test'
+  ...
+# Subtest: the filter cannot be completed remotely or without matching valve connections
+ok 145 - the filter cannot be completed remotely or without matching valve connections
+  ---
+  duration_ms: 0.344595
+  type: 'test'
+  ...
+# Subtest: pool service awards once per run and repeats at a reduced reward
+ok 146 - pool service awards once per run and repeats at a reduced reward
+  ---
+  duration_ms: 0.452328
+  type: 'test'
+  ...
+# Subtest: the whole canal route requires a skiff and a physical return and handoff
+ok 147 - the whole canal route requires a skiff and a physical return and handoff
+  ---
+  duration_ms: 1.151277
+  type: 'test'
+  ...
+# Subtest: buoys cannot be claimed on a bicycle and riding gates cannot be claimed in a skiff
+ok 148 - buoys cannot be claimed on a bicycle and riding gates cannot be claimed in a skiff
+  ---
+  duration_ms: 0.190667
+  type: 'test'
+  ...
+# Subtest: checkpoint detection does not skip gates at high speed
+ok 149 - checkpoint detection does not skip gates at high speed
+  ---
+  duration_ms: 0.170349
+  type: 'test'
+  ...
+# Subtest: boardwalk loop pays once and leaves the old paper route playable
+ok 150 - boardwalk loop pays once and leaves the old paper route playable
+  ---
+  duration_ms: 0.443391
+  type: 'test'
+  ...
+# Subtest: remote dismount is prevented and recovery always returns to a safe pier
+ok 151 - remote dismount is prevented and recovery always returns to a safe pier
+  ---
+  duration_ms: 0.311814
+  type: 'test'
+  ...
+# Subtest: garbage or prototype IDs never become mission state or unbounded values
+ok 152 - garbage or prototype IDs never become mission state or unbounded values
+  ---
+  duration_ms: 0.3207
+  type: 'test'
+  ...
+# Subtest: the water shader patches vendored PBR shaders without replacing its lights or shadow hooks
+ok 153 - the water shader patches vendored PBR shaders without replacing its lights or shadow hooks
+  ---
+  duration_ms: 0.778328
+  type: 'test'
+  ...
+# Subtest: water graphics have fixed ripple capacity and no live reflection or transmission pass
+ok 154 - water graphics have fixed ripple capacity and no live reflection or transmission pass
+  ---
+  duration_ms: 0.568785
+  type: 'test'
+  ...
+# Subtest: every water modal has a controller back path and explicit menu access
+ok 155 - every water modal has a controller back path and explicit menu access
+  ---
+  duration_ms: 0.440676
+  type: 'test'
+  ...
+# Subtest: new looped water audio belongs to existing ambience bus and shutdown
+ok 156 - new looped water audio belongs to existing ambience bus and shutdown
+  ---
+  duration_ms: 0.240912
+  type: 'test'
+  ...
+# Subtest: The visible neighborhood is a real network, not one road
+ok 157 - The visible neighborhood is a real network, not one road
+  ---
+  duration_ms: 2.280924
+  type: 'test'
+  ...
+# Subtest: Shift boost is dramatically faster than normal riding
+ok 158 - Shift boost is dramatically faster than normal riding
+  ---
+  duration_ms: 70.74641
+  type: 'test'
+  ...
+# Subtest: Bonus addresses award once and save separately from the main route
+ok 159 - Bonus addresses award once and save separately from the main route
+  ---
+  duration_ms: 4.247248
+  type: 'test'
+  ...
+# Subtest: A speed gate requires a ride and meaningful boost speed
+ok 160 - A speed gate requires a ride and meaningful boost speed
+  ---
+  duration_ms: 0.591348
+  type: 'test'
+  ...
+# Subtest: Branch road destinations sit beside, not in the center of, their road
+ok 161 - Branch road destinations sit beside, not in the center of, their road
+  ---
+  duration_ms: 0.388107
+  type: 'test'
+  ...
+# Subtest: Stored-original export retains quarantined data across recovery and reload
+ok 162 - Stored-original export retains quarantined data across recovery and reload
+  ---
+  duration_ms: 3.84302
+  type: 'test'
+  ...
+1..162
+# tests 162
+# suites 0
+# pass 162
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2191.116695

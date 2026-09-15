@@ -15,15 +15,20 @@
     "Quest WebXR comfort theater with tracked controller rays, hand joints, pinch menus and hand-only hold controls",
     "Retain Homecoming, Tidewater, original delivery routes, existing credits and unlimited cruise"
   ],
-  "acceptance": "Automated acceptance passed; live publication verification pending",
-  "testedCommit": "86d0346c93b95b8ea9dae65b2815a717dd9375b0",
-  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
+  "acceptance": "Published runtime passed exact-byte and live browser verification; physical-device gates remain open",
+  "testedCommit": "83965798b63974232e82b7678e5bdd2fb8ea34a2",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35003203550",
   "validation": {
-    "unitTestsPassed": 157,
+    "unitTestsPassed": 162,
     "browserSuitesPassed": 5,
     "physicalControllerTested": false,
     "physicalQuest3Tested": false,
     "hardwareFrameTargetCertified": false,
-    "commercialAAAQualityClaimed": false
-  }
+    "commercialAAAQualityClaimed": false,
+    "browserChecksPassed": 81,
+    "liveBrowserChecksPassed": 15,
+    "publishedFilesVerified": 148
+  },
+  "publicationRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35003202995",
+  "publishedEvidence": "production/evidence/v0.11.0-published.json"
 }
