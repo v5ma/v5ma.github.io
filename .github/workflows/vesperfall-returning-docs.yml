@@ -1,0 +1,40 @@
+name: Vesperfall Returning Bell release preparation
+on:
+  push:
+    branches: [vesperfall-returning-bell-20260915]
+    paths: ['.github/vesper-docs-apply.py', '.github/workflows/vesperfall-returning-docs.yml']
+permissions:
+  contents: write
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Preserve historical notes and remove staging machinery
+        run: |
+          set -euo pipefail
+          python .github/vesper-docs-apply.py
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall .github
+          if ! git diff --cached --quiet; then
+            git commit -m 'Finalize authored-opening handoff, homepage launch and read-only release verification'
+            git push origin HEAD:vesperfall-returning-bell-20260915
+          fi
+          git rev-parse HEAD > test-output/source-revision.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/workflows/vesperfall-returning-bell.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: returning-bell-final-source
+          path: test-output/
+          retention-days: 14

@@ -1,62 +1,67 @@
 name: Vesperfall Returning Bell acceptance
 on:
   push:
-    branches: [vesperfall-returning-bell-20260915]
-    paths: ['vesperfall/**', '.github/vesper-returning*', '.github/workflows/vesperfall-returning-bell.yml']
+    branches: [master]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-returning-bell.yml']
+  pull_request:
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-returning-bell.yml']
+  workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: returning-bell-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   acceptance:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Materialize exact reviewed source on feature branch
+      - name: Syntax, model, canonical workbook and source manifest
         run: |
           set -euo pipefail
-          python .github/vesper-returning-apply.py
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add vesperfall
-          git add -u .github
-          if ! git diff --cached --quiet; then
-            git commit -m 'Implement Returning Bell authored opening, versioned saves and discovery-limited AR table'
-            git push origin HEAD:vesperfall-returning-bell-20260915
-          fi
           mkdir -p test-output
-          git rev-parse HEAD > test-output/source-revision.txt
-      - name: Syntax and chapter model regression
-        run: |
-          set -euo pipefail
           for f in vesperfall/*.js; do node --check "$f"; done
-          node --test vesperfall/tests/returning-bell.test.cjs | tee test-output/returning-model.tap
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+      - name: Require exact public source, assets and workbook
+        if: github.ref == 'refs/heads/master'
+        run: python -u vesperfall/tests/verify-live.py
       - name: Install native verification browser
         run: |
-          python -m pip install playwright==1.57.0
+          python -m pip install playwright==1.57.0 pillow
           python -m playwright install --with-deps chromium
-      - name: Play the real chapter, mechanisms, saves and AR inspection
+      - name: Play the complete authored chapter with VR, AR, hands and saved return gate
+        env:
+          PUBLISHED: ${{ github.ref == 'refs/heads/master' }}
         run: |
           set -euo pipefail
-          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
-          SERVER=$!
-          trap 'kill $SERVER' EXIT
-          timeout 2000 python -u vesperfall/tests/returning-bell-browser.py | tee test-output/returning-browser.log
+          if [ "$PUBLISHED" = "true" ]; then
+            export TEST_BASE_URL=https://v5ma.github.io
+          else
+            python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+            SERVER=$!
+            trap 'kill $SERVER' EXIT
+          fi
+          timeout 2100 python -u vesperfall/tests/returning-bell-browser.py | tee test-output/returning-browser.log
+          test -s test-output/returning-bell/report.json
+          test ! -e test-output/returning-bell/failure.json
+          timeout 240 python -u vesperfall/tests/launch.py | tee test-output/launch.log
+          timeout 240 python -u vesperfall/tests/production-browser.py | tee test-output/production.log
       - name: Preserve exact tested source and evidence
         if: always()
         run: |
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/workflows/vesperfall-returning-bell.yml
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: vesperfall-returning-bell-acceptance
+          name: vesperfall-returning-bell-verification
           path: test-output/
           retention-days: 14
