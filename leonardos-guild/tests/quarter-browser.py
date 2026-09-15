@@ -47,7 +47,9 @@ with sync_playwright() as p:
   page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(6)
   check(read()['quarter']['active'] and read()['version']=='0.14.0','Fresh actual game starts in Waterwheel Quarter, not the prototype rows')
   press(0);page.wait_for_function('LeonardoGuild.inspect().running');frames(12);capture('arrival');original=read()
+  check(read()['render']['quarter']['cameraSafety']['valid'] and read()['render']['quarter']['cameraSafety']['obstacle']=='workshop-back','The actual arrival camera is on the apprentice side of the workshop wall')
   check(read()['render']['quarter']['physicalScene'] and read()['render']['quarter']['floorCount']==24,'Actual renderer uses the authored metric floors')
+  press(9);page.wait_for_selector('#pause-dialog[open]');choose('#menu-return');page.wait_for_function('!LeonardoGuild.inspect().running');press(0);page.wait_for_function('LeonardoGuild.inspect().running');frames(8)
   act('brief');check(read()['quarter']['briefed'],'Xbox X opens the real workshop brief and B returns')
   press(4);check(read()['resonance']['tool']=='sling','Tap LB retains direct tool selection in the new opening');press(4)
   for i,(x,z) in enumerate(paths[ROUTE]):

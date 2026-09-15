@@ -18,6 +18,7 @@ export const QUARTER_FLOORS=Object.freeze([
 export const surfaceY=(f,z)=>f.y+(f.endY-f.y)*Math.max(0,Math.min(1,(z-f.z1)/(f.z2-f.z1)));
 const wall=(id,x,z,hx,hz,y,h,gate=null)=>({id,x,z,hx,hz,y,h,gate});
 export const QUARTER_WALLS=Object.freeze([
+ wall('workshop-back',-20,-17.1,6,.9,0,4.3),
  wall('precision-front-left',11.1,-12,2.1,.16,0,3.6),wall('precision-front-right',20,-12,2,.16,0,3.6),wall('precision-east',22,-7.6,.16,4.4,0,3.6),
  wall('precision-west-lower',9,-10.5,.16,1.5,0,3.6),wall('precision-west-upper',9,-3.8,.16,.8,0,3.6),
  wall('precision-bench',19.9,-8.1,.7,1.7,0,1),wall('dye-vat',-25,-1,.6,.6,0,1),wall('crane',12.3,14.8,.55,.55,3.2,4.8),

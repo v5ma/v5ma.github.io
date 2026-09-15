@@ -23,3 +23,14 @@ test('Malformed quarter state is bounded and cannot invent arbitrary actor posit
 test('Quarter entry requires real legacy location, and leaving preserves old progression and parked vehicles',()=>{const s=attachQuarter(attachFrontier(newState()),null);assert.equal(quarterEnter(s),false);s.mode='foot';s.x=QUARTER_GATE.x;s.z=QUARTER_GATE.z;s.credits=345;s.relay=true;const vehicles=structuredClone(s.vehicle);assert.equal(quarterEnter(s),true);assert.equal(quarterLeave(s),true);assert.equal(s.credits,345);assert.equal(s.relay,true);assert.deepEqual(s.vehicle,vehicles);s.frontier.zone='badlands';assert.equal(quarterEnter(s),false);});
 test('Recovery, harmless tools and stable save identities cannot reset old accomplishments',()=>{const s=fresh();s.quarter.parcel=true;s.credits=432;recover(s);assert.ok(s.quarter.parcel);assert.equal(s.credits,432);assert.equal(throwPaper(s,world,1),false);const v=saveData(s);v.deliveries=['mail-0'];assert.ok(readSave(JSON.stringify(v),{...world,mailboxes:[]}));v.deliveries=['invented-mail'];assert.equal(readSave(JSON.stringify(v),world),null);});
 test('Every station has authored floor support at its declared elevation; only three bounded residents exist',()=>{for(const p of QUARTER_SITES){const f=quarterSurface(p.x,p.z,p.y);assert.ok(f,p.id);assert.ok(Math.abs(f.y-p.y)<.2,p.id);}const s=fresh();idle(s,6000);assert.equal(s.quarter.actors.length,3);assert.ok(s.quarter.actors.every(a=>[a.x,a.y,a.z,a.yaw].every(Number.isFinite)));});
+
+import {QUARTER_WALLS} from '../quarter-data.mjs';
+import {clipBoom} from '../camera-safety.mjs';
+test('The authored arrival camera stops in front of the workshop facade instead of rendering its back wall full screen',()=>{
+ const wall=QUARTER_WALLS.find(w=>w.id==='workshop-back');assert.ok(wall,'The actual drawn workshop facade needs a camera/physical proxy');
+ const b={id:wall.id,min:{x:wall.x-wall.hx,y:wall.y,z:wall.z-wall.hz},max:{x:wall.x+wall.hx,y:wall.y+wall.h,z:wall.z+wall.hz}};
+ for(const distance of[5.2,6.5,9.1]){const v=clipBoom({x:-20,y:1.2,z:-13},{x:-20,y:4.6,z:-13-distance},[b]);assert.equal(v.obstacle,'workshop-back');assert.ok(v.position.z>-16,'The camera must remain on the apprentice side of the wall');assert.ok(v.fraction<1);}
+});
+test('Adding the workshop camera wall preserves the porch, exit and both logical sides of the shortcut',()=>{
+ const s=fresh();for(const [x,z]of[[-20,-13],[-24,-14],[-16,-11],[-16,-6]]){s.quarter.groundY=0;assert.equal(quarterBlocked(s,x,z,.35),false);}
+});
