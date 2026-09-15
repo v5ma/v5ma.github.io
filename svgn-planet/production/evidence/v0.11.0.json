@@ -1,0 +1,72 @@
+{
+  "version": "0.11.0",
+  "edition": "Grounded Neighborhood",
+  "date": "2026-09-15",
+  "testedCommit": "86d0346c93b95b8ea9dae65b2815a717dd9375b0",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
+  "automatedAcceptance": "passed",
+  "publication": "Pending normal merge, Pages deployment and live byte/browser verification. See v0.11.0-published.json when recorded.",
+  "unitTestsPassed": 157,
+  "browserSuitesPassed": 5,
+  "browserChecksRecorded": {
+    "coastal": 14,
+    "homecoming": 12,
+    "grounded": 15
+  },
+  "jobs": [
+    {
+      "name": "browser (atmosphere-browser)",
+      "id": 104487141701,
+      "conclusion": "success"
+    },
+    {
+      "name": "browser (coastal_browser_release)",
+      "id": 104487141674,
+      "conclusion": "success"
+    },
+    {
+      "name": "browser (grounded-browser)",
+      "id": 104487141746,
+      "conclusion": "success"
+    },
+    {
+      "name": "browser (homecoming_browser)",
+      "id": 104487141667,
+      "conclusion": "success"
+    },
+    {
+      "name": "browser (tidewater-browser)",
+      "id": 104487141706,
+      "conclusion": "success"
+    },
+    {
+      "name": "gate",
+      "id": 104490947818,
+      "conclusion": "success"
+    },
+    {
+      "name": "model",
+      "id": 104487141309,
+      "conclusion": "success"
+    }
+  ],
+  "evidenceArtifacts": "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468#artifacts",
+  "saveAcceptance": "Historical v1 identity, legacy migration, backup-before-primary, interrupted writes, corrupt-primary recovery, future-schema write blocking, quota/security failures and retained original export passed. Import replacement remains explicitly confirmed and B cancels.",
+  "controllerAcceptance": "Xbox standard-mapping emulation, direct gameplay actions, menu neutral rearm and error/recovery navigation passed.",
+  "motionAcceptance": "Two-bone segment lengths and reach safety, world-fixed contact targets, idle phase, teleport/air release and finite riding poses passed; actual desktop captures retained.",
+  "xrAcceptance": "Synthetic native WebXR session with real Three r177 renderer; tracked rays/grips, joint-pinch menu selection, hand-only movement release, tracking-loss pause and session exit/reload passed.",
+  "xrPresentation": "World-anchored flat game screen in a comfort theater, not a stereo game world or room-scale locomotion.",
+  "physicalXboxTested": false,
+  "physicalQuest3Tested": false,
+  "hardwareFrameTargetCertified": false,
+  "humanArtApproval": false,
+  "aaaCertificationClaimed": false,
+  "retainedSystems": [
+    "Original delivery routes and v1 save identity",
+    "Homecoming and exactly-once rewards",
+    "Tidewater pool/canal/relay activities",
+    "102 city contracts and credits",
+    "Unlimited cruise and weather/audio preferences"
+  ],
+  "recoveryNote": "The earlier transfer failure was recovered. The waterfront input driver was changed to wait for actual simulation steps instead of repeatedly reading one slow WebGL frame; gameplay physics, arrival tolerance and rewards were not changed."
+}

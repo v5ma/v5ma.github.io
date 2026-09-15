@@ -6,7 +6,7 @@ OUT=Path(os.environ.get('TIDEWATER_OUTPUT','tidewater-results'));OUT.mkdir(exist
 BASE=os.environ.get('TIDEWATER_BASE','http://127.0.0.1:8765/svgn-planet/')
 PAD="""window.__pad={id:'Xbox / water acceptance',mapping:'standard',connected:true,index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad]});"""
 async def main():
- report={'version':'0.10.0','checks':[],'errors':[],'shaderErrors':[],'physicalControllerTested':False,'hardwareFPSCertified':False};started=time.time()
+ report={'version':'0.11.0','checks':[],'errors':[],'shaderErrors':[],'physicalControllerTested':False,'hardwareFPSCertified':False};started=time.time()
  async with async_playwright() as p:
   browser=await p.chromium.launch(executable_path=os.environ.get('CHROMIUM_EXECUTABLE'),headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   context=await browser.new_context(viewport={'width':960,'height':640});await context.add_init_script(PAD);page=await context.new_page();page.set_default_timeout(90000)
@@ -38,16 +38,18 @@ async def main():
   async def pilot(t,x):
    # Writes only emulated controller state, never the game's private simulation.
    for i in range(850):
-    r=await page.evaluate("""([t,x])=>{const s=SVGNPlanet.inspect(),a=t/880,b=x/880,n=[Math.sin(b),Math.cos(b)*Math.cos(a),-Math.cos(b)*Math.sin(a)];const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),d=Math.acos(Math.max(-1,Math.min(1,dot(s.n,n))))*880;const v=n.map((a,i)=>a-s.n[i]),L=Math.hypot(...v),dir=v.map(a=>a/(L||1));const brake=d<2.15;__pad.axes[0]=brake?0:dot(dir,s.basis.right);__pad.axes[1]=brake?0:-dot(dir,s.basis.forward);__pad.buttons[6]={pressed:brake,value:brake?1:0};__pad.buttons[7]={pressed:false,value:0};return {d,speed:s.speed,paused:s.paused,failed:s.failed,boat:s.tidewater.boat};}""",[t,x])
+    r=await page.evaluate("""([t,x])=>{const s=SVGNPlanet.inspect(),a=t/880,b=x/880,n=[Math.sin(b),Math.cos(b)*Math.cos(a),-Math.cos(b)*Math.sin(a)];const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),d=Math.acos(Math.max(-1,Math.min(1,dot(s.n,n))))*880;const v=n.map((a,i)=>a-s.n[i]),L=Math.hypot(...v),dir=v.map(a=>a/(L||1));const brake=d<2.15;__pad.axes[0]=brake?0:dot(dir,s.basis.right);__pad.axes[1]=brake?0:-dot(dir,s.basis.forward);__pad.buttons[6]={pressed:brake,value:brake?1:0};__pad.buttons[7]={pressed:false,value:0};return {d,speed:s.speed,paused:s.paused,failed:s.failed,boat:s.tidewater.boat,steps:s.steps};}""",[t,x])
     if r['failed']:raise AssertionError('Renderer failed while navigating')
     if r['paused']:await neutral();return
     if r['d']<2.3 and r['speed']<.10:await neutral();return
-    await page.wait_for_timeout(80)
+    # Wait for real simulation progress, not repeated reads of one slow WebGL frame.
+    # This changes only the test driver: no teleport, speed or simulation writes.
+    await page.wait_for_function("(steps)=>SVGNPlanet.inspect().steps>=steps+6||SVGNPlanet.inspect().paused||SVGNPlanet.inspect().failed",arg=r['steps'],timeout=90000)
    raise AssertionError('Controller could not reach '+str((t,x))+': '+str(r))
   try:
    await page.goto(BASE+'?quality=low',wait_until='domcontentloaded');await boot();await focus('start-water');await press(0);await wait("document.querySelector('#water-dialog').open");ok('Title-screen water button starts the real game and visits Tidewater')
    await screenshot('water-missions.png');await press(0);await wait("!SVGNPlanet.inspect().paused&&SVGNPlanet.inspect().tidewater.active?.id==='pool-opening'")
-   s=await state();assert s['version']=='0.10.0';assert s['render']['tidewater']['basins']==2;ok('Two water basins render and the first excursion is playable',s['render']['tidewater'])
+   s=await state();assert s['version']=='0.11.0';assert s['render']['tidewater']['basins']==2;ok('Two water basins render and the first excursion is playable',s['render']['tidewater'])
    await press(3);assert not (await state())['ride'];await pilot(-48,65);await press(2);assert (await state())['tidewater']['active']['index']==1;ok('Walk to the service kit and collect it using normal controller input')
    await pilot(-48,39);await pilot(-57,41);await press(2);assert (await state())['tidewater']['active']['index']==2
    await pilot(-69,41);await press(2);assert (await state())['tidewater']['active']['index']==3;ok('West-side skimming locations are physically reachable around the water collision')
@@ -62,7 +64,7 @@ async def main():
    await pilot(-79,64);await pilot(-48,65);await press(2);await wait("document.querySelector('#water-results-dialog').open");await screenshot('water-results.png');s=await state();assert 'pool-opening' in s['tidewater']['completed'] and s['coastal']['wallet']==360;await press(1);ok('Entire pool mission completed by controller traversal with a saved 360-credit reward')
    await page.reload(wait_until='domcontentloaded');await boot();await press(0);await wait('SVGNPlanet.inspect().started');assert (await state())['tidewater']['poolClean'];assert (await state())['coastal']['wallet']==360;ok('Pool state and reward survive normal reload')
    # Explicit fixture at the shore start, not an assertion of a full-city tour.
-   await page.evaluate("""async()=>{const m=await import('./model.mjs?v=0.10.0'),w=await import('./tidewater-core.mjs?v=0.10.0');const s=m.initial(m.readSave(localStorage.getItem(m.SAVE_KEY)));w.startWaterJob(s,'canal-courier');s.n=m.street(-91,46);s.ride=false;window.__fixture=JSON.stringify(m.saveData(s));}""")
+   await page.evaluate("""async()=>{const m=await import('./model.mjs?v=0.11.0'),w=await import('./tidewater-core.mjs?v=0.11.0');const s=m.initial(m.readSave(localStorage.getItem(m.SAVE_KEY)));w.startWaterJob(s,'canal-courier');s.n=m.street(-91,46);s.ride=false;window.__fixture=JSON.stringify(m.saveData(s));}""")
    fixture=await page.evaluate('__fixture');await page.add_init_script('if(!sessionStorage.getItem("tidewater-canal-fixture")){localStorage.setItem("svgn.paper-delivery-3d.v1",'+json.dumps(fixture)+');sessionStorage.setItem("tidewater-canal-fixture","1");}')
    await page.goto(BASE+'?quality=low',wait_until='domcontentloaded');await boot();await press(0);await wait('SVGNPlanet.inspect().started');await press(2);assert (await state())['tidewater']['active']['index']==1;await pilot(-97,49);await press(3);assert (await state())['tidewater']['boat'];assert (await state())['tidewater']['active']['index']==2;ok('Canal shore fixture: collect parcel and board using Y at the real pier')
    await pilot(-114,69);assert (await state())['tidewater']['active']['index']==3;await pilot(-125,100);await press(2);assert (await state())['tidewater']['active']['index']==4;ok('Skiff traverses open water, passes its buoy and recovers the floating dispatch')

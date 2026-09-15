@@ -1,3 +1,7 @@
+# Neighborhood Missions: Grounded Neighborhood (v0.11.0)
+
+See [GROUNDED-NEIGHBORHOOD.md](GROUNDED-NEIGHBORHOOD.md) for direct controls, recoverable saves, measured courier proportions and Quest XR comfort theater. This release retains the original game, Homecoming and Tidewater. Hardware and human art approval remain open.
+
 # Neighborhood Missions: Tidewater Commons (v0.10.0)
 
 Choose **Play the water missions now** on the title screen, or **Menu / Water missions / pool & marina** while playing. The authored waterfront is connected to Sunrise Boulevard near the original depot; optional transit gets you there immediately. See [TIDEWATER.md](TIDEWATER.md) for activities, controls, shader scope and save behavior.
