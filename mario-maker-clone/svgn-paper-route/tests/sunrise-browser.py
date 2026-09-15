@@ -94,5 +94,5 @@ with sync_playwright() as pw:
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':os.getenv('GITHUB_SHA'),'passed':passed,'checks':checks,'errors':errors,'coverage':'Real 3D branch traversal and controller journal; three complete native-engine routes using supported 2D view for their remainder. Standard Gamepad samples and ordinary keyboard/button input only; no debug wins, player-state or score assignments. Not physical-device or performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'commit':__import__('subprocess').check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'checks':checks,'errors':errors,'coverage':'Real 3D branch traversal and controller journal; three complete native-engine routes using supported 2D view for their remainder. Standard Gamepad samples and ordinary keyboard/button input only; no debug wins, player-state or score assignments. Not physical-device or performance certification.'},indent=2))
   context.close();browser.close();server.shutdown()

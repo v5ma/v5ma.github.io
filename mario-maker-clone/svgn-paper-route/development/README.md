@@ -1,3 +1,13 @@
+# Sky Cycle current continuation
+
+The v0.21.0 candidate is described in `PORTAL-NETWORK-0.21.md` and `verification/portal-network-0.21.json`. Its publication status is controlled by that receipt, not inferred from a branch commit. The previous v0.20 state and production history remain below.
+
+The Portal Network implementation now resolves catalog destinations by stable IDs, preserves Tideglass 01, provides destination signatures, protects drafts and explicit new-run travel, and retains nested controller focus. The courier adds analytic pedal/grip contacts without modifying physics. A seated stereo XR layer provides tracked-controller and native hand-select UI. Physical Quest 3/Xbox, comfort, performance and full editor qualification remain open.
+
+After accepted publication, continue the bounded water/audio sensory pass, then chapter quality. Before increasing scene detail, prioritize physical Quest 3 validation of both input modes and XR readability/performance. Do not claim the overall AAA milestones are complete.
+
+---
+
 # Sky Cycle development: start here
 
 This folder is the persistent handoff for continuing the existing Sky Cycle at `mario-maker-clone/svgn-paper-route/`. A future chat or developer should begin with `RESUME-HERE.md`, then consult the canonical `AAA-ROADMAP.md`, the latest version note, and its verification receipt before changing runtime code.

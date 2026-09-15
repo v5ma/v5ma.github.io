@@ -42,6 +42,7 @@ globalThis.CloudAssets=(()=>{
    for(const [dx,h,r]of[[-35,90,7],[10,125,9],[40,74,7]]){const px=x+dx*s;b.cone(px,y+h*s/2,z,r*s,h*s,'#f9f3d5',.85,8);b.cone(px,y+h*s+12*s,z,(r+3)*s,25*s,'#e9b844',0,8);for(let j=0;j<4;j++)b.box(px,y+(20+j*20)*s,z+r*s,3*s,8*s,1*s,'#568397');b.box(px,y+h*s+25*s,z,1.2*s,10*s,1.2*s,'#fbecc6');}
   }
   function courier(m,parent){
+   if(globalThis.SkyCycleRider)return SkyCycleRider.create(m,parent,{Batch});
    const group=new T.Group();group.name='Cloudview courier and jet bike';parent.add(group);const b=new Batch(),lit=new Batch();
    // Twin-wheel hover-motorcycle, with real depth and a separate lit engine.
    b.ell(0,-9,0,23,6,7,'#f2ede0',-.10);b.ell(12,-6,1,13,5,7,'#197cbe',-.20);b.box(-9,-6,0,16,4,12,'#273c54');b.rod([-17,-13,0],[3,-4,0],1.7,'#e9a82e');b.rod([3,-4,0],[19,-14,0],1.5,'#9cbace');

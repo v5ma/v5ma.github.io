@@ -5559,7 +5559,7 @@ let lastRaf = 0;
 /* Effects stay at full quality — this machine has headroom. FX is kept as a
    constant so the render passes that reference it still read full detail. */
 var FX = 2;
-function rafLoop(){ lastRaf = performance.now(); tick(); requestAnimationFrame(rafLoop); }
+function rafLoop(){ lastRaf = performance.now(); if(!window.SkyCycleXR?.presenting)tick(); requestAnimationFrame(rafLoop); }
 /* seed a tutorial machine into the shelf on first boot */
 (function seedTutorial(){
   try{
@@ -5613,7 +5613,7 @@ if('serviceWorker' in navigator && (location.protocol==='https:' || location.hos
 fit();
 requestAnimationFrame(rafLoop);
 /* watchdog: keep running if rAF is throttled (hidden/embedded tabs) */
-setInterval(()=>{ if(performance.now()-lastRaf > 250) tick(); }, 16);
+setInterval(()=>{ if(!window.SkyCycleXR?.presenting&&performance.now()-lastRaf > 250) tick(); }, 16);
 
 /* ---------- auth boot: pick up a magic-link redirect, restore session ---------- */
 (async function initAuth(){
@@ -6766,7 +6766,7 @@ const THREE={NearestFilter,InstancedBufferAttribute,WebGPURenderer,Fog,Group,Vec
 /* ---------------- renderer: WebGPU when available, WebGL2 fallback ------- */
 const canvas = document.getElementById('gl');
 const renderer = new THREE.WebGPURenderer({canvas, antialias:true, alpha:false,
-  powerPreference:'high-performance'});
+  powerPreference:'high-performance',forceWebGL:new URLSearchParams(location.search).get('xr')==='1'});
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setClearColor(0x050b1c, 1);
 

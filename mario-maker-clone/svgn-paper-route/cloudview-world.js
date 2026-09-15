@@ -133,6 +133,7 @@ window.Cloudview=(()=>{
   if(active){
    const track=p.track,angle=track?-(p.drawA||0):Math.max(-.65,Math.min(.65,Math.atan2(-p.vy,Math.abs(p.vx)||1)*.32));
    hero.group.position.set(p.x+13,-p.y-15,22);hero.group.rotation.z=angle;hero.group.rotation.y=track?0:p.dir<0?Math.PI:0;
+   hero.update?.(p,s.steps,{motion:!reduced()&&window.Prismatic?.settings.motion!==false,throttle:!!(keys.ArrowLeft||keys.ArrowRight||keys.KeyA||keys.KeyD)});
    hero.scarf.rotation.z=reduced()?0:Math.sin(t*12)*.1;hero.flame.scale.x=(p.track?.65:1.7)*(reduced()?1:1+Math.sin(t*33)*.2);
    for(const item of mail){const done=pg(item.box.x,item.box.y)===__gameRefs.T.MAILDONE;item.flag.visible=done;}
    for(const item of pickups){item.g.visible=pg(item.x,item.y)===__gameRefs.T.GEAR;if(!reduced())item.g.rotation.y=Math.sin(t*2+item.x)*.24;}

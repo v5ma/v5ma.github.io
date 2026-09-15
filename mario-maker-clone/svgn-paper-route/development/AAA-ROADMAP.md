@@ -1,3 +1,13 @@
+# Portal Network, articulated rider and XR implementation
+
+The v0.21.0 candidate is described in `PORTAL-NETWORK-0.21.md` and `verification/portal-network-0.21.json`. Its publication status is controlled by that receipt, not inferred from a branch commit. The previous v0.20 state and production history remain below.
+
+The Portal Network implementation now resolves catalog destinations by stable IDs, preserves Tideglass 01, provides destination signatures, protects drafts and explicit new-run travel, and retains nested controller focus. The courier adds analytic pedal/grip contacts without modifying physics. A seated stereo XR layer provides tracked-controller and native hand-select UI. Physical Quest 3/Xbox, comfort, performance and full editor qualification remain open.
+
+After accepted publication, continue the bounded water/audio sensory pass, then chapter quality. Before increasing scene detail, prioritize physical Quest 3 validation of both input modes and XR readability/performance. Do not claim the overall AAA milestones are complete.
+
+---
+
 # Sky Cycle: AAA-quality development roadmap
 
 This is the canonical, living production checklist for Sky Cycle, the existing side-scrolling game in `mario-maker-clone/svgn-paper-route/`. It is not the roadmap for Neighborhood Missions, Prism Current, or Dino Atlas. Updated September 13, 2026.
