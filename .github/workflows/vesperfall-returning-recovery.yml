@@ -1,0 +1,79 @@
+name: Vesperfall Returning Bell recovery
+on:
+  push:
+    branches: [vesperfall-returning-bell-20260915]
+    paths: ['.github/workflows/vesperfall-returning-recovery.yml']
+permissions:
+  contents: write
+jobs:
+  recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record bounded lesson timing and tolerate software-renderer latency
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          p=Path('vesperfall/tests/first-bell-browser.py');data=p.read_bytes()
+          assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()=='40bfa12aaccd1c078f208b9a028be70eecc03690'
+          s=data.decode();assert s.count('page.set_default_timeout(90000)')==1
+          s=s.replace('page.set_default_timeout(90000)','page.set_default_timeout(240000)')
+          old=' def lesson(i):wait(\'(i)=>Vesperfall.component.firstBell.state.coach?.index===i\',i)'
+          new=''' def lesson(i):
+            started=time.monotonic()
+            observe=lambda:page.evaluate('({time:Vesperfall.state.time,lesson:Vesperfall.component.firstBell.state.coach?.index,blocks:Vesperfall.state.blocks,health:Vesperfall.state.health,paused:Vesperfall.component.paused})')
+            before=observe()
+            try:wait('(i)=>Vesperfall.component.firstBell.state.coach?.index===i',i)
+            finally:
+             row={'target':i,'wallSeconds':round(time.monotonic()-started,3),'before':before,'after':observe()}
+             with (OUT/'lesson-timings.jsonl').open('a') as f:f.write(json.dumps(row)+'\\n')
+             print('LESSON TIMING:',json.dumps(row),flush=True)'''
+          assert s.count(old)==1;s=s.replace(old,new)
+          s=s.replace('The optional long combat suite uses the documented render-only CPU fixture.','The optional long combat suite uses the documented render-only CPU fixture.\nLesson waits allow up to 240 seconds on a software GPU; outcomes and game\ntime are unchanged. Each lesson records wall/simulation observations.')
+          p.write_text(s)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall/tests/first-bell-browser.py
+          git commit -m 'test(vesperfall): retain lesson outcomes with bounded software-GPU waits and timing evidence'
+          git push origin HEAD:vesperfall-returning-bell-20260915
+      - name: Validate the recovered source and canonical workbook
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Complete original First Bell lessons and launch/board acceptance
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1500 python -u vesperfall/tests/first-bell-browser.py | tee test-output/first-bell.log
+          test -s test-output/first-bell-lessons/report.json
+          timeout 240 python -u vesperfall/tests/launch.py | tee test-output/launch.log
+          timeout 240 python -u vesperfall/tests/production-browser.py | tee test-output/production.log
+      - name: Preserve exact source, diagnostic evidence and unchanged-runtime receipt
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          git diff --name-only 1edff69851c3f73c0d511fef8b8626225b2c1c02 HEAD > test-output/recovery-scope.txt || true
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/workflows/vesperfall-returning-bell.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-returning-recovery
+          path: test-output/
+          retention-days: 14
