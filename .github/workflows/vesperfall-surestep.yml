@@ -1,76 +1,70 @@
 name: Vesperfall Surestep acceptance
 on:
   push:
-    branches: [vesperfall-surestep-20260914]
-    paths: ['vesperfall/**', '.github/vesperfall-surestep*', '.github/workflows/vesperfall-surestep.yml']
+    branches: [master]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-surestep.yml']
+  pull_request:
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-surestep.yml']
+  workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
-  group: vesperfall-surestep-${{ github.ref }}
+  group: surestep-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    outputs:
-      source: ${{ steps.source.outputs.sha }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: source
-        run: |
-          set -euo pipefail
-          python .github/vesperfall-surestep-apply.py
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add vesperfall
-          if ! git diff --cached --quiet; then
-            git commit -m 'Exercise the actual Xbox water-settings disclosure before editing its controls'
-            git push origin HEAD:vesperfall-surestep-20260914
-          fi
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   acceptance:
-    needs: prepare
-    strategy:
-      fail-fast: false
-      matrix:
-        suite: [surestep, dominions, pilgrim]
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.prepare.outputs.source }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Syntax, mechanics and workbook regressions
-        if: matrix.suite == 'surestep'
+      - name: Syntax, mechanics, canonical workbook and source manifest
         run: |
           set -euo pipefail
           mkdir -p test-output
           for f in vesperfall/*.js; do node --check "$f"; done
           node --test vesperfall/tests/*.test.cjs | tee test-output/surestep-model.tap
-          python vesperfall/tests/production-workbook.py
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
           python scripts/check-vesperfall.py
-      - name: Install browser
+      - name: Require byte-for-byte publication of the merged release
+        if: github.ref == 'refs/heads/master'
+        run: python -u vesperfall/tests/verify-live.py
+      - name: Install verification browser
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Exercise the rendered input and preservation journey
+      - name: Exercise Xbox shortcuts, humanoid rigs and tracked-hand spatial menus
+        env:
+          PUBLISHED: ${{ github.ref == 'refs/heads/master' }}
         run: |
           set -euo pipefail
-          mkdir -p test-output
-          python -m http.server 4173 > test-output/server.log 2>&1 &
-          timeout 1200 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}-browser.log
+          if [ "$PUBLISHED" = "true" ]; then
+            export TEST_BASE_URL=https://v5ma.github.io
+          else
+            python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+            SERVER=$!
+            trap 'kill $SERVER' EXIT
+          fi
+          timeout 1200 python -u vesperfall/tests/surestep-browser.py | tee test-output/surestep-browser.log
+          test -s test-output/surestep/report.json
+          test ! -e test-output/surestep/failure.json
+      - name: Open the actual public game card, move and shoot
+        if: github.ref == 'refs/heads/master'
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+        run: timeout 240 python -u vesperfall/tests/launch.py
       - name: Retain exact tested source and diagnostics
         if: always()
         run: |
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
-          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/workflows/vesperfall-*.yml
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: vesperfall-surestep-${{ matrix.suite }}
+          name: vesperfall-surestep-verification
           path: test-output/
           retention-days: 14
