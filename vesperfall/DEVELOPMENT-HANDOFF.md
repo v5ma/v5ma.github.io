@@ -1,3 +1,11 @@
+Level-design replacement directive / September 15, 2026.
+
+Read LEVEL-DESIGN-RESET.md before selecting the next content task. The user has explicitly requested replacement of the original prototype levels with the attached place-mastery approach. The proposed first authored chapter is The Returning Bell: connected court/gallery/service routes, observation before commitment, a consequential reversible screen mechanism, a recognizable permanent return gate, and alternate-route objective completion. This directive supersedes the earlier recommendation to prioritize water/audio expansion ahead of level design. Fix water, audio, input and performance where they support the new chapter.
+
+This is a committed design brief, not a shipped replacement level. The playable release remains 0.13.0 Surestep. Do not credit planned geometry, patrol behavior, an Architect's Table or new AR gameplay as implemented. Keep first-person VR and the existing stationary, unscored AR Sanctuary distinct. The proposed AR-native architectural view must not spoil undiscovered routes or imply furniture scanning, physical support or real-world occlusion.
+
+Replace the default new-player content after acceptance, not the functioning engine or the geography underneath existing checkpoints. Preserve hollow-dominions-1 for old saved runs. New chapter geometry and mechanism state require a distinct versioned layout identity and migration/restore tests. Preserve Xbox down-D-pad Blink, left-D-pad damage-only cycling, physical Quest archery, hand-pinch menus and all earned progression. At the implementation milestone, update canonical next-release priorities and regenerate the workbook together; this design-only directive does not change task statuses or release metadata. Preserve the historical handoff below.
+
 # Surestep continuation / 2026-09-14
 
 Read SURESTEP.md first for the v0.13.0 contract and acceptance commands. Xbox D-pad down directly equips Blink; left cycles only usable damage arrows. Preserve menu and held-Y quiver priority. Quest water controls now share the paginated spatial settings list. Optional hand tracking drives spatial menus through real joint poses and a target ray, never fabricated gamepad input. Hands pause combat; both tracked controllers are required for physical archery.
