@@ -5,35 +5,80 @@ on:
     paths: ['aether-reach/**', '.github/workflows/aether-grounded.yml']
   pull_request:
     paths: ['aether-reach/**', '.github/workflows/aether-grounded.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: aether-grounded-${{ github.ref }}
+  group: aether-grounded-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 24
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [grounded, xr, controller, blackout, skyglass, foundry, glide, tactics-tools, tactics-recovery]
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            aether-reach
-            .github/workflows
-      - name: Source snapshot
-        run: |
-          mkdir -p /tmp/aether-source
-          git rev-parse HEAD > /tmp/aether-source/SOURCE-COMMIT.txt
-          tar -czf /tmp/aether-source/source.tar.gz aether-reach .github/workflows index.html projects.css .nojekyll
-      - uses: actions/upload-artifact@v4
-        with:
-          name: aether-grounded-source
-          path: /tmp/aether-source/
-          retention-days: 7
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Model and save regressions
-        run: node --test aether-reach/tests/*.test.mjs
-      - name: Backup and restore regressions
-        run: python aether-reach/tests/backup_test.py
+      - name: Model, saved progress, animation and release contract
+        run: |
+          set -euo pipefail
+          mkdir -p aether-reach/test-output
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          node --test aether-reach/tests/*.test.mjs | tee aether-reach/test-output/grounded-node.log
+          python aether-reach/tests/backup_test.py
+          python aether-reach/tools/render-production-plan.py
+          git diff --exit-code -- aether-reach/planning/AAA-ROADMAP.md
+          node aether-reach/tests/release-manifest.mjs
+      - name: Clean source restoration
+        if: matrix.suite == 'grounded'
+        run: |
+          python aether-reach/tools/backup.py --out /tmp/aether-restore-source
+          python aether-reach/tools/backup.py --restore /tmp/aether-restore-source/*source.zip --destination /tmp/aether-clean
+          (cd /tmp/aether-clean && node --test aether-reach/tests/*.test.mjs) > aether-reach/test-output/grounded-restore.log
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Play actual HTTP WebGL application through device inputs
+        timeout-minutes: 19
+        env:
+          SUITE: ${{ matrix.suite }}
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/aether-grounded-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          case "$SUITE" in
+            grounded) python -u aether-reach/tests/grounded-browser.py ;;
+            xr) DEVICE_SUITE=xr python -u aether-reach/tests/devices.py ;;
+            controller) python -u aether-reach/tests/controller-journey.py ;;
+            blackout) python -u aether-reach/tests/bellwether-browser.py ;;
+            skyglass) python -u aether-reach/tests/skyglass-browser.py ;;
+            foundry) python -u aether-reach/tests/foundry-browser.py ;;
+            glide) python -u aether-reach/tests/glide_browser.py ;;
+            tactics-tools) TACTIC_SUITE=tools python -u aether-reach/tests/tactics_browser.py ;;
+            tactics-recovery) TACTIC_SUITE=recovery python -u aether-reach/tests/tactics_browser.py ;;
+            *) exit 1 ;;
+          esac
+      - name: Exact tested source and evidence
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+          if [ '${{ matrix.suite }}' = grounded ]; then
+            git archive --format=zip HEAD aether-reach index.html projects.css .github/workflows > aether-reach/test-output/grounded-source.zip
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-grounded-${{ matrix.suite }}
+          path: aether-reach/test-output/
+          retention-days: 14
