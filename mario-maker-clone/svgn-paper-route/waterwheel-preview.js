@@ -1,9 +1,27 @@
 /* Explicit Workshop preview: original campaign and existing record owners stay intact. */
 import {build,PREVIEW,REVISION,TRANSFERS} from './waterwheel-layout-core.mjs';
 import {populate,draw2D} from './waterwheel-preview-art.mjs';
+import {noticePlacement} from './sensory-core.mjs';
 const BACKUP='svgn.skycycle.waterwheel-preview-backup.v1';
 const $=id=>document.getElementById(id);
-let resume=false,focus=null;
+let resume=false,focus=null,noticeFrame=0;
+// Preview dialogue must not obscure the existing riding HUD. Keep every warning;
+// only move its box. Outside the preview the original toast layout owns it again.
+function fitNotice(){
+ const el=$('toast'),host=el?.offsetParent;
+ if(!el)return;
+ if(!window.RouteWorkshop?.testing||!RouteWorkshop.state.doc?.extra?.gp?.waterwheel?.preview||!host){el.removeAttribute('data-waterwheel-notice');return;}
+ const blockers=[...document.querySelectorAll('#cloud-hud .cloud-flight-status,#bathhouse-objective,#bathhouse-use')].filter(n=>!n.hidden&&n.getClientRects().length).map(n=>n.getBoundingClientRect());
+ const bottom=noticePlacement(host.getBoundingClientRect(),el.getBoundingClientRect().height,blockers);
+ if(bottom===null){el.removeAttribute('data-waterwheel-notice');return;}
+ el.style.setProperty('--waterwheel-notice-bottom',bottom+'px');el.setAttribute('data-waterwheel-notice','');
+}
+function scheduleNotice(){fitNotice();cancelAnimationFrame(noticeFrame);noticeFrame=requestAnimationFrame(fitNotice);}
+const previousToast=window.toast;
+window.toast=function(...args){const result=previousToast.apply(this,args);scheduleNotice();return result;};
+const noticeObserver=new MutationObserver(scheduleNotice);
+function observeNotice(){const el=$('toast');if(el)noticeObserver.observe(el,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});}
+observeNotice();window.addEventListener('resize',scheduleNotice);
 const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('./waterwheel-preview.css',import.meta.url);document.head.append(style);
 const panel=document.createElement('dialog');panel.id='ww-preview';panel.setAttribute('aria-labelledby','ww-preview-title');
 panel.innerHTML='<small>SKY CYCLE / CHAPTER DESIGN LAB</small><h2 id="ww-preview-title">Waterwheel Boulevard / revision 2</h2><p>A new South Quay, Parcel Market, Service Bridge, Millworkers Court and Wheelhouse Depot. Try the delivery road, the short porch detour, or the connected express line.</p><p>This is an editable development preview, not a replacement for your campaign. Preview finishes do not award medals, badges, stamps, daily results or ghost records. The larger braking fork, whip link and human playtest gates remain unfinished.</p><p id="ww-preview-status" role="status">Save or export any dirty Workshop draft before opening another document.</p><div class="ww-preview-actions"><button id="ww-preview-ride">Ride the new layout</button><button id="ww-preview-ground">Ride with the sky hidden</button><button id="ww-preview-edit">Open editable blueprint</button><button id="ww-preview-restore">Restore previous blueprint</button><button id="ww-preview-back">Back</button></div>';
@@ -47,9 +65,9 @@ function labelPreviewResult(){
  const medal=result.querySelector('.medal');if(medal)medal.hidden=true;
  const kicker=result.querySelector('.delivery-kicker');if(kicker)kicker.textContent='DESIGN PREVIEW COMPLETE / NO CAMPAIGN AWARD';
 }
-function mount(){labelPreviewResult();for(const [host,id] of [[document.querySelector('#delivery-menu .delivery-hero'),'ww-preview-open'],[document.querySelector('#route-workshop .maker-library details'),'ww-preview-workshop']]){if(!host||$(id))continue;const b=document.createElement('button');b.id=id;b.className='delivery-btn';b.textContent='Waterwheel r2 design preview';b.setAttribute('aria-haspopup','dialog');b.onclick=show;host.append(b);}}
+function mount(){labelPreviewResult();scheduleNotice();for(const [host,id] of [[document.querySelector('#delivery-menu .delivery-hero'),'ww-preview-open'],[document.querySelector('#route-workshop .maker-library details'),'ww-preview-workshop']]){if(!host||$(id))continue;const b=document.createElement('button');b.id=id;b.className='delivery-btn';b.textContent='Waterwheel r2 design preview';b.setAttribute('aria-haspopup','dialog');b.onclick=show;host.append(b);}}
 const watcher=new MutationObserver(mount);watcher.observe(document.body,{subtree:true,childList:true});mount();
 const prior=GroundArt.populate;window.GroundArt={...GroundArt,populate(args){prior(args);if(args.course.gp?.waterwheel?.preview)populate(args);}};
 window.Waterwheel2D=Object.freeze({draw:draw2D});
 window.SkyCycleWaterwheel=Object.freeze({id:PREVIEW,revision:REVISION,show,build,get transfers(){return TRANSFERS.map(x=>({...x}));}});
-window.addEventListener('pagehide',()=>watcher.disconnect());window.addEventListener('pageshow',e=>{if(e.persisted){watcher.observe(document.body,{subtree:true,childList:true});mount();}});
+window.addEventListener('pagehide',()=>{watcher.disconnect();noticeObserver.disconnect();cancelAnimationFrame(noticeFrame);});window.addEventListener('pageshow',e=>{if(e.persisted){watcher.observe(document.body,{subtree:true,childList:true});observeNotice();mount();}});
