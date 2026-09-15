@@ -1,0 +1,107 @@
+name: Rainward spatial candidate
+on:
+  push:
+    branches: [feat/rainward-quest-fieldwork-20260915]
+    paths: ['rainward/**','.github/workflows/rainward-spatial-candidate.yml']
+permissions:
+  contents: write
+concurrency:
+  group: rainward-spatial-candidate
+  cancel-in-progress: true
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/rainward-quest-fieldwork-20260915
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assemble only scoped source and keep all model assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python rainward/tools/apply-spatial.py
+          node --test rainward/tests/*.test.mjs | tee test-output/node-models.txt
+          python -m compileall -q rainward/tests
+      - name: Commit the exact candidate before native acceptance
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rainward/app.mjs rainward/quest-xr.mjs rainward/xr-panel.mjs rainward/scene.mjs rainward/world.mjs rainward/state.mjs rainward/district.mjs rainward/field-tasks.mjs rainward/tests/reclaimed.test.mjs rainward/tests/quest-device-mock.js rainward/SPATIAL-INTEGRATION.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate selectable AR VR dioramas and the clinic-market replacement slice'
+            git push origin HEAD:feat/rainward-quest-fieldwork-20260915
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-spatial-models
+          path: test-output/
+          retention-days: 14
+  browser:
+    needs: integrate
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - view: diorama-vr
+            kind: controllers
+          - view: diorama-vr
+            kind: hands
+          - view: diorama-ar
+            kind: controllers
+          - view: diorama-ar
+            kind: hands
+          - view: recut
+            kind: xbox
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.integrate.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Real HTTP and WebGL acceptance
+        env:
+          XR_VIEW: ${{ matrix.view }}
+          QUEST_KIND: ${{ matrix.kind }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          if [ "$XR_VIEW" = recut ]; then
+            timeout 1100 python -u rainward/tests/recut-browser.py
+          else
+            timeout 1100 python -u rainward/tests/diorama-browser.py
+          fi
+      - name: Preserve exact source, images and failed evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-spatial-${{ matrix.view }}-${{ matrix.kind }}
+          path: test-output/
+          retention-days: 14
