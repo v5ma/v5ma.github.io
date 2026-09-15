@@ -52,7 +52,7 @@ with sync_playwright() as p:
  page.on('console',lambda m:shader_errors.append(m.text) if m.type=='error' and any(t in m.text for t in ['WebGLProgram','Shader Error','VALIDATE_STATUS']) else None)
  try:
   page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
-  check(read()['version']=='0.12.0','Real game starts Stillwater Works v0.12.0');press(0);page.wait_for_function('LeonardoGuild.inspect().running')
+  check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Real game starts the current release with the retained Stillwater mission');press(0);page.wait_for_function('LeonardoGuild.inspect().running')
   page.keyboard.press('Enter');page.wait_for_function('LeonardoGuild.inspect().audio.context==="running"')
   press(12);select('[data-dispatch="expeditions"]');select('[data-frontier-tab="contracts"]');select('[data-frontier-action="accept:cistern"]');close()
   check(read()['frontier']['accepted']==['cistern'],'Controller records the real waterworks contract without completing older missions')

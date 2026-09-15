@@ -1,11 +1,13 @@
 /* Standard Xbox layout. Polls while paused/title screens too. No synthetic
  * keyboard events: simulation actions and UI focus have separate paths. */
+import {createTapHold} from './quick-actions.mjs';
 export const CLASSIC_PAD_LAYOUT={A:'Jump / confirm',B:'Dodge / back',X:'Interact / nearby',Y:'Mount / dismount',LB:'Throw left / previous tab',RB:'Throw right / next tab',LT:'Brace / brake',RT:'Staff / pedal harder',View:'Map',Menu:'Pause / close',LS:'Move / steer; click toggles sprint',RS:'Look; click centers camera',Up:'Open Doors guide',Down:'Original notebook',Left:'Lantern',Right:'Inspect; hold to operate'};
-export const PAD_LAYOUT={A:'Jump or climb on foot; repeated taps sprint; duck while riding',B:'Dodge on foot / bicycle hop / back',X:'Interact; reload while aiming the sling; hold to interact in combat',Y:'Mount / dismount in town; field dressing in badlands',LB:'Hold equipment wheel / previous menu tab',RB:'Cover on foot / handbrake while riding / next menu tab',LT:'Aim (staff braces) / brake or reverse',RT:'Use equipped tool / accelerate',View:'Map',Menu:'Pause / close',LS:'Camera-relative movement / steering; click sprint or horn',RS:'Look / wheel selection; click recenters',Up:'Guild dispatch',Down:'Notebook; hold for discipline wheel',Left:'Lantern / vehicle headlight; hold for music wheel',Right:'Inspect; hold to operate', 'LS + RS':'Special ability (40 focus)'};
+export const PAD_LAYOUT={A:'Jump or climb on foot; repeated taps sprint; duck while riding',B:'Dodge on foot / bicycle hop / back',X:'Interact; reload while aiming the sling; hold to interact in combat',Y:'Mount / dismount in town; field dressing in badlands',LB:'Tap previous tool; hold equipment wheel / previous menu tab',RB:'Cover on foot / handbrake while riding / next menu tab',LT:'Aim (staff braces) / brake or reverse',RT:'Use equipped tool / accelerate',View:'Map',Menu:'Pause / close',LS:'Camera-relative movement / steering; click sprint or horn',RS:'Look / wheel selection; click recenters',Up:'Guild dispatch',Down:'Notebook; hold for discipline wheel',Left:'Lantern / vehicle headlight; hold for music wheel',Right:'Inspect; hold to operate', 'LS + RS':'Special ability (40 focus)'};
 export function deadzone(n,d=.18){if(!Number.isFinite(n)||Math.abs(n)<=d)return 0;return Math.sign(n)*Math.min(1,(Math.abs(n)-d)/(1-d));}
 export function buttonEdges(previous,current){return current.map((v,i)=>!!v&&!previous[i]);}
 export function createGamepad({getState,playing,active,actions,getPreferences=()=>({profile:'classic'})}){
  let previous=Array(17).fill(false),held=Array(17).fill(false),axes=[0,0,0,0],connected=false,id='',sprint=false,repeatAt=0,lastDir='',lastRoot=null,remembered=null,focusKey='',lastInput=0,lastA=-999,sprintUntil=0,downAt=0,leftAt=0,downUsed=true,leftUsed=true,xAt=0,xUsed=false,chord=false,pendingLS=0,pendingRS=0,moveYaw=0,stickLatch=false,releaseLatch=Array(17).fill(false);
+ const toolPress=createTapHold();
  const badge=document.createElement('div');badge.id='gamepad-status';badge.setAttribute('role','status');badge.textContent='Xbox controller: press a button to connect';document.body.append(badge);
  const help=document.createElement('div');help.id='gamepad-hints';help.textContent='X interact | Y ride | RT staff | LT brace | B dodge | Menu pause';document.body.append(help);
  const visible=e=>!!e&&e.getClientRects().length>0&&getComputedStyle(e).visibility!=='hidden'&&getComputedStyle(e).display!=='none'&&!e.closest('[hidden]');
@@ -47,14 +49,14 @@ export function createGamepad({getState,playing,active,actions,getPreferences=()
  function poll(now,dt){
   let pad=null;try{pad=[...(navigator.getGamepads?.()||[])].find(p=>p?.connected&&p.mapping==='standard')||null;}catch{}
   const was=connected;connected=!!pad;
-  if(!pad){axes=[0,0,0,0];previous=held=Array(17).fill(false);releaseLatch=Array(17).fill(false);pendingLS=pendingRS=0;if(was){sprint=false;sprintUntil=0;actions.cancelWheel?.();actions.pause();badge.textContent='Controller disconnected. Reconnect or use keyboard.';}document.body.classList.remove('pad-connected');return;}
+  if(!pad){toolPress.reset();axes=[0,0,0,0];previous=held=Array(17).fill(false);releaseLatch=Array(17).fill(false);pendingLS=pendingRS=0;if(was){sprint=false;sprintUntil=0;actions.cancelWheel?.();actions.pause();badge.textContent='Controller disconnected. Reconnect or use keyboard.';}document.body.classList.remove('pad-connected');return;}
   id=pad.id;document.body.classList.add('pad-connected');held=Array.from({length:17},(_,i)=>!!pad.buttons[i]&&(pad.buttons[i].pressed||pad.buttons[i].value>.5));axes=Array.from({length:4},(_,i)=>deadzone(pad.axes[i]));
   const edge=buttonEdges(previous,held),released=held.map((v,i)=>!v&&previous[i]);previous=[...held];releaseLatch=releaseLatch.map((v,i)=>v&&held[i]);
   if(stickLatch&&Math.hypot(axes[2],axes[3])<.2)stickLatch=false;
   badge.textContent='Xbox layout connected';if(edge.some(Boolean)){actions.gesture?.();lastInput=now;}if(axes.some(v=>Math.abs(v)>.1))lastInput=now;
   const cfg=getPreferences(),classic=cfg.profile==='classic',r=root();
   if(r){
-   downUsed=leftUsed=true;pendingLS=pendingRS=0;actions.cancelWheel?.();help.textContent='D-pad / left stick navigate | A confirm | B back | LB/RB tabs | Right stick scroll';ensure(r);
+   toolPress.reset();downUsed=leftUsed=true;pendingLS=pendingRS=0;actions.cancelWheel?.();help.textContent='D-pad / left stick navigate | A confirm | B back | LB/RB tabs | Right stick scroll';ensure(r);
    if(edge[1]||edge[9]||edge[8]){if(!closeTop()&&edge[9])actions.start();return;}
    const dir=held[12]||axes[1]<-.55?'up':held[13]||axes[1]>.55?'down':held[14]||axes[0]<-.55?'left':held[15]||axes[0]>.55?'right':'';
    if(dir&&(dir!==lastDir||now>=repeatAt)){navigate(r,dir);repeatAt=now+(dir!==lastDir?340:130);}lastDir=dir;
@@ -62,13 +64,14 @@ export function createGamepad({getState,playing,active,actions,getPreferences=()
    if(Math.abs(axes[3])>.1){const scroll=r.querySelector('[data-pad-scroll]')||r;scroll.scrollTop+=axes[3]*dt*460;}return;
   }
   lastRoot=null;lastDir='';
-  const s=getState();help.textContent=classic?'X interact | Y ride | RT staff | LT brace/brake | B dodge | View map | Menu pause':s.mode==='foot'?(s.resonance?.tool==='sling'?'LT aim | RT sling | X reload while aiming | Hold X interact | LB equipment | B dodge':'X interact | A jump / tap to sprint | LT brace / aim | RT tool | LB equipment | RB cover'):'RT accelerate | LT brake / reverse | RB handbrake | Y dismount | LS horn | Hold left for music';
-  if(s.frontier?.zone==='badlands')help.textContent=classic?'X interact | RT staff | LT brace | Y dressing | View map | Menu pause':'X interact / reload | LT aim | RT tool | LB equipment | B dodge | Y dressing | Up Dispatch';
+  const s=getState();help.textContent=classic?'X interact | Y ride | RT staff | LT brace/brake | B dodge | View map | Menu pause':s.mode==='foot'?(s.resonance?.tool==='sling'?'LT aim | RT sling | X reload while aiming | Hold X interact | LB tap swap / hold wheel | B dodge':'X interact | A jump / tap to sprint | LT brace / aim | RT tool | LB tap swap / hold wheel | RB cover'):'RT accelerate | LT brake / reverse | RB handbrake | Y dismount | LS horn | Hold left for music';
+  if(s.frontier?.zone==='badlands')help.textContent=classic?'X interact | RT staff | LT brace | Y dressing | View map | Menu pause':'X interact / reload | LT aim | RT tool | LB tap swap / hold wheel | B dodge | Y dressing | Up Dispatch';
   if(!playing()){if(edge[0]||edge[9])actions.start();return;}
-  if(edge[9]){actions.cancelWheel?.();actions.pause();return;}if(edge[8]){actions.cancelWheel?.();actions.map();return;}
-  if(!active())return;
+  if(edge[9]){toolPress.reset();actions.cancelWheel?.();actions.pause();return;}if(edge[8]){toolPress.reset();actions.cancelWheel?.();actions.map();return;}
+  if(!active()){toolPress.reset();return;}
   const wheel=actions.wheelActive?.();
   if(wheel){
+   toolPress.reset();
    if(edge[1]){actions.closeWheel?.(false);releaseLatch=[...held];stickLatch=true;return;}
    actions.updateWheel?.(axes[2],axes[3],edge[14]?-1:edge[15]?1:0,edge[12]?-1:edge[13]?1:0);
    const trigger=wheel==='tools'?4:wheel==='music'?14:13;
@@ -81,7 +84,8 @@ export function createGamepad({getState,playing,active,actions,getPreferences=()
    if(edge[12])actions.guide();if(edge[13])actions.journal();if(edge[14])actions.magic();if(edge[15])actions.scan();return;
   }
   const press=i=>edge[i]&&!releaseLatch[i];
-  if(press(4)){actions.openWheel?.('tools');return;}
+  const toolAction=toolPress.update({down:held[4],pressed:press(4),released:released[4],now,blocked:releaseLatch[4]});
+  if(toolAction==='hold'){actions.openWheel?.('tools');return;}if(toolAction==='tap')actions.quickTool?.();
   if(press(13)){downAt=now;downUsed=false;}if(held[13]&&!releaseLatch[13]&&!downUsed&&now-downAt>300){downUsed=true;actions.openWheel?.('disciplines');return;}if(released[13]&&!downUsed){actions.journal();return;}
   if(press(14)){leftAt=now;leftUsed=false;}if(held[14]&&!releaseLatch[14]&&!leftUsed&&now-leftAt>300){leftUsed=true;actions.openWheel?.('music');return;}if(released[14]&&!leftUsed){if(s.mode==='foot')actions.magic();else actions.headlight?.();}
   if(press(10))pendingLS=now;if(press(11))pendingRS=now;
@@ -112,5 +116,5 @@ export function createGamepad({getState,playing,active,actions,getPreferences=()
   const effect=kind==='warning'?{duration:90,weakMagnitude:.18,strongMagnitude:.06}:kind==='success'?{duration:130,weakMagnitude:.3,strongMagnitude:.15}:{duration:120,weakMagnitude:.22,strongMagnitude:.32};
   try{p?.vibrationActuator?.playEffect?.('dual-rumble',{startDelay:0,...effect})?.catch(()=>{});}catch{}
  }
- return {poll,controls,closeTop,rumble,inspect:()=>({connected,id,profile:getPreferences().profile,wheel:actions.wheelActive?.()||null,axes:[...axes],buttons:[...held],sprint,focus:document.activeElement?.id||document.activeElement?.textContent?.trim().slice(0,90),modal:root()?.id||null,lastInput})};
+ return {poll,controls,closeTop,rumble,ui:{root,choices,adjust,activate(e){const r=root();if(r&&choices(r).includes(e)){focus(e);activate();return true;}return false;},back:closeTop},inspect:()=>({connected,id,profile:getPreferences().profile,wheel:actions.wheelActive?.()||null,axes:[...axes],buttons:[...held],sprint,focus:document.activeElement?.id||document.activeElement?.textContent?.trim().slice(0,90),modal:root()?.id||null,lastInput})};
 }

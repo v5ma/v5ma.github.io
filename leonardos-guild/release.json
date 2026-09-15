@@ -1,8 +1,8 @@
 {
   "id": "leonardos-guild",
-  "title": "Leo's Guild - Stillwater Works",
-  "version": "0.12.0",
-  "build": "guild-stillwater-20260913",
+  "title": "Leo's Guild - Grounded Actions",
+  "version": "0.13.0",
+  "build": "guild-grounded-20260914",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -73,7 +73,7 @@
     "characters": "original shared-buffer jointed rig with distance-driven blended poses",
     "progressionChanges": false,
     "newAudioEvents": false,
-    "limits": "Procedural character sample, not mocap or complete foot IK; proxy camera bounds, not every decorative triangle; physical hardware review remains open."
+    "limits": "Procedural character sample; Grounded Actions adds stance IK. Proxy camera bounds are not every decorative triangle. Physical hardware and art review remain open."
   },
   "frontier": {
     "regions": [
@@ -99,5 +99,41 @@
       "xp": 180
     },
     "save": "additive frontier.cistern checkpoint"
+  },
+  "groundedActions": {
+    "roadmapItems": [
+      "NEXT01-feedback",
+      "NEXT02",
+      "C01",
+      "C02",
+      "F03"
+    ],
+    "quickControl": "Console LB tap returns to previous tool; hold 220 ms opens existing wheel. Classic unchanged.",
+    "characters": "Original adjusted adult-like proportions and analytic two-bone IK with transient world-space stance anchors and reach-limited release.",
+    "saveMigration": false,
+    "newAudioEvents": false,
+    "limits": "Procedural gait and flat-sole contacts, not motion capture, terrain-normal toe articulation or final AAA animation."
+  },
+  "xr": {
+    "mode": "optional seated immersive-vr theatre",
+    "input": [
+      "tracked xr-standard controllers",
+      "tracked hand ray and pinch UI",
+      "existing Xbox controller"
+    ],
+    "features": [
+      "same game GPU render texture",
+      "paged existing-menu bridge",
+      "held hand locomotion toolbar",
+      "release-to-arm after tracking loss",
+      "safe desktop fallback"
+    ],
+    "resolution": [
+      1024,
+      576
+    ],
+    "handTracking": "optional WebXR feature; permission and device support required",
+    "physicalQuest3Verified": false,
+    "limits": "Not room-scale first-person or stereo world rendering. Software emulation does not certify physical Quest comfort, performance or tracking."
   }
 }
