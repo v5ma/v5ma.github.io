@@ -11,7 +11,7 @@ concurrency:
 jobs:
   integrate-and-verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,6 +26,7 @@ jobs:
           mkdir -p test-output
           python rainward/tools/integrate-quest-fieldwork.py
           python rainward/tools/refine-quest-fieldwork.py
+          python rainward/tools/harden-quest-fieldwork.py
           for f in rainward/*.mjs; do node --check "$f"; done
           node --test rainward/tests/*.test.mjs | tee test-output/node-models.txt
           python -m compileall -q rainward/tests
@@ -33,9 +34,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/app.mjs rainward/scene.mjs rainward/graphics.mjs rainward/controller-ui.mjs rainward/xr-panel.mjs rainward/index.html rainward/world.mjs rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/QUEST-INTEGRATION.json rainward/quest-xr.mjs rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/tests/aquatic.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/handoff.test.mjs
+          git add rainward/app.mjs rainward/scene.mjs rainward/graphics.mjs rainward/scanned-assets.mjs rainward/controller-ui.mjs rainward/xr-panel.mjs rainward/index.html rainward/world.mjs rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/QUEST-INTEGRATION.json rainward/quest-xr.mjs rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/tests/aquatic.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/handoff.test.mjs
           if ! git diff --cached --quiet; then
-            git commit -m 'Refine Quest field controls, visible menu focus, recenter and permission feedback'
+            git commit -m 'Fix XR scene handoff animation lifecycle and stereo visibility after native failure'
             git push origin HEAD:feat/rainward-quest-fieldwork-20260915
           fi
       - name: Install native browser
@@ -51,7 +52,7 @@ jobs:
           trap 'kill $PID' EXIT
           RESULT=0
           for KIND in controllers hands; do
-            QUEST_KIND="$KIND" timeout 780 python -u rainward/tests/quest-browser.py || RESULT=1
+            QUEST_KIND="$KIND" timeout 900 python -u rainward/tests/quest-browser.py || RESULT=1
           done
           exit "$RESULT"
       - name: Preserve exact source and all failures

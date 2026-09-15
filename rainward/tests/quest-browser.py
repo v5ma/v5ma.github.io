@@ -20,7 +20,7 @@ with sync_playwright() as pw:
   old=p.evaluate('questDevice.frames');p.wait_for_function('([old,n])=>questDevice.frames>=old+n',arg=[old,n])
  def trigger(on):
   p.evaluate("on=>{if(questDevice.kind==='hands')questDevice.pinch('right',on);else questDevice.button('right',0,on);}",on)
- def select(row_id):
+ def select(row_id,hold_until=None):
   for _ in range(9):
    if p.evaluate('Rainward.snapshot().xr.panelPage')==0:break
    click_visible('prev')
@@ -29,12 +29,39 @@ with sync_playwright() as pw:
    if row_id in ids:break
    click_visible('next')
   else:raise AssertionError('XR row not found: '+row_id+' '+str(ids))
-  click_visible(row_id)
- def click_visible(row_id):
+  click_visible(row_id,hold_until)
+ def click_visible(row_id,hold_until=None):
   frames(4)
   p.evaluate('''async id=>{const T=await import('./vendor/three.module.js'),xr=Rainward.snapshot().xr,row=xr.panelRows.find(r=>r.id===id);if(!row)throw Error('No row '+id);const uv={x:(row.x+row.w/2)/1024,y:1-(row.y+row.h/2)/1024},point=new T.Vector3((uv.x-.5)*1.45,(uv.y-.5)*1.45,0).applyMatrix4(new T.Matrix4().fromArray(xr.panelMatrix)),s=questDevice.sources.find(s=>s.handedness==='right'),d=point.sub(new T.Vector3(s.position.x,s.position.y,s.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),d);s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''',row_id)
-  frames(3);trigger(True);frames(4);trigger(False);frames(5)
+  frames(3);trigger(True);frames(4)
+  if hold_until:wait(hold_until)
+  trigger(False);frames(5)
  def away():p.evaluate("()=>{for(const s of questDevice.sources)s.orientation={x:0,y:0,z:0,w:1};}")
+ def go(x,z):
+  # Read-only route guidance writes only the emulated device, not game state.
+  print('GO',x,z,flush=True);frames(5);away()
+  p.evaluate('''async ({x,z})=>{
+   const W=await import('./world.mjs'),p=Rainward.state.player,L=questDevice.sources.find(s=>s.handedness==='left'),route=W.findPath(p,{x,z});route.push({x,z});
+   const base={...L.position};if(L.hand)L.pinch=true;
+   await new Promise((resolve,reject)=>{let i=0,armedAt=questDevice.frames;const start=performance.now();
+    const stop=()=>{if(L.hand){L.pinch=false;L.position={...base};}else L.gamepad.axes=[0,0,0,0];clearInterval(timer);};
+    const timer=setInterval(()=>{if(questDevice.frames<armedAt+4)return;const p=Rainward.state.player;
+     if(Rainward.mode!=='play'||performance.now()-start>180000){stop();reject(Error('XR travel interrupted '+JSON.stringify({mode:Rainward.mode,x:p.x,z:p.z,hp:p.hp,goal:route[i]})));return;}
+     const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.4){if(++i===route.length){stop();resolve();}return;}
+     const yaw=L.hand?Rainward.snapshot().xr.rig.yaw:Rainward.view.yaw,c=Math.cos(yaw),s=Math.sin(yaw),scale=Math.min(1,Math.max(.4,d));
+     const a=(c*dx-s*dz)/d*scale,b=(s*dx+c*dz)/d*scale;
+     if(L.hand){L.position.x=base.x+a*.13;L.position.z=base.z+b*.13;}else {L.gamepad.axes[2]=a;L.gamepad.axes[3]=b;}
+    },20);
+   });
+  }''',{'x':x,'z':z});frames(5)
+ def button(side,index,condition=None):
+  frames(3);p.evaluate('([side,index])=>questDevice.button(side,index,true)',[side,index]);frames(4)
+  if condition:wait(condition)
+  p.evaluate('([side,index])=>questDevice.button(side,index,false)',[side,index]);frames(5)
+ def interact():
+  if quest_kind()=='controllers':button('right',1)
+  else:select('interact')
+ def quest_kind():return p.evaluate('questDevice.kind')
  try:
   p.goto(BASE+'/rainward/?chapter=natatorium',wait_until='domcontentloaded');wait('window.Rainward')
   check(p.locator('#chapter-select option').count()==7,'Seven expeditions remain on the title')
@@ -49,19 +76,40 @@ with sync_playwright() as pw:
   check(p.evaluate('questDevice.sessions.length===1&&!questDevice.sessions[0].ended'),'Starting a chapter keeps the original XR session attached')
   check(p.evaluate('Rainward.state.enemies.every(e=>e.hp>0)&&Rainward.state.enemies.length===6'),'The new XR game retains all six living authored enemies')
   if KIND=='hands':check(p.evaluate('Rainward.snapshot().xr.handJoints.left===25&&Rainward.snapshot().xr.handJoints.right===25'),'Both actual rendered hand meshes follow 25 mock WebXR joints')
-  away();frames(5);start=p.evaluate('({x:Rainward.state.player.x,z:Rainward.state.player.z,t:Rainward.state.t})')
+  away();frames(5);wait('Rainward.snapshot().xr.armed');start=p.evaluate('({x:Rainward.state.player.x,z:Rainward.state.player.z,t:Rainward.state.t})')
   if KIND=='controllers':p.evaluate("questDevice.sources[0].gamepad.axes[3]=-1")
   else:
    p.evaluate("questDevice.pinch('left',true)");frames(4);p.evaluate("questDevice.sources[0].position.z-=.13")
-  p.wait_for_function('(z)=>Rainward.state.player.z<z-1',arg=start['z']);
+  p.wait_for_function('(z)=>Rainward.state.player.z<z-1',arg=start['z'])
   if KIND=='controllers':p.evaluate("questDevice.sources[0].gamepad.axes[3]=0")
   else:p.evaluate("questDevice.pinch('left',false)")
   frames(4);check(p.evaluate('Rainward.state.t')>start['t'],'XR locomotion advances the real mission clock and moves the player')
+  go(2,47);interact();check(p.evaluate('Rainward.state.taken.has("natatorium-kit")&&Rainward.state.player.cloth===3'),'XR interaction collects only the authored lobby supplies')
+  if KIND=='hands':select('hand-fire')
+  away();frames(6);reserve=p.evaluate('Rainward.state.player.reserve');trigger(True);wait('Rainward.state.player.mag<6');trigger(False);frames(4)
+  check(p.evaluate('Rainward.state.player.reserve')==reserve,'Tracked trigger/pinch firing spends a finite magazine without granting reserve ammo')
+  missing=6-p.evaluate('Rainward.state.player.mag')
+  if KIND=='controllers':button('left',4)
+  else:select('reload')
+  wait('Rainward.state.player.reload===0&&Rainward.state.player.mag===6');check(p.evaluate('Rainward.state.player.reserve')==reserve-missing,'XR reload transfers exactly the missing finite ammunition')
+  go(3,29);go(15,23.5);go(15,18);check(p.evaluate('Rainward.state.player.waterMode==="swim"'),'XR locomotion enters the real competition pool')
+  go(15,-13)
+  if KIND=='controllers':button('right',5,'Rainward.state.player.submerged')
+  else:select('prone');wait('Rainward.state.player.submerged')
+  wait('Rainward.snapshot().xr.rig.y+questDevice.head.y<-.2');interact();check(p.evaluate('Rainward.state.objectives.cell&&Rainward.state.taken.has("natatorium-fuse")'),'XR depth and interaction recover the actual submerged filtration fuse')
+  ammo=p.evaluate('Rainward.state.player.mag');away();frames(5);trigger(True);frames(5);trigger(False);frames(3);check(p.evaluate('Rainward.state.player.mag')==ammo,'Swimming keeps firearms stowed despite XR trigger or pinch input')
+  p.screenshot(path=str(OUT/'02-xr-underwater.png'))
+  if KIND=='controllers':button('right',4)
+  else:select('traverse')
+  wait('!Rainward.state.player.submerged&&Rainward.state.player.oxygen>99');check(True,'XR surface controls recover oxygen naturally')
+  go(15,23.5);go(3,29);go(0,48);interact();check(p.evaluate('Rainward.state.checkpoint')=='natatorium-lobby','The XR journey saves at the authored dry lobby shelter')
   if KIND=='controllers':
    old=p.evaluate('Rainward.snapshot().xr.rig.yaw');p.evaluate("questDevice.sources[1].gamepad.axes[2]=1");frames(5);p.evaluate("questDevice.sources[1].gamepad.axes[2]=0");frames(5);check(abs(p.evaluate('Rainward.snapshot().xr.rig.yaw')-old)>.4,'Right stick produces a bounded snap turn')
   else:
    select('turn-right');check(abs(p.evaluate('Rainward.snapshot().xr.rig.yaw'))>.4,'Hand ray/pinch selects a snap-turn field action')
   select('reload');select('pack');wait('Rainward.mode==="pack"');frames(5);p.screenshot(path=str(OUT/'02-xr-satchel.png'))
+  select('craft-med');wait('!Rainward.state.player.craft');check(p.evaluate('Rainward.state.player.cloth===3&&Rainward.state.player.canister===3&&Rainward.state.player.medkit===0'),'Releasing an XR crafting hold refunds its reserved supplies once')
+  select('craft-smoke','Rainward.state.player.smoke===1&&!Rainward.state.player.craft');check(p.evaluate('Rainward.state.player.cloth===2&&Rainward.state.player.canister===2'),'A sustained XR selection crafts exactly one smoke using authored supplies')
   select('equip-rifle');check(p.evaluate('Rainward.state.player.equipped')=='rifle','Satchel equipment is operated through a ray-selectable control')
   select('back');wait('Rainward.mode==="play"');select('pause');wait('Rainward.mode==="pause"')
   select('musicVolume-minus');check(p.evaluate('document.getElementById("musicVolume").value')=='35','An in-world slider changes the existing audio setting')
@@ -78,7 +126,7 @@ with sync_playwright() as pw:
   p.screenshot(path=str(OUT/'03-second-chapter.png'));select('exit');wait('!Rainward.snapshot().xr.active');check(p.evaluate('Rainward.mode')=='pause','Exiting XR returns to the preserved desktop pause interface')
   check(not errors,'No uncaught JavaScript errors in the native XR journey')
   check(not any('Shader Error' in s or 'GL_INVALID' in s for s in console),'The immersive scene renders without captured shader validation errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'kind':KIND,'errors':errors,'console':console,'scope':'Real Chromium HTTP/WebGL and real game with test-only XR session/pose/button/hand data. Not physical Quest 3, headset comfort, hand tracking accuracy or hardware performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'kind':KIND,'errors':errors,'console':console,'scope':'Real Chromium HTTP/WebGL and real game with test-only XR session/pose/button/hand data. Normal start and living enemies; read-only route guidance only writes emulated device input. Not physical Quest 3, headset comfort, hand tracking accuracy or hardware performance certification.'},indent=2))
  except Exception as e:
   data={'error':str(e),'checks':checks,'errors':errors,'console':console}
   try:data['snapshot']=p.evaluate('Rainward.snapshot()');p.screenshot(path=str(OUT/'failure.png'))
