@@ -6,7 +6,8 @@
   "date": "2026-09-15",
   "roadmap": "AAA_ROADMAP.md",
   "roadmapData": "production/roadmap.json",
-  "evidence": "production/evidence/v0.11.0.json",
+  "evidence": "production/evidence/v0.11.0-published.json",
+  "foundationEvidence": "production/evidence/v0.11.0.json",
   "changes": [
     "Recoverable v1 save transactions, backups, guarded import and export",
     "Measured procedural hero, articulated limbs, distance-driven gait and world-space contact targets",
@@ -30,5 +31,6 @@
     "publishedFilesVerified": 148
   },
   "publicationRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35003202995",
+  "pagesDeploymentRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35003199255",
   "publishedEvidence": "production/evidence/v0.11.0-published.json"
 }
