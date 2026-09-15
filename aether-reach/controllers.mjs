@@ -1,12 +1,12 @@
 /* Controller-first input. Menus use fixed A/B/D-pad bindings even after remapping.
  * A gamepad never needs pointer lock or an OS popup to play this game. */
 import {CombatGestures} from './combat-gestures.mjs';
-import {InputSampler,clamp} from './input-core.mjs';
+import {InputSampler,clamp,snapshotPad} from './input-core.mjs';
 import {PAD_NAMES,PAD_ACTIONS,cleanControllerProfile,swapBinding} from './controller-profile.mjs';
 import {createMenuNavigator} from './ui-navigation.mjs';
 import {createXR} from './xr-session.mjs';
 export function installControllers(api){
- const $=id=>document.getElementById(id),sampler=new InputSampler(),gestures=new CombatGestures();let lastDevice=null,lastPad=null,frameInput=null,lastActivity=0,lastMenu=null,lastGestureAt=performance.now(),sprint=false,aim=false,lastHaptic=0,used=false;
+ const $=id=>document.getElementById(id),sampler=new InputSampler(),gestures=new CombatGestures();let lastDevice=null,lastPad=null,lastPadSnapshot=null,frameInput=null,lastActivity=0,lastMenu=null,lastGestureAt=performance.now(),sprint=false,aim=false,lastHaptic=0,used=false;
  api.settings.controller=cleanControllerProfile(api.settings.controller);
  const badge=document.createElement('span');badge.id='controller-status';badge.textContent='Xbox controller: press a button to connect';$('masthead').append(badge);
  const guide=document.createElement('dialog');guide.id='controller-dialog';guide.setAttribute('aria-labelledby','controller-title');guide.innerHTML='<p class="eyebrow">CONTROLLER DECK</p><h2 id="controller-title">Every action, in your hands.</h2><p>Menu and View always open pause and the atlas. In menus A selects, B returns one level, and D-pad or left stick navigates. Left/right adjusts options without opening a system popup. Right stick and LT/RT scroll; LB/RB page through long menus.</p><div id="controller-binding-grid"></div><p id="controller-binding-note">Changing a binding swaps its previous action. No action is lost. Menu controls never change.</p><button id="controller-defaults">Restore controller defaults</button><form method="dialog"><button>Back</button></form>';
@@ -27,13 +27,16 @@ export function installControllers(api){
  for(const target of ['settings-dialog','pause-dialog']){const b=document.createElement('button');b.id=target==='pause-dialog'?'pause-controller':'settings-controller';b.textContent='Controller controls and remapping';b.onclick=openGuide;$(target).insertBefore(b,$(target).querySelector('form'));}
  $('controller-defaults').onclick=()=>api.confirm('Restore controller defaults?','This only resets controller bindings and comfort options. Your expedition is not changed.','Restore controls',()=>{api.settings.controller=cleanControllerProfile(null);api.saveSettings();reset();bindings();for(const [id,k]of [['controller-move-deadzone','moveDeadzone'],['controller-look-deadzone','lookDeadzone'],['controller-look-curve','lookCurve']])$(id).value=api.settings.controller[k];for(const [id,k]of [['controller-toggle-sprint','toggleSprint'],['controller-toggle-aim','toggleAim'],['controller-vibration','vibration']])$(id).checked=api.settings.controller[k];});
  function frame(dt,xrFrame){
-  const menuRoot=api.topDialog()||(!api.playing()?$('menu'):null);if(menuRoot!==lastMenu){reset();xr.reset();lastMenu=menuRoot;}
+  const menuRoot=api.topDialog()||(!api.playing()?$('menu'):null),menuChanged=menuRoot!==lastMenu;if(menuChanged){reset();xr.reset();lastMenu=menuRoot;}
   const now=performance.now(),gestureDt=Math.min(.75,(now-lastGestureAt)/1000);lastGestureAt=now;let data;
-  if(xr.active){data=xr.frame(xrFrame,dt);badge.textContent='WebXR preview - headset QA pending';}
+  if(xr.active){lastPadSnapshot=null;data=xr.frame(xrFrame,dt);badge.textContent='WebXR preview - headset QA pending';}
   else{const pads=(()=>{try{return [...navigator.getGamepads?.()||[]];}catch{return [];}})();const pad=pads.find(p=>p?.connected&&p.mapping==='standard'&&(p.index+':'+p.id===lastDevice))||pads.find(p=>p?.connected&&p.mapping==='standard');
-   if(!pad){if(lastDevice!==null){lastDevice=null;lastPad=null;used=false;reset();if(api.playing())api.pause();}badge.textContent='Xbox controller: press a button to connect';frameInput=null;return;}
-   const identity=pad.index+':'+pad.id;if(identity!==lastDevice){reset();lastDevice=identity;}lastPad=pad;
-   data=sampler.read(pad,identity,false,menuRoot?{}:api.settings.controller);badge.textContent='Xbox / standard controller connected';
+   if(!pad){lastPadSnapshot=null;if(lastDevice!==null){lastDevice=null;lastPad=null;used=false;reset();if(api.playing())api.pause();}badge.textContent='Xbox controller: press a button to connect';frameInput=null;return;}
+   const identity=pad.index+':'+pad.id;if(identity!==lastDevice){lastPadSnapshot=null;reset();lastDevice=identity;}lastPad=pad;
+   // Seed from the PREVIOUS physical sample, not this frame's newly pressed key.
+   // Held buttons still require release; a fresh Back/View on dialog arrival works.
+   if(menuChanged&&lastPadSnapshot)sampler.read(lastPadSnapshot,identity,false,menuRoot?{}:api.settings.controller);
+   data=sampler.read(pad,identity,false,menuRoot?{}:api.settings.controller);lastPadSnapshot=snapshotPad(pad);badge.textContent='Xbox / standard controller connected';
   }
   if(!data){frameInput=null;return;}
   if(data.move?.some(Boolean)||data.look?.some(Boolean)||Object.values(data.held).some(Boolean)||Object.values(data.edges).some(Boolean)){lastActivity=now;used=true;}

@@ -5,6 +5,12 @@ const finite=n=>Number.isFinite(n)?n:0;
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function stick(x,y,dead=.18){x=finite(x);y=finite(y);const len=Math.hypot(x,y);if(len<=dead)return [0,0];const scale=(Math.min(1,len)-dead)/(1-dead)/len;return [x*scale,y*scale];}
 export function pressed(pad,index){const b=pad?.buttons?.[index];return !!b&&(b.pressed===true||finite(b.value)>.55);}
+/* Copy physical buttons before UI callbacks mutate input context. The next menu
+ * can block keys held across its boundary without discarding a newly pressed B. */
+export function snapshotPad(pad){
+ if(!pad||pad.connected===false)return null;
+ return {id:pad.id,index:pad.index,connected:true,mapping:pad.mapping,axes:Array.from(pad.axes||[],finite).slice(0,4),buttons:Array.from(pad.buttons||[]).slice(0,32).map(b=>({pressed:b?.pressed===true,value:finite(b?.value)}))};
+}
 export class InputSampler{
  constructor(){this.previous=new Map();this.blocked=new Map();}
  reset(){this.previous.clear();this.blocked.clear();}
