@@ -1,0 +1,137 @@
+name: Archive Neighborhood final release evidence
+on:
+  push:
+    branches: [neighborhood-missions/release-record-20260915]
+    paths: ['.github/workflows/neighborhood-final-record.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  record:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/release-record-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          sparse-checkout: |
+            svgn-planet
+            little-planet
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read exact passing CI and public artifacts, then prepare scoped records
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import hashlib,io,json,os,pathlib,re,subprocess,time,urllib.error,urllib.parse,urllib.request,zipfile
+          repo='v5ma/v5ma.github.io'; tested='83965798b63974232e82b7678e5bdd2fb8ea34a2'
+          acceptance=35003203550; published=35003202995
+          base='https://api.github.com/repos/'+repo
+          root=pathlib.Path('svgn-planet'); out=root/'production/evidence'; out.mkdir(exist_ok=True)
+          def api(path):
+              request=urllib.request.Request(base+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(request,timeout=30) as response:return json.load(response)
+          for attempt in range(165):
+              runs=[api(f'/actions/runs/{i}') for i in (acceptance,published)]
+              assert all(r['head_sha']==tested for r in runs),'Incorrect source in verification run'
+              for r in runs:
+                  if r['status']=='completed':assert r['conclusion']=='success',f"Verification failed: {r['id']}; no records changed"
+              if all(r['status']=='completed' for r in runs):break
+              print('Awaiting exact-source acceptance/publication:',[(r['id'],r['status']) for r in runs],flush=True)
+              time.sleep(10)
+          else:raise SystemExit('Exact-source verification is incomplete; no records changed')
+          jobs=api(f'/actions/runs/{acceptance}/jobs?per_page=100')['jobs']
+          required={'model','browser (coastal_browser_release)','browser (homecoming_browser)','browser (atmosphere-browser)','browser (tidewater-browser)','browser (grounded-browser)','gate'}
+          byname={j['name']:j for j in jobs}
+          assert required.issubset(byname) and all(byname[n]['conclusion']=='success' for n in required)
+          subprocess.run(['git','diff','--exit-code',tested,'HEAD','--','svgn-planet'],check=True)
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,headers,newurl):return None
+          def archive(run,name):
+              artifacts=api(f'/actions/runs/{run}/artifacts?per_page=100')['artifacts']
+              a=next(a for a in artifacts if a['name']==name and not a['expired'])
+              request=urllib.request.Request(a['archive_download_url'],headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              try:
+                  with urllib.request.build_opener(NoRedirect).open(request,timeout=60) as response:data=response.read()
+              except urllib.error.HTTPError as error:
+                  if error.code not in (301,302,303,307,308):raise
+                  url=error.headers['Location'];assert urllib.parse.urlparse(url).scheme=='https'
+                  # GitHub credentials are deliberately not forwarded to signed artifact storage.
+                  with urllib.request.urlopen(url,timeout=60) as response:data=response.read()
+              return zipfile.ZipFile(io.BytesIO(data)),a['id']
+          def report(archive,suffix):
+              names=[n for n in archive.namelist() if n.endswith(suffix)]
+              assert len(names)==1,(suffix,names)
+              return archive.read(names[0])
+          def write(path,data):
+              if isinstance(data,dict):data=(json.dumps(data,indent=2)+'\n').encode()
+              path.write_bytes(data);return hashlib.sha256(data).hexdigest()
+          pubzip,pubartifact=archive(published,'neighborhood-grounded-published')
+          manifest_raw=report(pubzip,'byte-verification.json');manifest=json.loads(manifest_raw)
+          live_raw=report(pubzip,'grounded-report.json');live=json.loads(live_raw)
+          assert manifest['commit']==tested and manifest['success'] and manifest['files'] and all(f['matches'] for f in manifest['files'])
+          assert live['success'] and len(live['checks'])==15 and not live['errors'] and not live['shaderErrors']
+          assert live['final']['version']=='0.11.0'
+          manifest_sha=write(out/'v0.11.0-public-bytes.json',manifest_raw)
+          live_sha=write(out/'v0.11.0-live-browser.json',live_raw)
+          suite_specs=[('coastal_browser_release','browser-release-report.json',14),('homecoming_browser','homecoming-browser.json',12),('atmosphere-browser','atmosphere-browser.json',22),('tidewater-browser','tidewater-browser.json',18),('grounded-browser','grounded-report.json',15)]
+          suites=[]
+          for name,suffix,count in suite_specs:
+              z,artifact=archive(acceptance,'grounded-'+name);raw=report(z,suffix);r=json.loads(raw)
+              assert r['success'] and len(r['checks'])==count and not r.get('errors') and not r.get('shaderErrors'),name
+              filename='v0.11.0-'+name+'.json';digest=write(out/filename,raw)
+              suites.append({'name':name,'checksPassed':count,'artifact':artifact,'report':filename,'sha256':digest})
+          z,unitartifact=archive(acceptance,'grounded-model');unit=report(z,'grounded-unit.txt')
+          assert re.search(rb'^# tests 162\r?$',unit,re.M) and re.search(rb'^# pass 162\r?$',unit,re.M) and re.search(rb'^# fail 0\r?$',unit,re.M)
+          unit_sha=write(out/'v0.11.0-model.txt',unit)
+          receipt={'version':'0.11.0','edition':'Grounded Neighborhood','date':'2026-09-15','published':True,'gameURL':'https://v5ma.github.io/svgn-planet/','runtimeCommit':tested,'foundationMerge':'f058834dc9b51a074c4b781a09db2bfb9224423a','pullRequest':'https://github.com/'+repo+'/pull/152','acceptanceRun':'https://github.com/'+repo+'/actions/runs/'+str(acceptance),'publicationRun':'https://github.com/'+repo+'/actions/runs/'+str(published),'unitTestsPassed':162,'unitTestsFailed':0,'browserChecksPassed':sum(s['checksPassed'] for s in suites),'browserSuitesPassed':5,'liveBrowserChecksPassed':15,'publicFilesVerified':len(manifest['files']),'publicManifest':'v0.11.0-public-bytes.json','publicManifestSHA256':manifest_sha,'liveReport':'v0.11.0-live-browser.json','liveReportSHA256':live_sha,'unitReport':'v0.11.0-model.txt','unitReportSHA256':unit_sha,'publicationArtifact':pubartifact,'unitArtifact':unitartifact,'suites':suites,'controllerFix':'Menu rearm uses the real .2 analog-trigger threshold and .16 stick dead zone. Partial and full held RT are exercised in the actual browser; all action mappings remain unchanged.','saveScope':'SAVE-02 recoverable local v1 transactions, migration, corruption/quota/interruption handling, original-data export and explicit import/restore confirmation. Existing gameplay, rewards and save identity retained.','xrScope':'World-anchored flat-screen comfort theater with tracked controllers and joint-pinch hand UI; not a stereo game world, room-scale locomotion or passthrough.','motionScope':'Measured procedural courier, articulated limbs, distance-driven gait, world-space foot targets and bicycle pedal/grip IK. Not mocap or approved production hero art.','physicalXboxTested':False,'physicalQuest3Tested':False,'hardwareFrameTargetCertified':False,'humanArtApproved':False,'aaaCertified':False,'receiptScope':'These are results for the stated runtime commit. This documentation-only archive will be merged normally and checked by the publication workflow again. No test result is a physical-device certification.'}
+          write(out/'v0.11.0-published.json',receipt)
+          release=json.loads((root/'release.json').read_text())
+          release.update(acceptance='Published runtime passed exact-byte and live browser verification; physical-device gates remain open',testedCommit=tested,acceptanceRun=receipt['acceptanceRun'],publicationRun=receipt['publicationRun'],publishedEvidence='production/evidence/v0.11.0-published.json')
+          release['validation'].update(unitTestsPassed=162,browserSuitesPassed=5,browserChecksPassed=81,liveBrowserChecksPassed=15,publishedFilesVerified=len(manifest['files']))
+          write(root/'release.json',release)
+          roadmap=json.loads((root/'production/roadmap.json').read_text());roadmap['reviewed']='2026-09-15';roadmap['releaseEvidence']='evidence/v0.11.0-published.json'
+          updates={
+              'QA-01':{'acceptance':'Grounded Neighborhood has 162 passing model/save/motion/input tests and 81 passing checks across five browser suites. The public runtime also passed exact-byte verification and 15 live desktop/synthetic Xbox/XR checks. Raw reports and hashes are retained. Physical hardware is not certified.','next':'Keep the exact-source regressions; obtain physical controller/GPU/headset sign-off and complete the extended soak gate.'},
+              'BUILD-01':{'status':'verified','acceptance':'Grounded Neighborhood v0.11.0 is merged normally on master without replacing sibling-game source. Public game assets match the stated source bytes and live browser/controller/synthetic XR checks pass.','next':'Retain the same merge, full regression and exact-live-publication gate for the next upgrade. Scope any rollback only to Neighborhood Missions.'},
+              'BUILD-02':{'status':'partial','next':'Scoped model/browser CI and exact live asset, license and evidence verification are passing. Keep physical quality sign-off and the scoped rollback drill open.'},
+              'ACCESS-01':{'next':'Direct Xbox actions and menu rearm, including partially held analog triggers, passed automated regression. Complete real Xbox USB/Bluetooth and Quest 3 tests; operating-system downloads and text entry are outside the in-game UI.'}
+          }
+          for item in roadmap['items']:
+              if item['id'] in updates:item.update(updates[item['id']])
+              if item['id'] in updates or item['id'] in ('SAVE-02','ART-01','ART-02','XR-01'):
+                  item['lastReviewed']='2026-09-15'
+                  if 'evidence/v0.11.0-published.json' not in item['evidence']:item['evidence'].append('evidence/v0.11.0-published.json')
+          write(root/'production/roadmap.json',roadmap)
+          subprocess.run(['python','svgn-planet/production/render-roadmap.py'],check=True)
+          (root/'DEVELOPMENT-HANDOFF.md').write_text('# Neighborhood Missions development handoff\n\nGrounded Neighborhood v0.11.0 is merged and published. Final runtime commit: '+tested+'. Exact-source acceptance: '+receipt['acceptanceRun']+'. Live byte/browser verification: '+receipt['publicationRun']+'. Read production/evidence/v0.11.0-published.json and its permanent raw reports. The earlier v0.11.0.json is the historical pre-hardening candidate receipt, not the latest status.\n\nThe final runtime passed 162 model tests, 81 browser checks across five suites, exact deployed source/asset/license hashes and 15 live desktop/synthetic Xbox/XR checks. A partial analog-trigger leak after closing menus was fixed without remapping primary actions. The full waterfront controller tour now waits for actual simulation progress, not repeated reads of one slow WebGL frame; no gameplay speed or reward changes were needed.\n\nSAVE-02 is verified for its narrow automated acceptance. ART-01/02 and physical ACCESS/QA gates remain open. XR-01 needs physical Quest 3 playtesting: this release is a world-anchored flat-screen comfort theater with tracked controllers and hand-joint pinch UI, not a stereo game world. Human art, physical Xbox USB/Bluetooth, Touch Plus, actual hand tracking, comfort and GPU/headset frame targets are not certified.\n\nNext engineering item: PERF-03, bounded world streaming and stable frame pacing. Preserve existing v1 save keys and historical IDs, delivery/Homecoming/Tidewater systems, rewards, unlimited cruise and familiar direct controller actions. Continue production hero art, useful interiors and the 30-minute soak only with explicit measured acceptance; do not label a checklist AAA quality.\n\nRun node --test svgn-planet/tests/*.test.mjs plus all five suites in .github/workflows/neighborhood-grounded.yml. Regenerate AAA_ROADMAP.md with production/render-roadmap.py after editing the canonical JSON. Merge normally, preserve concurrent sibling-game work, verify public bytes and run the live browser gate. For rollback use a new scoped revert commit; never reset or force-push the shared master branch.\n')
+          PY
+          node --test svgn-planet/tests/*.test.mjs > records-model.txt
+      - name: Commit only verified records on the work branch
+        run: |
+          python - <<'PY'
+          import subprocess
+          allowed={'svgn-planet/release.json','svgn-planet/production/roadmap.json','svgn-planet/AAA_ROADMAP.md','svgn-planet/DEVELOPMENT-HANDOFF.md'}
+          paths=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines()
+          assert paths and all(p in allowed or p.startswith('svgn-planet/production/evidence/v0.11.0-') for p in paths),paths
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','svgn-planet'],check=True)
+          subprocess.run(['git','rm','.github/workflows/neighborhood-final-record.yml'],check=True)
+          subprocess.run(['git','commit','-m','docs(neighborhood): archive final verified runtime, raw evidence and next roadmap gate'],check=True)
+          subprocess.run(['git','push','origin','HEAD:neighborhood-missions/release-record-20260915'],check=True)
+          PY
+          git rev-parse HEAD > RECORDS-COMMIT.txt
+          tar -czf neighborhood-final-records.tar.gz svgn-planet/release.json svgn-planet/AAA_ROADMAP.md svgn-planet/DEVELOPMENT-HANDOFF.md svgn-planet/production/roadmap.json svgn-planet/production/evidence RECORDS-COMMIT.txt records-model.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-final-records
+          path: |
+            neighborhood-final-records.tar.gz
+            records-model.txt
+          retention-days: 30
