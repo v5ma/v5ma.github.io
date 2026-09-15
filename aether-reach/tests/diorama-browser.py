@@ -77,6 +77,7 @@ with sync_playwright() as pw:
   if snap()['devices']['menu']!='pause-dialog':p.keyboard.press('Escape')
   p.locator('#pause-presentation').click();p.locator('#xr-presentation').select_option('first-person-vr');p.locator('#presentation-back').click();p.locator('#return-title').click();p.locator('#enter-vr').click();p.wait_for_function('AetherReach.snapshot().devices.xr');frames(8)
   check(not snap()['devices']['presentation']['active'],'Original first-person XR remains selectable after AR and third-person sessions')
+  p.evaluate('TestPad.connect()');frames(10);before=snap()['position']['yaw'];p.evaluate('TestPad.axes([0,0,1,0])');frames(10);after=snap()['position']['yaw'];p.evaluate('TestPad.axes([0,0,0,0])');frames();check(abs(abs(after-before)-.5235987756)<.01,'Holding Xbox snap turn produces one comfortable turn, not one turn per XR frame')
   p.locator('#exit-vr').click();p.wait_for_function('!AetherReach.snapshot().devices.xr');check(not errors and not shader,'No application or shader errors across desktop, stereo VR, hand UI, AR and first-person restoration')
   (OUT/'diorama-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shader,'scope':'Actual HTTP software WebGL app with synthetic Xbox and XR controller/hand poses. No physical Quest passthrough, tracking, comfort or performance claim.'},indent=2))
  except Exception as e:

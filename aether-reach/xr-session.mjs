@@ -9,7 +9,7 @@ import {InputSampler,SnapTurn,xrControls} from './input-core.mjs';
 import {HandPinchSampler} from './hand-input.mjs';
 import {spatialPage,spatialHit} from './spatial-menu.mjs';
 export function createXR(view,api){
- const {renderer,scene,camera}=view,diorama=createDiorama(view),rig=new T.Group(),inputs=new InputSampler(),turn=new SnapTurn(),pinches=new HandPinchSampler();
+ const {renderer,scene,camera}=view,diorama=createDiorama(view),rig=new T.Group(),inputs=new InputSampler(),turn=new SnapTurn(),padTurner=new SnapTurn(),pinches=new HandPinchSampler();
  rig.name='XR locomotion rig';scene.add(rig);renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local-floor');renderer.xr.setFramebufferScaleFactor(.8);renderer.xr.setFoveation?.(1);
  let session=null,entering=false,offsetYaw=0,lastHead=null,head=null,suspended=false,lastPaint=0,aim=null,powerAim=null,shadowBefore=true,handMode=false,menuRoot=null,trackedHands=0,trackedControllers=0,selected=0,hover=null,sessionMode='first-person-vr',placed=false,supportEpoch=0;
  const button=document.createElement('button');button.id='enter-vr';button.textContent='Checking VR support...';button.disabled=true;document.querySelector('.start-actions').append(button);
@@ -34,7 +34,7 @@ export function createXR(view,api){
  }
  const vector=new T.Vector3(),originVector=new T.Vector3(),rotation=new T.Quaternion(),raycaster=new T.Raycaster(),hits=[];
  const validPose=pose=>pose?.transform&&['x','y','z'].every(k=>Number.isFinite(pose.transform.position[k]))&&['x','y','z','w'].every(k=>Number.isFinite(pose.transform.orientation[k]));
- function clearTracking(){for(const h of handRays)h.line.visible=false;aim=powerAim=null;lastHead=null;inputs.reset();pinches.reset();turn.reset();hover=null;jointMesh.count=0;trackedHands=trackedControllers=0;}
+ function clearTracking(){for(const h of handRays)h.line.visible=false;aim=powerAim=null;lastHead=null;inputs.reset();pinches.reset();turn.reset();padTurner.reset();hover=null;jointMesh.count=0;trackedHands=trackedControllers=0;}
  function wrapped(ctx,text,x,y,max,line=36){let row='';for(const word of String(text).split(/\s+/)){if(ctx.measureText(row+word).width>max){ctx.fillText(row,x,y);row='';y+=line;}row+=word+' ';}ctx.fillText(row,x,y);return y+line;}
  function paint(menu,items){
   const s=api.state();hud.visible=!!session&&!menu;panel.visible=!!session&&!!menu;
@@ -91,13 +91,13 @@ export function createXR(view,api){
   if(!diorama.active){
    if(!menu){offsetYaw+=turn.update(controls.turn);if(lastHead)roomMove(api.state(),(raw.x-lastHead.x)*Math.cos(offsetYaw)-(raw.z-lastHead.z)*Math.sin(offsetYaw),(raw.x-lastHead.x)*Math.sin(offsetYaw)+(raw.z-lastHead.z)*Math.cos(offsetYaw));}else turn.reset();
    p.yaw=offsetYaw+Math.atan2(vector.x,-vector.z);p.pitch=Math.asin(Math.max(-1,Math.min(1,vector.y)));
-  }else if(!menu){p.yaw+=controls.turn*dt*1.8;} // Right stick aims the courier, never the user's head.
+  }else if(!menu&&!api.standardInput?.()){p.yaw+=controls.turn*dt*1.8;} // Right stick aims the courier, never the user's head.
   head={x:raw.x,y:raw.y,z:raw.z,forward:{x:vector.x,z:vector.z}};
   if(diorama.active&&!placed){diorama.center(api.state(),head);placed=true;}
   lastHead={...head};syncRig();
   camera.updateWorldMatrix(true,true);panel.visible=!!menu;hud.visible=!menu;const items=spatialPage(menu);hover=null;aim=powerAim=null;
   for(const {source,pose}of controllerPoses){worldRay(pose);const output={origin:{x:originVector.x,y:originVector.y,z:originVector.z},direction:{x:vector.x,y:vector.y,z:vector.z}};
-   if(source.handedness==='right'){aim=diorama.active&&!menu?diorama.aim(api.state(),output.origin,output.direction):output;if(diorama.active&&aim&&!menu){p.yaw=Math.atan2(aim.direction.x,-aim.direction.z);p.pitch=Math.asin(Math.max(-1,Math.min(1,aim.direction.y)));}if(menu){const hit=hitPanel(panel);hover=hit?.uv?spatialHit(items,hit.uv.x,hit.uv.y):null;if(hover?.element)api.spatial('focus',hover.element);if(controls.edges.confirm){activate(hover);controls.edges.confirm=false;controls.edges.fire=false;}}}
+   if(source.handedness==='right'){aim=diorama.active&&!menu?diorama.aim(api.state(),output.origin,output.direction):output;if(diorama.active&&aim&&!menu&&!api.standardInput?.()){p.yaw=Math.atan2(aim.direction.x,-aim.direction.z);p.pitch=Math.asin(Math.max(-1,Math.min(1,aim.direction.y)));}if(menu){const hit=hitPanel(panel);hover=hit?.uv?spatialHit(items,hit.uv.x,hit.uv.y):null;if(hover?.element)api.spatial('focus',hover.element);if(controls.edges.confirm){activate(hover);controls.edges.confirm=false;controls.edges.fire=false;}}}
    else if(source.handedness==='left')powerAim=diorama.active&&!menu?diorama.aim(api.state(),output.origin,output.direction):output;
   }
   trackedHands=0;jointMesh.count=0;for(const h of handRays)h.line.visible=false;let pinchUsed=false;
@@ -111,5 +111,5 @@ export function createXR(view,api){
   if(diorama.active&&!menu&&!p.rail&&!p.climb)controls.move=dioramaMove(controls.move,p.yaw,diorama.config.yaw);
   return controls;
  }
- return {frame,syncRig,end,present(s,dt,playing){if(!playing&&!session&&diorama.preview)diorama.set(false,presentation.config,s);diorama.update(s,dt);},get dioramaActive(){return diorama.active},get desktopDiorama(){return diorama.preview},get tableYaw(){return diorama.config.yaw},padTurn(axis){if(!diorama.active){offsetYaw+=turn.update(axis);syncRig();}},presentationStats:()=>diorama.stats(),reset(){inputs.reset();pinches.reset();turn.reset();},stats:()=>({trackedHands,trackedControllers,handMode,selections:selected,jointCount:jointMesh.count,handUIOnly:true,presentation:sessionMode,diorama:diorama.stats()}),get active(){return !!session},get powerAim(){return powerAim},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
+ return {frame,syncRig,end,present(s,dt,playing){if(!playing&&!session&&diorama.preview)diorama.set(false,presentation.config,s);diorama.update(s,dt);},get dioramaActive(){return diorama.active},get desktopDiorama(){return diorama.preview},get tableYaw(){return diorama.config.yaw},padTurn(axis){if(!diorama.active){offsetYaw+=padTurner.update(axis);syncRig();}},presentationStats:()=>diorama.stats(),reset(){inputs.reset();pinches.reset();turn.reset();padTurner.reset();},stats:()=>({trackedHands,trackedControllers,handMode,selections:selected,jointCount:jointMesh.count,handUIOnly:true,presentation:sessionMode,diorama:diorama.stats()}),get active(){return !!session},get powerAim(){return powerAim},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
 }

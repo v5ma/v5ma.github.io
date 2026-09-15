@@ -68,7 +68,7 @@ export function createDiorama(view){
   if(performance.now()-lastScan>400||lastScan===0){scan();lastScan=performance.now();}
   // Async environment loaders can re-show the sky; enforce its presentation flag every render.
   const sky=scene.getObjectByName('Aether sky');if(sky)hide(sky,true);
-  if(preview){for(const child of camera.children)if(!child.userData.xrUI)hide(child,true);const q=config.yaw;camera.position.set(x-Math.sin(q)*46,y+43,z+Math.cos(q)*46);camera.lookAt(x,y+6,z);}
+  if(preview){for(const child of camera.children)if(!child.userData.xrUI)hide(child,true);const q=config.yaw;camera.position.set(x-Math.sin(q)*46,y+(config.opening==='front'?12:43),z+Math.cos(q)*46);camera.lookAt(x,y+6,z);}
   else if(rig)syncRig(rig);
  }
  function aim(s,o,d){if(!active||!o||!d)return null;const p=s.p;let t=Infinity,target=null;
