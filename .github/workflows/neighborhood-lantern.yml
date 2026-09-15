@@ -33,8 +33,10 @@ jobs:
           node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs | tee lantern-model.txt
           python - <<'PY'
           import subprocess
+          # Workflow edits require the authorized connector, not this source-only token.
+          subprocess.run(['git','restore','--source=HEAD','--','.github/workflows/neighborhood-lantern.yml','.github/workflows/neighborhood-grounded-published.yml'],check=True)
           paths=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines()
-          exact={'.github/workflows/neighborhood-lantern.yml','.github/workflows/neighborhood-grounded-published.yml','.github/upgrades/package-lantern.py','.github/upgrades/lantern-recipe.json','.github/upgrades/finalize-lantern.py'}
+          exact={'.github/upgrades/package-lantern.py','.github/upgrades/lantern-recipe.json','.github/upgrades/finalize-lantern.py'}
           assert paths and all(p.startswith('svgn-planet/') or p in exact for p in paths),paths
           subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
           subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
