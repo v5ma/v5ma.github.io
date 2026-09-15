@@ -1,0 +1,25 @@
+name: Neighborhood grounded transfer receipt
+on:
+  push:
+    branches: [neighborhood-missions/grounded-controls-20260914]
+    paths: ['.github/workflows/neighborhood-grounded-transfer.yml']
+permissions:
+  contents: read
+jobs:
+  receipt:
+    runs-on: macos-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            .github/upgrades
+      - uses: actions/upload-artifact@v4
+        with:
+          name: grounded-transfer-receipt
+          path: .github/upgrades/
+          include-hidden-files: true
+          retention-days: 7
+      - name: Report exact transport hashes without changing source
+        run: shasum -a 256 .github/upgrades/*.b64
