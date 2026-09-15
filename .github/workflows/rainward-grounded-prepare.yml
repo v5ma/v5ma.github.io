@@ -21,20 +21,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Integrate only scoped motion and release paths
+      - name: Correct bounded candidate issues and retain assertions
         run: |
           mkdir -p test-output
-          python rainward/tools/integrate-grounded.py
+          python rainward/tools/refine-grounded.py
           node --test rainward/tests/*.test.mjs | tee test-output/model-tests.txt
           python -m compileall -q rainward/tests
-      - name: Commit the enumerated integration paths
+      - name: Commit only the enumerated correction paths
         id: source
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/actors.mjs rainward/rainworn-humans.mjs rainward/scene.mjs rainward/world.mjs rainward/index.html rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/GROUNDED.md rainward/README.md rainward/DEVELOPMENT-HANDOFF.md rainward/CONTROLLER.md rainward/tests/rainworn.test.mjs rainward/tests/aquatic.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/handoff.test.mjs
+          git add rainward/character-proportions.mjs rainward/rainworn-humans.mjs rainward/grounded-motion.mjs rainward/tests/grounded-motion.test.mjs rainward/tests/rainworn-connections.test.mjs rainward/tests/grounded-harness.html rainward/tests/grounded.py rainward/GROUNDED.md
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate Grounded v0.14.0 motion, coherent proportions and canonical roadmap'
+            git commit -m 'Correct downhill foot reach, shared glTF buffers and neck/head balance'
             git push origin HEAD:feat/rainward-grounded-20260914
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
