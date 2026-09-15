@@ -1,3 +1,9 @@
+Returning Bell roadmap / version 0.14.0.
+
+The first authored replacement opening is integrated. V52/V57 and the broader V49/V50/V41/V76 work remain Partial rather than being credited as a finished campaign. The 76 existing task IDs and six-sheet workbook match the canonical roadmap.json. The next milestone is unfamiliar and repeat-player evidence for planning, alternate approaches, mechanism understanding, return recognition and learned agency. Physical Quest/Xbox, seated/standing reach, visual/audio review and sustained performance remain open. Tune this whole chapter before expanding room count or adding another major system. RETURNING-BELL.md records implementation, saved-layout compatibility, native acceptance commands and AR boundaries.
+
+The older milestone notes below remain historical context; their water/audio-first ordering is superseded by the September 15 level-design mandate and current canonical next-release priorities.
+
 # Surestep roadmap update / v0.13.0
 
 The canonical plan and workbook now record progress on V14/V54 humanoid articulation and V41/V61 controller and hand-menu access. The bounded missing Quest water-menu item is implemented. V41 remains Partial for the broader UI/accessibility gate, and V54 is Partial rather than a claim of finished production assets. SURESTEP.md records the new input contract, verification commands, limitations and rollback policy. Continue with water lifecycle hardening, the requested sound/music pass and physical input/art review.

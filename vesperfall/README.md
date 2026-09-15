@@ -1,3 +1,13 @@
+The Returning Bell / version 0.14.0.
+
+The default new-player expedition is now the first authored cathedral chapter. Begin The Returning Bell, restore the tower signal by arrow or nearby interaction, then answer it back at the basin refuge. Ground and gallery approaches reconnect; the gallery winch changes cover and firing lanes; the service-side latch opens a real saved return connection. Every incidental defender does not have to die. Read RETURNING-BELL.md for the implementation and remaining limits.
+
+Xbox down D-pad selects Blink; left D-pad cycles usable damage arrows. A/E and the existing Quest bow-hand interaction button operate the mechanisms. First-person VR uses the same chapter. The AR Architect's Table button opens paused, discovery-limited inspection with layers and recentering; controller rays and hand pinches operate its menu. Existing unscored stationary AR Sanctuary remains available. Hand-only combat, room scanning and physical surface anchors are not implemented.
+
+Old saved expeditions reopen their original geometry and progression. The new chapter has its own immutable layout identity. Completion provides one ordinary sector outcome; choosing a blessing explicitly continues into retained Endless mode, not an unbuilt second authored chapter. First Bell, Oath, practice and trials remain accessible. The canonical roadmap.json, roadmap.html and AAA-PRODUCTION.xlsx record the same 0.14.0 production state. This is a playable development slice; human enjoyment, final art/audio and physical Quest/Xbox acceptance remain open. Publication is established by its exact live verification receipt, not this description alone.
+
+The release notes below preserve earlier work and do not override the current Returning Bell contract.
+
 # Current release and continuation
 
 Vesperfall v0.13.0 Surestep adds the requested Xbox quick arrows, the missing Quest water-settings pages, optional tracked-hand menus and original procedural humanoid foot planting. Read [SURESTEP.md](./SURESTEP.md), [DEVELOPMENT-HANDOFF.md](./DEVELOPMENT-HANDOFF.md), the [canonical roadmap](./roadmap.json) and [six-sheet workbook](./AAA-PRODUCTION.xlsx). Existing saves and game modes are preserved.
