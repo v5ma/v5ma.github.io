@@ -18,37 +18,55 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check exact deployed release before browser acceptance
+      - name: Check exact deployed source, assets, licenses and evidence
         env:
           COMMIT: ${{ github.sha }}
         run: |
           mkdir -p published-results
           python - <<'PY'
-          import hashlib,json,os,pathlib,time,urllib.request
+          import concurrent.futures,hashlib,json,os,pathlib,time,urllib.request
           base='https://v5ma.github.io/'
           root=pathlib.Path('svgn-planet')
           commit=os.environ['COMMIT']
-          def read(path):
-              req=urllib.request.Request(base+path+'?verify='+commit+'&t='+str(time.time_ns()),headers={'Cache-Control':'no-cache'})
-              with urllib.request.urlopen(req,timeout=30) as response:
-                  assert response.status==200
-                  return response.read()
-          expected=(root/'index.html').read_bytes()
-          for attempt in range(60):
-              try:
-                  if read('svgn-planet/index.html')==expected:break
-              except Exception as e: print(type(e).__name__,str(e),flush=True)
-              time.sleep(10)
-          else: raise SystemExit('Pages did not serve this commit within the verification window')
-          paths=sorted([p for p in root.glob('*') if p.is_file() and p.suffix in ['.mjs','.html','.css','.json']]+[root/'production/roadmap.json',root/'vendor/three.module.js',root/'vendor/three.core.js'])
+          # Runtime modules, all textures/models, licenses and published documentation.
+          # Development harnesses, Python scripts and hidden files are not web assets.
+          paths=sorted(p for p in root.rglob('*') if p.is_file()
+              and not any(part.startswith('.') or part in ('tests','tools','node_modules','__pycache__') for part in p.relative_to(root).parts)
+              and p.suffix not in ('.py','.pyc'))
+          expected={p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
           evidence={'commit':commit,'base':base+'svgn-planet/','version':json.loads((root/'release.json').read_text())['version'],'files':[],'success':False}
+          results={}
+          def check(path):
+              row={'path':path,'expectedSHA256':expected[path],'matches':False}
+              try:
+                  req=urllib.request.Request(base+path+'?verify='+commit+'&t='+str(time.time_ns()),headers={'Cache-Control':'no-cache'})
+                  with urllib.request.urlopen(req,timeout=30) as response:
+                      assert response.status==200
+                      content=response.read()
+                  actual=hashlib.sha256(content).hexdigest()
+                  row.update(sha256=actual,bytes=len(content),matches=actual==expected[path])
+              except Exception as error:row['error']=type(error).__name__+': '+str(error)
+              return row
           try:
-              for p in paths:
-                  content=read(p.as_posix());actual=hashlib.sha256(content).hexdigest();wanted=hashlib.sha256(p.read_bytes()).hexdigest()
-                  evidence['files'].append({'path':p.as_posix(),'sha256':actual,'matches':actual==wanted})
-                  assert actual==wanted,'Published byte mismatch: '+str(p)
-              evidence['success']=True
-          finally:pathlib.Path('published-results/byte-verification.json').write_text(json.dumps(evidence,indent=2))
+              # A docs-only commit can leave index.html unchanged. Retry each stale
+              # file rather than mistaking that old index for a completed deployment.
+              for attempt in range(60):
+                  pending=[path for path in expected if not results.get(path,{}).get('matches')]
+                  if not pending:break
+                  with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+                      for row in pool.map(check,pending):
+                          row['attempt']=attempt+1
+                          results[row['path']]=row
+                  remaining=sum(not row['matches'] for row in results.values())
+                  print('Attempt',attempt+1,'verified',len(paths)-remaining,'/',len(paths),flush=True)
+                  if not remaining:break
+                  time.sleep(10)
+              evidence['files']=[results[path] for path in sorted(results)]
+              evidence['success']=len(results)==len(paths) and all(row['matches'] for row in results.values())
+              assert evidence['success'],'Pages did not serve every exact file within the verification window'
+          finally:
+              evidence['files']=[results[path] for path in sorted(results)]
+              pathlib.Path('published-results/byte-verification.json').write_text(json.dumps(evidence,indent=2))
           print('Verified',len(paths),'deployed files against',commit)
           PY
       - name: Install browser harness
