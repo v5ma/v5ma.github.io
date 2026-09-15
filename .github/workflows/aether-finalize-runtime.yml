@@ -1,0 +1,112 @@
+name: Finalize Aether grounded runtime fixes
+on:
+  push:
+    branches: [aether/grounded-motion-20260914]
+    paths: ['.github/workflows/aether-finalize-runtime.yml']
+permissions:
+  contents: read
+jobs:
+  finalize:
+    if: github.repository == 'v5ma/v5ma.github.io'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      BASE: d6891658eeb7c6075efa4dc9a6285ed78bf9d42e
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply guarded runtime and regression corrections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+          BASE='d6891658eeb7c6075efa4dc9a6285ed78bf9d42e'
+          assert subprocess.check_output(['git','rev-parse','HEAD^'],text=True).strip()==BASE
+          def replace(path,old,new):
+            p=Path(path);s=p.read_text();assert s.count(old)==1,(path,s.count(old),old);p.write_text(s.replace(old,new,1))
+          replace('aether-reach/app.mjs','if(skirmishUI?.action(name))return;','if(skirmishUI?.action(name)){events();return;}')
+          replace('aether-reach/model.mjs','if(back&&p.speed<=6&&!p.rail.reverseLatched)','if(back&&p.speed<=tune.brake+1e-6&&!p.rail.reverseLatched)')
+          replace('aether-reach/tests/launch.py',"required=['little-planet/','rainward/index.html'","required=['svgn-planet/index.html','rainward/index.html'")
+          replace('aether-reach/tests/launch.py','The public project page includes the little planet alongside every existing project','The public project page includes Neighborhood Missions alongside every existing project')
+          replace('aether-reach/tests/arsenal_browser.py',"b=pw.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block')","b=pw.chromium.launch(**kw);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=.5,service_workers='block')")
+          replace('aether-reach/tests/arsenal_browser.py','balanced_graphics(page);page.locator(\'#start\').click()','balanced_graphics(page,"low");page.locator(\'#start\').click()')
+          replace('aether-reach/tests/arsenal_browser.py',"page.keyboard.press('KeyP');page.locator('#return-title').click();page.locator('#start').click();page.wait_for_function('AetherReach.snapshot().playing')","page.keyboard.press('KeyP');page.locator('#return-title').click();page.locator('#start').click();page.wait_for_selector('#confirm-dialog[open]');check(not snap(page)['playing'],'Replacing an earned expedition requires the real in-game confirmation');page.locator('#confirm-accept').click();page.wait_for_function('AetherReach.snapshot().playing')")
+          replace('aether-reach/tests/arsenal_browser.py',"page.screenshot(path=str(OUT/'free-look-transfer.png'));page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail');released=snap(page)['time'];page.wait_for_function('(t)=>AetherReach.snapshot().time>=t+.18',arg=released);page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().rail?.id===\"gale-loop\"')","page.keyboard.press('Space');page.wait_for_function('!AetherReach.snapshot().rail');page.keyboard.press('KeyE',delay=100);page.wait_for_function('AetherReach.snapshot().rail?.id===\"gale-loop\"');page.screenshot(path=str(OUT/'free-look-transfer.png'))")
+          replace('aether-reach/tests/arsenal_browser.py','Physical hardware QA remains separate.','Physical hardware QA remains separate. Software-WebGL runs use the supported low graphics profile at reduced pixel density.')
+          Path('aether-reach/tests/completion-dispatch.test.mjs').write_text("""import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createState,combatUse,EXTRACTION,nearby,saveState,readSave} from '../model.mjs';
+test('The contextual use route wins and emits completion/save at the real extraction console',()=>{
+ const s=createState();Object.assign(s.p,EXTRACTION);s.relays=new Set(['garden','spire','foundry']);
+ assert.equal(nearby(s).type,'exit');assert.equal(combatUse(s),true);assert.equal(s.won,true);
+ assert.deepEqual(s.events.slice(-2).map(e=>e.type),['win','save']);
+ assert.equal(readSave(saveState(s)).relays.length,3);
+});
+test('Handled contextual actions flush their events before won state stops the simulation loop',()=>{
+ const source=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
+ assert.match(source,/if\\(skirmishUI\\?\\.action\\(name\\)\\)\\{events\\(\\);return;\\}/);
+});
+""")
+          Path('aether-reach/tests/rail-brake.test.mjs').write_text("""import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createState,interact,step,RAILS,pointOnRail} from '../model.mjs';
+import {RAIL_TUNING} from '../skirmish-world.mjs';
+const run=(s,seconds,input)=>{for(let i=0;i<seconds*120;i++)step(s,{explorer:true,...input},1/120);};
+function rider(){const s=createState();Object.assign(s.p,{x:9,y:0,z:-5});interact(s);assert.equal(s.p.rail.id,'glassline');s.p.rail.s=50;s.p.speed=RAIL_TUNING.cruise;const p=pointOnRail(RAILS.find(r=>r.id==='glassline'),50);Object.assign(s.p,{x:p.x,y:p.y-2.65,z:p.z});return s;}
+test('Holding the ordinary movement-stick brake reaches one latched reverse at the configured brake speed',()=>{
+ const s=rider();run(s,1,{moveZ:-1,back:true});assert.equal(s.p.rail.dir,-1);assert.equal(s.stats.reversals,1);assert.equal(s.p.rail.reverseLatched,true);assert.equal(s.stats.rescues,0);
+ run(s,.4,{moveZ:-1,back:true});assert.equal(s.stats.reversals,1);
+});
+test('Neutral stick re-arms the next deliberate rail reversal without rebinding a gameplay button',()=>{
+ const s=rider();run(s,.7,{moveZ:-1,back:true});assert.equal(s.stats.reversals,1);
+ run(s,.1,{moveZ:0,back:false});assert.equal(s.p.rail.reverseLatched,false);
+ run(s,.5,{moveZ:-1,back:true});assert.equal(s.p.rail.dir,1);assert.equal(s.stats.reversals,2);assert.equal(s.stats.rescues,0);
+});
+""")
+          handoff=Path('aether-reach/DEVELOPMENT-HANDOFF.md');s=handoff.read_text();note="\nFinal 0.11.0 regression hardening: contextual completion now drains win/save events before the won-state loop stops; rail reversal uses the configured brake speed with neutral re-arming; browser journeys follow the current Neighborhood Missions homepage route and explicit New Expedition confirmation. Save schema and existing gameplay progress remain unchanged.\n";handoff.write_text(s+note if note.strip() not in s else s)
+          cast=Path('aether-reach/GROUNDED-CAST.md');s=cast.read_text();note="\nController friction rule: rail brake/reverse stays on the left movement stick, preserving face buttons and bumpers for higher-frequency direct actions.\n";cast.write_text(s+note if note.strip() not in s else s)
+          PY
+          git diff --check
+      - name: Validate model, saves, syntax and release manifest
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs | tee /tmp/aether-final-node.log
+          python aether-reach/tests/backup_test.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Create content-only candidate without temporary workflow
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          base=os.environ['BASE'];repo=os.environ['GH_REPO']
+          names=subprocess.check_output(['git','diff','--name-only',base,'--','aether-reach'],text=True).splitlines()
+          assert names and all(n.startswith('aether-reach/') for n in names)
+          def post(endpoint,payload):
+            p=Path('/tmp/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+repo+'/'+endpoint,'--input',str(p)],text=True))
+          tree=[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in names]
+          base_tree=subprocess.check_output(['git','rev-parse',base+'^{tree}'],text=True).strip()
+          t=post('git/trees',{'base_tree':base_tree,'tree':tree})
+          c=post('git/commits',{'message':'fix(aether): finalize grounded input and completion regressions','tree':t['sha'],'parents':[base]})
+          Path('/tmp/aether-final-candidate.json').write_text(json.dumps({'base':base,'commit':c['sha'],'files':names},indent=2))
+          print(c['sha'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-final-candidate
+          path: |
+            /tmp/aether-final-candidate.json
+            /tmp/aether-final-node.log
+          retention-days: 7
