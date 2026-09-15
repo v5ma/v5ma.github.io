@@ -1,4 +1,5 @@
-import {articulateResident} from './herd-rig.js?v=herds1';
+import {articulateResident} from './herd-rig.js?v=grounded1';
+import {makeRangerBody} from './ranger-body.js?v=grounded1';
 import * as T from './vendor/three.module.js';
 import {makeParkDinosaur,makeJeep,part,box,bone,ellipsoid,material,label} from './ranger-art.js';
 // Merge static parts by material; articulated legs remain separate. This keeps a herd affordable.
@@ -58,10 +59,5 @@ export function makeBoat(){
  return bakeStatics(g);
 }
 export function makeBuggy(){const g=makeJeep();g.traverse(m=>{if(m.isMesh&&m.material?.color?.getHex()===0xd7c09b){m.material=m.material.clone();m.material.color.setHex(0xa5b889);}});box(g,0x4f6855,0,1.03,-1.42,1.5,.45,.6);return g;}
-export function makePerson(){
- const g=new T.Group(),legs=[];ellipsoid(g,0x536454,0,1.08,0,.34,.43,.23);box(g,0xd4a947,0,1.16,.16,.46,.5,.1);ellipsoid(g,0xbe9877,0,1.69,0,.21,.24,.2);box(g,0xb9ad81,0,1.9,0,.52,.1,.47);ellipsoid(g,0xb9ad81,0,1.96,0,.24,.11,.21);
- for(const x of [-.17,.17]){const l=new T.Group();l.position.set(x,.83,0);bone(l,0x4d6355,[0,0,0],[0,-.68,0],.13,.1);box(l,0x2a4038,0,-.74,.1,.24,.18,.38);g.add(l);legs.push(l);}
- for(const x of [-.38,.38]){bone(g,0x536454,[x,1.4,0],[x,1.1,.25],.11,.1);bone(g,0xbe9877,[x,1.1,.25],[x*.7,1.23,.6],.085,.075);}
- box(g,0x7b9278,0,1.15,-.32,.5,.6,.26);part(g,new T.CylinderGeometry(.13,.13,.56,10),0x8dd9e3,.16,1.12,-.47);g.userData={legs};return bakeStatics(g,legs);
-}
+export function makePerson(){return makeRangerBody(bakeStatics);}
 export function makeTool(){const g=new T.Group();box(g,0x334b44,0,0,0,.25,.2,.6);box(g,0x7cc9db,0,.06,.08,.17,.18,.34);bone(g,0x9bbaae,[0,0,.2],[0,0,.75],.065,.04);box(g,0xd1b57c,0,-.18,-.16,.12,.28,.15);g.userData.nozzle=new T.Vector3(0,0,.8);return g;}

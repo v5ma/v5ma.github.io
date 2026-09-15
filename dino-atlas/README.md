@@ -1,3 +1,5 @@
+Current continuation: [Grounded Reserve](GROUNDED-RESERVE.md), build grounded-xr-20260914.1. The reserve and all legacy save namespaces are retained. See the release document for direct controls, XR support and explicit hardware-test limitations.
+
 # Dino Atlas: Pelagic Recovery
 
 Menu > Water mission: Pelagic Recovery starts the new six-stage aquatics assignment. Sail from Wetland Dock to Pelagic Station, restore its safety breaker, isolate the seawater intake, drain the tiled pool, explore the shallow archive wing on foot and return two sealed cases by boat. All prior Dino Atlas activities and saves remain. See [PELAGIC-RECOVERY.md](PELAGIC-RECOVERY.md) for controls, rendering budgets and limitations. The maintained checklist is [AAA-ROADMAP.md](AAA-ROADMAP.md).

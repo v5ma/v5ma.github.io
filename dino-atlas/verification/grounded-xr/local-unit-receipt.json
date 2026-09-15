@@ -1,0 +1,13 @@
+{
+  "build": "grounded-xr-20260914.1",
+  "baseline": "b87aeacb71d00b73992945daaba2fccdc66ab409",
+  "runner": "Node 22.16.0 in local container",
+  "tests": 133,
+  "passed": 133,
+  "failed": 0,
+  "command": "node --test dino-atlas/tests/*.test.mjs",
+  "localBrowser": "Blocked by environment browser policy; no local rendered pass claimed",
+  "physicalXboxTest": false,
+  "physicalQuest3Test": false,
+  "browserAndPublication": "Separate CI receipts required"
+}
