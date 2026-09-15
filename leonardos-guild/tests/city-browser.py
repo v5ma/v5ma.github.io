@@ -71,7 +71,7 @@ with sync_playwright() as p:
     ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
     page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
     try:
-        page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
+        page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
         page.wait_for_function('LeonardoGuild.inspect().render.art.ready||LeonardoGuild.inspect().render.art.failed',timeout=120000)
         check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Lantern Hours loads in the existing browser game')
         check(read()['render']['art']['ready'] and read()['render']['art']['models']==32,'The same 32 licensed art assets load successfully')

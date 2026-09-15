@@ -16,6 +16,10 @@ def frames(n=4):
   target=read()['xr']['frames']+n;page.wait_for_function('(n)=>!LeonardoGuild.inspect().xr.presenting||LeonardoGuild.inspect().xr.frames>=n',arg=target)
  else:page.evaluate('(n)=>new Promise(resolve=>{let i=0;function f(){if(++i>=n)resolve();else requestAnimationFrame(f);}requestAnimationFrame(f);})',n)
 def button(index,number,down):page.evaluate('(v)=>{const s=__xr.sources[v.index];s.gamepad.buttons[v.number]={pressed:v.down,value:v.down?1:0};}',{'index':index,'number':number,'down':down})
+def sampled_pulse(index,number):
+ # Supply one pressed hardware snapshot, then release before the next poll.
+ # Three software-rendered frames can exceed the deliberate 450 ms hold.
+ return page.evaluate('''({index,number})=>new Promise(resolve=>{const p=__xr.sources[index].gamepad,buttons=p.buttons.map(v=>({...v}));buttons[number]={pressed:true,value:1};let seen=false;Object.defineProperty(p,'buttons',{configurable:true,get(){if(!seen){seen=true;queueMicrotask(()=>{buttons[number]={pressed:false,value:0};Object.defineProperty(p,'buttons',{configurable:true,writable:true,value:buttons});resolve(LeonardoGuild.inspect());});}return buttons;}});})''',{'index':index,'number':number})
 def trigger(down):
  page.evaluate('(down)=>{const s=__xr.sources[1];if(s.hand)s.pinch=down?.014:.06;else s.gamepad.buttons[0]={pressed:down,value:down?1:0};}',down)
 def point(u,v,kind='panel'):
@@ -56,12 +60,40 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild&&LeonardoGuild.inspect().xr.supported')
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild&&LeonardoGuild.inspect().xr.supported')
   page.evaluate('__xr.head={x:.4,y:1.4,z:.2};__xr.yaw=.24');page.locator('#guild-xr-enter').click();page.wait_for_function('LeonardoGuild.inspect().xr.presenting');frames(6)
   check(page.evaluate("__xr.request.mode==='immersive-vr'&&__xr.request.options.optionalFeatures.includes('hand-tracking')"),'Actual session request asks for optional hand tracking')
   check(read()['xr']['controllerCount']==2 and read()['xr']['targetSize']==[1024,576],'Actual XR frame loop tracks both controllers and reuses one bounded GPU game texture')
   origin=read()['xr']['theatreOrigin'];check(abs(origin['x']-.4)<1e-6 and abs(origin['y']+.2)<1e-6 and abs(origin['yaw']-.24)<1e-6,'The theatre initially anchors in front of a non-origin seated viewer');capture('xr-title-and-controllers');dom('#start');check(read()['running'],'Tracked ray/trigger activates the real title Start handler')
   panel_key('vehicle');check(read()['mode']=='foot','Tracked ray/trigger dismounts through the existing Y action')
+  # Refinement acceptance: tracked hardware input only; no live-state writes.
+  button(0,1,True);frames(4);check(read()['console']['wheel']=='tools','Left grip opens the retained wheel for direct stick selection')
+  heading=read()['render']['heading'];page.evaluate('__xr.sources[1].gamepad.axes=[0,0,1,0]');frames(4)
+  check(read()['console']['index']==1,'Right thumbstick selects the sling without pointing at the side panel')
+  button(1,4,True);frames(3);button(1,4,False);frames(4);button(0,1,False);frames(3)
+  check(not read()['console']['wheel'] and read()['resonance']['tool']=='sling','Right A confirms a tracked wheel selection')
+  check(abs(math.atan2(math.sin(read()['render']['heading']-heading),math.cos(read()['render']['heading']-heading)))<.01,'Held wheel-selection stick cannot kick the game camera after confirmation')
+  page.evaluate('__xr.sources[1].gamepad.axes=[0,0,0,0]');frames(4)
+  # Move the real controller ray off the menu before firing. A UI-directed
+  # trigger must remain an interaction, not leak into a shot.
+  page.evaluate('__xr.sources[1].orientation={x:0,y:0,z:0,w:1}');frames(4)
+  button(0,0,True);frames(5);button(1,0,True);frames(6);button(1,0,False);frames(3)
+  check(read()['resonance']['ready']<6,'Tracked trigger spends real sling ammunition before reload acceptance')
+  first=sampled_pulse(1,5)
+  check(first['resonance']['reload']>0 and not first['controller']['modal'],'Aimed right B reloads directly without opening Nearby')
+  frames(2)
+  page.wait_for_function('LeonardoGuild.inspect().resonance.reload===0');button(0,0,False);frames(4)
+  button(0,4,True);frames(3);button(0,4,False);frames(3)
+  panel_key('pause');beforeFocus=read()['controller']['focus'];frames(3);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,1]');frames(3)
+  check(read()['controller']['focus']!=beforeFocus,'Left tracked stick navigates real pause-menu focus')
+  button(1,5,True);frames(3);button(1,5,False);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]');frames(4)
+  check(read()['running'],'Tracked B returns from a real menu without a mouse')
+  page.evaluate('__xr.session.visibilityState="visible-blurred";__xr.session.dispatchEvent(new Event("visibilitychange"))');frames(3)
+  button(1,4,True);frames(4);check(read()['paused'],'A headset overlay blocks confirm input instead of resuming hidden gameplay')
+  page.evaluate('__xr.session.visibilityState="visible";__xr.session.dispatchEvent(new Event("visibilitychange"))');frames(3)
+  check(read()['paused'],'Held confirm remains disarmed when headset visibility returns')
+  button(1,4,False);frames(3);button(1,4,True);frames(3);button(1,4,False);frames(3)
+  check(read()['running'],'Release and a fresh tracked A press resume normally after the overlay')
   tool=read()['resonance']['tool'];button(0,4,True);frames(3);button(0,4,False);frames(3)
   check(read()['resonance']['tool']!=tool and not read()['console']['wheel'],'Tracked left X directly swaps the tool with no menu')
   button(0,0,True);frames(6);check(read()['resonance']['aim'] and read()['xr']['reticleVisible'],'Tracked trigger aim has a visible in-headset game-screen reticle');capture('xr-aim');button(0,0,False);frames(5)

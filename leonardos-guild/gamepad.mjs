@@ -116,5 +116,10 @@ export function createGamepad({getState,playing,active,actions,getPreferences=()
   const effect=kind==='warning'?{duration:90,weakMagnitude:.18,strongMagnitude:.06}:kind==='success'?{duration:130,weakMagnitude:.3,strongMagnitude:.15}:{duration:120,weakMagnitude:.22,strongMagnitude:.32};
   try{p?.vibrationActuator?.playEffect?.('dual-rumble',{startDelay:0,...effect})?.catch(()=>{});}catch{}
  }
- return {poll,controls,closeTop,rumble,ui:{root,choices,adjust,activate(e){const r=root();if(r&&choices(r).includes(e)){focus(e);activate();return true;}return false;},back:closeTop},inspect:()=>({connected,id,profile:getPreferences().profile,wheel:actions.wheelActive?.()||null,axes:[...axes],buttons:[...held],sprint,focus:document.activeElement?.id||document.activeElement?.textContent?.trim().slice(0,90),modal:root()?.id||null,lastInput})};
+ return {poll,controls,closeTop,rumble,ui:{root,choices,adjust,
+  navigate(direction){const r=root();if(r&&['up','down','left','right'].includes(direction))navigate(r,direction);},
+  tabs(direction){const r=root();if(r&&(direction===1||direction===-1))tabs(r,direction);},
+  confirm(){const r=root();if(r){ensure(r);activate();}},
+  scroll(delta){const r=root();if(r&&Number.isFinite(delta)){const target=r.querySelector('[data-pad-scroll]')||r;target.scrollTop+=Math.max(-100,Math.min(100,delta));}},
+  activate(e){const r=root();if(r&&choices(r).includes(e)){focus(e);activate();return true;}return false;},back:closeTop},inspect:()=>({connected,id,profile:getPreferences().profile,wheel:actions.wheelActive?.()||null,axes:[...axes],buttons:[...held],sprint,focus:document.activeElement?.id||document.activeElement?.textContent?.trim().slice(0,90),modal:root()?.id||null,lastInput})};
 }

@@ -1,3 +1,13 @@
+Waterwheel Quarter v0.14.0 implementation checkpoint, September 15, 2026.
+
+Read WATERWHEEL-QUARTER.md and release.json first. The approved authored opening and new XR presentations now have ordinary runtime implementation. This is not a claim of successful publication until the exact-source native workflow, renderer review and independent Pages receipt pass. The earlier v0.13.1 refinement runtime has been recovered without replacing the approved design documents.
+
+New actual game sessions begin in the Quarter. Existing saves stay in their supported older town until the player enters at the workshop sign. The rest of Vinci is retained, not yet reauthored. All three authored approaches, the far-side service-arch shortcut and spindle follow-up use normal movement and validated in-person actions. Save version 2 and stable old delivery identities remain. Never clear browser storage for migration.
+
+quarter-data/core/art/ui own metric authored floors, conditional collision, saved cases, reversible scene and ordinary controller menu. spatial-xr owns actual per-eye miniature/first-person transforms with temporary geometry reparenting restored in finally before the next simulation or IK update. New spatial views currently cover the Quarter only; earlier regions retain theatre. Never process physics per eye. Never close both exhibit faces or turn cutaways into physical access.
+
+The release remains gated on native routes, legacy regressions, actual screenshots and public-byte checks. Physical Xbox/Quest controllers/hands, real passthrough, subjective comfort, FPS and owner enjoyment remain separate unverified hardware/human gates.
+
 # Grounded Actions v0.13.0 continuation - September 14, 2026
 
 Read GROUNDED-ACTIONS.md and current release.json before the historical checkpoint below. The owner's latest feedback prioritizes direct frequent actions, realistic proportions/stance contacts and Xbox plus Quest controller/hand UI. Console LB now taps to the previous tool and holds for the full wheel. The original characters have revised proportions and transient two-bone stance IK. Optional seated WebXR theatre uses the same game, saves and camera with tracked controller rays and hand-pinch UI; it is NOT room-scale first-person gameplay or stereo world rendering.

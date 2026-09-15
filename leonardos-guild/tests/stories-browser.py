@@ -32,13 +32,12 @@ def ui_select(selector,click=True):
  raise AssertionError('Focus could not reach '+selector+' '+str(read()['controller']))
 def close():press(1);frames(3)
 def drive(x,z,radius=.85,limit=150):
- start=time.monotonic()
- while time.monotonic()-start<limit:
-  s=read();assert s['running'],'Navigation attempted while paused';dx=x-s['x'];dz=z-s['z'];distance=math.hypot(dx,dz)
-  if distance<radius:neutral();page.wait_for_function('Math.abs(LeonardoGuild.inspect().speed)<.5',timeout=10000);return
-  desired=math.atan2(dx,dz);heading=s['render']['heading'];angle=desired-heading;strength=min(.92,.3+distance*.14)
-  inputs([],[-math.sin(angle)*strength,-math.cos(angle)*strength,0,0]);frames(3)
- raise AssertionError('Could not walk to '+str((x,z))+' '+json.dumps(read()))
+ # Read-only feedback runs in the same browser frame stream as movement.
+ # Transport round trips must not hold stale steering across several frames.
+ global last_axes
+ last_axes=[0,0,0,0]
+ page.evaluate('''({x,z,radius,limit})=>new Promise((resolve,reject)=>{const start=performance.now();let arrived=false;function tick(){const s=LeonardoGuild.inspect(),distance=Math.hypot(x-s.x,z-s.z);if(!s.running){__testPad.axes=[0,0,0,0];reject(Error('Navigation attempted while paused'));return;}if(distance<radius)arrived=true;if(arrived){__testPad.axes=[0,0,0,0];if(Math.abs(s.speed)<.5){resolve();return;}}else{const angle=Math.atan2(x-s.x,z-s.z)-s.render.heading,strength=Math.min(.92,.3+distance*.14);__testPad.axes=[-Math.sin(angle)*strength,-Math.cos(angle)*strength,0,0];}if(performance.now()-start>limit*1000){__testPad.axes=[0,0,0,0];reject(Error('Could not walk to '+JSON.stringify({x,z,actualX:s.x,actualZ:s.z,level:s.doors.level})));return;}requestAnimationFrame(tick);}tick();})''',{'x':x,'z':z,'radius':radius,'limit':limit})
+ neutral()
 def act(site,action='use'):
  neutral();press(2);page.wait_for_selector('#doors-dialog[open]')
  ui_select('[data-door-site="'+site+'"][data-door-action="'+action+'"]')
@@ -52,7 +51,7 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Blocking browser dialog: '+d.message)))
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(4)
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(4)
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Living Stories release starts the actual renderer')
   check(read()['console']['preferences']['profile']=='console','Fresh journey uses default Console, not legacy steering')
   check(read()['audio']['preferences']['density']=='quiet','Quiet cue density is retained')
