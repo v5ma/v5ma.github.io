@@ -1,0 +1,16 @@
+{
+  "scope": "Retained native-test failure and separate procedural-posture review; not a human approval gate.",
+  "failed_run": 34938801913,
+  "tested_feature_head": "51d584be4ea4794ec10e576fe536c6197d788612",
+  "artifact": 10384358532,
+  "archive_sha256": "0151b6fbe827203524ada6a81eeade82246380daabf190857b6b40f83322eb8c",
+  "failed_assertion": "female crouch uses the real fitted skin and collision-height envelope",
+  "checks_before_failure": 2,
+  "browser_errors": [],
+  "console_errors": [],
+  "test_correction": "The existing asset harness advances animation by 0.016 seconds per rendered frame, while its driver waited only 250 milliseconds of wall time. On a software renderer, that can capture the new interpolated pose before it has settled. Expose the fixture's render clock and wait for 0.5 animation seconds. Keep all original height/envelope assertions and game timing unchanged.",
+  "separate_posture_correction": "Matched side captures also showed the legacy crouch leaning backward. Author a forward torso lean with head compensation, bent balancing arms, held-action shoulder compensation and a bounded visual lowering. Reverse the running lean to incline forward. Preserve the existing full-rig minimum and maximum height tests, including held prop geometry.",
+  "local_tests_after_correction": {"passed": 306, "failed": 0, "skipped": 0},
+  "new_tests": ["Crouched head stays forward of planted hips inside the original envelope", "Held crouch actions do not mutate any gameplay field", "Running lean faces the direction of travel"],
+  "publication": "This record is not delivery evidence; the final source must pass the complete native matrix and public-byte verification."
+}

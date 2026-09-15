@@ -1,4 +1,4 @@
-# Rainward v0.13.1 / controller and interface contract
+# Rainward v0.14.0 / controller and interface contract
 
 This is the current control guide. The earlier v0.8.1 X-reload mapping survives as the Classic preset; it is not the default Survival layout. These mappings are implemented using the browser standard gamepad layout. Physical wired/Bluetooth Xbox acceptance remains open.
 
@@ -39,3 +39,7 @@ WASD moves; mouse or arrows look. R reloads, E interacts, C crouches, Z goes pro
 Record a physical wired and Bluetooth Xbox run of both presets: title, seven chapter choices, all settings and sliders, long-panel scroll, field-note expansion, task tracking, hold crafting, bandaging, reload, oxygen recovery, cancellation, retry and disconnect/reconnect. The 18 previously passing browser suites and 21 focused water checks used simulated input; they are not this hardware sign-off. A and B should never simultaneously act on gameplay and a newly opened menu.
 
 Source entry points: input.mjs, controls.mjs, app.mjs, controller-ui.mjs, field-ready-ui.mjs, aquatic.mjs and aquatic-ui.mjs. See DEVELOPMENT-HANDOFF.md for release evidence and remaining priorities.
+
+## Grounded motion
+
+Grounded adds no control binding or remapping. Foot contacts and swim/tread motion are visual responses to normal movement and state. Survival and Classic retain their existing dive, surface, reload, melee and menu actions. Animation interpolation does not prolong held actions or change save/collision authority. Physical Xbox/Bluetooth approval remains open.

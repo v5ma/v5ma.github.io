@@ -1,0 +1,55 @@
+name: Rainward Grounded character motion
+on:
+  pull_request:
+    paths: ['rainward/**','.github/workflows/rainward-grounded.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rainward-grounded-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Model, fit and source regression
+        run: |
+          mkdir -p test-output
+          node --test rainward/tests/*.test.mjs | tee test-output/model-tests.txt
+          python -m compileall -q rainward/tests
+          python rainward/tools/build-production-plan.py
+          git diff --exit-code -- rainward/AAA_CHECKLIST.md
+      - name: Load immutable prior rig for matched comparisons
+        run: git fetch --depth=1 origin b87aeacb71d00b73992945daaba2fccdc66ab409
+      - name: Install actual WebGL browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Compare the actual fitted character motion
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          timeout 780 python -u rainward/tests/grounded.py
+      - name: Retain exact source, captures and failed evidence
+        if: always()
+        run: |
+          rm -rf rainward/tests/grounded-baseline
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-grounded
+          path: test-output/
+          retention-days: 14

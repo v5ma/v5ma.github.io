@@ -1,14 +1,15 @@
 {
-  "version": "0.13.1",
-  "build": "rainward-clear-water-20260913",
+  "version": "0.14.0",
+  "build": "rainward-grounded-20260914",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-stationary-overlook",
   "multiplayer": false,
   "changes": [
-    "Show Survival HOLD B DIVE, Classic B DIVE and keyboard Z DIVE with the correct surface control",
-    "Add a textual low-air warning, bounded accessible oxygen meter and a non-flashing low-air border",
-    "Add normal-start living-enemy Xbox-standard Natatorium journeys with finite-ammo combat, reload, physical puzzle and extraction",
-    "Extend isolated water acceptance for preset changes, keyboard fallback, reconnect, natural exhaustion, recovery and shelter retry",
-    "Preserve all seven chapters, save keys and formats, water physics, enemy difficulty, finite inventory, art and soundtrack"
+    "Add world-space planted feet, bounded two-bone leg IK, slope alignment, visual pelvis adjustment and safe contact release for hero and humanoid patrols",
+    "Tie visual stride to actual root displacement; blend land poses and author separate swim, underwater stroke and surface-tread motion",
+    "Refine shoulder width, neck/head balance, lower-leg lengths and boot bulk with one coherent map for original clothing, imported detail and skeletal bind points",
+    "Clone shared glTF material geometry before fitting, preserving source assets and avoiding repeated proportion distortion",
+    "Preserve all seven expeditions, saves, physical movement, combat rules, finite inventory, controller presets and licensed source assets",
+    "Retain exact-source before/after WebGL motion evidence and the complete living-enemy and controller regression matrix"
   ]
 }

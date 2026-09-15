@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.13.1",
-  "edition": "Clear Water",
+  "release": "0.14.0",
+  "edition": "Grounded",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
-  "updated": "2026-09-13",
+  "updated": "2026-09-14",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
   "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all seven chapters, saves, sibling applications and asset credits.",
   "statusDefinitions": {
@@ -65,6 +65,10 @@
     }
   ],
   "references": [
+    {
+      "title": "Grounded motion, proportions and research scope",
+      "url": "GROUNDED.md"
+    },
     {
       "title": "Clear Water upgrade and acceptance scope",
       "url": "CLEAR-WATER.md"
@@ -297,12 +301,13 @@
       "status": "Planned",
       "owner": "Art direction",
       "acceptance": "Approve fixed-camera images and motion captures of the slice in daylight, rain and interior lighting.",
-      "evidence": "",
+      "evidence": "tests/grounded.py",
       "depends": [
         "RW-033"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "Camera-matched baseline/current humanoid captures and measured foot-contact fixtures are available through the Grounded workflow. They are not a named art review or full flagship lighting approval."
     },
     {
       "id": "RW-015",
@@ -613,7 +618,7 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Imported CC0 Quaternius Standard face/hands/hair are fitted to the existing seventeen-bone rig and original clothing. The paid Source edition was not used; this is not a fully original final hero sculpt.",
+      "resumeNote": "Imported CC0 Quaternius Standard face/hands/hair are fitted to the existing seventeen-bone rig and original clothing. The paid Source edition was not used; this is not a fully original final hero sculpt. Grounded applies a coherent in-memory rest-space proportion map to details, garments and bind landmarks; original GLB files and licenses stay unchanged.",
       "nextAction": "Keep license/hash provenance, collars/cuffs, independent skeletons, attachment fit, fallback and distance-detail tests during character upgrades."
     },
     {
@@ -621,34 +626,34 @@
       "phase": "G4",
       "priority": "P1",
       "title": "Authored locomotion and action clips",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Animation",
       "acceptance": "Approve walk, run, crouch, crawl, turn, aim, reload, strike, stagger, vault, heal and craft transitions without visible snapping.",
-      "evidence": "",
+      "evidence": "GROUNDED.md",
       "depends": [
         "RW-034"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The original procedural animation still drives the imported detail. The free animation library was inspected but its clips were not integrated; swimming currently reuses the horizontal crawl pose.",
-      "nextAction": "Prototype authored swim/tread/dive/surface and land-action transitions with before/after motion capture and preserved gameplay timing."
+      "resumeNote": "Grounded adds actual-distance stride, visual land-pose blending and distinct original swim/tread/stroke motion to the fitted seventeen-bone humans. These are procedural authored curves, not imported motion-capture clips or a learned animation model.",
+      "nextAction": "Review transitions at game speed and expand authored action/stagger clips; preserve all gameplay action clocks and cancellation rules."
     },
     {
       "id": "RW-036",
       "phase": "G4",
       "priority": "P1",
       "title": "Foot placement and hand contacts",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Technical animation",
       "acceptance": "Feet follow slopes and stairs; hands align to weapons and traversal contacts; solve IK failures without destabilizing gameplay.",
-      "evidence": "",
+      "evidence": "GROUNDED.md",
       "depends": [
         "RW-035"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Hand/foot contact IK is not implemented or approved. The collar/wrist seam fixes are geometry compatibility, not contact animation.",
-      "nextAction": "After action blending, validate slopes/stairs, weapon grips and authored traversal contacts without changing collision authority."
+      "resumeNote": "World-space foot contacts, bounded two-bone leg solving, terrain normals and safe release are implemented. Weapon-hand, ledge and arbitrary-stair contacts remain unimplemented; no collision authority is delegated to IK.",
+      "nextAction": "Add weapon support-hand and authored traversal contacts, review step boundaries and test real hardware; keep motion failure and seam evidence."
     },
     {
       "id": "RW-037",
@@ -1100,10 +1105,10 @@
   ],
   "continuation": {
     "schema": 1,
-    "recordId": "rainward-clear-water-20260913",
+    "recordId": "rainward-grounded-20260914",
     "startHere": "DEVELOPMENT-HANDOFF.md",
     "controls": "CONTROLLER.md",
-    "recordedAgainstMaster": "25f0a46bc5a082d4d99089a3e708441dd0039b14",
+    "recordedAgainstMaster": "b87aeacb71d00b73992945daaba2fccdc66ab409",
     "verifiedGameplay": {
       "version": "0.13.0",
       "edition": "Undertow",
@@ -1114,7 +1119,7 @@
       "publicationRun": 34738570590,
       "historicalPublicFiles": 128
     },
-    "scope": "Clear Water v0.13.1 adds water guidance and executable acceptance. The verifiedGameplay object retains the immutable Undertow baseline; CLEAR-WATER.md and the release PR record this upgrade and exact validation.",
+    "scope": "Grounded v0.14.0 implements the bounded motion/proportion portion of H-02. GROUNDED.md and its release evidence identify exact acceptance. The older verifiedGameplay object remains immutable Undertow history, not the current release.",
     "ownerRequirements": [
       "Continue the existing Rainward game; preserve all seven chapters and saves.",
       "Complete gameplay AND UI with an Xbox controller, including reload and dialog cancellation.",
@@ -1144,9 +1149,11 @@
           "RW-036",
           "RW-014"
         ],
-        "status": "Open",
+        "status": "Implemented",
         "action": "Author swimming and land-action blends, then hand/foot contacts for the fitted seventeen-bone humans.",
-        "acceptance": "Before/after motion review, no collar/cuff gaps, no animation authority over collision, and no broken reload/craft/heal or dive/surface transitions."
+        "acceptance": "Before/after motion review, no collar/cuff gaps, no animation authority over collision, and no broken reload/craft/heal or dive/surface transitions.",
+        "evidence": "GROUNDED.md",
+        "result": "Foot contacts, slope IK, land-pose blending, swim/tread/stroke curves and coherent proportion fitting implemented. Native motion review, full regression and publication are required release gates. Weapon-hand contacts and named human approval remain open."
       },
       {
         "id": "H-03",
@@ -1190,7 +1197,7 @@
       "Human-shield grab (RW-022)",
       "Separate deployable trap (RW-023)",
       "Arbitrary window/ledge/gap traversal (RW-030)",
-      "Imported authored animation library and contact IK",
+      "Imported authored animation library, weapon-hand IK and arbitrary stair/ledge contacts",
       "Free vertical swimming, underwater firearms/enemies, current physics and drowning cinematics",
       "Full VR gameplay, multiplayer and native packaging"
     ],
