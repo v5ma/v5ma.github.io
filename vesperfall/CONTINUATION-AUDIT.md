@@ -1,3 +1,7 @@
+# Surestep addendum / 2026-09-14
+
+This is a historical September 13 audit. In v0.13.0, SURESTEP.md supersedes the missing-water-controls finding: tidelight-quality, tidelight-ripples and tidelight-caustics are now in the shared Quest settings list. Xbox quick Blink/damage arrows, optional tracked-hand menu UI and procedural humanoid foot planting are new. The earlier failed/skipped run remains recorded honestly; it is not evidence for this release. All other unclosed water, audio, production-art and hardware findings remain open.
+
 # Vesperfall continuation audit / September 13, 2026
 
 Read DEVELOPMENT-HANDOFF.md first, then this audit, release.json, roadmap.json and the six-sheet AAA-PRODUCTION.xlsx. This is supporting evidence and an ordered checklist mapped to existing V01-V76, not a second canonical backlog.

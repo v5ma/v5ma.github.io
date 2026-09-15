@@ -1,8 +1,8 @@
 {
-  "version": "0.12.0",
-  "name": "tidelight",
-  "date": "2026-09-12",
-  "scope": "Flooded cloisters and chapel-like water spaces using original bounded translucent water shaders, submerged existing stone, moving caustic highlights and pooled arrow/footstep/teleport ripples. Quest caps visible water surfaces and avoids reflection render passes; AR disables fictional world water. Rosefire, First Bell, Oath, saves, combat and existing routes remain intact.",
+  "version": "0.13.0",
+  "name": "surestep",
+  "date": "2026-09-14",
+  "scope": "Instant Xbox Blink and damage-only arrow shortcuts; paginated Quest water settings; optional tracked-hand ray/pinch spatial UI with safe controller handover; original humanoid proportions, articulated knees/elbows and movement-driven planted feet. Existing combat, hitboxes, routes, saves and VR/AR modes are preserved.",
   "saveCompatibility": "No save keys, generator state, collision floors or scored progression are changed. Existing v0.9+ checkpoints and permanent profiles continue through their existing validated envelopes.",
-  "hardwareStatus": "Desktop/browser and automated WebXR policy checks are used for publication. Physical Quest 3 comfort, thermal behavior and sustained frame rate still require hardware playtesting."
+  "hardwareStatus": "Software acceptance uses real WebGL with emulated Xbox buttons, WebXR controllers and hand joints. Physical Quest 3 tracking, comfort, thermal behavior, performance and real Xbox lifecycle checks remain open."
 }
