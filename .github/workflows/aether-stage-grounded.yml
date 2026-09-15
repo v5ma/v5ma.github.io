@@ -2,7 +2,7 @@ name: Stage reviewed Aether grounded changes
 on:
   push:
     branches: [aether/grounded-motion-20260914]
-    paths: ['aether-reach/tools/integrate-grounded.b64']
+    paths: ['aether-reach/tools/integrate-grounded-3.b64']
 permissions:
   contents: read
 jobs:
@@ -40,7 +40,8 @@ jobs:
           python - <<'PY'
           import base64,zlib,json,hashlib
           from pathlib import Path
-          raw=zlib.decompress(base64.b64decode(Path('aether-reach/tools/integrate-grounded.b64').read_text()))
+          encoded=''.join(Path(f'aether-reach/tools/integrate-grounded-{i}.b64').read_text().strip() for i in range(4))
+          raw=zlib.decompress(base64.b64decode(encoded,validate=True))
           assert hashlib.sha256(raw).hexdigest()=='69f8ce9357118333e085d6456ad40ab94316d2e75ca7ef67d7edd8182a983c3a'
           data=json.loads(raw)
           assert data['base']=='fb14411441d18085677df0484bbb1de0ca802f4c'
@@ -78,7 +79,7 @@ jobs:
             p=Path('/tmp/aether-stage/request.json');p.write_text(json.dumps(payload))
             return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
           tree=[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()} for name in data['changes']]
-          for name in ['aether-reach/tools/integrate-grounded.b64','.github/workflows/aether-stage-grounded.yml']:tree.append({'path':name,'mode':'100644','type':'blob','sha':None})
+          for name in [f'aether-reach/tools/integrate-grounded-{i}.b64' for i in range(4)]+['.github/workflows/aether-stage-grounded.yml']:tree.append({'path':name,'mode':'100644','type':'blob','sha':None})
           base_tree=subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()
           t=post('git/trees',{'base_tree':base_tree,'tree':tree})
           c=post('git/commits',{'message':'feat(aether): Grounded Cast foot locking and tracked hand spatial UI','tree':t['sha'],'parents':[os.environ['GITHUB_SHA']]})
