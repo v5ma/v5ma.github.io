@@ -1,0 +1,26 @@
+name: Dino Atlas tracked UI
+on:
+  push:
+    branches: ['dino-atlas/grounded-xr-20260914']
+    paths: ['.github/workflows/dino-grounded-focus.yml', 'dino-atlas/xr-*.js', 'dino-atlas/tests/grounded-xr-browser.py']
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - run: python dino-atlas/tests/grounded-xr-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-tracked-ui-${{ github.run_id }}
+          path: dino-atlas/verification/grounded-xr/
+          retention-days: 7
