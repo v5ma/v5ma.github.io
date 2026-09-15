@@ -1,6 +1,6 @@
 /* Native per-eye geometry, not a render-target theater. Tracking stays in metres. */
 import * as T from '../vendor/three.module.js';
-import {clamp,lineClear} from './core.mjs';
+import {clamp,lineClear,support,floorHeight} from './core.mjs';
 export function createXR(view,hooks){
  const {renderer,scene,camera,rig,world}=view;
  let session=null,kind='diorama-vr',pending=false,align=true,origin=new T.Vector3(),heading=0,frames=0,selections=0,tracked=0,lastPaint=0,page=0,wasPaused=true,error='';
@@ -10,7 +10,7 @@ export function createXR(view,hooks){
  const panel=new T.Mesh(new T.PlaneGeometry(1.4,1.05),new T.MeshBasicMaterial({map:tex,toneMapped:false,side:T.DoubleSide}));panelGroup.add(panel);panelGroup.visible=false;
  const lineGeo=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-5)]),jointGeo=new T.SphereGeometry(.009,6,4),jointMat=new T.MeshBasicMaterial({color:0xa4e7d9});
  const slots=[0,1].map(()=>{const ray=new T.Line(lineGeo,new T.LineBasicMaterial({color:0x8be5db})),grip=new T.Mesh(new T.BoxGeometry(.045,.05,.11),jointMat),joints=Array.from({length:25},()=>new T.Mesh(jointGeo,jointMat));rig.add(ray,grip,...joints);return {ray,grip,joints,src:null,prev:[],pinch:false,ready:false,tracked:false};});
- const caster=new T.Raycaster();let rows=[],panelSignature='',input={x:0,y:0,boost:false,brake:false},lastSnap=false;
+ const caster=new T.Raycaster();let rows=[],focused=-1,panelSignature='',input={x:0,y:0,boost:false,brake:false},lastSnap=false;
  function clear(){input={x:0,y:0,boost:false,brake:false};for(const s of slots){s.ready=false;s.prev=[];s.pinch=false;}hooks.clear();}
  function pause(){hooks.pause(true);clear();}
  function place(v){origin.copy(v.transform.position);const f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(v.transform.orientation));heading=Math.atan2(-f.x,-f.z);align=false;}
@@ -44,14 +44,14 @@ export function createXR(view,hooks){
   ctx.font='23px sans-serif';const words=(error||hooks.goal()).split(' ');let line='',y=105;for(const w of words){if(ctx.measureText(line+w).width>935){ctx.fillText(line,35,y);y+=29;line='';}line+=w+' ';}ctx.fillText(line,35,y);
   items.slice(page*6,page*6+6).forEach(([label,fn,hold],i)=>rows.push({label,fn,hold,x:35+(i%2)*490,y:210+Math.floor(i/2)*130,w:464,h:108}));
   rows.push({label:'Previous',fn:()=>{page=(page+pages-1)%pages;lastPaint=0;},x:35,y:634,w:305,h:92},{label:'Next '+(page+1)+'/'+pages,fn:()=>{page=(page+1)%pages;lastPaint=0;},x:355,y:634,w:310,h:92},{label:paused?'Back / resume':'Menu',fn:()=>hooks.pause(!hooks.paused()),x:680,y:634,w:310,h:92});
-  for(const r of rows){ctx.fillStyle='#365865';ctx.fillRect(r.x,r.y,r.w,r.h);ctx.fillStyle='#fff0cf';ctx.font='28px sans-serif';ctx.fillText(r.label,r.x+18,r.y+r.h/2+10,r.w-30);}tex.needsUpdate=true;lastPaint=now;
+  for(const r of rows){ctx.fillStyle=rows.indexOf(r)===focused?'#628782':'#365865';ctx.fillRect(r.x,r.y,r.w,r.h);ctx.fillStyle='#fff0cf';ctx.font='28px sans-serif';ctx.fillText(r.label,r.x+18,r.y+r.h/2+10,r.w-30);}tex.needsUpdate=true;lastPaint=now;
  }
  function update(now,frame,state){
   input={x:0,y:0,boost:false,brake:false};if(!session||!frame)return input;frames++;
   const ref=renderer.xr.getReferenceSpace(),viewer=ref&&frame.getViewerPose(ref);if(!viewer||session.visibilityState!=='visible'){pause();return input;}
   if(align)place(viewer);
   const first=kind==='first-person-vr';
-  if(first){world.position.set(0,0,0);world.scale.setScalar(1);world.rotation.set(0,0,0);rig.rotation.set(0,hooks.yaw()-heading,0);const offset=origin.clone().applyAxisAngle(new T.Vector3(0,1,0),rig.rotation.y);rig.position.set(state.x-offset.x,state.y+1.65-offset.y,state.z-offset.z);}
+  if(first){world.position.set(0,0,0);world.scale.setScalar(1);world.rotation.set(0,0,0);rig.rotation.set(0,hooks.yaw()-heading,0);const offset=origin.clone().applyAxisAngle(new T.Vector3(0,1,0),rig.rotation.y);const floor=support(state,state.x,state.z,state.y),eyeY=state.lift?state.y:floor?floorHeight(floor,state.z):state.safe[1];rig.position.set(state.x-offset.x,eyeY+1.65-offset.y,state.z-offset.z);}
   else{rig.position.set(0,0,0);rig.rotation.set(0,0,0);world.scale.setScalar(settings.scale);world.rotation.y=heading+settings.rotation;const forward=new T.Vector3(0,0,-settings.distance).applyAxisAngle(new T.Vector3(0,1,0),heading);world.position.copy(origin).add(forward);world.position.y=origin.y+settings.height;}
   rig.updateMatrixWorld(true);world.updateMatrixWorld(true);
   const paused=hooks.paused();if(paused!==wasPaused){wasPaused=paused;page=0;clear();lastPaint=0;}
@@ -87,12 +87,12 @@ export function createXR(view,hooks){
   if(first&&Math.abs(snap)>.65&&!lastSnap)hooks.turn(-Math.sign(snap)*Math.PI/6);lastSnap=Math.abs(snap)>.3;
   if(hands&&!input.y)input.brake=true;
   if(missing||!tracked){pause();return {x:0,y:0,brake:true};}
-  if(hooks.paused())input={x:0,y:0,boost:false,brake:true};
+  if(hooks.paused()||view.curtain.visible)input={x:0,y:0,boost:false,brake:true};
   return input;
  }
  slots.forEach(s=>{s.ray.visible=s.grip.visible=false;s.joints.forEach(j=>j.visible=false);});
  addEventListener('pagehide',()=>session?.end());
- return {enter,update,clear,setMode,settings,exit:()=>session?.end(),get active(){return !!session;},get mode(){return kind==='first-person-vr'?'first':'diorama';},inspect:()=>({active:!!session,kind,stereoGameWorld:!!session,pending,frames,selections,trackedSources:tracked,jointPool:50,environmentBlendMode:session?.environmentBlendMode||null,scale:world.scale.x,settings:{...settings},error,input:{...input},headBoundary:view.curtain.visible}),
+ return {enter,update,clear,setMode,settings,navigate:(direction,accept,back)=>{if(!session||!hooks.paused())return;if(back){hooks.pause(false);return;}if(direction)focused=(Math.max(0,focused)+direction+rows.length)%rows.length;if(accept){const row=rows[Math.max(0,focused)];row?.fn?.();selections++;}lastPaint=0;},exit:()=>session?.end(),get active(){return !!session;},get mode(){return kind==='first-person-vr'?'first':'diorama';},inspect:()=>({active:!!session,kind,stereoGameWorld:!!session,pending,frames,selections,trackedSources:tracked,jointPool:50,environmentBlendMode:session?.environmentBlendMode||null,scale:world.scale.x,settings:{...settings},error,input:{...input},headBoundary:view.curtain.visible}),
   // Read-only panel transform allows a synthetic tracking fixture to aim real rays.
   panelPose:()=>{panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:rig.matrixWorld.clone().invert().multiply(panel.matrixWorld).toArray(),width:1.4,height:1.05,rows:rows.map(({label,x,y,w,h})=>({label,x,y,w,h}))};}};
 }

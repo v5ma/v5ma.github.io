@@ -88,6 +88,7 @@ export function createView(canvas){
  const waterGeo=new T.PlaneGeometry(5,28,1,1),waterMat=new T.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{time:{value:0},tint:{value:new T.Color(0x509caa)}},vertexShader:'varying vec2 uv0;void main(){uv0=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'uniform float time;uniform vec3 tint;varying vec2 uv0;void main(){float w=sin(uv0.x*70.+uv0.y*95.+time*1.3)+sin(uv0.x*130.-uv0.y*85.+time*.9);float glint=pow(max(0.,w*.5),10.);gl_FragColor=vec4(tint+glint*.3+w*.025,.88);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'});
  const water=new T.Mesh(waterGeo,waterMat);water.rotation.x=-Math.PI/2;water.position.set(-.5,-.75,1);world.add(water);
  const hero=createCourier(world);hero.unicycle.visible=false;hero.bicycle.visible=false;
+ const flyingPaper=box(world,0xf5e7c5,0,0,0,.25,.025,.16);flyingPaper.visible=false;
  const people=[0x9e6651,0x709378,0xc6a25c].map(c=>{const a=createCourier(world,c);a.unicycle.visible=a.bicycle.visible=false;return a;});
  // Independent metre-space contact locks: never call the planet-ground projector here.
  const locks=[null,null],feet=[0,0];let phase=0,lastDistance=0,lastRide='',lastPosition=new T.Vector3(),maxError=0;
@@ -96,7 +97,7 @@ export function createView(canvas){
   if(main){phase+=(s.distance-lastDistance)/1.65;lastDistance=s.distance;if(lastRide!==s.ride||a.g.position.distanceTo(lastPosition)>2||Math.abs(s.vy||0)>.1){locks.fill(null);}lastRide=s.ride;lastPosition.copy(a.g.position);}
   const p0=main?phase:s.time*.33;a.body.position.set(0,s.ride==='bicycle'?.3:s.ride==='boat'?-.2:0,0);a.body.rotation.x=s.ride==='bicycle'?-.2:0;a.g.updateMatrixWorld(true);maxError=0;
   for(let i=0;i<2;i++){
-   const side=i?-1:1,p=(p0+i*.5)%1,angle=p*Math.PI*2;
+   const side=i?1:-1,p=(p0+i*.5)%1,angle=p*Math.PI*2;
    let foot=new T.Vector3(side*.125,.09,Math.sin(angle)*Math.min(.25,(s.speed||0)*.08)),hand=new T.Vector3(side*.27,1.02,-Math.sin(angle)*Math.min(.14,(s.speed||0)*.06));
    if(s.ride==='bicycle'){foot.set(side*.22,.43+Math.cos(angle)*.14,Math.sin(angle)*.14);hand.set(side*.33,1.21,-.48);a.pedals[i].position.set(side*.22,.4+Math.cos(angle)*.14,Math.sin(angle)*.14);}
    else if(s.ride==='boat'){foot.set(side*.16,.12,-.3);hand.set(side*.3,1.05,-.25);}
@@ -114,18 +115,19 @@ export function createView(canvas){
  // Instanced static pieces keep the authored district bounded on mobile/XR.
  function batch(group){const bins=new Map();group.updateMatrixWorld(true);for(const m of [...group.children])if(m.isMesh&&(m.geometry===boxGeo||m.geometry===cylGeo)){const key=m.geometry.uuid+m.material.uuid;if(!bins.has(key))bins.set(key,[]);bins.get(key).push(m);}
   for(const meshes of bins.values()){if(meshes.length<3)continue;const m=new T.InstancedMesh(meshes[0].geometry,meshes[0].material,meshes.length);meshes.forEach((o,i)=>{o.updateMatrix();m.setMatrixAt(i,o.matrix);group.remove(o);});m.castShadow=m.receiveShadow=true;group.add(m);}}
- batch(decor);
+ batch(decor);batch(lowGroup);for(const g of world.children)if(g!==decor&&g!==lowGroup&&g.isGroup&&g.children.some(m=>m.geometry===boxGeo))batch(g);
  const enclosure=new T.Group();world.add(enclosure);const sideMat=new T.MeshStandardMaterial({color:0x254b58,roughness:.8,side:T.DoubleSide});
  function panel(w,h,pos,rot){const m=new T.Mesh(new T.PlaneGeometry(w,h),sideMat);m.position.set(...pos);m.rotation.set(...rot);enclosure.add(m);return m;}
  panel(49,17,[0,4.5,-21.3],[0,0,0]);panel(43,17,[-24.4,4.5,0],[0,Math.PI/2,0]);panel(43,17,[24.4,4.5,0],[0,-Math.PI/2,0]);
  const top=panel(49,43,[0,13,0],[-Math.PI/2,0,0]),front=panel(49,17,[0,4.5,21.3],[0,Math.PI,0]);
  let aperture='both';function setOpening(value){aperture=openingState(value);const p=panelsFor(aperture);top.visible=!p.topOpen;front.visible=!p.frontOpen;return aperture;}
  setOpening('both');enclosure.visible=false;
- const curtain=new T.Mesh(new T.SphereGeometry(.035,12,8),new T.MeshBasicMaterial({color:0x101c23,side:T.BackSide,depthTest:false}));curtain.renderOrder=1000;curtain.visible=false;camera.add(curtain);
+ const curtain=new T.Mesh(new T.SphereGeometry(.12,12,8),new T.MeshBasicMaterial({color:0x101c23,side:T.BackSide,depthTest:false}));curtain.renderOrder=1000;curtain.visible=false;camera.add(curtain);
  let cameraYaw=0,view='third',pitch=.58;
  function resize(){if(renderer.xr.isPresenting)return;renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
  function update(s,dt,{mode='third',yaw=cameraYaw,started=true}={}){
   view=mode;cameraYaw=yaw;pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:i===1?Math.PI/2:0,time:s.time,speed:1,distance:s.time*.6},dt));
+  flyingPaper.visible=!!s.paper;if(s.paper){const p=s.paper;flyingPaper.position.set(p.x+p.dx*p.t*6,p.y+Math.sin(p.t*Math.PI)*.5-p.t*.8,p.z+p.dz*p.t*6);flyingPaper.rotation.set(p.t*8,p.t*3,p.t*5);}
   gate.visible=!s.gate;latch.visible=!s.gate;parcel.visible=!s.parcel;lowGroup.visible=s.water==='low';
   const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;water.position.y=-2+mix*1.25;water.visible=mix>.02;waterMat.uniforms.time.value=s.time;gauge.position.y=water.position.y;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
   liftPlatform.position.y=(s.lift?s.y:s.y>2&&s.hoist?4.4:0)-.09;

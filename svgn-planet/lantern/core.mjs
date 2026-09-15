@@ -78,8 +78,7 @@ export function parse(raw){
  s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;return s;
 }
 export function save(s,store){
- const text=JSON.stringify(serialize(s));parse(text);
- try{const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
+ let text;try{const payload=serialize(s);if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
  store.setItem(SAVE_KEY+'.pending',text);if(store.getItem(SAVE_KEY+'.pending')!==text)throw Error('Staging verification failed');store.setItem(SAVE_KEY,text);if(store.getItem(SAVE_KEY)!==text)throw Error('Save verification failed');store.removeItem(SAVE_KEY+'.pending');return {ok:true};}catch(e){return {ok:false,error:String(e.message||e)};}
 }
 export function load(store){
@@ -90,7 +89,7 @@ export function load(store){
 export function actors(s){
  const u=(s.time%18)/18,walk=u<.5?u*2:2-u*2;
  return [{id:'dispatcher',name:'Mara / dispatcher',x:-14+walk*3,z:15,y:0,tip:'The blue door is latched from the receiving court. Watch for our red depot sign on your return.'},
- {id:'porter',name:'Ivo / market porter',x:s.porterYield>0?-22:-19.4,z:-5+walk*7,y:0,tip:'Ring your bell and I will pull into the bay. The public print-shop stair reaches the drying terraces.'},
+ {id:'porter',name:'Ivo / market porter',x:s.porterYield>0?-23:-18.25,z:-5+walk*7,y:0,tip:'Ring your bell and I will pull into the bay. The public print-shop stair reaches the drying terraces.'},
  {id:'caretaker',name:'Neri / workshop caretaker',x:16,z:5+walk*4,y:0,tip:'Leave the parcel at the receiving bench. Restore the blue door OR repair the goods hoist, then return to Mara.'}];
 }
 export function surfaces(s,x,z){return floors.filter(f=>(!f.low||s.water==='low')&&inside(x,z,f,-.06));}
@@ -122,7 +121,8 @@ export function action(s,name){
   if(s.y<-.2||s.y>.35||surfaces(s,s.x,s.z).some(f=>f.stairs)){say(s,'Mount your bicycle on the level street, not on stairs or in the channel.');return;}
   s.ride='bicycle';say(s,'Bicycle ready. RT accelerates; LT or B brakes. Dismount with Y for stairs.');return;
  }
- if(name!=='interact'&&name!=='throw')return;
+ if(name==='throw'){s.paper={x:s.x,y:s.y+1.1,z:s.z,dx:-Math.sin(s.yaw),dz:-Math.cos(s.yaw),t:0};say(s,'Practice paper thrown. Workshop parcels need a handoff at the receiving bench.');return;}
+ if(name!=='interact')return;
  const f=nearby(s);
  if(!f){const a=actors(s).find(a=>Math.hypot(s.x-a.x,s.y-a.y,s.z-a.z)<2.8);if(a)say(s,a.tip);else say(s,name==='throw'?'The workshop parcel needs a handoff at its bench, not a thrown paper.':'Move close to a person, bench or mechanism.');return;}
  if(f.id==='parcel'){
@@ -149,7 +149,8 @@ export function action(s,name){
 }
 export function tick(s,input,dt){
  dt=clamp(Number.isFinite(dt)?dt:0,0,.05);if(!dt)return;s.time+=dt;s.steps++;s.messageTime=Math.max(0,s.messageTime-dt);s.porterYield=Math.max(0,s.porterYield-dt);
- if(s.transition){s.transition.t+=dt/2;if(s.transition.t>=1){s.water=s.transition.to;s.transition=null;say(s,s.water==='low'?'Channel drained. The maintenance steps and walking route are exposed.':'Channel filled. Public boats are available again.');}}
+ if(s.paper){s.paper.t+=dt;if(s.paper.t>1.1)s.paper=null;}
+ if(s.transition){s.transition.t+=dt/2;if(s.transition.t>=1){if(inside(s.x,s.z,canal)||s.ride==='boat'){s.transition=null;say(s,'Sluice paused: clear the channel first. The safe water level is unchanged.');return;}s.water=s.transition.to;s.transition=null;say(s,s.water==='low'?'Channel drained. The maintenance steps and walking route are exposed.':'Channel filled. Public boats are available again.');}}
  if(s.lift){const l=s.lift;l.t=Math.min(1,l.t+dt/2);s.y=l.from+(l.to-l.from)*(l.t*l.t*(3-2*l.t));if(l.t>=1){s.lift=null;s.safe=[s.x,s.y,s.z];}return;}
  const max=s.ride==='boat'?5:s.ride==='bicycle'?input.boost?9:5.6:input.boost?6.2:3.7;
  let dx=input.x||0,dz=input.z||0,L=Math.max(1,Math.hypot(dx,dz));dx/=L;dz/=L;
