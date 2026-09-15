@@ -1,0 +1,39 @@
+name: Aether grounded motion
+on:
+  push:
+    branches: [aether/grounded-motion-20260914]
+    paths: ['aether-reach/**', '.github/workflows/aether-grounded.yml']
+  pull_request:
+    paths: ['aether-reach/**', '.github/workflows/aether-grounded.yml']
+permissions:
+  contents: read
+concurrency:
+  group: aether-grounded-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - name: Source snapshot
+        run: |
+          mkdir -p /tmp/aether-source
+          git rev-parse HEAD > /tmp/aether-source/SOURCE-COMMIT.txt
+          tar -czf /tmp/aether-source/source.tar.gz aether-reach .github/workflows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aether-grounded-source
+          path: /tmp/aether-source/
+          retention-days: 7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Model and save regressions
+        run: node --test aether-reach/tests/*.test.mjs
+      - name: Backup and restore regressions
+        run: python aether-reach/tests/backup_test.py
