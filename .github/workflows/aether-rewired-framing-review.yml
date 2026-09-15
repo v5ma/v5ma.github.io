@@ -5,6 +5,9 @@ on:
     paths: ['.github/workflows/aether-rewired-framing-review.yml']
 permissions:
   contents: read
+concurrency:
+  group: aether-rewired-framing-review
+  cancel-in-progress: true
 jobs:
   inspect:
     if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
@@ -48,7 +51,9 @@ jobs:
               page.goto('http://127.0.0.1:4173/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach')
               page.locator('#presentation-button').click();page.locator('#xr-presentation').select_option('diorama-ar' if kind=='immersive-ar' else 'diorama-vr')
               page.locator('#diorama-opening').select_option('both' if name=='both-ar' else name)
-              page.locator('#diorama-height').fill(str(height));page.locator('#presentation-back').click();page.locator('#enter-vr').click()
+              page.locator('#diorama-height').focus();page.keyboard.press('Home')
+              for _ in range(round((height-.35)/.05)):page.keyboard.press('ArrowRight')
+              page.locator('#presentation-back').click();page.locator('#enter-vr').click()
               page.wait_for_function('AetherReach.snapshot().devices.xr&&AetherReach.snapshot().devices.presentation.avatar==="ready"')
               page.evaluate('new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
               before=page.evaluate('AetherReach.snapshot().position')
