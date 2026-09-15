@@ -1,0 +1,44 @@
+name: Dino Atlas grounded XR
+on:
+  push:
+    branches: [master, 'dino-atlas/grounded-xr-20260914']
+    paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml']
+  pull_request:
+    paths: ['dino-atlas/**', '.github/workflows/dino-grounded-xr.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source snapshot
+        run: tar -czf dino-source.tgz dino-atlas .github
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dino-source-${{ github.sha }}
+          path: dino-source.tgz
+          retention-days: 7
+      - name: Syntax and unit regressions
+        run: |
+          find dino-atlas -maxdepth 1 -name '*.js' -print0 | xargs -0 -n1 node --check
+          node --test dino-atlas/tests/*.test.mjs
+      - name: Browser regression when present
+        run: |
+          if test -f dino-atlas/tests/grounded-xr.browser.mjs; then
+            npm install --no-save --prefix /tmp/dino-browser playwright@1.55.0
+            /tmp/dino-browser/node_modules/.bin/playwright install --with-deps chromium
+            ln -s /tmp/dino-browser/node_modules dino-atlas/tests/node_modules
+            node dino-atlas/tests/grounded-xr.browser.mjs
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-grounded-evidence-${{ github.sha }}
+          path: dino-atlas/verification/grounded-xr/
+          if-no-files-found: ignore
+          retention-days: 14
