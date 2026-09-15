@@ -5,3 +5,6 @@
 @media(prefers-reduced-motion:reduce){.vitals,.objective,#stealth-readout,#suspicion,.survival-preset #reticle{transition:none}}
 /* v0.10: stable, native equipment controls; no pointer required. */
 #equipment-selection{border:1px solid #a3b59466;padding:12px;margin:16px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0}#equipment-selection legend{font:10px/1.6 Arial;letter-spacing:1px;padding:0 5px}#equipment-selection button{font:11px/1.5 Arial;min-height:45px;margin:0;text-align:left;white-space:normal}#equipment-selection button[aria-pressed=true]{border-color:#e4d9a7;background:#3c5141}#chapter-save-status{line-height:1.5;margin-bottom:7px}#save-bank-help{line-height:1.6;margin-top:0;max-width:570px}#chapter-continue{white-space:normal;font-size:11px}#save-bank-help,#chapter-save-status{grid-column:1/-1}
+
+/* Keep feedback legible without moving native buttons or adding an overlay. */
+#craft-percent{display:block;min-height:1.3em;text-align:right;color:#f3dd99;font:600 14px/1.3 Arial}#craft-status{line-height:1.65}#craft-progress{accent-color:#edcf84}

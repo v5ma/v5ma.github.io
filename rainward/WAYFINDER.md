@@ -25,3 +25,9 @@ Physical Quest 3/Xbox tests, real passthrough appearance, hand reliability, subj
 ## Technical reference
 
 W3C WebXR Hand Input Module Level 1 and WebXR Gamepads Module Level 1 were consulted for source identity and the distinction between articulated hands and xr-standard gamepads. No platform system button is captured. References: https://www.w3.org/TR/webxr-hand-input-1/ and https://www.w3.org/TR/webxr-gamepads-module-1/ .
+
+## Final readability pass
+
+Native satchel guidance now distinguishes a held Survival recipe from one-click Classic crafting, and keyboard Enter/Space or a held recipe button from controller A. The native progress bar has a readable percentage and an accessible name/value. The live status changes only when its instruction changes, not on every percentage tick. The action overlay and keyboard bandaging label match those inputs. No input binding, recipe duration, resource cost or cancellation rule is changed.
+
+The pale untextured terrace surface is replaced with the existing self-hosted procedural paving material at world scale, shared across all four ramp/terrace meshes. Its darker, rough finish separates the pale chevrons from the floor. The reduced-rendering path already supports this material. No new mesh, collider, texture download or navigation change is introduced by the surface correction. Physical-device and subjective visual approval remain open.
