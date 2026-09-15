@@ -37,7 +37,7 @@ export function createQuestXR(E){
  function bind(next){scene=next.scene;renderer=next.renderer;scene.add(rig);next.bindXR(api);calibration=null;previousHead=null;eye=null;reset();}
  function detach(){rig.removeFromParent();scene=null;}
  function snap(angle){turn+=angle;previousHead=null;reset();recenter();}
- function recenter(){stamp=-1;layout++;}
+ function recenter(){if(headPose)calibration={x:headPose.position.x,y:headPose.position.y,z:headPose.position.z};previousHead=null;stamp=-1;layout++;}
  function end(error){if(!active&&!session&&!pending)return;session=null;active=false;safe=false;input.reset();sample=emptyXR();tracking=error?'XR failed: '+error.message:'XR ended';document.body.classList.remove('immersive-rainward');E.hold(null,false);queueMicrotask(()=>E.end(error));}
  async function enter(kind='controllers'){
   if(disposed||pending||active)return false;pending=true;preference=kind;E.audio();let candidate;
@@ -64,7 +64,7 @@ export function createQuestXR(E){
  function drawBadge(){bc.fillStyle='#10232a';bc.fillRect(0,0,1024,192);bc.fillStyle='#efdcad';bc.font='bold 29px sans-serif';bc.fillText('PAUSE / RECENTER MENU',22,42);bc.fillStyle='#ffffff';bc.font='24px sans-serif';const s=status();bc.fillText(s.slice(0,77),22,82);bc.fillText(s.slice(77,154),22,111);const p=E.state().player;bc.fillStyle=p.submerged&&p.oxygen<=25?'#ffd0ba':'#c3ded4';bc.fillText(p.submerged&&p.oxygen<=25?'LOW AIR: A OR FIELD SURFACE BUTTON':p.healing?'HOLD FIRE / BANDAGING':p.craft?'HOLD SELECT / ASSEMBLING':E.state().hint?.slice(0,77)||'Point and select. Raise left open palm to pause.',22,161);badgeTexture.needsUpdate=true;}
  function placePanels(){if(!headPose)return;const q=new T.Quaternion().copy(headPose.orientation),f=new T.Vector3(0,0,-1).applyQuaternion(q);const yaw=Math.atan2(-f.x,-f.z),h=headPose.position;
   const put=(mesh,x,y,z)=>{const v=new T.Vector3(x,y,z).applyAxisAngle(Y,yaw);mesh.position.set(h.x+v.x,h.y+v.y,h.z+v.z);mesh.rotation.set(0,yaw,0);};
-  const playing=E.mode()==='play';panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?-.85:0,playing?-.56:-.06,playing?-1.55:-1.55);put(badge,0,playing?-.36:.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
+  const playing=E.mode()==='play';panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?-.85:0,playing?-.56:-.06,playing?-1.55:-1.55);put(badge,0,playing?-.62:.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
  }
  function poll(state,view,dt,frame){
   if(!active)return null;sample=emptyXR();cycle++;
@@ -112,7 +112,7 @@ export function createQuestXR(E){
   for(const side of ['right','left']){const data=list.find(s=>s.side===side);if(!data)continue;
    if(sample.select[side]&&data.row){if(data.row.id==='badge'){data.row.run();reset();}else panel.select(data.row);sample=emptyXR();return sample;}
    if(data.overUI&&side==='right')sample.fire=false;
-   if(data.overUI&&side==='left'){sample.move=[0,0];sample.aim=false;}
+   if(data.overUI&&side==='left'){if(data.hand)sample.move=[0,0];sample.aim=false;}
   }
   const anySelect=list.some(s=>s.hand?s.pinch:s.buttons[0]?.pressed||s.buttons[0]?.value>.65);if(panel.held()&&!anySelect)panel.release();
   if(E.mode()!=='play')sample.fire=false;
