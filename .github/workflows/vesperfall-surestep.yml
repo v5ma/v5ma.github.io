@@ -1,0 +1,33 @@
+name: Vesperfall Surestep acceptance
+on:
+  push:
+    branches: [vesperfall-surestep-20260914]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-surestep.yml']
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Baseline source and model regressions
+        run: |
+          set -o pipefail
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          node --test vesperfall/tests/*.test.cjs | tee test-output/surestep-baseline.tap
+      - name: Retain exact source for scoped development and review
+        if: always()
+        run: |
+          mkdir -p test-output
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/workflows/vesperfall-*.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-surestep-baseline
+          path: test-output/
+          retention-days: 14
