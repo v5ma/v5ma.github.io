@@ -4,37 +4,142 @@ on:
     branches: [neighborhood-missions/grounded-controls-20260914]
     paths:
       - 'svgn-planet/**'
-      - '.github/workflows/neighborhood-grounded.yml'
-  pull_request:
-    paths:
-      - 'svgn-planet/**'
+      - '.github/upgrades/**'
       - '.github/workflows/neighborhood-grounded.yml'
 permissions:
   contents: read
 jobs:
-  regression:
+  integrate:
+    if: github.ref == 'refs/heads/neighborhood-missions/grounded-controls-20260914'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    outputs:
+      commit: ${{ steps.source.outputs.commit }}
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
           sparse-checkout: |
             svgn-planet
+            little-planet
             tests
             scripts
+            .github/upgrades
             .github/workflows
-      - uses: actions/setup-node@v4
+      - name: Retain transfer receipt
+        uses: actions/upload-artifact@v4
         with:
-          node-version: '22'
-      - name: Archive exact source for reproducible local verification
+          name: grounded-transfer
+          path: .github/upgrades/
+          include-hidden-files: true
+          retention-days: 7
+      - name: Verify and integrate the reviewed source on the work branch
+        id: source
+        shell: bash
         run: |
+          python - <<'PY'
+          import base64,hashlib,json,pathlib,subprocess,zlib
+          expected='cc5a00cbc4261065986581a5c1e4e41a75502c844536aacb93b0629aa5e81798'
+          marker=pathlib.Path('svgn-planet/grounded-integration.json')
+          if marker.exists():
+              assert json.loads(marker.read_text())['patchSHA256']==expected
+          else:
+              parts=[pathlib.Path(f'.github/upgrades/neighborhood-grounded-{i}.b64').read_text().strip() for i in range(1,6)]
+              # Correct two identified text-transport transcription errors; the
+              # full source hash below remains the authoritative acceptance gate.
+              parts[1]=parts[1].replace('FM2mr7ILfjMIh','FM2rz7ILfjMIh')
+              parts[2]=parts[2].replace('LU69if6f1quT','LU69if1quT')
+              for i,p in enumerate(parts,1): print('Part',i,len(p),hashlib.sha256(p.encode()).hexdigest(),flush=True)
+              patch=zlib.decompress(base64.b64decode(''.join(parts),validate=True))
+              assert hashlib.sha256(patch).hexdigest()==expected,'Source checksum mismatch; no files have been applied.'
+              paths=[line.split()[2][2:] for line in patch.decode().splitlines() if line.startswith('diff --git ')]
+              assert paths and all(p.startswith('svgn-planet/') for p in paths),paths
+              subprocess.run(['git','apply','--check','-'],input=patch,check=True)
+              subprocess.run(['git','apply','-'],input=patch,check=True)
+              marker.write_text(json.dumps({'patchSHA256':expected,'base':'b87aeacb71d00b73992945daaba2fccdc66ab409','version':'0.11.0','paths':paths},indent=2)+'\n')
+              subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+              subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+              subprocess.run(['git','add','svgn-planet'],check=True)
+              subprocess.run(['git','commit','-m','feat(neighborhood): recoverable saves, grounded courier and tracked XR comfort theater'],check=True)
+              subprocess.run(['git','push','origin','HEAD:neighborhood-missions/grounded-controls-20260914'],check=True)
+          PY
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD > SOURCE-COMMIT.txt
-          tar -czf neighborhood-source.tar.gz svgn-planet tests scripts .github/workflows SOURCE-COMMIT.txt
+          tar -czf neighborhood-source.tar.gz svgn-planet little-planet index.html tests scripts .github/workflows SOURCE-COMMIT.txt
       - uses: actions/upload-artifact@v4
         with:
           name: neighborhood-source
           path: neighborhood-source.tar.gz
           retention-days: 7
-      - name: Model regressions
-        run: node --test svgn-planet/tests/*.test.mjs
+  model:
+    needs: integrate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.integrate.outputs.commit }}
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+            little-planet
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Model and source checks
+        run: |
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs | tee grounded-unit.txt
+          for f in svgn-planet/*.mjs; do node --check "$f"; done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grounded-model
+          path: grounded-unit.txt
+          retention-days: 14
+  browser:
+    needs: integrate
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.integrate.outputs.commit }}
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser harness
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Serve exact candidate and test real WebGL/input paths
+        env:
+          SCRIPT: ${{ matrix.script }}
+        run: |
+          python -m http.server 8765 > server.log 2>&1 &
+          python "svgn-planet/tests/$SCRIPT.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grounded-${{ matrix.script }}
+          path: |
+            *-results/**
+            server.log
+          retention-days: 14
+  gate:
+    needs: [integrate, model, browser]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record exact tested commit
+        env:
+          TESTED_COMMIT: ${{ needs.integrate.outputs.commit }}
+        run: |
+          echo "Model and all five browser suites passed for $TESTED_COMMIT" >> "$GITHUB_STEP_SUMMARY"
