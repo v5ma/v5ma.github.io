@@ -16,7 +16,7 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
   const s=getState();if(!inQuarter(s)){show();return;}
   notebookOpen=true;d.replaceChildren(element('h2','Your Quarter notebook'),element('p',quarterPlace(s).name+' / '+quarterText(s).title));
   d.append(element('p','Inspect records with X at their actual work stations. The notes below remember what you observed and changed. No clue collection requirement blocks a legitimate return of the commission.'));
-  const notes=quarterNotebook(s),body=element('section');body.dataset.padScroll='';body.id='quarter-observations';
+  const notes=quarterNotebook(s),body=element('section');body.dataset.padScroll='';body.id='quarter-observations';Object.assign(body.style,{maxHeight:'40dvh',overflowY:'auto',paddingRight:'8px',overscrollBehavior:'contain'});
   if(!notes.length)body.append(element('p','No observations recorded yet. The workbench, dye workroom, finishing table, maintenance ledger and workshop-side arch each have something to inspect.'));
   for(const note of notes){const entry=element('article');entry.dataset.observation=note.id;entry.append(element('h3',note.title),element('p',note.text));body.append(entry);}
   d.append(body,button('Read the public route brief',()=>showBrief()),button('Open the floor-aware map / M',()=>{d.close();document.getElementById('map-button').click();}));
@@ -65,7 +65,7 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
    canvas.setAttribute('aria-label',active?'Public Waterwheel Quarter floor plan with selected floor, work stations, apprentice heading, objective and gate states.':mapSnapshot.label||'Town map');
    if(active){
     const [legend,explanation]=mapSnapshot.paragraphs;
-    if(legend)legend.node.textContent='White arrow: you. Gold diamond: objective. Green gate: open. Orange gate: closed.';
+    if(legend)legend.node.textContent='White arrow: you. Gold diamond: objective. Gate gap: open. Gate bar: closed; color is an additional cue.';
     if(explanation)explanation.node.textContent='Choose a floor to distinguish the roof, workshops and lower channel. This public plan does not teleport your apprentice or add observations to the notebook.';
    }else for(const item of mapSnapshot.paragraphs)item.node.replaceChildren(...item.children);
   }
@@ -100,13 +100,13 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
   });
   // Gates are stateful landmarks, not teleport controls.
   for(const [x,z,open]of [[-16,-3.8,s.quarter.archOpen],[17,1.55,s.quarter.goodsAccess]]){
-   g.strokeStyle=open?'#aee6b7':'#ef996c';g.lineWidth=full?4:2;g.beginPath();g.moveTo(X(x-1),Z(z));g.lineTo(X(x+1),Z(z));g.stroke();
+   g.strokeStyle=open?'#aee6b7':'#ef996c';g.lineWidth=full?4:2;g.beginPath();if(open){for(const side of [-1,1]){g.moveTo(X(x+side),Z(z));g.lineTo(X(x+side),Z(z-.7));}}else{g.moveTo(X(x-1),Z(z));g.lineTo(X(x+1),Z(z));}g.stroke();
   }
   const goal=quarterTarget(s);if(goal&&floorOnLayer({y:goal.y,endY:goal.y},selected)){
    g.save();g.translate(X(goal.x),Z(goal.z));g.rotate(Math.PI/4);g.fillStyle='#ffe098';g.fillRect(-4,-4,8,8);g.restore();
   }
   g.save();g.translate(X(s.x),Z(s.z));g.rotate(-s.yaw);g.fillStyle='#ffffff';g.strokeStyle='#173840';g.lineWidth=2;g.beginPath();g.moveTo(0,full?9:6);g.lineTo(-5,-5);g.lineTo(5,-5);g.closePath();g.fill();g.stroke();g.restore();
-  if(full){g.fillStyle='#fff2c8';g.font='18px sans-serif';wrap(g,'White arrow: you. Gold diamond: current objective. Green gate: open. Orange gate: closed.',pad,H-66,W-pad*2);wrap(g,'Public floor plan. Dim shapes are other floors, not reachable passages. Map views never move your apprentice.',pad,H-24,W-pad*2);for(const b of mapControls.children){b.setAttribute('aria-pressed',String(b.dataset.quarterLayer===layer));b.setAttribute('aria-selected',String(b.dataset.quarterLayer===layer));}}
+  if(full){g.fillStyle='#fff2c8';g.font='18px sans-serif';wrap(g,'White arrow: you. Gold diamond: objective. Gate gap: open. Gate bar: closed.',pad,H-66,W-pad*2);wrap(g,'Public plan. Dim shapes mark other floors. Looking at the map never moves your apprentice.',pad,H-24,W-pad*2);for(const b of mapControls.children){b.setAttribute('aria-pressed',String(b.dataset.quarterLayer===layer));b.setAttribute('aria-selected',String(b.dataset.quarterLayer===layer));}}
   return true;
  }
  function update(){

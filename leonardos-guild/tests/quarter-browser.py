@@ -80,6 +80,11 @@ with sync_playwright() as p:
    drive(x,z)
    if z==-2.35:act('unlatch');capture('recognition-shortcut');check(read()['quarter']['archOpen'],'The latch opens the recognizable workshop arch from its far side')
   act('report');check(read()['credits']==60 and read()['life']['xp']==120,'Returning physically pays exactly once')
+  press(13);page.wait_for_selector('#quarter-dialog[open]')
+  check(page.locator('#quarter-observations').evaluate('e=>getComputedStyle(e).overflowY=="auto"&&e.scrollHeight>e.clientHeight'),'The accumulated notebook has a real bounded scroll region')
+  page.evaluate('__testPad.axes=[0,0,0,1]');frames(18);page.evaluate('__testPad.axes=[0,0,0,0]');frames(3)
+  check(page.locator('#quarter-observations').evaluate('e=>e.scrollTop>0'),'Xbox right stick scrolls the accumulated observations without a mouse')
+  capture('notebook-scroll');press(1);page.wait_for_function('LeonardoGuild.inspect().running')
   check(read()['mission']==original['mission'] and read()['deliveries']==original['deliveries'] and read()['relay']==original['relay'],'The new case does not skip or alter the old campaign')
   check(read()['vehicles']==original['vehicles'],'Older parked vehicles are retained')
   if ROUTE=='upper':
