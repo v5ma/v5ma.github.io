@@ -38,11 +38,13 @@ async def main():
   async def pilot(t,x):
    # Writes only emulated controller state, never the game's private simulation.
    for i in range(850):
-    r=await page.evaluate("""([t,x])=>{const s=SVGNPlanet.inspect(),a=t/880,b=x/880,n=[Math.sin(b),Math.cos(b)*Math.cos(a),-Math.cos(b)*Math.sin(a)];const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),d=Math.acos(Math.max(-1,Math.min(1,dot(s.n,n))))*880;const v=n.map((a,i)=>a-s.n[i]),L=Math.hypot(...v),dir=v.map(a=>a/(L||1));const brake=d<2.15;__pad.axes[0]=brake?0:dot(dir,s.basis.right);__pad.axes[1]=brake?0:-dot(dir,s.basis.forward);__pad.buttons[6]={pressed:brake,value:brake?1:0};__pad.buttons[7]={pressed:false,value:0};return {d,speed:s.speed,paused:s.paused,failed:s.failed,boat:s.tidewater.boat};}""",[t,x])
+    r=await page.evaluate("""([t,x])=>{const s=SVGNPlanet.inspect(),a=t/880,b=x/880,n=[Math.sin(b),Math.cos(b)*Math.cos(a),-Math.cos(b)*Math.sin(a)];const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),d=Math.acos(Math.max(-1,Math.min(1,dot(s.n,n))))*880;const v=n.map((a,i)=>a-s.n[i]),L=Math.hypot(...v),dir=v.map(a=>a/(L||1));const brake=d<2.15;__pad.axes[0]=brake?0:dot(dir,s.basis.right);__pad.axes[1]=brake?0:-dot(dir,s.basis.forward);__pad.buttons[6]={pressed:brake,value:brake?1:0};__pad.buttons[7]={pressed:false,value:0};return {d,speed:s.speed,paused:s.paused,failed:s.failed,boat:s.tidewater.boat,steps:s.steps};}""",[t,x])
     if r['failed']:raise AssertionError('Renderer failed while navigating')
     if r['paused']:await neutral();return
     if r['d']<2.3 and r['speed']<.10:await neutral();return
-    await page.wait_for_timeout(80)
+    # Wait for real simulation progress, not repeated reads of one slow WebGL frame.
+    # This changes only the test driver: no teleport, speed or simulation writes.
+    await page.wait_for_function("(steps)=>SVGNPlanet.inspect().steps>=steps+6||SVGNPlanet.inspect().paused||SVGNPlanet.inspect().failed",arg=r['steps'],timeout=90000)
    raise AssertionError('Controller could not reach '+str((t,x))+': '+str(r))
   try:
    await page.goto(BASE+'?quality=low',wait_until='domcontentloaded');await boot();await focus('start-water');await press(0);await wait("document.querySelector('#water-dialog').open");ok('Title-screen water button starts the real game and visits Tidewater')
