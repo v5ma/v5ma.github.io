@@ -147,13 +147,13 @@ const menuObserver = new MutationObserver(decorateMenu);
 if ($('delivery-menu')) { menuObserver.observe($('delivery-menu'),{childList:true}); decorateMenu(); }
 const oldGamepadEdit = window.pollGamepadEdit;
 function poll() {
-  let pad = null; try { const pads = [...(navigator.getGamepads?.() || [])]; pad = pads.find(p => p?.connected && p.index === lastPad && p.mapping === 'standard') || pads.find(p => p?.connected && p.mapping === 'standard') || null; } catch {}
+  let pad = null; try { const pads = [...(navigator.getGamepads?.() || [])]; pad = window.SkyCycleXR?.getGamepad() || pads.find(p => p?.connected && p.index === lastPad && p.mapping === 'standard') || pads.find(p => p?.connected && p.mapping === 'standard') || null; } catch {}
   connected = !!pad;
   if (!pad) { if (lastPad !== null) { releasePad(); if (active()) __delivery.act('pause'); } lastPad = null; previous.fill(false); waitNeutral = true; return; }
   if (pad.index !== lastPad) { lastPad = pad.index; resetInput(); }
   const state = samplePad(pad), b = state.buttons, pressed = i => b[i] && !previous[i], panel = topPanel();
   if (panel !== lastPanel) { lastPanel = panel; resetInput(); }
-  if (document.hidden || !document.hasFocus()) { resetInput(); previous = b; return; }
+  if (document.hidden || (!document.hasFocus()&&!window.SkyCycleXR?.presenting)) { resetInput(); previous = b; return; }
   if (waitNeutral) { previous = b; if (state.neutral) waitNeutral = false; return; }
   if (pressed(8) && !(panel instanceof HTMLDialogElement)) { showDeck(); previous = b; return; }
   if (panel) {
@@ -192,4 +192,4 @@ function frame(stamp) { poll(); if (stamp - lastStamp > 300) { lastStamp = stamp
 raf = requestAnimationFrame(frame);
 window.addEventListener('pagehide', () => { cancelAnimationFrame(raf); resetInput(); });
 window.addEventListener('pageshow', e => { if (e.persisted) { resetInput(); raf = requestAnimationFrame(frame); } });
-window.SkyCycleFlightDeck = Object.freeze({version:'0.16.0',get run(){return run ? {...run} : null;},get records(){return sanitizeLedger(ledger);},get saveOK(){return saveOK;},get connected(){return connected;},show:showDeck,topPanel,handleKey});
+window.SkyCycleFlightDeck = Object.freeze({version:'0.16.0',get run(){return run ? {...run} : null;},get records(){return sanitizeLedger(ledger);},get saveOK(){return saveOK;},get connected(){return connected;},show:showDeck,topPanel,handleKey,releaseForTravel(){deckResume=false;resetInput();},resetInput,back,controls});

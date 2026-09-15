@@ -1,0 +1,16 @@
+{
+  "version": "0.21.0",
+  "build": "sky-cycle-portals-2026.09.14",
+  "baseline_master": "b87aeacb71d00b73992945daaba2fccdc66ab409",
+  "status": "candidate-awaiting-exact-source-native-acceptance",
+  "runtime_sha": null,
+  "native_runs": [],
+  "publication": null,
+  "local_evidence": {
+    "prior_rule_tests": 123,
+    "new_rule_tests": 18,
+    "browser_block": "Local Chromium rejected loopback navigation with ERR_BLOCKED_BY_ADMINISTRATOR; native acceptance is moved to GitHub Actions.",
+    "retained_failures": ["Initial local fixture snapshot omitted the shared helper; restored exact blob 73881cd8470c310fd54ba86df3caa44a460df28b before all prior 123 tests passed.", "One new wording assertion expected 'new run' while the user-facing notice correctly says 'new route run'; the assertion was corrected without changing the travel contract."]
+  },
+  "open_gates": ["physical Quest 3 controllers", "physical Quest 3 hand tracking", "physical Xbox controller", "device performance and comfort", "long-session resource qualification", "advanced Bezier controller editing"]
+}
