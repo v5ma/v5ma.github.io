@@ -1,7 +1,7 @@
 name: Guild Waterwheel Quarter and Spatial XR
 on:
   push:
-    branches: [guild/waterwheel-spatial-20260915]
+    branches: [master]
     paths: ['leonardos-guild/**', '.github/workflows/guild-waterwheel.yml']
   pull_request:
     paths: ['leonardos-guild/**', '.github/workflows/guild-waterwheel.yml']
@@ -11,77 +11,75 @@ concurrency:
   group: guild-waterwheel-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  source:
-    if: github.event_name == 'push'
+  served:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    outputs:
-      sha: ${{ steps.source.outputs.sha }}
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Commit hash-checked source before native acceptance
+          persist-credentials: false
+      - name: Wait for exact published runtime before public gameplay acceptance
         run: |
-          set -euo pipefail
-          test "$GITHUB_REF_NAME" = 'guild/waterwheel-spatial-20260915'
-          if test -f leonardos-guild/scripts/waterwheel-polish.json; then
-            python - <<'PY'
+          python - <<'PY'
           from pathlib import Path
-          import hashlib,json
-          manifest=Path('leonardos-guild/scripts/waterwheel-polish.json')
-          hashes=Path('leonardos-guild/scripts/waterwheel-new-hashes.json')
-          for name,expected in json.loads(hashes.read_text()).items():
-            p=Path(name)
-            assert name.startswith('leonardos-guild/') and '..' not in p.parts and not p.is_symlink(),name
-            assert hashlib.sha256(p.read_bytes()).hexdigest()==expected,('New source mismatch',name)
-          records=json.loads(manifest.read_text());ready={}
-          for name,record in records.items():
-            p=Path(name)
-            assert name.startswith('leonardos-guild/') and '..' not in p.parts and p.is_file() and not p.is_symlink(),name
-            original=p.read_bytes();assert hashlib.sha256(original).hexdigest()==record['before'],('Changed source',name)
-            text=original.decode()
-            for start,end,value in reversed(record['edits']):text=text[:start]+value+text[end:]
-            data=text.encode();assert hashlib.sha256(data).hexdigest()==record['after'],('Output hash mismatch',name)
-            ready[p]=data
-          for p,data in ready.items():p.write_bytes(data)
-          manifest.unlink();hashes.unlink()
-          print('Verified',len(ready),'source edits and all three new/replaced modules. Acceptance checks out the following ordinary commit.')
+          from concurrent.futures import ThreadPoolExecutor
+          from urllib.parse import quote
+          import hashlib,json,time,urllib.request,subprocess
+          source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          root=Path('leonardos-guild')
+          paths=[p for p in root.iterdir() if p.is_file() and p.suffix in {'.html','.mjs','.js','.css','.json','.svg'}]
+          paths+=list((root/'vendor').rglob('*.js'))
+          expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+          found={}
+          def inspect(item):
+            name,digest=item
+            try:
+              request=urllib.request.Request('https://v5ma.github.io/'+quote(name,safe='/')+'?waterwheel='+source[:12],headers={'Cache-Control':'no-cache','User-Agent':'SVGN-Waterwheel-acceptance'})
+              with urllib.request.urlopen(request,timeout=15) as response:
+                actual=hashlib.sha256(response.read()).hexdigest()
+                return name,{'status':response.status,'expected':digest,'actual':actual,'match':actual==digest}
+            except Exception as e:return name,{'match':False,'error':str(e)}
+          with ThreadPoolExecutor(max_workers=6) as pool:
+            for attempt in range(48):
+              pending=[v for v in expected.items() if not found.get(v[0],{}).get('match')]
+              found.update(pool.map(inspect,pending))
+              if len(found)==len(expected) and all(v['match'] for v in found.values()):break
+              time.sleep(5)
+          result={'source':source,'base':'https://v5ma.github.io','files':found,'all_match':len(found)==len(expected) and all(v['match'] for v in found.values()),'scope':'Runtime and local Three modules before native public journeys. The independent published-Guild workflow additionally verifies every asset, audio file and document.'}
+          Path('waterwheel-served-source.json').write_text(json.dumps(result,indent=2))
+          assert result['all_match'],'Published runtime has not converged to the tested source'
+          print('Matched',len(found),'served runtime files:',source)
           PY
-            for f in leonardos-guild/*.mjs; do node --check "$f"; done
-            npm --prefix leonardos-guild test
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add -- leonardos-guild
-            git commit -m 'Improve Quarter observations, floor maps, continuous stance and spatial turn direction'
-            git push origin HEAD:refs/heads/guild/waterwheel-spatial-20260915
-          fi
-      - id: source
-        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-waterwheel-served-source
+          path: waterwheel-served-source.json
+          retention-days: 14
   native:
-    needs: source
-    if: always() && !cancelled() && (needs.source.result == 'success' || needs.source.result == 'skipped')
+    needs: served
+    if: always() && !cancelled() && (needs.served.result == 'success' || needs.served.result == 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
         journey: [social, upper, hydraulic, spatial]
+    env:
+      TEST_BASE_URL: ${{ github.event_name == 'push' && 'https://v5ma.github.io' || 'http://127.0.0.1:4173' }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.source.outputs.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check ordinary modules, complete model suite and design contracts
+      - name: Check ordinary committed modules and complete model suite
         run: |
           set -euo pipefail
+          test ! -f leonardos-guild/scripts/waterwheel-polish.json
+          test ! -f leonardos-guild/scripts/waterwheel-new-hashes.json
           for f in leonardos-guild/*.mjs; do node --check "$f"; done
           npm --prefix leonardos-guild test | tee /tmp/waterwheel-model-tests.txt
           node --test leonardos-guild/design/validate-design.mjs
@@ -113,6 +111,7 @@ jobs:
           names=subprocess.check_output(['git','ls-files','leonardos-guild','.github/workflows'],text=True).splitlines()
           files={n:hashlib.sha256(Path(n).read_bytes()).hexdigest() for n in names if Path(n).is_file()}
           (out/'source-hashes.json').write_text(json.dumps(files,indent=2));(out/'tested-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          (out/'served-base.txt').write_text(os.environ['TEST_BASE_URL']+'\n')
           diff=subprocess.check_output(['git','diff','--stat'],text=True);(out/'uncommitted-diff.txt').write_text(diff)
           with tarfile.open(out/'source.tgz','w:gz') as tar:
             for n in files:tar.add(n,arcname=n)
