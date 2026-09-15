@@ -32,7 +32,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import pathlib,subprocess,yaml
+          import os,pathlib,subprocess,yaml
           source=subprocess.check_output(['git','show','b0c89d8112fe94a6908454b71fe42a70c077ad7a:.github/workflows/neighborhood-lantern-record.yml'],text=True)
           steps=yaml.safe_load(source)['jobs']['record']['steps']
           verify=next(s['run'] for s in steps if s.get('name')=='Verify exact completed runs and archive publication records')
@@ -51,27 +51,38 @@ jobs:
                  "    if public_complete and all(r['status']=='completed' for i,r in runs.items() if i!=published):break")
           assert verify.count(before)==1,'Reviewed publication wait block changed'
           verify=verify.replace(before,after,1)
-          marker="write(out/'published.json',receipt)"
-          assert verify.count(marker)==1
+          marker="write(out/'published.json',receipt)";assert verify.count(marker)==1
           verify=verify.replace(marker,"receipt['workflowStateAtArchive']=runs[published]['status']\nreceipt['publicationAcceptance']='All actual byte, live street and live XR jobs passed. The separate gate job only echoes a summary and is not a test.'\n"+marker,1)
           subprocess.run(['bash','-e','-o','pipefail','-c',verify],check=True)
-          # Remove only the zero-assertion echo job. The byte and live street/XR
-          # jobs retain every test and their existing dependencies.
           path=pathlib.Path('.github/workflows/neighborhood-lantern-published.yml')
           text=path.read_text();parsed=yaml.safe_load(text);gate=parsed['jobs']['gate']
           assert gate['needs']==['bytes','live'] and len(gate['steps'])==1 and gate['steps'][0]['run'].startswith('echo ')
-          index=text.rfind('\n  gate:\n');assert index>0
-          path.write_text(text[:index]+'\n')
-          for filename in ['neighborhood-lantern-published.yml','svgn-planet-published.yml','paper-art-published.yml','neighborhood-grounded-published.yml']:
-              d=yaml.safe_load((path.parent/filename).read_text())
+          index=text.rfind('\n  gate:\n');assert index>0;path.write_text(text[:index]+'\n')
+          names=['neighborhood-lantern-published.yml','svgn-planet-published.yml','paper-art-published.yml','neighborhood-grounded-published.yml']
+          proposed=pathlib.Path('proposed-workflows');proposed.mkdir(exist_ok=True)
+          for name in names:
+              p=path.parent/name;content=p.read_text();d=yaml.safe_load(content)
               assert d['permissions']=={'contents':'read','actions':'read'}
               waits=[s for job in d['jobs'].values() for s in job['steps'] if s.get('name')=='Wait for this commit to finish Pages deployment']
               assert len(waits)==1 and waits[0]['env']['DEPLOY_TOKEN']=='$'+'{{ github.token }}'
-              code=waits[0]['run'].split("python - <<'PYWAIT'\n",1)[1].rsplit('\nPYWAIT',1)[0]
-              compile(code,filename,'exec')
-          commit=next(s['run'] for s in steps if s.get('name')=='Commit scoped verified records after credential and path checks')
-          subprocess.run(['bash','-e','-o','pipefail','-c',commit],check=True)
+              compile(waits[0]['run'].split("python - <<'PYWAIT'\n",1)[1].rsplit('\nPYWAIT',1)[0],name,'exec')
+              assert os.environ['GH_TOKEN'] not in content
+              (proposed/name).write_text(content)
+          # Actions does not have workflows write permission. Do not push these
+          # edits with its token; return them for the authorized GitHub connector.
+          subprocess.run(['git','restore',*['.github/workflows/'+n for n in names]],check=True)
+          docs={'svgn-planet/release.json','svgn-planet/README.md','svgn-planet/DEVELOPMENT-HANDOFF.md','svgn-planet/AAA_ROADMAP.md','svgn-planet/production/roadmap.json'}
+          files=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines()
+          assert files and all(p in docs or p.startswith('svgn-planet/production/evidence/lantern-0.12.0/') for p in files),files
+          for p in files:assert os.environ['GH_TOKEN'].encode() not in pathlib.Path(p).read_bytes()
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','svgn-planet'],check=True)
+          subprocess.run(['git','commit','-m','docs(neighborhood): retain verified Lantern Ward runtime and live publication reports'],check=True)
+          subprocess.run(['git','push','origin','HEAD:neighborhood-missions/lantern-publication-recovery-20260915'],check=True)
           PY
+          git rev-parse HEAD > SOURCE-COMMIT.txt
+          tar -czf lantern-recovered-source.tar.gz svgn-planet little-planet .github/workflows index.html SOURCE-COMMIT.txt recovered-model.txt proposed-workflows
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -79,4 +90,5 @@ jobs:
           path: |
             lantern-recovered-source.tar.gz
             recovered-model.txt
+            proposed-workflows/
           retention-days: 30
