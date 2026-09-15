@@ -51,9 +51,10 @@ jobs:
       - name: Exact source normal-input acceptance
         env:
           ARTIFACT_DIR: /tmp/quiet-water-evidence
+          HEADED: '1'
         run: |
           git rev-parse HEAD
-          python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+          xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -125,7 +126,8 @@ jobs:
         env:
           ARTIFACT_DIR: /tmp/quiet-water-live
           TEST_ORIGIN: https://v5ma.github.io
-        run: python mario-maker-clone/svgn-paper-route/tests/sensory-browser.py
+          HEADED: '1'
+        run: xvfb-run -a python mario-maker-clone/svgn-paper-route/tests/sensory-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

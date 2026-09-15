@@ -19,7 +19,7 @@ def check(ok,label):
  assert ok,label
  checks.append(label);print('PASS:',label,flush=True)
 with sync_playwright() as pw:
- browser=pw.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH'),headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+ browser=pw.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH'),headless=os.getenv('HEADED')!='1',args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
  ctx=browser.new_context(viewport={'width':1100,'height':800},service_workers='block',record_video_dir=str(OUT/'video'),record_video_size={'width':800,'height':600})
  ctx.add_init_script(PAD)
  ctx.add_init_script("""window.audioContextCount=0;window.AudioContext=new Proxy(window.AudioContext,{construct(C,args){window.audioContextCount++;return Reflect.construct(C,args);}});if(!localStorage.getItem('quiet-water-old-save')){localStorage.setItem('quiet-water-old-save','preserve');localStorage.setItem('svgn.skycycle.sunrise.v1',JSON.stringify({marketPilot:true,finishes:3}));localStorage.setItem('sprocket_muted','0');}""")
@@ -78,8 +78,12 @@ with sync_playwright() as pw:
   tap(13);frames(10);check(page.evaluate('SkyCycleSensory.diagnostics.events')==events,'Repeated interaction and observation do not replay completed water cues')
   check(page.evaluate('SkyCycleSensory.diagnostics.notices.suppressed>=2'),'Essential-only suppresses the real optional sluice and reveal pop-ups')
   check(page.evaluate('levelCode()')==code,'Sound and sluice observation leave the authored source document unchanged')
-  # Browser focus loss must leave no ambience; returning stays paused until explicitly resumed.
-  other=ctx.new_page();other.goto('about:blank');other.bring_to_front();page.wait_for_timeout(500);page.bring_to_front();page.wait_for_function('__delivery.paused && SkyCycleSensory.diagnostics.audio.sources===0');other.close();check(True,'Background/focus loss releases ambient ownership and leaves a safe paused game')
+  # Native headed Chromium is required here; headless-shell tabs do not establish visibility transitions.
+  page.evaluate("window.qaVisibility=[];document.addEventListener('visibilitychange',()=>qaVisibility.push(document.visibilityState));")
+  other=ctx.new_page();other.goto('about:blank');other.bring_to_front()
+  page.wait_for_function('document.hidden && __delivery.paused && SkyCycleSensory.diagnostics.audio.sources===0',polling=100,timeout=15000)
+  page.bring_to_front();page.wait_for_function('!document.hidden && __delivery.paused && SkyCycleSensory.diagnostics.audio.sources===0',timeout=15000)
+  samples['visibility_events']=page.evaluate('qaVisibility');other.close();check('hidden' in samples['visibility_events'] and 'visible' in samples['visibility_events'],'Real headed-browser tab visibility stops ambience and returning leaves the game paused')
   page.locator('#bathhouse-open').click();page.locator('#bathhouse-return').click();page.wait_for_function('__delivery.state.route===4 && !won');check(page.evaluate('SkyCycleSensory.diagnostics.audio.sources===0'),'Portal travel to Sunrise removes all bathhouse audio sources')
   check(page.evaluate('localStorage.getItem("svgn.skycycle.sunrise.v1")')==old and page.evaluate('localStorage.getItem("quiet-water-old-save")==="preserve"'),'Existing chapter records and unrelated storage survive every comfort operation and portal travel')
   expected=page.evaluate('SkyCycleSensory.settings');page.reload(wait_until='domcontentloaded');page.wait_for_function('window.SkyCycleSensory && __delivery.state.route===7');check(page.evaluate('SkyCycleSensory.settings')==expected,'Comfort preferences survive a real reload in their own namespace')
