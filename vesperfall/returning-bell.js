@@ -10,7 +10,7 @@
   const style=document.createElement('style');style.textContent='#returning-intro{color:#c1d4cc;max-width:60ch;line-height:1.5;border-left:2px solid #b89e70;padding-left:12px}#architect-table{white-space:normal}';document.head.append(style);
   if(navigator.xr&&isSecureContext)navigator.xr.isSessionSupported('immersive-ar').then(ok=>button.disabled=!ok).catch(()=>{});
   function clearTable(){if(!table)return;table.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of(Array.isArray(o.material)?o.material:[o.material])){m.map?.dispose();m.dispose();}});table.removeFromParent();table=null;}
-  function positionTable(){if(!table)return;const p=g.head.object3D.getWorldPosition(new T.Vector3()),q=g.head.object3D.getWorldQuaternion(new T.Quaternion()),f=new T.Vector3(0,0,-1).applyQuaternion(q);f.y=0;if(f.length()<.01)f.set(0,0,-1);f.normalize();const right=new T.Vector3(-f.z,0,f.x);table.position.copy(p).addScaledVector(f,1.3).addScaledVector(right,-.28);table.position.y=Math.max(.35,p.y-.6);table.rotation.y=Math.atan2(-f.x,-f.z);}
+  function positionTable(){if(!table)return;const p=g.head.object3D.getWorldPosition(new T.Vector3()),q=g.head.object3D.getWorldQuaternion(new T.Quaternion()),f=new T.Vector3(0,0,-1).applyQuaternion(q);f.y=0;if(f.length()<.01)f.set(0,0,-1);f.normalize();const right=new T.Vector3(-f.z,0,f.x);table.position.copy(p).addScaledVector(f,1.8).addScaledVector(right,0);table.position.y=Math.max(.35,p.y-.48);table.rotation.y=Math.atan2(-f.x,-f.z);}
   function buildTable(){clearTable();const survey=state.survey||M.survey(null),known=new Set(survey.discovered),s=C.create('TABLE',1,{returningBell:true});M.restore(s,survey.chapter);table=new T.Group();table.name='Architects Table / discovered geometry';table.userData.discovered=[...known];table.userData.layer=state.layer;state.tableBuilds++;
    const model=new T.Group();model.scale.setScalar(.028);model.position.set(0,.035,.08);model.userData.layout=M.ID;table.add(model);
    const mats={floor:new T.MeshStandardMaterial({color:'#bfaf8c',roughness:.85}),upper:new T.MeshStandardMaterial({color:'#a5d3d0',roughness:.65}),wall:new T.MeshStandardMaterial({color:'#7b8c90',roughness:.85}),signal:new T.MeshBasicMaterial({color:'#efd69c'}),base:new T.MeshStandardMaterial({color:'#253740',roughness:.8})};
@@ -31,7 +31,7 @@
   const exit=g.exitXR.bind(g);g.exitXR=function(){closeTable();state.pending=false;exit();};
   for(const name of['start','startTraining']){const old=g[name].bind(g);g[name]=function(...args){closeTable();return old(...args);};}
   const start=g.start.bind(g);g.start=function(practice){start(practice);if(g.game.chapter&&g.running&&!g.paused)g.toast(M.objective(g.game));};
-  const place=g.placePanel.bind(g);g.placePanel=function(){place();if(state.table){const q=g.head.object3D.getWorldQuaternion(new T.Quaternion());g.xrPanel.mesh.position.add(new T.Vector3(.68,.22,.12).applyQuaternion(q));}};
+  const place=g.placePanel.bind(g);g.placePanel=function(){place();if(state.table){const q=g.head.object3D.getWorldQuaternion(new T.Quaternion());g.xrPanel.mesh.position.add(new T.Vector3(0,.38,-.5).applyQuaternion(q));}};
   button.onclick=async()=>{state.pending=true;await ui.requestMode('ar');if(!g.xr)state.pending=false;};
   function pages(items,back='equipment'){const n=Math.max(1,Math.ceil(items.length/4));ui.state.xrPage%=n;return [...items.slice(ui.state.xrPage*4,ui.state.xrPage*4+4),['More / page '+(ui.state.xrPage+1)+' of '+n,()=>{ui.state.xrPage=(ui.state.xrPage+1)%n;}],['Back',()=>ui.setScreen(back)]];}
   function menuRows(screen){

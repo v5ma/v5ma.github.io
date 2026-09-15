@@ -93,7 +93,19 @@ with sync_playwright() as pw:
   xraction('Layers:');check(page.evaluate('Vesperfall.component.returningBell.state.layer===1'),'Quest controller changes table layers')
   page.evaluate('TestHands.mode(true)');wait('Vesperfall.component.questHands.state.active')
   handaction('Layers:');check(page.evaluate('Vesperfall.component.returningBell.state.layer===2'),'Bare-hand UI changes table layers')
-  handaction('Recenter');page.screenshot(path=str(OUT/'architects-table-hand-ui.png'))
+  handaction('Recenter')
+  framing=page.evaluate("""()=>{const g=Vesperfall.component,T=g.T,panel=g.xrPanel.mesh,table=g.returningBell.table;
+   panel.updateMatrixWorld(true);table.updateMatrixWorld(true);
+   const w=panel.geometry.parameters.width/2,h=panel.geometry.parameters.height/2;
+   const menu=[[-w,-h],[w,-h],[-w,h],[w,h]].map(([x,y])=>panel.localToWorld(new T.Vector3(x,y,0)));
+   const box=new T.Box3().setFromObject(table),mini=[];
+   for(const x of [box.min.x,box.max.x])for(const y of [box.min.y,box.max.y])for(const z of [box.min.z,box.max.z])mini.push(new T.Vector3(x,y,z));
+   return g.scene.renderer.xr.getCamera().cameras.map(camera=>({menu:menu.map(p=>p.clone().project(camera).toArray()),table:mini.map(p=>p.clone().project(camera).toArray())}));}""")
+  (OUT/'ar-framing.json').write_text(json.dumps(framing,indent=2))
+  def in_view(points):return all(all(abs(v)<=.97 for v in p[:2]) and -1<=p[2]<=1 for p in points)
+  check(len(framing)==2 and all(in_view(eye['menu']) for eye in framing),'The complete AR inspection menu fits both eyes in the initial gaze')
+  check(len(framing)==2 and all(in_view(eye['table']) for eye in framing),'The discovered miniature fits both eyes after recentering without changing head pose')
+  page.screenshot(path=str(OUT/'architects-table-hand-ui.png'))
   handaction('Known places');handaction('Back to menu');handaction('Exit AR')
   wait('!Vesperfall.component.xr&&Vesperfall.state.chapter&&Vesperfall.component.paused')
   check(page.evaluate('Vesperfall.state.chapter.screensRaised&&!Vesperfall.state.chapter.gateOpen'),'AR exit restores the expedition mechanisms, not its temporary arena')
