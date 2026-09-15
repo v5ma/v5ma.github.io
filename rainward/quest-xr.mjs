@@ -125,7 +125,7 @@ export function createQuestXR(E){
  }
  function update(state,view,dt){if(active){align(state,dt);if(stamp!==layout){stamp=layout;placePanels();}panel.collect();}}
  const api={camera,rig,bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,supported:async()=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported('immersive-vr');}catch{return false;}},ray:()=>currentRay,aimYaw:()=>Math.atan2(-currentRay.direction.x,-currentRay.direction.z),
-  stats:()=>({active,pending,mode:'immersive-first-person',preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
+  stats:()=>({active,pending,mode:'immersive-first-person',preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
   dispose(){disposed=true;void exit();panel.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
  };
  return api;
