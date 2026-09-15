@@ -1,6 +1,7 @@
 /* Quiet, authored wayfinding for the already-built clinic seam.
  * No patrol disclosure, route auto-selection, checkpoint changes or HUD popup. */
 import * as T from './vendor/three.module.js';
+import {findPath} from './world.mjs';
 import {RECUT_ROUTES,RETURN_TASK,recutHeight} from './floodgate-recut.mjs';
 export const CLINIC_CUES=Object.freeze([
  {x:-30,z:-20,dx:0,dz:1},{x:-30,z:-16,dx:0,dz:1},
@@ -14,15 +15,27 @@ export function clinicNavigation(state){
  const open=!!state.completedTasks?.includes(RETURN_TASK);
  return {open,status:open?'OPEN / YARD RETURN':'CLOSED / RELEASE FROM INSIDE',
   detail:open?'The west shutter now connects the clinic to the rain garden. Save at a shelter to retain route changes.':'Reach the latch from inside the clinic to open the west yard return. The map marks the closed crossing with an X.',
-  legend:'CLINIC ROUTES: solid = terrace ramps; dotted = garden; '+(open?'open ring = yard return.':'X = shutter closed.')};
+  legend:'CLINIC ROUTES: solid = terrace ramps; dotted = garden; dashes = yard; '+(open?'open ring = yard return.':'X = shutter closed.')};
+}
+export function clinicMapSegments(state,id){
+ const nav=clinicNavigation(state),route=RECUT_ROUTES[id];if(!nav||!route)return [];
+ const segments=[];
+ for(let i=1;i<route.points.length;i++){
+  const [ax,az]=route.points[i-1],[bx,bz]=route.points[i];
+  // Show the gated crossing as closed, not a detour that implies it is unlocked.
+  if(id==='clinicReturn'&&i===1&&!nav.open){segments.push([[ax,az],[bx,bz]]);continue;}
+  const path=findPath({x:ax,z:az},{x:bx,z:bz});
+  if(path.length)segments.push([[ax,az],...path.map(p=>[p.x,p.z]),[bx,bz]]);
+ }
+ return segments;
 }
 export function drawClinicRoutes(g,state,{x,z}){
  const nav=clinicNavigation(state);if(!nav)return;
  g.save();g.lineWidth=2;
  for(const [id,color,dash] of [['garden','#a7d6bb',[2,3]],['marketTerrace','#f3dd99',[]],['westRamp','#f3dd99',[]],['clinicReturn','#b9dadd',[5,3]]]){
   // A closed shutter is a visible blockage, not a promised walkable shortcut.
-  g.strokeStyle=color;g.setLineDash(dash);g.beginPath();
-  RECUT_ROUTES[id].points.forEach(([px,pz],i)=>g[i?'lineTo':'moveTo'](x(px),z(pz)));g.stroke();
+  g.strokeStyle=color;g.setLineDash(dash);
+  for(const segment of clinicMapSegments(state,id)){g.beginPath();segment.forEach(([px,pz],i)=>g[i?'lineTo':'moveTo'](x(px),z(pz)));g.stroke();}
  }
  g.setLineDash([]);const gx=x(-28),gz=z(5.8);g.strokeStyle=nav.open?'#e8f4d5':'#ffc2ac';g.lineWidth=2.5;g.beginPath();
  if(nav.open)g.arc(gx,gz,4,0,Math.PI*2);else{g.moveTo(gx-4,gz-4);g.lineTo(gx+4,gz+4);g.moveTo(gx+4,gz-4);g.lineTo(gx-4,gz+4);}g.stroke();g.restore();
