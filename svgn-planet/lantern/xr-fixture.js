@@ -6,7 +6,8 @@
  hand.hand=new Map(Array.from({length:25},(_,i)=>[i===0?'thumb-tip':i===1?'index-finger-tip':'joint-'+i,{joint:i}]));
  const data=window.__xrFixture={left,right,hand,pinch:.06,tracking:true,viewer:true,requested:null};
  const projection=new Float32Array([1.73,0,0,0,0,1.73,0,0,0,0,-1.00334,-1,0,0,-.100167,0]);
- const frame={getViewerPose:()=>data.viewer?{transform:ident(),views:[{eye:'left',transform:ident(-.032),projectionMatrix:projection},{eye:'right',transform:ident(.032),projectionMatrix:projection}]}:null,getPose:space=>data.tracking?{transform:space.pose}:null,getJointPose:space=>data.tracking?{transform:ident(.1+(space.joint===0?data.pinch:0),-.3,-.6),radius:.008}:null};
+ const head=(x=0)=>{const a=data.viewerPitch||0,c=Math.cos(a),s=Math.sin(a);return {position:{x,y:0,z:0,w:1},orientation:{x:Math.sin(a/2),y:0,z:0,w:Math.cos(a/2)},matrix:new Float32Array([1,0,0,0,0,c,s,0,0,-s,c,0,x,0,0,1])};};
+ const frame={getViewerPose:()=>data.viewer?{transform:head(),views:[{eye:'left',transform:head(-.032),projectionMatrix:projection},{eye:'right',transform:head(.032),projectionMatrix:projection}]}:null,getPose:space=>data.tracking?{transform:space.pose}:null,getJointPose:space=>data.tracking?{transform:ident(.1+(space.joint===0?data.pinch:0),-.3,-.6),radius:.008}:null};
  class Session extends EventTarget{
   constructor(){super();this.inputSources=[left,right];this.renderState={};this.visibilityState='visible';this.environmentBlendMode='opaque';this.enabledFeatures=['hand-tracking'];this.ended=false;}
   requestReferenceSpace(){return Promise.resolve({getOffsetReferenceSpace(){return this;}});}

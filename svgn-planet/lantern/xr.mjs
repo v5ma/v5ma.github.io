@@ -56,7 +56,7 @@ export function createXR(view,hooks){
   const facing=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation));movementYaw=first?hooks.yaw():Math.atan2(-facing.x,-facing.z)-world.rotation.y;
   rig.updateMatrixWorld(true);world.updateMatrixWorld(true);
   const paused=hooks.paused();if(paused!==wasPaused){wasPaused=paused;page=0;clear();lastPaint=0;}
-  panelGroup.position.copy(viewer.transform.position);panelGroup.quaternion.copy(viewer.transform.orientation);panel.position.set(0,paused?-.1:-.65,paused?-1.6:-1.5);panel.scale.setScalar(paused?1:.73);panelGroup.updateMatrixWorld(true);
+  panelGroup.position.copy(viewer.transform.position);panelGroup.quaternion.copy(viewer.transform.orientation);panel.visible=paused||Array.from(session.inputSources).some(s=>s.hand);panel.position.set(paused?0:-.72,paused?-.1:-.28,paused?-1.6:-1.2);panel.scale.setScalar(paused?1:.45);panelGroup.updateMatrixWorld(true);
   if(now-lastPaint>120||!lastPaint)paint(now);
   // Fade the world if the physically tracked head crosses a metre-space wall.
   if(!first)view.curtain.visible=false;
@@ -77,7 +77,7 @@ export function createXR(view,hooks){
    if(!b.some(Boolean)&&Math.abs(ax)<.15&&Math.abs(ay)<.15)slot.ready=true;
    const edge=j=>slot.ready&&b[j]&&!slot.prev[j];
    const p=rig.localToWorld(slot.ray.position.clone()),q=rig.getWorldQuaternion(new T.Quaternion()).multiply(slot.ray.quaternion);caster.set(p,new T.Vector3(0,0,-1).applyQuaternion(q));
-   const hit=caster.intersectObject(panel)[0],x=hit?.uv.x*1024,y=(1-(hit?.uv.y||0))*768,row=hit&&rows.find(r=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);
+   const hit=panel.visible?caster.intersectObject(panel)[0]:null,x=hit?.uv.x*1024,y=(1-(hit?.uv.y||0))*768,row=hit&&rows.find(r=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);
    if(row&&slot.ready&&b[0]){consumed=true;if(row.hold&&!paused){if(row.hold==='forward')input.y=1;else input.brake=true;}else if(edge(0)){input={x:0,y:0,boost:false,brake:true};row.fn?.();selections++;lastPaint=0;}}
    if(!paused&&slot.ready&&!src.hand&&!row&&!consumed){
     if(src.handedness==='left'){input.x=Math.abs(ax)>.16?ax:0;input.y=Math.abs(ay)>.16?-ay:0;input.boost=b[0];input.brake=b[1];if(edge(4)||edge(5))hooks.pause(true);}
@@ -94,7 +94,7 @@ export function createXR(view,hooks){
  }
  slots.forEach(s=>{s.ray.visible=s.grip.visible=false;s.joints.forEach(j=>j.visible=false);});
  addEventListener('pagehide',()=>session?.end());
- return {enter,update,clear,setMode,settings,navigate:(direction,accept,back)=>{if(!session||!hooks.paused())return;if(back){hooks.pause(false);return;}if(direction)focused=(Math.max(0,focused)+direction+rows.length)%rows.length;if(accept){const row=rows[Math.max(0,focused)];row?.fn?.();selections++;}lastPaint=0;},exit:()=>session?.end(),get movementYaw(){return movementYaw;},get active(){return !!session;},get mode(){return kind==='first-person-vr'?'first':'diorama';},inspect:()=>({active:!!session,kind,stereoGameWorld:!!session,pending,frames,selections,trackedSources:tracked,jointPool:50,environmentBlendMode:session?.environmentBlendMode||null,scale:world.scale.x,settings:{...settings},error,input:{...input},headBoundary:view.curtain.visible}),
+ return {enter,update,clear,setMode,settings,navigate:(direction,accept,back)=>{if(!session||!hooks.paused())return;if(back){hooks.pause(false);return;}if(direction)focused=(Math.max(0,focused)+direction+rows.length)%rows.length;if(accept){const row=rows[Math.max(0,focused)];row?.fn?.();selections++;}lastPaint=0;},exit:()=>session?.end(),get movementYaw(){return movementYaw;},get active(){return !!session;},get mode(){return kind==='first-person-vr'?'first':'diorama';},inspect:()=>({active:!!session,kind,stereoGameWorld:!!session,pending,frames,selections,trackedSources:tracked,jointPool:50,environmentBlendMode:session?.environmentBlendMode||null,scale:world.scale.x,settings:{...settings},error,input:{...input},actionPanelVisible:panel.visible,headBoundary:view.curtain.visible}),
   // Read-only panel transform allows a synthetic tracking fixture to aim real rays.
   panelPose:()=>{panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:rig.matrixWorld.clone().invert().multiply(panel.matrixWorld).toArray(),width:1.4,height:1.05,rows:rows.map(({label,x,y,w,h})=>({label,x,y,w,h}))};}};
 }
