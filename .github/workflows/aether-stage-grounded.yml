@@ -41,7 +41,6 @@ jobs:
           import base64,zlib,json,hashlib
           from pathlib import Path
           encoded=''.join(Path(f'aether-reach/tools/integrate-grounded-{i}.b64').read_text().strip() for i in range(4))
-          # Repair two byte-verified transcription duplicates; the original payload hash remains mandatory.
           encoded=encoded.replace('RWh5kR3boYYgsN4q','RWh5kR3boYgsN4q').replace('IPmVV2ktugus','IPmV2ktugus')
           raw=zlib.decompress(base64.b64decode(encoded,validate=True))
           assert hashlib.sha256(raw).hexdigest()=='69f8ce9357118333e085d6456ad40ab94316d2e75ca7ef67d7edd8182a983c3a'
@@ -68,7 +67,7 @@ jobs:
           node --test aether-reach/tests/*.test.mjs | tee /tmp/aether-stage/node-tests.log
           python aether-reach/tests/backup_test.py
           node aether-reach/tests/release-manifest.mjs
-      - name: Create reviewed commit object without updating refs
+      - name: Create content-only commit object without updating refs
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -80,13 +79,15 @@ jobs:
           def post(endpoint,payload):
             p=Path('/tmp/aether-stage/request.json');p.write_text(json.dumps(payload))
             return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
-          tree=[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()} for name in data['changes']]
-          for name in [f'aether-reach/tools/integrate-grounded-{i}.b64' for i in range(4)]+['.github/workflows/aether-stage-grounded.yml']:tree.append({'path':name,'mode':'100644','type':'blob','sha':None})
+          names=[name for name in data['changes'] if name.startswith('aether-reach/')]
+          tree=[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()} for name in names]
+          for name in [f'aether-reach/tools/integrate-grounded-{i}.b64' for i in range(4)]:tree.append({'path':name,'mode':'100644','type':'blob','sha':None})
+          assert all(item['path'].startswith('aether-reach/') for item in tree)
           base_tree=subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()
           t=post('git/trees',{'base_tree':base_tree,'tree':tree})
           c=post('git/commits',{'message':'feat(aether): Grounded Cast foot locking and tracked hand spatial UI','tree':t['sha'],'parents':[os.environ['GITHUB_SHA']]})
-          Path('/tmp/aether-stage/staged-commit.json').write_text(json.dumps({'parent':os.environ['GITHUB_SHA'],'commit':c['sha'],'tree':t['sha'],'files':list(data['changes']),'tests':'224 Node tests and 6 restore-input tests passed; browser publication still pending'},indent=2))
-          print('Created commit object',c['sha'],'without moving any branch.')
+          Path('/tmp/aether-stage/staged-commit.json').write_text(json.dumps({'parent':os.environ['GITHUB_SHA'],'commit':c['sha'],'tree':t['sha'],'files':names,'tests':'224 Node tests and 6 restore-input tests passed; browser publication still pending','workflowUpdate':'Must be applied separately through the authorized repository connection'},indent=2))
+          print('Created content-only commit object',c['sha'],'without moving any branch.')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
