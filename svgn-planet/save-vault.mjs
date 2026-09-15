@@ -32,7 +32,7 @@ export function createSaveVault(getStorage){
    blocked=false;status='Progress saved on this device; recovery copy retained.';return true;
   }catch{status='Save could not finish. Previous data was retained; export your current progress before closing.';return false;}
  }
- return {load,commit,backup(){try{const raw=get(VAULT_KEYS.backup);return validSave(raw)?raw:null;}catch{return null;}},original(){try{return get(VAULT_KEYS.main)||get(VAULT_KEYS.quarantine)||'';}catch{return '';}},inspect:()=>({status,blocked})};
+ return {load,commit,backup(){try{const raw=get(VAULT_KEYS.backup);return validSave(raw)?raw:null;}catch{return null;}},original(){try{return quarantine??(get(VAULT_KEYS.quarantine)||get(VAULT_KEYS.main)||'');}catch{return quarantine||'';}},inspect:()=>({status,blocked})};
 }
 export function mountSaveRecovery({vault,state,serialize,restore,open,resume,persist}){
  const button=document.createElement('button');button.id='open-save-recovery';button.textContent='Save recovery and export';document.querySelector('#reset').before(button);
