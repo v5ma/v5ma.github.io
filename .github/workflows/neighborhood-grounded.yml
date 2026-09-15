@@ -46,10 +46,11 @@ jobs:
               assert json.loads(marker.read_text())['patchSHA256']==expected
           else:
               parts=[pathlib.Path(f'.github/upgrades/neighborhood-grounded-{i}.b64').read_text().strip() for i in range(1,6)]
-              # Correct two identified text-transport transcription errors; the
-              # full source hash below remains the authoritative acceptance gate.
+              # Three transport corrections verified against the downloaded
+              # transfer receipt. No source applies unless the original SHA matches.
               parts[1]=parts[1].replace('FM2mr7ILfjMIh','FM2rz7ILfjMIh')
               parts[2]=parts[2].replace('LU69if6f1quT','LU69if1quT')
+              parts[3]=parts[3].replace('MNZfUzx','MNfUzx')
               for i,p in enumerate(parts,1): print('Part',i,len(p),hashlib.sha256(p.encode()).hexdigest(),flush=True)
               patch=zlib.decompress(base64.b64decode(''.join(parts),validate=True))
               assert hashlib.sha256(patch).hexdigest()==expected,'Source checksum mismatch; no files have been applied.'
