@@ -7,13 +7,11 @@ permissions:
   contents: write
 concurrency:
   group: rainward-quest-prepare
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
-  integrate:
+  integrate-and-verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
-    outputs:
-      sha: ${{ steps.commit.outputs.sha }}
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,61 +19,42 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply scoped reviewed patch and run complete models
+      - name: Apply scoped corrections and run every model assertion
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p test-output
           python rainward/tools/integrate-quest-fieldwork.py
+          python rainward/tools/refine-quest-fieldwork.py
           for f in rainward/*.mjs; do node --check "$f"; done
           node --test rainward/tests/*.test.mjs | tee test-output/node-models.txt
           python -m compileall -q rainward/tests
-      - name: Commit only Rainward integration paths
-        id: commit
+      - name: Commit only declared Rainward paths before acceptance
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/app.mjs rainward/scene.mjs rainward/graphics.mjs rainward/index.html rainward/world.mjs rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/QUEST-INTEGRATION.json rainward/quest-xr.mjs rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/tests/aquatic.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/handoff.test.mjs
+          git add rainward/app.mjs rainward/scene.mjs rainward/graphics.mjs rainward/controller-ui.mjs rainward/xr-panel.mjs rainward/index.html rainward/world.mjs rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/QUEST-INTEGRATION.json rainward/quest-xr.mjs rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/tests/aquatic.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/handoff.test.mjs
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate Rainward Quest Fieldwork v0.14.0 with preserved gameplay and XR session handoff'
+            git commit -m 'Refine Quest field controls, visible menu focus, recenter and permission feedback'
             git push origin HEAD:feat/rainward-quest-fieldwork-20260915
           fi
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: rainward-quest-models
-          path: test-output/
-          retention-days: 14
-  browser:
-    needs: integrate
-    runs-on: ubuntu-latest
-    timeout-minutes: 18
-    permissions:
-      contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        kind: [controllers,hands]
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.integrate.outputs.sha }}
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
       - name: Install native browser
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Real game with explicit XR device mock
-        env:
-          QUEST_KIND: ${{ matrix.kind }}
+      - name: Both real-game XR mock journeys
+        shell: bash
         run: |
+          set -euo pipefail
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          timeout 780 python -u rainward/tests/quest-browser.py
-      - name: Preserve exact source and failed evidence
+          RESULT=0
+          for KIND in controllers hands; do
+            QUEST_KIND="$KIND" timeout 780 python -u rainward/tests/quest-browser.py || RESULT=1
+          done
+          exit "$RESULT"
+      - name: Preserve exact source and all failures
         if: always()
         run: |
           mkdir -p test-output
@@ -86,6 +65,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rainward-quest-${{ matrix.kind }}
+          name: rainward-quest-candidate
           path: test-output/
           retention-days: 14
