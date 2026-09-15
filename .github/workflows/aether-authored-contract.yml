@@ -1,0 +1,44 @@
+name: Aether authored-world design contracts
+on:
+  push:
+    branches: ['aether/authored-worlds-20260915']
+    paths:
+      - 'aether-reach/diorama-policy.mjs'
+      - 'aether-reach/planning/bellwether-authored-contract.mjs'
+      - 'aether-reach/tests/authored-worlds.test.mjs'
+      - '.github/workflows/aether-authored-contract.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test pure contracts and existing model regressions
+        run: |
+          set -o pipefail
+          node --test aether-reach/tests/*.test.mjs | tee authored-contract-tests.txt
+          python aether-reach/tests/backup_test.py
+          python aether-reach/tools/render-production-plan.py
+          git diff --exit-code -- aether-reach/planning/AAA-ROADMAP.md
+          git rev-parse HEAD > authored-contract-source.txt
+          printf '%s\n' 'Scope: pure policies and abstract graph, not a playable replacement, browser journey or physical-device certification.' > authored-contract-scope.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-authored-contract
+          path: |
+            authored-contract-tests.txt
+            authored-contract-source.txt
+            authored-contract-scope.txt
+          retention-days: 30

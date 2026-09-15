@@ -1,5 +1,17 @@
 # Aether Reach continuation handoff
 
+## Priority redirect: authored worlds and diorama, September 15, 2026
+
+The new user direction supersedes the older next-animation task below. Replace prototype layouts with authored chapters while retaining the existing Aether game systems, saved achievements and controller remaps. First-person XR remains; third-person VR and passthrough AR are additional presentations of the same simulation. The diorama must have an open top, an open front, or both, never both closed.
+
+Read planning/AUTHORED-WORLDS.md. Its first replacement target is Bellwether Blackout: arrival reveal, safe mechanical demonstration, distinct reconnecting street/service/balcony approaches, readable Arcade machinery, recognized ascent, tactical rooftop and a shorter changed return. The next real implementation is a shared render/collision blockout with a complete basic-equipment foot route. Do not substitute another island or another isolated animation pass.
+
+This checkpoint adds diorama-policy.mjs, planning/bellwether-authored-contract.mjs and tests/authored-worlds.test.mjs. Thirty new pure-policy/design-graph tests pass locally; the local Aether Node suite passes all 261 tests. The logical starter-route audit covers 168 abstract states in twelve spaces without a completion dead end. These are NOT new playable-level, geometric, browser or physical-headset acceptance results. None of the new modules is imported by the live application. No game save, controller profile or runtime release version is changed by this checkpoint.
+
+Work is backed up on aether/authored-worlds-20260915. The standalone aether-authored-contract workflow checks the new design foundations and existing model/backup regressions, not rendering or hardware. Keep 0.11.0 publication and archive receipts separate; the earlier candidate wording and recovery notes below are historical context, not the latest production priority.
+
+## Previous Grounded Cast release context
+
 Current source candidate: 0.11.0 Grounded Cast. Work branch: aether/grounded-motion-20260914. Base master: b87aeacb71d00b73992945daaba2fccdc66ab409. Do not merge or substitute the separate living-city experiment, private story material or other games.
 
 Read GROUNDED-CAST.md, DEVICE-SUPPORT.md, roadmap.json and planning/AAA-ROADMAP.md. F04 implements the bounded continuation of P02; X08 adds tracked hand spatial UI. Preserve all existing version-1 expedition saves and controller profiles. The historical version-0.3 spreadsheet is still an archived snapshot, not the current roadmap.
