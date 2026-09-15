@@ -7,7 +7,7 @@
   const iron='#adb6b9',dark='#222c39',gold='#c5a76a',bone='#c8c1af';
   const geo=kit.geos;
   geo.mantle=new T.LatheGeometry([[0,-.98],[.40,-.94],[.36,-.55],[.25,-.05],[.31,.26],[.24,.37],[0,.40]].map(p=>new T.Vector2(...p)),16);
-  geo.helmet=new T.LatheGeometry([[0,.39],[.22,.42],[.25,.55],[.25,.76],[.16,.88],[0,.93]].map(p=>new T.Vector2(...p)),16);
+  geo.helmet=new T.LatheGeometry([[0,.50],[.17,.53],[.195,.61],[.195,.78],[.12,.88],[0,.91]].map(p=>new T.Vector2(...p)),16);
   geo.bell=new T.LatheGeometry([[0,.62],[.20,.62],[.28,.42],[.38,0],[.62,-.4],[.75,-.48],[.72,-.56],[.57,-.46],[.32,-.04],[.18,.45],[0,.45]].map(p=>new T.Vector2(...p)),24);
   const wing=new T.Shape();wing.moveTo(0,0);wing.bezierCurveTo(.42,.7,1.25,1.15,1.6,.85);wing.lineTo(1.28,.15);wing.lineTo(1.06,.5);wing.lineTo(.84,-.03);wing.lineTo(.6,.33);wing.lineTo(.33,-.18);wing.lineTo(0,0);geo.wing=new T.ShapeGeometry(wing,8);
   geo.disk=new T.CircleGeometry(1,32);geo.facet=new T.OctahedronGeometry(1,0);
@@ -16,17 +16,17 @@
    const d=VesperBestiary.catalog[kind];if(!d)return baseEnemy(kind);
    const g=new T.Group(),b=new kit.Batch(),parts={},robe=['hexer','alchemist','abbess','leech','mirror','widow'].includes(kind),cloth=d.color;
    g.name=d.name;const box=(c,x,y,z,w,h,depth)=>b.add('box',c,x,y,z,w,h,depth),ball=(c,x,y,z,w,h,depth)=>b.add('ball',c,x,y,z,w,h,depth);
-   if(robe){materialMesh(geo.mantle,kit.mat(cloth),g);ball(cloth,0,.45,-.05,.30,.36,.25);ball(bone,0,.62,.09,.17,.23,.15);box(dark,0,.70,.235,.25,.035,.02);box(gold,0,.15,.27,.06,.65,.035);
+   if(robe){materialMesh(geo.mantle,kit.mat(cloth),g);ball(cloth,0,.45,-.05,.30,.36,.25);ball(bone,0,.67,.09,.145,.17,.14);box(dark,0,.70,.235,.25,.035,.02);box(gold,0,.15,.27,.06,.65,.035);
     for(let i=0;i<8;i++){const a=i*Math.PI/4;b.add('cone',i%2?dark:cloth,Math.sin(a)*.21,-.48,Math.cos(a)*.21,.085,.94,.055,0,a,.07*Math.sin(a));}
     if(kind==='abbess'||kind==='widow')for(const side of[-1,1]){box('#2c2739',side*.19,.38,.09,.09,.58,.10);b.add('cone',dark,side*.28,-.39,-.1,.08,1.15,.04,0,0,side*.24);}
     if(kind==='leech'){b.add('ring',gold,0,1.0,-.04,.34,.34,.34,0,0,0,.7);ball('#b9ebc4',0,.26,.30,.08,.09,.04);}
    }else{
     const wide=kind==='colossus'?1.48:1;
-    ball(cloth,0,.03,0,.35*wide,.48,.26*wide);box(iron,0,.09,.07,.53*wide,.56,.30);materialMesh(geo.helmet,kit.mat(kind==='gargoyle'?'#8b918a':iron,.65),g);
+    ball(cloth,0,.10,0,.32*wide,.34,.245*wide);box(iron,0,.09,.07,.53*wide,.56,.30);materialMesh(geo.helmet,kit.mat(kind==='gargoyle'?'#8b918a':iron,.65),g);
     box(dark,0,.66,.249,.31,.041,.025);box(gold,0,.52,.255,.035,.22,.03);box(cloth,0,-.45,.12,.38,.57,.10);
     for(const side of[-1,1]){ball(iron,side*.39*wide,.26,0,.20,.17,.23);box(gold,side*.40*wide,.26,.19,.25,.043,.04);}
     if(kind==='colossus'){box(gold,0,-.12,.28,.78,.16,.05);for(const side of[-1,1])b.add('cone',gold,side*.54,.66,-.07,.13,.65,.10,0,0,-side*.28);box('#d4bea0',0,.12,.28,.21,.42,.04);}
-    if(kind==='archer'){ball('#695447',0,.62,-.04,.285,.34,.27);box(dark,0,.66,.249,.30,.12,.023);for(let j=0;j<5;j++)b.add('cylinder',gold,.26+j*.025,.23,-.30,.012,1.02,.012,.2,0,-.2);}
+    if(kind==='archer'){ball('#695447',0,.66,-.02,.22,.26,.215);box(dark,0,.66,.249,.30,.12,.023);for(let j=0;j<5;j++)b.add('cylinder',gold,.26+j*.025,.23,-.30,.012,1.02,.012,.2,0,-.2);}
    }
    for(const side of[-1,1]){
     const arm=new T.Group();arm.position.set(side*(kind==='colossus'?.55:.32),.26,0);g.add(arm);kit.mesh('cylinder',robe?cloth:iron,arm,side*.025,-.19,.03,.085,.39,.09,-side*.12);kit.mesh('ball',bone,arm,side*.065,-.42,.05,.066,.088,.055);parts[side<0?'leftArm':'rightArm']=arm;
