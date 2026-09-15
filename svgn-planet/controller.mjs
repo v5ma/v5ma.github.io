@@ -1,3 +1,4 @@
+import {gameplayInputIsNeutral} from './controller-neutral.mjs';
 /* Renderer-independent controller navigation, including recovery and new
  * contract dialogs. Standard Xbox mapping; held entry inputs must return to
  * neutral before they can navigate or scroll a newly opened menu. */
@@ -36,7 +37,7 @@ function frame(now){
   if(edge(0))accept(root);else if(edge(1))back(root);else if(edge(9)){if(root.id==='welcome')$('start')?.click();else back(root);}else if(edge(8)&&root.id==='map-dialog')back(root);
   const scroll=dead(pad.axes[3]||0);if(Math.abs(scroll)<.1)menuScrollReady=true;if(menuScrollReady&&Math.abs(scroll)>.1)root.scrollTop+=scroll*15;
  }else{
-  if(!gameplayReady){clear();if(buttons.some(Boolean)||pad.axes.some(a=>Math.abs(a)>.2)){status('Release sticks and buttons to resume control.');previous=buttons;return;}gameplayReady=true;}
+  if(!gameplayReady){clear();if(!gameplayInputIsNeutral(pad)){status('Release sticks and buttons to resume control.');previous=buttons;return;}gameplayReady=true;}
   padState.x=dead(pad.axes[0]||0);padState.y=-dead(pad.axes[1]||0);const len=Math.max(1,Math.hypot(padState.x,padState.y));padState.x/=len;padState.y/=len;
   padState.lookX=dead(pad.axes[2]||0);padState.lookY=dead(pad.axes[3]||0);padState.boost=(pad.buttons[7]?.value||0)>.2;padState.brake=(pad.buttons[6]?.value||0)>.2||buttons[1];
   const actions={0:'hop',2:'interact',3:'ride',4:'throw',5:'camera',8:'map',9:'pause',10:'bell',11:'recenter',12:'map',13:'jobs',14:'previous-district',15:'next-district'};
