@@ -61,7 +61,7 @@ try:
    route([[33,10],[33,19],[18,26]])
    wait('__tidegate.animals.every(a=>Math.hypot(a.x-22,a.z-24)>8+a.radius)',120000)
    wait('__tidegate.state.candidate==="bridge"');press(0);check(page.evaluate('__tidegate.progress.bridge'),'Real herd clearance enables persistent service bridge')
-   route([[14,24],[0,24],[-17,24],[-28,27],[-37,29]])
+   route([[14,24],[0,24],[-17,24],[-28,27],[-38,31]])
    wait('__tidegate.state.candidate==="report"');press(0);check(page.evaluate('__tidegate.progress.complete&&__tidegate.progress.reportCount===1'),'Recognizable shortcut returns to starting outpost and files report once');snap('04-return-home.png');press(0);check(page.evaluate('__tidegate.progress.reportCount')==1,'Repeated report cannot duplicate completion reward')
    check(page.evaluate('localStorage.getItem("dino-atlas.progress.v1")')=='classic-sentinel' and page.evaluate('localStorage.getItem("dino-atlas.frontier.v2")')=='frontier-sentinel','Tour leaves both Classic Reserve save namespaces unchanged')
    page.evaluate('dispatchEvent(new PageTransitionEvent("pagehide"))');page.reload(wait_until='domcontentloaded');wait('window.__tidegate?.state.ready',120000);check(page.evaluate('__tidegate.progress.bridge&&__tidegate.progress.complete'),'Permanent shortcut and completed report survive reload');press(0);wait('__tidegate.state.started');press(9)
