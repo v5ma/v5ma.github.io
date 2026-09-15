@@ -1,0 +1,79 @@
+name: Stage Aether completion guard
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-completion-guard.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: d6891658eeb7c6075efa4dc9a6285ed78bf9d42e
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply exact-base reviewed edits
+        run: |
+          mkdir -p /tmp/aether-completion
+          cat > /tmp/aether-completion/edits.json <<'JSON'
+          {"base":"d6891658eeb7c6075efa4dc9a6285ed78bf9d42e","changes":{"aether-reach/app.mjs":{"before":"535b0821c1a3f3da1ff43d6a5edbbb50c25a9d4b5ef37badc9f9c537e2bb9061","after":"5df47eb1e2b333d9063e0a605742f3ca38103f6c313759d7337b9c1f99b278d3","edits":[[6049,6049,"{events();"],[6056,6056,"}"]]},"aether-reach/tests/launch.py":{"before":"3662633941fb0d0db53ab52c264c2b37e7adf2a51b87bed2ab31741b8a3adc73","after":"5d6b778e9642f95e83344d64a4c80a80bc31cb28c64fb6e3a58db225156533c7","edits":[[1145,1151,"svgn"],[1159,1159,"index.html"],[1559,1560,"Neig"],[1561,1562,"borhood"],[1563,1564,"M"],[1565,1573,"ssio"],[1574,1576,"s"],[1587,1587,"th"],[1588,1592,""],[1609,1609," routes"]]},"aether-reach/tests/arsenal_browser.py":{"before":"26af8400dbe5dfb43dc7da4a5ac6f33bf454a1fd0bdc79c5a8ac17067c540c1b","after":"45029e4a83cd7cf7f21b9e7ad77d86e8b43d338d6790239e521b2e275c69df1d","edits":[[2630,2630,"device_scale_factor=.5,"],[3431,3431,",\"low\""],[6376,6376,"selector('#confirm-dialog[open]');check(not snap(page)['playing'],'Replacing an earned expedition requires the real in-game confirmation');page.locator('#confirm-accept').click();page.wait_for_"],[9212,9212,"\n   # Do not s"],[9213,9213,"end the moving t"],[9214,9214,"r"],[9216,9217,"t window on a software-GPU "],[9227,9229,".\n   # A deliber"],[9231,9234,"e E immedia"],[9235,9235,"ely afte"],[9236,9243," "],[9245,9245,"l"],[9246,9254,""],[9255,9256,""],[9257,9257,"e is buf"],[9260,9260,"ed by the real clamp"],[9261,9268,"\n   "],[9295,9457,""],[10537,10537," at 960x640 CSS and half pixel density in the supported low graphics profile"]]},"aether-reach/tests/completion-dispatch.test.mjs":{"before":null,"after":"a57415e670936fe11392ae0fca899789449356d0a8cb4f9e1d638467cbec6404","edits":[[0,0,"import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport {readFileSync} from 'node:fs';\nimport {createState,combatUse,EXTRACTION,nearby,saveState,readSave} from '../model.mjs';\ntest('The contextual use route wins and emits completion/save at the real extraction console',()=>{\n const s=createState();Object.assign(s.p,EXTRACTION);s.relays=new Set(['garden','spire','foundry']);\n assert.equal(nearby(s).type,'exit');assert.equal(combatUse(s),true);assert.equal(s.won,true);\n assert.deepEqual(s.events.slice(-2).map(e=>e.type),['win','save']);\n assert.equal(readSave(saveState(s)).relays.length,3);\n});\ntest('Handled contextual actions flush their events before won state stops the simulation loop',()=>{\n const source=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');\n assert.match(source,/if\\(skirmishUI\\?\\.action\\(name\\)\\)\\{events\\(\\);return;\\}/);\n});\n"]]},"aether-reach/DEVELOPMENT-HANDOFF.md":{"before":"974a51022fb0264ae354f03ae48e7f5b48fda28f8f2c16911faf4f3cff42d23e","after":"ee6d4df15468b4604a0f16f7e6ab580c400847a7faf74bac7f7fbfb97d272f54","edits":[[1895,1895,"\nThe full ordinary-input three-relay regression exposed a pre-existing app routing bug: contextual use could set `won` but leave its win/save events queued after the simulation stopped. The handled skirmish action path now drains those events immediately, like the other action adapters. The model rules and version-1 saves remain unchanged. The legacy launch check now follows the existing Neighborhood Missions route rather than expecting its retired Little Planet gallery link. Arsenal tests explicitly accept the existing in-game New Expedition confirmation and perform the moving rail catch before taking a screenshot. These remain real UI/input journeys, not model-state assignments.\n"]]}}}
+          JSON
+          python - <<'PY'
+          import json,hashlib,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-completion/edits.json').read_text())
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==data['base']
+          for name,item in data['changes'].items():
+            p=Path(name)
+            assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==item['before'],name
+            text=p.read_text() if p.exists() else ''
+            for start,end,replacement in reversed(item['edits']):
+              assert 0<=start<=end<=len(text)
+              text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          PY
+      - name: Validate candidate
+        run: |
+          set -euo pipefail
+          git diff --check
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs > /tmp/aether-completion/node-tests.log
+          python aether-reach/tests/backup_test.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Create content-only commit object for review
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-completion/edits.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/aether-completion/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          tree=[{'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()} for name in data['changes']]
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
+          c=post('git/commits',{'message':'fix(aether): flush contextual completion events and preserve tested expedition ending','tree':t['sha'],'parents':[data['base']]})
+          Path('/tmp/aether-completion/candidate.json').write_text(json.dumps({'parent':data['base'],'commit':c['sha'],'tree':t['sha'],'files':list(data['changes']),'tests':'229 Node and 6 backup-input tests pass; native browser verification pending'},indent=2))
+          print('Created content-only commit object without updating any branch:',c['sha'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-completion-candidate
+          path: |
+            /tmp/aether-completion/candidate.json
+            /tmp/aether-completion/node-tests.log
+          retention-days: 7
