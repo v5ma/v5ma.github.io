@@ -13,7 +13,7 @@ const label=e=>e.getAttribute('aria-label')||e.labels?.[0]?.textContent||e.textC
 export function createXRPanel({ui,actions,getState,consoleUI,exit}){
  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
  const g=canvas.getContext('2d'),texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
- let buttons=[],root=null,page=0,textPage=0,last='',lastDraw=-Infinity,hover='',currentDescription='';
+ let buttons=[],root=null,page=0,textPage=0,last='',lastDraw=-Infinity,hover='',currentDescription='',lastFocus=null;
  const button=(key,text,x,y,w,h,run,hold=null,element=null)=>buttons.push({key,text,x,y,w,h,run,hold,element});
  function controls(){
   return [
@@ -24,7 +24,7 @@ export function createXRPanel({ui,actions,getState,consoleUI,exit}){
    ['map','Map',()=>actions.map()],['pause','Pause / settings',()=>actions.pause()],
    ['scan','Inspect nearby',()=>actions.scan()],['cover','Take cover',()=>actions.cover()],
    ['magic','Lantern / discipline',()=>actions.magic()],['special','Special ability',()=>actions.special()],
-   ['recenter','Center game camera',()=>actions.recenter()],['journal','Notebook / pack',()=>actions.journal()]
+   ['recenter','Center game camera',()=>actions.recenter()],['journal','Notebook / pack',()=>actions.journal()],['presentation','XR view / diorama openings',()=>actions.presentation?.()]
   ];
  }
  function rebuild(){
@@ -51,6 +51,12 @@ export function createXRPanel({ui,actions,getState,consoleUI,exit}){
    items=controls();
   }
   const lines=words(text),textPages=Math.max(1,Math.ceil(lines.length/14))+(root?.querySelector('canvas')?1:0),pages=Math.max(1,Math.ceil(items.length/8));
+  // Physical thumbstick focus must not disappear onto an undisplayed page.
+  if(root&&document.activeElement!==lastFocus){
+   const focused=items.findIndex(item=>item[4]===document.activeElement);
+   if(focused>=0)page=Math.floor(focused/8);
+  }
+  lastFocus=document.activeElement;
   page=Math.min(page,pages-1);textPage=Math.min(textPage,textPages-1);
   for(const [i,a]of items.slice(page*8,page*8+8).entries())button(a[0],a[1],30,735+i*76,964,66,a[2],a[3]||null,a[4]||null);
   button('text-prev','Read previous',30,635,350,65,()=>textPage=(textPage-1+textPages)%textPages);

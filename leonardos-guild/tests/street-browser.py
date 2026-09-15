@@ -52,8 +52,8 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   if MODE=='art':
-   page.set_viewport_size({'width':1280,'height':800});page.goto(BASE+'/leonardos-guild/?quality=high&art=baseline',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').click();page.screenshot(path=str(OUT/'before-workshop-street.png'))
-  page.goto(BASE+'/leonardos-guild/?quality='+('high' if MODE=='art' else 'low'),wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.wait_for_function('LeonardoGuild.inspect().render.art.ready||LeonardoGuild.inspect().render.art.failed',timeout=120000)
+   page.set_viewport_size({'width':1280,'height':800});page.goto(BASE+'/leonardos-guild/?district=legacy&quality=high&art=baseline',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').click();page.screenshot(path=str(OUT/'before-workshop-street.png'))
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality='+('high' if MODE=='art' else 'low'),wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.wait_for_function('LeonardoGuild.inspect().render.art.ready||LeonardoGuild.inspect().render.art.failed',timeout=120000)
   check(read()['render']['art']['ready'],'All actual curated assets load instead of silently falling back')
   check(read()['render']['art']['models']==32 and read()['render']['art']['facades']==49,'The renderer uses 32 named CC0 models across the same 49 building shells')
   check(read()['render']['art']['bytes']<10000000,'The selected redistributed art budget stays below 10 MB')

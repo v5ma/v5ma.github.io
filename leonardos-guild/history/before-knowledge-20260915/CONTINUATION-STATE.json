@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-09-14",
+  "purpose": "Grounded Actions continuation, with earlier verified release evidence preserved as history.",
+  "repository": "v5ma/v5ma.github.io",
+  "game_path": "leonardos-guild/",
+  "default_branch": "master",
+  "master_observed_before_documentation": "a43d01ddd75ac7c07280e660f7dcba2282214c8f",
+  "start_here": "GROUNDED-ACTIONS.md",
+  "production_roadmap": "AAA-ROADMAP.md",
+  "historical_checklist": "UPGRADE-CHECKLIST.md",
+  "publication_record": "PUBLICATION.md",
+  "runtime_changes_in_this_handoff": true,
+  "release": {
+    "version": "0.14.0",
+    "build": "guild-waterwheel-20260915",
+    "status": "candidate-pending-native-and-publication",
+    "start_here": "WATERWHEEL-QUARTER.md"
+  },
+  "evidence": {
+    "kind": "Verified metadata summary, not the complete downloadable artifacts",
+    "archive_rechecked_during_handoff": true,
+    "native_water_run": 34738141071,
+    "native_water_artifact": 10311532336,
+    "native_water_archive_sha256": "ae767683de317f196d8f1db22dacb44c22179a614bc637ea5a12ed1cb329306b",
+    "model_checks_passed": 239,
+    "new_hydraulic_model_checks": 13,
+    "fresh_water_browser_checks_passed": 25,
+    "captured_javascript_errors": 0,
+    "captured_shader_compile_errors": 0,
+    "archived_source_files_rechecked": 427,
+    "uncommitted_source_diff_empty": true,
+    "all_original_pr_workflow_groups_passed": 12,
+    "pages_run": 34739992522,
+    "publication_run": 34739992812,
+    "publication_artifact": 10311469378,
+    "publication_artifact_created_utc": "2026-09-13T05:29:31Z",
+    "publication_archive_sha256": "fc63d75275afdd40bae7b50a12ba77950f153737149026c08ac22d04f30d32b4",
+    "original_public_files_matched": 241,
+    "original_public_audio_files_matched": 50,
+    "homepage_http_status": 200,
+    "homepage_game_link_present": true,
+    "publication_to_native_manifest_mismatches": 0,
+    "browser_input_scope": "Fresh save; virtual standard Xbox gameplay/menu/graphics input and one declared trusted Enter key for audio; no live actor/quest/clock/currency/focus writes.",
+    "human_hardware_scope": "No physical Xbox/Bluetooth, speaker/headphone listening, target-device FPS or owner approval claimed.",
+    "retention_note": "Actions artifacts expire. Preserve needed full archives or reproduce acceptance; this summary alone is not their contents. Original counts/hashes are historical and do not freeze documentation or later site updates."
+  },
+  "baseline_sha256": {
+    "release.json": "dd7d3d7cf10158d7688d9278d54272589a8f625aed8df0414e53adac231fb443",
+    "app.mjs": "ffcc4e95a8b904b8149afb632f7842b550795c71157e562e2b59d41c9cf97256",
+    "model.mjs": "52d534926b4b1d001d2373429456ce9e56f1589cf21628fc8031c7dbec0cadd0",
+    "cistern-core.mjs": "bd1da24a1216e0942362fcef5c9a427ce6e1b1a854d26880341066847e1b7105",
+    "cistern-art.mjs": "0a760e169af968c2682d65838038ffc9d4be504fa0dbdd3297e9918d993bd9ab",
+    "frontier-core.mjs": "cc224dbeb78e49bfcdef83553c578b4c93cc147e09fc8b81289eec5d5b8bc58d",
+    "frontier-art.mjs": "26d4c87e50b3ec90f833b9b1144973117df16b0b8166098e6de92ad212a9442a",
+    "frontier-ui.mjs": "64ab76901764e338480bb8a34f0f9400ed100b4d5e17626d801215ad5f47c37b",
+    "gamepad.mjs": "7eccbaa5fec4c904047741c8bbadfafb3dc525ce786d16278140f3cb0d5e41b7",
+    "resonance-audio.mjs": "191ea3cb28b98a6c41cb61b5a6013114f4f8f400f8721bc76f47ed12bab8cee2",
+    "resonance-data.mjs": "1bcd5695ebc656094642627e0197f274850a0d59b973792ca44c3440d2515af9",
+    "tests/water-browser.py": "9df3220c2334b7a3bf6523fbe24acdc0f6501434cc13622e67432d86bf44ba4d"
+  },
+  "recovery_history": {
+    "steady_steps_pr": 118,
+    "steady_steps_pr_status_at_handoff": "closed without standalone merge; work recovered through PR135",
+    "cinder_hollow_pr": 135,
+    "cinder_hollow_merge": "fb49af11f286f47a17f00d77f846498ec2ef698e",
+    "stillwater_pr": 140,
+    "restart_rule": "Read current master. Do not rerun historical preparation scripts or re-merge old recovered branches. Preserve sibling games."
+  },
+  "owner_requirements": {
+    "same_game_not_spinoff": true,
+    "safe_town_all_floors": true,
+    "optional_badlands_combat": true,
+    "farmland_future_region_direction": true,
+    "every_house_multilevel_and_worthwhile": true,
+    "more_connected_routes_and_authored_adventures": true,
+    "xbox_gameplay_and_all_ui_without_mouse": true,
+    "independent_audio_levels": true,
+    "notification_density_control": true,
+    "music_stream_limit": 1,
+    "water_references_request_game_code_not_image_generation": true,
+    "publish_and_verify_requested_upgrades": true,
+    "preserve_existing_progress_and_siblings": true,
+    "frequent_actions_on_direct_buttons": true,
+    "quest3_controller_and_hand_ui": true
+  },
+  "save_contract": {
+    "main_key": "svgn.leonardos-guild.v1",
+    "outer_version": 2,
+    "audio_key": "svgn.leonardos-guild.audio.v1",
+    "controller_key": "svgn.leonardos-guild.console.v1",
+    "required_real_session_adapter": "sessionState -> attachFrontier on load and reset",
+    "region_record": "frontier",
+    "hydraulic_record": "frontier.cistern",
+    "house_story_record": "doors.stories",
+    "clear_storage_migration_allowed": false
+  },
+  "not_implemented": [
+    "Free swimming, diving and boats",
+    "Playable farmlands",
+    "Town-wide floor-aware route-line planner",
+    "Professional retargeted animation, terrain-normal sole tilt and toe/heel articulation",
+    "Full ranged/support enemy tactics",
+    "Multiple playable protagonists",
+    "Systemic police-star pursuit, stock trading, property purchases and armor progression",
+    "Piloted flying machine",
+    "Authoritative multiplayer, accounts or paid entitlements"
+  ],
+  "next_queue": [
+    {
+      "id": "NEXT01",
+      "status": "open-validation",
+      "subject": "Owner playtest of published v0.12.0; no approval recorded"
+    },
+    {
+      "id": "NEXT02",
+      "status": "planned-validation",
+      "subject": "Pool/camera/input/audio/resource hardening; not confirmed defects"
+    },
+    {
+      "id": "NEXT03",
+      "status": "proposed-next-feature",
+      "subject": "Second sluice-linked basin or pressure-controlled physical route"
+    },
+    {
+      "id": "NEXT04",
+      "status": "planned",
+      "subject": "Town-wide floor-aware route graph and planner"
+    },
+    {
+      "id": "NEXT05",
+      "status": "planned",
+      "subject": "Distinct frontier enemy roles and optional adventures"
+    },
+    {
+      "id": "NEXT06",
+      "status": "planned",
+      "subject": "Authored house sample and durable outcomes before scaling"
+    },
+    {
+      "id": "NEXT07",
+      "status": "later-design",
+      "subject": "Peaceful farmland region; exact mechanics undecided"
+    },
+    {
+      "id": "NEXT08",
+      "status": "later-gated",
+      "subject": "Swimming/diving/boats only with implemented controls, movement and recovery"
+    }
+  ],
+  "verification_commands": {
+    "model_from_repository_root": "npm --prefix leonardos-guild test",
+    "http_from_repository_root": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "water_after_server_and_browser_setup": "python3 leonardos-guild/tests/water-browser.py",
+    "environment_note": "Use workflow-pinned dependencies. Do not serve only the game directory for drivers requesting /leonardos-guild/."
+  },
+  "previous_release_checkpoint": {
+    "version": "0.12.0",
+    "name": "Stillwater Works",
+    "build": "guild-stillwater-20260913",
+    "verified_status": "published",
+    "pull_request": 140,
+    "merge_commit": "edd3f3c42c417b154a7f3d65e29def23ed633288",
+    "tested_feature_head": "8f2fcd735bb9709df3eab4ffe6407cab49826471",
+    "tested_merge_preview": "ef0169bec7a0b3e96406a9dc7cbead691703273a",
+    "tested_game_subtree": "e9369d1858aa784fc2b9b3b8b54d12c498f786fd",
+    "reconciled_head": "09b858b245387b7ecb5255987b6ac402395ba0dd",
+    "homepage": "https://v5ma.github.io/",
+    "game_url": "https://v5ma.github.io/leonardos-guild/",
+    "card_label": "Leonardo's Guild"
+  },
+  "xr_scope": {
+    "mode": "optional seated theatre",
+    "controller_tracking": true,
+    "hand_pointer_ui": true,
+    "room_scale_first_person": false,
+    "physical_quest3_verified": false
+  },
+  "current_slice": {
+    "authoredDistrict": true,
+    "threeIndependentRoutes": true,
+    "permanentShortcut": true,
+    "firstPersonVR": true,
+    "stereoDioramaVRAR": true,
+    "scope": "Waterwheel Quarter only; retained town remains accessible",
+    "physicalHardwareVerified": false,
+    "localModelChecks": 320
+  },
+  "prior_runtime_release": {
+    "version": "0.13.0",
+    "name": "Grounded Actions",
+    "build": "guild-grounded-20260914",
+    "verification_record": "Exact-source release PR artifacts and independent publication receipt; see PUBLICATION.md",
+    "game_url": "https://v5ma.github.io/leonardos-guild/",
+    "card_label": "Leonardo's Guild"
+  }
+}

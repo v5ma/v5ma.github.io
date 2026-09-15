@@ -50,7 +50,7 @@ with sync_playwright() as p:
  page.on('response',lambda r:network.append({'url':r.url,'status':r.status}) if '/assets/resonance/' in r.url else None)
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Blocking browser dialog: '+d.message)))
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Committed Resonance v0.8.0 starts the actual WebGL game')
   check(read()['console']['preferences']['profile']=='console','New controller profile defaults to contextual console controls')
   check(read()['controller']['focus']=='start','Controller focuses Start without a pointer')

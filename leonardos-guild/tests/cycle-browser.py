@@ -48,7 +48,7 @@ with sync_playwright() as p:
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('blob:','data:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.wait_for_function('LeonardoGuild.inspect().render.art.ready')
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.wait_for_function('LeonardoGuild.inspect().render.art.ready')
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'The same game loads the declared release with retained Cycle Works')
   page.locator('#start').click();page.wait_for_function('LeonardoGuild.inspect().steps>3');check(read()['render']['cycle']['frame']['finish']=='terracotta','The actual detailed bicycle frame is rendered')
   page.screenshot(path=str(OUT/'detailed-bicycle.png'))
