@@ -1,0 +1,72 @@
+name: Stage Rewired review fixes
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-rewired-review-fixes.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 571f2ec7082755ac4bfa95950fe1e6d1cb00e02f
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply exact-hash reviewed changes
+        run: |
+          mkdir -p /tmp/rewired-fixes
+          cat >/tmp/rewired-fixes/edits.json <<'JSON'
+          {"aether-reach/controllers.mjs":{"before":"2800c7c9721d8571a98f8e1854c5c74150a923c811f670c2070f44c0ea28a214","after":"05263022e07f0599cede295d49689472322b2305f8dc1a849e846dcfd772d758","replacements":[["if(active)standardXRUntil=now+800;","const trackedIntent=Math.hypot(...(data?.move||[0,0]))>.1||Math.abs(data?.turn||0)>.1||Object.values(data?.held||{}).some(Boolean)||Object.values(data?.edges||{}).some(Boolean);\n    if(active)standardXRUntil=Infinity;else if(trackedIntent)standardXRUntil=0;"]]},"aether-reach/tests/diorama-browser.py":{"before":"45b4135e778037f12ead5cfd82ae1aae4a5c6274fca49f807a484eee00b67080","after":"19834328eccbb3cc10493327fe7fa75afefd0d6d79865b0ad9dd08d01e08672c","replacements":[["p.evaluate('TestPad.disconnect();TestXR.useHands()');frames(12);","p.evaluate('TestPad.axes([0,0,.6,0])');frames(12);p.evaluate('TestPad.axes([0,0,0,0])');frames();yaw=snap()['position']['yaw'];p.wait_for_timeout(1100);frames();check(abs(yaw-snap()['position']['yaw'])<.01,'Idle tracked controllers do not steal aiming after the last Xbox action')\n  p.evaluate('TestPad.disconnect();TestXR.useHands()');frames(12);"],["p.screenshot(path=str(OUT/('diorama-'+opening+'.png')))","p.locator('#presentation-back').click();p.locator('#resume').click();frames(8);p.screenshot(path=str(OUT/('diorama-'+opening+'.png')));tap(9);choose('#pause-presentation')"]]},"aether-reach/diorama-view.mjs":{"before":"f42ae8108ca00f111b550c082342b621c84132fa4f3a9052371b0a87a4e5c4ac","after":"d108219474e303c7027b71340b2843c30b699ecba81b1c95b86060eabf5a3a64","replacements":[["y+(config.opening==='front'?12:43)","y+(config.opening==='front'?12:config.opening==='top'?78:43)"]]},"aether-reach/tests/bellwether-browser.py":{"before":"1cc5a3904f3e2edb85b9b4bc96be7a6bdf134a315347a10136340a530ca34502","after":"bb9bb20b3c04e77ebdd6d77fd284dc640860f5e8c469249f3d3708a80f60097e","replacements":[["clear(['bell-blackout-street','bell-warden','bell-marshal'])","# Mission completion, not an impossible stationary shot at every optional guard behind the new cover.\n  clear(['bell-blackout-street'])"]]},"aether-reach/tools/collect_grounded_evidence.py":{"before":"04ccc81d32227e89aef72682b8d3bfd8527ca3c19103953215189aa8a8b9461d","after":"7be0189c0d919e5c7980f69bd999bdb79b0e1b6ee68dda57a694c8ef6a206bb2","replacements":[["Includes saved Bellwether district progression, original flight and tactical regressions.","Includes the declared native journey reports and model regression logs; the selected suite map is authoritative."]]}}
+          JSON
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          data=json.loads(Path('/tmp/rewired-fixes/edits.json').read_text())
+          for name,item in data.items():
+            p=Path(name);assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            text=p.read_text();assert hashlib.sha256(text.encode()).hexdigest()==item['before'],name
+            for old,new in item['replacements']:
+              assert text.count(old)==1,(name,old)
+              text=text.replace(old,new)
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.write_text(text)
+          PY
+          git diff --check
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs > /tmp/rewired-fixes/tests.log
+      - name: Create content-only candidate without updating refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/rewired-fixes/edits.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/rewired-fixes/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in data]})
+          c=post('git/commits',{'message':'fix(aether): retain deliberate XR input ownership and review the new cover routes','tree':t['sha'],'parents':['571f2ec7082755ac4bfa95950fe1e6d1cb00e02f']})
+          Path('/tmp/rewired-fixes/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':t['sha'],'files':list(data)},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-rewired-review-candidate
+          path: |
+            /tmp/rewired-fixes/candidate.json
+            /tmp/rewired-fixes/tests.log
+          retention-days: 14
