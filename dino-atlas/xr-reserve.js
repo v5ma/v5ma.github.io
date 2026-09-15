@@ -1,5 +1,4 @@
 import * as T from './vendor/three.module.js';
-import {focusable} from './ranger-input.js?v=grounded1';
 import {GROUNDED_BUILD} from './grounded-motion.js?v=grounded1';
 import {EdgeGate,emptyMotion,trackedMotion,mergeMotion,readControls,saveControls} from './xr-actions.js?v=grounded1';
 const labels={interact:'Interact',board:'Board / exit',reload:'Reload',water:'Water',zapper:'Zapper',nextTool:'Next tool',horn:'Horn',menu:'Menu / pause',map:'Map'};
@@ -57,7 +56,8 @@ export class ReserveXR{
  end(){this.active=false;this.session=null;this.invisible=false;this.clear();this.panel.visible=false;this.originOffset.set(0,0,0);this.rig.position.set(0,0,0);this.rig.rotation.set(0,0,0);if(this.saved){this.ctx.camera.position.copy(this.saved.position);this.ctx.camera.quaternion.copy(this.saved.quaternion);this.saved=null;}this.button.textContent='Enter VR / Quest controllers and hands';this.ctx.restoreSize();}
  clear(){this.holds.clear();this.consumed.clear();this.gate.reset(this.session?.inputSources||[]);this.aimRay=null;this.ctx.input.clear();}
  position(){const p=this.ctx.fleet.position;this.rig.position.set(p.x,p.y+(this.ctx.fleet.mode==='foot'?-.9:.5),p.z).add(this.originOffset);this.rig.updateMatrixWorld(true);}
- snap(amount){const camera=this.ctx.renderer.xr.getCamera(),before=camera.getWorldPosition(new T.Vector3());this.rig.rotation.y+=amount;this.rig.updateMatrixWorld(true);const after=camera.getWorldPosition(new T.Vector3());this.originOffset.add(before.sub(after));this.position();this.paintClock=1;}
+ headCamera(){if(this.ctx.renderer.xr.isPresenting)this.ctx.renderer.xr.updateCamera(this.ctx.camera);return this.ctx.camera;}
+ snap(amount){const camera=this.headCamera(),before=camera.getWorldPosition(new T.Vector3());this.rig.rotation.y+=amount;this.rig.updateMatrixWorld(true);const after=camera.getWorldPosition(new T.Vector3());this.originOffset.add(before.sub(after));this.position();this.paintClock=1;}
  rayFor(entry){if(!entry.ray.visible)return null;entry.ray.updateWorldMatrix(true,false);this.rotation.extractRotation(entry.ray.matrixWorld);return {origin:new T.Vector3().setFromMatrixPosition(entry.ray.matrixWorld),direction:new T.Vector3(0,0,-1).applyMatrix4(this.rotation).normalize()};}
  hit(entry){const ray=this.rayFor(entry);if(!ray||!this.panel.visible)return null;this.raycaster.set(ray.origin,ray.direction);const hit=this.raycaster.intersectObject(this.panel,false)[0];if(!hit?.uv)return null;const x=hit.uv.x*1024,y=(1-hit.uv.y)*1024;return this.tiles.find(t=>x>=t.x&&x<=t.x+t.w&&y>=t.y&&y<=t.y+t.h)||null;}
  selectStart(source,entry){
@@ -105,7 +105,7 @@ export class ReserveXR{
  update(dt){
   if(!this.active)return emptyMotion();this.position();const root=this.ctx.modal();
   if(root!==this.context){this.context=root;this.page=0;this.clear();this.paintClock=1;}
-  const camera=this.ctx.renderer.xr.getCamera(),localHead=this.rig.worldToLocal(camera.getWorldPosition(new T.Vector3()));
+  const camera=this.headCamera(),localHead=this.rig.worldToLocal(camera.getWorldPosition(new T.Vector3()));
   camera.getWorldQuaternion(this.quaternion);const facing=new T.Vector3(0,0,-1).applyQuaternion(this.quaternion);this.viewYaw=Math.atan2(-facing.x,-facing.z);
   // An upright, head-relative panel remains reachable without a DOM overlay.
   const localYaw=this.viewYaw-this.rig.rotation.y;this.panel.rotation.set(0,localYaw,0);this.panel.position.copy(localHead).add(new T.Vector3(-Math.sin(localYaw)*1.65,root?-.10:-.80,-Math.cos(localYaw)*1.65));this.panel.visible=true;this.panel.updateWorldMatrix(true,false);
