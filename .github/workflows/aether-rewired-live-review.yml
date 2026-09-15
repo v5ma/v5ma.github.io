@@ -1,0 +1,103 @@
+name: Verify live Bellwether Rewired
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-rewired-live-review.yml']
+permissions:
+  contents: read
+jobs:
+  public-review:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: a6d0e27d349fc69c011a5130b7dff1b6da9f8af2
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify the exact public HTTPS release
+        run: |
+          node aether-reach/tests/release-manifest.mjs
+          mkdir -p /tmp/aether-live-v012
+          python - <<'PY'
+          import concurrent.futures,hashlib,json,time,urllib.request
+          from pathlib import Path
+          source='a6d0e27d349fc69c011a5130b7dff1b6da9f8af2'
+          expected=json.loads(Path('aether-reach/test-output/runtime-manifest.json').read_text())['files']
+          result={}
+          def fetch(name):
+            try:
+              with urllib.request.urlopen('https://v5ma.github.io/'+name+'?rewired='+source[:12],timeout=15) as response:
+                actual=hashlib.sha256(response.read()).hexdigest()
+                return name,{'http':response.status,'sha256':actual,'match':actual==expected[name]}
+            except Exception as error:return name,{'match':False,'error':str(error)}
+          for attempt in range(40):
+            pending=[n for n in expected if not result.get(n,{}).get('match')]
+            with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:result.update(pool.map(fetch,pending))
+            if len(result)==len(expected) and all(v.get('match') for v in result.values()):break
+            time.sleep(10)
+          passed=len(result)==len(expected) and all(v.get('match') for v in result.values())
+          Path('/tmp/aether-live-v012/publication.json').write_text(json.dumps({'source':source,'allMatch':passed,'files':result},indent=2))
+          assert passed,'The hosted bytes do not match the selected release.'
+          PY
+      - name: Install native test browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Look into the actual public miniature in VR and AR
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          root=Path.cwd();out=Path('/tmp/aether-live-v012');checks=[];errors=[];shader=[];views={}
+          def check(ok,label):
+            assert ok,label
+            checks.append(label);print('PASS',label,flush=True)
+          mock=(root/'aether-reach/tests/fake-devices.js').read_text()
+          # Extend only the synthetic physical head pose, not game state or camera code.
+          extra="function headTransform(x,y,z,yaw=0){const t=transform(x,y,z,yaw),p=devices.headPitch||0,sx=Math.sin(p/2),cx=Math.cos(p/2),sy=Math.sin(yaw/2),cy=Math.cos(yaw/2);t.orientation={x:cy*sx,y:sy*cx,z:-sy*sx,w:cy*cx};t.matrix=new DOMMatrix(t.matrix).rotateAxisAngle(1,0,0,p*180/Math.PI).toFloat32Array();return t;}\n const projection=new"
+          assert mock.count('const projection=new')==1
+          mock=mock.replace('const projection=new',extra).replace('const h=transform(devices.headX,1.65','const h=headTransform(devices.headX,1.65').replace('transform:transform(devices.headX+','transform:headTransform(devices.headX+')
+          with sync_playwright() as pw:
+            b=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+            for mode in ['diorama-ar','diorama-vr']:
+              c=b.new_context(viewport={'width':960,'height':640},device_scale_factor=1,service_workers='block')
+              c.add_init_script(script=mock)
+              c.add_init_script("navigator.xr.isSessionSupported=async()=>true;const request=navigator.xr.requestSession.bind(navigator.xr);navigator.xr.requestSession=async(mode,opts)=>{TestXR.devices.requestedMode=mode;const s=await request(mode,opts);s.environmentBlendMode=mode==='immersive-ar'?'alpha-blend':'opaque';return s;};")
+              p=c.new_page();p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:shader.append(m.text) if m.type=='error' and any(s in m.text for s in ['Shader Error','WebGLProgram','VALIDATE_STATUS']) else None)
+              def snap():return p.evaluate('AetherReach.snapshot()')
+              def frames(n=5):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f)}requestAnimationFrame(f)})',n)
+              try:
+                response=p.goto('https://v5ma.github.io/aether-reach/?release=0.12.0',wait_until='domcontentloaded')
+                p.wait_for_function('!!window.AetherReach')
+                check(response.status==200 and p.locator('#version').count()==0 or response.status==200,mode+': public HTTPS entry responds')
+                p.locator('#presentation-button').click();p.locator('#xr-presentation').select_option(mode);p.locator('#diorama-opening').select_option('both');p.locator('#presentation-back').click();p.locator('#enter-vr').click()
+                p.wait_for_function('AetherReach.snapshot().devices.xr && AetherReach.snapshot().devices.presentation.avatar==="ready"');frames(15)
+                s=snap();check(s['devices']['presentation']['active'] and s['devices']['presentation']['mode']==mode,mode+': actual miniature is active with its authored courier')
+                check(p.evaluate('TestXR.devices.requestedMode')==('immersive-ar' if mode=='diorama-ar' else 'immersive-vr'),mode+': requested session type is not silently substituted')
+                before=s['position'];p.evaluate('TestXR.devices.headPitch=-.6');frames(12)
+                after=snap()['position'];check(sum((before[k]-after[k])**2 for k in ['x','y','z'])<.01,mode+': looking down at the table does not walk the character')
+                p.screenshot(path=str(out/(mode+'-looking-down.png')));views[mode]=snap()['devices']['presentation']
+                check(views[mode]['clippedMaterials']>10 and views[mode]['topOpen'] and views[mode]['frontOpen'],mode+': the world uses an open 3D cutaway, not a sealed box')
+                p.locator('#exit-vr').click();p.wait_for_function('!AetherReach.snapshot().devices.xr');check(snap()['paused'] and not snap()['devices']['presentation']['active'],mode+': exit restores safely paused desktop play')
+              except Exception:
+                try:p.screenshot(path=str(out/(mode+'-failure.png')))
+                except Exception:pass
+                raise
+              finally:c.close()
+            b.close()
+          check(not errors and not shader,'No uncaught application or shader errors in live AR/VR entry, looking and exit')
+          (out/'live-review.json').write_text(json.dumps({'source':'a6d0e27d349fc69c011a5130b7dff1b6da9f8af2','passed':len(checks),'checks':checks,'views':views,'errors':errors,'shaderErrors':shader,'scope':'Actual public HTTPS game in native Chromium software WebGL. Synthetic physical head pitch and XR sessions. Captures require visual review; not physical Quest passthrough, stereo, tracking or comfort acceptance.'},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-rewired-live-review
+          path: /tmp/aether-live-v012/
+          retention-days: 30
