@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir -p /tmp/aether-source
           git rev-parse HEAD > /tmp/aether-source/SOURCE-COMMIT.txt
-          tar -czf /tmp/aether-source/source.tar.gz aether-reach .github/workflows
+          tar -czf /tmp/aether-source/source.tar.gz aether-reach .github/workflows index.html projects.css .nojekyll
       - uses: actions/upload-artifact@v4
         with:
           name: aether-grounded-source
