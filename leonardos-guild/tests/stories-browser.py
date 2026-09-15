@@ -52,7 +52,7 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Blocking browser dialog: '+d.message)))
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(4)
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(4)
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Living Stories release starts the actual renderer')
   check(read()['console']['preferences']['profile']=='console','Fresh journey uses default Console, not legacy steering')
   check(read()['audio']['preferences']['density']=='quiet','Quiet cue density is retained')

@@ -12,12 +12,10 @@
   "publication_record": "PUBLICATION.md",
   "runtime_changes_in_this_handoff": true,
   "release": {
-    "version": "0.13.0",
-    "name": "Grounded Actions",
-    "build": "guild-grounded-20260914",
-    "verification_record": "Exact-source release PR artifacts and independent publication receipt; see PUBLICATION.md",
-    "game_url": "https://v5ma.github.io/leonardos-guild/",
-    "card_label": "Leonardo's Guild"
+    "version": "0.14.0",
+    "build": "guild-waterwheel-20260915",
+    "status": "candidate-pending-native-and-publication",
+    "start_here": "WATERWHEEL-QUARTER.md"
   },
   "evidence": {
     "kind": "Verified metadata summary, not the complete downloadable artifacts",
@@ -179,15 +177,21 @@
     "physical_quest3_verified": false
   },
   "current_slice": {
-    "roadmap": [
-      "NEXT01-feedback",
-      "NEXT02",
-      "C01",
-      "C02",
-      "F03"
-    ],
-    "document": "GROUNDED-ACTIONS.md",
-    "save_migration": false,
-    "owner_hardware_signoff": false
+    "authoredDistrict": true,
+    "threeIndependentRoutes": true,
+    "permanentShortcut": true,
+    "firstPersonVR": true,
+    "stereoDioramaVRAR": true,
+    "scope": "Waterwheel Quarter only; retained town remains accessible",
+    "physicalHardwareVerified": false,
+    "localModelChecks": 320
+  },
+  "prior_runtime_release": {
+    "version": "0.13.0",
+    "name": "Grounded Actions",
+    "build": "guild-grounded-20260914",
+    "verification_record": "Exact-source release PR artifacts and independent publication receipt; see PUBLICATION.md",
+    "game_url": "https://v5ma.github.io/leonardos-guild/",
+    "card_label": "Leonardo's Guild"
   }
 }

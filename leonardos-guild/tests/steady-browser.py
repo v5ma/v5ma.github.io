@@ -63,7 +63,7 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Blocking browser dialog: '+d.message)))
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Steady Steps source version matches the served game')
   check(read()['render']['character']['rigVersion']==2,'Actual player renderer uses the new jointed rig')
   check(read()['audio']['preferences']['density']=='quiet','Quiet audio remains the default');check(read()['console']['preferences']['profile']=='console','Console controller profile remains the default')

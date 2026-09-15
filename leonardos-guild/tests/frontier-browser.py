@@ -48,9 +48,9 @@ with sync_playwright() as p:
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
  browser=p.chromium.launch(**opts);context=browser.new_context(viewport={'width':1100,'height':760},service_workers='block')
  context.add_init_script("window.__testPad={id:'Xbox standard virtual acceptance',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__testPad]});")
- page=context.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));network=[];page.on('response',lambda r:network.append([r.url,r.status]) if '/leonardos-guild/' in r.url else None)
+ page=context.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));network=[];page.on('response',lambda r:network.append([r.url,r.status]) if '/leonardos-guild/?district=legacy' in r.url else None)
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Actual build is Cinder Hollow v0.11.0');check(read()['frontier']['zone']=='town','Fresh real app session installs the safe-town adapter');check(read()['audio']['preferences']['density']=='quiet','Quiet cue density remains enabled');press(0);page.wait_for_function('LeonardoGuild.inspect().running')
   page.keyboard.press('Enter');page.wait_for_function('LeonardoGuild.inspect().audio.context==="running"');check(True,'One declared Enter activates the existing audio graph')
   press(12);select('[data-dispatch="expeditions"]');check(page.locator('#frontier-dialog[open]').count()==1,'D-pad Up opens the real expedition notebook');check('planned, not yet playable' in page.locator('#frontier-dialog').inner_text(),'Farmlands are clearly marked as planned, without fake travel')

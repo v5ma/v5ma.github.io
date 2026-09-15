@@ -55,7 +55,7 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Unexpected blocking browser dialog: '+d.message)))
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(4)
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(4)
   check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Open Doors loads the actual WebGL renderer')
   check(read()['controller']['connected'] and read()['controller']['focus']=='start','Controller focuses the title start button without a mouse')
   ui_select('#title-sound');ui_select('#controller-profile',False);press(15);check(page.locator('#controller-profile').input_value()=='classic','Classic profile remains controller-selectable for the original acceptance journey');close();

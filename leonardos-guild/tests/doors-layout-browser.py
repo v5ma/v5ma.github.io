@@ -16,7 +16,7 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  def press(n):page.evaluate('(n)=>new Promise(done=>{const b=v=>Array.from({length:17},(_,i)=>({pressed:i===v,value:i===v?1:0}));window.__pad.buttons=b(n);requestAnimationFrame(()=>{window.__pad.buttons=b(-1);requestAnimationFrame(()=>requestAnimationFrame(done));});})',n)
  try:
-  page.goto(base+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild?.inspect().controller.connected')
+  page.goto(base+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild?.inspect().controller.connected')
   press(0);page.wait_for_function('LeonardoGuild.inspect().running');page.wait_for_selector('#doors-objective:not([hidden])')
   for width,height in [(1280,800),(900,700),(390,844),(700,480)]:
    page.set_viewport_size({'width':width,'height':height});page.wait_for_timeout(400)

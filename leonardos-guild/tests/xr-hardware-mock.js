@@ -5,7 +5,7 @@
 (()=>{
  const raf=window.requestAnimationFrame.bind(window),caf=window.cancelAnimationFrame.bind(window);
  const identity={x:0,y:0,z:0,w:1};
- const data=window.__xr={supported:true,reject:false,floor:true,headTracked:true,head:{x:0,y:1.6,z:0},yaw:0,sources:[],session:null};
+ const data=window.__xr={supported:true,reject:false,floor:true,headTracked:true,head:{x:0,y:1.6,z:0},yaw:0,hitSupported:true,hitAvailable:true,sources:[],session:null};
  function matrix(position,orientation=identity){
   const {x,y,z,w}=orientation,x2=x+x,y2=y+y,z2=z+z,xx=x*x2,xy=x*y2,xz=x*z2,yy=y*y2,yz=y*z2,zz=z*z2,wx=w*x2,wy=w*y2,wz=w*z2;
   return new Float32Array([1-(yy+zz),xy+wz,xz-wy,0,xy-wz,1-(xx+zz),yz+wx,0,xz+wy,yz-wx,1-(xx+yy),0,position.x,position.y,position.z,1]);
@@ -29,13 +29,15 @@
    const views=['left','right'].map((eye,i)=>({eye,projectionMatrix:projection,transform:transform({...data.head,x:data.head.x+(i?.032:-.032)},q)}));
    return {views,transform:transform(data.head,q),emulatedPosition:false};
   }
+  getHitTestResults(){return data.hitAvailable?[{getPose:()=>({transform:transform({x:0,y:.7,z:-1.7})})}]:[];}
   getPose(space){const s=space?.source;if(!s?.tracked)return null;return {transform:transform(s.position,s.orientation),emulatedPosition:false};}
   getJointPose(space){const s=space?.source;if(!s?.tracked||!s.jointsTracked)return null;const p={...s.position};p.z-=.06;if(space.joint==='thumb-tip')p.x+=s.pinch;return {transform:transform(p,s.orientation),radius:.008};}
  }
  class Session extends EventTarget{
-  constructor(){super();this.renderState={depthNear:.05,depthFar:30};this.visibilityState='visible';this.environmentBlendMode='opaque';this.enabledFeatures=['local-floor','hand-tracking'];this.pending=new Set();this.ended=false;}
+  constructor(){super();this.renderState={depthNear:.05,depthFar:30};this.visibilityState='visible';this.environmentBlendMode=data.request?.mode==='immersive-ar'?'alpha-blend':'opaque';this.enabledFeatures=['local-floor','hand-tracking'];this.pending=new Set();this.ended=false;}
   get inputSources(){return data.sources;}
   requestReferenceSpace(type){return type==='local-floor'&&!data.floor?Promise.reject(new Error('No floor reference')):Promise.resolve({type,getOffsetReferenceSpace(){return this;}});}
+  requestHitTestSource(){return data.hitSupported?Promise.resolve({cancel(){data.hitCancelled=true;}}):Promise.reject(Error('Hit test unavailable'));}
   updateRenderState(v){Object.assign(this.renderState,v);}
   requestAnimationFrame(callback){const id=raf(time=>{this.pending.delete(id);if(!this.ended){callback(time,new Frame(this));if(data.captureNext){data.captureNext=false;data.capture=document.getElementById('world').toDataURL('image/png');}}});this.pending.add(id);return id;}
   cancelAnimationFrame(id){this.pending.delete(id);caf(id);}

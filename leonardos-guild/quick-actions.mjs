@@ -1,12 +1,13 @@
 /* Tap/hold decisions and tool history are session-local, not a save migration. */
 export const TOOL_HOLD_MS=220;
 export function createTapHold(delay=TOOL_HOLD_MS){
+ delay=Number.isFinite(delay)&&delay>0?delay:TOOL_HOLD_MS;
  let started=null,used=false;
  return {reset(){started=null;used=false;},update({down,pressed,released,now,blocked=false}){
-  if(blocked){started=null;used=true;return null;}
+  if(blocked||!Number.isFinite(now)||(started!==null&&now<started)){started=null;used=true;return null;}
   if(pressed){started=now;used=false;}
   if(down&&started!==null&&!used&&now-started>=delay){used=true;return 'hold';}
-  if(released){const tap=started!==null&&!used;started=null;used=false;return tap?'tap':null;}
+  if(released){const tap=started!==null&&!used&&now-started<delay;started=null;used=false;return tap?'tap':null;}
   return null;
  }};
 }

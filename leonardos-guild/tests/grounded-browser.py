@@ -27,8 +27,8 @@ with sync_playwright() as p:
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
-  check(read()['version']=='0.13.0','The new release runs ordinary committed source')
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(5)
+  check(read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'The new release runs ordinary committed source')
   check(read()['xr']['mode']=='seated-theatre' and not read()['xr']['presenting'],'XR is opt-in; ordinary browser gameplay is unchanged')
   press(0);page.wait_for_function('LeonardoGuild.inspect().running');press(3);neutral()
   check(read()['mode']=='foot','Xbox Y retains dismount')

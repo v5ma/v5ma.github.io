@@ -59,7 +59,7 @@ with sync_playwright() as p:
   page.wait_for_function('document.querySelector("article.leonardo img")?.naturalWidth>0')
   check(card.locator('img').evaluate('(img)=>img.complete&&img.naturalWidth>0'),'The card shows an actual rendered game capture')
   page.screenshot(path=str(OUT/'00-homepage.png'));card.locator('a.primary-link').click();page.wait_for_function('window.LeonardoGuild')
-  check('/leonardos-guild/' in page.url,'The homepage card opens the independently hosted browser game')
+  check('/leonardos-guild/?district=legacy' in page.url,'The homepage card opens the independently hosted browser game')
   check(read(page)['version']==json.loads((ROOT/'release.json').read_text())['version'],'The isolated Leonardo’s Guild application matches its release version')
   check(read(page)['render']['triangles']>50000,'Native WebGL draws the actual city geometry')
   page.screenshot(path=str(OUT/'01-sunrise-title.png'))

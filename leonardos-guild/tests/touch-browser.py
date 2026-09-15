@@ -23,7 +23,7 @@ with sync_playwright() as pw:
  browser=pw.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':844,'height':390},has_touch=True,is_mobile=True,device_scale_factor=1,service_workers='block');page=ctx.new_page();page.set_default_timeout(60000);page.on('pageerror',lambda e:errors.append(str(e)));cdp=ctx.new_cdp_session(page)
  host=urlparse(BASE).hostname;ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  try:
-  page.goto(BASE+'/leonardos-guild/',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').tap();tick(2)
+  page.goto(BASE+'/leonardos-guild/?district=legacy',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').tap();tick(2)
   check(read()['version']==json.loads((Path(__file__).resolve().parents[1]/'release.json').read_text())['version'],'The browser loads the new online-game version')
   check(read()['touchEnabled'] and page.locator('#move-stick').is_visible(),'Touch devices get an actual joystick automatically')
   check(read()['render']['triangles']>50000 and read()['render']['visuals']['instancedFoliage'],'The real WebGL scene contains the new foliage and town graphics')
