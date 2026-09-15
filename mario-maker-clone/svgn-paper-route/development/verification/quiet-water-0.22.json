@@ -2,14 +2,15 @@
   "version": "0.22.0",
   "build": "sky-cycle-quiet-water-2026.09.15",
   "updated": "2026-09-15",
+  "status": "published-software-verified",
   "baseline_master": "bebbcf1ab228f545befe6b5a192f7cc272c1372b",
-  "status": "published-byte-verified-live-browser-pending",
   "runtime_sha": "8675f34d85ec3999e9a1279948d2e0d099578ecf",
   "reviewed_head": "c3e7b0131fc55f77a24a4de071bd70b61698e79c",
-  "head_difference": "Only a read-only, pinned source archival workflow follows the accepted runtime.",
+  "head_difference": "Only a read-only pinned-source archival workflow follows the accepted runtime.",
   "merge_sha": "a215ecfe7bbd8da5f36932b94a885f156523f92e",
   "pull_request": 159,
   "merge_method": "normal merge with expected-head protection; sibling-game work preserved",
+  "earlier_recovery_record_commit": "fc41f64347d0ad7b75d41efbb4dd6f4732967268",
   "software_acceptance": {
     "passed": true,
     "run_id": 35021288402,
@@ -42,9 +43,9 @@
     {"name":"editor","id":10418151703,"sha256":"bb1c2e37edb92b5b47ef3d5dc4cad826e4388d2f97baca08aa32ce96a92285ef"}
   ],
   "postmerge": {
-    "run_id": 35026192760,
-    "source_sha": "a215ecfe7bbd8da5f36932b94a885f156523f92e",
-    "original_successful_jobs": {"rules":104573676374,"xr":104573676439,"tideglass":104573676345,"sunrise":104573676449,"loading":104573676365,"editor":104573676395},
+    "run_id":35026192760,
+    "source_sha":"a215ecfe7bbd8da5f36932b94a885f156523f92e",
+    "original_successful_jobs":{"rules":104573676374,"xr":104573676439,"tideglass":104573676345,"sunrise":104573676449,"loading":104573676365,"editor":104573676395},
     "sensory_retry_job":104583017050,
     "sensory_retry_passed":true,
     "sensory_retry_checks":27,
@@ -54,7 +55,18 @@
     "sensory_retry_audio_rms":0.0009011286465669989,
     "real_visibility_events":["hidden","visible"],
     "live_browser_job":104584696824,
-    "live_browser_status_at_recording":"queued"
+    "live_browser_passed":true,
+    "live_browser_checks":27,
+    "live_origin":"https://v5ma.github.io",
+    "live_artifact_id":10420164761,
+    "live_artifact_sha256":"c372228d4cc309fc6de03e706ce1435c8a37d7a429849fa87d4b6151fab89a81",
+    "live_artifact_created_utc":"2026-09-15T22:16:41Z",
+    "live_reviewed_pngs":3,
+    "live_audio_rms":0.0009131015227446213,
+    "live_visibility_events":["hidden","visible"],
+    "live_uncaught_errors":0,
+    "live_console_errors":0,
+    "live_report_review":"Downloaded report identifies the actual public origin and merged source. Reviewed all three returned PNGs: desktop/mobile comfort controls and measured optional-notice separation. Audio uses the real context/effects bus; no human listening claim."
   },
   "publication": {
     "passed":true,
@@ -68,7 +80,7 @@
     "owned_files":22,
     "polls":1,
     "url":"https://v5ma.github.io/mario-maker-clone/svgn-paper-route/",
-    "method":"Downloaded and inspected the cache-busted public report; all 22 actual SHA-256 values equal the accepted merged-source expectations.",
+    "method":"Downloaded and inspected cache-busted public report; all 22 actual SHA-256 values equal accepted merged-source expectations. Later live browser acceptance passed separately.",
     "matching_sha256": {
       "index.html":"252a5746703e35f9adedf69d0b0f393ffb1c8a02575cf0bde1ef9b6ebecd3f3b",
       "release.json":"9d79ba4ba3457c2708621b511f6220b8a39f2d3ff4500063bd5d378ac60ac98f",
@@ -97,10 +109,10 @@
   "retained_failures": [
     {"scope":"initial local tests","details":"Local navigation was blocked by managed browser policy; native acceptance moved to Actions. Floating-point amplitude/signed-zero assertions were corrected without changing signal limits."},
     {"scope":"early native candidates","details":"Retain runs 35009251948, 35009930464, 35010387347 and 35011177671. Initial spawn readiness, test-only unbound storage override, optional-notice overlap and dialog readability were corrected. Superseded or failed runs are not acceptance evidence."},
-    {"scope":"hidden-tab safety","details":"A real blur/visibility event ordering could toggle an already paused game back into play. The final runtime makes hidden-tab pause idempotent and tests both event orders plus actual headed hidden/visible events."},
-    {"scope":"postmerge optional-notice timing","run_id":35026192760,"job_id":104573676458,"artifact_id":10420400270,"sha256":"5e180f79fb962289a6dc4180d4c19b098c25e7918f04553479f518da3b237843","details":"The 1500 ms clearance wait failed after four checks; the later capture visibly clears the HUD and contains no uncaught errors. One unchanged rerun passed all 27 checks. Preserve the first failure; deterministic short-lived notice sampling remains maintenance, not a suppressed assertion."},
-    {"scope":"initial publication","run_id":35026192760,"job_id":104573676261,"artifact_id":10419764340,"sha256":"643621f414997e722f69a8d3cda4f7a7725100e918f656e5f48807178f74479e","details":"All 60 polls through 21:47:11 UTC saw the preceding v0.21 runtime while newer combined Pages deployments queued. The subsequent complete 22-file match establishes publication, not this failed attempt."}
+    {"scope":"hidden-tab safety","details":"A real blur/visibility event ordering could toggle an already paused game back into play. Final runtime makes hidden-tab pause idempotent and tests both event orders plus actual headed hidden/visible events."},
+    {"scope":"postmerge optional-notice timing","run_id":35026192760,"job_id":104573676458,"artifact_id":10420400270,"sha256":"5e180f79fb962289a6dc4180d4c19b098c25e7918f04553479f518da3b237843","details":"The 1500 ms clearance wait failed after four checks; later capture visibly clears the HUD and has no uncaught errors. One unchanged local-origin rerun and a separate public-origin run passed all 27 checks. Preserve the first failure; deterministic short-lived notice sampling remains maintenance, not a suppressed assertion."},
+    {"scope":"initial publication","run_id":35026192760,"job_id":104573676261,"artifact_id":10419764340,"sha256":"643621f414997e722f69a8d3cda4f7a7725100e918f656e5f48807178f74479e","details":"All 60 polls through 21:47:11 UTC saw the preceding v0.21 runtime while newer combined Pages deployments queued. Subsequent complete 22-file match establishes publication, not this failed attempt."}
   ],
-  "open_gates":["live-browser completion at time of this record","deterministic short-lived optional-notice sampling","full optional canal sequence","physical Xbox controller","physical Quest 3 controllers and hands","human listening and comfort","native XR layers/multiview","native WebGPU","reference-device performance","long-session resource qualification","advanced Bezier controller authoring"],
-  "next_content":"The approved canonical chapter methodology and Waterwheel revision-2 preview are being developed separately on sky-cycle/waterwheel-chapter-0.23. Do not confuse a non-awarding preview with default campaign promotion."
+  "open_gates":["deterministic short-lived optional-notice sampling","full optional canal sequence","physical Xbox controller","physical Quest 3 controllers and hands","human listening and comfort","native XR layers/multiview","native WebGPU","reference-device performance","long-session resource qualification","advanced Bezier controller authoring"],
+  "next_content":"Approved canonical chapter methodology and Waterwheel revision-2 preview are developed separately on sky-cycle/waterwheel-chapter-0.23. Do not confuse a non-awarding preview with default campaign promotion."
 }
