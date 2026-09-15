@@ -22,7 +22,13 @@ try:
   page=ctx.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
   def wait(expr,timeout=60000):page.wait_for_function(expr,timeout=timeout)
   def button(i,on):page.evaluate('([i,on])=>{__pad.buttons[i]={pressed:on,touched:on,value:on?1:0};__pad.timestamp++;}',[i,on])
-  def press(i):button(i,True);page.wait_for_timeout(250);button(i,False);page.wait_for_timeout(250)
+  def press(i):
+   # Observe the real input poller. A fixed 250 ms pulse could miss release on
+   # software WebGL, leaving the post-modal safety gate waiting for neutral.
+   wait('!__dinoRanger.director.ctx.input.neutral',30000);button(i,True)
+   try:page.wait_for_function('(i)=>__dinoRanger.director.ctx.input.previous[i]===true',arg=i,timeout=30000)
+   finally:button(i,False)
+   page.wait_for_function('(i)=>__dinoRanger.director.ctx.input.previous[i]===false&&!__dinoRanger.director.ctx.input.neutral',arg=i,timeout=30000)
   def choose(id):
    for _ in range(60):
     if page.evaluate('document.activeElement?.id')==id:press(0);return
