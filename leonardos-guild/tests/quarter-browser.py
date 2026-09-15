@@ -55,9 +55,14 @@ with sync_playwright() as p:
   for _ in range(3):press(5)
   check(read()['quarterUI']['layer']=='upper','Xbox bumpers switch the actual map to the upper work floors')
   check(read()['x']==before['x'] and read()['z']==before['z'] and not read()['quarter']['observations'],'Inspecting other map floors cannot move the player or invent observations')
+  check(page.locator('#city-map').evaluate('c=>[c.width,c.height]')==[900,600],'Quarter map uses a readable landscape surface instead of shrinking a square plan')
   capture('upper-floor-map');press(1);page.wait_for_function('LeonardoGuild.inspect().running')
   press(13);page.wait_for_selector('#quarter-dialog[open]');check(read()['quarterUI']['notebookOpen'],'The retained direct Xbox notebook shortcut opens the Quarter observations');press(1)
+  # Bound software-GPU latency only for the 220 ms tap fixture. The map,
+  # route and art evidence retain their original 1280 by 800 viewport.
+  page.set_viewport_size({'width':640,'height':400});frames(12)
   press(4);check(read()['resonance']['tool']=='sling','Tap LB retains direct tool selection in the new opening');press(4)
+  page.set_viewport_size({'width':1280,'height':800});frames(8)
   for i,(x,z) in enumerate(paths[ROUTE]):
    drive(x,z)
    note='precision' if ROUTE=='social' and x==17.5 else 'dye' if ROUTE=='upper' and x==-23.2 else 'cellar' if ROUTE=='hydraulic' and x==1 and z==14.1 else None
@@ -89,6 +94,7 @@ with sync_playwright() as p:
   check(actual['quarter']['observations']==expected['quarter']['observations'] and len(actual['quarter']['observations'])>0,'Actual reload retains optional learned observations in the original save')
   check(abs(actual['x']+20)<.1 and abs(actual['z']+13)<.1,'Resumed Quarter saves arrive safely at the workshop rather than on a removed floor')
   capture('resumed');drive(-24,-14);act('leave');check(not read()['quarter']['active'] and read()['credits']==expected['credits'],'The older town remains accessible with the same earned progression')
+  check(page.locator('#city-map').evaluate('c=>[c.width,c.height]')==[900,900] and 'Mailboxes' in page.locator('.map-legend').inner_text(),'Departure restores the original legacy map dimensions and legend')
   check(read()['audio']['preferences']['density']=='quiet' and read()['audio']['musicVoices']<=1,'Quiet audio and the single-score-stream policy remain intact')
   check(not errors,'No captured native JavaScript or shader compilation errors')
  finally:

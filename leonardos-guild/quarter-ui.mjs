@@ -3,7 +3,7 @@ import {QUARTER_GATE,QUARTER_FLOORS,QUARTER_SITES} from './quarter-data.mjs';
 import {quarterNotebook,quarterPlace,mapLayer,floorOnLayer} from './quarter-notes.mjs';
 
 export function createQuarterUI({getState,setPause,save,onTransition}){
- const legacyButtons=new Map();let uiActive=false,notebookOpen=false,layer='current',mapControls=null;
+ const legacyButtons=new Map();let uiActive=false,notebookOpen=false,layer='current',mapControls=null,mapSnapshot=null;
  const d=document.createElement('dialog');d.id='quarter-dialog';d.setAttribute('aria-label','Waterwheel Quarter');
  document.body.append(d);d.addEventListener('close',()=>{notebookOpen=false;setPause(false);});
  const element=(tag,text)=>{const e=document.createElement(tag);if(text)e.textContent=text;return e;};
@@ -57,15 +57,26 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
   return false;
  }
  function ensureMap(){
-  if(mapControls)return;
   const canvas=document.getElementById('city-map');if(!canvas)return;
+  if(!mapSnapshot)mapSnapshot={width:canvas.width,height:canvas.height,label:canvas.getAttribute('aria-label'),paragraphs:[...canvas.parentNode.querySelectorAll(':scope > p')].map(node=>({node,children:[...node.childNodes]})),quarter:null};
+  const active=inQuarter(getState());
+  if(mapSnapshot.quarter!==active){
+   mapSnapshot.quarter=active;canvas.width=active?900:mapSnapshot.width;canvas.height=active?600:mapSnapshot.height;
+   canvas.setAttribute('aria-label',active?'Public Waterwheel Quarter floor plan with selected floor, work stations, apprentice heading, objective and gate states.':mapSnapshot.label||'Town map');
+   if(active){
+    const [legend,explanation]=mapSnapshot.paragraphs;
+    if(legend)legend.node.textContent='White arrow: you. Gold diamond: objective. Green gate: open. Orange gate: closed.';
+    if(explanation)explanation.node.textContent='Choose a floor to distinguish the roof, workshops and lower channel. This public plan does not teleport your apprentice or add observations to the notebook.';
+   }else for(const item of mapSnapshot.paragraphs)item.node.replaceChildren(...item.children);
+  }
+  if(mapControls)return;
   mapControls=element('nav');mapControls.id='quarter-map-layers';mapControls.setAttribute('role','tablist');mapControls.setAttribute('aria-label','Quarter map floors');
   for(const [id,text] of [['current','My current floor'],['all','All connections'],['street','Street and workshops'],['upper','Upper work floors'],['service','Lower service channel']]){
    const b=button(text,()=>{layer=id;drawMap(canvas,true);});b.dataset.quarterLayer=id;b.setAttribute('role','tab');b.setAttribute('aria-selected',String(layer===id));b.setAttribute('aria-pressed',String(layer===id));mapControls.append(b);
   }
   canvas.before(mapControls);mapControls.hidden=!inQuarter(getState());
  }
- function wrap(g,text,x,y,maxWidth,line=19){
+ function wrap(g,text,x,y,maxWidth,line=22){
   let row='';for(const word of text.split(' ')){if(row&&g.measureText(row+' '+word).width>maxWidth){g.fillText(row,x,y);y+=line;row=word;}else row+=(row?' ':'')+word;}
   if(row)g.fillText(row,x,y);return y+line;
  }
@@ -81,11 +92,11 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
    g.fillRect(X(f.x1),Z(f.z1),(f.x2-f.x1)*scale,(f.z2-f.z1)*scale);g.strokeStyle='#172e33';g.lineWidth=1;g.strokeRect(X(f.x1),Z(f.z1),(f.x2-f.x1)*scale,(f.z2-f.z1)*scale);
   }g.globalAlpha=1;
   const lx=W-legend+8;let ly=98;g.textAlign='left';
-  if(full){g.fillStyle='#fff2c8';g.font='bold 19px sans-serif';g.fillText('WATERWHEEL QUARTER',pad,28);g.font='14px sans-serif';g.fillText('Showing: '+selected+' / You: '+quarterPlace(s).name,pad,49);g.font='bold 16px sans-serif';g.fillText('WORK STATIONS',lx,74);}
+  if(full){g.fillStyle='#fff2c8';g.font='bold 24px sans-serif';g.fillText('WATERWHEEL QUARTER',pad,28);g.font='18px sans-serif';g.fillText('Showing: '+selected+' / You: '+quarterPlace(s).name,pad,49);g.font='bold 20px sans-serif';g.fillText('WORK STATIONS',lx,74);}
   QUARTER_SITES.forEach((p,index)=>{
    if(!floorOnLayer({y:p.y,endY:p.y},selected))return;
    const code=String.fromCharCode(65+index);
-   if(full){g.fillStyle='#152e33';g.beginPath();g.arc(X(p.x),Z(p.z),11,0,Math.PI*2);g.fill();g.fillStyle='#fff2c8';g.textAlign='center';g.font='bold 13px sans-serif';g.fillText(code,X(p.x),Z(p.z)+4);g.textAlign='left';g.font='14px sans-serif';ly=wrap(g,code+' / '+p.name,lx,ly,legend-22)+8;}
+   if(full){g.fillStyle='#152e33';g.beginPath();g.arc(X(p.x),Z(p.z),11,0,Math.PI*2);g.fill();g.fillStyle='#fff2c8';g.textAlign='center';g.font='bold 13px sans-serif';g.fillText(code,X(p.x),Z(p.z)+4);g.textAlign='left';g.font='18px sans-serif';ly=wrap(g,code+' / '+p.name,lx,ly,legend-22)+8;}
   });
   // Gates are stateful landmarks, not teleport controls.
   for(const [x,z,open]of [[-16,-3.8,s.quarter.archOpen],[17,1.55,s.quarter.goodsAccess]]){
@@ -95,7 +106,7 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
    g.save();g.translate(X(goal.x),Z(goal.z));g.rotate(Math.PI/4);g.fillStyle='#ffe098';g.fillRect(-4,-4,8,8);g.restore();
   }
   g.save();g.translate(X(s.x),Z(s.z));g.rotate(-s.yaw);g.fillStyle='#ffffff';g.strokeStyle='#173840';g.lineWidth=2;g.beginPath();g.moveTo(0,full?9:6);g.lineTo(-5,-5);g.lineTo(5,-5);g.closePath();g.fill();g.stroke();g.restore();
-  if(full){g.fillStyle='#fff2c8';g.font='14px sans-serif';wrap(g,'White arrow: you. Gold diamond: current objective. Green gate: open. Orange gate: closed.',pad,H-66,W-pad*2);wrap(g,'Public floor plan. Dim shapes are other floors, not reachable passages. Map views never move your apprentice.',pad,H-24,W-pad*2);for(const b of mapControls.children){b.setAttribute('aria-pressed',String(b.dataset.quarterLayer===layer));b.setAttribute('aria-selected',String(b.dataset.quarterLayer===layer));}}
+  if(full){g.fillStyle='#fff2c8';g.font='18px sans-serif';wrap(g,'White arrow: you. Gold diamond: current objective. Green gate: open. Orange gate: closed.',pad,H-66,W-pad*2);wrap(g,'Public floor plan. Dim shapes are other floors, not reachable passages. Map views never move your apprentice.',pad,H-24,W-pad*2);for(const b of mapControls.children){b.setAttribute('aria-pressed',String(b.dataset.quarterLayer===layer));b.setAttribute('aria-selected',String(b.dataset.quarterLayer===layer));}}
   return true;
  }
  function update(){
