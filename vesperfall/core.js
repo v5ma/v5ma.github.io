@@ -2,7 +2,7 @@
  * Static collision geometry also drives rendering. All projectile hits sweep
  * between positions so a fast arrow cannot tunnel through a thin wall. */
 (function(root){'use strict';
- const VERSION='0.13.0',G=9.8,R=.28;
+ const VERSION='0.14.0',G=9.8,R=.28;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0),len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
  function hash(text){let h=2166136261;for(const c of String(text).slice(0,64))h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
@@ -12,6 +12,7 @@
  function sphereHit(a,b,c,r){const d=sub(b,a),o=sub(a,c),A=dot(d,d),B=2*dot(o,d),C=dot(o,o)-r*r;if(C<=0)return 0;const D=B*B-4*A*C;if(D<0||A<1e-10)return null;const t=(-B-Math.sqrt(D))/(2*A);return t>=0&&t<=1?t:null;}
  function rect(x,z,w,d,y=0,type='stone'){return {x,z,w,d,y,type};}
  function inside(p,s,margin=0){return p[0]>=s.x-s.w/2+margin&&p[0]<=s.x+s.w/2-margin&&p[2]>=s.z-s.d/2+margin&&p[2]<=s.z+s.d/2-margin;}
+ const returning=root.ReturningBellModel||(typeof require!=='undefined'?require('./returning-bell-model.js'):null);
  const oath=root.BellOath||(typeof require!=='undefined'?require('./oath-model.js'):null);
  const encounters=root.VesperEncounters||(typeof require!=='undefined'?require('./encounters.js'):null);
  const architecture=root.CloisterLayout||(typeof require!=='undefined'?require('./architecture.js'):null);
@@ -19,7 +20,7 @@
  function walkable(world,p,r=R){const y=architecture.floorAt(world,p,0,.42,.55);return y!==null&&[[0,0],[r,0],[-r,0],[0,r],[0,-r]].every(([x,z])=>architecture.floorAt(world,[p[0]+x,y,p[2]+z],0,.42,.55)!==null)&&!world.solids.some(b=>p[0]>b.min[0]-r&&p[0]<b.max[0]+r&&p[2]>b.min[2]-r&&p[2]<b.max[2]+r&&b.max[1]>y+.1&&b.min[1]<y+1.65);}
  function segmentBlocked(world,a,b,pad=0){return world.solids.some(w=>boxHit(a,b,w,pad)!==null);}
  function route(world,from,to){const q=[from],prev=new Map([[from,null]]);for(let i=0;i<q.length;i++)for(const n of world.links[q[i]])if(!prev.has(n)){prev.set(n,q[i]);q.push(n);}if(!prev.has(to))return [];const out=[];for(let n=to;n!==null;n=prev.get(n))out.unshift(n);return out;}
- function roomAt(world,p){let id=0,dist=Infinity;for(const r of world.rooms){const d=Math.hypot(r.x-p[0],r.z-p[2]);if(d<dist){dist=d;id=r.id;}}return id;}
+ function roomAt(world,p){if(world.returningBell)return returning.roomAt(world,p);let id=0,dist=Infinity;for(const r of world.rooms){const d=Math.hypot(r.x-p[0],r.z-p[2]);if(d<dist){dist=d;id=r.id;}}return id;}
  const districts=root.CathedralDistricts||(typeof require!=='undefined'?require('./districts.js'):null);
  const dominions=root.HollowDominions||(typeof require!=='undefined'?require('./dominions-world.js'):null);
  function generate(seed,depth=1){return dominions.expand(architecture.augment(districts.generate(seed,depth,{hash,rng,shuffle,rect,route})),{hash,rng,shuffle,rect,route});}
@@ -32,7 +33,7 @@
  }
  function grantPickup(s,item){if(item.taken)return false;if(item.kind==='health')s.health=Math.min(s.maxHealth,s.health+25);else if(item.kind==='relic'){s.score+=100;s.health=Math.min(s.maxHealth,s.health+12);}else if(Object.hasOwn(s.ammo,item.kind))s.ammo[item.kind]+=3;else return false;item.taken=true;emit(s,'pickup',{kind:item.kind,label:item.label||'',reward:item.kind==='relic'?100:0,p:[...item.p]});return true;}
 
- function create(seed='BELL-01',depth=1,upgrades={}){const world=generate(seed,depth);if(upgrades.challenge==='nightfall')for(const e of world.enemies){e.hp=Math.round(e.hp*1.3);e.maxHp=e.hp;e.speed*=1.15;}if(upgrades.ricochet)addRicochetLoot(world);const s={world,p:[...world.start],head:[0,1.65,3],health:100+(upgrades.heart?15:0),maxHealth:100+(upgrades.heart?15:0),power:upgrades.power?1.08:1,phase:'playing',time:0,playerSlow:0,hazards:[],discovered:new Set([1]),orders:new Set(),sideRewards:new Set(),arrows:[],bolts:[],sparks:[],events:[],score:0,kills:0,shots:0,hits:0,blinkCD:0,invuln:0,ammo:{cinder:4,frost:6,volley:upgrades.volley?4:0,ricochet:upgrades.ricochet?4:0},type:'plain',finished:false,portalReady:false,damageTaken:0,targets:new Set(),weapon:'bow',crossbow:{loaded:true,reload:0},guard:upgrades.wardglass?120:100,maxGuard:upgrades.wardglass?120:100,guardLock:0,shield:null,shardCharges:upgrades.wayfarer?3:2,maxShards:upgrades.wayfarer?3:2,shardRecharge:0,shardCD:0,volleyUnlocked:!!upgrades.volley,ricochetUnlocked:!!upgrades.ricochet,quickwind:!!upgrades.quickwind,headshots:0,blocks:0,blinks:0,shardsUsed:0,sectors:0,challenge:upgrades.challenge==='nightfall'};if(upgrades.oath)oath.configure(s,enemyAPI,kind=>encounters.training(kind));return s;}
+ function create(seed='BELL-01',depth=1,upgrades={}){const world=upgrades.returningBell&&!upgrades.oath?returning.generate(seed,depth,kind=>encounters.training(kind)):generate(seed,depth);if(upgrades.challenge==='nightfall')for(const e of world.enemies){e.hp=Math.round(e.hp*1.3);e.maxHp=e.hp;e.speed*=1.15;}if(upgrades.ricochet)addRicochetLoot(world);const s={world,p:[...world.start],head:[0,1.65,3],health:100+(upgrades.heart?15:0),maxHealth:100+(upgrades.heart?15:0),power:upgrades.power?1.08:1,phase:'playing',time:0,playerSlow:0,hazards:[],discovered:new Set([1]),orders:new Set(),sideRewards:new Set(),arrows:[],bolts:[],sparks:[],events:[],score:0,kills:0,shots:0,hits:0,blinkCD:0,invuln:0,ammo:{cinder:4,frost:6,volley:upgrades.volley?4:0,ricochet:upgrades.ricochet?4:0},type:'plain',finished:false,portalReady:false,damageTaken:0,targets:new Set(),weapon:'bow',crossbow:{loaded:true,reload:0},guard:upgrades.wardglass?120:100,maxGuard:upgrades.wardglass?120:100,guardLock:0,shield:null,shardCharges:upgrades.wayfarer?3:2,maxShards:upgrades.wayfarer?3:2,shardRecharge:0,shardCD:0,volleyUnlocked:!!upgrades.volley,ricochetUnlocked:!!upgrades.ricochet,quickwind:!!upgrades.quickwind,headshots:0,blocks:0,blinks:0,shardsUsed:0,sectors:0,challenge:upgrades.challenge==='nightfall'};if(upgrades.oath)oath.configure(s,enemyAPI,kind=>encounters.training(kind));if(world.returningBell)returning.configure(s);return s;}
  function emit(s,type,data={}){s.eventSeq=(s.eventSeq||0)+1;s.events.push({seq:s.eventSeq,type,time:s.time,...data});if(s.events.length>160)s.events.shift();}
  function fire(s,origin,direction,charge,type=s.type){
   if(s.phase!=='playing'||!Number.isFinite(charge)||origin.length!==3||direction.length!==3||!origin.every(Number.isFinite)||!direction.every(Number.isFinite)||Math.abs(len(direction)-1)>.01||charge<.08)return false;
@@ -128,9 +129,10 @@
   }
   for(const f of s.sparks)f.life-=dt;s.sparks=s.sparks.filter(f=>f.life>0).slice(-32);
   oath.after(s,enemyAPI);
-  if(!s.portalReady&&s.world.enemies.filter(e=>e.required!==false).every(e=>e.dead)){s.portalReady=true;emit(s,'gate-open');}
+  if(s.chapter)returning.step(s,enemyAPI);
+  if(!s.chapter&&!s.portalReady&&s.world.enemies.filter(e=>e.required!==false).every(e=>e.dead)){s.portalReady=true;emit(s,'gate-open');}
  }
- function interact(s){const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.abs(s.p[1])<.5&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;s.sectors++;emit(s,'sector-complete');return true;}return false;}
+ function interact(s){if(s.chapter)return returning.interact(s,enemyAPI);const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.abs(s.p[1])<.5&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;s.sectors++;emit(s,'sector-complete');return true;}return false;}
  function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1,{challenge:s.challenge?'nightfall':'normal',oath:!!s.oath});n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.ricochetUnlocked=s.ricochetUnlocked;n.ammo.ricochet=(s.ammo.ricochet||0)+(s.ricochetUnlocked?3:0);if(s.ricochetUnlocked)addRicochetLoot(n.world);n.weapon=s.weapon;n.quickwind=s.quickwind;n.volleyUnlocked=s.volleyUnlocked;n.ammo.volley=(s.ammo.volley||0)+(s.volleyUnlocked?3:0);n.maxGuard=s.maxGuard;n.guard=n.maxGuard;n.maxShards=s.maxShards;n.shardCharges=n.maxShards;for(const key of['headshots','blocks','blinks','shardsUsed','sectors'])n[key]=s[key];n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
  const enemyAPI={dot,add,sub,mul,unit,len,canAttack:(s,e)=>oath.canAttack(s,e,enemyAPI),walkable,floorAt,route,roomAt,segmentBlocked,emit,shieldHit,block,hurt};
  const api={emit,collectPickup,wallNormal,VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,landing,predictBlink,setWeapon,reload,shield,shieldHit,shard,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
