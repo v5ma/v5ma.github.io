@@ -46,6 +46,11 @@ with sync_playwright() as pw:
   page.evaluate('''(()=>{const a=__score.context;window.audioAnalyser=a.createAnalyser();audioAnalyser.fftSize=2048;const sink=a.createGain();sink.gain.value=0;__score.effectsBus.connect(audioAnalyser);audioAnalyser.connect(sink);sink.connect(a.destination);window.audioRMS=()=>{const x=new Float32Array(audioAnalyser.fftSize);audioAnalyser.getFloatTimeDomainData(x);return Math.sqrt(x.reduce((s,v)=>s+v*v,0)/x.length);};})()''')
   page.wait_for_function('audioRMS()>1e-5');samples['ambience_rms']=page.evaluate('audioRMS()');check(True,'Native Web Audio produces a non-silent water signal on the real effects bus')
   code=page.evaluate('levelCode()');old=page.evaluate('localStorage.getItem("svgn.skycycle.sunrise.v1")')
+  # UI-only synthetic notice fixture; no gameplay or progression is assigned.
+  page.wait_for_timeout(5000)
+  check(page.evaluate('SkyCycleSensory.notify("Water notice layout fixture",{optional:true,key:"qa-layout"})'),'Synthetic optional-notice UI fixture is admitted through the real presentation layer')
+  page.wait_for_function('(()=>{const n=document.querySelector("#toast[data-sensory-optional].show");if(!n)return false;const a=n.getBoundingClientRect();return [...document.querySelectorAll("#bathhouse-objective,#bathhouse-use,#cloud-hud .cloud-flight-status")].filter(x=>!x.hidden&&x.getBoundingClientRect().height>0).every(x=>a.bottom+5<=x.getBoundingClientRect().top);})()',timeout=1500)
+  page.screenshot(path=str(OUT/'optional-notice-clearance.png'));check(True,'Synthetic optional-notice UI fixture clears the measured objective and riding HUD')
   tap(9);page.wait_for_function('__delivery.paused && SkyCycleSensory.diagnostics.audio.sources===0');check(True,'Pausing disposes the ambience sources instead of leaving hidden loops')
   tap(8);page.wait_for_function('document.getElementById("flight-deck").open');seek('fd-audio');tap(0);page.wait_for_function('document.getElementById("score-dialog").open')
   seek('sensory-transients');tap(14);check(page.evaluate('SkyCycleSensory.settings.transients==="gentle"'),'Xbox D-pad directly adjusts effect intensity in the existing sound panel')
@@ -58,9 +63,9 @@ with sync_playwright() as pw:
   tap(1);tap(9);page.wait_for_function('!__delivery.paused && SkyCycleSensory.diagnostics.audio.sources===2')
   check(page.evaluate('__score.source===originalMusic && audioContextCount===1'),'Comfort changes neither restart the soundtrack nor create another audio context')
   # Native storage failure injection is confined to the new comfort key, never gameplay.
-  mix();page.evaluate("window.originalStorageSet=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==='svgn.skycycle.sensory.v1')throw new DOMException('quota test','QuotaExceededError');return originalStorageSet.call(this,k,v);};")
+  mix();page.evaluate("(()=>{window.originalStorageSet=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==='svgn.skycycle.sensory.v1')throw new DOMException('quota test','QuotaExceededError');return originalStorageSet.call(this,k,v);};})()")
   slider('sensory-ambience','ArrowRight');check(page.evaluate('!SkyCycleSensory.saveOK && document.getElementById("sensory-save").textContent.includes("session only")'),'A blocked comfort save is visibly session-only and does not clear older records')
-  page.evaluate('Storage.prototype.setItem=originalStorageSet');slider('sensory-ambience','ArrowLeft');check(page.evaluate('SkyCycleSensory.saveOK'),'A later successful preference write restores honest save status')
+  page.evaluate('(()=>{Storage.prototype.setItem=originalStorageSet;})()');slider('sensory-ambience','ArrowLeft');check(page.evaluate('SkyCycleSensory.saveOK'),'A later successful preference write restores honest save status')
   slider('score-effects','Home');done();page.wait_for_function('SkyCycleSensory.diagnostics.audio.sources===0 && audioRMS()<1e-6');check(page.evaluate('__score.source===originalMusic'),'Effects-only mute silences the water bus without stopping or replacing music')
   mix();slider('score-effects','End');slider('score-music','Home');done();page.wait_for_function('SkyCycleSensory.diagnostics.audio.sources===2 && audioRMS()>1e-5');check(page.evaluate('__score.prefs.music===0 && __score.prefs.effects===1'),'Music-only mute leaves independently controlled water effects available')
   mix();page.locator('#score-mute').check();done();page.wait_for_function('SkyCycleSensory.diagnostics.audio.sources===0 && __score.effectVoices===0');check(page.evaluate('muted && !__score.source'),'Master mute clears ambience, transient voices and music playback')
@@ -87,4 +92,4 @@ with sync_playwright() as pw:
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'origin':origin,'coverage':'Real game, real native Web Audio with analyser, ordinary inputs, sampled Xbox Gamepad and explicit new-key quota injection. No physics/win/progression assignments. Not physical audio listening or device qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'origin':origin,'coverage':'Real game, real native Web Audio with analyser, ordinary inputs, sampled Xbox Gamepad, explicitly synthetic optional-notice UI fixture and new-key quota injection. No physics/win/progression assignments. Not physical audio listening or device qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
