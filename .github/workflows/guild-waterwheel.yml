@@ -29,44 +29,29 @@ jobs:
         run: |
           set -euo pipefail
           test "$GITHUB_REF_NAME" = 'guild/waterwheel-spatial-20260915'
-          if test -f leonardos-guild/scripts/waterwheel-edit-0.json; then
-            python - <<'PY'
+          if test -f leonardos-guild/scripts/waterwheel-polish.json; then
+            python - <<'PYCODE'
           from pathlib import Path
           import hashlib,json
-          paths=sorted(Path('leonardos-guild/scripts').glob('waterwheel-edit-*.json'))
-          assert len(paths)==6,'Expected exactly six scoped source manifests'
-          spec={}
-          for path in paths:
-            records=json.loads(path.read_text())
-            assert not set(spec).intersection(records),'Duplicate source path'
-            spec.update(records)
-          newpath=Path('leonardos-guild/scripts/waterwheel-new-hashes.json')
-          for name,expected in json.loads(newpath.read_text()).items():
+          manifest=Path('leonardos-guild/scripts/waterwheel-polish.json')
+          records=json.loads(manifest.read_text());ready={}
+          for name,record in records.items():
             p=Path(name)
-            assert name.startswith('leonardos-guild/') and '..' not in p.parts and not p.is_symlink(),name
-            assert hashlib.sha256(p.read_bytes()).hexdigest()==expected,('New source transfer mismatch',name)
-          prepared={}
-          for name,record in spec.items():
-            p=Path(name)
-            assert name.startswith('leonardos-guild/') and '..' not in p.parts and p.is_file() and not p.is_symlink(),name
-            assert hashlib.sha256(p.read_bytes()).hexdigest()==record['before'],('Changed baseline',name)
-            text=p.read_text()
-            if 'jsonSet' in record:
-              value=json.loads(text);value.update(record['jsonSet']);text=json.dumps(value,indent=2)+'\n'
-            else:
-              for start,end,replacement in reversed(record['edits']):text=text[:start]+replacement+text[end:]
-            data=text.encode('utf-8')
-            assert hashlib.sha256(data).hexdigest()==record['after'],('Transfer hash mismatch',name)
-            prepared[p]=data
-          for p,data in prepared.items():p.write_bytes(data)
-          for path in paths+[newpath]:path.unlink()
-          print('Installed',len(prepared),'verified existing project files; all new module hashes matched. Native acceptance checks out the ordinary commit.')
-          PY
+            assert (name.startswith('leonardos-guild/') or name=='tests/leonardo_touch_actions.py') and '..' not in p.parts and p.is_file() and not p.is_symlink(),name
+            original=p.read_bytes();assert hashlib.sha256(original).hexdigest()==record['before'],('Changed source',name)
+            text=original.decode()
+            for start,end,value in reversed(record['edits']):text=text[:start]+value+text[end:]
+            data=text.encode();assert hashlib.sha256(data).hexdigest()==record['after'],('Output hash mismatch',name)
+            ready[p]=data
+          for p,data in ready.items():p.write_bytes(data)
+          manifest.unlink()
+          print('Verified and installed',len(ready),'scoped refinements; native tests run the following ordinary commit.')
+          PYCODE
             npm --prefix leonardos-guild test
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add -- leonardos-guild
-            git commit -m 'Install authored Waterwheel Quarter and true spatial XR as ordinary source'
+            git add -- leonardos-guild tests/leonardo_touch_actions.py
+            git commit -m 'Refine native Quarter acceptance, readable architecture and legacy campaign entry'
             git push origin HEAD:refs/heads/guild/waterwheel-spatial-20260915
           fi
       - id: source
