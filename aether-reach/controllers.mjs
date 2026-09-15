@@ -36,7 +36,8 @@ export function installControllers(api){
     if(menuChanged&&lastPadSnapshot)sampler.read(lastPadSnapshot,identity,false,menuRoot?{}:api.settings.controller);
     const sampled=sampler.read(pad,identity,false,menuRoot?{}:api.settings.controller);lastPadSnapshot=snapshotPad(pad);
     const active=sampled&&(sampled.move.some(Boolean)||sampled.look.some(Boolean)||Object.values(sampled.held).some(Boolean)||Object.values(sampled.edges).some(Boolean));
-    if(active)standardXRUntil=now+800;
+    const trackedIntent=Math.hypot(...(data?.move||[0,0]))>.1||Math.abs(data?.turn||0)>.1||Object.values(data?.held||{}).some(Boolean)||Object.values(data?.edges||{}).some(Boolean);
+    if(active)standardXRUntil=Infinity;else if(trackedIntent)standardXRUntil=0;
     if(sampled&&(active||now<standardXRUntil||!xr.stats().trackedControllers)){standardXR=true;data=sampled;}
    }else{if(lastDevice?.startsWith('xr-pad:')){lastDevice=null;lastPad=null;sampler.reset();api.pause();}lastPadSnapshot=null;}
   }

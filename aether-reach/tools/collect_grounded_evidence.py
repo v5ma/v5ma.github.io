@@ -24,5 +24,5 @@ with zipfile.ZipFile(out/f'Aether-Reach-v{version}-native-grounded-evidence.zip'
   report=json.loads((folder/name).read_text());assert report['passed']>0 and not report['errors'] and not report.get('shaderErrors')
   for p in folder.iterdir():
    if p.suffix in {'.png','.json','.txt','.log'}:archive.write(p,suite+'/'+p.name)
- archive.writestr('scope.json',json.dumps({'source':source,'head':head,'workflow':run['id'],'suites':reports,'scope':'Actual HTTP software WebGL, normal application inputs and explicitly emulated controller/hand poses. Includes saved Bellwether district progression, original flight and tactical regressions. Not physical Xbox/Quest or player quality approval.'},indent=2))
+ archive.writestr('scope.json',json.dumps({'source':source,'head':head,'workflow':run['id'],'suites':reports,'scope':'Actual HTTP software WebGL, normal application inputs and explicitly emulated controller/hand poses. Includes the declared native journey reports and model regression logs; the selected suite map is authoritative. Not physical Xbox/Quest or player quality approval.'},indent=2))
 print('Archived all required exact-source native review suites from',run['id'])
