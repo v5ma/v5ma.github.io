@@ -2,11 +2,12 @@
  * material/palette; separate pivots per actor. No external art or animation. */
 import * as T from './vendor/three.module.js';
 import {Batch,unit} from './art.mjs';
+export const RIG_DIMENSIONS=Object.freeze({hipHeight:.975,upperLeg:.44,lowerLeg:.41,soleOffset:.1375,upperArm:.30,forearm:.27,headScale:.65});
 const templates=new WeakMap();
 function joint(parent,name,x,y,z){const g=new T.Group();g.name=name;g.position.set(x,y,z);parent.add(g);return g;}
 function build(m,kind){
  const root=new T.Group();root.name='Guild jointed '+kind;
- const torso=joint(root,'torso',0,1.04,0),head=joint(torso,'head',0,.54,0);
+ const torso=joint(root,'torso',0,1.04,0),head=joint(torso,'head',0,.54,0);head.scale.setScalar(RIG_DIMENSIONS.headScale);
  const tunic=kind==='bandit'?'#815344':kind==='master'?'#645944':'#477568';
  const cloth=new Batch(),face=new Batch();
  cloth.add(unit.cyl,0,.24,0,.245,.5,.18,tunic);cloth.ball(0,.42,0,.26,.15,.18,tunic);cloth.add(unit.cone,0,-.055,0,.285,.28,.22,tunic,Math.PI);
@@ -20,13 +21,13 @@ function build(m,kind){
  face.ball(0,.33,-.015,.205,.06,.18,kind==='bandit'?'#4d4b3d':'#5e7250');face.box(0,.32,.15,.26,.033,.11,'#798859');face.ball(0,.18,.165,.035,.04,.04,'#c58e6c');
  for(const x of[-.068,.068])face.ball(x,.23,.15,.019,.014,.008,'#343e35');face.finish(head,m.trim,'Face and cloth cap');
  for(const side of[-1,1]){
-  const suffix=side<0?'left':'right',arm=joint(torso,'arm-'+suffix,side*.25,.4,0),elbow=joint(arm,'elbow-'+suffix,side*.025,-.24,0),hand=joint(elbow,'hand-'+suffix,0,-.23,0);
-  const upper=new Batch();upper.ball(0,-.04,0,.092,.11,.092,tunic);upper.rod([0,-.035,0],[side*.025,-.23,0],.071,tunic);upper.finish(arm,m.trim,'Tailored upper sleeve');
-  const lower=new Batch();lower.rod([0,0,0],[0,-.19,0],.053,'#d2a37e');lower.add(unit.cyl,0,-.025,0,.066,.06,.066,tunic);lower.finish(elbow,m.trim,'Forearm and cuff');
+  const suffix=side<0?'left':'right',arm=joint(torso,'arm-'+suffix,side*.25,.4,0),elbow=joint(arm,'elbow-'+suffix,side*.025,-.30,0),hand=joint(elbow,'hand-'+suffix,0,-.27,0);
+  const upper=new Batch();upper.ball(0,-.04,0,.092,.11,.092,tunic);upper.rod([0,-.035,0],[side*.025,-.30,0],.071,tunic);upper.finish(arm,m.trim,'Tailored upper sleeve');
+  const lower=new Batch();lower.rod([0,0,0],[0,-.245,0],.053,'#d2a37e');lower.add(unit.cyl,0,-.025,0,.066,.06,.066,tunic);lower.finish(elbow,m.trim,'Forearm and cuff');
   const palm=new Batch();palm.ball(0,0,.018,.057,.065,.062,'#d2a37e');palm.finish(hand,m.trim,'Hand and equipment socket');
-  const hip=joint(root,'hip-'+suffix,side*.115,.96,0),knee=joint(hip,'knee-'+suffix,0,-.42,0),ankle=joint(knee,'ankle-'+suffix,0,-.40,0);
-  const thigh=new Batch();thigh.rod([0,0,0],[0,-.41,0],.077,'#5c6350');thigh.finish(hip,m.trim,'Cloth breeches');
-  const calf=new Batch();calf.rod([0,0,0],[0,-.39,0],.055,'#756348');calf.add(unit.cyl,0,-.29,0,.068,.13,.068,'#624c35');calf.finish(knee,m.trim,'Calf and boot cuff');
+  const hip=joint(root,'hip-'+suffix,side*.115,RIG_DIMENSIONS.hipHeight,0),knee=joint(hip,'knee-'+suffix,0,-RIG_DIMENSIONS.upperLeg,0),ankle=joint(knee,'ankle-'+suffix,0,-RIG_DIMENSIONS.lowerLeg,0);
+  const thigh=new Batch();thigh.rod([0,0,0],[0,-.44,0],.077,'#5c6350');thigh.finish(hip,m.trim,'Cloth breeches');
+  const calf=new Batch();calf.rod([0,0,0],[0,-.41,0],.055,'#756348');calf.add(unit.cyl,0,-.29,0,.068,.13,.068,'#624c35');calf.finish(knee,m.trim,'Calf and boot cuff');
   const boot=new Batch();boot.box(0,-.065,.06,.15,.13,.27,'#624c35');boot.box(0,-.125,.06,.155,.025,.275,'#403b31');boot.finish(ankle,m.trim,'Leather boot and sole');
  }
  return root;
@@ -37,7 +38,7 @@ export function createPersonRig(m,kind='apprentice'){
  let cache=templates.get(m.trim);if(!cache){cache=new Map();templates.set(m.trim,cache);}
  if(!cache.has(kind))cache.set(kind,build(m,kind));
  const root=cache.get(kind).clone(true),get=n=>root.getObjectByName(n),pair=n=>['left','right'].map(s=>get(n+'-'+s));
- const rig={version:2,torso:get('torso'),head:get('head'),arms:pair('arm'),elbows:pair('elbow'),hands:pair('hand'),legs:pair('hip'),knees:pair('knee'),ankles:pair('ankle'),memory:null};
+ const rig={version:2,torso:get('torso'),head:get('head'),arms:pair('arm'),elbows:pair('elbow'),hands:pair('hand'),legs:pair('hip'),knees:pair('knee'),ankles:pair('ankle'),dimensions:RIG_DIMENSIONS,memory:null,feet:null};
  root.guildRig=rig;return {root,legs:rig.legs,head:rig.head,arms:rig.arms,handSockets:rig.hands};
 }
 /* Only the player gets instance-owned fade materials. NPCs retain the shared

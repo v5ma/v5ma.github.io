@@ -1,3 +1,9 @@
+# Grounded Actions v0.13.0 continuation - September 14, 2026
+
+Read GROUNDED-ACTIONS.md and current release.json before the historical checkpoint below. The owner's latest feedback prioritizes direct frequent actions, realistic proportions/stance contacts and Xbox plus Quest controller/hand UI. Console LB now taps to the previous tool and holds for the full wheel. The original characters have revised proportions and transient two-bone stance IK. Optional seated WebXR theatre uses the same game, saves and camera with tracked controller rays and hand-pinch UI; it is NOT room-scale first-person gameplay or stereo world rendering.
+
+This slice advances NEXT01 feedback, NEXT02 input hardening and C01/C02/F03. It does not close owner playtesting, physical Quest/Xbox, performance/comfort, all animation, or the later NEXT03 second-basin task. The release PR's exact-source CI artifacts and the independent publication receipt establish deployment status; do not infer publication merely from this source note. Preserve the same v2 save namespace, quiet one-stream audio and sibling projects. The earlier v0.12 checkpoint remains historical evidence, not the latest runtime identifier. Never rerun historical prepare/integrate scripts over current source.
+
 # Current publication record - Stillwater Works v0.12.0
 
 Recorded September 13, 2026. Start future work with NEXT-SESSION.md and CONTINUATION-STATE.json. This current record supersedes the historical candidate/preparation labels retained below. The following identities describe the verified gameplay release, not the later documentation-only handoff commit.

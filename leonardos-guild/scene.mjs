@@ -9,7 +9,7 @@ import {createDoorsArt} from './doors-art.mjs';
 import {doorElevation,doorLevel,doorLocation} from './doors-core.mjs';
 import {createStreetArt} from './street-art.mjs';
 import {createCityArt} from './city-art.mjs';
-import {animatePerson,inspectMotion} from './character-motion.mjs';
+import {animatePerson,inspectMotion,groundPerson} from './character-motion.mjs';
 import {createCycleVisuals} from './cycle-art.mjs';
 import {createTownLifeVisuals} from './life-visuals.mjs';
 import {roomAt,stats} from './life-core.mjs';
@@ -77,7 +77,7 @@ export function createScene(canvas,w,s,quality='high'){
  const shouldDraw=createFrameGate();let viewportRevision=0;
  function resize(){viewportRevision++;const rect=canvas.getBoundingClientRect();renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();}
  function update(dt,state,input={}){
-  const artStatus=streetArt.inspect();if(!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,consoleYaw,!!input.consoleCamera,artStatus.ready,artStatus.failed,state.frontier?.zone],input.snap))return;
+  const artStatus=streetArt.inspect();if(!renderer.xr.isPresenting&&!shouldDraw(dt,state,[viewportRevision,renderQuality,distanceScale,orbit,pitch,consoleYaw,!!input.consoleCamera,artStatus.ready,artStatus.failed,state.frontier?.zone],input.snap))return;
   const p=state,f=headingVector(p.yaw),currentRoom=roomAt(p,w),depth=doorElevation(p),y=(currentRoom?heightAt(currentRoom.x,currentRoom.z)+.16:heightAt(p.x,p.z))+depth;
   lastYaw=p.yaw;const useConsole=!!input.consoleCamera&&p.mode==='foot';if(useConsole&&!consoleMode)consoleYaw=p.yaw+orbit;consoleMode=useConsole;
   if(useConsole){consoleYaw+=input.look||0;orbit=0;}else{if(input.look)orbit+=input.look;else orbit*=Math.exp(-dt*1.7);orbit=clampOrbit(orbit);}
@@ -96,15 +96,15 @@ export function createScene(canvas,w,s,quality='high'){
   for(const [key,model]of[['bike',bike],['car',pressCar]]){const v=p.vehicle[key];model.root.position.set(v.x,heightAt(v.x,v.z)+(p.mode===key?p.lift:0),v.z);model.root.rotation.set(-Math.atan((heightAt(v.x,v.z+.5)-heightAt(v.x,v.z-.5)))*Math.cos(v.yaw),v.yaw,p.mode===key&&key==='bike'?-(input.steer||0)*Math.min(.17,Math.abs(p.speed)*.012):0);if(p.mode===key)for(const wheel of model.wheels)wheel.rotation.x+=p.speed*dt/(key==='bike'?.39:.37);}
   rider.root.visible=true;rider.root.position.set(p.x,y+p.lift+(p.mode==='car'?-.02:p.mode==='bike'?.03:0),p.z);rider.root.rotation.set(p.mode==='bike'?.14:0,p.yaw,0);if(p.mode==='bike'){rider.root.position.z-=f.z*.12;rider.root.position.x-=f.x*.12;}
   for(let i=0;i<p.traffic.length;i++){const t=p.traffic[i],c=traffic[i];c.root.position.set(t.x,heightAt(t.x,t.z),t.z);c.root.rotation.y=t.dir>0?0:Math.PI;for(const w of c.wheels)w.rotation.x+=t.dir*t.speed*dt/.37;}
-  for(let i=0;i<p.pedestrians.length;i++){const a=p.pedestrians[i],b=peds[i];b.root.position.set(a.x,heightAt(a.x,a.z),a.z);b.root.rotation.y=a.yaw;animatePerson(b,p.time,{motion:'walk',speed:3,phase:a.phase});}
+  for(let i=0;i<p.pedestrians.length;i++){const a=p.pedestrians[i],b=peds[i];b.root.position.set(a.x,heightAt(a.x,a.z),a.z);b.root.rotation.y=a.yaw;animatePerson(b,p.time,{motion:'walk',speed:3,phase:a.phase,ground:heightAt});}
   const target=activeTarget(p,w);marker.position.set(target.x,heightAt(target.x,target.z)+.14,target.z);marker.scale.setScalar(1+Math.sin(p.time*2)*.045);
   for(const [id,{ring}]of boxes){ring.visible=!p.deliveries.has(id);ring.material.color.set(p.mission===0&&w.mailboxes.find(b=>b.id===id).route?'#ffd585':'#7eccc0');}
   arm.rotation.x=T.MathUtils.lerp(arm.rotation.x,p.relay?Math.PI/2:0,Math.min(1,dt*4));scanRings.forEach(r=>{r.visible=p.scan>0;r.lookAt(camera.position);r.rotation.z+=dt;});
   for(let i=0;i<papers.length;i++){const b=p.shots[i],mesh=papers[i];mesh.visible=!!b;if(b){mesh.position.set(b.x,b.y,b.z);mesh.rotation.set(p.time*13,p.time*7,p.time*9);}}
-  guild.update(p,dt);animatePerson(rider,p.time,{motion:p.mode!=='foot'?'ride':p.lift>.08?'jump':p.doors.dodge>0?'dodge':p.resonance?.reload>0?'reload':p.resonance?.cover?'cover':p.guarding?'guard':p.attackT>0?'strike':p.resonance?.aim?'aim':'walk',speed:p.speed,level:doorLevel(p),action:Math.min(1,p.attackT/.3)});finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
+  guild.update(p,dt);animatePerson(rider,p.time,{motion:p.mode!=='foot'?'ride':p.lift>.005?'jump':p.doors.dodge>0?'dodge':p.resonance?.reload>0?'reload':p.resonance?.cover?'cover':p.guarding?'guard':p.attackT>0?'strike':p.resonance?.aim?'aim':'walk',speed:p.speed,level:doorLevel(p),action:Math.min(1,p.attackT/.3),ground:(x,z)=>heightAt(x,z)+(y-heightAt(p.x,p.z))});finish.update(p);rider.root.rotation.z=p.attackT>0?Math.sin(p.attackT*22)*.3:0;
   goal.visible=p.mission===2&&p.defeated;
   const hideWorld=!!p.life.inside||!!p.doors.level&&p.doors.level!==3;if(hideWorld!==wasBelow){if(hideWorld)for(const object of outdoors){outdoorVisibility.set(object,object.visible);object.visible=false;}else for(const object of outdoors)object.visible=outdoorVisibility.get(object);wasBelow=hideWorld;}if(hideWorld)for(const object of outdoors)object.visible=false;
-  townLife.update(p,dt,currentRoom);cycles.update(p);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);doorsArt.update(p,dt);resonanceArt.update(p);actorFade.update(cameraSafety.inspect().distance);furnitureOcclusion.update(camera.position,pivot,dt,artStatus.ready);renderer.render(scene,camera);
+  townLife.update(p,dt,currentRoom);cycles.update(p);streetArt.update(p,dt);cityArt.update(p,dt,currentRoom,renderQuality);doorsArt.update(p,dt);resonanceArt.update(p);groundPerson(rider,p.time,{ground:(x,z)=>heightAt(x,z)+(y-heightAt(p.x,p.z)),enabled:p.mode==='foot'&&!p.resonance?.duck});actorFade.update(cameraSafety.inspect().distance);furnitureOcclusion.update(camera.position,pivot,dt,artStatus.ready);renderer.render(scene,camera);
  }
  function clampOrbit(a){return Math.max(-2.4,Math.min(2.4,a));}
  function setQuality(value){if(!['low','balanced','high'].includes(value))return;renderQuality=value;streetArt.setQuality(value);renderer.shadowMap.enabled=value!=='low';renderer.setPixelRatio(Math.min(devicePixelRatio||1,value==='low'?.6:value==='balanced'?1:1.6));const size=value==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}renderer.shadowMap.needsUpdate=true;resize();}

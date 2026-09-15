@@ -68,7 +68,7 @@ export function createDoorsArt({scene,root,w,m,camera}){
  function update(s,dt){const level=doorLevel(s),loc=doorLocation(s,w),extra=!!s.doors.level,insideExtra=extra&&![3,-2].includes(level),h=w.doorHomes.find(h=>h.id===loc.room);
   outdoor.visible=level===0;roof.visible=level===3;tunnels.visible=level===-2;floorRoot.visible=insideExtra;
   for(const {h,g}of stairGroups)g.visible=Math.hypot(s.x-h.x,s.z-h.z)<45;
-  for(const {h,npc}of residents){const near=Math.hypot(s.x-h.x,s.z-h.z);npc.root.visible=level===0&&near<30; if(npc.root.visible){animatePerson(npc,s.time,{motion:near<5?'listen':'work'});npc.root.rotation.y=Math.atan2(s.x-npc.root.position.x,s.z-npc.root.position.z);}}
+  for(const {h,npc}of residents){const near=Math.hypot(s.x-h.x,s.z-h.z);npc.root.visible=level===0&&near<30; if(npc.root.visible){npc.root.rotation.y=Math.atan2(s.x-npc.root.position.x,s.z-npc.root.position.z);animatePerson(npc,s.time,{motion:near<5?'listen':'work'});}}
   const key=insideExtra?h?.id+':'+level:'';
   if(key!==floorKey){disposeGroup(roomMeshes);roomMeshes=key&&h?room(h,level):null;floorKey=key;}
   if(extra){scene.background=new T.Color(level<0?'#383e3c':level===3?'#aecbca':'#a89a7a');scene.fog=new T.Fog(level<0?'#383e3c':level===3?'#b8cebd':'#a89a7a',level<0?28:75,level<0?125:350);}

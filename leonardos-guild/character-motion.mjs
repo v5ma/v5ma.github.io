@@ -1,9 +1,11 @@
 /* Deterministic, distance-driven joint poses on the existing character actors.
  * Cosmetic only: no position, hitbox, speed, stamina or save writes. */
+import {plantFeet,inspectFeet} from './foot-ik.mjs';
+export {plantFeet as groundPerson} from './foot-ik.mjs';
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),num=(n,f=0)=>Number.isFinite(n)?n:f;
 export function poseAt(time,{motion='idle',speed=0,phase=0,weight=1,action=0}={}){
  const t=num(time),p=num(phase),v=clamp(Math.abs(num(speed)),0,12),w=clamp(num(weight,1),0,1);
- const stride=Math.sin(p)*Math.min(.52,v*.115)*w,breathe=Math.sin(t*1.6)*.02;
+ const stride=Math.cos(p)*Math.min(.52,v*.115)*w,breathe=Math.sin(t*1.6)*.02;
  const q={left:stride-.1,right:-stride-.1,leftOut:.06,rightOut:-.06,headPitch:breathe,headTurn:Math.sin(t*.38)*.035,leftElbow:-.18,rightElbow:-.18,leftHip:-stride,rightHip:stride,leftKnee:Math.max(0,Math.sin(p))*.8*w,rightKnee:Math.max(0,-Math.sin(p))*.8*w,leftAnkle:0,rightAnkle:0,lean:Math.min(.1,v*.016)*w,bob:Math.sin(p*2)*.016*w};
  if(motion==='idle'||motion==='listen'||motion==='work'||motion==='wave'){q.leftHip=q.rightHip=q.leftKnee=q.rightKnee=q.lean=q.bob=0;}
  if(motion==='ride'){q.left=q.right=-.65;q.leftElbow=q.rightElbow=-.28;q.headPitch=-.035;q.lean=.12;q.leftHip=-.65+Math.sin(p)*.32;q.rightHip=-.65-Math.sin(p)*.32;q.leftKnee=1.1-Math.sin(p)*.35;q.rightKnee=1.1+Math.sin(p)*.35;q.bob=0;}
@@ -25,7 +27,7 @@ export function advanceMotion(previous,time,point,options={}){
  const dt=previous?clamp(t-previous.time,0,.1):0,travel=previous?Math.hypot(x-previous.x,z-previous.z):0;
  const teleport=!previous||level!==previous.level||travel>3;
  const moving=dt>0&&!teleport?travel/dt:0;
- const phase=teleport?0:(previous.phase+travel*(options.motion==='ride'?3:3.8))%(Math.PI*2);
+ const phase=teleport?0:(previous.phase+travel*(options.motion==='ride'?3:4.6))%(Math.PI*2);
  const target=clamp(moving/.7,0,1),a=1-Math.exp(-dt*14),weight=teleport?0:previous.weight+(target-previous.weight)*a;
  const pose=poseAt(t,{...options,speed:moving,phase,weight});
  if(previous&&!teleport&&dt===0)return {...previous};
@@ -37,7 +39,7 @@ export function animatePerson(person,time,options={}){
  if(rig.version!==2){const p=poseAt(time,options);rig.arms[0].rotation.set(p.left,0,p.leftOut);rig.arms[1].rotation.set(p.right,0,p.rightOut);rig.head.rotation.set(p.headPitch,p.headTurn,0);return true;}
  rig.memory=advanceMotion(rig.memory,time,root.position,options);const p=rig.memory.pose;
  rig.arms[0].rotation.set(p.left,0,p.leftOut);rig.arms[1].rotation.set(p.right,0,p.rightOut);rig.head.rotation.set(p.headPitch,p.headTurn,0);
- for(let i=0;i<2;i++){const side=i?'right':'left';rig.elbows[i].rotation.x=p[side+'Elbow'];rig.legs[i].rotation.x=p[side+'Hip'];rig.knees[i].rotation.x=p[side+'Knee'];rig.ankles[i].rotation.x=p[side+'Ankle'];}
- rig.torso.rotation.x=p.lean;rig.torso.position.y=1.04+p.bob;root.userData.gesture=options.motion||'idle';return true;
+ for(let i=0;i<2;i++){const side=i?'right':'left';rig.elbows[i].rotation.x=p[side+'Elbow'];rig.legs[i].position.y=rig.dimensions?.hipHeight??.96;rig.legs[i].rotation.set(p[side+'Hip'],0,0);rig.knees[i].rotation.set(p[side+'Knee'],0,0);rig.ankles[i].rotation.set(p[side+'Ankle'],0,0);}
+ rig.torso.rotation.x=p.lean;rig.torso.position.y=1.04+p.bob;root.userData.gesture=options.motion||'idle';plantFeet(root,time,{ground:options.ground});return true;
 }
-export function inspectMotion(person){const rig=(person.root||person).guildRig,m=rig?.memory;return {rigVersion:rig?.version||1,jointed:rig?.version===2,motion:m?.motion||'idle',phase:m?.phase||0,weight:m?.weight||0,actualSpeed:m?.moving||0,knees:rig?.knees?.map(k=>k.rotation.x)||[],elbows:rig?.elbows?.map(k=>k.rotation.x)||[],pose:m?{...m.pose}:null};}
+export function inspectMotion(person){const rig=(person.root||person).guildRig,m=rig?.memory;return {rigVersion:rig?.version||1,jointed:rig?.version===2,feet:inspectFeet(person),proportions:rig?.dimensions||null,motion:m?.motion||'idle',phase:m?.phase||0,weight:m?.weight||0,actualSpeed:m?.moving||0,knees:rig?.knees?.map(k=>k.rotation.x)||[],elbows:rig?.elbows?.map(k=>k.rotation.x)||[],pose:m?{...m.pose}:null};}

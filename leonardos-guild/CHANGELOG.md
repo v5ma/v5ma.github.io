@@ -1,3 +1,7 @@
+# Grounded Actions v0.13.0
+
+Console LB tap-to-last-tool with retained hold wheel; adjusted original humanoid proportions; analytic leg IK and transient world-space stance contacts; optional seated WebXR theatre with tracked controllers and hand-pinch UI. Existing world, missions, saves, quiet audio and Classic/touch/keyboard remain. See GROUNDED-ACTIONS.md for exact controls, limits and evidence requirements. Hardware certification is not implied.
+
 # Stillwater Works v0.12.0
 
 The Drowned Workshop adds real hydraulic puzzle progression, draining/refilling water, shallow wading, instrument recovery and a one-time return report. Pool refraction, caustics, ripples and Fresnel shading use original GLSL and a bounded reusable scene target. Quiet audio, the safe-town/badlands rules, prior missions and saves remain.

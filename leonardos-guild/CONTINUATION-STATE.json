@@ -1,28 +1,21 @@
 {
   "schema_version": 1,
-  "recorded_on": "2026-09-13",
-  "purpose": "Documentation-only cross-chat continuation checkpoint; not imported by game runtime.",
+  "recorded_on": "2026-09-14",
+  "purpose": "Grounded Actions continuation, with earlier verified release evidence preserved as history.",
   "repository": "v5ma/v5ma.github.io",
   "game_path": "leonardos-guild/",
   "default_branch": "master",
   "master_observed_before_documentation": "a43d01ddd75ac7c07280e660f7dcba2282214c8f",
-  "start_here": "NEXT-SESSION.md",
+  "start_here": "GROUNDED-ACTIONS.md",
   "production_roadmap": "AAA-ROADMAP.md",
   "historical_checklist": "UPGRADE-CHECKLIST.md",
   "publication_record": "PUBLICATION.md",
-  "runtime_changes_in_this_handoff": false,
+  "runtime_changes_in_this_handoff": true,
   "release": {
-    "version": "0.12.0",
-    "name": "Stillwater Works",
-    "build": "guild-stillwater-20260913",
-    "verified_status": "published",
-    "pull_request": 140,
-    "merge_commit": "edd3f3c42c417b154a7f3d65e29def23ed633288",
-    "tested_feature_head": "8f2fcd735bb9709df3eab4ffe6407cab49826471",
-    "tested_merge_preview": "ef0169bec7a0b3e96406a9dc7cbead691703273a",
-    "tested_game_subtree": "e9369d1858aa784fc2b9b3b8b54d12c498f786fd",
-    "reconciled_head": "09b858b245387b7ecb5255987b6ac402395ba0dd",
-    "homepage": "https://v5ma.github.io/",
+    "version": "0.13.0",
+    "name": "Grounded Actions",
+    "build": "guild-grounded-20260914",
+    "verification_record": "Exact-source release PR artifacts and independent publication receipt; see PUBLICATION.md",
     "game_url": "https://v5ma.github.io/leonardos-guild/",
     "card_label": "Leonardo's Guild"
   },
@@ -89,7 +82,9 @@
     "music_stream_limit": 1,
     "water_references_request_game_code_not_image_generation": true,
     "publish_and_verify_requested_upgrades": true,
-    "preserve_existing_progress_and_siblings": true
+    "preserve_existing_progress_and_siblings": true,
+    "frequent_actions_on_direct_buttons": true,
+    "quest3_controller_and_hand_ui": true
   },
   "save_contract": {
     "main_key": "svgn.leonardos-guild.v1",
@@ -106,7 +101,7 @@
     "Free swimming, diving and boats",
     "Playable farmlands",
     "Town-wide floor-aware route-line planner",
-    "Finished professional animation and full foot IK",
+    "Professional retargeted animation, terrain-normal sole tilt and toe/heel articulation",
     "Full ranged/support enemy tactics",
     "Multiple playable protagonists",
     "Systemic police-star pursuit, stock trading, property purchases and armor progression",
@@ -114,19 +109,85 @@
     "Authoritative multiplayer, accounts or paid entitlements"
   ],
   "next_queue": [
-    {"id":"NEXT01","status":"open-validation","subject":"Owner playtest of published v0.12.0; no approval recorded"},
-    {"id":"NEXT02","status":"planned-validation","subject":"Pool/camera/input/audio/resource hardening; not confirmed defects"},
-    {"id":"NEXT03","status":"proposed-next-feature","subject":"Second sluice-linked basin or pressure-controlled physical route"},
-    {"id":"NEXT04","status":"planned","subject":"Town-wide floor-aware route graph and planner"},
-    {"id":"NEXT05","status":"planned","subject":"Distinct frontier enemy roles and optional adventures"},
-    {"id":"NEXT06","status":"planned","subject":"Authored house sample and durable outcomes before scaling"},
-    {"id":"NEXT07","status":"later-design","subject":"Peaceful farmland region; exact mechanics undecided"},
-    {"id":"NEXT08","status":"later-gated","subject":"Swimming/diving/boats only with implemented controls, movement and recovery"}
+    {
+      "id": "NEXT01",
+      "status": "open-validation",
+      "subject": "Owner playtest of published v0.12.0; no approval recorded"
+    },
+    {
+      "id": "NEXT02",
+      "status": "planned-validation",
+      "subject": "Pool/camera/input/audio/resource hardening; not confirmed defects"
+    },
+    {
+      "id": "NEXT03",
+      "status": "proposed-next-feature",
+      "subject": "Second sluice-linked basin or pressure-controlled physical route"
+    },
+    {
+      "id": "NEXT04",
+      "status": "planned",
+      "subject": "Town-wide floor-aware route graph and planner"
+    },
+    {
+      "id": "NEXT05",
+      "status": "planned",
+      "subject": "Distinct frontier enemy roles and optional adventures"
+    },
+    {
+      "id": "NEXT06",
+      "status": "planned",
+      "subject": "Authored house sample and durable outcomes before scaling"
+    },
+    {
+      "id": "NEXT07",
+      "status": "later-design",
+      "subject": "Peaceful farmland region; exact mechanics undecided"
+    },
+    {
+      "id": "NEXT08",
+      "status": "later-gated",
+      "subject": "Swimming/diving/boats only with implemented controls, movement and recovery"
+    }
   ],
   "verification_commands": {
     "model_from_repository_root": "npm --prefix leonardos-guild test",
     "http_from_repository_root": "python3 -m http.server 4173 --bind 127.0.0.1",
     "water_after_server_and_browser_setup": "python3 leonardos-guild/tests/water-browser.py",
     "environment_note": "Use workflow-pinned dependencies. Do not serve only the game directory for drivers requesting /leonardos-guild/."
+  },
+  "previous_release_checkpoint": {
+    "version": "0.12.0",
+    "name": "Stillwater Works",
+    "build": "guild-stillwater-20260913",
+    "verified_status": "published",
+    "pull_request": 140,
+    "merge_commit": "edd3f3c42c417b154a7f3d65e29def23ed633288",
+    "tested_feature_head": "8f2fcd735bb9709df3eab4ffe6407cab49826471",
+    "tested_merge_preview": "ef0169bec7a0b3e96406a9dc7cbead691703273a",
+    "tested_game_subtree": "e9369d1858aa784fc2b9b3b8b54d12c498f786fd",
+    "reconciled_head": "09b858b245387b7ecb5255987b6ac402395ba0dd",
+    "homepage": "https://v5ma.github.io/",
+    "game_url": "https://v5ma.github.io/leonardos-guild/",
+    "card_label": "Leonardo's Guild"
+  },
+  "xr_scope": {
+    "mode": "optional seated theatre",
+    "controller_tracking": true,
+    "hand_pointer_ui": true,
+    "room_scale_first_person": false,
+    "physical_quest3_verified": false
+  },
+  "current_slice": {
+    "roadmap": [
+      "NEXT01-feedback",
+      "NEXT02",
+      "C01",
+      "C02",
+      "F03"
+    ],
+    "document": "GROUNDED-ACTIONS.md",
+    "save_migration": false,
+    "owner_hardware_signoff": false
   }
 }
