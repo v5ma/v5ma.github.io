@@ -1,0 +1,16 @@
+name: Recover verified Aether 0.12.0 archive
+on:
+  push:
+    branches: [aether/fixture-repair-20260915]
+    paths: ['.github/workflows/aether-v012-archive-recovery.yml']
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  archive:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/fixture-repair-20260915'
+    uses: v5ma/v5ma.github.io/.github/workflows/aether-release-backup.yml@8cf16d464b4c3333f279d356a88020c1c738683d
+    with:
+      source: a6d0e27d349fc69c011a5130b7dff1b6da9f8af2
+      publication_run: '35032532869'
