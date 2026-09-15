@@ -47,7 +47,7 @@ export function createXRPanel({ui,actions,getState,consoleUI,exit}){
   }else{
    title='Leonardo\'s Guild';
    const mission=['mission-tag','mission-title','mission-description','context','toast'].map(id=>document.getElementById(id)?.innerText||'').join('\n');
-   text=`${s.mode} | Tool: ${s.resonance.tool} | Health: ${Math.round(s.health)}\nFlorins: ${s.credits} | Sling: ${s.resonance.ammo??s.resonance.loaded??'-'}\n${mission}`;
+   text=`${s.mode} | Tool: ${s.resonance.tool} | Health: ${Math.round(s.health)}\nFlorins: ${s.credits} | Sling: ${s.resonance.ready} ready / ${s.resonance.reserve} reserve\n${mission}`;
    items=controls();
   }
   const lines=words(text),textPages=Math.max(1,Math.ceil(lines.length/14))+(root?.querySelector('canvas')?1:0),pages=Math.max(1,Math.ceil(items.length/8));
