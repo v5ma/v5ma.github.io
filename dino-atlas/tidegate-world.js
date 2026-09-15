@@ -58,7 +58,7 @@ export function buildTidegate(scene,physics,state){
  // Gallery hugs the back half, leaving a readable double-height machine hall.
  solid(32,4.2,1.1,19,.25,5.8,palette.timber);rail(23,4,41,4,4.35);
  solid(45.5,4.15,1,6,.35,5,palette.timber);ramp(45.5,19,45.5,3.4,3.5,.15,4.35);
- solid(47.5,4.15,-3.5,10,.35,4,palette.timber);ramp(51.2,-2,51.2,14,3.2,4.35,8.45);solid(47,8.25,14,12,.4,4,palette.timber);
+ solid(47.5,4.15,-3.5,10,.35,4,palette.timber);ramp(51.2,-2,51.2,12,3.2,4.35,8.45);solid(47,8.25,14,12,.4,4,palette.timber);
  // Openings into the gallery are real doors on its east side.
  // Keep one upper entry clear by using a split wall at z=1 (above wall amended below).
  const roofGroup=new T.Group();root.add(roofGroup);roofs.push(roofGroup);

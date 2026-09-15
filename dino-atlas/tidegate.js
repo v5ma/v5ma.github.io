@@ -72,7 +72,7 @@ export async function bootTidegate(){
   uiClock+=dt;if(uiClock>.12){uiClock=0;ui();}if(xr.active){xr.position();xr.render();}else renderer.render(scene,camera);
  }
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();show('menu-dialog');notify('Graphics context interrupted. Your last Tidegate checkpoint is preserved; reload to restore rendering.');});
- const debug={get state(){return {build:TIDEGATE_BUILD,ready:true,started,paused:paused(),position:{...fleet.position},mode:fleet.mode,yaw,progress:JSON.parse(JSON.stringify(state)),candidate:candidate?.id||null,animals:animals.map(({x,z,mood,alert})=>({x,z,mood,alert})),xr:xr.snapshot(),drawCalls:renderer.info.render.calls};}};
+ const debug={get state(){return {build:TIDEGATE_BUILD,ready:true,started,paused:paused(),position:{...fleet.position},mode:fleet.mode,yaw,progress:JSON.parse(JSON.stringify(state)),candidate:candidate?.id||null,animals:animals.map(({species,x,z,mood,alert})=>({id:species,x,z,mood,alert})),xr:xr.snapshot(),drawCalls:renderer.info.render.calls};}};
  if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{xr,world,camera,renderer,physics,fleet,input,tools,animals,progress:state,show,action});window.__tidegate=debug;window.__dinoRanger={get state(){return {...debug.state,tool:tools.tool.id,ammo:[...state.ammo],reloading:tools.reloadLeft};}};
  $('start-button').disabled=false;$('start-button').textContent=state.position||state.gearbox?'Continue Tidegate Crossing':'Enter Tidegate Crossing';$('load-status').textContent='Ready. A selects; Settings offers first-person VR, VR diorama and AR diorama.';$('start-button').focus({preventScroll:true});ui();renderer.setAnimationLoop(frame);
 }

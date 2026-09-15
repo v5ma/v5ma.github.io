@@ -10,7 +10,7 @@ BASE=os.getenv('DINO_TEST_BASE','http://127.0.0.1:4173/dino-atlas/').rstrip('/')
 server=None
 if BASE.startswith('http://127.0.0.1'):
  server=subprocess.Popen(['python','-m','http.server','4173','--bind','127.0.0.1'],cwd=ROOT,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(.4)
-PAD="""window.__pad={id:'Tidegate synthetic Xbox',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({value:0,pressed:false}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad],configurable:true});if(!localStorage.getItem('dino-atlas.progress.v1')){localStorage.setItem('dino-atlas.progress.v1','classic-sentinel');localStorage.setItem('dino-atlas.frontier.v2','frontier-sentinel');}"""
+PAD="""window.__caught=[];addEventListener('error',e=>__caught.push(e.error?.stack||e.message));window.__pad={id:'Tidegate synthetic Xbox',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({value:0,pressed:false}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad],configurable:true});if(!localStorage.getItem('dino-atlas.progress.v1')){localStorage.setItem('dino-atlas.progress.v1','classic-sentinel');localStorage.setItem('dino-atlas.frontier.v2','frontier-sentinel');}"""
 checks=[];errors=[];shader_errors=[];requests=[]
 def check(v,name):
  assert v,name
@@ -19,7 +19,7 @@ try:
  with sync_playwright() as pw:
   opts=dict(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
   if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
-  browser=pw.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1100,'height':820});ctx.add_init_script(PAD);page=ctx.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+  browser=pw.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1100,'height':820});ctx.add_init_script(PAD);page=ctx.new_page();page.on('pageerror',lambda e:errors.append(e.stack or str(e)))
   page.on('console',lambda m:shader_errors.append(m.text) if m.type=='error' and ('shader' in m.text.lower() or 'webgl' in m.text.lower()) else None)
   page.on('response',lambda r:requests.append({'url':r.url,'status':r.status}) if r.status>=400 else None)
   def wait(e,t=90000):page.wait_for_function(e,timeout=t)
@@ -36,8 +36,11 @@ try:
   def choose(id):focus(id);press(0)
   def snap(name):page.screenshot(path=str(OUT/name),timeout=45000)
   def walk(x,z):
+   print('WALK:',x,z,flush=True)
    page.evaluate('''([x,z])=>{clearInterval(window.__walkTimer);window.__walkArrived=false;window.__walkTimer=setInterval(()=>{const s=__tidegate.state,p=s.position,dx=x-p.x,dz=z-p.z,d=Math.hypot(dx,dz);if(d<.75){__pad.axes[0]=__pad.axes[1]=0;__walkArrived=true;clearInterval(__walkTimer);return;}const c=Math.cos(s.yaw),q=Math.sin(s.yaw);__pad.axes[0]=(dx*c-dz*q)/d;__pad.axes[1]=(dx*q+dz*c)/d;},32);}''',[x,z])
-   try:wait('__walkArrived',120000)
+   try:
+    wait('__walkArrived||__caught.length',120000)
+    assert not page.evaluate('__caught'),page.evaluate('__caught')
    finally:page.evaluate('clearInterval(__walkTimer);__pad.axes[0]=__pad.axes[1]=0;')
    page.wait_for_timeout(100)
   def route(points):
