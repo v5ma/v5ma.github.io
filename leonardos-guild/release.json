@@ -146,7 +146,7 @@
     "placement": "Optional AR hit test with explicit manual fallback",
     "firstPerson": "Metric stereo view, snap turning, stable head origin and clipping guard"
   },
-  "publicationStatus": "local-candidate-not-published",
+  "publicationStatus": "candidate-native-acceptance-in-progress",
   "refinement": {
     "roadmapItems": [
       "NEXT02",
@@ -167,7 +167,7 @@
       "headset-overlay input suppression",
       "focus-following XR menu pages"
     ],
-    "handoff": "REFINEMENT-HANDOFF-20260915.md",
+    "handoff": "WATERWHEEL-QUARTER.md",
     "status": "Recovered into this candidate; native acceptance pending"
   },
   "quarter": {

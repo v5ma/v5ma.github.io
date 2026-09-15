@@ -20,7 +20,7 @@ with sync_playwright() as p:
   r=page.locator(sel).bounding_box();return [r['x']+r['width']/2,r['y']+r['height']/2]
  def fingers(kind,*pts):cdp.send('Input.dispatchTouchEvent',{'type':kind,'touchPoints':list(pts)})
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').tap();ticks()
+  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');page.locator('#start').tap();ticks()
   page.locator('#touch-ride').tap();page.wait_for_function('LeonardoGuild.inspect().mode==="foot"');ticks()
   check(page.locator('[data-action="attack"]').is_visible() and page.locator('[data-hold="guard"]').is_visible(),'Dismounting with touch reveals the staff and brace controls')
   check(len([e for e in read()['events'] if e['type']=='exit'])==1,'One tap dismounts once without a duplicate click remount')

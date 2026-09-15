@@ -13,7 +13,16 @@ def check(v,text):
  checks.append(text);print('PASS:',text,flush=True)
 def frames(n=4):page.evaluate('(n)=>new Promise(resolve=>{let i=0;function f(){if(++i>=n)resolve();else requestAnimationFrame(f);}requestAnimationFrame(f);})',n)
 def press(button):
- page.evaluate('(button)=>new Promise(resolve=>{const p=__testPad,set=v=>p.buttons=Array.from({length:17},(_,i)=>({pressed:i===v,value:i===v?1:0}));set(button);requestAnimationFrame(()=>{set(-1);requestAnimationFrame(()=>requestAnimationFrame(resolve));});})',button);frames(3)
+ # Ordinary actions wait for the real Gamepad poll to observe press/release.
+ # LB alone retains a short tap so this test does not turn a tap into a hold.
+ if button==4:
+  page.evaluate('(button)=>new Promise(resolve=>{const p=__testPad,set=v=>p.buttons=Array.from({length:17},(_,i)=>({pressed:i===v,value:i===v?1:0}));set(button);requestAnimationFrame(()=>{set(-1);requestAnimationFrame(()=>requestAnimationFrame(resolve));});})',button)
+ else:
+  page.evaluate('(b)=>__testPad.buttons=Array.from({length:17},(_,i)=>({pressed:i===b,value:i===b?1:0}))',button)
+  page.wait_for_function('(b)=>LeonardoGuild.inspect().controller.buttons[b]',arg=button)
+  page.evaluate('__testPad.buttons=Array.from({length:17},()=>({pressed:false,value:0}))')
+  page.wait_for_function('(b)=>!LeonardoGuild.inspect().controller.buttons[b]',arg=button)
+ frames(3)
 def choose(selector):
  for _ in range(45):
   if page.evaluate('(selector)=>document.activeElement===document.querySelector(selector)',selector):press(0);return
@@ -70,6 +79,7 @@ with sync_playwright() as p:
   check(read()['audio']['preferences']['density']=='quiet' and read()['audio']['musicVoices']<=1,'Quiet audio and the single-score-stream policy remain intact')
   check(not errors,'No captured native JavaScript or shader compilation errors')
  finally:
-  try:page.screenshot(path=str(OUT/'final.png'))
+  try:
+   (OUT/'last-state.json').write_text(json.dumps(read(),indent=2));page.screenshot(path=str(OUT/'final.png'))
   except:pass
   (OUT/'report.json').write_text(json.dumps({'route':ROUTE,'checks':checks,'errors':errors,'captures':captures,'input':'Fresh save; standard virtual Xbox input only. No actor, quest, money, clock or focus mutation. Native WebGL, not physical Xbox/Quest.'},indent=2));browser.close()

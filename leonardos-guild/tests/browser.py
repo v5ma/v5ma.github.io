@@ -59,13 +59,13 @@ with sync_playwright() as p:
   page.wait_for_function('document.querySelector("article.leonardo img")?.naturalWidth>0')
   check(card.locator('img').evaluate('(img)=>img.complete&&img.naturalWidth>0'),'The card shows an actual rendered game capture')
   page.screenshot(path=str(OUT/'00-homepage.png'));card.locator('a.primary-link').click();page.wait_for_function('window.LeonardoGuild')
-  check('/leonardos-guild/?district=legacy' in page.url,'The homepage card opens the independently hosted browser game')
+  check('/leonardos-guild/' in page.url,'The homepage card opens the independently hosted browser game')
   check(read(page)['version']==json.loads((ROOT/'release.json').read_text())['version'],'The isolated Leonardo’s Guild application matches its release version')
-  check(read(page)['render']['triangles']>50000,'Native WebGL draws the actual city geometry')
+  check(read(page)['quarter']['active'] and read(page)['render']['quarter']['physicalScene'],'The homepage opens the authored Quarter using actual scene geometry')
   page.screenshot(path=str(OUT/'01-sunrise-title.png'))
   # User-accessible low-power mode and a smaller window, not faster simulation.
-  page.goto(BASE+'/leonardos-guild/index.html?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
-  page.set_viewport_size({'width':960,'height':640});page.locator('#start').click();page.locator('#world').focus()
+  page.goto(BASE+'/leonardos-guild/index.html?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
+  check(read(page)['render']['triangles']>50000,'Native WebGL retains the actual older city geometry');page.set_viewport_size({'width':960,'height':640});page.locator('#start').click();page.locator('#world').focus()
   for z,completed in [(16,0),(53,2)]:
    drive(page,2,z)
    page.keyboard.press('KeyQ');page.wait_for_function('(n)=>LeonardoGuild.inspect().deliveries.length===n',arg=completed+1,timeout=30000)

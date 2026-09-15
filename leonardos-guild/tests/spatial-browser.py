@@ -60,12 +60,12 @@ with sync_playwright() as p:
   page.locator('#guild-xr-enter').click();page.wait_for_function('LeonardoGuild.inspect().xr.presenting');frames(8)
   check(read()['xr']['mode']=='diorama-vr' and read()['xr']['spatial']['renderedEyes']==2,'VR diorama renders the actual shared district with both headset cameras')
   check(not read()['xr']['spatial']['worldIsTexture'] and read()['xr']['spatial']['geometryDraws']>3,'The miniature is geometry, not the old flat theatre screen')
-  capture('diorama-title');dom('#start');check(read()['running'],'Tracked pointer starts the same campaign inside the miniature');frames(8)
+  page.evaluate('__xr.pitch=-.42');frames(5);capture('diorama-title');page.evaluate('__xr.pitch=0');dom('#start');check(read()['running'],'Tracked pointer starts the same campaign inside the miniature');frames(8)
   before=read();page.evaluate('__xr.head.x=.15;__xr.yaw=.18');frames(12)
   check(abs(read()['x']-before['x'])<1e-7 and abs(read()['z']-before['z'])<1e-7,'Leaning and looking around the miniature do not move the apprentice')
   page.evaluate('__xr.head.x=0;__xr.yaw=0');panel_key('presentation');page.wait_for_selector('#guild-spatial-options[open]');before=read()
   for action,expected in [('aperture-overhead',{'topOpen':True,'frontOpen':False}),('aperture-front',{'topOpen':False,'frontOpen':True}),('aperture-corner',{'topOpen':True,'frontOpen':True})]:
-   dom('[data-spatial-action="'+action+'"]');frames(5);check(read()['xr']['spatial']['faces']==expected,'Actual renderer accepts '+action+' without closing both faces');capture(action)
+   dom('[data-spatial-action="'+action+'"]');frames(5);check(read()['xr']['spatial']['faces']==expected,'Actual renderer accepts '+action+' without closing both faces');page.evaluate('__xr.pitch=-.42');frames(5);capture(action);page.evaluate('__xr.pitch=0');frames(3)
   for action in ['toggle-top','toggle-front','toggle-top','scale-up','raise','rotate-right','nearer']:
    dom('[data-spatial-action="'+action+'"]');frames(3);faces=read()['xr']['spatial']['faces'];check(faces['topOpen'] or faces['frontOpen'],'The '+action+' action retains an opening')
   check(read()['x']==before['x'] and read()['z']==before['z'] and read()['credits']==before['credits'] and read()['mission']==before['mission'],'Apertures, scale, height and rotation leave world position and progression unchanged')

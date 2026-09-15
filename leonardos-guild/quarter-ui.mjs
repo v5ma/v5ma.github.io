@@ -1,6 +1,7 @@
 import {inQuarter,quarterEnter,quarterAct,quarterChoices,nearbyQuarter,quarterText} from './quarter-core.mjs';
 import {QUARTER_GATE,QUARTER_FLOORS,QUARTER_SITES} from './quarter-data.mjs';
 export function createQuarterUI({getState,setPause,save,onTransition}){
+ const legacyButtons=new Map();let uiActive=false;
  const d=document.createElement('dialog');d.id='quarter-dialog';d.setAttribute('aria-label','Waterwheel Quarter');document.body.append(d);d.addEventListener('close',()=>setPause(false));
  function show(site){const s=getState();d.replaceChildren();const title=document.createElement('h2'),text=document.createElement('p'),feedback=document.createElement('p');title.textContent=site?.name||'Waterwheel Quarter';text.textContent=inQuarter(s)?quarterText(s).text:'The new Waterwheel Quarter begins beside Leonardo\'s workshop. Your earlier commissions, vehicles and saved rewards remain in this town.';feedback.id='quarter-feedback';feedback.setAttribute('role','status');d.append(title,text,feedback);
   const choices=inQuarter(s)?site?quarterChoices(s,site.id):[['overview','Three approaches: cooperation, roofs, or sluices']]:[['enter','Enter the Waterwheel Quarter']];
@@ -9,6 +10,13 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
  }
  function interact(){const s=getState();if(inQuarter(s)){show(nearbyQuarter(s)[0]);return true;}if(s.frontier?.zone==='town'&&s.mode==='foot'&&Math.hypot(s.x-QUARTER_GATE.x,s.z-QUARTER_GATE.z)<4&&!s.life.inside&&!s.doors.level){show();return true;}return false;}
  function drawMap(canvas,full){const s=getState();if(!inQuarter(s))return false;const g=canvas.getContext('2d'),W=canvas.width,H=canvas.height,scale=Math.min((W-24)/54,(H-45)/52),X=x=>(x+28)*scale+12,Z=z=>(z+18)*scale+25;g.fillStyle='#213e42';g.fillRect(0,0,W,H);for(const f of QUARTER_FLOORS){g.fillStyle=f.y>1?'#ae8857':f.y<0?'#497d80':'#c8b68d';g.fillRect(X(f.x1),Z(f.z1),(f.x2-f.x1)*scale,(f.z2-f.z1)*scale);g.strokeStyle='#203c3c';g.strokeRect(X(f.x1),Z(f.z1),(f.x2-f.x1)*scale,(f.z2-f.z1)*scale);}g.fillStyle='#fff3b8';g.beginPath();g.arc(X(s.x),Z(s.z),4,0,7);g.fill();if(full){g.font='12px sans-serif';g.fillText('WATERWHEEL QUARTER / ROOFS, COURT AND CHANNEL',12,16);for(const p of QUARTER_SITES){g.fillText(p.id,X(p.x)+4,Z(p.z)-4);}g.fillText('Gold: above. Teal: below. Footprints overlap on different floors.',12,H-12);}return true;}
- function update(){const s=getState();if(inQuarter(s)){const p=nearbyQuarter(s)[0];document.getElementById('context').textContent=p?'X / '+p.name:'Follow the workshop, drying roofs or service-channel connections. X inspects nearby.';document.getElementById('duel').hidden=true;}else if(Math.hypot(s.x-QUARTER_GATE.x,s.z-QUARTER_GATE.z)<7&&s.frontier?.zone==='town')document.getElementById('context').textContent='New Waterwheel Quarter / stop on foot near the workshop and press X.';}
+ function update(){const s=getState(),isQuarter=inQuarter(s);
+  if(isQuarter!==uiActive){uiActive=isQuarter;if(isQuarter){for(const id of ['street-open','city-open','doors-open']){const b=document.getElementById(id);if(b){legacyButtons.set(b,b.onclick);b.onclick=()=>show(nearbyQuarter(getState())[0]);}}}else{for(const [b,handler]of legacyButtons)b.onclick=handler;legacyButtons.clear();}}
+  if(isQuarter){
+   const badge=document.getElementById('region-badge');if(badge)badge.textContent='WATERWHEEL QUARTER / SAFE VINCI';
+   const work=document.getElementById('street-open');if(work)work.textContent=s.quarter.reported?'Quarter commission returned':'The Missing Commission / X';
+   const nearby=document.getElementById('city-open');if(nearby)nearby.textContent='Quarter people and work / X';
+   const direction=document.getElementById('city-direction');if(direction)direction.hidden=true;
+const p=nearbyQuarter(s)[0];document.getElementById('context').textContent=p?'X / '+p.name:'Follow the workshop, drying roofs or service-channel connections. X inspects nearby.';document.getElementById('duel').hidden=true;}else if(Math.hypot(s.x-QUARTER_GATE.x,s.z-QUARTER_GATE.z)<7&&s.frontier?.zone==='town')document.getElementById('context').textContent='New Waterwheel Quarter / stop on foot near the workshop and press X.';}
  return {interact,open:()=>show(nearbyQuarter(getState())[0]),close(){if(!d.open)return false;d.close();return true;},drawMap,update,inspect:()=>({open:d.open,nearby:nearbyQuarter(getState()).map(p=>p.id)})};
 }

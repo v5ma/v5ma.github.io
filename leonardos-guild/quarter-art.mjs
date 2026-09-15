@@ -13,8 +13,22 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
  function box(x,y,z,w,h,d,mat='wood'){const o=new T.Mesh(unitBox,materials[mat]||mat);o.position.set(x,y,z);o.scale.set(w,h,d);o.castShadow=true;o.receiveShadow=true;root.add(o);return o;}
  function cylinder(x,y,z,r,h,mat='wood'){const o=new T.Mesh(unitCylinder,materials[mat]||mat);o.position.set(x,y,z);o.scale.set(r,h,r);o.castShadow=true;root.add(o);return o;}
  function rod(a,b,width=.09,mat='wood'){const A=new T.Vector3(...a),B=new T.Vector3(...b),v=B.clone().sub(A),o=new T.Mesh(unitCylinder,materials[mat]);o.position.copy(A.add(B).multiplyScalar(.5));o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.clone().normalize());o.scale.set(width,v.length(),width);root.add(o);return o;}
- function label(text,x,y,z,size=3){const c=document.createElement('canvas');c.width=768;c.height=128;const g=c.getContext('2d');g.fillStyle='#253c38';g.fillRect(0,0,768,128);g.strokeStyle='#d3b47b';g.lineWidth=5;g.strokeRect(5,5,758,118);g.fillStyle='#fff0c8';g.font='bold 32px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(text,384,64,720);const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;const o=new T.Mesh(new T.PlaneGeometry(size,size/6),new T.MeshBasicMaterial({map:texture,side:T.DoubleSide,toneMapped:false}));o.position.set(x,y,z);root.add(o);return o;}
+ function label(text,x,y,z,size=3){const c=document.createElement('canvas');c.width=768;c.height=128;const g=c.getContext('2d');g.fillStyle='#253c38';g.fillRect(0,0,768,128);g.strokeStyle='#d3b47b';g.lineWidth=5;g.strokeRect(5,5,758,118);g.fillStyle='#fff0c8';g.font='bold 32px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(text,384,64,720);const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;const o=new T.Mesh(new T.PlaneGeometry(size,size/6),new T.MeshBasicMaterial({map:texture,side:T.FrontSide,toneMapped:false}));o.position.set(x,y,z);const reverse=new T.Mesh(o.geometry,o.material);reverse.rotation.y=Math.PI;reverse.position.z=-.012;o.add(reverse);root.add(o);return o;}
  const floorMeshes=new Map(),wallMeshes=new Map(),water=[];
+ // A masonry bed joins the district into one place rather than floating decks.
+ // Its surface stays below all authorized floors; it creates no walkable route.
+ box(-2,-4.08,6.5,54,.42,51,'stone');
+ for(const [x,z,w,d] of [[-27,6,1,40],[23,6,1,40],[-2,30,48,1]])box(x,-2.2,z,w,3.5,d,'stone');
+ // Boundary gardens and buttresses sit outside reachable floor footprints.
+ for(const [x,z]of [[-27.1,-10],[-27.1,5],[-27.1,19],[23.2,-11],[23.2,8],[20.5,24]]){
+  box(x,-.28,z,.8,.5,1.4,'stone');cylinder(x,.22,z,.22,.6,'wood');
+  const crown=new T.Mesh(new T.IcosahedronGeometry(.62,1),new T.MeshStandardMaterial({color:'#69856a',roughness:1}));crown.position.set(x,.98,z);root.add(crown);
+ }
+ // The three households advertise their work through tools and circulation.
+ for(const z of [-10,-6]){box(21.78,2.15,z,.12,1.2,.95,'dark');box(21.67,2.15,z,.05,1.02,.08,'cream');}
+ for(const z of [3,9,15,21])box(-26.2,-.6,z,.35,4.6,.42,'stone');
+ for(const z of [5,9,13,17,21,25]){box(4.3,-1.88,z,.25,1.55,2.5,'stone');}
+
  for(const f of QUARTER_FLOORS){
   const w=f.x2-f.x1,d=f.z2-f.z1,cx=(f.x1+f.x2)/2,cz=(f.z1+f.z2)/2,geo=new T.BoxGeometry(w,.24,d),pos=geo.attributes.position;
   for(let i=0;i<pos.count;i++){const z=pos.getZ(i)+cz;pos.setY(i,pos.getY(i)-.12+surfaceY(f,z));}geo.computeVertexNormals();const mesh=new T.Mesh(geo,materials[f.kind]);mesh.position.set(cx,0,cz);mesh.receiveShadow=true;root.add(mesh);floorMeshes.set(f.id,mesh);
@@ -26,7 +40,7 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
   // collision is the exact disk-supported floor union, not a hidden wall.
   for(const [a,b]of [[[f.x1,f.z1],[f.x2,f.z1]],[[f.x2,f.z1],[f.x2,f.z2]],[[f.x2,f.z2],[f.x1,f.z2]],[[f.x1,f.z2],[f.x1,f.z1]]]){
    const len=Math.hypot(b[0]-a[0],b[1]-a[1]),N=Math.ceil(len/1.6),nx=(b[1]-a[1])/len,nz=-(b[0]-a[0])/len;
-   for(let j=0;j<N;j++){const t=(j+.5)/N,x=a[0]+(b[0]-a[0])*t,z=a[1]+(b[1]-a[1])*t,y=surfaceY(f,z),outside=quarterSurface(x+nx*.18,z+nz*.18,y);if(outside&&Math.abs(outside.y-y)<.35)continue;if(y<.1)continue;
+   for(let j=0;j<N;j++){const t=(j+.5)/N,x=a[0]+(b[0]-a[0])*t,z=a[1]+(b[1]-a[1])*t,y=surfaceY(f,z),outside=quarterSurface(x+nx*.18,z+nz*.18,y);if(outside&&Math.abs(outside.y-y)<.35)continue;if(y<-.1)continue;
     box(x,y+.47,z,.065,.94,.065,'dark');const x1=a[0]+(b[0]-a[0])*j/N,z1=a[1]+(b[1]-a[1])*j/N,x2=a[0]+(b[0]-a[0])*(j+1)/N,z2=a[1]+(b[1]-a[1])*(j+1)/N;rod([x1,surfaceY(f,z1)+.83,z1],[x2,surfaceY(f,z2)+.83,z2],.04,'wood');
    }
   }
