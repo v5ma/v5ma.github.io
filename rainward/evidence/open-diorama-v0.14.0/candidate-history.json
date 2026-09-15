@@ -1,0 +1,70 @@
+{
+  "release": "0.14.0",
+  "edition": "Open Diorama",
+  "build": "rainward-open-diorama-20260915",
+  "record_kind": "Candidate and correction history, not a publication receipt",
+  "release_pr": "https://github.com/v5ma/v5ma.github.io/pull/154",
+  "owner_brief": {
+    "filename": "Pasted text(20260915-173014).txt",
+    "sha256": "b7b3d4870d5e88471d396a7a13382b5ab5572aa7110d331af17ace4ae5468c17",
+    "application": "LEVEL-DESIGN.md retains experience spine, wide-linear alternatives, observation, loops, retreat, environmental causality, contrast and graybox testing before final detail. Only the Floodgate clinic-market seam is implemented; the other chapter replacement briefs remain planned."
+  },
+  "recovered_quest_source": "6947f5ff5a249cd1aaf96fd7bf951e31a2330f08",
+  "first_spatial_source": "844b42c782869e0ccda2cd14f89e1f82e4df6b04",
+  "native_entry_failure": {
+    "run": 35015900196,
+    "artifact": 10415587394,
+    "archive_sha256": "ca07141578decff77bf718bf7dafb2bad8fd19c13f38379e39c45f59e192e276",
+    "result": "failed",
+    "cause": "The pause-view select was inserted before a nested button using the wrong DOM parent, producing NotFoundError before XR entry.",
+    "correction": "Use the entry button's actual parent and assert a non-fatal title before entry. No assertion was removed."
+  },
+  "first_automated_spatial_acceptance": {
+    "tested_checkout": "0e5ac7cce0971148fba861934b3166762ee77883",
+    "run": 35016997714,
+    "artifact": 10417156212,
+    "archive_sha256": "3d2bf22ad075a293828bc34c6bd622c88e0edd582137ea48265eb233eb96ce96",
+    "model_source_tests": 322,
+    "uncommitted_diff_bytes": 0,
+    "browser_checks": {"vr_controllers": 28, "vr_hands": 28, "ar_controllers": 26, "ar_hands": 26, "clinic_recut": 15},
+    "browser_errors": [],
+    "shader_errors": [],
+    "visual_review": "Requires correction, despite automated passes. Existing roofs/foreground facades obscured the survivor in open miniature views; oversized terrace signs and a duplicate generic task label obstructed the over-shoulder camera. This was not final-art approval."
+  },
+  "image_review_revision": {
+    "manual_commit": "728286c958c174b80bb1a45f9023d3ed4b837ddb",
+    "integrated_checkout": "973f144e3afc3bde7c88917c5a6365191e4cd230",
+    "run": 35020250059,
+    "model_source_tests": 324,
+    "corrections": [
+      "Open top/front also cut away corresponding world presentation, without changing gameplay collision or detection.",
+      "Zoom and submerged focus retain the survivor inside the display's vertical range.",
+      "Lower/smaller terrace signs, a single authored latch marker and a folded open shutter clear the over-shoulder view.",
+      "Native diorama cases add finite firing/reload and survivor-origin trace assertions.",
+      "Inactive stored diorama preferences no longer suppress ordinary desktop underwater fog.",
+      "A snap-turn frame suppresses firing so it cannot use a stale pre-turn aim ray."
+    ],
+    "native_acceptance": "Consult this run and the final PR checks; this candidate history does not predeclare a result."
+  },
+  "retained_station_failure": {
+    "source": "6947f5ff5a249cd1aaf96fd7bf951e31a2330f08",
+    "run": 35008883169,
+    "artifact": 10412668821,
+    "archive_sha256": "70f8fe92fdf85a26d7a28f0f9f74afc50a8f79130d7a4468dac3e6f20f552639",
+    "cause": "The driver stopped at z=-62.400099 while the exit is at -65, outside the actual 2.4-unit interaction radius; an ineffective E press was followed by a player death.",
+    "correction": "Walk to -64 and assert physical proximity before pressing E. Enemy statistics, damage, resources and extraction gates are unchanged."
+  },
+  "local_navigation_failure": {
+    "result": "Retained failed west-ramp path test",
+    "correction": "The old west-ruin footprint blocked the intended new approach. Its authored collapsed end was shortened to make a real route; no teleport or collision bypass was added."
+  },
+  "local_browser_boundary": "Local browser navigation was blocked by net::ERR_BLOCKED_BY_ADMINISTRATOR. No policy bypass was attempted. Native acceptance uses authorized GitHub Actions Chromium and real HTTP/WebGL.",
+  "preservation": "Seven existing chapter slots and identities, all original required objectives, stable shelters, v1-v4 checkpoints, chapter banks, finite resources, Xbox presets, original art/audio and licenses remain. Only the first clinic-market graybox seam is redesigned. Presentation preferences are separate from saves.",
+  "evidence_boundaries": [
+    "XR acceptance uses mock session, head/controller/hand poses and buttons with the real browser, renderer and game. It is not physical Quest 3 or real-camera passthrough proof.",
+    "The clinic route fixture has defeated enemies to isolate collision, gate, camera and save behavior. Living-enemy mission acceptance is separately retained.",
+    "AR placement is recenterable reference-space placement, not a surface hit test, persistent room anchor or real-room depth occlusion.",
+    "No physical Quest/Xbox, subjective art/audio, unfamiliar-player pacing, comfort, frame-rate or AAA approval is implied."
+  ],
+  "release_gate": "Remove temporary write-enabled assembly tooling, run exact-source permanent regression, inspect native captures, merge without dropping concurrent work, publish, then compare actual public bytes before claiming delivery."
+}

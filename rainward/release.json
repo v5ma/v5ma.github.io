@@ -1,14 +1,16 @@
 {
-  "version": "0.13.1",
-  "build": "rainward-clear-water-20260913",
+  "version": "0.14.0",
+  "build": "rainward-open-diorama-20260915",
   "stage": "expanded survival-stealth prototype",
-  "xr": "experimental-stationary-overlook",
+  "xr": "experimental-first-person-and-stereo-vr-ar-diorama",
   "multiplayer": false,
   "changes": [
-    "Show Survival HOLD B DIVE, Classic B DIVE and keyboard Z DIVE with the correct surface control",
-    "Add a textual low-air warning, bounded accessible oxygen meter and a non-flashing low-air border",
-    "Add normal-start living-enemy Xbox-standard Natatorium journeys with finite-ammo combat, reload, physical puzzle and extraction",
-    "Extend isolated water acceptance for preset changes, keyboard fallback, reconnect, natural exhaustion, recovery and shelter retry",
-    "Preserve all seven chapters, save keys and formats, water physics, enemy difficulty, finite inventory, art and soundtrack"
+    "Retain playable first-person Quest VR with tracked controllers and hand tracking",
+    "Add third-person AR and VR dioramas of the actual world, not a flat theatre or separate game",
+    "Enforce three valid top/front shell states, with bounded zoom, recentering and optional content follow",
+    "Keep spectator head motion separate from character locomotion and preserve native gameplay rules",
+    "Replace the Floodgate clinic-market seam with a continuous raised route, new clinic opening and saved inside-unlocked return shutter",
+    "Preserve all seven expedition slots, old checkpoint formats, objectives, finite resources, Xbox layouts, original art/audio and licenses",
+    "Adopt an experience-spine and graybox-first level-design contract; remaining chapter replacements and physical-device approval stay open"
   ]
 }

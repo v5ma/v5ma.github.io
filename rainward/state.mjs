@@ -4,7 +4,7 @@ import {validTaskSave} from './field-tasks.mjs';
 import {enemyProfile} from './enemy-types.mjs';
 import {puzzleSolved} from './puzzle-guide.mjs';
 import {syncDrops} from './rewards.mjs';
-import {levelHeight,CURRENT,LEVELS,useLevel,syncGates,heightAt,START,BOUNDS,OBSTACLES,ITEMS,SHELTERS,EXIT,PATROLS,HEIGHT,RAD,clamp,dist,inside,solidAt,rayBox,obstruction,coverAt,findPath} from './world.mjs';
+import {levelHeight,CURRENT,LEVELS,useLevel,syncGates,syncRouteGates,heightAt,START,BOUNDS,OBSTACLES,ITEMS,SHELTERS,EXIT,PATROLS,HEIGHT,RAD,clamp,dist,inside,solidAt,rayBox,obstruction,coverAt,findPath} from './world.mjs';
 export {HEIGHT,EXIT,ITEMS,SHELTERS};
 export const forward=yaw=>({x:-Math.sin(yaw),z:-Math.cos(yaw)});
 const numeric=(x,min,max)=>typeof x==='number'&&Number.isFinite(x)&&x>=min&&x<=max;
@@ -31,7 +31,7 @@ export function restore(raw,activate=true){
    for(const [id,cap,res]of [['pistol',6,36],['rifle',5,18]])if(!Number.isInteger(d.arsenal?.[id]?.mag)||!numeric(d.arsenal[id].mag,0,cap)||!Number.isInteger(d.arsenal?.[id]?.reserve)||!numeric(d.arsenal[id].reserve,0,res))return null;
    if(d.arsenal[d.gun].mag!==d.player.mag||d.arsenal[d.gun].reserve!==d.player.reserve)return null;}
   if(!validFieldNotes(level,d.fieldNotes||[],d.guideRoute||null))return null;
-  const s=createGame(level,activate);s.fieldNotes=[...(d.fieldNotes||[])];s.guideRoute=d.guideRoute||null;s.completedTasks=[...completed];s.trackedTask=def.tasks?.some(t=>t.id===d.trackedTask)&&!completed.includes(d.trackedTask)?d.trackedTask:null;s.checkpoint=c.id;s.taken=new Set(d.taken);for(const k of Object.keys(limits))s.player[k]=d.player[k];Object.assign(s.player,{x:c.x,z:c.z,y:levelHeight(level,c.x,c.z)});
+  const s=createGame(level,activate);s.fieldNotes=[...(d.fieldNotes||[])];s.guideRoute=d.guideRoute||null;s.completedTasks=[...completed];s.trackedTask=def.tasks?.some(t=>t.id===d.trackedTask)&&!completed.includes(d.trackedTask)?d.trackedTask:null;s.checkpoint=c.id;if(activate)syncRouteGates(s.completedTasks);s.taken=new Set(d.taken);for(const k of Object.keys(limits))s.player[k]=d.player[k];Object.assign(s.player,{x:c.x,z:c.z,y:levelHeight(level,c.x,c.z)});
   if(d.version===4){s.player.arsenal=JSON.parse(JSON.stringify(d.arsenal));s.player.gun=d.gun;s.player.equipped=d.equipped;s.player.meleeWeapon=d.meleeWeapon;s.player.meleeDurability=d.meleeDurability;}
   s.objectives={cell:def.items.some(i=>i.objective==='cell'&&s.taken.has(i.id)),crank:def.items.some(i=>i.objective==='crank'&&s.taken.has(i.id))};
   if(def.puzzle){s.puzzle={wheels:[...d.puzzle.wheels],solved:puzzleSolved(def.puzzle,d.puzzle.wheels),clueRead:!!d.puzzle.clueRead};if(activate)syncGates(s.puzzle);}

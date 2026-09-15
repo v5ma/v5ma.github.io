@@ -1,3 +1,15 @@
+# Current release / Open Diorama v0.14.0
+
+Read DIORAMA.md for first-person VR, third-person VR Diorama and third-person AR Diorama, controller/hand entry and the three valid shell states. Read LEVEL-DESIGN.md for the new experience-spine/graybox-first replacement contract. The first implemented replacement is the Floodgate clinic-market seam, with a 2.4-metre terrace, new north opening and saved inside-unlocked yard shutter. The other six chapter redesigns remain planned, not completed. All original chapter slots, objectives, shelters and checkpoint formats remain.
+
+The earlier Quest Fieldwork text below describes the first-person component. Its statement excluding AR is superseded by DIORAMA.md. Physical Quest 3/Xbox, hand reliability, comfort, final art/audio and unfamiliar-player pacing gates remain unapproved. The release PR and evidence summary, not this document alone, establish publication.
+
+# Current release / Quest Fieldwork v0.14.0
+
+The owner selected playable Quest 3 XR as the next upgrade. Read [QUEST-FIELDWORK.md](QUEST-FIELDWORK.md) for entry, every tracked-controller button, hand pinch locomotion, immersive menus, and exact evidence boundaries. This replaces the paused overlook; it does not claim that unfinished character-motion work shipped. Existing desktop/Xbox play and all seven chapter saves are retained. Physical Quest 3 comfort, tracking and performance review remain open.
+
+The following earlier notes are retained historical context; their stationary-XR scope does not describe this release.
+
 # Rainward v0.13.1 / Clear Water
 
 Current upgrade: [CLEAR-WATER.md](CLEAR-WATER.md). Survival/Classic/keyboard water instructions are now preset-aware, with an accessible low-air recovery warning. The normal-start Natatorium controller journey and isolated exhaustion/retry checks are retained beside the existing test matrix. All seven chapters and existing saves remain supported.

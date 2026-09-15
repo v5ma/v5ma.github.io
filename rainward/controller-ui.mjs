@@ -4,7 +4,7 @@ export function createMenuNavigation(E){
  const memories=new Map(),repeat={y:{sign:0,time:0},x:{sign:0,time:0}};let lastRoot=null,focusedKey=null,usingPad=false;
  const selector='button:not(:disabled),a[href],input:not(:disabled),select:not(:disabled),summary,[tabindex="0"]';
  const root=()=>document.querySelector('.sheet:not([hidden])');
- const items=r=>r?[...r.querySelectorAll(selector)].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length>0):[];
+ const items=r=>r?[...r.querySelectorAll(selector)].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length>0&&!(document.body.classList.contains('immersive-rainward')&&(el.id.startsWith('xr-')||el.tagName==='A'))):[];
  const key=el=>el?.id||el?.dataset?.padKey||null;
  const reset=()=>{for(const v of Object.values(repeat)){v.sign=0;v.time=0;}};
  function focus(el,scroll=true){if(!el)return;document.querySelectorAll('.pad-focus').forEach(n=>n.classList.remove('pad-focus'));el.focus({preventScroll:true});if(usingPad)el.classList.add('pad-focus');focusedKey=key(el);if(lastRoot&&focusedKey)memories.set(lastRoot.id,focusedKey);if(scroll)el.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});}
