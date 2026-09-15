@@ -12,7 +12,7 @@ This follows the owner's guidance to reinforce routes with architecture and more
 
 ## Spatial controls and held actions
 
-Both tracked rays now have an endpoint cursor at the spatial panel, and the targeted row has a visible outline. Unavailable native controls retain their positions and are labeled UNAVAILABLE; they cannot be activated. Crafting displays its actual recipe percentage, a progress bar and RELEASE TO CANCEL guidance.
+Both tracked rays now have an endpoint cursor at the spatial panel, and the targeted row has a visible outline. The spatial reload row says RELOAD WEAPON instead of advertising the desktop-only LT + X chord; Quest left X still reloads directly. Unavailable native controls retain their positions and are labeled UNAVAILABLE; they cannot be activated. Crafting displays its actual recipe percentage, a progress bar and RELEASE TO CANCEL guidance.
 
 A spatial crafting hold belongs to the source that initiated it. Releasing or losing that hand/controller ends the hold even when another trigger remains pressed. Native A-button crafting is no longer sustained by unrelated trigger input. Mode changes, tracking loss and exit clear pointer ownership. Deliberate sustained crafting still consumes one recipe, and the game remains unpaused and vulnerable during the satchel action. No timing, inventory or refund rule is relaxed.
 

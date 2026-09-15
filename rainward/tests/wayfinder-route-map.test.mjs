@@ -13,3 +13,6 @@ test('Map routes use real navigation around the garden obstacles instead of stra
  assert.deepEqual(clinicMapSegments(state,'not-a-route'),[]);
  assert.deepEqual(clinicMapSegments({level:'natatorium'},'garden'),[]);
 });
+
+import {nativeLabel} from '../xr-panel.mjs';
+test('The immersive reload control never advertises the incompatible desktop LT plus X chord',()=>{assert.equal(nativeLabel({id:'pack-reload',tagName:'BUTTON',textContent:'RELOAD / LT + X'}),'RELOAD WEAPON');});

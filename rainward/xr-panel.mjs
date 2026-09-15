@@ -2,7 +2,7 @@
  * No DOM Overlay dependency and no screenshots used as buttons. */
 import * as T from './vendor/three.module.js';
 export function wrap(text,width=65){const lines=[];for(const para of String(text||'').split('\n')){let line='';for(const word of para.trim().split(/\s+/)){if(!word)continue;if((line+' '+word).length>width&&line){lines.push(line);line='';}line+=(line?' ':'')+word;}if(line)lines.push(line);}return lines;}
-export function nativeLabel(el){let label=el.labels?.[0]?.textContent||el.getAttribute?.('aria-label')||el.textContent||el.id||'';label=label.replace(/\s+/g,' ').trim();if(el.tagName==='SELECT')label=label.split('  ')[0].slice(0,45)+' : '+(el.selectedOptions[0]?.textContent||'');else if(el.type==='range')label+=' : '+el.value;else if(el.type==='checkbox')label=(el.checked?'[ON] ':'[OFF] ')+label;return label||el.id;}
+export function nativeLabel(el){if(el.id==='pack-reload')return 'RELOAD WEAPON';let label=el.labels?.[0]?.textContent||el.getAttribute?.('aria-label')||el.textContent||el.id||'';label=label.replace(/\s+/g,' ').trim();if(el.tagName==='SELECT')label=label.split('  ')[0].slice(0,45)+' : '+(el.selectedOptions[0]?.textContent||'');else if(el.type==='range')label+=' : '+el.value;else if(el.type==='checkbox')label=(el.checked?'[ON] ':'[OFF] ')+label;return label||el.id;}
 export function createXRPanel(E){
  const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=1024;const c=canvas.getContext('2d'),texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
  const mesh=new T.Mesh(new T.PlaneGeometry(1.45,1.45),new T.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthTest:false,depthWrite:false}));mesh.renderOrder=10000;
