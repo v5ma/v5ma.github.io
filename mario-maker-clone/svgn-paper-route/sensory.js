@@ -1,17 +1,25 @@
 /* Quiet Water: bounded sound and optional notices, using the original game and mixer. */
-import {STORE,sanitize,transientGain,createNoticeState,admitNotice,waterEvents,ambienceGain} from './sensory-core.mjs';
+import {STORE,sanitize,transientGain,createNoticeState,admitNotice,waterEvents,ambienceGain,noticePlacement} from './sensory-core.mjs';
 import {createWaterAudio} from './water-audio.mjs';
-let settings=sanitize(null),saveOK=true,epoch=0,previous=null,rig=null,rigContext=null,lastLevel=-1,lastCue=-Infinity,optionalVisible=false,disposed=false;
+let settings=sanitize(null),saveOK=true,epoch=0,previous=null,rig=null,rigContext=null,lastLevel=-1,lastCue=-Infinity,optionalVisible=false,disposed=false,lastNoticeLayout=0;
 const notice=createNoticeState(),counts={arrival:0,sluice:0,waterline:0},originalToast=window.toast;
 try{settings=sanitize(JSON.parse(localStorage.getItem(STORE)||'null'));}catch{saveOK=false;}
 const $=id=>document.getElementById(id);
 const onContextState=()=>{if(rigContext?.state!=='running')window.__score?.clearEffects?.();lastLevel=-1;sync();};
 const active=()=>typeof mode!=='undefined'&&mode==='play'&&!won&&!__delivery.paused&&!__delivery.state.menu&&!document.hidden;
+function placeNotice(){
+  const el=$('toast'),parent=el?.offsetParent;if(!el||!parent)return false;
+  const boxes=[...document.querySelectorAll('#bathhouse-objective,#bathhouse-use,#cloud-hud .cloud-flight-status')].filter(n=>!n.hidden&&n.getClientRects().length).map(n=>n.getBoundingClientRect());
+  const bottom=noticePlacement(parent.getBoundingClientRect(),el.getBoundingClientRect().height,boxes);
+  if(bottom===null){el.classList.remove('show');return false;}
+  el.style.setProperty('--sensory-notice-bottom',bottom+'px');el.style.bottom=bottom+'px';el.style.transition='none';return true;
+}
 function notify(message,options={}){
   const optional=options?.optional===true,key=options?.key??message;
   if(optional){if(!active()||!admitNotice(notice,key,performance.now(),settings))return false;}
   else notice.essentialUntil=performance.now()+2200;
-  optionalVisible=optional;originalToast?.(message);return true;
+  optionalVisible=optional;const el=$('toast');if(el){el.toggleAttribute('data-sensory-optional',optional);if(!optional){el.style.removeProperty('bottom');el.style.removeProperty('transition');}}originalToast?.(message);
+  if(optional&&!placeNotice()){notice.shown--;notice.suppressed++;return false;}return true;
 }
 window.toast=notify; // Unknown/legacy notices remain essential, including every save and input warning.
 function syncControls(){
@@ -38,6 +46,7 @@ function portalCue(tone){
 }
 function sync(){
   if(disposed)return;
+  if(optionalVisible&&$('toast')?.classList.contains('show')&&performance.now()-lastNoticeLayout>=160){lastNoticeLayout=performance.now();placeNotice();}
   const score=window.__score,state=window.SkyCycleBathhouse?.state;
   const sample={route:window.DeliveryCampaign?.routes[window.__delivery?.state.route]?.id,epoch,active:active(),opened:!!state?.opened,drain:state?.drain||0};
   const context=score?.context,level=ambienceGain(sample,settings,{muted:typeof muted==='undefined'||muted,effects:score?.prefs.effects??0,state:context?.state});

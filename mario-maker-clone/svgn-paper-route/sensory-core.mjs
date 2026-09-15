@@ -47,3 +47,11 @@ export function waterSamples(rate=12000) {
   for(let i=0;i<seam;i++){const gain=0.5-0.5*Math.cos(Math.PI*i/(seam-1));data[i]*=gain;data[n-1-i]*=gain;}
   return data;
 }
+
+export function noticePlacement(host, height, blockers) {
+  if(!host||![host.top,host.bottom,height].every(Number.isFinite)||height<=0)return null;
+  const tops=blockers.filter(r=>r&&Number.isFinite(r.top)&&r.height>0).map(r=>r.top);
+  if(!tops.length)return null;
+  const bottom=Math.ceil(Math.max(32,host.bottom-Math.min(...tops)+12));
+  return host.bottom-bottom-height>=host.top+8?bottom:null;
+}

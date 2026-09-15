@@ -7,3 +7,4 @@
 #sensory-settings select,#sensory-settings input{box-sizing:border-box;width:100%;min-height:38px;font:inherit;}
 #sensory-settings select{color:#f0f8fa;background:#17323e;border:1px solid #88b3ba;border-radius:5px;padding:8px;}
 #sensory-settings :focus-visible{outline:3px solid #bce9db;outline-offset:3px;}
+#toast[data-sensory-optional]{bottom:var(--sensory-notice-bottom,220px);max-width:calc(100% - 40px);box-sizing:border-box;transition:none;text-align:center;}
