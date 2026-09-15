@@ -1,0 +1,92 @@
+"""Native WebGL software XR-session emulation; no physical Quest certification.
+Only XR hardware poses/buttons and trusted XR-entry clicks are supplied. No live
+actor, quest, inventory, money, time or focus writes.
+"""
+from pathlib import Path
+import json,os,math
+from playwright.sync_api import sync_playwright
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'xr-output';OUT.mkdir(exist_ok=True)
+BASE=os.environ.get('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[];captures={}
+def read():return page.evaluate('LeonardoGuild.inspect()')
+def check(value,text):
+ assert value,text
+ checks.append(text);print('PASS:',text,flush=True)
+def frames(n=4):
+ if read()['xr']['presenting']:
+  target=read()['xr']['frames']+n;page.wait_for_function('(n)=>!LeonardoGuild.inspect().xr.presenting||LeonardoGuild.inspect().xr.frames>=n',arg=target)
+ else:page.evaluate('(n)=>new Promise(resolve=>{let i=0;function f(){if(++i>=n)resolve();else requestAnimationFrame(f);}requestAnimationFrame(f);})',n)
+def button(index,number,down):page.evaluate('(v)=>{const s=__xr.sources[v.index];s.gamepad.buttons[v.number]={pressed:v.down,value:v.down?1:0};}',{'index':index,'number':number,'down':down})
+def trigger(down):
+ page.evaluate('(down)=>{const s=__xr.sources[1];if(s.hand)s.pinch=down?.014:.06;else s.gamepad.buttons[0]={pressed:down,value:down?1:0};}',down)
+def point(u,v,kind='panel'):
+ page.evaluate('''async ({u,v,kind})=>{const T=await import('/leonardos-guild/vendor/three.module.js'),s=__xr.sources[1];let p;if(kind==='panel')p=new T.Vector3((u-.5)*1.10,(v-.5)*1.65,0).applyAxisAngle(new T.Vector3(0,1,0),-.42).add(new T.Vector3(1.61,1.60,-2.37));else p=new T.Vector3((u-.5)*2.85,(v-.5)*.7125,0).applyAxisAngle(new T.Vector3(1,0,0),-.16).add(new T.Vector3(-.44,.43,-2.38));if(!__xr.floor)p.y-=1.6;const d=p.sub(new T.Vector3(s.position.x,s.position.y,s.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),d);s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''',{'u':u,'v':v,'kind':kind});frames(3)
+def panel_key(key):
+ for _ in range(25):
+  keys=read()['xr']['panel']['buttons']
+  if key in keys:break
+  if key=='page-next':raise AssertionError('Missing pagination')
+  panel_key('page-next')
+ else:raise AssertionError('Panel key not found: '+key)
+ i=keys.index(key)
+ if key=='text-prev':u=205/1024;v=1-667/1536
+ elif key=='text-next':u=702/1024;v=1-667/1536
+ elif key=='page-prev':u=185/1024;v=1-1388/1536
+ elif key=='page-next':u=545/1024;v=1-1388/1536
+ elif key=='back':u=870/1024;v=1-1388/1536
+ elif key=='exit':u=.5;v=1-1480/1536
+ else:u=.5;v=1-(735+i*76+33)/1536
+ point(u,v);trigger(False);frames(2);trigger(True);frames(3);trigger(False);frames(3)
+def dom(selector):
+ index=page.evaluate('''selector=>{const e=document.querySelector(selector),r=e?.closest('dialog[open]')||document.getElementById('menu');const visible=e=>e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden'&&!e.closest('[hidden]');const list=[...r.querySelectorAll('button:not(:disabled),a[href],input:not(:disabled),select:not(:disabled),textarea:not(:disabled),summary,[tabindex="0"]')].filter(e=>visible(e)&&e.type!=='hidden');return list.indexOf(e);}''',selector)
+ assert index>=0,'DOM action not visible '+selector
+ key='dom'+str(index)
+ for _ in range(25):
+  if key in read()['xr']['panel']['buttons']:panel_key(key);return
+  panel_key('page-next')
+ raise AssertionError('Paged action unreachable '+selector)
+def capture(name):captures[name]=read();page.screenshot(path=str(OUT/(name+'.png')))
+with sync_playwright() as p:
+ opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
+ if os.environ.get('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
+ browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block');ctx.add_init_script(path=str(ROOT/'tests/xr-hardware-mock.js'))
+ page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
+ page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
+ try:
+  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild&&LeonardoGuild.inspect().xr.supported')
+  page.locator('#guild-xr-enter').click();page.wait_for_function('LeonardoGuild.inspect().xr.presenting');frames(6)
+  check(page.evaluate("__xr.request.mode==='immersive-vr'&&__xr.request.options.optionalFeatures.includes('hand-tracking')"),'Actual session request asks for optional hand tracking')
+  check(read()['xr']['controllerCount']==2 and read()['xr']['targetSize']==[1024,576],'Actual XR frame loop tracks both controllers and reuses one bounded GPU game texture')
+  capture('xr-title-and-controllers');dom('#start');check(read()['running'],'Tracked ray/trigger activates the real title Start handler')
+  panel_key('vehicle');check(read()['mode']=='foot','Tracked ray/trigger dismounts through the existing Y action')
+  tool=read()['resonance']['tool'];button(0,4,True);frames(3);button(0,4,False);frames(3)
+  check(read()['resonance']['tool']!=tool and not read()['console']['wheel'],'Tracked left X directly swaps the tool with no menu')
+  start=read();page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,-.65]');frames(25);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]');frames(35)
+  check(math.hypot(read()['x']-start['x'],read()['z']-start['z'])>.25,'Tracked thumbstick moves the same saved player through the real movement reducer')
+  before=read();page.evaluate('__xr.head.x=.18;__xr.yaw=.15');frames(12)
+  check(math.hypot(read()['x']-before['x'],read()['z']-before['z'])<.03,'Head translation/rotation does not become player movement or stride distance')
+  page.evaluate('__xr.head.x=0;__xr.yaw=0');panel_key('tools');check(read()['console']['wheel']=='tools','Tracked pointer opens the retained equipment wheel')
+  panel_key('next');selected=read()['console']['index'];panel_key('confirm');check(not read()['console']['wheel'],'Wheel choice and confirmation are reachable inside XR')
+  page.evaluate('__xr.replace(1,true)');frames(5);check(read()['xr']['handCount']==1,'A tracked hand replaces a controller without restarting the game')
+  panel_key('interact');check(bool(read()['controller']['modal']),'Pinch invokes actual nearby interaction and its existing dialog')
+  panel_key('back');check(read()['running'],'Pinch Back closes the nested dialog and resumes')
+  start=read();point((256+128)/1536,1-(65+70)/384,'bar');trigger(True);frames(25);trigger(False);frames(35)
+  check(math.hypot(read()['x']-start['x'],read()['z']-start['z'])>.25,'Held hand pinch on Forward drives real movement; release stops it')
+  check(abs(read()['speed'])<.03,'Hand locomotion does not remain stuck after release')
+  point(.5,1-(735+3*76+33)/1536);trigger(False);frames(2);page.evaluate('__xr.sources[1].jointsTracked=false;__xr.sources[1].pinch=.014');frames(3);tool=read()['resonance']['tool'];page.evaluate('__xr.sources[1].jointsTracked=true');frames(5)
+  check(read()['resonance']['tool']==tool,'Reacquiring an already-pinched hand cannot trigger a phantom quick-swap')
+  trigger(False);frames(3);trigger(True);frames(3);trigger(False);frames(3);check(read()['resonance']['tool']!=tool,'A deliberate release and new pinch re-arms the hand')
+  capture('xr-hand-ui');panel_key('map');check(read()['controller']['modal']=='map-dialog','The existing map opens from the hand-operated panel');capture('xr-map');panel_key('back')
+  before=read();panel_key('pause');check(read()['paused'],'Hand-accessible Pause stops the existing simulation');frames(8);check(math.hypot(read()['x']-before['x'],read()['z']-before['z'])<.03,'XR panel stays tracked while game simulation is paused')
+  dom('#resume');check(read()['running'],'Hand pointer activates the real Resume button')
+  page.evaluate('__xr.sources.forEach(s=>s.tracked=false)');frames(3);check(read()['paused'],'Complete input tracking loss safely pauses instead of continuing locomotion')
+  page.evaluate('__xr.sources.forEach(s=>s.tracked=true)');trigger(False);frames(4);dom('#resume')
+  check(read()['credits']==start['credits'] and read()['deliveries']==start['deliveries'],'XR input and head tracking do not manufacture rewards or deliveries')
+  saved=json.loads(page.evaluate("localStorage.getItem('svgn.leonardos-guild.v1')"));check(saved['version']==2,'XR uses the same version-2 save, not a separate game')
+  panel_key('exit');page.wait_for_function('!LeonardoGuild.inspect().xr.presenting');frames(5);check(read()['paused'],'XR exit returns safely to the ordinary paused game');capture('xr-exit-desktop')
+  page.evaluate('__xr.reject=true');page.locator('#guild-xr-pause').click();page.wait_for_function("LeonardoGuild.inspect().xr.status.includes('declined')")
+  check(not read()['xr']['presenting'] and read()['credits']==start['credits'],'Denied XR permission falls back without losing progress')
+  check(not errors,'No captured JavaScript or shader errors during the actual emulated XR render loop')
+ finally:
+  try:page.screenshot(path=str(OUT/'final.png'))
+  except:pass
+  (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'captures':captures,'evidence':'Native Chromium and real local WebGL/Three runtime; deterministic WebXR hardware emulation only. Physical Quest, comfort and target-device FPS unverified.'},indent=2));browser.close()
