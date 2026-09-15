@@ -1,6 +1,7 @@
 """Behavioral acceptance with emulated Xbox input, not physical-device approval."""
 import asyncio,json,os,time,traceback
 from pathlib import Path
+from urllib.parse import urljoin
 from playwright.async_api import async_playwright
 OUT=Path(os.environ.get('HOMECOMING_OUTPUT','homecoming-results'));OUT.mkdir(exist_ok=True)
 BASE=os.environ.get('HOMECOMING_BASE','http://127.0.0.1:8765/svgn-planet/legacy.html')
@@ -41,7 +42,7 @@ async def main():
    await page.set_viewport_size({'width':390,'height':844});await press(9);await focus('open-homecoming');await press(0);await page.screenshot(path=str(OUT/'mobile-journal.png'));await press(1);assert not (await state())['paused'];ok('Small-screen journal remains controller-navigable')
    await page.evaluate('__pad.connected=false');await wait('SVGNPlanet.inspect().paused');ok('Controller disconnect pauses the new chapter safely')
    report['final']=await state();assert not report['errors'],report['errors'];report['success']=True
-   await page.goto(BASE+'roadmap.html');await wait("document.querySelectorAll('#records article').length>30");await page.screenshot(path=str(OUT/'roadmap-page.png'));report['standaloneChecklist']=True
+   await page.goto(urljoin(BASE,'roadmap.html'));await wait("document.querySelectorAll('#records article').length>30");await page.screenshot(path=str(OUT/'roadmap-page.png'));report['standaloneChecklist']=True
   except Exception as e:
    report['success']=False;report['error']=str(e);report['traceback']=traceback.format_exc();print(report['traceback'],flush=True)
    try:report['final']=await state();await page.screenshot(path=str(OUT/'failure.png'))

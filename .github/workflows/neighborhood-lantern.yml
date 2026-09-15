@@ -2,9 +2,9 @@ name: Lantern Ward acceptance
 on:
   push:
     branches: [master, neighborhood-missions/lantern-ward-playable-20260915]
-    paths: ['svgn-planet/lantern/**', 'svgn-planet/lantern-ward.html', 'svgn-planet/index.html', 'svgn-planet/legacy.html', 'svgn-planet/legacy-layout.json', '.github/workflows/neighborhood-lantern.yml']
+    paths: ['svgn-planet/lantern/**', 'svgn-planet/tests/**', 'svgn-planet/design/**', 'svgn-planet/lantern-ward.html', 'svgn-planet/index.html', 'svgn-planet/legacy.html', 'svgn-planet/legacy-layout.json', '.github/workflows/neighborhood-lantern.yml']
   pull_request:
-    paths: ['svgn-planet/lantern/**', 'svgn-planet/lantern-ward.html', 'svgn-planet/index.html', 'svgn-planet/legacy.html', '.github/workflows/neighborhood-lantern.yml']
+    paths: ['svgn-planet/lantern/**', 'svgn-planet/tests/**', 'svgn-planet/design/**', 'svgn-planet/lantern-ward.html', 'svgn-planet/index.html', 'svgn-planet/legacy.html', '.github/workflows/neighborhood-lantern.yml']
 permissions:
   contents: read
 concurrency:
