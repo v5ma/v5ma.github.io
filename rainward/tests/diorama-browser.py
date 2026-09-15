@@ -38,7 +38,7 @@ with sync_playwright() as pw:
  def away():p.evaluate("()=>{for(const s of questDevice.sources)s.orientation={x:0,y:0,z:0,w:1};}")
  try:
   p.goto(BASE+'/rainward/?chapter=natatorium',wait_until='domcontentloaded');wait('window.Rainward')
-  check(p.locator('#xr-view-title option').count()==3,'First-person VR, third-person VR and third-person AR are explicit native choices')
+  check(p.evaluate('Rainward.mode')=='title','The native title initializes without a fatal UI construction error');check(p.locator('#xr-view-title option').count()==3,'First-person VR, third-person VR and third-person AR are explicit native choices')
   p.locator('#xr-view-title').select_option(VIEW);p.evaluate('(kind)=>questDevice.use(kind)',KIND)
   p.locator('#xr-title-hands' if KIND=='hands' else '#xr-title').click();wait('Rainward.snapshot().xr.active');frames(8)
   check(p.evaluate('questDevice.requests[0].mode')==('immersive-ar' if VIEW=='diorama-ar' else 'immersive-vr'),'The selected diorama requests the correct immersive session type')

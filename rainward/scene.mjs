@@ -65,7 +65,18 @@ export function createScene(canvas,{sharedRenderer=null}={}){
   humans.update(state);rainFilm.update();listenArt.update(state);graphics.update();living.update(state);atmosphere.update(state);
   if(xr.isActive()){hero.root.visible=!!xr.isDiorama?.();xr.update(state,view,dt);renderer.xr.updateCamera(xr.camera);const stereoCamera=renderer.xr.getCamera();scans.cull(stereoCamera,false);staticCulling.update(stereoCamera,false);xr.render();}else{scans.cull(camera);staticCulling.update(camera,renderer.shadowMap.enabled);cinema.render();}
  }
- function aimDirection(state){const p=state.player,origin=new T.Vector3(p.x,heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,p.z);const center=new T.Vector3(0,0,.5).unproject(camera),xrRay=xr.isActive()?xr.ray():null,rayOrigin=xrRay?.origin||camera.position,dir=xrRay?.direction||center.sub(camera.position).normalize();raycaster.set(rayOrigin,dir);raycaster.far=xr.isActive()&&xr.isDiorama?.()?200:60;const targetMeshes=state.enemies.filter(e=>e.hp>0).map(e=>enemies.get(e.id)?.root).filter(Boolean);const hits=raycaster.intersectObjects([...blockMeshes.filter(m=>!m.userData.obstacle.disabled),...targetMeshes],true);let target=hits.length?hits[0].point:rayOrigin.clone().addScaledVector(dir,60);if(xr.isActive()&&xr.isDiorama?.()&&!hits.length){const y=heightAt(state.player.x,state.player.z)+1.1,t=(y-rayOrigin.y)/dir.y;if(Number.isFinite(t)&&t>0&&t<200)target=rayOrigin.clone().addScaledVector(dir,t);else target=new T.Vector3(state.player.x-Math.sin(state.player.yaw)*15,y,state.player.z-Math.cos(state.player.yaw)*15);}const d=target.sub(origin).normalize();return {x:d.x,y:d.y,z:d.z};}
+ function aimDirection(state){
+  const p=state.player,origin=new T.Vector3(p.x,heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,p.z),miniature=xr.isActive()&&xr.isDiorama?.();
+  const center=new T.Vector3(0,0,.5).unproject(camera),xrRay=xr.isActive()?xr.ray():null,rayOrigin=xrRay?.origin||camera.position,dir=xrRay?.direction||center.sub(camera.position).normalize();
+  raycaster.set(rayOrigin,dir);raycaster.far=miniature?200:60;
+  const targets=state.enemies.filter(e=>e.hp>0).map(e=>enemies.get(e.id)?.root).filter(Boolean);
+  const hits=raycaster.intersectObjects([...blockMeshes.filter(m=>!m.userData.obstacle.disabled),...targets],true).filter(hit=>!miniature||xr.containsWorldPoint(hit.point));
+  let target=hits.length?hits[0].point:rayOrigin.clone().addScaledVector(dir,60);
+  if(!hits.length&&miniature){const distance=(origin.y-rayOrigin.y)/dir.y,candidate=rayOrigin.clone().addScaledVector(dir,distance);
+   target=Number.isFinite(distance)&&distance>0&&distance<200&&xr.containsWorldPoint(candidate)?candidate:origin.clone().add(new T.Vector3(-Math.sin(p.yaw),0,-Math.cos(p.yaw)).multiplyScalar(30));
+  }
+  const d=target.sub(origin).normalize();return {x:d.x,y:d.y,z:d.z};
+ }
  function project(x,y,z){const p=new T.Vector3(x,y,z).project(camera);return {x:(p.x+1)/2,y:(1-p.y)/2,visible:p.z>-1&&p.z<1&&Math.abs(p.x)<1.3&&Math.abs(p.y)<1.3};}
  function resize(w,h){if(xr.isActive())return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();cinema.resize(w,h);}
  function dispose(keepRenderer=false){dead=true;listenArt.dispose();humans.dispose();if(!keepRenderer)renderer.setAnimationLoop(null);cinema.dispose();living.dispose();atmosphere.dispose();scans.dispose();graphics.dispose();const gs=new Set(),ms=new Set(),ts=new Set();[scene,...blockMeshes].forEach(root=>root.traverse(o=>{if(o.geometry)gs.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[]){ms.add(m);for(const v of Object.values(m))if(v?.isTexture)ts.add(v);}}));Object.values(geos).forEach(g=>gs.add(g));for(const m of A.mats.values()){ms.add(m);for(const v of Object.values(m))if(v?.isTexture)ts.add(v);}gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());ts.forEach(t=>t.dispose());scenery?.dispose();environment.dispose();if(!keepRenderer)renderer.dispose();}

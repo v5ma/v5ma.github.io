@@ -2,7 +2,7 @@
   "schema": 1,
   "game": "Rainward",
   "release": "0.14.0",
-  "edition": "Quest Fieldwork",
+  "edition": "Open Diorama",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
   "updated": "2026-09-15",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
@@ -66,6 +66,14 @@
   ],
   "references": [
     {
+      "title": "Authored replacement methodology and chapter briefs",
+      "url": "LEVEL-DESIGN.md"
+    },
+    {
+      "title": "Open Diorama modes and evidence boundaries",
+      "url": "DIORAMA.md"
+    },
+    {
       "title": "Quest Fieldwork XR controls and acceptance",
       "url": "QUEST-FIELDWORK.md"
     },
@@ -95,10 +103,12 @@
     }
   ],
   "nextRelease": [
-    "RW-063",
-    "RW-056",
+    "RW-009",
+    "RW-012",
+    "RW-028",
     "RW-035",
-    "RW-036"
+    "RW-036",
+    "RW-063"
   ],
   "items": [
     {
@@ -226,12 +236,14 @@
       "status": "Implemented",
       "owner": "Game direction",
       "acceptance": "Approve one 15-20 minute Floodgate slice: approach, stealth, discovery, escalation, recovery and extraction, with no filler.",
-      "evidence": "FIRST-LIGHT.md",
+      "evidence": "LEVEL-DESIGN.md",
       "depends": [
         "RW-005"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.",
+      "nextAction": "Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler."
     },
     {
       "id": "RW-010",
@@ -256,12 +268,14 @@
       "status": "Implemented",
       "owner": "Level design",
       "acceptance": "The slice supports at least two meaningfully different routes; both are collision-tested and have different risk/reward.",
-      "evidence": "FIRST-LIGHT.md",
+      "evidence": "LEVEL-DESIGN.md",
       "depends": [
         "RW-009"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.",
+      "nextAction": "Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler."
     },
     {
       "id": "RW-012",
@@ -286,12 +300,14 @@
       "status": "Implemented",
       "owner": "Narrative design",
       "acceptance": "An original scene communicates who lived here and why the player should care, using space and interaction rather than a text dump.",
-      "evidence": "FIRST-LIGHT.md",
+      "evidence": "LEVEL-DESIGN.md",
       "depends": [
         "RW-009"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.",
+      "nextAction": "Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler."
     },
     {
       "id": "RW-014",
@@ -514,15 +530,15 @@
       "status": "Planned",
       "owner": "Level design",
       "acceptance": "Review all seven chapters for landmarks, shortcuts, sightlines, supply spacing, backtracking and encounter rhythm.",
-      "evidence": "",
+      "evidence": "LEVEL-DESIGN.md",
       "depends": [
         "RW-016",
         "RW-025"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The route/pacing audit now includes Northlight Natatorium. The exposed-quay no-kill failures remain useful evidence for the older Floodgate route.",
-      "nextAction": "Review risk/reward and recovery routes without silently nerfing encounters merely to make tests pass."
+      "resumeNote": "The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented.",
+      "nextAction": "Apply the seven chapter briefs incrementally, preserving stable objectives and shelters; verify route choice, observation, retreat, pacing and spatial reveals with players."
     },
     {
       "id": "RW-029",
@@ -552,7 +568,8 @@
         "RW-035"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "The recut adds ordinary continuous ramps in the existing heightfield, not arbitrary windows, ledges, ladders or overlapping floors."
     },
     {
       "id": "RW-031",
@@ -1072,14 +1089,14 @@
       "status": "Implemented",
       "owner": "Game direction",
       "acceptance": "Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.",
-      "evidence": "QUEST-FIELDWORK.md",
+      "evidence": "DIORAMA.md",
       "depends": [
         "RW-057"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The owner explicitly selected full Quest 3 XR gameplay as the next upgrade. Tracked-controller and hand adapters, immersive menus and source/fixture acceptance are implemented; physical Quest review remains open.",
-      "nextAction": "Run physical Quest 3 controller and hand journeys, including all chapters, save/retry, tracking loss, comfort and performance. Native packaging and multiplayer are not approved."
+      "resumeNote": "First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent.",
+      "nextAction": "Test all three views with real Quest controllers and hands, including placement, body-scale clarity, targeting, saves, tracking loss, comfort and measured device performance."
     },
     {
       "id": "RW-064",
@@ -1120,7 +1137,7 @@
       "publicationRun": 34738570590,
       "historicalPublicFiles": 128
     },
-    "scope": "Quest Fieldwork adds playable immersive VR. Read QUEST-FIELDWORK.md and current release evidence; older Clear Water/Undertow records are retained historical baselines.",
+    "scope": "Open Diorama extends the unfinished Quest candidate with first-person VR and third-person AR/VR views. The clinic-market seam is the first playable graybox replacement, not all seven completed redesigns. See DIORAMA.md, LEVEL-DESIGN.md and exact release evidence.",
     "ownerRequirements": [
       "Continue the existing Rainward game; preserve all seven chapters and saves.",
       "Complete gameplay AND UI with an Xbox controller, including reload and dialog cancellation.",
@@ -1203,10 +1220,30 @@
     "keepHistoricalFailures": true,
     "xr": {
       "ownerRequest": "Quest 3 playable XR with tracked controllers, each button considered, and a hand-tracking version.",
-      "implementation": "QUEST-FIELDWORK.md",
+      "implementation": "DIORAMA.md",
       "status": "Implemented",
       "physicalHardware": "Not tested",
-      "deferred": "Native packaging and multiplayer remain separate; the unfinished motion upgrade is not claimed shipped."
+      "deferred": "Physical Quest 3 acceptance, native packaging, multiplayer, automatic tabletop detection and unfinished character-contact animation remain open."
+    },
+    "spatialAcceptance": {
+      "status": "Implemented",
+      "views": [
+        "first-person",
+        "diorama-vr",
+        "diorama-ar"
+      ],
+      "shells": [
+        "both-open",
+        "top-open",
+        "front-open"
+      ],
+      "physicalQuest3": "Not tested",
+      "referencePlacement": "Recenterable reference-space display; no plane hit test, persistent room anchor or depth occlusion",
+      "sourceBrief": "Pasted text(20260915-173014).txt",
+      "sourceSHA256": "b7b3d4870d5e88471d396a7a13382b5ab5572aa7110d331af17ace4ae5468c17",
+      "firstReplacement": "Floodgate clinic-market seam / playable graybox",
+      "otherChapterReplacements": "Planned; six existing chapters remain playable and unchanged",
+      "acceptance": "Require exact-source model, real browser fixture and living-enemy regression, physical device review and unfamiliar-player pacing review separately."
     }
   }
 }

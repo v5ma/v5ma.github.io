@@ -149,7 +149,7 @@ export function createQuestXR(E){
   if(cycle%8===0)drawBadge();return sample;
  }
  function update(state,view,dt){if(active){align(state,dt);if(stamp!==layout){stamp=layout;placePanels();}panel.collect();}}
- const api={camera,rig,bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,
+ const api={camera,rig,bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:point=>diorama.contains(point),
   preferences:()=>({...preferences}),setViewPreference(value){if(active)return changeView(value);viewMode=normalizeDiorama({view:value}).view;remember({view:viewMode});return true;},
   supported:async(view=preferences.view)=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported(sessionType(view));}catch{return false;}},
   render(){if(isDiorama())diorama.render(renderer,scene,camera,rig);else renderer.render(scene,camera);},

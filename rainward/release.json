@@ -1,14 +1,16 @@
 {
   "version": "0.14.0",
-  "build": "rainward-quest-fieldwork-20260915",
+  "build": "rainward-open-diorama-20260915",
   "stage": "expanded survival-stealth prototype",
-  "xr": "experimental-playable-first-person-controllers-and-hands",
+  "xr": "experimental-first-person-and-stereo-vr-ar-diorama",
   "multiplayer": false,
   "changes": [
-    "Add immersive first-person WebXR gameplay across the existing seven expeditions",
-    "Map Quest tracked-controller triggers, grips, sticks and all four face buttons without consuming system buttons",
-    "Add joint-rendered hand tracking, pinch locomotion, ray-selected field actions and native-menu mirroring",
-    "Preserve sessions across chapter/retry scene rebuilds, pause on tracking loss and require neutral input after transitions",
-    "Retain desktop/Xbox controls, finite combat and crafting, all saves and the existing art and sound library"
+    "Retain playable first-person Quest VR with tracked controllers and hand tracking",
+    "Add third-person AR and VR dioramas of the actual world, not a flat theatre or separate game",
+    "Enforce three valid top/front shell states, with bounded zoom, recentering and optional content follow",
+    "Keep spectator head motion separate from character locomotion and preserve native gameplay rules",
+    "Replace the Floodgate clinic-market seam with a continuous raised route, new clinic opening and saved inside-unlocked return shutter",
+    "Preserve all seven expedition slots, old checkpoint formats, objectives, finite resources, Xbox layouts, original art/audio and licenses",
+    "Adopt an experience-spine and graybox-first level-design contract; remaining chapter replacements and physical-device approval stay open"
   ]
 }

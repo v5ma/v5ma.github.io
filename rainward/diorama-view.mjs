@@ -10,13 +10,14 @@ export function createDioramaView(){
  const trimMaterial=new T.MeshBasicMaterial({color:0xdbc394,toneMapped:false});
  const geometry=new T.BoxGeometry(1,1,1),walls={};
  for(const name of ['base','back','left','right','top','front']){const m=new T.Mesh(geometry,material);m.name='Diorama '+name;shell.add(m);walls[name]=m;}
+ walls.top.visible=false;walls.front.visible=false;
  const edges=[];for(let i=0;i<4;i++){const m=new T.Mesh(geometry,trimMaterial);shell.add(m);edges.push(m);}
  const marker=new T.Mesh(new T.RingGeometry(.52,.68,24),new T.MeshBasicMaterial({color:0xffdc7e,side:T.DoubleSide,transparent:true,opacity:.7,depthWrite:false}));marker.rotation.x=-Math.PI/2;marker.name='Controlled survivor marker';overlay.add(marker);
  let centre=null,anchor=null,floor=0,config=normalizeDiorama(),dimensions=displayBounds(),active=false,heading=0,preparedScene=null,customShaderCount=0;
  const planes=Array.from({length:6},()=>new T.Plane()),matrix=new T.Matrix4();
  function reset(){centre=null;anchor=null;active=false;}
  function place(head,player,yaw,ground){const direction=new T.Vector3(0,0,-1).applyQuaternion(head.orientation);direction.y=0;if(direction.lengthSq()<.01)direction.set(0,0,-1);direction.normalize();
-  anchor={x:head.position.x+direction.x*1.50,y:head.position.y-.86,z:head.position.z+direction.z*1.50};centre={x:player.x,z:player.z};floor=ground-4;heading=yaw;
+  anchor={x:head.position.x+direction.x*1.50,y:head.position.y-.86,z:head.position.z+direction.z*1.50};centre={x:player.x,z:player.z};floor=ground-8;heading=yaw;
  }
  function update(rig,head,player,yaw,ground,dt,settings){
   config=normalizeDiorama(settings);active=config.view!=='first-person';if(!active)return;dimensions=displayBounds(config.scale);

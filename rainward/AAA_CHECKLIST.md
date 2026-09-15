@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.14.0 / Quest Fieldwork.
+Release baseline: v0.14.0 / Open Diorama.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -113,7 +113,10 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Approve one 15-20 minute Floodgate slice: approach, stealth, discovery, escalation, recovery and extraction, with no filler.
   Dependencies: RW-005.
-  Evidence: FIRST-LIGHT.md.
+  Evidence: LEVEL-DESIGN.md.
+
+  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
+  Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
 
 - [ ] RW-010 / P0 / Readable first encounter / Implemented
   Owner role: Encounter design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -125,7 +128,10 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Owner role: Level design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: The slice supports at least two meaningfully different routes; both are collision-tested and have different risk/reward.
   Dependencies: RW-009.
-  Evidence: FIRST-LIGHT.md.
+  Evidence: LEVEL-DESIGN.md.
+
+  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
+  Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
 
 - [ ] RW-012 / P1 / Stealth-to-combat-to-recovery pacing / Planned
   Owner role: Systems design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -137,7 +143,10 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Owner role: Narrative design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: An original scene communicates who lived here and why the player should care, using space and interaction rather than a text dump.
   Dependencies: RW-009.
-  Evidence: FIRST-LIGHT.md.
+  Evidence: LEVEL-DESIGN.md.
+
+  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
+  Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
 
 - [ ] RW-014 / P0 / Hero scene art benchmark / Planned
   Owner role: Art direction. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -242,10 +251,10 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Owner role: Level design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Review all seven chapters for landmarks, shortcuts, sightlines, supply spacing, backtracking and encounter rhythm.
   Dependencies: RW-016, RW-025.
-  Evidence: Not recorded yet.
+  Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The route/pacing audit now includes Northlight Natatorium. The exposed-quay no-kill failures remain useful evidence for the older Floodgate route.
-  Next action: Review risk/reward and recovery routes without silently nerfing encounters merely to make tests pass.
+  Continuation: The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented.
+  Next action: Apply the seven chapter briefs incrementally, preserving stable objectives and shelters; verify route choice, observation, retreat, pacing and spatial reveals with players.
 
 - [ ] RW-029 / P1 / New puzzle interaction families / Planned
   Owner role: Puzzle design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -259,6 +268,7 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Dependencies: RW-035.
   Evidence: Not recorded yet.
 
+  Continuation: The recut adds ordinary continuous ramps in the existing heightfield, not arbitrary windows, ledges, ladders or overlapping floors.
 - [ ] RW-031 / P2 / Swimming and water encounter design / Implemented
   Owner role: Traversal design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Prototype buoyancy, boundaries, exit points, camera, input and enemy interactions together before introducing swim-required routes.
@@ -524,10 +534,10 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.
   Dependencies: RW-057.
-  Evidence: QUEST-FIELDWORK.md.
+  Evidence: DIORAMA.md.
 
-  Continuation: The owner explicitly selected full Quest 3 XR gameplay as the next upgrade. Tracked-controller and hand adapters, immersive menus and source/fixture acceptance are implemented; physical Quest review remains open.
-  Next action: Run physical Quest 3 controller and hand journeys, including all chapters, save/retry, tracking loss, comfort and performance. Native packaging and multiplayer are not approved.
+  Continuation: First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent.
+  Next action: Test all three views with real Quest controllers and hands, including placement, body-scale clarity, targeting, saves, tracking loss, comfort and measured device performance.
 
 - [ ] RW-064 / P0 / Release candidate approval / Blocked
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
