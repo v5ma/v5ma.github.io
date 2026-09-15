@@ -21,7 +21,15 @@
     const p=s.min.map((v,i)=>(v+s.max[i])/2),d=s.max.map((v,i)=>v-s.min[i]);
     if(s.type==='screen'||s.type==='return-gate'){
      const group=new T.Group();group.name=s.id;group.position.set(p[0],s.min[1],p[2]);parent.add(group);dynamic[s.id]=group;
-     const db=new K.Batch();db.box(s.type==='screen'?K.copper:K.wood,0,d[1]/2,0,d[0],d[1],d[2]);
+     const db=new K.Batch();
+     if(s.type==='screen')db.box(K.copper,0,d[1]/2,0,d[0],d[1],d[2]);
+     else{
+      // Glazing reveals the remembered refuge while remaining a physical barrier.
+      // Geometry/material are shared through the existing art kit and disposer.
+      db.box(K.wood,0,.45,0,d[0],.9,d[2]);
+      const glass=kit.mat('#b5d3c6',.06);glass.name='Return gate leaded glazing';glass.transparent=true;glass.opacity=.22;glass.depthWrite=false;glass.roughness=.32;
+      const pane=new T.Mesh(K.unitBox,glass);pane.name='Return gate glazed sightline';pane.position.set(0,(.9+d[1])/2,0);pane.scale.set(d[0],d[1]-.9,d[2]);group.add(pane);
+     }
      if(s.type==='screen'){for(let x=-4.8;x<5;x+=1.2){db.box(K.gold,x,1.8,.23,.06,3.6,.05);K.arch(db,x+.55,.7,.25,.48,2.25,0,K.gold);}for(const y of[.14,3.46])db.box(K.pale,0,y,0,10,.16,.5);}
      else{for(let z=-2;z<=2;z+=.5)db.box(K.gold,.25,1.7,z,.07,3.4,.05);for(const y of[.18,1.4,3.2])db.box(K.gold,.25,y,0,.06,.06,4.3);}
      db.finish(group);continue;
@@ -52,6 +60,7 @@
    const basin=w.solids.find(s=>s.type==='basin'),bp=basin.min.map((v,i)=>(v+basin.max[i])/2);
    b.add(K.cylinder,K.dark,bp[0],.18,bp[2],.83,.36,.83);b.add(K.cylinder,K.pale,bp[0],.49,bp[2],.78,.3,.78);
    b.add(K.cylinder,K.copper,bp[0],.65,bp[2],.62,.025,.62);b.box(K.dark,bp[0]+.35,.665,bp[2],.028,.022,1.13,.3);
+   b.add(K.cylinder,K.gold,bp[0],.12,bp[2],.1,.24,.1);
    const statue=w.solids.find(s=>s.type==='statue'),sp=statue.min.map((v,i)=>(v+statue.max[i])/2);
    b.box(K.pale,sp[0],.28,sp[2],.95,.56,.95);b.add(K.cylinder,K.ivory,sp[0],1.08,sp[2],.25,1.05,.31);b.add(K.sphere,K.ivory,sp[0],1.89,sp[2],.21,.27,.23);
    for(const side of[-1,1])b.add(K.cylinder,K.ivory,sp[0]+side*.29,1.35,sp[2]-.05,.08,.72,.09,0,0,side*.35);
