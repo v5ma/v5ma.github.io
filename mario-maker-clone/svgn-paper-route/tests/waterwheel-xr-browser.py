@@ -14,9 +14,10 @@ origin=os.getenv('TEST_ORIGIN',f'http://127.0.0.1:{server.server_port}').rstrip(
 checks=[];errors=[];logs=[];passed=False;diagnostics={};failure=None
 MEASURE="""async()=>{
  const T=await import('./vendor/three.webgpu.js'),d=SkyCycleXR.diagnostics;
- const expected=['Back to the route','Choose a route','Materials & FX','Flight Deck','Sound & music','Controller guide'];
- const rows=d.buttons.filter(b=>expected.includes(b.label));
- if(rows.length!==6||expected.some((name,i)=>rows[i].label!==name))throw Error('Actual Workshop pause menu differs from the six required controls');
+ const required=['Back to the route','Choose a route','Flight Deck','Sound & music','Controller guide'];
+ const rows=d.buttons.filter(b=>b.w===1130&&b.h===67&&b.y>=270&&b.y<=655);
+ const dom=SkyCycleFlightDeck.controls(SkyCycleFlightDeck.topPanel()).map(el=>el.textContent.trim());
+ if(rows.length!==6||required.some(name=>!rows.some(b=>b.label===name))||rows.some(b=>!dom.includes(b.label)))throw Error('Six real Workshop controls, including all five invariant actions, must be visible');
  const img=new Image();img.src=await xrEmulator.image();await img.decode();
  const c=document.createElement('canvas');c.width=img.width;c.height=img.height;const cx=c.getContext('2d');cx.drawImage(img,0,0);
  const eyes=__merged.renderer.xr.getCamera().cameras,samples=[],text=[];
