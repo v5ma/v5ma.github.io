@@ -14,6 +14,7 @@ export const floors=[
  {id:'drying-terrace',x:-11.5,z:-4.5,w:11,d:3,y:4.4},
  {id:'roof-bridge',x:2,z:-3.5,w:17,d:3,y:4.4},
  {id:'loading-loft',x:15,z:-1,w:12,d:8,y:4.4},
+ {id:'hoist-landing',x:8.4,z:.5,w:1.8,d:2,y:4.4},
  {id:'workshop-stair',x:19.5,z:6.5,w:3,d:8,y:4.4,slope:-.55,stairs:true},
  {id:'arcade-stair',x:-18.5,z:-8,w:3,d:8,y:0,slope:.55,stairs:true},
  {id:'maintenance-bed',x:-.5,z:1,w:5,d:28,y:-2,low:true},
@@ -57,16 +58,16 @@ export const fixtures=[
  {id:'gate',x:3,z:18,y:0,label:'Open blue service door'},
  {id:'water',x:5.8,z:-13,y:0,label:'Operate canal sluice'},
  {id:'repair',x:6,z:-8,y:0,label:'Repair goods hoist'},
- {id:'hoist',x:6.8,z:-3.5,y:0,label:'Ride goods hoist'},
+ {id:'hoist',x:6.8,z:.5,y:0,label:'Ride goods hoist'},
  {id:'dock-south',x:-4.4,z:13,y:0,label:'Y: Board canal skiff'},
  {id:'dock-north',x:3,z:-14,y:0,label:'Y: Board canal skiff'}
 ];
 export const docks=[{x:-.5,z:12,landX:-4.4,landZ:13},{x:-.5,z:-11.5,landX:3,landZ:-14}];
-export function fresh(){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:-12,y:0,z:17,yaw:0,vx:0,vz:0,vy:0,speed:0,distance:0,time:0,steps:0,ride:'foot',parcel:false,delivered:false,gate:false,hoist:false,claimed:false,credits:0,water:'high',transition:null,lift:null,visited:['depot'],safe:[-12,0,17],porterYield:0,message:'Find your parcel at the depot bench. X interacts; A hops; Y mounts.',messageTime:9};}
+export function fresh(){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:-12,y:0,z:17,yaw:0,vx:0,vz:0,vy:0,speed:0,distance:0,time:0,steps:0,ride:'foot',parcel:false,delivered:false,gate:false,hoist:false,claimed:false,credits:0,water:'high',transition:null,lift:null,hoistY:0,visited:['depot'],safe:[-12,0,17],porterYield:0,message:'Find your parcel at the depot bench. X interacts; A hops; Y mounts.',messageTime:9};}
 const flags=['parcel','delivered','gate','hoist','claimed'];
 export function complete(s){return s.delivered&&(s.gate||s.hoist);}
 export function say(s,text){s.message=text;s.messageTime=7;}
-export function serialize(s){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:s.x,y:s.y,z:s.z,yaw:s.yaw,ride:s.ride,water:s.water,...Object.fromEntries(flags.map(k=>[k,s[k]])),credits:s.credits,visited:s.visited,safe:s.safe};}
+export function serialize(s){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:s.x,y:s.y,z:s.z,yaw:s.yaw,ride:s.ride,water:s.water,hoistY:s.hoistY,...Object.fromEntries(flags.map(k=>[k,s[k]])),credits:s.credits,visited:s.visited,safe:s.safe};}
 export function parse(raw){
  const p=typeof raw==='string'?JSON.parse(raw):raw;
  if(!p||p.v!==1||p.chapter!==CHAPTER||p.layout!==LAYOUT)throw Error('Unsupported chapter/layout. Original save retained; export it before replacing.');
@@ -75,10 +76,10 @@ export function parse(raw){
  s.safe=Array.isArray(p.safe)&&p.safe.length===3&&p.safe.every(Number.isFinite)&&Math.abs(p.safe[0])<24&&Math.abs(p.safe[2])<21?p.safe:[-12,0,17];
  if(s.ride==='boat'&&s.water==='low')s.ride='foot';
  // A saved mid-hop/hoist position falls to a valid support; no stale transition survives.
- s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;return s;
+ s.hoistY=Number.isFinite(p.hoistY)?clamp(p.hoistY,0,4.4):0;s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;return s;
 }
 export function save(s,store){
- let text;try{const payload=serialize(s);if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
+ let text;try{const payload=serialize(s);if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
  store.setItem(SAVE_KEY+'.pending',text);if(store.getItem(SAVE_KEY+'.pending')!==text)throw Error('Staging verification failed');store.setItem(SAVE_KEY,text);if(store.getItem(SAVE_KEY)!==text)throw Error('Save verification failed');store.removeItem(SAVE_KEY+'.pending');return {ok:true};}catch(e){return {ok:false,error:String(e.message||e)};}
 }
 export function load(store){
@@ -92,7 +93,7 @@ export function actors(s){
  {id:'porter',name:'Ivo / market porter',x:s.porterYield>0?-23:-18.25,z:-5+walk*7,y:0,tip:'Ring your bell and I will pull into the bay. The public print-shop stair reaches the drying terraces.'},
  {id:'caretaker',name:'Neri / workshop caretaker',x:16,z:5+walk*4,y:0,tip:'Leave the parcel at the receiving bench. Restore the blue door OR repair the goods hoist, then return to Mara.'}];
 }
-export function surfaces(s,x,z){return floors.filter(f=>(!f.low||s.water==='low')&&inside(x,z,f,-.06));}
+export function surfaces(s,x,z){return [...floors,{id:'hoist-platform',x:6.8,z:.5,w:2,d:2,y:s.hoistY||0}].filter(f=>(!f.low||s.water==='low')&&inside(x,z,f,-.06));}
 export function support(s,x,z,y){const fs=surfaces(s,x,z).filter(f=>floorHeight(f,z)<=y+.31);return fs.sort((a,b)=>floorHeight(b,z)-floorHeight(a,z))[0];}
 export function blocked(s,x,y,z,r=.3){
  if(Math.abs(x)>23.6||Math.abs(z)>20.6)return true;
@@ -144,14 +145,14 @@ export function action(s,name){
  else if(f.id==='hoist'){
   if(!s.hoist)say(s,'Hoist jammed. The repair handwheel is beside the pump gallery.');
   else if(s.ride!=='foot')say(s,'Dismount before taking the hoist.');
-  else{s.lift={from:s.y,to:s.y>2?0:4.4,t:0};s.x=6.8;s.z=-3.5;s.vx=s.vz=s.vy=0;say(s,'Goods hoist moving. The overhead terrace meets the platform.');}
+  else{const from=s.y>2?4.4:0;s.lift={from,to:from?0:4.4,t:0,summon:Math.abs(s.hoistY-from)>.1?{from:s.hoistY,to:from,t:0}:null};if(!s.lift.summon){s.x=6.8;s.z=.5;}s.vx=s.vz=s.vy=0;say(s,s.lift.summon?'Hoist called. Wait on the landing while the platform arrives.':'Goods hoist moving beside the loft, through an open shaft.');}
  }else if(f.id.startsWith('dock'))action(s,'ride');
 }
 export function tick(s,input,dt){
  dt=clamp(Number.isFinite(dt)?dt:0,0,.05);if(!dt)return;s.time+=dt;s.steps++;s.messageTime=Math.max(0,s.messageTime-dt);s.porterYield=Math.max(0,s.porterYield-dt);
  if(s.paper){s.paper.t+=dt;if(s.paper.t>1.1)s.paper=null;}
  if(s.transition){s.transition.t+=dt/2;if(s.transition.t>=1){if(inside(s.x,s.z,canal)||s.ride==='boat'){s.transition=null;say(s,'Sluice paused: clear the channel first. The safe water level is unchanged.');return;}s.water=s.transition.to;s.transition=null;say(s,s.water==='low'?'Channel drained. The maintenance steps and walking route are exposed.':'Channel filled. Public boats are available again.');}}
- if(s.lift){const l=s.lift;l.t=Math.min(1,l.t+dt/2);s.y=l.from+(l.to-l.from)*(l.t*l.t*(3-2*l.t));if(l.t>=1){s.lift=null;s.safe=[s.x,s.y,s.z];}return;}
+ if(s.lift){const l=s.lift;if(l.summon){const q=l.summon;q.t=Math.min(1,q.t+dt/1.5);s.hoistY=q.from+(q.to-q.from)*q.t;if(q.t>=1){l.summon=null;s.x=6.8;s.z=.5;s.y=l.from;}return;}l.t=Math.min(1,l.t+dt/2);s.y=l.from+(l.to-l.from)*(l.t*l.t*(3-2*l.t));s.hoistY=s.y;if(l.t>=1){s.lift=null;s.safe=[s.x,s.y,s.z];}return;}
  const max=s.ride==='boat'?5:s.ride==='bicycle'?input.boost?9:5.6:input.boost?6.2:3.7;
  let dx=input.x||0,dz=input.z||0,L=Math.max(1,Math.hypot(dx,dz));dx/=L;dz/=L;
  if(input.brake)dx=dz=0;const a=1-Math.exp(-dt*(input.brake?18:9));s.vx+=(dx*max-s.vx)*a;s.vz+=(dz*max-s.vz)*a;

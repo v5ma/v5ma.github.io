@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.11.0",
+  "version": "0.12.0",
   "title": "Neighborhood Missions: path to a production-quality title",
   "reviewed": "2026-09-15",
   "currentMilestone": "M1",
@@ -23,7 +23,7 @@
     {
       "id": "M1",
       "title": "One exceptional neighborhood",
-      "exitCriterion": "A coherent Homecoming vertical slice before more map expansion.",
+      "exitCriterion": "An authored Lantern Ward chapter with meaningful routes, state changes and a recognizable return shortcut before further map expansion.",
       "humanGate": "Approve one street, hero character, vehicle, interior and a compelling 15-minute play experience."
     },
     {
@@ -893,6 +893,54 @@
       ],
       "owner": "Engineering / real-device QA",
       "lastReviewed": "2026-09-15"
+    },
+    {
+      "id": "LEVEL-01",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "Authored Lantern Ward replacement chapter",
+      "acceptance": "Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.",
+      "next": "Pass exact-source browser tours, then test unfamiliar-player understanding and replay agency.",
+      "dependencies": [],
+      "evidence": [
+        "../lantern/README.md",
+        "../lantern/acceptance.json"
+      ],
+      "owner": "Level design / Engineering / QA",
+      "lastReviewed": "2026-09-15"
+    },
+    {
+      "id": "XR-02",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "Native first-person and actual-geometry VR/AR dioramas",
+      "acceptance": "Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.",
+      "next": "Pass native synthetic session tests; then measure actual Quest 3 comfort, Touch Plus, hand tracking and performance.",
+      "dependencies": [],
+      "evidence": [
+        "../lantern/README.md",
+        "../lantern/acceptance.json"
+      ],
+      "owner": "Level design / Engineering / QA",
+      "lastReviewed": "2026-09-15"
+    },
+    {
+      "id": "LEGACY-01",
+      "milestone": "M1",
+      "priority": "P0",
+      "status": "implemented",
+      "title": "Versioned original-world preservation",
+      "acceptance": "Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.",
+      "next": "Keep legacy hash checks and all five legacy browser regressions passing.",
+      "dependencies": [],
+      "evidence": [
+        "../lantern/README.md",
+        "../lantern/acceptance.json"
+      ],
+      "owner": "Level design / Engineering / QA",
+      "lastReviewed": "2026-09-15"
     }
   ],
   "sources": [
@@ -912,6 +960,6 @@
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
   ],
-  "releaseEvidence": "evidence/v0.11.0-published.json",
+  "releaseEvidence": "../lantern/acceptance.json",
   "edition": "Grounded Neighborhood"
 }

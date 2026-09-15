@@ -78,9 +78,9 @@ export function createView(canvas){
  box(decor,0x42656a,5.8,.7,-13,.8,1.4,.6);const wheel=cyl(world,0xd8b45e,5.8,1.45,-12.7,.38,.12);wheel.rotation.x=Math.PI/2;
  box(decor,0x637e7d,2.4,-.6,-11,.2,3,.8);const gauge=box(world,0xead68f,2.24,-.8,-11,.15,.16,.65);
  box(decor,0x62665d,6,.7,-8,.6,1.4,.7);label('HOIST REPAIR',6,1.8,-7.65,2.5,.4);
- const liftPlatform=box(world,0xb99764,6.8,-.09,-3.5,2,.18,2);
- for(const x of[5.7,7.9]){box(decor,0x536568,x,2.8,-4.6,.15,5.6,.15);box(decor,0x9c875f,x,2.8,-4.45,.025,5.6,.025);}
- label('GOODS HOIST',6.8,5.8,-4.6,2.7,.4);
+ const liftPlatform=box(world,0xb99764,6.8,-.09,.5,2,.18,2);
+ for(const x of[5.7,7.9]){box(decor,0x536568,x,2.8,-.6,.15,5.6,.15);box(decor,0x9c875f,x,2.8,-.45,.025,5.6,.025);}
+ label('GOODS HOIST',6.8,5.8,-.6,2.7,.4);
  // Boats are pooled at public piers. No navigation pointer can hand off a parcel remotely.
  function boat(){const b=new T.Group();box(b,0x92704d,0,.08,0,1.2,.22,2.15);for(const x of[-.62,.62])box(b,0x6a9690,x,.3,0,.12,.45,2.25);for(const z of[-1.06,1.06])box(b,0x6a9690,0,.3,z,1.24,.4,.12);box(b,0xcbb382,0,.35,.25,1.15,.12,.5);world.add(b);return b;}
  const boats=[boat(),boat(),boat()];boats[0].position.set(-.5,-.72,12);boats[1].position.set(-.5,-.72,-11.5);
@@ -130,7 +130,7 @@ export function createView(canvas){
   flyingPaper.visible=!!s.paper;if(s.paper){const p=s.paper;flyingPaper.position.set(p.x+p.dx*p.t*6,p.y+Math.sin(p.t*Math.PI)*.5-p.t*.8,p.z+p.dz*p.t*6);flyingPaper.rotation.set(p.t*8,p.t*3,p.t*5);}
   gate.visible=!s.gate;latch.visible=!s.gate;parcel.visible=!s.parcel;lowGroup.visible=s.water==='low';
   const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;water.position.y=-2+mix*1.25;water.visible=mix>.02;waterMat.uniforms.time.value=s.time;gauge.position.y=water.position.y;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
-  liftPlatform.position.y=(s.lift?s.y:s.y>2&&s.hoist?4.4:0)-.09;
+  liftPlatform.position.y=(s.hoistY||0)-.09;
   boats[0].visible=boats[1].visible=s.water==='high';boats[2].visible=s.ride==='boat';boats[2].position.set(s.x,-.72,s.z);boats[2].rotation.y=s.yaw;
   const spatial=mode.startsWith('diorama'),first=mode==='first';enclosure.visible=spatial;
   for(const m of cutWalls)m.visible=first||!spatial&&Math.hypot(m.position.x-s.x,m.position.z-s.z)>8;
@@ -143,5 +143,5 @@ export function createView(canvas){
   }
  }
  resize();addEventListener('resize',resize);
- return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:!top.visible,frontOpen:!front.visible,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
+ return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:!top.visible,frontOpen:!front.visible,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
 }

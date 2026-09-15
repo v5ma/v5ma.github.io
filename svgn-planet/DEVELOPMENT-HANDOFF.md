@@ -1,3 +1,13 @@
+# Lantern Ward playable candidate / v0.12.0
+
+Read lantern/README.md and lantern/acceptance.json first. The authored chapter and native spatial XR are now implemented. Do not infer publication from implementation: the exact source, nine browser suites and live byte/render gates must pass before the candidate becomes the default public entry. Physical Xbox/Quest and fresh-player level comprehension remain open.
+
+The new default entry targets lantern-ward.html; legacy.html is a byte-identical archive of the prior entry. legacy-layout.json pins its runtime and assets. Never reinterpret old globe coordinates or write the old save from the new chapter.
+
+Next: verify all delivery approaches, open-shaft hoist and save recovery; obtain native XR controller/hand captures and human first-visit/replay feedback. Performance work supports this bounded authored chapter, not further map expansion.
+
+## Historical handoff
+
 # Neighborhood Missions development handoff
 
 New user direction, September 15, 2026: replace the prototype levels through place-mastery level design. Read design/PLACE-MASTERY-REBUILD.md first. The next production gate is an authored Lantern Ward graybox with street, roof and canal approaches, meaningful state changes, purposeful residents, a recognizable permanent return shortcut and safe exits. PERF-03 now supports that chapter rather than taking priority over level design.

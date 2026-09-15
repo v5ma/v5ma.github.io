@@ -5,7 +5,7 @@ import asyncio,json,os,time,traceback
 from pathlib import Path
 from playwright.async_api import async_playwright
 OUT=Path(os.environ.get('ATMOSPHERE_OUTPUT','atmosphere-results'));OUT.mkdir(exist_ok=True)
-BASE=os.environ.get('ATMOSPHERE_BASE','http://127.0.0.1:8765/svgn-planet/')
+BASE=os.environ.get('ATMOSPHERE_BASE','http://127.0.0.1:8765/svgn-planet/legacy.html')
 PAD="""window.__pad={id:'Xbox / Atmosphere acceptance',mapping:'standard',connected:true,index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad]});"""
 async def main():
  report={'version':'0.11.0','checks':[],'errors':[],'shaderErrors':[],'physicalHardwareTested':False,'hardwareFPSCertified':False,'base':BASE};start=time.time()

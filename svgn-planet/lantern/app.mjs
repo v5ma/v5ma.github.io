@@ -11,7 +11,7 @@ function tell(text){say(state,text);$('notice').textContent=text;}
 function persist(){if(!started||blocked)return false;const r=save(state,storage);if(!r.ok){blocked=true;tell('Save blocked: '+r.error+'. Existing progress is retained; export this run from Menu.');}return r.ok;}
 function pause(value=true){paused=value;clear();if(value&&started){if(!$('menu').open)$('menu').showModal();$('resume').focus();}else if($('menu').open)$('menu').close();}
 function command(name){if(!started||paused||failed)return;if(name==='pause'||name==='map'||name==='jobs'){pause(true);if(name!=='pause')$('route-map').hidden=false;return;}if(name==='camera'){if(xr?.active){xr.setMode(xr.mode==='first'?'diorama':'first');return;}viewMode=viewMode==='third'?'first':'third';$('view-mode').value=viewMode;clear();return;}if(name==='recenter'){yaw=0;return;}action(state,name);persist();}
-function start(){started=true;$('welcome').hidden=true;pause(false);persist();tell(blocked?'Storage needs attention. Your original save is untouched; use Menu to export or restore.':'The workshop is beyond the blue door. Pick up your parcel, then choose your route.');}
+function start(){started=true;document.body.classList.add('playing');$('welcome').hidden=true;pause(false);persist();tell(blocked?'Storage needs attention. Your original save is untouched; use Menu to export or restore.':'The workshop is beyond the blue door. Pick up your parcel, then choose your route.');}
 function confirm(text,fn){pendingAction=fn;$('confirm-text').textContent=text;$('confirm').hidden=false;$('keep').focus();controllerReady=false;}
 $('start').onclick=start;$('resume').onclick=()=>pause(false);$('menu-button').onclick=()=>pause(true);$('map-button').onclick=()=>{pause(true);$('route-map').hidden=false;};
 $('keep').onclick=()=>{pendingAction=null;$('confirm').hidden=true;$('resume').focus();};$('replace').onclick=()=>{const fn=pendingAction;pendingAction=null;$('confirm').hidden=true;fn?.();};
@@ -96,7 +96,8 @@ try{
    if(started&&!paused){
     const x=clamp((p.x||0)+(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0)+(held.has('right')?1:0)-(held.has('left')?1:0),-1,1),y=clamp((p.y||0)+(keys.has('KeyW')?1:0)-(keys.has('KeyS')?1:0)+(held.has('forward')?1:0)-(held.has('back')?1:0),-1,1);
     if(keys.has('ArrowLeft'))yaw+=dt*1.6;if(keys.has('ArrowRight'))yaw-=dt*1.6;
-    const input={x:x*Math.cos(yaw)-y*Math.sin(yaw),z:-x*Math.sin(yaw)-y*Math.cos(yaw),boost:p.boost||keys.has('ShiftLeft'),brake:p.brake||held.has('brake')};
+    const movementYaw=xr.active?xr.movementYaw:yaw,input={x:x*Math.cos(movementYaw)-y*Math.sin(movementYaw),z:-x*Math.sin(movementYaw)-y*Math.cos(movementYaw),boost:p.boost||keys.has('ShiftLeft'),brake:p.brake||held.has('brake')};
+    if(xr.active&&view.curtain.visible){input.x=input.z=0;input.brake=true;}
     for(let remaining=dt;remaining>1e-6;remaining-=1/60)tick(state,input,Math.min(remaining,1/60));
     if(state.time-saveAt>5){persist();saveAt=state.time;}
    }

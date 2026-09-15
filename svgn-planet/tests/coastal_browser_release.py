@@ -2,7 +2,7 @@ import asyncio, json, os, time, traceback
 from pathlib import Path
 from playwright.async_api import async_playwright
 OUT=Path(os.environ.get('COASTAL_OUTPUT','coastal-results'));OUT.mkdir(exist_ok=True)
-BASE=os.environ.get('COASTAL_BASE','http://127.0.0.1:8765/svgn-planet/')
+BASE=os.environ.get('COASTAL_BASE','http://127.0.0.1:8765/svgn-planet/legacy.html')
 PAD="""window.__pad={id:'Xbox Controller / release acceptance',mapping:'standard',connected:true,index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[window.__pad]});"""
 async def main():
  report={'checks':[],'errors':[],'physicalControllerTested':False};start=time.time()

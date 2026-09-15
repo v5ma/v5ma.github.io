@@ -4,10 +4,10 @@ import {clamp,lineClear,support,floorHeight} from './core.mjs';
 export function createXR(view,hooks){
  const {renderer,scene,camera,rig,world}=view;
  let session=null,kind='diorama-vr',pending=false,align=true,origin=new T.Vector3(),heading=0,frames=0,selections=0,tracked=0,lastPaint=0,page=0,wasPaused=true,error='';
- const settings={scale:.047,height:-.6,distance:1.75,rotation:0};
+ const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let movementYaw=0;
  const panelGroup=new T.Group();rig.add(panelGroup);
  const c=document.createElement('canvas');c.width=1024;c.height=768;const ctx=c.getContext('2d'),tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;
- const panel=new T.Mesh(new T.PlaneGeometry(1.4,1.05),new T.MeshBasicMaterial({map:tex,toneMapped:false,side:T.DoubleSide}));panelGroup.add(panel);panelGroup.visible=false;
+ const panel=new T.Mesh(new T.PlaneGeometry(1.4,1.05),new T.MeshBasicMaterial({map:tex,toneMapped:false,side:T.DoubleSide,depthTest:false}));panel.renderOrder=1002;panelGroup.add(panel);panelGroup.visible=false;
  const lineGeo=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-5)]),jointGeo=new T.SphereGeometry(.009,6,4),jointMat=new T.MeshBasicMaterial({color:0xa4e7d9});
  const slots=[0,1].map(()=>{const ray=new T.Line(lineGeo,new T.LineBasicMaterial({color:0x8be5db})),grip=new T.Mesh(new T.BoxGeometry(.045,.05,.11),jointMat),joints=Array.from({length:25},()=>new T.Mesh(jointGeo,jointMat));rig.add(ray,grip,...joints);return {ray,grip,joints,src:null,prev:[],pinch:false,ready:false,tracked:false};});
  const caster=new T.Raycaster();let rows=[],focused=-1,panelSignature='',input={x:0,y:0,boost:false,brake:false},lastSnap=false;
@@ -15,7 +15,7 @@ export function createXR(view,hooks){
  function pause(){hooks.pause(true);clear();}
  function place(v){origin.copy(v.transform.position);const f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(v.transform.orientation));heading=Math.atan2(-f.x,-f.z);align=false;}
  function setMode(next){if(!session)return;if(kind==='diorama-ar'&&next==='first'){error='First-person VR needs a VR session. Exit AR, then choose First-person VR.';return;}kind=next==='first'?'first-person-vr':kind==='diorama-ar'?'diorama-ar':'diorama-vr';align=true;pause();lastPaint=-Infinity;}
- function finish(){session=null;pending=false;panelGroup.visible=false;clear();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.shadowMap.enabled=true;renderer.setClearColor(0xabc8cb,1);scene.background=new T.Color(0xabc8cb);scene.fog=new T.Fog(0xabc8cb,55,140);rig.position.set(0,0,0);rig.rotation.set(0,0,0);world.position.set(0,0,0);world.rotation.set(0,0,0);world.scale.setScalar(1);camera.position.set(20,25,30);camera.rotation.set(0,0,0);view.resize();slots.forEach(s=>{s.ray.visible=s.grip.visible=false;s.joints.forEach(j=>j.visible=false);});hooks.pause(true);hooks.message('XR ended. Desktop controls are ready after release.');}
+ function finish(){document.body.classList.remove('in-xr');session=null;pending=false;panelGroup.visible=false;clear();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.shadowMap.enabled=true;renderer.setClearColor(0xabc8cb,1);scene.background=new T.Color(0xabc8cb);scene.fog=new T.Fog(0xabc8cb,55,140);rig.position.set(0,0,0);rig.rotation.set(0,0,0);world.position.set(0,0,0);world.rotation.set(0,0,0);world.scale.setScalar(1);camera.position.set(20,25,30);camera.rotation.set(0,0,0);view.resize();slots.forEach(s=>{s.ray.visible=s.grip.visible=false;s.joints.forEach(j=>j.visible=false);});hooks.pause(true);hooks.message('XR ended. Desktop controls are ready after release.');}
  async function enter(mode){
   if(session||pending)return;pending=true;error='';kind=mode;
   try{
@@ -24,7 +24,7 @@ export function createXR(view,hooks){
    if(mode==='diorama-ar'&&next.environmentBlendMode==='opaque'){await next.end();session=null;throw Error('This session cannot show passthrough. Choose VR or desktop explicitly.');}
    renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');renderer.xr.setFoveation(1);renderer.shadowMap.enabled=false;camera.position.set(0,0,0);camera.rotation.set(0,0,0);
    next.addEventListener('end',()=>queueMicrotask(finish),{once:true});next.addEventListener('inputsourceschange',pause);next.addEventListener('visibilitychange',pause);
-   await renderer.xr.setSession(next);align=true;pause();panelGroup.visible=true;scene.fog=null;scene.background=mode==='diorama-ar'?null:new T.Color(0x162b35);renderer.setClearColor(0x162b35,mode==='diorama-ar'?0:1);
+   await renderer.xr.setSession(next);document.body.classList.add('in-xr');align=true;pause();panelGroup.visible=true;scene.fog=null;scene.background=mode==='diorama-ar'?null:new T.Color(0x162b35);renderer.setClearColor(0x162b35,mode==='diorama-ar'?0:1);
   }catch(e){error=String(e.message||e);if(session)try{await session.end();}catch{}finish();hooks.message(error);}finally{pending=false;}
  }
  function actions(){
@@ -53,11 +53,13 @@ export function createXR(view,hooks){
   const first=kind==='first-person-vr';
   if(first){world.position.set(0,0,0);world.scale.setScalar(1);world.rotation.set(0,0,0);rig.rotation.set(0,hooks.yaw()-heading,0);const offset=origin.clone().applyAxisAngle(new T.Vector3(0,1,0),rig.rotation.y);const floor=support(state,state.x,state.z,state.y),eyeY=state.lift?state.y:floor?floorHeight(floor,state.z):state.safe[1];rig.position.set(state.x-offset.x,eyeY+1.65-offset.y,state.z-offset.z);}
   else{rig.position.set(0,0,0);rig.rotation.set(0,0,0);world.scale.setScalar(settings.scale);world.rotation.y=heading+settings.rotation;const forward=new T.Vector3(0,0,-settings.distance).applyAxisAngle(new T.Vector3(0,1,0),heading);world.position.copy(origin).add(forward);world.position.y=origin.y+settings.height;}
+  const facing=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation));movementYaw=first?hooks.yaw():Math.atan2(-facing.x,-facing.z)-world.rotation.y;
   rig.updateMatrixWorld(true);world.updateMatrixWorld(true);
   const paused=hooks.paused();if(paused!==wasPaused){wasPaused=paused;page=0;clear();lastPaint=0;}
   panelGroup.position.copy(viewer.transform.position);panelGroup.quaternion.copy(viewer.transform.orientation);panel.position.set(0,paused?-.1:-.65,paused?-1.6:-1.5);panel.scale.setScalar(paused?1:.73);panelGroup.updateMatrixWorld(true);
   if(now-lastPaint>120||!lastPaint)paint(now);
   // Fade the world if the physically tracked head crosses a metre-space wall.
+  if(!first)view.curtain.visible=false;
   if(first){const p=rig.localToWorld(new T.Vector3().copy(viewer.transform.position));view.curtain.visible=!lineClear(state,{x:state.x,y:state.y+1.65,z:state.z},p);if(view.curtain.visible){input.brake=true;hooks.message('Head near a wall. Lean back or recenter from Menu.');}}
   tracked=0;let consumed=false,hands=false,missing=false,snap=0;
   for(let i=0;i<2;i++){
@@ -92,7 +94,7 @@ export function createXR(view,hooks){
  }
  slots.forEach(s=>{s.ray.visible=s.grip.visible=false;s.joints.forEach(j=>j.visible=false);});
  addEventListener('pagehide',()=>session?.end());
- return {enter,update,clear,setMode,settings,navigate:(direction,accept,back)=>{if(!session||!hooks.paused())return;if(back){hooks.pause(false);return;}if(direction)focused=(Math.max(0,focused)+direction+rows.length)%rows.length;if(accept){const row=rows[Math.max(0,focused)];row?.fn?.();selections++;}lastPaint=0;},exit:()=>session?.end(),get active(){return !!session;},get mode(){return kind==='first-person-vr'?'first':'diorama';},inspect:()=>({active:!!session,kind,stereoGameWorld:!!session,pending,frames,selections,trackedSources:tracked,jointPool:50,environmentBlendMode:session?.environmentBlendMode||null,scale:world.scale.x,settings:{...settings},error,input:{...input},headBoundary:view.curtain.visible}),
+ return {enter,update,clear,setMode,settings,navigate:(direction,accept,back)=>{if(!session||!hooks.paused())return;if(back){hooks.pause(false);return;}if(direction)focused=(Math.max(0,focused)+direction+rows.length)%rows.length;if(accept){const row=rows[Math.max(0,focused)];row?.fn?.();selections++;}lastPaint=0;},exit:()=>session?.end(),get movementYaw(){return movementYaw;},get active(){return !!session;},get mode(){return kind==='first-person-vr'?'first':'diorama';},inspect:()=>({active:!!session,kind,stereoGameWorld:!!session,pending,frames,selections,trackedSources:tracked,jointPool:50,environmentBlendMode:session?.environmentBlendMode||null,scale:world.scale.x,settings:{...settings},error,input:{...input},headBoundary:view.curtain.visible}),
   // Read-only panel transform allows a synthetic tracking fixture to aim real rays.
   panelPose:()=>{panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:rig.matrixWorld.clone().invert().multiply(panel.matrixWorld).toArray(),width:1.4,height:1.05,rows:rows.map(({label,x,y,w,h})=>({label,x,y,w,h}))};}};
 }
