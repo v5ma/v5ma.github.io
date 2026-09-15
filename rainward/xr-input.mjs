@@ -29,7 +29,9 @@ export function createXRInput(){
    if(edge('leftprimary'))out.actions.push('map');
    if(edge('leftsecondary'))out.actions.push('pause');
   }else{
-   out.move=lm;out.aim=!!data.lefttrigger||!!(R?.hand&&handFire);out.fire=!!data.righttrigger&&(!R?.hand||handFire);
+   // A movement pinch is not a left-controller aiming trigger. Fire mode only
+   // aims while the right pinch is held, so released hands retain normal walking.
+   out.move=lm;out.aim=!!(!L?.hand&&data.lefttrigger)||!!(R?.hand&&handFire&&data.righttrigger);out.fire=!!data.righttrigger&&(!R?.hand||handFire);
    out.listen=!!data.leftgrip;out.sprint=!!data.leftstick;
    if(edge('leftstick'))out.sprintToggle=true;
    if(edge('rightgrip')||R?.hand&&!handFire&&edge('righttrigger'))out.actions.push('interact');
