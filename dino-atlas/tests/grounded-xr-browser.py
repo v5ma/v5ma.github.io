@@ -21,7 +21,11 @@ try:
   browser=pw.chromium.launch(**options);context=browser.new_context(viewport={'width':1100,'height':820});context.add_init_script(PAD);page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
   def wait(expr,t=90000):page.wait_for_function(expr,timeout=t)
   def press(i):
-   page.evaluate('(i)=>{__pad.buttons[i]={value:1,pressed:true};}',i);page.wait_for_timeout(250);page.evaluate('(i)=>{__pad.buttons[i]={value:0,pressed:false};}',i);page.wait_for_timeout(300)
+   wait('!__dinoRanger.xr.ctx.input.neutral',30000)
+   page.evaluate('(i)=>{__pad.buttons[i]={value:1,pressed:true};}',i)
+   try:page.wait_for_function('(i)=>__dinoRanger.xr.ctx.input.previous[i]===true',arg=i,timeout=30000)
+   finally:page.evaluate('(i)=>{__pad.buttons[i]={value:0,pressed:false};}',i)
+   page.wait_for_function('(i)=>__dinoRanger.xr.ctx.input.previous[i]===false&&!__dinoRanger.xr.ctx.input.neutral',arg=i,timeout=30000)
   def choose(id):
    for _ in range(95):
     if page.evaluate('document.activeElement?.id')==id:press(0);return
@@ -34,7 +38,7 @@ try:
    check(page.evaluate('__dinoRanger.animals.length')==64,'All 64 residents retained');snap('01-grounded-intro.png');press(0);wait('__dinoRanger.state.started')
    if page.locator('dialog[open]').count():press(1)
    wait('!__dinoRanger.state.paused');press(15);check(page.evaluate('__dinoRanger.state.tool')=='zapper','Xbox D-pad right selects zapper immediately');press(14);check(page.evaluate('__dinoRanger.state.tool')=='water','Xbox D-pad left selects water immediately')
-   press(5);check(page.evaluate('__dinoRanger.state.tool')=='zapper','Xbox RB retains tool cycle');press(9);wait('__dinoRanger.state.paused');choose('quick-tools-toggle');check(not page.evaluate('__dinoGrounded.state.quickTools'),'Xbox toggles legacy D-pad preset');press(1);wait('!__dinoRanger.state.paused');press(15);check(page.evaluate('__dinoRanger.state.tool') not in ['water','zapper'],'Legacy D-pad cycle reaches later tools')
+   press(5);check(page.evaluate('__dinoRanger.state.tool')=='zapper','Xbox RB retains tool cycle');press(9);wait('__dinoRanger.state.paused');choose('quick-tools-toggle');check(not page.evaluate('__dinoGrounded.state.quickTools'),'Xbox toggles legacy D-pad preset');press(1);wait('!__dinoRanger.state.paused');press(15);check(page.evaluate('__dinoRanger.state.tool')=='water','Legacy D-pad cycle wraps from zapper to water');press(14);check(page.evaluate('__dinoRanger.state.tool')=='zapper','Legacy D-pad left cycles back to zapper')
    press(9);choose('quick-tools-toggle');press(1);wait('!__dinoRanger.state.paused');press(14)
    press(3);wait('__dinoRanger.state.mode==="foot"');check(page.evaluate('__dinoRanger.personModel.userData.bodyRig.limbs.length')==2,'Rendered ranger has articulated boots and adult-like proportions');snap('02-grounded-ranger.png')
    before=page.evaluate('__dinoRanger.state.position');page.evaluate('__pad.axes[1]=-1');page.wait_for_timeout(1400);page.evaluate('__pad.axes[1]=0');after=page.evaluate('__dinoRanger.state.position');check(abs(after['z']-before['z'])+abs(after['x']-before['x'])>.2,'Xbox walking drives actual character physics')
@@ -55,11 +59,7 @@ try:
    wait('__dinoGrounded.state.active&&__dinoGrounded.state.controllers===2');page.wait_for_timeout(500)
    check(True,'Production XR lifecycle accepts two mocked tracked controllers')
    # Point a production ray at a tile, then dispatch the WebXR select events.
-   page.evaluate("""window.__selectTile=(label,hand=false,hold=false)=>{
-    const x=__dinoRanger.xr,e=x.controllers[1],s=hand?window.__hand:__right;
-    x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label===label||t.runLabel===label); // fallback populated below
-    return !!t;
-   };window.__rayTile=(predicate,source=__right,release=true)=>{
+   page.evaluate("""window.__rayTile=(predicate,source=__right,release=true)=>{
     const T=__THREE,x=__dinoRanger.xr,e=x.controllers[1];x.draw(x.ctx.modal());const t=x.tiles.find(predicate);if(!t)throw Error('XR tile not found');
     const point=new T.Vector3(((t.x+t.w/2)/1024-.5)*1.45,(.5-(t.y+t.h/2)/1024)*1.45,0);x.panel.localToWorld(point);x.rig.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateWorldMatrix(true,false);e.ray.dispatchEvent({type:'selectstart',data:source});if(release)e.ray.dispatchEvent({type:'selectend',data:source});
    };""")
