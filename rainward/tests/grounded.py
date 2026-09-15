@@ -3,6 +3,7 @@ fixture, NOT a living-enemy mission, physical Xbox review or performance claim.
 The release matrix separately runs normal-start missions and full controller UI.
 """
 import json, os, subprocess, shutil
+from PIL import Image
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/')
@@ -31,6 +32,12 @@ with sync_playwright() as pw:
     metrics=page.evaluate('(x)=>MotionFixture.scenario(x)',{'role':role,'kind':kind,'view':view,'grade':grade});records.append({'role':role,'kind':kind,'view':view,'grade':grade,'metrics':metrics})
     check(metrics['finite'] and metrics['bones']==17,variant+' '+role+' '+kind+' uses finite seventeen-bone transforms')
     page.screenshot(path=str(OUT/f'{variant}-{role}-{kind}-{view}-{grade}.png'))
+   for kind in ['walk','swim','tread']:
+    frames=[];page.evaluate('(kind)=>MotionFixture.scenario({kind,view:"side",time:0})',kind)
+    for index in range(25):
+     page.evaluate('(x)=>MotionFixture.sequenceFrame(x)',{'kind':kind,'time':index/12})
+     path=OUT/f'{variant}-{kind}-frame-{index:02}.png';page.screenshot(path=str(path));frames.append(Image.open(path).convert('RGB'))
+    frames[0].save(OUT/f'{variant}-{kind}.gif',save_all=True,append_images=frames[1:],duration=83,loop=0)
    measures=[page.evaluate('(x)=>MotionFixture.measure(x)',{'speed':speed,'grade':grade}) for speed,grade in [(0,0),(.8,0),(2,0),(3.6,0),(6,0),(.8,.3),(.8,-.3)]]
    results[variant]={'poses':records,'measurements':measures}
   for m in results['after']['measurements']:

@@ -14,7 +14,7 @@ const enemies=new Map(roles.map((id)=>[id,actor(scene,null,0x747765,true,id)]));
 const p={x:0,z:0,yaw:0,hp:100,stance:'stand',speed:0},state={player:p,enemies:roles.map(id=>({...p,id}))};
 const detail=createDetailedHumans(scene,hero,enemies);detail.set(true,false);let clock=0,current=hero,mode='stand',slope=0,side=false;
 const ground=(x,z)=>slope*z;
-function draw(){const root=current.root.position;camera.position.set(root.x+(side?3.9:.2),ground(root.x,root.z)+1.12,root.z+(side?-.2:-3.9));camera.lookAt(root.x,ground(root.x,root.z)+.9,root.z);floor.rotation.x=-Math.PI/2-Math.atan(slope);grid.rotation.x=-Math.atan(slope);renderer.render(scene,camera);}
+function draw(){const root=current.root.position,wet=p.waterMode==='swim';camera.position.set(root.x+(side?3.9:.2),ground(root.x,root.z)+(wet?.15:1.12),root.z+(side?-.2:-3.9));camera.lookAt(root.x,ground(root.x,root.z)+(wet?-.35:.9),root.z);floor.position.y=wet?-2:-.01;grid.position.y=wet?-2:0;floor.rotation.x=-Math.PI/2-Math.atan(slope);grid.rotation.x=-Math.atan(slope);renderer.render(scene,camera);}
 function step(params,t,render=true){Object.assign(p,params);for(const e of state.enemies)Object.assign(e,p);clock=t;
  for(const a of [hero,...enemies.values()]){pose(a,p,t,a!==hero,ground);if(before)a.root.position.y+=ground(p.x,p.z)-(p.swimDepth||0);a.root.updateMatrixWorld(true);a.skin.skeleton.update();a.root.visible=a===current;}
  detail.update(state);document.querySelector('#caption').textContent=(before?'Clear Water baseline':'Grounded candidate')+' / '+(current===hero?'survivor':current.role)+' / '+mode+' / diagnostic fixture, not a gameplay playthrough';if(render)draw();}
@@ -32,7 +32,7 @@ window.MotionFixture={
   return {feet,bounds:{min:b.min.toArray(),max:b.max.toArray()},motion:current.motion?{...current.motion.stats}:null,detail:detail.stats(),finite:current.bones.every(b=>b.matrixWorld.elements.every(Number.isFinite)),bones:current.bones.length};
  },
  measure({speed=2,fps=60,grade=0,seconds=4}={}){
-  current=hero;slope=grade;mode='walk';for(const a of [hero,...enemies.values()]){a.motion=null;a.lastTime=undefined;a.gait=0;}
+  current=hero;hero.root.visible=true;for(const a of enemies.values())a.root.visible=false;slope=grade;mode='walk';for(const a of [hero,...enemies.values()]){a.motion=null;a.lastTime=undefined;a.gait=0;}
   const lowSpeeds=[],plantErrors=[];let prev=null,prevY=null;
   for(let i=0;i<seconds*fps;i++){const t=i/fps;Object.assign(p,{x:0,z:-speed*t,yaw:0,hp:100,stance:'stand',speed,waterMode:'dry',swimDepth:0,submerged:false,aim:false});pose(hero,p,t,false,ground);if(before)hero.root.position.y+=ground(0,p.z);hero.root.updateMatrixWorld(true);hero.skin.skeleton.update();
    const feet=[13,16].map(j=>hero.bones[j].getWorldPosition(new T.Vector3()));
@@ -43,4 +43,9 @@ window.MotionFixture={
  }
 };
 window.MotionFixture.scenario();
+// Exact-time image sequences, sampled in this fixture, not a frame-rate claim.
+window.MotionFixture.sequenceFrame=({kind='walk',time=0}={})=>{
+ current=hero;side=true;slope=0;mode=kind;const speed=kind==='swim'?2:kind==='tread'?0:2;
+ step({x:0,z:-speed*time,yaw:0,hp:100,stance:'stand',speed,aim:false,waterMode:kind==='swim'||kind==='tread'?'swim':'dry',swimDepth:kind==='swim'||kind==='tread'?.64:0,submerged:false},time);return window.MotionFixture.metrics();
+};
 </script></html>

@@ -75,7 +75,10 @@ export function applyGroundedMotion(a,p,time,dt,heightAt=()=>0){
   a.weapon.visible=a.longWeapon.visible=a.tools.visible=false;
  }else if(mode==='stand'||crouch){
   const amount=clamp(m.speed/1.2,0,1),lean=run*.10;
-  a.bones[0].position.y=.94-(crouch?.0:.028+amount*(.075+.075*run))+(crouch?0:Math.cos(cycle*2)*.004*amount);
+  const radius=stride*stanceFraction/2,center=heightAt(p.x,p.z);
+  const ahead=heightAt(p.x+m.direction.x*radius,p.z+m.direction.z*radius),behind=heightAt(p.x-m.direction.x*radius,p.z-m.direction.z*radius);
+  const terrainDrop=Number.isFinite(ahead)&&Number.isFinite(behind)?clamp(center-Math.min(ahead,behind),0,.18):0;
+  a.bones[0].position.y=.94-terrainDrop-(crouch?.0:.028+amount*(.075+.075*run))+(crouch?0:Math.cos(cycle*2)*.004*amount);
   a.bones[1].rotation.x+=lean;a.bones[2].rotation.z=Math.sin(cycle)*.015*amount;
   if(!p.aim&&!p.melee&&!p.reload&&!p.craft&&!p.healing&&p.phase!=='windup')for(const side of[-1,1]){const arm=side<0?5:8;const swing=Math.sin(cycle+side*Math.PI/2)*amount;a.bones[arm].rotation.x=.07+swing*(.28+run*.22);a.bones[arm+1].rotation.x=.17+run*.25+Math.max(0,-swing)*.14;}
  }

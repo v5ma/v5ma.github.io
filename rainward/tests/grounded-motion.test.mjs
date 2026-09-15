@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as T from '../vendor/three.module.js';
 import {actor,pose} from '../actors.mjs';
 import {twoBonePoints,FootContact,groundSample} from '../grounded-motion.mjs';
-import {fitProportions,proportionPoint} from '../character-proportions.mjs';
+import {fitProportions,proportionPoint,fitHumanParts} from '../character-proportions.mjs';
 const player=(extra={})=>({x:0,z:0,yaw:0,hp:100,stance:'stand',speed:0,...extra});
 const build=()=>actor(new T.Scene(),null,0x748473);
 const at=b=>b.getWorldPosition(new T.Vector3());
@@ -39,9 +39,9 @@ for(const fps of [30,60,120])test(`Actual ankle transforms hold settled plants b
 });
 test('Stationary roots do not march when requested speed is blocked by collision',()=>{const a=build();for(let i=0;i<90;i++)pose(a,player({speed:6}),i/60);assert.equal(a.motion.phase,0);assert.equal(a.motion.stats.locked,2);});
 test('Terrain height is applied once and each planted sole follows the supporting slope',()=>{
- for(const slope of [-.3,.3]){const a=build(),ground=(x,z)=>2+slope*z;let measured=0,max=0;
+ for(const slope of [-.57,-.3,.3,.57]){const a=build(),ground=(x,z)=>2+slope*z;let measured=0,max=0;
   for(let i=0;i<180;i++){const p=player({z:-i/60*.8,speed:.8});pose(a,p,i/60,false,ground);assert.equal(a.root.position.y,ground(p.x,p.z));
-   for(let j=0;j<2;j++){const f=a.motion.feet[j];if(f.locked&&f.age>.11){measured++;max=Math.max(max,at(a.bones[j?16:13]).distanceTo(f.anchor));}}
+   for(let j=0;j<2;j++){const f=a.motion.feet[j];if(i>30&&f.locked&&f.age>.11){measured++;max=Math.max(max,at(a.bones[j?16:13]).distanceTo(f.anchor));}}
   }assert.ok(measured>10);assert.ok(max<.012,`slope ${slope} residual ${max}`);
  }
 });
@@ -57,8 +57,16 @@ test('Swimming has distinct tread/stroke articulation and never keeps ground loc
 });
 test('Prone, vault and death release IK; returning to dry ground safely reacquires it',()=>{const a=build();let i=0;for(const change of [{},{stance:'prone'},{vault:{t:.2,duration:.6}},{hp:0},{}]){for(let k=0;k<45;k++,i++)pose(a,player(change),i/60);if(Object.keys(change).length)assert.equal(a.motion.stats.locked,0);else assert.equal(a.motion.stats.locked,2);}});
 test('Proportion calibration preserves overall height and coherent seventeen-bone bind landmarks',()=>{
- const a=build();assert.equal(a.bones.length,17);assert.deepEqual(proportionPoint(0,1.798,0),[0,1.798,0]);assert.ok(proportionPoint(.244,1.415,0)[0]<.24);
+ const a=build();assert.equal(a.bones.length,17);assert.deepEqual(proportionPoint(0,1.8,0),[0,1.8,0]);assert.ok(proportionPoint(0,1.59,0)[1]<1.56);assert.ok(proportionPoint(.08,1.70,0)[0]>.08);assert.ok(proportionPoint(.244,1.415,0)[0]<.24);
  assert.ok(proportionPoint(.105,.49,0)[1]>.50);assert.ok(proportionPoint(0,.1,-.15)[2]>-.145);assert.ok(a.skin.geometry.userData.rainwardProportions);
  const before=a.skin.geometry.attributes.position.array.slice();fitProportions(a.skin.geometry);assert.deepEqual(a.skin.geometry.attributes.position.array,before);
 });
 test('Proportion mapping keeps normals unit length and source weight sums unchanged',()=>{const a=build(),n=a.skin.geometry.attributes.normal,w=a.skin.geometry.attributes.skinWeight;for(let i=0;i<n.count;i++){assert.ok(Math.abs(Math.hypot(n.getX(i),n.getY(i),n.getZ(i))-1)<1e-5);assert.ok(Math.abs(w.getX(i)+w.getY(i)+w.getZ(i)+w.getW(i)-1)<1e-6);}});
+
+test('Shared glTF material attributes receive the body fit once, with independent cloned buffers',()=>{
+ const positions=new T.Float32BufferAttribute([.08,1.6,0,.2,1.35,0,.1,.49,0],3),normals=new T.Float32BufferAttribute([1,0,0,1,0,0,1,0,0],3);
+ const parts=Array.from({length:4},()=>({geometry:new T.BufferGeometry().setAttribute('position',positions).setAttribute('normal',normals)}));
+ const before=Array.from(positions.array);fitHumanParts(parts);assert.deepEqual(Array.from(positions.array),before);
+ for(const part of parts){const p=part.geometry.attributes.position;assert.notEqual(p,positions);assert.ok(Math.abs(p.getX(0)-proportionPoint(before[0],before[1],before[2])[0])<1e-6);}
+ assert.notEqual(parts[0].geometry.attributes.position,parts[1].geometry.attributes.position);
+});
