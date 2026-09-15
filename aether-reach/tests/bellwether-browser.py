@@ -44,7 +44,8 @@ with sync_playwright() as pw:
   check('sniper' in s()['carried'] and s()['credits']==100,'A real kiosk purchase equips the Longglass for the encounter')
   for x,z in [(-10,0),(-16,-6),(-70,-8),(-84,-4)]:walk(x,z)
   use('bell-dispatch');check(s()['bellwether']['stage']==1,'X starts the street encounter')
-  clear(['bell-blackout-street','bell-warden','bell-marshal'])
+  # Mission completion, not an impossible stationary shot at every optional guard behind the new cover.
+  clear(['bell-blackout-street'])
   p.wait_for_function('AetherReach.snapshot().bellwether.stage===2')
   check(s()['stats']['shots']>0,'Actual scoped fire clears the street; no enemy health or mission progress was assigned')
   p.screenshot(path=str(OUT/'blackout-street.png'))
