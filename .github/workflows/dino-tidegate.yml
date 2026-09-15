@@ -1,0 +1,183 @@
+name: Dino Atlas Tidegate
+on:
+  push:
+    branches: [master, 'dino-atlas/tidegate-diorama-20260915']
+    paths: ['dino-atlas/**', '.github/workflows/dino-tidegate.yml']
+  pull_request:
+    paths: ['dino-atlas/**', '.github/workflows/dino-tidegate.yml']
+permissions:
+  contents: read
+concurrency:
+  group: dino-tidegate-release-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact source, syntax, models and real Rapier route checks
+        run: |
+          mkdir -p tidegate-evidence
+          git rev-parse HEAD > tidegate-evidence/source-commit.txt
+          tar -czf tidegate-source.tgz dino-atlas .github
+          find dino-atlas -maxdepth 1 -name '*.js' -print0 | xargs -0 -n1 node --check
+          set -o pipefail
+          node --test dino-atlas/tests/*.test.mjs | tee tidegate-evidence/unit-tests.tap
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          paths=subprocess.check_output(['git','ls-files','dino-atlas'],text=True).splitlines()
+          files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/')) and Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
+          files+=['dino-atlas/TIDEGATE-CROSSING.md','dino-atlas/AAA-ROADMAP.md','dino-atlas/TIDEGATE-HANDOFF.md']
+          report={'build':'tidegate-20260915.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in sorted(set(files))}}
+          Path('tidegate-evidence/runtime-hashes.json').write_text(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tidegate-model-${{ github.run_id }}
+          path: |
+            tidegate-evidence/
+            tidegate-source.tgz
+          retention-days: 30
+  tour:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Real movement and collision tour with synthetic Xbox and explicit XR mocks
+        run: python dino-atlas/tests/tidegate-browser.py
+      - name: Capture the actual miniature render with documented mock eye poses
+        run: python dino-atlas/tests/tidegate-view-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tidegate-tour-${{ github.run_id }}
+          path: tidegate-evidence/
+          retention-days: 30
+  legacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [grounded-xr-browser.py, living-herds-browser.py, aaa-browser.py, aquatics-browser.py]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Retain the original Classic Reserve journey
+        run: python dino-atlas/tests/${{ matrix.script }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tidegate-legacy-${{ matrix.script }}-${{ github.run_id }}
+          path: |
+            dino-atlas/verification/grounded-xr/
+            herds-evidence/
+            aaa-evidence/
+            aquatics-evidence/
+          retention-days: 30
+  published:
+    needs: [model, tour, legacy]
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - uses: actions/download-artifact@v4
+        with:
+          name: tidegate-model-${{ github.run_id }}
+          path: verified-model
+      - name: Compare published runtime and vendor bytes to the verified source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request,concurrent.futures
+          manifest=json.loads(Path('verified-model/tidegate-evidence/runtime-hashes.json').read_text());pending=dict(manifest['files']);verified={}
+          def fetch(item):
+              path,want=item
+              try:
+                  req=urllib.request.Request('https://v5ma.github.io/'+path+'?tidegate='+manifest['commit']+'&attempt='+str(attempt),headers={'Cache-Control':'no-cache'})
+                  body=urllib.request.urlopen(req,timeout=30).read();actual=hashlib.sha256(body).hexdigest()
+                  return path,actual if actual==want else None
+              except Exception:return path,None
+          for attempt in range(24):
+              with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+                  for path,actual in pool.map(fetch,list(pending.items())):
+                      if actual:verified[path]=actual;pending.pop(path,None)
+              print('Public source matches:',len(verified),'pending:',len(pending),flush=True)
+              if not pending:break
+              time.sleep(20)
+          assert not pending,'Published files do not match: '+str(list(pending))
+          out=Path('tidegate-evidence');out.mkdir(exist_ok=True)
+          (out/'public-verification.json').write_text(json.dumps({'build':manifest['build'],'commit':manifest['commit'],'url':'https://v5ma.github.io/dino-atlas/tidegate.html','allMatched':True,'files':verified,'physicalHardwareVerified':False},indent=2))
+          PY
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the published Tidegate route and actual miniature rendering
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: |
+          python dino-atlas/tests/tidegate-browser.py
+          python dino-atlas/tests/tidegate-view-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tidegate-published-${{ github.run_id }}
+          path: tidegate-evidence/
+          retention-days: 30
+  release:
+    needs: [published]
+    if: github.ref == 'refs/heads/master' && needs.published.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: tidegate-*-${{ github.run_id }}
+          path: release-evidence
+      - name: Publish the verified first replacement candidate without replacing older tags
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view dino-tidegate-20260915.1 >/dev/null 2>&1; then
+            tar -czf tidegate-verified-evidence.tgz -C release-evidence .
+            gh release create dino-tidegate-20260915.1 --target '${{ github.sha }}' --title 'Dino Atlas: Tidegate Crossing and Diorama XR' --prerelease --notes-file dino-atlas/TIDEGATE-CROSSING.md tidegate-verified-evidence.tgz
+          fi

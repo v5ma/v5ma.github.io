@@ -242,3 +242,19 @@ Release entry: [GROUNDED-RESERVE.md](GROUNDED-RESERVE.md). This continues the op
 - [ ] DINO-01f: human art review of gait transitions, sharp turns, stairs and all model scales at ordinary playing distance.
 
 Next implementation work must follow observed findings from these tests, then the existing signature-district/interior package. Do not add another island expansion as a substitute for these quality gates.
+
+
+## Place-mastery reset / Tidegate Crossing / 2026-09-15
+
+User direction supersedes prototype-expansion-first work. Retain the supplied four descriptions: physical, conditional, behavioral and information. See TIDEGATE-CROSSING.md and design/PLACE-MASTERY-SOURCE.md. Sky Cycle remains out of scope.
+
+- [x] LEVEL-PM-01a: Author a compact, functioning wetland crossing with an observation route, boat approach, useful interior/gallery/roof, readable herd operations and a lasting shortcut home. Runtime candidate is tidegate.html; do not call all legacy levels replaced.
+- [x] LEVEL-PM-01b: Use actual ranger movement, collision, non-injurious tools and common input handlers; keep outcomes independent of a required itinerary and preserve reversible-puzzle recovery.
+- [x] XR-DIO-01a: Separate first-person VR, third-person VR diorama and explicitly requested AR diorama; apply miniature transforms during rendering only.
+- [x] XR-DIO-01b: Enforce exactly three top/front aperture states; never both closed. Keep settings reachable through Xbox and tracked/hand-ray UI.
+- [ ] LEVEL-PM-02: Native rendered candidate tour, all legacy regressions, reviewed screenshots and live source-byte verification. Only attach actual passed-run receipts.
+- [ ] LEVEL-PM-03: Unfamiliar players identify the goal, compare approaches, explain changed state and recognize the shortcut without coaching; returning players demonstrate increased agency. Iterate observed confusion before expanding.
+- [ ] XR-DIO-02: Physical Quest 3 AR/VR, Touch Plus/hand tracking, stereo clipping, reach/readability, first-person/miniature switching and comfort/performance. No API mock substitutes.
+- [ ] LEVEL-PM-04: Replace the campaign entry after human acceptance, retaining Classic Reserve compatibility, historical saves and safe layout-version boundaries. Rebuild further districts with the same relationship-first method, not a prop-count target.
+
+The new candidate has separate district/presentation save keys. Existing progress is not migrated or erased, and the old public route remains available. Per-vehicle parking-pose persistence, production art, ecological realism and whole-campaign replacement are not claimed.
