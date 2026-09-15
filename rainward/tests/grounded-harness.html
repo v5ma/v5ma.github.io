@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Rainward Grounded motion fixture</title>
+<style>body{margin:0;background:#18241f;color:white;font:14px system-ui}#caption{position:fixed;top:12px;left:16px;max-width:700px;pointer-events:none}canvas{display:block}</style><div id="caption"></div>
+<script type="module">
+import * as T from '../vendor/three.module.js';
+const before=new URLSearchParams(location.search).get('variant')==='before';
+const {actor,pose}=await import(before?'./grounded-baseline/actors.mjs':'../actors.mjs');
+const {createDetailedHumans}=await import(before?'./grounded-baseline/rainworn-humans.mjs':'../rainworn-humans.mjs');
+const scene=new T.Scene();scene.background=new T.Color(0x25382f);
+const camera=new T.PerspectiveCamera(35,innerWidth/innerHeight,.02,100),renderer=new T.WebGLRenderer({antialias:true});renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;document.body.append(renderer.domElement);
+scene.add(new T.HemisphereLight(0xd9eef4,0x394330,1.7));const sun=new T.DirectionalLight(0xffffff,2.5);sun.position.set(-3,5,-4);scene.add(sun);const fill=new T.DirectionalLight(0xbdcfec,.6);fill.position.set(3,2,2);scene.add(fill);
+const floor=new T.Mesh(new T.PlaneGeometry(30,30),new T.MeshStandardMaterial({color:0x536358,roughness:.95}));floor.rotation.x=-Math.PI/2;floor.position.y=-.01;scene.add(floor);const grid=new T.GridHelper(30,60,0x6d806f,0x485c4b);scene.add(grid);
+const hero=actor(scene,null,0x748473),roles=['watcher','raider','marksman','sentinel','drifter'];
+const enemies=new Map(roles.map((id)=>[id,actor(scene,null,0x747765,true,id)]));
+const p={x:0,z:0,yaw:0,hp:100,stance:'stand',speed:0},state={player:p,enemies:roles.map(id=>({...p,id}))};
+const detail=createDetailedHumans(scene,hero,enemies);detail.set(true,false);let clock=0,current=hero,mode='stand',slope=0,side=false;
+const ground=(x,z)=>slope*z;
+function draw(){const root=current.root.position;camera.position.set(root.x+(side?3.9:.2),ground(root.x,root.z)+1.12,root.z+(side?-.2:-3.9));camera.lookAt(root.x,ground(root.x,root.z)+.9,root.z);floor.rotation.x=-Math.PI/2-Math.atan(slope);grid.rotation.x=-Math.atan(slope);renderer.render(scene,camera);}
+function step(params,t,render=true){Object.assign(p,params);for(const e of state.enemies)Object.assign(e,p);clock=t;
+ for(const a of [hero,...enemies.values()]){pose(a,p,t,a!==hero,ground);if(before)a.root.position.y+=ground(p.x,p.z)-(p.swimDepth||0);a.root.updateMatrixWorld(true);a.skin.skeleton.update();a.root.visible=a===current;}
+ detail.update(state);document.querySelector('#caption').textContent=(before?'Clear Water baseline':'Grounded candidate')+' / '+(current===hero?'survivor':current.role)+' / '+mode+' / diagnostic fixture, not a gameplay playthrough';if(render)draw();}
+await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{step({},clock);if(detail.stats().loaded===2){clearInterval(timer);resolve();}else if(performance.now()-start>30000){clearInterval(timer);reject(Error(JSON.stringify(detail.stats())));}},40);});
+window.MotionFixture={
+ before,renderer,scene,get actor(){return current},detail,step,
+ scenario({kind='stand',role='hero',view='front',grade=0,detailed=true,time=2}={}){
+  current=role==='hero'?hero:enemies.get(role);if(!current)throw Error('Unknown actor');side=view==='side';slope=grade;mode=kind;detail.set(detailed,false);
+  for(const a of [hero,...enemies.values()]){a.motion=null;a.lastTime=undefined;a.gait=0;}
+  const extra=kind==='crouch'?{stance:'crouch'}:kind==='prone'?{stance:'prone'}:kind==='aim'?{aim:true}:kind==='swim'?{waterMode:'swim',swimDepth:.64,speed:2}:kind==='tread'?{waterMode:'swim',swimDepth:.64}:kind==='dive'?{waterMode:'swim',swimDepth:1.7,submerged:true,speed:1}:kind==='walk'?{speed:2}:kind==='run'?{speed:6}:{};
+  for(let i=0;i<=Math.ceil(time*60);i++){const t=i/60;step({x:0,z:-(extra.speed||0)*t,hp:100,stance:'stand',waterMode:'dry',swimDepth:0,submerged:false,aim:false,speed:0,...extra},t,false);}draw();
+  return this.metrics();
+ },
+ metrics(){const feet=[13,16].map(j=>current.bones[j].getWorldPosition(new T.Vector3()).toArray()),surface=current.rig.children.find(g=>g.name.startsWith('Rainward adapted')&&g.visible)||current.skin,b=new T.Box3().setFromObject(surface,true);
+  return {feet,bounds:{min:b.min.toArray(),max:b.max.toArray()},motion:current.motion?{...current.motion.stats}:null,detail:detail.stats(),finite:current.bones.every(b=>b.matrixWorld.elements.every(Number.isFinite)),bones:current.bones.length};
+ },
+ measure({speed=2,fps=60,grade=0,seconds=4}={}){
+  current=hero;slope=grade;mode='walk';for(const a of [hero,...enemies.values()]){a.motion=null;a.lastTime=undefined;a.gait=0;}
+  const lowSpeeds=[],plantErrors=[];let prev=null,prevY=null;
+  for(let i=0;i<seconds*fps;i++){const t=i/fps;Object.assign(p,{x:0,z:-speed*t,yaw:0,hp:100,stance:'stand',speed,waterMode:'dry',swimDepth:0,submerged:false,aim:false});pose(hero,p,t,false,ground);if(before)hero.root.position.y+=ground(0,p.z);hero.root.updateMatrixWorld(true);hero.skin.skeleton.update();
+   const feet=[13,16].map(j=>hero.bones[j].getWorldPosition(new T.Vector3()));
+   if(prev&&i>fps/2)for(let j=0;j<2;j++){const f=feet[j];if(f.y-ground(f.x,f.z)<.125&&Math.abs((f.y-prevY[j])*fps)<.12)lowSpeeds.push(Math.hypot(f.x-prev[j].x,f.z-prev[j].z)*fps);const lock=hero.motion?.feet[j];if(lock?.locked&&lock.age>.11)plantErrors.push(f.distanceTo(lock.anchor));}
+   prev=feet;prevY=feet.map(f=>f.y);
+  }
+  draw();return {speed,fps,grade,lowFootSamples:lowSpeeds.length,lowFootRmsSpeed:Math.sqrt(lowSpeeds.reduce((s,v)=>s+v*v,0)/Math.max(1,lowSpeeds.length)),settledPlantSamples:plantErrors.length,maxSettledPlantError:Math.max(0,...plantErrors),stats:hero.motion?.stats||null};
+ }
+};
+window.MotionFixture.scenario();
+</script></html>
