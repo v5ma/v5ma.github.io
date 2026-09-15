@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "recordedOn": "2026-09-15",
+  "kind": "owner-direction-and-design-contract",
+  "observedMaster": "f4185c09d9345e47b76a06172c1b171fd3863b2b",
+  "runtimeReleaseUnchanged": "0.13.0",
+  "runtimeChanged": false,
+  "replacementLevelImplemented": false,
+  "firstPersonImplemented": false,
+  "dioramaImplemented": false,
+  "sourceAttachment": {
+    "name": "Pasted markdown(20260915-181107).md",
+    "sha256": "0d79e389601a8ad2156959b5b426809791262b8d1db8f0373fb50b1e9f76dae5",
+    "basis": "Place mastery; physical, conditional, behavioral and information descriptions; Leo's Guild neighborhood example; evidence gates."
+  },
+  "localValidation": {
+    "node": "22.16.0",
+    "command": "node --test leonardos-guild/design/validate-design.mjs",
+    "passed": 14,
+    "failed": 0,
+    "scope": "Logical authoring contract only; three independent proposed routes, recovery graph, permanent shortcut hop reduction, enclosure states and declared save/interaction requirements.",
+    "notEstablished": "Actual geometry, collision clearance, native WebGL, XR sessions, runtime save migration, gameplay quality, physical devices or a new public release."
+  },
+  "earlierUnpublishedRefinement": {
+    "version": "0.13.1-rc.1",
+    "priorLocalCommit": "c437b1a0159e9d5e803805f4c518f2d896ea2227",
+    "zipSha256": "c1f9998770e770ad56ee6e13c780c948d7288637e9c06e03094d24b78c626be9",
+    "patchSha256": "056375f275e07a5486b7b97ac742e2074e6dd347ab4b613321e1c3e1bee7bacb",
+    "importedHere": false,
+    "publicationVerified": false
+  },
+  "nextImplementation": "Reconcile unpublished refinements, decouple stable progress identifiers from geometry, author the actual Waterwheel Quarter, and implement the new XR presentations against that same world."
+}
