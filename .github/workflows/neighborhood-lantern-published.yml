@@ -1,0 +1,96 @@
+name: Verify published Lantern Ward
+on:
+  push:
+    branches: [master]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-lantern-published.yml']
+permissions:
+  contents: read
+concurrency:
+  group: lantern-published
+  cancel-in-progress: true
+jobs:
+  bytes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+      - name: Verify deployed game, legacy layout, assets and evidence
+        env:
+          COMMIT: ${{ github.sha }}
+        run: |
+          mkdir -p published-results
+          python - <<'PY'
+          import concurrent.futures,hashlib,json,os,pathlib,time,urllib.request
+          root=pathlib.Path('svgn-planet');base='https://v5ma.github.io/';commit=os.environ['COMMIT']
+          paths=sorted(p for p in root.rglob('*') if p.is_file() and not any(x.startswith('.') or x in ('tests','tools','node_modules','__pycache__') for x in p.relative_to(root).parts) and p.suffix not in ('.py','.pyc'))
+          expected={p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in paths};rows={}
+          def check(path):
+              row={'path':path,'expected':expected[path],'matches':False}
+              try:
+                  req=urllib.request.Request(base+path+'?source='+commit+'&nocache='+str(time.time_ns()),headers={'Cache-Control':'no-cache'})
+                  with urllib.request.urlopen(req,timeout=25) as response:
+                      assert response.status==200
+                      data=response.read()
+                  row.update(sha256=hashlib.sha256(data).hexdigest(),bytes=len(data));row['matches']=row['sha256']==row['expected']
+              except Exception as e:row['error']=str(e)
+              return row
+          for attempt in range(60):
+              pending=[p for p in expected if not rows.get(p,{}).get('matches')]
+              if not pending:break
+              with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+                  for r in pool.map(check,pending):rows[r['path']]=r
+              count=sum(r['matches'] for r in rows.values());print('Verified',count,'of',len(paths),flush=True)
+              if count==len(paths):break
+              time.sleep(10)
+          receipt={'commit':commit,'version':'0.12.0','files':[rows[k] for k in sorted(rows)],'success':len(rows)==len(paths) and all(r['matches'] for r in rows.values())}
+          pathlib.Path('published-results/bytes.json').write_text(json.dumps(receipt,indent=2))
+          assert receipt['success'],'Published files did not match this source within the verification window'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lantern-public-bytes
+          path: published-results/
+          retention-days: 30
+  live:
+    needs: bytes
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    strategy:
+      fail-fast: false
+      matrix:
+        route: [street, xr]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Verify live default entry, saved route and native synthetic XR
+        env:
+          WARD_BASE: https://v5ma.github.io/svgn-planet/
+          WARD_ROUTE: ${{ matrix.route }}
+          WARD_OUT: published-results
+        run: python svgn-planet/lantern/browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lantern-live-${{ matrix.route }}
+          path: published-results/
+          retention-days: 30
+  gate:
+    needs: [bytes, live]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Exact deployed files and live default-entry street/native-XR tests passed for ${{ github.sha }}. Physical devices are not certified.' >> "$GITHUB_STEP_SUMMARY"

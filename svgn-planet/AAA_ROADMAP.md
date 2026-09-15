@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Grounded Neighborhood v0.11.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
+Current release: Grounded Neighborhood v0.12.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
 
 ## How to use this workbook
 
@@ -80,7 +80,7 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
 
 ## M1 / One exceptional neighborhood
 
-A coherent Homecoming vertical slice before more map expansion.
+An authored Lantern Ward chapter with meaningful routes, state changes and a recognizable return shortcut before further map expansion.
 
 Human exit gate: Approve one street, hero character, vehicle, interior and a compelling 15-minute play experience.
 
@@ -131,6 +131,24 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
   Next: Record observations and actual captures rather than self-awarded quality grades.
   Owner role: Real-device QA / user. Dependencies: SLICE-03, ART-01, ART-02, ART-03, PLAY-01.
   Evidence: Not recorded.
+
+- [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
+  Acceptance: Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.
+  Next: Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.
+  Owner role: Level design / Engineering / QA. Dependencies: None.
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
+
+- [ ] XR-02 / P0 / needs-playtest / Native first-person and actual-geometry VR/AR dioramas
+  Acceptance: Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.
+  Next: Publish and verify the exact candidate; then obtain physical device and unfamiliar-player/replay sign-off. Do not expand the map before reviewing spatial understanding.
+  Owner role: Level design / Engineering / QA. Dependencies: None.
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
+
+- [x] LEGACY-01 / P0 / verified / Versioned original-world preservation
+  Acceptance: Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.
+  Next: Keep the 102 frozen legacy file hashes and all five retained browser suites passing in future upgrades.
+  Owner role: Level design / Engineering / QA. Dependencies: None.
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
 
 ## M2 / A city with a reason to exist
 

@@ -1,0 +1,123 @@
+{
+  "version": "0.12.0",
+  "edition": "Lantern Ward: The Broken Delivery Loop",
+  "date": "2026-09-15",
+  "status": "automated-candidate-accepted",
+  "published": false,
+  "testedCommit": "c7635260af059b991ae8454a94304fba6adceadf",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35015525054",
+  "unitTestsPassed": 208,
+  "unitTestsFailed": 0,
+  "browserSuitesPassed": 9,
+  "browserChecksPassed": 132,
+  "suites": [
+    {
+      "suite": "street",
+      "checks": 11,
+      "artifact": 10415985250,
+      "report": "street.json",
+      "sha256": "33605853f01f5224d5e6f1b001d353806e8dc96440ead0da8e47db9f77895961"
+    },
+    {
+      "suite": "roof",
+      "checks": 11,
+      "artifact": 10415925098,
+      "report": "roof.json",
+      "sha256": "41e793cc438a891a388135ee941a19d1e17fdeb2254ca0620f510ef5b85f235e"
+    },
+    {
+      "suite": "canal",
+      "checks": 13,
+      "artifact": 10415612995,
+      "report": "canal.json",
+      "sha256": "cf7e40b29f765f4418ba5351e09565d74810a2f6fc18a454e0b6af77bef924c7"
+    },
+    {
+      "suite": "xr",
+      "checks": 16,
+      "artifact": 10415368152,
+      "report": "xr.json",
+      "sha256": "bab5ea42ec06e521ec0fc8a61f30e903ca65c026d9e2764c9ed7322d054dba65"
+    },
+    {
+      "suite": "coastal_browser_release",
+      "checks": 14,
+      "artifact": 10415496725,
+      "report": "coastal_browser_release.json",
+      "sha256": "2d2e3402f374a76e0b6f4cb5266a2bd71decd31a8e3aed7569526c94c583f989"
+    },
+    {
+      "suite": "homecoming_browser",
+      "checks": 12,
+      "artifact": 10414813413,
+      "report": "homecoming_browser.json",
+      "sha256": "4e4835dfa9315ecfa109b1d4163ec5cb5a258c2b7640cbcddad0efdf86db78a4"
+    },
+    {
+      "suite": "atmosphere-browser",
+      "checks": 22,
+      "artifact": 10416025332,
+      "report": "atmosphere-browser.json",
+      "sha256": "4120cef5b15f7e515c40525eda50ed0dd77fa970000e1274a3be706090af1784"
+    },
+    {
+      "suite": "tidewater-browser",
+      "checks": 18,
+      "artifact": 10415766616,
+      "report": "tidewater-browser.json",
+      "sha256": "dfdf24584b31f058a263cc63a3c6c0162d1e5472b8ac0f3c2d76fb9332156dbc"
+    },
+    {
+      "suite": "grounded-browser",
+      "checks": 15,
+      "artifact": 10415671474,
+      "report": "grounded-browser.json",
+      "sha256": "977e320133f4ad7ad20ee87f3c052d89276fbf28153a6cdac9928a7abd04f8b2"
+    }
+  ],
+  "modelReport": "model.txt",
+  "modelSHA256": "16906594db7d014a0782899fa3b944c52b28256b8fc6d0ca76d0a7b27676c7be",
+  "modelArtifact": 10414894569,
+  "runtimeFiles": [
+    {
+      "path": "index.html",
+      "sha256": "51d6891897dacb4edbb7f448b2f6981827bf4536022b1aa80fd77efe4d54dbf0"
+    },
+    {
+      "path": "lantern/app.mjs",
+      "sha256": "0ee1c22a84d4ed5463bdf99c6ce030182c651c27057e53e6d25e155716f2e7f7"
+    },
+    {
+      "path": "lantern/core.mjs",
+      "sha256": "6c9a0ef545d213b10ab2ff5471fe29e127e5b84f5e0238490096b7f96b263f94"
+    },
+    {
+      "path": "lantern/style.css",
+      "sha256": "1bb5dd229f423a92ff44a0f24a003e8810f9e9ddec38d62d87a841aab0130f2f"
+    },
+    {
+      "path": "lantern/view.mjs",
+      "sha256": "81c26d124d4807c5a17cf61379240e66fdd852906d412044eca834ef5069c32d"
+    },
+    {
+      "path": "lantern/xr.mjs",
+      "sha256": "926ab1b0c18ffaa05ec4a70b101b411f3636062fddb353803fe0a5f4ed5a11b6"
+    },
+    {
+      "path": "lantern-ward.html",
+      "sha256": "04965063a7bd63c768c54377497c39556cc1fe68119db07d5f97b89597fc89c3"
+    }
+  ],
+  "legacyFilesPinned": 102,
+  "legacyEntry": "legacy.html",
+  "legacyManifest": "legacy-layout.json",
+  "saveIdentity": "svgn.lantern-ward.v1 / lantern-ward-01 / layout 1",
+  "legacySaveWrites": false,
+  "xrPresentation": "Native per-eye actual scene geometry; first-person VR, diorama VR and explicit non-opaque AR. Top/front/both apertures. No room scan or hit-test anchoring.",
+  "quality": "Authored playable graybox, not approved production art or completed whole-world replacement.",
+  "physicalXboxTested": false,
+  "physicalQuest3Tested": false,
+  "hardwareFrameTargetCertified": false,
+  "humanLevelComprehensionTested": false,
+  "publication": "Pending normal merge, Pages deployment and exact public byte/browser verification."
+}

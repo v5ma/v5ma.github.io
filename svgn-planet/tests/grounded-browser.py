@@ -1,7 +1,7 @@
 import asyncio,json,os,traceback
 from pathlib import Path
 from playwright.async_api import async_playwright
-BASE=os.environ.get('GROUNDED_BASE','http://127.0.0.1:8765/svgn-planet/')
+BASE=os.environ.get('GROUNDED_BASE','http://127.0.0.1:8765/svgn-planet/legacy.html')
 OUT=Path(os.environ.get('GROUNDED_OUTPUT','grounded-results'));OUT.mkdir(exist_ok=True)
 PAD="""window.__pad={id:'Xbox / grounded acceptance',mapping:'standard',connected:true,index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad]});"""
 async def main():
