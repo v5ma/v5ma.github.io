@@ -1,32 +1,19 @@
 {
-  "version": "0.10.0",
+  "version": "0.11.0",
   "name": "Neighborhood Missions",
-  "edition": "Tidewater Commons",
+  "edition": "Grounded Neighborhood",
   "folder": "svgn-planet",
-  "date": "2026-09-13",
+  "date": "2026-09-14",
   "roadmap": "AAA_ROADMAP.md",
   "roadmapData": "production/roadmap.json",
-  "evidence": "production/evidence/v0.10.0.json",
-  "testedCommit": "2ab785f77c6ac10aad71fa4e67340f28402e3c38",
-  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/34738493022",
+  "evidence": "production/evidence/v0.11.0.json",
   "changes": [
-    "Add Seaglass Pool with playable skimming and filter routing",
-    "Add a boatable Lantern Canal, pedal skiff and harbor courier excursion",
-    "Add a connected ten-checkpoint boardwalk relay, local map and results screen",
-    "Add two bounded analytical-refraction water shaders, ripple impulses and water ambience",
-    "Add a title-screen Play the water missions now button and controller-complete water menus",
-    "Retain existing saves, 102 city contracts, Homecoming, weather presets and unlimited riding cruise"
+    "Recoverable v1 save transactions, backups, guarded import and export",
+    "Measured procedural hero, articulated limbs, distance-driven gait and world-space contact targets",
+    "Visible bicycle pedals with foot/hand target IK and safe pose transitions",
+    "Xbox primary actions retained with neutral rearm after menus",
+    "Quest WebXR comfort theater with tracked controller rays, hand joints, pinch menus and hand-only hold controls",
+    "Retain Homecoming, Tidewater, original delivery routes, existing credits and unlimited cruise"
   ],
-  "acceptance": "passed",
-  "validation": {
-    "unitTestsPassed": 134,
-    "waterBrowserChecksPassed": 18,
-    "coastalRegressionChecksPassed": 14,
-    "homecomingRegressionChecksPassed": 12,
-    "uncaughtBrowserErrors": 0,
-    "shaderCompileErrors": 0,
-    "physicalControllerTested": false,
-    "hardwareFrameTargetCertified": false,
-    "commercialAAAQualityClaimed": false
-  }
+  "acceptance": "Candidate: automated browser and published-source verification pending"
 }

@@ -36,11 +36,6 @@ export function createHomecomingPlaza(root,courier){
  p('round','#436d73',[.3,1.2,0],[.085,.26,.085],maya);p('ball','#b98563',[.3,.95,0],[.067,.07,.067],maya);
  const c=document.createElement('canvas');c.width=512;c.height=160;const ctx=c.getContext('2d'),tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;const sign=new T.Mesh(new T.PlaneGeometry(3.2,1),new T.MeshStandardMaterial({map:tex,roughness:.85,side:T.DoubleSide}));sign.position.set(0,2.56,3.83);stat.add(sign);
  const plaque=document.createElement('canvas');plaque.width=256;plaque.height=80;const q=plaque.getContext('2d');q.fillStyle='#244653';q.fillRect(0,0,256,80);q.fillStyle='#fff0ca';q.textAlign='center';q.font='600 24px system-ui';q.fillText('MAYA / X TO TALK',128,49);const labelTex=new T.CanvasTexture(plaque);labelTex.colorSpace=T.SRGBColorSpace;const label=new T.Mesh(new T.PlaneGeometry(1.8,.56),new T.MeshBasicMaterial({map:labelTex,side:T.DoubleSide}));label.position.set(0,2.3,0);maya.add(label);
- // Foreground courier details retain the original skeleton, scale and controls.
- for(const x of[-.083,.083]){mesh(courier.body,'ball','#ede3cb',[x,1.72,-.225],[.049,.026,.013]);mesh(courier.body,'ball','#253b46',[x,1.72,-.238],[.020,.018,.005]);}
- mesh(courier.body,'round','#a76755',[0,1.60,-.224],[.056,.01,.008]);
- for(const x of[-.245,.245])mesh(courier.body,'box','#b17e46',[x,1.28,.442],[.036,.39,.025]);
- for(let i=0;i<6;i++)mesh(courier.body,'box','#fff1cc',[-.17+i*.064,1.10,.44],[.035,.04,.028]);
  const bikeLight=mesh(courier.bicycle,'ball','#d95d49',[0,1.02,.46],[.06,.035,.025]);bikeLight.material=new T.MeshStandardMaterial({color:'#d74d3c',emissive:'#9b211a',emissiveIntensity:.3});
  const architecture=new T.Group();for(const child of [...stat.children])if(child.isMesh){stat.remove(child);architecture.add(child);}stat.add(architecture);batchStatic(architecture);
  const personStatic=new T.Group();for(const child of [...maya.children])if(child.isMesh&&child!==label){maya.remove(child);personStatic.add(child);}maya.add(personStatic);batchStatic(personStatic);
