@@ -2,7 +2,7 @@ name: Stage reviewed Receiver Crosswind
 on:
   push:
     branches: [aether/receiver-crosswind-20260915]
-    paths: ['aether-reach/tools/crosswind-edits-*.json', '.github/workflows/aether-crosswind-stage.yml']
+    paths: ['aether-reach/tools/crosswind-id-correction.json', '.github/workflows/aether-crosswind-stage.yml']
 permissions:
   contents: read
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Apply exact-base, bounded source changes
+      - name: Apply exact-base bounded source and roadmap correction
         run: |
           mkdir -p /tmp/crosswind-stage
           python - <<'PY'
@@ -32,14 +32,13 @@ jobs:
           data={'base':'78dad9840163bbacb7308118cde44a1bb4f525f6','changes':{}}
           for i in range(4):
             text=Path(f'aether-reach/tools/crosswind-edits-{i}.json').read_text()
-            # Repair the single transfer-only delimiter verified by artifact comparison.
             if i==1:text=text.replace("'shieldAfter':after['shield']})\"],[2823","'shieldAfter':after['shield']}\"],[2823")
             part=json.loads(text)
             assert not set(part).intersection(data['changes'])
             data['changes'].update(part)
           assert hashlib.sha256(json.dumps(data,sort_keys=True,separators=(',',':')).encode()).hexdigest()=='ba9da9ee4fea58b9555b8678f791ed15cc6beeb6bbc4e4a7ec4d53f63af58a99'
           assert len(data['changes'])==19
-          for name,item in data['changes'].items():
+          def apply(name,item):
             p=Path(name)
             assert name.startswith('aether-reach/') or name=='level-design-library/games/aether-reach.md'
             assert not p.is_absolute() and '..' not in p.parts and not p.is_symlink()
@@ -50,10 +49,15 @@ jobs:
               text=text[:start]+replacement+text[end:]
             assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
             p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          for name,item in data['changes'].items():apply(name,item)
+          fixes=json.loads(Path('aether-reach/tools/crosswind-id-correction.json').read_text())
+          assert len(fixes)==5 and set(fixes)<=set(data['changes'])
+          for name,item in fixes.items():
+            apply(name,item);data['changes'][name]['after']=item['after']
           Path('/tmp/crosswind-stage/changes.json').write_text(json.dumps(data))
           PY
           git diff --check
-      - name: Check model, saves, collision and canonical roadmap
+      - name: Check model saves collision and canonical roadmap
         run: |
           set -euo pipefail
           for f in aether-reach/*.mjs; do node --check "$f"; done
@@ -62,7 +66,7 @@ jobs:
           python aether-reach/tests/backup_test.py
           python aether-reach/tools/render-production-plan.py
           node aether-reach/tests/release-manifest.mjs
-      - name: Create content-only commit object for reviewed promotion
+      - name: Create content-only reviewed commit without moving refs
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -76,7 +80,7 @@ jobs:
             return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
           for name,item in data['changes'].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==item['after'],name
           tree=[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in data['changes']]
-          transfer=[f'aether-reach/tools/crosswind-edits-{i}.json' for i in range(4)]+['aether-reach/tools/crosswind-transfer-0.b64']
+          transfer=[f'aether-reach/tools/crosswind-edits-{i}.json' for i in range(4)]+['aether-reach/tools/crosswind-transfer-0.b64','aether-reach/tools/crosswind-id-correction.json']
           tree += [{'path':n,'mode':'100644','type':'blob','sha':None} for n in transfer]
           assert not any(t['path'].startswith('.github/') for t in tree)
           t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
