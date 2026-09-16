@@ -53,9 +53,12 @@ with sync_playwright() as pw:
    });
   }''',{'x':x,'z':z,'sprint':sprint});frames(2);record('arrive '+str((x,z)))
  try:
-  page.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');nav('start');pulse(0);wait('Rainward.mode==="play"')
+  page.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2')
+  check(page.evaluate('!localStorage.getItem("svgn.rainward.v1.checkpoint")'),'No planted checkpoint initializes this journey before the normal Start action')
+  nav('start');pulse(0);wait('Rainward.mode==="play"')
   check(page.evaluate('Rainward.state.level==="district"&&Rainward.state.enemies.length===5&&Rainward.state.enemies.every(e=>e.hp>0)'),'Normal Floodgate start retains all five living enemies')
-  check(page.evaluate('!localStorage.getItem("svgn.rainward.v1.checkpoint")'),'No fabricated checkpoint or resource fixture initializes this journey')
+  initial_save=json.loads(page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")'))
+  check(initial_save['version']==4 and initial_save['checkpoint']=='start' and not initial_save['taken'] and not initial_save['completedTasks'],'Start creates only the genuine empty initial shelter checkpoint')
   check(page.evaluate('Rainward.snapshot().visuals.freightCut.open')==False,'The new loading passage is visibly sealed before its real receiver repair')
   record('arrival');go(1.3,25.5);use('Rainward.state.taken.has("rations")');craft('medkit');craft('smoke')
   check(page.evaluate('Rainward.state.player.medkit===1&&Rainward.state.player.smoke===1&&Rainward.state.player.cloth===0&&Rainward.state.player.canister===0'),'Preparation spends the original finite rations on one medkit and one smoke')
