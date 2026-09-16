@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '22'
       - id: apply
-        name: Apply exact checksum and remove temporary transport
+        name: Apply exact game checksum without writing workflow files
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -37,10 +37,13 @@ jobs:
           f=Path('/tmp/dino-service.patch');f.write_bytes(patch)
           names=subprocess.check_output(['git','apply','--numstat',str(f)],text=True)
           assert all(line.split('\t')[-1].startswith('dino-atlas/') or line.split('\t')[-1] in ['.github/workflows/dino-tidegate.yml','level-design-library/DINO-ATLAS-CURRENT.md'] for line in names.splitlines())
-          subprocess.run(['git','apply','--unidiff-zero','--check',str(f)],check=True)
-          subprocess.run(['git','apply','--unidiff-zero','--index',str(f)],check=True)
+          # GitHub's CI token cannot edit workflows. The user-authorized connector
+          # handles that file separately; this job does not request more permission.
+          args=['git','apply','--unidiff-zero','--exclude=.github/workflows/dino-tidegate.yml']
+          subprocess.run([*args,'--check',str(f)],check=True)
+          subprocess.run([*args,'--index',str(f)],check=True)
           subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
-          subprocess.run(['git','rm',*[str(p) for p in parts],'.github/workflows/dino-service-source.yml'],check=True)
+          subprocess.run(['git','rm',*[str(p) for p in parts]],check=True)
           subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
           subprocess.run(['git','config','user.email','noreply@users.noreply.github.com'],check=True)
           subprocess.run(['git','commit','-m','Refine Tidegate service loop: real maintenance access, honest routes, local resupply and clearance signals'],check=True)
