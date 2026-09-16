@@ -1,0 +1,51 @@
+name: Aether Crosswind diorama recovery
+on:
+  push:
+    branches: [aether/crosswind-release-check-20260915]
+    paths: ['aether-reach/tests/diorama-browser.py', '.github/workflows/aether-crosswind-resume.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diorama:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 3
+          sparse-checkout: aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prove runtime equivalence to the continuing chapter checks
+        run: |
+          git diff --exit-code 1747df96910f62263cc4493a8fa3cb92f09f5174 HEAD -- aether-reach ':!aether-reach/tests/diorama-browser.py'
+          mkdir -p aether-reach/test-output
+          node --test aether-reach/tests/*.test.mjs > aether-reach/test-output/model-tests.log
+          node aether-reach/tests/release-manifest.mjs
+          python -m compileall -q aether-reach/tests
+      - name: Install native test browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise desktop diorama, tracked controllers, hand UI, AR and first-person VR
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/crosswind-resume-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python -u aether-reach/tests/diorama-browser.py
+      - name: Preserve exact-source evidence including failures
+        if: always()
+        run: |
+          mkdir -p aether-reach/test-output
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+          git diff 1747df96910f62263cc4493a8fa3cb92f09f5174 HEAD -- aether-reach/tests/diorama-browser.py > aether-reach/test-output/test-correction.patch
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-crosswind-diorama-recovery
+          path: aether-reach/test-output/
+          retention-days: 30
