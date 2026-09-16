@@ -84,7 +84,10 @@ with sync_playwright() as pw:
   page.locator('#delivery-header [data-delivery="view"]').click();page.locator('#flow-study-toggle').click();frames(6)
   result['cue_view']=page.evaluate("async()=>{const T=await import('./vendor/three.webgpu.js');let o;__cloudview.root.traverse(n=>{if(n.name==='Waterwheel wayfinding: CHOOSE YOUR LINE')o=n;});if(!o)return null;const v=o.getWorldPosition(new T.Vector3()).project(__merged.camera);return {x:v.x,y:v.y,z:v.z,playerX:player.x,visible:o.visible};}")
   cue=result['cue_view'];check(cue and cue['visible'] and -1<cue['x']<1 and -1<cue['y']<1 and -1<cue['z']<1 and cue['playerX']<3080,'Advance route-choice sign is in the actual 3D camera before the runway jump')
-  capture('choice-approach-3d');page.set_viewport_size({'width':390,'height':844});frames(6);capture('choice-approach-mobile');page.set_viewport_size({'width':1100,'height':800})
+  capture('choice-approach-3d');page.set_viewport_size({'width':390,'height':844});frames(6)
+  result['mobile_sign_corners']=page.evaluate("async()=>{const T=await import('./vendor/three.webgpu.js');let o;__cloudview.root.traverse(n=>{if(n.name==='Waterwheel wayfinding: CHOOSE YOUR LINE')o=n;});if(!o)return [];const w=o.geometry.parameters.width/2,h=o.geometry.parameters.height/2;return [[-w,-h],[w,-h],[-w,h],[w,h]].map(([x,y])=>{const v=o.localToWorld(new T.Vector3(x,y,0)).project(__merged.camera);return {x:v.x,y:v.y,z:v.z};});}")
+  check(len(result['mobile_sign_corners'])==4 and all(-1<v['x']<1 and -1<v['y']<1 and -1<v['z']<1 for v in result['mobile_sign_corners']),'The entire advance-choice board fits the portrait camera before commitment')
+  capture('choice-approach-mobile');page.set_viewport_size({'width':1100,'height':800})
   page.locator('#delivery-header [data-delivery="view"]').click();frames(3);capture('choice-approach-2d')
   page.locator('#delivery-pause [data-delivery="resume"]').click();page.locator('#cv').focus();frames(4);page.evaluate(DRIVER,[CASE,GRIP])
   if CASE=='lower':

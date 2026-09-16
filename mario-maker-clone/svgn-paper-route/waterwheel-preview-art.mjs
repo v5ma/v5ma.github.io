@@ -7,7 +7,7 @@ const SIGNS=[
  [810,1960,'PARCEL PORCH','SHORT DETOUR / ROAD RETURN'],
  [1820,1990,'BACK TO MARKET','THE EXPRESS LINE IS LATER'],
  [2440,1900,'SERVICE BRIDGE','READ THE COURT AHEAD'],
- [2990,1900,'CHOOSE YOUR LINE','KEEP SPEED HIGH / BRAKE AND RELEASE LOW'],
+ [2800,1900,'CHOOSE YOUR LINE','SPEED: HIGH GALLERY\nBRAKE, RELEASE: CANAL MAIL'],
  [4260,1820,'CANAL COLLECTOR','LOW LINE REJOINS FOR DELIVERIES'],
  [5170,1930,'MILLWORKERS COURT','DELIVERIES / ROOM TO OBSERVE'],
  [7010,1900,'WHEELHOUSE AHEAD','SKY AND ROAD REJOIN'],
@@ -21,7 +21,7 @@ export function populate({course,root,metal,far,sign}){
  for(let i=0;i<32;i++){const a=i/32*Math.PI*2,b=(i+1)/32*Math.PI*2;metal.rod([x+Math.cos(a)*r,-y+Math.sin(a)*r,-210],[x+Math.cos(b)*r,-y+Math.sin(b)*r,-210],9,'#8f7655');}
  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;metal.rod([x,-y,-210],[x+Math.cos(a)*r,-y+Math.sin(a)*r,-210],5,'#c8ae72');}
  metal.ell(x,-y,-196,27,27,10,'#586d77');
- for(const [sx,sy,title,detail]of SIGNS){const s=sign(title+'\n'+detail,sx,-sy,-74,sx===2990?350:230,sx===2990?80:62);if(s){s.name='Waterwheel wayfinding: '+title;s.userData.waterwheelCue=true;}}
+ for(const [sx,sy,title,detail]of SIGNS){const s=sign(title+'\n'+detail,sx,-sy,-74,230,sx===2800?108:62);if(s){s.name='Waterwheel wayfinding: '+title;s.userData.waterwheelCue=true;}}
  if(!course.gp.waterwheel.groundOnly){
   const MARKS=marksFor(course);
   root.userData.waterwheelFork={id:FORK.id,marks:MARKS.length,signs:FORK_SIGNS.length,lowerDelivery:FORK.delivery};
@@ -35,7 +35,7 @@ export function draw2D(g,camX,camY,width,height){
  const {x,y,radius:r}=data.landmark;
  g.save();g.fillStyle='#547f89';g.fillRect(camX,2134,width,26);
  if(x+r>camX&&x-r<camX+width){g.fillStyle='#b7a281';g.fillRect(x+60,1720,330,438);g.strokeStyle='#695f4a';g.lineWidth=11;g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.stroke();g.lineWidth=5;for(let i=0;i<12;i++){const a=i/12*Math.PI*2;g.beginPath();g.moveTo(x,y);g.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);g.stroke();}g.fillStyle='#496875';g.beginPath();g.arc(x,y,24,0,Math.PI*2);g.fill();}
- for(const [sx,sy,title,detail]of SIGNS){if(sx+135<camX||sx-135>camX+width||sy+40<camY||sy-40>camY+height)continue;g.fillStyle='#173c46';g.fillRect(sx-135,sy-31,270,62);g.fillStyle='#dfc68e';g.fillRect(sx-135,sy-31,5,62);g.textAlign='center';g.font='bold 14px system-ui';g.fillText(title,sx,sy-7);g.font='11px system-ui';g.fillStyle='#ecf0d9';g.fillText(detail,sx,sy+14,254);}
+ for(const [sx,sy,title,detail]of SIGNS){const choice=sx===2800,w=choice?230:270,h=choice?102:62;if(sx+w/2<camX||sx-w/2>camX+width||sy+h/2<camY||sy-h/2>camY+height)continue;g.fillStyle='#173c46';g.fillRect(sx-w/2,sy-h/2,w,h);g.fillStyle='#dfc68e';g.fillRect(sx-w/2,sy-h/2,5,h);g.textAlign='center';g.font='bold 14px system-ui';g.fillText(title,sx,sy-(choice?25:7));g.font='12px system-ui';g.fillStyle='#ecf0d9';detail.split('\n').forEach((line,i)=>g.fillText(line,sx,sy+(choice?0:14)+i*23,w-16));}
  if(!data.groundOnly){
   const MARKS=marksFor(window.__sky?.state.data);
   g.strokeStyle='#f8cf77';g.lineWidth=5;for(const m of MARKS){g.beginPath();g.moveTo(m.x-5,m.y-8);g.lineTo(m.x+5,m.y-3);g.stroke();}
