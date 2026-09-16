@@ -2,7 +2,7 @@
  * reward, save field, patrol or input verb. All exits already open stay open. */
 export const FREIGHT_CUT_TASK='ward-radio';
 export const FREIGHT_CUT_GATE='freight-loading-shutter';
-export const FREIGHT_CUT_REVISION='freight-cut-2';
+export const FREIGHT_CUT_REVISION='freight-cut-3';
 export const FREIGHT_CUT_OBSTACLES=Object.freeze([
  {id:'depot-west-bay-south',x:14,z:-20.25,w:1,d:4.5,h:5.5,bottom:0,kind:'brick'},
  {id:'freight-loading-lintel',x:14,z:-24,w:1,d:3,h:2.1,bottom:3.4,kind:'brick'},
@@ -16,7 +16,7 @@ export const FREIGHT_CUT_OBSTACLES=Object.freeze([
  {id:'freight-sorting-baffle',x:10.9,z:-26.4,w:4,d:.55,h:1.55,bottom:.6,kind:'crate'}
 ].map(Object.freeze));
 export const FREIGHT_CUT_ROUTES=Object.freeze({
- approach:{purpose:'Clinic terrace to the established south receiver entrance. Repair is optional.',points:[[-8,-10],[0,-8],[10,-10],[18,-11]]},
+ approach:{purpose:'Covered market transfer: reuse the existing low counter, fountain and east grass. Slower than the direct street crossing, but it provides deliberate sightline breaks and a recovery stop before the receiver.',points:[[-8,-10],[-5.2,-17],[4,-16.5],[9,-17],[12,-15],[18,-11]]},
  aisle:{purpose:'Slower crouch-cover lane from the receiver toward the spindle. Standing is exposed and the lookout can flank around either end.',points:[[18,-11],[16.2,-14],[16.2,-18],[16.2,-22],[17,-26],[22.3,-26.7]]},
  retreat:{purpose:'Powered lateral escape to the sorting baffle and concealment, then the clinic terrace.',requires:FREIGHT_CUT_TASK,points:[[22.3,-26.7],[17,-26],[17,-24],[11,-24],[9,-21],[-4,-23],[-8,-10]]},
  quay:{purpose:'Original fast north exit toward extraction; exposed to the quay lookout.',points:[[22.3,-26.7],[21,-32],[16,-38],[0,-43]]}

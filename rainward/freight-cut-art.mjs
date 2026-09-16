@@ -13,6 +13,10 @@ export function createFreightCutArt(scene,A,chapter){
  }
  A.label('RECEIVER + LOADING CIRCUIT\nCLINIC BATTERY REQUIRED',18,1.9,-10.45,2.4,.55,'#334e49','#f0dab1');
  const cable=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(18,1.0,-11),new T.Vector3(14.65,1.0,-11),new T.Vector3(14.65,2.7,-11),new T.Vector3(14.65,2.7,-24)]),new T.LineBasicMaterial({color:0xb99d69}));cable.name='Receiver loading circuit';scene.add(cable);
+ // Faded freight-lane ticks point toward cover that already existed in the
+ // district. They are render-only: no collision, hidden route or HUD arrow.
+ const marks=[[-7.1,.045,-12.2,-.35],[-4.8,.045,-15.5,-.75],[1.9,.045,-16.5,-1.35],[7.6,.045,-17,-1.50]];
+ for(const [x,y,z,yaw]of marks){const mark=A.mesh('box',[.85,.025,.13],0xb7a36c,'stone');mark.name='Faded freight approach mark';mark.position.set(x,y,z);mark.rotation.y=yaw;scene.add(mark);}
  let open=false;
- return {update(state){open=freightCutState(state).open;door.scale.y=open?.065:1;door.position.y=open?3.52:1.7;labels.forEach(pair=>{pair.open.visible=open;pair.closed.visible=!open;});lamp.material.color.setHex(open?0xb7ddb7:0xefba70);},stats:()=>({revision:FREIGHT_CUT_REVISION,open,phase:'functional-graybox',humanApproved:false})};
+ return {update(state){open=freightCutState(state).open;door.scale.y=open?.065:1;door.position.y=open?3.52:1.7;labels.forEach(pair=>{pair.open.visible=open;pair.closed.visible=!open;});lamp.material.color.setHex(open?0xb7ddb7:0xefba70);},stats:()=>({revision:FREIGHT_CUT_REVISION,open,approachMarks:marks.length,phase:'functional-graybox',humanApproved:false})};
 }
