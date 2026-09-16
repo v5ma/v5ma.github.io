@@ -1,0 +1,61 @@
+name: Aether Crosswind launch identity
+on:
+  push:
+    branches: [aether/crosswind-release-check-20260915]
+    paths: ['.github/workflows/aether-crosswind-identity.yml']
+permissions:
+  contents: read
+jobs:
+  identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare source contract and native browser
+        run: |
+          node aether-reach/tests/release-manifest.mjs
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Read actual DOM identity and check each locally served file
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/crosswind-identity-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          python - <<'PY'
+          import json,hashlib,urllib.request,subprocess
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          out=Path('aether-reach/test-output');version=json.loads(Path('aether-reach/release.json').read_text())['version']
+          contract=json.loads((out/'runtime-manifest.json').read_text())['files'];served={}
+          for name,digest in contract.items():
+            with urllib.request.urlopen('http://127.0.0.1:4173/'+name,timeout=20) as response:
+              served[name]=hashlib.sha256(response.read()).hexdigest()
+            assert served[name]==digest,name
+          with sync_playwright() as pw:
+            browser=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+            page=browser.new_page(viewport={'width':1080,'height':720},device_scale_factor=1)
+            page.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))")
+            page.goto('http://127.0.0.1:4173/aether-reach/index.html',wait_until='domcontentloaded');page.wait_for_function('!!window.AetherReach',timeout=60000)
+            result={'source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'expected':version,'application':page.evaluate('AetherReach.version'),'header':page.locator('.build i').inner_text(),'status':page.locator('#load-status').inner_text(),'served':served,'scope':'Native HTTP identity inspection, not a progression or hardware acceptance run.'}
+            (out/'launch-identity.json').write_text(json.dumps(result,indent=2))
+            page.screenshot(path=str(out/'launch-identity.png'))
+            assert result['application']==version and result['header']==version,result
+            browser.close()
+          PY
+      - name: Preserve provenance
+        if: always()
+        run: |
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+          git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-crosswind-launch-identity
+          path: aether-reach/test-output/
+          retention-days: 30
