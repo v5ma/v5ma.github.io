@@ -46,7 +46,9 @@ test('Ground-only and full preview share the exact delivery journey',()=>{
 
 test('Original document codec retains delivery IDs, roles and intentions',()=>{
  const round=c.WorkshopCore.decode(c.WorkshopCore.encode(c.WorkshopCore.decode(c.GroundCampaign.encode(d))));
- assert.deepEqual(round.extra.gp.waterwheel.deliveries,DELIVERIES.map(x=>({...x})));
+ // Codec output lives in the fixture VM realm. Compare its serialized values,
+ // not JavaScript object prototypes from two different realms.
+ assert.equal(JSON.stringify(round.extra.gp.waterwheel.deliveries),JSON.stringify(DELIVERIES));
  assert.equal(c.WorkshopCore.check(round).errors.length,0);
 });
 
