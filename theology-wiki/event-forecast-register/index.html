@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A source-linked 2016-2026 chronology and separate author forecast register for the Theology Wiki.">
+<title>Theology Wiki | Events and forecasts</title>
+<style>
+:root { color-scheme:light dark; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.65; }
+body { max-width:1060px; margin:auto; padding:24px; background:#101720; color:#edf1f5; }
+a { color:#97c9eb; text-underline-offset:3px; } h1,h2,h3 { line-height:1.25; } h1 { font-size:clamp(1.8rem,4vw,3rem); } h2 { margin-top:2.4rem; }
+header { border-bottom:1px solid #46515f; padding-bottom:20px; } .intro { max-width:78ch; } .meta { color:#b7c4d0; font-size:.94rem; } .controls { display:flex; flex-wrap:wrap; gap:18px; margin:24px 0; } label { display:flex; flex-direction:column; gap:6px; } input,select,button { font:inherit; padding:9px 12px; color:inherit; background:#1a2633; border:1px solid #748291; border-radius:5px; max-width:100%; } input { width:min(400px,65vw); } :focus-visible { outline:3px solid #f2c96a; outline-offset:4px; }
+article { margin:20px 0; padding:20px 24px; border:1px solid #46515f; border-left:4px solid #8ba6bc; border-radius:4px; overflow-wrap:anywhere; } article h3 { margin-top:8px; } details { margin-top:14px; } summary { cursor:pointer; font-weight:600; } .quotation { white-space:pre-wrap; border-left:2px solid #879cad; padding-left:16px; } .empty { padding:24px 0; } nav { display:flex; gap:22px; flex-wrap:wrap; } .sources p { margin:.6em 0; } footer { margin-top:36px; border-top:1px solid #46515f; padding:20px 0; } [hidden] { display:none!important; }
+@media(max-width:540px) { body { padding:16px; } article { padding:16px; } .controls { display:block; } label { margin-bottom:14px; } input { width:auto; } }
+@media print { body { color:#111; background:white; } a { color:#111; } .meta { color:#333; } .controls,button { display:none; } article { break-inside:avoid; border-color:#aaa; } }
+</style>
+</head>
+<body>
+<header>
+<p class="meta">THEOLOGY WIKI / SOURCE REGISTER / SEPTEMBER 16, 2026</p>
+<h1>Events, interpretations and future observations</h1>
+<p class="intro">A dated companion to Micah Blumberg's contemporary reading of Revelation. The event record, the author's exact statements and newly proposed conditional scenarios are separate. A thematic research link is not a finding of prophetic fulfillment.</p>
+<nav aria-label="Register sections"><a href="#events">Historical events</a><a href="#statements">Author statements</a><a href="#scenarios">Future observations</a><a href="ENERGY-SCARCITY-2026-09-16.md">Energy-scarcity log</a><a href="../san-reader.html?page=forecast-ledger">Earlier wiki ledger</a></nav>
+</header>
+<main>
+<p id="status" role="status" aria-live="polite">Loading the dated registers.</p>
+<p>Complete source files remain available as <a href="events.json">events.json</a> and <a href="forecasts.json">forecasts.json</a>. <a href="README.md">Read the editorial and preservation notes.</a></p>
+<noscript><p>JavaScript is off. Open the source files or the energy-scarcity log above to read the complete records.</p></noscript>
+<section id="events"><h2>The 2016-2026 chronology</h2>
+<p>These entries retain open thematic questions as well as existing author-selected cases. Inclusion is not a strength rating. Biden-era controls and Russian measures are labeled as context, not attributed to Trump.</p>
+<div class="controls"><label>Search events<input id="query" type="search" placeholder="Search facts, questions or locations"></label><label>Year<select id="year"><option value="">All years</option></select></label><label>Passage topic<select id="passage"><option value="">All topics</option></select></label><button id="reset" type="button">Reset filters</button></div>
+<p id="count" class="meta" aria-live="polite"></p><div id="event-cards"></div></section>
+<section id="statements"><h2>The author's supplied forecasts</h2><p>These four posts are preserved from the user's transcription. Direct retrieval from X did not succeed. Their original dates are claimed post dates, not independently verified platform timestamps. The categorical wording belongs to the author; none supplies a calendar deadline for the full prediction.</p><div id="statement-cards"></div></section>
+<section id="scenarios"><h2>Prospective observation checkpoints</h2><p>These six conditional scenarios were registered on September 16, 2026. Review dates organize research; they are not dates predicted by Revelation, earlier author deadlines, or scheduled automated tasks. Original forecasts remain unchanged above.</p><div id="scenario-cards"></div></section>
+</main>
+<footer><p><a href="../san-reader.html?page=trump-first-beast-of-revelation">Return to the First Beast article</a> or <a href="../san-reader.html?page=ukraine-russia-forecast-record">the fuel-to-food discussion</a>. The principal wiki's original conversations, six-record ledger and generated search index are unchanged.</p></footer>
+<script>
+'use strict';
+const byId=id=>document.getElementById(id);
+function node(tag,text,cls){const x=document.createElement(tag);if(text!==undefined)x.textContent=text;if(cls)x.className=cls;return x;}
+function para(parent,label,text){parent.append(node('p',label+text));}
+function safeLink(label,url){const a=node('a',label);const u=new URL(url,location.href);if(!['http:','https:'].includes(u.protocol))throw Error('Unsupported source protocol');a.href=u.href;return a;}
+function sourceNotes(parent,ids,sources){const d=node('details');d.append(node('summary','Sources and access notes'));const body=node('div',undefined,'sources');for(const id of ids){const s=sources.get(id);if(!s)throw Error('Unknown source '+id);const p=node('p');p.append(safeLink(s.title,s.url),document.createTextNode('. '+(s.publication_date?'Source date: '+s.publication_date+'. ':'')+s.access_scope));body.append(p);}d.append(body);parent.append(d);}
+async function load(){
+ const responses=await Promise.all(['events.json','forecasts.json'].map(p=>fetch(p,{cache:'no-cache'})));
+ if(responses.some(r=>!r.ok))throw Error('A register could not be loaded.');
+ const [data,future]=await Promise.all(responses.map(r=>r.json()));
+ if(data.schema_version!==1||future.schema_version!==1)throw Error('Unsupported register version.');
+ const sources=new Map(data.sources.map(x=>[x.id,x])),passages=new Map(data.passages.map(x=>[x.id,x]));
+ for(const y of [...new Set(data.events.map(e=>e.date.slice(0,4)))].sort()){const o=node('option',y);o.value=y;byId('year').append(o);}
+ for(const p of data.passages){const o=node('option',p.theme);o.value=p.id;byId('passage').append(o);}
+ function passageText(ids){return ids.map(id=>{const p=passages.get(id);if(!p)throw Error('Unknown passage');return p.reference+' ('+p.theme+')';}).join('; ');}
+ function render(){const q=byId('query').value.trim().toLowerCase(),y=byId('year').value,t=byId('passage').value;const records=data.events.filter(e=>(!y||e.date.startsWith(y))&&(!t||e.passage_ids.includes(t))&&(!q||[e.title,e.fact,e.research_question,e.geography,e.scope_note].join(' ').toLowerCase().includes(q)));const out=byId('event-cards');out.replaceChildren();for(const e of records){const a=node('article');a.id=e.id;a.append(node('p',e.date+' / '+e.kind+' / '+e.geography,'meta'),node('h3',e.title));para(a,'Documented record: ',e.fact);sourceNotes(a,e.source_ids,sources);para(a,'Passage subjects: ',passageText(e.passage_ids));para(a,'Research question: ',e.research_question);para(a,'Scope: ',e.scope_note);a.append(node('p','First logged '+e.first_logged+'. '+e.comparison_status,'meta'));out.append(a);}if(!records.length)out.append(node('p','No events match these filters.','empty'));byId('count').textContent=records.length+' of '+data.events.length+' entries shown.';}
+ for(const id of ['query','year','passage'])byId(id).addEventListener(id==='query'?'input':'change',render);
+ byId('reset').addEventListener('click',()=>{for(const id of ['query','year','passage'])byId(id).value='';render();});
+ render();
+ for(const r of future.author_statements){const a=node('article');a.id=r.id;a.append(node('p',r.claimed_post_date+' / '+r.handle+' / first archived '+r.first_archived_date,'meta'),node('h3','Author statement'),node('p',r.verbatim_text,'quotation'));const p=node('p');p.append(safeLink('Original post URL',r.url));a.append(p);para(a,'Attribution: ',r.authorship_note);para(a,'Provenance: ',r.provenance);para(a,'Assessment: ',r.outcome_status+'. No calendar deadline supplied.');byId('statement-cards').append(a);}
+ for(const w of [...future.conditional_scenarios].sort((a,b)=>a.review_date.localeCompare(b.review_date)||a.id.localeCompare(b.id))){const a=node('article');a.id=w.id;a.append(node('p','Review checkpoint '+w.review_date+' / registered '+w.first_registered,'meta'),node('h3',w.title));para(a,'Trigger: ',w.trigger);para(a,'Conditional scenario: ',w.conditional_projection);para(a,'Observations needed: ',w.observations_required);para(a,'Alternative or nonconfirmation: ',w.alternative_or_nonconfirmation);para(a,'Passage subjects: ',passageText(w.passage_ids));sourceNotes(a,w.source_ids,sources);for(const id of w.author_statement_ids){const p=node('p');const a2=node('a','Related author statement: '+id);a2.href='#'+id;p.append(a2);a.append(p);}byId('scenario-cards').append(a);}
+ byId('status').textContent=data.events.length+' dated events, '+future.author_statements.length+' supplied author statements and '+future.conditional_scenarios.length+' conditional scenarios loaded.';
+ if(location.hash){const target=byId(decodeURIComponent(location.hash.slice(1)));if(target)target.scrollIntoView();}
+}
+load().catch(err=>{byId('status').textContent='The interactive register could not be loaded. The complete JSON files and event log remain linked above. '+err.message;});
+</script>
+</body>
+</html>

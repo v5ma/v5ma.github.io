@@ -1,0 +1,52 @@
+{
+  "edition_date": "2026-09-16",
+  "node_tests": {
+    "command": "node --test theology-wiki/event-forecast-register/register.test.cjs",
+    "passed": 16,
+    "failed": 0
+  },
+  "browser_checks": {
+    "status": "blocked_before_page_load",
+    "reason": "System Chromium returned net::ERR_BLOCKED_BY_ADMINISTRATOR for the localhost URL. No browser success is claimed.",
+    "reproduction": "python theology-wiki/event-forecast-register/browser-checks.py --url <hosted-index-url> --report browser-report.json"
+  },
+  "legacy_wiki_suite": "not_run_locally",
+  "publication_status": "pending_repository_workflow_and_hosted_verification",
+  "files": {
+    "ENERGY-SCARCITY-2026-09-16.md": {
+      "bytes": 7390,
+      "sha256": "3b12035d668574b1f63dbb144da97b10c0f3f7d77c55d326dfe6b7ed3293e8a3",
+      "git_blob_sha": "a5d366c594a5c423883eb95d3b56a1051b3bc773"
+    },
+    "README.md": {
+      "bytes": 4844,
+      "sha256": "a388e0d43bf1d5a7c25b02e57ccd5a5fabcb04434210ac82c4f40f53ef1e9bf9",
+      "git_blob_sha": "a9ab06d3a75acb54e88c541f21a595e312e03a7e"
+    },
+    "browser-checks.py": {
+      "bytes": 4905,
+      "sha256": "97db61f659e60f7a7109882756b9153c49f7b773054ffb7b32d991fb6a9a8605",
+      "git_blob_sha": "25b0c7e233cc2360a72f33d7ebd47d67af408f94"
+    },
+    "events.json": {
+      "bytes": 32861,
+      "sha256": "4c852ce710b84039f432819870be02e327bfc11560e8bb93052aeb686f75beb8",
+      "git_blob_sha": "37ad6e59111bb0af679085511166aa05b9fa8d92"
+    },
+    "forecasts.json": {
+      "bytes": 13124,
+      "sha256": "f30a64029e4b9eda06d719e037b5bb88d2889e2f9393e50d998652f38bdfe2a1",
+      "git_blob_sha": "d77e67b44a490994179efbf6037cfd33cd21f197"
+    },
+    "index.html": {
+      "bytes": 9966,
+      "sha256": "9ed06edfc0a98aedfaf8d656647ec95a9a58f73d11f8182f97cfd505c1aedf01",
+      "git_blob_sha": "189ffd258e24558736312388d55e72c1b04ddb49"
+    },
+    "register.test.cjs": {
+      "bytes": 6259,
+      "sha256": "6b4f09bc4738790595eedaedd2df9e47444c77ea988ac00ab18a873aa20abd31",
+      "git_blob_sha": "9a198aeb1a5e91241957ea7792f6c531fc3a3cfa"
+    }
+  }
+}
