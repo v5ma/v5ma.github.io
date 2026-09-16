@@ -28,7 +28,7 @@ async def main():
     await page.evaluate('__pad.axes=[0,0,0,0];__pad.buttons.forEach(b=>{b.pressed=false;b.value=0})');await frames()
    async def pilot(x,z):
     for _ in range(1400):
-     r=await page.evaluate("""([x,z])=>{const q=LanternWard.inspect(),s=q.state,dx=x-s.x,dz=z-s.z,d=Math.hypot(dx,dz),stop=d<.28;__pad.axes[0]=stop?0:(dx*q.basis.right[0]+dz*q.basis.right[1])/(d||1);__pad.axes[1]=stop?0:-(dx*q.basis.forward[0]+dz*q.basis.forward[1])/(d||1);__pad.buttons[6]={pressed:stop,value:stop?1:0};__pad.buttons[7]={pressed:!stop,value:stop?0:1};return {d,speed:s.speed,steps:s.steps,paused:q.paused,failed:q.failed,x:s.x,z:s.z};}""",[x,z])
+     r=await page.evaluate("""([x,z])=>{const q=LanternWard.inspect(),s=q.state,dx=x-s.x,dz=z-s.z,d=Math.hypot(dx,dz),stop=d<.28,gain=Math.min(1,Math.max(.3,d/4));__pad.axes[0]=stop?0:gain*(dx*q.basis.right[0]+dz*q.basis.right[1])/(d||1);__pad.axes[1]=stop?0:-gain*(dx*q.basis.forward[0]+dz*q.basis.forward[1])/(d||1);__pad.buttons[6]={pressed:stop,value:stop?1:0};__pad.buttons[7]={pressed:d>4,value:d>4?1:0};return {d,speed:s.speed,steps:s.steps,paused:q.paused,failed:q.failed,x:s.x,z:s.z};}""",[x,z])
      assert not r['paused'] and not r['failed'],r
      if r['d']<.38 and r['speed']<.06:await neutral();return
      await page.wait_for_function('(s)=>LanternWard.inspect().state.steps>=s+4||LanternWard.inspect().failed',arg=r['steps'])
