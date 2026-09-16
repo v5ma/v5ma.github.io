@@ -66,8 +66,6 @@ with sync_playwright() as pw:
   go(-24,5);use('Rainward.state.taken.has("clinic-kit")');go(-22,-3.5);use('Rainward.state.objectives.cell');go(-24,-1);use('Rainward.state.checkpoint==="clinic"')
   old_save=page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")');(OUT/'earned-clinic-before.json').write_text(old_save)
   check(not json.loads(old_save)['completedTasks'],'The earned clinic checkpoint precedes both optional shortcut repairs')
-  # Deliberate survival preparation at a real shelter: spend the earned clinic
-  # materials rather than injecting health after the exposed market crossing.
   craft('medkit');check(page.evaluate('Rainward.state.player.medkit===2&&Rainward.state.player.cloth===1&&Rainward.state.player.canister===0'),'The clinic recovery beat converts earned materials into a second finite medkit before commitment')
   go(-22,-3.5,True);go(-22,-10,True);check(page.evaluate('Rainward.state.player.y>2.3'),'The real clinic ascent gives a market observation position')
   picture('01-terrace-before-crossing');go(-8,-10,True);go(0,-8,True);go(10,-10,True);go(18,-11,True)
@@ -75,9 +73,7 @@ with sync_playwright() as pw:
   use('Rainward.state.completedTasks.includes("ward-radio")');wait('Rainward.snapshot().visuals.freightCut.open')
   check(page.evaluate('Rainward.state.player.reserve')==min(36,reserve+4) and page.evaluate('Rainward.state.player.canister')==min(12,salvage+2),'The existing local receiver task opens the loading passage with its unchanged one-time reward')
   check(page.evaluate('Rainward.state.hint.includes("WEST LOADING OPEN")'),'Receiver feedback explains the new passage and the pursuit risk')
-  # Reuse the crouch relationship taught on the clinic/garden approach. The
-  # pallet screen changes the sightline but does not remove the lookout.
-  go(17,-14,True);pulse(1);wait('Rainward.state.player.stance==="crouch"');go(17,-18);go(17,-22)
+  go(16.2,-14,True);pulse(1);wait('Rainward.state.player.stance==="crouch"');go(16.2,-18);go(16.2,-22)
   check(page.evaluate('Rainward.state.player.hp>0&&Rainward.state.enemies.every(e=>e.hp>0)'),'The slower crouch-cover aisle provides a viable recovery state with every original threat still active')
   go(17,-26,True);go(22.3,-26.7,True);use('Rainward.state.objectives.crank');pulse(1);wait('Rainward.state.player.stance==="stand"')
   record('spindle-recovered');go(17,-26,True);smoke=page.evaluate('Rainward.state.player.smoke');pulse(14);wait('Rainward.state.player.smoke<'+str(smoke))
