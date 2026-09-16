@@ -1,0 +1,13 @@
+{
+  "record_kind": "Retained test-driver drowning failure and preparation correction",
+  "source": "3f1c3038f13b3d15e3c914cdcbc91f3e4a61fd6d",
+  "workflow_run": 35039380715,
+  "artifact": 10425161071,
+  "archive_sha256": "c6a3845541a5fc5fcb5a7e51a55ba251985d66d33e3f54dd62116be02974938b",
+  "result": "failed",
+  "passed_checks": 22,
+  "observed": "The actual hand sprint control was selected and its ON label verified, but extra menu paging while submerged exhausted oxygen before the driver found the surface row. The native game correctly reached death with zero oxygen. No JavaScript or console errors were captured.",
+  "correction": "Select the same existing hand sprint control during the dry shelter preparation phase beside the existing comfort-speed selection, before entering the pool. Remove the additional mid-dive menu detour. Keep every oxygen, resource, save and input assertion.",
+  "runtime_changes": "None. No oxygen refill, pause injection, clock write, speed edit, damage change, enemy removal, resource grant or checkpoint fixture is used. The original normal-start living-enemy mission and finite stamina remain authoritative.",
+  "review_followup": "Physical Quest testing should measure hand-menu effort under time pressure separately from automated journey success. The accepted release does not claim final hand usability or encounter-balance approval."
+}
