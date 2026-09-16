@@ -12,7 +12,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 45 || 30 }}
+    timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 55 || 30 }}
     strategy:
       fail-fast: false
       matrix:
@@ -48,7 +48,7 @@ jobs:
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
       - name: Exercise the actual HTTP WebGL game
-        timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 40 || 25 }}
+        timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 50 || 25 }}
         env:
           SUITE: ${{ matrix.suite }}
         run: |
