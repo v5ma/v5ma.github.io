@@ -9,8 +9,8 @@ permissions:
 jobs:
   public-gameplay:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,6 +53,7 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Complete the public chapter through ordinary controller inputs
         if: steps.version.outputs.current == '0.13.0'
+        timeout-minutes: 50
         env:
           TEST_BASE_URL: https://v5ma.github.io
           BELL_WIND: '1'
