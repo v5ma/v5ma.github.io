@@ -7,8 +7,9 @@ export const FREIGHT_CUT_OBSTACLES=Object.freeze([
  {id:'depot-west-bay-south',x:14,z:-20.25,w:1,d:4.5,h:5.5,bottom:0,kind:'brick'},
  {id:'freight-loading-lintel',x:14,z:-24,w:1,d:3,h:2.1,bottom:3.4,kind:'brick'},
  {id:FREIGHT_CUT_GATE,x:14,z:-24,w:.6,d:3,h:3.4,bottom:0,kind:'service-gate',openOnTask:FREIGHT_CUT_TASK,disabled:false},
- // A sorting baffle screens the landing from the quay, not from its own door.
- {id:'freight-sorting-baffle',x:10.9,z:-26.4,w:4,d:.55,h:2.15,bottom:0,kind:'crate'}
+ // The raised sorting screen breaks standing sightlines while keeping older
+ // ground-level supply drops reachable; prone movement fits beneath it.
+ {id:'freight-sorting-baffle',x:10.9,z:-26.4,w:4,d:.55,h:1.55,bottom:.6,kind:'crate'}
 ].map(Object.freeze));
 export const FREIGHT_CUT_ROUTES=Object.freeze({
  approach:{purpose:'Clinic terrace to the established south receiver entrance. Repair is optional.',points:[[-8,-10],[0,-8],[10,-10],[18,-11]]},

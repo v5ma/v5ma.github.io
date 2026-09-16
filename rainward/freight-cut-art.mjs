@@ -12,8 +12,7 @@ export function createFreightCutArt(scene,A,chapter){
   const open=A.label('WEST LOADING OPEN\nMARKET / CLINIC RETURN',x,3.05,-24,2.5,.5,'#334e49','#f0dab1');open.rotation.y=yaw;open.visible=false;labels.push({closed,open});
  }
  A.label('RECEIVER + LOADING CIRCUIT\nCLINIC BATTERY REQUIRED',18,1.9,-10.45,2.4,.55,'#334e49','#f0dab1');
- // A continuous service cable makes the receiver-to-door consequence legible.
  const cable=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(18,1.0,-11),new T.Vector3(14.65,1.0,-11),new T.Vector3(14.65,2.7,-11),new T.Vector3(14.65,2.7,-24)]),new T.LineBasicMaterial({color:0xb99d69}));cable.name='Receiver loading circuit';scene.add(cable);
  let open=false;
- return {update(state){open=freightCutState(state).open;door.scale.y=open?.065:1;door.position.y=open?3.29:1.7;labels.forEach(pair=>{pair.open.visible=open;pair.closed.visible=!open;});lamp.material.color.setHex(open?0xb7ddb7:0xefba70);},stats:()=>({revision:FREIGHT_CUT_REVISION,open,phase:'functional-graybox',humanApproved:false})};
+ return {update(state){open=freightCutState(state).open;door.scale.y=open?.065:1;door.position.y=open?3.52:1.7;labels.forEach(pair=>{pair.open.visible=open;pair.closed.visible=!open;});lamp.material.color.setHex(open?0xb7ddb7:0xefba70);},stats:()=>({revision:FREIGHT_CUT_REVISION,open,phase:'functional-graybox',humanApproved:false})};
 }
