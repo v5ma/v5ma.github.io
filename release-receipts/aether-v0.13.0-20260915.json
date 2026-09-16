@@ -1,0 +1,94 @@
+{
+  "game": "Aether Reach",
+  "version": "0.13.0",
+  "title": "Receiver Crosswind",
+  "recordedUtc": "2026-09-16",
+  "status": "Published and byte-verified; final public chapter replay in progress",
+  "source": "38b2977e625bd84be382038440327ff4e44ce0ee",
+  "acceptedHead": "17eb8297f8046a95b2f2afaca6009a9086a09b1c",
+  "pullRequest": 169,
+  "releaseTag": "aether-v0.13.0",
+  "launch": "https://v5ma.github.io/aether-reach/",
+  "roadmapTask": "V03",
+  "changes": [
+    "Two linked contextual X/E windbreak controls trade receiver shelter and reciprocal firing visibility for gallery shelter and a clear receiver firing lane.",
+    "Existing east stair supports a non-resetting retreat to the 22-meter gallery, retaining original enemies and damage on return.",
+    "Shared dynamic solids govern visible panels, movement, sight, projectiles and XR muzzle-origin validation.",
+    "No district area, enemies, collectibles or rewards were added. Existing Bellwether teaching, circuits, maintenance ascent, repair shortcut and restored district remain."
+  ],
+  "preserved": {
+    "saveVersion": 1,
+    "stableMissionIdsAndNamespaces": true,
+    "onceOnlyRewardCredits": 300,
+    "receiverHoldSeconds": 6,
+    "controllerBindingsAndRemaps": true,
+    "firstPersonVR": true,
+    "dioramaVRAndAR": true,
+    "headIndependence": true,
+    "trackedControllerGameplay": true,
+    "handTracking": "UI only, not hand-only combat or locomotion",
+    "newSaveField": "Optional bounded windbreak mode; old or invalid saves retain the legacy open receiver shooting lane.",
+    "concurrentSiblingWork": "Merge preserved current master; no Aether runtime or root chooser changes overlapped."
+  },
+  "native": {
+    "workflowRun": 35139553440,
+    "conclusion": "success",
+    "exactHeadAndAllArtifactDigestsReviewed": true,
+    "runtimeFilesMatchedPerSuite": 109,
+    "uncommittedDiffsEmpty": true,
+    "nodeTestsPassed": 261,
+    "backupInputTestsPassed": 6,
+    "browserChecks": {"windbreak": 40, "rewired": 29, "grounded": 21, "controllerJourney": 29, "gamepad": 13, "expedition": 16, "diorama": 25, "glide": 10},
+    "totalBrowserChecks": 183,
+    "scope": "Native HTTP Chromium software WebGL with synthetic device inputs. Complete chapter uses ordinary input, rechargeable sidearm, no purchases, no state injection and no rescue. Not physical-device or human-quality certification."
+  },
+  "publication": {
+    "pagesRun": 35146840255,
+    "pagesConclusion": "success",
+    "byteVerificationRun": 35146842190,
+    "byteConclusion": "success",
+    "runtimeFiles": 109,
+    "allMatch": true,
+    "receiptArtifact": 10466578556,
+    "receiptArchiveSha256": "c9c601fc7a0b8b6e9d47e912a9390d8c2667778dc5b757b8cbc86aecfa6a5d89"
+  },
+  "liveIdentity": {
+    "run": 35146914789,
+    "conclusion": "success",
+    "artifact": 10466563931,
+    "artifactSha256": "4032ad0cb6f6a79323a41496bc1d1e6a63dd2f2bdbff865d19fdddd93ff5051f",
+    "appVersion": "0.13.0",
+    "visibleHeader": "AETHER REACH 0.13.0",
+    "documentBodyMatchesSource": true,
+    "ordinaryControllerStart": true,
+    "fullResolutionHeaderReviewed": true,
+    "errors": []
+  },
+  "publicChapter": {
+    "run": 35146975683,
+    "status": "in_progress",
+    "accepted": false,
+    "scope": "Separate actual served HTTPS full chapter, ordinary controller inputs, no progression assignment. Await completed report before marking accepted."
+  },
+  "backup": {
+    "run": 35146975680,
+    "conclusion": "success on unchanged retry",
+    "sourceFiles": 208,
+    "sourceArchiveSha256": "bb4da3be2f7bcf8652dc9040f99dc4fec4079343442812725ccf35442915274a",
+    "builtSourceCleanRestoreTests": 261,
+    "publishedAssetsRedownloadAndChecksums": true,
+    "independentDownloadedSourceRestore": "Read-only audit initiated at 6ec4f6a7cf2f67af9321044c001c8cbcf3a4174d; inspect its actual result. No tag or asset overwrite."
+  },
+  "retainedFailures": [
+    "Initial fixture imported a nonexistent shoot symbol; corrected to existing fire API without changing the acceptance criterion.",
+    "Strict transfer validation rejected a duplicated delimiter; integrated validation rejected a duplicate V02 ID and retained the existing entry while assigning V03.",
+    "Stationary rooftop replay fired into the new cover; corrected to walk the actual flank, with collision and enemy rules unchanged.",
+    "Diorama assertion hardcoded the older version; changed to checked-out release manifest while retaining gameplay assertions.",
+    "Old windbreak run passed all 40 gameplay assertions but timed out in browser teardown. Final exact-head workflow reserves measured execution and teardown time; runtime and gameplay acceptance remain unchanged.",
+    "Supplemental grounded regression encountered a live ladder timeout and a launch screenshot timeout. Their equivalent release-suite checks pass. Unchanged retry 35139559906 remains under review.",
+    "Some low-resolution native route screenshots have a small header that appears older. They are retained as geometry evidence, not identity evidence. Independent full-resolution live response/DOM/header audit confirms 0.13.0.",
+    "Initial release roundtrip received HTTP 500 from a GitHub asset endpoint after successful release creation. Unchanged retry verified the existing assets without replacing the tag."
+  ],
+  "unverified": ["Physical Xbox USB/Bluetooth", "Physical Quest tracking, stereo, passthrough, readability, comfort and sustained frame time", "Unfamiliar-player comprehension", "Returning-player agency", "Subjective encounter and campaign quality"],
+  "next": "Finish public chapter replay and downloaded-source restore, update this receipt, then observe arrival comprehension and rail decision visibility at actual speed. Do not resume historical transfer scaffolding or expand city area automatically."
+}
