@@ -1,0 +1,21 @@
+name: Audit Receiver Crosswind transfer
+on:
+  push:
+    branches: [aether/receiver-crosswind-20260915]
+    paths: ['.github/workflows/aether-crosswind-transfer-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: aether-reach/tools
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crosswind-rejected-transfer
+          path: aether-reach/tools/crosswind-edits-*.json
+          retention-days: 7
