@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 45 || 30 }}
     strategy:
       fail-fast: false
