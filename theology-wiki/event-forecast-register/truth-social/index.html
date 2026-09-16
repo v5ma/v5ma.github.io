@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Dated Truth Social excerpts, source links and contextual research questions for the Theology Wiki.">
+<title>Theology Wiki | War, loyalty and commerce</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65;background:#101720;color:#edf1f5}*{box-sizing:border-box}body{max-width:1060px;margin:auto;padding:28px}a{color:#97c9eb;text-underline-offset:3px}h1,h2{line-height:1.25}h1{font-size:clamp(1.9rem,4vw,3rem)}header{border-bottom:1px solid #596a7b;padding-bottom:22px}.intro{max-width:80ch}.meta{color:#b8c8d5;font-size:.94rem}nav,.controls{display:flex;flex-wrap:wrap;gap:18px}.controls{margin:24px 0;align-items:end}label{display:flex;flex-direction:column;gap:5px}input,select,button{font:inherit;padding:9px 12px;background:#1a2735;color:inherit;border:1px solid #8093a6;border-radius:5px;max-width:100%}input{width:min(380px,70vw)}:focus-visible{outline:3px solid #f5cc7a;outline-offset:4px}article{margin:22px 0;padding:22px;border:1px solid #596a7b;border-left:4px solid #98b3c9;border-radius:4px;overflow-wrap:anywhere}article h2{font-size:1.45rem;margin-top:8px}blockquote{white-space:pre-wrap;margin:20px 0;padding:10px 18px;border-left:2px solid #98b3c9;font-size:1.12rem}details{margin-top:14px}summary{cursor:pointer;font-weight:600}.sources p{margin:.55em 0}footer{margin:32px 0;padding-top:20px;border-top:1px solid #596a7b}.notice{padding:12px 16px;border:1px solid #596a7b}button{cursor:pointer}@media(max-width:540px){body{padding:16px}.controls{display:block}label{margin:14px 0}input{width:100%}article{padding:16px}}@media print{body{background:white;color:black}a,.meta{color:black}.controls{display:none}article{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+<p class="meta">THEOLOGY WIKI / STATEMENT ARCHIVE / SEPTEMBER 16, 2026</p>
+<h1>War, loyalty and commerce</h1>
+<p class="intro">A selected archive of Donald Trump's Truth Social posts, with short quotations, dated sources and questions for Micah Blumberg's contemporary Revelation narrative. Statements, their context and the author's theological interpretation remain distinct.</p>
+<nav aria-label="Related research"><a href="../index.html">Event and forecast timeline</a><a href="../research-reports/README.md">Scarcity report catalogue</a><a href="README.md">Archive notes</a><a href="../../san-reader.html?page=trump-first-beast-of-revelation">Existing First Beast article</a></nav>
+</header>
+<main>
+<p class="notice">The full scarcity report is catalogued as awaiting its original export. Its complete text and charts have not been substituted with a reconstruction.</p>
+<p>Most records link academic transcriptions of the original posts; others identify a reported quotation. An original URL is not a claim of direct platform capture. Read the full context at each source. <a href="posts.json">The complete archive data remains available as JSON.</a></p>
+<noscript><p>JavaScript is disabled. Use the complete JSON records and archive notes linked above.</p></noscript>
+<p id="status" role="status" aria-live="polite">Loading the statement archive.</p>
+<div class="controls"><label>Search text<input id="query" type="search" placeholder="Search statements, topics or context"></label><label>Year<select id="year"><option value="">All years</option></select></label><label>Subject<select id="subject"><option value="">All subjects</option></select></label><label>Order<select id="order"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label><button id="reset" type="button">Reset</button></div>
+<p id="count" class="meta" aria-live="polite"></p><div id="records"></div>
+</main>
+<footer><p>Dates use the Eastern calendar when the source provides a time. Quotations are excerpts unless marked as complete short texts. An accusation is not a conviction, a threat is not a completed action, and a policy announcement is not an implementation record. No outcome assessment or author-specific annotation is invented.</p></footer>
+<script>
+'use strict';
+const el=id=>document.getElementById(id);
+const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+function paragraph(parent,label,text){parent.append(make('p',label+text));}
+function link(text,url){const u=new URL(url,location.href);if(!['http:','https:'].includes(u.protocol))throw Error('Unsupported source address');const a=make('a',text);a.href=u.href;return a;}
+async function init(){
+ const r=await fetch('posts.json',{cache:'no-cache'});if(!r.ok)throw Error('The data request failed.');const data=await r.json();
+ if(data.schema_version!==1||!Array.isArray(data.posts)||!Array.isArray(data.sources))throw Error('Unsupported archive schema.');
+ const sources=new Map(data.sources.map(s=>[s.id,s])),passages=new Map(data.passage_topics.map(p=>[p.id,p]));
+ for(const y of [...new Set(data.posts.map(p=>p.post_date_eastern.slice(0,4)))].sort()){const o=make('option',y);o.value=y;el('year').append(o);}
+ for(const s of [...new Set(data.posts.flatMap(p=>p.subjects))].sort()){const o=make('option',s.replaceAll('-',' '));o.value=s;el('subject').append(o);}
+ function render(){
+  const q=el('query').value.trim().toLowerCase(),y=el('year').value,s=el('subject').value;
+  const rows=data.posts.filter(p=>(!y||p.post_date_eastern.startsWith(y))&&(!s||p.subjects.includes(s))&&(!q||[p.title,p.excerpt,p.summary,p.context,p.research_question,...p.subjects].join(' ').toLowerCase().includes(q))).sort((a,b)=>{const x=(a.timestamp_utc||a.post_date_eastern).localeCompare(b.timestamp_utc||b.post_date_eastern)||a.id.localeCompare(b.id);return el('order').value==='oldest'?x:-x;});
+  const target=el('records');target.replaceChildren();
+  for(const p of rows){
+   const card=make('article');card.id=p.id;card.append(make('p',p.post_date_eastern+' / '+p.subjects.join(', '),'meta'),make('h2',p.title),make('blockquote',p.excerpt));
+   card.append(make('p','Quotation scope: '+p.excerpt_scope+'. Text basis: '+p.text_basis+'.','meta'));
+   paragraph(card,'Record: ',p.summary);paragraph(card,'Context: ',p.context);
+   const refs=make('div',undefined,'sources');
+   for(const id of p.source_ids){const witness=sources.get(id);if(!witness)throw Error('Missing source '+id);const line=make('p');line.append(link(witness.title,witness.url),document.createTextNode(' ('+witness.kind+').'));refs.append(line);}
+   if(p.original_url){const line=make('p');line.append(link('Original platform URL',p.original_url),document.createTextNode('. '+p.original_access+'.'));refs.append(line);}else refs.append(make('p',p.original_access+'.'));
+   card.append(refs);
+   paragraph(card,'Passage subjects: ',p.passage_topics.map(id=>{const x=passages.get(id);if(!x)throw Error('Missing passage');return x.reference;}).join('; '));
+   paragraph(card,'Research question: ',p.research_question);
+   const detail=make('details');detail.append(make('summary','Date, preservation and access notes'));
+   paragraph(detail,'Timestamp: ',p.timestamp_utc||'Exact time not recovered.');paragraph(detail,'Date basis: ',p.time_note);paragraph(detail,'First logged: ',p.first_logged);paragraph(detail,'Excerpt SHA-256: ',p.excerpt_sha256);
+   for(const id of p.source_ids)paragraph(detail,'Source access: ',sources.get(id).access_note);
+   paragraph(detail,'Outcome: ',p.observed_consequence);paragraph(detail,'Author annotation: ',p.author_annotation||'Awaiting author-supplied annotation.');card.append(detail);
+   if(p.related_post_ids.length){const line=make('p','Related records: ');for(const id of p.related_post_ids){const other=data.posts.find(x=>x.id===id);if(!other)throw Error('Missing related record');const a=make('a',other.post_date_eastern+' / '+other.title);a.href='#'+id;line.append(a,document.createTextNode('  '));}card.append(line);}
+   target.append(card);
+  }
+  if(!rows.length)target.append(make('p','No statements match these filters.'));
+  el('count').textContent=rows.length+' of '+data.posts.length+' statements shown.';
+ }
+ function reset(){el('query').value='';el('year').value='';el('subject').value='';el('order').value='newest';render();}
+ function goToHash(){let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(!id||!data.posts.some(p=>p.id===id))return;if(!el(id))reset();el(id)?.scrollIntoView();}
+ for(const id of ['query','year','subject','order'])el(id).addEventListener(id==='query'?'input':'change',render);
+ el('reset').addEventListener('click',reset);window.addEventListener('hashchange',goToHash);
+ render();el('status').textContent=data.posts.length+' dated statements loaded. This is a selected collection, not an exhaustive corpus.';goToHash();
+}
+init().catch(error=>{el('records').replaceChildren();el('count').textContent='';el('status').textContent='The interactive archive could not be loaded. The complete JSON file and archive notes remain linked above. '+error.message;});
+</script>
+</body>
+</html>
