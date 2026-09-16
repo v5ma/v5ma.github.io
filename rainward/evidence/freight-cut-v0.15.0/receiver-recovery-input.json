@@ -1,0 +1,24 @@
+{
+  "kind": "Retained normal-start native route/input failure, not publication proof",
+  "source": "d8d303781bb470c31e3ef580991c204426c48909",
+  "tested_merge_preview": "90a545dc64d2d39c398607e382c4c3fee90ac187",
+  "workflow_run": 35122087025,
+  "job": 104882107800,
+  "artifact": 10457902846,
+  "archive_sha256": "5088c90854dcc403ad318aeae731551343a27eb870b96ef0ec8ed6e3195cef93",
+  "result": "failed",
+  "observed": [
+    "The corrected aisle screen passed all 354 exact-source model/save/patrol tests and left watch-3's authored patrol turn clear.",
+    "The native journey earned and crafted a second medkit at the clinic shelter, reached the receiver at 49 health, repaired ward-radio, then died near x=16,z=-17.75 before the crouch screen could provide recovery.",
+    "The driver had attempted to request Classic healing opportunistically from inside its movement polling loop. No heal event was recorded before the route continued, so the earned medkit did not become an actual recovery action.",
+    "No JavaScript or console error caused the failure."
+  ],
+  "diagnosis": "Classic D-pad up is already a direct mapped heal action and heal() is immediate. The runtime is not missing healing. The acceptance driver hid a discrete player decision inside continuous route guidance, which was both unreliable and poor evidence for the intended resource-planning beat.",
+  "correction": [
+    "Remove all automatic healing from the movement helper.",
+    "At the powered receiver, explicitly press the real Classic D-pad-up mapping and require one heal event, one medkit consumed and increased health before entering the crouch-cover aisle.",
+    "If a later recovery is needed, use the same explicit mapped action at a deliberate recovery point rather than injecting health or changing enemy damage."
+  ],
+  "runtime_changes": "None in this correction. Enemy damage/range, supplies, medkit effect, movement, stamina, geometry, saves and controls are unchanged from freight-cut-2.",
+  "evidence_boundary": "This is automated virtual-controller evidence. The explicit mapped action is valid software-path coverage, not physical Xbox acceptance or proof that an unfamiliar player will choose the medkit at the right time."
+}
