@@ -33,7 +33,7 @@ with sync_playwright() as pw:
   raise AssertionError('Unreachable Xbox control: '+target)
  def snap():return page.evaluate('Rainward.snapshot()')
  def record(label):
-  s=snap();trace.append({'label':label,'snapshot':s});(OUT/'trace.json').write_text(json.dumps(trace,indent=2));print(label,'hp',s['player']['hp'],'time',s['t'],flush=True)
+  s=snap();trace.append({'label':label,'snapshot':s});(OUT/'trace.json').write_text(json.dumps(trace,indent=2));print(label,'hp',s['player']['hp'],'time',s['stats']['seconds'],flush=True)
  def capture(name):page.screenshot(path=str(OUT/(name+'.png')))
  def picture(name):pulse(9);wait('Rainward.mode==="pause"');capture(name);pulse(1);wait('Rainward.mode==="play"')
  def use(q):pulse(3);wait(q)
