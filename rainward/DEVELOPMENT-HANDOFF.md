@@ -1,3 +1,7 @@
+# Current release / Freight Cut v0.15.0
+
+Read FREIGHT-CUT.md. The existing ward-radio repair now releases a west loading passage; its sorting landing connects the spindle aisle back to market concealment and the established clinic terrace. Both original freight entrances and unpowered extraction remain valid. Wayfinder and Open Diorama are already merged; do not rebuild their features. No new save fields, task IDs, rewards or controller mappings are introduced. Follow the current shared library and exact release receipt; human and physical-device gates stay open.
+
 # Current release / Wayfinder v0.14.1
 
 Read WAYFINDER.md for clinic route chevrons, the gate/map/journal state, spatial pointer feedback and source-owned crafting holds. Open Diorama v0.14.0 is already merged in PR 154; do not revive its preparation branches. The next work remains graybox evaluation and the remaining Floodgate sequence, then chapter replacements, body/contact animation and physical Quest/Xbox review. All seven chapter identities, saves and Xbox presets are retained. The release PR and hash receipt establish publication.

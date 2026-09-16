@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.14.1 / Wayfinder.
+Release baseline: v0.15.0 / Freight Cut.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -115,8 +115,8 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Dependencies: RW-005.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
-  Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
+  Continuation: Freight Cut links the established clinic/market seam to Freight Hall: the original optional receiver repair now opens a real, flankable loading passage. See FREIGHT-CUT.md; the complete flagship and human review remain unapproved.
+  Next action: Observe unfamiliar-player recovery and route-choice reasoning, then refine the quay observation/commitment beat. Preserve powered/unpowered completion and current legacy saves.
 
 - [ ] RW-010 / P0 / Readable first encounter / Implemented
   Owner role: Encounter design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -130,8 +130,8 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Dependencies: RW-009.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
-  Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
+  Continuation: Freight Cut links the established clinic/market seam to Freight Hall: the original optional receiver repair now opens a real, flankable loading passage. See FREIGHT-CUT.md; the complete flagship and human review remain unapproved.
+  Next action: Observe unfamiliar-player recovery and route-choice reasoning, then refine the quay observation/commitment beat. Preserve powered/unpowered completion and current legacy saves.
 
 - [ ] RW-012 / P1 / Stealth-to-combat-to-recovery pacing / Planned
   Owner role: Systems design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -145,8 +145,8 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Dependencies: RW-009.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
-  Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
+  Continuation: Freight Cut links the established clinic/market seam to Freight Hall: the original optional receiver repair now opens a real, flankable loading passage. See FREIGHT-CUT.md; the complete flagship and human review remain unapproved.
+  Next action: Observe unfamiliar-player recovery and route-choice reasoning, then refine the quay observation/commitment beat. Preserve powered/unpowered completion and current legacy saves.
 
 - [ ] RW-014 / P0 / Hero scene art benchmark / Planned
   Owner role: Art direction. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -253,8 +253,8 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Dependencies: RW-016, RW-025.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.
-  Next action: Apply the seven chapter briefs incrementally, preserving stable objectives and shelters; verify route choice, observation, retreat, pacing and spatial reveals with players.
+  Continuation: Freight Cut links the established clinic/market seam to Freight Hall: the original optional receiver repair now opens a real, flankable loading passage. See FREIGHT-CUT.md; the complete flagship and human review remain unapproved.
+  Next action: Observe unfamiliar-player recovery and route-choice reasoning, then refine the quay observation/commitment beat. Preserve powered/unpowered completion and current legacy saves.
 
 - [ ] RW-029 / P1 / New puzzle interaction families / Planned
   Owner role: Puzzle design. Assigned reviewer: Unassigned. Effort: Unestimated.

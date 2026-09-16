@@ -3,6 +3,7 @@ import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/')
+CHAPTER=os.getenv('TEST_CHAPTER','natatorium')
 KIND=os.getenv('QUEST_KIND','controllers');VIEW=os.getenv('XR_VIEW','diorama-vr');OUT=Path('test-output/rainward-'+VIEW+'-'+KIND);OUT.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[];console=[]
 def check(v,msg):
@@ -37,7 +38,7 @@ with sync_playwright() as pw:
   frames(4);trigger(False);frames(5)
  def away():p.evaluate("()=>{for(const s of questDevice.sources)s.orientation={x:0,y:0,z:0,w:1};}")
  try:
-  p.goto(BASE+'/rainward/?chapter=natatorium',wait_until='domcontentloaded');wait('window.Rainward')
+  p.goto(BASE+'/rainward/?chapter='+CHAPTER,wait_until='domcontentloaded');wait('window.Rainward')
   check(p.evaluate('Rainward.mode')=='title','The native title initializes without a fatal UI construction error');check(p.locator('#xr-view-title option').count()==3,'First-person VR, third-person VR and third-person AR are explicit native choices')
   p.locator('#xr-view-title').select_option(VIEW);p.evaluate('(kind)=>questDevice.use(kind)',KIND)
   p.locator('#xr-title-hands' if KIND=='hands' else '#xr-title').click();wait('Rainward.snapshot().xr.active');frames(8)
@@ -45,7 +46,7 @@ with sync_playwright() as pw:
   check(p.evaluate('Rainward.snapshot().xr.mode')==VIEW,'The actual game adapter enters the requested third-person view')
   select('start');wait('Rainward.mode==="play"');frames(10)
   check(p.evaluate('Rainward.snapshot().camera.heroVisible'),'The existing survivor is rendered in third person, not hidden as in first person')
-  check(p.evaluate('Rainward.state.enemies.length===6&&Rainward.state.enemies.every(e=>e.hp>0)'),'The miniature is the normal mission with six living enemies, not a duplicate showcase')
+  check(p.evaluate('Rainward.state.enemies.length==='+str(5 if CHAPTER=='district' else 6)+'&&Rainward.state.enemies.every(e=>e.hp>0)'),'The miniature is the normal selected mission with all its living enemies, not a duplicate showcase')
   initial=p.evaluate('({x:Rainward.state.player.x,z:Rainward.state.player.z,anchor:Rainward.snapshot().xr.diorama.anchor,head:{...questDevice.head}})')
   p.evaluate('questDevice.head.x+=.25;questDevice.head.y-=.2;questDevice.head.z+=.1');frames(10)
   check(p.evaluate('([x,z])=>Rainward.state.player.x===x&&Rainward.state.player.z===z',[initial['x'],initial['z']]),'Physically leaning/walking around the table never drives character locomotion')
