@@ -1,8 +1,9 @@
+import {WINDBREAK_CONTROLS,windbreakMode,canShiftWindbreak,inReceiverEncounter} from './bellwether-windbreak.mjs';
 import {BELL_DEMO,bellCircuitFeedback} from './bellwether-layout.mjs';
 /* Deterministic mission state. No renderer, DOM, remote requests or pose saves. */
 import {BELL_TASK,BELL_POINTS,BELL_TARGETS,BELL_WAVES,BELL_STAGES,bellProgress,bellGoal} from './bellwether-world.mjs';
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
-export function cleanBellwether(v){v=v&&typeof v==='object'?v:{};return {stage:Number.isInteger(v.stage)?Math.max(0,Math.min(6,v.stage)):0,dials:[0,1,2].map(i=>Number.isInteger(v.dials?.[i])?Math.max(0,Math.min(3,v.dials[i])):0)};}
+export function cleanBellwether(v){v=v&&typeof v==='object'?v:{};return {stage:Number.isInteger(v.stage)?Math.max(0,Math.min(6,v.stage)):0,...(v.windbreak===1?{windbreak:1}:{}),dials:[0,1,2].map(i=>Number.isInteger(v.dials?.[i])?Math.max(0,Math.min(3,v.dials[i])):0)};}
 export function bellSnapshot(s){return {...cleanBellwether(s.bellwether),encounter:s.bellwether?.encounter||null,hold:s.bellwether?.hold||0,objective:BELL_STAGES[s.bellwether?.stage||0],progress:bellProgress(s),goal:bellGoal(s)};}
 export function createBellwether({emit,clearLine,groundAt,occupied,drop}){
  const eye=s=>({...s.p,y:s.p.y+(s.p.crouched?.9:1.5)});
@@ -11,9 +12,9 @@ export function createBellwether({emit,clearLine,groundAt,occupied,drop}){
  function save(s){emit(s,'save');}
  function advance(s,stage,text){s.bellwether.stage=stage;s.bellwether.encounter=null;s.bellwether.hold=0;say(s,text);emit(s,'bell-stage',{stage});save(s);}
  function nearby(s){const b=s.bellwether,p=s.p;if(!b||!p.grounded||p.rail||p.ride||p.climb)return null;
-  const available=[BELL_DEMO,...BELL_POINTS].filter(q=>q.kind==='demo'||q.kind==='desk'||(b.stage===2&&['dial','tester'].includes(q.kind))||([3,4,5].includes(b.stage)&&q.kind==='signal'));
+  const available=[...WINDBREAK_CONTROLS,BELL_DEMO,...BELL_POINTS].filter(q=>(q.kind==='windbreak'&&b.stage>=3)||q.kind==='demo'||q.kind==='desk'||(b.stage===2&&['dial','tester'].includes(q.kind))||([3,4,5].includes(b.stage)&&q.kind==='signal'));
   const q=available.filter(q=>dist(p,q)<1.8&&clearLine(eye(s),{...q,y:q.y+1.2},s)).sort((a,b)=>dist(p,a)-dist(p,b))[0];
-  return q?{type:'bellwether',id:q.id,label:'X / E - '+q.name+(q.kind==='dial'?' / '+b.dials[Number(q.id.at(-1))]:'')}:null;
+  return q?{type:'bellwether',id:q.id,label:'X / E - '+(q.kind==='windbreak'?'Shift windbreak to '+(windbreakMode(s)?'gallery shelter':'receiver shelter'):q.name)+(q.kind==='dial'?' / '+b.dials[Number(q.id.at(-1))]:'')}:null;
  }
  function spawn(s,wave){const b=s.bellwether,roof=wave!=='street',home=roof?{x:-107,y:27.5,z:-9,w:14,d:16}:{x:-93,y:7,z:-18,w:48,d:40};
   for(const [i,q]of BELL_WAVES[wave].entries()){
@@ -23,9 +24,15 @@ export function createBellwether({emit,clearLine,groundAt,occupied,drop}){
   b.gap=2;emit(s,'bell-wave',{wave,at:{...BELL_POINTS[roof?5:0]}});
  }
  function begin(s,roof){const b=s.bellwether;if(b.encounter||s.skirmish.battle.phase==='active'||s.expedition.defense.active||s.tactics.encounter.phase==='active'){say(s,'Finish or leave the active encounter before starting the Blackout defense.');return false;}
-  s.drones=s.drones.filter(e=>!e.bellwetherEnemy);b.encounter=roof?'roof':'street';b.stage=roof?4:1;b.wave=0;b.hold=0;s.expedition.tracked=BELL_TASK.id;s.checkpoint='bellmarket';spawn(s,b.encounter);say(s,roof?'TAVI: Receiver online. Two boarders are closing in; keep the ladder exit clear.':'TAVI: Stop the two street disruptors. The Arcade entrance is on the northwest side of the market.');save(s);return true;
+  s.drones=s.drones.filter(e=>!e.bellwetherEnemy);b.encounter=roof?'roof':'street';b.stage=roof?4:1;b.wave=0;b.hold=0;s.expedition.tracked=BELL_TASK.id;s.checkpoint='bellmarket';spawn(s,b.encounter);say(s,roof?'TAVI: Two boarders on the north roof. Screens protect either the receiver or gallery, never both. Your shots obey them too. The east stair is a recovery route; the south ladder abandons this attempt.':'TAVI: Stop the two street disruptors. The Arcade entrance is on the northwest side of the market.');save(s);return true;
  }
  function handle(s,id){if(s.won||nearby(s)?.id!==id)return false;const b=s.bellwether;s.expedition.tracked=BELL_TASK.id;
+  if(WINDBREAK_CONTROLS.some(q=>q.id===id)){
+   if(!canShiftWindbreak(s)){b.windbreakBlocked=(b.windbreakBlocked||0)+1;say(s,'Windbreak interlock: the rising screen is occupied. Step clear or let the guard move; nothing was closed.');return false;}
+   b.windbreak=1-windbreakMode(s);b.windbreakSwitches=(b.windbreakSwitches||0)+1;
+   say(s,b.windbreak?'Receiver screened from the north. Your shots are blocked too; use the open east flank. The gallery approach is exposed.':'Gallery screened from the northwest. The receiver lane is open for shots in both directions.');
+   emit(s,'bell-windbreak',{mode:b.windbreak,at:WINDBREAK_CONTROLS.find(q=>q.id===id)});save(s);return true;
+  }
   if(id===BELL_DEMO.id){b.demoUntil=s.time+5;say(s,'Crank -> coil -> lamp. Current also energizes the marked water tray. The street uses the same conductive rule; keep off charged water.');emit(s,'bell-demo',{at:BELL_DEMO});return true;}
   if(id==='bell-dispatch'){
    if(b.stage<2)return begin(s,false);
@@ -38,7 +45,8 @@ export function createBellwether({emit,clearLine,groundAt,occupied,drop}){
  }
  function killed(s,e){if(!e.bellwetherEnemy)return false;if(e.credited)return true;e.credited=true;e.hp=0;s.stats.defeated++;drop(s,e);emit(s,'defeat',{id:e.id,at:{x:e.x,y:e.y,z:e.z}});return true;}
  function abort(s,reason='interrupted'){const b=s.bellwether;if(!b?.encounter)return;b.encounter=null;b.hold=0;s.drones=s.drones.filter(e=>!e.bellwetherEnemy);say(s,'Blackout encounter '+reason+'. Completed circuit work is kept. Use the dispatch desk or rooftop receiver to retry.');save(s);}
- function tick(s,dt){const b=s.bellwether;if(!b?.encounter)return;const roof=b.encounter==='roof',p=s.p;if(roof?(Math.abs(p.x+107)>18||Math.abs(p.z+9)>20||p.y<24||p.y>38):(Math.hypot(p.x+93,p.z+18)>43||Math.abs(p.y-7)>12)){abort(s,'left behind');return;}
+ function tick(s,dt){const b=s.bellwether;if(!b?.encounter)return;const roof=b.encounter==='roof',p=s.p;if(roof?(!inReceiverEncounter(p)):(Math.hypot(p.x+93,p.z+18)>43||Math.abs(p.y-7)>12)){abort(s,'left behind');return;}
+  if(roof){const below=p.y<24;if(below&&!b.inGallery){b.galleryRetreats=(b.galleryRetreats||0)+1;say(s,'Gallery shelter. The same guards remain above; climb back when ready. Synchronization requires a clear receiver.');}b.inGallery=below;}
   if(s.drones.some(e=>e.bellwetherEnemy&&e.hp>0))return;
   if(!roof){advance(s,2,'TAVI: The disruptors are down. Enter the Clockmaker\'s Arcade and read the maintenance card. Three dials restore the workshop circuit.');return;}
   if(b.wave===0){b.gap-=dt;if(b.gap<=0){b.wave=1;spawn(s,'guardian');say(s,'TAVI: Signal guard incoming. Watch the wind-up, use the low rooftop cover, and keep moving.');}return;}

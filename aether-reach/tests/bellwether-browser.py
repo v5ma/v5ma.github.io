@@ -3,7 +3,9 @@ import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'aether-reach/test-output';OUT.mkdir(exist_ok=True)
-REWIRED=os.getenv('BELL_ROUTE')=='rewired'
+WIND=os.getenv('BELL_WIND')=='1'
+REWIRED=WIND or os.getenv('BELL_ROUTE')=='rewired'
+route_samples=[]
 checks=[];errors=[];native=[]
 def check(ok,label):
  assert ok,label
@@ -21,7 +23,9 @@ with sync_playwright() as pw:
  p.on('dialog',popup)
  def s():return p.evaluate('AetherReach.snapshot()')
  def tap(i):p.evaluate('(i)=>BlackoutDriver.tap(i)',i)
- def walk(x,z):p.evaluate('([x,z])=>BlackoutDriver.walk(x,z)',[x,z])
+ def walk(x,z):
+  before=s();p.evaluate('([x,z])=>BlackoutDriver.walk(x,z)',[x,z]);after=s()
+  if WIND:route_samples.append({'to':[x,z],'from':before['position'],'elapsedSimulationSeconds':after['time']-before['time'],'shots':after['stats']['shots']-before['stats']['shots'],'healthBefore':before['health'],'healthAfter':after['health'],'shieldBefore':before['shield'],'shieldAfter':after['shield']})
  def clear(prefix):p.evaluate('(p)=>BlackoutDriver.clear(p)',prefix)
  def go(sel):
   for _ in range(90):
@@ -40,8 +44,10 @@ with sync_playwright() as pw:
   check(p.evaluate('AetherReach.version')==expected,'The real application boots the current Aether release with Bellwether Blackout intact')
   p.evaluate('TestPad.connect()');p.evaluate('BlackoutDriver.neutral()');tap(0)
   tap(9);go('#pause-blackout');check(s()['expedition']['tracked']=='bellwether-blackout','Pause shortcut tracks the district adventure without teleporting or rewarding the player');tap(1);tap(1)
-  walk(3,7);tap(15);go('[data-buy="sniper"][data-kind="weapon"]');tap(1)
-  check('sniper' in s()['carried'] and s()['credits']==100,'A real kiosk purchase equips the Longglass for the encounter')
+  if not WIND:
+   walk(3,7);tap(15);go('[data-buy="sniper"][data-kind="weapon"]');tap(1)
+   check('sniper' in s()['carried'] and s()['credits']==100,'A real kiosk purchase equips the Longglass for the encounter')
+  else:check(s()['owned']==['arc'],'The complete Crosswind journey starts with the rechargeable sidearm and buys no equipment')
   for x,z in [(-10,0),(-16,-6),(-70,-8),(-84,-4)]:walk(x,z)
   use('bell-dispatch');check(s()['bellwether']['stage']==1,'X starts the street encounter')
   # Mission completion, not an impossible stationary shot at every optional guard behind the new cover.
@@ -71,23 +77,46 @@ with sync_playwright() as pw:
   else:
    for x,z in [(-103,-25),(-103,-21),(-95,-18),(-95,0),(-107,.1)]:walk(x,z)
    use('roof-bell-ladder');p.evaluate('TestPad.axes([0,-1,0,0])');p.wait_for_function('!AetherReach.snapshot().climb&&AetherReach.snapshot().grounded&&AetherReach.snapshot().position.y>27');p.evaluate('BlackoutDriver.neutral()')
-  walk(-111,-3);walk(-111,-6);use('bell-signal');clear(['bell-blackout-roof'])
+  if WIND:
+   walk(-102,-3.5);use('bell-windbreak-east')
+   check(s()['bellwetherArt']['windbreak']['mode']==1 and s()['bellwether']['stage']==3,'A direct X action prepares receiver shelter before starting combat')
+  walk(-111,-3);walk(-111,-6);use('bell-signal')
+  if WIND:
+   lines=s()['bellwetherArt']['windbreak']['sightlines']
+   check(any(q['id']=='bell-blackout-roof-1' and not q['clear'] for q in lines) and any(q['id']=='bell-blackout-roof-0' and q['clear'] for q in lines),'The raised screen blocks the north longshot but does not hide the other boarder')
+   p.screenshot(path=str(OUT/'crosswind-receiver-shelter.png'))
+   clear(['bell-blackout-roof-0'])
+   check(any(e['id']=='bell-blackout-roof-1' and e['hp']>0 for e in s()['enemies']),'The screened guard still requires a new angle; shelter does not award a victory')
+   ids=[e['id'] for e in s()['enemies'] if e['id'].startswith('bell-blackout-roof')]
+   for x,z in [(-111,-3),(-104,-4),(-101.5,-6),(-99,-6),(-99,-18.5)]:walk(x,z)
+   check(s()['bellwether']['encounter']=='roof' and s()['position']['y']<23 and s()['bellwether']['hold']==0,'Actual stair retreat reaches the lower gallery without abandoning or progressing the receiver fight')
+   p.screenshot(path=str(OUT/'crosswind-gallery-recovery.png'))
+   for x,z in [(-99,-6),(-101.5,-6),(-104,-4),(-111,-3),(-112,-3.5)]:walk(x,z)
+   use('bell-windbreak-west')
+   check(s()['bellwetherArt']['windbreak']['mode']==0,'Returning through the known stair lets X trade receiver shelter for a clear firing lane')
+   check(ids==[e['id'] for e in s()['enemies'] if e['id'].startswith('bell-blackout-roof')],'Retreat and return do not replace or multiply the original boarders')
+   walk(-111,-6)
+  clear(['bell-blackout-roof'])
   p.wait_for_function('AetherReach.snapshot().enemies.some(e=>e.id.includes("bell-blackout-guardian")&&e.hp>0)')
   clear(['bell-blackout-guardian']);p.wait_for_function('AetherReach.snapshot().bellwether.stage===5')
   check(s()['bellwetherArt']['restored'],'Defeating the guard and holding the actual receiver restores the market lights')
   p.screenshot(path=str(OUT/'blackout-rooftop.png'))
+  if WIND:
+   walk(-111,-3);walk(-112,-3.5);use('bell-windbreak-west')
+   check(s()['owned']==['arc'] and s()['stats']['rescues']==0,'Real movement, rechargeable sidearm fire and reload finish both sites without purchases or rescue')
   walk(-111,-3);walk(-107,-2.1);use('roof-bell-ladder');p.evaluate('TestPad.axes([0,1,0,0])');p.wait_for_function('!AetherReach.snapshot().climb&&AetherReach.snapshot().grounded&&AetherReach.snapshot().position.y<8');p.evaluate('BlackoutDriver.neutral()')
   walk(-95,0);walk(-84,-4);before=s()['credits'];use('bell-dispatch');check(s()['bellwether']['stage']==6 and s()['credits']==before+300,'The return journey awards the single 300-credit completion reward')
   tap(2);check(s()['credits']==before+300,'Repeating the dispatch interaction cannot duplicate payment')
   tap(9);go('#pause-journal');check(p.locator('[data-track="bellwether-blackout"]').is_disabled(),'The journal marks the adventure complete with controller navigation intact')
   p.screenshot(path=str(OUT/'blackout-completed-journal.png'));tap(1);go('#return-title');go('#continue')
   check(s()['bellwether']['stage']==6 and s()['bellwetherArt']['restored'],'The completed mission and repaired lights survive save/continue')
+  if WIND:check(s()['bellwetherArt']['windbreak']['mode']==1,'The selected shelter persists through the real completed-save Continue path')
   check(not native,'No native alert or confirm blocks the controller-only journey');check(not errors,'No uncaught application errors through the full street-interior-rooftop loop')
-  (OUT/('rewired-browser.json' if REWIRED else 'bellwether-browser.json')).write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'nativeDialogs':native,'snapshot':s(),'scope':'Real HTTP Chromium software WebGL with emulated Gamepad API. Light profile at 960x640 CSS, half pixel density. All progression via ordinary controller play. No physical hardware, listening or frame-rate certification.'},indent=2))
+  (OUT/('windbreak-browser.json' if WIND else 'rewired-browser.json' if REWIRED else 'bellwether-browser.json')).write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'nativeDialogs':native,'snapshot':s(),'routeSamples':route_samples,'scope':'Real HTTP Chromium software WebGL with emulated Gamepad API. Light profile at 960x640 CSS, half pixel density. All progression via ordinary controller play. No physical hardware, listening or frame-rate certification.'},indent=2))
  except Exception as e:
   try:state=s()
   except:state=None
-  (OUT/('rewired-failure.json' if REWIRED else 'bellwether-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2))
+  (OUT/('windbreak-failure.json' if WIND else 'rewired-failure.json' if REWIRED else 'bellwether-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'routeSamples':route_samples},indent=2))
   try:p.screenshot(path=str(OUT/'bellwether-failure.png'))
   except:pass
   raise

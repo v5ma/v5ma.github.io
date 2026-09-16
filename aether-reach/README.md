@@ -1,3 +1,7 @@
+# Receiver Crosswind v0.13.0
+
+The Bellwether rooftop now offers switchable windbreak cover and a recoverable gallery retreat. Existing district geometry, systems, save namespaces, controls, first-person VR and diorama VR/AR are retained. Read RECEIVER-CROSSWIND.md and DEVELOPMENT-HANDOFF.md; verify publication using the versioned release receipt. The prior section below documents the v0.12 foundation, not a pending implementation task.
+
 # Aether Reach
 
 Current source: 0.12.0 Bellwether Rewired. The first authored level-design replacement adds a connected maintenance ascent, circuit-unlocked service passage, induction practice and visible machine feedback. Optional first-person VR, third-person diorama VR and passthrough AR use the same expedition and version-1 saves. See [BELLWETHER-REWIRED.md](BELLWETHER-REWIRED.md), [DIORAMA.md](DIORAMA.md) and [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md). The canonical plan remains [roadmap.json](roadmap.json) and [planning/AAA-ROADMAP.md](planning/AAA-ROADMAP.md).

@@ -1,3 +1,4 @@
+import {windbreakSolid} from './bellwether-windbreak.mjs';
 import {BELL_DECKS,BELL_STREET_SOLIDS,BELL_SHORTCUT,bellShortcutOpen} from './bellwether-layout.mjs';
 import {createBellwether,cleanBellwether,bellSnapshot} from './bellwether-core.mjs';
 import {BELL_NOTE,BELL_COVER} from './bellwether-world.mjs';
@@ -16,7 +17,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.12.0';
+export const VERSION='0.13.0';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -80,7 +81,7 @@ export const SOLIDS=BUILDINGS.map(b=>({x1:b.x-b.w/2,x2:b.x+b.w/2,y1:b.y,y2:b.y+b
 export const COMBAT_COVER=buildCombatCover(DISTRICTS,{solids:SOLIDS,keepouts:[...RELAYS,...RECORDS,EXTRACTION,...DEPOTS,...CACHES,...THINGS,...POSTS,...RIFTS,...LADDERS.flatMap(r=>r.points.map(p=>({x:p[0],y:p[1],z:p[2]})))],bridges:BRIDGES,rails:RAILS});
 SOLIDS.push(...COMBAT_COVER.map(asBox),...BELL_COVER.map(asBox));
 const deckSolids=[...DISTRICTS,...TERRACES,...COMBAT_DECKS,...BELL_DECKS].map(d=>({x1:d.x-d.w/2,x2:d.x+d.w/2,y1:d.y-.3,y2:d.y,z1:d.z-d.d/2,z2:d.z+d.d/2,deck:true}));
-const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids,riftSolid(s),bellShortcutOpen(s)?[]:[BELL_SHORTCUT]);
+const stateSolids=s=>closedExpeditionGates(s).concat(SOLIDS,deckSolids,riftSolid(s),bellShortcutOpen(s)?[]:[BELL_SHORTCUT],windbreakSolid(s));
 const tactical=createTactics({solids:SOLIDS,clearLine,rayBox,raySphere,forward,emit,defeated,hurt});
 const skirmish=createSkirmish({groundAt,occupied,clearLine,forward,emit,defeated,equip,weaponStats,weapons:WEAPONS,nearby,interact,reload:reloadWeapon,detach,cover:COMBAT_COVER});
 const bellwether=createBellwether({emit,clearLine,groundAt,occupied,drop:(s,b)=>skirmish.drop(s,b)});
@@ -166,7 +167,7 @@ export function interact(s){const n=nearby(s),p=s.p;
 export function detach(s,jump=true){const p=s.p;if(!p.rail)return;const r=RAILS.find(r=>r.id===p.rail.id),q=pointOnRail(r,p.rail.s),dir=p.rail.dir;p.vx=q.tangent.x*p.speed*dir;p.vz=q.tangent.z*p.speed*dir;p.vy=q.tangent.y*p.speed*dir+(jump?5:0);p.lastRail=p.rail.id;p.airSince=s.time;p.rail=null;p.latch=null;p.hookCooldown=.14;p.hookRequest=0;p.grounded=false;emit(s,'release');}
 export function reverseRail(s){if(!s.p.rail)return;s.p.rail.dir*=-1;s.p.speed=Math.max(7,s.p.speed*.35);s.stats.reversals++;emit(s,'reverse');}
 export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.reload>0||s.won)return false;if(p.ammo<=0){if(s.time-s.skirmish.dryAt>.2){s.skirmish.dryAt=s.time;emit(s,'dry-fire');}return false;}const head={x:p.x,y:p.y+eyeHeight(p),z:p.z},kick=s.skirmish.recoil;let o=head,d=forward(p.yaw+kick.x,p.pitch+kick.y);
- if(aim){if(!aim.origin||!aim.direction||!['x','y','z'].every(k=>Number.isFinite(aim.origin[k])&&Number.isFinite(aim.direction[k])))return false;const len=Math.hypot(aim.direction.x,aim.direction.y,aim.direction.z);if(len<.001||distance(head,aim.origin)>2.5||!clearLine(head,aim.origin))return false;o={...aim.origin};d={x:aim.direction.x/len,y:aim.direction.y/len,z:aim.direction.z/len};}
+ if(aim){if(!aim.origin||!aim.direction||!['x','y','z'].every(k=>Number.isFinite(aim.origin[k])&&Number.isFinite(aim.direction[k])))return false;const len=Math.hypot(aim.direction.x,aim.direction.y,aim.direction.z);if(len<.001||distance(head,aim.origin)>2.5||!clearLine(head,aim.origin,s))return false;o={...aim.origin};d={x:aim.direction.x/len,y:aim.direction.y/len,z:aim.direction.z/len};}
  p.shoot=w.delay;p.ammo--;s.kit.mags[p.weapon]=p.ammo;s.stats.shots++;
  const across={x:d.z,y:0,z:-d.x},al=Math.hypot(across.x,across.z)||1;across.x/=al;across.z/=al;const up={x:across.z*d.y,y:across.x*d.z-across.z*d.x,z:-across.x*d.y};
  for(let pellet=0;pellet<w.pellets;pellet++){

@@ -13,6 +13,7 @@ runs=get(f'repos/{repo}/actions/runs?head_sha={head}&status=success&per_page=100
 run=next(r for r in runs if r['path']==workflow and r['head_sha']==head and r['conclusion']=='success')
 reports={'grounded':'grounded-browser.json','xr':'xr-report.json','controller':'controller-journey-report.json','blackout':'bellwether-browser.json','skyglass':'skyglass-browser.json','foundry':'foundry-browser.json','glide':'glide-report.json','tactics-tools':'tools-tactics-report.json','tactics-recovery':'recovery-tactics-report.json'}
 if rewired:reports={'diorama':'diorama-browser.json','rewired':'rewired-browser.json','grounded':'grounded-browser.json','controller':'controller-journey-report.json','expedition':'expedition-report.json','glide':'glide-report.json'}
+if tuple(map(int,version.split('.'))) >= (0,13,0):reports['windbreak']='windbreak-browser.json'
 out=Path('/tmp/aether-release');out.mkdir(exist_ok=True)
 with zipfile.ZipFile(out/f'Aether-Reach-v{version}-native-grounded-evidence.zip','w',zipfile.ZIP_DEFLATED) as archive:
  for suite,name in reports.items():

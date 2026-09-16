@@ -1,0 +1,66 @@
+name: Play published Receiver Crosswind
+on:
+  workflow_run:
+    workflows: ['Verify published Aether Reach']
+    types: [completed]
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  public-gameplay:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+          sparse-checkout: aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: version
+        name: Scope the released Crosswind chapter
+        run: |
+          VERSION=$(node -p "JSON.parse(require('fs').readFileSync('aether-reach/release.json')).version")
+          echo "current=$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Verify independently served bytes
+        if: steps.version.outputs.current == '0.13.0'
+        env:
+          SOURCE: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          node aether-reach/tests/release-manifest.mjs
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,urllib.request,os,concurrent.futures
+          folder=Path('aether-reach/test-output')
+          expected=json.loads((folder/'runtime-manifest.json').read_text())['files']
+          def check(item):
+            name,digest=item
+            with urllib.request.urlopen('https://v5ma.github.io/'+name+'?crosswind='+os.environ['SOURCE'][:12],timeout=30) as response:
+              actual=hashlib.sha256(response.read()).hexdigest()
+              return name,{'status':response.status,'sha256':actual,'match':actual==digest}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:results=dict(pool.map(check,expected.items()))
+          passed=len(results)==len(expected) and all(v['match'] and v['status']==200 for v in results.values())
+          (folder/'crosswind-public-bytes.json').write_text(json.dumps({'source':os.environ['SOURCE'],'all_match':passed,'files':results},indent=2))
+          assert passed,'Public files do not match the source being tested'
+          PY
+      - name: Install native browser
+        if: steps.version.outputs.current == '0.13.0'
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Complete the public chapter through ordinary controller inputs
+        if: steps.version.outputs.current == '0.13.0'
+        timeout-minutes: 50
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+          BELL_WIND: '1'
+        run: python -u aether-reach/tests/bellwether-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.version.outputs.current == '0.13.0'
+        with:
+          name: aether-crosswind-live
+          path: aether-reach/test-output/
+          retention-days: 30
