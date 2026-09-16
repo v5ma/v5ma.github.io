@@ -1,3 +1,15 @@
+Working Deliveries continuation.
+
+Read WORKING-DELIVERIES.md, selected_level_design_task in CONTINUATION-STATE.json, current master and the newest Working Deliveries PR/receipt first. The PR157 baseline is already published and verified; do not repeat its closure. This named additive build remains v0.14.0 with build guild-working-quarter-20260915. The local 351-check model result alone is not publication evidence.
+
+WQ-PORTER advances W04/W05/S02 and NEXT06. The existing three approaches, optional observations, map layers, first-person and diorama VR/AR remain. Neri now fetches a commissioned spindle through real restored goods circulation after an in-person bell request. Manual pickup, interception, cancellation and indefinite waiting preserve player agency. No actor pose or clock is saved; porterOrder is a validated named checkpoint. Never pay for autonomous arrival. Read the brief before changing its custody rules.
+
+Run all current checks and the five native Waterwheel journeys, including relay. The relay test earns progression by Xbox input and then uses a hand-pinch in the actual stereo miniature. Local browser navigation is blocked; use ordinary-source CI evidence and inspect captures. Require Pages plus separate public files and all five live journeys before claiming verified publication. Record failures, SHAs, hashes, unchanged source receipts and physical/human limitations.
+
+After publication, observe an unfamiliar and returning player: do they understand the service connection, choose cooperation for a reason, and use waiting or interception purposefully? Shorten poor waits or improve information before adding another district. Physical Quest/Xbox, passthrough, comfort, endurance and final artwork remain open.
+
+The prior detailed handoff is preserved below and is historical when it discusses PR157 release closure.
+
 Continue Leonardo's Guild / Waterwheel Quarter.
 
 First check current master, PR157, its head and latest workflow runs. Work from the actual repository, not an old candidate ZIP or historical preparation branch. The ordinary knowledge/navigation checkpoint is 75d4fcb72647bdc8539406183d32876084eb0224. Its 342 CPU/model/adapter checks passed locally and in the hash-checked integration job. Read the subsequent PR157 timeline for native results and deployment; this checkpoint alone is not a publication receipt.

@@ -1,3 +1,9 @@
+Working Deliveries / WQ-PORTER continuation, September 15, 2026.
+
+The published PR157 baseline is complete. Read WORKING-DELIVERIES.md and the newest release receipt for this named additive build. WQ-PORTER advances W04, W05 and S02 within NEXT06: an optional in-person bell request turns the repaired goods stairs and permanent arch into a visible household delivery round. Manual pickup and personal loft delivery remain; cancellations return goods physically and no autonomous arrival pays a reward.
+
+WQ-PORTER is implemented and model-tested; native, public, human and device outcomes must be read from their own evidence. Do not mark the broader W04/W05/S02/NEXT06 goals complete. The primary human question is whether cooperation and interception make this familiar place more useful than another manual trip. All original task IDs, criteria and historical decisions below remain unchanged.
+
 Waterwheel Quarter v0.14.0 implementation checkpoint, September 15, 2026.
 
 Read WATERWHEEL-QUARTER.md and release.json first. The approved authored opening and new XR presentations now have ordinary runtime implementation. This is not a claim of successful publication until the exact-source native workflow, renderer review and independent Pages receipt pass. The earlier v0.13.1 refinement runtime has been recovered without replacing the approved design documents.
