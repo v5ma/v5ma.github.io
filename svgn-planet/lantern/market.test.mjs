@@ -21,3 +21,17 @@ test('Unsignaled crossing remains completable by a patient rider',()=>{const s=a
 test('Marked north loop bypasses every loading phase without signal or dismount',()=>{for(const delay of[0,1.5,4,6,8,10]){const s=approach();waitLoading(s);run(s,Math.round(delay*60));for(const p of[[-1.85,-13.5],[-1.85,-20],[1.85,-20],[1.85,-14],[6,-14]])go(s,...p);assert.equal(s.ride,'bicycle');assert.equal(s.market.accepted,0);assert.ok(s.x>5.7);}});
 test('Roof observation has a real sightline to the loading crossing',()=>{const s=fresh();assert.ok(lineClear(s,{x:-7,y:5.5,z:-4},{x:0,y:1.5,z:-14.05}));assert.equal(marketBlocks(s,0,4.4,-14.05),false);});
 test('Cart and porter occupy the same inspected metre-space in every read',()=>{const s=fresh();run(s,360);assert.equal(marketActor(s).z,marketState(s).z-1.05);const before=JSON.stringify(serialize(s));for(let i=0;i<30;i++)marketStatus(s);assert.equal(JSON.stringify(serialize(s)),before);});
+
+// Explicit fixed-position model fixtures isolate the post/corner contract.
+test('A reachable fixed post relays a request in every cart phase, including the occluded bay',()=>{
+ for(const [x,z] of [[-5,-13.5],[5,-15]])for(const [phase,cartZ]of [['loading',-14.05],['withdrawing',-16.5],['clear',-17.8],['returning',-16.5]]){
+  const s=fresh();s.x=x;s.z=z;s.ride='bicycle';const m=resetMarket(s);m.phase=phase;m.z=cartZ;
+  const before=serialize(s);action(s,'interact');assert.equal(m.accepted,1,`${x}: ${phase}`);assert.equal(m.z,cartZ);assert.deepEqual(serialize(s),before);
+ }
+});
+test('Free bell does not become a remote signal when a warehouse blocks the porter',()=>{
+ const s=fresh();s.x=-5;s.z=-13.5;const m=resetMarket(s);m.phase='clear';m.z=QUAY.bayZ;
+ assert.equal(lineClear(s,{x:s.x,y:1,z:s.z},{x:0,y:1,z:m.z}),false);
+ action(s,'bell');assert.equal(m.accepted,0);action(s,'interact');assert.equal(m.accepted,1);
+ const far=fresh();action(far,'interact');assert.equal(marketState(far).accepted,0);
+});

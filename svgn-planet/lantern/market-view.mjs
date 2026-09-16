@@ -28,7 +28,10 @@ export function createMarketView({world,box,cyl,label,batch}){
   cyl(fixed,0x425861,x,1.4,z,.045,2.8);
   const lamp=box(fixed,0xe5bc6e,x,2.65,z,.3,.3,.3);lamp.material=lamp.material.clone();
   const text=label('LOADING / SIGNAL',x,3.1,z,2.8,.5,'#334b50','#f8e4be',fixed);text.rotation.y=i?Math.PI/2:-Math.PI/2;
-  const handle=box(fixed,0xe9d8a4,i?5:-5,.85,i?-15:-13.5,.25,.15,.3);
+  const hx=i?5:-5,hz=i?-15:-13.5;
+  cyl(fixed,0x425861,hx,.6,hz,.045,1.2);
+  const handle=box(fixed,0xe9d8a4,hx,.95,hz,.25,.15,.3);
+  label('QUAY PASS',hx,1.35,hz,1.25,.3,'#394f56','#ffe1a0',fixed).rotation.y=i?Math.PI/2:-Math.PI/2;
   return {lamp,text,handle};
  });
  batch?.(fixed);

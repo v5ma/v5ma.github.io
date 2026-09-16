@@ -60,8 +60,8 @@ export const fixtures=[
  {id:'water',x:5.8,z:-13,y:0,label:'Operate canal sluice'},
  {id:'repair',x:6,z:-8,y:0,label:'Repair goods hoist'},
  {id:'hoist',x:6.8,z:.5,y:0,label:'Ride goods hoist'},
- {id:'quay-west-signal',x:-5,z:-13.5,y:0,label:'Signal Ivo / keep bicycle mounted'},
- {id:'quay-east-signal',x:5,z:-15,y:0,label:'Signal Ivo / keep bicycle mounted'},
+ {id:'quay-west-signal',x:-5,z:-13.5,y:0,label:'Quay pass button / keep riding'},
+ {id:'quay-east-signal',x:5,z:-15,y:0,label:'Quay pass button / keep riding'},
  {id:'dock-south',x:-4.4,z:13,y:0,label:'Y: Board canal skiff'},
  {id:'dock-north',x:3,z:-14,y:0,label:'Y: Board canal skiff'}
 ];
@@ -129,7 +129,9 @@ export function action(s,name){
  if(name!=='interact')return;
  const f=nearby(s);
  if(!f){const a=actors(s).find(a=>Math.hypot(s.x-a.x,s.y-a.y,s.z-a.z)<2.8);if(a)say(s,a.tip);else say(s,name==='throw'?'The workshop parcel needs a handoff at its bench, not a thrown paper.':'Move close to a person, bench or mechanism.');return;}
- if(f.id.startsWith('quay-')){action(s,'bell');return;}
+ // A reached signal post relays the request even when the cart is behind the bay corner.
+ // nearby() has already enforced reach and visibility to this fixed control.
+ if(f.id.startsWith('quay-')){say(s,requestPass(s)?'Ivo: Quay signal received. Pulling into the bay; cross when the sign clears.':'Move closer to the quay signal.');return;}
  if(f.id==='parcel'){
   if(complete(s)&&!s.claimed){s.claimed=true;s.credits=600;say(s,'Delivery loop restored. 600 chapter credits recorded once. The shortcuts remain yours.');}
   else if(s.claimed)say(s,'Mara: The ward is working again. Try another route; the blue door and hoist stay repaired.');
