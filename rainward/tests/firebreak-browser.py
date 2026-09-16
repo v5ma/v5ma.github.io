@@ -50,11 +50,15 @@ with sync_playwright() as pw:
   s=p.evaluate('Rainward.snapshot()');entry={'label':label,'t':p.evaluate('Rainward.state.t'),'player':s['player'],'stats':s['stats'],'firebreak':s['visuals']['firebreak'],'enemies':s['enemies'],'metrics':p.evaluate('firebreakMetrics')};trace.append(entry);(OUT/'trace.json').write_text(json.dumps(trace,indent=2));print(label,'HP',s['player']['hp'],'time',entry['t'],flush=True)
  def go(x,z):
   print('GO',x,z,flush=True);frames(3)
-  p.evaluate('''async ({x,z,xr})=>{const W=await import('./world.mjs'),P=Rainward.state.player,L=xr?questDevice.sources.find(s=>s.handedness==='left'):null,base=L?{...L.position}:null,route=W.findPath(P,{x,z});route.push({x,z});
+  p.evaluate('''async ({x,z,xr})=>{const W=await import('./world.mjs'),P=Rainward.state.player,L=xr?questDevice.sources.find(s=>s.handedness==='left'):null,base=L?{...L.position}:null,path=W.findPath(P,{x,z});path.push({x,z});
+   // Keep every actual turn; do not decelerate at every collinear nav cell.
+   const route=path.filter((p,i,a)=>i===0||i===a.length-1||p.x-a[i-1].x!==a[i+1].x-p.x||p.z-a[i-1].z!==a[i+1].z-p.z);
    if(xr){for(const s of questDevice.sources)s.orientation={x:0,y:0,z:0,w:1};if(L.hand)L.pinch=true;}
    await new Promise((resolve,reject)=>{let i=0,frame=xr?questDevice.frames:padPolls;const start=performance.now();const stop=()=>{if(xr){if(L.hand){L.pinch=false;L.position={...base};}else{L.gamepad.axes=[0,0,0,0];L.gamepad.buttons[3]={pressed:false,value:0};}}else{pad.axes[0]=pad.axes[1]=0;pad.buttons[10]={pressed:false,value:0};}clearInterval(timer);};
     const timer=setInterval(()=>{if((xr?questDevice.frames:padPolls)<frame+3)return;const p=Rainward.state.player;
      if(Rainward.mode!=='play'||performance.now()-start>120000){stop();reject(Error('Travel blocked or defeated '+JSON.stringify({mode:Rainward.mode,x:p.x,z:p.z,hp:p.hp,goal:route[i]})));return;}
+     // Use the medkit actually prepared at the shelter, via Classic D-pad up.
+     if(!xr&&Rainward.snapshot().controlPreset==='classic'&&p.hp<65&&p.medkit&&!padPulse.includes(12))padPulse.push(12);
      const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.4){if(++i===route.length){stop();resolve();}return;}
      const yaw=xr&&L.hand?Rainward.snapshot().xr.rig.yaw:Rainward.view.yaw,c=Math.cos(yaw),s=Math.sin(yaw),scale=Math.min(1,Math.max(.45,d*1.2)),a=(c*dx-s*dz)/d*scale,b=(s*dx+c*dz)/d*scale;
      if(xr){if(L.hand){L.position.x=base.x+a*.13;L.position.z=base.z+b*.13;}else{L.gamepad.axes[2]=a;L.gamepad.axes[3]=b;L.gamepad.buttons[3]={pressed:true,value:1};}}
@@ -84,18 +88,27 @@ with sync_playwright() as pw:
    select('comfort-speed')
    if KIND=='hands':select('hand-sprint')
   go(1.3,25.5);use('Rainward.state.taken.has("rations")')
-  if not XR:
-   pulse(13);wait('Rainward.mode==="pack"')
-   for id,key in [('craft-med','medkit'),('craft-smoke','smoke')]:
-    if KIND=='survival':
-     for _ in range(60):
-      if p.evaluate('document.activeElement.id')==id:break
-      pulse(13)
-     p.evaluate('pad.buttons[0]={pressed:true,value:1}');wait('Rainward.state.player.'+key+'===1&&!Rainward.state.player.craft');p.evaluate('pad.buttons[0]={pressed:false,value:0}');frames(4)
-    else:select(id);wait('Rainward.state.player.'+key+'===1&&!Rainward.state.player.craft')
-   pulse(1);wait('Rainward.mode==="play"');check(p.evaluate('Rainward.state.player.cloth===0&&Rainward.state.player.canister===0'),'Planning spends the authored rations on exactly one medkit and one smoke')
-  for x,z in [(-19,14),(-19,7),(-24,6),(-22,-3.5)]:go(x,z)
+  if XR:select('pack')
+  else:pulse(13)
+  wait('Rainward.mode==="pack"')
+  for id,key in [('craft-med','medkit'),('craft-smoke','smoke')]:
+   if KIND=='survival':
+    for _ in range(60):
+     if p.evaluate('document.activeElement.id')==id:break
+     pulse(13)
+    p.evaluate('pad.buttons[0]={pressed:true,value:1}');wait('Rainward.state.player.'+key+'===1&&!Rainward.state.player.craft');p.evaluate('pad.buttons[0]={pressed:false,value:0}');frames(4)
+   else:select(id);wait('Rainward.state.player.'+key+'===1&&!Rainward.state.player.craft')
+  if XR:select('back')
+  else:pulse(1)
+  wait('Rainward.mode==="play"');check(p.evaluate('Rainward.state.player.cloth===0&&Rainward.state.player.canister===0'),'Planning spends the authored rations on exactly one medkit and one smoke')
+  if XR:select('crouch')
+  else:pulse(1)
+  wait('Rainward.state.player.stance==="crouch"')
+  for x,z in [(-13,23),(-19,16),(-19,7),(-24,6),(-22,-3.5)]:go(x,z)
   use('Rainward.state.objectives.cell');go(-24,-1);use('Rainward.state.checkpoint==="clinic"');record('clinic battery and shelter')
+  if XR:select('crouch')
+  else:pulse(1)
+  wait('Rainward.state.player.stance==="stand"')
   if ROUTE=='north':
    for x,z in [(-24,6),(-19,7),(-19,12),(-31,12),(-31,-15),(-27,-16),(-27,-24),(-18,-26),(-18,-42),(12,-46),(21,-32),(21,-26.7),(22.3,-26.7)]:go(x,z)
    use('Rainward.state.objectives.crank');check(not p.evaluate('Rainward.snapshot().visuals.firebreak.deployed'),'The longer north loading approach completes both objectives without the optional mechanism')
@@ -103,10 +116,8 @@ with sync_playwright() as pw:
    for x,z in [(-22,-3.5),(-22,-7),(-22,-10)]:go(x,z)
    check(p.evaluate('Rainward.state.player.y')>2.3,'The existing clinic terrace supplies a real elevated observation approach')
    for x,z in [(-10,-10),(-7,-10),(0,-8),(10,-6),(21,-5),(24,-12),(26.1,-14.5)]:go(x,z)
-   before=p.evaluate('({distance:firebreakMetrics.distance,t:Rainward.state.t,mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve})')
+   before=p.evaluate('({distance:firebreakMetrics.distance,t:Rainward.state.t,alerts:Rainward.state.stats.alerts,escapes:Rainward.state.stats.escapes,mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve})')
    check(p.evaluate('!Rainward.snapshot().visuals.firebreak.yardOpen'),'The linked yard gate remains physically closed until operated')
-   # Safety interlock is tested separately with explicit model fixtures. If a
-   # live patrol occupies the screen, remain in real time and retry normal use.
    for _ in range(12):
     use()
     if p.evaluate('Rainward.state.completedTasks.includes("ward-freight-firebreak")'):break
@@ -117,15 +128,12 @@ with sync_playwright() as pw:
    go(30.2,-15);record('opened crossing');cross=p.evaluate('firebreakMetrics.distance')-before['distance'];check(cross<8,'The new exit is crossed with real movement in under eight travelled metres')
    for x,z in [(31,-21),(31,-32),(21,-32),(21,-26.7),(22.3,-26.7)]:go(x,z)
    use('Rainward.state.objectives.crank');check(p.evaluate('Rainward.state.enemies.every(e=>e.hp>0)'),'The recovery loop reaches the original spindle without removing or defeating threats')
-   record('spindle after yard loop')
+   record('spindle after yard loop');p.evaluate('(before)=>window.firebreakRecovery={alertsBefore:before.alerts,escapesBefore:before.escapes,alertsAfter:Rainward.state.stats.alerts,escapesAfter:Rainward.state.stats.escapes,seconds:Rainward.state.t-before.t}',before)
   if XR:
-   # Focused XR acceptance proves the changed route and operation, not a claim
-   # that this particular XR case completed the entire campaign.
    pause();p.screenshot(path=str(OUT/'changed-world-xr.png'))
    check(p.evaluate('Rainward.snapshot().xr.active'),'The transformed geometry remains in the requested immersive session')
    if VIEW!='first-person':check(p.evaluate('Rainward.snapshot().xr.diorama.topOpen||Rainward.snapshot().xr.diorama.frontOpen'),'The diorama retains at least one viewing opening')
   else:
-   # Use the original finite smoke and medkit through each preset's real UI.
    if KIND=='classic':pulse(12);pulse(14)
    else:
     pulse(13);wait('Rainward.mode==="pack"');select('equip-medkit');pulse(1);wait('Rainward.mode==="play"')
@@ -138,7 +146,7 @@ with sync_playwright() as pw:
    if ROUTE=='firebreak':check(p.evaluate('Rainward.state.stats.alerts>0&&Rainward.state.stats.escapes>0'),'Real patrol alerts and recovery occur in the completed firebreak run')
    p.screenshot(path=str(OUT/'extracted.png'))
   check(not errors,'No uncaught JavaScript errors during the changed-route journey');check(not any('Shader Error' in s or 'GL_INVALID' in s for s in console),'The changed world renders without captured shader errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'view':VIEW,'input':KIND,'route':ROUTE,'errors':errors,'console':console,'metrics':p.evaluate('firebreakMetrics'),'stats':p.evaluate('Rainward.state.stats'),'scope':'Normal start, living enemies, actual movement/collision and finite resources. All driver writes target virtual device inputs only; snapshots and route guidance are read-only. Desktop cases complete extraction; XR cases cover the new mechanism and loop in the selected view. Neither proves physical-device comfort, reliability or player enjoyment.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'view':VIEW,'input':KIND,'route':ROUTE,'errors':errors,'console':console,'metrics':p.evaluate('firebreakMetrics'),'stats':p.evaluate('Rainward.state.stats'),'recovery':p.evaluate('window.firebreakRecovery||null'),'scope':'Normal start, living enemies, actual movement/collision and finite resources. All driver writes target virtual device inputs only; snapshots and route guidance are read-only. Desktop cases complete extraction; XR cases cover the new mechanism and loop in the selected view. Neither proves physical-device comfort, reliability or player enjoyment.'},indent=2))
  except Exception as error:
   data={'error':str(error),'checks':checks,'errors':errors,'console':console}
   try:data['snapshot']=p.evaluate('Rainward.snapshot()');record('FAILED');p.screenshot(path=str(OUT/'failure.png'))
