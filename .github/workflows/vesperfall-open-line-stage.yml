@@ -1,0 +1,90 @@
+name: Vesperfall Open Line candidate
+on:
+  push:
+    branches: [vesperfall-open-line-20260915]
+    paths: ['vesperfall/**', '.github/open-line*', '.github/workflows/vesperfall-open-line-stage.yml']
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        name: Materialize exact reviewed edits and retain an original-version checkpoint
+        run: |
+          set -euo pipefail
+          if [ ! -f vesperfall/tests/fixtures/returning-bell-v1-checkpoint.json ]; then
+            node - <<'JS'
+          const fs=require('fs'),D=require('./vesperfall/tests/open-line-driver.cjs'),S=require('./vesperfall/pilgrim-save.js');
+          if(D.C.VERSION!=='0.14.0')throw Error('Legacy fixture must originate before source patch');
+          const s=D.C.create('BELL-01',1,{returningBell:true});D.path(s,[[-4,8.5],[-14,8.5],[-14,0],[-14,-11.5],[-12.1,-11.5]]);D.C.interact(s);
+          fs.writeFileSync('vesperfall/tests/fixtures/returning-bell-v1-checkpoint.json',JSON.stringify(S.capture(s,{id:'open-line-fixture',banked:0,receipt:{},yaw:0,pitch:0,focus:1}),null,2)+'\n');
+          JS
+          fi
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          for r in json.loads(Path('.github/open-line-code-patch.json').read_text()):
+            p=Path(r['path']);b=p.read_bytes();h=hashlib.sha256(b).hexdigest()
+            if h==r['new']:continue
+            assert h==r['old'],str(p)
+            s=b.decode()
+            for i,n,t in reversed(r['edits']):s=s[:i]+t+s[i+n:]
+            assert hashlib.sha256(s.encode()).hexdigest()==r['new'],str(p)
+            p.write_text(s)
+          PY
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/open-line.test.cjs vesperfall/tests/returning-bell.test.cjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall
+          if ! git diff --cached --quiet; then
+            git commit -m 'Implement Open Line versioned approach, shared screen lane and legacy restoration'
+            git push origin HEAD:vesperfall-open-line-20260915
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  native:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [open-line, returning-bell]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - name: Install verification browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise real movement and shipped controls in production WebGL
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 2100 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
+          test -s test-output/${{ matrix.suite }}/report.json
+          test ! -e test-output/${{ matrix.suite }}/failure.json
+      - name: Preserve exact source and unsuccessful traces
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-open-line-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
