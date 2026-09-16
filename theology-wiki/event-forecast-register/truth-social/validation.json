@@ -1,0 +1,33 @@
+{
+  "edition_date": "2026-09-16",
+  "scope": "Selected Truth Social archive and report catalogue; no full report content is claimed.",
+  "node_tests": {
+    "command": "node --test theology-wiki/event-forecast-register/register.test.cjs theology-wiki/event-forecast-register/truth-social/archive.test.cjs",
+    "passed": 32,
+    "failed": 0
+  },
+  "mock_browser_checks": {
+    "status": "passed",
+    "mode": "Mock canonical JSON through fetch stub; not HTTP or hosted-origin verification.",
+    "check_count": 12,
+    "checks": [
+      "All 22 records render with supplied canonical JSON.",
+      "All excerpts display exactly as stored.",
+      "Year filter returns 11 records from 2026.",
+      "Combined year and loyalty filters return two records.",
+      "No-result handling works.",
+      "Reset restores all records.",
+      "Oldest-first ordering works.",
+      "Timestamp and access notes expand.",
+      "390px layout has no horizontal overflow.",
+      "No normal-render JavaScript page errors.",
+      "Data failure retains readable fallback links.",
+      "No-JavaScript fallback remains visible."
+    ],
+    "actual_http_status": "Blocked before page load by ERR_BLOCKED_BY_ADMINISTRATOR."
+  },
+  "real_http_browser": "Attempted. Localhost navigation blocked before page load with ERR_BLOCKED_BY_ADMINISTRATOR.",
+  "repository_ci": "Pending at initial file creation; read the merged pull request for subsequent results.",
+  "hosted_verification": "Not performed at initial file creation.",
+  "original_event_and_forecast_records": "Preserved byte-for-byte; checked against preserved-inputs.json."
+}

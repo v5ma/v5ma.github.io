@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "scarcity-report-20260916",
+  "title": "Scarcity, Conflict, Commerce, and Purchase Authorization: A 2016-2026 Evidence Base for the Theology Wiki",
+  "first_catalogued": "2026-09-16",
+  "status": "awaiting_original_export",
+  "status_explanation": "The prior research output was located by title and creation metadata. The full original report, complete bibliography and chart files were not available to this editing session. This is a catalogue entry, not an archived report or a substitute reconstruction.",
+  "reported_created_at": "2026-09-16T19:11:56Z",
+  "creation_date_basis": "Recovered prior-output metadata; not independently established by inspecting the original file.",
+  "requested_scope": "Worldwide food and fuel scarcity, dated evidence and future scenarios, including the user's requested examination of Peter Zeihan. The extent of the completed report's coverage cannot be confirmed without its full text.",
+  "full_text_present": false,
+  "original_file_sha256": null,
+  "complete_bibliography_present": false,
+  "chart_files_present": false,
+  "known_chart_lead": "A prior excerpt referenced a US on-highway diesel chart for 2016-2026; the referenced chart bytes are unavailable.",
+  "findings_reproduced": false,
+  "required_to_complete": "Obtain the original report export and associated images, preserve unchanged bytes and a content hash, check the full bibliography, and then attach the original rather than silently replacing this entry with a new report.",
+  "related_paths": [
+    "../ENERGY-SCARCITY-2026-09-16.md",
+    "../events.json",
+    "../forecasts.json",
+    "../truth-social/index.html"
+  ],
+  "outcome_assessments_added": []
+}

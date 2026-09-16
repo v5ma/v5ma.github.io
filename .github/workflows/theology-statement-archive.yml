@@ -1,0 +1,41 @@
+name: Validate Theology statement archive
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/event-forecast-register/truth-social/**'
+      - 'theology-wiki/event-forecast-register/research-reports/**'
+      - 'theology-wiki/event-forecast-register/index.html'
+      - 'theology-wiki/event-forecast-register/README.md'
+      - '.github/workflows/theology-statement-archive.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/event-forecast-register/truth-social/**'
+      - 'theology-wiki/event-forecast-register/research-reports/**'
+      - 'theology-wiki/event-forecast-register/index.html'
+      - 'theology-wiki/event-forecast-register/README.md'
+      - '.github/workflows/theology-statement-archive.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check records, source references and preservation boundaries
+        run: |
+          set -o pipefail
+          node --test theology-wiki/event-forecast-register/register.test.cjs theology-wiki/event-forecast-register/truth-social/archive.test.cjs | tee statement-archive-tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: statement-archive-contract-evidence
+          path: statement-archive-tests.log
+          if-no-files-found: error
