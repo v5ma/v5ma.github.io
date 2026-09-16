@@ -8,7 +8,7 @@ permissions:
 jobs:
   stage:
     if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/receiver-crosswind-20260915'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: write
@@ -32,8 +32,7 @@ jobs:
           data={'base':'78dad9840163bbacb7308118cde44a1bb4f525f6','changes':{}}
           for i in range(4):
             text=Path(f'aether-reach/tools/crosswind-edits-{i}.json').read_text()
-            # A byte-level artifact comparison found one duplicated delimiter in transfer 1.
-            # The original complete payload and every resulting source hash remain mandatory.
+            # Repair the single transfer-only delimiter verified by artifact comparison.
             if i==1:text=text.replace("'shieldAfter':after['shield']})\"],[2823","'shieldAfter':after['shield']}\"],[2823")
             part=json.loads(text)
             assert not set(part).intersection(data['changes'])
