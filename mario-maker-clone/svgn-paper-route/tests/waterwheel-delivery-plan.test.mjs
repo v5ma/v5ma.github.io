@@ -51,9 +51,8 @@ test('Original document codec retains delivery IDs, roles and intentions',()=>{
 });
 
 test('Delivery planning does not alter existing campaign builders or settlement owners',()=>{
- const before=[0,1,2,3,4,5,6,7].map(i=>c.DeliveryCampaign.encode(c.DeliveryCampaign.build(i,T)));
- build(T);build(T,{groundOnly:true});
- assert.deepEqual(before,[0,1,2,3,4,5,6,7].map(i=>c.DeliveryCampaign.encode(c.DeliveryCampaign.build(i,T))));
+ const encoded=()=>Array.from({length:c.DeliveryCampaign.routes.length},(_,i)=>c.DeliveryCampaign.encode(c.DeliveryCampaign.build(i,T)));
+ const before=encoded();build(T);build(T,{groundOnly:true});assert.deepEqual(before,encoded());
  assert.equal(d.quota,0);
  assert.equal(d.gp.waterwheel.plannedRecordID,'canal-choices-r2');
 });
