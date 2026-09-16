@@ -1,0 +1,86 @@
+name: Audit served Crosswind identity
+on:
+  push:
+    branches: [aether/crosswind-live-identity-20260916]
+    paths: ['.github/workflows/aether-crosswind-live-identity.yml']
+permissions:
+  contents: read
+jobs:
+  identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 38b2977e625bd84be382038440327ff4e44ce0ee
+          persist-credentials: false
+          sparse-checkout: aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Compute merged runtime identity
+        run: node aether-reach/tests/release-manifest.mjs
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Audit actual HTTPS response and DOM at full resolution
+        run: |
+          python -u - <<'PY'
+          import json,hashlib,urllib.request,time,concurrent.futures
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          source='38b2977e625bd84be382038440327ff4e44ce0ee'
+          root=Path('aether-reach');out=root/'test-output'
+          expected=json.loads((out/'runtime-manifest.json').read_text())['files']
+          base='https://v5ma.github.io/'
+          results={}
+          def fetch(item):
+            name,digest=item
+            try:
+              with urllib.request.urlopen(base+name+'?identity='+source[:12],timeout=20) as r:
+                got=hashlib.sha256(r.read()).hexdigest()
+                return name,{'status':r.status,'sha256':got,'match':got==digest}
+            except Exception as e:return name,{'match':False,'error':str(e)}
+          for attempt in range(12):
+            with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+              results.update(dict(pool.map(fetch,[(n,d) for n,d in expected.items() if not results.get(n,{}).get('match')])))
+            if len(results)==len(expected) and all(x.get('match') for x in results.values()):break
+            time.sleep(10)
+          report={'source':source,'all_match':all(x.get('match') for x in results.values()),'files':results,'errors':[]}
+          (out/'live-identity.json').write_text(json.dumps(report,indent=2))
+          assert len(results)==len(expected)==109 and report['all_match']
+          with sync_playwright() as pw:
+            browser=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+            ctx=browser.new_context(viewport={'width':1280,'height':800},device_scale_factor=1,service_workers='block')
+            ctx.add_init_script(path=str(root/'tests/fake-devices.js'))
+            ctx.add_init_script("localStorage.setItem('aether-reach.visual.v1',JSON.stringify({mode:'low'}))")
+            page=ctx.new_page();page.set_default_timeout(90000)
+            page.on('pageerror',lambda e:report['errors'].append(str(e)))
+            response=page.goto(base+'aether-reach/index.html?identity='+source[:12],wait_until='domcontentloaded')
+            assert response.status==200
+            report['documentSha256']=hashlib.sha256(response.body()).hexdigest()
+            assert report['documentSha256']==expected['aether-reach/index.html']
+            page.wait_for_function('!!window.AetherReach')
+            report['identity']=page.evaluate('({app:AetherReach.version,header:document.querySelector("#masthead .build").textContent.trim(),visible:getComputedStyle(document.querySelector("#masthead .build")).display!=="none",url:location.href})')
+            assert report['identity']['app']=='0.13.0' and '0.13.0' in report['identity']['header'] and report['identity']['visible']
+            page.screenshot(path=str(out/'live-title-full-resolution.png'),timeout=120000)
+            page.locator('#masthead').screenshot(path=str(out/'live-header-full-resolution.png'),timeout=120000)
+            page.evaluate('TestPad.connect()')
+            page.evaluate('new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+            page.evaluate('TestPad.button(0,true)')
+            page.wait_for_function('AetherReach.snapshot().playing')
+            page.evaluate('TestPad.button(0,false)')
+            page.screenshot(path=str(out/'live-start-full-resolution.png'),timeout=120000)
+            report['playing']=page.evaluate('AetherReach.snapshot().playing')
+            assert report['playing'] and not report['errors']
+            report['scope']='Live HTTPS body hashes, visible DOM/app identity and normal Gamepad start; full-resolution software WebGL. No progression assignments or physical-hardware approval.'
+            (out/'live-identity.json').write_text(json.dumps(report,indent=2))
+            ctx.close();browser.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-crosswind-live-identity
+          path: aether-reach/test-output/
+          retention-days: 30
