@@ -35,3 +35,16 @@ test('Sluice pad supports short ordinary approaches from each service-loop direc
 test('Mapped home endpoints finish comfortably inside the unchanged report reach',()=>{
  for(const id of ['lock-return','bridge-return']){const p=FIELD_ROUTES.find(r=>r.id===id).points.at(-1);assert.ok(gap({x:p[0],z:p[1]},POINTS.report)+.75<3.3,`${id}: map endpoint must allow normal stopping tolerance`);}
 });
+
+// September 16 native harbor failure: a walking approach from the drained bed
+// settled lower than a freshly spawned fixture; never lift the browser player.
+test('Native harbor return escapes the sluice lip from its actual settled failure pose',()=>{
+ const g=fixture({x:12.624899864196777,y:.7870328426361084,z:-7.857004642486572});
+ try{walk(g,15,-8,300);assert.ok(gap(g.fleet.position,POINTS.sluice)<.7);}finally{g.physics.world.free();}
+});
+test('Drained crossing rejoins the sluice from both directions at ordinary pad deadzones',()=>{
+ for(const z of [-8.3,-8,-7.7]){
+  const g=fixture({x:-12,y:1.2,z});
+  try{walk(g,0,z);walk(g,15,z,480);walk(g,0,z,480);walk(g,-12,z,480);}finally{g.physics.world.free();}
+ }
+});

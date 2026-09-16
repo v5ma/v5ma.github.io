@@ -90,7 +90,8 @@ export function buildTidegate(scene,physics,state){
  bone(fixed,palette.orange,[27,8.5,-1],[27,18,-1],.18);for(let i=0;i<4;i++)box(fixed,palette.orange,27,14+i,-1,3-i*.35,.16,.18);
  const beacon=part(root,new T.SphereGeometry(.28,10,8),new T.MeshStandardMaterial({color:0xffd6a5,emissive:0xffb777,emissiveIntensity:2}),27,18.1,-1);
  // Readable sluice state: control, wheel and channel are in the same view.
- solid(15,.2,-8,4,.4,4,palette.stone);const wheel=part(root,new T.TorusGeometry(.62,.09,8,20),material(palette.orange),15,1.6,-8);bone(fixed,palette.steel,[15,.2,-8],[15,1.6,-8],.12);sign('SLUICE / REVERSIBLE',15,-5,6,2.8);
+ // Shallow pad also admits the lower settled stance reached from the drained bed.
+ solid(15,.1,-8,4,.2,4,palette.stone);const wheel=part(root,new T.TorusGeometry(.62,.09,8,20),material(palette.orange),15,1.6,-8);bone(fixed,palette.steel,[15,.2,-8],[15,1.6,-8],.12);sign('SLUICE / REVERSIBLE',15,-5,6,2.8);
  const bed=box(root,0xb5b49a,0,.02,-8,19,.15,9);bed.visible=state.drained;
  for(let x=-8;x<=8;x+=2)box(fixed,0x455f58,x,-.1,-8,1,.16,6);
  // A permanent service shortcut, split leaves visually communicate its state.
