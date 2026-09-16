@@ -252,9 +252,16 @@ User direction supersedes prototype-expansion-first work. Retain the supplied fo
 - [x] LEVEL-PM-01b: Use actual ranger movement, collision, non-injurious tools and common input handlers; keep outcomes independent of a required itinerary and preserve reversible-puzzle recovery.
 - [x] XR-DIO-01a: Separate first-person VR, third-person VR diorama and explicitly requested AR diorama; apply miniature transforms during rendering only.
 - [x] XR-DIO-01b: Enforce exactly three top/front aperture states; never both closed. Keep settings reachable through Xbox and tracked/hand-ray UI.
-- [ ] LEVEL-PM-02: Native rendered candidate tour, all legacy regressions, reviewed screenshots and live source-byte verification. Only attach actual passed-run receipts.
+- [x] LEVEL-PM-02: First Tidegate candidate native/legacy/public verification completed in run 35014057940; see verification/tidegate/publication-20260915.json. This corrects the older pending checkbox using the already published receipt, not new human acceptance.
 - [ ] LEVEL-PM-03: Unfamiliar players identify the goal, compare approaches, explain changed state and recognize the shortcut without coaching; returning players demonstrate increased agency. Iterate observed confusion before expanding.
 - [ ] XR-DIO-02: Physical Quest 3 AR/VR, Touch Plus/hand tracking, stereo clipping, reach/readability, first-person/miniature switching and comfort/performance. No API mock substitutes.
 - [ ] LEVEL-PM-04: Replace the campaign entry after human acceptance, retaining Classic Reserve compatibility, historical saves and safe layout-version boundaries. Rebuild further districts with the same relationship-first method, not a prop-count target.
 
 The new candidate has separate district/presentation save keys. Existing progress is not migrated or erased, and the old public route remains available. Per-vehicle parking-pose persistence, production art, ecological realism and whole-campaign replacement are not claimed.
+
+
+## Service-loop refit / shared-library reconciliation
+
+- [ ] LEVEL-PM-03a: Implement and verify the ranger-sized north service connection, reachable field resupply, truthful state-aware route map and actual-clearance bridge signal. Test harbor and maintenance repair approaches without mandatory lookout/feeder triggers, retreat through the lock, learned return, report/reload and preserved Classic journeys. See SERVICE-LOOP.md and SERVICE-LOOP-HANDOFF.md; a later exact-source publication receipt closes only this engineering subtask.
+
+LEVEL-PM-03 remains open for unfamiliar and returning players. XR-DIO-02 and LEVEL-PM-04 remain open. The graybox first failed against the existing pedestal; the doorway was realigned to the clear aisle, not made non-colliding. No map expansion, new save schema, imported asset or reward is part of this pass. The next opportunity is observed route balance and camera/readability at the maintenance transition.

@@ -1,5 +1,5 @@
 // Authored district rules. Coordinates are shared by collision, art and route tests.
-export const TIDEGATE_BUILD = 'tidegate-20260915.1';
+export const TIDEGATE_BUILD = 'tidegate-20260915.2';
 export const TIDEGATE_KEY = 'dino-atlas.tidegate.v1';
 export const LAYOUT = 'tidegate-crossing-v1';
 export const BOUNDS = {left:-66,right:66,back:-46,front:52};
@@ -7,12 +7,12 @@ export const POINTS = {
  home:{x:-38,z:36}, westDock:{x:-12,z:38}, eastDock:{x:12,z:38},
  overlook:{x:-35,z:-24}, northBridge:{x:0,z:-36}, feeder:{x:49,z:-18},
  sluice:{x:15,z:-8}, service:{x:43,z:7}, gearbox:{x:30,z:7},
- bridge:{x:18,z:24}, report:{x:-38,z:32}, roof:{x:32,z:7}
+ bridge:{x:18,z:24}, report:{x:-38,z:32}, roof:{x:32,z:7}, maintenance:{x:32,z:-2}, supply:{x:35,z:-7}
 };
 export const ROUTES = [
  {id:'observation',nodes:['home','overlook','northBridge','feeder','service','gearbox'],mode:'foot',cost:'Longer, but reveals herd timing and the station from above.'},
  {id:'water',nodes:['home','westDock','eastDock','bridge','service','gearbox'],mode:'boat',cost:'Faster crossing; dock and disembark, with less advance information.'},
- {id:'service',nodes:['home','overlook','northBridge','sluice','service','gearbox'],mode:'foot',cost:'Reaches the reversible sluice; its drained crossing becomes a second way back.'}
+ {id:'service',nodes:['home','overlook','northBridge','sluice','maintenance','gearbox'],mode:'foot',cost:'Narrow maintenance access avoids the herd yard; drain the lock to open a second foot return.'}
 ];
 export const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 export const gap=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
@@ -47,7 +47,7 @@ export function applyDistrict(s,event,{animals=[],player=null,boat=null,mode='fo
  }
  if(event==='bridge'){
   if(s.bridge)return fail('The service bridge is permanently restored. Your shortcut is saved.');
-  if(!s.gearbox)return fail('The bridge gearbox needs work inside the pump house. Use either entrance or the roof stairs.');
+  if(!s.gearbox)return fail('The gearbox is inside the pump house. Use the front door, service aisle, or narrow north maintenance door.');
   if(!herdClear(animals))return fail('Animals still occupy the apron. Observe their route or stock the shelter feeder.');
   if(boat&&Math.abs(boat.z-24)<7)return fail('Move the boat clear of the service bridge before lowering it.');
   s.bridge=true;return {changed:true,message:'Service bridge restored. The orange crane ahead is your starting outpost. This shortcut stays open.'};

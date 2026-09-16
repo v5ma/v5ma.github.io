@@ -3,6 +3,7 @@ import R from './vendor/rapier.mjs';
 import {box,part,ellipsoid,bone,label,material} from './ranger-art.js';
 import {bakeStatics} from './frontier-art.js';
 import {POINTS,BOUNDS} from './tidegate-core.js';
+import {bridgeReadout,MAINTENANCE_DOOR} from './tidegate-routes.js';
 // An authored working place, not a random prop field. Geometry and interactions
 // share POINTS. Color supplements silhouettes, labels, elevation and materials.
 export function buildTidegate(scene,physics,state){
@@ -33,7 +34,11 @@ export function buildTidegate(scene,physics,state){
  route([[-38,38],[-38,10],[-51,-12],[-50,-36],[-12,-36]],5);
  route([[-12,-36],[12,-36],[48,-36],[48,-18],[50,7],[50,24],[12,24]],4.5);
  route([[-38,36],[-24,38],[-12,38]],4.2);route([[12,38],[24,38],[24,24]],4.2);
- route([[15,-8],[17,-20],[48,-20]],2.2,0xb8ba9d);route([[15,-8],[20,-2],[43,7]],2.2,0xb8ba9d);
+ route([[15,-8],[17,-20],[48,-20]],2.2,0xb8ba9d);
+ // Follow the visible drain pipe to a real ranger-sized north entrance.
+ route([[15,-8],[32,-8],[32,-2],[32,8],[30,8]],1.6,0xb8ba9d);
+ route([[32,-7],[35,-7]],1.6,0xb8ba9d);
+ route([[-12,-8],[-25,-8],[-25,24],[-28,27]],2.2,0xb8ba9d);
  route([[-38,24],[-12,24]],5.8);route([[-50,-36],[-35,-36]],4);
  // The first view frames the amber station mast and the raised bridge beyond a
  // familiar orange crane. The restored crossing returns to this exact silhouette.
@@ -51,7 +56,18 @@ export function buildTidegate(scene,physics,state){
  // exterior maintenance stairs and a real landable roof, with a central skylight.
  solid(32,-.05,7,23,.3,20,0xacb3a7);
  solid(22,2,7,.45,4,18,palette.wall);solid(42,2,0,.45,4,5,palette.wall);solid(42,2,14,.45,4,5,palette.wall);
- solid(26.5,2,16,9,4,.45,palette.wall);solid(38.5,2,16,7,4,.45,palette.wall);solid(32,2,-2,20,4,.45,palette.wall);
+ solid(26.5,2,16,9,4,.45,palette.wall);solid(38.5,2,16,7,4,.45,palette.wall);
+ // Replace only the north ground wall; original floors, doors and save positions remain.
+ const {x:doorX,z:doorZ,width:doorW,height:doorH}=MAINTENANCE_DOOR;
+ solid((22+doorX-doorW/2)/2,2,doorZ,doorX-doorW/2-22,4,.45,palette.wall);
+ solid((doorX+doorW/2+42)/2,2,doorZ,42-doorX-doorW/2,4,.45,palette.wall);
+ solid(doorX,(4+doorH)/2,doorZ,doorW,4-doorH,.45,palette.wall);
+ sign('LOCK MAINTENANCE / ON FOOT',32,-4.2,8,3.15,Math.PI);
+ // Small functional cabinet beside the entrance; never in the clear walking line.
+ solid(35,.65,-8.8,2.4,1.3,1,0x456363);
+ sign('FIELD WATER / BATTERIES',35,-8.2,7,2.5,Math.PI);
+ bone(fixed,palette.orange,[15,.35,-9.7],[32,.35,-9.7],.09);
+ bone(fixed,palette.orange,[32,.35,-9.7],[32,.35,-2.5],.09);
  // Upper walls retain function, while view-dependent roofs are visual only.
  for(const x of [22,42]){if(x===22)solid(x,6.15,7,.45,4.1,18,palette.wall);else{solid(x,6.15,10,.45,4.1,12,palette.wall);solid(x,6.15,-1.5,.45,4.1,1,palette.wall);solid(x,7.8,1,.45,.8,5,palette.wall);}for(const z of [1,7,13])box(fixed,0x5b8c89,x+(x===22?-.25:.25),6,z,.04,1.4,2.8);}
  solid(32,6.15,-2,20,4.1,.45,palette.wall);solid(32,6.15,16,20,4.1,.45,palette.wall);
@@ -80,6 +96,11 @@ export function buildTidegate(scene,physics,state){
  const leaves=[-1,1].map(side=>{const pivot=new T.Group();pivot.position.set(side*10,.25,24);const m=box(pivot,palette.timber,-side*5,0,0,10,.35,7.2);for(const z of [-3.4,3.4])bone(pivot,palette.steel,[0,1,z],[-side*10,1,z],.045);root.add(pivot);return {pivot,side};});
  const bridgeBody=physics.box(0,.1,24,10,.15,3.6);bridgeBody.setEnabled(state.bridge);
  solid(18,.25,24,5,.5,5,palette.stone);box(fixed,palette.steel,18,1.1,24,1.2,1.8,.8);sign('BRIDGE / KEEP APRON CLEAR',18,27,9,2.7);
+ const signal=sign('GEARBOX OFFLINE',18,22,6,4.2);let signalText='GEARBOX OFFLINE';
+ const signalLamp=part(root,new T.SphereGeometry(.24,8,6),new T.MeshStandardMaterial({color:0xe6b75f,emissive:0xe6b75f,emissiveIntensity:.6}),18,4.95,22);
+ // Both shore thresholds show the same reversible crossing rather than a false map line.
+ sign('LOCK WALK / WHEN DRAINED',-14,-12,8,2.5);
+ const lockSignal=sign(state.drained?'FOOT CROSSING OPEN':'WATER / USE HIGH BRIDGE',15,-11.5,8,3.8);let lockText=state.drained?'FOOT CROSSING OPEN':'WATER / USE HIGH BRIDGE';
  for(const x of [-10.5,10.5]){solid(x,2,28,1.2,4,1.2,palette.orange);bone(fixed,palette.steel,[x,4,28],[x,1,20],.045);}
  // Lower water route bypasses the long approach, without remote objective completion.
  for(const side of [-1,1]){solid(side*11.4,.05,38,4,.35,7,palette.timber);for(const z of [35,41])solid(side*12.7,.6,z,.2,1.2,.2,palette.steel);sign(side<0?'PATROL BOAT / Y':'EAST LANDING / Y',side*14,43,8,2.5);}
@@ -95,7 +116,17 @@ export function buildTidegate(scene,physics,state){
  // Boundary stones communicate the framed district; no invisible fall-to-death edge.
  for(const [x,z,w,d] of [[-66,3,1,99],[66,3,1,99],[0,-46,133,1],[0,52,133,1]])solid(x,.7,z,w,1.4,d,0x748980);
  const staticBaked=bakeStatics(fixed);if(staticBaked!==fixed){root.remove(fixed);root.add(staticBaked);}
- return {root,roofs,sun,hemi,waters,walkMeshes,bridgeBody,update(dt,time,state,player,diorama=false){
+ function changeSign(group,text){
+  // Repaint the existing texture. XR retains material references; never allocate
+  // one new label/material per herd cycle or leave disposed entries in its cache.
+  const texture=group.children[0].material.map,cv=texture.image,c=cv.getContext('2d');
+  c.fillStyle='#183c31';c.fillRect(0,0,cv.width,cv.height);c.strokeStyle='#f4e8c9';c.lineWidth=3;c.strokeRect(8,8,cv.width-16,cv.height-16);
+  c.fillStyle='#f4e8c9';c.font=`700 ${Math.round(cv.height*.47)}px sans-serif`;c.textAlign='center';c.textBaseline='middle';c.fillText(text,cv.width/2,cv.height*.52,cv.width*.92);texture.needsUpdate=true;
+ }
+ return {root,roofs,sun,hemi,waters,walkMeshes,bridgeBody,update(dt,time,state,player,diorama=false,operation={}){
+  const readout=bridgeReadout(state,operation.animals||[],operation.boat||null);
+  if(readout.text!==signalText){signalText=readout.text;changeSign(signal,signalText);signalLamp.material.color.setHex(readout.color);signalLamp.material.emissive.setHex(readout.color);}
+  const nextLock=state.drained?'FOOT CROSSING OPEN':'WATER / USE HIGH BRIDGE';if(nextLock!==lockText){lockText=nextLock;changeSign(lockSignal,lockText);}
   const open=state.bridge;bridgeBody.setEnabled(open);for(const e of leaves)e.pivot.rotation.z=open?0:e.side*Math.PI*.37;
   waters[1].visible=!state.drained;bed.visible=state.drained;wheel.rotation.z=state.drained?Math.PI*.6:0;gear.rotation.x=state.gearbox?Math.PI*.25:0;
   beacon.material.emissiveIntensity=state.bridge?.7:1.6+Math.sin(time*2)*.3;
