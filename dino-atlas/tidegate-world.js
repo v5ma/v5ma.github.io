@@ -96,7 +96,8 @@ export function buildTidegate(scene,physics,state){
  // A permanent service shortcut, split leaves visually communicate its state.
  const leaves=[-1,1].map(side=>{const pivot=new T.Group();pivot.position.set(side*10,.25,24);const m=box(pivot,palette.timber,-side*5,0,0,10,.35,7.2);for(const z of [-3.4,3.4])bone(pivot,palette.steel,[0,1,z],[-side*10,1,z],.045);root.add(pivot);return {pivot,side};});
  const bridgeBody=physics.box(0,.1,24,10,.15,3.6);bridgeBody.setEnabled(state.bridge);
- solid(18,.25,24,5,.5,5,palette.stone);box(fixed,palette.steel,18,1.1,24,1.2,1.8,.8);sign('BRIDGE / KEEP APRON CLEAR',18,27,9,2.7);
+ // Shallow operational plinth: a service approach must not require a jump.
+ solid(18,.1,24,5,.2,5,palette.stone);box(fixed,palette.steel,18,1.1,24,1.2,1.8,.8);sign('BRIDGE / KEEP APRON CLEAR',18,27,9,2.7);
  const signal=sign('GEARBOX OFFLINE',18,22,6,4.2);let signalText='GEARBOX OFFLINE';
  const signalLamp=part(root,new T.SphereGeometry(.24,8,6),new T.MeshStandardMaterial({color:0xe6b75f,emissive:0xe6b75f,emissiveIntensity:.6}),18,4.95,22);
  // Both shore thresholds show the same reversible crossing rather than a false map line.

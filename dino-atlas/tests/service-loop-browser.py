@@ -67,7 +67,7 @@ try:
      before=state()['progress']['ammo'][0];press(7);check(state()['progress']['ammo'][0]<before,approach+': actual firing consumes ammunition')
      interact('resupply');check(state()['progress']['ammo'][0]==100 and not state()['paused'],approach+': A at cabinet restocks without a menu');shot('maintenance')
      route([[32,-8],[15,-8]]);interact('sluice');check(state()['progress']['drained'],approach+': sluice opens maintenance return')
-     route([[0,-8],[-12,-8],[-25,-8],[-25,24],[-28,27],[-37,29]])
+     route([[0,-8],[-12,-8],[-25,-8],[-25,24],[-28,27],[-38,31]])
      check(not state()['progress']['bridge'],approach+': can retreat home before main bridge repair')
      press(8);wait('document.getElementById("map-dialog").open');shot('map');press(1)
      repeat_start=state()['simulationTime']
@@ -78,7 +78,7 @@ try:
      # Actual routine creates the opening. No animal positions, alerts or quest flags are set.
      wait('document.getElementById("crossing-readout").textContent.includes("READY")',90000)
      interact('bridge');check(state()['progress']['bridge'],approach+': natural herd clearance permits bridge without feeder')
-     route([[14,24],[0,24],[-17,24],[-28,27],[-37,29]])
+     route([[14,24],[0,24],[-17,24],[-28,27],[-38,31]])
      interact('report');check(state()['progress']['reportCount']==1,approach+': real return files report once');shot('home')
      # Reload the save produced by gameplay, never inject a conveniently completed record.
      page.reload(wait_until='domcontentloaded');wait('window.__tidegate?.state.ready',120000)

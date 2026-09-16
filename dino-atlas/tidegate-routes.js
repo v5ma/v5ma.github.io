@@ -3,7 +3,7 @@
 import {POINTS,herdClear} from './tidegate-core.js';
 export const MAINTENANCE_DOOR=Object.freeze({x:32,z:-2,width:1.8,height:2.8});
 export const FIELD_ROUTES=Object.freeze([
- {id:'outpost',kind:'foot',points:[[-37,29],[-28,27],[-25,24],[-25,15],[-25,43],[-34,43],[-35,39]]},
+ {id:'outpost',kind:'foot',points:[[-38,31],[-28,27],[-25,24],[-25,15],[-25,43],[-34,43],[-35,39]]},
  {id:'high',kind:'foot',points:[[-25,15],[-48,-12],[-35,-22],[-35,-26],[-35,-30],[-35,-38],[-12,-36],[12,-36],[17,-36],[37,-36],[57,-36],[58,-18],[51,-18]]},
  {id:'east-service',kind:'foot',points:[[51,-18],[58,-18],[58,20],[48,21],[44,10],[39,10],[30,10],[30,8]]},
  {id:'west-harbor',kind:'foot',points:[[-25,43],[-14,38],[-12,38]]},
@@ -12,8 +12,8 @@ export const FIELD_ROUTES=Object.freeze([
  {id:'east-harbor',kind:'foot',points:[[14,38],[15,31],[15,20],[33,20],[33,10],[30,10],[30,8]]},
  {id:'north-maintenance',kind:'foot',points:[[17,-36],[17,-20],[15,-8],[32,-8],[32,-4],[32,0],[32,8],[30,8]]},
  {id:'field-cabinet',kind:'foot',points:[[32,-8],[32,-4.5],[36,-4.5]]},
- {id:'lock-return',kind:'foot',condition:'drained',points:[[15,-8],[0,-8],[-12,-8],[-25,-8],[-25,24],[-28,27],[-37,29]]},
- {id:'bridge-return',kind:'foot',condition:'bridge',points:[[18,26],[14,24],[0,24],[-17,24],[-28,27],[-37,29]]}
+ {id:'lock-return',kind:'foot',condition:'drained',points:[[15,-8],[0,-8],[-12,-8],[-25,-8],[-25,24],[-28,27],[-38,31]]},
+ {id:'bridge-return',kind:'foot',condition:'bridge',points:[[18,26],[14,24],[0,24],[-17,24],[-28,27],[-38,31]]}
 ]);
 export function routeOpen(route,state){return !route.condition||state[route.condition]===true;}
 // Same actual state/clearance used by applyDistrict; no hidden timer prediction.

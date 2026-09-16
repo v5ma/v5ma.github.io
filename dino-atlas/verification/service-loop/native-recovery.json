@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "source": "4fb7638c0b915d5ccac2736e6d3627ca5f341ca8",
+  "run": 35056446042,
+  "status": "failed-native-evidence-retained-before-fix",
+  "failures": [
+    {
+      "approach": "maintenance",
+      "artifact": 10431846514,
+      "archiveSha256": "915ae27d35e4c2dbd29cf5d775a9e4c23491c6789d05da407412f55ec2cbcd99",
+      "reportSha256": "329a0cacb29704a37e7fcd8e88b0beac42d5b284ef8187c66848b36362ef0736",
+      "error": "Page.wait_for_function: Timeout 120000ms exceeded.",
+      "position": {
+        "x": 15.502336502075195,
+        "y": 0.9131795763969421,
+        "z": 21.124900817871094
+      },
+      "candidate": null,
+      "progress": {
+        "version": 1,
+        "layout": "tidegate-crossing-v1",
+        "gearbox": true,
+        "bridge": false,
+        "drained": true,
+        "feeder": false,
+        "observed": false,
+        "complete": false,
+        "reportCount": 0,
+        "checkpoint": "station",
+        "tool": 0,
+        "ammo": [
+          100,
+          12
+        ],
+        "reserve": [
+          400,
+          48
+        ],
+        "position": {
+          "x": 15.502336502075195,
+          "y": 0.9131795763969421,
+          "z": 21.124900817871094
+        }
+      },
+      "checks": [
+        "maintenance: exact refit build boots",
+        "maintenance: repair reached without observation or feeder triggers",
+        "maintenance: real A repairs from alternative approach",
+        "maintenance: actual firing consumes ammunition",
+        "maintenance: A at cabinet restocks without a menu",
+        "maintenance: sluice opens maintenance return",
+        "maintenance: can retreat home before main bridge repair",
+        "maintenance: learned return retains repair without repeating it"
+      ],
+      "lastCompletedLeg": {
+        "target": [
+          15,
+          20
+        ],
+        "seconds": 3.4833333333361054,
+        "distance": 17.28090436073855
+      }
+    },
+    {
+      "approach": "harbor",
+      "artifact": 10431226759,
+      "archiveSha256": "3d8618f66b611afd51f7073ea7d50ceac6e9d4946ddb684335b5160d65191e29",
+      "reportSha256": "74f8081d902a7392799383531e677288ca2d4a35542111e353056a163f79d2e6",
+      "error": "Page.wait_for_function: Timeout 30000ms exceeded.",
+      "position": {
+        "x": -36.545475006103516,
+        "y": 0.7893821001052856,
+        "z": 28.68446922302246
+      },
+      "candidate": null,
+      "progress": {
+        "version": 1,
+        "layout": "tidegate-crossing-v1",
+        "gearbox": true,
+        "bridge": true,
+        "drained": true,
+        "feeder": false,
+        "observed": false,
+        "complete": false,
+        "reportCount": 0,
+        "checkpoint": "station",
+        "tool": 0,
+        "ammo": [
+          100,
+          12
+        ],
+        "reserve": [
+          400,
+          48
+        ],
+        "position": {
+          "x": -36.545475006103516,
+          "y": 0.7666783332824707,
+          "z": 28.68446922302246
+        }
+      },
+      "checks": [
+        "harbor: exact refit build boots",
+        "Harbor: actual Y landing on far bank",
+        "harbor: repair reached without observation or feeder triggers",
+        "harbor: real A repairs from alternative approach",
+        "harbor: actual firing consumes ammunition",
+        "harbor: A at cabinet restocks without a menu",
+        "harbor: sluice opens maintenance return",
+        "harbor: can retreat home before main bridge repair",
+        "harbor: learned return retains repair without repeating it",
+        "harbor: natural herd clearance permits bridge without feeder"
+      ],
+      "lastCompletedLeg": {
+        "target": [
+          -37,
+          29
+        ],
+        "seconds": 1.9999999999998863,
+        "distance": 9.259587637902717
+      }
+    }
+  ],
+  "diagnosis": {
+    "maintenance": "The 0.5-high bridge-control plinth snags the native northwest approach. A fixture without controller preprocessing missed the fault; using production padMotion reproduces the exact stuck x/z. Lower only this plinth to 0.2. Do not change the existing 0.45 autostep, deadzones, reach or quest conditions.",
+    "harbor": "Map/test endpoint [-37,29] plus ordinary stopping tolerance could remain outside the unchanged 3.3 interaction reach of report [-38,32]. End the displayed route and native path at [-38,31], as the retained Tidegate tour already does. No objective assignment or expanded reach.",
+    "evidence": "threshold-first-failure.tap retains both pre-fix failures. The new real-physics fixture includes production controller deadzones. Final native acceptance must be rerun before merge.",
+    "limits": "Software WebGL and synthetic Xbox. Local Chromium navigation is blocked by administrator policy; local results are Node/physics only. No physical Quest/Xbox or human acceptance claimed."
+  }
+}
