@@ -1,0 +1,153 @@
+name: Sky Cycle Waterwheel deliveries
+on:
+  push:
+    branches: ['sky-cycle/waterwheel-deliveries-0.24', master]
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '!mario-maker-clone/svgn-paper-route/development/**'
+      - '.github/workflows/sky-cycle-waterwheel-deliveries.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sky-cycle-waterwheel-deliveries-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+jobs:
+  rules:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          git rev-parse HEAD
+          node --check mario-maker-clone/svgn-paper-route/waterwheel-layout-core.mjs
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
+          node --test tests/adventure_score.test.cjs
+      - name: Retain exact scoped source for recovery
+        run: |
+          mkdir -p /tmp/waterwheel-source
+          git rev-parse HEAD > /tmp/waterwheel-source/commit.txt
+          git archive --format=tar.gz HEAD mario-maker-clone tests .github/workflows > /tmp/waterwheel-source/source.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: waterwheel-delivery-source-${{ github.sha }}
+          path: /tmp/waterwheel-source/
+          retention-days: 30
+  deliveries:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Serve all twelve targets with ordinary riding and sampled Xbox B throws
+        env:
+          ARTIFACT_DIR: /tmp/waterwheel-deliveries
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-deliveries-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-deliveries-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-deliveries/
+          retention-days: 30
+          if-no-files-found: error
+  preview:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        route: [road, ground-only, porch, express]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Preserve the four accepted Waterwheel traversal intentions
+        env:
+          WATERWHEEL_SUITE: ${{ matrix.route }}
+          ARTIFACT_DIR: /tmp/waterwheel-preview
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-preview-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-delivery-preview-${{ matrix.route }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-preview/
+          retention-days: 30
+          if-no-files-found: error
+  regression:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [waterwheel-xr-browser.py, portal-network-browser.py, bathhouse-browser.py, sunrise-browser.py]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Preserve XR, controller, portal and prior chapter behavior
+        env:
+          ARTIFACT_DIR: /tmp/waterwheel-delivery-regression
+        run: python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-delivery-regression-${{ matrix.script }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-delivery-regression/
+          retention-days: 30
+          if-no-files-found: error
+  published:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Independently compare public runtime bytes to merged source
+        env:
+          ARTIFACT_DIR: /tmp/waterwheel-delivery-public
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-delivery-public-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-delivery-public/
+          retention-days: 30
+          if-no-files-found: error
+  live-deliveries:
+    needs: published
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Replay twelve deliveries and protect saves on the published game
+        env:
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/waterwheel-deliveries-live
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-deliveries-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-deliveries-live-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-deliveries-live/
+          retention-days: 30
+          if-no-files-found: error

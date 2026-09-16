@@ -1,12 +1,12 @@
 {
-  "version": "0.23.0",
-  "build": "sky-cycle-waterwheel-lab-2026.09.15",
+  "version": "0.24.0",
+  "build": "sky-cycle-waterwheel-deliveries-2026.09.15",
   "date": "2026-09-15",
   "changes": [
-    "Waterwheel chapter-design preview: seven districts, twelve deliveries, five checkpoints and a connected optional express line",
-    "Controller-accessible preview with an independent ground-only version and existing editable Workshop documents",
-    "Explicit non-awarding playtests, dirty-draft protection and recoverable prior-blueprint backup",
-    "Canonical merged level-design methodology and Waterwheel revision-2 promotion gates",
-    "Quiet Water audio, original cycling physics, all eight campaign routes, saves and tracked XR retained"
+    "Waterwheel delivery rhythm: twelve named road targets with teaching, return, control, road-choice, discovery and finale intentions",
+    "Separated mailbox windows and encounter clearances with identical full-sky and ground-only delivery journeys",
+    "Normal-input twelve-delivery qualification using the existing momentum-inheriting paper throws and direct Xbox B action",
+    "Non-awarding editable preview preserves all eight campaign routes, records, coins, saves and original cycling physics",
+    "Waterwheel road, porch, express and ground-only acceptance; tracked-controller, hand UI and prior chapter regressions retained"
   ]
 }

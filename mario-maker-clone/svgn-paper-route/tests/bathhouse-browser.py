@@ -6,6 +6,7 @@ import functools,http.server,json,os,threading,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[3];OUT=Path(os.getenv('ARTIFACT_DIR','/tmp/sky-cycle-bathhouse'));OUT.mkdir(parents=True,exist_ok=True)
+RELEASE=json.loads((ROOT/'mario-maker-clone/svgn-paper-route/release.json').read_text())
 class Quiet(http.server.SimpleHTTPRequestHandler):
  def log_message(self,*args):pass
 server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(ROOT)));threading.Thread(target=server.serve_forever,daemon=True).start()
@@ -41,7 +42,7 @@ with sync_playwright() as pw:
   page.wait_for_function('won && __delivery.state.route===SkyCycleBathhouse.index',timeout=180000);page.keyboard.up('KeyD');runs.append({'label':label,**sample()});check(runs[-1]['tries']==1,label+' reaches the genuine finish without retries');page.screenshot(path=str(OUT/(label+'-finish.png')))
  try:
   page.goto(BASE+'?destination=tideglass-baths',wait_until='domcontentloaded');page.bring_to_front();page.wait_for_function('window.SkyCycleBathhouse?.state && player.onGround && SkyCycleBathhouse.art?.waterDraws>0')
-  check(page.evaluate('PaperDeliveryRelease.version==="0.23.0" && __delivery.state.route===7'),'Direct destination link starts the appended Tideglass level')
+  check(page.evaluate('(r)=>PaperDeliveryRelease.version===r.version && PaperDeliveryRelease.build===r.build && __delivery.state.route===7',RELEASE),'Direct destination link starts Tideglass with the exact current release identity')
   check(page.evaluate('DeliveryCampaign.routes.length===8 && DeliveryCampaign.routes[4].id==="first-neighborhood"'),'All seven old route indices remain intact')
   check(page.evaluate('SkyCycleBathhouse.art.pools===3 && SkyCycleBathhouse.art.tileDraws>0 && SkyCycleBathhouse.art.portalDraws>0'),'Three pools, tiled surfaces and animated portal materials draw in the real 3D scene')
   check(page.evaluate('!tracks.some(t=>t.sky?.id==="bathhouse-waterline")'),'Closed sluice does not expose the optional collision rail')
