@@ -1,3 +1,7 @@
+# Receiver Crosswind v0.13.0
+
+Windbreak selectors use the existing contextual X/E action; no new gameplay menu or binding is introduced. Tracked-controller interaction reaches the same selector logic. Choosing a protected angle does not bypass projectile collision, including when a tracked gun origin would reach through the active screen. Existing fixed menu controls, remaps, tracked-hand spatial UI, head independence and legal diorama openings are retained. Hands remain UI-only. Physical acceptance remains open.
+
 # Presentation update v0.12.0
 
 XR / diorama views is reachable from the title, pause and settings with fixed Xbox A/B/directional navigation and the existing tracked-hand spatial panel. Choose First-person VR, Third-person diorama VR, or Third-person diorama AR before entering XR. AR explicitly requests immersive-ar and remains unavailable when the browser does not support that session type; it never silently starts VR instead. Native browser or operating-system permission prompts still require user consent.

@@ -1,7 +1,7 @@
 {
-  "version": "0.12.0",
-  "focus": "Bellwether Rewired: connected maintenance galleries, a circuit-unlocked service loop, physical feedback and optional first-person VR / third-person diorama VR and AR",
+  "version": "0.13.0",
+  "focus": "Receiver Crosswind: reversible rooftop windbreak, meaningful firing-lane tradeoffs and gallery retreat without encounter reset",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false,
-  "scope": "First authored level-design replacement slice; not a complete campaign rebuild. AR uses local-floor placement; no detected-room mesh or furniture anchoring. Hand tracking operates UI."
+  "scope": "Bellwether encounter refinement on the released v0.12.0 chapter. Existing first-person VR and diorama VR/AR retained; hands operate UI. Physical hardware and unfamiliar-player quality acceptance remain open."
 }

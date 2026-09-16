@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.12.0 Bellwether Rewired. Updated 2026-09-15.
+Current plan: 0.13.0 Receiver Crosswind. Updated 2026-09-15.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -371,14 +371,14 @@ Next: Maintain a defect severity register and require evidence before advancing.
 ### R04 - Verified publication of each upgrade
 State: In review. Priority: P0. Dependencies: R01, Q03.
 Acceptance: Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.
-Evidence: v0.11 candidate is based on master b87aeacb71d00b73992945daaba2fccdc66ab409. Current results and exact source hashes are recorded in the Grounded Cast workflow; publication must separately match the merged runtime manifest.
+Evidence: v0.12.0 is released at a6d0e27d349fc69c011a5130b7dff1b6da9f8af2 with durable receipt release-receipts/aether-v0.12.0-20260915.json. v0.13 gates include a seventh native windbreak journey and separate served-byte verification.
 Next: Read the post-merge aether-publication receipt and immutable source backup. Never equate a passing branch with live publication.
 
 ### V01 - Bellwether place-mastery chapter replacement
 State: In review. Priority: P0. Dependencies: W01, F02, I04.
 Acceptance: Complete both combat sites, operate independent Arcade dials, use a continuous roof route, hold the receiver, return for a once-only reward, and save/resume without lost progress or extra enemies.
 Evidence: v0.12 retains mission IDs, dials, street/roof threats and one-time rewards while changing connections, feedback and return routes.
-Next: Observe whether players understand the power network, find alternative routes, and notice the persistent repaired warning wheel; revise geometry rather than adding more markers.
+Next: Use V03 to test rooftop approach/cover/recovery relationships; retain v0.12 circuit feedback, ascent and shortcut rather than recreate them.
 
 ### F03 - Skyglass animated cast and bounded shaders
 State: In review. Priority: P0. Dependencies: F01, P02.
@@ -409,6 +409,12 @@ State: Implemented. Priority: P0. Dependencies: X08.
 Acceptance: Explicit session selection; stereo 3D courier/world; table-relative input; never-sealed opening state; controller/hand menus; no head-driven avatar movement in diorama; safe return/denial and save preservation.
 Evidence: diorama-core, diorama-view, presentation-ui and synthetic device acceptance. No physical-device certification.
 Next: Check physical Quest 3 scale, table placement, hand reach/readability, passthrough and frame times.
+
+### V03 - Receiver Crosswind: cover choices and recoverable roof combat
+State: In review. Priority: P0. Dependencies: V02, I04.
+Acceptance: Before and during the same rooftop fight, direct contextual input trades receiver cover for gallery cover; player and enemy shots obey identical solids. Complete with starter equipment, retreat to the existing lower gallery and return without resetting enemies, and preserve version-1 saves and once-only rewards in first-person and diorama modes.
+Evidence: RECEIVER-CROSSWIND.md; tests/windbreak.test.mjs; BELL_WIND=1 tests/bellwether-browser.py. Nine additional model fixtures pass locally; native, public-byte and source-backup results must be read from exact workflow receipts.
+Next: Observe unfamiliar and returning players choosing cover/angles, recognizing the gallery recovery and distinguishing cover from a clear firing lane; test physical Xbox and Quest separately.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.
