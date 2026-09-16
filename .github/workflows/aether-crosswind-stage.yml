@@ -2,7 +2,7 @@ name: Stage reviewed Receiver Crosswind
 on:
   push:
     branches: [aether/receiver-crosswind-20260915]
-    paths: ['aether-reach/tools/crosswind-transfer-1.b64']
+    paths: ['aether-reach/tools/crosswind-edits-*.json', '.github/workflows/aether-crosswind-stage.yml']
 permissions:
   contents: read
 jobs:
@@ -27,13 +27,15 @@ jobs:
         run: |
           mkdir -p /tmp/crosswind-stage
           python - <<'PY'
-          import base64,zlib,json,hashlib
+          import json,hashlib
           from pathlib import Path
-          encoded=''.join(Path(f'aether-reach/tools/crosswind-transfer-{i}.b64').read_text().strip() for i in range(2))
-          raw=zlib.decompress(base64.b64decode(encoded,validate=True))
-          assert hashlib.sha256(raw).hexdigest()=='f09f5c96edc5b37fba4b213eb85c5372f534279a7a5f299171ff446ba8734b49'
-          data=json.loads(raw)
-          assert data['base']=='78dad9840163bbacb7308118cde44a1bb4f525f6'
+          data={'base':'78dad9840163bbacb7308118cde44a1bb4f525f6','changes':{}}
+          for i in range(4):
+            part=json.loads(Path(f'aether-reach/tools/crosswind-edits-{i}.json').read_text())
+            assert not set(part).intersection(data['changes'])
+            data['changes'].update(part)
+          assert hashlib.sha256(json.dumps(data,sort_keys=True,separators=(',',':')).encode()).hexdigest()=='ba9da9ee4fea58b9555b8678f791ed15cc6beeb6bbc4e4a7ec4d53f63af58a99'
+          assert len(data['changes'])==19
           for name,item in data['changes'].items():
             p=Path(name)
             assert name.startswith('aether-reach/') or name=='level-design-library/games/aether-reach.md'
@@ -71,7 +73,8 @@ jobs:
             return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
           for name,item in data['changes'].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==item['after'],name
           tree=[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in data['changes']]
-          tree += [{'path':f'aether-reach/tools/crosswind-transfer-{i}.b64','mode':'100644','type':'blob','sha':None} for i in range(2)]
+          transfer=[f'aether-reach/tools/crosswind-edits-{i}.json' for i in range(4)]+['aether-reach/tools/crosswind-transfer-0.b64']
+          tree += [{'path':n,'mode':'100644','type':'blob','sha':None} for n in transfer]
           assert not any(t['path'].startswith('.github/') for t in tree)
           t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
           c=post('git/commits',{'message':'feat(aether): Receiver Crosswind reversible cover and retained gallery retreat','tree':t['sha'],'parents':[os.environ['GITHUB_SHA']]})
