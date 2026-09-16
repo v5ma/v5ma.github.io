@@ -1,0 +1,83 @@
+name: Restore downloaded Crosswind release
+on:
+  push:
+    branches: [aether/crosswind-live-identity-20260916]
+    paths: ['.github/workflows/aether-crosswind-backup-roundtrip.yml']
+permissions:
+  contents: read
+jobs:
+  restore:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 38b2977e625bd84be382038440327ff4e44ce0ee
+          persist-credentials: false
+          sparse-checkout: aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download existing assets without altering the release
+        run: |
+          mkdir -p /tmp/crosswind-downloaded
+          python - <<'PY'
+          import subprocess,time,json
+          from pathlib import Path
+          root=Path('/tmp/crosswind-downloaded')
+          for attempt in range(4):
+            r=subprocess.run(['gh','release','download','aether-v0.13.0','--dir',str(root),'--clobber'])
+            if r.returncode==0:break
+            time.sleep(5*(attempt+1))
+          else:raise RuntimeError('Release download retries exhausted')
+          meta=json.loads(subprocess.check_output(['gh','api','repos/v5ma/v5ma.github.io/releases/tags/aether-v0.13.0'],text=True))
+          assert meta['tag_name']=='aether-v0.13.0' and not meta['draft']
+          assert meta['target_commitish']=='38b2977e625bd84be382038440327ff4e44ce0ee'
+          import hashlib,re
+          listed={}
+          for line in (root/'SHA256SUMS.txt').read_text().splitlines():
+            digest,name=line.split('  ',1)
+            assert re.fullmatch('[0-9a-f]{64}',digest) and Path(name).name==name
+            assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
+            listed[name]=digest
+          for a in meta['assets']:
+            assert Path(a['name']).name==a['name']
+            p=root/a['name'];assert p.is_file() and p.stat().st_size==a['size']
+            digest=hashlib.sha256(p.read_bytes()).hexdigest()
+            if a.get('digest'):assert a['digest']=='sha256:'+digest
+          manifest=json.loads((root/'BACKUP-MANIFEST.json').read_text())
+          assert manifest['source']=='38b2977e625bd84be382038440327ff4e44ce0ee'
+          assert manifest['version']=='0.13.0' and len(manifest['files'])==208
+          (root/'download-roundtrip.json').write_text(json.dumps({'source':manifest['source'],'version':manifest['version'],'tag':meta['tag_name'],'releaseId':meta['id'],'assetHashes':listed,'sourceFiles':len(manifest['files']),'downloadChecksumsVerified':True,'downloadAttempts':attempt+1,'restoredModelTests':None,'scope':'Existing published assets only; no release edits or tag movement.'},indent=2))
+          PY
+      - name: Restore downloaded source and re-run its complete tests
+        run: |
+          set -euo pipefail
+          python aether-reach/tools/backup.py --restore /tmp/crosswind-downloaded/Aether-Reach-v0.13.0-source.zip --destination /tmp/crosswind-clean-restore
+          (cd /tmp/crosswind-clean-restore && node --test aether-reach/tests/*.test.mjs) > /tmp/crosswind-downloaded/downloaded-source-tests.log
+          (cd /tmp/crosswind-clean-restore && python aether-reach/tests/backup_test.py) > /tmp/crosswind-downloaded/downloaded-backup-tests.log 2>&1
+          (cd /tmp/crosswind-clean-restore && node aether-reach/tests/release-manifest.mjs)
+          python - <<'PY'
+          import json,re,hashlib
+          from pathlib import Path
+          root=Path('/tmp/crosswind-downloaded')
+          r=json.loads((root/'download-roundtrip.json').read_text())
+          text=(root/'downloaded-source-tests.log').read_text()
+          assert re.search(r'^# tests 261$',text,re.M) and re.search(r'^# pass 261$',text,re.M) and re.search(r'^# fail 0$',text,re.M)
+          restored=Path('/tmp/crosswind-clean-restore')
+          contract=json.loads((restored/'aether-reach/test-output/runtime-manifest.json').read_text())['files']
+          publication=json.loads((root/'aether-publication.json').read_text())
+          assert publication['source']==r['source'] and publication['all_match'] and set(contract)==set(publication['files'])
+          for name,digest in contract.items():assert digest==publication['files'][name]['sha256']==hashlib.sha256((restored/name).read_bytes()).hexdigest()
+          r.update({'restoredModelTests':261,'restoreInputTests':6,'runtimeFilesMatchingPublication':len(contract),'physicalHardwareApproved':False})
+          (root/'download-roundtrip.json').write_text(json.dumps(r,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-crosswind-downloaded-release
+          path: /tmp/crosswind-downloaded/
+          retention-days: 30
