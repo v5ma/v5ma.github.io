@@ -1,0 +1,28 @@
+{
+  "status": "test-only candidate; exact-source browser rerun and publication pending",
+  "runtime_unchanged_since": "fd89ca22bd7a2cd8d6903c8773c9e5fb1a07af9a",
+  "prior_tested_head": "c8ec0d3ef37ca71033cef429a735f0ca8d70538e",
+  "prior_tested_merge": "620e6af8282ed3511e0416687a2809f37dcfa1a4",
+  "failure": {
+    "run": 35138715127,
+    "job": 104938048821,
+    "artifact": 10464711386,
+    "zip_sha256": "627c841681bfc06fb5c459cffd4b3258cf20578f4e304b0f403df87c5f55ef84",
+    "error": "Page.evaluate: Error: Navigation stopped at {\"x\":16.099480187269517,\"z\":-37.99657332859992,\"hp\":0,\"mode\":\"dead\",\"target\":{\"x\":16,\"z\":-39}}",
+    "spindle_screenshot_health": 32,
+    "spindle_medkits": 0,
+    "spindle_smoke": 1
+  },
+  "correction": "The unpowered legacy route crosses the quay twice. It now scavenges the pre-existing clinic drawer and crafts a second finite medkit before its saved clinic departure. Original path, live enemies, damage/sensing, required components, north exit and existing keyboard inputs are unchanged. Strengthened assertions require all five enemies alive and every optional task/shutter still uncompleted/sealed at extraction. No planted saves, item grants, state assignments or weakened health assertions.",
+  "input_scope": "Normal keyboard/DOM events with read-only path guidance. The pre-existing driver emits KeyH for an available earned medkit below 65 health; this synthetic reactive assistance is now explicitly disclosed. Not human timing or physical hardware evidence.",
+  "model_scope": "Continuous model motion through the authored route, not the native discrete-key browser driver. Fifteen sampled initial/decision delays; unsuccessful samples are retained. No claim of universal safety.",
+  "model_result": {"won": 14, "samples": 15},
+  "model_reproduce": "node rainward/tests/legacy-unpowered-preflight.mjs",
+  "failed_model_schedule": {"startDelay": 5, "decisionDelay": 0.8, "status": "dead", "health": 0},
+  "previous_positive_evidence": {
+    "freight_journey": {"run": 35138715064, "artifact": 10464303328, "assertions": 21, "ending_health": 66, "living_enemies": 5, "shots": 0, "takedowns": 0},
+    "new_xr_cases": "All four current-head district AR/VR controller/hand mocks passed; not full headset-route playthroughs.",
+    "other_workflows": "Eleven of twelve workflows passed on c8ec; the sole failure was this legacy mission job."
+  },
+  "remaining": ["Exact-source complete browser regression after this test-only change", "Safe merge preserving concurrent master", "Pages/public-byte publication receipt", "Physical Xbox/Quest and unfamiliar-player approval"]
+}

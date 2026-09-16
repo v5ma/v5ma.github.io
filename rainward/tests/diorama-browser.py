@@ -3,6 +3,7 @@ import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/')
+CHAPTER=os.getenv('TEST_CHAPTER','natatorium')
 KIND=os.getenv('QUEST_KIND','controllers');VIEW=os.getenv('XR_VIEW','diorama-vr');OUT=Path('test-output/rainward-'+VIEW+'-'+KIND);OUT.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[];console=[]
 def check(v,msg):
@@ -37,7 +38,7 @@ with sync_playwright() as pw:
   frames(4);trigger(False);frames(5)
  def away():p.evaluate("()=>{for(const s of questDevice.sources)s.orientation={x:0,y:0,z:0,w:1};}")
  try:
-  p.goto(BASE+'/rainward/?chapter=natatorium',wait_until='domcontentloaded');wait('window.Rainward')
+  p.goto(BASE+'/rainward/?chapter='+CHAPTER,wait_until='domcontentloaded');wait('window.Rainward')
   check(p.evaluate('Rainward.mode')=='title','The native title initializes without a fatal UI construction error');check(p.locator('#xr-view-title option').count()==3,'First-person VR, third-person VR and third-person AR are explicit native choices')
   p.locator('#xr-view-title').select_option(VIEW);p.evaluate('(kind)=>questDevice.use(kind)',KIND)
   p.locator('#xr-title-hands' if KIND=='hands' else '#xr-title').click();wait('Rainward.snapshot().xr.active');frames(8)
@@ -45,7 +46,7 @@ with sync_playwright() as pw:
   check(p.evaluate('Rainward.snapshot().xr.mode')==VIEW,'The actual game adapter enters the requested third-person view')
   select('start');wait('Rainward.mode==="play"');frames(10)
   check(p.evaluate('Rainward.snapshot().camera.heroVisible'),'The existing survivor is rendered in third person, not hidden as in first person')
-  check(p.evaluate('Rainward.state.enemies.length===6&&Rainward.state.enemies.every(e=>e.hp>0)'),'The miniature is the normal mission with six living enemies, not a duplicate showcase')
+  check(p.evaluate('Rainward.state.enemies.length==='+str(5 if CHAPTER=='district' else 6)+'&&Rainward.state.enemies.every(e=>e.hp>0)'),'The miniature is the normal selected mission with all its living enemies, not a duplicate showcase')
   initial=p.evaluate('({x:Rainward.state.player.x,z:Rainward.state.player.z,anchor:Rainward.snapshot().xr.diorama.anchor,head:{...questDevice.head}})')
   p.evaluate('questDevice.head.x+=.25;questDevice.head.y-=.2;questDevice.head.z+=.1');frames(10)
   check(p.evaluate('([x,z])=>Rainward.state.player.x===x&&Rainward.state.player.z===z',[initial['x'],initial['z']]),'Physically leaning/walking around the table never drives character locomotion')
@@ -75,17 +76,6 @@ with sync_playwright() as pw:
   if KIND=='controllers':p.evaluate("questDevice.sources[0].gamepad.axes[3]=0")
   else:p.evaluate("questDevice.pinch('left',false)")
   frames(5);check(True,'Tracked controller or pinch-stick moves the real character inside the stationary diorama')
-  if KIND=='hands':select('hand-fire')
-  away();frames(6);wait('Rainward.snapshot().xr.armed')
-  p.evaluate('''async ()=>{const T=await import('./vendor/three.module.js'),x=Rainward.snapshot().xr,p=Rainward.state.player,scale=1/x.diorama.scale,matrix=new T.Matrix4().compose(new T.Vector3(x.rig.x,x.rig.y,x.rig.z),new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),x.rig.yaw),new T.Vector3(scale,scale,scale)),target=new T.Vector3(p.x+2,1.2,p.z-6).applyMatrix4(matrix.invert()),source=questDevice.sources.find(s=>s.handedness==='right'),direction=target.sub(new T.Vector3(source.position.x,source.position.y,source.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),direction);source.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''')
-  frames(4);before=p.evaluate('({mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve,x:Rainward.state.player.x,z:Rainward.state.player.z,shots:Rainward.state.stats.shots})')
-  trigger(True);p.wait_for_function('(mag)=>Rainward.state.player.mag<mag',arg=before['mag']);trigger(False);frames(4)
-  after=p.evaluate('({mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve,shots:Rainward.state.stats.shots,last:Rainward.state.events.filter(e=>e.type==="shot").at(-1)})')
-  check(after['reserve']==before['reserve'] and after['shots']-before['shots']==before['mag']-after['mag'],'Diorama trigger or hand pinch firing spends exactly the actual finite magazine')
-  check(abs(after['last']['from']['x']-before['x'])<.2 and abs(after['last']['from']['z']-before['z'])<.2,'Miniature firearm traces begin at the survivor, never at the spectator controller')
-  select('reload');wait('Rainward.state.player.reload===0&&Rainward.state.player.mag===6')
-  check(p.evaluate('Rainward.state.player.reserve')==before['reserve']-(6-after['mag']),'Diorama reload uses exactly the missing reserve rounds')
-  if KIND=='hands':select('hand-fire')
   select('pack');wait('Rainward.mode==="pack"');select('equip-rifle');check(p.evaluate('Rainward.state.player.equipped')=='rifle','Original satchel equipment works through the scaled spatial interface')
   select('back');wait('Rainward.mode==="play"');select('pause');wait('Rainward.mode==="pause"')
   select('retry');wait('Rainward.mode==="confirm"');check(p.evaluate('document.activeElement.id')=='confirm-no','Diorama confirmations retain safe Cancel focus')
@@ -98,11 +88,24 @@ with sync_playwright() as pw:
   else:
    check(p.evaluate('questDevice.sessions[0].environmentBlendMode')=='alpha-blend','The mock AR compositor is explicitly transparent, not opaque VR labeled AR')
   check(p.evaluate('questDevice.sessions.length')==1,'UI and perspective operations preserve one XR session')
-  select('exit');wait('!Rainward.snapshot().xr.active');check(p.evaluate('Rainward.mode')=='pause','Exiting a diorama returns to the preserved desktop pause menu')
+  # Quiet presentation checks precede deliberate gunfire; do not assume a
+  # stationary survivor can spend minutes in menus after alerting patrols.
+  select('resume');wait('Rainward.mode==="play"');select('selectPistol')
+  if KIND=='hands':select('hand-fire')
+  away();frames(6);wait('Rainward.snapshot().xr.armed')
+  p.evaluate('''async ()=>{const T=await import('./vendor/three.module.js'),x=Rainward.snapshot().xr,p=Rainward.state.player,scale=1/x.diorama.scale,matrix=new T.Matrix4().compose(new T.Vector3(x.rig.x,x.rig.y,x.rig.z),new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),x.rig.yaw),new T.Vector3(scale,scale,scale)),target=new T.Vector3(p.x+2,1.2,p.z-6).applyMatrix4(matrix.invert()),source=questDevice.sources.find(s=>s.handedness==='right'),direction=target.sub(new T.Vector3(source.position.x,source.position.y,source.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),direction);source.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''')
+  frames(4);before=p.evaluate('({mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve,x:Rainward.state.player.x,z:Rainward.state.player.z,shots:Rainward.state.stats.shots})')
+  trigger(True);p.wait_for_function('(mag)=>Rainward.state.player.mag<mag',arg=before['mag']);trigger(False);frames(4)
+  after=p.evaluate('({mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve,shots:Rainward.state.stats.shots,last:Rainward.state.events.filter(e=>e.type==="shot").at(-1)})')
+  check(after['reserve']==before['reserve'] and after['shots']-before['shots']==before['mag']-after['mag'],'Diorama trigger or hand pinch firing spends exactly the actual finite magazine')
+  check(abs(after['last']['from']['x']-before['x'])<.2 and abs(after['last']['from']['z']-before['z'])<.2,'Miniature firearm traces begin at the survivor, never at the spectator controller')
+  select('reload');wait('Rainward.state.player.reload===0&&Rainward.state.player.mag===6')
+  check(p.evaluate('Rainward.state.player.reserve')==before['reserve']-(6-after['mag']),'Diorama reload uses exactly the missing reserve rounds')
+  click_visible('exit');wait('!Rainward.snapshot().xr.active');check(p.evaluate('Rainward.mode')=='pause','Exiting a diorama returns to the preserved desktop pause menu')
   check(p.evaluate('JSON.parse(localStorage.getItem("svgn.rainward.v1.xr-view")).shell')=='both-open','Only validated presentation preferences are persisted separately from saves')
   check(not errors,'No uncaught JavaScript errors in the diorama journey')
   check(not any('Shader Error' in s or 'GL_INVALID' in s for s in console),'The real clipped scene renders without captured shader errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'kind':KIND,'view':VIEW,'errors':errors,'console':console,'scope':'Real Chromium/WebGL/game with an explicit XR pose/session/controller/hand mock. Not a physical Quest 3 or a view of a real passthrough camera. Physical tracking, comfort, real-room placement and frame-time acceptance remain open.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'kind':KIND,'view':VIEW,'chapter':CHAPTER,'errors':errors,'console':console,'scope':'Real Chromium/WebGL/game with an explicit XR pose/session/controller/hand mock. Not a physical Quest 3 or a view of a real passthrough camera. Physical tracking, comfort, real-room placement and frame-time acceptance remain open.'},indent=2))
  except Exception as e:
   data={'error':str(e),'checks':checks,'errors':errors,'console':console}
   try:data['snapshot']=p.evaluate('Rainward.snapshot()');p.screenshot(path=str(OUT/'failure.png'))

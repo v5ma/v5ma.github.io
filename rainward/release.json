@@ -1,14 +1,13 @@
 {
-  "version": "0.14.1",
-  "build": "rainward-wayfinder-20260915",
+  "version": "0.15.0",
+  "build": "rainward-freight-cut-20260915",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-and-stereo-vr-ar-diorama",
   "multiplayer": false,
   "changes": [
-    "Add floor-level clinic approach chevrons and an open/closed yard-return sign",
-    "Add a controller-accessible clinic route key and map patterns that distinguish the locked crossing",
-    "Show XR ray endpoint cursors, target highlighting and stable unavailable menu rows",
-    "Show actual crafting progress and bind each held ray action to its initiating tracked source",
-    "Retain all three XR views, Xbox presets, seven chapters, objectives, finite supplies and existing checkpoint formats"
+    "Give the existing optional freight receiver repair a real west loading passage into the market",
+    "Add a sorting baffle for a readable, flankable recovery landing; retain both original entrances",
+    "Connect clinic observation, receiver repair, spindle recovery, market retreat and original extraction",
+    "Preserve all seven chapters, existing task rewards, saves, Xbox presets and first-person/AR/VR views"
   ]
 }

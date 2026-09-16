@@ -26,6 +26,8 @@ Each chapter should have a distinct spatial identity. The Conservatory should em
 
 Recommended benchmark influences: The Last of Us Part II for authored density and recovery spaces, Dishonored for stealth-route choice, Half-Life for understandable environmental state changes, and immersive sims for dependable interaction rules.
 
+Source-reconciled Rainward iteration: Freight Cut 0.15.0 gives the already-existing optional ward-radio repair a real west loading passage, shared by body collision, shots, sight and NPC navigation. It reuses the clinic terrace and return loop rather than rebuilding them. Read ../rainward/FREIGHT-CUT.md and its publication receipt before assigning evidence status. No new checkpoint field, reward, task or mandatory objective is added; unpowered extraction remains valid. Human first/replay understanding and physical-device approval remain open.
+
 ## Dino Atlas
 
 Primary design identity: fieldcraft, wildlife observation, ranger logistics, vehicles, and non-injurious intervention.

@@ -1,0 +1,23 @@
+{
+  "kind": "Retained normal-start native design failure and bounded topology correction, not publication proof",
+  "source": "35b6761dd22165963c182a9a3241d5d20a8e2495",
+  "tested_merge_preview": "55c9a7b201fd5f7e134eb81f4c6059fe6d61a4db",
+  "workflow_run": 35062912408,
+  "job": 104686919965,
+  "artifact": 10433696974,
+  "archive_sha256": "6c6a4f8b132981f8799ac944c6956dcd6e83a4affb85440ac088411fc64afe58",
+  "result": "failed",
+  "observed": [
+    "The journey began from the normal title with no planted checkpoint, kept all five original enemies alive, earned supplies, crafted one medkit and one smoke, recovered the clinic battery and created the genuine clinic checkpoint.",
+    "The terrace-to-receiver crossing reduced health to 83. The first medkit was naturally consumed during the exposed market approach and health recovered to 100, then returned to 83 at the receiver.",
+    "After the real ward-radio repair, the player reached x=17,z=-16 at 49 health and x=17,z=-26 at 15 health, then died before reaching the spindle. Both the market and freight lookouts were using their normal chase behavior. No JavaScript or console error caused the failure."
+  ],
+  "design_interpretation": "The connection was technically navigable but its receiver-to-spindle approach did not yet provide a clear recovery relationship. That violates the shared library's requirement to design likely mistakes and recovery alongside ideal success.",
+  "correction": [
+    "Add a low pallet screen along the west side of the freight aisle. A crouching body can use it as a sightline break; a standing torso remains exposed. Both ends stay open so the lookout can flank and pathfinding remains honest.",
+    "Use the already-earned clinic materials at the actual clinic shelter to prepare a second medkit before the exposed market/freight commitment. No inventory, health or clock value is assigned by the driver.",
+    "The accepted journey must still reach the real spindle, use finite smoke on retreat, cross the powered west shutter, break search, save at the real clinic, extract with living enemies, and reload the earned version-4 checkpoint."
+  ],
+  "runtime_preservation": "Enemy health/damage/range, patrol identities, supplies, crafting cost/timing, stamina, objectives, task reward, save schema, Xbox mapping and XR modes are unchanged. The new screen is ordinary shared collision and can be routed around by enemies.",
+  "evidence_boundary": "This failure is one automated virtual-controller route, not a human balance verdict. Its correction must pass exact-source model/native regression and later unfamiliar-player review."
+}

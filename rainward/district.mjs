@@ -10,7 +10,7 @@ export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,b
   const tint=o.kind==='brick'?colors.brick:o.kind==='planter'||o.kind==='fountain'?0x65796a:colors.wall;
   if(['bus','truck','car'].includes(o.kind)){streetVehicle(A,o);continue;}
   add('box',o.x,o.bottom+o.h/2,o.z,o.w,o.h,o.d,tint,o.kind==='brick'?'brick':'stone');
-  if(o.kind==='crate'||o.kind==='counter'){for(const x of[-.45,.45])add('box',o.x+o.w*x,o.h/2+.025,o.z,.07,o.h,o.d+.06,0x96816a,'wood');}
+  if(o.kind==='crate'||o.kind==='counter'){for(const x of[-.45,.45])add('box',o.x+o.w*x,o.bottom+o.h/2+.025,o.z,.07,o.h,o.d+.06,0x96816a,'wood');}
   if(o.h>=3&&o.w>4){add('box',o.x,o.bottom+o.h-.17,o.z,o.w+.08,.22,o.d+.12,0x818b7c);if(o.kind==='brick')ivy(o.x,.7,o.z+o.d/2+.03,o.w*.9,o.h*.7,Math.round(o.x)*99);}
   if(o.kind==='planter'){for(let k=0;k<15;k++)add('cone',o.x+(rnd(k)-.5)*o.w,.9+rnd(k+5)*.6,o.z+(rnd(k+98)-.5)*o.d,.3,.8,.3,0x516542,'leaf');}
  }
