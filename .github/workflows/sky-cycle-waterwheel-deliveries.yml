@@ -27,6 +27,16 @@ jobs:
           node --check mario-maker-clone/svgn-paper-route/waterwheel-layout-core.mjs
           node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
           node --test tests/adventure_score.test.cjs
+      - name: Retain exact scoped source for recovery
+        run: |
+          mkdir -p /tmp/waterwheel-source
+          git rev-parse HEAD > /tmp/waterwheel-source/commit.txt
+          git archive --format=tar.gz HEAD mario-maker-clone tests .github/workflows > /tmp/waterwheel-source/source.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: waterwheel-delivery-source-${{ github.sha }}
+          path: /tmp/waterwheel-source/
+          retention-days: 30
   deliveries:
     runs-on: ubuntu-22.04
     timeout-minutes: 20
@@ -97,5 +107,47 @@ jobs:
         with:
           name: waterwheel-delivery-regression-${{ matrix.script }}-${{ github.sha }}-${{ github.run_attempt }}
           path: /tmp/waterwheel-delivery-regression/
+          retention-days: 30
+          if-no-files-found: error
+  published:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Independently compare public runtime bytes to merged source
+        env:
+          ARTIFACT_DIR: /tmp/waterwheel-delivery-public
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-delivery-public-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-delivery-public/
+          retention-days: 30
+          if-no-files-found: error
+  live-deliveries:
+    needs: published
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Replay twelve deliveries and protect saves on the published game
+        env:
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/waterwheel-deliveries-live
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-deliveries-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waterwheel-deliveries-live-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/waterwheel-deliveries-live/
           retention-days: 30
           if-no-files-found: error
