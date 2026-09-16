@@ -1,0 +1,88 @@
+name: Stage reviewed Receiver Crosswind
+on:
+  push:
+    branches: [aether/receiver-crosswind-20260915]
+    paths: ['aether-reach/tools/crosswind-transfer-1.b64']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/receiver-crosswind-20260915'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            level-design-library
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply exact-base, bounded source changes
+        run: |
+          mkdir -p /tmp/crosswind-stage
+          python - <<'PY'
+          import base64,zlib,json,hashlib
+          from pathlib import Path
+          encoded=''.join(Path(f'aether-reach/tools/crosswind-transfer-{i}.b64').read_text().strip() for i in range(2))
+          raw=zlib.decompress(base64.b64decode(encoded,validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='f09f5c96edc5b37fba4b213eb85c5372f534279a7a5f299171ff446ba8734b49'
+          data=json.loads(raw)
+          assert data['base']=='78dad9840163bbacb7308118cde44a1bb4f525f6'
+          for name,item in data['changes'].items():
+            p=Path(name)
+            assert name.startswith('aether-reach/') or name=='level-design-library/games/aether-reach.md'
+            assert not p.is_absolute() and '..' not in p.parts and not p.is_symlink()
+            assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==item['before'],name
+            text=p.read_text() if p.exists() else ''
+            for start,end,replacement in reversed(item['edits']):
+              assert 0<=start<=end<=len(text),name
+              text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          Path('/tmp/crosswind-stage/changes.json').write_text(json.dumps(data))
+          PY
+          git diff --check
+      - name: Check model, saves, collision and canonical roadmap
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs | tee /tmp/crosswind-stage/tests.log
+          python aether-reach/tests/backup_test.py
+          python aether-reach/tools/render-production-plan.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Create content-only commit object for reviewed promotion
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess,hashlib
+          from pathlib import Path
+          data=json.loads(Path('/tmp/crosswind-stage/changes.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/crosswind-stage/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          for name,item in data['changes'].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==item['after'],name
+          tree=[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in data['changes']]
+          tree += [{'path':f'aether-reach/tools/crosswind-transfer-{i}.b64','mode':'100644','type':'blob','sha':None} for i in range(2)]
+          assert not any(t['path'].startswith('.github/') for t in tree)
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
+          c=post('git/commits',{'message':'feat(aether): Receiver Crosswind reversible cover and retained gallery retreat','tree':t['sha'],'parents':[os.environ['GITHUB_SHA']]})
+          Path('/tmp/crosswind-stage/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':t['sha'],'parent':os.environ['GITHUB_SHA'],'files':list(data['changes']),'scope':'Model and save checks only; native gameplay and publication require separate acceptance.'},indent=2))
+          print('Created commit object without updating any branch:',c['sha'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-crosswind-staged
+          path: |
+            /tmp/crosswind-stage/candidate.json
+            /tmp/crosswind-stage/tests.log
+          retention-days: 14
