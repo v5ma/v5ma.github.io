@@ -1,0 +1,27 @@
+{
+  "version":"0.25.0",
+  "build":"sky-cycle-canal-choice-2026.09.16",
+  "status":"candidate-awaiting-exact-source-native-acceptance",
+  "baseline_master":"a0ce5803b0f3bab305314187fba6075e3d0e90ce",
+  "branch":"sky-cycle/canal-choice-0.25",
+  "candidate_sha":"5b54ce1f4ae628a0597ac42c0be0f73963141cc7",
+  "candidate_run":35149441209,
+  "roadmap_task":"WW-R2-BRAKE",
+  "canonical_task":"chapters/WATERWHEEL-BOULEVARD-R2.md: speed/brake-selected fork with useful lower and upper outcomes",
+  "library_reconciliation":"../../../level-design-library/applied/SKY-CYCLE-CANAL-CHOICE.md",
+  "hypothesis":"Extend the existing receiving surface upstream and show each branch's purpose before commitment so braking selects a useful delivery continuation without new actions or assistance.",
+  "runtime_change":{"rail_id":"ww-collector","old_start":[4300,1990],"new_start":[4060,1970],"unchanged_exit":[4980,2076],"track_count":7,"world_size_changed":false,"other_six_curves_changed":false,"ground_changed":false,"mailbox_count":12,"mailbox_positions_changed":false,"enemy_count_changed":false,"physics_changed":false,"auto_steering":false,"new_permanent_rewards":false},
+  "local_rules":{"game_tests":271,"score_tests":12,"failed":0,"evidence_class":"deterministic and isolated seeded model/render fixtures, not native play"},
+  "native_acceptance":null,
+  "capture_review":null,
+  "publication":null,
+  "retained_attempts":[
+    {"run":35147649863,"sha":"7be7e701a81389e99c2d5c6ce4c095617266ada4","status":"superseded; not native acceptance"},
+    {"run":35148340790,"sha":"4f38d07cca4746a92c9cdd3b4cf003eb30528bf6","scope":"Flight Deck startup readiness","artifact_id":10467882158,"sha256":"c753c6ba6700c873bc33a710ed1553bdf9e5cd4076f0eda73bf543c18682e7ce","result":"ReferenceError before ledger sampling; no checks or page/console errors. Wait for the real asynchronous owner."},
+    {"run":35148340790,"sha":"4f38d07cca4746a92c9cdd3b4cf003eb30528bf6","scope":"render-frame brake duration","artifact_id":10467807734,"sha256":"f9eeb7ae6bb655cb04662c66a6bdcc282dc499e37e3f9078adad0959d352aa2d","result":"Collector caught, then long left input reversed the rider and returned upstream. Failed downstream-return assertion retained. Corrected input recipe is sampled per native fixed simulation step, without changing physics."},
+    {"run":35148340790,"sha":"4f38d07cca4746a92c9cdd3b4cf003eb30528bf6","scope":"camera/capture review","artifact_id":10468401439,"sha256":"07b55650fd23f1991416c65d77baa5e6ef17becc91f7b8e8c7a0ef0e219813aa","result":"High route finished, but pause menu obscured composition captures. Use the actual Inspect scene UI instead of inferring readability from a projected sign center."}
+  ],
+  "preservation":{"campaign_routes":8,"preview_non_awarding":true,"save_migration":false,"player_state_assignments_in_native_acceptance":false,"controller_remaps_retained":true,"xr_mode":"existing seated side-on tracked-controller and native hand-select diorama","physical_device_approval":false},
+  "open_gates":["exact-source native fork matrix","existing native regressions","capture review","normal merge","29-file public verification","public lower-delivery replay","unfamiliar-player readability and timing","physical Xbox and Quest controllers/hands","comprehensive recovery and checkpoint retries","full 3D/XR chapter completion","revision-aware campaign promotion"],
+  "next_level_design_opportunity":"Optional high-to-high whip connection with a non-whip continuation; retain every accepted road, lower-return and delivery outcome."
+}

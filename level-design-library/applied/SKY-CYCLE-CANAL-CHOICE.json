@@ -1,0 +1,20 @@
+{
+  "game":"Sky Cycle",
+  "task_id":"WW-R2-BRAKE",
+  "task_is_existing_workbook_extension":true,
+  "baseline_master":"a0ce5803b0f3bab305314187fba6075e3d0e90ce",
+  "authoritative_game_method":"../../mario-maker-clone/svgn-paper-route/development/LEVEL-DESIGN-METHODOLOGY.md",
+  "authoritative_shared_method":"../SKY-CYCLE-LEVEL-DESIGN.md",
+  "roadmap":"../../mario-maker-clone/svgn-paper-route/development/AAA-ROADMAP.md",
+  "workbook":"../../mario-maker-clone/svgn-paper-route/development/chapters/WATERWHEEL-BOULEVARD-R2.md",
+  "release_receipt":"../../mario-maker-clone/svgn-paper-route/development/verification/canal-choice-0.25.json",
+  "status":"implemented-candidate; acceptance and publication controlled by release receipt",
+  "experience":"Recognize the junction, choose speed for the high gallery or braking/release for lower deliveries, then use that knowledge deliberately on a return visit.",
+  "primary_observation":"A normal-input lower-line journey returns before Millworkers terrace, serves that real mailbox and reaches the depot; speed-retaining travel still traverses all four express sections.",
+  "guardrails":["ordinary road and sky-hidden finishes","short returning porch","twelve delivery targets still served","same seven rail IDs and eight campaign builders","no save/award migration","edited-runway marks follow loaded geometry","controller and hand-XR regression","muted play","no actor or win state assignment"],
+  "already_implemented_not_recreated":["portal catalog","rider pedal/grip IK","Quiet Water controls","non-awarding editable Waterwheel preview","twelve delivery intentions","tracked-controller and native hand-select XR"],
+  "geometry_change":"Extend ww-collector start upstream from x=4300 to x=4060; keep its x=4980 exit and the other six curves.",
+  "physical_device_approved":false,
+  "human_review_score":null,
+  "next":"Optional high-to-high whip link with a non-whip continuation."
+}
