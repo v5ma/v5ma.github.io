@@ -1,5 +1,8 @@
 name: Vesperfall Open Line public acceptance
 on:
+  push:
+    branches: [master]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-open-line.yml']
   workflow_run:
     workflows: ['pages build and deployment']
     types: [completed]
@@ -11,9 +14,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   source:
-    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master')
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master')
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     outputs:
       verify: ${{ steps.scope.outputs.verify }}
       sha: ${{ steps.scope.outputs.sha }}
@@ -54,7 +57,18 @@ jobs:
           node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
           python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
           python scripts/check-vesperfall.py
-          python -u vesperfall/tests/verify-live.py | tee test-output/public-bytes.log
+          # Pages' generated workflow did not start workflow_run acceptance on
+          # the first publication. Explicit push is a fallback, not a bypass:
+          # actual public bytes must match before any public journey can run.
+          ok=0
+          for attempt in 1 2 3 4; do
+            if python -u vesperfall/tests/verify-live.py | tee test-output/public-bytes-${attempt}.log; then
+              ok=1
+              break
+            fi
+            sleep 20
+          done
+          test "$ok" = 1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
