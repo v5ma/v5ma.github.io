@@ -29,7 +29,7 @@ jobs:
           set -euo pipefail
           mkdir -p test-output
           node --test rainward/tests/*.test.mjs | tee test-output/node-models.txt
-          node rainward/tests/freight-recovery-preflight.mjs > test-output/freight-recovery-preflight.json
+          node rainward/tests/freight-quay-preflight.mjs > test-output/freight-quay-preflight.json
           python -m compileall -q rainward/tests
           python rainward/tools/build-production-plan.py
           git diff --exit-code -- rainward/AAA_CHECKLIST.md

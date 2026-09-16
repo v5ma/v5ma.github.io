@@ -61,9 +61,9 @@ with sync_playwright() as pw:
     const stop=()=>{pad.axes[0]=pad.axes[1]=0;pad.buttons[10]={pressed:false,value:0};clearInterval(timer);};
     let lastHeal=-Infinity,standRequested=false;
     const timer=setInterval(()=>{const p=Rainward.state.player;
-     // A watcher east of the screen is NOT a west-side flank. Remain
-     // crouched behind directional cover unless a seen pursuer is west too.
-     if(breakaway&&!standRequested&&p.x<17.4&&p.stance==='crouch'&&Rainward.state.enemies.some(e=>e.hp>0&&e.x<17.4&&e.seen&&e.state==='chase')){standRequested=true;padPulse.push(1);padBreakawayInputs.push({t:Rainward.state.t,hp:p.hp,stamina:p.stamina,button:1,goal:{x,z}});}
+     // Only a pursuer INSIDE the narrow aisle is a close same-lane flank.
+     // A watcher outside the west wall or east of the screen is not one.
+     if(breakaway&&!standRequested&&p.x<17.4&&p.stance==='crouch'&&Rainward.state.enemies.some(e=>e.hp>0&&e.x>14.8&&e.x<17.4&&e.seen&&e.state==='chase')){standRequested=true;padPulse.push(1);padBreakawayInputs.push({t:Rainward.state.t,hp:p.hp,stamina:p.stamina,button:1,goal:{x,z}});}
      if(window.padAllowRecovery&&p.hp>0&&p.hp<=45&&p.medkit>0&&!p.craft&&performance.now()-lastHeal>500){padPulse.push(12);lastHeal=performance.now();padRecoveryInputs.push({t:Rainward.state.t,hp:p.hp,medkits:p.medkit,button:12,goal:{x,z}});}
      if(Rainward.mode!=='play'||performance.now()-start>150000){stop();reject(Error('Travel interrupted '+JSON.stringify({x:p.x,z:p.z,hp:p.hp,mode:Rainward.mode,goal:route[i]})));return;}
      const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.4){if(++i===route.length){stop();resolve();}return;}
@@ -112,7 +112,12 @@ with sync_playwright() as pw:
   recover_if_needed('Clinic recovery')
   if page.evaluate('Rainward.state.player.cloth>0&&Rainward.state.player.canister>0'):craft('medkit')
   go(-24,5,True);go(-26.1,5.8,True);use('Rainward.state.completedTasks.includes("ward-service-latch")')
-  go(-30,5.8,True);go(-31,11,True);go(-31,-15,True);go(-27,-24,True);go(-18,-26,True);go(-18,-42,True);go(0,-43,True);use('Rainward.mode==="won"')
+  # Walk the protected approach; save finite sprint for the two crossings.
+  # The ruin forces its genuine east-side passage. The final z=-46 line is
+  # north of the quay pillars, not the exposed z=-41 path chosen by shortest path.
+  go(-30,5.8);go(-31,11);go(-31,-15);go(-28,-24,True);go(-28,-42,True);go(-28,-46);go(-18,-46)
+  check(page.evaluate('Rainward.state.player.stamina>=80&&!Rainward.state.player.exhausted'),'Ordinary protected walking preserves stamina before the open quay commitment')
+  record('quay preparation');go(0,-46,True);go(0,-43,True);use('Rainward.mode==="won"')
   final=snap();check(final['player']['hp']>0 and all(e['hp']>0 for e in final['enemies']),'Extraction retains all five original living enemies')
   check(final['stats']['shots']==0 and final['stats']['takedowns']==0,'The complete route requires no combat kills')
   capture('02-extracted');record('mastered-return')
@@ -121,7 +126,7 @@ with sync_playwright() as pw:
   page.reload(wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');nav('continue');pulse(0);wait('Rainward.mode==="play"');wait('Rainward.snapshot().visuals.freightCut.open')
   check(page.evaluate('Rainward.state.objectives.cell&&Rainward.state.objectives.crank&&Rainward.state.checkpoint==="clinic"'),'Browser reload restores the earned clinic checkpoint and powered passage')
   check(not errors and not console and not dialogs,'No captured browser errors, shader errors or blocking dialogs')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs,'final':final,'reactiveRecoveryInputs':recovery_inputs,'breakawayInputs':breakaway_inputs,'crossing':{'start':start,'end':crossing},'scope':'Normal-start living-enemy Floodgate journey; actual HTTP/WebGL with virtual Xbox Classic buttons/sticks, read-only path guidance, synthetic D-pad-up medkit reactions, B stand/L3 finite-stamina aisle breakaway and reserved earned smoke. Two medkits and one smoke use only original rations and clinic drawer. Medkits are not spent above 45 health. Breakaway requires a seen chasing enemy west of the screen with the player. No state assignments, grants, invulnerability, enemy removal, clock edits or planted saves. Genuine earned-checkpoint reload. Not human pacing, reaction time or physical Xbox/Quest approval.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs,'final':final,'reactiveRecoveryInputs':recovery_inputs,'breakawayInputs':breakaway_inputs,'crossing':{'start':start,'end':crossing},'scope':'Normal-start living-enemy Floodgate journey; actual HTTP/WebGL with virtual Xbox Classic buttons/sticks, read-only path guidance, synthetic D-pad-up medkit reactions, B stand/L3 finite-stamina aisle breakaway and reserved earned smoke. Two medkits and one smoke use only original rations and clinic drawer. Medkits are not spent above 45 health. Breakaway requires a seen chasing enemy inside the same narrow lane, not outside the wall. The protected western walk preserves finite stamina; the final crossing uses the northern side of the existing quay pillars. No state assignments, grants, invulnerability, enemy removal, clock edits or planted saves. Genuine earned-checkpoint reload. Not human pacing, reaction time or physical Xbox/Quest approval.'},indent=2))
  except Exception as error:
   data={'error':str(error),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs}
   try:data['reactiveRecoveryInputs']=page.evaluate('padRecoveryInputs');data['breakawayInputs']=page.evaluate('padBreakawayInputs');data['snapshot']=snap();data['focus']=page.evaluate('document.activeElement?.id');data['virtualInput']=page.evaluate('({axes:pad.axes,buttons:pad.buttons,polls:padPolls})');capture('failure')
