@@ -7,22 +7,27 @@
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "quality": "Playable authored graybox; production art and fresh-player review remain open.",
+  "quality": "Playable authored graybox candidate; production art and fresh-player review remain open.",
   "changes": [
-    "Local visible loading crossing and continuous porter/cart routine",
-    "Signal while riding, wait for loading, or use the marked existing north loop",
-    "Occupied-lane recovery, saved-actor-safe cart initialization and unchanged reward ledger"
+    "Continuous visible loading cart and purposeful porter routine on the existing quay",
+    "Wait, request a local pass while riding, or use the marked timing-independent north loop",
+    "Fixed signal posts remain usable through every loading phase; the free bell stays local and sight-dependent",
+    "Occupied-lane recovery and saved-courier-safe cart initialization without changing layout or reward identities"
   ],
-  "acceptance": "Integrated candidate; 220 local model tests passed. Browser, publication and human/device acceptance must be recorded separately.",
+  "acceptance": "222 local model tests and four browser suites passed. Six browser suites and CI model job remain queued at this checkpoint. Not yet merged or published.",
   "evidence": "production/evidence/working-quay-0.12.1/candidate.json",
+  "foundationEvidence": "production/evidence/lantern-0.12.0/published.json",
+  "runtimeCommit": "241a2676d3c117da5bbb25293a6ff0555f3f7d05",
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35056702530",
   "validation": {
-    "unitTestsPassedLocally": 220,
-    "browserTestsPassed": false,
+    "localModelTestsPassed": 222,
+    "browserSuitesPassed": 4,
+    "browserChecksPassed": 64,
+    "browserSuitesRequired": 10,
+    "completeAcceptance": false,
     "publicResultVerified": false,
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "humanLevelApproval": false
-  },
-  "candidateEvidence": "production/evidence/lantern-0.12.0/candidate.json",
-  "foundationEvidence": "production/evidence/lantern-0.12.0/published.json"
+  }
 }

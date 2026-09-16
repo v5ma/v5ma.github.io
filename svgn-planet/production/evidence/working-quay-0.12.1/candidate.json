@@ -1,19 +1,42 @@
 {
   "version": "0.12.1",
+  "edition": "Lantern Ward: Working Quay",
+  "recordedUTCDate": "2026-09-16",
+  "status": "implemented; acceptance incomplete; not published",
+  "runtimeCommit": "241a2676d3c117da5bbb25293a6ff0555f3f7d05",
   "baseCommit": "78dad9840163bbacb7308118cde44a1bb4f525f6",
   "roadmapTask": "LEVEL-01",
-  "localModelTestsPassed": 220,
-  "browserAcceptance": "pending",
-  "publicAcceptance": "pending",
-  "physicalDeviceTested": false,
+  "localModelTestsPassed": 222,
+  "localModelTestsFailed": 0,
+  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35056702530",
+  "browserSuitesCompletedSuccessfully": 4,
+  "browserChecksCompletedSuccessfully": 64,
+  "completedSuites": [
+    {"suite":"grounded-browser","checks":15,"artifact":10431235493,"zipSHA256":"8a38b58790a8e5e26fcc2f3fd74ac50b012e47a71a478e323939675fe2f45c89"},
+    {"suite":"atmosphere-browser","checks":22,"artifact":10431316033,"zipSHA256":"bae8a661438a5008523e7c97cc8b4e3aa5f07fd6196b56713c00d9df0722668b"},
+    {"suite":"street","checks":11,"artifact":10431925962,"zipSHA256":"fa56949a46dc9e9cd393b7cc252ad634ccae8f31b8934b0705ad5206f9aea904"},
+    {"suite":"xr","checks":16,"artifact":10431452931,"zipSHA256":"de02ca036dcc5ea4394fcc2f85e43aa1a2616142287ad9c1554be2bb892ced65"}
+  ],
+  "queuedAtCheckpoint": ["model","roof","canal","market","homecoming_browser","coastal_browser_release","tidewater-browser"],
+  "completedReportErrors": [],
+  "failedComparison": "failed-comparison.json",
+  "failureMeaning": "The first comparison measured all three bicycle routes and completed delivery/reload, then failed a hand signal interaction when the cart was hidden behind the warehouse corner. The fixed-post correction has two new model regressions, but its focused real-browser rerun remains queued. Do not report it as passed yet.",
+  "runtimeSHA256": {
+    "lantern/app.mjs":"1e73082213131091dd5b958ea484eafb82422d60b289f9db49ae60dadcbd8fc2",
+    "lantern/core.mjs":"3142eeaa50f5bae7dc65b4aede73d37ef4d6c666588be6232ab84635ffbecaac",
+    "lantern/market-view.mjs":"df5a1c6726dad48c456c9299f00e3ddb3e11ad9a0f3af589ce3055ec679b7b01",
+    "lantern/market.mjs":"772ab37491a948fd919bbf128e91fcec17186975b5824c949cdf6bc173628000",
+    "lantern/style.css":"1bb5dd229f423a92ff44a0f24a003e8810f9e9ddec38d62d87a841aab0130f2f",
+    "lantern/view.mjs":"af56d674c2e455019f9fc73bad455db32b60954213a7213be7b07fde0a03e386",
+    "lantern/xr.mjs":"926ab1b0c18ffaa05ec4a70b101b411f3636062fddb353803fe0a5f4ed5a11b6",
+    "lantern-ward.html":"619ed98083e654c0cf6c274def405049088022c110ed6e3f272e73d9e00284a6"
+  },
+  "legacyFilesUnchanged": 102,
+  "saveIdentity": "svgn.lantern-ward.v1 / lantern-ward-01 / layout 1",
+  "rewardContract": "Existing 600-credit exactly-once chapter ledger; no new reward and no writes to original-neighborhood save keys.",
+  "publicResultVerified": false,
+  "physicalDevicesTested": false,
   "humanComprehensionTested": false,
   "review": "../../../lantern/WORKING-QUAY.md",
-  "runtimeFileSHA256": {
-    "svgn-planet/lantern-ward.html": "619ed98083e654c0cf6c274def405049088022c110ed6e3f272e73d9e00284a6",
-    "svgn-planet/lantern/app.mjs": "1e73082213131091dd5b958ea484eafb82422d60b289f9db49ae60dadcbd8fc2",
-    "svgn-planet/lantern/browser.py": "c50c19e56a27fb1b10b86b183a6717f997b22974b13929c00e69a6a16c0c3b30",
-    "svgn-planet/lantern/core.mjs": "9ea559a0eb3900529cf32dab371aba4428743ea2061543adef23ddae8929e492",
-    "svgn-planet/lantern/view.mjs": "af56d674c2e455019f9fc73bad455db32b60954213a7213be7b07fde0a03e386",
-    "svgn-planet/lantern/market-view.mjs": "090c12d0ffde954c66d3a4dcbbe79271f6841fde1d4cadc609f5cf9c267f8c96"
-  }
+  "next": "Read the current acceptance run and all remaining raw reports. Do not cancel it merely to update documentation. Once actual acceptance succeeds, normally merge the prepared release branch and separately verify public file hashes plus live street, spatial XR and market tours. Record final publication in the merge PR rather than recursively deploying evidence writers."
 }

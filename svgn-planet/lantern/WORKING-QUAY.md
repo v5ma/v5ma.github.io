@@ -16,7 +16,7 @@ Physical: the same existing north quay now has a visible crate cart with a match
 
 Conditional: loading lasts 5 seconds before a continuous 2.5 m/s withdrawal into the bay; the clear stop recurs. A local request holds the clear opportunity for 8 seconds. The long loop does not depend on the phase. Roof and canal avoid this crossing but retain their original walking/docking/water-state demands.
 
-Behavioral: Ivo loads, withdraws, waits and returns. L3/L bell or X at either approach requests the same pass within 9 metres and a real line of sight. A cart about to return into the courier withdraws again. There is no remote teleport, hostility, hidden deadline, damage or forced dismount.
+Behavioral: Ivo loads, withdraws, waits and returns. The L3/L bell requests a pass within 9 metres and line of sight to the cart. X at a reached, visible approach post relays the request throughout the loading cycle, even while the cart is behind the warehouse corner. Both methods use the same continuous routine. A cart about to return into the courier withdraws again. There is no remote teleport, hostility, hidden deadline, damage or forced dismount.
 
 Information: the cart itself, approach crossbars, a labeled bay, a marked north loop and changing word-and-color signals explain the condition locally. The upper route previews it. The interaction cue offers a viable alternative instead of merely saying blocked. Text states distinguish loading, pulling north and clear.
 
@@ -32,9 +32,13 @@ Keep svgn.lantern-ward.v1, lantern-ward-01, layout 1 and the original 600-credit
 
 ## Evidence and failures
 
-Local Node acceptance: all 208 retained tests and 12 new tests passed. Unit fixtures for occupied lanes and saved overlap are explicitly model fixtures; route helpers use actual tick/input rather than actor assignment. The first run exposed a stopped-actor/courtesy-radius deadlock (six original route tests failed). Allowing motion away resolved five; reversing an occupied returning cart resolved the last. The retained route assertions were not weakened. Local browser navigation was denied by the environment (ERR_BLOCKED_BY_ADMINISTRATOR), not recorded as a game pass. CI must exercise the actual renderer, original nine browser suites and new input-only comparison plus controller/hand XR interactions before merge. Publication is a separate live run, not inferred from CI.
+Local Node acceptance: all 208 retained tests and 14 new tests passed. Unit fixtures for occupied lanes and saved overlap are explicitly model fixtures; route helpers use actual tick/input rather than actor assignment. The first run exposed a stopped-actor/courtesy-radius deadlock (six original route tests failed). Allowing motion away resolved five; reversing an occupied returning cart resolved the last. The retained route assertions were not weakened. Local browser navigation was denied by the environment (ERR_BLOCKED_BY_ADMINISTRATOR), not recorded as a game pass. The candidate workflow exercises the actual renderer, original nine browser suites and new input-only comparison plus controller/hand XR interactions before merge. Publication is a separate live run, not inferred from CI.
 
-At this integration checkpoint browser and public results remain pending. Store the exact accepted source, route metrics, errors and revealing failures in production/evidence/working-quay-0.12.1/ and release/PR evidence. Synthetic inputs do not certify physical Xbox, Quest, hand tracking, comfort, performance or human comprehension.
+The first actual rendered comparison completed all three bicycle approaches, delivered the parcel, retained the shortcut and reward after reload, and exercised tracked VR. It then failed the hand Interact assertion because the fixed post delegated to a free bell and temporarily lost line of sight to the cart in its bay. The corrected post now uses the already-validated reach and sightline to the fixed control; the hand assertion is unchanged. Two additional model tests cover both posts in all four phases and preserve the separate free-bell visibility limit. No controller action, arrival tolerance, reward or physics was weakened.
+
+The first full-throttle browser driver also overshot tight turns when sampled four simulation steps at a time. The input driver now reduces throttle and stick magnitude near turns; sampling at 60, 30 and 20 updates per second was checked in the model. This is a driver change, not a game-speed modification.
+
+Read production/evidence/working-quay-0.12.1/candidate.json for the exact engineering acceptance, route measurements and source hashes. Separate public byte and live browser verification belongs in the merge pull request and its linked publication artifacts. A candidate result alone is never publication evidence. Synthetic inputs do not certify physical Xbox, Quest, hand tracking, comfort, performance or human comprehension.
 
 ## Human gate and next opportunity
 

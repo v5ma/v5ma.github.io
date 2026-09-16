@@ -1,0 +1,23 @@
+{
+  "kind": "failed browser acceptance retained",
+  "sourceCommit": "41262253a4daa90f0b7fe17dc713e29e73970500",
+  "run": 35055345757,
+  "artifact": 10431045766,
+  "artifactSHA256": "335173093b0370e83b49b7a76715388cb08e6a4732f252baf3f50d93cab3a586",
+  "checksPassedBeforeFailure": 11,
+  "routes": {
+    "plain": {"simulationSeconds": 7.083, "distanceMetres": 10.959, "blockedSeconds": 4.567, "signals": 0, "mountChanges": 0, "menuOpensDuringCrossing": 0},
+    "loop": {"simulationSeconds": 8.45, "distanceMetres": 23.316, "blockedSeconds": 0, "signals": 0, "mountChanges": 0, "menuOpensDuringCrossing": 0},
+    "signal": {"simulationSeconds": 2.433, "distanceMetres": 10.931, "blockedSeconds": 0, "signals": 1, "mountChanges": 0, "menuOpensDuringCrossing": 0}
+  },
+  "errors": [],
+  "consoleErrors": [],
+  "failure": "Hand Interact reached the quay post but its forwarded bell request failed line-of-sight when the cart was in the bay behind the warehouse corner.",
+  "evidence": {"nearby": "quay-west-signal", "signals": 2, "accepted": 1, "rejected": 1},
+  "correctionCommit": "241a2676d3c117da5bbb25293a6ff0555f3f7d05",
+  "correction": "Use the fixed local signal control after its existing reach/visibility check. Keep the free bell local and sight-dependent. Add both-side/all-phase model fixtures. The browser assertion is unchanged.",
+  "retainedAssertion": "Hand Interact must increment the accepted request counter without menu navigation or a state assignment.",
+  "interpretation": "These measurements are from three controlled starts during a naturally recurring loading phase, not an average player time or proof of enjoyment. This failed run is not full acceptance; read candidate.json for the corrected source result.",
+  "humanComprehensionTested": false,
+  "physicalDevicesTested": false
+}
