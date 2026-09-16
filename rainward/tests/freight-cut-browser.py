@@ -49,9 +49,9 @@ with sync_playwright() as pw:
   pulse(12);page.wait_for_function('(b)=>Rainward.state.player.medkit===b.medkit-1&&Rainward.state.events.filter(e=>e.type==="heal").length>b.heals',arg=before)
   after=page.evaluate('({hp:Rainward.state.player.hp,medkit:Rainward.state.player.medkit})')
   check(after['hp']>before['hp'] and after['medkit']==before['medkit']-1,label+' spends one earned Classic D-pad-up medkit and restores health')
- def recover_if_needed(label,threshold=70):
+ def recover_if_needed(label,threshold=45):
   state=page.evaluate('({hp:Rainward.state.player.hp,medkit:Rainward.state.player.medkit})')
-  if state['hp']<threshold and state['medkit']>0:heal_now(label);return True
+  if state['hp']<=min(threshold,45) and state['medkit']>0:heal_now(label);return True
   return False
  def go(x,z,sprint=False,breakaway=False):
   neutral()
@@ -61,10 +61,10 @@ with sync_playwright() as pw:
     const stop=()=>{pad.axes[0]=pad.axes[1]=0;pad.buttons[10]={pressed:false,value:0};clearInterval(timer);};
     let lastHeal=-Infinity,standRequested=false;
     const timer=setInterval(()=>{const p=Rainward.state.player;
-     // Directional cover cannot hide a same-side flank. Request B once,
-     // then use the existing held L3 sprint with ordinary finite stamina.
-     if(breakaway&&!standRequested&&p.stance==='crouch'&&Rainward.state.enemies.some(e=>e.hp>0&&e.seen&&e.state==='chase')){standRequested=true;padPulse.push(1);padBreakawayInputs.push({t:Rainward.state.t,hp:p.hp,stamina:p.stamina,button:1,goal:{x,z}});}
-     if(window.padAllowRecovery&&p.hp>0&&p.hp<55&&p.medkit>0&&!p.craft&&performance.now()-lastHeal>500){padPulse.push(12);lastHeal=performance.now();padRecoveryInputs.push({t:Rainward.state.t,hp:p.hp,medkits:p.medkit,button:12,goal:{x,z}});}
+     // A watcher east of the screen is NOT a west-side flank. Remain
+     // crouched behind directional cover unless a seen pursuer is west too.
+     if(breakaway&&!standRequested&&p.x<17.4&&p.stance==='crouch'&&Rainward.state.enemies.some(e=>e.hp>0&&e.x<17.4&&e.seen&&e.state==='chase')){standRequested=true;padPulse.push(1);padBreakawayInputs.push({t:Rainward.state.t,hp:p.hp,stamina:p.stamina,button:1,goal:{x,z}});}
+     if(window.padAllowRecovery&&p.hp>0&&p.hp<=45&&p.medkit>0&&!p.craft&&performance.now()-lastHeal>500){padPulse.push(12);lastHeal=performance.now();padRecoveryInputs.push({t:Rainward.state.t,hp:p.hp,medkits:p.medkit,button:12,goal:{x,z}});}
      if(Rainward.mode!=='play'||performance.now()-start>150000){stop();reject(Error('Travel interrupted '+JSON.stringify({x:p.x,z:p.z,hp:p.hp,mode:Rainward.mode,goal:route[i]})));return;}
      const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.4){if(++i===route.length){stop();resolve();}return;}
      const yaw=Rainward.view.yaw,scale=Math.min(1,Math.max(.45,d*1.2));pad.axes[0]=(Math.cos(yaw)*dx-Math.sin(yaw)*dz)/d*scale;pad.axes[1]=(Math.sin(yaw)*dx+Math.cos(yaw)*dz)/d*scale;const run=sprint||(breakaway&&p.stance==='stand');pad.buttons[10]={pressed:run,value:run?1:0};
@@ -85,9 +85,9 @@ with sync_playwright() as pw:
   go(-24,5);use('Rainward.state.taken.has("clinic-kit")');go(-22,-3.5);use('Rainward.state.objectives.cell');go(-24,-1);use('Rainward.state.checkpoint==="clinic"')
   old_save=page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")');(OUT/'earned-clinic-before.json').write_text(old_save)
   check(not json.loads(old_save)['completedTasks'],'The earned clinic checkpoint precedes both optional shortcut repairs')
-  craft('smoke');check(page.evaluate('Rainward.state.player.medkit===1&&Rainward.state.player.smoke===2&&Rainward.state.player.cloth===1&&Rainward.state.player.canister===0'),'The clinic spends earned materials on the second smoke before commitment')
+  craft('medkit');check(page.evaluate('Rainward.state.player.medkit===2&&Rainward.state.player.smoke===1&&Rainward.state.player.cloth===1&&Rainward.state.player.canister===0'),'The clinic spends existing supplies on a second medkit; one smoke remains reserved for Freight Hall')
   go(-22,-3.5,True);go(-22,-10,True);check(page.evaluate('Rainward.state.player.y>2.3'),'The actual clinic ascent provides market observation')
-  picture('01-terrace-before-crossing');pulse(1);wait('Rainward.state.player.stance==="crouch"');page.evaluate('padAllowRecovery=true');go(-8,-10);recover_if_needed('Ramp-foot decision',85);pulse(14);wait('Rainward.state.smokes.length>0');record('finite smoke before market commitment')
+  picture('01-terrace-before-crossing');pulse(1);wait('Rainward.state.player.stance==="crouch"');page.evaluate('padAllowRecovery=true');go(-8,-10);recover_if_needed('Ramp-foot decision');record('preserve smoke; use market counter, fountain and grass')
   go(-5.2,-17);recover_if_needed('Market counter recovery');go(4,-16.5);recover_if_needed('Fountain recovery')
   go(9,-17);check(page.evaluate('(async()=>{const W=await import("./world.mjs");return W.coverAt(Rainward.state.player)})()'),'The approach reaches existing east grass concealment')
   recover_if_needed('East grass recovery');pulse(1);wait('Rainward.state.player.stance==="stand"');go(12,-15,True);go(18,-11,True)
@@ -95,12 +95,12 @@ with sync_playwright() as pw:
   use('Rainward.state.completedTasks.includes("ward-radio")');wait('Rainward.snapshot().visuals.freightCut.open')
   check(page.evaluate('Rainward.state.player.reserve')==min(36,reserve+4) and page.evaluate('Rainward.state.player.canister')==min(12,salvage+2),'The local receiver task opens the loading passage with its unchanged one-time reward')
   check(page.evaluate('Rainward.state.hint.includes("WEST LOADING OPEN")'),'Receiver feedback explains the passage and pursuit risk')
-  recover_if_needed('Receiver recovery',80);pulse(1);wait('Rainward.state.player.stance==="crouch"')
+  recover_if_needed('Receiver recovery');pulse(1);wait('Rainward.state.player.stance==="crouch"')
   go(16.2,-14,breakaway=True);go(16.2,-18,breakaway=True);go(16.2,-22,breakaway=True);go(16.2,-24,breakaway=True)
   if page.evaluate('Rainward.state.player.stance==="stand"'):pulse(1);wait('Rainward.state.player.stance==="crouch"')
   check(page.evaluate('Rainward.state.player.hp>0&&Rainward.state.player.stance==="crouch"&&Rainward.state.enemies.every(e=>e.hp>0)'),'The loading decision is reached alive after cover or finite-stamina breakaway, with all threats active')
   record('loading decision before commitment');smoke=page.evaluate('Rainward.state.player.smoke');pulse(14);wait('Rainward.state.player.smoke<'+str(smoke))
-  check(page.evaluate('Rainward.state.smokes.length>0'),'The second earned smoke precedes the exposed spindle floor')
+  check(page.evaluate('Rainward.state.smokes.length>0'),'The reserved earned smoke precedes the exposed spindle floor')
   pulse(1);wait('Rainward.state.player.stance==="stand"');go(17,-26,True);go(22.3,-26.7,True);use('Rainward.state.objectives.crank');record('spindle-recovered');go(17,-26,True)
   go(17,-24,True);start=page.evaluate('({t:Rainward.state.t,x:Rainward.state.player.x,z:Rainward.state.player.z})');go(11,-24,True)
   crossing=page.evaluate('({t:Rainward.state.t,x:Rainward.state.player.x,z:Rainward.state.player.z,hp:Rainward.state.player.hp})');(OUT/'native-crossing.json').write_text(json.dumps({'start':start,'end':crossing,'input':'virtual Xbox; sprint subject to finite stamina'},indent=2))
@@ -121,7 +121,7 @@ with sync_playwright() as pw:
   page.reload(wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');nav('continue');pulse(0);wait('Rainward.mode==="play"');wait('Rainward.snapshot().visuals.freightCut.open')
   check(page.evaluate('Rainward.state.objectives.cell&&Rainward.state.objectives.crank&&Rainward.state.checkpoint==="clinic"'),'Browser reload restores the earned clinic checkpoint and powered passage')
   check(not errors and not console and not dialogs,'No captured browser errors, shader errors or blocking dialogs')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs,'final':final,'reactiveRecoveryInputs':recovery_inputs,'breakawayInputs':breakaway_inputs,'crossing':{'start':start,'end':crossing},'scope':'Normal-start living-enemy Floodgate journey; actual HTTP/WebGL with virtual Xbox Classic buttons/sticks, read-only path guidance, synthetic D-pad-up medkit reactions, B stand/L3 finite-stamina aisle breakaway and planned earned smoke. No state assignments, grants, invulnerability, enemy removal, clock edits or planted saves. Genuine earned-checkpoint reload. Not human pacing, reaction time or physical Xbox/Quest approval.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs,'final':final,'reactiveRecoveryInputs':recovery_inputs,'breakawayInputs':breakaway_inputs,'crossing':{'start':start,'end':crossing},'scope':'Normal-start living-enemy Floodgate journey; actual HTTP/WebGL with virtual Xbox Classic buttons/sticks, read-only path guidance, synthetic D-pad-up medkit reactions, B stand/L3 finite-stamina aisle breakaway and reserved earned smoke. Two medkits and one smoke use only original rations and clinic drawer. Medkits are not spent above 45 health. Breakaway requires a seen chasing enemy west of the screen with the player. No state assignments, grants, invulnerability, enemy removal, clock edits or planted saves. Genuine earned-checkpoint reload. Not human pacing, reaction time or physical Xbox/Quest approval.'},indent=2))
  except Exception as error:
   data={'error':str(error),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs}
   try:data['reactiveRecoveryInputs']=page.evaluate('padRecoveryInputs');data['breakawayInputs']=page.evaluate('padBreakawayInputs');data['snapshot']=snap();data['focus']=page.evaluate('document.activeElement?.id');data['virtualInput']=page.evaluate('({axes:pad.axes,buttons:pad.buttons,polls:padPolls})');capture('failure')
