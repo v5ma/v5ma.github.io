@@ -65,7 +65,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        journey: [social, upper, hydraulic, spatial]
+        journey: [social, upper, hydraulic, spatial, relay]
     env:
       TEST_BASE_URL: ${{ github.event_name == 'push' && 'https://v5ma.github.io' || 'http://127.0.0.1:4173' }}
     steps:
@@ -96,6 +96,8 @@ jobs:
           trap 'kill $SERVER' EXIT
           if test "$QUARTER_ROUTE" = spatial; then
             python -u leonardos-guild/tests/spatial-browser.py
+          elif test "$QUARTER_ROUTE" = relay; then
+            QUARTER_ROUTE=social QUARTER_RELAY=1 python -u leonardos-guild/tests/quarter-browser.py
           else
             python -u leonardos-guild/tests/quarter-browser.py
           fi

@@ -1,3 +1,4 @@
+import {porterStatus} from './quarter-porter.mjs';
 /* Observations require an actual station action. Reading the notebook is pure. */
 export const QUARTER_OBSERVATIONS=Object.freeze({
  'arch-front':{title:'A bell to recognize',text:'The workshop-side arch has a distinctive bell bracket and no latch on this side. Look for the same bracket when returning from the gallery.'},
@@ -13,7 +14,8 @@ export function quarterNotebook(s){
  if(q.low)entries.push({id:'channel-drained',title:'The lower route is available',text:'The outlet is draining or has drained the channel. Watch the waterline from the dry controls before descending. Rear service stairs return to the gallery.'});
  if(q.parcel)entries.push({id:'commission-found',title:'The missing commission is safe',text:q.reported?'Leonardo has received the commission. Its reward has already been paid.':'Return to Leonardo on the workshop porch. Recovering it by any of the three approaches is sufficient.'});
  if(q.archOpen)entries.push({id:'arch-open',title:'A permanent way home',text:'The bell-bracket arch connects the gallery descent with the workshop. It stays open after leaving or reloading.'});
- if(q.delivery)entries.push({id:'spindle',title:'The finishing delivery',text:q.delivery===1?'Collect the spindle from Marta\'s workbench.':q.delivery===2?'Bring the spindle to Ilaria\'s finishing table in the loft.': 'The spindle has been delivered and paid for. Both commissions are complete.'});
+ if(q.goodsAccess&&q.archOpen)entries.push({id:'household-relay',title:'The household delivery round',text:porterStatus(q)});
+ if(q.delivery)entries.push({id:'spindle',title:'The finishing delivery',text:q.delivery===1?(q.porterOrder?porterStatus(q):'Collect the spindle from Marta\'s workbench, or request Neri at the restored bell arch.'):q.delivery===2?'Bring the spindle to Ilaria\'s finishing table in the loft.': 'The spindle has been delivered and paid for. Both commissions are complete.'});
  return entries;
 }
 const PLACES=Object.freeze({
@@ -42,7 +44,7 @@ const PLACES=Object.freeze({
  'service-turn':['Rear turning landing','The second stair returns toward the gallery above the channel.'],
  'service-stair-b':['Upper service stairs','The goods gallery is at the top of these stairs.']
 });
-export function quarterPlace(s){const [name,hint]=PLACES[s.quarter?.surface]||['Waterwheel Quarter','Use the nearby work stations or read your Quarter notebook.'];return {name,hint};}
+export function quarterPlace(s){const [name,hint]=PLACES[s.quarter?.surface]||['Waterwheel Quarter','Use the nearby work stations or read your Quarter notebook.'];return {name,hint:s.quarter?.surface==='arch-passage'&&s.quarter?.archOpen?porterStatus(s.quarter):hint};}
 export const QUARTER_MAP_LAYERS=Object.freeze(['current','all','street','upper','service']);
 export function mapLayer(value,s){return value==='current'?(s.quarter?.groundY<-.35?'service':s.quarter?.groundY>.6?'upper':'street'):QUARTER_MAP_LAYERS.includes(value)?value:'all';}
 export function floorOnLayer(f,layer){const low=Math.min(f.y,f.endY),high=Math.max(f.y,f.endY);return layer==='all'||(layer==='upper'?high>.6:layer==='service'?low<-.35:low<=.6&&high>=-.35);}

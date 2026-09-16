@@ -8,25 +8,30 @@
   "start_here": "NEXT-SESSION.md",
   "production_roadmap": "AAA-ROADMAP.md",
   "historical_checklist": "UPGRADE-CHECKLIST.md",
-  "publication_record": "PR157 conversation, PUBLICATION.md and independent served-byte workflow artifacts",
+  "publication_record": "Latest Working Deliveries PR and release-receipts; PR157 is the completed baseline.",
   "runtime_changes_in_this_handoff": true,
   "release": {
     "version": "0.14.0",
-    "build": "guild-waterwheel-20260915",
-    "status_rule": "Determine current publication from PR157 merge, Pages, served-byte receipt and live journeys; this metadata is not deployment evidence.",
-    "start_here": "WATERWHEEL-KNOWLEDGE.md",
-    "ordinary_runtime_checkpoint": "75d4fcb72647bdc8539406183d32876084eb0224",
-    "branch": "guild/waterwheel-spatial-20260915",
-    "pull_request": 157
+    "build": "guild-working-quarter-20260915",
+    "status_rule": "Read the newest release PR and persistent receipt; implementation metadata does not prove publication.",
+    "start_here": "WORKING-DELIVERIES.md",
+    "branch": "guild/working-deliveries-20260915",
+    "baseline_runtime_checkpoint": "75d4fcb72647bdc8539406183d32876084eb0224",
+    "baseline_pull_request": 157
   },
   "evidence": {
-    "current_cpu_checks_passed": 342,
-    "new_cpu_checks": 17,
+    "current_cpu_checks_passed": 351,
+    "new_cpu_checks": 9,
     "baseline_native_run": 35019954980,
     "baseline_native_commit": "98081b6c42f0a95829b13ffda68511238fabb1c5",
-    "baseline_native_jobs_passed": ["social", "upper", "hydraulic", "spatial"],
+    "baseline_native_jobs_passed": [
+      "social",
+      "upper",
+      "hydraulic",
+      "spatial"
+    ],
     "knowledge_native_run_to_review": 35030339481,
-    "current_native_results": "Read the latest workflow artifacts and PR conversation; not inferred from baseline success.",
+    "current_native_results": "Working Deliveries native tests pending; PR157 evidence is baseline only.",
     "local_browser_limitation": "ERR_BLOCKED_BY_ADMINISTRATOR; no local native acceptance claimed.",
     "physical_hardware_verified": false,
     "source_transfer_manifests": "Removed before ordinary-source native tests; current Waterwheel workflow has read-only repository permissions.",
@@ -34,14 +39,27 @@
   },
   "current_slice": {
     "authored_district": "Waterwheel Quarter",
-    "independent_approaches": ["cooperative", "upper", "hydraulic"],
+    "independent_approaches": [
+      "cooperative",
+      "upper",
+      "hydraulic"
+    ],
     "walking_surfaces": 24,
     "bounded_residents": 3,
     "permanent_shortcut": "bell-bracket service arch",
-    "cases": ["Missing Commission", "Finishing Spindle"],
+    "cases": [
+      "Missing Commission",
+      "Finishing Spindle"
+    ],
     "optional_station_observations": 5,
     "notebook": true,
-    "map_layers": ["current", "all", "street", "upper", "service"],
+    "map_layers": [
+      "current",
+      "all",
+      "street",
+      "upper",
+      "service"
+    ],
     "place_specific_hints": true,
     "corrected_first_person_snap_direction": true,
     "continuous_ramp_motion_history": true,
@@ -67,7 +85,10 @@
     "outer_version": 2,
     "audio_key": "svgn.leonardos-guild.audio.v1",
     "controller_key": "svgn.leonardos-guild.console.v1",
-    "required_session_adapters": ["attachFrontier", "attachQuarter"],
+    "required_session_adapters": [
+      "attachFrontier",
+      "attachQuarter"
+    ],
     "quarter_record": "quarter",
     "observations": "Five normalized known station IDs; optional, unique, in-person and persistent",
     "stable_delivery_identities": true,
@@ -77,12 +98,23 @@
     "transient_ik_and_room_pose_saved": false
   },
   "xr_scope": {
-    "spatial_regions": ["Waterwheel Quarter"],
-    "modes": ["first-person VR", "diorama VR", "diorama AR", "retained theatre"],
+    "spatial_regions": [
+      "Waterwheel Quarter"
+    ],
+    "modes": [
+      "first-person VR",
+      "diorama VR",
+      "diorama AR",
+      "retained theatre"
+    ],
     "actual_per_eye_geometry": true,
     "controller_tracking": true,
     "hand_pointer_ui": true,
-    "apertures": ["top open", "front open", "both open"],
+    "apertures": [
+      "top open",
+      "front open",
+      "both open"
+    ],
     "never_both_closed": true,
     "observer_motion_changes_player": false,
     "ar_surface_placement": "Optional hit-test result with explicit placement and manual fallback",
@@ -90,12 +122,42 @@
     "physical_quest3_verified": false
   },
   "next_queue": [
-    {"id": "WQ-RELEASE", "subject": "Review current native and legacy checks, screenshots, merge, Pages and exact public files.", "completion_source": "PR157 publication receipt"},
-    {"id": "WQ-UNDERSTANDING", "status": "open-human-gate", "subject": "Unfamiliar-player route inference, mechanism comprehension and shortcut recognition."},
-    {"id": "WQ-REPLAY", "status": "open-human-gate", "subject": "Use learned routes on the spindle delivery without repeated coaching."},
-    {"id": "WQ-ART", "status": "open", "subject": "Improve functional architecture, silhouettes, work activity and final art after route acceptance."},
-    {"id": "WQ-HARDWARE", "status": "open-device-gate", "subject": "Physical Xbox, Quest controllers/hands, passthrough, comfort and sustained performance."},
-    {"id": "WQ-NEXT-DISTRICT", "status": "later", "subject": "Reauthor the next coherent neighborhood while explicitly accounting for retained missions."}
+    {
+      "id": "WQ-PORTER",
+      "subject": "Validate and publish the restored household delivery round; measure manual versus cooperative return understanding.",
+      "completion_source": "Working Deliveries release PR and exact public receipt"
+    },
+    {
+      "id": "WQ-RELEASE",
+      "subject": "Review current native and legacy checks, screenshots, merge, Pages and exact public files.",
+      "completion_source": "PR157 publication receipt",
+      "status": "completed-for-pr157-see-release-receipts"
+    },
+    {
+      "id": "WQ-UNDERSTANDING",
+      "status": "open-human-gate",
+      "subject": "Unfamiliar-player route inference, mechanism comprehension and shortcut recognition."
+    },
+    {
+      "id": "WQ-REPLAY",
+      "status": "open-human-gate",
+      "subject": "Use learned routes on the spindle delivery without repeated coaching."
+    },
+    {
+      "id": "WQ-ART",
+      "status": "open",
+      "subject": "Improve functional architecture, silhouettes, work activity and final art after route acceptance."
+    },
+    {
+      "id": "WQ-HARDWARE",
+      "status": "open-device-gate",
+      "subject": "Physical Xbox, Quest controllers/hands, passthrough, comfort and sustained performance."
+    },
+    {
+      "id": "WQ-NEXT-DISTRICT",
+      "status": "later",
+      "subject": "Reauthor the next coherent neighborhood while explicitly accounting for retained missions."
+    }
   ],
   "not_implemented": [
     "Reauthored entire city or final AAA artwork",
@@ -113,5 +175,21 @@
     "quarter": "QUARTER_ROUTE=upper python3 leonardos-guild/tests/quarter-browser.py",
     "spatial": "python3 leonardos-guild/tests/spatial-browser.py",
     "theatre": "python3 leonardos-guild/tests/xr-browser.py"
+  },
+  "selected_level_design_task": {
+    "id": "WQ-PORTER",
+    "status": "implemented-model-tested-native-and-public-checks-pending",
+    "canonical_tasks": [
+      "W04",
+      "W05",
+      "S02",
+      "NEXT06"
+    ],
+    "brief": "WORKING-DELIVERIES.md",
+    "library_application": "../level-design-library/LEONARDOS-GUILD-WORKING-DELIVERIES.md",
+    "baseline_master": "78dad9840163bbacb7308118cde44a1bb4f525f6",
+    "baseline_game_tree": "8fc826137c9f86e4e9edf84018ec7beded411d49",
+    "build": "guild-working-quarter-20260915",
+    "human_device_approval": false
   }
 }

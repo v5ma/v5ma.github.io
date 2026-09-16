@@ -4,7 +4,7 @@ import * as T from './vendor/three.module.js';
 import {clipBoom} from './camera-safety.mjs';
 import {readoutScale} from './label-sizing.mjs';
 import {QUARTER_BOUNDS,QUARTER_FLOORS,QUARTER_WALLS,QUARTER_SITES,surfaceY} from './quarter-data.mjs';
-import {inQuarter,quarterGround,quarterSurface} from './quarter-core.mjs';
+import {inQuarter,quarterGround,quarterSurface,quarterTarget} from './quarter-core.mjs';
 import {createPersonRig} from './character-rig.mjs';
 import {animatePerson,inspectMotion} from './character-motion.mjs';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -77,6 +77,14 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
  box(1.7,.6,-2.6,1,.13,.6,'wood');for(const x of[1.35,2.05])cylinder(x,.9,-2.6,.13,.4,'metal');label('SLUICES / WATCH THE WATERLINE',0,1.7,-1,6);
  rod([12.3,7.9,14.8],[1.8,7.9,14],.14,'dark');rod([1.8,7.9,14],[1.8,3.9,14],.045,'metal');box(1.8,3.45,14,2,.3,1.3,'wood');const parcel=box(1.8,3.85,14,.9,.55,.65,'cream');
  const marker=new T.Mesh(new T.RingGeometry(.45,.52,32),new T.MeshBasicMaterial({color:'#e7c582',side:T.DoubleSide,transparent:true,opacity:.8}));marker.rotation.x=-Math.PI/2;root.add(marker);
+ // Small representative props communicate item custody, not new collection goals.
+ function spindle(){const g=new T.Group();const shaft=new T.Mesh(unitCylinder,materials.wood);shaft.rotation.z=Math.PI/2;shaft.scale.set(.055,.56,.055);g.add(shaft);for(const x of[-.21,.21]){const end=new T.Mesh(unitCylinder,materials.metal);end.rotation.z=Math.PI/2;end.position.x=x;end.scale.set(.14,.065,.14);g.add(end);}return g;}
+ const benchSpindle=spindle(),loftSpindle=spindle(),handSpindle=spindle();
+ benchSpindle.position.set(19.7,1.23,-8.2);loftSpindle.position.set(-24,2.21,9.4);handSpindle.position.set(0,1.05,.37);
+ benchSpindle.visible=loftSpindle.visible=handSpindle.visible=false;root.add(benchSpindle,loftSpindle);rider.root.add(handSpindle);
+ const serviceFlag=new T.Group();serviceFlag.position.set(-17.7,3.9,-3.8);root.add(serviceFlag);
+ const flag=new T.Mesh(unitBox,materials.metal);flag.position.x=.25;flag.scale.set(.5,.1,.08);serviceFlag.add(flag);
+ label('NERI / HOUSEHOLD DELIVERY BELL',-16,2.3,-4.12,3.3);
  const npcMaterial=new T.MeshStandardMaterial({vertexColors:true,roughness:.9});const npcs=new Map(['marta','ilaria','neri'].map((id,i)=>{const p=createPersonRig({trim:npcMaterial},i===0?'master':'apprentice');root.add(p.root);return [id,p];}));
  const sun=new T.DirectionalLight('#ffe4ba',2.5);sun.position.set(-14,35,-8);root.add(sun,sun.target);const hemi=new T.HemisphereLight('#c6dce2','#746751',2.2);root.add(hemi);
  // Batch static structural detail. Keep cutaway panels, gates and the parcel
@@ -85,18 +93,24 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
  const groups=new Map();for(const o of [...root.children]){if(!o.isMesh||independent.has(o)||![unitBox,unitCylinder].includes(o.geometry))continue;const key=o.geometry.uuid+'/'+o.material.uuid;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(o);}
  for(const list of groups.values()){const instanced=new T.InstancedMesh(list[0].geometry,list[0].material,list.length);list.forEach((o,i)=>{o.updateMatrix();instanced.setMatrixAt(i,o.matrix);root.remove(o);});instanced.instanceMatrix.needsUpdate=true;instanced.castShadow=true;instanced.receiveShadow=true;instanced.name='Batched authored architecture';root.add(instanced);}
  const cameraBoxes=QUARTER_WALLS.map(b=>({id:b.id,gate:b.gate,min:{x:b.x-b.hx,y:b.y,z:b.z-b.hz},max:{x:b.x+b.hx,y:b.y+b.h,z:b.z+b.hz}}));let cameraSafety={valid:false};
+ const carriedSpindle=spindle();carriedSpindle.position.set(0,1.05,.37);npcs.get('neri').root.add(carriedSpindle);
  let active=false,prior=new Map(),originalParent=null,background=null,fog=null,presentation='desktop',skipRender=false,lastState=null;
  function setPresentation(value){presentation=value;if(!lastState)return;const s=lastState,first=value==='first-person',diorama=value==='diorama';rider.root.visible=!first;marker.visible=!first;for(const sign of signs){sign.mesh.scale.setScalar(first||diorama?1:sign.desktopScale);sign.mesh.visible=first||diorama||sign.desktopVisible;}
   precisionRoof.visible=first||!(s.x>8&&s.x<23&&s.z>-13&&s.z<2);dyeRoof.visible=first||!(s.x<-20&&s.z<2);galleryCanopy.visible=first;
   for(const id of ['precision-front-left','precision-front-right'])wallMeshes.get(id).visible=!(diorama&&s.x>8&&s.z<1);
   floorMeshes.get('hoist-gallery').visible=first||s.quarter.groundY>-.4;
  }
- function deactivate(){if(!active)return;active=false;root.visible=false;originalParent?.add(rider.root);for(const [o,v]of prior)o.visible=v;prior.clear();scene.background=background;scene.fog=fog;rider.root.visible=true;}
+ function deactivate(){if(!active)return;active=false;root.visible=false;handSpindle.visible=false;originalParent?.add(rider.root);for(const [o,v]of prior)o.visible=v;prior.clear();scene.background=background;scene.fog=fog;rider.root.visible=true;}
  function update(s,dt,options={}){if(!inQuarter(s)){deactivate();return false;}if(!active){background=scene.background;fog=scene.fog;for(const o of scene.children)if(o!==root){prior.set(o,o.visible);o.visible=false;}originalParent=rider.root.parent;root.add(rider.root);root.visible=true;active=true;scene.background=new T.Color('#a6c7c5');scene.fog=new T.Fog('#c8d4bd',65,180);}
-  lastState=s;const q=s.quarter;for(const w of QUARTER_WALLS)if(w.gate)wallMeshes.get(w.id).visible=!q[w.gate];parcel.visible=!q.parcel;wheel.rotation.x=q.goodsAccess?s.time*.24:s.time*.025;for(const mesh of water){mesh.position.y=q.waterY;mesh.material.uniforms.level.value=q.waterY;mesh.material.uniforms.clock.value=s.time;}
+  lastState=s;const q=s.quarter;
+  benchSpindle.visible=q.delivery===1&&!q.porter?.carrying;carriedSpindle.visible=!!q.porter?.carrying;handSpindle.visible=q.delivery===2;loftSpindle.visible=q.delivery===3;
+  // Flag posture, carried prop and words all indicate state; no extra sound cue.
+  serviceFlag.rotation.z=q.porterOrder==='ready'?Math.PI/2:q.porterOrder?Math.PI/4:0;
+  serviceFlag.visible=q.goodsAccess&&q.archOpen;
+for(const w of QUARTER_WALLS)if(w.gate)wallMeshes.get(w.id).visible=!q[w.gate];parcel.visible=!q.parcel;wheel.rotation.x=q.goodsAccess?s.time*.24:s.time*.025;for(const mesh of water){mesh.position.y=q.waterY;mesh.material.uniforms.level.value=q.waterY;mesh.material.uniforms.clock.value=s.time;}
   for(const a of q.actors){const p=npcs.get(a.id);p.root.position.set(a.x,a.y,a.z);p.root.rotation.y=a.yaw;animatePerson(p,s.time,{motion:a.motion,ground:(x,z)=>quarterSurface(x,z,a.y)?.y??a.y});}
   rider.root.position.set(s.x,q.groundY+s.lift,s.z);rider.root.rotation.set(0,s.yaw,0);animatePerson(rider,s.time,{motion:s.lift>.04?'jump':s.doors.dodge>0?'dodge':s.resonance.aim?'aim':Math.abs(s.speed)>5?'run':'walk',level:'waterwheel-quarter',ground:(x,z)=>quarterGround(s,x,z)});
-  const target=QUARTER_SITES.find(a=>a.id===(q.parcel?'workshop':'parcel'));marker.position.set(target.x,target.y+.05,target.z);
+  const target=quarterTarget(s);marker.position.set(target.x,target.y+.05,target.z);
   const yaw=Number.isFinite(options.yaw)?options.yaw:s.yaw,anchor=new T.Vector3(s.x,q.groundY+(s.resonance.aim?1.65:1.2),s.z),dist=(s.resonance.aim?2.8:6.5)*clamp(options.distanceScale??1,.8,1.4),tilt=clamp(options.pitch??0,-.4,.5),eye=new T.Vector3(s.x-Math.sin(yaw)*dist,q.groundY+(s.resonance.aim?1.85:4.6)+tilt*dist,s.z-Math.cos(yaw)*dist);
   // Reuse the retained analytic segment/expanded-box trace. The workshop
   // facade must be a physical camera blocker, not a screen-filling surprise.
@@ -110,5 +124,5 @@ export function createQuarterArt({scene,renderer,camera,rider,m}){
   for(const sign of signs){const p=sign.mesh.position;sign.desktopScale=readoutScale({depth:p.distanceTo(camera.position),width:sign.width,height:sign.height,viewportHeight:screenHeight,fov:camera.fov});sign.desktopVisible=!quarterSignObstructs(camera.position,anchor,{x:p.x,y:p.y,z:p.z,width:sign.width,height:sign.height});}
   setPresentation(presentation);if(!skipRender)renderer.render(scene,camera);return true;
  }
- return {root,update,deactivate,setPresentation,setSkipRender:value=>skipRender=!!value,available:()=>active,bounds:QUARTER_BOUNDS,inspect:()=>({active,revision:'waterwheel-1',floorCount:QUARTER_FLOORS.length,cameraSafety,readouts:{count:signs.length,hidden:signs.filter(s=>!s.desktopVisible).length},actors:npcs.size,character:inspectMotion(rider),water:lastState?.quarter.waterY,physicalScene:true,presentation,skipRender})};
+ return {root,update,deactivate,setPresentation,setSkipRender:value=>skipRender=!!value,available:()=>active,bounds:QUARTER_BOUNDS,inspect:()=>({active,revision:'waterwheel-1',floorCount:QUARTER_FLOORS.length,cameraSafety,readouts:{count:signs.length,hidden:signs.filter(s=>!s.desktopVisible).length},actors:npcs.size,porterPhase:lastState?.quarter.porter?.phase||'sorting',spindleLocation:lastState?.quarter.delivery===3?'loft':lastState?.quarter.delivery===2?'apprentice':lastState?.quarter.porter?.carrying?'neri':'bench',character:inspectMotion(rider),water:lastState?.quarter.waterY,physicalScene:true,presentation,skipRender})};
 }
