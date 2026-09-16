@@ -114,8 +114,19 @@ with sync_playwright() as pw:
   for key in['p','health','ammo','chapter','enemies','pickups','score','shots','time']:check(restored[key]==saved['state'][key],'AR inspection preserves '+key)
   page.locator('#resume').click();page.locator('a-scene canvas').focus()
   for p in[[-14,-11.5],[-14,-21],[0,-21]]:walk(*p)
-  # The bell is reached through a real swept arrow from the gallery approach.
-  page.evaluate(AIM,[0,5,-24,36]);page.keyboard.down('Space');wait('Vesperfall.component.charge>.985');page.keyboard.up('Space');wait('Vesperfall.state.chapter.bellRung')
+  # Open Line places a live watcher in this physical shot line. Observe the
+  # intercepted arrow, then draw again; never fire through it or set the target.
+  bell_shots=[]
+  for attempt in range(2):
+   before=page.evaluate('({shots:Vesperfall.state.shots,seq:Vesperfall.state.eventSeq||0})')
+   page.evaluate(AIM,[0,5,-24,36]);page.keyboard.down('Space');wait('Vesperfall.component.charge>.985');page.keyboard.up('Space')
+   wait('n=>Vesperfall.state.shots===n+1',before['shots'])
+   wait('Vesperfall.state.arrows.length===0||Vesperfall.state.phase!=="playing"')
+   outcome=page.evaluate('seq=>{const s=Vesperfall.state;return {phase:s.phase,bellRung:s.chapter.bellRung,health:s.health,shots:s.shots,kills:s.kills,targets:[...s.targets],events:s.events.filter(e=>e.seq>seq)}}',before['seq'])
+   bell_shots.append(outcome);(OUT/'bell-shot-observations.json').write_text(json.dumps(bell_shots,indent=2))
+   if outcome['bellRung']:break
+   check(attempt==0 and outcome['phase']=='playing' and not outcome['targets'] and any(e['type']=='kill' and e.get('id')==4 for e in outcome['events']),'The live watcher intercepts the first bell arrow; a second ordinary draw remains available')
+  check(bell_shots[-1]['bellRung'],'A subsequent swept arrow rings the bell after the real obstruction is cleared')
   check(page.evaluate('Vesperfall.state.phase==="playing"&&Vesperfall.state.kills<5'),'Ringing the signal recognizes actual archery without requiring every defender to die')
   page.screenshot(path=str(OUT/'signal-restored.png'))
   for p in[[0,-28],[20,-28],[20,-16],[20,8],[7.3,8]]:walk(*p)
