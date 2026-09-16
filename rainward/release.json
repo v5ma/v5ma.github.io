@@ -1,14 +1,14 @@
 {
-  "version": "0.14.1",
-  "build": "rainward-wayfinder-20260915",
+  "version": "0.15.0",
+  "build": "rainward-freight-firebreak-20260915",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-and-stereo-vr-ar-diorama",
   "multiplayer": false,
   "changes": [
-    "Add floor-level clinic approach chevrons and an open/closed yard-return sign",
-    "Add a controller-accessible clinic route key and map patterns that distinguish the locked crossing",
-    "Show XR ray endpoint cursors, target highlighting and stable unavailable menu rows",
-    "Show actual crafting progress and bind each held ray action to its initiating tracked source",
-    "Retain all three XR views, Xbox presets, seven chapters, objectives, finite supplies and existing checkpoint formats"
+    "Add a noisy linked firebreak to the existing Freight Hall: lower the centre sightline partition and open the east yard recovery loop",
+    "Retain the untouched-mechanism north approach and both original required objectives",
+    "Share gate state across collision, AI sight/pathfinding, original mechanical sound, presentation and version-4 shelter saves",
+    "Prevent the partition from lowering onto a player or live enemy",
+    "Preserve seven chapters, resources, Xbox presets and first-person / AR / VR controller and hand modes"
   ]
 }

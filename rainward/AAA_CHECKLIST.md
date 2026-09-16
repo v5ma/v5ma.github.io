@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.14.1 / Wayfinder.
+Release baseline: v0.15.0 / Freight Firebreak.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -115,7 +115,7 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Dependencies: RW-005.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
+  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice. Freight Firebreak extends the same chapter with a threat-aware linked partition/yard return; see FREIGHT-FIREBREAK.md. Full flagship/human approval remains open.
   Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
 
 - [ ] RW-010 / P0 / Readable first encounter / Implemented
@@ -130,14 +130,17 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Dependencies: RW-009.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.
+  Continuation: The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice. Freight Firebreak extends the same chapter with a threat-aware linked partition/yard return; see FREIGHT-FIREBREAK.md. Full flagship/human approval remains open.
   Next action: Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler.
 
-- [ ] RW-012 / P1 / Stealth-to-combat-to-recovery pacing / Planned
+- [ ] RW-012 / P1 / Stealth-to-combat-to-recovery pacing / Implemented
   Owner role: Systems design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: A recorded playthrough moves through all three states without unavoidable damage, empty downtime or an inventory dead end.
   Dependencies: RW-010.
-  Evidence: Not recorded yet.
+  Evidence: FREIGHT-FIREBREAK.md.
+
+  Continuation: A noisy paired sightline/route state provides a Freight Hall recovery loop; exact-source native evidence gates release, while unfamiliar-player pacing remains unapproved.
+  Next action: Observe a new player interpreting and using the linked mechanism after detection, then improve the loading-door/quay finale.
 
 - [ ] RW-013 / P1 / Environmental story beat / Implemented
   Owner role: Narrative design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -253,7 +256,7 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Dependencies: RW-016, RW-025.
   Evidence: LEVEL-DESIGN.md.
 
-  Continuation: The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.
+  Continuation: The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged. Freight Firebreak extends the same chapter with a threat-aware linked partition/yard return; see FREIGHT-FIREBREAK.md. Full flagship/human approval remains open.
   Next action: Apply the seven chapter briefs incrementally, preserving stable objectives and shelters; verify route choice, observation, retreat, pacing and spatial reveals with players.
 
 - [ ] RW-029 / P1 / New puzzle interaction families / Planned

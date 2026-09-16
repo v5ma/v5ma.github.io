@@ -1,11 +1,12 @@
 /* Original fictional level and game collision geometry. */
+import {applyFreightFirebreak} from './freight-firebreak.mjs';
 import {applyFloodgateRecut,recutHeight} from './floodgate-recut.mjs';
 import {NATATORIUM} from './natatorium.mjs';
 import {FLOODGATE_COVER} from './floodgate-content.mjs';
 import {MERIDIAN,BREAKWATER,WHITEOUT,LEGACY_TASKS} from './expeditions.mjs';
 import {TERMINUS} from './terminus.mjs';
 import {CONSERVATORY} from './conservatory.mjs';
-export const VERSION='0.14.1';
+export const VERSION='0.15.0';
 export const BOUNDS={x0:-35,x1:35,z0:-49,z1:34};
 export const START={x:0,z:27};
 const box=(id,x,z,w,d,h,kind='wall',bottom=0)=>({id,x,z,w,d,h,kind,bottom});
@@ -50,7 +51,7 @@ export const PATROLS=[
  {id:'drifter',name:'Echo drifter',type:'drifter',points:[[-4,-23],[-4,-27],[6,-26],[6,-22]],yaw:0},
 ];
 const DISTRICT={id:'district',tasks:LEGACY_TASKS.district,title:'The Floodgate',subtitle:'CHAPTER 01 / LARCH WARD',bounds:{...BOUNDS},start:{...START},obstacles:OBSTACLES.map(o=>({...o})),grass:GRASS.map(o=>({...o})),items:ITEMS.map(o=>({...o})),shelters:SHELTERS.map(o=>({...o})),exit:{...EXIT},patrols:PATROLS.map(o=>({...o})),water:[],zones:[],objectiveNames:{cell:'Signal battery',crank:'Gate spindle'}};
-applyFloodgateRecut(DISTRICT);
+applyFloodgateRecut(DISTRICT);applyFreightFirebreak(DISTRICT);
 export const LEVELS=Object.freeze({district:DISTRICT,conservatory:{...CONSERVATORY,tasks:LEGACY_TASKS.conservatory},terminus:{...TERMINUS,tasks:LEGACY_TASKS.terminus},meridian:MERIDIAN,breakwater:BREAKWATER,whiteout:WHITEOUT,natatorium:NATATORIUM});
 // Each expedition has a small, one-time survivor cache in the open start area.
 for(const d of Object.values(LEVELS)){d.items.push({id:d.id+'-survival-cache',x:d.start.x+3,z:d.start.z-4,type:'supplies',label:'Survivor cache / rifle cartridges and '+(d.id==='whiteout'?'blade':'club'),rifleRounds:8,meleeWeapon:d.id==='whiteout'?'blade':'club'});}
@@ -66,7 +67,8 @@ export function levelHeight(id,x,z){if(id==='district')return recutHeight(x,z);i
 export const heightAt=(x,z)=>levelHeight(CURRENT.id,x,z);
 export function waterAt(p){return CURRENT.water?.find(r=>inside(p,r))||null;}
 export function syncGates(puzzle){let changed=false;for(const b of OBSTACLES)if(b.openWhen){const disabled=!!puzzle?.solved;if(b.disabled!==disabled){b.disabled=disabled;changed=true;}}if(changed)rebuildNav();}
-export function syncRouteGates(completed=[]){let changed=false;for(const o of OBSTACLES)if(o.openOnTask){const disabled=completed.includes(o.openOnTask);if(o.disabled!==disabled){o.disabled=disabled;changed=true;}}if(changed)rebuildNav();return changed;}
+export function syncRouteGates(completed=[]){let changed=false;for(const o of OBSTACLES)if(o.openOnTask||o.closeOnTask){const disabled=o.closeOnTask?!completed.includes(o.closeOnTask):completed.includes(o.openOnTask);if(o.disabled!==disabled){o.disabled=disabled;changed=true;}}if(changed)rebuildNav();return changed;}
+export function routeTransitionBlocked(s,id){return OBSTACLES.some(o=>o.closeOnTask===id&&o.disabled&&[s.player,...s.enemies.filter(e=>e.hp>0)].some(p=>inside(p,o,.4)));}
 export const HEIGHT={stand:1.72,crouch:1.02,prone:.40};
 export const RAD=.32;
 export const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
