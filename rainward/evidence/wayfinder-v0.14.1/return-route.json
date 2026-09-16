@@ -1,0 +1,14 @@
+{
+  "record_kind": "Retained living-enemy route failures and input-only test correction, not a publication receipt",
+  "source": "eb79bf69a621a1b07e6fc119e1ad953079b144b1",
+  "workflow_run": 35037550003,
+  "attempts": [
+    {"artifact": 10424376241, "archive_sha256": "86eb64c9535b1e3a899080805f65be0b42e961cf4473232c13fa62c35a59ca64", "result": "failed", "passed_checks": 21, "final_position": {"x": 3.0807842794, "z": 30.6943861925}, "health": 0},
+    {"artifact": 10424368056, "archive_sha256": "edb40a2ce2be230ab508728baf5bbcb2baf9dcaf96b10ffaa1bef30565821541", "result": "failed unchanged retry", "passed_checks": 21, "final_position": {"x": 3.0442296674, "z": 25.9147090853}, "health": 0}
+  ],
+  "observed": "Both first-person hand journeys recovered the actual submerged fuse, tested held crafting, map and settings, and surfaced normally, then died to living enemies on the unprotected walking return to the lobby shelter. No JavaScript or console errors were captured. The same-source controller journey passed.",
+  "correction": "The hand driver now uses the already-shipped HAND SPRINT spatial control while submerged near the exit before surfacing for the exposed return. It asserts the real control label changes to ON. Locomotion still comes only from the tracked hand's pinch-stick and consumes the ordinary finite stamina. No game-state mutation or rule change is made.",
+  "runtime_changes": "None. Enemies, damage, health, ammunition, resources, movement speeds, stamina costs, oxygen, clock, collision and checkpoint rules are unchanged. The 148 public runtime/document/asset hashes remain the same as the prior candidate.",
+  "acceptance_boundary": "The driver uses real Chromium/WebGL and game logic with explicitly mocked XR poses/input. Retaining failed no-defense attempts and testing a successful player action does not establish deterministic encounter balance, human usability or physical Quest certification.",
+  "release_gate": "The corrected current-source hand journey, retained regression matrix, normal merge and actual public-byte comparison remain required before reporting delivery."
+}

@@ -115,7 +115,13 @@ with sync_playwright() as pw:
   if KIND=='hands':select('hand-fire')
   ammo=p.evaluate('Rainward.state.player.mag');away();frames(5);trigger(True);frames(5);trigger(False);frames(3);check(p.evaluate('Rainward.state.player.mag')==ammo,'Swimming keeps firearms stowed despite XR trigger or pinch input')
   if KIND=='hands':select('hand-fire')
-  dive();go(15,3);breathe();dive();go(15,18);breathe()
+  dive();go(15,3);breathe();dive();go(15,18)
+  if KIND=='hands':
+   # Use the existing player-facing sprint option while safely submerged.
+   # The former unprotected walk back died to living enemies; no enemy,
+   # health, resource, clock or movement-rule edits replace this return.
+   select('hand-sprint');check(p.evaluate('Rainward.snapshot().xr.panelRows.some(row=>row.id==="hand-sprint"&&row.label==="HAND SPRINT: ON")'),'Hand sprint is selected through its actual spatial field control before the exposed return')
+  breathe()
   go(15,23.5);go(3,23.5);go(3,29);go(0,48);interact();check(p.evaluate('Rainward.state.checkpoint')=='natatorium-lobby','The XR journey saves at the authored dry lobby shelter')
   if KIND=='controllers':button('left',5,'Rainward.mode==="pause"')
   else:select('pause');wait('Rainward.mode==="pause"')
