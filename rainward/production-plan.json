@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.14.0",
-  "edition": "Open Diorama",
+  "release": "0.14.1",
+  "edition": "Wayfinder",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
   "updated": "2026-09-15",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
@@ -65,6 +65,10 @@
     }
   ],
   "references": [
+    {
+      "title": "Wayfinder route and XR interaction polish",
+      "url": "WAYFINDER.md"
+    },
     {
       "title": "Authored replacement methodology and chapter briefs",
       "url": "LEVEL-DESIGN.md"
@@ -537,7 +541,7 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented.",
+      "resumeNote": "The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.",
       "nextAction": "Apply the seven chapter briefs incrementally, preserving stable objectives and shelters; verify route choice, observation, retreat, pacing and spatial reveals with players."
     },
     {
@@ -1095,7 +1099,7 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent.",
+      "resumeNote": "First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.",
       "nextAction": "Test all three views with real Quest controllers and hands, including placement, body-scale clarity, targeting, saves, tracking loss, comfort and measured device performance."
     },
     {
@@ -1244,6 +1248,13 @@
       "firstReplacement": "Floodgate clinic-market seam / playable graybox",
       "otherChapterReplacements": "Planned; six existing chapters remain playable and unchanged",
       "acceptance": "Require exact-source model, real browser fixture and living-enemy regression, physical device review and unfamiliar-player pacing review separately."
+    },
+    "wayfinder": {
+      "status": "Implemented",
+      "scope": "Existing clinic route cues and journal, spatial hover feedback and per-source crafting holds. No new level or save migration.",
+      "evidence": "WAYFINDER.md",
+      "physicalHardware": "Not tested",
+      "unfamiliarPlayer": "Not reviewed"
     }
   }
 }

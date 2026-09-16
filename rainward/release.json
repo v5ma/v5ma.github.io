@@ -1,16 +1,14 @@
 {
-  "version": "0.14.0",
-  "build": "rainward-open-diorama-20260915",
+  "version": "0.14.1",
+  "build": "rainward-wayfinder-20260915",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-and-stereo-vr-ar-diorama",
   "multiplayer": false,
   "changes": [
-    "Retain playable first-person Quest VR with tracked controllers and hand tracking",
-    "Add third-person AR and VR dioramas of the actual world, not a flat theatre or separate game",
-    "Enforce three valid top/front shell states, with bounded zoom, recentering and optional content follow",
-    "Keep spectator head motion separate from character locomotion and preserve native gameplay rules",
-    "Replace the Floodgate clinic-market seam with a continuous raised route, new clinic opening and saved inside-unlocked return shutter",
-    "Preserve all seven expedition slots, old checkpoint formats, objectives, finite resources, Xbox layouts, original art/audio and licenses",
-    "Adopt an experience-spine and graybox-first level-design contract; remaining chapter replacements and physical-device approval stay open"
+    "Add floor-level clinic approach chevrons and an open/closed yard-return sign",
+    "Add a controller-accessible clinic route key and map patterns that distinguish the locked crossing",
+    "Show XR ray endpoint cursors, target highlighting and stable unavailable menu rows",
+    "Show actual crafting progress and bind each held ray action to its initiating tracked source",
+    "Retain all three XR views, Xbox presets, seven chapters, objectives, finite supplies and existing checkpoint formats"
   ]
 }

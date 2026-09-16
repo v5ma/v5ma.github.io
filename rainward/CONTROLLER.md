@@ -1,3 +1,9 @@
+# Current release / Wayfinder v0.14.1
+
+Read WAYFINDER.md for clinic route chevrons, the gate/map/journal state, spatial pointer feedback and source-owned crafting holds. Open Diorama v0.14.0 is already merged in PR 154; do not revive its preparation branches. The next work remains graybox evaluation and the remaining Floodgate sequence, then chapter replacements, body/contact animation and physical Quest/Xbox review. All seven chapter identities, saves and Xbox presets are retained. The release PR and hash receipt establish publication.
+
+The previous release records follow as historical context.
+
 # Current release / Open Diorama v0.14.0
 
 Read DIORAMA.md for first-person VR, third-person VR Diorama and third-person AR Diorama, controller/hand entry and the three valid shell states. Read LEVEL-DESIGN.md for the new experience-spine/graybox-first replacement contract. The first implemented replacement is the Floodgate clinic-market seam, with a 2.4-metre terrace, new north opening and saved inside-unlocked yard shutter. The other six chapter redesigns remain planned, not completed. All original chapter slots, objectives, shelters and checkpoint formats remain.

@@ -107,6 +107,10 @@ with sync_playwright() as pw:
   select('retry');wait('Rainward.mode==="confirm"');check(p.evaluate('document.activeElement.id')=='confirm-no','A new confirmation retains safe Cancel focus');select('confirm-no');wait('Rainward.mode==="pause"')
   select('resume');wait('Rainward.mode==="play"');select('selectPistol')
   select('comfort-speed');check(not p.evaluate('Rainward.snapshot().xr.comfortSpeed'),'The public comfort option selects normal speed without altering the simulation')
+  if KIND=='hands':
+   # Select this existing movement option at the dry, sheltered preparation
+   # stage, not by paging through menus during a time-limited underwater dive.
+   select('hand-sprint');check(p.evaluate('Rainward.snapshot().xr.panelRows.some(row=>row.id==="hand-sprint"&&row.label==="HAND SPRINT: ON")'),'Hand sprint is selected through its actual spatial control before leaving the dry shelter')
   go(3,29);go(15,23.5);go(15,18);check(p.evaluate('Rainward.state.player.waterMode==="swim"'),'XR locomotion enters the real competition pool')
   # Breathing stops use normal controls, not oxygen or clock edits.
   dive();go(15,3);breathe();dive();go(15,-13)
@@ -115,7 +119,8 @@ with sync_playwright() as pw:
   if KIND=='hands':select('hand-fire')
   ammo=p.evaluate('Rainward.state.player.mag');away();frames(5);trigger(True);frames(5);trigger(False);frames(3);check(p.evaluate('Rainward.state.player.mag')==ammo,'Swimming keeps firearms stowed despite XR trigger or pinch input')
   if KIND=='hands':select('hand-fire')
-  dive();go(15,3);breathe();dive();go(15,18);breathe()
+  dive();go(15,3);breathe();dive();go(15,18)
+  breathe()
   go(15,23.5);go(3,23.5);go(3,29);go(0,48);interact();check(p.evaluate('Rainward.state.checkpoint')=='natatorium-lobby','The XR journey saves at the authored dry lobby shelter')
   if KIND=='controllers':button('left',5,'Rainward.mode==="pause"')
   else:select('pause');wait('Rainward.mode==="pause"')
