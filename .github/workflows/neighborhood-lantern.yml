@@ -51,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [street, roof, canal, xr, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
+        suite: [street, roof, canal, xr, market, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -72,6 +72,7 @@ jobs:
           python -m http.server 8765 > server.log 2>&1 &
           case "$WARD_ROUTE" in
             street|roof|canal|xr) python svgn-planet/lantern/browser.py ;;
+            market) python svgn-planet/lantern/market-browser.py ;;
             *) python "svgn-planet/tests/$WARD_ROUTE.py" ;;
           esac
       - uses: actions/upload-artifact@v4
@@ -86,4 +87,4 @@ jobs:
     needs: [model, browser]
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Exact source ${{ github.sha }} passed model, all three delivery approaches, native synthetic XR and all five legacy browser suites.' >> "$GITHUB_STEP_SUMMARY"
+      - run: echo 'Exact source ${{ github.sha }} passed model, all three delivery approaches, native synthetic XR, Working Quay route comparison and all five legacy browser suites.' >> "$GITHUB_STEP_SUMMARY"

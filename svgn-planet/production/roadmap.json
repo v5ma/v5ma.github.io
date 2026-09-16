@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.12.0",
+  "version": "0.12.1",
   "title": "Neighborhood Missions: path to a production-quality title",
   "reviewed": "2026-09-15",
   "currentMilestone": "M1",
@@ -904,13 +904,15 @@
       "status": "needs-playtest",
       "title": "Authored Lantern Ward replacement chapter",
       "acceptance": "Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.",
-      "next": "Published graybox and all three approach tours passed. Test unfamiliar-player orientation, choices, shortcut recognition and replay agency before expanding; then replace graybox art deliberately.",
+      "next": "Working Quay candidate: measure wait/signal/north-loop bicycle routes with real input, retain roof/canal/hoist/save and XR regressions, then verify public bytes. Human first-visit and replay comprehension remains open.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
         "../lantern/acceptance.json",
         "evidence/lantern-0.12.0/candidate.json",
-        "evidence/lantern-0.12.0/published.json"
+        "evidence/lantern-0.12.0/published.json",
+        "../lantern/WORKING-QUAY.md",
+        "evidence/working-quay-0.12.1/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-15"
@@ -968,6 +970,6 @@
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
   ],
-  "releaseEvidence": "evidence/lantern-0.12.0/published.json",
-  "edition": "Lantern Ward: The Broken Delivery Loop"
+  "releaseEvidence": "evidence/working-quay-0.12.1/candidate.json",
+  "edition": "Lantern Ward: Working Quay"
 }
