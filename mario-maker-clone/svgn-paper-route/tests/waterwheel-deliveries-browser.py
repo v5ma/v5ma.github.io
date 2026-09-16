@@ -46,16 +46,24 @@ with sync_playwright() as pw:
   page.locator('#delivery-header [data-delivery="view"]').click();check(page.evaluate('__delivery.state.view==="2d"'),'Full delivery qualification uses the supported native 2D route on CPU CI after real 3D inspection')
   page.locator('#cv').focus();page.keyboard.down('KeyD')
   for i,item in enumerate(plan,1):
-   tx=item['tx'];before=page.evaluate('deliveries')
+   tx=item['tx'];target=tx*36+18;before=page.evaluate('deliveries')
    page.wait_for_function('(tx)=>nearestMailbox(player,250)?.x===tx',arg=tx,timeout=120000)
    nearest=page.evaluate('nearestMailbox(player,250)')
    check(nearest and nearest['x']==tx,f"{item['id']} becomes the unambiguous nearby mailbox through ordinary riding")
+   # The engine uses a physical paper with fixed throw speed plus inherited rider momentum.
+   # Keep riding until the mailbox is readable, then release throttle for four frames and
+   # throw from a natural 35-145px forward window. This is ordinary coasting, not state setup.
+   page.wait_for_function('(target)=>{const d=target-(player.x+player.w/2);return player.onGround&&d<=145&&d>=35;}',arg=target,timeout=15000)
+   page.keyboard.up('KeyD');frames(4)
+   approach=page.evaluate('(target)=>({distance:target-(player.x+player.w/2),vx:player.vx,x:player.x,y:player.y,onGround:player.onGround})',target)
+   check(approach['onGround'] and -10<=approach['distance']<=145,f"{item['id']} has a readable coasting throw window before the Xbox input")
    tap(1) # standard Xbox B: direct THROW / FIRE action
    page.wait_for_function('(n)=>deliveries===n',arg=before+1,timeout=10000)
    delivered=page.evaluate('(tx)=>[...__delivery.state.delivered].some(s=>Number(s.split(",")[0])===tx)',tx)
    check(delivered,f"Xbox B delivers {item['id']} through the real packet simulation")
-   samples.append(page.evaluate('(item)=>({id:item.id,role:item.role,tx:item.tx,x:player.x,y:player.y,vx:player.vx,deliveries,tries,onGround:player.onGround,track:player.track?.sky?.id||null})',item))
+   samples.append(page.evaluate('([item,approach])=>({id:item.id,role:item.role,tx:item.tx,throwDistance:approach.distance,throwVx:approach.vx,x:player.x,y:player.y,vx:player.vx,deliveries,tries,onGround:player.onGround,track:player.track?.sky?.id||null})',[item,approach]))
    if i in (1,6,11,12):page.screenshot(path=str(OUT/f'delivery-{i:02d}-{item["role"]}.png'))
+   page.keyboard.down('KeyD')
   check(page.evaluate('deliveries===12 && __delivery.state.delivered.size===12'),'All twelve authored Waterwheel targets are actually served in one continuous road journey')
   check(page.evaluate('Array.from(__delivery.state.delivered,s=>Number(s.split(",")[0])).sort((a,b)=>a-b).join(",")')==','.join(str(x['tx']) for x in plan),'The delivered tile set exactly matches the authored intent ledger')
   page.wait_for_function('won',timeout=240000);page.keyboard.up('KeyD');frames()
@@ -75,8 +83,8 @@ with sync_playwright() as pw:
  except Exception as exc:
   failure=str(exc)
   try:
-   page.keyboard.up('KeyD');page.keyboard.up('KeyA');result=page.evaluate('({won,tries,deliveries,score,credits,x:player?.x,y:player?.y,vx:player?.vx,onGround:player?.onGround,nearest:typeof nearestMailbox==="function"?nearestMailbox(player,250):null,delivered:window.__delivery?[...__delivery.state.delivered]:[]})');page.screenshot(path=str(OUT/'failure.png'))
+   page.keyboard.up('KeyD');page.keyboard.up('KeyA');result=page.evaluate('({won,tries,deliveries,score,credits,x:player?.x,y:player?.y,vx:player?.vx,onGround:player?.onGround,nearest:typeof nearestMailbox==="function"?nearestMailbox(player,250):null,delivered:window.__delivery?[...__delivery.state.delivered]:[],packets:typeof packets!=="undefined"?packets.map(p=>({x:p.x,y:p.y,vx:p.vx,vy:p.vy,life:p.life})):[]})');page.screenshot(path=str(OUT/'failure.png'))
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'result':result,'coverage':'Real preview UI, ordinary rightward riding and sampled standard Xbox B throws through real packet/mailbox physics. No player-position, velocity, delivery, score, win, record or document assignments. Real 3D inspection then supported 2D complete CPU route. Not physical-controller or human-enjoyment qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'result':result,'coverage':'Real preview UI, ordinary rightward riding, deliberate throttle release/coasting and sampled standard Xbox B throws through real packet/mailbox physics. No player-position, velocity, delivery, score, win, record or document assignments. Real 3D inspection then supported 2D complete CPU route. Not physical-controller or human-enjoyment qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
