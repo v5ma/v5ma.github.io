@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "version": "0.15.0",
+  "name": "Open Line",
+  "statusAtCreation": "Implementation committed to master. Final deployed-byte, public browser and complete XR/legacy acceptance remain pending; do not call this verified-public yet.",
+  "releaseCommit": "107c631a11d773ffdedbf39f5662618189bb7cc8",
+  "releaseVesperfallTree": "23a5f079f85cfc55d04b37daefae52a1062b8443",
+  "preparedSource": "1f860fb19384213d55bb4def91e74a0829c203a5",
+  "cleanFeatureCommit": "56477a89b361a6e82986ed16bf46fb646e7ab22e",
+  "masterIntegratedWithoutSiblingChanges": "fe3af6a3fef7023610c5df415823f3f9c3bb0744",
+  "newerMasterChecked": "e2cb935d826aea6c88cbd2e4d2819d15bb78b006",
+  "newerMasterScope": "The subsequent Leonardo's Guild merge did not change any Vesperfall file or the Vesperfall library paragraph.",
+  "model": {"run":35058190906,"job":104672679988,"artifact":10431463842,"sha256":"dc7d05850355889e76f6f30898e0878712ace54ad264b97829aa51d21e9ac32b","passed":199,"failed":0,"skipped":0,"workbook":"Six sheets, 76 task rows, cached formula values and canonical hash passed."},
+  "nativeRoutes": {"run":35056005353,"job":104668447131,"artifact":10431597568,"sha256":"06dad328a8673ba51e01911ff9fda30081c6ae15fd52d14dcc1ea9995bf36191","passed":27,"pageErrors":[],"consoleErrors":[],"source":"e6e5f27868eaf853323c7ff84378e7ac874d2f5c","runtimeEquivalence":"Independently compared all 41 production JavaScript files in the native artifact with the assembled final source; all are identical. Later changes were metadata, workbook, docs and separate Returning Bell test expectations."},
+  "renderedRoutes": [
+    {"route":"gallery","distanceMetres":60.85226917687375,"simulationSeconds":16.83333333333342,"health":100,"damageTaken":0,"shots":0,"kills":0,"outcome":"tower reached"},
+    {"route":"ambulatory","distanceMetres":63.95494370250428,"simulationSeconds":17.72222222222245,"health":100,"damageTaken":0,"shots":0,"kills":0,"outcome":"tower reached"},
+    {"route":"central","distanceMetres":40.93795728841677,"simulationSeconds":15.699999999999948,"health":100,"damageTaken":0,"shots":1,"kills":0,"outcome":"tower reached after real in-crossing save/reload"},
+    {"route":"learned-shot","distanceMetres":43.610847540836886,"simulationSeconds":22.577777777778767,"health":88,"damageTaken":12,"shots":4,"kills":1,"outcome":"actual chapter reward after missed release recovery, corrected shot, signal and return; no tower visit"}
+  ],
+  "pendingCandidateRun":35058190906,
+  "pendingCandidateJobs":{"returningBell":104675599119,"openLine":104675599134,"pilgrim":104675599146,"surestep":104675599186},
+  "deployment":{"supersededRun":35059869311,"currentRun":35060219836,"head":"e2cb935d826aea6c88cbd2e4d2819d15bb78b006","build":"success","deploy":"queued at last observation","note":"An ordinary concurrent sibling merge superseded the first queued Pages run. Do not rerun an older deployment over newer sibling content."},
+  "publicWorkflow":".github/workflows/vesperfall-open-line.yml",
+  "publicWorkflowContract":"The read-only workflow starts after successful pages build and deployment. It checks the deployed SHA, all public bytes and the canonical workbook, then repeats Open Line routes, Returning Bell VR/AR/hands/save and homepage/board journeys. Inspect actual artifacts and final counts. Persist publication.json with the exact open-line-source-manifest.json manifestDigest after success; this prevents repeating unchanged sibling publications.",
+  "failedEvidence":{"staleInitialLayout":{"run":35056005353,"artifact":10431480148,"finding":"Initial Returning Bell preview expectation was still v1; corrected to v2 while retaining authentic v1 restore fixture."},"localBrowser":"Loopback navigation blocked by execution environment; not counted as a game test.","metadataAssembly":"Two intermediate local full suites failed one check each while release metadata or OPEN-LINE.md was not yet assembled. Final assembled local and GitHub model suites both passed all 199."},
+  "boundaries":"Three immutable layout IDs, original rewards/profile keys, direct Xbox quick arrows, physical tracked-controller archery and hand menus remain. AR is paused discovery-limited inspection. No hand-only combat, physical anchors, room scanning, hardware approval, human enjoyment rating or second chapter is claimed.",
+  "resume":"Do not rebuild the chapter or rerun historical source-writing transports. Recover final native and current Pages/public workflow results. Fix only observed defects. Preserve current master and sibling changes. After verified public success archive the actual reports, screenshots, source hashes and remaining human/device gates in the final receipt."
+}
