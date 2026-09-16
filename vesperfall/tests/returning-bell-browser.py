@@ -56,7 +56,7 @@ with sync_playwright() as pw:
   check(True,'A joint-pinch ray activates '+text)
  try:
   page.goto(BASE+'/vesperfall/?journey=returning-bell',wait_until='domcontentloaded');wait('window.Vesperfall?.component.returningBell&&Vesperfall.component.stats.drawCalls>0')
-  check(page.evaluate('Vesperfall.state.world.generator===ReturningBellModel.ID&&Vesperfall.state.world.rooms.length===7'),'Fresh arrival previews the authored opening, not the old generator')
+  check(page.evaluate('Vesperfall.state.world.generator===ReturningBellLanes.ID&&Vesperfall.state.world.rooms.length===7'),'Fresh arrival previews the authored opening, not the old generator')
   check(page.locator('#expedition-mode').input_value()=='returning-bell','The new chapter is the default new-player content')
   page.evaluate('TestPad.enabled=true');nav('start');press(0);wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   check(page.evaluate('Vesperfall.component.checkpoint.eligible&&!Vesperfall.state.unscored'),'Xbox starts the chapter as a real scored saved expedition')
@@ -90,6 +90,7 @@ with sync_playwright() as pw:
   check(page.evaluate('Vesperfall.component.arMode&&Vesperfall.component.scene.object3D.background===null'),'The table uses real immersive-ar session handling and transparent passthrough')
   check(page.evaluate('Vesperfall.component.returningBell.table.userData.discovered.length<7&&!Vesperfall.component.returningBell.table.userData.discovered.includes(6)'),'Undiscovered service passages are absent from AR inspection')
   check(page.evaluate('Vesperfall.component.paused&&!Vesperfall.component.worldArt.group.visible'),'Table inspection suspends AR combat and hides the arena')
+  check(page.evaluate('Vesperfall.component.returningBell.table.userData.layout===ReturningBellLanes.ID'),'AR inspection reconstructs the actual suspended Open Line layout')
   xraction('Layers:');check(page.evaluate('Vesperfall.component.returningBell.state.layer===1'),'Quest controller changes table layers')
   page.evaluate('TestHands.mode(true)');wait('Vesperfall.component.questHands.state.active')
   handaction('Layers:');check(page.evaluate('Vesperfall.component.returningBell.state.layer===2'),'Bare-hand UI changes table layers')
