@@ -1,0 +1,79 @@
+name: Vesperfall Open Line recovery acceptance
+on:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/vesperfall-open-line-recovery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vesperfall-open-line-recovery
+  cancel-in-progress: false
+jobs:
+  public-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record exact source and require unchanged Open Line gameplay
+        run: |
+          mkdir -p test-output
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          app=Path('vesperfall');out=Path('test-output')
+          paths=[p for p in app.iterdir() if p.suffix in ('.js','.css','.html','.json','.xlsx','.md')]
+          paths += [p for folder in ['assets','vendor'] for p in (app/folder).rglob('*') if p.is_file()]
+          files={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
+          digest=hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          (out/'source-revision.txt').write_text(revision+'\n')
+          (out/'open-line-source-manifest.json').write_text(json.dumps({'commit':revision,'manifestDigest':digest,'files':files},indent=2))
+          assert json.loads((app/'release.json').read_text())['version']=='0.15.0'
+          compile((app/'tests/returning-bell-browser.py').read_text(),'returning-bell-browser.py','exec')
+          print('Frozen source:',revision,'manifest:',digest)
+          PY
+      - name: Run original model, save and workbook contracts
+        run: |
+          set -euo pipefail
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+      - name: Require public bytes before playing
+        run: python -u vesperfall/tests/verify-live.py
+      - name: Install production WebGL verification browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Complete public VR, AR, hand menus, intercepted shot, saved gate and return
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+        run: |
+          set -euo pipefail
+          timeout 1800 python -u vesperfall/tests/returning-bell-browser.py | tee test-output/returning-bell.log
+          test -s test-output/returning-bell/report.json
+          test -s test-output/returning-bell/bell-shot-observations.json
+          test ! -e test-output/returning-bell/failure.json
+          timeout 300 python -u vesperfall/tests/launch.py | tee test-output/launch.log
+          timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/production.log
+      - name: Recheck public source after the journey
+        run: |
+          cp test-output/published-files.json test-output/published-files-before.json 2>/dev/null || true
+          python -u vesperfall/tests/verify-live.py
+      - name: Preserve exact source and any unsuccessful trace
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts level-design-library/GAME-RECOMMENDATIONS.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-open-line-recovery-public
+          path: test-output/
+          retention-days: 14
