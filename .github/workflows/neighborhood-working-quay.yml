@@ -1,0 +1,92 @@
+name: Working Quay candidate
+on:
+  push:
+    branches: [neighborhood-missions/working-quay-20260915]
+permissions:
+  contents: read
+concurrency:
+  group: working-quay-candidate
+  cancel-in-progress: true
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      commit: ${{ steps.source.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            svgn-planet
+            little-planet
+            level-design-library
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        name: Integrate reviewed source with before and after hashes
+        run: |
+          python .github/upgrades/apply-working-quay.py
+          node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs > quay-model.txt
+          for f in svgn-planet/lantern/*.mjs; do node --check "$f"; done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add svgn-planet level-design-library
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat(neighborhood): make the loading quay a readable cooperative route choice'
+            git push origin HEAD:neighborhood-missions/working-quay-20260915
+          fi
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD > SOURCE-COMMIT.txt
+          tar -czf quay-source.tar.gz svgn-planet little-planet level-design-library .github/workflows SOURCE-COMMIT.txt quay-model.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quay-source-model
+          path: |
+            quay-source.tar.gz
+            quay-model.txt
+          retention-days: 30
+  browser:
+    needs: integrate
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [street, roof, canal, xr, market, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.integrate.outputs.commit }}
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise real renderer and movement through synthetic inputs
+        env:
+          WARD_ROUTE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 8765 > server.log 2>&1 &
+          case "$WARD_ROUTE" in
+            street|roof|canal|xr) python svgn-planet/lantern/browser.py ;;
+            market) python svgn-planet/lantern/market-browser.py ;;
+            *) python "svgn-planet/tests/$WARD_ROUTE.py" ;;
+          esac
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quay-${{ matrix.suite }}
+          path: |
+            *-results/
+            server.log
+          retention-days: 30
