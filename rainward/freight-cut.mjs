@@ -2,18 +2,21 @@
  * reward, save field, patrol or input verb. All exits already open stay open. */
 export const FREIGHT_CUT_TASK='ward-radio';
 export const FREIGHT_CUT_GATE='freight-loading-shutter';
-export const FREIGHT_CUT_REVISION='freight-cut-1';
+export const FREIGHT_CUT_REVISION='freight-cut-2';
 export const FREIGHT_CUT_OBSTACLES=Object.freeze([
  {id:'depot-west-bay-south',x:14,z:-20.25,w:1,d:4.5,h:5.5,bottom:0,kind:'brick'},
  {id:'freight-loading-lintel',x:14,z:-24,w:1,d:3,h:2.1,bottom:3.4,kind:'brick'},
  {id:FREIGHT_CUT_GATE,x:14,z:-24,w:.6,d:3,h:3.4,bottom:0,kind:'service-gate',openOnTask:FREIGHT_CUT_TASK,disabled:false},
- // The raised sorting screen breaks standing sightlines while keeping older
- // ground-level supply drops reachable; prone movement fits beneath it.
+ // Low pallet screen: the south approach is readable as a slower crouched lane.
+ // Standing torsos remain exposed and enemies can route around either end.
+ {id:'freight-aisle-screen',x:19.0,z:-18.5,w:.8,d:7.5,h:1.05,bottom:0,kind:'crate'},
+ // Raised outside sorting screen breaks the quay sightline while keeping older
+ // ground-level supply drops reachable; prone movement fits underneath it.
  {id:'freight-sorting-baffle',x:10.9,z:-26.4,w:4,d:.55,h:1.55,bottom:.6,kind:'crate'}
 ].map(Object.freeze));
 export const FREIGHT_CUT_ROUTES=Object.freeze({
  approach:{purpose:'Clinic terrace to the established south receiver entrance. Repair is optional.',points:[[-8,-10],[0,-8],[10,-10],[18,-11]]},
- aisle:{purpose:'Original indoor route to the spindle; low crate cover, close freight lookout.',points:[[18,-11],[16,-16],[17,-22],[17,-26],[22.3,-26.7]]},
+ aisle:{purpose:'Slower crouch-cover lane from the receiver toward the spindle. Standing is exposed and the lookout can flank around either end.',points:[[18,-11],[17,-14],[17,-18],[17,-22],[17,-26],[22.3,-26.7]]},
  retreat:{purpose:'Powered lateral escape to the sorting baffle and concealment, then the clinic terrace.',requires:FREIGHT_CUT_TASK,points:[[22.3,-26.7],[17,-26],[17,-24],[11,-24],[9,-21],[-4,-23],[-8,-10]]},
  quay:{purpose:'Original fast north exit toward extraction; exposed to the quay lookout.',points:[[22.3,-26.7],[21,-32],[16,-38],[0,-43]]}
 });

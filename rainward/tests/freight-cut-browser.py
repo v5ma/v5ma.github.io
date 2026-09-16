@@ -66,13 +66,20 @@ with sync_playwright() as pw:
   go(-24,5);use('Rainward.state.taken.has("clinic-kit")');go(-22,-3.5);use('Rainward.state.objectives.cell');go(-24,-1);use('Rainward.state.checkpoint==="clinic"')
   old_save=page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")');(OUT/'earned-clinic-before.json').write_text(old_save)
   check(not json.loads(old_save)['completedTasks'],'The earned clinic checkpoint precedes both optional shortcut repairs')
+  # Deliberate survival preparation at a real shelter: spend the earned clinic
+  # materials rather than injecting health after the exposed market crossing.
+  craft('medkit');check(page.evaluate('Rainward.state.player.medkit===2&&Rainward.state.player.cloth===1&&Rainward.state.player.canister===0'),'The clinic recovery beat converts earned materials into a second finite medkit before commitment')
   go(-22,-3.5,True);go(-22,-10,True);check(page.evaluate('Rainward.state.player.y>2.3'),'The real clinic ascent gives a market observation position')
   picture('01-terrace-before-crossing');go(-8,-10,True);go(0,-8,True);go(10,-10,True);go(18,-11,True)
   reserve=page.evaluate('Rainward.state.player.reserve');salvage=page.evaluate('Rainward.state.player.canister')
   use('Rainward.state.completedTasks.includes("ward-radio")');wait('Rainward.snapshot().visuals.freightCut.open')
   check(page.evaluate('Rainward.state.player.reserve')==min(36,reserve+4) and page.evaluate('Rainward.state.player.canister')==min(12,salvage+2),'The existing local receiver task opens the loading passage with its unchanged one-time reward')
   check(page.evaluate('Rainward.state.hint.includes("WEST LOADING OPEN")'),'Receiver feedback explains the new passage and the pursuit risk')
-  go(17,-16,True);go(17,-26,True);go(22.3,-26.7,True);use('Rainward.state.objectives.crank')
+  # Reuse the crouch relationship taught on the clinic/garden approach. The
+  # pallet screen changes the sightline but does not remove the lookout.
+  go(17,-14,True);pulse(1);wait('Rainward.state.player.stance==="crouch"');go(17,-18);go(17,-22)
+  check(page.evaluate('Rainward.state.player.hp>0&&Rainward.state.enemies.every(e=>e.hp>0)'),'The slower crouch-cover aisle provides a viable recovery state with every original threat still active')
+  go(17,-26,True);go(22.3,-26.7,True);use('Rainward.state.objectives.crank');pulse(1);wait('Rainward.state.player.stance==="stand"')
   record('spindle-recovered');go(17,-26,True);smoke=page.evaluate('Rainward.state.player.smoke');pulse(14);wait('Rainward.state.player.smoke<'+str(smoke))
   check(page.evaluate('Rainward.state.smokes.length>0'),'A real finite smoke screens the retreat; no enemies or detection rules are removed')
   go(17,-24,True);start=page.evaluate('({t:Rainward.state.t,x:Rainward.state.player.x,z:Rainward.state.player.z})');go(11,-24,True)
@@ -82,7 +89,8 @@ with sync_playwright() as pw:
   saved=page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")');assert 'ward-radio' in json.loads(saved)['completedTasks'];(OUT/'earned-clinic-after.json').write_text(saved)
   check(json.loads(saved)['objectives']=={'cell':True,'crank':True} and json.loads(saved)['version']==4,'The genuine recovery shelter saves both components and the new passage in the existing schema')
   check(page.evaluate('Rainward.state.stats.escapes>0'),'Breaking sight and repositioning produces an actual search recovery, not just theoretical connectivity')
-  craft('medkit');go(-24,5,True);go(-26.1,5.8,True);use('Rainward.state.completedTasks.includes("ward-service-latch")')
+  if page.evaluate('Rainward.state.player.cloth>0&&Rainward.state.player.canister>0'):craft('medkit')
+  go(-24,5,True);go(-26.1,5.8,True);use('Rainward.state.completedTasks.includes("ward-service-latch")')
   go(-30,5.8,True);go(-31,11,True);go(-31,-15,True);go(-27,-24,True);go(-18,-26,True);go(-18,-42,True);go(0,-43,True);use('Rainward.mode==="won"')
   final=snap();check(final['player']['hp']>0 and all(e['hp']>0 for e in final['enemies']),'The complete earned route reaches extraction while every original enemy remains alive')
   check(final['stats']['shots']==0 and final['stats']['takedowns']==0,'Observation, finite supplies and recovery suffice without mandatory combat kills')
