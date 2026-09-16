@@ -84,7 +84,7 @@ with sync_playwright() as pw:
   xraction('Exit VR');wait('!Vesperfall.component.xr&&Vesperfall.component.paused')
   page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed');nav('save-expedition');press(0)
   saved=page.evaluate('JSON.parse(JSON.parse(localStorage.getItem(PilgrimSave.KEY)).payload).checkpoint')
-  check(saved['generator']=='returning-bell-1' and saved['state']['chapter']['screensRaised'],'Actual save captures the new identity and mechanism state')
+  check(saved['generator']=='returning-bell-2' and saved['state']['chapter']['screensRaised'],'Actual save captures the new identity and mechanism state')
   nav('architect-table');page.evaluate('TestPad.button(0,true)');wait('Vesperfall.component.xr&&Vesperfall.component.returningBell.state.table');page.evaluate('TestPad.button(0,false);TestPad.enabled=false')
   wait('Vesperfall.component.dominionControls.state.xrNeutral')
   check(page.evaluate('Vesperfall.component.arMode&&Vesperfall.component.scene.object3D.background===null'),'The table uses real immersive-ar session handling and transparent passthrough')

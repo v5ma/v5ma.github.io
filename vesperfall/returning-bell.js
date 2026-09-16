@@ -3,7 +3,9 @@
  */
 (function(root){'use strict';
  function install(g){
-  const T=g.T,C=VesperCore,M=ReturningBellModel,ui=g.dominionControls,$=id=>document.getElementById(id);
+  const T=g.T,C=VesperCore,M=ReturningBellModel,L=ReturningBellLanes,ui=g.dominionControls,$=id=>document.getElementById(id);
+  const objective=s=>L.isWorld(s.world)?L.objective(s):M.objective(s);
+  const snapshot=s=>({...M.survey(s),layout:s?.world.returningBell?s.world.generator:L.ID});
   const state={table:false,pending:false,layer:0,survey:null,tableBuilds:0,seen:null,event:0,mechanism:''};let table=null;
   const button=document.createElement('button');button.id='architect-table';button.textContent="AR Architect's Table / discovered places";button.disabled=true;$('menu-ar').after(button);
   const note=document.createElement('p');note.id='returning-intro';note.textContent='The Returning Bell is the authored opening. Restore the tower signal, learn its interlocking routes, and find your way back. Older expeditions still continue in their original world.';$('first-bell-menu').before(note);
@@ -11,8 +13,8 @@
   if(navigator.xr&&isSecureContext)navigator.xr.isSessionSupported('immersive-ar').then(ok=>button.disabled=!ok).catch(()=>{});
   function clearTable(){if(!table)return;table.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of(Array.isArray(o.material)?o.material:[o.material])){m.map?.dispose();m.dispose();}});table.removeFromParent();table=null;}
   function positionTable(){if(!table)return;const p=g.head.object3D.getWorldPosition(new T.Vector3()),q=g.head.object3D.getWorldQuaternion(new T.Quaternion()),f=new T.Vector3(0,0,-1).applyQuaternion(q);f.y=0;if(f.length()<.01)f.set(0,0,-1);f.normalize();const right=new T.Vector3(-f.z,0,f.x);table.position.copy(p).addScaledVector(f,1.8).addScaledVector(right,0);table.position.y=Math.max(.35,p.y-.48);table.rotation.y=Math.atan2(-f.x,-f.z);}
-  function buildTable(){clearTable();const survey=state.survey||M.survey(null),known=new Set(survey.discovered),s=C.create('TABLE',1,{returningBell:true});M.restore(s,survey.chapter);table=new T.Group();table.name='Architects Table / discovered geometry';table.userData.discovered=[...known];table.userData.layer=state.layer;state.tableBuilds++;
-   const model=new T.Group();model.scale.setScalar(.028);model.position.set(0,.035,.08);model.userData.layout=M.ID;table.add(model);
+  function buildTable(){clearTable();const survey=state.survey||snapshot(null),known=new Set(survey.discovered),s=C.create('TABLE',1,{returningBell:survey.layout});M.restore(s,survey.chapter);L.apply(s);table=new T.Group();table.name='Architects Table / discovered geometry';table.userData.discovered=[...known];table.userData.layer=state.layer;state.tableBuilds++;
+   const model=new T.Group();model.scale.setScalar(.028);model.position.set(0,.035,.08);model.userData.layout=s.world.generator;table.userData.layout=s.world.generator;table.add(model);
    const mats={floor:new T.MeshStandardMaterial({color:'#bfaf8c',roughness:.85}),upper:new T.MeshStandardMaterial({color:'#a5d3d0',roughness:.65}),wall:new T.MeshStandardMaterial({color:'#7b8c90',roughness:.85}),signal:new T.MeshBasicMaterial({color:'#efd69c'}),base:new T.MeshStandardMaterial({color:'#253740',roughness:.8})};
    function cube(parent,mat,x,y,z,w,h,d){const m=new T.Mesh(new T.BoxGeometry(w,h,d),mat.clone());m.position.set(x,y,z);parent.add(m);return m;}
    for(const f of s.world.floors){if(!known.has(f.region))continue;const upper=f.y>1||f.type==='stair';if(state.layer===1&&upper||state.layer===2&&!upper)continue;
@@ -27,10 +29,10 @@
   function openTable(){if(!g.arMode)return false;state.table=true;state.layer=0;g.setPaused(true);buildTable();ui.setScreen('architect');g.placePanel();return true;}
   function closeTable(){state.table=false;clearTable();g.worldArt.group.visible=true;g.entities.visible=true;}
   const pause=g.setPaused.bind(g);g.setPaused=value=>pause(state.table?true:value);
-  const enter=g.enterXR.bind(g);g.enterXR=function(){const survey=M.survey(g.game);enter();if(g.arMode){state.survey=survey;if(state.pending)openTable();}state.pending=false;};
+  const enter=g.enterXR.bind(g);g.enterXR=function(){const survey=snapshot(g.game);enter();if(g.arMode){state.survey=survey;if(state.pending)openTable();}state.pending=false;};
   const exit=g.exitXR.bind(g);g.exitXR=function(){closeTable();state.pending=false;exit();};
   for(const name of['start','startTraining']){const old=g[name].bind(g);g[name]=function(...args){closeTable();return old(...args);};}
-  const start=g.start.bind(g);g.start=function(practice){start(practice);if(g.game.chapter&&g.running&&!g.paused)g.toast(M.objective(g.game));};
+  const start=g.start.bind(g);g.start=function(practice){start(practice);if(g.game.chapter&&g.running&&!g.paused)g.toast(objective(g.game));};
   const place=g.placePanel.bind(g);g.placePanel=function(){place();if(state.table){const q=g.head.object3D.getWorldQuaternion(new T.Quaternion());g.xrPanel.mesh.position.add(new T.Vector3(0,.38,-.5).applyQuaternion(q));}};
   button.onclick=async()=>{state.pending=true;await ui.requestMode('ar');if(!g.xr)state.pending=false;};
   function pages(items,back='equipment'){const n=Math.max(1,Math.ceil(items.length/4));ui.state.xrPage%=n;return [...items.slice(ui.state.xrPage*4,ui.state.xrPage*4+4),['More / page '+(ui.state.xrPage+1)+' of '+n,()=>{ui.state.xrPage=(ui.state.xrPage+1)%n;}],['Back',()=>ui.setScreen(back)]];}
@@ -43,7 +45,7 @@
     ['Back to AR Sanctuary',()=>{closeTable();g.setPaused(true);ui.setScreen('main');}],
     ['Exit AR and restore expedition',()=>g.scene.exitVR()]
    ];
-   if(g.game.chapter&&screen==='objectives')return [[M.objective(g.game),()=>{}],['Observe the court before committing',()=>{}],['Ground, gallery and Blink approaches reconnect',()=>{}],['The winch reverses; the return gate stays open',()=>{}],['No kill-all or special-ammo requirement',()=>{}],['Back',()=>ui.setScreen('expedition')]];
+   if(g.game.chapter&&screen==='objectives')return [[objective(g.game),()=>{}],['Observe the court before committing',()=>{}],['Ground, gallery and Blink approaches reconnect',()=>{}],['The winch reverses; the return gate stays open',()=>{}],['No kill-all or special-ammo requirement',()=>{}],['Back',()=>ui.setScreen('expedition')]];
    if(g.game.chapter&&screen==='atlas')return pages(g.game.world.rooms.filter(r=>g.game.discovered.has(r.id)).map(r=>[r.label,()=>{ui.state.notice=r.label+'. Known connections: '+g.game.world.links[r.id].filter(id=>g.game.discovered.has(id)).map(id=>g.game.world.rooms[id].label).join(', ');ui.setScreen('notice');}]));
    return null;
   }
@@ -53,12 +55,12 @@
   }
   const menuUI=g.menuUI.bind(g);g.menuUI=function(){menuUI();note.hidden=g.arMode;if(!g.game.chapter)return;
    $('menu-eyebrow').textContent='THE RETURNING BELL / AUTHORED OPENING';
-   $('menu-message').textContent=g.game.phase==='reward'?'The signal is restored. Choose a blessing to continue into the retained Endless cloisters. The next authored chapter is not yet built.':M.objective(g.game)+' The west stairs offer an overlooking route; the lower ambulatory offers another approach.';
+   $('menu-message').textContent=g.game.phase==='reward'?'The signal is restored. Choose a blessing to continue into the retained Endless cloisters. The next authored chapter is not yet built.':objective(g.game)+' The west stairs offer an overlooking route; the lower ambulatory offers another approach.';
    if(!g.running)$('menu-title').textContent='Learn the place. Find your way home.';
    if($('expedition-mode')?.value==='returning-bell')$('start').textContent='Begin The Returning Bell';
   };
   const draw=g.drawMenu.bind(g);g.drawMenu=function(){draw();if(!g.xrPanel||(!g.game.chapter&&!state.table))return;const {ctx,texture}=g.xrPanel;ctx.fillStyle='#142230';ctx.fillRect(25,20,974,82);ctx.fillStyle='#eee0bf';ctx.font='39px Georgia';ctx.textAlign='center';ctx.fillText(state.table?"VESPERFALL / ARCHITECT'S TABLE":'VESPERFALL / THE RETURNING BELL',512,78,932);texture.needsUpdate=true;};
-  const hud=g.hud.bind(g);g.hud=function(){hud();if(!g.game.chapter)return;const s=g.game,action=M.available(s,C),text=action?M.controls[action].label:M.objective(s);
+  const hud=g.hud.bind(g);g.hud=function(){hud();if(!g.game.chapter)return;const s=g.game,action=M.available(s,C),text=action?M.controls[action].label:objective(s);
    $('chapter').textContent='THE RETURNING BELL';$('objective').textContent=text;$('tally').textContent=(s.chapter.gateOpen?'Return gate open':'Return gate barred')+' / '+s.discovered.size+' places known';$('district-readout').textContent=s.world.rooms[C.roomAt(s.world,s.p)].label+' / '+(s.p[1]>2?'UPPER WALK':'GROUND');
    if(g.xr){const {ctx,texture}=g.xrHud;ctx.fillStyle='#172638';ctx.fillRect(0,64,1024,85);ctx.fillStyle='#d9e8dc';ctx.textAlign='center';ctx.font='25px Arial';ctx.fillText(text,512,98,965);ctx.font='19px Arial';ctx.fillText(action?'Bow-hand lower button: interact. Menus: upper button.':'Physical archery / shield / Blink. Explore and return.',512,133,970);texture.needsUpdate=true;}
   };

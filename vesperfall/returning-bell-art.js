@@ -77,6 +77,15 @@
    const gate=new T.Group();gate.position.set(0,1.3,9.8);parent.add(gate);kit.mesh('ring','#80b8ac',gate,0,0,0,.4,.5,.4);
    const labels=[['BASIN REFUGE / RETURN',0,2.4,11.7,0,3.6],['WEST CLOISTER / GALLERY',-13.8,1.1,8.3,0,2.7],['LOWER AMBULATORY',12,1.9,-2.1,0,2.5],['SCREEN WINCH',-12.1,5.1,-11.5,0,2.1],['PROCESSIONAL SIGNAL',0,6.5,-24,0,3],['SERVICE DESCENT',20,4.3,-27,0,2.6],['BASIN REFUGE',6.48,2.5,8,Math.PI/2,2.5]];
    for(const [text,x,y,z,yaw,width]of labels)kit.label(parent,text,x,y,z,width,.23,'#1e3038','#edd8a6').rotation.y=yaw;
+   if(ReturningBellLanes.isWorld(w)){
+    const p=ReturningBellLanes.RELEASE.p,catchGroup=new T.Group();catchGroup.name='Brass screen release';catchGroup.position.set(...p);parent.add(catchGroup);
+    kit.mesh('ring','#d3ad57',catchGroup,0,0,0,.4,.4,.4);kit.mesh('ball','#d3ad57',catchGroup,0,0,0,.32,.32,.32);
+    // The cable visibly connects a reachable archery action to the screen bank.
+    b.box(K.gold,p[0],3.1,p[2],.035,2.9,.035);b.box(K.gold,-6,4.55,p[2],2,.04,.04);
+    kit.label(parent,'SHOOT TO LIFT / WINCH TO LOWER',-7,2.4,-12.35,3.7,.25,'#1e3038','#edd8a6');
+    kit.label(parent,'SHORT STAIR / EXPOSED WHEN OPEN',0,2.45,-12.65,3.5,.25,'#1e3038','#edd8a6');
+    kit.label(parent,'GALLERY / OBSERVE + CONTROL',-6.9,1.35,8.1,3.4,.25,'#1e3038','#edd8a6');
+   }
    const instances=b.finish(parent);parent.userData.returningBell={dynamic,bell,winch,latch};parent.userData.materials=kit.cathedralStatus;
    return {group:parent,gate,instances,returningBell:parent.userData.returningBell};
   }
