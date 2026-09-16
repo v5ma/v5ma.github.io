@@ -1,7 +1,7 @@
 /* Explicit build and campaign readiness. Optional authoring tools must not decide
  * which campaign is loaded, and an unfinished download must not spawn old data. */
 (function(){'use strict';
- const VERSION='0.24.0',BUILD='sky-cycle-waterwheel-deliveries-2026.09.15';
+ const VERSION='0.25.0',BUILD='sky-cycle-canal-choice-2026.09.16';
  // Register before the legacy DOMContentLoaded pause listener. Native dialogs
  // consume their own keyboard events without unpausing the route underneath.
  window.addEventListener('keydown',event=>window.SkyCycleFlightDeck?.handleKey(event),true);
@@ -46,7 +46,8 @@
   }).catch(error=>{
    // Do not retry a partially evaluated module or silently run an older course.
    // Existing drafts can still be saved/exported; reload is an explicit action.
-   status='error';notice.textContent='The updated routes could not load.';retry.hidden=false;
+   status='error';notice.textContent='The updated routes could not load.';retry.hidden=true;
+   retry.hidden=false;
    console.error('Campaign load failed:',error);
   }).finally(()=>{
    import('./prismatic-renderer.js').catch(error=>console.error('Optional material pass could not load:',error));

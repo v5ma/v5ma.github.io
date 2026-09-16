@@ -30,7 +30,7 @@ jobs:
           retention-days: 30
   fork:
     runs-on: ubuntu-22.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -52,6 +52,30 @@ jobs:
         with:
           name: canal-choice-${{ matrix.grip }}-${{ matrix.case }}-${{ github.sha }}-${{ github.run_attempt }}
           path: /tmp/fork/
+          retention-days: 30
+          if-no-files-found: error
+  preview:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        route: [road, ground-only, porch, express]
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-preview-browser.py
+        env:
+          WATERWHEEL_SUITE: ${{ matrix.route }}
+          ARTIFACT_DIR: /tmp/preview
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canal-choice-preview-${{ matrix.route }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/preview/
           retention-days: 30
           if-no-files-found: error
   regression:
@@ -94,7 +118,7 @@ jobs:
   live:
     needs: published
     runs-on: ubuntu-22.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
