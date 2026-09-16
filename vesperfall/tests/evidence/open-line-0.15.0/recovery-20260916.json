@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "project": "Vesperfall",
+  "version": "0.15.0",
+  "date": "2026-09-16",
+  "statusAtCreation": "Public route, interface, model and legacy-input results recovered. Full repaired chapter verification is running, not yet credited as passed. A later publication.json is the closure authority.",
+  "releaseCommit": "107c631a11d773ffdedbf39f5662618189bb7cc8",
+  "originalPublicSource": "57ed15d7ce6b4d1ab7c15244dfd321e8915be76c",
+  "failure": {
+    "run": 35060990762,
+    "job": 104682203667,
+    "artifact": 10433565030,
+    "artifactSha256": "659d6a08293a28d922a0607aa8cc1321c4e98133cc5d9f54b15cbc61905a695e",
+    "assertionsPassedBeforeFailure": 44,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "actualShot": {"seq":19,"time":29.07777777777977,"arrow":"plain","charge":1},
+    "actualImpact": {"seq":20,"time":29.111111111113107,"type":"kill","id":4,"kind":"archer","head":true,"amount":108},
+    "targetsAfterShot": [],
+    "bellRungAfterShot": false,
+    "finding": "The new layout's real watcher intercepted the only bell arrow. The arrow killed it rather than passing through to the bell. The old one-shot harness then waited motionless for an impossible result; it was not a failure of VR, AR restoration or target collision. The native candidate's chapter journey also failed this expectation. Neither failed run is credited as a complete pass."
+  },
+  "repair": {
+    "commit": "4cd1137903f96f8abf653e0aede7059fe4379f56",
+    "file": "tests/returning-bell-browser.py",
+    "blob": "fd70b536d1bdf9a6f42995c3d2ebd9aba2a3e811",
+    "method": "Observe the real arrow resolving. Permit one second ordinary draw only when the first killed watcher 4 without activating a target. Require a real target hit, the full service return, persisted gate, ordinary one-time chapter reward and retained Endless continuation. Record both shot outcomes. No runtime edits, actor state assignments, geometry changes or weakened collision."
+  },
+  "recoveryVerification": {
+    "run": 35135378790,
+    "job": 104926309785,
+    "source": "66feb2a470614d2b691485379fbdc32405217dc9",
+    "workflow": ".github/workflows/vesperfall-open-line-recovery.yml",
+    "scope": "Production public-origin chapter and interface checks, preceded and followed by exact public-byte verification. Read-only workflow; do not rerun historical source-writing workflows."
+  },
+  "alreadyRecovered": {
+    "publicRouteRun": 35060990762,
+    "publicRoutes": {"passed":27,"artifact":10433736138,"pageErrors":[],"consoleErrors":[]},
+    "publicHomepage": {"passed":9,"artifact":10433690923},
+    "publicProductionBoard": {"passed":16,"artifact":10433690923},
+    "nativeSurestep": {"passed":60,"artifact":10432592588,"run":35058190906},
+    "nativePilgrim": {"passed":25,"artifact":10431599287,"run":35058190906},
+    "modelRecheck": {"passed":199,"failed":0,"skipped":0},
+    "workbookRecheck": "Six sheets, 76 full task rows, cached summary formula values and canonical hash pass.",
+    "manifestDigest": "c36df7294c722783377151eb279d876ffd3e850ab968163c0db1d1eeafc4ce5e",
+    "productionFiles": 90,
+    "integrity": "Downloaded artifact ZIP hashes independently recomputed. All 90 production-file hashes in recovered route and native preservation archives match the original public manifest. The test-only repair does not alter this manifest."
+  },
+  "remainingHumanGates": "Real Quest 3 and Xbox testing, tracking and passthrough legibility, seated/standing reach, comfort, sustained performance, and unfamiliar/returning-player understanding remain open. No second authored chapter or hand-only archery is claimed.",
+  "resume": "Recover run 35135378790 and audit its actual reports and source archive. If it passes, write publication.json with the confirmed counts and unchanged manifestDigest; keep this failed trace and all pending-at-creation language as historical context. Do not rebuild the chapter, loosen the objective, clear localStorage or overwrite sibling work."
+}
