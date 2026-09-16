@@ -1,0 +1,68 @@
+{
+  "version": "0.24.0",
+  "build": "sky-cycle-waterwheel-deliveries-2026.09.15",
+  "updated": "2026-09-15",
+  "status": "candidate-awaiting-native-acceptance",
+  "baseline_master": "d6c8f08176a54f547259c26f6788659274804dc6",
+  "runtime_change_sha": "6a589f6f25731a80f7bea61e5aa0f94b933b7929",
+  "latest_tested_runtime_head": "8fd9108289626259321f5e0e267d998a3441c4e8",
+  "scope": "Purposeful twelve-target Waterwheel road-delivery rhythm plus exact-source normal-input delivery qualification. Preview remains non-awarding and is not an eight-route campaign replacement.",
+  "design": {
+    "targets": 12,
+    "roles": ["teaching","ordinary","return-reward","control","road-choice","discovery","finale"],
+    "minimum_target_center_separation_world_px": 504,
+    "nearest_mailbox_radius_world_px": 250,
+    "encounter_center_clearance_world_px": ">250",
+    "quota": 0,
+    "campaign_record_key_active": false,
+    "planned_record_id": "canal-choices-r2"
+  },
+  "rules": {
+    "run_id": 35041782849,
+    "job_id": 104623078324,
+    "passed": true,
+    "game_tests": 231,
+    "instrumental_score_tests": 12,
+    "failed": 0,
+    "includes": ["delivery identities/order","mailbox support","target-window separation","enemy separation","road-choice/discovery intent","ground/full parity","document-codec retention","campaign-builder preservation"]
+  },
+  "native": {
+    "run_id": 35041782849,
+    "status": "in progress",
+    "delivery_job": 104623078133,
+    "recipe": "Real preview UI and 3D inspection; supported 2D complete CPU route; ordinary rightward riding; coast into a forward 35-145px throw window; sampled standard Xbox B; wait for real packet collision; resume riding. No player-position, velocity, delivery, score, win, record or document assignments.",
+    "regressions": ["road","ground-only","porch","express","Waterwheel XR","Portal Network","Tideglass","Sunrise"]
+  },
+  "retained_failures": [
+    {
+      "scope": "outer-radius full-throttle delivery timing",
+      "run_id": 35041285677,
+      "job_id": 104621559848,
+      "source_sha": "e25be8ca6a26d2686a3abbf30da5b587c765edc6",
+      "artifact_id": 10425346416,
+      "artifact_sha256": "28525e6f6643080539b330f7e939f1a421eb9d214019aa7d8350e7a4f6d99570",
+      "details": "South Quay delivered genuinely. Parcel Market became the correct nearest mailbox, but a paper fired immediately on entering the outer 250px eligibility radius at full throttle missed. Rider stayed alive/on-road on the first attempt, and later mailboxes remained targetable. The physical throw inherits rider momentum and is intentionally not auto-solved. The next source uses ordinary coasting into a declared readable throw window instead of assigning delivery state."
+    },
+    {
+      "scope": "cross-realm metadata comparison",
+      "details": "Initial rules compared codec objects from an isolated VM realm with Node strict prototype equality. Serialized values were identical. Test oracle now compares encoded values while keeping codec and Workshop validation unchanged."
+    },
+    {
+      "scope": "dynamic XR first-page optional membership",
+      "artifact_id": 10425555338,
+      "artifact_sha256": "9f511eeb82986c480c24703630cacf06a23c67ee460bfafea675eb9550129939",
+      "details": "Readable stereo menu showed Controller guide in the optional first-page slot instead of Portal atlas. XR test now derives six rows from live Flight Deck DOM order while separately requiring critical route/audio controls. Background, text contrast, scenery isolation, tracked input, hand and award-isolation checks are unchanged."
+    }
+  ],
+  "publication": null,
+  "preservation": {
+    "campaign_route_count": 8,
+    "preview_non_awarding": true,
+    "physics_changed": false,
+    "controls_changed": false,
+    "automatic_save_migration": false,
+    "ground_only_and_full_mailboxes_identical": true
+  },
+  "open_gates": ["twelve genuine deliveries in one first-attempt journey","all Waterwheel traversal regressions","Waterwheel XR regression","Portal Network/Tideglass/Sunrise regressions","capture/report review","current-master reconciliation","normal merge","public-byte verification","public normal-input delivery replay","physical Xbox","physical Quest 3 controllers/hands","unfamiliar-player delivery readability","human pacing/enjoyment"],
+  "next_content_after_release": "Speed/brake-selected fork with a genuinely useful lower outcome, then optional high-to-high whip connection with a non-whip alternative."
+}
