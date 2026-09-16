@@ -37,7 +37,7 @@ export function buildTidegate(scene,physics,state){
  route([[15,-8],[17,-20],[48,-20]],2.2,0xb8ba9d);
  // Follow the visible drain pipe to a real ranger-sized north entrance.
  route([[15,-8],[32,-8],[32,-2],[32,8],[30,8]],1.6,0xb8ba9d);
- route([[32,-7],[35,-7]],1.6,0xb8ba9d);
+ route([[32,-4.5],[36,-4.5]],1.6,0xb8ba9d);
  route([[-12,-8],[-25,-8],[-25,24],[-28,27]],2.2,0xb8ba9d);
  route([[-38,24],[-12,24]],5.8);route([[-50,-36],[-35,-36]],4);
  // The first view frames the amber station mast and the raised bridge beyond a
@@ -63,9 +63,10 @@ export function buildTidegate(scene,physics,state){
  solid((doorX+doorW/2+42)/2,2,doorZ,42-doorX-doorW/2,4,.45,palette.wall);
  solid(doorX,(4+doorH)/2,doorZ,doorW,4-doorH,.45,palette.wall);
  sign('LOCK MAINTENANCE / ON FOOT',32,-4.2,8,3.15,Math.PI);
- // Small functional cabinet beside the entrance; never in the clear walking line.
- solid(35,.65,-8.8,2.4,1.3,1,0x456363);
- sign('FIELD WATER / BATTERIES',35,-8.2,7,2.5,Math.PI);
+ // Recessed locker face uses the existing wall collision. No new solid may
+ // occupy the former open ground where a historical foot save can resume.
+ box(fixed,0x456363,36,1.35,-2.235,2.4,1.3,.05);
+ const supplySign=label('FIELD WATER / BATTERIES',6,.7);supplySign.position.set(36,2.9,-2.27);supplySign.rotation.y=Math.PI;root.add(supplySign);
  bone(fixed,palette.orange,[15,.35,-9.7],[32,.35,-9.7],.09);
  bone(fixed,palette.orange,[32,.35,-9.7],[32,.35,-2.5],.09);
  // Upper walls retain function, while view-dependent roofs are visual only.

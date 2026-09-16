@@ -16,7 +16,7 @@ function setup(state=emptyDistrict()){
 function tick(g,input={},n=1){for(let i=0;i<n;i++){g.time+=1/60;g.world.update(1/60,g.time,g.state,g.fleet.position,false);g.fleet.step(input,1/60,g.time,0);g.physics.world.step();g.fleet.after(1/60);}}
 function walk(g,x,z){for(let i=0;i<2800;i++){const p=g.fleet.position,dx=x-p.x,dz=z-p.z,d=Math.hypot(dx,dz);if(d<.7){tick(g,{},4);return;}tick(g,{x:dx/d,z:-dz/d});}assert.fail(`Route blocked to ${x},${z}: ${JSON.stringify(g.fleet.position)}`);}
 test('Sluice and machinery are connected through the narrow north door using actual walking',()=>{
- const g=setup();try{tick(g,{},60);for(const p of [[-34,43],[-25,43],[-25,15],[-48,-12],[-35,-22],[-35,-26],[-35,-30],[-35,-38],[-12,-36],[12,-36],[17,-36],[17,-20],[15,-8],[32,-8],[35,-7],[32,-8],[32,-4],[32,0],[32,8],[30,8]])walk(g,...p);
+ const g=setup();try{tick(g,{},60);for(const p of [[-34,43],[-25,43],[-25,15],[-48,-12],[-35,-22],[-35,-26],[-35,-30],[-35,-38],[-12,-36],[12,-36],[17,-36],[17,-20],[15,-8],[32,-8],[32,-4.5],[36,-4.5],[32,-8],[32,-4],[32,0],[32,8],[30,8]])walk(g,...p);
  assert.equal(g.state.gearbox,false,'Entering a new door never manufactures objective completion');assert.ok(g.fleet.position.y<2,'Ground-floor aisle, not roof teleport');
  }finally{g.physics.world.free();}
 });
@@ -47,4 +47,10 @@ test('Natural herd clearance recurs without requiring observation, feeder or too
 });
 test('Refit retains v1 layout, inventory, flags and single report across old-save round trips',()=>{
  const old={...emptyDistrict(),gearbox:true,bridge:true,drained:true,observed:true,complete:true,reportCount:1,position:{x:33,y:1.1,z:10},ammo:[47,6],reserve:[208,17]};assert.deepEqual(sanitizeDistrict(JSON.parse(JSON.stringify(old))),old);
+});
+test('Historical open-ground checkpoint beside the maintenance wall is not occupied by new resupply geometry',()=>{
+ // Explicit old-save fixture for collision compatibility, not a browser completion.
+ const state={...emptyDistrict(),position:{x:35,y:1.2,z:-8.8}},g=setup(state);
+ try{g.physics.world.step();const overlap=g.physics.world.intersectionWithShape(state.position,{x:0,y:0,z:0,w:1},g.fleet.person.collider.shape,undefined,undefined,g.fleet.person.collider);assert.ok(!overlap,'A new cabinet must not overlap a previously valid checkpoint');}
+ finally{g.physics.world.free();}
 });

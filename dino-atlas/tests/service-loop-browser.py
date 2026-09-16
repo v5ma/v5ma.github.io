@@ -63,7 +63,7 @@ try:
      check(not state()['progress']['observed'] and not state()['progress']['feeder'],approach+': repair reached without observation or feeder triggers')
      interact('repair');check(state()['progress']['gearbox'],approach+': real A repairs from alternative approach')
      # Discover a connection from inside, replenish spent tools, and reopen a return.
-     route([[32,8],[32,0],[32,-4],[32,-8],[35,-7]])
+     route([[32,8],[32,0],[32,-4],[32,-8],[32,-4.5],[36,-4.5]])
      before=state()['progress']['ammo'][0];press(7);check(state()['progress']['ammo'][0]<before,approach+': actual firing consumes ammunition')
      interact('resupply');check(state()['progress']['ammo'][0]==100 and not state()['paused'],approach+': A at cabinet restocks without a menu');shot('maintenance')
      route([[32,-8],[15,-8]]);interact('sluice');check(state()['progress']['drained'],approach+': sluice opens maintenance return')

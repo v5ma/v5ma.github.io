@@ -11,7 +11,7 @@ export const FIELD_ROUTES=Object.freeze([
  {id:'harbor-crossing',kind:'boat',points:[[-7,38],[7,38]]},
  {id:'east-harbor',kind:'foot',points:[[14,38],[15,31],[15,20],[33,20],[33,10],[30,10],[30,8]]},
  {id:'north-maintenance',kind:'foot',points:[[17,-36],[17,-20],[15,-8],[32,-8],[32,-4],[32,0],[32,8],[30,8]]},
- {id:'field-cabinet',kind:'foot',points:[[32,-8],[35,-7]]},
+ {id:'field-cabinet',kind:'foot',points:[[32,-8],[32,-4.5],[36,-4.5]]},
  {id:'lock-return',kind:'foot',condition:'drained',points:[[15,-8],[0,-8],[-12,-8],[-25,-8],[-25,24],[-28,27],[-37,29]]},
  {id:'bridge-return',kind:'foot',condition:'bridge',points:[[18,26],[14,24],[0,24],[-17,24],[-28,27],[-37,29]]}
 ]);

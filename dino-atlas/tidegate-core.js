@@ -7,7 +7,7 @@ export const POINTS = {
  home:{x:-38,z:36}, westDock:{x:-12,z:38}, eastDock:{x:12,z:38},
  overlook:{x:-35,z:-24}, northBridge:{x:0,z:-36}, feeder:{x:49,z:-18},
  sluice:{x:15,z:-8}, service:{x:43,z:7}, gearbox:{x:30,z:7},
- bridge:{x:18,z:24}, report:{x:-38,z:32}, roof:{x:32,z:7}, maintenance:{x:32,z:-2}, supply:{x:35,z:-7}
+ bridge:{x:18,z:24}, report:{x:-38,z:32}, roof:{x:32,z:7}, maintenance:{x:32,z:-2}, supply:{x:36,z:-4.5}
 };
 export const ROUTES = [
  {id:'observation',nodes:['home','overlook','northBridge','feeder','service','gearbox'],mode:'foot',cost:'Longer, but reveals herd timing and the station from above.'},

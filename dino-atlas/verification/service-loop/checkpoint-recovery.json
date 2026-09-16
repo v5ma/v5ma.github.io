@@ -1,0 +1,13 @@
+{
+  "build": "tidegate-20260915.2",
+  "kind": "explicit-old-save-collision-fixture",
+  "earlierCandidate": "62910165358d17141d235fb59e1936ddb4d9a130",
+  "position": {"x":35,"y":1.2,"z":-8.8},
+  "failure": "The freestanding cabinet intersects a formerly valid open-ground checkpoint after the physics broad phase updates.",
+  "failedResult": {"tests":7,"passed":6,"failed":1,"assertion":"A new cabinet must not overlap a previously valid checkpoint"},
+  "correction": "Recess the locker face into the existing north wall. Reuse existing wall collision; do not place a new collider in formerly walkable save space. Interaction remains ordinary in-reach A at x=36, z=-4.5.",
+  "correctedLocalSuite": {"tests":168,"passed":168,"failed":0,"skipped":0},
+  "probeCaveat": "Step the real physics world before querying intersections. An unstepped broad-phase query initially missed the newly created collider and is not valid clearance evidence.",
+  "nativeAndPublicStatus": "Pending final-source playthroughs. Local geometry fixtures are not browser, human or hardware approval.",
+  "rollback": "Before restoring the north wall, move and save outside its new doorway. An unattended rollback should retain doorway clearance until a tested relocation migration exists. Never clear the save as a workaround."
+}
