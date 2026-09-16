@@ -1,11 +1,12 @@
 """Normal-start Floodgate journey. Read-only route guidance writes only
-virtual Xbox sticks. Discrete recovery actions are explicit Xbox presses.
+virtual Xbox sticks and mapped finite-resource recovery presses.
+The reactive medkit driver is synthetic assistance, not human reaction evidence.
 No planted save, actor writes, grants or clock edits.
 """
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-OUT=Path('test-output/rainward-freight-cut');OUT.mkdir(parents=True,exist_ok=True)
+OUT=Path(os.getenv('EVIDENCE_DIR','test-output/rainward-freight-cut'));OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/')
 checks,errors,console,dialogs,trace=[],[],[],[],[]
 def check(value,label):
@@ -14,7 +15,7 @@ def check(value,label):
 PAD="""
 localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:'classic',mute:true,low:true,scanned:false,cinematic:false,detailedHumans:false,toggleSprint:false}));
 window.pad={connected:true,mapping:'standard',index:0,id:'Freight Cut virtual Xbox',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};
-window.padPolls=0;window.padPulse=[];
+window.padPolls=0;window.padPulse=[];window.padRecoveryInputs=[];window.padAllowRecovery=false;
 Object.defineProperty(navigator,'getGamepads',{value:()=>{padPolls++;const buttons=pad.buttons.map(b=>({...b}));for(const i of padPulse)buttons[i]={pressed:true,value:1};padPulse=[];return [{...pad,axes:[...pad.axes],buttons}];}});
 """
 with sync_playwright() as pw:
@@ -24,7 +25,7 @@ with sync_playwright() as pw:
  context.add_init_script(PAD);page=context.new_page();page.set_default_timeout(90000)
  page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None);page.on('dialog',lambda d:(dialogs.append(d.type),d.dismiss()))
  def wait(q):page.wait_for_function(q)
- def frames(n=3):
+ def frames(n=1):
   old=page.evaluate('padPolls');page.wait_for_function('([old,n])=>padPolls>=old+n',arg=[old,n])
  def pulse(i):frames();page.evaluate('(i)=>padPulse=[i]',i);frames()
  def nav(target):
@@ -56,7 +57,9 @@ with sync_playwright() as pw:
    const W=await import('./world.mjs'),route=W.findPath(Rainward.state.player,{x,z});route.push({x,z});
    await new Promise((resolve,reject)=>{let i=0;const start=performance.now();
     const stop=()=>{pad.axes[0]=pad.axes[1]=0;pad.buttons[10]={pressed:false,value:0};clearInterval(timer);};
+    let lastHeal=-Infinity;
     const timer=setInterval(()=>{const p=Rainward.state.player;
+     if(window.padAllowRecovery&&p.hp>0&&p.hp<55&&p.medkit>0&&!p.craft&&performance.now()-lastHeal>500){padPulse.push(12);lastHeal=performance.now();padRecoveryInputs.push({t:Rainward.state.t,hp:p.hp,medkits:p.medkit,button:12,goal:{x,z}});}
      if(Rainward.mode!=='play'||performance.now()-start>150000){stop();reject(Error('Travel interrupted '+JSON.stringify({x:p.x,z:p.z,hp:p.hp,mode:Rainward.mode,goal:route[i]})));return;}
      const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.4){if(++i===route.length){stop();resolve();}return;}
      const yaw=Rainward.view.yaw,scale=Math.min(1,Math.max(.45,d*1.2));pad.axes[0]=(Math.cos(yaw)*dx-Math.sin(yaw)*dz)/d*scale;pad.axes[1]=(Math.sin(yaw)*dx+Math.cos(yaw)*dz)/d*scale;pad.buttons[10]={pressed:sprint,value:sprint?1:0};
@@ -77,24 +80,25 @@ with sync_playwright() as pw:
   go(-24,5);use('Rainward.state.taken.has("clinic-kit")');go(-22,-3.5);use('Rainward.state.objectives.cell');go(-24,-1);use('Rainward.state.checkpoint==="clinic"')
   old_save=page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")');(OUT/'earned-clinic-before.json').write_text(old_save)
   check(not json.loads(old_save)['completedTasks'],'The earned clinic checkpoint precedes both optional shortcut repairs')
-  craft('medkit');check(page.evaluate('Rainward.state.player.medkit===2&&Rainward.state.player.cloth===1&&Rainward.state.player.canister===0'),'The clinic recovery beat converts earned materials into a second finite medkit before commitment')
+  craft('smoke');check(page.evaluate('Rainward.state.player.medkit===1&&Rainward.state.player.smoke===2&&Rainward.state.player.cloth===1&&Rainward.state.player.canister===0'),'The clinic spends earned materials on the second smoke before commitment, instead of crafting while pursued')
   go(-22,-3.5,True);go(-22,-10,True);check(page.evaluate('Rainward.state.player.y>2.3'),'The real clinic ascent gives a market observation position')
-  picture('01-terrace-before-crossing');go(-8,-10,True);pulse(1);wait('Rainward.state.player.stance==="crouch"')
+  picture('01-terrace-before-crossing');pulse(1);wait('Rainward.state.player.stance==="crouch"');page.evaluate('padAllowRecovery=true');go(-8,-10);recover_if_needed('Ramp-foot decision',85);pulse(14);wait('Rainward.state.smokes.length>0');record('finite smoke before the market commitment')
   go(-5.2,-17);recover_if_needed('Market counter recovery')
   go(4,-16.5);recover_if_needed('Fountain recovery')
   go(9,-17);check(page.evaluate('(async()=>{const W=await import("./world.mjs");return W.coverAt(Rainward.state.player)})()'),'The approach reaches the existing east grass concealment before committing to Freight Hall')
   recover_if_needed('East grass recovery')
-  go(12,-15,True);go(18,-11,True)
+  pulse(1);wait('Rainward.state.player.stance==="stand"');go(12,-15,True);go(18,-11,True)
   reserve=page.evaluate('Rainward.state.player.reserve');salvage=page.evaluate('Rainward.state.player.canister')
   use('Rainward.state.completedTasks.includes("ward-radio")');wait('Rainward.snapshot().visuals.freightCut.open')
   check(page.evaluate('Rainward.state.player.reserve')==min(36,reserve+4) and page.evaluate('Rainward.state.player.canister')==min(12,salvage+2),'The existing local receiver task opens the loading passage with its unchanged one-time reward')
   check(page.evaluate('Rainward.state.hint.includes("WEST LOADING OPEN")'),'Receiver feedback explains the new passage and the pursuit risk')
-  recover_if_needed('Receiver recovery',80)
-  go(16.2,-14,True);go(16.2,-18);go(16.2,-22)
+  recover_if_needed('Receiver recovery',80);pulse(1);wait('Rainward.state.player.stance==="crouch"')
+  go(16.2,-14);go(16.2,-18);go(16.2,-22);go(16.2,-24)
   check(page.evaluate('Rainward.state.player.hp>0&&Rainward.state.player.stance==="crouch"&&Rainward.state.enemies.every(e=>e.hp>0)'),'The slower crouch-cover aisle provides a viable recovery state with every original threat still active')
-  go(17,-26,True);go(22.3,-26.7,True);use('Rainward.state.objectives.crank');pulse(1);wait('Rainward.state.player.stance==="stand"')
-  record('spindle-recovered');go(17,-26,True);smoke=page.evaluate('Rainward.state.player.smoke');pulse(14);wait('Rainward.state.player.smoke<'+str(smoke))
-  check(page.evaluate('Rainward.state.smokes.length>0'),'A real finite smoke screens the retreat; no enemies or detection rules are removed')
+  record('loading decision before commitment');smoke=page.evaluate('Rainward.state.player.smoke');pulse(14);wait('Rainward.state.player.smoke<'+str(smoke))
+  check(page.evaluate('Rainward.state.smokes.length>0'),'A second earned smoke is used BEFORE the open spindle floor, not after a fatal commitment')
+  pulse(1);wait('Rainward.state.player.stance==="stand"');go(17,-26,True);go(22.3,-26.7,True);use('Rainward.state.objectives.crank')
+  record('spindle-recovered');go(17,-26,True)
   go(17,-24,True);start=page.evaluate('({t:Rainward.state.t,x:Rainward.state.player.x,z:Rainward.state.player.z})');go(11,-24,True)
   crossing=page.evaluate('({t:Rainward.state.t,x:Rainward.state.player.x,z:Rainward.state.player.z,hp:Rainward.state.player.hp})');(OUT/'native-crossing.json').write_text(json.dumps({'start':start,'end':crossing,'input':'virtual Xbox; sprint subject to finite stamina'},indent=2))
   check(crossing['x']<12 and abs(crossing['z']+24)<.7,'Xbox movement physically crosses the powered west aperture from spindle aisle to sorting yard')
@@ -109,13 +113,14 @@ with sync_playwright() as pw:
   final=snap();check(final['player']['hp']>0 and all(e['hp']>0 for e in final['enemies']),'The complete earned route reaches extraction while every original enemy remains alive')
   check(final['stats']['shots']==0 and final['stats']['takedowns']==0,'Observation, cover, finite supplies and recovery suffice without mandatory combat kills')
   capture('02-extracted');record('mastered-return')
+  recovery_inputs=page.evaluate('padRecoveryInputs');(OUT/'recovery-inputs.json').write_text(json.dumps(recovery_inputs,indent=2))
   page.reload(wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');nav('continue');pulse(0);wait('Rainward.mode==="play"');wait('Rainward.snapshot().visuals.freightCut.open')
   check(page.evaluate('Rainward.state.objectives.cell&&Rainward.state.objectives.crank&&Rainward.state.checkpoint==="clinic"'),'A real browser reload restores the earned clinic checkpoint and powered passage')
   check(not errors and not console and not dialogs,'No captured browser errors, shader errors or blocking dialogs')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs,'final':final,'crossing':{'start':start,'end':crossing},'scope':'Normal-start living-enemy Floodgate journey; real HTTP/WebGL with virtual Xbox Classic buttons/sticks, read-only path/health guidance and explicit mapped recovery actions. No state assignments, grants, invulnerability, enemy removal, clock edits or planted save. Earned shelter saves are captured for genuine reload acceptance. Not human-player pacing or physical Xbox/Quest approval.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs,'final':final,'reactiveRecoveryInputs':recovery_inputs,'crossing':{'start':start,'end':crossing},'scope':'Normal-start living-enemy Floodgate journey; real HTTP/WebGL with virtual Xbox Classic buttons/sticks, read-only path guidance, reactive Classic D-pad-up medkit presses during travel and explicit planned smoke decisions. This is a synthetic assisted run, not human timing evidence. No state assignments, grants, invulnerability, enemy removal, clock edits or planted save. Earned shelter saves are captured for genuine reload acceptance. Not human-player pacing or physical Xbox/Quest approval.'},indent=2))
  except Exception as error:
   data={'error':str(error),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs}
-  try:data['snapshot']=snap();data['focus']=page.evaluate('document.activeElement?.id');capture('failure')
+  try:data['reactiveRecoveryInputs']=page.evaluate('padRecoveryInputs');data['snapshot']=snap();data['focus']=page.evaluate('document.activeElement?.id');capture('failure')
   except Exception:pass
   (OUT/'failure.json').write_text(json.dumps(data,indent=2));raise
  finally:context.close();browser.close()
