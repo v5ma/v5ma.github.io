@@ -2,7 +2,7 @@ import * as T from '../vendor/three.module.js';
 import {QUAY,marketState,marketStatus} from './market.mjs';
 /* The cart is real geometry in the existing world group: never an XR overlay.
  * Static markings explain the safe approach, full north loop and loading bay. */
-export function createMarketView({world,box,cyl,label}){
+export function createMarketView({world,box,cyl,label,batch}){
  const fixed=new T.Group(),cart=new T.Group();world.add(fixed,cart);
  box(cart,0x71513e,0,.48,0,QUAY.width,.25,QUAY.depth);
  for(const x of[-.69,.69])for(const z of[-.48,.48]){
@@ -31,6 +31,7 @@ export function createMarketView({world,box,cyl,label}){
   const handle=box(fixed,0xe9d8a4,i?5:-5,.85,i?-15:-13.5,.25,.15,.3);
   return {lamp,text,handle};
  });
+ batch?.(fixed);
  let last='';
  return {update(s){
   const m=marketState(s),status=marketStatus(s);cart.position.set(0,0,m.z);

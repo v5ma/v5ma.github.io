@@ -1,4 +1,5 @@
 import {VERSION,SAVE_KEY,fresh,parse,save,load,serialize,action,tick,nearby,goal,say,complete,actors,clamp} from './core.mjs';
+import {marketCue,marketStatus} from './market.mjs';
 import {createView} from './view.mjs';
 import {createXR} from './xr.mjs';
 import {gameplayInputIsNeutral} from '../controller-neutral.mjs';
@@ -77,7 +78,7 @@ function map(){const c=$('map-canvas'),ctx=c.getContext('2d'),X=x=>(x+25)*8,Z=z=
  ctx.strokeStyle='#9cc0b1';ctx.beginPath();[[-12.5,5],[-12.5,-4],[15,-3.5],[19.5,3],[19.5,11]].forEach(([x,z],i)=>i?ctx.lineTo(X(x),Z(z)):ctx.moveTo(X(x),Z(z)));ctx.stroke();
  ctx.fillStyle=state.water==='high'?'#438899':'#768c83';ctx.fillRect(X(-3),Z(-13),40,224);ctx.strokeStyle=state.gate?'#abdabc':'#b96251';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(3),Z(-9));ctx.lineTo(X(3),Z(21));ctx.stroke();ctx.fillStyle='#f8e9c9';ctx.font='12px sans-serif';for(const [text,x,z]of[['Depot',-17,18],['Print shop',-17,3],['Arcade',-23,-16],['Pump',3,-16],['Workshop',10,5],['Blue door',4,19]])ctx.fillText(text,X(x),Z(z));ctx.fillStyle='#fff1bb';ctx.beginPath();ctx.arc(X(state.x),Z(state.z),5,0,7);ctx.fill();}
 try{
- view=createView($('world'));xr=createXR(view,{clear,pause,paused:()=>paused,action:command,save:persist,goal:()=>state.messageTime>0?state.message:goal(state),message:tell,yaw:()=>yaw,turn:a=>{yaw+=a;clear();}});
+ view=createView($('world'));xr=createXR(view,{clear,pause,paused:()=>paused,action:command,save:persist,goal:()=>state.messageTime>0?state.message:marketCue(state)||goal(state),message:tell,yaw:()=>yaw,turn:a=>{yaw+=a;clear();}});
  for(const [id,mode]of[['vr-first','first-person-vr'],['vr-diorama','diorama-vr'],['ar-diorama','diorama-ar']])$(id).onclick=()=>{if(!started)start();xr.enter(mode);};
  for(const id of ['vr-first','vr-diorama','ar-diorama'])$(id).disabled=true;
  if(navigator.xr&&isSecureContext)for(const [kind,ids]of[['immersive-vr',['vr-first','vr-diorama']],['immersive-ar',['ar-diorama']]])navigator.xr.isSessionSupported(kind).then(ok=>ids.forEach(id=>$(id).disabled=!ok)).catch(()=>{});
@@ -85,7 +86,7 @@ try{
  $('stand-scale').oninput=e=>{xr.settings.scale=Number(e.target.value);clear();};$('stand-height').oninput=e=>{xr.settings.height=Number(e.target.value);clear();};$('stand-distance').oninput=e=>{xr.settings.distance=Number(e.target.value);clear();};
  if(blocked)tell(restored.error);try{if(storage.getItem('svgn.paper-delivery-3d.v1')){$('legacy-status').textContent='Your original neighborhood save is available unchanged.';}}catch{}
  $('start').disabled=false;$('loading').hidden=true;
- const snapshot=()=>({version:VERSION,state:JSON.parse(JSON.stringify(state)),started,paused,failed,blockedSave:blocked,controllerReady,gamepadConnected:!!padWas,yaw,mode:xr.active?xr.mode:viewMode,frames:frameCount,view:view.inspect(),xr:xr.inspect(),basis:{right:[Math.cos(yaw),-Math.sin(yaw)],forward:[-Math.sin(yaw),-Math.cos(yaw)]},nearby:nearby(state)?.id||null,goal:goal(state)});
+ const snapshot=()=>({version:VERSION,state:JSON.parse(JSON.stringify(state)),started,paused,failed,blockedSave:blocked,controllerReady,gamepadConnected:!!padWas,yaw,mode:xr.active?xr.mode:viewMode,frames:frameCount,view:view.inspect(),xr:xr.inspect(),quay:marketStatus(state),basis:{right:[Math.cos(yaw),-Math.sin(yaw)],forward:[-Math.sin(yaw),-Math.cos(yaw)]},nearby:nearby(state)?.id||null,goal:goal(state)});
  Object.defineProperty(window,'LanternWard',{value:Object.freeze({inspect:snapshot,panel:()=>xr.panelPose()})});
  rendererStart();
  function rendererStart(){view.renderer.setAnimationLoop((now,frame)=>{
@@ -105,7 +106,7 @@ try{
    // update() sets the actor pose; XR transforms are reapplied without advancing simulation.
    if(xr.active){const a=xr.inspect();if(a.kind==='diorama-ar')view.scene.background=null;}
    view.renderer.render(view.scene,view.camera);
-   if(frameCount%6===0){$('goal').textContent=goal(state);const f=nearby(state);$('context').textContent=f?f.id.startsWith('dock')?'Y / '+f.label:'X / '+f.label:'X interact   A hop   Y mount   LB throw';$('place').textContent=state.y>2?'UPPER DELIVERY ROUTE':state.y<-.3?'LANTERN CANAL':state.x>3?'WORKSHOP QUARTER':'DEPOT & MARKET';$('credits').textContent=state.credits+' chapter credits';$('notice').textContent=state.messageTime>0?state.message:'';if(!$('route-map').hidden)map();}
+   if(frameCount%6===0){$('goal').textContent=goal(state);const f=nearby(state);$('context').textContent=f?f.id.startsWith('dock')?'Y / '+f.label:'X / '+f.label:marketCue(state)||'X interact   A hop   Y mount   LB throw';$('place').textContent=state.y>2?'UPPER DELIVERY ROUTE':state.y<-.3?'LANTERN CANAL':state.x>3?'WORKSHOP QUARTER':'DEPOT & MARKET';$('credits').textContent=state.credits+' chapter credits';$('notice').textContent=state.messageTime>0?state.message:'';if(!$('route-map').hidden)map();}
   }catch(e){failed=true;pause(true);$('error').hidden=false;$('error').textContent='Chapter paused after an error. Your saved progress has not been cleared. '+e.message;console.error(e);}
  });}
  $('world').addEventListener('webglcontextlost',e=>{e.preventDefault();persist();pause(true);tell('Graphics interrupted. Progress retained. Reload to resume the chapter.');});

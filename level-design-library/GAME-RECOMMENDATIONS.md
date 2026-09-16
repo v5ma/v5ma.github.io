@@ -56,6 +56,8 @@ Recommended benchmark influences: Hitman for purposeful social spaces without as
 
 ## Neighborhood Missions
 
+Applied iteration: [Working Quay](applied/NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md) develops the existing Lantern Ward loading routine under LEVEL-01. Check its exact-source evidence before treating it as accepted; this does not replace the recommendations below.
+
 Primary design identity: courier movement and community work through neighborhoods whose circulation the player learns to operate.
 
 Lantern Ward is the correct direction: street, roof, and canal routes should differ in travel style, stopping cost, information, and access. Expand that philosophy into additional authored neighborhoods rather than relying primarily on more contracts across anonymous space.

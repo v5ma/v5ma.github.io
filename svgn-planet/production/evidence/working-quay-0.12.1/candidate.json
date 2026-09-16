@@ -1,0 +1,19 @@
+{
+  "version": "0.12.1",
+  "baseCommit": "78dad9840163bbacb7308118cde44a1bb4f525f6",
+  "roadmapTask": "LEVEL-01",
+  "localModelTestsPassed": 220,
+  "browserAcceptance": "pending",
+  "publicAcceptance": "pending",
+  "physicalDeviceTested": false,
+  "humanComprehensionTested": false,
+  "review": "../../../lantern/WORKING-QUAY.md",
+  "runtimeFileSHA256": {
+    "svgn-planet/lantern-ward.html": "619ed98083e654c0cf6c274def405049088022c110ed6e3f272e73d9e00284a6",
+    "svgn-planet/lantern/app.mjs": "1e73082213131091dd5b958ea484eafb82422d60b289f9db49ae60dadcbd8fc2",
+    "svgn-planet/lantern/browser.py": "c50c19e56a27fb1b10b86b183a6717f997b22974b13929c00e69a6a16c0c3b30",
+    "svgn-planet/lantern/core.mjs": "9ea559a0eb3900529cf32dab371aba4428743ea2061543adef23ddae8929e492",
+    "svgn-planet/lantern/view.mjs": "af56d674c2e455019f9fc73bad455db32b60954213a7213be7b07fde0a03e386",
+    "svgn-planet/lantern/market-view.mjs": "090c12d0ffde954c66d3a4dcbbe79271f6841fde1d4cadc609f5cf9c267f8c96"
+  }
+}

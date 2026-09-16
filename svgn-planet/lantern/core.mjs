@@ -1,5 +1,6 @@
 /* Lantern Ward: one metre-space simulation for desktop and native spatial XR. */
-export const VERSION='0.12.0', CHAPTER='lantern-ward-01', LAYOUT=1;
+import {advanceMarket,marketActor,marketBlocks,marketState,requestPass,resetMarket} from './market.mjs';
+export const VERSION='0.12.1', CHAPTER='lantern-ward-01', LAYOUT=1;
 export const SAVE_KEY='svgn.lantern-ward.v1';
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const inside=(x,z,r,p=0)=>x>=r.x-r.w/2-p&&x<=r.x+r.w/2+p&&z>=r.z-r.d/2-p&&z<=r.z+r.d/2+p;
@@ -59,6 +60,8 @@ export const fixtures=[
  {id:'water',x:5.8,z:-13,y:0,label:'Operate canal sluice'},
  {id:'repair',x:6,z:-8,y:0,label:'Repair goods hoist'},
  {id:'hoist',x:6.8,z:.5,y:0,label:'Ride goods hoist'},
+ {id:'quay-west-signal',x:-5,z:-13.5,y:0,label:'Signal Ivo / keep bicycle mounted'},
+ {id:'quay-east-signal',x:5,z:-15,y:0,label:'Signal Ivo / keep bicycle mounted'},
  {id:'dock-south',x:-4.4,z:13,y:0,label:'Y: Board canal skiff'},
  {id:'dock-north',x:3,z:-14,y:0,label:'Y: Board canal skiff'}
 ];
@@ -76,7 +79,7 @@ export function parse(raw){
  s.safe=Array.isArray(p.safe)&&p.safe.length===3&&p.safe.every(Number.isFinite)&&Math.abs(p.safe[0])<24&&Math.abs(p.safe[2])<21?p.safe:[-12,0,17];
  if(s.ride==='boat'&&s.water==='low')s.ride='foot';
  // A saved mid-hop/hoist position falls to a valid support; no stale transition survives.
- s.hoistY=Number.isFinite(p.hoistY)?clamp(p.hoistY,0,4.4):0;s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;return s;
+ s.hoistY=Number.isFinite(p.hoistY)?clamp(p.hoistY,0,4.4):0;s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;resetMarket(s);return s;
 }
 export function save(s,store){
  let text;try{const payload=serialize(s);if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
@@ -90,7 +93,7 @@ export function load(store){
 export function actors(s){
  const u=(s.time%18)/18,walk=u<.5?u*2:2-u*2;
  return [{id:'dispatcher',name:'Mara / dispatcher',x:-14+walk*3,z:15,y:0,tip:'The blue door is latched from the receiving court. Watch for our red depot sign on your return.'},
- {id:'porter',name:'Ivo / market porter',x:s.porterYield>0?-23:-18.25,z:-5+walk*7,y:0,tip:'Ring your bell and I will pull into the bay. The public print-shop stair reaches the drying terraces.'},
+ marketActor(s),
  {id:'caretaker',name:'Neri / workshop caretaker',x:16,z:5+walk*4,y:0,tip:'Leave the parcel at the receiving bench. Restore the blue door OR repair the goods hoist, then return to Mara.'}];
 }
 export function surfaces(s,x,z){return [...floors,{id:'hoist-platform',x:6.8,z:.5,w:2,d:2,y:s.hoistY||0}].filter(f=>(!f.low||s.water==='low')&&inside(x,z,f,-.06));}
@@ -101,7 +104,7 @@ export function blocked(s,x,y,z,r=.3){
  if(s.ride==='bicycle'&&surfaces(s,x,z).some(f=>f.stairs&&floorHeight(f,z)<y+.5&&floorHeight(f,z)>y-.5))return true;
  if(s.ride!=='boat'&&s.water==='high'&&y<.5&&inside(x,z,canal,-.08))return true;
  if(s.ride==='boat'&&!inside(x,z,canal,-.5))return true;
- if(s.ride==='bicycle'){const a=actors(s)[1];if(Math.hypot(x-a.x,z-a.z)<1)return true;}
+ if(marketBlocks(s,x,y,z,r))return true;
  return false;
 }
 export function lineClear(s,a,b){const d=Math.hypot(b.x-a.x,b.z-a.z,b.y-a.y),n=Math.max(1,Math.ceil(d/.12));for(let i=1;i<n;i++){const u=i/n,x=a.x+(b.x-a.x)*u,z=a.z+(b.z-a.z)*u,y=a.y+(b.y-a.y)*u;for(const w of walls)if(!(w.gate&&s.gate)&&y>w.y&&y<w.y+w.h&&inside(x,z,w))return false;}return true;}
@@ -111,7 +114,7 @@ export function nearby(s){
  return found.sort((a,b)=>Math.hypot(s.x-a.x,s.z-a.z)-Math.hypot(s.x-b.x,s.z-b.z))[0]||null;
 }
 export function action(s,name){
- if(name==='bell'){s.porterYield=9;say(s,'Ivo: Coming through? I will pull into the passing bay.');return;}
+ if(name==='bell'){const m=marketState(s),visible=lineClear(s,{x:s.x,y:s.y+1,z:s.z},{x:0,y:1,z:m.z});say(s,requestPass(s,visible)?'Ivo: I heard you. Pulling north into the bay; cross when the sign clears.':'Bell rang. Signal within sight of Ivo at the north quay to request a pass.');return;}
  if(name==='hop'){if(s.ride==='foot'&&Math.abs(s.vy)<.01&&support(s,s.x,s.z,s.y))s.vy=4.3;return;}
  if(name==='ride'){
   if(s.transition||s.lift)return;
@@ -126,6 +129,7 @@ export function action(s,name){
  if(name!=='interact')return;
  const f=nearby(s);
  if(!f){const a=actors(s).find(a=>Math.hypot(s.x-a.x,s.y-a.y,s.z-a.z)<2.8);if(a)say(s,a.tip);else say(s,name==='throw'?'The workshop parcel needs a handoff at its bench, not a thrown paper.':'Move close to a person, bench or mechanism.');return;}
+ if(f.id.startsWith('quay-')){action(s,'bell');return;}
  if(f.id==='parcel'){
   if(complete(s)&&!s.claimed){s.claimed=true;s.credits=600;say(s,'Delivery loop restored. 600 chapter credits recorded once. The shortcuts remain yours.');}
   else if(s.claimed)say(s,'Mara: The ward is working again. Try another route; the blue door and hoist stay repaired.');
@@ -149,7 +153,7 @@ export function action(s,name){
  }else if(f.id.startsWith('dock'))action(s,'ride');
 }
 export function tick(s,input,dt){
- dt=clamp(Number.isFinite(dt)?dt:0,0,.05);if(!dt)return;s.time+=dt;s.steps++;s.messageTime=Math.max(0,s.messageTime-dt);s.porterYield=Math.max(0,s.porterYield-dt);
+ dt=clamp(Number.isFinite(dt)?dt:0,0,.05);if(!dt)return;s.time+=dt;s.steps++;s.messageTime=Math.max(0,s.messageTime-dt);s.porterYield=Math.max(0,s.porterYield-dt);advanceMarket(s,dt);
  if(s.paper){s.paper.t+=dt;if(s.paper.t>1.1)s.paper=null;}
  if(s.transition){s.transition.t+=dt/2;if(s.transition.t>=1){if(inside(s.x,s.z,canal)||s.ride==='boat'){s.transition=null;say(s,'Sluice paused: clear the channel first. The safe water level is unchanged.');return;}s.water=s.transition.to;s.transition=null;say(s,s.water==='low'?'Channel drained. The maintenance steps and walking route are exposed.':'Channel filled. Public boats are available again.');}}
  if(s.lift){const l=s.lift;if(l.summon){const q=l.summon;q.t=Math.min(1,q.t+dt/1.5);s.hoistY=q.from+(q.to-q.from)*q.t;if(q.t>=1){l.summon=null;s.x=6.8;s.z=.5;s.y=l.from;}return;}l.t=Math.min(1,l.t+dt/2);s.y=l.from+(l.to-l.from)*(l.t*l.t*(3-2*l.t));s.hoistY=s.y;if(l.t>=1){s.lift=null;s.safe=[s.x,s.y,s.z];}return;}
@@ -171,6 +175,7 @@ export function tick(s,input,dt){
   for(const roof of surfaces(s,s.x,s.z)){const h=floorHeight(roof,s.z);if(!roof.stairs&&h>old[1]+1.7&&s.y+1.8>h&&s.vy>0){s.y=h-1.81;s.vy=0;}}
  }
  const distance=Math.hypot(s.x-old[0],s.z-old[2]);s.distance+=distance;s.speed=distance/dt;
+ if(Math.hypot(dx,dz)>.1&&s.speed<.2&&Math.abs(s.x)<2.5&&s.z< -12&&s.z> -19)marketState(s).waitSeconds+=dt;
  if(distance>.001)s.yaw=Math.atan2(-s.vx,-s.vz);
  if(s.y< -6){[s.x,s.y,s.z]=s.safe;s.vx=s.vz=s.vy=0;s.ride='foot';say(s,'Recovered at your last safe landing. Parcel and repairs retained.');}
  if(s.vy===0&&s.y>=0&&s.ride==='foot'&&!inside(s.x,s.z,canal))s.safe=[s.x,s.y,s.z];

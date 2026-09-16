@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Lantern Ward: The Broken Delivery Loop v0.12.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
+Current release: Lantern Ward: Working Quay v0.12.1. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
 
 ## How to use this workbook
 
@@ -134,9 +134,9 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.
-  Next: Published graybox and all three approach tours passed. Test unfamiliar-player orientation, choices, shortcut recognition and replay agency before expanding; then replace graybox art deliberately.
+  Next: Working Quay candidate: measure wait/signal/north-loop bicycle routes with real input, retain roof/canal/hoist/save and XR regressions, then verify public bytes. Human first-visit and replay comprehension remains open.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json
 
 - [ ] XR-02 / P0 / needs-playtest / Native first-person and actual-geometry VR/AR dioramas
   Acceptance: Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.

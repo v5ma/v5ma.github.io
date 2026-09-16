@@ -1,3 +1,7 @@
+# Working Quay v0.12.1 candidate
+
+Read lantern/WORKING-QUAY.md and release.json first. LEVEL-01 now includes a local loading crossing, continuous cart routine and useful north-loop recovery on existing geography. All 220 local model tests pass; CI browser and separate public checks remain required. Save keys, layout 1, rewards, controls and the 102-file legacy layout remain unchanged. Physical devices and human comprehension remain open. Do not treat historical v0.12.0 acceptance below as new-release acceptance.
+
 # Lantern Ward / v0.12.0 published handoff
 
 Lantern Ward is implemented, normally merged and published. Runtime: e7dbca0282ffbd8f1bc3506ecedc25e8e8923a85. Master acceptance: https://github.com/v5ma/v5ma.github.io/actions/runs/35017262121. Publication: https://github.com/v5ma/v5ma.github.io/actions/runs/35017262097 (attempt 2). Pages: https://github.com/v5ma/v5ma.github.io/actions/runs/35017260230. Read production/evidence/lantern-0.12.0/published.json and its raw master/live reports. Candidate records are historical.

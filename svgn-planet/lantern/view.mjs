@@ -1,4 +1,5 @@
 import * as T from '../vendor/three.module.js';
+import {createMarketView} from './market-view.mjs';
 import {createCourier} from '../vehicles.mjs';
 import {placeChain} from '../grounded-motion.mjs';
 import {floors,walls,canal,floorHeight,actors,clamp,inside,support} from './core.mjs';
@@ -55,7 +56,7 @@ export function createView(canvas){
  // Arcade: columns and arches frame a real circulation route and a passing bay.
  for(const z of[-10,-6,0,5]){for(const x of[-23,-18])cyl(decor,0xe2c9a3,x,1.5,z,.15,3);box(decor,0x4f7479,-20.5,3.2,z,5.6,.25,.65);}
  label('MARKET ARCADE',-20.5,3.75,6,5,.66,'#486861');
- label('PUBLIC PASSING BAY',-22.3,1.5,-8,2.6,.42);
+ label('NORTH QUAY / KEEP RIDING',-22.3,1.5,-8,2.6,.42);
  for(let z=-3;z<2;z+=1.1)for(const x of[-21.3,-20.1]){box(decor,0x8f724f,x,1.27,z,.8,.5,.9);for(let i=0;i<3;i++)cyl(decor,0xdfb76e,x-.24+i*.23,1.61,z,.1,.23);}
  for(let x=-16;x<=-5;x+=2.6){box(decor,0x41616c,x,2.5,-15.45,1.6,2,.1);box(decor,0xefdfb6,x,2.5,-15.34,.06,2,.06);}
  // Workshop has actual ground-floor circulation, an upper loft, and south stairs.
@@ -116,6 +117,7 @@ export function createView(canvas){
  function batch(group){const bins=new Map();group.updateMatrixWorld(true);for(const m of [...group.children])if(m.isMesh&&(m.geometry===boxGeo||m.geometry===cylGeo)){const key=m.geometry.uuid+m.material.uuid;if(!bins.has(key))bins.set(key,[]);bins.get(key).push(m);}
   for(const meshes of bins.values()){if(meshes.length<3)continue;const m=new T.InstancedMesh(meshes[0].geometry,meshes[0].material,meshes.length);meshes.forEach((o,i)=>{o.updateMatrix();m.setMatrixAt(i,o.matrix);group.remove(o);});m.castShadow=m.receiveShadow=true;group.add(m);}}
  batch(decor);batch(lowGroup);for(const g of world.children)if(g!==decor&&g!==lowGroup&&g.isGroup&&g.children.some(m=>m.geometry===boxGeo))batch(g);
+ const marketView=createMarketView({world,box,cyl,label,batch});
  const enclosure=new T.Group();world.add(enclosure);const sideMat=new T.MeshStandardMaterial({color:0x254b58,roughness:.8,side:T.DoubleSide});
  function panel(w,h,pos,rot){const m=new T.Mesh(new T.PlaneGeometry(w,h),sideMat);m.position.set(...pos);m.rotation.set(...rot);enclosure.add(m);return m;}
  panel(49,17,[0,4.5,-21.3],[0,0,0]);panel(43,17,[-24.4,4.5,0],[0,Math.PI/2,0]);panel(43,17,[24.4,4.5,0],[0,-Math.PI/2,0]);
@@ -126,7 +128,7 @@ export function createView(canvas){
  let cameraYaw=0,view='third',pitch=.58;
  function resize(){if(renderer.xr.isPresenting)return;renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
  function update(s,dt,{mode='third',yaw=cameraYaw,started=true}={}){
-  view=mode;cameraYaw=yaw;pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:i===1?Math.PI/2:0,time:s.time,speed:1,distance:s.time*.6},dt));
+  view=mode;cameraYaw=yaw;marketView.update(s);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
   flyingPaper.visible=!!s.paper;if(s.paper){const p=s.paper;flyingPaper.position.set(p.x+p.dx*p.t*6,p.y+Math.sin(p.t*Math.PI)*.5-p.t*.8,p.z+p.dz*p.t*6);flyingPaper.rotation.set(p.t*8,p.t*3,p.t*5);}
   gate.visible=!s.gate;latch.visible=!s.gate;parcel.visible=!s.parcel;lowGroup.visible=s.water==='low';
   const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;water.position.y=-2+mix*1.25;water.visible=mix>.02;waterMat.uniforms.time.value=s.time;gauge.position.y=water.position.y;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
@@ -143,5 +145,5 @@ export function createView(canvas){
   }
  }
  resize();addEventListener('resize',resize);
- return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:!top.visible,frontOpen:!front.visible,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
+ return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({market:marketView.inspect(),clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:!top.visible,frontOpen:!front.visible,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
 }
