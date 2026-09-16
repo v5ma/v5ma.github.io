@@ -25,9 +25,14 @@ with sync_playwright() as pw:
  context.add_init_script(PAD);page=context.new_page();page.set_default_timeout(90000)
  page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None);page.on('dialog',lambda d:(dialogs.append(d.type),d.dismiss()))
  def wait(q):page.wait_for_function(q)
- def frames(n=1):
+ def frames(n=2):
   old=page.evaluate('padPolls');page.wait_for_function('([old,n])=>padPolls>=old+n',arg=[old,n])
- def pulse(i):frames();page.evaluate('(i)=>padPulse=[i]',i);frames()
+ def neutral():
+  # Mode changes deliberately disarm the production input until a complete
+  # neutral poll. Never start a held stick before that release is sampled.
+  page.evaluate('pad.axes=[0,0,0,0];pad.buttons.forEach(b=>{b.pressed=false;b.value=0});padPulse=[]')
+  frames(2)
+ def pulse(i):neutral();page.evaluate('(i)=>padPulse=[i]',i);frames()
  def nav(target):
   for _ in range(100):
    if page.evaluate('document.activeElement?.id')==target:return
@@ -53,6 +58,7 @@ with sync_playwright() as pw:
   if state['hp']<threshold and state['medkit']>0:heal_now(label);return True
   return False
  def go(x,z,sprint=False):
+  neutral()
   page.evaluate('''async ({x,z,sprint})=>{
    const W=await import('./world.mjs'),route=W.findPath(Rainward.state.player,{x,z});route.push({x,z});
    await new Promise((resolve,reject)=>{let i=0;const start=performance.now();
@@ -120,7 +126,7 @@ with sync_playwright() as pw:
   (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs,'final':final,'reactiveRecoveryInputs':recovery_inputs,'crossing':{'start':start,'end':crossing},'scope':'Normal-start living-enemy Floodgate journey; real HTTP/WebGL with virtual Xbox Classic buttons/sticks, read-only path guidance, reactive Classic D-pad-up medkit presses during travel and explicit planned smoke decisions. This is a synthetic assisted run, not human timing evidence. No state assignments, grants, invulnerability, enemy removal, clock edits or planted save. Earned shelter saves are captured for genuine reload acceptance. Not human-player pacing or physical Xbox/Quest approval.'},indent=2))
  except Exception as error:
   data={'error':str(error),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs}
-  try:data['reactiveRecoveryInputs']=page.evaluate('padRecoveryInputs');data['snapshot']=snap();data['focus']=page.evaluate('document.activeElement?.id');capture('failure')
+  try:data['reactiveRecoveryInputs']=page.evaluate('padRecoveryInputs');data['snapshot']=snap();data['focus']=page.evaluate('document.activeElement?.id');data['virtualInput']=page.evaluate('({axes:pad.axes,buttons:pad.buttons,polls:padPolls})');capture('failure')
   except Exception:pass
   (OUT/'failure.json').write_text(json.dumps(data,indent=2));raise
  finally:context.close();browser.close()
