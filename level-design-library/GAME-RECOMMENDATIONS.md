@@ -96,6 +96,8 @@ Procedural generation should preserve authored relationships rather than merely 
 
 Recommended benchmark influences: Dark Souls for place mastery, Dishonored for vertical options, Castlevania for enemies as spatial constraints, and systemic action games for readable state changes.
 
+Source-reconciled Vesperfall iteration: Open Line 0.15.0 refines the existing Returning Bell rather than replacing it again. The short central stair and an existing watcher's firing line share the reversible screen; a shootable brass release gives archery a direct role in opening it. Gallery control, flanking stairs, missed-shot recovery and a legitimate signal shot without visiting the tower remain distinct choices. Read ../vesperfall/OPEN-LINE.md and its exact publication receipt before assigning evidence status. Keep returning-bell-1 and hollow-dominions-1 for old saves; new expeditions use returning-bell-2. Human first/replay understanding and physical-device approval remain open.
+
 ## Sky Cycle
 
 Sky Cycle has a separate detailed manual in `SKY-CYCLE-LEVEL-DESIGN.md`. Its primary rule is that the ground route must be a satisfying game by itself, while the optional aerial network provides expressive momentum mastery, exploration, and longer connected lines. Do not turn it into a generic exploration game or require frequent stopping for doors, menus, or combat.

@@ -1,5 +1,5 @@
 {
-  "version": "0.14.0",
+  "version": "0.15.0",
   "project": "Vesperfall: Arrows Unchained",
   "scope": "Quality-gated path toward a polished original premium archery roguelite. AAA is an aspiration, not a certified rating, budget or delivery promise. Public-only content.",
   "tasks": [
@@ -971,10 +971,14 @@
         "returning-bell.js",
         "tests/returning-bell.test.cjs",
         "tests/returning-bell-browser.py",
-        "RETURNING-BELL.md"
+        "RETURNING-BELL.md",
+        "OPEN-LINE.md",
+        "returning-bell-lanes.js",
+        "tests/open-line.test.cjs",
+        "tests/open-line-browser.py"
       ],
-      "verification": "The Returning Bell is a separate authored opening with seven connected places, two actual stair approaches, real Blink connectors, reversible collision-backed screens, a persistent return gate, and a ring-and-return objective. Development slice, not a measured 20-30 minute finished campaign. Software route/save/native-input checks are separate from unfamiliar-player and physical-device review.",
-      "release": "0.14.0 Returning Bell"
+      "verification": "Open Line refines the existing seven-place chapter instead of expanding it. A new versioned central stair shares the screen's cover/shot tradeoff with a repositioned existing watcher. Ordinary arrows can lift the brass release; the gallery still reverses it. A learned signal shot can complete without entering the tower. Model and controller-driven route comparisons record actual distance, simulation time, health and shots; human comprehension, enjoyment and the original finished-slice gate remain open.",
+      "release": "0.15.0 Open Line"
     },
     {
       "id": "V53",
@@ -1070,10 +1074,14 @@
       "evidence": [
         "returning-bell-model.js",
         "returning-bell-art.js",
-        "RETURNING-BELL.md"
+        "RETURNING-BELL.md",
+        "OPEN-LINE.md",
+        "returning-bell-lanes.js",
+        "tests/open-line.test.cjs",
+        "tests/open-line-browser.py"
       ],
-      "verification": "The authored refuge, basin/statue landmarks, silent tower signal, screen winch and service-side return connection express one original environmental objective. Newcomer recognition, discovery, audio and finished-art review remain open.",
-      "release": "0.14.0 Returning Bell"
+      "verification": "Open Line links a visible brass release and cable to the actual moving screens, labels the exposed short stair, and preserves the recognizable refuge gate. Functional cues express speed/exposure versus observation/control. Recognition and environmental-story understanding require unfamiliar-player observation; no human narrative rating is claimed.",
+      "release": "0.15.0 Open Line"
     },
     {
       "id": "V58",
@@ -1226,9 +1234,14 @@
       "owner": "Engineering",
       "gate": "Keep fixtures for old supported generator/schema versions, offer explicit local backup/restore and verify interrupted writes, browser quota and update migration. Never silently reset incompatible saves. Any future discrete-hit-point conversion must specify health/healing balance and tested checkpoint migration; retain current health and profiles in presentation-only releases.",
       "why": "A published game needs durable progress across later upgrades.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "OPEN-LINE.md",
+        "returning-bell-lanes.js",
+        "tests/open-line.test.cjs",
+        "tests/open-line-browser.py"
+      ],
+      "verification": "Legacy hollow-dominions-1 and returning-bell-1 fixtures remain. Open Line adds returning-bell-2 and captures/restores the actual layout identity; mechanism geometry is rebuilt before supported-position checks, including a player saved inside the raised-screen crossing. This compatibility work does not complete export, backup, storage eviction or general migration tooling.",
+      "release": "0.15.0 Open Line"
     },
     {
       "id": "V66",
@@ -1289,10 +1302,14 @@
         "tests/surestep-browser.py",
         "tests/launch.py",
         "SURESTEP.md",
-        "CONTINUATION-AUDIT.md"
+        "CONTINUATION-AUDIT.md",
+        "OPEN-LINE.md",
+        "returning-bell-lanes.js",
+        "tests/open-line.test.cjs",
+        "tests/open-line-browser.py"
       ],
-      "verification": "Surestep has a dedicated source/browser acceptance workflow and public byte verification. Final per-run receipts distinguish tested source, merged publication and hardware review. The older failed Tidelight run remains historical evidence and is not retroactively credited.",
-      "release": ""
+      "verification": "Open Line retains exact-source model/workbook checks, four controller-driven route comparisons, full first-person VR/AR/hand/save regression and separate public-byte/launch verification. Preserve unsuccessful receipts and separate model, rendered software, physical-device and human evidence. Public success is recorded only in the matching publication receipt.",
+      "release": "0.15.0 Open Line"
     },
     {
       "id": "V69",
@@ -1449,10 +1466,14 @@
       "evidence": [
         "FIRST-BELL.md",
         "tests/first-bell-browser.py",
-        "tests/pilgrim.test.cjs"
+        "tests/pilgrim.test.cjs",
+        "OPEN-LINE.md",
+        "returning-bell-lanes.js",
+        "tests/open-line.test.cjs",
+        "tests/open-line-browser.py"
       ],
-      "verification": "First Bell integrates teaching, a scored staged route, three-phase boss and checkpoint continuation in the maintained game. Source/model and native-input checks are distinct from physical hardware and human approval. The authored opening is a ring-and-return chapter, not an additional boss fight. Its completion offers an explicit blessing continuation into retained Endless content; the next authored chapter remains open.",
-      "release": "0.10.0 First Bell"
+      "verification": "The authored opening retains the ordinary sector reward once and explicitly continues into Endless after its blessing. Open Line strengthens route purpose and a knowledge-based signal approach without adding a new boss or second authored chapter. Existing First Bell/Oath remain. External first/replay play and physical-device acceptance remain open.",
+      "release": "0.15.0 Open Line"
     }
   ],
   "updated": "2026-09-15",
@@ -1777,9 +1798,9 @@
       "Browser storage eviction and future generator changes",
       "High",
       "Engineering / QA",
-      "Local storage is not cloud backup; two immutable layout identities now require ongoing fixtures",
+      "Local storage is not cloud backup; three immutable layout identities now require ongoing fixtures",
       "V65,V75",
-      "Retain the original Surestep checkpoint fixture; reconstruct chapter mechanisms before validating restored positions.",
+      "Retain the original Surestep and Returning Bell v1 fixtures; rebuild each saved layout and screen/gate state before validating positions. Do not remove v2 restore support during an art rollback.",
       "Open"
     ],
     [
@@ -1864,7 +1885,7 @@
     ]
   ],
   "nextRelease": {
-    "theme": "Refine Returning Bell through unfamiliar-player observation, first-person/AR hardware review and targeted art/audio/performance work before another chapter",
+    "theme": "Observe and refine Open Line route choice, screen causality and recovery before another authored chapter.",
     "focus": [
       "V52",
       "V57",
@@ -1879,13 +1900,13 @@
       "V62",
       "V75"
     ],
-    "note": "The first authored chapter replaces the default new-player content while legacy saves reconstruct their original geometry. Do not inflate room count or treat graph/model tests as enjoyment evidence. Preserve returning-bell-1 and hollow-dominions-1 identities. The AR table is discovery-limited inspection, not hand-only combat, room scanning or a full-scale AR campaign."
+    "note": "Keep the seven-place chapter and its three immutable layout IDs: hollow-dominions-1, returning-bell-1 and returning-bell-2. Evaluate whether players notice the brass release, anticipate the exposed short stair and use gallery control or learned shots on replay. Physical VR/AR, accessibility, sustained performance and human first/repeat play remain unapproved. No room scan or hand-only combat."
   },
   "continuation": {
     "updated": "2026-09-15",
     "entrypoint": "DEVELOPMENT-HANDOFF.md",
     "audit": "CONTINUATION-AUDIT.md",
-    "gameVersion": "0.14.0",
+    "gameVersion": "0.15.0",
     "auditedBase": "8620f52f7906ef66c0c5bdc0edb73f8e1de423cd",
     "publicationRule": "Finish, test, commit, merge and verify the public game; do not stop at a local candidate or unmerged branch.",
     "scopeRule": "Only Vesperfall; preserve siblings, saves, existing modes and public-only narrative.",
@@ -1905,7 +1926,7 @@
           "V64",
           "V76"
         ],
-        "action": "Read RETURNING-BELL.md, LEVEL-DESIGN-RESET.md and the exact release receipt. Observe unfamiliar and returning players traversing both approaches, the screen tradeoff and the recognizable return gate; do not call software completion a player study."
+        "action": "Read OPEN-LINE.md, the shared level-design library and the exact source/publication receipt. Compare actual ground, gallery and central approaches with unfamiliar and returning players. Ask what raising the screens changes and whether the learned signal shot creates useful agency; do not call synthetic route completion a player study."
       },
       {
         "tasks": [
@@ -1930,7 +1951,7 @@
           "V52",
           "V76"
         ],
-        "action": "Iterate the complete opening and its default entry before designing the next authored chapter. Keep legacy modes, both immutable layout IDs, tested save envelopes and direct arrow shortcuts."
+        "action": "Tune this complete chapter before expansion. Retain hollow-dominions-1, returning-bell-1 and returning-bell-2, all checkpoint fixtures, direct arrow controls and explicit Endless continuation. Roll back by a scoped save-safe commit, never by removing support for saved layouts."
       }
     ],
     "historicalEvidence": {
@@ -1967,6 +1988,20 @@
       ],
       "hardware": "Not certified. Physical tracking, gestures, performance, comfort and long-session review remain open.",
       "historicalNote": "notEstablishedAsShipped describes the older interrupted Tidelight draft. Surestep now implements water-settings parity, not its other unshipped features."
+    },
+    "openLine": {
+      "sourceBase": "e6e5f27868eaf853323c7ff84378e7ac874d2f5c",
+      "reviewedMaster": "cd4da168b1c19f127ac3e80946e5ab4b8061c46d",
+      "library": "../level-design-library/",
+      "hypothesis": "Opening a shorter shared movement/firing lane will make screen state a consequential speed-versus-exposure decision, while gallery control and retained flanks allow recovery. Knowledge can replace a tower visit with a legitimate shot.",
+      "primaryObservation": "Input-driven route distance, simulation time, health, damage and shots with living enemies and unmodified resources; human comprehension remains a separate unperformed study.",
+      "guardrails": [
+        "No population or pickup increase.",
+        "No mutation of either existing layout identity.",
+        "No test-state assignment to manufacture browser progress.",
+        "No controller remapping or extra menu interaction.",
+        "AR remains discovery-limited inspection, not another simulation."
+      ]
     }
   }
 }

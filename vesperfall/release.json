@@ -1,8 +1,8 @@
 {
-  "version": "0.14.0",
-  "name": "returning-bell",
+  "version": "0.15.0",
+  "name": "open-line",
   "date": "2026-09-15",
-  "scope": "Authored Returning Bell opening replaces the default fresh expedition: interlocking ground/gallery/service circulation, reversible collision-backed screens, an expedition-persistent return gate, real archery or interaction to restore the signal, and return-to-refuge completion. Optional discovery-limited AR Architect's Table shares tracked-controller and hand-pinch menus. The next authored chapter is not included.",
-  "saveCompatibility": "Existing profiles/envelopes remain. Legacy hollow-dominions-1 checkpoints reconstruct their original world; returning-bell-1 saves include bounded mechanism state restored before position validation. No progress reset or remapping of quick-arrow controls.",
+  "scope": "Open Line refines the Returning Bell chapter in its existing footprint. A new central stair, shared enemy firing lane and arrow-operated brass screen release create a shorter exposed approach beside the retained gallery and ambulatory routes. A learned bell shot is a valid alternative to visiting the tower. No additional rooms, defenders or pickups.",
+  "saveCompatibility": "Existing profile/envelope keys, rewards and quick-arrow controls remain. hollow-dominions-1 and returning-bell-1 restore unchanged. New expeditions use returning-bell-2; the saved layout and mechanism geometry are rebuilt before position validation. AR inspects the suspended layout, never substitutes another one.",
   "hardwareStatus": "Development slice. Software checks use actual WebGL with emulated Xbox and WebXR devices. Physical Quest 3/Xbox, comfort, sustained performance, finished art and unfamiliar-player/replay acceptance remain open."
 }

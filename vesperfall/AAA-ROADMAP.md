@@ -1,3 +1,9 @@
+Open Line / version 0.15.0 / September 15, 2026.
+
+Read OPEN-LINE.md before the historical notes below. The existing Returning Bell is refined, not rebuilt: a short central stair and its enemy firing lane open with the same screen, using a shootable brass release or the retained gallery winch. Flanks remain useful, a missed release can be retried, and a learned signal shot can avoid a tower visit. The same seven places and five defenders remain; the next authored chapter is not built.
+
+Fresh expeditions use returning-bell-2. Preserve returning-bell-1 and hollow-dominions-1, their fixtures, all save/profile keys, direct Xbox arrows, physical first-person VR and hand-menu contracts. AR inspection reconstructs the suspended layout version. Read exact source/publication receipts before calling a revision verified live. Human first/repeat play, sustained performance, final art and physical Quest/Xbox gates remain open. The 76-task roadmap/workbook retains its original task statuses and acceptance gates.
+
 Returning Bell roadmap / version 0.14.0.
 
 The first authored replacement opening is integrated. V52/V57 and the broader V49/V50/V41/V76 work remain Partial rather than being credited as a finished campaign. The 76 existing task IDs and six-sheet workbook match the canonical roadmap.json. The next milestone is unfamiliar and repeat-player evidence for planning, alternate approaches, mechanism understanding, return recognition and learned agency. Physical Quest/Xbox, seated/standing reach, visual/audio review and sustained performance remain open. Tune this whole chapter before expanding room count or adding another major system. RETURNING-BELL.md records implementation, saved-layout compatibility, native acceptance commands and AR boundaries.

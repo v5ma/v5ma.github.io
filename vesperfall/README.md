@@ -1,3 +1,9 @@
+Open Line / version 0.15.0 / September 15, 2026.
+
+Read OPEN-LINE.md before the historical notes below. The existing Returning Bell is refined, not rebuilt: a short central stair and its enemy firing lane open with the same screen, using a shootable brass release or the retained gallery winch. Flanks remain useful, a missed release can be retried, and a learned signal shot can avoid a tower visit. The same seven places and five defenders remain; the next authored chapter is not built.
+
+Fresh expeditions use returning-bell-2. Preserve returning-bell-1 and hollow-dominions-1, their fixtures, all save/profile keys, direct Xbox arrows, physical first-person VR and hand-menu contracts. AR inspection reconstructs the suspended layout version. Read exact source/publication receipts before calling a revision verified live. Human first/repeat play, sustained performance, final art and physical Quest/Xbox gates remain open. The 76-task roadmap/workbook retains its original task statuses and acceptance gates.
+
 The Returning Bell / version 0.14.0.
 
 The default new-player expedition is now the first authored cathedral chapter. Begin The Returning Bell, restore the tower signal by arrow or nearby interaction, then answer it back at the basin refuge. Ground and gallery approaches reconnect; the gallery winch changes cover and firing lanes; the service-side latch opens a real saved return connection. Every incidental defender does not have to die. Read RETURNING-BELL.md for the implementation and remaining limits.

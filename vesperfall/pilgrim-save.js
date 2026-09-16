@@ -50,16 +50,16 @@
   for(const k of sets)state[k]=[...(s[k]||[])];
   state.enemies=s.world.enemies.map(e=>{const o={};for(const k of enemyFields)if(own(e,k))o[k]=copy(e[k]);return o;});
   state.pickups=s.world.pickups.map(p=>({id:p.id,taken:p.taken}));
-  return {generator:s.world.returningBell?ReturningBellModel.ID:GENERATOR,seed:s.world.seed,depth:s.world.depth,meta:copy(meta),state};
+  return {generator:s.world.returningBell?s.world.generator:GENERATOR,seed:s.world.seed,depth:s.world.depth,meta:copy(meta),state};
  }
  function restore(checkpoint){keys(checkpoint,['generator','seed','depth','meta','state']);
-  const chapter=checkpoint.generator===ReturningBellModel.ID;
+  const chapter=[ReturningBellModel.ID,ReturningBellLanes.ID].includes(checkpoint.generator);
   if(checkpoint.generator!==GENERATOR&&!chapter)fail('This expedition needs its original world-generator version.');
   if(typeof checkpoint.seed!=='string'||!/^[-\w]{1,24}$/.test(checkpoint.seed))fail('Saved seed is invalid.');
   const depth=num(checkpoint.depth,1,99,true),d=keys(checkpoint.state,stateFields);
   if(chapter!==own(d,'chapter')||chapter&&own(d,'oath'))fail('Chapter layout and saved state disagree.');
-  const s=C.create(checkpoint.seed,depth,{returningBell:chapter,challenge:bool(d.challenge)?'nightfall':'normal',ricochet:bool(d.ricochetUnlocked),oath:own(d,'oath')});
-  if(chapter)ReturningBellModel.restore(s,d.chapter);
+  const s=C.create(checkpoint.seed,depth,{returningBell:chapter?checkpoint.generator:false,challenge:bool(d.challenge)?'nightfall':'normal',ricochet:bool(d.ricochetUnlocked),oath:own(d,'oath')});
+  if(chapter){ReturningBellModel.restore(s,d.chapter);ReturningBellLanes.apply(s);}
   if(own(d,'oath')){const o=keys(d.oath,['version','stage','active','rest','gap','grants','cleared']);if(o.version!==1)fail('Unsupported Oath route version.');s.oath={version:1,stage:num(o.stage,0,3,true),active:bool(o.active),rest:num(o.rest,0,5),gap:num(o.gap,0,2),grants:num(o.grants,0,1000000,true),cleared:num(o.cleared,0,3,true)};if(o.cleared!==o.stage||o.stage===3&&o.active)fail('Inconsistent Oath route progress.');}
   for(const[k,[min,max]]of Object.entries(numberFields))s[k]=num(d[k],min,max,counters.includes(k));
   for(const k of flags)s[k]=bool(d[k]);
