@@ -7,7 +7,7 @@ window.BlackoutDriver=(()=>{
  function approachAxes(distance,turn,pitch){const [rx,ry]=stick(turn*.9,pitch*.9);return [0,Math.abs(turn)<.15?-(.18+.82*Math.min(1,Math.max(0,distance))):0,rx,ry];}
  async function neutral(){TestPad.axes([0,0,0,0]);TestPad.button(7,false);for(let i=0;i<3;i++)await frame();}
  async function tap(i){TestPad.button(i,true);await frame();TestPad.button(i,false);await frame();await frame();}
- async function hold(i,n=10){TestPad.button(i,true);for(let j=0;j<n;j++)await frame();TestPad.button(i,false);await frame();}
+ async function hold(i,n=10){const until=performance.now()+450;TestPad.button(i,true);for(let j=0;j<n||performance.now()<until;j++)await frame();TestPad.button(i,false);await frame();}
  async function walk(x,z,timeout=160000,tolerance=.38){TestPad.button(6,false);const deadline=performance.now()+timeout;while(performance.now()<deadline){const s=snap(),p=s.position;if(s.paused)throw Error('Paused during route');const dx=x-p.x,dz=z-p.z,d=Math.hypot(dx,dz);if(d<tolerance){await neutral();return s;}const turn=angle(Math.atan2(dx,-dz)-p.yaw);TestPad.axes(approachAxes(d,turn,p.pitch));await frame();}await neutral();throw Error('Blocked route to '+x+','+z+' at '+JSON.stringify(snap().position));}
  async function clear(prefix,timeout=180000){const deadline=performance.now()+timeout;TestPad.button(6,true);let idle=0;
   while(performance.now()<deadline){const s=snap(),p=s.position;if(s.paused)throw Error('Unexpected combat dialog');const targets=s.enemies.filter(e=>e.hp>0&&prefix.some(k=>e.id.startsWith(k))&&Math.abs(e.y-p.y)<5).sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z));
