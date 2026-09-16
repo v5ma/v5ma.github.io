@@ -13,14 +13,17 @@ def check(v,s):
  checks.append(s);print('PASS: '+s,flush=True)
 with sync_playwright() as pw:
  b=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']);c=b.new_context(viewport={'width':1100,'height':760})
- c.add_init_script("localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,scanned:false,cinematic:false}));window.pad={connected:true,mapping:'standard',id:'Xbox test',index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};window.polls=0;Object.defineProperty(navigator,'getGamepads',{value:()=>{polls++;return [pad];}});")
+ c.add_init_script("localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,scanned:false,cinematic:false}));window.pad={connected:true,mapping:'standard',id:'Xbox test',index:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};window.polls=0;window.padPulse=[];Object.defineProperty(navigator,'getGamepads',{value:()=>{polls++;const buttons=pad.buttons.map(b=>({...b}));for(const i of padPulse)buttons[i]={pressed:true,value:1};padPulse=[];return [{...pad,axes:[...pad.axes],buttons}];}});")
  p=c.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('dialog',lambda d:(dialogs.append(d.type),d.dismiss()))
  def wait(q):p.wait_for_function(q)
  def frames(n=3):
   start=p.evaluate('polls');p.wait_for_function('([s,n])=>polls>=s+n',arg=[start,n])
  def down(i):p.evaluate('(i)=>pad.buttons[i]={pressed:true,value:1}',i)
  def up(i):p.evaluate('(i)=>pad.buttons[i]={pressed:false,value:0}',i);frames()
- def tap(i):down(i);frames(1);up(i)
+ def tap(i):
+  # A deliberate tap lasts one input sample, not a Python/screenshot roundtrip.
+  # Real held-input tests still use down/up and the unchanged production clock.
+  frames();p.evaluate('(i)=>padPulse.push(i)',i);frames()
  def nav(id):
   for _ in range(60):
    if p.evaluate('document.activeElement?.id')==id:return
@@ -56,7 +59,7 @@ with sync_playwright() as pw:
   tap(9);wait('Rainward.mode===\"pause\"');nav('controlPreset');tap(14);check(p.evaluate('Rainward.snapshot().controlPreset')=='survival','The Survival layout can be restored without losing progress')
   p.set_viewport_size({'width':390,'height':844});nav('musicVolume');check(not p.evaluate('document.documentElement.scrollWidth>innerWidth'),'Mixer controls and focused rows fit a phone-width screen');p.screenshot(path=str(OUT/'controller-audio-phone.png'))
   check(not errors and not dialogs,'No uncaught errors or native dialogs in the complete controller journey')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'dialogs':dialogs,'scope':'Simulated Xbox-standard inputs in real WebGL with a validated no-enemy UI save. No physical controller certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'dialogs':dialogs,'scope':'Simulated Xbox-standard inputs in real WebGL with a validated no-enemy UI save. Taps are queued for one real input sample; sustained-input checks still use actual press/release and production hold timing. No physical controller certification or living-enemy mission evidence.'},indent=2))
  except Exception as e:
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Rainward?.snapshot()'),'focus':p.evaluate('document.activeElement?.id')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
  finally:b.close()
