@@ -1,0 +1,15 @@
+{
+  "record_kind": "Retained first native route observations, not a publication receipt",
+  "source": "a6db7cd27e380dc7d2d680668a9c795c67b67a5c",
+  "run": 35054646015,
+  "survival_firebreak": {"artifact": 10429762996, "sha256": "b98fe776787a51a3066705aad20cfac06fc3a161ca14c1fe9183e3cac267538f", "passed_checks": 14, "result": "Complete extraction with all five enemies alive, zero shots and takedowns, actual alerts and escapes"},
+  "failed_cases": [
+    {"case":"classic north", "artifact":10430655412, "sha256":"07b6a4a6c538ab9650e06197f52fab7af90817652a08029d35fc5335c6fe755a", "observation":"Sprinted through the garden, drew pursuit, then died leaving the clinic while retaining an unused prepared medkit."},
+    {"case":"first-person controllers", "artifact":10429827907, "sha256":"c13b4e810fd2403746043552a2a528010673f84fefb91704014150ff8e6685b6", "observation":"Died at the clinic before reaching the new Freight mechanism; had not crafted healing supplies."},
+    {"case":"first-person hands", "artifact":10430032108, "sha256":"1b86f057ffe7c88322299b51ac1abce738282e55c68bd740b53525c8b7d8dcfd", "observation":"Died on the terrace departure before reaching the new mechanism."}
+  ],
+  "correction":"The driver now prepares the same finite recipes in XR too, uses ordinary crouch through the authored garden, retains every genuine navigation turn without slowing at every collinear grid cell, and uses Classic D-pad up for its own prepared medkit when needed. These are device-input changes, not game-state writes or relaxed completion criteria.",
+  "new_measurement":"Record alerts and escapes immediately before the lever and after the yard/spindle loop, so whole-run recoveries are not mistaken for recoveries at the new mechanism.",
+  "runtime_changes":"None. All actors, health/damage, detection, movement speeds, resources, collision, mission conditions and save rules remain unchanged.",
+  "limitations":"The first Survival success does not establish that sprinting every approach is safe. Native tests use synthetic devices and are not physical Quest/Xbox or unfamiliar-player reviews. Failed traces and captures remain in the named artifacts and verification bundle."
+}

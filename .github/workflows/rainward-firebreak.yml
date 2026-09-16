@@ -1,0 +1,87 @@
+name: Rainward Freight Firebreak living routes
+on:
+  pull_request:
+    paths: ['rainward/**','.github/workflows/rainward-firebreak.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rainward-firebreak-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - view: desktop
+            input: classic
+            route: firebreak
+          - view: desktop
+            input: classic
+            route: north
+          - view: desktop
+            input: survival
+            route: firebreak
+          - view: first-person
+            input: controllers
+            route: firebreak
+          - view: first-person
+            input: hands
+            route: firebreak
+          - view: diorama-vr
+            input: controllers
+            route: firebreak
+          - view: diorama-vr
+            input: hands
+            route: firebreak
+          - view: diorama-ar
+            input: controllers
+            route: firebreak
+          - view: diorama-ar
+            input: hands
+            route: firebreak
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact-source models and generated roadmap
+        run: |
+          mkdir -p test-output
+          node --test rainward/tests/*.test.mjs > test-output/model-tests.txt
+          python -m compileall -q rainward/tests
+          python rainward/tools/build-production-plan.py
+          git diff --exit-code -- rainward/AAA_CHECKLIST.md
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Normal-start living routes with real movement and finite supplies
+        env:
+          FIREBREAK_VIEW: ${{ matrix.view }}
+          FIREBREAK_INPUT: ${{ matrix.input }}
+          FIREBREAK_ROUTE: ${{ matrix.route }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          timeout 1050 python -u rainward/tests/firebreak-browser.py
+      - name: Retain source, captures, measurements and failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-firebreak-${{ matrix.view }}-${{ matrix.input }}-${{ matrix.route }}
+          path: test-output/
+          retention-days: 14

@@ -1,0 +1,13 @@
+{
+  "record_kind": "Revealing native failures prompted a real bounded geometry revision, not weakened enemies",
+  "source": "f02b3db108352d52fede03c58531693667c1e7fc",
+  "run": 35055219465,
+  "failed_cases": [
+    {"case":"classic north","artifact":10430921172,"sha256":"828cb303ef761350bd4d607be511e3d4c4af9ee99dfa0624851fbd05e9cd379d","observation":"Both original objectives recovered with the mechanism untouched; the old market detour took damage and smoke expired before the final quay crossing. The player then died on the quay."},
+    {"case":"AR controllers","artifact":10429784295,"sha256":"fda2d16e8ed4c44522b5c27781145def61dc801ad9a2ae407e77e014cd8ea571","observation":"The quiet clinic opening avoided alerts, but the later exposed front aisle killed the player before the original deep lever."}
+  ],
+  "design_revision": ["Move the lever from z=-14.5 to -10.3, nearer the front entrance.","Move the partition from z=-17.2 to -21.2, outside the watcher firing-distance relationship at the lever while retaining the occupancy interlock and both flanks.","Use the already built west terrace ramp for the no-mechanism approach; update the existing clinic letter to explain the meaningful east/west choice.","Join the south wall segment to its original edge without the accidental 0.5-metre gap."],
+  "test_revision": ["Classic uses its real finite smoke at the final quay, not prematurely.","Focused XR new-mechanism tests start normally and take the existing Freight-first eastern verge. This does not claim the failed long clinic-first XR prefix is repaired or that XR cases are full chapter completions.","Earlier under-eight-metre crossing criterion is explicitly revised to under ten because the entrance-side lever is about 8.9 navigation metres from the exit.","Only one VR controller case captures before/after through the public pause function and a simulated spectator pose; no actor or mission state is rewritten."],
+  "preserved": "Enemy damage/ranges, perception, health, resource costs and inventories, movement speeds, saves, input bindings and legal extraction stay unchanged.",
+  "remaining": "Unfamiliar-player choice comprehension and physical XR usability remain unapproved."
+}

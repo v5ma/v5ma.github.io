@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.14.1",
-  "edition": "Wayfinder",
+  "release": "0.15.0",
+  "edition": "Freight Firebreak",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
   "updated": "2026-09-15",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
@@ -65,6 +65,10 @@
     }
   ],
   "references": [
+    {
+      "title": "Freight Hall recovery loop / shared-library application",
+      "url": "FREIGHT-FIREBREAK.md"
+    },
     {
       "title": "Wayfinder route and XR interaction polish",
       "url": "WAYFINDER.md"
@@ -246,7 +250,7 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.",
+      "resumeNote": "The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice. Freight Firebreak extends the same chapter with a threat-aware linked partition/yard return; see FREIGHT-FIREBREAK.md. Full flagship/human approval remains open.",
       "nextAction": "Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler."
     },
     {
@@ -278,7 +282,7 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice.",
+      "resumeNote": "The clinic-market seam now has a playable graybox route replacement, real elevation and an inside-unlocked recovery gate. This is not the entire approved flagship slice. Freight Firebreak extends the same chapter with a threat-aware linked partition/yard return; see FREIGHT-FIREBREAK.md. Full flagship/human approval remains open.",
       "nextAction": "Record an unfamiliar-player stealth-to-combat-to-recovery study before final art; complete the remaining Floodgate sequence without filler."
     },
     {
@@ -286,15 +290,17 @@
       "phase": "G1",
       "priority": "P1",
       "title": "Stealth-to-combat-to-recovery pacing",
-      "status": "Planned",
+      "status": "Implemented",
       "owner": "Systems design",
       "acceptance": "A recorded playthrough moves through all three states without unavoidable damage, empty downtime or an inventory dead end.",
-      "evidence": "",
+      "evidence": "FREIGHT-FIREBREAK.md",
       "depends": [
         "RW-010"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "A noisy paired sightline/route state provides a Freight Hall recovery loop; exact-source native evidence gates release, while unfamiliar-player pacing remains unapproved.",
+      "nextAction": "Observe a new player interpreting and using the linked mechanism after detection, then improve the loading-door/quay finale."
     },
     {
       "id": "RW-013",
@@ -541,7 +547,7 @@
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.",
+      "resumeNote": "The owner selected an experience-spine, wide-linear, reconnecting and graybox-first replacement approach. Only the first Floodgate seam is implemented. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged. Freight Firebreak extends the same chapter with a threat-aware linked partition/yard return; see FREIGHT-FIREBREAK.md. Full flagship/human approval remains open.",
       "nextAction": "Apply the seven chapter briefs incrementally, preserving stable objectives and shelters; verify route choice, observation, retreat, pacing and spatial reveals with players."
     },
     {
@@ -1255,6 +1261,15 @@
       "evidence": "WAYFINDER.md",
       "physicalHardware": "Not tested",
       "unfamiliarPlayer": "Not reviewed"
+    },
+    "firebreak": {
+      "status": "Implemented",
+      "baseline": "78dad9840163bbacb7308118cde44a1bb4f525f6",
+      "scope": "Linked Freight Hall partition and east exit; no new chapter or mandatory objective.",
+      "evidence": "FREIGHT-FIREBREAK.md",
+      "physicalHardware": "Not tested",
+      "unfamiliarPlayer": "Not reviewed",
+      "nextQuestion": "Does a first-time player predict the linked change and use it to recover?"
     }
   }
 }

@@ -1,3 +1,7 @@
+# Freight Firebreak / unchanged control bindings
+
+The nearby Freight Hall lever uses E, Xbox Y, Quest right grip, or the existing hand-use pinch. Its paired change is noisy, and a live actor under the marked partition blocks operation until clear. No remote activation or new button chord is introduced. Read FREIGHT-FIREBREAK.md for scope and evidence.
+
 # Current release / Wayfinder v0.14.1
 
 Read WAYFINDER.md for clinic route chevrons, the gate/map/journal state, spatial pointer feedback and source-owned crafting holds. Open Diorama v0.14.0 is already merged in PR 154; do not revive its preparation branches. The next work remains graybox evaluation and the remaining Floodgate sequence, then chapter replacements, body/contact animation and physical Quest/Xbox review. All seven chapter identities, saves and Xbox presets are retained. The release PR and hash receipt establish publication.

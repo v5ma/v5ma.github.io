@@ -1,3 +1,7 @@
+# Current release / Freight Firebreak v0.15.0
+
+Read FREIGHT-FIREBREAK.md and the shared level-design library. The new work is a linked Freight Hall partition and east-yard recovery loop, not another chapter or a redo of Wayfinder. Follow the exact release PR/evidence for publication and tested status. The former 64-item roadmap remains canonical; RW-012 has a bounded implementation, not human pacing approval. Continue with unfamiliar-player interpretation and the loading-door/quay finale. Saves, Xbox presets and all XR views remain; physical device and unfinished body-contact work stay open.
+
 # Current release / Wayfinder v0.14.1
 
 Read WAYFINDER.md for clinic route chevrons, the gate/map/journal state, spatial pointer feedback and source-owned crafting holds. Open Diorama v0.14.0 is already merged in PR 154; do not revive its preparation branches. The next work remains graybox evaluation and the remaining Floodgate sequence, then chapter replacements, body/contact animation and physical Quest/Xbox review. All seven chapter identities, saves and Xbox presets are retained. The release PR and hash receipt establish publication.
