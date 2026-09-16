@@ -50,14 +50,11 @@ with sync_playwright() as pw:
   s=p.evaluate('Rainward.snapshot()');entry={'label':label,'t':p.evaluate('Rainward.state.t'),'player':s['player'],'stats':s['stats'],'firebreak':s['visuals']['firebreak'],'enemies':s['enemies'],'metrics':p.evaluate('firebreakMetrics')};trace.append(entry);(OUT/'trace.json').write_text(json.dumps(trace,indent=2));print(label,'HP',s['player']['hp'],'time',entry['t'],flush=True)
  def go(x,z):
   print('GO',x,z,flush=True);frames(3)
-  p.evaluate('''async ({x,z,xr})=>{const W=await import('./world.mjs'),P=Rainward.state.player,L=xr?questDevice.sources.find(s=>s.handedness==='left'):null,base=L?{...L.position}:null,path=W.findPath(P,{x,z});path.push({x,z});
-   // Keep every actual turn; do not decelerate at every collinear nav cell.
-   const route=path.filter((p,i,a)=>i===0||i===a.length-1||p.x-a[i-1].x!==a[i+1].x-p.x||p.z-a[i-1].z!==a[i+1].z-p.z);
+  p.evaluate('''async ({x,z,xr})=>{const W=await import('./world.mjs'),P=Rainward.state.player,L=xr?questDevice.sources.find(s=>s.handedness==='left'):null,base=L?{...L.position}:null,path=W.findPath(P,{x,z});path.push({x,z});const route=path.filter((p,i,a)=>i===0||i===a.length-1||p.x-a[i-1].x!==a[i+1].x-p.x||p.z-a[i-1].z!==a[i+1].z-p.z);
    if(xr){for(const s of questDevice.sources)s.orientation={x:0,y:0,z:0,w:1};if(L.hand)L.pinch=true;}
    await new Promise((resolve,reject)=>{let i=0,frame=xr?questDevice.frames:padPolls;const start=performance.now();const stop=()=>{if(xr){if(L.hand){L.pinch=false;L.position={...base};}else{L.gamepad.axes=[0,0,0,0];L.gamepad.buttons[3]={pressed:false,value:0};}}else{pad.axes[0]=pad.axes[1]=0;pad.buttons[10]={pressed:false,value:0};}clearInterval(timer);};
     const timer=setInterval(()=>{if((xr?questDevice.frames:padPolls)<frame+3)return;const p=Rainward.state.player;
      if(Rainward.mode!=='play'||performance.now()-start>120000){stop();reject(Error('Travel blocked or defeated '+JSON.stringify({mode:Rainward.mode,x:p.x,z:p.z,hp:p.hp,goal:route[i]})));return;}
-     // Use the medkit actually prepared at the shelter, via Classic D-pad up.
      if(!xr&&Rainward.snapshot().controlPreset==='classic'&&p.hp<65&&p.medkit&&!padPulse.includes(12))padPulse.push(12);
      const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.4){if(++i===route.length){stop();resolve();}return;}
      const yaw=xr&&L.hand?Rainward.snapshot().xr.rig.yaw:Rainward.view.yaw,c=Math.cos(yaw),s=Math.sin(yaw),scale=Math.min(1,Math.max(.45,d*1.2)),a=(c*dx-s*dz)/d*scale,b=(s*dx+c*dz)/d*scale;
@@ -77,6 +74,15 @@ with sync_playwright() as pw:
   if XR:select('pause')
   else:pulse(9)
   wait('Rainward.mode==="pause"')
+ def mechanism_capture(label):
+  if VIEW!='diorama-vr' or KIND!='controllers':return
+  # Pause using the actual game control. Move only the spectator device around
+  # the fixed miniature, leaving every actor/mission field untouched.
+  pause();saved=p.evaluate('({head:{...questDevice.head},yaw:questDevice.headYaw,pitch:questDevice.headPitch,player:{x:Rainward.state.player.x,z:Rainward.state.player.z},t:Rainward.state.t})')
+  p.evaluate('questDevice.head={x:0,y:2.4,z:-3};questDevice.headYaw=Math.PI;questDevice.headPitch=-.75');frames(6)
+  p.screenshot(path=str(OUT/(label+'.png')))
+  check(p.evaluate('(saved)=>Rainward.state.player.x===saved.player.x&&Rainward.state.player.z===saved.player.z&&Rainward.state.t===saved.t',saved),'Paused spectator capture '+label+' cannot move the survivor or advance the mission')
+  p.evaluate('(s)=>{questDevice.head=s.head;questDevice.headYaw=s.yaw;questDevice.headPitch=s.pitch;}',saved);frames(5);select('resume');wait('Rainward.mode==="play"')
  try:
   p.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward');check(p.evaluate('Rainward.mode')=='title','The unchanged title loads without a fatal error')
   if XR:
@@ -104,20 +110,29 @@ with sync_playwright() as pw:
   if XR:select('crouch')
   else:pulse(1)
   wait('Rainward.state.player.stance==="crouch"')
-  for x,z in [(-13,23),(-19,16),(-19,7),(-24,6),(-22,-3.5)]:go(x,z)
-  use('Rainward.state.objectives.cell');go(-24,-1);use('Rainward.state.checkpoint==="clinic"');record('clinic battery and shelter')
-  if XR:select('crouch')
-  else:pulse(1)
-  wait('Rainward.state.player.stance==="stand"')
-  if ROUTE=='north':
-   for x,z in [(-24,6),(-19,7),(-19,12),(-31,12),(-31,-15),(-27,-16),(-27,-24),(-18,-26),(-18,-42),(12,-46),(21,-32),(21,-26.7),(22.3,-26.7)]:go(x,z)
-   use('Rainward.state.objectives.crank');check(not p.evaluate('Rainward.snapshot().visuals.firebreak.deployed'),'The longer north loading approach completes both objectives without the optional mechanism')
+  if XR:
+   # Focused XR cases choose the existing Freight-first approach. Full desktop
+   # cases still test clinic-first objectives and extraction; no fixture start.
+   for x,z in [(13,23),(18,13),(20,4)]:go(x,z)
+   select('crouch');wait('Rainward.state.player.stance==="stand"')
   else:
+   for x,z in [(-13,23),(-19,16),(-19,7),(-24,6),(-22,-3.5)]:go(x,z)
+   use('Rainward.state.objectives.cell');go(-24,-1);use('Rainward.state.checkpoint==="clinic"');record('clinic battery and shelter')
+   pulse(1);wait('Rainward.state.player.stance==="stand"')
    for x,z in [(-22,-3.5),(-22,-7),(-22,-10)]:go(x,z)
    check(p.evaluate('Rainward.state.player.y')>2.3,'The existing clinic terrace supplies a real elevated observation approach')
-   for x,z in [(-10,-10),(-7,-10),(0,-8),(10,-6),(21,-5),(24,-12),(26.1,-14.5)]:go(x,z)
+  if ROUTE=='north':
+   for x,z in [(-25,-10),(-30,-10),(-30,-14),(-30,-20),(-30,-23),(-27,-24),(-18,-26),(-18,-42),(12,-46),(21,-32),(21,-26.7),(22.3,-26.7)]:go(x,z)
+   use('Rainward.state.objectives.crank');check(not p.evaluate('Rainward.snapshot().visuals.firebreak.deployed'),'The longer north loading approach completes both objectives without the optional mechanism')
+  else:
+   if not XR:
+    for x,z in [(-10,-10),(-7,-10),(0,-8),(10,-6)]:go(x,z)
+   for x,z in [(21,-5),(24,-10),(26.1,-10.3)]:go(x,z)
+   mechanism_capture('01-firebreak-raised')
    before=p.evaluate('({distance:firebreakMetrics.distance,t:Rainward.state.t,alerts:Rainward.state.stats.alerts,escapes:Rainward.state.stats.escapes,mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve})')
    check(p.evaluate('!Rainward.snapshot().visuals.firebreak.yardOpen'),'The linked yard gate remains physically closed until operated')
+   # Safety interlock is tested separately with explicit model fixtures. If a
+   # live patrol occupies the screen, remain in real time and retry normal use.
    for _ in range(12):
     use()
     if p.evaluate('Rainward.state.completedTasks.includes("ward-freight-firebreak")'):break
@@ -125,22 +140,28 @@ with sync_playwright() as pw:
    wait('Rainward.snapshot().visuals.firebreak.deployed')
    check(p.evaluate('Rainward.state.sounds.some(s=>s.type==="mechanism")||Rainward.state.events.some(e=>e.type==="wheel")'),'Operating the real nearby lever emits the mechanical sound cue')
    check(p.evaluate('Rainward.state.player.mag')==before['mag'] and p.evaluate('Rainward.state.player.reserve')==before['reserve'],'The mechanism spends no ammunition and grants no new supplies')
-   go(30.2,-15);record('opened crossing');cross=p.evaluate('firebreakMetrics.distance')-before['distance'];check(cross<8,'The new exit is crossed with real movement in under eight travelled metres')
+   mechanism_capture('02-firebreak-lowered')
+   go(30.2,-15);record('opened crossing');cross=p.evaluate('firebreakMetrics.distance')-before['distance'];check(cross<10,'The entrance-side lever reaches the new exit in under ten travelled metres')
    for x,z in [(31,-21),(31,-32),(21,-32),(21,-26.7),(22.3,-26.7)]:go(x,z)
    use('Rainward.state.objectives.crank');check(p.evaluate('Rainward.state.enemies.every(e=>e.hp>0)'),'The recovery loop reaches the original spindle without removing or defeating threats')
    record('spindle after yard loop');p.evaluate('(before)=>window.firebreakRecovery={alertsBefore:before.alerts,escapesBefore:before.escapes,alertsAfter:Rainward.state.stats.alerts,escapesAfter:Rainward.state.stats.escapes,seconds:Rainward.state.t-before.t}',before)
   if XR:
+   # Focused XR acceptance proves the changed route and operation, not a claim
+   # that this particular XR case completed the entire campaign.
    pause();p.screenshot(path=str(OUT/'changed-world-xr.png'))
    check(p.evaluate('Rainward.snapshot().xr.active'),'The transformed geometry remains in the requested immersive session')
    if VIEW!='first-person':check(p.evaluate('Rainward.snapshot().xr.diorama.topOpen||Rainward.snapshot().xr.diorama.frontOpen'),'The diorama retains at least one viewing opening')
   else:
-   if KIND=='classic':pulse(12);pulse(14)
+   # Use the original finite smoke and medkit through each preset's real UI.
+   if KIND=='classic':pulse(12)
    else:
-    pulse(13);wait('Rainward.mode==="pack"');select('equip-medkit');pulse(1);wait('Rainward.mode==="play"')
+    pulse(13);wait('Rainward.mode==="pack"');select('equip-medkit');pulse(1);wait('Rainward.mode==="play"');
     if p.evaluate('Rainward.state.player.hp<100'):
      p.evaluate('pad.buttons[7]={pressed:true,value:1}');wait('!Rainward.state.player.healing&&Rainward.state.player.medkit===0');p.evaluate('pad.buttons[7]={pressed:false,value:0}');frames(3)
     pulse(13);wait('Rainward.mode==="pack"');select('equip-smoke');pulse(1);wait('Rainward.mode==="play"');p.evaluate('pad.buttons[7]={pressed:true,value:1}');wait('Rainward.state.player.smoke===0');p.evaluate('pad.buttons[7]={pressed:false,value:0}');frames(3)
-   for x,z in [(21,-32),(16,-38),(0,-43)]:go(x,z)
+   for x,z in [(21,-32),(21,-39),(16,-43)]:go(x,z)
+   if KIND=='classic':pulse(14);check(p.evaluate('Rainward.state.player.smoke===0&&Rainward.state.smokes.length>0'),'The prepared smoke is used at the exposed quay, not spent before reaching it')
+   go(0,-43)
    use('Rainward.mode==="won"');record('extracted');check(p.evaluate('Rainward.state.objectives.cell&&Rainward.state.objectives.crank'),'Extraction uses both original recovered components')
    check(p.evaluate('Rainward.state.stats.shots===0&&Rainward.state.stats.takedowns===0'),'The complete living-enemy run needs neither shooting nor takedowns')
    if ROUTE=='firebreak':check(p.evaluate('Rainward.state.stats.alerts>0&&Rainward.state.stats.escapes>0'),'Real patrol alerts and recovery occur in the completed firebreak run')
