@@ -46,8 +46,7 @@
   }).catch(error=>{
    // Do not retry a partially evaluated module or silently run an older course.
    // Existing drafts can still be saved/exported; reload is an explicit action.
-   status='error';notice.textContent='The updated routes could not load.';retry.hidden=true;
-   retry.hidden=false;
+   status='error';notice.textContent='The updated routes could not load.';retry.hidden=false;
    console.error('Campaign load failed:',error);
   }).finally(()=>{
    import('./prismatic-renderer.js').catch(error=>console.error('Optional material pass could not load:',error));

@@ -19,13 +19,15 @@ def check(ok,label):
  assert ok,label
  checks.append(label);print('PASS:',label,flush=True)
 DRIVER=r"""([scenario,grip])=>{
- const d=window.forkDriver={scenario,grip,phase:'approach',ticks:0,hold:0,visits:[],trace:[],returned:null,throwStarted:false};
+ const d=window.forkDriver={scenario,grip,phase:'approach',ticks:0,hold:0,visits:[],contacts:[],trace:[],inspection:false,returned:null,throwStarted:false};
  const b=(i,v)=>{testPad.buttons[i]={pressed:v,value:v?1:0};};
- const previous=window.tick;
- window.tick=function(...args){
+ // Sample before each real fixed simulation step, not each rendered frame.
+ const previous=window.pollGamepad;
+ window.pollGamepad=function(...args){
   const active=RouteWorkshop.testing&&!__delivery.paused&&!won&&!__delivery.state.menu;
   if(active){
-   d.ticks++;testPad.axes[0]=1;b(0,false);b(1,false);
+   d.ticks++;testPad.axes[0]=1;b(0,false);b(1,false);b(9,false);
+   if(d.resumeNeutral>0){testPad.axes[0]=0;d.resumeNeutral--;return previous.apply(this,args);}
    const id=player.track?.sky?.id;
    if(d.phase==='approach'&&player.x>=3080&&player.onGround&&!player.track)d.phase='jump';
    if(d.phase==='jump'){b(0,true);if(id==='ww-runway'){b(0,false);d.phase='runway';}}
@@ -35,12 +37,13 @@ DRIVER=r"""([scenario,grip])=>{
     if(scenario!=='high'&&remaining<=threshold){d.phase='hold';d.brake={x:player.x,y:player.y,remaining,speed:player.speed};}
    }
    if(d.phase==='hold'){
-    testPad.axes[0]=scenario==='coast'?0:-1;
-    if(++d.hold>=(scenario==='early'?36:scenario==='coast'?70:18)){d.phase='flight';testPad.axes[0]=1;}
+    if(d.hold<(scenario==='early'?24:scenario==='coast'?70:18)){testPad.axes[0]=scenario==='coast'?0:-1;d.hold++;}
+    else {d.phase='flight';testPad.axes[0]=1;}
    }
-   if(d.visits.includes('ww-runway')&&!player.track&&player.onGround&&player.x>4050&&!d.returned){
+   if(d.visits.includes('ww-runway')&&!player.track&&player.onGround&&!d.returned){
     d.returned={x:player.x,y:player.y,vx:player.vx,tick:d.ticks};d.phase=scenario==='lower'?'delivery':'finish';
    }
+   if(scenario==='lower'&&id==='ww-collector'&&!d.inspection){d.inspection=true;d.resumeNeutral=2;b(9,true);}
    if(d.phase==='delivery'){
     const distance=157*36+18-(player.x+player.w/2);
     if(!d.throwStarted&&player.onGround&&distance<=135&&distance>=35){d.throwStarted=true;d.throwTick=d.ticks;d.throw={distance,vx:player.vx,nearest:nearestMailbox(player,250)};}
@@ -49,7 +52,7 @@ DRIVER=r"""([scenario,grip])=>{
   }
   const value=previous.apply(this,args);
   if(active){
-   const id=player.track?.sky?.id||null;if(id&&!d.visits.includes(id))d.visits.push(id);
+   const id=player.track?.sky?.id||null;if(id&&!d.visits.includes(id))d.visits.push(id);if(id!==d.lastRail){d.contacts.push({id,tick:d.ticks,x:player.x,y:player.y});d.lastRail=id;}
    if(!d.trace.length||Math.abs(player.x-d.trace.at(-1).x)>55||id!==d.trace.at(-1).rail)d.trace.push({tick:d.ticks,x:player.x,y:player.y,vx:player.vx,rail:id,onGround:player.onGround,phase:d.phase});
   }
   return value;
@@ -78,12 +81,18 @@ with sync_playwright() as pw:
   # Ordinary road approach. Pause through the real UI for composition review, not a state assignment.
   page.locator('#delivery-header [data-delivery="view"]').click();page.locator('#cv').focus();page.keyboard.down('KeyD')
   page.wait_for_function('player.x>=2740&&player.onGround');page.keyboard.up('KeyD');page.locator('#delivery-header [data-delivery="pause"]').click();page.wait_for_function('__delivery.paused')
-  page.locator('#delivery-header [data-delivery="view"]').click();frames(6)
+  page.locator('#delivery-header [data-delivery="view"]').click();page.locator('#flow-study-toggle').click();frames(6)
   result['cue_view']=page.evaluate("async()=>{const T=await import('./vendor/three.webgpu.js');let o;__cloudview.root.traverse(n=>{if(n.name==='Waterwheel wayfinding: CHOOSE YOUR LINE')o=n;});if(!o)return null;const v=o.getWorldPosition(new T.Vector3()).project(__merged.camera);return {x:v.x,y:v.y,z:v.z,playerX:player.x,visible:o.visible};}")
   cue=result['cue_view'];check(cue and cue['visible'] and -1<cue['x']<1 and -1<cue['y']<1 and -1<cue['z']<1 and cue['playerX']<3080,'Advance route-choice sign is in the actual 3D camera before the runway jump')
   capture('choice-approach-3d');page.set_viewport_size({'width':390,'height':844});frames(6);capture('choice-approach-mobile');page.set_viewport_size({'width':1100,'height':800})
   page.locator('#delivery-header [data-delivery="view"]').click();frames(3);capture('choice-approach-2d')
-  page.locator('#delivery-pause [data-delivery="resume"]').click();page.locator('#cv').focus();page.evaluate(DRIVER,[CASE,GRIP])
+  page.locator('#delivery-pause [data-delivery="resume"]').click();page.locator('#cv').focus();frames(4);page.evaluate(DRIVER,[CASE,GRIP])
+  if CASE=='lower':
+   page.wait_for_function('forkDriver.inspection && __delivery.paused',timeout=240000)
+   page.evaluate('(()=>{testPad.axes[0]=0;for(const b of testPad.buttons){b.pressed=false;b.value=0;}})()');frames(4)
+   page.locator('#delivery-header [data-delivery="view"]').click();page.locator('#flow-study-toggle').click();frames(6);capture('canal-receiver-3d')
+   check(page.evaluate('player.track?.sky?.id==="ww-collector" && __delivery.paused'),'The actual lower receiver can be inspected in 3D from a controller-paused native contact')
+   page.locator('#delivery-header [data-delivery="view"]').click();page.locator('#delivery-pause [data-delivery="resume"]').click();page.locator('#cv').focus()
   page.wait_for_function('forkDriver.returned!==null',timeout=240000)
   observed=page.evaluate('forkDriver');check(observed['visits'][0]=='ww-runway','The choice begins with a native road jump and continuous runway contact')
   if CASE=='high':check(observed['visits']==['ww-runway','ww-crescent','ww-gallery','ww-finish'],'Holding speed retains all four connected express sections')
@@ -114,4 +123,4 @@ with sync_playwright() as pw:
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'case':CASE,'grip':GRIP,'passed':passed,'failure':failure,'checks':checks,'errors':errors,'console':logs,'result':result,'coverage':'Real UI/collision/enemies/throw/finish/save owners, observed-state synthetic Gamepad input driver. No actor, velocity, delivery, score, win or record assignments. 3D approach review then supported 2D CPU journey. Not physical hardware, unfamiliar-player understanding or full XR completion.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'case':CASE,'grip':GRIP,'passed':passed,'failure':failure,'checks':checks,'errors':errors,'console':logs,'result':result,'coverage':'Real UI/collision/enemies/throw/finish/save owners, observed-state synthetic Gamepad input driver sampled at the native fixed-step poll. Lower case uses the real Start pause and Inspect scene UI for its receiver capture. No actor, velocity, delivery, score, win or record assignments. 3D approach review then supported 2D CPU journey. Not physical hardware, unfamiliar-player understanding or full XR completion.'},indent=2));ctx.close();browser.close();server.shutdown()
