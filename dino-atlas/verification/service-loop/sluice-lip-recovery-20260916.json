@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "reviewedOn": "2026-09-16",
+  "baselineHead": "40db2fa66299ab023011e3537ee9575f620929b0",
+  "baselineRun": 35060645311,
+  "baselineTestedMerge": "17ac3def1e52432ebf0d1450ed2462c5158e1884",
+  "failureJob": 104680039180,
+  "failureArtifact": {"id":10432468213,"sha256":"054c6623446c7a597725a0e714509730166bd44b21d2c387fb3357eba275dd20","downloadHashMatched":true},
+  "sourceArtifact": {"id":10432343379,"sha256":"3f17fd663f2ebe9158d382b75f2580108333ea647a58a8c0b37f7269b5f1fc9e","downloadHashMatched":true,"archivedSourceHashesMatched":68},
+  "failedStep": "Harbor journey, repeat crossing from home to the sluice, target 15,-8 after legitimate repair, resupply, draining and retreat.",
+  "observedPosition": {"x":12.624899864196777,"y":0.7870328426361084,"z":-7.857004642486572},
+  "observedProgress": {"gearbox":true,"bridge":false,"drained":true,"feeder":false,"observed":false,"complete":false,"reportCount":0},
+  "priorResults": {"maintenanceJourney":"passed","tidegateTour":"passed","fourClassicJourneys":"passed","harborJourney":"failed","publication":"not performed"},
+  "reproduction": "Two new real-Rapier geometry tests failed before editing the level: the exact settled pose remained blocked at x=12.6249; an ordinary full crossing also stuck at x=12.6249. Earlier short fixtures starting above ground did not reproduce this lower settled stance.",
+  "before": {"thresholdTests":5,"passed":3,"failed":2},
+  "change": "Reduce the existing sluice platform height from 0.4 to 0.2 game units, keeping its 4 by 4 footprint, solid collider, wheel, existing input mappings, interaction reach, map waypoints and mission conditions. Do not lift or teleport the browser player.",
+  "localAfter": {"thresholdTestsPassed":5,"allTestsPassed":173,"failed":0,"skipped":0,"javascriptSyntax":"passed"},
+  "browserDriverChanged": false,
+  "saveKeysChanged": false,
+  "questRulesChanged": false,
+  "limitations": "Local model and real-physics fixtures only for the repair. The final source still requires native candidate and separate public verification. No physical Xbox/Quest, stereo, passthrough, human wayfinding, comfort or performance approval is claimed."
+}

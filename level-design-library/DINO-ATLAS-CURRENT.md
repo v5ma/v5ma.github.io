@@ -1,0 +1,11 @@
+# Dino Atlas current implementation checkpoint
+
+Reconciled against master 78dad9840163bbacb7308118cde44a1bb4f525f6. Later comparison through cd4da168b1c19f127ac3e80946e5ab4b8061c46d found only sibling Sky Cycle changes. The GAME-RECOMMENDATIONS.md flagship crossing is already implemented by Tidegate Crossing, released as dino-tidegate-20260915.1. Do not create another copy of its crossing, herd, sluice or diorama modes.
+
+The existing district has four purposeful fictional grazers, a long observation/feeder approach, lower-harbor boat approach, service and roof circulation, actual hands-on machinery, a reversible lock, a permanent bridge, one-time report and separate save identity. First-person VR, VR miniature and explicit AR miniature already exist. Classic Reserve remains available. None of that establishes physical-device or human wayfinding acceptance.
+
+The service-loop refit is implemented as an UNPUBLISHED candidate in PR 168, branch dino-atlas/service-loop-20260915, runtime source 4fb7638c0b915d5ccac2736e6d3627ca5f341ca8. It adds a real narrow north maintenance connection, a map following actual circulation and crossing state, normal in-reach field resupply and live bridge-clearance signals. The locker is recessed into existing wall collision to preserve an old walking checkpoint. Read ../dino-atlas/SERVICE-LOOP.md, SERVICE-LOOP-HANDOFF.md and verification/service-loop/candidate-status-20260915.json before continuing.
+
+The final local suite passes 168 model/real-physics tests. Final native candidate and public acceptance were pending at this record; refresh the actual jobs rather than assuming success from this text. The existing roadmap gains child LEVEL-PM-03a beneath the still-open human LEVEL-PM-03 gate. No library rating or AAA score is asserted. First-person/tabletop physical controls, blind-player comprehension, route preference and device performance remain unqualified.
+
+Before expanding the replacement campaign, measure whether a returning player can exploit the service/lock connection and whether the longer high route provides enough useful information or preparation to justify its travel cost. The automated route driver cannot answer either human-design question by itself.

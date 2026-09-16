@@ -1,0 +1,10 @@
+{
+  "build": "tidegate-20260915.2",
+  "baseline": "78dad9840163bbacb7308118cde44a1bb4f525f6",
+  "observation": "The objective-node map drew through walls. The prior full browser journey covered the long feeder approach only.",
+  "grayboxFailure": {"testsFailed": 2, "target": [30,8], "actualStopZ": 5.325, "reason": "North-door approach aimed into existing gearbox pedestal."},
+  "correction": "Move the opening and visible route to the actual clear x=32 machinery aisle. Retain collision, movement, interaction reach and original acceptance.",
+  "localBrowser": {"passed": false, "reason": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR for local HTTP. Rendered acceptance must run in GitHub Actions."},
+  "humanAcceptance": false,
+  "physicalHardwareAcceptance": false
+}
