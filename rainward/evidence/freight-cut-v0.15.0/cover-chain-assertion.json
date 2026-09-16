@@ -1,0 +1,15 @@
+{
+  "kind": "Retained model-assertion mismatch, not a runtime design failure or publication proof",
+  "source": "b41cf72a3f10e4382dc5598fcd5cee0b86447599",
+  "tested_merge_preview": "24798874b91f0ac7e2a9d99a0a1c03c20b572e1d",
+  "workflow_run": 35124764696,
+  "job": 104891233793,
+  "artifact": 10459006509,
+  "archive_sha256": "ec8958bad729f4f18047fb595e28a7db405314bff54ff662c0a4ea05cb970de5",
+  "result": "failed before browser execution",
+  "observed": "The new cover-chain model test expected market-low to be the first obstruction between the established market lookout and the first crouched route point. Actual world collision returned recut-terrace-north-22, an already-existing clinic-terrace retaining element. All preceding Freight tests passed, including the powered-route metric, shutter contracts, optional extraction and patrol constraints.",
+  "interpretation": "The intended property is that existing district geometry, not a newly added Freight barrier, breaks the crouched sightline. Requiring one exact obstacle ID over-specified the implementation and incorrectly rejected a valid pre-existing sightline break.",
+  "correction": "Keep the runtime, route points, enemies and geometry unchanged. The exact-source test now requires an obstruction from pre-existing district geometry, explicitly rejects any new freight-* obstruction or the new loading gate as the source of that protection, separately verifies that market-low and fountain still exist, verifies east-grass concealment, and keeps all approach points navigable.",
+  "runtime_changes": "None. This commit changes only the assertion and retains this evidence file.",
+  "release_gate": "All exact-source model/save tests, the normal-start living-enemy Xbox journey, district AR/VR cases, full Rainward regression, safe merge, Pages deployment and served-byte verification remain required."
+}
