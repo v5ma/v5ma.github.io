@@ -2,13 +2,18 @@ name: Vesperfall Open Line candidate
 on:
   push:
     branches: [vesperfall-open-line-20260915]
-    paths: ['vesperfall/**', '.github/open-line*', '.github/workflows/vesperfall-open-line-stage.yml']
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-open-line-stage.yml']
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: open-line-stage-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   prepare:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     outputs:
       source: ${{ steps.source.outputs.sha }}
     steps:
@@ -17,45 +22,78 @@ jobs:
         with:
           node-version: '22'
       - id: source
-        name: Materialize exact reviewed edits and retain an original-version checkpoint
+        name: Apply exact metadata and lossless artifact-authored workbook transport
         run: |
           set -euo pipefail
-          if [ ! -f vesperfall/tests/fixtures/returning-bell-v1-checkpoint.json ]; then
-            node - <<'JS'
-          const fs=require('fs'),D=require('./vesperfall/tests/open-line-driver.cjs'),S=require('./vesperfall/pilgrim-save.js');
-          if(D.C.VERSION!=='0.14.0')throw Error('Legacy fixture must originate before source patch');
-          const s=D.C.create('BELL-01',1,{returningBell:true});D.path(s,[[-4,8.5],[-14,8.5],[-14,0],[-14,-11.5],[-12.1,-11.5]]);D.C.interact(s);
-          fs.writeFileSync('vesperfall/tests/fixtures/returning-bell-v1-checkpoint.json',JSON.stringify(S.capture(s,{id:'open-line-fixture',banked:0,receipt:{},yaw:0,pitch:0,focus:1}),null,2)+'\n');
-          JS
-          fi
+          mkdir -p test-output
           python - <<'PY'
           from pathlib import Path
-          import json,hashlib
-          for r in json.loads(Path('.github/open-line-code-patch.json').read_text()):
-            p=Path(r['path']);b=p.read_bytes();h=hashlib.sha256(b).hexdigest()
-            if h==r['new']:continue
-            assert h==r['old'],str(p)
-            s=b.decode()
-            for i,n,t in reversed(r['edits']):s=s[:i]+t+s[i+n:]
-            assert hashlib.sha256(s.encode()).hexdigest()==r['new'],str(p)
-            p.write_text(s)
+          import json,hashlib,base64,zlib,zipfile,io
+          sha=lambda b:hashlib.sha256(b).hexdigest()
+          parts=[Path('.github/open-line-final.part1'),Path('.github/open-line-final.part2')]
+          assert all(p.exists() for p in parts)
+          raw=zlib.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts)))
+          assert sha(raw)=='7057e4b81f806117f1fa891006bd566e055a0dcc65a2700cd724f6bb502e2d5c'
+          pending=[]
+          for r in json.loads(raw):
+            p=Path(r['path']);assert p.parts[0]=='vesperfall' and '..' not in p.parts
+            old=p.read_bytes() if p.exists() else None
+            if old is not None and sha(old)==r['new']:continue
+            assert (sha(old) if old is not None else None)==r['old'],str(p)
+            if 'segments' in r:
+              # This recreates exact artifact_tool export members, not spreadsheet logic.
+              source=zipfile.ZipFile(io.BytesIO(old));segments=[]
+              for part in r['segments']:
+                if isinstance(part,str):segments.append(base64.b64decode(part));continue
+                b=source.read(part['name'])
+                for pos,n,t in reversed(part.get('edits',[])):b=b[:pos]+base64.b64decode(t)+b[pos+n:]
+                assert sha(b)==part['rawSha'],part['name']
+                if part['method']==8:
+                  c=zlib.compressobj(9,zlib.DEFLATED,-15);b=c.compress(b)+c.flush()
+                else:assert part['method']==0
+                assert sha(b)==part['compressedSha'],part['name']
+                segments.append(b)
+              new=b''.join(segments)
+            else:
+              if 'text' in r:s=r['text']
+              else:
+                s=old.decode()
+                for pos,n,t in reversed(r['edits']):s=s[:pos]+t+s[pos+n:]
+              new=s.encode()
+            assert sha(new)==r['new'],str(p)
+            pending.append((p,new))
+          for p,b in pending:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);print('Verified bytes:',p)
+          p=Path('level-design-library/GAME-RECOMMENDATIONS.md');s=p.read_text()
+          addition="Source-reconciled Vesperfall iteration: Open Line 0.15.0 refines the existing Returning Bell rather than replacing it again. The short central stair and an existing watcher's firing line share the reversible screen; a shootable brass release gives archery a direct role in opening it. Gallery control, flanking stairs, missed-shot recovery and a legitimate signal shot without visiting the tower remain distinct choices. Read ../vesperfall/OPEN-LINE.md and its exact publication receipt before assigning evidence status. Keep returning-bell-1 and hollow-dominions-1 for old saves; new expeditions use returning-bell-2. Human first/replay understanding and physical-device approval remain open.\n\n"
+          if addition not in s:
+            b=s.encode();assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()=='4b612d0005149f8f0b5ac0bcb888dadefa1e1740'
+            anchor='## Sky Cycle\n';assert s.count(anchor)==1;p.write_text(s.replace(anchor,addition+anchor))
           PY
           for f in vesperfall/*.js; do node --check "$f"; done
-          node --test vesperfall/tests/open-line.test.cjs vesperfall/tests/returning-bell.test.cjs
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add vesperfall
+          git add vesperfall level-design-library/GAME-RECOMMENDATIONS.md
           if ! git diff --cached --quiet; then
-            git commit -m 'Implement Open Line versioned approach, shared screen lane and legacy restoration'
+            git commit -m 'Synchronize Open Line 0.15.0 metadata, artifact-authored workbook, library record and layout-aware acceptance'
             git push origin HEAD:vesperfall-open-line-20260915
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD > test-output/source-revision.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-open-line-model
+          path: test-output/
+          retention-days: 14
   native:
     needs: prepare
     strategy:
       fail-fast: false
       matrix:
-        suite: [open-line, returning-bell]
+        suite: [open-line, returning-bell, surestep, pilgrim]
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -74,14 +112,13 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           timeout 2100 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
-          test -s test-output/${{ matrix.suite }}/report.json
-          test ! -e test-output/${{ matrix.suite }}/failure.json
       - name: Preserve exact source and unsuccessful traces
         if: always()
         run: |
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
-          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts level-design-library/GAME-RECOMMENDATIONS.md
       - uses: actions/upload-artifact@v4
         if: always()
         with:
