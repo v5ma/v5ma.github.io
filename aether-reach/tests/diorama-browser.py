@@ -3,6 +3,7 @@ import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'aether-reach/test-output';OUT.mkdir(exist_ok=True)
+EXPECTED_VERSION=json.loads((ROOT/'aether-reach/release.json').read_text())['version']
 checks=[];errors=[];shader=[]
 def check(ok,label):
  assert ok,label
@@ -41,7 +42,7 @@ with sync_playwright() as pw:
  def close_to(a,b,eps=.08):return sum((a[k]-b[k])**2 for k in ['x','y','z'])**.5<eps
  try:
   p.goto(os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach')
-  check(p.evaluate('AetherReach.version')=='0.12.0','The actual application boots the authored chapter release')
+  check(p.evaluate('AetherReach.version')==EXPECTED_VERSION,'The actual application boots the authored chapter release')
   p.evaluate('TestPad.connect()');frames();choose('#presentation-button');check(snap()['devices']['menu']=='presentation-dialog','Xbox reaches the presentation menu from the title without a mouse')
   choose('#diorama-preview');p.wait_for_function('AetherReach.snapshot().devices.presentation.avatar==="ready"');frames(8)
   s=snap();check(s['playing'] and s['devices']['presentation']['preview'],'Desktop preview starts the existing expedition with a real third-person courier')
