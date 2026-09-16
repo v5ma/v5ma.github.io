@@ -1,0 +1,18 @@
+{
+  "evidence_class":"paired isolated carried-state rail model, not native play",
+  "cases_per_geometry":70,
+  "seed":{"speed":7.5,"offset":120},
+  "grip_modes":["forgiving","precision"],
+  "remaining_arc_thresholds":[0,80,120,160,200,240,320],
+  "finite_hold_steps":[8,12,18,24,36],
+  "data_sha256":"931a62d9d1160ed2a212718bb2159e54db37f48897ae3e6ea6142d67d726370c",
+  "script":"canal-choice-comparison.mjs",
+  "threshold_200_old":{"collector_then_road":4,"direct_road":6},
+  "threshold_200_extended":{"collector_then_road":10,"direct_road":0},
+  "threshold_160_old":{"collector_then_road":7,"direct_road":2,"upper_express_then_road":1},
+  "threshold_160_extended":{"collector_then_road":9,"direct_road":0,"upper_express_then_road":1},
+  "threshold_240_old":{"collector_then_road":5,"direct_road":4,"upper_express_then_road":1},
+  "threshold_240_extended":{"collector_then_road":9,"direct_road":0,"upper_express_then_road":1},
+  "no_brake_old":{"upper_express_then_road":10},
+  "no_brake_extended":{"upper_express_then_road":10},
+  "limits":["One explicit initial jump seed; full native terrain, enemies and packet collisions are absent.","This is not a player success rate or universal reachable set.","A direct road return is not counted as death or failure.","No automatic brake or steering logic is introduced in the running game.","Read the source-specific native and public receipts before treating the fork as release-qualified."]

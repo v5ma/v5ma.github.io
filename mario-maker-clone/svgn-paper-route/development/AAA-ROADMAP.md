@@ -1,3 +1,21 @@
+# Active chapter task: WW-R2-BRAKE / Canal Choice v0.25
+
+Updated September 16, 2026. Continue the existing Waterwheel reference chapter, using `LEVEL-DESIGN-METHODOLOGY.md` and the shared `level-design-library/SKY-CYCLE-LEVEL-DESIGN.md`. This is an extension of the existing workbook task, not a competing roadmap. The full Milestones A-H and historical gates remain below.
+
+The current bounded implementation gives the existing lower collector an earlier receiving area, preserves its road return before Millworkers deliveries, and explains the high-speed and brake/release choices before the runway. Only one of the seven curves changes. Ground geometry, twelve mailboxes, five checkpoints, encounter count, the other six curves and all eight campaign builders remain unchanged. There is no automatic steering or new gameplay button.
+
+Read `CANAL-CHOICE-0.25.md`, `chapters/WATERWHEEL-BOULEVARD-R2.md`, and `verification/canal-choice-0.25.json`. The receipt controls exact-source native acceptance, capture review, merge and separate public-byte/live-replay status. Implementation and publication are not interchangeable. The structured shared-library application is `level-design-library/applied/SKY-CYCLE-CANAL-CHOICE.json` from the repository root.
+
+The native gate is an actual high route, lower route with a real Millworkers Terrace delivery, early finite-brake return and temporary neutral coasting, in both Forgiving and Precision grip. Preserve the prior road, ground-only, returning porch, continuous express, twelve-delivery, Tideglass, Sunrise and tracked-controller/hand-XR cases. No actor, velocity, delivery, score or win assignment may manufacture a pass. The 271 game rules include isolated model/render fixtures and are not 271 native playthroughs.
+
+Earlier v0.24 publication recovery is now complete in its own receipt: twenty-eight public files matched, and the actual published-origin twelve-delivery replay passed. The Portal Network, visual pedal/grip IK, Quiet Water, protected editable preview and twelve delivery intentions already exist. Do not recreate them because older snapshots below still use current/next headings or leave wider milestones open. Their historical implementation slices and remaining human/device gates are distinct.
+
+After WW-R2-BRAKE's release gate, the next content task is the optional high-to-high whip connection, retaining a non-whip continuation. Comprehensive early/late/reverse/underside recovery, checkpoint-delivery retry behavior, combined aerial-delivery roles, unfamiliar-player pacing, physical Xbox/Quest/mobile, full 3D/XR chapter rides and revision-aware campaign promotion remain open. Waterwheel stays an explicitly non-awarding Workshop preview, not a ninth campaign route or a silently replaced default chapter.
+
+The following release snapshots preserve the earlier production history. This active section and the latest source receipt supersede their old immediate queues, without closing their wider acceptance gates.
+
+---
+
 # Current chapter-design continuation: Waterwheel Lab
 
 The approved merged design is now canonical in `LEVEL-DESIGN-METHODOLOGY.md`; its concrete reference-chapter specification and promotion workbook are in `chapters/WATERWHEEL-BOULEVARD-R2.md`. Continue that chapter before another destination or cosmetic feature series. Source provenance is in `chapters/design-source-provenance.json`.
