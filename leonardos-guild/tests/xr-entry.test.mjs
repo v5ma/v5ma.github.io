@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {XR_MODES,xrEnvironmentProblem,xrFailureText,supportText,probeXRMode,bindXREntry} from '../xr-entry.mjs';
+import {XR_MODES,xrEnvironmentProblem,xrFailureText,supportText,probeXRMode,bindXREntry,immersiveVisible,gamePageHidden} from '../xr-entry.mjs';
 
 test('Four explicit viewpoint/session combinations remain distinct from optional theatre',()=>{
  assert.deepEqual(Object.values(XR_MODES).map(v=>[v.session,v.presentation]),[['immersive-vr','first-person'],['immersive-vr','diorama'],['immersive-ar','first-person'],['immersive-ar','diorama'],['immersive-vr','theatre']]);
@@ -37,4 +37,14 @@ test('Visible direct buttons call the selected mode synchronously, without a sel
  buttons[0].onclick();assert.deepEqual(calls[0],['first-person',true]);assert.equal(feedback[0].textContent,'Ready');
  ui.render({vr:true,ar:true,busy:true});assert.ok(buttons.every(b=>b.disabled));
  ui.render({vr:'unknown',ar:'checking'});assert.ok(buttons.every(b=>!b.disabled));retry[0].onclick();assert.equal(calls[1],'check');
+});
+
+test('Visible immersive sessions can run when the browser document is hidden',()=>{
+ assert.equal(gamePageHidden(true,immersiveVisible(true,'visible')),false);
+ assert.equal(gamePageHidden(false,false),false);assert.equal(gamePageHidden(true,false),true);
+});
+test('Headset overlays, hidden sessions, uninitialized sessions and exits remain inactive',()=>{
+ for(const state of ['hidden','visible-blurred',undefined])assert.equal(immersiveVisible(true,state),false);
+ assert.equal(immersiveVisible(false,'visible'),false);assert.equal(immersiveVisible(true,'visible',false),false);assert.equal(immersiveVisible(true,'visible',true,true),false);
+ assert.equal(gamePageHidden(true,immersiveVisible(true,'visible-blurred')),true);
 });

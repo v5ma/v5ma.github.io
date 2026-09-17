@@ -16,6 +16,8 @@ def hardware(config):
  return fixture+'''\n(()=>{const config='''+json.dumps(config)+''';
  const xr=navigator.xr,request=xr.requestSession;
  __xr.requests=[];__xr.reject=!!config.reject;__xr.floor=!config.noFloor;
+ // Emulate browser/page lifecycle separately from the XR device visibility.
+ __xr.pageHidden=false;Object.defineProperty(document,'hidden',{get:()=>__xr.pageHidden,configurable:true});
  if(config.noAPI){Object.defineProperty(navigator,'xr',{value:undefined,configurable:true});return;}
  xr.isSessionSupported=async mode=>{if(config.probeError)throw Error('Probe unavailable');return mode==='immersive-ar'?config.ar!==false:config.vr!==false;};
  xr.requestSession=(mode,options)=>{
@@ -60,7 +62,18 @@ with sync_playwright() as p:
    check(current['xr']['mode']==expected and current['xr']['spatial']['renderedEyes']==2,mode+' starts the selected actual stereo view, not a default or fallback')
    check(current['running'] and not current['xr']['hud']['panelVisible'] and not current['xr']['hud']['toolbarVisible'],mode+' enters play with one click and no second Start or permanent rectangles')
    check(current['credits']==before['credits'] and current['quarter']['delivery']==before['quarter']['delivery'],mode+' preserves the existing rewards and mission state')
-   capture(page,'direct-'+mode);stop(page)
+   capture(page,'direct-'+mode)
+   # Browser visibility is a platform fixture, not a game-state or clock write.
+   page.evaluate("__xr.pageHidden=true;document.dispatchEvent(new Event('visibilitychange'));window.dispatchEvent(new Event('blur'))")
+   page.wait_for_timeout(150)
+   check(read(page)['running'] and not read(page)['paused'],mode+' remains active when its immersive view is visible but the browser page is hidden')
+   startMove=read(page);target=startMove['xr']['frames']+16
+   page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,-.45]');page.wait_for_function('(n)=>LeonardoGuild.inspect().xr.frames>=n',arg=target)
+   page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]');afterMove=read(page)
+   check((afterMove['x']-startMove['x'])**2+(afterMove['z']-startMove['z'])**2>.0225,mode+' accepts real tracked-stick movement while only the page is hidden')
+   page.evaluate("__xr.session.visibilityState='visible-blurred';__xr.session.dispatchEvent(new Event('visibilitychange'))");page.wait_for_function('LeonardoGuild.inspect().paused')
+   check(read(page)['paused'],mode+' still pauses when a real XR overlay takes focus')
+   page.evaluate("__xr.pageHidden=false;document.dispatchEvent(new Event('visibilitychange'));__xr.session.visibilityState='visible';__xr.session.dispatchEvent(new Event('visibilitychange'))");stop(page)
    check(read(page)['paused'] and page.locator('#pause-dialog [data-xr-entry]').count()==4,mode+' exits safely to four explicit pause-screen mode buttons')
    # A different mode on pause must also start/resume from one direct user click.
    page.locator('#xr-pause-launcher [data-xr-entry="'+mode+'"]').click();page.wait_for_function("LeonardoGuild.inspect().running&&LeonardoGuild.inspect().xr.entry.phase==='running'")
@@ -79,7 +92,7 @@ with sync_playwright() as p:
   ctx,page=make({'noAPI':True})
   check(page.locator('#xr-launcher [data-xr-entry]').count()==4 and page.locator('#xr-launcher [data-xr-entry]:disabled').count()==4,'A non-XR browser keeps the four explained modes visible')
   check('headset browser' in page.locator('#xr-launcher-status').inner_text(),'A non-XR browser tells the player where XR must be opened')
-  page.locator('#start').click();check(read(page)['running'],'The original on-screen game still starts without XR support');capture(page,'desktop-no-xr');ctx.close()
+  page.locator('#start').click();check(read(page)['running'],'The original on-screen game still starts without XR support');capture(page,'desktop-no-xr');page.evaluate("__xr.pageHidden=true;document.dispatchEvent(new Event('visibilitychange'))");check(read(page)['paused'],'Ordinary on-screen play still pauses when its page is hidden');ctx.close()
   check(not errors,'No captured JavaScript or shader errors in the direct launch and recovery journeys')
  finally:
-  (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'captures':captures,'requests':requests,'evidence':'Native Chromium and real DOM/Three/WebGL with clearly emulated XR hardware and activation policy. Not a physical Quest, passthrough or performance certificate.'},indent=2));browser.close()
+  (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'captures':captures,'requests':requests,'evidence':'Native Chromium and real DOM/Three/WebGL with clearly emulated XR hardware, page/session visibility and activation policy. Not a physical Quest, passthrough or performance certificate.'},indent=2));browser.close()

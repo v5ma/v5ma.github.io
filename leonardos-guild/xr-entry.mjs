@@ -52,3 +52,9 @@ export function bindXREntry({enter,recheck,doc=globalThis.document}){
   for(const b of all('[data-xr-recheck]'))b.disabled=busy||presenting;
  },count:buttons.length};
 }
+
+// An immersive session may be visible while the 2D document is hidden.
+// Keep overlay/ending/uninitialized sessions inactive; page visibility still
+// owns ordinary on-screen play. See WebXR Device API section 4.1.
+export function immersiveVisible(presenting,visibility,ready=true,ending=false){return !!presenting&&!!ready&&!ending&&visibility==='visible';}
+export function gamePageHidden(pageHidden,xrVisible=false){return !!pageHidden&&!xrVisible;}

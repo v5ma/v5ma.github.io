@@ -253,8 +253,9 @@
     "autoStartAfterTrackedFrame": true,
     "independentModeSupport": true,
     "visibleFailures": true,
-    "sourceChecks": 371,
+    "sourceChecks": 373,
     "physicalDeviceVerified": false,
-    "handoff": "XR-ENTRY.md"
+    "handoff": "XR-ENTRY.md",
+    "separateImmersiveVisibility": true
   }
 }
