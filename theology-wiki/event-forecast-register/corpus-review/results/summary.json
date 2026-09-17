@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-17T20:16:03.858224+00:00",
+  "cutoff_date": "2026-09-17",
+  "screening_method": "Deterministic word/phrase matching on text. A hit is a retrieval lead, not a factual, political, theological or psychological conclusion.",
+  "public_text_reproduced": false,
+  "sources": [
+    {
+      "id": "twitter-historical",
+      "platform": "Twitter",
+      "format": "parquet",
+      "url": "https://huggingface.co/datasets/fschlatt/trump-tweets/resolve/main/data/train-00000-of-00001-4349c5d45dbcd707.parquet",
+      "documentation": "https://huggingface.co/datasets/fschlatt/trump-tweets/blob/main/README.md",
+      "limit": "Historical mirror; does not cover resumed X activity after January 2021. Naive archive datetimes are treated as UTC for indexing, pending individual timestamp checks.",
+      "retrieved_at": "2026-09-17T20:16:03.858224+00:00",
+      "status": "retrieved",
+      "input_sha256": "0a70aaeb2b5534fc2292249bbb0fd9591e62f79bc6c1ceb139aeebfc1a0b5e23",
+      "input_bytes": 6280553,
+      "raw_rows": 56571,
+      "unique_records": 56570,
+      "duplicate_rows": 1,
+      "conflicting_duplicate_ids": [
+        "twitter:1291488374835097600"
+      ],
+      "invalid_rows": 0,
+      "excluded_after_cutoff": 0,
+      "date_min": "2009-05-04",
+      "date_max": "2021-01-08",
+      "by_year": {
+        "2009": 56,
+        "2010": 142,
+        "2011": 773,
+        "2012": 3531,
+        "2013": 8144,
+        "2014": 5784,
+        "2015": 7536,
+        "2016": 4225,
+        "2017": 2602,
+        "2018": 3568,
+        "2019": 7818,
+        "2020": 12235,
+        "2021": 156
+      },
+      "topic_counts": {
+        "images-and-media": 304,
+        "punishment-enforcement": 237,
+        "personal-authority": 98,
+        "peace-negotiation": 453,
+        "war-force": 1579,
+        "opponents-and-dissent": 320,
+        "conditional-commerce": 508,
+        "food-fuel-shipping": 363,
+        "rules-and-restraint": 121,
+        "loyalty-affiliation": 145,
+        "sacred-language": 309,
+        "survival-protection": 66
+      },
+      "text_nonmatches": 52373,
+      "without_text": 23,
+      "attribution_counts": {
+        "not_marked_repost": 46694,
+        "repost": 9876
+      },
+      "individual_review_count": 0,
+      "index_file": "index-twitter-historical.json",
+      "index_sha256": "cad7aeb443b6df2c1ae4d59129860951820377c31f118e8d38b2ddf6db70b12b"
+    },
+    {
+      "id": "truth-cnn",
+      "platform": "Truth Social",
+      "format": "json",
+      "url": "https://ix.cnn.io/data/truth-social/truth_archive.json",
+      "documentation": "https://github.com/stiles/trump-truth-social-archive/blob/main/README.md",
+      "limit": "Independent live feed, not a certified complete native export. Repost attribution and image/video-only content require separate review.",
+      "retrieved_at": "2026-09-17T20:16:03.858224+00:00",
+      "status": "retrieved",
+      "input_sha256": "3de4c00468eb2be8dee327c2cb30f043b4ac2b08a84a9e6ec4e8163683b71995",
+      "input_bytes": 20136592,
+      "raw_rows": 36313,
+      "unique_records": 36313,
+      "duplicate_rows": 0,
+      "conflicting_duplicate_ids": [],
+      "invalid_rows": 0,
+      "excluded_after_cutoff": 0,
+      "date_min": "2022-02-14",
+      "date_max": "2026-09-17",
+      "by_year": {
+        "2022": 3889,
+        "2023": 9905,
+        "2024": 10587,
+        "2025": 6229,
+        "2026": 5703
+      },
+      "topic_counts": {
+        "war-force": 2896,
+        "conditional-commerce": 659,
+        "personal-authority": 71,
+        "food-fuel-shipping": 343,
+        "peace-negotiation": 634,
+        "punishment-enforcement": 429,
+        "images-and-media": 567,
+        "opponents-and-dissent": 208,
+        "sacred-language": 286,
+        "loyalty-affiliation": 149,
+        "rules-and-restraint": 300,
+        "survival-protection": 138
+      },
+      "text_nonmatches": 30773,
+      "without_text": 7246,
+      "attribution_counts": {
+        "not_determined_by_feed": 30752,
+        "repost_text_marker": 5561
+      },
+      "individual_review_count": 0,
+      "index_file": "index-truth-cnn.json",
+      "index_sha256": "ca91b676c6f32783772e28ca0f77a5144f38bde7508909bb0d565c333f9e0c84"
+    }
+  ],
+  "coverage_gaps": [
+    "X activity after January 2021 is not supplied by the historical Twitter mirror.",
+    "Public speeches and interviews are sampled separately, not comprehensively downloaded.",
+    "Images, videos, linked articles and audio are not transcribed by this text pass.",
+    "Deleted material and omissions in upstream archives remain unknown.",
+    "Keyword nonmatches can still be relevant; they remain in the metadata index."
+  ],
+  "total_unique_screened": 92883,
+  "status": "completed_for_retrieved_sources",
+  "all_posts_reviewed": false
+}

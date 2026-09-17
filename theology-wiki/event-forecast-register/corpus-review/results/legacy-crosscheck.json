@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "comparison_note": "Differences require source inspection; absent records are not proof of fabricated or deleted posts. No prior entry is changed.",
+  "records": [
+    {
+      "record_id": "ts-20230804-response",
+      "platform_id": "110833185720203438",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20230922-milley",
+      "platform_id": null,
+      "comparison": "not_in_feed_or_missing_id"
+    },
+    {
+      "record_id": "ts-20240124-donors",
+      "platform_id": null,
+      "comparison": "not_in_feed_or_missing_id"
+    },
+    {
+      "record_id": "ts-20250305-hostages",
+      "platform_id": "114112015891353323",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20250617-leader",
+      "platform_id": "114699610769479275",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20250617-surrender",
+      "platform_id": "114699621000737127",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20250621-strikes",
+      "platform_id": "114724035571020048",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20250623-oil",
+      "platform_id": "114732938285152785",
+      "comparison": "excerpt_not_found_needs_review"
+    },
+    {
+      "record_id": "ts-20250623-ceasefire",
+      "platform_id": "114734934153569653",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20251120-trial",
+      "platform_id": "115582417825161974",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20251120-death",
+      "platform_id": "115582703277798715",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260306-terms",
+      "platform_id": "116182551337254643",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260405-infrastructure",
+      "platform_id": "116351998782539414",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260407-civilization",
+      "platform_id": "116363336033995961",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260713-fee",
+      "platform_id": "116913091653271692",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260713-clemency",
+      "platform_id": "116914384616098938",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260714-fee-replacement",
+      "platform_id": "116918941071241802",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260722-retaliation",
+      "platform_id": "116963738416841583",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260806-leakers",
+      "platform_id": "117046698987056229",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260914-talks",
+      "platform_id": "117270114981057392",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260914-reimbursement",
+      "platform_id": "117270324606038555",
+      "comparison": "excerpt_found"
+    },
+    {
+      "record_id": "ts-20260914-oil-forecast",
+      "platform_id": "117270347763611160",
+      "comparison": "excerpt_found"
+    }
+  ]
+}

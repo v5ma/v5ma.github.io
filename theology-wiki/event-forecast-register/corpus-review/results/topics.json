@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "topics": {
+    "war-force": [
+      "war",
+      "bomb",
+      "missile",
+      "nuclear",
+      "military",
+      "surrender",
+      "destroy"
+    ],
+    "loyalty-affiliation": [
+      "loyal",
+      "loyalty",
+      "disloyal",
+      "betray",
+      "traitor",
+      "ungrateful",
+      "MAGA camp"
+    ],
+    "punishment-enforcement": [
+      "treason",
+      "seditious",
+      "sedition",
+      "arrest",
+      "jail",
+      "prison",
+      "execute",
+      "execution",
+      "retribution"
+    ],
+    "personal-authority": [
+      "I alone",
+      "I am your",
+      "total authority",
+      "Article II",
+      "Article 2",
+      "absolute right",
+      "saves his Country",
+      "king"
+    ],
+    "sacred-language": [
+      "God",
+      "Jesus",
+      "Christ",
+      "chosen one",
+      "second coming",
+      "savior",
+      "saviour",
+      "worship",
+      "divine"
+    ],
+    "images-and-media": [
+      "image",
+      "artificial intelligence",
+      "AI",
+      "video",
+      "statue",
+      "portrait",
+      "crown"
+    ],
+    "survival-protection": [
+      "assassination",
+      "bullet",
+      "wound",
+      "saved my life",
+      "protected by God",
+      "miracle"
+    ],
+    "conditional-commerce": [
+      "sanction",
+      "license",
+      "licence",
+      "barred",
+      "ban",
+      "tariff",
+      "reimbursement",
+      "funding"
+    ],
+    "food-fuel-shipping": [
+      "food",
+      "fuel",
+      "diesel",
+      "oil",
+      "fertilizer",
+      "fertiliser",
+      "grain",
+      "hunger",
+      "starve",
+      "Hormuz",
+      "shipping"
+    ],
+    "peace-negotiation": [
+      "peace",
+      "ceasefire",
+      "negotiation",
+      "negotiate",
+      "agreement",
+      "reconciliation"
+    ],
+    "opponents-and-dissent": [
+      "enemy",
+      "enemies",
+      "vermin",
+      "enemy within",
+      "enemy of the people",
+      "protest",
+      "leaker"
+    ],
+    "rules-and-restraint": [
+      "Constitution",
+      "lawful",
+      "illegal orders",
+      "peacefully",
+      "nonviolence",
+      "restraint",
+      "terminate",
+      "termination"
+    ]
+  },
+  "scope": "These are search terms, not trait assignments. Context, negation, quotations and repost authorship require individual review."
+}
