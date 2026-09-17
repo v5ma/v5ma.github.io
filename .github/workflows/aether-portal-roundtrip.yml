@@ -1,0 +1,78 @@
+name: Restore downloaded Aether World Portal release
+on:
+  push:
+    branches: [aether/portal-release-roundtrip-20260917]
+    paths: ['.github/workflows/aether-portal-roundtrip.yml']
+permissions:
+  contents: read
+jobs:
+  restore:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      SOURCE: 82795b7d7209725a78ae2ebbb6975e782f964e5e
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 82795b7d7209725a78ae2ebbb6975e782f964e5e
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download the existing versioned assets without modifying them
+        run: |
+          mkdir -p /tmp/portal-roundtrip
+          gh release view aether-v0.14.0 --json tagName,targetCommitish > /tmp/portal-roundtrip/release.json
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads(Path('/tmp/portal-roundtrip/release.json').read_text())
+          assert r['tagName']=='aether-v0.14.0' and r['targetCommitish']==os.environ['SOURCE']
+          PY
+          gh release download aether-v0.14.0 --dir /tmp/portal-roundtrip/assets
+          (cd /tmp/portal-roundtrip/assets && sha256sum --check SHA256SUMS.txt)
+      - name: Restore downloaded source and run its actual model tests
+        run: |
+          set -euo pipefail
+          python aether-reach/tools/backup.py --restore /tmp/portal-roundtrip/assets/Aether-Reach-v0.14.0-source.zip --destination /tmp/portal-restored
+          (cd /tmp/portal-restored && node --test aether-reach/tests/*.test.mjs) | tee /tmp/portal-roundtrip/restored-node.log
+          (cd /tmp/portal-restored && python aether-reach/tests/backup_test.py) 2>&1 | tee /tmp/portal-roundtrip/restored-backup-input.log
+          (cd /tmp/portal-restored && node aether-reach/tests/release-manifest.mjs)
+          python - <<'PY'
+          import hashlib,json,os,zipfile
+          from pathlib import Path
+          root=Path('/tmp/portal-roundtrip');assets=root/'assets';restored=Path('/tmp/portal-restored')
+          manifest=json.loads((assets/'BACKUP-MANIFEST.json').read_text())
+          assert manifest['source']==os.environ['SOURCE'] and manifest['version']=='0.14.0'
+          log=(root/'restored-node.log').read_text()
+          assert '# tests 269\n' in log and '# pass 269\n' in log and '# fail 0\n' in log
+          runtime=json.loads((restored/'aether-reach/test-output/runtime-manifest.json').read_text())['files']
+          publication=json.loads((assets/'aether-publication.json').read_text())
+          assert publication['source']==os.environ['SOURCE'] and publication['all_match']
+          assert len(runtime)==113 and set(runtime)==set(publication['files'])
+          for name,digest in runtime.items():
+            assert hashlib.sha256((restored/name).read_bytes()).hexdigest()==digest
+            assert publication['files'][name]['match'] and publication['files'][name]['sha256']==digest
+          with zipfile.ZipFile(assets/'Aether-Reach-v0.14.0-native-grounded-evidence.zip') as archive:
+            scope=json.loads(archive.read('scope.json'))
+            assert scope['source']==os.environ['SOURCE'] and scope['head']=='3738409f8e041704cf081af52c35da82b811d3a2'
+            assert len(scope['suites'])==9
+            for suite,name in scope['suites'].items():
+              report=json.loads(archive.read(suite+'/'+name))
+              assert not report.get('errors') and not report.get('shaderErrors')
+              assert len(report['checks'])==report['passed']
+              assert json.loads(archive.read(suite+'/runtime-manifest.json'))['files']==runtime
+          result={'source':os.environ['SOURCE'],'version':'0.14.0','releaseTag':'aether-v0.14.0','downloadedExistingAssets':True,'restoredSourceFiles':len(manifest['files']),'restoredNodeTests':269,'backupInputTests':6,'publicRuntimeFiles':113,'nativeSuites':9,'assets':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in assets.iterdir() if p.is_file()},'scope':'Read-only download, checksum verification and clean restore of the published release. No tag or asset overwrite, player saves, private data or physical-device certification.'}
+          (root/'roundtrip.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-portal-downloaded-release
+          path: /tmp/portal-roundtrip/
+          retention-days: 30
