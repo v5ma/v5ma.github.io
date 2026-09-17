@@ -1,8 +1,8 @@
 {
-  "version": "0.15.0",
-  "name": "open-line",
-  "date": "2026-09-15",
-  "scope": "Open Line refines the Returning Bell chapter in its existing footprint. A new central stair, shared enemy firing lane and arrow-operated brass screen release create a shorter exposed approach beside the retained gallery and ambulatory routes. A learned bell shot is a valid alternative to visiting the tower. No additional rooms, defenders or pickups.",
-  "saveCompatibility": "Existing profile/envelope keys, rewards and quick-arrow controls remain. hollow-dominions-1 and returning-bell-1 restore unchanged. New expeditions use returning-bell-2; the saved layout and mechanism geometry are rebuilt before position validation. AR inspects the suspended layout, never substitutes another one.",
+  "version": "0.16.0",
+  "name": "goldwind",
+  "date": "2026-09-17",
+  "scope": "Goldwind opt-in physical bow controls: temporary golden travel draw, tracked thrown disk, bow-hand directional shield and reach quiver inside existing Open Line. No campaign or generator replacement.",
+  "saveCompatibility": "All three existing layout identities, profile/envelope keys, rewards and Xbox shortcuts remain. Classic is default; crossbow retains Classic roles. Explicit physical preferences persist independently. Pause cancels uncommitted disk flight without spending a shard.",
   "hardwareStatus": "Development slice. Software checks use actual WebGL with emulated Xbox and WebXR devices. Physical Quest 3/Xbox, comfort, sustained performance, finished art and unfamiliar-player/replay acceptance remain open."
 }
