@@ -3,7 +3,7 @@ import {activeTrackedMotion} from './active-controls.js';
 import * as T from './vendor/three.module.js';
 import {GROUNDED_BUILD} from './grounded-motion.js?v=grounded1';
 import {EdgeGate,emptyMotion,trackedMotion,mergeMotion,readControls,saveControls} from './xr-actions.js?v=express1';
-const labels={interact:'Interact',board:'Board / exit',reload:'Reload',water:'Water',zapper:'Zapper',nextTool:'Next tool',horn:'Horn',menu:'Menu / pause',map:'Map'};
+const labels={scanner:'Scan',rescue:'Recovery',fieldContracts:'Assignments',interact:'Interact',board:'Board / exit',reload:'Reload',water:'Water',zapper:'Zapper',nextTool:'Next tool',horn:'Horn',menu:'Menu / pause',map:'Map'};
 const holdControls={Forward:{z:1,throttle:1},Reverse:{z:-1,throttle:-1},Left:{x:-1,steer:1},Right:{x:1,steer:-1},Fire:{fire:true,aim:true},Rise:{climb:1},Descend:{climb:-1},Jump:{jump:true},Brake:{brake:true}};
 const $=id=>document.getElementById(id);
 const visible=e=>!e.closest('[hidden]')&&e.getClientRects().length>0&&getComputedStyle(e).visibility!=='hidden';
@@ -99,7 +99,7 @@ export class ReserveXR{
    const actions=Object.keys(labels).map(key=>({label:labels[key],run:()=>this.ctx.action(key)}));
    for(const [label,hold] of Object.entries(holdControls))actions.push({label:'Hold '+label,hold});
    actions.push({label:this.travel.cruise.active?'Express OFF':'Express '+this.travel.settings.multiplier+'x',run:()=>this.travel.toggle()},{label:'Turn left',run:()=>this.snap(Math.PI/6)},{label:'Turn right',run:()=>this.snap(-Math.PI/6)},{label:'Leave VR',run:()=>this.enter()});
-   actions.forEach((a,i)=>tile(a.label,32+(i%3)*326,170+Math.floor(i/3)*98,308,84,a.run,a.hold));
+   actions.forEach((a,i)=>tile(a.label,32+(i%3)*326,170+Math.floor(i/3)*85,308,74,a.run,a.hold));
    c.font='19px sans-serif';c.fillStyle='#d8e8da';c.fillText(this.travel.activeLayout?'Grip: interact / LT: aim / RT: fire / A: jump or brake / X: reload / Y: board':'Point + pinch / trigger. Release or leave a tile to stop a held action.',32,995);
   }
   this.texture.needsUpdate=true;

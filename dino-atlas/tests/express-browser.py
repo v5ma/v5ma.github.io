@@ -79,6 +79,10 @@ try:
    xrpress('left',1);check(page.evaluate('events.filter(e=>e==="interact").length')>=2,'Either grip can interact')
    if page.locator('dialog[open]').count():xrpress('right',5)
    xrpress('right',3);wait('document.getElementById("map-dialog").open');check(True,'Right-stick click opens map directly in XR');xrpress('right',5);wait('!g.state.paused')
+   # A grip beside a parked jeep can legitimately board it. Exit through Y
+   # before starting a foot route rather than assuming grips cannot board.
+   if page.evaluate('g.state.mode')!='foot':
+    xrpress('left',5);wait('g.state.mode==="foot"')
    # Both worlds have a physically accessible initial helicopter bay.
    if SCENE=='tidegate':walk([[-35,31],[-35,44],[-53,44]])
    else:walk([[10,62],[19,60],[19,59]])

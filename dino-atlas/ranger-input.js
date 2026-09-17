@@ -13,7 +13,7 @@ export function focusable(root){return root?[...root.querySelectorAll('button,a[
 export class RangerInput{
  constructor({action,modal,mode,onDevice,onDisconnect}){
   Object.assign(this,{action,modal,mode,onDevice,onDisconnect});this.keys=new Set();this.touch=new Set();this.previous=[];this.pad=null;this.device='keyboard';this.context=modal();this.neutral=false;this.repeatDirection=0;this.repeatClock=0;this.mouseAim=false;this.mouseFire=false;this.sensitivity=1;this.fireLatch=false;this.jumpLatch=false;this.lastPoll=performance.now();this.disconnected=false;this.quickTools=true;
-  const keyboardActions={KeyT:'express',KeyE:'interact',KeyF:'board',KeyR:'reload',KeyQ:'nextTool',Digit1:'water',Digit2:'zapper',KeyH:'horn',KeyG:'recover',KeyM:'map',KeyC:'camera',KeyO:'operations',KeyI:'journal',Escape:'menu',KeyL:'lights'};
+  const keyboardActions={Digit3:'scanner',Digit4:'rescue',KeyN:'fieldContracts',KeyT:'express',KeyE:'interact',KeyF:'board',KeyR:'reload',KeyQ:'nextTool',Digit1:'water',Digit2:'zapper',KeyH:'horn',KeyG:'recover',KeyM:'map',KeyC:'camera',KeyO:'operations',KeyI:'journal',Escape:'menu',KeyL:'lights'};
   this.keydown=e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;const root=this.modal();if(root){
     if(e.code==='Escape'){e.preventDefault();if(!e.repeat)this.action('back');return;}
     if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter','Space'].includes(e.code)){e.preventDefault();if(e.repeat)return;if(e.code==='ArrowUp')this.navigate(-1);else if(e.code==='ArrowDown')this.navigate(1);else if(e.code==='ArrowLeft')this.adjust(-1);else if(e.code==='ArrowRight')this.adjust(1);else this.activate();}return;}

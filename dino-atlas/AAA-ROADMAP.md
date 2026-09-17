@@ -284,3 +284,12 @@ Keep LEVEL-PM-03 and LEVEL-PM-04 open. The next level-design question remains th
 - [ ] INPUT-08b: Physical Xbox and Quest 3 acceptance of Active/Legacy layouts, express control, braking distance, motion comfort, hand UI and reduced-vision map legibility. Emulated input and graphics evidence do not close this gate.
 
 These tasks refine the accepted character-centered world portal and service-loop level. No new map bounds, saved mission schema, repeat rewards, asset licenses or sibling-game changes. See EXPRESS-FIELD-CONTROLS.md and EXPRESS-HANDOFF.md.
+
+
+## Mounted utilities and field assignments / 2026-09-17
+
+- [ ] FIELD-OPS-01a: Twelve authored ranger assignments across the two existing worlds; visible per-vehicle water/pulse/survey/recovery rigs; real range/sight/stable-hover gates, crew protection, actual herd clearance, grounded reports, secured-carrier save/resume and unique commendations. Verify the declared native journeys and separate public result; retain model-only coverage boundaries.
+- [ ] FIELD-OPS-01b: Expand native coverage to every supported vehicle and alternate approach for distant census, stand-off, cargo and induction missions. Do not infer all routes from progression fixtures.
+- [ ] FIELD-OPS-02: Physical Quest/Xbox aim/utility changes, hand menus, stable-hoist comfort, and unfamiliar/returning player understanding of vehicle/tool/route tradeoffs.
+
+This continues INPUT-08a/NAV-08a and LEVEL-PM-03 without closing human gates. No map expansion, legacy save reset, humanoid-combat claim or independent ammunition economy. See FIELD-OPERATIONS.md and its handoff.
