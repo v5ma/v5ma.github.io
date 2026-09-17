@@ -1,0 +1,81 @@
+name: Vesperfall Goldwind recovery
+on:
+  push:
+    branches: [vesperfall-goldwind-20260917]
+    paths: ['.github/workflows/vesperfall-goldwind-recovery.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        name: Apply the already-reviewed device-frame patch, not a gameplay bypass
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          if ! grep -q 'state.inputFrame?.(t)' vesperfall/tests/fake-xr.js; then
+            python .github/goldwind-review.py
+          fi
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall/tests/fake-xr.js vesperfall/tests/goldwind-browser.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Test Goldwind with physical device poses sampled before each XR frame'
+            git push origin HEAD:vesperfall-goldwind-20260917
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD > test-output/source-revision.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: goldwind-recovery-model
+          path: test-output/
+          retention-days: 14
+  native:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - name: Install production browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise Goldwind's actual physical-action path and hand/AR lifecycle
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 900 python -u vesperfall/tests/goldwind-browser.py | tee test-output/goldwind.log
+          test -s test-output/goldwind/report.json
+          test ! -e test-output/goldwind/failure.json
+      - name: Retain tested source, including unsuccessful traces
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/goldwind-review.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: goldwind-recovery-browser
+          path: test-output/
+          retention-days: 14
