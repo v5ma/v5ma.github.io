@@ -24,6 +24,7 @@ with sync_playwright() as pw:
  browser=pw.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH'),headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
  ctx=browser.new_context(viewport={'width':1100,'height':800},service_workers='block',record_video_dir=str(OUT/'video'))
  ctx.add_init_script((Path(__file__).with_name('xr-emulator.js')).read_text().replace("import('../vendor/three.webgpu.js')","import('./vendor/three.webgpu.js')"))
+ ctx.add_init_script("window.testXbox={id:'Spatial Xbox sample',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};navigator.getGamepads=()=>[testXbox];")
  ctx.add_init_script("localStorage.setItem('sprocket_muted','1');localStorage.setItem('xr-workspace-sentinel','preserve');")
  ctx.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==urlparse(origin).hostname or r.request.url.startswith(('blob:','data:')) else r.abort())
  page=ctx.new_page();page.set_default_timeout(120000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:logs.append(m.text) if m.type=='error' else None)
@@ -36,6 +37,8 @@ with sync_playwright() as pw:
    if page.evaluate('(s)=>SkyCycleXR.diagnostics.buttons.some(b=>b.label.toLowerCase().includes(s.toLowerCase()))',label):break
    point(' - Next');page.evaluate("xrEmulator.select('start');xrEmulator.select('end')");frames(2)
   point(label);page.evaluate("xrEmulator.select('start');xrEmulator.select('end')");frames(3)
+ def xbox(i):
+  frames();page.evaluate('(i)=>{testXbox.buttons[i]={pressed:true,value:1};}',i);frames();page.evaluate('(i)=>{testXbox.buttons[i]={pressed:false,value:0};}',i);frames()
  def capture(name):
   data=page.evaluate('xrEmulator.image()');(OUT/(name+'.png')).write_bytes(base64.b64decode(data.split(',',1)[1]))
  def press(i,hand='right'):
@@ -51,6 +54,13 @@ with sync_playwright() as pw:
   if KIND=='ar':check(page.evaluate('SkyCycleXR.diagnostics.transparent && SkyCycleXR.diagnostics.clipped && xrEmulator.lastCapture.opaque<880000'),'AR renders an alpha-clear exterior around the clipped real game and menu')
   choose('Spatial setup');choose('Exhibit size: 1 plus');check(page.evaluate('Math.abs(SkyCycleXR.diagnostics.placement.scale-1.1)<1e-6'),'In-headset scale control changes only the exhibit')
   choose('Exhibit size: 1.1 minus');choose('Back')
+  for label,selector in [('Materials & FX','#prism-panel'),('Route journal','#sc-journal'),('Flight Deck','#flight-deck')]:
+   choose(label);page.wait_for_function('(selector)=>document.querySelector(selector)?.open',arg=selector)
+   capture(KIND+'-'+selector[1:]);check(True,label+' opens as a readable native headset menu')
+   choose('Back')
+  choose('Choose a route');page.wait_for_function('document.getElementById("delivery-menu").classList.contains("open")')
+  capture(KIND+'-routes');check(True,'The route catalogue and its live actions remain accessible in XR')
+  choose('Back');page.wait_for_function('!__delivery.paused');choose('Pause')
   choose('Sound & music');page.wait_for_function('document.getElementById("score-dialog").open')
   choose('Effect intensity: soft plus');check(page.evaluate('SkyCycleSensory.settings.transients==="full"'),'Tracked controller ray adjusts the real sound select')
   choose('Mute all sound: On');check(page.evaluate('!document.getElementById("score-mute").checked && !muted'),'Ray checkbox toggles the real mute control and announces its state')
@@ -72,12 +82,15 @@ with sync_playwright() as pw:
   page.wait_for_function('RouteWorkshop.active && SkyCycleXR.diagnostics.presentation==="workshop"')
   check(page.evaluate('SkyCycleXR.diagnostics.screenSource==="maker-canvas"'),'The editable Workshop is visible as a live XR canvas')
   before=page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')
-  choose('Editor tools');choose('Level name:');page.wait_for_function('SkyCycleXR.diagnostics.typing')
+  choose('Editor tools');point('Level name:');xbox(0);page.wait_for_function('SkyCycleXR.diagnostics.typing')
+  check(True,'Xbox A on the real focused text field opens the shared headset keyboard')
   choose('Clear text');choose('x');choose('r');choose('Apply text')
   check(page.evaluate('document.getElementById("maker-name").value==="xr" && RouteWorkshop.state.dirty'),'Hand keyboard commits through the actual level-name field')
   choose('New grounded starter');page.wait_for_function('document.querySelector(".xr-question[open]")')
   choose('Cancel');check(page.evaluate('document.getElementById("maker-name").value==="xr"'),'Cancelling an in-headset replacement confirmation preserves the edited document')
   choose('Undo');check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==before,'Undo restores the original editable document after XR text entry')
+  choose('Import');page.wait_for_function('document.querySelector(".xr-question[open]")');choose('Cancel')
+  check(page.evaluate('SkyCycleXR.presenting && WorkshopCore.encode(RouteWorkshop.state.doc)')==before,'Cancelling a browser-file handoff preserves the current XR session and draft')
   choose('Pan');choose('Back');frames()
   view=page.evaluate('({...RouteWorkshop.state.view})')
   page.evaluate('xrEmulator.pointCanvas(.35,.3)');frames();page.evaluate("xrEmulator.select('start')");frames()
@@ -91,6 +104,11 @@ with sync_playwright() as pw:
   check(page.evaluate('SkyCycleXR.presenting'),'Workshop playtesting returns to the same stereo game without leaving XR')
   choose('All menus');choose('Return to Workshop');page.wait_for_function('RouteWorkshop.active && !RouteWorkshop.testing');frames()
   check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==before,'Returning from XR playtest restores the same Workshop document')
+  choose('Spatial setup');choose('Change AR / VR mode');page.wait_for_function('!SkyCycleXR.presenting && document.getElementById("sky-xr-guide").open')
+  check(page.evaluate('RouteWorkshop.active && WorkshopCore.encode(RouteWorkshop.state.doc)')==before,'AR/VR mode change preserves the live draft and requires deliberate re-entry')
+  page.locator('#sky-xr-enter' if KIND=='ar' else '#sky-xr-enter-ar').click();page.wait_for_function('SkyCycleXR.presenting && SkyCycleXR.diagnostics.frames>5');frames()
+  check(page.evaluate('xrEmulator.request.type')==('immersive-vr' if KIND=='ar' else 'immersive-ar'),'The other immersive mode uses a new explicit session without losing the editor')
+  capture(KIND+'-switched-workshop')
   diag=page.evaluate('SkyCycleXR.diagnostics');choose('Exit XR');page.wait_for_function('!SkyCycleXR.presenting && !__merged.scene.parent')
   check(page.evaluate('!__merged.renderer.xr.enabled && RouteWorkshop.active'),'Exiting restores ordinary renderer and editor ownership')
   check(page.evaluate('JSON.stringify({records:SkyCycleFlightDeck.records,routeIDs:DeliveryCampaign.routes.map(r=>r.id),sentinel:localStorage.getItem("xr-workspace-sentinel")})')==protected,'Campaign records, stable route IDs and old storage remain unchanged')
@@ -107,4 +125,4 @@ with sync_playwright() as pw:
   except Exception: pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'mode':KIND,'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'diagnostics':diag,'coverage':'Actual Three stereo renderer and original game/editor; emulated XR hardware. Real DOM controls and editor pointer events. No physical Quest, real passthrough-camera, Xbox hardware or human comfort approval.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'mode':KIND,'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'diagnostics':diag,'coverage':'Actual Three stereo renderer and original game/editor; emulated XR hardware and standard Xbox samples. Real DOM controls and editor pointer events. No physical Quest, real passthrough-camera, Xbox hardware or human comfort approval.'},indent=2));ctx.close();browser.close();server.shutdown()
