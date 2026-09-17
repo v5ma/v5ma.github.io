@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "project": "Vesperfall",
+  "version": "0.16.0",
+  "name": "Goldwind",
+  "date": "2026-09-17",
+  "statusAtCreation": "GitHub write access succeeded. The initial Goldwind release was committed and its public production bytes verified. A real held-button handover correction is also on master, but its native browser and separate public deployment/acceptance were still queued at the last observation. This record is not final verified-public closure.",
+  "initialReleaseCommit": "10a6f14a4a91d530656fdd6e93630815d8794a25",
+  "correctionCommit": "b74cc4d1849aded501b9f28576596efac5f5a407",
+  "correctedFeatureSource": "06035bcbaae918999bae4a34758d7ecaadf664c7",
+  "parentMasterPreserved": "3317b43423a14cb5bb7b346f25a5d26deeafa611",
+  "correctionFiles": {
+    "vesperfall/goldwind-xr.js": "f30e36d87daff7a5f537c639446dd5685fc12afe",
+    "vesperfall/index.html": "932a795e348a8011faa120aebdedb2649e5169dc",
+    "vesperfall/tests/goldwind-browser.py": "b9ccbf2a049e70976cae3ffb2e55910e5153a679",
+    ".github/workflows/vesperfall-goldwind.yml": "53cc8647f93139f15c13613591255a8bae4f675e"
+  },
+  "initialPublicFiles": {
+    "count": 93,
+    "allMatch": true,
+    "run": 35285632889,
+    "artifact": 10524785481,
+    "artifactSha256": "b967df497d69a7e4a696e58eb02bfc7cd19a6696cab41bdfcfe712e9a1f7e1da",
+    "manifestDigest": "e178e2d1dcfa0b61a843e7209c48d9bd42e4c704ebf77cfae5e407901daffb70",
+    "limit": "This is the initial source, not the corrected final build. The old public workflow is superseded by the corrected source's run."
+  },
+  "expectedCorrectedManifest": "8c1da6fb9f0b3bf6c012c4e1767daa88bd61f81ab3dd7e02f554b65feb9c7a25",
+  "correctedProductionDelta": "Exactly two of the 93 production files differ: one input-owner handover line in goldwind-xr.js and that script's cache query in index.html. No layout, save, reward, resource, model, roadmap or workbook changes.",
+  "completedEvidence": {
+    "model": {"passed":217,"failed":0,"skipped":0,"independentCorrectedSourceRepeat":true},
+    "workbook": "Six sheets, all 76 original task IDs, cached summary formula values and canonical hash passed.",
+    "initialNativeGoldwind": {"run":35285184531,"source":"9ad894accb1f3af7d4e41a8127a4158207707095","artifact":10524129289,"artifactSha256":"64e2ddc35f1cc4a8f7774abd0095e12a214c7bcaeaddb7efa7e202f1d08cf4e6","passed":30,"pageErrors":[],"consoleErrors":[],"completeCheckpointAndProfileEqual":true,"onlyChangedEnvelopeKeys":["revision","savedAt"]},
+    "preservation": {"run":35283161999,"source":"43c7b3e1e19fa1db021caea723413eba49283ed0","returningBell":61,"surestep":62,"scope":"Initial same-production Goldwind runtime. Final handover correction must be validated separately."}
+  },
+  "pendingRuns": {
+    "nativeHandover": {"run":35286313251,"job":105420590180,"expectedSource":"06035bcbaae918999bae4a34758d7ecaadf664c7","lastStatus":"queued","prepareAndModel":"success"},
+    "publicAcceptance": {"run":35287214735,"sourceJob":105422185223,"expectedSource":"b74cc4d1849aded501b9f28576596efac5f5a407","lastStatus":"queued"},
+    "pages": {"run":35287213463,"buildJob":105422112759,"expectedSource":"b74cc4d1849aded501b9f28576596efac5f5a407","lastStatus":"queued"}
+  },
+  "failuresAndCorrections": [
+    {"run":35283161999,"artifact":10523601086,"passedBeforeFailure":14,"finding":"The render-bound input fixture did not sample enough valid disk-throw motion. Controller poses now update before each XR frame reads them; no gameplay clocks, thresholds or actor state were changed."},
+    {"run":35284372506,"artifact":10523098194,"passedBeforeFailure":25,"finding":"The test compared complete save-envelope bytes, including intentionally advancing revision/savedAt. Revised tests compare the entire checkpoint and profile and retain both envelopes. Successful native evidence shows only those metadata fields changed."},
+    {"kind":"source-derived handover probe","finding":"The original Goldwind owner returned after weapon switch without updating Classic's previous-button snapshot. A held click could switch twice. The correction transfers the consumed snapshot. The isolated probe reproduces old behavior and corrected single switching, but is not native-browser or physical-device evidence. Four actual-input browser checks now cover hold-switch, one loaded crossbow bolt, Classic reload and neutral return to Goldwind."},
+    {"kind":"local environment","finding":"Local Chromium loopback navigation was blocked by administrator policy; not bypassed or counted as gameplay acceptance. A partial artifact extraction also omitted repository-root index.html and Git metadata, so its local full-repository source check was not credited. Model and workbook repeats succeeded; full-checkout CI provides the repository source gate."}
+  ],
+  "implementation": "Opt-in physical bow preset: near-nock trigger combat draw; either draw-hand face button for a temporary golden Blink; no default arc/ring; deliberate grip-thrown disk with a four-metre supported-ground limit; bow-trigger directional shield with grip swap; bow-mounted reach quiver; mirrored handedness; inherited crossbow, Xbox and hand-menu behavior. Classic remains default. There is no new generator or second chapter.",
+  "preservation": "Keep hollow-dominions-1, returning-bell-1 and returning-bell-2 immutable. Preserve all profile/envelope keys and rewards. Xbox down D-pad selects Blink and left cycles usable damage arrows. AR inspection remains paused and discovery-limited; hand-only combat and physical anchors are not introduced. Concurrent sibling commits were preserved and no source-writing staging workflows entered master.",
+  "remainingGates": "Actual final public byte and gameplay evidence; physical Quest 3/Xbox, tracking/comfort, sustained performance, unfamiliar/repeat-player understanding and finished art/audio.",
+  "resume": "Do not rebuild or rerun historical source-writing workflows. Recover the named native and public run artifacts, audit their source revision, ZIP hashes, empty diffs, full checkpoint/profile comparisons and exact production manifest. Native/public Goldwind should include four extra crossbow checks beyond the initial 30. Fix only observed defects. After successful final public Goldwind, chapter/XR/save and homepage/board journeys, write a separate publication.json with actual counts and the corrected manifest digest, preserving these failed/pending-at-creation records. Never claim physical-device approval from emulation."
+}
