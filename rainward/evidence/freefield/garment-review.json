@@ -1,0 +1,15 @@
+{
+  "record_kind": "Native visual review and bounded material correction, not publication or final art approval",
+  "reviewed_head": "88fd18570ad2b221df1e14d4ee51d4afefa3d084",
+  "tested_merge_preview": "f4618b9d5680a367d0b90f7a2c9c278d6542e1aa",
+  "human_run": 35287551652,
+  "human_artifact": 10525142532,
+  "archive_sha256": "f951ae94795a4b7d711165ccdfe7161f6cb678100096fa601283dad57e0801ef",
+  "native_checks": 21,
+  "browser_errors": [],
+  "observation": "Fitted human bounds, source decoding, model swaps and fallback passed, but actual close-up captures showed grey placeholder materials on the retained jacket, trousers and boots. A passing functional test was not treated as visual approval.",
+  "correction": "Reuse the existing procedural cloth texture and role-based rainwear colors, with darker trousers and boots. Source meshes, bones, weights, skin and face maps, collision, assets, movement and game state are unchanged. The remaining procedural overlay is accurately named as the backpack.",
+  "model_source_checks_after_correction": {"passed":389,"failed":0,"skipped":0},
+  "prior_portal_review": {"source":"0890cb9f74aede7486a953e4a6337d6a4f5b46a6","artifact":10525616190,"archive_sha256":"49076aee786b11a7205a30d531b952c14bb46f2c6fca3602c82ad09aff10b807","checks":20,"result":"Actual AR portal hand journey passed with empty browser error arrays. Reviewed image shows farther world and survivor through foreground architecture. This is a mock XR compositor, not real passthrough footage."},
+  "release_gate": "Require exact new-head regression and visual captures, safe merge and actual public-byte comparison. Physical Xbox/Quest, complete authored animation and final art remain unapproved."
+}
