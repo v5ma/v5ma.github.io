@@ -1,0 +1,25 @@
+{
+  "status": "Recovered candidate, not a release receipt",
+  "tested_checkout": "3e28b771bba86560b7a4a7dd2cd87b8686f8bb6b",
+  "run": 35281383813,
+  "artifact": 10523206038,
+  "archive_sha256": "d6dab1ea657c32eb0cae23030c3ddab40ba5b39f143687082b46b9c7c12e1e9d",
+  "uncommitted_diff_bytes": 0,
+  "model_tests": {"passed": 381, "failed": 0},
+  "positive_native_evidence": {
+    "ar_hand_gameplay": {"checks": 20, "errors": [], "console": []},
+    "portal_pixels": {"samples": 7565, "visible": 3444, "mismatches": 0, "foreground_leaks": 0},
+    "waist_cut_pixels": {"compared": 1444, "wrong": 0, "environment_red": 209, "full_actor_blue": 722}
+  },
+  "retained_failures": [
+    {"case": "three controller view journeys", "observed": "The driver pressed A at the original shelter spawn (0,27), outside the nearby rations interaction radius. The actual game selected the shelter, so the rations assertion correctly timed out.", "correction": "Drive normal Quest thumbstick input into the actual supply radius before pressing A. No interaction radius or item grant changed."},
+    {"case": "Meridian journey", "observed": "The driver stopped at (-42,26.8185), 86 health, against the real valve pedestal while trying to append its exact target diagonally to a pathfinding route.", "correction": "Approach the valve's clear interaction face via (-41,29) and (-42,29), then use normal Y interaction. Keep the housing collision."}
+  ],
+  "runtime_review": [
+    "Restore turn, equipment, tool, posture, melee, dodge, listening and comfort actions to the on-demand hand menu; removing the pinned menu must not strand them.",
+    "Use physical reference-space pointer range in the new portal rather than legacy inverse-scale range.",
+    "Input-source changes also cancel hand blink mode, preventing a stale release teleport.",
+    "Wrist oxygen instructions distinguish direct X/Y controls from legacy A, and desktop chrome is hidden in immersive mirroring."
+  ],
+  "boundaries": "Graphics fixtures and mocked XR journeys are separate from physical Quest 3, actual passthrough, comfort, final art/audio and user-playtest approval. No publication occurred. Local Chromium again rejected localhost with ERR_BLOCKED_BY_ADMINISTRATOR; no bypass was attempted."
+}

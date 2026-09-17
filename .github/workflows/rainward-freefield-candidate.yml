@@ -1,4 +1,4 @@
-name: Rainward Freefield integrated review
+name: Rainward Freefield recovery review
 on:
   push:
     branches: [feat/rainward-freefield-20260917]
@@ -9,9 +9,11 @@ concurrency:
   group: rainward-freefield-candidate
   cancel-in-progress: true
 jobs:
-  integrated:
+  prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 8
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,43 +21,65 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply scoped stage two before acceptance
+      - name: Apply bounded native-review corrections before testing
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p test-output
-          python rainward/tools/recover-freefield-stage2.py
-          for f in rainward/*.mjs; do node --check "$f"; done
-          node --test rainward/tests/*.test.mjs | tee test-output/node-tests.txt
+          python rainward/tools/repair-freefield-review.py
+          node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
           python -m compileall -q rainward/tests
-      - name: Commit exact candidate before native tests
+      - name: Commit only the reviewed runtime and driver changes
+        id: commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward
+          git add rainward/quest-xr.mjs rainward/quest-xr.css rainward/tests/freefield-browser.py rainward/tests/freefield-meridian.py
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate Meridian relief, authored bodies, contact IK, goal guide and sight before native review'
+            git commit -m 'Repair native interaction approaches and complete on-demand hand controls'
             git push origin HEAD:feat/rainward-freefield-20260917
           fi
-      - name: Install native HTTP WebGL browser
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-freefield-models
+          path: test-output/
+  native:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [first-person:controllers,first-person-ar:controllers,diorama-vr:controllers,diorama-ar:hands,meridian,graphics]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install real browser
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Real rendered pixels, new-default XR and earned Meridian mission
-        shell: bash
+      - name: Actual HTTP WebGL case with disclosed virtual input
+        env:
+          CASE: ${{ matrix.case }}
         run: |
-          set -euo pipefail
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          RESULT=0
-          timeout 120 python -u rainward/tests/freefield-graphics.py || RESULT=1
-          for CASE in first-person:controllers first-person-ar:controllers diorama-vr:controllers diorama-ar:hands; do
-            XR_VIEW="${CASE%:*}" QUEST_KIND="${CASE#*:}" timeout 480 python -u rainward/tests/freefield-browser.py || RESULT=1
-          done
-          timeout 700 python -u rainward/tests/freefield-meridian.py || RESULT=1
-          exit "$RESULT"
-      - name: Retain actual checkout, failures and images
+          case "$CASE" in
+            graphics) timeout 120 python -u rainward/tests/freefield-graphics.py ;;
+            meridian) timeout 800 python -u rainward/tests/freefield-meridian.py ;;
+            *) XR_VIEW="${CASE%:*}" QUEST_KIND="${CASE#*:}" timeout 750 python -u rainward/tests/freefield-browser.py ;;
+          esac
+      - name: Retain actual checkout and failures
         if: always()
         run: |
           mkdir -p test-output
@@ -66,6 +90,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rainward-freefield-integrated
+          name: rainward-freefield-${{ strategy.job-index }}
           path: test-output/
           retention-days: 14
