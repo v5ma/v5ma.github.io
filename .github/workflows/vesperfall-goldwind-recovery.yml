@@ -19,22 +19,20 @@ jobs:
         with:
           node-version: '22'
       - id: source
-        name: Apply reviewed test corrections while preserving production gameplay
+        name: Apply the consumed-edge correction and explicit preservation regression
         run: |
           set -euo pipefail
           mkdir -p test-output
-          if ! grep -q 'state.inputFrame?.(t)' vesperfall/tests/fake-xr.js; then
-            python .github/goldwind-review.py
-          fi
-          python .github/goldwind-save-review.py
+          python .github/goldwind-handover-review.py
+          for f in vesperfall/*.js; do node --check "$f"; done
           node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
           python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
           python scripts/check-vesperfall.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add vesperfall/tests/fake-xr.js vesperfall/tests/goldwind-browser.py
+          git add vesperfall/goldwind-xr.js vesperfall/index.html vesperfall/tests/goldwind-browser.py
           if ! git diff --cached --quiet; then
-            git commit -m 'Compare complete Goldwind saved expeditions separately from atomic-save metadata'
+            git commit -m 'Preserve the consumed weapon-switch edge when handing Goldwind input to Classic crossbow'
             git push origin HEAD:vesperfall-goldwind-20260917
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -57,7 +55,7 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 pillow
           python -m playwright install --with-deps chromium
-      - name: Exercise Goldwind's actual physical-action path and hand/AR lifecycle
+      - name: Exercise Goldwind, Classic crossbow and hand/AR lifecycle
         run: |
           set -euo pipefail
           mkdir -p test-output
@@ -73,7 +71,7 @@ jobs:
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/goldwind-review.py .github/goldwind-save-review.py
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts .github/goldwind-handover-review.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
