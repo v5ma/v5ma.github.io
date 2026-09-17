@@ -1,0 +1,52 @@
+name: Validate Theology corpus review
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/event-forecast-register/corpus-review/**'
+      - 'theology-wiki/event-forecast-register/index.html'
+      - 'theology-wiki/event-forecast-register/README.md'
+      - '.github/workflows/theology-corpus-review.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/event-forecast-register/corpus-review/**'
+      - 'theology-wiki/event-forecast-register/index.html'
+      - 'theology-wiki/event-forecast-register/README.md'
+      - '.github/workflows/theology-corpus-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate contextual records, real snapshot and original preservation
+        env:
+          REQUIRE_CORPUS: '1'
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/corpus
+          python theology-wiki/event-forecast-register/corpus-review/collect.py --self-test
+          node --test theology-wiki/event-forecast-register/register.test.cjs theology-wiki/event-forecast-register/truth-social/archive.test.cjs theology-wiki/event-forecast-register/corpus-review/review.test.cjs | tee theology-test-output/corpus/contracts.log
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise real HTTP reader and both metadata indexes
+        run: python theology-wiki/event-forecast-register/corpus-review/browser_checks.py --report theology-test-output/corpus/browser.json --screenshot theology-test-output/corpus/mobile.png
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-corpus-review-evidence
+          path: theology-test-output/corpus/
+          if-no-files-found: error
