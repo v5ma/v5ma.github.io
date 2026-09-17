@@ -21,20 +21,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Finalize scoped metadata and visual recovery before acceptance
+      - name: Finalize source before native acceptance
         run: |
           mkdir -p test-output
-          python rainward/tools/finalize-freefield.py
+          python rainward/tools/prepare-freefield-release.py
           node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
           python -m compileall -q rainward/tests
-      - name: Commit the exact candidate before any native test
+      - name: Commit exact source before native tests
         id: commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add rainward
           if ! git diff --cached --quiet; then
-            git commit -m 'Assemble Freefield 0.16 with visible portal survivor, current contracts and native blink/sight acceptance'
+            git commit -m 'Assemble Freefield 0.16 with consistent terrain, visible portal and current release contracts'
             git push origin HEAD:feat/rainward-freefield-20260917
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -72,7 +72,7 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Real game and rendered fixture with explicit virtual input
+      - name: Real game or rendered fixture with explicit virtual input
         env:
           CASE: ${{ matrix.case }}
         run: |
