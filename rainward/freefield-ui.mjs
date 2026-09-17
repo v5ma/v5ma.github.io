@@ -15,7 +15,7 @@ export function createFreefieldUI({options,remaps,storage,changed}){
  for(const [key,title,type,choices]of [
   ['freeStride','Free Stride / no running fatigue','checkbox'],['runSpeed','Running speed (metres/second)','range'],['blink','Allow fast blink travel','checkbox'],
   ['footsteps','Player footstep volume','range'],['waterVolume','Player water-movement volume','range'],['score','Music arrangement','select',[['quiet','Sparse / After the Rain'],['legacy','Legacy adaptive score'],['off','No music']]],
-  ['xrLayout','Quest button preset','select',[['direct','Direct / A interact, B reload, X crouch, Y jump'],['legacy','Legacy Quest Fieldwork']]],['pinnedXR','Pinned field controls (legacy)','checkbox']]){
+  ['xrLayout','Quest button preset','select',[['direct','Direct / A interact, B reload, X crouch, Y jump'],['legacy','Legacy Quest Fieldwork']]],['pinnedXR','Pinned field controls (legacy)','checkbox'],['scope','Magnified weapon sight','checkbox']]){
   const el=add(title,key,type,options[key],choices);el.addEventListener('input',()=>{options[key]=type==='checkbox'?el.checked:type==='range'?Number(el.value):el.value;Object.assign(options,freefieldOptions(options));persist();});
  }
  const names={lefttrigger:'Left trigger',leftgrip:'Left grip',leftstick:'Left stick click',leftprimary:'Left X',leftsecondary:'Left Y',righttrigger:'Right trigger',rightgrip:'Right grip',rightprimary:'Right A',rightsecondary:'Right B'};

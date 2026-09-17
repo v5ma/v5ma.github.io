@@ -2,11 +2,13 @@
  * Headset poses never replace collision checks or grant items. Assets are original.
  * Physical Quest 3 acceptance remains an explicit, separate release gate. */
 import * as T from './vendor/three.module.js';
+import {goalText} from './goal-guide.mjs';
 import {createXRInput,emptyXR,pinchDown,handStick} from './xr-input.mjs';
 import {createXRPanel} from './xr-panel.mjs';
 import {holdOwnerActive,hoverTarget,craftReadout} from './xr-interaction.mjs';
 import {createWorldPortal} from './portal-view.mjs';
 import {createDirectXRInput} from './direct-xr-input.mjs';
+import {createXRSight} from './xr-sight.mjs';
 import {createXRWeapons} from './xr-weapons.mjs';
 import {previewBlink} from './blink.mjs';
 import {normalizeDiorama,readDioramaPreferences,writeDioramaPreferences,sessionType,setOpening,shellOpenings} from './diorama-core.mjs';
@@ -52,7 +54,7 @@ export function createQuestXR(E){
    action(handSprint?'HAND RUN: ON':'HAND RUN: OFF','hand-sprint',()=>{handSprint=!handSprint;E.back();}),
    action('DIVE / SURFACE / CROUCH','crouch',()=>{E.back();E.act('crouch');}),
    action('JUMP / SURFACE','traverse',()=>{E.back();E.act('traverse');}),
-   action('RELOAD','reload',()=>{E.back();E.act('reload');})]:[],extraActions:presentationActions,progress:()=>craftReadout(E.state().player),hint:()=>E.state().hint||'Right grip: interact / Point and select field controls',status,instructions:()=>E.freefield?.xrLayout==='legacy'?instructions:'A or right grip interacts. B reloads. Right trigger fires; left trigger aims. X crouches (hold for prone) or dives/surfaces in water. Y jumps on land; hold Y to swim faster. Left stick moves; click toggles run. Left grip previews blink; release commits. Right stick snap-turns; click pauses. Gameplay buttons may be remapped in settings; menu A/B and pause remain reserved. Raise an open left palm to open menus. Hands: left pinch moves; right pinch uses the selected USE, FIRE or BLINK mode. Open menus only when needed. The wrist display appears when you look at it.',reset,
+   action('RELOAD','reload',()=>{E.back();E.act('reload');})]:[],extraActions:presentationActions,progress:()=>craftReadout(E.state().player),hint:()=>goalText(E.state()),status,instructions:()=>E.freefield?.xrLayout==='legacy'?instructions:'A or right grip interacts. B reloads. Right trigger fires; left trigger aims. X crouches (hold for prone) or dives/surfaces in water. Y jumps on land; hold Y to swim faster. Left stick moves; click toggles run. Left grip previews blink; release commits. Right stick snap-turns; click pauses. Gameplay buttons may be remapped in settings; menu A/B and pause remain reserved. Raise an open left palm to open menus. Hands: left pinch moves; right pinch uses the selected USE, FIRE or BLINK mode. Open menus only when needed. The wrist display appears when you look at it.',reset,
   actions:()=>[
    command('INTERACT / PICK UP / SAVE','interact'),action(handFire?'HAND MODE: FIRE (select for USE)':'HAND MODE: USE (select for FIRE)','hand-fire',()=>{handFire=!handFire;}),
    command('RELOAD','reload'),command('JUMP / VAULT / SURFACE','traverse'),command('CROUCH / STAND','crouch'),command('PRONE / DIVE / SURFACE','prone'),command('SATCHEL / CRAFT','pack'),command('PAUSE / SETTINGS','pause'),
@@ -62,7 +64,7 @@ export function createQuestXR(E){
  const badgeCanvas=document.createElement('canvas');badgeCanvas.width=1024;badgeCanvas.height=192;const bc=badgeCanvas.getContext('2d'),badgeTexture=new T.CanvasTexture(badgeCanvas);badgeTexture.colorSpace=T.SRGBColorSpace;
  const badge=new T.Mesh(new T.PlaneGeometry(1.20,.225),new T.MeshBasicMaterial({map:badgeTexture,transparent:true,toneMapped:false,depthTest:false,depthWrite:false}));badge.renderOrder=10001;badge.name='XR vitals and pause target';rig.add(panel.mesh,badge);
  const veil=new T.Mesh(new T.SphereGeometry(.12,12,8),new T.MeshBasicMaterial({color:0x000000,side:T.BackSide,transparent:true,opacity:0,depthTest:false,depthWrite:false}));veil.renderOrder=9900;camera.add(veil);
- const weapons=createXRWeapons();const blinkMarker=new T.Mesh(new T.RingGeometry(.25,.36,32),new T.MeshBasicMaterial({color:0x94d4b7,side:T.DoubleSide}));blinkMarker.rotation.x=-Math.PI/2;blinkMarker.visible=false;
+ const weapons=createXRWeapons(),sight=createXRSight();weapons.root.add(sight.group);const blinkMarker=new T.Mesh(new T.RingGeometry(.25,.36,32),new T.MeshBasicMaterial({color:0x94d4b7,side:T.DoubleSide}));blinkMarker.rotation.x=-Math.PI/2;blinkMarker.visible=false;
  const visuals={};for(const side of ['left','right']){
   const group=new T.Group(),laser=new T.Line(new T.BufferGeometry().setFromPoints([V(),new T.Vector3(0,0,-4)]),new T.LineBasicMaterial({color:side==='left'?0x8bdbc7:0xefdcad,transparent:true,depthTest:false}));laser.renderOrder=9999;group.add(laser);rig.add(group);
   const cursor=new T.Mesh(new T.SphereGeometry(.007,8,6),new T.MeshBasicMaterial({color:0xffdf97,transparent:true,depthTest:false,depthWrite:false}));cursor.renderOrder=10002;cursor.visible=false;rig.add(cursor);
@@ -185,10 +187,10 @@ export function createQuestXR(E){
  const api={camera,rig,bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:point=>diorama.contains(point),
   preferences:()=>({...preferences}),setViewPreference(value){if(active)return changeView(value);viewMode=normalizeDiorama({view:value}).view;remember({view:viewMode});return true;},
   supported:async(view=preferences.view)=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported(sessionType(view));}catch{return false;}},
-  render(){if(isDiorama())diorama.render(renderer,scene,camera,rig);else if(viewMode==='first-person-ar')renderContext.renderAR(camera,E.state());else renderer.render(scene,camera);},
+  render(){const p=E.state().player;sight.render(renderer,scene,rig,renderContext.hero.root,new T.Vector3(p.x,heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,p.z),new T.Vector3(...Object.values(renderContext.aimDirection(E.state()))),E.state().t,E.freefield?.scope!==false&&safe&&E.mode()==='play'&&p.aim&&p.waterMode!=='swim'&&['pistol','rifle'].includes(p.equipped));if(isDiorama())diorama.render(renderer,scene,camera,rig);else if(viewMode==='first-person-ar')renderContext.renderAR(camera,E.state());else renderer.render(scene,camera);},
   ray:()=>currentRay,aimYaw:()=>{const d=isDiorama()&&E.aimDirection?E.aimDirection():currentRay.direction;return Math.atan2(-d.x,-d.z);},
-  stats:()=>({active,pending,mode:isDiorama()||viewMode==='first-person-ar'?viewMode:'immersive-first-person',menuVisible:panel.mesh.visible,wristVisible:badge.visible,weapon:weapons.stats(),handBlink,sessionMode:sessionType(viewMode),diorama:diorama.stats(),preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelHover:panel.hover(),panelHoldOwner:panel.held()?.sourceId||null,craftReadout:craftReadout(E.state().player),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
-  dispose(){disposed=true;void exit();panel.dispose();weapons.dispose();blinkMarker.removeFromParent();blinkMarker.geometry.dispose();blinkMarker.material.dispose();diorama.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
+  stats:()=>({active,pending,mode:isDiorama()||viewMode==='first-person-ar'?viewMode:'immersive-first-person',menuVisible:panel.mesh.visible,wristVisible:badge.visible,weapon:weapons.stats(),sight:sight.stats(),handBlink,sessionMode:sessionType(viewMode),diorama:diorama.stats(),preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelHover:panel.hover(),panelHoldOwner:panel.held()?.sourceId||null,craftReadout:craftReadout(E.state().player),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
+  dispose(){disposed=true;void exit();panel.dispose();sight.dispose();weapons.dispose();blinkMarker.removeFromParent();blinkMarker.geometry.dispose();blinkMarker.material.dispose();diorama.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
  };
  return api;
 }

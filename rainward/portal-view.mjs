@@ -7,7 +7,7 @@ import {normalizeDiorama,shellOpenings,STAGE_METRES} from './diorama-core.mjs';
 const UP=new T.Vector3(0,1,0);
 export function createWorldPortal(){
  const overlay=new T.Scene(),shell=new T.Group(),world=new T.Group(),materials=new PortalMaterials();
- overlay.add(shell);shell.name='Rainward character-centered world portal';
+ overlay.add(shell,new T.HemisphereLight(0xd8e6eb,0x394b42,1.6));shell.name='Rainward character-centered world portal';
  const frameMaterial=new T.MeshBasicMaterial({color:0xbda678,depthTest:false,toneMapped:false});
  const edges=new T.LineSegments(new T.EdgesGeometry(new T.BoxGeometry(STAGE_METRES.width,STAGE_METRES.height,STAGE_METRES.depth)),new T.LineBasicMaterial({color:0xbda678,depthTest:false,transparent:true,opacity:.6}));edges.position.y=STAGE_METRES.height/2;edges.renderOrder=110;shell.add(edges);
  const faces={};
@@ -33,14 +33,17 @@ export function createWorldPortal(){
   const openings=shellOpenings(config.shell);faces.top.visible=!openings.topOpen;faces.front.visible=!openings.frontOpen;
  }
  function render(renderer,scene,camera,rig){
+  const lamps=[];scene.traverse(o=>{if(o.isPointLight||o.isSpotLight)lamps.push({light:o,distance:o.distance,intensity:o.intensity});});
   const children=[...scene.children].filter(o=>o!==rig),bg=scene.background,fog=scene.fog,auto=renderer.autoClear,planes=renderer.clippingPlanes,color=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha();
   try{
+   for(const item of lamps){if(item.distance>0)item.light.distance=item.distance*config.scale;item.light.intensity=item.intensity*Math.pow(config.scale,item.light.decay||2);}
    scene.add(world);for(const child of children)world.add(child);world.matrixAutoUpdate=false;world.matrix.copy(display);world.matrixWorldNeedsUpdate=true;
    materials.collect(world);sky.position.copy(centre);sky.material.color.copy(bg?.isColor?bg:color);world.add(sky);
    overlay.add(rig);scene.background=null;scene.fog=null;renderer.clippingPlanes=[];renderer.setClearColor(0x101c24,config.view==='diorama-ar'?0:1);
    materials.active=true;world.updateMatrixWorld(true);renderer.autoClear=true;renderer.render(scene,camera);
    materials.active=false;renderer.autoClear=false;renderer.render(overlay,camera);
   }finally{
+   for(const item of lamps){item.light.distance=item.distance;item.light.intensity=item.intensity;}
    materials.active=false;world.remove(sky);for(const child of children)scene.add(child);scene.remove(world);scene.add(rig);
    world.matrix.identity();renderer.autoClear=auto;renderer.clippingPlanes=planes;renderer.setClearColor(color,alpha);scene.background=bg;scene.fog=fog;scene.updateMatrixWorld(true);
   }
