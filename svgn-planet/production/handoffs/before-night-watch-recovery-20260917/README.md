@@ -1,9 +1,3 @@
-# Neighborhood Missions: Night Watch 0.14.0 local candidate
-
-This directory is a locally implemented, model-tested candidate and is NOT a published release. Read [candidate scope and controls](lantern/NIGHT-WATCH.md), [local evidence](production/evidence/night-watch-0.14.0/local-acceptance.json), and [handoff](DEVELOPMENT-HANDOFF.md). Real browser, physical-device and public acceptance remain open.
-
-The historical notes below describe earlier versions, not current completion claims.
-
 # Neighborhood Missions: Lantern Ward (v0.12.0)
 
 The default entry opens the first authored place-mastery chapter, The Broken Delivery Loop. [Play Lantern Ward](lantern-ward.html), or [continue the original neighborhood](legacy.html) with existing saves. Read [controls and spatial XR](lantern/README.md), [published verification](production/evidence/lantern-0.12.0/published.json), and [development handoff](DEVELOPMENT-HANDOFF.md).

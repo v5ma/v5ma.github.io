@@ -1,3 +1,4 @@
+import {watchState,trackWatch,watchTarget,watchGoal} from './watch.mjs';
 /* Additive, validated resident stories. Original 600-credit chapter ledger is untouched. */
 export const residents=[
  {id:'ada',name:'Ada / printer',x:-9.5,y:0,z:4.5,color:0x698cb7,tip:'Print is how this neighborhood remembers. Our type case went to the north storehouse.'},
@@ -30,15 +31,15 @@ export function parseCity(raw){
 }
 export const cityState=s=>s.city||(s.city=freshCity());
 export function available(s,story){return cityState(s).completed.length>=(story.requires||0);}
-export function trackStory(s,id){const c=cityState(s),story=stories.find(m=>m.id===id);if(id==='main'){c.active=null;return 'Tracking the original delivery loop.';}if(!story||c.completed.includes(id)||!available(s,story))return 'This story is complete or not yet available.';c.active=id;return c.progress[id]==null?'Meet '+residents.find(r=>r.id===story.giver).name+' to begin '+story.title+'.':'Continuing '+story.title+'.';}
+export function trackStory(s,id){if(id==='watch')return trackWatch(s);watchState(s).tracking=false;const c=cityState(s),story=stories.find(m=>m.id===id);if(id==='main'){c.active=null;return 'Tracking the original delivery loop.';}if(!story||c.completed.includes(id)||!available(s,story))return 'This story is complete or not yet available.';c.active=id;return c.progress[id]==null?'Meet '+residents.find(r=>r.id===story.giver).name+' to begin '+story.title+'.':'Continuing '+story.title+'.';}
 export function mainTarget(s){return s.claimed?null:!s.parcel?point('Collect the workshop parcel / depot',-12,0,15):!s.delivered?point('Deliver the parcel / receiving bench',14,0,6):!s.gate&&!s.hoist?point('Restore a connection / hoist repair or blue door',6,0,-8):point('Return to Mara / depot bench',-12,0,15);}
-export function storyTarget(s){const c=cityState(s),story=stories.find(m=>m.id===c.active);if(!story)return mainTarget(s);const n=c.progress[story.id];if(n==null){const r=residents.find(r=>r.id===story.giver);return {...r,id:'meet-'+r.id,label:'Meet '+r.name+' / '+story.title,kind:'meet'};}const step=story.steps[n];if(!step)return null;
+export function storyTarget(s){if(watchState(s).tracking)return watchTarget(s);const c=cityState(s),story=stories.find(m=>m.id===c.active);if(!story)return mainTarget(s);const n=c.progress[story.id];if(n==null){const r=residents.find(r=>r.id===story.giver);return {...r,id:'meet-'+r.id,label:'Meet '+r.name+' / '+story.title,kind:'meet'};}const step=story.steps[n];if(!step)return null;
  if(step.water&&s.water!==step.water)return point('Drain the canal at the sluice, then inspect the filter',5.8,0,-13,'operate');
  if(step.kind==='connection')return s.gate||s.hoist?point('Confirm the restored connection at the workshop',14,0,6):{...step,kind:'operate'};
  return {...step,id:'story-'+story.id+'-'+n};
 }
-export function missionGoal(s){const c=cityState(s);if(c.active){const story=stories.find(m=>m.id===c.active);return story.title+': '+storyTarget(s).label;}const t=mainTarget(s);return t?t.label:'Delivery loop complete. Meet residents with ! markers, or choose a story from Missions.';}
-export function cityInteract(s,clearLine){
+export function missionGoal(s){if(watchState(s).tracking)return watchGoal(s);const c=cityState(s);if(c.active){const story=stories.find(m=>m.id===c.active);return story.title+': '+storyTarget(s).label;}const t=mainTarget(s);return t?t.label:'Delivery loop complete. Meet residents with ! markers, or choose a story from Missions.';}
+export function cityInteract(s,clearLine){if(watchState(s).tracking)return null;
  const c=cityState(s),story=stories.find(m=>m.id===c.active),target=storyTarget(s),close=t=>Math.hypot(s.x-t.x,s.y-t.y,s.z-t.z)<1.9&&clearLine(s,{x:s.x,y:s.y+1,z:s.z},{x:t.x,y:t.y+1,z:t.z});
  if(story&&target&&close(target)){
   if(target.kind==='operate'||target.kind==='water-high'&&s.water!=='high')return null;

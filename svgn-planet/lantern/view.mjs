@@ -1,3 +1,4 @@
+import {createWatchView} from './watch-view.mjs';
 import {PortalMaterials,createPortalFrame,followPosition} from './portal.mjs';
 import {createCityView} from './city-view.mjs';
 import * as T from '../vendor/three.module.js';
@@ -122,6 +123,7 @@ export function createView(canvas){
  batch(decor);batch(lowGroup);for(const g of world.children)if(g!==decor&&g!==lowGroup&&g.isGroup&&g.children.some(m=>m.geometry===boxGeo))batch(g);
  const marketView=createMarketView({world,box,cyl,label,batch});
  const cityView=createCityView({world,box,cyl,label});
+ const watchView=createWatchView({world,box,cyl,label});
  const portalMaterials=new PortalMaterials();portalMaterials.collect(world);
  const portalFrame=createPortalFrame(scene,portalMaterials),anchor=new T.Vector3(),portalSize=new T.Vector3();
  let aperture='both',centerError=0;
@@ -143,7 +145,7 @@ export function createView(canvas){
  let cameraYaw=0,view='third',pitch=.58;
  function resize(){if(renderer.xr.isPresenting)return;renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
  function update(s,dt,{mode='third',yaw=cameraYaw,started=true}={}){
-  view=mode;cameraYaw=yaw;marketView.update(s);cityView.update(s,yaw);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
+  view=mode;cameraYaw=yaw;marketView.update(s);cityView.update(s,yaw);watchView.update(s);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
   flyingPaper.visible=!!s.paper;if(s.paper){const p=s.paper;flyingPaper.position.set(p.x+p.dx*p.t*6,p.y+Math.sin(p.t*Math.PI)*.5-p.t*.8,p.z+p.dz*p.t*6);flyingPaper.rotation.set(p.t*8,p.t*3,p.t*5);}
   gate.visible=!s.gate;latch.visible=!s.gate;parcel.visible=!s.parcel;lowGroup.visible=s.water==='low';
   const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;water.position.y=-2+mix*1.25;water.visible=mix>.02;waterMat.uniforms.time.value=s.time;gauge.position.y=water.position.y;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
@@ -161,5 +163,5 @@ export function createView(canvas){
   }
  }
  resize();addEventListener('resize',resize);
- return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,presentPortal,stopPortal,cutaway,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({market:marketView.inspect(),city:cityView.inspect(),portal:{active:portalMaterials.active,centerError,anchor:anchor.toArray(),size:portalSize.toArray(),materials:portalMaterials.entries.size,worldPosition:world.position.toArray(),worldYaw:world.rotation.y,kind:'perspective-ray-aperture',opaqueEnclosurePlanes:0},clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:panelsFor(aperture).topOpen,frontOpen:panelsFor(aperture).frontOpen,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
+ return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,presentPortal,stopPortal,cutaway,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({watch:watchView.inspect(),market:marketView.inspect(),city:cityView.inspect(),portal:{active:portalMaterials.active,centerError,anchor:anchor.toArray(),size:portalSize.toArray(),materials:portalMaterials.entries.size,worldPosition:world.position.toArray(),worldYaw:world.rotation.y,kind:'perspective-ray-aperture',opaqueEnclosurePlanes:0},clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:panelsFor(aperture).topOpen,frontOpen:panelsFor(aperture).frontOpen,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
 }

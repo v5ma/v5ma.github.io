@@ -1,3 +1,4 @@
+import {watchState,watchRuntime,watchInspect} from './watch.mjs';
 import {missionGoal,storyTarget,trackStory,residents,cityState} from './city.mjs';
 import {drawMap,missionOptions,navigation} from './navigation.mjs';
 import {VERSION,SAVE_KEY,fresh,parse,save,load,serialize,action,tick,nearby,goal,say,complete,actors,clamp} from './core.mjs';
@@ -12,8 +13,8 @@ let view,xr,confirmation=null,pendingAction=null;const uiTouches={x:0,y:0,boost:
 function clear(){keys.clear();held.clear();uiTouches.x=uiTouches.y=0;uiTouches.boost=uiTouches.brake=false;controllerReady=false;}
 function tell(text){say(state,text);$('notice').textContent=text;}
 function persist(){if(!started||blocked)return false;const r=save(state,storage);if(!r.ok){blocked=true;tell('Save blocked: '+r.error+'. Existing progress is retained; export this run from Menu.');}return r.ok;}
-function pause(value=true){paused=value;clear();if(value)missionBoard();if(value&&started){if(!$('menu').open)$('menu').showModal();$('resume').focus();}else if($('menu').open)$('menu').close();}
-function command(name){if(!started||paused||failed)return;if(name==='pause'||name==='map'||name==='jobs'){pause(true);if(name!=='pause'){$('route-map').hidden=false;missionBoard();if(xr?.active)xr.openMissions();else $('mission-list').querySelector('.active:not(:disabled),button:not(:disabled)')?.focus();}return;}if(name==='camera'){if(xr?.active){xr.setMode(xr.mode==='first'?'diorama':'first');return;}viewMode=viewMode==='third'?'first':'third';$('view-mode').value=viewMode;clear();return;}if(name==='recenter'){yaw=0;return;}action(state,name);persist();}
+function pause(value=true){paused=value;clear();if(!value&&pendingAction){$('keep').click();}if(value)missionBoard();if(value&&started){if(!$('menu').open)$('menu').showModal();$('resume').focus();}else if($('menu').open)$('menu').close();}
+function command(name,ray){if(!started||paused||failed)return;if(name==='pause'||name==='map'||name==='jobs'){pause(true);if(name!=='pause'){$('route-map').hidden=false;missionBoard();if(xr?.active)xr.openMissions();else $('mission-list').querySelector('.active:not(:disabled),button:not(:disabled)')?.focus();}return;}if(name==='camera'){if(xr?.active){xr.setMode(xr.mode==='first'?'diorama':'first');return;}viewMode=viewMode==='third'?'first':'third';$('view-mode').value=viewMode;clear();return;}if(name==='recenter'){yaw=0;return;}action(state,name,ray);persist();}
 function start(){started=true;document.body.classList.add('playing');$('welcome').hidden=true;pause(false);persist();tell(blocked?'Storage needs attention. Your original save is untouched; use Menu to export or restore.':'The workshop is beyond the blue door. Pick up your parcel, then choose your route.');}
 function confirm(text,fn){pendingAction=fn;$('confirm-text').textContent=text;$('confirm').hidden=false;$('keep').focus();controllerReady=false;}
 $('start').onclick=start;$('resume').onclick=()=>pause(false);$('menu-button').onclick=()=>pause(true);$('map-button').onclick=()=>command('jobs');
@@ -54,9 +55,11 @@ function poll(now,dt){
  if(r){menuInput(pad,b,edge,now);previous=b;return {x:0,y:0};}
  if(!controllerReady){if(!gameplayInputIsNeutral(pad)){previous=b;return {x:0,y:0};}controllerReady=true;}
  if(xr.active){const snap=Math.abs(pad.axes[2]||0)>.65;if(snap&&!poll.snap)yaw-=Math.sign(pad.axes[2])*Math.PI/6;poll.snap=snap;}else if(Math.abs(pad.axes[2]||0)>.16)yaw-=(pad.axes[2]||0)*dt*2.1;
- for(const [i,name]of Object.entries({0:'hop',2:'interact',3:'ride',4:'throw',5:'camera',8:'map',9:'pause',10:'bell',11:'recenter',12:'map',13:'jobs'}))if(edge(i))command(name);
+ const fieldCase=watchState(state).tracking&&watchState(state).stage>0&&watchState(state).stage<3&&state.ride==='foot';
+ if(fieldCase&&edge(7))command((pad.buttons[6]?.value||0)>.2?'tool':'strike');
+ for(const [i,name]of Object.entries({0:'hop',2:'interact',3:'ride',4:fieldCase?'tool':'throw',5:'camera',8:'map',9:'pause',10:fieldCase?null:'bell',11:fieldCase?'tool-cycle':'recenter',12:'map',13:'jobs',14:'scan',15:'strike'}))if(name&&edge(i))command(name==='throw'&&(pad.buttons[6]?.value||0)>.2?'grapple':name);
  previous=b;const dead=v=>Math.abs(v||0)<=.16?0:v;
- return {x:dead(pad.axes[0]),y:-dead(pad.axes[1]),boost:(pad.buttons[7]?.value||0)>.2,brake:(pad.buttons[6]?.value||0)>.2||b[1]};
+ return {x:dead(pad.axes[0]),y:-dead(pad.axes[1]),boost:fieldCase?b[10]:(pad.buttons[7]?.value||0)>.2,brake:(pad.buttons[6]?.value||0)>.2||b[1],guard:(pad.buttons[6]?.value||0)>.2};
 }
 addEventListener('keydown',e=>{
  if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName)&&root())return;
@@ -64,7 +67,7 @@ addEventListener('keydown',e=>{
  if(e.code==='Escape'){if(pendingAction)$('keep').click();else if(started)pause(!paused);return;}
  if(e.repeat)return;keys.add(e.code);
  if(e.code==='Enter'&&!started){start();return;}
- const names={Space:'hop',KeyE:'interact',KeyF:'ride',KeyQ:'throw',KeyC:'camera',KeyM:'map',KeyJ:'jobs',KeyL:'bell',KeyR:'recenter'};if(names[e.code])command(names[e.code]);
+ const names={Space:'hop',KeyE:'interact',KeyF:'ride',KeyQ:'throw',KeyC:'camera',KeyM:'map',KeyJ:'jobs',KeyL:'bell',KeyR:'recenter',KeyV:'scan',KeyG:'grapple',KeyZ:'strike',KeyT:'tool-cycle',KeyH:'smoke',KeyP:'pulse'};if(names[e.code])command(names[e.code]);
 });
 addEventListener('keyup',e=>keys.delete(e.code));addEventListener('blur',()=>{if(started&&!xr?.active)pause(true);else clear();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){persist();pause(true);}});addEventListener('pagehide',persist);
@@ -74,7 +77,7 @@ $('world').addEventListener('pointermove',e=>{if(dragging&&!paused&&!xr?.active)
 for(const b of document.querySelectorAll('[data-hold]')){
  const release=()=>held.delete(b.dataset.hold);b.onpointerdown=e=>{e.preventDefault();b.setPointerCapture(e.pointerId);held.add(b.dataset.hold);};b.onpointerup=b.onpointercancel=b.onlostpointercapture=release;
 }
-for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>command(b.dataset.action);
+for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>{if(b.closest('#menu'))pause(false);command(b.dataset.action);};
 let boardSignature='';
 function track(id){tell(trackStory(state,id));persist();boardSignature='';missionBoard();}
 function missionBoard(){const board=$('mission-list');if(!board)return;const options=missionOptions(state),signature=JSON.stringify(options);if(signature===boardSignature)return;boardSignature=signature;board.replaceChildren();
@@ -83,7 +86,7 @@ function missionBoard(){const board=$('mission-list');if(!board)return;const opt
 function map(){drawMap($('map-canvas'),state);}
 
 try{
- view=createView($('world'));xr=createXR(view,{clear,pause,paused:()=>paused,action:command,save:persist,goal:()=>state.messageTime>0?state.message:missionGoal(state),missions:()=>missionOptions(state).filter(m=>!m.disabled),map:canvas=>drawMap(canvas,state),track,message:tell,yaw:()=>yaw,turn:a=>{yaw+=a;clear();}});
+ view=createView($('world'));xr=createXR(view,{storage,state:()=>state,confirmation:()=>pendingAction?$('confirm-text').textContent:null,menuAction:id=>{$(id)?.click();},cancelConfirmation:()=>{if(pendingAction)$('keep').click();},clear,pause,paused:()=>paused,action:command,save:persist,goal:()=>state.messageTime>0?state.message:missionGoal(state),missions:()=>missionOptions(state).filter(m=>!m.disabled),map:canvas=>drawMap(canvas,state),track,message:tell,yaw:()=>yaw,turn:a=>{yaw+=a;clear();}});
  for(const [id,mode]of[['vr-first','first-person-vr'],['vr-diorama','diorama-vr'],['ar-diorama','diorama-ar'],['ar-first','first-person-ar']])$(id).onclick=()=>{if(!started)start();xr.enter(mode);};
  for(const id of ['vr-first','vr-diorama','ar-diorama','ar-first'])$(id).disabled=true;
  if(navigator.xr&&isSecureContext)for(const [kind,ids]of[['immersive-vr',['vr-first','vr-diorama']],['immersive-ar',['ar-diorama','ar-first']]])navigator.xr.isSessionSupported(kind).then(ok=>ids.forEach(id=>$(id).disabled=!ok)).catch(()=>{});
@@ -91,7 +94,7 @@ try{
  $('stand-scale').oninput=e=>{xr.settings.scale=Number(e.target.value);clear();};$('stand-height').oninput=e=>{xr.settings.height=Number(e.target.value);clear();};$('stand-distance').oninput=e=>{xr.settings.distance=Number(e.target.value);clear();};
  if(blocked)tell(restored.error);try{if(storage.getItem('svgn.paper-delivery-3d.v1')){$('legacy-status').textContent='Your original neighborhood save is available unchanged.';}}catch{}
  $('start').disabled=false;$('loading').hidden=true;
- const snapshot=()=>({version:VERSION,state:JSON.parse(JSON.stringify(state)),started,paused,failed,blockedSave:blocked,controllerReady,gamepadConnected:!!padWas,yaw,mode:xr.active?xr.mode:viewMode,frames:frameCount,view:view.inspect(),xr:xr.inspect(),quay:marketStatus(state),basis:{right:[Math.cos(yaw),-Math.sin(yaw)],forward:[-Math.sin(yaw),-Math.cos(yaw)]},nearby:nearby(state)?.id||null,goal:missionGoal(state),navigation:navigation(state,yaw),missions:missionOptions(state)});
+ const snapshot=()=>({version:VERSION,state:JSON.parse(JSON.stringify(state)),started,paused,failed,blockedSave:blocked,controllerReady,gamepadConnected:!!padWas,yaw,mode:xr.active?xr.mode:viewMode,frames:frameCount,view:view.inspect(),xr:xr.inspect(),quay:marketStatus(state),watch:watchInspect(state),confirmation:!!pendingAction,basis:{right:[Math.cos(yaw),-Math.sin(yaw)],forward:[-Math.sin(yaw),-Math.cos(yaw)]},nearby:nearby(state)?.id||null,goal:missionGoal(state),navigation:navigation(state,yaw),missions:missionOptions(state)});
  Object.defineProperty(window,'LanternWard',{value:Object.freeze({inspect:snapshot,panel:()=>xr.panelPose()})});
  rendererStart();
  function rendererStart(){view.renderer.setAnimationLoop((now,frame)=>{
@@ -103,7 +106,7 @@ try{
     let x=clamp((p.x||0)+(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0)+(held.has('right')?1:0)-(held.has('left')?1:0),-1,1),y=clamp((p.y||0)+(keys.has('KeyW')?1:0)-(keys.has('KeyS')?1:0)+(held.has('forward')?1:0)-(held.has('back')?1:0),-1,1);
     if(keys.has('ArrowLeft'))yaw+=dt*1.6;if(keys.has('ArrowRight'))yaw-=dt*1.6;
     const boosting=p.boost||keys.has('ShiftLeft')||keys.has('ShiftRight')||held.has('boost');if(boosting&&Math.hypot(x,y)<.01)y=1;
-    const movementYaw=xr.active?xr.movementYaw:yaw,input={x:x*Math.cos(movementYaw)-y*Math.sin(movementYaw),z:-x*Math.sin(movementYaw)-y*Math.cos(movementYaw),boost:boosting,brake:p.brake||held.has('brake')};
+    const movementYaw=xr.active?xr.movementYaw:yaw,input={x:x*Math.cos(movementYaw)-y*Math.sin(movementYaw),z:-x*Math.sin(movementYaw)-y*Math.cos(movementYaw),boost:boosting,brake:p.brake||held.has('brake'),guard:p.guard||keys.has('KeyX')};
     if(xr.active&&view.curtain.visible){input.x=input.z=0;input.brake=true;}
     for(let remaining=dt;remaining>1e-6;remaining-=1/60)tick(state,input,Math.min(remaining,1/60));
     if(state.time-saveAt>5){persist();saveAt=state.time;}
@@ -112,7 +115,7 @@ try{
    // update() sets the actor pose; XR transforms are reapplied without advancing simulation.
    if(xr.active){xr.present(state);const a=xr.inspect();if(a.kind.endsWith('-ar'))view.scene.background=null;}
    view.renderer.render(view.scene,view.camera);
-   if(frameCount%6===0){$('goal').textContent=missionGoal(state);const nav=navigation(state,yaw);$('nav-distance').textContent=nav.target?Math.ceil(nav.distance)+' m / '+nav.level:'Choose a resident story';$('nav-arrow').style.transform='rotate('+nav.angle+'rad)';drawMap($('mini-map'),state,true);const f=nearby(state),t=storyTarget(state),r=residents.find(r=>Math.hypot(state.x-r.x,state.z-r.z,state.y-r.y)<1.9);$('context').textContent=t&&Math.hypot(state.x-t.x,state.y-t.y,state.z-t.z)<1.9?'X / '+t.label:r?'X / Meet '+r.name:f?f.id.startsWith('dock')?'Y / '+f.label:'X / '+f.label:marketCue(state)||'X interact   A hop   Y mount   LB throw';$('place').textContent=state.y>2?'UPPER DELIVERY ROUTE':state.y<-.3?'LANTERN CANAL':state.x>3?'WORKSHOP QUARTER':'DEPOT & MARKET';$('credits').textContent=state.credits+' chapter + '+cityState(state).credits+' resident credits';$('notice').textContent=state.messageTime>0?state.message:'';if(!$('route-map').hidden)map();}
+   if(frameCount%6===0){$('goal').textContent=missionGoal(state);const nav=navigation(state,yaw);$('nav-distance').textContent=nav.target?Math.ceil(nav.distance)+' m / '+nav.level:'Choose a resident story';$('nav-arrow').style.transform='rotate('+nav.angle+'rad)';drawMap($('mini-map'),state,true);const f=nearby(state),t=storyTarget(state),r=residents.find(r=>Math.hypot(state.x-r.x,state.z-r.z,state.y-r.y)<1.9);$('context').textContent=t&&Math.hypot(state.x-t.x,state.y-t.y,state.z-t.z)<1.9?'X / '+t.label:r?'X / Meet '+r.name:f?f.id.startsWith('dock')?'Y / '+f.label:'X / '+f.label:marketCue(state)||'X interact   A hop   Y mount   LB throw';$('place').textContent=state.y>2?'UPPER DELIVERY ROUTE':state.y<-.3?'LANTERN CANAL':state.x>3?'WORKSHOP QUARTER':'DEPOT & MARKET';$('credits').textContent=state.credits+' chapter + '+cityState(state).credits+' resident + '+watchState(state).credits+' Watch credits';$('notice').textContent=state.messageTime>0?state.message:'';if(!$('route-map').hidden)map();}
   }catch(e){failed=true;pause(true);$('error').hidden=false;$('error').textContent='Chapter paused after an error. Your saved progress has not been cleared. '+e.message;console.error(e);}
  });}
  $('world').addEventListener('webglcontextlost',e=>{e.preventDefault();persist();pause(true);tell('Graphics interrupted. Progress retained. Reload to resume the chapter.');});

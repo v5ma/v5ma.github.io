@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.14.0",
+  "version": "0.12.1",
   "title": "Neighborhood Missions: path to a production-quality title",
   "reviewed": "2026-09-17",
   "currentMilestone": "M1",
@@ -175,7 +175,7 @@
       "status": "verified",
       "title": "Recoverable save transactions",
       "acceptance": "Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.",
-      "next": "Historical recovery criterion remains verified narrowly. New local watch.v1 and XR preference validation pass models; graphical save/restore and multi-tab conflict checks remain. Rollback must preserve city and Watch serializers or explicitly archive new progress.",
+      "next": "Retain proven original recovery. Extend additive chapter city.v1 validation, old-save migration, independent one-time rewards and partial-story tracking. Any rollback must retain the city serializer rather than silently drop its ledger.",
       "dependencies": [
         "SAVE-01"
       ],
@@ -186,9 +186,7 @@
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
         "evidence/v0.11.0-published.json",
         "../lantern/LIVING-PORTAL.md",
-        "evidence/living-portal-0.13.0/candidate.json",
-        "../lantern/NIGHT-WATCH.md",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-17"
@@ -621,7 +619,7 @@
       "status": "partial",
       "title": "Controller-complete gameplay and menus",
       "acceptance": "Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.",
-      "next": "Night Watch local candidate provides native main/mission/tool/control/help/save/confirmation paths and hidden-by-default controller/hand UI. Run the actual sixteen-suite browser matrix and physical controllers/hands; local fake-renderer adapter tests are not graphical approval.",
+      "next": "Preserve direct actions, hold-release braking and neutral rearm. Test mission-map selection, indoor interaction and goal switching through Xbox and tracked/pinch paths, then physical USB/Bluetooth/Touch Plus/hand-tracking.",
       "dependencies": [
         "INPUT-01"
       ],
@@ -633,9 +631,7 @@
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
         "evidence/v0.11.0-published.json",
         "../lantern/LIVING-PORTAL.md",
-        "evidence/living-portal-0.13.0/candidate.json",
-        "../lantern/NIGHT-WATCH.md",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Engineering / QA",
       "lastReviewed": "2026-09-17"
@@ -644,19 +640,16 @@
       "id": "ACCESS-02",
       "milestone": "M4",
       "priority": "P1",
-      "status": "partial",
+      "status": "planned",
       "title": "Remapping and input alternatives",
       "acceptance": "Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.",
-      "next": "Validated XR Action/Courier profiles, dominant hand, stick swap, 30/45 snap and motion-off alternative exist locally. Full per-action remapping, custom dead zones, all touch and hands combat parity are still open.",
+      "next": "Build an input-action layer rather than more hard-coded mappings.",
       "dependencies": [
         "ACCESS-01"
       ],
-      "evidence": [
-        "../lantern/NIGHT-WATCH.md",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
-      ],
+      "evidence": [],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-17"
+      "lastReviewed": "2026-09-11"
     },
     {
       "id": "ACCESS-03",
@@ -921,7 +914,7 @@
       "status": "needs-playtest",
       "title": "Authored Lantern Ward replacement chapter",
       "acceptance": "Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.",
-      "next": "Preserve Living Portal resident stories and interiors. The optional Night Watch candidate gives roof observation/service traversal and ground counter/pulse combat different consequences with one relay outcome. Run real browser approaches, then fresh-player/replay comprehension before expansion.",
+      "next": "Living Portal adds eight resident stories, six residents, three real interiors and consistent map/beacon/floor guidance inside existing Lantern Ward. Finish rendered/live acceptance, then observe unfamiliar-player goal discovery and repeat agency before further expansion.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
@@ -931,9 +924,7 @@
         "../lantern/WORKING-QUAY.md",
         "evidence/working-quay-0.12.1/candidate.json",
         "../lantern/LIVING-PORTAL.md",
-        "evidence/living-portal-0.13.0/candidate.json",
-        "../lantern/NIGHT-WATCH.md",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-17"
@@ -945,7 +936,7 @@
       "status": "needs-playtest",
       "title": "Player-centered perspective portal and native first-person VR/AR",
       "acceptance": "Actual per-eye regular third-person game through a fixed aperture with centered courier, unbounded view depth, no outside leakage, automatic foreground-shell transparency and stable UI. First-person VR and AR preserve the same simulation and safe input lifecycle.",
-      "next": "Recover the already-tested Living Portal source without discarding it. Night Watch refactors input/menu coverage and adds local four-mode adapter tests; run per-eye pixel and real UI journeys, then physical head-roll/rectangle reproduction and headset comfort. No A-Frame migration is claimed.",
+      "next": "Validate stereo pixels, head translation/roll, movement centering, native mission map and explicit first-person AR. Then reproduce the two-rectangle report on physical Quest 3; synthetic success is not physical comfort approval.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
@@ -953,9 +944,7 @@
         "evidence/lantern-0.12.0/candidate.json",
         "evidence/lantern-0.12.0/published.json",
         "../lantern/LIVING-PORTAL.md",
-        "evidence/living-portal-0.13.0/candidate.json",
-        "../lantern/NIGHT-WATCH.md",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-17"
@@ -976,28 +965,6 @@
       ],
       "owner": "Level design / Engineering / QA",
       "lastReviewed": "2026-09-15"
-    },
-    {
-      "id": "ACTION-01",
-      "milestone": "M1",
-      "priority": "P1",
-      "status": "partial",
-      "title": "Optional embodied Night Watch investigation and action case",
-      "acceptance": "Investigate either receiver and restore the same signal through a valid rooftop route or readable two-role counter/pulse combat, with native controller/hand menu access, recoverable mistakes and exactly-once rewards. Real-browser, physical-device and human quality gates required.",
-      "next": "Local two-approach simulation, grapple clearance, counter timing and save tests pass. Execute prepared watch-roof/watch-combat/xr-ui browser suites without state assignment, then evaluate physical comfort and player understanding. Cape/glide/holsters/predator stealth are future work, not implemented.",
-      "dependencies": [
-        "LEVEL-01",
-        "XR-02",
-        "ACCESS-01"
-      ],
-      "evidence": [
-        "../lantern/NIGHT-WATCH.md",
-        "../lantern/watch.test.mjs",
-        "../lantern/xr-adapter.test.mjs",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
-      ],
-      "owner": "Level design / XR engineering / QA",
-      "lastReviewed": "2026-09-17"
     }
   ],
   "sources": [
@@ -1017,6 +984,6 @@
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
   ],
-  "releaseEvidence": "evidence/night-watch-0.14.0/local-acceptance.json",
-  "edition": "Lantern Ward: Night Watch (candidate)"
+  "releaseEvidence": "evidence/living-portal-0.13.0/candidate.json",
+  "edition": "Lantern Ward: Living Portal"
 }

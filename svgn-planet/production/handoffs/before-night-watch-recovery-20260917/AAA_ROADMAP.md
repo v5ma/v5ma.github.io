@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Lantern Ward: Night Watch (candidate) v0.14.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-17.
+Current release: Lantern Ward: Living Portal v0.12.1. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-17.
 
 ## How to use this workbook
 
@@ -74,9 +74,9 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
 
 - [x] SAVE-02 / P0 / verified / Recoverable save transactions
   Acceptance: Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.
-  Next: Historical recovery criterion remains verified narrowly. New local watch.v1 and XR preference validation pass models; graphical save/restore and multi-tab conflict checks remain. Rollback must preserve city and Watch serializers or explicitly archive new progress.
+  Next: Retain proven original recovery. Extend additive chapter city.v1 validation, old-save migration, independent one-time rewards and partial-story tracking. Any rollback must retain the city serializer rather than silently drop its ledger.
   Owner role: Engineering / QA. Dependencies: SAVE-01.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 ## M1 / One exceptional neighborhood
 
@@ -134,27 +134,21 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.
-  Next: Preserve Living Portal resident stories and interiors. The optional Night Watch candidate gives roof observation/service traversal and ground counter/pulse combat different consequences with one relay outcome. Run real browser approaches, then fresh-player/replay comprehension before expansion.
+  Next: Living Portal adds eight resident stories, six residents, three real interiors and consistent map/beacon/floor guidance inside existing Lantern Ward. Finish rendered/live acceptance, then observe unfamiliar-player goal discovery and repeat agency before further expansion.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 - [ ] XR-02 / P0 / needs-playtest / Player-centered perspective portal and native first-person VR/AR
   Acceptance: Actual per-eye regular third-person game through a fixed aperture with centered courier, unbounded view depth, no outside leakage, automatic foreground-shell transparency and stable UI. First-person VR and AR preserve the same simulation and safe input lifecycle.
-  Next: Recover the already-tested Living Portal source without discarding it. Night Watch refactors input/menu coverage and adds local four-mode adapter tests; run per-eye pixel and real UI journeys, then physical head-roll/rectangle reproduction and headset comfort. No A-Frame migration is claimed.
+  Next: Validate stereo pixels, head translation/roll, movement centering, native mission map and explicit first-person AR. Then reproduce the two-rectangle report on physical Quest 3; synthetic success is not physical comfort approval.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 - [x] LEGACY-01 / P0 / verified / Versioned original-world preservation
   Acceptance: Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.
   Next: Keep the 102 frozen legacy file hashes and all five retained browser suites passing in future upgrades.
   Owner role: Level design / Engineering / QA. Dependencies: None.
   Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
-
-- [ ] ACTION-01 / P1 / partial / Optional embodied Night Watch investigation and action case
-  Acceptance: Investigate either receiver and restore the same signal through a valid rooftop route or readable two-role counter/pulse combat, with native controller/hand menu access, recoverable mistakes and exactly-once rewards. Real-browser, physical-device and human quality gates required.
-  Next: Local two-approach simulation, grapple clearance, counter timing and save tests pass. Execute prepared watch-roof/watch-combat/xr-ui browser suites without state assignment, then evaluate physical comfort and player understanding. Cape/glide/holsters/predator stealth are future work, not implemented.
-  Owner role: Level design / XR engineering / QA. Dependencies: LEVEL-01, XR-02, ACCESS-01.
-  Evidence: ../lantern/NIGHT-WATCH.md ; ../lantern/watch.test.mjs ; ../lantern/xr-adapter.test.mjs ; evidence/night-watch-0.14.0/local-acceptance.json
 
 ## M2 / A city with a reason to exist
 
@@ -302,15 +296,15 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ACCESS-01 / P0 / partial / Controller-complete gameplay and menus
   Acceptance: Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.
-  Next: Night Watch local candidate provides native main/mission/tool/control/help/save/confirmation paths and hidden-by-default controller/hand UI. Run the actual sixteen-suite browser matrix and physical controllers/hands; local fake-renderer adapter tests are not graphical approval.
+  Next: Preserve direct actions, hold-release braking and neutral rearm. Test mission-map selection, indoor interaction and goal switching through Xbox and tracked/pinch paths, then physical USB/Bluetooth/Touch Plus/hand-tracking.
   Owner role: Engineering / QA. Dependencies: INPUT-01.
-  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json
+  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
-- [ ] ACCESS-02 / P1 / partial / Remapping and input alternatives
+- [ ] ACCESS-02 / P1 / planned / Remapping and input alternatives
   Acceptance: Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.
-  Next: Validated XR Action/Courier profiles, dominant hand, stick swap, 30/45 snap and motion-off alternative exist locally. Full per-action remapping, custom dead zones, all touch and hands combat parity are still open.
+  Next: Build an input-action layer rather than more hard-coded mappings.
   Owner role: Engineering / QA. Dependencies: ACCESS-01.
-  Evidence: ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json
+  Evidence: Not recorded.
 
 - [ ] ACCESS-03 / P1 / partial / Readable and comfortable presentation
   Acceptance: Text scales without clipping; objectives are not color-only; speed effects can be reduced; long panels scroll by controller. Screen narration is not implemented.

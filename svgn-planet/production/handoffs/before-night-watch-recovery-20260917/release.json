@@ -1,0 +1,33 @@
+{
+  "version": "0.13.0",
+  "name": "Neighborhood Missions",
+  "edition": "Lantern Ward: Living Portal",
+  "date": "2026-09-17",
+  "entry": "lantern-ward.html",
+  "legacyEntry": "legacy.html",
+  "legacyRelease": "legacy-release.json",
+  "legacyLayout": "legacy-layout.json",
+  "quality": "Playable authored neighborhood; simplified art, physical device and human playtest approval remain open.",
+  "changes": [
+    "Player-centered perspective portal with per-eye aperture masking; depth continues beyond display sides and rear.",
+    "Foreground frame faces automatically transparent; head-following panels removed.",
+    "First-person AR alongside first-person VR and player-follow diorama VR/AR.",
+    "Gold world target, persistent minimap, large mission map and native XR mission selection.",
+    "Eight three-stage resident stories and six additional named residents, with an independent validated credit ledger.",
+    "Three formerly solid building blocks now have doors and furnished interiors; existing print shop, loft and workshop remain connected.",
+    "Hold-to-run release actively brakes; legacy files, save key, chapter layout and original reward are preserved."
+  ],
+  "acceptance": "Local model acceptance passed; actual browser and public acceptance pending.",
+  "evidence": "production/evidence/living-portal-0.13.0/candidate.json",
+  "candidateEvidence": "production/evidence/living-portal-0.13.0/candidate.json",
+  "foundationEvidence": "../release-receipts/neighborhood-missions-working-quay-0.12.1.json",
+  "publicationEvidence": "../release-receipts/neighborhood-missions-living-portal-0.13.0.json",
+  "validation": {
+    "localModelTestsPassed": 242,
+    "completeAcceptance": false,
+    "publicResultVerified": false,
+    "physicalQuest3Tested": false,
+    "physicalXboxTested": false,
+    "humanLevelApproval": false
+  }
+}

@@ -1,7 +1,8 @@
+import {freshWatch,parseWatch,watchRuntime,watchAction,advanceWatch,watchBlocks} from './watch.mjs';
 import {freshCity,parseCity,cityInteract,missionGoal} from './city.mjs';
 /* Lantern Ward: one metre-space simulation for desktop and native spatial XR. */
 import {advanceMarket,marketActor,marketBlocks,marketState,requestPass,resetMarket} from './market.mjs';
-export const VERSION='0.13.0', CHAPTER='lantern-ward-01', LAYOUT=1;
+export const VERSION='0.14.0', CHAPTER='lantern-ward-01', LAYOUT=1;
 export const SAVE_KEY='svgn.lantern-ward.v1';
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const inside=(x,z,r,p=0)=>x>=r.x-r.w/2-p&&x<=r.x+r.w/2+p&&z>=r.z-r.d/2-p&&z<=r.z+r.d/2+p;
@@ -80,23 +81,24 @@ export const fixtures=[
  {id:'dock-north',x:3,z:-14,y:0,label:'Y: Board canal skiff'}
 ];
 export const docks=[{x:-.5,z:12,landX:-4.4,landZ:13},{x:-.5,z:-11.5,landX:3,landZ:-14}];
-export function fresh(){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:-12,y:0,z:17,yaw:0,vx:0,vz:0,vy:0,speed:0,distance:0,time:0,steps:0,ride:'foot',city:freshCity(),parcel:false,delivered:false,gate:false,hoist:false,claimed:false,credits:0,water:'high',transition:null,lift:null,hoistY:0,visited:['depot'],safe:[-12,0,17],porterYield:0,message:'Find your parcel at the depot bench. X interacts; A hops; Y mounts.',messageTime:9};}
+export function fresh(){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:-12,y:0,z:17,yaw:0,vx:0,vz:0,vy:0,speed:0,distance:0,time:0,steps:0,ride:'foot',city:freshCity(),watch:freshWatch(),parcel:false,delivered:false,gate:false,hoist:false,claimed:false,credits:0,water:'high',transition:null,lift:null,hoistY:0,visited:['depot'],safe:[-12,0,17],porterYield:0,message:'Find your parcel at the depot bench. X interacts; A hops; Y mounts.',messageTime:9};}
 const flags=['parcel','delivered','gate','hoist','claimed'];
 export function complete(s){return s.delivered&&(s.gate||s.hoist);}
 export function say(s,text){s.message=text;s.messageTime=7;}
-export function serialize(s){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:s.x,y:s.y,z:s.z,yaw:s.yaw,ride:s.ride,water:s.water,hoistY:s.hoistY,...Object.fromEntries(flags.map(k=>[k,s[k]])),credits:s.credits,visited:s.visited,safe:s.safe,city:parseCity(s.city)};}
+export function serialize(s){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:s.x,y:s.y,z:s.z,yaw:s.yaw,ride:s.ride,water:s.water,hoistY:s.hoistY,...Object.fromEntries(flags.map(k=>[k,s[k]])),credits:s.credits,visited:s.visited,safe:s.safe,city:parseCity(s.city),watch:parseWatch(s.watch)};}
 export function parse(raw){
  const p=typeof raw==='string'?JSON.parse(raw):raw;
  if(!p||p.v!==1||p.chapter!==CHAPTER||p.layout!==LAYOUT)throw Error('Unsupported chapter/layout. Original save retained; export it before replacing.');
  if(flags.some(k=>typeof p[k]!=='boolean')||!['high','low'].includes(p.water)||!['foot','bicycle','boat'].includes(p.ride)||['x','y','z','yaw'].some(k=>!Number.isFinite(p[k]))||Math.abs(p.x)>24||Math.abs(p.z)>21||p.y< -3||p.y>8||!Number.isSafeInteger(p.credits)||p.credits<0||p.credits>600||p.delivered&&!p.parcel||p.claimed&&!complete(p)||p.credits!==(p.claimed?600:0))throw Error('Invalid chapter save. Original data retained.');
- const s={...fresh(),...p,city:parseCity(p.city),visited:Array.isArray(p.visited)?p.visited.filter(v=>places.some(q=>q.id===v)):['depot']};
+ const s={...fresh(),...p,city:parseCity(p.city),watch:parseWatch(p.watch),visited:Array.isArray(p.visited)?p.visited.filter(v=>places.some(q=>q.id===v)):['depot']};
+ if(s.watch.tracking&&s.city.active)throw Error('Only one mission may be tracked. Original progress retained.');
  s.safe=Array.isArray(p.safe)&&p.safe.length===3&&p.safe.every(Number.isFinite)&&Math.abs(p.safe[0])<24&&Math.abs(p.safe[2])<21?p.safe:[-12,0,17];
  if(s.ride==='boat'&&s.water==='low')s.ride='foot';
  // A saved mid-hop/hoist position falls to a valid support; no stale transition survives.
  s.hoistY=Number.isFinite(p.hoistY)?clamp(p.hoistY,0,4.4):0;s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;resetMarket(s);return s;
 }
 export function save(s,store){
- let text;try{const payload=serialize(s);if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
+ let text;try{const payload=serialize(s);const trip=watchRuntime(s).travel;if(trip){Object.assign(payload,trip.from);payload.ride='foot';}if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
  store.setItem(SAVE_KEY+'.pending',text);if(store.getItem(SAVE_KEY+'.pending')!==text)throw Error('Staging verification failed');store.setItem(SAVE_KEY,text);if(store.getItem(SAVE_KEY)!==text)throw Error('Save verification failed');store.removeItem(SAVE_KEY+'.pending');return {ok:true};}catch(e){return {ok:false,error:String(e.message||e)};}
 }
 export function load(store){
@@ -127,7 +129,10 @@ export function nearby(s){
  const found=fs.filter(f=>Math.hypot(s.x-f.x,s.y-f.y,s.z-f.z)<2.15&&(f.id==='gate'||lineClear(s,{x:s.x,y:s.y+1,z:s.z},{x:f.x,y:f.y+1,z:f.z})));
  return found.sort((a,b)=>Math.hypot(s.x-a.x,s.z-a.z)-Math.hypot(s.x-b.x,s.z-b.z))[0]||null;
 }
-export function action(s,name){
+const watchAPI={say,lineClear,blocked,support,floorHeight,surfaces};
+export function action(s,name,ray){
+ if(watchRuntime(s).travel)return;
+ if(watchAction(s,name,watchAPI,ray))return;
  if(name==='bell'){const m=marketState(s),visible=lineClear(s,{x:s.x,y:s.y+1,z:s.z},{x:0,y:1,z:m.z});say(s,requestPass(s,visible)?'Ivo: I heard you. Pulling north into the bay; cross when the sign clears.':'Bell rang. Signal within sight of Ivo at the north quay to request a pass.');return;}
  if(name==='hop'){if(s.ride==='foot'&&Math.abs(s.vy)<.01&&support(s,s.x,s.z,s.y))s.vy=4.3;return;}
  if(name==='ride'){
@@ -171,6 +176,7 @@ export function action(s,name){
 }
 export function tick(s,input,dt){
  dt=clamp(Number.isFinite(dt)?dt:0,0,.05);if(!dt)return;s.time+=dt;s.steps++;s.messageTime=Math.max(0,s.messageTime-dt);s.porterYield=Math.max(0,s.porterYield-dt);advanceMarket(s,dt);
+ if(advanceWatch(s,input,dt,watchAPI))return;
  if(s.paper){s.paper.t+=dt;if(s.paper.t>1.1)s.paper=null;}
  if(s.transition){s.transition.t+=dt/2;if(s.transition.t>=1){if(inside(s.x,s.z,canal)||s.ride==='boat'){s.transition=null;say(s,'Sluice paused: clear the channel first. The safe water level is unchanged.');return;}s.water=s.transition.to;s.transition=null;say(s,s.water==='low'?'Channel drained. The maintenance steps and walking route are exposed.':'Channel filled. Public boats are available again.');}}
  if(s.lift){const l=s.lift;if(l.summon){const q=l.summon;q.t=Math.min(1,q.t+dt/1.5);s.hoistY=q.from+(q.to-q.from)*q.t;if(q.t>=1){l.summon=null;s.x=6.8;s.z=.5;s.y=l.from;}return;}l.t=Math.min(1,l.t+dt/2);s.y=l.from+(l.to-l.from)*(l.t*l.t*(3-2*l.t));s.hoistY=s.y;if(l.t>=1){s.lift=null;s.safe=[s.x,s.y,s.z];}return;}
@@ -183,8 +189,8 @@ export function tick(s,input,dt){
  const old=[s.x,s.y,s.z],parts=Math.max(1,Math.ceil(Math.hypot(s.vx,s.vz)*dt/.15));
  for(let i=0;i<parts;i++){
   const x=s.x+s.vx*dt/parts,z=s.z+s.vz*dt/parts;
-  if(!blocked(s,x,s.y,s.z))s.x=x;else s.vx=0;
-  if(!blocked(s,s.x,s.y,z))s.z=z;else s.vz=0;
+  if(!blocked(s,x,s.y,s.z)&&!watchBlocks(s,x,s.y,s.z))s.x=x;else s.vx=0;
+  if(!blocked(s,s.x,s.y,z)&&!watchBlocks(s,s.x,s.y,z))s.z=z;else s.vz=0;
  }
  if(s.ride==='boat'){s.y=-.72;s.vy=0;}
  else{
