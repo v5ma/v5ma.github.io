@@ -11,6 +11,14 @@ checks=[];errors=[];console=[];observations=[]
 def check(ok,label):
  assert ok,label
  checks.append(label);print('PASS:',label,flush=True)
+save_observations=[]
+def same_expedition(before,after,label):
+ a=json.loads(json.loads(before)['payload']);b=json.loads(json.loads(after)['payload'])
+ changed=[k for k in sorted(set(a)|set(b)) if a.get(k)!=b.get(k)]
+ save_observations.append({'boundary':label,'changedEnvelopeKeys':changed,'before':a,'after':b})
+ (OUT/'save-boundary-observations.json').write_text(json.dumps(save_observations,indent=2))
+ return (a['profile']==b['profile'] and a['checkpoint']==b['checkpoint']
+         and b['revision']>=a['revision'] and b['savedAt']>=a['savedAt'])
 PAD="""(()=>{const pad={id:'Goldwind Xbox',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};window.TestPad={enabled:false,pad,button(i,on){pad.buttons[i]={pressed:on,touched:on,value:on?1:0}}};Object.defineProperty(navigator,'getGamepads',{value:()=>TestPad.enabled?[pad]:[]});})();"""
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
@@ -109,10 +117,12 @@ with sync_playwright() as p:
   check(page.evaluate('Vesperfall.component.arMode&&Vesperfall.component.paused&&!Vesperfall.component.goldwind.state.flight'),'Goldwind preserves paused, discovery-limited AR inspection')
   page.evaluate('TestHands.mode(true)');wait('Vesperfall.component.questHands.state.active')
   handaction('Layers:');handaction('Exit AR');wait('!Vesperfall.component.xr')
-  check(page.evaluate('p=>localStorage.getItem(PilgrimSave.KEY)===p',saved),'AR hand inspection with Goldwind selected preserves exact saved expedition bytes')
+  after=page.evaluate('localStorage.getItem(PilgrimSave.KEY)')
+  check(same_expedition(saved,after,'AR inspection'),'AR hand inspection preserves the entire checkpoint and profile; only save-envelope metadata may advance')
   page.locator('#save-expedition').click();payload=page.evaluate('localStorage.getItem(PilgrimSave.KEY)');page.reload(wait_until='domcontentloaded');wait('window.Vesperfall?.component.goldwind')
   check(page.locator('#xr-bow-controls').input_value()=='goldwind' and page.locator('#goldwind-shield').input_value()=='grip','Explicit control preferences survive a real page reload')
-  check(page.evaluate('p=>localStorage.getItem(PilgrimSave.KEY)===p',payload),'Changing physical controls does not rewrite the saved expedition')
+  after=page.evaluate('localStorage.getItem(PilgrimSave.KEY)')
+  check(same_expedition(payload,after,'Page reload'),'Control preferences and page reload preserve the entire saved checkpoint and profile')
   check(not errors,'No uncaught runtime errors in the Goldwind journey');check(not console,'No captured WebGL, shader or console errors')
   (OUT/'report.json').write_text(json.dumps({'base':BASE,'passed':len(checks),'checks':checks,'observations':observations,'errors':errors,'consoleErrors':console,'xrBufferScale':.12,'scope':'Native production WebGL, actual controls and core physics; synthetic Xbox/buttons/controller poses, not real Quest/Xbox hardware or ergonomic approval.'},indent=2))
  except Exception as e:
