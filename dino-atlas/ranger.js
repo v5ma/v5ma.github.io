@@ -1,5 +1,6 @@
-import {DioramaXR} from './diorama-xr.js?v=portal1';
-import {mergeMotion} from './xr-actions.js?v=grounded1';
+import {FieldNavigation} from './field-navigation.js';
+import {DioramaXR} from './diorama-xr.js?v=express1';
+import {mergeMotion} from './xr-actions.js?v=express1';
 import {animateRangerBody} from './ranger-body.js?v=grounded1';
 import {AquaticsWorld} from './aquatics-world.js?v=pool1';
 import {AquaticsMission} from './aquatics.js?v=pool1';
@@ -11,15 +12,15 @@ import {HERDS_BUILD} from './herd-behavior.js?v=herds1';
 import {animateResident} from './herd-rig.js?v=grounded1';
 import {byId,readProgress,writeProgress,addDiscovery,escapeHTML,brushPatch,digPercent} from './core.js';
 import {HOME,LAKE,ROADS,STATIONS,MISSIONS,clamp,distance,readRanger,saveRanger,advance,waypoint} from './ranger-data.js';
-import {initPhysics,ParkPhysics} from './ranger-physics.js?v=storm2';
+import {initPhysics,ParkPhysics} from './ranger-physics.js?v=express1';
 import {makeJeep} from './ranger-art.js';
 import {buildPark} from './ranger-world.js?v=storm2';
 import {RangerAudio} from './ranger-audio.js';
 import {BUILD,WORLD_RADIUS,WATER,DOCK,OUTPOSTS,PENS,TRAILS,TOOLS,CHECKPOINTS,ALL_ANIMALS,SPECIES,PREDATORS,readFrontier,saveFrontier,operations,penState,penTerminal,insidePen,speciesById,createResident,stepResident,deterAnimal} from './frontier-data.js?v=storm2';
-import {Fleet} from './frontier-vehicles.js?v=pool1';
+import {Fleet} from './frontier-vehicles.js?v=express1';
 import {makeResident,makeHelicopter,makeBoat,makeBuggy,makePerson,makeTool} from './frontier-art.js?v=storm2';
 import {buildFrontier} from './frontier-world.js?v=storm2';
-import {RangerInput,focusable} from './ranger-input.js?v=grounded1';
+import {RangerInput,focusable} from './ranger-input.js?v=express1';
 import {RangerTools} from './ranger-tools.js?v=storm2';
 import {RanchGame,calibrateResident,scaleNote} from './ranch-game.js?v=storm2';
 import {buildRanchWorld} from './ranch-world.js?v=pool1';
@@ -30,7 +31,7 @@ export async function boot(){
  const R=await initPhysics();let storage;try{storage=localStorage;}catch{storage=null;}
  const campaign=readRanger(storage),state=readFrontier(storage),settings=state.settings;
  for(const id of campaign.observed)if(!state.observed.includes(id))state.observed.push(id);
- let ranch=null,director=null,herds=null,optics=null,aquatics=null,xr=null;
+ let ranch=null,director=null,herds=null,optics=null,aquatics=null,xr=null,navigation=null;
  let started=false,time=0,accumulator=0,last=performance.now(),uiClock=0,saveClock=0,hornAt=-100,startedAt=0,candidate=null,aiming=false,drag=null,beamAge=10,toastTimer,radioTimer,backTarget=null;
  let cameraMode=settings.camera,yaw=.65,pitch=.65,aimPitch=.04,zoom=34,campaignPinned=campaign.stage<5,lastPosition={...HOME},lastNotice='',noticeAt=-100,lastJournalSelection=null;
  settings.reduced||=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -155,7 +156,7 @@ export async function boot(){
   for(const o of OUTPOSTS){const [x,z]=to(o.x,o.z);ctx.fillStyle=state.outposts.includes(o.id)?'#f4d591':'#a4b6b6';ctx.fillRect(x-4,z-4,8,8);if(full){ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText(o.name,x,z+17);}}
   for(const v of fleet.vehicles){const [x,z]=to(v.drive.position.x,v.drive.position.z);ctx.fillStyle='#b6e6ed';ctx.beginPath();ctx.arc(x,z,full?4:4.5,0,7);ctx.fill();if(full){ctx.font='9px sans-serif';ctx.fillText(v.type,x,z-8);}}
   const target=activeTask().target;if(target){ctx.strokeStyle='#ffdb84';ctx.lineWidth=2;ctx.beginPath();ctx.arc(...to(target.x,target.z),full?10:8,0,7);ctx.stroke();}
-  const [x,z]=to(p.x,p.z);ctx.save();ctx.translate(x,z);ctx.rotate(Math.PI+fleet.actor.heading);ctx.fillStyle='#fff5d9';ctx.beginPath();ctx.moveTo(0,-7);ctx.lineTo(5,5);ctx.lineTo(0,3);ctx.lineTo(-5,5);ctx.closePath();ctx.fill();ctx.restore();ctx.fillStyle='#eed9a8';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('N',s/2,16);ctx.restore();
+  const [x,z]=to(p.x,p.z);ctx.save();ctx.translate(x,z);ctx.rotate(Math.PI+fleet.actor.heading);ctx.fillStyle='#fff5d9';ctx.beginPath();ctx.moveTo(0,-7);ctx.lineTo(5,5);ctx.lineTo(0,3);ctx.lineTo(-5,5);ctx.closePath();ctx.fill();ctx.restore();ctx.fillStyle='#eed9a8';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('N',s/2,16);navigation?.paint(cv,to,!full);ctx.restore();
  }
  function shoot(){const t=tools.fire();if(!t){if(state.ammo[state.tool]<1&&tools.reloadLeft===0)toast('Tool empty. Press X / R to reload.');return;}
   const p=fleet.position,dir={x:-Math.sin(yaw)*Math.cos(aimPitch),y:-Math.sin(aimPitch),z:-Math.cos(yaw)*Math.cos(aimPitch)},reach=fleet.mode==='foot'?1.2:3.5,side=fleet.mode==='foot'?.35:.85,origin={x:p.x+dir.x*reach+Math.cos(yaw)*side,y:p.y+(fleet.mode==='foot'?.35:1.65)+dir.y*reach,z:p.z+dir.z*reach-Math.sin(yaw)*side};
@@ -174,17 +175,18 @@ export async function boot(){
   toolModel.visible=(!xr?.active||xr.diorama)&&(aiming||fleet.mode==='foot');const reach=fleet.mode==='foot'?.4:2,side=fleet.mode==='foot'?.35:.85;toolModel.scale.setScalar(fleet.mode==='foot'?1:2);toolModel.position.set(p.x-Math.sin(yaw)*Math.cos(aimPitch)*reach+Math.cos(yaw)*side,p.y+(fleet.mode==='foot'?.35:1.65)-Math.sin(aimPitch)*reach,p.z-Math.cos(yaw)*Math.cos(aimPitch)*reach-Math.sin(yaw)*side);toolModel.rotation.set(aimPitch,yaw+Math.PI,0,'YXZ');
   beamAge+=dt;beam.visible=beamAge<.13;flash.visible=beamAge<.13;beam.material.opacity=Math.max(0,1-beamAge/.15);flash.material.opacity=Math.max(0,.6-beamAge*4);
  }
- function ui(){aquatics?.hud();ranch?.hud();const task=activeTask(),p=fleet.position;$('mission-title').textContent=task.name;$('mission-copy').textContent=task.detail;$('mission-index').textContent=task.done+' / '+task.total;$('mission-progress').max=task.total;$('mission-progress').value=task.done;$('waypoint-distance').textContent=task.target?Math.round(distance(p,task.target))+' m':'RANGER OPERATIONS';
+ function ui(){xr?.travel.update();navigation?.update(time);aquatics?.hud();ranch?.hud();const task=activeTask(),p=fleet.position;$('mission-title').textContent=task.name;$('mission-copy').textContent=task.detail;$('mission-index').textContent=task.done+' / '+task.total;$('mission-progress').max=task.total;$('mission-progress').value=task.done;$('waypoint-distance').textContent=task.target?Math.round(distance(p,task.target))+' m':'RANGER OPERATIONS';
   $('speed').textContent=String(Math.round(Math.abs(fleet.actor.speed)*3.6)).padStart(2,'0');$('mode-label').textContent=fleet.current?.name||'Ranger on foot';$('altitude').textContent=fleet.mode==='helicopter'?Math.round(Math.max(0,p.y-1))+' m ALT':state.outposts.length+' / 6 OUTPOSTS';
   $('tool-name').textContent=tools.tool.name;$('ammo').textContent=Math.ceil(state.ammo[state.tool]);$('ammo-reserve').textContent=Math.floor(state.reserve[state.tool]);$('ammo-bar').value=state.ammo[state.tool];$('ammo-bar').max=tools.tool.capacity;$('reload-status').textContent=tools.reloadLeft>0?'Reloading '+tools.reloadLeft.toFixed(1)+' s':state.ammo[state.tool]<1?'EMPTY / X TO RELOAD':'X / R RELOAD';$('reload-bar').hidden=tools.reloadLeft===0;$('reload-bar').value=tools.tool.reload-tools.reloadLeft;$('reload-bar').max=tools.tool.reload;
   $('vehicle-status').textContent=fleet.current?.recovery>.1?'AUTO-RIGHTING...':'NO VEHICLE DAMAGE';$('region-label').textContent=[...OUTPOSTS].sort((a,b)=>distance(a,p)-distance(b,p))[0].name.toUpperCase();$('reticle').hidden=!(aiming||fleet.mode==='foot');
   $('mode-controls').textContent=input.device==='gamepad'?(fleet.mode==='foot'?'LS move / RT fire / LT aim / X reload / Y board':fleet.mode==='helicopter'?'LS fly / RT rise / LT land / LB+RT tool / Y exit':'RT drive / LT reverse / LB+RT tool / X reload / Y exit'):(fleet.mode==='foot'?'WASD move / Mouse fire / R reload / F board':fleet.mode==='helicopter'?'WASD fly / Z rise / X descend / F exit':'WASD drive / Space brake / Shift boost / F exit');
+  if(input.device==='gamepad'&&xr?.travel.settings.xboxLayout==='active')$('mode-controls').textContent=fleet.mode==='helicopter'?'LS fly / D-pad altitude / LT aim / RT fire / LS click Express / Y exit':'LS move / LT aim / RT fire / A interact / X reload / Y board / LS click Express';
   document.body.dataset.mode=fleet.mode;updateCandidate();herds?.hud();drawMap($('minimap'));if($('map-dialog').open)drawMap($('fullmap'),true);park.beacon.visible=!!task.target;if(task.target)park.beacon.position.set(task.target.x,0,task.target.z);
  }
  let slowFrames=0,qualityAutoChanged=false;
  function frame(now){const realDt=Math.min(Math.max((now-last)/1000,0),.1);last=now;
   // Always poll UI/controller first, even in intro screens, pause menus, and modals.
-  const controls=mergeMotion(input.sample(realDt),xr?.update(realDt)||{});if(xr?.active){yaw=xr.controlYaw??xr.viewYaw??yaw;controls.lookX=0;controls.lookY=0;}const paused=isPaused()||!!xr?.invisible,dt=paused?0:realDt;aiming=!paused&&controls.aim;
+  const controls=mergeMotion(input.sample(realDt),xr?.update(realDt)||{});xr?.travel.apply(controls,fleet.mode);if(xr?.active){yaw=xr.controlYaw??xr.viewYaw??yaw;controls.lookX=0;controls.lookY=0;}const paused=isPaused()||!!xr?.invisible,dt=paused?0:realDt;aiming=!paused&&controls.aim;
   if(!paused){yaw-=controls.lookX*realDt*2.15*settings.sensitivity;if(aiming||fleet.mode==='foot')aimPitch=clamp(aimPitch+controls.lookY*realDt*1.1*settings.sensitivity,-.65,.9);else pitch=clamp(pitch+controls.lookY*realDt*.85,.3,1.15);
    if(!xr?.active&&cameraMode==='chase'&&!aiming&&Math.abs(controls.lookX)<.1&&fleet.mode!=='foot'&&fleet.mode!=='helicopter'){const wanted=fleet.actor.heading+Math.PI;yaw+=Math.atan2(Math.sin(wanted-yaw),Math.cos(wanted-yaw))*Math.min(1,realDt*2);}
    accumulator+=dt;let steps=0;
@@ -221,10 +223,11 @@ export async function boot(){
  const portalWorld=new T.Group();portalWorld.name='Classic Reserve live world';for(const o of [...scene.children])portalWorld.add(o);scene.add(portalWorld);
  const rayTarget=ray=>{const hit=physics.world.castRay(new R.Ray(ray.origin,ray.direction),6000,true,undefined,undefined,fleet.actor.collider,fleet.actor.body);return hit?ray.origin.clone().addScaledVector(ray.direction,hit.timeOfImpact):null;};
  xr=new DioramaXR({scene,worldRoot:portalWorld,adoptSceneWorld:true,presentationDefault:'first-person-vr',build:'grounded-xr-20260914.1',renderer,camera,fleet,storage,input,modal,action,yaw:()=>yaw,notify:toast,restoreSize:size,rayTarget});
+ navigation=new FieldNavigation({root:portalWorld,travel:xr.travel,fleet,task:activeTask,yaw:()=>yaw});
  window.__dinoGrounded={get state(){return xr.snapshot();}};
  ui();syncModels(0);frontier.update(0,0,fleet.position,settings.reduced);park.update(0,0,fleet.actor,settings.night,settings.reduced);aquatics?.prepareFrame(camera);if(optics)optics.render(scene,camera);else renderer.render(scene,camera);
  $('start-button').disabled=false;$('start-button').textContent=campaign.stage||state.outposts.length>1?'Continue ranger operations':'Start your engine';$('load-status').textContent='Ready. Press A on your controller, or select Start.';updateDevice('keyboard');
- const debug={get state(){return {ready:true,build:HERDS_BUILD,storyBuild:AAA_BUILD,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],species:[...state.observed],position:{...fleet.position},speed:fleet.actor.speed,grounded:fleet.actor.grounded,health:100,mode:fleet.mode,active:fleet.active,tool:tools.tool.id,ammo:[...state.ammo],reserve:[...state.reserve],reloading:tools.reloadLeft,toolHits:{...state.toolHits},outposts:[...state.outposts],checkpoint:state.checkpoint,patrol:state.patrol,pens:JSON.parse(JSON.stringify(state.pens)),exploded:[...state.exploded],drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night:settings.night,yaw,aimPitch,device:input.device,vehicles:fleet.vehicles.map(v=>({id:v.id,type:v.type,position:{...v.drive.position},recoveries:v.recoveries,rotation:{...v.drive.body.rotation()}})),animals:animals.map(({uid,species,x,z,mood,pen,deter})=>({uid,id:species,x,z,mood,pen,deter}))};}};
+ const debug={get state(){return {travel:xr?.travel.snapshot(),guidance:navigation?.snapshot(),ready:true,build:HERDS_BUILD,storyBuild:AAA_BUILD,started,paused:isPaused(),stage:campaign.stage,observed:[...campaign.observed],species:[...state.observed],position:{...fleet.position},speed:fleet.actor.speed,grounded:fleet.actor.grounded,health:100,mode:fleet.mode,active:fleet.active,tool:tools.tool.id,ammo:[...state.ammo],reserve:[...state.reserve],reloading:tools.reloadLeft,toolHits:{...state.toolHits},outposts:[...state.outposts],checkpoint:state.checkpoint,patrol:state.patrol,pens:JSON.parse(JSON.stringify(state.pens)),exploded:[...state.exploded],drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,cameraMode,night:settings.night,yaw,aimPitch,device:input.device,vehicles:fleet.vehicles.map(v=>({id:v.id,type:v.type,position:{...v.drive.position},recoveries:v.recoveries,rotation:{...v.drive.body.rotation()}})),animals:animals.map(({uid,species,x,z,mood,pen,deter})=>({uid,id:species,x,z,mood,pen,deter}))};}};
  if(new URLSearchParams(location.search).get('test')==='1')Object.assign(debug,{teleport:(x,z,heading=Math.PI)=>{if(fleet.current)fleet.current.drive.reset({x,z},heading);else fleet.person.setActive(true,{x,y:1,z});lastPosition={x,z};},xr,renderer,camera,personModel,setAim:(angle,elevation=.04)=>{yaw=angle;aimPitch=elevation;},render:ui,aquatics,optics,ranch,director,herds,physics,fleet,animals,frontier,tools,progress:state,jeep:fleet.vehicles[0].drive});
  window.__dinoRanger=debug;window.__dinoAAA={get state(){return director?.snapshot?.()||null;},open:()=>director?.open?.(),suspend:()=>director?.suspend?.()};renderer.setAnimationLoop(frame);
 }

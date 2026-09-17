@@ -14,7 +14,7 @@ export function trackedMotion(sources,mode='foot',blocked=new Set()){
  v.boost=button(left,3)>.4;v.jump=mode==='foot'&&button(right,1)>.45;
  return v;
 }
-export function mergeMotion(base,extra){const v={...base};for(const k of ['x','z','steer','throttle','climb'])if(Math.abs(extra[k]||0)>.01)v[k]=extra[k];for(const k of ['aim','fire','brake','boost','jump'])v[k]||=!!extra[k];return v;}
+export function mergeMotion(base,extra){const v={...base};for(const k of ['x','z','steer','throttle','climb'])if(Math.abs(extra[k]||0)>.01)v[k]=extra[k];for(const k of ['aim','fire','brake','boost','jump','independentTools'])v[k]||=!!extra[k];return v;}
 export class EdgeGate{
  constructor(){this.states=new Map();this.neutral=new Set();}
  reset(sources=[]){this.states.clear();this.neutral=new Set(sources);}

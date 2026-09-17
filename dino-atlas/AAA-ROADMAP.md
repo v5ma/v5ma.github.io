@@ -275,3 +275,12 @@ The user's clarification supersedes the fixed-map miniature interpretation, not 
 - [ ] XR-DIO-02c: Physical Quest 3 inspection of near-plane/inside-box behavior, stereo parallax, side/rear visibility, AR composition, menus, hand/controller pointing and comfort. Automated eye poses are not physical-device approval.
 
 Keep LEVEL-PM-03 and LEVEL-PM-04 open. The next level-design question remains the observation/feeder route's useful information versus the learned harbor/service return, not more map area. Presentation alone does not establish level quality or introduce asset-sector streaming.
+
+
+## Express travel and field controls / 2026-09-17
+
+- [ ] INPUT-08a: Implement unlimited-duration vehicle express at selectable 2x/4x/8x, grip interaction and independent trigger tools in Quest Active, optional Xbox stick-drive profile, persisted preferences and disarmed pause/tracking/vehicle transitions. Test actual helicopter boarding, altitude, firing and flight in both games.
+- [ ] NAV-08a: Larger active goal markers, labeled map target and player heading, distance/compass/elevation cues and in-world beacon. Keep real approach choices and current mission target logic; do not manufacture a straight-line route.
+- [ ] INPUT-08b: Physical Xbox and Quest 3 acceptance of Active/Legacy layouts, express control, braking distance, motion comfort, hand UI and reduced-vision map legibility. Emulated input and graphics evidence do not close this gate.
+
+These tasks refine the accepted character-centered world portal and service-loop level. No new map bounds, saved mission schema, repeat rewards, asset licenses or sibling-game changes. See EXPRESS-FIELD-CONTROLS.md and EXPRESS-HANDOFF.md.

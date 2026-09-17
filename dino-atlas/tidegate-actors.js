@@ -1,6 +1,7 @@
+import {cruiseFactor,normalizedStick} from './active-controls.js';
 import * as T from './vendor/three.module.js';import R from './vendor/rapier.mjs';
-import {RangerJeep,rotateVector} from './ranger-physics.js';
-import {RangerPerson} from './frontier-vehicles.js';
+import {RangerJeep,rotateVector} from './ranger-physics.js?v=express1';
+import {RangerPerson} from './frontier-vehicles.js?v=express1';
 import {makeJeep} from './ranger-art.js';import {makeBoat,makeHelicopter,makePerson} from './frontier-art.js';
 import {canWalk,canBoat,gap,POINTS,BOUNDS,clamp} from './tidegate-core.js';
 class DistrictPerson extends RangerPerson {
@@ -12,12 +13,12 @@ class DistrictPerson extends RangerPerson {
   this.body.setNextKinematicTranslation({x:p.x+m.x,y:p.y+m.y,z:p.z+m.z});this.speed=Math.hypot(m.x,m.z)/dt;if(Math.hypot(dx,dz)>.001)this.heading=Math.atan2(dx,dz);
  }
 }
-class DistrictCraft {
+export class DistrictCraft {
  constructor(physics,type,spawn,state){this.type=type;this.state=state;this.speed=0;this.grounded=0;this.targetY=spawn.y;this.body=physics.world.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(spawn.x,spawn.y,spawn.z).setLinearDamping(.8).setAngularDamping(2).setCcdEnabled(true));this.collider=physics.world.createCollider(R.ColliderDesc.cuboid(type==='boat'?1.1:1.3,.42,2.3).setMass(350).setFriction(.8),this.body);}
  get position(){return this.body.translation();}get heading(){const d=rotateVector({x:0,y:0,z:1},this.body.rotation());return Math.atan2(d.x,d.z);}
  drive(v,dt){const p=this.position,vel=this.body.linvel(),mass=this.body.mass(),up=rotateVector({x:0,y:1,z:0},this.body.rotation());let tx=0,tz=0;
-  if(this.type==='helicopter'){this.targetY=clamp(this.targetY+(v.climb||0)*dt*9,.95,28);const speed=v.boost?19:12,yaw=v.cameraYaw||0;if(!v.aim&&!v.brake&&p.y>1.3){tx=((v.x||0)*Math.cos(yaw)-(v.z||0)*Math.sin(yaw))*speed;tz=(-(v.x||0)*Math.sin(yaw)-(v.z||0)*Math.cos(yaw))*speed;}}
-  else{const throttle=v.aim?0:v.throttle||0,speed=throttle*(v.boost?11:7);tx=Math.sin(this.heading)*speed;tz=Math.cos(this.heading)*speed;if(!canBoat({x:p.x+tx*.2,z:p.z+tz*.2},this.state)){tx=0;tz=0;}this.body.setAngvel({x:0,y:(v.steer||0)*Math.sign(throttle||1)*1.1,z:0},true);}
+  if(this.type==='helicopter'){if(v.brake)this.targetY=clamp(p.y,.95,28);this.targetY=clamp(this.targetY+(v.brake?0:v.climb||0)*dt*9*cruiseFactor(v),.95,28);const speed=(v.boost?19:12)*cruiseFactor(v),stick=normalizedStick(v.x,v.z),yaw=v.cameraYaw||0;if((!v.aim||v.independentTools)&&!v.brake&&p.y>1.3){tx=(stick.x*Math.cos(yaw)-stick.z*Math.sin(yaw))*speed;tz=(-stick.x*Math.sin(yaw)-stick.z*Math.cos(yaw))*speed;}}
+  else{const throttle=v.aim&&!v.independentTools?0:v.throttle||0,speed=throttle*(v.boost?11:7)*cruiseFactor(v);tx=Math.sin(this.heading)*speed;tz=Math.cos(this.heading)*speed;if(!canBoat({x:p.x+tx*.2,z:p.z+tz*.2},this.state)){tx=0;tz=0;}this.body.setAngvel({x:0,y:(v.steer||0)*Math.sign(throttle||1)*1.1,z:0},true);}
   if(v.brake){tx=0;tz=0;}if(Math.abs(p.x+tx*.1)>64)tx=0;if(p.z+tz*.1<-44||p.z+tz*.1>50)tz=0;
   this.body.applyImpulse({x:(tx-vel.x)*mass*dt*3,y:mass*dt*(18+clamp((this.targetY-p.y)*15-vel.y*6,-28,35)),z:(tz-vel.z)*mass*dt*3},true);
   this.body.applyTorqueImpulse({x:-up.z*mass*dt*7,y:0,z:up.x*mass*dt*7},true);this.speed=Math.hypot(vel.x,vel.z);this.grounded=p.y<1.6?4:0;
