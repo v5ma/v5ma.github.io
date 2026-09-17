@@ -31,7 +31,10 @@ export function applyMeridianRelief(data){
  if(data.layoutRevision==='meridian-relief-1')return data;
  const replaced=new Set(MERIDIAN_PLANS.flatMap(p=>oldIds.map(id=>p.id+'-'+id)));
  data.obstacles=data.obstacles.filter(o=>!replaced.has(o.id)).map(o=>({...o,bottom:o.bottom+meridianHeight(o.x,o.z)}));
- data.obstacles.push(...MERIDIAN_PLANS.flatMap(planWalls));data.obstacles.push({id:'meridian-pressure-tower',x:-6,z:-66,w:2,d:2,h:19,bottom:meridianHeight(-6,-66),kind:'lighthouse'});
+ data.obstacles.push(...MERIDIAN_PLANS.flatMap(planWalls));
+ // Directional privacy for the original water controls. Both flanks remain
+ // accessible to pursuers; the ground gap preserves legacy supply drops.
+ data.obstacles.push({id:'clinic-privacy-screen',x:-38.8,z:28,w:.45,d:6.6,h:1.75,bottom:meridianHeight(-38.8,28)+.4,kind:'crate'});data.obstacles.push({id:'meridian-pressure-tower',x:-6,z:-66,w:2,d:2,h:19,bottom:meridianHeight(-6,-66),kind:'lighthouse'});
  data.buildings=MERIDIAN_PLANS.map(p=>{const xs=p.polygon.map(v=>v[0]),zs=p.polygon.map(v=>v[1]);return {...p,x:(Math.min(...xs)+Math.max(...xs))/2,z:(Math.min(...zs)+Math.max(...zs))/2,w:Math.max(...xs)-Math.min(...xs),d:Math.max(...zs)-Math.min(...zs),h:p.height};});
  data.intro='The pressure beacon marks the northern exit. The raised west clinic holds the filter; the domed reading hall stands above the eastern ridge. The sunken drain connects them, but leaves few long views. Restore the original water circuit to open the gate.';
  data.zones=[{name:'Arrival / pressure-beacon view',x:0,z:53},{name:'Raised clinic courtyard',x:-39,z:28},{name:'Orchard arcade',x:39,z:30},{name:'Reading ridge',x:39,z:-18},{name:'Sunken drainage spine',x:0,z:-23},{name:'Pressure beacon / north gate',x:0,z:-63}];

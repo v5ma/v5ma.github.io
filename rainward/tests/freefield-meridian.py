@@ -13,7 +13,7 @@ with sync_playwright() as pw:
  def wait(q):page.wait_for_function(q)
  def frames(n=2):
   old=page.evaluate('polls');page.wait_for_function('([old,n])=>polls>=old+n',arg=[old,n])
- def tap(i):frames();page.evaluate('(i)=>pulses=[i]',i);frames(3)
+ def tap(i):frames(3);page.evaluate('(i)=>pulses=[i]',i);frames(3)
  def nav(id):
   for _ in range(130):
    if page.evaluate('document.activeElement.id')==id:return
@@ -29,7 +29,7 @@ with sync_playwright() as pw:
   tap(9);wait('Rainward.mode==="pause"');page.screenshot(path=str(OUT/(label+'.png')));tap(1);wait('Rainward.mode==="play"')
  def go(x,z):
   page.evaluate('pad.axes=[0,0,0,0];pad.buttons[10]={pressed:false,value:0}');frames(3)
-  page.evaluate('''async({x,z})=>{const W=await import('./world.mjs'),route=W.findPath(Rainward.state.player,{x,z});if(!route.length&&W.dist(Rainward.state.player,{x,z})>1)throw Error('No route');route.push({x,z});await new Promise((resolve,reject)=>{let i=0,lastHeal=-Infinity;const begin=performance.now(),timer=setInterval(()=>{const p=Rainward.state.player,stop=()=>{clearInterval(timer);pad.axes=[0,0,0,0];pad.buttons[10]={pressed:false,value:0};};if(Rainward.mode!=='play'||performance.now()-begin>100000){stop();reject(Error('Movement interrupted '+JSON.stringify({goal:route[i],hp:p.hp,x:p.x,z:p.z})));return;}if(p.hp<55&&p.medkit>0&&performance.now()-lastHeal>700){pulses.push(12);lastHeal=performance.now();}const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.35){if(++i===route.length){stop();resolve();}return;}const yaw=Rainward.view.yaw,scale=Math.max(.35,Math.min(1,d));pad.axes[0]=(Math.cos(yaw)*dx-Math.sin(yaw)*dz)/d*scale;pad.axes[1]=(Math.sin(yaw)*dx+Math.cos(yaw)*dz)/d*scale;pad.buttons[10]={pressed:true,value:1};},20);});}''',{'x':x,'z':z});frames(3);record('arrive '+str((x,z)))
+  page.evaluate('''async({x,z})=>{const W=await import('./world.mjs'),route=W.findPath(Rainward.state.player,{x,z});if(!route.length&&W.dist(Rainward.state.player,{x,z})>1)throw Error('No route');route.push({x,z});await new Promise((resolve,reject)=>{let i=0,lastHeal=-Infinity;const begin=performance.now(),timer=setInterval(()=>{const p=Rainward.state.player,stop=()=>{clearInterval(timer);pad.axes=[0,0,0,0];pad.buttons[10]={pressed:false,value:0};};if(Rainward.mode!=='play'||performance.now()-begin>100000){stop();reject(Error('Movement interrupted '+JSON.stringify({goal:route[i],hp:p.hp,x:p.x,z:p.z})));return;}if(p.hp<55&&p.medkit>0&&performance.now()-lastHeal>700){pulses.push(12);lastHeal=performance.now();}const q=route[i],dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<.35){if(++i===route.length){stop();resolve();}return;}const yaw=Rainward.view.yaw,zone=.18,speed=Math.min(9,Math.max(.5,d/.30)),scale=zone+(1-zone)*speed/9;pad.axes[0]=(Math.cos(yaw)*dx-Math.sin(yaw)*dz)/d*scale;pad.axes[1]=(Math.sin(yaw)*dx+Math.cos(yaw)*dz)/d*scale;pad.buttons[10]={pressed:true,value:1};},20);});}''',{'x':x,'z':z});frames(3);record('arrive '+str((x,z)))
  def craft():
   tap(13);wait('Rainward.mode==="pack"');nav('craft-med');before=page.evaluate('Rainward.state.player.medkit');tap(0);page.wait_for_function('(n)=>Rainward.state.player.medkit===n+1&&!Rainward.state.player.craft',arg=before);tap(1);wait('Rainward.mode==="play"')
  try:
@@ -38,7 +38,7 @@ with sync_playwright() as pw:
   go(2,56);use('Rainward.state.taken.has("meridian-kit")');craft();craft();check(page.evaluate('Rainward.state.player.medkit===2&&Rainward.state.player.cloth===0&&Rainward.state.player.canister===0'),'Preparation uses only the original finite arrival cache')
   tap(8);wait('Rainward.mode==="map"');check('Sealed water filter' in page.locator('#next-goal').text_content(),'The actual map clearly names the next required goal');page.screenshot(path=str(OUT/'01-goal-map.png'));tap(1);wait('Rainward.mode==="play"')
   go(-42,35);use('Rainward.state.puzzle.clueRead');go(-43,20);use('Rainward.state.objectives.cell');check(page.evaluate('Rainward.state.player.y>2.3'),'The clinic objective sits on a genuinely raised walkable terrace')
-  go(-34,34);use('Rainward.state.completedTasks.includes("clinic-power")');go(-41,29);go(-42,29);use('Rainward.state.puzzle.wheels[0]===1');use('Rainward.state.puzzle.wheels[0]===2');go(-47,31);use('Rainward.state.checkpoint==="meridian-clinic"');capture('02-clinic-courtyard')
+  go(-34,34);use('Rainward.state.completedTasks.includes("clinic-power")');go(-42,32.5);go(-42,29);use('Rainward.state.puzzle.wheels[0]===1');use('Rainward.state.puzzle.wheels[0]===2');go(-47,31);use('Rainward.state.checkpoint==="meridian-clinic"');capture('02-clinic-courtyard')
   go(0,-29);check(page.evaluate('Rainward.state.player.y< -2.3'),'Actual movement descends into the sunken drainage route')
   go(42,-27);use('Rainward.state.objectives.crank');check(page.evaluate('Rainward.state.player.y>5.9'),'Actual movement climbs the reading-hall ridge to recover its original key')
   go(42,-15);use('Rainward.state.puzzle.solved');go(45,-12);use('Rainward.state.checkpoint==="meridian-library"');capture('03-reading-hall')
@@ -51,7 +51,7 @@ with sync_playwright() as pw:
   (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'final':final,'errors':errors,'console':console,'scope':'Normal-start Meridian with all enemies, real HTTP/WebGL and synthetic standard Xbox input. Read-only path and finite-medkit guidance, no planted save, actor assignment, damage override or reward grant. Not unfamiliar-player, physical Xbox/Quest, final-art or comfort approval.'},indent=2))
  except Exception as e:
   data={'error':str(e),'checks':checks,'errors':errors,'console':console}
-  try:data['state']=page.evaluate('Rainward.snapshot()');page.screenshot(path=str(OUT/'failure.png'))
+  try:data['virtualInput']=page.evaluate('({pad,polls,pulses})');data['state']=page.evaluate('Rainward.snapshot()');page.screenshot(path=str(OUT/'failure.png'))
   except Exception:pass
   (OUT/'failure.json').write_text(json.dumps(data,indent=2));raise
  finally:ctx.close();browser.close()
