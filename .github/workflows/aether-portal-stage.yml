@@ -2,7 +2,7 @@ name: Stage reviewed Aether World Portal
 on:
   push:
     branches: [aether/world-portal-20260917]
-    paths: ['aether-reach/tools/portal-transfer-3.b64']
+    paths: ['aether-reach/tools/portal-transfer-3.b64', '.github/workflows/aether-portal-stage.yml']
 permissions:
   contents: read
 jobs:
@@ -29,6 +29,9 @@ jobs:
           import base64,zlib,json,hashlib
           from pathlib import Path
           encoded=''.join(Path(f'aether-reach/tools/portal-transfer-{i}.b64').read_text().strip() for i in range(4))
+          Path('/tmp/aether-portal-stage/received.b64').write_text(encoded)
+          # Remove a known duplicated transfer character; original SHA-256 remains mandatory.
+          encoded=encoded.replace('ZZzh1+eWkXB','ZZzh1+WkXB')
           raw=zlib.decompress(base64.b64decode(encoded,validate=True))
           assert hashlib.sha256(raw).hexdigest()=='dfb2375985dabb25939e5c6fc70e39a08efb28965a25b440497325735fabf32d'
           data=json.loads(raw)
@@ -82,4 +85,5 @@ jobs:
           path: |
             /tmp/aether-portal-stage/candidate.json
             /tmp/aether-portal-stage/node-tests.log
+            /tmp/aether-portal-stage/received.b64
           retention-days: 14
