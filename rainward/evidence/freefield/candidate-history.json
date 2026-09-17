@@ -1,0 +1,28 @@
+{
+  "record_kind": "Candidate history, not public release or hardware approval",
+  "version": "0.16.0",
+  "edition": "Freefield",
+  "baseline_release": "Freight Cut 0.15.0 / 9904e8ad6a0f92459a7bf1bded24c1f677da825e",
+  "recovered_source": "50ca1dfeb21dddec218c816ffca3613fa50d10c9",
+  "recovered_native_run": 35283477152,
+  "recovered_native_result": "Four new-default XR cases and the rendered aperture/waist fixtures passed. Meridian died at the clinic valve. These were not physical-device results.",
+  "clinic_correction_source": "0febf4cd2e647dd9d785e52033c52e3c693543d6",
+  "clinic_correction_run": 35285554508,
+  "clinic_result": "The live mission left the valve area at full health, recovered the filter and service key, crossed low and high terrain, and opened the original gate; it later died on the north approach. Failure archive is separately recorded in northern-approach.json.",
+  "final_assembled_source": "0890cb9f74aede7486a953e4a6337d6a4f5b46a6",
+  "final_candidate_run": 35287070351,
+  "final_candidate_status": "Preparation passed and committed before native jobs. Native results must be read rather than inferred from this record.",
+  "local_model_source_checks": {"passed": 386, "failed": 0},
+  "revisions": [
+    "Directional clinic partition and tapered corner steering preserve live threats and old supplies.",
+    "The perspective aperture now has an environment-only survivor sightline cutaway; initial green portal captures still showed an obstructing foreground shelter wall.",
+    "Actual rendered fixtures separately verify stereo aperture, waist-cut actor preservation and near-wall cutaway.",
+    "Meridian terrain now blocks sight and shots consistently with its heightfield. The native path uses original librarian supplies, respects carrying limits, goes around the original planter and returns through the drainage spine.",
+    "New-default scope and held-preview/released-blink tests use real game inputs; all four XR views are exercised with both controller and hand data.",
+    "Historical tests retain legacy input/movement options but update superseded three-view and cropped-miniature expectations.",
+    "Temporary write-enabled assembly workflows, scripts and markers are removed from the final PR source. Native acceptance cannot mutate source."
+  ],
+  "preservation": "Seven chapter identities, stable required objectives/tasks/rewards, shelter anchors, existing save keys/formats, licensed source, keyboard/touch alternatives, selectable legacy controls and concurrent sibling work remain.",
+  "unapproved": ["Physical Quest 3", "Physical Xbox", "Real-camera passthrough appearance", "All arbitrary remap combinations", "Headset performance and comfort", "Unfamiliar-player pacing and replay mastery", "Complete hand/foot authored animation", "Final audio and art", "Six remaining chapter redesigns"],
+  "next": "Read exact-source PR checks and native captures. Merge only after reconciling current master, then verify actual served bytes and archive that receipt. Do not label this candidate history a publication proof."
+}
