@@ -25,19 +25,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate and apply reviewed source only to this work branch
+      - name: Validate and apply reviewed refinement only to this work branch
         id: source
         run: |
           python - <<'PY'
           import base64,hashlib,lzma,pathlib,subprocess
-          marker=pathlib.Path('svgn-planet/production/evidence/living-portal-0.13.0/source-patch.sha256')
-          expected='aef2277ef1d3d2042c34db09d2dddf90f5271b0fb1638eaf105925af95ef02ac'
+          root=pathlib.Path('svgn-planet/production/evidence/living-portal-0.13.0')
+          assert (root/'source-patch.sha256').read_text().strip()=='aef2277ef1d3d2042c34db09d2dddf90f5271b0fb1638eaf105925af95ef02ac'
+          marker=root/'review-patch.sha256'
+          expected='21929b031eb9680df66455fee57264d0ea88779cba85cf2fef782601d1874cd6'
           if marker.exists():
               assert marker.read_text().strip()==expected
           else:
               parts=[]
-              for i in range(1,5):
-                  text=pathlib.Path(f'.github/upgrades/living-portal-{i}.xz.b64').read_text().strip()
+              for i in range(1,3):
+                  text=pathlib.Path(f'.github/upgrades/living-portal-review-{i}.xz.b64').read_text().strip()
                   print(i,len(text),hashlib.sha256(text.encode()).hexdigest(),flush=True);parts.append(text)
               patch=lzma.decompress(base64.b64decode(''.join(parts),validate=True))
               assert hashlib.sha256(patch).hexdigest()==expected,'Patch checksum mismatch; no game files changed'
@@ -49,7 +51,7 @@ jobs:
               subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
               subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
               subprocess.run(['git','add','svgn-planet'],check=True)
-              subprocess.run(['git','commit','-m','feat(neighborhood): player-centered portal, first-person AR and resident stories'],check=True)
+              subprocess.run(['git','commit','-m','fix(neighborhood): direct mission access, clear interiors and transparent AR recovery'],check=True)
               subprocess.run(['git','push','origin','HEAD:neighborhood-missions/living-portal-20260917'],check=True)
           PY
           echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
