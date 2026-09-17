@@ -1,0 +1,52 @@
+name: Integrate Dino portal source
+on:
+  push:
+    branches: ['dino-atlas/world-portal-20260917']
+    paths: ['.github/workflows/dino-portal-apply.yml', '.github/patches/portal.*.b64']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dino-atlas/world-portal-20260917
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check every before and after hash; apply only reviewed game files
+        run: |
+          python - <<'PY'
+          from pathlib import Path,PurePosixPath
+          import base64,lzma,json,hashlib,subprocess
+          parts=sorted(Path('.github/patches').glob('portal.*.b64'))
+          if not parts:raise SystemExit(0)
+          assert len(parts)==2
+          raw=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='26f95147035eddf80541df58dd57e11074f23b679be2b202d59826ec3865112c'
+          data=json.loads(raw);assert len(data)==17
+          outputs={}
+          for name,item in data.items():
+              path=Path(name);assert name.startswith('dino-atlas/') and '..' not in PurePosixPath(name).parts
+              old=path.read_bytes() if path.exists() else b''
+              assert (hashlib.sha256(old).hexdigest() if path.exists() else None)==item['before'],name+' baseline changed'
+              text=old.decode('utf-8');last=0
+              for edit in item['edits']:
+                  assert last<=edit['start']<=edit['end']<=len(text);last=edit['end']
+              for edit in reversed(item['edits']):text=text[:edit['start']]+edit['text']+text[edit['end']:]
+              body=text.encode('utf-8');assert hashlib.sha256(body).hexdigest()==item['after'],name+' output mismatch'
+              outputs[path]=body
+          for path,body in outputs.items():path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(body)
+          subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
+          subprocess.run(['git','add',*[str(p) for p in outputs]],check=True)
+          subprocess.run(['git','rm',*[str(p) for p in parts]],check=True)
+          subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
+          subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
+          subprocess.run(['git','commit','-m','Implement character-centered depth portal for Tidegate and Classic Reserve'],check=True)
+          subprocess.run(['git','push','origin','HEAD:dino-atlas/world-portal-20260917'],check=True)
+          PY
