@@ -1,3 +1,26 @@
+# Active user-requested slice: Spatial Workspace v0.26
+
+Updated September 17, 2026. Read `RESUME-HERE.md`, `SPATIAL-WORKSPACE-0.26.md`, `XR-MENU-CONTRACT.md` and `verification/spatial-workspace-0.26.json`. The receipt controls exact-source acceptance, merge and independent public verification. The historical roadmap below is preserved; its older current-version labels do not override the latest receipt.
+
+This is a Milestones F/G input, presentation and recovery slice. It does not replace the cycling game, promote Waterwheel into the campaign, complete physical-device qualification or supersede the movement-first chapter direction.
+
+- [x] Implement explicit immersive-ar and immersive-vr entry around the existing renderer and game truth, without a second A-Frame lifecycle.
+- [x] Add alpha-clear AR exhibit clipping, manual seated placement and recenter, with recovery menus that do not rotate out of reach when the exhibit turns.
+- [x] Present the existing 2D game and both editor canvases live in XR; preserve stereo 3D playtesting and the original document.
+- [x] Share DOM-owned menus, checkbox states, bounded adjustments, text entry, cancellation and explicit browser-owned action handoffs.
+- [x] Retain direct gameplay bindings, a compact hand bar, direct editor Select/Pan/Undo/Redo/Zoom/Fit/Playtest actions and distinct Resume editing navigation.
+- [x] Route Xbox text activation through the same headset keyboard and keep split-page control focus visible.
+- [x] Retain strict real stereo framebuffer validation, input-loss cleanup, original-scene ownership and normal renderer/editor recovery.
+- [x] Record native AR/VR menu and modern-editor journeys, including mode switching and denied re-entry; read the receipt for their exact source rather than treating all candidates as equivalent.
+- [ ] Close exact final-source, capture-review, normal-merge and public-origin gates only when the current versioned receipt records each successful result.
+- [ ] Qualify physical Quest 3 passthrough, controller/hand ergonomics, real lighting/tracking loss, text readability and seated comfort.
+- [ ] Qualify physical Xbox, advanced Bezier gesture coverage, native layers/multiview, long sessions and measured reference-device performance.
+- [ ] Expand native acceptance to complete XR chapter finishes, more legacy-editor workflows, every relevant browser-owned action and external account/network states; generic menu support is not exhaustive workflow testing.
+
+After this explicitly requested XR slice, resume the preserved `sky-cycle/canal-choice-0.25` branch at `c946e556d1a4d970e4e406d09b7a1f547ae0e8a7`. Its fork geometry is not included here. Reconcile it against the new XR workspace rather than replacing either side wholesale. Keep Waterwheel's useful upper/lower outcomes, recovery and revision-aware campaign promotion as the next content priority. The public `level-design-library/SKY-CYCLE-LEVEL-DESIGN.md` remains the authoritative shared movement-first method.
+
+---
+
 # Current chapter-design continuation: Waterwheel Lab
 
 The approved merged design is now canonical in `LEVEL-DESIGN-METHODOLOGY.md`; its concrete reference-chapter specification and promotion workbook are in `chapters/WATERWHEEL-BOULEVARD-R2.md`. Continue that chapter before another destination or cosmetic feature series. Source provenance is in `chapters/design-source-provenance.json`.
@@ -105,7 +128,7 @@ The native set includes the detour, direct road and coasting road. It is mixed-r
 
 See `ROUTE-COMPASS-0.17.md` and its receipt.
 
-- [x] Implement district guidance, actual checkpoint distance and optional gold-track clues.
+- [x] Implement district guidance, actual checkpoint distance, and optional gold-track clues.
 - [x] Add exploration journal access from pause, Flight Deck, header and accepted results.
 - [x] Bank observed district/rail stamps only after accepted authored finish in an independent key.
 - [x] Support detailed/compact/off guidance, narrow layouts and district announcements.
