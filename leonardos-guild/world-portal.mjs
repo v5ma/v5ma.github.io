@@ -14,8 +14,8 @@ export function boxInterval(origin,direction,size){
 }
 export function seesFragment(eye,point,inverse,size){const a=eye.clone().applyMatrix4(inverse),b=point.clone().applyMatrix4(inverse);const h=boxInterval(a,b.sub(a),size);return !!h&&h.enter<=1+1e-7;}
 export function faceOpacity(eye,normal,point,closed=true){return !closed||normal.dot(eye.clone().sub(point))>=-.005?0:.025;}
-export function centeredWorldMatrix(actor,scale,heading){
- const m=new T.Matrix4().makeRotationY(Math.PI-heading);m.scale(new T.Vector3(scale,scale,scale));
+export function centeredWorldMatrix(actor,scale,heading,pitch=0){
+ const m=new T.Matrix4().makeRotationX(pitch).multiply(new T.Matrix4().makeRotationY(Math.PI-heading));m.scale(new T.Vector3(scale,scale,scale));
  const offset=new T.Vector3(actor.x,actor.y,actor.z).applyMatrix4(m).negate();return m.setPosition(offset);
 }
 const declarations=`uniform float guildPortalEnabled;uniform mat4 guildPortalInverse;uniform vec3 guildPortalHalf;varying vec3 guildPortalView;\n`;
@@ -31,7 +31,7 @@ bool guildVisible(){
  if(!guildSlab(eye.x,ray.x,-guildPortalHalf.x,guildPortalHalf.x,entry,leave))return false;
  if(!guildSlab(eye.y,ray.y,0.0,2.0*guildPortalHalf.y,entry,leave))return false;
  if(!guildSlab(eye.z,ray.z,-guildPortalHalf.z,guildPortalHalf.z,entry,leave))return false;
- return leave>=max(entry,0.0)&&entry<=1.00001;
+ return leave>0.0&&leave>=max(entry,0.0)&&entry<=1.00001;
 }
 `;
 function rename(source,name){const re=/void\s+main\s*\(\s*(?:void\s*)?\)\s*\{/;if(!re.test(source))throw Error('Portal shader missing main');return source.replace(re,'void '+name+'(){');}
@@ -46,8 +46,9 @@ export class PortalMaterials{
   if(!m||this.entries.has(m))return;if(m.isRawShaderMaterial)throw Error('Raw shader requires an explicit portal adapter');
   const compile=m.onBeforeCompile,key=m.customProgramCacheKey,base=key.call(m),shared=this.uniforms;
   m.onBeforeCompile=function(shader,renderer){compile.call(this,shader,renderer);patchShader(shader,shared);};m.customProgramCacheKey=()=>base+'|'+PORTAL_BUILD;
-  const dispose=()=>{this.entries.delete(m);m.removeEventListener('dispose',dispose);};this.entries.set(m,{compile,key,dispose});m.addEventListener('dispose',dispose);m.needsUpdate=true;
+  const dispose=()=>{m.onBeforeCompile=compile;m.customProgramCacheKey=key;this.entries.delete(m);m.removeEventListener('dispose',dispose);};this.entries.set(m,{compile,key,dispose});m.addEventListener('dispose',dispose);m.needsUpdate=true;
  }
+ originalClone(m){const copy=m.clone(),e=this.entries.get(m);copy.onBeforeCompile=e?.compile||m.onBeforeCompile;copy.customProgramCacheKey=e?.key||m.customProgramCacheKey;return copy;}
  collect(root){root.traverse(o=>{for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[])this.attach(m);});}
  configure(matrix,size){this.uniforms.guildPortalInverse.value.copy(matrix).invert();this.uniforms.guildPortalHalf.value.set(size.width/2,size.height/2,size.depth/2);}
  set active(v){this.uniforms.guildPortalEnabled.value=v?1:0;}

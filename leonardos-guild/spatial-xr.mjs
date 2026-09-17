@@ -82,9 +82,12 @@ export function createSpatialXR({scene,stage,view,getState,release,openOptions})
    geometry.acquire?.(mode);acquired=true;
    if(mode==='diorama'){
     applyMini();worldDraw.add(g);g.position.set(0,0,0);g.quaternion.identity();g.scale.setScalar(1);
-    worldDraw.matrixAutoUpdate=false;worldDraw.matrix.copy(centeredWorldMatrix(a,prefs.scale*zoom,view.heading?.()??getState().yaw));mini.updateWorldMatrix(true,true);
+    worldDraw.matrixAutoUpdate=false;worldDraw.matrix.copy(centeredWorldMatrix(a,prefs.scale*zoom,view.heading?.()??getState().yaw,view.portalPitch?.()||0));mini.updateWorldMatrix(true,true);
     portalBase.copy(mini.matrixWorld).multiply(new T.Matrix4().makeTranslation(0,b.minY*prefs.scale,0));
-    mask.configure(portalBase,{width:width*prefs.scale,height:height*prefs.scale,depth:depth*prefs.scale});mask.collect(g);mask.active=true;
+    mask.configure(portalBase,{width:width*prefs.scale,height:height*prefs.scale,depth:depth*prefs.scale});
+    center.set(a.x,a.y,a.z);worldDraw.localToWorld(center);
+    if(viewer&&geometry.reveal){const eye=new T.Vector3().copy(viewer.transform.position),right=new T.Vector3(1,0,0).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation));geometry.reveal([eye.clone().addScaledVector(right,-.033),eye.clone().addScaledVector(right,.033)],center,prefs.scale*zoom,m=>mask.originalClone(m),new T.Vector3(0,1,0).transformDirection(worldDraw.matrixWorld));}
+    mask.collect(g);mask.active=true;
     sky.position.copy(viewer?.transform.position||new T.Vector3());sky.material.color.copy(geometry.background?.()||new T.Color('#9bcceb'));sky.visible=true;scene.background=sessionMode==='immersive-ar'?null:previousBackground;
     center.set(a.x,a.y,a.z);worldDraw.localToWorld(center);
     if(!geometry.acquire)geometry.setPresentation('diorama');
@@ -104,7 +107,7 @@ export function createSpatialXR({scene,stage,view,getState,release,openOptions})
   }finally{mask.active=false;sky.visible=false;g.visible=previousVisible;scene.background=previousBackground;if(parent)parent.add(g);else g.removeFromParent();g.position.copy(position);g.quaternion.copy(rotation);g.scale.copy(scale);if(acquired)geometry.release?.();g.updateWorldMatrix(true,true);geometry.setPresentation('desktop');}
  }
  applyMini();mini.visible=headWorld.visible=false;
- return {begin,end,poll,controls,modify,hit,draw,effective,inspect:()=>({mode:effective(),requested:desired,aperture:prefs.aperture,faces:apertureFaces(prefs.aperture),scale:prefs.scale,zoom,yaw:prefs.yaw,height:prefs.height,distance:prefs.distance,placement,hitAvailable:!!hitPose,geometryDraws:draws,renderedEyes,firstPersonHeading:viewer?angle(poseYaw(viewer)+Math.PI-phi):null,headBlocked,aimVisible:aim.visible,worldIsTexture:false,viewScope:geometry.scope?.()||'test fixture',playerCentered:true,playerDisplay:center.toArray(),boxPosition:mini.getWorldPosition(new T.Vector3()).toArray(),boxSize:[width*prefs.scale,height*prefs.scale,depth*prefs.scale],portalMaterials:mask.entries.size,maskedBeyondWalls:true,automaticNearWallTransparency:true,hardwareVerified:false})};
+ return {begin,end,poll,controls,modify,hit,draw,effective,inspect:()=>({mode:effective(),requested:desired,aperture:prefs.aperture,faces:apertureFaces(prefs.aperture),scale:prefs.scale,zoom,yaw:prefs.yaw,height:prefs.height,distance:prefs.distance,placement,hitAvailable:!!hitPose,geometryDraws:draws,renderedEyes,firstPersonHeading:viewer?angle(poseYaw(viewer)+Math.PI-phi):null,headBlocked,aimVisible:aim.visible,worldIsTexture:false,viewScope:geometry.scope?.()||'test fixture',playerCentered:true,playerDisplay:center.toArray(),boxPosition:mini.getWorldPosition(new T.Vector3()).toArray(),boxSize:[width*prefs.scale,height*prefs.scale,depth*prefs.scale],portalMaterials:mask.entries.size,cameraPitch:view.portalPitch?.()||0,occluders:geometry.occluders?.()||[],maskedBeyondWalls:true,automaticNearWallTransparency:true,hardwareVerified:false})};
 }
 export function createSpatialOptions({getXR,setPause,getState}){
  const d=document.createElement('dialog');d.id='guild-spatial-options';d.setAttribute('aria-label','XR views and diorama openings');document.body.append(d);d.addEventListener('close',()=>setPause(false));
