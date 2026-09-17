@@ -1,0 +1,45 @@
+name: Apply Sky Cycle canvas gesture correction
+on:
+  push:
+    branches: ['sky-cycle/spatial-workspace-0.26']
+    paths: ['.github/workflows/sky-cycle-gesture-bridge.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace only the reviewed canvas event dispatch block
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          p=Path('mario-maker-clone/svgn-paper-route/xr-play.js')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='e86af692e335748d62028b3f32801b15b9ae962a246aec54188e810e31b5a85e'
+          old="""  target.dispatchEvent(new PointerEvent(type,init));
+            if(target.id!=='maker-canvas')target.dispatchEvent(new MouseEvent(type.replace('pointer','mouse'),init));"""
+          new="""  const pointerAccepted=target.dispatchEvent(new PointerEvent(type,init));
+            // Pointer-aware curve tools can claim the gesture. Do not also start the
+            // older mouse-paint path when its pointer handler prevented the default.
+            if(type==='pointerdown'&&screenPointer)screenPointer.mouseCompat=target.id!=='maker-canvas'&&pointerAccepted;
+            if(screenPointer?.mouseCompat){
+              const terminal=type==='pointerup'||type==='pointercancel';
+              if(terminal||pointerAccepted)target.dispatchEvent(new MouseEvent(terminal?'mouseup':type.replace('pointer','mouse'),{...init,buttons:terminal?0:init.buttons}));
+              // Legacy mouse editing ends through its native mouseup/undo path on loss;
+              // modern pointer editors retain their own pointercancel semantics.
+              if(terminal)screenPointer.mouseCompat=false;
+            }"""
+          # Remove YAML indentation retained inside the Python literal.
+          old=old.replace('\n  ','\n');new=new.replace('\n  ','\n')
+          source=p.read_text();assert source.count(old)==1
+          p.write_text(source.replace(old,new))
+          PY
+          node --check mario-maker-clone/svgn-paper-route/xr-play.js
+          git add mario-maker-clone/svgn-paper-route/xr-play.js
+          git rm .github/workflows/sky-cycle-gesture-bridge.yml
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(sky-cycle): respect native pointer ownership and finish legacy mouse gestures'
+          git push origin HEAD:refs/heads/sky-cycle/spatial-workspace-0.26
