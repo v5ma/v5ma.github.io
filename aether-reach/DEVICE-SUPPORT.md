@@ -1,3 +1,9 @@
+# World Portal 0.14.0
+
+XR / diorama views now also offers First-person AR / life-size passthrough. Session selection requires leaving XR first. The portal uses the same third-person expedition with exact courier centering, full side/rear depth and automatic near-face transparency. Its size/height controls keep their existing bounds and stored values. Explicit pause menus and the small status dock no longer follow the head in diorama. The map shows a larger next-goal marker, direction (not a pathfinding route), distance and elevation.
+
+All existing gameplay inputs/remaps remain; physical approval is still open. First-person AR has no room sensing or real-obstacle detection.
+
 # Receiver Crosswind v0.13.0
 
 Windbreak selectors use the existing contextual X/E action; no new gameplay menu or binding is introduced. Tracked-controller interaction reaches the same selector logic. Choosing a protected angle does not bypass projectile collision, including when a tracked gun origin would reach through the active screen. Existing fixed menu controls, remaps, tracked-hand spatial UI, head independence and legal diorama openings are retained. Hands remain UI-only. Physical acceptance remains open.

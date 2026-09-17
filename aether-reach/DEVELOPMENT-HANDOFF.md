@@ -1,3 +1,17 @@
+# Aether Reach 0.14.0 World Portal
+
+Start from the latest master and the final release receipt. Reviewed baseline master dd4a9d2a35ea667fd33f3ed2b597aeda15cb27e5 retains the published 0.13.0 runtime. The prior Crosswind release gates are complete at ../release-receipts/aether-v0.13.0-20260915.json; do not rerun historic transfer branches.
+
+X10 implements the owner's corrected diorama request: the same expedition through a full-depth ray aperture rather than six world clipping planes. The player stays exactly centered, including during vertical travel. The physical box dimensions, scale and height are retained. The behind-character view scrolls/turns the world without head-driven character movement. Per-eye full projection inverses support the existing scaled XR rig. Every world material, including custom shaders and sprites, is masked; camera/controller/menu objects are excluded deliberately.
+
+The two head-linked UI planes were attached to camera. In diorama, status is now below the fixed box and explicit pause menus are anchored on opening, not head roll. Custom caustic/water/particle materials were also skipped by the old crop pass; the new aperture includes them. These are code-level findings; physical reproduction is still required to identify which caused the reported device artifact.
+
+First-person AR requests immersive-ar with local-floor and optional hand tracking, removes opaque sky/fog and uses alpha composition. An opaque session is rejected, not relabeled passthrough. This is life-size virtual geometry, not room scanning or real-obstacle detection. A larger last-drawn map goal marker, bearing line labeled as non-pathfinding, distance/elevation text and a depth-tested world beacon use the existing tracked goal without granting progress.
+
+Read WORLD-PORTAL.md, DIORAMA.md, DEVICE-SUPPORT.md and the shared level-design manuals. Run all model tests and portal rendering/app tests. No tests may assign player or mission progress for a gameplay pass. Local Chromium HTTP navigation is blocked by administrator policy; native browser evidence must come from the GitHub runner. Physical Quest/Xbox and human clarity remain open.
+
+Previous handoff (historical context) follows.
+
 # Aether Reach: Receiver Crosswind continuation
 
 Current development: 0.13.0 Receiver Crosswind. Base master 78dad9840163bbacb7308118cde44a1bb4f525f6. The released game at that base is 0.12.0, merged at a6d0e27d349fc69c011a5130b7dff1b6da9f8af2. Its publication and archive are complete, not recovery tasks.

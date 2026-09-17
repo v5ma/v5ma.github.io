@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.13.0 Receiver Crosswind. Updated 2026-09-15.
+Current plan: 0.14.0 World Portal. Updated 2026-09-17.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -415,6 +415,12 @@ State: In review. Priority: P0. Dependencies: V02, I04.
 Acceptance: Before and during the same rooftop fight, direct contextual input trades receiver cover for gallery cover; player and enemy shots obey identical solids. Complete with starter equipment, retreat to the existing lower gallery and return without resetting enemies, and preserve version-1 saves and once-only rewards in first-person and diorama modes.
 Evidence: RECEIVER-CROSSWIND.md; tests/windbreak.test.mjs; BELL_WIND=1 tests/bellwether-browser.py. Nine additional model fixtures pass locally; native, public-byte and source-backup results must be read from exact workflow receipts.
 Next: Observe unfamiliar and returning players choosing cover/angles, recognizing the gallery recovery and distinguishing cover from a clear firing lane; test physical Xbox and Quest separately.
+
+### X10 - Full-depth centered world portal and first-person AR
+State: Implemented. Priority: P0. Dependencies: X08.
+Acceptance: Room-fixed aperture preserves rear/side depth, exactly centers the courier, and masks every rendered shader. Head tilt does not move gameplay or UI planes. First-person AR explicitly requests transparent immersive-ar. Existing input/remaps and save-v1 remain.
+Evidence: portal.test.mjs, portal-render.html, portal-browser.py; see release receipt for actual native/public acceptance.
+Next: Physical Quest and Xbox validation; compare first and repeat visits with clearer tracked-goal map.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.

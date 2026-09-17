@@ -1,7 +1,7 @@
 {
-  "version": "0.13.0",
-  "focus": "Receiver Crosswind: reversible rooftop windbreak, meaningful firing-lane tradeoffs and gallery retreat without encounter reset",
+  "version": "0.14.0",
+  "focus": "World Portal: centered third-person full-depth diorama, room-fixed XR UI, goal guidance and first-person AR",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false,
-  "scope": "Bellwether encounter refinement on the released v0.12.0 chapter. Existing first-person VR and diorama VR/AR retained; hands operate UI. Physical hardware and unfamiliar-player quality acceptance remain open."
+  "scope": "Rendering and read-only navigation upgrade. Existing expedition, save-v1, input/remaps and Bellwether rules remain. Physical Quest/Xbox approval stays open."
 }

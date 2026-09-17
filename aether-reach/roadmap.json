@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updated": "2026-09-15",
+  "updated": "2026-09-17",
   "project": "Aether Reach",
-  "release": "0.13.0 Receiver Crosswind",
+  "release": "0.14.0 World Portal",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -859,6 +859,19 @@
       "acceptance": "Before and during the same rooftop fight, direct contextual input trades receiver cover for gallery cover; player and enemy shots obey identical solids. Complete with starter equipment, retreat to the existing lower gallery and return without resetting enemies, and preserve version-1 saves and once-only rewards in first-person and diorama modes.",
       "evidence": "RECEIVER-CROSSWIND.md; tests/windbreak.test.mjs; BELL_WIND=1 tests/bellwether-browser.py. Nine additional model fixtures pass locally; native, public-byte and source-backup results must be read from exact workflow receipts.",
       "next": "Observe unfamiliar and returning players choosing cover/angles, recognizing the gallery recovery and distinguishing cover from a clear firing lane; test physical Xbox and Quest separately."
+    },
+    {
+      "id": "X10",
+      "phase": "XR",
+      "title": "Full-depth centered world portal and first-person AR",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "X08"
+      ],
+      "acceptance": "Room-fixed aperture preserves rear/side depth, exactly centers the courier, and masks every rendered shader. Head tilt does not move gameplay or UI planes. First-person AR explicitly requests transparent immersive-ar. Existing input/remaps and save-v1 remain.",
+      "evidence": "portal.test.mjs, portal-render.html, portal-browser.py; see release receipt for actual native/public acceptance.",
+      "next": "Physical Quest and Xbox validation; compare first and repeat visits with clearer tracked-goal map."
     }
   ],
   "milestones": [

@@ -1,0 +1,29 @@
+<!doctype html><meta charset="utf-8"><title>Aether portal render fixture</title><canvas id="c"></canvas><script type="module">
+import * as T from '../vendor/three.module.js';
+import {PortalMaterials,seesFragment} from '../portal-aperture.mjs';
+const renderer=new T.WebGLRenderer({canvas:document.getElementById('c'),alpha:true,antialias:false});renderer.setSize(256,256);renderer.setClearColor(0,0);
+const errors=[];renderer.debug.onShaderError=(gl,p,v,f)=>errors.push(gl.getProgramInfoLog(p)+' '+gl.getShaderInfoLog(v)+' '+gl.getShaderInfoLog(f));
+const scene=new T.Scene(),portal=new PortalMaterials();portal.active=true;portal.configure(new T.Matrix4());
+const plane=new T.PlaneGeometry(10000,10000),red=new T.MeshBasicMaterial({color:0xff0000,side:T.DoubleSide,toneMapped:false}),near=new T.Mesh(plane,new T.MeshBasicMaterial({color:0xffff00,side:T.DoubleSide,toneMapped:false})),far=new T.Mesh(plane,red);scene.add(far,near);portal.collect(scene);
+const target=new T.WebGLRenderTarget(256,256,{depthBuffer:true,stencilBuffer:false}),bytes=new Uint8Array(256*256*4),results=[];
+function run(name,eye,look,scale=1,roll=0,viewport=null){
+ const rig=new T.Group(),camera=new T.PerspectiveCamera(60,viewport?.z/viewport?.w||1,.01,10000);rig.scale.setScalar(scale);rig.position.set(13,-8,4);scene.add(rig);rig.add(camera);camera.position.copy(eye).sub(rig.position).divideScalar(scale);camera.lookAt(look);camera.rotateZ(roll);rig.updateMatrixWorld(true);camera.updateMatrixWorld(true);const direction=camera.getWorldDirection(new T.Vector3());far.position.copy(eye).addScaledVector(direction,500);far.quaternion.copy(camera.getWorldQuaternion(new T.Quaternion()));near.position.copy(eye).addScaledVector(direction,2);near.quaternion.copy(far.quaternion);
+ renderer.setRenderTarget(target);renderer.setViewport(0,0,256,256);renderer.clear();if(viewport)renderer.setViewport(viewport);renderer.render(scene,camera);renderer.readRenderTargetPixels(target,0,0,256,256,bytes);
+ const vp=viewport||new T.Vector4(0,0,256,256);let inside=0,outside=0,bad=0,yellow=0;
+ for(let y=4;y<252;y+=4)for(let x=4;x<252;x+=4){if(x<vp.x||x>=vp.x+vp.z||y<vp.y||y>=vp.y+vp.w)continue;
+  const end=new T.Vector3((x+.5-vp.x)/vp.z*2-1,(y+.5-vp.y)/vp.w*2-1,.999).unproject(camera),dir=end.sub(eye).normalize(),point=eye.clone().addScaledVector(dir,500/dir.dot(direction));const expect=seesFragment(eye,point,new T.Matrix4());const i=(y*256+x)*4,visible=bytes[i+3]>128;if(expect)inside++;else outside++;if(visible!==expect)bad++;if(bytes[i]>128&&bytes[i+1]>128)yellow++;
+ }
+ if(!inside||!outside||bad>8||yellow||errors.length)throw Error(name+': '+JSON.stringify({inside,outside,bad,yellow,errors}));results.push({name,inside,outside,bad,yellow});scene.remove(rig);renderer.setRenderTarget(null);renderer.setViewport(0,0,256,256);renderer.render(scene,camera);
+}
+try{
+ run('front full-depth',new T.Vector3(0,17.5,100),new T.Vector3(0,17.5,0));
+ run('rolled head',new T.Vector3(8,30,100),new T.Vector3(0,17.5,0),1,.42);
+ run('side full-depth',new T.Vector3(100,22,0),new T.Vector3(0,17.5,0));
+ run('scaled left eye',new T.Vector3(-1.0667,38,95),new T.Vector3(0,17.5,0),1/.03,.2,new T.Vector4(0,0,128,256));
+ run('scaled right eye',new T.Vector3(1.0667,38,95),new T.Vector3(0,17.5,0),1/.03,.2,new T.Vector4(128,0,128,256));
+ const custom=new T.ShaderMaterial({side:T.DoubleSide,vertexShader:'void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'void main(){gl_FragColor=vec4(1.,0.,0.,1.);}'});far.material=custom;portal.collect(scene);run('custom shader mask',new T.Vector3(0,17.5,100),new T.Vector3(0,17.5,0));
+ // A large sprite follows the camera but must still be clipped per fragment.
+ scene.remove(far);const sprite=new T.Sprite(new T.SpriteMaterial({color:0xff0000,toneMapped:false}));sprite.scale.set(3000,3000,1);sprite.position.set(0,17.5,-100);scene.add(sprite);portal.collect(scene);run('billboard mask',new T.Vector3(0,17.5,100),new T.Vector3(0,17.5,0));scene.remove(sprite);scene.add(far);
+ window.portalResult={passed:results.length,checks:results,errors};
+}catch(e){window.portalResult={error:e.message,checks:results,errors};console.error(e);}
+</script>
