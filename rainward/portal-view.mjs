@@ -2,11 +2,12 @@
  * Physical XR eye separation stays unscaled. Every scene mutation is restored.
  */
 import * as T from './vendor/three.module.js';
+import {createPortalOcclusion,blocksPortalFocus} from './portal-occlusion.mjs';
 import {PortalMaterials,boxInverse,enterPortal,seesFragment,shellMaterial} from './world-aperture.mjs';
 import {normalizeDiorama,shellOpenings,STAGE_METRES} from './diorama-core.mjs';
 const UP=new T.Vector3(0,1,0);
 export function createWorldPortal(){
- const overlay=new T.Scene(),shell=new T.Group(),world=new T.Group(),materials=new PortalMaterials();
+ const overlay=new T.Scene(),shell=new T.Group(),world=new T.Group(),materials=new PortalMaterials(),occlusion=createPortalOcclusion();
  overlay.add(shell,new T.HemisphereLight(0xd8e6eb,0x394b42,1.6));shell.name='Rainward character-centered world portal';
  const frameMaterial=new T.MeshBasicMaterial({color:0xbda678,depthTest:false,toneMapped:false});
  const edges=new T.LineSegments(new T.EdgesGeometry(new T.BoxGeometry(STAGE_METRES.width,STAGE_METRES.height,STAGE_METRES.depth)),new T.LineBasicMaterial({color:0xbda678,depthTest:false,transparent:true,opacity:.6}));edges.position.y=STAGE_METRES.height/2;edges.renderOrder=110;shell.add(edges);
@@ -32,23 +33,23 @@ export function createWorldPortal(){
   shell.position.copy(anchor);shell.rotation.set(0,heading,0);shell.updateMatrixWorld(true);materials.configure(anchor,heading,STAGE_METRES);
   const openings=shellOpenings(config.shell);faces.top.visible=!openings.topOpen;faces.front.visible=!openings.frontOpen;
  }
- function render(renderer,scene,camera,rig){
+ function render(renderer,scene,camera,rig,environmentRoots){
   const lamps=[];scene.traverse(o=>{if(o.isPointLight||o.isSpotLight)lamps.push({light:o,distance:o.distance,intensity:o.intensity});});
   const children=[...scene.children].filter(o=>o!==rig),bg=scene.background,fog=scene.fog,auto=renderer.autoClear,planes=renderer.clippingPlanes,color=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha();
   try{
    for(const item of lamps){if(item.distance>0)item.light.distance=item.distance*config.scale;item.light.intensity=item.intensity*Math.pow(config.scale,item.light.decay||2);}
    scene.add(world);for(const child of children)world.add(child);world.matrixAutoUpdate=false;world.matrix.copy(display);world.matrixWorldNeedsUpdate=true;
-   materials.collect(world);sky.position.copy(centre);sky.material.color.copy(bg?.isColor?bg:color);world.add(sky);
+   occlusion.collect(environmentRoots);occlusion.configure(anchor.clone().add(new T.Vector3(0,STAGE_METRES.height/2,0)),anchor.y+STAGE_METRES.height/2-.9*config.scale,config.scale);materials.collect(world);sky.position.copy(centre);sky.material.color.copy(bg?.isColor?bg:color);world.add(sky);
    overlay.add(rig);scene.background=null;scene.fog=null;renderer.clippingPlanes=[];renderer.setClearColor(0x101c24,config.view==='diorama-ar'?0:1);
-   materials.active=true;world.updateMatrixWorld(true);renderer.autoClear=true;renderer.render(scene,camera);
-   materials.active=false;renderer.autoClear=false;renderer.render(overlay,camera);
+   occlusion.active=true;materials.active=true;world.updateMatrixWorld(true);renderer.autoClear=true;renderer.render(scene,camera);
+   occlusion.active=false;materials.active=false;renderer.autoClear=false;renderer.render(overlay,camera);
   }finally{
    for(const item of lamps){item.light.distance=item.distance;item.light.intensity=item.intensity;}
-   materials.active=false;world.remove(sky);for(const child of children)scene.add(child);scene.remove(world);scene.add(rig);
+   occlusion.active=false;materials.active=false;world.remove(sky);for(const child of children)scene.add(child);scene.remove(world);scene.add(rig);
    world.matrix.identity();renderer.autoClear=auto;renderer.clippingPlanes=planes;renderer.setClearColor(color,alpha);scene.background=bg;scene.fog=fog;scene.updateMatrixWorld(true);
   }
  }
  function gameRay(ray){if(!anchor||!ray)return null;const entered=enterPortal(ray,boxInverse(anchor,heading),STAGE_METRES);if(!entered)return null;return {origin:entered.origin.applyMatrix4(inverse),direction:entered.direction.transformDirection(inverse)};}
- function contains(point){if(!anchor)return false;return seesFragment(eye,new T.Vector3(point.x,point.y,point.z).applyMatrix4(display),boxInverse(anchor,heading),STAGE_METRES);}
- return {reset,update,render,gameRay,contains,heading:()=>heading,displayPoint(point){return new T.Vector3(point.x,point.y,point.z).applyMatrix4(display);},stats:()=>({enabled,portal:true,scale:config.scale,shell:config.shell,...shellOpenings(config.shell),physicalDimensions:{...STAGE_METRES},centre:{x:centre.x,y:centre.y,z:centre.z},anchor:anchor?{x:anchor.x,y:anchor.y,z:anchor.z}:null,heading,follow:true,rigScale:1,extraRenderTargets:0,beyondBackVisible:true,automaticEyeFacingTransparency:true,worldMatrix:display.toArray(),closedFaces:Object.entries(faces).filter(([,m])=>m.visible).map(([k])=>k)}),dispose(){materials.dispose();overlay.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});sky.geometry.dispose();sky.material.dispose();frameMaterial.dispose();}};
+ function contains(point,environment=false){if(!anchor)return false;const shown=new T.Vector3(point.x,point.y,point.z).applyMatrix4(display);if(!seesFragment(eye,shown,boxInverse(anchor,heading),STAGE_METRES))return false;return !environment||!blocksPortalFocus(eye,shown,anchor.clone().add(new T.Vector3(0,STAGE_METRES.height/2,0)),anchor.y+STAGE_METRES.height/2-.75*config.scale,Math.max(.10,3.5*config.scale));}
+ return {reset,update,render,gameRay,contains,heading:()=>heading,displayPoint(point){return new T.Vector3(point.x,point.y,point.z).applyMatrix4(display);},stats:()=>({enabled,portal:true,scale:config.scale,shell:config.shell,...shellOpenings(config.shell),physicalDimensions:{...STAGE_METRES},centre:{x:centre.x,y:centre.y,z:centre.z},anchor:anchor?{x:anchor.x,y:anchor.y,z:anchor.z}:null,heading,follow:true,rigScale:1,extraRenderTargets:0,beyondBackVisible:true,automaticEyeFacingTransparency:true,foregroundCutaway:true,worldMatrix:display.toArray(),closedFaces:Object.entries(faces).filter(([,m])=>m.visible).map(([k])=>k)}),dispose(){materials.dispose();occlusion.dispose();overlay.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});sky.geometry.dispose();sky.material.dispose();frameMaterial.dispose();}};
 }

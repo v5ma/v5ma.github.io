@@ -53,3 +53,7 @@ Next: unfamiliar-player review of Meridian decisions/recovery, the other chapter
 ## Provenance
 
 Kenney Blaster Kit: https://kenney.nl/assets/blaster-kit . The pinned creator archive and embedded license govern the adaptations. The perspective aperture is adapted from the owner's Dino Atlas code; sibling files and private material are not overwritten or copied into the public game. FREEFIELD-HANDOFF.md and evidence/freefield/ distinguish current acceptance from failures and remaining work.
+
+## Northern approach recovery
+
+The clinic correction let the native journey reach both components and the original opened gate; it then died on the exposed northern approach. Meridian ground now uses its actual relief function for sight/projectile obstruction, not only foot placement. Other chapters retain their rules. The native route stops braking at collinear one-metre nodes, collects the existing librarian satchel, respects recipe costs and carrying limits, passes north of the existing planter and returns through the learned lower drainage spine. No enemy statistics, grants or objective gates change. Three revised continuous-model schedules completed, but that is not native or unfamiliar-player acceptance. An earlier diagnostic targeted the planter itself and failed; its correction goes around the existing obstacle rather than deleting collision.

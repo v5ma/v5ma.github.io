@@ -1,3 +1,9 @@
+# Current candidate / Freefield v0.16.0
+
+Read FREEFIELD.md and FREEFIELD-HANDOFF.md first. The owner requested faster no-fatigue running, quiet player sounds, direct and saved Quest/Xbox remaps, blink, on-demand XR UI, real world portals, first-person AR, better bodies and different level geography. These supersede older mapping/crop descriptions below. Meridian is the first redesigned chapter in this pass; other chapter replacements and human/device approval remain open. A version string is not publication evidence; use the Freefield PR and served-file receipt.
+
+Earlier release records are historical context.
+
 # Current release / Freight Cut v0.15.0
 
 Read FREIGHT-CUT.md. The existing ward-radio repair now releases a west loading passage; its sorting landing connects the spindle aisle back to market concealment and the established clinic terrace. Both original freight entrances and unpowered extraction remain valid. Wayfinder and Open Diorama are already merged; do not rebuild their features. No new save fields, task IDs, rewards or controller mappings are introduced. Follow the current shared library and exact release receipt; human and physical-device gates stay open.

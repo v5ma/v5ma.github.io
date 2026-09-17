@@ -3,6 +3,7 @@
 import * as T from '../vendor/three.module.js';
 import {PortalMaterials,seesFragment,boxInverse} from '../world-aperture.mjs';
 import {renderWaistAR} from '../waist-ar.mjs';
+import {createPortalOcclusion} from '../portal-occlusion.mjs';
 const renderer=new T.WebGLRenderer({canvas:document.querySelector('canvas'),alpha:true,antialias:false,preserveDrawingBuffer:true});renderer.setSize(512,256,false);renderer.setPixelRatio(1);renderer.setClearColor(0,0);renderer.outputColorSpace=T.LinearSRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
 const left=new T.PerspectiveCamera(60,1,.05,500),right=left.clone();left.position.set(-.032,.36,0);right.position.set(.032,.36,0);left.viewport=new T.Vector4(0,0,256,256);right.viewport=new T.Vector4(256,0,256,256);left.updateMatrixWorld();right.updateMatrixWorld();const stereo=new T.ArrayCamera([left,right]);
 const scene=new T.Scene(),far=new T.Mesh(new T.PlaneGeometry(200,200),new T.MeshBasicMaterial({color:0xff0000,toneMapped:false}));far.position.set(0,.36,-80);scene.add(far);
@@ -30,5 +31,12 @@ window.runWaist=()=>{
   if(p.x>.3&&p.x<1.7){compared++;const actual=out[i+2]>200;blue+=actual;if(!actual)wrong++;}
  }
  return {compared,wrong,red,blue,originalVisibilityRestored:env.visible&&actor.visible,scope:'Production waist-cut environment pass leaves full dynamic actor geometry visible; synthetic graphics fixture only.'};
+};
+window.runSightline=()=>{
+ scene.clear();adapter.active=false;renderer.setClearColor(0,0);const camera=new T.PerspectiveCamera(60,2,.05,100),focus=new T.Vector3(0,1.15,-1.5);camera.position.set(0,1.65,0);camera.lookAt(focus);camera.updateMatrixWorld();
+ const wall=new T.Mesh(new T.PlaneGeometry(1.8,1.6),new T.MeshBasicMaterial({color:0x0000ff}));wall.position.set(0,1.30,-1.05);scene.add(wall);
+ const actor=new T.Mesh(new T.PlaneGeometry(.15,.25),new T.MeshBasicMaterial({color:0x00ff00}));actor.position.copy(focus);scene.add(actor);
+ const pixel=()=>{const out=new Uint8Array(4);gl.readPixels(256,128,1,1,gl.RGBA,gl.UNSIGNED_BYTE,out);return [...out];};
+ renderer.render(scene,camera);const before=pixel(),cut=createPortalOcclusion();cut.collect([wall]);cut.configure(focus,1.10,.04);cut.active=true;renderer.render(scene,camera);const after=pixel();cut.active=false;cut.dispose();return {before,after,actorStillPresent:actor.parent===scene,wallStillPresent:wall.parent===scene};
 };
 </script>

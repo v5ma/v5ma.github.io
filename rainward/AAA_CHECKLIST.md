@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.15.0 / Freight Cut.
+Release baseline: v0.16.0 / Freefield.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -251,10 +251,10 @@ Gate: Every chapter has a distinct route, pacing plan, task arc and verified beg
   Owner role: Level design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Review all seven chapters for landmarks, shortcuts, sightlines, supply spacing, backtracking and encounter rhythm.
   Dependencies: RW-016, RW-025.
-  Evidence: LEVEL-DESIGN.md.
+  Evidence: FREEFIELD.md.
 
-  Continuation: Freight Cut links the established clinic/market seam to Freight Hall: the original optional receiver repair now opens a real, flankable loading passage. See FREIGHT-CUT.md; the complete flagship and human review remain unapproved.
-  Next action: Observe unfamiliar-player recovery and route-choice reasoning, then refine the quay observation/commitment beat. Preserve powered/unpowered completion and current legacy saves.
+  Continuation: Meridian relief, footprints, beacon orientation and valve recovery are implemented. Other chapter redesigns and unfamiliar-player review remain open.
+  Next action: Review learned transfers versus direct exposure, then continue the next chapter rather than adding acreage.
 
 - [ ] RW-029 / P1 / New puzzle interaction families / Planned
   Owner role: Puzzle design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -312,19 +312,19 @@ Gate: Camera-matched art reviews approve the hero, enemies, animation, architect
   Owner role: Animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Approve walk, run, crouch, crawl, turn, aim, reload, strike, stagger, vault, heal and craft transitions without visible snapping.
   Dependencies: RW-034.
-  Evidence: Not recorded yet.
+  Evidence: FREEFIELD.md.
 
-  Continuation: The original procedural animation still drives the imported detail. The free animation library was inspected but its clips were not integrated; swimming currently reuses the horizontal crawl pose.
-  Next action: Prototype authored swim/tread/dive/surface and land-action transitions with before/after motion capture and preserved gameplay timing.
+  Continuation: Authored body surfaces and high-speed gait adjustments do not constitute a complete authored action-clip set.
+  Next action: Author and review land/water transitions with before/after captures.
 
 - [ ] RW-036 / P1 / Foot placement and hand contacts / Planned
   Owner role: Technical animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Feet follow slopes and stairs; hands align to weapons and traversal contacts; solve IK failures without destabilizing gameplay.
   Dependencies: RW-035.
-  Evidence: Not recorded yet.
+  Evidence: FREEFIELD.md.
 
-  Continuation: Hand/foot contact IK is not implemented or approved. The collar/wrist seam fixes are geometry compatibility, not contact animation.
-  Next action: After action blending, validate slopes/stairs, weapon grips and authored traversal contacts without changing collision authority.
+  Continuation: Bounded visual two-bone foot placement and planting are implemented. Hand contacts and full action coverage remain unfinished.
+  Next action: Review slopes, stops and turns on actual models, then add weapon grips without changing collision.
 
 - [ ] RW-037 / P1 / Enemy silhouettes and reactions / Planned
   Owner role: Character art. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -387,10 +387,10 @@ Gate: Every audible action has an appropriate cue; music transitions and mixes p
   Owner role: Sound design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Review loudness, texture, timing, repetition and material realism for every cue on headphones and speakers; replace weak placeholders.
   Dependencies: RW-043.
-  Evidence: Not recorded yet.
+  Evidence: FREEFIELD.md.
 
-  Continuation: The owner explicitly prioritizes in-game sound effects and music. Rendered samples and live analyser checks establish output, not a good mix.
-  Next action: Review Foley timing, material variation and water/combat cues on headphones and speakers, then record what was improved.
+  Continuation: Quiet player footsteps/water and sparse music are implemented; legacy mix remains. This is not a completed Foley-library replacement.
+  Next action: Listen on actual speakers/headphones for repetition, peaks and threat clarity.
 
 - [ ] RW-045 / P1 / Room-aware reverb and sound portals / Planned
   Owner role: Audio engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -429,7 +429,10 @@ Gate: The agreed hardware matrix meets its frame-time, memory, readability and a
   Owner role: Accessibility engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Offer remapping, conflict resolution, hold/toggle alternatives and readable per-device prompts; test every resulting action path.
   Dependencies: RW-017.
-  Evidence: Not recorded yet.
+  Evidence: FREEFIELD.md.
+
+  Continuation: Saved gameplay remaps and reserved menu recovery controls are implemented. Exhaustive combinations and accessibility hold alternatives remain open.
+  Next action: Test non-default remaps in native journeys and refine per-action prompts.
 
 - [ ] RW-050 / P1 / Caption and interface readability / Planned
   Owner role: UI accessibility. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -534,10 +537,10 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.
   Dependencies: RW-057.
-  Evidence: DIORAMA.md.
+  Evidence: FREEFIELD.md.
 
-  Continuation: First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.
-  Next action: Test all three views with real Quest controllers and hands, including placement, body-scale clarity, targeting, saves, tracking loss, comfort and measured device performance.
+  Continuation: Four XR views share one game. Portals center the survivor, first-person AR cuts environment at the waist, and panels are on demand.
+  Next action: Run physical Quest controllers/hands, permissions, sight, low air, saves, comfort and performance.
 
 - [ ] RW-064 / P0 / Release candidate approval / Blocked
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
