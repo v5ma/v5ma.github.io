@@ -1,13 +1,13 @@
 {
-  "version": "2026.09.06-pauline-chronology-1",
-  "updated": "2026-09-06",
+  "version": "2026.09.17-scripture-concordance-1",
+  "updated": "2026-09-17",
   "theoryNameStatus": "Christic Self-Formation Theory is the proposed working name, not a claim of established nomenclature or worldwide priority.",
   "articles": [
     {
       "slug": "trump-first-beast-of-revelation",
       "title": "Trump and the First Beast of Revelation",
       "category": "apocalypse",
-      "summary": "A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.",
+      "summary": "The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.",
       "sourceIds": [
         "3051",
         "1094"
@@ -24,7 +24,7 @@
       ],
       "art": "riders",
       "kind": "Developed article",
-      "updated": "2026-09-06",
+      "updated": "2026-09-17",
       "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
       "featured": true
     },
@@ -222,14 +222,14 @@
       "slug": "antichrist-as-a-pattern-of-conduct",
       "title": "Antichrist as a pattern of conduct",
       "category": "apocalypse",
-      "summary": "A theological judgment about domination, deception and violence that can appear through many people and institutions.",
+      "summary": "Conduct, typology, recurring forms and historical reception, with distinctions among individuals, public personae, institutions and claimed final fulfillment.",
       "sourceIds": [
         "1905",
         "1081"
       ],
       "art": "riders",
       "kind": "Developed article",
-      "updated": "2026-09-06",
+      "updated": "2026-09-17",
       "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
       "claimType": "Constructive theological interpretation and conjecture"
     },

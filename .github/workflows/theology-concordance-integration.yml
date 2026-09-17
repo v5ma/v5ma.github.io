@@ -1,0 +1,12 @@
+name: Theology concordance integration (completed)
+# Run 35284880394 completed the branch-only integration; retain only read-only validation.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The September 17 integration is complete; later edits require a new reviewed change.'

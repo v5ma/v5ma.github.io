@@ -15,7 +15,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
 
-[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
 
 [[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
 
@@ -31,7 +31,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 ## All developed articles
 
-[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
 
 [[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.
 
@@ -49,7 +49,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]: How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.
 
-[[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: A theological judgment about domination, deception and violence that can appear through many people and institutions.
+[[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: Conduct, typology, recurring forms and historical reception, with distinctions among individuals, public personae, institutions and claimed final fulfillment.
 
 [[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.
 

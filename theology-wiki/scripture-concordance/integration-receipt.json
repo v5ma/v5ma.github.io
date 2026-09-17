@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-17",
+  "articles": [
+    {
+      "slug": "trump-first-beast-of-revelation",
+      "originalGitBlob": "a3fb7a6b240c10db797a54fd280b1b7ea84ec133",
+      "originalBytes": 8315,
+      "supplement": "first-beast-supplement.md",
+      "integratedGitBlob": "f5c84a591a3b2cb98be872d660b879d56df3e157"
+    },
+    {
+      "slug": "antichrist-as-a-pattern-of-conduct",
+      "originalGitBlob": "87a990f289ad2bd16d37a2c93bd4bb342fe36d24",
+      "originalBytes": 2913,
+      "supplement": "conduct-supplement.md",
+      "integratedGitBlob": "d2146f07ce833428adec7a2f9602ebbc22934feb"
+    }
+  ],
+  "method": "Append-only canonical supplements; preserved prefixes verified by original Git blob identity. Main derivatives rebuilt separately."
+}

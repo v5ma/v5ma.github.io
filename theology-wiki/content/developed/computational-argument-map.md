@@ -4,7 +4,7 @@ slug: "computational-argument-map"
 summary: "Ten explicit connections among physics, neural rendering, God, historical inheritance and constructive theology."
 topic: "Wider conversations"
 status: "Navigator"
-updated: "2026-09-06"
+updated: "2026-09-17"
 ---
 
 # Computational theology: argument map

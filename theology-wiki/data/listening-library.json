@@ -1,6 +1,6 @@
 {
   "schema": "theology-listening-library/v1",
-  "version": "2026.09.06-pauline-chronology-1",
+  "version": "2026.09.17-scripture-concordance-1",
   "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "articles": [
     {
@@ -586,7 +586,7 @@
     {
       "slug": "antichrist-as-a-pattern-of-conduct",
       "title": "Antichrist as a pattern of conduct",
-      "summary": "A theological judgment about domination, deception and violence that can appear through many people and institutions.",
+      "summary": "Conduct, typology, recurring forms and historical reception, with distinctions among individuals, public personae, institutions and claimed final fulfillment.",
       "category": "apocalypse",
       "kind": "Developed article",
       "chapters": [
@@ -597,17 +597,17 @@
         }
       ],
       "source": "content/developed/antichrist-as-a-pattern-of-conduct.md",
-      "sourceSha256": "ca7fa556dfefbef315cf0b957dce472042f59d3ef36c8df05fab6a367d961377",
+      "sourceSha256": "c9838552b0ccf329ce1e0e4e7e48e16f62bbba4200a029de2f8cbd84a67c71e3",
       "narration": "data/listening/antichrist-as-a-pattern-of-conduct.json",
-      "narrationSha256": "096dd4d3480e90d987474d914e0b39b269d1600143195886ef42c85d36786303",
+      "narrationSha256": "0f4366697a0bfac5b896bfe7747bf089dd9d055c0f9a1feb6e98b0dc36300df8",
       "transcript": "products/transcripts/antichrist-as-a-pattern-of-conduct.txt",
-      "segments": 19,
-      "words": 427
+      "segments": 40,
+      "words": 1577
     },
     {
       "slug": "trump-first-beast-of-revelation",
       "title": "Trump and the First Beast of Revelation",
-      "summary": "A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.",
+      "summary": "The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.",
       "category": "apocalypse",
       "kind": "Developed article",
       "chapters": [
@@ -618,12 +618,12 @@
         }
       ],
       "source": "content/developed/trump-first-beast-of-revelation.md",
-      "sourceSha256": "036c8c6988bb7ff092e00e9e06fc66ae670cf2e3b8add2fbd980d2280953cbd6",
+      "sourceSha256": "5ce8d25f454d234654a271330e790f01c154d8af6545f3a6b68c19b07b3630d4",
       "narration": "data/listening/trump-first-beast-of-revelation.json",
-      "narrationSha256": "7389bfa7119cbfc9f692d7c5e86c04addc83af7cc17e475ae535553cc94d5ed0",
+      "narrationSha256": "a3b9e9e4c4e108dba01cba4bbe6e4dd0f4771120e7949b5856d1f601d12ac870",
       "transcript": "products/transcripts/trump-first-beast-of-revelation.txt",
-      "segments": 48,
-      "words": 1201
+      "segments": 71,
+      "words": 2331
     },
     {
       "slug": "ukraine-russia-forecast-record",

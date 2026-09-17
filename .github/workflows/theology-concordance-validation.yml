@@ -1,0 +1,62 @@
+name: Validate Theology scripture concordance
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/scripture-concordance/**'
+      - 'theology-wiki/editorial/authorial-articles/trump-first-beast-of-revelation.md'
+      - 'theology-wiki/editorial/authorial-articles/antichrist-as-a-pattern-of-conduct.md'
+      - 'theology-wiki/editorial/authorial.json'
+      - '.github/workflows/theology-concordance-validation.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/scripture-concordance/**'
+      - 'theology-wiki/editorial/authorial-articles/trump-first-beast-of-revelation.md'
+      - 'theology-wiki/editorial/authorial-articles/antichrist-as-a-pattern-of-conduct.md'
+      - '.github/workflows/theology-concordance-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild and check canonical preservation and actual main integration
+        env:
+          INTEGRATED: '1'
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/concordance
+          python theology-wiki/scripture-concordance/build_data.py
+          python theology-wiki/scripture-concordance/build_dossiers.py
+          node theology-wiki/scripture-concordance/build.cjs
+          node theology-wiki/scripture-concordance/integrate.cjs
+          node theology-wiki/scripture-concordance/reconcile.cjs --metadata
+          node theology-wiki/tools/build.cjs
+          node theology-wiki/scripture-concordance/reconcile.cjs
+          git diff --exit-code -- theology-wiki/
+          node --test theology-wiki/scripture-concordance/concordance.test.cjs | tee theology-test-output/concordance/contracts.log
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Test the real concordance and both main article routes
+        run: python theology-wiki/scripture-concordance/browser_checks.py --report theology-test-output/concordance/browser.json --screenshot theology-test-output/concordance/mobile.png
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-concordance-validation-evidence
+          path: |
+            theology-test-output/concordance/
+            theology-wiki/scripture-concordance/
+          if-no-files-found: error

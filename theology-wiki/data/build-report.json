@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06-pauline-chronology-1",
+  "version": "2026.09.17-scripture-concordance-1",
   "connectedEdition": "2026.09.07-restoration-listening-2",
   "bridgeStudies": 5,
   "restorationComparisons": 6,
@@ -38,7 +38,7 @@
   "explainedRelationships": 213,
   "anchoredSourceTurns": 38,
   "indexedTurns": 4980,
-  "links": 1739,
-  "searchTerms": 47933,
+  "links": 1740,
+  "searchTerms": 47968,
   "sourceBytes": 17769481
 }

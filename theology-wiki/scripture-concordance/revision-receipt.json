@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-17",
+  "baseline": "eebe9c097f1ac6795a63ccb258a87067f91460c9",
+  "scope": "Only the two requested article bodies and their regenerated narration and transcript. Original canonical prefixes are verified by integration-receipt.json; every other restoration-baseline file remains byte-identical.",
+  "files": {
+    "content/developed/antichrist-as-a-pattern-of-conduct.md": {
+      "before": "ca7fa556dfefbef315cf0b957dce472042f59d3ef36c8df05fab6a367d961377",
+      "after": "c9838552b0ccf329ce1e0e4e7e48e16f62bbba4200a029de2f8cbd84a67c71e3"
+    },
+    "content/developed/trump-first-beast-of-revelation.md": {
+      "before": "036c8c6988bb7ff092e00e9e06fc66ae670cf2e3b8add2fbd980d2280953cbd6",
+      "after": "5ce8d25f454d234654a271330e790f01c154d8af6545f3a6b68c19b07b3630d4"
+    },
+    "data/listening/antichrist-as-a-pattern-of-conduct.json": {
+      "before": "096dd4d3480e90d987474d914e0b39b269d1600143195886ef42c85d36786303",
+      "after": "0f4366697a0bfac5b896bfe7747bf089dd9d055c0f9a1feb6e98b0dc36300df8"
+    },
+    "data/listening/trump-first-beast-of-revelation.json": {
+      "before": "7389bfa7119cbfc9f692d7c5e86c04addc83af7cc17e475ae535553cc94d5ed0",
+      "after": "a3b9e9e4c4e108dba01cba4bbe6e4dd0f4771120e7949b5856d1f601d12ac870"
+    },
+    "products/transcripts/antichrist-as-a-pattern-of-conduct.txt": {
+      "before": "82aca5e6f2e2c95085a3a2c09018e5f0de815c23297316caf183f04f444b1d7a",
+      "after": "68b933b20be9b4ed6ac3bcc7ddc9c21c73aaa2377ca5dfa76a3e095e1e83cf0d"
+    },
+    "products/transcripts/trump-first-beast-of-revelation.txt": {
+      "before": "7111396da886853ffdd22e126524af41eabf997e19247eab518efbae887978fb",
+      "after": "a0fec35abfc508127b3af5a2854df25de4eb796c854cbd4c741e27c0ced02c22"
+    }
+  }
+}
