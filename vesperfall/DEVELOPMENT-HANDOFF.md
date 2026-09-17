@@ -1,3 +1,7 @@
+Goldwind / version 0.16.0 / September 17, 2026.
+
+Read GOLDWIND.md for the explicit physical bow preset. Enable it with Use Goldwind physical bow controls or Settings / Bow controls. Draw trigger fires the selected damage arrow; draw-hand A/B physically nocks a temporary golden travel arrow; draw grip holds a disk to throw; bow trigger shields (grip alternative); hold bow X/Y and reach/trigger-select an arrow. Draw-stick click pauses. Classic remains default, crossbow retains Classic roles, and Xbox shortcuts are unchanged. All existing saved layouts and chapter outcomes remain. This release adds no new generator, enemy roster or second authored chapter. Exact software/public results belong in tests/evidence/goldwind-0.16.0/; physical/human gates remain open.
+
 Open Line / version 0.15.0 / September 15, 2026.
 
 Read OPEN-LINE.md before the historical notes below. The existing Returning Bell is refined, not rebuilt: a short central stair and its enemy firing lane open with the same screen, using a shootable brass release or the retained gallery winch. Flanks remain useful, a missed release can be retried, and a learned signal shot can avoid a tower visit. The same seven places and five defenders remain; the next authored chapter is not built.

@@ -16,12 +16,12 @@ with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
  b=p.chromium.launch(**opts);ctx=b.new_context(viewport={'width':1000,'height':750},device_scale_factor=.4,service_workers='block')
- ctx.add_init_script(PAD+'window.TEST_XR_PIXEL_SCALE=.35;'+(ROOT/'vesperfall/tests/fake-xr.js').read_text()+(ROOT/'vesperfall/tests/fake-hands.js').read_text())
+ ctx.add_init_script(PAD+'window.TEST_XR_PIXEL_SCALE=.12;'+(ROOT/'vesperfall/tests/fake-xr.js').read_text()+(ROOT/'vesperfall/tests/fake-hands.js').read_text())
  page=ctx.new_page();page.set_default_timeout(90000)
  page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda e:console.append(e.text) if e.type=='error' else None)
  def wait(s,arg=None):return page.wait_for_function(s,arg=arg)
  def frame():
-  n=page.evaluate('Vesperfall.component.goldwind.state.frames');wait('n=>Vesperfall.component.goldwind.state.frames>n',n)
+  n=page.evaluate('Vesperfall.component.goldwind.state.frames');wait('n=>Vesperfall.component.goldwind.state.frames>n||!Vesperfall.component.xr',n)
  def button(hand,index,on):
   page.evaluate('([h,i,on])=>TestXR.button(h,i,on)',[hand,index,on]);frame()
  def pose(hand,point):page.evaluate('([h,p])=>TestXR.pose(h,p)',[hand,point]);frame()
@@ -52,7 +52,7 @@ with sync_playwright() as p:
    pad(13)
   check(page.evaluate("document.activeElement.id==='xr-bow-controls'"),'Xbox reaches the new bow control preset without a mouse')
   pad(15);check(page.locator('#xr-bow-controls').input_value()=='goldwind','Xbox enables the physical Goldwind preset')
-  page.evaluate('TestPad.enabled=false');page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
+  page.evaluate('TestPad.enabled=false');wait('!Vesperfall.component.dominionControls.state.pad');page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   page.locator('[data-arrow="frost"]').click();page.keyboard.press('KeyP');page.locator('#menu-vr').click();wait('Vesperfall.component.xr');xrmenu('Resume');neutral()
   ammo=page.evaluate('Vesperfall.state.ammo.frost');shots=page.evaluate('Vesperfall.state.shots')
   drawshot(0);wait('n=>Vesperfall.state.shots===n+1',shots)
@@ -75,8 +75,9 @@ with sync_playwright() as p:
   button('right',0,False);button('left',0,False);neutral();check(page.evaluate('n=>Vesperfall.state.shots===n',n),'Releasing a shield-cancelled draw never fires a stale arrow')
   uses=page.evaluate('Vesperfall.state.shardsUsed');pose('right',[.25,1.25,-.2]);button('right',1,True);frame();button('right',1,False);frame()
   check(page.evaluate('n=>Vesperfall.state.shardsUsed===n&&!Vesperfall.component.goldwind.state.flight',uses),'Dropping a stationary disk does not teleport')
-  neutral();pose('right',[.25,1.25,.12]);button('right',1,True)
-  page.evaluate("""async()=>{const start=performance.now();await new Promise(resolve=>{function step(){const t=Math.min(1,(performance.now()-start)/280);TestXR.pose('right',[.25,1.25,.12-.55*t]);if(t<1)requestAnimationFrame(step);else{TestXR.button('right',1,false);resolve();}}requestAnimationFrame(step);});}""")
+  neutral();pose('right',[.25,1.25,-.43]);button('right',1,True)
+  throw_trace=page.evaluate("""async()=>{const start=performance.now(),trace=[];await new Promise(resolve=>{function step(){const now=performance.now(),t=Math.min(1,(now-start)/280),g=Vesperfall.component.goldwind.gesture;trace.push({now,samples:g.samples.map(s=>({t:s.t,p:s.p})),armed:g.ready,held:g.held});TestXR.pose('right',[.25,1.25,-.43+.55*t]);if(t<1)requestAnimationFrame(step);else{TestXR.button('right',1,false);resolve();}}requestAnimationFrame(step);});return trace;}""")
+  (OUT/'throw-input-observations.json').write_text(json.dumps(throw_trace,indent=2))
   wait('n=>Vesperfall.state.shardsUsed>n',uses)
   check(page.evaluate('n=>Vesperfall.state.shardsUsed===n+1',uses),'A deliberate tracked throw resolves one supported short-range relocation')
   observations.append(page.evaluate('({kind:"thrown-disk",p:[...Vesperfall.state.p],events:Vesperfall.state.events.slice(-5)})'))
@@ -93,7 +94,7 @@ with sync_playwright() as p:
   check(page.locator('#xr-bow-controls').input_value()=='goldwind' and page.locator('#goldwind-shield').input_value()=='grip','Explicit control preferences survive a real page reload')
   check(page.evaluate('p=>localStorage.getItem(PilgrimSave.KEY)===p',payload),'Changing physical controls does not rewrite the saved expedition')
   check(not errors,'No uncaught runtime errors in the Goldwind journey');check(not console,'No captured WebGL, shader or console errors')
-  (OUT/'report.json').write_text(json.dumps({'base':BASE,'passed':len(checks),'checks':checks,'observations':observations,'errors':errors,'consoleErrors':console,'scope':'Native production WebGL, actual controls and core physics; synthetic Xbox/buttons/controller poses, not real Quest/Xbox hardware or ergonomic approval.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'base':BASE,'passed':len(checks),'checks':checks,'observations':observations,'errors':errors,'consoleErrors':console,'xrBufferScale':.12,'scope':'Native production WebGL, actual controls and core physics; synthetic Xbox/buttons/controller poses, not real Quest/Xbox hardware or ergonomic approval.'},indent=2))
  except Exception as e:
   try:snapshot=page.evaluate('window.Vesperfall?({game:Vesperfall.snapshot(),goldwind:Vesperfall.component.goldwind?.state,gesture:Vesperfall.component.goldwind?.gesture.samples}):null')
   except:snapshot=None
