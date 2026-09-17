@@ -1,0 +1,50 @@
+name: Retire superseded Aether portal checks
+on:
+  push:
+    branches: [aether/portal-ci-cleanup-20260917]
+    paths: ['.github/workflows/aether-portal-ci-cleanup.yml']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  cleanup:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.actor == 'v5ma'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Cancel only explicitly superseded uncompleted Aether portal runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          repo=os.environ['GH_REPO'];assert repo=='v5ma/v5ma.github.io'
+          current='3738409f8e041704cf081af52c35da82b811d3a2'
+          obsolete=['0941ec61727b1d5163e14e0445ad00d294ff5bf6','119ac2185b73f25441a3af122d8f60afa88c79eb','5c0fd84f5fcd42c705f2dfc2eaa3a5d35065a660']
+          def api(path):return json.loads(subprocess.check_output(['gh','api',path],text=True))
+          pr=api(f'repos/{repo}/pulls/177');assert pr['head']['sha']==current and pr['state']=='open'
+          records=[]
+          for head in obsolete:
+            data=api(f'repos/{repo}/actions/runs?head_sha={head}&per_page=100')
+            assert data['total_count']<=100
+            for run in data['workflow_runs']:
+              if run['status']=='completed':continue
+              assert run['head_sha']==head and run['head_sha']!=current
+              if run['head_branch']!='aether/world-portal-20260917' or not run['path'].startswith('.github/workflows/aether-'):continue
+              assert run['repository']['full_name']==repo and run['head_repository']['full_name']==repo
+              latest=api(f"repos/{repo}/actions/runs/{run['id']}")
+              if latest['status']=='completed':continue
+              assert latest['head_sha']==head and latest['head_branch']=='aether/world-portal-20260917'
+              result=subprocess.run(['gh','api','--method','POST',f"repos/{repo}/actions/runs/{run['id']}/cancel"],capture_output=True,text=True)
+              records.append({'run':run['id'],'head':head,'previousStatus':latest['status'],'cancelRequested':result.returncode==0,'error':result.stderr if result.returncode else None})
+          Path('/tmp/aether-obsolete-ci.json').write_text(json.dumps({'currentPreserved':current,'records':records,'scope':'Only explicit superseded PR177 heads. No completed run, artifact, branch, game source, master run, current candidate or sibling-game run was deleted or changed.'},indent=2))
+          print(json.dumps(records,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-obsolete-ci-receipt
+          path: /tmp/aether-obsolete-ci.json
+          retention-days: 30
