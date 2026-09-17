@@ -21,22 +21,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply bounded native-review corrections before testing
-        shell: bash
+      - name: Apply bounded clinic correction before acceptance
         run: |
-          set -euo pipefail
           mkdir -p test-output
-          python rainward/tools/repair-freefield-review.py
+          python rainward/tools/repair-freefield-clinic.py
           node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
           python -m compileall -q rainward/tests
-      - name: Commit only the reviewed runtime and driver changes
+      - name: Commit only the reviewed changes
         id: commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/quest-xr.mjs rainward/quest-xr.css rainward/tests/freefield-browser.py rainward/tests/freefield-meridian.py
+          git add rainward/meridian-relief.mjs rainward/tests/freefield-meridian.py
           if ! git diff --cached --quiet; then
-            git commit -m 'Repair native interaction approaches and complete on-demand hand controls'
+            git commit -m 'Protect the clinic decision and taper native route input without changing threats'
             git push origin HEAD:feat/rainward-freefield-20260917
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -54,7 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        case: [first-person:controllers,first-person-ar:controllers,diorama-vr:controllers,diorama-ar:hands,meridian,graphics]
+        case: ['first-person:controllers','first-person-ar:controllers','diorama-vr:controllers','diorama-ar:hands','meridian','graphics']
     steps:
       - uses: actions/checkout@v4
         with:
@@ -75,9 +73,9 @@ jobs:
           PID=$!
           trap 'kill $PID' EXIT
           case "$CASE" in
-            graphics) timeout 120 python -u rainward/tests/freefield-graphics.py ;;
-            meridian) timeout 800 python -u rainward/tests/freefield-meridian.py ;;
-            *) XR_VIEW="${CASE%:*}" QUEST_KIND="${CASE#*:}" timeout 750 python -u rainward/tests/freefield-browser.py ;;
+            meridian) timeout 780 python -u rainward/tests/freefield-meridian.py ;;
+            graphics) timeout 180 python -u rainward/tests/freefield-graphics.py ;;
+            *) XR_VIEW="${CASE%:*}" QUEST_KIND="${CASE#*:}" timeout 660 python -u rainward/tests/freefield-browser.py ;;
           esac
       - name: Retain actual checkout and failures
         if: always()

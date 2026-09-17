@@ -1,0 +1,12 @@
+{
+  "kind": "Retained failure and recovery plan; not a publication receipt",
+  "recovered_source": "50ca1dfeb21dddec218c816ffca3613fa50d10c9",
+  "run": 35283477152,
+  "failed_meridian_artifact": 10523534382,
+  "failed_meridian_archive_sha256": "297c172b33b413762e58e7847f187bd2f4a632e775777d17cca90f9c3e44b5de",
+  "passed_previous_cases": ["First-person VR / controllers", "First-person AR / controllers", "VR portal / controllers", "AR portal / hands", "Real rendered stereo aperture and waist-cut shader fixtures"],
+  "failure": "The native Meridian route reached the raised clinic and operated its original valve but died in a direct sightline from the east doorway before reaching the refuge. All nine enemies were active. No script error occurred.",
+  "changes": ["Place a raised privacy partition between the east entrance and original clinic valve. Both ends remain open, no enemy stat or resource changes.", "Approach the controls from the south of the partition, and taper synthetic stick speed near route waypoints so the 9 m/s runner does not oscillate past 1-metre nodes during software-rendered fixed-step batches.", "Retain raw virtual input in subsequent failures. No clock edit, position assignment, inventory grant or planted save."],
+  "local_checks": {"passed": 382, "failed": 0},
+  "limitations": ["Local browser navigation remains blocked by administrator policy; no bypass attempted.", "Prior green XR cases use simulated device poses, not a physical Quest.", "Final release metadata, full regression, publication and unfamiliar-player review remain open."]
+}
