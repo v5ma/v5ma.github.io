@@ -6,7 +6,7 @@
  Object.defineProperty(navigator,'getGamepads',{value:()=>connected?[pad]:[]});
  window.TestPad={connect(){connected=true;},disconnect(){connected=false;},axes(a){pad.axes=a;},button(i,v){pad.buttons[i]={pressed:v,touched:v,value:v?1:0};}};
  const devices={headYaw:0,headX:0,session:null,deny:false};
- function transform(x,y,z,yaw=0){const c=Math.cos(yaw),s=Math.sin(yaw);return {position:{x,y,z},orientation:{x:0,y:Math.sin(yaw/2),z:0,w:Math.cos(yaw/2)},matrix:new Float32Array([c,0,-s,0,0,1,0,0,s,0,c,0,x,y,z,1])};}
+ function transform(px,py,pz,yaw=0,roll=0){const sy=Math.sin(yaw/2),cy=Math.cos(yaw/2),sr=Math.sin(roll/2),cr=Math.cos(roll/2),x=sy*sr,y=sy*cr,z=cy*sr,w=cy*cr;return {position:{x:px,y:py,z:pz},orientation:{x,y,z,w},matrix:new Float32Array([1-2*(y*y+z*z),2*(x*y+z*w),2*(x*z-y*w),0,2*(x*y-z*w),1-2*(x*x+z*z),2*(y*z+x*w),0,2*(x*z+y*w),2*(y*z-x*w),1-2*(x*x+y*y),0,px,py,pz,1])};}
  const projection=new Float32Array([1.8,0,0,0,0,1.5,0,0,0,0,-1.0001,-1,0,0,-.12,0]);
  class Space extends EventTarget{getOffsetReferenceSpace(){return this;}}
  class Session extends EventTarget{
@@ -15,7 +15,7 @@
   updateRenderState(s){Object.assign(this.renderState,s);}
   requestAnimationFrame(fn){if(this.ended)return 0;return window.requestAnimationFrame(t=>{
    if(this.ended)return;if(!this.started){this.started=true;const e=new Event('inputsourceschange');e.added=this.inputSources;e.removed=[];this.dispatchEvent(e);}
-   const h=transform(devices.headX,1.65,0,-devices.headYaw);const views=['left','right'].map((eye,i)=>({eye,projectionMatrix:projection,transform:transform(devices.headX+(i?.032:-.032),1.65,0,-devices.headYaw)}));
+   const h=transform(devices.headX,1.65,0,-devices.headYaw,devices.headRoll||0);const views=['left','right'].map((eye,i)=>({eye,projectionMatrix:projection,transform:transform(devices.headX+(i?.032:-.032),1.65,0,-devices.headYaw,devices.headRoll||0)}));
    fn(t,{session:this,getViewerPose:()=>({transform:h,views}),getPose:space=>({transform:transform(space.hand==='right'?.23:-.23,1.35,-.35),emulatedPosition:false,linearVelocity:null,angularVelocity:null})});
   });}
   cancelAnimationFrame(id){window.cancelAnimationFrame(id);}

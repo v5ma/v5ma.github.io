@@ -1,3 +1,7 @@
+# World Portal 0.14.0
+
+The corrected third-person diorama displays the full world through a room-fixed aperture, with the courier centered. First-person AR is separately selectable; goal guidance is clearer on the existing atlas. See WORLD-PORTAL.md and the latest release receipt for verified status. Existing saves and input remaps remain.
+
 # Receiver Crosswind v0.13.0
 
 The Bellwether rooftop now offers switchable windbreak cover and a recoverable gallery retreat. Existing district geometry, systems, save namespaces, controls, first-person VR and diorama VR/AR are retained. Read RECEIVER-CROSSWIND.md and DEVELOPMENT-HANDOFF.md; verify publication using the versioned release receipt. The prior section below documents the v0.12 foundation, not a pending implementation task.

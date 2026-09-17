@@ -1,6 +1,6 @@
 /* Pure presentation configuration. Never changes mission, position, or save data. */
 export const DIORAMA_KEY='aether-reach.diorama.v1';
-export const PRESENTATIONS=Object.freeze(['first-person-vr','diorama-vr','diorama-ar']);
+export const PRESENTATIONS=Object.freeze(['first-person-vr','diorama-vr','diorama-ar','first-person-ar']);
 export const OPENINGS=Object.freeze(['both','top','front']);
 const finite=(v,f)=>Number.isFinite(v)?v:f,clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function cleanDiorama(v={}){
@@ -13,7 +13,7 @@ export function setOpening(value,part,open){
  state[part+'Open']=!!open;if(!state.topOpen&&!state.frontOpen)state[(part==='top'?'front':'top')+'Open']=true;
  return state.topOpen?(state.frontOpen?'both':'top'):'front';
 }
-export const sessionKind=mode=>mode==='diorama-ar'?'immersive-ar':'immersive-vr';
+export const sessionKind=mode=>mode==='diorama-ar'||mode==='first-person-ar'?'immersive-ar':'immersive-vr';
 export function stagePoint(world,focus,anchor,config){
  const {scale:s,yaw:r}=cleanDiorama(config),x=world.x-focus.x,z=world.z-focus.z,c=Math.cos(r),q=Math.sin(r);
  return {x:anchor.x+s*(c*x+q*z),y:anchor.y+s*(world.y-focus.y),z:anchor.z+s*(-q*x+c*z)};
