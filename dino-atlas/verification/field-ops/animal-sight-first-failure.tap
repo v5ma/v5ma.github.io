@@ -1,0 +1,42 @@
+TAP version 13
+# using deprecated parameters for the initialization function; pass a single object instead
+# Subtest: Aerial survey recognizes actual cylinder hits at oblique angles, not only a spherical proxy
+not ok 1 - Aerial survey recognizes actual cylinder hits at oblique angles, not only a spherical proxy
+  ---
+  duration_ms: 45.787117
+  type: 'test'
+  location: '/mnt/data/dino-resume-ops/src/dino-atlas/tests/field-animal-sight.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    legacy-0 scan missed its own real body from 12,8,0
+    + actual - expected
+    
+    + undefined
+    - 'legacy-0'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'legacy-0'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-resume-ops/src/dino-atlas/tests/field-animal-sight.test.mjs:23:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: Physical blockers still prevent selecting an animal behind them
+ok 2 - Physical blockers still prevent selecting an animal behind them
+  ---
+  duration_ms: 13.700862
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 219.033384

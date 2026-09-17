@@ -127,7 +127,14 @@ export class FieldOperations {
  pointMount(aim){const v=this.ctx.fleet.current,q=v?.drive.body.rotation();if(q)this.rigs.get(v.id)?.turret.quaternion.copy(new T.Quaternion(q.x,q.y,q.z,q.w).invert().multiply(new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,1),vec(aim).normalize())));}
  makeRay(yaw,pitch,xr){const p=this.ctx.fleet.position,dir=new T.Vector3(-Math.sin(yaw)*Math.cos(pitch),-Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)),r=this.aim({x:p.x,y:p.y+.35,z:p.z},dir,xr);this.pointMount(r.direction);return r;}
  firstTarget(ray,length){
-  let best=null;for(const raw of this.allTargets()){if(raw.kind==='desk')continue;const t=this.resolve(raw);if(!t)continue;const d=raySphere(ray.origin,ray.direction,t,t.radius||1.05);if(d!==null&&d<=length+.04&&(!best||d<best.distance))best={target:t,distance:d};}return best;
+  let best=null;for(const raw of this.allTargets()){
+   if(raw.kind==='desk')continue;const t=this.resolve(raw);if(!t)continue;
+   // Residents already have real collision shapes. A smaller spherical proxy
+   // could reject a valid oblique hit on the resident itself as an obstruction.
+   // The caller's nearest world hit still bounds this individual shape query.
+   const d=t.actor?t.actor.collider.collider(0).castRay(new R.Ray(ray.origin,ray.direction),length+.001,true):raySphere(ray.origin,ray.direction,t,t.radius||1.05);
+   if(Number.isFinite(d)&&d>=0&&d<=length+.04&&(!best||d<best.distance))best={target:t,distance:d};
+  }return best;
  }
  visible(from,to){const d=vec(to).sub(vec(from)),n=d.length();if(n<.1)return true;d.normalize();const a=this.ctx.fleet.actor,hit=this.ctx.physics.world.castRay(new R.Ray(from,d),n,true,undefined,undefined,a.collider,a.body);return !hit||hit.timeOfImpact>=n-(to.radius||1.1);}
  progress(verb,target,dt=0,extra={}){
