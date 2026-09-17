@@ -162,7 +162,7 @@ function poll() {
     if (active()) __delivery.act('pause');
     releasePad();
     if (pressed(1) || pressed(9)) back(panel);
-    else if (pressed(0)) { const list = controls(panel), el = list.includes(document.activeElement) ? document.activeElement : list[0]; if (el) { el.focus(); if (!(el instanceof HTMLSelectElement) && !(el instanceof HTMLInputElement && el.type === 'range')) el.click(); } }
+    else if (pressed(0)) { const list = controls(panel), el = list.includes(document.activeElement) ? document.activeElement : list[0]; if (el) { el.focus(); if (!(el instanceof HTMLSelectElement) && !(el instanceof HTMLInputElement && el.type === 'range') && !window.SkyCycleXR?.activate?.(el)) el.click(); } }
     else {
       const horizontal = b[14] || state.x < -.5 ? -1 : b[15] || state.x > .5 ? 1 : 0;
       const vertical = b[12] || state.y < -.5 ? -1 : b[13] || state.y > .5 ? 1 : 0;

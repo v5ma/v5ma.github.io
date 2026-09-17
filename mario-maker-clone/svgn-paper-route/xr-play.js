@@ -70,7 +70,7 @@ function makeStage(){
 }
 function text(s,x,y,max,width=1060,font=23){context.font=`${font}px sans-serif`;const lines=wrapText(context,s,width,context.font);for(let i=0;i<Math.min(lines.length,max);i++)context.fillText(lines[i],x,y+i*(font+7));return Math.min(lines.length,max)*(font+7);}
 function button(label,x,y,w,h,action,hover=null){context.fillStyle=focusLabel===label?'#365e70':'#18384c';context.fillRect(x,y,w,h);context.strokeStyle='#97dfd2';context.lineWidth=2;context.strokeRect(x,y,w,h);context.fillStyle='#f4fbff';text(label,x+14,y+29,2,w-24,22);rects.push({x,y,w,h,label,action,hover});}
-function openWorkspace(){pause();virtualRoot=window.RouteWorkshop?.active?$('route-workshop'):document.querySelector('#delivery-header');page=0;lastPanel=null;lastUI=0;}
+function openWorkspace(){pause();virtualRoot=window.RouteWorkshop?.active?$('route-workshop'):screenMode==='editor'?$('topbar'):document.querySelector('#delivery-header');page=0;lastPanel=null;lastUI=0;}
 function back(current=panel()){
   if(typing){typing=null;keyboardDialog?.close();release();lastUI=0;return true;}
   if(virtualRoot&&current===virtualRoot){virtualRoot=null;release();lastUI=0;return true;}
@@ -87,7 +87,7 @@ function refreshKeyboard(){
   if(!keyboardDialog)return;const root=keyboardDialog.querySelector('.xr-keyboard-keys'),focus=document.activeElement?.dataset.xrKey;
   root.replaceChildren();const rows=typingSymbols?['1234567890','-_=+@#%&*','.,:;!?/()']:['qwertyuiop','asdfghjkl','zxcvbnm'];
   const keys=rows.join('').split('').map(k=>typingShift?k.toUpperCase():k);
-  for(const label of [...keys,'Shift',typingSymbols?'Letters':'Symbols','Space','Backspace','Clear text','Apply text','Cancel edit']){
+  for(const label of [...keys,'Shift',typingSymbols?'Letters':'Symbols','Space','Backspace','Clear text','New line','Apply text','Cancel edit']){
     const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.xrKey=label;
     b.onclick=()=>{if(!typing)return;if(label==='Shift'){typingShift=!typingShift;refreshKeyboard();}else if(label==='Letters'||label==='Symbols'){typingSymbols=!typingSymbols;refreshKeyboard();}else if(label==='Apply text')applyEdit();else if(label==='Cancel edit')back();else typing.value=label==='Clear text'?'':editValue(typing.value,label,typing.el.maxLength);lastUI=0;};root.append(b);
   }
@@ -95,24 +95,24 @@ function refreshKeyboard(){
 }
 function applyEdit(){
   const e=typing;if(!e)return;
-  if(!visible(e.el)||e.el.disabled){typing=null;status('This field is no longer available.');return;}
+  if(!visible(e.el)||e.el.disabled){typing=null;keyboardDialog?.close();status('This field is no longer available.');return;}
   const old=e.el.value;e.el.value=e.value;
   if(!e.el.checkValidity()){e.el.value=old;status('The value does not match this field. Check its format or limits.');return;}
   typing=null;keyboardDialog?.close();e.el.dispatchEvent(new Event('input',{bubbles:true}));e.el.dispatchEvent(new Event('change',{bubbles:true}));release();lastUI=0;
 }
 function promptDialog(question,kind,initial,done){
   const d=document.createElement('dialog');d.className='xr-question';d.setAttribute('aria-label',kind==='confirm'?'Confirm action':'Enter text');
-  const h=document.createElement('h2');h.textContent=kind==='confirm'?'Confirm action':'Enter text';d.append(h);
+  const h=document.createElement('h2');h.textContent=kind==='confirm'?'Confirm action':kind==='notice'?'Game message':'Enter text';d.append(h);
   const t=document.createElement('p');t.textContent=question;d.append(t);
   let field=null;if(kind==='prompt'){field=document.createElement('textarea');field.setAttribute('aria-label','Response');field.value=initial||'';field.maxLength=65536;d.append(field);}
-  const cancel=document.createElement('button');cancel.textContent='Cancel';const yes=document.createElement('button');yes.textContent=kind==='confirm'?'Confirm':'Apply response';d.append(cancel,yes);
+  const cancel=document.createElement('button');cancel.textContent='Cancel';const yes=document.createElement('button');yes.textContent=kind==='confirm'?'Confirm':kind==='notice'?'Done':'Apply response';d.append(cancel,yes);
   let accepted=false;cancel.onclick=()=>d.close();yes.onclick=()=>{accepted=true;const value=field?field.value:true;d.close();done(value);};
   d.addEventListener('close',()=>{d.remove();release();lastUI=0;if(!accepted)status('Cancelled. No approval was given.');},{once:true});document.body.append(d);d.showModal();cancel.focus();
 }
 function invoke(el,answers=[]){
   if(!visible(el)||el.disabled)return;
   // File/system dialogs cannot be rendered in the WebXR layer. Handoff is explicit.
-  if(el.matches('[data-mk="import"],#rail-update')){external(el);return;}
+  if(el.matches('[data-mk="import"],#rail-update,#btnFull,#btnCopy,#btnLink,.cbind')){external(el);return;}
   let request=null,index=0,changed=false;
   const native={confirm:window.confirm,prompt:window.prompt,alert:window.alert};
   const ask=(kind,question,initial)=>{
@@ -124,11 +124,17 @@ function invoke(el,answers=[]){
   // These legacy synchronous guards return cancellation before destructive work.
   // Approval replays only this same connected control, with exact-question tokens.
   // Tokens are scoped to this synchronous call and are never saved or logged.
-  window.confirm=q=>ask('confirm',q);window.prompt=(q,v)=>ask('prompt',q,v);window.alert=q=>status(String(q));
+  window.confirm=q=>ask('confirm',q);window.prompt=(q,v)=>ask('prompt',q,v);window.alert=q=>{if(!request)request={kind:'alert',question:String(q)};};
   try{el.focus({preventScroll:true});el.click();}finally{Object.assign(window,native);}
   if(changed){status('The action changed while awaiting approval. Select it again.');return;}
-  if(request)promptDialog(request.question,request.kind,request.initial,value=>{if(visible(el)&&!el.disabled)invoke(el,[...answers,{...request,value}]);});
-  if(virtualRoot&&(!visible(virtualRoot)||el.matches('[data-delivery="routes"],[data-delivery="editor"],#workshop-edit-current,#maker-return,[data-mk="test"],[data-mk="legacy"],[data-mk="exit"]')))virtualRoot=null;
+  if(request){if(request.kind==='alert')promptDialog(request.question,'notice',null,()=>{});else promptDialog(request.question,request.kind,request.initial,value=>{if(visible(el)&&!el.disabled)invoke(el,[...answers,{...request,value}]);});}
+  if(virtualRoot&&(!visible(virtualRoot)||el.matches('[data-delivery="routes"],[data-delivery="editor"],#workshop-edit-current,#maker-return,[data-mk="test"],[data-mk="legacy"],[data-mk="exit"],#btnPlay')))virtualRoot=null;
+}
+function activate(el){
+  if(!presenting)return false;
+  if(el.matches('input[type="range"],select'))return true;
+  const entry=menuEntries(panel(),{invoke,edit,external}).find(e=>e.el===el && !e.label.endsWith('minus')&&!e.label.endsWith('plus'));
+  if(entry)entry.action();else invoke(el);return true;
 }
 function external(el){
   promptDialog('This browser-owned action needs the normal browser view. Leave XR, then choose Continue in the browser? Your current game or draft is kept paused.','confirm',null,()=>{
@@ -139,8 +145,13 @@ function external(el){
   });
 }
 function reading(current){
-  return [...current.querySelectorAll('p,output,[role="status"],.fd-description,.delivery-result-stats small')]
-    .filter(visible).map(el=>el.textContent.trim()).filter(Boolean).join('\n');
+  const walk=document.createTreeWalker(current,NodeFilter.SHOW_TEXT),parts=[];
+  while(walk.nextNode()){
+    const node=walk.currentNode,parent=node.parentElement;
+    if(!parent||parent.closest('button,a,input,select,textarea,script,style,canvas,summary,[role="button"]')||!visible(parent))continue;
+    const value=node.textContent.trim();if(value)parts.push(value);
+  }
+  return parts.join('\n');
 }
 function keyButton(label,x,y,w,h){const el=[...(keyboardDialog?.querySelectorAll('button')||[])].find(e=>e.dataset.xrKey===label);button(label,x,y,w,h,()=>el?.click(),()=>el?.focus({preventScroll:true}));}
 function drawKeyboard(){
@@ -149,9 +160,11 @@ function drawKeyboard(){
   const rows=typingSymbols?['1234567890','-_=+@#%&*','.,:;!?/()']:['qwertyuiop','asdfghjkl','zxcvbnm'];
   rows.forEach((row,r)=>[...row].forEach((letter,i)=>{const key=typingShift?letter.toUpperCase():letter;keyButton(key,35+i*112,260+r*91,102,76);}));
   for(const [i,label]of ['Shift',typingSymbols?'Letters':'Symbols','Space','Backspace'].entries())keyButton(label,35+i*284,558,268,76);
-  keyButton('Clear text',35,657,330,68);keyButton('Apply text',385,657,420,68);keyButton('Cancel edit',825,657,340,68);
+  ['Clear text','New line','Apply text','Cancel edit'].forEach((label,i)=>keyButton(label,35+i*284,657,268,68));
 }
 function makeMenu(now,force=false){
+  for(const e of document.querySelectorAll('#ctrlrows .cbind'))if(!e.hasAttribute('tabindex')){e.tabIndex=0;e.setAttribute('role','button');e.setAttribute('aria-label',(e.parentElement.firstElementChild?.textContent||'Binding')+' '+e.textContent+' / browser hardware binding');}
+
   const current=panel();const key=(current?.id||current?.className||'play')+'|'+screenMode+'|'+!!typing;
   if(current!==lastPanel||key!==lastMenuKey){lastPanel=current;lastMenuKey=key;page=0;release();lastUI=0;}
   if(!force&&now-lastUI<150)return;lastUI=now;rects=[];context.clearRect(0,0,1200,900);context.fillStyle='#f4fbff';
@@ -168,7 +181,7 @@ function makeMenu(now,force=false){
   } else {
     ui.position.set(0,-.43,-1.65);ui.scale.setScalar(.8);
     const editing=screenMode==='workshop'||screenMode==='editor';
-    const items=editing?[['Editor tools',()=>openWorkspace()],['Undo',()=>$('route-workshop')?.querySelector('[data-mk="undo"]')?.click()],['Redo',()=>$('route-workshop')?.querySelector('[data-mk="redo"]')?.click()],['Zoom in',()=>$('route-workshop')?.querySelector('[data-mk="zoomin"]')?.click()],['Zoom out',()=>$('route-workshop')?.querySelector('[data-mk="zoomout"]')?.click()],['Fit level',()=>$('route-workshop')?.querySelector('[data-mk="fit"]')?.click()],['Playtest',()=>invoke($('route-workshop')?.querySelector('[data-mk="test"]'))],['All menus',openWorkspace],['Spatial setup',show]]:
+    const items=screenMode==='editor'?[['Editor tools',openWorkspace],['Undo',()=>invoke($('btnUndo'))],['Redo',()=>invoke($('btnRedo'))],['Save code',()=>invoke($('btnSave'))],['Machines',()=>invoke($('btnLoad'))],['Controls',()=>invoke($('btnCtrl'))],['Playtest',()=>{invoke($('btnPlay'));virtualRoot=null;}],['All menus',openWorkspace],['Spatial setup',show]]:editing?[['Editor tools',()=>openWorkspace()],['Undo',()=>$('route-workshop')?.querySelector('[data-mk="undo"]')?.click()],['Redo',()=>$('route-workshop')?.querySelector('[data-mk="redo"]')?.click()],['Zoom in',()=>$('route-workshop')?.querySelector('[data-mk="zoomin"]')?.click()],['Zoom out',()=>$('route-workshop')?.querySelector('[data-mk="zoomout"]')?.click()],['Fit level',()=>$('route-workshop')?.querySelector('[data-mk="fit"]')?.click()],['Playtest',()=>invoke($('route-workshop')?.querySelector('[data-mk="test"]'))],['All menus',openWorkspace],['Spatial setup',show]]:
       [['Ride left','left'],['Ride right','right'],['Jump','jump'],['Paper','paper'],['Whip','whip'],['Boost','boost'],['Use nearby','use'],['Pause','pause'],['Portal atlas','portal']];
     context.fillStyle='#132b40';context.fillRect(20,510,1160,290);context.fillStyle='#f4fbff';
     text(editing?'WORKSHOP / point at the live canvas to select or drag':`SKY CYCLE / ${sessionMode==='immersive-ar'?'AR':'VR'} / ${typeof deliveries!=='undefined'?deliveries:0} deliveries`,35,538,1,1110,23);
@@ -259,6 +272,7 @@ function frame(now,f){
 async function finish(){
   if(finishing||(!presenting&&!starting))return;finishing=true;presenting=false;starting=false;release();typing=null;keyboardDialog?.close();virtualRoot=null;
   try{
+    await Promise.resolve(); // Let Three's synchronous session-end listener restore its owner first.
     if(renderer){await renderer.setAnimationLoop(null);renderer.xr.enabled=false;if(originalRender)renderer.render=originalRender;restoreFramebuffer();restoreFramebuffer=()=>{};if(oldClear)renderer.setClearColor(oldClear,oldAlpha);}
     if(originalScene){world?.remove(originalScene);originalScene.updateMatrixWorld(true);} // never dispose game-owned assets
     if(xrScene)disposeObject(xrScene);texture?.dispose();screenTexture?.dispose();visuals.clear();
@@ -284,15 +298,17 @@ async function enter(kind='immersive-vr'){
     session.addEventListener('selectstart',selectStart);session.addEventListener('selectend',selectEnd);
     session.addEventListener('inputsourceschange',e=>{release();if(e.removed?.length)pause();});
     session.addEventListener('visibilitychange',()=>{if(session?.visibilityState!=='visible')pause();});session.addEventListener('end',finish,{once:true});
-    renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');await renderer.xr.setSession(session);
+    // r177 captures the application callback in setSession and wraps it with XR camera/target setup.
+    // Installing our callback afterward bypasses that wrapper and renders a blank headset.
+    renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');await renderer.setAnimationLoop(frame);await renderer.xr.setSession(session);
     if(!session||!starting)return;presenting=true;starting=false;renderer.render=function(scene,cam){if(!presenting)return originalRender.call(this,scene,cam);};
-    await renderer.setAnimationLoop(frame);status(kind==='immersive-ar'?'AR active. Recenter and Spatial setup position the game in your room.':'VR active. All menus and Spatial setup remain available.');
+    status(kind==='immersive-ar'?'AR active. Recenter and Spatial setup position the game in your room.':'VR active. All menus and Spatial setup remain available.');
   } catch(e){const reason='XR could not start: '+e.message;try{await acquired?.end();}catch{}if(starting||presenting)await finish();status(reason);}
   finally{$('sky-xr-enter').disabled=!supportState.vr;$('sky-xr-enter-ar').disabled=!supportState.ar;}
 }
 $('sky-xr-enter').onclick=()=>enter('immersive-vr');$('sky-xr-enter-ar').onclick=()=>enter('immersive-ar');
 window.addEventListener('pagehide',()=>{pause();session?.end().catch(()=>{});});
-window.SkyCycleXR=Object.freeze({version:'0.26.0',get presenting(){return presenting;},get menuPanel(){return presenting?virtualRoot:null;},back,show,
+window.SkyCycleXR=Object.freeze({version:'0.26.0',get presenting(){return presenting;},get menuPanel(){return presenting?virtualRoot:null;},back,activate,show,
  getGamepad(){
   if(!presenting||!session)return null;
   const activeHeld=new Set(held);for(const [key,until]of pulses)if(performance.now()<until)activeHeld.add(key);else pulses.delete(key);
