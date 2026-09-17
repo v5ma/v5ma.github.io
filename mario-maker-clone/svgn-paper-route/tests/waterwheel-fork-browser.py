@@ -93,7 +93,7 @@ with sync_playwright() as pw:
   capture('choice-approach-mobile');page.set_viewport_size({'width':1100,'height':800})
   # Observe actual Canvas2D drawing calls, without changing game or render values.
   page.evaluate("""()=>{const g=document.getElementById('delivery-canvas').getContext('2d'),rect=g.fillRect,text=g.fillText;window.choice2DObserved={box:null,lines:{}};
-   g.fillRect=function(x,y,w,h){if(w===230&&h===102){const t=this.getTransform();choice2DObserved.box=[[x,y],[x+w,y],[x,y+h],[x+w,y+h]].map(([a,b])=>({x:t.a*a+t.c*b+t.e,y:t.b*a+t.d*b+t.f}));}return rect.apply(this,arguments);};
+   g.fillRect=function(x,y,w,h){if((w===230||w===190)&&h===102){const t=this.getTransform();choice2DObserved.box=[[x,y],[x+w,y],[x,y+h],[x+w,y+h]].map(([a,b])=>({x:t.a*a+t.c*b+t.e,y:t.b*a+t.d*b+t.f}));}return rect.apply(this,arguments);};
    g.fillText=function(label,x,y){if(['CHOOSE YOUR LINE','SPEED: HIGH GALLERY','BRAKE, RELEASE: CANAL MAIL'].includes(label))choice2DObserved.lines[label]=true;return text.apply(this,arguments);};}""")
   def verify_2d(label):
    frames(6)

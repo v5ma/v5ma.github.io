@@ -7,7 +7,7 @@ for(const v of [{name:'desktop',x:2516,y:1794,w:800,h:455},{name:'portrait',x:26
   const previous=globalThis.window,boxes=[],lines=[];
   const data={preview:true,groundOnly:true,landmark:{x:7930,y:1880,radius:190}};
   globalThis.window={__ground:{meta:{waterwheel:data}}};
-  const g={save(){},restore(){},fillRect(x,y,w,h){if(w===230&&h===102)boxes.push({x,y,w,h});},fillText(s,x,y){lines.push({s,x,y});}};
+  const g={save(){},restore(){},fillRect(x,y,w,h){if((w===230||w===190)&&h===102)boxes.push({x,y,w,h});},fillText(s,x,y){lines.push({s,x,y});}};
   try{
    draw2D(g,v.x,v.y,v.w,v.h);assert.equal(boxes.length,1);const b=boxes[0];
    assert(b.x>=v.x&&b.x+b.w<=v.x+v.w&&b.y>=v.y&&b.y+b.h<=v.y+v.h,'whole board inside viewport');
