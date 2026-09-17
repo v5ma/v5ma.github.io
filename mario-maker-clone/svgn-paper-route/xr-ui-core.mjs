@@ -6,7 +6,11 @@ export function visible(el) {
   return s.display !== 'none' && s.visibility !== 'hidden' && el.getClientRects().length > 0;
 }
 export function controlLabel(el) {
-  const label = el.getAttribute('aria-label') || el.labels?.[0]?.textContent || el.textContent || el.title || el.name || el.id || 'Control';
+  const explicit=el.getAttribute('aria-label');
+  const card=el.matches?.('[data-course],[data-fd-route]')?el.querySelector?.('h2,h3,strong'):null;
+  const label=explicit||(card?'Play '+(card.innerText||card.textContent):null)
+    ||el.labels?.[0]?.innerText||el.labels?.[0]?.textContent
+    ||el.innerText||el.textContent||el.title||el.name||el.id||'Control';
   return String(label).replace(/\s+/g,' ').trim();
 }
 export function stepValue(value, direction, min=0, max=100, step=1) {
