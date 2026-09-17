@@ -93,6 +93,7 @@ try:
    try:page.wait_for_function('p=>Math.hypot(g.state.position.x-p.x,g.state.position.z-p.z)>6',arg=before,timeout=45000)
    finally:page.evaluate('left.gamepad.axes[2]=0;right.gamepad.buttons[4].value=1')
    wait('!g.state.travel.express');page.evaluate('right.gamepad.buttons[4].value=0');check(True,'A brakes/hovers and cancels express after actual flight')
+   xrready();xrpress('left',3);page.evaluate('g.xr.controllers[0].ray.visible=false');wait('!g.state.travel.express');check(True,'Temporary tracked-pose loss disarms express without removing the source');page.evaluate('g.xr.controllers[0].ray.visible=true');xrready()
    xrready();xrpress('left',3);xrpress('right',5);check(not page.evaluate('g.state.travel.express'),'Opening a menu disarms express')
    page.screenshot(path=str(OUT/(SCENE+'-controls.png')));page.evaluate('session.end()');wait('!g.xr.active')
    # Use the normal UI for persisted preferences; reload does not inject a save.

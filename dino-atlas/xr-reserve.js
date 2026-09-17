@@ -35,7 +35,7 @@ export class ReserveXR{
   this.button=document.createElement('button');this.button.id='xr-enter';this.button.textContent='Enter VR / Quest controllers and hands';this.button.onclick=()=>this.enter();$('menu-dialog').querySelector('.menu-grid').append(this.button);
   const introButton=this.button.cloneNode(true);introButton.id='xr-intro';introButton.onclick=()=>this.enter();$('intro').querySelector('.intro-copy').append(introButton);
   this.status=document.createElement('p');this.status.id='xr-status';this.status.textContent='VR uses tracked controllers or hand-ray pinches. Physical Quest testing is pending.';$('menu-dialog').append(this.status);
-  window.addEventListener('blur',()=>this.clear());document.addEventListener('visibilitychange',()=>{this.clear();if(this.active&&document.hidden&&!ctx.modal())ctx.action('menu');});
+  window.addEventListener('blur',()=>this.clear());document.addEventListener('visibilitychange',()=>{this.clear();if(this.active&&document.hidden&&!ctx.modal())this.ctx.action('menu');});
   this.checkSupport();
  }
  async checkSupport(){let supported=false;try{supported=!!navigator.xr&&await navigator.xr.isSessionSupported('immersive-vr');}catch{}this.supported=supported;this.status.textContent=supported?'VR available. Select Enter VR in a headset. Smooth locomotion; 30-degree snap turns.':'Immersive VR is unavailable here. Desktop, touch and Xbox play remain available.';for(const id of ['xr-enter','xr-intro'])$(id).disabled=!supported;}
@@ -114,6 +114,9 @@ export class ReserveXR{
   this.paintClock+=dt;if(this.paintClock>.18){this.paintClock=0;this.draw(root);}
   const sources=Array.from(this.session?.inputSources||[]);this.aimRay=null;let turn=0,interacted=false;
   for(const e of this.controllers){const s=e.source;if(!s)continue;e.hit=this.hit(e);e.line.scale.z=e.hit?1.7:3;e.line.visible=e.ray.visible;
+   // A source can remain connected while its pose is temporarily unavailable.
+   // Do not resume armed speed or held buttons when tracking returns.
+   if(!e.ray.visible){this.travel.reset();this.gate.neutral.add(s);this.holds.delete(s);this.consumed.delete(s);e.joints.visible=false;continue;}
    e.joints.visible=!!s.hand&&e.hand.visible;if(s.hand&&e.hand.joints){let i=0;for(const joint of Object.values(e.hand.joints)){if(i>=25)break;const matrix=joint.visible?new T.Matrix4().makeTranslation(joint.position.x,joint.position.y,joint.position.z):new T.Matrix4().makeScale(0,0,0);e.joints.setMatrixAt(i++,matrix);}e.joints.count=i;e.joints.instanceMatrix.needsUpdate=true;}
    if(!s.hand&&s.handedness==='right'&&!e.hit)this.aimRay=this.rayFor(e);
    const edges=this.gate.read(s);if(!s.hand&&this.travel.activeLayout){

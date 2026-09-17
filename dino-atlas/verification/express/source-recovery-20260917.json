@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "date": "2026-09-17",
+  "status": "final-candidate-native-pending",
+  "recoveredSourceObject": "e49aba3f476edd39c7f97b36139de22b05eddfcd",
+  "sourceObjectEvidence": "Run 35279338999 applied before/after-checked source and passed all 197 tests. Its token-limited workflow ref push failed, but the authorized connector later confirmed the exact source object was accessible.",
+  "successfulIntegrationRun": 35279732267,
+  "integratedSourceCommit": "8bf4557533bd456ef3a2c0743699eb690d9e06be",
+  "concurrency": "The game-only revised runner completed while a connector closeout was being prepared. The stale non-fast-forward update was rejected, not forced. The final amendment is a normal descendant of the successful game-only commit and retains its integration receipt.",
+  "finalAmendment": "Apply the tested temporary-pose-loss safeguard, its red/green fixture and native check; update the established workflow through the authorized connector and remove the temporary integration workflow. No token permissions or credentials change.",
+  "localFinalTestsPassed": 198,
+  "localFinalTestsFailed": 0,
+  "localFinalTestsSkipped": 0,
+  "nativeAndPublicResults": "Pending; use the established Dino Tidegate workflow for the final exact-head candidate and separate public/release checks.",
+  "hardwareVerified": false
+}
