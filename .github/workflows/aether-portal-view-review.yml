@@ -1,0 +1,85 @@
+name: Inspect Aether portal headset views
+on:
+  push:
+    branches: [aether/portal-view-review-20260917]
+    paths: ['.github/workflows/aether-portal-view-review.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 5c0fd84f5fcd42c705f2dfc2eaa3a5d35065a660
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Record source
+        run: |
+          node aether-reach/tests/release-manifest.mjs
+          git rev-parse HEAD > aether-reach/test-output/tested-commit.txt
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Review actual game with downward gaze
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/portal-view-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          cat > /tmp/portal-view.py <<'PY'
+          import json
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          root=Path.cwd();out=root/'aether-reach/test-output';errors=[]
+          with sync_playwright() as pw:
+            b=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+            c=b.new_context(viewport={'width':960,'height':640},device_scale_factor=1,service_workers='block')
+            c.add_init_script(path=str(root/'aether-reach/tests/fake-devices.js'))
+            c.add_init_script('''
+            navigator.xr.isSessionSupported=async()=>true;
+            const oldRequest=navigator.xr.requestSession.bind(navigator.xr);
+            navigator.xr.requestSession=async(m,o)=>{
+              const s=await oldRequest(m,o);s.environmentBlendMode='alpha-blend';
+              const raf=s.requestAnimationFrame.bind(s);
+              function pose(p){const pitch=TestXR.devices.headPitch||0,roll=TestXR.devices.headRoll||0;
+                const a=Math.sin(pitch/2),b=Math.cos(pitch/2),c=Math.sin(roll/2),d=Math.cos(roll/2),x=a*d,y=-a*c,z=b*c,w=b*d;
+                return {position:p,orientation:{x,y,z,w},matrix:new Float32Array([1-2*(y*y+z*z),2*(x*y+z*w),2*(x*z-y*w),0,2*(x*y-z*w),1-2*(x*x+z*z),2*(y*z+x*w),0,2*(x*z+y*w),2*(y*z-x*w),1-2*(x*x+y*y),0,p.x,p.y,p.z,1])};}
+              s.requestAnimationFrame=fn=>raf((t,f)=>{const get=f.getViewerPose.bind(f);f.getViewerPose=space=>{const v=get(space);return {...v,transform:pose(v.transform.position),views:v.views.map(e=>({...e,transform:pose(e.transform.position)}))};};fn(t,f);});return s;
+            };
+            ''')
+            p=c.new_page();p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)))
+            def frames(n=4):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f)}requestAnimationFrame(f)})',n)
+            def snap():return p.evaluate('AetherReach.snapshot()')
+            try:
+              p.goto('http://127.0.0.1:4173/aether-reach/');p.wait_for_function('!!window.AetherReach')
+              p.locator('#settings-button').click();p.locator('#visual-quality').select_option('low');p.locator('#settings-dialog form button').click()
+              p.locator('#presentation-button').click();p.locator('#xr-presentation').select_option('diorama-ar');p.locator('#presentation-back').click()
+              p.evaluate('TestXR.devices.headPitch=-.67;TestPad.connect()');p.locator('#enter-vr').click();p.wait_for_function('AetherReach.snapshot().devices.xr');frames(8)
+              samples=[]
+              for name,x,roll in [('looking-down',0,0),('looking-down-roll',.2,.3),('lateral',.45,0)]:
+                p.evaluate('([x,r])=>{TestXR.devices.headX=x;TestXR.devices.headRoll=r}',[x,roll]);frames(6);s=snap();d=s['devices']['presentation']
+                assert d['active'] and d['fullDepth'] and all(abs(s['position'][k]-d['focus'][k])<1e-6 for k in ['x','y','z'])
+                assert d['hudDocked'] and not d['menuVisible']
+                p.screenshot(path=str(out/('portal-'+name+'.png')));samples.append({'view':name,'position':s['position'],'presentation':d})
+              assert not errors
+              (out/'portal-view-review.json').write_text(json.dumps({'source':'5c0fd84f5fcd42c705f2dfc2eaa3a5d35065a660','samples':samples,'errors':errors,'scope':'Real local HTTP application, supported Light profile and synthetic downward/rolled/lateral headset poses. Normal mode-entry UI, no gameplay state assignment. Not physical Quest certification.'},indent=2))
+            finally:c.close();b.close()
+          PY
+          python -u /tmp/portal-view.py
+      - name: Record unchanged source
+        if: always()
+        run: git diff --stat > aether-reach/test-output/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-portal-view-review
+          path: aether-reach/test-output/
+          retention-days: 30
