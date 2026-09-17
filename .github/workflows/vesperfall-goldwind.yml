@@ -8,7 +8,7 @@ permissions:
   contents: read
 concurrency:
   group: vesperfall-goldwind-public
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   source:
     runs-on: ubuntu-latest
