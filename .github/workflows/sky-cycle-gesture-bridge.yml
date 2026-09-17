@@ -30,10 +30,10 @@ jobs:
               // modern pointer editors retain their own pointercancel semantics.
               if(terminal)screenPointer.mouseCompat=false;
             }"""
-          # Remove YAML indentation retained inside the Python literal.
-          old=old.replace('\n  ','\n');new=new.replace('\n  ','\n')
           source=p.read_text();assert source.count(old)==1
-          p.write_text(source.replace(old,new))
+          changed=source.replace(old,new)
+          assert hashlib.sha256(changed.encode()).hexdigest()=='f63923fce60de309ea5c5d8499a3699ca88311df44fa556505c7aa40867ed451'
+          p.write_text(changed)
           PY
           node --check mario-maker-clone/svgn-paper-route/xr-play.js
           git add mario-maker-clone/svgn-paper-route/xr-play.js
