@@ -102,7 +102,7 @@ try:
     assignment('tidegate-android');walk([[-38,29],[-38,23]]);board('jeep')
     work('service-android','scanner','g.state.field.phase==="pulse"');work('service-android','zapper','g.state.field.phase==="confirm"');check(True,'Mounted pulses reset the fictional android service panel')
     board('foot');walk([[-38,17],[-29,10],[-25,10]]);field_action('confirm');wait('g.state.field.phase==="report"');walk([[-29,15],[-35,29],[-38,31]]);field_action('report');wait('g.state.field.commendations===2');check(True,'Android restart requires grounded confirmation, not remote shooting alone')
-    assignment('tidegate-boat-rescue');walk([[-35,29],[-35,43],[-25,43],[-14,38]]);board('boat');sail(5.8)
+    assignment('tidegate-boat-rescue');walk([[-35,29],[-35,43],[-25,43],[-13,38]]);board('boat');sail(5.8)
     work('east-crew','scanner','g.state.field.phase==="rescue"');work('east-crew','rescue','g.state.field.phase==="deliver"');check(state()['field']['cargo']['carrier']=='boat','Stable recovery line secures the crew basket to this boat')
     snap('rescued-crew');saved=state()['position'];page.reload(wait_until='domcontentloaded');wait('window.__tidegate?.state.ready',120000);page.evaluate('async()=>{window.g=__tidegate;window.input=g.xr.ctx.input;window.THREE=await import("./vendor/three.module.js");}')
     check(state()['field']['phase']=='deliver' and state()['mode']=='boat','Reload retains the secured crew and resumes the occupied cargo carrier')
