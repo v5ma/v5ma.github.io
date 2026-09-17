@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-17",
+  "policy": "Documentary dossiers in chronological or textual context, not a leaderboard, best-fit selection or a count of fulfilled verses. A source recording an accusation is distinct from a source recording conduct.",
+  "sources": [
+    {
+      "id": "butler-speech",
+      "title": "July 18, 2024 nomination acceptance transcript",
+      "url": "https://www.presidency.ucsb.edu/documents/address-accepting-the-presidential-nomination-the-republican-national-convention-milwaukee",
+      "accessed": "2026-09-17",
+      "access_scope": "Opening survival narrative and attributed audience responses consulted. Not an audience survey or medical record."
+    },
+    {
+      "id": "inaugural",
+      "title": "January 20, 2025 inaugural address",
+      "url": "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/",
+      "accessed": "2026-09-17",
+      "access_scope": "Survival-to-mission passage and the stated peace-making objective consulted. A speech records claims, not their supernatural verification."
+    },
+    {
+      "id": "pope",
+      "title": "May 2, 2025 account publication",
+      "url": "https://www.presidency.ucsb.edu/documents/truth-social-posts-may-2-2025",
+      "accessed": "2026-09-17",
+      "access_scope": "Papal-image publication entry consulted. Account publication does not determine the artist or account operator."
+    },
+    {
+      "id": "law-maxim",
+      "title": "February 15, 2025 account publication",
+      "url": "https://www.presidency.ucsb.edu/documents/truth-social-posts-february-15-2025",
+      "accessed": "2026-09-17",
+      "access_scope": "Short national-rescue-and-law statement; no legal validity or intended case is inferred."
+    },
+    {
+      "id": "snap",
+      "title": "November 4, 2025 account publication",
+      "url": "https://www.presidency.ucsb.edu/documents/truth-social-posts-november-4-2025",
+      "accessed": "2026-09-17",
+      "access_scope": "Quoted funding condition as preserved by the earlier reviewed wiki record. Contemporary qualification is retained in that linked record; no outcome audit is added."
+    },
+    {
+      "id": "war",
+      "title": "July 2018 warning to Iran",
+      "url": "https://www.presidency.ucsb.edu/documents/tweets-july-23-2018",
+      "accessed": "2026-09-17",
+      "access_scope": "Warning and its UTC collection date, corresponding to July 22 Eastern. Not a report of a completed attack."
+    },
+    {
+      "id": "reagan-return",
+      "title": "April 28, 1981 return to Congress",
+      "url": "https://www.reaganlibrary.gov/archives/speech/address-joint-session-congress-program-economic-recovery-april-1981",
+      "accessed": "2026-09-17",
+      "access_scope": "Opening gratitude, prayer and recovery passage, followed by policy advocacy. No quantitative audience effect is inferred."
+    },
+    {
+      "id": "napoleon",
+      "title": "Princeton: The Beast as Described in the Revelations",
+      "url": "https://www.princeton.edu/~graphicarts/2010/11/beast.html",
+      "accessed": "2026-09-17",
+      "access_scope": "Institutional description of an 1808 Rowlandson etching after G. Sauley. This is a primary artifact of reception, not proof of its identification."
+    },
+    {
+      "id": "hitler-oath",
+      "title": "Oaths of Loyalty for All State Officials",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/oaths-of-loyalty-for-all-state-officials",
+      "accessed": "2026-09-17",
+      "access_scope": "USHMM translation of the August 20, 1934 oath and constitutional comparison. Wording for state officials is not silently replaced with the different military oath."
+    },
+    {
+      "id": "clinton-accusation",
+      "title": "Washington Post, Names & Faces, January 1993",
+      "url": "https://www.washingtonpost.com/archive/lifestyle/1993/01/02/names-38/2cc802a9-1be7-4393-be63-a7a2b4642e60/",
+      "accessed": "2026-09-17",
+      "access_scope": "Brief contemporaneous report of reader reactions. Only the limited fact summarized in the dossier is used."
+    },
+    {
+      "id": "obama-accusation",
+      "title": "Public Policy Polling, April 3, 2013",
+      "url": "https://www.publicpolicypolling.com/news/poll-13-percent-say-obama-the-antichrist/",
+      "accessed": "2026-09-17",
+      "access_scope": "Publisher page records the circulation of an Antichrist claim about Obama. No identity inference, leader score or poll-based ranking is made."
+    },
+    {
+      "id": "reagan-accusation",
+      "title": "Los Angeles Times court report, April 30, 1991",
+      "url": "https://www.latimes.com/archives/la-xpm-1991-04-30-me-1109-story.html",
+      "accessed": "2026-09-17",
+      "access_scope": "Brief reception-history evidence of an accusation. The threat details are not reproduced."
+    },
+    {
+      "id": "sahure",
+      "title": "King Sahure Accompanied by a Divine Figure",
+      "url": "https://www.metmuseum.org/art/collection/search/543882",
+      "accessed": "2026-09-17",
+      "access_scope": "Museum object description of royal and divine representation. No identification with the unnamed Exodus pharaoh is proposed."
+    },
+    {
+      "id": "fascism",
+      "title": "USHMM: Fascism",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/fascism-1",
+      "accessed": "2026-09-17",
+      "access_scope": "Historical definition and twentieth-century context; not a classification of a contemporary US administration."
+    },
+    {
+      "id": "obama-russia",
+      "title": "Obama statement on Ukraine, March 20, 2014",
+      "url": "https://obamawhitehouse.archives.gov/the-press-office/2014/03/20/statement-president-ukraine",
+      "accessed": "2026-09-17",
+      "access_scope": "Announcement of additional sanctions and diplomatic rationale. It is a dated policy statement, not a verdict on all Russia policy."
+    },
+    {
+      "id": "trump-russia",
+      "title": "Trump-Putin press conference, July 16, 2018",
+      "url": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-president-putin-russian-federation-joint-press-conference/",
+      "accessed": "2026-09-17",
+      "access_scope": "Opening statements on engagement and the exchange with reporters. Speakers' assessments and allegations are not adopted as verified facts."
+    }
+  ],
+  "dossiers": [
+    {
+      "id": "butler",
+      "title": "Butler aftermath: reaction, religious explanation and mission",
+      "record_type": "Contemporary reception",
+      "subjects": [
+        "Donald Trump",
+        "audiences",
+        "religious speakers"
+      ],
+      "documented_record": "The July 18, 2024 speech narrates spectators believing Trump dead and then recognizing survival. The January 2025 inauguration connects survival to a stated mission.",
+      "comparison_question": "How does the author's Revelation 13:3 comparison distinguish the wound, apparent survival, reported reactions, religious explanation and later political use?",
+      "scope_limit": "A speaker's report of spectators' thoughts is not a survey. Applause, gratitude, adherence and worship are separate observations.",
+      "source_ids": [
+        "butler-speech",
+        "inaugural"
+      ],
+      "wiki_paths": [
+        "../event-forecast-register/corpus-review/BUTLER-RECEPTION-20240713.md",
+        "../reception-history.html"
+      ],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "images",
+      "title": "Account publication and the circulation of sacred imagery",
+      "record_type": "Contemporary publication",
+      "subjects": [
+        "Donald Trump",
+        "upstream publishers",
+        "official accounts"
+      ],
+      "documented_record": "The May 2, 2025 account archive records publication of the papal portrait. The merged media register separates this from other publications and sharing relationships.",
+      "comparison_question": "Who originates an image, which account selects it, what caption is added, and which institution amplifies it?",
+      "scope_limit": "The first beast, the promoting agent and the image are not the same role. Image content does not measure viewers' belief. Unverified image descriptions retain their limits.",
+      "source_ids": [
+        "pope"
+      ],
+      "wiki_paths": [
+        "../event-forecast-register/x-media/index.html",
+        "../event-forecast-register/x-media/media-register.json"
+      ],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "authority",
+      "title": "Claims about national rescue and legal authority",
+      "record_type": "Contemporary statement",
+      "subjects": [
+        "Donald Trump"
+      ],
+      "documented_record": "A February 15, 2025 account post links saving the country to not violating law.",
+      "comparison_question": "What exception does the maxim suggest, and is a particular later action expressly defended through it?",
+      "scope_limit": "The post alone identifies neither a case nor a lawful exemption. A claim, an implemented act and a legal ruling require different records.",
+      "source_ids": [
+        "law-maxim"
+      ],
+      "wiki_paths": [
+        "../event-forecast-register/corpus-review/index.html#r-20250215-law"
+      ],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "food-access",
+      "title": "Conditional food access and material dependence",
+      "record_type": "Contemporary statement with qualification",
+      "subjects": [
+        "Donald Trump",
+        "benefit recipients",
+        "legislators"
+      ],
+      "documented_record": "The existing November 4, 2025 record preserves a statement linking SNAP payments to government reopening, alongside the subsequent compliance clarification.",
+      "comparison_question": "Is the condition imposed on recipients, legislators, distribution institutions or another party, and what actually happens to access?",
+      "scope_limit": "A financing condition is not automatically a personal-allegiance test. Preserve court orders, exceptions and actual payments before describing a transaction rule.",
+      "source_ids": [
+        "snap"
+      ],
+      "wiki_paths": [
+        "../event-forecast-register/corpus-review/index.html#r-20251104-snap",
+        "../event-forecast-register/ENERGY-SCARCITY-2026-09-16.md"
+      ],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "war-statements",
+      "title": "Threats, negotiations and observed military actions",
+      "record_type": "Contemporary statement",
+      "subjects": [
+        "Donald Trump",
+        "Iran"
+      ],
+      "documented_record": "A July 2018 Twitter statement addresses Iran's president and threatens consequences for further threats.",
+      "comparison_question": "What addressee, trigger, response and interval does the statement specify, and which later events independently establish the outcome?",
+      "scope_limit": "A threat is not a strike. A treaty or negotiation does not by itself establish deceptive intent or the gathering described in Revelation.",
+      "source_ids": [
+        "war"
+      ],
+      "wiki_paths": [
+        "../event-forecast-register/truth-social/index.html",
+        "../event-forecast-register/corpus-review/index.html"
+      ],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "reagan-survival",
+      "title": "An earlier presidential survival-and-return account",
+      "record_type": "Historical comparison",
+      "subjects": [
+        "Ronald Reagan"
+      ],
+      "documented_record": "On April 28, 1981, Reagan thanked people for prayers and support, acknowledged others injured, described improved health, and advocated his economic program.",
+      "comparison_question": "Which parts of the sequence are shared with other public-survival narratives, and which are documented only in one case?",
+      "scope_limit": "A recurring feature can support a typological question without establishing identical conduct or a unique final fulfillment. No whole-life moral judgment is inferred.",
+      "source_ids": [
+        "reagan-return"
+      ],
+      "wiki_paths": [
+        "../reception-history.html"
+      ],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "napoleon-reception",
+      "title": "Napoleon represented through Revelation 13 in 1808",
+      "record_type": "Historical reception",
+      "subjects": [
+        "Napoleon",
+        "Thomas Rowlandson",
+        "G. Sauley"
+      ],
+      "documented_record": "Princeton catalogues an 1808 etching explicitly applying Revelation 13 imagery to Napoleon.",
+      "comparison_question": "Which elements did the historical illustrator choose, and how did the image function in its own political setting?",
+      "scope_limit": "This is direct evidence of a historical comparison being made, not evidence that every depicted analogy was true. The catalogue's number associations are not recomputed as identity tests.",
+      "source_ids": [
+        "napoleon"
+      ],
+      "wiki_paths": [],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "hitler-oath",
+      "title": "Institutional loyalty in the 1934 state-official oath",
+      "record_type": "Historical institutional document",
+      "subjects": [
+        "Adolf Hitler",
+        "German state officials"
+      ],
+      "documented_record": "The August 20, 1934 state-official oath names Hitler as its object of fidelity and obedience while also referring to duties and law.",
+      "comparison_question": "What changes when an institution attaches loyalty to a named ruler, and how does that differ from a public religious image or ordinary political support?",
+      "scope_limit": "The source documents a specific oath, not the proposition that every leader with supporters has the same institutional structure. No unsupported claim about who called Hitler Antichrist is added.",
+      "source_ids": [
+        "hitler-oath",
+        "fascism"
+      ],
+      "wiki_paths": [],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "clinton-reception",
+      "title": "A reported accusation concerning a magazine cover",
+      "record_type": "Historical reception",
+      "subjects": [
+        "Bill Clinton"
+      ],
+      "documented_record": "A 1993 report records readers interpreting Clinton's magazine-cover presentation as Antichrist imagery.",
+      "comparison_question": "What is evidence about an accusation, and what separate evidence would be needed about the person or institution accused?",
+      "scope_limit": "A hostile interpretation of cover design is not a documented government mechanism.",
+      "source_ids": [
+        "clinton-accusation"
+      ],
+      "wiki_paths": [],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "obama-reception",
+      "title": "An Antichrist claim recorded by a poll publisher",
+      "record_type": "Historical reception",
+      "subjects": [
+        "Barack Obama"
+      ],
+      "documented_record": "Public Policy Polling's April 2013 page documents that respondents were asked about an Antichrist claim concerning Obama.",
+      "comparison_question": "What does the existence of the claim establish about reception, as distinct from policy or prophetic identification?",
+      "scope_limit": "Reported belief is not proof of its object. No result is converted into a politician's score or a comparative ranking.",
+      "source_ids": [
+        "obama-accusation"
+      ],
+      "wiki_paths": [],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "reagan-reception",
+      "title": "A documented Antichrist accusation against Reagan",
+      "record_type": "Historical reception",
+      "subjects": [
+        "Ronald Reagan"
+      ],
+      "documented_record": "A 1991 court report records an Antichrist accusation against Reagan.",
+      "comparison_question": "How should an accusation's source and setting be preserved before treating it as a precedent?",
+      "scope_limit": "This record establishes that an accusation was made, not that the accusation was true or representative.",
+      "source_ids": [
+        "reagan-accusation"
+      ],
+      "wiki_paths": [],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "egypt-kingship",
+      "title": "Royal and divine representation in an Egyptian artifact",
+      "record_type": "Historical material culture",
+      "subjects": [
+        "Sahure",
+        "divine figure"
+      ],
+      "documented_record": "The Met describes a statue joining King Sahure with a divine figure offering life, using royal protection and authority imagery.",
+      "comparison_question": "Which visual and institutional relationships are comparable, and which depend on a different religion, period or form of government?",
+      "scope_limit": "Sahure is not identified with Exodus's unnamed pharaoh. Sacred kingship is not automatically identical to modern fascism or a contemporary presidency.",
+      "source_ids": [
+        "sahure"
+      ],
+      "wiki_paths": [],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    },
+    {
+      "id": "policy-records",
+      "title": "Russia policy: dated statements rather than a moral scale",
+      "record_type": "Historical policy records",
+      "subjects": [
+        "Barack Obama",
+        "Donald Trump",
+        "Vladimir Putin"
+      ],
+      "documented_record": "Obama's March 20, 2014 statement announced additional sanctions on Russia. Trump's July 16, 2018 Helsinki statement presented engagement and dialogue as serving peace.",
+      "comparison_question": "What instruments, stated objectives, implementation and observable consequences belong to each episode?",
+      "scope_limit": "These statements are neither a complete policy history nor an assessment of which president was better. An author's theological evaluation must not replace the factual policy record.",
+      "source_ids": [
+        "obama-russia",
+        "trump-russia"
+      ],
+      "wiki_paths": [],
+      "identity_assignment": null,
+      "author_interpretation": "Micah Blumberg proposes a contemporary First Beast reading; this dossier preserves documentary material without assigning a political identity or ranking."
+    }
+  ]
+}

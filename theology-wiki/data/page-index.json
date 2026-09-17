@@ -12632,7 +12632,7 @@
     "slug": "trump-first-beast-of-revelation",
     "title": "Trump and the First Beast of Revelation",
     "category": "apocalypse",
-    "summary": "A direct theological identification examined through three dated cases: personal indispensability, clemency for political allies and the control of AI procurement.",
+    "summary": "The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.",
     "claimType": "Theological interpretation",
     "externalSources": [
       "svgn-sword",
@@ -12645,7 +12645,7 @@
     ],
     "art": "riders",
     "kind": "Developed article",
-    "updated": "2026-09-06",
+    "updated": "2026-09-17",
     "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
     "featured": true,
     "aliases": [
@@ -12680,7 +12680,7 @@
         "sha256": "9ce24d6bf558c57d72e42391d825678690519716020e99e2808ca2abd9b4f97b"
       }
     ],
-    "readMinutes": 8,
+    "readMinutes": 14,
     "related": [
       "antichrist-as-a-pattern-of-conduct",
       "religion-for-conscious-robots",
@@ -12691,11 +12691,12 @@
       "image-collection",
       "apocalypse-and-repair"
     ],
-    "backlinkCount": 13,
+    "backlinkCount": 14,
     "backlinks": [
       "home",
       "ukraine-russia-forecast-record",
       "apocalyptic-repair-theology",
+      "antichrist-as-a-pattern-of-conduct",
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
       "apocalypse-and-repair",
@@ -13418,10 +13419,10 @@
     "slug": "antichrist-as-a-pattern-of-conduct",
     "title": "Antichrist as a pattern of conduct",
     "category": "apocalypse",
-    "summary": "A theological judgment about domination, deception and violence that can appear through many people and institutions.",
+    "summary": "Conduct, typology, recurring forms and historical reception, with distinctions among individuals, public personae, institutions and claimed final fulfillment.",
     "art": "riders",
     "kind": "Developed article",
-    "updated": "2026-09-06",
+    "updated": "2026-09-17",
     "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
     "claimType": "Constructive theological interpretation and conjecture",
     "aliases": [],
@@ -13453,11 +13454,12 @@
         "sha256": "43f1ccdb86688a5042265141521a285d06c799687ce67c2e436526545c73299f"
       }
     ],
-    "readMinutes": 3,
+    "readMinutes": 9,
     "related": [
       "antichrist-spiritual-inversion",
       "christ-as-an-inner-model",
       "apocalyptic-repair-theology",
+      "trump-first-beast-of-revelation",
       "early-vs-later-gnosticism",
       "image-collection",
       "apocalypse-and-repair"
@@ -16974,7 +16976,7 @@
     "summary": "Ten explicit connections among physics, neural rendering, God, historical inheritance and constructive theology.",
     "category": "context",
     "kind": "Navigator",
-    "updated": "2026-09-06",
+    "updated": "2026-09-17",
     "aliases": [],
     "path": "developed/computational-argument-map.md",
     "topic": "Wider conversations",
