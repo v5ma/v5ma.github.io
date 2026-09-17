@@ -1,58 +1,12 @@
-name: Theology one-shot concordance integration
+name: Theology concordance integration (completed)
+# Run 35284880394 completed the branch-only integration; retain only read-only validation.
 on:
-  push:
-    branches: ['theology/scripture-concordance-20260917']
-    paths:
-      - 'theology-wiki/scripture-concordance/**'
-      - '.github/workflows/theology-concordance-integration.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  integrate:
-    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/scripture-concordance-20260917'
+  completed:
+    if: ${{ false }}
     runs-on: ubuntu-latest
-    timeout-minutes: 12
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: theology/scripture-concordance-20260917
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Generate and integrate with preserved article prefixes
-        env:
-          INTEGRATED: '1'
-          REQUIRE_CORPUS: '1'
-        run: |
-          set -o pipefail
-          mkdir -p theology-test-output/concordance
-          python theology-wiki/scripture-concordance/build_data.py
-          python theology-wiki/scripture-concordance/build_dossiers.py
-          node theology-wiki/scripture-concordance/build.cjs
-          node theology-wiki/scripture-concordance/integrate.cjs
-          node theology-wiki/scripture-concordance/reconcile.cjs --metadata
-          node theology-wiki/tools/build.cjs | tee theology-test-output/concordance/build.log
-          node theology-wiki/scripture-concordance/reconcile.cjs
-          node --test theology-wiki/scripture-concordance/concordance.test.cjs theology-wiki/tests/research.test.cjs theology-wiki/event-forecast-register/corpus-review/review.test.cjs | tee theology-test-output/concordance/contracts.log
-      - name: Commit only validated Theology derivatives to the review branch
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add theology-wiki/
-          if git diff --cached --name-only | grep -Ev '^theology-wiki/'; then exit 1; fi
-          git diff --cached --quiet && exit 0
-          git commit -m 'Integrate concordance into canonical articles and regenerate main reader search and listening text'
-          git push origin HEAD:refs/heads/theology/scripture-concordance-20260917
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: theology-concordance-integration-evidence
-          path: |
-            theology-test-output/concordance/
-            theology-wiki/scripture-concordance/
-          if-no-files-found: error
+      - run: echo 'The September 17 integration is complete; later edits require a new reviewed change.'
