@@ -26,9 +26,10 @@ guide.innerHTML='<h2 id="sky-xr-title">Sky Cycle / AR and VR</h2><p>Play the sam
 document.body.append(guide);
 const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('./xr-workspace.css',import.meta.url);document.head.append(style);
 const settingsDialog=document.createElement('dialog');settingsDialog.id='sky-xr-settings';
-settingsDialog.innerHTML='<h2>Spatial setup</h2><p>The exhibit is placed relative to your seated view. These controls move only the presentation, never the rider or collision.</p>'+[['scale','Exhibit size',.6,1.8,.1,1],['height','Exhibit height',-.75,.75,.05,0],['distance','Exhibit distance',1.4,4,.1,2.4],['yaw','Exhibit rotation',-180,180,15,0]].map(([k,l,min,max,step,val])=>`<label for="xr-stage-${k}">${l}</label><input id="xr-stage-${k}" aria-label="${l}" type="range" min="${min}" max="${max}" step="${step}" value="${val}">`).join('')+'<button id="xr-stage-center">Recenter exhibit</button><button id="xr-stage-switch">Change AR / VR mode</button><form method="dialog"><button>Back</button></form>';
+settingsDialog.innerHTML='<h2>Spatial setup</h2><p>The exhibit is placed relative to your seated view. These controls move only the presentation, never the rider or collision.</p>'+[['scale','Exhibit size',.6,1.8,.1,1],['height','Exhibit height',-.75,.75,.05,0],['distance','Exhibit distance',1.4,4,.1,2.4],['yaw','Exhibit rotation',-180,180,15,0]].map(([k,l,min,max,step,val])=>`<label for="xr-stage-${k}">${l}</label><input id="xr-stage-${k}" aria-label="${l}" type="range" min="${min}" max="${max}" step="${step}" value="${val}">`).join('')+'<button id="xr-stage-center">Recenter exhibit</button><button id="xr-stage-switch">Change AR / VR mode</button><button id="xr-stage-exit">Exit XR</button><form method="dialog"><button>Back</button></form>';
 document.body.append(settingsDialog);
 for(const k of ['scale','height','distance','yaw'])$('xr-stage-'+k).oninput=e=>{spatial=stageSettings({...spatial,[k]:e.target.value});};
+$('xr-stage-exit').onclick=()=>{settingsDialog.close();endSession();};
 $('xr-stage-center').onclick=()=>{recenter=true;};
 $('xr-stage-switch').onclick=()=>{selectedMode=sessionMode==='immersive-ar'?'immersive-vr':'immersive-ar';pendingHandoff=()=>show();settingsDialog.close();endSession();};
 $('sky-xr-cancel').onclick=()=>guide.close();guide.addEventListener('cancel',e=>{e.preventDefault();guide.close();});
@@ -41,7 +42,7 @@ async function support(){
   } catch(e){status('XR capability check failed: '+e.message);}
 }
 function show(){if(presenting){pause();settingsDialog.showModal();return;}if(!guide.open){pause();guide.showModal();$('sky-xr-cancel').focus();}support();}
-function mount(){for(const [id,selector]of[['sky-xr-open','#delivery-header .actions'],['sky-xr-pause','#delivery-pause .delivery-pause-card'],['sky-xr-deck','#flight-deck .fd-actions'],['sky-xr-workshop','#route-workshop .maker-actions']]){const root=document.querySelector(selector);if(root&&!$(id)){const b=document.createElement('button');b.id=id;b.className='delivery-btn';b.textContent='AR / VR';b.onclick=show;root.append(b);}}}
+function mount(){const deck=document.querySelector('#flight-deck .fd-actions');if(deck&&!$('sky-xr-tools')){const b=document.createElement('button');b.id='sky-xr-tools';b.hidden=!presenting;b.textContent='Game and editor menus';b.onclick=()=>{fd()?.releaseForTravel();$('flight-deck')?.close();openWorkspace();};deck.append(b);}for(const [id,selector]of[['sky-xr-open','#delivery-header .actions'],['sky-xr-pause','#delivery-pause .delivery-pause-card'],['sky-xr-deck','#flight-deck .fd-actions'],['sky-xr-workshop','#route-workshop .maker-actions']]){const root=document.querySelector(selector);if(root&&!$(id)){const b=document.createElement('button');b.id=id;b.className='delivery-btn';b.textContent='AR / VR';b.onclick=show;root.append(b);}}}
 mount();
 function pointerEvent(type,hit,source=screenPointer?.source){
   const target=screenPointer?.target||screenSource;if(!target||!hit)return;
@@ -70,7 +71,15 @@ function makeStage(){
 }
 function text(s,x,y,max,width=1060,font=23){context.font=`${font}px sans-serif`;const lines=wrapText(context,s,width,context.font);for(let i=0;i<Math.min(lines.length,max);i++)context.fillText(lines[i],x,y+i*(font+7));return Math.min(lines.length,max)*(font+7);}
 function button(label,x,y,w,h,action,hover=null){context.fillStyle=focusLabel===label?'#365e70':'#18384c';context.fillRect(x,y,w,h);context.strokeStyle='#97dfd2';context.lineWidth=2;context.strokeRect(x,y,w,h);context.fillStyle='#f4fbff';text(label,x+14,y+29,2,w-24,22);rects.push({x,y,w,h,label,action,hover});}
-function openWorkspace(){pause();virtualRoot=window.RouteWorkshop?.active?$('route-workshop'):screenMode==='editor'?$('topbar'):document.querySelector('#delivery-header');page=0;lastPanel=null;lastUI=0;}
+function openWorkspace(){
+  if(!presenting)return;
+  if(typing)back();
+  fd()?.releaseForTravel();
+  // Root navigation cancels uncommitted dialogs; it never approves their action.
+  for(const d of document.querySelectorAll('dialog[open]'))d.close();
+  for(const id of ['ctrlov','hangov','machov','shopov','commov','lvlov','acctov','winov']){const p=$(id);if(p?.classList.contains('show'))fd()?.back(p);}
+  pause();virtualRoot=window.RouteWorkshop?.active?$('route-workshop'):screenMode==='editor'?$('topbar'):document.querySelector('#delivery-header');page=0;lastPanel=null;lastUI=0;
+}
 function back(current=panel()){
   if(typing){typing=null;keyboardDialog?.close();release();lastUI=0;return true;}
   if(virtualRoot&&current===virtualRoot){virtualRoot=null;release();lastUI=0;return true;}
@@ -80,7 +89,7 @@ function edit(el){
   typing={el,value:el.value,root:panel()};typingShift=false;typingSymbols=false;
   keyboardDialog=document.createElement('dialog');keyboardDialog.id='sky-xr-keyboard';keyboardDialog.className='xr-question';
   keyboardDialog.innerHTML='<h2>In-headset keyboard</h2><p>Point and select a key, or use controller focus and A. Apply commits the field; Cancel leaves it unchanged.</p><div class="xr-keyboard-keys"></div>';
-  document.body.append(keyboardDialog);keyboardDialog.addEventListener('close',()=>{typing=null;keyboardDialog?.remove();keyboardDialog=null;release();lastUI=0;},{once:true});
+  const owner=keyboardDialog;document.body.append(owner);owner.addEventListener('close',()=>{if(keyboardDialog===owner){typing=null;keyboardDialog=null;}owner.remove();release();lastUI=0;},{once:true});
   refreshKeyboard();keyboardDialog.showModal();keyboardDialog.querySelector('button')?.focus();release();lastUI=0;
 }
 function refreshKeyboard(){
@@ -136,6 +145,13 @@ function activate(el){
   const entry=menuEntries(panel(),{invoke,edit,external}).find(e=>e.el===el && !e.label.endsWith('minus')&&!e.label.endsWith('plus'));
   if(entry)entry.action();else invoke(el);return true;
 }
+function focusControl(el){
+  if(!presenting)return;
+  if(typing){focusLabel=el.dataset.xrKey||'';lastUI=0;return;}
+  const entries=menuEntries(panel(),{invoke,edit,external});const i=entries.findIndex(e=>e.el===el);
+  if(i>=0){page=Math.floor(i/6);focusLabel=entries[i].label;lastUI=0;}
+}
+document.addEventListener('focusin',e=>{if(presenting)focusControl(e.target);});
 function external(el){
   promptDialog('This browser-owned action needs the normal browser view. Leave XR, then choose Continue in the browser? Your current game or draft is kept paused.','confirm',null,()=>{
     pendingHandoff=()=>{
@@ -177,11 +193,11 @@ function makeMenu(now,force=false){
     paragraphs.slice(page*5,page*5+5).forEach((line,i)=>text(line,35,90+i*29,1,1120,22));
     entries.slice(page*6,page*6+6).forEach((e,i)=>button(e.label,35,252+i*77,1130,67,()=>{e.action();lastUI=0;},()=>e.el.focus({preventScroll:true})));
     button('Previous',35,724,330,62,()=>{page=(page-1+count)%count;release();});button(`Page ${page+1} / ${count} - Next`,380,724,435,62,()=>{page=(page+1)%count;release();});
-    button('Back',830,724,335,62,()=>{if(!back(current))fd()?.back(current);});
+    button(current===virtualRoot&&screenMode==='workshop'?'Resume editing':'Back',830,724,335,62,()=>{if(!back(current))fd()?.back(current);});
   } else {
     ui.position.set(0,-.43,-1.65);ui.scale.setScalar(.8);
     const editing=screenMode==='workshop'||screenMode==='editor';
-    const items=screenMode==='editor'?[['Editor tools',openWorkspace],['Undo',()=>invoke($('btnUndo'))],['Redo',()=>invoke($('btnRedo'))],['Save code',()=>invoke($('btnSave'))],['Machines',()=>invoke($('btnLoad'))],['Controls',()=>invoke($('btnCtrl'))],['Playtest',()=>{invoke($('btnPlay'));virtualRoot=null;}],['All menus',openWorkspace],['Spatial setup',show]]:editing?[['Editor tools',()=>openWorkspace()],['Undo',()=>$('route-workshop')?.querySelector('[data-mk="undo"]')?.click()],['Redo',()=>$('route-workshop')?.querySelector('[data-mk="redo"]')?.click()],['Zoom in',()=>$('route-workshop')?.querySelector('[data-mk="zoomin"]')?.click()],['Zoom out',()=>$('route-workshop')?.querySelector('[data-mk="zoomout"]')?.click()],['Fit level',()=>$('route-workshop')?.querySelector('[data-mk="fit"]')?.click()],['Playtest',()=>invoke($('route-workshop')?.querySelector('[data-mk="test"]'))],['All menus',openWorkspace],['Spatial setup',show]]:
+    const items=screenMode==='editor'?[['Editor tools',openWorkspace],['Undo',()=>invoke($('btnUndo'))],['Redo',()=>invoke($('btnRedo'))],['Save code',()=>invoke($('btnSave'))],['Machines',()=>invoke($('btnLoad'))],['Controls',()=>invoke($('btnCtrl'))],['Playtest',()=>{invoke($('btnPlay'));virtualRoot=null;}],['All menus',openWorkspace],['Spatial setup',show]]:editing?[['Editor tools',()=>openWorkspace()],['Undo',()=>$('route-workshop')?.querySelector('[data-mk="undo"]')?.click()],['Redo',()=>$('route-workshop')?.querySelector('[data-mk="redo"]')?.click()],['Zoom in',()=>$('route-workshop')?.querySelector('[data-mk="zoomin"]')?.click()],['Zoom out',()=>$('route-workshop')?.querySelector('[data-mk="zoomout"]')?.click()],['Fit level',()=>$('route-workshop')?.querySelector('[data-mk="fit"]')?.click()],['Playtest',()=>invoke($('route-workshop')?.querySelector('[data-mk="test"]'))],['Select / move',()=>invoke($('route-workshop')?.querySelector('[data-tool="select"]'))],['Pan',()=>invoke($('route-workshop')?.querySelector('[data-tool="pan"]'))]]:
       [['Ride left','left'],['Ride right','right'],['Jump','jump'],['Paper','paper'],['Whip','whip'],['Boost','boost'],['Use nearby','use'],['Pause','pause'],['Portal atlas','portal']];
     context.fillStyle='#132b40';context.fillRect(20,510,1160,290);context.fillStyle='#f4fbff';
     text(editing?'WORKSHOP / point at the live canvas to select or drag':`SKY CYCLE / ${sessionMode==='immersive-ar'?'AR':'VR'} / ${typeof deliveries!=='undefined'?deliveries:0} deliveries`,35,538,1,1110,23);
@@ -264,6 +280,7 @@ function frame(now,f){
     for(const source of sources)if(!f.getPose(source.targetRaySpace,reference)&&(presses.has(source)||source.gamepad?.axes?.some(v=>Math.abs(v)>.3))){pause();break;}
     const left=sources.find(s=>!s.hand&&s.handedness==='left'&&s.gamepad?.mapping==='xr-standard');const down=!!left?.gamepad?.buttons[4]?.pressed;
     if(!panel()&&!neutral&&down&&!ctxDown)window.SkyCycleBathhouse?.interact();ctxDown=down;
+    if(virtualRoot&&!__delivery.paused&&!__delivery.state.menu)__delivery.act('pause');
     window.pollGamepad?.();window.tick();updateStage(viewer);makeMenu(now);updateTracking(f);
     renderer.setClearColor(sessionMode==='immersive-ar'?0x000000:0x112239,sessionMode==='immersive-ar'?0:1);
     originalRender.call(renderer,xrScene,camera);frameCount++;eyeCount=viewer.views.length;
@@ -272,6 +289,7 @@ function frame(now,f){
 async function finish(){
   if(finishing||(!presenting&&!starting))return;finishing=true;presenting=false;starting=false;release();typing=null;keyboardDialog?.close();virtualRoot=null;
   try{
+    if($('sky-xr-tools'))$('sky-xr-tools').hidden=true;
     await Promise.resolve(); // Let Three's synchronous session-end listener restore its owner first.
     if(renderer){await renderer.setAnimationLoop(null);renderer.xr.enabled=false;if(originalRender)renderer.render=originalRender;restoreFramebuffer();restoreFramebuffer=()=>{};if(oldClear)renderer.setClearColor(oldClear,oldAlpha);}
     if(originalScene){world?.remove(originalScene);originalScene.updateMatrixWorld(true);} // never dispose game-owned assets
@@ -301,14 +319,14 @@ async function enter(kind='immersive-vr'){
     // r177 captures the application callback in setSession and wraps it with XR camera/target setup.
     // Installing our callback afterward bypasses that wrapper and renders a blank headset.
     renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');await renderer.setAnimationLoop(frame);await renderer.xr.setSession(session);
-    if(!session||!starting)return;presenting=true;starting=false;renderer.render=function(scene,cam){if(!presenting)return originalRender.call(this,scene,cam);};
+    if(!session||!starting)return;presenting=true;starting=false;if($('sky-xr-tools'))$('sky-xr-tools').hidden=false;renderer.render=function(scene,cam){if(!presenting)return originalRender.call(this,scene,cam);};
     status(kind==='immersive-ar'?'AR active. Recenter and Spatial setup position the game in your room.':'VR active. All menus and Spatial setup remain available.');
   } catch(e){const reason='XR could not start: '+e.message;try{await acquired?.end();}catch{}if(starting||presenting)await finish();status(reason);}
   finally{$('sky-xr-enter').disabled=!supportState.vr;$('sky-xr-enter-ar').disabled=!supportState.ar;}
 }
 $('sky-xr-enter').onclick=()=>enter('immersive-vr');$('sky-xr-enter-ar').onclick=()=>enter('immersive-ar');
 window.addEventListener('pagehide',()=>{pause();session?.end().catch(()=>{});});
-window.SkyCycleXR=Object.freeze({version:'0.26.0',get presenting(){return presenting;},get menuPanel(){return presenting?virtualRoot:null;},back,activate,show,
+window.SkyCycleXR=Object.freeze({version:'0.26.0',get presenting(){return presenting;},get menuPanel(){return presenting?virtualRoot:null;},back,activate,focusControl,show,
  getGamepad(){
   if(!presenting||!session)return null;
   const activeHeld=new Set(held);for(const [key,until]of pulses)if(performance.now()<until)activeHeld.add(key);else pulses.delete(key);
@@ -317,5 +335,5 @@ window.SkyCycleXR=Object.freeze({version:'0.26.0',get presenting(){return presen
   const pad=[...(navigator.getGamepads?.()||[])].find(p=>p?.connected&&p.mapping==='standard');
   if(pad&&!neutral&&session.visibilityState==='visible'){for(let i=0;i<out.buttons.length;i++)if(pad.buttons[i]?.pressed)out.buttons[i]={pressed:true,value:pad.buttons[i].value||1};for(let i=0;i<out.axes.length;i++)if(Math.abs(pad.axes[i]||0)>.25)out.axes[i]=pad.axes[i];}
   return out;
- },get diagnostics(){return {presenting,starting,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!clip?.enabled,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing};}});
+ },get diagnostics(){return {presenting,starting,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!clip?.enabled,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing,menuRoot:virtualRoot?.id||null,pointerTarget:screenPointer?.target?.id||null,editorTool:window.RouteWorkshop?.state?.tool||null};}});
 support();

@@ -31,7 +31,7 @@ with sync_playwright() as pw:
   frames();page.evaluate('(i)=>{testPad.buttons[i]={pressed:true,value:1};}',i);frames(2);page.evaluate('(i)=>{testPad.buttons[i]={pressed:false,value:0};}',i);frames(3)
  try:
   page.goto(BASE+'?xr=1',wait_until='domcontentloaded');page.bring_to_front()
-  page.wait_for_function('window.SkyCycleWaterwheel && window.RouteWorkshop && window.PaperDeliveryCampaign?.status==="ready" && window.__gpuReady')
+  page.wait_for_function('window.SkyCycleWaterwheel && window.RouteWorkshop && window.SkyCycleFlightDeck && window.PaperDeliveryCampaign?.status==="ready" && window.__gpuReady')
   campaign_before=page.evaluate('JSON.stringify(DeliveryCampaign.routes.map((r,i)=>({id:r.id,code:DeliveryCampaign.encode(DeliveryCampaign.build(i,__gameRefs.T))})))')
   ledger_before=page.evaluate('JSON.stringify(SkyCycleFlightDeck.records)')
   persistent_before=page.evaluate('Object.fromEntries(["sprocket_credits","sprocket_ledger_buf","sprocket_ghosts","sprocket_pack_beaten","svgn_delivery_records_v1","svgn.skycycle.mastery.v1","ww-delivery-sentinel"].map(k=>[k,localStorage.getItem(k)]))')
