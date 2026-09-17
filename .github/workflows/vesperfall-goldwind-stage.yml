@@ -1,0 +1,96 @@
+name: Vesperfall Goldwind candidate
+on:
+  push:
+    branches: [vesperfall-goldwind-20260917]
+    paths: ['.github/workflows/vesperfall-goldwind-stage.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          def edit(path,old,new):
+            p=Path(path);s=p.read_text()
+            if new in s:return
+            assert s.count(old)==1,(path,old)
+            p.write_text(s.replace(old,new))
+          edit('vesperfall/index.html','<script src="./app.js?v=0.15.0"></script>','<script src="./goldwind-model.js?v=0.15.0"></script><script src="./goldwind-xr.js?v=0.15.0"></script><script src="./app.js?v=0.15.0"></script>')
+          edit('vesperfall/app.js','this.returningBell=ReturningBell.install(this);','this.returningBell=ReturningBell.install(this);this.goldwind=GoldwindXR.install(this);')
+          edit('vesperfall/dominion-controls.js',"const settings=['handedness'","const settings=['xr-bow-controls','goldwind-shield','goldwind-assist','handedness'")
+          edit('vesperfall/dominion-controls.js',"const name={'handedness'","const name={'xr-bow-controls':'Bow controls','goldwind-shield':'Goldwind shield','goldwind-assist':'Goldwind aiming aid','handedness'")
+          edit('vesperfall/dominion-controls.js',"const questText='Quest:","const questText='Goldwind bow preset (enable in Settings): draw trigger shoots combat arrows; either draw-hand face button physically draws a golden teleport arrow without changing combat ammo. Draw grip holds the thrown short-range disk. Bow trigger shields and bow grip interacts (swap these in Settings). Hold either bow face button and reach to an arrow with the draw controller, then squeeze trigger to choose. Draw-stick click pauses; bow-stick click changes weapon. No path or ring by default. Crossbow and Classic preset retain these controls: Quest:")
+          edit('vesperfall/first-bell.js','return (g.xr?xr:ui.state.pad?pad:pc)[i];',"return g.xr&&g.game.weapon==='bow'&&g.goldwind?.enabled()?g.goldwind.hint(i):(g.xr?xr:ui.state.pad?pad:pc)[i];")
+          # Discard unused incomplete transport. Source above is plain and reviewable.
+          Path('.github/goldwind-source.b64').unlink(missing_ok=True)
+          PY
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py
+          python scripts/check-vesperfall.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall .github/goldwind-source.b64
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate physical Goldwind preset while retaining Classic, Xbox and saved worlds'
+            git push origin HEAD:vesperfall-goldwind-20260917
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD > test-output/source-revision.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: goldwind-model
+          path: test-output/
+          retention-days: 14
+  native:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [goldwind, surestep, returning-bell]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise production source and actual controls
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1800 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
+      - name: Preserve successful and failed evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: goldwind-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
