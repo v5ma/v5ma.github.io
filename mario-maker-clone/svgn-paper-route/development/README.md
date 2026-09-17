@@ -1,13 +1,15 @@
-# Sky Cycle development: start here
+# Sky Cycle development: Canal Choice v0.25
 
-Continue the existing momentum-cycling game, with its original physics, eight campaign routes, saved progress, Workshop and direct controller actions. Do not build a replacement demo.
+Continue the existing momentum-cycling game, with its original physics, eight campaign routes, saves, editable Workshop and direct controller actions. Do not build a replacement prototype.
 
-The current work is Waterwheel delivery quality v0.24. Read `RESUME-HERE.md`, `verification/waterwheel-deliveries-0.24.json` and `GITHUB-RELEASE-PROCESS.md` for exact candidate, test, merge and public-runtime status. The receipt is authoritative; a branch or version label alone is not evidence that a release is live.
+Read `RESUME-HERE.md`, `verification/canal-choice-0.25.json`, `CANAL-CHOICE-0.25.md` and `GITHUB-RELEASE-PROCESS.md` for exact runtime, native tests, retained failures, merge and separate publication status. The source receipt is authoritative; a version label or feature branch is not a live-release claim.
 
-For level design, read `LEVEL-DESIGN-METHODOLOGY.md`, `chapters/WATERWHEEL-BOULEVARD-R2.md` and `WATERWHEEL-DELIVERIES-0.24.md`. The next gate is described in `chapters/WATERWHEEL-BRAKING-FORK-NEXT.md`. The 90-case isolated braking experiment is reproducible with `node mario-maker-clone/svgn-paper-route/development/experiments/waterwheel-braking-model.mjs`; it is not a native playthrough or a new automatically controlled game mechanic.
+The active chapter task is WW-R2-BRAKE, extending the existing speed/brake fork item in `chapters/WATERWHEEL-BOULEVARD-R2.md`. Use `LEVEL-DESIGN-METHODOLOGY.md` and the public shared `level-design-library/SKY-CYCLE-LEVEL-DESIGN.md` from the repository root. The reconciliation and structured application record are under `level-design-library/applied/SKY-CYCLE-CANAL-CHOICE.*`. `AAA-ROADMAP.md` retains all wider production milestones.
 
-`AAA-ROADMAP.md` is the canonical long-range checklist. Chapter promotion, human playtests and physical-device gates are not complete merely because the Waterwheel preview is released. Keep Waterwheel non-awarding until the explicit revision-aware promotion gate passes.
+The changed collector starts earlier while retaining its return to the delivery road. Speed favors the high gallery; braking and releasing favors the canal's Millworkers delivery continuation. Advance signs and geometry-derived runway markings explain the difference. The road, other six curves, twelve mailboxes, checkpoints, encounter count, physics, controls and persistent reward owners are unchanged.
 
-Play the existing game at `https://v5ma.github.io/mario-maker-clone/svgn-paper-route/`. From Routes choose Waterwheel r2 design preview, then Ride the full preview or its ground-only alternative. For seated tracked XR, use the guarded `?xr=1` entry and explicitly select Quest / XR. Preserve the advanced Bezier pointer-required exception and do not call emulated tracking a physical Quest qualification.
+Play at `https://v5ma.github.io/mario-maker-clone/svgn-paper-route/`. Open Routes, choose Waterwheel r2 design preview, then Ride the new layout. The ground-only alternative remains available. A preview is not a ninth progression route and cannot award campaign records. For the existing seated tracked XR mode, enter with `?xr=1` and explicitly select Quest / XR. Advanced Bezier editing remains pointer-required.
 
-Earlier development history remains verbatim in `archive/README-through-0.23.md` and `archive/RESUME-HERE-through-0.23.md`. Their old current-version sections are historical. Versioned notes and receipts remain in their original locations.
+After this release's native and public gates, continue the optional high-to-high whip connection with a non-whip continuation. Wider recovery, checkpoint/delivery retry, human readability, physical Xbox/Quest, full XR rides and revision-aware campaign promotion stay separate. Do not rebuild the already implemented Portal Network, rider IK, Quiet Water or twelve-delivery work from stale roadmap snapshots.
+
+Historical handoffs remain in `archive/README-through-0.24.md` and `archive/RESUME-HERE-through-0.24.md`, alongside older verbatim snapshots. v0.24's twenty-eight-file public match and live twelve-delivery recovery are recorded in its own receipt, not relabeled as v0.25 evidence.

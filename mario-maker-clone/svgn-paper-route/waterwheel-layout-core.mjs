@@ -1,5 +1,6 @@
 /* Original Waterwheel r2 authoring candidate. Builds documents, never player state.
  * Preview is isolated by the existing Workshop; no campaign layout is replaced. */
+import {FORK} from './waterwheel-fork-core.mjs';
 export const ID='canal-choices';
 export const REVISION=2;
 export const RECORD_ID='canal-choices-r2';
@@ -35,7 +36,7 @@ export const DELIVERIES=Object.freeze([
  {id:'millworkers-arrival',tx:138,region:'Millworkers Court',role:'ordinary',intent:'An arrival delivery resets the rhythm after the express decision.'},
  {id:'millworkers-terrace',tx:157,region:'Millworkers Court',role:'control',intent:'A terraced delivery rewards braking and stable approach rather than maximum speed.'},
  {id:'gallery-gate',tx:176,region:'Waterwheel Galleries',role:'ordinary',intent:'A readable doorstep before the gallery encounter, not on its receiving deck.'},
- {id:'waterwheel-overlook',tx:206,region:'Waterwheel Galleries',role:'discovery',intent:'A landmark-facing delivery ties the waterwheel to the road journey and upper route.'},
+ {id:'waterwheel-overlook',tx:206,region:'Waterwheel Galleries',role:'discovery',intent:'A landmark-facing delivery ties a road delivery to the waterwheel and upper route.'},
  {id:'wheelhouse-finale',tx:238,region:'Wheelhouse Depot',role:'finale',intent:'A final optional doorstep after the last encounter and before the depot flags.'}
 ].map(Object.freeze));
 function curve(points,a,b,c,d,n=64){for(let i=points.length?1:0;i<=n;i++){const t=i/n,u=1-t;points.push([u*u*u*a[0]+3*u*u*t*b[0]+3*u*t*t*c[0]+t*t*t*d[0],u*u*u*a[1]+3*u*u*t*b[1]+3*u*t*t*c[1]+t*t*t*d[1]]);}}
@@ -62,7 +63,7 @@ export function paths(){return [
   [[7620,1830],[7780,2130],[8110,1990],[8310,2020]],
   [[8310,2020],[8400,2040],[8480,2074],[8550,2074]]],{tier:1,sector:6}),
  rail('ww-collector','Canal collector / road recovery',[
-  [[4300,1990],[4520,2050],[4760,2050],[4980,2076]]],{tier:1,sector:3}),
+  [[4060,1970],[4320,2030],[4740,2050],[4980,2076]]],{tier:1,sector:3}),
  rail('ww-court-return','Mill court lower return',[
   [[5640,2020],[5810,1920],[6050,1920],[6290,2050]]],{tier:1,sector:4})
  ];}
@@ -92,10 +93,10 @@ export function build(T,{groundOnly=false}={}){
   sections:REGIONS.map(x=>({...x})),cast:[
    {id:'penny',name:'Penny',x:6,y:60,text:'This is a Workshop preview. Ride the whole delivery road, or try the porch and return. No campaign records are awarded.'},
    {id:'otto',name:'Otto',x:25,y:60,text:'The porch is a short detour. It returns to this market, not the express route.'},
-   {id:'milo',name:'Milo',x:92,y:60,text:'The express runway is optional. Road deliveries continue below every sky section.'},
+   {id:'milo',name:'Milo',x:92,y:60,text:'Keep speed for the high gallery. Brake on the striped runway, then release for the canal and Millworkers deliveries. The road stays open.'},
    {id:'fern',name:'Fern',x:175,y:60,text:'The wheelhouse is ahead. Deliver first, then read the gallery encounter; the sky route stays optional.'},
    {id:'pip',name:'Pip',x:247,y:60,text:'Cross the flags to finish the preview. Return to Workshop to edit; your campaign records stay unchanged.'}],
-  waterwheel:{revision:REVISION,preview:true,groundOnly,plannedRecordID:RECORD_ID,landmark:{x:7930,y:1880,radius:190},transfers:TRANSFERS.map(x=>({...x})),deliveries:DELIVERIES.map(x=>({...x}))}};
+  waterwheel:{revision:REVISION,preview:true,groundOnly,plannedRecordID:RECORD_ID,landmark:{x:7930,y:1880,radius:190},transfers:TRANSFERS.map(x=>({...x})),deliveries:DELIVERIES.map(x=>({...x})),fork:groundOnly?null:{...FORK,decisionRemaining:[...FORK.decisionRemaining]}}};
  if(!groundOnly)gp.skyNetwork={version:1,sectors:REGIONS.map((r,i)=>({id:'ww-sector-'+i,name:r.name,x:r.x*36,y:1180,w:1250,h:1000})),links:TRANSFERS.filter(x=>x.from!=='road').map(x=>({from:x.from,to:x.to,type:'unqualified-authoring-candidate'})),mainIDs:['ww-runway','ww-crescent','ww-gallery','ww-finish'],pegCount:0,groundOptional:true};
  return {id:ID,name:'Waterwheel Boulevard / r2 preview',district:'WATERWHEEL / AUTHORING PREVIEW',description:'South Quay, Parcel Market, Service Bridge, Express Junction, Millworkers Court and Wheelhouse Depot. The ground road is complete; sky connections are candidates, not certified routes.',tip:'Ride the promenade. B or C throws a paper near a mailbox. Sky detours stay optional; preview saves no campaign progress.',difficulty:'WORKSHOP PREVIEW',music:'canal',theme:'hills',width,height,ground,cells,ct,boxes,mail:boxes.map(p=>p.x),roadBoxes,goal:{x:251,y:60},kind:'ground',quota:0,par:250,stages:0,minTransfers:0,requiredGrapples:0,gp};
 }

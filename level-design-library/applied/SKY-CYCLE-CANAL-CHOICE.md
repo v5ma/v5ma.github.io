@@ -1,0 +1,15 @@
+# Applied library reconciliation: Sky Cycle Canal Choice
+
+Reference refresh: master `a0ce5803b0f3bab305314187fba6075e3d0e90ce`, September 16, 2026. Read AGENTS.md, STUDIO-LEVEL-DESIGN-MANUAL.md, GAME-RECOMMENDATIONS.md, QUALITY-REVIEW-FRAMEWORK.md, INDUSTRY-REFERENCE-NOTES.md and SKY-CYCLE-LEVEL-DESIGN.md. The separate Sky Cycle movement-first method is authoritative; other genres' corridor or room patterns are not substituted for its momentum system.
+
+The shared snapshot is older than the working game. Portal Network, articulated pedal/grip contacts, Quiet Water, Waterwheel preview, protected editable documents and twelve purposeful road deliveries are already implemented. Their existence is not a request to rebuild them. v0.24 public-byte and native live-delivery recovery is recorded in the game's own receipt.
+
+Apply the library's approach / launch / receiver / onward / recovery unit to the existing workbook task, now tracked as WW-R2-BRAKE. The question is whether the courier learns why to stay high or go low. Holding speed favors a continuous express traversal toward the wheelhouse. Braking and releasing favors the collector's earlier return to Millworkers deliveries. The ordinary road remains a complete third intention. No map-size, enemy-count, collectible-count or route-count increase is used as the quality measure.
+
+The bounded graybox change extends only the existing collector's upstream receiving area. Advance signs, runway markings derived from the loaded document and NPC text expose the relation between action and route purpose. The lower test must actually deliver to the terrace after returning; geometric connection alone is insufficient. Early braking and neutral coasting are separate recovery recipes. Muted play and suppressed optional notices keep spatial information primary.
+
+The first native input recipe exposed a rendered-frame/fixed-step mismatch and an actual long-brake reversal. That trace is retained. Another capture showed that a projected sign inside the camera is not a readable screenshot when the pause card covers it. The revised tests use the native fixed-step Gamepad poll and the existing Inspect scene UI. No actor, velocity, delivery, win or score assignments manufacture acceptance.
+
+Current status and exact results are in `../../mario-maker-clone/svgn-paper-route/development/verification/canal-choice-0.25.json`, not this advisory note. The corresponding structured application record is `SKY-CYCLE-CANAL-CHOICE.json`. The original public folder contains no generic recommendations.json or games/ tree at this snapshot, so this record maps to the existing game workbook instead of inventing legacy task IDs or missing recommendations.
+
+Do not close human playtests, physical Xbox/Quest, full XR rides, comprehensive underside/reverse recovery or revision-aware campaign promotion from this software slice. Waterwheel remains a non-awarding Workshop preview. Next: the optional high-to-high whip link with a non-whip alternative, followed by wider recovery and checkpoint/delivery validation.

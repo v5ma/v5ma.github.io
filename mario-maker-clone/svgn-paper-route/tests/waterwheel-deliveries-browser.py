@@ -19,6 +19,36 @@ PAD="window.testPad={id:'Standard Xbox delivery sample',index:0,mapping:'standar
 def check(v,text):
  assert v,text
  checks.append(text);print('PASS:',text,flush=True)
+
+DRIVER=r"""()=>{
+ const d=window.deliveryDriver={target:null,ticks:0,approach:null,nearest:null,throwSample:null,coastStart:null,failed:null};
+ const previous=window.pollGamepad;
+ window.pollGamepad=function(...args){
+  const active=RouteWorkshop.testing&&!__delivery.paused&&!won&&!__delivery.state.menu;
+  if(active){
+   d.ticks++;testPad.axes[0]=d.finish?1:0;testPad.buttons[1]={pressed:false,value:0};
+   if(d.target!==null&&!d.failed){
+    const target=d.target*36+18,distance=target-(player.x+player.w/2),mb=nearestMailbox(player,250);
+    if(mb?.x===d.target&&!d.nearest)d.nearest={...mb,tick:d.ticks};
+    if(d.coastStart===null){
+     testPad.axes[0]=1;
+     if(player.onGround&&distance<=135&&distance>=35&&mb?.x===d.target){
+      d.coastStart=d.ticks;d.approach={distance,vx:player.vx,x:player.x,y:player.y,onGround:player.onGround};testPad.axes[0]=0;
+     }else if(distance<35)d.failed='The normal input recipe missed the declared approach window';
+    }
+    if(d.coastStart!==null){
+     const since=d.ticks-d.coastStart;testPad.axes[0]=0;
+     if(since===4)d.throwSample={distance,vx:player.vx,onGround:player.onGround,nearest:mb};
+     const press=since>=4&&since<6;testPad.buttons[1]={pressed:press,value:press?1:0};
+     if(since>600&&![...__delivery.state.delivered].some(s=>Number(s.split(',')[0])===d.target))d.failed='The real paper did not reach its target';
+    }
+   }
+  }
+  return previous.apply(this,args);
+ };
+ return true;
+}"""
+
 with sync_playwright() as pw:
  browser=pw.chromium.launch(headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
  ctx=browser.new_context(viewport={'width':1100,'height':800},service_workers='block',record_video_dir=str(OUT/'video'),record_video_size={'width':800,'height':600})
@@ -31,7 +61,7 @@ with sync_playwright() as pw:
   frames();page.evaluate('(i)=>{testPad.buttons[i]={pressed:true,value:1};}',i);frames(2);page.evaluate('(i)=>{testPad.buttons[i]={pressed:false,value:0};}',i);frames(3)
  try:
   page.goto(BASE+'?xr=1',wait_until='domcontentloaded');page.bring_to_front()
-  page.wait_for_function('window.SkyCycleWaterwheel && window.RouteWorkshop && window.PaperDeliveryCampaign?.status==="ready" && window.__gpuReady')
+  page.wait_for_function('window.SkyCycleWaterwheel && window.RouteWorkshop && window.SkyCycleFlightDeck && window.PaperDeliveryCampaign?.status==="ready" && window.__gpuReady')
   campaign_before=page.evaluate('JSON.stringify(DeliveryCampaign.routes.map((r,i)=>({id:r.id,code:DeliveryCampaign.encode(DeliveryCampaign.build(i,__gameRefs.T))})))')
   ledger_before=page.evaluate('JSON.stringify(SkyCycleFlightDeck.records)')
   persistent_before=page.evaluate('Object.fromEntries(["sprocket_credits","sprocket_ledger_buf","sprocket_ghosts","sprocket_pack_beaten","svgn_delivery_records_v1","svgn.skycycle.mastery.v1","ww-delivery-sentinel"].map(k=>[k,localStorage.getItem(k)]))')
@@ -53,29 +83,26 @@ with sync_playwright() as pw:
   clock=page.locator('#delivery-timer span').inner_text();page.wait_for_timeout(1200)
   check(page.locator('#delivery-timer span').inner_text()==clock,'Pause freezes the visible 2D clock without changing the run')
   page.locator('#delivery-pause [data-delivery="resume"]').click()
-  page.locator('#cv').focus();page.keyboard.down('KeyD')
+  page.locator('#cv').focus();frames(4);page.evaluate(DRIVER)
   for i,item in enumerate(plan,1):
-   tx=item['tx'];target=tx*36+18;before=page.evaluate('deliveries')
-   page.wait_for_function('(tx)=>nearestMailbox(player,250)?.x===tx',arg=tx,timeout=120000)
-   nearest=page.evaluate('nearestMailbox(player,250)')
-   check(nearest and nearest['x']==tx,f"{item['id']} becomes the unambiguous nearby mailbox through ordinary riding")
-   # The engine uses a physical paper with fixed throw speed plus inherited rider momentum.
-   # Keep riding until the mailbox is readable, then release throttle for four frames and
-   # throw from a natural 35-145px forward window. This is ordinary coasting, not state setup.
-   page.wait_for_function('(target)=>{const d=target-(player.x+player.w/2);return player.onGround&&d<=145&&d>=35;}',arg=target,timeout=15000)
-   page.keyboard.up('KeyD');frames(4)
-   approach=page.evaluate('(target)=>({distance:target-(player.x+player.w/2),vx:player.vx,x:player.x,y:player.y,onGround:player.onGround})',target)
-   check(approach['onGround'] and -10<=approach['distance']<=145,f"{item['id']} has a readable coasting throw window before the Xbox input")
-   tap(1) # standard Xbox B: direct THROW / FIRE action
-   page.wait_for_function('(n)=>deliveries===n',arg=before+1,timeout=10000)
+   tx=item['tx'];before=page.evaluate('deliveries')
+   # Change only the test driver's requested target. Native motion/packet/award owners remain untouched.
+   page.evaluate('(tx)=>{Object.assign(deliveryDriver,{target:tx,approach:null,nearest:null,throwSample:null,coastStart:null,failed:null});}',tx)
+   page.wait_for_function('deliveryDriver.nearest!==null || deliveryDriver.failed',timeout=120000)
+   state=page.evaluate('deliveryDriver');check(state['nearest'] and state['nearest']['x']==tx,f"{item['id']} becomes the unambiguous nearby mailbox through ordinary riding")
+   page.wait_for_function('deliveryDriver.throwSample!==null || deliveryDriver.failed',timeout=30000)
+   state=page.evaluate('deliveryDriver');assert not state['failed'],state['failed']
+   approach=state['throwSample'];check(approach['onGround'] and 35<=state['approach']['distance']<=135 and -10<=approach['distance']<=145,f"{item['id']} has a readable coasting throw window before the Xbox input")
+   page.wait_for_function('(n)=>deliveries===n || deliveryDriver.failed',arg=before+1,timeout=30000)
    delivered=page.evaluate('(tx)=>[...__delivery.state.delivered].some(s=>Number(s.split(",")[0])===tx)',tx)
-   check(delivered,f"Xbox B delivers {item['id']} through the real packet simulation")
+   check(delivered and page.evaluate('deliveries')==before+1,f"Xbox B delivers {item['id']} through the real packet simulation")
+   page.evaluate('(()=>{deliveryDriver.target=null;testPad.axes[0]=0;testPad.buttons[1]={pressed:false,value:0};})()')
    samples.append(page.evaluate('([item,approach])=>({id:item.id,role:item.role,tx:item.tx,throwDistance:approach.distance,throwVx:approach.vx,x:player.x,y:player.y,vx:player.vx,deliveries,tries,onGround:player.onGround,track:player.track?.sky?.id||null})',[item,approach]))
    if i in (1,6,11,12):page.screenshot(path=str(OUT/f'delivery-{i:02d}-{item["role"]}.png'))
-   page.keyboard.down('KeyD')
+  page.evaluate('(()=>{deliveryDriver.finish=true;})()')
   check(page.evaluate('deliveries===12 && __delivery.state.delivered.size===12'),'All twelve authored Waterwheel targets are actually served in one continuous road journey')
   check(page.evaluate('Array.from(__delivery.state.delivered,s=>Number(s.split(",")[0])).sort((a,b)=>a-b).join(",")')==','.join(str(x['tx']) for x in plan),'The delivered tile set exactly matches the authored intent ledger')
-  page.wait_for_function('won',timeout=240000);page.keyboard.up('KeyD');frames()
+  page.wait_for_function('won',timeout=240000);page.evaluate('(()=>{testPad.axes[0]=0;})()');frames()
   result=page.evaluate('({won,tries,deliveries,score,credits,x:player.x,route:__delivery.state.route,testing:RouteWorkshop.testing,records:SkyCycleFlightDeck.records})')
   check(result['won'] and result['tries']==1 and result['deliveries']==12,'A twelve-delivery road run reaches the depot on its first attempt')
   page.wait_for_function('document.getElementById("ww-preview-result-note")?.textContent.includes("playtest results only")')
@@ -96,4 +123,4 @@ with sync_playwright() as pw:
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'result':result,'coverage':'Real preview UI, ordinary rightward riding, deliberate throttle release/coasting and sampled standard Xbox B throws through real packet/mailbox physics. No player-position, velocity, delivery, score, win, record or document assignments. Real 3D inspection then supported 2D complete CPU route. Not physical-controller or human-enjoyment qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'result':result,'coverage':'Real preview UI, ordinary rightward riding, deliberate four-fixed-sample throttle release/coasting and sampled standard Xbox B throws through real packet/mailbox physics. Input sampling is synchronized to the native poll, not Python wall-clock timing. No player-position, velocity, delivery, score, win, record or document assignments. Real 3D inspection then supported 2D complete CPU route. Not physical-controller or human-enjoyment qualification.'},indent=2));ctx.close();browser.close();server.shutdown()

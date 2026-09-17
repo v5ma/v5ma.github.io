@@ -1,12 +1,12 @@
 {
-  "version": "0.24.0",
-  "build": "sky-cycle-waterwheel-deliveries-2026.09.15",
-  "date": "2026-09-15",
+  "version": "0.25.0",
+  "build": "sky-cycle-canal-choice-2026.09.16",
+  "date": "2026-09-16",
   "changes": [
-    "Waterwheel delivery rhythm: twelve named road targets with teaching, return, control, road-choice, discovery and finale intentions",
-    "Separated mailbox windows and encounter clearances with identical full-sky and ground-only delivery journeys",
-    "Normal-input twelve-delivery qualification using the existing momentum-inheriting paper throws and direct Xbox B action",
-    "Non-awarding editable preview preserves all eight campaign routes, records, coins, saves and original cycling physics",
-    "Waterwheel road, porch, express and ground-only acceptance; tracked-controller, hand UI and prior chapter regressions retained"
+    "Waterwheel Canal Choice: hold speed for the high gallery, or brake and release onto the lower delivery line",
+    "Earlier collector recovery, advance route-purpose signs and geometry-derived runway markings in 2D and 3D",
+    "Native high, lower-delivery, early-brake and coasting qualification in both grip modes",
+    "Existing ground adventure, seven rail IDs, twelve mailboxes, controls, Workshop documents and eight campaign routes retained",
+    "Non-awarding preview preserves progression; physical Xbox and Quest qualification remains separate"
   ]
 }
