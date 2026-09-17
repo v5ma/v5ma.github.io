@@ -1,3 +1,25 @@
+# Living Portal v0.13.0: current continuation
+
+Read release.json, lantern/LIVING-PORTAL.md and production/evidence/living-portal-0.13.0/candidate.json first. This implementation is on the living-portal work branch, not a claim of publication. Source acceptance and separate live publication must be recorded before saying it is live. The previous Working Quay release remains in the history below.
+
+The user's corrected diorama contract is authoritative: the room-fixed box is a perspective aperture onto the regular third-person game. Actual gameplay moves and rotates the world around the centered courier. Side/rear depth continues beyond the frame, foreground shell faces disappear per eye, and off-aperture/foreground fragments are masked. Never restore an opaque enclosure or a finite map scaled to fit it. The default physical width/depth/height and placement remain as before. The finite playable district is unchanged in extent; this is not new procedural world streaming.
+
+The opaque double-sided enclosure planes and full head-pose-following panel were identified in the old source. The new shell is a thin frame with very faint far-side glass, and native panels use a fixed yaw-only dock. Controller gameplay hides the panel. Physical diagnosis of the user's exact two rectangles is not established by source inspection alone. Retain stereo pixel, translated/rolled head, and real gameplay tests; Quest inspection remains mandatory.
+
+First-person AR explicitly requests immersive-ar with nonopaque blending. It is human-scale, uses the same game, and has no room scanning, physical collision or persistent room anchors. Preserve clear-play-area guidance, native tracked/pinch menus, tracking-loss pause, neutral rearm and session teardown. Hold-release braking applies to the normal speed actions without removing ordinary stick movement.
+
+Eight three-stage resident stories and six new named residents reuse the print shop, radio loft, workshop, waterworks and three opened building interiors: kitchen, storehouse and greenhouse. There are nine named residents total, not a GTA-scale crowd. Stories are selected from Missions/map (D-pad down, View/M/J); selection points to the giver and grants no progress. The persistent minimap, large map, gold scene beacon, compass distance and floor cue agree with the active target. Sluice-dependent targets adapt to water state. Main delivery is still independently trackable.
+
+Keep svgn.lantern-ward.v1 / lantern-ward-01 / layout 1 and the original 600-credit ledger. New city.v1 data is optional on old saves, validated, and has a separate exactly-once credit total. Tracking switches preserve partial stories. Never clear storage to make acceptance pass. Do not downgrade to a serializer that drops city data: a rollback must retain its schema adapter or archive and explicitly export resident progress first. All 102 original-neighborhood file hashes remain pinned and untouched.
+
+Local acceptance has 241 passing tests (222 retained and 19 new), including movement-based completion of all eight stories. The local sandbox did not provide a working WebGL2 context and localhost navigation was administratively blocked; that is not a render pass. Use the established CI/browser harnesses with actual URLs. New suites: city-browser.py with CITY_SUITE=city and portal, plus portal-render-browser.py. Keep all ten existing browser suites. Rendered story coverage and physical device coverage must be reported separately from model coverage.
+
+Update production/roadmap.json and regenerate AAA_ROADMAP.md with production/render-roadmap.py. Keep LEVEL-01, XR-02 and real-device/art gates open until their actual human requirements are met. After normal merge, verify exact public game bytes and live city, portal, stereo-pixel, street, XR and quay tours. Record the final receipt outside the game publication closure under release-receipts and in the merge PR rather than creating recursive evidence-writer deployments.
+
+Next opportunity after the reported defects are resolved: richer resident conversations and consequential work schedules inside these households. Evaluate whether players can find, complete and intentionally switch goals without coaching. Do not add another anonymous district to inflate counts.
+
+## Earlier Working Quay handoff (historical)
+
 # Working Quay v0.12.1: accepted-source release handoff
 
 Read release.json and production/evidence/working-quay-0.12.1/accepted.json first. Runtime 241a2676d3c117da5bbb25293a6ff0555f3f7d05 passed all 222 model tests and all 146 checks across ten browser suites in https://github.com/v5ma/v5ma.github.io/actions/runs/35056702530. All artifact ZIP digests and report contents were independently checked. The earlier candidate.json is a historical incomplete checkpoint, not current source-acceptance status. Public results belong to the merged release PR and ../release-receipts/neighborhood-missions-working-quay-0.12.1.json after deployment; do not infer served bytes from a merge or source test.

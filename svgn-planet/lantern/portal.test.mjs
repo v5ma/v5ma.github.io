@@ -1,3 +1,4 @@
+import {readFileSync} from 'node:fs';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from '../vendor/three.module.js';
@@ -9,3 +10,5 @@ test('Aperture admits views from either side, above and inside; rejects rays tha
 test('Actual eye separation can give different aperture decisions at an edge',()=>{let different=false;for(let x=2;x<2.6;x+=.005)if(seesFragment(V(-.032,.5,3),V(x,.5,-2),identity,size)!==seesFragment(V(.032,.5,3),V(x,.5,-2),identity,size))different=true;assert.ok(different);});
 test('Following transforms center the real player for arbitrary place, elevation, yaw and scale without save mutation',()=>{const s=fresh(),before=serialize(s);for(const xyz of [[-12,0,15],[20,4.4,-8],[-.5,-2,10]])for(const yaw of [0,Math.PI/3,-2])for(const scale of [.048,.08,.15]){const anchor=V(3,-.9,-2),p={x:xyz[0],y:xyz[1],z:xyz[2]},position=followPosition(anchor,p,yaw,scale,.16),matrix=new T.Matrix4().compose(position,new T.Quaternion().setFromAxisAngle(V(0,1,0),yaw),V(scale,scale,scale));assert.ok(V(...xyz).applyMatrix4(matrix).distanceTo(anchor.clone().add(V(0,.16,0)))<1e-10);}assert.deepEqual(serialize(s),before);});
 test('Portal material adapter is idempotent and preserves existing shader hooks',()=>{const p=new PortalMaterials(),m=new T.MeshBasicMaterial();let called=0;m.onBeforeCompile=()=>called++;p.attach(m);p.attach(m);assert.equal(p.entries.size,1);const shader={uniforms:{},vertexShader:'void main(){gl_Position=vec4(0.0);}',fragmentShader:'void main(){gl_FragColor=vec4(1.0);}'};m.onBeforeCompile(shader);assert.equal(called,1);assert.match(shader.fragmentShader,/wardPortalEnabled/);assert.match(shader.vertexShader,/inverse\(projectionMatrix\)/);p.active=true;assert.equal(p.active,true);});
+
+test("Tracked grip proxies have no filled faces that obscure the miniature",()=>{const source=readFileSync(new URL("./xr.mjs",import.meta.url),"utf8");assert.match(source,/grip=new T.LineSegments\(/);assert.doesNotMatch(source,/grip=new T.Mesh\(/);assert.match(source,/controllerProxyDepthTest:slots.every/);});

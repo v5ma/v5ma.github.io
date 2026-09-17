@@ -1,3 +1,15 @@
+# Living Portal / Neighborhood Missions v0.13.0
+
+Current controls and design: [Living Portal](LIVING-PORTAL.md). Publication status is in [release.json](../release.json), not inferred from this version label. The original neighborhood remains at [legacy.html](../legacy.html) with its saves untouched.
+
+Hold RT, Shift or the touch Speed control to accelerate. Releasing speed actively brakes; ordinary left-stick/WASD movement remains. A hops, X/E interacts, Y/F mounts or docks, LB/Q throws, LT/B brakes, L3/L rings the bell. D-pad down, View, M or J opens Missions/map. Pick a story to track its giver, then use X/E nearby to meet them and advance work. Changing tracking never discards an unfinished story.
+
+The permanent minimap, large map, gold scene diamond, distance and floor cue show the same next objective. Meet Ada in the print shop, Bea in the kitchen, Tomas in the north storehouse, Lin in the greenhouse, Sal in the upper radio loft, and Otis at the pump works. The main depot mission and eight resident stories have separate progress and reward ledgers. After three resident stories, Sal offers the courtyard gathering.
+
+Diorama VR/AR is now a room-fixed perspective portal: the courier stays centered while the ordinary game world moves around them. Rear/side depth continues through the aperture; geometry never appears outside its silhouette. The old solid box planes are gone. Menus no longer roll with the head. First-person AR is an explicit additional session choice; a clear stationary play area is necessary because physical furniture is not detected.
+
+The controls below are the earlier chapter foundation. Its fixed-whole-map diorama description is superseded by Living Portal; old traversal, saves, water, hoist and shortcut behavior remain.
+
 # Lantern Ward / The Broken Delivery Loop
 
 This is the first playable authored chapter in the place-mastery replacement program. It is an integrated graybox, not a finished AAA level. The original neighborhood is still available through `../legacy.html`, with its geometry, save identity, Homecoming, Tidewater, jobs and rewards preserved. `../legacy-layout.json` pins the retained runtime files and entry by SHA-256.

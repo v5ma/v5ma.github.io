@@ -49,7 +49,7 @@ export function createView(canvas){
  box(decor,0xa96d4e,-12,3.9,16.5,8.5,.22,2.6);box(decor,0x8b7257,-12,.8,15,3,.22,1);
  const parcel=box(world,0xe3b465,-12,1.08,15,.52,.34,.43);box(decor,0x735744,-15,.6,16,.7,1.2,.8);
  label('PRINT SHOP  /  STAIRS',-12.4,3,7.24,5,.65,'#526a73');
- label('TO DRYING TERRACES',-12.5,1.8,4.3,2.5,.45);
+ label('TO DRYING TERRACES',-12.5,2.65,4.3,2.5,.45);
  // Roof-route boundaries, drying lines and a return stair visible from the arcade.
  for(const z of[-5,-2])for(let x=-6;x<=9;x+=1.5){cyl(decor,0x53686a,x,4.95,z,.045,1.1);box(decor,0x53686a,x,5.45,z,1.5,.07,.07);}
  for(const x of[-15.8,-7])cyl(decor,0x685842,x,5.65,-4,.06,2.5);
@@ -59,8 +59,9 @@ export function createView(canvas){
  for(const z of[-10,-6,0,5]){for(const x of[-23,-18])cyl(decor,0xe2c9a3,x,1.5,z,.15,3);box(decor,0x4f7479,-20.5,3.2,z,5.6,.25,.65);}
  label('MARKET ARCADE',-20.5,3.75,6,5,.66,'#486861');
  label('NORTH QUAY / KEEP RIDING',-22.3,1.5,-8,2.6,.42);
- for(let z=-3;z<2;z+=1.1)for(const x of[-21.3,-20.1]){box(decor,0x8f724f,x,1.27,z,.8,.5,.9);for(let i=0;i<3;i++)cyl(decor,0xdfb76e,x-.24+i*.23,1.61,z,.1,.23);}
- for(let x=-16;x<=-5;x+=2.6){box(decor,0x41616c,x,2.5,-15.45,1.6,2,.1);box(decor,0xefdfb6,x,2.5,-15.34,.06,2,.06);}
+ // Produce rests on low bins by the kitchen wall, leaving the central room clear.
+ for(const z of[-3.5,-2.3]){box(decor,0x8f724f,-21.7,.3,z,.65,.6,.75);for(let i=0;i<3;i++)cyl(decor,0xdfb76e,-21.9+i*.2,.7,z,.085,.2);}
+ for(const x of[-16,-13.4,-6.8,-4.1]){box(decor,0x41616c,x,2.5,-15.45,1.6,2,.1);box(decor,0xefdfb6,x,2.5,-15.34,.06,2,.06);}
  // Workshop has actual ground-floor circulation, an upper loft, and south stairs.
  label('LANTERN WORKSHOP',15.4,3.2,12.25,6,.78,'#855447');
  box(decor,0x765a44,14,.82,6,3,.25,1.1);label('RECEIVING BENCH',14,1.5,5.4,3,.4);
