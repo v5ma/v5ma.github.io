@@ -46,7 +46,7 @@
    const buttons={bow:[...bow.buttons],draw:[...hand.buttons]},edge=(name,i)=>!!buttons[name][i]&&!state.prev[name]?.[i],neutral=!bow.buttons.some(Boolean)&&!hand.buttons.some(Boolean);
    if(!state.ready){state.prev=buttons;g.charge=0;g.drawHeld=false;C.shield(g.game,null);if(neutral){state.ready=true;draw.update([0,0,0],[0,0,0],false,false,true,'plain');gesture.update(hand.object.position.toArray(),false,state.clock);}return;}
    if(edge('draw',3)){g.setPaused(true);return;}
-   if(edge('bow',3)){g.arsenal.equip();return;}
+   if(edge('bow',3)){g.arsenal.equip();g.prevButtons=Object.fromEntries(Object.entries(g.hands).map(([k,v])=>[k,[...v.buttons]]));return;}
    const shieldIndex=$('goldwind-shield').value==='grip'?1:0,interactIndex=1-shieldIndex,shield=!!bow.buttons[shieldIndex];
    const was=!!g.game.shield;g.arsenal.ward(shield,bow);if(!was&&g.game.shield)C.emit(g.game,'ward');
    const focus=!!(bow.buttons[4]||bow.buttons[5]);
