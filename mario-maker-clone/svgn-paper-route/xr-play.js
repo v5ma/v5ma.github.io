@@ -7,7 +7,7 @@ import * as T from './vendor/three.webgpu.js';
 import {addOverlay,POINTER_ORDER} from './xr-overlay.mjs';
 import {protectOpaqueXRFramebuffer} from './xr-webgl-compat.mjs';
 import {mappedPad,sourcesNeutral,pointInRects} from './xr-input-core.mjs';
-import {controls,menuEntries,controlLabel,wrapText,paginate,editValue,visible} from './xr-ui-core.mjs';
+import {controls,menuEntries,controlLabel,wrapText,paginate,editValue,visible,focusEntry} from './xr-ui-core.mjs';
 import {stageSettings,sessionOptions,presentation,clipPlanes} from './xr-spatial-core.mjs';
 const $=id=>document.getElementById(id),fd=()=>window.SkyCycleFlightDeck;
 const panel=()=>fd()?.topPanel();
@@ -148,8 +148,8 @@ function activate(el){
 function focusControl(el){
   if(!presenting)return;
   if(typing){focusLabel=el.dataset.xrKey||'';lastUI=0;return;}
-  const entries=menuEntries(panel(),{invoke,edit,external});const i=entries.findIndex(e=>e.el===el);
-  if(i>=0){page=Math.floor(i/6);focusLabel=entries[i].label;lastUI=0;}
+  const entries=menuEntries(panel(),{invoke,edit,external});const focused=focusEntry(entries,el,page);
+  if(focused){page=focused.page;focusLabel=focused.label;lastUI=0;}
 }
 document.addEventListener('focusin',e=>{if(presenting)focusControl(e.target);});
 function external(el){

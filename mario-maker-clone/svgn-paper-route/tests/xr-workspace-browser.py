@@ -36,7 +36,11 @@ with sync_playwright() as pw:
   for _ in range(45):
    if page.evaluate('(s)=>SkyCycleXR.diagnostics.buttons.some(b=>b.label.toLowerCase().includes(s.toLowerCase()))',label):break
    point(' - Next');page.evaluate("xrEmulator.select('start');xrEmulator.select('end')");frames(2)
-  point(label);page.evaluate("xrEmulator.select('start');xrEmulator.select('end')");frames(3)
+  point(label);count=page.evaluate('SkyCycleXR.diagnostics.frames')
+  page.evaluate("xrEmulator.select('start');xrEmulator.select('end')")
+  # Session-ending controls deliberately stop the XR frame owner. Do not wait
+  # for nonexistent frames; the subsequent explicit exit/mode assertions remain.
+  page.wait_for_function('(n)=>!SkyCycleXR.presenting||SkyCycleXR.diagnostics.frames>=n',arg=count+3)
  def xbox(i):
   frames();page.evaluate('(i)=>{testXbox.buttons[i]={pressed:true,value:1};}',i);frames();page.evaluate('(i)=>{testXbox.buttons[i]={pressed:false,value:0};}',i);frames()
  def capture(name):
@@ -53,7 +57,12 @@ with sync_playwright() as pw:
   capture(KIND+'-pause')
   if KIND=='ar':check(page.evaluate('SkyCycleXR.diagnostics.transparent && SkyCycleXR.diagnostics.clipped && xrEmulator.lastCapture.opaque<880000'),'AR renders an alpha-clear exterior around the clipped real game and menu')
   choose('Spatial setup');choose('Exhibit size: 1 plus');check(page.evaluate('Math.abs(SkyCycleXR.diagnostics.placement.scale-1.1)<1e-6'),'In-headset scale control changes only the exhibit')
-  choose('Exhibit size: 1.1 minus');choose('Back')
+  choose('Exhibit size: 1.1 minus')
+  ui_before=page.evaluate('SkyCycleXR.diagnostics.uiMatrix')
+  choose('Exhibit rotation: 0 plus');frames()
+  check(page.evaluate('SkyCycleXR.diagnostics.placement.yaw')==15,'The spatial rotation control rotates the exhibit')
+  check(max(abs(a-b) for a,b in zip(ui_before,page.evaluate('SkyCycleXR.diagnostics.uiMatrix')))<1e-6,'Exhibit rotation keeps recenter and exit menus at their seated heading')
+  choose('Exhibit rotation: 15 minus');choose('Back')
   for label,selector in [('Materials & FX','#prism-panel'),('Route journal','#sc-journal'),('Flight Deck','#flight-deck')]:
    choose(label);page.wait_for_function('(selector)=>document.querySelector(selector)?.open',arg=selector)
    capture(KIND+'-'+selector[1:]);check(True,label+' opens as a readable native headset menu')

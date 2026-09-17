@@ -20,6 +20,15 @@ export function paginate(items, requested, size=PAGE_SIZE) {
   const page=Math.max(0,Math.min(count-1,Number.isFinite(requested)?Math.floor(requested):0));
   return {count,page,items:items.slice(page*size,(page+1)*size)};
 }
+// A range/select can have minus and plus entries on opposite pages. Retain
+// the currently visible occurrence before revealing its first occurrence.
+export function focusEntry(entries, element, requested, size=PAGE_SIZE) {
+  const page=paginate(entries,requested,size).page;
+  const first=page*size;
+  let index=entries.findIndex((entry,i)=>entry.el===element&&i>=first&&i<first+size);
+  if(index<0)index=entries.findIndex(entry=>entry.el===element);
+  return index<0?null:{index,page:Math.floor(index/size),label:entries[index].label};
+}
 export function wrapText(ctx, value, width, font='22px sans-serif') {
   ctx.font=font;
   const lines=[];
