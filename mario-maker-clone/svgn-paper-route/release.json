@@ -1,12 +1,13 @@
 {
-  "version": "0.24.0",
-  "build": "sky-cycle-waterwheel-deliveries-2026.09.15",
-  "date": "2026-09-15",
+  "version": "0.26.0",
+  "build": "sky-cycle-spatial-workspace-2026.09.17",
+  "date": "2026-09-17",
   "changes": [
-    "Waterwheel delivery rhythm: twelve named road targets with teaching, return, control, road-choice, discovery and finale intentions",
-    "Separated mailbox windows and encounter clearances with identical full-sky and ground-only delivery journeys",
-    "Normal-input twelve-delivery qualification using the existing momentum-inheriting paper throws and direct Xbox B action",
-    "Non-awarding editable preview preserves all eight campaign routes, records, coins, saves and original cycling physics",
-    "Waterwheel road, porch, express and ground-only acceptance; tracked-controller, hand UI and prior chapter regressions retained"
+    "Explicit VR and AR entry using the existing stereo game and renderer; browser-owned passthrough without camera-pixel access",
+    "AR exhibit clipping, manual seated placement, scale, height, distance and orientation controls",
+    "Shared in-headset menus, checkbox state, text keyboard, confirmations and explicit browser handoffs",
+    "Live 2D and Workshop canvases in XR, with ray-based editor selection and drag/cancel",
+    "Compact riding action bar, controller/hand input continuity and physical-Xbox bridge; physical device qualification remains open",
+    "Original eight-route campaign, Waterwheel preview, saves and remaps retained; Canal Choice candidate is kept separately"
   ]
 }

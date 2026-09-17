@@ -3,7 +3,7 @@ import {BADGES, validID, sanitizeLedger, objectives, settle, samplePad, repeatDi
 const STORE = 'svgn.skycycle.mastery.v1';
 const $ = id => document.getElementById(id);
 const visible = el => !!el && !el.closest('[hidden],[inert]') && el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden';
-const controls = root => [...root.querySelectorAll('button,a[href],input:not([type="hidden"]),select,textarea,[tabindex="0"]')].filter(el => !el.disabled && visible(el));
+const controls = root => [...root.querySelectorAll('button,a[href],input:not([type="hidden"]),select,textarea,summary,[tabindex="0"]')].filter(el => !el.disabled && visible(el));
 const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = new URL('./flight-deck.css', import.meta.url).href; document.head.append(css);
 let ledger = Object.create(null), saveOK = true, run = null, latest = null;
 try { ledger = sanitizeLedger(JSON.parse(localStorage.getItem(STORE) || '{}')); } catch { saveOK = false; }
@@ -83,20 +83,22 @@ if (pauseCard) { for (const [text,fn] of [['Flight Deck',showDeck],['Sound & mus
 let modalOrder = [];
 const modalObserver = new MutationObserver(records => { for (const m of records) { const d = m.target; if (d.tagName !== 'DIALOG') continue; modalOrder = modalOrder.filter(x => x !== d && x.open); if (d.open) modalOrder.push(d); } });
 modalObserver.observe(document.body,{subtree:true,attributes:true,attributeFilter:['open']});
-const legacyPanels = ['ctrlov','hangov','machov','shopov','commov','lvlov','accountov','winov'];
+const legacyPanels = ['ctrlov','hangov','machov','shopov','commov','lvlov','acctov','winov'];
 function topPanel() {
   const ordered = modalOrder.filter(d => d.open && visible(d)); if (ordered.length) return ordered.at(-1);
   const native = [...document.querySelectorAll('dialog[open]')].filter(visible); if (native.length) return native.at(-1);
   for (const id of legacyPanels) { const p = $(id); if (p?.classList.contains('show') && visible(p)) return p; }
+  const xrPanel=window.SkyCycleXR?.menuPanel;if(xrPanel&&visible(xrPanel))return xrPanel;
   for (const selector of ['#delivery-results.open','#delivery-menu.open','#delivery-pause.open','[role="dialog"][aria-modal="true"]']) { const p = [...document.querySelectorAll(selector)].find(visible); if (p) return p; }
   return null;
 }
 function back(panel) {
+  if(window.SkyCycleXR?.back(panel))return;
   if (panel instanceof HTMLDialogElement) { panel.close(); return; }
   if (panel?.id === 'delivery-results') { __delivery.act('routes'); return; }
   if (panel?.id === 'delivery-menu') { if (mode === 'play' && !won) __delivery.act('resume'); return; }
   if (panel?.id === 'delivery-pause') { __delivery.act('resume'); return; }
-  const closeIDs = {ctrlov:'btnCtrlClose',hangov:'btnHangClose',machov:'btnMachClose',shopov:'btnShopClose',commov:'btnCommClose',lvlov:'btnLvlClose'};
+  const closeIDs = {acctov:'btnAcctClose',ctrlov:'btnCtrlClose',hangov:'btnHangClose',machov:'btnMachClose',shopov:'btnShopClose',commov:'btnCommClose',lvlov:'btnLvlClose'};
   if (closeIDs[panel?.id] && $(closeIDs[panel.id])) { $(closeIDs[panel.id]).click(); return; }
   const close = controls(panel).find(el => /^(back|close|done|return|cancel|resume)\b/i.test(el.textContent.trim())); if (close) close.click();
 }
@@ -160,7 +162,7 @@ function poll() {
     if (active()) __delivery.act('pause');
     releasePad();
     if (pressed(1) || pressed(9)) back(panel);
-    else if (pressed(0)) { const list = controls(panel), el = list.includes(document.activeElement) ? document.activeElement : list[0]; if (el) { el.focus(); if (!(el instanceof HTMLSelectElement) && !(el instanceof HTMLInputElement && el.type === 'range')) el.click(); } }
+    else if (pressed(0)) { const list = controls(panel), el = list.includes(document.activeElement) ? document.activeElement : list[0]; if (el) { el.focus(); if (!(el instanceof HTMLSelectElement) && !(el instanceof HTMLInputElement && el.type === 'range') && !window.SkyCycleXR?.activate?.(el)) el.click(); } }
     else {
       const horizontal = b[14] || state.x < -.5 ? -1 : b[15] || state.x > .5 ? 1 : 0;
       const vertical = b[12] || state.y < -.5 ? -1 : b[13] || state.y > .5 ? 1 : 0;
@@ -188,7 +190,7 @@ window.pollGamepadEdit = function() {
   }
 };
 let raf = 0, lastStamp = 0;
-function frame(stamp) { poll(); if (stamp - lastStamp > 300) { lastStamp = stamp; document.body.classList.toggle('fd-controller',connected); launch.title = connected ? 'View button: Flight Deck. Start: pause.' : 'Career badges and controller guide'; } raf = requestAnimationFrame(frame); }
+function frame(stamp) { if(!window.SkyCycleXR?.presenting)poll(); if (stamp - lastStamp > 300) { lastStamp = stamp; document.body.classList.toggle('fd-controller',connected); launch.title = connected ? 'View button: Flight Deck. Start: pause.' : 'Career badges and controller guide'; } raf = requestAnimationFrame(frame); }
 raf = requestAnimationFrame(frame);
 window.addEventListener('pagehide', () => { cancelAnimationFrame(raf); resetInput(); });
 window.addEventListener('pageshow', e => { if (e.persisted) { resetInput(); raf = requestAnimationFrame(frame); } });

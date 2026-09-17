@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import * as T from '../vendor/three.webgpu.js';
+import {stepValue,paginate,editValue,wrapText,controlLabel,menuEntries} from '../xr-ui-core.mjs';
+import {stageSettings,sessionOptions,presentation,clipPlanes} from '../xr-spatial-core.mjs';
+test('AR and VR request optional tracking without camera-pixel access',()=>{for(const mode of ['immersive-ar','immersive-vr']){assert.deepEqual(sessionOptions(mode).optionalFeatures,['hand-tracking','local-floor']);assert(!sessionOptions(mode).requiredFeatures);}assert.throws(()=>sessionOptions('magic'));});
+for(const [sample,expected]of [[{},'diorama'],[{workshop:true},'workshop'],[{legacyEditor:true},'editor'],[{view:'2d'},'screen'],[{theater:true},'screen']])test('Presentation routing '+JSON.stringify(sample),()=>assert.equal(presentation(sample),expected));
+test('Spatial bounds keep exhibit reachable and finite',()=>{assert.deepEqual(stageSettings({scale:200,height:-40,distance:0,yaw:999}),{scale:1.8,height:-.75,distance:1.4,yaw:180});assert.deepEqual(stageSettings({scale:NaN,height:Infinity}),{scale:1,height:0,distance:2.4,yaw:0});});
+for(const yaw of [0,.5,-1])test('AR clip volume follows exhibit transform '+yaw,()=>{const m=new T.Matrix4().makeRotationY(yaw);m.setPosition(1,2,3);const inside=new T.Vector3(0,0,-2.4).applyMatrix4(m),outside=new T.Vector3(4,0,-2.4).applyMatrix4(m);const planes=clipPlanes(T,m,{});assert.equal(planes.length,6);assert(planes.every(p=>p.distanceToPoint(inside)>=0));assert(planes.some(p=>p.distanceToPoint(outside)<0));});
+test('Page counts and stale page index cannot hide remaining actions',()=>{assert.deepEqual(paginate([1,2,3,4,5,6,7],99),{count:2,page:1,items:[7]});assert.equal(paginate([],-1).page,0);});
+for(const [v,d,lo,hi,s,out]of [[.35,1,0,1,.01,.36],[1,1,0,1,.01,1],[0,-1,0,1,.01,0],[-10,1,-20,20,5,-5],[0,1,0,100,'any',1]])test('Bounded slider '+[v,d,s],()=>assert.equal(stepValue(v,d,lo,hi,s),out));
+test('Keyboard edits have a bounded field buffer and Unicode-safe deletion',()=>{assert.equal(editValue('ab','c',2),'ab');assert.equal(editValue('a🙂','Backspace'),'a');assert.equal(editValue('secret','Clear'),'');assert.equal(editValue('hello','Space'),'hello ');assert.equal(editValue('hello','New line'),'hello\n');});
+test('Reading pages retain long unbroken identifiers',()=>{const ctx={measureText:s=>({width:s.length*10})};assert.equal(wrapText(ctx,'abcdefghij',30).join('').replaceAll(' ',''),'abcdefghij');});
+test('Checkbox labels announce current checked state and actions revalidate disabled state',()=>{
+ globalThis.getComputedStyle=()=>({display:'block',visibility:'visible'});
+ const el={isConnected:true,disabled:false,checked:true,type:'checkbox',tagName:'INPUT',value:'on',labels:[{textContent:'Water reflections'}],getAttribute(){return null},closest(){return null},getClientRects(){return [1]},matches:q=>q.includes('checkbox')};
+ const root={querySelectorAll:()=>[el]};let calls=0;const entries=menuEntries(root,{invoke:()=>calls++,valid:()=>true});assert.equal(entries[0].label,'Water reflections: On');entries[0].action();assert.equal(calls,1);el.disabled=true;entries[0].action();assert.equal(calls,1);delete globalThis.getComputedStyle;
+});
+test('The workspace has one XR owner, scoped cleanup and original-scene protection',()=>{const s=readFileSync(new URL('../xr-play.js',import.meta.url),'utf8');assert(s.includes('world?.remove(originalScene)'));assert(s.indexOf('world?.remove(originalScene)')<s.indexOf('disposeObject(xrScene)'));assert(!s.includes('localStorage.clear'));assert(!s.includes('requestAnimationFrame('));assert(s.includes("sessionMode==='immersive-ar'?null"));assert(s.includes("pointerEvent('pointercancel'"));});
+test('Editor bridge preserves native pointer capture and can cancel synthetic drag',()=>{const s=readFileSync(new URL('../route-workshop.js',import.meta.url),'utf8');assert(s.includes('if(e.isTrusted)canvas.setPointerCapture(e.pointerId)'));assert(s.includes("canvas.addEventListener('pointercancel',()=>end(true))"));});
+test('Physical Xbox activation shares text and confirmation routing with tracked rays',()=>{const s=readFileSync(new URL('../flight-deck.js',import.meta.url),'utf8');assert(s.includes('SkyCycleXR?.activate?.(el)'));const x=readFileSync(new URL('../xr-play.js',import.meta.url),'utf8');assert(x.includes('back,activate,focusControl,show'));assert(x.includes("kind:'alert'"));assert(x.includes("'New line'"));});

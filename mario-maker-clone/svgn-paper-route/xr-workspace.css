@@ -1,0 +1,8 @@
+/* Same accessible DOM controls on desktop, mirrored in both immersive modes. */
+#sky-xr-guide,#sky-xr-settings,.xr-question{box-sizing:border-box;margin:auto;max-height:calc(100dvh - 28px);overflow:auto;width:min(580px,calc(100vw - 28px));background:#132b40;color:#f1f7fa;border:1px solid #8edccc;border-radius:14px;padding:22px;font:16px/1.55 system-ui,sans-serif;}
+#sky-xr-guide::backdrop,#sky-xr-settings::backdrop,.xr-question::backdrop{background:#071422aa;}
+#sky-xr-settings label{display:block;margin-top:12px;}#sky-xr-settings input{width:100%;min-height:40px;}
+.xr-question textarea{box-sizing:border-box;width:100%;min-height:100px;font:inherit;}
+.xr-actions{display:flex;gap:10px;flex-wrap:wrap;}#sky-xr-guide button,#sky-xr-settings button,.xr-question button{min-height:44px;margin:6px 6px 0 0;padding:10px 16px;border:1px solid #8edccc;border-radius:6px;background:#23425c;color:#f4fbff;font:inherit;}
+#sky-xr-guide :focus-visible,#sky-xr-settings :focus-visible,.xr-question :focus-visible{outline:3px solid #ffd083;outline-offset:3px;}
+.xr-keyboard-keys{display:flex;flex-wrap:wrap;gap:4px}.xr-keyboard-keys button{min-width:44px;margin:0;}
