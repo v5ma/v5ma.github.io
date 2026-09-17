@@ -65,7 +65,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        journey: [social, upper, hydraulic, spatial, relay]
+        journey: [social, upper, hydraulic, spatial, relay, portal]
     env:
       TEST_BASE_URL: ${{ github.event_name == 'push' && 'https://v5ma.github.io' || 'http://127.0.0.1:4173' }}
     steps:
@@ -94,7 +94,9 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/waterwheel-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          if test "$QUARTER_ROUTE" = spatial; then
+          if test "$QUARTER_ROUTE" = portal; then
+            python -u leonardos-guild/tests/portal-browser.py
+          elif test "$QUARTER_ROUTE" = spatial; then
             python -u leonardos-guild/tests/spatial-browser.py
           elif test "$QUARTER_ROUTE" = relay; then
             QUARTER_ROUTE=social QUARTER_RELAY=1 python -u leonardos-guild/tests/quarter-browser.py

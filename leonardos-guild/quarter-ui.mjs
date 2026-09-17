@@ -1,3 +1,4 @@
+import {quarterObjective} from './quarter-goal.mjs';
 import {inQuarter,quarterEnter,quarterAct,quarterChoices,nearbyQuarter,quarterText,quarterTarget} from './quarter-core.mjs';
 import {QUARTER_GATE,QUARTER_FLOORS,QUARTER_SITES} from './quarter-data.mjs';
 import {quarterNotebook,quarterPlace,mapLayer,floorOnLayer} from './quarter-notes.mjs';
@@ -74,6 +75,7 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
   for(const [id,text] of [['current','My current floor'],['all','All connections'],['street','Street and workshops'],['upper','Upper work floors'],['service','Lower service channel']]){
    const b=button(text,()=>{layer=id;drawMap(canvas,true);});b.dataset.quarterLayer=id;b.setAttribute('role','tab');b.setAttribute('aria-selected',String(layer===id));b.setAttribute('aria-pressed',String(layer===id));mapControls.append(b);
   }
+  const goalButton=button('Show next goal floor',()=>{layer=quarterObjective(getState())?.layer||'current';drawMap(canvas,true);});goalButton.dataset.quarterGoal='';mapControls.append(goalButton);
   canvas.before(mapControls);mapControls.hidden=!inQuarter(getState());
  }
  function wrap(g,text,x,y,maxWidth,line=22){
@@ -91,22 +93,27 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
    g.globalAlpha=active?1:.14;g.fillStyle=f.y<-.35||f.endY<-.35?'#6ea9a5':Math.max(f.y,f.endY)>.6?'#d0a367':'#c8bda0';
    g.fillRect(X(f.x1),Z(f.z1),(f.x2-f.x1)*scale,(f.z2-f.z1)*scale);g.strokeStyle='#172e33';g.lineWidth=1;g.strokeRect(X(f.x1),Z(f.z1),(f.x2-f.x1)*scale,(f.z2-f.z1)*scale);
   }g.globalAlpha=1;
-  const lx=W-legend+8;let ly=98;g.textAlign='left';
-  if(full){g.fillStyle='#fff2c8';g.font='bold 24px sans-serif';g.fillText('WATERWHEEL QUARTER',pad,28);g.font='18px sans-serif';g.fillText('Showing: '+selected+' / You: '+quarterPlace(s).name,pad,49);g.font='bold 20px sans-serif';g.fillText('WORK STATIONS',lx,74);}
+  const lx=W-legend+8;let ly=226;g.textAlign='left';
+  if(full){g.fillStyle='#fff2c8';g.font='bold 24px sans-serif';g.fillText('WATERWHEEL QUARTER',pad,28);g.font='18px sans-serif';g.fillText('Showing: '+selected+' / You: '+quarterPlace(s).name,pad,49);g.font='bold 20px sans-serif';g.fillText('WORK STATIONS',lx,204);}
   QUARTER_SITES.forEach((p,index)=>{
    if(!floorOnLayer({y:p.y,endY:p.y},selected))return;
    const code=String.fromCharCode(65+index);
-   if(full){g.fillStyle='#152e33';g.beginPath();g.arc(X(p.x),Z(p.z),11,0,Math.PI*2);g.fill();g.fillStyle='#fff2c8';g.textAlign='center';g.font='bold 13px sans-serif';g.fillText(code,X(p.x),Z(p.z)+4);g.textAlign='left';g.font='18px sans-serif';ly=wrap(g,code+' / '+p.name,lx,ly,legend-22)+8;}
+   if(full){g.fillStyle='#152e33';g.beginPath();g.arc(X(p.x),Z(p.z),11,0,Math.PI*2);g.fill();g.fillStyle='#fff2c8';g.textAlign='center';g.font='bold 13px sans-serif';g.fillText(code,X(p.x),Z(p.z)+4);g.textAlign='left';g.font='15px sans-serif';g.fillText(code+' / '+p.name,lx,ly,legend-22);ly+=26;}
   });
   // Gates are stateful landmarks, not teleport controls.
   for(const [x,z,open]of [[-16,-3.8,s.quarter.archOpen],[17,1.55,s.quarter.goodsAccess]]){
    g.strokeStyle=open?'#aee6b7':'#ef996c';g.lineWidth=full?4:2;g.beginPath();if(open){for(const side of [-1,1]){g.moveTo(X(x+side),Z(z));g.lineTo(X(x+side),Z(z-.7));}}else{g.moveTo(X(x-1),Z(z));g.lineTo(X(x+1),Z(z));}g.stroke();
   }
-  const goal=quarterTarget(s);if(goal&&floorOnLayer({y:goal.y,endY:goal.y},selected)){
-   g.save();g.translate(X(goal.x),Z(goal.z));g.rotate(Math.PI/4);g.fillStyle='#ffe098';g.fillRect(-4,-4,8,8);g.restore();
+  const goal=quarterObjective(s);if(goal){
+   // Draw LAST above all floor layers. An upstairs objective remains visible
+   // from the street map, with height explicitly labeled rather than hidden.
+   const gx=X(goal.x),gz=Z(goal.z),r=full?12:7;
+   g.save();g.translate(gx,gz);g.strokeStyle='#142b31';g.lineWidth=full?7:4;g.beginPath();g.moveTo(0,-r);g.lineTo(r,0);g.lineTo(0,r);g.lineTo(-r,0);g.closePath();g.stroke();g.fillStyle='#ffe098';g.fill();g.restore();
+   if(full){g.fillStyle='#fff2c8';g.font='bold 18px sans-serif';let gy=wrap(g,'NEXT: '+goal.verb,lx,78,legend-22,21);g.font='16px sans-serif';gy=wrap(g,goal.name,lx,gy+3,legend-22,19);wrap(g,goal.layer.toUpperCase()+' / '+goal.vertical+' / '+Math.round(goal.distance)+' m',lx,gy+3,legend-22,19);}
+   else {g.fillStyle='#142b31';g.fillRect(0,H-23,W,23);g.fillStyle='#fff2c8';g.font='bold 11px sans-serif';g.textAlign='left';g.fillText('NEXT: '+goal.layer.toUpperCase()+' / '+goal.vertical,pad,H-7,W-pad*2);}
   }
   g.save();g.translate(X(s.x),Z(s.z));g.rotate(-s.yaw);g.fillStyle='#ffffff';g.strokeStyle='#173840';g.lineWidth=2;g.beginPath();g.moveTo(0,full?9:6);g.lineTo(-5,-5);g.lineTo(5,-5);g.closePath();g.fill();g.stroke();g.restore();
-  if(full){g.fillStyle='#fff2c8';g.font='18px sans-serif';wrap(g,'White arrow: you. Gold diamond: objective. Gate gap: open. Gate bar: closed.',pad,H-66,W-pad*2);wrap(g,'Public plan. Dim shapes mark other floors. Looking at the map never moves your apprentice.',pad,H-24,W-pad*2);for(const b of mapControls.children){b.setAttribute('aria-pressed',String(b.dataset.quarterLayer===layer));b.setAttribute('aria-selected',String(b.dataset.quarterLayer===layer));}}
+  if(full){g.fillStyle='#fff2c8';g.font='18px sans-serif';wrap(g,'White arrow: you. Large gold diamond: next goal, including other floors.',pad,H-66,W-pad*2);wrap(g,'Use Show next goal floor to inspect its level. This plan grants no progress.',pad,H-24,W-pad*2);for(const b of mapControls.children){b.setAttribute('aria-pressed',String(b.dataset.quarterLayer===layer));b.setAttribute('aria-selected',String(b.dataset.quarterLayer===layer));}}
   return true;
  }
  function update(){
@@ -131,5 +138,5 @@ export function createQuarterUI({getState,setPause,save,onTransition}){
    document.getElementById('duel').hidden=true;
   }else if(Math.hypot(s.x-QUARTER_GATE.x,s.z-QUARTER_GATE.z)<7&&s.frontier?.zone==='town')document.getElementById('context').textContent='Waterwheel Quarter / stop on foot near the workshop and press X.';
  }
- return {interact,open:showNotebook,close(){if(!d.open)return false;d.close();return true;},drawMap,update,inspect:()=>({open:d.open,notebookOpen,notes:quarterNotebook(getState()),layer,nearby:nearbyQuarter(getState()).map(p=>p.id)})};
+ return {interact,open:showNotebook,close(){if(!d.open)return false;d.close();return true;},drawMap,update,inspect:()=>({objective:quarterObjective(getState()),open:d.open,notebookOpen,notes:quarterNotebook(getState()),layer,nearby:nearbyQuarter(getState()).map(p=>p.id)})};
 }

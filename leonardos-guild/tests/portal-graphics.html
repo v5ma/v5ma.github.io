@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><title>Explicit portal graphics fixture</title><canvas id="fixture" width="640" height="320"></canvas>
+<script type="module">
+import * as T from '../vendor/three.module.js';
+import {PortalMaterials,boxInterval} from '../world-portal.mjs';
+const canvas=document.getElementById('fixture'),renderer=new T.WebGLRenderer({canvas,antialias:false,alpha:true,preserveDrawingBuffer:true});renderer.setSize(640,320,false);renderer.setClearColor(0x000000,1);renderer.outputColorSpace=T.SRGBColorSpace;
+const scene=new T.Scene(),mask=new PortalMaterials(),size={width:2,height:1,depth:2},base=new T.Matrix4().makeTranslation(0,-.5,-2),inverse=base.clone().invert();mask.configure(base,size);mask.active=true;
+const material=new T.ShaderMaterial({side:T.BackSide,vertexShader:'void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'void main(){gl_FragColor=vec4(1.);}'}),sphere=new T.Mesh(new T.SphereGeometry(10,32,16),material);scene.add(sphere);mask.collect(scene);
+const cases=[['front',[0,0,1]],['back',[0,0,-5]],['left',[-4,0,-2]],['right',[4,0,-2]],['above',[0,3,-2]],['inside',[0,0,-2]]];
+const results=[];let lastCamera=null;
+for(const [name,location]of cases){
+ const origin=new T.Vector3(...location),target=new T.Vector3(0,0,-2);if(name==='inside')target.z-=1;
+ const view=new T.PerspectiveCamera(60,1,.005,100);view.position.copy(origin);view.lookAt(target);view.updateMatrixWorld();
+ const right=new T.Vector3(1,0,0).applyQuaternion(view.quaternion),eyes=[-1,1].map((side,i)=>{const c=view.clone();c.position.addScaledVector(right,side*.032);c.viewport=new T.Vector4(i*320,0,320,320);c.updateMatrixWorld();return c;});
+ const camera=new T.ArrayCamera(eyes);lastCamera=camera;sphere.position.copy(origin);sphere.scale.setScalar(1);renderer.render(scene,camera);
+ const gl=renderer.getContext(),pixels=new Uint8Array(640*320*4);gl.readPixels(0,0,640,320,gl.RGBA,gl.UNSIGNED_BYTE,pixels);
+ let tested=0,visible=0,leaks=0,missing=0;
+ const expected=(eye,x,y)=>{const o=eye.position.clone().applyMatrix4(inverse),d=new T.Vector3((x+.5)/320*2-1,(y+.5)/320*2-1,.5).unproject(eye).sub(eye.position).normalize();return !!boxInterval(o,d,size);};
+ for(let i=0;i<2;i++)for(let y=4;y<316;y+=4)for(let x=4;x<316;x+=4){const e=expected(eyes[i],x,y);if([[x-3,y],[x+3,y],[x,y-3],[x,y+3]].some(([a,b])=>expected(eyes[i],a,b)!==e))continue;const white=pixels[(y*640+i*320+x)*4]>200;tested++;if(e)visible++;if(white&&!e)leaks++;if(!white&&e)missing++;}
+ let foreground=0;if(name!=='inside'){sphere.scale.setScalar(.01);renderer.render(scene,camera);gl.readPixels(0,0,640,320,gl.RGBA,gl.UNSIGNED_BYTE,pixels);for(let i=0;i<pixels.length;i+=4)if(pixels[i]>200)foreground++;sphere.scale.setScalar(1);renderer.render(scene,camera);}
+ results.push({name,tested,visible,leaks,missing,foreground});
+}
+window.portalGraphics={results,allPass:results.every(r=>r.tested>100&&r.visible>0&&r.leaks===0&&r.missing===0&&r.foreground===0),evidence:'Explicit geometry/shader fixture, not a game mission or physical headset.'};
+window.portalCapture=(index)=>{const [name,location]=cases[index],origin=new T.Vector3(...location),target=new T.Vector3(0,0,-2);if(name==='inside')target.z-=1;const center=new T.PerspectiveCamera(60,1,.005,100);center.position.copy(origin);center.lookAt(target);const right=new T.Vector3(1,0,0).applyQuaternion(center.quaternion);const eyes=[-1,1].map((v,i)=>{const c=center.clone();c.position.addScaledVector(right,v*.032);c.viewport=new T.Vector4(i*320,0,320,320);c.updateMatrixWorld();return c;});sphere.position.copy(origin);sphere.scale.setScalar(1);renderer.render(scene,new T.ArrayCamera(eyes));return canvas.toDataURL('image/png');};
+</script>

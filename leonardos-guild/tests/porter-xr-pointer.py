@@ -11,7 +11,14 @@ def hand_ui(page):
   page.evaluate('''async ({u,v})=>{const T=await import('/leonardos-guild/vendor/three.module.js'),s=__xr.sources[1],o=LeonardoGuild.inspect().xr.theatreOrigin;
    const p=new T.Vector3((u-.5)*1.10,(v-.5)*1.65,0).applyAxisAngle(new T.Vector3(0,1,0),-.42).add(new T.Vector3(1.61,1.60,-2.37)).applyAxisAngle(new T.Vector3(0,1,0),o.yaw).add(new T.Vector3(o.x,o.y,o.z));
    const q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),p.sub(new T.Vector3().copy(s.position)).normalize());s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''',{'u':u,'v':v});frames(3)
+
+ def ensure_hud():
+  if read()['xr'].get('hud',{}).get('panelVisible',True):return
+  page.evaluate("""async()=>{const T=await import('/leonardos-guild/vendor/three.module.js'),s=__xr.sources[1],r=LeonardoGuild.inspect().xr,o=r.theatreOrigin,p=new T.Vector3(...r.hud.toggle).applyAxisAngle(new T.Vector3(0,1,0),o.yaw).add(new T.Vector3(o.x,o.y,o.z)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),p.sub(new T.Vector3().copy(s.position)).normalize());s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}""")
+  pinch(False);frames(3);pinch(True);frames(3);pinch(False);frames(3)
+  assert read()['xr']['hud']['panelVisible'],'Physical pointer did not open the on-demand panel'
  def panel(key):
+  ensure_hud()
   for _ in range(25):
    keys=read()['xr']['panel']['buttons']
    if key in keys:break

@@ -13,11 +13,12 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  let spatial=null,sessionMode='immersive-vr',modeSelect=null,pauseMode=null,arSupported=false,vrSupported=false;
  let session=null,supported=false,requesting=false,status='Checking immersive VR support.',referenceType='local-floor',ending=false,theatrePlaced=false;
  let gameTarget=null,savedRenderer=null,hadTracking=false,frames=0,tracked=0,handCount=0,controllerCount=0,readbackCopies=0;
- let turn=0,x=0,y=0,held={},hoverPanel='',hoverBar='',xrActivity=false;
+ let turn=0,x=0,y=0,held={},hoverPanel='',hoverBar='',xrActivity=false,hudRequested=false,suppressGameRender=false;
+ const rawRender=renderer.render;renderer.render=function(s,c){if(suppressGameRender&&s===view.scene)return;return rawRender.call(this,s,c);};
  let lastContext=null,frameContext=null,frameBlocked=false,wheelOwner=null;
  const inputContext=()=>ui.root()||actions.wheelActive()||(active()?'play':'inactive');
  const scene=new T.Scene();scene.background=new T.Color('#101b27');
- const camera=new T.PerspectiveCamera(55,1,.05,30),stage=new T.Group();scene.add(stage);
+ const camera=new T.PerspectiveCamera(55,1,.05,1800),stage=new T.Group();scene.add(stage);
  const sources=new Map(),visuals=[];
  const geo=new T.SphereGeometry(1,6,4),handleGeo=new T.BoxGeometry(.042,.042,.12),rayGeo=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-4)]);
  const handMaterial=new T.MeshBasicMaterial({color:'#d4b68e',toneMapped:false}),leftMaterial=new T.MeshBasicMaterial({color:'#83cfdf',toneMapped:false}),rightMaterial=new T.MeshBasicMaterial({color:'#f5cf8f',toneMapped:false}),rayMaterial=new T.LineBasicMaterial({color:'#def8ff',toneMapped:false});
@@ -28,6 +29,9 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  const reticle=new T.Mesh(new T.RingGeometry(.011,.015,32),new T.MeshBasicMaterial({color:'#fff4de',toneMapped:false,side:T.DoubleSide}));reticle.position.copy(screen.position);reticle.position.z+=.008;reticle.visible=false;stage.add(reticle);
  const panelMesh=new T.Mesh(new T.PlaneGeometry(1.10,1.65),new T.MeshBasicMaterial({map:panel.texture,side:T.DoubleSide,toneMapped:false}));panelMesh.position.set(1.61,1.60,-2.37);panelMesh.rotation.y=-.42;stage.add(panelMesh);
  const toolbar=new T.Mesh(new T.PlaneGeometry(2.85,.7125),new T.MeshBasicMaterial({map:bar.texture,side:T.DoubleSide,toneMapped:false}));toolbar.position.set(-.44,.43,-2.38);toolbar.rotation.x=-.16;stage.add(toolbar);
+ const hudToggle=new T.Mesh(new T.SphereGeometry(.045,12,8),new T.MeshBasicMaterial({color:'#d8bd86'}));hudToggle.name='Show or hide controls';hudToggle.position.set(1.25,1.45,-1.0);stage.add(hudToggle);
+ function toggleHUD(){hudRequested=!hudRequested;resetInput();updateHUD();}
+ function updateHUD(){const real=!!session&&!!spatial&&spatial.effective()!=='theatre',modal=!!ui.root()||!!actions.wheelActive();panelMesh.visible=!real||modal||hudRequested;toolbar.visible=!real||hudRequested&&!modal;hudToggle.visible=real&&!modal;}
  const notice=document.createElement('p');notice.id='guild-xr-status';notice.setAttribute('role','status');notice.textContent=status;
  const titleButton=document.createElement('button');titleButton.id='guild-xr-enter';titleButton.textContent='Enter seated XR (Quest)';titleButton.disabled=true;titleButton.setAttribute('aria-describedby',notice.id);
  const pauseButton=titleButton.cloneNode(true);pauseButton.id='guild-xr-pause';
@@ -35,17 +39,17 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  const buttons=[titleButton,pauseButton];
  if(view.spatial){
   const label=document.createElement('label');label.textContent='XR presentation ';modeSelect=document.createElement('select');modeSelect.id='guild-xr-mode';
-  for(const [value,text]of [['diorama-vr','Third-person diorama VR'],['first-person','First-person VR'],['diorama-ar','Diorama AR / passthrough'],['theatre','Seated theatre / all regions']]){const o=document.createElement('option');o.value=value;o.textContent=text;modeSelect.append(o);}
+  for(const [value,text]of [['diorama-vr','Third-person diorama VR'],['first-person','First-person VR'],['diorama-ar','Diorama AR / passthrough'],['theatre','Seated theatre / all regions'],['first-person-ar','First-person AR / passthrough']]){const o=document.createElement('option');o.value=value;o.textContent=text;modeSelect.append(o);}
   modeSelect.value=getState().quarter?.active?'diorama-vr':'theatre';label.append(modeSelect);titleButton.before(label);pauseMode=modeSelect.cloneNode(true);pauseMode.id='guild-xr-pause-mode';pauseButton.before(pauseMode);
   modeSelect.onchange=()=>{pauseMode.value=modeSelect.value;message(status);};pauseMode.onchange=()=>{modeSelect.value=pauseMode.value;message(status);};
-  spatial=createSpatialXR({scene,stage,view,getState,release:()=>{resetInput();frameBlocked=true;},openOptions:()=>actions.presentation?.()});
+  spatial=createSpatialXR({scene,stage,view,getState,release:()=>{resetInput();frameBlocked=true;},openOptions:toggleHUD});
  }
 
  // Menu/region handlers sometimes request an immediate ordinary scene update.
  // Never let WebXRManager replace that game's camera with the headset camera.
  const updateGame=view.update;
- view.update=(...args)=>{const enabled=renderer.xr.enabled;if(session&&renderer.xr.isPresenting)renderer.xr.enabled=false;try{return updateGame(...args);}finally{renderer.xr.enabled=enabled;}};
- function message(text){status=text;notice.textContent=text;for(const b of buttons){b.disabled=requesting||(!supported&&!session)||(!!modeSelect&&!session&&(modeSelect.value==='diorama-ar'?!arSupported:!vrSupported));b.textContent=session?'Exit XR safely':modeSelect?'Enter selected XR view':'Enter seated XR (Quest)';}}
+ view.update=(...args)=>{const enabled=renderer.xr.enabled,old=suppressGameRender;if(session&&renderer.xr.isPresenting){renderer.xr.enabled=false;suppressGameRender=spatial?.effective()!=='theatre';}try{return updateGame(...args);}finally{renderer.xr.enabled=enabled;suppressGameRender=old;}};
+ function message(text){status=text;notice.textContent=text;for(const b of buttons){b.disabled=requesting||(!supported&&!session)||(!!modeSelect&&!session&&(modeSelect.value.endsWith('-ar')?!arSupported:!vrSupported));b.textContent=session?'Exit XR safely':modeSelect?'Enter selected XR view':'Enter seated XR (Quest)';}}
  function resetInput(){held={};x=y=turn=0;xrActivity=false;clearInput?.();for(const s of sources.values()){s.capture=null;s.pinch=false;s.presses.forEach(p=>p.reset());s.axisGate.reset();s.repeat.reset();s.contextButton.reset();}}
  function makeVisual(){
   const root=new T.Group(),ray=new T.Line(rayGeo,rayMaterial),grip=new T.Mesh(handleGeo,rightMaterial),joints=new Map();root.add(ray,grip);scene.add(root);root.visible=false;
@@ -63,22 +67,21 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  function applyPose(object,pose){object.position.copy(pose.transform.position);object.quaternion.copy(pose.transform.orientation);object.updateMatrixWorld(true);}
  function hitTarget(pose){
   pointer.copy(pose.transform.position);orientation.copy(pose.transform.orientation);direction.set(0,0,-1).applyQuaternion(orientation).normalize();raycaster.set(pointer,direction);raycaster.far=8;
-  stage.updateWorldMatrix(true,true);const hits=raycaster.intersectObjects([panelMesh,toolbar],false);
+  updateHUD();stage.updateWorldMatrix(true,true);if(hudToggle.visible&&raycaster.intersectObject(hudToggle,false).length)return {key:'hud-toggle',kind:'spatial',id:'spatial:hud-toggle',run:toggleHUD};const hits=raycaster.intersectObjects([panelMesh,toolbar].filter(o=>o.visible),false);
   if(!hits.length)return spatial?.hit(raycaster)||null;const h=hits[0],kind=h.object===panelMesh?'panel':'bar',b=kind==='panel'?panel.hit(h.uv.x,h.uv.y):bar.hit(h.uv.x,h.uv.y);
   return b?{...b,kind,id:kind+':'+b.key}:null;
  }
  function invoke(hit){if(hit.kind==='panel')panel.invoke(hit.key);else if(!ui.root()&&!actions.wheelActive()&&active())hit.run?.();}
  async function enter(){
   if(session){await exit();return;}if(requesting||!supported)return;
-  const selection=modeSelect?.value||'theatre';sessionMode=selection==='diorama-ar'?'immersive-ar':'immersive-vr';const presentation=selection.startsWith('diorama')?'diorama':selection==='first-person'?'first-person':'theatre';
-  if(presentation!=='theatre'&&!getState().quarter?.active){message('Enter the Waterwheel Quarter before choosing its spatial views. Theatre remains available for every earlier region.');return;}
+  const selection=modeSelect?.value||'theatre';sessionMode=selection.endsWith('-ar')?'immersive-ar':'immersive-vr';const presentation=selection.startsWith('diorama')?'diorama':selection.startsWith('first-person')?'first-person':'theatre';
   actions.gesture?.();requesting=true;message('Requesting '+sessionMode+' with optional hand tracking.');
   let requested=null;
   try{
    requested=await navigator.xr.requestSession(sessionMode,{optionalFeatures:['local-floor','hand-tracking',...(sessionMode==='immersive-ar'?['hit-test']:[])]});
    try{await requested.requestReferenceSpace('local-floor');referenceType='local-floor';}catch{referenceType='local';}
    renderer.xr.setReferenceSpaceType(referenceType);renderer.xr.setFramebufferScaleFactor(.85);renderer.xr.enabled=true;
-   session=requested;ending=false;requested.addEventListener('end',()=>queueMicrotask(onEnd),{once:true});
+   session=requested;ending=false;hudRequested=false;requested.addEventListener('end',()=>queueMicrotask(onEnd),{once:true});
    requested.addEventListener('visibilitychange',()=>{resetInput();if(requested.visibilityState!=='visible'&&active())actions.pause();});
    requested.addEventListener('inputsourceschange',()=>{for(const src of sources.keys())if(!Array.from(requested.inputSources).includes(src))release(src);});
    await renderer.xr.setSession(requested);
@@ -87,7 +90,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
    await spatial?.begin(presentation,requested,renderer.xr.getReferenceSpace(),sessionMode);
    theatrePlaced=false;renderer.xr.getReferenceSpace()?.addEventListener?.('reset',()=>{theatrePlaced=false;resetInput();if(active())actions.pause();});
    gameTarget ||= new T.WebGLRenderTarget(1024,576,{depthBuffer:true});gameTarget.texture.colorSpace=T.SRGBColorSpace;screenMaterial.map=gameTarget.texture;screenMaterial.needsUpdate=true;
-   resetInput();hadTracking=false;message('Seated XR. Point and trigger or pinch; release to stop. Exit XR is on the panel.');
+   resetInput();hadTracking=false;message('Point at the small gold control button or exhibit handle to show/hide controls. Menus appear when needed. Exit XR is on the panel.');
   }catch(error){
    session=null;renderer.xr.enabled=false;
    if(requested)try{await requested.end();}catch{}
@@ -95,7 +98,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
   }finally{requesting=false;message(status);}
  }
  function onEnd(){
-  spatial?.end();view.spatial?.setSkipRender(false);renderer.setClearAlpha?.(1);session=null;ending=false;resetInput();for(const src of sources.keys())release(src);
+  spatial?.end();view.spatial?.setSkipRender(false);renderer.setClearAlpha?.(1);session=null;ending=false;hudRequested=false;suppressGameRender=false;resetInput();for(const src of sources.keys())release(src);
   renderer.xr.enabled=false;renderer.setRenderTarget(null);savedRenderer=null;view.setQuality(view.inspect().quality);
   if(playing())actions.pause();message('XR ended. Progress is preserved. Resume with the usual controls.');
  }
@@ -121,7 +124,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
    for(const v of sources.values()){
     v.axisGate.reset();v.repeat.reset();v.contextButton.reset();
     // A menu/wheel close is not a fresh gameplay button press.
-    if(frameContext==='play'){v.presses.forEach(p=>p.reset());v.capture=null;}
+    if(frameContext==='play'){hudRequested=false;v.presses.forEach(p=>p.reset());v.capture=null;}
    }
    if(!actions.wheelActive())wheelOwner=null;lastContext=frameContext;
   }
@@ -201,7 +204,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
    xrActivity ||= Math.abs(stick.x)+Math.abs(stick.y)>.01||edges.some(e=>e.down);
   }
   if(!tracked&&hadTracking){frameBlocked=true;resetInput();if(active())actions.pause();}hadTracking=tracked>0;
-  reticle.visible=active()&&getState().mode==='foot'&&!!getState().resonance.aim;reticle.material.color.set(getState().resonance.lock?'#80e2bd':'#fff4de');frameBlocked ||= inputContext()!==frameContext;panel.draw(now,hoverPanel);bar.draw(hoverBar);
+  reticle.visible=active()&&getState().mode==='foot'&&!!getState().resonance.aim;reticle.material.color.set(getState().resonance.lock?'#80e2bd':'#fff4de');frameBlocked ||= inputContext()!==frameContext;updateHUD();if(panelMesh.visible)panel.draw(now,hoverPanel);if(toolbar.visible)bar.draw(hoverBar);
  }
  function controls(dt,fallback={}){
   if(!session||ending||frameBlocked||session.visibilityState!=='visible'||!active()||ui.root()||actions.wheelActive())return neutralXR();
@@ -214,7 +217,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  }
  function beforeGame(){
   if(!session||!renderer.xr.isPresenting||!gameTarget)return;
-  view.spatial?.setSkipRender(!!spatial&&spatial.effective()!=='theatre');
+  suppressGameRender=!!spatial&&spatial.effective()!=='theatre';view.spatial?.setSkipRender(suppressGameRender);
   savedRenderer={target:renderer.getRenderTarget(),viewport:renderer.getViewport(new T.Vector4()),scissor:renderer.getScissor(new T.Vector4()),scissorTest:renderer.getScissorTest()};
   // Render the existing camera once into a bounded texture, not once per eye.
   // The following immersive render uses that same GPU texture; no readPixels or
@@ -225,10 +228,10 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  function afterGame(){
   if(!savedRenderer||!session)return;
   const old=savedRenderer;savedRenderer=null;renderer.setRenderTarget(old.target);renderer.setViewport(old.viewport);renderer.setScissor(old.scissor);renderer.setScissorTest(old.scissorTest);
-  renderer.xr.enabled=true;
+  renderer.xr.enabled=true;suppressGameRender=false;updateHUD();
   const real=spatial&&spatial.effective()!=='theatre';screen.visible=!real;reticle.visible=reticle.visible&&!real;toolbar.position.set(-.44,real?.6:.43,real?-.6:-2.38);toolbar.scale.setScalar(real?.55:1);
   try{if(!spatial?.draw(renderer,camera))renderer.render(scene,camera);}finally{view.spatial?.setSkipRender(false);}
 
  }
- return {poll,controls,beforeGame,afterGame,spatialAction:action=>{if(!session||!spatial)return false;return spatial.modify(action);},presenting:()=>!!session&&renderer.xr.isPresenting,inspect:()=>({supported,presenting:!!session&&renderer.xr.isPresenting,mode:spatial?.effective()==='first-person'?'first-person-vr':spatial?.effective()==='diorama'?(sessionMode==='immersive-ar'?'diorama-ar':'diorama-vr'):'seated-theatre',sessionMode,arSupported,spatial:spatial?.inspect()||null,referenceType,theatreOrigin:{x:stage.position.x,y:stage.position.y,z:stage.position.z,yaw:stage.rotation.y},status,tracked,handCount,controllerCount,frames,renderTargets:gameTarget?1:0,targetSize:gameTarget?[gameTarget.width,gameTarget.height]:null,sourceCapacity:4,sources:sources.size,readbackCopies,reticleVisible:reticle.visible,panel:panel.inspect(),physicalQuestVerified:false})};
+ return {poll,controls,beforeGame,afterGame,spatialAction:action=>{if(!session||!spatial)return false;return spatial.modify(action);},presenting:()=>!!session&&renderer.xr.isPresenting,inspect:()=>({supported,presenting:!!session&&renderer.xr.isPresenting,mode:spatial?.effective()==='first-person'?(sessionMode==='immersive-ar'?'first-person-ar':'first-person-vr'):spatial?.effective()==='diorama'?(sessionMode==='immersive-ar'?'diorama-ar':'diorama-vr'):'seated-theatre',sessionMode,arSupported,spatial:spatial?.inspect()||null,referenceType,theatreOrigin:{x:stage.position.x,y:stage.position.y,z:stage.position.z,yaw:stage.rotation.y},status,tracked,handCount,controllerCount,frames,renderTargets:gameTarget?1:0,targetSize:gameTarget?[gameTarget.width,gameTarget.height]:null,sourceCapacity:4,sources:sources.size,readbackCopies,reticleVisible:reticle.visible,hud:{panelVisible:panelMesh.visible,toolbarVisible:toolbar.visible,requested:hudRequested,toggle:hudToggle.position.toArray()},panel:panel.inspect(),physicalQuestVerified:false})};
 }

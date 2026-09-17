@@ -20,7 +20,13 @@ def trigger(down):
  page.evaluate('(down)=>{const s=__xr.sources[1];if(s.hand)s.pinch=down?.014:.06;else s.gamepad.buttons[0]={pressed:down,value:down?1:0};}',down)
 def point(u,v,kind='panel'):
  page.evaluate('''async ({u,v,kind})=>{const T=await import('/leonardos-guild/vendor/three.module.js'),s=__xr.sources[1];let p;if(kind==='panel')p=new T.Vector3((u-.5)*1.10,(v-.5)*1.65,0).applyAxisAngle(new T.Vector3(0,1,0),-.42).add(new T.Vector3(1.61,1.60,-2.37));else {const real=LeonardoGuild.inspect().xr.mode!=='seated-theatre';p=new T.Vector3((u-.5)*2.85,(v-.5)*.7125,0).multiplyScalar(real?.55:1).applyAxisAngle(new T.Vector3(1,0,0),-.16).add(new T.Vector3(-.44,real?.6:.43,real?-.6:-2.38));}const origin=LeonardoGuild.inspect().xr.theatreOrigin;p.applyAxisAngle(new T.Vector3(0,1,0),origin.yaw).add(new T.Vector3(origin.x,origin.y,origin.z));const d=p.sub(new T.Vector3(s.position.x,s.position.y,s.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),d);s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''',{'u':u,'v':v,'kind':kind});frames(3)
+def ensure_hud():
+ if read()['xr'].get('hud',{}).get('panelVisible',True):return
+ page.evaluate("""async()=>{const T=await import('/leonardos-guild/vendor/three.module.js'),s=__xr.sources[1],r=LeonardoGuild.inspect().xr,o=r.theatreOrigin,p=new T.Vector3(...r.hud.toggle).applyAxisAngle(new T.Vector3(0,1,0),o.yaw).add(new T.Vector3(o.x,o.y,o.z)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),p.sub(new T.Vector3().copy(s.position)).normalize());s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}""")
+ trigger(False);frames(3);trigger(True);frames(3);trigger(False);frames(3)
+ assert read()['xr']['hud']['panelVisible'],'Physical pointer did not open the on-demand panel'
 def panel_key(key):
+ ensure_hud()
  for _ in range(25):
   keys=read()['xr']['panel']['buttons']
   if key in keys:break
@@ -61,6 +67,15 @@ with sync_playwright() as p:
   check(read()['xr']['mode']=='diorama-vr' and read()['xr']['spatial']['renderedEyes']==2,'VR diorama renders the actual shared district with both headset cameras')
   check(not read()['xr']['spatial']['worldIsTexture'] and read()['xr']['spatial']['geometryDraws']>3,'The miniature is geometry, not the old flat theatre screen')
   page.evaluate('__xr.pitch=-.42');frames(5);capture('diorama-title');page.evaluate('__xr.pitch=0');dom('#start');check(read()['running'],'Tracked pointer starts the same campaign inside the miniature');frames(8)
+  before=read();check(not before['xr']['hud']['panelVisible'] and not before['xr']['hud']['toolbarVisible'],'Large rectangular controls are absent during ordinary portal play')
+  page.evaluate('__xr.head.x=.15;__xr.yaw=.18;__xr.pitch=-.4');frames(12)
+  check(not read()['xr']['hud']['panelVisible'] and not read()['xr']['hud']['toolbarVisible'],'Tilting or moving the head does not summon either rectangle')
+  check(read()['xr']['spatial']['boxPosition']==before['xr']['spatial']['boxPosition'],'Head movement leaves the exhibit placement unchanged')
+  page.evaluate('__xr.head.x=0;__xr.yaw=0;__xr.pitch=0');frames(4)
+  page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,-.65]');frames(15);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]');frames(35)
+  moved=read();check(math.hypot(moved['x']-before['x'],moved['z']-before['z'])>.2,'Actual third-person movement scrolls the world through the fixed portal')
+  check(max(abs(a-b) for a,b in zip(moved['xr']['spatial']['playerDisplay'],moved['xr']['spatial']['boxPosition']))<1e-5,'The active character stays exactly centered as the world moves')
+  check(moved['xr']['spatial']['boxPosition']==before['xr']['spatial']['boxPosition'],'Walking does not drag the exhibit through the room')
   before=read();page.evaluate('__xr.head.x=.15;__xr.yaw=.18');frames(12)
   check(abs(read()['x']-before['x'])<1e-7 and abs(read()['z']-before['z'])<1e-7,'Leaning and looking around the miniature do not move the apprentice')
   page.evaluate('__xr.head.x=0;__xr.yaw=0');panel_key('presentation');page.wait_for_selector('#guild-spatial-options[open]');before=read()
@@ -73,7 +88,7 @@ with sync_playwright() as p:
   check(read()['xr']['mode']=='first-person-vr' and read()['xr']['spatial']['renderedEyes']==2,'First-person VR uses full-scale stereo geometry of the same district')
   panel_key('back');page.wait_for_function('LeonardoGuild.inspect().running');frames(8);capture('first-person-workshop')
   button(0,0,True);frames(6);check(read()['resonance']['aim'] and read()['xr']['spatial']['aimVisible'],'First-person aim has a visible headset reticle');button(0,0,False);frames(4)
-  start=read();page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,-.65]');frames(18);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]');frames(35)
+  start=read();page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,.65]');frames(18);page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]');frames(35)
   check(math.hypot(read()['x']-start['x'],read()['z']-start['z'])>.2,'Tracked stick moves the same collision-checked player in first person')
   before=read();page.evaluate('__xr.sources[1].gamepad.axes=[0,0,1,0]');frames(6);page.evaluate('__xr.sources[1].gamepad.axes=[0,0,0,0]');frames(4)
   check(math.atan2(math.sin(read()['xr']['spatial']['firstPersonHeading']-before['xr']['spatial']['firstPersonHeading']),math.cos(read()['xr']['spatial']['firstPersonHeading']-before['xr']['spatial']['firstPersonHeading']))<-.5,'Right tracked stick produces a rightward snap in the actual first-person view basis')
@@ -92,6 +107,10 @@ with sync_playwright() as p:
   panel_key('back');capture('diorama-ar');panel_key('exit');page.wait_for_function('!LeonardoGuild.inspect().xr.presenting');frames(5);check(page.evaluate('__xr.hitCancelled===true'),'Surface tracking is cancelled at session exit')
   page.evaluate('__xr.hitSupported=false');page.locator('#guild-xr-pause').click();page.wait_for_function('LeonardoGuild.inspect().xr.presenting');frames(6)
   check(read()['xr']['spatial']['placement']=='manual' and not read()['xr']['spatial']['hitAvailable'],'Unsupported surface hit testing retains explicitly manual placement')
+  panel_key('exit');page.wait_for_function('!LeonardoGuild.inspect().xr.presenting');frames(5)
+  page.locator('#guild-xr-pause-mode').select_option('first-person-ar');page.locator('#guild-xr-pause').click();page.wait_for_function('LeonardoGuild.inspect().xr.presenting');frames(8)
+  check(read()['xr']['mode']=='first-person-ar' and page.evaluate("__xr.request.mode==='immersive-ar'"),'First-person AR explicitly requests a passthrough session')
+  dom('#resume');frames(6);check(not read()['xr']['hud']['panelVisible'] and read()['xr']['spatial']['renderedEyes']==2,'First-person AR uses both actual views without persistent rectangular menus');capture('first-person-ar')
   panel_key('exit');page.wait_for_function('!LeonardoGuild.inspect().xr.presenting');frames(5)
   check(read()['credits']==0 and not read()['quarter']['parcel'],'Spatial inspection never remotely collects the visible parcel or grants a reward')
   check(not errors,'No captured JavaScript or GLSL errors across native stereo VR, first-person and AR rendering')

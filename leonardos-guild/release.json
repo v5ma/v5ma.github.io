@@ -1,8 +1,8 @@
 {
   "id": "leonardos-guild",
-  "title": "Leo's Guild - Waterwheel Quarter / Working Deliveries",
+  "title": "Leo's Guild - Waterwheel Quarter / World Portal",
   "version": "0.14.0",
-  "build": "guild-working-quarter-20260915",
+  "build": "guild-portal-20260917",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -115,7 +115,7 @@
     "limits": "Procedural gait and sampled support-plane contacts, not motion capture, toe/heel articulation or final AAA animation; physical-hardware acceptance remains open."
   },
   "xr": {
-    "mode": "theatre plus authored-district stereo diorama VR/AR and first-person VR",
+    "mode": "third-person world portal VR/AR, first-person VR/AR, optional retained theatre",
     "input": [
       "tracked xr-standard controllers",
       "tracked hand ray and pinch UI",
@@ -123,9 +123,9 @@
     ],
     "features": [
       "retained theatre game GPU render texture",
-      "actual per-eye Quarter geometry",
+      "actual per-eye complete game geometry",
       "paged existing-menu bridge",
-      "held hand locomotion toolbar",
+      "on-demand hand locomotion toolbar",
       "release-to-arm after tracking loss",
       "safe desktop fallback"
     ],
@@ -136,8 +136,8 @@
     "resolutionScope": "Retained theatre texture only; actual spatial geometry uses headset eye views.",
     "handTracking": "optional WebXR feature; permission and device support required",
     "physicalQuest3Verified": false,
-    "limits": "Physical Quest tracking, real passthrough, comfort, target-device performance and room occlusion are not certified. First-person vehicles use theatre fallback.",
-    "spatialScope": "Waterwheel Quarter; earlier regions retain seated theatre",
+    "limits": "Physical Quest/Xbox, passthrough, comfort, room collision/occlusion and sustained performance are not certified. Existing authored world, not infinite streaming.",
+    "spatialScope": "Complete existing game scene: Quarter, legacy Vinci/households/vehicles and Cinder Hollow/Stillwater",
     "spatialWorldIsTexture": false,
     "apertures": [
       "corner",
@@ -215,7 +215,7 @@
     "observationsRequiredForCompletion": false,
     "activeRoadTestEntryRejected": true
   },
-  "verificationRecord": "PR157 and independent workflow receipts record exact-source acceptance and deployment; a version label alone does not establish publication.",
+  "verificationRecord": "World Portal release PR and external release receipt; PR167/Working Deliveries is the completed baseline.",
   "workingDeliveries": {
     "task": "WQ-PORTER",
     "roadmapItems": [
@@ -230,5 +230,19 @@
     "newFloors": 0,
     "physicalHardwareVerified": false,
     "evidence": "WORKING-DELIVERIES.md and the release PR/receipt; publication is verified separately."
+  },
+  "name": "Waterwheel Quarter / World Portal",
+  "worldPortal": {
+    "task": "XR-PORTAL-02",
+    "playerCentered": true,
+    "roomBoxSizePreserved": true,
+    "depthBeyondFaces": true,
+    "automaticNearWallTransparency": true,
+    "onDemandSpatialPanels": true,
+    "firstPersonAR": true,
+    "objectiveVisibleAcrossFloors": true,
+    "saveMigration": false,
+    "handoff": "WORLD-PORTAL.md",
+    "physicalHardwareVerified": false
   }
 }

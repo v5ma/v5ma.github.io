@@ -24,7 +24,7 @@
   constructor(session){this.session=session;}
   getViewerPose(){
    if(!data.headTracked)return null;
-   const f=1/Math.tan(70*Math.PI/360),near=.05,far=30,projection=new Float32Array([f/.8,0,0,0,0,f,0,0,0,0,(far+near)/(near-far),-1,0,0,2*far*near/(near-far),0]);
+   const f=1/Math.tan(70*Math.PI/360),near=this.session.renderState.depthNear||.05,far=this.session.renderState.depthFar||1800,projection=new Float32Array([f/.8,0,0,0,0,f,0,0,0,0,(far+near)/(near-far),-1,0,0,2*far*near/(near-far),0]);
    const cy=Math.cos(data.yaw/2),sy=Math.sin(data.yaw/2),cx=Math.cos(data.pitch/2),sx=Math.sin(data.pitch/2);const q={x:cy*sx,y:sy*cx,z:-sy*sx,w:cy*cx};
    const views=['left','right'].map((eye,i)=>({eye,projectionMatrix:projection,transform:transform({...data.head,x:data.head.x+(i?.032:-.032)},q)}));
    return {views,transform:transform(data.head,q),emulatedPosition:false};
