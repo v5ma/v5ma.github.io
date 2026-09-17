@@ -1,8 +1,8 @@
 {
   "id": "leonardos-guild",
-  "title": "Leo's Guild - Waterwheel Quarter / World Portal",
+  "title": "Leo's Guild - World Portal / Direct XR Entry",
   "version": "0.14.0",
-  "build": "guild-portal-20260917",
+  "build": "guild-xr-entry-20260917",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -146,7 +146,8 @@
     ],
     "neverBothClosed": true,
     "placement": "Optional AR hit test with explicit manual fallback",
-    "firstPerson": "Metric stereo view, correctly directed snap turning, stable head origin and clipping guard"
+    "firstPerson": "Metric stereo view, correctly directed snap turning, stable head origin and clipping guard",
+    "entry": "Four first-screen and pause-screen buttons: VR first person, VR diorama, AR first person, AR diorama. Seated theatre remains optional."
   },
   "refinement": {
     "roadmapItems": [
@@ -215,7 +216,7 @@
     "observationsRequiredForCompletion": false,
     "activeRoadTestEntryRejected": true
   },
-  "verificationRecord": "World Portal release PR and external release receipt; PR167/Working Deliveries is the completed baseline.",
+  "verificationRecord": "PR178 and its final external release receipt. Direct-entry source must pass fresh native and public checks.",
   "workingDeliveries": {
     "task": "WQ-PORTER",
     "roadmapItems": [
@@ -231,7 +232,7 @@
     "physicalHardwareVerified": false,
     "evidence": "WORKING-DELIVERIES.md and the release PR/receipt; publication is verified separately."
   },
-  "name": "Waterwheel Quarter / World Portal",
+  "name": "World Portal / Direct XR Entry",
   "worldPortal": {
     "task": "XR-PORTAL-02",
     "playerCentered": true,
@@ -244,5 +245,16 @@
     "saveMigration": false,
     "handoff": "WORLD-PORTAL.md",
     "physicalHardwareVerified": false
+  },
+  "xrEntry": {
+    "task": "XR-ENTRY-03",
+    "build": "guild-xr-entry-20260917",
+    "directLaunch": true,
+    "autoStartAfterTrackedFrame": true,
+    "independentModeSupport": true,
+    "visibleFailures": true,
+    "sourceChecks": 371,
+    "physicalDeviceVerified": false,
+    "handoff": "XR-ENTRY.md"
   }
 }

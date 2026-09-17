@@ -1,3 +1,7 @@
+Direct XR Entry / September 17, 2026.
+
+Read XR-ENTRY.md, release.json and current PR178 before the earlier checkpoints below. The four named AR/VR first-person/diorama buttons are visible in the first screen and on pause. Direct entry starts/resumes the existing game only after a tracked frame, with explicit per-mode support and startup errors. This continues, rather than discards, the World Portal candidate. Its prior source passed native tests but was never merged; do not describe it as already available publicly. Complete the current seven native journeys and retained regressions, merge normally, then verify Pages and the exact public files/journeys. Physical headset approval remains open.
+
 World Portal owner correction / September 17, 2026.
 
 Read WORLD-PORTAL.md and release.json before the historical notes below. XR-PORTAL-02 advances F03 and NEXT02 without closing broad production/human/device gates. The regular complete game now moves around the centered player inside the unchanged exhibit; mask depth continues beyond the side/rear faces. Near display panels become transparent, and large XR controls appear only on demand or for a dialog. First-person AR is a separately requested AR session. Quarter map goals remain visible across floors with an explicit next-action card.
