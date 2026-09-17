@@ -2,7 +2,7 @@ import {freefieldOptions,saveFreefield} from './freefield.mjs';
 import {XR_ACTIONS,XR_DEFAULT,XBOX_SLOTS,saveRemaps} from './freefield-remap.mjs';
 export function createFreefieldUI({options,remaps,storage,changed}){
  const root=document.createElement('details');root.id='freefield-settings';
- const summary=document.createElement('summary');summary.textContent='MOVEMENT, QUIET AUDIO AND BUTTON REMAPS';root.append(summary);
+ const summary=document.createElement('summary');summary.id='freefield-settings-toggle';summary.textContent='MOVEMENT, QUIET AUDIO AND BUTTON REMAPS';root.append(summary);
  const field=document.createElement('div');field.className='settings';root.append(field);
  const add=(title,id,type,value,choices)=>{
   const label=document.createElement('label');label.textContent=title+' ';const el=document.createElement(type==='select'?'select':'input');el.id=id;

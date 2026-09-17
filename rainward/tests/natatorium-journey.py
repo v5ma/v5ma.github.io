@@ -13,7 +13,7 @@ def check(value,text):
  assert value,text
  checks.append(text);print('PASS:',text,flush=True)
 PAD="""
-localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:PROFILE,mute:true,low:true,scanned:false,cinematic:false,detailedHumans:false,rainFilm:true,toggleSprint:false}));
+localStorage.setItem('svgn.rainward.v1.freefield',JSON.stringify({freeStride:false,xrLayout:'legacy',pinnedXR:true,footsteps:100,waterVolume:100,score:'legacy'}));localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({controlPreset:PROFILE,mute:true,low:true,scanned:false,cinematic:false,detailedHumans:false,rainFilm:true,toggleSprint:false}));
 window.pad={connected:true,mapping:'standard',index:0,id:'Natatorium virtual Xbox',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};
 window.padPolls=0;window.padPulse=[];
 Object.defineProperty(navigator,'getGamepads',{value:()=>{padPolls++;const buttons=pad.buttons.map(b=>({...b}));for(const i of padPulse)buttons[i]={pressed:true,value:1};padPulse=[];return pad.connected?[{...pad,axes:[...pad.axes],buttons}]:[];}});

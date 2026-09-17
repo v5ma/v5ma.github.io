@@ -12,7 +12,7 @@ with sync_playwright() as pw:
  browser=pw.chromium.launch(**opts)
  for profile,controller in [('survival',False),('survival',True),('classic',False)]:
   name=profile+('-controller' if controller else '-keyboard');ctx=browser.new_context(viewport={'width':960,'height':720},service_workers='block')
-  ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.settings',"+json.dumps(json.dumps({'controlPreset':profile,'mute':True,'low':True,'scanned':False,'cinematic':False,'detailedHumans':False}))+ ");")
+  ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.checkpoint',"+json.dumps(fixture)+");localStorage.setItem('svgn.rainward.v1.freefield',JSON.stringify({freeStride:false,xrLayout:'legacy',pinnedXR:true,footsteps:100,waterVolume:100,score:'legacy'}));localStorage.setItem('svgn.rainward.v1.settings',"+json.dumps(json.dumps({'controlPreset':profile,'mute':True,'low':True,'scanned':False,'cinematic':False,'detailedHumans':False}))+ ");")
   if controller:ctx.add_init_script("window.pad={connected:true,mapping:'standard',index:0,id:'Readability virtual Xbox',axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};window.padPolls=0;window.padPulse=[];Object.defineProperty(navigator,'getGamepads',{value:()=>{padPolls++;const buttons=pad.buttons.map(b=>({...b}));for(const i of padPulse)buttons[i]={pressed:true,value:1};padPulse=[];return [{...pad,buttons}];}});")
   page=ctx.new_page();page.set_default_timeout(45000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
   def wait(q):page.wait_for_function(q)

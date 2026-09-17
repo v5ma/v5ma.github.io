@@ -1,5 +1,5 @@
 /* Presentation state only. It must never write player, collision or checkpoint state. */
-export const XR_VIEWS=Object.freeze(['first-person','diorama-vr','diorama-ar']);
+export const XR_VIEWS=Object.freeze(['first-person','first-person-ar','diorama-vr','diorama-ar']);
 export const DIORAMA_SHELLS=Object.freeze(['both-open','top-open','front-open']);
 export const STAGE_METRES=Object.freeze({width:1.6,depth:1.2,height:.72});
 export const DIORAMA_DEFAULTS=Object.freeze({view:'first-person',shell:'both-open',scale:.04,follow:true});
@@ -16,7 +16,7 @@ export function setOpening(shell,part,open){
  if(!state.topOpen&&!state.frontOpen)state[(part==='top'?'front':'top')+'Open']=true;
  return state.topOpen?(state.frontOpen?'both-open':'top-open'):'front-open';
 }
-export function sessionType(view){return view==='diorama-ar'?'immersive-ar':'immersive-vr';}
+export function sessionType(view){return view.endsWith('-ar')?'immersive-ar':'immersive-vr';}
 export function readDioramaPreferences(storage){try{return normalizeDiorama(JSON.parse(storage.getItem(XR_PREFS_KEY)||'{}'));}catch{return {...DIORAMA_DEFAULTS};}}
 export function writeDioramaPreferences(storage,value){const state=normalizeDiorama(value);try{storage.setItem(XR_PREFS_KEY,JSON.stringify(state));return true;}catch{return false;}}
 export function displayBounds(scale=.04){scale=normalizeDiorama({scale}).scale;return {width:STAGE_METRES.width/scale,depth:STAGE_METRES.depth/scale,height:STAGE_METRES.height/scale};}

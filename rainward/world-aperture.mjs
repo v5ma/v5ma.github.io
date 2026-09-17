@@ -2,7 +2,7 @@
 // The ray/box aperture is evaluated per fragment using each actual render camera.
 // It needs no stencil attachment (which an XR compositor need not provide).
 import * as T from './vendor/three.module.js';
-export const PORTAL_BUILD='ranger-portal-20260917.1';
+export const PORTAL_BUILD='rainward-freefield-20260917.1';
 export const PORTAL_SPAN=48; // game units across the unchanged physical display
 export function dimensions(width){return {width,depth:width*100/136,height:width*32/136};}
 export function boxInverse(anchor,yaw){return new T.Matrix4().compose(anchor,new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),yaw),new T.Vector3(1,1,1)).invert();}

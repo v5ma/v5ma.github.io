@@ -13,7 +13,7 @@ with sync_playwright() as pw:
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
  b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block')
  ctx.add_init_script(Path('rainward/tests/quest-device-mock.js').read_text())
- ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,cinematic:false,scanned:false,detailedHumans:false}));")
+ ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.freefield',JSON.stringify({freeStride:false,xrLayout:'legacy',pinnedXR:true,footsteps:100,waterVolume:100,score:'legacy'}));localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,cinematic:false,scanned:false,detailedHumans:false}));")
  p=ctx.new_page();p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
  def wait(q):p.wait_for_function(q)
  def frames(n=4):
