@@ -150,7 +150,7 @@
   function tileHit(p){const x=Math.floor(p[0]/36),y=Math.floor(p[1]/36);if(x<0||y<0||x>=S.doc.w||y>=S.doc.h)return null;const id=S.doc.cells[y*S.doc.w+x];return id?{type:'tile',x,y,id}:null;}
   function neighborHit(p){const list=S.doc.extra.gp?.cast||[];const i=list.findIndex(n=>Math.hypot(n.x*36-p[0],n.y*36-20-p[1])<Math.max(23,12/S.view.zoom));return i<0?null:{type:'neighbor',index:i};}
   canvas.addEventListener('contextmenu',e=>e.preventDefault());
-  canvas.addEventListener('pointerdown',e=>{if(!S.active||S.drag)return;e.preventDefault();canvas.focus();canvas.setPointerCapture(e.pointerId);const p=world(e);pointer=p;const before=current();S.dirtyFrame=true;
+  canvas.addEventListener('pointerdown',e=>{if(!S.active||S.drag)return;e.preventDefault();canvas.focus();if(e.isTrusted)canvas.setPointerCapture(e.pointerId);const p=world(e);pointer=p;const before=current();S.dirtyFrame=true;
    if(curves?.pointerDown(e,p))return;
    if(e.button===1||S.space||S.tool==='pan'){S.drag={type:'pan',p:[e.clientX,e.clientY],view:{...S.view}};return;}
    if(e.button===2||S.tool==='erase'){const i=W.hit(S.doc.paths,...p,12/S.view.zoom);if(i>=0){S.doc.paths.splice(i,1);clearSelection();W.syncNetwork(S.doc);S.drag={type:'erase-track',before};}else{W.paintLine(S.doc,p,p,0);S.drag={type:'erase',before,previous:p};}refresh();return;}

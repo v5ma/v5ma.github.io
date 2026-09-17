@@ -12,7 +12,7 @@
   return source;
  }
  class Session extends EventTarget{
-  constructor(){super();this.inputSources=[controller('left'),controller('right')];this.visibilityState='visible';this.enabledFeatures=['hand-tracking'];this.renderState={depthNear:.05,depthFar:30};this.active=true;this.pending=new Set();this.environmentBlendMode='opaque';this.interactionMode='world-space';}
+  constructor(mode){super();this.inputSources=[controller('left'),controller('right')];this.visibilityState='visible';this.enabledFeatures=['hand-tracking'];this.renderState={depthNear:.05,depthFar:30};this.active=true;this.pending=new Set();this.environmentBlendMode=mode==='immersive-ar'?'alpha-blend':'opaque';this.interactionMode='world-space';}
   requestReferenceSpace(){return Promise.resolve(Object.assign(new EventTarget(),{getOffsetReferenceSpace(){return this;}}));}
   updateRenderState(state){Object.assign(this.renderState,state);}
   requestAnimationFrame(fn){const id=requestAnimationFrame(time=>{this.pending.delete(id);if(this.active){fn(time,this.frame());window.xrEmulator.afterFrame?.();}});this.pending.add(id);return id;}
@@ -27,17 +27,24 @@
  }
  Object.defineProperty(window,'XRWebGLLayer',{configurable:true,value:Layer});Object.defineProperty(window,'XRWebGLBinding',{configurable:true,value:undefined});
  for(const kind of ['WebGLRenderingContext','WebGL2RenderingContext'])if(window[kind])window[kind].prototype.makeXRCompatible=async()=>{};
- const xr=new EventTarget();xr.isSessionSupported=async()=>true;xr.requestSession=async(type,options)=>{window.xrEmulator.request={type,options};if(window.xrEmulator.deny)throw new DOMException('Test user denied XR','NotAllowedError');return window.xrEmulator.session=new Session();};Object.defineProperty(navigator,'xr',{configurable:true,value:xr});
+ const xr=new EventTarget();xr.isSessionSupported=async()=>true;xr.requestSession=async(type,options)=>{window.xrEmulator.request={type,options};if(window.xrEmulator.deny)throw new DOMException('Test user denied XR','NotAllowedError');return window.xrEmulator.session=new Session(type);};Object.defineProperty(navigator,'xr',{configurable:true,value:xr});
  window.xrEmulator={session:null,layer:null,request:null,deny:false,
   button(handedness,index,pressed){const s=this.session.inputSources.find(s=>s.handedness===handedness);s.gamepad.buttons[index]={pressed,touched:pressed,value:pressed?1:0};},
   axis(value){this.session.inputSources.find(s=>s.handedness==='left').gamepad.axes[2]=value;},
   hands(){const removed=this.session.inputSources;this.session.inputSources=[controller('left',true),controller('right',true)];this.session.dispatchEvent(event('inputsourceschange',{added:this.session.inputSources,removed}));},
+  controllers(){const removed=this.session.inputSources;this.session.inputSources=[controller('left'),controller('right')];this.session.dispatchEvent(event('inputsourceschange',{added:this.session.inputSources,removed}));},
   disconnect(){const removed=this.session.inputSources;this.session.inputSources=[];this.session.dispatchEvent(event('inputsourceschange',{added:[],removed}));},
   visibility(value){this.session.visibilityState=value;this.session.dispatchEvent(new Event('visibilitychange'));},
   async point(label,handedness='right'){
    const d=SkyCycleXR.diagnostics,r=d.buttons.find(r=>r.label.toLowerCase().includes(label.toLowerCase()));if(!r)throw Error('XR target absent: '+label+' in '+d.buttons.map(r=>r.label).join(','));
    const T=await import('../vendor/three.webgpu.js');const target=new T.Vector3(((r.x+r.w/2)/1200-.5)*1.5,(.5-(r.y+r.h/2)/900)*1.125,0).applyMatrix4(new T.Matrix4().fromArray(d.uiMatrix));
    const s=this.session.inputSources.find(s=>s.handedness===handedness),origin=new T.Vector3(handedness==='left'?-.2:.2,1.3,-.25),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.sub(origin).normalize());s.targetRaySpace.m=new T.Matrix4().compose(origin,q,new T.Vector3(1,1,1)).toArray();return r.label;
+  },
+  async pointCanvas(x,y,handedness='right'){
+   const d=SkyCycleXR.diagnostics,T=await import('../vendor/three.webgpu.js');
+   const target=new T.Vector3((x-.5)*2.7,(.5-y)*1.6875,0).applyMatrix4(new T.Matrix4().fromArray(d.screenMatrix));
+   const source=this.session.inputSources.find(s=>s.handedness===handedness),origin=new T.Vector3(handedness==='left'?-.2:.2,1.3,-.25),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.sub(origin).normalize());
+   source.targetRaySpace.m=new T.Matrix4().compose(origin,q,new T.Vector3(1,1,1)).toArray();
   },
   select(phase='start',handedness='right'){const source=this.session.inputSources.find(s=>s.handedness===handedness);this.session.dispatchEvent(event('select'+phase,{inputSource:source,frame:this.session.frame()}));},
   image(){return new Promise((resolve,reject)=>{this.afterFrame=()=>{this.afterFrame=null;try{const l=this.layer,gl=l.context,old=gl.getParameter(gl.READ_FRAMEBUFFER_BINDING),prior=[];let err;while((err=gl.getError())!==gl.NO_ERROR&&prior.length<20)prior.push(err);gl.bindFramebuffer(gl.READ_FRAMEBUFFER,l.framebuffer);const complete=gl.checkFramebufferStatus(gl.READ_FRAMEBUFFER),data=new Uint8Array(1100*800*4);gl.readPixels(0,0,1100,800,gl.RGBA,gl.UNSIGNED_BYTE,data);const readError=gl.getError();gl.bindFramebuffer(gl.READ_FRAMEBUFFER,old);const colors=new Set();let opaque=0;for(let i=0;i<data.length;i+=4){if(data[i+3])opaque++;if(i%64===0)colors.add(data[i]+','+data[i+1]+','+data[i+2]);}const rt=window.__merged.renderer.getOutputRenderTarget();this.lastCapture={complete,readError,prior,opaque,colors:colors.size,output:rt&&{width:rt.width,height:rt.height,samples:rt.samples,hasExternalTextures:rt.hasExternalTextures,autoAllocateDepthBuffer:rt.autoAllocateDepthBuffer,textureType:rt.texture.type},xr:SkyCycleXR.diagnostics};console.log('XR capture diagnostics '+JSON.stringify(this.lastCapture));if(complete!==gl.FRAMEBUFFER_COMPLETE||readError||opaque<10000||colors.size<30)throw Error('XR image invalid: '+JSON.stringify(this.lastCapture));const c=document.createElement('canvas');c.width=1100;c.height=800;const cx=c.getContext('2d'),img=cx.createImageData(1100,800);for(let y=0;y<800;y++)img.data.set(data.subarray(y*4400,(y+1)*4400),(799-y)*4400);cx.putImageData(img,0,0);resolve(c.toDataURL());}catch(e){reject(e);}};});}
