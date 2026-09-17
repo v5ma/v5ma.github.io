@@ -265,3 +265,13 @@ The new candidate has separate district/presentation save keys. Existing progres
 - [x] LEVEL-PM-03a: Implement and verify the ranger-sized north service connection, reachable field resupply, truthful state-aware route map and actual-clearance bridge signal. Test harbor and maintenance repair approaches without mandatory lookout/feeder triggers, retreat through the lock, learned return, report/reload and preserved Classic journeys. See SERVICE-LOOP.md and SERVICE-LOOP-HANDOFF.md; completed in master run 35136758566 and release dino-tidegate-20260915.2; verification/service-loop/publication-20260916.json closes only this engineering subtask.
 
 LEVEL-PM-03 remains open for unfamiliar and returning players. XR-DIO-02 and LEVEL-PM-04 remain open. The graybox first failed against the existing pedestal; the doorway was realigned to the clear aisle, not made non-colliding. No map expansion, new save schema, imported asset or reward is part of this pass. The next opportunity is observed route balance and camera/readability at the maintenance transition.
+
+
+## Character-centered world portal / 2026-09-17
+
+The user's clarification supersedes the fixed-map miniature interpretation, not the level-design program. Keep the accepted physical box width and placement. Frame the normal game around the active character/vehicle, mask its projected outline, preserve game depth through the sides/rear and make eye-facing enclosure panels automatically transparent. Do not crop game geometry to a cuboid or create a separate simplified map. See DIORAMA-PORTAL.md and design/DIORAMA-PORTAL-REQUEST-20260917.md.
+
+- [ ] XR-DIO-01c: Verify the character-centered full-world portal in Tidegate and Classic, far-world visibility without outside leakage from two render eyes, automatic shell cutaway, real controller-driven movement, first-person return, tool/vehicle behavior and unchanged saves. Separate candidate, published bytes/play and release evidence must close this engineering item.
+- [ ] XR-DIO-02c: Physical Quest 3 inspection of near-plane/inside-box behavior, stereo parallax, side/rear visibility, AR composition, menus, hand/controller pointing and comfort. Automated eye poses are not physical-device approval.
+
+Keep LEVEL-PM-03 and LEVEL-PM-04 open. The next level-design question remains the observation/feeder route's useful information versus the learned harbor/service return, not more map area. Presentation alone does not establish level quality or introduce asset-sector streaming.
