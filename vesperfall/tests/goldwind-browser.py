@@ -34,6 +34,12 @@ with sync_playwright() as p:
   for _ in range(n or len(rows)):
    page.evaluate("TestXR.axes('left',0,1)");wait('!Vesperfall.component.dominionControls.state.xrAxesReady');page.evaluate("TestXR.axes('left',0,0)");wait('Vesperfall.component.dominionControls.state.xrAxesReady')
   button('right',0,True);button('right',0,False)
+ def handaction(text):
+  rows=page.evaluate('Vesperfall.component.xrMenuRows.map(r=>r[0])');index=next(i for i,r in enumerate(rows) if text.lower() in r.lower())
+  page.evaluate("""index=>{const g=Vesperfall.component,T=g.T,panel=g.xrPanel.mesh;panel.updateMatrixWorld(true);g.rig.updateMatrixWorld(true);const y=195+index*75+30.5,target=panel.localToWorld(new T.Vector3(0,(.5-y/768)*panel.geometry.parameters.height,0)),origin=new T.Vector3(...TestXR.state.hands.right).applyMatrix4(g.rig.matrixWorld),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.sub(origin).normalize());q.premultiply(g.rig.getWorldQuaternion(new T.Quaternion()).invert());TestXR.orientation('right',q.toArray());}""",index)
+  before=page.evaluate('Vesperfall.component.questHands.state.selections');page.evaluate("TestHands.pinch('right',.05)");wait("[...Vesperfall.component.questHands.state.sources].some(([s,p])=>s.handedness==='right'&&p.pinch.armed)");page.evaluate("TestHands.pinch('right',.015)");wait('n=>Vesperfall.component.questHands.state.selections>n||!Vesperfall.component.xr',before)
+  if page.evaluate('Vesperfall.component.xr'):page.evaluate("TestHands.pinch('right',.05)")
+  check(True,'With Goldwind enabled, a tracked hand pinch selects '+text)
  def drawshot(index,hand='right',bow='left',down=False):
   x=-.23 if bow=='left' else .23
   pose(bow,[x,1.35,-.4]);page.evaluate('h=>TestXR.orientation(h,[0,0,0,1])',bow)
@@ -75,10 +81,14 @@ with sync_playwright() as p:
   button('right',0,False);button('left',0,False);neutral();check(page.evaluate('n=>Vesperfall.state.shots===n',n),'Releasing a shield-cancelled draw never fires a stale arrow')
   uses=page.evaluate('Vesperfall.state.shardsUsed');pose('right',[.25,1.25,-.2]);button('right',1,True);frame();button('right',1,False);frame()
   check(page.evaluate('n=>Vesperfall.state.shardsUsed===n&&!Vesperfall.component.goldwind.state.flight',uses),'Dropping a stationary disk does not teleport')
-  neutral();pose('right',[.25,1.25,-.43]);button('right',1,True)
-  throw_trace=page.evaluate("""async()=>{const start=performance.now(),trace=[];await new Promise(resolve=>{function step(){const now=performance.now(),t=Math.min(1,(now-start)/280),g=Vesperfall.component.goldwind.gesture;trace.push({now,samples:g.samples.map(s=>({t:s.t,p:s.p})),armed:g.ready,held:g.held});TestXR.pose('right',[.25,1.25,-.43+.55*t]);if(t<1)requestAnimationFrame(step);else{TestXR.button('right',1,false);resolve();}}requestAnimationFrame(step);});return trace;}""")
-  (OUT/'throw-input-observations.json').write_text(json.dumps(throw_trace,indent=2))
-  wait('n=>Vesperfall.state.shardsUsed>n',uses)
+  throw_trace=[]
+  for attempt in range(3):
+   neutral();pose('right',[.25,1.25,-.43]);button('right',1,True)
+   samples=page.evaluate("""async()=>{let start=null;const trace=[];await new Promise(resolve=>{TestXR.state.inputFrame=()=>{const now=performance.now();start??=now;const t=Math.min(1,(now-start)/400),g=Vesperfall.component.goldwind.gesture;trace.push({now,samples:g.samples.map(s=>({t:s.t,p:s.p})),armed:g.ready,held:g.held});TestXR.pose('right',[.25,1.25,-.43+.55*t]);if(t>=1){TestXR.button('right',1,false);TestXR.state.inputFrame=null;resolve();}};});return trace;}""")
+   frame();wait('!Vesperfall.component.goldwind.gesture.held&&!Vesperfall.component.goldwind.state.flight')
+   throw_trace.append({'attempt':attempt,'samples':samples,'shardsUsed':page.evaluate('Vesperfall.state.shardsUsed')})
+   (OUT/'throw-input-observations.json').write_text(json.dumps(throw_trace,indent=2))
+   if page.evaluate('n=>Vesperfall.state.shardsUsed>n',uses):break
   check(page.evaluate('n=>Vesperfall.state.shardsUsed===n+1',uses),'A deliberate tracked throw resolves one supported short-range relocation')
   observations.append(page.evaluate('({kind:"thrown-disk",p:[...Vesperfall.state.p],events:Vesperfall.state.events.slice(-5)})'))
   neutral();pose('right',[-.23,1.35,-.31]);button('right',4,True);pose('right',[-.23,1.75,.18]);wait('Vesperfall.component.latch.drawing');n=page.evaluate('Vesperfall.state.blinks')
@@ -89,7 +99,17 @@ with sync_playwright() as p:
   n=page.evaluate('Vesperfall.state.shots');drawshot(0,'left','right');wait('n=>Vesperfall.state.shots===n+1',n)
   check(True,'Right-bow / left-draw hands fire through the same physical acquisition path')
   button('right',1,True);check(page.evaluate('!!Vesperfall.state.shield'),'The optional bow-grip shield binding works in reversed handedness');button('right',1,False);neutral()
-  button('left',3,True);wait('Vesperfall.component.paused');button('left',3,False);xrmenu('Exit VR');wait('!Vesperfall.component.xr')
+  pose('left',[.23,1.35,-.31]);button('left',4,True);pose('left',[.23,1.75,.18]);wait('Vesperfall.component.latch.drawing')
+  before=page.evaluate('({blinks:Vesperfall.state.blinks,shots:Vesperfall.state.shots})')
+  page.evaluate('TestHands.mode(true)');wait('Vesperfall.component.questHands.state.active&&Vesperfall.component.paused')
+  check(page.evaluate('n=>!Vesperfall.component.latch.drawing&&!Vesperfall.component.goldwind.state.flight&&Vesperfall.state.blinks===n.blinks&&Vesperfall.state.shots===n.shots',before),'Bare-hand takeover cancels the Goldwind movement draw and pauses combat')
+  handaction('Settings');handaction('Back');handaction('Exit VR');wait('!Vesperfall.component.xr')
+  page.locator('#save-expedition').click();saved=page.evaluate('localStorage.getItem(PilgrimSave.KEY)')
+  page.locator('#architect-table').click();wait('Vesperfall.component.xr&&Vesperfall.component.returningBell.state.table')
+  check(page.evaluate('Vesperfall.component.arMode&&Vesperfall.component.paused&&!Vesperfall.component.goldwind.state.flight'),'Goldwind preserves paused, discovery-limited AR inspection')
+  page.evaluate('TestHands.mode(true)');wait('Vesperfall.component.questHands.state.active')
+  handaction('Layers:');handaction('Exit AR');wait('!Vesperfall.component.xr')
+  check(page.evaluate('p=>localStorage.getItem(PilgrimSave.KEY)===p',saved),'AR hand inspection with Goldwind selected preserves exact saved expedition bytes')
   page.locator('#save-expedition').click();payload=page.evaluate('localStorage.getItem(PilgrimSave.KEY)');page.reload(wait_until='domcontentloaded');wait('window.Vesperfall?.component.goldwind')
   check(page.locator('#xr-bow-controls').input_value()=='goldwind' and page.locator('#goldwind-shield').input_value()=='grip','Explicit control preferences survive a real page reload')
   check(page.evaluate('p=>localStorage.getItem(PilgrimSave.KEY)===p',payload),'Changing physical controls does not rewrite the saved expedition')
