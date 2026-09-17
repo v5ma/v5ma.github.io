@@ -1,5 +1,5 @@
 // Authored district rules. Coordinates are shared by collision, art and route tests.
-export const TIDEGATE_BUILD = 'tidegate-20260915.2';
+export const TIDEGATE_BUILD = 'tidegate-20260917.1';
 export const TIDEGATE_KEY = 'dino-atlas.tidegate.v1';
 export const LAYOUT = 'tidegate-crossing-v1';
 export const BOUNDS = {left:-66,right:66,back:-46,front:52};

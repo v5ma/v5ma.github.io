@@ -47,7 +47,7 @@ try:
     def shot(name):page.screenshot(path=str(OUT/(approach+'-'+name+'.png')),timeout=45000)
     try:
      page.goto(BASE+'tidegate.html?test=1',wait_until='domcontentloaded',timeout=90000);wait('window.__tidegate?.state.ready',120000)
-     check(state()['build']=='tidegate-20260915.2',approach+': exact refit build boots');press(0);wait('__tidegate.state.started')
+     check(state()['build']=='tidegate-20260917.1',approach+': exact refit build boots');press(0);wait('__tidegate.state.started')
      press(9);choose('quality');press(1);wait('!__tidegate.state.paused');started=state()['simulationTime']
      route([[-34,43],[-25,43]])
      if approach=='harbor':
@@ -96,7 +96,7 @@ try:
      except Exception:pass
      raise
     finally:ctx.close()
-   (OUT/'report.json').write_text(json.dumps({'build':'tidegate-20260915.2','base':BASE,'passed':len(checks),'checks':checks,'routes':reports,'physicalHardwareVerified':False,'limits':'Software WebGL and synthetic Xbox. Fixed waypoints measure these routes only, not unfamiliar-player comprehension or all paths. No gameplay state assignments. Existing XR mock/view suites remain separate.'},indent=2))
+   (OUT/'report.json').write_text(json.dumps({'build':'tidegate-20260917.1','base':BASE,'passed':len(checks),'checks':checks,'routes':reports,'physicalHardwareVerified':False,'limits':'Software WebGL and synthetic Xbox. Fixed waypoints measure these routes only, not unfamiliar-player comprehension or all paths. No gameplay state assignments. Existing XR mock/view suites remain separate.'},indent=2))
   finally:browser.close()
 finally:
  if server:server.terminate()

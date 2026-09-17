@@ -1,0 +1,37 @@
+<!doctype html><meta charset="utf-8"><title>Portal renderer regression fixture</title><canvas id="view"></canvas>
+<script type="module">
+import * as T from '../vendor/three.module.js';
+import {PortalMaterials,boxInverse,boxInterval,shellMaterial} from '../diorama-portal.js';
+const canvas=document.getElementById('view'),renderer=new T.WebGLRenderer({canvas,alpha:true,antialias:false,preserveDrawingBuffer:true});renderer.setSize(512,256,false);renderer.setClearColor(0,0);
+const size={width:2,depth:1.6,height:1},scene=new T.Scene(),mask=new PortalMaterials();mask.configure(new T.Vector3(),0,size);mask.active=true;
+const red=new T.MeshBasicMaterial({color:0xff0000,side:T.DoubleSide,toneMapped:false}),green=new T.MeshBasicMaterial({color:0x00ff00,side:T.DoubleSide,toneMapped:false});mask.attach(red);mask.attach(green);
+// Deliberately oversized planes. Only the production aperture may constrain them.
+const far=new T.InstancedMesh(new T.PlaneGeometry(100,100),red,1),near=new T.Mesh(new T.PlaneGeometry(100,100),green);far.frustumCulled=near.frustumCulled=false;scene.add(far,near);
+const shells=[];for(const [normal,point,scale] of [[[0,0,1],[0,.5,.8],[2,1,.003]],[[0,0,-1],[0,.5,-.8],[2,1,.003]],[[1,0,0],[1,.5,0],[.003,1,1.6]],[[-1,0,0],[-1,.5,0],[.003,1,1.6]],[[0,1,0],[0,1,0],[2,.003,1.6]]]){
+ const m=new T.Mesh(new T.BoxGeometry(1,1,1),shellMaterial(new T.Vector3(...normal),new T.Vector3(...point),mask.uniforms));m.position.set(...point);m.scale.set(...scale);m.renderOrder=1;scene.add(m);shells.push(m);
+}
+function cameraAt(p,viewport){const c=new T.PerspectiveCamera(55,1,.01,120);c.position.copy(p);c.lookAt(0,.5,0);c.updateMatrixWorld(true);c.viewport=viewport;return c;}
+window.runPortalFixture=(direction,stereo=true)=>{
+ const middle=new T.Vector3(0,.5,0),eye=new T.Vector3(...direction),forward=middle.clone().sub(eye).normalize(),right=new T.Vector3().crossVectors(forward,new T.Vector3(0,1,0)).normalize();
+ const cameras=[cameraAt(eye.clone().addScaledVector(right,stereo?-.032:0),new T.Vector4(0,0,256,256)),cameraAt(eye.clone().addScaledVector(right,stereo?.032:0),new T.Vector4(256,0,256,256))];
+ const q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,1),forward.clone().negate());
+ far.setMatrixAt(0,new T.Matrix4().compose(middle.clone().addScaledVector(forward,12),q,new T.Vector3(1,1,1)));far.instanceMatrix.needsUpdate=true;
+ near.position.copy(eye).addScaledVector(forward,.1);near.quaternion.copy(q);near.visible=eye.distanceTo(middle)>2;
+ for(const m of shells)m.visible=false;renderer.render(scene,new T.ArrayCamera(cameras));
+ const gl=renderer.getContext(),pixels=new Uint8Array(512*256*4);gl.readPixels(0,0,512,256,gl.RGBA,gl.UNSIGNED_BYTE,pixels);
+ let inside=0,outside=0,leaks=0,missing=0,foreground=0,boundaryIgnored=0;const perEye=[];
+ for(let i=0;i<2;i++){const c=cameras[i],r=new T.Raycaster();let eyeInside=0;for(let y=3;y<254;y+=3)for(let x=3;x<254;x+=3){
+  const ndc=new T.Vector2((x+.5)/256*2-1,(y+.5)/256*2-1);r.setFromCamera(ndc,c);const hit=boxInterval(r.ray.origin,r.ray.direction,size),offset=(y*512+x+i*256)*4;
+  // Leave a subpixel boundary band out of a strict binary comparison.
+  const a=r.ray.origin.clone(),d=r.ray.direction.clone(),expanded=boxInterval(a,d,{width:2.02,depth:1.62,height:1.01}),shrunken=boxInterval(a,d,{width:1.98,depth:1.58,height:.99});
+  if(!!expanded!==!!shrunken){boundaryIgnored++;continue;}
+  if(hit){inside++;eyeInside++;if(pixels[offset]<240||pixels[offset+3]<240)missing++;if(pixels[offset+1]>30)foreground++;}
+  else{outside++;if(pixels[offset+3]>0)leaks++;}
+ }perEye.push(eyeInside);}
+ // Near-facing shell panels must not hide the far world. Their far-side glass
+ // may add only the documented light tint; neither side becomes an opaque end.
+ for(const m of shells)m.visible=true;renderer.render(scene,new T.ArrayCamera(cameras));gl.readPixels(0,0,512,256,gl.RGBA,gl.UNSIGNED_BYTE,pixels);
+ const centers=cameras.map((_,i)=>Array.from(pixels.slice((128*512+128+i*256)*4,(128*512+128+i*256)*4+4)));
+ return {direction,stereo,inside,outside,leaks,missing,foreground,boundaryIgnored,perEye,centers,glError:gl.getError(),image:canvas.toDataURL('image/png').split(',')[1]};
+};window.fixtureReady=true;
+</script>

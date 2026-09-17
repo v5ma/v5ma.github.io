@@ -4,7 +4,7 @@ import {RangerTools} from './ranger-tools.js';import {RangerAudio} from './range
 import {makeResident,makeTool} from './frontier-art.js';import {animateResident} from './herd-rig.js';import {animateRangerBody} from './ranger-body.js';
 import {drawDistrictMap,bridgeReadout} from './tidegate-routes.js';
 import {resolveCamera} from './tidegate-camera.js';
-import {DioramaXR} from './diorama-xr.js';import {mergeMotion} from './xr-actions.js';import {buildTidegate} from './tidegate-world.js';import {TidegateFleet} from './tidegate-actors.js';
+import {DioramaXR} from './diorama-xr.js?v=portal1';import {mergeMotion} from './xr-actions.js';import {buildTidegate} from './tidegate-world.js';import {TidegateFleet} from './tidegate-actors.js';
 import {TIDEGATE_BUILD,POINTS,ROUTES,BOUNDS,clamp,gap,canWalk,readDistrict,saveDistrict,applyDistrict,nextTask,stepHerd} from './tidegate-core.js';
 const $=id=>document.getElementById(id);
 export async function bootTidegate(){
