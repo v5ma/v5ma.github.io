@@ -1,11 +1,35 @@
 # Character-centered world portal continuation
 
-Candidate, not yet a published release. Branch dino-atlas/world-portal-20260917 began from master 3550a6cbb4b7399f218fb96c0f80b560347194e0. The last released Dino runtime remains 62823be5d810ecf2d78fa73f794e86a08e1bfd3c, dino-tidegate-20260915.2. Do not repeat the service-loop merge.
+## Published checkpoint / 2026-09-17
 
-Read the exact user clarification in design/DIORAMA-PORTAL-REQUEST-20260917.md, the implementation contract in DIORAMA-PORTAL.md and the existing canonical roadmap. The box is a window into the normal third-person game, not a map bounded by its walls. The active ranger/vehicle is centered in all three axes. Width and physical placement are preserved; the full live world moves only during rendering. A per-eye ray/box fragment aperture preserves depth beyond the side/rear while rejecting geometry before entry and outside the projected silhouette. It does not require a compositor stencil attachment. Eye-facing shell panels discard per eye, and far panels are light glass; normal game-world walls remain solid. This is not infinite terrain streaming.
+The portal correction is merged, published and release-verified. Release dino-portal-20260917.1 points to d315307210d30736e4c9085e32bbc007a882583b and was published at 2026-09-17T20:06:33Z. Portal build: ranger-portal-20260917.1. Tidegate entry build: tidegate-20260917.1. Do not repeat the merge or recreate the already implemented correction. This remains a prerelease because physical-device and human acceptance are open.
 
-Shared DioramaXR now serves Tidegate and Classic Reserve. Classic retains first-person VR as its default when no presentation preference exists. Existing presentation and gameplay keys are untouched. First-person return restores world transforms, fog, background, renderer state and masking in finally. Menus/hand rays share the established action handlers. A tabletop ray chooses a tool aim point; the shot still originates at the ranger and obeys the game's real range and walls.
+Read verification/portal/publication-20260917.json, DIORAMA-PORTAL.md, design/DIORAMA-PORTAL-REQUEST-20260917.md and AAA-ROADMAP.md. The earlier candidate handoff is retained verbatim at verification/portal/prepublication-handoff-20260917.md. Its pending status is historical.
 
-Local and hosted integration passed 181 Node tests. The first full candidate is d7fb504718777a74a1799241e00c91c82219ad0a, run 35263571952. Its six-position two-eye GPU aperture fixture passed; game and legacy jobs require fresh status reads and artifact inspection. Later documentation-only changes do not establish new runtime acceptance. No physical Quest/Xbox, actual passthrough, comfort, hardware performance or player-comprehension approval is claimed. Local Chromium navigation is blocked by administrator policy; native rendering runs in the established GitHub workflow rather than bypassing that policy.
+## User intent implemented
 
-Before merge, remove the temporary integration workflow and confirm no transport files remain. Run all model, portal, original Tidegate/service and four Classic browser suites at the final source. Inspect actual screenshots and all reported errors. Reconcile fresh master and use a normal expected-head merge. The existing Tidegate workflow then separately compares public bytes, exercises both public games and all portal viewpoints, and creates new prerelease dino-portal-20260917.1 only on success. Never replace older tags or clear storage. Keep human and physical-device gates open.
+The box is a character-centered window into the ordinary third-person game, not a finite map contained by its walls. Classic Reserve and Tidegate share the same portal implementation. The active ranger or vehicle, including its height, stays at the display center while the existing live world moves relative to that center during rendering. The accepted physical width, proportions and session placement remain unchanged.
+
+The per-eye fragment aperture discards rays outside the projected box and geometry in front of its entry surface. It deliberately retains world depth beyond the side and rear faces. Eye-facing enclosure panels become transparent; far panels are lightly tinted. Existing top/front opening preferences remain valid and never both closed. Automatic cutaway takes precedence. Actual walls in the game remain solid and occluding.
+
+The game is neither a flat video texture nor a second simplified simulation. Only rendering receives the display transform; normal movement, collision, tools, vehicles, wildlife, objectives, inventory, rewards and saves keep their original world coordinates. First-person VR, VR diorama and explicitly requested AR diorama remain available. This is continuous presentation of the existing authored world, not infinite terrain or network asset streaming.
+
+## Completed evidence
+
+Master run 35265511581 passed all 13 jobs, including separate published and release jobs. The source suite passed 181 Node/model/physics tests with no failures or skips. The existing Tidegate, service-loop and four Classic browser jobs also passed.
+
+The separate public job 105354366910 matched all 71 manifest files, passed 15 actual-game portal checks in Classic and 15 in Tidegate, reran the 31-check Tidegate tour and 27 service-loop checks, and produced the three opening-preset captures. Its graphics fixture rendered two ArrayCamera eyes from six viewpoints: front, rear, left, right, above and inside. It reported no leaked, missing or foreground pixels among the evaluated samples outside the explicitly excluded boundary band. This does not prove every possible view or certify a headset compositor.
+
+Pages run 35265509980 deployed the exact release commit successfully at 19:34:08Z. The public job completed at 19:53:31Z. Release job 105358388010 succeeded. The versioned release contains dino-portal-verified-evidence.tgz. Its GitHub-reported hash is in the receipt; the closeout independently downloaded the source and published Actions artifacts, not that aggregate release asset.
+
+Recovery hash-checked both downloaded archives, matched the archived 71-file manifest, reran all 181 tests and syntax-checked all 51 top-level JavaScript files. Front/side production game captures and the mask report were reviewed. No fresh local live-browser run was performed; direct web-reader requests were rejected. The independent public evidence is the completed hosted run, not a claimed local browser result.
+
+## Failures and acceptance boundaries
+
+Keep verification/portal/first-native-20260917.json. The first actual-game driver held movement before the post-entry neutral-input poll had settled. The repaired driver waits for the real neutral state instead of assigning it, teleporting the ranger or weakening the movement criterion. The final source and public journeys passed with that correction.
+
+XR-DIO-01c now has its separate candidate, public and release engineering evidence. This handoff and publication receipt supersede its pending release-time status. XR-DIO-02c remains open for physical Quest 3 controllers/hands, actual stereo/passthrough, near-plane and inside-box behavior, comfort and device performance. Physical Xbox, human art review and LEVEL-PM-03/LEVEL-PM-04 remain open. Actual-game portal runs used real movement and collision driven by synthetic Xbox with mocked sessions and inspection eye poses; graphics fixtures are not manufactured mission completion.
+
+Keep all existing save keys, stable IDs, rewards, controller preferences, vendor licenses and sibling-game work. This closeout changes documentation only. Later documentation is not retroactively part of the release-time manifest. For another runtime change, refresh master, use a distinct release identity and repeat the documented candidate and public gates.
+
+The next level-design question remains whether the observation/feeder route earns its detour through useful information and preparation, now viewed through a character-centered portal. Do not force lookout visits or expand the map merely because presentation tests pass.

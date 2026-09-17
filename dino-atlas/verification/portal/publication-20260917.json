@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "reviewedOn": "2026-09-17",
+  "status": "published-and-release-verified",
+  "portalBuild": "ranger-portal-20260917.1",
+  "tidegateBuild": "tidegate-20260917.1",
+  "releaseCommit": "d315307210d30736e4c9085e32bbc007a882583b",
+  "candidateCommit": "6fa00bd071749d0adc6ec5d9e99eb9768cbfff9b",
+  "masterRun": 35265511581,
+  "allThirteenJobs": "success",
+  "publishedJob": 105354366910,
+  "publishedCompletedAt": "2026-09-17T19:53:31Z",
+  "releaseJob": 105358388010,
+  "release": {
+    "id": 391018349,
+    "tag": "dino-portal-20260917.1",
+    "tagCommitVerified": true,
+    "publishedAt": "2026-09-17T20:06:33Z",
+    "prerelease": true,
+    "assetId": 570995095,
+    "assetName": "dino-portal-verified-evidence.tgz",
+    "githubReportedAssetSha256": "2671ebf1a7019de3378cf2375daeb7b18bcf0dd8fceeda74e35647fc39d8b605",
+    "aggregateAssetIndependentlyDownloaded": false
+  },
+  "pages": {
+    "run": 35265509980,
+    "deployJob": 105351815628,
+    "commit": "d315307210d30736e4c9085e32bbc007a882583b",
+    "result": "success",
+    "completedAt": "2026-09-17T19:34:08Z"
+  },
+  "publicRoutes": [
+    "https://v5ma.github.io/dino-atlas/",
+    "https://v5ma.github.io/dino-atlas/tidegate.html"
+  ],
+  "results": {
+    "nodePassed": 181,
+    "nodeFailed": 0,
+    "nodeSkipped": 0,
+    "publishedPortalGameChecks": {"classic": 15, "tidegate": 15},
+    "publishedMaskViewpoints": 6,
+    "maskRenderEyesPerViewpoint": 2,
+    "maskNonBoundaryLeaks": 0,
+    "maskNonBoundaryMissing": 0,
+    "maskForegroundLeaks": 0,
+    "publishedTidegateChecks": 31,
+    "publishedServiceChecks": 27,
+    "publicManifestFilesMatched": 71,
+    "publishedReportedJavaScriptShaderHttpErrors": 0,
+    "physicalHardwareVerified": false
+  },
+  "independentRecoveryAudit": {
+    "downloadedArtifacts": [
+      {"id": 10516609182, "sha256": "e72fdb5043e554d13ffdebc8a26e31e170f478c98ae395ba396d34d8ab473369", "hashMatched": true},
+      {"id": 10516287960, "sha256": "b49e3b9e6d5b34e9d7bd3954b1574502d30e040d23f4ad2ea877983e968ddb1b", "hashMatched": true}
+    ],
+    "archivedManifestHashesMatched": 71,
+    "nodeVersion": "v22.16.0",
+    "nodePassed": 181,
+    "nodeFailed": 0,
+    "nodeSkipped": 0,
+    "topLevelJavaScriptSyntaxFilesPassed": 51,
+    "unitTranscriptSha256": "3bc648c785d213a0af245be69c0a2b0acfbb3fe39fb6c423b2831fbf66078ec1",
+    "freshLiveBrowserRun": false,
+    "directWebPageRead": "The web reader rejected both public route requests; it did not independently execute or load the game.",
+    "evidenceBasis": "Completed live-browser evidence from master run35265511581, downloaded reports/images, fresh GitHub status/tag/release reads, and a new local model/syntax run."
+  },
+  "reportSha256": {
+    "portal-evidence/classic-report.json": "cae03601c892ee2c23c1807361772b558e74349fd2d685cb2d884f430d66888e",
+    "portal-evidence/tidegate-report.json": "29d9f34059c86a9a9b5b7febc5445b3c307ac3bf4a08583692348a339b9cc2d1",
+    "portal-evidence/mask-report.json": "b90cf4c196e03449365c0c0d48ca245f3254e26a9491e3037baf6c5ebd3ecb37",
+    "tidegate-evidence/public-verification.json": "953d3a61dc6758542d2e7c378763770a3bfc5f005618c7f3eed877d02cbd04c9",
+    "tidegate-evidence/report.json": "5037064a95ef62eba42764c37e860bf8d1b49dc8c6df5fcdcc503666bf3ef289",
+    "service-loop-evidence/report.json": "63c0b3a99e08a1a6c8cccf1a42cbd27201f6dd7523b67c0969250c62daa4b74c"
+  },
+  "scope": "Recovery documentation only. No runtime, simulation, save, remap, release tag, workflow, vendor or sibling game changed.",
+  "limitations": [
+    "Two-eye ArrayCamera fixtures and mocked inspection poses are not physical headset stereo-compositor acceptance.",
+    "Mask samples exclude a recorded boundary band; six viewpoints do not prove all possible views.",
+    "Classic and Tidegate portal journeys use actual movement and collision driven by synthetic Xbox, with mocked XR sessions; no actor or objective assignments.",
+    "Physical Xbox, Quest controllers/hands, passthrough, room occlusion/anchors, comfort, device performance and human art acceptance remain open.",
+    "The existing authored world is presented continuously, not infinitely streamed or expanded."
+  ],
+  "closedEngineeringGate": "XR-DIO-01c",
+  "remainingGates": ["XR-DIO-02c", "LEVEL-PM-03", "LEVEL-PM-04"]
+}
