@@ -5,6 +5,9 @@ on:
     paths: ['.github/workflows/dino-express-integrate.yml']
 permissions:
   contents: read
+concurrency:
+  group: dino-express-integration
+  cancel-in-progress: true
 jobs:
   integrate:
     runs-on: ubuntu-latest
@@ -29,39 +32,54 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import base64,lzma,json,hashlib,subprocess,os
-          files=sorted(Path('.github/patches').glob('dino-express.*.b64'))
-          assert len(files)==2
-          encoded=''.join(p.read_text().strip() for p in files)
-          # Repair a known duplicated pair in text transport; decoded hash is authoritative.
-          assert encoded.count('WfXLOCOCOOMs')==1
-          encoded=encoded.replace('WfXLOCOCOOMs','WfXLOCOOMs')
-          data=lzma.decompress(base64.b64decode(encoded,validate=True))
-          assert hashlib.sha256(data).hexdigest()=='82dcceeac3b9266e4e1bea952de901a1c34acb5b67289757cc5ebe69c1abdd82'
-          entries=json.loads(data);assert len(entries)==27
-          for e in entries:
-              p=Path(e['path'])
-              assert not p.is_absolute() and '..' not in p.parts
-              assert str(p).startswith('dino-atlas/') or str(p)=='.github/workflows/dino-tidegate.yml'
-              if e['before'] is None:
-                  assert not p.exists(),str(p)
-                  text=e['content']
-              else:
-                  old=p.read_bytes();assert hashlib.sha256(old).hexdigest()==e['before'],str(p)+' baseline changed'
-                  text=old.decode()
-                  for start,end,replacement in reversed(e['edits']):
-                      assert 0<=start<=end<=len(text)
-                      text=text[:start]+replacement+text[end:]
-              assert hashlib.sha256(text.encode()).hexdigest()==e['after'],str(p)+' result mismatch'
-              p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(text.encode())
+          files=sorted(Path('.github/patches').glob('dino-express.*.b64'));entries=[]
+          def apply(entries):
+              for e in entries:
+                  p=Path(e['path'])
+                  assert not p.is_absolute() and '..' not in p.parts
+                  assert str(p).startswith('dino-atlas/') or str(p)=='.github/workflows/dino-tidegate.yml'
+                  if e['before'] is None:
+                      assert not p.exists(),str(p)
+                      text=e['content']
+                  else:
+                      old=p.read_bytes();assert hashlib.sha256(old).hexdigest()==e['before'],str(p)+' baseline changed'
+                      text=old.decode()
+                      for start,end,replacement in reversed(e['edits']):
+                          assert 0<=start<=end<=len(text)
+                          text=text[:start]+replacement+text[end:]
+                  assert hashlib.sha256(text.encode()).hexdigest()==e['after'],str(p)+' result mismatch'
+                  p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(text.encode())
+          if files:
+              assert len(files)==2
+              encoded=''.join(p.read_text().strip() for p in files)
+              # Correct only the recorded duplicated pair; decoded hash remains authoritative.
+              assert encoded.count('WfXLOCOCOOMs')==1
+              encoded=encoded.replace('WfXLOCOCOOMs','WfXLOCOOMs')
+              data=lzma.decompress(base64.b64decode(encoded,validate=True))
+              assert hashlib.sha256(data).hexdigest()=='82dcceeac3b9266e4e1bea952de901a1c34acb5b67289757cc5ebe69c1abdd82'
+              entries=json.loads(data);assert len(entries)==27;apply(entries)
+          amendment=Path('.github/patches/dino-express-amend.json')
+          if amendment.exists():
+              data=amendment.read_bytes();assert hashlib.sha256(data).hexdigest()=='33615df8b513d249bcedea2ad341740c7f81b22880c7ad0d9208193ff904d5ab'
+              extra=json.loads(data);assert len(extra)==6;apply(extra);entries+=extra
+          assert entries,'Source already integrated; do not repeat writes'
           subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
-          subprocess.run(['git','add',*[e['path'] for e in entries]],check=True)
-          subprocess.run(['git','rm',*[str(p) for p in files],'.github/workflows/dino-express-integrate.yml'],check=True)
+          subprocess.run(['git','add',*sorted({e['path'] for e in entries})],check=True)
+          cleanup=files+([amendment] if amendment.exists() else [])+[Path('.github/workflows/dino-express-integrate.yml')]
+          subprocess.run(['git','rm',*[str(p) for p in cleanup if p.exists()]],check=True)
           subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
           subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
           subprocess.run(['git','commit','-m','Dino Atlas: sustained Express vehicles, active controls and destination guidance'],check=True)
           subprocess.run(['git','push','origin','HEAD:dino-atlas/express-guidance-20260917'],check=True)
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('source='+subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()+'\n')
           PY
+      - name: Source snapshot
+        run: tar -czf express-source.tgz dino-atlas .github/workflows/dino-tidegate.yml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dino-express-source-${{ github.run_id }}
+          path: express-source.tgz
+          retention-days: 30
   native:
     needs: integrate
     runs-on: ubuntu-latest
