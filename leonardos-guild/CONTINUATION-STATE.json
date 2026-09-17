@@ -1,37 +1,39 @@
 {
   "schema_version": 1,
-  "recorded_on": "2026-09-15",
+  "recorded_on": "2026-09-17",
   "purpose": "Continue the existing Waterwheel Quarter release and preserve all earlier game progress.",
   "repository": "v5ma/v5ma.github.io",
   "game_path": "leonardos-guild/",
   "default_branch": "master",
-  "start_here": "NEXT-SESSION.md",
+  "start_here": "WORLD-PORTAL.md",
   "production_roadmap": "AAA-ROADMAP.md",
   "historical_checklist": "UPGRADE-CHECKLIST.md",
-  "publication_record": "Latest Working Deliveries PR and release-receipts; PR157 is the completed baseline.",
+  "publication_record": "World Portal PR178 and external release receipt. Working Deliveries PR167 is the completed baseline.",
   "runtime_changes_in_this_handoff": true,
   "release": {
     "version": "0.14.0",
-    "build": "guild-working-quarter-20260915",
+    "build": "guild-portal-20260917",
     "status_rule": "Read the newest release PR and persistent receipt; implementation metadata does not prove publication.",
-    "start_here": "WORKING-DELIVERIES.md",
-    "branch": "guild/working-deliveries-20260915",
-    "baseline_runtime_checkpoint": "75d4fcb72647bdc8539406183d32876084eb0224",
-    "baseline_pull_request": 157
+    "start_here": "WORLD-PORTAL.md",
+    "branch": "guild/world-portal-20260917",
+    "baseline_runtime_checkpoint": "e2cb935d826aea6c88cbd2e4d2819d15bb78b006",
+    "baseline_pull_request": 167,
+    "pull_request": 178
   },
   "evidence": {
-    "current_cpu_checks_passed": 351,
-    "new_cpu_checks": 9,
-    "baseline_native_run": 35019954980,
-    "baseline_native_commit": "98081b6c42f0a95829b13ffda68511238fabb1c5",
+    "current_cpu_checks_passed": 362,
+    "new_cpu_checks": 11,
+    "baseline_native_run": 35060220059,
+    "baseline_native_commit": "e2cb935d826aea6c88cbd2e4d2819d15bb78b006",
     "baseline_native_jobs_passed": [
       "social",
       "upper",
       "hydraulic",
-      "spatial"
+      "spatial",
+      "relay"
     ],
     "knowledge_native_run_to_review": 35030339481,
-    "current_native_results": "Working Deliveries native tests pending; PR157 evidence is baseline only.",
+    "current_native_results": "New portal candidate awaiting actual browser and separate public verification; latest PR and external receipt are authoritative.",
     "local_browser_limitation": "ERR_BLOCKED_BY_ADMINISTRATOR; no local native acceptance claimed.",
     "physical_hardware_verified": false,
     "source_transfer_manifests": "Removed before ordinary-source native tests; current Waterwheel workflow has read-only repository permissions.",
@@ -98,34 +100,19 @@
     "transient_ik_and_room_pose_saved": false
   },
   "xr_scope": {
-    "spatial_regions": [
-      "Waterwheel Quarter"
-    ],
-    "modes": [
-      "first-person VR",
-      "diorama VR",
-      "diorama AR",
-      "retained theatre"
-    ],
-    "actual_per_eye_geometry": true,
-    "controller_tracking": true,
-    "hand_pointer_ui": true,
-    "apertures": [
-      "top open",
-      "front open",
-      "both open"
-    ],
-    "never_both_closed": true,
-    "observer_motion_changes_player": false,
-    "ar_surface_placement": "Optional hit-test result with explicit placement and manual fallback",
-    "room_occlusion_or_persistent_anchors": false,
-    "physical_quest3_verified": false
+    "diorama": "Complete live scene, per-eye portal; character-centered, original third-person camera",
+    "first_person": "VR and separately requested AR",
+    "controls": "Existing controls plus deliberate small handle/sphere to expose spatial UI",
+    "head_movement_steers_diorama": false,
+    "box_dimensions_changed": false,
+    "physical_device_verified": false
   },
   "next_queue": [
     {
       "id": "WQ-PORTER",
       "subject": "Validate and publish the restored household delivery round; measure manual versus cooperative return understanding.",
-      "completion_source": "Working Deliveries release PR and exact public receipt"
+      "completion_source": "Working Deliveries release PR and exact public receipt",
+      "status": "completed-software-human-understanding-open"
     },
     {
       "id": "WQ-RELEASE",
@@ -174,11 +161,12 @@
     "server": "python3 -m http.server 4173 --bind 127.0.0.1",
     "quarter": "QUARTER_ROUTE=upper python3 leonardos-guild/tests/quarter-browser.py",
     "spatial": "python3 leonardos-guild/tests/spatial-browser.py",
-    "theatre": "python3 leonardos-guild/tests/xr-browser.py"
+    "theatre": "python3 leonardos-guild/tests/xr-browser.py",
+    "portal": "python3 leonardos-guild/tests/portal-browser.py"
   },
   "selected_level_design_task": {
     "id": "WQ-PORTER",
-    "status": "implemented-model-tested-native-and-public-checks-pending",
+    "status": "published-and-software-verified-pr167",
     "canonical_tasks": [
       "W04",
       "W05",
@@ -191,5 +179,15 @@
     "baseline_game_tree": "8fc826137c9f86e4e9edf84018ec7beded411d49",
     "build": "guild-working-quarter-20260915",
     "human_device_approval": false
+  },
+  "selected_task": {
+    "id": "XR-PORTAL-02",
+    "maps_to": [
+      "F03",
+      "NEXT02"
+    ],
+    "goal": "The ordinary game moves through a player-centered aperture; on-demand HUD, first-person AR and explicit map objective floors.",
+    "physical_approval": false,
+    "pull_request": 178
   }
 }
