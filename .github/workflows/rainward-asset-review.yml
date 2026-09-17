@@ -1,0 +1,40 @@
+name: Rainward licensed asset inspection
+on:
+  push:
+    branches: [feat/rainward-freefield-20260917]
+    paths: [.github/workflows/rainward-asset-review.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fetch creator-published CC0 source archive
+        run: |
+          mkdir -p asset-review
+          curl --fail --location --retry 2 --max-time 90 https://opengameart.org/sites/default/files/kenney_blaster-kit_2.1.zip -o asset-review/kenney_blaster-kit_2.1.zip
+          sha256sum asset-review/kenney_blaster-kit_2.1.zip > asset-review/source-sha256.txt
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          with ZipFile('asset-review/kenney_blaster-kit_2.1.zip') as z:
+              Path('asset-review/inventory.txt').write_text('\n'.join(z.namelist()))
+              for n in z.namelist():
+                  if n.lower().endswith('.txt') and 'license' in n.lower():
+                      Path('asset-review/kenney-license.txt').write_bytes(z.read(n))
+          PY
+      - name: Keep source references available for bounded adaptation
+        run: |
+          cp dino-atlas/diorama-portal.js dino-atlas/diorama-xr.js asset-review/
+          find aether-reach -maxdepth 2 -type f | grep -E '(cast|character|human)' > asset-review/aether-reference-files.txt || true
+          tar -czf asset-review/sibling-reference-source.tgz --exclude=vendor --exclude=art aether-reach dino-atlas/diorama-portal.js dino-atlas/diorama-xr.js dino-atlas/reserve-xr.js || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-licensed-asset-review
+          path: asset-review/
+          retention-days: 14
