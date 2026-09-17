@@ -1,4 +1,4 @@
-name: Rainward Freefield recovery review
+name: Rainward Freefield final candidate
 on:
   push:
     branches: [feat/rainward-freefield-20260917]
@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: rainward-freefield-candidate
+  group: rainward-freefield-final-candidate
   cancel-in-progress: true
 jobs:
   prepare:
@@ -21,23 +21,30 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply bounded clinic correction before acceptance
+      - name: Finalize scoped metadata and visual recovery before acceptance
         run: |
           mkdir -p test-output
-          python rainward/tools/repair-freefield-clinic.py
+          python rainward/tools/finalize-freefield.py
           node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
           python -m compileall -q rainward/tests
-      - name: Commit only the reviewed changes
+      - name: Commit the exact candidate before any native test
         id: commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/meridian-relief.mjs rainward/tests/freefield-meridian.py
+          git add rainward
           if ! git diff --cached --quiet; then
-            git commit -m 'Protect the clinic decision and taper native route input without changing threats'
+            git commit -m 'Assemble Freefield 0.16 with visible portal survivor, current contracts and native blink/sight acceptance'
             git push origin HEAD:feat/rainward-freefield-20260917
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Preserve preparation diagnostics
+        if: always()
+        run: |
+          mkdir -p test-output
+          git diff > test-output/uncommitted.diff
+          git rev-parse HEAD > test-output/tested-commit.txt
+          tar -czf test-output/rainward-source.tgz rainward
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -52,7 +59,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        case: ['first-person:controllers','first-person-ar:controllers','diorama-vr:controllers','diorama-ar:hands','meridian','graphics']
+        case: ['first-person:controllers','first-person:hands','first-person-ar:controllers','first-person-ar:hands','diorama-vr:controllers','diorama-vr:hands','diorama-ar:controllers','diorama-ar:hands','meridian','graphics']
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,7 +72,7 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Actual HTTP WebGL case with disclosed virtual input
+      - name: Real game and rendered fixture with explicit virtual input
         env:
           CASE: ${{ matrix.case }}
         run: |
@@ -77,7 +84,7 @@ jobs:
             graphics) timeout 180 python -u rainward/tests/freefield-graphics.py ;;
             *) XR_VIEW="${CASE%:*}" QUEST_KIND="${CASE#*:}" timeout 660 python -u rainward/tests/freefield-browser.py ;;
           esac
-      - name: Retain actual checkout and failures
+      - name: Retain exact checkout, captures and failures
         if: always()
         run: |
           mkdir -p test-output
