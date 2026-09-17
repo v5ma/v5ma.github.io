@@ -1,0 +1,18 @@
+{
+  "version": "0.26.0",
+  "build": "sky-cycle-spatial-workspace-2026.09.17",
+  "status": "candidate-under-native-qualification",
+  "baseline_master": "dd4a9d2a35ea667fd33f3ed2b597aeda15cb27e5",
+  "baseline_runtime": "94dbd1176474017a68aa7ae55fee8ae9d8a3d656",
+  "preserved_unmerged_chapter": {"branch":"sky-cycle/canal-choice-0.25","head":"c946e556d1a4d970e4e406d09b7a1f547ae0e8a7","geometry_included":false,"reused_behavior":"Immediate dispatch of short hand-pinch pause; no duplicate movement or award owner."},
+  "design": "Extend the existing pinned Three native XR renderer instead of introducing a second A-Frame scene lifecycle. Retain original game truth, saved documents and controller mapping. Explicit AR/VR entry, alpha-composited clipped AR exhibit, live 2D/editor canvases, paged real-DOM controls, text keyboard and explicit browser-owned action handoff.",
+  "candidate": {"runtime_sha":"a5436c87fb5c8099310357657ff647fd992f99b9","test_sha":"613595b6f9530ffe42b11666a0be82bba6b76947","run_id":35280317575,"acceptance":"in progress; no native success inferred"},
+  "retained_failures": [
+    {"source_sha":"b575453c3d77f8047c0e87b88013bcd4fdf731a1","run_id":35279366912,"scope":"Blank XR framebuffer in AR, VR and Portal Network regression","ar_job":105397500418,"ar_artifact_id":10522176055,"ar_artifact_sha256":"ff2086a54e5629c6648c50a5523e9b748fdbe39020783a54a5d33c4f0dfba78c","portal_job":105397500563,"portal_artifact_id":10521594765,"portal_artifact_sha256":"4f282573ce2c7399b0fd7dbe79c71ebaa991c6612a682c53f0d426dfc8caa701","observed":"Real opaque framebuffer readback returned zero opaque pixels and a null output target despite two reported eye views. Frame counters alone were not accepted as rendering evidence.","cause":"The application installed setAnimationLoop after XRManager.setSession, replacing r177's internal camera/output-target wrapper.","correction":"Install the application frame callback before setSession; r177 captures and wraps it. Let its synchronous session-end cleanup restore internal ownership before clearing the application callback.","unchanged_assertions":"Strict real stereo framebuffer completeness, pixel diversity and opacity checks remain; no synthetic image substituted."}
+  ],
+  "initial_non_xr_regression": {"run_id":35279366912,"delivery_job":105397500525,"passed":true,"note":"Does not qualify the initially broken XR path."},
+  "publication": null,
+  "physical_device_approval": false,
+  "open_gates": ["Final AR and VR menu/editor journeys","Native rendered capture review","Controller-focus page visibility","Independent public-byte match","Public AR and VR software replay","Real Quest 3 passthrough, controller and hand usability","Physical Xbox","Real-device frame times and comfort","Browser-owned file/permission actions need explicit browser handoff","External account/network flows and every imported draft are not exhaustively qualified"],
+  "next_content": "Reconcile and continue the preserved Canal Choice movement-first chapter branch after the XR release. Do not overwrite its fork or imply that this presentation upgrade completes chapter promotion."
+}
