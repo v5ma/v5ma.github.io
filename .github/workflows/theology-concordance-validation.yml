@@ -41,7 +41,9 @@ jobs:
           python theology-wiki/scripture-concordance/build_dossiers.py
           node theology-wiki/scripture-concordance/build.cjs
           node theology-wiki/scripture-concordance/integrate.cjs
+          node theology-wiki/scripture-concordance/reconcile.cjs --metadata
           node theology-wiki/tools/build.cjs
+          node theology-wiki/scripture-concordance/reconcile.cjs
           git diff --exit-code -- theology-wiki/
           node --test theology-wiki/scripture-concordance/concordance.test.cjs | tee theology-test-output/concordance/contracts.log
       - name: Install browser
