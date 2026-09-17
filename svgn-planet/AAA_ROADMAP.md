@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Lantern Ward: Working Quay v0.12.1. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-15.
+Current release: Lantern Ward: Living Portal v0.12.1. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-17.
 
 ## How to use this workbook
 
@@ -74,9 +74,9 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
 
 - [x] SAVE-02 / P0 / verified / Recoverable save transactions
   Acceptance: Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.
-  Next: Automated corruption, quota, interruption, migration, original export and controller recovery checks passed. Keep multi-tab conflict resolution and cloud backup outside this release.
+  Next: Retain proven original recovery. Extend additive chapter city.v1 validation, old-save migration, independent one-time rewards and partial-story tracking. Any rollback must retain the city serializer rather than silently drop its ledger.
   Owner role: Engineering / QA. Dependencies: SAVE-01.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 ## M1 / One exceptional neighborhood
 
@@ -116,9 +116,9 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] ART-03 / P0 / partial / Human-scale architecture and materials
   Acceptance: Approve one two-story house, cafe and apartment with believable doors, windows and floor heights. Materials, trim and shadows retain quality across presets.
-  Next: Replace enlarged placeholders with measured authored building kits.
+  Next: Kitchen, storehouse and greenhouse now use real door openings and furnished interiors within old footprints; print/workshop/loft remain. Review measured scale and camera/character collisions before replacing graybox art.
   Owner role: Art / animation. Dependencies: None.
-  Evidence: Not recorded.
+  Evidence: ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 - [ ] PLAY-01 / P1 / planned / One fully playable interior
   Acceptance: A cafe/workshop needs an accessible entrance, usable counter, collision, a meaningful activity, and a reliable exit with controller, keyboard and touch.
@@ -134,15 +134,15 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.
-  Next: Working Quay candidate: measure wait/signal/north-loop bicycle routes with real input, retain roof/canal/hoist/save and XR regressions, then verify public bytes. Human first-visit and replay comprehension remains open.
+  Next: Living Portal adds eight resident stories, six residents, three real interiors and consistent map/beacon/floor guidance inside existing Lantern Ward. Finish rendered/live acceptance, then observe unfamiliar-player goal discovery and repeat agency before further expansion.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
-- [ ] XR-02 / P0 / needs-playtest / Native first-person and actual-geometry VR/AR dioramas
-  Acceptance: Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.
-  Next: Live native first-person VR and diorama VR/AR synthetic checks passed. Obtain real Quest 3, Touch Plus, hand-tracking, comfort and frame-time approval. Placement is manual; room anchors are not implemented.
+- [ ] XR-02 / P0 / needs-playtest / Player-centered perspective portal and native first-person VR/AR
+  Acceptance: Actual per-eye regular third-person game through a fixed aperture with centered courier, unbounded view depth, no outside leakage, automatic foreground-shell transparency and stable UI. First-person VR and AR preserve the same simulation and safe input lifecycle.
+  Next: Validate stereo pixels, head translation/roll, movement centering, native mission map and explicit first-person AR. Then reproduce the two-rectangle report on physical Quest 3; synthetic success is not physical comfort approval.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 - [x] LEGACY-01 / P0 / verified / Versioned original-world preservation
   Acceptance: Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.
@@ -296,9 +296,9 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ACCESS-01 / P0 / partial / Controller-complete gameplay and menus
   Acceptance: Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.
-  Next: Direct Xbox actions and menu rearm, including partially held analog triggers, passed automated regression. Complete real Xbox USB/Bluetooth and Quest 3 tests; operating-system downloads and text entry are outside the in-game UI.
+  Next: Preserve direct actions, hold-release braking and neutral rearm. Test mission-map selection, indoor interaction and goal switching through Xbox and tracked/pinch paths, then physical USB/Bluetooth/Touch Plus/hand-tracking.
   Owner role: Engineering / QA. Dependencies: INPUT-01.
-  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json
+  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 - [ ] ACCESS-02 / P1 / planned / Remapping and input alternatives
   Acceptance: Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.
@@ -308,9 +308,9 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ACCESS-03 / P1 / partial / Readable and comfortable presentation
   Acceptance: Text scales without clipping; objectives are not color-only; speed effects can be reduced; long panels scroll by controller. Screen narration is not implemented.
-  Next: Audit contrast, captions, text scaling, reduced motion and screen-reader access.
+  Next: Verify persistent minimap, large mission map, gold world target, distance and upstairs/lower-floor cues. Review phone clipping and real-headset text size. Do not rely on color alone.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: Not recorded.
+  Evidence: ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
 
 - [x] SHADER-01 / P1 / verified / Coastal Atmosphere shader pack
   Acceptance: All five visual presets compile on pinned r177; controller settings persist; off/reduced-motion/low modes work; wet shaders are stable around the planet; no physics changes or unbounded rain allocation. Record actual browser and shader results, not a concept mockup.

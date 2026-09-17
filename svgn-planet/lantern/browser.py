@@ -32,7 +32,7 @@ async def main():
   def ok(text):report['checks'].append(text);print('PASS',ROUTE,text,flush=True)
   async def shot(name):await page.screenshot(path=str(OUT/(name+'.png')))
   try:
-   await page.goto(BASE,wait_until='domcontentloaded');await wait('window.LanternWard&&!document.querySelector("#start").disabled');await page.bring_to_front();await shot('title');await press(0);await wait('LanternWard.inspect().started');await wait('LanternWard.inspect().controllerReady');assert (await state())['version']=='0.12.1';ok('Xbox starts the new authored chapter');
+   await page.goto(BASE,wait_until='domcontentloaded');await wait('window.LanternWard&&!document.querySelector("#start").disabled');await page.bring_to_front();await shot('title');await press(0);await wait('LanternWard.inspect().started');await wait('LanternWard.inspect().controllerReady');assert (await state())['version']=='0.13.0';ok('Xbox starts the new authored chapter');
    if ROUTE!='xr':
     await pilot(-12,15);await press(2);assert (await state())['state']['parcel'];ok('Normal reach-based collection');
     if ROUTE=='street':path=[[-23,13],[-23,-7],[-21,-13.5],[6,-13.5],[6,8],[14,8],[14,6]]

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.12.1",
   "title": "Neighborhood Missions: path to a production-quality title",
-  "reviewed": "2026-09-15",
+  "reviewed": "2026-09-17",
   "currentMilestone": "M1",
   "qualityClaim": "Stylized browser-game vertical slice. AAA-quality ambition, not AAA certification.",
   "statusDefinitions": {
@@ -175,7 +175,7 @@
       "status": "verified",
       "title": "Recoverable save transactions",
       "acceptance": "Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.",
-      "next": "Automated corruption, quota, interruption, migration, original export and controller recovery checks passed. Keep multi-tab conflict resolution and cloud backup outside this release.",
+      "next": "Retain proven original recovery. Extend additive chapter city.v1 validation, old-save migration, independent one-time rewards and partial-story tracking. Any rollback must retain the city serializer rather than silently drop its ledger.",
       "dependencies": [
         "SAVE-01"
       ],
@@ -184,10 +184,12 @@
         "../tests/grounded.test.mjs",
         "evidence/v0.11.0.json",
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
-        "evidence/v0.11.0-published.json"
+        "evidence/v0.11.0-published.json",
+        "../lantern/LIVING-PORTAL.md",
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-15"
+      "lastReviewed": "2026-09-17"
     },
     {
       "id": "SLICE-01",
@@ -291,11 +293,14 @@
       "status": "partial",
       "title": "Human-scale architecture and materials",
       "acceptance": "Approve one two-story house, cafe and apartment with believable doors, windows and floor heights. Materials, trim and shadows retain quality across presets.",
-      "next": "Replace enlarged placeholders with measured authored building kits.",
+      "next": "Kitchen, storehouse and greenhouse now use real door openings and furnished interiors within old footprints; print/workshop/loft remain. Review measured scale and camera/character collisions before replacing graybox art.",
       "dependencies": [],
-      "evidence": [],
+      "evidence": [
+        "../lantern/LIVING-PORTAL.md",
+        "evidence/living-portal-0.13.0/candidate.json"
+      ],
       "owner": "Art / animation",
-      "lastReviewed": "2026-09-11"
+      "lastReviewed": "2026-09-17"
     },
     {
       "id": "PLAY-01",
@@ -614,7 +619,7 @@
       "status": "partial",
       "title": "Controller-complete gameplay and menus",
       "acceptance": "Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.",
-      "next": "Direct Xbox actions and menu rearm, including partially held analog triggers, passed automated regression. Complete real Xbox USB/Bluetooth and Quest 3 tests; operating-system downloads and text entry are outside the in-game UI.",
+      "next": "Preserve direct actions, hold-release braking and neutral rearm. Test mission-map selection, indoor interaction and goal switching through Xbox and tracked/pinch paths, then physical USB/Bluetooth/Touch Plus/hand-tracking.",
       "dependencies": [
         "INPUT-01"
       ],
@@ -624,10 +629,12 @@
         "../tests/grounded.test.mjs",
         "evidence/v0.11.0.json",
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
-        "evidence/v0.11.0-published.json"
+        "evidence/v0.11.0-published.json",
+        "../lantern/LIVING-PORTAL.md",
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-15"
+      "lastReviewed": "2026-09-17"
     },
     {
       "id": "ACCESS-02",
@@ -651,11 +658,14 @@
       "status": "partial",
       "title": "Readable and comfortable presentation",
       "acceptance": "Text scales without clipping; objectives are not color-only; speed effects can be reduced; long panels scroll by controller. Screen narration is not implemented.",
-      "next": "Audit contrast, captions, text scaling, reduced motion and screen-reader access.",
+      "next": "Verify persistent minimap, large mission map, gold world target, distance and upstairs/lower-floor cues. Review phone clipping and real-headset text size. Do not rely on color alone.",
       "dependencies": [],
-      "evidence": [],
+      "evidence": [
+        "../lantern/LIVING-PORTAL.md",
+        "evidence/living-portal-0.13.0/candidate.json"
+      ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-11"
+      "lastReviewed": "2026-09-17"
     },
     {
       "id": "QA-01",
@@ -904,7 +914,7 @@
       "status": "needs-playtest",
       "title": "Authored Lantern Ward replacement chapter",
       "acceptance": "Real street, roof, canal, sluice, hoist and far-side shortcut paths with persistent outcome handling.",
-      "next": "Working Quay candidate: measure wait/signal/north-loop bicycle routes with real input, retain roof/canal/hoist/save and XR regressions, then verify public bytes. Human first-visit and replay comprehension remains open.",
+      "next": "Living Portal adds eight resident stories, six residents, three real interiors and consistent map/beacon/floor guidance inside existing Lantern Ward. Finish rendered/live acceptance, then observe unfamiliar-player goal discovery and repeat agency before further expansion.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
@@ -912,28 +922,32 @@
         "evidence/lantern-0.12.0/candidate.json",
         "evidence/lantern-0.12.0/published.json",
         "../lantern/WORKING-QUAY.md",
-        "evidence/working-quay-0.12.1/candidate.json"
+        "evidence/working-quay-0.12.1/candidate.json",
+        "../lantern/LIVING-PORTAL.md",
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
-      "lastReviewed": "2026-09-15"
+      "lastReviewed": "2026-09-17"
     },
     {
       "id": "XR-02",
       "milestone": "M1",
       "priority": "P0",
       "status": "needs-playtest",
-      "title": "Native first-person and actual-geometry VR/AR dioramas",
-      "acceptance": "Actual per-eye world geometry, tracked inputs, safe openings and display-only cutaways.",
-      "next": "Live native first-person VR and diorama VR/AR synthetic checks passed. Obtain real Quest 3, Touch Plus, hand-tracking, comfort and frame-time approval. Placement is manual; room anchors are not implemented.",
+      "title": "Player-centered perspective portal and native first-person VR/AR",
+      "acceptance": "Actual per-eye regular third-person game through a fixed aperture with centered courier, unbounded view depth, no outside leakage, automatic foreground-shell transparency and stable UI. First-person VR and AR preserve the same simulation and safe input lifecycle.",
+      "next": "Validate stereo pixels, head translation/roll, movement centering, native mission map and explicit first-person AR. Then reproduce the two-rectangle report on physical Quest 3; synthetic success is not physical comfort approval.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
         "../lantern/acceptance.json",
         "evidence/lantern-0.12.0/candidate.json",
-        "evidence/lantern-0.12.0/published.json"
+        "evidence/lantern-0.12.0/published.json",
+        "../lantern/LIVING-PORTAL.md",
+        "evidence/living-portal-0.13.0/candidate.json"
       ],
       "owner": "Level design / Engineering / QA",
-      "lastReviewed": "2026-09-15"
+      "lastReviewed": "2026-09-17"
     },
     {
       "id": "LEGACY-01",
@@ -970,6 +984,6 @@
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
   ],
-  "releaseEvidence": "evidence/working-quay-0.12.1/candidate.json",
-  "edition": "Lantern Ward: Working Quay"
+  "releaseEvidence": "evidence/living-portal-0.13.0/candidate.json",
+  "edition": "Lantern Ward: Living Portal"
 }
