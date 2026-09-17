@@ -34,3 +34,9 @@ test('First-person AR is explicit and restores fog, sky and renderer alpha on ex
  assert.equal(cleanDiorama({mode:'first-person-ar'}).mode,'first-person-ar');assert.equal(sessionKind('first-person-ar'),'immersive-ar');
  const scene=new T.Scene(),sky=new T.Group();sky.name='Aether sky';scene.add(sky);scene.fog=new T.Fog(0xaaaaff,1,10);const fog=scene.fog;let color=new T.Color(0x223344),alpha=1;const renderer={getClearColor:c=>c.copy(color),getClearAlpha:()=>alpha,setClearColor(c,a){color.set(c);alpha=a;}};const ar=createARView({scene,renderer});ar.set(true);ar.update();assert.equal(alpha,0);assert.equal(sky.visible,false);assert.equal(scene.fog,null);ar.set(false);assert.equal(alpha,1);assert.equal(sky.visible,true);assert.equal(scene.fog,fog);
 });
+
+test('Desktop preview never masks tracked devices or UI before the first XR session',()=>{
+ const p=new PortalMaterials(),root=new T.Group(),stage=new T.Group(),world=new T.Mesh(new T.BoxGeometry(),new T.MeshBasicMaterial()),hand=new T.Mesh(new T.BoxGeometry(),new T.MeshBasicMaterial()),panel=new T.Mesh(new T.PlaneGeometry(),new T.MeshBasicMaterial());
+ stage.name='XR locomotion rig';panel.userData.xrUI=true;stage.add(hand);root.add(world,stage,panel);p.collect(root);assert(p.entries.has(world.material));assert(!p.entries.has(hand.material));assert(!p.entries.has(panel.material));
+ stage.add(panel);p.collect(root);assert.equal(p.entries.size,1);p.dispose();
+});

@@ -64,7 +64,9 @@ export class PortalMaterials{
   this.entries.set(m,{compile,render,key,dispose});m.addEventListener('dispose',dispose);m.needsUpdate=true;
  }
  collect(root,exclude=new Set()){
-  const visit=o=>{if(exclude.has(o))return;for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[])this.attach(m);for(const child of o.children)visit(child);};visit(root);
+  // Device and UI stages are never part of the game-world aperture, even
+  // when a desktop preview runs before its first immersive session.
+  const visit=o=>{if(exclude.has(o)||o.name==='XR locomotion rig'||o.userData?.xrStage||o.userData?.xrUI)return;for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[])this.attach(m);for(const child of o.children)visit(child);};visit(root);
  }
  configure(matrix){this.uniforms.aetherPortalBoxFromWorld.value.copy(matrix).invert();}
  set active(on){this.uniforms.aetherPortalEnabled.value=on?1:0;}

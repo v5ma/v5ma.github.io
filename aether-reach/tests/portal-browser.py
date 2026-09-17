@@ -23,10 +23,17 @@ with sync_playwright() as pw:
   p.locator('#pause-presentation').click()
  def enter(mode):
   presentation();p.locator('#xr-presentation').select_option(mode);p.locator('#presentation-back').click();p.locator('#return-title').click();p.locator('#enter-vr').click();p.wait_for_function('AetherReach.snapshot().devices.xr');frames(8)
+ def exit_spatial():
+  # A modal intentionally blocks the desktop header. Exit through the genuine
+  # in-headset action, including after a visibility-loss pause.
+  p.evaluate('TestXR.hidden(false);TestPad.disconnect();TestXR.useHands()');frames(6)
+  p.evaluate('TestXR.point("right",830,691);TestXR.pinch("right",false)');frames()
+  p.evaluate('TestXR.pinch("right",true)');frames();p.wait_for_function('!AetherReach.snapshot().devices.xr')
+  p.evaluate('TestXR.pinch("right",false)')
  def centered():
   s=snap();return all(abs(s['position'][k]-s['devices']['presentation']['focus'][k])<1e-6 for k in ['x','y','z'])
  try:
-  p.goto(os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/aether-reach/');p.wait_for_function('!!window.AetherReach');p.locator('#start').click();p.evaluate('TestPad.connect()');frames(5)
+  p.goto(os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/aether-reach/');p.wait_for_function('!!window.AetherReach');p.locator('#settings-button').click();p.locator('#visual-quality').select_option('low');p.locator('#settings-dialog form button').click();p.locator('#start').click();p.evaluate('TestPad.connect()');frames(5)
   check(p.evaluate('AetherReach.version')==json.loads((ROOT/'aether-reach/release.json').read_text())['version'],'Release identity matches checked-out source')
   tap(8);frames();check(snap()['devices']['menu']=='map-dialog','Xbox View opens the existing map');p.screenshot(path=str(OUT/'portal-goal-map.png'));tap(1);frames()
   check(bool(snap()['navigation']['name']) and snap()['navigation']['distance']>=0,'Read-only navigation exposes the actual tracked goal and distance')
@@ -41,15 +48,15 @@ with sync_playwright() as pw:
   p.evaluate('TestXR.devices.headX=0;TestXR.devices.headRoll=0;TestPad.disconnect();TestXR.useHands()');frames(6);check(snap()['devices']['xrTracking']['trackedHands']==2 and snap()['paused'],'Both tracked hands acquire safe spatial UI without gameplay movement')
   # Hand pinch uses the genuine ray hit and neutral gate at the now room-fixed menu.
   p.evaluate('TestXR.point("right",450,315);TestXR.pinch("right",false)');frames();p.evaluate('TestXR.pinch("right",true)');frames();p.evaluate('TestXR.pinch("right",false)');frames();check(snap()['devices']['xrTracking']['selections']>0,'Measured hand pinch operates the room-fixed menu')
-  p.locator('#exit-vr').click();p.wait_for_function('!AetherReach.snapshot().devices.xr');p.evaluate('TestPad.connect()');frames()
+  exit_spatial();p.evaluate('TestPad.connect()');frames()
   # Exit may retain a child dialog; unwind through real controls.
   for _ in range(4):
    if snap()['devices']['menu']=='pause-dialog':break
    p.keyboard.press('Escape');frames()
   enter('first-person-ar');d=snap()['devices']['presentation'];check(p.evaluate('TestXR.devices.requestedMode')=='immersive-ar' and not d['active'] and d['firstPersonAR']['active'],'First-person AR is life-size, not the miniature view');check(d['firstPersonAR']['alpha']==0,'First-person AR clears to transparent passthrough');before=snap()['position'];p.evaluate('TestPad.axes([0,-.4,0,0])');frames(12);p.evaluate('TestPad.axes([0,0,0,0])');frames();check(abs(snap()['position']['x']-before['x'])+abs(snap()['position']['z']-before['z'])>.05,'Xbox movement remains available in first-person AR');p.screenshot(path=str(OUT/'portal-first-person-ar.png'))
-  p.evaluate('TestXR.hidden(true)');frames();check(snap()['paused'],'Hidden first-person AR pauses safely');p.locator('#exit-vr').click();p.wait_for_function('!AetherReach.snapshot().devices.xr');check(not snap()['devices']['presentation']['firstPersonAR']['active'],'AR exit restores non-AR rendering')
+  p.evaluate('TestXR.hidden(true)');frames();check(snap()['paused'],'Hidden first-person AR pauses safely');exit_spatial();check(not snap()['devices']['presentation']['firstPersonAR']['active'],'AR exit restores non-AR rendering')
   check(not errors and not shader,'No application or shader errors across portal, head roll, hand UI and first-person AR')
-  (OUT/'portal-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shader,'scope':'Actual application with DOM and synthetic Gamepad/XR inputs. No physical-device or human-quality certification.'},indent=2))
+  (OUT/'portal-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shader,'scope':'Actual application with DOM and synthetic Gamepad/XR inputs, supported Light graphics selected through Settings, 960x640 full pixel density. No physical-device or human-quality certification.'},indent=2))
  except Exception as e:
   (OUT/'portal-browser-failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'shaderErrors':shader,'snapshot':snap()},indent=2));p.screenshot(path=str(OUT/'portal-browser-failure.png'));raise
  finally:c.close();b.close()

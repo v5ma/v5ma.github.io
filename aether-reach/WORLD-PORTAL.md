@@ -17,3 +17,7 @@ Publication is a separate gate: compare served files to the selected source and 
 Next: test whether the larger map goal and world beacon help a new player choose the right elevation without mistaking a bearing for a route. Review first-person AR and full-depth portal on actual Quest 3, including lateral views, crouching, head roll and menus. Keep arrival/rail sightlines as the next level-design opportunity; do not expand map area automatically.
 
 Technical references: https://threejs.org/docs/pages/WebGLRenderer.html ; https://immersive-web.github.io/webxr/ . Bundled Three source is authoritative for the actual material callback and per-eye viewport behavior.
+
+Pre-release review also found that starting desktop preview before XR could register hand/controller materials in the aperture. The named XR stage and explicitly tagged UI roots now exclude those subtrees even before it becomes the active view rig. A focused preview-to-XR material-ownership regression protects this boundary.
+
+The portal application journey selects the supported Light profile through the real Settings menu while retaining full pixel density. It uses the spatial Exit action after a visibility-loss pause instead of asking Playwright to click a desktop header behind a modal. The isolated GPU fixture separately covers custom and billboard shaders; no input or gameplay assertion is removed.
