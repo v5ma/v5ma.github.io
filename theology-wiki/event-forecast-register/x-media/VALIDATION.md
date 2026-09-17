@@ -1,0 +1,13 @@
+This release adds a static reader, a twelve-record resumed-X register, a nine-record image-publication register with three circulation relationships, and an interpretive discussion. The existing corpus README gains a link; its original snapshot and all earlier event, forecast and statement records remain unchanged.
+
+Ten new Node integrity checks are included through the existing corpus review test entry point. They parse both new JSON files, check record counts and unique identifiers, resolve media sources and circulation links, preserve the difference between source-reported coverage and actual recovery, and check that the static reader links every selected image without scripts or automatic external-image loading. These checks do not authenticate a social-media account, establish an artist, verify a theological interpretation or certify a complete X export.
+
+Local execution was unavailable in this editing session. No local test pass or local browser validation is claimed. The existing read-only repository workflows will run the combined test entry point on the pull request; their results, merge identity and deployment state belong in the pull-request receipt after execution.
+
+The existing corpus browser suite concerns the earlier dynamic corpus desk, not this new static page. A successful run of that suite must not be relabeled as an interactive or physical-device test of the new page. The new page has no runtime JavaScript and links source-hosted images instead of automatically requesting them.
+
+The source-reported 611 later-X entries have not been completely extracted or deduplicated into this repository. Twelve recovered records, eleven with native platform IDs, are the actual scope of x-register.json. Native post bodies, original repost-wrapper timestamps and coverage after the consulted source's latest February 2, 2026 X entry remain incomplete. The metadata does not treat missing fields as negative evidence.
+
+Two archive-hosted image attachments and news reproductions of the healer variant were visually inspected. Other selected images rely on explicit archive descriptions, as labeled in each record. No image bytes or image-file hashes are claimed as preserved locally. Account distribution, personal involvement in posting, original artistic authorship and later official-account amplification remain distinct.
+
+No new data-collection workflow, external credential, paid service, recurring task or master-writing automation is part of this change. The records are linked to the existing public wiki without publishing private content or changing unrelated projects.
