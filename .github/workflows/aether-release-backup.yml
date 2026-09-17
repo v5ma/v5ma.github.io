@@ -174,7 +174,10 @@ jobs:
                   reports = {'diorama':'diorama-browser.json','rewired':'rewired-browser.json','grounded':'grounded-browser.json','controller':'controller-journey-report.json','expedition':'expedition-report.json','glide':'glide-report.json'}
               if numbers >= (0, 13, 0):
                   reports['windbreak'] = 'windbreak-browser.json'
-              minima = {'diorama':25,'rewired':29,'grounded':21,'controller':29,'expedition':16,'glide':10,'windbreak':40} if numbers == (0,13,0) else {}
+              minima = {'diorama':25,'rewired':29,'grounded':21,'controller':29,'expedition':16,'glide':10,'windbreak':40} if numbers >= (0,13,0) else {}
+              if numbers >= (0, 14, 0):
+                  reports.update({'portal-render':'portal-render.json','portal-game':'portal-browser.json'})
+                  minima.update({'portal-render':7,'portal-game':23})
               expected = json.loads(Path('aether-reach/test-output/runtime-manifest.json').read_text())['files']
               for name, digest in expected.items():
                   if hashlib.sha256(Path(name).read_bytes()).hexdigest() != digest:
