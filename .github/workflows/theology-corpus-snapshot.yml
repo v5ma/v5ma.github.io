@@ -1,0 +1,47 @@
+name: Theology one-shot corpus snapshot
+on:
+  push:
+    branches: ['theology/corpus-review-20260917']
+    paths:
+      - 'theology-wiki/event-forecast-register/corpus-review/collect.py'
+      - '.github/workflows/theology-corpus-snapshot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/corpus-review-20260917'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: theology/corpus-review-20260917
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pyarrow==19.0.1
+      - name: Test and collect public metadata
+        run: |
+          set -o pipefail
+          python theology-wiki/event-forecast-register/corpus-review/collect.py --self-test
+          python theology-wiki/event-forecast-register/corpus-review/collect.py --cutoff 2026-09-17 | tee corpus-snapshot.log
+      - name: Preserve results only on the dedicated review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add theology-wiki/event-forecast-register/corpus-review/results/
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record one-shot corpus coverage and metadata screening results'
+          git push origin HEAD:refs/heads/theology/corpus-review-20260917
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-corpus-snapshot-evidence
+          path: |
+            corpus-snapshot.log
+            theology-wiki/event-forecast-register/corpus-review/results/summary.json
+            theology-wiki/event-forecast-register/corpus-review/results/legacy-crosscheck.json
+          if-no-files-found: error
