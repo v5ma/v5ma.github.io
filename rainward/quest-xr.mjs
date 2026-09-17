@@ -54,7 +54,13 @@ export function createQuestXR(E){
    action(handSprint?'HAND RUN: ON':'HAND RUN: OFF','hand-sprint',()=>{handSprint=!handSprint;E.back();}),
    action('DIVE / SURFACE / CROUCH','crouch',()=>{E.back();E.act('crouch');}),
    action('JUMP / SURFACE','traverse',()=>{E.back();E.act('traverse');}),
-   action('RELOAD','reload',()=>{E.back();E.act('reload');})]:[],extraActions:presentationActions,progress:()=>craftReadout(E.state().player),hint:()=>goalText(E.state()),status,instructions:()=>E.freefield?.xrLayout==='legacy'?instructions:'A or right grip interacts. B reloads. Right trigger fires; left trigger aims. X crouches (hold for prone) or dives/surfaces in water. Y jumps on land; hold Y to swim faster. Left stick moves; click toggles run. Left grip previews blink; release commits. Right stick snap-turns; click pauses. Gameplay buttons may be remapped in settings; menu A/B and pause remain reserved. Raise an open left palm to open menus. Hands: left pinch moves; right pinch uses the selected USE, FIRE or BLINK mode. Open menus only when needed. The wrist display appears when you look at it.',reset,
+   action('RELOAD','reload',()=>{E.back();E.act('reload');}),
+   action('TURN LEFT 30','turn-left',()=>{snap(Math.PI/6);E.back();}),action('TURN RIGHT 30','turn-right',()=>{snap(-Math.PI/6);E.back();}),
+   action('SIDEARM','selectPistol',()=>{E.back();E.act('selectPistol');}),action('RIFLE','selectRifle',()=>{E.back();E.act('selectRifle');}),
+   action('CYCLE MEDKIT / BOTTLE / SMOKE','selectTool',()=>{E.back();E.act('selectTool');}),
+   action('PRONE / STAND','prone',()=>{E.back();E.act('prone');}),action('MELEE','melee',()=>{E.back();E.act('melee');}),
+   action('DODGE','evade',()=>{E.back();E.act('evade');}),action(handListen?'HAND LISTEN: ON':'HAND LISTEN: OFF','hand-listen',()=>{handListen=!handListen;E.back();}),
+   action(slow?'MOVE SPEED: COMFORT':'MOVE SPEED: NORMAL','comfort-speed',()=>{slow=!slow;E.back();})]:[],extraActions:presentationActions,progress:()=>craftReadout(E.state().player),hint:()=>goalText(E.state()),status,instructions:()=>E.freefield?.xrLayout==='legacy'?instructions:'A or right grip interacts. B reloads. Right trigger fires; left trigger aims. X crouches (hold for prone) or dives/surfaces in water. Y jumps on land; hold Y to swim faster. Left stick moves; click toggles run. Left grip previews blink; release commits. Right stick snap-turns; click pauses. Gameplay buttons may be remapped in settings; menu A/B and pause remain reserved. Raise an open left palm to open menus. Hands: left pinch moves; right pinch uses the selected USE, FIRE or BLINK mode. Open menus only when needed. The wrist display appears when you look at it.',reset,
   actions:()=>[
    command('INTERACT / PICK UP / SAVE','interact'),action(handFire?'HAND MODE: FIRE (select for USE)':'HAND MODE: USE (select for FIRE)','hand-fire',()=>{handFire=!handFire;}),
    command('RELOAD','reload'),command('JUMP / VAULT / SURFACE','traverse'),command('CROUCH / STAND','crouch'),command('PRONE / DIVE / SURFACE','prone'),command('SATCHEL / CRAFT','pack'),command('PAUSE / SETTINGS','pause'),
@@ -101,7 +107,7 @@ export function createQuestXR(E){
   eye=eye===null?target:eye+(target-eye)*(1-Math.exp(-dt*14));
   rig.rotation.y=turn;const offset=new T.Vector3(h.x,h.y,h.z).applyAxisAngle(Y,turn);rig.position.set(p.x-offset.x,eye-calibration.y,p.z-offset.z);rig.updateMatrixWorld(true);
  }
- function drawBadge(){bc.fillStyle='#10232a';bc.fillRect(0,0,1024,192);bc.fillStyle='#efdcad';bc.font='bold 29px sans-serif';bc.fillText('PAUSE / RECENTER MENU',22,42);bc.fillStyle='#ffffff';bc.font='24px sans-serif';const s=status();bc.fillText(s.slice(0,77),22,82);bc.fillText(s.slice(77,154),22,111);const p=E.state().player;bc.fillStyle=p.submerged&&p.oxygen<=25?'#ffd0ba':'#c3ded4';bc.fillText(p.submerged&&p.oxygen<=25?'LOW AIR: A OR FIELD SURFACE BUTTON':p.healing?'HOLD FIRE / BANDAGING':p.craft?'HOLD SELECT / ASSEMBLING':E.state().hint?.slice(0,77)||'Point and select. Raise left open palm to pause.',22,161);badgeTexture.needsUpdate=true;}
+ function drawBadge(){bc.fillStyle='#10232a';bc.fillRect(0,0,1024,192);bc.fillStyle='#efdcad';bc.font='bold 29px sans-serif';bc.fillText('WRIST STATUS / PAUSE',22,42);bc.fillStyle='#ffffff';bc.font='24px sans-serif';const s=status();bc.fillText(s.slice(0,77),22,82);bc.fillText(s.slice(77,154),22,111);const p=E.state().player;bc.fillStyle=p.submerged&&p.oxygen<=25?'#ffd0ba':'#c3ded4';bc.fillText(p.submerged&&p.oxygen<=25?(E.freefield?.xrLayout==='legacy'?'LOW AIR: A TO SURFACE':'LOW AIR: X TO SURFACE / Y SWIM BOOST'):p.healing?'HOLD FIRE / BANDAGING':p.craft?'HOLD SELECT / ASSEMBLING':E.state().hint?.slice(0,77)||'Point and select. Raise left open palm to pause.',22,161);badgeTexture.needsUpdate=true;}
  function placePanels(){if(!headPose)return;const q=new T.Quaternion().copy(headPose.orientation),f=new T.Vector3(0,0,-1).applyQuaternion(q);const yaw=Math.atan2(-f.x,-f.z),h=headPose.position;
   const put=(mesh,x,y,z)=>{const v=new T.Vector3(x,y,z).applyAxisAngle(Y,yaw);mesh.position.set(h.x+v.x,h.y+v.y,h.z+v.z);mesh.rotation.set(0,yaw,0);};
   const playing=E.mode()==='play';panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?(isDiorama()?-1.22:-.85):0,playing?(isDiorama()?-.25:-.56):-.06,playing?-1.55:-1.55);put(badge,0,playing?(isDiorama()?.10:-.62):.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
@@ -152,12 +158,12 @@ export function createQuestXR(E){
    }else if(src.gamepad?.mapping==='xr-standard'){data.buttons=src.gamepad.buttons;data.axes=src.gamepad.axes;if(gripPose){visual.grip.position.copy(gripPose.transform.position);visual.grip.quaternion.copy(gripPose.transform.orientation);visual.grip.visible=true;}}
    if(src.hand){visual.grip.position.copy(rayPose.transform.position);visual.grip.quaternion.copy(rayPose.transform.orientation);visual.grip.visible=side==='right';}
    visual.group.position.copy(rayPose.transform.position);visual.group.quaternion.copy(rayPose.transform.orientation);visual.group.visible=true;rig.updateMatrixWorld(true);
-   const origin=visual.group.getWorldPosition(V()),direction=new T.Vector3(0,0,-1).applyQuaternion(visual.group.getWorldQuaternion(Q())).normalize(),caster=new T.Raycaster(origin,direction,0,8*(isDiorama()?1/preferences.scale:1));
+   const origin=visual.group.getWorldPosition(V()),direction=new T.Vector3(0,0,-1).applyQuaternion(visual.group.getWorldQuaternion(Q())).normalize(),caster=new T.Raycaster(origin,direction,0,8);
    const hits=caster.intersectObjects([panel.mesh,badge].filter(o=>o.visible),false);const hit=hits[0];data.overUI=!!hit;visual.cursor.visible=!!hit;if(hit)visual.cursor.position.copy(rig.worldToLocal(hit.point.clone()));data.row=hit?.object===panel.mesh?panel.hit(hit.uv):hit?{id:'badge',run:()=>{E.pause();recenter();}}:null;
    if(data.overUI)anchors.delete(src);visual.laser.scale.z=hit?hit.distance/4:1;
    rays[side]={origin,direction};list.push(data);
   }
-  const signature=list.map(s=>s.id).sort().join('|');if(lastSources&&signature!==lastSources){E.pause();reset();handFire=false;handListen=false;handSprint=false;}lastSources=signature;
+  const signature=list.map(s=>s.id).sort().join('|');if(lastSources&&signature!==lastSources){E.pause();reset();handFire=false;handBlink=false;handListen=false;handSprint=false;}lastSources=signature;
   if(!list.length){tracking='No tracked controllers or hands';E.pause();reset();return sample;}
   tracking=list.map(s=>s.side+' '+(s.hand?'hand':'controller')).join(' + ');
   sample=input.sample(list,dt,{mode:E.mode(),key:E.mode()+':'+layout,handFire,handBlink,water:state.player.waterMode==='swim',mapping:E.buttonRemaps?.xr});safe=input.isArmed();

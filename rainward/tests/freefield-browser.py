@@ -72,7 +72,11 @@ with sync_playwright() as pw:
    check(page.evaluate('Rainward.snapshot().xr.diorama.portal&&Rainward.snapshot().xr.diorama.rigScale===1&&Rainward.snapshot().xr.diorama.beyondBackVisible'),'Perspective aperture keeps normal eye separation and depth beyond the rear')
    page.evaluate('questDevice.head.x-=.3;questDevice.head.y+=.1');frames(3)
   if KIND=='controllers':
-   away();frames();pulse('right',4);wait('Rainward.state.taken.has("rations")')
+   away();frames();wait('Rainward.snapshot().xr.armed')
+   page.evaluate("questDevice.sources[0].gamepad.axes[2]=.65;questDevice.sources[0].gamepad.axes[3]=-.75")
+   wait('Math.hypot(Rainward.state.player.x-1.3,Rainward.state.player.z-25.5)<1.15')
+   page.evaluate("questDevice.sources[0].gamepad.axes=[0,0,0,0]");frames(4)
+   pulse('right',4);wait('Rainward.state.taken.has("rations")')
    check(True,'Quest A interacts with the actual nearby supply cache')
    pulse('left',4);wait('Rainward.state.player.stance==="crouch"');pulse('left',4);wait('Rainward.state.player.stance==="stand"')
    check(True,'Quest X tap crouches and stands, without conflicting with reload')

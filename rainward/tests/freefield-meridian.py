@@ -38,7 +38,7 @@ with sync_playwright() as pw:
   go(2,56);use('Rainward.state.taken.has("meridian-kit")');craft();craft();check(page.evaluate('Rainward.state.player.medkit===2&&Rainward.state.player.cloth===0&&Rainward.state.player.canister===0'),'Preparation uses only the original finite arrival cache')
   tap(8);wait('Rainward.mode==="map"');check('Sealed water filter' in page.locator('#next-goal').text_content(),'The actual map clearly names the next required goal');page.screenshot(path=str(OUT/'01-goal-map.png'));tap(1);wait('Rainward.mode==="play"')
   go(-42,35);use('Rainward.state.puzzle.clueRead');go(-43,20);use('Rainward.state.objectives.cell');check(page.evaluate('Rainward.state.player.y>2.3'),'The clinic objective sits on a genuinely raised walkable terrace')
-  go(-34,34);use('Rainward.state.completedTasks.includes("clinic-power")');go(-42,28);use('Rainward.state.puzzle.wheels[0]===1');use('Rainward.state.puzzle.wheels[0]===2');go(-47,31);use('Rainward.state.checkpoint==="meridian-clinic"');capture('02-clinic-courtyard')
+  go(-34,34);use('Rainward.state.completedTasks.includes("clinic-power")');go(-41,29);go(-42,29);use('Rainward.state.puzzle.wheels[0]===1');use('Rainward.state.puzzle.wheels[0]===2');go(-47,31);use('Rainward.state.checkpoint==="meridian-clinic"');capture('02-clinic-courtyard')
   go(0,-29);check(page.evaluate('Rainward.state.player.y< -2.3'),'Actual movement descends into the sunken drainage route')
   go(42,-27);use('Rainward.state.objectives.crank');check(page.evaluate('Rainward.state.player.y>5.9'),'Actual movement climbs the reading-hall ridge to recover its original key')
   go(42,-15);use('Rainward.state.puzzle.solved');go(45,-12);use('Rainward.state.checkpoint==="meridian-library"');capture('03-reading-hall')
