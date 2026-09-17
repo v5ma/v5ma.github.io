@@ -1,0 +1,136 @@
+name: Sky Cycle Spatial Workspace
+on:
+  push:
+    branches: [master, 'sky-cycle/spatial-workspace-0.26']
+    paths:
+      - 'mario-maker-clone/svgn-paper-route/**'
+      - '!mario-maker-clone/svgn-paper-route/development/**'
+      - '.github/workflows/sky-cycle-spatial.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sky-cycle-spatial-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+jobs:
+  rules:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          mkdir -p /tmp/spatial-rules
+          git rev-parse HEAD > /tmp/spatial-rules/commit.txt
+          node --check mario-maker-clone/svgn-paper-route/xr-play.js
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs | tee /tmp/spatial-rules/game.tap
+          node --test tests/adventure_score.test.cjs | tee /tmp/spatial-rules/score.tap
+          git archive --format=tar.gz HEAD mario-maker-clone tests .github/workflows > /tmp/spatial-rules/source.tar.gz
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spatial-rules-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/spatial-rules/
+          retention-days: 30
+  workspace:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [vr, ar]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Real stereo renderer and menu/editor journey with emulated XR hardware
+        env:
+          XR_MODE: ${{ matrix.mode }}
+          ARTIFACT_DIR: /tmp/spatial-evidence
+        run: python mario-maker-clone/svgn-paper-route/tests/xr-workspace-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spatial-${{ matrix.mode }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/spatial-evidence/
+          retention-days: 30
+          if-no-files-found: error
+  regression:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [portal-network-browser.py, waterwheel-deliveries-browser.py]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Preserve current game, controller, portal, delivery and save contracts
+        env:
+          ARTIFACT_DIR: /tmp/spatial-regression
+        run: python mario-maker-clone/svgn-paper-route/tests/${{ matrix.script }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spatial-regression-${{ matrix.script }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/spatial-regression/
+          retention-days: 30
+          if-no-files-found: error
+  published:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Independently compare public owned runtime bytes
+        env:
+          ARTIFACT_DIR: /tmp/spatial-public
+        run: python mario-maker-clone/svgn-paper-route/tests/xr-workspace-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spatial-public-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/spatial-public/
+          retention-days: 30
+          if-no-files-found: error
+  live-workspace:
+    needs: published
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [ar, vr]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Verify the public game menus through both emulated immersive modes
+        env:
+          XR_MODE: ${{ matrix.mode }}
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/spatial-live
+        run: python mario-maker-clone/svgn-paper-route/tests/xr-workspace-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spatial-live-${{ matrix.mode }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/spatial-live/
+          retention-days: 30
+          if-no-files-found: error
