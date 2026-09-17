@@ -91,7 +91,20 @@ with sync_playwright() as pw:
   corners=result['mobile_sign_corners'];left=min(c['px'] for c in corners);right=max(c['px'] for c in corners);top=min(c['py'] for c in corners);bottom=max(c['py'] for c in corners)
   check(all(right+5<b['left'] or left-5>b['right'] or bottom+5<b['top'] or top-5>b['bottom'] for b in result['mobile_sign_blockers']),'The portrait choice board clears the real whip controls, riding instruments and inspection card')
   capture('choice-approach-mobile');page.set_viewport_size({'width':1100,'height':800})
-  page.locator('#delivery-header [data-delivery="view"]').click();frames(3);capture('choice-approach-2d')
+  # Observe actual Canvas2D drawing calls, without changing game or render values.
+  page.evaluate("""()=>{const g=document.getElementById('delivery-canvas').getContext('2d'),rect=g.fillRect,text=g.fillText;window.choice2DObserved={box:null,lines:{}};
+   g.fillRect=function(x,y,w,h){if(w===230&&h===102){const t=this.getTransform();choice2DObserved.box=[[x,y],[x+w,y],[x,y+h],[x+w,y+h]].map(([a,b])=>({x:t.a*a+t.c*b+t.e,y:t.b*a+t.d*b+t.f}));}return rect.apply(this,arguments);};
+   g.fillText=function(label,x,y){if(['CHOOSE YOUR LINE','SPEED: HIGH GALLERY','BRAKE, RELEASE: CANAL MAIL'].includes(label))choice2DObserved.lines[label]=true;return text.apply(this,arguments);};}""")
+  def verify_2d(label):
+   frames(6)
+   observed=page.evaluate("""()=>{const c=document.getElementById('delivery-canvas'),r=c.getBoundingClientRect(),o=choice2DObserved;return {corners:o.box?.map(p=>({x:r.left+p.x*r.width/c.width,y:r.top+p.y*r.height/c.height})),lines:Object.keys(o.lines),canvas:{left:r.left,right:r.right,top:r.top,bottom:r.bottom},blockers:[...document.querySelectorAll('#delivery-hud .route-widget,#delivery-timer,#whip-status,#whip-control,#delivery-pause .delivery-pause-card')].filter(e=>e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden').map(e=>{const b=e.getBoundingClientRect();return {id:e.id||e.className,left:b.left,right:b.right,top:b.top,bottom:b.bottom};})};}""")
+   result[label+'_2d_board']=observed;c=observed['corners'];r=observed['canvas']
+   check(c and len(c)==4 and len(observed['lines'])==3 and all(r['left']+2<=p['x']<=r['right']-2 and r['top']+2<=p['y']<=r['bottom']-2 for p in c),'All three route-purpose lines and the whole board render inside the '+label+' 2D view')
+   l=min(p['x'] for p in c);right=max(p['x'] for p in c);top=min(p['y'] for p in c);bottom=max(p['y'] for p in c)
+   check(all(right+5<b['left'] or l-5>b['right'] or bottom+5<b['top'] or top-5>b['bottom'] for b in observed['blockers']),'The '+label+' 2D choice board clears the actual HUD and controls')
+  page.locator('#delivery-header [data-delivery="view"]').click();verify_2d('desktop');capture('choice-approach-2d')
+  page.set_viewport_size({'width':390,'height':844});verify_2d('portrait');capture('choice-approach-mobile-2d')
+  page.set_viewport_size({'width':1100,'height':800});frames(4)
   page.locator('#delivery-pause [data-delivery="resume"]').click();page.locator('#cv').focus();frames(4);page.evaluate(DRIVER,[CASE,GRIP])
   if CASE=='lower':
    page.wait_for_function('forkDriver.inspection && __delivery.paused',timeout=240000)

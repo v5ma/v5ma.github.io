@@ -35,7 +35,9 @@ export function draw2D(g,camX,camY,width,height){
  const {x,y,radius:r}=data.landmark;
  g.save();g.fillStyle='#547f89';g.fillRect(camX,2134,width,26);
  if(x+r>camX&&x-r<camX+width){g.fillStyle='#b7a281';g.fillRect(x+60,1720,330,438);g.strokeStyle='#695f4a';g.lineWidth=11;g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.stroke();g.lineWidth=5;for(let i=0;i<12;i++){const a=i/12*Math.PI*2;g.beginPath();g.moveTo(x,y);g.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);g.stroke();}g.fillStyle='#496875';g.beginPath();g.arc(x,y,24,0,Math.PI*2);g.fill();}
- for(const [sx,sy,title,detail]of SIGNS){const choice=sx===2800,w=choice?230:270,h=choice?102:62;if(sx+w/2<camX||sx-w/2>camX+width||sy+h/2<camY||sy-h/2>camY+height)continue;g.fillStyle='#173c46';g.fillRect(sx-w/2,sy-h/2,w,h);g.fillStyle='#dfc68e';g.fillRect(sx-w/2,sy-h/2,5,h);g.textAlign='center';g.font='bold 14px system-ui';g.fillText(title,sx,sy-(choice?25:7));g.font='12px system-ui';g.fillStyle='#ecf0d9';detail.split('\n').forEach((line,i)=>g.fillText(line,sx,sy+(choice?0:14)+i*23,w-16));}
+ // The side-on fallback has no perspective lift. Use a fixed nearby placard
+ // position in that presentation, not a camera-tethered HUD or a physics change.
+ for(const [worldX,worldY,title,detail]of SIGNS){const choice=worldX===2800,sx=choice?2870:worldX,sy=choice?1910:worldY,w=choice?230:270,h=choice?102:62;if(sx+w/2<camX||sx-w/2>camX+width||sy+h/2<camY||sy-h/2>camY+height)continue;g.fillStyle='#173c46';g.fillRect(sx-w/2,sy-h/2,w,h);g.fillStyle='#dfc68e';g.fillRect(sx-w/2,sy-h/2,5,h);g.textAlign='center';g.font='bold 14px system-ui';g.fillText(title,sx,sy-(choice?25:7));g.font='12px system-ui';g.fillStyle='#ecf0d9';detail.split('\n').forEach((line,i)=>g.fillText(line,sx,sy+(choice?0:14)+i*23,w-16));}
  if(!data.groundOnly){
   const MARKS=marksFor(window.__sky?.state.data);
   g.strokeStyle='#f8cf77';g.lineWidth=5;for(const m of MARKS){g.beginPath();g.moveTo(m.x-5,m.y-8);g.lineTo(m.x+5,m.y-3);g.stroke();}
