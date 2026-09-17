@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8"><title>Neighborhood portal pixel regression</title><canvas id="view"></canvas>
+<script type="module">
+import * as T from '../vendor/three.module.js';
+import {PortalMaterials,boxInterval,createPortalFrame} from './portal.mjs';
+const canvas=document.getElementById('view'),renderer=new T.WebGLRenderer({canvas,alpha:true,antialias:false,preserveDrawingBuffer:true});renderer.setSize(512,256,false);renderer.setClearColor(0,0);
+const size=new T.Vector3(2,1,1.6),scene=new T.Scene(),mask=new PortalMaterials();mask.configure(new T.Vector3(),0,size);mask.active=true;
+const red=new T.MeshBasicMaterial({color:0xff0000,side:T.DoubleSide,toneMapped:false}),green=new T.MeshBasicMaterial({color:0x00ff00,side:T.DoubleSide,toneMapped:false});mask.attach(red);mask.attach(green);
+const far=new T.InstancedMesh(new T.PlaneGeometry(100,100),red,1),near=new T.Mesh(new T.PlaneGeometry(100,100),green);far.frustumCulled=near.frustumCulled=false;scene.add(far,near);
+const shell=createPortalFrame(scene,mask);shell.update(new T.Vector3(),0,size,'both');
+function cameraAt(p,viewport,roll){const c=new T.PerspectiveCamera(55,1,.01,120);c.position.copy(p);c.lookAt(0,.5,0);c.rotateZ(roll);c.updateMatrixWorld(true);c.viewport=viewport;return c;}
+window.runPortalFixture=(direction,roll=0)=>{
+ const middle=new T.Vector3(0,.5,0),eye=new T.Vector3(...direction),forward=middle.clone().sub(eye).normalize(),right=new T.Vector3().crossVectors(forward,new T.Vector3(0,1,0)).normalize();
+ const cameras=[cameraAt(eye.clone().addScaledVector(right,-.032),new T.Vector4(0,0,256,256),roll),cameraAt(eye.clone().addScaledVector(right,.032),new T.Vector4(256,0,256,256),roll)];
+ const q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,1),forward.clone().negate());
+ far.setMatrixAt(0,new T.Matrix4().compose(middle.clone().addScaledVector(forward,12),q,new T.Vector3(1,1,1)));far.instanceMatrix.needsUpdate=true;
+ near.position.copy(eye).addScaledVector(forward,.1);near.quaternion.copy(q);near.visible=eye.distanceTo(middle)>2;shell.group.visible=false;renderer.render(scene,new T.ArrayCamera(cameras));
+ const gl=renderer.getContext(),pixels=new Uint8Array(512*256*4);gl.readPixels(0,0,512,256,gl.RGBA,gl.UNSIGNED_BYTE,pixels);
+ let inside=0,outside=0,leaks=0,missing=0,foreground=0;const perEye=[];
+ for(let i=0;i<2;i++){const c=cameras[i],r=new T.Raycaster();let count=0;for(let y=3;y<254;y+=3)for(let x=3;x<254;x+=3){
+  r.setFromCamera(new T.Vector2((x+.5)/256*2-1,(y+.5)/256*2-1),c);const hit=boxInterval(r.ray.origin,r.ray.direction,size),offset=(y*512+x+i*256)*4;
+  const expanded=boxInterval(r.ray.origin,r.ray.direction,new T.Vector3(2.02,1.01,1.62)),small=boxInterval(r.ray.origin,r.ray.direction,new T.Vector3(1.98,.99,1.58));if(!!expanded!==!!small)continue;
+  if(hit){inside++;count++;if(pixels[offset]<240||pixels[offset+3]<240)missing++;if(pixels[offset+1]>30)foreground++;}else{outside++;if(pixels[offset+3]>0)leaks++;}
+ }perEye.push(count);}
+ shell.group.visible=true;renderer.render(scene,new T.ArrayCamera(cameras));gl.readPixels(0,0,512,256,gl.RGBA,gl.UNSIGNED_BYTE,pixels);
+ const centers=cameras.map((_,i)=>Array.from(pixels.slice((128*512+128+i*256)*4,(128*512+128+i*256)*4+4)));
+ return {direction,roll,inside,outside,leaks,missing,foreground,perEye,centers,glError:gl.getError(),image:canvas.toDataURL('image/png').split(',')[1]};
+};window.fixtureReady=true;
+</script>

@@ -9,7 +9,7 @@ BASE=os.getenv('WARD_BASE','http://127.0.0.1:8765/svgn-planet/lantern-ward.html'
 OUT=Path(os.getenv('MARKET_OUT','market-results'));OUT.mkdir(parents=True,exist_ok=True)
 PAD="""window.__pad={id:'Xbox Working Quay acceptance',index:0,mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[__pad]});"""
 async def main():
- report={'version':'0.12.1','checks':[],'routes':{},'errors':[],'consoleErrors':[],'physicalHardwareTested':False,'humanComprehensionTested':False,'inputOnly':True}
+ report={'version':'0.13.0','checks':[],'routes':{},'errors':[],'consoleErrors':[],'physicalHardwareTested':False,'humanComprehensionTested':False,'inputOnly':True}
  start=time.time()
  async with async_playwright() as p:
   browser=await p.chromium.launch(executable_path=os.getenv('CHROMIUM_EXECUTABLE'),headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
@@ -36,7 +36,7 @@ async def main():
    def ok(text):report['checks'].append(choice+': '+text);print('PASS',choice,text,flush=True)
    async def shot(name):await page.screenshot(path=str(OUT/(name+'.png')))
    try:
-    await page.goto(BASE,wait_until='domcontentloaded');await wait('window.LanternWard&&!document.querySelector("#start").disabled');await page.bring_to_front();await press(0);await wait('LanternWard.inspect().controllerReady');assert (await state())['version']=='0.12.1'
+    await page.goto(BASE,wait_until='domcontentloaded');await wait('window.LanternWard&&!document.querySelector("#start").disabled');await page.bring_to_front();await press(0);await wait('LanternWard.inspect().controllerReady');assert (await state())['version']=='0.13.0'
     await pilot(-12,15);await press(2);assert (await state())['state']['parcel'];await press(3);assert (await state())['state']['ride']=='bicycle'
     for point in [[-23,13],[-23,-7],[-21,-13.5],[-5,-13.5]]:await pilot(*point)
     ok('Reached the loading decision through real bicycle movement')

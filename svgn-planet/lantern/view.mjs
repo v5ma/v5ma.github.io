@@ -1,3 +1,5 @@
+import {PortalMaterials,createPortalFrame,followPosition} from './portal.mjs';
+import {createCityView} from './city-view.mjs';
 import * as T from '../vendor/three.module.js';
 import {createMarketView} from './market-view.mjs';
 import {createCourier} from '../vehicles.mjs';
@@ -35,8 +37,8 @@ export function createView(canvas){
  // Walkway cobbles and functional route marking are instanced below.
  for(let z=-13;z<=19;z+=1.2)for(const x of[-22.4,-21.2,-20,-18.8,-6.2,-5,5.2,6.4,7.6])box(decor,0xa8afa3,x,.018,z,1.07,.025,1.05);
  for(let x=-22;x<10;x+=1.2)for(const z of[-14.6,-13.4,-12.2])box(decor,0xa3aca2,x,.02,z,1.04,.03,1.05);
- const cutWalls=[];let gate;
- for(const w of walls){const m=box(world,w.color,w.x,w.y+w.h/2,w.z,w.w,w.h,w.d);if(w.gate)gate=m;else if(w.cut)cutWalls.push(m);
+ const cutWalls=[],wallMeshes=[];let gate;
+ for(const w of walls){const m=box(world,w.color,w.x,w.y+w.h/2,w.z,w.w,w.h,w.d);wallMeshes.push({w,m});if(w.gate)gate=m;else if(w.cut)cutWalls.push(m);
   if(!w.gate)box(decor,0x536d70,w.x,w.y+w.h+.06,w.z,w.w+.14,.12,w.d+.12);
  }
  // A visible doorway, latch and lintel anchor the return revelation.
@@ -118,32 +120,45 @@ export function createView(canvas){
   for(const meshes of bins.values()){if(meshes.length<3)continue;const m=new T.InstancedMesh(meshes[0].geometry,meshes[0].material,meshes.length);meshes.forEach((o,i)=>{o.updateMatrix();m.setMatrixAt(i,o.matrix);group.remove(o);});m.castShadow=m.receiveShadow=true;group.add(m);}}
  batch(decor);batch(lowGroup);for(const g of world.children)if(g!==decor&&g!==lowGroup&&g.isGroup&&g.children.some(m=>m.geometry===boxGeo))batch(g);
  const marketView=createMarketView({world,box,cyl,label,batch});
- const enclosure=new T.Group();world.add(enclosure);const sideMat=new T.MeshStandardMaterial({color:0x254b58,roughness:.8,side:T.DoubleSide});
- function panel(w,h,pos,rot){const m=new T.Mesh(new T.PlaneGeometry(w,h),sideMat);m.position.set(...pos);m.rotation.set(...rot);enclosure.add(m);return m;}
- panel(49,17,[0,4.5,-21.3],[0,0,0]);panel(43,17,[-24.4,4.5,0],[0,Math.PI/2,0]);panel(43,17,[24.4,4.5,0],[0,-Math.PI/2,0]);
- const top=panel(49,43,[0,13,0],[-Math.PI/2,0,0]),front=panel(49,17,[0,4.5,21.3],[0,Math.PI,0]);
- let aperture='both';function setOpening(value){aperture=openingState(value);const p=panelsFor(aperture);top.visible=!p.topOpen;front.visible=!p.frontOpen;return aperture;}
- setOpening('both');enclosure.visible=false;
+ const cityView=createCityView({world,box,cyl,label});
+ const portalMaterials=new PortalMaterials();portalMaterials.collect(world);
+ const portalFrame=createPortalFrame(scene,portalMaterials),anchor=new T.Vector3(),portalSize=new T.Vector3();
+ let aperture='both',centerError=0;
+ function setOpening(value){aperture=openingState(value);return aperture;}
+ function stopPortal(){portalMaterials.active=false;portalFrame.group.visible=false;world.position.set(0,0,0);world.scale.setScalar(1);world.rotation.set(0,0,0);}
+ function presentPortal(s,settings,origin,heading,yaw){
+  const size=settings.scale;portalSize.set(49*size,17*size,43*size);
+  anchor.copy(origin).add(new T.Vector3(0,0,-settings.distance).applyAxisAngle(new T.Vector3(0,1,0),heading));anchor.y=origin.y+settings.height-4*size;
+  const rotation=heading+(settings.rotation||0),gameRotation=rotation-yaw,gameScale=size*2;
+  world.scale.setScalar(gameScale);world.rotation.set(0,gameRotation,0);world.position.copy(followPosition(anchor,s,gameRotation,gameScale,4*size));world.updateMatrixWorld(true);
+  portalMaterials.configure(anchor,rotation,portalSize);portalMaterials.active=true;portalFrame.group.visible=true;portalFrame.update(anchor,rotation,portalSize,aperture);
+  centerError=world.localToWorld(new T.Vector3(s.x,s.y,s.z)).distanceTo(anchor.clone().add(new T.Vector3(0,4*size,0)));
+ }
+ function cutaway(s,eye){
+  const target=new T.Vector3(s.x,s.y+1,s.z),ray=new T.Ray(eye.clone(),target.clone().sub(eye).normalize()),distance=eye.distanceTo(target),hit=new T.Vector3();
+  for(const {w,m}of wallMeshes){const bounds=new T.Box3(new T.Vector3(w.x-w.w/2,w.y,w.z-w.d/2),new T.Vector3(w.x+w.w/2,w.y+w.h,w.z+w.d/2));m.visible=!(w.gate&&s.gate)&&!(ray.intersectBox(bounds,hit)&&eye.distanceTo(hit)<distance-.25);}
+ }
  const curtain=new T.Mesh(new T.SphereGeometry(.12,12,8),new T.MeshBasicMaterial({color:0x101c23,side:T.BackSide,depthTest:false}));curtain.renderOrder=1000;curtain.visible=false;camera.add(curtain);
  let cameraYaw=0,view='third',pitch=.58;
  function resize(){if(renderer.xr.isPresenting)return;renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
  function update(s,dt,{mode='third',yaw=cameraYaw,started=true}={}){
-  view=mode;cameraYaw=yaw;marketView.update(s);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
+  view=mode;cameraYaw=yaw;marketView.update(s);cityView.update(s,yaw);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
   flyingPaper.visible=!!s.paper;if(s.paper){const p=s.paper;flyingPaper.position.set(p.x+p.dx*p.t*6,p.y+Math.sin(p.t*Math.PI)*.5-p.t*.8,p.z+p.dz*p.t*6);flyingPaper.rotation.set(p.t*8,p.t*3,p.t*5);}
   gate.visible=!s.gate;latch.visible=!s.gate;parcel.visible=!s.parcel;lowGroup.visible=s.water==='low';
   const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;water.position.y=-2+mix*1.25;water.visible=mix>.02;waterMat.uniforms.time.value=s.time;gauge.position.y=water.position.y;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
   liftPlatform.position.y=(s.hoistY||0)-.09;
   boats[0].visible=boats[1].visible=s.water==='high';boats[2].visible=s.ride==='boat';boats[2].position.set(s.x,-.72,s.z);boats[2].rotation.y=s.yaw;
-  const spatial=mode.startsWith('diorama'),first=mode==='first';enclosure.visible=spatial;
+  const spatial=mode.startsWith('diorama'),first=mode==='first';if(!spatial)stopPortal();for(const {w,m}of wallMeshes)m.visible=!(w.gate&&s.gate);
   for(const m of cutWalls)m.visible=first||!spatial&&Math.hypot(m.position.x-s.x,m.position.z-s.z)>8;
   for(const d of decks)d.group.visible=first||s.y>=d.f.y-1||!inside(s.x,s.z,d.f,1.5);
   hero.g.visible=!first;if(!renderer.xr.isPresenting)curtain.visible=false;
   if(!renderer.xr.isPresenting){world.position.set(0,0,0);world.scale.setScalar(1);world.rotation.y=0;rig.position.set(0,0,0);rig.rotation.set(0,0,0);
-   if(!started||mode==='overview'){camera.position.set(37,34,42);camera.lookAt(0,1,0);enclosure.visible=false;}
+   if(!started||mode==='overview'){camera.position.set(37,34,42);camera.lookAt(0,1,0);portalFrame.group.visible=false;}
    else if(first){camera.position.set(s.x,s.y+1.65,s.z);camera.rotation.order='YXZ';camera.rotation.set(0,yaw,0);}
-   else{const dist=mode==='diorama'?38:11;const to=new T.Vector3(s.x+Math.sin(yaw)*dist,s.y+dist*(mode==='diorama'?.9:.65),s.z+Math.cos(yaw)*dist);camera.position.lerp(to,1-Math.exp(-dt*7));camera.lookAt(s.x,s.y+1,s.z);}
+   else if(mode==='diorama'){presentPortal(s,{scale:.04,height:-.9,distance:1.55,rotation:0},new T.Vector3(),0,yaw);camera.position.set(0,0,0);camera.lookAt(anchor.x,anchor.y+.18,anchor.z);cutaway(s,world.worldToLocal(camera.position.clone()));}
+   else{const dist=11;const to=new T.Vector3(s.x+Math.sin(yaw)*dist,s.y+dist*(mode==='diorama'?.9:.65),s.z+Math.cos(yaw)*dist);camera.position.lerp(to,1-Math.exp(-dt*7));camera.lookAt(s.x,s.y+1,s.z);}
   }
  }
  resize();addEventListener('resize',resize);
- return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({market:marketView.inspect(),clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:!top.visible,frontOpen:!front.visible,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
+ return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,presentPortal,stopPortal,cutaway,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({market:marketView.inspect(),city:cityView.inspect(),portal:{active:portalMaterials.active,centerError,anchor:anchor.toArray(),size:portalSize.toArray(),materials:portalMaterials.entries.size,worldPosition:world.position.toArray(),worldYaw:world.rotation.y,kind:'perspective-ray-aperture',opaqueEnclosurePlanes:0},clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:panelsFor(aperture).topOpen,frontOpen:panelsFor(aperture).frontOpen,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
 }
