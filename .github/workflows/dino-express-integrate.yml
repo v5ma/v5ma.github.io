@@ -48,11 +48,15 @@ jobs:
                           assert 0<=start<=end<=len(text)
                           text=text[:start]+replacement+text[end:]
                   assert hashlib.sha256(text.encode()).hexdigest()==e['after'],str(p)+' result mismatch'
+                  if str(p)=='.github/workflows/dino-tidegate.yml':
+                      # The Actions token cannot write workflows. Use the authorized
+                      # connector separately, after the game-source commit succeeds.
+                      Path('/tmp/dino-tidegate-proposed.yml').write_bytes(text.encode())
+                      continue
                   p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(text.encode())
           if files:
               assert len(files)==2
               encoded=''.join(p.read_text().strip() for p in files)
-              # Correct only the recorded duplicated pair; decoded hash remains authoritative.
               assert encoded.count('WfXLOCOCOOMs')==1
               encoded=encoded.replace('WfXLOCOCOOMs','WfXLOCOOMs')
               data=lzma.decompress(base64.b64decode(encoded,validate=True))
@@ -64,9 +68,9 @@ jobs:
               extra=json.loads(data);assert len(extra)==6;apply(extra);entries+=extra
           assert entries,'Source already integrated; do not repeat writes'
           subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
-          subprocess.run(['git','add',*sorted({e['path'] for e in entries})],check=True)
-          cleanup=files+([amendment] if amendment.exists() else [])+[Path('.github/workflows/dino-express-integrate.yml')]
-          subprocess.run(['git','rm',*[str(p) for p in cleanup if p.exists()]],check=True)
+          subprocess.run(['git','add',*sorted({e['path'] for e in entries if e['path'].startswith('dino-atlas/')})],check=True)
+          cleanup=files+([amendment] if amendment.exists() else [])
+          if cleanup:subprocess.run(['git','rm',*[str(p) for p in cleanup]],check=True)
           subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
           subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
           subprocess.run(['git','commit','-m','Dino Atlas: sustained Express vehicles, active controls and destination guidance'],check=True)
@@ -74,8 +78,10 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('source='+subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()+'\n')
           PY
       - name: Source snapshot
+        if: always()
         run: tar -czf express-source.tgz dino-atlas .github/workflows/dino-tidegate.yml
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: dino-express-source-${{ github.run_id }}
           path: express-source.tgz
