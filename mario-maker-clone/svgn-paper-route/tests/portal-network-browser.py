@@ -62,7 +62,12 @@ with sync_playwright() as pw:
   check(True,'Native hand pinch-and-hold drives the ordinary riding input')
   point('Jump');page.evaluate("xrEmulator.select('start')");page.wait_for_function('!player.onGround');page.evaluate("xrEmulator.select('end')");frames();capture('xr-hand-jump')
   check(True,'Native hand selection jumps without a mouse or direct physics edits')
-  choose('Pause');page.wait_for_function('__delivery.paused');choose('Portal atlas');choose('Start Sunrise Borough');page.wait_for_function('__delivery.state.route===4 && !won');frames()
+  point('Pause')
+  # Same-task native events intentionally leave no frame in which a held key can be polled.
+  paused=page.evaluate("(()=>{xrEmulator.select('start');xrEmulator.select('end');return __delivery.paused;})()")
+  check(paused,'A brief hand Pause selection works even when it starts and ends before the next XR frame')
+  frames();check(page.evaluate('__delivery.paused'),'The discrete hand Pause does not toggle back on the next poll')
+  capture('xr-brief-hand-pause');choose('Portal atlas');choose('Start Sunrise Borough');page.wait_for_function('__delivery.state.route===4 && !won');frames()
   check(page.evaluate('JSON.stringify(SkyCycleFlightDeck.records)')==records,'Hand portal travel starts a new route without banking unfinished career progress')
   page.evaluate('xrEmulator.disconnect()');frames();check(page.evaluate('__delivery.paused && !keys.ArrowLeft && !keys.ArrowRight && !keys.Space'),'Source loss pauses and releases movement and action input')
   diagnostics=page.evaluate('SkyCycleXR.diagnostics');page.evaluate('xrEmulator.session.end()');page.wait_for_function('!SkyCycleXR.presenting && !__merged.scene.parent');

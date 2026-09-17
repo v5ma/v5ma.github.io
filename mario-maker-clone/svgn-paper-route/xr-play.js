@@ -55,8 +55,10 @@ function updateTracking(frame){for(const [source,v] of visuals)if(![...session.i
 }
 const lastHit=new T.Vector3();
 function hit(source,frame){if(!ui||!frame||!reference)return null;const pose=frame.getPose(source.targetRaySpace,reference);if(!pose)return null;ctl.fromArray(pose.transform.matrix);ctl.decompose(raycaster.ray.origin,rotation,vector);raycaster.ray.direction.copy(forward).applyQuaternion(rotation);xrScene.updateMatrixWorld(true);const h=raycaster.intersectObject(ui,false)[0];if(h)lastHit.copy(h.point);return h?.uv?pointInRects(h.uv.x*1200,(1-h.uv.y)*900,rects):null;}
+// Pause is a discrete UI command: a brief pinch may end before the next XR poll.
+// Dispatch through the existing pause owner immediately; never toggle or queue it.
 function selectStart(e){if(!presenting)return;const r=hit(e.inputSource,e.frame||lastFrame);if(!r)return;suppressed.add(e.inputSource);const generation=panel();
- if(typeof r.action==='string'){if(r.action==='use')window.SkyCycleBathhouse?.interact();else if(r.action==='portal')window.SkyCyclePortals?.show();else{held.add(r.action);presses.set(e.inputSource,{action:r.action,generation});}}
+ if(typeof r.action==='string'){if(r.action==='use')window.SkyCycleBathhouse?.interact();else if(r.action==='portal')window.SkyCyclePortals?.show();else if(r.action==='pause'){if(!generation)pause();}else{held.add(r.action);presses.set(e.inputSource,{action:r.action,generation});}}
  else r.action();lastUI=0;
 }
 function selectEnd(e){suppressed.delete(e.inputSource);const p=presses.get(e.inputSource);if(p)held.delete(p.action);presses.delete(e.inputSource);}
