@@ -2,7 +2,7 @@ name: Integrate Dino portal source
 on:
   push:
     branches: ['dino-atlas/world-portal-20260917']
-    paths: ['.github/workflows/dino-portal-apply.yml', '.github/patches/portal.*.b64']
+    paths: ['.github/workflows/dino-portal-apply.yml']
 permissions:
   contents: write
 jobs:
@@ -13,40 +13,48 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: dino-atlas/world-portal-20260917
-          sparse-checkout: |
-            dino-atlas
-            .github
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Check every before and after hash; apply only reviewed game files
+          sparse-checkout: dino-atlas
+      - name: Append the bounded portal correction to the current roadmap
         run: |
           python - <<'PY'
-          from pathlib import Path,PurePosixPath
-          import base64,lzma,json,hashlib,subprocess
-          parts=sorted(Path('.github/patches').glob('portal.*.b64'))
-          if not parts:raise SystemExit(0)
-          assert len(parts)==2
-          raw=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
-          assert hashlib.sha256(raw).hexdigest()=='26f95147035eddf80541df58dd57e11074f23b679be2b202d59826ec3865112c'
-          data=json.loads(raw);assert len(data)==17
-          outputs={}
-          for name,item in data.items():
-              path=Path(name);assert name.startswith('dino-atlas/') and '..' not in PurePosixPath(name).parts
-              old=path.read_bytes() if path.exists() else b''
-              assert (hashlib.sha256(old).hexdigest() if path.exists() else None)==item['before'],name+' baseline changed'
-              text=old.decode('utf-8');last=0
-              for edit in item['edits']:
-                  assert last<=edit['start']<=edit['end']<=len(text);last=edit['end']
-              for edit in reversed(item['edits']):text=text[:edit['start']]+edit['text']+text[edit['end']:]
-              body=text.encode('utf-8');assert hashlib.sha256(body).hexdigest()==item['after'],name+' output mismatch'
-              outputs[path]=body
-          for path,body in outputs.items():path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(body)
-          subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
-          subprocess.run(['git','add',*[str(p) for p in outputs]],check=True)
-          subprocess.run(['git','rm',*[str(p) for p in parts]],check=True)
+          from pathlib import Path
+          import subprocess
+          root=Path('dino-atlas');roadmap=root/'AAA-ROADMAP.md'
+          if 'XR-DIO-01c:' in roadmap.read_text():raise SystemExit(0)
+          assert subprocess.check_output(['git','hash-object',str(roadmap)],text=True).strip()=='d76384f0e3d567f574d63193382b0c5a4fc848e8'
+          roadmap.write_text(roadmap.read_text()+'''
+
+          ## Character-centered world portal / 2026-09-17
+
+          The user's clarification supersedes the fixed-map miniature interpretation, not the level-design program. Keep the accepted physical box width and placement. Frame the normal game around the active character/vehicle, mask its projected outline, preserve game depth through the sides/rear and make eye-facing enclosure panels automatically transparent. Do not crop game geometry to a cuboid or create a separate simplified map. See DIORAMA-PORTAL.md and design/DIORAMA-PORTAL-REQUEST-20260917.md.
+
+          - [ ] XR-DIO-01c: Verify the character-centered full-world portal in Tidegate and Classic, far-world visibility without outside leakage from two render eyes, automatic shell cutaway, real controller-driven movement, first-person return, tool/vehicle behavior and unchanged saves. Separate candidate, published bytes/play and release evidence must close this engineering item.
+          - [ ] XR-DIO-02c: Physical Quest 3 inspection of near-plane/inside-box behavior, stereo parallax, side/rear visibility, AR composition, menus, hand/controller pointing and comfort. Automated eye poses are not physical-device approval.
+
+          Keep LEVEL-PM-03 and LEVEL-PM-04 open. The next level-design question remains the observation/feeder route's useful information versus the learned harbor/service return, not more map area. Presentation alone does not establish level quality or introduce asset-sector streaming.
+          '''.replace('\n          ','\n'))
+          agents=root/'AGENTS.md';assert subprocess.check_output(['git','hash-object',str(agents)],text=True).strip()=='532d6dc9828c73ad3cf7c02fccf952bdf0d83c95'
+          agents.write_text(agents.read_text()+'''
+          Latest presentation correction: read DIORAMA-PORTAL.md and DIORAMA-PORTAL-HANDOFF.md before touching XR. The normal game follows the active character inside a stationary perspective portal; sides/rear preserve depth and eye-facing enclosure walls cut away automatically. This replaces the fixed district/box-crop interpretation. Keep the original accepted box dimensions, session placement, three legal top/front preferences and first-person mode. The new shared implementation applies to both Classic Reserve and Tidegate.
+
+          Additional verification: tests/diorama-portal.test.mjs, tests/portal-render-browser.py and tests/portal-game-browser.py with PORTAL_SCENE=tidegate and classic. The pixel fixture renders two ArrayCamera eyes using the production mask. It is geometric GPU evidence, not a headset or gameplay completion test. Real game journeys must still use ordinary input and collision. No manufactured actor/objective state or physical-hardware claims.
+          '''.replace('\n          ','\n'))
+          handoff=root/'DIORAMA-PORTAL-HANDOFF.md';assert not handoff.exists()
+          handoff.write_text('''# Character-centered world portal continuation
+
+          Candidate, not yet a published release. Branch dino-atlas/world-portal-20260917 began from master 3550a6cbb4b7399f218fb96c0f80b560347194e0. The last released Dino runtime remains 62823be5d810ecf2d78fa73f794e86a08e1bfd3c, dino-tidegate-20260915.2. Do not repeat the service-loop merge.
+
+          Read the exact user clarification in design/DIORAMA-PORTAL-REQUEST-20260917.md, the implementation contract in DIORAMA-PORTAL.md and the existing canonical roadmap. The box is a window into the normal third-person game, not a map bounded by its walls. The active ranger/vehicle is centered in all three axes. Width and physical placement are preserved; the full live world moves only during rendering. A per-eye ray/box fragment aperture preserves depth beyond the side/rear while rejecting geometry before entry and outside the projected silhouette. It does not require a compositor stencil attachment. Eye-facing shell panels discard per eye, and far panels are light glass; normal game-world walls remain solid. This is not infinite terrain streaming.
+
+          Shared DioramaXR now serves Tidegate and Classic Reserve. Classic retains first-person VR as its default when no presentation preference exists. Existing presentation and gameplay keys are untouched. First-person return restores world transforms, fog, background, renderer state and masking in finally. Menus/hand rays share the established action handlers. A tabletop ray chooses a tool aim point; the shot still originates at the ranger and obeys the game's real range and walls.
+
+          Local and hosted integration passed 181 Node tests. The first full candidate is d7fb504718777a74a1799241e00c91c82219ad0a, run 35263571952. Its six-position two-eye GPU aperture fixture passed; game and legacy jobs require fresh status reads and artifact inspection. Later documentation-only changes do not establish new runtime acceptance. No physical Quest/Xbox, actual passthrough, comfort, hardware performance or player-comprehension approval is claimed. Local Chromium navigation is blocked by administrator policy; native rendering runs in the established GitHub workflow rather than bypassing that policy.
+
+          Before merge, remove the temporary integration workflow and confirm no transport files remain. Run all model, portal, original Tidegate/service and four Classic browser suites at the final source. Inspect actual screenshots and all reported errors. Reconcile fresh master and use a normal expected-head merge. The existing Tidegate workflow then separately compares public bytes, exercises both public games and all portal viewpoints, and creates new prerelease dino-portal-20260917.1 only on success. Never replace older tags or clear storage. Keep human and physical-device gates open.
+          '''.replace('\n          ','\n'))
+          subprocess.run(['git','add',str(roadmap),str(agents),str(handoff)],check=True)
           subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
           subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
-          subprocess.run(['git','commit','-m','Implement character-centered depth portal for Tidegate and Classic Reserve'],check=True)
+          subprocess.run(['git','commit','-m','Integrate character-centered portal correction into the existing roadmap and handoff'],check=True)
           subprocess.run(['git','push','origin','HEAD:dino-atlas/world-portal-20260917'],check=True)
           PY
