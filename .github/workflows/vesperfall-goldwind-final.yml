@@ -1,0 +1,95 @@
+name: Vesperfall Goldwind release candidate
+on:
+  push:
+    branches: [vesperfall-goldwind-20260917]
+    paths: ['.github/workflows/vesperfall-goldwind-final.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        name: Synchronize exact release and observe physical gesture sampling
+        run: |
+          set -euo pipefail
+          python .github/goldwind-release.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('vesperfall/tests/goldwind-browser.py');s=p.read_text()
+          s=s.replace('window.TEST_XR_PIXEL_SCALE=.35;','window.TEST_XR_PIXEL_SCALE=.12;')
+          s=s.replace('state.frames>n\',n)','state.frames>n||!Vesperfall.component.xr\',n)')
+          s=s.replace("page.evaluate('TestPad.enabled=false');page.locator('#start').click()", "page.evaluate('TestPad.enabled=false');wait('!Vesperfall.component.dominionControls.state.pad');page.locator('#start').click()")
+          old="""  neutral();pose('right',[.25,1.25,.12]);button('right',1,True)
+            page.evaluate(\"\"\"async()=>{const start=performance.now();await new Promise(resolve=>{function step(){const t=Math.min(1,(performance.now()-start)/280);TestXR.pose('right',[.25,1.25,.12-.55*t]);if(t<1)requestAnimationFrame(step);else{TestXR.button('right',1,false);resolve();}}requestAnimationFrame(step);});}\"\"\")"""
+          new="""  neutral();pose('right',[.25,1.25,-.43]);button('right',1,True)
+            throw_trace=page.evaluate(\"\"\"async()=>{const start=performance.now(),trace=[];await new Promise(resolve=>{function step(){const now=performance.now(),t=Math.min(1,(now-start)/280),g=Vesperfall.component.goldwind.gesture;trace.push({now,samples:g.samples.map(s=>({t:s.t,p:s.p})),armed:g.ready,held:g.held});TestXR.pose('right',[.25,1.25,-.43+.55*t]);if(t<1)requestAnimationFrame(step);else{TestXR.button('right',1,false);resolve();}}requestAnimationFrame(step);});return trace;}\"\"\")
+            (OUT/'throw-input-observations.json').write_text(json.dumps(throw_trace,indent=2))"""
+          assert s.count(old)==1;s=s.replace(old,new)
+          s=s.replace("'scope':'Native production WebGL", "'xrBufferScale':.12,'scope':'Native production WebGL")
+          p.write_text(s);compile(s,str(p),'exec')
+          PY
+          mkdir -p test-output
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall
+          git commit -m 'Synchronize Goldwind 0.16.0 roadmap and workbook; measure render-bound throw input without changing gameplay'
+          git push origin HEAD:vesperfall-goldwind-20260917
+          git rev-parse HEAD > test-output/source-revision.txt
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: goldwind-final-model
+          path: test-output/
+          retention-days: 14
+  native:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [goldwind, surestep, returning-bell]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise production source and actual controls
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 1800 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
+      - name: Retain exact source and unsuccessful evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: goldwind-final-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
