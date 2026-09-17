@@ -26,6 +26,7 @@ with sync_playwright() as pw:
  def exit_spatial():
   # A modal intentionally blocks the desktop header. Exit through the genuine
   # in-headset action, including after a visibility-loss pause.
+  if not snap()['paused']:p.locator('#pause-button').click();frames()
   p.evaluate('TestXR.hidden(false);TestPad.disconnect();TestXR.useHands()');frames(6)
   p.evaluate('TestXR.point("right",830,691);TestXR.pinch("right",false)');frames()
   p.evaluate('TestXR.pinch("right",true)');frames();p.wait_for_function('!AetherReach.snapshot().devices.xr')
