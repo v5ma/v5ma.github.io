@@ -1,0 +1,12 @@
+name: Theology one-shot corpus snapshot (completed)
+# Collection succeeded in run 35269662454. Preserve the snapshot without further writes.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The September 17 snapshot is complete. Use an explicitly reviewed new snapshot for later collection.'
