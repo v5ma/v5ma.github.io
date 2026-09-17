@@ -36,6 +36,9 @@ try:
    # Entry/pose fixtures replace unavailable XR hardware, never gameplay state.
    page.evaluate('''async()=>{window.T=await import('./vendor/three.module.js');const x=g.xr;Object.defineProperty(navigator,'xr',{configurable:true,value:{isSessionSupported:async()=>true,requestSession:async(mode)=>{window.requested=mode;window.session=new EventTarget();session.inputSources=[];session.visibilityState='visible';session.end=async()=>session.dispatchEvent(new Event('end'));return session;}}});g.renderer.xr.setSession=async()=>{};x.presentation.view='diorama-ar';await x.enter();g.camera.position.set(0,1.65,0);g.camera.quaternion.identity();x.place();}''')
    check(page.evaluate('requested')=='immersive-ar','AR requests actual AR session type')
+   # Entry deliberately clears input. Observe an actual neutral poll before
+   # holding the stick, just as a person releases input after changing modes.
+   wait('!input.neutral&&g.xr.context===g.xr.ctx.modal()',30000)
    before=page.evaluate('({position:g.state.position,anchor:g.xr.anchor.toArray(),width:g.xr.presentation.width,progress:g.state.progress})')
    page.evaluate('__pad.axes[0]=1')
    try:page.wait_for_function('x=>g.state.position.x>x+2',arg=before['position']['x'],timeout=60000)
@@ -58,9 +61,12 @@ try:
    check(not errors,'No captured JavaScript or shader errors')
    (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-portal-20260917.1','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'framing':result,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual world and movement driven by synthetic Xbox. XR sessions and monocular inspection poses explicitly mocked. No objective/actor assignments. Not physical Quest, stereo compositor, passthrough or human acceptance.'},indent=2))
   except Exception as e:
+   diagnostic={}
+   try:diagnostic=page.evaluate('({state:window.g?.state,neutral:window.input?.neutral,axes:window.__pad?.axes,context:window.g?.xr.context?.id,modal:window.g?.xr.ctx.modal()?.id})')
+   except:pass
    try:page.screenshot(path=str(OUT/(SCENE+'-failure.png')),timeout=20000)
    except:pass
-   (OUT/(SCENE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors},indent=2));raise
+   (OUT/(SCENE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'diagnostic':diagnostic},indent=2));raise
   finally:browser.close()
 finally:
  if server:server.terminate()
